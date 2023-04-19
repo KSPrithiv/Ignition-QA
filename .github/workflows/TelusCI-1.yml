@@ -1,9 +1,10 @@
 name: Telus CI CD
 on:
-  push:
+ workflow_dispatch
+push:
     branches:
       - patch-1
-  workflow_dispatch:
+   
 
 jobs:
   build:
@@ -20,5 +21,18 @@ jobs:
         cache: maven
         
     - name: Telus CI
-      run: mvn clean test -Dtestng.dtd.http=true
-      working-directory: IgnitionQAAutomation
+      run: mvn clean test -DsuiteXmlFile='testng.xml'
+    - uses: deblockt/cucumber-report-annotations-action@vl.7
+
+      with:
+      access-token: ${{ secrets.GITHUB_TOKEN }}
+      path: “**/cucumber. json"
+
+    - name: Deploy report page to GitHub Page
+    - uses: peaceiris/actions-gh-pages@v3
+     
+    with:
+     github_token: ${{ secrets.GITHUB_TOKEN }}
+     publish dir: ./target
+         
+working-directory:IgnitionQAAutomation
