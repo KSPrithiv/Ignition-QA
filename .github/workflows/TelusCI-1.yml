@@ -1,0 +1,13 @@
+name: Telus CI CD
+
+on:
+   push:
+      branches: [ pipeline-1 ]
+
+   pull_request:
+      branches: [ pipeline-1 ]
+
+   workflow_dispatch:
+   
+jobs:
+   build:
