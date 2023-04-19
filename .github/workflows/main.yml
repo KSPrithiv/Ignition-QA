@@ -1,0 +1,28 @@
+
+name: Ignition QA Build
+on:
+  push:
+    branches:
+      - WMS_Auto
+      - feature/github-actions-pipeline
+  workflow_dispatch:
+
+env:
+  ACTIONS_ALLOW_UNSECURE_COMMANDS: 'true'
+
+jobs:
+  runTests:
+    name: Checkout code & Run tests
+    runs-on: self-hosted
+    steps:
+      # https://github.com/microsoft/vscode/issues/136599
+      # Github actions comes with Node so we need to mark as disabled
+      - name: Unset NODE_OPTIONS
+        run: set NODE_OPTIONS=%NODE_OPTIONS:--openssl-legacy-provider=%
+
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Run tests with Maven
+        run: mvn clean test -DsuiteXmlFile='WorkQueueTestNGRunner.xml'
+        working-directory: IgnitionQAAutomation
