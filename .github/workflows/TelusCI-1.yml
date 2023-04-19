@@ -20,5 +20,5 @@ jobs:
         cache: maven
         
     - name: Telus CI
-      run: mvn clean verify -Dtestng.dtd. http=true
+      run: mvn clean verify -Dtestng.dtd.http=true
       working-directory: IgnitionQAAutomation
