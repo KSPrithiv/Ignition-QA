@@ -1,5 +1,5 @@
 name: Telus CI CD
-'on':
+on:
   push:
     branches:
       - patch-1
@@ -19,5 +19,5 @@ jobs:
           distribution: temurin
           cache: maven
       - name: maven build Telus
-        run: mvn clean test -DsuiteXmlFile='testng.xml'
+        run: mvn clean test -DsuiteXmlFile=testng.xml
         working-directory: IgnitionQAAutomation
