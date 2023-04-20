@@ -3,6 +3,8 @@ name: Telus CI CD
   push:
     branches:
       - patch-1
+  workflow_dispatch:
+  
 jobs:
   build:
     runs-on: windows-latest
