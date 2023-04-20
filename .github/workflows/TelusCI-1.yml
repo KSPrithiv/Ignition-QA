@@ -19,5 +19,5 @@ jobs:
           distribution: temurin
           cache: maven
       - name: maven build Telus
-        run: mvn clean test -Dsurefire='TestNGDirectoryForDSD_OMS\testng.xml'
+        run: mvn clean test -Dsurefire='testng_front.xml'
         working-directory: IgnitionQAAutomation
