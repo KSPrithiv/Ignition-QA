@@ -8,7 +8,7 @@ import org.testng.annotations.Optional;
 import org.testng.annotations.Parameters;
 import util.MailSend;
 import util.TestBase;
-
+import java.io.IOException;
 import javax.mail.MessagingException;
 
 
@@ -45,7 +45,7 @@ public class TestRunnerReportSingleScenario extends AbstractTestNGCucumberTests
     }
 
     @AfterClass
-    public static void afterclass() throws InterruptedException, MessagingException
+    public static void afterclass() throws InterruptedException, MessagingException, IOException
     {
         MailSend.sendMail();
         TestBase.CloseBrowser();
