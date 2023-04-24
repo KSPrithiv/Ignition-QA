@@ -10,10 +10,11 @@ jobs:
     
     runs-on:
       - self-hosted
+      - label-1
 
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       
       
       - name: Run a one-line script
