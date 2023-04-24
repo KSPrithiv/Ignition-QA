@@ -2,7 +2,7 @@ name: Ignition QA CI
 on:
   push:
     branches:
-      - feature/github-actions-pipeline
+      - patch-1
   workflow_dispatch:
   
 jobs:
