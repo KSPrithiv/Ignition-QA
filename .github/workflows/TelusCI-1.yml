@@ -1,23 +1,23 @@
 name: Telus CI CD
+
 on:
-  push:
-    branches:
-      - patch-1
   workflow_dispatch:
-  
+
+
 jobs:
+ 
   build:
-    runs-on: windows-latest
+    
+    runs-on:
+      - self-hosted
+
+
     steps:
-      - name: Checkout source code
-        uses: actions/checkout@v3
+      - uses: actions/checkout@v2
       
-      - name: Set up JDK 16
-        uses: actions/setup-java@v3
-        with:
-          java-version: '16'
-          distribution: temurin
-          cache: maven
-      - name: maven build Telus
-        run: mvn clean install test -DsuiteXmlFile='testng_front.xml'
-        working-directory: IgnitionQAAutomation
+      
+      - name: Run a one-line script
+        run:
+          echo Hello, world
+          sleep 2
+          echo Goodbye
