@@ -1,24 +1,12 @@
 name: Telus CI CD
-
-on:
+'on':
   workflow_dispatch:
-
-
 jobs:
- 
   build:
-    
     runs-on:
       - self-hosted
       - label-1
-
-
     steps:
       - uses: actions/checkout@v3
-      
-      
       - name: Run a one-line script
-        run:
-          echo Hello, world
-          sleep 2
-          echo Goodbye
+        run: 'echo Hello, world sleep 2 echo Goodbye'
