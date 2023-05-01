@@ -1,9 +1,12 @@
 name: Telus CI CD
 on:
-  push:
+ schedule:
+  - cron: '*/5 * * * *'
+ push:
     branches:
       - patch-1
-  workflow_dispatch:
+ workflow_dispatch:
+  
   
 jobs:
   build:
