@@ -12,7 +12,9 @@ on:
 jobs:
   build:
     name: Ignition Automation
-    runs-on: self-hosted
+    #runs-on: self-hosted
+    runs-on: windows-latest
+    
     steps:
       - name: Checkout source code
         uses: actions/checkout@v3
