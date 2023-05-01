@@ -1,7 +1,7 @@
 name: Telus CI CD
 on:
  schedule:
-  - cron: '*/2 * * * *'
+  - cron: '*/5 * * * *'
 
  push:
     branches:
@@ -12,8 +12,8 @@ on:
 jobs:
   build:
     name: Ignition Automation
-    #runs-on: self-hosted
-    runs-on: windows-latest
+    runs-on: self-hosted
+    #runs-on: windows-latest
     
     steps:
       - name: Checkout source code
