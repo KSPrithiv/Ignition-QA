@@ -1,11 +1,11 @@
 name: Telus CI CD
 on:
- schedule:
-  - cron: '*/5 * * * *'
+ #schedule:
+  #- cron: '*/5 * * * *'
 
  push:
-    #branches:
-      #- patch-1
+    branches:
+      - patch-1
  workflow_dispatch:
   
   
