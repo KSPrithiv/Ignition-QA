@@ -98,6 +98,17 @@ public class LoginPageStep {
         scenario.log("INVALID USERNAME AND PASSWORD HAS BEEN ENTERED");
     }
 
+    //Karthik
+    @Then("User entered valid {string} and {string}")
+    public void i_entered_valid_and(String username, String password) throws InterruptedException, AWTException
+    {
+        loginpage = new LoginPage(driver, scenario);
+        loginpage.EnterUsername(username);
+        loginpage.EnterPassword(password);
+        loginpage.ClickSignin();
+        scenario.log("INVALID USERNAME AND PASSWORD HAS BEEN ENTERED");
+    }
+
     @Then("User entered username and password")
     public void i_entered_username_and_password() throws InterruptedException, AWTException {
         loginpage = new LoginPage(driver, scenario);

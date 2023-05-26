@@ -56,13 +56,14 @@ public class MailSend
             Message message = new MimeMessage(session);
             message.setFrom(new InternetAddress(myAccountEmail));
             message.setRecipient(Message.RecipientType.TO, new InternetAddress(recepient));
-            message.setSubject("Automation framework test report");
-            //String filename = "C:\\Users\\Divya.Ramadas\\Downloads\\IgnitionTestAutomation\\Reports\\spark\\index.html";
-            String filename="D:\\Divya.Ramadas\\IgnitionTestAutomation\\Reports\\extent\\Index.html";
+            message.setSubject("Automated Email Notification -Ignition test report -Local machine");
 
+            //String filename="corp.afsi.com\\C:\\Users\\karthikeyan.Armugam\\Documents\\Git_Repositories\\ignition-qa\\IgnitionQAAutomation\\Reports\\extent\\Index.html";
+            //String filename="C:\\Users\\karthikeyan.Armugam\\Documents\\Git_Repositories\\ignition-qa\\IgnitionQAAutomation\\Reports\\extent\\Index.html";
+            String filename="C:\\inetpub\\wwwroot\\E:\\GithubBuilds\\IgnitionQA\\_work\\ignition-qa\\ignition-qa\\IgnitionQAAutomation\\Reports\\extent\\Index.html";
             //Composing mail
             BodyPart objMessageBodyPart = new MimeBodyPart();
-            objMessageBodyPart.setContent("Hi,"+"<br><h1>Mail from Automation framework!</h1></br>"+"\n"+TestBase.testEnvironment.get_url(), "text/html");
+            objMessageBodyPart.setContent("Hi,"+"Santhosh, Good Afternoon..This is a test report automatically attached and mailed immediately to you once the test execution is completed in my official machine.Email Notification is yet to be configured in CI server.As you know ,It is completely a different method to accomplish.And I will do it ASAP"+"\n"+TestBase.testEnvironment.get_url(), "text/html");
             Multipart multipart = new MimeMultipart();
             multipart.addBodyPart(objMessageBodyPart);
             objMessageBodyPart = new MimeBodyPart();

@@ -3,84 +3,34 @@
     "line": 1,
     "elements": [
       {
-        "line": 5,
-        "name": "For login to application and selecting Account#",
-        "description": "",
-        "type": "background",
-        "keyword": "Background",
-        "steps": [
-          {
-            "output": [
-              "USER ENTERED USERNAME",
-              "USER ENTERED PASSWORD"
-            ],
-            "result": {
-              "duration": 667997200,
-              "status": "passed"
-            },
-            "line": 6,
-            "name": "User enters URL and is on login page and entered credentials",
-            "match": {
-              "location": "stepDefination_DSD_OMS.OrderEntryPage.OrderEntryPageSteps.user_enters_url_and_is_on_login_page_and_entered_credentials()"
-            },
-            "keyword": "Given "
-          },
-          {
-            "result": {
-              "duration": 999600,
-              "status": "passed"
-            },
-            "line": 7,
-            "name": "User is on Home Page",
-            "match": {
-              "location": "stepDefination_DSD_OMS.OrderEntryPage.OrderEntryPageSteps.user_is_on_home_page()"
-            },
-            "keyword": "When "
-          },
-          {
-            "result": {
-              "duration": 11721070000,
-              "status": "passed"
-            },
-            "line": 8,
-            "name": "User navigate to Client side",
-            "match": {
-              "location": "stepDefination_DSD_OMS.OrderEntryPage.OrderEntryPageSteps.user_navigate_to_client_side()"
-            },
-            "keyword": "Then "
-          },
-          {
-            "result": {
-              "duration": 9204056800,
-              "status": "passed"
-            },
-            "line": 9,
-            "name": "User should select Order Entry tab",
-            "match": {
-              "location": "stepDefination_DSD_OMS.OrderEntryPage.OrderEntryPageSteps.user_should_select_order_entry_tab()"
-            },
-            "keyword": "Then "
-          },
-          {
-            "result": {
-              "duration": 61688428400,
-              "status": "passed"
-            },
-            "line": 10,
-            "name": "User selects Account#",
-            "match": {
-              "location": "stepDefination_DSD_OMS.OrderEntryPage.OrderEntryPageSteps.user_selects_account()"
-            },
-            "keyword": "Then "
-          }
-        ]
-      },
-      {
-        "start_timestamp": "2022-05-12T11:10:56.057Z",
+        "start_timestamp": "2023-05-23T14:13:57.283Z",
         "before": [
           {
             "result": {
-              "duration": 2998400,
+              "status": "passed"
+            },
+            "match": {
+              "location": "stepDefination_DSD_OMS.AllOrdersPage.AllOrdersPageStep.LaunchBrowser1(io.cucumber.java.Scenario)"
+            }
+          },
+          {
+            "result": {
+              "status": "passed"
+            },
+            "match": {
+              "location": "stepDefination_DSD_OMS.ARInquiry.ARInquiryPageStep.LaunchBrowser1(io.cucumber.java.Scenario)"
+            }
+          },
+          {
+            "result": {
+              "status": "passed"
+            },
+            "match": {
+              "location": "stepDefination_DSD_OMS.BillToBillStep.BillToBillPageStep.LaunchBrowser1(io.cucumber.java.Scenario)"
+            }
+          },
+          {
+            "result": {
               "status": "passed"
             },
             "match": {
@@ -88,11 +38,7 @@
             }
           },
           {
-            "output": [
-              "Launched the browser"
-            ],
             "result": {
-              "duration": 17016100,
               "status": "passed"
             },
             "match": {
@@ -101,7 +47,30 @@
           },
           {
             "result": {
-              "duration": 5002020600,
+              "status": "passed"
+            },
+            "match": {
+              "location": "stepDefination_DSD_OMS.CompetitivePricingPageStep.CompetitorPricingPageStep.LaunchBrowser1(io.cucumber.java.Scenario)"
+            }
+          },
+          {
+            "result": {
+              "status": "passed"
+            },
+            "match": {
+              "location": "stepDefination_DSD_OMS.CustomerInqPage_DSD.CustomerInqStep.LaunchBrowser1(io.cucumber.java.Scenario)"
+            }
+          },
+          {
+            "result": {
+              "status": "passed"
+            },
+            "match": {
+              "location": "stepDefination_DSD_OMS.DiconnectModePage.DMOEPageStep.LaunchBrowser1(io.cucumber.java.Scenario)"
+            }
+          },
+          {
+            "result": {
               "status": "passed"
             },
             "match": {
@@ -110,7 +79,31 @@
           },
           {
             "result": {
-              "duration": 999200,
+              "duration": 7076800,
+              "status": "passed"
+            },
+            "match": {
+              "location": "stepDefination_DSD_OMS.MyAccountStep.MyAccountPageStep.LaunchBrowser1(io.cucumber.java.Scenario)"
+            }
+          },
+          {
+            "result": {
+              "status": "passed"
+            },
+            "match": {
+              "location": "stepDefination_DSD_OMS.OrderControlList.OrderControlPageSteps.LaunchBrowser1(io.cucumber.java.Scenario)"
+            }
+          },
+          {
+            "result": {
+              "status": "passed"
+            },
+            "match": {
+              "location": "stepDefination_DSD_OMS.OrderControlList.OrderControlPageSteps1.LaunchBrowser1(io.cucumber.java.Scenario)"
+            }
+          },
+          {
+            "result": {
               "status": "passed"
             },
             "match": {
@@ -135,7 +128,6 @@
           },
           {
             "result": {
-              "duration": 1000000,
               "status": "passed"
             },
             "match": {
@@ -144,7 +136,6 @@
           },
           {
             "result": {
-              "duration": 1000600,
               "status": "passed"
             },
             "match": {
@@ -161,7 +152,6 @@
           },
           {
             "result": {
-              "duration": 999600,
               "status": "passed"
             },
             "match": {
@@ -175,18 +165,112 @@
             "match": {
               "location": "stepDefination_DSD_OMS.ParOrderPage.ParOrderPageStep.LaunchBrowser(io.cucumber.java.Scenario)"
             }
+          },
+          {
+            "result": {
+              "status": "passed"
+            },
+            "match": {
+              "location": "stepDefination_DSD_OMS.PaymentInfo.PaymentInfoPageStep.LaunchBrowser(io.cucumber.java.Scenario)"
+            }
+          },
+          {
+            "result": {
+              "status": "passed"
+            },
+            "match": {
+              "location": "stepDefination_DSD_OMS.ProductReference.ProductReferencePageStep.LaunchBrowser(io.cucumber.java.Scenario)"
+            }
+          },
+          {
+            "result": {
+              "status": "passed"
+            },
+            "match": {
+              "location": "stepDefination_DSD_OMS.QuotePage.QuotePageSteps.LaunchBrowser1(io.cucumber.java.Scenario)"
+            }
+          },
+          {
+            "result": {
+              "status": "passed"
+            },
+            "match": {
+              "location": "stepDefination_DSD_OMS.QuotePage.QuotePageSteps1.LaunchBrowser1(io.cucumber.java.Scenario)"
+            }
+          },
+          {
+            "result": {
+              "status": "passed"
+            },
+            "match": {
+              "location": "stepDefination_DSD_OMS.StandingOrderPage.StandingOrderPageSteps.LaunchBrowser1(io.cucumber.java.Scenario)"
+            }
+          },
+          {
+            "result": {
+              "status": "passed"
+            },
+            "match": {
+              "location": "stepDefination_DSD_OMS.StandingOrderPage.StandingOrderPageSteps1.LaunchBrowser1(io.cucumber.java.Scenario)"
+            }
+          },
+          {
+            "result": {
+              "status": "passed"
+            },
+            "match": {
+              "location": "stepDefination_DSD_OMS.StatementsPage.StatementsPageSteps.LaunchBrowser1(io.cucumber.java.Scenario)"
+            }
+          },
+          {
+            "result": {
+              "status": "passed"
+            },
+            "match": {
+              "location": "stepDefination_DSD_OMS.UserManagementPage.Manage_Registration_PageStep.LaunchBrowser1(io.cucumber.java.Scenario)"
+            }
+          },
+          {
+            "result": {
+              "status": "passed"
+            },
+            "match": {
+              "location": "stepDefination_DSD_OMS.UserManagementPage.UserManagementPageStep.LaunchBrowser1(io.cucumber.java.Scenario)"
+            }
+          },
+          {
+            "result": {
+              "status": "passed"
+            },
+            "match": {
+              "location": "stepDefination_DSD_OMS.WebOrderingPage.FeaturedProductsPageStep.LaunchBrowser1(io.cucumber.java.Scenario)"
+            }
+          },
+          {
+            "result": {
+              "status": "passed"
+            },
+            "match": {
+              "location": "stepDefination_DSD_OMS.WebOrderingPage.NavigationPageStep.LaunchBrowser1(io.cucumber.java.Scenario)"
+            }
+          },
+          {
+            "result": {
+              "status": "passed"
+            },
+            "match": {
+              "location": "stepDefination_DSD_OMS.WebOrderingPage.RestrictedProductsPageStep.LaunchBrowser1(io.cucumber.java.Scenario)"
+            }
           }
         ],
-        "line": 35,
-        "name": "creation of order using card view from catalog page",
+        "line": 4,
+        "name": "My Account Add Payment Info Save",
         "description": "",
-        "id": "for-all-the-functionalities-of-catalog;creation-of-order-using-card-view-from-catalog-page",
+        "id": "my-account-add-payment-info-save;my-account-add-payment-info-save",
         "after": [
           {
             "result": {
-              "error_message": "org.openqa.selenium.NoSuchSessionException: Tried to run command without establishing a connection\nBuild info: version: \u00273.141.59\u0027, revision: \u0027e82be7d358\u0027, time: \u00272018-11-14T08:17:03\u0027\nSystem info: host: \u0027AFSIGNITIONQA01\u0027, ip: \u002710.70.41.6\u0027, os.name: \u0027Windows Server 2019\u0027, os.arch: \u0027amd64\u0027, os.version: \u002710.0\u0027, java.version: \u002716.0.2\u0027\nDriver info: org.openqa.selenium.firefox.FirefoxDriver\nCapabilities {acceptInsecureCerts: true, browserName: firefox, browserVersion: 95.0.2, javascriptEnabled: true, moz:accessibilityChecks: false, moz:buildID: 20211218203254, moz:geckodriverVersion: 0.30.0, moz:headless: false, moz:processID: 18396, moz:profile: C:\\Users\\Divya.Ramadas\\AppD..., moz:shutdownTimeout: 60000, moz:useNonSpecCompliantPointerOrigin: false, moz:webdriverClick: true, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, platformVersion: 10.0, proxy: Proxy(), setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify}\nSession ID: 3e411470-9316-4289-8b76-0ea337a22573\r\n\tat java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)\r\n\tat java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:78)\r\n\tat java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)\r\n\tat java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:499)\r\n\tat java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:480)\r\n\tat org.openqa.selenium.remote.http.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:187)\r\n\tat org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:122)\r\n\tat org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:49)\r\n\tat org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:158)\r\n\tat org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:83)\r\n\tat org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:552)\r\n\tat org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:609)\r\n\tat org.openqa.selenium.remote.RemoteWebDriver.getScreenshotAs(RemoteWebDriver.java:295)\r\n\tat stepDefination_DSD_OMS.LoginPageStep.afterScenario1(LoginPageStep.java:67)\r\n",
-              "duration": 4998100,
-              "status": "failed"
+              "status": "passed"
             },
             "match": {
               "location": "stepDefination_DSD_OMS.LoginPageStep.afterScenario1(io.cucumber.java.Scenario)"
@@ -197,175 +281,132 @@
         "keyword": "Scenario",
         "steps": [
           {
+            "output": [
+              "SIGNIN BUTTON CLICKED"
+            ],
             "result": {
-              "duration": 27335217900,
+              "duration": 6578257300,
               "status": "passed"
             },
-            "line": 36,
-            "name": "User must be on Order Entry Page to select Catalog",
+            "line": 5,
+            "name": "User enters URL and is on login page and entered credentials",
             "match": {
-              "location": "stepDefination_DSD_OMS.CatalogPage.CatalogPageStep.user_must_be_on_order_entry_page_to_select_catalog()"
+              "location": "stepDefination_DSD_OMS.OrderEntryPage.OrderEntryPageSteps.user_enters_url_and_is_on_login_page_and_entered_credentials()"
             },
             "keyword": "Given "
           },
           {
             "result": {
-              "duration": 25012218000,
+              "duration": 33532864300,
               "status": "passed"
             },
-            "line": 37,
-            "name": "User should navigate to Catalog tab",
+            "line": 6,
+            "name": "User is on Home Page",
             "match": {
-              "location": "stepDefination_DSD_OMS.CatalogPage.CatalogPageStep.user_should_navigate_to_catalog_tab()"
+              "location": "stepDefination_DSD_OMS.OrderEntryPage.OrderEntryPageSteps.user_is_on_home_page()"
             },
-            "keyword": "And "
+            "keyword": "When "
           },
           {
             "result": {
-              "duration": 20088177200,
+              "duration": 19225761000,
               "status": "passed"
             },
-            "line": 38,
-            "name": "User should click on Reset filter button and all the products should displayed in Card view in Catalog page",
+            "line": 7,
+            "name": "User is on My Account Frame",
             "match": {
-              "location": "stepDefination_DSD_OMS.CatalogPage.CatalogPageStep.user_should_click_on_reset_filter_button_and_all_the_products_should_displayed_in_card_view_in_catalog_page()"
+              "location": "stepDefination_DSD_OMS.MyAccountStep.MyAccountPageStep.user_is_on_my_account_frame()"
             },
             "keyword": "And "
           },
           {
             "result": {
-              "error_message": "org.openqa.selenium.NoSuchSessionException: Tried to run command without establishing a connection\nBuild info: version: \u00273.141.59\u0027, revision: \u0027e82be7d358\u0027, time: \u00272018-11-14T08:17:03\u0027\nSystem info: host: \u0027AFSIGNITIONQA01\u0027, ip: \u002710.70.41.6\u0027, os.name: \u0027Windows Server 2019\u0027, os.arch: \u0027amd64\u0027, os.version: \u002710.0\u0027, java.version: \u002716.0.2\u0027\nDriver info: org.openqa.selenium.firefox.FirefoxDriver\nCapabilities {acceptInsecureCerts: true, browserName: firefox, browserVersion: 95.0.2, javascriptEnabled: true, moz:accessibilityChecks: false, moz:buildID: 20211218203254, moz:geckodriverVersion: 0.30.0, moz:headless: false, moz:processID: 18396, moz:profile: C:\\Users\\Divya.Ramadas\\AppD..., moz:shutdownTimeout: 60000, moz:useNonSpecCompliantPointerOrigin: false, moz:webdriverClick: true, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, platformVersion: 10.0, proxy: Proxy(), setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify}\nSession ID: 3e411470-9316-4289-8b76-0ea337a22573\r\n\tat java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)\r\n\tat java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:78)\r\n\tat java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)\r\n\tat java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:499)\r\n\tat java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:480)\r\n\tat org.openqa.selenium.remote.http.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:187)\r\n\tat org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:122)\r\n\tat org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:49)\r\n\tat org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:158)\r\n\tat org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:83)\r\n\tat org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:552)\r\n\tat org.openqa.selenium.remote.RemoteWebDriver$RemoteWebDriverOptions$RemoteTimeouts.implicitlyWait(RemoteWebDriver.java:780)\r\n\tat helper.HelpersMethod.Implicitwait(HelpersMethod.java:109)\r\n\tat stepDefination_DSD_OMS.CatalogPage.CatalogPageStep.user_enters_product_in_search_bar_and_enters_qty(CatalogPageStep.java:163)\r\n\tat ✽.User enters Product# in Search bar and enters Qty(file:///C:/Users/Divya.Ramadas/IdeaProjects/IgnitionTestAutomation/src/test/resources/features_DSD_OMS/CatalogFeature/catalogFeature.feature:39)\r\n",
-              "duration": 258789751600,
-              "status": "failed"
+              "duration": 40306988600,
+              "status": "passed"
             },
-            "line": 39,
-            "name": "User enters Product# in Search bar and enters Qty",
+            "line": 8,
+            "name": "user lands on Payment Page My Account",
             "match": {
-              "location": "stepDefination_DSD_OMS.CatalogPage.CatalogPageStep.user_enters_product_in_search_bar_and_enters_qty(io.cucumber.datatable.DataTable)"
+              "location": "stepDefination_DSD_OMS.MyAccountStep.MyAccountPageStep.user_lands_on_payment_page_my_account()"
             },
-            "rows": [
-              {
-                "cells": [
-                  "50",
-                  "50"
-                ]
-              },
-              {
-                "cells": [
-                  "40",
-                  "30"
-                ]
-              },
-              {
-                "cells": [
-                  "40",
-                  "40"
-                ]
-              },
-              {
-                "cells": [
-                  "40",
-                  "40"
-                ]
-              },
-              {
-                "cells": [
-                  "40",
-                  "50"
-                ]
-              }
+            "keyword": "And "
+          },
+          {
+            "output": [
+              "User selected a customer acc #"
             ],
-            "keyword": "Then "
-          },
-          {
             "result": {
-              "duration": 1000300,
-              "status": "skipped"
+              "duration": 41731330900,
+              "status": "passed"
             },
-            "line": 45,
-            "name": "User click on cart in catalog and click on Gotocart",
+            "line": 9,
+            "name": "user selects a customer account from the dropdown payment info",
             "match": {
-              "location": "stepDefination_DSD_OMS.CatalogPage.CatalogPageStep.user_click_on_cart_in_catalog_and_click_on_gotocart()"
-            },
-            "keyword": "Then "
-          },
-          {
-            "result": {
-              "duration": 998600,
-              "status": "skipped"
-            },
-            "line": 46,
-            "name": "user should be on New Order entry page",
-            "match": {
-              "location": "stepDefination_DSD_OMS.LoginPageStep.user_should_be_on_new_order_entry_page()"
+              "location": "stepDefination_DSD_OMS.MyAccountStep.MyAccountPageStep.user_selects_a_customer_account_from_the_dropdown_payment_info()"
             },
             "keyword": "And "
           },
           {
             "result": {
-              "duration": 999500,
-              "status": "skipped"
+              "duration": 837882300,
+              "status": "passed"
             },
-            "line": 47,
-            "name": "Enter PO# for New order",
+            "line": 10,
+            "name": "user selects the resulted customer details from the table",
             "match": {
-              "location": "stepDefination_DSD_OMS.OrderEntryPage.OrderEntryPageSteps.enter_po_for_new_order(io.cucumber.datatable.DataTable)"
+              "location": "stepDefination_DSD_OMS.MyAccountStep.MyAccountPageStep.user_selects_the_resulted_customer_details_from_the_table()"
             },
-            "rows": [
-              {
-                "cells": [
-                  "PO123"
-                ]
-              }
-            ],
-            "keyword": "Then "
+            "keyword": "And "
           },
           {
             "result": {
-              "status": "skipped"
+              "duration": 68885800,
+              "status": "passed"
             },
-            "line": 49,
-            "name": "Click on Next button",
+            "line": 11,
+            "name": "user validates set Preferred option is enabled",
             "match": {
-              "location": "stepDefination_DSD_OMS.OrderEntryPage.OrderEntryPageSteps.click_on_next_button()"
+              "location": "stepDefination_DSD_OMS.MyAccountStep.MyAccountPageStep.user_validates_set_preferred_option_is_enabled()"
             },
-            "keyword": "Then "
+            "keyword": "And "
           },
           {
             "result": {
-              "status": "skipped"
+              "duration": 40681770600,
+              "status": "passed"
             },
-            "line": 50,
-            "name": "Click on SubmitOrder button",
+            "line": 15,
+            "name": "Click on user Icon on Order Entry page",
             "match": {
-              "location": "stepDefination_DSD_OMS.OrderEntryPage.OrderEntryPageSteps.click_on_submit_order_button()"
+              "location": "stepDefination_DSD_OMS.LoginPageStep.clickOnUserIconOnOrderEntryPage()"
             },
             "keyword": "Then "
           },
           {
             "result": {
-              "status": "skipped"
+              "duration": 1587773000,
+              "status": "passed"
             },
-            "line": 51,
-            "name": "User should be navigated to Order Entry page",
+            "line": 16,
+            "name": "Click on Logout on Order Entry page",
             "match": {
-              "location": "stepDefination_DSD_OMS.OrderEntryPage.OrderEntryPageSteps.user_should_be_navigated_to_order_entry_page()"
+              "location": "stepDefination_DSD_OMS.LoginPageStep.clickOnLogoutOnOrderEntryPage()"
             },
-            "keyword": "Then "
+            "keyword": "And "
           }
         ],
         "tags": [
           {
-            "name": "@CardViewOrder"
+            "name": "@MyAccount_AddPaymentInfoSave"
           }
         ]
       }
     ],
-    "name": "For all the functionalities of Catalog",
-    "description": "  All the scenarios that performs adding product to cart in card view, list view\n  Increase, decrease product Qty, remove product from cart and create order",
-    "id": "for-all-the-functionalities-of-catalog",
+    "name": "My Account Add Payment Info Save",
+    "description": "",
+    "id": "my-account-add-payment-info-save",
     "keyword": "Feature",
-    "uri": "file:src/test/resources/features_DSD_OMS/CatalogFeature/catalogFeature.feature",
+    "uri": "file:src/test/resources/features_Shared/features_Shared_DSD/MyAccountFeature/AddPaymentInfoCheckPreferred.feature",
     "tags": []
   }
 ]

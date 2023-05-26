@@ -1743,9 +1743,10 @@ public void RemoveSkipOK()
             HelpersMethod.WaitElementPresent(driver, "xpath", "//div[contains(@class,'user-info-container')]/div[contains(@class,'user-info-initial-container')]/following-sibling::div[contains(@class,'user-info-setting-shape')]", 200);
             new WebDriverWait(driver, 200).until(ExpectedConditions.elementToBeClickable(By.xpath("//div[contains(@class,'user-info-container')]/div[contains(@class,'user-info-initial-container')]/following-sibling::div[contains(@class,'user-info-setting-shape')]")));
             WebElement UserIcon = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'user-info-container')]/div[contains(@class,'user-info-initial-container')]/following-sibling::div[contains(@class,'user-info-setting-shape')]");
+
             new WebDriverWait(driver, 400).until(ExpectedConditions.visibilityOf(UserIcon));
             new WebDriverWait(driver, 100).until(ExpectedConditions.elementToBeClickable(UserIcon));
-            HelpersMethod.JScriptClick(driver, UserIcon, 200);
+           HelpersMethod.JScriptClick(driver, UserIcon, 200);
             exists = true;
             HelpersMethod.WaitElementPresent(driver, "xpath", "//div[contains(@class,'k-animation-container k-animation-container-relative popup-with-arrow standard-view user-info k-animation-container-shown')]", 100);
             Assert.assertEquals(exists, true);
