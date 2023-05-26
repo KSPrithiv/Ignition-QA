@@ -1,4 +1,4 @@
-Feature: Order Entry3
+Feature: Order Entry4
   Used for cration of New order in different ways
   Used for canceling order, editing of order, skipping of order
 
@@ -14,13 +14,12 @@ Feature: Order Entry3
       Given User must be on Order Entry Page
       Then User must click Start Order button
       Then User should make selection between Pending order or Start New order
-      Then User should select Note from popup
-      Then User should find select Order guide from popup
+      Then User should select Note from popup and Order guide from popup
       Then Enter PO# for New order
         |PO123|
       Then Enter Pro# in Quick Product Entry area
       And Check for Case and Unit input box enabled or not based on that enter value
-        |20|20|
+        |60|80|
       Then Click on Next button and Click on Without providing payment
       And Click on SubmitOrder button
       Then User should be navigated to Order Entry page
@@ -30,17 +29,20 @@ Feature: Order Entry3
       Given User must be on Order Entry Page
       Then User must click Start Order button
       Then User should make selection between Pending order or Start New order
-      Then User should select Note from popup
-      Then User should find select Order guide from popup
+      Then User should select Note from popup and Order guide from popup
       Then Enter PO# for New order
         |PO123|
       Then Enter Pro# in Quick Product Entry area
       And Check for Case and Unit input box enabled or not based on that enter value
-        |20|20|
+        |50|50|
       Then User should click on Copy from dropdown and Select Order history
         |Order history|
       Then User verifies Order history page and click on checkbox
       And Click on Copy button
+      Then Enter PO# for New order
+        |PO123|
+      Then User should enter Units and Cases in product grid
+        |40|50|
       Then Click on Next button
       And Click on SubmitOrder button
       Then User should be navigated to Order Entry page
@@ -50,8 +52,7 @@ Feature: Order Entry3
     Given User must be on Order Entry Page
     Then User must click Start Order button
     Then User should make selection between Pending order or Start New order
-    Then User should select Note from popup
-    Then User should find select Order guide from popup
+    Then User should select Note from popup and Order guide from popup
     Then Enter PO# for New order
       |PO123|
     Then Enter Pro# in Quick Product Entry area
@@ -69,13 +70,12 @@ Feature: Order Entry3
     Given User must be on Order Entry Page
     Then User must click Start Order button
     Then User should make selection between Pending order or Start New order
-    Then User should select Note from popup
-    Then User should find select Order guide from popup
+    Then User should select Note from popup and Order guide from popup
     Then Enter PO# for New order
       |PO123|
     Then Enter Pro# in Quick Product Entry area
     And Check for Case and Unit input box enabled or not based on that enter value
-      |10|20|
+      |40|60|
     Then User should click on Comment icon in Product grid
     And should enter comment in comment popup
       |Comment at Product level|
@@ -89,13 +89,12 @@ Feature: Order Entry3
     Given User must be on Order Entry Page
     Then User must click Start Order button
     Then User should make selection between Pending order or Start New order
-    Then User should select Note from popup
-    Then User should find select Order guide from popup
+    Then User should select Note from popup and Order guide from popup
     Then Enter PO# for New order
       |PO123|
     Then Enter Pro# in Quick Product Entry area
     And Check for Case and Unit input box enabled or not based on that enter value
-      |10|20|
+      |80|65|
     Then User should click on Comment icon in Product grid
     And User should enter comment in comment popup at Product level
       |Comment at Product level|
@@ -139,8 +138,7 @@ Feature: Order Entry3
       Then User should be navigated to Order Entry page
 
     @UnUsualQtyUnit
-    Scenario:
-    Test scenario for creating order with unusual Qty for unit "Maximum Qty exceeds"
+    Scenario: Test scenario for unusual units
       Given User must be on Order Entry Page
       Then User must click Start Order button
       Then User should make selection between Pending order or Start New order
@@ -155,7 +153,7 @@ Feature: Order Entry3
       Then User should be navigated to Order Entry page
 
   @UnUsualQtyCase
-  Scenario:Test scenario for creating order with unusual Qty for case "Maximum Qty exceeds"
+  Scenario:Test scenario for unusual  case
     Given User must be on Order Entry Page
     Then User must click Start Order button
     Then User should make selection between Pending order or Start New order
@@ -164,7 +162,24 @@ Feature: Order Entry3
     Then Enter PO# for New order
       |PO123|
     And User should navigate to New OE page, and enter Qty to product in product grid for only Case
-      |200|
+      |500|
+    Then Click on Next button
+    And Click on SubmitOrder button
+    Then User should be navigated to Order Entry page
+
+  @NextButton
+  Scenario: Test scenrio for handling Next button, in Save order without submitting popup
+    Given User must be on Order Entry Page
+    Then User must click Start Order button
+    Then User should make selection between Pending order or Start New order
+    Then User should select Note from popup and Order guide from popup
+    Then Enter PO# for New order
+      |PO123|
+    Then Enter Pro# in Quick Product Entry area
+    And Check for Case and Unit input box enabled or not based on that enter value
+      |65|80|
+    Then User should click on Back button in NewOE page and popup should appear
+    And In Save order without submitting popup should select next button
     Then Click on Next button
     And Click on SubmitOrder button
     Then User should be navigated to Order Entry page

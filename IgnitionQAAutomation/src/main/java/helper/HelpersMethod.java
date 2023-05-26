@@ -628,6 +628,12 @@ public class HelpersMethod
        return true;
     }
 
+    public static boolean waitTillloaderDisappears(WebDriver driver,WebElement element,int timeOut)
+    {
+        new WebDriverWait(driver,timeOut).until(ExpectedConditions.invisibilityOf(element));
+        return true;
+    }
+
     //Code to handle page load issues. Method that can be used when java scripts are still running behind and not letting automation cod to execute
     public static boolean waitTillLoadingPage(WebDriver driver)
     {

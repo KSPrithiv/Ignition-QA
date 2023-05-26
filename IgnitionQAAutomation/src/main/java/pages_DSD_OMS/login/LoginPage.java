@@ -36,7 +36,8 @@ public class LoginPage
     @FindBy(xpath = "//label[text()='Password']/following-sibling::input")
     private WebElement Password;
 
-    @FindBy(xpath = "//button[contains(@class,'k-button k-primary k-button-icontext') and contains(text(),'Sign in')]")
+    //@FindBy(xpath = "//button[contains(@class,'k-button k-primary k-button-icontext') and contains(text(),'Sign in')]")
+    @FindBy(xpath = "(//div[@class='form-group'])[4]/button")
     private WebElement SignIn;
 
     @FindBy(xpath = "//button[text()='Forgot password']")
@@ -51,11 +52,11 @@ public class LoginPage
     @FindBy(xpath = "//p[contains(text(),'Register here')]")
     private WebElement Register;
 
-    @BeforeClass
-    public void WaitForPage()
-    {
-        HelpersMethod.Implicitwait(driver,40);
-    }
+//    @BeforeClass
+//    public void WaitForPage()
+//    {
+//        HelpersMethod.Implicitwait(driver,40);
+//    }
 
     public LoginPage(WebDriver driver,Scenario scenario) throws InterruptedException, AWTException
     {
@@ -118,10 +119,12 @@ public class LoginPage
         {
             exists = false;
             WebElement WebEle;
-            if (HelpersMethod.IsExists("//button[contains(@class,'k-button k-primary k-button-icontext') and contains(text(),'Sign in')]", driver))
+            //if (HelpersMethod.IsExists("//button[contains(@class,'k-button k-primary k-button-icontext') and contains(text(),'Sign in')]", driver))
+            if (HelpersMethod.IsExists("(//div[@class='form-group'])[4]/button", driver))
             {
                 HelpersMethod.ScrollElement(driver, SignIn);
                 HelpersMethod.JScriptClick(driver, SignIn, 20);
+                //HelpersMethod.clickOn(driver, SignIn, 20);
                 HelpersMethod.waitTillPageLoaded(driver, 2000);
 
                 exists = true;
@@ -512,5 +515,15 @@ public class LoginPage
             }
         }
         catch (Exception e){}
+    }
+    public void Refresh_Page()
+    {
+
+        driver.navigate().refresh();
+        if (HelpersMethod.IsExists("//div[@class='loader']", driver))
+        {
+            WebElement WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
+            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 200);
+        }
     }
 }

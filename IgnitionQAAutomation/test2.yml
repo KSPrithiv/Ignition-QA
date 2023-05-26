@@ -1,0 +1,15 @@
+- uses: actions/github-script@v6
+  id: job-url
+  with:
+    script: |
+      const { data } = await github.rest.actions.listJobsForWorkflowRunAttempt({
+        ...context.repo,
+        run_id: context.runId,
+        attempt_number: process.env.GITHUB_RUN_ATTEMPT,
+      });
+      
+      return data.jobs[0].html_url
+    result-encoding: string
+- name: Print Log URL
+  run: |
+    echo "Log URL: ${{ steps.job-url.outputs.result }}"
