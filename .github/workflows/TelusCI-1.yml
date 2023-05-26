@@ -1,0 +1,28 @@
+name: Telus CI CD
+on:
+ push:
+    branches:
+      - main
+ workflow_dispatch:
+  
+  
+jobs:
+  build:
+    name: Ignition Automation
+    runs-on: self-hosted
+    #runs-on: windows-latest
+    
+    steps:
+      - name: Checkout source code
+        uses: actions/checkout@v3
+      
+      #- name: Set up JDK 16
+        #uses: actions/setup-java@v3
+        #with:
+          #java-version: '16'
+          #distribution: temurin
+          #cache: maven
+
+      - name: maven build Telus
+        run: mvn clean install test -DsuiteXmlFile='testng_front.xml'
+        working-directory: IgnitionQAAutomation
