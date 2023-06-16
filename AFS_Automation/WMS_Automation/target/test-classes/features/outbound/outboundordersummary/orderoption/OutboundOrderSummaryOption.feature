@@ -1,0 +1,133 @@
+@Outbound @Regression
+Feature: Testing of Outbound Summary order Edit option functionality
+
+  Scenario: Checking Order Edit option functionality
+    Given User signs in the application
+    And Main page is loaded
+    And DockManagement Summary Page is validated
+    When Go to Outbound Order page
+    And Filling start date "01/01/2017" and end date "02/22/2022" on Outbound Order Summary page
+    Then Selects order "CO00001442" on Outbound Order Summary page
+    And Select Outbound Order Edit option
+    And Validates Edit Order popup
+    And Validates Edit Order "S00001442"
+    And Filling scheduled date "01/01/2022" and scheduled time "5:00"
+    And Validates scheduled date "01/01/2022" and scheduled time "5:00"
+    And Validates Carrier dropdown is displayed
+    And Validates Carrier dropdown default option "(None)"
+    And Validates Payment type dropdown is displayed
+    And User add comments "Test comments"
+    And Validates correct comments "Test comments" are displayed
+
+  Scenario: Checking Order Release option functionality
+    Given User signs in the application
+    And Main page is loaded
+    And DockManagement Summary Page is validated
+    When Go to Outbound Order page
+    And Filling start date "01/01/2017" and end date "02/22/2022" on Outbound Order Summary page
+    Then Selects order "CO00001442" on Outbound Order Summary page
+    And Selecting Outbound Order Release option on Outbound Order Summary page
+    And Validates popup Release assignment title on Outbound Order Summary page
+    And Validates scheduled date and scheduled time are displayed
+    And Clicks Save button on Outbound order summary page
+    And Validates successful message "Success" on Outbound Order Summary page
+
+  Scenario: Checking Order Door option functionality
+    Given User signs in the application
+    And Main page is loaded
+    And DockManagement Summary Page is validated
+    When Go to Outbound Order page
+    And Filling start date "01/01/2017" and end date "02/22/2022" on Outbound Order Summary page
+    Then Selects order "CO00001442" on Outbound Order Summary page
+    And Selecting Outbound Order DOOR option on Outbound Order Summary page
+    And Validates popup Assign door title on Outbound Order Summary page
+    And Selecting Door List "DOOR02" option on Outbound order summary page
+    And Clicks Save button on Outbound order summary page
+    And Validates successful message "Success" on Outbound Order Summary page
+
+  Scenario: Checking Order Data option functionality
+    Given User signs in the application
+    And Main page is loaded
+    And DockManagement Summary Page is validated
+    When Go to Outbound Order page
+    And Filling start date "01/01/2017" and end date "02/22/2022" on Outbound Order Summary page
+    Then Selects order checkbox with index 0 on Outbound Order Summary page
+    And Selecting Outbound Order Data option on Outbound Order Summary page
+    And Validates Order Data page is displayed
+    And Click Cancel button on Outbound Order Summary page
+    And Selects order checkbox with index 1 on Outbound Order Summary page
+    And Clicks Order option on Outbound Order Summary page
+    And Validates "Data" option is not active
+
+  Scenario: Checking Order Log option functionality
+    Given User signs in the application
+    And Main page is loaded
+    And DockManagement Summary Page is validated
+    When Go to Outbound Order page
+    And Filling start date "01/01/2017" and end date "02/22/2022" on Outbound Order Summary page
+    Then Selects order "CO00001442" on Outbound Order Summary page
+    And Selecting Outbound Order Log option on Outbound Order Summary page
+    And Validates popup Shipper title on Outbound Order Summary page
+    And Validates popup Shipper columns on Outbound Order Summary page
+    And Clicks Ok on Outbound Order Summary page
+
+  Scenario: Checking Order Source option functionality
+    Given User signs in the application
+    And Main page is loaded
+    And DockManagement Summary Page is validated
+    When Go to Outbound Order page
+    And Filling start date "01/01/2017" and end date "02/22/2022" on Outbound Order Summary page
+    Then Selects order "CO00001442" on Outbound Order Summary page
+    And Selecting Outbound Order Source option on Outbound Order Summary page
+    And Validates popup Source columns on Outbound Order Summary page
+    And Click Back button on Outbound Order Source page
+    And Click Back button on Outbound Order Summary page
+    And Clear order input on Outbound Order Summary page
+    And Selects order checkbox with index 0 on Outbound Order Summary page
+    And Selects order checkbox with index 1 on Outbound Order Summary page
+    And Clicks Order option on Outbound Order Summary page
+    And Validates "Source" option is not active
+
+  Scenario: Checking Order Move option functionality
+    Given User signs in the application
+    And Main page is loaded
+    And DockManagement Summary Page is validated
+    When Go to Outbound Order page
+    And Filling start date "01/01/2017" and end date "02/22/2022" on Outbound Order Summary page
+    Then Selects order checkbox with index 1 on Outbound Order Summary page
+    And Selecting Outbound Order Move option on Outbound Order Summary page
+    And Validates Move popup on Outbound Order Summary page
+    And Validates Save button is disabled on Outbound Order Summary page
+    And Clicks Route dropdown on Outbound order summary page
+    And Validates Route dropdown is not empty on Outbound Order Summary page
+    And Selects random route on Move popup
+    And Validates Save button is enabled on Outbound Order Summary page
+    And Clicks Save button on Outbound order summary page
+    And Validates "Success" notification for Move popup on Outbound Order Summary page
+
+  Scenario: Checking Order Image option functionality
+    Given User signs in the application
+    And Main page is loaded
+    And DockManagement Summary Page is validated
+    When Go to Outbound Order page
+    And Filling start date "01/01/2017" and end date "02/22/2022" on Outbound Order Summary page
+    Then Selects order checkbox with index 0 on Outbound Order Summary page
+    And Selecting Outbound Order Image option on Outbound Order Summary page
+    And Validates Image upload is displayed
+    And Click Cancel button on Outbound Order Summary page
+    And Waits for Outbound Order Summary page to load
+    And Selects order checkbox with index 1 on Outbound Order Summary page
+    And Clicks Order option on Outbound Order Summary page
+    And Validates "Image" option is not active
+
+  Scenario: Checking Order Review option functionality
+    Given User signs in the application
+    And Main page is loaded
+    And DockManagement Summary Page is validated
+    When Go to Outbound Order page
+    And Filling start date "01/01/2017" and end date "02/22/2022" on Outbound Order Summary page
+    Then Selects order checkbox with index 0 on Outbound Order Summary page
+    And Selecting Outbound Order Review option on Outbound Order Summary page
+    And Validates Review page is displayed
+    And Validates Review page table is displayed
+    And Click Cancel button on Outbound Order Summary page

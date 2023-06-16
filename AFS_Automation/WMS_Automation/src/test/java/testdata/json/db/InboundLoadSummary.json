@@ -1,0 +1,15 @@
+{
+  "warehouse_id": 1,
+  "route_code": "",
+  "isActive": 0,
+  "start_date": "2017-01-01",
+  "end_date": "2022-01-01",
+  "order_status_id": -1,
+  "door_id": -1,
+  "carrier_id": -1,
+  "route_type_id": -1,
+  "currentuser_id": 92332,
+  "vendor_code": "",
+  "vendor_name": "",
+  "product_code": ""
+}
