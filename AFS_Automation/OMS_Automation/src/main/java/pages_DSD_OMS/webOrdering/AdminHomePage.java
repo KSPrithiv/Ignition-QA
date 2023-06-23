@@ -135,7 +135,7 @@ public class AdminHomePage
                 WebEle= HelpersMethod.FindByElement(driver,"id","dropdownList3");
                 HelpersMethod.ClickBut(driver,WebEle,20);
                 HelpersMethod.Implicitwait(driver,80);
-                Thread.sleep(10);
+
                 //Create list of web elements in dropdown
                 company=TestBase.testEnvironment.get_CompanyNo();
                 List<WebElement> Values=HelpersMethod.FindByElements(driver,"xpath","//div[contains(@class,'k-child-animation-container')]/descendant::li");
@@ -156,7 +156,7 @@ public class AdminHomePage
                 if(HelpersMethod.IsExists("//div[@class='loader']",driver))
                 {
                     WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 400);
+                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 4000);
                 }
             }
         }
