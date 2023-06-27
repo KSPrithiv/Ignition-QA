@@ -41,6 +41,5 @@ jobs:
                        
       - name: build for recent rep-gen
         run: |
-         
          mvn install test -DsuiteXmlFile='msg_delay_wms.xml'
         working-directory: AFS_Automation/WMS_Automation
