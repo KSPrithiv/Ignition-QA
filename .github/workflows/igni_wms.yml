@@ -5,24 +5,12 @@ on:
      - develop_auto
  workflow_dispatch:
   
- 
+  
 jobs:
-  get-runner:
-    name : get a runner to use for this workflow
-    if: ${{ always() }}
+  job1:
+    
+    name: Ignition Automation WMS
     runs-on: self-hosted
-    outputs:
-     RUNNER: ${{ runner.name }}
-    steps:
-      - run: echo "selected runner = ${{ runner.name }}" 
- 
-
-  job2:
-    name: runner output
-    needs: get-runner
-    runs-on: ${{needs.get-runner.outputs.RUNNER}}
-    
-    
     
     
     steps:
@@ -42,22 +30,14 @@ jobs:
       - name: WMS Automation
         run: mvn install test -DsuiteXmlFile='WorkQueueTestNGRunner.xml'
         working-directory: AFS_Automation/WMS_Automation 
+        
   
-  
-  
-  job3:
-    name: another job
-    needs: get-runner
-    runs-on: ${{needs.get-runner.outputs.RUNNER}}
-    steps:
       - name: Add
         run: |
           git add .
           git commit -m "Add"
           git push origin develop_auto
-       
-       
-       
+                       
       - name: build for recent rep-gen
         run: |
          mvn install test -DsuiteXmlFile='msg_delay_wms.xml'
