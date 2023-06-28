@@ -7,17 +7,9 @@ on:
   
 jobs:
   get-runner:
-    name : get a runner to use for this workflow
+    name : WMS Automation
     if: ${{ always() }}
     runs-on: self-hosted
-    outputs:
-     RUNNER: ${{ runner.name }}
-    
-    
-
-
-
-    
     
     steps:
       - name: Checkout source code
@@ -35,7 +27,7 @@ jobs:
       
       - name: WMS Automation
         run: |
-         mvn install test -DsuiteXmlFile='msg_delay_wms.xml'
+         mvn install test -DsuiteXmlFile='WorkQueueTestNGRunner.xml'
         working-directory: AFS_Automation/WMS_Automation 
         
         
@@ -45,8 +37,8 @@ jobs:
           git commit -m "Add"
           git push origin develop_autom
                        
-      - name: build for recent rep-gen
-        run: |
+      #- name: build for recent rep-gen
+        #run: |
          
-         mvn install test -DsuiteXmlFile='msg_delay_wms.xml'
-        working-directory: AFS_Automation/WMS_Automation
+         #mvn install test -DsuiteXmlFile='msg_delay_wms.xml'
+        #working-directory: AFS_Automation/WMS_Automation
