@@ -5,12 +5,21 @@ on:
      - develop_autom
  workflow_dispatch:
   
-  
 jobs:
+  get-runner:
+    name : get a runner to use for this workflow
+    if: ${{ always() }}
+    runs-on: self-hosted
+    outputs:
+     RUNNER: ${{ runner.name }}
+    steps:
+      - run: echo "selected runner = ${{ runner.name }}"
+
+
   jobwms:
     
     name: Ignition Automation WMS
-    runs-on: 10.70.42.8
+    runs-on: self-hosted
     
     
     steps:
