@@ -1,6 +1,7 @@
 package stepDefination_DSD_OMS.CatalogPage;
 
 import helper.HelpersMethod;
+import io.cucumber.datatable.DataTable;
 import io.cucumber.java.Before;
 import io.cucumber.java.Scenario;
 import io.cucumber.java.en.And;
@@ -19,6 +20,7 @@ import util.TestBase;
 import java.awt.*;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @Project DSD_OMS
@@ -50,7 +52,6 @@ public class CatalogPageStep1
     @Then("User enters Product# in Search bar separated by comma and Read the product# available in catalog")
     public void user_enters_product_in_search_bar_separated_by_comma_and_read_the_product_available_in_catalog() throws SQLException
     {
-        HelpersMethod.Implicitwait(driver,40);
         ArrayList<String> Prod_No= (ArrayList<String>) DataBaseConnection.DataConn1(TestBase.testEnvironment.getMultiple_Prod_Sql());
 
         catalogpage=new CatalogPage(driver,scenario);
@@ -63,15 +64,12 @@ public class CatalogPageStep1
     public void user_click_on_cart_in_catalog_and_click_on_gotocart_press_plus_and_minus_button() throws InterruptedException, AWTException
     {
         catalogpage=new CatalogPage(driver,scenario);
-        HelpersMethod.Implicitwait(driver, 35);
         catalogpage.Cart_Button();
         scenario.log("CART ICON HAS BEEN CLICKED");
-        HelpersMethod.Implicitwait(driver,10);
         catalogpage.GotoCartClick();
         catalogpage.PlusMinus();
         catalogpage.Checkout_to_order();
         catalogpage.NewOrder_Option();
-        HelpersMethod.Implicitwait(driver,25);
         checkorder=new CheckOutOrderPage(driver,scenario);
         if(checkorder.VerifyCheckOut())
         {
@@ -80,34 +78,38 @@ public class CatalogPageStep1
     }
 
     @Then("User should click on Category dropdown and select any of the category")
-    public void user_should_click_on_category_dropdown_and_select_any_of_the_category()
+    public void user_should_click_on_category_dropdown_and_select_any_of_the_category(DataTable tabledata)
     {
+        List<List<String>> category=tabledata.asLists(String.class);
         catalogpage=new CatalogPage(driver,scenario);
-        HelpersMethod.Implicitwait(driver, 35);
-        catalogpage.CatalogCategoryDropDown();
+        catalogpage.CatalogCategoryDropDown(category.get(0).get(0));
+        catalogpage.ReadProduct();
+        /*catalogpage.CatalogSubCategoryDropDown();
+        catalogpage.ReadProduct();
+        catalogpage.BrandDropDown();
+        catalogpage.ReadProduct();*/
     }
 
     @Then("User should click on SubCategory dropdown and select any of the category")
-    public void user_should_click_on_subcategory_dropdown_and_select_any_of_the_category()
+    public void user_should_click_on_subcategory_dropdown_and_select_any_of_the_category(DataTable dataTable)
     {
+        List<List<String>> subCat=dataTable.asLists(String.class);
         catalogpage=new CatalogPage(driver,scenario);
-        HelpersMethod.Implicitwait(driver, 35);
-        catalogpage.CatalogSubCategoryDropDown();
+        catalogpage.CatalogSubCategoryDropDown(subCat.get(0).get(0));
     }
 
     @Then("User should click on Brand dropdown and select any of the category")
-    public void user_should_click_on_brand_dropdown_and_select_any_of_the_category()
+    public void user_should_click_on_brand_dropdown_and_select_any_of_the_category(DataTable dataTable)
     {
+        List<List<String>> brand=dataTable.asLists(String.class);
         catalogpage=new CatalogPage(driver,scenario);
-        HelpersMethod.Implicitwait(driver, 35);
-        catalogpage.BrandDropDown();
+        catalogpage.BrandDropDown(brand.get(0).get(0));
     }
 
     @Then ("User should click on Order Guide dropdown and select any of the category")
     public void user_should_click_on_order_guide_dropdown_and_select_any_of_the_category() throws InterruptedException
     {
         catalogpage=new CatalogPage(driver,scenario);
-        HelpersMethod.Implicitwait(driver, 35);
         catalogpage.OGDropDown();
     }
 
@@ -115,7 +117,6 @@ public class CatalogPageStep1
     public void user_should_read_all_the_products_available_catalog_page()
     {
         catalogpage=new CatalogPage(driver,scenario);
-        HelpersMethod.Implicitwait(driver, 35);
         catalogpage.ReadProduct();
     }
 
@@ -123,7 +124,6 @@ public class CatalogPageStep1
     public void user_reads_all_the_products_listed_under_featured_products()
     {
         catalogpage=new CatalogPage(driver,scenario);
-        HelpersMethod.Implicitwait(driver, 35);
         catalogpage.FeaturedReadProduct();
     }
 
@@ -131,7 +131,6 @@ public class CatalogPageStep1
     public void user_reads_all_the_products_listed_under_recent_search_card()
     {
         catalogpage=new CatalogPage(driver,scenario);
-        HelpersMethod.Implicitwait(driver, 35);
         catalogpage.RecentSearch();
     }
 
@@ -139,7 +138,6 @@ public class CatalogPageStep1
     public void user_clicks_on_resetfilter_to_list_all_the_products()
     {
         catalogpage=new CatalogPage(driver,scenario);
-        HelpersMethod.Implicitwait(driver, 35);
         catalogpage.Click_ResetFilterButton();
     }
 
@@ -147,13 +145,12 @@ public class CatalogPageStep1
     public void user_clicks_on_product_details_to_navigate_to_description_page()
     {
         catalogpage=new CatalogPage(driver,scenario);
-        HelpersMethod.Implicitwait(driver, 35);
         exists=false;
         exists=HelpersMethod.IsExists("//div[@class='card-view']",driver);
         if(exists==true)
         {
-          WebElement Element =HelpersMethod.FindByElement(driver,"xpath","//div[@class='card-view']/descendant::div[@class='product-catalog-image-and-number-and-price-container'][1]");
-          HelpersMethod.ClickBut(driver,Element,10);
+            WebElement Element =HelpersMethod.FindByElement(driver,"xpath","//div[@class='card-view']/descendant::div[@class='product-catalog-image-and-number-and-price-container'][1]");
+            HelpersMethod.ClickBut(driver,Element,40);
         }
         else
         {
@@ -162,7 +159,7 @@ public class CatalogPageStep1
             if(exists==true)
             {
                 WebElement Element =HelpersMethod.FindByElement(driver,"xpath","//div[@class='list-view']/descendant::tr[contains(@class,'k-master-row')][1]/descendant::a/ancestor::td");
-                HelpersMethod.ClickBut(driver,Element,10);
+                HelpersMethod.ClickBut(driver,Element,40);
             }
         }
     }
@@ -171,7 +168,6 @@ public class CatalogPageStep1
     public void user_lists_all_the_product_numbers_which_comes_under_frequently_bought_together()
     {
         productdesctiptionpage=new ProductDescriptionPage(driver,scenario);
-        HelpersMethod.Implicitwait(driver, 35);
         productdesctiptionpage.FrequentlyBought();
     }
 
@@ -181,5 +177,16 @@ public class CatalogPageStep1
         catalogpage=new CatalogPage(driver,scenario);
         catalogpage.ValidateCatalog();
         catalogpage.ValidateProductsYouMayLike();
+    }
+
+    @Then("User enters Product# in Search bar and enters Qty for increase and decrease Qty")
+    public void userEntersProductInSearchBarAndEntersQtyForIncreaseAndDecreaseQty(DataTable tabledata) throws SQLException, ClassNotFoundException, InstantiationException, IllegalAccessException, InterruptedException
+    {
+        List<List<String>> Prod_detail = tabledata.asLists(String.class);
+        String Prod_No = DataBaseConnection.DataBaseConn(TestBase.testEnvironment.getSingle_Prod_Sql());
+
+        catalogpage=new CatalogPage(driver,scenario);
+        catalogpage.SearchProduct(Prod_No);
+        catalogpage.ProductExistsCard(Prod_detail.get(0).get(0));
     }
 }

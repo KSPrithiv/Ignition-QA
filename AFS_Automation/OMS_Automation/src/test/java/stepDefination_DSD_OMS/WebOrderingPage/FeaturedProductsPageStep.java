@@ -18,10 +18,8 @@ public class FeaturedProductsPageStep
 {
     /* Created by Divya.Ramadas@afsi.com */
     static boolean flag1=false;
-    static boolean flag2=false;
     WebDriver driver;
     Scenario scenario;
-    static boolean exists=false;
     static int MaxProd;
     static int SetProd;
     AdminHomePage adminHomePage;
@@ -42,7 +40,7 @@ public class FeaturedProductsPageStep
         if(flag1==false)
         {
             adminHomePage = new AdminHomePage(driver, scenario);
-            adminHomePage.ClicOnHumburger();
+            adminHomePage.ClickOnHumburger();
             adminHomePage.EnterValueInSearchBox(arg0);
             adminHomePage.CloseHumburger();
             flag1=true;
@@ -150,5 +148,33 @@ public class FeaturedProductsPageStep
         featuredProductsPage.CatalogOkButton();
     }
 
+    @Then("User changes max number of feature products and set it as {int}")
+    public void userChangesMaxNumberOfFeatureProductsAndSetItAs(int arg0)
+    {
+        featuredProdSettingsPage=new FeaturedProdSettingsPage(driver,scenario);
+        featuredProdSettingsPage.ClickOnDropDown();
+        featuredProdSettingsPage.SelectValueFromDropDown(arg0);
+    }
 
+    @And("User should delete all the products in feature products list")
+    public void userShouldDeleteAllTheProductsInFeatureProductsList()
+    {
+        featuredProductsPage=new FeaturedProductsPage(driver,scenario);
+        featuredProductsPage.deleteAllFeatureProduct();
+    }
+
+    @Then("User should add new {int} products, and delete first product")
+    public void userShouldAddNewProductsAndDeleteFirstProduct(int arg0)
+    {
+        featuredProductsPage=new FeaturedProductsPage(driver,scenario);
+        featuredProductsPage.ClickAddProducts();
+        for(int i=0;i<=arg0-1;i++)
+        {
+            featuredProductsPage.selecting3Products();
+        }
+        featuredProductsPage.CatalogOkButton();
+        featuredProductsPage.PopupAfterChanges();
+        featuredProductsPage.ListFeaturedProduct(MaxProd);
+        featuredProductsPage.deleteFirstProduct();
+    }
 }

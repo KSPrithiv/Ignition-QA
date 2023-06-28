@@ -65,7 +65,7 @@ public class NewPaymentMethodPage
         String title=null;
         try
         {
-            title= HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'topHeaderRow row')]/descendant::span").getText();
+            title= HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'topHeaderRow')]/descendant::span").getText();
         }
         catch (Exception e){}
         Assert.assertEquals(title,"New payment method");
@@ -76,7 +76,7 @@ public class NewPaymentMethodPage
         exists=false;
         try
         {
-            HelpersMethod.ClickBut(driver,PaymentDropDown,10);
+            HelpersMethod.ClickBut(driver,PaymentDropDown,100);
             exists=true;
         }
         catch (Exception e){}

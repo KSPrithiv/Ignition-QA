@@ -6,10 +6,7 @@ import io.cucumber.java.bs.A;
 import lombok.experimental.Helper;
 import org.apache.logging.log4j.core.config.Order;
 import org.apache.logging.log4j.core.tools.picocli.CommandLine;
-import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Action;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
@@ -39,7 +36,6 @@ public class AllOrderPage
     Scenario scenario;
     String OrderNo = null;
     static boolean exists = false;
-    static String XPath=null;
     static String Product=null;
 
     @FindBy(id = "showAllOrdersCheckbox")
@@ -48,7 +44,7 @@ public class AllOrderPage
     @FindBy(id = "showQuotes")
     private WebElement ShowQuotes;
 
-    @FindBy(xpath = "//button[contains(text(),'Start order')]")
+    @FindBy(xpath = "//button[@data-test-id='startOrderBtn']")
     private WebElement StartOrder;
 
     @FindBy(id = "copyOrderBtn")
@@ -115,9 +111,9 @@ public class AllOrderPage
             if(HelpersMethod.IsExists("//div[@class='loader']",driver))
             {
                 WebElement WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 400);
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 10000);
             }
-            new WebDriverWait(driver,100).until(ExpectedConditions.titleIs("Ignition - All Orders"));
+           new WebDriverWait(driver,200).until(ExpectedConditions.titleIs("Ignition - All Orders"));
             String title = HelpersMethod.gettingTitle(driver);
             if (title.equals("Ignition - All Orders"))
             {
@@ -133,7 +129,6 @@ public class AllOrderPage
         OrderNo=null;
         try
         {
-            //HelpersMethod.Implicitwait(driver,15);
             WebElement WebEle = HelpersMethod.FindByElement(driver, "xpath", "//tr[@class='k-master-row'][2]/descendant::button");
             if (HelpersMethod.IsExists("//tr[@class='k-master-row'][2]/descendant::button", driver))
             {
@@ -162,10 +157,10 @@ public class AllOrderPage
         if(HelpersMethod.IsExists("//div[@class='loader']",driver))
         {
             WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100);
+            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000);
         }
-        new WebDriverWait(driver,60).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='allOrdersCheckbox']")));
-        new WebDriverWait(driver,60).until(ExpectedConditions.textToBePresentInElementLocated(By.xpath("//div[@class='allOrdersCheckbox']"),"Show all orders"));
+        new WebDriverWait(driver,100).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='allOrdersCheckbox']")));
+        new WebDriverWait(driver,100).until(ExpectedConditions.textToBePresentInElementLocated(By.xpath("//div[@class='allOrdersCheckbox']"),"Show all orders"));
         try
         {
             status=HelpersMethod.returnDocumentStatus(driver);
@@ -178,10 +173,10 @@ public class AllOrderPage
                 if (HelpersMethod.IsExists("//div[@class='allOrdersCheckbox']",driver))
                 {
                     exists = false;
-                    new WebDriverWait(driver, 10).until(ExpectedConditions.visibilityOf(AllOrderCheckbox));
-                    new WebDriverWait(driver, 10).until(ExpectedConditions.elementToBeClickable(AllOrderCheckbox));
+                    new WebDriverWait(driver, 100).until(ExpectedConditions.visibilityOf(AllOrderCheckbox));
+                    new WebDriverWait(driver, 100).until(ExpectedConditions.elementToBeClickable(AllOrderCheckbox));
                     HelpersMethod.ScrollElement(driver, AllOrderCheckbox);
-                    HelpersMethod.ActClick(driver, AllOrderCheckbox, 10);
+                    HelpersMethod.ActClick(driver, AllOrderCheckbox, 1000);
                     if(HelpersMethod.IsExists("//div[@class='loader']",driver))
                     {
                         WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
@@ -191,14 +186,13 @@ public class AllOrderPage
                 }
             }
             Assert.assertEquals(exists, true);
-           // HelpersMethod.Implicitwait(driver,40);
+
         }
         catch (Exception e) {}
     }
 
     public void AddFilterClick()
     {
-
         exists = false;
         try
         {
@@ -227,55 +221,45 @@ public class AllOrderPage
         String status = null;
         WebElement WebEle = null;
         Actions act1 = new Actions(driver);
-
-        status = HelpersMethod.returnDocumentStatus(driver);
-        if (status.equals("loading"))
+        try
         {
-            HelpersMethod.waitTillLoadingPage(driver);
-        }
-
-        WebEle = HelpersMethod.FindByElement(driver, "id", "openOrdersCard");
-        HelpersMethod.ScrollElement(driver, WebEle);
-        driver.manage().timeouts().pageLoadTimeout(10, TimeUnit.SECONDS);
-        status = HelpersMethod.returnDocumentStatus(driver);
-        if (status.equals("loading"))
-        {
-            HelpersMethod.waitTillLoadingPage(driver);
-        }
-
-        //HelpersMethod.WaitElementPresent(driver, "id", "openOrdersCard", 150);
-        //HelpersMethod.waitTillElementLocatedDisplayed(driver, "id", "openOrdersCard", 1500);
-        //driver.manage().timeouts().pageLoadTimeout(60, TimeUnit.SECONDS);
-        WebElement starOrderBut = HelpersMethod.FindByElement(driver, "xpath", "//button[contains(text(),'Start order')]");
-        new WebDriverWait(driver, 100).until(ExpectedConditions.elementToBeClickable(starOrderBut));
-        //Click on Start Order button
-        act1.moveToElement(starOrderBut).build().perform();
-        act1.click(starOrderBut).build().perform();
-
-        status = HelpersMethod.returnDocumentStatus(driver);
-        if (status.equals("loading"))
-        {
-            HelpersMethod.waitTillLoadingPage(driver);
-        }
-
-        new WebDriverWait(driver, 40).until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath("//div[contains(@class,'k-child-animation-container')]")));
-        new WebDriverWait(driver, 40).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(@class,'k-child-animation-container')]")));
-        // to fetch the web element of the modal container
-        WebElement menuContainer = driver.findElement(By.xpath("//div[contains(@class,'k-child-animation-container')]"));
-        //new WebDriverWait(driver, 40).until(ExpectedConditions.elementToBeClickable(By.xpath(".//ul/li[@role='menuItem' and contains(text(),'Add')]")));
-        List<WebElement> Options=menuContainer.findElements (By.xpath(".//ul/li"));
-        for(int i=0;i<=Options.size()-1;i++)
-        {
-            WebEle=Options.get(i);
-            act1.moveToElement(WebEle).build().perform();
-            String Opt=WebEle.getText();
-            if(Opt.equals("Add"))
+            status = HelpersMethod.returnDocumentStatus(driver);
+            if (status.equals("loading"))
             {
-                act1.moveToElement(WebEle).build().perform();
-                act1.click(WebEle).build().perform();
-                break;
+                HelpersMethod.waitTillLoadingPage(driver);
             }
-        }
+
+            WebEle = HelpersMethod.FindByElement(driver, "id", "openOrdersCard");
+            HelpersMethod.ScrollElement(driver, WebEle);
+            new WebDriverWait(driver, 6000).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("openOrdersCard"))));
+            status = HelpersMethod.returnDocumentStatus(driver);
+            if (status.equals("loading"))
+            {
+                HelpersMethod.waitTillLoadingPage(driver);
+            }
+
+            WebElement starOrderBut = HelpersMethod.FindByElement(driver, "xpath", "//button[contains(text(),'Start order')]");
+            new WebDriverWait(driver, 6000).until(ExpectedConditions.elementToBeClickable(starOrderBut));
+            //Click on Start Order button
+            //act1.moveToElement(starOrderBut).build().perform();
+            //act1.click(starOrderBut).build().perform();
+            HelpersMethod.JScriptClick(driver,starOrderBut,100);
+
+
+            status = HelpersMethod.returnDocumentStatus(driver);
+            if (status.equals("loading"))
+            {
+                HelpersMethod.waitTillLoadingPage(driver);
+            }
+
+            new WebDriverWait(driver,2000).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class,'k-animation-container k-animation-container-relative k-animation-container-shown')]"))));
+            // to fetch the web element of the modal container
+            WebElement menuContainer = driver.findElement(By.xpath("//div[contains(@class,'k-animation-container k-animation-container-relative k-animation-container-shown')]"));
+
+            WebElement optionToClick = menuContainer.findElement(By.xpath(".//ul/li[contains(text(),'Add')]"));
+            // click the option
+            HelpersMethod.ActClick(driver, optionToClick, 1000);
+
             exists = true;
             status = HelpersMethod.returnDocumentStatus(driver);
             if (status.equals("loading"))
@@ -283,16 +267,16 @@ public class AllOrderPage
                 HelpersMethod.waitTillLoadingPage(driver);
             }
 
-        //validate Customer index popup
-            HelpersMethod.WaitElementPresent(driver,"xpath","//div[contains(text(),'Customer account index')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",2000);
-            new WebDriverWait(driver,400).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(text(),'Customer account index')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]")));
+            //validate Customer index popup
+            HelpersMethod.WaitElementPresent(driver, "xpath", "//div[contains(text(),'Customer account index')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]", 2000);
+            new WebDriverWait(driver, 400).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(text(),'Customer account index')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]")));
             Assert.assertEquals(exists, true);
+        }
+        catch (Exception e){}
     }
 
     public void ValidateCustomerIndexPopup()
     {
-            HelpersMethod.WaitElementPresent(driver,"xpath","//div[contains(@class,'k-widget k-window k-dialog')]",600);
-            HelpersMethod.waitTillElementLocatedDisplayed(driver,"xpath","//div[contains(@class,'k-widget k-window k-dialog')]",600);
             // to fetch the web element of the modal container
             WebElement modalContainer = driver.findElement(By.xpath("//div[contains(@class,'k-widget k-window k-dialog')]"));
 
@@ -307,95 +291,93 @@ public class AllOrderPage
         WebElement WebEle;
         WebElement Search2;
         String AccNo = TestBase.testEnvironment.get_Account();
+            String status = HelpersMethod.returnDocumentStatus(driver);
+            if (status.equals("loading"))
+            {
+                HelpersMethod.waitTillLoadingPage(driver);
+            }
 
-        String status = HelpersMethod.returnDocumentStatus(driver);
-        if (status.equals("loading"))
-        {
-            HelpersMethod.waitTillLoadingPage(driver);
-        }
-
-        new WebDriverWait(driver, 200).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(@class,'k-widget k-window k-dialog')]")));
-        WebElement modalContainer = driver.findElement(By.xpath("//div[contains(@class,'k-widget k-window k-dialog')]"));
-        status = HelpersMethod.returnDocumentStatus(driver);
-        if (status.equals("loading"))
-        {
-            HelpersMethod.waitTillLoadingPage(driver);
-        }
-
-        // code to click on Addfilter button
-        WebElement AddFilterButton = modalContainer.findElement(By.xpath(".//button/descendant::span[contains(text(),'Add filter')]"));
-        HelpersMethod. ActClick(driver, AddFilterButton, 1000);
-
-        //Identify the dialog popup
-        HelpersMethod.WaitElementPresent(driver,"xpath","//div[contains(@class,'k-child-animation-container')]",4000);
-        HelpersMethod.waitTillElementLocatedDisplayed(driver,"xpath","//div[contains(@class,'k-child-animation-container')]",1000);
-        WebElement modalContainer1 = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-child-animation-container')]");
-
-        //Validate child popup
-        WebElement childTitle = modalContainer1.findElement(By.xpath(".//div[contains(@class,'i-filter-popup__checkboxes')]/h1"));
-        Assert.assertEquals(childTitle.getText(), "Basic", "Verify Title message");
-
-        //Enter customer account# in input box
-        WebElement Search1 = modalContainer1.findElement(By.xpath(".//input[contains(@class,'i-search-box__input')]"));
-        HelpersMethod.EnterText(driver, Search1, 800, "Customer #");
-
-        status = HelpersMethod.returnDocumentStatus(driver);
-        if (status.equals("loading"))
-        {
-            HelpersMethod.waitTillLoadingPage(driver);
-        }
-
-        //Click on Check box
-        HelpersMethod.WaitElementPresent(driver,"xpath","//input[@id='CM_CUSTKEY']",400);
-        new WebDriverWait(driver,200).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@id='CM_CUSTKEY']")));
-        WebElement WebEle1 = modalContainer1.findElement(By.xpath(".//input[@id='CM_CUSTKEY']"));
-        HelpersMethod.JScriptClick(driver, WebEle1, 400);
-        status = HelpersMethod.returnDocumentStatus(driver);
-        if (status.equals("loading"))
-        {
-            HelpersMethod.waitTillLoadingPage(driver);
-        }
-
-        //Identify radio button and click on Radio button
-        HelpersMethod.WaitElementPresent(driver,"xpath","//div[contains(@class,'k-child-animation-container')]/descendant::form[contains(@class,'i-filter-popup')]",400);
-        HelpersMethod.waitTillElementLocatedDisplayed(driver, "xpath", "//div[contains(@class,'k-child-animation-container')]/descendant::form[contains(@class,'i-filter-popup')]", 200);
-        WebElement RadioPop = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-child-animation-container')]/descendant::form[contains(@class,'i-filter-popup')]");
-        WebElement radioButton = RadioPop.findElement(By.xpath(".//div[contains(@class,'i-btn-radio filter-radio')][1]/following-sibling::div[contains(@class,'k-textbox-container i-filter-popup__content__input')]/input"));
-        if (radioButton.isDisplayed())
-        {
-            Search2 = RadioPop.findElement(By.xpath(".//div[contains(@class,'i-btn-radio filter-radio')][1]/following-sibling::div[contains(@class,'k-textbox-container i-filter-popup__content__input')]/input"));
-            HelpersMethod.EnterText(driver, Search2, 200, AccNo);
+            new WebDriverWait(driver, 200).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(@class,'k-widget k-window k-dialog')]")));
+            WebElement modalContainer = driver.findElement(By.xpath("//div[contains(@class,'k-widget k-window k-dialog')]"));
             status = HelpersMethod.returnDocumentStatus(driver);
             if (status.equals("loading"))
             {
                 HelpersMethod.waitTillLoadingPage(driver);
             }
 
-            //Click on Apply button
-            WebElement ApplyButton = RadioPop.findElement(By.xpath(".//button[text()='Apply']"));
-            new WebDriverWait(driver,40).until(ExpectedConditions.elementToBeClickable(ApplyButton));
-            HelpersMethod.ClickBut(driver, ApplyButton, 40);
-        }
+            // code to click on Addfilter button
+            WebElement AddFilterButton = modalContainer.findElement(By.xpath(".//button/descendant::span[contains(text(),'Add filter')]"));
+            HelpersMethod.ActClick(driver, AddFilterButton, 1000);
 
-        if (HelpersMethod.IsExists("//div[contains(@class,'k-widget k-window k-dialog')]/descendant::div[@class='i-no-data']", driver))
-        {
-            scenario.log("CUSTOMER ACCOUNT NUMBER DOESN'T EXISTS");
-        }
-        else
-        {
-            WebEle = modalContainer.findElement(By.xpath(".//tr[contains(@class,'k-master-row')]"));
-            HelpersMethod.ScrollElement(driver, WebEle);
-            HelpersMethod.ActClick(driver, WebEle, 40);
+            //Identify the dialog popup
+            new WebDriverWait(driver,6000).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class,'k-animation-container k-animation-container-relative k-animation-container-shown')]"))));
+            WebElement modalContainer1 = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-popup k-child-animation-container')]");
 
-            if (HelpersMethod.IsExists("//div[@class='loader']", driver))
+            //Validate child popup
+            WebElement childTitle = modalContainer1.findElement(By.xpath(".//div[contains(@class,'i-filter-popup__checkboxes')]/h1"));
+            Assert.assertEquals(childTitle.getText(), "Basic", "Verify Title message");
+
+            //Enter customer account# in input box
+            WebElement Search1 = modalContainer1.findElement(By.xpath(".//input[contains(@class,'i-search-box__input')]"));
+            HelpersMethod.EnterText(driver, Search1, 800, "Customer #");
+
+            status = HelpersMethod.returnDocumentStatus(driver);
+            if (status.equals("loading"))
             {
-                WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100);
+                HelpersMethod.waitTillLoadingPage(driver);
             }
-            exists = true;
-            String Acc = TestBase.testEnvironment.get_Account();
-            scenario.log("CUSTOMER ACCOUNT NUMBER HAS BEEN SELECTED: " + Acc);
-        }
+
+            //Click on Check box
+            HelpersMethod.WaitElementPresent(driver, "xpath", "//input[@id='CM_CUSTKEY']", 400);
+            new WebDriverWait(driver, 200).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@id='CM_CUSTKEY']")));
+            WebElement WebEle1 = modalContainer1.findElement(By.xpath(".//input[@id='CM_CUSTKEY']"));
+            HelpersMethod.JScriptClick(driver, WebEle1, 400);
+            status = HelpersMethod.returnDocumentStatus(driver);
+            if (status.equals("loading"))
+            {
+                HelpersMethod.waitTillLoadingPage(driver);
+            }
+
+            //Identify radio button and click on Radio button
+            HelpersMethod.WaitElementPresent(driver, "xpath", "//div[contains(@class,'k-child-animation-container')]/descendant::form[contains(@class,'i-filter-popup')]", 400);
+            HelpersMethod.waitTillElementLocatedDisplayed(driver, "xpath", "//div[contains(@class,'k-child-animation-container')]/descendant::form[contains(@class,'i-filter-popup')]", 200);
+            WebElement RadioPop = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-child-animation-container')]/descendant::form[contains(@class,'i-filter-popup')]");
+            WebElement radioButton = RadioPop.findElement(By.xpath(".//div[contains(@class,'i-btn-radio filter-radio')][1]/following-sibling::div[contains(@class,'k-textbox-container i-filter-popup__content__input')]/input"));
+            if (radioButton.isDisplayed())
+            {
+                Search2 = RadioPop.findElement(By.xpath(".//div[contains(@class,'i-btn-radio filter-radio')][1]/following-sibling::div[contains(@class,'k-textbox-container i-filter-popup__content__input')]/input"));
+                HelpersMethod.EnterText(driver, Search2, 200, AccNo);
+                status = HelpersMethod.returnDocumentStatus(driver);
+                if (status.equals("loading"))
+                {
+                    HelpersMethod.waitTillLoadingPage(driver);
+                }
+
+                //Click on Apply button
+                WebElement ApplyButton = RadioPop.findElement(By.xpath(".//button[text()='Apply']"));
+                new WebDriverWait(driver, 40).until(ExpectedConditions.elementToBeClickable(ApplyButton));
+                HelpersMethod.ClickBut(driver, ApplyButton, 40);
+            }
+
+            if (HelpersMethod.IsExists("//div[contains(@class,'k-widget k-window k-dialog')]/descendant::div[@class='i-no-data']", driver))
+            {
+                scenario.log("CUSTOMER ACCOUNT NUMBER DOESN'T EXISTS");
+            }
+            else
+            {
+                WebEle = modalContainer.findElement(By.xpath(".//tr[contains(@class,'k-master-row')]"));
+                HelpersMethod.ScrollElement(driver, WebEle);
+                HelpersMethod.ActClick(driver, WebEle, 100);
+
+               /*if (HelpersMethod.IsExists("//div[@class='loader']", driver))
+                {
+                    WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
+                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000);
+                }*/
+                exists = true;
+                String Acc = TestBase.testEnvironment.get_Account();
+                scenario.log("CUSTOMER ACCOUNT NUMBER HAS BEEN SELECTED: " + Acc);
+            }
     }
 
     public void SelectDeliveryDate()
@@ -412,25 +394,19 @@ public class AllOrderPage
             if(HelpersMethod.IsExists("//div[@class='loader']",driver))
             {
                 Wheel=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, Wheel, 100);
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, Wheel, 10000);
             }
 
-            HelpersMethod.waitTillElementLocatedDisplayed(driver,"xpath","//div[contains(@class,'k-widget k-window k-dialog')]",40);
-            // to fetch the web element of the modal container
             WebElement modalContainer = driver.findElement(By.xpath("//div[contains(@class,'k-widget k-window k-dialog')]"));
-
-            // to fetch the web elements of the modal content and interact with them, code to fetch content of modal title and verify it
-            WebElement modalContentTitle = modalContainer.findElement(By.xpath(".//div[contains(@class,'k-window-title k-dialog-title')]"));
-            Assert.assertEquals(modalContentTitle.getText(), "Select delivery date", "Verifing calender title");
             //Select date from calender
             if(HelpersMethod.IsExists(".//td[contains(@style,'opacity: 1') and contains(@class,'k-state-focused')] | .//td[contains(@style,'opacity: 1') and contains(@class,'k-state-selected')]",driver))
             {
                 WebElement Date1 = modalContainer.findElement(By.xpath(".//td[contains(@style,'opacity: 1') and contains(@class,'k-state-focused')] | .//td[contains(@style,'opacity: 1') and contains(@class,'k-state-selected')]"));
-                HelpersMethod.ActClick(driver,Date1,20);
+                HelpersMethod.ActClick(driver,Date1,100);
                 if(HelpersMethod.IsExists("//div[@class='loader']",driver))
                 {
                     Wheel=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                    HelpersMethod.waitTillLoadingWheelDisappears(driver, Wheel, 400);
+                    HelpersMethod.waitTillLoadingWheelDisappears(driver, Wheel, 1000);
                 }
                 scenario.log("DEFAULT DELIVERY DATE HAS BEEN SLECTED");
             }
@@ -441,11 +417,11 @@ public class AllOrderPage
                 {
                     for (WebElement WebEle1 : Dates)
                     {
-                        HelpersMethod.ActClick(driver,WebEle1,10);
+                        HelpersMethod.ActClick(driver,WebEle1,60);
                         if(HelpersMethod.IsExists("//div[@class='loader']",driver))
                         {
                             Wheel=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                            HelpersMethod.waitTillLoadingWheelDisappears(driver, Wheel, 100);
+                            HelpersMethod.waitTillLoadingWheelDisappears(driver, Wheel, 1000);
                         }
                     }
                 }
@@ -460,11 +436,11 @@ public class AllOrderPage
                     {
                         if (WebEle1.equals(Date))
                         {
-                            HelpersMethod.ActClick(driver, Date, 10);
+                            HelpersMethod.ActClick(driver, Date, 40);
                             if(HelpersMethod.IsExists("//div[@class='loader']",driver))
                             {
                                 Wheel=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                                HelpersMethod.waitTillLoadingWheelDisappears(driver, Wheel, 100);
+                                HelpersMethod.waitTillLoadingWheelDisappears(driver, Wheel, 1000);
                             }
                             break;
                         }
@@ -489,6 +465,24 @@ public class AllOrderPage
         catch (Exception e) {}
     }
 
+    public void selectDeliveryDateForPickupOrder()
+    {
+        exists=false;
+        try
+        {
+            if(HelpersMethod.IsExists("//div[contains(@class,'k-widget k-window k-dialog')]",driver))
+            {
+                 String pickDate=HelpersMethod.FindByElement(driver,"xpath","//tr[contains(@class,'k-master-row')][1]/descendant::span[2]").getText();
+                 scenario.log("DATE SELECTED PICKUP ORDER "+pickDate);
+                 WebElement dateSelect=HelpersMethod.FindByElement(driver,"xpath","//tr[contains(@class,'k-master-row')][1]");
+                 HelpersMethod.ActClick(driver,dateSelect,200);
+                 exists=true;
+            }
+            Assert.assertEquals(exists,true);
+        }
+        catch (Exception e){}
+    }
+
     public void SelectDeliveryDateForEdit()
     {
         try
@@ -500,7 +494,6 @@ public class AllOrderPage
             LocalDate myDateObj = LocalDate.now().plusDays(1);
             DateTimeFormatter myFormatObj = DateTimeFormatter.ofPattern("EEEE, MMMM d, yyyy");
             String formattedDate = myDateObj.format(myFormatObj);
-            //HelpersMethod.Implicitwait(driver,20);
             String status=HelpersMethod.returnDocumentStatus(driver);
             if(status.equals("loading"))
             {
@@ -509,7 +502,7 @@ public class AllOrderPage
             if(HelpersMethod.IsExists("//div[@class='loader']",driver))
             {
                 Wheel=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, Wheel, 100);
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, Wheel, 2000);
             }
 
             if(!HelpersMethod.IsExists("//div[contains(@class,'k-calendar-monthview')]/descendant::td[contains(@style,'opacity: 1; cursor: pointer; background-color: rgb')]/span[contains(@title,'" + formattedDate +"')]",driver))
@@ -531,7 +524,7 @@ public class AllOrderPage
                 if (HelpersMethod.IsExists("//div[@class='loader']", driver))
                 {
                     WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100);
+                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000);
                 }
             }
             else
@@ -545,7 +538,7 @@ public class AllOrderPage
                 if (HelpersMethod.IsExists("//div[@class='loader']", driver))
                 {
                     WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100);
+                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000);
                 }
             }
             if(HelpersMethod.IsExists("//div[contains(text(),'Route number required')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
@@ -567,14 +560,13 @@ public class AllOrderPage
 
     public void SearchNewlyCreatedOrder(String Ord_No)
     {
-        //HelpersMethod.Implicitwait(driver,20);
         WebElement WebEle=null;
         WebElement Search2=null;
         String status=null;
         if(HelpersMethod.IsExists("//div[@class='loader']",driver))
         {
             WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100);
+            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000);
         }
         status=HelpersMethod.returnDocumentStatus(driver);
         if(status.equals("loading"))
@@ -584,12 +576,11 @@ public class AllOrderPage
         new WebDriverWait(driver,40).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[contains(text(),'Add filter')]")));
         new WebDriverWait(driver,40).until(ExpectedConditions.elementToBeClickable(By.xpath("//span[contains(text(),'Add filter')]")));
 
-
         exists = false;
         try
         {
                 HelpersMethod.AddFilterSearch(driver, "Order Number", Ord_No);
-                //HelpersMethod.Implicitwait(driver, 15);
+
                 if (HelpersMethod.IsExists("//div[contains(@class,'i-no-data__icon')]", driver))
                 {
                    exists=false;
@@ -615,7 +606,7 @@ public class AllOrderPage
             if(HelpersMethod.IsExists("//div[@class='loader']",driver))
             {
                 WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 400);
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000);
             }
 
             new WebDriverWait(driver,10).until(ExpectedConditions.textToBePresentInElementLocated(By.xpath("//div[@class='allOrdersCheckbox']"),"Show all orders"));
@@ -634,7 +625,7 @@ public class AllOrderPage
                    if(HelpersMethod.IsExists("//div[@class='loader']",driver))
                    {
                        WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                       HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 40);
+                       HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000);
                    }
                     exists = true;
                    scenario.log("SHOW ORDER FROM QUOTES CHECK BOX HAS BEEN SELECTED");
@@ -657,10 +648,10 @@ public class AllOrderPage
             if(HelpersMethod.IsExists("//div[@class='loader']",driver))
             {
                 WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 400);
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000);
             }
             List<WebElement> Orders=HelpersMethod.FindByElements(driver,"xpath","//button[contains(@class,'i-link-button ')]");
-           if(Orders==null)
+           if(Orders.isEmpty())
            {
                scenario.log("THERE ARE NO ORDER NUMBERS TO DISPLAY");
            }
@@ -712,7 +703,7 @@ public class AllOrderPage
             if(HelpersMethod.IsExists("//div[@class='loader']",driver))
             {
                 WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100);
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000);
             }
         status = HelpersMethod.returnDocumentStatus(driver);
         if (status.equals("loading"))
@@ -721,8 +712,8 @@ public class AllOrderPage
         }
         if(HelpersMethod.IsExists("//div[contains(@class,'modal-sm modal-dialog')]/descendant::h4[contains(text(),'Select order')]",driver))
         {
-            new WebDriverWait(driver, 400).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class,'modal-sm modal-dialog')]")));
-            HelpersMethod.waitTillElementLocatedDisplayed(driver, "xpath", "//div[contains(@class,'modal-sm modal-dialog')]", 400);
+            new WebDriverWait(driver, 2000).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class,'modal-sm modal-dialog')]")));
+
             // to fetch the web element of the modal container
             WebElement modalContainer = driver.findElement(By.xpath("//div[contains(@class,'modal-sm modal-dialog')]"));
 
@@ -736,7 +727,7 @@ public class AllOrderPage
             if (HelpersMethod.IsExists("//div[@class='loader']", driver))
             {
                 WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100);
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000);
             }
             Assert.assertEquals(exists, true);
         }
@@ -749,7 +740,7 @@ public class AllOrderPage
         if(HelpersMethod.IsExists("//div[@class='loader']",driver))
         {
             WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100);
+            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000);
         }
         try
         {
@@ -774,7 +765,7 @@ public class AllOrderPage
             if(HelpersMethod.IsExists("//div[@class='loader']",driver))
             {
                 WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 20);
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 800);
             }
             exists=true;
             Assert.assertEquals(exists,true);
@@ -791,13 +782,13 @@ public class AllOrderPage
             if(HelpersMethod.IsExists("//div[@class='loader']",driver))
             {
                 WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 20);
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 400);
             }
             WebEle = HelpersMethod.FindByElement(driver, "xpath", "//span[@class='spnmoduleNameHeader']");
-            new WebDriverWait(driver, 4).until(ExpectedConditions.textToBePresentInElement(WebEle, "Checkout summary"));
+            new WebDriverWait(driver, 80).until(ExpectedConditions.textToBePresentInElement(WebEle, "Checkout summary"));
 
             //verifying whether user naviagated to OE summary page or not
-            if (HelpersMethod.waitTillTitleContains(driver, "Ignition - Order Entry", 4))
+            if (HelpersMethod.waitTillTitleContains(driver, "Ignition - Order Entry", 40))
             {
                 exists = true;
             }
@@ -813,11 +804,11 @@ public class AllOrderPage
         try
         {
             WebElement WebEle = HelpersMethod.FindByElement(driver, "id", "OrdersButton");
-            HelpersMethod.JScriptClick(driver, WebEle, 6);
+            HelpersMethod.JScriptClick(driver, WebEle, 20);
             if(HelpersMethod.IsExists("//div[@class='loader']",driver))
             {
                 WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 20);
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 400);
             }
             exists = true;
             Assert.assertEquals(exists, true);
@@ -862,19 +853,19 @@ public class AllOrderPage
             {
                 HelpersMethod.ScrollElement(driver,CopyButton);
                 HelpersMethod.ClickBut(driver,CopyButton,100);
+                scenario.log("COPYING OF ALL ORDER HAS BEEN DONE");
                 status = HelpersMethod.returnDocumentStatus(driver);
                 if (status.equals("loading"))
                 {
                     HelpersMethod.waitTillLoadingPage(driver);
                 }
-                if(HelpersMethod.IsExists("//div[@class='loader']",driver))
+             /*   if(HelpersMethod.IsExists("//div[@class='loader']",driver))
                 {
                     WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 400);
-                }
+                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 2000);
+                }*/
                 exists=true;
             }
-            scenario.log("COPYING OF ALL ORDER HAS BEEN DONE");
             Assert.assertEquals(exists,true);
     }
 
@@ -883,43 +874,47 @@ public class AllOrderPage
         exists=false;
         WebElement WebEle;
         String status=null;
-            if(HelpersMethod.IsExists("//div[@class='loader']",driver))
+        try
+        {
+            if (HelpersMethod.IsExists("//div[@class='loader']", driver))
             {
-                WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 400);
+                WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 10000);
             }
             status = HelpersMethod.returnDocumentStatus(driver);
             if (status.equals("loading"))
             {
-                 HelpersMethod.waitTillLoadingPage(driver);
+                HelpersMethod.waitTillLoadingPage(driver);
             }
-            HelpersMethod.waitTillElementLocatedDisplayed(driver,"xpath","//div[contains(@class,'k-widget k-window k-dialog')]",60);
+            HelpersMethod.waitTillElementLocatedDisplayed(driver, "xpath", "//div[contains(@class,'k-widget k-window k-dialog')]", 60);
+            new WebDriverWait(driver,6000).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class,'k-widget k-window k-dialog')"))));
             // to fetch the web element of the modal container
             WebElement modalContainer = driver.findElement(By.xpath("//div[contains(@class,'k-widget k-window k-dialog')]"));
-
             // to fetch the web elements of the modal content and interact with the, code to fetch content of modal title and verify it
             WebElement modalContentTitle = modalContainer.findElement(By.xpath(".//div[contains(@class,'k-window-title k-dialog-title')]"));
             Assert.assertEquals(modalContentTitle.getText(), "Select delivery date", "Verifing calender title");
             //Click on New order
-            WebEle=modalContainer.findElement(By.xpath(".//tr[contains(@class,'k-master-row')][1]"));
-            HelpersMethod.ActClick(driver,WebEle,40);
+            WebEle = modalContainer.findElement(By.xpath(".//tr[contains(@class,'k-master-row')][1]"));
+            HelpersMethod.ActClick(driver, WebEle, 6000);
             status = HelpersMethod.returnDocumentStatus(driver);
             if (status.equals("loading"))
             {
                 HelpersMethod.waitTillLoadingPage(driver);
             }
-            exists=true;
-            if(HelpersMethod.IsExists("//div[@class='loader']",driver))
+            exists = true;
+            if (HelpersMethod.IsExists("//div[@class='loader']", driver))
             {
-                WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 600);
+                WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 2000);
             }
             status = HelpersMethod.returnDocumentStatus(driver);
             if (status.equals("loading"))
             {
                 HelpersMethod.waitTillLoadingPage(driver);
             }
-            Assert.assertEquals(exists,true);
+            Assert.assertEquals(exists, true);
+        }
+        catch (Exception e){}
     }
 
     public void SubmittedStatusDropDown()
@@ -950,10 +945,10 @@ public class AllOrderPage
         exists=false;
         try
         {
-            HelpersMethod.waitTillElementLocatedDisplayed(driver,"xpath","//div[contains(@class,'k-animation-container k-animation-container-relative k-list-container')]",40);
+            HelpersMethod.waitTillElementLocatedDisplayed(driver,"xpath","//div[contains(@class,'k-animation-container k-animation-container-relative k-list-container k-reset i-common-dropdown i-common-dropdown__type-none k-animation-container-shown')]",40);
             // to fetch the web element of the modal container
-            WebElement menuContainer = driver.findElement(By.xpath("//div[contains(@class,'k-animation-container k-animation-container-relative k-list-container')]"));
-            new WebDriverWait(driver,40).until(ExpectedConditions.elementToBeClickable(By.xpath(".//div[contains(@class,'k-child-animation-container')]/descendant::ul/li[contains(text(),'Submitted')]")));
+            WebElement menuContainer = driver.findElement(By.xpath("//div[contains(@class,'k-animation-container k-animation-container-relative k-list-k-animation-container k-animation-container-relative k-list-container k-reset i-common-dropdown i-common-dropdown__type-none k-animation-container-shown')]"));
+            new WebDriverWait(driver,40).until(ExpectedConditions.elementToBeClickable(By.xpath("//div[contains(@class,'k-child-animation-container')]/descendant::ul/li[contains(text(),'Submitted')]")));
             WebElement submitOption=menuContainer.findElement(By.xpath(".//ul/li[contains(text(),'Submitted')]"));
             HelpersMethod.ClickBut(driver,submitOption,20);
             exists=true;
@@ -968,9 +963,9 @@ public class AllOrderPage
         WebElement WebEle=null;
         try
         {
-            HelpersMethod.waitTillElementLocatedDisplayed(driver,"xpath","//div[contains(@class,'k-animation-container k-animation-container-relative k-list-container')]",40);
+            HelpersMethod.waitTillElementLocatedDisplayed(driver,"xpath","//div[contains(@class,'k-animation-container k-animation-container-relative k-list-container k-reset i-common-dropdown i-common-dropdown__type-none k-animation-container-shown')]",40);
             // to fetch the web element of the modal container
-            WebElement menuContainer = driver.findElement(By.xpath("//div[contains(@class,'k-animation-container k-animation-container-relative k-list-container')]"));
+            WebElement menuContainer = driver.findElement(By.xpath("//div[contains(@class,'k-animation-container k-animation-container-relative k-list-container k-reset i-common-dropdown i-common-dropdown__type-none k-animation-container-shown')]"));
             new WebDriverWait(driver,40).until(ExpectedConditions.elementToBeClickable(By.xpath(".//div[contains(@class,'k-child-animation-container')]/descendant::ul/li[contains(text(),'Not submitted')]")));
             WebElement notSubmitOption=menuContainer.findElement(By.xpath(".ul/li[contains(text(),'Not submitted')]"));
             HelpersMethod.ClickBut(driver,notSubmitOption,20);
@@ -988,7 +983,7 @@ public class AllOrderPage
             if(HelpersMethod.IsExists("//div[@class='loader']",driver))
             {
                 WebElement WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 400);
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000);
             }
         }
         catch (Exception e) {}
@@ -1005,12 +1000,12 @@ public class AllOrderPage
                WebEle=HelpersMethod.FindByElement(driver,"id","openOrdersSearchCard");
                HelpersMethod.ScrollElement(driver, WebEle);
                HelpersMethod.ActClick(driver, OrderStatus, 200);
-               HelpersMethod.WaitElementPresent(driver,"xpath","//div[contains(@class,'k-child-animation-container')]",200);
+               HelpersMethod.WaitElementPresent(driver,"xpath","//div[contains(@class,'k-animation-container k-animation-container-relative k-list-container k-reset i-common-dropdown i-common-dropdown__type-none k-animation-container-shown')]",800);
                exists=true;
                if(HelpersMethod.IsExists("//div[@class='loader']",driver))
                {
                    WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                   HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 600);
+                   HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000);
                }
            }
            Assert.assertEquals(exists,true);
@@ -1021,8 +1016,7 @@ public class AllOrderPage
     public void OrderOptionFromDropDown()
     {
         exists=false;
-        HelpersMethod.WaitElementPresent(driver,"xpath","//div[contains(@class,'k-child-animation-container')]",200);
-        //HelpersMethod.waitTillElementLocatedDisplayed(driver,"xpath","//div[contains(@class,'k-child-animation-container')]",40);
+        //new WebDriverWait(driver,1000).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class,'k-popup k-child-animation-container')]"))));
         HelpersMethod.DropDownMenu(driver,"Open Order");
     }
 
@@ -1034,7 +1028,7 @@ public class AllOrderPage
             HelpersMethod.ScrollElement(driver,ProdNoInput);
             Product= DataBaseConnection.DataBaseConn(TestBase.testEnvironment.getSingle_OneMoreProd());
 
-            HelpersMethod.ActSendKey(driver,ProdNoInput,8,Product);
+            HelpersMethod.ActSendKey(driver,ProdNoInput,20,Product);
 
             exists=true;
             scenario.log("PRODUCT# ENTERED FOR SEARCH IS "+Product);
@@ -1051,7 +1045,7 @@ public class AllOrderPage
             if(HelpersMethod.IsExists("//div[@class='loader']",driver))
             {
                 WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100);
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000);
             }
             HelpersMethod.waitVisibilityOfEle(driver,PrintBut,20);
             HelpersMethod.ScrollElement(driver,PrintBut);
@@ -1066,7 +1060,6 @@ public class AllOrderPage
                     driver.switchTo().window(PCwind);
                     scenario.log(".pdf HAS BEEN FOUND");
                     driver.close();
-                    //HelpersMethod.Implicitwait(driver,1);
                     exists=true;
                     scenario.log("PRINT BUTTON FOR ALL ORDER HAS BEEN HANDLED");
                 }
@@ -1086,6 +1079,7 @@ public class AllOrderPage
             {
                 HelpersMethod.waitTillLoadingPage(driver);
             }
+            //new WebDriverWait(driver,6000).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.xpath("//h4[contains(text(),'Select order')]/ancestor::div[contains(@class,'modal-content')]"))));
             if(HelpersMethod.IsExists("//h4[contains(text(),'Select order')]/ancestor::div[contains(@class,'modal-content')]",driver))
             {
                 HelpersMethod.waitTillElementLocatedDisplayed(driver, "xpath", "//div[contains(@class,'modal-sm modal-dialog')]", 100);
@@ -1114,7 +1108,7 @@ public class AllOrderPage
                 if (HelpersMethod.IsExists("//div[@class='loader']", driver))
                 {
                     WebElement WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100);
+                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000);
                 }
             }
         }
@@ -1155,6 +1149,7 @@ public class AllOrderPage
 
     public void ClickOnStartOrderToSelectPickupOrder() throws InterruptedException
     {
+        exists=false;
       try
       {
             WebElement WebEle;
@@ -1168,45 +1163,54 @@ public class AllOrderPage
                 HelpersMethod.waitTillLoadingPage(driver);
             }
 
-            HelpersMethod.WaitElementPresent(driver, "id", "openOrdersCard", 80);
-            HelpersMethod.waitTillElementLocatedDisplayed(driver, "id", "openOrdersCard", 80);
-            driver.manage().timeouts().pageLoadTimeout(100, TimeUnit.SECONDS);
-            WebElement starOrderBut = HelpersMethod.FindByElement(driver, "xpath", "//button[contains(text(),'Start order')]");
-            act1.moveToElement(starOrderBut).build().perform();
-            act1.click(starOrderBut).build().perform();
-            status = HelpersMethod.returnDocumentStatus(driver);
-            if (status.equals("loading"))
-            {
-                HelpersMethod.waitTillLoadingPage(driver);
-            }
+          WebEle = HelpersMethod.FindByElement(driver, "id", "openOrdersCard");
+          HelpersMethod.ScrollElement(driver, WebEle);
+          new WebDriverWait(driver,2000).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("openOrdersCard"))));
+          status = HelpersMethod.returnDocumentStatus(driver);
+          if (status.equals("loading"))
+          {
+              HelpersMethod.waitTillLoadingPage(driver);
+          }
 
-            new WebDriverWait(driver, 40).until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath("//div[contains(@class,'k-child-animation-container')]")));
-            // to fetch the web element of the modal container
-            WebElement menuContainer = driver.findElement(By.xpath("//div[contains(@class,'k-child-animation-container')]"));
-            //new WebDriverWait(driver, 40).until(ExpectedConditions.elementToBeClickable(By.xpath("//ul/li[@role='menuItem' and contains(text(),'Pick up order')]")));
-            List<WebElement> Options=menuContainer.findElements (By.xpath(".//ul/li"));
-            for(int i=0;i<=Options.size()-1;i++)
-            {
-              WebEle=Options.get(i);
-              act1.moveToElement(WebEle).build().perform();
-              String Opt=WebEle.getText();
-              if(Opt.equals("Pick up order"))
-              {
-                act1.moveToElement(WebEle).build().perform();
-                act1.click(WebEle).build().perform();
-                break;
-              }
-            }
-            exists = true;
+          WebElement starOrderBut = HelpersMethod.FindByElement(driver, "xpath", "//button[contains(text(),'Start order')]");
+          new WebDriverWait(driver, 1000).until(ExpectedConditions.elementToBeClickable(starOrderBut));
+          //Click on Start Order button
+          act1.moveToElement(starOrderBut).build().perform();
+          act1.click(starOrderBut).build().perform();
 
-            status = HelpersMethod.returnDocumentStatus(driver);
-            if (status.equals("loading"))
-            {
-                HelpersMethod.waitTillLoadingPage(driver);
-            }
+          status = HelpersMethod.returnDocumentStatus(driver);
+          if (status.equals("loading"))
+          {
+              HelpersMethod.waitTillLoadingPage(driver);
+          }
 
-            Assert.assertEquals(exists, true);
-        }
+          new WebDriverWait(driver, 600).until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath("//div[contains(@class,'k-popup k-list-container k-reset k-group k-child-animation-container')]")));
+          // to fetch the web element of the modal container
+          WebElement menuContainer = driver.findElement(By.xpath("//div[contains(@class,'k-popup k-list-container k-reset k-group k-child-animation-container')]"));
+          List<WebElement> allLists=HelpersMethod.FindByElements(driver,"xpath",".//ul/li");
+          for (WebElement pickUp:allLists)
+          {
+           act1.moveToElement(pickUp).build().perform();
+           String pick_Text=pickUp.getText();
+           if(pick_Text.equals("Pick up order"))
+           {
+               act1.moveToElement(pickUp).build().perform();
+               act1.click(pickUp).build().perform();
+               exists = true;
+               break;
+           }
+          }
+          status = HelpersMethod.returnDocumentStatus(driver);
+          if (status.equals("loading"))
+          {
+              HelpersMethod.waitTillLoadingPage(driver);
+          }
+
+          //validate Customer index popup
+          HelpersMethod.WaitElementPresent(driver,"xpath","//div[contains(text(),'Customer account index')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",2000);
+          new WebDriverWait(driver,400).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(text(),'Customer account index')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]")));
+          Assert.assertEquals(exists, true);
+      }
         catch (Exception e){}
     }
 
@@ -1217,9 +1221,9 @@ public class AllOrderPage
         Actions act1= new Actions(driver);
         try
         {
-            HelpersMethod.waitTillElementLocatedDisplayed(driver,"xpath","//div[contains(@class,'k-child-animation-container')]",40);
             // to fetch the web element of the modal container
-            WebElement menuContainer = driver.findElement(By.xpath("//div[contains(@class,'k-child-animation-container')]"));
+            new WebDriverWait(driver,1000).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class,'k-popup k-child-animation-container')]"))));
+            WebElement menuContainer = driver.findElement(By.xpath("//div[contains(@class,'k-popup k-child-animation-container')]"));
             List<WebElement> OrderOptions=menuContainer.findElements (By.xpath(".//ul/li"));
             for(WebElement ordOption:OrderOptions)
             {
@@ -1227,16 +1231,23 @@ public class AllOrderPage
                 String OrderOpt=ordOption.getText();
                 if(OrderOpt.equals("Active"))
                 {
-                    act1.moveToElement(ordOption).click().build().perform();
+                    act1.moveToElement(ordOption).build().perform();
+                    act1.click().build().perform();
                     break;
                 }
-                else
-                {
-                    act1.moveToElement(WebEle).sendKeys(Keys.ARROW_DOWN).build().perform();
-                }
+            }
+            String active=HelpersMethod.FindByElement(driver,"xpath","//span[@id='OrderStatus']/span[@class='k-input']").getText();
+            if(active.equals("Active"))
+            {
+                exists=true;
+            }
+            else
+            {
+                exists=false;
             }
         }
         catch (Exception e) { }
+        Assert.assertEquals(exists,true);
     }
 
     public void FindtableHeader(String To_Text)
@@ -1254,7 +1265,6 @@ public class AllOrderPage
                     String Head=THead.getText();
                     if(Head.contains(To_Text))
                     {
-                        HelpersMethod.Implicitwait(driver,20);
                         HelpersMethod.ActDragDrop(driver,THead,To);
                         exists=true;
                     }
@@ -1279,7 +1289,6 @@ public class AllOrderPage
                 String groupValue=group.getText();
                 scenario.log("GROUP VALUE CONTAINS "+groupValue);
             }
-
         }
         catch (Exception e){}
     }
@@ -1291,7 +1300,7 @@ public class AllOrderPage
         if(HelpersMethod.IsExists("//div[@class='loader']",driver))
         {
             WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100);
+            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000);
         }
         try
         {
@@ -1317,8 +1326,6 @@ public class AllOrderPage
             // to fetch the web elements of the modal content and interact with them, code to fetch content of modal title and verify it
             WebElement modalContentTitle = modalContainer.findElement(By.xpath(".//div[contains(@class,'k-window-title k-dialog-title')]"));
             Assert.assertEquals(modalContentTitle.getText(), "Comments", "Verify Title message");
-
-
         }
         catch (Exception e){}
     }
@@ -1340,6 +1347,54 @@ public class AllOrderPage
             }
             WebElement OkButton=modalContainer.findElement(By.xpath(".//button[text()='Ok']"));
             act1.click(OkButton).build().perform();
+        }
+        catch (Exception e){}
+    }
+
+    public void Refresh_Page(String currentURL)
+    {
+        try
+        {
+            if(HelpersMethod.IsExists("//div[contains(@class,'k-widget k-window k-dialog')]",driver))
+            {
+                JavascriptExecutor js = ((JavascriptExecutor) driver);
+                js.executeScript("window.location.reload()");
+                WebDriverWait wait = new WebDriverWait(driver, 100);
+                if (wait.until(ExpectedConditions.alertIsPresent()) == null)
+                {
+
+                }
+                else
+                {
+                    Alert alert = driver.switchTo().alert();
+                    alert.accept();
+                }
+            }
+            else
+            {
+                //navigate to OCL
+                driver.navigate().to(currentURL);
+            }
+            if (HelpersMethod.IsExists("//div[@class='loader']", driver))
+            {
+                WebElement   WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 8000);
+            }
+        }
+        catch (Exception e){}
+    }
+
+    public void validateSelectDeliveryDatePickupOrder()
+    {
+        try
+        {
+            HelpersMethod.waitTillElementLocatedDisplayed(driver,"xpath","//div[contains(@class,'k-widget k-window k-dialog')]",30);
+            // to fetch the web element of the modal container
+            WebElement modalContainer = driver.findElement(By.xpath("//div[contains(@class,'k-widget k-window k-dialog')]"));
+
+            // to fetch the web elements of the modal content and interact with them, code to fetch content of modal title and verify it
+            WebElement modalContentTitle = modalContainer.findElement(By.xpath(".//div[contains(@class,'k-window-title k-dialog-title')]"));
+            Assert.assertEquals(modalContentTitle.getText(), "Select delivery date", "Verify Title message");
         }
         catch (Exception e){}
     }

@@ -32,7 +32,7 @@ Feature: Catalog
     |Sort by price (ascending)|
 
   @CardViewOrder
-  Scenario: creation of order using card view from catalog page
+  Scenario: creation of order using card view from catalog page and create new order
     Given User must be on Order Entry Page to select Catalog
     And User should navigate to Catalog tab
     And User should click on Reset filter button and all the products should displayed in Card view in Catalog page
@@ -40,14 +40,12 @@ Feature: Catalog
       |50|
       |40|
       |40|
-      |40|
-      |40|
     Then User click on cart in catalog and click on Gotocart
     And user should be on New Order entry page
     Then Enter PO# for New order
       |PO123|
     Then Click on Next button
-    Then Click on SubmitOrder button
+    Then Click on SubmitOrder button for creating order from Catalog
     Then User should be navigated to Order Entry page
 
   @DeleteCardView
@@ -59,14 +57,12 @@ Feature: Catalog
       |50|
       |40|
       |40|
-      |40|
-      |40|
     Then User click on cart in catalog and click on Gotocart
     And user should be on New Order entry page
     Then Enter PO# for New order
       |PO123|
     Then Click on Next button
-    Then Click on SubmitOrder button
+    Then Click on SubmitOrder button for creating order from Catalog
     Then User should be navigated to Order Entry page
 
   @DeleteFromShoppingCartDropdown
@@ -78,14 +74,12 @@ Feature: Catalog
       |50|
       |40|
       |40|
-      |40|
-      |40|
     Then User click on cart in catalog and click on Gotocart, before that Delete Product from popup
     And user should be on New Order entry page
     Then Enter PO# for New order
       |PO123|
     Then Click on Next button
-    Then Click on SubmitOrder button
+    Then Click on SubmitOrder button for creating order from Catalog
     Then User should be navigated to Order Entry page
 
   @DeleteFromMyCart
@@ -97,14 +91,12 @@ Feature: Catalog
       |50|
       |40|
       |40|
-      |40|
-      |40|
     Then User click on cart in catalog and click on Gotocart, Delete product from Mycart page
     And user should be on New Order entry page
     Then Enter PO# for New order
       |PO123|
     Then Click on Next button
-    Then Click on SubmitOrder button
+    Then Click on SubmitOrder button for creating order from Catalog
     Then User should be navigated to Order Entry page
 
     # Admin setting need to be enabled for popup to get displayed for new order or existing order
@@ -116,15 +108,12 @@ Feature: Catalog
       Then User enters Product# in Search bar and enters Qty for single Product
       |50|
       Then User click on cart in catalog and click on Gotocart and select existing order
-      And user should be on New Order entry page
-      Then Enter PO# for New order
-        |PO123|
-      Then Click on Next button
-      Then Click on SubmitOrder button
+      Then Click on Next button in Payment page
+      Then Click on SubmitOrder button for creating order from Catalog
       Then User should be navigated to Order Entry page
 
     @OrderUsingDescriptionPage
-    Scenario: Searching of product and adding product to order using Product description page
+     Scenario: Searching of product and adding product to order using Product description page
       Given User must be on Order Entry Page to select Catalog
       And User should navigate to Catalog tab
       And User should click on Reset filter button and all the products should displayed in Card view in Catalog page
@@ -132,11 +121,8 @@ Feature: Catalog
       And User clicks on product image and enters Qty in Description page
       |40|
       Then User click on cart in catalog and click on Gotocart and select existing order
-      And user should be on New Order entry page
-      Then Enter PO# for New order
-        |PO123|
-      Then Click on Next button
-      Then Click on SubmitOrder button
+      Then Click on Next button in Payment page
+      Then Click on SubmitOrder button for creating order from Catalog
       Then User should be navigated to Order Entry page
 
     @MultipleProductFromDescriptionPage
@@ -148,14 +134,9 @@ Feature: Catalog
       |60|
       |40|
       |30|
-      |30|
-      |50|
       Then User click on cart in catalog and click on Gotocart and select existing order
-      And user should be on New Order entry page
-      Then Enter PO# for New order
-        |PO123|
-      Then Click on Next button
-      Then Click on SubmitOrder button
+      Then Click on Next button in Payment page
+      Then Click on SubmitOrder button for creating order from Catalog
       Then User should be navigated to Order Entry page
 
     @ProductDescriptionDelete
@@ -167,14 +148,9 @@ Feature: Catalog
         |60|
         |40|
         |30|
-        |30|
-        |50|
       Then User click on cart in catalog and click on Gotocart and select existing order
-      And user should be on New Order entry page
-      Then Enter PO# for New order
-        |PO123|
       Then Click on Next button
-      Then Click on SubmitOrder button
+      Then Click on SubmitOrder button for creating order from Catalog
       Then User should be navigated to Order Entry page
 
 

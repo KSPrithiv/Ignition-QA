@@ -1,6 +1,7 @@
 package stepDefination_DSD_OMS.ProductReference;
 
 import helper.HelpersMethod;
+import io.cucumber.datatable.DataTable;
 import io.cucumber.java.Before;
 import io.cucumber.java.Scenario;
 import io.cucumber.java.en.And;
@@ -8,6 +9,7 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import pages_DSD_OMS.login.HomePage;
 import pages_DSD_OMS.login.LoginPage;
@@ -20,6 +22,7 @@ import util.TestBase;
 
 import java.awt.*;
 import java.text.ParseException;
+import java.util.List;
 
 /**
  * @Project OMS_DSD
@@ -34,12 +37,16 @@ public class ProductReferencePageStep
     static boolean exists = false;
     static boolean flag=false;
     static boolean flag1=false;
+    static boolean flag2=false;
+    static String currentURL=null;
+
 
     LoginPage loginpage;
     HomePage homepage;
     OrderEntryPage orderpage;
     CreateOGPage createOGPage;
     ProductReferencePage productReferencePage;
+    OrderGuidePage orderGuidePage;
 
     @Before
     public void LaunchBrowser(Scenario scenario) throws Exception
@@ -109,6 +116,46 @@ public class ProductReferencePageStep
         }
     }
 
+    @Given("User must be on Order Entry Page to select OG for Product reference")
+    public void userMustBeOnOrderEntryPageToSelectOGForProductReference() throws InterruptedException, AWTException
+    {
+        orderpage = new OrderEntryPage(driver, scenario);
+    }
+
+    @And("User should navigate to OG and select {string} from grid for Product reference")
+    public void userShouldNavigateToOGAndSelectFromGridForProductReference(String arg0) throws InterruptedException, AWTException
+    {
+        if(flag2==false)
+        {
+            WebElement WebEle;
+            WebEle = HelpersMethod.FindByElement(driver, "xpath", "//li[contains(@class,'k-item')]/span[@class='k-link' and contains(text(),'Order Guides')]");
+            if (HelpersMethod.EleDisplay(WebEle))
+            {
+                exists = false;
+                orderGuidePage = new OrderGuidePage(driver, scenario);
+                HelpersMethod.navigate_Horizantal_Tab(driver, "Order Guides", "//li[contains(@class,'k-item')]/span[@class='k-link' and contains(text(),'Order Guides')]", "xpath", "//li[contains(@class,'k-item')]/span[@class='k-link']");
+                if (HelpersMethod.IsExists("//div[@class='loader']", driver))
+                {
+                    WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
+                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000);
+                }
+                exists = orderGuidePage.ValidateOG();
+                currentURL=driver.getCurrentUrl();
+                Assert.assertEquals(exists, true);
+            }
+            else
+            {
+                scenario.log("ORDER GUIDE TAB DOESN'T EXISTS");
+            }
+            flag2=true;
+        }
+        orderpage = new OrderEntryPage(driver, scenario);
+        orderpage.HandleError_Page();
+        orderpage.Refresh_Page(currentURL);
+        productReferencePage=new ProductReferencePage(driver,scenario);
+        productReferencePage.selectOGForPR(arg0);
+    }
+
     @Then("User clicks on Product reference tab")
     public void UserClicksOnProductReferenceTab()
     {
@@ -124,5 +171,22 @@ public class ProductReferencePageStep
         productReferencePage.EnterCustomerAccount();
         createOGPage=new CreateOGPage(driver,scenario);
         createOGPage.ClickOnSave();
+    }
+
+    @And("Drag and Drop the table header and listout grouping")
+    public void dragAndDropTheTableHeaderAndListoutGrouping(DataTable tabledata)
+    {
+        List<List<String>> tableHeader = tabledata.asLists(String.class);
+        productReferencePage=new ProductReferencePage(driver,scenario);
+        productReferencePage.DragAndDrop(tableHeader.get(0).get(0));
+        productReferencePage.readGroupingDetails();
+    }
+
+    @And("User search for product using Add filter in Product reference")
+    public void userSearchForProductUsingAddFilterInProductReference()
+    {
+        productReferencePage=new ProductReferencePage(driver,scenario);
+        String prodNo=productReferencePage.readProductNo();
+        productReferencePage.AddfilterProductReference("Product #",prodNo);
     }
 }

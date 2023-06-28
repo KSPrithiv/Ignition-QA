@@ -64,7 +64,7 @@ public class RestrictedProductsPageStep
     }
 
     @Then("User Clicks on Permissions by drop down to select Customer Account#")
-    public void userClicksOnPermissionsByDropDownToSelectCustomerAccount()
+    public void userClicksOnPermissionsByDropDownToSelectCustomerAccount() throws InterruptedException
     {
         if(flag==false)
         {
@@ -75,12 +75,12 @@ public class RestrictedProductsPageStep
     }
 
     @Given("User is on Home Page for Admin setting to select Admin option")
-    public void userIsOnHomePageForAdminSettingToSelectAdminOption()
+    public void userIsOnHomePageForAdminSettingToSelectAdminOption() throws InterruptedException
     {
         if(flag==false)
         {
             adminHomePage = new AdminHomePage(driver, scenario);
-            adminHomePage.ValidatingAdminHome1();
+            adminHomePage.ValidatingAdminHome();
             flag=true;
         }
     }
@@ -91,7 +91,7 @@ public class RestrictedProductsPageStep
         if(flag1==false)
         {
             adminHomePage = new AdminHomePage(driver, scenario);
-            adminHomePage.ClicOnHumburger();
+            adminHomePage.ClickOnHumburger();
             adminHomePage.EnterValueInSearchBox(arg0);
             adminHomePage.CloseHumburger();
         }

@@ -10,17 +10,17 @@ Feature: Competitive Pricing
   Scenario Outline: For adding new competitor pricing
     Given User must be on Client side and select Competitor pricing page
     When User should confirm that he is in Competitor pricing page
-    And User selects Customer reference "<CustRef>" and Select customer Account#
+    And User selects Customer reference "<CustRef>" "<CustRef1>" and Select customer Account#
     Then User click on Add competitor button and Enters Competitor details and clicks on Add button
     Examples:
-    |CustRef           |
-    |Customer account #|
+    |CustRef           | CustRef1               |
+    |Customer account #| All customer accounts #|
 
   @AddProduct
   Scenario Outline: For Adding Product to competitor
     Given User must be on Client side and select Competitor pricing page
     When User should confirm that he is in Competitor pricing page
-    And User selects Customer reference "<CustRef>" and Select customer Account#
+    And User selects Customer reference "<CustRef>" "<CustRef1>" and Select customer Account#
     Then User clicks on competitor drop down and select the competitor based on previously created competitor
     And User should click on Plus button for adding products, using filter input box
     Then User selects Sold by uom, base uom, competitor pricing and comment, then user clicks on Save button
@@ -30,62 +30,61 @@ Feature: Competitive Pricing
     |40.00|Comment Test4|
     |25.00|Comment Test5|
     Examples:
-      | CustRef            |
-      | Customer account # |
+      | CustRef            |  CustRef1               |
+      | Customer account # | All customer accounts # |
 
   @SearchForProduct
   Scenario Outline: For Searching product in competitor pricing
     Given User must be on Client side and select Competitor pricing page
     When User should confirm that he is in Competitor pricing page
-    And User selects Customer reference "<CustRef>" and Select customer Account#
+    And User selects Customer reference "<CustRef>" "<CustRef1>" and Select customer Account#
     Then User clicks on competitor drop down and select the competitor based on previously created competitor
     And User search for product using Add filter
     Examples:
-      | CustRef            |
-      | Customer account # |
+      | CustRef            |CustRef1|
+      | Customer account # | All customer accounts # |
 
   @SearchingProductSearchBar
   Scenario Outline: For searching of products in competitor pricing using Search bar
     Given User must be on Client side and select Competitor pricing page
     When User should confirm that he is in Competitor pricing page
-    And User selects Customer reference "<CustRef>" and Select customer Account#
-    Then User clicks on competitor drop down and select the competitor based on previously created competitor
+    And User selects Customer reference "<CustRef>" "<CustRef1>" and Select customer Account#
     And User search for product using Search bar
     Examples:
-      | CustRef            |
-      | Customer account # |
+      | CustRef            | CustRef1|
+      | Customer account # |  All customer accounts # |
 
   @DeleteProduct
   Scenario Outline: For Deleting Product to competitor
     Given User must be on Client side and select Competitor pricing page
     When User should confirm that he is in Competitor pricing page
-    And User selects Customer reference "<CustRef>" and Select customer Account#
+    And User selects Customer reference "<CustRef>" "<CustRef1>" and Select customer Account#
     Then User clicks on competitor drop down and select the competitor based on previously created competitor
     And User selects one of the product from grid and delete it and click on save button
         Examples:
-      | CustRef            |
-      | Customer account # |
+      | CustRef            |CustRef1  |
+      | Customer account # |  All customer accounts # |
 
   @DeleteCompetitorData
   Scenario Outline: For Deleting competitor record
     Given User must be on Client side and select Competitor pricing page
     When User should confirm that he is in Competitor pricing page
-    And User selects Customer reference "<CustRef>" and Select customer Account#
+    And User selects Customer reference "<CustRef>" "<CustRef1>" and Select customer Account#
     Then User clicks on competitor drop down and select the competitor based on previously created competitor
     And User clicks on delete competitor record button
     Examples:
-      | CustRef            |
-      | Customer account # |
+      | CustRef            | CustRef1 |
+      | Customer account # |   All customer accounts # |
 
   @LoadingExistingData
   Scenario Outline: For loading competitor data
     Given User must be on Client side and select Competitor pricing page
     When User should confirm that he is in Competitor pricing page
-    And User selects Customer reference "<CustRef>"
+    And User selects Customer reference "<CustRef>" "<CustRef1>" and Select customer Account#
     And User Click on Load existing data and select competitor in popup
     Examples:
-      | CustRef            |
-      | Customer account # |
+      | CustRef            |CustRef1|
+      | Customer account # |  All customer accounts # |
 
 
 

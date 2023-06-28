@@ -49,8 +49,10 @@ public class OrderEntryPageSteps4
         newOE=new NewOrderEntryPage(driver,scenario);
         exists=newOE.ClickNext();
         Assert.assertEquals(exists,true);
-        newOE.OutOfStockPop_DSD();
+        //newOE.OutOfStockPop_ERP();
         checkorder=new CheckOutOrderPage(driver,scenario);
+        checkorder.Click_On_Without_Providing_Payment();
+        checkorder.NextButton_Click();
     }
 
     //Add comment in comment popup, for product leve
@@ -59,8 +61,8 @@ public class OrderEntryPageSteps4
     {
         newOE=new NewOrderEntryPage(driver,scenario);
         newOE.Prod_Comment_Icon();
-
     }
+
     @And("should enter comment in comment popup")
     public void should_enter_comment_in_comment_popup(DataTable tabledata)
     {
@@ -105,11 +107,15 @@ public class OrderEntryPageSteps4
         newOE.UpdateComment(UComm);
     }
 
-    @Then("User should find select Order guide from popup and select OG")
-    public void userShouldFindSelectOrderGuideFromPopupAndSelectOG() throws InterruptedException, AWTException
+    @Then("User should select Note from popup and select OG from OG popup")
+    public void userShouldSelectNoteFromPopupAndSelectOGFromOGPopup() throws InterruptedException, AWTException
     {
         orderpage=new OrderEntryPage(driver,scenario);
-        orderpage.SelectOrderGuidePopup();
+        for(int i=0;i<=1;i++)
+        {
+            orderpage.NO_NotePopup();
+            orderpage.SelectOrderGuidePopup();
+        }
     }
 
     @And("User should navigate to New OE page, and enter Qty to product in product grid")
@@ -162,9 +168,7 @@ public class OrderEntryPageSteps4
     {
         exists=false;
         newOE=new NewOrderEntryPage(driver,scenario);
-        newOE.Click_Back_But();
-        exists=newOE.SaveOrderWithOutSubmitting();
-        Assert.assertEquals(exists,true);
+        newOE.Click_Back_But_NextButton();
     }
 
     @And("In Save order without submitting popup should select next button")
@@ -175,5 +179,10 @@ public class OrderEntryPageSteps4
         Assert.assertEquals(exists,true);
     }
 
-
+    @Then("User should select Note from popup")
+    public void userShouldSelectNoteFromPopup() throws InterruptedException, AWTException
+    {
+        orderpage=new OrderEntryPage(driver,scenario);
+        orderpage.NO_NotePopup();
+    }
 }

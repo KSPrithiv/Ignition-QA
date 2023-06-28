@@ -6,7 +6,7 @@ Feature: Bill to bill
     When User is on Home Page for bill to bill
     Then User navigate to Client side for bill to bill
 
-  @WeeklyBillToBill
+  @WeeklyBillToBill @sanity
   Scenario: To generate Bill to Bill (DSD) weekly
     Given User must be on Client side and select Bill to Bill(DSD)
     Then User should confirm that he is in Bill to bill page

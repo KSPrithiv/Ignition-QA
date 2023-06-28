@@ -34,7 +34,6 @@ public class CompetitorPricingPageStep
 
     LoginPage loginpage;
     HomePage homepage;
-    OrderEntryPage orderpage;
     CompetitivePricingGeneralPage competitivePricingGeneralPage;
 
     @Before
@@ -73,7 +72,6 @@ public class CompetitorPricingPageStep
     {
         if(flag==false)
         {
-            //Thread.sleep(10000);
             homepage = new HomePage(driver,scenario);
             String title = driver.getTitle();
             Assert.assertEquals(title, "Ignition - Admin");
@@ -90,7 +88,7 @@ public class CompetitorPricingPageStep
     {
         competitivePricingGeneralPage=new CompetitivePricingGeneralPage(driver,scenario);
         competitivePricingGeneralPage.HandleError_Page();
-        HelpersMethod.Refresh(driver);
+        competitivePricingGeneralPage.Refresh_Page();
     }
 
     @When("User should confirm that he is in Competitor pricing page")
@@ -100,15 +98,16 @@ public class CompetitorPricingPageStep
         competitivePricingGeneralPage.ValidateCompetitorGeneral();
     }
 
-    @And("User selects Customer reference {string} and Select customer Account#")
-    public void userSelectsCustomerReferenceAndSelectCustomerAccount(String CustRef)
+    @And("User selects Customer reference {string} {string} and Select customer Account#")
+    public void userSelectsCustomerReferenceAndSelectCustomerAccount(String CustRef,String CustRef1) throws InterruptedException
     {
-        competitivePricingGeneralPage=new CompetitivePricingGeneralPage(driver,scenario);
-        competitivePricingGeneralPage.Click_CustomerReferenceDropDown();
-        competitivePricingGeneralPage.Select_CustomerReference(CustRef);
-        competitivePricingGeneralPage.Click_CustomerAccountIndex();
-        competitivePricingGeneralPage.ValidateCustomerAccountPopup();
-        competitivePricingGeneralPage.SelectCustomerAccount();
+            competitivePricingGeneralPage = new CompetitivePricingGeneralPage(driver, scenario);
+            competitivePricingGeneralPage.Click_CustomerReferenceDropDown();
+            //competitivePricingGeneralPage.Select_CustomerReference(CustRef,CustRef1);
+            competitivePricingGeneralPage.Select_CustomerReference(CustRef);
+            competitivePricingGeneralPage.Click_CustomerAccountIndex();
+            competitivePricingGeneralPage.ValidateCustomerAccountPopup();
+            competitivePricingGeneralPage.SelectCustomerAccount();
     }
 
     @Then("User click on Add competitor button and Enters Competitor details and clicks on Add button")
@@ -176,10 +175,11 @@ public class CompetitorPricingPageStep
     }
 
     @And("User selects Customer reference {string}")
-    public void userSelectsCustomerReference(String CustRef)
+    public void userSelectsCustomerReference(String CustRef,String CustRef1)
     {
         competitivePricingGeneralPage=new CompetitivePricingGeneralPage(driver,scenario);
         competitivePricingGeneralPage.Click_CustomerReferenceDropDown();
+        //competitivePricingGeneralPage.Select_CustomerReference(CustRef,CustRef1);
         competitivePricingGeneralPage.Select_CustomerReference(CustRef);
     }
 
