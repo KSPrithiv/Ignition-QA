@@ -10,7 +10,7 @@ jobs:
   jobwms:
     
     name: Ignition Automation WMS
-    runs-on: afswmsba02.corp.afsi.com
+    runs-on: 10.70.42.8
     
     
     steps:
