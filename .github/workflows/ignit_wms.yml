@@ -12,14 +12,11 @@ jobs:
     runs-on: self-hosted
     outputs:
      RUNNER: ${{ runner.name }}
-    steps:
-      - run: echo "selected runner = ${{ runner.name }}"
+    
+    
 
 
-  other-job:
-    name: another job
-    needs: get-runner
-    runs-on: ${{needs.get-runner.outputs.RUNNER}}
+
     
     
     steps:
