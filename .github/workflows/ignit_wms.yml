@@ -16,10 +16,10 @@ jobs:
       - run: echo "selected runner = ${{ runner.name }}"
 
 
-  jobwms:
-    
-    name: Ignition Automation WMS
-    runs-on: self-hosted
+  other-job:
+    name: another job
+    needs: get-runner
+    runs-on: ${{needs.get-runner.outputs.RUNNER}}
     
     
     steps:
