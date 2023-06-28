@@ -7,7 +7,7 @@ on:
   
   
 jobs:
-  jobwms:
+  job1:
     
     name: Ignition Automation WMS
     runs-on: self-hosted
@@ -31,13 +31,21 @@ jobs:
         run: mvn install test -DsuiteXmlFile='WorkQueueTestNGRunner.xml'
         working-directory: AFS_Automation/WMS_Automation 
         
-        
+  
+  job2:
+    if: ${{ always() }}
+    needs: job1
+    name: Automation WMS Report
+    runs-on: self-hosted
+    steps:
       - name: Add
         run: |
           git add .
           git commit -m "Add"
           git push origin develop_auto
-                       
+       
+       
+       
       - name: build for recent rep-gen
         run: |
          mvn install test -DsuiteXmlFile='msg_delay_wms.xml'
