@@ -1,0 +1,288 @@
+package pages_DSD_OMS.UserManagementClientSide;
+
+import helper.HelpersMethod;
+import io.cucumber.java.Scenario;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
+import org.testng.Assert;
+import util.RandomValues;
+
+import java.util.List;
+
+public class userManagementClientPage
+{
+    /* Created by Divya.Ramadas@afsi.com */
+    WebDriver driver;
+    Scenario scenario;
+    static boolean exists=false;
+    static String fName= RandomValues.generateRandomString(4);
+    static String lName=RandomValues.generateRandomString(4);
+    static String uName=fName+lName;
+    static String eMail=RandomValues.generateEmail(5);
+    static String passWord=RandomValues.generateRandomString(4);
+
+    @FindBy(id="FirstName")
+    private WebElement firstName;
+
+    @FindBy(id="LastName")
+    private WebElement lastName;
+
+    @FindBy(id="UserName")
+    private WebElement userName;
+
+    @FindBy(id="Email")
+    private WebElement emailValue;
+
+    @FindBy(id="ConfirmEmail")
+    private WebElement confirmEmailValue;
+
+    @FindBy(id="Password")
+    private WebElement passwordValue;
+
+    @FindBy(id="ConfirmPassword")
+    private WebElement confirmPasswordValue;
+
+    @FindBy(xpath="//label[text()='Role']/following-sibling::span/descendant::input")
+    private WebElement roleName;
+
+    @FindBy(id="poNumber")
+    private WebElement poNo;
+
+    @FindBy(id="saveEditButton")
+    private WebElement regirstrationButton;
+
+    public userManagementClientPage(WebDriver driver,Scenario scenario)
+    {
+        this.driver=driver;
+        this.scenario=scenario;
+        PageFactory.initElements(driver,this);
+    }
+
+    public void NavigateToUserManagement()
+    {
+        exists = false;
+        WebElement WebEle = null;
+        String status = null;
+        status = HelpersMethod.returnDocumentStatus(driver);
+        if (status.equals("loading"))
+        {
+            HelpersMethod.waitTillLoadingPage(driver);
+        }
+        try
+        {
+            Actions act = new Actions(driver);
+            WebElement Search_Input = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='drawer-menu-search-container']/descendant::input");
+            act.moveToElement(Search_Input).click().sendKeys("User Management").build().perform();
+            WebElement UserManageMenu = HelpersMethod.FindByElement(driver, "xpath", "//ul[contains(@class,'MuiList-root ')]/descendant::span[contains(text(),'User Management')] | //ul[contains(@class,'MuiList-root ')]/descendant::span[contains(text(),'User management')]");
+            HelpersMethod.ClickBut(driver, UserManageMenu, 60);
+            exists = true;
+            if (HelpersMethod.IsExists("//div[@class='loader']", driver))
+            {
+                WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 2000);
+            }
+            status = HelpersMethod.returnDocumentStatus(driver);
+            if (status.equals("loading"))
+            {
+                HelpersMethod.waitTillLoadingPage(driver);
+            }
+            if(HelpersMethod.IsExists("//*[local-name()='svg']//*[local-name()='path' and contains(@d,'M3,18H21V16H3Zm0-5H21V11H3ZM3,6V8H21V6Z')]",driver))
+            {
+                WebEle=HelpersMethod.FindByElement(driver,"xpath","//*[local-name()='svg']//*[local-name()='path' and contains(@d,'M3,18H21V16H3Zm0-5H21V11H3ZM3,6V8H21V6Z')]");
+                act.moveToElement(WebEle).build().perform();
+                act.click(WebEle).build().perform();
+            }
+
+            if(UserManageMenu.isDisplayed())
+            {
+                scenario.log("NAVIGATED TO USER MANAGEMENT PAGE");
+            }
+            else
+            {
+                scenario.log("USER MANAGEMENT PAGE MAY NOT BE ENABLED FOR THE APPLICATION, CHECK WITH ADMIN SETTINGS");
+            }
+            Assert.assertEquals(exists, true);
+        }
+        catch (Exception e) {}
+    }
+
+    public void validateUserManagement()
+    {
+        exists=false;
+        try
+        {
+            if(HelpersMethod.IsExists("//span[contains(@class,'spnmoduleNameHeader')]",driver))
+            {
+                exists=true;
+            }
+            Assert.assertEquals(exists,true);
+        }
+        catch (Exception e){}
+    }
+
+    public void validateNewUserTab()
+    {
+        exists=false;
+        try
+        {
+            if(HelpersMethod.IsExists("//span[contains(text(),'New user')]/parent::li[@aria-selected='true']",driver))
+            {
+             exists=true;
+            }
+            Assert.assertEquals(exists,true);
+        }
+        catch (Exception e){}
+    }
+
+    public void firstName()
+    {
+        exists=false;
+        try
+        {
+          HelpersMethod.EnterText(driver,firstName,100,fName);
+        }
+        catch (Exception e){}
+    }
+
+    public void lastName()
+    {
+        exists=false;
+        try
+        {
+            HelpersMethod.EnterText(driver,lastName,100,lName);
+        }
+        catch (Exception e){}
+    }
+
+    public void userName()
+    {
+        exists=false;
+        try
+        {
+            HelpersMethod.EnterText(driver,userName,100,uName);
+        }
+        catch (Exception e){}
+    }
+
+    public void emailAddress()
+    {
+        exists=false;
+        try
+        {
+            HelpersMethod.EnterText(driver,emailValue,100,eMail);
+        }
+        catch (Exception e){}
+    }
+
+    public void confirmEmailAddress()
+    {
+        exists=false;
+        try
+        {
+            HelpersMethod.EnterText(driver,confirmEmailValue,100,eMail);
+        }
+        catch (Exception e){}
+    }
+
+    public void password()
+    {
+        exists=false;
+        try
+        {
+            HelpersMethod.EnterText(driver,passwordValue,100,passWord);
+        }
+        catch (Exception e){}
+    }
+
+    public void confirmPassword()
+    {
+        exists=false;
+        try
+        {
+            HelpersMethod.EnterText(driver,confirmPasswordValue,100,passWord);
+        }
+        catch (Exception e){}
+    }
+
+    public void clickRole()
+    {
+        exists=false;
+        try
+        {
+            HelpersMethod.ActClick(driver,roleName,100);
+        }
+        catch (Exception e){}
+    }
+
+    public void readAllRolesAvailable()
+    {
+        exists=false;
+        WebElement WebEle;
+        Actions act=new Actions(driver);
+        try
+        {
+            List<WebElement> Values = HelpersMethod.FindByElements(driver, "xpath", "//div[contains(@class,'k-popup k-child-animation-container')]/descendant::ul/li[contains(@class,'k-item')]");
+            for (WebElement Val : Values)
+            {
+                act.moveToElement(Val).build().perform();
+                String Val_Text = Val.getText();
+                scenario.log("ROLE VALUES IS "+Val_Text);
+            }
+            Assert.assertEquals(exists,true);
+        }
+        catch (Exception e){}
+    }
+
+    public void selectRole(String role)
+    {
+        exists=false;
+        WebElement WebEle;
+        Actions act=new Actions(driver);
+        try
+        {
+                List<WebElement> Values = HelpersMethod.FindByElements(driver, "xpath", "//div[contains(@class,'k-popup k-child-animation-container')]/descendant::ul/li[contains(@class,'k-item')]");
+                for (WebElement Val : Values)
+                {
+                    act.moveToElement(Val).build().perform();
+                    String Val_Text = Val.getText();
+                    if (Val_Text.equals(role))
+                    {
+                        act.moveToElement(Val).build().perform();
+                        act.click(Val).build().perform();
+                        exists=true;
+                        if(HelpersMethod.IsExists("//div[@class='loader']",driver))
+                        {
+                            WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
+                            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 80000);
+                        }
+                        break;
+                    }
+                }
+                Assert.assertEquals(exists,true);
+            }
+        catch (Exception e){}
+    }
+
+    public void pONumber(String poNum)
+    {
+        try
+        {
+           HelpersMethod.EnterText(driver,poNo,100,poNum);
+        }
+        catch (Exception e){}
+    }
+
+    public void clickOnRegristration()
+    {
+        try
+        {
+            HelpersMethod.ClickBut(driver,regirstrationButton,200);
+        }
+        catch (Exception e){}
+    }
+}
+
+

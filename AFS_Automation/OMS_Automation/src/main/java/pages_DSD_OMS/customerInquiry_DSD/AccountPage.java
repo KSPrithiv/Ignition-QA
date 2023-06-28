@@ -285,7 +285,6 @@ public class AccountPage
     {
         double randomFloat;
         exists=false;
-
        try
        {
             randomFloat=RandomFloat(minInclusive,maxInclusive,precision);

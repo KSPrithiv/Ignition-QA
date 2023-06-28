@@ -21,18 +21,18 @@ import java.util.concurrent.ThreadLocalRandom;
 
 /**
  * @Project DSD_OMS
- * @Author Divya.Ramadas@afsi.com
+ * @Author divya.ramadas@telusagcg.com
  */
-public class IgnationPage
+public class IgnitionPage
 {
-    /* Created by Divya.Ramadas@afsi.com */
+    /* Created by divya.ramadas@telusagcg.com */
     WebDriver driver;
     Scenario scenario;
     static boolean exists=false;
     static String InputValue=null;
     static String PoNo=null;
 
-    @FindBy(xpath="//button[@id='btnAddStandingPO']//*[local-name()='svg']")
+    @FindBy(id="btnAddStandingPO")
     private WebElement NewButton;
 
     @FindBy(id="btnEditStandingPO")
@@ -51,7 +51,7 @@ public class IgnationPage
     private WebElement CreditCard;
 
     //Actions
-    public IgnationPage(WebDriver driver,Scenario scenario)
+    public IgnitionPage(WebDriver driver, Scenario scenario)
     {
         this.driver=driver;
         this.scenario=scenario;
@@ -129,12 +129,14 @@ public class IgnationPage
 
     public void ClickOnNewButton()
     {
-        HelpersMethod.Implicitwait(driver,80);
+        new WebDriverWait(driver,80000).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath("//div[contains(@class,'k-child-animation-container')]"))));
         exists=false;
         try
         {
-            HelpersMethod.ActClick(driver,NewButton,60);
+            HelpersMethod.ScrollElement(driver,NewButton);
+            HelpersMethod.ActClick(driver,NewButton,10000);
             exists=true;
+            new WebDriverWait(driver,80000).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath("//div[contains(text(),'Add standing po')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]"))));
             Assert.assertEquals(exists,true);
         }
         catch (Exception e){}
@@ -147,9 +149,10 @@ public class IgnationPage
         {
             if(HelpersMethod.IsExists("//div[contains(text(),'Add standing po')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
             {
-                exists=true;
+                WebElement modalContainer = driver.findElement(By.xpath("//div[contains(@class,'k-widget k-window k-dialog')]"));
+                WebElement modalContentTitle = modalContainer.findElement(By.xpath(".//div[contains(@class,'k-window-title k-dialog-title')]"));
+                Assert.assertEquals(modalContentTitle.getText(), "Add standing po", "Verify Title message");
             }
-            Assert.assertEquals(exists,true);
         }
         catch (Exception e){}
     }
@@ -159,20 +162,15 @@ public class IgnationPage
     {
         exists=false;
         WebElement WebEle=null;
-        WebDriverWait wait=new WebDriverWait(driver,80);
-        //wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(text(),'Add standing po')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]")));
-        HelpersMethod.waitTillElementLocatedDisplayed(driver,"xpath","//div[contains(text(),'Add standing po')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",80);
-        HelpersMethod.Implicitwait(driver,60);
+        new WebDriverWait(driver,60000).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(text(),'Add standing po')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]"))));
         try
         {
+            //identify the popup
+            WebElement modalContainer = HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-widget k-window k-dialog')]");
             //Click on start date icon
-            WebEle= HelpersMethod.FindByElement(driver,"xpath","//label[contains(@id,'fromDate-label')]/following-sibling::span/descendant::span[contains(@class,'k-icon k-i-calendar')]");
-            HelpersMethod.ActClick(driver,WebEle,20);
-            exists=true;
-            HelpersMethod.waitTillElementLocatedDisplayed(driver,"xpath","//div[contains(@class,'k-calendar-monthview')]",40);
-            new WebDriverWait(driver,40).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class,'k-calendar-monthview')]")));
-            Assert.assertEquals(exists,true);
-            HelpersMethod.Implicitwait(driver,60);
+            WebEle= modalContainer.findElement(By.xpath(".//label[contains(@id,'fromDate-label')]/following-sibling::span/descendant::span[contains(@class,'k-icon k-i-calendar')]"));
+            HelpersMethod.ActClick(driver,WebEle,20000);
+            new WebDriverWait(driver,60000).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class,'k-calendar-monthview')]"))));
         }
         catch (Exception e){}
     }
@@ -181,20 +179,14 @@ public class IgnationPage
     {
         exists=false;
         WebElement WebEle=null;
-        WebDriverWait wait=new WebDriverWait(driver,40);
-        //wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(text(),'Add standing po')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]")));
-        HelpersMethod.waitTillElementLocatedDisplayed(driver,"xpath","//div[contains(text(),'Add standing po')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",60);
-        HelpersMethod.Implicitwait(driver,60);
         try
         {
+            //identify the popup
+            WebElement modalContainer = HelpersMethod.FindByElement(driver, "xpath","//div[contains(@class,'k-widget k-window k-dialog')]");
             //Click on end date icon
-            WebEle= HelpersMethod.FindByElement(driver,"xpath","//label[contains(@id,'toDate-label')]/following-sibling::span/descendant::span[contains(@class,'k-icon k-i-calendar')]");
-            HelpersMethod.ActClick(driver,WebEle,20);
-            exists=true;
-            HelpersMethod.waitTillElementLocatedDisplayed(driver,"xpath","//div[contains(@class,'k-calendar-monthview')]",60);
-            new WebDriverWait(driver,60).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class,'k-calendar-monthview')]")));
-            Assert.assertEquals(exists,true);
-            HelpersMethod.Implicitwait(driver,60);
+            WebEle= modalContainer.findElement(By.xpath(".//label[contains(@id,'toDate-label')]/following-sibling::span/descendant::span[contains(@class,'k-icon k-i-calendar')]"));
+            HelpersMethod.ActClick(driver,WebEle,2000);
+            new WebDriverWait(driver,40000).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class,'k-calendar-monthview')]"))));
         }
         catch (Exception e){}
     }
@@ -202,14 +194,16 @@ public class IgnationPage
     //Selecting Start date
     public void SelectStartDate(int i)
     {
-        HelpersMethod.waitTillElementLocatedDisplayed(driver,"xpath","//div[contains(@class,'k-calendar-monthview')]",40);
-        new WebDriverWait(driver,40).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class,'k-calendar-monthview')]")));
+        HelpersMethod.waitTillElementLocatedDisplayed(driver,"xpath","//div[contains(@class,'k-calendar-monthview')]",80000);
+        new WebDriverWait(driver,80000).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class,'k-calendar-monthview')]")));
+        WebElement WebEle=null;
+        String FTDate=null;
+        exists=false;
         try
         {
             String formattedDate1 = null;
-            WebElement WebEle=null;
-            String FTDate=null;
-            exists=false;
+            HelpersMethod.waitTillElementLocatedDisplayed(driver,"xpath","//div[contains(@class,'k-calendar-monthview')]",10000);
+            new WebDriverWait(driver,10000).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class,'k-calendar-monthview')]")));
             //finding element/date in calendar drop down is enabled or not. if not enabled increase the date by 6 days
             if (HelpersMethod.IsExists("//div[contains(@class,'k-calendar-monthview')]",driver))
             {
@@ -220,18 +214,20 @@ public class IgnationPage
                 if(ele1.isDisplayed() && ele1.isEnabled())
                 {
                     HelpersMethod.JSScroll(driver, ele1);
-                    HelpersMethod.ActClick(driver, ele1, 60);
+                    HelpersMethod.ActClick(driver, ele1, 20000);
                     scenario.log(formattedDate1 + " HAS BEEN SELECTED AS START DATE FOR STANDING ORDER");
                     WebEle=HelpersMethod.FindByElement(driver,"id","addFromDate");
-                    FTDate=HelpersMethod.JSGetValueEle(driver,WebEle,10);
+                    FTDate=HelpersMethod.JSGetValueEle(driver,WebEle,60);
+                    if(!FTDate.equals(null) && !FTDate.equals("MM/DD/YYYY"))
+                    {
                         exists=true;
+                    }
                 }
                 else
                 {
-                    scenario.log("NOT ABLE TO SELECT THE DATE");
+                    scenario.log("NOT ABLE TO SELECT START DATE");
                 }
             }
-            Assert.assertEquals(exists,true);
         }
         catch (Exception e) {}
     }
@@ -239,20 +235,18 @@ public class IgnationPage
     //selecting end date
     public void SelectEndDate(int i)
     {
-        HelpersMethod.waitTillElementLocatedDisplayed(driver,"xpath","//div[contains(@class,'k-calendar-monthview')]",60);
-        new WebDriverWait(driver,60).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class,'k-calendar-monthview')]")));
+        HelpersMethod.waitTillElementLocatedDisplayed(driver,"xpath","//div[contains(@class,'k-calendar-monthview')]",80000);
+        new WebDriverWait(driver,80000).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class,'k-calendar-monthview')]")));
         WebElement WebEle=null;
         String FTDate=null;
         exists=false;
         try
         {
             String formattedDate1 = null;
-            HelpersMethod.waitTillElementLocatedDisplayed(driver,"xpath","//div[contains(@class,'k-calendar-monthview')]",60);
-            new WebDriverWait(driver,60).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class,'k-calendar-monthview')]")));
+            HelpersMethod.waitTillElementLocatedDisplayed(driver,"xpath","//div[contains(@class,'k-calendar-monthview')]",10000);
+            new WebDriverWait(driver,10000).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class,'k-calendar-monthview')]")));
             //finding element/date in calendar drop down is enabled or not. if not enabled increase the date by 6 days
-            String ele = "//div[contains(@class,'k-calendar-monthview')]";
-            boolean visible = HelpersMethod.IsExists(ele, driver);
-            if (visible == true)
+            if (HelpersMethod.IsExists("//div[contains(@class,'k-calendar-monthview')]",driver))
             {
                 LocalDate myDateObj = LocalDate.now().plusDays(i);
                 DateTimeFormatter myFormatObj = DateTimeFormatter.ofPattern("EEEE, MMMM d, yyyy");
@@ -261,10 +255,10 @@ public class IgnationPage
                 if(ele1.isDisplayed() && ele1.isEnabled())
                 {
                     HelpersMethod.JSScroll(driver, ele1);
-                    HelpersMethod.ActClick(driver, ele1, 40);
+                    HelpersMethod.ActClick(driver, ele1, 2000);
                     scenario.log(formattedDate1 + " HAS BEEN SELECTED AS END DATE FOR STANDING ORDER");
                     WebEle=HelpersMethod.FindByElement(driver,"id","addToDate");
-                    FTDate=HelpersMethod.JSGetValueEle(driver,WebEle,10);
+                    FTDate=HelpersMethod.JSGetValueEle(driver,WebEle,60);
                     if(!FTDate.equals(null) && !FTDate.equals("MM/DD/YYYY"))
                     {
                         exists=true;
@@ -289,6 +283,11 @@ public class IgnationPage
             InputValue=RandomValues.generateRandomAlphaNumeric(4);
             HelpersMethod.EnterText(driver,WebEle,10,InputValue);
             PoNo=InputValue;
+            if(HelpersMethod.IsExists("//div[@class='loader']",driver))
+            {
+                WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000);
+            }
             exists=true;
             Assert.assertEquals(exists,true);
         }
@@ -304,14 +303,17 @@ public class IgnationPage
             WebEle= HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-widget k-window k-dialog')]/descendant::button[text()='Add']");
             if(WebEle.isEnabled())
             {
-                HelpersMethod.ClickBut(driver, WebEle, 10);
+                HelpersMethod.ClickBut(driver, WebEle, 100);
+                if(HelpersMethod.IsExists("//div[@class='loader']",driver))
+                {
+                    WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
+                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 10000);
+                }
                 exists=true;
             }
-            HelpersMethod.Implicitwait(driver,60);
             Assert.assertEquals(exists,true);
         }
         catch (Exception e){}
-
     }
 
     public int RandomNumber(int max,int min)
@@ -350,25 +352,25 @@ public class IgnationPage
         int hr_No;
         try
         {
-                new WebDriverWait(driver,60).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(@class,'k-popup k-child-animation-container')]/descendant::div[contains(@class,'k-timeselector k-reset')]")));
-                new WebDriverWait(driver,60).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class,'k-popup k-child-animation-container')]/descendant::div[contains(@class,'k-timeselector k-reset')]")));
-                if(HelpersMethod.IsExists("//div[contains(@class,'k-timeselector k-reset')]",driver))
+            new WebDriverWait(driver,60).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(@class,'k-popup k-child-animation-container')]/descendant::div[contains(@class,'k-timeselector k-reset')]")));
+            new WebDriverWait(driver,60).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class,'k-popup k-child-animation-container')]/descendant::div[contains(@class,'k-timeselector k-reset')]")));
+            if(HelpersMethod.IsExists("//div[contains(@class,'k-timeselector k-reset')]",driver))
+            {
+                hrSec=RandomNumber(1,12);
+                scenario.log("HOURS SELECTED IS "+hrSec);
+                List<WebElement> hrs= HelpersMethod.FindByElements(driver,"xpath","//span[text()='hour']/following-sibling::div/descendant::li/span");
+                for(WebElement hr:hrs)
                 {
-                    hrSec=RandomNumber(1,12);
-                    scenario.log("HOURS SELECTED IS "+hrSec);
-                    List<WebElement> hrs= HelpersMethod.FindByElements(driver,"xpath","//span[text()='hour']/following-sibling::div/descendant::li/span");
-                    for(WebElement hr:hrs)
+                    act.moveToElement(hr).build().perform();
+                    act.click(hr).build().perform();
+                    hr_text= hr.getText();
+                    hr_No= Integer.parseInt(hr_text);
+                    if(hr_No==hrSec)
                     {
-                        act.moveToElement(hr).build().perform();
-                        act.click(hr).build().perform();
-                        hr_text= hr.getText();
-                        hr_No= Integer.parseInt(hr_text);
-                        if(hr_No==hrSec)
-                        {
-                            break;
-                        }
+                        break;
                     }
                 }
+            }
         }
         catch (Exception e){}
     }
@@ -419,7 +421,7 @@ public class IgnationPage
     {
         try
         {
-         ClickOnDropDownSelectRandom(CreditCard,"CmCCProc");
+            ClickOnDropDownSelectRandom(CreditCard,"CmCCProc");
         }
         catch (Exception e){}
     }
@@ -453,7 +455,6 @@ public class IgnationPage
         catch (Exception e) {}
     }
 
-
     public void SelectPONo()
     {
         exists=false;
@@ -480,33 +481,149 @@ public class IgnationPage
                 HelpersMethod.ClickBut(driver, EditButton, 40);
                 if (HelpersMethod.IsExists("//div[contains(text(),'Edit standing po')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]", driver))
                 {
-                    exists = true;
+                    WebElement modalContainer = driver.findElement(By.xpath("//div[contains(@class,'k-widget k-window k-dialog')]"));
+                    WebElement modalContentTitle = modalContainer.findElement(By.xpath(".//div[contains(@class,'k-window-title k-dialog-title')]"));
+                    Assert.assertEquals(modalContentTitle.getText(), "Edit standing po", "Verify Title message");
                 }
+            }
+        }
+        catch (Exception e){}
+    }
+
+    public void ClickUpdate()
+    {
+        WebElement WebEle;
+        try
+        {
+            WebElement modalContainer = driver.findElement(By.xpath("//div[contains(text(),'Edit standing po')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]"));
+            WebEle=modalContainer.findElement(By.xpath(".//button[text()='Update']"));
+            HelpersMethod.ActClick(driver,WebEle,2000);
+            if(HelpersMethod.IsExists("//div[contains(text(),'A Standing PO# already exists within the given date range')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
+            {
+                WebElement popUp = driver.findElement(By.xpath("//div[contains(@class,'k-widget k-window k-dialog')]"));
+                WebEle=popUp.findElement(By.xpath(".//button[text()='Ok']"));
+                HelpersMethod.ClickBut(driver,WebEle,40);
+            }
+        }
+        catch (Exception e){}
+    }
+
+    public void cancelPopup()
+    {
+        try
+        {
+            if(HelpersMethod.IsExists("//div[contains(@class,'k-widget k-window k-dialog')]",driver))
+            {
+                WebElement modalContainer = driver.findElement(By.xpath("//div[contains(@class,'k-widget k-window k-dialog')]"));
+                WebElement WebEle=modalContainer.findElement(By.xpath(".//button[text()='Cancel']"));
+                HelpersMethod.ClickBut(driver,WebEle,80);
+            }
+        }
+        catch (Exception e){}
+    }
+
+    public void validateAddStandingOrder()
+    {
+        exists=false;
+        try
+        {
+            if(HelpersMethod.IsExists("//div[contains(text(),'Please save the new customer data')]",driver))
+            {
+                exists=false;
+            }
+            else
+            {
+                exists=true;
             }
             Assert.assertEquals(exists,true);
         }
         catch (Exception e){}
     }
 
-    public void EditPONo()
+    public void validateEditStndingPO()
     {
         exists=false;
-        WebElement WebEle;
         try
         {
             if(HelpersMethod.IsExists("//div[contains(text(),'Edit standing po')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
             {
-                WebEle= HelpersMethod.FindByElement(driver,"xpath","//input[contains(@id,'textBox0')]");
-                scenario.log("PO NUMBER ENTERE BEFORE "+HelpersMethod.JSGetValueEle(driver,WebEle,10));
-                HelpersMethod.JSSetValueEle(driver,WebEle,10,RandomValues.generateRandomAlphaNumeric(8));
-                scenario.log("PO NUMBER EDITED AS "+HelpersMethod.JSGetValueEle(driver,WebEle,10));
-                WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-widget k-window k-dialog')]/descendant::button[text()='Update']");
-                HelpersMethod.ClickBut(driver,WebEle,10);
-                exists=true;
+                WebElement modalContainer = driver.findElement(By.xpath("//div[contains(@class,'k-widget k-window k-dialog')]"));
+                WebElement modalContentTitle = modalContainer.findElement(By.xpath(".//div[contains(@class,'k-window-title k-dialog-title')]"));
+                Assert.assertEquals(modalContentTitle.getText(), "Edit standing po", "Verify Title message");
             }
-           Assert.assertEquals(exists,true);
         }
         catch (Exception e){}
     }
 
+    public void ClickOnEndDateCalenderInEditPopup()
+    {
+        exists=false;
+        WebElement WebEle=null;
+        try
+        {
+            //identify the popup
+            WebElement modalContainer = HelpersMethod.FindByElement(driver, "xpath","//div[contains(@class,'k-widget k-window k-dialog')]");
+            //Click on end date icon
+            WebEle= modalContainer.findElement(By.xpath(".//label[contains(@id,'toDate-label')]/following-sibling::span/descendant::span[contains(@class,'k-icon k-i-calendar')]"));
+            HelpersMethod.ActClick(driver,WebEle,2000);
+            new WebDriverWait(driver,80000).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class,'k-calendar-monthview')]"))));
+        }
+        catch (Exception e){}
+    }
+
+    public void SelectEndDateInEditPopup(int i)
+    {
+        HelpersMethod.waitTillElementLocatedDisplayed(driver,"xpath","//div[contains(@class,'k-calendar-monthview')]",80000);
+        new WebDriverWait(driver,80000).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class,'k-calendar-monthview')]")));
+        WebElement WebEle=null;
+        String FTDate=null;
+        exists=false;
+        try
+        {
+            String formattedDate1 = null;
+            HelpersMethod.waitTillElementLocatedDisplayed(driver,"xpath","//div[contains(@class,'k-calendar-monthview')]",10000);
+            new WebDriverWait(driver,10000).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class,'k-calendar-monthview')]")));
+            //finding element/date in calendar drop down is enabled or not. if not enabled increase the date by 6 days
+            if (HelpersMethod.IsExists("//div[contains(@class,'k-calendar-monthview')]",driver))
+            {
+                LocalDate myDateObj = LocalDate.now().plusDays(i);
+                DateTimeFormatter myFormatObj = DateTimeFormatter.ofPattern("EEEE, MMMM d, yyyy");
+                formattedDate1 = myDateObj.format(myFormatObj);
+                WebElement ele1 = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-calendar-monthview')]/descendant::td[contains(@title,'" + formattedDate1 + "')]");
+                if(ele1.isDisplayed() && ele1.isEnabled())
+                {
+                    HelpersMethod.JSScroll(driver, ele1);
+                    HelpersMethod.ActClick(driver, ele1, 40000);
+                    scenario.log(formattedDate1 + " HAS BEEN SELECTED AS END DATE FOR STANDING ORDER");
+                    WebEle=HelpersMethod.FindByElement(driver,"id","addToDate");
+                    FTDate=HelpersMethod.JSGetValueEle(driver,WebEle,60);
+                    if(!FTDate.equals(null) && !FTDate.equals("MM/DD/YYYY"))
+                    {
+                        exists=true;
+                    }
+                }
+                else
+                {
+                    scenario.log("END DATE IS NOT VISIBLE");
+                }
+            }
+        }
+        catch (Exception e) {}
+    }
+
+    public void clearSearchbar()
+    {
+        exists=true;
+        try
+        {
+            if(HelpersMethod.IsExists("//*[local-name()='svg' and contains(@class,'i-search-box__clear')]",driver))
+            {
+                WebElement clearSearch=HelpersMethod.FindByElement(driver,"xpath","//*[local-name()='svg' and contains(@class,'i-search-box__clear')]");
+                HelpersMethod.ActClick(driver,clearSearch,100);
+                exists=true;
+            }
+            Assert.assertEquals(exists,true);
+        }
+        catch (Exception e){}
+    }
 }

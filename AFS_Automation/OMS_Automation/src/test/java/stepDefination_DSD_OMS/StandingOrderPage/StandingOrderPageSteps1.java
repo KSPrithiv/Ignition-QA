@@ -91,11 +91,19 @@ public class StandingOrderPageSteps1
     @And("User should click on ok, in All task completed popup")
     public void userShouldClickOnOkInAllTaskCompletedPopup()
     {
+        standingOrderCard=new NewStandingOrderCard(driver,scenario);
         standingOrderCard.validateGeneratingStandingOrdersForCustomersPopup();
         standingOrderCard.waitTillGeneratingStandingOrdersForCustomersDisappears();
         standingOrderCard.validateAllTasksCompletedPopup();
         standingOrderCard.clickOnViewDetails();
         standingOrderCard.clickOnOkGenerateStandingOrder();
         standingOrderCard.clickOnOkInAllTasksCompleted();
+    }
+
+    @And("User should Click on Cancel button")
+    public void userShouldClickOnCancelButton()
+    {
+        standingOrderCard=new NewStandingOrderCard(driver,scenario);
+        standingOrderCard.standingOrderCancelButton();
     }
 }

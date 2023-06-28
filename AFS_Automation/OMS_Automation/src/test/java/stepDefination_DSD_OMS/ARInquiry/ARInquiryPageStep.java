@@ -157,7 +157,6 @@ public class ARInquiryPageStep
         postPaymentPage.ValidateAddingPaymentDetails();
         postPaymentPage.PaymentType();
         postPaymentPage.PaymentDropDown("Bank account");
-        HelpersMethod.Implicitwait(driver,40);
         postPaymentPage.EnterFirstName(AccHolderDetails.get(0).get(0));
         postPaymentPage.EnterLastName(AccHolderDetails.get(0).get(1));
         postPaymentPage.Click_AccType();
@@ -183,5 +182,6 @@ public class ARInquiryPageStep
         postPaymentPage=new PostPaymentPage(driver,scenario);
         postPaymentPage.SelectPayment();
         postPaymentPage.CancelButton();
+        postPaymentPage.cancelPopup();
     }
 }

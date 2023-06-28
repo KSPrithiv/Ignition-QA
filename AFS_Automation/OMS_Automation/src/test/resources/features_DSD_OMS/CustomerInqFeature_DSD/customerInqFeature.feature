@@ -68,25 +68,26 @@ Feature: Customer Inq
     Given User must be on Client side and select Customer Inq page
     When User should confirm that he is in Customer Inq page
     Then User click on New button
+    Then User clicks on Save button before adding values to ignition in DSD
     And User navigate to Ignition tab
     Then User clicks on Create new button and standing PO popup appeared
     And User selects 1 day from current date and 4 day from end date and Select Payment processing
+    Then PO has been saved
     Then User selects time for order time for different days
     And User selects Order taker from drop down
-    And Enter the Customer Account#
     Then User clicks on Save button
 
   @MultiplePO
   Scenario: Test scenario to create multiple PO in Ignition tab
     Given User must be on Client side and select Customer Inq page
     When User should confirm that he is in Customer Inq page
-    Then User enters Description of customer and load already saved details
     And User navigate to Ignition tab
     Then User clicks on Create new button and standing PO popup appeared
     And User selects 5 day from current date and 10 day from end date and Select Payment processing
+    Then PO has been saved
     Then User clicks on Create new button and standing PO popup appeared
     And User selects 11 day from current date and 15 day from end date and Select Payment processing
-    Then User clicks on Save button
+    Then PO has been saved
 
   @EditPO
   Scenario: Test scenario to edit PO details in Ignition tab
@@ -95,13 +96,34 @@ Feature: Customer Inq
     Then User enters Description of customer and load already saved details
     And User navigate to Ignition tab
     Then User enters PO in search box and user should make sure that PO details displayed in grid
-    And User should be able to select the PO details and edit PO
-    Then User clicks on Save button
+    And User should be able to select the PO details and edit end date as 16 days
+    Then User changes PO value
+    Then User clears search bar in ignition tab
+
+  @DeleteStandingPO
+  Scenario: Test scenario for Deleting Standing PO
+    Given User must be on Client side and select Customer Inq page
+    When User should confirm that he is in Customer Inq page
+    And User navigate to Ignition tab
+    Then User selects Standing PO# from the grid and click Delete
 
   @CopyCustomerInq
   Scenario: Test scenario for creating copy of Customer inq
     Given User must be on Client side and select Customer Inq page
     When User should confirm that he is in Customer Inq page
     Then User clicks on Copy button and popup should display
+    Then PO has been saved
+
+  @AddNote
+  Scenario: Test scenario for adding note to customer inq in DSD
+    Given User must be on Client side and select Customer Inq page
+    When User should confirm that he is in Customer Inq page
+    Then User click on New button
+    Then Add note in popup in cust inq
+      |Testing for Notes at Customer inq|
+    And User should select the Alert Type and Alert location to display notes in DSD cust inq
+      |Both|Customer master|Order entry|
+    Then Click on Save button in DSD cust inq
+
 
 

@@ -16,6 +16,15 @@ Feature: Admin setting
       |Option      |
       |Navigation  |
 
-
+  @LabelChange
+  Scenario Outline: Test scenario to change label in Navigation menu
+    Given User is on Home Page for Admin setting to select Admin option
+    And User should enter menu "<Option>" in search bar to navigate to Authorized Products
+    Then User selects menu under web order menu label
+    And User changes the label name and verifies that label has been changed to new label name
+    Then User resets the label name to previous label
+    Examples:
+      | Option     |
+      | Navigation |
 
 
