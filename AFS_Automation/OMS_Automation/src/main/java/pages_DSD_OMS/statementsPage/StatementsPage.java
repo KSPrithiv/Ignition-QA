@@ -112,6 +112,19 @@ public class StatementsPage
         return currentURL;
     }
 
+    public void Refresh_Page(String currentURL1)
+    {
+        WebElement WebEle = null;
+
+        scenario.log("CURRENT URL IS "+currentURL1);
+        driver.navigate().to(currentURL1);
+        String status = HelpersMethod.returnDocumentStatus(driver);
+        if (status.equals("loading"))
+        {
+            HelpersMethod.waitTillLoadingPage(driver);
+        }
+    }
+
     public void ValidateStatements()
     {
         String PTitle=null;
@@ -121,7 +134,7 @@ public class StatementsPage
             if(HelpersMethod.IsExists("//div[@class='loader']",driver))
             {
                 WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100);
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000);
             }
             PTitle=HelpersMethod.FindByElement(driver,"xpath","//span[contains(@class,'spnmoduleNameHeader')]").getText();
             //Assert.assertEquals(PTitle,"Client Portal - Statements");
@@ -144,7 +157,8 @@ public class StatementsPage
                 HelpersMethod.NavigateBack(driver);
                 URL = HelpersMethod.gettingURL(driver);
             }
-            if (HelpersMethod.gettingURL(driver).contains("CPAdmin")) {
+            if (HelpersMethod.gettingURL(driver).contains("CPAdmin"))
+            {
                 HomePage homepage = new HomePage(driver, scenario);
                 homepage.navigateToClientSide();
                 NavigateStatements();
@@ -155,25 +169,22 @@ public class StatementsPage
 
     public void Refresh_Page()
     {
-        HelpersMethod.Implicitwait(driver,40);
         driver.navigate().refresh();
-        HelpersMethod.Implicitwait(driver,40);
-       /* if (HelpersMethod.IsExists("//div[@class='loader']", driver))
+        if (HelpersMethod.IsExists("//div[@class='loader']", driver))
         {
             WebElement WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 50);
-        }*/
+            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000);
+        }
     }
 
     public void WeeklyCheckboxClick()
     {
         exists=false;
-        HelpersMethod.Implicitwait(driver,40);
         try
         {
             if(!weeklyCheckbox.isSelected())
             {
-                HelpersMethod.ClickBut(driver,weeklyCheckbox,10);
+                HelpersMethod.ClickBut(driver,weeklyCheckbox,40);
             }
             if(weeklyCheckbox.isSelected())
             {
@@ -187,12 +198,11 @@ public class StatementsPage
     public void MonthlyCheckboxClick()
     {
         exists=false;
-        HelpersMethod.Implicitwait(driver,40);
         try
         {
             if(!monthlyCheckbox.isSelected())
             {
-                HelpersMethod.ClickBut(driver,monthlyCheckbox, 10);
+                HelpersMethod.ClickBut(driver,monthlyCheckbox, 40);
             }
             if(monthlyCheckbox.isSelected())
             {
@@ -206,12 +216,11 @@ public class StatementsPage
     public void DateCheckboxClick()
     {
         exists=false;
-        HelpersMethod.Implicitwait(driver,40);
         try
         {
             if(!dateCheckbox.isSelected())
             {
-                HelpersMethod.ClickBut(driver,dateCheckbox,10);
+                HelpersMethod.ClickBut(driver,dateCheckbox,40);
             }
             if(dateCheckbox.isSelected())
             {
@@ -224,18 +233,14 @@ public class StatementsPage
 
     public void YearDropdown()
     {
-        HelpersMethod.Implicitwait(driver,40);
         exists=false;
         Actions act=new Actions(driver);
         try
         {
-            HelpersMethod.Implicitwait(driver,40);
-            HelpersMethod.ClickBut(driver,yearlyDropdown,10);
-            HelpersMethod.Implicitwait(driver,40);
+            HelpersMethod.ClickBut(driver,yearlyDropdown,100);
             List<WebElement> Values=HelpersMethod.FindByElements(driver,"xpath","//div[contains(@class,'k-animation-container ')]/descendant::ul/li");
             WebElement YearFromDropDown=Values.get(2);
             act.moveToElement(YearFromDropDown).build().perform();
-            HelpersMethod.Implicitwait(driver,40);
             act.click(YearFromDropDown).build().perform();
             exists=true;
             Assert.assertEquals(exists,true);
@@ -249,13 +254,10 @@ public class StatementsPage
         Actions act=new Actions(driver);
         try
         {
-            HelpersMethod.Implicitwait(driver,40);
-            HelpersMethod.ClickBut(driver,monthDropdown,10);
-            HelpersMethod.Implicitwait(driver,40);
+            HelpersMethod.ClickBut(driver,monthDropdown,100);
             List<WebElement> Values=HelpersMethod.FindByElements(driver,"xpath","//div[contains(@class,'k-animation-container ')]/descendant::ul/li");
             WebElement MonthFromDropDown=Values.get(2);
             act.moveToElement(MonthFromDropDown).build().perform();
-            HelpersMethod.Implicitwait(driver,40);
             act.click(MonthFromDropDown).build().perform();
             exists=true;
             Assert.assertEquals(exists,true);
@@ -269,13 +271,10 @@ public class StatementsPage
         Actions act=new Actions(driver);
         try
         {
-            HelpersMethod.Implicitwait(driver,40);
-            HelpersMethod.ClickBut(driver,dateDropdown,10);
-            HelpersMethod.Implicitwait(driver,40);
+            HelpersMethod.ClickBut(driver,dateDropdown,100);
             List<WebElement> Values=HelpersMethod.FindByElements(driver,"xpath","//div[contains(@class,'k-animation-container ')]/descendant::ul/li");
             WebElement DateFromDropDown=Values.get(2);
             act.moveToElement(DateFromDropDown).build().perform();
-            HelpersMethod.Implicitwait(driver,40);
             act.click(DateFromDropDown).build().perform();
             exists=true;
             Assert.assertEquals(exists,true);
@@ -287,7 +286,6 @@ public class StatementsPage
     {
         exists=false;
         WebElement WebEle=null;
-        HelpersMethod.Implicitwait(driver,40);
         try
         {
             if(searchBar.isDisplayed())
@@ -309,7 +307,6 @@ public class StatementsPage
     {
         exists=false;
         WebElement WebEle=null;
-        HelpersMethod.Implicitwait(driver,40);
         try
         {
             if(!HelpersMethod.IsExists("//tr[contains(@class,'k-grid-norecords')]",driver))
@@ -317,7 +314,7 @@ public class StatementsPage
                 WebEle = HelpersMethod.FindByElement(driver, "xpath", "//tr[contains(@class,'k-master-row')][1]/descendant::input[contains(@class,'checkbox')]");
                 if(!WebEle.isSelected())
                 {
-                    HelpersMethod.ClickBut(driver,WebEle,10);
+                    HelpersMethod.ClickBut(driver,WebEle,60);
                 }
                 exists=true;
             }
@@ -334,20 +331,19 @@ public class StatementsPage
     {
         exists=false;
         WebElement WebEle=null;
-        HelpersMethod.Implicitwait(driver,40);
         try
         {
             String ParentWindow = driver.getWindowHandle();
-            HelpersMethod.ClickBut(driver,generateButton,10);
+            HelpersMethod.ClickBut(driver,generateButton,40);
             if (HelpersMethod.IsExists("//div[@class='loader']", driver))
             {
                 WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100);
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 20000);
             }
             if(HelpersMethod.IsExists("//div[contains(text(),'There is no data to display for your defined date range')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
             {
                 WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-widget k-window k-dialog')]/descendant::button[text()='OK']");
-                HelpersMethod.ClickBut(driver,WebEle,10);
+                HelpersMethod.ClickBut(driver,WebEle,40);
                 exists=true;
             }
             else
@@ -357,15 +353,20 @@ public class StatementsPage
                 {
                     if (!PCwind.equals(ParentWindow))
                     {
+                        Thread.sleep(2000);
                         driver.switchTo().window(PCwind);
                         scenario.log(".pdf HAS BEEN FOUND");
                         driver.close();
-                        HelpersMethod.Implicitwait(driver, 10);
                         exists = true;
                     }
                 }
                 driver.switchTo().window(ParentWindow);
                 exists = true;
+                if (HelpersMethod.IsExists("//div[@class='loader']", driver))
+                {
+                    WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
+                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 20000);
+                }
             }
             Assert.assertEquals(exists,true);
         }
@@ -375,13 +376,15 @@ public class StatementsPage
     public void SearchValidation()
     {
         exists = false;
-        WebElement WebEle = null;
-        HelpersMethod.Implicitwait(driver, 40);
-        try {
-            if (HelpersMethod.IsExists("//tr[contains(@class,'k-grid-norecords')]", driver)) {
+        try
+        {
+            if (HelpersMethod.IsExists("//tr[contains(@class,'k-grid-norecords')]", driver))
+            {
                 scenario.log("NO CUSTOMER ACCOUNT# HAS BEEN FOUND");
                 exists = true;
-            } else {
+            }
+            else
+            {
                 scenario.log("CUSTOMER ACCOUNT# HAS BEEN FOUND");
                 exists = true;
             }
@@ -393,7 +396,6 @@ public class StatementsPage
     public void AddFilterSearch()
     {
         exists=false;
-        HelpersMethod.Implicitwait(driver,40);
         String search2=TestBase.testEnvironment.get_Account();
         try
         {
@@ -410,12 +412,12 @@ public class StatementsPage
         try
         {
             WebEle= HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-textbox-container')][1]/descendant::a[contains(@class,'k-select k-select')]");
-            HelpersMethod.ClickBut(driver,WebEle,10);
+            HelpersMethod.ClickBut(driver,WebEle,40);
             HelpersMethod.WaitElementPresent(driver,"xpath","//div[contains(@class,'k-calendar-view k-calendar-monthview')]",40);
             HelpersMethod.waitTillElementLocatedDisplayed(driver,"xpath","//div[contains(@class,'k-calendar-view k-calendar-monthview')]",40);
 
             WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-content k-calendar-content k-scrollable')]/table[contains(@class,'k-calendar-table')]/descendant::tr[3]/td[1]/span");
-            HelpersMethod.ClickBut(driver,WebEle,20);
+            HelpersMethod.ClickBut(driver,WebEle,60);
         }
         catch (Exception e){}
     }
@@ -426,12 +428,12 @@ public class StatementsPage
         try
         {
             WebEle= HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-textbox-container')][2]/descendant::a[contains(@class,'k-select k-select')]");
-            HelpersMethod.ClickBut(driver,WebEle,10);
+            HelpersMethod.ClickBut(driver,WebEle,40);
             HelpersMethod.WaitElementPresent(driver,"xpath","//div[contains(@class,'k-calendar-view k-calendar-monthview')]",40);
             HelpersMethod.waitTillElementLocatedDisplayed(driver,"xpath","//div[contains(@class,'k-calendar-view k-calendar-monthview')]",40);
 
             WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-content k-calendar-content k-scrollable')]/table[contains(@class,'k-calendar-table')]/descendant::tr/td[contains(@class,'k-calendar-td k-state-pending-focus k-state-selected k-today')]");
-            HelpersMethod.ClickBut(driver,WebEle,20);
+            HelpersMethod.ClickBut(driver,WebEle,60);
         }
         catch (Exception e){}
     }

@@ -66,16 +66,45 @@ public class BillToPage
         catch (Exception e){}
     }
 
+    public String EnterText(WebElement WebEle,int length)
+    {
+        exists=false;
+        try
+        {
+            HelpersMethod.EnterText(driver,WebEle,10, RandomValues.generateRandomString(length));
+            InputValue=HelpersMethod.JSGetValueEle(driver,WebEle,10);
+            if(InputValue!=null)
+            {exists=true;}
+            Assert.assertEquals(true,exists);
+        }
+        catch (Exception e){}
+        return InputValue;
+    }
+
+    public String EnterNumber(WebElement WebEle, int length)
+    {
+        exists=false;
+        try
+        {
+            HelpersMethod.EnterText(driver,WebEle,10,RandomValues.generateRandomNumber(length));
+            InputValue=HelpersMethod.JSGetValueEle(driver,WebEle,10);
+
+            if(InputValue!=null)
+            {exists=true;}
+            Assert.assertEquals(true,exists);
+        }
+        catch (Exception e){}
+        return InputValue;
+    }
+
     public void Address1Value()
     {
         exists=false;
         try
         {
-            HelpersMethod.EnterText(driver,Address1,10, RandomValues.generateRandomString(10));
-            InputValue=HelpersMethod.JSGetValueEle(driver,Address1,10);
-            if(!InputValue.equals("null"))
-            {exists=true;}
-            Assert.assertEquals(true,exists);
+            InputValue=EnterText(Address1,10);
+            HelpersMethod.EnterText(driver,Address1,10,InputValue);
+            scenario.log("ADDRESS 1 ENTERED IS "+HelpersMethod.JSGetValueEle(driver,Address1,10));
         }
         catch (Exception e){}
     }
@@ -85,11 +114,9 @@ public class BillToPage
         exists=false;
         try
         {
-            HelpersMethod.EnterText(driver,Address2,10, RandomValues.generateRandomString(10));
-            InputValue=HelpersMethod.JSGetValueEle(driver,Address2,10);
-            if(!InputValue.equals("null"))
-            {exists=true;}
-            Assert.assertEquals(true,exists);
+            InputValue=EnterText(Address1,10);
+            HelpersMethod.EnterText(driver,Address1,10,InputValue);
+            scenario.log("ADDRESS 1 ENTERED IS "+HelpersMethod.JSGetValueEle(driver,Address1,10));
         }
         catch (Exception e){}
     }
@@ -99,11 +126,9 @@ public class BillToPage
         exists=false;
         try
         {
-            HelpersMethod.EnterText(driver,City,10, RandomValues.generateRandomString(10));
-            InputValue=HelpersMethod.JSGetValueEle(driver,City,10);
-            if(!InputValue.equals("null"))
-            {exists=true;}
-            Assert.assertEquals(true,exists);
+            InputValue=EnterText(City,10);
+            HelpersMethod.EnterText(driver,City,10,InputValue);
+            scenario.log("CITY VALUE ENTERED IS "+HelpersMethod.JSGetValueEle(driver,City,10));
         }
         catch (Exception e){}
     }
@@ -113,11 +138,9 @@ public class BillToPage
         exists=false;
         try
         {
-            HelpersMethod.EnterText(driver,Zip,10, RandomValues.generateRandomNumber(8));
-            InputValue=HelpersMethod.JSGetValueEle(driver,Zip,10);
-            if(!InputValue.equals("null"))
-            {exists=true;}
-            Assert.assertEquals(true,exists);
+            InputValue=EnterNumber(Zip,10);
+            HelpersMethod.EnterText(driver,Zip,10,InputValue);
+            scenario.log("ADDRESS 1 ENTERED IS "+HelpersMethod.JSGetValueEle(driver,Zip,10));
         }
         catch (Exception e){}
     }
@@ -127,11 +150,9 @@ public class BillToPage
         exists=false;
         try
         {
-            HelpersMethod.EnterText(driver,State,10, RandomValues.generateRandomString(8));
-            InputValue=HelpersMethod.JSGetValueEle(driver,State,10);
-            if(!InputValue.equals("null"))
-            {exists=true;}
-            Assert.assertEquals(true,exists);
+            InputValue=EnterText(State,10);
+            HelpersMethod.EnterText(driver,State,10,InputValue);
+            scenario.log("STATE VALUE ENTERED IS "+HelpersMethod.JSGetValueEle(driver,State,10));
         }
         catch (Exception e){}
     }
@@ -141,14 +162,10 @@ public class BillToPage
         exists=false;
         try
         {
-            HelpersMethod.EnterText(driver,Country,10, RandomValues.generateRandomString(8));
-            InputValue=HelpersMethod.JSGetValueEle(driver,Country,10);
-            if(!InputValue.equals("null"))
-            {exists=true;}
-            Assert.assertEquals(true,exists);
+            InputValue=EnterText(Country,10);
+            HelpersMethod.EnterText(driver,Country,10,InputValue);
+            scenario.log("STATE VALUE ENTERED IS "+HelpersMethod.JSGetValueEle(driver,Country,10));
         }
         catch (Exception e){}
     }
-
-
 }

@@ -13,6 +13,7 @@ public class NavigationPageStep
 {
     WebDriver driver;
     Scenario scenario;
+    static String label=null;
     static boolean exists=false;
     NavigationPage navigationPage;
 
@@ -38,5 +39,27 @@ public class NavigationPageStep
     {
         navigationPage=new NavigationPage(driver,scenario);
         navigationPage.FromAvailableAppToWebOrder();
+    }
+
+    @Then("User selects menu under web order menu label")
+    public void userSelectsMenuUnderWebOrderMenuLabel()
+    {
+        navigationPage=new NavigationPage(driver,scenario);
+        navigationPage.selectLabelName();
+    }
+
+    @And("User changes the label name and verifies that label has been changed to new label name")
+    public void userChangesTheLabelNameAndVerifiesThatLabelHasBeenChangedToNewLabelName()
+    {
+        navigationPage=new NavigationPage(driver,scenario);
+        navigationPage.changeLabelName();
+        navigationPage.verifyLabelValue();
+    }
+
+    @Then("User resets the label name to previous label")
+    public void userResetsTheLabelNameToPreviousLabel()
+    {
+        navigationPage=new NavigationPage(driver,scenario);
+        navigationPage.resetPreviousValue();
     }
 }

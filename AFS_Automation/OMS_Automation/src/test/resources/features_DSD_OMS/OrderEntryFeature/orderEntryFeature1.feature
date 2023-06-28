@@ -13,8 +13,7 @@ Feature: Order Entry1
   Scenario: Creating New order using Order type
     Given User must be on Order Entry Page
     Then Click on Dropdown next to Ordertype input box Order type Popup should display
-    #And Order type Popup should display there user should select Regular order by using Add filter button
-      |Order type|Description|REGULAR ORDER|
+      |Description|REGULAR ORDER|
     Then User must click Start Order button
     Then User should make selection between Pending order or Start New order
     Then User should select Note from popup and Order guide from popup
@@ -52,14 +51,10 @@ Feature: Order Entry1
     Then Enter PO# for New order
       |PO123|
     Then User should click on Copy from dropdown and Select Order history
-        |Order history|
-    Then User verifies Order history page and click on checkbox
+      |Order history|
+    Then User verifies Order history page and add history Order to order
+      |2023|
     And Click on Copy button
-    Then User should Select delivery date from popup
-    And Select New order option from popup
-    And User should make selection between Pending order or Start New order
-    Then User should enter Units and Cases in product grid
-      |50|80|
     Then Click on Next button
     And Click on SubmitOrder button
     Then User should be navigated to Order Entry page
@@ -73,7 +68,7 @@ Feature: Order Entry1
     Then Enter PO# for New order
       |PO123|
     Then Click on Add product drop down and select OrderGuide option
-    |SampleOG1|
+    |SampleOG|
     And Enter Qty for the products in Product grid
       |50|70|
       |40|60|
@@ -103,8 +98,8 @@ Feature: Order Entry1
   Scenario: Creating new order using history order, and click on copy button in order history summary page
     Given User must be on Order Entry Page
     Then Click on History button
-    Then User verifies Order history page
-    Then Click on Order number in Order history grid
+    Then User verifies Order history page and add history Order to order
+      |2023|
     Then Click on Copy button in Summary page
     And User should Select delivery date from popup
     And Select New order option from popup

@@ -34,10 +34,11 @@ Feature: Order Guide2
     And Check for popup to appear to select sub customer reference
     Then User clicks on Create new button and should navigate to New OG page
     Then Then User enters Description "<OG>" and End date
+    And User should make sure that customer reference "<OGType>" is same as of selected in OG page
     And User enters Quick Product number and Sequence number
       |4|
     Then User click on Save button
-    And User should navigate back to OG page and navigate back to local chain "<OGType>" and verify OG "<OG>"  existence
+    And User should navigate back to OG page and navigate back to "<OGType>" and verify OG "<OG>"  existence
     Examples:
       |  OG     |  OGType         |
       |MarketOG | Market segment  |
@@ -83,16 +84,17 @@ Feature: Order Guide2
     And Check for popup to appear to select sub customer reference
     Then User clicks on Create new button and should navigate to New OG page
     Then Then User enters Description "<OG>" and End date
+    And User should make sure that customer reference "<OGType>" is same as of selected in OG page
     And User enters Quick Product number and Sequence number
       |4|
     Then User click on Save button
-    And User should navigate back to OG page and navigate back to local chain "<OGType>" and verify OG "<OG>"  existence
+    And User should navigate back to OG page and navigate back to "<OGType>" and verify OG "<OG>"  existence
     Examples:
       |  OG        |  OGType                      |
       |PriceBaseOG | Price group - base schedule  |
 
   @OGNationalChain
-  Scenario Outline: For creating OG using local chain
+  Scenario Outline: For creating OG using National chain
     Given User must be on Order Entry Page to select OG
     And User should navigate to OG
     Then User should click on Customer Reference drop down and select type of OG
@@ -100,13 +102,31 @@ Feature: Order Guide2
     And Check for popup to appear to select National Chain "<Chain>"
     Then User clicks on Create new button and should navigate to New OG page
     Then Then User enters Description "<OG>" and End date
+    And User should make sure that customer reference "<OGType>" is same as of selected in OG page
     And User enters Quick Product number and Sequence number
       |4|
     Then User click on Save button
-    And User should navigate back to OG page and navigate back to local chain "<OGType>" and verify OG "<OG>"  existence
+    And User should navigate back to OG page and navigate back to "<OGType>" and verify OG "<OG>"  existence
     Examples:
       |  OG           |   OGType        |  Chain             |
-      | NationalChain1|  National chain | ASSISTED LIVING LG |
+      | NationalChain1|  National chain | Test National Chain |
+
+  @AllCustomerAccount#
+  Scenario Outline: For creating OG using All Customer Account# from customer reference drop down
+    Given User must be on Order Entry Page to select OG
+    And User should navigate to OG
+    Then User should click on Customer Reference drop down and select type of OG
+      |All customer accounts #|
+    Then User clicks on Create new button and should navigate to New OG page
+    Then User enters Description "<OG>" Start date 13 and End date 14 day from current date and validate all customer check box
+    And User should make sure that customer reference "<OGType>" is same as of selected in OG page
+    And User enters Quick Product number and Sequence number
+      |4|
+    Then User click on Save button
+    And User should navigate back to OG page and navigate back to "<OGType>" and verify OG "<OG>"  existence
+    Examples:
+      |  OG           |   OGType                 |
+      | AllCustomer1  |  All customer accounts # |
 
   @OGDelete
   Scenario Outline: Deleting Order guide and verifying it in OG grid
@@ -115,7 +135,6 @@ Feature: Order Guide2
     Then User enters OG Description "<OG>" in search box and Delete the OG verify same in OG grid
     Examples:
       |  OG   |
-      |OGDis1 |
       |OGDis14|
       |OGDis16|
       |OGDis17|
@@ -123,4 +142,7 @@ Feature: Order Guide2
       |OGDis19|
       |DayOfWeek|
       |OGDis20|
-      |OGHist |
+      |OGAllOrder|
+      |Push OGPush OG|
+      |Push OG1Push OG1|
+
