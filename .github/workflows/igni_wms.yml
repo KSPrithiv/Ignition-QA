@@ -2,7 +2,7 @@ name: WMSAutomation
 on:
  push:
    branches:
-     - develop_auto
+     - develop_autom
  workflow_dispatch:
   
   
@@ -37,7 +37,7 @@ jobs:
         run: |
           git add .
           git commit -m "Add"
-          git push origin develop_auto
+          git push origin develop_autom
                        
       - name: build for recent rep-gen
         run: |
