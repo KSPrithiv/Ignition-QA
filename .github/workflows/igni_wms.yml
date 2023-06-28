@@ -10,7 +10,7 @@ jobs:
   job1:
     
     name: Ignition Automation WMS
-    runs-on: self-hosted
+    runs-on: AFSWMSBA02
     
     
     steps:
