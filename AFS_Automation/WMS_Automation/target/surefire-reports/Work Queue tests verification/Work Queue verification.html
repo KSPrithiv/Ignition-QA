@@ -55,11 +55,11 @@ function toggleAllBoxes() {
 <body>
 <h2 align='center'>Work Queue verification</h2><table border='1' align="center">
 <tr>
-<td>Tests passed/Failed/Skipped:</td><td>1/0/0</td>
+<td>Tests passed/Failed/Skipped:</td><td>1/2/0</td>
 </tr><tr>
-<td>Started on:</td><td>Fri Jun 16 18:08:59 IST 2023</td>
+<td>Started on:</td><td>Thu Jun 29 10:43:29 EDT 2023</td>
 </tr>
-<tr><td>Total time:</td><td>32 seconds (32433 ms)</td>
+<tr><td>Total time:</td><td>139 seconds (139309 ms)</td>
 </tr><tr>
 <td>Included groups:</td><td></td>
 </tr><tr>
@@ -67,6 +67,67 @@ function toggleAllBoxes() {
 </tr>
 </table><p/>
 <small><i>(Hover the method name to see the test class name)</i></small><p/>
+<table width='100%' border='1' class='invocation-failed'>
+<tr><td colspan='4' align='center'><b>FAILED TESTS</b></td></tr>
+<tr><td><b>Test method</b></td>
+<td><b>Attribute(s)</b></td>
+<td width="30%"><b>Exception</b></td>
+<td width="10%"><b>Time (seconds)</b></td>
+<td><b>Instance</b></td>
+</tr>
+<tr>
+<td title='runners.WorkQueueCucumberRunner.runScenario()'><b>runScenario</b><br>Test class: runners.WorkQueueCucumberRunner<br>Test method: Runs Cucumber Scenarios<br>Parameters: "Checking User Group Filtering Assign Work Screen functionality", "Testing of Work Queue Assign Work functionality"</td>
+<td><div><pre>java.lang.NullPointerException: Cannot invoke &quot;org.openqa.selenium.WebElement.isDisplayed()&quot; because &quot;element&quot; is null
+	at org.openqa.selenium.support.ui.ExpectedConditions.elementIfVisible(ExpectedConditions.java:307)
+	at org.openqa.selenium.support.ui.ExpectedConditions.access$000(ExpectedConditions.java:40)
+	at org.openqa.selenium.support.ui.ExpectedConditions$10.apply(ExpectedConditions.java:293)
+	at org.openqa.selenium.support.ui.ExpectedConditions$10.apply(ExpectedConditions.java:290)
+	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:208)
+	at common.utils.Waiters.waitForElementToBeDisplay(Waiters.java:66)
+	at ui.pages.workqueue.workassign.WorkQueueWorkAssignPage.waitWorkQueueWorkAssignPageToLoad(WorkQueueWorkAssignPage.java:45)
+	at steps.workqueue.workassign.WorkQueueWorkAssignSteps.waitForWorkQueueTaskPageToLoad(WorkQueueWorkAssignSteps.java:16)
+	at ?.Waits for Work Queue Work Assign page to load(file:///E:/GithubBuilds/IgnitionQA/_work/ignition-qa/ignition-qa/AFS_Automation/WMS_Automation/src/test/resources/features/workqueue/assignwork/WorkQueueAssignWorkScreen.feature:25)
+</pre></div><a href='#' onClick='toggleBox("stack-trace689749616", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
+<div class='stack-trace' id='stack-trace689749616'><pre>java.lang.NullPointerException: Cannot invoke &quot;org.openqa.selenium.WebElement.isDisplayed()&quot; because &quot;element&quot; is null
+	at org.openqa.selenium.support.ui.ExpectedConditions.elementIfVisible(ExpectedConditions.java:307)
+	at org.openqa.selenium.support.ui.ExpectedConditions.access$000(ExpectedConditions.java:40)
+	at org.openqa.selenium.support.ui.ExpectedConditions$10.apply(ExpectedConditions.java:293)
+	at org.openqa.selenium.support.ui.ExpectedConditions$10.apply(ExpectedConditions.java:290)
+	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:208)
+	at common.utils.Waiters.waitForElementToBeDisplay(Waiters.java:66)
+	at ui.pages.workqueue.workassign.WorkQueueWorkAssignPage.waitWorkQueueWorkAssignPageToLoad(WorkQueueWorkAssignPage.java:45)
+	at steps.workqueue.workassign.WorkQueueWorkAssignSteps.waitForWorkQueueTaskPageToLoad(WorkQueueWorkAssignSteps.java:16)
+	at ?.Waits for Work Queue Work Assign page to load(file:///E:/GithubBuilds/IgnitionQA/_work/ignition-qa/ignition-qa/AFS_Automation/WMS_Automation/src/test/resources/features/workqueue/assignwork/WorkQueueAssignWorkScreen.feature:25)
+</pre></div></td>
+<td>54</td>
+<td>runners.WorkQueueCucumberRunner@14dd7b39</td></tr>
+<tr>
+<td title='runners.WorkQueueCucumberRunner.runScenario()'><b>runScenario</b><br>Test class: runners.WorkQueueCucumberRunner<br>Test method: Runs Cucumber Scenarios<br>Parameters: "Checking Navigate to Work Queue Assign Work screen functionality", "Testing of Work Queue Assign Work functionality"</td>
+<td><div><pre>java.lang.NullPointerException: Cannot invoke &quot;org.openqa.selenium.WebElement.isDisplayed()&quot; because &quot;element&quot; is null
+	at org.openqa.selenium.support.ui.ExpectedConditions.elementIfVisible(ExpectedConditions.java:307)
+	at org.openqa.selenium.support.ui.ExpectedConditions.access$000(ExpectedConditions.java:40)
+	at org.openqa.selenium.support.ui.ExpectedConditions$10.apply(ExpectedConditions.java:293)
+	at org.openqa.selenium.support.ui.ExpectedConditions$10.apply(ExpectedConditions.java:290)
+	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:208)
+	at common.utils.Waiters.waitForElementToBeDisplay(Waiters.java:66)
+	at ui.pages.workqueue.workassign.WorkQueueWorkAssignPage.waitWorkQueueWorkAssignPageToLoad(WorkQueueWorkAssignPage.java:45)
+	at steps.workqueue.workassign.WorkQueueWorkAssignSteps.waitForWorkQueueTaskPageToLoad(WorkQueueWorkAssignSteps.java:16)
+	at ?.Waits for Work Queue Work Assign page to load(file:///E:/GithubBuilds/IgnitionQA/_work/ignition-qa/ignition-qa/AFS_Automation/WMS_Automation/src/test/resources/features/workqueue/assignwork/WorkQueueAssignWorkScreen.feature:9)
+</pre></div><a href='#' onClick='toggleBox("stack-trace2042950203", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
+<div class='stack-trace' id='stack-trace2042950203'><pre>java.lang.NullPointerException: Cannot invoke &quot;org.openqa.selenium.WebElement.isDisplayed()&quot; because &quot;element&quot; is null
+	at org.openqa.selenium.support.ui.ExpectedConditions.elementIfVisible(ExpectedConditions.java:307)
+	at org.openqa.selenium.support.ui.ExpectedConditions.access$000(ExpectedConditions.java:40)
+	at org.openqa.selenium.support.ui.ExpectedConditions$10.apply(ExpectedConditions.java:293)
+	at org.openqa.selenium.support.ui.ExpectedConditions$10.apply(ExpectedConditions.java:290)
+	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:208)
+	at common.utils.Waiters.waitForElementToBeDisplay(Waiters.java:66)
+	at ui.pages.workqueue.workassign.WorkQueueWorkAssignPage.waitWorkQueueWorkAssignPageToLoad(WorkQueueWorkAssignPage.java:45)
+	at steps.workqueue.workassign.WorkQueueWorkAssignSteps.waitForWorkQueueTaskPageToLoad(WorkQueueWorkAssignSteps.java:16)
+	at ?.Waits for Work Queue Work Assign page to load(file:///E:/GithubBuilds/IgnitionQA/_work/ignition-qa/ignition-qa/AFS_Automation/WMS_Automation/src/test/resources/features/workqueue/assignwork/WorkQueueAssignWorkScreen.feature:9)
+</pre></div></td>
+<td>56</td>
+<td>runners.WorkQueueCucumberRunner@14dd7b39</td></tr>
+</table><p>
 <table width='100%' border='1' class='invocation-passed'>
 <tr><td colspan='4' align='center'><b>PASSED TESTS</b></td></tr>
 <tr><td><b>Test method</b></td>
@@ -78,8 +139,8 @@ function toggleAllBoxes() {
 <tr>
 <td title='runners.WorkQueueCucumberRunner.runScenario()'><b>runScenario</b><br>Test class: runners.WorkQueueCucumberRunner<br>Test method: Runs Cucumber Scenarios<br>Parameters: "Checking Navigate to Work Queue Assign Work screen functionality", "Testing of Work Queue Assign Work functionality"</td>
 <td></td>
-<td>19</td>
-<td>runners.WorkQueueCucumberRunner@41330d4f</td></tr>
+<td>10</td>
+<td>runners.WorkQueueCucumberRunner@14dd7b39</td></tr>
 </table><p>
 </body>
 </html>
