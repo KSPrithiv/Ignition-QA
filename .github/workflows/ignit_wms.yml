@@ -1,4 +1,4 @@
-name: Igni WMS
+name: Ignit WMS
 on:
  push:
    branches:
@@ -30,10 +30,7 @@ jobs:
          mvn install test -DsuiteXmlFile='WorkQueueTestNGRunner.xml'
         working-directory: AFS_Automation/WMS_Automation 
         
-      - name: WMS Automation Install
-        run: |
-         mvn install
-        working-directory: AFS_Automation/WMS_Automation 
+       
         
         
       - name: Add
@@ -43,8 +40,8 @@ jobs:
           git commit -m "Add"
           git push origin develop_autom
                        
-      #- name: build for recent rep-gen
-        #run: |
+      - name: build for recent rep-gen
+        run: |
          
-         #mvn install test -DsuiteXmlFile='msg_delay_wms.xml'
-        #working-directory: AFS_Automation/WMS_Automation
+         mvn install test -DsuiteXmlFile='msg_delay_wms.xml'
+        working-directory: AFS_Automation/WMS_Automation
