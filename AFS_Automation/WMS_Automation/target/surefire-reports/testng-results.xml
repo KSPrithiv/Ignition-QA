@@ -2,15 +2,15 @@
 <testng-results ignored="0" total="3" passed="1" failed="2" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2023-06-29T14:40:32 EDT" name="Work Queue tests verification" finished-at="2023-06-29T14:42:52 EDT" duration-ms="140207">
+  <suite started-at="2023-06-29T14:47:36 EDT" name="Work Queue tests verification" finished-at="2023-06-29T14:49:53 EDT" duration-ms="137442">
     <groups>
       <group name="cucumber">
         <method signature="AbstractTestNGCucumberTests.runScenario(io.cucumber.testng.PickleWrapper,io.cucumber.testng.FeatureWrapper)[pri:0, instance:runners.WorkQueueCucumberRunner@12591ac8]" name="runScenario" class="io.cucumber.testng.AbstractTestNGCucumberTests"/>
       </group> <!-- cucumber -->
     </groups>
-    <test started-at="2023-06-29T14:40:32 EDT" name="Work Queue verification" finished-at="2023-06-29T14:42:52 EDT" duration-ms="140207">
+    <test started-at="2023-06-29T14:47:36 EDT" name="Work Queue verification" finished-at="2023-06-29T14:49:53 EDT" duration-ms="137442">
       <class name="runners.WorkQueueCucumberRunner">
-        <test-method is-config="true" signature="setUpClass(org.testng.ITestContext)[pri:0, instance:runners.WorkQueueCucumberRunner@12591ac8]" started-at="2023-06-29T14:40:32 EDT" name="setUpClass" finished-at="2023-06-29T14:40:33 EDT" duration-ms="1031" status="PASS">
+        <test-method is-config="true" signature="setUpClass(org.testng.ITestContext)[pri:0, instance:runners.WorkQueueCucumberRunner@12591ac8]" started-at="2023-06-29T14:47:36 EDT" name="setUpClass" finished-at="2023-06-29T14:47:37 EDT" duration-ms="968" status="PASS">
           <params>
             <param index="0">
               <value>
@@ -21,7 +21,7 @@
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setUpClass -->
-        <test-method is-config="true" signature="beforeClass(java.lang.String)[pri:0, instance:runners.WorkQueueCucumberRunner@12591ac8]" started-at="2023-06-29T14:40:33 EDT" name="beforeClass" finished-at="2023-06-29T14:40:33 EDT" duration-ms="125" status="PASS">
+        <test-method is-config="true" signature="beforeClass(java.lang.String)[pri:0, instance:runners.WorkQueueCucumberRunner@12591ac8]" started-at="2023-06-29T14:47:37 EDT" name="beforeClass" finished-at="2023-06-29T14:47:37 EDT" duration-ms="63" status="PASS">
           <params>
             <param index="0">
               <value>
@@ -32,7 +32,7 @@
           <reporter-output>
           </reporter-output>
         </test-method> <!-- beforeClass -->
-        <test-method is-config="true" signature="startBrowserInstance(java.lang.String,java.lang.String)[pri:0, instance:runners.WorkQueueCucumberRunner@12591ac8]" started-at="2023-06-29T14:40:33 EDT" name="startBrowserInstance" finished-at="2023-06-29T14:40:38 EDT" duration-ms="5017" status="PASS">
+        <test-method is-config="true" signature="startBrowserInstance(java.lang.String,java.lang.String)[pri:0, instance:runners.WorkQueueCucumberRunner@12591ac8]" started-at="2023-06-29T14:47:37 EDT" name="startBrowserInstance" finished-at="2023-06-29T14:47:42 EDT" duration-ms="5035" status="PASS">
           <params>
             <param index="0">
               <value>
@@ -48,7 +48,7 @@
           <reporter-output>
           </reporter-output>
         </test-method> <!-- startBrowserInstance -->
-        <test-method signature="runScenario(io.cucumber.testng.PickleWrapper,io.cucumber.testng.FeatureWrapper)[pri:0, instance:runners.WorkQueueCucumberRunner@12591ac8]" started-at="2023-06-29T14:40:38 EDT" name="runScenario" description="Runs Cucumber Scenarios" data-provider="scenarios" finished-at="2023-06-29T14:41:35 EDT" duration-ms="56393" status="FAIL">
+        <test-method signature="runScenario(io.cucumber.testng.PickleWrapper,io.cucumber.testng.FeatureWrapper)[pri:0, instance:runners.WorkQueueCucumberRunner@12591ac8]" started-at="2023-06-29T14:47:42 EDT" name="runScenario" description="Runs Cucumber Scenarios" data-provider="scenarios" finished-at="2023-06-29T14:48:37 EDT" duration-ms="55388" status="FAIL">
           <params>
             <param index="0">
               <value>
@@ -82,7 +82,7 @@ at ✽.Waits for Work Queue Work Assign page to load(file:///E:/GithubBuilds/Ign
           <reporter-output>
           </reporter-output>
         </test-method> <!-- runScenario -->
-        <test-method is-config="true" signature="closeBrowserInstance(org.testng.ITestResult)[pri:0, instance:runners.WorkQueueCucumberRunner@12591ac8]" started-at="2023-06-29T14:41:35 EDT" name="closeBrowserInstance" finished-at="2023-06-29T14:41:35 EDT" duration-ms="531" status="PASS">
+        <test-method is-config="true" signature="closeBrowserInstance(org.testng.ITestResult)[pri:0, instance:runners.WorkQueueCucumberRunner@12591ac8]" started-at="2023-06-29T14:48:37 EDT" name="closeBrowserInstance" finished-at="2023-06-29T14:48:38 EDT" duration-ms="403" status="PASS">
           <params>
             <param index="0">
               <value>
@@ -93,7 +93,7 @@ at ✽.Waits for Work Queue Work Assign page to load(file:///E:/GithubBuilds/Ign
           <reporter-output>
           </reporter-output>
         </test-method> <!-- closeBrowserInstance -->
-        <test-method is-config="true" signature="startBrowserInstance(java.lang.String,java.lang.String)[pri:0, instance:runners.WorkQueueCucumberRunner@12591ac8]" started-at="2023-06-29T14:41:35 EDT" name="startBrowserInstance" finished-at="2023-06-29T14:41:38 EDT" duration-ms="3142" status="PASS">
+        <test-method is-config="true" signature="startBrowserInstance(java.lang.String,java.lang.String)[pri:0, instance:runners.WorkQueueCucumberRunner@12591ac8]" started-at="2023-06-29T14:48:38 EDT" name="startBrowserInstance" finished-at="2023-06-29T14:48:41 EDT" duration-ms="3244" status="PASS">
           <params>
             <param index="0">
               <value>
@@ -109,7 +109,7 @@ at ✽.Waits for Work Queue Work Assign page to load(file:///E:/GithubBuilds/Ign
           <reporter-output>
           </reporter-output>
         </test-method> <!-- startBrowserInstance -->
-        <test-method signature="runScenario(io.cucumber.testng.PickleWrapper,io.cucumber.testng.FeatureWrapper)[pri:0, instance:runners.WorkQueueCucumberRunner@12591ac8]" started-at="2023-06-29T14:41:38 EDT" name="runScenario" description="Runs Cucumber Scenarios" data-provider="scenarios" finished-at="2023-06-29T14:42:34 EDT" duration-ms="55574" status="FAIL">
+        <test-method signature="runScenario(io.cucumber.testng.PickleWrapper,io.cucumber.testng.FeatureWrapper)[pri:0, instance:runners.WorkQueueCucumberRunner@12591ac8]" started-at="2023-06-29T14:48:41 EDT" name="runScenario" description="Runs Cucumber Scenarios" data-provider="scenarios" finished-at="2023-06-29T14:49:35 EDT" duration-ms="54024" status="FAIL">
           <params>
             <param index="0">
               <value>
@@ -143,7 +143,7 @@ at ✽.Waits for Work Queue Work Assign page to load(file:///E:/GithubBuilds/Ign
           <reporter-output>
           </reporter-output>
         </test-method> <!-- runScenario -->
-        <test-method is-config="true" signature="closeBrowserInstance(org.testng.ITestResult)[pri:0, instance:runners.WorkQueueCucumberRunner@12591ac8]" started-at="2023-06-29T14:42:34 EDT" name="closeBrowserInstance" finished-at="2023-06-29T14:42:34 EDT" duration-ms="401" status="PASS">
+        <test-method is-config="true" signature="closeBrowserInstance(org.testng.ITestResult)[pri:0, instance:runners.WorkQueueCucumberRunner@12591ac8]" started-at="2023-06-29T14:49:35 EDT" name="closeBrowserInstance" finished-at="2023-06-29T14:49:36 EDT" duration-ms="439" status="PASS">
           <params>
             <param index="0">
               <value>
@@ -154,7 +154,7 @@ at ✽.Waits for Work Queue Work Assign page to load(file:///E:/GithubBuilds/Ign
           <reporter-output>
           </reporter-output>
         </test-method> <!-- closeBrowserInstance -->
-        <test-method is-config="true" signature="startBrowserInstance(java.lang.String,java.lang.String)[pri:0, instance:runners.WorkQueueCucumberRunner@12591ac8]" started-at="2023-06-29T14:42:34 EDT" name="startBrowserInstance" finished-at="2023-06-29T14:42:38 EDT" duration-ms="3241" status="PASS">
+        <test-method is-config="true" signature="startBrowserInstance(java.lang.String,java.lang.String)[pri:0, instance:runners.WorkQueueCucumberRunner@12591ac8]" started-at="2023-06-29T14:49:36 EDT" name="startBrowserInstance" finished-at="2023-06-29T14:49:39 EDT" duration-ms="3088" status="PASS">
           <params>
             <param index="0">
               <value>
@@ -170,7 +170,7 @@ at ✽.Waits for Work Queue Work Assign page to load(file:///E:/GithubBuilds/Ign
           <reporter-output>
           </reporter-output>
         </test-method> <!-- startBrowserInstance -->
-        <test-method signature="runScenario(io.cucumber.testng.PickleWrapper,io.cucumber.testng.FeatureWrapper)[pri:0, instance:runners.WorkQueueCucumberRunner@12591ac8]" started-at="2023-06-29T14:42:38 EDT" name="runScenario" description="Runs Cucumber Scenarios" data-provider="scenarios" finished-at="2023-06-29T14:42:48 EDT" duration-ms="10539" status="PASS">
+        <test-method signature="runScenario(io.cucumber.testng.PickleWrapper,io.cucumber.testng.FeatureWrapper)[pri:0, instance:runners.WorkQueueCucumberRunner@12591ac8]" started-at="2023-06-29T14:49:39 EDT" name="runScenario" description="Runs Cucumber Scenarios" data-provider="scenarios" finished-at="2023-06-29T14:49:49 EDT" duration-ms="10585" status="PASS">
           <params>
             <param index="0">
               <value>
@@ -186,7 +186,7 @@ at ✽.Waits for Work Queue Work Assign page to load(file:///E:/GithubBuilds/Ign
           <reporter-output>
           </reporter-output>
         </test-method> <!-- runScenario -->
-        <test-method is-config="true" signature="closeBrowserInstance(org.testng.ITestResult)[pri:0, instance:runners.WorkQueueCucumberRunner@12591ac8]" started-at="2023-06-29T14:42:48 EDT" name="closeBrowserInstance" finished-at="2023-06-29T14:42:49 EDT" duration-ms="352" status="PASS">
+        <test-method is-config="true" signature="closeBrowserInstance(org.testng.ITestResult)[pri:0, instance:runners.WorkQueueCucumberRunner@12591ac8]" started-at="2023-06-29T14:49:49 EDT" name="closeBrowserInstance" finished-at="2023-06-29T14:49:50 EDT" duration-ms="416" status="PASS">
           <params>
             <param index="0">
               <value>
@@ -197,11 +197,11 @@ at ✽.Waits for Work Queue Work Assign page to load(file:///E:/GithubBuilds/Ign
           <reporter-output>
           </reporter-output>
         </test-method> <!-- closeBrowserInstance -->
-        <test-method is-config="true" signature="afterClass()[pri:0, instance:runners.WorkQueueCucumberRunner@12591ac8]" started-at="2023-06-29T14:42:49 EDT" name="afterClass" finished-at="2023-06-29T14:42:50 EDT" duration-ms="1813" status="PASS">
+        <test-method is-config="true" signature="afterClass()[pri:0, instance:runners.WorkQueueCucumberRunner@12591ac8]" started-at="2023-06-29T14:49:50 EDT" name="afterClass" finished-at="2023-06-29T14:49:51 EDT" duration-ms="1704" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- afterClass -->
-        <test-method is-config="true" signature="tearDownClass()[pri:0, instance:runners.WorkQueueCucumberRunner@12591ac8]" started-at="2023-06-29T14:42:50 EDT" name="tearDownClass" finished-at="2023-06-29T14:42:52 EDT" duration-ms="1872" status="PASS">
+        <test-method is-config="true" signature="tearDownClass()[pri:0, instance:runners.WorkQueueCucumberRunner@12591ac8]" started-at="2023-06-29T14:49:51 EDT" name="tearDownClass" finished-at="2023-06-29T14:49:53 EDT" duration-ms="1858" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDownClass -->
