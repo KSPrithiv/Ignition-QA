@@ -15,6 +15,7 @@ import org.testng.annotations.*;
 import util.TestBase;
 import utilWMS.MailSend_WMS;
 
+import javax.mail.MessagingException;
 import java.io.IOException;
 
 import static common.setup.DriverManager.*;
@@ -58,7 +59,7 @@ public class msg_delay_wms extends AbstractTestNGCucumberTests {
     @AfterMethod
     public void closeBrowserInstance(ITestResult iTestResult) {
 
-        MailSend_WMS.sendMail();
+        //MailSend_WMS.sendMail();
         if (driverEnabled(getDriver())) {
             try {
 
@@ -79,6 +80,11 @@ public class msg_delay_wms extends AbstractTestNGCucumberTests {
             }
         }
     }
+    @AfterClass
+    public static void afterClass() throws InterruptedException, MessagingException, IOException {
+        MailSend_WMS.sendMail();
 
+
+    }
 
 }

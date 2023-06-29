@@ -12,7 +12,7 @@ import org.aeonbits.owner.ConfigFactory;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.ITestResult;
 import org.testng.annotations.*;
-
+import utilWMS.MailSend_WMS;
 import util.MailSend;
 import util.TestBase;
 
@@ -65,7 +65,7 @@ public class WorkQueueCucumberRunner extends AbstractTestNGCucumberTests {
     @AfterMethod
     public void closeBrowserInstance(ITestResult iTestResult) {
 
-        MailSend_WMS.sendMail();
+        //MailSend_WMS.sendMail();
         if (driverEnabled(getDriver())) {
             try {
 
@@ -87,5 +87,10 @@ public class WorkQueueCucumberRunner extends AbstractTestNGCucumberTests {
         }
     }
 
+    @AfterClass
+    public static void afterClass() throws InterruptedException, MessagingException, IOException {
+        MailSend_WMS.sendMail();
 
+
+    }
 }

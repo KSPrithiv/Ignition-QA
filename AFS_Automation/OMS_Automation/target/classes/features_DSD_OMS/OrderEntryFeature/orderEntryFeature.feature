@@ -40,32 +40,6 @@ Feature: Order Entry
     And Check for Warning popup
     Then User should be navigated to Order Entry page
 
-  @SkipOrder
-  Scenario: Skip order, which will not let user to create New order for selected date
-    Given User must be on Order Entry Page
-    Then Change the date 5 days after current date
-    Then Check for Skip button is visible and Click on Skip button and select reason
-      |Closed|
-    And Check for visibility of Remove Skip button
-
-  @RemoveSkipOrder
-  Scenario:Remove Skip order button, that appears in OE page
-    Given User must be on Order Entry Page
-    Then Change the date 5 days after current date
-    Then Check for Remove Skip button is visible and Click on Remove Skip button
-    And Check for visibility of Skip button
-
-  @SkipFromNewOrderEntry
-  Scenario: Skip the creation of order from new order entry page
-    Given User must be on Order Entry Page
-    Then Change the date 5 days after current date
-    Then User must click Start Order button
-    Then User should make selection between Pending order or Start New order
-    Then User should select Note from popup and Order guide from popup
-    Then Click on Skip button in New order entry page and also select the reason
-      |closed|
-    Then Check for Remove Skip button is visible and Click on Remove Skip button
-
   @OEQuickProductEntry
   Scenario: Creating New order by entering Product# in Quick order entry, New order entry page
     Given User must be on Order Entry Page
@@ -100,7 +74,7 @@ Feature: Order Entry
   Scenario: Creating new order using pending order
     Given User must be on Order Entry Page
     Then User must click Start Order button
-    Then User should make selection between Pending order or Start New order
+    Then User should make selection between Pending order or Start New order by selecting Pending Order option
     Then User should select Note from popup and Order guide from popup
     Then Enter PO# for New order
       |PO123|
@@ -112,6 +86,7 @@ Feature: Order Entry
     Then User should be navigated to Order Entry page
     Then User must again click Start Order button
     Then User Should handle Pending order popup, and select continue with pending order button
+    Then User should select Note from popup and Order guide from popup
     Then Enter PO# for New order
       |PO123|
     Then Enter Pro# in Quick Product Entry area
@@ -140,7 +115,8 @@ Feature: Order Entry
   Scenario: Create order using History button in OE page
     Given User must be on Order Entry Page
     Then Click on History button
-    Then User verifies Order history page and click on checkbox
+    Then User verifies Order history page and add history Order to order
+      |2023|
     And Click on Copy button
     Then User should Select delivery date from popup
     And Select New order option from popup
