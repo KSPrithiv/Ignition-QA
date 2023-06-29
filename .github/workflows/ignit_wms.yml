@@ -37,6 +37,7 @@ jobs:
         
         
       - name: Add
+        if: always()
         run: |
           git add .
           git commit -m "Add"
