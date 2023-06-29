@@ -10,8 +10,8 @@
           <include name="closeBrowserInstance"/>
           <include name="setUpClass"/>
           <include name="afterClass"/>
-          <include name="tearDownClass"/>
           <include name="runScenario" invocation-numbers="0 1"/>
+          <include name="tearDownClass"/>
           <include name="startBrowserInstance"/>
           <include name="beforeClass"/>
         </methods>
