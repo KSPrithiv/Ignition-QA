@@ -28,6 +28,7 @@ jobs:
       - name: WMS Automation
         run: |
          mvn install test -DsuiteXmlFile='WorkQueueTestNGRunner.xml'
+         mvn install
         working-directory: AFS_Automation/WMS_Automation 
         
         
