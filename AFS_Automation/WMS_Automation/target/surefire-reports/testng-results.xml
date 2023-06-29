@@ -1,27 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
+<testng-results ignored="0" total="3" passed="1" failed="2" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2023-06-28T15:51:49 EDT" name="Work Queue tests verification" finished-at="2023-06-28T15:52:13 EDT" duration-ms="24057">
+  <suite started-at="2023-06-29T10:43:29 EDT" name="Work Queue tests verification" finished-at="2023-06-29T10:45:48 EDT" duration-ms="139309">
     <groups>
       <group name="cucumber">
-        <method signature="AbstractTestNGCucumberTests.runScenario(io.cucumber.testng.PickleWrapper,io.cucumber.testng.FeatureWrapper)[pri:0, instance:runners.msg_delay_wms@66ea810]" name="runScenario" class="io.cucumber.testng.AbstractTestNGCucumberTests"/>
+        <method signature="AbstractTestNGCucumberTests.runScenario(io.cucumber.testng.PickleWrapper,io.cucumber.testng.FeatureWrapper)[pri:0, instance:runners.WorkQueueCucumberRunner@14dd7b39]" name="runScenario" class="io.cucumber.testng.AbstractTestNGCucumberTests"/>
       </group> <!-- cucumber -->
     </groups>
-    <test started-at="2023-06-28T15:51:49 EDT" name="Work Queue verification" finished-at="2023-06-28T15:52:13 EDT" duration-ms="24057">
-      <class name="runners.msg_delay_wms">
-        <test-method is-config="true" signature="setUpClass(org.testng.ITestContext)[pri:0, instance:runners.msg_delay_wms@66ea810]" started-at="2023-06-28T15:51:49 EDT" name="setUpClass" finished-at="2023-06-28T15:51:50 EDT" duration-ms="1016" status="PASS">
+    <test started-at="2023-06-29T10:43:29 EDT" name="Work Queue verification" finished-at="2023-06-29T10:45:48 EDT" duration-ms="139309">
+      <class name="runners.WorkQueueCucumberRunner">
+        <test-method is-config="true" signature="setUpClass(org.testng.ITestContext)[pri:0, instance:runners.WorkQueueCucumberRunner@14dd7b39]" started-at="2023-06-29T10:43:29 EDT" name="setUpClass" finished-at="2023-06-29T10:43:30 EDT" duration-ms="896" status="PASS">
           <params>
             <param index="0">
               <value>
-                <![CDATA[org.testng.TestRunner@5f166f2e]]>
+                <![CDATA[org.testng.TestRunner@7944c323]]>
               </value>
             </param>
           </params>
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setUpClass -->
-        <test-method is-config="true" signature="beforeClass(java.lang.String)[pri:0, instance:runners.msg_delay_wms@66ea810]" started-at="2023-06-28T15:51:50 EDT" name="beforeClass" finished-at="2023-06-28T15:51:50 EDT" duration-ms="78" status="PASS">
+        <test-method is-config="true" signature="beforeClass(java.lang.String)[pri:0, instance:runners.WorkQueueCucumberRunner@14dd7b39]" started-at="2023-06-29T10:43:30 EDT" name="beforeClass" finished-at="2023-06-29T10:43:30 EDT" duration-ms="93" status="PASS">
           <params>
             <param index="0">
               <value>
@@ -32,7 +32,7 @@
           <reporter-output>
           </reporter-output>
         </test-method> <!-- beforeClass -->
-        <test-method is-config="true" signature="startBrowserInstance(java.lang.String,java.lang.String)[pri:0, instance:runners.msg_delay_wms@66ea810]" started-at="2023-06-28T15:51:50 EDT" name="startBrowserInstance" finished-at="2023-06-28T15:51:58 EDT" duration-ms="7900" status="PASS">
+        <test-method is-config="true" signature="startBrowserInstance(java.lang.String,java.lang.String)[pri:0, instance:runners.WorkQueueCucumberRunner@14dd7b39]" started-at="2023-06-29T10:43:30 EDT" name="startBrowserInstance" finished-at="2023-06-29T10:43:35 EDT" duration-ms="5216" status="PASS">
           <params>
             <param index="0">
               <value>
@@ -48,7 +48,129 @@
           <reporter-output>
           </reporter-output>
         </test-method> <!-- startBrowserInstance -->
-        <test-method signature="runScenario(io.cucumber.testng.PickleWrapper,io.cucumber.testng.FeatureWrapper)[pri:0, instance:runners.msg_delay_wms@66ea810]" started-at="2023-06-28T15:51:58 EDT" name="runScenario" description="Runs Cucumber Scenarios" data-provider="scenarios" finished-at="2023-06-28T15:52:10 EDT" duration-ms="11735" status="PASS">
+        <test-method signature="runScenario(io.cucumber.testng.PickleWrapper,io.cucumber.testng.FeatureWrapper)[pri:0, instance:runners.WorkQueueCucumberRunner@14dd7b39]" started-at="2023-06-29T10:43:35 EDT" name="runScenario" description="Runs Cucumber Scenarios" data-provider="scenarios" finished-at="2023-06-29T10:44:31 EDT" duration-ms="56118" status="FAIL">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA["Checking Navigate to Work Queue Assign Work screen functionality"]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA["Testing of Work Queue Assign Work functionality"]]>
+              </value>
+            </param>
+          </params>
+          <exception class="java.lang.NullPointerException">
+            <message>
+              <![CDATA[Cannot invoke "org.openqa.selenium.WebElement.isDisplayed()" because "element" is null]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[java.lang.NullPointerException: Cannot invoke "org.openqa.selenium.WebElement.isDisplayed()" because "element" is null
+at org.openqa.selenium.support.ui.ExpectedConditions.elementIfVisible(ExpectedConditions.java:307)
+at org.openqa.selenium.support.ui.ExpectedConditions.access$000(ExpectedConditions.java:40)
+at org.openqa.selenium.support.ui.ExpectedConditions$10.apply(ExpectedConditions.java:293)
+at org.openqa.selenium.support.ui.ExpectedConditions$10.apply(ExpectedConditions.java:290)
+at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:208)
+at common.utils.Waiters.waitForElementToBeDisplay(Waiters.java:66)
+at ui.pages.workqueue.workassign.WorkQueueWorkAssignPage.waitWorkQueueWorkAssignPageToLoad(WorkQueueWorkAssignPage.java:45)
+at steps.workqueue.workassign.WorkQueueWorkAssignSteps.waitForWorkQueueTaskPageToLoad(WorkQueueWorkAssignSteps.java:16)
+at ✽.Waits for Work Queue Work Assign page to load(file:///E:/GithubBuilds/IgnitionQA/_work/ignition-qa/ignition-qa/AFS_Automation/WMS_Automation/src/test/resources/features/workqueue/assignwork/WorkQueueAssignWorkScreen.feature:9)
+]]>
+            </full-stacktrace>
+          </exception> <!-- java.lang.NullPointerException -->
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- runScenario -->
+        <test-method is-config="true" signature="closeBrowserInstance(org.testng.ITestResult)[pri:0, instance:runners.WorkQueueCucumberRunner@14dd7b39]" started-at="2023-06-29T10:44:31 EDT" name="closeBrowserInstance" finished-at="2023-06-29T10:44:33 EDT" duration-ms="1208" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=runScenario status=FAILURE method=AbstractTestNGCucumberTests.runScenario(io.cucumber.testng.PickleWrapper,io.cucumber.testng.FeatureWrapper)[pri:0, instance:runners.WorkQueueCucumberRunner@14dd7b39] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- closeBrowserInstance -->
+        <test-method is-config="true" signature="startBrowserInstance(java.lang.String,java.lang.String)[pri:0, instance:runners.WorkQueueCucumberRunner@14dd7b39]" started-at="2023-06-29T10:44:33 EDT" name="startBrowserInstance" finished-at="2023-06-29T10:44:36 EDT" duration-ms="3168" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[properties/config_test.properties]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[properties/config_test.properties]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- startBrowserInstance -->
+        <test-method signature="runScenario(io.cucumber.testng.PickleWrapper,io.cucumber.testng.FeatureWrapper)[pri:0, instance:runners.WorkQueueCucumberRunner@14dd7b39]" started-at="2023-06-29T10:44:36 EDT" name="runScenario" description="Runs Cucumber Scenarios" data-provider="scenarios" finished-at="2023-06-29T10:45:30 EDT" duration-ms="54590" status="FAIL">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA["Checking User Group Filtering Assign Work Screen functionality"]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA["Testing of Work Queue Assign Work functionality"]]>
+              </value>
+            </param>
+          </params>
+          <exception class="java.lang.NullPointerException">
+            <message>
+              <![CDATA[Cannot invoke "org.openqa.selenium.WebElement.isDisplayed()" because "element" is null]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[java.lang.NullPointerException: Cannot invoke "org.openqa.selenium.WebElement.isDisplayed()" because "element" is null
+at org.openqa.selenium.support.ui.ExpectedConditions.elementIfVisible(ExpectedConditions.java:307)
+at org.openqa.selenium.support.ui.ExpectedConditions.access$000(ExpectedConditions.java:40)
+at org.openqa.selenium.support.ui.ExpectedConditions$10.apply(ExpectedConditions.java:293)
+at org.openqa.selenium.support.ui.ExpectedConditions$10.apply(ExpectedConditions.java:290)
+at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:208)
+at common.utils.Waiters.waitForElementToBeDisplay(Waiters.java:66)
+at ui.pages.workqueue.workassign.WorkQueueWorkAssignPage.waitWorkQueueWorkAssignPageToLoad(WorkQueueWorkAssignPage.java:45)
+at steps.workqueue.workassign.WorkQueueWorkAssignSteps.waitForWorkQueueTaskPageToLoad(WorkQueueWorkAssignSteps.java:16)
+at ✽.Waits for Work Queue Work Assign page to load(file:///E:/GithubBuilds/IgnitionQA/_work/ignition-qa/ignition-qa/AFS_Automation/WMS_Automation/src/test/resources/features/workqueue/assignwork/WorkQueueAssignWorkScreen.feature:25)
+]]>
+            </full-stacktrace>
+          </exception> <!-- java.lang.NullPointerException -->
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- runScenario -->
+        <test-method is-config="true" signature="closeBrowserInstance(org.testng.ITestResult)[pri:0, instance:runners.WorkQueueCucumberRunner@14dd7b39]" started-at="2023-06-29T10:45:30 EDT" name="closeBrowserInstance" finished-at="2023-06-29T10:45:31 EDT" duration-ms="1021" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=runScenario status=FAILURE method=AbstractTestNGCucumberTests.runScenario(io.cucumber.testng.PickleWrapper,io.cucumber.testng.FeatureWrapper)[pri:0, instance:runners.WorkQueueCucumberRunner@14dd7b39] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- closeBrowserInstance -->
+        <test-method is-config="true" signature="startBrowserInstance(java.lang.String,java.lang.String)[pri:0, instance:runners.WorkQueueCucumberRunner@14dd7b39]" started-at="2023-06-29T10:45:31 EDT" name="startBrowserInstance" finished-at="2023-06-29T10:45:35 EDT" duration-ms="3398" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[properties/config_test.properties]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[properties/config_test.properties]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- startBrowserInstance -->
+        <test-method signature="runScenario(io.cucumber.testng.PickleWrapper,io.cucumber.testng.FeatureWrapper)[pri:0, instance:runners.WorkQueueCucumberRunner@14dd7b39]" started-at="2023-06-29T10:45:35 EDT" name="runScenario" description="Runs Cucumber Scenarios" data-provider="scenarios" finished-at="2023-06-29T10:45:45 EDT" duration-ms="10648" status="PASS">
           <params>
             <param index="0">
               <value>
@@ -64,22 +186,22 @@
           <reporter-output>
           </reporter-output>
         </test-method> <!-- runScenario -->
-        <test-method is-config="true" signature="closeBrowserInstance(org.testng.ITestResult)[pri:0, instance:runners.msg_delay_wms@66ea810]" started-at="2023-06-28T15:52:10 EDT" name="closeBrowserInstance" finished-at="2023-06-28T15:52:11 EDT" duration-ms="1481" status="PASS">
+        <test-method is-config="true" signature="closeBrowserInstance(org.testng.ITestResult)[pri:0, instance:runners.WorkQueueCucumberRunner@14dd7b39]" started-at="2023-06-29T10:45:45 EDT" name="closeBrowserInstance" finished-at="2023-06-29T10:45:46 EDT" duration-ms="905" status="PASS">
           <params>
             <param index="0">
               <value>
-                <![CDATA[[TestResult name=runScenario status=SUCCESS method=AbstractTestNGCucumberTests.runScenario(io.cucumber.testng.PickleWrapper,io.cucumber.testng.FeatureWrapper)[pri:0, instance:runners.msg_delay_wms@66ea810] output={null}]]]>
+                <![CDATA[[TestResult name=runScenario status=SUCCESS method=AbstractTestNGCucumberTests.runScenario(io.cucumber.testng.PickleWrapper,io.cucumber.testng.FeatureWrapper)[pri:0, instance:runners.WorkQueueCucumberRunner@14dd7b39] output={null}]]]>
               </value>
             </param>
           </params>
           <reporter-output>
           </reporter-output>
         </test-method> <!-- closeBrowserInstance -->
-        <test-method is-config="true" signature="tearDownClass()[pri:0, instance:runners.msg_delay_wms@66ea810]" started-at="2023-06-28T15:52:11 EDT" name="tearDownClass" finished-at="2023-06-28T15:52:13 EDT" duration-ms="1599" status="PASS">
+        <test-method is-config="true" signature="tearDownClass()[pri:0, instance:runners.WorkQueueCucumberRunner@14dd7b39]" started-at="2023-06-29T10:45:46 EDT" name="tearDownClass" finished-at="2023-06-29T10:45:48 EDT" duration-ms="1834" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDownClass -->
-      </class> <!-- runners.msg_delay_wms -->
+      </class> <!-- runners.WorkQueueCucumberRunner -->
     </test> <!-- Work Queue verification -->
   </suite> <!-- Work Queue tests verification -->
 </testng-results>
