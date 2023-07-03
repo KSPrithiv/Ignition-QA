@@ -60,7 +60,7 @@ public class MailSend_WMS
             Message message = new MimeMessage(session);
             message.setFrom(new InternetAddress(myAccountEmail));
             message.setRecipient(Message.RecipientType.TO, new InternetAddress(recepient));
-            message.setSubject("Automated Email Notification -Ignition AUtomation report from CI server");
+            message.setSubject("Automated Email Notification -Ignition Automation report from CI server");
 
             //String filename="corp.afsi.com\\C:\\Users\\karthikeyan.Armugam\\Documents\\Git_Repositories\\ignition-qa\\IgnitionQAAutomation\\Reports\\extent\\Index.html";
             //String filename="C:\\Users\\karthikeyan.Armugam\\Documents\\Git_Repositories\\ignition-qa\\IgnitionQAAutomation\\Reports\\extent\\Index.html";
