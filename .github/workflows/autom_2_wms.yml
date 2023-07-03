@@ -8,8 +8,6 @@ on:
 jobs:
   get-runner:
     name : WMS Automation
-    if: !cancelled()
-
     runs-on: self-hosted
     
     steps:
