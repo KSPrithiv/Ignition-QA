@@ -64,7 +64,7 @@ public class MailSend_WMS
 
             //String filename="corp.afsi.com\\C:\\Users\\karthikeyan.Armugam\\Documents\\Git_Repositories\\ignition-qa\\IgnitionQAAutomation\\Reports\\extent\\Index.html";
             //String filename="C:\\Users\\karthikeyan.Armugam\\Documents\\Git_Repositories\\ignition-qa\\IgnitionQAAutomation\\Reports\\extent\\Index.html";
-            //String filename="C:\\Users\\karthikeyan.Armugam\\Documents\\AFS_Automation\\AFS_Automation\\WMS_Automation\\target\\cucumber-reports\\cucumber.html";
+            //String filename="C:\\Users\\karthikeyan.Armugam\\Documents\\AFS_Automation\\AFS_Automation\\WMS_Automation\\Reports\\surefire-reports_WMS";
             String filename="E:\\GithubBuilds\\IgnitionQA\\_work\\ignition-qa\\ignition-qa\\AFS_Automation\\WMS_Automation\\target\\surefire-reports\\emailable-report.html";
             //Composing mail
             BodyPart objMessageBodyPart = new MimeBodyPart();

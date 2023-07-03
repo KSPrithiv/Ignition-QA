@@ -19,7 +19,7 @@ import java.io.IOException;
 
 import static common.setup.DriverManager.*;
 
-@CucumberOptions(features = {"WMSAutomation/src/test/resources/features"},
+@CucumberOptions(features = {"src/test/resources/features"},
         glue = {"steps"},
         plugin = {"pretty",
                 "json:target/cucumber.json",
@@ -65,7 +65,7 @@ public class RegressionRunner extends AbstractTestNGCucumberTests {
     }
     @AfterClass
     public static void afterClass() throws InterruptedException, MessagingException, IOException {
-        MailSend_WMS.sendMail();
+        //MailSend_WMS.sendMail();
 
 
     }

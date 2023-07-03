@@ -7,8 +7,9 @@
     <classes>
       <class name="runners.WorkQueueCucumberRunner">
         <methods>
-          <include name="setUpClass"/>
           <include name="closeBrowserInstance"/>
+          <include name="setUpClass"/>
+          <include name="afterClass"/>
           <include name="tearDownClass"/>
           <include name="runScenario" invocation-numbers="0 1"/>
           <include name="startBrowserInstance"/>

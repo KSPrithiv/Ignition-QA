@@ -1,10 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: TestSuite
 -------------------------------------------------------------------------------
-Tests run: 3, Failures: 2, Errors: 0, Skipped: 0, Time elapsed: 140.495 s <<< FAILURE! - in TestSuite
-runScenario(runners.WorkQueueCucumberRunner)  Time elapsed: 56.102 s  <<< FAILURE!
-java.lang.NullPointerException: Cannot invoke "org.openqa.selenium.WebElement.isDisplayed()" because "element" is null
-
-runScenario(runners.WorkQueueCucumberRunner)  Time elapsed: 54.631 s  <<< FAILURE!
-java.lang.NullPointerException: Cannot invoke "org.openqa.selenium.WebElement.isDisplayed()" because "element" is null
-
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 32.59 s - in TestSuite
