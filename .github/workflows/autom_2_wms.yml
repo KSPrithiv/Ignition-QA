@@ -25,6 +25,7 @@ jobs:
       
       
       
+      
       - name: WMS Automation
         run: |
          mvn install test -DsuiteXmlFile='WorkQueueTestNGRunner.xml'
