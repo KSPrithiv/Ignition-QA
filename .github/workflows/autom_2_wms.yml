@@ -8,8 +8,8 @@ on:
 jobs:
   get-runner:
     name : WMS Automation
-    #if: ${{ always() }}
-    if: always()
+    if: ${{ always() }}
+    #if: always()
     runs-on: self-hosted
     
     steps:
