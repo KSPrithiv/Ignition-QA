@@ -14,8 +14,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Directory_Change {
-    public static void main(String[] args) throws IOException {
-    }
+    
 
         public static void uniqueReport() throws IOException {
             //Time
@@ -44,6 +43,10 @@ public class Directory_Change {
             //copy source to target using Files Class
             Files.copy(sourceDirectory_cucu, targetDirectory1_cucu);
 
+            //Time
+            DateTime now1 = DateTime.now( DateTimeZone.getDefault() );
+            DateTimeFormatter formatter = ISODateTimeFormat.dateHourMinuteSecond();  // Or dateHourMinute();
+            String output = formatter.print( now1 ).replace( ":" , "-" );
 
             //folder -surefire report
             Path sourceDirectory = Paths.get("E:\\GithubBuilds\\IgnitionQA\\_work\\ignition-qa\\ignition-qa\\AFS_Automation\\WMS_Automation\\target\\surefire-reports\\emailable-report.html");
