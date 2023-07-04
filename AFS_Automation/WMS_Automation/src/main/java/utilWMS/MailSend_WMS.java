@@ -26,8 +26,8 @@ public class MailSend_WMS
     {
         final String password = "rkev leoi veno keod";
         final String from = "automationqaafs@gmail.com";
-        //final String to = "santhosh.skaria@telusagcg.com";
-        final String to = "karthikeyan.armugam@telusagcg.com";
+        final String to = "santhosh.skaria@telusagcg.com";
+        //final String to = "karthikeyan.armugam@telusagcg.com";
         final String cc = "karthikeyan.armugam@telusagcg.com";
 
         try
@@ -47,7 +47,7 @@ public class MailSend_WMS
                 }
             });
             //Message message=prepareMessage(session, "automationqaafs@gmail.com", "santhosh.skaria@telusagcg.com");
-            Message message=prepareMessage(session, "automationqaafs@gmail.com", "karthikeyan.armugam@telusagcg.com","karthikeyan.armugam@telusagcg.com","karthikeyan.armugam@telusagcg.com");
+            Message message=prepareMessage(session, "automationqaafs@gmail.com", "santhosh.skaria@telusagcg.com","karthikeyan.armugam@telusagcg.com","karthikeyan.armugam@telusagcg.com");
           Transport.send(message);
         }
         catch (Exception e)
