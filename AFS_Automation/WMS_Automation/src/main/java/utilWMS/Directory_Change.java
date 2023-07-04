@@ -30,9 +30,9 @@ public class Directory_Change {
 //            }
 
             //Time
-            DateTime now1 = DateTime.now( DateTimeZone.getDefault() );
+            DateTime now2 = DateTime.now( DateTimeZone.getDefault() );
             DateTimeFormatter formatter = ISODateTimeFormat.dateHourMinuteSecond();  // Or dateHourMinute();
-            String output = formatter.print( now1 ).replace( ":" , "-" );
+            String output = formatter.print( now2 ).replace( ":" , "-" );
 
 
             //folder date &  Time -Cucumber report
