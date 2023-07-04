@@ -14,11 +14,10 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Directory_Change {
-    public static void main(String[] args) throws IOException {
-    }
 
-        public static void uniqueReport() throws IOException {
-            //Time
+
+    public static void uniqueReport() throws IOException {
+        //Time
 //            Date now = new Date();
 //            SimpleDateFormat dateFormat = new SimpleDateFormat("hh mm ss");
 //            String time = dateFormat.format(now);
@@ -30,31 +29,34 @@ public class Directory_Change {
 //                System.out.println("was not successful.");
 //            }
 
-            //Time
-            DateTime now1 = DateTime.now( DateTimeZone.getDefault() );
-            DateTimeFormatter formatter = ISODateTimeFormat.dateHourMinuteSecond();  // Or dateHourMinute();
-            String output = formatter.print( now1 ).replace( ":" , "-" );
+        //Time
+        DateTime now_cucu = DateTime.now( DateTimeZone.getDefault() );
+        DateTimeFormatter formatter = ISODateTimeFormat.dateHourMinuteSecond();  // Or dateHourMinute();
+        String output = formatter.print( now_cucu ).replace( ":" , "-" );
 
 
-            //folder date &  Time -Cucumber report
-            Path sourceDirectory_cucu = Paths.get("E:\\GithubBuilds\\IgnitionQA\\_work\\ignition-qa\\ignition-qa\\AFS_Automation\\WMS_Automation\\target\\cucumber-reports\\cucumber.html");
+        //folder date &  Time -Cucumber report
+        Path sourceDirectory_cucu = Paths.get("E:\\GithubBuilds\\IgnitionQA\\_work\\ignition-qa\\ignition-qa\\AFS_Automation\\WMS_Automation\\target\\cucumber-reports\\cucumber.html");
 
-            Path targetDirectory1_cucu = Paths.get("E:\\GithubBuilds\\IgnitionQA\\_work\\ignition-qa\\ignition-qa\\AFS_Automation\\WMS_Automation\\Reports\\Cucumber-Reports\\cucumber"+ "_" + output +".html");
+        Path targetDirectory1_cucu = Paths.get("E:\\GithubBuilds\\IgnitionQA\\_work\\ignition-qa\\ignition-qa\\AFS_Automation\\WMS_Automation\\Reports\\Cucumber-Reports\\cucumber"+ "_" + output +".html");
 
-            //copy source to target using Files Class
-            Files.copy(sourceDirectory_cucu, targetDirectory1_cucu);
+        //copy source to target using Files Class
+        Files.copy(sourceDirectory_cucu, targetDirectory1_cucu);
 
+        //Time
+        DateTime now1 = DateTime.now( DateTimeZone.getDefault() );
+        DateTimeFormatter formatter2 = ISODateTimeFormat.dateHourMinuteSecond();  // Or dateHourMinute();
+        String output2 = formatter2.print( now1 ).replace( ":" , "-" );
 
-            //folder -surefire report
-            Path sourceDirectory = Paths.get("E:\\GithubBuilds\\IgnitionQA\\_work\\ignition-qa\\ignition-qa\\AFS_Automation\\WMS_Automation\\target\\surefire-reports\\emailable-report.html");
-            //Path targetDirectory = Paths.get("C:\\Users\\karthikeyan.Armugam\\Documents\\Git_Repositories\\ignition-qa\\AFS_Automation\\WMS_Automation\\Reports\\surefire-reports_WMS\\emailable-report.html" + "_" + time+".html");
-            Path targetDirectory1 = Paths.get("E:\\GithubBuilds\\IgnitionQA\\_work\\ignition-qa\\ignition-qa\\AFS_Automation\\WMS_Automation\\Reports\\surefire-reports_WMS\\emailable-report" + "_" + output +".html");
+        //folder -surefire report
+        Path sourceDirectory = Paths.get("E:\\GithubBuilds\\IgnitionQA\\_work\\ignition-qa\\ignition-qa\\AFS_Automation\\WMS_Automation\\target\\surefire-reports\\emailable-report.html");
+        //Path targetDirectory = Paths.get("C:\\Users\\karthikeyan.Armugam\\Documents\\Git_Repositories\\ignition-qa\\AFS_Automation\\WMS_Automation\\Reports\\surefire-reports_WMS\\emailable-report.html" + "_" + time+".html");
+        Path targetDirectory1 = Paths.get("E:\\GithubBuilds\\IgnitionQA\\_work\\ignition-qa\\ignition-qa\\AFS_Automation\\WMS_Automation\\Reports\\surefire-reports_WMS\\emailable-report" + "_" + output2 +".html");
 
-            //copy source to target using Files Class
-            Files.copy(sourceDirectory, targetDirectory1);
+        //copy source to target using Files Class
+        Files.copy(sourceDirectory, targetDirectory1);
 
 //=========================================================================
 
-        }
     }
-
+}
