@@ -1,15 +1,15 @@
-name: Ignit WMS
+name: autom_2 WMS
 on:
  push:
    branches:
-     - develop_autom
+     #- develop_autom_2
  workflow_dispatch:
   
 jobs:
-  get-runner:
+  job1:
     name : WMS Automation
-    if: ${{ always() }}
     runs-on: self-hosted
+    
     
     steps:
       - name: Checkout source code
@@ -27,7 +27,7 @@ jobs:
       
       - name: WMS Automation
         run: |
-         mvn install test -DsuiteXmlFile='RegressionTestNGRunner.xml'
+         mvn install test -DsuiteXmlFile='msg_delay_wms.xml'
         working-directory: AFS_Automation/WMS_Automation 
         
        
@@ -37,8 +37,9 @@ jobs:
         run: |
           git add .
           git commit -m "Add"
-          git push origin develop_autom
+          git push origin develop_autom_2
                        
+      
       - name: build for recent rep-gen
         if: always()
         run: |
