@@ -35,6 +35,16 @@ public class Directory_Change {
             DateTimeFormatter formatter = ISODateTimeFormat.dateHourMinuteSecond();  // Or dateHourMinute();
             String output = formatter.print( now1 ).replace( ":" , "-" );
 
+
+            //folder date &  Time -Cucumber report
+            Path sourceDirectory_cucu = Paths.get("E:\\GithubBuilds\\IgnitionQA\\_work\\ignition-qa\\ignition-qa\\AFS_Automation\\WMS_Automation\\target\\cucumber-reports\\cucumber.html");
+
+            Path targetDirectory1_cucu = Paths.get("E:\\GithubBuilds\\IgnitionQA\\_work\\ignition-qa\\ignition-qa\\AFS_Automation\\WMS_Automation\\Reports\\Cucumber-Reports\\cucumber"+ "_" + output +".html");
+
+            //copy source to target using Files Class
+            Files.copy(sourceDirectory_cucu, targetDirectory1_cucu);
+
+
             //folder -surefire report
             Path sourceDirectory = Paths.get("E:\\GithubBuilds\\IgnitionQA\\_work\\ignition-qa\\ignition-qa\\AFS_Automation\\WMS_Automation\\target\\surefire-reports\\emailable-report.html");
             //Path targetDirectory = Paths.get("C:\\Users\\karthikeyan.Armugam\\Documents\\Git_Repositories\\ignition-qa\\AFS_Automation\\WMS_Automation\\Reports\\surefire-reports_WMS\\emailable-report.html" + "_" + time+".html");
@@ -44,13 +54,7 @@ public class Directory_Change {
             Files.copy(sourceDirectory, targetDirectory1);
 
 //=========================================================================
-            //folder date &  Time -Cucumber report
-            Path sourceDirectory_cucu = Paths.get("E:\\GithubBuilds\\IgnitionQA\\_work\\ignition-qa\\ignition-qa\\AFS_Automation\\WMS_Automation\\target\\cucumber-reports\\cucumber.html");
 
-            Path targetDirectory1_cucu = Paths.get("E:\\GithubBuilds\\IgnitionQA\\_work\\ignition-qa\\ignition-qa\\AFS_Automation\\WMS_Automation\\Reports\\Cucumber-Reports\\cucumber" + "_" + output +".html");
-
-            //copy source to target using Files Class
-            Files.copy(sourceDirectory_cucu, targetDirectory1_cucu);
         }
     }
 

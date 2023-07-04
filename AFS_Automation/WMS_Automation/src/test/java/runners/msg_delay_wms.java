@@ -59,8 +59,7 @@ public class msg_delay_wms extends AbstractTestNGCucumberTests {
     @SneakyThrows
     @AfterMethod
     public void closeBrowserInstance(ITestResult iTestResult) {
-        Directory_Change.uniqueReport();
-        MailSend_WMS.sendMail();
+
         if (driverEnabled(getDriver())) {
             try {
 
