@@ -80,9 +80,11 @@ public class msg_delay_wms extends AbstractTestNGCucumberTests {
             }
         }
     }
+    @SneakyThrows
     @AfterClass
     public static void afterClass() throws InterruptedException, MessagingException, IOException {
-
+        //Directory_Change.uniqueReport();
+        MailSend_WMS.sendMail();
 
 
     }
