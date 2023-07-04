@@ -281,9 +281,9 @@ public class MainPage
         HelpersMethod.EnterText(driver,primaryEmail,10,RandomValues.generateEmail(10));
         scenario.log("EMAIL ADDRESS ENTERED IS "+HelpersMethod.JSGetValueEle(driver,primaryEmail,10));
     }
-//    public void websiteAddress()
-//    {
-//        HelpersMethod.EnterText(driver,websiteId,10,RandomValues.generateWebsite(20));
-//        scenario.log("WEB SITE NAME ENTERED IS "+HelpersMethod.JSGetValueEle(driver,websiteId,10));
-//    }
+    public void websiteAddress()
+    {
+        HelpersMethod.EnterText(driver,websiteId,10,RandomValues.generateWebsite(20));
+        scenario.log("WEB SITE NAME ENTERED IS "+HelpersMethod.JSGetValueEle(driver,websiteId,10));
+    }
 }

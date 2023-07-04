@@ -13,6 +13,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.ITestResult;
 import org.testng.annotations.*;
 import util.TestBase;
+import utilWMS.Directory_Change;
 import utilWMS.MailSend_WMS;
 
 import javax.mail.MessagingException;
@@ -23,10 +24,10 @@ import static common.setup.DriverManager.*;
 @CucumberOptions(features = {"src/test/resources/features/workqueue/assignwork/msg_delay_wms.feature"},
         glue = {"steps"},
         plugin = {"pretty",
-                "json:target/cucumber.json",
-//                "html:target/cucumber-reports/cucumber.html",
+               // "json:target/cucumber.json",
+                "html:target/cucumber-reports/cucumber.html",
                 "html:Reports/Index.html",
-                "json:target/cucumber-reports/cucumber.json",
+               // "json:target/cucumber-reports/cucumber.json",
                 "rerun:target/failedrerun.txt"
         }, monochrome = true, tags = "@WorkQueue")
 @Slf4j
@@ -58,8 +59,8 @@ public class msg_delay_wms extends AbstractTestNGCucumberTests {
     @SneakyThrows
     @AfterMethod
     public void closeBrowserInstance(ITestResult iTestResult) {
-
-        //MailSend_WMS.sendMail();
+        Directory_Change.uniqueReport();
+        MailSend_WMS.sendMail();
         if (driverEnabled(getDriver())) {
             try {
 
@@ -82,6 +83,7 @@ public class msg_delay_wms extends AbstractTestNGCucumberTests {
     }
     @AfterClass
     public static void afterClass() throws InterruptedException, MessagingException, IOException {
+        Directory_Change.uniqueReport();
         MailSend_WMS.sendMail();
 
 

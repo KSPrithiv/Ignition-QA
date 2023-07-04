@@ -26,7 +26,9 @@ public class MailSend_WMS
     {
         final String password = "rkev leoi veno keod";
         final String from = "automationqaafs@gmail.com";
-        final String to = "santhosh.skaria@telusagcg.com";
+        //final String to = "santhosh.skaria@telusagcg.com";
+        final String to = "karthikeyan.armugam@telusagcg.com";
+        final String cc = "karthikeyan.armugam@telusagcg.com";
 
         try
         {
@@ -44,7 +46,8 @@ public class MailSend_WMS
                     return new PasswordAuthentication("automationqaafs@gmail.com", "rkev leoi veno keod");
                 }
             });
-            Message message=prepareMessage(session, "automationqaafs@gmail.com", "santhosh.skaria@telusagcg.com");
+            //Message message=prepareMessage(session, "automationqaafs@gmail.com", "santhosh.skaria@telusagcg.com");
+            Message message=prepareMessage(session, "automationqaafs@gmail.com", "karthikeyan.armugam@telusagcg.com","karthikeyan.armugam@telusagcg.com","karthikeyan.armugam@telusagcg.com");
           Transport.send(message);
         }
         catch (Exception e)
@@ -53,13 +56,17 @@ public class MailSend_WMS
         }
     }
 
-    private static Message prepareMessage(Session session, String myAccountEmail, String recepient)
+    private static Message prepareMessage(Session session, String myAccountEmail, String recepient,String recepient1,String cc)
     {
         try
         {
             Message message = new MimeMessage(session);
             message.setFrom(new InternetAddress(myAccountEmail));
             message.setRecipient(Message.RecipientType.TO, new InternetAddress(recepient));
+            //Added Newly
+            message.setRecipient(Message.RecipientType.TO, new InternetAddress(recepient1));
+            message.setRecipients(Message.RecipientType.CC,
+                    InternetAddress.parse(cc));
             message.setSubject("Automated Email Notification -Ignition Automation report from CI server");
 
             //String filename="corp.afsi.com\\C:\\Users\\karthikeyan.Armugam\\Documents\\Git_Repositories\\ignition-qa\\IgnitionQAAutomation\\Reports\\extent\\Index.html";

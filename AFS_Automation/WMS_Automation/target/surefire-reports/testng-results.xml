@@ -2,26 +2,26 @@
 <testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2023-07-03T21:10:47 IST" name="Work Queue tests verification" finished-at="2023-07-03T21:11:19 IST" duration-ms="32057">
+  <suite started-at="2023-07-05T00:12:53 IST" name="Work Queue tests verification" finished-at="2023-07-05T00:13:52 IST" duration-ms="58952">
     <groups>
       <group name="cucumber">
-        <method signature="AbstractTestNGCucumberTests.runScenario(io.cucumber.testng.PickleWrapper,io.cucumber.testng.FeatureWrapper)[pri:0, instance:runners.WorkQueueCucumberRunner@24c1b2d2]" name="runScenario" class="io.cucumber.testng.AbstractTestNGCucumberTests"/>
+        <method signature="AbstractTestNGCucumberTests.runScenario(io.cucumber.testng.PickleWrapper,io.cucumber.testng.FeatureWrapper)[pri:0, instance:runners.msg_delay_wms@24c1b2d2]" name="runScenario" class="io.cucumber.testng.AbstractTestNGCucumberTests"/>
       </group> <!-- cucumber -->
     </groups>
-    <test started-at="2023-07-03T21:10:47 IST" name="Work Queue verification" finished-at="2023-07-03T21:11:19 IST" duration-ms="32057">
-      <class name="runners.WorkQueueCucumberRunner">
-        <test-method is-config="true" signature="setUpClass(org.testng.ITestContext)[pri:0, instance:runners.WorkQueueCucumberRunner@24c1b2d2]" started-at="2023-07-03T21:10:47 IST" name="setUpClass" finished-at="2023-07-03T21:10:48 IST" duration-ms="510" status="PASS">
+    <test started-at="2023-07-05T00:12:53 IST" name="Work Queue verification" finished-at="2023-07-05T00:13:52 IST" duration-ms="58952">
+      <class name="runners.msg_delay_wms">
+        <test-method is-config="true" signature="setUpClass(org.testng.ITestContext)[pri:0, instance:runners.msg_delay_wms@24c1b2d2]" started-at="2023-07-05T00:12:53 IST" name="setUpClass" finished-at="2023-07-05T00:12:53 IST" duration-ms="558" status="PASS">
           <params>
             <param index="0">
               <value>
-                <![CDATA[org.testng.TestRunner@54687fd0]]>
+                <![CDATA[org.testng.TestRunner@4c41a177]]>
               </value>
             </param>
           </params>
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setUpClass -->
-        <test-method is-config="true" signature="beforeClass(java.lang.String)[pri:0, instance:runners.WorkQueueCucumberRunner@24c1b2d2]" started-at="2023-07-03T21:10:48 IST" name="beforeClass" finished-at="2023-07-03T21:10:48 IST" duration-ms="27" status="PASS">
+        <test-method is-config="true" signature="beforeClass(java.lang.String)[pri:0, instance:runners.msg_delay_wms@24c1b2d2]" started-at="2023-07-05T00:12:53 IST" name="beforeClass" finished-at="2023-07-05T00:12:53 IST" duration-ms="33" status="PASS">
           <params>
             <param index="0">
               <value>
@@ -32,7 +32,7 @@
           <reporter-output>
           </reporter-output>
         </test-method> <!-- beforeClass -->
-        <test-method is-config="true" signature="startBrowserInstance(java.lang.String,java.lang.String)[pri:0, instance:runners.WorkQueueCucumberRunner@24c1b2d2]" started-at="2023-07-03T21:10:48 IST" name="startBrowserInstance" finished-at="2023-07-03T21:11:02 IST" duration-ms="13794" status="PASS">
+        <test-method is-config="true" signature="startBrowserInstance(java.lang.String,java.lang.String)[pri:0, instance:runners.msg_delay_wms@24c1b2d2]" started-at="2023-07-05T00:12:53 IST" name="startBrowserInstance" finished-at="2023-07-05T00:13:33 IST" duration-ms="39391" status="PASS">
           <params>
             <param index="0">
               <value>
@@ -48,7 +48,7 @@
           <reporter-output>
           </reporter-output>
         </test-method> <!-- startBrowserInstance -->
-        <test-method signature="runScenario(io.cucumber.testng.PickleWrapper,io.cucumber.testng.FeatureWrapper)[pri:0, instance:runners.WorkQueueCucumberRunner@24c1b2d2]" started-at="2023-07-03T21:11:02 IST" name="runScenario" description="Runs Cucumber Scenarios" data-provider="scenarios" finished-at="2023-07-03T21:11:13 IST" duration-ms="11240" status="PASS">
+        <test-method signature="runScenario(io.cucumber.testng.PickleWrapper,io.cucumber.testng.FeatureWrapper)[pri:0, instance:runners.msg_delay_wms@24c1b2d2]" started-at="2023-07-05T00:13:33 IST" name="runScenario" description="Runs Cucumber Scenarios" data-provider="scenarios" finished-at="2023-07-05T00:13:44 IST" duration-ms="11306" status="PASS">
           <params>
             <param index="0">
               <value>
@@ -64,26 +64,80 @@
           <reporter-output>
           </reporter-output>
         </test-method> <!-- runScenario -->
-        <test-method is-config="true" signature="closeBrowserInstance(org.testng.ITestResult)[pri:0, instance:runners.WorkQueueCucumberRunner@24c1b2d2]" started-at="2023-07-03T21:11:13 IST" name="closeBrowserInstance" finished-at="2023-07-03T21:11:13 IST" duration-ms="205" status="PASS">
+        <test-method is-config="true" signature="closeBrowserInstance(org.testng.ITestResult)[pri:0, instance:runners.msg_delay_wms@24c1b2d2]" started-at="2023-07-05T00:13:44 IST" name="closeBrowserInstance" finished-at="2023-07-05T00:13:44 IST" duration-ms="100" status="FAIL">
           <params>
             <param index="0">
               <value>
-                <![CDATA[[TestResult name=runScenario status=SUCCESS method=AbstractTestNGCucumberTests.runScenario(io.cucumber.testng.PickleWrapper,io.cucumber.testng.FeatureWrapper)[pri:0, instance:runners.WorkQueueCucumberRunner@24c1b2d2] output={null}]]]>
+                <![CDATA[[TestResult name=runScenario status=SUCCESS method=AbstractTestNGCucumberTests.runScenario(io.cucumber.testng.PickleWrapper,io.cucumber.testng.FeatureWrapper)[pri:0, instance:runners.msg_delay_wms@24c1b2d2] output={null}]]]>
               </value>
             </param>
           </params>
+          <exception class="java.nio.file.NoSuchFileException">
+            <message>
+              <![CDATA[E:\GithubBuilds\IgnitionQA\_work\ignition-qa\ignition-qa\AFS_Automation\WMS_Automation\target\surefire-reports\emailable-report.html]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[java.nio.file.NoSuchFileException: E:\GithubBuilds\IgnitionQA\_work\ignition-qa\ignition-qa\AFS_Automation\WMS_Automation\target\surefire-reports\emailable-report.html
+at java.base/sun.nio.fs.WindowsException.translateToIOException(WindowsException.java:85)
+at java.base/sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:103)
+at java.base/sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:108)
+at java.base/sun.nio.fs.WindowsFileCopy.copy(WindowsFileCopy.java:98)
+at java.base/sun.nio.fs.WindowsFileSystemProvider.copy(WindowsFileSystemProvider.java:284)
+at java.base/java.nio.file.Files.copy(Files.java:1299)
+at utilWMS.Directory_Change.uniqueReport(Directory_Change.java:44)
+at runners.msg_delay_wms.closeBrowserInstance(msg_delay_wms.java:62)
+at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:78)
+at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+at java.base/java.lang.reflect.Method.invoke(Method.java:567)
+at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:139)
+at org.testng.internal.invokers.MethodInvocationHelper.invokeMethodConsideringTimeout(MethodInvocationHelper.java:69)
+at org.testng.internal.invokers.ConfigInvoker.invokeConfigurationMethod(ConfigInvoker.java:361)
+at org.testng.internal.invokers.ConfigInvoker.invokeConfigurations(ConfigInvoker.java:296)
+at org.testng.internal.invokers.TestInvoker.runConfigMethods(TestInvoker.java:823)
+at org.testng.internal.invokers.TestInvoker.runAfterConfigurations(TestInvoker.java:792)
+at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:768)
+at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:221)
+at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:50)
+at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:969)
+at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:194)
+at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:148)
+at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:128)
+at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+at org.testng.TestRunner.privateRun(TestRunner.java:829)
+at org.testng.TestRunner.run(TestRunner.java:602)
+at org.testng.SuiteRunner.runTest(SuiteRunner.java:437)
+at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:431)
+at org.testng.SuiteRunner.privateRun(SuiteRunner.java:391)
+at org.testng.SuiteRunner.run(SuiteRunner.java:330)
+at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
+at org.testng.TestNG.runSuitesSequentially(TestNG.java:1256)
+at org.testng.TestNG.runSuitesLocally(TestNG.java:1176)
+at org.testng.TestNG.runSuites(TestNG.java:1099)
+at org.testng.TestNG.run(TestNG.java:1067)
+at org.apache.maven.surefire.testng.TestNGExecutor.run(TestNGExecutor.java:283)
+at org.apache.maven.surefire.testng.TestNGXmlTestSuite.execute(TestNGXmlTestSuite.java:75)
+at org.apache.maven.surefire.testng.TestNGProvider.invoke(TestNGProvider.java:120)
+at org.apache.maven.surefire.booter.ForkedBooter.invokeProviderInSameClassLoader(ForkedBooter.java:384)
+at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:345)
+at org.apache.maven.surefire.booter.ForkedBooter.execute(ForkedBooter.java:126)
+at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:418)
+]]>
+            </full-stacktrace>
+          </exception> <!-- java.nio.file.NoSuchFileException -->
           <reporter-output>
           </reporter-output>
         </test-method> <!-- closeBrowserInstance -->
-        <test-method is-config="true" signature="afterClass()[pri:0, instance:runners.WorkQueueCucumberRunner@24c1b2d2]" started-at="2023-07-03T21:11:13 IST" name="afterClass" finished-at="2023-07-03T21:11:16 IST" duration-ms="3112" status="PASS">
+        <test-method is-config="true" signature="afterClass()[pri:0, instance:runners.msg_delay_wms@24c1b2d2]" started-at="2023-07-05T00:13:44 IST" name="afterClass" finished-at="2023-07-05T00:13:44 IST" duration-ms="0" status="SKIP">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- afterClass -->
-        <test-method is-config="true" signature="tearDownClass()[pri:0, instance:runners.WorkQueueCucumberRunner@24c1b2d2]" started-at="2023-07-03T21:11:16 IST" name="tearDownClass" finished-at="2023-07-03T21:11:19 IST" duration-ms="2999" status="PASS">
+        <test-method is-config="true" signature="tearDownClass()[pri:0, instance:runners.msg_delay_wms@24c1b2d2]" started-at="2023-07-05T00:13:44 IST" name="tearDownClass" finished-at="2023-07-05T00:13:52 IST" duration-ms="7350" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDownClass -->
-      </class> <!-- runners.WorkQueueCucumberRunner -->
+      </class> <!-- runners.msg_delay_wms -->
     </test> <!-- Work Queue verification -->
   </suite> <!-- Work Queue tests verification -->
 </testng-results>

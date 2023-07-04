@@ -30,10 +30,10 @@ import static common.setup.DriverManager.getDriver;
 @CucumberOptions(features = {"src/test/resources/features/workqueue/assignwork/msg_delay_wms.feature"},
         glue = {"steps"},
         plugin = {"pretty",
-                "json:target/cucumber.json",
-//                "html:target/cucumber-reports/cucumber.html",
+               // "json:target/cucumber.json",
+                "html:target/cucumber-reports/cucumber.html",
                 "html:Reports/Index.html",
-                "json:target/cucumber-reports/cucumber.json",
+              //  "json:target/cucumber-reports/cucumber.json",
                 "rerun:target/failedrerun.txt"
         }, monochrome = true, tags = "@WorkQueue")
 @Slf4j
@@ -88,10 +88,12 @@ public class WorkQueueCucumberRunner extends AbstractTestNGCucumberTests {
         }
     }
 
+    @SneakyThrows
     @AfterClass
     public static void afterClass() throws InterruptedException, MessagingException, IOException {
-        MailSend_WMS.sendMail();
         Directory_Change.uniqueReport();
+        MailSend_WMS.sendMail();
+
 
 
     }

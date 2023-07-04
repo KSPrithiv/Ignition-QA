@@ -19,29 +19,38 @@ public class Directory_Change {
 
         public static void uniqueReport() throws IOException {
             //Time
-            Date now = new Date();
-            SimpleDateFormat dateFormat = new SimpleDateFormat("hh mm ss");
-            String time = dateFormat.format(now);
-            File f = new File("C:\\Users\\karthikeyan.Armugam\\Documents\\Git_Repositories\\ignition-qa\\AFS_Automation\\WMS_Automation\\Reports\\surefire-reports_WMS" + "_" + time);
-            //notused//  Path targetDirectory = Paths.get("C:\\Users\\karthikeyan.Armugam\\Documents\\Git_Repositories\\ignition-qa\\AFS_Automation\\WMS_Automation\\Reports\\surefire-reports_WMS\\emailable-report.html" + "_" + time+".html");
-            f.mkdirs();
-            boolean wasSuccessful = f.mkdirs();
-            if (!wasSuccessful) {
-                System.out.println("was not successful.");
-            }
+//            Date now = new Date();
+//            SimpleDateFormat dateFormat = new SimpleDateFormat("hh mm ss");
+//            String time = dateFormat.format(now);
+//            File f = new File("C:\\Users\\karthikeyan.Armugam\\Documents\\Git_Repositories\\ignition-qa\\AFS_Automation\\WMS_Automation\\Reports\\surefire-reports_WMS" + "_" + time);
+//            //notused//  Path targetDirectory = Paths.get("C:\\Users\\karthikeyan.Armugam\\Documents\\Git_Repositories\\ignition-qa\\AFS_Automation\\WMS_Automation\\Reports\\surefire-reports_WMS\\emailable-report.html" + "_" + time+".html");
+//            f.mkdirs();
+//            boolean wasSuccessful = f.mkdirs();
+//            if (!wasSuccessful) {
+//                System.out.println("was not successful.");
+//            }
 
             //Time
             DateTime now1 = DateTime.now( DateTimeZone.getDefault() );
             DateTimeFormatter formatter = ISODateTimeFormat.dateHourMinuteSecond();  // Or dateHourMinute();
             String output = formatter.print( now1 ).replace( ":" , "-" );
 
-            //folder
-            Path sourceDirectory = Paths.get("C:\\Users\\karthikeyan.Armugam\\Documents\\Git_Repositories\\ignition-qa\\AFS_Automation\\WMS_Automation\\target\\surefire-reports\\emailable-report.html");
+            //folder -surefire report
+            Path sourceDirectory = Paths.get("E:\\GithubBuilds\\IgnitionQA\\_work\\ignition-qa\\ignition-qa\\AFS_Automation\\WMS_Automation\\target\\surefire-reports\\emailable-report.html");
             //Path targetDirectory = Paths.get("C:\\Users\\karthikeyan.Armugam\\Documents\\Git_Repositories\\ignition-qa\\AFS_Automation\\WMS_Automation\\Reports\\surefire-reports_WMS\\emailable-report.html" + "_" + time+".html");
-            Path targetDirectory1 = Paths.get("C:\\Users\\karthikeyan.Armugam\\Documents\\Git_Repositories\\ignition-qa\\AFS_Automation\\WMS_Automation\\Reports\\surefire-reports_WMS\\emailable-report" + "_" + output +".html");
+            Path targetDirectory1 = Paths.get("E:\\GithubBuilds\\IgnitionQA\\_work\\ignition-qa\\ignition-qa\\AFS_Automation\\WMS_Automation\\Reports\\surefire-reports_WMS\\emailable-report" + "_" + output +".html");
 
             //copy source to target using Files Class
             Files.copy(sourceDirectory, targetDirectory1);
+
+//=========================================================================
+            //folder date &  Time -Cucumber report
+            Path sourceDirectory_cucu = Paths.get("E:\\GithubBuilds\\IgnitionQA\\_work\\ignition-qa\\ignition-qa\\AFS_Automation\\WMS_Automation\\target\\cucumber-reports\\cucumber.html");
+
+            Path targetDirectory1_cucu = Paths.get("E:\\GithubBuilds\\IgnitionQA\\_work\\ignition-qa\\ignition-qa\\AFS_Automation\\WMS_Automation\\Reports\\Cucumber-Reports\\cucumber" + "_" + output +".html");
+
+            //copy source to target using Files Class
+            Files.copy(sourceDirectory_cucu, targetDirectory1_cucu);
         }
     }
 
