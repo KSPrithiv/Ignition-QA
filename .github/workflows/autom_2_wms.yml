@@ -27,7 +27,7 @@ jobs:
       
       - name: WMS Automation
         run: |
-         mvn install test -DsuiteXmlFile='msg_delay_wms.xml'
+         mvn install test -DsuiteXmlFile='RegressionTestNGRunner.xml'
         working-directory: AFS_Automation/WMS_Automation 
         
        
