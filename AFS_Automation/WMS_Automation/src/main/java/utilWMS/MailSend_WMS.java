@@ -47,7 +47,7 @@ public class MailSend_WMS
                 }
             });
             //Message message=prepareMessage(session, "automationqaafs@gmail.com", "santhosh.skaria@telusagcg.com");
-            Message message=prepareMessage(session, "automationqaafs@gmail.com", "santhosh.skaria@telusagcg.com","karthikeyan.armugam@telusagcg.com","karthikeyan.armugam@telusagcg.com");
+            Message message=prepareMessage(session, "automationqaafs@gmail.com", "santhosh.skaria@telusagcg.com","karthikeyan.armugam@telusagcg.com");
           Transport.send(message);
         }
         catch (Exception e)
@@ -56,7 +56,7 @@ public class MailSend_WMS
         }
     }
 
-    private static Message prepareMessage(Session session, String myAccountEmail, String recepient,String recepient1,String cc)
+    private static Message prepareMessage(Session session, String myAccountEmail, String recepient,String cc)
     {
         try
         {
@@ -64,7 +64,7 @@ public class MailSend_WMS
             message.setFrom(new InternetAddress(myAccountEmail));
             message.setRecipient(Message.RecipientType.TO, new InternetAddress(recepient));
             //Added Newly
-            message.setRecipient(Message.RecipientType.TO, new InternetAddress(recepient1));
+
             message.setRecipients(Message.RecipientType.CC,
                     InternetAddress.parse(cc));
             message.setSubject("Automated Email Notification -Ignition Automation report from CI server");
