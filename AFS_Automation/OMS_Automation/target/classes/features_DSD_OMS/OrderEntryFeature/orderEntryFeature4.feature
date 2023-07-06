@@ -37,10 +37,11 @@ Feature: Order Entry4
         |50|50|
       Then User should click on Copy from dropdown and Select Order history
         |Order history|
-      Then User verifies Order history page and click on checkbox
+      Then User verifies Order history page and add history Order to order
+      |2023|
       And Click on Copy button
-      Then Enter PO# for New order
-        |PO123|
+      # Then Enter PO# for New order
+      #  |PO123|
       Then User should enter Units and Cases in product grid
         |40|50|
       Then Click on Next button
@@ -112,8 +113,7 @@ Feature: Order Entry4
       Given User must be on Order Entry Page
       Then User must click Start Order button
       Then User should make selection between Pending order or Start New order
-      Then User should select Note from popup
-      Then User should find select Order guide from popup and select OG
+      Then User should select Note from popup and select OG from OG popup
       Then Enter PO# for New order
         |PO123|
       And User should navigate to New OE page, and enter Qty to product in product grid
@@ -127,8 +127,7 @@ Feature: Order Entry4
       Given User must be on Order Entry Page
       Then User must click Start Order button
       Then User should make selection between Pending order or Start New order
-      Then User should select Note from popup
-      Then User should find select Order guide from popup and select OG
+      Then User should select Note from popup and select OG from OG popup
       Then Enter PO# for New order
         |PO123|
       And User should navigate to New OE page, and enter Qty to product in product grid more than Maximum limit
@@ -142,8 +141,7 @@ Feature: Order Entry4
       Given User must be on Order Entry Page
       Then User must click Start Order button
       Then User should make selection between Pending order or Start New order
-      Then User should select Note from popup
-      Then User should find select Order guide from popup and select OG
+      Then User should select Note from popup and select OG from OG popup
       Then Enter PO# for New order
         |PO123|
       And User should navigate to New OE page, and enter Qty to product in product grid for only Unit
@@ -157,8 +155,7 @@ Feature: Order Entry4
     Given User must be on Order Entry Page
     Then User must click Start Order button
     Then User should make selection between Pending order or Start New order
-    Then User should select Note from popup
-    Then User should find select Order guide from popup and select OG
+    Then User should select Note from popup and select OG from OG popup
     Then Enter PO# for New order
       |PO123|
     And User should navigate to New OE page, and enter Qty to product in product grid for only Case

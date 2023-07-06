@@ -9,5 +9,6 @@ Feature: Catalog2
 
   @LogoutAllOrder
   Scenario:Loging out from the application
-    Then Click on user Icon on Order Entry page
-    And Click on Logout on Order Entry page
+    And Refresh the page if any dialog box is displayed
+     Then Click on user Icon on Order Entry page
+     And Click on Logout on Order Entry page

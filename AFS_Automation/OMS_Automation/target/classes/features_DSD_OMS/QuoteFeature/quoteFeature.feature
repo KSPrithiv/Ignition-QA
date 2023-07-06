@@ -131,7 +131,7 @@ Feature: Quotes
     Then User selects Quote in Order Entry grid
     And User should be navigated to Quote summary page and click on Convert OG button
     Then User enters Description "<OG>" Start date 8 and End date 9 day from current date
-    Then User click on Save button
+    Then User click on Save button to convert Quote as OG
     And User should navigate back to OG page and verify OG "<OG>"  existence
     Then User should navigated to Order Entry page from OG page
     Examples:
