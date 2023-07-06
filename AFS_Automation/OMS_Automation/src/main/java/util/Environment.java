@@ -115,5 +115,17 @@ public interface Environment extends Config
     @Key("CompanyNo")
     String get_CompanyNo();
 
+    @Key("Dummyuser123")
+    String Dummyuser123();
+
+    @Key("Dummypass123")
+    String Dummypass123();
+
+    @Key("DummyuserTest")
+    String DummyUserTest();
+
+    @Key("DummypassTest")
+    String DummyPassTest();
+
 }
 
