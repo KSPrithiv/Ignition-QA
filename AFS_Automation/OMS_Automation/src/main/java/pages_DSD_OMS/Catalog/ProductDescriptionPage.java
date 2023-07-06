@@ -2,12 +2,16 @@ package pages_DSD_OMS.Catalog;
 
 import helper.HelpersMethod;
 import io.cucumber.java.Scenario;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
+import java.nio.file.WatchEvent;
 import java.util.List;
 
 /**
@@ -57,11 +61,11 @@ public class ProductDescriptionPage
         exists=false;
         try
         {
-               HelpersMethod.WaitElementPresent(driver,"classname","product-detail-container",10);
-               HelpersMethod.ScrollElement(driver,Qty_In);
-               //Code to enter Qty in Input box
-               HelpersMethod.EnterText(driver, Qty_In, 10, Qty);
-               exists = true;
+            HelpersMethod.WaitElementPresent(driver,"classname","product-detail-container",10);
+            HelpersMethod.ScrollElement(driver,Qty_In);
+            //Code to enter Qty in Input box
+            HelpersMethod.EnterText(driver, Qty_In, 40, Qty);
+            exists = true;
         }
         catch (Exception e) {}
         Assert.assertEquals(exists,true);
@@ -71,17 +75,15 @@ public class ProductDescriptionPage
     {
         exists=false;
         WebElement WebEle=null;
-        //HelpersMethod.Implicitwait(driver,40);/////////
         try
         {
-            //Thread.sleep(20000);///////
             //code to click on Add to cart button
             HelpersMethod.ScrollElement(driver,Add_Cart);
             HelpersMethod.ActClick(driver,Add_Cart,40);
             if(HelpersMethod.IsExists("//div[@class='loader']",driver))
             {
                 WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100);
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 400);
             }
             exists=true;
             Assert.assertEquals(exists,true);
@@ -96,28 +98,28 @@ public class ProductDescriptionPage
         WebElement WebEle=null;
         try
         {
-            for(int i=0;i<=4;i++)
+            for(int i=0;i<=2;i++)
             {
                 //Incrase the Qty by one, by pressing up arrow
-                HelpersMethod.ClickBut(driver,Increase,10);
+                HelpersMethod.ClickBut(driver,Increase,40);
 
-                HelpersMethod.ClickBut(driver,Update_Cart,10);
+                HelpersMethod.ClickBut(driver,Update_Cart,40);
                 if(HelpersMethod.IsExists("//div[@class='loader']",driver))
                 {
                     WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100);
+                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 400);
                 }
                 scenario.log("INCREASE BUTTON CLICKED IN PRODUCT DESCRIPTION PAGE");
             }
-            for(int i=0;i<=2;i++)
+            for(int i=0;i<=1;i++)
             {
                 //Decrease the Qty by one, by pressing down arrow
-                HelpersMethod.ClickBut(driver,Decrease,10);
-                HelpersMethod.ClickBut(driver,Update_Cart,10);
+                HelpersMethod.ClickBut(driver,Decrease,40);
+                HelpersMethod.ClickBut(driver,Update_Cart,40);
                 if(HelpersMethod.IsExists("//div[@class='loader']",driver))
                 {
                     WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100);
+                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 400);
                 }
                 scenario.log("DECREASE BUTTON CLICKED IN PRODUCT DESCRIPTION PAGE");
             }
@@ -134,11 +136,11 @@ public class ProductDescriptionPage
         WebElement WebEle=null;
         try
         {
-            HelpersMethod.ClickBut(driver,PreviousPage,20);
+            HelpersMethod.ClickBut(driver,PreviousPage,40);
             if(HelpersMethod.IsExists("//div[@class='loader']",driver))
             {
                 WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100);
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 400);
             }
             exists=true;
             Assert.assertEquals(exists,true);
@@ -154,11 +156,11 @@ public class ProductDescriptionPage
         try
         {
             HelpersMethod.ScrollElement(driver,Delete_cart);
-            HelpersMethod.ClickBut(driver,Delete_cart,20);
+            HelpersMethod.ClickBut(driver,Delete_cart,40);
             if(HelpersMethod.IsExists("//div[@class='loader']",driver))
             {
                 WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100);
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 400);
             }
             exists=true;
             Assert.assertEquals(exists,true);

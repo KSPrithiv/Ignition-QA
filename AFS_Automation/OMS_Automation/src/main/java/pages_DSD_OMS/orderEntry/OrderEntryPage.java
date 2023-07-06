@@ -1090,7 +1090,7 @@ public class OrderEntryPage
                 {
                     WebEle = HelpersMethod.FindByElement(driver, "xpath", "//span[@id='SkipReason']/descendant::span[contains(@class,'k-icon k-i-arrow-s')]");
                     HelpersMethod.JScriptClick(driver, WebEle, 10);
-                    HelpersMethod.DropDownMenu_LowerCase(driver, "//ul[contains(@class,'k-list k-reset')]/descendant::li", reason);
+                    HelpersMethod.DropDownMenu_LowerCase(driver, "//ul[contains(@class,'k-list k-reset')]/descendant::li");
                     HelpersMethod.Implicitwait(driver, 20);
                     WebEle = HelpersMethod.FindByElement(driver, "xpath", "//button[text()='Ok']");
                     HelpersMethod.ClickBut(driver, WebEle, 10);
@@ -1663,7 +1663,7 @@ public void RemoveSkipOK()
         HelpersMethod.Implicitwait(driver,40);
         try
         {
-            HelpersMethod.Click_On_IndexFieldIcon(driver,"Route #",SearchOpt ,SearchDetail);
+            HelpersMethod.Click_On_IndexFieldIcon(driver,"Route #",SearchOpt );
             exists=true;
             Assert.assertEquals(exists,true);
         }
@@ -1762,7 +1762,7 @@ public void RemoveSkipOK()
             WebElement WebEle;
             WebElement dropDown = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-popup k-child-animation-container')]/div[@class='popup-content']");
             WebElement signOut = dropDown.findElement(By.xpath(".//div[contains(@class,'user-info-line user-info-line-signout')]"));
-            HelpersMethod.ActClick(driver, signOut, 400);
+            HelpersMethod.ActClick(driver, signOut, 4000);
             if (HelpersMethod.IsExists("//div[@class='loader']", driver))
             {
                 WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");

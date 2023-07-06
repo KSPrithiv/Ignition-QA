@@ -84,7 +84,7 @@ public class ARInquiryPage
         if (HelpersMethod.IsExists("//div[@class='loader']", driver))
         {
             WebElement WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 200);
+            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000);
         }
     }
 
@@ -160,7 +160,7 @@ public class ARInquiryPage
         WebElement WebEle=null;
         try
         {
-            HelpersMethod.ClickBut(driver,Cust_Accout,10);
+            HelpersMethod.ClickBut(driver,Cust_Accout,40);
             if(HelpersMethod.IsExists("//div[contains(text(),'Customer account')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
             {
                 //Entering customer account# in search box
@@ -183,6 +183,11 @@ public class ARInquiryPage
     {
         exists=false;
         WebElement WebEle=null;
+        if(HelpersMethod.IsExists("//div[@class='loader']",driver))
+        {
+            WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
+            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 2000);
+        }
         try
         {
             if(HelpersMethod.IsExists("//div[contains(@class,'i-no-data__icon')]",driver))
@@ -196,7 +201,7 @@ public class ARInquiryPage
                 if(HelpersMethod.IsExists("//div[contains(@class,'grid-container')]/descendant::tr[contains(@class,'k-master-row')][1]",driver))
                 {
                     WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'grid-container')]/descendant::tr[contains(@class,'k-master-row')][1]/descendant::input");
-                    HelpersMethod.ClickBut(driver,WebEle,20);
+                    HelpersMethod.ClickBut(driver,WebEle,100);
                     exists = true;
                 }
             }

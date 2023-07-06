@@ -88,8 +88,7 @@ public class StatementsPageSteps
     {
         statementsPage=new StatementsPage(driver,scenario);
         statementsPage.HandleError_Page();
-        orderPage=new OrderEntryPage(driver,scenario);
-        orderPage.Refresh_Page(currentURL);
+        statementsPage.Refresh_Page(currentURL);
     }
 
     @Then("User should confirm that he is in Statements page")

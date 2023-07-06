@@ -4,6 +4,7 @@ import helper.HelpersMethod;
 import io.cucumber.java.Scenario;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
@@ -20,12 +21,21 @@ public class NavigationPage
     WebDriver driver;
     Scenario scenario;
     static boolean exists=false;
+    static String label=null;
+    static String label1=null;
+    static String labelNameText=null;
 
     @FindBy(xpath="//div[@id='AvailableItemsAdminCard']/descendant::div[contains(@class,'i-droppable-container')]")
     private WebElement AvailableApp;
 
     @FindBy(xpath="//div[@id='ActiveItemsAdminCard']/descendant::div[contains(@class,'i-droppable-container')]")
     private WebElement WebOrderMenu;
+
+    @FindBy(xpath="//div[@id='ActiveItemDetailAdminCard']/descendant::label[text()='Label']/following-sibling::input")
+    private WebElement labelInput;
+
+    @FindBy(xpath = "//button[text()='Reset']")
+    private WebElement resetButton;
 
     //Action
     public NavigationPage(WebDriver driver,Scenario scenario)
@@ -37,6 +47,7 @@ public class NavigationPage
     public void FromWebOrderToAvailableApp()
     {
         exists=false;
+        Actions act=new Actions(driver);
         WebElement WebEle;
         int index;
         try
@@ -44,7 +55,8 @@ public class NavigationPage
             List<WebElement> MenuItems= HelpersMethod.FindByElements(driver,"xpath","//div[@id='ActiveItemsAdminCard']/descendant::div[@class='i-draggable-item']/div[contains(@class,'i-draggable-item__container')]");
             index= MenuItems.size()-1;
             WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@id='ActiveItemsAdminCard']/descendant::div[@class='i-draggable-item']["+index+"]/div[contains(@class,'i-draggable-item__container')]");
-            HelpersMethod.ActDragDrop(driver,WebEle,AvailableApp);
+            //HelpersMethod.ActDragDrop(driver,WebEle,AvailableApp);
+            act.clickAndHold(WebEle).moveToElement(AvailableApp).release().build().perform();
             exists=true;
             Assert.assertEquals(exists,true);
         }
@@ -92,6 +104,81 @@ public class NavigationPage
             if(HelpersMethod.IsExists("//span[contains(@class,'spnmoduleNameHeader withoutBreadcrumbs') and contains(text(),'Navigation')]",driver))
             {
                 exists=true;
+            }
+            Assert.assertEquals(exists,true);
+        }
+        catch (Exception e){}
+    }
+
+    public void selectLabelName()
+    {
+        try
+        {
+            //check box click
+            WebElement checkBox=HelpersMethod.FindByElement(driver,"xpath","//div[@class='i-draggable-item'][1]/descendant::input");
+            HelpersMethod.ClickBut(driver,checkBox,100);
+            //Read label value associated with check box
+            label=HelpersMethod.FindByElement(driver,"xpath","//div[@class='i-draggable-item'][1]/descendant::div[@class='content active']").getText();
+            scenario.log("LABEL SELECTED FOR CHANGING LABEL IS "+label);
+        }
+        catch (Exception e){}
+    }
+
+    public void changeLabelName()
+    {
+        exists=false;
+        try
+        {
+            labelNameText=label+"_Test";
+            HelpersMethod.JSSetValueEle(driver,labelInput,60,labelNameText);
+            labelNameText=HelpersMethod.JSGetValueEle(driver,labelInput,40);
+            if(!label.equals(labelNameText))
+            {
+               exists=true;
+            }
+            else
+            {
+                exists=false;
+            }
+            Assert.assertEquals(exists,true);
+        }
+        catch (Exception e){}
+    }
+
+    public void verifyLabelValue()
+    {
+        exists=false;
+        try
+        {
+            label1=HelpersMethod.FindByElement(driver,"xpath","//div[@class='i-draggable-item'][1]/descendant::div[@class='content active']").getText();
+            if(label1.equals(labelNameText))
+            {
+                exists=true;
+            }
+            else
+            {
+                exists=false;
+            }
+            Assert.assertEquals(exists,true);
+        }
+        catch (Exception e){}
+    }
+
+    public void resetPreviousValue()
+    {
+        exists=false;
+        try
+        {
+            HelpersMethod.ClickBut(driver,resetButton,40);
+            label1=HelpersMethod.FindByElement(driver,"xpath","//div[@class='i-draggable-item'][1]/descendant::div[@class='content active']").getText();
+            scenario.log("AFTER RESETTING THE VALUE LABEL IS CHANGED TO "+label1);
+            if(label1.equals(label))
+            {
+                exists=true;
+            }
+            else
+            {
+                exists=false;
             }
             Assert.assertEquals(exists,true);
         }

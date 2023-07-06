@@ -53,7 +53,13 @@ import pages_DSD_OMS.login.LoginPage;
                         //"src/test/resources/features_Shared/features_Shared_DSD/MyAccountFeature/AddPaymentInfo_cancel.feature",
                         //"src/test/resources/features_Shared/features_Shared_DSD/MyAccountFeature/AddPaymentInfoDelete.feature",
                         //"src/test/resources/features_Shared/features_Shared_DSD/MyAccountFeature/Additional_Email_recipient_OMSi9118DeleteFunctionality.feature",
-                        "src/test/resources/features_Shared/features_Shared_DSD/MyAccountFeature/AddPaymentInfoCheckPreferred.feature",
+                        //"src/test/resources/features_Shared/features_Shared_DSD/MyAccountFeature/AddPaymentInfoCheckPreferred.feature",
+                        //"src/test/resources/features_Shared/features_Shared_DSD/ThemeBuilderFeature/themeBuilderFeatures1.feature",
+                        //"src/test/resources/features_Shared/features_Shared_DSD/ThemeBuilderFeature/themeBuilderFeatures2_Phase2.feature",
+                        "src/test/resources/features_Shared/features_Shared_DSD/CRMFeature/crmFeatures.feature",
+                        "src/test/resources/features_Shared/features_Shared_DSD/CRMFeature/crmFeatures1.feature",
+                        //"src/test/resources/features_Shared/features_Shared_DSD/CRMFeature/crmFeatures2.feature",
+                        //"src/test/resources/features_Shared/features_Shared_DSD/CRMFeature/crmFeatures3.feature",
                         //"src/test/resources/features_Shared/features_Shared_DSD/MyAccount_NewAddress_Add.feature"
                 },
                 glue = {"stepDefination_DSD_OMS"},
@@ -94,15 +100,12 @@ public class TestRunnSingleSce extends AbstractTestNGCucumberTests {
 //        }
 //    }
 
-    @AfterMethod
+    /*@AfterMethod
     public static void afterMethod() throws InterruptedException, MessagingException, IOException {
         //Thread.sleep(10000);
 
         TestBase.CloseBrowser();
-
-
-
-    }
+    }*/
 
     @AfterClass
     public static void afterClass() throws InterruptedException, MessagingException, IOException {
@@ -110,16 +113,16 @@ public class TestRunnSingleSce extends AbstractTestNGCucumberTests {
 
         MailSend.sendMail();
         //TestBase.CloseBrowser() won't work since browser already got closed in AfterMethod
-        //TestBase.CloseBrowser();
+        TestBase.CloseBrowser();
 
-//        if(TestBase.testEnvironment.get_browser().equalsIgnoreCase("Firefox"))
-//        {
-//            Runtime.getRuntime().exec("taskkill /F /IM geckodriver.exe");
-//        }
-//        else
-//        if(TestBase.testEnvironment.get_browser().equalsIgnoreCase("Chrome"))
-//        {
-//            Runtime.getRuntime().exec("taskkill /F /IM chromedriver.exe");
-//        }
+       if(TestBase.testEnvironment.get_browser().equalsIgnoreCase("Firefox"))
+        {
+            Runtime.getRuntime().exec("taskkill /F /IM geckodriver.exe");
+        }
+        else
+        if(TestBase.testEnvironment.get_browser().equalsIgnoreCase("Chrome"))
+        {
+            Runtime.getRuntime().exec("taskkill /F /IM chromedriver.exe");
+        }
     }
     }

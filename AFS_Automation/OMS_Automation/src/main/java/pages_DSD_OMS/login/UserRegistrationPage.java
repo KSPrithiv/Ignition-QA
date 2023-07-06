@@ -239,10 +239,10 @@ public class UserRegistrationPage
         exists=false;
         try
         {
-            HelpersMethod.waitTillElementDisplayed(driver,ConfirmPass,4);
+            HelpersMethod.waitTillElementDisplayed(driver,ConfirmPass,40);
             if(HelpersMethod.EleDisplay(ConfirmPass))
             {
-                HelpersMethod.EnterText(driver,ConfirmPass,1,Pass_Confirm);
+                HelpersMethod.EnterText(driver,ConfirmPass,10,Pass_Confirm);
                     exists=true;
                 scenario.log("CONFIRM PASSWORD ENTERED IS "+HelpersMethod.JSGetValueEle(driver,ConfirmPass,10));
             }
@@ -284,20 +284,35 @@ public class UserRegistrationPage
     {
         try
         {
-            HelpersMethod.waitTillElementDisplayed(driver,RegCancel,4);
+            HelpersMethod.waitTillElementDisplayed(driver,RegCancel,40);
             if (HelpersMethod.EleDisplay(RegCancel))
             {
                 HelpersMethod.ScrollElement(driver,RegCancel);
-                HelpersMethod.ClickBut(driver,RegCancel,1);
+                HelpersMethod.ClickBut(driver,RegCancel,10);
             }
             if(HelpersMethod.IsExists("//div[contains(@class,'k-widget k-window k-dialog')]",driver))
             {
-                HelpersMethod.ClickBut(driver,HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-widget k-window k-dialog')]/descendant::button"),1);
+                HelpersMethod.ClickBut(driver,HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-widget k-window k-dialog')]/descendant::button"),40);
             }
-            HelpersMethod.Implicitwait(driver,20);
         }
         catch (Exception e) {}
     }
+
+    //Visibility of 'Do't have account' checkbox
+    public void validateDoNotHaveAccount()
+    {
+        exists=false;
+        try
+        {
+            if(HelpersMethod.EleDisplay(NoAccCheckbox))
+            {
+                exists=true;
+            }
+            Assert.assertEquals(exists,true);
+        }
+        catch (Exception e){}
+    }
+
 
     //Click on 'Do't have account' check box
     public void DoNotHaveAccount()

@@ -22,6 +22,13 @@ Feature: Standing Order1
     Then User should search for Customer and Route in Standing order register popup
     And User should click on PDF button, should Open new browser
 
+  @StandingOrderRegisterCancel
+  Scenario: Test scenario for generating Excel sheet for standing order registeration cancel option
+    Given User must be on Order Entry Page to select Standing Order and navigate to standing order
+    And User should click on Standing Order Register button
+    Then User should search for Customer and Route in Standing order register popup
+    And User should Click on Cancel button
+
   @GenerateStandingOrder
   Scenario:Test scenario for generating standing order
     Given User must be on Order Entry Page to select Standing Order and navigate to standing order

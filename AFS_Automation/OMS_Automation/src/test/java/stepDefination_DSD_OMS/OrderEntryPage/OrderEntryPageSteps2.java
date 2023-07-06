@@ -55,17 +55,28 @@ public class OrderEntryPageSteps2
     @Then("Enter Prod_No in Quick Product Entry area")
     public void enterProd_NoInQuickProductEntryArea(DataTable tabledata) throws InterruptedException, AWTException, SQLException
     {
+        String unitOfMeasure=null;
         java.util.List<java.util.List<String>> Prod_details = tabledata.asLists(String.class);
         newOE = new NewOrderEntryPage(driver,scenario);
-        HelpersMethod.Implicitwait(driver, 10);
         ArrayList<String> Prod_No= (ArrayList<String>) DataBaseConnection.DataConn1(TestBase.testEnvironment.getMultiple_Prod_Sql());
-        //productPage = new ProductPage(driver);
         for (int i = 0; i <= Prod_details.size() - 1; i++)
         {
             String pro=String.valueOf(Prod_No.get(i));
             newOE.QuickProduct(pro);
-            newOE.CheckForQuickCaseEnabled(Prod_details.get(i).get(0));
-            newOE.CheckForQuickUnitEnabled(Prod_details.get(i).get(1));
+            unitOfMeasure=newOE.readUnitOfMeasure();
+            if(unitOfMeasure.equals("Units"))
+            {
+                newOE.CheckForQuickUnitEnabled(Prod_details.get(i).get(1));
+            }
+             else if(unitOfMeasure.equals("Cases"))
+            {
+                newOE.CheckForQuickCaseEnabled(Prod_details.get(i).get(0));
+            }
+             else if(unitOfMeasure.equals("Cases, Units"))
+            {
+                newOE.CheckForQuickCaseEnabled(Prod_details.get(i).get(0));
+                newOE.CheckForQuickUnitEnabled(Prod_details.get(i).get(1));
+            }
         }
     }
 
@@ -82,7 +93,7 @@ public class OrderEntryPageSteps2
     {
         newOE=new NewOrderEntryPage(driver,scenario);
         //Enter product Desc in search bar
-        newOE.SearchBox_ProdDesc(TestBase.testEnvironment.get_ProdDesc());
+        newOE.SearchBox_ProdDesc(TestBase.testEnvironment.getProdDesc());
     }
 
     //Reading total amount from the New OE page
@@ -156,9 +167,7 @@ public class OrderEntryPageSteps2
     @And ("change the account_No to someother account#")
     public void change_the_account_no_to_someother_account_no() throws InterruptedException, AWTException
     {
-        HelpersMethod.Implicitwait(driver,5);
         orderpage=new OrderEntryPage(driver, scenario);
-
         //Changing account number
         orderpage.Change_NewAccount(TestBase.testEnvironment.get_AnotherAcc());
         orderpage.PopUps_After_AccountChange();
@@ -169,8 +178,6 @@ public class OrderEntryPageSteps2
     {
         exists=false;
         newOE=new NewOrderEntryPage(driver,scenario);
-       // WebElement WebCardTitle=HelpersMethod.FindByElement(driver,"xpath","//div[@id='orderEntryCard']/descendant::label[contains(text(),'New order')]");
-       // String CardTitle=WebCardTitle.getText();
         if(HelpersMethod.IsExists("//div[@id='orderEntryCard']/descendant::label[contains(text(),'New order')]",driver))
         {
             exists=true;
@@ -213,6 +220,8 @@ public class OrderEntryPageSteps2
         summary=new CheckOutSummaryPage(driver,scenario);
         Order_No=summary.Get_Order_No();
         summary.Cancel_Button();
+        summary.VerifyCancelPopUp();
+        summary.CancelPop();
     }
 
     //verifying whether ordernumber is existing in OG or not

@@ -1022,7 +1022,7 @@ public class NewOrderEntryPage
             {
                 WebElement WebEle = HelpersMethod.FindByElement(driver, "xpath", "//span[@id='SkipReason']/descendant::span[contains(@class,'k-icon k-i-arrow-s')]");
                 HelpersMethod.JScriptClick(driver, WebEle, 10);
-                HelpersMethod.DropDownMenu_LowerCase(driver, "//ul[contains(@class,'k-list k-reset')]/descendant::li", reason);
+                HelpersMethod.DropDownMenu_LowerCase(driver, "//ul[contains(@class,'k-list k-reset')]/descendant::li");
                 WebEle = HelpersMethod.FindByElement(driver, "xpath", "//button[text()='Ok']");
                 HelpersMethod.ClickBut(driver, WebEle, 10);
             }
