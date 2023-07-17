@@ -1,13 +1,18 @@
 package ui.pages.counting.counting;
 
 import common.utils.Waiters;
+import lombok.SneakyThrows;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import ui.pages.BasePage;
+
 import java.util.List;
+import java.util.NoSuchElementException;
+
 import static common.setup.DriverManager.getDriver;
 
 public class CountingCountPage extends BasePage {
+
     By countPageTitle = By.className("spnmoduleNameHeader");
     By cycleCountSessionLabel = By.id("ddlCycleCountSession-label");
     By cycleCountSession = By.id("ddlCycleCountSession");
@@ -32,7 +37,8 @@ public class CountingCountPage extends BasePage {
     By onHandFilter = By.cssSelector(".i-btn-checkbox  #OnHand");
     By countedQtyFilter = By.cssSelector(".i-btn-checkbox  #CountedQtty");
     By uomFilter = By.cssSelector(".i-btn-checkbox  #UOM");
-    By inputContains = By.xpath("//input[@placeholder='Contains']");
+  //  By inputContains = By.xpath("//input[@placeholder='Contains']");
+    By inputContains = By.xpath("//input[@placeholder='Is empty']");
     By applyButton = By.xpath("//button[text()='Apply']");
     By inputSearch = By.xpath("//input[@placeholder='Search']");
     By clearButton = By.xpath("//button[text()='Clear']");
@@ -40,7 +46,7 @@ public class CountingCountPage extends BasePage {
     By table = By.cssSelector(".k-grid-table");
     By locationLabel = By.cssSelector(".menu-label");
     By locationCountQuantityRows = By.cssSelector("tr.k-master-row");
-    By addProductButton = By.id("btnAddProduct");
+    By addProductButton = By.xpath("//button[contains(@id, 'btnAddProduct')]//*[contains(@class, 'i-icon')]");
     By productsColumn = By.xpath("//span[@class='k-column-title' and contains(text(), 'Products')]");
     By factorColumn = By.xpath("//span[@class='k-column-title' and contains(text(), 'Factor')]");
     By onhandColumn = By.xpath("//span[@class='k-column-title' and contains(text(), 'On hand')]");
@@ -87,9 +93,6 @@ public class CountingCountPage extends BasePage {
     }
 
     public void waitCountingCountPageToLoad() {
-        refresh();
-        refresh();
-        refresh();
         Waiters.waitUntilPageWillLoadedSelenide();
         Waiters.waitABit(3000);
         Waiters.waitForElementToBeDisplay(countPageTitle);
@@ -109,8 +112,12 @@ public class CountingCountPage extends BasePage {
 
     public void selectSession(String session) {
         clickOnElement(cycleCountSession);
-        clickOnElement(findWebElement(By.xpath("//div[contains(@class, 'k-animation-container-shown')]//li[contains(text(), '"
-                + session + "') and @role='option']")));
+        WebElement option = findWebElements(By.xpath("//div[contains(@class, 'k-animation-container-shown')]//li"))
+                .stream()
+                .filter(el -> el.getText().contains(session))
+                .findFirst()
+                .orElse(null);
+        clickOnElement(option);
         Waiters.waitABit(2000);
     }
 
@@ -178,8 +185,9 @@ public class CountingCountPage extends BasePage {
     public String getItemsCountText() { return getText(itemsCount); }
 
     public WebElement getTableRowByLocation(String location) {
-        Waiters.waitABit(2000);
+        Waiters.waitABit(2_000);
         List<WebElement> rows = getTable().findElements(By.xpath(".//tr[contains(@class, 'k-master-row')]"));
+        Waiters.waitABit(5_000);
         return rows.stream()
                 .filter(row -> row.getText().contains(location))
                 .findFirst()
@@ -205,19 +213,26 @@ public class CountingCountPage extends BasePage {
     }
 
     public void clickLocation(String location) {
-        Waiters.waitABit(3000);
+        Waiters.waitABit(5_000);
+        scrollToCenter(getTableRowByLocation(location));
+        Waiters.waitABit(5_000);
         clickOnElement(getTableRowByLocation(location));
+        Waiters.waitABit(5_000);
     }
 
     public void clickAddProduct() {
-        Waiters.waitABit(3000);
+        Waiters.waitABit(3_000);
         clickOnElement(getAddProductButton());
+        clickOnElement(getAddProductButton());
+        Waiters.waitABit(10_000);
     }
 
     public void typeProduct(String product) {
-        Waiters.waitABit(3000);
-        typeText(getProductInput(), product);
-        pressEnter(getProductInput());
+        Waiters.waitABit(3_000);
+        clickOnElement(getSearchProductButton());
+        Waiters.waitABit(3_000);
+        clickOnElement(findWebElement(By.xpath("//td[contains(text(), '" + product + "')]")));
+        Waiters.waitABit(10_000);
     }
 
     public void clickLProductDataByIndex(int index) {

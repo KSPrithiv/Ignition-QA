@@ -1,17 +1,23 @@
 package steps.counting.sessions;
 
+import common.constants.FilePaths;
 import common.constants.TimeFormats;
+import common.utils.objectmapper.ObjectMapperWrapper;
 import common.utils.time.TimeConversion;
 import io.cucumber.java.en.And;
 import io.qameta.allure.Step;
 import lombok.extern.slf4j.Slf4j;
+import objects.countingsessions.CountingSessionsDTO;
 import ui.pages.counting.sessions.CountingSessionsPage;
 
 import java.util.Calendar;
+import java.util.List;
 
 @Slf4j
 public class CountingSessionsPageSteps {
     CountingSessionsPage countingSessionsPage = new CountingSessionsPage();
+    CountingSessionsDTO countingSessionsDTO = new ObjectMapperWrapper()
+                .getObject(FilePaths.COUNTING_SESSIONS_DATA, CountingSessionsDTO.class);
 
     @Step
     @And("Waits for Counting Sessions page to load")
@@ -49,10 +55,28 @@ public class CountingSessionsPageSteps {
     }
 
     @Step
+    @And("User selects randomly created session on Counting Sessions page")
+    public void selectRandomlyCreatedSession() {
+        log.info("User selects randomly created session on Counting Sessions page");
+        String session = countingSessionsPage.getSession();
+        countingSessionsPage.selectSession(session);
+    }
+
+    @Step
     @And("User selects session {string} on Counting Sessions page")
     public void selectSession(String session) {
         log.info("User selects session on Counting Sessions page");
         countingSessionsPage.selectSession(session);
+    }
+
+    @Step
+    @And("User selects session with index {int} on Counting Sessions page")
+    public void selectSessionWithIndex(int index) {
+        log.info("User selects session with index on Counting Sessions page");
+        List<String> sessions = List.of(countingSessionsDTO.getSessions().getSession1(), countingSessionsDTO.getSessions()
+            .getSession2(), countingSessionsDTO.getSessions().getSession3(),countingSessionsDTO.getSessions().getSession4(),
+            countingSessionsDTO.getSessions().getSession5());
+        countingSessionsPage.selectSession(sessions.get(index));
     }
 
     @Step
@@ -119,10 +143,26 @@ public class CountingSessionsPageSteps {
     }
 
     @Step
+    @And("User types randomly created session name on Counting Sessions page")
+    public void typeRandomSessionName() {
+        log.info("User types randomly created session name on Counting Sessions page");
+        countingSessionsPage.typeRandomSessionName();
+    }
+
+    @Step
     @And("User types count type {string} on Counting Sessions page")
     public void selectCountType(String type) {
         log.info("User types count type on Counting Sessions page");
         countingSessionsPage.selectCountType(type);
+    }
+
+    @Step
+    @And("User types count type {int} on Counting Sessions page")
+    public void selectCountTypeWithIndex(int index) {
+        log.info("User types count type with index on Counting Sessions page");
+        List<String> types = List.of(countingSessionsDTO.getCountTypes().getCountType1(), countingSessionsDTO.getCountTypes().getCountType2(),
+                countingSessionsDTO.getCountTypes().getCountType3(), countingSessionsDTO.getCountTypes().getCountType4());
+        countingSessionsPage.selectCountType(types.get(index));
     }
 
     @Step
@@ -196,10 +236,32 @@ public class CountingSessionsPageSteps {
     }
 
     @Step
+    @And("User types Location code with index {int} on Counting Sessions page")
+    public void typeRandomLocationCode(int index) {
+        log.info("User types Location code with index on Counting Sessions page");
+        List<String> codes = List.of(countingSessionsDTO.getLocationCodes().getLocationCode1(), countingSessionsDTO
+           .getLocationCodes().getLocationCode2(), countingSessionsDTO.getLocationCodes().getLocationCode3(),
+            countingSessionsDTO.getLocationCodes().getLocationCode3(), countingSessionsDTO.getLocationCodes().getLocationCode4(),
+            countingSessionsDTO.getLocationCodes().getLocationCode5(), countingSessionsDTO.getLocationCodes().getLocationCode6());
+        countingSessionsPage.typeLocationCode(codes.get(index));
+    }
+
+    @Step
     @And("User selects Location code {string} on Counting Sessions page")
     public void selectLocationCode(String code) {
         log.info("User selects Location code on Counting Sessions page");
         countingSessionsPage.selectLocationCode(code);
+    }
+
+    @Step
+    @And("User selects Location code with index {int} on Counting Sessions page")
+    public void selectRandomLocationCode(int index) {
+        log.info("User selects Location code with index on Counting Sessions page");
+        List<String> codes = List.of(countingSessionsDTO.getLocationCodes().getLocationCode1(), countingSessionsDTO
+           .getLocationCodes().getLocationCode2(), countingSessionsDTO.getLocationCodes().getLocationCode3(),
+           countingSessionsDTO.getLocationCodes().getLocationCode3(), countingSessionsDTO.getLocationCodes().getLocationCode4(),
+           countingSessionsDTO.getLocationCodes().getLocationCode5(), countingSessionsDTO.getLocationCodes().getLocationCode6());
+        countingSessionsPage.selectLocationCode(codes.get(index));
     }
 
     @Step
@@ -231,10 +293,30 @@ public class CountingSessionsPageSteps {
     }
 
     @Step
+    @And("User selects random Zone with index {int} on Counting Sessions page")
+    public void selectZone(int index) {
+        log.info("User selects random Zone with index on Counting Sessions page");
+        List<String> zones = List.of(countingSessionsDTO.getZones().getZone1(), countingSessionsDTO.getZones().getZone2(),
+             countingSessionsDTO.getZones().getZone3(), countingSessionsDTO.getZones().getZone4(), countingSessionsDTO
+            .getZones().getZone5(), countingSessionsDTO.getZones().getZone6());
+        countingSessionsPage.selectZone(zones.get(index));
+    }
+
+    @Step
     @And("User selects Location type {string} on Counting Sessions page")
     public void selectLocationType(String type) {
         log.info("User selects Location type on Counting Sessions page");
         countingSessionsPage.selectLocationType(type);
+    }
+
+    @Step
+    @And("User selects random Location type with index {int} on Counting Sessions page")
+    public void selectRandomLocationType(int index) {
+        log.info("User selects random Location type on Counting Sessions page");
+        List<String> types = List.of(countingSessionsDTO.getLocationTypes().getLocationType1(), countingSessionsDTO
+            .getLocationTypes().getLocationType2(), countingSessionsDTO.getLocationTypes().getLocationType3(),
+            countingSessionsDTO.getLocationTypes().getLocationType4(), countingSessionsDTO.getLocationTypes().getLocationType5());
+        countingSessionsPage.selectLocationType(types.get(index));
     }
 
     @Step
@@ -245,10 +327,30 @@ public class CountingSessionsPageSteps {
     }
 
     @Step
+    @And("User types Starting Location with index {int} on Counting Sessions page")
+    public void typeStartingLocationByIndex(int index) {
+        log.info("User types Starting Location with index on Counting Sessions page");
+        List<String> locations = List.of(countingSessionsDTO.getStartingLocations().getStartingLocation1(), countingSessionsDTO
+              .getStartingLocations().getStartingLocation2(), countingSessionsDTO.getStartingLocations().getStartingLocation3(),
+              countingSessionsDTO.getStartingLocations().getStartingLocation4());
+        countingSessionsPage.typeStartingLocation(locations.get(index));
+    }
+
+    @Step
     @And("User types Ending Location {string} on Counting Sessions page")
     public void typeEndingLocation(String code) {
         log.info("User types Ending Location on Counting Sessions page");
         countingSessionsPage.typeEndingLocation(code);
+    }
+
+    @Step
+    @And("User types Ending Location with index {int} on Counting Sessions page")
+    public void typeEndingLocationByIndex(int index) {
+        log.info("User types Ending Location with index on Counting Sessions page");
+        List<String> locations = List.of(countingSessionsDTO.getEndingLocations().getEndingLocation1(), countingSessionsDTO
+               .getEndingLocations().getEndingLocation2(), countingSessionsDTO.getEndingLocations().getEndingLocation3(),
+                countingSessionsDTO.getEndingLocations().getEndingLocation4());
+        countingSessionsPage.typeEndingLocation(locations.get(index));
     }
 
     @Step
@@ -399,6 +501,16 @@ public class CountingSessionsPageSteps {
     }
 
     @Step
+    @And("User searches for product with index {int} on Counting Sessions page")
+    public void searchProduct(int index) {
+        log.info("User searches for product with index on Counting Sessions page");
+        List<String> products = List.of(countingSessionsDTO.getProducts().getProduct1(), countingSessionsDTO.getProducts()
+               .getProduct2(), countingSessionsDTO.getProducts().getProduct3(), countingSessionsDTO.getProducts()
+               .getProduct4(), countingSessionsDTO.getProducts().getProduct5());
+        countingSessionsPage.searchProduct(products.get(index));
+    }
+
+    @Step
     @And("User searches for assignment {string} on Counting Sessions page")
     public void searchAssignment(String assignment) {
         log.info("User searches for assignment on Counting Sessions page");
@@ -476,10 +588,29 @@ public class CountingSessionsPageSteps {
     }
 
     @Step
+    @And("Types Product by index {int} on Counting Sessions page")
+    public void typesProductCodeFilterByIndex(int index) {
+        log.info("Types Product by index on Counting Sessions page");
+        List<String> products = List.of(countingSessionsDTO.getProducts().getProduct1(), countingSessionsDTO.getProducts()
+                .getProduct2(), countingSessionsDTO.getProducts().getProduct3(), countingSessionsDTO.getProducts()
+                .getProduct4(), countingSessionsDTO.getProducts().getProduct5());
+        countingSessionsPage.typeFilter(products.get(index));
+    }
+
+    @Step
     @And("Types Owner {string} on Counting Sessions page")
     public void typesOwnerCodeFilter(String filter) {
         log.info("Types Owner on Counting Sessions page");
         countingSessionsPage.typeFilter(filter);
+    }
+
+    @Step
+    @And("Types Owner by index {int} on Counting Sessions page")
+    public void typesOwnerCodeFilterByIndex(int index) {
+        log.info("Types Owner by index on Counting Sessions page");
+        List<String> owners = List.of(countingSessionsDTO.getOwners().getOwner1(), countingSessionsDTO.getOwners()
+             .getOwner2(), countingSessionsDTO.getOwners().getOwner3(), countingSessionsDTO.getOwners().getOwner4());
+        countingSessionsPage.typeFilter(owners.get(index));
     }
 
     @Step
@@ -490,10 +621,30 @@ public class CountingSessionsPageSteps {
     }
 
     @Step
+    @And("Types Description by index {int} on Counting Sessions page")
+    public void typesDescriptionCodeFilterByIndex(int index) {
+        log.info("Types Description by index on Counting Sessions page");
+        List<String> descriptions = List.of(countingSessionsDTO.getDescriptions().getDescription1(), countingSessionsDTO
+               .getDescriptions().getDescription2(), countingSessionsDTO.getDescriptions().getDescription3(),
+               countingSessionsDTO.getDescriptions().getDescription4());
+        countingSessionsPage.typeFilter(descriptions.get(index));
+    }
+
+    @Step
     @And("Types Counts {string} on Counting Sessions page")
     public void typesCountsCodeFilter(String filter) {
         log.info("Types Counts on Counting Sessions page");
         countingSessionsPage.typeFilter(filter);
+    }
+
+    @Step
+    @And("Types Counts by index {int} on Counting Sessions page")
+    public void typesCountsCodeFilterByIndex(int index) {
+        log.info("Types Counts on Counting Sessions page");
+        List<String> types = List.of(countingSessionsDTO.getCountTypes().getCountType1(), countingSessionsDTO
+              .getCountTypes().getCountType2(), countingSessionsDTO.getCountTypes().getCountType3(),
+              countingSessionsDTO.getCountTypes().getCountType4());
+        countingSessionsPage.typeFilter(types.get(index));
     }
 
     @Step
@@ -508,6 +659,17 @@ public class CountingSessionsPageSteps {
     public void typesProductTypeCodeFilter(String filter) {
         log.info("Types Product type on Counting Sessions page");
         countingSessionsPage.typeFilter(filter);
+    }
+
+    @Step
+    @And("Types Product type by index {int} on Counting Sessions page")
+    public void typesProductTypeCodeFilter(int index) {
+        log.info("Types Product type by index on Counting Sessions page");
+        List<String> types = List.of(countingSessionsDTO.getProductTypes().getProductType1(), countingSessionsDTO
+              .getProductTypes().getProductType2(), countingSessionsDTO.getProductTypes().getProductType3(),
+              countingSessionsDTO.getProductTypes().getProductType4(), countingSessionsDTO.getProductTypes()
+              .getProductType5(), countingSessionsDTO.getProductTypes().getProductType6());
+        countingSessionsPage.typeFilter(types.get(index));
     }
 
     @Step
@@ -567,10 +729,32 @@ public class CountingSessionsPageSteps {
     }
 
     @Step
+    @And("Selects product type by index {int} on Counting Sessions page")
+    public void selectProductTypeByIndex(int index) {
+        log.info("Selects product type by index on Counting Sessions page");
+        List<String> types = List.of(countingSessionsDTO.getProductTypes().getProductType1(), countingSessionsDTO
+               .getProductTypes().getProductType2(), countingSessionsDTO.getProductTypes().getProductType3(),
+                countingSessionsDTO.getProductTypes().getProductType4(), countingSessionsDTO.getProductTypes().getProductType5(),
+                countingSessionsDTO.getProductTypes().getProductType6());
+        countingSessionsPage.selectProductType(types.get(index));
+    }
+
+    @Step
     @And("Selects {string} movement class on Counting Sessions page")
     public void selectMovementClass(String type) {
         log.info("Selects movement class on Counting Sessions page");
         countingSessionsPage.selectMovementClass(type);
+    }
+
+    @Step
+    @And("Selects movement class by index {int} on Counting Sessions page")
+    public void selectMovementClassByIndex(int index) {
+        log.info("Selects movement class by index on Counting Sessions page");
+        List<String> classes = List.of(countingSessionsDTO.getMovementClasses().getMovementClass1(), countingSessionsDTO
+               .getMovementClasses().getMovementClass2(), countingSessionsDTO.getMovementClasses().getMovementClass3(),
+               countingSessionsDTO.getMovementClasses().getMovementClass4(), countingSessionsDTO.getMovementClasses()
+               .getMovementClass5());
+        countingSessionsPage.selectMovementClass(classes.get(index));
     }
 
     @Step
@@ -602,10 +786,29 @@ public class CountingSessionsPageSteps {
     }
 
     @Step
+    @And("Selects owner dropdown by index {int} on Counting Sessions page")
+    public void selectOwnerDropdownByIndex(int index) {
+        log.info("Selects owner dropdown by index on Counting Sessions page");
+        List<String> owners = List.of(countingSessionsDTO.getOwners().getOwner1(), countingSessionsDTO.getOwners()
+                .getOwner2(), countingSessionsDTO.getOwners().getOwner3(), countingSessionsDTO.getOwners().getOwner4());
+        countingSessionsPage.selectOwnerDropdown(owners.get(index));
+    }
+
+    @Step
     @And("Types {string} supplier on Counting Sessions page")
     public void typeSupplier(String owner) {
         log.info("Types supplier on Counting Sessions page");
         countingSessionsPage.typeSupplier(owner);
+    }
+
+    @Step
+    @And("Types supplier by index {int} on Counting Sessions page")
+    public void typeSupplierByIndex(int index) {
+        log.info("Types supplier by index on Counting Sessions page");
+        List<String> suppliers = List.of(countingSessionsDTO.getSuppliers().getSupplier1(), countingSessionsDTO
+               .getSuppliers().getSupplier2(), countingSessionsDTO.getSuppliers().getSupplier3(), countingSessionsDTO
+               .getSuppliers().getSupplier4(), countingSessionsDTO.getSuppliers().getSupplier5());
+        countingSessionsPage.typeSupplier(suppliers.get(index));
     }
 
     @Step
@@ -616,10 +819,30 @@ public class CountingSessionsPageSteps {
     }
 
     @Step
+    @And("Types starting product range by index {int} on Counting Sessions page")
+    public void typeStartingProdRangeByIndex(int index) {
+        log.info("Types starting product range by index on Counting Sessions page");
+        List<String> products = List.of(countingSessionsDTO.getProducts().getProduct1(), countingSessionsDTO
+               .getProducts().getProduct2(), countingSessionsDTO.getProducts().getProduct3(), countingSessionsDTO
+               .getProducts().getProduct4(), countingSessionsDTO.getProducts().getProduct5());
+        countingSessionsPage.typeStartingProdRange(products.get(index));
+    }
+
+    @Step
     @And("Types {string} ending product range on Counting Sessions page")
     public void typeEndingProdRange(String range) {
         log.info("Types ending product range on Counting Sessions page");
         countingSessionsPage.typeEndingProdRange(range);
+    }
+
+    @Step
+    @And("Types ending product range by index {int} on Counting Sessions page")
+    public void typeEndingProdRange(int index) {
+        log.info("Types ending product range by index on Counting Sessions page");
+        List<String> products = List.of(countingSessionsDTO.getProducts().getProduct1(), countingSessionsDTO
+                .getProducts().getProduct2(), countingSessionsDTO.getProducts().getProduct3(), countingSessionsDTO
+                .getProducts().getProduct4(), countingSessionsDTO.getProducts().getProduct5());
+        countingSessionsPage.typeEndingProdRange(products.get(index));
     }
 
     @Step
@@ -630,10 +853,32 @@ public class CountingSessionsPageSteps {
     }
 
     @Step
+    @And("Types prod alias type by index {int} on Counting Sessions page")
+    public void selectProdAliasTypeByIndex(int index) {
+        log.info("Types prod alias type on Counting Sessions page");
+        List<String> products = List.of(countingSessionsDTO.getProdAliasTypes().getProdAliasType1(), countingSessionsDTO
+                .getProdAliasTypes().getProdAliasType2(), countingSessionsDTO.getProdAliasTypes().getProdAliasType3(),
+                countingSessionsDTO.getProdAliasTypes().getProdAliasType4(), countingSessionsDTO.getProdAliasTypes()
+                .getProdAliasType5());
+        countingSessionsPage.selectProdAliasType(products.get(index));
+    }
+
+    @Step
     @And("Types {string} inventory status on Counting Sessions page")
     public void selectInventoryStatus(String type) {
         log.info("Types inventory status on Counting Sessions page");
         countingSessionsPage.selectInventoryStatus(type);
+    }
+
+    @Step
+    @And("Types inventory status by index {int} on Counting Sessions page")
+    public void selectInventoryStatusByIndex(int index) {
+        log.info("Types inventory status by index on Counting Sessions page");
+        List<String> statuses = List.of(countingSessionsDTO.getInventoryStatuses().getInventoryStatus1(), countingSessionsDTO
+               .getInventoryStatuses().getInventoryStatus2(), countingSessionsDTO.getInventoryStatuses().getInventoryStatus3(),
+                countingSessionsDTO.getInventoryStatuses().getInventoryStatus4(), countingSessionsDTO.getInventoryStatuses()
+               .getInventoryStatus5(), countingSessionsDTO.getInventoryStatuses().getInventoryStatus6());
+        countingSessionsPage.selectInventoryStatus(statuses.get(index));
     }
 
     @Step
@@ -701,10 +946,20 @@ public class CountingSessionsPageSteps {
     }
 
     @Step
-    @And("Selects user {string} days on Counting Sessions page")
+    @And("Selects user {string} on Counting Sessions page")
     public void selectUser(String user) {
         log.info("Selects user " + user);
         countingSessionsPage.selectUser(user);
+    }
+
+    @Step
+    @And("Selects user by index {int} on Counting Sessions page")
+    public void selectUser(int index) {
+        log.info("Selects user by index " + index);
+        List<String> users = List.of(countingSessionsDTO.getUsers().getUser1(),countingSessionsDTO.getUsers().getUser2(),
+               countingSessionsDTO.getUsers().getUser3(), countingSessionsDTO.getUsers().getUser4(), countingSessionsDTO
+               .getUsers().getUser5());
+        countingSessionsPage.selectUser(users.get(index));
     }
 
     @Step

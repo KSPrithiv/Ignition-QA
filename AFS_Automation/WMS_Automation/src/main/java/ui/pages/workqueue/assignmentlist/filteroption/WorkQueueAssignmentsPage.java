@@ -40,6 +40,7 @@ public class WorkQueueAssignmentsPage extends BasePage {
     By printedFilter = By.cssSelector(".i-btn-checkbox  #Printed");
     By clearAllButton = By.xpath("//button[text()='Clear all']");
     By inputContains = By.xpath("//input[@placeholder='Contains']");
+   // By inputContains = By.xpath("//input[@placeholder='Contains']");
     By applyButton = By.xpath("//button[text()='Apply']");
     By inputSearch = By.xpath("//input[@placeholder='Search']");
     By notStartedStatus = By.id("Not Started");
@@ -57,6 +58,9 @@ public class WorkQueueAssignmentsPage extends BasePage {
     By assignmentTypePickCooler = By.xpath("//input[contains(@id, 'Pick Cooler')]");
     By assignmentTypePickDry = By.xpath("//input[contains(@id, 'Pick Dry')]");
     By assignmentTypePickFreezer = By.xpath("//input[contains(@id, 'Pick Freezer')]");
+    By assignmentTypePick = By.xpath("//input[contains(@id, 'Pick')]");
+    By assignmentTypePickDoNotSplit = By.xpath("//input[contains(@id, 'Pick Do Not Split')]");
+    By assignmentTypePickFullPallets = By.xpath("//input[contains(@id, 'Pick Full Pallets')]");
     By isEmptyButton = By.cssSelector("#textRadioButton2");
     By editAssignmentType = By.cssSelector("#wqListAssignmentType");
     By editAssignmentTaskGroup = By.cssSelector("#wqListTaskGroup");
@@ -113,9 +117,6 @@ public class WorkQueueAssignmentsPage extends BasePage {
     By btnClose = By.id("btnWQClose");
 
     public void waitWorkQueueAssignmentsPageToLoad() {
-        refresh();
-        refresh();
-        refresh();
         Waiters.waitABit(7000);
         Waiters.waitUntilPageWillLoadedSelenide();
         Waiters.waitForElementToBeDisplay(getAssignmentsTitle());
@@ -253,6 +254,24 @@ public class WorkQueueAssignmentsPage extends BasePage {
         clickOnElement(assignmentTypePickFreezer);
     }
 
+    public void clickAssignmentTypePick() {
+        Waiters.waitABit(2000);
+        Waiters.waitForElementToBeDisplay(assignmentTypePick);
+        clickOnElement(assignmentTypePick);
+    }
+
+    public void clickAssignmentTypePickDoNotSplit() {
+        Waiters.waitABit(2000);
+        Waiters.waitForElementToBeDisplay(assignmentTypePickDoNotSplit);
+        clickOnElement(assignmentTypePickDoNotSplit);
+    }
+
+    public void clickAssignmentTypePickFullPallets() {
+        Waiters.waitABit(2000);
+        Waiters.waitForElementToBeDisplay(assignmentTypePickFullPallets);
+        clickOnElement(assignmentTypePickFullPallets);
+    }
+
     public void selectAssignmentType(String text) {
         clickOnElement(editAssignmentType);
         clickOnElement(findWebElement(By.xpath("//div[contains(@class, 'k-animation-container-shown')]//li[contains(text(), '"
@@ -270,8 +289,11 @@ public class WorkQueueAssignmentsPage extends BasePage {
     public void selectAssignmentUser(String text) {
         clickOnElement(editAssignmentUsers);
         Waiters.waitABit(3000);
-        clickOnElement(findWebElement(By.xpath("//div[contains(@class, 'k-animation-container-shown')]//li[contains(text(), '"
-                + text + "') and @role='option']")));
+        List<WebElement> users = findWebElements(By.xpath("//div[contains(@class, 'k-animation-container-shown')]//li"));
+        WebElement user = users.stream()
+                .filter(el -> el.getText().trim().contains(text))
+                .findFirst().orElseThrow(() -> new RuntimeException("User is not found"));
+        clickOnElement(user);
         Waiters.waitABit(1000);
     }
 
@@ -845,11 +867,13 @@ public class WorkQueueAssignmentsPage extends BasePage {
     }
 
     public String getReleaseDateValue() {
+        Waiters.waitABit(2_000);
         Waiters.waitForPresenceOfElement(releaseDate);
         return getValue(releaseDate);
     }
 
     public String getReleaseTimeValue() {
+        Waiters.waitABit(2_000);
         Waiters.waitForPresenceOfElement(releaseTime);
         return getValue(releaseTime);
     }

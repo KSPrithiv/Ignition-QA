@@ -325,6 +325,13 @@ public class WorkQueueAssignmentsPageSteps {
     }
 
     @Step
+    @And("Checks Default task group on Work Queue Assignments page")
+    public void clickInputDefault() {
+        log.info("Checks Default task group on Work Queue Assignments page");
+        workQueueAssignmentsPage.clickInputDefault();
+    }
+
+    @Step
     @And("Checks Assignment type Count on Work Queue Assignments page")
     public void clickAssignmentTypeCount() {
         log.info("Checks Assignment type Count on Work Queue Assignments page");
@@ -364,6 +371,20 @@ public class WorkQueueAssignmentsPageSteps {
     public void clickAssignmentTypePickFreezer() {
         log.info("Checks Assignment type Pick Freezer on Work Queue Assignments page");
         workQueueAssignmentsPage.clickAssignmentTypePickFreezer();
+    }
+
+    @Step
+    @And("Checks Assignment type Pick Do Not Split on Work Queue Assignments page")
+    public void clickAssignmentTypePickDoNotSplit() {
+        log.info("Checks Assignment type Pick Do Not Split on Work Queue Assignments page");
+        workQueueAssignmentsPage.clickAssignmentTypePickDoNotSplit();
+    }
+
+    @Step
+    @And("Checks Assignment type Pick Full Pallets on Work Queue Assignments page")
+    public void clickAssignmentTypePickFullPallets() {
+        log.info("Checks Assignment type Pick Full Pallets on Work Queue Assignments page");
+        workQueueAssignmentsPage.clickAssignmentTypePickFullPallets();
     }
 
     @Step

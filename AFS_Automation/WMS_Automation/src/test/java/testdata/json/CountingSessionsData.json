@@ -1,0 +1,120 @@
+{
+  "sessions": {
+    "session 1": "Informed session",
+    "session 2": "DEFAULT COUNT",
+    "session 3": "Blind session",
+    "session 4": "Default count session",
+    "session 5": "ZONE 1"
+  },
+  "count types": {
+    "count type 1": "Blind",
+    "count type 2": "Default Count Type",
+    "count type 3": "Informed count type",
+    "count type 4": "Partailly Informed"
+  },
+  "location codes": {
+    "location code 1": "EQ 128",
+    "location code 2": "TA01B",
+    "location code 3": "TA05B",
+    "location code 4": "TS02",
+    "location code 5": "TEST10",
+    "location code 6": "TIERRA5"
+  },
+  "zones": {
+    "zone 1": "(any)",
+    "zone 2": "BRP",
+    "zone 3": "FRZ",
+    "zone 4": "REF",
+    "zone 5": "S",
+    "zone 6": "CHL"
+  },
+  "location types": {
+    "location type 1": "Bulk",
+    "location type 2": "Case Pick",
+    "location type 3": "Docked trailer position",
+    "location type 4": "Floor Reserve",
+    "location type 5": "Next Door"
+  },
+  "starting locations": {
+    "starting location 1": "101.056.01",
+    "starting location 2": "101.056.70",
+    "starting location 3": "101.059.80",
+    "starting location 4": "101.061.70"
+  },
+  "ending locations": {
+    "ending location 1": "101.056.70",
+    "ending location 2": "101.058.01",
+    "ending location 3": "101.058.90",
+    "ending location 4": "101.060.70"
+  },
+  "reasons": {
+    "reason 1": "Molecule Man",
+    "reason 2": "29",
+    "reason 3": "Dan Jukes",
+    "reason 4": "Dan Jukes"
+  },
+  "products": {
+    "product 1": "200002",
+    "product 2": "20",
+    "product 3": "200004",
+    "product 4": "200007",
+    "product 5": "200009"
+  },
+  "product types": {
+    "product type 1": "(Any)",
+    "product type 2": "DRY",
+    "product type 3": "CHILL",
+    "product type 4": "DRY GOODS",
+    "product type 5": "FREEZE",
+    "product type 6": "BREAK PACK"
+  },
+  "owners": {
+    "owner 1": "(Any)",
+    "owner 2": "01",
+    "owner 3": "02",
+    "owner 4": "03"
+  },
+  "descriptions": {
+    "description 1": "EXTRA FANCY RICE",
+    "description 2": "PREMIUM GOLD",
+    "description 3": "ORGANIC SUSHI",
+    "description 4": "NUTRA-GRAIN"
+  },
+  "movement classes": {
+    "movement class 1": "(Any)",
+    "movement class 2": "A",
+    "movement class 3": "B",
+    "movement class 4": "C",
+    "movement class 5": "D"
+  },
+  "suppliers": {
+    "supplier 1": "10",
+    "supplier 2": "10000",
+    "supplier 3": "10001",
+    "supplier 4": "10002",
+    "supplier 5": "10005"
+  },
+  "prod alias types": {
+    "prod alias type 1": "(Any)",
+    "prod alias type 2": "PRODUCT CODE",
+    "prod alias type 3": "UPC CODE",
+    "prod alias type 4": "RECEIVE LOT",
+    "prod alias type 5": "GTIN"
+  },
+  "inventory statuses": {
+    "inventory status 1": "(Any)",
+    "inventory status 2": "Close to Code",
+    "inventory status 3": "Damaged",
+    "inventory status 4": "Expired",
+    "inventory status 5": "Hidden",
+    "inventory status 6": "Stock"
+  },
+  "users":
+  {
+    "user 1": "AFS - AFS User",
+    "user 2": "AFS2 - AFS2 User",
+    "user 3": "AFSRF - AFSRF User",
+    "user 4": "AFSSUPPORT - Afs Support",
+    "user 5": "AFSWS - AFSWS User"
+  }
+}

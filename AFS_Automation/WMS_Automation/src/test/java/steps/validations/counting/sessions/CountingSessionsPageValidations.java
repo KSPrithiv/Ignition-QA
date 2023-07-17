@@ -1,7 +1,10 @@
 package steps.validations.counting.sessions;
 
+import common.constants.FilePaths;
 import common.constants.Notifications;
+import common.utils.objectmapper.ObjectMapperWrapper;
 import io.cucumber.java.en.And;
+import objects.countingsessions.CountingSessionsDTO;
 import org.apache.commons.lang3.StringUtils;
 import org.testng.asserts.SoftAssert;
 import ui.pages.counting.sessions.CountingSessionsPage;
@@ -10,6 +13,8 @@ import java.util.Arrays;
 
 public class CountingSessionsPageValidations {
     CountingSessionsPage countingSessionsPage = new CountingSessionsPage();
+    CountingSessionsDTO countingSessionsDTO = new ObjectMapperWrapper()
+            .getObject(FilePaths.COUNTING_SESSIONS_DATA, CountingSessionsDTO.class);
 
     @And("Validates Counting Sessions page is displayed")
     public void validateCountingSessionsPageDisplayed() {
@@ -156,6 +161,13 @@ public class CountingSessionsPageValidations {
     public void validateSessionIsSaved(String session) {
         SoftAssert softAssert = new SoftAssert();
         softAssert.assertTrue(countingSessionsPage.getSessionDropdownValue().contains(session), "Session is not saved");
+        softAssert.assertAll();
+    }
+
+    @And("Validates random session is saved on Counting Sessions page")
+    public void validateRandomSessionIsSaved() {
+        SoftAssert softAssert = new SoftAssert();
+        softAssert.assertTrue(countingSessionsPage.getSessionDropdownValue().contains(countingSessionsPage.getSession()), "Session is not saved");
         softAssert.assertAll();
     }
 

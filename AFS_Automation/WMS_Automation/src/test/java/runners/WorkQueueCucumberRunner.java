@@ -12,21 +12,15 @@ import org.aeonbits.owner.ConfigFactory;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.ITestResult;
 import org.testng.annotations.*;
-
-import util.MailSend;
 import util.TestBase;
 
-
 import utilWMS.MailSend_WMS;
-
-
-import javax.mail.MessagingException;
 import java.io.IOException;
 
 import static common.setup.DriverManager.*;
 import static common.setup.DriverManager.getDriver;
 
-@CucumberOptions(features = {"src/test/resources/features/workqueue/assignwork"},
+@CucumberOptions(features = {"src/test/resources/features/workqueue/assignmentlist/filteroption"},
         glue = {"steps"},
         plugin = {"pretty",
                 "json:target/cucumber.json",
@@ -68,7 +62,6 @@ public class WorkQueueCucumberRunner extends AbstractTestNGCucumberTests {
         MailSend_WMS.sendMail();
         if (driverEnabled(getDriver())) {
             try {
-
                 driverThreadLocal.get().close();
                 driverThreadLocal.get().quit();
             } catch (Exception e) {

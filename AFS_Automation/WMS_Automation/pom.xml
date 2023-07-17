@@ -92,8 +92,6 @@
             <version>5.5.4</version>
         </dependency>
 
-
-
         <!-- https://mvnrepository.com/artifact/tech.grasshopper/extent-pdf-report -->
         <dependency>
             <groupId>tech.grasshopper</groupId>
@@ -230,7 +228,7 @@
                     </systemPropertyVariables>
                     <suiteXmlFiles>
                         <!--suppress UnresolvedMavenProperty -->
-                        <suiteXmlFile>${suiteXmlFile}</suiteXmlFile>
+                        <suiteXmlFile>${basedir}/${suiteXmlFile}</suiteXmlFile>
                     </suiteXmlFiles>
                 </configuration>
             </plugin>
