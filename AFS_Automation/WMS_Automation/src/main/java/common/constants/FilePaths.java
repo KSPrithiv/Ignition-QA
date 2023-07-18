@@ -12,4 +12,5 @@ public class FilePaths {
     public static final String APPOINTMENT_DATA = "src/test/java/testdata/json/db/Appointment.json";
     public static final String COUNTING_SESSIONS_DATA = "src/test/java/testdata/json/CountingSessionsData.json";
     public static final String COUNTING_COUNT_DATA = "src/test/java/testdata/json/CountingCountData.json";
+    public static final String WORK_QUEUE_DATA = "src/test/java/testdata/json/WorkQueueData.json";
 }

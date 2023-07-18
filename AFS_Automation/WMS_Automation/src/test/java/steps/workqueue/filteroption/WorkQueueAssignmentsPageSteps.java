@@ -1,13 +1,20 @@
 package steps.workqueue.filteroption;
 
+import common.constants.FilePaths;
+import common.utils.objectmapper.ObjectMapperWrapper;
 import io.cucumber.java.en.And;
 import io.qameta.allure.Step;
 import lombok.extern.slf4j.Slf4j;
+import objects.workqueuedata.WorkQueueDataDTO;
 import ui.pages.workqueue.assignmentlist.filteroption.WorkQueueAssignmentsPage;
+
+import java.util.List;
 
 @Slf4j
 public class WorkQueueAssignmentsPageSteps {
     WorkQueueAssignmentsPage workQueueAssignmentsPage = new WorkQueueAssignmentsPage();
+    WorkQueueDataDTO workQueueDataDTO = new ObjectMapperWrapper()
+            .getObject(FilePaths.WORK_QUEUE_DATA, WorkQueueDataDTO.class);
 
     @Step
     @And("Waits for Work Queue Assignments page to load")
@@ -290,6 +297,153 @@ public class WorkQueueAssignmentsPageSteps {
     }
 
     @Step
+    @And("Types Actual Time by index {int} on Work Queue Assignments page")
+    public void typeActualTimeFilterByIndex(int index) {
+        log.info("Types Actual Time by index on Work Queue Assignments page");
+        List<String> time = List.of(workQueueDataDTO.getEstTime().getEstTime1(), workQueueDataDTO.getEstTime().getEstTime2(),
+                workQueueDataDTO.getEstTime().getEstTime3(), workQueueDataDTO.getEstTime().getEstTime4(), workQueueDataDTO
+                        .getEstTime().getEstTime5(), workQueueDataDTO.getEstTime().getEstTime6());
+        workQueueAssignmentsPage.typeFilter(time.get(index));
+    }
+
+    @Step
+    @And("Types Est Time by index {int} on Work Queue Assignments page")
+    public void typeEstTimeFilterByIndex(int index) {
+        log.info("Types Est Time by index on Work Queue Assignments page");
+        List<String> time = List.of(workQueueDataDTO.getEstTime().getEstTime1(), workQueueDataDTO.getEstTime().getEstTime2(),
+                workQueueDataDTO.getEstTime().getEstTime3(), workQueueDataDTO.getEstTime().getEstTime4(), workQueueDataDTO
+                .getEstTime().getEstTime5(), workQueueDataDTO.getEstTime().getEstTime6());
+        workQueueAssignmentsPage.typeFilter(time.get(index));
+    }
+
+    @Step
+    @And("Types Remaining by index {int} on Work Queue Assignments page")
+    public void typeRemainingFilterByIndex(int index) {
+        log.info("Types Remaining by index on Work Queue Assignments page");
+        List<String> remaining = List.of(workQueueDataDTO.getRemaining().getRemaining1(), workQueueDataDTO.getRemaining()
+                .getRemaining2(), workQueueDataDTO.getRemaining().getRemaining3(), workQueueDataDTO.getRemaining().getRemaining4(),
+                workQueueDataDTO.getRemaining().getRemaining5(), workQueueDataDTO.getRemaining().getRemaining6());
+        workQueueAssignmentsPage.typeFilter(remaining.get(index));
+    }
+
+    @Step
+    @And("Types Ship To by index {int} on Work Queue Assignments page")
+    public void typeShipToFilterByIndex(int index) {
+        log.info("Types Ship To by index on Work Queue Assignments page");
+        List<String> shipTo = List.of(workQueueDataDTO.getShipTo().getShipTo1(), workQueueDataDTO.getShipTo().getShipTo2(),
+                workQueueDataDTO.getShipTo().getShipTo3(), workQueueDataDTO.getShipTo().getShipTo4(), workQueueDataDTO
+                .getShipTo().getShipTo5(), workQueueDataDTO.getShipTo().getShipTo6());
+        workQueueAssignmentsPage.typeFilter(shipTo.get(index));
+    }
+
+    @Step
+    @And("Types Shipper by index {int} on Work Queue Assignments page")
+    public void typeShipperFilterByIndex(int index) {
+        log.info("Types Shipper by index on Work Queue Assignments page");
+        List<String> shippers = List.of(workQueueDataDTO.getShippers().getShipper1(), workQueueDataDTO.getShippers().getShipper2(),
+                workQueueDataDTO.getShippers().getShipper3(), workQueueDataDTO.getShippers().getShipper4(), workQueueDataDTO
+                .getShippers().getShipper5(), workQueueDataDTO.getShippers().getShipper6());
+        workQueueAssignmentsPage.typeFilter(shippers.get(index));
+    }
+
+    @Step
+    @And("Types Weight by index {int} on Work Queue Assignments page")
+    public void typeWeightFilterByIndex(int index) {
+        log.info("Types Weight by index on Work Queue Assignments page");
+        List<String> weights = List.of(workQueueDataDTO.getWeights().getWeight1(), workQueueDataDTO.getWeights().getWeight2(),
+                workQueueDataDTO.getWeights().getWeight3(), workQueueDataDTO.getWeights().getWeight4(), workQueueDataDTO
+                .getWeights().getWeight5(), workQueueDataDTO.getWeights().getWeight6());
+        workQueueAssignmentsPage.typeFilter(weights.get(index));
+    }
+
+    @Step
+    @And("Types Percent Picked by index {int} on Work Queue Assignments page")
+    public void typePercentPickedFilterByIndex(int index) {
+        log.info("Types Percent Picked by index on Work Queue Assignments page");
+        List<String> percents = List.of(workQueueDataDTO.getPicked().getPicked1(),workQueueDataDTO.getPicked().getPicked2());
+        workQueueAssignmentsPage.typeFilter(percents.get(index));
+    }
+
+    @Step
+    @And("Types In Use By by index {int} on Work Queue Assignments page")
+    public void typeInUseByFilterByIndex(int index) {
+        log.info("Types In Use By by index on Work Queue Assignments page");
+        List<String> inUseBy = List.of(workQueueDataDTO.getInUseBy().getInUseBy1(), workQueueDataDTO.getInUseBy().getInUseBy2());
+        workQueueAssignmentsPage.typeFilter(inUseBy.get(index));
+    }
+
+    @Step
+    @And("Types Assign To by index {int} on Work Queue Assignments page")
+    public void typeAssignToFilterByIndex(int index) {
+        log.info("Types Assign To by index on Work Queue Assignments page");
+        List<String> assignTo = List.of(workQueueDataDTO.getAssignTo().getAssignTo1(), workQueueDataDTO.getAssignTo()
+                .getAssignTo2(), workQueueDataDTO.getAssignTo().getAssignTo3(), workQueueDataDTO.getAssignTo().getAssignTo4(),
+                workQueueDataDTO.getAssignTo().getAssignTo5());
+        workQueueAssignmentsPage.typeFilter(assignTo.get(index));
+    }
+
+    @Step
+    @And("Types Cube by index {int} on Work Queue Assignments page")
+    public void typeCubeByIndex(int index) {
+        log.info("Types Cube by index on Work Queue Assignments page");
+        List<String> cube = List.of(workQueueDataDTO.getCubes().getCube1(), workQueueDataDTO.getCubes().getCube2(),
+                workQueueDataDTO.getCubes().getCube3(), workQueueDataDTO.getCubes().getCube4(), workQueueDataDTO
+                .getCubes().getCube5(), workQueueDataDTO.getCubes().getCube6());
+        workQueueAssignmentsPage.typeFilter(cube.get(index));
+    }
+
+    @Step
+    @And("Types Qty by index {int} on Work Queue Assignments page")
+    public void typeQtyByIndex(int index) {
+        log.info("Types Qty by index on Work Queue Assignments page");
+        List<String> qties = List.of(workQueueDataDTO.getQties().getQty1(), workQueueDataDTO.getQties().getQty2(),
+                workQueueDataDTO.getQties().getQty3(), workQueueDataDTO.getQties().getQty4(), workQueueDataDTO.getQties()
+                .getQty5(), workQueueDataDTO.getQties().getQty6());
+        workQueueAssignmentsPage.typeFilter(qties.get(index));
+    }
+
+    @Step
+    @And("Types Task by index {int} on Work Queue Assignments page")
+    public void typeTaskByIndex(int index) {
+        log.info("Types Task by index on Work Queue Assignments page");
+        List<String> tasks = List.of(workQueueDataDTO.getTasks().getTask1(), workQueueDataDTO.getTasks().getTask2(),
+                workQueueDataDTO.getTasks().getTask3(), workQueueDataDTO.getTasks().getTask4(), workQueueDataDTO.getTasks()
+                .getTask5(), workQueueDataDTO.getTasks().getTask6());
+        workQueueAssignmentsPage.typeFilter(tasks.get(index));
+    }
+
+    @Step
+    @And("Types Stop by index {int} on Work Queue Assignments page")
+    public void typeStopByIndex(int index) {
+        log.info("Types Stop by index on Work Queue Assignments page");
+        List<String> stops = List.of(workQueueDataDTO.getStops().getStop1(), workQueueDataDTO.getStops().getStop2(),
+                workQueueDataDTO.getStops().getStop3(), workQueueDataDTO.getStops().getStop4(), workQueueDataDTO.getStops()
+                .getStop5(), workQueueDataDTO.getStops().getStop6());
+        workQueueAssignmentsPage.typeFilter(stops.get(index));
+    }
+
+    @Step
+    @And("Types Route by index {int} on Work Queue Assignments page")
+    public void typeRouteByIndex(int index) {
+        log.info("Types Route by index on Work Queue Assignments page");
+        List<String> routes = List.of(workQueueDataDTO.getRoutes().getRoute1(), workQueueDataDTO.getRoutes().getRoute2(),
+                workQueueDataDTO.getRoutes().getRoute3(), workQueueDataDTO.getRoutes().getRoute4(), workQueueDataDTO
+                .getRoutes().getRoute5());
+        workQueueAssignmentsPage.typeFilter(routes.get(index));
+    }
+
+    @Step
+    @And("Types Assignment Number by index {int} on Work Queue Assignments page")
+    public void typeAssignmentNumberByIndex(int index) {
+        log.info("Types Assignment Number by index on Work Queue Assignments page");
+        List<String> numbers = List.of(workQueueDataDTO.getAssignmentNumbers().getAssignmentNumber1(), workQueueDataDTO
+                .getAssignmentNumbers().getAssignmentNumber2(), workQueueDataDTO.getAssignmentNumbers().getAssignmentNumber3(),
+                workQueueDataDTO.getAssignmentNumbers().getAssignmentNumber4(), workQueueDataDTO.getAssignmentNumbers()
+                .getAssignmentNumber5());
+        workQueueAssignmentsPage.typeFilter(numbers.get(index));
+    }
+
+    @Step
     @And("Types search {string} on Work Queue Assignments page")
     public void typeSearch(String filter) {
         log.info("Types search on Work Queue Assignments page");
@@ -423,11 +577,44 @@ public class WorkQueueAssignmentsPageSteps {
     }
 
     @Step
+    @And("User selects Task group by index {int} for Edit Assignment on Work Queue Assignments page")
+    public void selectAssignmentTaskGroupByIndex(int index) {
+        log.info("User selects Task group by index {int} for Edit Assignment on Work Queue Assignments page");
+        List<String> tasks = List.of(workQueueDataDTO.getTaskGroupDTO().getTaskGroup7(), workQueueDataDTO.getTaskGroupDTO()
+                .getTaskGroup8(), workQueueDataDTO.getTaskGroupDTO().getTaskGroup9(), workQueueDataDTO.getTaskGroupDTO()
+                .getTaskGroup10(), workQueueDataDTO.getTaskGroupDTO().getTaskGroup11(), workQueueDataDTO.getTaskGroupDTO()
+                .getTaskGroup12());
+        workQueueAssignmentsPage.selectAssignmentTaskGroup(tasks.get(index));
+    }
+
+    @Step
+    @And("User selects Task group by index {int} for Assignment on Work Queue Assignments page")
+    public void selectTaskGroupByIndex(int index) {
+        log.info("User selects Task group by index for Assignment on Work Queue Assignments page");
+        List<String> tasks = List.of(workQueueDataDTO.getTaskGroupDTO().getTaskGroup7(), workQueueDataDTO.getTaskGroupDTO()
+                .getTaskGroup8(), workQueueDataDTO.getTaskGroupDTO().getTaskGroup9(), workQueueDataDTO.getTaskGroupDTO()
+                .getTaskGroup10(), workQueueDataDTO.getTaskGroupDTO().getTaskGroup11(), workQueueDataDTO.getTaskGroupDTO()
+                .getTaskGroup12());
+        workQueueAssignmentsPage.selectAssignmentTaskGroup(tasks.get(index));
+    }
+
+    @Step
     @And("User selects User {string} for Assignment on Work Queue Assignments page")
     public void selectAssignmentUser(String user) {
         log.info("User selects Task group for Edit Assignment on Work Queue Assignments page");
         workQueueAssignmentsPage.selectAssignmentUser(user);
     }
+
+    @Step
+    @And("User selects user by index {int} for Assignment on Work Queue Assignments page")
+    public void selectAssignmentUser(int index) {
+        log.info("User selects user by index for Edit Assignment on Work Queue Assignments page");
+        List<String> users = List.of(workQueueDataDTO.getUsersDTO().getUser1(), workQueueDataDTO.getUsersDTO().getUser2(),
+                workQueueDataDTO.getUsersDTO().getUser3(), workQueueDataDTO.getUsersDTO().getUser4(), workQueueDataDTO
+                .getUsersDTO().getUser5(), workQueueDataDTO.getUsersDTO().getUser6());
+        workQueueAssignmentsPage.selectAssignmentUser(users.get(index));
+    }
+
 
     @Step
     @And("User enters calendar day {string} for Assignment Release Date on Work Queue Assignments page")

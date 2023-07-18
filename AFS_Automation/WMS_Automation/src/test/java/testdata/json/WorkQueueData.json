@@ -1,0 +1,142 @@
+{
+  "assignment numbers":
+  {
+    "assignment number 1": "20365",
+    "assignment number 2": "20663",
+    "assignment number 3": "20907",
+    "assignment number 4": "21001",
+    "assignment number 5": "21140"
+  },
+  "routes":
+  {
+    "route 1": "05",
+    "route 2": "04",
+    "route 3": "03",
+    "route 4": "1103",
+    "route 5": "02",
+    "route 6": "1162"
+  },
+  "stops":
+  {
+    "stop 1": "1",
+    "stop 2": "2",
+    "stop 3": "3",
+    "stop 4": "4",
+    "stop 5": "5",
+    "stop 6": "6"
+  },
+  "tasks":
+  {
+    "task 1": "1",
+    "task 2": "2",
+    "task 3": "3",
+    "task 4": "4",
+    "task 5": "5",
+    "task 6": "6"
+  },
+  "qties":
+  {
+    "qty 1": "1",
+    "qty 2": "2",
+    "qty 3": "3",
+    "qty 4": "4",
+    "qty 5": "5",
+    "qty 6": "8"
+  },
+  "cubes":
+  {
+    "cube 1": "2 cu ft",
+    "cube 2": "3 cu ft",
+    "cube 3": "12 cu ft",
+    "cube 4": "185 cu ft",
+    "cube 5": "31 cu ft",
+    "cube 6": "40 cu ft"
+  },
+  "assign to":
+  {
+    "assign to 1": "FRANR - Fran Rifkin",
+    "assign to 2": "AFSWS - AFSWS User",
+    "assign to 3": "AFSRF - AFSRF User",
+    "assign to 4": "AFS - AFS User",
+    "assign to 5": "AFSWS"
+  },
+  "in use by":
+  {
+    "in use by 1": "FRANR",
+    "in use by 2": "AFS"
+  },
+  "% picked":
+  {
+    "% picked 1": "0 %",
+    "% picked 2": "1 %"
+  },
+  "weights":
+  {
+    "weight 1": "1250",
+    "weight 2": "1400",
+    "weight 3": "158",
+    "weight 4": "168",
+    "weight 5": "204",
+    "weight 6": "2640"
+  },
+  "shippers":
+  {
+    "shipper 1": "S00001154",
+    "shipper 2": "S00001152",
+    "shipper 3": "S00001151",
+    "shipper 4": "S00001139",
+    "shipper 5": "S00001088",
+    "shipper 6": "1040"
+  },
+  "ship to":
+  {
+    "ship to 1": "STAR STORE #10",
+    "ship to 2": "ACME",
+    "ship to 3": "Rio Grande - Reston",
+    "ship to 4": "Scott & Loris Foods",
+    "ship to 5": "ROSE VILLA/SALVATORE INC",
+    "ship to 6": "Postinis"
+  },
+  "remaining":
+  {
+    "remaining 1": "0",
+    "remaining 2": "1",
+    "remaining 3": "2",
+    "remaining 4": "3",
+    "remaining 5": "4",
+    "remaining 6": "5"
+  },
+  "est. time":
+  {
+    "est. time 1": "00:01:00",
+    "est. time 2": "00:05:03",
+    "est. time 3": "00:33:20",
+    "est. time 4": "00:05:03",
+    "est. time 5": "00:02:54",
+    "est. time 6": "00:05:55"
+  },
+  "users":
+  {
+  "user 1": "AFS2 - AFS2 User",
+  "user 2": "AFSRF - AFSRF User",
+  "user 3": "AFS - AFS User",
+  "user 4": "AFSWS - AFSWS User",
+  "user 5": "SYED - Syed Shahab",
+  "user 6": "SYED - Syed Shahab"
+  },
+  "task groups":
+  {
+    "task group 1": "COUNT",
+    "task group 2": "DEFAULT",
+    "task group 3": "PICK CASES",
+    "task group 4": "PICK FRZ",
+    "task group 5": "PICK PAL",
+    "task group 6": "PUTAWAY",
+    "task group 7": "Loading",
+    "task group 8": "Pick Freezer",
+    "task group 9": "Cycle Count",
+    "task group 10": "Shipping",
+    "task group 11": "Pick Do Not Split",
+    "task group 12": "Picking Full Pallets"
+  }
+}

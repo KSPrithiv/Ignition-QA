@@ -1,0 +1,27 @@
+-------------------------------------------------------------------------------
+Test set: TestSuite
+-------------------------------------------------------------------------------
+Tests run: 43, Failures: 5, Errors: 0, Skipped: 0, Time elapsed: 4,154.821 s <<< FAILURE! - in TestSuite
+runScenario(runners.WorkQueueCucumberRunner)  Time elapsed: 77.329 s  <<< FAILURE!
+java.lang.AssertionError: 
+The following asserts failed:
+	Items Found is 0 expected [true] but found [false]
+
+runScenario(runners.WorkQueueCucumberRunner)  Time elapsed: 186.14 s  <<< FAILURE!
+org.openqa.selenium.TimeoutException: 
+Expected condition failed: waiting for visibility of element located by By.xpath: //input[contains(@id, 'Pick Dry')] (tried for 100 second(s) with 1000 milliseconds interval)
+Build info: version: '4.8.0', revision: '267030adea'
+System info: os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '11.0.2'
+Driver info: driver.version: unknown
+
+runScenario(runners.WorkQueueCucumberRunner)  Time elapsed: 65.815 s  <<< FAILURE!
+java.lang.AssertionError: 
+The following asserts failed:
+	Warning Message is not correct expected [Delete selected assignment?] but found [Delete]
+
+runScenario(runners.WorkQueueCucumberRunner)  Time elapsed: 127.947 s  <<< FAILURE!
+java.lang.StackOverflowError
+
+runScenario(runners.WorkQueueCucumberRunner)  Time elapsed: 89.277 s  <<< FAILURE!
+java.lang.NullPointerException
+

@@ -11,7 +11,7 @@ Feature: Testing of Work Queue Assignment functionality
     And User clicks Clear All on Work Queue Assignments page
     And User clicks Add Filter on Work Queue Assignments page
     And User checks Assignment number on Work Queue Assignments page
-    Then Types filter "20365" on Work Queue Assignments page
+    Then Types Assignment Number by index 0 on Work Queue Assignments page
     And Clicks Apply button on Work Queue Assignments page
     And User clicks Assignments Title on Work Queue Assignments page
     And Validates Grid items are present on Work Queue Assignments page
@@ -54,7 +54,7 @@ Feature: Testing of Work Queue Assignment functionality
     And User clicks Clear All on Work Queue Assignments page
     And User clicks Add Filter on Work Queue Assignments page
     Then User checks Route Filter on Work Queue Assignments page
-    And Types filter "04" on Work Queue Assignments page
+    And Types Route by index 1 on Work Queue Assignments page
     And Clicks Apply button on Work Queue Assignments page
     And User clicks Assignments Title on Work Queue Assignments page
     And Validates Grid items are present on Work Queue Assignments page
@@ -69,7 +69,7 @@ Feature: Testing of Work Queue Assignment functionality
     And User clicks Clear All on Work Queue Assignments page
     And User clicks Add Filter on Work Queue Assignments page
     Then User checks Stops Filter on Work Queue Assignments page
-    And Types filter "7" on Work Queue Assignments page
+    And Types Stop by index 3 on Work Queue Assignments page
     And Clicks Apply button on Work Queue Assignments page
     And User clicks Assignments Title on Work Queue Assignments page
     And Validates Grid items are present on Work Queue Assignments page
@@ -84,7 +84,7 @@ Feature: Testing of Work Queue Assignment functionality
     And User clicks Clear All on Work Queue Assignments page
     And User clicks Add Filter on Work Queue Assignments page
     Then User checks Tasks Filter on Work Queue Assignments page
-    And Types filter "1" on Work Queue Assignments page
+    And Types Task by index 0 on Work Queue Assignments page
     And Clicks Apply button on Work Queue Assignments page
     And User clicks Assignments Title on Work Queue Assignments page
     And Validates Grid items are present on Work Queue Assignments page
@@ -99,7 +99,8 @@ Feature: Testing of Work Queue Assignment functionality
     And User clicks Clear All on Work Queue Assignments page
     And User clicks Add Filter on Work Queue Assignments page
     And User checks Qty Filter on Work Queue Assignments page
-    Then Types filter "10" on Work Queue Assignments page
+    Then Types Qty by index 0 on Work Queue Assignments page
+    # Then Types filter "10" on Work Queue Assignments page
     And Clicks Apply button on Work Queue Assignments page
     And User clicks Assignments Title on Work Queue Assignments page
     And Validates Grid items are present on Work Queue Assignments page
@@ -114,7 +115,7 @@ Feature: Testing of Work Queue Assignment functionality
     And User clicks Clear All on Work Queue Assignments page
     And User clicks Add Filter on Work Queue Assignments page
     Then User checks Cube Filter on Work Queue Assignments page
-    And Types filter "10" on Work Queue Assignments page
+    And Types Cube by index 0 on Work Queue Assignments page
     And Clicks Apply button on Work Queue Assignments page
     And User clicks Assignments Title on Work Queue Assignments page
     And Validates Grid items are present on Work Queue Assignments page
@@ -145,7 +146,7 @@ Feature: Testing of Work Queue Assignment functionality
     And User clicks Clear All on Work Queue Assignments page
     Then User clicks Add Filter on Work Queue Assignments page
     And User checks Assign To Filter on Work Queue Assignments page
-    And Types filter "FRANR - Fran Rifkin" on Work Queue Assignments page
+    And Types Assign To by index 0 on Work Queue Assignments page
     And Clicks Apply button on Work Queue Assignments page
     And User clicks Assignments Title on Work Queue Assignments page
     And Validates Grid items are present on Work Queue Assignments page
@@ -160,7 +161,7 @@ Feature: Testing of Work Queue Assignment functionality
     And User clicks Clear All on Work Queue Assignments page
     And User clicks Add Filter on Work Queue Assignments page
     And User checks In Use By Filter on Work Queue Assignments page
-    Then Types filter "FRANR" on Work Queue Assignments page
+    Then Types In Use By by index 0 on Work Queue Assignments page
     And Clicks Apply button on Work Queue Assignments page
     And User clicks Assignments Title on Work Queue Assignments page
     And Validates Grid items are present on Work Queue Assignments page
@@ -175,7 +176,7 @@ Feature: Testing of Work Queue Assignment functionality
     And User clicks Clear All on Work Queue Assignments page
     And User clicks Add Filter on Work Queue Assignments page
     And User checks Percent Picked Filter on Work Queue Assignments page
-    Then Types filter "0 %" on Work Queue Assignments page
+    Then Types Percent Picked by index 0 on Work Queue Assignments page
     And Clicks Apply button on Work Queue Assignments page
     And User clicks Assignments Title on Work Queue Assignments page
     And Validates Grid items are present on Work Queue Assignments page
@@ -189,8 +190,8 @@ Feature: Testing of Work Queue Assignment functionality
     When User clicks Add Filter on Work Queue Assignments page
     And User clicks Clear All on Work Queue Assignments page
     And User clicks Add Filter on Work Queue Assignments page
-    Then User checks Weight Filter on Work Queue Assignments page
-    And Types filter "5" on Work Queue Assignments page
+    And User checks Weight Filter on Work Queue Assignments page
+    Then Types Weight by index 0 on Work Queue Assignments page
     And Clicks Apply button on Work Queue Assignments page
     And User clicks Assignments Title on Work Queue Assignments page
     And Validates Grid items are present on Work Queue Assignments page
@@ -205,7 +206,7 @@ Feature: Testing of Work Queue Assignment functionality
     And User clicks Clear All on Work Queue Assignments page
     And User clicks Add Filter on Work Queue Assignments page
     And User checks Shipper Filter on Work Queue Assignments page
-    Then Types filter "3559" on Work Queue Assignments page
+    Then Types Shipper by index 0 on Work Queue Assignments page
     And Clicks Apply button on Work Queue Assignments page
     And User clicks Assignments Title on Work Queue Assignments page
     And Validates Grid items are present on Work Queue Assignments page
@@ -220,7 +221,7 @@ Feature: Testing of Work Queue Assignment functionality
     And User clicks Clear All on Work Queue Assignments page
     And User clicks Add Filter on Work Queue Assignments page
     And User checks Ship To Filter on Work Queue Assignments page
-    Then Types filter "Scott & Loris Foods" on Work Queue Assignments page
+    Then Types Ship To by index 3 on Work Queue Assignments page
     And Clicks Apply button on Work Queue Assignments page
     And User clicks Assignments Title on Work Queue Assignments page
     And Validates Grid items are present on Work Queue Assignments page
@@ -249,7 +250,7 @@ Feature: Testing of Work Queue Assignment functionality
     And User clicks Clear All on Work Queue Assignments page
     And User clicks Add Filter on Work Queue Assignments page
     Then User checks Remaining Filter on Work Queue Assignments page
-    And Types filter "1" on Work Queue Assignments page
+    And Types Remaining by index 1 on Work Queue Assignments page
     And Clicks Apply button on Work Queue Assignments page
     And User clicks Assignments Title on Work Queue Assignments page
     And Validates Grid items are present on Work Queue Assignments page
@@ -264,7 +265,7 @@ Feature: Testing of Work Queue Assignment functionality
     And User clicks Clear All on Work Queue Assignments page
     And User clicks Add Filter on Work Queue Assignments page
     And User checks Estimated Time Filter on Work Queue Assignments page
-    Then Types filter "00:01:00" on Work Queue Assignments page
+    Then Types Est Time by index 0 on Work Queue Assignments page
     And Clicks Apply button on Work Queue Assignments page
     And User clicks Assignments Title on Work Queue Assignments page
     And Validates Grid items are present on Work Queue Assignments page
@@ -294,7 +295,7 @@ Feature: Testing of Work Queue Assignment functionality
     And User clicks Clear All on Work Queue Assignments page
     And User clicks Add Filter on Work Queue Assignments page
     Then User checks Actual Time Filter on Work Queue Assignments page
-    And Types filter "00:00:01" on Work Queue Assignments page
+    And Types Actual Time by index 1 on Work Queue Assignments page
     And Clicks Apply button on Work Queue Assignments page
     And User clicks Assignments Title on Work Queue Assignments page
     And Validates Grid items are present on Work Queue Assignments page
@@ -324,12 +325,12 @@ Feature: Testing of Work Queue Assignment functionality
     And Clicks Save Button for Assignment on Work Queue Assignments page
     And Checks assignment with index 1 on Work Queue Assignments page
     Then User clicks Edit Assignment on Work Queue Assignments page
-    And User selects Type "Count" for Edit Assignment on Work Queue Assignments page
+    And User selects Task group by index 0 for Assignment on Work Queue Assignments page
     And Clicks Save Button for Assignment on Work Queue Assignments page
     And Validates Successful message "Success" on Work Queue Assignments page
     And Checks assignment with index 2 on Work Queue Assignments page
     And User clicks Edit Assignment on Work Queue Assignments page
-    And User selects Task group "Pick Freezer" for Edit Assignment on Work Queue Assignments page
+    And User selects Task group by index 1 for Edit Assignment on Work Queue Assignments page
     And Clicks Save Button for Assignment on Work Queue Assignments page
     And Validates Successful message "Success" on Work Queue Assignments page
     And Checks assignment with index 1 on Work Queue Assignments page
@@ -390,14 +391,14 @@ Feature: Testing of Work Queue Assignment functionality
     And Clicks Cancel Button for Assignment on Work Queue Assignments page
     And Checks assignment with index 1 on Work Queue Assignments page
     And User clicks Release Assignment on Work Queue Assignments page
-    And User selects User "Admin" for Assignment on Work Queue Assignments page
+    And User selects user by index 0 for Assignment on Work Queue Assignments page
     And Clicks Cancel Button for Assignment on Work Queue Assignments page
     And Checks assignment with index 0 on Work Queue Assignments page
     And Checks assignment with index 1 on Work Queue Assignments page
     And User clicks Release Assignment on Work Queue Assignments page
     And Validates current date and time for Release Assignment on Work Queue Assignments page
     And Validates Assignment popup Cancel and Save buttons are present on Work Queue Assignments page
-    And User selects User "AFSWS User" for Assignment on Work Queue Assignments page
+    And User selects user by index 1 for Assignment on Work Queue Assignments page
     And Clicks Save Button for Assignment on Work Queue Assignments page
     And Validates Successful message "Success" on Work Queue Assignments page
     And Checks assignment with index 0 on Work Queue Assignments page
@@ -405,7 +406,7 @@ Feature: Testing of Work Queue Assignment functionality
     And User clicks Release Assignment on Work Queue Assignments page
     And Validates current date and time for Release Assignment on Work Queue Assignments page
     And Validates Assignment popup Cancel and Save buttons are present on Work Queue Assignments page
-    And User selects User "RF User" for Assignment on Work Queue Assignments page
+    And User selects user by index 2 for Assignment on Work Queue Assignments page
     And Clicks Cancel Button for Assignment on Work Queue Assignments page
 
    Scenario: Checking Assignment Labels of Work Queue Assignments screen functionality
@@ -443,7 +444,7 @@ Feature: Testing of Work Queue Assignment functionality
     And User clicks Clear All on Work Queue Assignments page
     And User clicks Add Filter on Work Queue Assignments page
     Then User checks Qty Filter on Work Queue Assignments page
-    And Types filter "10" on Work Queue Assignments page
+    And Types Qty by index 3 on Work Queue Assignments page
     And Clicks Apply button on Work Queue Assignments page
     And User clicks Assignments Title on Work Queue Assignments page
     And Validates Grid items are present on Work Queue Assignments page
@@ -486,7 +487,7 @@ Feature: Testing of Work Queue Assignment functionality
     And User clicks Clear All on Work Queue Assignments page
     And User clicks Add Filter on Work Queue Assignments page
     Then User checks Assignment number on Work Queue Assignments page
-    And Types filter "32366" on Work Queue Assignments page
+    And Types Assignment Number by index 3 on Work Queue Assignments page
     And Clicks Apply button on Work Queue Assignments page
     And User clicks Assignments Title on Work Queue Assignments page
     And Validates Grid items are present on Work Queue Assignments page
@@ -501,7 +502,7 @@ Feature: Testing of Work Queue Assignment functionality
     And User clicks Clear All on Work Queue Assignments page
     And User clicks Add Filter on Work Queue Assignments page
     Then User checks In Use By Filter on Work Queue Assignments page
-    And Types filter "FRANR" on Work Queue Assignments page
+    And Types In Use By by index 0 on Work Queue Assignments page
     And Clicks Apply button on Work Queue Assignments page
     And User clicks Assignments Title on Work Queue Assignments page
     And Validates Grid items are present on Work Queue Assignments page
@@ -516,7 +517,7 @@ Feature: Testing of Work Queue Assignment functionality
     And User clicks Clear All on Work Queue Assignments page
     And User clicks Add Filter on Work Queue Assignments page
     And User checks Route Filter on Work Queue Assignments page
-    Then Types filter "1103" on Work Queue Assignments page
+    Then Types Route by index 3 on Work Queue Assignments page
     And Clicks Apply button on Work Queue Assignments page
     And User clicks Assignments Title on Work Queue Assignments page
     And Validates Grid items are present on Work Queue Assignments page
@@ -531,7 +532,7 @@ Feature: Testing of Work Queue Assignment functionality
     And User clicks Clear All on Work Queue Assignments page
     And User clicks Add Filter on Work Queue Assignments page
     Then User checks Stops Filter on Work Queue Assignments page
-    And Types filter "1" on Work Queue Assignments page
+    And Types Stop by index 0 on Work Queue Assignments page
     And Clicks Apply button on Work Queue Assignments page
     And User clicks Assignments Title on Work Queue Assignments page
     And Validates Grid items are present on Work Queue Assignments page
@@ -561,7 +562,7 @@ Feature: Testing of Work Queue Assignment functionality
     And User clicks Clear All on Work Queue Assignments page
     And User clicks Add Filter on Work Queue Assignments page
     Then User checks Cube Filter on Work Queue Assignments page
-    And Types filter "0 cu ft" on Work Queue Assignments page
+    And Types Cube by index 0 on Work Queue Assignments page
     And Clicks Apply button on Work Queue Assignments page
     And User clicks Assignments Title on Work Queue Assignments page
     And Validates Grid items are present on Work Queue Assignments page
@@ -592,7 +593,7 @@ Feature: Testing of Work Queue Assignment functionality
     And User clicks Clear All on Work Queue Assignments page
     And User clicks Add Filter on Work Queue Assignments page
     And User checks Assign To Filter on Work Queue Assignments page
-    Then Types filter "AFSWS" on Work Queue Assignments page
+    Then Types Assign To by index 4 on Work Queue Assignments page
     And Clicks Apply button on Work Queue Assignments page
     And User clicks Assignments Title on Work Queue Assignments page
     And Validates Grid items are present on Work Queue Assignments page
@@ -607,7 +608,7 @@ Feature: Testing of Work Queue Assignment functionality
     And User clicks Clear All on Work Queue Assignments page
     And User clicks Add Filter on Work Queue Assignments page
     And User checks Percent Picked Filter on Work Queue Assignments page
-    Then Types filter "0 %" on Work Queue Assignments page
+    Then Types Percent Picked by index 0 on Work Queue Assignments page
     And Clicks Apply button on Work Queue Assignments page
     And User clicks Assignments Title on Work Queue Assignments page
     And Validates Grid items are present on Work Queue Assignments page
@@ -622,7 +623,7 @@ Feature: Testing of Work Queue Assignment functionality
     And User clicks Clear All on Work Queue Assignments page
     And User clicks Add Filter on Work Queue Assignments page
     And User checks Weight Filter on Work Queue Assignments page
-    Then Types filter "10" on Work Queue Assignments page
+    Then Types Weight by index 5 on Work Queue Assignments page
     And Clicks Apply button on Work Queue Assignments page
     And User clicks Assignments Title on Work Queue Assignments page
     And Validates Grid items are present on Work Queue Assignments page
@@ -637,7 +638,7 @@ Feature: Testing of Work Queue Assignment functionality
     And User clicks Clear All on Work Queue Assignments page
     And User clicks Add Filter on Work Queue Assignments page
     And User checks Shipper Filter on Work Queue Assignments page
-    Then Types filter "S00001088" on Work Queue Assignments page
+    Then Types Shipper by index 4 on Work Queue Assignments page
     And Clicks Apply button on Work Queue Assignments page
     And User clicks Assignments Title on Work Queue Assignments page
     And Validates Grid items are present on Work Queue Assignments page
@@ -728,7 +729,7 @@ Feature: Testing of Work Queue Assignment functionality
     And User clicks Clear All on Work Queue Assignments page
     And User clicks Add Filter on Work Queue Assignments page
     And User checks Assignment number on Work Queue Assignments page
-    Then Types filter "21325" on Work Queue Assignments page
+    Then Types Assignment Number by index 2 on Work Queue Assignments page
     And Clicks Apply button on Work Queue Assignments page
     And User clicks Assignments Title on Work Queue Assignments page
     And Validates Grid items are present on Work Queue Assignments page

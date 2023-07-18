@@ -5,7 +5,7 @@ package utilWMS;
  * @Author Divya.Ramadas
  */
 
-import util.TestBase;
+//import util.TestBase;
 
 import javax.activation.DataHandler;
 import javax.activation.DataSource;
@@ -64,7 +64,7 @@ public class MailSend_WMS
 
             //String filename="corp.afsi.com\\C:\\Users\\karthikeyan.Armugam\\Documents\\Git_Repositories\\ignition-qa\\IgnitionQAAutomation\\Reports\\extent\\Index.html";
             //String filename="C:\\Users\\karthikeyan.Armugam\\Documents\\Git_Repositories\\ignition-qa\\IgnitionQAAutomation\\Reports\\extent\\Index.html";
-            String filename="C:\\Users\\karthikeyan.Armugam\\Documents\\AFS_Automation\\AFS_Automation\\WMS_Automation\\target\\cucumber-reports\\cucumber.html";
+            String filename="C:\\Users\\Irina.Holovan\\Documents\\ignition-qa\\AFS_Automation\\WMS_Automation\\target\\cucumber-reports\\cucumber.html";
             //Composing mail
             BodyPart objMessageBodyPart = new MimeBodyPart();
             objMessageBodyPart.setContent("Hi,"+"Santhosh, Good Afternoon.."+"\n", "text/html");

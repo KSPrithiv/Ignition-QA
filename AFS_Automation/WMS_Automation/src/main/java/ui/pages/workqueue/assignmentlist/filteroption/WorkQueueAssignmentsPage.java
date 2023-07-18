@@ -281,8 +281,14 @@ public class WorkQueueAssignmentsPage extends BasePage {
 
     public void selectAssignmentTaskGroup(String text) {
         clickOnElement(editAssignmentTaskGroup);
-        clickOnElement(findWebElement(By.xpath("//div[contains(@class, 'k-animation-container-shown')]//li[contains(text(), '"
-                + text + "') and @role='option']")));
+        List<WebElement> tasks = findWebElements(By.xpath("//div[contains(@class, 'k-animation-container-shown')]//li"));
+        System.out.println(tasks.get(0).getText());
+        System.out.println(tasks.get(1).getText());
+        System.out.println(tasks.get(2).getText());
+        WebElement task = tasks.stream()
+                .filter(el -> el.getText().trim().contains(text))
+                .findFirst().orElseThrow(() -> new RuntimeException("Task is not found"));
+        clickOnElement(task);
         Waiters.waitABit(1000);
     }
 

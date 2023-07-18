@@ -12,7 +12,7 @@ import org.aeonbits.owner.ConfigFactory;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.ITestResult;
 import org.testng.annotations.*;
-import util.TestBase;
+//import util.TestBase;
 
 import utilWMS.MailSend_WMS;
 import java.io.IOException;
@@ -24,7 +24,7 @@ import static common.setup.DriverManager.getDriver;
         glue = {"steps"},
         plugin = {"pretty",
                 "json:target/cucumber.json",
-//                "html:target/cucumber-reports/cucumber.html",
+                "html:target/cucumber-reports/cucumber.html",
                 "html:Reports/Index.html",
                 "json:target/cucumber-reports/cucumber.json",
                 "rerun:target/failedrerun.txt"
@@ -33,16 +33,16 @@ import static common.setup.DriverManager.getDriver;
 public class WorkQueueCucumberRunner extends AbstractTestNGCucumberTests {
     public static Environment environment;
 
-    @Parameters({"environment"})
+/*    @Parameters({"environment"})
     @BeforeClass
     public static void beforeClass(@Optional("environment") String envi) {
         try {
-            TestBase.InitializeProp(envi);
-            TestBase.SetDriver(TestBase.testEnvironment.get_browser());
+           *//* TestBase.InitializeProp(envi);
+            TestBase.SetDriver(TestBase.testEnvironment.get_browser());*//*
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }
+    }*/
 
     @Parameters({"environment", "browser"})
     @BeforeMethod
@@ -59,7 +59,7 @@ public class WorkQueueCucumberRunner extends AbstractTestNGCucumberTests {
     @AfterMethod
     public void closeBrowserInstance(ITestResult iTestResult) {
 
-        MailSend_WMS.sendMail();
+      //  MailSend_WMS.sendMail();
         if (driverEnabled(getDriver())) {
             try {
                 driverThreadLocal.get().close();
