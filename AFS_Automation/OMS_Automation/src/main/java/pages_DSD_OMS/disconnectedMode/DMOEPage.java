@@ -257,7 +257,7 @@ public class DMOEPage
     {
         exists=false;
         WebElement WebEle=null;
-        HelpersMethod.Implicitwait(driver,60);
+
         try
         {
             if(HelpersMethod.IsExists("//div[contains(@class,'connection-mode-container notification-center-item offline')]//*[local-name()='svg']//*[local-name()='path' and contains(@d,'M21')]",driver))

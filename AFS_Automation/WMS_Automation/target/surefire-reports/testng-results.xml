@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
+  <reporter-output>
+  </reporter-output>
+  <suite started-at="2023-07-04T16:41:01 EDT" name="Work Queue tests verification" finished-at="2023-07-04T16:41:23 EDT" duration-ms="22074">
+    <groups>
+      <group name="cucumber">
+        <method signature="AbstractTestNGCucumberTests.runScenario(io.cucumber.testng.PickleWrapper,io.cucumber.testng.FeatureWrapper)[pri:0, instance:runners.msg_delay_wms@f68f0dc]" name="runScenario" class="io.cucumber.testng.AbstractTestNGCucumberTests"/>
+      </group> <!-- cucumber -->
+    </groups>
+    <test started-at="2023-07-04T16:41:01 EDT" name="Work Queue verification" finished-at="2023-07-04T16:41:23 EDT" duration-ms="22074">
+      <class name="runners.msg_delay_wms">
+        <test-method is-config="true" signature="setUpClass(org.testng.ITestContext)[pri:0, instance:runners.msg_delay_wms@f68f0dc]" started-at="2023-07-04T16:41:01 EDT" name="setUpClass" finished-at="2023-07-04T16:41:02 EDT" duration-ms="1011" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[org.testng.TestRunner@768f4b42]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUpClass -->
+        <test-method is-config="true" signature="beforeClass(java.lang.String)[pri:0, instance:runners.msg_delay_wms@f68f0dc]" started-at="2023-07-04T16:41:02 EDT" name="beforeClass" finished-at="2023-07-04T16:41:02 EDT" duration-ms="94" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[properties/config_test.properties]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeClass -->
+        <test-method is-config="true" signature="startBrowserInstance(java.lang.String,java.lang.String)[pri:0, instance:runners.msg_delay_wms@f68f0dc]" started-at="2023-07-04T16:41:02 EDT" name="startBrowserInstance" finished-at="2023-07-04T16:41:07 EDT" duration-ms="5180" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[properties/config_test.properties]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[properties/config_test.properties]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- startBrowserInstance -->
+        <test-method signature="runScenario(io.cucumber.testng.PickleWrapper,io.cucumber.testng.FeatureWrapper)[pri:0, instance:runners.msg_delay_wms@f68f0dc]" started-at="2023-07-04T16:41:07 EDT" name="runScenario" description="Runs Cucumber Scenarios" data-provider="scenarios" finished-at="2023-07-04T16:41:19 EDT" duration-ms="11623" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA["Checking Navigate to Work Queue Assign Work screen functionality"]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA["Testing of Work Queue Assign Work functionality"]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- runScenario -->
+        <test-method is-config="true" signature="closeBrowserInstance(org.testng.ITestResult)[pri:0, instance:runners.msg_delay_wms@f68f0dc]" started-at="2023-07-04T16:41:19 EDT" name="closeBrowserInstance" finished-at="2023-07-04T16:41:20 EDT" duration-ms="701" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=runScenario status=SUCCESS method=AbstractTestNGCucumberTests.runScenario(io.cucumber.testng.PickleWrapper,io.cucumber.testng.FeatureWrapper)[pri:0, instance:runners.msg_delay_wms@f68f0dc] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- closeBrowserInstance -->
+        <test-method is-config="true" signature="afterClass()[pri:0, instance:runners.msg_delay_wms@f68f0dc]" started-at="2023-07-04T16:41:20 EDT" name="afterClass" finished-at="2023-07-04T16:41:21 EDT" duration-ms="1628" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- afterClass -->
+        <test-method is-config="true" signature="tearDownClass()[pri:0, instance:runners.msg_delay_wms@f68f0dc]" started-at="2023-07-04T16:41:21 EDT" name="tearDownClass" finished-at="2023-07-04T16:41:23 EDT" duration-ms="1665" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDownClass -->
+      </class> <!-- runners.msg_delay_wms -->
+    </test> <!-- Work Queue verification -->
+  </suite> <!-- Work Queue tests verification -->
+</testng-results>

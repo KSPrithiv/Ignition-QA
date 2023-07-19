@@ -64,7 +64,7 @@ public class OrderEntryPageSteps1
         List<List<String>> OrderType=tabledata.asLists(String.class);
 
         //Click on 'Order type' Index icon
-        HelpersMethod.Click_On_IndexFieldIcon(driver,OrderType.get(0).get(0),OrderType.get(0).get(1),OrderType.get(0).get(2));
+        HelpersMethod.Click_On_IndexFieldIcon(driver,OrderType.get(0).get(0),OrderType.get(0).get(1));
     }
 
     //Method for creating order using 'Copy from' drop down, in New OE page

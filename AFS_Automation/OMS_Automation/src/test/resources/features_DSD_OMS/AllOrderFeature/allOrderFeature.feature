@@ -7,7 +7,7 @@ Feature: All orders
     Then User navigate to Client side for All order
     Then User should select Order Entry tab for All order
 
-  @AllOrderCheckBox
+  @AllOrderCheckBox @sanity
     Scenario: Test scenario to display all the orders
     Given User must be on Order Entry Page to select All Orders
     And User should navigate to All Orders
@@ -40,6 +40,7 @@ Feature: All orders
     Scenario: Test scenario for displaying all Open order in all orders
     Given User must be on Order Entry Page to select All Orders
     And User should navigate to All Orders
+    Then User clicks on Show all orders check box after Clicking All orders tab
     And User clicks on Order status and select Open order option from drop down
     And User clicks on search button
     And User goes through all the order in Open order grid
@@ -89,21 +90,13 @@ Feature: All orders
       |60|80|
     Then User should click on Comment icon in Order entry card
     And User should enter comment in comment popup
-      |Comment for All order|
+      |Comment for All order|Order notes|
     Then Click on Next button
     And Click on Submit Order button and read Order_no created for All order
     Then User should be navigated back to All order page
     And User clicks on Show all orders check box
     And User Clicks on Add filter button and Search for OrderNo
     Then USer clicks on Comment icon and comments popup gets displayed
-
-  @PrintAllOrder
-  Scenario: Test scenario for testing print button functionality
-    Given User must be on Order Entry Page to select All Orders
-    And User should navigate to All Orders
-    Then User clicks on Show all orders check box after Clicking All orders tab
-    And User Clicks on Add filter button and enter values for search options
-    Then User select the order and click on Print button
 
   @EditOpenOrder
   Scenario: Test scenario for editing open order
@@ -143,6 +136,28 @@ Feature: All orders
       | Drag and Drop |
       | Day of week   |
 
+  @PrintAllOrder
+  Scenario: Test scenario for testing print button functionality
+    Given User must be on Order Entry Page to select All Orders
+    And User should navigate to All Orders
+    Then User clicks on Show all orders check box after Clicking All orders tab
+    And User clicks on Order status and select Active order option from drop down
+    And User clicks on search button
+    And User Clicks on Add filter button and enter values for search options
+    Then User select the order and click on Print button
+
+  @AllOrderToOrderEntry
+  Scenario: Test scenario for navigating from All order to OE
+    Given User must be on Order Entry Page to select All Orders
+    And User should navigate to All Orders
+    Then User clicks on Show all orders check box after Clicking All orders tab
+    And User clicks on Order status and select Active order option from drop down
+    And User clicks on search button
+    And User Clicks on Add filter button and enter values for search options
+    Then User clicks on OrderNo in All Order grid and User should be navigated Ordersummary page
+    Then User clicks on Back to Order list button and should be navigated to OE page
+    And User enters orderNo That he has selected from order grid and validates it exists in order also
+
   @CreatePickupOrder
   Scenario: Test scenario for creating Pickup order
     Given User must be on Order Entry Page to select All Orders
@@ -156,7 +171,7 @@ Feature: All orders
       |PO123|
     Then Enter Pro# in Quick Product Entry area
     And Check for Case and Unit input box enabled or not based on that enter value
-      |60|20|
+      |100|100|
     Then Click on Next button
     And Click on Submit Order button and read Order_no created for All order
     Then User should be navigated back to All order page
@@ -174,20 +189,13 @@ Feature: All orders
     Then User should select Note from popup and Order guide from popup
     Then Enter PO# for New order
       |PO123|
-    Then Click on Next button
+    Then Click on Next button and select option Continue without payment option
     And Click on Submit Order button and read Order_no created for All order
     Then User should be navigated back to All order page
     And User clicks on Show all orders check box
     And User Clicks on Add filter button and Search for OrderNo
 
-  @AllOrderToOrderEntry
-  Scenario: Test scenario for navigating from All order to OE
-    Given User must be on Order Entry Page to select All Orders
-    And User should navigate to All Orders
-    And User clicks on Order status and select Active order option from drop down
-    And User clicks on search button
-    And User Clicks on Add filter button and enter values for search options
-    Then User clicks on OrderNo in All Order grid and User should be navigated Ordersummary page
-    Then User clicks on Back to Order list button and should be navigated to OE page
-    And User enters orderNo That he has selected from order grid and validates it exists in order also
+
+
+
 

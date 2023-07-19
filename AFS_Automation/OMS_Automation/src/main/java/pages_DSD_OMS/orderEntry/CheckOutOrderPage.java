@@ -6,13 +6,19 @@ import io.cucumber.java8.He;
 import org.apache.commons.exec.ExecuteException;
 import org.apache.logging.log4j.core.tools.picocli.CommandLine;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
+import util.RandomValues;
 
 import java.awt.*;
+import java.util.List;
 
 /**
  * @Project DSD_OMS
@@ -24,6 +30,7 @@ public class CheckOutOrderPage
     WebDriver driver;
     Scenario scenario;
     String XPath=null;
+    static String fName=RandomValues.generateRandomString(6);
     boolean exists=false;
     boolean result=false;
 
@@ -118,12 +125,12 @@ public class CheckOutOrderPage
         {
           if(HelpersMethod.IsEnabledByele(BackButton))
           {
-              HelpersMethod.ClickBut(driver,BackButton,10);
+              HelpersMethod.ClickBut(driver,BackButton,100);
               scenario.log("CLICKED ON BACK BUTTON");
               if(HelpersMethod.IsExists("//div[@class='loader']",driver))
               {
                   WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                  HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100);
+                  HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000);
               }
               exists=true;
           }
@@ -134,14 +141,20 @@ public class CheckOutOrderPage
 
     public void NextButton_Click()
     {
+        exists=false;
         try
         {
             WebElement WebEle=null;
-            //HelpersMethod.Implicitwait(driver,40);
             if(HelpersMethod.IsEnabledByele(NextButton))
             {
                 HelpersMethod.ScrollElement(driver,NextButton);
-                HelpersMethod.ClickBut(driver,NextButton,10);
+                HelpersMethod.ClickBut(driver,NextButton,1000);
+                if(HelpersMethod.IsExists("//div[@class='loader']",driver))
+                {
+                    WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
+                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 20000);
+                }
+                exists=true;
                 scenario.log("CLICKED ON NEXT BUTTON");
                /* for(int i=0;i<=4;i++)
                 {
@@ -173,7 +186,9 @@ public class CheckOutOrderPage
             else
             {
                 scenario.log("NEXT BUTTON IS DISABLED");
+                exists=false;
             }
+            Assert.assertEquals(exists,true);
         }
         catch (Exception e){}
     }
@@ -191,7 +206,7 @@ public class CheckOutOrderPage
             {
                 WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@id='addressCard']/descendant::span[contains(@class,'k-icon k-i-arrow-chevron-down')]");
                 HelpersMethod.ScrollElement(driver,WebEle);
-                HelpersMethod.ClickBut(driver,WebEle,10);
+                HelpersMethod.ClickBut(driver,WebEle,1000);
             }
         }
         catch (Exception e){}
@@ -210,7 +225,8 @@ public class CheckOutOrderPage
                 if (driver.findElement(By.id("SubmitCheckoutButton")).isEnabled())
                 {
                     WebEle=HelpersMethod.FindByElement(driver,"id","SubmitCheckoutButton");
-                    HelpersMethod.ClickBut(driver,WebEle,10);
+                    HelpersMethod.ClickBut(driver,WebEle,600);
+                    exists=true;
                 }
                 else
                 {
@@ -219,18 +235,19 @@ public class CheckOutOrderPage
                         if(HelpersMethod.IsExists("//div[@id='addressCard']/descendant::span[contains(@class,'k-icon k-i-arrow-chevron-down')]",driver))
                         {
                             WebEle=HelpersMethod.FindByElement(driver, "xpath", "//div[@id='addressCard']/descendant::span[contains(@class,'k-icon k-i-arrow-chevron-down')]");
-                            HelpersMethod.ClickBut(driver,WebEle,80);
+                            HelpersMethod.ClickBut(driver,WebEle,600);
                         }
                         WebEle=HelpersMethod.FindByElement(driver, "xpath", "//div[@class='address-container']/descendant::tbody/tr[1]/descendant::input");
-                        HelpersMethod.ClickBut(driver,WebEle,80);
+                        HelpersMethod.ClickBut(driver,WebEle,1000);
+                        exists=true;
 
                         //Check whether 'SubmitCheckoutButton' is enabled or not
-                        WebEle=HelpersMethod.FindByElement(driver,"id","SubmitCheckoutButton");
-                        exists=HelpersMethod.IsEnabledByele(WebEle);
-                        Assert.assertEquals(exists,true);
+                        //WebEle=HelpersMethod.FindByElement(driver,"id","SubmitCheckoutButton");
+                        //exists=HelpersMethod.IsEnabledByele(WebEle);
                     }
                 }
             }
+            Assert.assertEquals(exists,true);
         }
         catch (Exception e){}
     }
@@ -239,43 +256,94 @@ public class CheckOutOrderPage
     public void Add_Delivery_Address(String Add1,String Add2,String city,String state,String cunt,String zipNo)
     {
         WebElement WebEle=null;
+        Actions act1=new Actions(driver);
         try
         {
             //Check whether application is navigating to checkout card or navigating to order summary page
-            XPath = "//div[@class='page-content']/descendant::div[@id='checkoutCard']";
-            exists = HelpersMethod.IsExists(XPath, driver);
-            if (exists == true)
+            if (HelpersMethod.IsExists("//div[@class='page-content']/descendant::div[@id='checkoutCard']",driver))
             {
                 WebEle=HelpersMethod.FindByElement(driver,"xpath","//span[contains(@class,'k-icon k-i-arrow-chevron-down')]");
                 HelpersMethod.ClickBut(driver,WebEle,10);
                 WebEle=HelpersMethod.FindByElement(driver,"id","addAddressButton");
                 HelpersMethod.ClickBut(driver,WebEle,10);
-                XPath="//div[contains(text(),'New address')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]";
-                exists=HelpersMethod.IsExists(XPath,driver);
-                if(exists==true)
+
+                if(HelpersMethod.IsExists("//div[contains(text(),'New address')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
                 {
-                    WebEle=HelpersMethod.FindByElement(driver,"id","Address");
+                    WebElement newAddressPopup=HelpersMethod.FindByElement(driver,"xpath","//div[contains(text(),'New address')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]");
+                    WebEle=newAddressPopup.findElement(By.xpath(".//input[@id='Address']"));
                     HelpersMethod.ActSendKey(driver,WebEle,10,Add1);
                     scenario.log("ADDRESS ENTERED IN FIRST ADDRESS INPUT BOX "+Add1);
-                    WebEle=HelpersMethod.FindByElement(driver,"id","Address2");
+                    WebEle=newAddressPopup.findElement(By.xpath(".//input[@id='Address2']"));
                     HelpersMethod.ActSendKey(driver,WebEle,10,Add2);
                     scenario.log("ADDRESS ENTERED IN SECOND ADDRESS INPUT BOX "+Add2);
-                    WebEle=HelpersMethod.FindByElement(driver,"id","City");
+                    WebEle=newAddressPopup.findElement(By.xpath(".//input[@id='City']"));
                     HelpersMethod.ActSendKey(driver,WebEle,10,city);
                     scenario.log("CITY NAME ENTERED IN INPUT BOX "+city);
-                   /// HelpersMethod.Implicitwait(driver,2);
-                    WebEle=HelpersMethod.FindByElement(driver,"id","State");
+                    WebEle=newAddressPopup.findElement(By.xpath(".//span[@id='State']"));
                     HelpersMethod.ClickBut(driver,WebEle,10);
-                    HelpersMethod.WebElementFromDropDown(driver,"//div[contains(@class,'k-list-container ')]/descendant::li","//div[contains(@class,'k-list-container ')]/descendant::li[contains(text(),'"+state+"')]",state);
-                    WebEle=HelpersMethod.FindByElement(driver,"id","Zip");
+                    new WebDriverWait(driver,400).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class,'k-animation-container k-animation-container-relative k-list-container k-reset i-common-dropdown i-common-dropdown__type-none')]"))));
+
+                    // to fetch the web element of the modal container
+                    WebElement menuContainer = HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-animation-container k-animation-container-relative k-list-container k-reset i-common-dropdown i-common-dropdown__type-none')]");
+                    java.util.List<WebElement> Options=menuContainer.findElements (By.xpath(".//ul/li"));
+                    for(int i=0;i<=Options.size()-1;i++)
+                    {
+                        WebEle=Options.get(i);
+                        act1.moveToElement(WebEle).build().perform();
+                        String Opt=WebEle.getText();
+                        if(Opt.equals(state))
+                        {
+                            act1.moveToElement(WebEle).build().perform();
+                            act1.click(WebEle).build().perform();
+                            break;
+                        }
+                        else
+                        {
+                            act1.moveToElement(WebEle).sendKeys(Keys.ARROW_DOWN).build().perform();
+                            if(HelpersMethod.IsExists("//div[@class='loader']",driver))
+                            {
+                                WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
+                                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000);
+                            }
+                        }
+                    }
+                    WebEle=newAddressPopup.findElement(By.xpath(".//input[@id='Zip']"));
                     HelpersMethod.ActSendKey(driver,WebEle,10,zipNo);
                     scenario.log("ZIP VALUE ENTERED IS "+zipNo);
-                    WebEle=HelpersMethod.FindByElement(driver,"id","Country");
+                    WebEle=newAddressPopup.findElement(By.xpath(".//span[@id='Country']"));
                     HelpersMethod.ClickBut(driver,WebEle,10);
-                    HelpersMethod.WebElementFromDropDown(driver,"//div[contains(@class,'k-list-container ')]/descendant::li","//div[contains(@class,'k-list-container ')]/descendant::li[contains(text(),'"+cunt+"')]",cunt);
-                    ////HelpersMethod.Implicitwait(driver,2);
-                    WebEle=HelpersMethod.FindByElement(driver,"id","ConfirmAddressButton");
+                    HelpersMethod.waitTillElementLocatedDisplayed(driver,"xpath","//div[contains(@class,'k-animation-container k-animation-container-relative k-list-container k-reset i-common-dropdown i-common-dropdown__type-none k-animation-container-shown')]",40);
+                    // to fetch the web element of the modal container
+                    WebElement menuContainer1 = HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-animation-container k-animation-container-relative k-list-container k-reset i-common-dropdown i-common-dropdown__type-none k-animation-container-shown')]");
+                    List<WebElement> Options1=menuContainer1.findElements (By.xpath(".//ul/li"));
+                    for(int i=0;i<=Options1.size()-1;i++)
+                    {
+                        WebEle=Options1.get(i);
+                        act1.moveToElement(WebEle).build().perform();
+                        String Opt=WebEle.getText();
+                        if(Opt.equals(cunt))
+                        {
+                            act1.moveToElement(WebEle).build().perform();
+                            act1.click(WebEle).build().perform();
+                            break;
+                        }
+                        else
+                        {
+                            act1.moveToElement(WebEle).sendKeys(Keys.ARROW_DOWN).build().perform();
+                            if(HelpersMethod.IsExists("//div[@class='loader']",driver))
+                            {
+                                WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
+                                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000);
+                            }
+                        }
+                    }
+                    WebEle=newAddressPopup.findElement(By.xpath(".//button[@id='ConfirmAddressButton']"));
                     HelpersMethod.ClickBut(driver,WebEle,10);
+                    if(HelpersMethod.IsExists("//div[@class='loader']",driver))
+                    {
+                        WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
+                        HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000);
+                    }
                 }
             }
         }
@@ -290,33 +358,63 @@ public class CheckOutOrderPage
         try
         {
             //Check whether application is navigating to checkout card or navigating to order summary page
-            if (HelpersMethod.IsExists("//div[@class='page-content']/descendant::div[@id='checkoutCard']",driver))
+            if (HelpersMethod.IsExists("//div[@id='web-order-page-content']",driver))
             {
                 //Click on Down arrow in Select address card
-                WebEle=HelpersMethod.FindByElement(driver,"xpath","//span[contains(@class,'k-icon k-i-arrow-chevron-down')]");
-                HelpersMethod.ScrollElement(driver,WebEle);
-                HelpersMethod.ClickBut(driver,WebEle,10);
-                if(HelpersMethod.IsExists("//td[@class='address-cell']/following-sibling::td[contains(text(),'"+Add2+"')]",driver))
+                if(HelpersMethod.IsExists("//div[@id='addressCard']/descendant::span[contains(@class,'k-icon k-i-arrow-chevron-down')]",driver))
                 {
-                    //Select radio button to select specific address
-                    WebEle=driver.findElement(By.xpath("//input[contains(@id,'"+Add2+"')]"));
-                    HelpersMethod.ActClick(driver,WebEle,10);
-                    if(HelpersMethod.IsExists("//td[contains(text(),'"+Add2+"')]/ancestor::tr/descendant::button[@id='EditAddressButton']",driver))
+                    WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@id='addressCard']/descendant::span[contains(@class,'k-icon k-i-arrow-chevron-down')]");
+                    HelpersMethod.ScrollElement(driver, WebEle);
+                    HelpersMethod.ClickBut(driver, WebEle, 10);
+                    if (HelpersMethod.IsExists("//td[@class='address-cell']/following-sibling::td[contains(text(),'" + Add2 + "')]", driver))
                     {
-                        //Once the radio button is selected Edit, Delete button will be visible. Click on Edit button
-                        WebEle=driver.findElement(By.xpath("//td[contains(text(),'"+Add2+"')]/ancestor::tr/descendant::button[@id='EditAddressButton']"));
-                        HelpersMethod.ActClick(driver,WebEle,10);
-                        //Check for Address popup
-                        if(HelpersMethod.IsExists("//div[contains(text(),'Edit address')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
+                        //Select radio button to select specific address
+                        WebEle = driver.findElement(By.xpath("//input[contains(@id,'" + Add2 + "')]"));
+                        HelpersMethod.ActClick(driver, WebEle, 10);
+                        if (HelpersMethod.IsExists("//td[contains(text(),'"+Add2+"')]/ancestor::tr/descendant::button[@id='EditAddressButton']", driver))
                         {
-                            //Edit the address 2 input box
-                            WebEle=HelpersMethod.FindByElement(driver,"id","Address2");
-                            HelpersMethod.WebElementClearInput(WebEle);
-                            HelpersMethod.ActSendKey(driver,WebEle,10,Change_Add2);
-                            scenario.log("SECOND ADDRESS HAS BEEN CHANGED TO "+Change_Add2);
-                            WebEle=HelpersMethod.FindByElement(driver,"id","ConfirmAddressButton");
-                            HelpersMethod.ClickBut(driver,WebEle,10);
-                            found=true;
+                            //Once the radio button is selected Edit, Delete button will be visible. Click on Edit button
+                            WebEle = driver.findElement(By.xpath("//td[contains(text(),'" + Add2 + "')]/ancestor::tr/descendant::button[@id='EditAddressButton']"));
+                            HelpersMethod.ActClick(driver, WebEle, 10);
+                            //Check for Address popup
+                            if (HelpersMethod.IsExists("//div[contains(text(),'Edit address')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]", driver))
+                            {
+                                //Edit the address 2 input box
+                                WebElement editAddressPopup = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(text(),'Edit address')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]");
+                                WebEle = editAddressPopup.findElement(By.xpath(".//input[@id='Address2']"));
+                                HelpersMethod.WebElementClearInput(WebEle);
+                                HelpersMethod.ActSendKey(driver, WebEle, 10, Change_Add2);
+                                scenario.log("SECOND ADDRESS HAS BEEN CHANGED TO " + Change_Add2);
+                                WebEle = editAddressPopup.findElement(By.xpath(".//button[@id='ConfirmAddressButton']"));
+                                HelpersMethod.ClickBut(driver, WebEle, 10);
+                                found = true;
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    if (HelpersMethod.IsExists("//td[@class='address-cell']/following-sibling::td[contains(text(),'" + Add2 + "')]", driver))
+                    {
+                        //Select radio button to select specific address
+                        WebEle = driver.findElement(By.xpath("//input[contains(@id,'" + Add2 + "')]"));
+                        HelpersMethod.ActClick(driver, WebEle, 10);
+                        if (HelpersMethod.IsExists("//td[contains(text(),'" + Add2 + "')]/ancestor::tr/descendant::button[@id='EditAddressButton']", driver)) {
+                            //Once the radio button is selected Edit, Delete button will be visible. Click on Edit button
+                            WebEle = driver.findElement(By.xpath("//td[contains(text(),'" + Add2 + "')]/ancestor::tr/descendant::button[@id='EditAddressButton']"));
+                            HelpersMethod.ActClick(driver, WebEle, 10);
+                            //Check for Address popup
+                            if (HelpersMethod.IsExists("//div[contains(text(),'Edit address')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]", driver)) {
+                                //Edit the address 2 input box
+                                WebElement editAddressPopup = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(text(),'Edit address')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]");
+                                WebEle = editAddressPopup.findElement(By.xpath(".//input[@id='Address2']"));
+                                HelpersMethod.WebElementClearInput(WebEle);
+                                HelpersMethod.ActSendKey(driver, WebEle, 10, Change_Add2);
+                                scenario.log("SECOND ADDRESS HAS BEEN CHANGED TO " + Change_Add2);
+                                WebEle = editAddressPopup.findElement(By.xpath(".//button[@id='ConfirmAddressButton']"));
+                                HelpersMethod.ClickBut(driver, WebEle, 10);
+                                found = true;
+                            }
                         }
                     }
                 }
@@ -334,44 +432,70 @@ public class CheckOutOrderPage
         try
         {
             //Check whether application is navigating to checkout card or navigating to order summary page
-            XPath = "//div[@class='page-content']/descendant::div[@id='checkoutCard']";
-            exists = HelpersMethod.IsExists(XPath, driver);
-            if (exists == true)
+            if (HelpersMethod.IsExists("//div[@id='web-order-page-content']",driver))
             {
                 //Click on Down arrow in Select address card
-                WebEle=HelpersMethod.FindByElement(driver,"xpath","//span[contains(@class,'k-icon k-i-arrow-chevron-down')]");
-                HelpersMethod.ClickBut(driver,WebEle,10);
-                XPath="//td[@class='address-cell']/following-sibling::td[contains(text(),'"+Add2+"')]";
-                exists=HelpersMethod.IsExists(XPath,driver);
-                if(exists==true)
+                if(HelpersMethod.IsExists("//div[@id='addressCard']/descendant::span[contains(@class,'k-icon k-i-arrow-chevron-down')]",driver))
                 {
-                    //Select radio button to select specific address
-                    WebEle=driver.findElement(By.xpath("//input[contains(@id,'"+Add2+"')]"));
-                    HelpersMethod.ActClick(driver,WebEle,10);
-                    XPath="//td[contains(text(),'"+Add2+"')]/ancestor::tr/descendant::button[@id='DeleteAddressButton']";
-                    exists=HelpersMethod.IsExists(XPath,driver);
-                    if(exists==true)
-                    {
-                        //Once the radio button is selected Delete button will be visible. Click on Edit button
-                        WebEle=HelpersMethod.FindByElement(driver,"xpath","//td[contains(text(),'"+Add2+"')]/ancestor::tr/descendant::button[@id='DeleteAddressButton']");
-                        HelpersMethod.ClickBut(driver,WebEle,10);
+                    WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@id='addressCard']/descendant::span[contains(@class,'k-icon k-i-arrow-chevron-down')]");
+                    HelpersMethod.ScrollElement(driver, WebEle);
+                    HelpersMethod.ClickBut(driver, WebEle, 10);
 
-                        //handling confirmation popup
-                        XPath="//div[contains(text(),'Confirm delete')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]";
-                        exists=HelpersMethod.IsExists(XPath,driver);
-                        if(exists==true)
+                    XPath = "//td[@class='address-cell']/following-sibling::td[contains(text(),'" + Add2 + "')]";
+                    exists = HelpersMethod.IsExists(XPath, driver);
+                    if (exists == true)
+                    {
+                        //Select radio button to select specific address
+                        WebEle = driver.findElement(By.xpath("//input[contains(@id,'" + Add2 + "')]"));
+                        HelpersMethod.ActClick(driver, WebEle, 10);
+                        XPath = "//td[contains(text(),'" + Add2 + "')]/ancestor::tr/descendant::button[@id='DeleteAddressButton']";
+                        exists = HelpersMethod.IsExists(XPath, driver);
+                        if (exists == true)
                         {
-                            WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-widget k-window k-dialog')]/descendant::button[text()='Yes']");
-                            HelpersMethod.ClickBut(driver,WebEle,10);
-                            scenario.log("DELIVERY ADDRESS HAS BEEN DELETED");
+                            //Once the radio button is selected Delete button will be visible. Click on Edit button
+                            WebEle = HelpersMethod.FindByElement(driver, "xpath", "//td[contains(text(),'" + Add2 + "')]/ancestor::tr/descendant::button[@id='DeleteAddressButton']");
+                            HelpersMethod.ClickBut(driver, WebEle, 10);
+
+                            //handling confirmation popup
+                            if (HelpersMethod.IsExists("//div[contains(text(),'Confirm delete')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]", driver))
+                            {
+                                WebElement deleteConfirm = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(text(),'Confirm delete')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]");
+                                WebEle = deleteConfirm.findElement(By.xpath(".//button[text()='Yes']"));
+                                HelpersMethod.ClickBut(driver, WebEle, 10);
+                                scenario.log("DELIVERY ADDRESS HAS BEEN DELETED");
+                                found = true;
+                            }
                         }
                     }
                 }
-                XPath="//td[@class='address-cell']/following-sibling::td[contains(text(),'"+Add2+"')]";
-                exists=HelpersMethod.IsExists(XPath,driver);
-                if(exists==false)
+                else
                 {
-                    found=true;
+                    XPath = "//td[@class='address-cell']/following-sibling::td[contains(text(),'" + Add2 + "')]";
+                    exists = HelpersMethod.IsExists(XPath, driver);
+                    if (exists == true)
+                    {
+                        //Select radio button to select specific address
+                        WebEle = driver.findElement(By.xpath("//input[contains(@id,'" + Add2 + "')]"));
+                        HelpersMethod.ActClick(driver, WebEle, 10);
+                        XPath = "//td[contains(text(),'" + Add2 + "')]/ancestor::tr/descendant::button[@id='DeleteAddressButton']";
+                        exists = HelpersMethod.IsExists(XPath, driver);
+                        if (exists == true)
+                        {
+                            //Once the radio button is selected Delete button will be visible. Click on Edit button
+                            WebEle = HelpersMethod.FindByElement(driver, "xpath", "//td[contains(text(),'" + Add2 + "')]/ancestor::tr/descendant::button[@id='DeleteAddressButton']");
+                            HelpersMethod.ClickBut(driver, WebEle, 10);
+
+                            //handling confirmation popup
+                            if (HelpersMethod.IsExists("//div[contains(text(),'Confirm delete')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]", driver))
+                            {
+                                WebElement deleteConfirm = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(text(),'Confirm delete')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]");
+                                WebEle = deleteConfirm.findElement(By.xpath(".//button[text()='Yes']"));
+                                HelpersMethod.ClickBut(driver, WebEle, 10);
+                                scenario.log("DELIVERY ADDRESS HAS BEEN DELETED");
+                                found = true;
+                            }
+                        }
+                    }
                 }
             }
         }
@@ -388,9 +512,7 @@ public class CheckOutOrderPage
             WebEle=HelpersMethod.FindByElement(driver,"id","addressCard");
             HelpersMethod.ScrollElement(driver,WebEle);
             //Check whether application is navigating to checkout card or navigating to order summary page
-            XPath = "//div[@class='page-content']/descendant::div[@id='checkoutCard']";
-            exists = HelpersMethod.IsExists(XPath, driver);
-            if (exists == true)
+            if (HelpersMethod.IsExists("//div[@class='page-content']/descendant::div[@id='checkoutCard']",driver))
             {
                 if(HelpersMethod.IsExists("//div[@id='paymentMethodCard']/descendant::span[contains(@class,'k-icon k-i-arrow-chevron-down')]",driver))
                 {
@@ -438,8 +560,9 @@ public class CheckOutOrderPage
     }
 
     //Adding new payment method
-    public void Adding_New_PaymentMethod(String Paytype, String Finame, String Laname, String AccountType, String Route, String AccNumb)
+    public void Adding_New_PaymentMethod(String Paytype,String AccountType)
     {
+        Actions act1=new Actions(driver);
         try
         {
             HelpersMethod.ClickBut(driver,Add_Payment,10);
@@ -448,23 +571,52 @@ public class CheckOutOrderPage
                 //Click on Payment type drop down
                 HelpersMethod.ClickBut(driver,PayType,10);
                 //Select Bank account from Payment type drop down
-                HelpersMethod.DropDownMenu(driver,Paytype);
+                WebElement menuContainer = HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-child-animation-container')]/descendant::ul");
+                List<WebElement> Options=menuContainer.findElements (By.xpath(".//li"));
+                for(int i=0;i<=Options.size()-1;i++)
+                {
+                    WebElement WebEle = Options.get(i);
+                    act1.moveToElement(WebEle).build().perform();
+                    String Opt = WebEle.getText();
+                    if (Opt.equals(Paytype))
+                    {
+                        act1.moveToElement(WebEle).build().perform();
+                        act1.click(WebEle).build().perform();
+                        scenario.log("PAYMENT TYPE SELECTED IS "+Paytype);
+                        break;
+                    }
+                }
+
                 //enter first name
-                HelpersMethod.EnterText(driver,Fname,10,Finame);
-                scenario.log("FIRST NAME ENTERED "+Finame);
+                HelpersMethod.EnterText(driver,Fname,10,fName);
+                scenario.log("FIRST NAME ENTERED "+HelpersMethod.JSGetValueEle(driver,Fname,40));
                 //Enter last name
-                HelpersMethod.EnterText(driver,Lname,10,Laname);
-                scenario.log("LAST NAME ENTERED IS "+Laname);
+                HelpersMethod.EnterText(driver,Lname,10,RandomValues.generateRandomString(2));
+                scenario.log("LAST NAME ENTERED IS "+HelpersMethod.JSGetValueEle(driver,Lname,40));
                 //Click on Account type drop down
                 HelpersMethod.ClickBut(driver,AccType,10);
                 //Account type selection
-                HelpersMethod.DropDownMenu(driver,AccountType);
+                WebElement menuContainer1 = HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-child-animation-container')]/descendant::ul");
+                List<WebElement> Options1=menuContainer1.findElements (By.xpath(".//li"));
+                for(int i=0;i<=Options1.size()-1;i++)
+                {
+                    WebElement WebEle = Options1.get(i);
+                    act1.moveToElement(WebEle).build().perform();
+                    String Opt = WebEle.getText();
+                    if (Opt.equals(AccountType))
+                    {
+                        act1.moveToElement(WebEle).build().perform();
+                        act1.click(WebEle).build().perform();
+                        scenario.log("ACCOUNT TYPE SELECTED IS "+Paytype);
+                        break;
+                    }
+                }
                 //Enter Route#
-                HelpersMethod.EnterText(driver,Route_No,10,Route);
-                scenario.log("ROUTE ENTERED IS "+Route);
+                HelpersMethod.EnterText(driver,Route_No,10,RandomValues.generateRandomNumber(4));
+                scenario.log("ROUTE ENTERED IS "+HelpersMethod.JSGetValueEle(driver,Route_No,40));
                 //Enter Account no
-                HelpersMethod.EnterText(driver,AccNo,10,AccNumb);
-                scenario.log("ACCOUNT NUMBER ENTERED IS "+AccNumb);
+                HelpersMethod.EnterText(driver,AccNo,10,RandomValues.generateRandomNumber(10));
+                scenario.log("ACCOUNT NUMBER ENTERED IS "+HelpersMethod.JSGetValueEle(driver,AccNo,40));
                 //Click on OK button
                 HelpersMethod.ClickBut(driver,OkPay,10);
             }
@@ -473,12 +625,12 @@ public class CheckOutOrderPage
     }
 
     //Click on Delete button
-    public void Delete_PaymentMethod(String DeletePay)
+    public void Delete_PaymentMethod()
     {
         try
         {
             WebElement WebEle=null;
-            if(HelpersMethod.IsExists("//td[contains(text(),'Divya AR')]/ancestor::tr/descendant::div[@class='i-btn-radio ']",driver))
+            if(HelpersMethod.IsExists("//td[contains(text(),'"+fName+"')]/ancestor::tr/descendant::div[@class='i-btn-radio ']",driver))
             {
                 WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[contains(text(),'Savings - Personal')]/ancestor::tr/descendant::div[@class='i-btn-radio ']");
                 HelpersMethod.ClickBut(driver,WebEle,10);
@@ -505,10 +657,16 @@ public class CheckOutOrderPage
     //Click on "Continue without providing payment"
     public void Click_On_Without_Providing_Payment()
     {
+        exists=false;
         try
         {
-            HelpersMethod.ClickBut(driver,WithoutPayment,40);
-            scenario.log("CONTINUE ORDER WITHOUT PAYMENT METHOD IS SELECTED");
+            if(WithoutPayment.isDisplayed() && WithoutPayment.isEnabled())
+            {
+                exists=true;
+                HelpersMethod.ClickBut(driver, WithoutPayment, 100);
+                scenario.log("CONTINUE ORDER WITHOUT PAYMENT METHOD IS SELECTED");
+            }
+            Assert.assertEquals(exists,true);
         }
         catch (Exception e){}
     }

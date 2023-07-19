@@ -6,6 +6,7 @@ import org.apache.logging.log4j.core.tools.picocli.CommandLine;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -87,28 +88,25 @@ public class CheckOutSummaryPage
         exists=false;
         WebElement WebEle=null;
         String status=null;
-        if(HelpersMethod.IsExists("//div[@class='loader']",driver))
+       /* if(HelpersMethod.IsExists("//div[@class='loader']",driver))
         {
             WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 200);
-        }
+            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 20000);
+        }*/
 
             status = HelpersMethod.returnDocumentStatus(driver);
             if (status.equals("loading"))
             {
                 HelpersMethod.waitTillLoadingPage(driver);
             }
-            HelpersMethod.ActClick(driver,Submit_But,100);
+            HelpersMethod.ScrollUpScrollBar(driver);
+            WebElement submitButton=HelpersMethod.FindByElement(driver,"id","ConfirmSummaryButton");
+            HelpersMethod.ActClick(driver,submitButton,60000);
             exists=true;
             status = HelpersMethod.returnDocumentStatus(driver);
             if (status.equals("loading"))
             {
                 HelpersMethod.waitTillLoadingPage(driver);
-            }
-            if(HelpersMethod.IsExists("//div[@class='loader']",driver))
-            {
-                WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100);
             }
             scenario.log("SUBMIT BUTTON IN ORDER SUMMARY PAGE HAS BEEN CLICKED");
             Assert.assertEquals(exists,true);
@@ -119,12 +117,8 @@ public class CheckOutSummaryPage
         exists=false;
         WebElement WebEle=null;
         String status=null;
-        if(HelpersMethod.IsExists("//div[@class='loader']",driver))
-            {
-                WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 20);
-            }
-            HelpersMethod.waitTillElementLocatedDisplayed(driver,"xpath","//div[contains(@class,'k-widget k-window k-dialog')]",60);
+
+            HelpersMethod.waitTillElementLocatedDisplayed(driver,"xpath","//div[contains(text(),'Order submitted successfully.')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",6000);
             // to fetch the web element of the modal container
             WebElement modalContainer =HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-widget k-window k-dialog')]");
 
@@ -132,9 +126,9 @@ public class CheckOutSummaryPage
             WebElement modalContentText = modalContainer.findElement(By.xpath(".//div[contains(@class,'question-dialog-body')]"));
             Assert.assertEquals(modalContentText.getText(), "Order submitted successfully.", "Verify content message");
             //Click on OK button in "Success popup"
-            new WebDriverWait(driver,40).until(ExpectedConditions.elementToBeClickable(By.xpath(".//button[text()='Ok']")));
+            new WebDriverWait(driver,1000).until(ExpectedConditions.elementToBeClickable(By.xpath(".//button[text()='Ok']")));
             WebElement OK_But = modalContainer.findElement(By.xpath(".//button[text()='Ok']"));
-            HelpersMethod.ClickBut(driver,OK_But,10);
+            HelpersMethod.ClickBut(driver,OK_But,800);
             exists=true;
             scenario.log("ORDER HAS BEEN SUCESSFULLY CREATED");
             status = HelpersMethod.returnDocumentStatus(driver);
@@ -142,12 +136,39 @@ public class CheckOutSummaryPage
             {
                 HelpersMethod.waitTillLoadingPage(driver);
             }
-            if(HelpersMethod.IsExists("//div[@class='loader']",driver))
-            {
-                WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 400);
-            }
     }
+
+    public void SucessPopupForAllOrder()
+    {
+        exists=false;
+        WebElement WebEle=null;
+        String status=null;
+
+        HelpersMethod.waitTillElementLocatedDisplayed(driver,"xpath","//div[contains(text(),'Order submitted successfully.')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",2000);
+        // to fetch the web element of the modal container
+        WebElement modalContainer =HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-widget k-window k-dialog')]");
+
+        // to fetch the web elements of the modal content and interact with them, code to fetch content of modal title and verify it
+        WebElement modalContentText = modalContainer.findElement(By.xpath(".//div[contains(@class,'question-dialog-body')]"));
+        Assert.assertEquals(modalContentText.getText(), "Order submitted successfully.", "Verify content message");
+        //Click on OK button in "Success popup"
+        new WebDriverWait(driver,1000).until(ExpectedConditions.elementToBeClickable(By.xpath(".//button[text()='Ok']")));
+        WebElement OK_But = modalContainer.findElement(By.xpath(".//button[text()='Ok']"));
+        HelpersMethod.ClickBut(driver,OK_But,800);
+        exists=true;
+        scenario.log("ORDER HAS BEEN SUCESSFULLY CREATED");
+        status = HelpersMethod.returnDocumentStatus(driver);
+        if (status.equals("loading"))
+        {
+            HelpersMethod.waitTillLoadingPage(driver);
+        }
+     /*   if(HelpersMethod.IsExists("//div[@class='loader']",driver))
+        {
+            WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
+            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 2000);
+        }*/
+    }
+
     public String Get_Order_No()
     {
         WebElement WebEle=null;
@@ -206,7 +227,6 @@ public class CheckOutSummaryPage
         WebElement WebEle=null;
         try
         {
-            //Thread.sleep(1000);
             if(HelpersMethod.IsExists("//div[text()='Comments']/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
             {
                 driver.findElement(By.id("textAreaA")).sendKeys(Comment);
@@ -243,16 +263,50 @@ public class CheckOutSummaryPage
         exists=false;
         try
         {
-            WebElement WebEle=null;
-            HelpersMethod.ClickBut(driver,CancelBut,10);
+            HelpersMethod.ScrollElement(driver,CancelBut);
+            HelpersMethod.JScriptClick(driver,CancelBut,1000);
             exists=true;
-            WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[contains(text(),'Cancel order')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]");
-            if(HelpersMethod.EleDisplay(WebEle))
-            {
-                WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-widget k-window k-dialog')]/descendant::button[text()='Yes']");
-                HelpersMethod.ClickBut(driver,WebEle,10);
-            }
             scenario.log("CANCEL ORDER BUTTON HAS BEEN CLICKED");
+            new WebDriverWait(driver,1000).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(text(),'Cancel order')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]"))));
+            Assert.assertEquals(exists,true);
+        }
+        catch (Exception e){}
+    }
+
+    public void VerifyCancelPopUp()
+    {
+        try
+        {
+            WebElement modalContainer = driver.findElement(By.xpath("//div[contains(text(),'Cancel order')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]"));
+
+            // to fetch the web elements of the modal content and interact with them, code to fetch content of modal title and verify it
+            WebElement modalContentTitle = modalContainer.findElement(By.xpath(".//div[contains(@class,'k-window-title k-dialog-title')]"));
+            Assert.assertEquals(modalContentTitle.getText(), "Cancel order", "Verify Title message");
+        }
+        catch (Exception e){}
+    }
+
+    public void CancelPop()
+    {
+        exists=false;
+        WebElement WebEle=null;
+        try
+        {
+            //Check for the Cancel Order warning popup
+            if (HelpersMethod.IsExists("//div[contains(text(),'Cancel order')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
+            {
+                WebElement cancelPopup = driver.findElement(By.xpath("//div[contains(@class,'k-widget k-window k-dialog')]"));
+
+                WebEle=cancelPopup.findElement(By.xpath(".//button[text()='Yes']"));
+                HelpersMethod.ClickBut(driver,WebEle,200);
+                exists=true;
+                scenario.log("CANCEL ORDER POPUP HAS BEEN HANDLED");
+            }
+            if(HelpersMethod.IsExists("//div[@class='loader']",driver))
+            {
+                WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 2000);
+            }
             Assert.assertEquals(exists,true);
         }
         catch (Exception e){}
@@ -260,15 +314,30 @@ public class CheckOutSummaryPage
     //Click on uparrow button next to Product# column in Order summary page
     public void Product_UpArrow()
     {
+        int i=0;
+        Actions act=new Actions(driver);
         try
         {
-            HelpersMethod.ActClick(driver,Button_Close,10);
+            HelpersMethod.ActClick(driver,Button_Close,100);
             WebElement ProdNo=HelpersMethod.FindByElement(driver,"xpath","//span[text()='Product #']");
-            HelpersMethod.ActClick(driver,ProdNo,10);
-            WebElement Sort=HelpersMethod.FindByElement(driver,"xpath","//span[contains(@class,'k-icon k-i-sort-asc-sm')]");
-            HelpersMethod.ActClick(driver,Sort,10);
+            HelpersMethod.ActClick(driver,ProdNo,100);
+            WebElement Sort=HelpersMethod.FindByElement(driver,"xpath","//span[contains(@class,'k-icon k-i-sort')]");
+            HelpersMethod.ActClick(driver,Sort,100);
+            //find the column number for Product #
+            List<WebElement> theads=HelpersMethod.FindByElements(driver,"xpath","//th[contains(@class,'k-header')]/descendant::span[@class='k-column-title']");
+            for (WebElement head:theads)
+            {
+                i++;
+                act.moveToElement(head).build().perform();
+                String head_Text= head.getText();
+                if(head_Text.equals("Product #"))
+                {
+                    break;
+                }
+            }
+
             //Creating list of webelements for Products in Order summary grid
-            List<WebElement> Products=driver.findElements(By.xpath("//tr[contains(@class,'k-master-row')]/descendant::span[contains(@class,'CPKendoDataGrid-Label-rightmargin')]"));
+            List<WebElement> Products=driver.findElements(By.xpath("//tr[contains(@class,'k-master-row')]/td["+i+"]/descendant::span[contains(@class,'CPKendoDataGrid-Label-rightmargin')]"));
             ArrayList<String> Pro_List=new ArrayList<>();
             for(WebElement Prod: Products)
             {
@@ -410,6 +479,21 @@ public class CheckOutSummaryPage
             if(HelpersMethod.IsExists("//div[contains(text(),'Pick up order')]//following-sibling::div[text()='Yes']",driver))
             {
                 scenario.log("PICKUP ORDER HAS BEEN SET AS YES");
+                exists=true;
+            }
+            Assert.assertEquals(exists,true);
+        }
+        catch (Exception e){}
+    }
+
+    public void clickOnBackToOrderList()
+    {
+        exists=false;
+        try
+        {
+            if(BackOrder.isDisplayed() && BackOrder.isEnabled())
+            {
+                HelpersMethod.ClickBut(driver,BackOrder,100);
                 exists=true;
             }
             Assert.assertEquals(exists,true);

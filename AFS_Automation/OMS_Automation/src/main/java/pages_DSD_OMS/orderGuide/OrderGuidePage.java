@@ -4,13 +4,12 @@ import helper.HelpersMethod;
 import io.cucumber.java.Scenario;
 import org.apache.commons.collections.IteratorUtils;
 import org.apache.logging.log4j.core.tools.picocli.CommandLine;
-import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import util.Environment;
 import util.TestBase;
@@ -58,15 +57,52 @@ public class OrderGuidePage
         PageFactory.initElements(driver,this);
     }
 
-    public void Refresh_Page()
+    public void Refresh_Page(String currentURL)
     {
-        WebElement WebEle=null;
-        driver.navigate().refresh();
-        if(HelpersMethod.IsExists("//div[@class='loader']",driver))
-        {
-            WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100);
+        Actions act1=new Actions(driver);
+        try {
+            if (HelpersMethod.IsExists("//div[contains(@class,'k-widget k-window k-dialog')]", driver))
+            {
+                JavascriptExecutor js = ((JavascriptExecutor) driver);
+                js.executeScript("window.location.reload()");
+                WebDriverWait wait = new WebDriverWait(driver, 100);
+                if (wait.until(ExpectedConditions.alertIsPresent()) == null)
+                {
+
+                }
+                else
+                {
+                    Alert alert = driver.switchTo().alert();
+                    alert.accept();
+                }
+
+            }
+            else
+            {
+             /*   WebElement humBurger = HelpersMethod.FindByElement(driver, "xpath", "//*[local-name()='svg']//*[local-name()='path' and contains(@d,'M3,18H21V16H3Zm0-5H21V11H3ZM3,6V8H21V6Z')]");
+                act1.moveToElement(humBurger).click().build().perform();
+
+                //find whether side menu bar has expanded
+                HelpersMethod.WaitElementPresent(driver, "xpath", "//div[contains(@class,'MuiPaper-root MuiDrawer-paper drawer-opened MuiDrawer-paperAnchorLeft MuiDrawer-paperAnchorDockedLeft MuiPaper-elevation0')]", 800);
+                WebElement side_menu = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'MuiPaper-root MuiDrawer-paper drawer-opened MuiDrawer-paperAnchorLeft MuiDrawer-paperAnchorDockedLeft MuiPaper-elevation0')]");
+                act1.moveToElement(side_menu).build().perform();
+
+                WebElement Search_Input = HelpersMethod.FindByElement(driver, "id", "navigationMenuSearchBar");
+                act1.moveToElement(Search_Input).click().sendKeys("Order Entry").build().perform();
+                WebElement OEMenu = HelpersMethod.FindByElement(driver, "xpath", "//ul[contains(@class,'MuiList-root ')]/descendant::span[contains(text(),'Order Entry')]");
+                HelpersMethod.ActClick(driver, OEMenu, 100);
+                humBurger = HelpersMethod.FindByElement(driver, "xpath", "//*[local-name()='svg']//*[local-name()='path' and contains(@d,'M3,18H21V16H3Zm0-5H21V11H3ZM3,6V8H21V6Z')]");
+                act1.moveToElement(humBurger).click().build().perform();*/
+                //navigating back to Current URL
+                driver.navigate().to(currentURL);
+            }
+            if (HelpersMethod.IsExists("//div[@class='loader']", driver))
+            {
+                WebElement WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 10000);
+            }
         }
+        catch (Exception e){}
     }
 
     public boolean ValidateOG()
@@ -74,7 +110,8 @@ public class OrderGuidePage
         exists=false;
         try
         {
-            if(HelpersMethod.IsExists("//span[@class='spnmoduleNameHeader' and contains(text(),'Order guide list')]",driver))
+            new WebDriverWait(driver,10000).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath("//div[contains(@class,'i-card orderGuides-card')]"))));
+            if(HelpersMethod.IsExists("//span[@class='spnmoduleNameHeader' and contains(text(),'Order guide list')]|//span[@class='spnmoduleNameHeader' and contains(text(),'Order guide detail')]",driver))
             {
                 exists=true;
             }
@@ -100,12 +137,11 @@ public class OrderGuidePage
     public boolean OGSearchBox(String OGSearch)
     {
         exists=false;
-        HelpersMethod.Implicitwait(driver,40);
         try
         {
             HelpersMethod.ScrollElement(driver,SearchIndex);
-            HelpersMethod.ActSendKey(driver,SearchBox,20,OGSearch);
-            HelpersMethod.ActClick(driver,SearchIndex,20);
+            HelpersMethod.ActSendKey(driver,SearchBox,200,OGSearch);
+            HelpersMethod.ActClick(driver,SearchIndex,200);
 
             if(HelpersMethod.IsExists("//tr[@class='k-master-row']",driver))
             {
@@ -118,13 +154,14 @@ public class OrderGuidePage
                 exists=false;
                 scenario.log("ORDER GUIDE DOESNOT EXISTS");
             }
+           new WebDriverWait(driver,1000).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath("//div[@class='grid-container']"))));
         }
         catch (Exception e){}
         return  exists;
     }
 
     //Click on OG in OG grid, once searching is sucessfull
-    public void SearchOGSelect()
+    public void SearchOGSelect(String OGSearch)
     {
         exists=false;
         WebElement WebEle=null;
@@ -132,13 +169,13 @@ public class OrderGuidePage
         {
             if(HelpersMethod.IsExists("//tr[@class='k-master-row']",driver))
             {
-                WebElement OGNo=HelpersMethod.FindByElement(driver,"xpath","//tr[@class='k-master-row']/descendant::td/button");
-                HelpersMethod.ActClick(driver,OGNo, 20);
+                WebElement OGNo=HelpersMethod.FindByElement(driver,"xpath","//tr[contains(@class,'k-master-row')]/descendant::td/button[text()='"+OGSearch+"']");
+                HelpersMethod.ActClick(driver,OGNo, 100);
                 exists=true;
                 if(HelpersMethod.IsExists("//div[@class='loader']",driver))
                 {
                     WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100);
+                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000);
                 }
             }
             else
@@ -155,27 +192,84 @@ public class OrderGuidePage
     public boolean AddFilterClick(String search1,String search2)
     {
         exists=false;
+        WebElement WebEle;
         try
         {
-            if(AddFilter.isDisplayed())
+            if(HelpersMethod.IsExists("//div[@class='i-filter-tag i-filter-tag--add']/descendant::button[@class='i-filter-tag__main']",driver))
             {
-                exists=true;
+                //Clear the filter option
+                WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='i-filter-tag ']/descendant::button[contains(@class,'i-filter-tag__clear')]");
+                HelpersMethod.ClickBut(driver,WebEle,100);
+
                 HelpersMethod.AddFilterSearch(driver,search1,search2);
                 if(!HelpersMethod.IsExists("//div[contains(@class,'i-no-data__message')]",driver))
                 {
                     List<WebElement> OGLists = HelpersMethod.FindByElements(driver, "xpath", "//tr[contains(@class,'k-master-row')]/descendant::button");
-                    for (int i = 0; i <= 5; i++)
-                    {
                         for (WebElement OGList : OGLists)
                         {
                             String OG_Text = OGList.getText();
-                            scenario.log("Filtered value from Add filter " + OG_Text);
+                            scenario.log("FILTERED VALUE FROM OG " + OG_Text);
                         }
-                    }
+                    exists=true;
                 }
                 else
                 {
                     scenario.log("RELAVENT FILTER VALUES DOESN'T EXISTS");
+                    exists=false;
+                }
+            }
+        }
+        catch (Exception e){}
+        return exists;
+    }
+
+    public boolean AddFilterForExpiredOG(String search1,String search2)
+    {
+        exists=false;
+        try
+        {
+            if(HelpersMethod.IsExists("//div[@class='i-filter-tag i-filter-tag--add']/descendant::button[@class='i-filter-tag__main']",driver))
+            {
+                exists=true;
+                WebElement Search2=null;
+                WebElement WebEle=null;
+
+                //Clear the filter option
+                WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='i-filter-tag ']/descendant::button[contains(@class,'i-filter-tag__clear')]");
+                HelpersMethod.ClickBut(driver,WebEle,100);
+
+                //Click on Add filter button
+                new WebDriverWait(driver,1000).until(ExpectedConditions.elementToBeClickable(By.xpath("//button/descendant::span[contains(text(),'Add filter')]")));
+                driver.findElement(By.xpath("//button/descendant::span[contains(text(),'Add filter')]")).click();
+
+                HelpersMethod.waitTillElementLocatedDisplayed(driver,"xpath","//div[contains(@class,'k-animation-container k-animation-container-relative k-animation-container-shown')]",40);
+                WebElement modalContainer1=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-animation-container k-animation-container-relative k-animation-container-shown')]");
+
+                WebElement Search1=modalContainer1.findElement(By.xpath(".//input[contains(@class,'i-search-box__input')]"));
+                HelpersMethod.ActSendKey(driver,Search1,100,search1);
+                //Click on Check box
+                new WebDriverWait(driver,1000).until(ExpectedConditions.elementToBeClickable(By.xpath(".//input[contains(@class,'k-checkbox')]")));
+                WebElement WebEle1=modalContainer1.findElement(By.xpath(".//input[contains(@class,'k-checkbox')]"));
+                HelpersMethod.ClickBut(driver,WebEle1,100);
+
+                //Identify radio button and click on Radio button
+                new WebDriverWait(driver,1000).until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath("//div[contains(@class,'i-filter-popup i-filter-popup--manyFromMany')]/ancestor::div[contains(@class,'k-child-animation-container')]")));
+                if(HelpersMethod.IsExists("//input[@id='E']",driver))
+                {
+                   Search2=HelpersMethod.FindByElement(driver,"id","E");
+                   HelpersMethod.ClickBut(driver,Search2,100);
+                }
+                WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='i-filter-tag ']");
+                HelpersMethod.ClickBut(driver,WebEle,100);
+
+                if(!HelpersMethod.IsExists("//div[contains(@class,'i-no-data__message')]",driver))
+                {
+                    exists=true;
+                }
+                else
+                {
+                    scenario.log("RELAVENT FILTER VALUES DOESN'T EXISTS");
+                    exists=false;
                 }
             }
         }
@@ -224,9 +318,9 @@ public class OrderGuidePage
         Actions act1= new Actions(driver);
         try
         {
-            HelpersMethod.waitTillElementLocatedDisplayed(driver,"xpath","//div[contains(@class,'k-child-animation-container')]",40);
+            HelpersMethod.waitTillElementLocatedDisplayed(driver,"xpath","//div[contains(@class,'k-popup k-child-animation-container')]",40);
             // to fetch the web element of the modal container
-            WebElement menuContainer = driver.findElement(By.xpath("//div[contains(@class,'k-child-animation-container')]"));
+            WebElement menuContainer = driver.findElement(By.xpath("//div[contains(@class,'k-popup k-child-animation-container')]"));
             List<WebElement> custRefs=menuContainer.findElements (By.xpath(".//ul/li"));
             for(int i=0;i<=custRefs.size()-1;i++)
             {
@@ -235,13 +329,14 @@ public class OrderGuidePage
                 String custRef=WebEle.getText();
                 if(custRef.equals(OGtype))
                 {
-                    act1.moveToElement(WebEle).click().build().perform();
+                    act1.moveToElement(WebEle).build().perform();
+                    act1.click().build().perform();
                     break;
                 }
-                else
+              /* else
                 {
                     act1.moveToElement(WebEle).sendKeys(Keys.ARROW_DOWN).build().perform();
-                }
+                }*/
             }
         }
         catch (Exception e) { }
@@ -272,12 +367,12 @@ public class OrderGuidePage
     {
         try
         {
-            HelpersMethod.ClickBut(driver,CustomerAccIndex,10);
+            HelpersMethod.ClickBut(driver,CustomerAccIndex,40);
 
             if(HelpersMethod.IsExists("//div[@class='loader']",driver))
             {
                 WebElement WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 40);
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100);
             }
         }
         catch (Exception e){}
@@ -375,9 +470,41 @@ public class OrderGuidePage
         catch (Exception e){}
     }
 
+    public void ClickCustomerAccount_No_PreviousAcc()
+    {
+        exists=false;
+        WebElement WebEle;
+        try
+        {
+            HelpersMethod.ClickBut(driver,CustomerAccIndex,20);
+            if(HelpersMethod.IsExists("//div[contains(text(),'Select customer')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
+            {
+                //Enter Account number in search box in customer account # popup
+                WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-widget k-window k-dialog')]/descendant::input[@placeholder='Search']");
+                HelpersMethod.EnterText(driver,WebEle,20,TestBase.testEnvironment.get_Account());
+                //Click on Search Index
+                WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-widget k-window k-dialog')]//*[local-name()='svg' and contains(@class,'i-icon   i-search-box__search')]");
+                HelpersMethod.ClickBut(driver,WebEle,20);
+                if(!HelpersMethod.IsExists("//div[contains(@class,'k-widget k-window k-dialog')]/descendant::div[@class='i-no-data']",driver))
+                {
+                    WebEle= HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-widget k-window k-dialog')]/descendant::tr[@class='k-master-row']/td[1]");
+                    scenario.log("ACCOUNT NUMBER SELECTED IS "+WebEle.getText());
+                    WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-widget k-window k-dialog')]/descendant::tr[@class='k-master-row']");
+                    HelpersMethod.ActClick(driver,WebEle,20);
+                    exists=true;
+                }
+                else
+                {
+                    scenario.log("CUSTOMER ACCOUNT # DOES NOT EXISTS");
+                }
+                Assert.assertEquals(exists,true);
+            }
+        }
+        catch (Exception e){}
+    }
+
     public void validateNationalChainPopup()
     {
-        HelpersMethod.WaitElementPresent(driver,"xpath","//div[contains(@class,'k-widget k-window k-dialog')]",100);
         WebElement modalContainer = driver.findElement(By.xpath("//div[contains(@class,'k-widget k-window k-dialog')]"));
 
         // to fetch the web elements of the modal content and interact with them, code to fetch content of modal title and verify it
@@ -393,9 +520,9 @@ public class OrderGuidePage
         HelpersMethod.EnterText(driver,searchBox,60,nationalChain);
         //click on search index
         searchBox=modalContainer.findElement(By.xpath(".//*[local-name()='svg' and contains(@class,'i-search-box__search')]"));
-        HelpersMethod.ClickBut(driver,searchBox,60);
+        HelpersMethod.ClickBut(driver,searchBox,100);
         //click on selected national chain
-        searchBox=modalContainer.findElement(By.xpath(".//tr[contains(@class,'k-master-row')]"));
-        HelpersMethod.ActClick(driver,searchBox,100);
+        WebElement nChain=modalContainer.findElement(By.xpath(".//tr[contains(@class,'k-master-row')][1]"));
+        HelpersMethod.ActClick(driver,nChain,2000);
     }
 }

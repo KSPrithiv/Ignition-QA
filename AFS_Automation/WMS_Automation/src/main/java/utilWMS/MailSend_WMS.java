@@ -5,7 +5,7 @@ package utilWMS;
  * @Author Divya.Ramadas
  */
 
-//import util.TestBase;
+import util.TestBase;
 
 import javax.activation.DataHandler;
 import javax.activation.DataSource;
@@ -26,7 +26,9 @@ public class MailSend_WMS
     {
         final String password = "rkev leoi veno keod";
         final String from = "automationqaafs@gmail.com";
-        final String to = "karthikeyan.armugam@telusagcg.com";
+        final String to = "santhosh.skaria@telusagcg.com";
+        //final String to = "karthikeyan.armugam@telusagcg.com";
+        final String cc = "karthikeyan.armugam@telusagcg.com";
 
         try
         {
@@ -44,7 +46,8 @@ public class MailSend_WMS
                     return new PasswordAuthentication("automationqaafs@gmail.com", "rkev leoi veno keod");
                 }
             });
-            Message message=prepareMessage(session, "automationqaafs@gmail.com", "karthikeyan.armugam@telusagcg.com");
+            //Message message=prepareMessage(session, "automationqaafs@gmail.com", "santhosh.skaria@telusagcg.com");
+            Message message=prepareMessage(session, "automationqaafs@gmail.com", "santhosh.skaria@telusagcg.com","karthikeyan.armugam@telusagcg.com");
           Transport.send(message);
         }
         catch (Exception e)
@@ -53,21 +56,26 @@ public class MailSend_WMS
         }
     }
 
-    private static Message prepareMessage(Session session, String myAccountEmail, String recepient)
+    private static Message prepareMessage(Session session, String myAccountEmail, String recepient,String cc)
     {
         try
         {
             Message message = new MimeMessage(session);
             message.setFrom(new InternetAddress(myAccountEmail));
             message.setRecipient(Message.RecipientType.TO, new InternetAddress(recepient));
-            message.setSubject("Automated Email Notification -Ignition test report -Local machine");
+            //Added Newly
+
+            message.setRecipients(Message.RecipientType.CC,
+                    InternetAddress.parse(cc));
+            message.setSubject("Automated Email Notification -Ignition Automation report from CI server");
 
             //String filename="corp.afsi.com\\C:\\Users\\karthikeyan.Armugam\\Documents\\Git_Repositories\\ignition-qa\\IgnitionQAAutomation\\Reports\\extent\\Index.html";
             //String filename="C:\\Users\\karthikeyan.Armugam\\Documents\\Git_Repositories\\ignition-qa\\IgnitionQAAutomation\\Reports\\extent\\Index.html";
-            String filename="C:\\Users\\Irina.Holovan\\Documents\\ignition-qa\\AFS_Automation\\WMS_Automation\\target\\cucumber-reports\\cucumber.html";
+            //String filename="C:\\Users\\karthikeyan.Armugam\\Documents\\AFS_Automation\\AFS_Automation\\WMS_Automation\\Reports\\surefire-reports_WMS";
+            String filename="E:\\GithubBuilds\\IgnitionQA\\_work\\ignition-qa\\ignition-qa\\AFS_Automation\\WMS_Automation\\target\\surefire-reports\\emailable-report.html";
             //Composing mail
             BodyPart objMessageBodyPart = new MimeBodyPart();
-            objMessageBodyPart.setContent("Hi,"+"Santhosh, Good Afternoon.."+"\n", "text/html");
+            objMessageBodyPart.setContent("Hi,"+"Santhosh, Good Afternoon..Please find attached the Ignition WMS Automation Report"+"\n", "text/html");
             Multipart multipart = new MimeMultipart();
             multipart.addBodyPart(objMessageBodyPart);
             objMessageBodyPart = new MimeBodyPart();

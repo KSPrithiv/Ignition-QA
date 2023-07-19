@@ -56,7 +56,8 @@ public class BillToBillPage
     {
         try {
             String URL = HelpersMethod.gettingURL(driver);
-            if (URL.contains("cpError")) {
+            if (URL.contains("cpError"))
+            {
                 HelpersMethod.NavigateBack(driver);
                 URL = HelpersMethod.gettingURL(driver);
             }
@@ -72,12 +73,11 @@ public class BillToBillPage
 
     public void Refresh_Page()
     {
-        //HelpersMethod.Implicitwait(driver,10);
         driver.navigate().to(currentURL);
         if (HelpersMethod.IsExists("//div[@class='loader']", driver))
         {
             WebElement WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100);
+            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000);
         }
     }
 
@@ -91,9 +91,8 @@ public class BillToBillPage
             if(HelpersMethod.IsExists("//div[@class='loader']",driver))
             {
                 WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 400);
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 4000);
             }
-           // HelpersMethod.Implicitwait(driver,40);
 
             Header=HelpersMethod.FindByElement(driver,"xpath","//div[@class='topHeaderRow row']/descendant::span").getText();
             Assert.assertEquals(Header,"Bill To Billing (DSD)");

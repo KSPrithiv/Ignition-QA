@@ -37,6 +37,7 @@ public class QuotePageSteps
     static String Ord_No=null;
     static boolean flag=false;
     static boolean flag1=false;
+    static String currentURL=null;
 
     LoginPage loginpage;
     HomePage homepage;
@@ -98,6 +99,7 @@ public class QuotePageSteps
         {
             orderEntryPage = new OrderEntryPage(driver, scenario);
             orderEntryPage.NavigateToOrderEntry();
+            currentURL=driver.getCurrentUrl();
             flag=true;
         }
     }
@@ -110,21 +112,24 @@ public class QuotePageSteps
         {
             orderEntryPage.ChangeAccount();
             //orderEntryPage.PopUps_After_AccountChange();
-            orderEntryPage.Read_DeliveryDate();
+            //orderEntryPage.Read_DeliveryDate();
             flag1=true;
         }
         orderEntryPage.HandleError_Page();
-        orderEntryPage.Refresh_Page1();
+        orderEntryPage.Refresh_Page2();
     }
 
     @Then("User enters Quote name {string} and Quote End date click on OK button")
     public void userEntersQuoteNameAndQuoteEndDateClickOnOKButton(String Quote)
     {
         quotePage=new QuotePage(driver,scenario);
+        quotePage.validateQuote();
         quotePage.EnterQuotName(Quote);
         quotePage.ClickOnCalender();
         quotePage.SelectEndDate();
         quotePage.ClickOnOKButton();
+       // newQuotePage=new NewQuotePage(driver,scenario);
+       // newQuotePage.validateNewQuote();
     }
 
     @Then("Enter Pro# in Quick Product Entry area in New Qutoe page and enter Qty for Case and Unit")

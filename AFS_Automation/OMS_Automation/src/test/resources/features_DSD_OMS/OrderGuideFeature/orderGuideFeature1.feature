@@ -85,7 +85,7 @@ Feature: Order Guide1
     Then User clicks on Create new button and should navigate to New OG page
     Then Then User enters Description "<OG>" and End date
     Then User selects type of OG from drop down
-      | Historical |
+      | Historical|
     And User enters Quick Product number and Sequence number
       |4|
     Then User click on Save button
@@ -95,19 +95,24 @@ Feature: Order Guide1
       |OGHist|
 
   @ChangeCustomerAllocationLocalChain
-  Scenario Outline: Test scenario for deleting customer allowcation to local chain
+  Scenario Outline: Test scenario for deleting customer allocation to National chain
     Given User must be on Order Entry Page to select OG
     And User should navigate to OG
     Then User enters OG "<OG>" Description in search box
     And User should navigate to CustomerAllocation tab
     Then Select CustomerAllocation check box and click on Delete button
     Then User Clicks on Plus button and select "<option>" from drop down
+    Then User should navigate back to Product tab in OG
+    And User validates that previously added products are removed from product grid
+    And User enters Quick Product number and Sequence number
+      |4|
+    Then User click on Save button
     Examples:
-      |  OG     |   option  |
-      |DayOfWeek| Local chain|
+      |  OG         |   option      |
+      | DayOfWeek   | National chain|
 
-  @ChangeAccountInCustomerAllocation
-  Scenario Outline: Test scenario for changing customer allocation from one Account to another
+  @ChangeAccountAndCreateOG
+  Scenario Outline: Test scenario for changing Customer Account# and create OG
     Given User must be on Order Entry Page to select OG
     And User should navigate to OG
     Then User Clicks on Customer Account_No button and select other Customer Account_No
@@ -116,10 +121,11 @@ Feature: Order Guide1
     And User enters Quick Product number and Sequence number
       |4|
     Then User click on Save button
-  #  And User should navigate back to OG page and verify OG "<OG>"  existence
+    And User should navigate back to OG page and verify OG "<OG>"  existence
+    And User changes the Customer Account# to the previous Account#
     Examples:
       |     OG    |
-      |AccChangeOG|
+      |   OGDis1  |
 
   @DeleteCustomerAllocation
   Scenario Outline: Test scenario for deleting Customer allowcation
@@ -139,7 +145,7 @@ Feature: Order Guide1
     Then User click on Save button
     Examples:
       |  OG     |
-      |DayOfWeek|
+      |OGDis1  |
 
   @ActiveToExpired
   Scenario Outline: Test scenario to convert active OG to expired OG
@@ -147,11 +153,10 @@ Feature: Order Guide1
     And User should navigate to OG
     Then User enters OG "<OG>" Description in search box
     And User selects end date as past date
-    Then User click on Save button
     Then User should navigate back to OG page and verify OG "<OG>" by selecting status as expired
     Examples:
-      |  OG     |
-      | SampleOG  |
+      |  OG        |
+      | SampleOG1  |
 
   @OGLocalChain
   Scenario Outline: For creating OG using local chain
@@ -165,7 +170,7 @@ Feature: Order Guide1
     And User enters Quick Product number and Sequence number
       |4|
     Then User click on Save button
-    And User should navigate back to OG page and navigate back to local chain "<OGType>" and verify OG "<OG>"  existence
+    #And User should navigate back to OG page and navigate back to "<OGType>" and verify OG "<OG>"  existence
     Examples:
       |  OG       |   OGType     |
       |LocalChain1|  Local chain |
@@ -188,6 +193,6 @@ Feature: Order Guide1
     Then User click on Save button
     And User should navigate back to OG page change account# and verify OG "<OG>"  existence
     Examples:
-      |  OG |
+      |  OG      |
       |CustChange|
 

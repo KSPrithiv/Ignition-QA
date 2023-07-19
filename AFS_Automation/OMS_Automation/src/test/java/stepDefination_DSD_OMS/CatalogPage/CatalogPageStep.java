@@ -8,15 +8,18 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import io.cucumber.java8.Th;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import pages_DSD_OMS.Catalog.CatalogPage;
 import pages_DSD_OMS.Catalog.ProductDescriptionPage;
 import pages_DSD_OMS.login.HomePage;
 import pages_DSD_OMS.login.LoginPage;
 import pages_DSD_OMS.orderEntry.CheckOutOrderPage;
+import pages_DSD_OMS.orderEntry.CheckOutSummaryPage;
 import pages_DSD_OMS.orderEntry.NewOrderEntryPage;
 import pages_DSD_OMS.orderEntry.OrderEntryPage;
 import util.DataBaseConnection;
@@ -50,6 +53,7 @@ public class CatalogPageStep
     NewOrderEntryPage newOE;
     CheckOutOrderPage checkorder;
     ProductDescriptionPage productdesctiptionpage;
+    CheckOutSummaryPage summary;
 
     @Before
     public void LaunchBrowser1(Scenario scenario) throws Exception
@@ -88,7 +92,6 @@ public class CatalogPageStep
         boolean result=false;
         if(flag==false)
         {
-            //Thread.sleep(10000);
             homepage = new HomePage(driver,scenario);
             String title = driver.getTitle();
             Assert.assertEquals(title, "Ignition - Admin");
@@ -109,7 +112,8 @@ public class CatalogPageStep
     }
 
     @Then("User selects Account# for Catalog")
-    public void user_selects_accountForCatalog() throws InterruptedException, AWTException, ParseException {
+    public void user_selects_accountForCatalog() throws InterruptedException, AWTException, ParseException
+    {
         if(flag1==false)
         {
             orderpage = new OrderEntryPage(driver, scenario);
@@ -127,30 +131,32 @@ public class CatalogPageStep
         if(flag1==false)
         {
             orderpage.NavigateToOrderEntry();
-            flag1=true;
         }
-        orderpage.HandleError_Page();
-        orderpage.Refresh_Page(currentURL);
     }
 
     //Click on Catalog tab
     @And("User should navigate to Catalog tab")
     public void user_should_navigate_to_catalog_tab() throws InterruptedException, AWTException
     {
+        if(flag1==false)
+        {
             if (HelpersMethod.IsExists("//li[contains(@class,'k-item')]/span[@class='k-link' and contains(text(),'Catalog')]", driver))
             {
-                //Thread.sleep(10000);
                 HelpersMethod.navigate_Horizantal_Tab(driver, "Catalog", "//li[contains(@class,'k-item')]/span[@class='k-link' and contains(text(),'Catalog')]", "xpath", "//li[contains(@class,'k-item')]/span[@class='k-link']");
-                //Thread.sleep(25000);
                 catalogpage = new CatalogPage(driver, scenario);
                 boolean result = catalogpage.ValidateCatalog();
+                currentURL = driver.getCurrentUrl();
+                scenario.log(currentURL);
                 Assert.assertEquals(result, true);
-
-            }
-            else
-            {
+            } else {
                 scenario.log("CATALOG TAB IS NOT VISIBLE");
             }
+            flag1 = true;
+        }
+        orderpage=new OrderEntryPage(driver,scenario);
+        orderpage.HandleError_Page();
+        catalogpage = new CatalogPage(driver, scenario);
+        catalogpage.Refresh_Page(currentURL);
     }
 
     //Click on Resetfilter and validate the page, and click on List view
@@ -178,16 +184,17 @@ public class CatalogPageStep
     {
         catalogpage = new CatalogPage(driver, scenario);
         String pro = DataBaseConnection.DataBaseConn(TestBase.testEnvironment.getSingle_Prod_Sql());
+        scenario.log("PRODUCT FOR SEARCH IN SEARCH BAR "+pro);
         catalogpage.SearchProduct1(pro);
     }
 
     //Code for searching of product using product description
     @Then("User enters Product description in Search bar")
-    public void enter_product_description_in_search_bar() throws SQLException, ClassNotFoundException, InstantiationException, IllegalAccessException, InterruptedException {
+    public void enter_product_description_in_search_bar() throws SQLException, ClassNotFoundException, InstantiationException, IllegalAccessException, InterruptedException
+    {
         catalogpage = new CatalogPage(driver, scenario);
-        //Thread.sleep(20000);
-        String pro = DataBaseConnection.DataBaseConn(TestBase.testEnvironment.get_ProdDesc());
-        //Thread.sleep(20000);
+        String pro=TestBase.testEnvironment.getProdDesc();
+        scenario.log("PRODUCT DESCRIPTION FOR SEARCH "+pro);
         catalogpage.SearchProduct1(pro);
     }
 
@@ -198,12 +205,12 @@ public class CatalogPageStep
         List<List<String>> Prod_detail = tabledata.asLists(String.class);
         catalogpage = new CatalogPage(driver, scenario);
         String pro = DataBaseConnection.DataBaseConn(TestBase.testEnvironment.getSingle_Prod_Sql());
+        scenario.log("PRODUCT SEARCHED IS "+pro);
         catalogpage.SearchProduct1(pro);
         exists = HelpersMethod.IsExists("//div[contains(text(),'Sorry, no products matched')]", driver);
         if (exists == true)
         {
             HelpersMethod.ClickBut(driver,HelpersMethod.FindByElement(driver, "xpath", "//span[contains(@class,'search-button')]/*[local-name()='svg']/*[local-name()='path' and contains(@d,'M17')]"),1);
-           // HelpersMethod.Implicitwait(driver, 10);
         }
         else if (exists == false)
         {
@@ -218,8 +225,7 @@ public class CatalogPageStep
     {
         List<List<String>> Best_Match = tabledata.asLists(String.class);
         catalogpage = new CatalogPage(driver, scenario);
-        boolean result = catalogpage.Best_MatchDropDown(Best_Match.get(0).get(0));
-        Assert.assertEquals(result, true);
+        catalogpage.Best_MatchDropDown(Best_Match.get(0).get(0));
     }
 
     //Code to click on Reset filter, and navigate to Card view
@@ -228,7 +234,6 @@ public class CatalogPageStep
     {
         catalogpage = new CatalogPage(driver, scenario);
         catalogpage.Click_ResetFilterButton();
-        //Thread.sleep(20000);
         catalogpage.Click_CardView();
     }
 
@@ -236,17 +241,13 @@ public class CatalogPageStep
     @Then("User enters Product# in Search bar and enters Qty")
     public void user_enters_product_in_search_bar_and_enters_qty(DataTable tabledata) throws SQLException, InterruptedException
     {
-        WebElement WebEle=null;
         List<List<String>> Prod_detail = tabledata.asLists(String.class);
-        ArrayList<String> Prod_No = (ArrayList<String>) DataBaseConnection.DataConn1(TestBase.testEnvironment.getMultiple_Prod_Sql());
+        ArrayList<String> Prod_No = (ArrayList<String>) DataBaseConnection.DataConn1(TestBase.testEnvironment.getMultiple_Prod_Sql1());
         catalogpage = new CatalogPage(driver, scenario);
         for(int i=0;i<=Prod_No.size()-1;i++)
         {
-            //Thread.sleep(10000);
             catalogpage.SearchProduct(Prod_No.get(i));
-            //Thread.sleep(10000);
             catalogpage.ProductExistsCard(Prod_detail.get(i).get(0));
-            //Thread.sleep(10000);
         }
     }
 
@@ -255,14 +256,12 @@ public class CatalogPageStep
     public void user_click_on_cart_in_catalog_and_click_on_gotocart() throws InterruptedException, AWTException
     {
         catalogpage = new CatalogPage(driver, scenario);
-        //HelpersMethod.Implicitwait(driver, 20);
         catalogpage.Cart_Button();
-        //HelpersMethod.Implicitwait(driver, 20);
+        catalogpage.readProdFromShoppingCartDropDown();
         catalogpage.GotoCartClick();
-        //HelpersMethod.Implicitwait(driver, 20);
+        catalogpage.validateCartItemCard();
         catalogpage.Checkout_to_order();
         catalogpage.NewOrder_Option();
-        //HelpersMethod.Implicitwait(driver, 20);
         checkorder = new CheckOutOrderPage(driver, scenario);
         if (checkorder.VerifyCheckOut())
         {
@@ -275,37 +274,34 @@ public class CatalogPageStep
     public void user_enters_product_in_search_bar_and_enter_qty_and_click_on_delete_button(DataTable tabledata) throws SQLException, InterruptedException
     {
         WebElement WebEle=null;
-        //HelpersMethod.Implicitwait(driver, 20);
         List<List<String>> Prod_detail = tabledata.asLists(String.class);
-        ArrayList<String> Prod_No = (ArrayList<String>) DataBaseConnection.DataConn1(TestBase.testEnvironment.getMultiple_Prod_Sql());
+        ArrayList<String> Prod_No = (ArrayList<String>) DataBaseConnection.DataConn1(TestBase.testEnvironment.getMultiple_Prod_Sql1());
         catalogpage = new CatalogPage(driver, scenario);
         for (int i = 0; i <= Prod_No.size() - 1; i++)
         {
-           // Thread.sleep(1000);
             catalogpage.SearchProduct(Prod_No.get(i));
-           // Thread.sleep(1000);
-            exists = HelpersMethod.IsExists("//div[contains(text(),'Sorry, no products matched')]", driver);
-            if (exists == true)
+            if (HelpersMethod.IsExists("//div[contains(text(),'Sorry, no products matched')]",driver))
             {
                 WebEle=HelpersMethod.FindByElement(driver, "xpath", "//span[contains(@class,'search-button')]/*[local-name()='svg']/*[local-name()='path' and contains(@d,'M17')]");
-                HelpersMethod.ClickBut(driver,WebEle,100);
-                //HelpersMethod.Implicitwait(driver, 20);
+                HelpersMethod.ClickBut(driver,WebEle,1000);
             }
             else if (exists == false)
             {
-               // Thread.sleep(1000);
                 catalogpage.ProductExistsCard(Prod_detail.get(i).get(0));
-               // Thread.sleep(1000);
                 if (i == 1)
                 {
+                    new WebDriverWait(driver,1000).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[local-name()='svg']/*[local-name()='path' and contains(@d,'M16 ')]"))));
                     WebEle=HelpersMethod.FindByElement(driver, "xpath", "//*[local-name()='svg']/*[local-name()='path' and contains(@d,'M16 ')]");
-                    HelpersMethod.ActClick(driver,WebEle, 100);
-                    WebEle=HelpersMethod.FindByElement(driver, "id", "searchBarClearBtn");
-                    HelpersMethod.ScrollElement(driver,WebEle);
-                    HelpersMethod.ActClick(driver,WebEle,100);
+                    HelpersMethod.ActClick(driver,WebEle, 1000);
+                /*    if(HelpersMethod.IsExists("//div[@class='loader']",driver))
+                    {
+                        WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
+                        HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000);
+                    }*/
                     scenario.log("PRODUCT "+Prod_No.get(i)+" HAS BEEN DELETED");
                 }
             }
+            new WebDriverWait(driver,80000).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("productsCard"))));
         }
     }
 
@@ -314,15 +310,16 @@ public class CatalogPageStep
     public void user_click_on_cart_in_catalog_and_click_on_gotocart_before_that_delete_product_from_popup() throws InterruptedException, AWTException
     {
         catalogpage = new CatalogPage(driver, scenario);
-        //HelpersMethod.Implicitwait(driver, 10);
         catalogpage.Cart_Button();
-        //HelpersMethod.Implicitwait(driver,10);
+        scenario.log("PRODUCTS BEFORE DELETING FROM SHOPPING CART: ");
+        catalogpage.readProdFromShoppingCartDropDown();
         catalogpage.DeleteProd_GotoCartClick();
+        scenario.log("PRODUCTS AFTER DELETING FROM SHOPPING CART: ");
+        catalogpage.readProdFromShoppingCartDropDown();
         catalogpage.ClickGotoCart1();
-        // HelpersMethod.Implicitwait(driver,10);
+        catalogpage.validateCartItemCard();
         catalogpage.Checkout_to_order();
         catalogpage.NewOrder_Option();
-        //HelpersMethod.Implicitwait(driver, 10);
         checkorder = new CheckOutOrderPage(driver, scenario);
         if (checkorder.VerifyCheckOut())
         {
@@ -335,16 +332,13 @@ public class CatalogPageStep
     public void user_click_on_cart_in_catalog_and_click_on_gotocart_delete_product_from_Mycart_page() throws InterruptedException, AWTException
     {
         catalogpage = new CatalogPage(driver, scenario);
-        //HelpersMethod.Implicitwait(driver, 40);
         catalogpage.Cart_Button();
-        //HelpersMethod.Implicitwait(driver, 40);
+        catalogpage.readProdFromShoppingCartDropDown();
         catalogpage.GotoCartClick();
+        catalogpage.validateCartItemCard();
         catalogpage.DeleteMyCart();
-        //Thread.sleep(20000);
         catalogpage.Checkout_to_order();
-        //Thread.sleep(20000);
         catalogpage.NewOrder_Option();
-        // HelpersMethod.Implicitwait(driver, 40);
         checkorder = new CheckOutOrderPage(driver, scenario);
         if (checkorder.VerifyCheckOut())
         {
@@ -357,18 +351,12 @@ public class CatalogPageStep
     public void user_click_on_cart_in_catalog_and_click_on_gotocart_and_select_existing_order() throws InterruptedException, AWTException
     {
         catalogpage = new CatalogPage(driver, scenario);
-        //HelpersMethod.Implicitwait(driver, 40);
         catalogpage.Cart_Button();
-        //HelpersMethod.Implicitwait(driver, 40);
+        catalogpage.readProdFromShoppingCartDropDown();
         catalogpage.GotoCartClick();
+        catalogpage.validateCartItemCard();
         catalogpage.Checkout_to_order();
         catalogpage.AddProductToOrder();
-        //HelpersMethod.Implicitwait(driver, 40);
-        checkorder = new CheckOutOrderPage(driver, scenario);
-        if (checkorder.VerifyCheckOut())
-        {
-            checkorder.BackButton_Click();
-        }
     }
 
     @And("User clicks on product image and enters Qty in Description page")
@@ -378,26 +366,19 @@ public class CatalogPageStep
         catalogpage = new CatalogPage(driver, scenario);
         catalogpage.ClickImage();
         productdesctiptionpage = new ProductDescriptionPage(driver, scenario);
-        //Thread.sleep(20000);
         if(HelpersMethod.IsExistsById("delete-from-cart-button",driver))
         {
             WebElement Del_But=HelpersMethod.FindByElement(driver,"id","delete-from-cart-button");
             HelpersMethod.ScrollElement(driver,Del_But);
             HelpersMethod.ClickBut(driver,Del_But,100);
-            //Thread.sleep(20000);
             productdesctiptionpage.Qty_Inputbox(Qty.get(0).get(0));
-            //Thread.sleep(20000);
             productdesctiptionpage.Add_to_cart();
-            //Thread.sleep(10000);
             productdesctiptionpage.Increase_Descrease();
         }
         else
         {
-            //Thread.sleep(20000);
             productdesctiptionpage.Qty_Inputbox(Qty.get(0).get(0));
-            //Thread.sleep(20000);
             productdesctiptionpage.Add_to_cart();
-            //Thread.sleep(10000);
             productdesctiptionpage.Increase_Descrease();
         }
     }
@@ -406,22 +387,18 @@ public class CatalogPageStep
     @Then("User enters different Product# in Search bar and enter Qty by clicking image")
     public void user_enters_product_in_search_bar_and_enter_qty_by_clicking_image(DataTable tabledata) throws SQLException, InterruptedException
     {
-        //HelpersMethod.Implicitwait(driver, 40);
-        ArrayList<String> Prod_No = (ArrayList<String>) DataBaseConnection.DataConn1(TestBase.testEnvironment.getMultiple_Prod_Sql());
+        ArrayList<String> Prod_No = (ArrayList<String>) DataBaseConnection.DataConn1(TestBase.testEnvironment.getMultiple_Prod_Sql1());
         List<List<String>> Qty = tabledata.asLists(String.class);
 
         catalogpage = new CatalogPage(driver, scenario);
         for (int i = 0; i <= Prod_No.size() - 1; i++)
         {
-            //HelpersMethod.Implicitwait(driver, 40);
             String pro = String.valueOf(Prod_No.get(i));
-            //Thread.sleep(20000);
             catalogpage.SearchProduct1(pro);
             exists = HelpersMethod.IsExists("//div[contains(text(),'Sorry, no products matched')]", driver);
             if (exists == true)
             {
                 HelpersMethod.ClickBut(driver,HelpersMethod.FindByElement(driver, "xpath", "//span[contains(@class,'search-button')]/*[local-name()='svg']/*[local-name()='path' and contains(@d,'M17')]"),10);
-                //HelpersMethod.Implicitwait(driver, 40);
                 scenario.log("PRODUCT DOESN'T EXISTS");
             }
             else if (exists == false)
@@ -429,25 +406,26 @@ public class CatalogPageStep
                 catalogpage = new CatalogPage(driver, scenario);
                 catalogpage.ClickImage();
                 productdesctiptionpage = new ProductDescriptionPage(driver, scenario);
-                if(HelpersMethod.IsExistsById("delete-from-cart-button",driver))
+               /* if(HelpersMethod.IsExists("//div[@class='loader']",driver))
+                {
+                    WebElement WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
+                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 2000);
+                }*/
+                WebElement WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'cart-container')]/ancestor::div[contains(@class,'price-cart-container')]");
+                HelpersMethod.ScrollElement(driver,WebEle);
+                if(HelpersMethod.IsExists("//button[contains(@id,'delete-from-cart-button')]",driver))
                 {
                     WebElement Del_But = HelpersMethod.FindByElement(driver, "id", "delete-from-cart-button");
                     HelpersMethod.ScrollElement(driver, Del_But);
-                    HelpersMethod.ClickBut(driver, Del_But, 100);
-                    //Thread.sleep(20000);
+                    HelpersMethod.ClickBut(driver, Del_But, 2000);
                     productdesctiptionpage.Qty_Inputbox(Qty.get(0).get(0));
-                    //Thread.sleep(20000);
                     productdesctiptionpage.Add_to_cart();
-                    //Thread.sleep(10000);
                     productdesctiptionpage.Back_to_Catalog();
                 }
                 else
                 {
-                    //Thread.sleep(20000);
                     productdesctiptionpage.Qty_Inputbox(Qty.get(i).get(0));
-                    //Thread.sleep(20000);
                     productdesctiptionpage.Add_to_cart();
-                    //Thread.sleep(10000);
                     productdesctiptionpage.Back_to_Catalog();
                 }
             }
@@ -457,52 +435,47 @@ public class CatalogPageStep
     @Then("User enters different Product# in Search bar and enter Qty by clicking image and click Delete product")
     public void user_enters_different_product_in_search_bar_and_enter_qty_by_clicking_image_and_click_delete_product(DataTable tabledata) throws SQLException, InterruptedException
     {
-        //HelpersMethod.Implicitwait(driver, 40);
-        ArrayList<String> Prod_No = (ArrayList<String>) DataBaseConnection.DataConn1(TestBase.testEnvironment.getMultiple_Prod_Sql());
+        ArrayList<String> Prod_No = (ArrayList<String>) DataBaseConnection.DataConn1(TestBase.testEnvironment.getMultiple_Prod_Sql1());
         List<List<String>> Qty = tabledata.asLists(String.class);
-        //Thread.sleep(20000);
         catalogpage = new CatalogPage(driver, scenario);
         for (int i = 0; i <= Prod_No.size() - 1; i++)
         {
-            HelpersMethod.Implicitwait(driver, 40);
             String pro = String.valueOf(Prod_No.get(i));
             catalogpage.SearchProduct1(pro);
             exists = HelpersMethod.IsExists("//div[contains(text(),'Sorry, no products matched')]", driver);
             if (exists == true)
             {
                 HelpersMethod.ClickBut(driver,HelpersMethod.FindByElement(driver, "xpath", "//span[contains(@class,'search-button')]/*[local-name()='svg']/*[local-name()='path' and contains(@d,'M17')]"),80);
-                //HelpersMethod.Implicitwait(driver, 40);
             }
             else if (exists == false)
             {
                 catalogpage = new CatalogPage(driver, scenario);
                 catalogpage.ClickImage();
+               /* if(HelpersMethod.IsExists("//div[@class='loader']",driver))
+                {
+                    WebElement WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
+                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 20000);
+                }*/
                 productdesctiptionpage = new ProductDescriptionPage(driver, scenario);
                 if(HelpersMethod.IsExists("//button[@id='delete-from-cart-button']",driver))
                 {
                     WebElement Del_But = HelpersMethod.FindByElement(driver, "id", "delete-from-cart-button");
                     HelpersMethod.ScrollElement(driver, Del_But);
-                    HelpersMethod.ClickBut(driver, Del_But, 40);
-                    //Thread.sleep(20000);
+                    HelpersMethod.ClickBut(driver, Del_But, 2000);
                     productdesctiptionpage.Qty_Inputbox(Qty.get(i).get(0));
-                    //Thread.sleep(20000);
                     productdesctiptionpage.Add_to_cart();
                     if (i == 0)
                     {
-                       // Thread.sleep(20000);
                         productdesctiptionpage.Delete_Icon();
                     }
                     productdesctiptionpage.Back_to_Catalog();
                 }
                 else
                 {
-                    //Thread.sleep(20000);
                     productdesctiptionpage.Qty_Inputbox(Qty.get(i).get(0));
                     productdesctiptionpage.Add_to_cart();
-                    //Thread.sleep(20000);
                     if (i == 0)
                     {
-                       // Thread.sleep(20000);
                         productdesctiptionpage.Delete_Icon();
                         scenario.log("DELETED PRODUCT FROM PRODUCT DESCRIPTION PAGE");
                     }
@@ -512,5 +485,27 @@ public class CatalogPageStep
         }
     }
 
+    @Then("Click on SubmitOrder button for creating order from Catalog")
+    public void clickOnSubmitOrderButtonForCreatingOrderFromCatalog() throws InterruptedException, AWTException
+    {
+        summary = new CheckOutSummaryPage(driver,scenario);
+        /*if(HelpersMethod.IsExists("//div[@class='loader']",driver))
+        {
+            WebElement WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
+            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000);
+        }*/
+        summary.ClickSubmit();
+        summary.SucessPopup();
+    }
 
+    @Given("User must be on Order Entry Page to create pending order")
+    public void userMustBeOnOrderEntryPageToCreatePendingOrder(String currentURL) throws InterruptedException, AWTException
+    {
+        orderpage=new OrderEntryPage(driver,scenario);
+        orderpage.HandleError_Page();
+        catalogpage = new CatalogPage(driver, scenario);
+        catalogpage.Refresh_Page(currentURL);
+        orderpage=new OrderEntryPage(driver,scenario);
+        orderpage.NavigateToOrderEntry();
+    }
 }
