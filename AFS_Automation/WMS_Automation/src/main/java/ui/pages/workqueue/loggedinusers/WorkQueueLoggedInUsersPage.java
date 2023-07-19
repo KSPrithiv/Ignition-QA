@@ -49,10 +49,7 @@ public class WorkQueueLoggedInUsersPage extends BasePage {
     By dropdownList = By.id("dropdownList");
 
     public void waitWorkQueueLoggedInUsersPageToLoad() {
-        refresh();
-        refresh();
-        refresh();
-        Waiters.waitABit(6000);
+        Waiters.waitABit(6_000);
         Waiters.waitUntilPageWillLoadedSelenide();
         Waiters.waitForElementToBeDisplay(getLoggedInTitle());
         Waiters.waitForElementToBeDisplay(getUserIdColumn());
@@ -194,13 +191,12 @@ public class WorkQueueLoggedInUsersPage extends BasePage {
     }
 
     public void selectLogoutUserReason(String reason) {
-        Waiters.waitABit(2000);
         clickOnElement(getLogoutUserDropdown());
         WebElement option = findWebElement(By
                 .xpath("//div[contains(@class, 'k-animation-container-shown')]//li[@role='option' and contains(text(), '"
                         + reason + "')]"));
         clickOnElement(option);
-        Waiters.waitABit(2000);
+        Waiters.waitABit(5_000);
     }
 
     public void clickOK() {
@@ -334,19 +330,17 @@ public class WorkQueueLoggedInUsersPage extends BasePage {
     }
 
     public void clickClearAllButton() {
-        Waiters.waitABit(2000);
         Waiters.waitForElementToBeDisplay(getClearAllButton());
         clickOnElement(getClearAllButton());
     }
 
     public void typeFilter(String filter) {
-        Waiters.waitABit(2000);
+        Waiters.waitABit(1000);
         Waiters.waitForElementToBeDisplay(getInputContains());
         inputText(getInputContains(), filter);
     }
 
     public void clickApplyButton() {
-        Waiters.waitABit(2000);
         Waiters.waitForElementToBeDisplay(getApplyButton());
         clickOnElement(getApplyButton());
     }

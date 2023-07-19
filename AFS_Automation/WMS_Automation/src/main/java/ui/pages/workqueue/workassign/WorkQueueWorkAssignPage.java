@@ -37,9 +37,6 @@ public class WorkQueueWorkAssignPage extends BasePage {
     }
 
     public void waitWorkQueueWorkAssignPageToLoad() {
-        refresh();
-        refresh();
-        refresh();
         Waiters.waitABit(6000);
         Waiters.waitUntilPageWillLoadedSelenide();
         Waiters.waitForElementToBeDisplay(getTaskGroupTitle());

@@ -4,7 +4,6 @@ Feature: Testing of Counting Count functionality
   Scenario: Checking Navigate to Counting Sessions screen
     Given User signs in the application
     And Main page is loaded
-    And Clear all cookies
     And DockManagement Summary Page is validated
     When Go to Counting Sessions page
     Then Validates Counting Sessions page is displayed

@@ -325,16 +325,12 @@ Feature: Testing of Work Queue Assignment functionality
     And Clicks Save Button for Assignment on Work Queue Assignments page
     And Checks assignment with index 1 on Work Queue Assignments page
     Then User clicks Edit Assignment on Work Queue Assignments page
-
     And User selects Task group by index 0 for Assignment on Work Queue Assignments page
-
     And Clicks Save Button for Assignment on Work Queue Assignments page
     And Validates Successful message "Success" on Work Queue Assignments page
     And Checks assignment with index 2 on Work Queue Assignments page
     And User clicks Edit Assignment on Work Queue Assignments page
-
     And User selects Task group by index 1 for Edit Assignment on Work Queue Assignments page
-
     And Clicks Save Button for Assignment on Work Queue Assignments page
     And Validates Successful message "Success" on Work Queue Assignments page
     And Checks assignment with index 1 on Work Queue Assignments page

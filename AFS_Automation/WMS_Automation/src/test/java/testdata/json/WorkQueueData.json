@@ -3,7 +3,7 @@
   {
     "assignment number 1": "20365",
     "assignment number 2": "20663",
-    "assignment number 3": "20907",
+    "assignment number 3": "32366",
     "assignment number 4": "21001",
     "assignment number 5": "21140"
   },
@@ -122,7 +122,7 @@
   "user 3": "AFS - AFS User",
   "user 4": "AFSWS - AFSWS User",
   "user 5": "SYED - Syed Shahab",
-  "user 6": "SYED - Syed Shahab"
+  "user 6": "PATP - Pat Picker"
   },
   "task groups":
   {
@@ -138,5 +138,95 @@
     "task group 10": "Shipping",
     "task group 11": "Pick Do Not Split",
     "task group 12": "Picking Full Pallets"
+  },
+  "logged-in users":
+  {
+    "logged-in user 1": "AFS User",
+    "logged-in user 2": "AFSRF User",
+    "logged-in user 3": "AFSWS User",
+    "logged-in user 4": "Default User",
+    "logged-in user 5": "Fran Rifkin",
+    "logged-in user 6": "Rick Receiver"
+  },
+  "user ids":
+  {
+    "user id 1": "AFS",
+    "user id 2": "AFSRF",
+    "user id 3": "AFSWS",
+    "user id 4": "DEFAULT",
+    "user id 5": "FRANR",
+    "user id 6": "RICKR"
+  },
+  "computers":
+  {
+    "computer 1": "FBD6DD77-E48A-42AB-819F-C13C952B165C",
+    "computer 2": "FBC0B32B-0FF8-4CA2-9796-01C5ED041211",
+    "computer 3": "FA52D3D5-AD31-4873-ACF1-E230C504A921",
+    "computer 4": "F68B9871-BADB-42A1-8671-3E73141E4FD8",
+    "computer 5": "F372495D-726D-4832-B427-1EB53997AF1B",
+    "computer 6": "F33F30CB-F66C-47BC-80D5-B8D7F1788A12"
+  },
+  "logout reasons":
+  {
+    "logout reason 1": "End of Shift",
+    "logout reason 2": "Break",
+    "logout reason 3": "Staff Meeting",
+    "logout reason 4": "Cleaning"
+  },
+  "task list products":
+  {
+    "task list product 1": "W100C",
+    "task list product 2": "SAL100",
+    "task list product 3": "RB001",
+    "task list product 4": "EP-BHC10-WA",
+    "task list product 5": "999",
+    "task list product 6": "94187"
+  },
+  "task list from":
+  {
+    "task list from 1": "D35A2",
+    "task list from 2": "A03A1",
+    "task list from 3": "A01A2",
+    "task list from 4": "A01B1",
+    "task list from 5": "A02A1",
+    "task list from 6": "B01A2"
+  },
+  "task list to":
+  {
+    "task list to 1": "STAGE04",
+    "task list to 2": "STAGE03",
+    "task list to 3": "STAGE",
+    "task list to 4": "INVOICE",
+    "task list to 5": "DR10",
+    "task list to 6": "DR08"
+  },
+  "task list status":
+  {
+    "task list status 1": "Released",
+    "task list status 2": "Processed",
+    "task list status 3": "Pending Pick",
+    "task list status 4": "Dedicated Pick",
+    "task list status 5": "Count Pending",
+    "task list status 6": "Count in Progress"
+  },
+  "task list priorities":
+  {
+    "task list priority 1": "Normal",
+    "task list priority 2": "Low",
+    "task list priority 3": "High"
+  },
+  "task list velocities":
+  {
+    "task list velocity 1": "A",
+    "task list velocity 2": "B"
+  },
+  "task list descriptions":
+  {
+    "task list description 1": "XDOCK Pallet",
+    "task list description 2": "WORLD ART HOT CUP",
+    "task list description 3": "WHEAT CLEANED",
+    "task list description 4": "Turkey Franks",
+    "task list description 5": "Turkey Burger",
+    "task list description 6": "STRAWBERRIES"
   }
 }

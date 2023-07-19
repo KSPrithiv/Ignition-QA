@@ -1,13 +1,20 @@
 package steps.workqueue.workassign;
 
+import common.constants.FilePaths;
+import common.utils.objectmapper.ObjectMapperWrapper;
 import io.cucumber.java.en.And;
 import io.qameta.allure.Step;
 import lombok.extern.slf4j.Slf4j;
+import objects.workqueuedata.WorkQueueDataDTO;
 import ui.pages.workqueue.workassign.WorkQueueWorkAssignPage;
+
+import java.util.List;
 
 @Slf4j
 public class WorkQueueWorkAssignSteps {
     WorkQueueWorkAssignPage workQueueWorkAssignPage = new WorkQueueWorkAssignPage();
+    WorkQueueDataDTO workQueueDataDTO = new ObjectMapperWrapper()
+            .getObject(FilePaths.WORK_QUEUE_DATA, WorkQueueDataDTO.class);
 
     @Step
     @And("Waits for Work Queue Work Assign page to load")
@@ -38,10 +45,31 @@ public class WorkQueueWorkAssignSteps {
     }
 
     @Step
+    @And("Selects Task Group by index {int} on Work Queue Work Assign page")
+    public void selectsTaskGroupByIndex(int index) {
+        log.info("Selects Task Group by index on Work Queue Work Assign page");
+        List<String> tasks = List.of(workQueueDataDTO.getTaskGroupDTO().getTaskGroup7(), workQueueDataDTO.getTaskGroupDTO()
+                .getTaskGroup8(), workQueueDataDTO.getTaskGroupDTO().getTaskGroup9(), workQueueDataDTO.getTaskGroupDTO()
+                .getTaskGroup10(), workQueueDataDTO.getTaskGroupDTO().getTaskGroup11(), workQueueDataDTO.getTaskGroupDTO()
+                .getTaskGroup12());
+        workQueueWorkAssignPage.selectTaskGroup(tasks.get(index));
+    }
+
+    @Step
     @And("Checks {string} user on Work Queue Work Assign page")
     public void checkUser(String user) {
         log.info("Checks user on Work Queue Work Assign page");
         workQueueWorkAssignPage.checkUserByName(user);
+    }
+
+    @Step
+    @And("Checks user by index {int} on Work Queue Work Assign page")
+    public void checkUserByIndex(int index) {
+        log.info("Checks user on Work Queue Work Assign page");
+        List<String> users = List.of(workQueueDataDTO.getUsersDTO().getUser1(), workQueueDataDTO.getUsersDTO().getUser2(),
+                workQueueDataDTO.getUsersDTO().getUser3(), workQueueDataDTO.getUsersDTO().getUser4(), workQueueDataDTO
+                .getUsersDTO().getUser5(), workQueueDataDTO.getUsersDTO().getUser6());
+        workQueueWorkAssignPage.checkUserByName(users.get(index));
     }
 
     @Step

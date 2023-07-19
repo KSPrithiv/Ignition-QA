@@ -3,16 +3,16 @@ Feature: Testing of Work Queue User history functionality
 
   Scenario: Checking Navigate to Work Queue User history screen functionality
     Given User signs in the application
-    When Main page is loaded
+    And Main page is loaded
     And DockManagement Summary Page is validated
-    Then Go to Work Queue User history page
+    And Go to Work Queue User history page
     And Waits for Work Queue User History page to load
     And Validates User history is displayed on Work Queue User History page
     And Validates Login, Logout, User id and Username columns are displayed on Work Queue User History page
     And Validates Grid items are present on Work Queue User History page
-    And User scrolls till end of grid table on Work Queue User History page
+    When User scrolls till end of grid table on Work Queue User History page
     And Validates Table End is displayed on Work Queue User History page
-    And User searches for "USER1" on Work Queue User History page
+    Then User searches for "USER1" on Work Queue User History page
     And Validates Grid items are present on Work Queue User History page
     And User clears Search on Work Queue User History page
     And User clicks on Login Header on Work Queue User History page
