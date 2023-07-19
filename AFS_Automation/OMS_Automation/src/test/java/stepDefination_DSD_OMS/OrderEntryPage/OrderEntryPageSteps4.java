@@ -51,6 +51,7 @@ public class OrderEntryPageSteps4
         Assert.assertEquals(exists,true);
         //newOE.OutOfStockPop_ERP();
         checkorder=new CheckOutOrderPage(driver,scenario);
+        checkorder.DeliveryAddressCard();
         checkorder.Click_On_Without_Providing_Payment();
         checkorder.NextButton_Click();
     }

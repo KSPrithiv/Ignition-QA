@@ -256,19 +256,28 @@ public class OrderEntryPageSteps
         exists=newOE.ClickNext();
         //newOE.OutOfStockPop_ERP();
         checkorder=new CheckOutOrderPage(driver,scenario);
+        checkorder.DeliveryAddressCard();
         if(HelpersMethod.IsExists("//div[@id='paymentMethodCard']",driver))
         {
             checkorder.Select_PaymentMethod_ClickDownArrow();
-            if(HelpersMethod.IsExists("//div[contains(@class,'payment-method-container')]",driver))
+            if(HelpersMethod.IsExists("//tr[1]/descendant::td[@class='payment-method-type-cell']",driver))
             {
                 checkorder.SelectPaymentMethod();
             }
+            else
+            {
+                checkorder.Click_On_Without_Providing_Payment();
+            }
+
+            /*if(HelpersMethod.IsExists("//div[contains(@class,'payment-method-container')]",driver))
+            {
+                checkorder.SelectPaymentMethod();
+            }*/
         /* if(checkorder.Verify_Existence_of_ContinuePayment())
         {
             checkorder.Click_On_Without_Providing_Payment();
         }*/
         }
-        checkorder.DeliveryAddressCard();
         checkorder.NextButton_Click();
     }
 
@@ -639,11 +648,16 @@ public class OrderEntryPageSteps
         driver.close();
     }
 
-
     @Then("Click on Next button in Payment page")
     public void clickOnNextButtonInPaymentPage() throws InterruptedException, AWTException
     {
-       checkorder=new CheckOutOrderPage(driver,scenario);
-       checkorder.NextButton_Click();
+        checkorder=new CheckOutOrderPage(driver,scenario);
+        checkorder.Select_PaymentMethod_ClickDownArrow();
+        if(checkorder.Verify_Existence_of_ContinuePayment())
+        {
+            checkorder.Click_On_Without_Providing_Payment();
+        }
+        checkorder.DeliveryAddressCard();
+         checkorder.NextButton_Click();
     }
 }

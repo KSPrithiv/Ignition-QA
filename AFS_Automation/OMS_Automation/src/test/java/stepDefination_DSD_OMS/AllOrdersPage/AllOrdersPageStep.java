@@ -198,6 +198,7 @@ public class AllOrdersPageStep
         allOrder=new AllOrderPage(driver,scenario);
         allOrder.ValidateCustomerIndexPopup();
         allOrder.CustomerIndexPopup();
+        allOrder.validateDeliveryDatePopup();
         allOrder.SelectDeliveryDate();
         allOrder.WarningChangeDeliveryDate();
         allOrder.SelectOrder();

@@ -1,5 +1,6 @@
 package pages_DSD_OMS.orderEntry;
 
+import com.github.dockerjava.core.dockerfile.DockerfileStatement;
 import helper.HelpersMethod;
 import io.cucumber.java.Scenario;
 import lombok.var;
@@ -35,10 +36,13 @@ public class OrderEntryPage
     static String ChangeDate = null;
     static String currentURL = null;
     Scenario scenario;
-
+    String ParentWindow;
 
     @FindBy(id = "customerAccountNumberComboBox")
     private WebElement AccNo;
+
+    @FindBy(id="customeraddress")
+    private WebElement AddressIcon;
 
     @FindBy(id = "addButton")
     private WebElement StartOrder;
@@ -55,8 +59,8 @@ public class OrderEntryPage
     @FindBy(xpath = "//div[contains(@class,'i-search-box')]//*[local-name()='svg' and contains(@class,'i-search-box__search')]")
     private WebElement SearchIndex;
 
-    //@FindBy(xpath = "//span[@class='k-widget k-datepicker']/descendant::a/span")
-    //private WebElement Calender;
+    @FindBy(xpath = "//span[@class='k-widget k-datepicker']/descendant::a")
+    private WebElement deliveryCalender;
 
     @FindBy(xpath = "//button[text()='History']")
     private WebElement HistoryButton;
@@ -256,6 +260,7 @@ public class OrderEntryPage
                 HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 4000);
             }
             Actions act = new Actions(driver);
+            scenario.log("ACCOUNT NUMBER WILL BE CHANGED TO "+account);
             act.moveToElement(driver.findElement(By.id("customerAccountNumberComboBox"))).sendKeys("").build().perform();
             act.moveToElement(driver.findElement(By.id("customerAccountNumberComboBox"))).sendKeys(account).build().perform();
 
@@ -455,6 +460,7 @@ public class OrderEntryPage
         WebElement WebEle = null;
         try
         {
+            scenario.log("ACCOUNT NUMBER WILL BE CHANGED TO "+Acc);
             if (HelpersMethod.IsExists("//span[@data-test-id='customerAccountNumberComboBox']/following-sibling::button",driver))
             {
                 HelpersMethod.ActClick(driver, AccIndexIcon, 100);
@@ -783,11 +789,8 @@ public class OrderEntryPage
     public void ClickCalender() throws InterruptedException
     {
         exists = false;
-        WebElement WebEle;
-        String status = null;
-
-        WebElement Calender =HelpersMethod.FindByElement(driver,"xpath","//span[@class='k-widget k-datepicker']/descendant::a");
-        HelpersMethod.JScriptClick(driver, Calender, 1000);
+        WebElement deliveryCalender =HelpersMethod.FindByElement(driver,"xpath","//div[@class='CPDeliveryDates']/descendant::a");
+        HelpersMethod.JScriptClick(driver, deliveryCalender, 4000);
         new WebDriverWait(driver,4000).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class,'k-calendar-view')]/descendant::table[@class='k-calendar-table']"))));
         exists = true;
         Assert.assertEquals(exists, true);
@@ -1092,11 +1095,11 @@ public class OrderEntryPage
     {
         exists = false;
         WebElement WebEle = null;
-        if (HelpersMethod.IsExists("//div[@class='loader']", driver))
+      /*  if (HelpersMethod.IsExists("//div[@class='loader']", driver))
         {
             WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
             HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 5000);
-        }
+        }*/
         String status = HelpersMethod.returnDocumentStatus(driver);
         if (status.equals("loading")) {
             HelpersMethod.waitTillLoadingPage(driver);
@@ -2167,6 +2170,99 @@ public class OrderEntryPage
                 exists=true;
             }
             Assert.assertEquals(exists,true);
+        }
+        catch (Exception e){}
+    }
+
+    public void clickOnInfoIcon()
+    {
+        exists=false;
+        try
+        {
+            if(AddressIcon.isDisplayed() && AddressIcon.isEnabled())
+            {
+                HelpersMethod.ClickBut(driver, AddressIcon,100);
+                exists=true;
+            }
+            Assert.assertEquals(exists,true);
+        }
+        catch (Exception e){}
+    }
+
+    public void validateInfoDialogBox()
+    {
+        exists=false;
+        try
+        {
+            if(HelpersMethod.IsExists("//div[contains(text(),'Contact information')]/ancestor::div[contains(@class,'k-popup k-child-animation-container')]",driver))
+            {
+                exists=true;
+            }
+            Assert.assertEquals(exists,true);
+        }
+        catch (Exception e){}
+    }
+
+    public void readShippingAddress()
+    {
+        exists=false;
+        try
+        {
+            WebElement address=HelpersMethod.FindByElement(driver,"xpath","//td[contains(@class,'order-header-popup__table__left')]/div[1]");
+            scenario.log("ADDRESS FOUND IS "+address.getText());
+            exists=true;
+        }
+        catch (Exception e){}
+        Assert.assertEquals(exists,true);
+    }
+
+    public void validateVisiblityOfPrivacyPolicy()
+    {
+        exists=false;
+        try
+        {
+            if(HelpersMethod.IsExists("//a[contains(text(),'Privacy policy')]",driver))
+            {
+                exists=true;
+            }
+            Assert.assertEquals(exists,true);
+        }
+        catch (Exception e){}
+    }
+
+    public void clickOnPrivacyPolicy()
+    {
+        exists=false;
+        try
+        {
+            ParentWindow = driver.getWindowHandle();
+            WebElement privacyLink=HelpersMethod.FindByElement(driver,"xpath","//a[contains(text(),'Privacy policy')]");
+            HelpersMethod.ScrollElement(driver,privacyLink);
+            HelpersMethod.ActClick(driver,privacyLink,100);
+            exists=true;
+        }
+        catch (Exception e){}
+        Assert.assertEquals(exists,true);
+    }
+
+    public void handlePrivacyPolicy()
+    {
+        exists=false;
+        try
+        {
+            Set<String> PCWindows = driver.getWindowHandles();
+            for (String PCwind : PCWindows)
+            {
+                if (!PCwind.equals(ParentWindow))
+                {
+                    driver.switchTo().window(PCwind);
+                    scenario.log("PRIVACY POLICY LINK HAS BEEN FOUND");
+                    driver.close();
+                    exists = true;
+                    scenario.log("PRIVACY POLICY WINDOW HAS BEEN HANDLED");
+                }
+                driver.switchTo().window(ParentWindow);
+            }
         }
         catch (Exception e){}
     }

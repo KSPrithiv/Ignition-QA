@@ -216,6 +216,8 @@ public class OrderGuidePageStep1
         //createOGPage.CalenderEnd();
         //createOGPage.ValidToDatePast();
         createOGPage.ClickOnSave();
+        createOGPage.validateSavePopup();
+        createOGPage.clickOnOk();
     }
 
     @And("User should navigate back to OG page and verify OG {string} by selecting status as expired")
@@ -363,9 +365,16 @@ public class OrderGuidePageStep1
         createOGPage.ValidateNoProductsInGrid();
     }
 
-    @And("User should navigate back to OG page and navigate back to {string} and verify OG {string}  existence")
+   /* @And("User should navigate back to OG page and navigate back to {string} and verify OG {string}  existence")
     public void userShouldNavigateBackToOGPageAndNavigateBackToAndVerifyOGExistence(String arg0, String arg1)
     {
 
+    }*/
+
+    @And("User changes the Customer Account# to the previous Account#")
+    public void userChangesTheCustomerAccountToThePreviousAccount() throws InterruptedException, AWTException
+    {
+        orderGuidePage=new OrderGuidePage(driver,scenario);
+        orderGuidePage.ClickCustomerAccount_No_PreviousAcc();
     }
 }

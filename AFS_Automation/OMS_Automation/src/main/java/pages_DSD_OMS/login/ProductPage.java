@@ -216,9 +216,6 @@ public class ProductPage
                 HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000);
             }
             HelpersMethod.ScrollElement(driver, SearchBar);
-            //Clear the search bar
-            WebElement clearSearch=HelpersMethod.FindByElement(driver,"id","searchBarClearBtn");
-            HelpersMethod.ActClick(driver,clearSearch,200);
 
             HelpersMethod.EnterText(driver, SearchBar, 800, Prod_No);
             if (HelpersMethod.IsExists("//div[@class='loader']", driver))
@@ -277,7 +274,7 @@ public class ProductPage
                     exists = true;
                 }
             }
-            //driver.navigate().refresh();
+            driver.navigate().refresh();
             if (HelpersMethod.IsExists("//div[@class='loader']", driver))
             {
                 WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");

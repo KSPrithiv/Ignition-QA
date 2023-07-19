@@ -2,6 +2,7 @@ package pages_DSD_OMS.adminReport;
 
 import helper.HelpersMethod;
 import io.cucumber.java.Scenario;
+import org.apache.logging.log4j.core.tools.picocli.CommandLine;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
@@ -115,7 +116,7 @@ public class orderAdminPage
         WebElement WebEle;
         WebElement Search2;
         String AccNo = TestBase.testEnvironment.get_Account();
-        String status=null;
+
         WebElement WebEle1=HelpersMethod.FindByElement(driver,"xpath","//label[@id='customerDropDown-label']/following-sibling::div/descendant::button");
         try
         {
@@ -412,5 +413,64 @@ public class orderAdminPage
                 act1.moveToElement(WebEle).sendKeys(Keys.ARROW_DOWN).build().perform();
             }
         }
+    }
+
+    public void enterCustomerAccountNo()
+    {
+        exists=true;
+        try
+        {
+            if (HelpersMethod.IsExists("//input[@id='customerNumber']", driver))
+            {
+                WebElement customerAcc = HelpersMethod.FindByElement(driver, "id", "customerNumber");
+                HelpersMethod.EnterText(driver, customerAcc, 100, TestBase.testEnvironment.get_Account());
+                exists=true;
+            }
+            Assert.assertEquals(exists,true);
+        }
+        catch (Exception e){}
+    }
+
+    public void orderDateCalenderClick()
+    {
+        try
+        {
+            WebElement orderDate=HelpersMethod.FindByElement(driver,"xpath","//label[@id='OrderDate-label']/following-sibling::span/descendant::a");
+            HelpersMethod.ActClick(driver,orderDate,100);
+        }
+        catch (Exception e){}
+    }
+
+
+    public void orderDateSelection()
+    {
+        exists=false;
+        try
+        {
+            if(HelpersMethod.IsExists("//div[contains(@class,'k-child-animation-container')]",driver))
+            {
+                WebElement dateSelection=HelpersMethod.FindByElement(driver,"xpath","//td[contains(@class,'k-today')]");
+                HelpersMethod.ActClick(driver,dateSelection,100);
+                exists=true;
+            }
+            Assert.assertEquals(exists,true);
+        }
+        catch (Exception e){}
+    }
+
+    public void clickOnGenerateButton()
+    {
+        exists=false;
+        try
+        {
+            if(HelpersMethod.IsExists("//button[text()='Generate']",driver))
+            {
+                WebElement generateButton=HelpersMethod.FindByElement(driver,"xpath","//button[text()='Generate']");
+                HelpersMethod.ClickBut(driver,generateButton,100);
+                exists=true;
+            }
+            Assert.assertEquals(exists,true);
+        }
+        catch (Exception e){}
     }
 }
