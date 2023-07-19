@@ -31,7 +31,7 @@ import static common.setup.DriverManager.*;
 @LinkedListeners({
     TestListener.class
 })
-@CucumberOptions(features = {"WMSAutomation/src/test/resources/features/counting"},
+@CucumberOptions(features = {"src/test/resources/features/counting"},
         glue = {"steps"},
         plugin = {"pretty",
                 "json:target/cucumber.json",

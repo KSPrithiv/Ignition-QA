@@ -20,7 +20,7 @@ import java.io.IOException;
 import static common.setup.DriverManager.*;
 import static common.setup.DriverManager.getDriver;
 
-@CucumberOptions(features = {"WMSAutomation/src/test/resources/features/lookup"},
+@CucumberOptions(features = {"src/test/resources/features/lookup"},
         glue = {"steps"},
         plugin = {"pretty",
                 "json:target/cucumber.json",
