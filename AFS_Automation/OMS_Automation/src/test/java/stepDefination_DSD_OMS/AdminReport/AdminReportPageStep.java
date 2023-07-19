@@ -185,4 +185,12 @@ public class AdminReportPageStep
         adminreportPage.resetButtonClick();
         adminreportPage.validateWebElementInWebPage();
     }
+
+    @Then("User selects To dates for Creating reports on Last user login dates")
+    public void userSelectsToDatesForCreatingReportsOnLastUserLoginDates()
+    {
+        adminreportPage=new adminReportPage(driver,scenario);
+        adminreportPage.clickOnToDateLastLogiUser();
+        adminreportPage.toDateLastLoginUser();
+    }
 }

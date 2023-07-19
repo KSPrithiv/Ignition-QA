@@ -2,6 +2,8 @@ package pages_DSD_OMS.adminReport;
 
 import helper.HelpersMethod;
 import io.cucumber.java.Scenario;
+import io.cucumber.java.bs.A;
+import org.apache.logging.log4j.core.tools.picocli.CommandLine;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -221,4 +223,38 @@ public class adminReportPage
         }
         catch(Exception e){}
     }
+
+    public void clickOnToDateLastLogiUser()
+    {
+        exists=false;
+        try
+        {
+            if(HelpersMethod.IsExists("//label[@id='toDate-label']/following-sibling::span/descendant::a",driver))
+            {
+                WebElement toCalender = HelpersMethod.FindByElement(driver, "xpath", "//label[@id='toDate-label']/following-sibling::span/descendant::a");
+                HelpersMethod.ActClick(driver, toCalender, 100);
+                exists=true;
+            }
+            Assert.assertEquals(exists,true);
+        }
+        catch (Exception e){}
+    }
+
+    public void toDateLastLoginUser()
+    {
+        exists=false;
+        try
+        {
+            if(HelpersMethod.IsExists("//div[contains(@class,'k-child-animation-container')]",driver))
+            {
+                WebElement dateSelection=HelpersMethod.FindByElement(driver,"xpath","//td[contains(@class,'k-today')]");
+                HelpersMethod.ActClick(driver,dateSelection,100);
+                exists=true;
+            }
+            Assert.assertEquals(exists,true);
+        }
+        catch (Exception e){}
+    }
+
+
 }

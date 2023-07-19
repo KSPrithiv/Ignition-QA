@@ -154,13 +154,13 @@ public class AllOrderPage
         WebElement WebEle = null;
         String status=null;
         exists = false;
-        if(HelpersMethod.IsExists("//div[@class='loader']",driver))
+      /*  if(HelpersMethod.IsExists("//div[@class='loader']",driver))
         {
             WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
             HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000);
-        }
+        }*/
         new WebDriverWait(driver,100).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='allOrdersCheckbox']")));
-        new WebDriverWait(driver,100).until(ExpectedConditions.textToBePresentInElementLocated(By.xpath("//div[@class='allOrdersCheckbox']"),"Show all orders"));
+        //new WebDriverWait(driver,100).until(ExpectedConditions.textToBePresentInElementLocated(By.xpath("//div[@class='allOrdersCheckbox']"),"Show all orders"));
         try
         {
             status=HelpersMethod.returnDocumentStatus(driver);
@@ -369,11 +369,11 @@ public class AllOrderPage
                 HelpersMethod.ScrollElement(driver, WebEle);
                 HelpersMethod.ActClick(driver, WebEle, 100);
 
-               /*if (HelpersMethod.IsExists("//div[@class='loader']", driver))
+               if (HelpersMethod.IsExists("//div[@class='loader']", driver))
                 {
                     WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000);
-                }*/
+                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 4000);
+                }
                 exists = true;
                 String Acc = TestBase.testEnvironment.get_Account();
                 scenario.log("CUSTOMER ACCOUNT NUMBER HAS BEEN SELECTED: " + Acc);
@@ -402,7 +402,7 @@ public class AllOrderPage
             if(HelpersMethod.IsExists(".//td[contains(@style,'opacity: 1') and contains(@class,'k-state-focused')] | .//td[contains(@style,'opacity: 1') and contains(@class,'k-state-selected')]",driver))
             {
                 WebElement Date1 = modalContainer.findElement(By.xpath(".//td[contains(@style,'opacity: 1') and contains(@class,'k-state-focused')] | .//td[contains(@style,'opacity: 1') and contains(@class,'k-state-selected')]"));
-                HelpersMethod.ActClick(driver,Date1,100);
+                HelpersMethod.ActClick(driver,Date1,400);
                 if(HelpersMethod.IsExists("//div[@class='loader']",driver))
                 {
                     Wheel=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
@@ -1186,8 +1186,8 @@ public class AllOrderPage
 
           new WebDriverWait(driver, 600).until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath("//div[contains(@class,'k-popup k-list-container k-reset k-group k-child-animation-container')]")));
           // to fetch the web element of the modal container
-          WebElement menuContainer = driver.findElement(By.xpath("//div[contains(@class,'k-popup k-list-container k-reset k-group k-child-animation-container')]"));
-          List<WebElement> allLists=HelpersMethod.FindByElements(driver,"xpath",".//ul/li");
+          WebElement menuContainer = driver.findElement(By.xpath("//div[contains(@class,'k-child-animation-container')]"));
+          List<WebElement> allLists=menuContainer.findElements(By.xpath(".//ul/li"));
           for (WebElement pickUp:allLists)
           {
            act1.moveToElement(pickUp).build().perform();
@@ -1393,6 +1393,18 @@ public class AllOrderPage
             WebElement modalContainer = driver.findElement(By.xpath("//div[contains(@class,'k-widget k-window k-dialog')]"));
 
             // to fetch the web elements of the modal content and interact with them, code to fetch content of modal title and verify it
+            WebElement modalContentTitle = modalContainer.findElement(By.xpath(".//div[contains(@class,'k-window-title k-dialog-title')]"));
+            Assert.assertEquals(modalContentTitle.getText(), "Select delivery date", "Verify Title message");
+        }
+        catch (Exception e){}
+    }
+
+    public void validateDeliveryDatePopup()
+    {
+        try
+        {
+            HelpersMethod.waitTillElementLocatedDisplayed(driver,"xpath","//div[contains(@class,'k-widget k-window k-dialog')]",1000);
+            WebElement modalContainer = driver.findElement(By.xpath("//div[contains(@class,'k-widget k-window k-dialog')]"));
             WebElement modalContentTitle = modalContainer.findElement(By.xpath(".//div[contains(@class,'k-window-title k-dialog-title')]"));
             Assert.assertEquals(modalContentTitle.getText(), "Select delivery date", "Verify Title message");
         }
