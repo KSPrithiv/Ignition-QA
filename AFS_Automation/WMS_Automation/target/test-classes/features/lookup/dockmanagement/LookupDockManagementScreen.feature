@@ -3,9 +3,10 @@ Feature: Testing of Lookup Dock Management screen functionality
 
   Scenario: Checking navigation functionality of Lookup Dock Management screen
     Given User signs in the application
-    When Main page is loaded
+    And Main page is loaded
     And DockManagement Summary Page is validated
-    Then Go to Lookup DockManagement page
+    And Go to Lookup DockManagement page
+    And Waits for Dock Management Lookup page to load
     And Validates DockManagement Lookup Page base elements are loaded on DockManagement Lookup page
     And User types "01/01/2022" date from input on Dock Management page
     And User types "11/10/2022" date to input on Dock Management page

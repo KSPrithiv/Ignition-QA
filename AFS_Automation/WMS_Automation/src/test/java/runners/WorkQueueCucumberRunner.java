@@ -89,8 +89,5 @@ public class WorkQueueCucumberRunner extends AbstractTestNGCucumberTests {
     public static void afterClass() throws InterruptedException, MessagingException, IOException {
         //Directory_Change.uniqueReport();
     //    MailSend_WMS.sendMail();
-
-
-
     }
 }
