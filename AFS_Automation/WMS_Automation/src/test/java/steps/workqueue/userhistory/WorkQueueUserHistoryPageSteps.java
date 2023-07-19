@@ -1,13 +1,20 @@
 package steps.workqueue.userhistory;
 
+import common.constants.FilePaths;
+import common.utils.objectmapper.ObjectMapperWrapper;
 import io.cucumber.java.en.And;
 import io.qameta.allure.Step;
 import lombok.extern.slf4j.Slf4j;
+import objects.workqueuedata.WorkQueueDataDTO;
 import ui.pages.workqueue.userhistory.WorkQueueUserHistoryPage;
+
+import java.util.List;
 
 @Slf4j
 public class WorkQueueUserHistoryPageSteps {
     WorkQueueUserHistoryPage workQueueUserHistoryPage = new WorkQueueUserHistoryPage();
+    WorkQueueDataDTO workQueueDataDTO = new ObjectMapperWrapper()
+            .getObject(FilePaths.WORK_QUEUE_DATA, WorkQueueDataDTO.class);
 
     @Step
     @And("Waits for Work Queue User History page to load")
@@ -63,6 +70,17 @@ public class WorkQueueUserHistoryPageSteps {
     public void searchOnWorkQueueUserHistory(String value) {
         log.info("User searches on Work Queue User History page");
         workQueueUserHistoryPage.findValuesInSearch(value);
+    }
+
+    @Step
+    @And("User searches for user by index {int} on Work Queue User History page")
+    public void searchOnWorkQueueUserHistory(int index) {
+        log.info("User searches on Work Queue User History page");
+        List<String> userNames = List.of(workQueueDataDTO.getLoggedInUsersDTO().getLoggedInUser1(), workQueueDataDTO
+                .getLoggedInUsersDTO().getLoggedInUser2(), workQueueDataDTO.getLoggedInUsersDTO().getLoggedInUser3(),
+                workQueueDataDTO.getLoggedInUsersDTO().getLoggedInUser4(), workQueueDataDTO.getLoggedInUsersDTO()
+                .getLoggedInUser5(), workQueueDataDTO.getLoggedInUsersDTO().getLoggedInUser6());
+        workQueueUserHistoryPage.findValuesInSearch(userNames.get(index));
     }
 
     @Step

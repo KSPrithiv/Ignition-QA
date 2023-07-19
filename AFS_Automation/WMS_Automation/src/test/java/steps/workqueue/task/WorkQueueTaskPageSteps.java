@@ -1,13 +1,20 @@
 package steps.workqueue.task;
 
+import common.constants.FilePaths;
+import common.utils.objectmapper.ObjectMapperWrapper;
 import io.cucumber.java.en.And;
 import io.qameta.allure.Step;
 import lombok.extern.slf4j.Slf4j;
+import objects.workqueuedata.WorkQueueDataDTO;
 import ui.pages.workqueue.task.WorkQueueTaskPage;
+
+import java.util.List;
 
 @Slf4j
 public class WorkQueueTaskPageSteps {
     WorkQueueTaskPage workQueueTaskPage = new WorkQueueTaskPage();
+    WorkQueueDataDTO workQueueDataDTO = new ObjectMapperWrapper()
+            .getObject(FilePaths.WORK_QUEUE_DATA, WorkQueueDataDTO.class);
 
     @Step
     @And("Waits for Work Queue Task page to load")
@@ -388,10 +395,31 @@ public class WorkQueueTaskPageSteps {
     }
 
     @Step
+    @And("Types Product by index {int} on Work Queue Task page")
+    public void typesProductFilter(int index) {
+        log.info("Types Product by index on Work Queue Task page");
+        List<String> products = List.of(workQueueDataDTO.getTaskListProductsDTO().getTaskListProduct1(), workQueueDataDTO
+                .getTaskListProductsDTO().getTaskListProduct2(), workQueueDataDTO.getTaskListProductsDTO().getTaskListProduct3(),
+                 workQueueDataDTO.getTaskListProductsDTO().getTaskListProduct4(), workQueueDataDTO.getTaskListProductsDTO()
+                .getTaskListProduct5(), workQueueDataDTO.getTaskListProductsDTO().getTaskListProduct6());
+        workQueueTaskPage.typeFilter(products.get(index));
+    }
+
+    @Step
     @And("Types Qty {string} on Work Queue Task page")
     public void typesQtyFilter(String qty) {
         log.info("Types Qty on Work Queue Task page");
         workQueueTaskPage.typeFilter(qty);
+    }
+
+    @Step
+    @And("Types Qty by index {int} on Work Queue Task page")
+    public void typesQtyFilterByIndex(int index) {
+        log.info("Types Qty by index on Work Queue Task page");
+        List<String> qty = List.of(workQueueDataDTO.getQties().getQty1(), workQueueDataDTO.getQties().getQty2(),
+                 workQueueDataDTO.getQties().getQty3(), workQueueDataDTO.getQties().getQty4(), workQueueDataDTO.getQties()
+                .getQty5(), workQueueDataDTO.getQties().getQty6());
+        workQueueTaskPage.typeFilter(qty.get(index));
     }
 
     @Step
@@ -402,10 +430,32 @@ public class WorkQueueTaskPageSteps {
     }
 
     @Step
+    @And("Types From by index {int} on Work Queue Task page")
+    public void typesFromFilterByIndex(int index) {
+        log.info("Types From by index on Work Queue Task page");
+        List<String> from = List.of(workQueueDataDTO.getTaskListFromDTO().getTaskListFrom1(), workQueueDataDTO
+                .getTaskListFromDTO().getTaskListFrom2(), workQueueDataDTO.getTaskListFromDTO().getTaskListFrom3(),
+                workQueueDataDTO.getTaskListFromDTO().getTaskListFrom4(), workQueueDataDTO.getTaskListFromDTO()
+                .getTaskListFrom5(), workQueueDataDTO.getTaskListFromDTO().getTaskListFrom6());
+        workQueueTaskPage.typeFilter(from.get(index));
+    }
+
+    @Step
     @And("Types To {string} on Work Queue Task page")
     public void typesToFilter(String to) {
         log.info("Types To on Work Queue Task page");
         workQueueTaskPage.typeFilter(to);
+    }
+
+    @Step
+    @And("Types To by index {int} on Work Queue Task page")
+    public void typesToFilterByIndex(int index) {
+        log.info("Types To by index on Work Queue Task page");
+        List<String> to = List.of(workQueueDataDTO.getTaskListToDTO().getTaskListTo1(), workQueueDataDTO.getTaskListToDTO()
+                .getTaskListTo2(), workQueueDataDTO.getTaskListToDTO().getTaskListTo3(), workQueueDataDTO.getTaskListToDTO()
+                .getTaskListTo4(), workQueueDataDTO.getTaskListToDTO().getTaskListTo5(), workQueueDataDTO.getTaskListToDTO()
+                .getTaskListTo6());
+        workQueueTaskPage.typeFilter(to.get(index));
     }
 
     @Step
@@ -416,10 +466,32 @@ public class WorkQueueTaskPageSteps {
     }
 
     @Step
+    @And("Types Status by index {int} on Work Queue Task page")
+    public void typesStatusFilterByIndex(int index) {
+        log.info("Types Status by index on Work Queue Task page");
+        List<String> statuses = List.of(workQueueDataDTO.getTaskListStatusDTO().getTaskListStatus1(), workQueueDataDTO
+                .getTaskListStatusDTO().getTaskListStatus2(), workQueueDataDTO.getTaskListStatusDTO().getTaskListStatus3(),
+                 workQueueDataDTO.getTaskListStatusDTO().getTaskListStatus4(), workQueueDataDTO.getTaskListStatusDTO()
+                .getTaskListStatus5(), workQueueDataDTO.getTaskListStatusDTO().getTaskListStatus6());
+        workQueueTaskPage.typeFilter(statuses.get(index));
+    }
+
+    @Step
     @And("Types Assignment # {string} on Work Queue Task page")
     public void typesAssignmentFilter(String assignment) {
         log.info("Types Assignment # on Work Queue Task page");
         workQueueTaskPage.typeFilter(assignment);
+    }
+
+    @Step
+    @And("Types Assignment by index {int} on Work Queue Task page")
+    public void typesAssignmentFilterByIndex(int index) {
+        log.info("Types Assignment by index on Work Queue Task page");
+        List<String> assignments = List.of(workQueueDataDTO.getAssignmentNumbers().getAssignmentNumber1(), workQueueDataDTO
+                .getAssignmentNumbers().getAssignmentNumber2(), workQueueDataDTO.getAssignmentNumbers().getAssignmentNumber3(),
+                 workQueueDataDTO.getAssignmentNumbers().getAssignmentNumber4(), workQueueDataDTO.getAssignmentNumbers()
+                .getAssignmentNumber5());
+        workQueueTaskPage.typeFilter(assignments.get(index));
     }
 
     @Step
@@ -429,11 +501,29 @@ public class WorkQueueTaskPageSteps {
         workQueueTaskPage.typeFilter(priority);
     }
 
+    @And("Types Priority by index {int} on Work Queue Task page")
+    public void typesPriorityFilterByIndex(int index) {
+        log.info("Types Priority by index on Work Queue Task page");
+        List<String> priorities = List.of(workQueueDataDTO.getTaskListPrioritiesDTO().getTaskListPriority1(),
+                 workQueueDataDTO.getTaskListPrioritiesDTO().getTaskListPriority2(), workQueueDataDTO.getTaskListPrioritiesDTO()
+                .getTaskListPriority3());
+        workQueueTaskPage.typeFilter(priorities.get(index));
+    }
+
     @Step
     @And("Types Route {string} on Work Queue Task page")
     public void typesRouteFilter(String route) {
         log.info("Types Route on Work Queue Task page");
         workQueueTaskPage.typeFilter(route);
+    }
+
+    @And("Types Route by index {int} on Work Queue Task page")
+    public void typeRouteFilterByIndex(int index) {
+        log.info("Types Route by index on Work Queue Task page");
+        List<String> routes = List.of(workQueueDataDTO.getRoutes().getRoute1(), workQueueDataDTO.getRoutes().getRoute2(),
+                 workQueueDataDTO.getRoutes().getRoute3(), workQueueDataDTO.getRoutes().getRoute4(), workQueueDataDTO
+                .getRoutes().getRoute5(), workQueueDataDTO.getRoutes().getRoute6());
+        workQueueTaskPage.typeFilter(routes.get(index));
     }
 
     @Step
@@ -443,11 +533,29 @@ public class WorkQueueTaskPageSteps {
         workQueueTaskPage.typeFilter(stop);
     }
 
+    @And("Types Stop by index {int} on Work Queue Task page")
+    public void typeStopFilterByIndex(int index) {
+        log.info("Types Stop by index on Work Queue Task page");
+        List<String> stops = List.of(workQueueDataDTO.getStops().getStop1(), workQueueDataDTO.getStops().getStop2(),
+                workQueueDataDTO.getStops().getStop3(), workQueueDataDTO.getStops().getStop4(), workQueueDataDTO.getStops()
+                .getStop4(), workQueueDataDTO.getStops().getStop5());
+        workQueueTaskPage.typeFilter(stops.get(index));
+    }
+
     @Step
     @And("Types Shipper {string} on Work Queue Task page")
     public void typesShipperFilter(String shipper) {
         log.info("Types Shipper on Work Queue Task page");
         workQueueTaskPage.typeFilter(shipper);
+    }
+
+    @And("Types Shipper by index {int} on Work Queue Task page")
+    public void typeShipperFilterByIndex(int index) {
+        log.info("Types Shipper by index on Work Queue Task page");
+        List<String> shippers = List.of(workQueueDataDTO.getShippers().getShipper1(), workQueueDataDTO.getShippers()
+                .getShipper2(), workQueueDataDTO.getShippers().getShipper3(), workQueueDataDTO.getShippers().getShipper4(),
+                workQueueDataDTO.getShippers().getShipper5(), workQueueDataDTO.getShippers().getShipper6());
+        workQueueTaskPage.typeFilter(shippers.get(index));
     }
 
     @Step
@@ -457,11 +565,30 @@ public class WorkQueueTaskPageSteps {
         workQueueTaskPage.typeFilter(velocity);
     }
 
+    @And("Types Velocity by index {int} on Work Queue Task page")
+    public void typeVelocityFilterByIndex(int index) {
+        log.info("Types Velocity by index on Work Queue Task page");
+        List<String> velocities = List.of(workQueueDataDTO.getTaskListVelocitiesDTO().getTaskListVelocity1(), workQueueDataDTO
+                .getTaskListVelocitiesDTO().getTaskListVelocity2());
+        workQueueTaskPage.typeFilter(velocities.get(index));
+    }
+
     @Step
     @And("Types Description {string} on Work Queue Task page")
     public void typesDescriptionFilter(String description) {
         log.info("Types Description on Work Queue Task page");
         workQueueTaskPage.typeFilter(description);
+    }
+
+    @And("Types Description by index {int} on Work Queue Task page")
+    public void typeDescriptionFilterByIndex(int index) {
+        log.info("Types Description by index on Work Queue Task page");
+        List<String> descriptions = List.of(workQueueDataDTO.getTaskListDescriptionsDTO().getTaskListDescription1(),
+                workQueueDataDTO.getTaskListDescriptionsDTO().getTaskListDescription2(), workQueueDataDTO
+                .getTaskListDescriptionsDTO().getTaskListDescription3(), workQueueDataDTO.getTaskListDescriptionsDTO()
+                .getTaskListDescription4(), workQueueDataDTO.getTaskListDescriptionsDTO().getTaskListDescription5(),
+                workQueueDataDTO.getTaskListDescriptionsDTO().getTaskListDescription6());
+        workQueueTaskPage.typeFilter(descriptions.get(index));
     }
 
 }

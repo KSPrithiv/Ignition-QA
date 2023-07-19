@@ -28,7 +28,6 @@ public class DriverManager {
     public static long COUNTER = System.currentTimeMillis();
 
     public static void buildWebDriver(String browserType) {
-     //   driverThreadLocal.get().quit();
         WebDriver createdDriver;
 
         try {

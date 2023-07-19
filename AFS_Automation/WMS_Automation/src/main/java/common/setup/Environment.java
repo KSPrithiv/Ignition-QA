@@ -44,12 +44,4 @@ public interface Environment extends Config {
     @Key("dbUserPassword")
     String getDbUserPassword();
 
-    @Key("WMS_From_mail")
-   String From_mail();
-
-    @Key("WMS_From_Pass")
-    String From_Pass();
-
-    @Key("WMS_To_mail")
-    String To_mail();
 }
