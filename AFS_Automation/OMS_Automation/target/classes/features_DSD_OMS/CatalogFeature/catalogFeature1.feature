@@ -19,18 +19,14 @@ Scenario: To test + and - symbol orderation, that appears in my cart page
   Given User must be on Order Entry Page to select Catalog
   And User should navigate to Catalog tab
   And User should click on Reset filter button and all the products should displayed in Card view in Catalog page
-  Then User enters Product# in Search bar and enters Qty
-    |50|
-    |40|
-    |40|
-    |40|
-    |40|
+  Then User enters Product# in Search bar and enters Qty for increase and decrease Qty
+    |100|
   Then User click on cart in catalog and click on Gotocart, Press Plus and Minus buttons
   And user should be on New Order entry page
   Then Enter PO# for New order
     |PO123|
   Then Click on Next button
-  Then Click on SubmitOrder button
+  Then Click on SubmitOrder button for creating order from Catalog
   Then User should be navigated to Order Entry page
 
   @CategoryCatalog
@@ -39,6 +35,7 @@ Scenario: To test + and - symbol orderation, that appears in my cart page
     And User should navigate to Catalog tab
     And User should click on Reset filter button and all the products should displayed in List view in Catalog page
     Then User should click on Category dropdown and select any of the category
+    |Juices/Juice Drinks/Water|
     And User should read all the products available catalog page
 
   @SubCategoryCatalog
@@ -47,6 +44,7 @@ Scenario: To test + and - symbol orderation, that appears in my cart page
     And User should navigate to Catalog tab
     And User should click on Reset filter button and all the products should displayed in List view in Catalog page
     Then User should click on SubCategory dropdown and select any of the category
+    |Breakfast|
     And User should read all the products available catalog page
 
   @BrandCatalog
@@ -55,6 +53,7 @@ Scenario: To test + and - symbol orderation, that appears in my cart page
     And User should navigate to Catalog tab
     And User should click on Reset filter button and all the products should displayed in List view in Catalog page
     Then User should click on Brand dropdown and select any of the category
+    |DR PEPPER|
     And User should read all the products available catalog page
 
   @OrderGuideCatalog

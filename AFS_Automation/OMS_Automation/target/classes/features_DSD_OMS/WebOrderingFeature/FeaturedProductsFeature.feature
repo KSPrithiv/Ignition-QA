@@ -7,10 +7,13 @@ Feature: Admin setting
     Then User Clicks on Permissions by drop down to select Customer Account#
 
   @SheildIcon
-  Scenario: Test scenario to check Max Featured Products Sheild Icon
+  Scenario Outline: Test scenario to check Max Featured Products Sheild Icon
     Given User is on Home Page for Admin setting to select Admin option
     And User should enter menu "<Option>" in search bar to navigate to Featured Products
     Then User should Check whether Max products to show in featured products Sheild is selected or not
+    Examples:
+      | Option            |
+      | Featured Products |
 
   @CheckFeaturedProducts
   Scenario Outline: Test scenario to check Featured products list
@@ -21,8 +24,8 @@ Feature: Admin setting
     And User should be on Featured products list
     Then User should list all the products in Product grid of Featured products
     Examples:
-      |Option             | MenuOption1 | MenuOption2      |
-      |Featured Products  |  Settings   | Featured products|
+      |Option             | MenuOption2      |
+      |Featured Products  | Featured products|
 
   @AddFeaturedProducts
   Scenario Outline: Test scenario to add new product to Featured products list
@@ -49,6 +52,20 @@ Feature: Admin setting
     Examples:
       |Option             | MenuOption1 | MenuOption2      |
       |Featured Products  |  Settings   | Featured products|
+
+  @SelectionOfProducts
+  Scenario Outline: Test scenario for adding and deleting products and verifying whether they are displaying properly or not
+    Given User is on Home Page for Admin setting to select Admin option
+    And User should enter menu "<Option>" in search bar to navigate to Featured Products
+    Then User changes max number of feature products and set it as 3
+    Then User should select "<MenuOption2>" from horizantal menu to select Featured products list
+    And User should be on Featured products list
+    And User should delete all the products in feature products list
+    Then User should add new 3 products, and delete first product
+    Then User should list all the products in Product grid of Featured products
+    Examples:
+      |Option             | MenuOption2      |
+      |Featured Products  | Featured products|
 
   @CatalogFilters
   Scenario Outline: Test scenario to use filter in catalog popup

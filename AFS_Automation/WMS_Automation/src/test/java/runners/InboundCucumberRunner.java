@@ -15,7 +15,9 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.ITestResult;
 import org.testng.annotations.*;
+import utilWMS.MailSend_WMS;
 
+import javax.mail.MessagingException;
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
@@ -67,5 +69,11 @@ public class InboundCucumberRunner extends AbstractTestNGCucumberTests {
                     }*/
             }
         }
+    }
+    @AfterClass
+    public static void afterClass() throws InterruptedException, MessagingException, IOException {
+        MailSend_WMS.sendMail();
+
+
     }
 }

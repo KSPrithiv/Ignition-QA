@@ -11,11 +11,10 @@ import lombok.extern.slf4j.Slf4j;
 import org.aeonbits.owner.ConfigFactory;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.ITestResult;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Optional;
-import org.testng.annotations.Parameters;
+import org.testng.annotations.*;
+import utilWMS.MailSend_WMS;
 
+import javax.mail.MessagingException;
 import java.io.IOException;
 
 import static common.setup.DriverManager.*;
@@ -65,5 +64,10 @@ public class LookupCucumberRunner extends AbstractTestNGCucumberTests {
             }
         }
     }
+    @AfterClass
+    public static void afterClass() throws InterruptedException, MessagingException, IOException {
+        MailSend_WMS.sendMail();
 
+
+    }
 }
