@@ -17,6 +17,9 @@ import org.testng.annotations.*;
 import utilWMS.MailSend_WMS;
 
 
+import javax.mail.MessagingException;
+import java.io.IOException;
+
 import static common.setup.DriverManager.*;
 import static common.setup.DriverManager.getDriver;
 
@@ -85,7 +88,7 @@ public class WorkQueueCucumberRunner extends AbstractTestNGCucumberTests {
     @AfterClass
     public static void afterClass() throws InterruptedException, MessagingException, IOException {
         //Directory_Change.uniqueReport();
-        MailSend_WMS.sendMail();
+    //    MailSend_WMS.sendMail();
 
 
 
