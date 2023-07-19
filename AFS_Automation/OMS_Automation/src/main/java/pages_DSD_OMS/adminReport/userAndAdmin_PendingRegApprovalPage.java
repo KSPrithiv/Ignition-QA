@@ -109,18 +109,27 @@ public class userAndAdmin_PendingRegApprovalPage
         exists=false;
         try
         {
-            HelpersMethod.ClickBut(driver,confirmButton,100);
-            if(HelpersMethod.IsExists("//div[contains(text(),'Pending Registration Approval')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
+            if(confirmButton.isDisplayed()&&confirmButton.isEnabled())
             {
-                WebElement modalContainer = driver.findElement(By.xpath("//div[contains(@class,'k-widget k-window k-dialog')]"));
+                HelpersMethod.ClickBut(driver, confirmButton, 100);
+                if (HelpersMethod.IsExists("//div[contains(text(),'Pending Registration Approval')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]", driver))
+                {
+                    WebElement modalContainer = driver.findElement(By.xpath("//div[contains(@class,'k-widget k-window k-dialog')]"));
 
-                // to fetch the web elements of the modal content and interact with them, code to fetch content of modal title and verify it
-                WebElement modalContentTitle = modalContainer.findElement(By.xpath(".//div[contains(@class,'k-window-title k-dialog-title')]"));
-                Assert.assertEquals(modalContentTitle.getText(), "Pending Registration Approval", "Verify Title message");
-                WebElement yesButton = modalContainer.findElement(By.xpath(".//button[text()='Yes']"));
-                HelpersMethod.ClickBut(driver, yesButton, 100);
-                scenario.log("PENDING REGISTRATION APPROVAL");
-                exists=true;
+                    // to fetch the web elements of the modal content and interact with them, code to fetch content of modal title and verify it
+                    WebElement modalContentTitle = modalContainer.findElement(By.xpath(".//div[contains(@class,'k-window-title k-dialog-title')]"));
+                    Assert.assertEquals(modalContentTitle.getText(), "Pending Registration Approval", "Verify Title message");
+                    WebElement yesButton = modalContainer.findElement(By.xpath(".//button[text()='Yes']"));
+                    HelpersMethod.ClickBut(driver, yesButton, 100);
+                    if(HelpersMethod.IsExists("//div[@class='loader']",driver))
+                    {
+                        WebElement WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
+                        HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 4000);
+                    }
+
+                    scenario.log("PENDING REGISTRATION APPROVAL");
+                    exists = true;
+                }
             }
             Assert.assertEquals(exists,true);
         }
@@ -148,6 +157,27 @@ public class userAndAdmin_PendingRegApprovalPage
                 HelpersMethod.ClickBut(driver,okButton,100);
                 exists=true;
                 scenario.log("PENDING REGISTRATION DENYED AND ACCOUNT DELETED");
+            }
+            Assert.assertEquals(exists,true);
+        }
+        catch (Exception e){}
+    }
+
+    public void updateUserInfo()
+    {
+        try
+        {
+            if(HelpersMethod.IsExists("//div[contains(text(),'Update User Info')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
+            {
+                WebElement modalContainer = driver.findElement(By.xpath("//div[contains(@class,'k-widget k-window k-dialog')]"));
+
+                // to fetch the web elements of the modal content and interact with them, code to fetch content of modal title and verify it
+                WebElement modalContentTitle = modalContainer.findElement(By.xpath(".//div[contains(@class,'k-window-title k-dialog-title')]"));
+                Assert.assertEquals(modalContentTitle.getText(), "Update User Info", "Verify Title message");
+                WebElement okButton=modalContainer.findElement(By.xpath(".//button[text()='OK']"));
+                HelpersMethod.ClickBut(driver,okButton,100);
+                exists=true;
+                scenario.log("USER INFO HAS BEEN SUCESSFULLY UPDATEDss");
             }
             Assert.assertEquals(exists,true);
         }

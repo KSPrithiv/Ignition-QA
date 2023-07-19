@@ -47,5 +47,6 @@ public class UserAndAccount_PendingApprovalPageStep
         userAndAdminPendingRegApprovalPage.clickOnPendingRegDropDown();
         userAndAdminPendingRegApprovalPage.selectUserPendingReg();
         userAndAdminPendingRegApprovalPage.clickOnConfirm();
+        userAndAdminPendingRegApprovalPage.updateUserInfo();
     }
 }

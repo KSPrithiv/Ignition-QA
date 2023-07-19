@@ -1,6 +1,10 @@
 package util;
 
+import helper.HelpersMethod;
 import org.apache.commons.lang3.RandomStringUtils;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.testng.Assert;
 
 import java.security.SecureRandom;
 import java.time.LocalDate;
@@ -80,6 +84,17 @@ public class RandomValues
         return email;
     }
 
+    public static String generateWebsite(int length)
+    {
+        String allowedChars="abcdefghijklmnopqrstuvwxyz" + "1234567890";
+
+        String website="";
+        String temp= RandomStringUtils.random(length,allowedChars);
+        website="https://www."+temp.substring(0,temp.length()-9)+".com";
+        return website;
+    }
+
+
     //Get week day value randomly
     public static <T> T getRandomElement(T[] arr)
     {
@@ -125,5 +140,51 @@ public class RandomValues
             LocalDateTime localTimeObj1 = LocalDateTime.parse(time, formatter);
             return localTimeObj1;
         }
+
+    public static double RandomFloat(double minInclusive, double maxInclusive, double precision)
+    {
+        double randomNum=0.0;
+        try
+        {
+            int max = (int) (maxInclusive / precision);
+            int min = (int) (minInclusive / precision);
+            Random rand = new Random();
+            int randomInt = rand.nextInt((max - min) + 1) + min;
+            randomNum = randomInt * precision;
+        }
+        catch (Exception e){}
+        return randomNum;
+    }
+
+    //random number selection in a given range
+    public static int RandomNumber(int max,int min)
+    {
+        int randomNum=0;
+        try
+        {
+            randomNum= (int) ((Math.random()*(max - min))+ min);
+        }
+        catch (Exception e){}
+        return randomNum;
+    }
+
+    public static String EnterAmount(WebDriver driver, WebElement WebEle, double minInclusive, double maxInclusive, double precision)
+    {
+        double randomFloat;
+        boolean exists=false;
+        String InputValue=null;
+        try
+        {
+            randomFloat=RandomFloat(minInclusive,maxInclusive,precision);
+            HelpersMethod.JSSetValueEle(driver,WebEle,10, String.valueOf(randomFloat));
+            InputValue=HelpersMethod.JSGetValueEle(driver,WebEle,10);
+
+            if(InputValue!=null)
+            {exists=true;}
+            Assert.assertEquals(true,exists);
+        }
+        catch (Exception e){}
+        return InputValue;
+    }
 
 }

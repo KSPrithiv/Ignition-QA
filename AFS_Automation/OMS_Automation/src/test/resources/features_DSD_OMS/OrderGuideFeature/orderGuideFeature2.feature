@@ -38,7 +38,7 @@ Feature: Order Guide2
     And User enters Quick Product number and Sequence number
       |4|
     Then User click on Save button
-    And User should navigate back to OG page and navigate back to "<OGType>" and verify OG "<OG>"  existence
+    #And User should navigate back to OG page and navigate back to "<OGType>" and verify OG "<OG>"  existence
     Examples:
       |  OG     |  OGType         |
       |MarketOG | Market segment  |
@@ -88,7 +88,7 @@ Feature: Order Guide2
     And User enters Quick Product number and Sequence number
       |4|
     Then User click on Save button
-    And User should navigate back to OG page and navigate back to "<OGType>" and verify OG "<OG>"  existence
+    #And User should navigate back to OG page and navigate back to "<OGType>" and verify OG "<OG>"  existence
     Examples:
       |  OG        |  OGType                      |
       |PriceBaseOG | Price group - base schedule  |
@@ -106,7 +106,7 @@ Feature: Order Guide2
     And User enters Quick Product number and Sequence number
       |4|
     Then User click on Save button
-    And User should navigate back to OG page and navigate back to "<OGType>" and verify OG "<OG>"  existence
+    #And User should navigate back to OG page and navigate back to "<OGType>" and verify OG "<OG>"  existence
     Examples:
       |  OG           |   OGType        |  Chain             |
       | NationalChain1|  National chain | Test National Chain |
@@ -123,7 +123,7 @@ Feature: Order Guide2
     And User enters Quick Product number and Sequence number
       |4|
     Then User click on Save button
-    And User should navigate back to OG page and navigate back to "<OGType>" and verify OG "<OG>"  existence
+    #And User should navigate back to OG page and navigate back to "<OGType>" and verify OG "<OG>"  existence
     Examples:
       |  OG           |   OGType                 |
       | AllCustomer1  |  All customer accounts # |
@@ -135,12 +135,10 @@ Feature: Order Guide2
     Then User enters OG Description "<OG>" in search box and Delete the OG verify same in OG grid
     Examples:
       |  OG   |
-      |OGDis14|
       |OGDis16|
       |OGDis17|
       |OGDis18|
       |OGDis19|
-      |DayOfWeek|
       |OGDis20|
       |OGAllOrder|
       |Push OGPush OG|

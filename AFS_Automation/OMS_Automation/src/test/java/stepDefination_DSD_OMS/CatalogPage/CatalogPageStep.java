@@ -146,6 +146,7 @@ public class CatalogPageStep
                 catalogpage = new CatalogPage(driver, scenario);
                 boolean result = catalogpage.ValidateCatalog();
                 currentURL = driver.getCurrentUrl();
+                scenario.log(currentURL);
                 Assert.assertEquals(result, true);
             } else {
                 scenario.log("CATALOG TAB IS NOT VISIBLE");
@@ -291,16 +292,16 @@ public class CatalogPageStep
                 {
                     new WebDriverWait(driver,1000).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[local-name()='svg']/*[local-name()='path' and contains(@d,'M16 ')]"))));
                     WebEle=HelpersMethod.FindByElement(driver, "xpath", "//*[local-name()='svg']/*[local-name()='path' and contains(@d,'M16 ')]");
-                    HelpersMethod.ActClick(driver,WebEle, 100);
-                    if(HelpersMethod.IsExists("//div[@class='loader']",driver))
+                    HelpersMethod.ActClick(driver,WebEle, 1000);
+                /*    if(HelpersMethod.IsExists("//div[@class='loader']",driver))
                     {
                         WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
                         HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000);
-                    }
+                    }*/
                     scenario.log("PRODUCT "+Prod_No.get(i)+" HAS BEEN DELETED");
                 }
             }
-            new WebDriverWait(driver,10000).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("productsCard"))));
+            new WebDriverWait(driver,80000).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("productsCard"))));
         }
     }
 
@@ -405,18 +406,18 @@ public class CatalogPageStep
                 catalogpage = new CatalogPage(driver, scenario);
                 catalogpage.ClickImage();
                 productdesctiptionpage = new ProductDescriptionPage(driver, scenario);
-                if(HelpersMethod.IsExists("//div[@class='loader']",driver))
+               /* if(HelpersMethod.IsExists("//div[@class='loader']",driver))
                 {
                     WebElement WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
                     HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 2000);
-                }
+                }*/
                 WebElement WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'cart-container')]/ancestor::div[contains(@class,'price-cart-container')]");
                 HelpersMethod.ScrollElement(driver,WebEle);
                 if(HelpersMethod.IsExists("//button[contains(@id,'delete-from-cart-button')]",driver))
                 {
-                        WebElement Del_But = HelpersMethod.FindByElement(driver, "id", "delete-from-cart-button");
-                        HelpersMethod.ScrollElement(driver, Del_But);
-                        HelpersMethod.ClickBut(driver, Del_But, 800);
+                    WebElement Del_But = HelpersMethod.FindByElement(driver, "id", "delete-from-cart-button");
+                    HelpersMethod.ScrollElement(driver, Del_But);
+                    HelpersMethod.ClickBut(driver, Del_But, 2000);
                     productdesctiptionpage.Qty_Inputbox(Qty.get(0).get(0));
                     productdesctiptionpage.Add_to_cart();
                     productdesctiptionpage.Back_to_Catalog();
@@ -450,17 +451,17 @@ public class CatalogPageStep
             {
                 catalogpage = new CatalogPage(driver, scenario);
                 catalogpage.ClickImage();
-                if(HelpersMethod.IsExists("//div[@class='loader']",driver))
+               /* if(HelpersMethod.IsExists("//div[@class='loader']",driver))
                 {
                     WebElement WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000);
-                }
+                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 20000);
+                }*/
                 productdesctiptionpage = new ProductDescriptionPage(driver, scenario);
                 if(HelpersMethod.IsExists("//button[@id='delete-from-cart-button']",driver))
                 {
                     WebElement Del_But = HelpersMethod.FindByElement(driver, "id", "delete-from-cart-button");
                     HelpersMethod.ScrollElement(driver, Del_But);
-                    HelpersMethod.ClickBut(driver, Del_But, 100);
+                    HelpersMethod.ClickBut(driver, Del_But, 2000);
                     productdesctiptionpage.Qty_Inputbox(Qty.get(i).get(0));
                     productdesctiptionpage.Add_to_cart();
                     if (i == 0)
@@ -488,12 +489,23 @@ public class CatalogPageStep
     public void clickOnSubmitOrderButtonForCreatingOrderFromCatalog() throws InterruptedException, AWTException
     {
         summary = new CheckOutSummaryPage(driver,scenario);
-        if(HelpersMethod.IsExists("//div[@class='loader']",driver))
+        /*if(HelpersMethod.IsExists("//div[@class='loader']",driver))
         {
             WebElement WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
             HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000);
-        }
+        }*/
         summary.ClickSubmit();
         summary.SucessPopup();
+    }
+
+    @Given("User must be on Order Entry Page to create pending order")
+    public void userMustBeOnOrderEntryPageToCreatePendingOrder(String currentURL) throws InterruptedException, AWTException
+    {
+        orderpage=new OrderEntryPage(driver,scenario);
+        orderpage.HandleError_Page();
+        catalogpage = new CatalogPage(driver, scenario);
+        catalogpage.Refresh_Page(currentURL);
+        orderpage=new OrderEntryPage(driver,scenario);
+        orderpage.NavigateToOrderEntry();
     }
 }

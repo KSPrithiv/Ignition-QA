@@ -2,16 +2,12 @@ package pages_DSD_OMS.Catalog;
 
 import helper.HelpersMethod;
 import io.cucumber.java.Scenario;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
-import java.nio.file.WatchEvent;
 import java.util.List;
 
 /**
@@ -181,6 +177,36 @@ public class ProductDescriptionPage
                 scenario.log("PRODUCT FOUND IS: " + Prod_Text);
             }
             exists=true;
+            Assert.assertEquals(exists,true);
+        }
+        catch (Exception e){}
+    }
+
+    public void validateProductDescriptionPage()
+    {
+        exists=false;
+        try
+        {
+            String head=HelpersMethod.FindByElement(driver,"xpath","//span[contains(@class,'spnmoduleNameHeader')]").getText();
+            if(head.contains("Product detail"))
+            {
+                exists = true;
+            }
+            Assert.assertEquals(exists,true);
+        }
+        catch (Exception e){}
+    }
+
+    public void validateProductDescription(String descriptionProd)
+    {
+        exists=false;
+        try
+        {
+            String prodDesc=HelpersMethod.FindByElement(driver,"xpath","//div[@class='product-description-container']/div[@class='product-description']").getText();
+            if(prodDesc.equals("descriptionProd"))
+            {
+                exists=true;
+            }
             Assert.assertEquals(exists,true);
         }
         catch (Exception e){}

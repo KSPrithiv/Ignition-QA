@@ -110,4 +110,20 @@ public class OrderAdminPageStep
         orderadminPage.clickOnEvent();
         orderadminPage.selectEventFromDropDown(event);
     }
+
+    @Then("User enters customer account#, From and End dates for Creating reports")
+    public void userEntersCustomerAccountFromAndEndDatesForCreatingReports()
+    {
+        orderadminPage=new orderAdminPage(driver,scenario);
+        orderadminPage.enterCustomerAccountNo();
+        orderadminPage.orderDateCalenderClick();
+        orderadminPage.orderDateSelection();
+    }
+
+    @And("User clicks on Generate button in Orders tab")
+    public void userClicksOnGenerateButtonInOrdersTab()
+    {
+        orderadminPage=new orderAdminPage(driver,scenario);
+        orderadminPage.clickOnGenerateButton();
+    }
 }

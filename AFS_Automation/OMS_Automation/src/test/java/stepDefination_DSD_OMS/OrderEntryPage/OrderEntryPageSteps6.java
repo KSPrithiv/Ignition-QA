@@ -159,14 +159,4 @@ public class OrderEntryPageSteps6
         newOE.readProductsInOrder();
     }
 
-    @Then("User should navigate back to new OE page")
-    public void userShouldNavigateBackToNewOEPage() throws InterruptedException, AWTException
-    {
-        checkorder=new CheckOutOrderPage(driver,scenario);
-        exists=checkorder.VerifyCheckOut();
-        if(exists==true)
-        {
-            checkorder.BackButton_Click();
-        }
-    }
 }
