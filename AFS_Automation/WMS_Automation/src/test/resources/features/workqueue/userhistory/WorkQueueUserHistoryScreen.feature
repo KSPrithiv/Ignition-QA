@@ -12,9 +12,7 @@ Feature: Testing of Work Queue User history functionality
     And Validates Grid items are present on Work Queue User History page
     When User scrolls till end of grid table on Work Queue User History page
     And Validates Table End is displayed on Work Queue User History page
-
-    Then User searches for "USER1" on Work Queue User History page
-
+    Then User searches for user by index 0 on Work Queue User History page
     And Validates Grid items are present on Work Queue User History page
     And User clears Search on Work Queue User History page
     And User clicks on Login Header on Work Queue User History page
