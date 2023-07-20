@@ -68,22 +68,24 @@ public class MailSend_WMS
 
             message.setRecipients(Message.RecipientType.CC,
                     InternetAddress.parse(cc));
+            message.setRecipients(Message.RecipientType.BCC,
+                    InternetAddress.parse(bcc));
             message.setSubject("Automated Email Notification -Ignition WMS Automation report from CI server");
 
             //String filename="corp.afsi.com\\C:\\Users\\karthikeyan.Armugam\\Documents\\Git_Repositories\\ignition-qa\\IgnitionQAAutomation\\Reports\\extent\\Index.html";
             //String filename="C:\\Users\\karthikeyan.Armugam\\Documents\\Git_Repositories\\ignition-qa\\IgnitionQAAutomation\\Reports\\extent\\Index.html";
-            //String filename="C:\\Users\\karthikeyan.Armugam\\Documents\\AFS_Automation\\AFS_Automation\\WMS_Automation\\Reports\\surefire-reports_WMS";
-            //String filename="E:\\GithubBuilds\\IgnitionQA\\_work\\ignition-qa\\ignition-qa\\AFS_Automation\\WMS_Automation\\target\\surefire-reports\\emailable-report.html";
+            //String filename="C:\\Users\\karthikeyan.Armugam\\Documents\\AFS_Automation\\AFS_Automation\\WMS_Automation\\Reports\\Index.html";
+            String filename="E:\\GithubBuilds\\IgnitionQA\\_work\\ignition-qa\\ignition-qa\\AFS_Automation\\WMS_Automation\\Reports\\Index.html";
             //Composing mail
             BodyPart objMessageBodyPart = new MimeBodyPart();
             objMessageBodyPart.setContent("Hi,"+"Santhosh, Good Afternoon..Please find the Ignition WMS Automation Report in this URL => https://reports.cucumber.io/report-collections/2580ea7b-dd7e-4181-aebd-395d230b75d6  "+"\n", "text/html");
             Multipart multipart = new MimeMultipart();
             multipart.addBodyPart(objMessageBodyPart);
             objMessageBodyPart = new MimeBodyPart();
-            //DataSource source = new FileDataSource(filename);
-            //objMessageBodyPart.setDataHandler(new DataHandler(source));
+            DataSource source = new FileDataSource(filename);
+            objMessageBodyPart.setDataHandler(new DataHandler(source));
             //attaching extent report to mail
-            //objMessageBodyPart.setFileName(filename);
+            objMessageBodyPart.setFileName(filename);
             multipart.addBodyPart(objMessageBodyPart);
             message.setContent(multipart);
             return message;
