@@ -1,10 +1,9 @@
-name: autom_2 WMS
+name: cron schedule WMS July 20
 on:
  push:
-   branches:
-     - develop_autom
- workflow_dispatch:
-  
+    branches:
+      - develop_autom
+ 
 
 jobs:
   job1:
