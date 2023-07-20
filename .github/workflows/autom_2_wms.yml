@@ -2,11 +2,7 @@ name: cron schedule WMS July 20
 on:
   schedule:
     - cron: '*/5 * * * *'
-  
-  
-  push:
-    branches:
-      - develop_autom
+ 
 
 jobs:
   job1:
