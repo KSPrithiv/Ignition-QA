@@ -1,13 +1,11 @@
 name: cron schedule WMS July 20
 on:
- # commented-It runs the build for every 5 mins
+ 
  schedule:
-  - cron: '*/5 * * * *'
+  - cron: '0 0 * * *'
 
  
 
-
- 
 
 jobs:
   job1:
