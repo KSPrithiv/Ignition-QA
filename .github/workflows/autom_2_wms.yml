@@ -2,7 +2,7 @@ name: cron schedule WMS July 20
 on:
  
  schedule:
-  - cron: '30 18 * * *'
+  - cron: '04 00 * * *'
 
  
 
