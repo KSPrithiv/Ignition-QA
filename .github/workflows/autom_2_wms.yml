@@ -1,12 +1,8 @@
 name: cron schedule WMS July 20
 on:
   schedule:
-    - cron:  '*/5 * * * *'
-  push:
-     
-    # Sequence of patterns matched against refs/heads
-     branches:    
-      - develop_autom
+    - cron:  '0 23 * * *'
+
 
  
 
