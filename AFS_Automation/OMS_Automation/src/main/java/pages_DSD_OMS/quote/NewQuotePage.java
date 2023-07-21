@@ -646,23 +646,23 @@ public void EnterProductQtyCatalog(String unit,String cases)
         catch (Exception e){}
     }
 
-    public void AddMultipleProducts(List<List<String>> qtyList)
-    {
-        try
-        {
-            WebElement WebEle=HelpersMethod.FindByElement(driver,"id","quickProduct");
-            List<String> Prod=DataBaseConnection.DataConn1(TestBase.testEnvironment.getMultiple_Prod_Sql1());
-            for(int i=0;i<=qtyList.size()-1;i++)
-            {
-                //Enter product number in input box
-                String pro = String.valueOf(Prod.get(i));
-                QuickProdEntryMutlipleProduct(pro);
-                //Enter Qty in product grid
-                QtyInGridMultipleProduct(qtyList.get(i).get(0),qtyList.get(i).get(1),i);
-            }
-        }
-        catch (Exception e){}
-    }
+//    public void AddMultipleProducts(List<List<String>> qtyList)
+//    {
+//        try
+//        {
+//            WebElement WebEle=HelpersMethod.FindByElement(driver,"id","quickProduct");
+//            List<String> Prod=DataBaseConnection.DataConn1(TestBase.testEnvironment.getMultiple_Prod_Sql1());
+//            for(int i=0;i<=qtyList.size()-1;i++)
+//            {
+//                //Enter product number in input box
+//                String pro = String.valueOf(Prod.get(i));
+//                QuickProdEntryMutlipleProduct(pro);
+//                //Enter Qty in product grid
+//                QtyInGridMultipleProduct(qtyList.get(i).get(0),qtyList.get(i).get(1),i);
+//            }
+//        }
+//        catch (Exception e){}
+//    }
 
     public void SelectProductInProductGrid()
     {

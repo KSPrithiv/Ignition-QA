@@ -1,5 +1,6 @@
 package pages_DSD_OMS.badgeBuilder_Phase2;
 import io.cucumber.java.Scenario;
+import net.bytebuddy.asm.Advice;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
@@ -140,6 +141,8 @@ public class BadgeBuilderPage1 {
             exists = false;
             WebElement WebEle = null;
             WebElement WebEle1 = null;
+            String ProductNo=null;
+            ProductNo= TestBase.testEnvironment.get_TieredProductNo();
             //new WebDriverWait(driver, 40).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//span[@id='searchBarClearBtn']//*[local-name()='svg']")));
             //new WebDriverWait(driver, 20).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[@id='searchBarClearBtn']//*[local-name()='svg']")));
             try {
@@ -156,7 +159,8 @@ public class BadgeBuilderPage1 {
 //                    WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
 //                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100);
 //                }
-                HelpersMethod.EnterText(driver, SearchBar, 40, "0803");
+                Thread.sleep(4000);
+                HelpersMethod.EnterText(driver, SearchBar, 40, ProductNo);
                 HelpersMethod.ActClick(driver, SearchIndex, 20);
 //                if (HelpersMethod.IsExists("//div[@class='loader']", driver)) {
 //                    WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
@@ -425,29 +429,134 @@ public class BadgeBuilderPage1 {
         }
     }
 
+//    public void PopupProductEntry() {
+//        if (HelpersMethod.IsExists("//div[contains(@class,'k-widget k-window k-dialog')]/descendant::div[contains(@class,'i-grid')]", driver)) {
+//            String str1 = "0";
+//            String str2 = "0";
+//            String str3 = "0";
+//            String str4 = "0";
+//            String str5 = "0";
+//            String str6 = "0";
+//            String str7 = "1";
+//            String str8 = "1";
+//
+//            try {
+//                HelpersMethod.waitTillElementLocatedDisplayed(driver, "xpath", "//div[contains(@class,'k-widget k-window k-dialog')]", 100);
+//
+//                if (HelpersMethod.IsExists("//div[contains(@class,'k-widget k-window k-dialog')]", driver)) {
+//                    WebElement Popup1 = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-widget k-window k-dialog')]");
+//
+////                WebElement ProductBox = Popup1.findElement(By.xpath("//body/div[2]/div[@role='dialog']//div[@class='core-grid-admin-top-wrapper']/div[@role='presentation']/div[@role='grid']/div[1]/div[@role='presentation']/table[@role='presentation']/thead[@role='presentation']/tr[2]/th[3]/div[@class='k-filtercell']/div[@class='k-filtercell-wrapper']/input"));
+//                    WebElement ProductBox = Popup1.findElement(By.xpath("//body/div[2]/div[@role='dialog']//div[@class='core-grid-admin-top-wrapper']/div[@role='presentation']/div[@role='grid']/div[1]/div[@role='presentation']/table[@role='presentation']/thead[@role='presentation']/tr[2]/th[8]/div[@class='k-filtercell']/div[@class='k-filtercell-wrapper']/input"));
+//
+//                    Thread.sleep(3000);
+//                    HelpersMethod.sendKeys(driver, ProductBox, 20, str1);
+//                    HelpersMethod.sendKeys(driver, ProductBox, 20, str2);
+//                    HelpersMethod.sendKeys(driver, ProductBox, 20, str3);
+//                    HelpersMethod.sendKeys(driver, ProductBox, 20, str4);
+//                    HelpersMethod.sendKeys(driver, ProductBox, 20, str5);
+//                    HelpersMethod.sendKeys(driver, ProductBox, 20, str6);
+//                    HelpersMethod.sendKeys(driver, ProductBox, 20, str7);
+//                    HelpersMethod.sendKeys(driver, ProductBox, 20, str8);
+//
+////                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100);
+//                }
+//            } catch (Exception e) {
+//            }
+//        }
+//        if (HelpersMethod.IsExists("//div[contains(@class,'card-view')]", driver)){
+//            WebElement WebEle;
+//            String ProductNo1="00000011";
+////            ProductNo1=TestBase.testEnvironment.get_CatchWtProductNo();
+//
+//            try {
+//                if (HelpersMethod.IsExists("//div[@class='loader']", driver)) {
+//                    WebElement WebEle1 = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
+//                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle1, 400);
+//                }
+//                WebElement SearchIcon;
+//                exists = false;
+//                WebElement SearchProd1=HelpersMethod.FindByElement(driver,"xpath","/html/body[@class='dialog']/div[2]/div[@role='dialog']/div[2]//div[@role='combobox']/input");
+//                HelpersMethod.ScrollElement(driver, SearchProd1);
+//                Thread.sleep(5000);
+//                if (SearchProd1.isDisplayed()) {
+//                    SearchIcon = driver.findElement(By.cssSelector(".input-group-addon.search-button.search-button-addon > .i-icon"));
+//                    HelpersMethod.EnterText(driver, SearchProd1, 100, ProductNo1);
+//                    Thread.sleep(4000);
+////                    HelpersMethod.ActClick(driver, SearchIcon, 100);
+//                    SearchProd1.sendKeys(Keys.ENTER);
+//                    exists = true;
+//                } else {
+//                    scenario.log("SEARCH BOX IS NOT VISIBLE");
+//                }
+//                // Assert.assertEquals(exists,true);
+//            } catch (Exception e) {
+//            }
+//
+//
+//        }
+//
+//
+//    }
+
+
     public void PopupProductEntry() {
+        if (HelpersMethod.IsExists("//div[contains(@class,'k-widget k-window k-dialog')]/descendant::div[contains(@class,'i-grid')]", driver)) {
+            String ProductNo = null;
+            try {
+                ProductNo = TestBase.testEnvironment.get_TieredProductNo();
+                char[] characters = ProductNo.toCharArray();
+                int i = 0;
+                List<WebElement> THeads = HelpersMethod.FindByElements(driver, "xpath", "//div[contains(@class,'k-widget k-window k-dialog')]/descendant::thead/tr[1]/th");
+                for (WebElement THead : THeads) {
+                    i++;
+                    String Head_Text = THead.getText();
+//                    System.out.println(Head_Text);
+                    if (Head_Text.equals("Product #")) {
+                        WebElement Popup1 = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-widget k-window k-dialog')]");
+                        WebElement ProductBox = Popup1.findElement(By.xpath("//div[contains(@class,'k-widget k-window k-dialog')]/descendant::thead/tr[2]/th[" + i + "]/descendant::input"));
+//                   WebElement ProductBox=Popup1.findElement(By.xpath("//body/div[2]/div[@role='dialog']//div[@class='core-grid-admin-top-wrapper']/div[@role='presentation']/div[@role='grid']/div[1]/div[@role='presentation']/table[@role='presentation']/thead[@role='presentation']/tr[2]/th["+i+"]/div[@class='k-filtercell']/div[@class='k-filtercell-wrapper']/input"));
 
-        String str1 = "0";
-        String str2 = "8";
-        String str3 = "0";
-        String str4 = "3";
+                        for (char character : characters) {
+                            String charAsString = String.valueOf(character);
+                            ProductBox.sendKeys(charAsString);
+//                    HelpersMethod.ActClick(driver, SearchIcon, 100);
+                            ProductBox.sendKeys(Keys.ENTER);
 
-        try {
-            HelpersMethod.waitTillElementLocatedDisplayed(driver, "xpath", "//div[contains(@class,'k-widget k-window k-dialog')]", 100);
+                        }
+                    }
+                }
+            } catch (Exception e) {}
+        }
+        if (HelpersMethod.IsExists("//div[contains(@class,'card-view')]", driver)){
+            WebElement WebEle;
+//            String ProductNo1="00000011";
+            String ProductNo1=null;
+            ProductNo1=TestBase.testEnvironment.get_CatchWtProductNo();
 
-            if (HelpersMethod.IsExists("//div[contains(@class,'k-widget k-window k-dialog')]", driver)) {
-                WebElement Popup1 = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-widget k-window k-dialog')]");
-
-                WebElement ProductBox = Popup1.findElement(By.xpath("//body/div[2]/div[@role='dialog']//div[@class='core-grid-admin-top-wrapper']/div[@role='presentation']/div[@role='grid']/div[1]/div[@role='presentation']/table[@role='presentation']/thead[@role='presentation']/tr[2]/th[3]/div[@class='k-filtercell']/div[@class='k-filtercell-wrapper']/input"));
-                Thread.sleep(3000);
-                HelpersMethod.sendKeys(driver, ProductBox, 20, str1);
-                HelpersMethod.sendKeys(driver, ProductBox, 20, str2);
-                HelpersMethod.sendKeys(driver, ProductBox, 20, str3);
-                HelpersMethod.sendKeys(driver, ProductBox, 20, str4);
-
-//                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100);
+            try {
+                if (HelpersMethod.IsExists("//div[@class='loader']", driver)) {
+                    WebElement WebEle1 = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
+                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle1, 400);
+                }
+                WebElement SearchIcon;
+                exists = false;
+                WebElement SearchProd1=HelpersMethod.FindByElement(driver,"xpath","/html/body[@class='dialog']/div[2]/div[@role='dialog']/div[2]//div[@role='combobox']/input");
+                HelpersMethod.ScrollElement(driver, SearchProd1);
+                Thread.sleep(5000);
+                if (SearchProd1.isDisplayed()) {
+                    SearchIcon = driver.findElement(By.cssSelector(".input-group-addon.search-button.search-button-addon > .i-icon"));
+                    HelpersMethod.EnterText(driver, SearchProd1, 100, ProductNo1);
+                    Thread.sleep(4000);
+//                    HelpersMethod.ActClick(driver, SearchIcon, 100);
+                    SearchProd1.sendKeys(Keys.ENTER);
+                    exists = true;
+                } else {
+                    scenario.log("SEARCH BOX IS NOT VISIBLE");
+                }
+                // Assert.assertEquals(exists,true);
+            } catch (Exception e) {
             }
-        } catch (Exception e) {
         }
     }
 
@@ -462,23 +571,54 @@ public class BadgeBuilderPage1 {
                 WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
                 HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100);
             }
-            Thread.sleep(2000);
-            WebElement Clr = driver.findElement(By.cssSelector("div:nth-of-type(7) > .admin-badge-icon-container > div > div>div"));
+            if (HelpersMethod.IsExists("//div[contains(@class,'k-widget k-window k-dialog')]/descendant::div[contains(@class,'i-grid')]", driver)) {
 
-            HelpersMethod.waitTillElementDisplayed(driver, Clr, 100);
-            HelpersMethod.Implicitwait(driver, 20);
-            Thread.sleep(5000);
-            //  OrderGuideClrCheck = OrderGuideClr.getCssValue("background-color");
-            ClrCheck = Clr.getCssValue("background-color");
-            System.out.println(ClrCheck);
-            System.out.println(Tiered_CatchColorAdmin2);
 
-            if (Tiered_CatchColorAdmin2.equals(ClrCheck)) {
-                System.out.println("PRODUCT COLORS ARE SAME");
-            } else {
-                System.out.println("PRODUCT COLORS ARE NOT SAME");
+                Thread.sleep(2000);
+                WebElement Clr = driver.findElement(By.cssSelector("div:nth-of-type(7) > .admin-badge-icon-container > div > div>div"));
+
+                HelpersMethod.waitTillElementDisplayed(driver, Clr, 100);
+                HelpersMethod.Implicitwait(driver, 20);
+                Thread.sleep(5000);
+                //  OrderGuideClrCheck = OrderGuideClr.getCssValue("background-color");
+                ClrCheck = Clr.getCssValue("background-color");
+                System.out.println(ClrCheck);
+                System.out.println(Tiered_CatchColorAdmin2);
+
+                if (Tiered_CatchColorAdmin2.equals(ClrCheck)) {
+                    System.out.println("PRODUCT COLORS ARE SAME");
+                } else {
+                    System.out.println("PRODUCT COLORS ARE NOT SAME");
+                }
+
+                WebElement Popup1 = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-widget k-window k-dialog')]");
+
+                WebElement OkBtn = Popup1.findElement(By.xpath("//body/div[2]/div[@role='dialog']/div[3]/div/button[.='Ok']"));
+                OkBtn.click();
+
             }
-            // Assert.assertEquals(Tiered_CatchColorAdmin,OrderGuideClrCheck,"COLORS ARE NOT SAME");
+            if (HelpersMethod.IsExists("//div[contains(@class,'card-view')]", driver)) {
+
+
+                Thread.sleep(2000);
+//                WebElement Clr = driver.findElement(By.cssSelector(".admin-badge-text-container .label-preview-label"));
+                WebElement Clr = driver.findElement(By.cssSelector(".product-catalog-image-container .label-preview-label"));
+
+
+                HelpersMethod.waitTillElementDisplayed(driver, Clr, 100);
+                HelpersMethod.Implicitwait(driver, 20);
+                Thread.sleep(5000);
+                //  OrderGuideClrCheck = OrderGuideClr.getCssValue("background-color");
+                ClrCheck = Clr.getCssValue("color");
+                System.out.println(ClrCheck);
+                System.out.println(Tiered_CatchColorAdmin);
+
+                if (Tiered_CatchColorAdmin.equals(ClrCheck)) {
+                    System.out.println("PRODUCT COLORS ARE SAME");
+                } else {
+                    System.out.println("PRODUCT COLORS ARE NOT SAME");
+                }
+            }
             WebElement Popup1 = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-widget k-window k-dialog')]");
 
             WebElement OkBtn = Popup1.findElement(By.xpath("//body/div[2]/div[@role='dialog']/div[3]/div/button[.='Ok']"));
@@ -486,7 +626,6 @@ public class BadgeBuilderPage1 {
         } catch (Exception e) {
         }
         return ClrCheck;
-
 
     }
 
@@ -591,23 +730,34 @@ public class BadgeBuilderPage1 {
         }
     }
 
-    public void AddQuantity1() {
-
-        String str = "1";
-        try {
+    public void AddQuantity1() throws InterruptedException {
+        if (HelpersMethod.IsExists("//div[contains(@class,'k-widget k-window k-dialog')]/descendant::div[contains(@class,'i-grid')]", driver)) {
+            String str = "1";
+            try {
+                HelpersMethod.waitTillElementLocatedDisplayed(driver, "xpath", "//div[contains(@class,'k-widget k-window k-dialog')]", 100);
+                WebElement Popup1 = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-widget k-window k-dialog')]");
+                WebElement Quantity = Popup1.findElement(By.xpath("//body[@class='dialog']/div[2]/div[@role='dialog']//div[@class='core-grid-admin-top-wrapper']/div[@role='presentation']/div[@role='grid']/div[2]/div[@role='presentation']/div[1]/table[@role='presentation']/tbody[@role='presentation']/tr[@role='row']//input[@value='0']"));
+                //HelpersMethod.ScrollElement(driver, Quantity);
+                //HelpersMethod.ClickBut(driver, Quantity, 80);
+                HelpersMethod.clearText(driver, Quantity, 20);
+                HelpersMethod.sendKeys(driver, Quantity, 20, str);
+                Thread.sleep(2000);
+                WebElement okButton1 = Popup1.findElement(By.xpath(".//button[text()='Ok']"));
+                HelpersMethod.ClickBut(driver, okButton1, 80);
+            } catch (Exception e) {
+            }
+        }
+        if (HelpersMethod.IsExists("//div[contains(@class,'card-view')]", driver)){
             HelpersMethod.waitTillElementLocatedDisplayed(driver, "xpath", "//div[contains(@class,'k-widget k-window k-dialog')]", 100);
             WebElement Popup1 = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-widget k-window k-dialog')]");
-            WebElement Quantity = Popup1.findElement(By.xpath("//body[@class='dialog']/div[2]/div[@role='dialog']//div[@class='core-grid-admin-top-wrapper']/div[@role='presentation']/div[@role='grid']/div[2]/div[@role='presentation']/div[1]/table[@role='presentation']/tbody[@role='presentation']/tr[@role='row']//input[@value='0']"));
-            //HelpersMethod.ScrollElement(driver, Quantity);
-            //HelpersMethod.ClickBut(driver, Quantity, 80);
-            HelpersMethod.clearText(driver, Quantity, 20);
-            HelpersMethod.sendKeys(driver, Quantity, 20, str);
+            WebElement AddButton = Popup1.findElement(By.cssSelector(".i-button--icon-only.i-numeric-box-int__buttonPlus.k-button.k-button-icontext.k-primary"));
+//            WebElement AddButton = Popup1.findElement(By.cssSelector("tbody[role='presentation'] > tr[role='row'] .k-i-arrow-n.k-icon"));
+            HelpersMethod.ScrollElement(driver, AddButton);
+            HelpersMethod.ClickBut(driver, AddButton, 80);
             Thread.sleep(2000);
             WebElement okButton1 = Popup1.findElement(By.xpath(".//button[text()='Ok']"));
             HelpersMethod.ClickBut(driver, okButton1, 80);
-        } catch (Exception e) {
         }
-
 
     }
 
@@ -661,21 +811,76 @@ public class BadgeBuilderPage1 {
     }
 
     public void SelectProduct1() throws InterruptedException {
-        Thread.sleep(3000);
-        try {
-            HelpersMethod.waitTillElementLocatedDisplayed(driver, "xpath", "//div[@id='ProductIdCol0']/a[@href='#']", 100);
-            WebElement Product = HelpersMethod.FindByElement(driver, "xpath", "//div[@id='ProductIdCol0']/a[@href='#']");
+//        if (HelpersMethod.IsExists("//div[contains(@class,'k-widget k-window k-dialog')]/descendant::div[contains(@class,'i-grid')]", driver)) {
 
-            HelpersMethod.ScrollElement(driver, Product);
-            WebElement ClickProduct = Product.findElement(By.xpath("//div[@id='ProductIdCol0']/a[@href='#']"));
+            Thread.sleep(5000);
+            try {
+                HelpersMethod.waitTillElementLocatedDisplayed(driver, "xpath", "//div[@id='ProductIdCol0']/a[@href='#']", 100);
+                WebElement Product = HelpersMethod.FindByElement(driver, "xpath", "//div[@id='ProductIdCol0']/a[@href='#']");
+
+                HelpersMethod.ScrollElement(driver, Product);
+                WebElement ClickProduct = Product.findElement(By.xpath("//div[@id='ProductIdCol0']/a[@href='#']"));
 //            HelpersMethod.ClickBut(driver,ClickProduct,80);
-            HelpersMethod.JScriptClick(driver, ClickProduct, 20);
-        } catch (Exception e) {
+                HelpersMethod.JScriptClick(driver, ClickProduct, 20);
+            } catch (Exception e) {
+            }
         }
 
 
-    }
+    public String ColorCheck1() throws InterruptedException {
+        String IconClrCheck = null;
+//        String CatchWtLabel=null;
+        WebElement WebEle;
+        badgeBuilderPage1 = new BadgeBuilderPage(driver, scenario);
+        badgeBuilderPage1.ColourChange2();
+        try {
+            if (HelpersMethod.IsExists("//div[@class='loader']", driver)) {
+                WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100);
+            }
+            Thread.sleep(2000);
+            if (HelpersMethod.IsExists("span:nth-of-type(2) > .admin-badge-text-container > .label-preview-background.label-preview-background-white > .label-preview-background > div > div",driver));
+            {
+                WebElement IconClr = driver.findElement(By.cssSelector("span:nth-of-type(2) > .admin-badge-text-container > .label-preview-background.label-preview-background-white > .label-preview-background > div > div"));
+                HelpersMethod.waitTillElementDisplayed(driver, IconClr, 100);
+                HelpersMethod.Implicitwait(driver, 20);
+                Thread.sleep(10000);
+                //  OrderGuideClrCheck = OrderGuideClr.getCssValue("background-color");
+                IconClrCheck = IconClr.getCssValue("color");
+                System.out.println(IconClrCheck);
 
+                if (Tiered_CatchColorAdmin.equals(IconClrCheck)) {
+                    System.out.println("PRODUCT COLORS ARE SAME");
+                } else {
+                    System.out.println("PRODUCT COLORS ARE NOT SAME");
+                }
+
+            }
+            if (HelpersMethod.IsExists("div:nth-of-type(7) > .admin-badge-icon-container > div > div>div",driver));
+            {
+
+                WebElement IconClr = driver.findElement(By.cssSelector("div:nth-of-type(7) > .admin-badge-icon-container > div > div>div"));
+
+                HelpersMethod.waitTillElementDisplayed(driver, IconClr, 100);
+                HelpersMethod.Implicitwait(driver, 20);
+                Thread.sleep(10000);
+                //  OrderGuideClrCheck = OrderGuideClr.getCssValue("background-color");
+                IconClrCheck = IconClr.getCssValue("background-color");
+                System.out.println(IconClrCheck);
+
+                if (Tiered_CatchColorAdmin2.equals(IconClrCheck)) {
+                    System.out.println("PRODUCT COLORS ARE SAME");
+                } else {
+                    System.out.println("PRODUCT COLORS ARE NOT SAME");
+                }
+            }
+            // Assert.assertEquals(Tiered_CatchColorAdmin,OrderGuideClrCheck,"COLORS ARE NOT SAME");
+
+
+        } catch (Exception e) {
+        }
+        return IconClrCheck;
+    }
     public String ColorCheck() throws InterruptedException {
         String IconClrCheck = null;
 //        String CatchWtLabel=null;
@@ -731,14 +936,14 @@ public class BadgeBuilderPage1 {
                     WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
                     HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100);
                 }
-                HelpersMethod.EnterText(driver, SearchBar, 40, "0803");
+                HelpersMethod.EnterText(driver, SearchBar, 40, "00000011");
                 Thread.sleep(5000);
                 HelpersMethod.ActClick(driver, SearchIndex, 20);
                 if (HelpersMethod.IsExists("//div[@class='loader']", driver)) {
                     WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
                     HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100);
                 }
-                scenario.log("PRODUCT SECTLECTED IS " + "0803");
+                scenario.log("PRODUCT SECTLECTED IS " + "00000011");
                 exists = true;
                 Assert.assertEquals(exists, true);
                 Thread.sleep(5000);

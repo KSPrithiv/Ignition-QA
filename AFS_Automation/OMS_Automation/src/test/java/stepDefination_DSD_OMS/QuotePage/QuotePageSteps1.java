@@ -46,13 +46,13 @@ public class QuotePageSteps1
         driver= driver1.getDriver();
     }
 
-    @Then("Enter multiple Pro# in Quick Product Entry area in New Qutoe page and enter Qty for Case and Unit")
-    public void enterMultipleProInQuickProductEntryAreaInNewQutoePageAndEnterQtyForCaseAndUnit(DataTable tabledata)
-    {
-        List<List<String>> QtyList=tabledata.asLists(String.class);
-        newQuotePage=new NewQuotePage(driver,scenario);
-        newQuotePage.AddMultipleProducts(QtyList);
-    }
+//    @Then("Enter multiple Pro# in Quick Product Entry area in New Qutoe page and enter Qty for Case and Unit")
+//    public void enterMultipleProInQuickProductEntryAreaInNewQutoePageAndEnterQtyForCaseAndUnit(DataTable tabledata)
+//    {
+//        List<List<String>> QtyList=tabledata.asLists(String.class);
+//        newQuotePage=new NewQuotePage(driver,scenario);
+//        newQuotePage.AddMultipleProducts(QtyList);
+//    }
 
     @And("User selects one product from product grid and click on delete button")
     public void userSelectsOneProductFromProductGridAndClickOnDeleteButton()
