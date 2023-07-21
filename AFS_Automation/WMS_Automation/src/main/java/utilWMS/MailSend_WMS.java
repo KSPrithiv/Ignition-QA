@@ -29,7 +29,7 @@ public class MailSend_WMS
         final String to = "santhosh.skaria@telusagcg.com";
         //final String to = "karthikeyan.armugam@telusagcg.com";
         final String cc = "karthikeyan.armugam@telusagcg.com";
-        final String bcc = "irina.holovan@telusagcg.com";
+        //final String bcc = "irina.holovan@telusagcg.com";
 
         try
         {
@@ -48,7 +48,7 @@ public class MailSend_WMS
                 }
             });
             //Message message=prepareMessage(session, "automationqaafs@gmail.com", "santhosh.skaria@telusagcg.com");
-            Message message=prepareMessage(session, "automationqaafs@gmail.com", "santhosh.skaria@telusagcg.com","karthikeyan.armugam@telusagcg.com","irina.holovan@telusagcg.com");
+            Message message=prepareMessage(session, "automationqaafs@gmail.com", "santhosh.skaria@telusagcg.com","karthikeyan.armugam@telusagcg.com");
           Transport.send(message);
         }
         catch (Exception e)
@@ -57,7 +57,7 @@ public class MailSend_WMS
         }
     }
 
-    private static Message prepareMessage(Session session, String myAccountEmail, String recepient,String cc,String bcc )
+    private static Message prepareMessage(Session session, String myAccountEmail, String recepient,String cc )
     {
         try
         {
@@ -68,8 +68,8 @@ public class MailSend_WMS
 
             message.setRecipients(Message.RecipientType.CC,
                     InternetAddress.parse(cc));
-            message.setRecipients(Message.RecipientType.BCC,
-                    InternetAddress.parse(bcc));
+//            message.setRecipients(Message.RecipientType.BCC,
+//                    InternetAddress.parse(bcc));
             message.setSubject("Automated Email Notification -Ignition WMS Automation report from CI server");
 
             //String filename="corp.afsi.com\\C:\\Users\\karthikeyan.Armugam\\Documents\\Git_Repositories\\ignition-qa\\IgnitionQAAutomation\\Reports\\extent\\Index.html";
