@@ -46,6 +46,9 @@ public interface Environment extends Config
     @Key("AdminPass")
     String getAdminPass();
 
+    @Key("ForeignLangDesc")
+    String getForeignLangDesc();
+
     @Key("From_mail")
     String From_mail();
 
@@ -60,6 +63,9 @@ public interface Environment extends Config
 
     @Key("IP_Add")
     String getIP_Add();
+
+    @Key("ProdDesc")
+    String getProdDesc();
 
     @Key("Database")
     String getDBname();
@@ -78,6 +84,9 @@ public interface Environment extends Config
 
     @Key("DB_ListProdSql")
     String getMultiple_Prod_Sql();
+
+    @Key("DB_ListProdSql1")
+    String getMultiple_Prod_Sql1();
 
     @Key("DB_ProdTable")
     String get_ProdTable();
@@ -115,21 +124,7 @@ public interface Environment extends Config
     @Key("CompanyNo")
     String get_CompanyNo();
 
-    @Key("Dummyuser123")
-    String Dummyuser123();
-
-    @Key("Dummypass123")
-    String Dummypass123();
-
-    @Key("DummyuserTest")
-    String DummyUserTest();
-
-    @Key("DummypassTest")
-    String DummyPassTest();
-    @Key("TieredProductNo")
-    String get_TieredProductNo();
-    @Key("CatchWtProductNo")
-    String get_CatchWtProductNo();
-
+    @Key("TirePriceProduct")
+    String get_TirePricing();
 }
 
