@@ -126,5 +126,20 @@ public interface Environment extends Config
 
     @Key("TirePriceProduct")
     String get_TirePricing();
+    @Key("TieredProductNo")
+    String get_TieredProductNo();
+    @Key("CatchWtProductNo")
+    String get_CatchWtProductNo();
+    @Key("Dummyuser123")
+    String Dummyuser123();
+
+    @Key("Dummypass123")
+    String Dummypass123();
+
+    @Key("DummyuserTest")
+    String DummyUserTest();
+
+    @Key("DummypassTest")
+    String DummyPassTest();
 }
 
