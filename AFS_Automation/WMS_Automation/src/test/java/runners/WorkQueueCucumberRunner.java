@@ -14,8 +14,8 @@ import org.testng.ITestResult;
 import org.testng.annotations.*;
 import utilWMS.Directory_Change;
 import utilWMS.MailSend_WMS;
-import util.MailSend;
-import util.TestBase;
+//import util.MailSend;
+//import util.TestBase;
 
 
 import utilWMS.MailSend_WMS;
@@ -40,16 +40,16 @@ import static common.setup.DriverManager.getDriver;
 public class WorkQueueCucumberRunner extends AbstractTestNGCucumberTests {
     public static Environment environment;
 
-    @Parameters({"environment"})
-    @BeforeClass
-    public static void beforeClass(@Optional("environment") String envi) {
-        try {
-            TestBase.InitializeProp(envi);
-            TestBase.SetDriver(TestBase.testEnvironment.get_browser());
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
+//    @Parameters({"environment"})
+//    @BeforeClass
+//    public static void beforeClass(@Optional("environment") String envi) {
+//        try {
+//            TestBase.InitializeProp(envi);
+//            TestBase.SetDriver(TestBase.testEnvironment.get_browser());
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//    }
 
     @Parameters({"environment", "browser"})
     @BeforeMethod

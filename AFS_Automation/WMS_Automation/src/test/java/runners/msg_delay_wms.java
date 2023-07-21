@@ -12,7 +12,7 @@ import org.aeonbits.owner.ConfigFactory;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.ITestResult;
 import org.testng.annotations.*;
-import util.TestBase;
+//import util.TestBase;
 import utilWMS.Directory_Change;
 import utilWMS.MailSend_WMS;
 
@@ -34,16 +34,16 @@ import static common.setup.DriverManager.*;
 public class msg_delay_wms extends AbstractTestNGCucumberTests {
     public static Environment environment;
 
-    @Parameters({"environment"})
-    @BeforeClass
-    public static void beforeClass(@Optional("environment") String envi) {
-        try {
-            TestBase.InitializeProp(envi);
-            TestBase.SetDriver(TestBase.testEnvironment.get_browser());
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
+//    @Parameters({"environment"})
+//    @BeforeClass
+//    public static void beforeClass(@Optional("environment") String envi) {
+//        try {
+//            TestBase.InitializeProp(envi);
+//            TestBase.SetDriver(TestBase.testEnvironment.get_browser());
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//    }
 
     @Parameters({"environment", "browser"})
     @BeforeMethod

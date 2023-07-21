@@ -126,6 +126,10 @@ public interface Environment extends Config
 
     @Key("DummypassTest")
     String DummyPassTest();
+    @Key("TieredProductNo")
+    String get_TieredProductNo();
+    @Key("CatchWtProductNo")
+    String get_CatchWtProductNo();
 
 }
 
