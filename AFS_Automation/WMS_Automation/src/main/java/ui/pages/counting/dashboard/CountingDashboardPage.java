@@ -5,6 +5,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import ui.pages.BasePage;
 
+import static common.setup.DriverManager.getDriver;
+
 public class CountingDashboardPage extends BasePage {
     By dashboardPageTitle = By.className("spnmoduleNameHeader");
     By cycleCountSessionLabel = By.id("ddlCycleCountSession-label");
@@ -23,9 +25,6 @@ public class CountingDashboardPage extends BasePage {
     By dropdownList = By.id("dropdownList");
 
     public void waitCountingDashboardPageToLoad() {
-        refresh();
-        refresh();
-        refresh();
         Waiters.waitUntilPageWillLoadedSelenide();
         Waiters.waitABit(3000);
         Waiters.waitForElementToBeDisplay(cycleCountSessionLabel);

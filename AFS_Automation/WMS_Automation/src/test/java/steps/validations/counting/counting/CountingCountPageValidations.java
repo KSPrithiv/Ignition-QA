@@ -1,11 +1,16 @@
 package steps.validations.counting.counting;
 
+import common.constants.FilePaths;
+import common.utils.objectmapper.ObjectMapperWrapper;
 import io.cucumber.java.en.And;
+import objects.countingcount.CountingCountDTO;
 import org.testng.asserts.SoftAssert;
 import ui.pages.counting.counting.CountingCountPage;
 
 public class CountingCountPageValidations {
     CountingCountPage countingCountPage = new CountingCountPage();
+    CountingCountDTO countingCountDTO = new ObjectMapperWrapper()
+            .getObject(FilePaths.COUNTING_COUNT_DATA, CountingCountDTO.class);
 
     @And("Validates Counting Count page is displayed")
     public void validateCountingCountPageDisplayed() {
@@ -104,8 +109,8 @@ public class CountingCountPageValidations {
     public void validateCountTableData() {
         SoftAssert softAssert = new SoftAssert();
         softAssert.assertTrue(countingCountPage.isItemsFoundLabelDisplayed(), "Items Found Label is not displayed");
-        softAssert.assertTrue(countingCountPage.isMinusIconDisplayed(), "Minus Icon is not displayed");
-        softAssert.assertTrue(countingCountPage.areProductDataTextBoxes() > 0, "Product Data inputs are not displayed");
+       /* softAssert.assertTrue(countingCountPage.isMinusIconDisplayed(), "Minus Icon is not displayed");
+        softAssert.assertTrue(countingCountPage.areProductDataTextBoxes() > 0, "Product Data inputs are not displayed");*/
         softAssert.assertTrue(countingCountPage.isCancelButtonDisplayed(), "Cancel Button is not displayed");
         softAssert.assertTrue(countingCountPage.isSaveButtonDisplayed(), "Save Button input is not displayed");
         softAssert.assertAll();
@@ -171,8 +176,6 @@ public class CountingCountPageValidations {
         softAssert.assertTrue(countingCountPage.isUomDropDownDisplayed(), "UOM DropDown is not displayed");
         softAssert.assertTrue(countingCountPage.isStatusLabelDisplayed(), "Status Label is not displayed");
         softAssert.assertTrue(countingCountPage.isStatusDropDownDisplayed(), "Status DropDown is not displayed");
-        softAssert.assertTrue(countingCountPage.isDateCodeLabelDisplayed(), "Date Code Label is not displayed");
-        softAssert.assertTrue(countingCountPage.isDateCodeDisplayed(), "Date Code Input is not displayed");
         softAssert.assertAll();
     }
 

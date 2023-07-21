@@ -19,7 +19,6 @@ import org.aeonbits.owner.ConfigFactory;
 import org.openqa.selenium.chrome.ChromeDriver;
 import ui.pages.LoginPage;
 
-
 import static common.setup.DriverManager.*;
 
 @LinkedListeners({
@@ -31,15 +30,15 @@ public class LoginPageSteps {
     public Waiters waiters;
     public static Environment environment;
 
-//    @Before
-//    public void beforeClassSetup() {
-//        ConfigFactory.setProperty("path", FilePaths.PROPERTIES_PATH);
-//        environment = ConfigFactory.create(Environment.class);
-//        log.info("Starting app url " + environment.getUrl() + " on browser " + environment.getBrowser());
-//        buildWebDriver(environment.getBrowser());
-//        DriverManager.openPage(environment.getUrl());
-//        new Waiters();
-//    }
+    @Before
+    public void beforeClassSetup() {
+       ConfigFactory.setProperty("path", FilePaths.PROPERTIES_PATH);
+       environment = ConfigFactory.create(Environment.class);
+       log.info("Starting app url " + environment.getUrl() + " on browser " + environment.getBrowser());
+       buildWebDriver(environment.getBrowser());
+       DriverManager.openPage(environment.getUrl());
+       new Waiters();
+    }
 
     @Step
     @Given("User signs in the application")
@@ -95,20 +94,19 @@ public class LoginPageSteps {
         loginPage.clickSignIn();
     }
 
-//    @SneakyThrows
-//    @After
-//    public void closeBrowserInstance(Scenario scenario) {
-//       if (driverEnabled(getDriver())) {
-//            try {
-//                driverThreadLocal.get().close();
-//                driverThreadLocal.get().quit();
-//                quitDriver();
-//            } catch (Exception e) {
-//                if(getDriver() instanceof ChromeDriver) {
-//                 //   Runtime.getRuntime().exec("taskkill /F /IM chromedriver.exe");
-//                }
-//            }
-//       }
-//    }
-
+    @SneakyThrows
+    @After
+    public void closeBrowserInstance(Scenario scenario) {
+       if (driverEnabled(getDriver())) {
+           try {
+               driverThreadLocal.get().close();
+               driverThreadLocal.get().quit();
+               quitDriver();
+           } catch (Exception e) {
+                if(getDriver() instanceof ChromeDriver) {
+                //   Runtime.getRuntime().exec("taskkill /F /IM chromedriver.exe");
+                }
+            }
+       }
+    }
 }
