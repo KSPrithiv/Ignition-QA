@@ -66,8 +66,6 @@ Feature: Order Entry5
     Then Enter PO# for New order
       |PO123|
     And Click on Import button
-    #Then Add Qty for first product in product grid
-    #  |50|20|
     Then Click on Next button
     And Click on Submit Order button and read Order_no
     Then User should be navigated to Order Entry page

@@ -204,6 +204,8 @@ public class OrderGuidePageStep
         createOGPage=new CreateOGPage(driver,scenario);
         createOGPage.readPtoductNo();
         createOGPage.ClickOnSave();
+        createOGPage.validateSavePopup();
+        createOGPage.clickOnOk();
     }
 
     @Then("User click on Save button to convert Quote as OG")
@@ -211,6 +213,8 @@ public class OrderGuidePageStep
     {
         createOGPage=new CreateOGPage(driver,scenario);
         createOGPage.ClickOnSave();
+        createOGPage.validateSavePopup();
+        createOGPage.clickOnOk();
     }
 
     //code to verify whether user is on OG page or not

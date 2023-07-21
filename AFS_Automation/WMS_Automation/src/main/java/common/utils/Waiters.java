@@ -105,7 +105,7 @@ public class Waiters {
     public static void waitABit(long milliSeconds) {
         if (milliSeconds > 0) {
             try {
-                TimeUnit.MILLISECONDS.sleep(milliSeconds);
+                Thread.sleep(milliSeconds);
             } catch (InterruptedException ignored) {
             }
         }

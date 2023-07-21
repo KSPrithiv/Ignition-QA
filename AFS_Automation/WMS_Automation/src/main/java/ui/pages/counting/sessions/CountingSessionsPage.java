@@ -1,14 +1,15 @@
 package ui.pages.counting.sessions;
 
 import common.utils.Waiters;
+import org.apache.commons.lang3.RandomStringUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import ui.pages.BasePage;
+
 import java.util.List;
 
-import static common.setup.DriverManager.getDriver;
-
 public class CountingSessionsPage extends BasePage {
+
     By sessionsPageTitle = By.className("spnmoduleNameHeader");
     By countingSessionLabel = By.id("ddlSessionSession-label");
     By sessionDropdown = By.id("ddlSessionSession");
@@ -110,7 +111,8 @@ public class CountingSessionsPage extends BasePage {
     By bookCostFilter = By.cssSelector(".i-btn-checkbox  #BookCost");
     By productTypeFilter = By.cssSelector(".i-btn-checkbox  #ProductTypeCode");
     By clearAllButton = By.xpath("//button[text()='Clear all']");
-    By inputContains = By.xpath("//input[@placeholder='Contains']");
+   // By inputContains = By.xpath("//input[@placeholder='Contains']");
+    By inputContains = By.xpath("//input[@placeholder='Is empty']");
     By applyButton = By.xpath("//button[text()='Apply']");
     By btnProductAdd = By.id("btnCSProductAdd");
     By productLabel = By.id("txtProduct-label");
@@ -167,8 +169,8 @@ public class CountingSessionsPage extends BasePage {
     By userDirectedCountingLabel= By.cssSelector("label[for='rdoBtnBuildCountAssignment_2']");
     By dateInputSchedDateLabel = By.id("dateInputSchedDate-label");
     By dateInputSchedDate = By.id("dateInputSchedDate");
-    By timeInputSchedTimeLabel= By.id("timeInputSchedTime-label");
-    By timeInputSchedTime= By.id("timeInputSchedTime");
+    By timeInputSchedTimeLabel= By.id("timeInputTime-label");
+    By timeInputSchedTime= By.id("timeInputTime");
     By timeInputTime = By.id("timeInputTime");
     By assignLabel = By.xpath("//label[contains(text(), 'Assign')]");
     By XcancelIcon = By.cssSelector(".i-button--icon-only");
@@ -192,12 +194,15 @@ public class CountingSessionsPage extends BasePage {
     By addFilter = By.cssSelector(".i-filter-tag__main");
     By clearFilter = By.cssSelector(".i-filter-tag__clear");
 
+    private static String session = null;
+
     private WebElement getNotification(String text) { return findWebElement(By.xpath("//span[text()='" + text + "']")); }
 
+    public static synchronized void setSession(String sessionName) { session = sessionName; }
+
+    public static synchronized String getSession() { return session; }
+
     public void waitCountingSessionsPageToLoad() {
-        refresh();
-        refresh();
-        refresh();
         Waiters.waitUntilPageWillLoadedSelenide();
         Waiters.waitABit(3000);
         Waiters.waitForElementToBeDisplay(countingSessionLabel);
@@ -269,6 +274,7 @@ public class CountingSessionsPage extends BasePage {
     }
 
     public void clickSessionDropdown() {
+        Waiters.waitABit(10000);
         Waiters.waitForElementToBeDisplay(sessionDropdown);
         clickOnElement(sessionDropdown);
         Waiters.waitABit(2000);
@@ -324,11 +330,12 @@ public class CountingSessionsPage extends BasePage {
     }
 
     public void selectSession(String session) {
-        Waiters.waitABit(3_000);
-        Waiters.waitForElementToBeDisplay(sessionDropdown);
-        clickOnElement(sessionDropdown);
-        clickOnElement(findWebElement(By.xpath("//div[contains(@class, 'k-animation-container-shown')]//*[contains(text(), '"
-                + session + "') and @role='option']")));
+        WebElement option = findWebElements(By.xpath("//div[contains(@class, 'k-animation-container-shown')]//li"))
+                .stream()
+                .filter(el -> el.getText().contains(session))
+                .findFirst()
+                .orElse(null);
+        clickOnElement(option);
         Waiters.waitABit(3_000);
     }
 
@@ -444,6 +451,13 @@ public class CountingSessionsPage extends BasePage {
         enterText(getSessionName(), name);
     }
 
+    public void typeRandomSessionName() {
+        Waiters.waitForElementToBeDisplay(sessionName);
+        String randomSessionName = RandomStringUtils.randomAlphabetic(6);
+        setSession(randomSessionName);
+        enterText(getSessionName(), randomSessionName);
+    }
+
     public void clickUserDirectedCountingButton() {
         Waiters.waitForElementToBeDisplay(userDirectedCountingButton);
         clickOnElement(userDirectedCountingButton);
@@ -525,7 +539,7 @@ public class CountingSessionsPage extends BasePage {
         Waiters.waitForElementToBeDisplay(getLocationAdd());
         clickOnElement(getLocationAdd());
         Waiters.waitForForElementToDisappear(findWebElement(By.cssSelector(".k-loading-image")));
-        Waiters.waitABit(8000);
+        Waiters.waitABit(15000);
     }
 
     public void clickLocationsTab() {
@@ -717,7 +731,7 @@ public class CountingSessionsPage extends BasePage {
     }
 
     public void clickAddProductButton() {
-        Waiters.waitABit(7000);
+        Waiters.waitABit(7_000);
         Waiters.waitForElementToBeDisplay(getBtnProductAdd());
         clickOnElement(getBtnProductAdd());
     }

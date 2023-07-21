@@ -101,7 +101,7 @@ public class CheckOutSummaryPage
             }
             HelpersMethod.ScrollUpScrollBar(driver);
             WebElement submitButton=HelpersMethod.FindByElement(driver,"id","ConfirmSummaryButton");
-            HelpersMethod.ActClick(driver,submitButton,40000);
+            HelpersMethod.ActClick(driver,submitButton,60000);
             exists=true;
             status = HelpersMethod.returnDocumentStatus(driver);
             if (status.equals("loading"))
@@ -479,6 +479,21 @@ public class CheckOutSummaryPage
             if(HelpersMethod.IsExists("//div[contains(text(),'Pick up order')]//following-sibling::div[text()='Yes']",driver))
             {
                 scenario.log("PICKUP ORDER HAS BEEN SET AS YES");
+                exists=true;
+            }
+            Assert.assertEquals(exists,true);
+        }
+        catch (Exception e){}
+    }
+
+    public void clickOnBackToOrderList()
+    {
+        exists=false;
+        try
+        {
+            if(BackOrder.isDisplayed() && BackOrder.isEnabled())
+            {
+                HelpersMethod.ClickBut(driver,BackOrder,100);
                 exists=true;
             }
             Assert.assertEquals(exists,true);

@@ -6,6 +6,7 @@ import io.cucumber.datatable.DataTable;
 import io.cucumber.java.Before;
 import io.cucumber.java.Scenario;
 import io.cucumber.java.en.And;
+import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import org.openqa.selenium.WebDriver;
 import pages_DSD_OMS.Catalog.CatalogPage;
@@ -28,17 +29,18 @@ import java.util.List;
  * @Author Divya.Ramadas@afsi.com
  */
 
-public class CatalogPageStep2 {
+public class CatalogPageStep2
+{
         /* Created by Divya.Ramadas@afsi.com */
         WebDriver driver;
-        String XPath = null;
+        String descriptionProd=null;
         static boolean exists = false;
         Scenario scenario;
 
         CatalogPage catalogpage;
-    NewOrderEntryPage newOE;
-    CheckOutOrderPage checkorder;
-
+        NewOrderEntryPage newOE;
+        CheckOutOrderPage checkorder;
+        ProductDescriptionPage productDescriptionPage;
 
         @Before
         public void LaunchBrowser1(Scenario scenario) throws Exception {
@@ -109,7 +111,7 @@ public class CatalogPageStep2 {
         newOE = new NewOrderEntryPage(driver,scenario);
         newOE.readProductsInOrder();
         exists=newOE.ClickNext();
-       newOE.handleTirePricingpopup();
+        newOE.handleTirePricingpopup();
         checkorder=new CheckOutOrderPage(driver,scenario);
         if(HelpersMethod.IsExists("//div[@id='paymentMethodCard']",driver))
         {
@@ -153,6 +155,51 @@ public class CatalogPageStep2 {
         catalogpage = new CatalogPage(driver, scenario);
         catalogpage.validateTirePricingIcon();
         catalogpage.checkForPriceOfProduct();
+    }
 
+    @Then("User click on cart in catalog and click on Gotocart and select Pending order")
+    public void userClickOnCartInCatalogAndClickOnGotocartAndSelectPendingOrder()
+    {
+        catalogpage = new CatalogPage(driver, scenario);
+        catalogpage.Cart_Button();
+        catalogpage.readProdFromShoppingCartDropDown();
+        catalogpage.GotoCartClick();
+        catalogpage.validateCartItemCard();
+        catalogpage.Checkout_to_order();
+        catalogpage.validateSelectOrder();
+        catalogpage.selectPendingOrder();
+    }
+
+    @And("User clicks on product description link, verify the product")
+    public void userClicksOnProductDescriptionLinkVerifyTheProduct()
+    {
+        catalogpage = new CatalogPage(driver, scenario);
+        descriptionProd= catalogpage.clickOnProdDescription();
+        productDescriptionPage=new ProductDescriptionPage(driver,scenario);
+        productDescriptionPage.validateProductDescriptionPage();
+        productDescriptionPage.validateProductDescription(descriptionProd);
+    }
+
+    @Then("User clicks on Back to catalog button and navigates back to catalog page")
+    public void userClicksOnBackToCatalogButtonAndNavigatesBackToCatalogPage()
+    {
+        productDescriptionPage=new ProductDescriptionPage(driver,scenario);
+        productDescriptionPage.Back_to_Catalog();
+    }
+
+    @And("User verifies that searched product details are still displayed and click on reset filter")
+    public void userVerifiesThatSearchedProductDetailsAreStillDisplayedAndClickOnResetFilter()
+    {
+        catalogpage=new CatalogPage(driver,scenario);
+        catalogpage.validateCatalog();
+        catalogpage.validateProdDescription(descriptionProd);
+    }
+
+    @Then("User enters invalid {string} in Search bar")
+    public void userEntersInvalidInSearchBar(String prodNum)
+    {
+        catalogpage=new CatalogPage(driver,scenario);
+        catalogpage.SearchProduct(prodNum);
+        catalogpage.validateNonExistingProduct();
     }
 }

@@ -16,7 +16,6 @@ Feature: external catalog
     Then User click on cart and click on Checkout to order
     And Login to Application and Select customer account from popup
     Then User should navigate to My Cart and click on Chekout to order button
-    Then User should navigate back to new OE page
     And user should be on New Order entry page
     Then Enter PO# for New order
       |PO123|
@@ -38,7 +37,6 @@ Feature: external catalog
     Then User click on cart and click on Checkout to order
     And Login to Application and Select customer account from popup
     Then User should navigate to My Cart and click on Chekout to order button
-    Then User should navigate back to new OE page
     And user should be on New Order entry page
     Then Enter PO# for New order
       |PO123|
@@ -60,7 +58,6 @@ Feature: external catalog
     Then User click on cart and click on Checkout to order
     And Login to Application and Select customer account from popup
     Then User should navigate to My Cart and click on Chekout to order button
-    Then User should navigate back to new OE page
     And user should be on New Order entry page
     Then Enter PO# for New order
       |PO123|
@@ -82,7 +79,6 @@ Feature: external catalog
     Then User click on cart, Delete one product from cart and click on Checkout to order
     And Login to Application and Select customer account from popup
     Then User should navigate to My Cart and click on Chekout to order button
-    Then User should navigate back to new OE page
     And user should be on New Order entry page
     Then Enter PO# for New order
       |PO123|
@@ -104,7 +100,6 @@ Feature: external catalog
     Then User click on cart and click on Checkout to order
     And Login to Application and Select customer account from popup
     Then User should navigate to My Cart, Delete one product and click on Chekout to order button
-    Then User should navigate back to new OE page
     And user should be on New Order entry page
     Then Enter PO# for New order
       |PO123|

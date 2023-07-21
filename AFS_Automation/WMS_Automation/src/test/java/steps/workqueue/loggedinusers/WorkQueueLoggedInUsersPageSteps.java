@@ -1,13 +1,20 @@
 package steps.workqueue.loggedinusers;
 
+import common.constants.FilePaths;
+import common.utils.objectmapper.ObjectMapperWrapper;
 import io.cucumber.java.en.And;
 import io.qameta.allure.Step;
 import lombok.extern.slf4j.Slf4j;
+import objects.workqueuedata.WorkQueueDataDTO;
 import ui.pages.workqueue.loggedinusers.WorkQueueLoggedInUsersPage;
+
+import java.util.List;
 
 @Slf4j
 public class WorkQueueLoggedInUsersPageSteps {
     WorkQueueLoggedInUsersPage workQueueLoggedInUsersPage = new WorkQueueLoggedInUsersPage();
+    WorkQueueDataDTO workQueueDataDTO = new ObjectMapperWrapper()
+            .getObject(FilePaths.WORK_QUEUE_DATA, WorkQueueDataDTO.class);
 
     @Step
     @And("Waits for Work Queue Logged In Users page to load")
@@ -94,6 +101,17 @@ public class WorkQueueLoggedInUsersPageSteps {
     }
 
     @Step
+    @And("User searches for user by index {int} on Work Queue Logged In Users page")
+    public void searchOnWorkQueueLoggedInUsersByIndex(int index) {
+        log.info("User searches for user by index on Work Queue Logged In Users page");
+        List<String> users = List.of(workQueueDataDTO.getLoggedInUsersDTO().getLoggedInUser1(), workQueueDataDTO
+                .getLoggedInUsersDTO().getLoggedInUser2(), workQueueDataDTO.getLoggedInUsersDTO().getLoggedInUser3(),
+                workQueueDataDTO.getLoggedInUsersDTO().getLoggedInUser4(), workQueueDataDTO.getLoggedInUsersDTO()
+                .getLoggedInUser5(), workQueueDataDTO.getLoggedInUsersDTO().getLoggedInUser6());
+        workQueueLoggedInUsersPage.findValuesInSearch(users.get(index));
+    }
+
+    @Step
     @And("User clicks Add filter button on Work Queue Logged In Users page")
     public void clickAddFilter() {
         log.info("Clicking add filter on Work Queue Logged In Users page");
@@ -122,6 +140,16 @@ public class WorkQueueLoggedInUsersPageSteps {
     }
 
     @Step
+    @And("Types User Id by index {int} on Work Queue Logged In Users page")
+    public void typesUserIdFilterByIndex(int index) {
+        log.info("Types User Id by index on Work Queue Logged In Users page");
+        List<String> userIds = List.of(workQueueDataDTO.getUserIdsDTO().getUserId1(), workQueueDataDTO.getUserIdsDTO()
+                .getUserId2(), workQueueDataDTO.getUserIdsDTO().getUserId3(), workQueueDataDTO.getUserIdsDTO().getUserId4(),
+                workQueueDataDTO.getUserIdsDTO().getUserId5(), workQueueDataDTO.getUserIdsDTO().getUserId6());
+        workQueueLoggedInUsersPage.typeFilter(userIds.get(index));
+    }
+
+    @Step
     @And("Types User Name {string} on Work Queue Logged In Users page")
     public void typesUserNameFilter(String filter) {
         log.info("Types User Name on Work Queue Logged In Users page");
@@ -129,10 +157,32 @@ public class WorkQueueLoggedInUsersPageSteps {
     }
 
     @Step
+    @And("Types User Name by index {int} on Work Queue Logged In Users page")
+    public void typesUserNameFilterByIndex(int index) {
+        log.info("Types User Name by index on Work Queue Logged In Users page");
+        List<String> userNames = List.of(workQueueDataDTO.getLoggedInUsersDTO().getLoggedInUser1(), workQueueDataDTO
+                .getLoggedInUsersDTO().getLoggedInUser2(), workQueueDataDTO.getLoggedInUsersDTO().getLoggedInUser3(),
+                 workQueueDataDTO.getLoggedInUsersDTO().getLoggedInUser4(), workQueueDataDTO.getLoggedInUsersDTO()
+                .getLoggedInUser5(), workQueueDataDTO.getLoggedInUsersDTO().getLoggedInUser6());
+        workQueueLoggedInUsersPage.typeFilter(userNames.get(index));
+    }
+
+    @Step
     @And("Types Computer {string} on Work Queue Logged In Users page")
     public void typesComputerFilter(String filter) {
         log.info("Types Computer on Work Queue Logged In Users page");
         workQueueLoggedInUsersPage.typeFilter(filter);
+    }
+
+    @Step
+    @And("Types Computer by index {int} on Work Queue Logged In Users page")
+    public void typesComputerFilterByIndex(int index) {
+        log.info("Types Computer by index on Work Queue Logged In Users page");
+        List<String> computers = List.of(workQueueDataDTO.getComputersDTO().getComputer1(), workQueueDataDTO.getComputersDTO()
+                .getComputer2(), workQueueDataDTO.getComputersDTO().getComputer3(), workQueueDataDTO.getComputersDTO()
+                .getComputer4(), workQueueDataDTO.getComputersDTO().getComputer5(), workQueueDataDTO.getComputersDTO()
+                .getComputer6());
+        workQueueLoggedInUsersPage.typeFilter(computers.get(index));
     }
 
     @Step
@@ -203,6 +253,16 @@ public class WorkQueueLoggedInUsersPageSteps {
     public void selectLogoutUserDropdown(String option) {
         log.info("Selects Logout reason on Work Queue Logged In Users page");
         workQueueLoggedInUsersPage.selectLogoutUserReason(option);
+    }
+
+    @Step
+    @And("Selects Logout reason by index {int} on Work Queue Logged In Users page")
+    public void selectLogoutUserDropdown(int index) {
+        log.info("Selects Logout reason by index on Work Queue Logged In Users page");
+        List<String> reasons = List.of(workQueueDataDTO.getLogoutUsersDTO().getLogoutReason1(), workQueueDataDTO
+                .getLogoutUsersDTO().getLogoutReason2(), workQueueDataDTO.getLogoutUsersDTO().getLogoutReason3(), workQueueDataDTO
+                .getLogoutUsersDTO().getLogoutReason4());
+        workQueueLoggedInUsersPage.selectLogoutUserReason(reasons.get(index));
     }
 
     @Step

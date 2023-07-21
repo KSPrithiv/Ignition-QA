@@ -470,6 +470,39 @@ public class OrderGuidePage
         catch (Exception e){}
     }
 
+    public void ClickCustomerAccount_No_PreviousAcc()
+    {
+        exists=false;
+        WebElement WebEle;
+        try
+        {
+            HelpersMethod.ClickBut(driver,CustomerAccIndex,20);
+            if(HelpersMethod.IsExists("//div[contains(text(),'Select customer')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
+            {
+                //Enter Account number in search box in customer account # popup
+                WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-widget k-window k-dialog')]/descendant::input[@placeholder='Search']");
+                HelpersMethod.EnterText(driver,WebEle,20,TestBase.testEnvironment.get_Account());
+                //Click on Search Index
+                WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-widget k-window k-dialog')]//*[local-name()='svg' and contains(@class,'i-icon   i-search-box__search')]");
+                HelpersMethod.ClickBut(driver,WebEle,20);
+                if(!HelpersMethod.IsExists("//div[contains(@class,'k-widget k-window k-dialog')]/descendant::div[@class='i-no-data']",driver))
+                {
+                    WebEle= HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-widget k-window k-dialog')]/descendant::tr[@class='k-master-row']/td[1]");
+                    scenario.log("ACCOUNT NUMBER SELECTED IS "+WebEle.getText());
+                    WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-widget k-window k-dialog')]/descendant::tr[@class='k-master-row']");
+                    HelpersMethod.ActClick(driver,WebEle,20);
+                    exists=true;
+                }
+                else
+                {
+                    scenario.log("CUSTOMER ACCOUNT # DOES NOT EXISTS");
+                }
+                Assert.assertEquals(exists,true);
+            }
+        }
+        catch (Exception e){}
+    }
+
     public void validateNationalChainPopup()
     {
         WebElement modalContainer = driver.findElement(By.xpath("//div[contains(@class,'k-widget k-window k-dialog')]"));
