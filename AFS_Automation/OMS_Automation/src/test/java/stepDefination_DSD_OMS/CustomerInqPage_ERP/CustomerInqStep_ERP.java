@@ -81,7 +81,7 @@ public class CustomerInqStep_ERP
             homepage = new HomePage(driver,scenario);
             homepage.VerifyHomePage();
         }
-
+        
     }
 
     @Then("User navigate to Client side for Customer inq ERP")
