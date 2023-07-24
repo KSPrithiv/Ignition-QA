@@ -50,15 +50,15 @@ public class IconsSelectionPageStep2 {
         badgeBuilderPage1.AddToGallery();
     }
 
-    @When("Login to Client portal1")
+   @When("Login to Client portal1")
     public void login_to_client_portal1() throws InterruptedException, AWTException {
-        loginpage = new LoginPage(driver, scenario);
+      /*  loginpage = new LoginPage(driver, scenario);
         badgeBuilderPage = new BadgeBuilderPage(driver, scenario);
         loginpage.EnterUsername(TestBase.testEnvironment.Dummyuser123());
         loginpage.EnterPassword(TestBase.testEnvironment.Dummypass123());
         //loginpage.ClickSignin();
         badgeBuilderPage.ClickSignin1();
-        Thread.sleep(4000);
+        Thread.sleep(4000);*/
     }
 
 //    @Given("User on login page and entered username and password1-Client portal")

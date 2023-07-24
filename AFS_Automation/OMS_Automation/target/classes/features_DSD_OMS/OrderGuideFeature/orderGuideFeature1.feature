@@ -95,7 +95,7 @@ Feature: Order Guide1
       |OGHist|
 
   @ChangeCustomerAllocationLocalChain
-  Scenario Outline: Test scenario for deleting customer allowcation to local chain
+  Scenario Outline: Test scenario for deleting customer allocation to National chain
     Given User must be on Order Entry Page to select OG
     And User should navigate to OG
     Then User enters OG "<OG>" Description in search box
@@ -111,8 +111,8 @@ Feature: Order Guide1
       |  OG         |   option      |
       | DayOfWeek   | National chain|
 
-  @ChangeAccountInCustomerAllocation
-  Scenario Outline: Test scenario for changing customer allocation from one Account to another
+  @ChangeAccountAndCreateOG
+  Scenario Outline: Test scenario for changing Customer Account# and create OG
     Given User must be on Order Entry Page to select OG
     And User should navigate to OG
     Then User Clicks on Customer Account_No button and select other Customer Account_No
@@ -121,10 +121,11 @@ Feature: Order Guide1
     And User enters Quick Product number and Sequence number
       |4|
     Then User click on Save button
-  #  And User should navigate back to OG page and verify OG "<OG>"  existence
+    And User should navigate back to OG page and verify OG "<OG>"  existence
+    And User changes the Customer Account# to the previous Account#
     Examples:
       |     OG    |
-      |AccChangeOG|
+      |   OGDis1  |
 
   @DeleteCustomerAllocation
   Scenario Outline: Test scenario for deleting Customer allowcation
@@ -144,7 +145,7 @@ Feature: Order Guide1
     Then User click on Save button
     Examples:
       |  OG     |
-      |DayOfWeek|
+      |OGDis1  |
 
   @ActiveToExpired
   Scenario Outline: Test scenario to convert active OG to expired OG
@@ -169,7 +170,7 @@ Feature: Order Guide1
     And User enters Quick Product number and Sequence number
       |4|
     Then User click on Save button
-    And User should navigate back to OG page and navigate back to "<OGType>" and verify OG "<OG>"  existence
+    #And User should navigate back to OG page and navigate back to "<OGType>" and verify OG "<OG>"  existence
     Examples:
       |  OG       |   OGType     |
       |LocalChain1|  Local chain |

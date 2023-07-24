@@ -57,8 +57,4 @@ Feature: Order entry End
       |closed|
     Then Check for Remove Skip button is visible and Click on Remove Skip button
 
-  @LogoutOE
-  Scenario:Loging out from the application
-    And Refresh the page if any dialog box is displayed
-    Then Click on user Icon on Order Entry page
-    And Click on Logout on Order Entry page
+

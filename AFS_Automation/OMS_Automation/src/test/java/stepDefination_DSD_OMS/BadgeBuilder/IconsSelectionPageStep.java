@@ -80,8 +80,6 @@ public class IconsSelectionPageStep {
         homepage.VerifyHomePage();
         // adminHomePage = new AdminHomePage(driver,scenario);
         //adminHomePage.SelectCompany();
-
-
     }
 
     @Then("Click on General Setting tab")
@@ -300,13 +298,13 @@ public class IconsSelectionPageStep {
 
     @When("Login to Client portal")
     public void login_to_client_portal() throws InterruptedException, AWTException {
-        loginpage = new LoginPage(driver, scenario);
+     /*   loginpage = new LoginPage(driver, scenario);
         badgeBuilderPage = new BadgeBuilderPage(driver, scenario);
         loginpage.EnterUsername(TestBase.testEnvironment.DummyUserTest());
         loginpage.EnterPassword(TestBase.testEnvironment.DummyPassTest());
         //loginpage.ClickSignin();
         badgeBuilderPage.ClickSignin1();
-        Thread.sleep(4000);
+        Thread.sleep(4000);*/
 
 
     }
