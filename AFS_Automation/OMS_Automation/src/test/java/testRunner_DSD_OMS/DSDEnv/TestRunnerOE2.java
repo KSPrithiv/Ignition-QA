@@ -1,4 +1,4 @@
-package testRunner_DSD_OMS;
+package testRunner_DSD_OMS.DSDEnv;
 
 import io.cucumber.testng.AbstractTestNGCucumberTests;
 import io.cucumber.testng.CucumberOptions;
@@ -16,7 +16,9 @@ import java.io.IOException;
  * @Project DSD_OMS
  * @Author Divya.Ramadas@afsi.com
  */
-@CucumberOptions(features = "src/test/resources/features_DSD_OMS/OrderEntryFeature/orderEntryFeature2.feature",
+@CucumberOptions(features = {"src/test/resources/features_DSD_OMS/OrderEntryFeature/orderEntryFeature5.feature",
+                             "src/test/resources/features_DSD_OMS/OrderEntryFeature/orderEntryFeature6.feature",
+                },
         glue = {"stepDefination_DSD_OMS"},
         plugin = {"pretty",
                 "json:target/cucumber.json",
@@ -44,8 +46,17 @@ public class TestRunnerOE2 extends AbstractTestNGCucumberTests
         @AfterClass
         public static void afterclass() throws InterruptedException, MessagingException, IOException
         {
-                MailSend.sendMail();
-                TestBase.CloseBrowser();
                 Thread.sleep(10000);
+                //MailSend.sendMail();
+                TestBase.CloseBrowser();
+                if(TestBase.testEnvironment.get_browser().equalsIgnoreCase("Firefox"))
+                {
+                        Runtime.getRuntime().exec("taskkill /F /IM geckodriver.exe");
+                }
+                else
+                if(TestBase.testEnvironment.get_browser().equalsIgnoreCase("Chrome"))
+                {
+                        Runtime.getRuntime().exec("taskkill /F /IM chromedriver.exe");
+                }
         }
 }

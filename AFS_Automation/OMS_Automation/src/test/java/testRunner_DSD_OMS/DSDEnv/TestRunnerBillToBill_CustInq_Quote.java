@@ -1,4 +1,4 @@
-package testRunner_DSD_OMS;
+package testRunner_DSD_OMS.DSDEnv;
 
 import io.cucumber.testng.AbstractTestNGCucumberTests;
 import io.cucumber.testng.CucumberOptions;
@@ -18,7 +18,9 @@ import java.io.IOException;
  */
 @CucumberOptions
         (features = {
-                "src/test/resources/features_DSD_OMS/BillToBill(DSD)"
+                "src/test/resources/features_DSD_OMS/BillToBill(DSD)",
+                "src/test/resources/features_DSD_OMS/CustomerInqFeature_DSD",
+                "src/test/resources/features_DSD_OMS/QuoteFeature"
         },
                 glue = {"stepDefination_DSD_OMS"},
                 plugin = {"pretty",
@@ -28,7 +30,7 @@ import java.io.IOException;
                         "rerun:target/failedrerun.txt"},
                 monochrome = true)
 
-public class TestRunnerBillToBill extends AbstractTestNGCucumberTests
+public class TestRunnerBillToBill_CustInq_Quote extends AbstractTestNGCucumberTests
 {
     /* Created by Divya.Ramadas@afsi.com */
     @Parameters({"environment"})
@@ -46,10 +48,9 @@ public class TestRunnerBillToBill extends AbstractTestNGCucumberTests
     @AfterClass
     public static void afterclass() throws InterruptedException, MessagingException, IOException
     {
-        //Thread.sleep(50000);
-        MailSend.sendMail();
-        //TestBase.CloseBrowser();
-
+        Thread.sleep(10000);
+        //MailSend.sendMail();
+        TestBase.CloseBrowser();
         if(TestBase.testEnvironment.get_browser().equalsIgnoreCase("Firefox"))
         {
             Runtime.getRuntime().exec("taskkill /F /IM geckodriver.exe");
