@@ -8,6 +8,7 @@ import ui.pages.BasePage;
 import java.util.List;
 
 public class DockManagementLookupPage extends BasePage {
+
     By dockManagementLookupTitle = By.className("spnmoduleNameHeader");
     By dateInputFilterDate = By.id("dateInputFilterDate");
     By dateInputFilterToDate = By.id("dateInputFilterToDate");

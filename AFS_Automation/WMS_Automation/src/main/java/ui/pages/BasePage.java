@@ -10,6 +10,10 @@ import static common.setup.DriverManager.getDriver;
 
 public class BasePage {
 
+    public void deleteCookies() {
+        getDriver().manage().deleteAllCookies();
+    }
+
     public boolean isElementPresent(By locator) {
         try {
             return findWebElement(locator) != null;

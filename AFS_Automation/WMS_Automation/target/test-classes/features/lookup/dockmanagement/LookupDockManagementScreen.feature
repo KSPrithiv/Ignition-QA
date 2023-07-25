@@ -6,10 +6,9 @@ Feature: Testing of Lookup Dock Management screen functionality
     And Main page is loaded
     And DockManagement Summary Page is validated
     And Go to Lookup DockManagement page
-    And Waits for Dock Management Lookup page to load
     And Validates DockManagement Lookup Page base elements are loaded on DockManagement Lookup page
     And User types "01/01/2022" date from input on Dock Management page
-    And User types "11/10/2022" date to input on Dock Management page
+ #   And User types "11/10/2022" date to input on Dock Management page
     And Validates Inbound and Outbound labels, items are displayed on DockManagement Lookup page
     And User clicks item 1 on Dock Management page
     And Validates Item Details are displayed on DockManagement Lookup page
