@@ -1,4 +1,4 @@
-package testRunner_DSD_OMS;
+package testRunner_DSD_OMS.DSDEnv;
 
 import io.cucumber.testng.AbstractTestNGCucumberTests;
 import io.cucumber.testng.CucumberOptions;
@@ -14,20 +14,22 @@ import java.io.IOException;
 
 /**
  * @Project DSD_OMS
- * @Author Divya.Ramadas@afsi.com
+ * @Author Divya.Ramadas@afs.com
  */
-@CucumberOptions(features = "src/test/resources/features_DSD_OMS/OrderEntryFeature/orderEntryFeature1.feature",
+@CucumberOptions(features = {"src/test/resources/features_DSD_OMS/CatalogFeature/catalogFeature2.feature",
+                             "src/test/resources/features_DSD_OMS/CatalogFeature/catalogFeature3.feature",},
         glue = {"stepDefination_DSD_OMS"},
         plugin = {"pretty",
                 "json:target/cucumber.json",
                 "html:target/cucumber-html-report.html",
                 "com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:Reports/spark/",
-                "rerun:target/failedrerun.txt"},
+                "rerun:target/failedrerun.txt"
+        },
         monochrome = true)
 
-public class TestRunnerOE1 extends AbstractTestNGCucumberTests
+public class TestRunnerCatalog2 extends AbstractTestNGCucumberTests
 {
-    /* Created by Divya.Ramadas@afsi.com */
+    /* Created by Divya.Ramadas@afs.com */
     @Parameters({"environment"})
     @BeforeClass
     public static void beforeClass(@Optional String envi)
@@ -44,8 +46,17 @@ public class TestRunnerOE1 extends AbstractTestNGCucumberTests
     @AfterClass
     public static void afterclass() throws InterruptedException, MessagingException, IOException
     {
-        MailSend.sendMail();
-        TestBase.CloseBrowser();
         Thread.sleep(10000);
+        //MailSend.sendMail();
+        TestBase.CloseBrowser();
+        if(TestBase.testEnvironment.get_browser().equalsIgnoreCase("Firefox"))
+        {
+            Runtime.getRuntime().exec("taskkill /F /IM geckodriver.exe");
+        }
+        else
+        if(TestBase.testEnvironment.get_browser().equalsIgnoreCase("Chrome"))
+        {
+            Runtime.getRuntime().exec("taskkill /F /IM chromedriver.exe");
+        }
     }
 }

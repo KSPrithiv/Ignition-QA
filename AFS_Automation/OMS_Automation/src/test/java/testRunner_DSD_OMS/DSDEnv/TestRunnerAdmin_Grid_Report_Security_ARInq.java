@@ -1,4 +1,4 @@
-package testRunner_DSD_OMS;
+package testRunner_DSD_OMS.DSDEnv;
 
 import io.cucumber.testng.AbstractTestNGCucumberTests;
 import io.cucumber.testng.CucumberOptions;
@@ -17,7 +17,11 @@ import java.io.IOException;
  * @Author Divya.Ramadas@afsi.com
  */
 @CucumberOptions
-        (features = "src/test/resources/features_DSD_OMS/StatementsFeature",
+        (features = {"src/test/resources/features_DSD_OMS/AdminGrid",
+                "src/test/resources/features_DSD_OMS/AdminReports",
+                "src/test/resources/features_DSD_OMS/AdminSecurity",
+                "src/test/resources/features_DSD_OMS/ArInquiryFeature"
+        },
 
                 glue = {"stepDefination_DSD_OMS"},
                 plugin = {"pretty",
@@ -27,7 +31,9 @@ import java.io.IOException;
                         "rerun:target/failedrerun.txt"},
                 monochrome = true)
 
-public class TestRunnerStatements extends AbstractTestNGCucumberTests
+
+
+public class TestRunnerAdmin_Grid_Report_Security_ARInq extends AbstractTestNGCucumberTests
 {
     /* Created by Divya.Ramadas@afsi.com */
     @Parameters({"environment"})
@@ -45,9 +51,9 @@ public class TestRunnerStatements extends AbstractTestNGCucumberTests
     @AfterClass
     public static void afterclass() throws InterruptedException, MessagingException, IOException
     {
-        //Thread.sleep(50000);
-        MailSend.sendMail();
-       // TestBase.CloseBrowser();
+        Thread.sleep(50000);
+        //MailSend.sendMail();
+        TestBase.CloseBrowser();
 
         if(TestBase.testEnvironment.get_browser().equalsIgnoreCase("Firefox"))
         {
