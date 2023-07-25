@@ -29,7 +29,7 @@ jobs:
       - name: OMS Automation module-1
         run: |
          mvn install test -DsuiteXmlFile='TestNG_Admin_Grid_Report_Security_ARinq.xml'
-        working-directory: AFS_Automation/OMS_Automation 
+        working-directory: AFS_Automation/OMS_Automation
         
        
         
