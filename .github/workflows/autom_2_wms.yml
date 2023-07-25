@@ -1,8 +1,8 @@
-name: cron schedule WMS July 20
+name: cron schedule WMS
 on:
  push:
     branches:
-      - develop_autom
+      - b
  
 
 jobs:
