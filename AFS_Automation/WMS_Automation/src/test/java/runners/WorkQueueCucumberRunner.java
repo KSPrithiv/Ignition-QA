@@ -9,7 +9,7 @@ import io.cucumber.testng.CucumberOptions;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.aeonbits.owner.ConfigFactory;
-//import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.ITestResult;
 import org.testng.annotations.*;
 //import util.TestBase;
@@ -23,7 +23,7 @@ import java.io.IOException;
 import static common.setup.DriverManager.*;
 import static common.setup.DriverManager.getDriver;
 
-@CucumberOptions(features = {"src/test/resources/features/workqueue"},
+@CucumberOptions(features = {"src/test/resources/features/workqueue/assignmentlist/filteroption"},
         glue = {"steps"},
         plugin = {"pretty",
                 "json:target/cucumber.json",
@@ -69,11 +69,8 @@ public class WorkQueueCucumberRunner extends AbstractTestNGCucumberTests {
                 driverThreadLocal.get().close();
                 driverThreadLocal.get().quit();
             } catch (Exception e) {
-                //   FileUtils.forceDelete(new File("C:/Users/Irina.Holovan/Desktop/chrome/" + DriverManager.COUNTER));
-                System.out.println("Error closing and quitting the web driver: " + e.getMessage());
-                if (getDriver() instanceof ChromeDriver) {
+                   if (getDriver() instanceof ChromeDriver) {
                     try {
-                        //  FileUtils.forceDelete(new File("C:/Users/Irina.Holovan/Desktop/chrome/" + DriverManager.COUNTER));
                         Runtime.getRuntime().exec("taskkill /F /IM chromedriver.exe");
                     } catch (IOException ex) {
                         System.out.println("Error force quitting the ChromeDriver process: " + ex.getMessage());
@@ -88,9 +85,6 @@ public class WorkQueueCucumberRunner extends AbstractTestNGCucumberTests {
     @AfterClass
     public static void afterClass() throws InterruptedException, MessagingException, IOException {
         //Directory_Change.uniqueReport();
-        MailSend_WMS.sendMail();
-
-
-
+    //    MailSend_WMS.sendMail();
     }
 }

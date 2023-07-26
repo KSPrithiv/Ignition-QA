@@ -8,6 +8,7 @@ import ui.pages.BasePage;
 import java.util.List;
 
 public class DockManagementLookupPage extends BasePage {
+
     By dockManagementLookupTitle = By.className("spnmoduleNameHeader");
     By dateInputFilterDate = By.id("dateInputFilterDate");
     By dateInputFilterToDate = By.id("dateInputFilterToDate");
@@ -52,9 +53,6 @@ public class DockManagementLookupPage extends BasePage {
     By dropdownList = By.id("dropdownList");
 
     public void waitForDockManagementLookupPageToLoad() {
-        refresh();
-        refresh();
-        refresh();
         Waiters.waitABit(7000);
         Waiters.waitUntilPageWillLoadedSelenide();
         Waiters.waitForElementToBeDisplay(dockManagementLookupTitle);

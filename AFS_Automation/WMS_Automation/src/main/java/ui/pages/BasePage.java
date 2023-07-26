@@ -10,6 +10,10 @@ import static common.setup.DriverManager.getDriver;
 
 public class BasePage {
 
+    public void deleteCookies() {
+        getDriver().manage().deleteAllCookies();
+    }
+
     public boolean isElementPresent(By locator) {
         try {
             return findWebElement(locator) != null;
@@ -123,9 +127,9 @@ public class BasePage {
 
     public String getText(By locator) {return findWebElement(locator).getText().trim(); }
 
-    public String getValue(By locator) { return findWebElement(locator).getDomAttribute("value").trim(); }
+    public String getValue(By locator) { return findWebElement(locator).getAttribute("value").trim(); }
 
-    public String getValue(WebElement element) { return element.getDomAttribute("value").trim(); }
+    public String getValue(WebElement element) { return element.getAttribute("value").trim(); }
 
     public void clickOnElement(WebElement element) {
         try {

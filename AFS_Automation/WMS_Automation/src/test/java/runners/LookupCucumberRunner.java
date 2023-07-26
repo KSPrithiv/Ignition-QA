@@ -20,7 +20,7 @@ import java.io.IOException;
 import static common.setup.DriverManager.*;
 import static common.setup.DriverManager.getDriver;
 
-@CucumberOptions(features = {"src/test/resources/features/lookup"},
+@CucumberOptions(features = {"WMSAutomation/src/test/resources/features/lookup"},
         glue = {"steps"},
         plugin = {"pretty",
                 "json:target/cucumber.json",
@@ -66,8 +66,6 @@ public class LookupCucumberRunner extends AbstractTestNGCucumberTests {
     }
     @AfterClass
     public static void afterClass() throws InterruptedException, MessagingException, IOException {
-        //MailSend_WMS.sendMail();
-
-
+     //   MailSend_WMS.sendMail();
     }
 }

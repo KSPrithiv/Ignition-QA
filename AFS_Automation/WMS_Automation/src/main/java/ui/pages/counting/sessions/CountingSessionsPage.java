@@ -267,7 +267,7 @@ public class CountingSessionsPage extends BasePage {
         clickOnElement(getUserDropdown());
         List<WebElement> options = findWebElements(By.xpath("//div[contains(@class, 'k-animation-container-shown')]//li[@role='option']"));
         WebElement option = options.stream()
-                        .filter(el -> el.getAccessibleName().equals(user))
+                        .filter(el -> el.getText().equals(user))
                         .findFirst()
                         .orElseThrow(() -> new IllegalArgumentException("User " + user + " is not found"));
         clickOnElement(option);

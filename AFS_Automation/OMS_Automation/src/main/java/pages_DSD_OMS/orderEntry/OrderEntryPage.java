@@ -416,18 +416,21 @@ public class OrderEntryPage
                 if(HelpersMethod.IsExists("//i[@class='searchbar-container-close-icon']",driver))
                 {
                     WebElement closeButton=HelpersMethod.FindByElement(driver,"xpath","//i[@class='searchbar-container-close-icon']");
-                    HelpersMethod.ActClick(driver,closeButton,400);
+                    if(closeButton.isDisplayed() && closeButton.isDisplayed())
+                    {
+                        HelpersMethod.ActClick(driver, closeButton, 10000);
+                    }
                 }
 
                 WebElement Search_Input = HelpersMethod.FindByElement(driver, "id", "navigationMenuSearchBar");
                 act1.moveToElement(Search_Input).click().sendKeys("Order Entry").build().perform();
                 WebElement OEMenu = HelpersMethod.FindByElement(driver, "xpath", "//ul[contains(@class,'MuiList-root ')]/descendant::span[contains(text(),'Order Entry')]");
-                HelpersMethod.ActClick(driver, OEMenu, 100);
+                HelpersMethod.ActClick(driver, OEMenu, 1000);
                 if(HelpersMethod.IsExists("//div[contains(text(),'Your order has not been submitted')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
                 {
                     WebElement pendingPopup=HelpersMethod.FindByElement(driver,"xpath","//div[contains(text(),'Your order has not been submitted')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]");
                     WebElement dismissAll= pendingPopup.findElement(By.id("QuestionModalButton1"));
-                    HelpersMethod.ActClick(driver,dismissAll,400);
+                    HelpersMethod.ActClick(driver,dismissAll,1000);
                 }
                 humBurger=HelpersMethod.FindByElement(driver,"xpath","//*[local-name()='svg']//*[local-name()='path' and contains(@d,'M3,18H21V16H3Zm0-5H21V11H3ZM3,6V8H21V6Z')]");
                 act1.moveToElement(humBurger).click().build().perform();
