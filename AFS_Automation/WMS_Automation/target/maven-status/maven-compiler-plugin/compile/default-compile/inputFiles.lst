@@ -7,7 +7,9 @@ C:\Users\Irina.Holovan\Documents\ignition-qa\AFS_Automation\WMS_Automation\src\m
 C:\Users\Irina.Holovan\Documents\ignition-qa\AFS_Automation\WMS_Automation\src\main\java\objects\countingsessions\LocationCodesDTO.java
 C:\Users\Irina.Holovan\Documents\ignition-qa\AFS_Automation\WMS_Automation\src\main\java\ui\pages\outbound\loadplanning\OutboundLoadPlanningPage.java
 C:\Users\Irina.Holovan\Documents\ignition-qa\AFS_Automation\WMS_Automation\src\main\java\common\utils\database\DataBaseConnection.java
+C:\Users\Irina.Holovan\Documents\ignition-qa\AFS_Automation\WMS_Automation\src\main\java\ui\pages\setupConfiguration\AccountPage.java
 C:\Users\Irina.Holovan\Documents\ignition-qa\AFS_Automation\WMS_Automation\src\main\java\ui\pages\setup\SetupSystemPage.java
+C:\Users\Irina.Holovan\Documents\ignition-qa\AFS_Automation\WMS_Automation\src\main\java\ui\pages\setupLabor\ExitReasonPage.java
 C:\Users\Irina.Holovan\Documents\ignition-qa\AFS_Automation\WMS_Automation\src\main\java\objects\orderdata\OrdersListDTO.java
 C:\Users\Irina.Holovan\Documents\ignition-qa\AFS_Automation\WMS_Automation\src\main\java\objects\storeproceduresdata\appointment\AppointmentParams.java
 C:\Users\Irina.Holovan\Documents\ignition-qa\AFS_Automation\WMS_Automation\src\main\java\objects\orderdata\LinkedOrdersListDTO.java
@@ -26,9 +28,13 @@ C:\Users\Irina.Holovan\Documents\ignition-qa\AFS_Automation\WMS_Automation\src\m
 C:\Users\Irina.Holovan\Documents\ignition-qa\AFS_Automation\WMS_Automation\src\main\java\common\utils\time\TimeConversion.java
 C:\Users\Irina.Holovan\Documents\ignition-qa\AFS_Automation\WMS_Automation\src\main\java\objects\countingsessions\CountTypesDTO.java
 C:\Users\Irina.Holovan\Documents\ignition-qa\AFS_Automation\WMS_Automation\src\main\java\objects\countingsessions\InventoryStatusesDTO.java
+C:\Users\Irina.Holovan\Documents\ignition-qa\AFS_Automation\WMS_Automation\src\main\java\ui\pages\setupLabor\ShiftPage.java
 C:\Users\Irina.Holovan\Documents\ignition-qa\AFS_Automation\WMS_Automation\src\main\java\objects\countingcount\SuppliersDTO.java
 C:\Users\Irina.Holovan\Documents\ignition-qa\AFS_Automation\WMS_Automation\src\main\java\ui\pages\LoginPage.java
+C:\Users\Irina.Holovan\Documents\ignition-qa\AFS_Automation\WMS_Automation\src\main\java\ui\pages\setupConfiguration\AssignmentTypePage.java
+C:\Users\Irina.Holovan\Documents\ignition-qa\AFS_Automation\WMS_Automation\src\main\java\ui\pages\setupConfiguration\PalletTypePage.java
 C:\Users\Irina.Holovan\Documents\ignition-qa\AFS_Automation\WMS_Automation\src\main\java\objects\lookupproductslocationsdata\LookupDeleteReasonsDTO.java
+C:\Users\Irina.Holovan\Documents\ignition-qa\AFS_Automation\WMS_Automation\src\main\java\ui\pages\setupConfiguration\TaskGroupPage.java
 C:\Users\Irina.Holovan\Documents\ignition-qa\AFS_Automation\WMS_Automation\src\main\java\objects\countingsessions\OwnersDTO.java
 C:\Users\Irina.Holovan\Documents\ignition-qa\AFS_Automation\WMS_Automation\src\main\java\objects\countingsessions\ReasonsDTO.java
 C:\Users\Irina.Holovan\Documents\ignition-qa\AFS_Automation\WMS_Automation\src\main\java\common\utils\database\implementation\CallableStatementImplementation.java
@@ -38,10 +44,12 @@ C:\Users\Irina.Holovan\Documents\ignition-qa\AFS_Automation\WMS_Automation\src\m
 C:\Users\Irina.Holovan\Documents\ignition-qa\AFS_Automation\WMS_Automation\src\main\java\objects\processedorderdata\ResponseDTO.java
 C:\Users\Irina.Holovan\Documents\ignition-qa\AFS_Automation\WMS_Automation\src\main\java\objects\lookupproductslocationsdata\LookupUnitProductsDTO.java
 C:\Users\Irina.Holovan\Documents\ignition-qa\AFS_Automation\WMS_Automation\src\main\java\objects\workqueuedata\TaskListVelocitiesDTO.java
+C:\Users\Irina.Holovan\Documents\ignition-qa\AFS_Automation\WMS_Automation\src\main\java\ui\pages\setupConfiguration\ComapnyPage.java
 C:\Users\Irina.Holovan\Documents\ignition-qa\AFS_Automation\WMS_Automation\src\main\java\objects\countingcount\ProductStatusesDTO.java
 C:\Users\Irina.Holovan\Documents\ignition-qa\AFS_Automation\WMS_Automation\src\main\java\objects\userdata\UserData.java
 C:\Users\Irina.Holovan\Documents\ignition-qa\AFS_Automation\WMS_Automation\src\main\java\objects\workqueuedata\AssignToDTO.java
 C:\Users\Irina.Holovan\Documents\ignition-qa\AFS_Automation\WMS_Automation\src\main\java\objects\workqueuedata\WorkQueueDataDTO.java
+C:\Users\Irina.Holovan\Documents\ignition-qa\AFS_Automation\WMS_Automation\src\main\java\ui\pages\setupConfiguration\TrailerPage.java
 C:\Users\Irina.Holovan\Documents\ignition-qa\AFS_Automation\WMS_Automation\src\main\java\objects\storeproceduresdata\outbound\ProcessingParams.java
 C:\Users\Irina.Holovan\Documents\ignition-qa\AFS_Automation\WMS_Automation\src\main\java\objects\workqueuedata\LoggedInUsersDTO.java
 C:\Users\Irina.Holovan\Documents\ignition-qa\AFS_Automation\WMS_Automation\src\main\java\ui\pages\outbound\processing\ChangeViewParametersPage.java
@@ -49,6 +57,7 @@ C:\Users\Irina.Holovan\Documents\ignition-qa\AFS_Automation\WMS_Automation\src\m
 C:\Users\Irina.Holovan\Documents\ignition-qa\AFS_Automation\WMS_Automation\src\main\java\objects\workqueuedata\TaskListProductsDTO.java
 C:\Users\Irina.Holovan\Documents\ignition-qa\AFS_Automation\WMS_Automation\src\main\java\common\setup\Environment.java
 C:\Users\Irina.Holovan\Documents\ignition-qa\AFS_Automation\WMS_Automation\src\main\java\ui\pages\outbound\processing\AddAllocationBatchPage.java
+C:\Users\Irina.Holovan\Documents\ignition-qa\AFS_Automation\WMS_Automation\src\main\java\ui\pages\setupConfiguration\CountTypePage.java
 C:\Users\Irina.Holovan\Documents\ignition-qa\AFS_Automation\WMS_Automation\src\main\java\ui\pages\workqueue\assignmentlist\filteroption\WorkQueueAssignmentsPage.java
 C:\Users\Irina.Holovan\Documents\ignition-qa\AFS_Automation\WMS_Automation\src\main\java\objects\lookupproductslocationsdata\LookupProductUOMsDTO.java
 C:\Users\Irina.Holovan\Documents\ignition-qa\AFS_Automation\WMS_Automation\src\main\java\objects\workqueuedata\StopsDTO.java
@@ -58,6 +67,8 @@ C:\Users\Irina.Holovan\Documents\ignition-qa\AFS_Automation\WMS_Automation\src\m
 C:\Users\Irina.Holovan\Documents\ignition-qa\AFS_Automation\WMS_Automation\src\main\java\objects\lookupproductslocationsdata\LookupOwnersDTO.java
 C:\Users\Irina.Holovan\Documents\ignition-qa\AFS_Automation\WMS_Automation\src\main\java\ui\pages\workqueue\workassign\WorkQueueWorkAssignPage.java
 C:\Users\Irina.Holovan\Documents\ignition-qa\AFS_Automation\WMS_Automation\src\main\java\objects\processedorderdata\OrdersListDTO.java
+C:\Users\Irina.Holovan\Documents\ignition-qa\AFS_Automation\WMS_Automation\src\main\java\ui\pages\setupLabor\CongestionPage.java
+C:\Users\Irina.Holovan\Documents\ignition-qa\AFS_Automation\WMS_Automation\src\main\java\ui\pages\setupConfiguration\TrailerTypePage.java
 C:\Users\Irina.Holovan\Documents\ignition-qa\AFS_Automation\WMS_Automation\src\main\java\common\enums\OrderTypes.java
 C:\Users\Irina.Holovan\Documents\ignition-qa\AFS_Automation\WMS_Automation\src\main\java\objects\countingcount\UsersDTO.java
 C:\Users\Irina.Holovan\Documents\ignition-qa\AFS_Automation\WMS_Automation\src\main\java\ui\pages\inbound\inboundorders\InboundOrderLineItemsDetailsScreenPage.java
@@ -85,11 +96,14 @@ C:\Users\Irina.Holovan\Documents\ignition-qa\AFS_Automation\WMS_Automation\src\m
 C:\Users\Irina.Holovan\Documents\ignition-qa\AFS_Automation\WMS_Automation\src\main\java\objects\workqueuedata\LogoutUsersDTO.java
 C:\Users\Irina.Holovan\Documents\ignition-qa\AFS_Automation\WMS_Automation\src\main\java\ui\pages\appointments\AppointmentSchedulerLinkedOrdersPopUpPage.java
 C:\Users\Irina.Holovan\Documents\ignition-qa\AFS_Automation\WMS_Automation\src\main\java\common\enums\Statuses.java
+C:\Users\Irina.Holovan\Documents\ignition-qa\AFS_Automation\WMS_Automation\src\main\java\ui\pages\setupLabor\JobTypePage.java
 C:\Users\Irina.Holovan\Documents\ignition-qa\AFS_Automation\WMS_Automation\src\main\java\listeners\RetryAttempts.java
 C:\Users\Irina.Holovan\Documents\ignition-qa\AFS_Automation\WMS_Automation\src\main\java\common\utils\objectmapper\ObjectMapperWrapper.java
 C:\Users\Irina.Holovan\Documents\ignition-qa\AFS_Automation\WMS_Automation\src\main\java\objects\storeproceduresdata\inbound\InboundLoadsSummaryParams.java
 C:\Users\Irina.Holovan\Documents\ignition-qa\AFS_Automation\WMS_Automation\src\main\java\objects\lookupproductslocationsdata\LookupProductTaskTypesDTO.java
 C:\Users\Irina.Holovan\Documents\ignition-qa\AFS_Automation\WMS_Automation\src\main\java\ui\pages\inbound\loads\InboundLoadOrderDetailsPage.java
+C:\Users\Irina.Holovan\Documents\ignition-qa\AFS_Automation\WMS_Automation\src\main\java\ui\pages\setupLabor\FatiguePage.java
+C:\Users\Irina.Holovan\Documents\ignition-qa\AFS_Automation\WMS_Automation\src\main\java\ui\pages\setupLabor\SetupLaborCodePage.java
 C:\Users\Irina.Holovan\Documents\ignition-qa\AFS_Automation\WMS_Automation\src\main\java\objects\workqueuedata\RoutesDTO.java
 C:\Users\Irina.Holovan\Documents\ignition-qa\AFS_Automation\WMS_Automation\src\main\java\objects\countingsessions\MovementClassesDTO.java
 C:\Users\Irina.Holovan\Documents\ignition-qa\AFS_Automation\WMS_Automation\src\main\java\objects\countingcount\WarehousesDTO.java
@@ -126,6 +140,7 @@ C:\Users\Irina.Holovan\Documents\ignition-qa\AFS_Automation\WMS_Automation\src\m
 C:\Users\Irina.Holovan\Documents\ignition-qa\AFS_Automation\WMS_Automation\src\main\java\objects\processedorderdata\ProductsDTO.java
 C:\Users\Irina.Holovan\Documents\ignition-qa\AFS_Automation\WMS_Automation\src\main\java\objects\workqueuedata\UserIdsDTO.java
 C:\Users\Irina.Holovan\Documents\ignition-qa\AFS_Automation\WMS_Automation\src\main\java\common\enums\OrderOptions.java
+C:\Users\Irina.Holovan\Documents\ignition-qa\AFS_Automation\WMS_Automation\src\main\java\ui\pages\setupConfiguration\AllocationBatchPage.java
 C:\Users\Irina.Holovan\Documents\ignition-qa\AFS_Automation\WMS_Automation\src\main\java\utilWMS\Directory_Change.java
 C:\Users\Irina.Holovan\Documents\ignition-qa\AFS_Automation\WMS_Automation\src\main\java\objects\workqueuedata\RemainingDTO.java
 C:\Users\Irina.Holovan\Documents\ignition-qa\AFS_Automation\WMS_Automation\src\main\java\common\utils\database\implementation\PreparedStatementImplementation.java
@@ -133,6 +148,7 @@ C:\Users\Irina.Holovan\Documents\ignition-qa\AFS_Automation\WMS_Automation\src\m
 C:\Users\Irina.Holovan\Documents\ignition-qa\AFS_Automation\WMS_Automation\src\main\java\common\enums\TaskGroupOption.java
 C:\Users\Irina.Holovan\Documents\ignition-qa\AFS_Automation\WMS_Automation\src\main\java\objects\countingcount\OwnersDTO.java
 C:\Users\Irina.Holovan\Documents\ignition-qa\AFS_Automation\WMS_Automation\src\main\java\objects\countingsessions\ProductsDTO.java
+C:\Users\Irina.Holovan\Documents\ignition-qa\AFS_Automation\WMS_Automation\src\main\java\ui\pages\setupConfiguration\OrderTypePage.java
 C:\Users\Irina.Holovan\Documents\ignition-qa\AFS_Automation\WMS_Automation\src\main\java\ui\pages\inbound\loads\InboundLoadPage.java
 C:\Users\Irina.Holovan\Documents\ignition-qa\AFS_Automation\WMS_Automation\src\main\java\objects\lookupproductslocationsdata\LookupLocationTypesDTO.java
 C:\Users\Irina.Holovan\Documents\ignition-qa\AFS_Automation\WMS_Automation\src\main\java\ui\pages\inbound\inboundorders\InboundOrderSummaryPage.java
@@ -147,6 +163,7 @@ C:\Users\Irina.Holovan\Documents\ignition-qa\AFS_Automation\WMS_Automation\src\m
 C:\Users\Irina.Holovan\Documents\ignition-qa\AFS_Automation\WMS_Automation\src\main\java\objects\filteredorderdata\FilteredOrdersDTO.java
 C:\Users\Irina.Holovan\Documents\ignition-qa\AFS_Automation\WMS_Automation\src\main\java\objects\storeproceduresdata\outbound\ProductsParams.java
 C:\Users\Irina.Holovan\Documents\ignition-qa\AFS_Automation\WMS_Automation\src\main\java\objects\countingsessions\DescriptionsDTO.java
+C:\Users\Irina.Holovan\Documents\ignition-qa\AFS_Automation\WMS_Automation\src\main\java\ui\pages\setupConfiguration\RouteTypePage.java
 C:\Users\Irina.Holovan\Documents\ignition-qa\AFS_Automation\WMS_Automation\src\main\java\objects\countingsessions\CountingSessionsDTO.java
 C:\Users\Irina.Holovan\Documents\ignition-qa\AFS_Automation\WMS_Automation\src\main\java\objects\lookupproductslocationsdata\LookupLPNsDTO.java
 C:\Users\Irina.Holovan\Documents\ignition-qa\AFS_Automation\WMS_Automation\src\main\java\ui\pages\workqueue\loggedinusers\WorkQueueLoggedInUsersPage.java

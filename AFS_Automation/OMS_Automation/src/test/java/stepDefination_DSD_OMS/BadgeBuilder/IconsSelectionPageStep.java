@@ -11,6 +11,7 @@ import org.openqa.selenium.WebElement;
 import pages_DSD_OMS.badgeBuilder_Phase1.BadgeBuilderPage;
 import helper.HelpersMethod;
 
+import pages_DSD_OMS.badgeBuilder_Phase2.BadgeBuilderPage1;
 import pages_DSD_OMS.login.HomePage;
 import pages_DSD_OMS.login.LoginPage;
 import pages_DSD_OMS.webOrdering.AdminHomePage;
@@ -28,6 +29,7 @@ public class IconsSelectionPageStep {
     //LoginPageBadge loginPageBadge;
     LoginPage loginpage;
     BadgeBuilderPage badgeBuilderPage;
+    BadgeBuilderPage1 badgeBuilderPage1;
     static String currentURL = null;
     static boolean flag = false;
     static boolean flag1 = false;
@@ -80,8 +82,6 @@ public class IconsSelectionPageStep {
         homepage.VerifyHomePage();
         // adminHomePage = new AdminHomePage(driver,scenario);
         //adminHomePage.SelectCompany();
-
-
     }
 
     @Then("Click on General Setting tab")
@@ -94,7 +94,7 @@ public class IconsSelectionPageStep {
 
 
     @Then("Clicks on Badge Builder")
-    public void clicks_on_badge_builder() {
+    public void clicks_on_badge_builder() throws InterruptedException {
 
         badgeBuilderPage = new BadgeBuilderPage(driver, scenario);
         badgeBuilderPage.ClickOnBadgeBuilder();
@@ -300,24 +300,34 @@ public class IconsSelectionPageStep {
 
     @When("Login to Client portal")
     public void login_to_client_portal() throws InterruptedException, AWTException {
-        loginpage = new LoginPage(driver, scenario);
+     /*   loginpage = new LoginPage(driver, scenario);
         badgeBuilderPage = new BadgeBuilderPage(driver, scenario);
         loginpage.EnterUsername(TestBase.testEnvironment.DummyUserTest());
         loginpage.EnterPassword(TestBase.testEnvironment.DummyPassTest());
         //loginpage.ClickSignin();
         badgeBuilderPage.ClickSignin1();
-        Thread.sleep(4000);
+        Thread.sleep(4000);*/
 
 
     }
 
     @Then("User should navigate to Client side")
     public void user_should_navigate_to_client_side() throws InterruptedException {
+//        boolean result=false;
+//        if(flag==false)
+//        {
+//            Thread.sleep(10000);
+//            homepage = new HomePage(driver,scenario);
+//            String title = driver.getTitle();
+//            Assert.assertEquals(title, "Ignition - Admin");
+//            homepage.verifyUserinfoContainer();
+//            homepage.navigateToClientSide();
         badgeBuilderPage = new BadgeBuilderPage(driver, scenario);
+
         badgeBuilderPage.ClicOnGeneralSetting();
         Thread.sleep(10000);
         badgeBuilderPage.Clientside();
-        Thread.sleep(5000);
+        Thread.sleep(10000);
 
         badgeBuilderPage.selectCompany();
 
@@ -325,23 +335,27 @@ public class IconsSelectionPageStep {
 
     @And("Click on the Order Entry tab")
     public void click_on_the_order_entry_tab() throws InterruptedException {
-
+        badgeBuilderPage1=new BadgeBuilderPage1(driver,scenario);
         badgeBuilderPage = new BadgeBuilderPage(driver, scenario);
-        badgeBuilderPage.NavigateToOrderEntry();
-
+//        badgeBuilderPage.NavigateToOrderEntry();
+        badgeBuilderPage1.NavigateToOrderEntry1();
 
     }
 
     @And("Select Account and start Order")
     public void select_account_and_start_order() throws InterruptedException {
         badgeBuilderPage = new BadgeBuilderPage(driver, scenario);
+        badgeBuilderPage1=new BadgeBuilderPage1(driver,scenario);
         //badgeBuilderPage.ChangeAccount1();
         //badgeBuilderPage.Change_OldAccount();
 
         //badgeBuilderPage.PopupOKBtn();
         //badgeBuilderPage.StartOrder();
+        Thread.sleep(2000);
         badgeBuilderPage.StartOrder();
         badgeBuilderPage.PopupOKBtn();
+        badgeBuilderPage1.POBox();
+
 
         //badgeBuilderPage.SearchProd();
         badgeBuilderPage.SearchBoxAction();
@@ -353,9 +367,11 @@ public class IconsSelectionPageStep {
     public void compare_tiered_pricing_product_icon_color() throws InterruptedException {
         badgeBuilderPage = new BadgeBuilderPage(driver, scenario);
         badgeBuilderPage.CompareProdColour();
+
+
         //badgeBuilderPage.TieredPricing_ProductColor_Comparison();
-        badgeBuilderPage.Click_On_UserIcon();
-        badgeBuilderPage.Click_On_Signout();
+//        badgeBuilderPage.Click_On_UserIcon();
+//        badgeBuilderPage.Click_On_Signout();
 
     }
 
@@ -378,13 +394,15 @@ public class IconsSelectionPageStep {
     @And("Select Account and start Order - CatchWeightItems")
     public void select_account_and_start_order_catch_weight_items() throws InterruptedException {
         badgeBuilderPage = new BadgeBuilderPage(driver, scenario);
+        badgeBuilderPage1=new BadgeBuilderPage1(driver,scenario);
         //badgeBuilderPage.ChangeAccount1();
         badgeBuilderPage.StartOrder();
-        Thread.sleep(5000);
+//        Thread.sleep(5000);
         badgeBuilderPage.NoPendingOrderPopup();
         //badgeBuilderPage.StartOrder();
         badgeBuilderPage.PopupOKBtn();
-
+        badgeBuilderPage1.POBox();
+        Thread.sleep(4000);
         //badgeBuilderPage.SearchProd();
         badgeBuilderPage.SearchBoxActionCatchWt();
     }
@@ -394,11 +412,8 @@ public class IconsSelectionPageStep {
         badgeBuilderPage = new BadgeBuilderPage(driver, scenario);
         Thread.sleep(10000);
         badgeBuilderPage.CompareProdColour();
-//        result2=badgeBuilderPage.CompareProdColour();
-//        System.out.println(result2+"2");
-        //badgeBuilderPage.Comaprison1();
-        Thread.sleep(2000);
-        badgeBuilderPage.CatalogTab();
+        Thread.sleep(3000);
+//        badgeBuilderPage.CatalogTab();
 
     }
 
@@ -411,6 +426,11 @@ public class IconsSelectionPageStep {
 
     @Then("user should navigate to Catalog tab")
     public void user_should_navigate_to_catalog_tab() throws InterruptedException {
+        badgeBuilderPage = new BadgeBuilderPage(driver, scenario);
+
+        badgeBuilderPage.CatalogTab();
+        badgeBuilderPage.PopupDiscardAll();
+
 
 //        {
 //            if (HelpersMethod.IsExists("//li[contains(@class,'k-item')]/span[@class='k-link' and contains(text(),'Catalog')]", driver))
@@ -446,6 +466,8 @@ public class IconsSelectionPageStep {
         badgeBuilderPage = new BadgeBuilderPage(driver, scenario);
         badgeBuilderPage.ProdColourCat();
         //badgeBuilderPage.ColorCheck();
+        badgeBuilderPage.Click_On_UserIcon();
+        badgeBuilderPage.Click_On_Signout();
 
     }
 
@@ -521,7 +543,7 @@ public class IconsSelectionPageStep {
         badgeBuilderPage = new BadgeBuilderPage(driver, scenario);
 
         //badgeBuilderPage.PopupDiscardAll();
-//        Thread.sleep(4000);
+//        Thread.sleep(5000);
         badgeBuilderPage.CreateNewOrder();
         //badgeBuilderPage.PopupOKBtn();
 
@@ -564,22 +586,28 @@ public class IconsSelectionPageStep {
     }
     @Given("User should navigate to Standing Order Tab")
     public void user_should_navigate_to_standing_order_tab() throws InterruptedException {
-//        WebElement WebEle = HelpersMethod.FindByElement(driver, "xpath", "//li[contains(@class,'k-item')]/span[@class='k-link' and contains(text(),'Standing Orders')]");
-        WebElement WebEle = HelpersMethod.FindByElement(driver, "xpath", "//li[contains(@class,'k-item')]/span[@class='k-link' and contains(text(),'Standing orders')]");
-        if (HelpersMethod.EleDisplay(WebEle))
-        {
-            HelpersMethod.navigate_Horizantal_Tab(driver, "Standing orders", "//li[contains(@class,'k-item')]/span[@class='k-link' and contains(text(),'Standing orders')]", "xpath", "//li[contains(@class,'k-item')]/span[@class='k-link']");
-            if (HelpersMethod.IsExists("//div[@class='loader']", driver))
-            {
-                WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 400);
+
+        if (HelpersMethod.IsExists("//li[contains(@class,'k-item')]/span[@class='k-link' and contains(text(),'Standing orders')]", driver)) {
+
+            WebElement WebEle = HelpersMethod.FindByElement(driver, "xpath", "//li[contains(@class,'k-item')]/span[@class='k-link' and contains(text(),'Standing orders')]");
+            if (HelpersMethod.EleDisplay(WebEle)) {
+                HelpersMethod.navigate_Horizantal_Tab(driver, "Standing orders", "//li[contains(@class,'k-item')]/span[@class='k-link' and contains(text(),'Standing orders')]", "xpath", "//li[contains(@class,'k-item')]/span[@class='k-link']");
+                if (HelpersMethod.IsExists("//div[@class='loader']", driver)) {
+                    WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
+                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 400);
+                }
             }
         }
-        else
-        {
-            scenario.log("STANDING ORDER TAB DOESN'T EXISTS");
+        if (HelpersMethod.IsExists("//li[contains(@class,'k-item')]/span[@class='k-link' and contains(text(),'Standing Orders')]", driver)) {
+            WebElement WebEle1 = HelpersMethod.FindByElement(driver, "xpath", "//li[contains(@class,'k-item')]/span[@class='k-link' and contains(text(),'Standing Orders')]");
+            if (HelpersMethod.EleDisplay(WebEle1)) {
+                HelpersMethod.navigate_Horizantal_Tab(driver, "Standing Orders", "//li[contains(@class,'k-item')]/span[@class='k-link' and contains(text(),'Standing Orders')]", "xpath", "//li[contains(@class,'k-item')]/span[@class='k-link']");
+                if (HelpersMethod.IsExists("//div[@class='loader']", driver)) {
+                    WebElement WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
+                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 400);
+                }
+            }
         }
-        Thread.sleep(4000);
 
         badgeBuilderPage = new BadgeBuilderPage(driver, scenario);
 
@@ -598,11 +626,9 @@ public class IconsSelectionPageStep {
         //badgeBuilderPage.ClickOnAddProductButton();
         badgeBuilderPage.ClickOnAddProductButton1();
 //        //Thread.sleep(3000);
-        badgeBuilderPage.ProductNo_InSearchBar();
+//        badgeBuilderPage.ProductNo_InSearchBar();
+        badgeBuilderPage1.PopupProductEntry();
         Thread.sleep(4000);
-
-
-
     }
     @And("Compare Color of Product Icon of Standing Order")
     public void compare_color_of_product_icon_of_standing_order() throws InterruptedException {

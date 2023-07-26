@@ -20,6 +20,7 @@ public interface Environment extends Config {
     @Key("username")
     String getUserName();
 
+
     @Key("password")
     String getPassword();
 

@@ -3,9 +3,9 @@
     <test verbose="2" preserve-order="true" name="Parallel Test">
         <parameter name="environment" value="config_DSD_OMS\\config_OMS"/>
         <classes>
-            <class name="testRunner_DSD_OMS.TestRunnerBillToBill">
+            <class name="testRunner_DSD_OMS">
             </class>
-            <class name="testRunner_DSD_OMS.TestRunnerStatements">
+            <class name="testRunner_DSD_OMS">
             </class>
         </classes>
     </test>

@@ -50,15 +50,15 @@ public class IconsSelectionPageStep2 {
         badgeBuilderPage1.AddToGallery();
     }
 
-    @When("Login to Client portal1")
+   @When("Login to Client portal1")
     public void login_to_client_portal1() throws InterruptedException, AWTException {
-        loginpage = new LoginPage(driver, scenario);
+      /*  loginpage = new LoginPage(driver, scenario);
         badgeBuilderPage = new BadgeBuilderPage(driver, scenario);
-        loginpage.EnterUsername(TestBase.testEnvironment.Dummyuser123());
-        loginpage.EnterPassword(TestBase.testEnvironment.Dummypass123());
+        loginpage.EnterUsername(TestBase.testEnvironment.DummyUserTest());
+        loginpage.EnterPassword(TestBase.testEnvironment.DummyPassTest());
         //loginpage.ClickSignin();
         badgeBuilderPage.ClickSignin1();
-        Thread.sleep(4000);
+        Thread.sleep(4000);*/
     }
 
 //    @Given("User on login page and entered username and password1-Client portal")
@@ -77,7 +77,7 @@ public class IconsSelectionPageStep2 {
     @And("Select Account2")
     public void select_account2() throws InterruptedException {
         badgeBuilderPage1 = new BadgeBuilderPage1(driver, scenario);
-        badgeBuilderPage1.ChangeAccount2();
+//        badgeBuilderPage1.ChangeAccount2();
     }
 
 
@@ -114,12 +114,12 @@ public class IconsSelectionPageStep2 {
 
 
 //
-//    @Given("Search for product")
-//    public void search_for_product() {
-//        badgeBuilderPage1 = new BadgeBuilderPage1(driver, scenario);
-//        badgeBuilderPage1.SearchBoxActionCat1();
-       //badgeBuilderPage1.AddTocart();
-//    }
+    @Given("Search for product")
+    public void search_for_product() {
+        badgeBuilderPage1 = new BadgeBuilderPage1(driver, scenario);
+        badgeBuilderPage1.SearchBoxActionCat1();
+       badgeBuilderPage1.AddTocart();
+    }
 
     @And("Click on Cart")
     public void click_on_cart() throws InterruptedException {
@@ -144,7 +144,9 @@ public class IconsSelectionPageStep2 {
         badgeBuilderPage = new BadgeBuilderPage(driver, scenario);
         badgeBuilderPage1 = new BadgeBuilderPage1(driver, scenario);
         //badgeBuilderPage.ChangeAccount1();
-       // badgeBuilderPage.PopupDiscardAll();
+//       badgeBuilderPage.PopupDiscardAll();
+//        badgeBuilderPage.RoutePopup();
+        Thread.sleep(5000);
         badgeBuilderPage.StartOrder();
         Thread.sleep(5000);
         badgeBuilderPage.NoPendingOrderPopup();
@@ -161,10 +163,17 @@ public class IconsSelectionPageStep2 {
         badgeBuilderPage1 = new BadgeBuilderPage1(driver, scenario);
         badgeBuilderPage1.ColorCheckCatalogSearch();
     }
+    @And("Logout")
+    public void logout() throws InterruptedException {
+        badgeBuilderPage = new BadgeBuilderPage(driver, scenario);
+        badgeBuilderPage.Click_On_UserIcon();
+        badgeBuilderPage.Click_On_Signout();
+    }
 
     @When("Click on Back")
     public void click_on_back() {
         badgeBuilderPage1 = new BadgeBuilderPage1(driver, scenario);
+//      driver.navigate().refresh();
         badgeBuilderPage1.Click_Back();
     }
 
@@ -189,8 +198,14 @@ public class IconsSelectionPageStep2 {
         badgeBuilderPage1.PopupProductEntry();
         badgeBuilderPage1.AddQuantity1();
         badgeBuilderPage1.SelectProduct1();
-        badgeBuilderPage1.ColorCheck();
     }
+    @And("Verify Icon Color from PickupOrder")
+    public void verify_Icon_Color_from_PickupOrder() throws AWTException, InterruptedException {
+        badgeBuilderPage = new BadgeBuilderPage(driver, scenario);
+        badgeBuilderPage1.ColorCheck1();
+    }
+
+
     @Given("User should navigate to OrderControllist tab")
     public void user_should_navigate_to_order_controllist_tab() throws InterruptedException {
         badgeBuilderPage1 = new BadgeBuilderPage1(driver, scenario);
