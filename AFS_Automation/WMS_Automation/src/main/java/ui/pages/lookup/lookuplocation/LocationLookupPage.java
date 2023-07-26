@@ -153,9 +153,9 @@ public class LocationLookupPage extends BasePage {
         Waiters.waitABit(2000);
         Waiters.waitForElementToBeDisplay(locationSearchInput);
         clickLocationSearchButton();
-        inputText(getSearchInput(), "101.059.90");
+        inputText(getSearchInput(), location);
         pressEnter(getSearchInput());
-        findWebElement(By.xpath("//tr[.//td[text()='" + "101.059.90" +  "']]")).click();
+        findWebElement(By.xpath("//tr[.//td[text()='" + location +  "']]")).click();
         Waiters.waitABit(10_000);
     }
 
