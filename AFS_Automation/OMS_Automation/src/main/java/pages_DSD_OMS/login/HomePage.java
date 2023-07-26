@@ -125,7 +125,7 @@ public class HomePage
                 act1.click(ele4).build().perform();
             }
             //Identify side menu bar to identify the webelements
-            new WebDriverWait(driver,200).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class,'MuiPaper-root MuiDrawer-paper drawer-opened MuiDrawer-paperAnchorLeft MuiDrawer-paperAnchorDockedLeft MuiPaper-elevation0')]")));
+            new WebDriverWait(driver,20).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class,'MuiPaper-root MuiDrawer-paper drawer-opened MuiDrawer-paperAnchorLeft MuiDrawer-paperAnchorDockedLeft MuiPaper-elevation0')]")));
             side_menu = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'MuiPaper-root MuiDrawer-paper drawer-opened MuiDrawer-paperAnchorLeft MuiDrawer-paperAnchorDockedLeft MuiPaper-elevation0')]");
             exists = true;
 
@@ -153,7 +153,7 @@ public class HomePage
             if (HelpersMethod.IsExists("//div[@class='loader']", driver))
             {
                 WebElement WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 80000);
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 8000);
             }
             HelpersMethod.WaitElementPresent(driver, "xpath", "//div[contains(@class,'user-info-container')]/div[contains(@class,'user-info-initial-container')]/following-sibling::div[contains(@class,'user-info-setting-shape')]", 2400);
             WebElement UserIcon = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'user-info-container')]/div[contains(@class,'user-info-initial-container')]/following-sibling::div[contains(@class,'user-info-setting-shape')]");
@@ -174,7 +174,7 @@ public class HomePage
             exists = false;
             WebElement WebEle;
             //new WebDriverWait(driver,10000).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class,'k-popup k-child-animation-container')]"))));
-            new WebDriverWait(driver,10000).until(ExpectedConditions.elementToBeClickable(By.xpath("//div[contains(@class,'k-popup k-child-animation-container')]/div[@class='popup-content']/descendant::div[contains(@class,'user-info-line user-info-line-signout')]")));
+            new WebDriverWait(driver,20).until(ExpectedConditions.elementToBeClickable(By.xpath("//div[contains(@class,'k-popup k-child-animation-container')]/div[@class='popup-content']/descendant::div[contains(@class,'user-info-line user-info-line-signout')]")));
             WebElement dropDown = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-popup k-child-animation-container')]/div[@class='popup-content']");
             WebElement signOut = dropDown.findElement(By.xpath(".//div[contains(@class,'user-info-line user-info-line-signout')]"));
             HelpersMethod.ActClick(driver, signOut, 1000);
@@ -193,11 +193,11 @@ public class HomePage
                 //Click again on user icon for signout
                 HelpersMethod.WaitElementPresent(driver, "xpath", "//div[contains(@class,'user-info-container')]/div[contains(@class,'user-info-initial-container')]/following-sibling::div[contains(@class,'user-info-setting-shape')]", 2400);
                 WebElement UserIcon = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'user-info-container')]/div[contains(@class,'user-info-initial-container')]/following-sibling::div[contains(@class,'user-info-setting-shape')]");
-                new WebDriverWait(driver, 10000).until(ExpectedConditions.refreshed(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(@class,'user-info-container')]/div[contains(@class,'user-info-initial-container')]/following-sibling::div[contains(@class,'user-info-setting-shape')]"))));
+                new WebDriverWait(driver, 20).until(ExpectedConditions.refreshed(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(@class,'user-info-container')]/div[contains(@class,'user-info-initial-container')]/following-sibling::div[contains(@class,'user-info-setting-shape')]"))));
                 HelpersMethod.JScriptClick(driver, UserIcon, 8000);
-                new WebDriverWait(driver,20000).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class,'k-animation-container k-animation-container-relative popup-with-arrow standard-view user-info k-animation-container-shown')]"))));
+                new WebDriverWait(driver,20).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class,'k-animation-container k-animation-container-relative popup-with-arrow standard-view user-info k-animation-container-shown')]"))));
                 //Click on signout, in drop down
-                new WebDriverWait(driver,10000).until(ExpectedConditions.elementToBeClickable(By.xpath("//div[contains(@class,'k-popup k-child-animation-container')]/div[@class='popup-content']/descendant::div[contains(@class,'user-info-line user-info-line-signout')]")));
+                new WebDriverWait(driver,20).until(ExpectedConditions.elementToBeClickable(By.xpath("//div[contains(@class,'k-popup k-child-animation-container')]/div[@class='popup-content']/descendant::div[contains(@class,'user-info-line user-info-line-signout')]")));
                 dropDown = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-popup k-child-animation-container')]/div[@class='popup-content']");
                 signOut = dropDown.findElement(By.xpath(".//div[contains(@class,'user-info-line user-info-line-signout')]"));
                 HelpersMethod.ActClick(driver, signOut, 1000);
