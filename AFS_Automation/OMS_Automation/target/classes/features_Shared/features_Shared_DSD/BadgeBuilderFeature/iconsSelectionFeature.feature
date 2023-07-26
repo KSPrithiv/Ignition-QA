@@ -2,11 +2,7 @@ Feature: Badge Builder Icon Selection
   Background: For login to application and to select Badge Builder
     Given User enters URL and entered to login page
 
-<<<<<<< HEAD
-
-=======
 #
->>>>>>> cfd851261460b93c4e6039073ff046846beedf5f
   @IconSelection
   Scenario: Test Scenario for Selecting Icon from Badge Builder
     Given  User on login page and entered username and password
@@ -49,11 +45,7 @@ Feature: Badge Builder Icon Selection
     Then   Verify delete button
 
   @EditAction
-<<<<<<< HEAD
-  Scenario: Test Scenario for Deleting Icon from Badge Builder
-=======
   Scenario: Test Scenario for Editing Icon from Badge Builder
->>>>>>> cfd851261460b93c4e6039073ff046846beedf5f
     Given  User must be on BadgeBuilder page
     When   User should navigate to Badge Gallery
     And    Click on any Badge under Badge Gallery1
@@ -61,47 +53,19 @@ Feature: Badge Builder Icon Selection
     And    Change Badge info, Icon color and Badge type
     And    Clicks on the Save and add to gallery button
     Then   Verify Saved Icon Change
-<<<<<<< HEAD
-
-=======
 #
->>>>>>> cfd851261460b93c4e6039073ff046846beedf5f
   @VerifyColorChangeInOE-TieredPricingProducts
   Scenario: Test Scenario to Verify Icon Color Change In OrderEntry -  TieredPricingProducts
     Given  User must be on BadgeBuilder page
     When   Click Permission By and select appropriate Company
     And    User should navigate to Badge Gallery - TieredPricingProduct
     And    Change Color of the TieredPricingProduct Icon
-<<<<<<< HEAD
-    And    Logout from Admin portal
-    And    Login to Client portal
-    Then   User should navigate to Client side
-    And    Click on the Order Entry tab
-    And    Select Account and start Order
-    Then   Compare TieredPricingProduct Icon Color
-
-  @VerifyColorChangeInOE-CatchWeightItems
-  Scenario: Test Scenario to Verify Icon Color Change In OrderEntry -  CatchWeightItems
-
-    Given  User on login page and entered username and password
-    When   Navigated to Admin home page
-    Then   Click on General Setting tab
-    And    Clicks on Badge Builder
-
-    Given  User must be on BadgeBuilder page
-    When   Click Permission By and select appropriate Company
-=======
->>>>>>> cfd851261460b93c4e6039073ff046846beedf5f
     And    User should navigate to Badge Gallery - CatchWeightItems
     And    Change Color of the CatchWeightItems Icon
     And    Logout from Admin portal
     And    Login to Client portal
     Then   User should navigate to Client side
     And    Click on the Order Entry tab
-<<<<<<< HEAD
-    And    Select Account and start Order - CatchWeightItems
-    Then   Compare CatchWeightItems Icon Color
-=======
     And    Select Account and start Order
     Then   Compare TieredPricingProduct Icon Color
 #
@@ -124,7 +88,6 @@ Feature: Badge Builder Icon Selection
 #    And    Select Account and start Order - CatchWeightItems
 #    Then   Compare CatchWeightItems Icon Color
 
->>>>>>> cfd851261460b93c4e6039073ff046846beedf5f
   @VerifyColorChangeInCatalogTab-CatchWeightItems
   Scenario: Test Scenario to Verify Icon Color Change In Catalog -  CatchWeightItems
     Given  user must be on Order Entry Page

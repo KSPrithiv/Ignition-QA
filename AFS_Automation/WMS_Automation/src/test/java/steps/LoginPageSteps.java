@@ -17,6 +17,7 @@ import lombok.extern.slf4j.Slf4j;
 import objects.userdata.UserData;
 import org.aeonbits.owner.ConfigFactory;
 import org.openqa.selenium.chrome.ChromeDriver;
+import ui.pages.BasePage;
 import ui.pages.LoginPage;
 
 import static common.setup.DriverManager.*;
@@ -27,6 +28,7 @@ import static common.setup.DriverManager.*;
 @Slf4j
 public class LoginPageSteps {
     LoginPage loginPage = new LoginPage();
+    BasePage basePage = new BasePage();
     public Waiters waiters;
     public static Environment environment;
 
@@ -72,6 +74,12 @@ public class LoginPageSteps {
         loginPage.fillInPasswordField(userData.getAdminPassword());
         loginPage.clickSignIn();
         Waiters.waitABit(30_000);
+    }
+
+    @Step
+    @And("Deletes cookies on application")
+    public void deleteCookies() {
+        basePage.deleteCookies();
     }
 
     @Step
