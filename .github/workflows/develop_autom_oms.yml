@@ -6,9 +6,9 @@ on:
  
 
 jobs:
-  job1:
-    name : OMS Automation
-    runs-on: self-hosted
+#   job1:
+#     name : OMS Automation
+#     runs-on: self-hosted
     
     
 #     steps:
