@@ -63,7 +63,7 @@ public class MailSend
             String filename="E:\\GithubBuilds\\IgnitionQA\\_work\\ignition-qa\\ignition-qa\\AFS_Automation\\OMS_Automation\\Reports\\extent\\Index.html";
             //Composing mail
             BodyPart objMessageBodyPart = new MimeBodyPart();
-            objMessageBodyPart.setContent("Hi,"+"Santhosh, Good Afternoon..Please "+"\n"+TestBase.testEnvironment.get_url(), "text/html");
+            objMessageBodyPart.setContent("Hi,"+"Santhosh, Good Afternoon..Please click this link for OMS Report ==> https://reports.cucumber.io/report-collections/8888a8ad-8cc0-4a41-84ca-07657c39e815"+"\n"+TestBase.testEnvironment.get_url(), "text/html");
             Multipart multipart = new MimeMultipart();
             multipart.addBodyPart(objMessageBodyPart);
             objMessageBodyPart = new MimeBodyPart();
