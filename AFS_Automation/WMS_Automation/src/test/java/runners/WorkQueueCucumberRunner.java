@@ -69,11 +69,8 @@ public class WorkQueueCucumberRunner extends AbstractTestNGCucumberTests {
                 driverThreadLocal.get().close();
                 driverThreadLocal.get().quit();
             } catch (Exception e) {
-                //   FileUtils.forceDelete(new File("C:/Users/Irina.Holovan/Desktop/chrome/" + DriverManager.COUNTER));
-                System.out.println("Error closing and quitting the web driver: " + e.getMessage());
-                if (getDriver() instanceof ChromeDriver) {
+                   if (getDriver() instanceof ChromeDriver) {
                     try {
-                        //  FileUtils.forceDelete(new File("C:/Users/Irina.Holovan/Desktop/chrome/" + DriverManager.COUNTER));
                         Runtime.getRuntime().exec("taskkill /F /IM chromedriver.exe");
                     } catch (IOException ex) {
                         System.out.println("Error force quitting the ChromeDriver process: " + ex.getMessage());
@@ -89,8 +86,5 @@ public class WorkQueueCucumberRunner extends AbstractTestNGCucumberTests {
     public static void afterClass() throws InterruptedException, MessagingException, IOException {
         //Directory_Change.uniqueReport();
     //    MailSend_WMS.sendMail();
-
-
-
     }
 }

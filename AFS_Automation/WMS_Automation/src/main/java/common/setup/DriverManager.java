@@ -168,7 +168,7 @@ public class DriverManager {
     }
 
     public static void openPage(String url) {
-        getDriver().manage().deleteAllCookies();
+      //  getDriver().manage().deleteAllCookies();
         getDriver().manage().window().maximize();
         getDriver().navigate().to(url);
         getDriver().manage().timeouts().implicitlyWait(150, TimeUnit.SECONDS);
