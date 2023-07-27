@@ -22,7 +22,6 @@ Feature: Badge Builder Icon Selection
 
   @VerifyChangeInPickUpOrder0017
   Scenario:  Test Scenario to verify Icon color change in pick up order
-#    Given  User on Order Entry Page
 #    When   Click on Back
     Then   Select any date from Pickup Order
     And    Add Product in Order Entry
