@@ -146,9 +146,9 @@ public class IconsSelectionPageStep2 {
         //badgeBuilderPage.ChangeAccount1();
 //       badgeBuilderPage.PopupDiscardAll();
 //        badgeBuilderPage.RoutePopup();
-        Thread.sleep(5000);
+//        Thread.sleep(5000);
         badgeBuilderPage.StartOrder();
-        Thread.sleep(5000);
+//        Thread.sleep(5000);
         badgeBuilderPage.NoPendingOrderPopup();
         //badgeBuilderPage.StartOrder();
         badgeBuilderPage.PopupOKBtn();
@@ -189,7 +189,8 @@ public class IconsSelectionPageStep2 {
     public void add_product_in_order_entry() throws AWTException, InterruptedException {
         badgeBuilderPage = new BadgeBuilderPage(driver, scenario);
         badgeBuilderPage1 = new BadgeBuilderPage1(driver, scenario);
-        HelpersMethod.waitTillPageLoaded(driver, 2000);
+//        HelpersMethod.waitTillPageLoaded(driver, 2000);
+        Thread.sleep(3000);
         badgeBuilderPage.PopupOKBtn();
         badgeBuilderPage1.POBox1();
         //badgeBuilderPage.PopupOKBtn();
