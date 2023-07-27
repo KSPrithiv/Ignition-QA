@@ -72,7 +72,7 @@ public class InboundCucumberRunner extends AbstractTestNGCucumberTests {
     }
     @AfterClass
     public static void afterClass() throws InterruptedException, MessagingException, IOException {
-        MailSend_WMS.sendMail();
+      //  MailSend_WMS.sendMail();
 
 
     }

@@ -21,7 +21,7 @@ import pages_DSD_OMS.login.LoginPage;
 @CucumberOptions
         (features =
                 {
-                        //"src/test/resources/features_DSD_OMS/AllOrderFeature",
+                        "src/test/resources/features_DSD_OMS/AdminReports",
                         //"src/test/resources/features_DSD_OMS/ARInquiryFeature",
                         //"src/test/resources/features_DSD_OMS/BillToBill(DSD)",
                         //"src/test/resources/features_DSD_OMS/CatalogFeature",
@@ -54,15 +54,16 @@ import pages_DSD_OMS.login.LoginPage;
                         //"src/test/resources/features_Shared/features_Shared_DSD/MyAccountFeature/AddPaymentInfoDelete.feature",
                         //"src/test/resources/features_Shared/features_Shared_DSD/MyAccountFeature/Additional_Email_recipient_OMSi9118DeleteFunctionality.feature",
                         //"src/test/resources/features_Shared/features_Shared_DSD/MyAccountFeature/AddPaymentInfoCheckPreferred.feature",
-//                        "src/test/resources/features_Shared/features_Shared_DSD/ThemeBuilderFeature/themeBuilderFeatures1.feature",
+                        //"src/test/resources/features_Shared/features_Shared_DSD/ThemeBuilderFeature/themeBuilderFeatures1.feature",
                         //"src/test/resources/features_Shared/features_Shared_DSD/ThemeBuilderFeature/themeBuilderFeatures2_Phase2.feature",
 //                        "src/test/resources/features_Shared/features_Shared_DSD/CRMFeature/crmFeatures.feature",
 //                        "src/test/resources/features_Shared/features_Shared_DSD/CRMFeature/crmFeatures1.feature",
+
                         //"src/test/resources/features_Shared/features_Shared_DSD/CRMFeature/crmFeatures2.feature",
                         //"src/test/resources/features_Shared/features_Shared_DSD/CRMFeature/crmFeatures3.feature",
                         //"src/test/resources/features_Shared/features_Shared_DSD/MyAccount_NewAddress_Add.feature",
-                      "src/test/resources/features_Shared/features_Shared_DSD/BadgeBuilderFeature",
-                        "src/test/resources/features_Shared/features_Shared_DSD/BadgeBuilderFeature_Phase2",
+                      //"src/test/resources/features_Shared/features_Shared_DSD/BadgeBuilderFeature",
+                        //"src/test/resources/features_Shared/features_Shared_DSD/BadgeBuilderFeature_Phase2",
 
 
                 },
@@ -72,13 +73,12 @@ import pages_DSD_OMS.login.LoginPage;
                         "html:target/cucumber-html-report.html",
                         "com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:Reports/spark/",
                         "rerun:target/failedrerun.txt"},
-                monochrome = true)
+                monochrome = true,tags = "@RegisteredUser")
 
 public class TestRunnSingleSce extends AbstractTestNGCucumberTests {
     /* Created by Divya.Ramadas@afsi.com */
 
     @Parameters({"environment" })
-
     @BeforeClass
     public static void beforeClass(@Optional("environment") String envi) {
         try {

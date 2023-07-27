@@ -1,17 +1,23 @@
 package steps.lookup.lookuplocation;
 
+import common.constants.FilePaths;
 import common.constants.TimeFormats;
+import common.utils.objectmapper.ObjectMapperWrapper;
 import common.utils.time.TimeConversion;
 import io.cucumber.java.en.And;
 import io.qameta.allure.Step;
 import lombok.extern.slf4j.Slf4j;
+import objects.countingsessions.CountingSessionsDTO;
+import objects.lookupproductslocationsdata.LookupDataDTO;
 import ui.pages.lookup.lookuplocation.LocationLookupPage;
 
 import java.util.Calendar;
+import java.util.List;
 
 @Slf4j
 public class LocationLookupPageSteps {
     LocationLookupPage locationLookupPage = new LocationLookupPage();
+    LookupDataDTO lookupDataDTO = new ObjectMapperWrapper().getObject(FilePaths.LOOKUP_DATA, LookupDataDTO.class);
 
     @Step
     @And("Waits for Location Lookup page to load")
@@ -25,6 +31,17 @@ public class LocationLookupPageSteps {
     public void typeLocation(String location) {
         log.info("User types location on Lookup Location page");
         locationLookupPage.typeLocation(location);
+    }
+
+    @Step
+    @And("User types location by index {int} on Lookup Location page")
+    public void typeLocationByIndex(int index) {
+        log.info("User types location on Lookup Location page");
+        List<String> locations = List.of(lookupDataDTO.getLookupLocations().getLookupLocation1(), lookupDataDTO
+                .getLookupLocations().getLookupLocation2(), lookupDataDTO.getLookupLocations().getLookupLocation3(),
+                 lookupDataDTO.getLookupLocations().getLookupLocation4(), lookupDataDTO.getLookupLocations()
+                .getLookupLocation5());
+        locationLookupPage.typeLocation(locations.get(index));
     }
 
     @Step
@@ -206,6 +223,17 @@ public class LocationLookupPageSteps {
     public void selectsLabelType(String type) {
         log.info("User selects Label type on Lookup Location page");
         locationLookupPage.selectLabelType(type);
+    }
+
+    @Step
+    @And("User selects Label type by index {int} on Lookup Location page")
+    public void selectsLabelType(int index) {
+        log.info("User selects Label type by index on Lookup Location page");
+        List<String> labels = List.of(lookupDataDTO.getLookupLocations().getLookupLocation1(), lookupDataDTO
+                .getLookupLocations().getLookupLocation2(), lookupDataDTO.getLookupLocations().getLookupLocation3(),
+                 lookupDataDTO.getLookupLocations().getLookupLocation4(), lookupDataDTO.getLookupLocations()
+                .getLookupLocation5());
+        locationLookupPage.selectLabelType(labels.get(index));
     }
 
     @Step

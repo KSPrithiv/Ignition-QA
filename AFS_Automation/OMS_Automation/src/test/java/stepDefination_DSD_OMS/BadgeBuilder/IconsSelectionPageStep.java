@@ -68,8 +68,8 @@ public class IconsSelectionPageStep {
 
         loginpage = new LoginPage(driver, scenario);
         badgeBuilderPage = new BadgeBuilderPage(driver, scenario);
-        loginpage.EnterUsername(TestBase.testEnvironment.getAdminUser());
-        loginpage.EnterPassword(TestBase.testEnvironment.getAdminPass());
+        loginpage.EnterUsername(TestBase.testEnvironment.username());
+        loginpage.EnterPassword(TestBase.testEnvironment.password());
         //loginpage.ClickSignin();
         badgeBuilderPage.ClickSignin1();
 
@@ -82,17 +82,12 @@ public class IconsSelectionPageStep {
         homepage.VerifyHomePage();
         // adminHomePage = new AdminHomePage(driver,scenario);
         //adminHomePage.SelectCompany();
-
-
     }
 
     @Then("Click on General Setting tab")
     public void click_on_general_setting_tab() throws InterruptedException {
 
         badgeBuilderPage = new BadgeBuilderPage(driver, scenario);
-
-        badgeBuilderPage.ClicOnHumburger1();
-
         badgeBuilderPage.ClicOnGeneralSetting();
 
     }
@@ -305,13 +300,13 @@ public class IconsSelectionPageStep {
 
     @When("Login to Client portal")
     public void login_to_client_portal() throws InterruptedException, AWTException {
-        loginpage = new LoginPage(driver, scenario);
+     /*   loginpage = new LoginPage(driver, scenario);
         badgeBuilderPage = new BadgeBuilderPage(driver, scenario);
         loginpage.EnterUsername(TestBase.testEnvironment.DummyUserTest());
         loginpage.EnterPassword(TestBase.testEnvironment.DummyPassTest());
         //loginpage.ClickSignin();
         badgeBuilderPage.ClickSignin1();
-//        Thread.sleep(4000);
+        Thread.sleep(4000);*/
 
 
     }
@@ -330,9 +325,9 @@ public class IconsSelectionPageStep {
         badgeBuilderPage = new BadgeBuilderPage(driver, scenario);
 
         badgeBuilderPage.ClicOnGeneralSetting();
-//        Thread.sleep(10000);
+        Thread.sleep(10000);
         badgeBuilderPage.Clientside();
-//        Thread.sleep(10000);
+        Thread.sleep(10000);
 
         badgeBuilderPage.selectCompany();
 
@@ -422,6 +417,13 @@ public class IconsSelectionPageStep {
 
     }
 
+    @Given("user must be on Order Entry Page")
+    public void user_must_be_on_order_entry_page() throws InterruptedException {
+       // badgeBuilderPage = new BadgeBuilderPage(driver, scenario);
+        //Thread.sleep(10000);
+        //badgeBuilderPage.PopupOKBtn();
+    }
+
     @Then("user should navigate to Catalog tab")
     public void user_should_navigate_to_catalog_tab() throws InterruptedException {
         badgeBuilderPage = new BadgeBuilderPage(driver, scenario);
@@ -472,7 +474,7 @@ public class IconsSelectionPageStep {
 
     @Then("User should navigate to Order Tab")
     public void user_should_navigate_to_order_tab() throws InterruptedException {
-       Thread.sleep(8000);
+       Thread.sleep(10000);
         badgeBuilderPage = new BadgeBuilderPage(driver, scenario);
 
         {
@@ -552,7 +554,7 @@ public class IconsSelectionPageStep {
         badgeBuilderPage = new BadgeBuilderPage(driver, scenario);
         badgeBuilderPage.SelectProduct();
         badgeBuilderPage.OrderGuideColorCheck();
-//        Thread.sleep(6000);
+        Thread.sleep(6000);
     }
 
     @Given("User should navigate to Open Orders Tab")
@@ -616,8 +618,6 @@ public class IconsSelectionPageStep {
     public void click_on_new_standing_order_and_select_date() throws InterruptedException {
         badgeBuilderPage = new BadgeBuilderPage(driver, scenario);
        // badgeBuilderPage.ClickOnStartStandingOrder();
-        badgeBuilderPage1=new BadgeBuilderPage1(driver,scenario);
-
 
         badgeBuilderPage.ClickOnNewStandingOrderArrow();
         badgeBuilderPage.ClickOnStartStandingOrder1();

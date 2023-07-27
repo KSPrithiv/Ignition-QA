@@ -1,6 +1,5 @@
 package pages_DSD_OMS.Catalog;
 
-//import com.sun.org.apache.xml.internal.security.c14n.implementations.Canonicalizer20010315ExclWithComments;
 import helper.HelpersMethod;
 import io.cucumber.java.Scenario;
 import org.openqa.selenium.*;
@@ -1278,6 +1277,7 @@ public class CatalogPage
         try
         {
             WebElement listInput=HelpersMethod.FindByElement(driver,"xpath","//input[contains(@id,'catalog-list-view-quantity-input')]");
+            HelpersMethod.ScrollElement(driver,listInput);
             HelpersMethod.ActSendKey(driver,listInput,80,s);
         }
         catch (Exception e){}

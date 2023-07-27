@@ -127,9 +127,6 @@ public class DockManagementSummaryPage extends BasePage {
     By xrepNdFrzTask = By.xpath("//div[contains(@class, 'i-card__card__body')][.//h4[text()='Assignments by Group']]//*[text()='XREP ND FRZ']");
 
     public void waitForDockManagementSummaryPageToLoad() {
-        refresh();
-        refresh();
-        refresh();
         Waiters.waitABit(4000);
         Waiters.waitForElementToBeDisplay(getTopIcon());
     }

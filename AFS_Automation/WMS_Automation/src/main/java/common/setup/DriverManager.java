@@ -1,8 +1,5 @@
 package common.setup;
 
-import com.codeborne.selenide.Configuration;
-import com.codeborne.selenide.Screenshots;
-import common.utils.Waiters;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import lombok.SneakyThrows;
 import org.apache.commons.io.FileUtils;
@@ -46,7 +43,6 @@ public class DriverManager {
                     break;
                 case "chrome":
                     WebDriverManager.chromedriver().setup();
-      //              System.setProperty("webdriver.chrome.driver", "C:\\Users\\Irina.Holovan\\Documents\\WMS\\IgnitionTestAutomation\\WMSAutomation\\src\\test\\resources\\drivers\\chromedriver.exe");
                     createdDriver = new ChromeDriver(buildChrome());
                     //     storedDrivers.add(createdDriver);
                     driverThreadLocal.set(createdDriver);
@@ -168,7 +164,7 @@ public class DriverManager {
     }
 
     public static void openPage(String url) {
-        getDriver().manage().deleteAllCookies();
+      //  getDriver().manage().deleteAllCookies();
         getDriver().manage().window().maximize();
         getDriver().navigate().to(url);
         getDriver().manage().timeouts().implicitlyWait(150, TimeUnit.SECONDS);
