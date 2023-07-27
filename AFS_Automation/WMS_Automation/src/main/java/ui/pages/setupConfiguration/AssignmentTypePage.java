@@ -38,13 +38,13 @@ public class AssignmentTypePage extends BasePage{
         }
     }
     public void searchBoxActionAssignmentType(){
-        Waiters.waitABit(12000);
+        Waiters.waitABit(9000);
         Waiters.waitForPresenceOfElement("form > .i-icon.i-search-box__search");
         Waiters.waitForElementToBeDisplay(searchBox6());
         clickOnElement(searchBox6);
         try {
             searchBox6().sendKeys("A", Keys.ENTER);
-            Waiters.waitABit(4000);
+//            Waiters.waitABit(4000);
         } catch (Exception e) {
         }
     }
@@ -76,7 +76,7 @@ public class AssignmentTypePage extends BasePage{
         catch (Exception e) {
         }
 
-        Waiters.waitABit(4000);
+//        Waiters.waitABit(4000);
     }
 
     public void rownumber1(){
@@ -95,7 +95,7 @@ public class AssignmentTypePage extends BasePage{
                     String cellText = cell.getText();
 
                     if (cellText.toLowerCase().contains(searchKey.toLowerCase())) {
-                        System.out.println("SEARCH KEYWORD FOUND: " + cellText);
+//                        System.out.println("SEARCH KEYWORD FOUND: " + cellText);
                         isRowMatch = true;
 
                         break;
@@ -131,7 +131,7 @@ public class AssignmentTypePage extends BasePage{
         clickOnElement(searchBox6);
         try {
             searchBox6().sendKeys("zzzzzz",Keys.ENTER);
-            Waiters.waitABit(4000);
+//            Waiters.waitABit(4000);
             String message2=getMessage().getText();
             System.out.println("MESSAGE DISPLAYED AFTER ENTERING NON EXISTING KEYWORD: "+message2);
         } catch (Exception e) {

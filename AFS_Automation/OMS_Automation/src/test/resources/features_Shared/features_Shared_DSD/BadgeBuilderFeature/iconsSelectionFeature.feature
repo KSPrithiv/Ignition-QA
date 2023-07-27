@@ -90,7 +90,6 @@ Feature: Badge Builder Icon Selection
 
   @VerifyColorChangeInCatalogTab-CatchWeightItems
   Scenario: Test Scenario to Verify Icon Color Change In Catalog -  CatchWeightItems
-    Given  user must be on Order Entry Page
     Then   user should navigate to Catalog tab
     And   Search for Catchweight Item
     Then  Compare Catlog CatchWeightItems Icon Color
