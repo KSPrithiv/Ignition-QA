@@ -2,7 +2,7 @@ name: OMS Regression
 on:
  push:
     branches:
-      - develop_autom
+      - b
  
 
 jobs:
