@@ -88,6 +88,7 @@ public class IconsSelectionPageStep {
     public void click_on_general_setting_tab() throws InterruptedException {
 
         badgeBuilderPage = new BadgeBuilderPage(driver, scenario);
+        badgeBuilderPage.ClicOnHumburger1();
         badgeBuilderPage.ClicOnGeneralSetting();
 
     }

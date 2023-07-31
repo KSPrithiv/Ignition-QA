@@ -1,0 +1,71 @@
+name: OMS Regression
+on:
+  schedule:
+    - cron:  '0 0 * * *'
+  workflow_dispatch:
+    inputs:
+      branch:
+        description: 'Branch name'
+        default: 'main'
+ 
+
+jobs:
+  job1:
+    name : OMS Automation
+    runs-on: self-hosted
+    
+    
+    steps:
+      - name: Checkout source code
+        uses: actions/checkout@v3
+      - uses: actions/checkout@v3
+      - uses: actions/setup-java@v3
+        with:
+           distribution: temurin
+           java-version: '16'
+           cache: maven
+           -name: Build with Maven
+           run: mvn -B package --file pom.xml
+      
+      
+      
+      
+      - name: OMS Automation module-11
+        run: |
+         mvn install test -DsuiteXmlFile='TestNG_SO_Inventory.xml'
+        working-directory: AFS_Automation/OMS_Automation
+        
+       
+        
+      
+      
+        
+# ##########################################################################        
+  job2:  
+    needs: job1
+    name : job2 name
+    if: success() || failure()
+    runs-on: self-hosted
+    steps:
+      - name: Checkout source code
+        uses: actions/checkout@v3
+      - uses: actions/checkout@v3
+      - uses: actions/setup-java@v3
+        with:
+           distribution: temurin
+           java-version: '16'
+           cache: maven
+           -name: Build with Maven
+           run: mvn -B package --file pom.xml
+     
+      - name: OMS Automation module-12
+        run: |
+         mvn install test -DsuiteXmlFile='TestNG_Statements_WebORder_UserManagement.xml'
+        working-directory: AFS_Automation/OMS_Automation 
+        
+       
+        
+      
+     
+        
+# ########################################################################### 
