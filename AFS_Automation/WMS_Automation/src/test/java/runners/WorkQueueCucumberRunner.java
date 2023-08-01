@@ -23,7 +23,7 @@ import java.io.IOException;
 import static common.setup.DriverManager.*;
 import static common.setup.DriverManager.getDriver;
 
-@CucumberOptions(features = {"src/test/resources/features/workqueue/assignmentlist/filteroption"},
+@CucumberOptions(features = {"src/test/resources/features/workqueue"},
         glue = {"steps"},
         plugin = {"pretty",
                 "json:target/cucumber.json",

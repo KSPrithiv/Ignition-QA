@@ -25,7 +25,7 @@ import static com.codeborne.selenide.Selenide.open;
 import static common.setup.DriverManager.*;
 import static common.setup.DriverManager.getDriver;
 
-@CucumberOptions(features = {"WMSAutomation/src/test/resources/features/inbound"},
+@CucumberOptions(features = {"src/test/resources/features/inbound"},
         glue = {"steps"},
         plugin = {"pretty",
                 "json:target/cucumber.json",
