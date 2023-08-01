@@ -1,0 +1,141 @@
+name: OMS Regression
+on:
+ push:
+    branches:
+      - b
+ 
+
+jobs:
+  job1:
+    name : OMS Automation
+    runs-on: self-hosted
+    
+    
+    steps:
+      - name: Checkout source code
+        uses: actions/checkout@v3
+      - uses: actions/checkout@v3
+      - uses: actions/setup-java@v3
+        with:
+           distribution: temurin
+           java-version: '16'
+           cache: maven
+           -name: Build with Maven
+           run: mvn -B package --file pom.xml
+      
+      
+      
+      
+      - name: OMS Automation module-1
+        run: |
+         mvn install test -DsuiteXmlFile='TestNG_OE.xml'
+        working-directory: AFS_Automation/OMS_Automation
+        
+       
+        
+      
+      
+        
+# ##########################################################################        
+  job2:  
+    needs: job1
+    name : job2 name
+    if: success() || failure()
+    runs-on: self-hosted
+    steps:
+      - name: Checkout source code
+        uses: actions/checkout@v3
+      - uses: actions/checkout@v3
+      - uses: actions/setup-java@v3
+        with:
+           distribution: temurin
+           java-version: '16'
+           cache: maven
+           -name: Build with Maven
+           run: mvn -B package --file pom.xml
+     
+      - name: OMS Automation module-2
+        run: |
+         mvn install test -DsuiteXmlFile='TestNG_OE1.xml'
+        working-directory: AFS_Automation/OMS_Automation 
+        
+       
+        
+      
+     
+        
+# ###########################################################################        
+  job3:  
+    needs: job2
+    name : job3 name
+    if: success() || failure()
+    runs-on: self-hosted
+    steps:
+      - name: Checkout source code
+        uses: actions/checkout@v3
+      - uses: actions/checkout@v3
+      - uses: actions/setup-java@v3
+        with:
+           distribution: temurin
+           java-version: '16'
+           cache: maven
+           -name: Build with Maven
+           run: mvn -B package --file pom.xml
+   
+      - name: OMS Automation module-3
+        run: |
+         mvn install test -DsuiteXmlFile='TestNG_OE2.xml'
+        working-directory: AFS_Automation/OMS_Automation 
+        
+       
+        
+      
+              
+              # ###########################################################################        
+  job4:  
+    needs: job3
+    name : job4 name
+    if: success() || failure()
+    runs-on: self-hosted
+    steps:
+      - name: Checkout source code
+        uses: actions/checkout@v3
+      - uses: actions/checkout@v3
+      - uses: actions/setup-java@v3
+        with:
+           distribution: temurin
+           java-version: '16'
+           cache: maven
+           -name: Build with Maven
+           run: mvn -B package --file pom.xml
+   
+      - name: OMS Automation module-4
+        run: |
+         mvn install test -DsuiteXmlFile='TestNG_OE3.xml'
+        working-directory: AFS_Automation/OMS_Automation
+        
+        
+        
+        
+         # ###########################################################################        
+  job5:  
+    needs: job4
+    name : job5 name
+    if: success() || failure()
+    runs-on: self-hosted
+    steps:
+      - name: Checkout source code
+        uses: actions/checkout@v3
+      - uses: actions/checkout@v3
+      - uses: actions/setup-java@v3
+        with:
+           distribution: temurin
+           java-version: '16'
+           cache: maven
+           -name: Build with Maven
+           run: mvn -B package --file pom.xml
+   
+      - name: OMS Automation module-5
+        run: |
+         mvn install test -DsuiteXmlFile='TestNG_OG_PO_ProdRef.xml'
+        working-directory: AFS_Automation/OMS_Automation

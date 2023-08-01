@@ -7,6 +7,7 @@ on:
       branch:
         description: 'Branch name'
         default: 'main'
+
  
 
 jobs:
@@ -32,7 +33,8 @@ jobs:
       
       - name: OMS Automation module-11
         run: |
-         mvn install test -DsuiteXmlFile='TestNG_SO_Inventory.xml'
+         mvn compile
+         mvn clean install test -DsuiteXmlFile='TestNG_BillToBill_CustInq_Quote.xml'
         working-directory: AFS_Automation/OMS_Automation
         
        
@@ -60,7 +62,7 @@ jobs:
      
       - name: OMS Automation module-12
         run: |
-         mvn install test -DsuiteXmlFile='TestNG_Statements_WebORder_UserManagement.xml'
+         mvn clean install test -DsuiteXmlFile='TestNG_Catalog1.xml'
         working-directory: AFS_Automation/OMS_Automation 
         
        

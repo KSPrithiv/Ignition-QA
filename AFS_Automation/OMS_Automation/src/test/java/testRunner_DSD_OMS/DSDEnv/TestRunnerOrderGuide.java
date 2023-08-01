@@ -74,7 +74,8 @@ public class TestRunnerOrderGuide extends AbstractTestNGCucumberTests
     @AfterMethod
     public static void afterclass() throws InterruptedException, MessagingException, IOException
     {
-        Thread.sleep(50000);
+        Thread.sleep(1000);
+        MailSend.sendMail();
         TestBase.CloseBrowser();
 
         if(TestBase.testEnvironment.get_browser().equalsIgnoreCase("Firefox"))

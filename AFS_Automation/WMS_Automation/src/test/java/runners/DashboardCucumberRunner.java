@@ -24,7 +24,7 @@ import static common.setup.DriverManager.*;
 @LinkedListeners({
     TestListener.class
 })
-@CucumberOptions(features = {"WMSAutomation/src/test/resources/features/dashboard"},
+@CucumberOptions(features = {"src/test/resources/features/dashboard"},
         glue = {"steps"},
         plugin = {"pretty",
                 "json:target/cucumber.json",
