@@ -68,8 +68,8 @@ public class IconsSelectionPageStep {
 
         loginpage = new LoginPage(driver, scenario);
         badgeBuilderPage = new BadgeBuilderPage(driver, scenario);
-        loginpage.EnterUsername(TestBase.testEnvironment.username());
-        loginpage.EnterPassword(TestBase.testEnvironment.password());
+        loginpage.EnterUsername(TestBase.testEnvironment.getAdminUser());
+        loginpage.EnterPassword(TestBase.testEnvironment.getAdminPass());
         //loginpage.ClickSignin();
         badgeBuilderPage.ClickSignin1();
 
@@ -299,15 +299,15 @@ public class IconsSelectionPageStep {
         badgeBuilderPage.Click_On_Signout();
     }
 
-    @When("Login to Client portal")
-    public void login_to_client_portal() throws InterruptedException, AWTException {
-     /*   loginpage = new LoginPage(driver, scenario);
+    @When("Login to Client portal BadgeBuilder1")
+    public void login_to_client_portal_BadgeBuilder1() throws InterruptedException, AWTException {
+        loginpage = new LoginPage(driver, scenario);
         badgeBuilderPage = new BadgeBuilderPage(driver, scenario);
         loginpage.EnterUsername(TestBase.testEnvironment.DummyUserTest());
         loginpage.EnterPassword(TestBase.testEnvironment.DummyPassTest());
         //loginpage.ClickSignin();
         badgeBuilderPage.ClickSignin1();
-        Thread.sleep(4000);*/
+//        Thread.sleep(4000);
 
 
     }
@@ -326,9 +326,9 @@ public class IconsSelectionPageStep {
         badgeBuilderPage = new BadgeBuilderPage(driver, scenario);
 
         badgeBuilderPage.ClicOnGeneralSetting();
-        Thread.sleep(10000);
+//        Thread.sleep(10000);
         badgeBuilderPage.Clientside();
-        Thread.sleep(10000);
+//        Thread.sleep(10000);
 
         badgeBuilderPage.selectCompany();
 
@@ -618,7 +618,9 @@ public class IconsSelectionPageStep {
     @Then("Click on New Standing order and select date")
     public void click_on_new_standing_order_and_select_date() throws InterruptedException {
         badgeBuilderPage = new BadgeBuilderPage(driver, scenario);
-       // badgeBuilderPage.ClickOnStartStandingOrder();
+        badgeBuilderPage1 = new BadgeBuilderPage1(driver, scenario);
+
+        // badgeBuilderPage.ClickOnStartStandingOrder();
 
         badgeBuilderPage.ClickOnNewStandingOrderArrow();
         badgeBuilderPage.ClickOnStartStandingOrder1();

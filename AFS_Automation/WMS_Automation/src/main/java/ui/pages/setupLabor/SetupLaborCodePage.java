@@ -223,6 +223,7 @@ public class SetupLaborCodePage extends BasePage {
         public void enterCode() {
             Waiters.waitABit(2000);
             Waiters.waitForElementToBeDisplay(getCodeText());
+            getCodeText().clear();
             getCodeText().sendKeys("08@#$a2",Keys.ENTER);
 
     }
@@ -244,6 +245,23 @@ public class SetupLaborCodePage extends BasePage {
             Waiters.waitABit(5000);
         }catch (Exception e){}
     }
+    public void selectUser1() {
+        try {
+            Waiters.waitForElementToBeDisplay(getUserDropdown());
+            Waiters.waitABit(5000);
+
+            clickOnElement(findWebElement(By.xpath("//span[@class='k-icon k-i-close']")));
+            Waiters.waitABit(5000);
+
+            clickOnElement(getUserDropdown());
+            clickOnElement(findWebElement(By.xpath("/html/body[@class='dialog']//ul[@role='listbox']/li[2]//label")));
+            getUserDropdown().click();
+//            getSaveBtn().click();
+//            Waiters.waitABit(5000);
+//            refresh();
+//            Waiters.waitABit(5000);
+        }catch (Exception e){}
+    }
     public void clickAddFilterButton() {
         Waiters.waitABit(2000);
         Waiters.waitForElementToBeDisplay(addFilterButton);
@@ -258,7 +276,7 @@ public class SetupLaborCodePage extends BasePage {
                 count++;
             }
         }
-        System.out.println("NUMBER OF CODES CONTAINS LETTER 'H' : "+count);
+        System.out.println("NUMBER OF CODES CONTAINS LETTER 'A' : "+count);
     }
     public void clickCodeFilter() {
         Waiters.waitForElementToBeDisplay(codeFilter);

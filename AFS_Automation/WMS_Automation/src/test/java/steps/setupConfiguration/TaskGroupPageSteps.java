@@ -12,6 +12,8 @@ import ui.pages.setupLabor.SetupLaborCodePage;
 public class TaskGroupPageSteps {
     WebDriver driver;
     SetupLaborCodePage setupLaborCodePage=new SetupLaborCodePage(driver);
+    AssignmentTypePage assignmentTypePage=new AssignmentTypePage();
+
     TaskGroupPage taskGroupPage=new TaskGroupPage();
     SoftAssert softAssert = new SoftAssert();
 
@@ -28,20 +30,31 @@ public class TaskGroupPageSteps {
     }
     @And("Verify Search field")
     public void verifySearchfield() {
-        softAssert.assertTrue(taskGroupPage.isSearchFieldDisplayed(), "SearchField is not displayed");
+        softAssert.assertTrue(taskGroupPage.isSearchFieldDisplayed(), "Search Field is not displayed");
 //        Assert.assertEquals(true, taskGroupPage.isSearchFieldDisplayed(), " Search field is not displayed");
 //        taskGroupPage.verify();
     }
     @And("Verify Item found is displayed")
     public void verifyItemFound() {
-//        softAssert.assertTrue(taskGroupPage.isSearchFieldDisplayed(), "SearchField is not displayed");
-        Assert.assertEquals(true, taskGroupPage.isSearchFieldDisplayed(), " Secondary colour not selected correctly");
+        softAssert.assertTrue(taskGroupPage.isItemFoundDisplayed(), "ItemFound Field is not displayed");
+//        Assert.assertEquals(true, taskGroupPage.isItemFoundDisplayed(), " Secondary colour not selected correctly");
+    }
+    @And("Verify Add Filter button is displayed")
+    public void verifyAddFilterButton() {
+        softAssert.assertTrue(taskGroupPage.isAddFilterDisplayed(), "Add Filter button is not displayed");
+//        Assert.assertEquals(true, taskGroupPage.isItemFoundDisplayed(), " Secondary colour not selected correctly");
     }
 
     @And("Go to TaskGroup Tab")
     public void clickTaskGroupTab() throws InterruptedException {
         log.info("click on Task Group");
         taskGroupPage.taskGroupTab();
+    }
+    @And("Click on Search field on TaskGroup Page")
+    public void clickTaskGroupTypeSearchField() throws InterruptedException {
+        log.info("click on Search field");
+        taskGroupPage.taskGroupTab();
+        assignmentTypePage.searchBoxActionAssignmentType();
     }
     @And("Creating TaskGroup with unique Code")
     public void createTaskGroupWithUniqueCode(){

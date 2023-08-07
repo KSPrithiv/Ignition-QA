@@ -51,6 +51,10 @@ public class JobTypePage extends BasePage {
         Waiters.waitForElementToBeDisplay(deleteBtn);
         clickOnElement(deleteBtn);
     }
+    public void clickEdit() {
+        Waiters.waitForElementToBeDisplay(editProductBtn);
+        clickOnElement(editProductBtn);
+    }
     public void displayMessage(){
         Waiters.waitForElementToBeDisplay(messageHeader);
         String message1=getMessage().getText().trim();

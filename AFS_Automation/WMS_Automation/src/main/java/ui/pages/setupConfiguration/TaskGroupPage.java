@@ -15,6 +15,9 @@ public class TaskGroupPage extends BasePage{
     By deleteProductBtn = By.xpath("//div[@class='i-toolbar-container ']//button[contains(@class, 'k-button-icontext') and position()=3]");
 
     By searchField=By.xpath("//input[@class='i-search-box__input']");
+    By itemFoundField=By.xpath("//span[@class='i-summary-area__main__label']");
+    By addFilterbtn=By.xpath("//button[@class='i-filter-tag__main']");
+
 
 
 
@@ -46,6 +49,7 @@ public class TaskGroupPage extends BasePage{
         }
             Assert.assertTrue(getSearchField().isDisplayed(),"Search field is not displayed");
     }
+
     public WebElement getTaskGroup() { return findWebElement(taskGroupTab); }
     public WebElement getCodeText() { return findWebElement(codeText); }
     public WebElement getDescriptionText() { return findWebElement(descriptionText); }
@@ -53,10 +57,16 @@ public class TaskGroupPage extends BasePage{
     public WebElement getEditBtn() { return findWebElement(editProductBtn); }
     public WebElement getDeleteBtn() { return findWebElement(deleteProductBtn); }
     public WebElement getSearchField() { return findWebElement(searchField); }
+    public WebElement getItemFoundField() { return findWebElement(itemFoundField); }
+    public WebElement getAddFilterd() { return findWebElement(addFilterbtn); }
+
+
     public String checkAddBtnDisabled() { return checkElementAttribute(getAddBtn(), "aria-disabled"); }
     public String isEditBtnDisabled() { return getElementAttribute(getEditBtn(), "aria-disabled"); }
     public String isDeleteBtnDisabled() { return getElementAttribute(getDeleteBtn(), "aria-disabled"); }
     public boolean isSearchFieldDisplayed() { return isElementDisplay(getSearchField()); }
-
+    public boolean isItemFoundDisplayed() { return isElementDisplay(getItemFoundField()); }
+    public boolean isAddFilterDisplayed() { return isElementDisplay(getAddFilterd()); }
+    public WebElement gettaskGroup() { return findWebElement(taskGroupTab); }
 
 }
