@@ -63,7 +63,7 @@ Feature: Badge Builder Icon Selection
     And    User should navigate to Badge Gallery - CatchWeightItems
     And    Change Color of the CatchWeightItems Icon
     And    Logout from Admin portal
-    And    Login to Client portal
+    And    Login to Client portal BadgeBuilder1
     Then   User should navigate to Client side
     And    Click on the Order Entry tab
     And    Select Account and start Order

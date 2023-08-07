@@ -5,7 +5,7 @@ Feature: Badge Builder Icon Selection
 
     @VerifyColorChangeInProductIcon-CatalogProductSearch
     Scenario: Test Scenario to verify change in catalog product icon color from Order Entry page
-      And    Login to Client portal
+      And    Login to Client portal BadgeBuilder1
       Then   User should navigate to Client side
       And    Click on the Order Entry tab
       And   Select Account and start Order - CatchWeightItems
