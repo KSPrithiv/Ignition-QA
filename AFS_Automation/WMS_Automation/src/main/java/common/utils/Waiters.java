@@ -13,6 +13,7 @@ import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import ui.pages.BasePage;
 
 import java.time.Duration;
 import java.util.List;
@@ -25,6 +26,7 @@ public class Waiters {
     public static final long defaultPollingTimeOut = 1;
     public static final long defaultTimeOut = 10;
     private static Wait<WebDriver> wait;
+    private BasePage basePage = new BasePage();
 
     @SneakyThrows
     public Waiters() {
@@ -100,6 +102,10 @@ public class Waiters {
 
     public static void waitForElementToBeClickable(WebElement element) {
         wait.until(ExpectedConditions.elementToBeClickable(element));
+    }
+
+    public void waitForElementToDisappear(By by) {
+       new WebDriverWait(getDriver(), Duration.ofSeconds(10)).until(ExpectedConditions.invisibilityOf(basePage.findWebElement(by)));
     }
 
     public static void waitABit(long milliSeconds) {

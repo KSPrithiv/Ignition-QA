@@ -44,12 +44,9 @@ public class DriverManager {
                 case "chrome":
                     WebDriverManager.chromedriver().setup();
                     createdDriver = new ChromeDriver(buildChrome());
-                    //     storedDrivers.add(createdDriver);
                     driverThreadLocal.set(createdDriver);
                     setPageLoadTimeout(120);
                     setScriptTimeout(120);
-                    System.out.println(" createdDriver " + createdDriver);
-                    System.out.println(" driverThreadLocal  " + driverThreadLocal);
             }
         } catch (Exception ex) {
             System.out.println(".CoutingCucumberRunner.startBrowserInstance  ex");
@@ -74,9 +71,15 @@ public class DriverManager {
         options.addArguments("--enable-automation");
         options.addArguments("--disable-gpu");
         options.addArguments("--remote-allow-origins=*");
+        options.addArguments("--disable-blink-features=AutomationControlled");
         options.setCapability("download.prompt_for_download", false);
         options.setCapability("download.directory_upgrade", true);
         options.setCapability("safebrowsing.enabled", false);
+        options.setCapability("download.prompt_for_download", false);
+        options.setCapability("acceptInsecureCerts", true);
+        options.setCapability("chrome.switches", Arrays.asList("--ignore-certificate-errors"));
+        options.setExperimentalOption("excludeSwitches", Collections.singletonList("enable-automation"));
+        options.setExperimentalOption("useAutomationExtension", true);
         //turn off message "Chrome is being controlled by automated test software"
      /*   options.setExperimentalOption("excludeSwitches", Collections.singletonList("enable-automation"));
         options.setExperimentalOption("useAutomationExtension", false);        //
@@ -164,7 +167,6 @@ public class DriverManager {
     }
 
     public static void openPage(String url) {
-      //  getDriver().manage().deleteAllCookies();
         getDriver().manage().window().maximize();
         getDriver().navigate().to(url);
         getDriver().manage().timeouts().implicitlyWait(150, TimeUnit.SECONDS);
