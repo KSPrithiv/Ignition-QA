@@ -2,10 +2,7 @@ package testRunner_DSD_OMS.DSDEnv;
 
 import io.cucumber.testng.AbstractTestNGCucumberTests;
 import io.cucumber.testng.CucumberOptions;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.Optional;
-import org.testng.annotations.Parameters;
+import org.testng.annotations.*;
 import util.MailSend;
 import util.TestBase;
 
@@ -36,7 +33,7 @@ import java.io.IOException;
 public class TestRunnerAdmin_Grid_Report_Security_ARInq extends AbstractTestNGCucumberTests
 {
     /* Created by Divya.Ramadas@afsi.com */
-    @Parameters({"environment"})
+  /*  @Parameters({"environment"})
     @BeforeClass
     public static void beforeClass(@Optional("environment") String envi)
     {
@@ -53,6 +50,35 @@ public class TestRunnerAdmin_Grid_Report_Security_ARInq extends AbstractTestNGCu
     {
         Thread.sleep(50000);
         //MailSend.sendMail();
+        TestBase.CloseBrowser();
+
+        if(TestBase.testEnvironment.get_browser().equalsIgnoreCase("Firefox"))
+        {
+            Runtime.getRuntime().exec("taskkill /F /IM geckodriver.exe");
+        }
+        else
+        if(TestBase.testEnvironment.get_browser().equalsIgnoreCase("Chrome"))
+        {
+            Runtime.getRuntime().exec("taskkill /F /IM chromedriver.exe");
+        }
+    }*/
+
+    @Parameters({"environment"})
+    @BeforeMethod
+    public static void beforeClass(@Optional("environment") String envi)
+    {
+        try
+        {
+            TestBase.InitializeProp(envi);
+            TestBase.SetDriver(TestBase.testEnvironment.get_browser());
+        }
+        catch (Exception e) { }
+    }
+
+    @AfterMethod
+    public static void afterclass() throws InterruptedException, MessagingException, IOException
+    {
+        Thread.sleep(50000);
         TestBase.CloseBrowser();
 
         if(TestBase.testEnvironment.get_browser().equalsIgnoreCase("Firefox"))

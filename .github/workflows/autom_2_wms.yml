@@ -1,10 +1,10 @@
-name: autom_2 WMS
+name: cron schedule WMS
 on:
  push:
-   branches:
-     - develop_autom_2
- workflow_dispatch:
-  
+    branches:
+      - develop_autom
+ 
+
 jobs:
   job1:
     name : WMS Automation
@@ -25,24 +25,116 @@ jobs:
       
       
       
-      - name: WMS Automation
+      
+      - name: WMS Automation module-1
         run: |
-         mvn install test -DsuiteXmlFile='RegressionTestNGRunner.xml'
+         mvn compile
+         mvn clean install test -DsuiteXmlFile='AppointmentsTestNGRunner.xml'
         working-directory: AFS_Automation/WMS_Automation 
         
        
         
       
-      - name: Add
-        if: always()
-        run: |
-          git add .
-          git commit -m "Add"
-          git push origin develop_autom_2
-                       
       
-      #- name: build for recent rep-gen
-        #if: always()
-        #run: |
-         #mvn install test -DsuiteXmlFile='msg_delay_wms.xml'
-        #working-directory: AFS_Automation/WMS_Automation
+        
+##########################################################################        
+  job2:  
+    needs: job1
+    name : job2 name
+    if: success() || failure()
+    runs-on: self-hosted
+    steps:
+      - name: Checkout source code
+        uses: actions/checkout@v3
+      - uses: actions/checkout@v3
+      - uses: actions/setup-java@v3
+        with:
+           distribution: temurin
+           java-version: '16'
+           cache: maven
+           -name: Build with Maven
+           run: mvn -B package --file pom.xml
+     
+      - name: WMS Automation module-2
+        run: |
+         mvn clean install test -DsuiteXmlFile='CountingTestNGRunner.xml'
+        working-directory: AFS_Automation/WMS_Automation 
+        
+       
+        
+      
+     
+        
+# ###########################################################################        
+  job3:  
+    needs: job2
+    name : job3 name
+    if: success() || failure()
+    runs-on: self-hosted
+    steps:
+      - name: Checkout source code
+        uses: actions/checkout@v3
+      - uses: actions/checkout@v3
+      - uses: actions/setup-java@v3
+        with:
+           distribution: temurin
+           java-version: '16'
+           cache: maven
+           -name: Build with Maven
+           run: mvn -B package --file pom.xml
+   
+      - name: WMS Automation module-3
+        run: |
+         mvn clean install test -DsuiteXmlFile='DashboardTestNGRunner.xml'
+        working-directory: AFS_Automation/WMS_Automation 
+        
+       
+        
+      
+              
+              # ###########################################################################        
+  job4:  
+    needs: job3
+    name : job4 name
+    if: success() || failure()
+    runs-on: self-hosted
+    steps:
+      - name: Checkout source code
+        uses: actions/checkout@v3
+      - uses: actions/checkout@v3
+      - uses: actions/setup-java@v3
+        with:
+           distribution: temurin
+           java-version: '16'
+           cache: maven
+           -name: Build with Maven
+           run: mvn -B package --file pom.xml
+   
+      - name: WMS Automation module-4
+        run: |
+         mvn clean install test -DsuiteXmlFile='InboundTestNGRunner.xml'
+        working-directory: AFS_Automation/WMS_Automation
+
+
+ ###########################################################################        
+  job5:  
+    needs: job4
+    name : job5 name
+    if: success() || failure()
+    runs-on: self-hosted
+    steps:
+      - name: Checkout source code
+        uses: actions/checkout@v3
+      - uses: actions/checkout@v3
+      - uses: actions/setup-java@v3
+        with:
+           distribution: temurin
+           java-version: '16'
+           cache: maven
+           -name: Build with Maven
+           run: mvn -B package --file pom.xml
+   
+      - name: WMS Automation module-5
+        run: |
+         mvn clean install test -DsuiteXmlFile='LoginTestNGRunner.xml'
+        working-directory: AFS_Automation/WMS_Automation

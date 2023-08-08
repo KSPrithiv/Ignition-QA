@@ -2,7 +2,7 @@ name: Telus CI CD
 on:
  push:
     branches:
-      - main
+      - b
  workflow_dispatch:
   
   

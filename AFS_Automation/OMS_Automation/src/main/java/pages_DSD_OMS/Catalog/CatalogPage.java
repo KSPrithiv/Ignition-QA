@@ -1277,6 +1277,7 @@ public class CatalogPage
         try
         {
             WebElement listInput=HelpersMethod.FindByElement(driver,"xpath","//input[contains(@id,'catalog-list-view-quantity-input')]");
+            HelpersMethod.ScrollElement(driver,listInput);
             HelpersMethod.ActSendKey(driver,listInput,80,s);
         }
         catch (Exception e){}

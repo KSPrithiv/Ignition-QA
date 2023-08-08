@@ -21,7 +21,7 @@ import pages_DSD_OMS.login.LoginPage;
 @CucumberOptions
         (features =
                 {
-                        //"src/test/resources/features_DSD_OMS/AllOrderFeature",
+//                       "src/test/resources/features_DSD_OMS/AdminReports",
                         //"src/test/resources/features_DSD_OMS/ARInquiryFeature",
                         //"src/test/resources/features_DSD_OMS/BillToBill(DSD)",
                         //"src/test/resources/features_DSD_OMS/CatalogFeature",
@@ -34,7 +34,7 @@ import pages_DSD_OMS.login.LoginPage;
                         //"src/test/resources/features_DSD_OMS/ParOrderFeature",
                         //"src/test/resources/features_DSD_OMS/PaymentInfoFeature",
                         //"src/test/resources/features_DSD_OMS/ProductReferenceFeature",
-                        "src/test/resources/features_DSD_OMS/QuoteFeature",
+                        //"src/test/resources/features_DSD_OMS/QuoteFeature",
                         //"src/test/resources/features_DSD_OMS/StandingOrderFeature",
                         //"src/test/resources/features_DSD_OMS/StatementsFeature",
                         //"src/test/resources/features_DSD_OMS/WebOrderingFeature",
@@ -59,11 +59,11 @@ import pages_DSD_OMS.login.LoginPage;
 //                        "src/test/resources/features_Shared/features_Shared_DSD/CRMFeature/crmFeatures.feature",
 //                        "src/test/resources/features_Shared/features_Shared_DSD/CRMFeature/crmFeatures1.feature",
 
-                        //"src/test/resources/features_Shared/features_Shared_DSD/CRMFeature/crmFeatures2.feature",
+//                        "src/test/resources/features_Shared/features_Shared_DSD/CRMFeature/crmFeatures2.feature",
                         //"src/test/resources/features_Shared/features_Shared_DSD/CRMFeature/crmFeatures3.feature",
                         //"src/test/resources/features_Shared/features_Shared_DSD/MyAccount_NewAddress_Add.feature",
                       "src/test/resources/features_Shared/features_Shared_DSD/BadgeBuilderFeature",
-                        //"src/test/resources/features_Shared/features_Shared_DSD/BadgeBuilderFeature_Phase2",
+                        "src/test/resources/features_Shared/features_Shared_DSD/BadgeBuilderFeature_Phase2",
 
 
                 },

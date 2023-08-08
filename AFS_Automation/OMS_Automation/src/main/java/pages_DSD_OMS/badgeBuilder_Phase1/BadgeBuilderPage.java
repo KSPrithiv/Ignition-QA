@@ -114,8 +114,29 @@ public class BadgeBuilderPage {
 
     }
 
+    public void ClicOnHumburger1()
+    {
+        String status = null;
+        status = HelpersMethod.returnDocumentStatus(driver);
+
+        if (status.equals("loading")) {
+            HelpersMethod.waitTillLoadingPage(driver);
+        }
+
+        WebElement Humburger;
+        try
+        {
+            if (HelpersMethod.IsExists("//div[@class='MuiPaper-root MuiDrawer-paper drawer-closed MuiDrawer-paperAnchorLeft MuiDrawer-paperAnchorDockedLeft MuiPaper-elevation0']//div[@class='item-searchbar']", driver)) {
+                Humburger = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='MuiPaper-root MuiDrawer-paper drawer-closed MuiDrawer-paperAnchorLeft MuiDrawer-paperAnchorDockedLeft MuiPaper-elevation0']//div[@class='item-searchbar']");
+                HelpersMethod.JScriptClick(driver, Humburger, 20);
+            }
+        }
+        catch (Exception e){}
+
+    }
+
     public void ClicOnGeneralSetting() throws InterruptedException {
-        Thread.sleep(3000);
+//        Thread.sleep(3000);
         String status = null;
         status = HelpersMethod.returnDocumentStatus(driver);
 
@@ -142,7 +163,7 @@ public class BadgeBuilderPage {
 
 
     public void ClickOnBadgeBuilder() throws InterruptedException {
-        Thread.sleep(3000);
+//        Thread.sleep(3000);
 
 
         if (HelpersMethod.IsExists("//div[@class='loader']", driver)) {
@@ -211,7 +232,7 @@ public class BadgeBuilderPage {
         WebElement BadgeGallery;
         BadgeGallery = driver.findElement(By.xpath("/html//div[@id='badgeGalleryCard']//div[@class='badge-subsection-header']/span[1]"));
         HelpersMethod.JSScroll(driver, BadgeGallery);
-        Thread.sleep(3000);
+//        Thread.sleep(3000);
         //HelpersMethod.Implicitwait(driver, 20);
 
     }
@@ -275,7 +296,8 @@ public class BadgeBuilderPage {
             if (HelpersMethod.IsExists("/html//input[@id='nameTextbox']", driver)) {
                 TextBox = HelpersMethod.FindByElement(driver, "xpath", "/html//input[@id='nameTextbox']");
                 Thread.sleep(3000);
-                //HelpersMethod.Implicitwait(driver,10);
+                //HelpersMethod.
+                // Implicitwait(driver,10);
                 //HelpersMethod.JScriptClick(driver, TextBox, 20);
                 HelpersMethod.clearText(driver, TextBox, 20);
                 HelpersMethod.sendKeys(driver, TextBox, 20, str);
@@ -380,7 +402,7 @@ public class BadgeBuilderPage {
         try {
             if (HelpersMethod.IsExists("/html//div[@id='badgeColorCard']//div[@class='colorsRow']/div[8]/div[@class='color-circle']", driver)) {
                 WebEleColour = HelpersMethod.FindByElement(driver, "xpath", "/html//div[@id='badgeColorCard']//div[@class='colorsRow']/div[8]/div[@class='color-circle']");
-                Thread.sleep(3000);
+//                Thread.sleep(3000);
                 //HelpersMethod.Implicitwait(driver,10);
                 //HelpersMethod.JScriptClick(driver, TextBox, 20);
                 HelpersMethod.JScriptClick(driver, WebEleColour, 20);
@@ -438,7 +460,7 @@ public class BadgeBuilderPage {
                 RadioBt1 = HelpersMethod.FindByElement(driver, "xpath", "/html//div[@id='badgeTypeCard']/div[@class='i-card__card__body i-card__card__body--expanded']/div[@class='badge-type-container']/div[1]/div/input");
                 //HelpersMethod.Implicitwait(driver,10);
                 HelpersMethod.JScriptClick(driver, RadioBt1, 20);
-                Thread.sleep(2000);
+//                Thread.sleep(2000);
                 // HelpersMethod.Implicitwait(driver,3);
 
                 PreviewIcon1 = driver.findElement(By.cssSelector(".icon-preview-tooltip-container > .icon-preview-background.icon-preview-background-white > .icon-preview-background > .icon-preview-icon > .i-icon"));
@@ -455,7 +477,7 @@ public class BadgeBuilderPage {
                 RadioBt2 = HelpersMethod.FindByElement(driver, "xpath", "/html//div[@id='badgeTypeCard']/div[@class='i-card__card__body i-card__card__body--expanded']/div[@class='badge-type-container']/div[2]/div/input");
                 //HelpersMethod.Implicitwait(driver,10);
                 HelpersMethod.JScriptClick(driver, RadioBt2, 20);
-                Thread.sleep(2000);
+//                Thread.sleep(2000);
                 PreviewIcon2 = driver.findElement(By.cssSelector(".i-card__card__body.i-card__card__body--expanded > .label-preview-background.label-preview-background-white > .label-preview-background > .label-preview-label"));
                 String TextValue2 = PreviewIcon2.getText();
                 Assert.assertFalse(InitialsrcAttribute.contains("icon") && TextValue2 == "");
@@ -464,12 +486,12 @@ public class BadgeBuilderPage {
                 //Assert.assertTrue(InitialsrcAttribute.contains("icon")&&TextValue2=="","Given Badge Type contains only Text");
                 RadioBt3 = HelpersMethod.FindByElement(driver, "xpath", "/html//div[@id='badgeTypeCard']/div[@class='i-card__card__body i-card__card__body--expanded']/div[@class='badge-type-container']/div[3]/div/input");
                 HelpersMethod.JScriptClick(driver, RadioBt3, 20);
-                Thread.sleep(2000);
+//                Thread.sleep(2000);
                 // HelpersMethod.Implicitwait(driver,4);
                 Preview = driver.findElement(By.cssSelector(".icon-preview-container"));
                 String TextValue3 = Preview.getText();
                 System.out.println(TextValue3+":Badge Name");
-                Thread.sleep(2000);
+//                Thread.sleep(2000);
 
                 PreviewIcon3 = driver.findElement(By.cssSelector(".icon-preview-container"));
                 String InitialsrcAttribute1 = PreviewIcon3.getAttribute("class");
@@ -746,15 +768,29 @@ public class BadgeBuilderPage {
     }
 
     public void Clientside() throws InterruptedException {
-        Thread.sleep(8000);
+        try {
+            exists = false;
+            String status = HelpersMethod.returnDocumentStatus(driver);
+            if (status.equals("loading")) {
+                HelpersMethod.waitTillLoadingPage(driver);
+            }
+            if (HelpersMethod.IsExists("//div[@class='loader']", driver)) {
+                new WebDriverWait(driver, 8000).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+            }
+            if (status.equals("loading")) {
+                HelpersMethod.waitTillLoadingPage(driver);
+            }
+
+            Thread.sleep(8000);
         new WebDriverWait(driver, 400).until(ExpectedConditions.elementToBeClickable(By.cssSelector(".settings-back-container > .i-icon")));
-        Thread.sleep(5000);
+//        Thread.sleep(5000);
         HelpersMethod.Implicitwait(driver, 30);
         WebElement ClientsideIcon;
         ClientsideIcon = driver.findElement(By.cssSelector(".settings-back-container > .i-icon"));
         HelpersMethod.waitTillElementDisplayed(driver, ClientsideIcon, 200);
         //HelpersMethod.JScriptClick(driver, ClientsideIcon, 20);
         ClientsideIcon.click();
+        } catch (Exception e) {}
 
 
     }
@@ -909,16 +945,16 @@ public class BadgeBuilderPage {
         WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
         HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100);
         HelpersMethod.ScrollElement(driver, SearchProd);
-        Thread.sleep(5000);
+//        Thread.sleep(5000);
 
         try {
 
             WebElement SearchIcon;
-            Thread.sleep(5000);
+//            Thread.sleep(5000);
 
             HelpersMethod.sendKeys(driver, SearchProd1, 10, "10010800");
             //HelpersMethod.ClickBut(driver,IndexSearch,4);
-            Thread.sleep(5000);
+//            Thread.sleep(5000);
             HelpersMethod.Implicitwait(driver, 30);
             HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 200);
             //Thread.sleep(5000);
@@ -992,7 +1028,7 @@ public class BadgeBuilderPage {
 
                     System.out.println(Tcolor + "Tiered/Catch PricingColor from Client");
 //                    String backgroundColor = extractBackgroundColor(Tcolor);
-                    Thread.sleep(20000);
+//                    Thread.sleep(20000);
                     WebElement CloseBtn = catlogPopup.findElement(By.cssSelector("a[role='button'] > .k-i-x.k-icon"));
                     HelpersMethod.ActClick(driver, CloseBtn, 20);
 //                WebElement OkBtn = catlogPopup.findElement(By.xpath("//body/div[2]/div[@role='dialog']/div[3]/div/button[.='Ok']"));
@@ -1028,7 +1064,7 @@ public class BadgeBuilderPage {
 
                     System.out.println(Tcolor + "Tiered/Catch PricingColor from Client");
 //                    String backgroundColor = extractBackgroundColor(Tcolor);
-                    Thread.sleep(20000);
+//                    Thread.sleep(20000);
                     WebElement CloseBtn = catlogPopup.findElement(By.cssSelector("a[role='button'] > .k-i-x.k-icon"));
                     HelpersMethod.ActClick(driver, CloseBtn, 20);
 //                WebElement OkBtn = catlogPopup.findElement(By.xpath("//body/div[2]/div[@role='dialog']/div[3]/div/button[.='Ok']"));
@@ -1051,7 +1087,7 @@ public class BadgeBuilderPage {
 
     }
     public void ChangeAccount1() throws InterruptedException {
-        Thread.sleep(5000);
+//        Thread.sleep(5000);
 
 
         exists = false;
@@ -1069,7 +1105,7 @@ public class BadgeBuilderPage {
             Actions act = new Actions(driver);
             act.moveToElement(driver.findElement(By.id("customerAccountNumberComboBox"))).sendKeys("").build().perform();
             act.moveToElement(driver.findElement(By.id("customerAccountNumberComboBox"))).sendKeys(account).build().perform();
-            Thread.sleep(5000);
+//            Thread.sleep(5000);
             robot.keyPress(KeyEvent.VK_ENTER);
             robot.keyRelease(KeyEvent.VK_ENTER);
             robot.keyPress(KeyEvent.VK_ENTER);
@@ -1086,7 +1122,8 @@ public class BadgeBuilderPage {
 //               HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100);
 //           }
 //           Assert.assertEquals(exists, true);
-        } catch (AWTException | InterruptedException e) {
+        } catch (Exception e) {
+
         }
     }
 
@@ -1175,7 +1212,7 @@ public class BadgeBuilderPage {
         WebElement WebEle;
 //        WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
 //        HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 200);
-        Thread.sleep(3000);
+//        Thread.sleep(3000);
         WebElement SearchIcon;
         //exists=false;
         String ProductNo=null;
@@ -1185,11 +1222,11 @@ public class BadgeBuilderPage {
         try {
             HelpersMethod.ScrollElement(driver, SearchProd1);
             SearchProd1.click();
-            Thread.sleep(5000);
+//            Thread.sleep(5000);
             if (SearchProd1.isDisplayed()) {
                 SearchIcon = driver.findElement(By.cssSelector(".input-group-addon.search-button.search-button-addon > .i-icon"));
                 HelpersMethod.EnterText(driver, SearchProd1, 1, ProductNo);
-                Thread.sleep(4000);
+//                Thread.sleep(4000);
                 HelpersMethod.ActClick(driver, SearchIcon, 20);
                 //exists = true;
             } else {
@@ -1228,7 +1265,7 @@ public class BadgeBuilderPage {
             WebElement SearchIcon;
             exists = false;
             HelpersMethod.ScrollElement(driver, SearchProd1);
-            Thread.sleep(5000);
+//            Thread.sleep(5000);
             if (SearchProd1.isDisplayed()) {
                 SearchIcon = driver.findElement(By.cssSelector(".input-group-addon.search-button.search-button-addon > .i-icon"));
                 HelpersMethod.EnterText(driver, SearchProd1, 100, ProductNo1);
@@ -1329,7 +1366,7 @@ public class BadgeBuilderPage {
                 //WebElement modalContentTitle = catlogPopup.findElement(By.xpath(".//div[contains(@class,'label-preview-background')]"));
                 //WebElement modalContentTitle1 = catlogPopup.findElement(By.cssSelector(".admin-badge-text-container > div > div>div"));
 //                HelpersMethod.waitTillElementLocatedDisplayed(driver,"xpath","/html//div[@id='productsCard']//div[@class='list-view']/div[@role='presentation']/div[@role='grid']/div[2]/div[@role='presentation']/div[1]/table[@role='presentation']/tbody[@role='presentation']/tr[@role='row']//div[@class='label-preview-background']/div/div",100);
-                Thread.sleep(2000);
+//                Thread.sleep(2000);
 //                WebElement CatchWtIcon = driver.findElement(By.cssSelector(".admin-badge-text-container .label-preview-label"));
             WebElement CatchWtIcon= driver.findElement(By.cssSelector("div:nth-of-type(2) > .admin-badge-text-container > .label-preview-background.label-preview-background-white > .label-preview-background > div > div"));
 
@@ -1379,7 +1416,7 @@ public class BadgeBuilderPage {
 //            WebElement AddButton = Popup1.findElement(By.cssSelector("tbody[role='presentation'] > tr[role='row'] .k-i-arrow-n.k-icon"));
                 HelpersMethod.ScrollElement(driver, AddButton);
                 HelpersMethod.ClickBut(driver, AddButton, 80);
-                Thread.sleep(2000);
+//                Thread.sleep(2000);
                 WebElement okButton1 = Popup1.findElement(By.xpath(".//button[text()='Ok']"));
                 HelpersMethod.ClickBut(driver, okButton1, 80);
             }
@@ -1390,7 +1427,7 @@ public class BadgeBuilderPage {
                 WebElement AddButton = Popup1.findElement(By.cssSelector("tbody[role='presentation'] > tr[role='row'] .k-i-arrow-n.k-icon"));
                 HelpersMethod.ScrollElement(driver, AddButton);
                 HelpersMethod.ClickBut(driver, AddButton, 80);
-                Thread.sleep(2000);
+//                Thread.sleep(2000);
                 WebElement okButton1 = Popup1.findElement(By.xpath(".//button[text()='Ok']"));
                 HelpersMethod.ClickBut(driver, okButton1, 80);
             }
@@ -1419,7 +1456,7 @@ public class BadgeBuilderPage {
                 WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
                 HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100);
             }
-            Thread.sleep(2000);
+//            Thread.sleep(2000);
             //WebElement CatSearchIcon = driver.findElement(By.cssSelector("td:nth-of-type(12) > div > div:nth-of-type(1) > .admin-badge-icon-container > div > div>div"));
 //            WebElement CatSearchIcon = driver.findElement(By.cssSelector("td:nth-of-type(10) > div > div:nth-of-type(1) > .admin-badge-icon-container > div > div>div"));
             WebElement CatSearchIcon = driver.findElement(By.cssSelector("td:nth-of-type(10) > div > div:nth-of-type(1) > .admin-badge-icon-container > div > div>div"));
@@ -1437,7 +1474,7 @@ public class BadgeBuilderPage {
             //CatSearchIconClr = CatSearchIcon.getCssValue("color");
             System.out.println(CatSearchIconClr);
             HelpersMethod.Implicitwait(driver, 20);
-            Thread.sleep(8000);
+//            Thread.sleep(8000);
 
             if(Tiered_CatchColorAdmin2.equals(CatSearchIconClr)){
                 System.out.println("PRODUCT COLORS ARE SAME");
@@ -1497,7 +1534,7 @@ public class BadgeBuilderPage {
 
 
     public void OrderGuids() throws InterruptedException {
-        Thread.sleep(5000);
+//        Thread.sleep(5000);
 
         {
             if (HelpersMethod.IsExists("//li[contains(@class,'k-item')]/span[@class='k-link' and Order Guids(text(),'Order Guids')]", driver)) {
@@ -1532,8 +1569,7 @@ public class BadgeBuilderPage {
 
     }
 
-    public void
-    CreateNewOrder() throws AWTException {
+    public void CreateNewOrder() throws AWTException {
 
 
         WebElement WebEle;
@@ -1964,7 +2000,7 @@ public class BadgeBuilderPage {
 
     public void ClickOnStartStandingOrder1() throws InterruptedException
     {
-        Thread.sleep(10000);
+        Thread.sleep(8000);
         exists = false;
         WebElement WebEle = null;
         if (HelpersMethod.IsExists("//div[@class='loader']", driver))
@@ -2004,7 +2040,7 @@ public class BadgeBuilderPage {
 //            {
                 //HelpersMethod.ScrollElement(driver,AddProduct);
                 HelpersMethod.ActClick(driver,AddProduct,40);
-                Thread.sleep(2000);
+//                Thread.sleep(2000);
         }
         catch (Exception e){}
     }
@@ -2124,7 +2160,7 @@ public class BadgeBuilderPage {
             HelpersMethod.waitTillElementDisplayed(driver, SearchIcon2, 100);
             SearchIcon2.click();
             //HelpersMethod.JScriptClick(driver, SearchIcon2, 20);
-            Thread.sleep(2000);
+//            Thread.sleep(2000);
 
             WebElement AccountPopup = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-widget k-window k-dialog')]");
 
