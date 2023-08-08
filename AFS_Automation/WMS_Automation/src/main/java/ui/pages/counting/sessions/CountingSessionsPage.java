@@ -274,35 +274,30 @@ public class CountingSessionsPage extends BasePage {
     }
 
     public void clickSessionDropdown() {
-        Waiters.waitABit(10000);
         Waiters.waitForElementToBeDisplay(sessionDropdown);
         clickOnElement(sessionDropdown);
         Waiters.waitABit(2000);
     }
 
     public void clickSelectAllCheckbox() {
-        Waiters.waitABit(2000);
         Waiters.waitForElementToBeDisplay(selectAllCheckbox);
         clickOnElement(selectAllCheckbox);
         Waiters.waitABit(2000);
     }
 
     public void clickLocationDeleteButton() {
-        Waiters.waitABit(2000);
         Waiters.waitForElementToBeDisplay(getLocationRemove());
         clickOnElement(getLocationRemove());
         Waiters.waitABit(2000);
     }
 
     public void clickLocationReleaseButton() {
-        Waiters.waitABit(2000);
         Waiters.waitForElementToBeDisplay(getLocationRelease());
         clickOnElement(getLocationRelease());
         Waiters.waitABit(2000);
     }
 
     public void clickLocationReconcileButton() {
-        Waiters.waitABit(2000);
         Waiters.waitForElementToBeDisplay(getLocationReconcile());
         clickOnElement(getLocationReconcile());
         Waiters.waitABit(2000);
