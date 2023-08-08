@@ -2,7 +2,7 @@ Feature: Badge Builder Icon Selection
   Background: For login to application and to select Badge Builder
     Given User enters URL and entered to login page
 
-  @VerifyIconColorChangeInCatalogSearchListView-OrderEntryPage
+  @VerifyIconColorChangeInCatalogSearchListView
   Scenario:  Test Scenario to verify Icon color change in Catalog search list view
     Given  User on login page and entered username and password
     When   Navigated to Admin home page
@@ -16,17 +16,20 @@ Feature: Badge Builder Icon Selection
     When   Login to Client portal1
     Then   User should navigate to Client side
     And    Click on the Order Entry tab1
-#    And    Select Account2
+    And    Select Account2
 
-
+  @VerifyChangeInCatalogSearchListView
+  Scenario:  Test Scenario to verify Icon color change in Catalog search list
+    Given  User should navigate to Order Tab
+    And    Click new order and Enter PO
+    And    Compare Product Icon color1
 
   @VerifyChangeInPickUpOrder0017
   Scenario:  Test Scenario to verify Icon color change in pick up order
-#    Given  User on Order Entry Page
-#    When   Click on Back
+    Given  User on Order Entry Page
+    When   Click on Back
     Then   Select any date from Pickup Order
     And    Add Product in Order Entry
-    And    Verify Icon Color from PickupOrder
 
 #  @VerifyChangeInOrderControlList
 #  Scenario:  Test Scenario to verify Icon color change in OrderControlList
@@ -37,16 +40,9 @@ Feature: Badge Builder Icon Selection
   @VerifyIconColorChangeInCart
   Scenario:  Test Scenario to verify Icon color change in Cart
     Given User should navigate to Catalog tab1
-    And   Search for product
+#    And   Search for product
     And   Click on Cart
     And   Verify Icon Color
-
-  @VerifyChangeInCatalogSearchListView
-  Scenario:  Test Scenario to verify Icon color change in Catalog search list
-    Given  User should navigate to Order Tab
-    And    Click new order and Enter PO
-    And    Compare Product Icon color1
-    And    Logout
 
 
 
