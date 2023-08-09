@@ -1,12 +1,8 @@
 name: OMS Regression
 on:
-  schedule:
-    - cron:  '0 16 * * *'
-  workflow_dispatch:
-    inputs:
-      branch:
-        description: 'Branch name'
-        default: 'main'
+ push:
+    branches:
+      - cro
 
  
 
