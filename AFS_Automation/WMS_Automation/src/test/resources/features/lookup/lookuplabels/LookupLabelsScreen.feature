@@ -7,7 +7,7 @@ Feature: Testing of Lookup Labels functionality
     And DockManagement Summary Page is validated
     And Go to Lookup Location page
     And Waits for Location Lookup page to load
-    When User types location by index 0 on Lookup Location page
+    When User types location by index 4 on Lookup Location page
     And Validates Inventory details of location on Location Lookup page are loaded
     Then Validates Print Label on Location Lookup page is displayed
 
