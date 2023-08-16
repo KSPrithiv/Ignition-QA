@@ -11,7 +11,7 @@ public class AllocationBatchPage extends BasePage {
 
         Waiters.waitUntilPageWillLoadedSelenide();
         try {
-            Waiters.waitABit(7000);
+//            Waiters.waitABit(7000);
             Waiters.waitForElementToBeDisplay(getAllocationBatch());
             clickOnElement(getAllocationBatch());
         } catch (Exception e) {

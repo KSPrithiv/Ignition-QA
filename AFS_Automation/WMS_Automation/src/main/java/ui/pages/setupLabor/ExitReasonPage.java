@@ -19,31 +19,31 @@ public class ExitReasonPage extends BasePage {
 
         Waiters.waitUntilPageWillLoadedSelenide();
         try {
-            Waiters.waitABit(7000);
+//            Waiters.waitABit(7000);
             Waiters.waitForElementToBeDisplay(getExit());
             clickOnElement(getExit());
         } catch (Exception e) {
         }
     }
     public void searchBoxActionExit(){
-        Waiters.waitABit(5000);
+//        Waiters.waitABit(5000);
         Waiters.waitForPresenceOfElement("form > .i-icon.i-search-box__search");
         Waiters.waitForElementToBeDisplay(searchBox7());
         clickOnElement(searchBox7);
         try {
             searchBox7().sendKeys("A", Keys.ENTER);
-            Waiters.waitABit(4000);
+//            Waiters.waitABit(4000);
         } catch (Exception e) {
         }
     }
     public void searchBoxAction7(){
-        Waiters.waitABit(5000);
+//        Waiters.waitABit(5000);
         Waiters.waitForElementToBeClickable(searchBox7());
         Waiters.waitForElementToBeDisplay(searchBox7);
         clickOnElement(searchBox7);
         try {
             searchBox7().sendKeys("z",Keys.ENTER);
-            Waiters.waitABit(4000);
+//            Waiters.waitABit(4000);
             String message3=getMessage().getText();
             System.out.println("MESSAGE DISPLAYED AFTER ENTERING NON EXISTING KEYWORD: "+message3);
         } catch (Exception e) {

@@ -23,7 +23,7 @@ public class AssignmentTypePage extends BasePage{
 
 
     public void clickSetupConfiguration() {
-        Waiters.waitABit(2000);
+//        Waiters.waitABit(2000);
         Waiters.waitForElementToBeDisplay(setupConfiguration);
         clickOnElement(setupConfiguration);
     }
@@ -31,14 +31,14 @@ public class AssignmentTypePage extends BasePage{
 
         Waiters.waitUntilPageWillLoadedSelenide();
         try {
-            Waiters.waitABit(7000);
+//            Waiters.waitABit(7000);
             Waiters.waitForElementToBeDisplay(getAssignment());
             clickOnElement(getAssignment());
         } catch (Exception e) {
         }
     }
     public void searchBoxActionAssignmentType(){
-        Waiters.waitABit(9000);
+//        Waiters.waitABit(9000);
         Waiters.waitForPresenceOfElement("form > .i-icon.i-search-box__search");
         Waiters.waitForElementToBeDisplay(searchBox6());
         clickOnElement(searchBox6);

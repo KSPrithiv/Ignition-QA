@@ -10,7 +10,7 @@ public class CountTypePage extends BasePage {
 
         Waiters.waitUntilPageWillLoadedSelenide();
         try {
-            Waiters.waitABit(7000);
+//            Waiters.waitABit(7000);
             Waiters.waitForElementToBeDisplay(getCountType());
             clickOnElement(getCountType());
         } catch (Exception e) {
