@@ -9,7 +9,7 @@ public class TrailerTypePage extends BasePage {
 
         Waiters.waitUntilPageWillLoadedSelenide();
         try {
-            Waiters.waitABit(7000);
+//            Waiters.waitABit(7000);
             Waiters.waitForElementToBeDisplay(getTrailerType());
             clickOnElement(getTrailerType());
         } catch (Exception e) {

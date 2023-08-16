@@ -23,9 +23,9 @@ public class TaskGroupPage extends BasePage{
 
     public void taskGroupTab() throws InterruptedException {
 
-        Waiters.waitUntilPageWillLoadedSelenide();
+//        Waiters.waitUntilPageWillLoadedSelenide();
         try {
-            Waiters.waitABit(7000);
+//            Waiters.waitABit(7000);
             Waiters.waitForElementToBeDisplay(getTaskGroup());
             clickOnElement(getTaskGroup());
         } catch (Exception e) {

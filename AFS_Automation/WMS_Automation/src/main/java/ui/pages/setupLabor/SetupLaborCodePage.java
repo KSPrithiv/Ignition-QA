@@ -76,18 +76,18 @@ public class SetupLaborCodePage extends BasePage {
 
 
     public void clickSetupIcon() {
-        Waiters.waitABit(2000);
+//        Waiters.waitABit(2000);
         Waiters.waitForElementToBeClickable(getSetupIcon());
         clickOnElement(getSetupIcon());
         Waiters.waitUntilPageWillLoadedSelenide();
     }
     public void clickSetupProductIcon() {
-        Waiters.waitABit(2000);
+//        Waiters.waitABit(2000);
         Waiters.waitForElementToBeDisplay(setupProductIcon);
         clickOnElement(setupProductIcon);
     }
     public void searchBoxAction(){
-        Waiters.waitABit(5000);
+//        Waiters.waitABit(5000);
         Waiters.waitForPresenceOfElement("form > .i-icon.i-search-box__search");
         clickOnElement(searchBox);
         try {
@@ -103,7 +103,7 @@ public class SetupLaborCodePage extends BasePage {
             Waiters.waitABit(4000);
             clickOnElement(getClose());
         }catch (Exception e){}
-        Waiters.waitABit(14000);
+//        Waiters.waitABit(4000);
     }
     public void rownumber(){
         try {
@@ -207,21 +207,21 @@ public class SetupLaborCodePage extends BasePage {
 
         try{
             Waiters.waitUntilPageWillLoadedSelenide();
-            Waiters.waitABit(10000);
+//            Waiters.waitABit(10000);
             Waiters.waitForElementToBeDisplay(getJobType());
             Waiters.waitABit(2000);
             clickOnElement(getJobType());
         }catch (Exception e){}
     }
     public void addButton() {
-        Waiters.waitABit(8000);
+//        Waiters.waitABit(8000);
         Waiters.waitForPresenceOfElement("form > .i-icon.i-search-box__search");
         Waiters.waitForElementToBeDisplay(getAddButton());
         clickOnElement(getAddButton());
     }
 
         public void enterCode() {
-            Waiters.waitABit(2000);
+//            Waiters.waitABit(2000);
             Waiters.waitForElementToBeDisplay(getCodeText());
             getCodeText().clear();
             getCodeText().sendKeys("08@#$a2",Keys.ENTER);
@@ -263,10 +263,10 @@ public class SetupLaborCodePage extends BasePage {
         }catch (Exception e){}
     }
     public void clickAddFilterButton() {
-        Waiters.waitABit(2000);
+//        Waiters.waitABit(2000);
         Waiters.waitForElementToBeDisplay(addFilterButton);
         clickOnElement(addFilterButton);
-        Waiters.waitABit(2000);
+//        Waiters.waitABit(2000);
     }
     public void countCodeFilter(){
         List<WebElement> rows = getTable().findElements(By.xpath(".//td[1]"));
@@ -280,21 +280,21 @@ public class SetupLaborCodePage extends BasePage {
     }
     public void clickCodeFilter() {
         Waiters.waitForElementToBeDisplay(codeFilter);
-        Waiters.waitABit(2000);
+//        Waiters.waitABit(2000);
         clickOnElement(codeFilter);
     }
     public void enterFilterLetter() {
-        Waiters.waitABit(7000);
+//        Waiters.waitABit(7000);
         Waiters.waitForElementToBeDisplay(getCodeFilterText());
         getCodeFilterText().sendKeys("A");
 
     }
     public  void clickApply(){
-        Waiters.waitABit(3000);
+//        Waiters.waitABit(3000);
         clickOnElement(getApplyButton());
     }
     public void verifyCodeFilter(){
-        Waiters.waitABit(5000);
+//        Waiters.waitABit(5000);
 
         List<WebElement> rows = getTable().findElements(By.tagName("tr"));
         int rowCount2 = rows.size();
@@ -320,7 +320,7 @@ public class SetupLaborCodePage extends BasePage {
     }
     public void clickUsergroupFilter(){
         Waiters.waitForElementToBeDisplay(userGroupFilter);
-        Waiters.waitABit(2000);
+//        Waiters.waitABit(2000);
         clickOnElement(userGroupFilter);
     }
     public void countUserGroup(){
@@ -336,7 +336,7 @@ public class SetupLaborCodePage extends BasePage {
         System.out.println("NUMBER OF USERGROUPS CONTAINS LETTER 'A' : "+countUserGroup);
     }
     public void verifyUserGroupFilter(){
-        Waiters.waitABit(5000);
+//        Waiters.waitABit(5000);
         List<WebElement> rows = getTable().findElements(By.tagName("tr"));
         int rowCount3 = rows.size();
         System.out.println("NUMBER OF USERGROUP CONTAINS LETTER 'A' AFTER APPLY FILTER: "+rowCount3);
@@ -358,11 +358,11 @@ public class SetupLaborCodePage extends BasePage {
     }
     public void clickDescriptionFilter(){
         Waiters.waitForElementToBeDisplay(descriptionFilter);
-        Waiters.waitABit(2000);
+//        Waiters.waitABit(2000);
         clickOnElement(descriptionFilter);
     }
     public void verifyDescriptionFilter(){
-        Waiters.waitABit(5000);
+//        Waiters.waitABit(5000);
         List<WebElement> rows = getTable().findElements(By.tagName("tr"));
         int rowCount4 = rows.size();
         System.out.println("NUMBER OF DESCRIPTIONS CONTAINS LETTER 'A' AFTER APPLY FILTER: "+rowCount4);
@@ -410,25 +410,25 @@ public class SetupLaborCodePage extends BasePage {
         clickOnElement(searchBox1);
         try {
             searchBox1().sendKeys("A",Keys.ENTER);
-            Waiters.waitABit(4000);
+//            Waiters.waitABit(4000);
         } catch (Exception e) {
         }
     }
     public void searchBoxAction3(){
-        Waiters.waitABit(5000);
+//        Waiters.waitABit(5000);
         Waiters.waitForElementToBeClickable(searchBox1());
         Waiters.waitForElementToBeDisplay(searchBox1);
         clickOnElement(searchBox1);
         try {
             searchBox1().sendKeys("z",Keys.ENTER);
-            Waiters.waitABit(4000);
+//            Waiters.waitABit(4000);
             String message2=getMessage().getText();
             System.out.println("MESSAGE DISPLAYED AFTER ENTERING NON EXISTING KEYWORD: "+message2);
         } catch (Exception e) {
         }
     }
     public void enterSave(){
-        Waiters.waitABit(8000);
+//        Waiters.waitABit(8000);
         getSaveBtn().click();
         String message3=getMessage3().getText();
         System.out.println("MESSAGE DISPLAYED: "+message3);
@@ -438,7 +438,7 @@ public class SetupLaborCodePage extends BasePage {
 //        quit();
 //    }
     public void enterCode2() {
-        Waiters.waitABit(2000);
+//        Waiters.waitABit(2000);
         Waiters.waitForElementToBeDisplay(getCodeText());
         getCodeText().sendKeys("00@$a2",Keys.ENTER);
 
@@ -463,13 +463,6 @@ public class SetupLaborCodePage extends BasePage {
     public WebElement getCodeFilter() { return findWebElement(codeFilter); }
     public WebElement getCodeFilterText() { return findWebElement(codeFilterText); }
     public WebElement getApplyButton() { return findWebElement(applyButton); }
-
-
-
-
-
-
-
 
 //    public WebElement getRows() { return findWebElement(rows); }
 }

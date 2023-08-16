@@ -25,31 +25,31 @@ public class FatiguePage extends BasePage {
 
         Waiters.waitUntilPageWillLoadedSelenide();
         try {
-            Waiters.waitABit(7000);
+//            Waiters.waitABit(7000);
             Waiters.waitForElementToBeDisplay(getFatigue());
             clickOnElement(getFatigue());
         } catch (Exception e) {
         }
     }
     public void searchBoxActionFatigue(){
-        Waiters.waitABit(5000);
+//        Waiters.waitABit(5000);
         Waiters.waitForPresenceOfElement("form > .i-icon.i-search-box__search");
         Waiters.waitForElementToBeDisplay(searchBox5());
         clickOnElement(searchBox5);
         try {
             searchBox5().sendKeys("2", Keys.ENTER);
-            Waiters.waitABit(4000);
+//            Waiters.waitABit(4000);
         } catch (Exception e) {
         }
     }
     public void searchBoxAction5(){
-        Waiters.waitABit(5000);
+//        Waiters.waitABit(5000);
         Waiters.waitForElementToBeClickable(searchBox5());
         Waiters.waitForElementToBeDisplay(searchBox5);
         clickOnElement(searchBox5);
         try {
             searchBox5().sendKeys("z",Keys.ENTER);
-            Waiters.waitABit(4000);
+//            Waiters.waitABit(4000);
             String message2=getMessage().getText();
             System.out.println("MESSAGE DISPLAYED AFTER ENTERING NON EXISTING KEYWORD: "+message2);
         } catch (Exception e) {

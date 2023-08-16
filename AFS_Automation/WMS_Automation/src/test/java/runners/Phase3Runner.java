@@ -29,7 +29,7 @@ import static common.setup.DriverManager.*;
 
 //@CucumberOptions(features={"WMSAutomation/src/test/resources/features/counting"},
 //@CucumberOptions(features = {"src/test/resources/features/setupLabor","src/test/resources/features/setupConfiguration/palletType"},
-@CucumberOptions(features = {"src/test/resources/features/setupWarehouse"},
+@CucumberOptions(features = {"src/test/resources/features/setupLabor","src/test/resources/features/setupConfiguration","src/test/resources/features/setupWarehouse","src/test/resources/features/setupSystem"},
 
 
 
