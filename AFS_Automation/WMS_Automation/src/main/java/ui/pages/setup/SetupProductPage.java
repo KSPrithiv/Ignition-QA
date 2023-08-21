@@ -293,9 +293,6 @@ public class SetupProductPage extends BasePage {
     }
 
     public void waitSetupProductPageToLoad() {
-        refresh();
-        refresh();
-        refresh();
         Waiters.waitUntilPageWillLoadedSelenide();
         Waiters.waitABit(3000);
         Waiters.waitForElementToBeDisplay(productLabel);

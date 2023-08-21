@@ -1,6 +1,5 @@
 package steps.validations.outbound.ordersummary;
 
-import com.codeborne.selenide.SelenideElement;
 import common.constants.FilePaths;
 import common.constants.Notifications;
 import common.constants.TimeFormats;
@@ -13,17 +12,14 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.qameta.allure.Step;
 import lombok.SneakyThrows;
-import objects.storeproceduresdata.outbound.OutboundSummaryParams;
-import objects.userdata.DataBaseData;
 import org.apache.commons.lang3.StringUtils;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 import org.testng.asserts.SoftAssert;
-import steps.LoginPageSteps;
 import ui.pages.outbound.ordersummary.OutboundOrderSummaryPage;
 import ui.pages.outbound.processing.AddAllocationBatchPage;
-import java.sql.ResultSet;
 import java.util.Calendar;
 
-import static com.codeborne.selenide.Selenide.$$x;
 
 public class OutboundOrderSummaryPageValidations {
     OutboundOrderSummaryPage outboundOrderSummaryPage = new OutboundOrderSummaryPage();
@@ -581,7 +577,7 @@ public class OutboundOrderSummaryPageValidations {
 
     @And("Validates {string} option is not active")
     public void validateOrderOptionIsNotActive(String option) {
-        SelenideElement orderOption = $$x("//div[contains(@class, 'k-animation-container-shown')]//li[@role='menuItem']")
+        WebElement orderOption = outboundOrderSummaryPage.findWebElements(By.xpath("//div[contains(@class, 'k-animation-container-shown')]//li[@role='menuItem']"))
                 .stream()
                 .filter(el -> el.getText().equals(option))
                 .findFirst()

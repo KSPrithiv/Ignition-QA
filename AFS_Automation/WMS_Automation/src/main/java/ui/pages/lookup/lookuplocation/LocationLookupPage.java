@@ -9,6 +9,8 @@ import ui.pages.BasePage;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static common.setup.DriverManager.getDriver;
+
 public class LocationLookupPage extends BasePage {
     By locationLookupTitle = By.className("spnmoduleNameHeader");
     By customLabel = By.className("autocomplete_custom_label");
@@ -142,8 +144,7 @@ public class LocationLookupPage extends BasePage {
     String locationTableRows = "//table[@class='k-grid-table']//tr[.//a[contains(text(), '%s')]]";
 
     public void waitForLocationLookupPageToLoad() {
-        Waiters.waitABit(5000);
-        Waiters.waitUntilPageWillLoadedSelenide();
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(locationSearchLabel);
         Waiters.waitForElementToBeDisplay(lookupLocationSearch);
         Waiters.waitForElementToBeDisplay(locationSearchButton);

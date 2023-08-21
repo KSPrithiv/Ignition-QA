@@ -78,9 +78,6 @@ public class InboundLoadOrderLineItemsPage extends BasePage {
     By cancelButton = By.xpath("//button[contains(text(), 'Cancel')]");
 
     public void waitForInboundLoadOrderLineItemsPageToLoad() {
-        refresh();
-        refresh();
-        refresh();
         Waiters.waitUntilPageWillLoadedSelenide();
         Waiters.waitForElementToBeDisplay(getTopIcon());
         Waiters.waitForElementToBeDisplay(btnProductData);

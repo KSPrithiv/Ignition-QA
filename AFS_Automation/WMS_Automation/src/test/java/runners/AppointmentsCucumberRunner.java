@@ -6,7 +6,6 @@ import common.setup.Environment;
 import common.utils.Waiters;
 import io.cucumber.testng.AbstractTestNGCucumberTests;
 import io.cucumber.testng.CucumberOptions;
-import io.cucumber.testng.TestNGCucumberRunner;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.aeonbits.owner.ConfigFactory;

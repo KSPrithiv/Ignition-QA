@@ -24,9 +24,6 @@ public class WorkQueueUserHistoryPage extends BasePage {
     By dropdownList = By.id("dropdownList");
 
     public void waitWorkQueueUserHistoryPageToLoad() {
-        refresh();
-        refresh();
-        refresh();
         Waiters.waitABit(6000);
         Waiters.waitUntilPageWillLoadedSelenide();
         Waiters.waitForElementToBeDisplay(getUserHistoryTitle());

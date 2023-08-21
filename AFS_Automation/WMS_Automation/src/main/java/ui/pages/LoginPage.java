@@ -5,11 +5,11 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
 public class LoginPage extends BasePage {
-    By login = By.cssSelector("input[placeholder='User name']");
-   // By login = By.cssSelector("input[placeholder='UserName']");
+  //  By login = By.cssSelector("input[placeholder='User name']");
+    By login = By.cssSelector("input[placeholder='UserName']");
     By password = By.cssSelector("input[type='password']");
-    By signInButton = By.xpath("//button[contains(text(), 'Sign in')]");
-   // By signInButton = By.xpath("//button[contains(text(), 'Sign In')]");
+    // By signInButton = By.xpath("//button[contains(text(), 'Sign in')]");
+    By signInButton = By.xpath("//button[contains(text(), 'Sign In')]");
     By notificationWrongSignIn = By.cssSelector("div[id='errorValidation'] div[class='i-notification-text'] div");
 
     public void waitForLoginPageToLoad() {

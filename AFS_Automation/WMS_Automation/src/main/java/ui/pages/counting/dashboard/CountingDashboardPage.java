@@ -23,10 +23,11 @@ public class CountingDashboardPage extends BasePage {
     By productCountedCardGuage = By.xpath("//div[@id='cardGuage'][.//div[text()='Products counted']]");
     By prodDiscrepanciesTitle = By.xpath("//div[@id='cardDiscrepancy'][.//div[text()='Products with discrepancies']]");
     By dropdownList = By.id("dropdownList");
+    By loader = By.cssSelector(".loader");
 
     public void waitCountingDashboardPageToLoad() {
-        Waiters.waitUntilPageWillLoadedSelenide();
-        Waiters.waitABit(3000);
+        waitUntilInvisible(5, loader);
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(cycleCountSessionLabel);
         Waiters.waitForElementToBeDisplay(cycleCountSession);
         Waiters.waitForElementToBeDisplay(cycleCountAssignmentLabel);
@@ -37,17 +38,19 @@ public class CountingDashboardPage extends BasePage {
         clickOnElement(getDropdownList());
         clickOnElement(findWebElement(By.xpath("//div[contains(@class, 'k-animation-container-shown')]//li[contains(text(), '"
                 + warehouse + "') and @role='option']")));
-        Waiters.waitABit(2000);
+        Waiters.returnDocumentStatus(getDriver());
     }
 
     public void clickLocationTab() {
         Waiters.waitForElementToBeDisplay(locationTab);
         clickOnElement(locationTab);
+        waitUntilInvisible(5, loader);
     }
 
     public void clickProductTab() {
         Waiters.waitForElementToBeDisplay(productTab);
         clickOnElement(productTab);
+        waitUntilInvisible(5, loader);
     }
 
     public boolean isDashboardPageTitleDisplayed() { return isElementDisplay(dashboardPageTitle); }

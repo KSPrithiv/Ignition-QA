@@ -1,20 +1,11 @@
 package common.utils;
 
-import com.codeborne.selenide.Condition;
-import com.codeborne.selenide.SelenideElement;
-import com.codeborne.selenide.SelenideWait;
-import com.codeborne.selenide.WebDriverRunner;
-import com.codeborne.selenide.ex.ElementIsNotClickableException;
 import lombok.SneakyThrows;
 import org.openqa.selenium.*;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.FluentWait;
-import org.openqa.selenium.support.ui.Wait;
-import org.openqa.selenium.support.ui.WebDriverWait;
+import org.openqa.selenium.support.ui.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import ui.pages.BasePage;
-
 import java.time.Duration;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -35,13 +26,9 @@ public class Waiters {
                 .pollingEvery(Duration.ofSeconds(defaultPollingTimeOut))
                 .ignoring(ElementClickInterceptedException.class)
                 .ignoring(ElementNotInteractableException.class)
-                .ignoring(ElementIsNotClickableException.class)
+                .ignoring(StaleElementReferenceException.class)
                 .ignoring(NoSuchElementException.class)
                 .ignoring(IllegalStateException.class);
-    }
-
-    public SelenideWait getNewSelenideWait(long durationInSeconds, long pollingTimeOut) {
-        return new SelenideWait(getDriver(), durationInSeconds, pollingTimeOut);
     }
 
     public static void waitForPresenceOfElement(By locator) {
@@ -108,6 +95,17 @@ public class Waiters {
        new WebDriverWait(getDriver(), Duration.ofSeconds(10)).until(ExpectedConditions.invisibilityOf(basePage.findWebElement(by)));
     }
 
+    public boolean isVisible(By by) {
+        LOG.debug("Checking if element visible located: " + by);
+        try {
+            ExpectedCondition<Boolean> elementVisible = driver -> isVisible(by);
+            return basePage.until(elementVisible, 10);
+        } catch (NoSuchElementException | TimeoutException ex) {
+            LOG.debug("Couldn't find element located by: " + by);
+            return false;
+        }
+    }
+
     public static void waitABit(long milliSeconds) {
         if (milliSeconds > 0) {
             try {
@@ -121,4 +119,28 @@ public class Waiters {
         WebDriver driver = getDriver();
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
     }
+
+    public static String returnDocumentStatus(WebDriver driver) {
+        JavascriptExecutor js=(JavascriptExecutor) driver;
+        return (String) js.executeScript("return document.readyState");
+    }
+
+    public static boolean waitTillLoadingPage(WebDriver driver) {
+        String pageLoadStatus="";
+        boolean pageWasLoaded=false;
+        do {
+            try {
+                pageLoadStatus=returnDocumentStatus(driver);
+            }
+            catch(Exception e) {
+                e.printStackTrace();
+            }
+            if(pageLoadStatus.equals("complete") || pageLoadStatus.equals("interactive")) {
+                pageWasLoaded=true;
+            }
+        }
+        while(!pageWasLoaded);
+        return pageWasLoaded;
+    }
+
 }

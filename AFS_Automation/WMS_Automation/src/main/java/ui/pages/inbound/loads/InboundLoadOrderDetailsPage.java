@@ -1,6 +1,5 @@
 package ui.pages.inbound.loads;
 
-import com.codeborne.selenide.SelenideElement;
 import common.utils.Waiters;
 import objects.productdata.ProductData;
 import org.openqa.selenium.By;
@@ -9,7 +8,6 @@ import ui.pages.BasePage;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
-import static common.setup.DriverManager.getDriver;
 
 public class InboundLoadOrderDetailsPage extends BasePage {
 
@@ -107,9 +105,6 @@ public class InboundLoadOrderDetailsPage extends BasePage {
     By btnAddProductCancel = By.id("btnAddProductCancel");
 
     public void waitForInboundLoadOrderDetailsPageToLoad() {
-        refresh();
-        refresh();
-        refresh();
         Waiters.waitUntilPageWillLoadedSelenide();
         Waiters.waitForElementToBeDisplay(getTopIcon());
         Waiters.waitForElementToBeDisplay(getOrderOption());

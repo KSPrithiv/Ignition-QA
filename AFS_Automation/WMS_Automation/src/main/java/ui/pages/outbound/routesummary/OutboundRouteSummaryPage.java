@@ -204,9 +204,6 @@ public class OutboundRouteSummaryPage extends BasePage {
     By dropdownList = By.id("dropdownList");
 
     public void waitOutboundRouteSummaryPageToLoad() {
-        refresh();
-        refresh();
-        refresh();
         Waiters.waitUntilPageWillLoadedSelenide();
         Waiters.waitForElementToBeDisplay(getTitle());
         Waiters.waitForElementToBeDisplay(getTableContent());

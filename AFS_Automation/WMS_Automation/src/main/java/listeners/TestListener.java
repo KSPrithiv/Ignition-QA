@@ -1,7 +1,5 @@
 package listeners;
 
-import com.codeborne.selenide.WebDriverRunner;
-import common.setup.DriverManager;
 import io.qameta.allure.Allure;
 import lombok.Getter;
 import lombok.Setter;
@@ -10,7 +8,6 @@ import org.openqa.selenium.TakesScreenshot;
 import org.testng.*;
 
 import java.io.ByteArrayInputStream;
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -35,7 +32,7 @@ public class TestListener extends TestListenerAdapter implements ITestListener, 
     public void onTestFailure(ITestResult testResult) {
         failedTestsResultRunMap.put(testResult.getTestName(), testResult.getStatus());
         Allure.addAttachment(testResult.getName(),
-               new ByteArrayInputStream(((TakesScreenshot) WebDriverRunner.getWebDriver()).getScreenshotAs(OutputType.BYTES)));
+               new ByteArrayInputStream(((TakesScreenshot) getDriver()).getScreenshotAs(OutputType.BYTES)));
     }
 
 
@@ -43,7 +40,7 @@ public class TestListener extends TestListenerAdapter implements ITestListener, 
     public void onTestSkipped(ITestResult testResult) {
        skippedTestsResultRunMap.put(testResult.getTestName(), testResult.getStatus());
        Allure.addAttachment(testResult.getName(),
-                new ByteArrayInputStream(((TakesScreenshot) WebDriverRunner.getWebDriver()).getScreenshotAs(OutputType.BYTES)));
+                new ByteArrayInputStream(((TakesScreenshot) getDriver()).getScreenshotAs(OutputType.BYTES)));
        System.out.println(String.format("Skipped tests are %s and skipped tests amount %s",
                 skippedTestsResultRunMap.toString(), skippedTestsResultRunMap.size()));
     }
@@ -53,7 +50,7 @@ public class TestListener extends TestListenerAdapter implements ITestListener, 
     public void onFinish(ITestContext context) {
         failedTestsResultRunMap.put(context.getFailedTests().getAllMethods().toString(), context.getFailedTests().size());
         Allure.addAttachment(context.getFailedTests().toString(),
-                new ByteArrayInputStream(((TakesScreenshot) WebDriverRunner.getWebDriver()).getScreenshotAs(OutputType.BYTES)));
+                new ByteArrayInputStream(((TakesScreenshot) getDriver()).getScreenshotAs(OutputType.BYTES)));
         System.out.println(String.format("Failed tests are %s and failed tests amount %s",
                 failedTestsResultRunMap.toString(), failedTestsResultRunMap.size()));
     }
@@ -67,8 +64,7 @@ public class TestListener extends TestListenerAdapter implements ITestListener, 
     public void afterInvocation(IInvokedMethod method, ITestResult testResult) {
         if(!testResult.isSuccess()) {
             failedTestsResultRunMap.put(method.getTestMethod().getMethodName(), testResult.getStatus());
-            Allure.addAttachment(testResult.getTestName(), new ByteArrayInputStream(((TakesScreenshot) WebDriverRunner
-                    .getWebDriver()).getScreenshotAs(OutputType.BYTES)));
+            Allure.addAttachment(testResult.getTestName(), new ByteArrayInputStream(((TakesScreenshot) getDriver()).getScreenshotAs(OutputType.BYTES)));
         }
     }
 }
