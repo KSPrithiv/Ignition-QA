@@ -826,7 +826,7 @@ public class BadgeBuilderPage {
         }
     }
 
-    public void ChangeAccount() {
+    public void ChangeAccountNumber1() {
         exists = false;
         WebElement WebEle = null;
         String Acc_No = null;

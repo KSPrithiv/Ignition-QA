@@ -128,9 +128,9 @@ public class CongestionPage extends BasePage {
         }
     }
     public void congestionTab() throws InterruptedException {
-        Waiters.waitUntilPageWillLoadedSelenide();
+//        Waiters.waitUntilPageWillLoadedSelenide();
         try{
-            Waiters.waitABit(7000);
+//            Waiters.waitABit(7000);
             Waiters.waitForElementToBeDisplay(getCongestion());
 //            Waiters.waitABit(2000);
             clickOnElement(getCongestion());
