@@ -12,9 +12,6 @@ public class AppointmentSchedulerLinkedOrdersPopUpPage extends BasePage {
     By linkedOrdersPopUpOkButton = By.xpath("//button[@class='k-button k-primary k-button-icontext']");
 
     public void waitForAppointmentSchedulerLinkedOrdersPopUpPageToLoad() {
-        refresh();
-        refresh();
-        refresh();
         Waiters.waitUntilPageWillLoadedSelenide();
         Waiters.waitForElementToBeDisplay(getLinkedOrdersPopUpTitle());
         Waiters.waitForElementToBeDisplay(getLinkedOrdersPopUpContent());

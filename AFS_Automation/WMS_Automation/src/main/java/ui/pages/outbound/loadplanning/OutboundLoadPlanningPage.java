@@ -16,9 +16,6 @@ public class OutboundLoadPlanningPage extends BasePage {
     By dropdownList = By.id("dropdownList");
 
     public void waitOutboundLoadPlanningPageToLoad() {
-        refresh();
-        refresh();
-        refresh();
         Waiters.waitABit(7000);
         Waiters.waitUntilPageWillLoadedSelenide();
         Waiters.waitForElementToBeDisplay(getLoadPlanningShipDate());

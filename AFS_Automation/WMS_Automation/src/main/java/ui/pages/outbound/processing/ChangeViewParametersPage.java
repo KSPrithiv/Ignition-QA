@@ -39,9 +39,6 @@ public class ChangeViewParametersPage extends BasePage {
     By cancelButton = By.xpath("//button[contains(text(), 'Cancel')]");
 
     public void waitChangeViewParametersPageToLoad() {
-        refresh();
-        refresh();
-        refresh();
         Waiters.waitUntilPageWillLoadedSelenide();
         Waiters.waitForElementToBeDisplay(getPageTitle());
         Waiters.waitForElementToBeDisplay(getSourceLabel());

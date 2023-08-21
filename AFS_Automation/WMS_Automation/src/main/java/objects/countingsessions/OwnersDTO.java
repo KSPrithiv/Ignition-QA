@@ -19,4 +19,6 @@ public class OwnersDTO implements Serializable {
 	private String owner3;
 	@JsonProperty("owner 4")
 	private String owner4;
+	@JsonProperty("owner 5")
+	private String owner5;
 }

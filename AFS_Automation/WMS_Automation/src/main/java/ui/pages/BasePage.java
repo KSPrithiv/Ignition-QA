@@ -3,6 +3,11 @@ package ui.pages;
 import common.utils.Waiters;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
 import java.util.List;
 import java.util.Optional;
 
@@ -204,6 +209,50 @@ public class BasePage {
         }
     }
 
+    public void selectCheckbox(By locator) {
+        try {
+            if(!findWebElement(locator).isSelected()) {
+                findWebElement(locator).click();
+            }
+        } catch (WebDriverException e) {
+            throw new IllegalStateException(
+                    "Element found by locator '" + locator + "' not found on the page: " + e.getMessage(), e);
+        }
+    }
+
+    public void selectCheckbox(WebElement webElement) {
+        try {
+            if(webElement.isSelected()) {
+                webElement.click();
+            }
+        } catch (WebDriverException e) {
+            throw new IllegalStateException(
+                    "Element '" + webElement + "' not found on the page: " + e.getMessage(), e);
+        }
+    }
+
+    public void unselectCheckbox(By locator) {
+        try {
+            if(findWebElement(locator).isSelected()) {
+                findWebElement(locator).click();
+            }
+        } catch (WebDriverException e) {
+            throw new IllegalStateException(
+                    "Element found by locator '" + locator + "' not found on the page: " + e.getMessage(), e);
+        }
+    }
+
+    public void unselectCheckbox(WebElement webElement) {
+        try {
+            if(!webElement.isSelected()) {
+                webElement.click();
+            }
+        } catch (WebDriverException e) {
+            throw new IllegalStateException(
+                    "Element '" + webElement + "' not found on the page: " + e.getMessage(), e);
+        }
+    }
+
     public boolean isElementSelected(By locator) {
         try {
             return findWebElement(locator).isSelected();
@@ -311,6 +360,32 @@ public class BasePage {
         }
     }
 
+    public boolean isVisible(By by) {
+        try {
+            return new WebDriverWait(getDriver(), Duration.ofSeconds(2)).until(ExpectedConditions.visibilityOfElementLocated(by)) != null;
+        } catch (TimeoutException | NoSuchElementException | StaleElementReferenceException ex) {
+            return false;
+        }
+    }
+
+    public void waitUntilVisible(By by, int timeout) {
+        try {
+            ExpectedCondition<Boolean> elementInvisible = driver -> isVisible(by);
+            until(elementInvisible, timeout);
+        } catch (TimeoutException | NoSuchElementException | StaleElementReferenceException ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    public void waitUntilInvisible(int timeoutSeconds, By by) {
+        try {
+            ExpectedCondition<Boolean> elementInvisible = driver -> !isVisible(by);
+            until(elementInvisible, timeoutSeconds);
+        } catch (TimeoutException | NoSuchElementException | StaleElementReferenceException ex) {
+            ex.printStackTrace();
+        }
+    }
+
     public String getElementAttribute(WebElement element, String attribute) {
         return Optional.ofNullable(element.getAttribute(attribute))
                 .orElseThrow(() -> new IllegalArgumentException("Attribute " + attribute + " does not exist"));
@@ -318,6 +393,23 @@ public class BasePage {
 
     public String checkElementAttribute(WebElement element, String attribute) {
         return element.getAttribute(attribute);
+    }
+
+    public <T> T until(ExpectedCondition<T> condition, int timeoutSeconds) {
+        try {
+            return getWebDriverWait(timeoutSeconds)
+                    .ignoring(StaleElementReferenceException.class)
+                    .ignoring(TimeoutException.class)
+                    .ignoring(NullPointerException.class)
+                    .until(condition);
+        } catch (Exception ex) {
+            return null;
+        }
+    }
+
+    private WebDriverWait getWebDriverWait(int timeout) {
+        WebDriver driver = getDriver();
+        return new WebDriverWait(driver, Duration.ofSeconds(timeout));
     }
 
     public WebElement findWebElement(By by) {

@@ -333,8 +333,8 @@ public class CountingSessionsPageValidations {
         softAssert.assertTrue(countingSessionsPage.isProductColumnHeaderDisplayed(), "Product Column Header is not displayed");
         softAssert.assertTrue(countingSessionsPage.isDescriptionColumnDisplayed(), "Description Column is not displayed");
         softAssert.assertTrue(countingSessionsPage.isDescriptionColumnHeaderDisplayed(), "Description Column Header is not displayed");
-        softAssert.assertTrue(countingSessionsPage.isOwnerColumnDisplayed(), "Owner Column is not displayed");
-        softAssert.assertTrue(countingSessionsPage.isOwnerColumnHeaderDisplayed(), "Owner Column Header is not displayed");
+        softAssert.assertTrue(countingSessionsPage.isCustomerColumnDisplayed(), "Customer Column is not displayed");
+        softAssert.assertTrue(countingSessionsPage.isCustomerColumnHeaderDisplayed(), "Customer Column Header is not displayed");
         softAssert.assertTrue(countingSessionsPage.isUomColumnDisplayed(), "UOM Column is not displayed");
         softAssert.assertTrue(countingSessionsPage.isUomColumnHeaderDisplayed(), "UOM Column Header is not displayed");
         softAssert.assertTrue(countingSessionsPage.isCurrentQtyColumnDisplayed(), "Current Qty Column is not displayed");

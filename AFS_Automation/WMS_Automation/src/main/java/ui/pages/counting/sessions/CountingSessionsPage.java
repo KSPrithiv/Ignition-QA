@@ -5,11 +5,11 @@ import org.apache.commons.lang3.RandomStringUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import ui.pages.BasePage;
-
 import java.util.List;
 
-public class CountingSessionsPage extends BasePage {
+import static common.setup.DriverManager.getDriver;
 
+public class CountingSessionsPage extends BasePage {
     By sessionsPageTitle = By.className("spnmoduleNameHeader");
     By countingSessionLabel = By.id("ddlSessionSession-label");
     By sessionDropdown = By.id("ddlSessionSession");
@@ -30,7 +30,7 @@ public class CountingSessionsPage extends BasePage {
     By OKButton = By.xpath("//button[contains(text(), 'OK')]");
     By yesButton = By.xpath("//button[@content='Yes']");
     By noButton = By.xpath("//button[@content='No']");
-    By activeCheckbox = By.xpath("//input[@type='checkbox']//following-sibling::span[text()='Active']");
+    By activeCheckbox = By.xpath("//input[@id='activeSessionCheckbox']");
     By dialogTextContent = By.id("dialogTextContent");
     By btnCSLocationAdd = By.id("btnCSLocationAdd");
     By btnLocationRemove = By.id("btnCSLocationRemove");
@@ -80,6 +80,8 @@ public class CountingSessionsPage extends BasePage {
     By productColumnHeader = By.xpath("//th[@role='columnheader'][.//span[text()='Product']]");
     By ownerColumn = By.xpath("//span[text()='Owner']");
     By ownerColumnHeader = By.xpath("//th[@role='columnheader'][.//span[text()='Owner']]");
+    By customerColumn = By.xpath("//span[text()='Customer']");
+    By customerColumnHeader = By.xpath("//th[@role='columnheader'][.//span[text()='Customer']]");
     By descriptionColumn = By.xpath("//span[text()='Description']");
     By descriptionColumnHeader = By.xpath("//th[@role='columnheader'][.//span[text()='Description']]");
     By bookCostColumn = By.xpath("//span[text()='Book cost']");
@@ -99,7 +101,7 @@ public class CountingSessionsPage extends BasePage {
     By varianceColumn = By.xpath("//span[text()='Variance']");
     By varianceColumnHeader = By.xpath("//th[@role='columnheader'][.//span[text()='Variance']]");
     By btnGenerateLocations = By.id("btnCSProductLocations");
-    By productGridSearch = By.id("ProductGridSearch");
+    By productGridSearch = By.id("CSProductGridSearch");
     By assignmentGridSearch = By.id("AssignmentGridSearch");
     By itemsFoundLabel = By.xpath("//span[contains(text(), 'Items found')]");
     By itemsFoundValue = By.xpath("//span[contains(text(), 'Items found')]//following-sibling::span");
@@ -169,8 +171,8 @@ public class CountingSessionsPage extends BasePage {
     By userDirectedCountingLabel= By.cssSelector("label[for='rdoBtnBuildCountAssignment_2']");
     By dateInputSchedDateLabel = By.id("dateInputSchedDate-label");
     By dateInputSchedDate = By.id("dateInputSchedDate");
-    By timeInputSchedTimeLabel= By.id("timeInputTime-label");
-    By timeInputSchedTime= By.id("timeInputTime");
+    By timeInputSchedTimeLabel= By.id("timeInputSchedTime-label");
+    By timeInputSchedTime= By.id("timeInputSchedTime");
     By timeInputTime = By.id("timeInputTime");
     By assignLabel = By.xpath("//label[contains(text(), 'Assign')]");
     By XcancelIcon = By.cssSelector(".i-button--icon-only");
@@ -183,7 +185,7 @@ public class CountingSessionsPage extends BasePage {
     By autoReconcileLabel = By.xpath("//div[contains(text(), 'Auto reconcile')]");
     By ddlDeleteReasonLabel = By.id("ddlDeleteReason-label");
     By ddlDeleteReason = By.id("ddlDeleteReason");
-    By allInputsCheckbox = By.xpath("//div[@class='k-widget k-grid']//th[@class='k-header i-grid-checkbox-header']//input");
+    By allInputsCheckbox = By.xpath("//div[@class='k-widget k-grid']//div[@class='k-grid-header']//input");
     By assignmentCodeFilter = By.cssSelector(".i-btn-checkbox  #AssignmentCode");
     By totalTasksFilter = By.cssSelector(".i-btn-checkbox  #TotalTasks");
     By completedTasksFilter = By.cssSelector(".i-btn-checkbox  #CompletedTasks");
@@ -193,6 +195,7 @@ public class CountingSessionsPage extends BasePage {
     By searchBox = By.cssSelector(".i-filter-popup--add .i-search-box__input");
     By addFilter = By.cssSelector(".i-filter-tag__main");
     By clearFilter = By.cssSelector(".i-filter-tag__clear");
+    By loader = By.cssSelector(".loader");
 
     private static String session = null;
 
@@ -203,8 +206,7 @@ public class CountingSessionsPage extends BasePage {
     public static synchronized String getSession() { return session; }
 
     public void waitCountingSessionsPageToLoad() {
-        Waiters.waitUntilPageWillLoadedSelenide();
-        Waiters.waitABit(3000);
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(countingSessionLabel);
         Waiters.waitForElementToBeDisplay(sessionDropdown);
         Waiters.waitForElementToBeDisplay(btnNewSession);
@@ -213,35 +215,43 @@ public class CountingSessionsPage extends BasePage {
     }
 
     public void selectWarehouse(String warehouse) {
+        Waiters.waitTillLoadingPage(getDriver());
         clickOnElement(getDropdownList());
-        clickOnElement(findWebElement(By.xpath("//div[contains(@class, 'k-animation-container-shown')]//li[contains(text(), '"
-                + warehouse + "') and @role='option']")));
-        Waiters.waitABit(2000);
+        List<WebElement> options = findWebElements(By.xpath("//div[contains(@class, 'k-animation-container-shown')]//li[@role='option']"));
+        WebElement option = options
+                .stream()
+                .filter(el -> el.getText().contains(warehouse))
+                .findFirst()
+                .orElse(null);
+        clickOnElement(option);
+        Waiters.returnDocumentStatus(getDriver());
     }
 
     public String getGridTableRowContent(int row) {
-        Waiters.waitABit(4000);
+        Waiters.returnDocumentStatus(getDriver());
         Waiters.waitForPresenceOfAllElements(sessionTableRows);
         return getText(getSessionTableRows().get(row));
     }
 
     public void enterDate(String date) {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeClickable(getToggleCalendar());
         clickOnElement(getToggleCalendar());
-        Waiters.waitABit(2000);
+        Waiters.returnDocumentStatus(getDriver());
         String day = date.substring(3, 5).contains("0") ? date.substring(4, 5) : date.substring(3, 5);
         clickOnElement(getCalendarDay(day));
-        Waiters.waitABit(2000);
+        Waiters.returnDocumentStatus(getDriver());
     }
 
     public void removeDateAndTime() {
-        Waiters.waitABit(2000);
+        Waiters.returnDocumentStatus(getDriver());
         Waiters.waitForElementToBeClickable(getXcancelIcon());
         clickOnElement(getXcancelIcon());
+        Waiters.waitTillLoadingPage(getDriver());
     }
 
     public void enterTime(String time) {
+        Waiters.waitTillLoadingPage(getDriver());
         clickOnElement(getTimeInputSchedTime());
         Waiters.waitABit(2000);
         pressLeftArrow(getTimeInputSchedTime());
@@ -260,9 +270,11 @@ public class CountingSessionsPage extends BasePage {
         Waiters.waitABit(2000);
         inputText(getTimeInputSchedTime(), time.split(":")[1]);
         pressTab(getTimeInputSchedTime());
+        Waiters.waitTillLoadingPage(getDriver());
     }
 
     public void selectUser(String user) {
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(getUserDropdown());
         clickOnElement(getUserDropdown());
         List<WebElement> options = findWebElements(By.xpath("//div[contains(@class, 'k-animation-container-shown')]//li[@role='option']"));
@@ -271,36 +283,55 @@ public class CountingSessionsPage extends BasePage {
                         .findFirst()
                         .orElseThrow(() -> new IllegalArgumentException("User " + user + " is not found"));
         clickOnElement(option);
+        Waiters.waitTillLoadingPage(getDriver());
+    }
+
+    public void waitUntilLoaderInvisible() {
+        waitUntilInvisible(8, loader);
     }
 
     public void clickSessionDropdown() {
-        Waiters.waitForElementToBeDisplay(sessionDropdown);
-        clickOnElement(sessionDropdown);
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
+        Waiters.waitForElementToBeClickable(sessionDropdown);
+        jsClick(getSessionDropdown());
+        Waiters.waitTillLoadingPage(getDriver());
     }
 
     public void clickSelectAllCheckbox() {
+        waitUntilLoaderInvisible();
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(selectAllCheckbox);
-        clickOnElement(selectAllCheckbox);
-        Waiters.waitABit(2000);
+        selectCheckbox(selectAllCheckbox);
+        Waiters.waitTillLoadingPage(getDriver());
+    }
+
+    public void clickUnselectAllCheckbox() {
+        waitUntilLoaderInvisible();
+        Waiters.waitTillLoadingPage(getDriver());
+        Waiters.waitForElementToBeDisplay(selectAllCheckbox);
+        unselectCheckbox(selectAllCheckbox);
+        Waiters.waitTillLoadingPage(getDriver());
     }
 
     public void clickLocationDeleteButton() {
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(getLocationRemove());
         clickOnElement(getLocationRemove());
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
     }
 
     public void clickLocationReleaseButton() {
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(getLocationRelease());
         clickOnElement(getLocationRelease());
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
     }
 
     public void clickLocationReconcileButton() {
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(getLocationReconcile());
         clickOnElement(getLocationReconcile());
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
     }
 
     public String getSessionDropdownValue() {
@@ -316,6 +347,7 @@ public class CountingSessionsPage extends BasePage {
     public void clickSessionsPageTitle() {
         Waiters.waitForElementToBeDisplay(sessionsPageTitle);
         clickOnElement(sessionsPageTitle);
+        Waiters.waitTillLoadingPage(getDriver());
     }
 
     public boolean isActiveCheckboxChecked() { return isElementSelected(activeCheckbox); }
@@ -325,132 +357,172 @@ public class CountingSessionsPage extends BasePage {
     }
 
     public void selectSession(String session) {
-        WebElement option = findWebElements(By.xpath("//div[contains(@class, 'k-animation-container-shown')]//li"))
-                .stream()
+        Waiters.waitTillLoadingPage(getDriver());
+        Waiters.waitForElementsToBeDisplay(findWebElements(By.xpath("//div[contains(@class, 'k-animation-container-shown')]//*[@role='option']")));
+        List<WebElement> options = findWebElements(By.xpath("//div[contains(@class, 'k-animation-container-shown')]//*[@role='option']"));
+        Waiters.waitTillLoadingPage(getDriver());
+        WebElement option = options.stream()
                 .filter(el -> el.getText().contains(session))
                 .findFirst()
                 .orElse(null);
+        scrollToCenter(option);
         clickOnElement(option);
-        Waiters.waitABit(3_000);
+        waitUntilLoaderInvisible();
+        Waiters.waitTillLoadingPage(getDriver());
     }
 
     public void selectDeleteReason(String reason) {
-        Waiters.waitABit(3_000);
+        Waiters.returnDocumentStatus(getDriver());
         Waiters.waitForElementToBeDisplay(getDeleteReason());
         clickOnElement(getDeleteReason());
-        clickOnElement(findWebElement(By.xpath("//div[contains(@class, 'k-animation-container-shown')]//*[contains(text(), '"
-                + reason + "') and @role='option']")));
+        List<WebElement> options = findWebElements(By.xpath("//div[contains(@class, 'k-animation-container-shown')]//li[@role='option']"));
+        WebElement option = options.stream()
+                .filter(el -> el.getText().contains(reason))
+                .findFirst()
+                .orElse(null);
+        clickOnElement(option);
+        Waiters.waitTillLoadingPage(getDriver());
     }
 
     public void clickAllInputsCheckbox() {
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(getAllInputsCheckbox());
         clickOnElement(getAllInputsCheckbox());
     }
 
-    public void checkTableRowByIndex(int index) {
-        Waiters.waitABit(3000);
+    public void unselectTableRowByIndex(int index) {
+        Waiters.returnDocumentStatus(getDriver());
         Waiters.waitForPresenceOfAllElements(sessionTableRows);
         List<WebElement> rows = findWebElements(sessionTableRows);
-        clickOnElement(rows.get(index).findElement(By.xpath(".//input")));
-        Waiters.waitABit(3000);
+        unselectCheckbox(rows.get(index).findElement(By.xpath(".//input")));
+        Waiters.waitTillLoadingPage(getDriver());
+    }
+
+    public void selectTableRowByIndex(int index) {
+        Waiters.returnDocumentStatus(getDriver());
+        Waiters.waitForPresenceOfAllElements(sessionTableRows);
+        List<WebElement> rows = findWebElements(sessionTableRows);
+        selectCheckbox(rows.get(index).findElement(By.xpath(".//input")));
+        Waiters.waitTillLoadingPage(getDriver());
     }
 
     public void clickTableLocationByIndex(int index) {
-        Waiters.waitABit(3000);
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForPresenceOfAllElements(sessionTableRows);
         List<WebElement> rows = findWebElements(sessionTableRows);
         clickOnElement(rows.get(index).findElements(By.xpath(".//button[contains(@class, 'i-link-button')]")).get(0));
-        Waiters.waitABit(3000);
+        Waiters.waitTillLoadingPage(getDriver());
     }
 
     public void selectTableCountByIndex(int index) {
-        Waiters.waitABit(3000);
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForPresenceOfAllElements(sessionTableRows);
         List<WebElement> rows = findWebElements(sessionTableRows);
         clickOnElement(rows.get(index).findElements(By.xpath(".//button[contains(@class, 'i-link-button')]")).get(1));
-        Waiters.waitABit(3000);
+        Waiters.waitTillLoadingPage(getDriver());
     }
 
     public void selectCountType(String type) {
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(countType);
         clickOnElement(countType);
-        WebElement option = findWebElement(By.xpath("//div[contains(@class, 'k-animation-container-shown')]//*[contains(text(), '"
-                + type + "') and @role='option']"));
+        Waiters.waitABit(3000);
+        List<WebElement> options = findWebElements(By.xpath("//div[contains(@class, 'k-animation-container-shown')]//li[@role='option']"));
+        WebElement option = options
+                .stream()
+                .filter(el -> el.getText().contains(type))
+                .findFirst()
+                .orElse(null);
         clickOnElement(option);
+        Waiters.waitTillLoadingPage(getDriver());
     }
 
     public void typeLocationCode(String code) {
-        Waiters.waitABit(1000);
         Waiters.waitForElementToBeDisplay(getLocationCodeInput());
         clear(getLocationCodeInput());
         inputText(getLocationCodeInput(), code);
         pressEnter(getLocationCodeInput());
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
     }
 
     public void selectLocationCode(String code) {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(getLocationCodeInput());
         clear(getLocationCodeInput());
         inputText(getLocationCodeInput(), code);
         WebElement locCode = findWebElement(By.xpath("//div[contains(@class, 'k-animation-container-shown')]//*[contains(text(), '"
                 + code + "') and @role='option']"));
         clickOnElement(locCode);
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
     }
 
     public void typePartialLocationCode(String code) {
-        Waiters.waitABit(1000);
         Waiters.waitForElementToBeDisplay(getPartialLocationCodeInput());
         clear(getPartialLocationCodeInput());
         inputText(getPartialLocationCodeInput(), code);
-        pressTab(getPartialLocationCodeInput());
+        Waiters.waitTillLoadingPage(getDriver());
     }
 
     public void selectZone(String zone) {
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(zoneDropdown);
+        Waiters.waitABit(2000);
         clickOnElement(zoneDropdown);
-        WebElement option = findWebElement(By.xpath("//div[contains(@class, 'k-animation-container-shown')]//*[contains(text(), '"
-                + zone + "') and @role='option']"));
+        Waiters.waitABit(3000);
+        List<WebElement> options = findWebElements(By.xpath("//div[contains(@class, 'k-animation-container-shown')]//li[@role='option']"));
+        WebElement option = options
+                .stream()
+                .filter(el -> el.getText().contains(zone))
+                .findFirst()
+                .orElse(null);
         clickOnElement(option);
+        Waiters.waitTillLoadingPage(getDriver());
     }
 
     public void selectLocationType(String type) {
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(locationTypeDropdown);
         clickOnElement(locationTypeDropdown);
-        WebElement option = findWebElement(By.xpath("//div[contains(@class, 'k-animation-container-shown')]//*[contains(text(), '"
-                + type + "') and @role='option']"));
+        List<WebElement> options = findWebElements(By.xpath("//div[contains(@class, 'k-animation-container-shown')]//li[@role='option']"));
+        WebElement option = options
+                .stream()
+                .filter(el -> el.getText().contains(type))
+                .findFirst()
+                .orElse(null);
         clickOnElement(option);
+        Waiters.waitTillLoadingPage(getDriver());
     }
 
     public void typeStartingLocation(String code) {
-        Waiters.waitABit(1000);
         Waiters.waitForElementToBeDisplay(getStartingLocationInput());
         clear(getStartingLocationInput());
         inputText(getStartingLocationInput(), code);
         pressEnter(getStartingLocationInput());
-        Waiters.waitABit(3000);
+        Waiters.waitTillLoadingPage(getDriver());
     }
 
     public void typeEndingLocation(String code) {
-        Waiters.waitABit(1000);
         Waiters.waitForElementToBeDisplay(getEndingLocationInput());
         clear(getEndingLocationInput());
         inputText(getEndingLocationInput(), code);
         pressEnter(getEndingLocationInput());
-        Waiters.waitABit(5000);
+        Waiters.waitTillLoadingPage(getDriver());
     }
 
     public void typeSessionName(String name) {
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(sessionName);
         enterText(getSessionName(), name);
+        Waiters.waitTillLoadingPage(getDriver());
     }
 
     public void typeRandomSessionName() {
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(sessionName);
         String randomSessionName = RandomStringUtils.randomAlphabetic(6);
         setSession(randomSessionName);
         enterText(getSessionName(), randomSessionName);
+        Waiters.waitTillLoadingPage(getDriver());
     }
 
     public void clickUserDirectedCountingButton() {
@@ -462,31 +534,35 @@ public class CountingSessionsPage extends BasePage {
         Waiters.waitForElementToBeDisplay(getProductGridSearch());
         enterText(getProductGridSearch(), product);
         pressEnter(getProductGridSearch());
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
+        Waiters.waitABit(4000);
     }
 
     public void searchAssignment(String assignment) {
         Waiters.waitForElementToBeDisplay(getAssignmentGridSearch());
         enterText(getAssignmentGridSearch(), assignment);
         pressEnter(getAssignmentGridSearch());
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
     }
 
     public void deleteProductSearchInput() {
         Waiters.waitForElementToBeDisplay(getProductGridSearch());
         doubleClick(getProductGridSearch());
         pressDelete(getProductGridSearch());
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
     }
 
     public void clickNewSession() {
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(getBtnNewSession());
         clickOnElement(getBtnNewSession());
+        Waiters.waitTillLoadingPage(getDriver());
     }
 
     public void clickEditSession() {
         Waiters.waitForElementToBeDisplay(getBtnEditSession());
         clickOnElement(getBtnEditSession());
+        Waiters.waitTillLoadingPage(getDriver());
     }
 
     public void clickDeleteSession() {
@@ -496,32 +572,49 @@ public class CountingSessionsPage extends BasePage {
 
     public void clickSaveButton() {
         Waiters.waitForElementToBeDisplay(saveButton);
-        clickOnElement(saveButton);
+        jsClick(getSaveButton());
+        Waiters.waitTillLoadingPage(getDriver());
+    }
+
+    public void clickYesButtonIfNeeded() {
+        try {
+            if(isVisible(yesButton)) {
+                clickOnElement(yesButton);
+                Waiters.waitTillLoadingPage(getDriver());
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
     }
 
     public void clickCancelButton() {
         Waiters.waitForElementToBeDisplay(cancelButton);
         clickOnElement(cancelButton);
+        Waiters.waitTillLoadingPage(getDriver());
     }
 
     public void clickOkButton() {
         Waiters.waitForElementToBeDisplay(okButton);
         clickOnElement(okButton);
+        Waiters.waitTillLoadingPage(getDriver());
     }
 
     public void clickOKButton() {
         Waiters.waitForElementToBeDisplay(OKButton);
         clickOnElement(OKButton);
+        Waiters.waitTillLoadingPage(getDriver());
     }
 
     public void clickYesButton() {
         Waiters.waitForElementToBeDisplay(yesButton);
         clickOnElement(yesButton);
+        Waiters.waitTillLoadingPage(getDriver());
     }
 
     public void clickNoButton() {
         Waiters.waitForElementToBeDisplay(noButton);
         clickOnElement(noButton);
+        Waiters.waitTillLoadingPage(getDriver());
     }
 
     public void clickActiveCheckbox() {
@@ -530,234 +623,250 @@ public class CountingSessionsPage extends BasePage {
     }
 
     public void clickLocationAdd() {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(getLocationAdd());
         clickOnElement(getLocationAdd());
-        Waiters.waitForForElementToDisappear(findWebElement(By.cssSelector(".k-loading-image")));
-        Waiters.waitABit(15000);
+        Waiters.waitTillLoadingPage(getDriver());
     }
 
     public void clickLocationsTab() {
-        Waiters.waitABit(5000);
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(getLocationsTab());
         clickOnElement(getLocationsTab());
-        Waiters.waitABit(3000);
+        Waiters.waitTillLoadingPage(getDriver());
     }
 
     public void clickProductsTab() {
-        Waiters.waitABit(5000);
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(getProductsTab());
         clickOnElement(getProductsTab());
-        Waiters.waitABit(3000);
+        Waiters.waitTillLoadingPage(getDriver());
     }
 
     public void clickAssignmentsTab() {
-        Waiters.waitABit(5000);
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(getAssignmentsTab());
         clickOnElement(getAssignmentsTab());
-        Waiters.waitABit(3000);
+        Waiters.waitTillLoadingPage(getDriver());
     }
 
     public void clickLocationColumnHeader() {
         Waiters.waitForElementToBeDisplay(getLocationColumnHeader());
         clickOnElement(getLocationColumnHeader());
+        Waiters.waitTillLoadingPage(getDriver());
     }
 
     public void clickLocCodeButton() {
         Waiters.waitForElementToBeDisplay(getLocCodeButton());
         clickOnElement(getLocCodeButton());
+        Waiters.waitTillLoadingPage(getDriver());
     }
 
     public void clickZoneColumnHeader() {
         Waiters.waitForElementToBeDisplay(getZoneColumnHeader());
         clickOnElement(getZoneColumnHeader());
+        Waiters.waitTillLoadingPage(getDriver());
     }
 
     public void clickTypeColumnHeader() {
         Waiters.waitForElementToBeDisplay(getTypeColumnHeader());
         clickOnElement(getTypeColumnHeader());
+        Waiters.waitTillLoadingPage(getDriver());
     }
 
     public void clickStatusColumnHeader() {
         Waiters.waitForElementToBeDisplay(getStatusColumnHeader());
         clickOnElement(getStatusColumnHeader());
+        Waiters.waitTillLoadingPage(getDriver());
     }
 
     public void clickCountsColumnHeader() {
         Waiters.waitForElementToBeDisplay(getCountsColumnHeader());
         clickOnElement(getCountsColumnHeader());
+        Waiters.waitTillLoadingPage(getDriver());
     }
 
     public void clickReleaseDateTimeColumn() {
         Waiters.waitForElementToBeDisplay(getReleaseDateTimeColumn());
         clickOnElement(getReleaseDateTimeColumn());
+        Waiters.waitTillLoadingPage(getDriver());
     }
 
     public void clickProductColumn() {
         Waiters.waitForElementToBeDisplay(getProductColumnHeader());
         clickOnElement(getProductColumnHeader());
+        Waiters.waitTillLoadingPage(getDriver());
     }
 
     public void clickOwnerColumnHeader() {
         Waiters.waitForElementToBeDisplay(getOwnerColumnHeader());
         clickOnElement(getOwnerColumnHeader());
+        Waiters.waitTillLoadingPage(getDriver());
     }
 
     public void clickDescriptionColumnHeader() {
         Waiters.waitForElementToBeDisplay(getDescriptionColumnHeader());
         clickOnElement(getDescriptionColumnHeader());
+        Waiters.waitTillLoadingPage(getDriver());
     }
 
     public void clickBookQtyColumnHeader() {
         Waiters.waitForElementToBeDisplay(getBookQtyColumnHeader());
         clickOnElement(getBookQtyColumnHeader());
+        Waiters.waitTillLoadingPage(getDriver());
     }
 
     public void clickBookCostColumnHeader() {
         Waiters.waitForElementToBeDisplay(getBookCostColumnHeader());
         clickOnElement(getBookCostColumnHeader());
+        Waiters.waitTillLoadingPage(getDriver());
     }
 
     public void clickProductTypeColumnHeader() {
         Waiters.waitForElementToBeDisplay(getProductTypeColumnHeader());
         clickOnElement(getProductTypeColumnHeader());
+        Waiters.waitTillLoadingPage(getDriver());
     }
 
     public void clickAddFilter() {
-        Waiters.waitABit(2000);
         Waiters.waitForElementToBeDisplay(getAddFilterButton());
         clickOnElement(getAddFilterButton());
+        Waiters.waitTillLoadingPage(getDriver());
     }
 
     public void selectTableContentByIndex(int index) {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(getTableContent());
         clickOnElement(getTableContent().findElements(By.xpath(".//tr[@role='row']")).get(index));
+        Waiters.waitTillLoadingPage(getDriver());
     }
 
     public void checkProductCodeFilterCheckBox() {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(getProductCodeFilter());
         clickOnElement(getProductCodeFilter());
     }
 
     public void checkOwnerCodeFilterCheckBox() {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(getOwnerCodeFilter());
         clickOnElement(getOwnerCodeFilter());
     }
 
     public void checkProductDescFilterCheckBox() {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(getProductDescFilter());
         clickOnElement(getProductDescFilter());
     }
 
     public void checkCountFilterCheckBox() {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(getBookQtyFilter());
         clickOnElement(getBookQtyFilter());
     }
 
     public void checkBookCostFilterCheckBox() {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(getBookCostFilter());
         clickOnElement(getBookCostFilter());
     }
 
     public void checkProductTypeFilterCheckBox() {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(getProductTypeFilter());
         clickOnElement(getProductTypeFilter());
     }
 
     public void checkAllAssignments() {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(getAllAssignmentsCheckBox());
         clickOnElement(getAllAssignmentsCheckBox());
     }
 
     public void clickClearAllButton() {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(getClearAllButton());
         clickOnElement(getClearAllButton());
     }
 
     public void clickAddFilterButton() {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(getAddFilter());
         clickOnElement(getAddFilter());
     }
 
     public void clickProductRemoveButton() {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(getProductRemove());
         clickOnElement(getProductRemove());
     }
 
     public void clickProductResetButton() {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(getProductReset());
         clickOnElement(getProductReset());
     }
 
     public void clickProductLocationsButton() {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(getProductLocations());
         clickOnElement(getProductLocations());
     }
 
     public void typeFilter(String filter) {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(getInputContains());
         inputText(getInputContains(), filter);
     }
 
     public String getLocationCodeInputValue() {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(getLocationCodeInput());
         return getValue(getLocationCodeInput());
     }
 
     public void clickApplyButton() {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(getApplyButton());
         clickOnElement(getApplyButton());
     }
 
     public void clickAddProductButton() {
-        Waiters.waitABit(7_000);
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(getBtnProductAdd());
         clickOnElement(getBtnProductAdd());
     }
 
     public void clickAllCheckboxButton() {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(getAllCheckbox());
         clickOnElement(getAllCheckbox());
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
     }
 
     public void typeNumberOfProducts(String products) {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(noOfProductsInput);
         enterText(getNoOfProductsInput(), products);
+        Waiters.waitTillLoadingPage(getDriver());
     }
 
     public void typeTasksPerAssignment(String task) {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(tasksPerAssignmentsInput);
         enterText(getTasksPerAssignmentsInput(), task);
+        Waiters.waitTillLoadingPage(getDriver());
     }
 
+
     public void clearTasksPerAssignment() {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(tasksPerAssignmentsInput);
         clear(getTasksPerAssignmentsInput());
     }
 
     public void clickClearFilter() {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(getClearFilter());
         clickOnElement(getClearFilter());
     }
@@ -765,13 +874,18 @@ public class CountingSessionsPage extends BasePage {
     public void selectProductType(String type) {
         Waiters.waitForElementToBeDisplay(getProductTypeInput());
         clickOnElement(getProductTypeInput());
-        WebElement option = findWebElement(By.xpath("//div[contains(@class, 'k-animation-container-shown')]//*[contains(text(), '"
-                + type + "') and @role='option']"));
+        List<WebElement> options = findWebElements(By.xpath("//div[contains(@class, 'k-animation-container-shown')]//li[@role='option']"));
+        WebElement option = options
+                .stream()
+                .filter(el -> el.getText().contains(type))
+                .findFirst()
+                .orElse(null);
         clickOnElement(option);
+        Waiters.waitTillLoadingPage(getDriver());
     }
 
     public void typeProduct(String product) {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(getTxtProductInput());
         enterText(getTxtProductInput(), product);
     }
@@ -779,19 +893,24 @@ public class CountingSessionsPage extends BasePage {
     public void selectMovementClass(String mvmtClass) {
         Waiters.waitForElementToBeDisplay(movementDropdown);
         clickOnElement(movementDropdown);
-        WebElement option = findWebElement(By.xpath("//div[contains(@class, 'k-animation-container-shown')]//*[contains(text(), '"
-                + mvmtClass + "') and @role='option']"));
+        List<WebElement> options = findWebElements(By.xpath("//div[contains(@class, 'k-animation-container-shown')]//li[@role='option']"));
+        WebElement option = options
+                .stream()
+                .filter(el -> el.getText().contains(mvmtClass))
+                .findFirst()
+                .orElse(null);
         clickOnElement(option);
+        Waiters.waitTillLoadingPage(getDriver());
     }
 
     public void typeMinimumCost(String cost) {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(minimumCostInput);
         enterText(getMinimumCostInput(), cost);
     }
 
     public void typeMaximumCost(String cost) {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(maximumCost);
         enterText(getMaximumCost(), cost);
     }
@@ -799,39 +918,52 @@ public class CountingSessionsPage extends BasePage {
     public void selectOwnerDropdown(String owner) {
         Waiters.waitForElementToBeDisplay(ddlOwnerDropdown);
         clickOnElement(ddlOwnerDropdown);
-        WebElement option = findWebElement(By.xpath("//div[contains(@class, 'k-animation-container-shown')]//*[contains(text(), '"
-                + owner + "') and @role='option']"));
+        List<WebElement> options = findWebElements(By.xpath("//div[contains(@class, 'k-animation-container-shown')]//li[@role='option']"));
+        WebElement option = options
+                .stream()
+                .filter(el -> el.getText().contains(owner))
+                .findFirst()
+                .orElse(null);
         clickOnElement(option);
+        Waiters.waitTillLoadingPage(getDriver());
     }
 
     public void typeSupplier(String supplier) {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(supplierInput);
         clickOnElement(supplierInputIcon);
         clickOnElement(getPopupTable().findElement(By.xpath(".//tr[contains(@class, 'k-master-row')][.//td[text()='" + supplier + "']]")));
         pressTab(getSupplierInput());
+        Waiters.waitTillLoadingPage(getDriver());
     }
 
     public void typeStartingProdRange(String range) {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(startingProdRange);
         inputText(getStartingProdRange(), range);
         pressTab(getStartingProdRange());
+        Waiters.waitTillLoadingPage(getDriver());
     }
 
     public void typeEndingProdRange(String range) {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(endingProdRange);
         inputText(getEndingProdRange(), range);
         pressTab(getEndingProdRange());
+        Waiters.waitTillLoadingPage(getDriver());
     }
 
     public void selectProdAliasType(String type) {
         Waiters.waitForElementToBeDisplay(getProductAliasTypeDropdown());
         clickOnElement(getProductAliasTypeDropdown());
-        WebElement option = findWebElement(By.xpath("//div[contains(@class, 'k-animation-container-shown')]//*[contains(text(), '"
-                + type + "') and @role='option']"));
+        List<WebElement> options = findWebElements(By.xpath("//div[contains(@class, 'k-animation-container-shown')]//li[@role='option']"));
+        WebElement option = options
+                .stream()
+                .filter(el -> el.getText().contains(type))
+                .findFirst()
+                .orElse(null);
         clickOnElement(option);
+        Waiters.waitTillLoadingPage(getDriver());
     }
 
     public void checkAssignment(int assignment) {
@@ -852,9 +984,13 @@ public class CountingSessionsPage extends BasePage {
     public void selectInventoryStatus(String type) {
         Waiters.waitForElementToBeDisplay(getInventoryStatusDropdown());
         clickOnElement(getInventoryStatusDropdown());
-        WebElement option = findWebElement(By.xpath("//div[contains(@class, 'k-animation-container-shown')]//*[contains(text(), '"
-                + type + "') and @role='option']"));
-        clickOnElement(option);
+        List<WebElement> options = findWebElements(By.xpath("//div[contains(@class, 'k-animation-container-shown')]//li[@role='option']"));
+        WebElement option = options
+                .stream()
+                .filter(el -> el.getText().contains(type))
+                .findFirst()
+                .orElse(null);
+        Waiters.waitTillLoadingPage(getDriver());
     }
 
     public void waitForLoadingImageToDisappear() {
@@ -862,7 +998,7 @@ public class CountingSessionsPage extends BasePage {
     }
 
     public String isRowSelected(int row) {
-        Waiters.waitABit(2000);
+        Waiters.returnDocumentStatus(getDriver());
         return getElementAttribute(getSessionTableRows().get(row), "class");
     }
 
@@ -1063,6 +1199,10 @@ public class CountingSessionsPage extends BasePage {
     public boolean isOwnerColumnDisplayed() { return isElementDisplay(ownerColumn); }
 
     public boolean isOwnerColumnHeaderDisplayed() { return isElementDisplay(ownerColumnHeader); }
+
+    public boolean isCustomerColumnDisplayed() { return isElementDisplay(customerColumn); }
+
+    public boolean isCustomerColumnHeaderDisplayed() { return isElementDisplay(customerColumnHeader); }
 
     public boolean isDescriptionColumnDisplayed() { return isElementDisplay(descriptionColumn); }
 
@@ -1327,6 +1467,10 @@ public class CountingSessionsPage extends BasePage {
     public WebElement getOwnerColumn() { return findWebElement(ownerColumn); }
 
     public WebElement getOwnerColumnHeader() { return findWebElement(ownerColumnHeader); }
+
+    public WebElement getCustomerColumn() { return findWebElement(customerColumn); }
+
+    public WebElement getCustomerColumnHeader() { return findWebElement(customerColumnHeader); }
 
     public WebElement getDescriptionColumn() { return findWebElement(descriptionColumn); }
 

@@ -46,9 +46,6 @@ public class ProcessingPage extends BasePage {
     By notificationMsg = By.cssSelector(".toast-message");
 
     public void waitProcessingPageToLoad() {
-        refresh();
-        refresh();
-        refresh();
         Waiters.waitUntilPageWillLoadedSelenide();
         Waiters.waitABit(3000);
         Waiters.waitForElementToBeDisplay(getTopIcon());
@@ -206,7 +203,6 @@ public class ProcessingPage extends BasePage {
 
     public boolean isBatchSelected(String batchName) {
         Waiters.waitForPresenceOfAllElements("#divBatchList .listItemDivUnSelected");
-        refresh();
         WebElement batch = getBatchesList().stream()
                 .filter(b -> b.getText().equals(batchName))
                 .findFirst()

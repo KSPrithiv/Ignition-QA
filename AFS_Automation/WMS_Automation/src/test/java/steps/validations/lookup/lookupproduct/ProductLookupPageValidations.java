@@ -103,7 +103,7 @@ public class ProductLookupPageValidations {
         softAssert.assertTrue(productLookupPage.isReasonColumnDisplayed(),"Reason Column is not displayed");
         softAssert.assertTrue(productLookupPage.isReasonColumnHeaderDisplayed(),"Reason Column Header is not displayed");
         softAssert.assertTrue(productLookupPage.isLotColumnDisplayed(),"Lot Column is not displayed");
-        softAssert.assertTrue(productLookupPage.isLotColumnHeaderDisplayed(),"Received Column Header is not displayed");
+        softAssert.assertTrue(productLookupPage.isLotColumnHeaderDisplayed(),"Lot Column Header is not displayed");
         softAssert.assertTrue(productLookupPage.isExpDateColumnDisplayed(),"Exp Date Column is not displayed");
         softAssert.assertTrue(productLookupPage.isExpDateColumnHeaderDisplayed(),"Exp Date Column Header is not displayed");
         softAssert.assertTrue(productLookupPage.isQtyColumnDisplayed(),"Qty Column is not displayed");

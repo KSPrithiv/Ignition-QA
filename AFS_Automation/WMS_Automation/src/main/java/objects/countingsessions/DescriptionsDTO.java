@@ -19,4 +19,6 @@ public class DescriptionsDTO implements Serializable {
 	private String description3;
 	@JsonProperty("description 4")
 	private String description4;
+	@JsonProperty("description 5")
+	private String description5;
 }

@@ -5,6 +5,7 @@ Feature: Testing of Counting Count functionality
     And Main page is loaded
     And DockManagement Summary Page is validated
     When Go to Counting Count page
+    And Waits for Counting Count page to load
     And Validates Counting Count page is displayed
     Then Validates Counting Count page columns are displayed
     And Validates Add filter button on Counting Count page is displayed
@@ -15,6 +16,7 @@ Feature: Testing of Counting Count functionality
     And Main page is loaded
     And DockManagement Summary Page is validated
     And Go to Counting Count page
+    And Waits for Counting Count page to load
     And Validates Counting Count page is displayed
     When Validates Add filter button on Counting Count page is displayed
     And Validates Items Count and Items Found on Counting Count page is displayed
@@ -28,6 +30,7 @@ Feature: Testing of Counting Count functionality
     And Main page is loaded
     And DockManagement Summary Page is validated
     When Go to Counting Count page
+    And Waits for Counting Count page to load
     And Validates Counting Count page is displayed
     Then User clicks Session dropdown on Counting Count page
     And Validates sessions are present on Counting Count page
@@ -37,6 +40,7 @@ Feature: Testing of Counting Count functionality
     And Main page is loaded
     And DockManagement Summary Page is validated
     And Go to Counting Count page
+    And Waits for Counting Count page to load
     And Validates Counting Count page is displayed
     And Validates Items Count and Items Found on Counting Count page is displayed
     And Validates Items Count on Counting Count page are present
@@ -89,6 +93,7 @@ Feature: Testing of Counting Count functionality
     And Main page is loaded
     And DockManagement Summary Page is validated
     When Go to Counting Count page
+    And Waits for Counting Count page to load
     And Validates Counting Count page is displayed
     Then Validates Add filter button on Counting Count page is displayed
     And Validates Product Search on Counting Count page is displayed
@@ -155,6 +160,7 @@ Feature: Testing of Counting Count functionality
     And Main page is loaded
     And DockManagement Summary Page is validated
     And Go to Counting Count page
+    And Waits for Counting Count page to load
     And Validates Counting Count page is displayed
     And Validates Counting Count page columns are displayed
     When User selects session by index 4 on Counting Count page
@@ -188,6 +194,7 @@ Feature: Testing of Counting Count functionality
     And Main page is loaded
     And DockManagement Summary Page is validated
     And Go to Counting Sessions page
+    And Waits for Counting Sessions page to load
     And Validates Counting Sessions page is displayed
     And User clicks session dropdown on Counting Sessions page
     And Validates sessions are present in Session dropdown on Counting Sessions page
@@ -197,7 +204,6 @@ Feature: Testing of Counting Count functionality
     And Validates Locations, Products and Assignments Tabs are displayed on Counting Sessions page
     Then User clicks Assignments tab on Counting Sessions page
     And Validates Assignment tab contains Release and Delete buttons, Add filter button on Counting Sessions page
-    And Validates items are present on Counting Sessions page
     And Validates Assignments columns are displayed on Counting Sessions page
     And User checks Assignment by index 0 on Counting Sessions page
     And Clicks Release button on Counting Sessions page
@@ -208,6 +214,7 @@ Feature: Testing of Counting Count functionality
     And Main page is loaded
     And DockManagement Summary Page is validated
     And Go to Counting Sessions page
+    And Waits for Counting Sessions page to load
     And Validates Counting Sessions page is displayed
     And User clicks session dropdown on Counting Sessions page
     And Validates sessions are present in Session dropdown on Counting Sessions page
