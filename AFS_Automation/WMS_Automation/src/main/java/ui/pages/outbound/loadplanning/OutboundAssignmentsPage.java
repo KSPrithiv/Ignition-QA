@@ -28,9 +28,6 @@ public class OutboundAssignmentsPage extends BasePage {
     By itemsFound = By.cssSelector(".i-summary-area__main__label");
 
     public void waitOutboundOrderSummaryPageToLoad() {
-        refresh();
-        refresh();
-        refresh();
         Waiters.waitUntilPageWillLoadedSelenide();
         Waiters.waitForElementToBeDisplay(getAssignmentsTitle());
         Waiters.waitForElementToBeDisplay(getTableContent());

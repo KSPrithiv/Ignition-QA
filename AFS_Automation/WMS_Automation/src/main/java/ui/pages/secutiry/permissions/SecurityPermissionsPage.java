@@ -16,9 +16,6 @@ public class SecurityPermissionsPage extends BasePage {
     By OKButton = By.xpath("//button[contains(text(), 'OK')]");
 
     public void waitForSecurityPermissionsPageToLoad() {
-        refresh();
-        refresh();
-        refresh();
         Waiters.waitABit(10_000);
         Waiters.waitForElementToBeClickable(byRoleTab);
         Waiters.waitForElementToBeDisplay(byUserTab);

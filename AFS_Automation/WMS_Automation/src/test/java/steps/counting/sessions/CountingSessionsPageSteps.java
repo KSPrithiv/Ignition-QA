@@ -48,6 +48,13 @@ public class CountingSessionsPageSteps {
     }
 
     @Step
+    @And("User clicks Unselect All Checkbox on Counting Sessions page")
+    public void clickUnselectAllCheckbox() {
+        log.info("User clicks Unselect All Checkbox on Counting Sessions page");
+        countingSessionsPage.clickUnselectAllCheckbox();
+    }
+
+    @Step
     @And("User clicks session page title on Counting Sessions page")
     public void clickSessionsPageTitle() {
         log.info("User clicks session page title on Counting Sessions page");
@@ -81,9 +88,9 @@ public class CountingSessionsPageSteps {
 
     @Step
     @And("User checks table row by index {int} on Counting Sessions page")
-    public void checkTableRowByIndex(int index) {
+    public void selectTableRowByIndex(int index) {
         log.info("User checks table row by index on Counting Sessions page");
-        countingSessionsPage.checkTableRowByIndex(index);
+        countingSessionsPage.selectTableRowByIndex(index);
     }
 
     @Step
@@ -198,6 +205,20 @@ public class CountingSessionsPageSteps {
     public void clickSaveButton() {
         log.info("User clicks Save button on Counting Sessions page");
         countingSessionsPage.clickSaveButton();
+    }
+
+    @Step
+    @And("User clicks Yes button if need to add on Counting Sessions page")
+    public void clickYesButtonIfNeeded() {
+        log.info("User clicks Yes button if need to add on Counting Sessions page");
+        countingSessionsPage.clickYesButtonIfNeeded();
+    }
+
+    @Step
+    @And("Wait until Loader invisible on Counting Sessions page")
+    public void waitUntilLoaderInvisible() {
+        log.info("Wait until Loader invisible on Counting Sessions page");
+        countingSessionsPage.waitUntilLoaderInvisible();
     }
 
     @Step
@@ -609,7 +630,8 @@ public class CountingSessionsPageSteps {
     public void typesOwnerCodeFilterByIndex(int index) {
         log.info("Types Owner by index on Counting Sessions page");
         List<String> owners = List.of(countingSessionsDTO.getOwners().getOwner1(), countingSessionsDTO.getOwners()
-             .getOwner2(), countingSessionsDTO.getOwners().getOwner3(), countingSessionsDTO.getOwners().getOwner4());
+             .getOwner2(), countingSessionsDTO.getOwners().getOwner3(), countingSessionsDTO.getOwners().getOwner4(),
+             countingSessionsDTO.getOwners().getOwner5());
         countingSessionsPage.typeFilter(owners.get(index));
     }
 
@@ -626,7 +648,7 @@ public class CountingSessionsPageSteps {
         log.info("Types Description by index on Counting Sessions page");
         List<String> descriptions = List.of(countingSessionsDTO.getDescriptions().getDescription1(), countingSessionsDTO
                .getDescriptions().getDescription2(), countingSessionsDTO.getDescriptions().getDescription3(),
-               countingSessionsDTO.getDescriptions().getDescription4());
+               countingSessionsDTO.getDescriptions().getDescription4(), countingSessionsDTO.getDescriptions().getDescription5());
         countingSessionsPage.typeFilter(descriptions.get(index));
     }
 

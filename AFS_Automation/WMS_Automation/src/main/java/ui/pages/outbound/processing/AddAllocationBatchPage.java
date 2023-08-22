@@ -19,9 +19,6 @@ public class AddAllocationBatchPage extends BasePage {
     By notificationMessage = By.cssSelector(".toast-message");
 
     public void waitAddAllocationBatchPageToLoad() {
-        refresh();
-        refresh();
-        refresh();
         Waiters.waitUntilPageWillLoadedSelenide();
         Waiters.waitForElementToBeDisplay(getBatchLabel());
         Waiters.waitForElementToBeDisplay(getBatchInput());

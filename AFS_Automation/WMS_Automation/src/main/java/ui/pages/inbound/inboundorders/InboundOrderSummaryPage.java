@@ -1,15 +1,11 @@
 package ui.pages.inbound.inboundorders;
 
-import com.codeborne.selenide.SelenideElement;
 import common.utils.Waiters;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import ui.pages.BasePage;
-
-import java.util.Arrays;
 import java.util.List;
 
-import static com.codeborne.selenide.Selenide.*;
 import static common.setup.DriverManager.getDriver;
 
 public class InboundOrderSummaryPage extends BasePage {
@@ -127,9 +123,6 @@ public class InboundOrderSummaryPage extends BasePage {
     }
 
     public void waitInboundOrderSummaryToLoad() {
-        refresh();
-        refresh();
-        refresh();
         Waiters.waitABit(5000);
         Waiters.waitUntilPageWillLoadedSelenide();
         Waiters.waitForElementToBeDisplay(getTopIcon());

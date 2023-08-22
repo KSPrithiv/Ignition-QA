@@ -81,9 +81,6 @@ public class OutboundTruckInfoPage extends BasePage {
     By notification = By.className("i-notification-text");
 
     public void waitOutboundTruckInfoPageToLoad() {
-        refresh();
-        refresh();
-        refresh();
         Waiters.waitUntilPageWillLoadedSelenide();
         Waiters.waitForElementToBeDisplay(getTruckInfoTitle());
         Waiters.waitForElementToBeDisplay(getTruckDiagramLabel());

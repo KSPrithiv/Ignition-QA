@@ -30,9 +30,6 @@ public class SetupSystemPage extends BasePage {
     By dropdownList = By.id("dropdownList");
 
     public void waitSetupSystemPageToLoad() {
-        refresh();
-        refresh();
-        refresh();
         Waiters.waitUntilPageWillLoadedSelenide();
         Waiters.waitABit(3000);
         Waiters.waitForElementToBeDisplay(functionLabel);

@@ -117,9 +117,6 @@ public class InboundOrderDetailsPage extends BasePage {
     private By getDoorDropDown(String door) { return By.xpath("//span[contains(text(),'" + door + "')]"); }
 
     public void waitInboundOrderDetailsPageToLoad() {
-        refresh();
-        refresh();
-        refresh();
         Waiters.waitABit(6000);
         Waiters.waitUntilPageWillLoadedSelenide();
         Waiters.waitForElementToBeDisplay(getTopIcon());

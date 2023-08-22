@@ -12,6 +12,13 @@ public class DockManagementSummaryPageSteps {
     DockManagementSummaryPage dockManagementSummaryPage = new DockManagementSummaryPage();
 
     @Step
+    @And("User refreshes page")
+    public void refreshPage() {
+        log.info("User refreshes page");
+        dockManagementSummaryPage.refreshPage();
+    }
+
+    @Step
     @Then("Go to Appointment scheduler page")
     public void goToAppointmentSchedulerPage() {
         log.info("Go to Appointment scheduler page");

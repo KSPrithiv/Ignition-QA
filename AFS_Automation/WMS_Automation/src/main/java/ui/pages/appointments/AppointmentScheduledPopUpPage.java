@@ -11,9 +11,6 @@ public class AppointmentScheduledPopUpPage extends BasePage  {
     By appointmentScheduledPopUpOkButton = By.xpath("//button[@class='k-button k-primary k-button-icontext']");
 
     public void waitForAppointmentScheduledPopUpPageToLoad() {
-        refresh();
-        refresh();
-        refresh();
         Waiters.waitUntilPageWillLoadedSelenide();
         Waiters.waitForElementToBeDisplay(getAppointmentScheduledPopUpTitle());
         Waiters.waitForElementToBeDisplay(getAppointmentScheduledPopUpContent());
