@@ -28,7 +28,7 @@ import static common.setup.DriverManager.*;
 
 
 //@CucumberOptions(features={"WMSAutomation/src/test/resources/features/counting"},
-//@CucumberOptions(features = {"src/test/resources/features/setupLabor","src/test/resources/features/setupConfiguration/palletType"},
+//@CucumberOptions(features = {"src/test/resources/features/setupSystem"},
 @CucumberOptions(features = {"src/test/resources/features/setupLabor","src/test/resources/features/setupConfiguration","src/test/resources/features/setupWarehouse","src/test/resources/features/setupSystem"},
 
 
@@ -44,16 +44,16 @@ import static common.setup.DriverManager.*;
 public class Phase3Runner extends AbstractTestNGCucumberTests {
     public static Environment environment;
 
-//    @Parameters({"environment","browser"})
-//    @BeforeMethod
-//    public void startBrowserInstance(@Optional String env, @Optional String browser) {
-//        ConfigFactory.setProperty("path", FilePaths.PROPERTIES_PATH);
-//        environment = ConfigFactory.create(Environment.class);
-//        log.info("Starting app url " + environment.getUrl() + " on browser " +  environment.getBrowser());
-//        buildWebDriver(environment.getBrowser());
-//        DriverManager.openPage(environment.getUrl());
-//        new Waiters();
-//    }
+    @Parameters({"environment","browser"})
+    @BeforeMethod
+    public void startBrowserInstance(@Optional String env, @Optional String browser) {
+        ConfigFactory.setProperty("path", FilePaths.PROPERTIES_PATH);
+        environment = ConfigFactory.create(Environment.class);
+        log.info("Starting app url " + environment.getUrl() + " on browser " +  environment.getBrowser());
+        buildWebDriver(environment.getBrowser());
+        DriverManager.openPage(environment.getUrl());
+        new Waiters();
+    }
 
 //    @SneakyThrows
 //    @AfterMethod
