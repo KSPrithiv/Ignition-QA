@@ -13,7 +13,7 @@ Feature: Badge Builder Icon Selection
     And    User should navigate to Badge Gallery - CatchWeightItems
     And    Change Color of the Icon
     And    Logout from Admin portal
-    When   Login to Client portal1
+    When   Login to Client portal BadgeBuilder2
     Then   User should navigate to Client side
     And    Click on the Order Entry tab1
 #    And    Select Account2
@@ -22,7 +22,6 @@ Feature: Badge Builder Icon Selection
 
   @VerifyChangeInPickUpOrder0017
   Scenario:  Test Scenario to verify Icon color change in pick up order
-#    Given  User on Order Entry Page
 #    When   Click on Back
     Then   Select any date from Pickup Order
     And    Add Product in Order Entry

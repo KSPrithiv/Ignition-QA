@@ -20,9 +20,6 @@ public class InboundLoadPage extends BasePage {
     By orderList = By.cssSelector("#crdInboundOrderPortrait .BarsContainer");
 
     public void waitForInboundLoadPageToLoad() {
-        refresh();
-        refresh();
-        refresh();
         Waiters.waitUntilPageWillLoadedSelenide();
         Waiters.waitForElementToBeDisplay(getTopIcon());
         Waiters.waitForElementToBeDisplay(getSummaryRouteHeader());

@@ -8,6 +8,23 @@ Feature: Standing Order1
     Then User should select Order Entry tab for SO
     Then User selects Account# for SO
 
+  @CopyStandingOrder
+  Scenario: Test scenario for copying Standing order
+    Given User must be on Order Entry Page to select Standing Order and navigate to standing order
+    Then User checks for all the prodcuts in Active SO
+    And User clicks on Copy Standing order button selects start and end date as 25 and 26 day from current date
+    Then User checks for the products added to copied SO
+
+  @StandingOrderWithoutEndDate
+  Scenario: Creation of standing order without giving any end date
+    Given User must be on Order Entry Page to select Standing Order and navigate to standing order
+    And User click on Start standing order button and selects Start date 27 from current date
+    Then User enters Product# in Quick product entry inputbox
+    And User enters Qty in standing order product grid based on enabled days
+      |10|20|30|40|15|10|5|
+    Then User clicks on Save button and handles popup
+    And User should validate that there is no end date assigned to standing order
+
   @StandingOrderRegisterExcel
   Scenario: Test scenario for generating Excel sheet for standing order registeration
     Given User must be on Order Entry Page to select Standing Order and navigate to standing order
@@ -35,3 +52,25 @@ Feature: Standing Order1
     And User should click on Generate Standing order  button
     Then User should select From and To date in Generate standing order(s) popup, Click on Ok
     And User should click on ok, in All task completed popup
+
+  @DeleteStandingOrder
+  Scenario: Test scenario for deleting all the standing orders which are active and pending
+    Given User must be on Order Entry Page to select Standing Order and navigate to standing order
+    Then User navigates to Standing order card and clicks on Delete button
+
+  @DeleteExpiredStandingOrder
+  Scenario: Test scenario for deleting expired standing order
+    Given User must be on Order Entry Page to select Standing Order and navigate to standing order
+    Then User navigates to Standing order card and selects the first expired standing order
+    And User sucessfuly deletes expired standing order
+
+  @ChangeAccountNumber
+  Scenario: Test scenario for changing customer account# and createing standing order
+    Given User must be on Order Entry Page to select Standing Order and navigate to standing order
+    And User changes Customer account# for creating SO for some other customer
+    And User click on Start standing order button and selects start and end date from popup
+    Then User enters Product# in Quick product entry inputbox
+    And User enters Qty in standing order product grid based on enabled days
+      |10|20|30|40|15|10|5|
+    Then User clicks on Save button and handles popup
+    And User should change customer account# back to previous account

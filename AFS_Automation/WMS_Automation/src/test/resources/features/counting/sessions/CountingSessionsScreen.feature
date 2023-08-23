@@ -25,6 +25,21 @@ Feature: Testing of Counting Count functionality
     And Validates Session Labels on Counting Sessions page are displayed
     And Validates Blind Label on Counting Sessions page is displayed
 
+  Scenario: Checking Create New Session Warnings on Counting Sessions screen
+    Given User signs in the application
+    And Main page is loaded
+    And DockManagement Summary Page is validated
+    And Go to Counting Sessions page
+    And Waits for Counting Sessions page to load
+    And Validates Counting Sessions page is displayed
+    When User clicks New Session button on Counting Sessions page
+    And Validates Session name and Count type are displayed on Counting Sessions page
+    Then User clicks Save button on Counting Sessions page
+    And Validates session warning "Enter session name" on Counting Sessions page
+    And User types randomly created session name on Counting Sessions page
+    And User clicks Save button on Counting Sessions page
+    And Validates session warning "Select count type" on Counting Sessions page
+
   Scenario: Checking Create New Session on Counting Sessions screen
     Given User signs in the application
     And Main page is loaded
@@ -34,13 +49,10 @@ Feature: Testing of Counting Count functionality
     And Validates Counting Sessions page is displayed
     And User clicks New Session button on Counting Sessions page
     And Validates Session name and Count type are displayed on Counting Sessions page
-    And User clicks Save button on Counting Sessions page
-    And Validates session warning "Enter session name" on Counting Sessions page
-    And User types randomly created session name on Counting Sessions page
-    And User clicks Save button on Counting Sessions page
-    And Validates session warning "Select count type" on Counting Sessions page
     When User types count type 3 on Counting Sessions page
+    And Deletes cookies on application
     And User clicks Save button on Counting Sessions page
+    And Wait until Loader invisible on Counting Sessions page
     Then User clicks session dropdown on Counting Sessions page
     And User selects randomly created session on Counting Sessions page
     And Validates random session is saved on Counting Sessions page
@@ -74,8 +86,8 @@ Feature: Testing of Counting Count functionality
     And Validates Counting Sessions page is displayed
     And User clicks New Session button on Counting Sessions page
     And Validates Session name and Count type are displayed on Counting Sessions page
-    When User types randomly created session name on Counting Sessions page
     And User types count type 0 on Counting Sessions page
+    When User types randomly created session name on Counting Sessions page
     And User clicks Save button on Counting Sessions page
     Then User clicks session dropdown on Counting Sessions page
     And User selects randomly created session on Counting Sessions page
@@ -86,12 +98,12 @@ Feature: Testing of Counting Count functionality
     And Validates Add Location Popup on Counting Sessions page
     And User types Location code with index 1 on Counting Sessions page
     And User clicks Save button on Counting Sessions page
-    And Validates "Success" notification is displayed on Counting Sessions page
+    And User clicks Yes button if need to add on Counting Sessions page
     And User clicks Add location button on Counting Sessions page
     And Validates Add Location Popup on Counting Sessions page
     And User selects Location code with index 2 on Counting Sessions page
     And User clicks Save button on Counting Sessions page
-    And Validates "Success" notification is displayed on Counting Sessions page
+    And Wait until Loader invisible on Counting Sessions page
     And User clicks Add location button on Counting Sessions page
     And Validates Add Location Popup on Counting Sessions page
     And User clicks Location code button on Counting Sessions page
@@ -103,12 +115,10 @@ Feature: Testing of Counting Count functionality
     And Validates Add Location Popup on Counting Sessions page
     And User types Partial location code "PartName123" on Counting Sessions page
     And User clicks Save button on Counting Sessions page
-    And Validates "Success" notification is displayed on Counting Sessions page
     And User clicks Add location button on Counting Sessions page
     And Validates Add Location Popup on Counting Sessions page
     And User selects random Location type with index 3 on Counting Sessions page
     And User clicks Save button on Counting Sessions page
-    And Validates "Success" notification is displayed on Counting Sessions page
     And User clicks Add location button on Counting Sessions page
     And Validates Add Location Popup on Counting Sessions page
     And User selects random Zone with index 2 on Counting Sessions page
@@ -118,7 +128,7 @@ Feature: Testing of Counting Count functionality
     And User types Starting Location with index 1 on Counting Sessions page
     And User types Ending Location with index 1 on Counting Sessions page
     And User clicks Save button on Counting Sessions page
-    And Validates "Success" notification is displayed on Counting Sessions page
+    And User clicks Yes button if need to add on Counting Sessions page
     And User clicks session dropdown on Counting Sessions page
     And User selects randomly created session on Counting Sessions page
     And User clicks Add location button on Counting Sessions page
@@ -173,11 +183,11 @@ Feature: Testing of Counting Count functionality
     And Waits for Counting Sessions page to load
     And Validates Counting Sessions page is displayed
     And User clicks session dropdown on Counting Sessions page
-    When User selects session with index 5 on Counting Sessions page
+    When User selects session with index 4 on Counting Sessions page
     And User clicks Location tab on Counting Sessions page
     And Validates Session details on Counting Sessions page
     And User clicks session dropdown on Counting Sessions page
-    Then User selects session with index 6 on Counting Sessions page
+    Then User selects session with index 3 on Counting Sessions page
     And Validates Session details on Counting Sessions page
     And User clicks table location by index 1 on Counting Sessions page
     And Waits for Location Lookup page to load
@@ -196,7 +206,7 @@ Feature: Testing of Counting Count functionality
     When User clicks Location tab on Counting Sessions page
     And Validates Session details on Counting Sessions page
     And User clicks session dropdown on Counting Sessions page
-    Then User selects session with index 6 on Counting Sessions page
+    Then User selects session with index 4 on Counting Sessions page
     And User clicks table location by index 1 on Counting Sessions page
     And Waits for Location Lookup page to load
     And Validates Inventory details of location on Location Lookup page are loaded
@@ -225,7 +235,7 @@ Feature: Testing of Counting Count functionality
     And User selects session with index 3 on Counting Sessions page
     And User clicks Select All Checkbox on Counting Sessions page
     And Validates location with index 0 is selected on Counting Sessions page
-    And User clicks Select All Checkbox on Counting Sessions page
+    And User clicks Unselect All Checkbox on Counting Sessions page
     And Validates location with index 0 is not selected on Counting Sessions page
 
   Scenario: Checking Count Details on Counting Sessions screen
@@ -241,7 +251,7 @@ Feature: Testing of Counting Count functionality
     And Validates Session details on Counting Sessions page
     And User clicks session dropdown on Counting Sessions page
     Then User selects session with index 2 on Counting Sessions page
-    And User clicks table count by index 0 on Counting Sessions page
+    And User clicks table count by index 1 on Counting Sessions page
     And Validates Count Details popup on Counting Sessions page
     And Validates Count History columns are displayed on Counting Sessions page
     And User clicks all inputs checkbox on Count details popup on Counting Sessions page
@@ -275,7 +285,7 @@ Feature: Testing of Counting Count functionality
     Then Validates notification "You must put between 4 and 199 count tasks in each count book." on Counting Sessions page
     And Clears Tasks per Assignment on Counting Sessions page
     And User clicks Cancel button on Counting Sessions page
-    And User checks table row by index 0 on Counting Sessions page
+    And User checks table row by index 1 on Counting Sessions page
     And User clicks Location Release on Counting Sessions page
     And Validates Release counts popup is displayed on Counting Sessions page
     And Clicks User directed counting radio button on Counting Sessions page
@@ -333,7 +343,9 @@ Feature: Testing of Counting Count functionality
     And Validates items are present on Counting Sessions page
     Then User deletes product search input on Counting Sessions page
     And Validates items are present on Counting Sessions page
-    And User searches for product with index 1 on Counting Sessions page
+    And User clicks session dropdown on Counting Sessions page
+    And User selects session with index 2 on Counting Sessions page
+    And User searches for product with index 4 on Counting Sessions page
     And Validates items are present on Counting Sessions page
     And User deletes product search input on Counting Sessions page
     And Validates items are present on Counting Sessions page
@@ -341,7 +353,7 @@ Feature: Testing of Counting Count functionality
     And Clicks Clear All Button on Counting Sessions page
     And User clicks Add filter button on Counting Sessions page
     And Checks Product Checkbox on Counting Sessions page
-    And Types Product by index 2 on Counting Sessions page
+    And Types Product by index 4 on Counting Sessions page
     And Clicks Apply Button on Counting Sessions page
     And Validates items are present on Counting Sessions page
     And User clicks Add filter button on Counting Sessions page
@@ -349,7 +361,7 @@ Feature: Testing of Counting Count functionality
     And Validates items are present on Counting Sessions page
     And User clicks Add filter button on Counting Sessions page
     And Checks Owner Checkbox on Counting Sessions page
-    And Types Owner by index 1 on Counting Sessions page
+    And Types Owner by index 4 on Counting Sessions page
     And Clicks Apply Button on Counting Sessions page
     And Validates items are present on Counting Sessions page
     And User clicks Add filter button on Counting Sessions page
@@ -357,7 +369,7 @@ Feature: Testing of Counting Count functionality
     And Validates items are present on Counting Sessions page
     And User clicks Add filter button on Counting Sessions page
     And Checks Description Checkbox on Counting Sessions page
-    And Types Description by index 1 on Counting Sessions page
+    And Types Description by index 4 on Counting Sessions page
     And Clicks Apply Button on Counting Sessions page
     And Validates items are present on Counting Sessions page
     And User clicks Add filter button on Counting Sessions page
@@ -365,7 +377,7 @@ Feature: Testing of Counting Count functionality
     And Validates items are present on Counting Sessions page
     And User clicks Add filter button on Counting Sessions page
     And Checks Book Cost Checkbox on Counting Sessions page
-    And Types Book cost "80" on Counting Sessions page
+    And Types Book cost "100" on Counting Sessions page
     And Clicks Apply Button on Counting Sessions page
     And Validates items are present on Counting Sessions page
     And User clicks Add filter button on Counting Sessions page
@@ -574,7 +586,6 @@ Feature: Testing of Counting Count functionality
   Scenario: Checking Search Control and Add Filter and Sorting for Assignments on Counting Sessions screen
     Given User signs in the application
     And Main page is loaded
-    And Clear all cookies
     And DockManagement Summary Page is validated
     And Go to Counting Sessions page
     And Waits for Counting Sessions page to load

@@ -35,7 +35,7 @@
 <a href="#"><span class="badge badge-primary">Test execution report</span></a>
 </li>
 <li class="m-r-10">
-<a href="#"><span class="badge badge-primary">Aug 21, 2023 04:31:16 AM</span></a>
+<a href="#"><span class="badge badge-primary">Aug 7, 2023 11:21:43 am</span></a>
 </li>
 </ul>
 </div>
@@ -79,7 +79,7 @@
 <li class="dropdown">
 <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-tag"></i></a>
 <ul id="tag-toggle" class="dropdown-menu dropdown-md p-v-0">
-<a class="dropdown-item" href="#">@RegisteredUser</a>
+<a class="dropdown-item" href="#">@VerifyColorChangeInCatalogTab-CatchWeightItems</a><a class="dropdown-item" href="#">@VerifyIconColorChangeInCart</a><a class="dropdown-item" href="#">@IconSelection</a><a class="dropdown-item" href="#">@EditAction</a><a class="dropdown-item" href="#">@VerifyChangeInCatalogSearchListView</a><a class="dropdown-item" href="#">@VerifyColorChangeInProductIcon-CatalogProductSearch</a><a class="dropdown-item" href="#">@VerifyIconColorChangeInCatalogSearchListView-OrderEntryPage</a><a class="dropdown-item" href="#">@DeleteAction</a><a class="dropdown-item" href="#">@VerifyColorChangeInOE-TieredPricingProducts</a><a class="dropdown-item" href="#">@VerifyChangeInPickUpOrder0017</a><a class="dropdown-item" href="#">@VerifyChangeInProductIcon-StandingOrder</a><a class="dropdown-item" href="#">@VerifyColorChangeInProductIcon-OrderGuide</a><a class="dropdown-item" href="#">@BadgeName</a><a class="dropdown-item" href="#">@BadgeCode</a><a class="dropdown-item" href="#">@BadgeType</a><a class="dropdown-item" href="#">@Save&AddToGallery</a>
 </ul>
 </li>
 </ul>
@@ -90,9 +90,9 @@
           tag=""
           device="">
           <div class="test-detail">
-            <p class="name">Test scenarios for Administration, for Reports</p>
+            <p class="name">Badge Builder Icon Selection</p>
             <p class="text-sm">
-              <span>4:31:22 AM</span> / <span>00:01:10:336</span>
+              <span>11:22:19 am</span> / <span>00:45:35:026</span>
               <span class="badge pass-bg log float-right">Pass</span>
             </p>
           </div>
@@ -100,10 +100,10 @@
 <div class="detail-head">
 <div class="p-v-10">
 <div class="info">
-<h5 class="test-status text-pass">Test scenarios for Administration, for Reports</h5>
-<span class='badge badge-success'>08.21.2023 4:31:22 AM</span>
-<span class='badge badge-danger'>08.21.2023 4:32:33 AM</span>
-<span class='badge badge-default'>00:01:10:336</span>
+<h5 class="test-status text-pass">Badge Builder Icon Selection</h5>
+<span class='badge badge-success'>08.07.2023 11:22:19 am</span>
+<span class='badge badge-danger'>08.07.2023 12:07:54 pm</span>
+<span class='badge badge-default'>00:45:35:026</span>
 &middot; <span class='uri-anchor badge badge-default'>#test-id=1</span>
 <span class='badge badge-default pointer float-right ml-1 et'><i class="fa fa-chevron-down"></i></span>
 <span class='badge badge-default pointer float-right ct'><i class="fa fa-chevron-up"></i></span>
@@ -115,85 +115,692 @@
   <div class="card">
     <div class="card-header" role="tab">
       <div class="card-title">
-        <div class="node" id="2"><span class="badge log pass-bg mr-2">Pass</span>Test scenario for verifying functionality of Registred users tab</div>
+        <div class="node" id="2"><span class="badge log pass-bg mr-2">Pass</span>Test Scenario for Selecting Icon from Badge Builder</div>
       </div>
     </div>
-        <div class="scenario_outline collapse">
-            <div class="card-body l1">
-              <div class="card-header">
-                <div class="card-title outline-child">
-                  <div class="node" id="3"><span class="badge log pass-bg mr-2">Pass</span>Test scenario for verifying functionality of Registred users tab</div>
-                </div>
+        <div class="collapse">
+          <div class="card-body">
+              <div class="step pass-bg" title="stepDefination_DSD_OMS.BadgeBuilder.IconsSelectionPageStep.user_enters_url_and_entered_to_login_page()">
+                <span>Given User enters URL and entered to login page</span>
+      <div>
+      </div>
               </div>
-              <div class="card-body mt-3 collapse">
-                  <div class="step pass-bg">
-                    <span>Given User enters URL and is on login page and entered credentials for Admin setting for Admin reports</span>
+              <div class="step pass-bg" title="stepDefination_DSD_OMS.BadgeBuilder.IconsSelectionPageStep.user_on_login_page_and_entered_username_and_password()">
+                <span>Given User on login page and entered username and password</span>
       <div>SIGNIN BUTTON CLICKED
       </div>
       <div>
       </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>When User is on Home Page for Admin setting for Admin reports</span>
-      <div>ADMIN PAGE HAS BEEN FOUND
-      </div>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>Then User Clicks on Permissions by drop down to select Customer Account# for Admin reports</span>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>Given User is on Home Page for Admin setting to select Admin option for Admin reports</span>
-      <div>ADMIN PAGE HAS BEEN FOUND
-      </div>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>And User should enter menu "Reports" in search bar and select "Administration" for Reports, Admin Options</span>
-      <div>IN ADMIN PAGE
-      </div>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>Then User selects "Registered users" in Orders page in admin login and validate user is in selected Tab</span>
-      <div>NAVIGATED TO Registered users
-      </div>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>Then User selects Customer Accoun# "Account #", From and End dates for Creating reports</span>
-      <div>CUSTOMER ACCOUNT NUMBER HAS BEEN SELECTED: 2958
-      </div>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>And User click on clicks on export .csv</span>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>Then User click on Download .pdf to download document</span>
-      <div>.pdf HAS BEEN FOUND
-      </div>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>Then User click on reset button in Administration tab and all the webelement should be clear</span>
-      <div>RESET BUTTON HAS BEEN CLICKED
-      </div>
-      <div>
-      </div>
-                  </div>
               </div>
-            </div>
+              <div class="step pass-bg" title="stepDefination_DSD_OMS.BadgeBuilder.IconsSelectionPageStep.navigated_to_admin_home_page()">
+                <span>When Navigated to Admin home page</span>
+      <div>ADMIN PAGE FOUND
+      </div>
+      <div>
+      </div>
+              </div>
+              <div class="step pass-bg" title="stepDefination_DSD_OMS.BadgeBuilder.IconsSelectionPageStep.click_on_general_setting_tab()">
+                <span>Then Click on General Setting tab</span>
+      <div>
+      </div>
+              </div>
+              <div class="step pass-bg" title="stepDefination_DSD_OMS.BadgeBuilder.IconsSelectionPageStep.clicks_on_badge_builder()">
+                <span>And Clicks on Badge Builder</span>
+      <div>
+      </div>
+              </div>
+              <div class="step pass-bg" title="stepDefination_DSD_OMS.BadgeBuilder.IconsSelectionPageStep.select_icon_under_icon_selections()">
+                <span>And Select Icon under icon selections</span>
+      <div>
+      </div>
+              </div>
+          </div>
+        </div>
+  </div>
+  <div class="card">
+    <div class="card-header" role="tab">
+      <div class="card-title">
+        <div class="node" id="67"><span class="badge log pass-bg mr-2">Pass</span>Test Scenario for Editing Badge Name</div>
+      </div>
+    </div>
+        <div class="collapse">
+          <div class="card-body">
+              <div class="step pass-bg" title="stepDefination_DSD_OMS.BadgeBuilder.IconsSelectionPageStep.user_enters_url_and_entered_to_login_page()">
+                <span>Given User enters URL and entered to login page</span>
+      <div>
+      </div>
+              </div>
+              <div class="step pass-bg" title="stepDefination_DSD_OMS.BadgeBuilder.IconsSelectionPageStep.user_should_be_on_badge_builder_page()">
+                <span>Given User should be on BadgeBuilder page</span>
+      <div>
+      </div>
+              </div>
+              <div class="step pass-bg" title="stepDefination_DSD_OMS.BadgeBuilder.IconsSelectionPageStep.select_icon_under_icon_selection()">
+                <span>When Select Icon under icon selection</span>
+      <div>
+      </div>
+              </div>
+              <div class="step pass-bg" title="stepDefination_DSD_OMS.BadgeBuilder.IconsSelectionPageStep.edit_badge_name_under_badge_info()">
+                <span>And Edit Badge name under Badge Info</span>
+      <div>
+      </div>
+              </div>
+              <div class="step pass-bg" title="stepDefination_DSD_OMS.BadgeBuilder.IconsSelectionPageStep.verify_updated_badge_name()">
+                <span>Then Verify updated Badge name</span>
+      <div>
+      </div>
+              </div>
+          </div>
+        </div>
+  </div>
+  <div class="card">
+    <div class="card-header" role="tab">
+      <div class="card-title">
+        <div class="node" id="131"><span class="badge log pass-bg mr-2">Pass</span>Test Scenario to verify Badge Code field</div>
+      </div>
+    </div>
+        <div class="collapse">
+          <div class="card-body">
+              <div class="step pass-bg" title="stepDefination_DSD_OMS.BadgeBuilder.IconsSelectionPageStep.user_enters_url_and_entered_to_login_page()">
+                <span>Given User enters URL and entered to login page</span>
+      <div>
+      </div>
+              </div>
+              <div class="step pass-bg" title="stepDefination_DSD_OMS.BadgeBuilder.IconsSelectionPageStep.user_should_be_on_badge_builder_page()">
+                <span>Given User should be on BadgeBuilder page</span>
+      <div>
+      </div>
+              </div>
+              <div class="step pass-bg" title="stepDefination_DSD_OMS.BadgeBuilder.IconsSelectionPageStep.select_icon_under_icon_selection()">
+                <span>When Select Icon under icon selection</span>
+      <div>
+      </div>
+              </div>
+              <div class="step pass-bg" title="stepDefination_DSD_OMS.BadgeBuilder.IconsSelectionPageStep.verify_badge_code_field()">
+                <span>Then Verify Badge Code field</span>
+      <div>
+      </div>
+              </div>
+          </div>
+        </div>
+  </div>
+  <div class="card">
+    <div class="card-header" role="tab">
+      <div class="card-title">
+        <div class="node" id="194"><span class="badge log pass-bg mr-2">Pass</span>Test Scenario to verify Save&AddToGallery</div>
+      </div>
+    </div>
+        <div class="collapse">
+          <div class="card-body">
+              <div class="step pass-bg" title="stepDefination_DSD_OMS.BadgeBuilder.IconsSelectionPageStep.user_enters_url_and_entered_to_login_page()">
+                <span>Given User enters URL and entered to login page</span>
+      <div>
+      </div>
+              </div>
+              <div class="step pass-bg" title="stepDefination_DSD_OMS.BadgeBuilder.IconsSelectionPageStep.user_should_be_on_badge_builder_page()">
+                <span>Given User should be on BadgeBuilder page</span>
+      <div>
+      </div>
+              </div>
+              <div class="step pass-bg" title="stepDefination_DSD_OMS.BadgeBuilder.IconsSelectionPageStep.select_icon_under_icon_selection()">
+                <span>When Select Icon under icon selection</span>
+      <div>
+      </div>
+              </div>
+              <div class="step pass-bg" title="stepDefination_DSD_OMS.BadgeBuilder.IconsSelectionPageStep.change_badge_name_field_under_badge_info()">
+                <span>And Change Badge name field under Badge Info</span>
+      <div>
+      </div>
+              </div>
+              <div class="step pass-bg" title="stepDefination_DSD_OMS.BadgeBuilder.IconsSelectionPageStep.change_icon_color()">
+                <span>And Change Icon Color</span>
+      <div>
+      </div>
+              </div>
+              <div class="step pass-bg" title="stepDefination_DSD_OMS.BadgeBuilder.IconsSelectionPageStep.clicks_on_save_and_add_to_gallery_button()">
+                <span>And Clicks on Save and add to gallery button</span>
+      <div>
+      </div>
+              </div>
+              <div class="step pass-bg" title="stepDefination_DSD_OMS.BadgeBuilder.IconsSelectionPageStep.verify_saved_icon_changes()">
+                <span>Then Verify Saved Icon Changes</span>
+      <div>
+      </div>
+              </div>
+          </div>
+        </div>
+  </div>
+  <div class="card">
+    <div class="card-header" role="tab">
+      <div class="card-title">
+        <div class="node" id="260"><span class="badge log pass-bg mr-2">Pass</span>Test Scenario for Changing BadgeType</div>
+      </div>
+    </div>
+        <div class="collapse">
+          <div class="card-body">
+              <div class="step pass-bg" title="stepDefination_DSD_OMS.BadgeBuilder.IconsSelectionPageStep.user_enters_url_and_entered_to_login_page()">
+                <span>Given User enters URL and entered to login page</span>
+      <div>
+      </div>
+              </div>
+              <div class="step pass-bg" title="stepDefination_DSD_OMS.BadgeBuilder.IconsSelectionPageStep.user_must_be_on_badge_builder_page()">
+                <span>Given User must be on BadgeBuilder page</span>
+      <div>
+      </div>
+              </div>
+              <div class="step pass-bg" title="stepDefination_DSD_OMS.BadgeBuilder.IconsSelectionPageStep.change_badge_type_and_verify_changes()">
+                <span>Then Change BadgeType and verify changes</span>
+      <div>
+      </div>
+              </div>
+          </div>
+        </div>
+  </div>
+  <div class="card">
+    <div class="card-header" role="tab">
+      <div class="card-title">
+        <div class="node" id="322"><span class="badge log pass-bg mr-2">Pass</span>Test Scenario for Deleting Icon from Badge Builder</div>
+      </div>
+    </div>
+        <div class="collapse">
+          <div class="card-body">
+              <div class="step pass-bg" title="stepDefination_DSD_OMS.BadgeBuilder.IconsSelectionPageStep.user_enters_url_and_entered_to_login_page()">
+                <span>Given User enters URL and entered to login page</span>
+      <div>
+      </div>
+              </div>
+              <div class="step pass-bg" title="stepDefination_DSD_OMS.BadgeBuilder.IconsSelectionPageStep.user_must_be_on_badge_builder_page()">
+                <span>Given User must be on BadgeBuilder page</span>
+      <div>
+      </div>
+              </div>
+              <div class="step pass-bg" title="stepDefination_DSD_OMS.BadgeBuilder.IconsSelectionPageStep.user_should_navigate_to_badge_gallery()">
+                <span>When User should navigate to Badge Gallery</span>
+      <div>
+      </div>
+              </div>
+              <div class="step pass-bg" title="stepDefination_DSD_OMS.BadgeBuilder.IconsSelectionPageStep.click_on_any_badge_under_badge_gallery()">
+                <span>And Click on any Badge under Badge Gallery</span>
+      <div>
+      </div>
+              </div>
+              <div class="step pass-bg" title="stepDefination_DSD_OMS.BadgeBuilder.IconsSelectionPageStep.verify_delete_button()">
+                <span>Then Verify delete button</span>
+      <div>
+      </div>
+              </div>
+          </div>
+        </div>
+  </div>
+  <div class="card">
+    <div class="card-header" role="tab">
+      <div class="card-title">
+        <div class="node" id="386"><span class="badge log pass-bg mr-2">Pass</span>Test Scenario for Editing Icon from Badge Builder</div>
+      </div>
+    </div>
+        <div class="collapse">
+          <div class="card-body">
+              <div class="step pass-bg" title="stepDefination_DSD_OMS.BadgeBuilder.IconsSelectionPageStep.user_enters_url_and_entered_to_login_page()">
+                <span>Given User enters URL and entered to login page</span>
+      <div>
+      </div>
+              </div>
+              <div class="step pass-bg" title="stepDefination_DSD_OMS.BadgeBuilder.IconsSelectionPageStep.user_must_be_on_badge_builder_page()">
+                <span>Given User must be on BadgeBuilder page</span>
+      <div>
+      </div>
+              </div>
+              <div class="step pass-bg" title="stepDefination_DSD_OMS.BadgeBuilder.IconsSelectionPageStep.user_should_navigate_to_badge_gallery()">
+                <span>When User should navigate to Badge Gallery</span>
+      <div>
+      </div>
+              </div>
+              <div class="step pass-bg" title="stepDefination_DSD_OMS.BadgeBuilder.IconsSelectionPageStep.click_on_any_badge_under_badge_gallery1()">
+                <span>And Click on any Badge under Badge Gallery1</span>
+      <div>
+      </div>
+              </div>
+              <div class="step pass-bg" title="stepDefination_DSD_OMS.BadgeBuilder.IconsSelectionPageStep.click_on_the_edit_button()">
+                <span>And Click on the Edit button</span>
+      <div>
+      </div>
+              </div>
+              <div class="step pass-bg" title="stepDefination_DSD_OMS.BadgeBuilder.IconsSelectionPageStep.change_badge_info_icon_color_and_badge_type()">
+                <span>And Change Badge info, Icon color and Badge type</span>
+      <div>
+      </div>
+              </div>
+              <div class="step pass-bg" title="stepDefination_DSD_OMS.BadgeBuilder.IconsSelectionPageStep.clicks_on_the_save_and_add_to_gallery_button()">
+                <span>And Clicks on the Save and add to gallery button</span>
+      <div>
+      </div>
+              </div>
+              <div class="step pass-bg" title="stepDefination_DSD_OMS.BadgeBuilder.IconsSelectionPageStep.verify_saved_icon_change()">
+                <span>Then Verify Saved Icon Change</span>
+      <div>
+      </div>
+              </div>
+          </div>
+        </div>
+  </div>
+  <div class="card">
+    <div class="card-header" role="tab">
+      <div class="card-title">
+        <div class="node" id="453"><span class="badge log pass-bg mr-2">Pass</span>Test Scenario to Verify Icon Color Change In OrderEntry -  TieredPricingProducts</div>
+      </div>
+    </div>
+        <div class="collapse">
+          <div class="card-body">
+              <div class="step pass-bg" title="stepDefination_DSD_OMS.BadgeBuilder.IconsSelectionPageStep.user_enters_url_and_entered_to_login_page()">
+                <span>Given User enters URL and entered to login page</span>
+      <div>
+      </div>
+              </div>
+              <div class="step pass-bg" title="stepDefination_DSD_OMS.BadgeBuilder.IconsSelectionPageStep.user_must_be_on_badge_builder_page()">
+                <span>Given User must be on BadgeBuilder page</span>
+      <div>
+      </div>
+              </div>
+              <div class="step pass-bg" title="stepDefination_DSD_OMS.BadgeBuilder.IconsSelectionPageStep.click_permission_by_and_select_appropriate_company()">
+                <span>When Click Permission By and select appropriate Company</span>
+      <div>COMPANY SELECTED IS 000101, Flowers Baking Co. of Thomasville
+      </div>
+      <div>
+      </div>
+              </div>
+              <div class="step pass-bg" title="stepDefination_DSD_OMS.BadgeBuilder.IconsSelectionPageStep.user_should_navigate_to_badge_gallery_tiered_pricing_product()">
+                <span>And User should navigate to Badge Gallery - TieredPricingProduct</span>
+      <div>
+      </div>
+              </div>
+              <div class="step pass-bg" title="stepDefination_DSD_OMS.BadgeBuilder.IconsSelectionPageStep.change_color_of_the_tiered_pricing_product_icon()">
+                <span>And Change Color of the TieredPricingProduct Icon</span>
+      <div>
+      </div>
+              </div>
+              <div class="step pass-bg" title="stepDefination_DSD_OMS.BadgeBuilder.IconsSelectionPageStep.user_should_navigate_to_badge_gallery_catch_weight_items()">
+                <span>And User should navigate to Badge Gallery - CatchWeightItems</span>
+      <div>
+      </div>
+              </div>
+              <div class="step pass-bg" title="stepDefination_DSD_OMS.BadgeBuilder.IconsSelectionPageStep.change_color_of_the_catch_weight_items_icon()">
+                <span>And Change Color of the CatchWeightItems Icon</span>
+      <div>
+      </div>
+              </div>
+              <div class="step pass-bg" title="stepDefination_DSD_OMS.BadgeBuilder.IconsSelectionPageStep.logout_from_admin_portal()">
+                <span>And Logout from Admin portal</span>
+      <div>
+      </div>
+              </div>
+              <div class="step pass-bg" title="stepDefination_DSD_OMS.BadgeBuilder.IconsSelectionPageStep.login_to_client_portal_BadgeBuilder1()">
+                <span>And Login to Client portal BadgeBuilder1</span>
+      <div>SIGNIN BUTTON CLICKED
+      </div>
+      <div>
+      </div>
+              </div>
+              <div class="step pass-bg" title="stepDefination_DSD_OMS.BadgeBuilder.IconsSelectionPageStep.user_should_navigate_to_client_side()">
+                <span>Then User should navigate to Client side</span>
+      <div>COMPANY SELECTED IS 000101, Flowers Baking Co. of Thomasville
+      </div>
+      <div>
+      </div>
+              </div>
+              <div class="step pass-bg" title="stepDefination_DSD_OMS.BadgeBuilder.IconsSelectionPageStep.click_on_the_order_entry_tab()">
+                <span>And Click on the Order Entry tab</span>
+      <div>
+      </div>
+              </div>
+              <div class="step pass-bg" title="stepDefination_DSD_OMS.BadgeBuilder.IconsSelectionPageStep.select_account_and_start_order()">
+                <span>And Select Account and start Order</span>
+      <div>
+      </div>
+              </div>
+              <div class="step pass-bg" title="stepDefination_DSD_OMS.BadgeBuilder.IconsSelectionPageStep.compare_tiered_pricing_product_icon_color()">
+                <span>Then Compare TieredPricingProduct Icon Color</span>
+      <div>
+      </div>
+              </div>
+          </div>
+        </div>
+  </div>
+  <div class="card">
+    <div class="card-header" role="tab">
+      <div class="card-title">
+        <div class="node" id="525"><span class="badge log pass-bg mr-2">Pass</span>Test Scenario to Verify Icon Color Change In Catalog -  CatchWeightItems</div>
+      </div>
+    </div>
+        <div class="collapse">
+          <div class="card-body">
+              <div class="step pass-bg" title="stepDefination_DSD_OMS.BadgeBuilder.IconsSelectionPageStep.user_enters_url_and_entered_to_login_page()">
+                <span>Given User enters URL and entered to login page</span>
+      <div>
+      </div>
+              </div>
+              <div class="step pass-bg" title="stepDefination_DSD_OMS.BadgeBuilder.IconsSelectionPageStep.user_should_navigate_to_catalog_tab()">
+                <span>Then user should navigate to Catalog tab</span>
+      <div>
+      </div>
+              </div>
+              <div class="step pass-bg" title="stepDefination_DSD_OMS.BadgeBuilder.IconsSelectionPageStep.search_for_catchweight_item()">
+                <span>And Search for Catchweight Item</span>
+      <div>PRODUCT SECTLECTED IS 00000011
+      </div>
+      <div>
+      </div>
+              </div>
+              <div class="step pass-bg" title="stepDefination_DSD_OMS.BadgeBuilder.IconsSelectionPageStep.compare_catlog_catch_weight_items_icon_color()">
+                <span>Then Compare Catlog CatchWeightItems Icon Color</span>
+      <div>
+      </div>
+              </div>
+          </div>
+        </div>
+  </div>
+  <div class="card">
+    <div class="card-header" role="tab">
+      <div class="card-title">
+        <div class="node" id="588"><span class="badge log pass-bg mr-2">Pass</span>Test Scenario to verify change in catalog product icon color from Order Entry page</div>
+      </div>
+    </div>
+        <div class="collapse">
+          <div class="card-body">
+              <div class="step pass-bg" title="stepDefination_DSD_OMS.BadgeBuilder.IconsSelectionPageStep.user_enters_url_and_entered_to_login_page()">
+                <span>Given User enters URL and entered to login page</span>
+      <div>
+      </div>
+              </div>
+              <div class="step pass-bg" title="stepDefination_DSD_OMS.BadgeBuilder.IconsSelectionPageStep.login_to_client_portal_BadgeBuilder1()">
+                <span>And Login to Client portal BadgeBuilder1</span>
+      <div>SIGNIN BUTTON CLICKED
+      </div>
+      <div>
+      </div>
+              </div>
+              <div class="step pass-bg" title="stepDefination_DSD_OMS.BadgeBuilder.IconsSelectionPageStep.user_should_navigate_to_client_side()">
+                <span>Then User should navigate to Client side</span>
+      <div>COMPANY SELECTED IS 000101, Flowers Baking Co. of Thomasville
+      </div>
+      <div>
+      </div>
+              </div>
+              <div class="step pass-bg" title="stepDefination_DSD_OMS.BadgeBuilder.IconsSelectionPageStep.click_on_the_order_entry_tab()">
+                <span>And Click on the Order Entry tab</span>
+      <div>
+      </div>
+              </div>
+              <div class="step pass-bg" title="stepDefination_DSD_OMS.BadgeBuilder.IconsSelectionPageStep.select_account_and_start_order_catch_weight_items()">
+                <span>And Select Account and start Order - CatchWeightItems</span>
+      <div>
+      </div>
+              </div>
+              <div class="step pass-bg" title="stepDefination_DSD_OMS.BadgeBuilder.IconsSelectionPageStep.add_product_to_the_grid_and_check_Icon_Color()">
+                <span>And Add Product to the grid and check Icon Color</span>
+      <div>
+      </div>
+              </div>
+          </div>
+        </div>
+  </div>
+  <div class="card">
+    <div class="card-header" role="tab">
+      <div class="card-title">
+        <div class="node" id="653"><span class="badge log pass-bg mr-2">Pass</span>Test Scenario to verify change in product icon color from Standing Order Page</div>
+      </div>
+    </div>
+        <div class="collapse">
+          <div class="card-body">
+              <div class="step pass-bg" title="stepDefination_DSD_OMS.BadgeBuilder.IconsSelectionPageStep.user_enters_url_and_entered_to_login_page()">
+                <span>Given User enters URL and entered to login page</span>
+      <div>
+      </div>
+              </div>
+              <div class="step pass-bg" title="stepDefination_DSD_OMS.BadgeBuilder.IconsSelectionPageStep.user_should_navigate_to_standing_order_tab()">
+                <span>Given User should navigate to Standing Order Tab</span>
+      <div>
+      </div>
+              </div>
+              <div class="step pass-bg" title="stepDefination_DSD_OMS.BadgeBuilder.IconsSelectionPageStep.click_on_new_standing_order_and_select_date()">
+                <span>Then Click on New Standing order and select date</span>
+      <div>08/07/2023 HAS BEEN SELECTED AS START DATE FOR STANDING ORDER
+      </div>
+      <div>08/07/2023 HAS BEEN SELECTED AS START DATE FOR STANDING ORDER
+      </div>
+      <div>
+      </div>
+              </div>
+              <div class="step pass-bg" title="stepDefination_DSD_OMS.BadgeBuilder.IconsSelectionPageStep.compare_color_of_product_icon_of_standing_order()">
+                <span>And Compare Color of Product Icon of Standing Order</span>
+      <div>
+      </div>
+              </div>
+          </div>
+        </div>
+  </div>
+  <div class="card">
+    <div class="card-header" role="tab">
+      <div class="card-title">
+        <div class="node" id="716"><span class="badge log pass-bg mr-2">Pass</span>Test Scenario to verify change in product icon color from Order Guide Page</div>
+      </div>
+    </div>
+        <div class="collapse">
+          <div class="card-body">
+              <div class="step pass-bg" title="stepDefination_DSD_OMS.BadgeBuilder.IconsSelectionPageStep.user_enters_url_and_entered_to_login_page()">
+                <span>Given User enters URL and entered to login page</span>
+      <div>
+      </div>
+              </div>
+              <div class="step pass-bg" title="stepDefination_DSD_OMS.BadgeBuilder.IconsSelectionPageStep.user_should_navigate_to_order_guide_tab()">
+                <span>Given User should navigate to OrderGuide Tab</span>
+      <div>
+      </div>
+              </div>
+              <div class="step pass-bg" title="stepDefination_DSD_OMS.BadgeBuilder.IconsSelectionPageStep.add_product_to_the_order_guide_grid()">
+                <span>And Add Product to the Order Guide grid</span>
+      <div>
+      </div>
+              </div>
+              <div class="step pass-bg" title="stepDefination_DSD_OMS.BadgeBuilder.IconsSelectionPageStep.check_icon_color()">
+                <span>Then Check Icon color</span>
+      <div>
+      </div>
+              </div>
+              <div class="step pass-bg" title="stepDefination_DSD_OMS.BadgeBuilder_Phase2.IconsSelectionPageStep2.logout()">
+                <span>And Logout</span>
+      <div>
+      </div>
+              </div>
+          </div>
+        </div>
+  </div>
+  <div class="card">
+    <div class="card-header" role="tab">
+      <div class="card-title">
+        <div class="node" id="780"><span class="badge log pass-bg mr-2">Pass</span>Test Scenario to verify Icon color change in Catalog search list view</div>
+      </div>
+    </div>
+        <div class="collapse">
+          <div class="card-body">
+              <div class="step pass-bg" title="stepDefination_DSD_OMS.BadgeBuilder.IconsSelectionPageStep.user_enters_url_and_entered_to_login_page()">
+                <span>Given User enters URL and entered to login page</span>
+      <div>
+      </div>
+              </div>
+              <div class="step pass-bg" title="stepDefination_DSD_OMS.BadgeBuilder.IconsSelectionPageStep.user_on_login_page_and_entered_username_and_password()">
+                <span>Given User on login page and entered username and password</span>
+      <div>SIGNIN BUTTON CLICKED
+      </div>
+      <div>
+      </div>
+              </div>
+              <div class="step pass-bg" title="stepDefination_DSD_OMS.BadgeBuilder.IconsSelectionPageStep.navigated_to_admin_home_page()">
+                <span>When Navigated to Admin home page</span>
+      <div>ADMIN PAGE FOUND
+      </div>
+      <div>
+      </div>
+              </div>
+              <div class="step pass-bg" title="stepDefination_DSD_OMS.BadgeBuilder.IconsSelectionPageStep.click_on_general_setting_tab()">
+                <span>Then Click on General Setting tab</span>
+      <div>
+      </div>
+              </div>
+              <div class="step pass-bg" title="stepDefination_DSD_OMS.BadgeBuilder.IconsSelectionPageStep.clicks_on_badge_builder()">
+                <span>And Clicks on Badge Builder</span>
+      <div>
+      </div>
+              </div>
+              <div class="step pass-bg" title="stepDefination_DSD_OMS.BadgeBuilder.IconsSelectionPageStep.select_icon_under_icon_selections()">
+                <span>And Select Icon under icon selections</span>
+      <div>
+      </div>
+              </div>
+              <div class="step pass-bg" title="stepDefination_DSD_OMS.BadgeBuilder.IconsSelectionPageStep.click_permission_by_and_select_appropriate_company()">
+                <span>And Click Permission By and select appropriate Company</span>
+      <div>COMPANY SELECTED IS 000101, Flowers Baking Co. of Thomasville
+      </div>
+      <div>
+      </div>
+              </div>
+              <div class="step pass-bg" title="stepDefination_DSD_OMS.BadgeBuilder.IconsSelectionPageStep.user_should_navigate_to_badge_gallery_catch_weight_items()">
+                <span>And User should navigate to Badge Gallery - CatchWeightItems</span>
+      <div>
+      </div>
+              </div>
+              <div class="step pass-bg" title="stepDefination_DSD_OMS.BadgeBuilder_Phase2.IconsSelectionPageStep2.change_color_of_the_icon()">
+                <span>And Change Color of the Icon</span>
+      <div>
+      </div>
+              </div>
+              <div class="step pass-bg" title="stepDefination_DSD_OMS.BadgeBuilder.IconsSelectionPageStep.logout_from_admin_portal()">
+                <span>And Logout from Admin portal</span>
+      <div>
+      </div>
+              </div>
+              <div class="step pass-bg" title="stepDefination_DSD_OMS.BadgeBuilder_Phase2.IconsSelectionPageStep2.login_to_client_portal_BadgeBuilder2()">
+                <span>When Login to Client portal BadgeBuilder2</span>
+      <div>SIGNIN BUTTON CLICKED
+      </div>
+      <div>
+      </div>
+              </div>
+              <div class="step pass-bg" title="stepDefination_DSD_OMS.BadgeBuilder.IconsSelectionPageStep.user_should_navigate_to_client_side()">
+                <span>Then User should navigate to Client side</span>
+      <div>COMPANY SELECTED IS 000101, Flowers Baking Co. of Thomasville
+      </div>
+      <div>
+      </div>
+              </div>
+              <div class="step pass-bg" title="stepDefination_DSD_OMS.BadgeBuilder_Phase2.IconsSelectionPageStep2.click_on_the_order_entry_tab1()">
+                <span>And Click on the Order Entry tab1</span>
+      <div>
+      </div>
+              </div>
+          </div>
+        </div>
+  </div>
+  <div class="card">
+    <div class="card-header" role="tab">
+      <div class="card-title">
+        <div class="node" id="852"><span class="badge log pass-bg mr-2">Pass</span>Test Scenario to verify Icon color change in pick up order</div>
+      </div>
+    </div>
+        <div class="collapse">
+          <div class="card-body">
+              <div class="step pass-bg" title="stepDefination_DSD_OMS.BadgeBuilder.IconsSelectionPageStep.user_enters_url_and_entered_to_login_page()">
+                <span>Given User enters URL and entered to login page</span>
+      <div>
+      </div>
+              </div>
+              <div class="step pass-bg" title="stepDefination_DSD_OMS.BadgeBuilder_Phase2.IconsSelectionPageStep2.select_any_date_from_pickup_order()">
+                <span>Then Select any date from Pickup Order</span>
+      <div>
+      </div>
+              </div>
+              <div class="step pass-bg" title="stepDefination_DSD_OMS.BadgeBuilder_Phase2.IconsSelectionPageStep2.add_product_in_order_entry()">
+                <span>And Add Product in Order Entry</span>
+      <div>
+      </div>
+              </div>
+              <div class="step pass-bg" title="stepDefination_DSD_OMS.BadgeBuilder_Phase2.IconsSelectionPageStep2.verify_Icon_Color_from_PickupOrder()">
+                <span>And Verify Icon Color from PickupOrder</span>
+      <div>
+      </div>
+              </div>
+          </div>
+        </div>
+  </div>
+  <div class="card">
+    <div class="card-header" role="tab">
+      <div class="card-title">
+        <div class="node" id="915"><span class="badge log pass-bg mr-2">Pass</span>Test Scenario to verify Icon color change in Cart</div>
+      </div>
+    </div>
+        <div class="collapse">
+          <div class="card-body">
+              <div class="step pass-bg" title="stepDefination_DSD_OMS.BadgeBuilder.IconsSelectionPageStep.user_enters_url_and_entered_to_login_page()">
+                <span>Given User enters URL and entered to login page</span>
+      <div>
+      </div>
+              </div>
+              <div class="step pass-bg" title="stepDefination_DSD_OMS.BadgeBuilder_Phase2.IconsSelectionPageStep2.user_should_navigate_to_catalog_tab1()">
+                <span>Given User should navigate to Catalog tab1</span>
+      <div>
+      </div>
+              </div>
+              <div class="step pass-bg" title="stepDefination_DSD_OMS.BadgeBuilder_Phase2.IconsSelectionPageStep2.search_for_product()">
+                <span>And Search for product</span>
+      <div>
+      </div>
+              </div>
+              <div class="step pass-bg" title="stepDefination_DSD_OMS.BadgeBuilder_Phase2.IconsSelectionPageStep2.click_on_cart()">
+                <span>And Click on Cart</span>
+      <div>
+      </div>
+              </div>
+              <div class="step pass-bg" title="stepDefination_DSD_OMS.BadgeBuilder_Phase2.IconsSelectionPageStep2.verify_icon_color()">
+                <span>And Verify Icon Color</span>
+      <div>
+      </div>
+              </div>
+          </div>
+        </div>
+  </div>
+  <div class="card">
+    <div class="card-header" role="tab">
+      <div class="card-title">
+        <div class="node" id="979"><span class="badge log pass-bg mr-2">Pass</span>Test Scenario to verify Icon color change in Catalog search list</div>
+      </div>
+    </div>
+        <div class="collapse">
+          <div class="card-body">
+              <div class="step pass-bg" title="stepDefination_DSD_OMS.BadgeBuilder.IconsSelectionPageStep.user_enters_url_and_entered_to_login_page()">
+                <span>Given User enters URL and entered to login page</span>
+      <div>
+      </div>
+              </div>
+              <div class="step pass-bg" title="stepDefination_DSD_OMS.BadgeBuilder.IconsSelectionPageStep.user_should_navigate_to_order_tab()">
+                <span>Given User should navigate to Order Tab</span>
+      <div>
+      </div>
+              </div>
+              <div class="step pass-bg" title="stepDefination_DSD_OMS.BadgeBuilder_Phase2.IconsSelectionPageStep2.click_new_order_and_enter_po()">
+                <span>And Click new order and Enter PO</span>
+      <div>
+      </div>
+              </div>
+              <div class="step pass-bg" title="stepDefination_DSD_OMS.BadgeBuilder_Phase2.IconsSelectionPageStep2.compare_product_icon_color1()">
+                <span>And Compare Product Icon color1</span>
+      <div>
+      </div>
+              </div>
+              <div class="step pass-bg" title="stepDefination_DSD_OMS.BadgeBuilder_Phase2.IconsSelectionPageStep2.logout()">
+                <span>And Logout</span>
+      <div>
+      </div>
+              </div>
+          </div>
         </div>
   </div>
 </div>
@@ -212,22 +819,22 @@
 <div class="test-list">
 <div class="test-list-tools">
 <ul class="tools pull-left"><li><a href=""><span class="font-size-14">Category</span></a></li></ul>
-<ul class="tools text-right"><li><a href="#"><span class="badge badge-primary">1</span></a></li></ul>
+<ul class="tools text-right"><li><a href="#"><span class="badge badge-primary">16</span></a></li></ul>
 </div>
 <div class="test-list-wrapper scrollable">
 <ul class="test-list-item">
 <li class="test-item">
 <div class="test-detail">
 <span class="meta">
-<span class='badge log pass-bg'>2</span>
+<span class='badge log pass-bg'>1</span>
 </span>
-<p class="name">@RegisteredUser</p>
-<p class="duration text-sm">2 tests</p>
+<p class="name">@VerifyColorChangeInCatalogTab-CatchWeightItems</p>
+<p class="duration text-sm">1 tests</p>
 </div>
 <div class="test-contents d-none">
 <div class="info">
-<h4>@RegisteredUser</h4>
-<span status="pass" class='badge log pass-bg'>2 passed</span>
+<h4>@VerifyColorChangeInCatalogTab-CatchWeightItems</h4>
+<span status="pass" class='badge log pass-bg'>1 passed</span>
 </div>
 <table class='table table-sm mt-4'>
 <thead>
@@ -240,21 +847,551 @@
 <tbody>
 <tr class="tag-test-status" status="pass">
 <td><span class="badge log pass-bg">Pass</span></td>
-<td>04:31:22 AM</td>
+<td>11:32:05 am</td>
 <td>
-<a href="#" class="linked" test-id='1' id='2'>Test scenario for verifying functionality of Registred users tab</a>
+<a href="#" class="linked" test-id='1' id='525'>Test Scenario to Verify Icon Color Change In Catalog - CatchWeightItems</a>
 <div class="">
-<span class="badge badge-default">Test scenarios for Administration, for Reports.Test scenario for verifying functionality of Registred users tab</span>
+<span class="badge badge-default">Badge Builder Icon Selection.Test Scenario to Verify Icon Color Change In Catalog - CatchWeightItems</span>
 </div>
 </td>
 </tr>
+</tbody>
+</table>
+</div>
+</li>
+<li class="test-item">
+<div class="test-detail">
+<span class="meta">
+<span class='badge log pass-bg'>1</span>
+</span>
+<p class="name">@VerifyIconColorChangeInCart</p>
+<p class="duration text-sm">1 tests</p>
+</div>
+<div class="test-contents d-none">
+<div class="info">
+<h4>@VerifyIconColorChangeInCart</h4>
+<span status="pass" class='badge log pass-bg'>1 passed</span>
+</div>
+<table class='table table-sm mt-4'>
+<thead>
+<tr>
+<th class="status-col">Status</th>
+<th class="timestamp-col">Timestamp</th>
+<th>TestName</th>
+</tr>
+</thead>
+<tbody>
 <tr class="tag-test-status" status="pass">
 <td><span class="badge log pass-bg">Pass</span></td>
-<td>04:31:22 AM</td>
+<td>12:01:49 pm</td>
 <td>
-<a href="#" class="linked" test-id='1' id='3'>Test scenario for verifying functionality of Registred users tab</a>
+<a href="#" class="linked" test-id='1' id='915'>Test Scenario to verify Icon color change in Cart</a>
 <div class="">
-<span class="badge badge-default">Test scenarios for Administration, for Reports.Test scenario for verifying functionality of Registred users tab</span>
+<span class="badge badge-default">Badge Builder Icon Selection.Test Scenario to verify Icon color change in Cart</span>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</li>
+<li class="test-item">
+<div class="test-detail">
+<span class="meta">
+<span class='badge log pass-bg'>1</span>
+</span>
+<p class="name">@IconSelection</p>
+<p class="duration text-sm">1 tests</p>
+</div>
+<div class="test-contents d-none">
+<div class="info">
+<h4>@IconSelection</h4>
+<span status="pass" class='badge log pass-bg'>1 passed</span>
+</div>
+<table class='table table-sm mt-4'>
+<thead>
+<tr>
+<th class="status-col">Status</th>
+<th class="timestamp-col">Timestamp</th>
+<th>TestName</th>
+</tr>
+</thead>
+<tbody>
+<tr class="tag-test-status" status="pass">
+<td><span class="badge log pass-bg">Pass</span></td>
+<td>11:22:19 am</td>
+<td>
+<a href="#" class="linked" test-id='1' id='2'>Test Scenario for Selecting Icon from Badge Builder</a>
+<div class="">
+<span class="badge badge-default">Badge Builder Icon Selection.Test Scenario for Selecting Icon from Badge Builder</span>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</li>
+<li class="test-item">
+<div class="test-detail">
+<span class="meta">
+<span class='badge log pass-bg'>1</span>
+</span>
+<p class="name">@EditAction</p>
+<p class="duration text-sm">1 tests</p>
+</div>
+<div class="test-contents d-none">
+<div class="info">
+<h4>@EditAction</h4>
+<span status="pass" class='badge log pass-bg'>1 passed</span>
+</div>
+<table class='table table-sm mt-4'>
+<thead>
+<tr>
+<th class="status-col">Status</th>
+<th class="timestamp-col">Timestamp</th>
+<th>TestName</th>
+</tr>
+</thead>
+<tbody>
+<tr class="tag-test-status" status="pass">
+<td><span class="badge log pass-bg">Pass</span></td>
+<td>11:22:52 am</td>
+<td>
+<a href="#" class="linked" test-id='1' id='386'>Test Scenario for Editing Icon from Badge Builder</a>
+<div class="">
+<span class="badge badge-default">Badge Builder Icon Selection.Test Scenario for Editing Icon from Badge Builder</span>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</li>
+<li class="test-item">
+<div class="test-detail">
+<span class="meta">
+<span class='badge log pass-bg'>1</span>
+</span>
+<p class="name">@VerifyChangeInCatalogSearchListView</p>
+<p class="duration text-sm">1 tests</p>
+</div>
+<div class="test-contents d-none">
+<div class="info">
+<h4>@VerifyChangeInCatalogSearchListView</h4>
+<span status="pass" class='badge log pass-bg'>1 passed</span>
+</div>
+<table class='table table-sm mt-4'>
+<thead>
+<tr>
+<th class="status-col">Status</th>
+<th class="timestamp-col">Timestamp</th>
+<th>TestName</th>
+</tr>
+</thead>
+<tbody>
+<tr class="tag-test-status" status="pass">
+<td><span class="badge log pass-bg">Pass</span></td>
+<td>12:04:00 pm</td>
+<td>
+<a href="#" class="linked" test-id='1' id='979'>Test Scenario to verify Icon color change in Catalog search list</a>
+<div class="">
+<span class="badge badge-default">Badge Builder Icon Selection.Test Scenario to verify Icon color change in Catalog search list</span>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</li>
+<li class="test-item">
+<div class="test-detail">
+<span class="meta">
+<span class='badge log pass-bg'>1</span>
+</span>
+<p class="name">@VerifyColorChangeInProductIcon-CatalogProductSearch</p>
+<p class="duration text-sm">1 tests</p>
+</div>
+<div class="test-contents d-none">
+<div class="info">
+<h4>@VerifyColorChangeInProductIcon-CatalogProductSearch</h4>
+<span status="pass" class='badge log pass-bg'>1 passed</span>
+</div>
+<table class='table table-sm mt-4'>
+<thead>
+<tr>
+<th class="status-col">Status</th>
+<th class="timestamp-col">Timestamp</th>
+<th>TestName</th>
+</tr>
+</thead>
+<tbody>
+<tr class="tag-test-status" status="pass">
+<td><span class="badge log pass-bg">Pass</span></td>
+<td>11:37:04 am</td>
+<td>
+<a href="#" class="linked" test-id='1' id='588'>Test Scenario to verify change in catalog product icon color from Order Entry page</a>
+<div class="">
+<span class="badge badge-default">Badge Builder Icon Selection.Test Scenario to verify change in catalog product icon color from Order Entry page</span>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</li>
+<li class="test-item">
+<div class="test-detail">
+<span class="meta">
+<span class='badge log pass-bg'>1</span>
+</span>
+<p class="name">@VerifyIconColorChangeInCatalogSearchListView-OrderEntryPage</p>
+<p class="duration text-sm">1 tests</p>
+</div>
+<div class="test-contents d-none">
+<div class="info">
+<h4>@VerifyIconColorChangeInCatalogSearchListView-OrderEntryPage</h4>
+<span status="pass" class='badge log pass-bg'>1 passed</span>
+</div>
+<table class='table table-sm mt-4'>
+<thead>
+<tr>
+<th class="status-col">Status</th>
+<th class="timestamp-col">Timestamp</th>
+<th>TestName</th>
+</tr>
+</thead>
+<tbody>
+<tr class="tag-test-status" status="pass">
+<td><span class="badge log pass-bg">Pass</span></td>
+<td>11:55:49 am</td>
+<td>
+<a href="#" class="linked" test-id='1' id='780'>Test Scenario to verify Icon color change in Catalog search list view</a>
+<div class="">
+<span class="badge badge-default">Badge Builder Icon Selection.Test Scenario to verify Icon color change in Catalog search list view</span>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</li>
+<li class="test-item">
+<div class="test-detail">
+<span class="meta">
+<span class='badge log pass-bg'>1</span>
+</span>
+<p class="name">@DeleteAction</p>
+<p class="duration text-sm">1 tests</p>
+</div>
+<div class="test-contents d-none">
+<div class="info">
+<h4>@DeleteAction</h4>
+<span status="pass" class='badge log pass-bg'>1 passed</span>
+</div>
+<table class='table table-sm mt-4'>
+<thead>
+<tr>
+<th class="status-col">Status</th>
+<th class="timestamp-col">Timestamp</th>
+<th>TestName</th>
+</tr>
+</thead>
+<tbody>
+<tr class="tag-test-status" status="pass">
+<td><span class="badge log pass-bg">Pass</span></td>
+<td>11:22:52 am</td>
+<td>
+<a href="#" class="linked" test-id='1' id='322'>Test Scenario for Deleting Icon from Badge Builder</a>
+<div class="">
+<span class="badge badge-default">Badge Builder Icon Selection.Test Scenario for Deleting Icon from Badge Builder</span>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</li>
+<li class="test-item">
+<div class="test-detail">
+<span class="meta">
+<span class='badge log pass-bg'>1</span>
+</span>
+<p class="name">@VerifyColorChangeInOE-TieredPricingProducts</p>
+<p class="duration text-sm">1 tests</p>
+</div>
+<div class="test-contents d-none">
+<div class="info">
+<h4>@VerifyColorChangeInOE-TieredPricingProducts</h4>
+<span status="pass" class='badge log pass-bg'>1 passed</span>
+</div>
+<table class='table table-sm mt-4'>
+<thead>
+<tr>
+<th class="status-col">Status</th>
+<th class="timestamp-col">Timestamp</th>
+<th>TestName</th>
+</tr>
+</thead>
+<tbody>
+<tr class="tag-test-status" status="pass">
+<td><span class="badge log pass-bg">Pass</span></td>
+<td>11:23:03 am</td>
+<td>
+<a href="#" class="linked" test-id='1' id='453'>Test Scenario to Verify Icon Color Change In OrderEntry - TieredPricingProducts</a>
+<div class="">
+<span class="badge badge-default">Badge Builder Icon Selection.Test Scenario to Verify Icon Color Change In OrderEntry - TieredPricingProducts</span>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</li>
+<li class="test-item">
+<div class="test-detail">
+<span class="meta">
+<span class='badge log pass-bg'>1</span>
+</span>
+<p class="name">@VerifyChangeInPickUpOrder0017</p>
+<p class="duration text-sm">1 tests</p>
+</div>
+<div class="test-contents d-none">
+<div class="info">
+<h4>@VerifyChangeInPickUpOrder0017</h4>
+<span status="pass" class='badge log pass-bg'>1 passed</span>
+</div>
+<table class='table table-sm mt-4'>
+<thead>
+<tr>
+<th class="status-col">Status</th>
+<th class="timestamp-col">Timestamp</th>
+<th>TestName</th>
+</tr>
+</thead>
+<tbody>
+<tr class="tag-test-status" status="pass">
+<td><span class="badge log pass-bg">Pass</span></td>
+<td>11:59:12 am</td>
+<td>
+<a href="#" class="linked" test-id='1' id='852'>Test Scenario to verify Icon color change in pick up order</a>
+<div class="">
+<span class="badge badge-default">Badge Builder Icon Selection.Test Scenario to verify Icon color change in pick up order</span>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</li>
+<li class="test-item">
+<div class="test-detail">
+<span class="meta">
+<span class='badge log pass-bg'>1</span>
+</span>
+<p class="name">@VerifyChangeInProductIcon-StandingOrder</p>
+<p class="duration text-sm">1 tests</p>
+</div>
+<div class="test-contents d-none">
+<div class="info">
+<h4>@VerifyChangeInProductIcon-StandingOrder</h4>
+<span status="pass" class='badge log pass-bg'>1 passed</span>
+</div>
+<table class='table table-sm mt-4'>
+<thead>
+<tr>
+<th class="status-col">Status</th>
+<th class="timestamp-col">Timestamp</th>
+<th>TestName</th>
+</tr>
+</thead>
+<tbody>
+<tr class="tag-test-status" status="pass">
+<td><span class="badge log pass-bg">Pass</span></td>
+<td>11:47:51 am</td>
+<td>
+<a href="#" class="linked" test-id='1' id='653'>Test Scenario to verify change in product icon color from Standing Order Page</a>
+<div class="">
+<span class="badge badge-default">Badge Builder Icon Selection.Test Scenario to verify change in product icon color from Standing Order Page</span>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</li>
+<li class="test-item">
+<div class="test-detail">
+<span class="meta">
+<span class='badge log pass-bg'>1</span>
+</span>
+<p class="name">@VerifyColorChangeInProductIcon-OrderGuide</p>
+<p class="duration text-sm">1 tests</p>
+</div>
+<div class="test-contents d-none">
+<div class="info">
+<h4>@VerifyColorChangeInProductIcon-OrderGuide</h4>
+<span status="pass" class='badge log pass-bg'>1 passed</span>
+</div>
+<table class='table table-sm mt-4'>
+<thead>
+<tr>
+<th class="status-col">Status</th>
+<th class="timestamp-col">Timestamp</th>
+<th>TestName</th>
+</tr>
+</thead>
+<tbody>
+<tr class="tag-test-status" status="pass">
+<td><span class="badge log pass-bg">Pass</span></td>
+<td>11:52:40 am</td>
+<td>
+<a href="#" class="linked" test-id='1' id='716'>Test Scenario to verify change in product icon color from Order Guide Page</a>
+<div class="">
+<span class="badge badge-default">Badge Builder Icon Selection.Test Scenario to verify change in product icon color from Order Guide Page</span>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</li>
+<li class="test-item">
+<div class="test-detail">
+<span class="meta">
+<span class='badge log pass-bg'>1</span>
+</span>
+<p class="name">@BadgeName</p>
+<p class="duration text-sm">1 tests</p>
+</div>
+<div class="test-contents d-none">
+<div class="info">
+<h4>@BadgeName</h4>
+<span status="pass" class='badge log pass-bg'>1 passed</span>
+</div>
+<table class='table table-sm mt-4'>
+<thead>
+<tr>
+<th class="status-col">Status</th>
+<th class="timestamp-col">Timestamp</th>
+<th>TestName</th>
+</tr>
+</thead>
+<tbody>
+<tr class="tag-test-status" status="pass">
+<td><span class="badge log pass-bg">Pass</span></td>
+<td>11:22:40 am</td>
+<td>
+<a href="#" class="linked" test-id='1' id='67'>Test Scenario for Editing Badge Name</a>
+<div class="">
+<span class="badge badge-default">Badge Builder Icon Selection.Test Scenario for Editing Badge Name</span>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</li>
+<li class="test-item">
+<div class="test-detail">
+<span class="meta">
+<span class='badge log pass-bg'>1</span>
+</span>
+<p class="name">@BadgeCode</p>
+<p class="duration text-sm">1 tests</p>
+</div>
+<div class="test-contents d-none">
+<div class="info">
+<h4>@BadgeCode</h4>
+<span status="pass" class='badge log pass-bg'>1 passed</span>
+</div>
+<table class='table table-sm mt-4'>
+<thead>
+<tr>
+<th class="status-col">Status</th>
+<th class="timestamp-col">Timestamp</th>
+<th>TestName</th>
+</tr>
+</thead>
+<tbody>
+<tr class="tag-test-status" status="pass">
+<td><span class="badge log pass-bg">Pass</span></td>
+<td>11:22:44 am</td>
+<td>
+<a href="#" class="linked" test-id='1' id='131'>Test Scenario to verify Badge Code field</a>
+<div class="">
+<span class="badge badge-default">Badge Builder Icon Selection.Test Scenario to verify Badge Code field</span>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</li>
+<li class="test-item">
+<div class="test-detail">
+<span class="meta">
+<span class='badge log pass-bg'>1</span>
+</span>
+<p class="name">@BadgeType</p>
+<p class="duration text-sm">1 tests</p>
+</div>
+<div class="test-contents d-none">
+<div class="info">
+<h4>@BadgeType</h4>
+<span status="pass" class='badge log pass-bg'>1 passed</span>
+</div>
+<table class='table table-sm mt-4'>
+<thead>
+<tr>
+<th class="status-col">Status</th>
+<th class="timestamp-col">Timestamp</th>
+<th>TestName</th>
+</tr>
+</thead>
+<tbody>
+<tr class="tag-test-status" status="pass">
+<td><span class="badge log pass-bg">Pass</span></td>
+<td>11:22:51 am</td>
+<td>
+<a href="#" class="linked" test-id='1' id='260'>Test Scenario for Changing BadgeType</a>
+<div class="">
+<span class="badge badge-default">Badge Builder Icon Selection.Test Scenario for Changing BadgeType</span>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</li>
+<li class="test-item">
+<div class="test-detail">
+<span class="meta">
+<span class='badge log pass-bg'>1</span>
+</span>
+<p class="name">@Save&AddToGallery</p>
+<p class="duration text-sm">1 tests</p>
+</div>
+<div class="test-contents d-none">
+<div class="info">
+<h4>@Save&AddToGallery</h4>
+<span status="pass" class='badge log pass-bg'>1 passed</span>
+</div>
+<table class='table table-sm mt-4'>
+<thead>
+<tr>
+<th class="status-col">Status</th>
+<th class="timestamp-col">Timestamp</th>
+<th>TestName</th>
+</tr>
+</thead>
+<tbody>
+<tr class="tag-test-status" status="pass">
+<td><span class="badge log pass-bg">Pass</span></td>
+<td>11:22:45 am</td>
+<td>
+<a href="#" class="linked" test-id='1' id='194'>Test Scenario to verify Save&AddToGallery</a>
+<div class="">
+<span class="badge badge-default">Badge Builder Icon Selection.Test Scenario to verify Save&AddToGallery</span>
 </div>
 </td>
 </tr>
@@ -275,13 +1412,13 @@
 <div class="col-md-3">
 <div class="card"><div class="card-body">
 <p class="m-b-0">Started</p>
-<h3>Aug 21, 2023 04:31:16 AM</h3>
+<h3>Aug 7, 2023 11:21:43 am</h3>
 </div></div>
 </div>
 <div class="col-md-3">
 <div class="card"><div class="card-body">
 <p class="m-b-0">Ended</p>
-<h3>Aug 21, 2023 04:32:35 AM</h3>
+<h3>Aug 7, 2023 12:07:56 pm</h3>
 </div></div>
 </div>
 <div class="col-md-3">
@@ -332,7 +1469,7 @@
 </div>
 </div>
 <div class="card-footer">
-<div><small data-tooltip='100%'><b>1</b> scenarios passed</small></div>
+<div><small data-tooltip='100%'><b>16</b> scenarios passed</small></div>
 <div>
 <small data-tooltip='0%'><b>0</b> scenarios failed,
 <b>0</b> skipped, <b data-tooltip='%'>0</b> others
@@ -352,7 +1489,7 @@
 </div>
 </div>
 <div class="card-footer">
-<div><small data-tooltip='100%'><b>10</b> steps passed</small></div>
+<div><small data-tooltip='100%'><b>97</b> steps passed</small></div>
 <div>
 <small data-tooltip='0%'><b>0</b> steps failed,
 <b>0</b> skipped, <b data-tooltip='%'>0</b> others
@@ -371,7 +1508,7 @@
 </div></div>
 <script>
 var timeline = {
-"Test scenarios for Administration, for Reports":70.336
+"Badge Builder Icon Selection":2735.026
 };
 </script>
 <div class="row">
@@ -381,8 +1518,128 @@ var timeline = {
 <div class="card-body pb-0 pt-0"><table class="table table-sm table-bordered">
 <thead><tr class="bg-gray"><th>Name</th><th>Passed</th><th>Failed</th><th>Skipped</th><th>Others</th><th>Passed %</th></tr></thead><tbody>
 <tr>
-<td>@RegisteredUser</td>
-<td>2</td>
+<td>@VerifyColorChangeInCatalogTab-CatchWeightItems</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>100%</td>
+</tr>
+<tr>
+<td>@VerifyIconColorChangeInCart</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>100%</td>
+</tr>
+<tr>
+<td>@IconSelection</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>100%</td>
+</tr>
+<tr>
+<td>@EditAction</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>100%</td>
+</tr>
+<tr>
+<td>@VerifyChangeInCatalogSearchListView</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>100%</td>
+</tr>
+<tr>
+<td>@VerifyColorChangeInProductIcon-CatalogProductSearch</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>100%</td>
+</tr>
+<tr>
+<td>@VerifyIconColorChangeInCatalogSearchListView-OrderEntryPage</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>100%</td>
+</tr>
+<tr>
+<td>@DeleteAction</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>100%</td>
+</tr>
+<tr>
+<td>@VerifyColorChangeInOE-TieredPricingProducts</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>100%</td>
+</tr>
+<tr>
+<td>@VerifyChangeInPickUpOrder0017</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>100%</td>
+</tr>
+<tr>
+<td>@VerifyChangeInProductIcon-StandingOrder</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>100%</td>
+</tr>
+<tr>
+<td>@VerifyColorChangeInProductIcon-OrderGuide</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>100%</td>
+</tr>
+<tr>
+<td>@BadgeName</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>100%</td>
+</tr>
+<tr>
+<td>@BadgeCode</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>100%</td>
+</tr>
+<tr>
+<td>@BadgeType</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>100%</td>
+</tr>
+<tr>
+<td>@Save&AddToGallery</td>
+<td>1</td>
 <td>0</td>
 <td>0</td>
 <td>0</td>
@@ -424,13 +1681,13 @@ failParent: 0,
 warningParent: 0,
 skipParent: 0,
 childCount: 5,
-passChild: 1,
+passChild: 16,
 failChild: 0,
 warningChild: 0,
 skipChild: 0,
 infoChild: 0,
 grandChildCount: 5,
-passGrandChild: 10,
+passGrandChild: 97,
 failGrandChild: 0,
 warningGrandChild: 0,
 skipGrandChild: 0,

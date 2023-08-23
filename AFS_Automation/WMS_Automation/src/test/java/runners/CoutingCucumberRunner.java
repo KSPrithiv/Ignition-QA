@@ -1,37 +1,29 @@
 package runners;
 
-import com.codeborne.selenide.Selenide;
-import com.codeborne.selenide.WebDriverRunner;
 import com.nordstrom.automation.testng.LinkedListeners;
 import common.constants.FilePaths;
 import common.setup.DriverManager;
 import common.setup.Environment;
 import common.utils.Waiters;
-import io.cucumber.java.AfterAll;
-import io.cucumber.java.BeforeAll;
 import io.cucumber.testng.AbstractTestNGCucumberTests;
 import io.cucumber.testng.CucumberOptions;
-import io.cucumber.testng.TestNGCucumberRunner;
 import listeners.TestListener;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.aeonbits.owner.ConfigFactory;
-import org.apache.commons.io.FileUtils;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.ITestResult;
 import org.testng.annotations.*;
 import utilWMS.MailSend_WMS;
 
 import javax.mail.MessagingException;
-import java.io.File;
 import java.io.IOException;
 
 import static common.setup.DriverManager.*;
 @LinkedListeners({
     TestListener.class
 })
-@CucumberOptions(features = {"WMSAutomation/src/test/resources/features/counting"},
+@CucumberOptions(features = {"src/test/resources/features/counting/dashboard/CountingDashboardScreen.feature"},
         glue = {"steps"},
         plugin = {"pretty",
                 "json:target/cucumber.json",

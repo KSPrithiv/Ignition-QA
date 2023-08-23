@@ -137,18 +137,12 @@ public class OutboundOrderSummaryPage extends BasePage {
     By dropdownList = By.id("dropdownList");
 
     public void waitOutboundOrderSummaryPageToLoad() {
-        refresh();
-        refresh();
-        refresh();
         Waiters.waitUntilPageWillLoadedSelenide();
         Waiters.waitForElementToBeDisplay(getTitle());
         Waiters.waitForElementToBeDisplay(getTableContent());
     }
 
     public void waitForWorkPageToLoad() {
-        refresh();
-        refresh();
-        refresh();
         Waiters.waitUntilPageWillLoadedSelenide();
         Waiters.waitForElementToBeDisplay(workQueue);
         Waiters.waitForElementToBeDisplay(assignmentTab);

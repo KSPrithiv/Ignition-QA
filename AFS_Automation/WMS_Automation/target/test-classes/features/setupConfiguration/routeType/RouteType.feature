@@ -1,7 +1,7 @@
 @Setup @Regression
 Feature: SetupConfiguration
 
-  Scenario: Verify Search field on Assignment Type screen
+  Scenario: Verify Search field on Route Type screen
     Given User signs in the application
     When Main page is loaded
     Then Go to SetupIcon and Configuration

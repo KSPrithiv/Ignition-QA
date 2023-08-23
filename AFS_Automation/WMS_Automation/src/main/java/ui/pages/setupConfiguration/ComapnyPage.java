@@ -10,7 +10,7 @@ public class ComapnyPage extends BasePage {
 
         Waiters.waitUntilPageWillLoadedSelenide();
         try {
-            Waiters.waitABit(7000);
+//            Waiters.waitABit(7000);
             Waiters.waitForElementToBeDisplay(getCompany());
             clickOnElement(getCompany());
         } catch (Exception e) {

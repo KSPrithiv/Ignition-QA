@@ -38,9 +38,6 @@ public class AppointmentSchedulerOrderPage extends BasePage {
     By invalidOrder = By.xpath("//span[contains(text(), 'Invalid order')]");
 
     public void waitForAppointmentSchedulerPageToLoad() {
-        refresh();
-        refresh();
-        refresh();
         Waiters.waitUntilPageWillLoadedSelenide();
         Waiters.waitForElementToBeDisplay(getAppointmentSchedulerIcon());
     }

@@ -129,8 +129,26 @@ public interface Environment extends Config
 
      @Key("TieredProductNo")
     String get_TieredProductNo();
+
     @Key("CatchWtProductNo")
     String get_CatchWtProductNo();
 
+    @Key("Bogo")
+    String get_BOGO();
+
+    @Key("Category")
+    String get_Category();
+
+    @Key("SubCategory")
+    String get_SubCategory();
+
+    @Key("Brand")
+    String get_Brand();
+
+    @Key("DummyuserTest")
+    String DummyUserTest();
+
+    @Key("DummypassTest")
+    String DummyPassTest();
 }
 

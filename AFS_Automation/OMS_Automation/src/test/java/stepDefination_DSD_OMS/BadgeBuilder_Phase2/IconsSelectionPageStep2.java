@@ -50,15 +50,15 @@ public class IconsSelectionPageStep2 {
         badgeBuilderPage1.AddToGallery();
     }
 
-   @When("Login to Client portal1")
-    public void login_to_client_portal1() throws InterruptedException, AWTException {
-      /*  loginpage = new LoginPage(driver, scenario);
+   @When("Login to Client portal BadgeBuilder2")
+    public void login_to_client_portal_BadgeBuilder2() throws InterruptedException, AWTException {
+        loginpage = new LoginPage(driver, scenario);
         badgeBuilderPage = new BadgeBuilderPage(driver, scenario);
         loginpage.EnterUsername(TestBase.testEnvironment.DummyUserTest());
         loginpage.EnterPassword(TestBase.testEnvironment.DummyPassTest());
         //loginpage.ClickSignin();
         badgeBuilderPage.ClickSignin1();
-        Thread.sleep(4000);*/
+        Thread.sleep(4000);
     }
 
 //    @Given("User on login page and entered username and password1-Client portal")
@@ -146,9 +146,9 @@ public class IconsSelectionPageStep2 {
         //badgeBuilderPage.ChangeAccount1();
 //       badgeBuilderPage.PopupDiscardAll();
 //        badgeBuilderPage.RoutePopup();
-        Thread.sleep(5000);
+//        Thread.sleep(5000);
         badgeBuilderPage.StartOrder();
-        Thread.sleep(5000);
+//        Thread.sleep(5000);
         badgeBuilderPage.NoPendingOrderPopup();
         //badgeBuilderPage.StartOrder();
         badgeBuilderPage.PopupOKBtn();
@@ -189,7 +189,8 @@ public class IconsSelectionPageStep2 {
     public void add_product_in_order_entry() throws AWTException, InterruptedException {
         badgeBuilderPage = new BadgeBuilderPage(driver, scenario);
         badgeBuilderPage1 = new BadgeBuilderPage1(driver, scenario);
-        HelpersMethod.waitTillPageLoaded(driver, 2000);
+//        HelpersMethod.waitTillPageLoaded(driver, 2000);
+        Thread.sleep(3000);
         badgeBuilderPage.PopupOKBtn();
         badgeBuilderPage1.POBox1();
         //badgeBuilderPage.PopupOKBtn();

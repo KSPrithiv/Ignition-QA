@@ -34,9 +34,6 @@ public class InboundOrderLocationLookupPage extends BasePage {
     By gridTable = By.cssSelector(".k-grid-table tr");
 
     public void waitForInboundOrderLocationLookupPageToLoad() {
-        refresh();
-        refresh();
-        refresh();
         Waiters.waitABit(10000);
         Waiters.waitUntilPageWillLoadedSelenide();
         Waiters.waitForElementToBeDisplay(getTopIcon());

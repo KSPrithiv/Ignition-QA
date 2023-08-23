@@ -6,6 +6,8 @@ import org.openqa.selenium.WebElement;
 import ui.pages.BasePage;
 import java.util.List;
 
+import static common.setup.DriverManager.getDriver;
+
 public class ProductLookupPage extends BasePage {
     By productLookupTitle = By.className("spnmoduleNameHeader");
     By productLookupButton = By.cssSelector(".i-indexfield-container__main .k-button");
@@ -42,16 +44,16 @@ public class ProductLookupPage extends BasePage {
     By locationColumnHeader = By.xpath("//th[@role='columnheader'][.//span[text()='Location']]");
     By locationTypeColumn = By.xpath("//span[text()='Location Type']");
     By locationTypeColumnHeader = By.xpath("//th[@role='columnheader'][.//span[text()='Location Type']]");
-    By qtyColumn = By.xpath("//span[text()='Quantity']");
-    By qtyColumnHeader = By.xpath("//th[@role='columnheader'][.//span[text()='Quantity']]");
+    By qtyColumn = By.xpath("//span[text()='Qty']");
+    By qtyColumnHeader = By.xpath("//th[@role='columnheader'][.//span[text()='Qty']]");
     By uomColumn = By.xpath("//span[text()='UOM']");
     By uomColumnHeader = By.xpath("//th[@role='columnheader'][.//span[text()='UOM']]");
     By conversionColumn = By.xpath("//span[text()='Conversion']");
     By conversionColumnHeader = By.xpath("//th[@role='columnheader'][.//span[text()='Conversion']]");
-    By actualColumn = By.xpath("//span[text()='Actual']");
-    By actualColumnHeader = By.xpath("//th[@role='columnheader'][.//span[text()='Actual']]");
-    By bookColumn = By.xpath("//span[text()='Book']");
-    By bookColumnHeader = By.xpath("//th[@role='columnheader'][.//span[text()='Book']]");
+    By actualColumn = By.xpath("//span[text()='Actual?']");
+    By actualColumnHeader = By.xpath("//th[@role='columnheader'][.//span[text()='Actual?']]");
+    By bookColumn = By.xpath("//span[text()='Book?']");
+    By bookColumnHeader = By.xpath("//th[@role='columnheader'][.//span[text()='Book?']]");
     By inboundColumn = By.xpath("//span[text()='Inbound']");
     By inboundColumnHeader = By.xpath("//th[@role='columnheader'][.//span[text()='Inbound']]");
     By outboundColumn = By.xpath("//span[text()='Outbound']");
@@ -132,13 +134,10 @@ public class ProductLookupPage extends BasePage {
     By qtyInputs = By.cssSelector(".k-numerictextbox input");
     By dataInputs = By.cssSelector(".k-dateinput input");
     By dropdownList = By.id("dropdownList");
+    By loader = By.cssSelector(".loader");
 
     public void waitForProductLookupPageToLoad() {
-        refresh();
-        refresh();
-        refresh();
-        Waiters.waitABit(8000);
-        Waiters.waitUntilPageWillLoadedSelenide();
+        Waiters.returnDocumentStatus(getDriver());
         Waiters.waitForElementToBeDisplay(productLookupButton);
         Waiters.waitForElementToBeDisplay(productSearchLabel);
         Waiters.waitForElementToBeDisplay(productSearchInput);
@@ -147,45 +146,44 @@ public class ProductLookupPage extends BasePage {
     public void clickProductLookupTitle() {
         Waiters.waitForElementToBeDisplay(productLookupTitle);
         clickOnElement(productLookupTitle);
-        Waiters.waitABit(3000);
+        Waiters.waitTillLoadingPage(getDriver());
     }
 
     public void typeProduct(String product) {
         Waiters.waitForElementToBeDisplay(productSearchInput);
         inputText(getProductSearchInput(), product);
         pressEnter(getProductSearchInput());
-        Waiters.waitABit(3000);
     }
 
     public void deleteProduct() {
-        Waiters.waitABit(2000);
         Waiters.waitForElementToBeDisplay(productSearchInput);
         clear(getProductSearchInput());
         pressEnter(getProductSearchInput());
+        Waiters.waitTillLoadingPage(getDriver());
     }
 
     public void clickHistoryTab() {
         Waiters.waitForElementToBeDisplay(getHistoryTab());
         clickOnElement(getHistoryTab());
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
     }
 
     public void clickSetUpTab() {
         Waiters.waitForElementToBeDisplay(getSetupTab());
         clickOnElement(getSetupTab());
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
     }
 
     public void clickAllocationTab() {
         Waiters.waitForElementToBeDisplay(getAllocationTab());
         clickOnElement(getAllocationTab());
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
     }
 
     public void clickEditLocProdButton() {
         Waiters.waitForElementToBeDisplay(getEditLocProdButton());
         clickOnElement(getEditLocProdButton());
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
     }
 
     public void selectChangeStatus(String status) {
@@ -194,13 +192,14 @@ public class ProductLookupPage extends BasePage {
         WebElement option = findWebElement(By.xpath("//div[contains(@class, 'k-animation-container-shown')]//*[contains(text(), '"
                 + status + "') and @role='option']"));
         clickOnElement(option);
+        Waiters.waitTillLoadingPage(getDriver());
     }
 
     public void selectWarehouse(String warehouse) {
         clickOnElement(getDropdownList());
         clickOnElement(findWebElement(By.xpath("//div[contains(@class, 'k-animation-container-shown')]//li[contains(text(), '"
                 + warehouse + "') and @role='option']")));
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
     }
 
     public void selectChangeUnitStatusReason(String reason) {
@@ -209,12 +208,14 @@ public class ProductLookupPage extends BasePage {
         WebElement option = findWebElement(By.xpath("//div[contains(@class, 'k-animation-container-shown')]//*[contains(text(), '"
                 + reason + "') and @role='option']"));
         clickOnElement(option);
+        Waiters.waitTillLoadingPage(getDriver());
     }
 
     public void selectCheckBoxOptionByIndex(int index) {
         Waiters.waitForPresenceOfAllElements(checkBoxes);
         Waiters.waitABit(1000);
         clickOnElement(getCheckBoxesOptions().get(index));
+        Waiters.waitTillLoadingPage(getDriver());
     }
 
     public void clickCancelButton() {
@@ -260,11 +261,14 @@ public class ProductLookupPage extends BasePage {
     public void clickApplyButton() {
         Waiters.waitForElementToBeDisplay(getApplyButton());
         clickOnElement(getApplyButton());
+        waitUntilInvisible(5, loader);
+        Waiters.waitTillLoadingPage(getDriver());
     }
 
     public void clickClearAllButton() {
         Waiters.waitForElementToBeDisplay(getСlearAllButton());
         clickOnElement(getСlearAllButton());
+        Waiters.waitTillLoadingPage(getDriver());
     }
 
     public void checkWarehouseIdFilterCheckBox() {
@@ -378,42 +382,34 @@ public class ProductLookupPage extends BasePage {
     }
 
     public boolean isProductLookupTitleDisplayed() {
-        Waiters.waitABit(1000);
         return isElementDisplay(getProductLookupTitle());
     }
 
     public boolean isProductLookupButtonDisplayed() {
-        Waiters.waitABit(1000);
-        return isElementDisplay(getProductLookupButton());
+         return isElementDisplay(getProductLookupButton());
     }
 
     public boolean isProductSearchLabelDisplayed() {
-        Waiters.waitABit(1000);
         return isElementDisplay(getProductSearchLabel());
     }
 
     public boolean isProductSearchInputDisplayed() {
-        Waiters.waitABit(1000);
         return isElementDisplay(getProductSearchInput());
     }
 
     public boolean isLookupTabDisplayed() {
-        Waiters.waitABit(1000);
         return isElementDisplay(getLookupTab());
     }
 
     public boolean areAllocationTabsDisplayed() {
-        Waiters.waitABit(1000);
         return elementsArePresent(getAllocationTabs()) > 0;
     }
 
     public boolean areSetupTabsDisplayed() {
-        Waiters.waitABit(1000);
         return elementsArePresent(getSetupTabs()) > 0;
     }
 
     public boolean areHistoryTabsDisplayed() {
-        Waiters.waitABit(1000);
         return elementsArePresent(getHistoryTabs()) > 0;
     }
 

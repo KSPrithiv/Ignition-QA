@@ -29,6 +29,7 @@ public class MailSend_WMS
         final String to = "santhosh.skaria@telusagcg.com";
         //final String to = "karthikeyan.armugam@telusagcg.com";
         final String cc = "karthikeyan.armugam@telusagcg.com";
+        //final String bcc = "irina.holovan@telusagcg.com";
 
         try
         {
@@ -56,7 +57,7 @@ public class MailSend_WMS
         }
     }
 
-    private static Message prepareMessage(Session session, String myAccountEmail, String recepient,String cc)
+    private static Message prepareMessage(Session session, String myAccountEmail, String recepient,String cc )
     {
         try
         {
@@ -67,15 +68,17 @@ public class MailSend_WMS
 
             message.setRecipients(Message.RecipientType.CC,
                     InternetAddress.parse(cc));
-            message.setSubject("Automated Email Notification -Ignition Automation report from CI server");
+//            message.setRecipients(Message.RecipientType.BCC,
+//                    InternetAddress.parse(bcc));
+            message.setSubject("Automated Email Notification -Ignition WMS Automation report from CI server");
 
             //String filename="corp.afsi.com\\C:\\Users\\karthikeyan.Armugam\\Documents\\Git_Repositories\\ignition-qa\\IgnitionQAAutomation\\Reports\\extent\\Index.html";
             //String filename="C:\\Users\\karthikeyan.Armugam\\Documents\\Git_Repositories\\ignition-qa\\IgnitionQAAutomation\\Reports\\extent\\Index.html";
-            //String filename="C:\\Users\\karthikeyan.Armugam\\Documents\\AFS_Automation\\AFS_Automation\\WMS_Automation\\Reports\\surefire-reports_WMS";
-            String filename="E:\\GithubBuilds\\IgnitionQA\\_work\\ignition-qa\\ignition-qa\\AFS_Automation\\WMS_Automation\\target\\surefire-reports\\emailable-report.html";
+            //String filename="C:\\Users\\karthikeyan.Armugam\\Documents\\AFS_Automation\\AFS_Automation\\WMS_Automation\\Reports\\Index.html";
+            String filename="E:\\GithubBuilds\\IgnitionQA\\_work\\ignition-qa\\ignition-qa\\AFS_Automation\\WMS_Automation\\Reports\\Index.html";
             //Composing mail
             BodyPart objMessageBodyPart = new MimeBodyPart();
-            objMessageBodyPart.setContent("Hi,"+"Santhosh, Good Afternoon..Please find attached the Ignition WMS Automation Report"+"\n", "text/html");
+            objMessageBodyPart.setContent("Hi,"+"Santhosh, Good Afternoon..Please find the Ignition WMS Automation Report in this URL => https://reports.cucumber.io/report-collections/2580ea7b-dd7e-4181-aebd-395d230b75d6  "+"\n", "text/html");
             Multipart multipart = new MimeMultipart();
             multipart.addBodyPart(objMessageBodyPart);
             objMessageBodyPart = new MimeBodyPart();

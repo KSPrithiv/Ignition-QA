@@ -63,7 +63,7 @@ Feature: Badge Builder Icon Selection
     And    User should navigate to Badge Gallery - CatchWeightItems
     And    Change Color of the CatchWeightItems Icon
     And    Logout from Admin portal
-    And    Login to Client portal
+    And    Login to Client portal BadgeBuilder1
     Then   User should navigate to Client side
     And    Click on the Order Entry tab
     And    Select Account and start Order
@@ -90,7 +90,6 @@ Feature: Badge Builder Icon Selection
 
   @VerifyColorChangeInCatalogTab-CatchWeightItems
   Scenario: Test Scenario to Verify Icon Color Change In Catalog -  CatchWeightItems
-    Given  user must be on Order Entry Page
     Then   user should navigate to Catalog tab
     And   Search for Catchweight Item
     Then  Compare Catlog CatchWeightItems Icon Color

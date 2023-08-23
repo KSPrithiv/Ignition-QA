@@ -53,10 +53,23 @@ public class JobTypePageSteps {
     }
     @Step
     @And("Creating JobType with special characters and users")
-    public void createJobType() throws InterruptedException {
+    public void createJobType() {
         log.info("Creating JobType with special characters and users");
         setupLaborCodePage.enterCode();
         setupLaborCodePage.usersTab();
+    }
+    @Step
+    @And("Editing JobType")
+    public void editJobType() {
+        log.info("Editing JobType");
+        jobTypePage.clickCode();
+        jobTypePage.clickEdit();
+        setupLaborCodePage.enterCode();
+        setupLaborCodePage.usersTab();
+        setupLaborCodePage.selectUser1();
+        setupLaborCodePage.enterSave();
+//        jobTypePage.displayMessage();
+
     }
     @Step
     @And("Select any Code and click on Delete")
@@ -88,7 +101,7 @@ public class JobTypePageSteps {
 //        setupLaborCodePage.quit();
     }
     @Step
-    @And("User clicks Add Filter on JobType page")
+    @And("User clicks Add Filter")
     public void clickAddFilterButton() throws InterruptedException {
         log.info("User clicks Add Filter on JobType page");
         setupLaborCodePage.jobtypeTab();
@@ -134,7 +147,7 @@ public class JobTypePageSteps {
     }
 
     @Step
-    @And("User clicks Description filter on JobType page")
+    @And("User clicks Description filter")
     public void clickDescriptionFilter() throws InterruptedException {
         log.info("User clicks Code filter on JobType page");
         setupLaborCodePage.countDescription();

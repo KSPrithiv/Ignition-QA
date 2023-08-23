@@ -11,10 +11,5 @@
         <module name="OMS_Automation" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="IgnitionTestAutomation" target="11" />
-      <module name="IgnitionTestAutomation (1)" target="11" />
-      <module name="IgnitionTestAutomation (2)" target="1.8" />
-    </bytecodeTargetLevel>
   </component>
 </project>

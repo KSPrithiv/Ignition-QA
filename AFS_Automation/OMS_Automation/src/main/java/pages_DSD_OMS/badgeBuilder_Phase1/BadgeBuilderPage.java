@@ -782,14 +782,14 @@ public class BadgeBuilderPage {
             }
 
             Thread.sleep(8000);
-            new WebDriverWait(driver, 400).until(ExpectedConditions.elementToBeClickable(By.cssSelector(".settings-back-container > .i-icon")));
+        new WebDriverWait(driver, 400).until(ExpectedConditions.elementToBeClickable(By.cssSelector(".settings-back-container > .i-icon")));
 //        Thread.sleep(5000);
-            HelpersMethod.Implicitwait(driver, 30);
-            WebElement ClientsideIcon;
-            ClientsideIcon = driver.findElement(By.cssSelector(".settings-back-container > .i-icon"));
-            HelpersMethod.waitTillElementDisplayed(driver, ClientsideIcon, 200);
-            //HelpersMethod.JScriptClick(driver, ClientsideIcon, 20);
-            ClientsideIcon.click();
+        HelpersMethod.Implicitwait(driver, 30);
+        WebElement ClientsideIcon;
+        ClientsideIcon = driver.findElement(By.cssSelector(".settings-back-container > .i-icon"));
+        HelpersMethod.waitTillElementDisplayed(driver, ClientsideIcon, 200);
+        //HelpersMethod.JScriptClick(driver, ClientsideIcon, 20);
+        ClientsideIcon.click();
         } catch (Exception e) {}
 
 
@@ -1020,7 +1020,7 @@ public class BadgeBuilderPage {
                     //String Title = modalContentTitle.getText();
 //                WebElement modalContentTitle1 = catlogPopup.findElement(By.cssSelector(".admin-badge-icon-container > div > div>div"));
 
-                    Tcolor = modalContentTitle1.getCssValue("background-color");
+                Tcolor = modalContentTitle1.getCssValue("background-color");
 //                    Tcolor = modalContentTitle1.getCssValue("color");
 
                     //String Tcolor1 = modalContentTitle1.getCssValue("background-color");
@@ -1034,7 +1034,7 @@ public class BadgeBuilderPage {
 //                WebElement OkBtn = catlogPopup.findElement(By.xpath("//body/div[2]/div[@role='dialog']/div[3]/div/button[.='Ok']"));
 //                WebElement OkBtn = catlogPopup.findElement(By.xpath("//body/div[2]/div[@role='dialog']/div[3]/div/button[.='Ok']"));
 //                OkBtn.click();
-                    System.out.println(Tiered_CatchColorAdmin2);
+                System.out.println(Tiered_CatchColorAdmin2);
 //                    System.out.println(Tiered_CatchColorAdmin);
                     if (Tcolor.equals(Tiered_CatchColorAdmin2)) {
                         System.out.println("PRODUCT COLORS ARE SAME");
@@ -1169,17 +1169,17 @@ public class BadgeBuilderPage {
     public void PopupOKBtn() {
 
         if(HelpersMethod.IsExists("//div[contains(@class,'k-widget k-window k-dialog')]",driver)) {
-            try {
-                HelpersMethod.waitTillElementLocatedDisplayed(driver, "xpath", "//div[contains(@class,'k-widget k-window k-dialog')]", 100);
-                WebElement Popup1 = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-widget k-window k-dialog')]");
-                //WebElement PopOk = Popup1.findElement(By.xpath("//body/div[2]/div[@role='dialog']/div[2]/div/button[.='Ok']"));
-                //PopOk.click();
-                //HelpersMethod.JScriptClick(driver, PopOk, 20);
-                //HelpersMethod.ActClick(driver, PopOk, 400);
-                WebElement okButton = Popup1.findElement(By.xpath(".//button[text()='Ok']"));
-                HelpersMethod.ClickBut(driver, okButton, 80);
-            } catch (Exception e) {}
-        }
+    try {
+        HelpersMethod.waitTillElementLocatedDisplayed(driver, "xpath", "//div[contains(@class,'k-widget k-window k-dialog')]", 100);
+        WebElement Popup1 = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-widget k-window k-dialog')]");
+        //WebElement PopOk = Popup1.findElement(By.xpath("//body/div[2]/div[@role='dialog']/div[2]/div/button[.='Ok']"));
+        //PopOk.click();
+        //HelpersMethod.JScriptClick(driver, PopOk, 20);
+        //HelpersMethod.ActClick(driver, PopOk, 400);
+        WebElement okButton = Popup1.findElement(By.xpath(".//button[text()='Ok']"));
+        HelpersMethod.ClickBut(driver, okButton, 80);
+    } catch (Exception e) {}
+     }
     }
 
     public void StartOrder1() {
@@ -1354,34 +1354,34 @@ public class BadgeBuilderPage {
     public String ProdColourCat() throws InterruptedException {
 //        String CatchwtColor=null;
 //        String CatchWtLabel=null;
-        badgeBuilderPage = new BadgeBuilderPage(driver, scenario);
-        badgeBuilderPage.ColourChange2();
+          badgeBuilderPage = new BadgeBuilderPage(driver, scenario);
+          badgeBuilderPage.ColourChange2();
 
 
         try {
 //            if (HelpersMethod.IsExists("/html//div[@id='productsCard']/div[@class='i-card__card__body i-card__card__body--expanded']/div//div[@class='grid-item-box']//div[@class='product-catalog-image-container']/a[@href='#']/img[@alt='product thumb']", driver)) {
 //                HelpersMethod.waitTillElementLocatedDisplayed(driver, "xpath", "/html//div[@id='productsCard']/div[@class='i-card__card__body i-card__card__body--expanded']/div//div[@class='grid-item-box']//div[@class='product-catalog-image-container']/a[@href='#']/img[@alt='product thumb']", 100);
 
-            //WebElement CatchWtIcon = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-widget k-window k-dialog')]");
-            //WebElement modalContentTitle = catlogPopup.findElement(By.xpath(".//div[contains(@class,'label-preview-background')]"));
-            //WebElement modalContentTitle1 = catlogPopup.findElement(By.cssSelector(".admin-badge-text-container > div > div>div"));
+                //WebElement CatchWtIcon = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-widget k-window k-dialog')]");
+                //WebElement modalContentTitle = catlogPopup.findElement(By.xpath(".//div[contains(@class,'label-preview-background')]"));
+                //WebElement modalContentTitle1 = catlogPopup.findElement(By.cssSelector(".admin-badge-text-container > div > div>div"));
 //                HelpersMethod.waitTillElementLocatedDisplayed(driver,"xpath","/html//div[@id='productsCard']//div[@class='list-view']/div[@role='presentation']/div[@role='grid']/div[2]/div[@role='presentation']/div[1]/table[@role='presentation']/tbody[@role='presentation']/tr[@role='row']//div[@class='label-preview-background']/div/div",100);
 //                Thread.sleep(2000);
 //                WebElement CatchWtIcon = driver.findElement(By.cssSelector(".admin-badge-text-container .label-preview-label"));
             WebElement CatchWtIcon= driver.findElement(By.cssSelector("div:nth-of-type(2) > .admin-badge-text-container > .label-preview-background.label-preview-background-white > .label-preview-background > div > div"));
 
             //String Title = modalContentTitle.getText();
-            CatchwtColor = CatchWtIcon.getCssValue("color");
-            System.out.println(CatchwtColor);
-            HelpersMethod.Implicitwait(driver, 20);
-            //Thread.sleep(30000);
+                CatchwtColor = CatchWtIcon.getCssValue("color");
+                System.out.println(CatchwtColor);
+                HelpersMethod.Implicitwait(driver, 20);
+                //Thread.sleep(30000);
 
-            if(Tiered_CatchColorAdmin.equals(CatchwtColor)){
-                System.out.println("PRODUCT COLORS ARE SAME");
-            }
-            else {
-                System.out.println("PRODUCT COLORS ARE NOT SAME");
-            }
+                if(Tiered_CatchColorAdmin.equals(CatchwtColor)){
+                    System.out.println("PRODUCT COLORS ARE SAME");
+                }
+                else {
+                    System.out.println("PRODUCT COLORS ARE NOT SAME");
+                }
 //                Assert.assertEquals(Tiered_CatchColorAdmin,CatchwtColor,"COLORS ARE NOT SAME");
 
 //            }
@@ -1433,7 +1433,7 @@ public class BadgeBuilderPage {
             }
 
 
-        } catch (Exception e) {
+            } catch (Exception e) {
         }
 
 
@@ -1579,13 +1579,13 @@ public class BadgeBuilderPage {
                 WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
                 HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 500);
             }
-            Thread.sleep(8000);
-            WebElement CreateNew;
-            CreateNew = driver.findElement(By.xpath("/html//button[@id='plusAdditionalAccountButtonFlat']"));
-            HelpersMethod.waitTillElementDisplayed(driver, CreateNew, 100);
-            HelpersMethod.JScriptClick(driver, CreateNew, 20);
-            // CreateNew.click();
-            //HelpersMethod.ClickBut(driver, CreateNew, 80);
+                Thread.sleep(8000);
+                WebElement CreateNew;
+                CreateNew = driver.findElement(By.xpath("/html//button[@id='plusAdditionalAccountButtonFlat']"));
+                HelpersMethod.waitTillElementDisplayed(driver, CreateNew, 100);
+                HelpersMethod.JScriptClick(driver, CreateNew, 20);
+                // CreateNew.click();
+                //HelpersMethod.ClickBut(driver, CreateNew, 80);
 
 
 //            HelpersMethod.Implicitwait(driver, 10);
@@ -1631,12 +1631,12 @@ public class BadgeBuilderPage {
 //        if(HelpersMethod.IsExists("//div[contains(text(),'Your order has not been submitted.')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]/descendant::button[contains(text(),'without submitting')]",driver))
         if(HelpersMethod.IsExists("//div[contains(text(),'Your order has not been submitted.')]",driver))
             try {
-                HelpersMethod.waitTillElementLocatedDisplayed(driver, "xpath", "//div[contains(@class,'k-widget k-window k-dialog')]", 100);
-                WebElement Popup1 = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-widget k-window k-dialog')]");
-                WebElement okButton = Popup1.findElement(By.xpath(".//button[text()='Discard all']"));
-                HelpersMethod.ClickBut(driver, okButton, 80);
-            } catch (Exception e) {
-            }
+            HelpersMethod.waitTillElementLocatedDisplayed(driver, "xpath", "//div[contains(@class,'k-widget k-window k-dialog')]", 100);
+            WebElement Popup1 = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-widget k-window k-dialog')]");
+            WebElement okButton = Popup1.findElement(By.xpath(".//button[text()='Discard all']"));
+            HelpersMethod.ClickBut(driver, okButton, 80);
+        } catch (Exception e) {
+        }
 
     }
     public void RoutePopup()
@@ -1702,7 +1702,7 @@ public class BadgeBuilderPage {
             else {
                 System.out.println("PRODUCT COLORS ARE NOT SAME");
             }
-            // Assert.assertEquals(Tiered_CatchColorAdmin,OrderGuideClrCheck,"COLORS ARE NOT SAME");
+           // Assert.assertEquals(Tiered_CatchColorAdmin,OrderGuideClrCheck,"COLORS ARE NOT SAME");
 
 
 
@@ -2038,8 +2038,8 @@ public class BadgeBuilderPage {
         {
 //            if(AddProduct.isDisplayed() && AddProduct.isEnabled())
 //            {
-            //HelpersMethod.ScrollElement(driver,AddProduct);
-            HelpersMethod.ActClick(driver,AddProduct,40);
+                //HelpersMethod.ScrollElement(driver,AddProduct);
+                HelpersMethod.ActClick(driver,AddProduct,40);
 //                Thread.sleep(2000);
         }
         catch (Exception e){}
@@ -2209,7 +2209,7 @@ public class BadgeBuilderPage {
                 HelpersMethod.waitTillElementLocatedDisplayed(driver,"xpath","//div[contains(@class,'k-widget k-window k-dialog')]",30);
                 WebElement noPendingOrderPopup =HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-widget k-window k-dialog')]");
 
-                // WebElement noPendingOrderContent = noPendingOrderPopup.findElement(By.xpath(".//div[contains(@class,'k-window-content k-dialog-content')]"));
+               // WebElement noPendingOrderContent = noPendingOrderPopup.findElement(By.xpath(".//div[contains(@class,'k-window-content k-dialog-content')]"));
                 //Assert.assertEquals(noPendingOrderContent.getText(), "You already have an open order that is pending submission. Would you like to switch to that Pending order or start a new order? If you start a new order, the Pending order will be overwritten.", "Verify Title message");
 
                 WebElement startOrder=noPendingOrderPopup.findElement(By.xpath(".//button[contains(text(),'Start new order')]"));
@@ -2340,8 +2340,8 @@ public class BadgeBuilderPage {
                     //If start button is not enabled either skip is enabled or cutoff date has been reached
                     ClickCalender();
                     SelectDeliveryDate();
-                    // SelectDate(ChangeDate,40);
-                    // HelpersMethod.ScrollElement(driver, SearchOrder);
+                   // SelectDate(ChangeDate,40);
+                   // HelpersMethod.ScrollElement(driver, SearchOrder);
                     //HelpersMethod.ClickBut(driver, StartOrder, 40);
                     HelpersMethod.JScriptClick(driver, StartOrder, 100);
                     status = HelpersMethod.returnDocumentStatus(driver);
@@ -2428,6 +2428,7 @@ public class BadgeBuilderPage {
 
 
 }
+
 
 
 

@@ -1,31 +1,24 @@
 package runners;
 
-import com.codeborne.selenide.WebDriverRunner;
 import common.constants.FilePaths;
 import common.setup.DriverManager;
 import common.setup.Environment;
 import common.utils.Waiters;
 import io.cucumber.testng.AbstractTestNGCucumberTests;
 import io.cucumber.testng.CucumberOptions;
-import io.cucumber.testng.TestNGCucumberRunner;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.aeonbits.owner.ConfigFactory;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.ITestResult;
 import org.testng.annotations.*;
 import utilWMS.MailSend_WMS;
 
 import javax.mail.MessagingException;
 import java.io.IOException;
-import java.util.concurrent.TimeUnit;
-
-import static com.codeborne.selenide.Selenide.open;
 import static common.setup.DriverManager.*;
 import static common.setup.DriverManager.getDriver;
 
-@CucumberOptions(features = {"WMSAutomation/src/test/resources/features/inbound"},
+@CucumberOptions(features = {"src/test/resources/features/inbound"},
         glue = {"steps"},
         plugin = {"pretty",
                 "json:target/cucumber.json",
