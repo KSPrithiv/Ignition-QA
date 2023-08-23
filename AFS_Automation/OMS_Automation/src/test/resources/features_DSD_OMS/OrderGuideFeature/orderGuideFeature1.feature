@@ -33,7 +33,7 @@ Feature: Order Guide1
     And User should navigate back to OG page and verify OG "<OG>"  existence
     Examples:
       |  OG     |
-      |SampleOG   |
+      |SampleOG |
 
   @OGImport
   Scenario Outline: Importing OG
@@ -144,7 +144,7 @@ Feature: Order Guide1
       |4|
     Then User click on Save button
     Examples:
-      |  OG     |
+      |  OG    |
       |OGDis1  |
 
   @ActiveToExpired

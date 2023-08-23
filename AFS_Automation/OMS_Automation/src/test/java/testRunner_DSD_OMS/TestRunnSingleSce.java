@@ -73,7 +73,7 @@ import pages_DSD_OMS.login.LoginPage;
                         "html:target/cucumber-html-report.html",
                         "com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:Reports/spark/",
                         "rerun:target/failedrerun.txt"},
-                monochrome = true,tags = "@RegisteredUser")
+                monochrome = true)
 
 public class TestRunnSingleSce extends AbstractTestNGCucumberTests {
     /* Created by Divya.Ramadas@afsi.com */
@@ -90,10 +90,10 @@ public class TestRunnSingleSce extends AbstractTestNGCucumberTests {
     }
 
 
-//    @Parameters({"environment" })
-//    @BeforeMethod
-//    public static void beforeMethod(@Optional("environment") String envi) {
-//        try {
+  /*   @Parameters({"environment" })
+     @BeforeMethod
+     public static void beforeMethod(@Optional("environment") String envi) {
+      try {
 //            TestBase.InitializeProp(envi);
 //            TestBase.SetDriver(TestBase.testEnvironment.get_browser());
 //
@@ -105,7 +105,7 @@ public class TestRunnSingleSce extends AbstractTestNGCucumberTests {
 //        }
 //    }
 
-    /*@AfterMethod
+    @AfterMethod
     public static void afterMethod() throws InterruptedException, MessagingException, IOException {
         //Thread.sleep(10000);
 

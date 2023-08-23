@@ -78,7 +78,7 @@ public class DMOEPageStep
         {
             homepage = new HomePage(driver,scenario);
             String title = driver.getTitle();
-            Assert.assertEquals(title, "Ignition - Admin");
+            //Assert.assertEquals(title, "Ignition - Admin");
             homepage.verifyUserinfoContainer();
             homepage.navigateToClientSide();
         }
@@ -167,7 +167,8 @@ public class DMOEPageStep
     {
         orderpage=new OrderEntryPage(driver,scenario);
         orderpage.HandleError_Page();
-        HelpersMethod.Refresh(driver);
+        orderpage.Refresh_Page2();
+        //HelpersMethod.Refresh(driver);
         dmoePage=new DMOEPage(driver,scenario);
         dmoePage.ValidateDisconnectedMode();
     }

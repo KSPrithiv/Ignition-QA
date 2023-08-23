@@ -1,7 +1,7 @@
 package helper;
 
-import org.openqa.selenium.Dimension;
 import org.openqa.selenium.*;
+import org.openqa.selenium.Dimension;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -81,7 +81,7 @@ public class HelpersMethod
           if (HelpersMethod.IsExists("//div[@class='loader']", driver))
           {
               WebElement WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-              HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 4000);
+              HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 20000);
           }
     }
 
@@ -191,9 +191,12 @@ public class HelpersMethod
 
     public static void ScrollUpScrollBar(WebDriver driver)
     {
-           /* Actions act = new Actions(driver);
-            act.sendKeys(Keys.PAGE_UP).build().perform();*/
         driver.findElement(By.cssSelector("body")).sendKeys(Keys.HOME);
+    }
+
+    public static void ScrollDownScrollBar(WebDriver driver)
+    {
+        driver.findElement(By.cssSelector("body")).sendKeys(Keys.END);
     }
 
     public static void EnterText(WebDriver driver,WebElement element,int timeOut ,String val)
@@ -467,7 +470,7 @@ public class HelpersMethod
         WebElement WebEle=null;
         Actions act1= new Actions(driver);
         new WebDriverWait(driver,2000).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class,'k-popup k-child-animation-container')]"))));
-        //HelpersMethod.waitTillElementLocatedDisplayed(driver,"xpath","//div[contains(@class,'k-popup k-child-animation-container')]",1000);
+
         // to fetch the web element of the modal container
         WebElement menuContainer = HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-popup k-child-animation-container')]");
         List<WebElement> Options=menuContainer.findElements (By.xpath(".//ul/li"));
@@ -660,7 +663,7 @@ public class HelpersMethod
        return true;
     }
 
-    //Code to handle page load issues. Method that can be used when java scripts are still running behind and not letting automation cod to execute
+    //Code to handle page load issues. Method that can be used when java scripts are still running behind and not letting automation code to execute
     public static boolean waitTillLoadingPage(WebDriver driver)
     {
         String pageLoadStatus="";

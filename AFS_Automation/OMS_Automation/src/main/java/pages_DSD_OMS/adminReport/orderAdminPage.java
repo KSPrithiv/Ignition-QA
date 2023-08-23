@@ -369,6 +369,55 @@ public class orderAdminPage
         catch(Exception e){}
     }
 
+    public void validateWebElementClear1()
+    {
+        exists=false;
+        WebElement tDate=HelpersMethod.FindByElement(driver,"id","toDate");
+        String toValue=HelpersMethod.JSGetValueEle(driver,tDate,40);
+        try
+        {
+            if(toValue.equals("MM/DD/YYYY"))
+            {
+                scenario.log("RESET BUTTON HAS BEEN CLICKED");
+                exists=true;
+            }
+            else
+            {
+                scenario.log("RESET BUTTON IS NOT WORKING");
+                exists=false;
+            }
+            Assert.assertEquals(exists,true);
+        }
+        catch(Exception e){}
+    }
+
+    public void validateWebElementClear2()
+    {
+        exists=false;
+        try
+        {
+            WebElement fDate=HelpersMethod.FindByElement(driver,"id","OrderDate");
+            String fromValue=HelpersMethod.JSGetValueEle(driver,fDate,40);
+            WebElement tDate=HelpersMethod.FindByElement(driver,"id","ShipDate");
+            String toValue=HelpersMethod.JSGetValueEle(driver,tDate,40);
+            WebElement accNumber=HelpersMethod.FindByElement(driver,"id","orderNumber");
+            String acc_Text=HelpersMethod.JSGetValueEle(driver,accNumber,100);
+            WebElement custNumber=HelpersMethod.FindByElement(driver,"id","customerNumber");
+            String cust_Text=HelpersMethod.JSGetValueEle(driver,custNumber,100);
+            if(acc_Text.equals("") && cust_Text.equals("") && fromValue.equals("MM/DD/YYYY") && toValue.equals("MM/DD/YYYY"))
+            {
+                scenario.log("RESET BUTTON HAS BEEN CLICKED");
+                exists=true;
+            }
+            else
+            {
+                scenario.log("RESET BUTTON IS NOT WORKING");
+                exists=false;
+            }
+            Assert.assertEquals(exists,true);
+        }
+        catch(Exception e){}
+    }
 
     public void clickOnEvent() throws InterruptedException
     {

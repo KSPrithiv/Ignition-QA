@@ -59,7 +59,15 @@ public class OrderGuidePageStep1
     {
         createOGPage=new CreateOGPage(driver,scenario);
         createOGPage.ValidateCatalogDisplay();
-        createOGPage.CatalogPopup();
+        if (HelpersMethod.IsExists("//div[contains(@class,'k-widget k-window k-dialog')]/descendant::div[contains(@class,'i-grid')]", driver))
+        {
+            createOGPage.ListView();
+        }
+        else
+        {
+            createOGPage.cardView();
+        }
+        createOGPage.CatalogPopupOk();
     }
 
     //Code to delete OG from the OG grid
@@ -323,7 +331,7 @@ public class OrderGuidePageStep1
     {
         createOGPage = new CreateOGPage(driver, scenario);
         exists=createOGPage.ValidateCatalogDisplay();
-        createOGPage.AddFromCatalog(DataBaseConnection.DataConn1(TestBase.testEnvironment.getMultiple_Prod_Sql()));
+        createOGPage.AddFromCatalog(DataBaseConnection.DataConn1(TestBase.testEnvironment.getMultiple_Prod_Sql1()));
     }
 
     @And("User verifies New OG page and clicks on export button")

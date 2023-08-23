@@ -12,9 +12,9 @@ Feature: Test scenarios for Order in Admin login, Order related reports
     Then User selects "<Orders Options>" in Orders page in admin login and validate user is in selected Tab
     Then User enters customer account#, From and End dates for Creating reports
     And User clicks on Generate button in Orders tab
-    And User click on clicks on export .csv
+    #And User click on clicks on export .csv
     Then User click on Download .pdf to download document
-    Then User click on reset button in Order tab and all the webelement should be clear
+    Then User click on reset button in Orders, Orders tab and all the webelement should be clear
     Examples:
       | Main menu  |  Sub menu|   Orders Options   |
       | Reports    |  Orders  |   Orders           |

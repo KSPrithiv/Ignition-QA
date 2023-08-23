@@ -1,26 +1,26 @@
 package pages_DSD_OMS.badgeBuilder_Phase2;
-import io.cucumber.java.Scenario;
-import net.bytebuddy.asm.Advice;
-import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriver;
-import helper.HelpersMethod;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.events.EventFiringWebDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.Assert;
-import pages_DSD_OMS.badgeBuilder_Phase1.BadgeBuilderPage;
-import pages_DSD_OMS.orderControlListPage.OrderControlListPage;
-import util.TestBase;
+        import io.cucumber.java.Scenario;
+        import net.bytebuddy.asm.Advice;
+        import org.openqa.selenium.By;
+        import org.openqa.selenium.Keys;
+        import org.openqa.selenium.WebDriver;
+        import helper.HelpersMethod;
+        import org.openqa.selenium.WebElement;
+        import org.openqa.selenium.interactions.Actions;
+        import org.openqa.selenium.support.FindBy;
+        import org.openqa.selenium.support.PageFactory;
+        import org.openqa.selenium.support.events.EventFiringWebDriver;
+        import org.openqa.selenium.support.ui.ExpectedConditions;
+        import org.openqa.selenium.support.ui.WebDriverWait;
+        import org.testng.Assert;
+        import pages_DSD_OMS.badgeBuilder_Phase1.BadgeBuilderPage;
+        import pages_DSD_OMS.orderControlListPage.OrderControlListPage;
+        import util.TestBase;
 
 
-import java.awt.*;
-import java.awt.event.KeyEvent;
-import java.util.List;
+        import java.awt.*;
+        import java.awt.event.KeyEvent;
+        import java.util.List;
 
 //import java.io.IOException;
 
@@ -46,7 +46,7 @@ public class BadgeBuilderPage1 {
     private WebElement DropDown;
     @FindBy(xpath = "//tr[1]/descendant::div[contains(@id,'PlaceOrderColIcon')]//*[local-name()='svg']")
     private WebElement OrderIcon;
-//  @FindBy(xpath = "//div[@id='gridOrderControlList']//div[@role='grid']/div[2]//table[@role='presentation']//tr[@role='row']/td[13]")
+    //  @FindBy(xpath = "//div[@id='gridOrderControlList']//div[@role='grid']/div[2]//table[@role='presentation']//tr[@role='row']/td[13]")
 //    private WebElement OrderIcon;
     @FindBy(xpath = "//tr[1]/descendant::div[contains(@class,'product-image-container')]//*[local-name()='img']")
     private WebElement imageIcon;
@@ -198,7 +198,7 @@ public class BadgeBuilderPage1 {
 //            HelpersMethod.ClickBut(driver, UpdateButton, 80);
 //            Thread.sleep(2000);
 
-           // Click on Add to cart button
+            // Click on Add to cart button
             WebEle = HelpersMethod.FindByElement(driver, "xpath", "//button/descendant::span[text()='Add to cart']");
             if (WebEle.isDisplayed() && WebEle.isEnabled()) {
                 HelpersMethod.ScrollElement(driver, WebEle);
@@ -813,18 +813,18 @@ public class BadgeBuilderPage1 {
     public void SelectProduct1() throws InterruptedException {
 //        if (HelpersMethod.IsExists("//div[contains(@class,'k-widget k-window k-dialog')]/descendant::div[contains(@class,'i-grid')]", driver)) {
 
-            Thread.sleep(5000);
-            try {
-                HelpersMethod.waitTillElementLocatedDisplayed(driver, "xpath", "//div[@id='ProductIdCol0']/a[@href='#']", 100);
-                WebElement Product = HelpersMethod.FindByElement(driver, "xpath", "//div[@id='ProductIdCol0']/a[@href='#']");
+        Thread.sleep(5000);
+        try {
+            HelpersMethod.waitTillElementLocatedDisplayed(driver, "xpath", "//div[@id='ProductIdCol0']/a[@href='#']", 100);
+            WebElement Product = HelpersMethod.FindByElement(driver, "xpath", "//div[@id='ProductIdCol0']/a[@href='#']");
 
-                HelpersMethod.ScrollElement(driver, Product);
-                WebElement ClickProduct = Product.findElement(By.xpath("//div[@id='ProductIdCol0']/a[@href='#']"));
+            HelpersMethod.ScrollElement(driver, Product);
+            WebElement ClickProduct = Product.findElement(By.xpath("//div[@id='ProductIdCol0']/a[@href='#']"));
 //            HelpersMethod.ClickBut(driver,ClickProduct,80);
-                HelpersMethod.JScriptClick(driver, ClickProduct, 20);
-            } catch (Exception e) {
-            }
+            HelpersMethod.JScriptClick(driver, ClickProduct, 20);
+        } catch (Exception e) {
         }
+    }
 
 
     public String ColorCheck1() throws InterruptedException {
@@ -1202,7 +1202,7 @@ public class BadgeBuilderPage1 {
         }
 
         try {
-                HelpersMethod.waitTillLoadingPage(driver);
+            HelpersMethod.waitTillLoadingPage(driver);
             if (HelpersMethod.IsExists("//div[@class='loader']", driver)) {
                 WebElement WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
                 HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 400);
@@ -1211,18 +1211,18 @@ public class BadgeBuilderPage1 {
 
 //            if (HelpersMethod.IsExists("//div[contains(@class,'k-widget k-window k-dialog')]", driver)) {
 //                WebElement Popup1 = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-widget k-window k-dialog')]");
-                WebElement AccountBox =driver.findElement(By.xpath("//div[@id='gridOrderControlList']//div[@role='grid']/div[1]/div[@role='presentation']/table[@role='presentation']/thead/tr[2]/th[3]/div/div[@class='k-filtercell']/div[@class='k-filtercell-wrapper']/input"));
-                AccountBox.click();
+            WebElement AccountBox =driver.findElement(By.xpath("//div[@id='gridOrderControlList']//div[@role='grid']/div[1]/div[@role='presentation']/table[@role='presentation']/thead/tr[2]/th[3]/div/div[@class='k-filtercell']/div[@class='k-filtercell-wrapper']/input"));
+            AccountBox.click();
 //                Thread.sleep(10000);
-                HelpersMethod.sendKeys(driver, AccountBox, 20, str1);
-                HelpersMethod.sendKeys(driver, AccountBox, 20, str2);
-                HelpersMethod.sendKeys(driver, AccountBox, 20, str3);
-                HelpersMethod.sendKeys(driver, AccountBox, 20, str4);
-                HelpersMethod.sendKeys(driver, AccountBox, 20, str5);
-                HelpersMethod.sendKeys(driver, AccountBox, 20, str6);
+            HelpersMethod.sendKeys(driver, AccountBox, 20, str1);
+            HelpersMethod.sendKeys(driver, AccountBox, 20, str2);
+            HelpersMethod.sendKeys(driver, AccountBox, 20, str3);
+            HelpersMethod.sendKeys(driver, AccountBox, 20, str4);
+            HelpersMethod.sendKeys(driver, AccountBox, 20, str5);
+            HelpersMethod.sendKeys(driver, AccountBox, 20, str6);
 
 //                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100);
-            }
+        }
         catch(Exception e) {
         }
     }
@@ -1314,7 +1314,6 @@ public class BadgeBuilderPage1 {
 
 
 }
-
 
 
 

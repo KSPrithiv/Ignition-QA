@@ -14,6 +14,18 @@ import org.testng.annotations.BeforeClass;
 import util.TestBase;
 import java.awt.*;
 
+import com.google.gson.Gson;
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpResponse;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.entity.ContentType;
+import org.apache.http.entity.StringEntity;
+import org.apache.http.impl.client.HttpClients;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+
+
 /**
  * @Project DSD_ERP
  * @Author Divya.Ramadas@afsi.com
@@ -33,6 +45,7 @@ public class LoginPage
     private WebElement Password;
 
     @FindBy(id = "signInBtn")
+    //@FindBy(xpath="//button[contains(@class,'k-button k-primary k-button-icontext')]")
     private WebElement SignIn;
 
     @FindBy(xpath = "//button[text()='Forgot password']")
@@ -444,6 +457,44 @@ public class LoginPage
                 exists = true;
                 scenario.log("SIGNIN BUTTON CLICKED");
                 Assert.assertEquals(exists,true);
+        }
+        catch (Exception e){}
+    }
+
+    public void enterCredentialsCheckboxClick()
+    {
+        try
+        {
+            String username = TestBase.testEnvironment.username();
+            String password = TestBase.testEnvironment.password();
+            boolean rememberMe = true;
+
+            LoginRequest loginRequest = new LoginRequest(username, password, rememberMe);
+            Gson gson = new Gson();
+            String jsonPayload = gson.toJson(loginRequest);
+
+            HttpClient httpClient = HttpClients.createDefault();
+            HttpPost httpPost = new HttpPost(TestBase.testEnvironment.get_url());
+            httpPost.setEntity(new StringEntity(jsonPayload, ContentType.APPLICATION_JSON));
+
+            HttpResponse response = httpClient.execute(httpPost);
+            HttpEntity entity = response.getEntity();
+
+            if (entity != null)
+            {
+                // Process the response as needed (e.g., check for success or failure)
+                BufferedReader reader = new BufferedReader(new InputStreamReader(entity.getContent()));
+                String line;
+                StringBuilder stringBuilder = new StringBuilder();
+                while ((line = reader.readLine()) != null) {
+                    stringBuilder.append(line);
+                }
+
+                // Handle the response JSON or other data
+                String jsonResponse = stringBuilder.toString();
+                scenario.log(jsonResponse);
+            } else {scenario.log("No response entity received.");
+            }
         }
         catch (Exception e){}
     }

@@ -29,7 +29,7 @@ import java.io.IOException;
 public class TestRunnerOrderGuide extends AbstractTestNGCucumberTests
 {
     /* Created by Divya.Ramadas@afsi.com */
-  /*  @Parameters({"environment"})
+    @Parameters({"environment"})
     @BeforeClass
     public static void beforeClass(@Optional String envi)
     {
@@ -57,9 +57,9 @@ public class TestRunnerOrderGuide extends AbstractTestNGCucumberTests
         {
             Runtime.getRuntime().exec("taskkill /F /IM chromedriver.exe");
         }
-    }*/
+    }
 
-    @Parameters({"environment"})
+    /*@Parameters({"environment"})
     @BeforeMethod
     public static void beforeClass(@Optional("environment") String envi)
     {
@@ -86,5 +86,5 @@ public class TestRunnerOrderGuide extends AbstractTestNGCucumberTests
         {
             Runtime.getRuntime().exec("taskkill /F /IM chromedriver.exe");
         }
-    }
+    }*/
 }

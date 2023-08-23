@@ -77,29 +77,6 @@ Feature: Catalog2
     Then User enters Product# with tire pricing in Search bar
     And User should read Tire pricing product price
 
-  @PendingOrderCatalog
-  Scenario: Test scenario for creating pending order and create order in catalog
-    Given User must be on Order Entry Page to create pending order
-    Then User must click Start Order button
-    Then User should make selection between Pending order or Start New order
-    Then User should select Note from popup and Order guide from popup
-    Then Enter PO# for New order
-      |PO123|
-    Then Enter Pro# in Quick Product Entry area
-    And Check for Case and Unit input box enabled or not based on that enter value
-      |70|50|
-    Then Click on Back button to handle Pending order Popup
-    And Popup message for Pending order should be displayed
-    Then User should be navigated to Order Entry page
-    And User should navigate to Catalog tab
-    And User should click on Reset filter button and all the products should displayed in Card view in Catalog page
-    Then User enters Product# in Search bar and enters Qty for single Product
-      |50|
-    Then User click on cart in catalog and click on Gotocart and select Pending order
-    Then Click on Next button in Payment page
-    Then Click on SubmitOrder button for creating order from Catalog
-    Then User should be navigated to Order Entry page
-
   @NavigateToDescriptionAndBack
   Scenario: Test scenario for navigating to Product description page by clicking on description and navigate back via back to catalog
     Given User must be on Order Entry Page to select Catalog

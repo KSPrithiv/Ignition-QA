@@ -55,9 +55,9 @@ public class TestRunnerCatalog2 extends AbstractTestNGCucumberTests
         {
             Runtime.getRuntime().exec("taskkill /F /IM chromedriver.exe");
         }
-    }*/
+    }
 
-    @Parameters({"environment"})
+   /* @Parameters({"environment"})
     @BeforeMethod
     public static void beforeClass(@Optional("environment") String envi)
     {
@@ -84,5 +84,5 @@ public class TestRunnerCatalog2 extends AbstractTestNGCucumberTests
         {
             Runtime.getRuntime().exec("taskkill /F /IM chromedriver.exe");
         }
-    }
+    }*/
 }
