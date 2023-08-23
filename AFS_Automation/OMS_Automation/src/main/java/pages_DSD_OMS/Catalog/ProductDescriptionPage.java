@@ -132,11 +132,11 @@ public class ProductDescriptionPage
         WebElement WebEle=null;
         try
         {
-            HelpersMethod.ClickBut(driver,PreviousPage,40);
+            HelpersMethod.ClickBut(driver,PreviousPage,1000);
             if(HelpersMethod.IsExists("//div[@class='loader']",driver))
             {
                 WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 400);
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 10000);
             }
             exists=true;
             Assert.assertEquals(exists,true);
@@ -170,13 +170,18 @@ public class ProductDescriptionPage
         exists=false;
         try
         {
-            List<WebElement> Product_Names = HelpersMethod.FindByElements(driver, "xpath", "//div[@id='products-may-like-card']/descendant::div[@class='product-description']/a");
-            for (WebElement Prod_Name : Product_Names)
-            {
-                String Prod_Text = Prod_Name.getText();
-                scenario.log("PRODUCT FOUND IS: " + Prod_Text);
-            }
-            exists=true;
+           if(HelpersMethod.IsExists("//span[contains(text(),'Frequently bought together')]",driver)) {
+               List<WebElement> Product_Names = HelpersMethod.FindByElements(driver, "xpath", "//div[@id='products-may-like-card']/descendant::div[@class='product-description']/a");
+               for (WebElement Prod_Name : Product_Names) {
+                   String Prod_Text = Prod_Name.getText();
+                   scenario.log("PRODUCT FOUND IS: " + Prod_Text);
+               }
+               exists = true;
+           }
+           else
+           {
+               scenario.log("FREQUENTLY BOUGHT TOGETHER PRODUCTS ARE NOT DISPLAYED, CHECK ADMIN SETTINGS");
+           }
             Assert.assertEquals(exists,true);
         }
         catch (Exception e){}
@@ -187,6 +192,11 @@ public class ProductDescriptionPage
         exists=false;
         try
         {
+            if(HelpersMethod.IsExists("//div[@class='loader']",driver))
+            {
+                WebElement WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 10000);
+            }
             String head=HelpersMethod.FindByElement(driver,"xpath","//span[contains(@class,'spnmoduleNameHeader')]").getText();
             if(head.contains("Product detail"))
             {
@@ -202,6 +212,7 @@ public class ProductDescriptionPage
         exists=false;
         try
         {
+
             String prodDesc=HelpersMethod.FindByElement(driver,"xpath","//div[@class='product-description-container']/div[@class='product-description']").getText();
             if(prodDesc.equals("descriptionProd"))
             {

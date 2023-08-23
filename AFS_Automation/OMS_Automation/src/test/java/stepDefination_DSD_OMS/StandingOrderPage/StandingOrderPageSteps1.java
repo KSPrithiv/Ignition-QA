@@ -5,10 +5,14 @@ import io.cucumber.java.Before;
 import io.cucumber.java.Scenario;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
+import org.apache.logging.log4j.core.config.Order;
 import org.openqa.selenium.WebDriver;
+import pages_DSD_OMS.orderEntry.OrderEntryPage;
 import pages_DSD_OMS.standingOrder.NewStandingOrderCard;
 import pages_DSD_OMS.standingOrder.NewStandingOrderPage;
 import util.TestBase;
+
+import java.awt.*;
 
 /**
  * @Project DSD_OMS
@@ -22,6 +26,8 @@ public class StandingOrderPageSteps1
     Scenario scenario;
     static boolean exists=false;
     NewStandingOrderCard standingOrderCard;
+    OrderEntryPage orderpage;
+    NewStandingOrderPage standingOrder;
 
     @Before
     public void LaunchBrowser1(Scenario scenario) throws Exception
@@ -105,5 +111,52 @@ public class StandingOrderPageSteps1
     {
         standingOrderCard=new NewStandingOrderCard(driver,scenario);
         standingOrderCard.standingOrderCancelButton();
+    }
+
+    @And("User click on Start standing order button and selects Start date {int} from current date")
+    public void userClickOnStartStandingOrderButtonAndSelectsStartDateFromCurrentDate(int Sdate) throws InterruptedException
+    {
+        standingOrderCard= new NewStandingOrderCard(driver,scenario);
+        standingOrderCard.ClickOnNewStandingOrderArrow();
+        standingOrderCard.ClickOnStartStandingOrder();
+        standingOrderCard.validateStartAddStandingOrderPopup();
+        standingOrderCard.ClickOnStartDateCalender();
+        standingOrderCard.SelectStartDate(Sdate);
+        standingOrderCard.AddStartStandingOrder();
+    }
+
+    @And("User should validate that there is no end date assigned to standing order")
+    public void userShouldValidateThatThereIsNoEndDateAssignedToStandingOrder()
+    {
+        standingOrder=new NewStandingOrderPage(driver,scenario);
+        standingOrder.validateEndDate();
+    }
+
+    @And("User changes Customer account# for creating SO for some other customer")
+    public void userChangesCustomerAccountForCreatingSOForSomeOtherCustomer() throws InterruptedException, AWTException
+    {
+        orderpage = new OrderEntryPage(driver, scenario);
+        orderpage.Change_NewAccount(TestBase.testEnvironment.get_AnotherAcc());
+    }
+
+    @And("User should change customer account# back to previous account")
+    public void userShouldChangeCustomerAccountBackToPreviousAccount() throws InterruptedException, AWTException
+    {
+        orderpage=new OrderEntryPage(driver,scenario);
+        orderpage.Change_OldAccount(TestBase.testEnvironment.get_Account());
+    }
+
+    @Then("User navigates to Standing order card and selects the first expired standing order")
+    public void userNavigatesToStandingOrderCardAndSelectsTheFirstExpiredStandingOrder()
+    {
+        standingOrderCard=new NewStandingOrderCard(driver,scenario);
+        standingOrderCard.selectExpiredSO();
+    }
+
+    @And("User sucessfuly deletes expired standing order")
+    public void userSucessfulyDeletesExpiredStandingOrder() throws InterruptedException
+    {
+        standingOrderCard=new NewStandingOrderCard(driver,scenario);
+        standingOrderCard.deleteExpiredSO();
     }
 }

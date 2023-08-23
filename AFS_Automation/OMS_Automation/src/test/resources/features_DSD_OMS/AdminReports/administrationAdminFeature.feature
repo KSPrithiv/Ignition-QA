@@ -53,7 +53,7 @@ Then User selects "<Admin Options>" in Orders page in admin login and validate u
     Then User selects To dates for Creating reports on Last user login dates
     And User click on clicks on export .csv
     Then User click on Download .pdf to download document
-    Then User click on reset button in Administration tab and all the webelement should be clear
+    Then User click on reset button in Last user login dates and all the webelement should be clear
     Examples:
       | Main menu  |  Sub menu        |   Admin Options          |
       | Reports    |  Administration  |  Last user login dates   |

@@ -46,13 +46,13 @@ public class QuotePageSteps1
         driver= driver1.getDriver();
     }
 
-//    @Then("Enter multiple Pro# in Quick Product Entry area in New Qutoe page and enter Qty for Case and Unit")
-//    public void enterMultipleProInQuickProductEntryAreaInNewQutoePageAndEnterQtyForCaseAndUnit(DataTable tabledata)
-//    {
-//        List<List<String>> QtyList=tabledata.asLists(String.class);
-//        newQuotePage=new NewQuotePage(driver,scenario);
-//        newQuotePage.AddMultipleProducts(QtyList);
-//    }
+    @Then("Enter multiple Pro# in Quick Product Entry area in New Qutoe page and enter Qty for Case and Unit")
+    public void enterMultipleProInQuickProductEntryAreaInNewQutoePageAndEnterQtyForCaseAndUnit(DataTable tabledata)
+    {
+        List<List<String>> QtyList=tabledata.asLists(String.class);
+        newQuotePage=new NewQuotePage(driver,scenario);
+        newQuotePage.AddMultipleProducts(QtyList);
+    }
 
     @And("User selects one product from product grid and click on delete button")
     public void userSelectsOneProductFromProductGridAndClickOnDeleteButton()
@@ -148,5 +148,21 @@ public class QuotePageSteps1
     {
         newOE=new NewOrderEntryPage(driver,scenario);
         newOE.verifySkipButton();
+    }
+
+    @Then("Enter BOGO Pro# in Quick Product Entry area in New Qutoe page and enter Qty for Case and Unit")
+    public void enterBOGOProInQuickProductEntryAreaInNewQutoePageAndEnterQtyForCaseAndUnit(DataTable tabledata)
+    {
+        List<List<String>> QtyValue = tabledata.asLists(String.class);
+        newQuotePage=new NewQuotePage(driver,scenario);
+        newQuotePage.boGoItemsAdding();
+        newQuotePage.QtyInGrid(QtyValue.get(0).get(0),QtyValue.get(0).get(1));
+    }
+
+    @And("User verifies the products added to Quote")
+    public void userVerifiesTheProductsAddedToQuote()
+    {
+        newQuotePage=new NewQuotePage(driver,scenario);
+        newQuotePage.readProductQuote();
     }
 }

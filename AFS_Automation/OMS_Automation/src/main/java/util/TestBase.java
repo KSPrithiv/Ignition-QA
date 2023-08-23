@@ -142,9 +142,9 @@ public class TestBase {
         driver.remove();
     }
 
-    public static void CloseBrowser() throws IOException
-    {
+    public static void CloseBrowser() throws IOException {
         getDriver().quit();
+
         unload();
     }
 

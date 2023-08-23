@@ -31,7 +31,7 @@ public class MyAccountPage {
 
     @FindBy(xpath = "//span[text()='My Account']")
     private WebElement MyAccount;
-//
+
 
     @FindBy(xpath = "//span[text()='Additional email recipients']")
     private WebElement additional_email_recipients;

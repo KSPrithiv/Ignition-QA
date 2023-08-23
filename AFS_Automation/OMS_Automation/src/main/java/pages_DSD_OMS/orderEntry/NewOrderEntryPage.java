@@ -130,6 +130,9 @@ public class NewOrderEntryPage
     @FindBy(xpath = "//input[contains(@placeholder,'Route #')]")
     private WebElement RouteInput;
 
+    @FindBy(xpath="//button[@data-test-id='grid-selection']")
+    private WebElement gridType;
+
     static boolean exists = false;
     static String XPath = null;
     static String Order_No=null;
@@ -149,11 +152,11 @@ public class NewOrderEntryPage
     {
         exists=false;
         WebElement WebEle=null;
-        if(HelpersMethod.IsExists("//div[@class='loader']",driver))
+     /*   if(HelpersMethod.IsExists("//div[@class='loader']",driver))
         {
             WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 8000);
-        }
+            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 80000);
+        }*/
         try
         {
            if(HelpersMethod.IsExists("//div[contains(@class,'order-entry-page')]",driver))
@@ -204,7 +207,7 @@ public class NewOrderEntryPage
         if(HelpersMethod.IsExists("//div[@class='loader']",driver))
         {
             WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 8000);
+            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 40000);
         }
         try
         {
@@ -2493,29 +2496,51 @@ public class NewOrderEntryPage
 
     public void Click_On_PriceOverrideIcon()
     {
+        exists=false;
+        Actions act=new Actions(driver);
+        WebElement WebEle;
+        String titleText=null;
+        String price=null;
+        int priceLoc = 0;
+        int rowCount=0;
         try
         {
-            String price=null;
-            WebElement WebEle=HelpersMethod.FindByElement(driver,"xpath","//tr[contains(@class,'k-master-row ')][1]/descendant::div[contains(@class,'icon-preview-icon')]");
-            if(WebEle.isDisplayed())
+            List<WebElement> titles=HelpersMethod.FindByElements(driver,"xpath", "//th[contains(@class,'k-header')]/descendant::span[@class='k-column-title']");
+            for(int i=0;i<=titles.size()-1;i++)
             {
-                HelpersMethod.ScrollElement(driver, WebEle);
-                HelpersMethod.JScriptClick(driver,WebEle,10);
-                WebEle=HelpersMethod.FindByElement(driver,"id","FinalPriceCol0");
-                price=WebEle.getText();
-                scenario.log("PRICE FOUND IN PRODUCT GRID "+price);
-                scenario.log("USER CLICKED ON PRICE OVERRIDE ICON IN PRODUCT GRID, IN NEW ORDER GUIDE");
+                WebEle=titles.get(i);
+                act.moveToElement(WebEle).build().perform();
+                titleText=WebEle.getText();
+                if(titleText.equals("Price"))
+                {
+                    priceLoc=i;
+                    scenario.log(String.valueOf(priceLoc));
+                    break;
+                }
             }
-            else
+            //check for visisblility of price override icon
+            List<WebElement> priceInput=HelpersMethod.FindByElements(driver,"xpath","//tr/td["+(priceLoc+1)+"]/descendant::input");
+            for (int i=1;i<priceInput.size();i++)
             {
-                WebEle=HelpersMethod.FindByElement(driver,"id","FinalPriceCol1");
-                price=WebEle.getText();
-                WebEle= HelpersMethod.FindByElement(driver,"xpath","//tr[contains(@class,'k-master-row ')][1]/descendant::div[contains(@class,'icon-preview-icon')]");
-                HelpersMethod.ScrollElement(driver,WebEle);
-                HelpersMethod.ClickBut(driver,WebEle,10);
-                scenario.log("PRICE FOUND IN PRODUCT GRID "+price);
-                scenario.log("USER CLICKED ON PRICE OVERRIDE ICON IN PRODUCT GRID, IN NEW ORDER GUIDE");
+                WebEle=priceInput.get(i);
+                act.moveToElement(WebEle).build().perform();
+                if(WebEle.isDisplayed())
+                {
+                    scenario.log("PRICE FOUND BEFORE PRICE OVERRIDE "+WebEle.getText());
+                    rowCount=i;
+                    break;
+                }
             }
+            //to identify price override icon
+            WebElement priceOverIcon=HelpersMethod.FindByElement(driver,"xpath","//tr["+rowCount+"]/td["+(priceLoc+1)+"]/descendant::input/preceding-sibling::div");
+            HelpersMethod.ActClick(driver,priceOverIcon,200);
+            //validate visibility of price override dialog box
+            if(HelpersMethod.IsExists("//div[contains(text(),'Price override')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
+            {
+                scenario.log("PRICE OVERRIDE DIALOG BOX HAS BEEN FOUND");
+                exists=true;
+            }
+            Assert.assertEquals(exists,true);
         }
         catch (Exception e){}
     }
@@ -3324,6 +3349,268 @@ public class NewOrderEntryPage
             else
             {
                 scenario.log("CARLOG IS NOT DISPLAYED IN CARD VIEW");
+            }
+            Assert.assertEquals(exists,true);
+        }
+        catch (Exception e){}
+    }
+
+    public void clickOnGridTypeDropdown()
+    {
+        exists=false;
+        try
+        {
+            if(HelpersMethod.IsExists("//button[@data-test-id='grid-selection']",driver))
+            {
+                HelpersMethod.ClickBut(driver,gridType,100);
+                exists=true;
+            }
+            Assert.assertEquals(exists,true);
+        }
+        catch (Exception e){}
+    }
+
+    public void selectGridTypeDropDown(String gType)
+    {
+        exists=false;
+        Actions act1=new Actions(driver);
+        try
+        {
+            WebElement menuContainer = HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-animation-container k-animation-container-relative k-animation-container-shown')]");
+            List<WebElement> Options=menuContainer.findElements (By.xpath(".//ul/li"));
+            for (WebElement opt:Options)
+            {
+                act1.moveToElement(opt).build().perform();
+                String Opt = opt.getText();
+                if (Opt.equals(gType))
+                {
+                    act1.moveToElement(opt).build().perform();
+                    act1.click(opt).build().perform();
+                    exists=true;
+                    if(HelpersMethod.IsExists("//div[@class='loader']",driver))
+                    {
+                        WebElement WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
+                        HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 8000);
+                    }
+
+                    break;
+                }
+            }
+            Assert.assertEquals(exists,true);
+        }
+        catch (Exception e){}
+    }
+
+    public void validateGridType(String gType)
+    {
+        exists=false;
+        try
+        {
+            String gridValue=HelpersMethod.FindByElement(driver,"xpath","//button[@data-test-id='grid-selection']").getText();
+            if(gridValue.equals(gType))
+            {
+                scenario.log("GRID TYPE SELECTED IS "+gType);
+                exists=true;
+            }
+            Assert.assertEquals(exists,true);
+        }
+        catch (Exception e){}
+    }
+
+    public void validatePriceOverrideIcon()
+    {
+        exists=false;
+        try
+        {
+            if(HelpersMethod.IsExists("//input[contains(@id,'FinalPriceCol')]/preceding-sibling::div//*[local-name()='path' and contains(@d,'M12')]",driver))
+            {
+                scenario.log("PRICE OVERRIDE ICON HAS BEEN FOUND");
+                exists=true;
+            }
+            Assert.assertEquals(exists,true);
+        }
+        catch (Exception e){}
+    }
+
+    public void listCatelog()
+    {
+        exists=false;
+        String head_text;
+        String status;
+        int i=0;
+        Actions act1=new Actions(driver);
+        try
+        {
+            //To zoom out browser by 67%
+            if(TestBase.testEnvironment.get_browser().equalsIgnoreCase("chrome")|TestBase.testEnvironment.get_browser().equalsIgnoreCase("edge"))
+            {
+                JavascriptExecutor js = (JavascriptExecutor) driver;
+                js.executeScript("document.body.style.zoom='67%'");
+            }
+            else if(TestBase.testEnvironment.get_browser().equalsIgnoreCase("firefox"))
+            {
+                JavascriptExecutor js=(JavascriptExecutor)driver;
+                js.executeScript("document.body.style.MozTransform='67%'");
+            }
+            if(HelpersMethod.IsExists("//button[@class='i-grid__filter-button']",driver))
+            {
+                //if filter header is not displayed click on filter icon
+               if(!HelpersMethod.IsExists("//span[contains(@class,'k-i-filter-clear k-icon')]",driver))
+               {
+                   WebElement filterIcon=HelpersMethod.FindByElement(driver,"xpath","//span[contains(@class,'k-i-filter-clear k-icon')]");
+                   HelpersMethod.JScriptClick(driver,filterIcon,1000);
+               }
+               //Find all the headers of catalog dialog box, when displayed in list view
+                List<WebElement> headers = HelpersMethod.FindByElements(driver, "xpath", "//th[@class='k-header']/descendant::span[contains(@class,'k-column-title')]");
+                for(WebElement head:headers)
+                {
+                    i++;
+                    head_text=head.getText();
+                    if(head_text.equals("Category"))
+                    {
+                        break;
+                    }
+                }
+                //Enter search value in input box
+                String searchValue=TestBase.testEnvironment.get_Category();
+                WebElement catalogFilter=HelpersMethod.FindByElement(driver,"xpath","//tr[@class='k-filter-row']/th["+i+"]/descendant::input");
+                //act1.moveToElement(catalogFilter).build().perform();
+                //act1.sendKeys(catalogFilter,searchValue).build().perform();
+                //HelpersMethod.JSSetValueEle(driver,catalogFilter,1000,searchValue);
+                driver.findElement(By.xpath("//tr[@class='k-filter-row']/th["+i+"]/descendant::input")).sendKeys("value","searchValue");
+                status = HelpersMethod.returnDocumentStatus(driver);
+                if (status.equals("loading"))
+                {
+                    HelpersMethod.waitTillLoadingPage(driver);
+                }
+                if(HelpersMethod.IsExists("//div[@class='loader']",driver))
+                {
+                    WebElement WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
+                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 60000);
+                }
+
+                String catFilterVal=HelpersMethod.JSGetValueEle(driver,catalogFilter,1000);
+                if(catFilterVal.equals(searchValue))
+                {
+                    scenario.log("IN CATEGORY OPTION SEARCHED IS "+searchValue);
+                    exists=true;
+                }
+                //To zoom out browser by 100%
+                if(TestBase.testEnvironment.get_browser().equalsIgnoreCase("chrome")|TestBase.testEnvironment.get_browser().equalsIgnoreCase("edge"))
+                {
+                    JavascriptExecutor js = (JavascriptExecutor) driver;
+                    js.executeScript("document.body.style.zoom='100%'");
+                }
+                else if(TestBase.testEnvironment.get_browser().equalsIgnoreCase("firefox"))
+                {
+                    JavascriptExecutor js=(JavascriptExecutor)driver;
+                    js.executeScript("document.body.style.MozTransform='100%'");
+                }
+            }
+            else
+            {
+                scenario.log("FILTER NOT VISIBLE, PLZ CHECK ADMIN SETTING");
+            }
+            Assert.assertEquals(exists,true);
+        }
+        catch (Exception e){}
+    }
+
+    public void readProductInList()
+    {
+        exists=false;
+        String prod_Text;
+        try
+        {
+            if(!HelpersMethod.IsExists("//div[@class='i-no-data']",driver))
+            {
+                WebElement catPopup=HelpersMethod.FindByElement(driver,"xpath","//div[text()='Catalog']/ancestor::div[contains(@class,'k-widget k-window k-dialog')]");
+                List<WebElement> Products=catPopup.findElements(By.xpath(".//button[@class='i-link-button']"));
+                for (WebElement product:Products)
+                {
+                    prod_Text= product.getText();
+                    scenario.log("PRODUCTS FOUND IN CATALOG "+prod_Text);
+                }
+            }
+            else
+            {
+                scenario.log("NO PRODUCTS HAS BEEN FOUND");
+            }
+        }
+        catch (Exception e){}
+    }
+
+    public void cardCatelog()
+    {
+      exists=false;
+      String catText;
+      String catSelect=TestBase.testEnvironment.get_Category();
+      Actions act1=new Actions(driver);
+      try
+      {
+          //Click on Category drop down
+          WebElement catalogDropdown=HelpersMethod.FindByElement(driver,"xpath","//span[@id='CPcategories']");
+          HelpersMethod.ActClick(driver,catalogDropdown,1000);
+          //create list of elements in dropdown
+          WebElement dropDown=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-popup k-child-animation-container')]");
+          List<WebElement> categoryLists=dropDown.findElements(By.xpath(".//ul/li"));
+          //Select value from dropdown
+          for(WebElement catList:categoryLists)
+          {
+              act1.moveToElement(catList).build().perform();
+              catText=catList.getText();
+              if(catText.equals(catSelect))
+              {
+                  act1.moveToElement(catList).build().perform();
+                  act1.click(catList).build().perform();
+                  break;
+              }
+          }
+          //check selected value from dropdown
+          String catelogText=HelpersMethod.FindByElement(driver,"xpath","//span[@id='CPcategories']/span[@class='k-input']").getText();
+          if(catelogText.equals(catSelect))
+          {
+              exists=true;
+          }
+          Assert.assertEquals(exists,true);
+      }
+      catch (Exception e){}
+    }
+
+    public void readProductInCard()
+    {
+        String prod_Text;
+        try
+        {
+            if(!HelpersMethod.IsExists("//div[contains(text(),'Sorry, no products found.')]",driver))
+            {
+                WebElement catPopup=HelpersMethod.FindByElement(driver,"xpath","//div[text()='Catalog']/ancestor::div[contains(@class,'k-widget k-window k-dialog')]");
+                List<WebElement> Products=catPopup.findElements(By.xpath(".//div[@class='product-number']/span"));
+                for (WebElement product:Products)
+                {
+                    prod_Text= product.getText();
+                    scenario.log("PRODUCTS FOUND IN CATALOG "+prod_Text);
+                }
+            }
+            else
+            {
+                scenario.log("NO PRODUCTS HAS BEEN FOUND");
+            }
+        }
+        catch (Exception e){}
+    }
+
+    public void catalogOK()
+    {
+        exists=false;
+        try
+        {
+            WebElement catalogPopup=HelpersMethod.FindByElement(driver,"xpath","//div[text()='Catalog']/ancestor::div[contains(@class,'k-widget k-window k-dialog')]");
+            WebElement okButton=catalogPopup.findElement(By.xpath(".//button[text()='Ok']"));
+            if(okButton.isDisplayed() && okButton.isEnabled())
+            {
+                HelpersMethod.ClickBut(driver,okButton,1000);
+                exists=true;
             }
             Assert.assertEquals(exists,true);
         }

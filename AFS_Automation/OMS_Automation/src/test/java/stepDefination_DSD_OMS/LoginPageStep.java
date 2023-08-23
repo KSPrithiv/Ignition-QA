@@ -673,4 +673,26 @@ public class LoginPageStep
         homepage=new HomePage(driver,scenario);
         homepage.refreshPageBeforeLogout();
     }
+
+    @Then("User enters username and password and clicks on remember me checkbox")
+    public void userEntersUsernameAndPasswordAndClicksOnRememberMeCheckbox() throws InterruptedException, AWTException
+    {
+        loginpage = new LoginPage(driver, scenario);
+        loginpage.enterCredentialsCheckboxClick();
+
+    }
+
+    @And("User close the browser")
+    public void userCloseTheBrowser() {
+        
+    }
+
+    @Then("User loads the browser again")
+    public void userLoadsTheBrowserAgain() {
+        
+    }
+
+    @Then("Admin page is displayed")
+    public void adminPageIsDisplayed() {
+    }
 }

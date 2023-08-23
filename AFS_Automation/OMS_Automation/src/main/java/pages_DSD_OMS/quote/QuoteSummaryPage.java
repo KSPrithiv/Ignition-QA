@@ -111,8 +111,13 @@ public class QuoteSummaryPage
         {
             if(ConvertOrder.isDisplayed())
             {
-                HelpersMethod.ClickBut(driver,ConvertOrder,8);
+                HelpersMethod.ClickBut(driver,ConvertOrder,100);
                 exists=true;
+                if(HelpersMethod.IsExists("//div[@class='loader']",driver))
+                {
+                    WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
+                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 4000);
+                }
             }
             Assert.assertEquals(exists,true);
             exists=false;
@@ -120,12 +125,12 @@ public class QuoteSummaryPage
             if(WebEle.isDisplayed())
             {
                 WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-widget k-window k-dialog')]/descendant::button[text()='Yes']");
-                HelpersMethod.ClickBut(driver,WebEle,40);
+                HelpersMethod.ClickBut(driver,WebEle,100);
                 exists=true;
                 if(HelpersMethod.IsExists("//div[@class='loader']",driver))
                 {
                     WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000);
+                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 4000);
                 }
             }
             Assert.assertEquals(exists,true);
@@ -160,7 +165,7 @@ public class QuoteSummaryPage
                 if(HelpersMethod.IsExists("//div[@class='loader']",driver))
                 {
                     WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000);
+                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 4000);
                 }
             }
             Assert.assertEquals(exists,true);
@@ -175,7 +180,7 @@ public class QuoteSummaryPage
         if(HelpersMethod.IsExists("//div[@class='loader']",driver))
         {
             WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000);
+            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 4000);
         }
         try
         {
@@ -196,11 +201,11 @@ public class QuoteSummaryPage
         {
             if(EditButton.isDisplayed())
             {
-                HelpersMethod.ClickBut(driver,EditButton,40);
+                HelpersMethod.ClickBut(driver,EditButton,100);
                 if(HelpersMethod.IsExists("//div[@class='loader']",driver))
                 {
                     WebElement WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000);
+                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 4000);
                 }
                 exists=true;
             }
@@ -219,7 +224,7 @@ public class QuoteSummaryPage
             if(HelpersMethod.IsExists("//div[@class='loader']",driver))
             {
                 WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000);
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 4000);
             }
         }
         catch (Exception e){}

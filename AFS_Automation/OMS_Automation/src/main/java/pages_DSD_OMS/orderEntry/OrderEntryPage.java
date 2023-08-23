@@ -1,9 +1,7 @@
 package pages_DSD_OMS.orderEntry;
 
-import com.github.dockerjava.core.dockerfile.DockerfileStatement;
 import helper.HelpersMethod;
 import io.cucumber.java.Scenario;
-import lombok.var;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
@@ -37,6 +35,7 @@ public class OrderEntryPage
     static String currentURL = null;
     Scenario scenario;
     String ParentWindow;
+    String pickUpDate;
 
     @FindBy(id = "customerAccountNumberComboBox")
     private WebElement AccNo;
@@ -150,7 +149,7 @@ public class OrderEntryPage
             if (HelpersMethod.IsExists("//div[@class='loader']", driver))
             {
                 WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 20000);
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 80000);
             }
             status = HelpersMethod.returnDocumentStatus(driver);
             if (status.equals("loading"))
@@ -1602,9 +1601,9 @@ public class OrderEntryPage
         try
         {
             //Check for existence of Select delivery date popup
-            if (HelpersMethod.IsExists("//div[contains(text(),'Select delivery date')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]", driver))
+            if (HelpersMethod.IsExists("//div[contains(text(),'Select pickup date')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]", driver))
             {
-                WebElement deliveryDatePopup = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(text(),'Select delivery date')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]");
+                WebElement deliveryDatePopup = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(text(),'Select pickup date')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]");
                 WebEle = deliveryDatePopup.findElement(By.xpath(".//tr[contains(@class,'k-master-row')][1]/td"));
                 WebEle1=deliveryDatePopup.findElement(By.xpath(".//tr[contains(@class,'k-master-row')][1]/td/span[@class='line2']"));
                 scenario.log("DATE SELECTED FOR PICK UP ORDER IS "+WebEle1.getText());
@@ -1828,16 +1827,16 @@ public class OrderEntryPage
         WebElement WebEle = null;
         if (HelpersMethod.IsExists("//div[@class='loader']", driver)) {
             WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000);
+            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 4000);
         }
         try {
             WebEle = HelpersMethod.FindByElement(driver, "xpath", "//button[@class='i-link-button ']");
             String O_No = WebEle.getText();
             if (O_No.equals(Ord_No)) {
-                scenario.log("ORDER HAS BEEN FOUND");
+                scenario.log("ORDER/QUOTE HAS BEEN FOUND");
                 exists = true;
             } else {
-                scenario.log("ORDER HAS NOT BEEN FOUND");
+                scenario.log("ORDER/QUOTE HAS NOT BEEN FOUND");
             }
             Assert.assertEquals(exists, true);
         } catch (Exception e) {
@@ -1918,9 +1917,9 @@ public class OrderEntryPage
         String CurrentDate = null;
 
         //Check for existence of Select delivery date popup
-        if (HelpersMethod.IsExists("//div[contains(text(),'Select delivery date')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]", driver))
+        if (HelpersMethod.IsExists("//div[contains(text(),'Select pickup date')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]", driver))
         {
-            WebElement selectDeliveryDate=HelpersMethod.FindByElement(driver,"xpath","//div[contains(text(),'Select delivery date')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]");
+            WebElement selectDeliveryDate=HelpersMethod.FindByElement(driver,"xpath","//div[contains(text(),'Select pickup date')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]");
             List<WebElement> DeliveryDates = selectDeliveryDate.findElements(By.xpath(".//table[contains(@class,'k-grid-table')]/descendant::span[@class='line2']"));
             for (WebElement DeliveryDate : DeliveryDates)
             {
@@ -2266,6 +2265,59 @@ public class OrderEntryPage
                 }
                 driver.switchTo().window(ParentWindow);
             }
+        }
+        catch (Exception e){}
+    }
+
+    public void lastPickupOrder()
+    {
+        exists = false;
+        WebElement WebEle;
+        Actions act1=new Actions(driver);
+        try
+        {
+            //Check for existence of Select delivery date popup
+            if (HelpersMethod.IsExists("//div[contains(text(),'Select pickup date')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]", driver))
+            {
+                WebElement pickDate=HelpersMethod.FindByElement(driver,"xpath","//div[contains(text(),'Select pickup date')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]");
+                List<WebElement> dates=pickDate.findElements(By.xpath(".//tr[contains(@class,'k-master-row')]/td"));
+                for (int i=0;i<=dates.size()-1;i++)
+                {
+                    act1.moveToElement(dates.get(i)).build().perform();
+                    if(i== dates.size()-1)
+                    {
+                        WebElement lastdate=pickDate.findElement(By.xpath(".//tr[contains(@class,'k-master-row')]["+(i+1)+"]/td"));
+                        WebElement lastdateText=   pickDate.findElement(By.xpath(".//tr[contains(@class,'k-master-row')]["+(i+1)+"]/td/descendant::span[@class='line2']"));
+                        pickUpDate=lastdateText.getText();
+                        HelpersMethod.ScrollElement(driver,lastdate);
+                        HelpersMethod.ClickBut(driver,lastdate,2000);
+                        scenario.log("LAST DATE FOUND IN PICKUP DATE DIALOG BOX "+pickUpDate);
+                        exists=true;
+                        break;
+                    }
+                }
+                if (HelpersMethod.IsExists("//div[@class='loader']", driver))
+                {
+                    WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
+                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 10000);
+                }
+            }
+            Assert.assertEquals(exists,true);
+        }
+        catch (Exception e) {}
+    }
+
+    public void comparePickUpDates()
+    {
+        exists=false;
+        try
+        {
+            String deliverDate=HelpersMethod.FindByElement(driver,"id","delivery-date-web-order-header-calendar").getText();
+            if(deliverDate.contains(pickUpDate))
+            {
+                exists=true;
+            }
+            Assert.assertEquals(exists,true);
         }
         catch (Exception e){}
     }

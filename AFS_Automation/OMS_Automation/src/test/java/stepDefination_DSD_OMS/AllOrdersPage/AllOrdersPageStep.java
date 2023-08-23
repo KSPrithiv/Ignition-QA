@@ -55,7 +55,6 @@ public class AllOrdersPageStep
     NewOrderEntryPage newOE;
     CheckOutOrderPage checkOutOrderPage;
 
-
     @Before
     public void LaunchBrowser1(Scenario scenario) throws Exception
     {
@@ -130,7 +129,6 @@ public class AllOrdersPageStep
                 WebElement WebEle = HelpersMethod.FindByElement(driver, "xpath", "//li[contains(@class,'k-item')]/span[@class='k-link' and contains(text(),'All orders')]|//li[contains(@class,'k-item')]/span[@class='k-link' and contains(text(),'All Orders')]|//li[contains(@class,'k-item')]/span[@class='k-link' and contains(text(),'Open orders')]");
                 if (HelpersMethod.EleDisplay(WebEle))
                 {
-                    //HelpersMethod.navigate_Horizantal_Tab(driver, "All Orders", "//li[contains(@class,'k-item')]/span[@class='k-link' and contains(text(),'All Orders')]|//li[contains(@class,'k-item')]/span[@class='k-link' and contains(text(),'Open orders')]", "xpath", "//li[contains(@class,'k-item')]/span[@class='k-link']");
                     String Menu_Text=null;
                     Actions act=new Actions(driver);
                     List<WebElement> MenuBar=HelpersMethod.FindByElements(driver,"xpath","//li[contains(@class,'k-item')]/span[@class='k-link']");
@@ -141,7 +139,7 @@ public class AllOrdersPageStep
                         if(Menu_Text.contains("All Orders")||Menu_Text.contains("Open orders")||Menu_Text.contains("All orders"))
                         {
                             WebElement menuItem=HelpersMethod.FindByElement(driver,"xpath","//li[contains(@class,'k-item')]/span[@class='k-link' and contains(text(),'All orders')]|//li[contains(@class,'k-item')]/span[@class='k-link' and contains(text(),'All Orders')]|//li[contains(@class,'k-item')]/span[@class='k-link' and contains(text(),'Open orders')]");
-                            HelpersMethod.JScriptClick(driver,menuItem,100);
+                            HelpersMethod.JScriptClick(driver,menuItem,1000);
                             break;
                         }
                     }
@@ -171,7 +169,6 @@ public class AllOrdersPageStep
     @Then("User clicks on Show all orders check box")
     public void userClicksOnShowAllOrdersCheckBox()
     {
-
         allOrder=new AllOrderPage(driver,scenario);
         allOrder.ClickShowAllOrderCheckbox();
     }
