@@ -30,7 +30,7 @@ import java.io.IOException;
 public class TestRunnerBillToBill_CustInq_Quote extends AbstractTestNGCucumberTests
 {
     /* Created by Divya.Ramadas@afsi.com */
-    @Parameters({"environment"})
+   /* @Parameters({"environment"})
     @BeforeClass
     public static void beforeClass(@Optional("environment") String envi)
     {
@@ -57,9 +57,9 @@ public class TestRunnerBillToBill_CustInq_Quote extends AbstractTestNGCucumberTe
         {
             Runtime.getRuntime().exec("taskkill /F /IM chromedriver.exe");
         }
-    }
+    }*/
 
- /*   @Parameters({"environment"})
+    @Parameters({"environment"})
     @BeforeMethod
     public static void beforeClass(@Optional("environment") String envi)
     {
@@ -86,5 +86,5 @@ public class TestRunnerBillToBill_CustInq_Quote extends AbstractTestNGCucumberTe
         {
             Runtime.getRuntime().exec("taskkill /F /IM chromedriver.exe");
         }
-    }*/
+    }
 }

@@ -463,7 +463,7 @@ public class CustomerInqStep
         if(flag2==false)
         {
             customerInquiryPage = new CustomerInquiryPage(driver, scenario);
-            customerInquiryPage.NavigateDifferentTabs("Ignition");
+            customerInquiryPage.NavigateDifferentTabs("TELUS OMS");
             if (HelpersMethod.IsExists("//div[@class='loader']", driver))
             {
                 WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
