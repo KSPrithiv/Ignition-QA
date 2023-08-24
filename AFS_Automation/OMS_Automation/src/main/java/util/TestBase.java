@@ -144,7 +144,6 @@ public class TestBase {
 
     public static void CloseBrowser() throws IOException {
         getDriver().quit();
-
         unload();
     }
 

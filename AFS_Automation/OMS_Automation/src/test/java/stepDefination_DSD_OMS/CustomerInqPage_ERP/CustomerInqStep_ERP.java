@@ -337,7 +337,7 @@ public class CustomerInqStep_ERP
         if(flag2==false)
         {
             customerInquiryPageERP = new CustomerInquiryPageERP(driver, scenario);
-            customerInquiryPageERP.NavigateDifferentTabs("Ignition");
+            customerInquiryPageERP.NavigateDifferentTabs("TELUS OMS");
             ignitionPageERP = new IgnitionPageERP(driver, scenario);
             ignitionPageERP.ValidateIgnition();
             currentURL = driver.getCurrentUrl();

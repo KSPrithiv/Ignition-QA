@@ -785,7 +785,7 @@ public class GridConfigurationPage
         exists=false;
         try
         {
-            if(HelpersMethod.IsExists("//div[contains(text(),'Ignition by Telus')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
+            if(HelpersMethod.IsExists("//div[contains(text(),'The information has been saved successfully.')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
             {
                 exists=true;
             }
