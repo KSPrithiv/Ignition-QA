@@ -112,7 +112,7 @@ public class userAndAdmin_GeneralPage
             else
             {
                scenario.log("NEW CUSTOMER REGISTRATION FROM LOGIN PAGE TOGGLE ALREADY DESELECTED");
-               exists=false;
+               exists=true;
             }
             Assert.assertEquals(exists,true);
         }
@@ -150,6 +150,11 @@ public class userAndAdmin_GeneralPage
                 HelpersMethod.ClickBut(driver, newCustomerRegi, 40);
                 scenario.log("ENABLES NEW CUSTOMER REGISTRATION FROM LOGIN PAGE TOGGLE BUTTON");
                 exists=true;
+                if(HelpersMethod.IsExists("//div[@class='loader']",driver))
+                {
+                    WebElement WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
+                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100000);
+                }
             }
             Assert.assertEquals(exists,true);
         }

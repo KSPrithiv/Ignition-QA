@@ -184,7 +184,7 @@ public class GridConfigurationPage
                 HelpersMethod.ActClick(driver, gridTypeDropDown, 1000);
                 scenario.log("GRID TYPE DROP DOWN HAS BEEN CLICKED");
                 exists = true;
-                new WebDriverWait(driver, 30).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class,'k-popup k-child-animation-container')]"))));
+                new WebDriverWait(driver, 60000).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class,'k-popup k-child-animation-container')]"))));
             }
             Assert.assertEquals(exists, true);
         }
@@ -785,7 +785,7 @@ public class GridConfigurationPage
         exists=false;
         try
         {
-            if(HelpersMethod.IsExists("//div[contains(text(),'Ignition by Telus')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
+            if(HelpersMethod.IsExists("//div[contains(text(),'The information has been saved successfully.')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
             {
                 exists=true;
             }

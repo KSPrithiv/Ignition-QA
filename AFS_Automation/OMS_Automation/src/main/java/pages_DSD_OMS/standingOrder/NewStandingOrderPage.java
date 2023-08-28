@@ -15,6 +15,8 @@ import pages_DSD_OMS.Catalog.ProductDescriptionPage;
 import util.DataBaseConnection;
 import util.TestBase;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
@@ -285,7 +287,7 @@ public class NewStandingOrderPage
         catch (Exception e){}
     }
 
-    public void SearchProduct()
+    public void ListView()
     {
         exists = false;
         WebElement WebEle=null;
@@ -307,7 +309,7 @@ public class NewStandingOrderPage
 
                 //Click on 'Add filter'
                 WebElement catalogPopup=HelpersMethod.FindByElement(driver,"xpath","//div[text()='Catalog']/ancestor::div[contains(@class,'k-widget k-window k-dialog')]");
-                WebEle = catalogPopup.findElement(By.xpath("//button[contains(@class,'i-filter-tag__main')]/descendant::span[text()='Add filter']"));
+                WebEle = catalogPopup.findElement(By.xpath(".//button[contains(@class,'i-filter-tag__main')]/descendant::span[text()='Add filter']"));
                 HelpersMethod.clickOn(driver, WebEle, 80);
 
                 //Click on clear all
@@ -356,14 +358,13 @@ public class NewStandingOrderPage
                     scenario.log("PRODUCT FOUND IN CATALOG IS "+Prods.get(j));
                 }
             }
-            else //card view //if (HelpersMethod.IsExists("//div[contains(@class,'k-widget k-window k-dialog')]/descendant::div[contains(@class,'product-catalog-container')]", driver))
+        /*    else //card view //if (HelpersMethod.IsExists("//div[contains(@class,'k-widget k-window k-dialog')]/descendant::div[contains(@class,'product-catalog-container')]", driver))
             {
                 for (int j=0;j<=Prods.size()-1;j++)
                 {
                     //enter product number in input box
                     WebElement inputBox = HelpersMethod.FindByElement(driver, "xpath", "//input[contains(@class,' product-search-input rounded-corners-left')]");
-                    HelpersMethod.sendKeys(driver, inputBox, 8000, Prods.get(j));
-
+                    HelpersMethod.sendKeys(driver,inputBox,1000,Prods.get(j));
                     //Click on search icon
                     WebElement  searchIcon = HelpersMethod.FindByElement(driver, "xpath", "//span[@datatestid='searchBarSearchBtn']//*[local-name()='svg']");
                     HelpersMethod.ActClick(driver, searchIcon, 10000);
@@ -382,15 +383,58 @@ public class NewStandingOrderPage
                         WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
                         HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 80000);
                     }
+
                     //Click on 'x' button in catalog
-                    clearButton = HelpersMethod.FindByElement(driver, "xpath", "//span[@id='searchBarClearBtn']//*[local-name()='svg']");
+                    clearButton = HelpersMethod.FindByElement(driver, "xpath", "//span[@id='searchBarClearBtn']");
+                    HelpersMethod.ScrollElement(driver,clearButton);
                     act.moveToElement(clearButton).click().build().perform();
                     if (HelpersMethod.IsExists("//div[@class='loader']", driver))
                     {
                         WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                        HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 500000);
+                        HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 80000);
                     }
                 }
+            }*/
+        }
+        catch (Exception e){}
+    }
+
+    public void cardView(String prod)
+    {
+        WebElement WebEle;
+        Actions act=new Actions(driver);
+        try
+        {
+            //enter product number in input box
+            WebElement inputBox = HelpersMethod.FindByElement(driver, "xpath", "//input[contains(@class,' product-search-input rounded-corners-left')]");
+            HelpersMethod.EnterText(driver,inputBox,1000,prod);
+            //Click on search icon
+            WebElement  searchIcon = HelpersMethod.FindByElement(driver, "xpath", "//span[@datatestid='searchBarSearchBtn']//*[local-name()='svg']");
+            HelpersMethod.ActClick(driver, searchIcon, 10000);
+            if (HelpersMethod.IsExists("//div[@class='loader']", driver))
+            {
+                WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 250000);
+            }
+            //add product to standing order
+            WebElement selectButton = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='grid-item-box-item']/descendant::button[text()='Select']");
+            HelpersMethod.ScrollElement(driver, selectButton);
+            HelpersMethod.ClickBut(driver, selectButton, 2000);
+            scenario.log("PRODUCT FOUND IN CATALOG IS "+prod);
+            if (HelpersMethod.IsExists("//div[@class='loader']", driver))
+            {
+                WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 80000);
+            }
+
+            //Click on 'x' button in catalog
+            WebElement clearButton = HelpersMethod.FindByElement(driver, "xpath", "//span[@id='searchBarClearBtn']");
+            HelpersMethod.ScrollElement(driver,clearButton);
+            act.moveToElement(clearButton).click().build().perform();
+            if (HelpersMethod.IsExists("//div[@class='loader']", driver))
+            {
+                WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 80000);
             }
         }
         catch (Exception e){}
@@ -603,12 +647,62 @@ public class NewStandingOrderPage
         int length;
         try
         {
-            List<WebElement> Dates=HelpersMethod.FindByElements(driver,"xpath","//td[contains(@style,'opacity: 1; cursor: pointer;')]/span[@class='k-link']");
-            length=Dates.size();
-            HelpersMethod.ClickBut(driver,Dates.get(length-4),60);
-            scenario.log("DATE HAS BEEN SELECTED: "+ Dates.get(length-4).getAttribute("title"));
-            exists=true;
-            Assert.assertEquals(exists,true);
+            WebElement ele1;
+            String formattedDate1 = null;
+            LocalDate myDateObj = LocalDate.now().plusDays(10);
+            DateTimeFormatter myFormatObj = DateTimeFormatter.ofPattern("EEEE, MMMM d, yyyy");
+            formattedDate1 = myDateObj.format(myFormatObj);
+            //code to be executed when the date is visible in existing calender
+            if(HelpersMethod.IsExists("//td[contains(@style,'opacity:')]/span[contains(@title,'" + formattedDate1 +"')]",driver))
+            {
+                if (!HelpersMethod.IsExists("//td[contains(@style,'opacity:')]/span[@class='k-link-disabled' and contains(@title,'" + formattedDate1 + "')]", driver)) {
+                    ele1 = HelpersMethod.FindByElement(driver, "xpath", "//td[contains(@style,'opacity:')]/span[contains(@title,'" + formattedDate1 + "')]");
+                    HelpersMethod.waitTillElementDisplayed(driver, ele1, 80);
+                    HelpersMethod.JSScroll(driver, ele1);
+                    HelpersMethod.ClickBut(driver, ele1, 100);
+                    scenario.log("SKIP DATE IS "+formattedDate1);
+                }
+                else
+                {
+                    myDateObj = LocalDate.now().plusDays(11);
+                    myFormatObj = DateTimeFormatter.ofPattern("EEEE, MMMM d, yyyy");
+                    formattedDate1 = myDateObj.format(myFormatObj);
+                    ele1 = HelpersMethod.FindByElement(driver, "xpath", "//td[contains(@style,'opacity:')]/span[contains(@title,'" + formattedDate1 + "')]");
+                    HelpersMethod.waitTillElementDisplayed(driver, ele1, 80);
+                    HelpersMethod.JSScroll(driver, ele1);
+                    HelpersMethod.ClickBut(driver, ele1, 100);
+                    scenario.log("SKIP DATE IS "+formattedDate1);
+                }
+            }
+            else
+            {
+                //if the date is not present in visible calender, click on arrow button to navigate to next month
+                if(HelpersMethod.IsExists("//button[contains(@class,'k-nav-next')]/span[contains(@class,'k-i-arrow-chevron-right')]",driver))
+                {
+                    //Click on Arrow in calender, when date has not been found in visible calender
+                    WebElement arrow=HelpersMethod.FindByElement(driver,"xpath","//button[contains(@class,'k-nav-next')]/span[contains(@class,'k-i-arrow-chevron-right')]");
+                    HelpersMethod.ClickBut(driver,arrow,100);
+                    if(!HelpersMethod.IsExists("//td[contains(@style,'opacity:')]/span[@class='k-link-disabled' and contains(@title,'" + formattedDate1 +"')]",driver))
+                    {
+                        ele1 = HelpersMethod.FindByElement(driver, "xpath", "//td[contains(@style,'opacity:')]/span[contains(@title,'" + formattedDate1 + "')]");
+                        HelpersMethod.waitTillElementDisplayed(driver, ele1, 80);
+                        HelpersMethod.JSScroll(driver, ele1);
+                        HelpersMethod.ClickBut(driver, ele1, 100);
+                        scenario.log("SKIP DATE IS "+formattedDate1);
+                    }
+                    else
+                    {
+                            myDateObj = LocalDate.now().plusDays(11);
+                            myFormatObj = DateTimeFormatter.ofPattern("EEEE, MMMM d, yyyy");
+                            formattedDate1 = myDateObj.format(myFormatObj);
+                            ele1 = HelpersMethod.FindByElement(driver, "xpath", "//td[contains(@style,'opacity:')]/span[contains(@title,'" + formattedDate1 + "')]");
+                            HelpersMethod.waitTillElementDisplayed(driver, ele1, 80);
+                            HelpersMethod.JSScroll(driver, ele1);
+                            HelpersMethod.ClickBut(driver, ele1, 100);
+                            scenario.log("SKIP DATE IS "+formattedDate1);
+                        }
+                    }
+                }
         }
         catch (Exception e){}
     }

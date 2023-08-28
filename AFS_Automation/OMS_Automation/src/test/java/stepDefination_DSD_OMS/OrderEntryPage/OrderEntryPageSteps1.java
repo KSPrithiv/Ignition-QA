@@ -62,9 +62,8 @@ public class OrderEntryPageSteps1
     {
         orderpage=new OrderEntryPage(driver, scenario);
         List<List<String>> OrderType=tabledata.asLists(String.class);
-
-        //Click on 'Order type' Index icon
-        HelpersMethod.Click_On_IndexFieldIcon(driver,OrderType.get(0).get(0),OrderType.get(0).get(1));
+        orderpage.orderTypeClick();
+        orderpage.selectRegularOrder(OrderType.get(0).get(0),OrderType.get(0).get(1));
     }
 
     //Method for creating order using 'Copy from' drop down, in New OE page
@@ -73,9 +72,7 @@ public class OrderEntryPageSteps1
     {
         List<List<String>> OrdHist=tabledata.asLists(String.class);
         newOE=new NewOrderEntryPage(driver,scenario);
-        HelpersMethod.Implicitwait(driver,10);
         newOE.Click_On_Copy_From_DropDown(OrdHist.get(0).get(0));
-
     }
 
     @Then("Enter Qty for the products in Product grid")
@@ -260,6 +257,7 @@ public class OrderEntryPageSteps1
         newOE=new NewOrderEntryPage(driver,scenario);
         newOE.Click_On_Add_Product();
         newOE.SelectOGFromDropdown();
+        newOE.validateOGPopup();
         newOE.OrderGuideGrid(OGName.get(0).get(0));
     }
 }

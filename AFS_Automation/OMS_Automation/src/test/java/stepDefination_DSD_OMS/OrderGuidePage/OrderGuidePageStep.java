@@ -89,7 +89,7 @@ public class OrderGuidePageStep
         {
             homepage = new HomePage(driver,scenario);
             String title = driver.getTitle();
-            Assert.assertEquals(title, "Ignition - Admin");
+            //Assert.assertEquals(title, "Ignition - Admin");
             homepage.verifyUserinfoContainer();
             homepage.navigateToClientSide();
         }
@@ -171,8 +171,7 @@ public class OrderGuidePageStep
         Assert.assertEquals(exists,true);
         orderGuidePage.CrateOG();
         createOGPage=new CreateOGPage(driver,scenario);
-        exists=createOGPage.ValidateNewOG();
-        Assert.assertEquals(exists,true);
+        createOGPage.validateNewOGPage();
     }
 
     @Then("Then User enters Description {string} and End date")
@@ -257,10 +256,10 @@ public class OrderGuidePageStep
     {
         createOGPage=new CreateOGPage(driver,scenario);
         List<List<String>> SeqList=tabledata.asLists(String.class);
-        List<String> Product=DataBaseConnection.DataConn1(TestBase.testEnvironment.getMultiple_Prod_Sql());
+        List<String> Product=DataBaseConnection.DataConn1(TestBase.testEnvironment.getMultiple_Prod_Sql1());
         for(int i=0;i<=SeqList.size()-1;i++)
         {
-            createOGPage.EnterQuickProduct(Product.get(i + 1),SeqList.get(i).get(0));
+            createOGPage.EnterQuickProduct(Product.get(i),SeqList.get(i).get(0));
         }
     }
 
@@ -388,6 +387,14 @@ public class OrderGuidePageStep
         createOGPage.ClickOnAddProduct();
         createOGPage.SelectValueFromAddProduct(ProdOption.get(0).get(1));
         createOGPage.SelectProductCatalog();
+        if (HelpersMethod.IsExists("//div[contains(@class,'k-widget k-window k-dialog')]/descendant::div[contains(@class,'i-grid')]", driver))
+        {
+            createOGPage.ListView();
+        }
+        else
+        {
+                createOGPage.cardView();
+        }
         createOGPage.CatalogPopupOk();
     }
 

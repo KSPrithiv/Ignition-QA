@@ -25,6 +25,23 @@ Feature: Order Guide2
     |   OG    |
     | Push OG |
 
+  @OGPar
+  Scenario Outline: Test scenario for creating push order guide
+    Given User must be on Order Entry Page to select OG
+    And User should navigate to OG
+    Then User clicks on Create new button and should navigate to New OG page
+    Then User enters Description "<OG>" Start date 15 and End date 16 day from current date
+    Then Then User enters Description "<OG>" and End date
+    Then User selects type of OG from drop down
+      | Par Orders |
+    And User enters Quick Product number and Sequence number
+      |4|
+    Then User click on Save button
+    And User should navigate back to OG page and verify OG "<OG>"  existence
+    Examples:
+      |   OG    |
+      | Par OG |
+
   @MarketSegment
   Scenario Outline: Test scenario for OG creation using Market segment
     Given User must be on Order Entry Page to select OG
@@ -135,12 +152,20 @@ Feature: Order Guide2
     Then User enters OG Description "<OG>" in search box and Delete the OG verify same in OG grid
     Examples:
       |  OG   |
+      |OGDis1 |
+      |OGDis14|
       |OGDis16|
       |OGDis17|
       |OGDis18|
       |OGDis19|
       |OGDis20|
+      |Par OG |
+      | OGHist|
       |OGAllOrder|
+      |Par OGPar OG|
       |Push OGPush OG|
       |Push OG1Push OG1|
+      |AllOrderAllOrder|
+      | AllCustomer1   |
+
 

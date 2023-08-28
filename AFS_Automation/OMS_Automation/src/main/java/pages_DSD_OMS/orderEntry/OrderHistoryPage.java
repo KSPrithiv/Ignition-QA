@@ -48,6 +48,9 @@ public class OrderHistoryPage
     @FindBy(xpath="//button[text()='Orders']")
     private WebElement OrderButton;
 
+    @FindBy(id="grid-selection-dropdown")
+    private WebElement gridType;
+
     //Actions
     public OrderHistoryPage(WebDriver driver, Scenario scenario) throws InterruptedException, AWTException
     {
@@ -368,6 +371,87 @@ public class OrderHistoryPage
                 WebEle= modalContainer.findElement(By.xpath(".//button"));
                 HelpersMethod.ClickBut(driver,WebEle,200);
             }
+        }
+        catch (Exception e){}
+    }
+
+    public void clickOnGridType()
+    {
+        exists=false;
+        try
+        {
+            if(HelpersMethod.IsExists("//span[@id='grid-selection-dropdown']",driver))
+            {
+                HelpersMethod.ClickBut(driver,gridType,100);
+                exists=true;
+            }
+            Assert.assertEquals(exists,true);
+        }
+        catch (Exception e){}
+    }
+
+    public void selectGridType(String gType)
+    {
+        exists=false;
+        Actions act1=new Actions(driver);
+        try
+        {
+            WebElement menuContainer = HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-animation-container k-animation-container-relative k-list-container')]");
+            List<WebElement> Options=menuContainer.findElements (By.xpath(".//ul/li"));
+            for (WebElement opt:Options)
+            {
+                act1.moveToElement(opt).build().perform();
+                String Opt = opt.getText();
+                if (Opt.equals(gType))
+                {
+                    act1.moveToElement(opt).build().perform();
+                    act1.click(opt).build().perform();
+                    exists=true;
+                    if(HelpersMethod.IsExists("//div[@class='loader']",driver))
+                    {
+                        WebElement WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
+                        HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 8000);
+                    }
+                    break;
+                }
+            }
+            Assert.assertEquals(exists,true);
+        }
+        catch (Exception e){}
+    }
+
+    public void validateGridType(String gType)
+    {
+            exists=false;
+            try
+            {
+                String gridValue=HelpersMethod.FindByElement(driver,"xpath","//span[@id='grid-selection-dropdown']/span[@class='k-input']").getText();
+                if(gridValue.equals(gType))
+                {
+                    scenario.log("GRID TYPE SELECTED IS "+gType);
+                    exists=true;
+                }
+                Assert.assertEquals(exists,true);
+            }
+            catch (Exception e){}
+    }
+
+    public void clickOnOrderButton()
+    {
+        exists=false;
+        try
+        {
+            if(OrderButton.isDisplayed() && OrderButton.isEnabled())
+            {
+                HelpersMethod.ClickBut(driver,OrderButton,100);
+                exists=true;
+                if(HelpersMethod.IsExists("//div[@class='loader']",driver))
+                {
+                    WebElement WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
+                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 10000);
+                }
+            }
+            Assert.assertEquals(exists,true);
         }
         catch (Exception e){}
     }

@@ -155,11 +155,11 @@ public class CompetitivePricingGeneralPage
     public void Refresh_Page()
     {
         driver.navigate().to(currentURL);
-        if (HelpersMethod.IsExists("//div[@class='loader']", driver))
+       /* if (HelpersMethod.IsExists("//div[@class='loader']", driver))
         {
             WebElement WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
             HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 20000);
-        }
+        }*/
     }
 
     public void ValidateCompetitorGeneral()

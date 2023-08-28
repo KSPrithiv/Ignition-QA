@@ -14,10 +14,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
 import java.awt.*;
-import java.util.ArrayList;
-import java.util.Collections;
+import java.util.*;
 import java.util.List;
-import java.util.Set;
 
 /**
  * @Project DSD_OMS
@@ -28,7 +26,8 @@ public class CheckOutSummaryPage
     /* Created by Divya */
     WebDriver driver;
     Scenario scenario;
-    String Order_No=null;
+    static String Order_No=null;
+    static String Quote_No=null;
     static boolean exists=false;
 
     @FindBy(id = "ConfirmSummaryButton")
@@ -182,6 +181,21 @@ public class CheckOutSummaryPage
         catch (Exception e){}
         return Order_No;
     }
+
+    public String Get_Quote_No()
+    {
+        WebElement WebEle=null;
+        try
+        {
+            WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'order-number-item-container')]");
+            HelpersMethod.ScrollElement(driver,WebEle);
+            Quote_No = HelpersMethod.ReadValue(Ord);
+            scenario.log("QUOTE IS CRATED, QUOTE # IS "+Quote_No);
+        }
+        catch (Exception e){}
+        return Quote_No;
+    }
+
     public void Click_Edit()
     {
         new WebDriverWait(driver,20).until(ExpectedConditions.textToBePresentInElementLocated(By.id("EditButton"),"Edit"));
@@ -202,7 +216,7 @@ public class CheckOutSummaryPage
             exists = HelpersMethod.IsEnabledByele(CopyBut);
             if (exists == true)
             {
-                HelpersMethod.ClickBut(driver,CopyBut,10);
+                HelpersMethod.ClickBut(driver,CopyBut,100);
             }
         }
         catch (Exception e) {}
@@ -215,7 +229,7 @@ public class CheckOutSummaryPage
             exists=HelpersMethod.IsEnabledByele(Comment_But);
             if(exists==true)
             {
-                HelpersMethod.ClickBut(driver,Comment_But,10);
+                HelpersMethod.ClickBut(driver,Comment_But,100);
             }
         }
         catch (Exception e) {}
@@ -234,11 +248,11 @@ public class CheckOutSummaryPage
 
                 //Click on Add button in the popup
                 WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-widget k-window k-dialog')]/descendant::button[text()='Add']");
-                HelpersMethod.ClickBut(driver,WebEle,10);
+                HelpersMethod.ClickBut(driver,WebEle,100);
 
                 //Click on OK button
                 WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-widget k-window k-dialog')]/descendant::button[text()='Ok']");
-                HelpersMethod.ClickBut(driver,WebEle,10);
+                HelpersMethod.ClickBut(driver,WebEle,100);
                 exists=true;
             }
             Assert.assertEquals(exists,true);
@@ -264,10 +278,10 @@ public class CheckOutSummaryPage
         try
         {
             HelpersMethod.ScrollElement(driver,CancelBut);
-            HelpersMethod.JScriptClick(driver,CancelBut,1000);
+            HelpersMethod.JScriptClick(driver,CancelBut,2000);
             exists=true;
             scenario.log("CANCEL ORDER BUTTON HAS BEEN CLICKED");
-            new WebDriverWait(driver,1000).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(text(),'Cancel order')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]"))));
+            new WebDriverWait(driver,2000).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(text(),'Cancel order')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]"))));
             Assert.assertEquals(exists,true);
         }
         catch (Exception e){}
@@ -305,7 +319,7 @@ public class CheckOutSummaryPage
             if(HelpersMethod.IsExists("//div[@class='loader']",driver))
             {
                 WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 2000);
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 6000);
             }
             Assert.assertEquals(exists,true);
         }
@@ -497,6 +511,65 @@ public class CheckOutSummaryPage
                 exists=true;
             }
             Assert.assertEquals(exists,true);
+        }
+        catch (Exception e){}
+    }
+
+    public void validateCommentPopup()
+    {
+        exists=false;
+        try
+        {
+            if(HelpersMethod.IsExists("//div[contains(text(),'Comments')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
+            {
+                scenario.log("COMMENT POPUP HAS BEEN FOUND");
+               exists=true;
+            }
+            Assert.assertEquals(exists,true);
+        }
+        catch (Exception e){}
+    }
+
+    public void readComments()
+    {
+        exists=false;
+        String com_Text;
+        HashSet<String> comment_Text=new HashSet<>();
+        List<String> comment_Text1 = new ArrayList<>();
+        try
+        {
+            List<WebElement> comments=HelpersMethod.FindByElements(driver,"xpath","//div[contains(@class,'k-widget k-window k-dialog')]/descendant::tr[contains(@class,'k-master-row')]/descendant::td[2]");
+            for(WebElement comment:comments)
+            {
+                com_Text=comment.getText();
+                comment_Text1.add(com_Text);
+                comment_Text.add(com_Text);
+            }
+            if(comment_Text.size()==comment_Text1.size())
+            {
+                scenario.log("NO DUPLICATE COMMENT HAS BEEN FOUND");
+                exists=true;
+            }
+            else
+            {
+                scenario.log("DUPLICATE COMMENT HAS BEEN FOUND");
+                exists=false;
+            }
+            Assert.assertEquals(exists,true);
+        }
+        catch (Exception e){}
+    }
+
+    public void clickOnOKCommentPopup()
+    {
+        exists=false;
+        try
+        {
+            if(HelpersMethod.IsExists("//div[contains(text(),'Comments')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]/descendant::button[text()='Ok']",driver))
+            {
+                WebElement okButton=HelpersMethod.FindByElement(driver,"xpath","//div[contains(text(),'Comments')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]/descendant::button[text()='Ok']");
+                HelpersMethod.ClickBut(driver,okButton,100);
+            }
         }
         catch (Exception e){}
     }

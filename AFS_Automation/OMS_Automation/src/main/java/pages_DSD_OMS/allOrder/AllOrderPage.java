@@ -37,6 +37,11 @@ public class AllOrderPage
     String OrderNo = null;
     static boolean exists = false;
     static String Product=null;
+    static String groupQtyValue=null;
+    static String groupTotalValue=null;
+    static int Qtysum1=0;
+    static String QtySum=null;
+    static String TotalSum=null;
 
     @FindBy(id = "showAllOrdersCheckbox")
     private WebElement AllOrderCheckbox;
@@ -94,6 +99,12 @@ public class AllOrderPage
 
     @FindBy(xpath="//div[contains(@class,'k-grouping-header')]/descendant::div[contains(@class,'k-indicator-container')]")
     private WebElement To;
+
+    @FindBy(xpath="//td[@class='main-footer-cell'][1]/descendant::span[text()='Σ']/ancestor::span[contains(@class,'k-widget k-dropdown')]")
+    private WebElement QtyGroup;
+
+    @FindBy(xpath="//td[@class='main-footer-cell'][2]/descendant::span[text()='Σ']/ancestor::span[contains(@class,'k-widget k-dropdown')]")
+    private WebElement TotalGroup;
 
     //Constructor for Catalog page, Initializing the Page Objects:
     public AllOrderPage(WebDriver driver, Scenario scenario)
@@ -176,11 +187,21 @@ public class AllOrderPage
                     new WebDriverWait(driver, 100).until(ExpectedConditions.visibilityOf(AllOrderCheckbox));
                     new WebDriverWait(driver, 100).until(ExpectedConditions.elementToBeClickable(AllOrderCheckbox));
                     HelpersMethod.ScrollElement(driver, AllOrderCheckbox);
-                    HelpersMethod.ActClick(driver, AllOrderCheckbox, 1000);
+                    HelpersMethod.ActClick(driver, AllOrderCheckbox, 10000);
+                    status=HelpersMethod.returnDocumentStatus(driver);
+                    if(status.equals("loading"))
+                    {
+                        exists = HelpersMethod.waitTillLoadingPage(driver);
+                    }
                     if(HelpersMethod.IsExists("//div[@class='loader']",driver))
                     {
                         WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                        HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100);
+                        HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 60000);
+                    }
+                    status = HelpersMethod.returnDocumentStatus(driver);
+                    if (status.equals("loading"))
+                    {
+                        HelpersMethod.waitTillLoadingPage(driver);
                     }
                     exists = true;
                 }
@@ -1407,6 +1428,325 @@ public class AllOrderPage
             WebElement modalContainer = driver.findElement(By.xpath("//div[contains(@class,'k-widget k-window k-dialog')]"));
             WebElement modalContentTitle = modalContainer.findElement(By.xpath(".//div[contains(@class,'k-window-title k-dialog-title')]"));
             Assert.assertEquals(modalContentTitle.getText(), "Select delivery date", "Verify Title message");
+        }
+        catch (Exception e){}
+    }
+
+    public void clickOnQtyGrouping()
+    {
+        exists=false;
+        if(HelpersMethod.IsExists("//div[@class='loader']",driver))
+        {
+            WebElement  WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
+            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 80000);
+        }
+        try
+        {
+            if(QtyGroup.isDisplayed())
+            {
+                HelpersMethod.ScrollDownScrollBar(driver);
+                HelpersMethod.ActClick(driver,QtyGroup,20000);
+                exists=true;
+            }
+            Assert.assertEquals(exists,true);
+        }
+        catch (Exception e){}
+    }
+
+    public void selectValueGroupDropDown(String opt)
+    {
+        exists=false;
+        Actions act1=new Actions(driver);
+        String optText;
+        try
+        {
+            if(HelpersMethod.IsExists("//div[contains(@class,'k-list-container k-reset i-common-dropdown ')]",driver))
+            {
+                List<WebElement> groups=HelpersMethod.FindByElements(driver,"xpath","//div[contains(@class,'k-list-container k-reset i-common-dropdown ')]/descendant::ul/li");
+                for(WebElement group:groups)
+                {
+                    act1.moveToElement(group).build().perform();
+                    optText= group.getText();
+                    if(optText.equals(opt))
+                    {
+                        act1.moveToElement(group).build().perform();
+                        act1.click(group).build().perform();
+                        exists=true;
+                        scenario.log("OPTION SELECTED IS "+opt);
+                        break;
+                    }
+                }
+            }
+            Assert.assertEquals(exists,true);
+        }
+        catch (Exception e){}
+    }
+
+    public void compareSelectedOpt(String opt)
+    {
+        exists=false;
+        try
+        {
+            String groupOpt=HelpersMethod.FindByElement(driver,"xpath","//td[@class='main-footer-cell'][1]/descendant::span[@class='k-input']").getText();
+            if(groupOpt.equals(opt))
+            {
+                exists=true;
+            }
+            Assert.assertEquals(exists,true);
+        }
+        catch (Exception e){}
+    }
+
+    public void displayQtyGroupValue()
+    {
+        exists=false;
+        try
+        {
+            groupQtyValue=HelpersMethod.FindByElement(driver,"xpath","//td[@class='main-footer-cell'][1]/descendant::div[@class='footer-value']").getText();
+            if(groupQtyValue.equals(""))
+            {
+                scenario.log("VALUE DISPLAYED IN FOOTER FOR QTY"+groupQtyValue);
+            }
+        }
+        catch (Exception e){}
+    }
+
+    public void displayTotalGroupValue()
+    {
+        exists=false;
+        try
+        {
+            groupTotalValue=HelpersMethod.FindByElement(driver,"xpath","//td[@class='main-footer-cell'][1]/descendant::div[@class='footer-value']").getText();
+            if(groupTotalValue.equals(""))
+            {
+                scenario.log("VALUE DISPLAYED IN FOOTER FOR TOTAL"+groupTotalValue);
+            }
+        }
+        catch (Exception e){}
+    }
+
+    public void clickOnUnitGrouping()
+    {
+        exists=false;
+        if(HelpersMethod.IsExists("//div[@class='loader']",driver))
+        {
+            WebElement  WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
+            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 10000);
+        }
+        try
+        {
+            if(TotalGroup.isDisplayed())
+            {
+                HelpersMethod.ScrollDownScrollBar(driver);
+                HelpersMethod.ActClick(driver,TotalGroup,2000);
+                exists=true;
+            }
+            Assert.assertEquals(exists,true);
+        }
+        catch (Exception e){}
+    }
+
+    public void findSumOfTotal()
+    {
+        exists=false;
+        Actions act1=new Actions(driver);
+        String headValue;
+        String sumValueTotal;
+        int Totalsum = 0;
+        int i=0;
+        try
+        {
+            List<WebElement> heads=HelpersMethod.FindByElements(driver,"xpath","//span[@class='k-column-title']");
+            for(WebElement head:heads)
+            {
+                i++;
+                act1.moveToElement(head).build().perform();
+                headValue=head.getText();
+                if(headValue.equals("Total"))
+                {
+                    break;
+                }
+            }
+            List<WebElement> elementsTotalSum=HelpersMethod.FindByElements(driver,"xpath","//td["+i+"]");
+            for(WebElement eleTotalSum:elementsTotalSum)
+            {
+                act1.moveToElement(eleTotalSum).build().perform();
+                sumValueTotal=eleTotalSum.getText();
+                Totalsum=Totalsum+Integer.parseInt(sumValueTotal);
+            }
+            if(Totalsum==Integer.parseInt(groupTotalValue))
+            {
+                scenario.log("SUM FOUND FOR TOTAL COLUMN IS "+Totalsum);
+                exists=true;
+            }
+            Assert.assertEquals(exists,true);
+        }
+        catch (Exception e){}
+    }
+
+    public void findSumOfQty()
+    {
+        exists=false;
+        Actions act1=new Actions(driver);
+        String headValue;
+        String sumValueTotal;
+        int i=0;
+        try
+        {
+            List<WebElement> heads=HelpersMethod.FindByElements(driver,"xpath","//span[@class='k-column-title']");
+            for(WebElement head:heads)
+            {
+                i++;
+                act1.moveToElement(head).build().perform();
+                headValue=head.getText();
+                if(headValue.equals("Quantity"))
+                {
+                    break;
+                }
+            }
+            List<WebElement> elementsQtySum=HelpersMethod.FindByElements(driver,"xpath","//td["+i+"]");
+            for(int j=0;j<=elementsQtySum.size()-1;j++)
+            {
+                act1.moveToElement(elementsQtySum.get(j)).build().perform();
+                sumValueTotal= elementsQtySum.get(j).getText();
+                Qtysum1=Qtysum1+Integer.parseInt(sumValueTotal);
+                scenario.log(Qtysum1 +" SUM OF TOTAL COLUMN ");
+                System.out.println(Qtysum1 +" SUM OF TOTAL COLUMN");
+            }
+           System.out.println(Qtysum1 +" SUM OF TOTAL COLUMN");
+            int sumQty=Integer.parseInt(groupQtyValue);
+            if(Qtysum1==sumQty)
+            {
+                exists=true;
+            }
+            Assert.assertEquals(exists,true);
+        }
+        catch (Exception e){}
+    }
+
+    public void findAvgOfTotal()
+    {
+        exists=false;
+        Actions act1=new Actions(driver);
+        String headValue;
+        String sumValueTotal;
+        int Totalsum = 0;
+        int i=0;
+        try
+        {
+            List<WebElement> heads=HelpersMethod.FindByElements(driver,"xpath","//span[@class='k-column-title']");
+            for(WebElement head:heads)
+            {
+                i++;
+                act1.moveToElement(head).build().perform();
+                headValue=head.getText();
+                if(headValue.equals("Total"))
+                {
+                    break;
+                }
+            }
+            List<WebElement> elementsTotalSum=HelpersMethod.FindByElements(driver,"xpath","//td["+i+"]");
+            for(WebElement eleTotalSum:elementsTotalSum)
+            {
+                act1.moveToElement(eleTotalSum).build().perform();
+                sumValueTotal=eleTotalSum.getText();
+                Totalsum=Totalsum+Integer.parseInt(sumValueTotal);
+            }
+            if(Totalsum==Integer.parseInt(groupTotalValue))
+            {
+                scenario.log("AVERAGE FOUND FOR TOTAL COLUMN IS "+Totalsum);
+                exists=true;
+            }
+            Assert.assertEquals(exists,true);
+        }
+        catch (Exception e){}
+    }
+
+    public void findAvgOfQty()
+    {
+        exists=false;
+        Actions act1=new Actions(driver);
+        String headValue;
+        String sumValueTotal;
+        int Qtysum = 0;
+        int i=0;
+        try
+        {
+            List<WebElement> heads=HelpersMethod.FindByElements(driver,"xpath","//span[@class='k-column-title']");
+            for(WebElement head:heads)
+            {
+                i++;
+                act1.moveToElement(head).build().perform();
+                headValue=head.getText();
+                if(headValue.equals("Quantity"))
+                {
+                    break;
+                }
+            }
+            List<WebElement> elementsQtySum=HelpersMethod.FindByElements(driver,"xpath","//td["+i+"]");
+            for(WebElement eleQtySum:elementsQtySum)
+            {
+                act1.moveToElement(eleQtySum).build().perform();
+                sumValueTotal=eleQtySum.getText();
+                Qtysum=Qtysum+Integer.parseInt(sumValueTotal);
+            }
+            if(Qtysum==Integer.parseInt(groupQtyValue))
+            {
+                scenario.log("AVERAGE FOUND FOR QTY COLUMN IS "+Qtysum);
+                exists=true;
+            }
+            Assert.assertEquals(exists,true);
+        }
+        catch (Exception e){}
+    }
+
+    public void dragAndDrop(String header)
+    {
+        exists=false;
+        try
+        {
+            if(HelpersMethod.IsExists("//div[contains(@class,'k-grouping-header')]/descendant::div[contains(@class,'k-indicator-container')]",driver))
+            {
+                List<WebElement> TableHeads=driver.findElements(By.xpath("//thead/tr[1]/th"));
+                for(WebElement THead:TableHeads)
+                {
+                    String Head=THead.getText();
+                    if(Head.contains(header))
+                    {
+                        HelpersMethod.ActDragDrop(driver,THead,To);
+                        exists=true;
+                    }
+                }
+            }
+            else
+            {
+                scenario.log("DRAG AND DROP HEADER MAY NOT BE ENABLED, CHECK ADMIN SETTINGS");
+            }
+            Assert.assertEquals(exists,true);
+        }
+        catch (Exception e){}
+    }
+
+    public void displayGroupingValue()
+    {
+        exists=false;
+        Actions act1=new Actions(driver);
+        String groupText;
+        try
+        {
+            List<WebElement> groupValues=HelpersMethod.FindByElements(driver,"xpath","//tr[@class='k-grouping-row']/descendant::span");
+            if(!groupValues.isEmpty())
+            {
+                scenario.log("GROUPING HAS BEEN DONE AND VALUES FOUND ARE");
+                for(WebElement groupVal:groupValues)
+                {
+                    act1.moveToElement(groupVal).build().perform();
+                    groupText=groupVal.getText();
+                    scenario.log(groupText);
+                    exists = true;
+                }
+            }
+            Assert.assertEquals(exists,true);
         }
         catch (Exception e){}
     }

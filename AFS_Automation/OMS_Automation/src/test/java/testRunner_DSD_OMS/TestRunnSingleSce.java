@@ -38,7 +38,7 @@ import pages_DSD_OMS.login.LoginPage;
                         //"src/test/resources/features_DSD_OMS/StandingOrderFeature",
                         //"src/test/resources/features_DSD_OMS/StatementsFeature",
                         //"src/test/resources/features_DSD_OMS/WebOrderingFeature",
-//                        "src/test/resources/features_DSD_OMS/loginFeature.feature",
+                        //"src/test/resources/features_DSD_OMS/loginFeature.feature",
                         //"src/test/resources/features_Shared/features_Shared_DSD/UserManagementFeature/createUser_save.feature",
                         //"src/test/resources/features_Shared/features_Shared_DSD/createdUserManagementFeature/User_cancel.feature",
                         //"src/test/resources/features_Shared/features_Shared_DSD/UserManagementFeature/manage_registration_update.feature",
@@ -90,10 +90,10 @@ public class TestRunnSingleSce extends AbstractTestNGCucumberTests {
     }
 
 
-//    @Parameters({"environment" })
-//    @BeforeMethod
-//    public static void beforeMethod(@Optional("environment") String envi) {
-//        try {
+  /*   @Parameters({"environment" })
+     @BeforeMethod
+     public static void beforeMethod(@Optional("environment") String envi) {
+      try {
 //            TestBase.InitializeProp(envi);
 //            TestBase.SetDriver(TestBase.testEnvironment.get_browser());
 //
@@ -105,7 +105,7 @@ public class TestRunnSingleSce extends AbstractTestNGCucumberTests {
 //        }
 //    }
 
-    /*@AfterMethod
+    @AfterMethod
     public static void afterMethod() throws InterruptedException, MessagingException, IOException {
         //Thread.sleep(10000);
 

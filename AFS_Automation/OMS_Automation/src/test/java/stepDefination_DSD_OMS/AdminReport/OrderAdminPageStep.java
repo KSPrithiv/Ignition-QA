@@ -126,4 +126,20 @@ public class OrderAdminPageStep
         orderadminPage=new orderAdminPage(driver,scenario);
         orderadminPage.clickOnGenerateButton();
     }
+
+    @Then("User click on reset button in Last user login dates and all the webelement should be clear")
+    public void userClickOnResetButtonInLastUserLoginDatesAndAllTheWebelementShouldBeClear()
+    {
+        orderadminPage=new orderAdminPage(driver,scenario);
+        orderadminPage.clickOnResetButton();
+        orderadminPage.validateWebElementClear1();
+    }
+
+    @Then("User click on reset button in Orders, Orders tab and all the webelement should be clear")
+    public void userClickOnResetButtonInOrdersOrdersTabAndAllTheWebelementShouldBeClear()
+    {
+        orderadminPage=new orderAdminPage(driver,scenario);
+        orderadminPage.clickOnResetButton();
+        orderadminPage.validateWebElementClear2();
+    }
 }

@@ -108,7 +108,8 @@ public class QuotePage {
         }
     }
 
-    public void validateQuote() {
+    public void validateQuote()
+    {
         WebElement modalContainer = driver.findElement(By.xpath("//div[contains(text(),'New quote')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]"));
         WebElement modalContentTitle = modalContainer.findElement(By.xpath(".//div[contains(@class,'k-window-title k-dialog-title')]"));
         Assert.assertEquals(modalContentTitle.getText(), "New quote", "Verify Title message");

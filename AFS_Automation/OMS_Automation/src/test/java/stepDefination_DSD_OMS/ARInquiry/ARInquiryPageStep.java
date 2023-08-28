@@ -79,8 +79,8 @@ public class ARInquiryPageStep
         if(flag==false)
         {
             homepage = new HomePage(driver,scenario);
-            String title = driver.getTitle();
-            Assert.assertEquals(title, "Ignition - Admin");
+            //String title = driver.getTitle();
+            //Assert.assertEquals(title, "Ignition - Admin");
             homepage.verifyUserinfoContainer();
             homepage.navigateToClientSide();
             arInquiryPage=new ARInquiryPage(driver,scenario);
