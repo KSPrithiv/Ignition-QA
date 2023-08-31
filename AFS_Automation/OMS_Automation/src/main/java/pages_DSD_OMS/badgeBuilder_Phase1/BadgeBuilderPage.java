@@ -795,7 +795,7 @@ public class BadgeBuilderPage {
 
     }
 
- /*   public void NavigateToOrderEntry() {
+    public void NavigateToOrderEntryScreen() {
         WebElement WebEle = null;
         String status = null;
         status = HelpersMethod.returnDocumentStatus(driver);
@@ -824,7 +824,7 @@ public class BadgeBuilderPage {
             currentURL = driver.getCurrentUrl();
         } catch (Exception e) {
         }
-    }*/
+    }
 
     public void ChangeAccountNumber1() {
         exists = false;
