@@ -240,21 +240,16 @@ public class adminReportPage
         catch (Exception e){}
     }
 
-    public void toDateLastLoginUser()
-    {
-        exists=false;
-        try
-        {
-            if(HelpersMethod.IsExists("//div[contains(@class,'k-child-animation-container')]",driver))
-            {
-                WebElement dateSelection=HelpersMethod.FindByElement(driver,"xpath","//td[contains(@class,'k-today')]");
-                HelpersMethod.ActClick(driver,dateSelection,100);
-                exists=true;
+    public void toDateLastLoginUser() {
+        exists = false;
+        try {
+            if (HelpersMethod.IsExists("//div[contains(@class,'k-child-animation-container')]", driver)) {
+                WebElement dateSelection = HelpersMethod.FindByElement(driver, "xpath", "//td[contains(@class,'k-today')]");
+                HelpersMethod.ActClick(driver, dateSelection, 100);
+                exists = true;
             }
-            Assert.assertEquals(exists,true);
+            Assert.assertEquals(exists, true);
+        } catch (Exception e) {
         }
-        catch (Exception e){}
     }
-
-
 }

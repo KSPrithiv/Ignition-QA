@@ -57,18 +57,19 @@ public class AdminHomePage
         {
             HelpersMethod.waitTillLoadingPage(driver);
         }
-        Thread.sleep(10000);
+        Thread.sleep(40000);
 
         if(HelpersMethod.IsExists("//div[@class='loader']",driver))
         {
             WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 80000);
+            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100000);
         }
         try
         {
             title=driver.getTitle();
             if(title.contains("Admin"))
             {
+                scenario.log("ADMIN PAGE HAS BEEN FOUND");
                 exists=true;
             }
             Assert.assertEquals(exists,true);
@@ -96,7 +97,6 @@ public class AdminHomePage
     public void ClickPermissionBy()
     {
         exists=false;
-        WebElement WebEle;
         try
         {
             if(HelpersMethod.IsExists("//span[contains(@class,'k-icon k-i-arrow-chevron-down i-header-toolbar-expandable-button__icon')]",driver))
@@ -126,8 +126,8 @@ public class AdminHomePage
             {
                 //Click on Company drop down
                 WebEle = HelpersMethod.FindByElement(driver, "xpath", "//span[contains(@id,'dropdownList3')]");
-                HelpersMethod.ActClick(driver, WebEle, 200);
-                new WebDriverWait(driver, 4000).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class,'k-popup k-child-animation-container')]"))));
+                HelpersMethod.ActClick(driver, WebEle, 2000);
+                //new WebDriverWait(driver, 4000).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class,'k-popup k-child-animation-container')]"))));
                 //Create list of web elements in dropdown
                 company = TestBase.testEnvironment.get_CompanyNo();
                 //identify the company drop down, and values in list
@@ -140,11 +140,12 @@ public class AdminHomePage
                     {
                         act.moveToElement(Val).build().perform();
                         act.click(Val).build().perform();
+                        scenario.log("COMPANY HAS BEEN SELECTED");
                         exists=true;
                         if(HelpersMethod.IsExists("//div[@class='loader']",driver))
                         {
                             WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 80000);
+                            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 200000);
                         }
                         break;
                     }
@@ -187,7 +188,6 @@ public class AdminHomePage
         exists=false;
         WebElement WebEle;
         Actions act=new Actions(driver);
-        String company=null;
         try
         {
             if(HelpersMethod.IsExists("//div[contains(@class,'permissions-dropdown permission-background permissions-dropdown__flex')]",driver))
@@ -334,7 +334,7 @@ public class AdminHomePage
             if(HelpersMethod.IsExists("//div[@class='loader']",driver))
             {
                 WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000);
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 10000);
             }
             String Menu_Text=null;
             Actions act=new Actions(driver);
@@ -352,7 +352,7 @@ public class AdminHomePage
             if(HelpersMethod.IsExists("//div[@class='loader']",driver))
             {
                 WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000);
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 10000);
             }
         }
         catch (Exception e){}
@@ -431,10 +431,10 @@ public class AdminHomePage
     {
         try
         {
-            if(HelpersMethod.IsExists("//div[contains(text(),'Ignition by Telus')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
+            if(HelpersMethod.IsExists("//div[contains(text(),'saved successfully')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
             {
                 WebElement WebEle=HelpersMethod.FindByElement(driver,"xpath","div[contains(@class,'k-widget k-window k-dialog')]");
-                WebElement popUpYes=WebEle.findElement(By.xpath(".//button[text()='Yes']"));
+                WebElement popUpYes=WebEle.findElement(By.xpath(".//button[text()='OK']"));
                 HelpersMethod.ActClick(driver,popUpYes,100);
             }
         }

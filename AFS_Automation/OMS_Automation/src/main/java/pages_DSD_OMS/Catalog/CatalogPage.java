@@ -42,7 +42,7 @@ public class CatalogPage
     @FindBy(id="sort-by-dropdown")
     private WebElement SortByDropDown;
 
-    @FindBy(xpath = "//div[contains(@class,'shopping-cart-container notification-center-item')]/descendant::div[@id='shoppingCartRedBadge']")
+    @FindBy(xpath = "//div[contains(@class,'shopping-cart-container notification-center-item')]")
     private WebElement Cart;
 
     @FindBy(id="CPcategories")
@@ -81,7 +81,6 @@ public class CatalogPage
         {
             if(HelpersMethod.gettingURL(driver).contains("cpProductCatalog"))
             {
-                scenario.log("CATALOG PAGE HAS BEEN FOUND");
                 exists=true;
             }
             Assert.assertEquals(exists,true);
@@ -98,7 +97,7 @@ public class CatalogPage
         if(HelpersMethod.IsExists("//div[@class='loader']",driver))
         {
             WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 10000);
+            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 80000);
         }
         try
         {
@@ -107,7 +106,7 @@ public class CatalogPage
             if(HelpersMethod.IsExists("//div[@class='loader']",driver))
             {
                 WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 10000);
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 80000);
             }
             exists=true;
             Assert.assertEquals(exists,true);
@@ -130,7 +129,7 @@ public class CatalogPage
                 if (HelpersMethod.IsExists("//div[@class='loader']", driver))
                 {
                     WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000);
+                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 80000);
                 }
                 if(HelpersMethod.IsExists("//div[@class='card-view']",driver))
                 {
@@ -161,7 +160,7 @@ public class CatalogPage
                 HelpersMethod.ClickBut(driver, ListView, 2000);
                 if (HelpersMethod.IsExists("//div[@class='loader']", driver)) {
                     WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 800);
+                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 80000);
                 }
                 if(HelpersMethod.IsExists("//div[@class='list-view']",driver))
                 {
@@ -176,24 +175,23 @@ public class CatalogPage
     //Verify existence of sort by best match drop down, and then click on it. And select value from drop down
     public void Best_MatchDropDown(String DropSelect)
     {
+        exists=false;
         boolean result=false;
         WebElement WebEle=null;
         Actions act1=new Actions(driver);
         if(HelpersMethod.IsExists("//div[@class='loader']",driver))
         {
             WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 10000);
+            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100000);
         }
         try
         {
             if(SortByDropDown.isDisplayed())
             {
                 HelpersMethod.ScrollElement(driver,SortByDropDown);
-                HelpersMethod.ActClick(driver,SortByDropDown,2000);
+                HelpersMethod.ClickBut(driver,SortByDropDown,2000);
                 new WebDriverWait(driver,100).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class,'k-animation-container k-animation-container-relative k-list-container k-reset i-common-dropdown i-common-dropdown__type-none k-animation-container-shown')]"))));
-
-                WebElement menuContainer = HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-animation-container k-animation-container-relative k-list-container k-reset i-common-dropdown i-common-dropdown__type-none k-animation-container-shown')]");
-                List<WebElement> Options=menuContainer.findElements (By.xpath(".//ul/li"));
+                List<WebElement> Options=HelpersMethod.FindByElements(driver,"xpath","//div[contains(@class,'k-animation-container k-animation-container-relative k-list-container')]/descendant::ul/li");
                 for(WebElement opt: Options)
                 {
                     act1.moveToElement(opt).build().perform();
@@ -202,7 +200,11 @@ public class CatalogPage
                     {
                         act1.moveToElement(opt).build().perform();
                         act1.click(opt).build().perform();
-                        exists=true;
+                        if(HelpersMethod.IsExists("//div[@class='loader']",driver))
+                        {
+                            WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
+                            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 80000);
+                        }
                         break;
                     }
                 }
@@ -254,15 +256,14 @@ public class CatalogPage
 
     public void Best_MatchDropDownPagination(String DropSelect)
     {
-        WebElement WebEle=null;
         Actions act1=new Actions(driver);
         try
         {
             if (SortByDropDown.isDisplayed())
             {
                 HelpersMethod.ScrollElement(driver, SortByDropDown);
-                HelpersMethod.ActClick(driver, SortByDropDown, 200);
-                new WebDriverWait(driver, 100).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class,'k-animation-container k-animation-container-relative k-list-container k-reset i-common-dropdown i-common-dropdown__type-none k-animation-container-shown')]"))));
+                HelpersMethod.ActClick(driver, SortByDropDown, 2000);
+                //new WebDriverWait(driver, 100).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class,'k-animation-container k-animation-container-relative k-list-container k-reset i-common-dropdown i-common-dropdown__type-none k-animation-container-shown')]"))));
 
                 WebElement menuContainer = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-animation-container k-animation-container-relative k-list-container k-reset i-common-dropdown i-common-dropdown__type-none k-animation-container-shown')]");
                 List<WebElement> Options = menuContainer.findElements(By.xpath(".//ul/li"));
@@ -304,7 +305,7 @@ public class CatalogPage
                         if(HelpersMethod.IsExists("//div[@class='loader']",driver))
                         {
                             WebElement WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 2000);
+                            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 40000);
                         }
                         exists=true;
                         break;
@@ -380,7 +381,7 @@ public class CatalogPage
                 HelpersMethod.waitTillLoadingPage(driver);
             }
             HelpersMethod.ScrollElement(driver,SearchClear);
-            HelpersMethod.ClickBut(driver,SearchClear,1000);
+            HelpersMethod.ClickBut(driver,SearchClear,4000);
             if(HelpersMethod.IsExists("//div[@class='loader']",driver))
             {
                 WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
@@ -389,7 +390,7 @@ public class CatalogPage
 
             //Enter product# in search bar
             WebEle=HelpersMethod.FindByElement(driver,"xpath","//input[contains(@class,'product-search-input')]");
-            HelpersMethod.EnterText(driver,WebEle,100,Prod_no);
+            HelpersMethod.EnterText(driver,WebEle,4000,Prod_no);
             scenario.log("PRODUCT SEARCHED IS "+Prod_no);
             if(HelpersMethod.IsExists("//div[@class='loader']",driver))
             {
@@ -399,7 +400,7 @@ public class CatalogPage
 
             //Click on search Index button
             WebEle=HelpersMethod.FindByElement(driver,"xpath","//span[@datatestid='searchBarSearchBtn']");
-            HelpersMethod.ClickBut(driver,WebEle,100);
+            HelpersMethod.ClickBut(driver,WebEle,1000);
             if(HelpersMethod.IsExists("//div[@class='loader']",driver))
             {
                 WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
@@ -430,7 +431,7 @@ public class CatalogPage
         if(HelpersMethod.IsExists("//div[@class='loader']",driver))
         {
             WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 10000);
+            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 80000);
         }
 
         try
@@ -442,41 +443,15 @@ public class CatalogPage
             if (HelpersMethod.IsExists("//button[contains(@class,'update-cart-button')]/following-sibling::button",driver))
             {
                 WebEle = HelpersMethod.FindByElement(driver, "xpath", "//button[contains(@class,'update-cart-button')]/following-sibling::button");
-                HelpersMethod.ClickBut(driver, WebEle, 100);
+                HelpersMethod.ScrollElement(driver,WebEle);
+                HelpersMethod.ClickBut(driver, WebEle, 1000);
                 if (HelpersMethod.IsExists("//div[@class='loader']", driver))
                 {
                     WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
                     HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 80000);
                 }
             }
-             /*     //Identify input box for Qty
-                  WebEle = HelpersMethod.FindByElement(driver, "xpath", "//input[contains(@id,'ProductGridItemQuantityContainer')]");
-                  HelpersMethod.ScrollElement(driver, WebEle);
-                  if (WebEle.isDisplayed() && WebEle.isEnabled())
-                  {
-                      HelpersMethod.ActSendKey(driver,WebEle,60,Qty_UnitCase);
-                      scenario.log("QTY ENTERE IS " + Qty_UnitCase);
-                      if (HelpersMethod.IsExists("//div[contains(text(),'currently unavailable.')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]", driver))
-                      {
-                          WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-widget k-window k-dialog')]/descendant::button");
-                          HelpersMethod.ClickBut(driver, WebEle, 60);
-                      }
-                      //Click on Add to cart button
-                      WebEle = HelpersMethod.FindByElement(driver, "xpath", "//button/descendant::span[text()='Add to cart']");
-                      if (WebEle.isDisplayed() && WebEle.isEnabled())
-                      {
-                          HelpersMethod.ScrollElement(driver, WebEle);
-                          HelpersMethod.ClickBut(driver, WebEle, 60);
-                          if (HelpersMethod.IsExists("//div[@class='loader']", driver))
-                          {
-                              WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                              HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 800);
-                          }
-                      }
-                  }
-              }
-              else
-              {*/
+
             //Identify input box for Qty
             WebEle = HelpersMethod.FindByElement(driver, "xpath", "//input[contains(@id,'ProductGridItemQuantityContainer')]");
             HelpersMethod.ScrollElement(driver, WebEle);
@@ -484,26 +459,35 @@ public class CatalogPage
             {
                 HelpersMethod.ActSendKey(driver,WebEle,40,Qty_UnitCase);
                 scenario.log("QTY ENTERE IS " + Qty_UnitCase);
+                status=HelpersMethod.returnDocumentStatus(driver);
+                if(status.equals("loading"))
+                {
+                    HelpersMethod.waitTillLoadingPage(driver);
+                }
                /* if (HelpersMethod.IsExists("//div[contains(text(),'currently unavailable.')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]", driver))
                 {
                     WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-widget k-window k-dialog')]/descendant::button");
                     HelpersMethod.ClickBut(driver, WebEle, 40);
                 }*/
                 //Click on Add to cart button
-                WebEle = HelpersMethod.FindByElement(driver, "xpath", "//button/descendant::span[text()='Add to cart']");
+                WebEle = HelpersMethod.FindByElement(driver, "xpath", "//button/descendant::span[contains(text(),'Add to cart')]");
                 if (WebEle.isDisplayed() && WebEle.isEnabled())
                 {
                     HelpersMethod.ScrollElement(driver, WebEle);
                     HelpersMethod.ClickBut(driver, WebEle, 40);
+                    exists = true;
+                    status=HelpersMethod.returnDocumentStatus(driver);
+                    if(status.equals("loading"))
+                    {
+                        HelpersMethod.waitTillLoadingPage(driver);
+                    }
                     if (HelpersMethod.IsExists("//div[@class='loader']", driver))
                     {
                         WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                        HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 80000);
+                        HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100000);
                     }
                 }
             }
-            //   }
-            exists = true;
             Assert.assertEquals(exists,true);
         }
         catch (Exception e){}
@@ -535,7 +519,6 @@ public class CatalogPage
             WebEle=HelpersMethod.FindByElement(driver,"xpath","//input[contains(@id,'ProductGridItemQuantityContainer')]");
             Qty=HelpersMethod.JSGetValueEle(driver,WebEle,40);
             scenario.log("QTY INCREMENTED IS "+Qty);
-
             exists=true;
             Assert.assertEquals(exists,true);
         }
@@ -588,13 +571,14 @@ public class CatalogPage
                 HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000);
             }*/
 
-            // if(Cart.isDisplayed() && Cart.isEnabled())
-            //  {
+             if(Cart.isDisplayed())
+            {
             new WebDriverWait(driver,100).until(ExpectedConditions.refreshed(ExpectedConditions.elementToBeClickable(Cart)));
-            HelpersMethod.ActClick(driver,Cart,40);
+            HelpersMethod.ActClick(driver,Cart,1000);
             HelpersMethod.WaitElementPresent(driver,"xpath","//div[contains(text(),'Shopping cart')]/ancestor::div[@class='popup-content']",40);
             if(HelpersMethod.IsExists("//div[contains(text(),'Shopping cart')]/ancestor::div[@class='popup-content']",driver))
             {
+                scenario.log("CART ICON HAS BEEN CLICKED");
                 exists=true;
             }
             String status = HelpersMethod.returnDocumentStatus(driver);
@@ -608,7 +592,7 @@ public class CatalogPage
                 HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000);
             }*/
             new WebDriverWait(driver,1000).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(@class,'k-popup k-child-animation-container k-slide-down-enter k-slide-down-enter-active')]")));
-            //  }
+            }
             Assert.assertEquals(exists,true);
         }
         catch (Exception e){}
@@ -628,16 +612,20 @@ public class CatalogPage
             WebElement shoppingCart=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-popup k-child-animation-container k-slide-down-enter k-slide-down-enter-active')]");
             //Identify the Go to cart button
             WebElement goToCart = shoppingCart.findElement(By.xpath(".//button[@id='goToCartButton']"));
-            if(goToCart.isDisplayed() && goToCart.isEnabled())
+            act.moveToElement(goToCart).build().perform();
+            act.click(goToCart).build().perform();
+            String status = HelpersMethod.returnDocumentStatus(driver);
+            if (status.equals("loading"))
             {
-                act.moveToElement(goToCart).build().perform();
-                act.click(goToCart).build().perform();
-                if (HelpersMethod.IsExists("//div[@class='loader']", driver)) {
-                    WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 80000);
-                }
-                exists = true;
+                HelpersMethod.waitTillLoadingPage(driver);
             }
+
+            if(HelpersMethod.IsExists("//div[@class='loader']",driver))
+            {
+                WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 80000);
+            }
+            exists=true;
             HelpersMethod.WaitElementPresent(driver,"xpath","//div[@id='cartItemsCard']",400);
             Assert.assertEquals(exists,true);
         }
@@ -668,7 +656,7 @@ public class CatalogPage
             if(HelpersMethod.IsExists("//div[@class='loader']",driver))
             {
                 WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 400);
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 10000);
             }
             exists=true;
             HelpersMethod.WaitElementPresent(driver,"xpath","//div[contains(text(),'Shopping cart')]/ancestor::div[@class='popup-content']",40);
@@ -695,7 +683,7 @@ public class CatalogPage
             if(HelpersMethod.IsExists("//div[@class='loader']",driver))
             {
                 WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 4000);
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 80000);
             }
             exists=true;
             new WebDriverWait(driver,800).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@id='cartItemsCard']"))));
@@ -707,12 +695,19 @@ public class CatalogPage
     public void validateCartItemCard()
     {
         exists=false;
+        WebElement WebEle;
         try
         {
-            new WebDriverWait(driver,4000).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("cartItemsCard"))));
+            if(HelpersMethod.IsExists("//div[@class='loader']",driver))
+            {
+                WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 20000);
+            }
+
+            //new WebDriverWait(driver,4000).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("cartItemsCard"))));
             if(HelpersMethod.IsExists("//div[@id='cartItemsCard']",driver))
             {
-                scenario.log("NAVIGATED TO CART ITEMS CARD");
+                scenario.log("CART ITEMS CARD HAS BEEN FOUND");
                 exists=true;
             }
             Assert.assertEquals(exists,true);
@@ -727,26 +722,31 @@ public class CatalogPage
         WebElement WebEle=null;
         try
         {
+            if(HelpersMethod.IsExists("//div[@class='loader']",driver))
+            {
+                WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 80000);
+            }
             new WebDriverWait(driver,1000).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("cartItemsCard"))));
             new WebDriverWait(driver,1000).until(ExpectedConditions.visibilityOfElementLocated(By.id("cartItemsCard")));
             if(HelpersMethod.IsExists("//span[contains(text(),'Items in cart')]",driver))
             {
                 WebElement Checkout=HelpersMethod.FindByElement(driver,"id","checkoutToOrder");
-                if(Checkout.isEnabled())
+                if(Checkout.isDisplayed() && Checkout.isEnabled())
                 {
                     //to handle start new order popup
                     if(HelpersMethod.IsExists("//div[contains(text(),'You already have an open order that is pending submission.')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
                     {
                         WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-widget k-window k-dialog') ]/descendant::button[contains(text(),'Start new order')]");
-                        HelpersMethod.ClickBut(driver,WebEle,2000);
+                        HelpersMethod.ClickBut(driver,WebEle,200);
                     }
 
                     HelpersMethod.ScrollElement(driver, Checkout);
-                    HelpersMethod.ActClick(driver,Checkout,1000);
+                    HelpersMethod.ActClick(driver,Checkout,2000);
                     if (HelpersMethod.IsExists("//div[@class='loader']", driver))
                     {
                         WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                        HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 10000);
+                        HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 80000);
                     }
 
                     //Check for Pending order popup and select start new order button in popup
@@ -759,7 +759,7 @@ public class CatalogPage
                     if(HelpersMethod.IsExists("//div[@class='loader']",driver))
                     {
                         WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                        HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 4000);
+                        HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 80000);
                     }
                 }
             }
@@ -780,11 +780,16 @@ public class CatalogPage
                 //select 'New order button'
                 WebElement newOrderPopup=HelpersMethod.FindByElement(driver,"xpath","//div[contains(text(),'Select order')]/ancestor::div[@class='k-widget k-window k-dialog']");
                 WebElement newOrderButton=newOrderPopup.findElement(By.xpath(".//div[contains(text(),'New order')]"));
-                HelpersMethod.ActClick(driver,newOrderButton,80);
+                HelpersMethod.ActClick(driver,newOrderButton,100);
+                if(HelpersMethod.IsExists("//div[@class='loader']",driver))
+                {
+                    WebElement WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
+                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 10000);
+                }
 
                 //Click on 'Ok' button
                 WebElement okButton=newOrderButton.findElement(By.xpath("//button[@id='okButton']"));
-                HelpersMethod.JScriptClick(driver,okButton,80);
+                HelpersMethod.JScriptClick(driver,okButton,1000);
 
                 //Check for Pending order popup and select start new order button in popup
                 if (HelpersMethod.IsExists("//div[contains(text(),' open order that is pending submission.')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]", driver))
@@ -795,7 +800,7 @@ public class CatalogPage
                 if(HelpersMethod.IsExists("//div[@class='loader']",driver))
                 {
                     WebElement WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 4000);
+                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 80000);
                 }
                 exists=true;
             }
@@ -1397,7 +1402,7 @@ public class CatalogPage
             if (HelpersMethod.IsExists("//div[@class='loader']", driver))
             {
                 WebElement   WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 8000);
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 20000);
             }
         }
         catch (Exception e){}
@@ -1539,7 +1544,7 @@ public class CatalogPage
         Actions act=new Actions(driver);
         try
         {
-            if(HelpersMethod.IsExists("//div[contains(@class,'product-catalog-image')]/descendant::div[contains(@class,'label-preview-label')]",driver))
+            if(HelpersMethod.IsExists("//div[contains(@class,'label-preview-label')]",driver))
             {
                 WebElement tireLabel = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'label-preview-label')]");
                 act.moveToElement(tireLabel).build().perform();

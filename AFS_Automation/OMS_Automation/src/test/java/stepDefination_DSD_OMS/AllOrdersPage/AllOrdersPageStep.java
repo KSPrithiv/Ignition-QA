@@ -154,11 +154,13 @@ public class AllOrdersPageStep
                         HelpersMethod.waitTillLoadingPage(driver);
                     }
                     CurrentULR= driver.getCurrentUrl();
+                    scenario.log(CurrentULR);
                 }
             }
             catch (Exception e) {}
             flag1=true;
         }
+        //scenario.log(CurrentULR);
         orderpage = new OrderEntryPage(driver, scenario);
         orderpage.HandleError_Page();
         allOrder=new AllOrderPage(driver,scenario);
@@ -488,5 +490,15 @@ public class AllOrdersPageStep
         allOrder.ClickOnCommentIcon();
         allOrder.ValidateDisplayOfCommentsDialog();
         allOrder.DisplayCommentsAdded();
+    }
+
+    @Then("Enter PO# for New order for All orders")
+    public void enterPOForNewOrderForAllOrders(DataTable tabledata) throws InterruptedException, AWTException
+    {
+        newOE=new NewOrderEntryPage(driver,scenario);
+        exists=newOE.ValidateNewOEAllOrder();
+
+        List<List<String>> PO_No = tabledata.asLists(String.class);
+        newOE.EnterPO_No(PO_No.get(0).get(0));
     }
 }

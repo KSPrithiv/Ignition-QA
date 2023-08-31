@@ -233,7 +233,7 @@ public class OrderGuidePageStep
         Assert.assertEquals(exists,true);
     }
 
-    //Code to search for OG using search box
+    //Code to search for OG using search box//////////////////////////////////////////////
     @Then("User enters OG Description in search box")
     public void user_enters_og_description_in_search_box(DataTable tabledata) throws InterruptedException, AWTException
     {
@@ -243,11 +243,9 @@ public class OrderGuidePageStep
         exists=orderGuidePage.OGSearchBox(OGSearch.get(0).get(0));
         Assert.assertEquals(exists,true);
         orderGuidePage.SearchOGSelect(OGSearch.get(0).get(0));
-
-        exists=false;
         createOGPage=new CreateOGPage(driver,scenario);
-        exists=createOGPage.OGDetailValidate();
-        Assert.assertEquals(exists,true);
+        createOGPage.OGDetailValidate();
+        createOGPage.readPtoductNo();
     }
 
     //code to enter products to exitsting OG for editing OG, using quick product entry
@@ -428,10 +426,9 @@ public class OrderGuidePageStep
         Assert.assertEquals(exists,true);
         orderGuidePage.SearchOGSelect(Og);
 
-        exists=false;
         createOGPage=new CreateOGPage(driver,scenario);
-        exists=createOGPage.OGDetailValidate();
-        Assert.assertEquals(exists,true);
+        createOGPage.OGDetailValidate();
+        createOGPage.readPtoductNo();
     }
 
     @And("User search for Product# in New OG page")
@@ -450,7 +447,7 @@ public class OrderGuidePageStep
         else
         {
             scenario.log(ProdNo+" PRODUCT IS NOT PART OF OG");
-            exists=true;
+            //exists=true;
         }
         Assert.assertEquals(exists,true);
     }

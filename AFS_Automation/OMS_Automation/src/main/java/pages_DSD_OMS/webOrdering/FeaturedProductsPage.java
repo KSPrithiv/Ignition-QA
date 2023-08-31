@@ -128,7 +128,7 @@ public class FeaturedProductsPage
                 if(HelpersMethod.IsExists("//div[@class='loader']",driver))
                 {
                     WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100);
+                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 10000);
                 }
                 //Click on Select button
                 WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-widget k-window k-dialog')]/descendant::button[text()='Select']");
@@ -141,7 +141,7 @@ public class FeaturedProductsPage
                 if(HelpersMethod.IsExists("//div[@class='loader']",driver))
                 {
                     WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 400);
+                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 10000);
                 }
             }
             Assert.assertEquals(exists,true);
@@ -162,7 +162,7 @@ public class FeaturedProductsPage
                 if(HelpersMethod.IsExists("//div[@class='loader']",driver))
                 {
                     WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100);
+                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 10000);
                 }
                 exists=true;
             }
@@ -177,10 +177,10 @@ public class FeaturedProductsPage
         WebElement WebEle;
         try
         {
-            if(HelpersMethod.IsExists("//div[contains(text(),'Ignition by Telus')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
+            if(HelpersMethod.IsExists("//div[contains(@class,'k-widget k-window k-dialog')]",driver))
             {
                 WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-widget k-window k-dialog')]/descendant::button");
-                HelpersMethod.ClickBut(driver,WebEle,20);
+                HelpersMethod.ClickBut(driver,WebEle,100);
             }
         }
         catch (Exception e){}
@@ -273,17 +273,17 @@ public class FeaturedProductsPage
             List<WebElement> deleteProds = HelpersMethod.FindByElements(driver, "id", "edit-role");
             for (WebElement deleteProd : deleteProds)
             {
-                HelpersMethod.ClickBut(driver, deleteProd, 20);
+                HelpersMethod.ClickBut(driver, deleteProd, 100);
                 if (HelpersMethod.IsExists("//div[@class='loader']", driver))
                 {
                     WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000);
+                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 10000);
                 }
-                if (HelpersMethod.IsExists("//div[contains(@class,'k-widget k-window k-dialog')]", driver))
+                if(HelpersMethod.IsExists("//div[contains(text(),'saved successfully.')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
                 {
                     WebElement modalContainer = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-widget k-window k-dialog')]");
-                    WebElement buttonOk = modalContainer.findElement(By.xpath(".//button[text()='Ok']"));
-                    HelpersMethod.ClickBut(driver, buttonOk, 60);
+                    WebElement buttonOk = modalContainer.findElement(By.xpath(".//button[text()='OK']"));
+                    HelpersMethod.ClickBut(driver, buttonOk, 100);
                 }
             }
         }
@@ -315,12 +315,12 @@ public class FeaturedProductsPage
             if(HelpersMethod.IsExists("//div[@class='loader']",driver))
             {
                 WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000);
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 10000);
             }
             if (HelpersMethod.IsExists("//div[contains(@class,'k-widget k-window k-dialog')]", driver))
             {
                 WebElement modalContainer = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-widget k-window k-dialog')]");
-                WebElement buttonOk = modalContainer.findElement(By.xpath(".//button[text()='Ok']"));
+                WebElement buttonOk = modalContainer.findElement(By.xpath(".//button[text()='OK']"));
                 HelpersMethod.ClickBut(driver, buttonOk, 60);
             }
         }

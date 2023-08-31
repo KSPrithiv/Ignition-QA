@@ -61,7 +61,6 @@ public class UserManagement_ClientSideStep
             homepage = new HomePage(driver,scenario);
             homepage.VerifyHomePage();
         }
-
     }
 
     @Then("User navigate to Client side for User and account client login")
@@ -70,8 +69,6 @@ public class UserManagement_ClientSideStep
         if(flag==false)
         {
             homepage = new HomePage(driver,scenario);
-            String title = driver.getTitle();
-            //Assert.assertEquals(title, "Ignition - Admin");
             homepage.verifyUserinfoContainer();
             homepage.navigateToClientSide();
             userManagementpage = new userManagementClientPage(driver, scenario);
@@ -118,6 +115,12 @@ public class UserManagement_ClientSideStep
     {
         userManagementpage = new userManagementClientPage(driver, scenario);
         userManagementpage.clickOnRegristration();
+    }
 
+    @Then("User clicks on Cancel buttton")
+    public void userClicksOnCancelButtton()
+    {
+        userManagementpage = new userManagementClientPage(driver, scenario);
+        userManagementpage.clickOnCancel();
     }
 }

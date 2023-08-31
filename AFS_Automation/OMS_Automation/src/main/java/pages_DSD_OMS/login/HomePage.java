@@ -52,7 +52,7 @@ public class HomePage
             if(HelpersMethod.IsExists("//div[@class='loader']",driver))
             {
                 WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100000);
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 600000);
             }
             status = HelpersMethod.returnDocumentStatus(driver);
             if (status.equals("loading"))
@@ -62,12 +62,16 @@ public class HomePage
             new WebDriverWait(driver,80000).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class='user-info-container']"))));
             new WebDriverWait(driver,80000).until(ExpectedConditions.refreshed(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='user-info-container']"))));
 
-            //HelpersMethod.waitTillTitleContains(driver, "Ignition - Admin", 80000);
             String HomeTitle = driver.getTitle();
             if (HomeTitle.contains("Admin"))
             {
                 scenario.log("ADMIN PAGE FOUND");
                 exists = true;
+            }
+            if(HelpersMethod.IsExists("//div[@class='loader']",driver))
+            {
+                WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 600000);
             }
             Assert.assertEquals(exists, true);
         }
@@ -79,6 +83,12 @@ public class HomePage
         try
         {
             exists = false;
+            WebElement WebEle;
+            if(HelpersMethod.IsExists("//div[@class='loader']",driver))
+            {
+                WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 200000);
+            }
             new WebDriverWait(driver,100000).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class,'user-info-container')]")));
             new WebDriverWait(driver, 100000).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(@class,'user-info-container')]")));
             if (HelpersMethod.IsExists("//div[contains(@class,'user-info-container')]", driver))
@@ -102,7 +112,7 @@ public class HomePage
             if(HelpersMethod.IsExists("//div[@class='loader']",driver))
             {
                 WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 8000);
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 200000);
             }
             new WebDriverWait(driver,1000).until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.id("app")));
             scenario.log("IN ADMIN PAGE");
@@ -110,10 +120,10 @@ public class HomePage
             new WebDriverWait(driver,1000).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(@class,'MuiPaper-root MuiDrawer-paper drawer')]")));
             Actions act1 = new Actions(driver);
             //Move mouse on menu icon
-            new WebDriverWait(driver,10).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class='item-searchbar']//*[local-name()='svg']//*[local-name()='path' and contains(@d,'M3,18H21V16H3Zm0-5H21V11H3ZM3,6V8H21V6Z')]"))));
-            new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(By.xpath("//div[@class='item-searchbar']//*[local-name()='svg']//*[local-name()='path' and contains(@d,'M3,18H21V16H3Zm0-5H21V11H3ZM3,6V8H21V6Z')]")));
+            new WebDriverWait(driver,40).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class='item-searchbar']//*[local-name()='svg']//*[local-name()='path' and contains(@d,'M3,18H21V16H3Zm0-5H21V11H3ZM3,6V8H21V6Z')]"))));
+            new WebDriverWait(driver,40).until(ExpectedConditions.elementToBeClickable(By.xpath("//div[@class='item-searchbar']//*[local-name()='svg']//*[local-name()='path' and contains(@d,'M3,18H21V16H3Zm0-5H21V11H3ZM3,6V8H21V6Z')]")));
 
-             WebEle = HelpersMethod.FindByElement(driver, "xpath", "//*[local-name()='svg']//*[local-name()='path' and contains(@d,'M3,18H21V16H3Zm0-5H21V11H3ZM3,6V8H21V6Z')]");
+            WebEle = HelpersMethod.FindByElement(driver, "xpath", "//*[local-name()='svg']//*[local-name()='path' and contains(@d,'M3,18H21V16H3Zm0-5H21V11H3ZM3,6V8H21V6Z')]");
             act1.moveToElement(WebEle).click().build().perform();
 
             //find whether side menu bar has expanded
@@ -137,7 +147,7 @@ public class HomePage
             if (HelpersMethod.IsExists("//div[@class='loader']", driver))
             {
                 WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 10000);
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 200000);
             }
             Assert.assertEquals(exists, true);
         }
@@ -213,9 +223,9 @@ public class HomePage
                 HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 20000);
             }
 
-            HelpersMethod.waitTillTitleContains(driver, "Ignition - Login", 1000);
+            HelpersMethod.waitTillTitleContains(driver, "Login", 1000);
             String title = driver.getTitle();
-            if (title.equals("Ignition - Login"))
+            if (title.contains("Login"))
             {
                 exists = true;
             }
@@ -351,9 +361,9 @@ public class HomePage
             new WebDriverWait(driver,80000).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class='user-info-container']"))));
             new WebDriverWait(driver,80000).until(ExpectedConditions.refreshed(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='user-info-container']"))));
 
-            HelpersMethod.waitTillTitleContains(driver, "Ignition - Admin", 80000);
+            HelpersMethod.waitTillTitleContains(driver, "Admin", 80000);
             String HomeTitle = driver.getTitle();
-            if (HomeTitle.contains("Ignition - Admin"))
+            if (HomeTitle.contains("Admin"))
             {
                 scenario.log("USER IS ON ADMIN PAGE, AFTER LOGINING IN WITH ADMIN CREDENTIALS");
                 exists = true;

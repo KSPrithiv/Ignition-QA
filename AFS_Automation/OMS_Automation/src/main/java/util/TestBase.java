@@ -86,8 +86,6 @@ public class TestBase {
 
             }
             break;
-
-
             case "firefox": {
                 WebDriverManager.firefoxdriver().setup();
                 FirefoxOptions firefoxOptions = new FirefoxOptions();
@@ -129,21 +127,21 @@ public class TestBase {
         }
 
         getDriver().manage().window().maximize();
-        //karthik
         getDriver().manage().deleteAllCookies();
-        //getDriver().manage().timeouts().pageLoadTimeout(TestUtil.PAGE_LOAD_TIMEOUT, TimeUnit.SECONDS);
+        //karthik
+        getDriver().manage().timeouts().pageLoadTimeout(TestUtil.PAGE_LOAD_TIMEOUT, TimeUnit.SECONDS);
         //getDriver().manage().timeouts().implicitlyWait(TestUtil.IMPLICIT_WAIT, TimeUnit.SECONDS);
         getDriver().get(testEnvironment.get_url());
-        getDriver().navigate().refresh();
-
+       // getDriver().navigate().refresh();
     }
 
     public static void unload() throws IOException {
         driver.remove();
     }
 
-    public static void CloseBrowser() throws IOException {
-        getDriver().quit();
+    public static void CloseBrowser() throws IOException
+    {
+        getDriver().close();
         unload();
     }
 

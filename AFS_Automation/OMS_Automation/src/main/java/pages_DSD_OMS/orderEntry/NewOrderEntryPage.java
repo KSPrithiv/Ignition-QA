@@ -169,6 +169,27 @@ public class NewOrderEntryPage
         return exists;
     }
 
+    public boolean ValidateNewOEAllOrder()
+    {
+        exists=false;
+        WebElement WebEle=null;
+        if(HelpersMethod.IsExists("//div[@class='loader']",driver))
+        {
+            WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
+            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 80000);
+        }
+        try
+        {
+            if(HelpersMethod.IsExists("//div[contains(@class,'order-entry-page')]",driver))
+            {
+                exists=true;
+            }
+            Assert.assertEquals(exists,true);
+        }
+        catch (Exception e){}
+        return exists;
+    }
+
     public boolean ValidateNewOE1()
     {
         WebElement WebEle=null;
@@ -591,7 +612,7 @@ public class NewOrderEntryPage
         exists=false;
         try
         {
-            new WebDriverWait(driver,1000).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class,'contentRow row')]")));
+            //new WebDriverWait(driver,1000).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class,'contentRow row')]")));
             if(Next_But.isDisplayed() && Next_But.isEnabled())
             {
                 HelpersMethod.ScrollUpScrollBar(driver);
