@@ -130,7 +130,7 @@ public class CheckOutOrderPage
               if(HelpersMethod.IsExists("//div[@class='loader']",driver))
               {
                   WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                  HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000);
+                  HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 10000);
               }
               exists=true;
           }
@@ -235,7 +235,7 @@ public class CheckOutOrderPage
                         if(HelpersMethod.IsExists("//div[@id='addressCard']/descendant::span[contains(@class,'k-icon k-i-arrow-chevron-down')]",driver))
                         {
                             WebEle=HelpersMethod.FindByElement(driver, "xpath", "//div[@id='addressCard']/descendant::span[contains(@class,'k-icon k-i-arrow-chevron-down')]");
-                            HelpersMethod.ClickBut(driver,WebEle,600);
+                            HelpersMethod.ClickBut(driver,WebEle,1000);
                         }
                         WebEle=HelpersMethod.FindByElement(driver, "xpath", "//div[@class='address-container']/descendant::tbody/tr[1]/descendant::input");
                         HelpersMethod.ClickBut(driver,WebEle,1000);

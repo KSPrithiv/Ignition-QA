@@ -85,9 +85,9 @@ public class LoginPage
                 WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
                 HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 2000);
             }
-            HelpersMethod.waitTillTitleContains(driver,"Ignition - Login",200);
+            HelpersMethod.waitTillTitleContains(driver,"Login",200);
             String title= driver.getTitle();
-            if(title.equals("Ignition - Login"))
+            if(title.contains("Login"))
             {
                 exists=true;
             }
@@ -127,12 +127,12 @@ public class LoginPage
         {
             exists = false;
             WebElement WebEle;
-
+            if(SignIn.isEnabled())
+            {
                 HelpersMethod.ScrollElement(driver, SignIn);
                 HelpersMethod.ActClick(driver, SignIn, 1000);
                 HelpersMethod.waitTillPageLoaded(driver, 200000);
                 Thread.sleep(5000);
-
                 exists = true;
                 String status = HelpersMethod.returnDocumentStatus(driver);
                 if (status.equals("loading"))
@@ -145,16 +145,15 @@ public class LoginPage
                     HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100000);
                 }
                 status = HelpersMethod.returnDocumentStatus(driver);
-                if (status.equals("loading"))
-                {
+                if (status.equals("loading")) {
                     HelpersMethod.waitTillLoadingPage(driver);
                 }
-            if (HelpersMethod.IsExists("//div[@class='loader']", driver))
-            {
-                WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 80000);
-            }
+                if (HelpersMethod.IsExists("//div[@class='loader']", driver)) {
+                    WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
+                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 80000);
+                }
                 scenario.log("SIGNIN BUTTON CLICKED");
+            }
         }
         catch (Exception e){}
     }

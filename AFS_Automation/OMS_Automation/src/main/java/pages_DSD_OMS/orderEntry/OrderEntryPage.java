@@ -131,6 +131,7 @@ public class OrderEntryPage
 
     public void NavigateToOrderEntry()
     {
+        exists=false;
         WebElement WebEle = null;
         String status = null;
         status = HelpersMethod.returnDocumentStatus(driver);
@@ -144,12 +145,18 @@ public class OrderEntryPage
             WebElement Search_Input = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='drawer-menu-search-container']/descendant::input");
             act.moveToElement(Search_Input).click().sendKeys("Order Entry").build().perform();
             WebElement OEMenu = HelpersMethod.FindByElement(driver, "xpath", "//ul[contains(@class,'MuiList-root ')]/descendant::span[contains(text(),'Order Entry')]");
-            HelpersMethod.ActClick(driver, OEMenu, 100);
+            HelpersMethod.ActClick(driver, OEMenu, 1000);
             currentURL = driver.getCurrentUrl();
+            scenario.log(currentURL);
+            status = HelpersMethod.returnDocumentStatus(driver);
+            if (status.equals("loading"))
+            {
+                HelpersMethod.waitTillLoadingPage(driver);
+            }
             if (HelpersMethod.IsExists("//div[@class='loader']", driver))
             {
                 WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 80000);
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100000);
             }
             status = HelpersMethod.returnDocumentStatus(driver);
             if (status.equals("loading"))
@@ -178,7 +185,7 @@ public class OrderEntryPage
                 if (HelpersMethod.IsExists("//div[@class='loader']", driver))
                 {
                     WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000);
+                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 10000);
                 }
                 String status = HelpersMethod.returnDocumentStatus(driver);
                 if (status.equals("loading"))
@@ -232,7 +239,7 @@ public class OrderEntryPage
             if (HelpersMethod.IsExists("//div[@class='loader']", driver))
             {
                 WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 60000);
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100000);
             }
             WebEle = HelpersMethod.FindByElement(driver, "id", "customerAccountNumberComboBox");
             Acc_No = HelpersMethod.JSGetValueEle(driver, WebEle, 2000);
@@ -272,7 +279,7 @@ public class OrderEntryPage
             if (HelpersMethod.IsExists("//div[@class='loader']", driver))
             {
                 WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000);
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100000);
             }
             Assert.assertEquals(exists, true);
         } catch (Exception e) {
@@ -282,7 +289,13 @@ public class OrderEntryPage
     public void PopUps_After_AccountChange()
     {
         WebElement WebEle = null;
-        try {
+        try
+        {
+            if (HelpersMethod.IsExists("//div[@class='loader']", driver))
+            {
+                WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 80000);
+            }
             for (int i = 0; i <= 2; i++)
             {
                 //Check for 'Upcoming blackout dates'
@@ -292,7 +305,7 @@ public class OrderEntryPage
                     if (HelpersMethod.IsExists("//div[@class='loader']", driver))
                     {
                         WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                        HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000);
+                        HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 10000);
                     }
                 }
 
@@ -305,7 +318,7 @@ public class OrderEntryPage
                     if (HelpersMethod.IsExists("//div[@class='loader']", driver))
                     {
                         WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                        HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000);
+                        HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 10000);
                     }
                 }
                 //Checking for the open order popup
@@ -316,7 +329,7 @@ public class OrderEntryPage
                     if (HelpersMethod.IsExists("//div[@class='loader']", driver))
                     {
                         WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                        HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000);
+                        HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 10000);
                     }
                 }
             }

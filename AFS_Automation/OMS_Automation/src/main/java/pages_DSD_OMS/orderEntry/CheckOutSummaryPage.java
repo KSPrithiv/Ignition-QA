@@ -107,6 +107,17 @@ public class CheckOutSummaryPage
             {
                 HelpersMethod.waitTillLoadingPage(driver);
             }
+            if(HelpersMethod.IsExists("//div[contains(@class,'question-dialog-body')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
+            {
+                WebElement dialogBox=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-widget k-window k-dialog')]");
+                WebElement continueBut=dialogBox.findElement(By.xpath(".//button[contains(text(),'Continue')]"));
+                HelpersMethod.ClickBut(driver,continueBut,2000);
+                if(HelpersMethod.IsExists("//div[@class='loader']",driver))
+                {
+                    WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
+                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 80000);
+                }
+            }
             scenario.log("SUBMIT BUTTON IN ORDER SUMMARY PAGE HAS BEEN CLICKED");
             Assert.assertEquals(exists,true);
     }

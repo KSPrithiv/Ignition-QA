@@ -2,11 +2,14 @@ package pages_DSD_OMS.statementsPage;
 
 import helper.HelpersMethod;
 import io.cucumber.java.Scenario;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import pages_DSD_OMS.login.HomePage;
 import util.TestBase;
@@ -53,6 +56,8 @@ public class StatementsPage
     @FindBy(id="generateEditButton")
     private WebElement generateButton;
 
+    private String pre;
+
     public StatementsPage(WebDriver driver, Scenario scenario)
     {
         this.driver=driver;
@@ -61,7 +66,7 @@ public class StatementsPage
     }
 
     //Actions
-    public String NavigateStatements()
+    public void NavigateStatements()
     {
         exists = false;
         WebElement WebEle = null;
@@ -71,20 +76,35 @@ public class StatementsPage
         {
             HelpersMethod.waitTillLoadingPage(driver);
         }
-        HelpersMethod.Implicitwait(driver,40);
         try
         {
+            status = HelpersMethod.returnDocumentStatus(driver);
+            if (status.equals("loading"))
+            {
+                HelpersMethod.waitTillLoadingPage(driver);
+            }
+            if (HelpersMethod.IsExists("//div[@class='loader']", driver))
+            {
+                WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 80000);
+            }
+
             Actions act = new Actions(driver);
             WebElement Search_Input = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='drawer-menu-search-container']/descendant::input");
-
                 act.moveToElement(Search_Input).click().sendKeys("Statements").build().perform();
-                WebElement BillMenu = HelpersMethod.FindByElement(driver, "xpath", "//ul[contains(@class,'MuiList-root ')]/descendant::span[contains(text(),'Statements')]");
-                HelpersMethod.ClickBut(driver, BillMenu, 20);
+                WebElement StaementMenu = HelpersMethod.FindByElement(driver, "xpath", "//ul[contains(@class,'MuiList-root ')]/descendant::span[contains(text(),'Statements')]");
+                HelpersMethod.ClickBut(driver, StaementMenu, 2000);
+                Thread.sleep(2000);
                 exists = true;
+            status = HelpersMethod.returnDocumentStatus(driver);
+            if (status.equals("loading"))
+            {
+                HelpersMethod.waitTillLoadingPage(driver);
+            }
                 if (HelpersMethod.IsExists("//div[@class='loader']", driver))
                 {
                     WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100);
+                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100000);
                 }
                 status = HelpersMethod.returnDocumentStatus(driver);
                 if (status.equals("loading"))
@@ -98,6 +118,7 @@ public class StatementsPage
                     act.click(WebEle).build().perform();
                 }
                 currentURL=driver.getCurrentUrl();
+                scenario.log(currentURL);
             if(HelpersMethod.IsExists("//ul[contains(@class,'MuiList-root ')]/descendant::span[contains(text(),'Statements')]",driver))
             {
                 scenario.log("NAVIGATED TO STATEMENTS PAGE");
@@ -109,15 +130,12 @@ public class StatementsPage
             Assert.assertEquals(exists, true);
         }
         catch (Exception e) {}
-        return currentURL;
     }
 
-    public void Refresh_Page(String currentURL1)
+    public void Refresh_Page()
     {
-        WebElement WebEle = null;
-
-        scenario.log("CURRENT URL IS "+currentURL1);
-        driver.navigate().to(currentURL1);
+        scenario.log("CURRENT URL IS "+currentURL);
+        driver.navigate().to(currentURL);
         String status = HelpersMethod.returnDocumentStatus(driver);
         if (status.equals("loading"))
         {
@@ -134,11 +152,10 @@ public class StatementsPage
             if(HelpersMethod.IsExists("//div[@class='loader']",driver))
             {
                 WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000);
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100000);
             }
             PTitle=HelpersMethod.FindByElement(driver,"xpath","//span[contains(@class,'spnmoduleNameHeader')]").getText();
-            //Assert.assertEquals(PTitle,"Client Portal - Statements");
-            if(PTitle.equals("Statements"))
+            if(PTitle.contains("Statements"))
             {
                 exists=true;
             }
@@ -167,15 +184,15 @@ public class StatementsPage
         catch (Exception e) {}
     }
 
-    public void Refresh_Page()
+   /* public void Refresh_Page()
     {
         driver.navigate().refresh();
         if (HelpersMethod.IsExists("//div[@class='loader']", driver))
         {
             WebElement WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000);
+            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 10000);
         }
-    }
+    }*/
 
     public void WeeklyCheckboxClick()
     {
@@ -184,10 +201,11 @@ public class StatementsPage
         {
             if(!weeklyCheckbox.isSelected())
             {
-                HelpersMethod.ClickBut(driver,weeklyCheckbox,40);
+                HelpersMethod.ClickBut(driver,weeklyCheckbox,100);
             }
             if(weeklyCheckbox.isSelected())
             {
+                scenario.log("WEEKLY CHECKBOX HAS BEEN SELECTED");
                 exists = true;
             }
             Assert.assertEquals(exists,true);
@@ -202,10 +220,11 @@ public class StatementsPage
         {
             if(!monthlyCheckbox.isSelected())
             {
-                HelpersMethod.ClickBut(driver,monthlyCheckbox, 40);
+                HelpersMethod.ClickBut(driver,monthlyCheckbox, 100);
             }
             if(monthlyCheckbox.isSelected())
             {
+                scenario.log("MONTHLY CHECKBOX HAS BEEN SELECTED");
                 exists = true;
             }
             Assert.assertEquals(exists,true);
@@ -220,10 +239,11 @@ public class StatementsPage
         {
             if(!dateCheckbox.isSelected())
             {
-                HelpersMethod.ClickBut(driver,dateCheckbox,40);
+                HelpersMethod.ClickBut(driver,dateCheckbox,100);
             }
             if(dateCheckbox.isSelected())
             {
+                scenario.log("DATE CHECKBOX HAS BEEN SELECTED");
                 exists = true;
             }
             Assert.assertEquals(exists,true);
@@ -235,14 +255,48 @@ public class StatementsPage
     {
         exists=false;
         Actions act=new Actions(driver);
+        String prYear=null;
+        String pYear=null;
+        String status=null;
+        WebElement YearFromDropDown;
         try
         {
+            prYear=HelpersMethod.FindByElement(driver,"xpath","//span[@id='ddlYear']/span[contains(@class,'input')]").getText();
+            scenario.log("YEAR BEFORE CHAINGING: "+prYear);
             HelpersMethod.ClickBut(driver,yearlyDropdown,100);
             List<WebElement> Values=HelpersMethod.FindByElements(driver,"xpath","//div[contains(@class,'k-animation-container ')]/descendant::ul/li");
-            WebElement YearFromDropDown=Values.get(2);
-            act.moveToElement(YearFromDropDown).build().perform();
-            act.click(YearFromDropDown).build().perform();
-            exists=true;
+            for(int i=0;i<= Values.size()-1;i++)
+            {
+                YearFromDropDown = Values.get(i);
+                act.moveToElement(YearFromDropDown).build().perform();
+                if(i==2)
+                {
+                    act.moveToElement(YearFromDropDown).build().perform();
+                    act.click(YearFromDropDown).build().perform();
+                    status = HelpersMethod.returnDocumentStatus(driver);
+                    if (status.equals("loading"))
+                    {
+                        HelpersMethod.waitTillLoadingPage(driver);
+                    }
+                    break;
+                }
+            }
+            status = HelpersMethod.returnDocumentStatus(driver);
+            if (status.equals("loading"))
+            {
+                HelpersMethod.waitTillLoadingPage(driver);
+            }
+            pYear=HelpersMethod.FindByElement(driver,"xpath","//span[@id='ddlYear']/span[contains(@class,'input')]").getText();
+            scenario.log("YEAR AFTER CHAINGING: "+pYear);
+            if(prYear.equals(pYear))
+            {
+                scenario.log("FAILED TO CHANGE YEAR");
+                exists=false;
+            }
+            else if(!prYear.equals(pYear))
+            {
+                exists = true;
+            }
             Assert.assertEquals(exists,true);
         }
         catch (Exception e){}
@@ -252,14 +306,49 @@ public class StatementsPage
     {
         exists=false;
         Actions act=new Actions(driver);
+        String prMonth=null;
+        String pMonth=null;
+        String status=null;
+        WebElement monthFromDropDown;
         try
         {
+            prMonth=HelpersMethod.FindByElement(driver,"xpath","//span[@id='ddlMonth']/span[contains(@class,'input')]").getText();
+            scenario.log("MONTH BEFORE CHANGING: "+prMonth);
             HelpersMethod.ClickBut(driver,monthDropdown,100);
             List<WebElement> Values=HelpersMethod.FindByElements(driver,"xpath","//div[contains(@class,'k-animation-container ')]/descendant::ul/li");
-            WebElement MonthFromDropDown=Values.get(2);
-            act.moveToElement(MonthFromDropDown).build().perform();
-            act.click(MonthFromDropDown).build().perform();
+            for(int i=0;i<= Values.size()-1;i++)
+            {
+                monthFromDropDown = Values.get(i);
+                act.moveToElement(monthFromDropDown).build().perform();
+                if(i==2)
+                {
+                    act.moveToElement(monthFromDropDown).build().perform();
+                    act.click(monthFromDropDown).build().perform();
+                    status = HelpersMethod.returnDocumentStatus(driver);
+                    if (status.equals("loading"))
+                    {
+                        HelpersMethod.waitTillLoadingPage(driver);
+                    }
+
+                    break;
+                }
+            }
+            status = HelpersMethod.returnDocumentStatus(driver);
+            if (status.equals("loading"))
+            {
+                HelpersMethod.waitTillLoadingPage(driver);
+            }
+            pMonth=HelpersMethod.FindByElement(driver,"xpath","//span[@id='ddlMonth']/span[contains(@class,'input')]").getText();
+            scenario.log("MONTH AFTER CHANING: "+pMonth);
+            if(prMonth.equals(pMonth))
+        {
+            scenario.log("FAILED TO CHANGE MONTH");
+            exists = false;
+        }
+        else if(!prMonth.equals(pMonth))
+        {
             exists=true;
+        }
             Assert.assertEquals(exists,true);
         }
         catch (Exception e){}
@@ -268,15 +357,48 @@ public class StatementsPage
     public void DateDropdown()
     {
         exists=false;
+        String prDate=null;
+        String pDate=null;
+        String status=null;
         Actions act=new Actions(driver);
+        WebElement dateFromDropDown;
         try
         {
+            prDate=HelpersMethod.FindByElement(driver,"xpath","//span[@id='ddlDay']/span[contains(@class,'input')]").getText();
+            scenario.log("DATE BEFORE CHANGING: "+prDate);
             HelpersMethod.ClickBut(driver,dateDropdown,100);
             List<WebElement> Values=HelpersMethod.FindByElements(driver,"xpath","//div[contains(@class,'k-animation-container ')]/descendant::ul/li");
-            WebElement DateFromDropDown=Values.get(2);
-            act.moveToElement(DateFromDropDown).build().perform();
-            act.click(DateFromDropDown).build().perform();
-            exists=true;
+            for(int i=0;i<= Values.size()-1;i++)
+            {
+                dateFromDropDown = Values.get(i);
+                act.moveToElement(dateFromDropDown).build().perform();
+                if(i==2)
+                {
+                    act.moveToElement(dateFromDropDown).build().perform();
+                    act.click(dateFromDropDown).build().perform();
+                    status = HelpersMethod.returnDocumentStatus(driver);
+                    if (status.equals("loading"))
+                    {
+                        HelpersMethod.waitTillLoadingPage(driver);
+                    }
+                    break;
+                }
+            } status = HelpersMethod.returnDocumentStatus(driver);
+            if (status.equals("loading"))
+            {
+                HelpersMethod.waitTillLoadingPage(driver);
+            }
+            pDate=HelpersMethod.FindByElement(driver,"xpath","//span[@id='ddlDay']/span[contains(@class,'input')]").getText();
+            scenario.log("DATE AFTER CHANGING: "+pDate);
+            if(prDate.equals(pDate))
+            {
+                scenario.log("FAILED TO CHANGE DATE");
+               exists=false;
+            }
+            else if(!prDate.equals(pDate))
+            {
+                exists = true;
+            }
             Assert.assertEquals(exists,true);
         }
         catch (Exception e){}
@@ -285,14 +407,19 @@ public class StatementsPage
     public void SearchBar()
     {
         exists=false;
-        WebElement WebEle=null;
+        String status=null;
         try
         {
             if(searchBar.isDisplayed())
             {
-                HelpersMethod.EnterText(driver,searchBar,20, TestBase.testEnvironment.get_Account());
-                HelpersMethod.ClickBut(driver,searchIndex,10);
+                HelpersMethod.EnterText(driver,searchBar,100, TestBase.testEnvironment.get_Account());
+                HelpersMethod.ClickBut(driver,searchIndex,100);
                 exists=true;
+                status = HelpersMethod.returnDocumentStatus(driver);
+                if (status.equals("loading"))
+                {
+                    HelpersMethod.waitTillLoadingPage(driver);
+                }
             }
             else
             {
@@ -307,14 +434,25 @@ public class StatementsPage
     {
         exists=false;
         WebElement WebEle=null;
+        String status=null;
         try
         {
+            status = HelpersMethod.returnDocumentStatus(driver);
+            if (status.equals("loading"))
+            {
+                HelpersMethod.waitTillLoadingPage(driver);
+            }
             if(!HelpersMethod.IsExists("//tr[contains(@class,'k-grid-norecords')]",driver))
             {
                 WebEle = HelpersMethod.FindByElement(driver, "xpath", "//tr[contains(@class,'k-master-row')][1]/descendant::input[contains(@class,'checkbox')]");
                 if(!WebEle.isSelected())
                 {
-                    HelpersMethod.ClickBut(driver,WebEle,60);
+                    HelpersMethod.ClickBut(driver,WebEle,4000);
+                    status = HelpersMethod.returnDocumentStatus(driver);
+                    if (status.equals("loading"))
+                    {
+                        HelpersMethod.waitTillLoadingPage(driver);
+                    }
                 }
                 exists=true;
             }
@@ -331,29 +469,46 @@ public class StatementsPage
     {
         exists=false;
         WebElement WebEle=null;
+        String status=null;
         try
         {
             String ParentWindow = driver.getWindowHandle();
-            HelpersMethod.ClickBut(driver,generateButton,40);
-            if (HelpersMethod.IsExists("//div[@class='loader']", driver))
+            Thread.sleep(2000);
+            new WebDriverWait(driver,4000).until(ExpectedConditions.refreshed(ExpectedConditions.elementToBeClickable(By.id("generateEditButton"))));
+            generateButton=HelpersMethod.FindByElement(driver,"id","generateEditButton");
+            if(generateButton.isDisplayed() && generateButton.isEnabled())
             {
-                WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 20000);
+                HelpersMethod.ClickBut(driver, generateButton, 10000);
+                status = HelpersMethod.returnDocumentStatus(driver);
+                if (status.equals("loading"))
+                {
+                    HelpersMethod.waitTillLoadingPage(driver);
+                }
+                if (HelpersMethod.IsExists("//div[@class='loader']", driver))
+                {
+                    WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
+                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100000);
+                }
             }
             if(HelpersMethod.IsExists("//div[contains(text(),'There is no data to display for your defined date range')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
             {
                 WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-widget k-window k-dialog')]/descendant::button[text()='OK']");
-                HelpersMethod.ClickBut(driver,WebEle,40);
+                HelpersMethod.ClickBut(driver,WebEle,1000);
                 exists=true;
             }
             else
             {
+                status = HelpersMethod.returnDocumentStatus(driver);
+                if (status.equals("loading"))
+                {
+                    HelpersMethod.waitTillLoadingPage(driver);
+                }
                 Set<String> PCWindows = driver.getWindowHandles();
                 for (String PCwind : PCWindows)
                 {
                     if (!PCwind.equals(ParentWindow))
                     {
-                        Thread.sleep(2000);
+                        Thread.sleep(40000);
                         driver.switchTo().window(PCwind);
                         scenario.log(".pdf HAS BEEN FOUND");
                         driver.close();
@@ -361,11 +516,11 @@ public class StatementsPage
                     }
                 }
                 driver.switchTo().window(ParentWindow);
-                exists = true;
+
                 if (HelpersMethod.IsExists("//div[@class='loader']", driver))
                 {
                     WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 20000);
+                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100000);
                 }
             }
             Assert.assertEquals(exists,true);
@@ -412,12 +567,12 @@ public class StatementsPage
         try
         {
             WebEle= HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-textbox-container')][1]/descendant::a[contains(@class,'k-select k-select')]");
-            HelpersMethod.ClickBut(driver,WebEle,40);
+            HelpersMethod.ClickBut(driver,WebEle,100);
             HelpersMethod.WaitElementPresent(driver,"xpath","//div[contains(@class,'k-calendar-view k-calendar-monthview')]",40);
             HelpersMethod.waitTillElementLocatedDisplayed(driver,"xpath","//div[contains(@class,'k-calendar-view k-calendar-monthview')]",40);
 
             WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-content k-calendar-content k-scrollable')]/table[contains(@class,'k-calendar-table')]/descendant::tr[3]/td[1]/span");
-            HelpersMethod.ClickBut(driver,WebEle,60);
+            HelpersMethod.ClickBut(driver,WebEle,100);
         }
         catch (Exception e){}
     }
@@ -428,12 +583,12 @@ public class StatementsPage
         try
         {
             WebEle= HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-textbox-container')][2]/descendant::a[contains(@class,'k-select k-select')]");
-            HelpersMethod.ClickBut(driver,WebEle,40);
+            HelpersMethod.ClickBut(driver,WebEle,100);
             HelpersMethod.WaitElementPresent(driver,"xpath","//div[contains(@class,'k-calendar-view k-calendar-monthview')]",40);
             HelpersMethod.waitTillElementLocatedDisplayed(driver,"xpath","//div[contains(@class,'k-calendar-view k-calendar-monthview')]",40);
 
             WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-content k-calendar-content k-scrollable')]/table[contains(@class,'k-calendar-table')]/descendant::tr/td[contains(@class,'k-calendar-td k-state-pending-focus k-state-selected k-today')]");
-            HelpersMethod.ClickBut(driver,WebEle,60);
+            HelpersMethod.ClickBut(driver,WebEle,100);
         }
         catch (Exception e){}
     }

@@ -81,15 +81,13 @@ public class OrderControlPageSteps
         if(flag==false)
         {
             homepage = new HomePage(driver,scenario);
-            String title = driver.getTitle();
-            //Assert.assertEquals(title, "Ignition - Admin");
             homepage.verifyUserinfoContainer();
             homepage.navigateToClientSide();
         }
     }
 
     @Then("User should select Order Entry tab for OCL")
-    public void user_should_select_order_entry_tab() throws InterruptedException, AWTException
+    public void user_should_select_order_entry_tab_for_OCL() throws InterruptedException, AWTException
     {
         if(flag==false)
         {

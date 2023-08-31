@@ -94,7 +94,7 @@ public class OrderControlListPage
         try
         {
             Title = HelpersMethod.gettingTitle(driver);
-            Assert.assertEquals(Title, "Ignition - Order Control List");
+            Assert.assertEquals(Title, "Order Control List");
             exists=true;
             if (HelpersMethod.IsExists("//div[@class='loader']", driver))
             {
@@ -127,34 +127,13 @@ public class OrderControlListPage
             }
             else
             {
-              /*  WebElement humBurger=HelpersMethod.FindByElement(driver,"xpath","//*[local-name()='svg']//*[local-name()='path' and contains(@d,'M3,18H21V16H3Zm0-5H21V11H3ZM3,6V8H21V6Z')]");
-                act1.moveToElement(humBurger).click().build().perform();
-
-                //find whether side menu bar has expanded
-                HelpersMethod.WaitElementPresent(driver, "xpath", "//div[contains(@class,'MuiPaper-root MuiDrawer-paper drawer-opened MuiDrawer-paperAnchorLeft MuiDrawer-paperAnchorDockedLeft MuiPaper-elevation0')]", 800);
-                WebElement side_menu = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'MuiPaper-root MuiDrawer-paper drawer-opened MuiDrawer-paperAnchorLeft MuiDrawer-paperAnchorDockedLeft MuiPaper-elevation0')]");
-                act1.moveToElement(side_menu).build().perform();
-
-                //Enter F5 in search bar
-                WebElement Search_Input = HelpersMethod.FindByElement(driver, "id", "navigationMenuSearchBar");
-                act1.moveToElement(Search_Input).click().sendKeys("Order Entry").build().perform();
-                WebElement OEMenu = HelpersMethod.FindByElement(driver, "xpath", "//ul[contains(@class,'MuiList-root ')]/descendant::span[contains(text(),'Order Entry')]");
-                HelpersMethod.ActClick(driver, OEMenu, 100);
-                if(HelpersMethod.IsExists("//div[contains(text(),'Your order has not been submitted')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
-                {
-                    WebElement pendingPopup=HelpersMethod.FindByElement(driver,"xpath","//div[contains(text(),'Your order has not been submitted')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]");
-                    WebElement dismissAll= pendingPopup.findElement(By.id("QuestionModalButton1"));
-                    HelpersMethod.ActClick(driver,dismissAll,400);
-                }
-                humBurger=HelpersMethod.FindByElement(driver,"xpath","//*[local-name()='svg']//*[local-name()='path' and contains(@d,'M3,18H21V16H3Zm0-5H21V11H3ZM3,6V8H21V6Z')]");
-                act1.moveToElement(humBurger).click().build().perform();*/
                 //navigate to OCL
                 driver.navigate().to(currentURL);
             }
             if (HelpersMethod.IsExists("//div[@class='loader']", driver))
             {
                 WebElement   WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 8000);
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 10000);
             }
         }
         catch (Exception e){}

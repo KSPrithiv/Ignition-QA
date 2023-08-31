@@ -83,7 +83,7 @@ Feature: All orders
     Then User selects customer account# and delivery date from popup
     Then User should make selection between Pending order or Start New order
     Then User should select Note from popup and Order guide from popup
-    Then Enter PO# for New order
+    Then Enter PO# for New order for All orders
       |PO123|
     Then Enter Pro# in Quick Product Entry area
     And Check for Case and Unit input box enabled or not based on that enter value
@@ -106,7 +106,7 @@ Feature: All orders
     Then User selects customer account# and delivery date from popup to edit all order
     Then User should make selection between Pending order or Start New order
     Then User should select Note from popup and Order guide from popup
-    Then Enter PO# for New order
+    Then Enter PO# for New order for All orders
       |PO123|
     Then Enter Pro# in Quick Product Entry area
     And Check for Case and Unit input box enabled or not based on that enter value
@@ -167,7 +167,7 @@ Feature: All orders
     Then User should make selection between Pending order or Start New order
     Then User should select Note from popup and Order guide from popup
     And User validates Pickup order check box is selected
-    Then Enter PO# for New order
+    Then Enter PO# for New order for All orders
       |PO123|
     Then Enter Pro# in Quick Product Entry area
     And Check for Case and Unit input box enabled or not based on that enter value
@@ -187,7 +187,7 @@ Feature: All orders
     And User Clicks on Add filter button and enter values for search options
     Then User select the order and click on copy button and select delivery date
     Then User should select Note from popup and Order guide from popup
-    Then Enter PO# for New order
+    Then Enter PO# for New order for All orders
       |PO123|
     Then Click on Next button and select option Continue without payment option
     And Click on Submit Order button and read Order_no created for All order

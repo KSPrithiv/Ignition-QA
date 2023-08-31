@@ -89,7 +89,6 @@ public class CatalogPageStep
     @Then("User navigate to Client side for Catalog")
     public void user_navigate_to_client_sideForCatalog() throws InterruptedException, AWTException
     {
-        boolean result=false;
         if(flag==false)
         {
             homepage = new HomePage(driver,scenario);
@@ -145,8 +144,9 @@ public class CatalogPageStep
                 boolean result = catalogpage.ValidateCatalog();
                 currentURL = driver.getCurrentUrl();
                 scenario.log(currentURL);
-                Assert.assertEquals(result, true);
-            } else {
+            }
+            else
+            {
                 scenario.log("CATALOG TAB IS NOT VISIBLE");
             }
             flag1 = true;

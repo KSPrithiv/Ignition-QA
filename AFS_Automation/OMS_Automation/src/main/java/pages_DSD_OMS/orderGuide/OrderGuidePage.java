@@ -82,6 +82,11 @@ public class OrderGuidePage
                 //navigating back to Current URL
                 driver.navigate().to(currentURL);
             }
+            String status = HelpersMethod.returnDocumentStatus(driver);
+            if (status.equals("loading"))
+            {
+                HelpersMethod.waitTillLoadingPage(driver);
+            }
             if (HelpersMethod.IsExists("//div[@class='loader']", driver))
             {
                 WebElement WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
@@ -162,15 +167,25 @@ public class OrderGuidePage
         WebElement WebEle=null;
         try
         {
+            String status = HelpersMethod.returnDocumentStatus(driver);
+            if (status.equals("loading"))
+            {
+                HelpersMethod.waitTillLoadingPage(driver);
+            }
+            if(HelpersMethod.IsExists("//div[@class='loader']",driver))
+            {
+                WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100000);
+            }
             if(HelpersMethod.IsExists("//tr[@class='k-master-row']",driver))
             {
                 WebElement OGNo=HelpersMethod.FindByElement(driver,"xpath","//tr[contains(@class,'k-master-row')]/descendant::td/button[text()='"+OGSearch+"']");
-                HelpersMethod.ActClick(driver,OGNo, 100);
+                HelpersMethod.ActClick(driver,OGNo, 1000);
                 exists=true;
                 if(HelpersMethod.IsExists("//div[@class='loader']",driver))
                 {
                     WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000);
+                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100000);
                 }
             }
             else

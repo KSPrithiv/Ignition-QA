@@ -335,95 +335,7 @@ public class GridConfigurationPage
     public void dragAndDropColumnHeader(String tab)
     {
         exists=false;
-        Actions act1=new Actions(driver);
-        Actions act2=new Actions(driver);
-        /*String tab=null;
-        try
-        {
-            WebElement columnChooser=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-widget k-window k-dialog')]");
-            //WebElement To=HelpersMethod.FindByElement(driver,"xpath","//div[@id='ActiveItemsAdminCard']/descendant::div[contains(@class,'i-droppable-container')]");
-            WebElement To=HelpersMethod.FindByElement(driver,"xpath","//span[contains(text(),'Visible columns')]/parent::div/following-sibling::div[@class='i-droppable-container']");
 
-            for(int i=0;i<=tabs.size()-1;i++)
-           {
-               tab= String.valueOf(tabs.get(i).get(0));
-               List<WebElement> columnHeaders = HelpersMethod.FindByElements(driver, "xpath", "//div[contains(@class,'i-draggable-content-container')]/descendant::td");
-               for (WebElement columnHead : columnHeaders)
-               {
-                   act1.moveToElement(columnHead).build().perform();
-                   String cHead_Text = columnHead.getText();
-                   if(cHead_Text.equals(tab))
-                   {
-                       //WebElement fromWeb= HelpersMethod.FindByElement(driver,"xpath","//div[@id='AvailableItemsAdminCard']/descendant::div[@class='i-draggable-item']/descendant::td[text()='"+cHead_Text+"']/ancestor::div[contains(@class,'i-draggable-item__container')]");
-                       WebElement fromWeb=HelpersMethod.FindByElement(driver,"xpath","//div[@id='AvailableItemsAdminCard']/descendant::div[@class='i-draggable-item']/descendant::td[text()='"+cHead_Text+"']/ancestor::div[contains(@class,'i-draggable-item__container')]");
-                       int x1 =fromWeb.getLocation().x;
-                       int y1 = fromWeb.getLocation().y;
-
-                       int x = To.getLocation().x;
-                       int y = To.getLocation().y;
-                       scenario.log("X"+x+","+"Y"+y);
-
-
-                      /* Point coordinates1 = fromWeb.getLocation();
-                       Point coordinates2 = To.getLocation();
-                       TouchActions builder = new TouchActions(driver);
-                       builder.longPress(fromWeb)
-                               .move(coordinates2.x,coordinates2.y).release(To).perform();*/
-
-                      /* Actions actions = new Actions(driver);
-
-                       actions.clickAndHold(fromWeb).moveToElement(To).release(To).build().perform();*/
-
-
-                     /*  actions.moveToElement(fromWeb, (x1 / 2),(y1 / 2)).clickAndHold().build().perform();
-                       actions.moveToElement(To, (x / 2) , (y / 2)).release().build().perform();*/
-
-                       //actions.dragAndDrop(fromWeb,To).build().perform();
-                   /*    actions.moveToElement(fromWeb)
-                               .pause(Duration.ofSeconds(10))
-                               .clickAndHold(fromWeb)
-                               .pause(Duration.ofSeconds(35))
-                               .moveByOffset(x,y)
-                               .moveToElement(To)
-                               .moveByOffset(x,y)
-                               .pause(Duration.ofSeconds(5))
-                               .release(fromWeb).build().perform();
-                   /*    Point coordinates1 = fromWeb.getLocation();
-                       Point coordinates2 = To.getLocation();
-                       Robot robot = new Robot();
-                       robot.mouseMove(coordinates1.getX(), coordinates1.getY());
-                       robot.mousePress(InputEvent.BUTTON1_MASK);
-                       robot.mouseMove(coordinates2.getX(), coordinates2.getY());
-                       robot.mouseRelease(InputEvent.BUTTON1_MASK);
-                       Thread.sleep(2000);*/
-
-                      /* Actions builder = new Actions(driver);
-
-                       Action dragAndDrop = builder.clickAndHold(fromWeb)
-                               .moveToElement(To)
-                               .release(To)
-                               .build();
-
-                       dragAndDrop.perform();
-
-                       Actions builder = new Actions(driver);
-                       builder.keyDown(Keys.CONTROL)
-                               .click(fromWeb)
-                               .dragAndDrop(fromWeb, To)
-                               .keyUp(Keys.CONTROL);
-                       Action selected = builder.build();
-                       selected.perform();
-                       //Actions actions = new Actions(driver);
-                        act1.clickAndHold(fromWeb)
-                           .dragAndDrop(fromWeb, To)
-                           .build().perform();
-
-                       break;
-                   }
-               }
-           }
-        }
-        catch (Exception e){}*/
         try
         {
             Actions actions=new Actions(driver);
@@ -440,18 +352,7 @@ public class GridConfigurationPage
                     .pause(Duration.ofSeconds(5))
                     .dragAndDrop(fromWebElement,toWebElement)
                     .build().perform();
-          /* int x = toWebElement.getLocation().x;
-            int y = toWebElement.getLocation().y;*/
             scenario.log("X"+x+","+"Y"+y);
-          /*  actions.moveToElement(fromWebElement)
-                    .pause(Duration.ofSeconds(10))
-                    .clickAndHold(fromWebElement)
-                    .pause(Duration.ofSeconds(35))
-                    .moveByOffset(x,y)
-                    .moveToElement(toWebElement)
-                    .moveByOffset(x,y)
-                    .pause(Duration.ofSeconds(5))
-                    .release(toWebElement).build().perform();*/
 
             actions.keyDown(Keys.CONTROL)
                     .click(fromWebElement)
@@ -459,8 +360,6 @@ public class GridConfigurationPage
                     .keyUp(Keys.CONTROL);
             Action selectMultiple = actions.build();
             selectMultiple.perform();
-
-            //Actions builder = new Actions(driver);
 
             Action dragAndDrop = actions.moveToElement(fromWebElement)
             .clickAndHold(fromWebElement)
@@ -785,8 +684,9 @@ public class GridConfigurationPage
         exists=false;
         try
         {
-            if(HelpersMethod.IsExists("//div[contains(text(),'The information has been saved successfully.')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
+            if(HelpersMethod.IsExists("//div[contains(text(),'saved successfully.')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
             {
+                scenario.log("ADMIN SIDE CHANGES SAVE POPUP HAS APPEARED");
                 exists=true;
             }
             Assert.assertEquals(exists,true);
@@ -799,9 +699,9 @@ public class GridConfigurationPage
         exists=false;
         try
         {
-            if(HelpersMethod.IsExists("//div[contains(text(),'Ignition by Telus')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
+            if(HelpersMethod.IsExists("//div[contains(text(),'saved successfully')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
             {
-                WebElement saveConfirmationPopup=HelpersMethod.FindByElement(driver,"xpath","//div[contains(text(),'Ignition by Telus')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]");
+                WebElement saveConfirmationPopup=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-widget k-window k-dialog')]");
                 WebElement okButton=saveConfirmationPopup.findElement(By.xpath(".//button[contains(@id,'QuestionModalButton')]"));
                 HelpersMethod.ActClick(driver,okButton,200);
                 exists=true;

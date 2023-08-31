@@ -116,7 +116,7 @@ public class ProductPage
                 WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
                 HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 2000);
             }
-            HelpersMethod.waitTillTitleContains(driver, "Ignition - Product Catalog", 1000);
+            HelpersMethod.waitTillTitleContains(driver, "Product Catalog", 1000);
         /*  if (HelpersMethod.IsExists("//div[@class='loader']", driver))
         {
             WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
