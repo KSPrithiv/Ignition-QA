@@ -176,8 +176,7 @@ public class BadgeBuilderPage {
                 BadgeBuilderoption = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class, 'submenu-item-text')][contains(text(), 'Badge Builder')]");
                 HelpersMethod.JScriptClick(driver, BadgeBuilderoption, 20);
             }
-        } catch (Exception e) {
-        }
+        } catch (Exception e) {}
     }
 
 

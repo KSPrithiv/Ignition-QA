@@ -15,6 +15,7 @@ import pages_DSD_OMS.Catalog.ProductDescriptionPage;
 import util.DataBaseConnection;
 import util.TestBase;
 
+import java.time.Duration;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
@@ -215,7 +216,7 @@ public class NewStandingOrderPage
     {
         exists=false;
         WebElement WebEle=null;
-        new WebDriverWait(driver,100).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//button[contains(text(),'Add product')]")));
+        new WebDriverWait(driver, Duration.ofMillis(100)).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//button[contains(text(),'Add product')]")));
         try
         {
             if(AddProduct.isDisplayed() && AddProduct.isEnabled())
@@ -256,13 +257,13 @@ public class NewStandingOrderPage
                     }
                     //Click on Add filter button
                     WebEle = HelpersMethod.FindByElement(driver, "xpath", "//button/descendant::span[contains(text(),'Add filter')]");
-                    new WebDriverWait(driver,100).until(ExpectedConditions.elementToBeClickable(By.xpath("//button/descendant::span[contains(text(),'Add filter')]")));
+                    new WebDriverWait(driver,Duration.ofMillis(100)).until(ExpectedConditions.elementToBeClickable(By.xpath("//button/descendant::span[contains(text(),'Add filter')]")));
                     HelpersMethod.ScrollElement(driver,WebEle);
                     HelpersMethod.JScriptClick(driver, WebEle, 80);
 
                     //Click on Clear all button
                     WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-animation-container')]/descendant::button[contains(text(),'Clear all')]");
-                    new WebDriverWait(driver,100).until(ExpectedConditions.elementToBeClickable(WebEle));
+                    new WebDriverWait(driver,Duration.ofMillis(100)).until(ExpectedConditions.elementToBeClickable(WebEle));
                     if (WebEle.isDisplayed() && WebEle.isEnabled())
                     {
                         HelpersMethod.JScriptClick(driver, WebEle, 80);
@@ -1011,7 +1012,7 @@ public class NewStandingOrderPage
             {
                 JavascriptExecutor js = ((JavascriptExecutor) driver);
                 js.executeScript("window.location.reload()");
-                WebDriverWait wait = new WebDriverWait(driver, 100);
+                WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(100));
                 if (wait.until(ExpectedConditions.alertIsPresent()) == null)
                 {
 

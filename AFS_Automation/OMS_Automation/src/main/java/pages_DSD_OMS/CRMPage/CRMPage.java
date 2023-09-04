@@ -17,7 +17,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.*;
 
-public class CRMPage {
+public class CRMPage{} /*{
 
     WebDriver driver;
     Scenario scenario;
@@ -105,11 +105,11 @@ public class CRMPage {
     private WebElement SelectLastNoty;
 
     @FindBy(xpath = "//button[@id='CancelBtn']")
-    private WebElement CancelBtnOfDelConfig;
+    private WebElement CancelBtnOfDelConfig;*/
 
     //WebElement CancelBtnOfDelConfig=driver.findElement(By.xpath("//button[@id='CancelBtn']"));
     //WebElement OkBtnOfDelConfig=driver.findElement(By.xpath("//button[@id='OKBtn']"));
-    @FindBy(xpath = "//button[@id='OKBtn']")
+ /*   @FindBy(xpath = "//button[@id='OKBtn']")
     private WebElement OkBtnOfDelConfig;
     @FindBy(xpath = "//div[@class='settings-container admin-mode']")
     private WebElement SettingsBtn;
@@ -117,21 +117,21 @@ public class CRMPage {
     private WebElement ClientCRMModule;
 
     @FindBy(xpath = "//button[@id='export-button']")
-    private WebElement ExportCSVBtn;
+    private WebElement ExportCSVBtn;*/
 
-    private WebDriverWait wait;
+/*    private WebDriverWait wait;
     public CRMPage(WebDriver driver, Scenario scenario) {
         this.driver = driver;
         this.scenario = scenario;
         PageFactory.initElements(driver, this);
-    }
+   }
 
-    @BeforeMethod
+  /*  @BeforeMethod
     public void WaitForPage() {
         HelpersMethod.Implicitwait(driver, 10);
     }
 
-    public void clickOnHamburgerMenu() throws InterruptedException {
+   public void clickOnHamburgerMenu() throws InterruptedException {
         // Wait for the home page to load
         //WebDriverWait wait = new WebDriverWait(driver, 10);
         //By HamburgerMenu = By.xpath("//div[@class='item-searchbar']");
@@ -512,7 +512,7 @@ public class CRMPage {
 
         }else System.out.println("Ticket count not match");
     }
-    public void clickOnSaveBtnAndVerifyPopUp() throws InterruptedException {
+    public void clickOnSaveBtnAndVerifyPopUp() throws InterruptedException {*/
 
       /*  try
         {
@@ -542,7 +542,7 @@ public class CRMPage {
             }
         }
         catch (Exception e){}*/
-        SaveBtn.click();
+  /*      SaveBtn.click();
         System.out.println("User click on save button");
         //Thread.sleep(1000);
         HelpersMethod.waitTillPageLoaded(driver, 2000);
@@ -664,7 +664,7 @@ public class CRMPage {
         int getRowSize=rows.size();
         System.out.println("List of purge is:" +getRowSize);
     }*/
-    public void verifyItemFoundField(){
+ /*   public void verifyItemFoundField(){
         //WebElement ItemFoundField=driver.findElement(By.xpath("//span[@class='i-summary-area__main']//span[2]"));
         String ActualValueOfItemField=ItemFoundField.getText();
         int ActualValueOfItem=Integer.parseInt(ActualValueOfItemField);
@@ -728,7 +728,7 @@ public class CRMPage {
         if(ActualValueOfItem== 1){
             System.out.println("Item found correct value :");
         } else System.out.println("Item found wrong value");*/
-    }
+/*    }
     public void clickOnAddNotificationBtn(){
         try
         {
@@ -763,7 +763,7 @@ public class CRMPage {
         WebElement AddNotificationBtn=HelpersMethod.FindByElement(driver,"xpath","//button[@class='k-button k-flat k-button-icontext  i-button--icon-only']");
         AddNotificationBtn.click();
         HelpersMethod.waitTillPageLoaded(driver, 2000);*/
-    }
+/*    }
     public void verifyPopUpOfAddNotification(){
         if(AddNotificationPopUp.isDisplayed()){
             System.out.println("Add Notification pop up get opened successfully");
@@ -874,7 +874,7 @@ public class CRMPage {
         catch (Exception e){}
         /*WebElement ClickCancelBtn=driver.findElement(By.xpath("//button[@id='ModalButton0']"));
         ClickCancelBtn.click();*/
-    }
+  /*  }
     public void selectAnyNotyFromList() throws InterruptedException {
         /*try
         {
@@ -904,7 +904,7 @@ public class CRMPage {
             }
         }
         catch (Exception e){}*/
-        SelectLastNoty.click();
+  /*      SelectLastNoty.click();
         //Thread.sleep(1000);
         //HelpersMethod.waitTillPageLoaded(driver, 2000);
     }
@@ -986,7 +986,7 @@ public class CRMPage {
         CancelBtnFromPopUp.click();
         //Thread.sleep(5000);
         HelpersMethod.waitTillPageLoaded(driver, 2000);*/
-    }
+   /* }
 
     public void clkOnOkBtnFromPopUp() throws InterruptedException {
         try
@@ -1021,7 +1021,7 @@ public class CRMPage {
         CancelBtnFromPopUp.click();
         // Thread.sleep(5000);
         HelpersMethod.waitTillPageLoaded(driver, 2000);*/
-    }
+ /*   }
     public void clickOnEditBtnAndVerifyNotyPopUp(){
         try
         {
@@ -1327,7 +1327,7 @@ public class CRMPage {
             }
         }
         catch (Exception e){}*/
-        WebElement ClickEditBtn=driver.findElement(By.xpath("//button[@class='k-button k-flat k-button-icontext' and text()='Edit']"));
+  /*      WebElement ClickEditBtn=driver.findElement(By.xpath("//button[@class='k-button k-flat k-button-icontext' and text()='Edit']"));
         ClickEditBtn.click();
         //HelpersMethod.waitTillLoadingWheelDisappears(driver, ClickEditBtn, 300);
         //wait = new WebDriverWait(driver, 10);
@@ -1411,7 +1411,7 @@ public class CRMPage {
             }
         }
         catch (Exception e){}*/
-        WebElement EditBtn=driver.findElement(By.xpath("//button[@id='SaveBtn' and text()='Edit']"));
+ /*       WebElement EditBtn=driver.findElement(By.xpath("//button[@id='SaveBtn' and text()='Edit']"));
         EditBtn.click();
         //HelpersMethod.waitTillLoadingWheelDisappears(driver, EditBtn, 100);
     }
@@ -1504,7 +1504,7 @@ public class CRMPage {
         }else System.out.println("Image not display on home page");
 
     }*/
-    public void clickOnSettingsBtn(){
+ /*   public void clickOnSettingsBtn(){
         try
         {
             exists = false;
@@ -1565,7 +1565,7 @@ public class CRMPage {
         //HelpersMethod.waitTillPageLoaded(driver, 2000);
         //HelpersMethod.waitTillLoadingWheelDisappears(driver, SettingsBtn, 100);
         //HelpersMethod.waitTillPageLoaded(driver, 2000);
-    }
+/*    }
     public void selectCRMTicketsModule(){
         try
         {
@@ -1728,7 +1728,7 @@ public class CRMPage {
         /*if(PriorityOption.isDisplayed()) {
             PriorityOption.click();
         }else System.out.println("priority option not available");*/
-    }
+ /*   }
     public List<String> getPriorityValues() {
         List<String> priorityValues = new ArrayList<>();
 
@@ -1759,7 +1759,7 @@ public class CRMPage {
         for (WebElement option : options) {
             dropdownValues.add(option.getText());
         }*/
-        WebElement PriorityDropDown=driver.findElement(By.xpath("//span[@id='dropdown-priority']"));
+  /*      WebElement PriorityDropDown=driver.findElement(By.xpath("//span[@id='dropdown-priority']"));
         PriorityDropDown.click();
         String FirstEle=PriorityDropDown.getText();
         //System.out.println("Dropdown 1st web element is: "+FirstEle);
@@ -1807,7 +1807,7 @@ public class CRMPage {
 
         //WebElement CancelBtn=driver.findElement(By.xpath("//button[@id='cancelButton']"));
         //CancelBtn.click();
-        return PriorityDropdownValues;
+  /*      return PriorityDropdownValues;
     }
     ///For Module configuration
     public void clickOnModuleOption() throws InterruptedException {
@@ -1819,7 +1819,7 @@ public class CRMPage {
             if(ModuleOption.isDisplayed()) {
                 ModuleOption.click();
             }else System.out.println("Module option not available");*/
-    }
+ /*   }
 
     public List<String> getModuleValues() {
         List<String> moduleValues = new ArrayList<>();
@@ -1894,7 +1894,7 @@ public class CRMPage {
                 act1.click(options).build().perform();
                 ModuleDropdownValues.add(options.getText());
             }*/
-        System.out.println("Client side Module dropdown values are: " +ModuleDropdownValues);
+  /*      System.out.println("Client side Module dropdown values are: " +ModuleDropdownValues);
         //Thread.sleep(2000);
         //DropDown.click();
         return ModuleDropdownValues;
@@ -1910,7 +1910,7 @@ public class CRMPage {
         if(TypeOption.isDisplayed()) {
             TypeOption.click();
         }else System.out.println("type option not available");*/
-    }
+  /*  }
     public List<String> getTypeValues() {
         List<String> typeValues = new ArrayList<>();
 
@@ -1969,7 +1969,7 @@ public class CRMPage {
         if(ReasonOption.isDisplayed()) {
             ReasonOption.click();
         }else System.out.println("reason option not available");*/
-    }
+ /*   }
 
     public List<String> getReasonValues() {
         List<String> reasonValues = new ArrayList<>();
@@ -2520,5 +2520,4 @@ public class CRMPage {
         FeedbackTypeDropDownValues.add(FirstEle);
         System.out.println("Admin side under notification Feedback type dropdown values are: " +FeedbackTypeDropDownValues);
         return FeedbackTypeDropDownValues;
-    }
-}
+    }*/

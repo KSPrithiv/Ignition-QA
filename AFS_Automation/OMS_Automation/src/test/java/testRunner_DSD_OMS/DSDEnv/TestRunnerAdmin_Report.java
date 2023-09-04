@@ -16,7 +16,7 @@ import java.io.IOException;
  * @Author Divya.Ramadas@afsi.com
  */
 @CucumberOptions
-        (features = "src/test/resources/features_DSD_OMS/AdminReportFeature",
+        (features = "src/test/resources/features_DSD_OMS/AdminReportsFeature",
                 glue = {"stepDefination_DSD_OMS"},
                 plugin = {"pretty",
                         "json:target/cucumber.json",

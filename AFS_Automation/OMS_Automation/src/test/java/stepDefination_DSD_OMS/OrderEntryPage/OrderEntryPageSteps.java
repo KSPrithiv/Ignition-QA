@@ -393,6 +393,7 @@ public class OrderEntryPageSteps
         String Unit=PO_Qty.get(0).get(1);
         newOE.CheckForQuickCaseEnabled(Case);
         newOE.CheckForQuickUnitEnabled(Unit);
+        newOE.exceedsMaxQty();
     }
 
     @Then("Click on Back button")

@@ -10,6 +10,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
+import java.time.Duration;
 import java.util.List;
 
 /**
@@ -69,7 +70,7 @@ public class ParOrderPage
             {
                 JavascriptExecutor js = ((JavascriptExecutor) driver);
                 js.executeScript("window.location.reload()");
-                WebDriverWait wait = new WebDriverWait(driver, 100);
+                WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(100));
                 if (wait.until(ExpectedConditions.alertIsPresent()) == null)
                 {
 
@@ -394,7 +395,7 @@ public class ParOrderPage
         {
             HelpersMethod.ActClick(driver,addFilter,100);
             exists=true;
-            new WebDriverWait(driver,1000).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class,'k-popup k-child-animation-container')]"))));
+            new WebDriverWait(driver,Duration.ofMillis(1000)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class,'k-popup k-child-animation-container')]"))));
             Assert.assertEquals(exists,true);
         }
         catch (Exception e){}
@@ -410,7 +411,7 @@ public class ParOrderPage
             HelpersMethod.sendKeys(driver,popupSearch1,100,"Par quantity");
             WebElement popupCheckbox=HelpersMethod.FindByElement(driver,"xpath","//input[@id='ParQuantity']");
             HelpersMethod.ClickBut(driver,popupCheckbox,80);
-            new WebDriverWait(driver,1000).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class,'k-popup k-child-animation-container')]"))));
+            new WebDriverWait(driver,Duration.ofMillis(1000)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class,'k-popup k-child-animation-container')]"))));
         }
         catch (Exception e){}
     }

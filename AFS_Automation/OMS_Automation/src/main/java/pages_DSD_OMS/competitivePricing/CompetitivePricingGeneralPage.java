@@ -17,6 +17,8 @@ import pages_DSD_OMS.login.HomePage;
 import util.DataBaseConnection;
 import util.RandomValues;
 import util.TestBase;
+
+import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -278,7 +280,7 @@ public class CompetitivePricingGeneralPage
                 HelpersMethod.waitTillLoadingPage(driver);
             }
 
-            new WebDriverWait(driver, 200).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(@class,'k-widget k-window k-dialog')]")));
+            new WebDriverWait(driver, Duration.ofMillis(200)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(@class,'k-widget k-window k-dialog')]")));
             WebElement modalContainer = driver.findElement(By.xpath("//div[contains(@class,'k-widget k-window k-dialog')]"));
             status = HelpersMethod.returnDocumentStatus(driver);
             if (status.equals("loading"))
@@ -308,7 +310,7 @@ public class CompetitivePricingGeneralPage
             //HelpersMethod.WaitElementPresent(driver, "xpath", "//input[@id='CM_CUSTKEY']", 400);
             HelpersMethod.WaitElementPresent(driver, "xpath", "//input[@id='value']", 1000);
            // new WebDriverWait(driver, 200).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@id='CM_CUSTKEY']")));
-            new WebDriverWait(driver,1000).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@id='value']")));
+            new WebDriverWait(driver,Duration.ofMillis(1000)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@id='value']")));
             WebElement WebEle1 = modalContainer1.findElement(By.xpath(".//input[@id='value']"));
             HelpersMethod.JScriptClick(driver, WebEle1, 1000);
             status = HelpersMethod.returnDocumentStatus(driver);
@@ -334,7 +336,7 @@ public class CompetitivePricingGeneralPage
 
                 //Click on Apply button
                 WebElement ApplyButton = RadioPop.findElement(By.xpath(".//button[text()='Apply']"));
-                new WebDriverWait(driver, 40).until(ExpectedConditions.elementToBeClickable(ApplyButton));
+                new WebDriverWait(driver, Duration.ofMillis(40)).until(ExpectedConditions.elementToBeClickable(ApplyButton));
                 HelpersMethod.ClickBut(driver, ApplyButton, 40);
             }
 

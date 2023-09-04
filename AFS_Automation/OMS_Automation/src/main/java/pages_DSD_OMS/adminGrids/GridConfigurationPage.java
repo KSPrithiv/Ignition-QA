@@ -58,7 +58,7 @@ public class GridConfigurationPage
 
                 JavascriptExecutor js = ((JavascriptExecutor) driver);
                 js.executeScript("window.location.reload()");
-                WebDriverWait wait = new WebDriverWait(driver, 40);
+                WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(40));
                 if(wait.until(ExpectedConditions.alertIsPresent())==null)
                 {
 
@@ -184,7 +184,7 @@ public class GridConfigurationPage
                 HelpersMethod.ActClick(driver, gridTypeDropDown, 1000);
                 scenario.log("GRID TYPE DROP DOWN HAS BEEN CLICKED");
                 exists = true;
-                new WebDriverWait(driver, 60000).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class,'k-popup k-child-animation-container')]"))));
+                new WebDriverWait(driver, Duration.ofMillis(6000)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class,'k-popup k-child-animation-container')]"))));
             }
             Assert.assertEquals(exists, true);
         }
@@ -236,7 +236,7 @@ public class GridConfigurationPage
                 HelpersMethod.ClickBut(driver, gridOptionDropdown, 200);
                 scenario.log("GRID OPTION DROPDOWN CLICKED");
                 exists=true;
-                new WebDriverWait(driver,8000).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class,'k-child-animation-container')]"))));
+                new WebDriverWait(driver,Duration.ofMillis(8000)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class,'k-child-animation-container')]"))));
             }
             Assert.assertEquals(exists,true);
         }
@@ -313,7 +313,7 @@ public class GridConfigurationPage
             if(columnChooser.isDisplayed() && columnChooser.isEnabled())
             {
                 HelpersMethod.ClickBut(driver, columnChooser, 200);
-                new WebDriverWait(driver,1000).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class,'k-widget k-window k-dialog')]"))));
+                new WebDriverWait(driver,Duration.ofMillis(1000)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class,'k-widget k-window k-dialog')]"))));
                 exists=true;
             }
             Assert.assertEquals(exists,true);
@@ -390,7 +390,7 @@ public class GridConfigurationPage
             {
                WebEle=HelpersMethod.FindByElement(driver,"id","SelectGrid");
                HelpersMethod.ActClick(driver,WebEle,1000);
-               new WebDriverWait(driver,10000).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class,'k-popup k-child-animation-container')]"))));
+               new WebDriverWait(driver,Duration.ofMillis(10000)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class,'k-popup k-child-animation-container')]"))));
                 exists=true;
             }
             Assert.assertEquals(exists,true);

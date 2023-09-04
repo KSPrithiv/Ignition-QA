@@ -15,6 +15,7 @@ import util.Environment;
 import util.TestBase;
 
 import java.awt.*;
+import java.time.Duration;
 import java.util.List;
 
 /**
@@ -65,7 +66,7 @@ public class OrderGuidePage
             {
                 JavascriptExecutor js = ((JavascriptExecutor) driver);
                 js.executeScript("window.location.reload()");
-                WebDriverWait wait = new WebDriverWait(driver, 100);
+                WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(100));
                 if (wait.until(ExpectedConditions.alertIsPresent()) == null)
                 {
 
@@ -101,7 +102,7 @@ public class OrderGuidePage
         exists=false;
         try
         {
-            new WebDriverWait(driver,10000).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath("//div[contains(@class,'i-card orderGuides-card')]"))));
+            new WebDriverWait(driver,Duration.ofMillis(10000)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath("//div[contains(@class,'i-card orderGuides-card')]"))));
             if(HelpersMethod.IsExists("//span[@class='spnmoduleNameHeader' and contains(text(),'Order guide list')]|//span[@class='spnmoduleNameHeader' and contains(text(),'Order guide detail')]",driver))
             {
                 exists=true;
@@ -154,7 +155,7 @@ public class OrderGuidePage
                 exists=false;
                 scenario.log("ORDER GUIDE DOESNOT EXISTS");
             }
-           new WebDriverWait(driver,1000).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath("//div[@class='grid-container']"))));
+           new WebDriverWait(driver,Duration.ofMillis(1000)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath("//div[@class='grid-container']"))));
         }
         catch (Exception e){}
         return  exists;
@@ -249,7 +250,7 @@ public class OrderGuidePage
                 HelpersMethod.ClickBut(driver,WebEle,100);
 
                 //Click on Add filter button
-                new WebDriverWait(driver,1000).until(ExpectedConditions.elementToBeClickable(By.xpath("//button/descendant::span[contains(text(),'Add filter')]")));
+                new WebDriverWait(driver,Duration.ofMillis(1000)).until(ExpectedConditions.elementToBeClickable(By.xpath("//button/descendant::span[contains(text(),'Add filter')]")));
                 driver.findElement(By.xpath("//button/descendant::span[contains(text(),'Add filter')]")).click();
 
                 HelpersMethod.waitTillElementLocatedDisplayed(driver,"xpath","//div[contains(@class,'k-animation-container k-animation-container-relative k-animation-container-shown')]",40);
@@ -258,12 +259,12 @@ public class OrderGuidePage
                 WebElement Search1=modalContainer1.findElement(By.xpath(".//input[contains(@class,'i-search-box__input')]"));
                 HelpersMethod.ActSendKey(driver,Search1,100,search1);
                 //Click on Check box
-                new WebDriverWait(driver,1000).until(ExpectedConditions.elementToBeClickable(By.xpath(".//input[contains(@class,'k-checkbox')]")));
+                new WebDriverWait(driver,Duration.ofMillis(1000)).until(ExpectedConditions.elementToBeClickable(By.xpath(".//input[contains(@class,'k-checkbox')]")));
                 WebElement WebEle1=modalContainer1.findElement(By.xpath(".//input[contains(@class,'k-checkbox')]"));
                 HelpersMethod.ClickBut(driver,WebEle1,100);
 
                 //Identify radio button and click on Radio button
-                new WebDriverWait(driver,1000).until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath("//div[contains(@class,'i-filter-popup i-filter-popup--manyFromMany')]/ancestor::div[contains(@class,'k-child-animation-container')]")));
+                new WebDriverWait(driver,Duration.ofMillis(1000)).until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath("//div[contains(@class,'i-filter-popup i-filter-popup--manyFromMany')]/ancestor::div[contains(@class,'k-child-animation-container')]")));
                 if(HelpersMethod.IsExists("//input[@id='E']",driver))
                 {
                    Search2=HelpersMethod.FindByElement(driver,"id","E");
