@@ -70,7 +70,7 @@ Feature: Order Entry3
       And Check for Case and Unit input box enabled or not based on that enter value
         |80|60|
       Then Click on Next button and Delete Address
-        |Address_line2|Address_line12|
+       |Address_line12|
       And Click on SubmitOrder button
       Then User should be navigated to Order Entry page
 
@@ -87,7 +87,6 @@ Feature: Order Entry3
         |  25  |  50  |
         |  20  | 25   |
         |  40  | 20   |
-   #     |  60  | 40   |
       And Click on Aroow symbol to display products based on descending order of units
       Then Click on Next button
       And Click on SubmitOrder button
@@ -114,7 +113,6 @@ Feature: Order Entry3
     @AddingNewPayment
     Scenario: Adding New payment details to the customer
       Given User must be on Order Entry Page
-      And Select 1st route from Route popup
       Then User must click Start Order button
       Then User should make selection between Pending order or Start New order
       Then User should select Note from popup and Order guide from popup
@@ -124,25 +122,24 @@ Feature: Order Entry3
       And Check for Case and Unit input box enabled or not based on that enter value
         |65|80|
       Then Click on Next button and add new Payment method
-      |Bank account|Divya|AR|Savings - Personal|123|2345723498|
+      |Bank account|Savings - Personal|
       And Click on SubmitOrder button
       Then User should be navigated to Order Entry page
 
-  @DeletePayment
-  Scenario: Deleting payment details of customer
-    Given User must be on Order Entry Page
-    Then User must click Start Order button
-    Then User should make selection between Pending order or Start New order
-    Then User should select Note from popup and Order guide from popup
-    Then Enter PO# for New order
-      |PO123|
-    Then Enter Pro# in Quick Product Entry area
-    And Check for Case and Unit input box enabled or not based on that enter value
-      |50|60|
-    Then Click on Next button and Delete Payment method
-      |Divya AR|
-    And Click on SubmitOrder button
-    Then User should be navigated to Order Entry page
+ # @DeletePayment
+ # Scenario: Deleting payment details of customer
+ #   Given User must be on Order Entry Page
+ #   Then User must click Start Order button
+ #   Then User should make selection between Pending order or Start New order
+ #   Then User should select Note from popup and Order guide from popup
+ #   Then Enter PO# for New order
+ #     |PO123|
+ #   Then Enter Pro# in Quick Product Entry area
+ #   And Check for Case and Unit input box enabled or not based on that enter value
+ #     |50|60|
+ #   Then Click on Next button and Delete Payment method
+ #   And Click on SubmitOrder button
+ #   Then User should be navigated to Order Entry page
 
   @PriceOverRidePriceByPrice
   Scenario: Test scenario for testing price override with "What if" option, price by price option

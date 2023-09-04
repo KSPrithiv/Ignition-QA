@@ -9,6 +9,7 @@ import io.cucumber.java.en.Then;
 import org.openqa.selenium.WebDriver;
 import pages_DSD_OMS.orderEntry.CheckOutOrderPage;
 import pages_DSD_OMS.orderEntry.CheckOutSummaryPage;
+import pages_DSD_OMS.orderEntry.NewOrderEntryPage;
 import pages_DSD_OMS.orderEntry.OrderEntryPage;
 import pages_DSD_OMS.quote.NewQuotePage;
 import pages_DSD_OMS.quote.QuotePage;
@@ -16,6 +17,8 @@ import pages_DSD_OMS.quote.QuoteSummaryPage;
 import util.TestBase;
 
 import java.awt.*;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 /**
@@ -29,17 +32,10 @@ public class QuotePageSteps1
     WebDriver driver;
     Scenario scenario;
 
-    static String XPath=null;
-    static boolean exists=false;
-    static String Ord_No=null;
-    static String ProdNo=null;
-    static String PageTitle=null;
-
     OrderEntryPage orderEntryPage;
-    QuotePage quotePage;
+    NewOrderEntryPage newOE;
     NewQuotePage newQuotePage;
     QuoteSummaryPage quoteSummaryPage;
-    CheckOutSummaryPage summary;
     CheckOutOrderPage checkOutOrderPage;
 
     @Before
@@ -92,15 +88,33 @@ public class QuotePageSteps1
     public void ifUserNavigatesToPaymentAndAddressPageClickOnBackButtonOrElseClickOnAddProductAndSelectOG(DataTable tabledata) throws InterruptedException, AWTException
     {
         List<List<String>> Qty=tabledata.asLists(String.class);
-        HelpersMethod.Implicitwait(driver,10);
         checkOutOrderPage=new CheckOutOrderPage(driver,scenario);
         boolean result=checkOutOrderPage.VerifyCheckOut();
         if(result==true)
         {
             checkOutOrderPage.BackButton_Click();
         }
+        newQuotePage=new NewQuotePage(driver,scenario);
         newQuotePage.EnterQuickProductNoSecond();
         newQuotePage.QtyInGrid(Qty.get(0).get(0),Qty.get(0).get(1));
+    }
+
+    @Then("If user navigates to payment and address page click on Back button or else Click on Add product and select OG {string}")
+    public void ifUserNavigatesToPaymentAndAddressPageClickOnBackButtonOrElseClickOnAddProductAndSelectOG(String Og,DataTable tabledata) throws InterruptedException, AWTException
+    {
+        List<List<String>> Qty=tabledata.asLists(String.class);
+        checkOutOrderPage=new CheckOutOrderPage(driver,scenario);
+        boolean result=checkOutOrderPage.VerifyCheckOut();
+        if(result==true)
+        {
+            checkOutOrderPage.BackButton_Click();
+        }
+        newQuotePage=new NewQuotePage(driver,scenario);
+        newQuotePage.ClickOnAddProduct();
+        newQuotePage.selectFromOG();
+        newQuotePage.validateOGPopup();
+        newQuotePage.searchAndAddOG(Og);
+        newQuotePage.enterQtyAfterAddingOG(Qty.get(0).get(0), Qty.get(0).get(1));
     }
 
     @And("User click on Comment Icon in Quote page and select Internal comment flag")
@@ -120,5 +134,35 @@ public class QuotePageSteps1
     {
         quoteSummaryPage=new QuoteSummaryPage(driver,scenario);
         quoteSummaryPage.ValidateQuoteSummary();
+    }
+
+    @And("User verifies skip button in OE page when Quotes is already create")
+    public void userVerifiesSkipButtonInOEPageWhenQuotesIsAlreadyCreate() throws InterruptedException, AWTException
+    {
+        orderEntryPage=new OrderEntryPage(driver,scenario);
+        orderEntryPage.verifySkipButton();
+    }
+
+    @And("User verifies Skip button in New OE page")
+    public void userVerifiesSkipButtonInNewOEPage() throws InterruptedException, AWTException
+    {
+        newOE=new NewOrderEntryPage(driver,scenario);
+        newOE.verifySkipButton();
+    }
+
+    @Then("Enter BOGO Pro# in Quick Product Entry area in New Qutoe page and enter Qty for Case and Unit")
+    public void enterBOGOProInQuickProductEntryAreaInNewQutoePageAndEnterQtyForCaseAndUnit(DataTable tabledata)
+    {
+        List<List<String>> QtyValue = tabledata.asLists(String.class);
+        newQuotePage=new NewQuotePage(driver,scenario);
+        newQuotePage.boGoItemsAdding();
+        newQuotePage.QtyInGrid(QtyValue.get(0).get(0),QtyValue.get(0).get(1));
+    }
+
+    @And("User verifies the products added to Quote")
+    public void userVerifiesTheProductsAddedToQuote()
+    {
+        newQuotePage=new NewQuotePage(driver,scenario);
+        newQuotePage.readProductQuote();
     }
 }

@@ -12,13 +12,15 @@ import org.aeonbits.owner.ConfigFactory;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.ITestResult;
 import org.testng.annotations.*;
+import utilWMS.MailSend_WMS;
 
+import javax.mail.MessagingException;
 import java.io.IOException;
 
 import static common.setup.DriverManager.*;
 import static common.setup.DriverManager.getDriver;
 
-@CucumberOptions(features = {"WMSAutomation/src/test/resources/features/login"},
+@CucumberOptions(features = {"src/test/resources/features/login"},
         glue = {"steps"},
         plugin = {"pretty",
                 "json:target/cucumber.json",
@@ -64,5 +66,10 @@ public class LoginCucumberRunner extends AbstractTestNGCucumberTests {
             }
         }
     }
+    @AfterClass
+    public static void afterClass() throws InterruptedException, MessagingException, IOException {
+   //     MailSend_WMS.sendMail();
 
+
+    }
 }

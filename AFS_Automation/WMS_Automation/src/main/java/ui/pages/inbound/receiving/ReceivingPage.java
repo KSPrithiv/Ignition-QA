@@ -65,10 +65,7 @@ public class ReceivingPage extends BasePage {
     By invalidEntryTitle = By.xpath("//div[contains(text(), 'Invalid entry')]");
 
     public void waitReceivingPageToLoad() {
-        refresh();
-        refresh();
-        refresh();
-        Waiters.waitABit(10000);
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitUntilPageWillLoadedSelenide();
         if(getInvalidEntryTitle() != null) {
             clickOkButton();

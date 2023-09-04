@@ -44,7 +44,7 @@ public class WorkQueueLoggedInUsersPageValidations {
         softAssert.assertTrue(workQueueLoggedInUsersPage.isItemsFoundLabelDisplayed(),"Items Found Label is not displayed");
         softAssert.assertTrue(workQueueLoggedInUsersPage.isItemsFoundValueDisplayed(),"Items Found Value is not displayed");
         softAssert.assertTrue(!workQueueLoggedInUsersPage.getItemsFoundText().equals("0"),"Items Found is 0");
-        softAssert.assertAll();
+       softAssert.assertAll();
     }
 
     @And("Validates Table End is displayed on Work Queue Logged In Users page")

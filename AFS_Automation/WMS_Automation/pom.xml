@@ -26,12 +26,12 @@
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-java</artifactId>
-            <version>4.8.0</version>
+            <version>4.2.0</version>
         </dependency>
         <dependency>
-            <groupId>com.codeborne</groupId>
-            <artifactId>selenide</artifactId>
-            <version>6.8.0</version>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>31.0.1-jre</version>
         </dependency>
         <dependency>
             <groupId>io.rest-assured</groupId>
@@ -92,8 +92,6 @@
             <version>5.5.4</version>
         </dependency>
 
-
-
         <!-- https://mvnrepository.com/artifact/tech.grasshopper/extent-pdf-report -->
         <dependency>
             <groupId>tech.grasshopper</groupId>
@@ -138,7 +136,7 @@
         <dependency>
             <groupId>io.github.bonigarcia</groupId>
             <artifactId>webdrivermanager</artifactId>
-            <version>5.3.2</version>
+            <version>5.4.1</version>
         </dependency>
         <dependency>
             <groupId>org.codehaus.groovy</groupId>
@@ -196,15 +194,14 @@
             <version>2.11.0</version>
         </dependency>
         <dependency>
+            <groupId>joda-time</groupId>
+            <artifactId>joda-time</artifactId>
+            <version>2.12.5</version>
+        </dependency>
+        <dependency>
             <groupId>com.sun.mail</groupId>
             <artifactId>javax.mail</artifactId>
             <version>1.6.2</version>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.example</groupId>
-            <artifactId>OMS_Automation</artifactId>
-            <version>1.0-SNAPSHOT</version>
             <scope>compile</scope>
         </dependency>
     </dependencies>
@@ -237,7 +234,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-failsafe-plugin</artifactId>
-                <version>2.22.2</version>
+                <version>2.18.1</version>
                 <configuration>
                     <testFailureIgnore>true</testFailureIgnore>
                     <properties>

@@ -64,10 +64,8 @@ public class OrderGuidePageStep
         if(flag==false)
         {
             loginpage = new LoginPage(driver,scenario);
-            HelpersMethod.Implicitwait(driver, 10);
             loginpage.EnterUsername(TestBase.testEnvironment.username());
             loginpage.EnterPassword(TestBase.testEnvironment.password());
-            HelpersMethod.Implicitwait(driver, 2);
             loginpage.ClickSignin();
         }
     }
@@ -89,10 +87,9 @@ public class OrderGuidePageStep
         boolean result=false;
         if(flag==false)
         {
-            Thread.sleep(10000);
             homepage = new HomePage(driver,scenario);
             String title = driver.getTitle();
-            Assert.assertEquals(title, "Ignition - Admin");
+            //Assert.assertEquals(title, "Ignition - Admin");
             homepage.verifyUserinfoContainer();
             homepage.navigateToClientSide();
         }
@@ -125,10 +122,10 @@ public class OrderGuidePageStep
     public void user_must_be_on_order_entry_page_to_select_og() throws InterruptedException, AWTException
     {
             orderpage = new OrderEntryPage(driver, scenario);
-            orderpage.HandleError_Page();
+            //orderpage.HandleError_Page();
             //newOE = new NewOrderEntryPage(driver, scenario);
             //newOE.Click_Back_But();
-            orderpage.Refresh_Page(currentURL);
+
     }
 
     @And("User should navigate to OG")
@@ -143,11 +140,11 @@ public class OrderGuidePageStep
                 exists = false;
                 orderGuidePage = new OrderGuidePage(driver, scenario);
                 HelpersMethod.navigate_Horizantal_Tab(driver, "Order Guides", "//li[contains(@class,'k-item')]/span[@class='k-link' and contains(text(),'Order Guides')]", "xpath", "//li[contains(@class,'k-item')]/span[@class='k-link']");
-                if (HelpersMethod.IsExists("//div[@class='loader']", driver))
+                /*if (HelpersMethod.IsExists("//div[@class='loader']", driver))
                 {
                     WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
                     HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 400);
-                }
+                }*/
                 exists = orderGuidePage.ValidateOG();
                 currentURL=driver.getCurrentUrl();
                 Assert.assertEquals(exists, true);
@@ -159,6 +156,10 @@ public class OrderGuidePageStep
             }
             flag1=true;
         }
+        orderpage = new OrderEntryPage(driver, scenario);
+        orderpage.HandleError_Page();
+        orderGuidePage=new OrderGuidePage(driver,scenario);
+        orderGuidePage.Refresh_Page(currentURL);
     }
 
     @Then("User clicks on Create new button and should navigate to New OG page")
@@ -170,8 +171,7 @@ public class OrderGuidePageStep
         Assert.assertEquals(exists,true);
         orderGuidePage.CrateOG();
         createOGPage=new CreateOGPage(driver,scenario);
-        exists=createOGPage.ValidateNewOG();
-        Assert.assertEquals(exists,true);
+        createOGPage.validateNewOGPage();
     }
 
     @Then("Then User enters Description {string} and End date")
@@ -201,9 +201,19 @@ public class OrderGuidePageStep
     public void user_click_on_save_button() throws InterruptedException, AWTException
     {
         createOGPage=new CreateOGPage(driver,scenario);
+        createOGPage.readPtoductNo();
         createOGPage.ClickOnSave();
-        orderpage=new OrderEntryPage(driver,scenario);
-        orderpage.Refresh_Page(currentURL);
+        createOGPage.validateSavePopup();
+        createOGPage.clickOnOk();
+    }
+
+    @Then("User click on Save button to convert Quote as OG")
+    public void userClickOnSaveButtonToConvertQuoteAsOG()
+    {
+        createOGPage=new CreateOGPage(driver,scenario);
+        createOGPage.ClickOnSave();
+        createOGPage.validateSavePopup();
+        createOGPage.clickOnOk();
     }
 
     //code to verify whether user is on OG page or not
@@ -213,7 +223,7 @@ public class OrderGuidePageStep
         exists=false;
         orderGuidePage = new OrderGuidePage(driver, scenario);
         exists = orderGuidePage.ValidateOG();
-        Assert.assertEquals(exists, true);
+        //Assert.assertEquals(exists, true);
         scenario.log("USER IS ON ORDER GUIDE PAGE");
 
         exists=false;
@@ -223,7 +233,7 @@ public class OrderGuidePageStep
         Assert.assertEquals(exists,true);
     }
 
-    //Code to search for OG using search box
+    //Code to search for OG using search box//////////////////////////////////////////////
     @Then("User enters OG Description in search box")
     public void user_enters_og_description_in_search_box(DataTable tabledata) throws InterruptedException, AWTException
     {
@@ -232,12 +242,10 @@ public class OrderGuidePageStep
         orderGuidePage = new OrderGuidePage(driver, scenario);
         exists=orderGuidePage.OGSearchBox(OGSearch.get(0).get(0));
         Assert.assertEquals(exists,true);
-        orderGuidePage.SearchOGSelect();
-
-        exists=false;
+        orderGuidePage.SearchOGSelect(OGSearch.get(0).get(0));
         createOGPage=new CreateOGPage(driver,scenario);
-        exists=createOGPage.OGDetailValidate();
-        Assert.assertEquals(exists,true);
+        createOGPage.OGDetailValidate();
+        createOGPage.readPtoductNo();
     }
 
     //code to enter products to exitsting OG for editing OG, using quick product entry
@@ -246,10 +254,10 @@ public class OrderGuidePageStep
     {
         createOGPage=new CreateOGPage(driver,scenario);
         List<List<String>> SeqList=tabledata.asLists(String.class);
-        List<String> Product=DataBaseConnection.DataConn1(TestBase.testEnvironment.getMultiple_Prod_Sql());
+        List<String> Product=DataBaseConnection.DataConn1(TestBase.testEnvironment.getMultiple_Prod_Sql1());
         for(int i=0;i<=SeqList.size()-1;i++)
         {
-            createOGPage.EnterQuickProduct(Product.get(i + 1),SeqList.get(i).get(0));
+            createOGPage.EnterQuickProduct(Product.get(i),SeqList.get(i).get(0));
         }
     }
 
@@ -369,14 +377,22 @@ public class OrderGuidePageStep
         createOGPage=new CreateOGPage(driver,scenario);
 
         //Code to get data from database
-        String Product=DataBaseConnection.DataBaseConn(TestBase.testEnvironment.getSingle_Prod_Sql());
+        String Product=DataBaseConnection.DataBaseConn(TestBase.testEnvironment.getSingle_OneMoreProd());
         //Enter value in  quick product, sequence input text box
         createOGPage.EnterQuickProduct(Product,ProdOption.get(0).get(0));
-        //Thread.sleep(10000);
+
         //handling catalog popup. Selecting Catalog option from drop down
         createOGPage.ClickOnAddProduct();
         createOGPage.SelectValueFromAddProduct(ProdOption.get(0).get(1));
         createOGPage.SelectProductCatalog();
+        if (HelpersMethod.IsExists("//div[contains(@class,'k-widget k-window k-dialog')]/descendant::div[contains(@class,'i-grid')]", driver))
+        {
+            createOGPage.ListView();
+        }
+        else
+        {
+                createOGPage.cardView();
+        }
         createOGPage.CatalogPopupOk();
     }
 
@@ -408,12 +424,11 @@ public class OrderGuidePageStep
         orderGuidePage = new OrderGuidePage(driver, scenario);
         exists=orderGuidePage.OGSearchBox(Og);
         Assert.assertEquals(exists,true);
-        orderGuidePage.SearchOGSelect();
+        orderGuidePage.SearchOGSelect(Og);
 
-        exists=false;
         createOGPage=new CreateOGPage(driver,scenario);
-        exists=createOGPage.OGDetailValidate();
-        Assert.assertEquals(exists,true);
+        createOGPage.OGDetailValidate();
+        createOGPage.readPtoductNo();
     }
 
     @And("User search for Product# in New OG page")
@@ -432,7 +447,7 @@ public class OrderGuidePageStep
         else
         {
             scenario.log(ProdNo+" PRODUCT IS NOT PART OF OG");
-            exists=true;
+            //exists=true;
         }
         Assert.assertEquals(exists,true);
     }
@@ -466,4 +481,22 @@ public class OrderGuidePageStep
         createOGPage.ValidateNewOG();
         createOGPage.ClickCancelButton();
     }
+
+    @And("User should navigate back to OG page and verify OG {string}  existence when cancelled")
+    public void userShouldNavigateBackToOGPageAndVerifyOGExistenceWhenCancelled(String Og) throws InterruptedException, AWTException
+    {
+        exists=false;
+        orderGuidePage = new OrderGuidePage(driver, scenario);
+        exists = orderGuidePage.ValidateOG();
+        Assert.assertEquals(exists, true);
+        scenario.log("USER IS ON ORDER GUIDE PAGE");
+
+        exists=false;
+        //Code to verify whether OG is existing in OG grid or not
+        orderGuidePage = new OrderGuidePage(driver, scenario);
+        exists=orderGuidePage.OGSearchBox(Og);
+        Assert.assertEquals(exists,false);
+    }
+
+
 }

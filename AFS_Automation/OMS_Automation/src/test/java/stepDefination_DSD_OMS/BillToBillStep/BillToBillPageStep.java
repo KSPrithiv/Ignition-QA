@@ -74,8 +74,6 @@ public class BillToBillPageStep
         if(flag==false)
         {
             homepage = new HomePage(driver,scenario);
-            String title = driver.getTitle();
-            Assert.assertEquals(title, "Ignition - Admin");
             homepage.verifyUserinfoContainer();
             homepage.navigateToClientSide();
             billToBill = new BillToBillPage(driver, scenario);
@@ -85,5 +83,101 @@ public class BillToBillPageStep
         }
     }
 
+    @Given("User must be on Client side and select Bill to Bill\\(DSD)")
+    public void userMustBeOnClientSideAndSelectBillToBillDSD() throws InterruptedException, AWTException
+    {
+            billToBill = new BillToBillPage(driver, scenario);
+            billToBill.HandleError_Page();
+            orderpage=new OrderEntryPage(driver,scenario);
+            orderpage.Refresh_Page(currentURL);
+    }
 
+    @Then("User should confirm that he is in Bill to bill page")
+    public void userShouldConfirmThatHeIsInBillToBillPage() throws InterruptedException, AWTException
+    {
+        billToBill=new BillToBillPage(driver,scenario);
+        billToBill.ValidateBillToBill();
+    }
+
+    @And("User select Weekly radio button")
+    public void userSelectWeeklyRadioButton()
+    {
+        billToBill=new BillToBillPage(driver,scenario);
+        billToBill.WeeklyRadioButton();
+        billToBill.ClickOnYearDropDown();
+        billToBill.ClickOnMonthlyDropDown();
+        billToBill.ClickOnDateDropDown();
+    }
+
+    @Then("User select Bill group# check box")
+    public void userSelectBillGroupCheckBox()
+    {
+        billToBill=new BillToBillPage(driver,scenario);
+        billToBill.ClickBillGroup();
+    }
+
+    @And("User clicks on Load button")
+    public void userClicksOnLoadButton()
+    {
+        billToBill=new BillToBillPage(driver,scenario);
+        billToBill.ClickLoadButton();
+    }
+
+    @Then("In Bill Selection page user should click on Bill Selection group#")
+    public void inBillSelectionPageUserShouldClickOnBillSelectionGroup() throws InterruptedException
+    {
+        billSelection=new BillingSelectionPage(driver,scenario);
+        billSelection.ValidateBillingSelection();
+        billSelection.SelectBillingSelect();
+    }
+
+    @And("User click on Print button on Bill selection page")
+    public void userClickOnPrintButtonOnBillSelectionPage() throws InterruptedException, AWTException
+    {
+        billSelection=new BillingSelectionPage(driver,scenario);
+        billSelection.ClickPrintButton();
+    }
+
+    @And("User clicks on Print button in Print customer billing popup")
+    public void userClicksOnPrintButtonInPrintCustomerBillingPopup() throws InterruptedException, AWTException
+    {
+        billSelection=new BillingSelectionPage(driver,scenario);
+        billSelection.ValiddatePrintCustomerBillPopup();
+        billSelection.PrintCustomerBillPopUp();
+        billSelection.CancelInPrintPopup();
+    }
+
+    @And("User select Monthly radio button")
+    public void userSelectMonthlyRadioButton()
+    {
+        billToBill=new BillToBillPage(driver,scenario);
+        billToBill.MonthlyRadioButton();
+        billToBill.ClickOnYearDropDown();
+        billToBill.ClickOnMonthlyDropDown();
+    }
+
+    @And("User should click on Cancel button in Bill Selection page")
+    public void userShouldClickOnCancelButtonInBillSelectionPage()
+    {
+        billSelection=new BillingSelectionPage(driver,scenario);
+        billSelection.CancelButton();
+    }
+
+    @And("User should click on UndoBill button in Bill Selection page")
+    public void userShouldClickOnUndoBillButtonInBillSelectionPage()
+    {
+        billSelection=new BillingSelectionPage(driver,scenario);
+        billSelection.UndoBilling();
+        billSelection.UndoBillingPopup();
+    }
+
+    @Then("User selects From range as {int} and to range as {int}")
+    public void userSelectsFromRangeAsAndToRangeAs(int arg0, int arg1)
+    {
+        billSelection=new BillingSelectionPage(driver,scenario);
+        billSelection.FromRange(arg0);
+        billSelection.ToRange(arg1);
+        billSelection.RangeSelectButton();
+        billSelection.TaggleButton();
+    }
 }

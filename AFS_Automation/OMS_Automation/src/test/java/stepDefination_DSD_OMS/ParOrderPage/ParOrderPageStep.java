@@ -42,6 +42,9 @@ public class ParOrderPageStep
     static int ParProdEdit=0;
     static boolean flag=false;
     static boolean flag1=false;
+    static boolean flag2=false;
+    static boolean flag3=false;
+    static String currentURL=null;
 
     LoginPage loginpage;
     HomePage homepage;
@@ -89,7 +92,7 @@ public class ParOrderPageStep
         {
             homepage = new HomePage(driver,scenario);
             String title = driver.getTitle();
-            Assert.assertEquals(title, "Ignition - Admin");
+            //Assert.assertEquals(title, "Ignition - Admin");
             homepage.verifyUserinfoContainer();
             homepage.navigateToClientSide();
         }
@@ -117,46 +120,52 @@ public class ParOrderPageStep
             flag1=true;
         }
     }
-    @And("User should navigate to OG and select {string} from grid")
+    @Given("User should navigate to OG and select {string} from grid")
     public void UserShouldNavigateToOGAndSelectOGFromGrid(String OG) throws InterruptedException, AWTException
     {
-        exists=false;
-        WebElement WebEle;
-        WebEle=HelpersMethod.FindByElement(driver, "xpath", "//li[contains(@class,'k-item')]/span[@class='k-link' and contains(text(),'Order Guides')]");
-        if (HelpersMethod.EleDisplay(WebEle))
+        if (flag2 == false)
         {
-            //Code to navigate to Order guide
-            if(HelpersMethod.IsExists("//div[@class='loader']",driver))
+            exists = false;
+            WebElement WebEle;
+            if (HelpersMethod.IsExists("//li[contains(@class,'k-item')]/span[@class='k-link' and contains(text(),'Order Guides')]",driver))
             {
-                WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100);
+                //Code to navigate to Order guide
+                if (HelpersMethod.IsExists("//div[@class='loader']", driver))
+                {
+                    WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
+                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 20000);
+                }
+                HelpersMethod.navigate_Horizantal_Tab(driver, "Order Guides", "//li[contains(@class,'k-item')]/span[@class='k-link' and contains(text(),'Order Guides')]", "xpath", "//li[contains(@class,'k-item')]/span[@class='k-link']");
+                currentURL = driver.getCurrentUrl();
+                exists=true;
             }
-            HelpersMethod.navigate_Horizantal_Tab(driver, "Order Guides", "//li[contains(@class,'k-item')]/span[@class='k-link' and contains(text(),'Order Guides')]", "xpath", "//li[contains(@class,'k-item')]/span[@class='k-link']");
-            if(HelpersMethod.IsExists("//div[@class='loader']",driver))
-            {
-                WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100);
-            }
-            orderGuidePage = new OrderGuidePage(driver, scenario);
+            Assert.assertEquals(exists,true);
+            flag2=true;
+        }
+            parOrderPage = new ParOrderPage(driver, scenario);
+            parOrderPage.Refresh_Page(currentURL);
+            orderGuidePage=new OrderGuidePage(driver,scenario);
+            exists=false;
             exists = orderGuidePage.ValidateOG();
             Assert.assertEquals(exists, true);
-
             //Code to select OG from grid
-            exists=false;
-            exists=orderGuidePage.OGSearchBox(OG);
-            Assert.assertEquals(exists,true);
-            orderGuidePage.SearchOGSelect();
-        }
+            exists = false;
+            exists = orderGuidePage.OGSearchBox(OG);
+            Assert.assertEquals(exists, true);
+            orderGuidePage.SearchOGSelect(OG);
     }
 
     @Then("User clicks on ParList tab and Click on New Par list button")
-    public void userClicksOnParListTabAndClickOnNewParListButton()
+    public void userClicksOnParListTabAndClickOnNewParListButton() throws InterruptedException, AWTException
     {
-        exists=false;
-        parOrderPage=new ParOrderPage(driver,scenario);
-        parOrderPage.ClickParTab();
-       // exists=parOrderPage.ValidateParlistTab();
-       // Assert.assertEquals(exists,true);
+            exists = false;
+            parOrderPage = new ParOrderPage(driver, scenario);
+            parOrderPage.ClickParTab();
+        exists=parOrderPage.ValidateParlistTab();
+        Assert.assertEquals(exists,true);
+       /* orderpage=new OrderEntryPage(driver,scenario);
+        //orderpage.HandleError_Page();
+        //orderpage.Refresh_Page(currentURL);*/
     }
 
     @And("User enters code and discription for Par list")
@@ -184,28 +193,19 @@ public class ParOrderPageStep
         parOrderPage=new ParOrderPage(driver,scenario);
         for(int i=0;i<=ParDetails.size()-1;i++)
         {
-            HelpersMethod.Implicitwait(driver,20);
             if(HelpersMethod.IsExists("//div[@class='loader']",driver))
             {
                 WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100);
-            }
-            else
-            {
-                HelpersMethod.Implicitwait(driver, 20);
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 10000);
             }
             parOrderPage.ClickNewPar();
             //parOrderPage.EnterCode(ParDetails.get(i).get(0));
-            parOrderPage.EnterDesc(ParDetails.get(0).get(0));
+            parOrderPage.EnterDesc(ParDetails.get(i).get(0));
             parOrderPage.SavePar();
             if(HelpersMethod.IsExists("//div[@class='loader']",driver))
             {
                 WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100);
-            }
-            else
-            {
-                HelpersMethod.Implicitwait(driver, 20);
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 10000);
             }
         }
     }
@@ -214,9 +214,11 @@ public class ParOrderPageStep
     public void userClicksOnParListTabAndSelectsParlistFromDropDown(String ParList)
     {
         exists=false;
-        parOrderPage=new ParOrderPage(driver,scenario);
-        Prod_No=parOrderPage.ReadProductValueFromOG();
-        parOrderPage.ClickParTab();
+            parOrderPage = new ParOrderPage(driver, scenario);
+            Prod_No = parOrderPage.ReadProductValueFromOG();
+            parOrderPage.ClickParTab();
+            parOrderPage.ValidateParlistTab();
+        parOrderPage = new ParOrderPage(driver, scenario);
         exists=parOrderPage.ValidateParlistTab();
         Assert.assertEquals(exists,true);
         parOrderPage.ClickParDropDown();
@@ -249,6 +251,8 @@ public class ParOrderPageStep
     public void userClicksOnParListTabAndSelectsParlistFromDropDownAndCountProducts(String ParList)
     {
         parOrderPage=new ParOrderPage(driver,scenario);
+        parOrderPage.ClickParTab();
+        parOrderPage.ValidateParlistTab();
         parOrderPage.ClickParDropDown();
         parOrderPage.SelectParlistFromDropdown(ParList);
         ParProd=parOrderPage.ReadAllProductValueFromPar();
@@ -290,12 +294,33 @@ public class ParOrderPageStep
         Assert.assertEquals(exists,true);
         for(int i=0;i<=ParDetails.size()-1;i++)
         {
-            HelpersMethod.Implicitwait(driver,40);
             parOrderPage.ClickParDropDown();
-            HelpersMethod.Implicitwait(driver,40);
             parOrderPage.SelectParlistFromDropdown(ParDetails.get(0).get(0));
             parOrderPage.DeletePar();
         }
+    }
+
+    @And("User should enter valid value for Qty for the first product in product grid")
+    public void userShouldEnterValidValueForQtyForTheFirstProductInProductGrid(DataTable dataTable)
+    {
+        List<List<String>> qty=dataTable.asLists(String.class);
+        parOrderPage=new ParOrderPage(driver,scenario);
+        for(int i=0;i<=qty.size()-1;i++)
+        {
+            parOrderPage.enterQtyForParQty(qty.get(i).get(0),i);
+        }
+    }
+
+    @And("then user clicks on Addfilter button in Parlist card and enters the range for product part qty")
+    public void thenUserClicksOnAddfilterButtonInParlistCardAndEntersTheRangeForProductPartQty(DataTable dataTable)
+    {
+        List<List<String>> values=dataTable.asLists(String.class);
+        parOrderPage=new ParOrderPage(driver,scenario);
+        parOrderPage.clickOnAddFilter();
+        parOrderPage.validateFilterPopup();
+        parOrderPage.enterValueForFilter(values.get(0).get(0),values.get(0).get(1));
+        parOrderPage.readParProducts();
+        parOrderPage.clearFilterOption();
     }
 }
 

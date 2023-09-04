@@ -5,17 +5,22 @@ import helper.HelpersMethod;
 import io.cucumber.java.Scenario;
 import io.cucumber.java.an.E;
 import io.cucumber.java.bs.A;
+import org.openqa.selenium.Alert;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.pagefactory.AjaxElementLocatorFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import pages_DSD_OMS.login.HomePage;
 import util.TestBase;
 
 import java.awt.font.TextLayout;
+import java.time.Duration;
 import java.util.Set;
 
 
@@ -84,8 +89,41 @@ public class ARInquiryPage
         if (HelpersMethod.IsExists("//div[@class='loader']", driver))
         {
             WebElement WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 200);
+            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000);
         }
+    }
+
+    public void Refresh_Page(String currentURL)
+    {
+        try
+        {
+            if(HelpersMethod.IsExists("//div[contains(@class,'k-widget k-window k-dialog')]",driver))
+            {
+                JavascriptExecutor js = ((JavascriptExecutor) driver);
+                js.executeScript("window.location.reload()");
+                WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(100));
+                if (wait.until(ExpectedConditions.alertIsPresent()) == null)
+                {
+
+                }
+                else
+                {
+                    Alert alert = driver.switchTo().alert();
+                    alert.accept();
+                }
+            }
+            else
+            {
+                //navigate to OCL
+                driver.navigate().to(currentURL);
+            }
+            if (HelpersMethod.IsExists("//div[@class='loader']", driver))
+            {
+                WebElement   WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 8000);
+            }
+        }
+        catch (Exception e){}
     }
 
     public String NavigateToAR()
@@ -160,7 +198,7 @@ public class ARInquiryPage
         WebElement WebEle=null;
         try
         {
-            HelpersMethod.ClickBut(driver,Cust_Accout,10);
+            HelpersMethod.ClickBut(driver,Cust_Accout,40);
             if(HelpersMethod.IsExists("//div[contains(text(),'Customer account')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
             {
                 //Entering customer account# in search box
@@ -183,6 +221,11 @@ public class ARInquiryPage
     {
         exists=false;
         WebElement WebEle=null;
+        if(HelpersMethod.IsExists("//div[@class='loader']",driver))
+        {
+            WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
+            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 2000);
+        }
         try
         {
             if(HelpersMethod.IsExists("//div[contains(@class,'i-no-data__icon')]",driver))
@@ -196,7 +239,7 @@ public class ARInquiryPage
                 if(HelpersMethod.IsExists("//div[contains(@class,'grid-container')]/descendant::tr[contains(@class,'k-master-row')][1]",driver))
                 {
                     WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'grid-container')]/descendant::tr[contains(@class,'k-master-row')][1]/descendant::input");
-                    HelpersMethod.ClickBut(driver,WebEle,20);
+                    HelpersMethod.ClickBut(driver,WebEle,100);
                     exists = true;
                 }
             }

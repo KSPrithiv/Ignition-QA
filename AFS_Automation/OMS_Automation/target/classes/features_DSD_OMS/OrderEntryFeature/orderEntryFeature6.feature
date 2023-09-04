@@ -29,7 +29,7 @@ Feature: Order Entry6
     Given User must be on Order Entry Page
     When User clicks on drop down next to Start order button
     And Select Pickup Order from drop down options and select delivery date
-    #Then User should select Note from popup and Order guide from popup
+    Then User should select Note from popup and Order guide from popup
     And User validates Pickup order check box is selected
     Then Enter PO# for New order
       |PO123|
@@ -123,5 +123,39 @@ Feature: Order Entry6
     And Click on SubmitOrder button
     Then User should be navigated to Order Entry page
 
+  @ProductWithAvailableInventory
+  Scenario Outline: Test scenario for usage of "Show products with available inventory" drop down
+    Given User must be on Order Entry Page
+    Then User must click Start Order button
+    Then User should make selection between Pending order or Start New order
+    Then User should select Note from popup and Order guide from popup
+    Then Enter PO# for New order
+      |PO123|
+    Then Click on Add product drop down and select OrderGuide option
+      |SampleOG|
+    And Enter Qty for the products in Product grid
+      |50|70|
+      |40|60|
+    And User clicks on filter by Qty drop down and selects "<Qty filter>"
+    Then Click on Next button
+    And Click on SubmitOrder button
+    Then User should be navigated to Order Entry page
+    Examples:
+    |Qty filter                                 |
+    |Show only products with available inventory|
 
-
+  @ProfileProduct
+  Scenario: Test scneario for adding products from product profile
+    Given User must be on Order Entry Page
+    Then User must click Start Order button
+    Then User should make selection between Pending order or Start New order
+    Then User should select Note from popup and Order guide from popup
+    Then Enter PO# for New order
+      |PO123|
+    Then Click on Add product drop down and select profile products
+    And Enter Qty for the products in Product grid
+      |50|70|
+      |40|60|
+    Then Click on Next button
+    And Click on SubmitOrder button
+    Then User should be navigated to Order Entry page

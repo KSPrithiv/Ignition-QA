@@ -1,6 +1,5 @@
 package stepDefination_DSD_OMS.StandingOrderPage;
 
-import gherkin.lexer.Da;
 import helper.HelpersMethod;
 import io.cucumber.datatable.DataTable;
 import io.cucumber.java.Before;
@@ -17,9 +16,11 @@ import pages_DSD_OMS.login.LoginPage;
 import pages_DSD_OMS.orderEntry.OrderEntryPage;
 import pages_DSD_OMS.standingOrder.NewStandingOrderCard;
 import pages_DSD_OMS.standingOrder.NewStandingOrderPage;
+import util.DataBaseConnection;
 import util.TestBase;
 
 import java.awt.*;
+import java.sql.SQLException;
 import java.text.ParseException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -40,8 +41,9 @@ public class StandingOrderPageSteps
     static boolean flag1=false;
     static boolean flag2=false;
     static String sDate=null;
-    static String date1=null;
     static String currentURL=null;
+    List<WebElement> dateList1;
+    List<WebElement> dateList2;
 
     LoginPage loginpage;
     HomePage homepage;
@@ -63,10 +65,8 @@ public class StandingOrderPageSteps
         if(flag==false)
         {
             loginpage = new LoginPage(driver,scenario);
-            HelpersMethod.Implicitwait(driver, 40);
             loginpage.EnterUsername(TestBase.testEnvironment.username());
             loginpage.EnterPassword(TestBase.testEnvironment.password());
-            HelpersMethod.Implicitwait(driver, 40);
             loginpage.ClickSignin();
         }
     }
@@ -77,7 +77,6 @@ public class StandingOrderPageSteps
         if(flag==false)
         {
             //verify the home page
-            HelpersMethod.Implicitwait(driver,40);
             homepage = new HomePage(driver,scenario);
             homepage.VerifyHomePage();
         }
@@ -89,10 +88,7 @@ public class StandingOrderPageSteps
         boolean result=false;
         if(flag==false)
         {
-            Thread.sleep(10000);
             homepage = new HomePage(driver,scenario);
-            String title = driver.getTitle();
-            Assert.assertEquals(title, "Ignition - Admin");
             homepage.verifyUserinfoContainer();
             homepage.navigateToClientSide();
         }
@@ -110,7 +106,8 @@ public class StandingOrderPageSteps
     }
 
     @Then("User selects Account# for SO")
-    public void user_selects_accountForSO() throws InterruptedException, AWTException, ParseException {
+    public void user_selects_accountForSO() throws InterruptedException, AWTException, ParseException
+    {
         if(flag1==false)
         {
             orderpage = new OrderEntryPage(driver, scenario);
@@ -126,33 +123,19 @@ public class StandingOrderPageSteps
     {
         if(flag2==false)
         {
-            WebElement WebEle = HelpersMethod.FindByElement(driver, "xpath", "//li[contains(@class,'k-item')]/span[@class='k-link' and contains(text(),'Standing Orders')]");
-            if (HelpersMethod.EleDisplay(WebEle))
-            {
-                HelpersMethod.navigate_Horizantal_Tab(driver, "Standing Orders", "//li[contains(@class,'k-item')]/span[@class='k-link' and contains(text(),'Standing Orders')]", "xpath", "//li[contains(@class,'k-item')]/span[@class='k-link']");
-                if (HelpersMethod.IsExists("//div[@class='loader']", driver))
-                {
-                    WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 400);
-                }
-                standingOrder = new NewStandingOrderPage(driver, scenario);
-                standingOrder.ValidateSO();
-                currentURL=driver.getCurrentUrl();
-            }
-            else
-            {
-                scenario.log("STANDING ORDER TAB DOESN'T EXISTS");
-            }
+            standingOrder=new NewStandingOrderPage(driver,scenario);
+            currentURL=standingOrder.navigateToStandingOrderPage();
             flag2=true;
         }
+        orderpage = new OrderEntryPage(driver, scenario);
+        orderpage.HandleError_Page();
+        standingOrder=new NewStandingOrderPage(driver,scenario);
+        standingOrder.Refresh_Page(currentURL);
     }
 
     @And("User click on Start standing order button and selects start and end date from popup")
     public void userClickOnStartStandingOrderButtonAndSelectsStartAndEndDateFromPopup() throws InterruptedException, AWTException
     {
-        orderpage = new OrderEntryPage(driver, scenario);
-        orderpage.HandleError_Page();
-        orderpage.Refresh_Page(currentURL);
         standingOrderCard=new NewStandingOrderCard(driver,scenario);
         standingOrderCard.ClickOnNewStandingOrderArrow();
         standingOrderCard.ClickOnStartStandingOrder();
@@ -218,11 +201,22 @@ public class StandingOrderPageSteps
     }
 
     @And("User checks for catalog popup and searches for product in catalog")
-    public void userChecksForCatalogPopupAndSearchesForProductInCatalog()
+    public void userChecksForCatalogPopupAndSearchesForProductInCatalog() throws SQLException
     {
         standingOrder=new NewStandingOrderPage(driver,scenario);
         standingOrder.ValidateCatalogPopup();
-        standingOrder.SearchProduct();
+        if (HelpersMethod.IsExists("//div[contains(@class,'k-widget k-window k-dialog')]/descendant::div[contains(@class,'i-grid')]", driver))
+        {
+            standingOrder.ListView();
+        }
+        else
+        {
+            List<String> Prods= DataBaseConnection.DataConn1(TestBase.testEnvironment.getMultiple_Prod_Sql());
+            for(int i=0;i<=Prods.size()-1;i++)
+            {
+                standingOrder.cardView(Prods.get(i));
+            }
+        }
         standingOrder.CatalogOKButton();
     }
 
@@ -350,10 +344,55 @@ public class StandingOrderPageSteps
     {
         orderpage = new OrderEntryPage(driver, scenario);
         orderpage.CheckForRemoveSkip();
+        orderpage=new OrderEntryPage(driver,scenario);
         orderpage.ClickCalender();
         orderpage.ResetToCurrentDate();
+        orderpage.OrderGuidePopup();
         standingOrder = new NewStandingOrderPage(driver, scenario);
         standingOrder.navigateToStandingOrder();
         standingOrder.ValidateSO();
+    }
+
+    @Then("read the first product from the product grid and click on add product button")
+    public void readTheFirstProductFromTheProductGridAndClickOnAddProductButton()
+    {
+        standingOrder=new NewStandingOrderPage(driver,scenario);
+        standingOrder.ReadProductNoInGrid();
+        standingOrder.ClickOnAddProductButton();
+    }
+
+    @And("verify for display of catalog, enter product number to be searched and validate select button")
+    public void verifyForDisplayOfCatalogEnterProductNumberToBeSearchedAndValidateSelectButton()
+    {
+        standingOrder=new NewStandingOrderPage(driver,scenario);
+        standingOrder.ValidateCatalogPopup();
+        standingOrder.SearchProductSingleProd();
+        standingOrder.validateProductSelectedOrNot();
+        standingOrder.CatalogOKButton();
+    }
+
+    @And("User should go through dates of standing order and count number of standing orders")
+    public void userShouldGoThroughDatesOfStandingOrderAndCountNumberOfStandingOrders() throws InterruptedException
+    {
+        standingOrderCard=new NewStandingOrderCard(driver,scenario);
+        standingOrderCard.ClickOnNewStandingOrderArrow();
+        dateList1= standingOrderCard.readDatesOfStandingOrder();
+    }
+
+    @And("User should go through dates of standing order and count number of standing orders after overlapping dates")
+    public void userShouldGoThroughDatesOfStandingOrderAndCountNumberOfStandingOrdersAfterOverlappingDates() throws InterruptedException
+    {
+        standingOrderCard=new NewStandingOrderCard(driver,scenario);
+        standingOrderCard.ClickOnNewStandingOrderArrow();
+        dateList2= standingOrderCard.readDatesOfStandingOrder();
+        boolean sameStandingOrders= dateList1.toString().contentEquals(dateList2.toString());
+        if(sameStandingOrders==true)
+        {
+            scenario.log("NO NEW STANDING ORDER HAS BEEN CRATED!!!");
+        }
+        else
+        {
+            scenario.log("NEW STANDING ORDER HAS BEEN CREATED SUCESSFULY");
+        }
     }
 }

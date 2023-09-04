@@ -9,7 +9,7 @@ Feature: Order Guide
     Then User selects Account# for OG
 
   @CancelOG
-  Scenario Outline: Test scenario for Canceling order while creating
+  Scenario Outline: Test scenario for Canceling order guide while creating
     Given User must be on Order Entry Page to select OG
     And User should navigate to OG
     Then User clicks on Create new button and should navigate to New OG page
@@ -17,9 +17,9 @@ Feature: Order Guide
     And User enters Quick Product number and Sequence number
       |4|
     Then User click on Cancel button
-    And User should navigate back to OG page and verify OG "<OG>"  existence
+    And User should navigate back to OG page and verify OG "<OG>"  existence when cancelled
     Examples:
-      |  OG |
+      |  OG  |
       |OGDis1|
 
   @QuickProduct
@@ -55,7 +55,6 @@ Feature: Order Guide
       |4|
       |6|
       |8|
-      |10|
     Then User click on Save button
     And User should navigate back to OG page and verify OG "<OG>"  existence
     Examples:
@@ -70,18 +69,18 @@ Feature: Order Guide
        |OGDis1|
      And  User search for Product# in New OG page
 
-   @DeleteProduct
-   Scenario Outline: Deleting product from OG
-     Given User must be on Order Entry Page to select OG
-     And User should navigate to OG
-     Then User enters OG "<OG>" Description in search box
-     And User search for Product# in New OG page
-     And User click on Delete button to remove product from OG
-     Then User click on Save button
-     And User should navigate back to OG page and verify OG "<OG>"  existence
-     Examples:
-       |  OG  |
-       |OGDis1|
+  @DeleteProduct
+  Scenario Outline: Deleting product from OG
+    Given User must be on Order Entry Page to select OG
+    And User should navigate to OG
+    Then User enters OG "<OG>" Description in search box
+    And User search for Product# in New OG page
+    And User click on Delete button to remove product from OG
+    Then User click on Save button
+    And User should navigate back to OG page and verify OG "<OG>"  existence
+    Examples:
+      |  OG  |
+      |OGDis1|
 
   @SequenceNo
   Scenario: Clear sequence number and selecting option No from popup

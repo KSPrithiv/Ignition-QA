@@ -134,9 +134,6 @@ public class InboundLoadSummaryPage extends BasePage {
     }
 
     public void waitInboundLoadSummaryPageToLoad() {
-        refresh();
-        refresh();
-        refresh();
         Waiters.waitABit(6000);
         Waiters.waitUntilPageWillLoadedSelenide();
         Waiters.waitForElementToBeDisplay(getTopIcon());

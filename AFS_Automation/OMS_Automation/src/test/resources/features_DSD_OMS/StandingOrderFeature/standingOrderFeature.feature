@@ -22,6 +22,12 @@ Feature: Standing Order
       |24|8 |14|22|12|10|8 |
     Then User clicks on Save button and handles popup
 
+  @VerifyingDisableSelectButton
+   Scenario: Test scenario for verifying whether select button is disabled or not in catalog popup
+    Given User must be on Order Entry Page to select Standing Order and navigate to standing order
+    Then read the first product from the product grid and click on add product button
+    And verify for display of catalog, enter product number to be searched and validate select button
+
   @DeleteProductFromStandingOrder
   Scenario:Test scenario for Deleting product from standing order
     Given User must be on Order Entry Page to select Standing Order and navigate to standing order
@@ -84,17 +90,22 @@ Feature: Standing Order
       |10|20|30|40|15|10|5|
     Then User clicks on Save button and handles popup
 
-  @CopyStandingOrder
-   Scenario: Test scenario for copying Standing order
+  @OverlappingDates
+  Scenario: Test scenario for creating Standing orders with overlapped dates
     Given User must be on Order Entry Page to select Standing Order and navigate to standing order
-    Then User checks for all the prodcuts in Active SO
-    And User clicks on Copy Standing order button selects start and end date as 18 and 19 day from current date
-    Then User checks for the products added to copied SO
+    And User click on Start standing order button and selects Start date 21 and End date 24 day from current date
+    Then User enters Product# in Quick product entry inputbox
+    And User enters Qty in standing order product grid based on enabled days
+      |10|20|30|40|15|10|5|
+    Then User clicks on Save button and handles popup
+    And User should go through dates of standing order and count number of standing orders
+    And User click on Start standing order button and selects Start date 18 and End date 22 day from current date
+    Then User enters Product# in Quick product entry inputbox
+    And User enters Qty in standing order product grid based on enabled days
+      |40|15|20|40|15|10|15|
+    Then User clicks on Save button and handles popup
+    And User should go through dates of standing order and count number of standing orders after overlapping dates
 
-  @DeleteStandingOrder
-  Scenario: Test scenario for deleting all the standing orders which are active and pending
-    Given User must be on Order Entry Page to select Standing Order and navigate to standing order
-    Then User navigates to Standing order card and clicks on Delete button
 
 
 

@@ -180,8 +180,6 @@ Feature: Disconnected mode
       |50|50|
       |40|30|
       |40|40|
-      |40|40|
-      |40|50|
     Then User click on cart in catalog and click on Gotocart, before that Delete Product from popup
     And user should be on New Order entry page
     Then Enter PO# for New order
@@ -190,14 +188,3 @@ Feature: Disconnected mode
     Then Click on SubmitOrder button
     Then User should be navigated to Order Entry page
 
-  @DMToConnected
-  Scenario: for Disconnected mode to connected mode
-    Given User should be in OE page in DM
-    When User clicks on network symbol and click on taggle button drop down should appear
-    And Then User should Click on taggle button to go online
-
-  @DMCancel
-  Scenario: Cancel navigation to disconnected mode
-    Given User should be in Order entry page
-    When User Clicks on network symbol and click on taggle button to navigate to disconnected mode
-    And Then User selects cancel option in Disconnected mode popup

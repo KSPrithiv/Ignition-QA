@@ -9,11 +9,14 @@ import ui.pages.BasePage;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static common.setup.DriverManager.getDriver;
+
 public class LocationLookupPage extends BasePage {
     By locationLookupTitle = By.className("spnmoduleNameHeader");
     By customLabel = By.className("autocomplete_custom_label");
     By locationSearchLabel = By.id("locationSearchACField-label");
     By locationSearchInput = By.xpath("//input[@placeholder='Enter location']");
+    By searchInput = By.xpath("//input[@placeholder='Search']");
     By locationSearchButton = By.cssSelector(".i-indexfield-container__main .k-button");
     By deleteButton = By.xpath("//button[text()='Delete']");
     By addLocProdButton = By.id("addLocProdButton");
@@ -141,11 +144,7 @@ public class LocationLookupPage extends BasePage {
     String locationTableRows = "//table[@class='k-grid-table']//tr[.//a[contains(text(), '%s')]]";
 
     public void waitForLocationLookupPageToLoad() {
-        refresh();
-        refresh();
-        refresh();
-        Waiters.waitABit(5000);
-        Waiters.waitUntilPageWillLoadedSelenide();
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(locationSearchLabel);
         Waiters.waitForElementToBeDisplay(lookupLocationSearch);
         Waiters.waitForElementToBeDisplay(locationSearchButton);
@@ -154,9 +153,11 @@ public class LocationLookupPage extends BasePage {
     public void typeLocation(String location) {
         Waiters.waitABit(2000);
         Waiters.waitForElementToBeDisplay(locationSearchInput);
-        inputText(getLocationSearchInput(), location);
-        pressEnter(getLocationSearchInput());
-        Waiters.waitABit(7000);
+        clickLocationSearchButton();
+        inputText(getSearchInput(), location);
+        pressEnter(getSearchInput());
+        findWebElement(By.xpath("//tr[.//td[text()='" + location +  "']]")).click();
+        Waiters.waitABit(10_000);
     }
 
     public void enterLocation(String location) {
@@ -168,7 +169,6 @@ public class LocationLookupPage extends BasePage {
     }
 
     public void clickLocationSearchButton() {
-        Waiters.waitABit(2000);
         Waiters.waitForElementToBeDisplay(getLocationSearchButton());
         clickOnElement(getLocationSearchButton());
         Waiters.waitABit(2000);
@@ -304,7 +304,6 @@ public class LocationLookupPage extends BasePage {
     }
 
     public void checksProductByIndex(int index) {
-        Waiters.waitABit(2000);
         Waiters.waitForElementToBeDisplay(tableContent);
         Waiters.waitForPresenceOfAllElements(rows);
         List<WebElement> products = getTableContent().findElements(By.xpath(".//tr[contains(@class, 'k-master-row')]//input"));
@@ -416,10 +415,9 @@ public class LocationLookupPage extends BasePage {
     }
 
     public void clickCancelButton() {
-        Waiters.waitABit(5000);
         Waiters.waitForElementToBeDisplay(cancelButton);
         scrollAndClick(getCancelBtn());
-        Waiters.waitABit(10000);
+        Waiters.waitABit(2_000);
     }
 
     public void clickSaveButton() {
@@ -1078,6 +1076,8 @@ public class LocationLookupPage extends BasePage {
     public WebElement getLocationSearchLabel() { return findWebElement(locationSearchLabel); }
 
     public WebElement getLocationSearchInput() { return findWebElement(locationSearchInput); }
+
+    public WebElement getSearchInput() { return findWebElement(searchInput); }
 
     public WebElement getLocationSearchButton() { return findWebElement(locationSearchButton); }
 

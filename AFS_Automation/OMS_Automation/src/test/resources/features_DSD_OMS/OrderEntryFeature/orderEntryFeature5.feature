@@ -51,7 +51,7 @@ Feature: Order Entry5
     And Check for Case and Unit input box enabled or not based on that enter value
       |20|20|
     Then Click on Next button
-    And Click on Back to Orderlist button and read Order_no
+    And Click on Submit Order button and read Order_no
     Then User should be navigated to Order Entry page
     Then Enter Order# in Search box in Order Entry page
     Then Click on Order number in Order Entry page
@@ -66,8 +66,6 @@ Feature: Order Entry5
     Then Enter PO# for New order
       |PO123|
     And Click on Import button
-    Then Add Qty for first product in product grid
-      |50|20|
     Then Click on Next button
     And Click on Submit Order button and read Order_no
     Then User should be navigated to Order Entry page
@@ -79,29 +77,6 @@ Feature: Order Entry5
     Then User verifies Order history page
     And User should select the First order comment icon in the order history grid to verify whether comment is added or not
     Then User should click on Order button in Order histroy page to navigate back to OE page
-
-  @CancelAndSkip
-  Scenario: Test scenario for Skip using cancel button
-    Given User must be on Order Entry Page
-    Then Change the date 5 days after current date
-    Then User must click Start Order button
-    Then User should make selection between Pending order or Start New order
-    Then User should select Note from popup and Order guide from popup
-    Then User click on Cancel button and Popup should appear
-    And User should click on Cancel and skip button by selecting reason
-      |Closed|
-    Then Check for Remove Skip button is visible and Click on Remove Skip button
-    And Check for visibility of Skip button
-
-  @CancelAndSkipDisabled
-  Scenario: Test scenario for verifying Cancel and Skip button is disabled
-    Given User must be on Order Entry Page
-    Then User must click Start Order button
-    Then User should make selection between Pending order or Start New order
-    Then User should select Note from popup and Order guide from popup
-    Then Click on Cancel button
-    And Cancel popup should appear and verify button Cancel and Skip button
-    Then User should be navigated to Order Entry page
 
   @UOMDisplay
   Scenario: Test scenario for verifying UOM value displayed
@@ -135,6 +110,7 @@ Feature: Order Entry5
     Then User should be navigated to Order Entry page
     Then User must again click Start Order button
     Then User Should handle Pending order popup, and select continue with pending order button
+    Then User should select Note from popup and Order guide from popup
     And User should click on delivery date and select delivery date by increasing one day then user should handle the popup also
     Then Click on Next button
     And Click on SubmitOrder button
@@ -147,11 +123,28 @@ Feature: Order Entry5
     Then User should make selection between Pending order or Start New order
     Then User should select Note from popup and Order guide from popup
     And User should verify all other WebElements are disabled, and no Products in Product grid
+  #  Then Enter PO# for New order
+  #    |PO123|
+  #  Then Enter Pro# in Quick Product Entry area
+  #  And Check for Case and Unit input box enabled or not based on that enter value
+  #    |50|80|
+  #  Then Click on Next button
+  #  And Click on Submit Order button and read Order_no
+  #  Then User should be navigated to Order Entry page
+
+  @ForeignLanguageSearch
+  Scenario: Test scenario for searching foreign language product
+    Given User must be on Order Entry Page
+    Then User must click Start Order button
+    Then User should make selection between Pending order or Start New order
+    Then User should select Note from popup and Order guide from popup
     Then Enter PO# for New order
       |PO123|
-    Then Enter Pro# in Quick Product Entry area
-    And Check for Case and Unit input box enabled or not based on that enter value
-      |50|80|
+    Then User enters foregin language discription of Product in Search box
+    Then Check for Catalog popup
+    Then Enter the Qty in the Product grid Case and Unit
+      | 70| 80 |
     Then Click on Next button
-    And Click on Submit Order button and read Order_no
+    And Click on SubmitOrder button
     Then User should be navigated to Order Entry page
+

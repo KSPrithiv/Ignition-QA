@@ -13,6 +13,7 @@ import org.testng.Assert;
 import util.TestBase;
 
 import java.awt.*;
+import java.time.Duration;
 
 /**
  * @Project DSD_OMS
@@ -53,20 +54,20 @@ public class MyCartPage
         if(HelpersMethod.IsExists("//div[@class='loader']",driver))
         {
             WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 800);
+            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 30000);
         }
         String status = HelpersMethod.returnDocumentStatus(driver);
         if (status.equals("loading"))
         {
             HelpersMethod.waitTillLoadingPage(driver);
         }
-            HelpersMethod.WaitElementPresent(driver,"id","cartItemsCard",600);
+        new WebDriverWait(driver, Duration.ofMillis(20000)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("cartItemsCard"))));
             HelpersMethod.ScrollElement(driver,CheOutOrder);
-            HelpersMethod.ClickBut(driver,CheOutOrder,200);
+            HelpersMethod.ClickBut(driver,CheOutOrder,1000);
             if(HelpersMethod.IsExists("//div[@class='loader']",driver))
             {
                 WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 400);
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 10000);
             }
 
             if(HelpersMethod.IsExists("//div[contains(text(),'Select order')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
@@ -79,7 +80,7 @@ public class MyCartPage
                 if(HelpersMethod.IsExists("//div[@class='loader']",driver))
                 {
                     WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000);
+                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 4000);
                 }
             }
             exists=true;
@@ -93,7 +94,7 @@ public class MyCartPage
                 if(HelpersMethod.IsExists("//div[@class='loader']",driver))
                 {
                     WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000);
+                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 8000);
                 }
             }
 

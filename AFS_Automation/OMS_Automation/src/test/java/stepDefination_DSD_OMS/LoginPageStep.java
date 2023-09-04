@@ -24,16 +24,19 @@ import java.util.List;
  * @Project DSD_OMS
  * @Author Divya.Ramadas@afsi.com
  */
-public class LoginPageStep {
+public class LoginPageStep
+{
     /* Created by Divya.Ramadas@afsi.com */
     private static boolean flag = false;
+    private static boolean flag1=false;
     public static boolean exists = false;
     static String PageTitle = null;
     static String CurrentURL = null;
 
     WebDriver driver;
     public Scenario scenario;
-    boolean result = false;
+    static boolean result = false;
+    static boolean result1=false;
 
     LoginPage loginpage;
     HomePage homepage;
@@ -44,11 +47,11 @@ public class LoginPageStep {
     CheckOutOrderPage checkOutOrder;
 
     @Before
-    public void LaunchBrowser(Scenario scenario) throws Exception {
+    public void LaunchBrowser(Scenario scenario) throws Exception
+    {
         this.scenario = scenario;
         TestBase driver1 = TestBase.getInstanceOfDriver();
         driver = driver1.getDriver();
-        //Thread.sleep(5000);
     }
 
     @After
@@ -63,11 +66,12 @@ public class LoginPageStep {
     }
 
     @Given("User enters URL and is on login page")
-    public void user_enters_url_and_is_on_login_page() throws Exception {
-        if (!flag) {
+    public void user_enters_url_and_is_on_login_page() throws Exception
+    {
+        if (flag==false)
+        {
             scenario.log("LOADED APPLICATION URL");
-            //loginpage = new LoginPage(driver, scenario);
-            //loginpage.GetURL();
+            CurrentURL=driver.getCurrentUrl();
             flag = true;
         }
     }
@@ -75,15 +79,29 @@ public class LoginPageStep {
     @Given("User on login page")
     public void user_on_login_page() throws InterruptedException, AWTException
     {
-        loginpage = new LoginPage(driver, scenario);
-        result= loginpage.validateLoginPageTitle();
-        if (!result)
+        driver.navigate().to(TestBase.testEnvironment.get_url());
+    }
+
+    @Given("User on login page for external catalog")
+    public void user_on_login_page_for_external_catalog() throws InterruptedException, AWTException
+    {
+        if(!CurrentURL.equals(driver.getCurrentUrl()))
         {
-            homepage = new HomePage(driver, scenario);
-            homepage.Click_On_UserIcon();
-            homepage.Click_On_Signout();
+            productPage = new ProductPage(driver, scenario);
+            result1 = productPage.ValidateProductPage();
+            if(!result1)
+            {
+                String url = driver.getCurrentUrl();
+                driver.navigate().to(url);
+                homepage = new HomePage(driver, scenario);
+                homepage.Click_On_UserIcon();
+                homepage.Click_On_Signout();
+            }
+            else
+            {
+                driver.navigate().to(TestBase.testEnvironment.get_url());
+            }
         }
-        loginpage.RefreshLogin();
     }
 
     @Then("User entered Invalid {string} and {string}")
@@ -98,19 +116,9 @@ public class LoginPageStep {
         scenario.log("INVALID USERNAME AND PASSWORD HAS BEEN ENTERED");
     }
 
-    //Karthik
-    @Then("User entered valid {string} and {string}")
-    public void i_entered_valid_and(String username, String password) throws InterruptedException, AWTException
-    {
-        loginpage = new LoginPage(driver, scenario);
-        loginpage.EnterUsername(username);
-        loginpage.EnterPassword(password);
-        loginpage.ClickSignin();
-        scenario.log("INVALID USERNAME AND PASSWORD HAS BEEN ENTERED");
-    }
-
     @Then("User entered username and password")
-    public void i_entered_username_and_password() throws InterruptedException, AWTException {
+    public void i_entered_username_and_password() throws InterruptedException, AWTException
+    {
         loginpage = new LoginPage(driver, scenario);
         loginpage.EnterUsername(TestBase.testEnvironment.DummyUser());
         loginpage.EnterPassword(TestBase.testEnvironment.DummyPassword());
@@ -119,7 +127,8 @@ public class LoginPageStep {
     }
 
     @Then("Click on Forgotten password button")
-    public void click_on_forgotten_passowrd_button() throws InterruptedException, AWTException {
+    public void click_on_forgotten_passowrd_button() throws InterruptedException, AWTException
+    {
         loginpage = new LoginPage(driver, scenario);
         loginpage.ForgottenPassword();
         scenario.log("FORGOTTEN PASSWORD FUNCTIONALITY HAS BEEN USED");
@@ -142,14 +151,16 @@ public class LoginPageStep {
 
     //Code to check for warning popup, when user name and password is wrong
     @Then("Check for warning message")
-    public void check_for_warning_message() throws InterruptedException {
+    public void check_for_warning_message() throws InterruptedException
+    {
         String message = HelpersMethod.ReadValue(driver.findElement(By.xpath("//div[contains(text(),'Either Username or Password is incorrect. Please try again.')]")));
         Assert.assertEquals(message, "Either Username or Password is incorrect. Please try again.");
     }
 
     //code to click on 'Send' button, when password is forgotten
     @Then("Enter username in input box and click on send button")
-    public void enter_username_in_input_box_and_click_on_send_button(DataTable tabledata) throws InterruptedException, AWTException {
+    public void enter_username_in_input_box_and_click_on_send_button(DataTable tabledata) throws InterruptedException, AWTException
+    {
         //Enter user name in popup
         List<List<String>> username = tabledata.asLists(String.class);
         loginpage = new LoginPage(driver, scenario);
@@ -157,37 +168,47 @@ public class LoginPageStep {
     }
 
     @Then("Verify popup message displayed")
-    public void verify_popup_message_displayed() {
+    public void verify_popup_message_displayed()
+    {
         loginpage.ConfirmPopup();
     }
 
     //For signing out from application
     @Then("Click on user Icon")
-    public void click_on_user_icon() throws InterruptedException, AWTException {
+    public void click_on_user_icon() throws InterruptedException, AWTException
+    {
         homepage = new HomePage(driver, scenario);
         homepage.Click_On_UserIcon();
     }
 
     @And("Click on Logout")
-    public void click_on_logout() throws InterruptedException, AWTException {
+    public void click_on_logout() throws InterruptedException, AWTException
+    {
         homepage = new HomePage(driver, scenario);
         homepage.Click_On_Signout();
     }
 
     //Click on External catalog
     @And("User clicks on View product catalog and Product catalog should be displayed")
-    public void user_clicks_on_view_product_catalog_and_product_catalog_should_be_displayed() throws InterruptedException, AWTException {
+    public void user_clicks_on_view_product_catalog_and_product_catalog_should_be_displayed() throws InterruptedException, AWTException
+    {
         loginpage = new LoginPage(driver, scenario);
+        if (HelpersMethod.IsExists("//div[contains(text(),'Failed to connect to API')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]", driver))
+        {
+            WebElement WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(text(),'Failed to connect to API')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]/descendant::button[text()='Ok']");
+            HelpersMethod.ClickBut(driver, WebEle, 600);
+        }
         loginpage.ClickExternalCatalog();
     }
 
     //Code to add products to cart, when Card view is enabled
     @And("user should click on Reset filter button and all the products should displayed in card view")
-    public void user_should_click_on_reset_filter_button_and_all_the_products_should_displayed_in_card_view() throws InterruptedException, AWTException {
+    public void user_should_click_on_reset_filter_button_and_all_the_products_should_displayed_in_card_view() throws InterruptedException, AWTException
+    {
         productPage = new ProductPage(driver, scenario);
-        productPage.ValidateProductPage();
+        exists=productPage.ValidateProductPage();
         productPage.Click_ResetFilter();
-        productPage.ValidateProductPage();
+        exists=productPage.ValidateProductPage();
         productPage.CardView();
     }
 
@@ -196,9 +217,10 @@ public class LoginPageStep {
     public void user_enters_product_in_search_bar_in_catalog_popup_and_enter_qty_card_view(DataTable dataTable) throws InterruptedException, AWTException, SQLException, ClassNotFoundException, InstantiationException, IllegalAccessException {
 
         List<List<String>> Prod_detail = dataTable.asLists(String.class);
-        ArrayList<String> Prod_No = (ArrayList<String>) DataBaseConnection.DataConn1(TestBase.testEnvironment.getMultiple_Prod_Sql());
+        ArrayList<String> Prod_No = (ArrayList<String>) DataBaseConnection.DataConn1(TestBase.testEnvironment.getMultiple_Prod_Sql1());
         productPage = new ProductPage(driver, scenario);
-        for (int i = 0; i <= Prod_No.size() - 1; i++) {
+        for (int i = 0; i <= Prod_No.size() - 1; i++)
+        {
             String pro = String.valueOf(Prod_No.get(i));
             productPage.SearchProduct(pro);
             productPage.ProductExistsCard(Prod_detail.get(i).get(0));
@@ -207,14 +229,16 @@ public class LoginPageStep {
 
     //Code to click on cart and checkout to order
     @Then("User click on cart and click on Checkout to order")
-    public void user_click_on_cart_and_click_on_checkout_to_order() throws InterruptedException, AWTException {
+    public void user_click_on_cart_and_click_on_checkout_to_order() throws InterruptedException, AWTException
+    {
         productPage = new ProductPage(driver, scenario);
         productPage.Cart_Button();
         productPage.Checout_to_order();
     }
 
     @And("Login to Application and Select customer account from popup")
-    public void login_to_application_and_select_customer_account_from_popup() throws InterruptedException, AWTException {
+    public void login_to_application_and_select_customer_account_from_popup() throws InterruptedException, AWTException
+    {
         loginpage = new LoginPage(driver, scenario);
         loginpage.EnterUsername(TestBase.testEnvironment.username());
         loginpage.EnterPassword(TestBase.testEnvironment.password());
@@ -225,7 +249,8 @@ public class LoginPageStep {
 
     //Add product to "Checkout" from "my cart" page
     @Then("User should navigate to My Cart and click on Chekout to order button")
-    public void user_should_navigate_to_my_cart_and_click_on_chekout_to_order_button() throws InterruptedException, AWTException {
+    public void user_should_navigate_to_my_cart_and_click_on_chekout_to_order_button() throws InterruptedException, AWTException
+    {
         myCartpage = new MyCartPage(driver, scenario);
         PageTitle = HelpersMethod.gettingTitle(driver);
         Assert.assertEquals(PageTitle, "Ignition - Order Cart");
@@ -234,7 +259,8 @@ public class LoginPageStep {
 
     //Code to delete the product from "Items in cart" page
     @Then("User click on cart, Delete one product from cart and click on Checkout to order")
-    public void user_click_on_cart_delete_one_product_from_cart_and_click_on_checkout_to_order() throws InterruptedException, AWTException {
+    public void user_click_on_cart_delete_one_product_from_cart_and_click_on_checkout_to_order() throws InterruptedException, AWTException
+    {
         productPage = new ProductPage(driver, scenario);
         productPage.Cart_Button();
         productPage.Delete_Button();
@@ -242,7 +268,8 @@ public class LoginPageStep {
     }
 
     @Then("User should navigate to My Cart, Delete one product and click on Chekout to order button")
-    public void user_should_navigate_to_my_cart_delete_one_product_and_click_on_checkout_to_order_button() throws InterruptedException, AWTException {
+    public void user_should_navigate_to_my_cart_delete_one_product_and_click_on_checkout_to_order_button() throws InterruptedException, AWTException
+    {
         myCartpage = new MyCartPage(driver, scenario);
         PageTitle = HelpersMethod.gettingTitle(driver);
         Assert.assertEquals(PageTitle, "Ignition - Order Cart");
@@ -251,52 +278,60 @@ public class LoginPageStep {
     }
 
     @And("user should be on New Order entry page")
-    public void user_should_be_on_new_order_entry_page() throws InterruptedException, AWTException {
+    public void user_should_be_on_new_order_entry_page() throws InterruptedException, AWTException
+    {
         orderpage = new OrderEntryPage(driver, scenario);
         // orderpage.NoPendingOrderPopup();
         orderpage.NoNotePopHandling();
         orderpage.OrderGuidePopup();
-        if (HelpersMethod.IsExistsById("checkoutCard", driver)) {
+        if (HelpersMethod.IsExistsById("checkoutCard", driver))
+        {
             checkOutOrder = new CheckOutOrderPage(driver, scenario);
             checkOutOrder.BackButton_Click();
         }
     }
 
     @Then("User enters Product# in Search bar in Catalog popup and enter Qty and delete the first product added")
-    public void user_enters_product_in_search_bar_in_catalog_popup_and_enter_qty_and_delete_the_first_product_added(DataTable tabledata) throws InterruptedException, AWTException, SQLException {
+    public void user_enters_product_in_search_bar_in_catalog_popup_and_enter_qty_and_delete_the_first_product_added(DataTable tabledata) throws InterruptedException, AWTException, SQLException
+    {
         WebElement WebEle = null;
         List<List<String>> Prod_detail = tabledata.asLists(String.class);
-        ArrayList<String> Prod_No = (ArrayList<String>) DataBaseConnection.DataConn1(TestBase.testEnvironment.getMultiple_Prod_Sql());
+        ArrayList<String> Prod_No = (ArrayList<String>) DataBaseConnection.DataConn1(TestBase.testEnvironment.getMultiple_Prod_Sql1());
         int j = 0;
 
         productPage = new ProductPage(driver, scenario);
-        for (int i = 0; i <= Prod_No.size() - 1; i++) {
-
+        for (int i = 0; i <= Prod_No.size() - 1; i++)
+        {
             String pro = String.valueOf(Prod_No.get(i));
             productPage.SearchProduct(pro);
             exists = HelpersMethod.IsExists("//div[contains(text(),'Sorry, no products matched')]", driver);
-            if (exists == true) {
+            if (exists == true)
+            {
                 HelpersMethod.ClickBut(driver, HelpersMethod.FindByElement(driver, "xpath", "//span[contains(@class,'search-button')]/*[local-name()='svg']/*[local-name()='path' and contains(@d,'M17')]"), 1);
 
-            } else if (exists == false) {
+            }
+            else if (exists == false)
+            {
                 j++;
                 productPage.ProductExistsCardDelete(Prod_detail.get(i).get(0), j, String.valueOf(Prod_No.get(i)));
             }
-            scenario.log("PRODUCT # " + Prod_No.get(i) + " PRODUCT QTY " + Prod_detail.get(i).get(0));
+            //scenario.log("PRODUCT # " + Prod_No.get(i) + " PRODUCT QTY " + Prod_detail.get(i).get(0));
         }
     }
 
     @Then("User should enter client username and password")
-    public void user_should_enter_client_username_and_password() throws InterruptedException, AWTException {
+    public void user_should_enter_client_username_and_password() throws InterruptedException, AWTException
+    {
         loginpage = new LoginPage(driver, scenario);
         loginpage.EnterUsername(TestBase.testEnvironment.username());
         loginpage.EnterPassword(TestBase.testEnvironment.password());
         loginpage.ClickSignin();
-        HelpersMethod.waitTillPageLoaded(driver, 100);
+        HelpersMethod.waitTillPageLoaded(driver, 10000);
     }
 
     @When("user enters admin username and password")
-    public void user_enters_admin_username_and_password() throws InterruptedException, AWTException {
+    public void user_enters_admin_username_and_password() throws InterruptedException, AWTException
+    {
         loginpage = new LoginPage(driver, scenario);
         loginpage.EnterUsername(TestBase.testEnvironment.getAdminUser());
         loginpage.EnterPassword(TestBase.testEnvironment.getAdminPass());
@@ -304,36 +339,38 @@ public class LoginPageStep {
     }
 
     @Then("Admin landing page should displayed")
-    public void admin_landing_page_should_displayed() {
+    public void admin_landing_page_should_displayed()
+    {
         WebElement WebEle = null;
-        if (HelpersMethod.IsExists("//div[@class='loader']", driver)) {
+        if (HelpersMethod.IsExists("//div[@class='loader']", driver))
+        {
             WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 400);
+            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000);
         }
         Assert.assertEquals("Ignition - Admin", driver.getTitle());
     }
 
     //Click on Register here link
     @And("Click on Register here link")
-    public void click_on_register_here_link() throws InterruptedException, AWTException {
+    public void click_on_register_here_link() throws InterruptedException, AWTException
+    {
         loginpage = new LoginPage(driver, scenario);
         String status = HelpersMethod.returnDocumentStatus(driver);
-        if (status.equals("loading")) {
+        if (status.equals("loading"))
+        {
             HelpersMethod.waitTillLoadingPage(driver);
-        }
-        if (HelpersMethod.IsExists("//div[@class='loader']", driver)) {
-            WebElement WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000);
         }
         loginpage.RegisterHere();
     }
 
     //validate display of Registration popup
     @Then("Customer Registration page should get displayed")
-    public void customer_registration_page_should_get_displayed() throws InterruptedException, AWTException {
+    public void customer_registration_page_should_get_displayed() throws InterruptedException, AWTException
+    {
         boolean Result = false;
-        HelpersMethod.waitTillElementLocatedDisplayed(driver, "xpath", "//div[contains(text(),'Customer Registration')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]", 200);
-        if (HelpersMethod.IsExists("//div[contains(text(),'Customer Registration')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]", driver)) {
+        HelpersMethod.waitTillElementLocatedDisplayed(driver, "xpath", "//div[contains(text(),'Customer Registration')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]", 2000);
+        if (HelpersMethod.IsExists("//div[contains(text(),'Customer Registration')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]", driver))
+        {
             Result = true;
         }
         Assert.assertEquals(true, Result);
@@ -355,7 +392,8 @@ public class LoginPageStep {
 
     //Enter click on Registration Button
     @Then("click on Register button")
-    public void click_on_register_button() throws InterruptedException, AWTException {
+    public void click_on_register_button() throws InterruptedException, AWTException
+    {
         UserReg = new UserRegistrationPage(driver, scenario);
         UserReg.ClickOnRegistration();
     }
@@ -369,41 +407,48 @@ public class LoginPageStep {
         Assert.assertEquals(exists, true);
 
         WebElement UserIcon = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='user-info-container']");
-        HelpersMethod.clickOn(driver, UserIcon, 80);
+        HelpersMethod.clickOn(driver, UserIcon, 100);
 
         WebElement SignOut = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'signout')]");
-        HelpersMethod.ActClick(driver, SignOut, 80);
+        HelpersMethod.ActClick(driver, SignOut, 100);
     }
 
     //Clicking on Cancel button, to cancel registration
     @Then("click on Cancel button")
-    public void click_on_cancel_button() throws InterruptedException, AWTException {
+    public void click_on_cancel_button() throws InterruptedException, AWTException
+    {
         UserReg = new UserRegistrationPage(driver, scenario);
         UserReg.CancelRegistration();
     }
 
     //Code to add products to cart, when List view is enabled
     @And("user should click on Reset filter button and all the products should displayed in List view")
-    public void user_should_click_on_reset_filter_button_and_all_the_products_should_displayed_in_list_view() throws InterruptedException, AWTException {
+    public void user_should_click_on_reset_filter_button_and_all_the_products_should_displayed_in_list_view() throws InterruptedException, AWTException
+    {
         productPage = new ProductPage(driver, scenario);
         productPage.Click_ResetFilter();
-        productPage.ValidateProductPage();
+        exists=productPage.ValidateProductPage();
         productPage.GridView();
     }
 
     //Enter Qty for products, when List view is selected
     @Then("User enters Product# in Search bar in Catalog popup and enter Qty List view")
-    public void user_enters_product_in_search_bar_in_catalog_popup_and_enter_qty_list_view(DataTable tabledata) throws InterruptedException, AWTException, SQLException {
+    public void user_enters_product_in_search_bar_in_catalog_popup_and_enter_qty_list_view(DataTable tabledata) throws InterruptedException, AWTException, SQLException
+    {
         List<List<String>> Prod_detail = tabledata.asLists(String.class);
-        ArrayList<String> Prod_No = (ArrayList<String>) DataBaseConnection.DataConn1(TestBase.testEnvironment.getMultiple_Prod_Sql());
+        ArrayList<String> Prod_No = (ArrayList<String>) DataBaseConnection.DataConn1(TestBase.testEnvironment.getMultiple_Prod_Sql1());
         productPage = new ProductPage(driver, scenario);
-        for (int i = 0; i <= Prod_No.size() - 1; i++) {
+        for (int i = 0; i <= Prod_No.size() - 1; i++)
+        {
             String pro = String.valueOf(Prod_No.get(i));
             productPage.SearchProduct(pro);
             exists = HelpersMethod.IsExists("//div[contains(text(),'Sorry, no products matched')]", driver);
-            if (exists == true) {
+            if (exists == true)
+            {
                 HelpersMethod.ClickBut(driver, HelpersMethod.FindByElement(driver, "xpath", "//span[contains(@class,'search-button')]/*[local-name()='svg']/*[local-name()='path' and contains(@d,'M17')]"), 80);
-            } else if (exists == false) {
+            }
+            else if (exists == false)
+            {
                 String prod = Prod_detail.get(i).get(0);
                 productPage.ProductExistsList(prod);
             }
@@ -471,18 +516,19 @@ public class LoginPageStep {
         orderpage.Refresh_Page1();
         //orderpage.Verify_OE_Title();
         //orderpage.Refresh_Page();
-        // HelpersMethod.Implicitwait(driver, 40);
     }
 
     @Then("User changes language to some other language option and validates language")
-    public void userChangesLanguageToSomeOtherLanguageOptionAndValidatesLanguage() throws InterruptedException {
+    public void userChangesLanguageToSomeOtherLanguageOptionAndValidatesLanguage() throws InterruptedException
+    {
         homepage = new HomePage(driver, scenario);
         homepage.Change_Language();
         scenario.log("LANGUAGE HAS BEEN CHANGED SUCCESSFULLY");
     }
 
     @And("User resetting language back to")
-    public void userResettingLanguageBackTo(DataTable dataTable) {
+    public void userResettingLanguageBackTo(DataTable dataTable)
+    {
         List<List<String>> Lang = dataTable.asLists(String.class);
         homepage = new HomePage(driver, scenario);
         homepage.Change_Language1(Lang.get(0).get(0));
@@ -490,15 +536,17 @@ public class LoginPageStep {
     }
 
     @Then("Click on user Icon on Order Entry page")
-    public void clickOnUserIconOnOrderEntryPage() throws InterruptedException, AWTException {
-        orderpage = new OrderEntryPage(driver, scenario);
-        orderpage.Click_On_UserIcon();
+    public void clickOnUserIconOnOrderEntryPage() throws InterruptedException, AWTException
+    {
+        homepage=new HomePage(driver,scenario);
+        homepage.Click_On_UserIcon();
     }
 
     @And("Click on Logout on Order Entry page")
-    public void clickOnLogoutOnOrderEntryPage() throws InterruptedException, AWTException {
-        orderpage = new OrderEntryPage(driver, scenario);
-        orderpage.Click_On_Signout();
+    public void clickOnLogoutOnOrderEntryPage() throws InterruptedException, AWTException
+    {
+        homepage=new HomePage(driver,scenario);
+        homepage.Click_On_Signout();
     }
 
     @And("User closes the browser")
@@ -532,37 +580,119 @@ public class LoginPageStep {
 
         orderpage = new OrderEntryPage(driver, scenario);
         String title = HelpersMethod.gettingTitle(driver);
-        if (!title.equals("Ignition - Login")) {
+        if (!title.equals("Ignition - Login"))
+        {
             orderpage.Click_On_UserIcon();
             orderpage.Click_On_Signout();
         }
     }
 
     @And("User should be navigated to Admin page")
-    public void userShouldBeNavigatedToAdminPage() {
+    public void userShouldBeNavigatedToAdminPage()
+    {
         homepage = new HomePage(driver, scenario);
         homepage.AdminPageUsingAdminCredentials();
     }
 
+    @When("User is on Home Page for sales help")
+    public void userIsOnHomePageForSalesHelp()
+    {
+            //verify the home page
+            homepage = new HomePage(driver, scenario);
+            homepage.VerifyHomePage();
+    }
+
+    @Then("User navigate to Client side for sales help")
+    public void userNavigateToClientSideForSalesHelp()
+    {
+            homepage = new HomePage(driver, scenario);
+            String title = driver.getTitle();
+            Assert.assertEquals(title, "Ignition - Admin");
+            homepage.verifyUserinfoContainer();
+            homepage.navigateToClientSide();
+    }
+
+    @Then("User should select Order Entry tab for sales help")
+    public void userShouldSelectOrderEntryTabForSalesHelp() throws InterruptedException, AWTException
+    {
+            orderpage = new OrderEntryPage(driver, scenario);
+            orderpage.NavigateToOrderEntry();
+    }
+    @When("User is on Home Page for eCommerce help")
+    public void userIsOnHomePageForECommerceHelp()
+    {
+        //verify the home page
+        homepage = new HomePage(driver, scenario);
+        homepage.VerifyHomePage();
+    }
+    @Then("User navigate to Client side for eCommerce help")
+    public void userNavigateToClientSideForECommerceHelp()
+    {
+        homepage = new HomePage(driver, scenario);
+        String title = driver.getTitle();
+        Assert.assertEquals(title, "Ignition - Admin");
+        homepage.verifyUserinfoContainer();
+        homepage.navigateToClientSide();
+    }
+
+    @Then("User should select Order Entry tab for eCommerce help")
+    public void userShouldSelectOrderEntryTabForECommerceHelp() throws InterruptedException, AWTException
+    {
+        orderpage = new OrderEntryPage(driver, scenario);
+        orderpage.NavigateToOrderEntry();
+    }
+
     @And("User click on Question mark and selects ecommerce option")
-    public void userClickOnQuestionMarkAndSelectsEcommerceOption() throws InterruptedException, AWTException {
+    public void userClickOnQuestionMarkAndSelectsEcommerceOption() throws InterruptedException, AWTException
+    {
         orderpage = new OrderEntryPage(driver, scenario);
         driver.navigate().refresh();
         orderpage.selecteCommerceOption();
     }
 
     @And("User click on Question mark and selects Sales help option")
-    public void userClickOnQuestionMarkAndSelectsSalesHelpOption() throws InterruptedException, AWTException {
+    public void userClickOnQuestionMarkAndSelectsSalesHelpOption() throws InterruptedException, AWTException
+    {
         orderpage = new OrderEntryPage(driver, scenario);
         orderpage.selectSaleshelp();
     }
 
     @Then("User entered username and password for sales help")
-    public void userEnteredUsernameAndPasswordForSalesHelp() throws InterruptedException, AWTException {
+    public void userEnteredUsernameAndPasswordForSalesHelp() throws InterruptedException, AWTException
+    {
         loginpage = new LoginPage(driver, scenario);
         loginpage.EnterUsername(TestBase.testEnvironment.DummyUser());
         loginpage.EnterPassword(TestBase.testEnvironment.DummyPassword());
         loginpage.ClickSigninForSalesHelp();
         scenario.log("VALID USERNAME AND PASSWORD HAS BEEN ENTERED");
+    }
+
+    @And("Refresh the page if any dialog box is displayed")
+    public void refreshThePageIfAnyDialogBoxIsDisplayed()
+    {
+        homepage=new HomePage(driver,scenario);
+        homepage.refreshPageBeforeLogout();
+    }
+
+    @Then("User enters username and password and clicks on remember me checkbox")
+    public void userEntersUsernameAndPasswordAndClicksOnRememberMeCheckbox() throws InterruptedException, AWTException
+    {
+        loginpage = new LoginPage(driver, scenario);
+        loginpage.enterCredentialsCheckboxClick();
+
+    }
+
+    @And("User close the browser")
+    public void userCloseTheBrowser() {
+        
+    }
+
+    @Then("User loads the browser again")
+    public void userLoadsTheBrowserAgain() {
+        
+    }
+
+    @Then("Admin page is displayed")
+    public void adminPageIsDisplayed() {
     }
 }

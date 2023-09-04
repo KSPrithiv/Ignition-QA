@@ -1,0 +1,117 @@
+{
+  "lookup locations":
+  {
+    "lookup location 1": "A03A2",
+    "lookup location 2": "A05B1",
+    "lookup location 3": "A01B1",
+    "lookup location 4": "A04B2",
+    "lookup location 5": "A03A1"
+  },
+  "lookup LPNs":
+  {
+    "lookup LPN 1": "0900020475",
+    "lookup LPN 2": "0900020291",
+    "lookup LPN 3": "0900020292",
+    "lookup LPN 4": "0900020061",
+    "lookup LPN 5": "0900021974",
+    "lookup LPN 6": "090  21051222222",
+    "lookup LPN 7": "090 @21051222222",
+    "lookup LPN 8": "0909090909"
+  },
+  "lookup labels":
+  {
+    "lookup label 1": "Unit",
+    "lookup label 2": "Pallet",
+    "lookup label 3": "Receiving Unit",
+    "lookup label 4": "Product",
+    "lookup label 5": "Select label type"
+  },
+  "lookup delete reasons":
+  {
+    "lookup delete reason 1": "Cleaning Process",
+    "lookup delete reason 2": "Damaged",
+    "lookup delete reason 3": "Expired/Spoiled",
+    "lookup delete reason 4": "Inventory Adjustment - Initial Load",
+    "lookup delete reason 5": "Production Input (Raw Material)",
+    "lookup delete reason 6": "Production Outputs"
+  },
+  "lookup statuses":
+  {
+    "lookup status 1": "Stock",
+    "lookup status 2": "Ripening",
+    "lookup status 3": "Close to Expiring",
+    "lookup status 4": "QC Hold",
+    "lookup status 5": "Expired \\ Spoiled",
+    "lookup status 6": "Damaged",
+    "lookup status 7": "Select status"
+  },
+  "lookup unit status reasons":
+  {
+    "lookup unit status reason 1": "Close to Expiring",
+    "lookup unit status reason 2": "Damaged",
+    "lookup unit status reason 3": "Expired/Spoiled",
+    "lookup unit status reason 4": "Quality Control Inspection",
+    "lookup unit status reason 5": "Ripen Inventory"
+  },
+  "lookup unit products":
+  {
+    "lookup unit product 1": "32003250",
+    "lookup unit product 2": "02114",
+    "lookup unit product 3": "18000705",
+    "lookup unit product 4": "16565000",
+    "lookup unit product 5": "34300330",
+    "lookup unit product 6": "VEG339",
+    "lookup unit product 7": "W100FR",
+    "lookup unit product 8": "WIP-1200",
+    "lookup unit product 9": "KUD012"
+  },
+  "lookup owners":
+  {
+    "lookup owner 1": "01 - ABC Company",
+    "lookup owner 2": "ABC Company"
+  },
+  "lookup suppliers":
+  {
+    "lookup supplier 1": "ROWLAND - ROWLAND FARMS",
+    "lookup supplier 2": "61759 - Negocients U.S.e.",
+    "lookup supplier 3": "2451 - Nothern Haserot",
+    "lookup supplier 4": "29714 - Dreyfus eshby",
+    "lookup supplier 5": "6750 - Reynolds Metal",
+    "lookup supplier 6": "29714 - Dreyfus eshby"
+  },
+  "lookup UOMS":
+  {
+    "lookup UOM 1": "EACH",
+    "lookup UOM 2": "CASES"
+  },
+  "lookup products":
+  {
+    "lookup product 1": "000026",
+    "lookup product 2": "000028X",
+    "lookup product 3": "00023D",
+    "lookup product 4": "00610",
+    "lookup product 5": "00736"
+  },
+  "lookup product UOMs":
+  {
+    "lookup product UOM 1": "EA",
+    "lookup product UOM 2": "CS"
+  },
+  "lookup product task types":
+  {
+    "lookup product task type 1": "Pick from Reserve",
+    "lookup product task type 2": "Putaway",
+    "lookup product task type 3": "Pick"
+  },
+  "lookup location types":
+  {
+    "lookup location type 1": "Rack Reserve",
+    "lookup location type 2": "Case Pick",
+    "lookup location type 3": "Staging"
+  },
+  "lookup product staged":
+  {
+    "lookup staged 1": "No",
+    "lookup staged 2": "Yes"
+  }
+}

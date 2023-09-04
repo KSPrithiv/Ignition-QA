@@ -12,10 +12,7 @@ import org.aeonbits.owner.ConfigFactory;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.ITestResult;
 import org.testng.annotations.*;
-
-import util.MailSend;
-import util.TestBase;
-
+//import util.TestBase;
 
 import utilWMS.MailSend_WMS;
 
@@ -26,11 +23,11 @@ import java.io.IOException;
 import static common.setup.DriverManager.*;
 import static common.setup.DriverManager.getDriver;
 
-@CucumberOptions(features = {"src/test/resources/features/workqueue/assignwork"},
+@CucumberOptions(features = {"src/test/resources/features/workqueue"},
         glue = {"steps"},
         plugin = {"pretty",
                 "json:target/cucumber.json",
-//                "html:target/cucumber-reports/cucumber.html",
+                "html:target/cucumber-reports/cucumber.html",
                 "html:Reports/Index.html",
                 "json:target/cucumber-reports/cucumber.json",
                 "rerun:target/failedrerun.txt"
@@ -39,16 +36,16 @@ import static common.setup.DriverManager.getDriver;
 public class WorkQueueCucumberRunner extends AbstractTestNGCucumberTests {
     public static Environment environment;
 
-    @Parameters({"environment"})
+/*    @Parameters({"environment"})
     @BeforeClass
     public static void beforeClass(@Optional("environment") String envi) {
         try {
-            TestBase.InitializeProp(envi);
-            TestBase.SetDriver(TestBase.testEnvironment.get_browser());
+           *//* TestBase.InitializeProp(envi);
+            TestBase.SetDriver(TestBase.testEnvironment.get_browser());*//*
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }
+    }*/
 
     @Parameters({"environment", "browser"})
     @BeforeMethod
@@ -65,18 +62,15 @@ public class WorkQueueCucumberRunner extends AbstractTestNGCucumberTests {
     @AfterMethod
     public void closeBrowserInstance(ITestResult iTestResult) {
 
-        MailSend_WMS.sendMail();
+      //  MailSend_WMS.sendMail();
         if (driverEnabled(getDriver())) {
             try {
 
                 driverThreadLocal.get().close();
                 driverThreadLocal.get().quit();
             } catch (Exception e) {
-                //   FileUtils.forceDelete(new File("C:/Users/Irina.Holovan/Desktop/chrome/" + DriverManager.COUNTER));
-                System.out.println("Error closing and quitting the web driver: " + e.getMessage());
-                if (getDriver() instanceof ChromeDriver) {
+                   if (getDriver() instanceof ChromeDriver) {
                     try {
-                        //  FileUtils.forceDelete(new File("C:/Users/Irina.Holovan/Desktop/chrome/" + DriverManager.COUNTER));
                         Runtime.getRuntime().exec("taskkill /F /IM chromedriver.exe");
                     } catch (IOException ex) {
                         System.out.println("Error force quitting the ChromeDriver process: " + ex.getMessage());
@@ -87,5 +81,10 @@ public class WorkQueueCucumberRunner extends AbstractTestNGCucumberTests {
         }
     }
 
-
+    @SneakyThrows
+    @AfterClass
+    public static void afterClass() throws InterruptedException, MessagingException, IOException {
+        //Directory_Change.uniqueReport();
+    //    MailSend_WMS.sendMail();
+    }
 }

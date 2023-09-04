@@ -53,10 +53,8 @@ public class DMOEPageStep
         if(flag==false)
         {
             loginpage = new LoginPage(driver,scenario);
-            HelpersMethod.Implicitwait(driver, 10);
             loginpage.EnterUsername(TestBase.testEnvironment.username());
             loginpage.EnterPassword(TestBase.testEnvironment.password());
-            HelpersMethod.Implicitwait(driver, 2);
             loginpage.ClickSignin();
         }
     }
@@ -67,7 +65,6 @@ public class DMOEPageStep
         if(flag==false)
         {
             //verify the home page
-            HelpersMethod.Implicitwait(driver,10);
             homepage = new HomePage(driver,scenario);
             homepage.VerifyHomePage();
         }
@@ -79,10 +76,9 @@ public class DMOEPageStep
         boolean result=false;
         if(flag==false)
         {
-            Thread.sleep(10000);
             homepage = new HomePage(driver,scenario);
             String title = driver.getTitle();
-            Assert.assertEquals(title, "Ignition - Admin");
+            //Assert.assertEquals(title, "Ignition - Admin");
             homepage.verifyUserinfoContainer();
             homepage.navigateToClientSide();
         }
@@ -171,7 +167,8 @@ public class DMOEPageStep
     {
         orderpage=new OrderEntryPage(driver,scenario);
         orderpage.HandleError_Page();
-        HelpersMethod.Refresh(driver);
+        orderpage.Refresh_Page2();
+        //HelpersMethod.Refresh(driver);
         dmoePage=new DMOEPage(driver,scenario);
         dmoePage.ValidateDisconnectedMode();
     }

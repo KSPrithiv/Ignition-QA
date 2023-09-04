@@ -13,6 +13,7 @@ import util.Environment;
 import util.TestBase;
 
 import java.awt.font.TextLayout;
+import java.time.Duration;
 
 /**
  * @Project DSD_OMS
@@ -231,7 +232,7 @@ public class DMOEPage
             if(HelpersMethod.IsExists("//div[contains(text(),'Synchronizing Device Data')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
             {
                 WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[contains(text(),'Synchronizing Device Data')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]");
-                new WebDriverWait(driver,6000).until(ExpectedConditions.invisibilityOf(WebEle));
+                new WebDriverWait(driver, Duration.ofMillis(6000)).until(ExpectedConditions.invisibilityOf(WebEle));
             }
         }
         catch (Exception e){}
@@ -257,7 +258,7 @@ public class DMOEPage
     {
         exists=false;
         WebElement WebEle=null;
-        HelpersMethod.Implicitwait(driver,60);
+
         try
         {
             if(HelpersMethod.IsExists("//div[contains(@class,'connection-mode-container notification-center-item offline')]//*[local-name()='svg']//*[local-name()='path' and contains(@d,'M21')]",driver))

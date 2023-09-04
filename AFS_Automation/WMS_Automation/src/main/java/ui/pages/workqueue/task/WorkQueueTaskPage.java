@@ -89,9 +89,6 @@ public class WorkQueueTaskPage extends BasePage {
     By inputWpBrpMed = By.xpath("//input[contains(@id, 'WP BRP, MED')]");
 
     public void waitWorkQueueTaskPageToLoad() {
-        refresh();
-        refresh();
-        refresh();
         Waiters.waitABit(6000);
         Waiters.waitUntilPageWillLoadedSelenide();
         Waiters.waitForElementToBeDisplay(getTaskListTitle());
@@ -126,295 +123,246 @@ public class WorkQueueTaskPage extends BasePage {
     }
 
     public void clickClearAllButton() {
-        Waiters.waitABit(2000);
         Waiters.waitForElementToBeDisplay(getClearAllButton());
         clickOnElement(getClearAllButton());
     }
 
     public void checkProductFilterCheckBox() {
-        Waiters.waitABit(2000);
         Waiters.waitForElementToBeDisplay(getProductFilter());
         clickOnElement(getProductFilter());
     }
 
     public void typeFilter(String filter) {
-        Waiters.waitABit(2000);
         Waiters.waitForElementToBeDisplay(getInputContains());
         inputText(getInputContains(), filter);
     }
 
     public void clickApplyButton() {
-        Waiters.waitABit(2000);
         Waiters.waitForElementToBeDisplay(getApplyButton());
         clickOnElement(getApplyButton());
     }
 
     public void checkStrQtyFilterCheckBox() {
-        Waiters.waitABit(2000);
         Waiters.waitForElementToBeDisplay(getStrQtyFilter());
         clickOnElement(getStrQtyFilter());
     }
 
     public void checkFromFilterCheckBox() {
-        Waiters.waitABit(2000);
         Waiters.waitForElementToBeDisplay(getFromFilter());
         clickOnElement(getFromFilter());
     }
 
     public void checkToFilterCheckBox() {
-        Waiters.waitABit(2000);
         Waiters.waitForElementToBeDisplay(getToFilter());
         clickOnElement(getToFilter());
     }
 
     public void checkTypeFilterCheckBox() {
-        Waiters.waitABit(2000);
         Waiters.waitForElementToBeDisplay(getTypeFilter());
         clickOnElement(getTypeFilter());
     }
 
     public void checkTaskGroupFilterCheckBox() {
-        Waiters.waitABit(2000);
         Waiters.waitForElementToBeDisplay(getTaskGroupFilter());
         clickOnElement(getTaskGroupFilter());
     }
 
     public void checkStatusFilterCheckBox() {
-        Waiters.waitABit(2000);
         Waiters.waitForElementToBeDisplay(getStatusFilter());
         clickOnElement(getStatusFilter());
     }
 
     public void checkAssignmentNumberFilterCheckBox() {
-        Waiters.waitABit(2000);
         Waiters.waitForElementToBeDisplay(getAssignmentNumberFilter());
         clickOnElement(getAssignmentNumberFilter());
     }
 
     public void checkPriorityFilterCheckBox() {
-        Waiters.waitABit(2000);
         Waiters.waitForElementToBeDisplay(getPriorityFilter());
         clickOnElement(getPriorityFilter());
     }
 
     public void checkRouteFilterCheckBox() {
-        Waiters.waitABit(2000);
         Waiters.waitForElementToBeDisplay(getRouteFilter());
         clickOnElement(getRouteFilter());
     }
 
     public void checkStopFilterCheckBox() {
-        Waiters.waitABit(2000);
         Waiters.waitForElementToBeDisplay(getStopFilter());
         clickOnElement(getStopFilter());
     }
 
     public void checkShipperFilterCheckBox() {
-        Waiters.waitABit(2000);
         Waiters.waitForElementToBeDisplay(getShipperFilter());
         clickOnElement(getShipperFilter());
     }
 
     public void checkVelocityFilterCheckBox() {
-        Waiters.waitABit(2000);
         Waiters.waitForElementToBeDisplay(getVelocityFilter());
         clickOnElement(getVelocityFilter());
     }
 
     public void checkDescriptionFilterCheckBox() {
-        Waiters.waitABit(2000);
         Waiters.waitForElementToBeDisplay(getDescriptionFilter());
         clickOnElement(getDescriptionFilter());
     }
 
     public void checkInputCheckIn() {
-        Waiters.waitABit(2000);
         Waiters.waitForElementToBeDisplay(getInputCheckIn());
         clickOnElement(getInputCheckIn());
     }
 
     public void checkInputCycleCount() {
-        Waiters.waitABit(2000);
         Waiters.waitForElementToBeDisplay(getInputCycleCount());
         clickOnElement(getInputCycleCount());
     }
 
     public void checkInputLetdown() {
-        Waiters.waitABit(2000);
         Waiters.waitForElementToBeDisplay(getInputLetdown());
         clickOnElement(getInputLetdown());
     }
 
     public void checkInputLoadCountAudit() {
-        Waiters.waitABit(2000);
         Waiters.waitForElementToBeDisplay(getInputLoadCountAudit());
         clickOnElement(getInputLoadCountAudit());
     }
 
     public void checkInputLoading() {
-        Waiters.waitABit(2000);
         Waiters.waitForElementToBeDisplay(getInputLoading());
         clickOnElement(getInputLoading());
     }
 
     public void checkInputMovement() {
-        Waiters.waitABit(2000);
         Waiters.waitForElementToBeDisplay(getInputMovement());
         clickOnElement(getInputMovement());
     }
 
     public void checkInputOpportunisticCount() {
-        Waiters.waitABit(2000);
         Waiters.waitForElementToBeDisplay(getInputOpportunisticCount());
         clickOnElement(getInputOpportunisticCount());
     }
 
     public void checkInputPackStaging() {
-        Waiters.waitABit(2000);
         Waiters.waitForElementToBeDisplay(getInputPackStaging());
         clickOnElement(getInputPackStaging());
     }
 
     public void checkInputPacking() {
-        Waiters.waitABit(2000);
         Waiters.waitForElementToBeDisplay(getInputPacking());
         clickOnElement(getInputPacking());
     }
 
     public void checkInputPick() {
-        Waiters.waitABit(2000);
         Waiters.waitForElementToBeDisplay(getInputPick());
         clickOnElement(getInputPick());
     }
 
     public void checkInputPickFromReserve() {
-        Waiters.waitABit(2000);
         Waiters.waitForElementToBeDisplay(getInputPickFromReserve());
         clickOnElement(getInputPickFromReserve());
     }
 
     public void checkInputPutaway() {
-        Waiters.waitABit(2000);
         Waiters.waitForElementToBeDisplay(getInputPutaway());
         clickOnElement(getInputPutaway());
     }
 
     public void checkInputReplenishment() {
-        Waiters.waitABit(2000);
         Waiters.waitForElementToBeDisplay(getInputReplenishment());
         clickOnElement(getInputReplenishment());
     }
 
     public void checkInputShipping() {
-        Waiters.waitABit(2000);
         Waiters.waitForElementToBeDisplay(getInputShipping());
         clickOnElement(getInputShipping());
     }
 
     public void checkInputShortChasing() {
-        Waiters.waitABit(2000);
         Waiters.waitForElementToBeDisplay(getInputShortChasing());
         clickOnElement(getInputShortChasing());
     }
 
     public void checkInputTopOff() {
-        Waiters.waitABit(2000);
         Waiters.waitForElementToBeDisplay(getInputTopOff());
         clickOnElement(getInputTopOff());
     }
 
     public void checkInputWavePick() {
-        Waiters.waitABit(2000);
         Waiters.waitForElementToBeDisplay(getInputWavePick());
         clickOnElement(getInputWavePick());
     }
 
     public void checkInputCount() {
-        Waiters.waitABit(2000);
         Waiters.waitForElementToBeDisplay(getInputCount());
         clickOnElement(getInputCount());
     }
 
     public void checkInputDee() {
-        Waiters.waitABit(2000);
         Waiters.waitForElementToBeDisplay(getInputDee());
         clickOnElement(getInputDee());
     }
 
     public void checkInputDefault() {
-        Waiters.waitABit(2000);
         Waiters.waitForElementToBeDisplay(getInputDefault());
         clickOnElement(getInputDefault());
     }
 
     public void checkInputLoad() {
-        Waiters.waitABit(2000);
         Waiters.waitForElementToBeDisplay(getInputLoad());
         clickOnElement(getInputLoad());
     }
 
     public void checkInputNeedsLoc() {
-        Waiters.waitABit(2000);
         Waiters.waitForElementToBeDisplay(getInputNeedsLoc());
         clickOnElement(getInputNeedsLoc());
     }
 
     public void checkInputPalChill() {
-        Waiters.waitABit(2000);
         Waiters.waitForElementToBeDisplay(getInputPalChill());
         clickOnElement(getInputPalChill());
     }
 
     public void checkInputPalDry() {
-        Waiters.waitABit(2000);
         Waiters.waitForElementToBeDisplay(getInputPalDry());
         clickOnElement(getInputPalDry());
     }
 
     public void checkInputPalFrz() {
-        Waiters.waitABit(2000);
         Waiters.waitForElementToBeDisplay(getInputPalFrz());
         clickOnElement(getInputPalFrz());
     }
 
     public void checkInputPickChill() {
-        Waiters.waitABit(2000);
         Waiters.waitForElementToBeDisplay(getInputPickChill());
         clickOnElement(getInputPickChill());
     }
 
     public void checkInputPickDry() {
-        Waiters.waitABit(2000);
         Waiters.waitForElementToBeDisplay(getInputPickDry());
         clickOnElement(getInputPickDry());
     }
 
     public void checkInputPickFrz() {
-        Waiters.waitABit(2000);
         Waiters.waitForElementToBeDisplay(getInputPickFrz());
         clickOnElement(getInputPickFrz());
     }
 
     public void checkInputReplen() {
-        Waiters.waitABit(2000);
         Waiters.waitForElementToBeDisplay(getInputReplen());
         clickOnElement(getInputReplen());
     }
 
     public void checkInputShort() {
-        Waiters.waitABit(2000);
         Waiters.waitForElementToBeDisplay(getInputShort());
         clickOnElement(getInputShort());
     }
 
     public void checkInputTestcode() {
-        Waiters.waitABit(2000);
         Waiters.waitForElementToBeDisplay(getInputTestcode());
         clickOnElement(getInputTestcode());
     }
 
     public void checkInputWpBrpMed() {
-        Waiters.waitABit(2000);
         Waiters.waitForElementToBeDisplay(getInputWpBrpMed());
         clickOnElement(getInputWpBrpMed());
     }

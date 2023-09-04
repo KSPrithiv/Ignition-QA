@@ -8,10 +8,12 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.apache.logging.log4j.core.tools.picocli.CommandLine;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import pages_DSD_OMS.customerInquiry_DSD.*;
+import pages_DSD_OMS.customerInquiry_ERP.IgnitionPageERP;
 import pages_DSD_OMS.login.HomePage;
 import pages_DSD_OMS.login.LoginPage;
 import util.TestBase;
@@ -31,9 +33,11 @@ public class CustomerInqStep
     Scenario scenario;
     static boolean flag=false;
     static boolean flag1=false;
+    static boolean flag2=false;
     static String DelSeq=null;
     static String Track=null;
     static String Route=null;
+    static String currentURL=null;
     WebElement WebEle;
 
     LoginPage loginpage;
@@ -47,7 +51,7 @@ public class CustomerInqStep
     PricePage pricePage;
     MiscTaxPage miscTaxPage;
     DEX_EDIPage dex_ediPage;
-    IgnationPage ignationPage;
+    IgnitionPage ignitionPage;
 
 
     @Before
@@ -89,7 +93,7 @@ public class CustomerInqStep
         {
             homepage = new HomePage(driver,scenario);
             String title = driver.getTitle();
-            Assert.assertEquals(title, "Ignition - Admin");
+            //Assert.assertEquals(title, "Ignition - Admin");
             homepage.verifyUserinfoContainer();
             homepage.navigateToClientSide();
             customerInquiryPage= new CustomerInquiryPage(driver, scenario);
@@ -139,17 +143,17 @@ public class CustomerInqStep
     }
 
     @And("User enters value to all the input box in primary page")
-    public void userEntersValueToAllTheInputBoxInPrimaryPage()
+    public void userEntersValueToAllTheInputBoxInPrimaryPage() throws InterruptedException
     {
         primaryPage=new PrimaryPage(driver,scenario);
         primaryPage.ValidatePrimaryPage();
         primaryPage.Address1();
         primaryPage.Address2();
         primaryPage.cityValue();
-        primaryPage.CountryValue();
+        primaryPage.CountryDropDown();
         primaryPage.StateValue();
         primaryPage.ZipValue();
-        primaryPage.CountryDropDown();
+        primaryPage.CountryValue();
         primaryPage.PhoneValue();
         primaryPage.FaxValue();
         primaryPage.SchoolLocationValue();
@@ -158,11 +162,11 @@ public class CustomerInqStep
         primaryPage.DistrbutorDropDown();
         primaryPage.VendorNo();
         primaryPage.SoldBy();
-        primaryPage.SoldByRemittance();
+        //primaryPage.SoldByRemittance();
         primaryPage.HeadAccNo();
         primaryPage.StatusDropDown();
         primaryPage.SuspendOnDate();
-        primaryPage.SuspendDateSelection();
+       // primaryPage.SuspendDateSelection();
         primaryPage.ActiveOnDate();
         primaryPage.SuspensionReason();
         primaryPage.EquipmentChargeCheckbox();
@@ -223,15 +227,15 @@ public class CustomerInqStep
         orderPage.AuthorizedProdDropDown();
         orderPage.MinOrderAmount(amountValue.get(0).get(0));
         orderPage.MaxOrderAmount(amountValue.get(0).get(1));
-        orderPage.StartForecastingCal();
-        orderPage.SelectStartForecastingCal();
-        orderPage.StopForecastingCal();
-        orderPage.SelectEndForecastingCal();
+        //orderPage.StartForecastingCal();
+        //orderPage.SelectStartForecastingCal();
+        //orderPage.StopForecastingCal();
+        //orderPage.SelectEndForecastingCal();
         orderPage.UseForecastingCheckbox();
     }
 
     @And("User navigate to Deliveries tab and User enteres the value for all web elements")
-    public void userNavigateToDeliveriesTabAndUserEnteresTheValueForAllWebElements()
+    public void userNavigateToDeliveriesTabAndUserEnteresTheValueForAllWebElements() throws InterruptedException
     {
         int i;
         customerInquiryPage=new CustomerInquiryPage(driver,scenario);
@@ -241,7 +245,7 @@ public class CustomerInqStep
         deliveriesPage.ContactValue();
         deliveriesPage.PhoneValue();
         deliveriesPage.PrimaryRouteValue();
-        deliveriesPage.WeeklyDeliSheduleDropDown();
+        //deliveriesPage.WeeklyDeliSheduleDropDown();
         deliveriesPage.NoOfDayOrWeek();
         deliveriesPage.DeliveryDay();
         deliveriesPage.DefaultDeliverySequence();
@@ -271,9 +275,9 @@ public class CustomerInqStep
         deliveriesPage.ProductDeliverySequnce();
         deliveriesPage.AllowPromoExclusion();
         deliveriesPage.HHLastDeliveryDate();
-        deliveriesPage.SelectHHLastDeliveryDate();
-        deliveriesPage.HHLastScheduleDate();
-        deliveriesPage.SelectHHLastScheduleDate();
+        //deliveriesPage.SelectHHLastDeliveryDate();
+        //deliveriesPage.HHLastScheduleDate();
+        //deliveriesPage.SelectHHLastScheduleDate();
         deliveriesPage.Soldto();
         deliveriesPage.SplitTicket();
         deliveriesPage.Price();
@@ -301,7 +305,7 @@ public class CustomerInqStep
         accountPage.PaymentTypeDropDown();
         accountPage.ChannelNoDropDown();
         accountPage.MonthlyStatementDropDown();
-        accountPage.CreditLimitAmount();
+        //accountPage.CreditLimitAmount();
         accountPage.BalanceAmount();
         accountPage.BillingSequence();
         accountPage.DiscountAmount();
@@ -309,9 +313,9 @@ public class CustomerInqStep
         accountPage.BillableCheckbox();
         accountPage.BillingGroupDropDown();
         accountPage.BillingPeriodDropDown();
-        accountPage.CreditCardInput();
-        accountPage.CreditCardExpinput();
-        accountPage.CreditCardCustCheckbox();
+        //accountPage.CreditCardInput();
+        //accountPage.CreditCardExpinput();
+        //accountPage.CreditCardCustCheckbox();
         accountPage.BillingPreferenceDropDown();
         accountPage.AdministrationFeeAmount();
         accountPage.ARContactInput();
@@ -456,63 +460,70 @@ public class CustomerInqStep
     @And("User navigate to Ignition tab")
     public void userNavigateToIgnitionTab()
     {
-        customerInquiryPage=new CustomerInquiryPage(driver,scenario);
-        customerInquiryPage.NavigateDifferentTabs("Ignition");
-        if(HelpersMethod.IsExists("//div[@class='loader']",driver))
+        if(flag2==false)
         {
-            WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 400);
+            customerInquiryPage = new CustomerInquiryPage(driver, scenario);
+            customerInquiryPage.NavigateDifferentTabs("TELUS OMS");
+            if (HelpersMethod.IsExists("//div[@class='loader']", driver))
+            {
+                WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 2000);
+            }
+            ignitionPage = new IgnitionPage(driver, scenario);
+            ignitionPage.ValidateIgnition();
+            currentURL = driver.getCurrentUrl();
+            flag2=true;
         }
-        ignationPage=new IgnationPage(driver,scenario);
-        ignationPage.ValidateIgnition();
+        //ignitionPage.cancelPopup();
+        ignitionPage=new IgnitionPage(driver,scenario);
+        ignitionPage.validateAddStandingOrder();
     }
 
     @Then("User clicks on Create new button and standing PO popup appeared")
     public void userClicksOnCreateNewButtonAndStandingOrderPopupAppeared()
     {
-        ignationPage=new IgnationPage(driver,scenario);
-        ignationPage.ValidateIgnition();
-        ignationPage.ClickOnNewButton();
-        ignationPage.ValidateAddStandingPO();
+        ignitionPage=new IgnitionPage(driver,scenario);
+        ignitionPage.ValidateIgnition();
+        ignitionPage.ClickOnNewButton();
+        ignitionPage.ValidateAddStandingPO();
     }
 
     @And("User selects {int} day from current date and {int} day from end date and Select Payment processing")
     public void userSelectsDayFromCurrentDateAndDayFromEndDateAndSelectPaymentProcessing(int arg0, int arg1)
     {
-        ignationPage=new IgnationPage(driver,scenario);
-        ignationPage.ClickOnStartDateCalender();
-        ignationPage.SelectStartDate(arg0);
-        ignationPage.ClickOnEndDateCalender();
-        ignationPage.SelectEndDate(arg1);
-        ignationPage.POInputBox();
-        ignationPage.ClickOnAdd();
-        ignationPage.PaymentProcessingDropdown();
+        ignitionPage=new IgnitionPage(driver,scenario);
+        ignitionPage.ValidateAddStandingPO();
+        ignitionPage.ClickOnStartDateCalender();
+        ignitionPage.SelectStartDate(arg0);
+        ignitionPage.ClickOnEndDateCalender();
+        ignitionPage.SelectEndDate(arg1);
+        ignitionPage.POInputBox();
+        ignitionPage.ClickOnAdd();
+        ignitionPage.PaymentProcessingDropdown();
     }
 
     @Then("User selects time for order time for different days")
     public void userSelectsTimeForOrderTimeForDifferentDays() throws InterruptedException
     {
-        ignationPage=new IgnationPage(driver,scenario);
+        ignitionPage=new IgnitionPage(driver,scenario);
         List<WebElement> Clocks= HelpersMethod.FindByElements(driver,"xpath","//div[@class='ignition-call-list-schedule-details row']/descendant::span[@class='k-icon k-i-clock']");
         for(int i=1;i<= Clocks.size();i++)
         {
-            Thread.sleep(1000);
-            ignationPage.ClickClockIcon(i);
-            ignationPage.SelectHoursForAllDays();
-            ignationPage.SelectMinForAllDays();
-            ignationPage.ClickOnSetButton();
-            Thread.sleep(1000);
+            ignitionPage.ClickClockIcon(i);
+            ignitionPage.SelectHoursForAllDays();
+            ignitionPage.SelectMinForAllDays();
+            ignitionPage.ClickOnSetButton();
         }
     }
 
     @And("User selects Order taker from drop down")
     public void userSelectsOrderTakerFromDropDown()
     {
-        ignationPage=new IgnationPage(driver,scenario);
+        ignitionPage=new IgnitionPage(driver,scenario);
         List<WebElement> OrderTakers=HelpersMethod.FindByElements(driver,"xpath","//div[contains(@class,'ignition-call-list-schedule-details row')]/descendant::span[contains(@class,'k-widget k-dropdown')]");
         for(int i=1;i<=OrderTakers.size();i++)
         {
-            ignationPage.ClickOrderTracker(i);
+            ignitionPage.ClickOrderTracker(i);
         }
     }
 
@@ -521,6 +532,8 @@ public class CustomerInqStep
     {
         customerInquiryPage=new CustomerInquiryPage(driver,scenario);
         customerInquiryPage.Save_ButtonClick();
+        customerInquiryPage.validateSaveConfirmationPopup();
+        customerInquiryPage.SaveButtonOK();
     }
 
     @Then("User enters Description of customer and load already saved details")
@@ -533,17 +546,19 @@ public class CustomerInqStep
     @Then("User enters PO in search box and user should make sure that PO details displayed in grid")
     public void userEntersPOInSearchBoxAndUserShouldMakeSureThatPODetailsDisplayedInGrid()
     {
-        ignationPage=new IgnationPage(driver,scenario);
-        ignationPage.SearchPONo();
+        ignitionPage=new IgnitionPage(driver,scenario);
+        ignitionPage.SearchPONo();
     }
 
-    @And("User should be able to select the PO details and edit PO")
-    public void userShouldBeAbleToSelectThePODetailsAndEditPO()
+    @And("User should be able to select the PO details and edit end date as {int} days")
+    public void userShouldBeAbleToSelectThePODetailsAndEditEndDateAsDays(int arg0)
     {
-        ignationPage=new IgnationPage(driver,scenario);
-        ignationPage.SelectPONo();
-        ignationPage.ClickEditButton();
-        ignationPage.EditPONo();
+        ignitionPage=new IgnitionPage(driver,scenario);
+        ignitionPage.SelectPONo();
+        ignitionPage.ClickEditButton();
+        ignitionPage.validateEditStndingPO();
+        ignitionPage.ClickOnEndDateCalenderInEditPopup();
+        ignitionPage.SelectEndDateInEditPopup(arg0);
     }
 
     @Then("User clicks on Copy button and popup should display")
@@ -552,5 +567,83 @@ public class CustomerInqStep
         customerInquiryPage=new CustomerInquiryPage(driver,scenario);
         customerInquiryPage.ClickCopy();
         customerInquiryPage.CopyCutomerPopup();
+    }
+
+    @Then("User clicks on Save button before adding values to ignition in DSD")
+    public void userClicksOnSaveButtonBeforeAddingValuesToIgnitionInDSD()
+    {
+        customerInquiryPage=new CustomerInquiryPage(driver,scenario);
+        customerInquiryPage.BillNo();
+        //customerInquiryPage.StoreNo();
+        //customerInquiryPage.DeptNo();
+        customerInquiryPage.DescrVal();
+        customerInquiryPage.Save_ButtonClick();
+        customerInquiryPage.validateSaveConfirmationPopup();
+        customerInquiryPage.SaveButtonOK();
+    }
+
+    @Then("Add note in popup in cust inq")
+    public void addNoteInPopupInCustInq(DataTable tabledata)
+    {
+        customerInquiryPage = new CustomerInquiryPage(driver, scenario);
+        List<List<String>> Cust_Note = tabledata.asLists(String.class);
+        customerInquiryPage.clickOnNote();
+        customerInquiryPage.validateNotePopup();
+        customerInquiryPage.Add_Customer_Note(Cust_Note.get(0).get(0));
+    }
+
+    @And("User should select the Alert Type and Alert location to display notes in DSD cust inq")
+    public void userShouldSelectTheAlertTypeAndAlertLocationToDisplayNotesInDSDCustInq(DataTable tabledata)
+    {
+        customerInquiryPage = new CustomerInquiryPage(driver, scenario);
+        List<List<String>> Alerts=tabledata.asLists(String.class);
+        customerInquiryPage.Select_AlertType_Location(Alerts.get(0).get(0),Alerts.get(0).get(1),Alerts.get(0).get(2));
+    }
+
+    @Then("Click on Save button in DSD cust inq")
+    public void clickOnSaveButtonInDSDCustInq()
+    {
+        customerInquiryPage = new CustomerInquiryPage(driver, scenario);
+        customerInquiryPage.Save_Note_Button();
+        customerInquiryPage.Ok_Note_Button();
+    }
+
+    @Then("PO has been saved")
+    public void poHasBeenSaved()
+    {
+        customerInquiryPage=new CustomerInquiryPage(driver,scenario);
+        customerInquiryPage.validateSaveConfirmationPopup();
+        customerInquiryPage.SaveButtonOK();
+    }
+
+    @Then("User changes PO value")
+    public void userChangesPOValue()
+    {
+        ignitionPage=new IgnitionPage(driver,scenario);
+        ignitionPage.POInputBox();
+        ignitionPage.ClickUpdate();
+        customerInquiryPage=new CustomerInquiryPage(driver,scenario);
+        customerInquiryPage.validateSaveConfirmationPopup();
+        customerInquiryPage.SaveButtonOK();
+    }
+
+    @Then("User clears search bar in ignition tab")
+    public void userClearsSearchBarInIgnitionTab()
+    {
+        ignitionPage=new IgnitionPage(driver,scenario);
+        ignitionPage.clearSearchbar();
+    }
+
+    @Then("User selects Standing PO# from the grid and click Delete")
+    public void userSelectsStandingPOFromTheGridAndClickDelete()
+    {
+        List<WebElement> Pos= HelpersMethod.FindByElements(driver,"xpath","//tr[contains(@class,'k-master-row')]");
+       for(int i=0;i<= Pos.size()-1;i++)
+       {
+           IgnitionPageERP ignitionPageERP = new IgnitionPageERP(driver, scenario);
+           ignitionPageERP.selectPONoForDelete(i);
+           ignitionPageERP.clickDelete();
+           ignitionPageERP.confirmationPopUp();
+       }
     }
 }

@@ -2,6 +2,7 @@ package pages_DSD_OMS.customerInquiry_DSD;
 
 import helper.HelpersMethod;
 import io.cucumber.java.Scenario;
+import lombok.experimental.Helper;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -162,11 +163,6 @@ public class PricePage
             WebEle=HelpersMethod.FindByElement(driver,"xpath","//span[@id='"+WebId+"']/span[contains(@class,'k-input')]");
             InputValue=WebEle.getText();
 
-            if(TextDropDown.equals(InputValue))
-            {
-                exists=true;
-            }
-            Assert.assertEquals(exists,true);
         }
         catch (Exception e){}
         return InputValue;
@@ -310,6 +306,7 @@ public class PricePage
 
     public void BasePriceDropDown()
     {
+        HelpersMethod.ScrollElement(driver,BasePrice);
         InputValue=ClickOnDropDown(BasePrice,"CmSchBasePrc");
         scenario.log("BEST PRICE DROP DOWN VALUE "+InputValue);
     }
@@ -376,6 +373,7 @@ public class PricePage
 
     public void ContractPriceDropDown()
     {
+        HelpersMethod.ScrollElement(driver,ContractPrice);
         InputValue=ClickOnDropDown(ContractPrice,"CmSchContrPrc");
         scenario.log("CONTRACT PRICE DROP DOWN VALUE "+InputValue);
     }

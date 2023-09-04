@@ -52,11 +52,11 @@ public class OrderEntryPageSteps3
         result=orderpage.Account_Zero();
         if(result==true)
         {
-            scenario.log("PRECEDING BY ZERO HAS BEEN EXECUTED SUCESSFULLY");
+            scenario.log("PRECEDING BY ZERO HAS BEEN EXECUTED SUCESSFULLY,PLEASE DO CHECK ADMIN SETTINGS");
         }
         else
         {
-            scenario.log("PRECEDING BY ZERO HAS BEEN FAILED");
+            scenario.log("PRECEDING BY ZERO HAS BEEN FAILED, PLEASE DO CHECK ADMIN SETTINGS");
         }
         Assert.assertEquals(result,true);
     }
@@ -68,9 +68,11 @@ public class OrderEntryPageSteps3
         List<List<String>> Address_Add=tabledata.asLists(String.class);
         newOE=new NewOrderEntryPage(driver,scenario);
         newOE.ClickNext();
-        newOE.OutOfStockPop_ERP();
+        //newOE.OutOfStockPop_ERP();
         checkorder=new CheckOutOrderPage(driver,scenario);
         checkorder.Add_Delivery_Address(Address_Add.get(0).get(0),Address_Add.get(0).get(1),Address_Add.get(0).get(2),Address_Add.get(0).get(3),Address_Add.get(0).get(4),Address_Add.get(0).get(5));
+        checkorder.Click_On_Without_Providing_Payment();
+        checkorder.NextButton_Click();
     }
 
     //Code to Edit the delivery address
@@ -81,10 +83,12 @@ public class OrderEntryPageSteps3
         List<List<String>> Change_Add=tabledata.asLists(String.class);
         newOE=new NewOrderEntryPage(driver,scenario);
         newOE.ClickNext();
-        newOE.OutOfStockPop_ERP();
+        //newOE.OutOfStockPop_ERP();
         checkorder=new CheckOutOrderPage(driver,scenario);
         result=checkorder.Edit_DeliveryAddress(Change_Add.get(0).get(0),Change_Add.get(0).get(1));
         Assert.assertEquals(true,result);
+        checkorder.Click_On_Without_Providing_Payment();
+        checkorder.NextButton_Click();
     }
 
     //Code for Deleting Delivery Address
@@ -95,10 +99,12 @@ public class OrderEntryPageSteps3
         List<List<String>> DelAdd=tabledata.asLists(String.class);
         newOE=new NewOrderEntryPage(driver,scenario);
         newOE.ClickNext();
-        newOE.OutOfStockPop_ERP();
+        //newOE.OutOfStockPop_ERP();
         checkorder=new CheckOutOrderPage(driver,scenario);
         result=checkorder.Delete_DeliveryAddress(DelAdd.get(0).get(0));
         Assert.assertEquals(true,result);
+        checkorder.Click_On_Without_Providing_Payment();
+        checkorder.NextButton_Click();
     }
 
     //Code to display Qty as Zero, for those products which are out of stock, in summary page
@@ -135,8 +141,8 @@ public class OrderEntryPageSteps3
     public void click_on_arrow_symbol_to_display_products_based_on_descending_order_of_units() throws InterruptedException, AWTException
     {
         newOE=new NewOrderEntryPage(driver,scenario);
-        boolean result=newOE.UnitsAscedning();
-        Assert.assertEquals(result,true);
+        boolean result=newOE.clickOnArrow_UnitsAscedning();
+        Assert.assertEquals(result,false);
     }
 
     //Select the 1st route that appears in the Route popup in OE page
@@ -146,7 +152,6 @@ public class OrderEntryPageSteps3
         orderpage=new OrderEntryPage(driver, scenario);
         orderpage.Route_Popup();
         orderpage.Route1();
-        HelpersMethod.Implicitwait(driver,5);
     }
 
     //Select the 2nd route that appears in the the route popup in New OE page
@@ -173,13 +178,14 @@ public class OrderEntryPageSteps3
         List<List<String>> AccDetails=tabledata.asLists(String.class);
         newOE = new NewOrderEntryPage(driver,scenario);
         newOE.ClickNext();
-        newOE.OutOfStockPop_ERP();
+        //newOE.OutOfStockPop_ERP();
         checkorder=new CheckOutOrderPage(driver,scenario);
         checkorder.Select_PaymentMethod_ClickDownArrow();
-        checkorder.Adding_New_PaymentMethod(AccDetails.get(0).get(0),AccDetails.get(0).get(1),AccDetails.get(0).get(2),AccDetails.get(0).get(3),AccDetails.get(0).get(4),AccDetails.get(0).get(5));
-        checkorder.PaymentMethod();
+        checkorder.Adding_New_PaymentMethod(AccDetails.get(0).get(0),AccDetails.get(0).get(1));
+        checkorder.Click_On_Without_Providing_Payment();
         checkorder.Delivery_Address_ClickDownArrow();
         checkorder.DeliveryAddressCard();
+        checkorder.NextButton_Click();
     }
 
     //Code for Deleting payment method
@@ -189,15 +195,18 @@ public class OrderEntryPageSteps3
         List<List<String>> AccDetails=tabledata.asLists(String.class);
         newOE = new NewOrderEntryPage(driver,scenario);
         newOE.ClickNext();
-        newOE.OutOfStockPop_ERP();
+       // newOE.OutOfStockPop_ERP();
         checkorder=new CheckOutOrderPage(driver,scenario);
         checkorder.Select_PaymentMethod_ClickDownArrow();
-        checkorder.Delete_PaymentMethod(AccDetails.get(0).get(0));
+        checkorder.Delete_PaymentMethod();
         if(HelpersMethod.IsExists("//div[contains(text(),'Confirm delete')]/ancestor::div[@class='k-widget k-window k-dialog']",driver))
         {
             HelpersMethod.ClickBut(driver,HelpersMethod.FindByElement(driver,"xpath","//div[@class='k-widget k-window k-dialog']/descendant::button[text()='Yes']"),1);
         }
-        checkorder.PaymentMethod();
+        checkorder.Click_On_Without_Providing_Payment();
+        checkorder.Delivery_Address_ClickDownArrow();
+        checkorder.DeliveryAddressCard();
+        checkorder.NextButton_Click();
     }
 
     @Then("User should find select first OG from popup")

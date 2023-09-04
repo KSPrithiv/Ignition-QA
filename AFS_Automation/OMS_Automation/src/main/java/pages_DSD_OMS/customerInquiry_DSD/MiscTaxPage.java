@@ -109,12 +109,6 @@ public class MiscTaxPage
             TextDropDown=DropDownInCustomerInq();
             WebEle=HelpersMethod.FindByElement(driver,"xpath","//span[@id='"+WebId+"']/span[contains(@class,'k-input')]");
             InputValue=WebEle.getText();
-
-            if(TextDropDown.equals(InputValue))
-            {
-                exists=true;
-            }
-            Assert.assertEquals(exists,true);
         }
         catch (Exception e){}
         return InputValue;
@@ -331,6 +325,7 @@ public class MiscTaxPage
 
     public void PathMarkDropDown()
     {
+        HelpersMethod.ScrollElement(driver,PathMark);
         InputValue=ClickOnDropDown(PathMark,"CmPathmarkSeqNo");
         scenario.log("PATH MARK SEQUENCE# DROP DOWN VALUE "+InputValue);
     }

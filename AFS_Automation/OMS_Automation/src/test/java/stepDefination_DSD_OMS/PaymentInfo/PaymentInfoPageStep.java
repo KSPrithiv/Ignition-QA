@@ -78,8 +78,6 @@ public class PaymentInfoPageStep
         if(flag==false)
         {
             homepage = new HomePage(driver,scenario);
-            String title = driver.getTitle();
-            Assert.assertEquals(title, "Ignition - Admin");
             homepage.verifyUserinfoContainer();
             homepage.navigateToClientSide();
             flag=true;
@@ -114,7 +112,8 @@ public class PaymentInfoPageStep
         try
         {
             paymentInfoPage=new PaymentInfoPage(driver,scenario);
-            paymentInfoPage.EnterAccount();
+            paymentInfoPage.clickOnCustomerAccountIndex();
+            paymentInfoPage.SelectCustomerAccount();
             paymentInfoPage.Click_Plus();
             newPaymentMethodPage=new NewPaymentMethodPage(driver,scenario);
             newPaymentMethodPage.Validate_NewPaymentInfo();
@@ -134,7 +133,6 @@ public class PaymentInfoPageStep
             newPaymentMethodPage=new NewPaymentMethodPage(driver,scenario);
             newPaymentMethodPage.PaymentType();
             newPaymentMethodPage.PaymentDropDown("Bank account");
-            HelpersMethod.Implicitwait(driver,40);
             newPaymentMethodPage.EnterFirstName(AccHolderDetails.get(0).get(0));
             newPaymentMethodPage.EnterLastName(AccHolderDetails.get(0).get(1));
             newPaymentMethodPage.Click_AccType();

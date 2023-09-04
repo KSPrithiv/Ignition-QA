@@ -3,26 +3,29 @@ Feature: Testing of Lookup Labels functionality
 
   Scenario: Checking Labels action item exist on Lookup Location screen
     Given User signs in the application
-    When Main page is loaded
+    And Main page is loaded
     And DockManagement Summary Page is validated
-    Then Go to Lookup Location page
+    And Go to Lookup Location page
     And Waits for Location Lookup page to load
-    And User types location "101.056.80" on Lookup Location page
+    When User types location by index 4 on Lookup Location page
     And Validates Inventory details of location on Location Lookup page are loaded
-    And Validates Print Label on Location Lookup page is displayed
+    Then Validates Print Label on Location Lookup page is displayed
 
   Scenario: Checking Location Label on Lookup Location screen
     Given User signs in the application
-    When Main page is loaded
+    And Main page is loaded
     And DockManagement Summary Page is validated
-    Then Go to Lookup Location page
+    And Go to Lookup Location page
     And Waits for Location Lookup page to load
-    And User types location "101.056.80" on Lookup Location page
+    And Deletes cookies on application
+    And User types location by index 1 on Lookup Location page
     And Validates Inventory details of location on Location Lookup page are loaded
-    And User checks Location Product 1 on Lookup Location page
+    And User checks Location Product 0 on Lookup Location page
     And User clicks Labels button on Lookup Location page
     And Validates Labels window title "Labels" on Location Lookup page
+
     And User selects Label type "Product" on Lookup Location page
+
     And User selects Printer "Printer5" on Lookup Location page
     And User clicks OK button on Lookup Location page
     And Validates "Success" notification is displayed on Lookup Location page

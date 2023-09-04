@@ -59,8 +59,6 @@ public class Manage_Registration_PageStep {
 
             manage_reg_page.ClickOn_Manage_Registration();
             // manage_reg_page.clickOn_UsersearchIcon();
-
-
         }
     }
 

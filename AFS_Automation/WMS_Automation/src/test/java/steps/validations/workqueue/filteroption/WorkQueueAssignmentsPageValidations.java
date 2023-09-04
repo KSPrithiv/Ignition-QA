@@ -95,7 +95,7 @@ public class WorkQueueAssignmentsPageValidations {
 
     @And("Validates {string} message content on dialog popup on Work Queue Assignments page")
     public void validateWarningMessage(String message) {
-        softAssert.assertEquals(workQueueAssignmentsPage.getDialogTextContentText(), message, "Warning Message is not correct");
+        softAssert.assertEquals(workQueueAssignmentsPage.getDialogPopupText(), message, "Warning Message is not correct");
         softAssert.assertAll();
     }
 

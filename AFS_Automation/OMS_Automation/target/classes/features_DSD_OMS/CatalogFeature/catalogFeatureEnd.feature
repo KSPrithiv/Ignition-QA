@@ -7,7 +7,8 @@ Feature: Catalog2
     Then User should select Order Entry tab for Catalog
     Then User selects Account# for Catalog
 
-  @LogoutAllOrder
+  @LogoutCatalog
   Scenario:Loging out from the application
-    Then Click on user Icon on Order Entry page
-    And Click on Logout on Order Entry page
+    And Refresh the page if any dialog box is displayed
+     Then Click on user Icon on Order Entry page
+     And Click on Logout on Order Entry page

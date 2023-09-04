@@ -12,6 +12,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import util.RandomValues;
 
+import java.time.Duration;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -201,15 +202,47 @@ public class DeliveriesPage
         PageFactory.initElements(driver,this);
     }
 
-    public String DropDownInCustomerInq()
+    public String EnterNumber(WebElement WebEle, int length)
     {
-        String ValueSele=null;
-        List<WebElement> Options= HelpersMethod.FindByElements(driver,"xpath","//div[contains(@class,'k-child-animation-container')]/descendant::li");
+        exists=false;
+        try
+        {
+            HelpersMethod.EnterText(driver,WebEle,10,RandomValues.generateRandomNumber(length));
+            InputValue=HelpersMethod.JSGetValueEle(driver,WebEle,10);
+
+            if(InputValue!=null)
+            {exists=true;}
+            Assert.assertEquals(true,exists);
+        }
+        catch (Exception e){}
+        return InputValue;
+    }
+
+    public String EnterText(WebElement WebEle,int length)
+    {
+        exists=false;
+        try
+        {
+            HelpersMethod.EnterText(driver,WebEle,10, RandomValues.generateRandomString(length));
+            InputValue=HelpersMethod.JSGetValueEle(driver,WebEle,10);
+            if(InputValue!=null)
+            {exists=true;}
+            Assert.assertEquals(true,exists);
+        }
+        catch (Exception e){}
+        return InputValue;
+    }
+
+    public void selectDropDownValue()
+    {
+        WebElement dropDownOption=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-animation-container k-animation-container-relative k-list-container k-reset i-common-dropdown i-common-dropdown__type-none')]");
+        List<WebElement> Options= dropDownOption.findElements(By.xpath(".//ul/li"));
         try
         {
             if(Options.size()==1)
             {
                 scenario.log("THERE ARE NO OPTIONS OTHER THAN 'None'");
+                HelpersMethod.ActClick(driver, Options.get(0), 20);
             }
             else
             {
@@ -220,7 +253,6 @@ public class DeliveriesPage
                         if (i == 1)
                         {
                             HelpersMethod.ActClick(driver, Options.get(1), 20);
-                            ValueSele=Options.get(1).getText();
                             break;
                         }
                     }
@@ -232,7 +264,6 @@ public class DeliveriesPage
                         if (i == 2)
                         {
                             HelpersMethod.ActClick(driver, Options.get(2), 20);
-                            ValueSele=Options.get(2).getText();
                             break;
                         }
                     }
@@ -240,7 +271,6 @@ public class DeliveriesPage
             }
         }
         catch (Exception e){}
-        return ValueSele;
     }
 
     public void ValidateDeliveries()
@@ -267,319 +297,129 @@ public class DeliveriesPage
         exists=false;
         try
         {
-            HelpersMethod.EnterText(driver,ContactInput,10, RandomValues.generateRandomString(10));
-            InputValue=HelpersMethod.JSGetValueEle(driver,ContactInput,10);
-            scenario.log("CONTACT INPUT ENTERED IS "+InputValue);
-            if(InputValue!=null)
-            {exists=true;}
-            Assert.assertEquals(true,exists);
+            InputValue=EnterText(ContactInput,10);
+            HelpersMethod.EnterText(driver,ContactInput,10,InputValue);
+            scenario.log("CONTACT DETAILS ENTERED IS "+HelpersMethod.JSGetValueEle(driver,ContactInput,10));
         }
         catch (Exception e){}
     }
+
     public void PhoneValue()
     {
         exists=false;
         try
         {
-            HelpersMethod.EnterText(driver,PhoneInput,10, RandomValues.generateRandomNumber(10));
-            InputValue=HelpersMethod.JSGetValueEle(driver,PhoneInput,10);
-            scenario.log("PHONE NO ENTERED IS "+InputValue);
-            if(InputValue!=null)
-            {exists=true;}
-            Assert.assertEquals(true,exists);
+            InputValue=EnterNumber(PhoneInput,10);
+            HelpersMethod.EnterText(driver,PhoneInput,10,InputValue);
+            scenario.log("PHONE DETAILS ENTERED IS "+HelpersMethod.JSGetValueEle(driver,PhoneInput,10));
         }
         catch (Exception e){}
     }
+
     public void PrimaryRouteValue()
     {
-        exists=false;
-        try
-        {
-            HelpersMethod.EnterText(driver,PrimaryRouteInput,10, RandomValues.generateRandomNumber(10));
-            InputValue=HelpersMethod.JSGetValueEle(driver,PrimaryRouteInput,10);
-            scenario.log("PRIMARY ROUTE NO ENTERED IS "+InputValue);
-            if(InputValue!=null)
-            {exists=true;}
-            Assert.assertEquals(true,exists);
-        }
-        catch (Exception e){}
+            InputValue=EnterNumber(PrimaryRouteInput,10);
+            HelpersMethod.EnterText(driver,PrimaryRouteInput,10,InputValue);
+            scenario.log("PRIMARY ROUTE DETAILS ENTERED IS "+HelpersMethod.JSGetValueEle(driver,PrimaryRouteInput,10));
     }
+
     public void WeeklyDeliSheduleDropDown()
     {
-        exists=false;
-        String TextDropDown=null;
-        String TextDropDown1=null;
-        WebElement WebEle=null;
-        try
-        {
-            HelpersMethod.ActClick(driver,DeliveryWeekDropDown,10);
-            TextDropDown=DropDownInCustomerInq();
-            WebEle=HelpersMethod.FindByElement(driver,"xpath","//span[@id='CmDeliveryWeekSchedule']/span[contains(@class,'k-input')]");
-            TextDropDown1=WebEle.getText();
-            scenario.log("WEEKLY DELIVERY SCHEDULE SELECTED IS "+TextDropDown1);
-
-            if(TextDropDown.equals(TextDropDown1))
-            {
-                exists=true;
-            }
-            Assert.assertEquals(exists,true);
-        }
-        catch (Exception e){}
+        HelpersMethod.ClickBut(driver,DeliveryWeekDropDown,40);
+        selectDropDownValue();
+        scenario.log("WEEKLY DELIVERY SCHEDULE FROM COUNTRY DROP DOWN IS "+DeliveryWeekDropDown.getText());
     }
+
     public void NoOfDayOrWeek()
     {
         exists=false;
-        try
-        {
-            HelpersMethod.EnterText(driver,DeliveryNumberInput,10, RandomValues.generateRandomNumber(1));
-            InputValue=HelpersMethod.JSGetValueEle(driver,DeliveryNumberInput,10);
-            scenario.log("NO OF DAY OR WEEK IN INPUT ENTERED IS "+InputValue);
-            if(InputValue!=null)
-            {exists=true;}
-            Assert.assertEquals(true,exists);
-        }
-        catch (Exception e){}
+            InputValue=EnterNumber(DeliveryNumberInput,2);
+            HelpersMethod.EnterText(driver,DeliveryNumberInput,10,InputValue);
+            scenario.log("# OF DAYS OR WEEKS INPUT DETAILS ENTERED IS "+HelpersMethod.JSGetValueEle(driver,DeliveryNumberInput,10));
     }
+
     public void DeliveryDay()
     {
-        exists=false;
-        try
-        {
-            HelpersMethod.EnterText(driver,DeliveryDayInput,10, RandomValues.getWeekday());
-            InputValue=HelpersMethod.JSGetValueEle(driver,DeliveryDayInput,10);
-            scenario.log("DELIVERY DAY INPUT ENTERED IS "+InputValue);
-            if(InputValue!=null)
-            {exists=true;}
-            Assert.assertEquals(true,exists);
-        }
-        catch (Exception e){}
+        InputValue=EnterText(DeliveryDayInput,2);
+        HelpersMethod.EnterText(driver,DeliveryDayInput,10,InputValue);
+        scenario.log("DELIVERY DAY INPUT DETAILS ENTERED IS "+HelpersMethod.JSGetValueEle(driver,DeliveryDayInput,10));
     }
 
     public void DefaultDeliverySequence()
     {
-        exists=false;
-        try
-        {
-            HelpersMethod.EnterText(driver,DeliveryDelSeqInput,10, RandomValues.generateRandomNumber(1));
-            InputValue=HelpersMethod.JSGetValueEle(driver,DeliveryDelSeqInput,10);
-            scenario.log("DEFAULT DELIVERY SEQUENCE INPUT ENTERED IS "+InputValue);
-            if(InputValue!=null)
-            {exists=true;}
-            Assert.assertEquals(true,exists);
-        }
-        catch (Exception e){}
+        InputValue = EnterNumber(DeliveryDelSeqInput, 2);
+        HelpersMethod.EnterText(driver, DeliveryDelSeqInput, 10, InputValue);
+        scenario.log("DEFAULT DELIVERY SEQUENCE INPUT DETAILS ENTERED IS " + HelpersMethod.JSGetValueEle(driver, DeliveryDelSeqInput, 10));
     }
 
     public void DeliverySequnce(WebElement WebEle)
     {
-        exists=false;
-        try
-        {
-            HelpersMethod.EnterText(driver,WebEle,10, RandomValues.generateRandomNumber(1));
-            InputValue=HelpersMethod.JSGetValueEle(driver,WebEle,10);
-            scenario.log("SEQUENCE NO ENTERED "+InputValue);
-            if(InputValue!=null)
-            {exists=true;}
-            Assert.assertEquals(true,exists);
-        }
-        catch (Exception e){}
+        InputValue = EnterNumber(WebEle, 2);
+        HelpersMethod.EnterText(driver, WebEle, 10, InputValue);
+        scenario.log("DELIVERY SEQUENCE INPUT DETAILS ENTERED IS " + HelpersMethod.JSGetValueEle(driver, WebEle, 10));
     }
 
-    public void TrackPositionDropDown(WebElement WebEle)
+    public void TrackPositionDropDown(WebElement WebEle) throws InterruptedException
     {
-        exists=false;
-        int j;
-        try
-        {
-            HelpersMethod.ActClick(driver,WebEle,10);
-            List<WebElement> Options= HelpersMethod.FindByElements(driver,"xpath","//div[contains(@class,'k-child-animation-container')]/descendant::li");
-            // Getting size of options available
-            int size = Options.size();
-
-            // Generate a random number with in range
-            int randnMumber = ThreadLocalRandom.current().nextInt(1, size);
-
-            // Selecting random value
-            HelpersMethod.ActClick(driver, Options.get(randnMumber), 20);
-            scenario.log("TRACK SELECTED IS " + Options.get(randnMumber).getText());
-        }
-        catch (Exception e){}
+        HelpersMethod.ActClick(driver,WebEle,100);
+        selectDropDownValue();
+        scenario.log("TRACK POSITION DROP DOWN IS "+WebEle.getText());
     }
 
     public void DeliveryRoute(WebElement WebEle)
     {
-        exists=false;
-        try
-        {
-            HelpersMethod.EnterText(driver,WebEle,10, RandomValues.generateRandomNumber(4));
-            InputValue=HelpersMethod.JSGetValueEle(driver,WebEle,10);
-            scenario.log("ROUTE NO ENTERED "+InputValue);
-            if(InputValue!=null)
-            {exists=true;}
-            Assert.assertEquals(true,exists);
-        }
-        catch (Exception e){}
+        InputValue=EnterText(WebEle,10);
+        HelpersMethod.EnterText(driver,WebEle,10,InputValue);
+        scenario.log("DELIVERY ROUTE ENTERED IS "+HelpersMethod.JSGetValueEle(driver,WebEle,10));
     }
 
-    public void DSDrequired()
+    public void DSDrequired() throws InterruptedException
     {
-        exists=false;
-        String TextDropDown=null;
-        String TextDropDown1=null;
-        WebElement WebEle=null;
-        try
-        {
-            HelpersMethod.ActClick(driver,DSDReq,10);
-            TextDropDown=DropDownInCustomerInq();
-            WebEle=HelpersMethod.FindByElement(driver,"xpath","//span[@id='CmDsdFlag']/span[contains(@class,'k-input')]");
-            TextDropDown1=WebEle.getText();
-            scenario.log("DSD VALUE SELECTED IS "+TextDropDown1);
-
-            if(TextDropDown.equals(TextDropDown1))
-            {
-                exists=true;
-            }
-            Assert.assertEquals(exists,true);
-        }
-        catch (Exception e){}
+        HelpersMethod.ActClick(driver,DSDReq,100);
+        selectDropDownValue();
+        scenario.log("DSD VALUE SELECTED IS "+DSDReq.getText());
     }
 
-    public void SignatureRequired()
+    public void SignatureRequired() throws InterruptedException
     {
-        exists=false;
-        String TextDropDown=null;
-        String TextDropDown1=null;
-        WebElement WebEle=null;
-        try
-        {
-            HelpersMethod.ActClick(driver,SignFlag,10);
-            TextDropDown=DropDownInCustomerInq();
-            WebEle=HelpersMethod.FindByElement(driver,"xpath","//span[@id='CmSignatureFlag']/span[contains(@class,'k-input')]");
-            TextDropDown1=WebEle.getText();
-            scenario.log("SIGNATURE VALUE SELECTED IS "+TextDropDown1);
-
-            if(TextDropDown.equals(TextDropDown1))
-            {
-                exists=true;
-            }
-            Assert.assertEquals(exists,true);
-        }
-        catch (Exception e){}
+        HelpersMethod.ActClick(driver,SignFlag,100);
+        selectDropDownValue();
+        scenario.log("SIGNATURE REQUIRED VALUE SELECTED IS "+SignFlag.getText());
     }
 
-    public void StoreStampRequired()
+    public void StoreStampRequired() throws InterruptedException
     {
-        exists=false;
-        String TextDropDown=null;
-        String TextDropDown1=null;
-        WebElement WebEle=null;
-        try
-        {
-            HelpersMethod.ActClick(driver,StampFlag,10);
-            TextDropDown=DropDownInCustomerInq();
-            WebEle=HelpersMethod.FindByElement(driver,"xpath","//span[@id='CmStampFlag']/span[contains(@class,'k-input')]");
-            TextDropDown1=WebEle.getText();
-            scenario.log("STORE STAMP REQUIRED SELECTED IS "+TextDropDown1);
-
-            if(TextDropDown.equals(TextDropDown1))
-            {
-                exists=true;
-            }
-            Assert.assertEquals(exists,true);
-        }
-        catch (Exception e){}
+        HelpersMethod.ActClick(driver,StampFlag,100);
+        selectDropDownValue();
+        scenario.log("STORE STAMP REQUIRED SELECTED IS "+SignFlag.getText());
     }
 
-    public void DynamicAllocation()
+    public void DynamicAllocation() throws InterruptedException
     {
-        exists=false;
-        String TextDropDown=null;
-        String TextDropDown1=null;
-        WebElement WebEle=null;
-        try
-        {
-            HelpersMethod.ActClick(driver,DynamicAll,10);
-            TextDropDown=DropDownInCustomerInq();
-            WebEle=HelpersMethod.FindByElement(driver,"xpath","//span[@id='CmDynamicAllocationFlag']/span[contains(@class,'k-input')]");
-            TextDropDown1=WebEle.getText();
-            scenario.log("DYNAMIC ALLOCATION SELECTED IS "+TextDropDown1);
-
-            if(TextDropDown.equals(TextDropDown1))
-            {
-                exists=true;
-            }
-            Assert.assertEquals(exists,true);
-        }
-        catch (Exception e){}
+        HelpersMethod.ActClick(driver,DynamicAll,100);
+        selectDropDownValue();
+        scenario.log("DYNAMIC ALLOCATION SELECTED IS "+DynamicAll.getText());
     }
 
-    public void LoadSequnceGroup()
+    public void LoadSequnceGroup() throws InterruptedException
     {
-        exists=false;
-        String TextDropDown=null;
-        String TextDropDown1=null;
-        WebElement WebEle=null;
-        try
-        {
-            HelpersMethod.ActClick(driver, LoadSeq,10);
-            TextDropDown=DropDownInCustomerInq();
-            WebEle=HelpersMethod.FindByElement(driver,"xpath","//span[@id='CmLoadSeqGrp']/span[contains(@class,'k-input')]");
-            TextDropDown1=WebEle.getText();
-            scenario.log("STORE STAMP REQUIRED SELECTED IS "+TextDropDown1);
-
-            if(TextDropDown.equals(TextDropDown1))
-            {
-                exists=true;
-            }
-            Assert.assertEquals(exists,true);
-        }
-        catch (Exception e){}
+        HelpersMethod.ActClick(driver, LoadSeq,100);
+        selectDropDownValue();
+        scenario.log("STORE STAMP REQUIRED SELECTED IS "+ LoadSeq.getText());
     }
 
-    public void ProductDeliverySequnce()
+    public void ProductDeliverySequnce() throws InterruptedException
     {
-        exists=false;
-        String TextDropDown=null;
-        String TextDropDown1=null;
-        WebElement WebEle=null;
-        try
-        {
-            HelpersMethod.ActClick(driver,ProdDelSeq,10);
-            TextDropDown=DropDownInCustomerInq();
-            WebEle=HelpersMethod.FindByElement(driver,"xpath","//span[@id='CmProdDelvSeqSched']/span[contains(@class,'k-input')]");
-            TextDropDown1=WebEle.getText();
-            scenario.log("PRODUCT DELIVERY SEQUENCE SELECTED IS "+TextDropDown1);
-
-            if(TextDropDown.equals(TextDropDown1))
-            {
-                exists=true;
-            }
-            Assert.assertEquals(exists,true);
-        }
-        catch (Exception e){}
+        HelpersMethod.ActClick(driver, ProdDelSeq,100);
+        selectDropDownValue();
+        scenario.log("PRODUCT DELIVERY SEQUENCE SELECTED IS"+ ProdDelSeq.getText());
     }
 
-    public void AllowPromoExclusion()
+    public void AllowPromoExclusion() throws InterruptedException
     {
-        exists=false;
-        String TextDropDown=null;
-        String TextDropDown1=null;
-        WebElement WebEle=null;
-        try
-        {
-            HelpersMethod.ActClick(driver,AllowPromo,10);
-            TextDropDown=DropDownInCustomerInq();
-            WebEle=HelpersMethod.FindByElement(driver,"xpath","//span[@id='CmAllowPromoExclusion']/span[contains(@class,'k-input')]");
-            TextDropDown1=WebEle.getText();
-            scenario.log("ALLOW PROMO EXCLUSION SELECTED IS "+TextDropDown1);
-
-            if(TextDropDown.equals(TextDropDown1))
-            {
-                exists=true;
-            }
-            Assert.assertEquals(exists,true);
-        }
-        catch (Exception e){}
+        HelpersMethod.ActClick(driver,AllowPromo,100);
+        selectDropDownValue();
+        scenario.log("ALLOW PROMO EXCLUSION SELECTED IS "+ AllowPromo.getText());
     }
 
     public void HHLastDeliveryDate()
@@ -599,7 +439,7 @@ public class DeliveriesPage
     public void SelectHHLastDeliveryDate()
     {
         HelpersMethod.waitTillElementLocatedDisplayed(driver,"xpath","//div[contains(@class,'k-calendar-monthview')]",40);
-        new WebDriverWait(driver,40).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class,'k-calendar-monthview')]")));
+        new WebDriverWait(driver, Duration.ofMillis(100)).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class,'k-calendar-monthview')]")));
         try
         {
             String formattedDate1 = null;
@@ -641,7 +481,7 @@ public class DeliveriesPage
     public void SelectHHLastScheduleDate()
     {
         HelpersMethod.waitTillElementLocatedDisplayed(driver,"xpath","//div[contains(@class,'k-calendar-monthview')]",40);
-        new WebDriverWait(driver,40).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class,'k-calendar-monthview')]")));
+        new WebDriverWait(driver,Duration.ofMillis(100)).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class,'k-calendar-monthview')]")));
         try
         {
             String formattedDate1 = null;
@@ -667,239 +507,79 @@ public class DeliveriesPage
 
     public void Soldto()
     {
-        exists=false;
-        try
-        {
-            HelpersMethod.EnterText(driver,SoldTo,10, RandomValues.generateRandomString(5));
-            InputValue=HelpersMethod.JSGetValueEle(driver,SoldTo,10);
-            scenario.log("SOLD TO INPUT ENTERED IS "+InputValue);
-            if(InputValue!=null)
-            {exists=true;}
-            Assert.assertEquals(true,exists);
-        }
-        catch (Exception e){}
+        InputValue=EnterText(SoldTo,10);
+        HelpersMethod.EnterText(driver,SoldTo,10,InputValue);
+        scenario.log("SOLD TO INPUT ENTERED IS "+HelpersMethod.JSGetValueEle(driver,SoldTo,10));
     }
 
-    public void SplitTicket()
+    public void SplitTicket() throws InterruptedException
     {
-        exists=false;
-        String TextDropDown=null;
-        String TextDropDown1=null;
-        WebElement WebEle=null;
-        try
-        {
-            HelpersMethod.ActClick(driver,SplitFlag,10);
-            TextDropDown=DropDownInCustomerInq();
-            WebEle=HelpersMethod.FindByElement(driver,"xpath","//span[@id='CmTktSplitFlag']/span[contains(@class,'k-input')]");
-            TextDropDown1=WebEle.getText();
-            scenario.log("SPLIT TICKET SELECTED IS "+TextDropDown1);
-
-            if(TextDropDown.equals(TextDropDown1))
-            {
-                exists=true;
-            }
-            Assert.assertEquals(exists,true);
-        }
-        catch (Exception e){}
+        HelpersMethod.ActClick(driver,SplitFlag,100);
+        selectDropDownValue();
+        scenario.log("SPLIT TICKET SELECTED IS "+ SplitFlag.getText());
     }
 
-    public void DocumentType()
+    public void DocumentType() throws InterruptedException
     {
-        exists=false;
-        String TextDropDown=null;
-        String TextDropDown1=null;
-        WebElement WebEle=null;
-        try
-        {
-            HelpersMethod.ActClick(driver,DocType,10);
-            TextDropDown=DropDownInCustomerInq();
-            WebEle=HelpersMethod.FindByElement(driver,"xpath","//span[@id='CmInvDocType']/span[contains(@class,'k-input')]");
-            TextDropDown1=WebEle.getText();
-            scenario.log("AUTHOR PRODUCT SELECTED IS "+TextDropDown1);
-
-            if(TextDropDown.equals(TextDropDown1))
-            {
-                exists=true;
-            }
-            Assert.assertEquals(exists,true);
-        }
-        catch (Exception e){}
+        HelpersMethod.ActClick(driver, DocType,100);
+        selectDropDownValue();
+        scenario.log("AUTHOR PRODUCT SELECTED IS "+ DocType.getText());
     }
 
-    public void TemperatureReq()
+    public void TemperatureReq() throws InterruptedException
     {
-        exists=false;
-        String TextDropDown=null;
-        String TextDropDown1=null;
-        WebElement WebEle=null;
-        try
-        {
-            HelpersMethod.ActClick(driver,TempReq,10);
-            TextDropDown=DropDownInCustomerInq();
-            WebEle=HelpersMethod.FindByElement(driver,"xpath","//span[@id='CmTemperatureRequired']/span[contains(@class,'k-input')]");
-            TextDropDown1=WebEle.getText();
-            scenario.log("TEMPERATURE REQUIRED SELECTED IS "+TextDropDown1);
-
-            if(TextDropDown.equals(TextDropDown1))
-            {
-                exists=true;
-            }
-            Assert.assertEquals(exists,true);
-        }
-        catch (Exception e){}
+        HelpersMethod.ActClick(driver, TempReq,100);
+        selectDropDownValue();
+        scenario.log("TEMPERATURE REQUIRED SELECTED IS "+ TempReq.getText());
     }
 
-    public void SeparateCrTicket()
+    public void SeparateCrTicket() throws InterruptedException
     {
-        exists=false;
-        String TextDropDown=null;
-        String TextDropDown1=null;
-        WebElement WebEle=null;
-        try
-        {
-            HelpersMethod.ActClick(driver,CreditTicket,10);
-            TextDropDown=DropDownInCustomerInq();
-            WebEle=HelpersMethod.FindByElement(driver,"xpath","//span[@id='CmHHReqdSeparateCreditTik']/span[contains(@class,'k-input')]");
-            TextDropDown1=WebEle.getText();
-            scenario.log("SEPARATE CREDIT TICKET SELECTED IS "+TextDropDown1);
-
-            if(TextDropDown.equals(TextDropDown1))
-            {
-                exists=true;
-            }
-            Assert.assertEquals(exists,true);
-        }
-        catch (Exception e){}
+        HelpersMethod.ActClick(driver, CreditTicket,100);
+        selectDropDownValue();
+        scenario.log("SEPARATE CREDIT TICKET SELECTED IS "+ CreditTicket.getText());
     }
 
     public void DeliveryTicketReprint()
     {
-        exists=false;
-        try
-        {
-            HelpersMethod.EnterText(driver,DelivTicket,10, RandomValues.generateRandomString(10));
-            InputValue=HelpersMethod.JSGetValueEle(driver,DelivTicket,10);
-            scenario.log("CONTACT INPUT ENTERED IS "+InputValue);
-            if(InputValue!=null)
-            {exists=true;}
-            Assert.assertEquals(true,exists);
-        }
-        catch (Exception e){}
+        InputValue=EnterText(DelivTicket,10);
+        HelpersMethod.EnterText(driver,DelivTicket,10,InputValue);
+        scenario.log("CONTACT INPUT ENTERED IS "+HelpersMethod.JSGetValueEle(driver,DelivTicket,10));
     }
 
-    public void DeliveryTicketFormat()
+    public void DeliveryTicketFormat() throws InterruptedException
     {
-        exists=false;
-        String TextDropDown=null;
-        String TextDropDown1=null;
-        WebElement WebEle=null;
-        try
-        {
-            HelpersMethod.ActClick(driver,DelivTicket,10);
-            TextDropDown=DropDownInCustomerInq();
-            WebEle=HelpersMethod.FindByElement(driver,"xpath","//span[@id='CmNumDelivTicketReprints']/span[contains(@class,'k-input')]");
-            TextDropDown1=WebEle.getText();
-            scenario.log("DELIVERY TICKET FORMATE SELECTED IS "+TextDropDown1);
-
-            if(TextDropDown.equals(TextDropDown1))
-            {
-                exists=true;
-            }
-            Assert.assertEquals(exists,true);
-        }
-        catch (Exception e){}
+        HelpersMethod.ActClick(driver,  DlivTicketOption,100);
+        selectDropDownValue();
+        scenario.log("DELIVERY TICKET FORMATE SELECTED IS  "+  DlivTicketOption.getText());
     }
 
-    public void TransferType()
+    public void TransferType() throws InterruptedException
     {
-        exists=false;
-        String TextDropDown=null;
-        String TextDropDown1=null;
-        WebElement WebEle=null;
-        try
-        {
-            HelpersMethod.ActClick(driver,TransType,10);
-            TextDropDown=DropDownInCustomerInq();
-            WebEle=HelpersMethod.FindByElement(driver,"xpath","//span[@id='CmBarcodeTicketFlag']/span[contains(@class,'k-input')]");
-            TextDropDown1=WebEle.getText();
-            scenario.log("TRANSFER TYPE SELECTED IS "+TextDropDown1);
-
-            if(TextDropDown.equals(TextDropDown1))
-            {
-                exists=true;
-            }
-            Assert.assertEquals(exists,true);
-        }
-        catch (Exception e){}
+        HelpersMethod.ActClick(driver,TransType,100);
+        selectDropDownValue();
+        scenario.log("TRANSFER TYPE SELECTED IS   "+  TransType.getText());
     }
 
-    public void PrintBarcode()
+    public void PrintBarcode() throws InterruptedException
     {
-        exists=false;
-        String TextDropDown=null;
-        String TextDropDown1=null;
-        WebElement WebEle=null;
-        try
-        {
-            HelpersMethod.ActClick(driver,PrintBarCode,10);
-            TextDropDown=DropDownInCustomerInq();
-            WebEle=HelpersMethod.FindByElement(driver,"xpath","//span[@id='CmPrintBarCodeFlag']/span[contains(@class,'k-input')]");
-            TextDropDown1=WebEle.getText();
-            scenario.log("PRINT BAR CODE SELECTED IS "+TextDropDown1);
-
-            if(TextDropDown.equals(TextDropDown1))
-            {
-                exists=true;
-            }
-            Assert.assertEquals(exists,true);
-        }
-        catch (Exception e){}
+        HelpersMethod.ActClick(driver,PrintBarCode,100);
+        selectDropDownValue();
+        scenario.log("PRINT BAR CODE SELECTED IS   "+  PrintBarCode.getText());
     }
 
-    public void PrintUPCDropDown()
+    public void PrintUPCDropDown() throws InterruptedException
     {
-        exists=false;
-        String TextDropDown=null;
-        String TextDropDown1=null;
-        WebElement WebEle=null;
-        try
-        {
-            HelpersMethod.ActClick(driver,PrintUPC,10);
-            TextDropDown=DropDownInCustomerInq();
-            WebEle=HelpersMethod.FindByElement(driver,"xpath","//span[@id='CmPrintBarCodeFlag']/span[contains(@class,'k-input')]");
-            TextDropDown1=WebEle.getText();
-            scenario.log("PRINT UPC SELECTED IS "+TextDropDown1);
-
-            if(TextDropDown.equals(TextDropDown1))
-            {
-                exists=true;
-            }
-            Assert.assertEquals(exists,true);
-        }
-        catch (Exception e){}
+        HelpersMethod.ActClick(driver,PrintUPC,100);
+        selectDropDownValue();
+        scenario.log("PRINT UPC SELECTED IS"+  PrintUPC.getText());
     }
 
-    public void PrintPreviousBal()
+    public void PrintPreviousBal() throws InterruptedException
     {
-        exists=false;
-        String TextDropDown=null;
-        String TextDropDown1=null;
-        WebElement WebEle=null;
-        try
-        {
-            HelpersMethod.ActClick(driver,PreBalance,10);
-            TextDropDown=DropDownInCustomerInq();
-            WebEle=HelpersMethod.FindByElement(driver,"xpath","//span[@id='CmPreviousBalance']/span[contains(@class,'k-input')]");
-            TextDropDown1=WebEle.getText();
-            scenario.log("PRINT PREVIOUS BALANCE SELECTED IS "+TextDropDown1);
-
-            if(TextDropDown.equals(TextDropDown1))
-            {
-                exists=true;
-            }
-            Assert.assertEquals(exists,true);
-        }
-        catch (Exception e){}
+        HelpersMethod.ActClick(driver,PreBalance,100);
+        selectDropDownValue();
+        scenario.log("PRINT PREVIOUS BALANCE SELECTED IS "+  PreBalance.getText());
     }
 
     public void ItemProductFlagCheckBox()
@@ -917,141 +597,45 @@ public class DeliveriesPage
         catch (Exception e){}
     }
 
-    public void Price()
+    public void Price() throws InterruptedException
     {
-        exists=false;
-        String TextDropDown=null;
-        String TextDropDown1=null;
-        WebElement WebEle=null;
-        try
-        {
-            HelpersMethod.ActClick(driver,PriceFlag,10);
-            TextDropDown=DropDownInCustomerInq();
-            WebEle=HelpersMethod.FindByElement(driver,"xpath","//span[@id='CmPriceFlag']/span[contains(@class,'k-input')]");
-            TextDropDown1=WebEle.getText();
-            scenario.log("PRICE VALUE OPTION SELECTED IS "+TextDropDown1);
-
-            if(TextDropDown.equals(TextDropDown1))
-            {
-                exists=true;
-            }
-            Assert.assertEquals(exists,true);
-        }
-        catch (Exception e){}
+        HelpersMethod.ActClick(driver,PriceFlag,100);
+        selectDropDownValue();
+        scenario.log("PRICE VALUE OPTION SELECTED IS "+  PriceFlag.getText());
     }
 
-    public void ExtensionPrice()
+    public void ExtensionPrice() throws InterruptedException
     {
-        exists=false;
-        String TextDropDown=null;
-        String TextDropDown1=null;
-        WebElement WebEle=null;
-        try
-        {
-            HelpersMethod.ActClick(driver,ExtensionPriceFlag,10);
-            TextDropDown=DropDownInCustomerInq();
-            WebEle=HelpersMethod.FindByElement(driver,"xpath","//span[@id='CmExtensionPriceFlag']/span[contains(@class,'k-input')]");
-            TextDropDown1=WebEle.getText();
-            scenario.log("EXTENSTION PRICE OPTION SELECTED IS "+TextDropDown1);
-
-            if(TextDropDown.equals(TextDropDown1))
-            {
-                exists=true;
-            }
-            Assert.assertEquals(exists,true);
-        }
-        catch (Exception e){}
+        HelpersMethod.ActClick(driver,ExtensionPriceFlag,100);
+        selectDropDownValue();
+        scenario.log("EXTENSTION PRICE OPTION SELECTED IS "+ExtensionPriceFlag.getText());
     }
 
-    public void TotalPrice()
+    public void TotalPrice() throws InterruptedException
     {
-        exists=false;
-        String TextDropDown=null;
-        String TextDropDown1=null;
-        WebElement WebEle=null;
-        try
-        {
-            HelpersMethod.ActClick(driver,TotalPriceFlag,10);
-            TextDropDown=DropDownInCustomerInq();
-            WebEle=HelpersMethod.FindByElement(driver,"xpath","//span[@id='CmTotalPriceFlag']/span[contains(@class,'k-input')]");
-            TextDropDown1=WebEle.getText();
-            scenario.log("TOTAL PRICE OPTION SELECTED IS "+TextDropDown1);
-
-            if(TextDropDown.equals(TextDropDown1))
-            {
-                exists=true;
-            }
-            Assert.assertEquals(exists,true);
-        }
-        catch (Exception e){}
+        HelpersMethod.ActClick(driver,TotalPriceFlag,100);
+        selectDropDownValue();
+        scenario.log("TOTAL PRICE OPTION SELECTED IS "+TotalPriceFlag.getText());
     }
 
-    public void PrintRetailPrice()
+    public void PrintRetailPrice() throws InterruptedException
     {
-        exists=false;
-        String TextDropDown=null;
-        String TextDropDown1=null;
-        WebElement WebEle=null;
-        try
-        {
-            HelpersMethod.ActClick(driver,PrintRetailFlag,10);
-            TextDropDown=DropDownInCustomerInq();
-            WebEle=HelpersMethod.FindByElement(driver,"xpath","//span[@id='CmPrintRetailPriceExtFlag']/span[contains(@class,'k-input')]");
-            TextDropDown1=WebEle.getText();
-            scenario.log("PRINT RETAIL PRICE SELECTED IS "+TextDropDown1);
-
-            if(TextDropDown.equals(TextDropDown1))
-            {
-                exists=true;
-            }
-            Assert.assertEquals(exists,true);
-        }
-        catch (Exception e){}
+        HelpersMethod.ActClick(driver,PrintRetailFlag,100);
+        selectDropDownValue();
+        scenario.log("PRINT RETAIL PRICE SELECTED IS "+PrintRetailFlag.getText());
     }
 
-    public void PrintCaseUnit()
+    public void PrintCaseUnit() throws InterruptedException
     {
-        exists=false;
-        String TextDropDown=null;
-        String TextDropDown1=null;
-        WebElement WebEle=null;
-        try
-        {
-            HelpersMethod.ActClick(driver,PriceCUFlag,10);
-            TextDropDown=DropDownInCustomerInq();
-            WebEle=HelpersMethod.FindByElement(driver,"xpath","//span[@id='CmPrintCaseUnitsFlag']/span[contains(@class,'k-input')]");
-            TextDropDown1=WebEle.getText();
-            scenario.log("PRINT CASES AND UNIT SELECTED IS "+TextDropDown1);
-
-            if(TextDropDown.equals(TextDropDown1))
-            {
-                exists=true;
-            }
-            Assert.assertEquals(exists,true);
-        }
-        catch (Exception e){}
+        HelpersMethod.ActClick(driver,PriceCUFlag,100);
+        selectDropDownValue();
+        scenario.log("PRINT CASES AND UNIT SELECTED IS "+PriceCUFlag.getText());
     }
 
-    public void PrintRetailPriceExt()
+    public void PrintRetailPriceExt() throws InterruptedException
     {
-        exists=false;
-        String TextDropDown=null;
-        String TextDropDown1=null;
-        WebElement WebEle=null;
-        try
-        {
-            HelpersMethod.ActClick(driver,PrintRetailExtn,10);
-            TextDropDown=DropDownInCustomerInq();
-            WebEle= HelpersMethod.FindByElement(driver,"xpath","//span[@id='CmHHPrintRetailExt']/span[contains(@class,'k-input')]");
-            TextDropDown1=WebEle.getText();
-            scenario.log("PRINT RETAIL PRICE EXTENSION OPTION SELECTED IS "+TextDropDown1);
-
-            if(TextDropDown.equals(TextDropDown1))
-            {
-                exists=true;
-            }
-            Assert.assertEquals(exists,true);
-        }
-        catch (Exception e){}
+        HelpersMethod.ActClick(driver,PrintRetailExtn,100);
+        selectDropDownValue();
+        scenario.log("PRINT RETAIL PRICE EXTENSION OPTION SELECTED IS "+PrintRetailExtn.getText());
     }
 }

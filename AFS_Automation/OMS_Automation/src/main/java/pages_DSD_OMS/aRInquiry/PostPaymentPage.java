@@ -2,6 +2,7 @@ package pages_DSD_OMS.aRInquiry;
 
 import helper.HelpersMethod;
 import io.cucumber.java.Scenario;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -59,9 +60,9 @@ public class PostPaymentPage
         exists = false;
         WebElement WebEle = null;
         try {
-            if (HelpersMethod.IsExists("//div[contains(@class,'payment-method-container')]/descendant::tbody/tr[1]/descendant::input", driver))
+            if (HelpersMethod.IsExists("//div[contains(@class,'payment-method-container')]/descendant::tbody/tr[2]/descendant::input", driver))
             {
-                WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'payment-method-container')]/descendant::tbody/tr[1]/descendant::input");
+                WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'payment-method-container')]/descendant::tbody/tr[2]/descendant::input");
                 HelpersMethod.ClickBut(driver, WebEle, 20);
                 exists = true;
             }
@@ -108,6 +109,24 @@ public class PostPaymentPage
         catch (Exception e){}
     }
 
+    public void cancelPopup()
+    {
+        try
+        {
+            if(HelpersMethod.IsExists("//div[contains(@class,'k-widget k-window k-dialog')]",driver))
+            {
+                WebElement modalContainer = HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-widget k-window k-dialog')]");
+
+                WebElement modalContentTitle = modalContainer.findElement(By.xpath(".//div[contains(@class,'k-window-title k-dialog-title')]"));
+                Assert.assertEquals(modalContentTitle.getText(), "Discard payment", "Verify Title message");
+
+                WebElement button=modalContainer.findElement(By.xpath(".//button[text()='Yes']"));
+                HelpersMethod.ClickBut(driver,button,40);
+            }
+        }
+        catch(Exception e){}
+    }
+
     public void AddNewPayment()
     {
         exists=false;
@@ -152,7 +171,7 @@ public class PostPaymentPage
         exists=false;
         try
         {
-            HelpersMethod.DropDownMenu(driver,PayType);
+            HelpersMethod.DropDownMenu_withOutScrollbar(driver,PayType);
             exists=true;
             Assert.assertEquals(exists,true);
         }
@@ -226,7 +245,7 @@ public class PostPaymentPage
         WebElement RouteNo=HelpersMethod.FindByElement(driver,"id","BARoutingNumber");
         try
         {
-            HelpersMethod.EnterText(driver,RouteNo,20, RandomValues.generateRandomAlphaNumeric(5));
+            HelpersMethod.EnterText(driver,RouteNo,100, RandomValues.generateRandomAlphaNumeric(5));
             exists=true;
             Assert.assertEquals(exists,true);
         }
@@ -239,7 +258,7 @@ public class PostPaymentPage
         WebElement BankNo=HelpersMethod.FindByElement(driver,"id","BAAccountNumber");
         try
         {
-            HelpersMethod.EnterText(driver,BankNo,10, RandomValues.generateRandomNumber(10));
+            HelpersMethod.EnterText(driver,BankNo,100, RandomValues.generateRandomNumber(10));
             exists=true;
             Assert.assertEquals(exists,true);
         }

@@ -5,6 +5,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import ui.pages.BasePage;
 import java.util.List;
+
 import static common.setup.DriverManager.getDriver;
 
 public class CountingCountPage extends BasePage {
@@ -32,7 +33,8 @@ public class CountingCountPage extends BasePage {
     By onHandFilter = By.cssSelector(".i-btn-checkbox  #OnHand");
     By countedQtyFilter = By.cssSelector(".i-btn-checkbox  #CountedQtty");
     By uomFilter = By.cssSelector(".i-btn-checkbox  #UOM");
-    By inputContains = By.xpath("//input[@placeholder='Contains']");
+  //  By inputContains = By.xpath("//input[@placeholder='Contains']");
+    By inputContains = By.xpath("//input[@placeholder='Is empty']");
     By applyButton = By.xpath("//button[text()='Apply']");
     By inputSearch = By.xpath("//input[@placeholder='Search']");
     By clearButton = By.xpath("//button[text()='Clear']");
@@ -40,7 +42,7 @@ public class CountingCountPage extends BasePage {
     By table = By.cssSelector(".k-grid-table");
     By locationLabel = By.cssSelector(".menu-label");
     By locationCountQuantityRows = By.cssSelector("tr.k-master-row");
-    By addProductButton = By.id("btnAddProduct");
+    By addProductButton = By.xpath("//button[contains(@id, 'btnAddProduct')]//*[contains(@class, 'i-icon')]");
     By productsColumn = By.xpath("//span[@class='k-column-title' and contains(text(), 'Products')]");
     By factorColumn = By.xpath("//span[@class='k-column-title' and contains(text(), 'Factor')]");
     By onhandColumn = By.xpath("//span[@class='k-column-title' and contains(text(), 'On hand')]");
@@ -77,6 +79,18 @@ public class CountingCountPage extends BasePage {
     By txtDateCode = By.id("txtDateCode");
     By btnCancel = By.id("btnAddProductCancel");
     By btnSave = By.id("btnAddProductSave");
+    By loader = By.cssSelector(".loader");
+
+    public void waitCountingCountPageToLoad() {
+        waitUntilInvisible(5, loader);
+        Waiters.waitTillLoadingPage(getDriver());
+        Waiters.waitForElementToBeDisplay(countPageTitle);
+        Waiters.waitForElementToBeDisplay(cycleCountSessionLabel);
+        Waiters.waitForElementToBeDisplay(cycleCountSession);
+        Waiters.waitForElementToBeDisplay(cycleCountAssignmentLabel);
+        Waiters.waitForElementToBeDisplay(cycleCountAssignment);
+        Waiters.waitForElementToBeDisplay(cycleProductSearch);
+    }
 
     public WebElement getLocationRowByText(String text){
         return findWebElement(By.xpath("//tr[@class='k-master-row'][.//td[contains(text(), '" + text + "')]]"));
@@ -86,39 +100,34 @@ public class CountingCountPage extends BasePage {
         return getLocationRowByText(text).findElement(By.xpath(".//input[contains(@class, 'cycleProductCountEditDataPlusMinTextBox')]"));
     }
 
-    public void waitCountingCountPageToLoad() {
-        refresh();
-        refresh();
-        refresh();
-        Waiters.waitUntilPageWillLoadedSelenide();
-        Waiters.waitABit(3000);
-        Waiters.waitForElementToBeDisplay(countPageTitle);
-        Waiters.waitForElementToBeDisplay(cycleCountSessionLabel);
-        Waiters.waitForElementToBeDisplay(cycleCountSession);
-        Waiters.waitForElementToBeDisplay(cycleCountAssignmentLabel);
-        Waiters.waitForElementToBeDisplay(cycleCountAssignment);
-        Waiters.waitForElementToBeDisplay(cycleProductSearch);
-    }
-
     public void selectWarehouse(String warehouse) {
         clickOnElement(getDropdownList());
-        clickOnElement(findWebElement(By.xpath("//div[contains(@class, 'k-animation-container-shown')]//li[contains(text(), '"
-                + warehouse + "') and @role='option']")));
+        WebElement option = findWebElements(By.xpath("//div[contains(@class, 'k-animation-container-shown')]//li"))
+                .stream()
+                .filter(el -> el.getText().contains(warehouse))
+                .findFirst()
+                .orElse(null);
+        clickOnElement(option);
         Waiters.waitABit(2000);
+        Waiters.returnDocumentStatus(getDriver());
     }
 
     public void selectSession(String session) {
         clickOnElement(cycleCountSession);
-        clickOnElement(findWebElement(By.xpath("//div[contains(@class, 'k-animation-container-shown')]//li[contains(text(), '"
-                + session + "') and @role='option']")));
-        Waiters.waitABit(2000);
+        WebElement option = findWebElements(By.xpath("//div[contains(@class, 'k-animation-container-shown')]//li"))
+                .stream()
+                .filter(el -> el.getText().contains(session))
+                .findFirst()
+                .orElse(null);
+        clickOnElement(option);
+        Waiters.returnDocumentStatus(getDriver());
     }
 
     public void selectAssignment(String assignment) {
         clickOnElement(cycleCountAssignment);
         clickOnElement(findWebElement(By.xpath("//div[contains(@class, 'k-animation-container-shown')]//li[contains(text(), '"
                 + assignment + "') and @role='option']")));
-        Waiters.waitABit(2000);
+        Waiters.returnDocumentStatus(getDriver());
     }
 
     public void selectOwner(String owner) {
@@ -126,6 +135,7 @@ public class CountingCountPage extends BasePage {
         clickOnElement(getOwnerDropdown());
         clickOnElement(findWebElement(By.xpath("//div[contains(@class, 'k-animation-container-shown')]//*[contains(text(), '"
                 + owner + "') and @role='option']")));
+        Waiters.returnDocumentStatus(getDriver());
     }
 
     public void selectSupplier(String supplier) {
@@ -133,12 +143,14 @@ public class CountingCountPage extends BasePage {
         clickOnElement(getSupplierDropdown());
         clickOnElement(findWebElement(By.xpath("//div[contains(@class, 'k-animation-container-shown')]//*[contains(text(), '"
                 + supplier + "') and @role='option']")));
+        Waiters.returnDocumentStatus(getDriver());
     }
 
     public void typeQty(String qty) {
         Waiters.waitForElementToBeDisplay(getTxtQty());
         typeText(getTxtQty(), qty);
         pressTab(getTxtQty());
+        Waiters.returnDocumentStatus(getDriver());
     }
 
     public void selectUOM(String uom) {
@@ -146,6 +158,7 @@ public class CountingCountPage extends BasePage {
         clickOnElement(getUomDropDown());
         clickOnElement(findWebElement(By.xpath("//div[contains(@class, 'k-animation-container-shown')]//*[contains(text(), '"
                 + uom + "') and @role='option']")));
+        Waiters.returnDocumentStatus(getDriver());
     }
 
     public void selectProductStatus(String status) {
@@ -153,12 +166,14 @@ public class CountingCountPage extends BasePage {
         clickOnElement(getStatus());
         clickOnElement(findWebElement(By.xpath("//div[contains(@class, 'k-animation-container-shown')]//*[contains(text(), '"
                 + status + "') and @role='option']")));
+        Waiters.waitTillLoadingPage(getDriver());
     }
 
     public void typeDateCode(String code) {
         Waiters.waitForElementToBeDisplay(getTxtDateCode());
         typeText(getTxtDateCode(), code);
         pressTab(getTxtDateCode());
+        Waiters.waitTillLoadingPage(getDriver());
     }
 
     public void clickCancel() {
@@ -178,8 +193,9 @@ public class CountingCountPage extends BasePage {
     public String getItemsCountText() { return getText(itemsCount); }
 
     public WebElement getTableRowByLocation(String location) {
-        Waiters.waitABit(2000);
+        Waiters.waitABit(2_000);
         List<WebElement> rows = getTable().findElements(By.xpath(".//tr[contains(@class, 'k-master-row')]"));
+        Waiters.waitABit(5_000);
         return rows.stream()
                 .filter(row -> row.getText().contains(location))
                 .findFirst()
@@ -202,22 +218,25 @@ public class CountingCountPage extends BasePage {
         clear(getCountQuantityInput().get(index));
         typeText(getCountQuantityInput().get(index), number);
         pressTab(getCountQuantityInput().get(index));
+        Waiters.waitTillLoadingPage(getDriver());
     }
 
     public void clickLocation(String location) {
-        Waiters.waitABit(3000);
+        scrollToCenter(getTableRowByLocation(location));
+        Waiters.waitTillLoadingPage(getDriver());
         clickOnElement(getTableRowByLocation(location));
+        Waiters.waitTillLoadingPage(getDriver());
     }
 
     public void clickAddProduct() {
-        Waiters.waitABit(3000);
         clickOnElement(getAddProductButton());
+        Waiters.waitTillLoadingPage(getDriver());
     }
 
     public void typeProduct(String product) {
-        Waiters.waitABit(3000);
-        typeText(getProductInput(), product);
-        pressEnter(getProductInput());
+        clickOnElement(getSearchProductButton());
+        clickOnElement(findWebElement(By.xpath("//td[contains(text(), '" + product + "')]")));
+        Waiters.waitTillLoadingPage(getDriver());
     }
 
     public void clickLProductDataByIndex(int index) {
@@ -229,31 +248,34 @@ public class CountingCountPage extends BasePage {
         Waiters.waitABit(2000);
         Waiters.waitForElementToBeDisplay(addFilterButton);
         clickOnElement(addFilterButton);
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
     }
 
     public void typeFilter(String filter) {
         Waiters.waitABit(2000);
         Waiters.waitForElementToBeDisplay(getInputContains());
         inputText(getInputContains(), filter);
+        Waiters.waitTillLoadingPage(getDriver());
     }
 
     public void clickApplyButton() {
         Waiters.waitABit(2000);
         Waiters.waitForElementToBeDisplay(getApplyButton());
         clickOnElement(getApplyButton());
+        waitUntilInvisible(5, loader);
+        Waiters.waitTillLoadingPage(getDriver());
     }
 
     public void clickClearButton() {
-        Waiters.waitABit(2000);
         Waiters.waitForElementToBeDisplay(getСlearButton());
         clickOnElement(getСlearButton());
+        Waiters.waitTillLoadingPage(getDriver());
     }
 
     public void clickClearAllButton() {
-        Waiters.waitABit(2000);
         Waiters.waitForElementToBeDisplay(getСlearAllButton());
         clickOnElement(getСlearAllButton());
+        Waiters.waitTillLoadingPage(getDriver());
     }
 
     public int getSessions() {
@@ -264,36 +286,43 @@ public class CountingCountPage extends BasePage {
     public void clickLocationFilter() {
         Waiters.waitForElementToBeDisplay(getLocationCodeFilter());
         clickOnElement(getLocationCodeFilter());
+        Waiters.waitTillLoadingPage(getDriver());
     }
 
     public void clickProductFilter() {
         Waiters.waitForElementToBeDisplay(getProductFilter());
         clickOnElement(getProductFilter());
+        Waiters.waitTillLoadingPage(getDriver());
     }
 
     public void clickUpcFilter() {
         Waiters.waitForElementToBeDisplay(getUpcFilter());
         clickOnElement(getUpcFilter());
+        Waiters.waitTillLoadingPage(getDriver());
     }
 
     public void clickDescriptionFilter() {
         Waiters.waitForElementToBeDisplay(getDescriptionFilter());
         clickOnElement(getDescriptionFilter());
+        Waiters.waitTillLoadingPage(getDriver());
     }
 
     public void clickOnHandFilter() {
         Waiters.waitForElementToBeDisplay(getOnHandFilter());
         clickOnElement(getOnHandFilter());
+        Waiters.waitTillLoadingPage(getDriver());
     }
 
     public void clickCountedFilter() {
         Waiters.waitForElementToBeDisplay(getCountedFilter());
         clickOnElement(getCountedFilter());
+        Waiters.waitTillLoadingPage(getDriver());
     }
 
     public void clickUomFilter() {
         Waiters.waitForElementToBeDisplay(getUomFilter());
         clickOnElement(getUomFilter());
+        Waiters.waitTillLoadingPage(getDriver());
     }
 
     public List<WebElement> getCountQuantityInput() {
@@ -303,9 +332,7 @@ public class CountingCountPage extends BasePage {
 
     public boolean isSaveButtonEnabled() { return getElementAttribute(getBtnSave(), "class").contains("i-secondary"); }
 
-    public boolean isCountPageTitleDisplayed() {
-        return isElementDisplay(countPageTitle);
-    }
+    public boolean isCountPageTitleDisplayed() { return isElementDisplay(countPageTitle); }
 
     public boolean isCycleCountSessionLabelDisplayed() { return isElementDisplay(cycleCountSessionLabel); }
 

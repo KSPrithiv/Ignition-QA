@@ -87,6 +87,38 @@ public class ProductLookupPageValidations {
         softAssert.assertAll();
     }
 
+    @And("Validates History tab details are loaded on Lookup Product page")
+    public void validateHistoryTabDetailsPresent() {
+        SoftAssert softAssert = new SoftAssert();
+        softAssert.assertTrue(productLookupPage.isDateColumnDisplayed(),"Date Column is not displayed");
+        softAssert.assertTrue(productLookupPage.isDateColumnHeaderDisplayed(),"Date Column Header is not displayed");
+        softAssert.assertTrue(productLookupPage.isTimeColumnDisplayed(),"Time Column is not displayed");
+        softAssert.assertTrue(productLookupPage.isTimeColumnHeaderDisplayed(),"Time Type Column Header is not displayed");
+        softAssert.assertTrue(productLookupPage.isWarehouseColumnDisplayed(),"Warehouse Column is not displayed");
+        softAssert.assertTrue(productLookupPage.isWarehouseColumnHeaderDisplayed(),"Warehouse Column Header is not displayed");
+        softAssert.assertTrue(productLookupPage.isUserColumnDisplayed(),"User Column is not displayed");
+        softAssert.assertTrue(productLookupPage.isUserColumnHeaderDisplayed(),"User Column Header is not displayed");
+        softAssert.assertTrue(productLookupPage.isFunctionColumnDisplayed(),"Function Column is not displayed");
+        softAssert.assertTrue(productLookupPage.isFunctionColumnHeaderDisplayed(),"Function Column Header is not displayed");
+        softAssert.assertTrue(productLookupPage.isReasonColumnDisplayed(),"Reason Column is not displayed");
+        softAssert.assertTrue(productLookupPage.isReasonColumnHeaderDisplayed(),"Reason Column Header is not displayed");
+        softAssert.assertTrue(productLookupPage.isLotColumnDisplayed(),"Lot Column is not displayed");
+        softAssert.assertTrue(productLookupPage.isLotColumnHeaderDisplayed(),"Lot Column Header is not displayed");
+        softAssert.assertTrue(productLookupPage.isExpDateColumnDisplayed(),"Exp Date Column is not displayed");
+        softAssert.assertTrue(productLookupPage.isExpDateColumnHeaderDisplayed(),"Exp Date Column Header is not displayed");
+        softAssert.assertTrue(productLookupPage.isQtyColumnDisplayed(),"Qty Column is not displayed");
+        softAssert.assertTrue(productLookupPage.isQtyColumnHeaderDisplayed(),"Qty Column Header is not displayed");
+        softAssert.assertTrue(productLookupPage.isActualColumnDisplayed(),"Actual Column is not displayed");
+        softAssert.assertTrue(productLookupPage.isActualColumnHeaderDisplayed(),"Actual Column Header is not displayed");
+        softAssert.assertTrue(productLookupPage.isBookColumnDisplayed(),"Book Column is not displayed");
+        softAssert.assertTrue(productLookupPage.isBookColumnHeaderDisplayed(),"Book Column Header is not displayed");
+        softAssert.assertTrue(productLookupPage.isStatusColumnDisplayed(),"Status Column is not displayed");
+        softAssert.assertTrue(productLookupPage.isStatusColumnDisplayed(),"Status Column Header is not displayed");
+        softAssert.assertTrue(productLookupPage.isOrderColumnDisplayed(),"Order Column is not displayed");
+        softAssert.assertTrue(productLookupPage.isOrderColumnDisplayed(),"Order Column Header is not displayed");
+        softAssert.assertAll();
+    }
+
     @And("Validates Setup Product details are loaded on Lookup Product page")
     public void validateSetupDetailsForProduct() {
         SoftAssert softAssert = new SoftAssert();

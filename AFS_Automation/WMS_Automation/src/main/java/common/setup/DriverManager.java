@@ -1,8 +1,5 @@
 package common.setup;
 
-import com.codeborne.selenide.Configuration;
-import com.codeborne.selenide.Screenshots;
-import common.utils.Waiters;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import lombok.SneakyThrows;
 import org.apache.commons.io.FileUtils;
@@ -28,7 +25,6 @@ public class DriverManager {
     public static long COUNTER = System.currentTimeMillis();
 
     public static void buildWebDriver(String browserType) {
-     //   driverThreadLocal.get().quit();
         WebDriver createdDriver;
 
         try {
@@ -47,14 +43,10 @@ public class DriverManager {
                     break;
                 case "chrome":
                     WebDriverManager.chromedriver().setup();
-      //              System.setProperty("webdriver.chrome.driver", "C:\\Users\\Irina.Holovan\\Documents\\WMS\\IgnitionTestAutomation\\WMSAutomation\\src\\test\\resources\\drivers\\chromedriver.exe");
                     createdDriver = new ChromeDriver(buildChrome());
-                    //     storedDrivers.add(createdDriver);
                     driverThreadLocal.set(createdDriver);
                     setPageLoadTimeout(120);
                     setScriptTimeout(120);
-                    System.out.println(" createdDriver " + createdDriver);
-                    System.out.println(" driverThreadLocal  " + driverThreadLocal);
             }
         } catch (Exception ex) {
             System.out.println(".CoutingCucumberRunner.startBrowserInstance  ex");
@@ -70,8 +62,26 @@ public class DriverManager {
         Map<String, Object> prefs = new HashMap<>();
         //turn off message "Let's save your password for this site"
         prefs.put("credentials_enable_service", false);
-        prefs.put("profile.password_manager_enabled", false);        //
-       // prefs.put("download.default_directory", PATH_TO_DOWNLOADS);
+        prefs.put("profile.password_manager_enabled", false);
+        prefs.put("profile.managed_default_content_settings.images", 2);
+        prefs.put("profile.default_content_setting_values.notifications", 2);
+        prefs.put("profile.managed_default_content_settings.stylesheets", 2);
+      //  prefs.put("profile.managed_default_content_settings.cookies", 2);
+        prefs.put("profile.managed_default_content_settings.javascript", 1);
+        prefs.put("profile.managed_default_content_settings.plugins", 1);
+        prefs.put("profile.managed_default_content_settings.popups", 2);
+        prefs.put("profile.managed_default_content_settings.geolocation", 2);
+        /*   prefs.put("profile.managed_default_content_settings.media_stream", 2);*/
+        prefs.put("profile.password_manager_enabled", false);
+        prefs.put("credentials_enable_service", false);
+        prefs.put("profile.password_manager_enabled", false);
+        prefs.put("credentials_enable_service", false);
+        prefs.put("profile.password_manager_enabled", false);
+        prefs.put("credentials_enable_service", false);
+        prefs.put("profile.password_manager_enabled", false);
+        prefs.put("credentials_enable_service", false);
+        prefs.put("profile.password_manager_enabled", false);
+        // prefs.put("download.default_directory", PATH_TO_DOWNLOADS);
         options.setExperimentalOption("prefs", prefs);
         options.addArguments("--disable-extensions");
         options.addArguments("--dns-prefetch-disable");
@@ -79,9 +89,17 @@ public class DriverManager {
         options.addArguments("--enable-automation");
         options.addArguments("--disable-gpu");
         options.addArguments("--remote-allow-origins=*");
+        options.addArguments("--disable-blink-features=AutomationControlled");
+       // options.addArguments("--user-data-dir=C:/Users/Irina.Holovan/AppData/Local/Google/Chrome/User Data");
+        options.addArguments("profile-directory=PROFILE 2");
         options.setCapability("download.prompt_for_download", false);
         options.setCapability("download.directory_upgrade", true);
         options.setCapability("safebrowsing.enabled", false);
+        options.setCapability("download.prompt_for_download", false);
+        options.setCapability("acceptInsecureCerts", true);
+        options.setCapability("chrome.switches", Arrays.asList("--ignore-certificate-errors"));
+        options.setExperimentalOption("excludeSwitches", Collections.singletonList("enable-automation"));
+        options.setExperimentalOption("useAutomationExtension", true);
         //turn off message "Chrome is being controlled by automated test software"
      /*   options.setExperimentalOption("excludeSwitches", Collections.singletonList("enable-automation"));
         options.setExperimentalOption("useAutomationExtension", false);        //
@@ -169,9 +187,9 @@ public class DriverManager {
     }
 
     public static void openPage(String url) {
-        getDriver().manage().deleteAllCookies();
         getDriver().manage().window().maximize();
         getDriver().navigate().to(url);
+        getDriver().manage().deleteAllCookies();
         getDriver().manage().timeouts().implicitlyWait(150, TimeUnit.SECONDS);
     }
 

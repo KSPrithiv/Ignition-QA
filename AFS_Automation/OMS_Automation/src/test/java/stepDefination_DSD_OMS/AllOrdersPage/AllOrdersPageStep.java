@@ -8,14 +8,14 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import lombok.val;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.Assert;
+
 import pages_DSD_OMS.allOrder.AllOrderPage;
 import pages_DSD_OMS.login.HomePage;
 import pages_DSD_OMS.login.LoginPage;
@@ -28,6 +28,7 @@ import util.TestBase;
 
 import java.awt.*;
 import java.sql.SQLException;
+import java.time.Duration;
 import java.util.List;
 
 /**
@@ -54,7 +55,6 @@ public class AllOrdersPageStep
     CheckOutSummaryPage summary;
     NewOrderEntryPage newOE;
     CheckOutOrderPage checkOutOrderPage;
-
 
     @Before
     public void LaunchBrowser1(Scenario scenario) throws Exception
@@ -126,16 +126,28 @@ public class AllOrdersPageStep
         {
             try
             {
-               // HelpersMethod.Implicitwait(driver, 40);
                 exists = false;
-                WebElement WebEle = HelpersMethod.FindByElement(driver, "xpath", "//li[contains(@class,'k-item')]/span[@class='k-link' and contains(text(),'All Orders')]");
+                WebElement WebEle = HelpersMethod.FindByElement(driver, "xpath", "//li[contains(@class,'k-item')]/span[@class='k-link' and contains(text(),'All orders')]|//li[contains(@class,'k-item')]/span[@class='k-link' and contains(text(),'All Orders')]|//li[contains(@class,'k-item')]/span[@class='k-link' and contains(text(),'Open orders')]");
                 if (HelpersMethod.EleDisplay(WebEle))
                 {
-                    HelpersMethod.navigate_Horizantal_Tab(driver, "All Orders", "//li[contains(@class,'k-item')]/span[@class='k-link' and contains(text(),'All Orders')]", "xpath", "//li[contains(@class,'k-item')]/span[@class='k-link']");
+                    String Menu_Text=null;
+                    Actions act=new Actions(driver);
+                    List<WebElement> MenuBar=HelpersMethod.FindByElements(driver,"xpath","//li[contains(@class,'k-item')]/span[@class='k-link']");
+                    for(WebElement Menu:MenuBar)
+                    {
+                        act.moveToElement(Menu).build().perform();
+                        Menu_Text=Menu.getText();
+                        if(Menu_Text.contains("All Orders")||Menu_Text.contains("Open orders")||Menu_Text.contains("All orders"))
+                        {
+                            WebElement menuItem=HelpersMethod.FindByElement(driver,"xpath","//li[contains(@class,'k-item')]/span[@class='k-link' and contains(text(),'All orders')]|//li[contains(@class,'k-item')]/span[@class='k-link' and contains(text(),'All Orders')]|//li[contains(@class,'k-item')]/span[@class='k-link' and contains(text(),'Open orders')]");
+                            HelpersMethod.JScriptClick(driver,menuItem,1000);
+                            break;
+                        }
+                    }
                     if (HelpersMethod.IsExists("//div[@class='loader']", driver))
                     {
                         WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                        HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100);
+                        HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000);
                     }
                     String status = HelpersMethod.returnDocumentStatus(driver);
                     if (status.equals("loading"))
@@ -143,6 +155,7 @@ public class AllOrdersPageStep
                         HelpersMethod.waitTillLoadingPage(driver);
                     }
                     CurrentULR= driver.getCurrentUrl();
+                    scenario.log(CurrentULR);
                 }
             }
             catch (Exception e) {}
@@ -150,16 +163,14 @@ public class AllOrdersPageStep
         }
         orderpage = new OrderEntryPage(driver, scenario);
         orderpage.HandleError_Page();
-        orderpage.Refresh_Page(CurrentULR);
-        //driver.navigate().to(CurrentULR);
         allOrder=new AllOrderPage(driver,scenario);
+        allOrder.Refresh_Page(CurrentULR);
         allOrder.ValidateAllOrder();
     }
 
     @Then("User clicks on Show all orders check box")
     public void userClicksOnShowAllOrdersCheckBox()
     {
-        //HelpersMethod.Implicitwait(driver,60);
         allOrder=new AllOrderPage(driver,scenario);
         allOrder.ClickShowAllOrderCheckbox();
     }
@@ -186,6 +197,7 @@ public class AllOrdersPageStep
         allOrder=new AllOrderPage(driver,scenario);
         allOrder.ValidateCustomerIndexPopup();
         allOrder.CustomerIndexPopup();
+        allOrder.validateDeliveryDatePopup();
         allOrder.SelectDeliveryDate();
         allOrder.WarningChangeDeliveryDate();
         allOrder.SelectOrder();
@@ -197,7 +209,7 @@ public class AllOrdersPageStep
         summary = new CheckOutSummaryPage(driver,scenario);
         summary.ClickSubmit();
         Ord_No = summary.Get_Order_No();
-        summary.SucessPopup();
+        summary.SucessPopupForAllOrder();
         scenario.log("ORDER CREATED FOR ALL ORDER "+Ord_No);
     }
 
@@ -214,13 +226,7 @@ public class AllOrdersPageStep
     public void userShouldBeNavigatedBackToAllOrderPage()
     {
         allOrder = new AllOrderPage(driver, scenario);
-        if(HelpersMethod.IsExists("//div[@class='loader']",driver))
-        {
-            WebElement WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100);
-        }
         allOrder.ValidateAllOrder();
-        HelpersMethod.Implicitwait(driver,60);
     }
 
     @Then("User clicks on Show all Quotes check box")
@@ -255,7 +261,6 @@ public class AllOrdersPageStep
     @Then("User clicks on Show all orders check box after Clicking All orders tab")
     public void userClicksOnShowAllOrdersCheckBoxAfterClickingAllOrdersTab()
     {
-        HelpersMethod.Implicitwait(driver,60);
         allOrder=new AllOrderPage(driver,scenario);
         allOrder.ClickShowAllOrderCheckbox();
     }
@@ -303,21 +308,17 @@ public class AllOrdersPageStep
     public void userEntersOrderNoThatHeHasSelectedFromOrderGridAndValidatesItExistsInOrderAlso() throws InterruptedException, AWTException
     {
         orderpage=new OrderEntryPage(driver,scenario);
-        //HelpersMethod.Implicitwait(driver,10);
         orderpage.Enter_OrderNo_Searchbox(OrderNo);
         orderpage.Existence_OrderNo_OG1();
         allOrder=new AllOrderPage(driver,scenario);
         try
         {
-           // HelpersMethod.Implicitwait(driver, 40);
             exists = false;
             Actions act = new Actions(driver);
             WebElement WebEle = HelpersMethod.FindByElement(driver, "xpath", "//li[contains(@class,'k-item')]/span[@class='k-link' and contains(text(),'All Orders')]");
             if (HelpersMethod.EleDisplay(WebEle))
             {
-                Thread.sleep(10000);
                 HelpersMethod.navigate_Horizantal_Tab(driver, "All Orders", "//li[contains(@class,'k-item')]/span[@class='k-link' and contains(text(),'All Orders')]", "xpath", "//li[contains(@class,'k-item')]/span[@class='k-link']");
-                //HelpersMethod.Implicitwait(driver, 10);
                 if (HelpersMethod.IsExists("//div[@class='loader']", driver))
                 {
                     WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
@@ -330,7 +331,7 @@ public class AllOrdersPageStep
                 }
                 WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
                 HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 150);
-                new WebDriverWait(driver, 120).until(ExpectedConditions.textToBePresentInElementLocated(By.xpath("//button[contains(text(),'Start order')]"), "Start order"));
+                new WebDriverWait(driver, Duration.ofMillis(200)).until(ExpectedConditions.textToBePresentInElementLocated(By.xpath("//button[contains(text(),'Start order')]"), "Start order"));
 
                 if (HelpersMethod.IsExists("//*[local-name()='svg']//*[local-name()='path' and contains(@d,'M3,18H21V16H3Zm0-5H21V11H3ZM3,6V8H21V6Z')]", driver))
                 {
@@ -351,6 +352,7 @@ public class AllOrdersPageStep
         allOrder=new AllOrderPage(driver,scenario);
         allOrder.SelectOrderForCopying();
         allOrder.ClickOnCopyButton();
+        allOrder.validateSelectDeliveryDateForCopy();
         allOrder.SelectDeliverDateForCopy();
         allOrder.SelectNewOrderInPopUp();
     }
@@ -454,7 +456,8 @@ public class AllOrdersPageStep
         allOrder=new AllOrderPage(driver,scenario);
         allOrder.ValidateCustomerIndexPopup();
         allOrder.CustomerIndexPopup();
-        allOrder.SelectDeliverDateForCopy();
+        allOrder.validateSelectDeliveryDatePickupOrder();
+        allOrder.selectDeliveryDateForPickupOrder();
         allOrder.SelectNewOrderInPopUp();
     }
 
@@ -464,7 +467,9 @@ public class AllOrdersPageStep
         allOrder=new AllOrderPage(driver,scenario);
         allOrder.ValidateCustomerIndexPopup();
         allOrder.CustomerIndexPopup();
-        allOrder.SelectDeliveryDateForEdit();
+        allOrder.validateDeliveryDatePopup();
+        allOrder.SelectDeliveryDate();
+        //allOrder.SelectDeliveryDateForEdit();
         allOrder.WarningChangeDeliveryDate();
         allOrder.SelectOrder();
     }
@@ -473,7 +478,6 @@ public class AllOrdersPageStep
     public void userShouldDragAndDropThenVerifyGroupingWithNumberOfElementsInEachGroup(String TableHead)
     {
         allOrder=new AllOrderPage(driver,scenario);
-        HelpersMethod.Implicitwait(driver,20);
         allOrder.FindtableHeader(TableHead);
         allOrder.DisplayGroupDetails();
     }
@@ -486,5 +490,28 @@ public class AllOrdersPageStep
         allOrder.ClickOnCommentIcon();
         allOrder.ValidateDisplayOfCommentsDialog();
         allOrder.DisplayCommentsAdded();
+    }
+
+    @Then("Enter PO# for New order for All orders")
+    public void enterPOForNewOrderForAllOrders(DataTable tabledata) throws InterruptedException, AWTException
+    {
+        orderpage = new OrderEntryPage(driver, scenario);
+        for(int i=0;i<=1;i++)
+        {
+            orderpage.OrderGuidePopup();
+            orderpage.NoNotePopHandling();
+        }
+        newOE=new NewOrderEntryPage(driver,scenario);
+        exists=newOE.ValidateNewOEAllOrder();
+
+        List<List<String>> PO_No = tabledata.asLists(String.class);
+        newOE.EnterPO_No(PO_No.get(0).get(0));
+    }
+
+    @And("User clicks on Show all orders check box after navigating back")
+    public void userClicksOnShowAllOrdersCheckBoxAfterNavigatingBack()
+    {
+        allOrder=new AllOrderPage(driver,scenario);
+        allOrder.ClickShowAllOrderCheckboxAgain();
     }
 }
