@@ -1,0 +1,479 @@
+[
+  {
+    "line": 1,
+    "elements": [
+      {
+        "line": 3,
+        "name": "For login to application",
+        "description": "",
+        "type": "background",
+        "keyword": "Background",
+        "steps": [
+          {
+            "result": {
+              "duration": 63827100,
+              "status": "passed"
+            },
+            "line": 4,
+            "name": "User enters correct URL and opened login page",
+            "match": {
+              "location": "stepDefination_DSD_OMS.ThemeBuilderStepDef.ThemeBuilderStepDef.user_enters_correct_url_and_opened_login_page()"
+            },
+            "keyword": "Given "
+          }
+        ]
+      },
+      {
+        "start_timestamp": "2023-06-28T13:03:45.580Z",
+        "before": [
+          {
+            "result": {
+              "duration": 4992300,
+              "status": "passed"
+            },
+            "match": {
+              "location": "stepDefination_DSD_OMS.AllOrdersPage.AllOrdersPageStep.LaunchBrowser1(io.cucumber.java.Scenario)"
+            }
+          },
+          {
+            "result": {
+              "duration": 1001300,
+              "status": "passed"
+            },
+            "match": {
+              "location": "stepDefination_DSD_OMS.ARInquiry.ARInquiryPageStep.LaunchBrowser1(io.cucumber.java.Scenario)"
+            }
+          },
+          {
+            "result": {
+              "duration": 985100,
+              "status": "passed"
+            },
+            "match": {
+              "location": "stepDefination_DSD_OMS.BillToBillStep.BillToBillPageStep.LaunchBrowser1(io.cucumber.java.Scenario)"
+            }
+          },
+          {
+            "result": {
+              "duration": 5076100,
+              "status": "passed"
+            },
+            "match": {
+              "location": "stepDefination_DSD_OMS.CatalogPage.CatalogPageStep.LaunchBrowser1(io.cucumber.java.Scenario)"
+            }
+          },
+          {
+            "result": {
+              "duration": 1001600,
+              "status": "passed"
+            },
+            "match": {
+              "location": "stepDefination_DSD_OMS.CatalogPage.CatalogPageStep1.LaunchBrowser1(io.cucumber.java.Scenario)"
+            }
+          },
+          {
+            "result": {
+              "status": "passed"
+            },
+            "match": {
+              "location": "stepDefination_DSD_OMS.CompetitivePricingPageStep.CompetitorPricingPageStep.LaunchBrowser1(io.cucumber.java.Scenario)"
+            }
+          },
+          {
+            "result": {
+              "duration": 1000300,
+              "status": "passed"
+            },
+            "match": {
+              "location": "stepDefination_DSD_OMS.CRMStepDef.CRMStepDef.LaunchBrowser1(io.cucumber.java.Scenario)"
+            }
+          },
+          {
+            "result": {
+              "duration": 5001100,
+              "status": "passed"
+            },
+            "match": {
+              "location": "stepDefination_DSD_OMS.CustomerInqPage_DSD.CustomerInqStep.LaunchBrowser1(io.cucumber.java.Scenario)"
+            }
+          },
+          {
+            "result": {
+              "duration": 2001400,
+              "status": "passed"
+            },
+            "match": {
+              "location": "stepDefination_DSD_OMS.DiconnectModePage.DMOEPageStep.LaunchBrowser1(io.cucumber.java.Scenario)"
+            }
+          },
+          {
+            "result": {
+              "status": "passed"
+            },
+            "match": {
+              "location": "stepDefination_DSD_OMS.GeneralSettingsStepDef.GSStepDef.LaunchBrowser1(io.cucumber.java.Scenario)"
+            }
+          },
+          {
+            "result": {
+              "duration": 999100,
+              "status": "passed"
+            },
+            "match": {
+              "location": "stepDefination_DSD_OMS.LoginPageStep.LaunchBrowser(io.cucumber.java.Scenario)"
+            }
+          },
+          {
+            "result": {
+              "duration": 1000000,
+              "status": "passed"
+            },
+            "match": {
+              "location": "stepDefination_DSD_OMS.MyAccountStep.MyAccountPageStep.LaunchBrowser1(io.cucumber.java.Scenario)"
+            }
+          },
+          {
+            "result": {
+              "duration": 16018400,
+              "status": "passed"
+            },
+            "match": {
+              "location": "stepDefination_DSD_OMS.OrderControlList.OrderControlPageSteps.LaunchBrowser1(io.cucumber.java.Scenario)"
+            }
+          },
+          {
+            "result": {
+              "duration": 1003700,
+              "status": "passed"
+            },
+            "match": {
+              "location": "stepDefination_DSD_OMS.OrderControlList.OrderControlPageSteps1.LaunchBrowser1(io.cucumber.java.Scenario)"
+            }
+          },
+          {
+            "result": {
+              "duration": 999700,
+              "status": "passed"
+            },
+            "match": {
+              "location": "stepDefination_DSD_OMS.OrderEntryPage.OrderEntryPageSteps.LaunchBrowser1(io.cucumber.java.Scenario)"
+            }
+          },
+          {
+            "result": {
+              "duration": 1998500,
+              "status": "passed"
+            },
+            "match": {
+              "location": "stepDefination_DSD_OMS.OrderEntryPage.OrderEntryPageSteps1.LaunchBrowser1(io.cucumber.java.Scenario)"
+            }
+          },
+          {
+            "result": {
+              "duration": 1003500,
+              "status": "passed"
+            },
+            "match": {
+              "location": "stepDefination_DSD_OMS.OrderEntryPage.OrderEntryPageSteps2.LaunchBrowser1(io.cucumber.java.Scenario)"
+            }
+          },
+          {
+            "result": {
+              "duration": 1049800,
+              "status": "passed"
+            },
+            "match": {
+              "location": "stepDefination_DSD_OMS.OrderEntryPage.OrderEntryPageSteps3.LaunchBrowser1(io.cucumber.java.Scenario)"
+            }
+          },
+          {
+            "result": {
+              "status": "passed"
+            },
+            "match": {
+              "location": "stepDefination_DSD_OMS.OrderEntryPage.OrderEntryPageSteps4.LaunchBrowser1(io.cucumber.java.Scenario)"
+            }
+          },
+          {
+            "result": {
+              "duration": 998000,
+              "status": "passed"
+            },
+            "match": {
+              "location": "stepDefination_DSD_OMS.OrderGuidePage.OrderGuidePageStep.LaunchBrowser1(io.cucumber.java.Scenario)"
+            }
+          },
+          {
+            "result": {
+              "status": "passed"
+            },
+            "match": {
+              "location": "stepDefination_DSD_OMS.OrderGuidePage.OrderGuidePageStep1.LaunchBrowser1(io.cucumber.java.Scenario)"
+            }
+          },
+          {
+            "result": {
+              "duration": 1017500,
+              "status": "passed"
+            },
+            "match": {
+              "location": "stepDefination_DSD_OMS.ParOrderPage.ParOrderPageStep.LaunchBrowser(io.cucumber.java.Scenario)"
+            }
+          },
+          {
+            "result": {
+              "duration": 1000200,
+              "status": "passed"
+            },
+            "match": {
+              "location": "stepDefination_DSD_OMS.PaymentInfo.PaymentInfoPageStep.LaunchBrowser(io.cucumber.java.Scenario)"
+            }
+          },
+          {
+            "result": {
+              "duration": 982300,
+              "status": "passed"
+            },
+            "match": {
+              "location": "stepDefination_DSD_OMS.ProductReference.ProductReferencePageStep.LaunchBrowser(io.cucumber.java.Scenario)"
+            }
+          },
+          {
+            "result": {
+              "duration": 983800,
+              "status": "passed"
+            },
+            "match": {
+              "location": "stepDefination_DSD_OMS.QuotePage.QuotePageSteps.LaunchBrowser1(io.cucumber.java.Scenario)"
+            }
+          },
+          {
+            "result": {
+              "status": "passed"
+            },
+            "match": {
+              "location": "stepDefination_DSD_OMS.QuotePage.QuotePageSteps1.LaunchBrowser1(io.cucumber.java.Scenario)"
+            }
+          },
+          {
+            "result": {
+              "duration": 982600,
+              "status": "passed"
+            },
+            "match": {
+              "location": "stepDefination_DSD_OMS.StandingOrderPage.StandingOrderPageSteps.LaunchBrowser1(io.cucumber.java.Scenario)"
+            }
+          },
+          {
+            "result": {
+              "duration": 984100,
+              "status": "passed"
+            },
+            "match": {
+              "location": "stepDefination_DSD_OMS.StandingOrderPage.StandingOrderPageSteps1.LaunchBrowser1(io.cucumber.java.Scenario)"
+            }
+          },
+          {
+            "result": {
+              "duration": 1999700,
+              "status": "passed"
+            },
+            "match": {
+              "location": "stepDefination_DSD_OMS.StatementsPage.StatementsPageSteps.LaunchBrowser1(io.cucumber.java.Scenario)"
+            }
+          },
+          {
+            "result": {
+              "duration": 1002400,
+              "status": "passed"
+            },
+            "match": {
+              "location": "stepDefination_DSD_OMS.ThemeBuilderStepDef.Phase2ThemeBuilderStepDef.LaunchBrowser1(io.cucumber.java.Scenario)"
+            }
+          },
+          {
+            "result": {
+              "duration": 2001300,
+              "status": "passed"
+            },
+            "match": {
+              "location": "stepDefination_DSD_OMS.ThemeBuilderStepDef.ThemeBuilderStepDef.LaunchBrowser1(io.cucumber.java.Scenario)"
+            }
+          },
+          {
+            "result": {
+              "duration": 1998400,
+              "status": "passed"
+            },
+            "match": {
+              "location": "stepDefination_DSD_OMS.UserManagementPage.Manage_Registration_PageStep.LaunchBrowser1(io.cucumber.java.Scenario)"
+            }
+          },
+          {
+            "result": {
+              "duration": 974300,
+              "status": "passed"
+            },
+            "match": {
+              "location": "stepDefination_DSD_OMS.UserManagementPage.UserManagementPageStep.LaunchBrowser1(io.cucumber.java.Scenario)"
+            }
+          },
+          {
+            "result": {
+              "duration": 975200,
+              "status": "passed"
+            },
+            "match": {
+              "location": "stepDefination_DSD_OMS.WebOrderingPage.FeaturedProductsPageStep.LaunchBrowser1(io.cucumber.java.Scenario)"
+            }
+          },
+          {
+            "result": {
+              "duration": 1008800,
+              "status": "passed"
+            },
+            "match": {
+              "location": "stepDefination_DSD_OMS.WebOrderingPage.NavigationPageStep.LaunchBrowser1(io.cucumber.java.Scenario)"
+            }
+          },
+          {
+            "result": {
+              "duration": 1025100,
+              "status": "passed"
+            },
+            "match": {
+              "location": "stepDefination_DSD_OMS.WebOrderingPage.RestrictedProductsPageStep.LaunchBrowser1(io.cucumber.java.Scenario)"
+            }
+          }
+        ],
+        "line": 7,
+        "name": "TC018  Verify General settings master page Available app drag and drop",
+        "description": "",
+        "id": "oms-general-settings-page-verification;tc018--verify-general-settings-master-page-available-app-drag-and-drop",
+        "after": [
+          {
+            "result": {
+              "status": "passed"
+            },
+            "match": {
+              "location": "stepDefination_DSD_OMS.LoginPageStep.afterScenario1(io.cucumber.java.Scenario)"
+            }
+          }
+        ],
+        "type": "scenario",
+        "keyword": "Scenario",
+        "steps": [
+          {
+            "result": {
+              "duration": 929600,
+              "status": "passed"
+            },
+            "line": 8,
+            "name": "User able to open login page successfully",
+            "match": {
+              "location": "stepDefination_DSD_OMS.CRMStepDef.CRMStepDef.userAbleToOpenLoginPageSuccessfully()"
+            },
+            "keyword": "Given "
+          },
+          {
+            "output": [
+              "SIGNIN BUTTON CLICKED"
+            ],
+            "result": {
+              "duration": 1363288300,
+              "status": "passed"
+            },
+            "line": 9,
+            "name": "User entered correct Admin username and password on the page",
+            "match": {
+              "location": "stepDefination_DSD_OMS.CRMStepDef.CRMStepDef.userEnteredCorrectAdminUsernameAndPasswordOnThePage()"
+            },
+            "keyword": "When "
+          },
+          {
+            "result": {
+              "duration": 6780877900,
+              "status": "passed"
+            },
+            "line": 10,
+            "name": "Admin Page opened successfully",
+            "match": {
+              "location": "stepDefination_DSD_OMS.CRMStepDef.CRMStepDef.adminPageOpenedSuccessfully()"
+            },
+            "keyword": "Then "
+          },
+          {
+            "result": {
+              "duration": 7249549100,
+              "status": "passed"
+            },
+            "line": 11,
+            "name": "User click on Hamburger left Menu",
+            "match": {
+              "location": "stepDefination_DSD_OMS.CRMStepDef.CRMStepDef.userClickOnHamburgerLeftMenu()"
+            },
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "duration": 449844900,
+              "status": "passed"
+            },
+            "line": 12,
+            "name": "User click on General settings option",
+            "match": {
+              "location": "stepDefination_DSD_OMS.GeneralSettingsStepDef.GSStepDef.userClickOnGeneralSettingsOption()"
+            },
+            "keyword": "Then "
+          },
+          {
+            "result": {
+              "duration": 462387600,
+              "status": "passed"
+            },
+            "line": 13,
+            "name": "Select Master page option",
+            "match": {
+              "location": "stepDefination_DSD_OMS.GeneralSettingsStepDef.GSStepDef.selectMasterPageOption()"
+            },
+            "keyword": "Then "
+          },
+          {
+            "result": {
+              "duration": 15541248000,
+              "status": "passed"
+            },
+            "line": 14,
+            "name": "Select and drag any value from Available apps and drop inside application menu",
+            "match": {
+              "location": "stepDefination_DSD_OMS.GeneralSettingsStepDef.GSStepDef.selectAndDragAnyValueFromAvailableAppsAndDropInsideApplicationMenu()"
+            },
+            "keyword": "Then "
+          },
+          {
+            "result": {
+              "status": "passed"
+            },
+            "line": 15,
+            "name": "Verify that dragged value present in the application menu",
+            "match": {
+              "location": "stepDefination_DSD_OMS.GeneralSettingsStepDef.GSStepDef.verifyThatDraggedValuePresentInTheApplicationMenu()"
+            },
+            "keyword": "And "
+          }
+        ],
+        "tags": [
+          {
+            "name": "@General_Settings_Verify_MasterPage_AvailableApp_DragDrop"
+          }
+        ]
+      }
+    ],
+    "name": "OMS General Settings Page Verification",
+    "description": "",
+    "id": "oms-general-settings-page-verification",
+    "keyword": "Feature",
+    "uri": "file:src/test/resources/features_Shared/features_Shared_DSD/GeneralSettingsFeature/generalSettingsFeatures1.feature",
+    "tags": []
+  }
+]

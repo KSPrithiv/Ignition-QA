@@ -29,18 +29,16 @@
             <version>3.18.1</version>
             <scope>test</scope>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/io.github.bonigarcia/webdrivermanager -->
         <dependency>
             <groupId>io.github.bonigarcia</groupId>
             <artifactId>webdrivermanager</artifactId>
-            <version>5.2.3</version>
+            <version>5.4.1</version>
         </dependency>
-
-        <!-- https://mvnrepository.com/artifact/org.testng/testng -->
         <dependency>
-            <groupId>org.testng</groupId>
-            <artifactId>testng</artifactId>
-            <version>7.0.0</version>
-            <scope>test</scope>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>31.0.1-jre</version>
         </dependency>
         <!-- https://mvnrepository.com/artifact/io.cucumber/cucumber-junit -->
         <dependency>
@@ -135,11 +133,11 @@
             <artifactId>javax.mail</artifactId>
             <version>1.6.2</version>
         </dependency>
-
+        <!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java -->
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-java</artifactId>
-            <version>3.141.59</version>
+            <version>4.11.0</version>
         </dependency>
         <dependency>
             <groupId>org.aspectj</groupId>
@@ -158,20 +156,12 @@
             <version>4.0.3</version>
             <scope>compile</scope>
         </dependency>
-
-
         <!-- https://mvnrepository.com/artifact/com.hynnet/jacob -->
         <dependency>
             <groupId>com.hynnet</groupId>
             <artifactId>jacob</artifactId>
             <version>1.18</version>
         </dependency>
-        <dependency>
-            <groupId>org.seleniumhq.selenium</groupId>
-            <artifactId>selenium-ie-driver</artifactId>
-            <version>3.141.59</version>
-        </dependency>
-
         <!--For reading multiple config files  -->
         <dependency>
             <groupId>org.aeonbits.owner</groupId>
@@ -224,10 +214,11 @@
             <artifactId>jcommander</artifactId>
             <version>1.27</version>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-support -->
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-support</artifactId>
-            <version>3.141.59</version>
+            <version>4.11.0</version>
         </dependency>
 
         <dependency>
@@ -243,12 +234,7 @@
         <dependency>
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
-            <version>7.4.0</version>
-        </dependency>
-        <dependency>
-            <groupId>org.seleniumhq.selenium</groupId>
-            <artifactId>selenium-api</artifactId>
-            <version>3.141.59</version>
+            <version>7.0.0</version>
         </dependency>
     </dependencies>
     <build>
@@ -368,3 +354,4 @@
         <testOutputDirectory>target/classes</testOutputDirectory>
     </build>
 </project>
+

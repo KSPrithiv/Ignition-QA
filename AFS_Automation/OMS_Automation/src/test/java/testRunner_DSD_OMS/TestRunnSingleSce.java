@@ -56,10 +56,11 @@ import pages_DSD_OMS.login.LoginPage;
                         //"src/test/resources/features_Shared/features_Shared_DSD/MyAccountFeature/AddPaymentInfoCheckPreferred.feature",
                         //"src/test/resources/features_Shared/features_Shared_DSD/ThemeBuilderFeature/themeBuilderFeatures1.feature",
                         //"src/test/resources/features_Shared/features_Shared_DSD/ThemeBuilderFeature/themeBuilderFeatures2_Phase2.feature",
-                        "src/test/resources/features_Shared/features_Shared_DSD/CRMFeature/crmFeatures.feature",
-                        "src/test/resources/features_Shared/features_Shared_DSD/CRMFeature/crmFeatures1.feature",
+                        //"src/test/resources/features_Shared/features_Shared_DSD/CRMFeature/crmFeatures.feature",
+                        //"src/test/resources/features_Shared/features_Shared_DSD/CRMFeature/crmFeatures1.feature",
                         //"src/test/resources/features_Shared/features_Shared_DSD/CRMFeature/crmFeatures2.feature",
                         //"src/test/resources/features_Shared/features_Shared_DSD/CRMFeature/crmFeatures3.feature",
+                        "src/test/resources/features_Shared/features_Shared_DSD/GeneralSettingsFeature",
                         //"src/test/resources/features_Shared/features_Shared_DSD/MyAccount_NewAddress_Add.feature"
                 },
                 glue = {"stepDefination_DSD_OMS"},
@@ -125,4 +126,4 @@ public class TestRunnSingleSce extends AbstractTestNGCucumberTests {
             Runtime.getRuntime().exec("taskkill /F /IM chromedriver.exe");
         }
     }
-    }
+}
