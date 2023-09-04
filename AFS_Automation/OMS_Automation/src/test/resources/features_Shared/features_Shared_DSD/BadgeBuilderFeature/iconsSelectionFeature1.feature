@@ -6,8 +6,8 @@ Feature: Badge Builder Icon Selection
     @VerifyColorChangeInProductIcon-CatalogProductSearch
     Scenario: Test Scenario to verify change in catalog product icon color from Order Entry page
       And    Login to Client portal BadgeBuilder1
-      Then   User should navigate to Client side
-      And    Click on the Order Entry tab
+      Then   User should navigate to Client side1
+      And    Click on the Order Entry tab2
       And   Select Account and start Order - CatchWeightItems
       And   Add Product to the grid and check Icon Color
 
@@ -20,14 +20,14 @@ Feature: Badge Builder Icon Selection
 
     @VerifyChangeInProductIcon-StandingOrder
     Scenario:  Test Scenario to verify change in product icon color from Standing Order Page
-      Given  User should navigate to Standing Order Tab
+      Given  User should navigate to Standing Order Tab1
       Then   Click on New Standing order and select date
       And    Compare Color of Product Icon of Standing Order
 
 
   @VerifyColorChangeInProductIcon-OrderGuide
   Scenario:  Test Scenario to verify change in product icon color from Order Guide Page
-    Given User should navigate to OrderGuide Tab
-    And   Add Product to the Order Guide grid
+    Given User should navigate to OrderGuide Tab1
+    And   Add Product to the Order Guide grid1
     Then  Check Icon color
-    And    Logout
+    And   Logout1

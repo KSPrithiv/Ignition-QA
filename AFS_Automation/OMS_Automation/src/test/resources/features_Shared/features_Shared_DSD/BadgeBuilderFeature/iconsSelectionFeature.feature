@@ -6,8 +6,8 @@ Feature: Badge Builder Icon Selection
   @IconSelection
   Scenario: Test Scenario for Selecting Icon from Badge Builder
     Given  User on login page and entered username and password
-    When   Navigated to Admin home page
-    Then   Click on General Setting tab
+    When   Navigated to Admin home page1
+    Then   Click on General Setting tab1
     And    Clicks on Badge Builder
     And    Select Icon under icon selections
   @BadgeName
@@ -57,16 +57,16 @@ Feature: Badge Builder Icon Selection
   @VerifyColorChangeInOE-TieredPricingProducts
   Scenario: Test Scenario to Verify Icon Color Change In OrderEntry -  TieredPricingProducts
     Given  User must be on BadgeBuilder page
-    When   Click Permission By and select appropriate Company
+    When   Click Permission By and select appropriate Company1
     And    User should navigate to Badge Gallery - TieredPricingProduct
     And    Change Color of the TieredPricingProduct Icon
     And    User should navigate to Badge Gallery - CatchWeightItems
     And    Change Color of the CatchWeightItems Icon
-    And    Logout from Admin portal
+    And    Logout from Admin portal1
     And    Login to Client portal BadgeBuilder1
-    Then   User should navigate to Client side
-    And    Click on the Order Entry tab
-    And    Select Account and start Order
+    Then   User should navigate to Client side1
+    And    Click on the Order Entry tab2
+    And    Select Account and start Order1
     Then   Compare TieredPricingProduct Icon Color
 #
 #  @VerifyColorChangeInOE-CatchWeightItems
@@ -90,7 +90,7 @@ Feature: Badge Builder Icon Selection
 
   @VerifyColorChangeInCatalogTab-CatchWeightItems
   Scenario: Test Scenario to Verify Icon Color Change In Catalog -  CatchWeightItems
-    Then   user should navigate to Catalog tab
+    Then   user should navigate to Catalog tab1
     And   Search for Catchweight Item
     Then  Compare Catlog CatchWeightItems Icon Color
 

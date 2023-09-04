@@ -75,8 +75,8 @@ public class IconsSelectionPageStep {
 
     }
 
-    @When("Navigated to Admin home page")
-    public void navigated_to_admin_home_page() {
+    @When("Navigated to Admin home page1")
+    public void navigated_to_admin_home_page1() {
 
         homepage = new HomePage(driver, scenario);
         homepage.VerifyHomePage();
@@ -84,8 +84,8 @@ public class IconsSelectionPageStep {
         //adminHomePage.SelectCompany();
     }
 
-    @Then("Click on General Setting tab")
-    public void click_on_general_setting_tab() throws InterruptedException {
+    @Then("Click on General Setting tab1")
+    public void click_on_general_setting_tab1() throws InterruptedException {
 
         badgeBuilderPage = new BadgeBuilderPage(driver, scenario);
         badgeBuilderPage.ClicOnHumburger1();
@@ -261,8 +261,8 @@ public class IconsSelectionPageStep {
         badgeBuilderPage.SavedChanges1();
     }
 
-    @When("Click Permission By and select appropriate Company")
-    public void click_permission_by_and_select_appropriate_company() {
+    @When("Click Permission By and select appropriate Company1")
+    public void click_permission_by_and_select_appropriate_company1() {
         badgeBuilderPage = new BadgeBuilderPage(driver, scenario);
         badgeBuilderPage.selectCompany();
     }
@@ -292,8 +292,8 @@ public class IconsSelectionPageStep {
 
     }
 
-    @And("Logout from Admin portal")
-    public void logout_from_admin_portal() throws InterruptedException, AWTException {
+    @And("Logout from Admin portal1")
+    public void logout_from_admin_portal1() throws InterruptedException, AWTException {
         badgeBuilderPage = new BadgeBuilderPage(driver, scenario);
         badgeBuilderPage.Click_On_UserIcon();
         badgeBuilderPage.Click_On_Signout();
@@ -312,8 +312,8 @@ public class IconsSelectionPageStep {
 
     }
 
-    @Then("User should navigate to Client side")
-    public void user_should_navigate_to_client_side() throws InterruptedException {
+    @Then("User should navigate to Client side1")
+    public void user_should_navigate_to_client_side1() throws InterruptedException {
 //        boolean result=false;
 //        if(flag==false)
 //        {
@@ -334,8 +334,8 @@ public class IconsSelectionPageStep {
 
     }
 
-    @And("Click on the Order Entry tab")
-    public void click_on_the_order_entry_tab() throws InterruptedException {
+    @And("Click on the Order Entry tab2")
+    public void click_on_the_order_entry_tab2() throws InterruptedException {
         badgeBuilderPage1=new BadgeBuilderPage1(driver,scenario);
         badgeBuilderPage = new BadgeBuilderPage(driver, scenario);
 //        badgeBuilderPage.NavigateToOrderEntry();
@@ -343,8 +343,8 @@ public class IconsSelectionPageStep {
 
     }
 
-    @And("Select Account and start Order")
-    public void select_account_and_start_order() throws InterruptedException {
+    @And("Select Account and start Order1")
+    public void select_account_and_start_order1() throws InterruptedException {
         badgeBuilderPage = new BadgeBuilderPage(driver, scenario);
         badgeBuilderPage1=new BadgeBuilderPage1(driver,scenario);
         //badgeBuilderPage.ChangeAccount1();
@@ -425,8 +425,8 @@ public class IconsSelectionPageStep {
         //badgeBuilderPage.PopupOKBtn();
     }
 
-    @Then("user should navigate to Catalog tab")
-    public void user_should_navigate_to_catalog_tab() throws InterruptedException {
+    @Then("user should navigate to Catalog tab1")
+    public void user_should_navigate_to_catalog_tab1() throws InterruptedException {
         badgeBuilderPage = new BadgeBuilderPage(driver, scenario);
 
         badgeBuilderPage.CatalogTab();
@@ -473,8 +473,8 @@ public class IconsSelectionPageStep {
     }
 
 
-    @Then("User should navigate to Order Tab")
-    public void user_should_navigate_to_order_tab() throws InterruptedException {
+    @Then("User should navigate to Order Tab1")
+    public void user_should_navigate_to_order_tab1() throws InterruptedException {
        Thread.sleep(10000);
         badgeBuilderPage = new BadgeBuilderPage(driver, scenario);
 
@@ -525,8 +525,8 @@ public class IconsSelectionPageStep {
 
     }
 
-    @Then("User should navigate to OrderGuide Tab")
-    public void user_should_navigate_to_order_guide_tab() throws InterruptedException {
+    @Then("User should navigate to OrderGuide Tab1")
+    public void user_should_navigate_to_order_guide_tab1() throws InterruptedException {
 
             badgeBuilderPage = new BadgeBuilderPage(driver, scenario);
             badgeBuilderPage.OrderGuideTab();
@@ -539,8 +539,8 @@ public class IconsSelectionPageStep {
 
 //    }
 
-    @Then("Add Product to the Order Guide grid")
-    public void add_product_to_the_order_guide_grid() throws AWTException, InterruptedException {
+    @Then("Add Product to the Order Guide grid1")
+    public void add_product_to_the_order_guide_grid1() throws AWTException, InterruptedException {
         badgeBuilderPage = new BadgeBuilderPage(driver, scenario);
 
         //badgeBuilderPage.PopupDiscardAll();
@@ -585,8 +585,8 @@ public class IconsSelectionPageStep {
         badgeBuilderPage = new BadgeBuilderPage(driver, scenario);
         badgeBuilderPage.ProdColourCat2();
     }
-    @Given("User should navigate to Standing Order Tab")
-    public void user_should_navigate_to_standing_order_tab() throws InterruptedException {
+    @Given("User should navigate to Standing Order Tab1")
+    public void user_should_navigate_to_standing_order_tab1() throws InterruptedException {
 
         if (HelpersMethod.IsExists("//li[contains(@class,'k-item')]/span[@class='k-link' and contains(text(),'Standing orders')]", driver)) {
 
