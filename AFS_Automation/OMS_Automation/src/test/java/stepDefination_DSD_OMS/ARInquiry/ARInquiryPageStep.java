@@ -79,8 +79,6 @@ public class ARInquiryPageStep
         if(flag==false)
         {
             homepage = new HomePage(driver,scenario);
-            //String title = driver.getTitle();
-            //Assert.assertEquals(title, "Ignition - Admin");
             homepage.verifyUserinfoContainer();
             homepage.navigateToClientSide();
             arInquiryPage=new ARInquiryPage(driver,scenario);
@@ -92,6 +90,7 @@ public class ARInquiryPageStep
     @Given("User must be on Client side and select AR Inquiry")
     public void userMustBeOnClientSideAndSelectARInquiry()
     {
+        scenario.log(currentURL);
         arInquiryPage=new ARInquiryPage(driver,scenario);
         arInquiryPage.HandleError_Page();
         HelpersMethod.Refresh(driver);

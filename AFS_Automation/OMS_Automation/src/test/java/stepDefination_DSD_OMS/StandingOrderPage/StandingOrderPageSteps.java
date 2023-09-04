@@ -89,8 +89,6 @@ public class StandingOrderPageSteps
         if(flag==false)
         {
             homepage = new HomePage(driver,scenario);
-            String title = driver.getTitle();
-            //Assert.assertEquals(title, "Ignition - Admin");
             homepage.verifyUserinfoContainer();
             homepage.navigateToClientSide();
         }
@@ -219,7 +217,6 @@ public class StandingOrderPageSteps
                 standingOrder.cardView(Prods.get(i));
             }
         }
-        //standingOrder.SearchProduct();
         standingOrder.CatalogOKButton();
     }
 

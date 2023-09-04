@@ -18,6 +18,7 @@ import org.testng.Assert;
 import util.RandomValues;
 
 import java.awt.*;
+import java.time.Duration;
 import java.util.List;
 
 /**
@@ -107,8 +108,14 @@ public class CheckOutOrderPage
         boolean Result=false;
         try
         {
+            if(HelpersMethod.IsExists("//div[@class='loader']",driver))
+            {
+                WebElement WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 80000);
+            }
             if(HelpersMethod.EleDisplay(CheOutOrderPage))
             {
+                scenario.log("CHECKOUT SUMMARY PAGE HAS BEEN FOUND");
                 Result=true;
             }
         }
@@ -130,7 +137,7 @@ public class CheckOutOrderPage
               if(HelpersMethod.IsExists("//div[@class='loader']",driver))
               {
                   WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                  HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000);
+                  HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 80000);
               }
               exists=true;
           }
@@ -152,7 +159,7 @@ public class CheckOutOrderPage
                 if(HelpersMethod.IsExists("//div[@class='loader']",driver))
                 {
                     WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 20000);
+                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 80000);
                 }
                 exists=true;
                 scenario.log("CLICKED ON NEXT BUTTON");
@@ -225,7 +232,7 @@ public class CheckOutOrderPage
                 if (driver.findElement(By.id("SubmitCheckoutButton")).isEnabled())
                 {
                     WebEle=HelpersMethod.FindByElement(driver,"id","SubmitCheckoutButton");
-                    HelpersMethod.ClickBut(driver,WebEle,600);
+                    HelpersMethod.ClickBut(driver,WebEle,1000);
                     exists=true;
                 }
                 else
@@ -235,7 +242,7 @@ public class CheckOutOrderPage
                         if(HelpersMethod.IsExists("//div[@id='addressCard']/descendant::span[contains(@class,'k-icon k-i-arrow-chevron-down')]",driver))
                         {
                             WebEle=HelpersMethod.FindByElement(driver, "xpath", "//div[@id='addressCard']/descendant::span[contains(@class,'k-icon k-i-arrow-chevron-down')]");
-                            HelpersMethod.ClickBut(driver,WebEle,600);
+                            HelpersMethod.ClickBut(driver,WebEle,1000);
                         }
                         WebEle=HelpersMethod.FindByElement(driver, "xpath", "//div[@class='address-container']/descendant::tbody/tr[1]/descendant::input");
                         HelpersMethod.ClickBut(driver,WebEle,1000);
@@ -281,7 +288,7 @@ public class CheckOutOrderPage
                     scenario.log("CITY NAME ENTERED IN INPUT BOX "+city);
                     WebEle=newAddressPopup.findElement(By.xpath(".//span[@id='State']"));
                     HelpersMethod.ClickBut(driver,WebEle,10);
-                    new WebDriverWait(driver,400).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class,'k-animation-container k-animation-container-relative k-list-container k-reset i-common-dropdown i-common-dropdown__type-none')]"))));
+                    new WebDriverWait(driver, Duration.ofMillis(400)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class,'k-animation-container k-animation-container-relative k-list-container k-reset i-common-dropdown i-common-dropdown__type-none')]"))));
 
                     // to fetch the web element of the modal container
                     WebElement menuContainer = HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-animation-container k-animation-container-relative k-list-container k-reset i-common-dropdown i-common-dropdown__type-none')]");

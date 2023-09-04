@@ -63,7 +63,7 @@ public class FeaturedProdSettingsPage
         {
             HelpersMethod.Implicitwait(driver,80);
             title=driver.getTitle();
-            if(title.equals("Ignition - Admin"))
+            if(title.contains("Admin"))
             {
                 exists=true;
             }

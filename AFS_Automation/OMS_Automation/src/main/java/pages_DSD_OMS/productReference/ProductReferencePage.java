@@ -14,6 +14,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import util.TestBase;
 
+import java.time.Duration;
 import java.util.List;
 
 /**
@@ -97,7 +98,7 @@ public class ProductReferencePage
         WebElement webEle=null;
         try
         {
-            new WebDriverWait(driver,4000).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfAllElementsLocatedBy(By.id("customerProdutRefCard"))));
+            new WebDriverWait(driver, Duration.ofMillis(4000)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfAllElementsLocatedBy(By.id("customerProdutRefCard"))));
             if(HelpersMethod.IsExists("//div[@id='customerProdutRefCard']",driver))
             {
                 exists = true;
@@ -188,7 +189,7 @@ public class ProductReferencePage
         String prod=null;
         try
         {
-            new WebDriverWait(driver,4000).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfAllElementsLocatedBy(By.id("customerProdutRefCard"))));
+            new WebDriverWait(driver,Duration.ofMillis(4000)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfAllElementsLocatedBy(By.id("customerProdutRefCard"))));
             WebElement prod_No=HelpersMethod.FindByElement(driver,"xpath","//tr[contains(@class,'k-master-row')][1]/descendant::button");
             prod=prod_No.getText();
             scenario.log("PRODUCT TO BE SEARCHED IS "+prod);
@@ -201,7 +202,7 @@ public class ProductReferencePage
     {
         try
         {
-            new WebDriverWait(driver,4000).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfAllElementsLocatedBy(By.id("customerProdutRefCard"))));
+            new WebDriverWait(driver,Duration.ofMillis(4000)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfAllElementsLocatedBy(By.id("customerProdutRefCard"))));
             HelpersMethod.AddFilterSearch(driver,s,prodNo);
         }
         catch (Exception e){}

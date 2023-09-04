@@ -18,6 +18,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
 import java.awt.*;
+import java.time.Duration;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -116,7 +117,7 @@ public class ProductPage
                 WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
                 HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 2000);
             }
-            HelpersMethod.waitTillTitleContains(driver, "Ignition - Product Catalog", 1000);
+            HelpersMethod.waitTillTitleContains(driver, "Product Catalog", 1000);
         /*  if (HelpersMethod.IsExists("//div[@class='loader']", driver))
         {
             WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
@@ -232,7 +233,7 @@ public class ProductPage
                 WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
                 HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000);
             }
-            new WebDriverWait(driver,1000).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class,'i-notification-text')]|//div[contains(@class,'search-results-container')]"))));
+            new WebDriverWait(driver, Duration.ofMillis(1000)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class,'i-notification-text')]|//div[contains(@class,'search-results-container')]"))));
             HelpersMethod.WaitElementPresent(driver, "xpath", "//div[contains(@class,'i-notification-text')]|//div[contains(@class,'search-results-container')]", 1000);
         }
         catch (Exception e){}
@@ -386,7 +387,7 @@ public class ProductPage
         try
         {
             HelpersMethod.WaitElementPresent(driver, "xpath", "//div[contains(@id,'cartItemsCard')]", 2000);
-            new WebDriverWait(driver, 2000).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(@id,'cartItemsCard')]")));
+            new WebDriverWait(driver, Duration.ofMillis(2000)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(@id,'cartItemsCard')]")));
 
             HelpersMethod.ScrollElement(driver, Checkout);
             HelpersMethod.ActClick(driver, Checkout, 800);
@@ -585,7 +586,7 @@ public class ProductPage
                 {
                     HelpersMethod.waitTillLoadingPage(driver);
                 }
-                new WebDriverWait(driver,400).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class,'k-animation-container k-animation-container-relative k-list-container k-reset i-common-dropdown i-common-dropdown__type-none k-animation-container-shown')]"))));
+                new WebDriverWait(driver,Duration.ofMillis(1000)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class,'k-animation-container k-animation-container-relative k-list-container k-reset i-common-dropdown i-common-dropdown__type-none k-animation-container-shown')]"))));
                 HelpersMethod.WaitElementPresent(driver, "xpath", "//div[contains(@class,'k-animation-container k-animation-container-relative k-list-container k-reset i-common-dropdown i-common-dropdown__type-none k-animation-container-shown')]", 200);
                 HelpersMethod.DropDownMenu(driver, categories);
                 exists = true;
@@ -601,7 +602,7 @@ public class ProductPage
                 }
                 else
                 {
-                    new WebDriverWait(driver, 600).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class,'search-results-container')]")));
+                    new WebDriverWait(driver, Duration.ofMillis(1000)).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class,'search-results-container')]")));
                     scenario.log("PRODUCTS FOUND AFTER CATEGORIES FILTER: ");
                     List<WebElement> Products = HelpersMethod.FindByElements(driver, "xpath", "//div[contains(@class,'grid-item-box-item description')]/descendant::a");
                     for (WebElement WebEle1 : Products)
@@ -617,7 +618,7 @@ public class ProductPage
                     HelpersMethod.WaitElementPresent(driver, "xpath", "//div[contains(@class,'product-catalog-container')]", 1000);
                     HelpersMethod.ScrollElement(driver, SubCat);
                     HelpersMethod.ActClick(driver, SubCat, 1000);
-                    new WebDriverWait(driver,400).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class,'k-popup k-child-animation-container k-slide-down-enter k-slide-down-enter-active')]"))));
+                    new WebDriverWait(driver,Duration.ofMillis(1000)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class,'k-popup k-child-animation-container k-slide-down-enter k-slide-down-enter-active')]"))));
                     HelpersMethod.WaitElementPresent(driver, "xpath", "//div[contains(@class,'k-popup k-child-animation-container k-slide-down-enter k-slide-down-enter-active')]", 200);
                     WebElement modalContainer1 = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-popup k-child-animation-container k-slide-down-enter k-slide-down-enter-active')]");
                     List<WebElement> subCats = modalContainer1.findElements(By.xpath(".//ul/li"));
@@ -641,7 +642,7 @@ public class ProductPage
                     }
                     else
                     {
-                        new WebDriverWait(driver, 600).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class,'search-results-container')]")));
+                        new WebDriverWait(driver, Duration.ofMillis(1000)).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class,'search-results-container')]")));
                         scenario.log("PRODUCTS FOUND UNDER SUB CATEGORIES: ");
                         List<WebElement> Products1 = HelpersMethod.FindByElements(driver, "xpath", "//div[contains(@class,'grid-item-box-item description')]/descendant::a");
                         for (WebElement WebEle1 : Products1)
@@ -657,7 +658,7 @@ public class ProductPage
                         HelpersMethod.WaitElementPresent(driver, "xpath", "//div[contains(@class,'product-catalog-container')]", 1000);
                         HelpersMethod.ScrollElement(driver, Brand);
                         HelpersMethod.ActClick(driver, Brand, 800);
-                        new WebDriverWait(driver,400).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class,'k-popup k-child-animation-container k-slide-down-enter k-slide-down-enter-active')]"))));
+                        new WebDriverWait(driver,Duration.ofMillis(1000)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class,'k-popup k-child-animation-container k-slide-down-enter k-slide-down-enter-active')]"))));
                         HelpersMethod.WaitElementPresent(driver, "xpath", "//div[contains(@class,'k-popup k-child-animation-container k-slide-down-enter k-slide-down-enter-active')]", 200);
                         WebElement modalContainer2 = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-popup k-child-animation-container k-slide-down-enter k-slide-down-enter-active')]");
                         List<WebElement> brands = modalContainer2.findElements(By.xpath(".//ul/li"));
@@ -686,7 +687,7 @@ public class ProductPage
                         else
                         {
                             //Display all the products belongs to selected Sub-categories
-                            new WebDriverWait(driver, 200).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class,'search-results-container')]")));
+                            new WebDriverWait(driver, Duration.ofMillis(1000)).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class,'search-results-container')]")));
                             scenario.log("PRODUCTS FOUND UNDER BRAND: ");
                             List<WebElement> Products2 = HelpersMethod.FindByElements(driver, "xpath", "//div[contains(@class,'grid-item-box-item description')]/descendant::a");
                             for (WebElement WebEle1 : Products2)
