@@ -20,6 +20,7 @@ package pages_DSD_OMS.badgeBuilder_Phase2;
 
         import java.awt.*;
         import java.awt.event.KeyEvent;
+        import java.time.Duration;
         import java.util.List;
 
 //import java.io.IOException;
@@ -251,7 +252,7 @@ public class BadgeBuilderPage1 {
                     WebElement WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
                     HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 400);
                 }
-                new WebDriverWait(driver, 1000).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(@id,'cartItemsCard')]")));
+                new WebDriverWait(driver, Duration.ofMillis(6000)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(@id,'cartItemsCard')]")));
             }
             Assert.assertEquals(exists, true);
         } catch (Exception e) {
@@ -279,7 +280,7 @@ public class BadgeBuilderPage1 {
             if (status.equals("loading")) {
                 HelpersMethod.waitTillLoadingPage(driver);
             }
-            new WebDriverWait(driver, 60).until(ExpectedConditions.elementToBeClickable(By.xpath("//div[@class='open-menu-hamburger-icon']//*[local-name()='svg']//*[local-name()='path' and contains(@d,'M3,18H21V16H3Zm0-5H21V11H3ZM3,6V8H21V6Z')]")));
+            new WebDriverWait(driver, Duration.ofMillis( 6000)).until(ExpectedConditions.elementToBeClickable(By.xpath("//div[@class='open-menu-hamburger-icon']//*[local-name()='svg']//*[local-name()='path' and contains(@d,'M3,18H21V16H3Zm0-5H21V11H3ZM3,6V8H21V6Z')]")));
             if (HelpersMethod.IsExists("//div[@class='open-menu-hamburger-icon']//*[local-name()='svg']//*[local-name()='path' and contains(@d,'M3,18H21V16H3Zm0-5H21V11H3ZM3,6V8H21V6Z')]", driver)) {
                 WebEle = HelpersMethod.FindByElement(driver, "xpath", "//*[local-name()='svg']//*[local-name()='path' and contains(@d,'M3,18H21V16H3Zm0-5H21V11H3ZM3,6V8H21V6Z')]");
                 act.moveToElement(WebEle).click().build().perform();
@@ -397,7 +398,7 @@ public class BadgeBuilderPage1 {
         exists = false;
         WebElement WebEle = null;
         HelpersMethod.Implicitwait(driver, 60);
-        new WebDriverWait(driver, 40).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//button[contains(text(),'Add product')]")));
+        new WebDriverWait(driver, Duration.ofMillis(8000)).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//button[contains(text(),'Add product')]")));
         try {
             if (AddProduct.isDisplayed() && AddProduct.isEnabled()) {
                 HelpersMethod.ScrollElement(driver, AddProduct);
@@ -923,8 +924,8 @@ public class BadgeBuilderPage1 {
             exists = false;
             WebElement WebEle = null;
             WebElement WebEle1 = null;
-            new WebDriverWait(driver, 40).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//span[@id='searchBarClearBtn']//*[local-name()='svg']")));
-            new WebDriverWait(driver, 20).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[@id='searchBarClearBtn']//*[local-name()='svg']")));
+            new WebDriverWait(driver, Duration.ofMillis(6000)).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//span[@id='searchBarClearBtn']//*[local-name()='svg']")));
+            new WebDriverWait(driver, Duration.ofMillis(6000)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[@id='searchBarClearBtn']//*[local-name()='svg']")));
             try {
                 WebElement ProductCard = HelpersMethod.FindByElement(driver, "id", "productsCard");
                 HelpersMethod.ScrollElement(driver, ProductCard);
@@ -965,18 +966,18 @@ public class BadgeBuilderPage1 {
                 HelpersMethod.waitTillLoadingPage(driver);
             }
             if (HelpersMethod.IsExists("//div[@class='loader']", driver)) {
-                new WebDriverWait(driver, 8000).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+                new WebDriverWait(driver, Duration.ofMillis(8000)).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
             }
             if (status.equals("loading")) {
                 HelpersMethod.waitTillLoadingPage(driver);
             }
             HelpersMethod.WaitElementPresent(driver, "xpath", "/html//div[@id='shoppingCartRedBadge']", 2400);
             WebElement UserIcon = HelpersMethod.FindByElement(driver, "xpath", "/html//div[@id='shoppingCartRedBadge']");
-            new WebDriverWait(driver, 6000).until(ExpectedConditions.visibilityOf(UserIcon));
+            new WebDriverWait(driver, Duration.ofMillis(8000)).until(ExpectedConditions.visibilityOf(UserIcon));
             HelpersMethod.JScriptClick(driver, UserIcon, 2000);
             exists = true;
             if (HelpersMethod.IsExists("//div[@class='loader']", driver)) {
-                new WebDriverWait(driver, 8000).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+                new WebDriverWait(driver, Duration.ofMillis(8000)).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
             }
 //            HelpersMethod.WaitElementPresent(driver, "xpath", "//div[contains(@id,'cartItemsCard')]", 600);
 //            Assert.assertEquals(exists, true);
@@ -1142,7 +1143,7 @@ public class BadgeBuilderPage1 {
         {
             exists = false;
             WebElement WebEle = null;
-            WebDriverWait wait1=new WebDriverWait(driver,40);
+            WebDriverWait wait1=new WebDriverWait(driver,Duration.ofMillis(10000));
             try {
                 if (HelpersMethod.IsExists("//div[@class='loader']", driver)) {
                     WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
@@ -1305,7 +1306,7 @@ public class BadgeBuilderPage1 {
                     WebElement  WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
                     HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 400);
                 }
-                new WebDriverWait(driver,1000).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(@id,'cartItemsCard')]")));
+                new WebDriverWait(driver,Duration.ofMillis(5000)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(@id,'cartItemsCard')]")));
             }
             Assert.assertEquals(exists,true);
         }

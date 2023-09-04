@@ -19,6 +19,7 @@ import org.testng.Assert;
 import util.RandomValues;
 import util.TestBase;
 
+import java.time.Duration;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -712,18 +713,20 @@ public class BadgeBuilderPage {
                 HelpersMethod.waitTillLoadingPage(driver);
             }
             if (HelpersMethod.IsExists("//div[@class='loader']", driver)) {
-                new WebDriverWait(driver, 8000).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+//                new WebDriverWait(driver, 8000).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+                new WebDriverWait(driver, Duration.ofMillis(8000)).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+//                new WebDriverWait(driver, Duration.ofMillis( 8000)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class='loader']"))));
             }
             if (status.equals("loading")) {
                 HelpersMethod.waitTillLoadingPage(driver);
             }
             HelpersMethod.WaitElementPresent(driver, "xpath", "//div[contains(@class,'user-info-container')]/div[contains(@class,'user-info-initial-container')]/following-sibling::div[contains(@class,'user-info-setting-shape')]", 2400);
             WebElement UserIcon = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'user-info-container')]/div[contains(@class,'user-info-initial-container')]/following-sibling::div[contains(@class,'user-info-setting-shape')]");
-            new WebDriverWait(driver, 6000).until(ExpectedConditions.visibilityOf(UserIcon));
+            new WebDriverWait(driver, Duration.ofMillis(6000)).until(ExpectedConditions.visibilityOf(UserIcon));
             HelpersMethod.JScriptClick(driver, UserIcon, 2000);
             exists = true;
             if (HelpersMethod.IsExists("//div[@class='loader']", driver)) {
-                new WebDriverWait(driver, 8000).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+                new WebDriverWait(driver, Duration.ofMillis(8000)).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
             }
             HelpersMethod.WaitElementPresent(driver, "xpath", "//div[contains(@class,'k-animation-container k-animation-container-relative popup-with-arrow standard-view user-info k-animation-container-shown')]", 600);
             Assert.assertEquals(exists, true);
@@ -774,14 +777,14 @@ public class BadgeBuilderPage {
                 HelpersMethod.waitTillLoadingPage(driver);
             }
             if (HelpersMethod.IsExists("//div[@class='loader']", driver)) {
-                new WebDriverWait(driver, 8000).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+                new WebDriverWait(driver, Duration.ofMillis(8000)).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
             }
             if (status.equals("loading")) {
                 HelpersMethod.waitTillLoadingPage(driver);
             }
 
             Thread.sleep(8000);
-        new WebDriverWait(driver, 400).until(ExpectedConditions.elementToBeClickable(By.cssSelector(".settings-back-container > .i-icon")));
+        new WebDriverWait(driver, Duration.ofMillis(8000)).until(ExpectedConditions.elementToBeClickable(By.cssSelector(".settings-back-container > .i-icon")));
 //        Thread.sleep(5000);
         HelpersMethod.Implicitwait(driver, 30);
         WebElement ClientsideIcon;
@@ -815,7 +818,7 @@ public class BadgeBuilderPage {
             if (status.equals("loading")) {
                 HelpersMethod.waitTillLoadingPage(driver);
             }
-            new WebDriverWait(driver, 60).until(ExpectedConditions.elementToBeClickable(By.xpath("//div[@class='open-menu-hamburger-icon']//*[local-name()='svg']//*[local-name()='path' and contains(@d,'M3,18H21V16H3Zm0-5H21V11H3ZM3,6V8H21V6Z')]")));
+            new WebDriverWait(driver, Duration.ofMillis(8000)).until(ExpectedConditions.elementToBeClickable(By.xpath("//div[@class='open-menu-hamburger-icon']//*[local-name()='svg']//*[local-name()='path' and contains(@d,'M3,18H21V16H3Zm0-5H21V11H3ZM3,6V8H21V6Z')]")));
             if (HelpersMethod.IsExists("//div[@class='open-menu-hamburger-icon']//*[local-name()='svg']//*[local-name()='path' and contains(@d,'M3,18H21V16H3Zm0-5H21V11H3ZM3,6V8H21V6Z')]", driver)) {
                 WebEle = HelpersMethod.FindByElement(driver, "xpath", "//*[local-name()='svg']//*[local-name()='path' and contains(@d,'M3,18H21V16H3Zm0-5H21V11H3ZM3,6V8H21V6Z')]");
                 act.moveToElement(WebEle).click().build().perform();
@@ -1146,7 +1149,7 @@ public class BadgeBuilderPage {
             act.moveToElement(driver.findElement(By.id("customerAccountNumberComboBox"))).sendKeys("").build().perform();
             act.moveToElement(driver.findElement(By.id("customerAccountNumberComboBox"))).sendKeys(account).build().perform();
 
-            new WebDriverWait(driver,200).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[contains(@class,'k-list-container ')]/descendant::li")));
+            new WebDriverWait(driver,Duration.ofMillis(2000)).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[contains(@class,'k-list-container ')]/descendant::li")));
             WebElement AccDrop = HelpersMethod.FindByElement(driver, "xpath", "//li[contains(@id,'option-')]");
 
             WebElement AccDrop1=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-list-container ')]/descendant::li");
@@ -1316,8 +1319,8 @@ public class BadgeBuilderPage {
             WebElement WebEle1 = null;
             String Prod_No=null;
             Prod_No=TestBase.testEnvironment.get_CatchWtProductNo();
-            new WebDriverWait(driver, 40).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//span[@id='searchBarClearBtn']//*[local-name()='svg']")));
-            new WebDriverWait(driver, 20).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[@id='searchBarClearBtn']//*[local-name()='svg']")));
+            new WebDriverWait(driver, Duration.ofMillis(8000)).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//span[@id='searchBarClearBtn']//*[local-name()='svg']")));
+            new WebDriverWait(driver, Duration.ofMillis(8000)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[@id='searchBarClearBtn']//*[local-name()='svg']")));
             try {
                 WebElement ProductCard = HelpersMethod.FindByElement(driver, "id", "productsCard");
                 HelpersMethod.ScrollElement(driver, ProductCard);
@@ -1893,7 +1896,7 @@ public class BadgeBuilderPage {
         {
             HelpersMethod.waitTillLoadingPage(driver);
         }
-        new WebDriverWait(driver,200).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(@class,'k-animation-container k-animation-container-relative k-calendar-container k-group k-reset k-animation-container-shown')]")));
+        new WebDriverWait(driver,Duration.ofMillis(10000)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(@class,'k-animation-container k-animation-container-relative k-calendar-container k-group k-reset k-animation-container-shown')]")));
 
         //Select 'From' date from Start date calender
         if(HelpersMethod.IsExists("//div[contains(@class,'k-widget k-calendar k-calendar-infinite')]",driver))
@@ -1924,13 +1927,13 @@ public class BadgeBuilderPage {
         //Click on To calender icon
         WebElement toDateIcon = modalContainer.findElement(By.xpath(".//label[contains(@id,'addToDate-label')]/following-sibling::span/descendant::span[contains(@class,'k-icon k-i-calendar')]"));
         HelpersMethod.ActClick(driver, toDateIcon, 80);
-        new WebDriverWait(driver,100).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(@class,'k-animation-container k-animation-container-relative k-calendar-container k-group k-reset k-animation-container-shown')]")));
+        new WebDriverWait(driver,Duration.ofMillis(10000)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(@class,'k-animation-container k-animation-container-relative k-calendar-container k-group k-reset k-animation-container-shown')]")));
         status = HelpersMethod.returnDocumentStatus(driver);
         if (status.equals("loading"))
         {
             HelpersMethod.waitTillLoadingPage(driver);
         }
-        new WebDriverWait(driver,60).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(@class,'k-animation-container k-animation-container-relative k-calendar-container k-group k-reset k-animation-container-shown')]")));
+        new WebDriverWait(driver,Duration.ofMillis(10000)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(@class,'k-animation-container k-animation-container-relative k-calendar-container k-group k-reset k-animation-container-shown')]")));
 
         //Select 'To' date from End date calender
         if(HelpersMethod.IsExists("//div[contains(@class,'k-widget k-calendar k-calendar-infinite')]",driver))
@@ -1985,8 +1988,8 @@ public class BadgeBuilderPage {
         if (HelpersMethod.IsExists("//div[contains(@class,'StandingOrder-expandable-card')]/descendant::span[contains(@class,'k-icon k-i-arrow-chevron-down')]", driver))
         {
             WebEle1= HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'StandingOrder-expandable-card')]/descendant::span[contains(@class,'k-icon k-i-arrow-chevron-down')]");
-            new WebDriverWait(driver, 60).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class,'StandingOrder-expandable-card')]/descendant::span[contains(@class,'k-icon k-i-arrow-chevron-down')]")));
-            new WebDriverWait(driver, 60).until(ExpectedConditions.elementToBeClickable(By.xpath("//div[contains(@class,'StandingOrder-expandable-card')]/descendant::span[contains(@class,'k-icon k-i-arrow-chevron-down')]")));
+            new WebDriverWait(driver,Duration.ofMillis(10000) ).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class,'StandingOrder-expandable-card')]/descendant::span[contains(@class,'k-icon k-i-arrow-chevron-down')]")));
+            new WebDriverWait(driver, Duration.ofMillis(10000)).until(ExpectedConditions.elementToBeClickable(By.xpath("//div[contains(@class,'StandingOrder-expandable-card')]/descendant::span[contains(@class,'k-icon k-i-arrow-chevron-down')]")));
             HelpersMethod.ScrollElement(driver, WebEle1);
             HelpersMethod.ActClick(driver, WebEle1, 60);
             String status = HelpersMethod.returnDocumentStatus(driver);
@@ -2019,7 +2022,7 @@ public class BadgeBuilderPage {
                 {
                     HelpersMethod.waitTillLoadingPage(driver);
                 }
-                new WebDriverWait(driver, 600).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(text(),'Add standing order')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]")));
+                new WebDriverWait(driver, Duration.ofMillis(6000)).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(text(),'Add standing order')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]")));
                 HelpersMethod.waitTillElementLocatedDisplayed(driver, "xpath", "//div[contains(text(),'Add standing order')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]", 200);
                 exists = true;
             }
@@ -2049,7 +2052,7 @@ public class BadgeBuilderPage {
         exists=false;
         WebElement WebEle=null;
         HelpersMethod.Implicitwait(driver,40);
-        new WebDriverWait(driver,40).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//button[contains(text(),'Add product')]")));
+        new WebDriverWait(driver,Duration.ofMillis(6000)).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//button[contains(text(),'Add product')]")));
         try
         {
             if(AddProduct.isDisplayed() && AddProduct.isEnabled())
@@ -2296,11 +2299,11 @@ public class BadgeBuilderPage {
             HelpersMethod.waitTillLoadingPage(driver);
         }
 
-        new WebDriverWait(driver, 250).until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath("//div[@class='CPDeliveryDates']/descendant::span[contains(@class,'k-icon k-i-calendar')]")));
-        new WebDriverWait(driver, 200).until(ExpectedConditions.elementToBeClickable(By.xpath("//div[@class='CPDeliveryDates']/descendant::span[contains(@class,'k-icon k-i-calendar')]")));
+        new WebDriverWait(driver, Duration.ofMillis(10000)).until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath("//div[@class='CPDeliveryDates']/descendant::span[contains(@class,'k-icon k-i-calendar')]")));
+        new WebDriverWait(driver, Duration.ofMillis(10000)).until(ExpectedConditions.elementToBeClickable(By.xpath("//div[@class='CPDeliveryDates']/descendant::span[contains(@class,'k-icon k-i-calendar')]")));
         HelpersMethod.JScriptClick(driver, Calender, 150);
         HelpersMethod.WaitElementPresent(driver,"xpath","//div[contains(@class,'k-popup k-child-animation-container k-slide-down-enter k-slide-down-enter-active')]",200);
-        new WebDriverWait(driver, 200).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(@class,'k-popup k-child-animation-container k-slide-down-enter k-slide-down-enter-active')]")));
+        new WebDriverWait(driver, Duration.ofMillis(10000)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(@class,'k-popup k-child-animation-container k-slide-down-enter k-slide-down-enter-active')]")));
         exists = true;
         status = HelpersMethod.returnDocumentStatus(driver);
         if (status.equals("loading"))
@@ -2408,13 +2411,13 @@ public class BadgeBuilderPage {
             HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 800);
         }
 
-        new WebDriverWait(driver, 80).until(ExpectedConditions.presenceOfElementLocated(By.id("card1")));
+        new WebDriverWait(driver, Duration.ofMillis(10000)).until(ExpectedConditions.presenceOfElementLocated(By.id("card1")));
         //Click on arrow if Start standing order card is not visible
         if (HelpersMethod.IsExists("//div[contains(@class,'StandingOrder-expandable-card')]/descendant::span[contains(@class,'k-icon k-i-arrow-chevron-down')]", driver))
         {
             WebEle= HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'StandingOrder-expandable-card')]/descendant::span[contains(@class,'k-icon k-i-arrow-chevron-down')]");
-            new WebDriverWait(driver, 60).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class,'StandingOrder-expandable-card')]/descendant::span[contains(@class,'k-icon k-i-arrow-chevron-down')]")));
-            new WebDriverWait(driver, 60).until(ExpectedConditions.elementToBeClickable(By.xpath("//div[contains(@class,'StandingOrder-expandable-card')]/descendant::span[contains(@class,'k-icon k-i-arrow-chevron-down')]")));
+            new WebDriverWait(driver, Duration.ofMillis(10000)).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class,'StandingOrder-expandable-card')]/descendant::span[contains(@class,'k-icon k-i-arrow-chevron-down')]")));
+            new WebDriverWait(driver, Duration.ofMillis(10000)).until(ExpectedConditions.elementToBeClickable(By.xpath("//div[contains(@class,'StandingOrder-expandable-card')]/descendant::span[contains(@class,'k-icon k-i-arrow-chevron-down')]")));
             HelpersMethod.ScrollElement(driver, WebEle);
             HelpersMethod.ActClick(driver, WebEle, 60);
             String status = HelpersMethod.returnDocumentStatus(driver);
