@@ -18,6 +18,7 @@ Feature: scenarios for User and Accounts admin feature, for Grid related setting
   @CheckAvailabilityOfGrid
   Scenario Outline: Test scenario for verifying availablity of same grid in different companies
     Given User is on Home Page for Admin setting to select Admin option
+    Then User refreshes page Clicks on Permissions by drop down to select Customer Account# grid
     And User should enter menu "<Main menu>" in search bar and select "<Sub menu>"
     Then User should validate that it is Grid Configuration page, then click on Grid type Drop Down
     Then User reads all the grid names
@@ -34,6 +35,7 @@ Feature: scenarios for User and Accounts admin feature, for Grid related setting
   @CheckAvailablityOfGridheader
   Scenario Outline: Test scenario for disable one of the grid column and verifying same in Grid Configuration
     Given User is on Home Page for Admin setting to select Admin option
+    Then User refreshes page Clicks on Permissions by drop down to select Customer Account# grid
     And User should enter menu "<Main menu>" in search bar and select "<Sub menu>"
     And User navigate to Available grid tab and select one of the grid and read all the column header available for selected grid
     Then User should validate that it is Grid Configuration page, then click on Grid type Drop Down
@@ -49,6 +51,7 @@ Feature: scenarios for User and Accounts admin feature, for Grid related setting
   @CopyGrid
   Scenario Outline: Test scneario for crating copy of the grid
     Given User is on Home Page for Admin setting to select Admin option
+    Then User refreshes page Clicks on Permissions by drop down to select Customer Account# grid
     And User should enter menu "<Main menu>" in search bar and select "<Sub menu>"
     Then User should validate that it is Grid Configuration page, then click on Grid type Drop Down
     And User should select Grid type "<Grid type>" from the drop down
@@ -61,6 +64,7 @@ Feature: scenarios for User and Accounts admin feature, for Grid related setting
   @DeleteGrid
   Scenario Outline: Test scenario for Deleting grid
     Given User is on Home Page for Admin setting to select Admin option
+    Then User refreshes page Clicks on Permissions by drop down to select Customer Account# grid
     And User should enter menu "<Main menu>" in search bar and select "<Sub menu>"
     Then User should validate that it is Grid Configuration page, then click on Grid type Drop Down
     And User should select Grid type "<Grid type>" from the drop down
@@ -74,6 +78,7 @@ Feature: scenarios for User and Accounts admin feature, for Grid related setting
   @DefaultGridInClient
   Scenario Outline: Test scenario to set any grid as default(in Admin), and verify the same in client
     Given User is on Home Page for Admin setting to select Admin option
+    Then User refreshes page Clicks on Permissions by drop down to select Customer Account# grid
     And User should enter menu "<Main menu>" in search bar and select "<Sub menu>"
     Then User should validate that it is Grid Configuration page, then click on Grid type Drop Down
     And User should select Grid type "<Grid type>" from the drop down

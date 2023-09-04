@@ -13,6 +13,7 @@ import org.w3c.dom.Text;
 import util.TestBase;
 
 import java.sql.Ref;
+import java.time.Duration;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
@@ -114,7 +115,7 @@ public class OrderControlListPage
             {
                 JavascriptExecutor js = ((JavascriptExecutor) driver);
                 js.executeScript("window.location.reload()");
-                WebDriverWait wait = new WebDriverWait(driver, 100);
+                WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(100));
                 if (wait.until(ExpectedConditions.alertIsPresent()) == null)
                 {
 
@@ -260,7 +261,7 @@ public class OrderControlListPage
                 HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000);
             }
             HelpersMethod.ScrollElement(driver,OrderIcon);
-            new WebDriverWait(driver,100).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfAllElementsLocatedBy(By.id("gridOrderControlList"))));
+            new WebDriverWait(driver,Duration.ofMillis(100)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfAllElementsLocatedBy(By.id("gridOrderControlList"))));
             HelpersMethod.ActClick(driver,OrderIcon,100);
             exists = true;
             if (HelpersMethod.IsExists("//div[@class='loader']", driver))
@@ -281,7 +282,7 @@ public class OrderControlListPage
             HelpersMethod.ClickBut(driver, CallDate, 100);
 
             HelpersMethod.WaitElementPresent(driver, "xpath", "//div[contains(@class,'k-animation-container k-animation-container-relative k-calendar-container k-group k-reset k-animation-container-shown')]", 800);
-            new WebDriverWait(driver, 600).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(@class,'k-animation-container k-animation-container-relative k-calendar-container k-group k-reset k-animation-container-shown')]")));
+            new WebDriverWait(driver, Duration.ofMillis(600)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(@class,'k-animation-container k-animation-container-relative k-calendar-container k-group k-reset k-animation-container-shown')]")));
             exists=true;
             Assert.assertEquals(exists, true);
         }
@@ -332,7 +333,7 @@ public class OrderControlListPage
                     scenario.log("FAILED TO SELECT END DATE");
                 }
             }
-            new WebDriverWait(driver, 80).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[contains(@class,'k-calendar-monthview')]")));
+            new WebDriverWait(driver, Duration.ofMillis(80)).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[contains(@class,'k-calendar-monthview')]")));
             Assert.assertEquals(exists, true);
         }
         catch (Exception e){}
@@ -446,7 +447,7 @@ public class OrderControlListPage
             }
 
             //create a list of values in skip drop down
-            new WebDriverWait(driver,100).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath("//div[contains(@class,'k-animation-container k-animation-container-relative k-list-container k-reset k-animation-container-shown')]"))));
+            new WebDriverWait(driver,Duration.ofMillis(100)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath("//div[contains(@class,'k-animation-container k-animation-container-relative k-list-container k-reset k-animation-container-shown')]"))));
             WebElement dropDown=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-animation-container k-animation-container-relative k-list-container k-reset k-animation-container-shown')]");
             WebElement dropDownOption=dropDown.findElement(By.xpath(".//li[text()='Skipped']"));
             act1.moveToElement(dropDownOption).build().perform();
@@ -792,7 +793,7 @@ public class OrderControlListPage
         {
             act.moveToElement(Route).build().perform();
             HelpersMethod.sendKeys(driver,Route,80,TestBase.testEnvironment.get_Route1());
-            new WebDriverWait(driver,1000).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class,'k-popup k-child-animation-container')]"))));
+            new WebDriverWait(driver,Duration.ofMillis(100)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class,'k-popup k-child-animation-container')]"))));
             WebElement dropDown=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-popup k-child-animation-container')]/descendant::ul/li");
             HelpersMethod.ActClick(driver,dropDown,400);
             WebElement dummyEle= HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'notification-center-container')]");

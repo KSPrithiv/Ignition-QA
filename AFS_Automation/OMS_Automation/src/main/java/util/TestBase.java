@@ -83,7 +83,6 @@ public class TestBase {
                 chromeOptions.addArguments("user-data-dir=D:/temp/");
 
                 driver.set(new ChromeDriver());
-
             }
             break;
             case "firefox": {
@@ -110,10 +109,10 @@ public class TestBase {
             }
             break;
             case "edge": {
-                WebDriverManager.edgedriver().setup();
-                EdgeOptions edgeOptions = new EdgeOptions();
+                //WebDriverManager.edgedriver().setup();
+                //EdgeOptions edgeOptions = new EdgeOptions();
 
-                driver.set(new EdgeDriver());
+                //driver.set(new EdgeDriver());
                /* WebDriverManager.iedriver().setup();
                 InternetExplorerOptions ieOptions = new InternetExplorerOptions();
                 ieOptions.setUnhandledPromptBehaviour(UnexpectedAlertBehaviour.IGNORE);

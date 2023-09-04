@@ -14,6 +14,7 @@ import org.testng.Assert;
 import pages_DSD_OMS.login.HomePage;
 import util.TestBase;
 
+import java.time.Duration;
 import java.util.List;
 import java.util.Set;
 
@@ -147,8 +148,14 @@ public class StatementsPage
     {
         String PTitle=null;
         WebElement WebEle;
+        String status=null;
         try
         {
+            status = HelpersMethod.returnDocumentStatus(driver);
+            if (status.equals("loading"))
+            {
+                HelpersMethod.waitTillLoadingPage(driver);
+            }
             if(HelpersMethod.IsExists("//div[@class='loader']",driver))
             {
                 WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
@@ -157,6 +164,7 @@ public class StatementsPage
             PTitle=HelpersMethod.FindByElement(driver,"xpath","//span[contains(@class,'spnmoduleNameHeader')]").getText();
             if(PTitle.contains("Statements"))
             {
+                scenario.log("USER IS ON STATEMENTS PAGE");
                 exists=true;
             }
             Assert.assertEquals(exists,true);
@@ -183,16 +191,6 @@ public class StatementsPage
         }
         catch (Exception e) {}
     }
-
-   /* public void Refresh_Page()
-    {
-        driver.navigate().refresh();
-        if (HelpersMethod.IsExists("//div[@class='loader']", driver))
-        {
-            WebElement WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 10000);
-        }
-    }*/
 
     public void WeeklyCheckboxClick()
     {
@@ -329,7 +327,6 @@ public class StatementsPage
                     {
                         HelpersMethod.waitTillLoadingPage(driver);
                     }
-
                     break;
                 }
             }
@@ -412,8 +409,8 @@ public class StatementsPage
         {
             if(searchBar.isDisplayed())
             {
-                HelpersMethod.EnterText(driver,searchBar,100, TestBase.testEnvironment.get_Account());
-                HelpersMethod.ClickBut(driver,searchIndex,100);
+                HelpersMethod.EnterText(driver,searchBar,2000, TestBase.testEnvironment.get_Account());
+                HelpersMethod.ClickBut(driver,searchIndex,2000);
                 exists=true;
                 status = HelpersMethod.returnDocumentStatus(driver);
                 if (status.equals("loading"))
@@ -465,7 +462,7 @@ public class StatementsPage
         catch (Exception e){}
     }
 
-    public void GenerateButton()
+    public void GenerateButtonWeekly()
     {
         exists=false;
         WebElement WebEle=null;
@@ -473,12 +470,12 @@ public class StatementsPage
         try
         {
             String ParentWindow = driver.getWindowHandle();
-            Thread.sleep(2000);
-            new WebDriverWait(driver,4000).until(ExpectedConditions.refreshed(ExpectedConditions.elementToBeClickable(By.id("generateEditButton"))));
+            Thread.sleep(10000);
+            new WebDriverWait(driver, Duration.ofMillis(200000)).until(ExpectedConditions.refreshed(ExpectedConditions.elementToBeClickable(By.id("generateEditButton"))));
             generateButton=HelpersMethod.FindByElement(driver,"id","generateEditButton");
             if(generateButton.isDisplayed() && generateButton.isEnabled())
             {
-                HelpersMethod.ClickBut(driver, generateButton, 10000);
+                HelpersMethod.ClickBut(driver, generateButton, 60000);
                 status = HelpersMethod.returnDocumentStatus(driver);
                 if (status.equals("loading"))
                 {
@@ -493,7 +490,7 @@ public class StatementsPage
             if(HelpersMethod.IsExists("//div[contains(text(),'There is no data to display for your defined date range')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
             {
                 WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-widget k-window k-dialog')]/descendant::button[text()='OK']");
-                HelpersMethod.ClickBut(driver,WebEle,1000);
+                HelpersMethod.ClickBut(driver,WebEle,8000);
                 exists=true;
             }
             else
@@ -506,9 +503,82 @@ public class StatementsPage
                 Set<String> PCWindows = driver.getWindowHandles();
                 for (String PCwind : PCWindows)
                 {
+                    status = HelpersMethod.returnDocumentStatus(driver);
+                    if (status.equals("loading"))
+                    {
+                        HelpersMethod.waitTillLoadingPage(driver);
+                    }
                     if (!PCwind.equals(ParentWindow))
                     {
-                        Thread.sleep(40000);
+                        Thread.sleep(200000);
+                        driver.switchTo().window(PCwind);
+                        scenario.log(".pdf HAS BEEN FOUND");
+                        driver.close();
+                        exists = true;
+                    }
+                }
+                driver.switchTo().window(ParentWindow);
+
+                if (HelpersMethod.IsExists("//div[@class='loader']", driver))
+                {
+                    WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
+                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100000);
+                }
+            }
+            Assert.assertEquals(exists,true);
+        }
+        catch (Exception e){}
+    }
+
+    public void GenerateButton()
+    {
+        exists=false;
+        WebElement WebEle=null;
+        String status=null;
+        try
+        {
+            String ParentWindow = driver.getWindowHandle();
+            Thread.sleep(10000);
+            new WebDriverWait(driver, Duration.ofMillis(200000)).until(ExpectedConditions.refreshed(ExpectedConditions.elementToBeClickable(By.id("generateEditButton"))));
+            generateButton=HelpersMethod.FindByElement(driver,"id","generateEditButton");
+            if(generateButton.isDisplayed() && generateButton.isEnabled())
+            {
+                HelpersMethod.ClickBut(driver, generateButton, 60000);
+                status = HelpersMethod.returnDocumentStatus(driver);
+                if (status.equals("loading"))
+                {
+                    HelpersMethod.waitTillLoadingPage(driver);
+                }
+                if (HelpersMethod.IsExists("//div[@class='loader']", driver))
+                {
+                    WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
+                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100000);
+                }
+            }
+            if(HelpersMethod.IsExists("//div[contains(text(),'There is no data to display for your defined date range')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
+            {
+                WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-widget k-window k-dialog')]/descendant::button[text()='OK']");
+                HelpersMethod.ClickBut(driver,WebEle,8000);
+                exists=true;
+            }
+            else
+            {
+                status = HelpersMethod.returnDocumentStatus(driver);
+                if (status.equals("loading"))
+                {
+                    HelpersMethod.waitTillLoadingPage(driver);
+                }
+                Set<String> PCWindows = driver.getWindowHandles();
+                for (String PCwind : PCWindows)
+                {
+                    status = HelpersMethod.returnDocumentStatus(driver);
+                    if (status.equals("loading"))
+                    {
+                        HelpersMethod.waitTillLoadingPage(driver);
+                    }
+                    if (!PCwind.equals(ParentWindow))
+                    {
+                        Thread.sleep(80000);
                         driver.switchTo().window(PCwind);
                         scenario.log(".pdf HAS BEEN FOUND");
                         driver.close();

@@ -24,7 +24,7 @@ Feature: Statements
     Then User should confirm that he is in Statements page
     And User select Weekly check box in Statements
     Then User Selects Year month and date from respective dropdowns
-    And User selects Customer Account# and Clicks on Generate button and verify for pdf
+    And User selects Customer Account# and Clicks on Generate button and verify for pdf for weekly
 
   @MonthlyStatement
   Scenario: To generate monthly statements

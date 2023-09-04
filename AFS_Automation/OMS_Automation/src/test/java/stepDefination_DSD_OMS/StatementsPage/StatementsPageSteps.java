@@ -165,4 +165,13 @@ public class StatementsPageSteps
         statementsPage=new StatementsPage(driver,scenario);
         statementsPage.AddFilterSearch();
     }
+
+    @And("User selects Customer Account# and Clicks on Generate button and verify for pdf for weekly")
+    public void userSelectsCustomerAccountAndClicksOnGenerateButtonAndVerifyForPdfForWeekly()
+    {
+        statementsPage=new StatementsPage(driver,scenario);
+        statementsPage.SearchBar();
+        statementsPage.SelectCustomerNo();
+        statementsPage.GenerateButtonWeekly();
+    }
 }

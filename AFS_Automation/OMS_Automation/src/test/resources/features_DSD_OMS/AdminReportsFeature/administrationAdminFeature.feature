@@ -8,6 +8,7 @@ Feature: Test scenarios for Administration, for Reports
 @EventsActivitiesLog
 Scenario Outline: Test scenario for verifying functionality of Event activities log tab
 Given User is on Home Page for Admin setting to select Admin option for Admin reports
+Then User refreshes page Clicks on Permissions by drop down to select Customer Account# grid
 And User should enter menu "<Main menu>" in search bar and select "<Sub menu>" for Reports, Admin Options
 Then User selects "<Admin Options>" in Orders page in admin login and validate user is in selected Tab
 Then User selects Customer Accoun# "<Add filter>", From and End dates for Creating reports
@@ -22,6 +23,7 @@ Examples:
 @PasswordRequest
 Scenario Outline: Test scenario for verifying functionality of Password request tab
 Given User is on Home Page for Admin setting to select Admin option for Admin reports
+Then User refreshes page Clicks on Permissions by drop down to select Customer Account# grid
 And User should enter menu "<Main menu>" in search bar and select "<Sub menu>" for Reports, Admin Options
 Then User selects "<Admin Options>" in Orders page in admin login and validate user is in selected Tab
   Then User selects Customer Accoun# "<Add filter>", From and End dates for Creating reports
@@ -35,6 +37,7 @@ Then User selects "<Admin Options>" in Orders page in admin login and validate u
  @RegisteredUser
   Scenario Outline: Test scenario for verifying functionality of Registred users tab
     Given User is on Home Page for Admin setting to select Admin option for Admin reports
+    Then User refreshes page Clicks on Permissions by drop down to select Customer Account# grid
     And User should enter menu "<Main menu>" in search bar and select "<Sub menu>" for Reports, Admin Options
     Then User selects "<Admin Options>" in Orders page in admin login and validate user is in selected Tab
     Then User selects Customer Accoun# "<Add filter>", From and End dates for Creating reports
@@ -48,6 +51,7 @@ Then User selects "<Admin Options>" in Orders page in admin login and validate u
   @LastLoginUser
   Scenario Outline: Test scenario for verifying functionality of Last user login dates tab
     Given User is on Home Page for Admin setting to select Admin option for Admin reports
+    Then User refreshes page Clicks on Permissions by drop down to select Customer Account# grid
     And User should enter menu "<Main menu>" in search bar and select "<Sub menu>" for Reports, Admin Options
     Then User selects "<Admin Options>" in Orders page in admin login and validate user is in selected Tab
     Then User selects To dates for Creating reports on Last user login dates

@@ -425,7 +425,7 @@ public class CreateOGPage
     {
         exists=false;
         Actions act=new Actions(driver);
-        new WebDriverWait(driver,80).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(@class,'k-animation-container')]/descendant::ul/li")));
+        new WebDriverWait(driver,Duration.ofMillis(100)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(@class,'k-animation-container')]/descendant::ul/li")));
         try
         {
             List<WebElement> MoreOptions=HelpersMethod.FindByElements(driver,"xpath","//div[contains(@class,'k-animation-container')]/descendant::ul/li");
@@ -945,8 +945,8 @@ public class CreateOGPage
             {
                 HelpersMethod.waitTillLoadingPage(driver);
             }
-            new WebDriverWait(driver,80000).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class,'k-popup k-child-animation-container')]"))));
-            new WebDriverWait(driver,6000).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class,'k-popup k-child-animation-container k-slide-down-enter k-slide-down-enter-active')]"))));
+            new WebDriverWait(driver,Duration.ofMillis(1000)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class,'k-popup k-child-animation-container')]"))));
+            new WebDriverWait(driver,Duration.ofMillis(10000)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class,'k-popup k-child-animation-container k-slide-down-enter k-slide-down-enter-active')]"))));
             List<WebElement> Options=driver.findElements(By.xpath("//div[contains(@class,'k-popup k-child-animation-container')]/descendant::ul/li"));
             for (WebElement opt:Options)
             {
@@ -1295,7 +1295,7 @@ public class CreateOGPage
                             {
                                 HelpersMethod.waitTillLoadingPage(driver);
                             }
-                            new WebDriverWait(driver,100000).until(ExpectedConditions.refreshed(ExpectedConditions.elementToBeClickable(By.xpath("//span[text()='Add filter']/ancestor::button[contains(@class,'i-filter-tag__main')]"))));
+                            new WebDriverWait(driver,Duration.ofMillis(10000)).until(ExpectedConditions.refreshed(ExpectedConditions.elementToBeClickable(By.xpath("//span[text()='Add filter']/ancestor::button[contains(@class,'i-filter-tag__main')]"))));
                             //Click on Add filter again
                             catalogPopup=HelpersMethod.FindByElement(driver,"xpath","//div[text()='Catalog']/ancestor::div[contains(@class,'k-widget k-window k-dialog')]");
                             WebEle= catalogPopup.findElement(By.xpath(".//span[text()='Add filter']/ancestor::button[contains(@class,'i-filter-tag__main')]"));
@@ -1639,7 +1639,7 @@ public class CreateOGPage
             if(Status.isDisplayed())
             {
                 HelpersMethod.ActClick(driver, Status, 1000);
-                new WebDriverWait(driver,80000).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class,'k-popup k-child-animation-container')]"))));
+                new WebDriverWait(driver,Duration.ofMillis(80000)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class,'k-popup k-child-animation-container')]"))));
                 exists=true;
             }
             Assert.assertEquals(exists,true);

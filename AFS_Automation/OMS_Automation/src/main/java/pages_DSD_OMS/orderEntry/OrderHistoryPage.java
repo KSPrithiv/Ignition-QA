@@ -14,6 +14,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
 import java.awt.*;
+import java.time.Duration;
 import java.util.List;
 
 /**
@@ -112,7 +113,7 @@ public class OrderHistoryPage
     {
         try
         {
-            new WebDriverWait(driver,2000).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfAllElementsLocatedBy(By.id("order-history-card"))));
+            new WebDriverWait(driver, Duration.ofMillis(2000)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfAllElementsLocatedBy(By.id("order-history-card"))));
             HelpersMethod.ScrollElement(driver, CopyButton);
             HelpersMethod.ClickBut(driver,CopyButton,10);
             scenario.log("COPY BUTTON HAS BEEN CLICKED, TO COPY ORDER HISTORY");
@@ -181,7 +182,7 @@ public class OrderHistoryPage
         WebElement WebEle=null;
         try
         {
-            new WebDriverWait(driver,2000).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfAllElementsLocatedBy(By.id("order-history-card"))));
+            new WebDriverWait(driver,Duration.ofMillis(2000)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfAllElementsLocatedBy(By.id("order-history-card"))));
             if (HelpersMethod.IsExists("//tr[contains(@class,'k-master-row')][1]", driver))
             {
                 //Read the Order number
@@ -283,7 +284,7 @@ public class OrderHistoryPage
                    HelpersMethod.JScriptClick(driver,calValMonth,100);
 
                    //code to select Jan 1st
-                    new WebDriverWait(driver,400).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.xpath("//table[@class='k-calendar-table']"))));
+                    new WebDriverWait(driver,Duration.ofMillis(400)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.xpath("//table[@class='k-calendar-table']"))));
                     WebElement calDate=HelpersMethod.FindByElement(driver,"xpath","//table[@class='k-calendar-table']/descendant::td[contains(@title,'January 1,')]");
                     HelpersMethod.JScriptClick(driver,calDate,100);
 
@@ -309,11 +310,11 @@ public class OrderHistoryPage
                         WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
                         HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 4000);
                     }
-                    new WebDriverWait(driver,10000).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfAllElementsLocatedBy(By.id("order-history-card"))));
+                    new WebDriverWait(driver,Duration.ofMillis(10000)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfAllElementsLocatedBy(By.id("order-history-card"))));
                     break;
                 }
             }
-            new WebDriverWait(driver,10000).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfAllElementsLocatedBy(By.id("order-history-card"))));
+            new WebDriverWait(driver,Duration.ofMillis(10000)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfAllElementsLocatedBy(By.id("order-history-card"))));
         }
         catch (Exception e){}
     }

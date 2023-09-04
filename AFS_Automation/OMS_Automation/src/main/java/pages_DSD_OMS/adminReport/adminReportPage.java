@@ -12,6 +12,8 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
+
+import java.time.Duration;
 import java.util.Set;
 
 /**
@@ -57,7 +59,7 @@ public class adminReportPage
         {
             HelpersMethod.ActClick(driver,fromDate,100);
             exists=true;
-            new WebDriverWait(driver,20000).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class,'k-calendar-monthview')]")));
+            new WebDriverWait(driver, Duration.ofMillis(2000)).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class,'k-calendar-monthview')]")));
             Assert.assertEquals(exists,true);
         }
         catch(Exception e){}
@@ -69,7 +71,7 @@ public class adminReportPage
         {
             HelpersMethod.ActClick(driver,toDate,100);
             exists=true;
-            new WebDriverWait(driver,20000).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class,'k-calendar-monthview')]")));
+            new WebDriverWait(driver,Duration.ofMillis(20000)).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class,'k-calendar-monthview')]")));
             Assert.assertEquals(exists,true);
         }
         catch(Exception e){}
@@ -78,7 +80,7 @@ public class adminReportPage
     {
         Thread.sleep(200);
         //HelpersMethod.waitTillElementLocatedDisplayed(driver,"xpath","//div[contains(@class,'k-calendar-monthview')]",40000);
-        new WebDriverWait(driver,40000).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class,'k-calendar-monthview')]")));
+        new WebDriverWait(driver,Duration.ofMillis(40000)).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class,'k-calendar-monthview')]")));
         try
         {
             String formattedDate1 = null;
@@ -159,7 +161,7 @@ public class adminReportPage
             {
                 WebElement dialogPopup=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-widget k-window k-dialog')]");
                 WebElement okButton=dialogPopup.findElement(By.xpath(".//button"));
-                HelpersMethod.ClickBut(driver,okButton,100);
+                HelpersMethod.ClickBut(driver,okButton,4000);
             }
             Assert.assertEquals(exists,true);
         }

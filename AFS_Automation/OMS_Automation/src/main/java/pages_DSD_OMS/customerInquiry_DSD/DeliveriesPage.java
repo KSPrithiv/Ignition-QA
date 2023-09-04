@@ -12,6 +12,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import util.RandomValues;
 
+import java.time.Duration;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -438,7 +439,7 @@ public class DeliveriesPage
     public void SelectHHLastDeliveryDate()
     {
         HelpersMethod.waitTillElementLocatedDisplayed(driver,"xpath","//div[contains(@class,'k-calendar-monthview')]",40);
-        new WebDriverWait(driver,40).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class,'k-calendar-monthview')]")));
+        new WebDriverWait(driver, Duration.ofMillis(100)).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class,'k-calendar-monthview')]")));
         try
         {
             String formattedDate1 = null;
@@ -480,7 +481,7 @@ public class DeliveriesPage
     public void SelectHHLastScheduleDate()
     {
         HelpersMethod.waitTillElementLocatedDisplayed(driver,"xpath","//div[contains(@class,'k-calendar-monthview')]",40);
-        new WebDriverWait(driver,40).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class,'k-calendar-monthview')]")));
+        new WebDriverWait(driver,Duration.ofMillis(100)).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class,'k-calendar-monthview')]")));
         try
         {
             String formattedDate1 = null;

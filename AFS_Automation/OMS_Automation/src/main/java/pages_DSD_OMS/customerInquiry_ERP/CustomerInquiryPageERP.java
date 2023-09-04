@@ -313,7 +313,7 @@ public class CustomerInquiryPageERP
         try
         {
             HelpersMethod.ClickBut(driver,customerAccountIndex,20);
-            new WebDriverWait(driver,100).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(text(),'Customer account index')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]"))));
+            //new WebDriverWait(driver,100).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(text(),'Customer account index')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]"))));
         }
         catch (Exception e){}
     }
@@ -353,7 +353,7 @@ public class CustomerInquiryPageERP
                 WebElement WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
                 HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 10000);
             }
-            new WebDriverWait(driver,1000).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(text(),'Copy customer')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]"))));
+           // new WebDriverWait(driver,1000).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(text(),'Copy customer')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]"))));
         }
         catch (Exception e){}
     }
@@ -456,7 +456,7 @@ public class CustomerInquiryPageERP
                 WebElement vallidateNotePopup = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'customer-notes-header')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]");
                 WebEle = vallidateNotePopup.findElement(By.xpath(".//span[@id='AlertType']"));
                 HelpersMethod.ClickBut(driver, WebEle, 80);
-                new WebDriverWait(driver, 100).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class,'k-popup k-child-animation-container k-slide-down-enter k-slide-down-enter-active')]"))));
+                //new WebDriverWait(driver, 100).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class,'k-popup k-child-animation-container k-slide-down-enter k-slide-down-enter-active')]"))));
                 HelpersMethod.DropDownMenu(driver, AltertType);
                 scenario.log("ALERT TYPE SELECTED IS: "+AltertType);
 

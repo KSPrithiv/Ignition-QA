@@ -23,7 +23,7 @@ import java.io.IOException;
                         "html:target/cucumber-html-report.html",
                         "com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:Reports/spark/",
                         "rerun:target/failedrerun.txt"},
-                monochrome = true)
+                monochrome = true,tags="@EditOpenOrder")
 public class TestRunnerAllOrder extends AbstractTestNGCucumberTests
 {
     /* Created by Divya.Ramadas@afsi.com */

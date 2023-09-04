@@ -13,6 +13,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import util.RandomValues;
 
+import java.time.Duration;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
@@ -126,13 +127,13 @@ import java.util.concurrent.ThreadLocalRandom;
 
         public void ClickOnNewButton()
         {
-            new WebDriverWait(driver,80000).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath("//div[contains(@class,'k-child-animation-container')]"))));
+            new WebDriverWait(driver, Duration.ofMillis(80000)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath("//div[contains(@class,'k-child-animation-container')]"))));
             exists=false;
             try
             {
                 HelpersMethod.ActClick(driver,NewButton,500);
                 exists=true;
-                new WebDriverWait(driver,60000).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath("//div[contains(text(),'Add standing po')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]"))));
+                new WebDriverWait(driver,Duration.ofMillis(60000)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath("//div[contains(text(),'Add standing po')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]"))));
                 Assert.assertEquals(exists,true);
             }
             catch (Exception e){}
@@ -168,7 +169,7 @@ import java.util.concurrent.ThreadLocalRandom;
                 //Click on start date icon
                 WebEle= modalContainer.findElement(By.xpath(".//label[contains(@id,'fromDate-label')]/following-sibling::span/descendant::span[contains(@class,'k-icon k-i-calendar')]"));
                 HelpersMethod.ActClick(driver,WebEle,20000);
-                new WebDriverWait(driver,60000).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class,'k-calendar-monthview')]"))));
+                new WebDriverWait(driver,Duration.ofMillis(60000)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class,'k-calendar-monthview')]"))));
             }
             catch (Exception e){}
         }
@@ -184,7 +185,7 @@ import java.util.concurrent.ThreadLocalRandom;
                 //Click on end date icon
                 WebEle= modalContainer.findElement(By.xpath(".//label[contains(@id,'toDate-label')]/following-sibling::span/descendant::span[contains(@class,'k-icon k-i-calendar')]"));
                 HelpersMethod.ActClick(driver,WebEle,2000);
-                new WebDriverWait(driver,40000).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class,'k-calendar-monthview')]"))));
+                new WebDriverWait(driver,Duration.ofMillis(40000)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class,'k-calendar-monthview')]"))));
             }
             catch (Exception e){}
         }
@@ -193,7 +194,7 @@ import java.util.concurrent.ThreadLocalRandom;
         public void SelectStartDate(int i)
         {
             HelpersMethod.waitTillElementLocatedDisplayed(driver,"xpath","//div[contains(@class,'k-calendar-monthview')]",100000);
-            new WebDriverWait(driver,100000).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class,'k-calendar-monthview')]")));
+            new WebDriverWait(driver,Duration.ofMillis(100000)).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class,'k-calendar-monthview')]")));
             WebElement WebEle=null;
             String FTDate=null;
             exists=false;
@@ -201,7 +202,7 @@ import java.util.concurrent.ThreadLocalRandom;
             {
                 String formattedDate1 = null;
                 HelpersMethod.waitTillElementLocatedDisplayed(driver,"xpath","//div[contains(@class,'k-calendar-monthview')]",20000);
-                new WebDriverWait(driver,10000).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class,'k-calendar-monthview')]")));
+                new WebDriverWait(driver,Duration.ofMillis(10000)).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class,'k-calendar-monthview')]")));
                 //finding element/date in calendar drop down is enabled or not. if not enabled increase the date by 6 days
                 if (HelpersMethod.IsExists("//div[contains(@class,'k-calendar-monthview')]",driver))
                 {
@@ -234,7 +235,7 @@ import java.util.concurrent.ThreadLocalRandom;
         public void SelectEndDate(int i)
         {
             HelpersMethod.waitTillElementLocatedDisplayed(driver,"xpath","//div[contains(@class,'k-calendar-monthview')]",10000);
-            new WebDriverWait(driver,40000).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class,'k-calendar-monthview')]")));
+            new WebDriverWait(driver,Duration.ofMillis(40000)).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class,'k-calendar-monthview')]")));
             WebElement WebEle=null;
             String FTDate=null;
             exists=false;
@@ -242,7 +243,7 @@ import java.util.concurrent.ThreadLocalRandom;
             {
                 String formattedDate1 = null;
                 HelpersMethod.waitTillElementLocatedDisplayed(driver,"xpath","//div[contains(@class,'k-calendar-monthview')]",60);
-                new WebDriverWait(driver,1000).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class,'k-calendar-monthview')]")));
+                new WebDriverWait(driver,Duration.ofMillis(1000)).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class,'k-calendar-monthview')]")));
                 //finding element/date in calendar drop down is enabled or not. if not enabled increase the date by 6 days
                 String ele = "//div[contains(@class,'k-calendar-monthview')]";
                 boolean visible = HelpersMethod.IsExists(ele, driver);
@@ -351,8 +352,8 @@ import java.util.concurrent.ThreadLocalRandom;
             int hr_No;
             try
             {
-                new WebDriverWait(driver,60).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(@class,'k-popup k-child-animation-container')]/descendant::div[contains(@class,'k-timeselector k-reset')]")));
-                new WebDriverWait(driver,60).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class,'k-popup k-child-animation-container')]/descendant::div[contains(@class,'k-timeselector k-reset')]")));
+                new WebDriverWait(driver,Duration.ofMillis(1000)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(@class,'k-popup k-child-animation-container')]/descendant::div[contains(@class,'k-timeselector k-reset')]")));
+                new WebDriverWait(driver,Duration.ofMillis(1000)).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class,'k-popup k-child-animation-container')]/descendant::div[contains(@class,'k-timeselector k-reset')]")));
                 if(HelpersMethod.IsExists("//div[contains(@class,'k-timeselector k-reset')]",driver))
                 {
                     hrSec=RandomNumber(1,12);
@@ -410,7 +411,7 @@ import java.util.concurrent.ThreadLocalRandom;
                 WebEle=HelpersMethod.FindByElement(driver,"xpath","//button[text()='Set']");
                 HelpersMethod.ScrollElement(driver,WebEle);
                 HelpersMethod.ActClick(driver,WebEle,60);
-                new WebDriverWait(driver,60).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[contains(@class,'k-popup k-child-animation-container')]/descendant::div[contains(@class,'k-timeselector k-reset')]")));
+                new WebDriverWait(driver,Duration.ofMillis(1000)).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[contains(@class,'k-popup k-child-animation-container')]/descendant::div[contains(@class,'k-timeselector k-reset')]")));
             }
             catch (Exception e){}
         }
