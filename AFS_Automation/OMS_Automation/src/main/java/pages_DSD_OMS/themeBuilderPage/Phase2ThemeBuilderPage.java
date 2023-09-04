@@ -11,6 +11,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 
+import java.time.Duration;
+
 public class Phase2ThemeBuilderPage {
     WebDriver driver;
     Scenario scenario;
@@ -202,7 +204,7 @@ public class Phase2ThemeBuilderPage {
             }
             if (HelpersMethod.IsExists("//div[@class='loader']", driver))
             {
-                new WebDriverWait(driver,4000).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+                new WebDriverWait(driver, Duration.ofMillis(4000)).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
             }
             if (status.equals("loading"))
             {
@@ -210,8 +212,8 @@ public class Phase2ThemeBuilderPage {
             }
             HelpersMethod.WaitElementPresent(driver, "xpath", "//input[@id='DEFAULT_THEME']", 2400);
             WebElement DefaultTheme1 = HelpersMethod.FindByElement(driver, "xpath", "//input[@id='DEFAULT_THEME']");
-            new WebDriverWait(driver, 4000).until(ExpectedConditions.visibilityOf(DefaultTheme1));
-            new WebDriverWait(driver, 4000).until(ExpectedConditions.elementToBeClickable(DefaultTheme1));
+            new WebDriverWait(driver, Duration.ofMillis(4000)).until(ExpectedConditions.visibilityOf(DefaultTheme1));
+            new WebDriverWait(driver, Duration.ofMillis(4000)).until(ExpectedConditions.elementToBeClickable(DefaultTheme1));
 
             if(DefaultTheme1.isSelected()){
                 System.out.println("Default theme not selected so select new theme !!!");
@@ -226,7 +228,7 @@ public class Phase2ThemeBuilderPage {
             exists = true;
             if (HelpersMethod.IsExists("//div[@class='loader']", driver))
             {
-                new WebDriverWait(driver,4000).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+                new WebDriverWait(driver,Duration.ofMillis(4000)).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
             }
         }
         catch (Exception e){}
