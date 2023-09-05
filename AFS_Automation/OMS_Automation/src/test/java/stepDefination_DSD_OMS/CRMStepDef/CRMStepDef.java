@@ -1384,6 +1384,4 @@ public class CRMStepDef {
         System.out.println(" Feedback configuration and notification column matches");
         crmPage.clickOnCancelBtn();
     }
-
-
 }

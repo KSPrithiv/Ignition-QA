@@ -11,6 +11,7 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import pages_DSD_OMS.webOrdering.AdminHomePage;
 import java.awt.*;
+import java.time.Duration;
 import java.util.List;
 import java.util.Random;
 
@@ -113,7 +114,7 @@ public class ThemeBuilderPage {
             }
             if (HelpersMethod.IsExists("//div[@class='loader']", driver))
             {
-                new WebDriverWait(driver,4000).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+                new WebDriverWait(driver, Duration.ofMillis(4000)).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
             }
             if (status.equals("loading"))
             {
@@ -121,8 +122,8 @@ public class ThemeBuilderPage {
             }
             HelpersMethod.WaitElementPresent(driver, "xpath", "//span[contains(@class, 'menu-item-text')][contains(text(), 'General Settings')]", 2400);
             WebElement Hamburger = HelpersMethod.FindByElement(driver, "xpath", "//span[contains(@class, 'menu-item-text')][contains(text(), 'General Settings')]");
-            new WebDriverWait(driver, 4000).until(ExpectedConditions.visibilityOf(Hamburger));
-            new WebDriverWait(driver, 4000).until(ExpectedConditions.elementToBeClickable(Hamburger));
+            new WebDriverWait(driver, Duration.ofMillis(4000)).until(ExpectedConditions.visibilityOf(Hamburger));
+            new WebDriverWait(driver, Duration.ofMillis(4000)).until(ExpectedConditions.elementToBeClickable(Hamburger));
             HelpersMethod.JScriptClick(driver, Hamburger, 4000);
             if (status.equals("loading"))
             {
@@ -133,23 +134,10 @@ public class ThemeBuilderPage {
             exists = true;
             if (HelpersMethod.IsExists("//div[@class='loader']", driver))
             {
-                new WebDriverWait(driver,4000).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+                new WebDriverWait(driver,Duration.ofMillis(4000)).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
             }
         }
         catch (Exception e){}
-        /*try {
-            String status = HelpersMethod.returnDocumentStatus(driver);
-            if (HelpersMethod.IsExists("//span[contains(@class, 'menu-item-text')][contains(text(), 'General Settings')]", driver)) {
-                WebElement Humburger = HelpersMethod.FindByElement(driver, "xpath", "//span[contains(@class, 'menu-item-text')][contains(text(), 'General Settings')]");
-                HelpersMethod.ClickBut(driver, Humburger, 40);
-                if (status.equals("loading"))
-                {
-                    HelpersMethod.waitTillLoadingPage(driver);
-                }
-                System.out.println("general settings available");
-            }
-        } catch (Exception e) {
-        }*/
     }
 
     public void ClickOnThemeBuilder() {
@@ -163,7 +151,7 @@ public class ThemeBuilderPage {
             }
             if (HelpersMethod.IsExists("//div[@class='loader']", driver))
             {
-                new WebDriverWait(driver,4000).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+                new WebDriverWait(driver, Duration.ofMillis(4000)).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
             }
             if (status.equals("loading"))
             {
@@ -171,34 +159,17 @@ public class ThemeBuilderPage {
             }
             HelpersMethod.WaitElementPresent(driver, "xpath", "//div[contains(@class, 'submenu-item-text')][contains(text(), 'Branding')]", 2400);
             WebElement ThemeBuilderOption = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class, 'submenu-item-text')][contains(text(), 'Branding')]");
-            new WebDriverWait(driver, 4000).until(ExpectedConditions.visibilityOf(ThemeBuilderOption));
-            new WebDriverWait(driver, 4000).until(ExpectedConditions.elementToBeClickable(ThemeBuilderOption));
+            new WebDriverWait(driver, Duration.ofMillis(4000)).until(ExpectedConditions.visibilityOf(ThemeBuilderOption));
+            new WebDriverWait(driver, Duration.ofMillis(4000)).until(ExpectedConditions.elementToBeClickable(ThemeBuilderOption));
             HelpersMethod.JScriptClick(driver, ThemeBuilderOption, 4000);
-            //HelpersMethod.ActClick(driver, ThemeBuilderOption, 4000);
-            //Hamburger.click();
             exists = true;
             if (HelpersMethod.IsExists("//div[@class='loader']", driver))
             {
-                new WebDriverWait(driver,4000).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+                new WebDriverWait(driver,Duration.ofMillis(4000)).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
             }
         }
         catch (Exception e){}
-        /*
-        WebElement ThemeBuilderOption;
-        try {
-            String status = HelpersMethod.returnDocumentStatus(driver);
-            if (HelpersMethod.IsExists("//div[contains(@class, 'submenu-item-text')][contains(text(), 'Branding')]", driver)) {
-                ThemeBuilderOption = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class, 'submenu-item-text')][contains(text(), 'Branding')]");
-                HelpersMethod.JScriptClick(driver, ThemeBuilderOption, 200);
-                //ThemeBuilderOption.click();
-            }
-            if (status.equals("loading"))
-            {
-                HelpersMethod.waitTillLoadingPage(driver);
-            }
-            System.out.println("general settings available");
-        } catch (Exception e) {
-        }*/
+
     }
 
     public void verifyThemeBuilderPage() {
@@ -229,9 +200,8 @@ public class ThemeBuilderPage {
     }
     public void validatePreview() throws InterruptedException {
         // Wait for the preview to load
-        //Thread.sleep(15000);
         HelpersMethod.waitTillPageLoaded(driver, 5000);
-        WebDriverWait wait = new WebDriverWait(driver, 20);
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(2000));
         HelpersMethod.ScrollElement(driver, secondPreviewPart);
         String status = HelpersMethod.returnDocumentStatus(driver);
         if (status.equals("loading"))
@@ -267,10 +237,6 @@ public class ThemeBuilderPage {
         {
             HelpersMethod.waitTillLoadingPage(driver);
         }
-        /*JavascriptExecutor executor = (JavascriptExecutor) driver;
-        executor.executeScript("arguments[0].click();", saveBtn);
-        JavascriptExecutor executor1 = (JavascriptExecutor) driver;
-        executor1.executeScript("arguments[0].click();", popUpOk);*/
         HelpersMethod.JScriptClick(driver, popUpOk, 30);
         //popUpOk.click();
         String status = HelpersMethod.returnDocumentStatus(driver);
@@ -292,7 +258,7 @@ public class ThemeBuilderPage {
             }
             if (HelpersMethod.IsExists("//div[@class='loader']", driver))
             {
-                new WebDriverWait(driver,8000).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+                new WebDriverWait(driver, Duration.ofMillis(8000)).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
             }
             if (status.equals("loading"))
             {
@@ -300,15 +266,13 @@ public class ThemeBuilderPage {
             }
             HelpersMethod.WaitElementPresent(driver, "xpath", "//input[@id='MY_OWN_THEME']", 2400);
             WebElement customTheme = HelpersMethod.FindByElement(driver, "xpath", "//input[@id='MY_OWN_THEME']");
-            new WebDriverWait(driver, 6000).until(ExpectedConditions.visibilityOf(customTheme));
+            new WebDriverWait(driver, Duration.ofMillis(6000)).until(ExpectedConditions.visibilityOf(customTheme));
             HelpersMethod.JScriptClick(driver, customTheme, 2000);
             exists = true;
             if (HelpersMethod.IsExists("//div[@class='loader']", driver))
             {
-                new WebDriverWait(driver,8000).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+                new WebDriverWait(driver,Duration.ofMillis(8000)).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
             }
-            //HelpersMethod.WaitElementPresent(driver, "xpath", "//div[contains(@class,'k-animation-container k-animation-container-relative popup-with-arrow standard-view user-info k-animation-container-shown')]", 600);
-            //Assert.assertEquals(exists, true);
         }
         catch (Exception e){}
         //HelpersMethod.JScriptClick(driver, customTheme, 10);
@@ -356,7 +320,7 @@ public class ThemeBuilderPage {
             }
             if (HelpersMethod.IsExists("//div[@class='loader']", driver))
             {
-                new WebDriverWait(driver,4000).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+                new WebDriverWait(driver,Duration.ofMillis(4000)).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
             }
             if (status.equals("loading"))
             {
@@ -364,8 +328,8 @@ public class ThemeBuilderPage {
             }
             HelpersMethod.WaitElementPresent(driver, "xpath", "/html//div[@id='colorSelectionCard']/div/div[2]/div[4]/div[@class='color-circle']", 2400);
             WebElement selectPriColour1 = HelpersMethod.FindByElement(driver, "xpath", "/html//div[@id='colorSelectionCard']/div/div[2]/div[4]/div[@class='color-circle']");
-            new WebDriverWait(driver, 4000).until(ExpectedConditions.visibilityOf(selectPriColour1));
-            new WebDriverWait(driver, 4000).until(ExpectedConditions.elementToBeClickable(selectPriColour1));
+            new WebDriverWait(driver, Duration.ofMillis(4000)).until(ExpectedConditions.visibilityOf(selectPriColour1));
+            new WebDriverWait(driver, Duration.ofMillis(4000)).until(ExpectedConditions.elementToBeClickable(selectPriColour1));
             HelpersMethod.JScriptClick(driver, selectPriColour1, 2000);
 
             if(selectPriColour1.isSelected()){
@@ -382,26 +346,11 @@ public class ThemeBuilderPage {
             exists = true;
             if (HelpersMethod.IsExists("//div[@class='loader']", driver))
             {
-                new WebDriverWait(driver,4000).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+                new WebDriverWait(driver, Duration.ofMillis(4000)).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
             }
         }
         catch (Exception e){}
 
-        /*// Find all color elements
-        List<WebElement> colorElements = driver.findElements(By.xpath("//*[@id='colorSelectionCard']/div/div[2]"));
-
-        // Generate a random index
-        Random random = new Random();
-        int randomIndex = random.nextInt(colorElements.size());
-
-        // Select the random color element
-        WebElement randomColorElement = colorElements.get(randomIndex);
-        //randomColorElement.click();
-        HelpersMethod.JScriptClick(driver, randomColorElement, 3000);*/
-
-        //selectPriColour.click();
-        //HelpersMethod.JScriptClick(driver, selectPriColour, 30);
-        //Assert.assertEquals(true, selectPriColour1.isDisplayed(), " Primary colour not selected correctly");
         System.out.println("primary color is selected");
     }
     public void verifyPriColorPreview(){
@@ -427,7 +376,7 @@ public class ThemeBuilderPage {
             }
             if (HelpersMethod.IsExists("//div[@class='loader']", driver))
             {
-                new WebDriverWait(driver,4000).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+                new WebDriverWait(driver, Duration.ofMillis(4000)).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
             }
             if (status.equals("loading"))
             {
@@ -435,15 +384,15 @@ public class ThemeBuilderPage {
             }
             HelpersMethod.WaitElementPresent(driver, "xpath", "/html//div[@id='colorSelectionCard']/div/div[4]/div[2]/div[@class='color-circle']", 2400);
             WebElement selectSecColour = HelpersMethod.FindByElement(driver, "xpath", "/html//div[@id='colorSelectionCard']/div/div[4]/div[2]/div[@class='color-circle']");
-            new WebDriverWait(driver, 4000).until(ExpectedConditions.visibilityOf(selectSecColour));
-            new WebDriverWait(driver, 4000).until(ExpectedConditions.elementToBeClickable(selectSecColour));
+            new WebDriverWait(driver, Duration.ofMillis(4000)).until(ExpectedConditions.visibilityOf(selectSecColour));
+            new WebDriverWait(driver, Duration.ofMillis(4000)).until(ExpectedConditions.elementToBeClickable(selectSecColour));
             HelpersMethod.ActClick(driver, selectSecColour, 2000);
             Assert.assertEquals(true, selectSecColour.isDisplayed(), " Secondary colour not selected correctly");
 
             exists = true;
             if (HelpersMethod.IsExists("//div[@class='loader']", driver))
             {
-                new WebDriverWait(driver,4000).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+                new WebDriverWait(driver, Duration.ofMillis(4000)).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
             }
         }
         catch (Exception e){}
@@ -563,7 +512,7 @@ public class ThemeBuilderPage {
             }
             if (HelpersMethod.IsExists("//div[@class='loader']", driver))
             {
-                new WebDriverWait(driver,8000).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+                new WebDriverWait(driver,Duration.ofMillis(8000)).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
             }
             if (status.equals("loading"))
             {
@@ -571,24 +520,16 @@ public class ThemeBuilderPage {
             }
             HelpersMethod.WaitElementPresent(driver, "xpath", "//button[@class='i-header-toolbar-expandable-button']", 4400);
             WebElement permissionDD = HelpersMethod.FindByElement(driver, "xpath", "//button[@class='i-header-toolbar-expandable-button']");
-            new WebDriverWait(driver, 8000).until(ExpectedConditions.visibilityOf(permissionDD));
+            new WebDriverWait(driver, Duration.ofMillis(8000)).until(ExpectedConditions.visibilityOf(permissionDD));
             HelpersMethod.JScriptClick(driver, permissionDD, 4000);
             
             exists = true;
             if (HelpersMethod.IsExists("//div[@class='loader']", driver))
             {
-                new WebDriverWait(driver,6000).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+                new WebDriverWait(driver, Duration.ofMillis(6000)).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
             }
         } catch (Exception e){}
 
-       /* WebElement permissionDD=driver.findElement(By.xpath("//button[@class='i-header-toolbar-expandable-button']"));
-        permissionDD.click();
-        String status = HelpersMethod.returnDocumentStatus(driver);
-        if (status.equals("loading"))
-        {
-            HelpersMethod.waitTillLoadingPage(driver);
-        }
-        System.out.println("permission by selected successfully");*/
     }
 
     public void selectOtherDD() {
@@ -597,11 +538,11 @@ public class ThemeBuilderPage {
             Actions act = new Actions(driver);
             HelpersMethod.WaitElementPresent(driver, "xpath", "/html/body/div[@class='k-animation-container k-animation-container-relative k-animation-container-shown']/div/div/div/div[1]/span[@class='dropdown-left']/span[2]/span/span[@role='listbox']/span[@class='k-input']", 2400);
             WebElement selectOtherThanComp = HelpersMethod.FindByElement(driver, "xpath", "/html/body/div[@class='k-animation-container k-animation-container-relative k-animation-container-shown']/div/div/div/div[1]/span[@class='dropdown-left']/span[2]/span/span[@role='listbox']/span[@class='k-input']");
-            new WebDriverWait(driver, 4000).until(ExpectedConditions.visibilityOf(selectOtherThanComp));
+            new WebDriverWait(driver, Duration.ofMillis(4000)).until(ExpectedConditions.visibilityOf(selectOtherThanComp));
             act.moveToElement(selectOtherThanComp).click().sendKeys("Chain").build().perform();
             exists = true;
             if (HelpersMethod.IsExists("//div[@class='loader']", driver)) {
-                new WebDriverWait(driver, 4000).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+                new WebDriverWait(driver, Duration.ofMillis(4000)).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
             }
             //WebElement selectOtherThanComp=driver.findElement(By.xpath("/html/body/div[@class='k-animation-container k-animation-container-relative k-animation-container-shown']/div/div/div/div[1]/span[@class='dropdown-left']/span[2]/span/span[@role='listbox']/span[@class='k-input']"));
             //selectOtherThanComp.click();
@@ -680,7 +621,7 @@ public class ThemeBuilderPage {
             }
             if (HelpersMethod.IsExists("//div[@class='loader']", driver))
             {
-                new WebDriverWait(driver,4000).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+                new WebDriverWait(driver, Duration.ofMillis(4000)).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
             }
             if (status.equals("loading"))
             {
@@ -688,8 +629,8 @@ public class ThemeBuilderPage {
             }
             HelpersMethod.WaitElementPresent(driver, "xpath", "//input[@id='general_5']", 2400);
             WebElement NewtTheme1 = HelpersMethod.FindByElement(driver, "xpath", "//input[@id='general_5']");
-            new WebDriverWait(driver, 4000).until(ExpectedConditions.visibilityOf(NewtTheme1));
-            new WebDriverWait(driver, 4000).until(ExpectedConditions.elementToBeClickable(NewtTheme1));
+            new WebDriverWait(driver,  Duration.ofMillis(4000)).until(ExpectedConditions.visibilityOf(NewtTheme1));
+            new WebDriverWait(driver, Duration.ofMillis(4000)).until(ExpectedConditions.elementToBeClickable(NewtTheme1));
 
             if(NewtTheme1.isSelected()){
                 System.out.println("new theme1 not selected so select new theme2 !!!");
@@ -704,7 +645,7 @@ public class ThemeBuilderPage {
             exists = true;
             if (HelpersMethod.IsExists("//div[@class='loader']", driver))
             {
-                new WebDriverWait(driver,4000).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+                new WebDriverWait(driver, Duration.ofMillis(4000)).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
             }
         }
         catch (Exception e){}
@@ -754,16 +695,6 @@ public class ThemeBuilderPage {
         } else {
             System.out.println("Background image validation failed!");
         }
-        //String checkLoginPageTheme=loginPageTheme.getAttribute("style");
-        //System.out.println("after login style is: " +checkLoginPageTheme);
-        //WebElement beforeLoginTheme=driver.findElement();
-        /*WebElement signInBtnColor = driver.findElement(By.xpath("//button[@id='signInBtn']"));
-        String checkSignInBtnColor = signInBtnColor.getCssValue("background-color");
-        System.out.println("color of sign in button is:" + checkSignInBtnColor);
-        //rgba(33, 150, 243, 1) //rgba(78, 166, 254, 1) //rgba(80, 167, 255, 1)//83, 166, 252, 1
-        if (checkSignInBtnColor.equals("rgba(139, 195, 74, 1)")) {
-            System.out.println("Sign In Button color is same as primary color which we changed before step");
-        } else { System.out.println("Sign In Button color is not same as primary color which we changed before step");}*/
     }
     public void validateColorComp(){
         WebElement previewPriColorWithNewTh = driver.findElement(By.xpath("//div[@class='drawer-menu-application-container']"));
@@ -797,10 +728,6 @@ public class ThemeBuilderPage {
             }
     }
     public void verifyEveryModuleMasterPage() throws InterruptedException {
-        /*AdminHomePage adminHomePage = new AdminHomePage(driver,scenario);
-        adminHomePage.ClicOnHumburger();
-        HelpersMethod.waitTillPageLoaded(driver, 15000);*/
-        //Thread.sleep(15000);
         WebElement clickOnSettings=driver.findElement(By.xpath("//div[@class='settings-container admin-mode']"));
         clickOnSettings.click();
         System.out.println("page is moving to order entry tab");
@@ -845,7 +772,7 @@ public class ThemeBuilderPage {
             }
             if (HelpersMethod.IsExists("//div[@class='loader']", driver))
             {
-                new WebDriverWait(driver,4000).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+                new WebDriverWait(driver, Duration.ofMillis(4000)).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
             }
             if (status.equals("loading"))
             {
@@ -853,8 +780,8 @@ public class ThemeBuilderPage {
             }
             HelpersMethod.WaitElementPresent(driver, "xpath", "//span[@class='menu-item-text' and text()='Order Entry']", 2400);
             WebElement clickOnOrderEntry = HelpersMethod.FindByElement(driver, "xpath", "//span[@class='menu-item-text' and text()='Order Entry']");
-            new WebDriverWait(driver, 4000).until(ExpectedConditions.visibilityOf(clickOnOrderEntry));
-            new WebDriverWait(driver, 4000).until(ExpectedConditions.elementToBeClickable(clickOnOrderEntry));
+            new WebDriverWait(driver, Duration.ofMillis(4000)).until(ExpectedConditions.visibilityOf(clickOnOrderEntry));
+            new WebDriverWait(driver,  Duration.ofMillis(4000)).until(ExpectedConditions.elementToBeClickable(clickOnOrderEntry));
             HelpersMethod.JScriptClick(driver, clickOnOrderEntry, 2000);
             if(clickOnOrderEntry.isDisplayed()){
                 System.out.println("order entry selected");
@@ -864,7 +791,7 @@ public class ThemeBuilderPage {
             exists = true;
             if (HelpersMethod.IsExists("//div[@class='loader']", driver))
             {
-                new WebDriverWait(driver,4000).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+                new WebDriverWait(driver, Duration.ofMillis(4000)).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
             }
         }
         catch (Exception e){}
