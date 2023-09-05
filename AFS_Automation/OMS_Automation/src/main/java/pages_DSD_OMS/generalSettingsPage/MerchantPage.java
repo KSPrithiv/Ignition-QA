@@ -15,6 +15,7 @@ import org.testng.Assert;
 import util.RandomValues;
 import util.TestBase;
 
+import java.time.Duration;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
@@ -166,7 +167,7 @@ public class MerchantPage
             {
                 HelpersMethod.waitTillLoadingPage(driver);
             }
-            new WebDriverWait(driver,60).until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id='menuWrapper__accesscpadmingeneralsettings']//div[@class='submenu-item-text']")));
+            new WebDriverWait(driver, Duration.ofMillis( 6000)).until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id='menuWrapper__accesscpadmingeneralsettings']//div[@class='submenu-item-text']")));
             if(HelpersMethod.IsExists("//*[@id='menuWrapper__accesscpadmingeneralsettings']//div[@class='submenu-item-text']",driver))
             {
                 WebEle=HelpersMethod.FindByElement(driver,"xpath","//*[@id='menuWrapper__accesscpadmingeneralsettings']//div[@class='submenu-item-text']");
@@ -651,7 +652,7 @@ public class MerchantPage
                    //exists=true;
             HelpersMethod.Implicitwait(driver,90);
             WebElement WebEleDate2= HelpersMethod.FindByElement(driver,"xpath","//span[@class='date2']//a[@class='k-select']//span[@class='k-icon k-i-calendar']");
-            new WebDriverWait(driver,90).until(ExpectedConditions.visibilityOf(WebEleDate2));
+            new WebDriverWait(driver,Duration.ofMillis( 6000)).until(ExpectedConditions.visibilityOf(WebEleDate2));
             Actions act = new Actions(driver);
             act.moveToElement(WebEleDate2).build().perform();
             WebEleDate2.sendKeys(Keys.TAB);
@@ -705,7 +706,7 @@ public class MerchantPage
     {
        exists=false;
         WebElement WebEle1=null;
-        WebDriverWait wait=new WebDriverWait(driver,100);
+        WebDriverWait wait=new WebDriverWait(driver,Duration.ofMillis(6000));
         //wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(text(),'Add standing po')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]")));
         HelpersMethod.waitTillElementLocatedDisplayed(driver,"xpath","//div[@class='CPMessageCenter']/descendant::span[contains(text(),'Create notice')]",80);
         HelpersMethod.Implicitwait(driver,200);
@@ -717,7 +718,7 @@ public class MerchantPage
             HelpersMethod.JScriptClick(driver,WebEle1,200);
             exists=true;
             HelpersMethod.waitTillElementLocatedDisplayed(driver,"xpath","//div[contains(@class,'k-calendar-monthview')]",40);
-            new WebDriverWait(driver,80).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class,'k-calendar-monthview')]")));
+            new WebDriverWait(driver,Duration.ofMillis(8000)).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class,'k-calendar-monthview')]")));
             Assert.assertEquals(exists,true);
             HelpersMethod.Implicitwait(driver,60);
         }
@@ -728,7 +729,7 @@ public class MerchantPage
     {
         exists=false;
         WebElement WebEle1=null;
-        WebDriverWait wait=new WebDriverWait(driver,50);
+        WebDriverWait wait=new WebDriverWait(driver,Duration.ofMillis(8000));
         //wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(text(),'Add standing po')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]")));
         //HelpersMethod.waitTillElementLocatedDisplayed(driver,"xpath","(//span[@class='k-icon k-i-calendar'])[1]",80);
         //HelpersMethod.Implicitwait(driver,80);
@@ -740,7 +741,7 @@ public class MerchantPage
             HelpersMethod.JScriptClick(driver,FilterStartDateIcon,100);
             exists=true;
             HelpersMethod.waitTillElementLocatedDisplayed(driver,"xpath","//div[contains(@class,'k-calendar-monthview')]",40);
-            new WebDriverWait(driver,80).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class,'k-calendar-monthview')]")));
+            new WebDriverWait(driver,Duration.ofMillis(8000)).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class,'k-calendar-monthview')]")));
             Assert.assertEquals(exists,true);
             HelpersMethod.Implicitwait(driver,60);
         }
@@ -751,7 +752,7 @@ public class MerchantPage
     {
         exists=false;
         WebElement WebEle1=null;
-        WebDriverWait wait=new WebDriverWait(driver,50);
+        WebDriverWait wait=new WebDriverWait(driver,Duration.ofMillis(8000));
         //wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(text(),'Add standing po')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]")));
         //HelpersMethod.waitTillElementLocatedDisplayed(driver,"xpath","(//span[@class='k-icon k-i-calendar'])[1]",80);
         //HelpersMethod.Implicitwait(driver,80);
@@ -763,7 +764,7 @@ public class MerchantPage
             HelpersMethod.JScriptClick(driver,FilterEndDateIcon,300);
             exists=true;
             HelpersMethod.waitTillElementLocatedDisplayed(driver,"xpath","//div[contains(@class,'k-calendar-monthview')]",40);
-            new WebDriverWait(driver,80).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class,'k-calendar-monthview')]")));
+            new WebDriverWait(driver,Duration.ofMillis(8000)).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class,'k-calendar-monthview')]")));
             Assert.assertEquals(exists,true);
             HelpersMethod.Implicitwait(driver,60);
         }
@@ -774,7 +775,7 @@ public class MerchantPage
     {
         exists=false;
         WebElement WebEle=null;
-        WebDriverWait wait=new WebDriverWait(driver,90);
+        WebDriverWait wait=new WebDriverWait(driver,Duration.ofMillis(8000));
         //wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(text(),'Add standing po')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]")));
         HelpersMethod.waitTillElementLocatedDisplayed(driver,"xpath","//div[@class='CPMessageCenter']/descendant::span[contains(text(),'Create notice')]",60);
         HelpersMethod.Implicitwait(driver,90);
@@ -786,7 +787,7 @@ public class MerchantPage
             HelpersMethod.ActClick(driver,WebEle,90);
             exists=true;
             HelpersMethod.waitTillElementLocatedDisplayed(driver,"xpath","//div[contains(@class,'k-calendar-monthview')]",60);
-            new WebDriverWait(driver,60).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class,'k-calendar-monthview')]")));
+            new WebDriverWait(driver,Duration.ofMillis(8000)).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class,'k-calendar-monthview')]")));
             Assert.assertEquals(exists,true);
             HelpersMethod.Implicitwait(driver,60);
         }
@@ -797,7 +798,7 @@ public class MerchantPage
     public void SelectStartDate(int i)
     {
         HelpersMethod.waitTillElementLocatedDisplayed(driver,"xpath","//div[contains(@class,'k-calendar-monthview')]",100);
-        new WebDriverWait(driver,100).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class,'k-calendar-monthview')]")));
+        new WebDriverWait(driver,Duration.ofMillis(8000)).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class,'k-calendar-monthview')]")));
         try
         {
             String formattedDate1 = null;
@@ -834,7 +835,7 @@ public class MerchantPage
     public void SelectEndDate(int i)
     {
         HelpersMethod.waitTillElementLocatedDisplayed(driver,"xpath","//div[contains(@class,'k-calendar-monthview')]",600);
-        new WebDriverWait(driver,60).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class,'k-calendar-monthview')]")));
+        new WebDriverWait(driver,Duration.ofMillis(8000)).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class,'k-calendar-monthview')]")));
         WebElement WebEle=null;
         String FTDate=null;
         exists=false;
@@ -842,7 +843,7 @@ public class MerchantPage
         {
             String formattedDate1 = null;
             HelpersMethod.waitTillElementLocatedDisplayed(driver,"xpath","//div[contains(@class,'k-calendar-monthview')]",60);
-            new WebDriverWait(driver,60).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class,'k-calendar-monthview')]")));
+            new WebDriverWait(driver,Duration.ofMillis(8000)).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class,'k-calendar-monthview')]")));
             //finding element/date in calendar drop down is enabled or not. if not enabled increase the date by 6 days
             String ele = "//div[contains(@class,'k-calendar-monthview')]";
             boolean visible = HelpersMethod.IsExists(ele, driver);
