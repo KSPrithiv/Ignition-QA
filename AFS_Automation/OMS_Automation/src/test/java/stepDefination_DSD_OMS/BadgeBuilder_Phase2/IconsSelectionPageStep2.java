@@ -81,8 +81,8 @@ public class IconsSelectionPageStep2 {
     }
 
 
-    @Then("Select Account and start Order1")
-    public void select_account_and_start_order1() throws InterruptedException {
+    @Then("Select Account and start Order2")
+    public void select_account_and_start_order2() throws InterruptedException {
         badgeBuilderPage = new BadgeBuilderPage(driver, scenario);
         badgeBuilderPage1 = new BadgeBuilderPage1(driver, scenario);
         //badgeBuilderPage.ChangeAccount1();
