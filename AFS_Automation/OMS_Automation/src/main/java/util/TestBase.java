@@ -83,11 +83,8 @@ public class TestBase {
                 chromeOptions.addArguments("user-data-dir=D:/temp/");
 
                 driver.set(new ChromeDriver());
-
             }
             break;
-
-
             case "firefox": {
                 WebDriverManager.firefoxdriver().setup();
                 FirefoxOptions firefoxOptions = new FirefoxOptions();
@@ -112,10 +109,10 @@ public class TestBase {
             }
             break;
             case "edge": {
-                WebDriverManager.edgedriver().setup();
-                EdgeOptions edgeOptions = new EdgeOptions();
+                //WebDriverManager.edgedriver().setup();
+                //EdgeOptions edgeOptions = new EdgeOptions();
 
-                driver.set(new EdgeDriver());
+                //driver.set(new EdgeDriver());
                /* WebDriverManager.iedriver().setup();
                 InternetExplorerOptions ieOptions = new InternetExplorerOptions();
                 ieOptions.setUnhandledPromptBehaviour(UnexpectedAlertBehaviour.IGNORE);
@@ -129,13 +126,12 @@ public class TestBase {
         }
 
         getDriver().manage().window().maximize();
-        //karthik
         getDriver().manage().deleteAllCookies();
-        //getDriver().manage().timeouts().pageLoadTimeout(TestUtil.PAGE_LOAD_TIMEOUT, TimeUnit.SECONDS);
+        //karthik
+        getDriver().manage().timeouts().pageLoadTimeout(TestUtil.PAGE_LOAD_TIMEOUT, TimeUnit.SECONDS);
         //getDriver().manage().timeouts().implicitlyWait(TestUtil.IMPLICIT_WAIT, TimeUnit.SECONDS);
         getDriver().get(testEnvironment.get_url());
-        getDriver().navigate().refresh();
-
+       // getDriver().navigate().refresh();
     }
 
     public static void unload() throws IOException {
@@ -144,7 +140,7 @@ public class TestBase {
 
     public static void CloseBrowser() throws IOException
     {
-        getDriver().quit();
+        getDriver().close();
         unload();
     }
 

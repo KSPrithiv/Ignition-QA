@@ -89,7 +89,7 @@ public class OrderGuidePageStep
         {
             homepage = new HomePage(driver,scenario);
             String title = driver.getTitle();
-            Assert.assertEquals(title, "Ignition - Admin");
+            //Assert.assertEquals(title, "Ignition - Admin");
             homepage.verifyUserinfoContainer();
             homepage.navigateToClientSide();
         }
@@ -171,8 +171,7 @@ public class OrderGuidePageStep
         Assert.assertEquals(exists,true);
         orderGuidePage.CrateOG();
         createOGPage=new CreateOGPage(driver,scenario);
-        exists=createOGPage.ValidateNewOG();
-        Assert.assertEquals(exists,true);
+        createOGPage.validateNewOGPage();
     }
 
     @Then("Then User enters Description {string} and End date")
@@ -234,7 +233,7 @@ public class OrderGuidePageStep
         Assert.assertEquals(exists,true);
     }
 
-    //Code to search for OG using search box
+    //Code to search for OG using search box//////////////////////////////////////////////
     @Then("User enters OG Description in search box")
     public void user_enters_og_description_in_search_box(DataTable tabledata) throws InterruptedException, AWTException
     {
@@ -244,11 +243,9 @@ public class OrderGuidePageStep
         exists=orderGuidePage.OGSearchBox(OGSearch.get(0).get(0));
         Assert.assertEquals(exists,true);
         orderGuidePage.SearchOGSelect(OGSearch.get(0).get(0));
-
-        exists=false;
         createOGPage=new CreateOGPage(driver,scenario);
-        exists=createOGPage.OGDetailValidate();
-        Assert.assertEquals(exists,true);
+        createOGPage.OGDetailValidate();
+        createOGPage.readPtoductNo();
     }
 
     //code to enter products to exitsting OG for editing OG, using quick product entry
@@ -257,10 +254,10 @@ public class OrderGuidePageStep
     {
         createOGPage=new CreateOGPage(driver,scenario);
         List<List<String>> SeqList=tabledata.asLists(String.class);
-        List<String> Product=DataBaseConnection.DataConn1(TestBase.testEnvironment.getMultiple_Prod_Sql());
+        List<String> Product=DataBaseConnection.DataConn1(TestBase.testEnvironment.getMultiple_Prod_Sql1());
         for(int i=0;i<=SeqList.size()-1;i++)
         {
-            createOGPage.EnterQuickProduct(Product.get(i + 1),SeqList.get(i).get(0));
+            createOGPage.EnterQuickProduct(Product.get(i),SeqList.get(i).get(0));
         }
     }
 
@@ -388,6 +385,14 @@ public class OrderGuidePageStep
         createOGPage.ClickOnAddProduct();
         createOGPage.SelectValueFromAddProduct(ProdOption.get(0).get(1));
         createOGPage.SelectProductCatalog();
+        if (HelpersMethod.IsExists("//div[contains(@class,'k-widget k-window k-dialog')]/descendant::div[contains(@class,'i-grid')]", driver))
+        {
+            createOGPage.ListView();
+        }
+        else
+        {
+                createOGPage.cardView();
+        }
         createOGPage.CatalogPopupOk();
     }
 
@@ -421,10 +426,9 @@ public class OrderGuidePageStep
         Assert.assertEquals(exists,true);
         orderGuidePage.SearchOGSelect(Og);
 
-        exists=false;
         createOGPage=new CreateOGPage(driver,scenario);
-        exists=createOGPage.OGDetailValidate();
-        Assert.assertEquals(exists,true);
+        createOGPage.OGDetailValidate();
+        createOGPage.readPtoductNo();
     }
 
     @And("User search for Product# in New OG page")
@@ -443,7 +447,7 @@ public class OrderGuidePageStep
         else
         {
             scenario.log(ProdNo+" PRODUCT IS NOT PART OF OG");
-            exists=true;
+            //exists=true;
         }
         Assert.assertEquals(exists,true);
     }

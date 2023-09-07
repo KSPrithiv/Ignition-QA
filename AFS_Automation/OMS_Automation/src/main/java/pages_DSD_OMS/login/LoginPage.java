@@ -14,6 +14,18 @@ import org.testng.annotations.BeforeClass;
 import util.TestBase;
 import java.awt.*;
 
+import com.google.gson.Gson;
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpResponse;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.entity.ContentType;
+import org.apache.http.entity.StringEntity;
+import org.apache.http.impl.client.HttpClients;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+
+
 /**
  * @Project DSD_ERP
  * @Author Divya.Ramadas@afsi.com
@@ -33,6 +45,7 @@ public class LoginPage
     private WebElement Password;
 
     @FindBy(id = "signInBtn")
+    //@FindBy(xpath="//button[contains(@class,'k-button k-primary k-button-icontext')]")
     private WebElement SignIn;
 
     @FindBy(xpath = "//button[text()='Forgot password']")
@@ -70,11 +83,11 @@ public class LoginPage
             if(HelpersMethod.IsExists("//div[@class='loader']",driver))
             {
                 WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 2000);
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 80000);
             }
-            HelpersMethod.waitTillTitleContains(driver,"Ignition - Login",200);
+            HelpersMethod.waitTillTitleContains(driver,"Login",200);
             String title= driver.getTitle();
-            if(title.equals("Ignition - Login"))
+            if(title.contains("Login"))
             {
                 exists=true;
             }
@@ -89,8 +102,8 @@ public class LoginPage
         exists=false;
         try
         {
-            HelpersMethod.clearText(driver,Username,40);
-            HelpersMethod.sendKeys(driver,Username,40,un);
+            HelpersMethod.clearText(driver,Username,1000);
+            HelpersMethod.sendKeys(driver,Username,1000,un);
             exists=true;
             Assert.assertEquals(exists,true);
         }
@@ -101,8 +114,8 @@ public class LoginPage
         exists=false;
         try
         {
-            HelpersMethod.clearText(driver,Password,40);
-            HelpersMethod.sendKeys(driver,Password,40,pwd);
+            HelpersMethod.clearText(driver,Password,1000);
+            HelpersMethod.sendKeys(driver,Password,1000,pwd);
             exists=true;
             Assert.assertEquals(exists,true);
         }
@@ -114,12 +127,12 @@ public class LoginPage
         {
             exists = false;
             WebElement WebEle;
-
+            if(SignIn.isEnabled())
+            {
                 HelpersMethod.ScrollElement(driver, SignIn);
                 HelpersMethod.ActClick(driver, SignIn, 1000);
                 HelpersMethod.waitTillPageLoaded(driver, 200000);
                 Thread.sleep(5000);
-
                 exists = true;
                 String status = HelpersMethod.returnDocumentStatus(driver);
                 if (status.equals("loading"))
@@ -132,16 +145,15 @@ public class LoginPage
                     HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100000);
                 }
                 status = HelpersMethod.returnDocumentStatus(driver);
-                if (status.equals("loading"))
-                {
+                if (status.equals("loading")) {
                     HelpersMethod.waitTillLoadingPage(driver);
                 }
-            if (HelpersMethod.IsExists("//div[@class='loader']", driver))
-            {
-                WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 80000);
-            }
+                if (HelpersMethod.IsExists("//div[@class='loader']", driver)) {
+                    WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
+                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 80000);
+                }
                 scenario.log("SIGNIN BUTTON CLICKED");
+            }
         }
         catch (Exception e){}
     }
@@ -150,7 +162,7 @@ public class LoginPage
     {
         Boolean visiblity=null;
         WebElement ErrorMessage=HelpersMethod.FindByElement(driver,"id","errorValidation");
-        new WebDriverWait(driver,200).until(ExpectedConditions.visibilityOf(ErrorMessage));
+        //new WebDriverWait(driver,200).until(ExpectedConditions.visibilityOf(ErrorMessage));
         if (ErrorMessage.isDisplayed())
         {
             visiblity = true;
@@ -232,7 +244,7 @@ public class LoginPage
                     HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 4000);
                 }
                 HelpersMethod.WaitElementPresent(driver,"xpath","//div[contains(@class,'product-catalog-page')]",1000);
-                new WebDriverWait(driver,1000).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(@id,'ext-product-catalog-app')]")));
+                //new WebDriverWait(driver,1000).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(@id,'ext-product-catalog-app')]")));
             }
             else
             {
@@ -330,7 +342,7 @@ public class LoginPage
         String status=null;
         try
         {
-            new WebDriverWait(driver, 2000).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(text(),'Customer account index')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]")));
+            //new WebDriverWait(driver, 2000).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(text(),'Customer account index')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]")));
             WebElement modalContainer = driver.findElement(By.xpath("//div[contains(text(),'Customer account index')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]"));
             status = HelpersMethod.returnDocumentStatus(driver);
             if (status.equals("loading"))
@@ -353,7 +365,7 @@ public class LoginPage
 
             //Click on Check box
             HelpersMethod.WaitElementPresent(driver, "xpath", "//input[@id='CM_CUSTKEY']", 400);
-            new WebDriverWait(driver, 200).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@id='CM_CUSTKEY']")));
+            //new WebDriverWait(driver, 200).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@id='CM_CUSTKEY']")));
             WebElement WebEle1 = modalContainer1.findElement(By.xpath(".//input[@id='CM_CUSTKEY']"));
             HelpersMethod.JScriptClick(driver, WebEle1, 1000);
 
@@ -409,7 +421,7 @@ public class LoginPage
                 }
                 if (HelpersMethod.IsExists("//div[@class='loader']", driver))
                 {
-                    new WebDriverWait(driver, 6000).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+                   // new WebDriverWait(driver, 6000).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
                 }
                 scenario.log("SIGNIN BUTTON CLICKED");
         }
@@ -440,10 +452,48 @@ public class LoginPage
                 {
                     HelpersMethod.waitTillLoadingPage(driver);
                 }
-                new WebDriverWait(driver,800).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(text(),'Customer account index')]/ancestor::div[@class='k-widget k-window k-dialog']")));
+               // new WebDriverWait(driver,800).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(text(),'Customer account index')]/ancestor::div[@class='k-widget k-window k-dialog']")));
                 exists = true;
                 scenario.log("SIGNIN BUTTON CLICKED");
                 Assert.assertEquals(exists,true);
+        }
+        catch (Exception e){}
+    }
+
+    public void enterCredentialsCheckboxClick()
+    {
+        try
+        {
+            String username = TestBase.testEnvironment.username();
+            String password = TestBase.testEnvironment.password();
+            boolean rememberMe = true;
+
+            LoginRequest loginRequest = new LoginRequest(username, password, rememberMe);
+            Gson gson = new Gson();
+            String jsonPayload = gson.toJson(loginRequest);
+
+            HttpClient httpClient = HttpClients.createDefault();
+            HttpPost httpPost = new HttpPost(TestBase.testEnvironment.get_url());
+            httpPost.setEntity(new StringEntity(jsonPayload, ContentType.APPLICATION_JSON));
+
+            HttpResponse response = httpClient.execute(httpPost);
+            HttpEntity entity = response.getEntity();
+
+            if (entity != null)
+            {
+                // Process the response as needed (e.g., check for success or failure)
+                BufferedReader reader = new BufferedReader(new InputStreamReader(entity.getContent()));
+                String line;
+                StringBuilder stringBuilder = new StringBuilder();
+                while ((line = reader.readLine()) != null) {
+                    stringBuilder.append(line);
+                }
+
+                // Handle the response JSON or other data
+                String jsonResponse = stringBuilder.toString();
+                scenario.log(jsonResponse);
+            } else {scenario.log("No response entity received.");
+            }
         }
         catch (Exception e){}
     }

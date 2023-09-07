@@ -127,3 +127,11 @@ Feature: Login
     Then Click on user Icon
     And Click on Logout
 
+  @RememberMe
+  Scenario: Test scenario for testing remember me functionality
+    Given User on login page
+    Then User enters username and password and clicks on remember me checkbox
+    Then Admin Page is displayed
+    And User close the browser
+    Then User loads the browser again
+    Then Admin page is displayed

@@ -16,6 +16,7 @@ import util.TestBase;
 import org.openqa.selenium.Keys;
 
 import java.io.IOException;
+import java.time.Duration;
 import java.util.List;
 
 public class MyAccountPage {
@@ -31,7 +32,7 @@ public class MyAccountPage {
 
     @FindBy(xpath = "//span[text()='My Account']")
     private WebElement MyAccount;
-//
+
 
     @FindBy(xpath = "//span[text()='Additional email recipients']")
     private WebElement additional_email_recipients;
@@ -255,7 +256,7 @@ public class MyAccountPage {
             HelpersMethod.waitTillLoadingPage(driver);
         }
         try {
-            new WebDriverWait(driver, 10).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("(//div[@class='k-grid-container']//td[@colspan='1' and text()='Password Request'])/following-sibling::td[text()='effico_proc@efficounet.com']/..")));
+            new WebDriverWait(driver, Duration.ofMillis(10)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("(//div[@class='k-grid-container']//td[@colspan='1' and text()='Password Request'])/following-sibling::td[text()='effico_proc@efficounet.com']/..")));
             HelpersMethod.ClickBut(driver, new_Emailadded_value, 100);
             HelpersMethod.ClickBut(driver, delete_button, 100);
             HelpersMethod.ClickBut(driver, confirm_delete_yes, 100);
@@ -304,7 +305,7 @@ public class MyAccountPage {
         if (status.equals("loading")) {
             HelpersMethod.waitTillLoadingPage(driver);
         }
-        new WebDriverWait(driver, 200).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("(//div[@class='k-grid-container']//td[@colspan='1' and text()='Password Request'])/following-sibling::td[text()='effico_proc@efficounet.com']/..")));
+        new WebDriverWait(driver, Duration.ofMillis(200)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("(//div[@class='k-grid-container']//td[@colspan='1' and text()='Password Request'])/following-sibling::td[text()='effico_proc@efficounet.com']/..")));
         HelpersMethod.clickOn(driver, new_Emailadded_value, 100);
 
         //HelpersMethod.clickOn(driver, new_Emailadded_value, 100);
@@ -431,7 +432,7 @@ public class MyAccountPage {
         }
 
         try {
-            new WebDriverWait(driver, 10).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("(//tbody[@role='presentation']/tr/td[1])[1]/..")));
+            new WebDriverWait(driver, Duration.ofMillis(10)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("(//tbody[@role='presentation']/tr/td[1])[1]/..")));
             HelpersMethod.ClickBut(driver, Customer_Account_row, 100);
             HelpersMethod.ClickBut(driver, delete_button_customer_acc, 100);
             HelpersMethod.ClickBut(driver, delete_NO_button_customer_acc, 100);
@@ -457,7 +458,7 @@ public class MyAccountPage {
             //Move mouse on menu icon
 
             //submenu bar before click original pattai -reduced -hamburger
-            new WebDriverWait(driver, 100).until(ExpectedConditions.elementToBeClickable(By.xpath("//div[@class='item-searchbar']//*[local-name()='svg']//*[local-name()='path' and contains(@d,'M3,18H21V16H3Zm0-5H21V11H3ZM3,6V8H21V6Z')]")));
+            new WebDriverWait(driver, Duration.ofMillis(100)).until(ExpectedConditions.elementToBeClickable(By.xpath("//div[@class='item-searchbar']//*[local-name()='svg']//*[local-name()='path' and contains(@d,'M3,18H21V16H3Zm0-5H21V11H3ZM3,6V8H21V6Z')]")));
 
             //submenu bar after click
             WebEle = HelpersMethod.FindByElement(driver, "xpath", "//*[local-name()='svg']//*[local-name()='path' and contains(@d,'M3,18H21V16H3Zm0-5H21V11H3ZM3,6V8H21V6Z')]");
@@ -534,7 +535,7 @@ public class MyAccountPage {
         }
 
         try {
-            new WebDriverWait(driver, 20).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("(//tbody[@role='presentation']/tr/td[1])[1]/..")));
+            new WebDriverWait(driver, Duration.ofMillis(20)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("(//tbody[@role='presentation']/tr/td[1])[1]/..")));
             HelpersMethod.ClickBut(driver, Customer_Account_row, 60);
 
 

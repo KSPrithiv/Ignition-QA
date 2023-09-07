@@ -163,3 +163,43 @@ Feature: Quotes1
       Then User should select Note from popup and Order guide from popup
       And User verifies Skip button in New OE page
 
+  @BogoItemsInQuote
+  Scenario Outline: Test scenario for adding bogo item to quote and verify the behaviour
+    Given User must be on Order Entry Page
+    And User clicks on drop down next to Start order button and select Quote option
+    Then User enters Quote name "<QuoteName>" and Quote End date click on OK button
+    Then User should find select Order guide from popup
+    Then User should select Note from popup
+    Then Enter BOGO Pro# in Quick Product Entry area in New Qutoe page and enter Qty for Case and Unit
+      |40|40|
+    And User verifies the products added to Quote
+    Then Click on create button in New Quote page
+    And User click on Back to orderlist button from Quote summary page and Read order number
+    Then Verify User is on Order Entry Page and verify Quote is existing
+    Examples:
+      |QuoteName|
+      | Quote123|
+
+  @BogoItemsInQuoteToOrder
+  Scenario Outline: Test scenario for adding BOGO item to quote and create Order for that Quote
+    Given User must be on Order Entry Page
+    And User clicks on drop down next to Start order button and select Quote option
+    Then User enters Quote name "<QuoteName>" and Quote End date click on OK button
+    Then User should find select Order guide from popup
+    Then User should select Note from popup
+    Then Enter BOGO Pro# in Quick Product Entry area in New Qutoe page and enter Qty for Case and Unit
+      |40|40|
+    And User verifies the products added to Quote
+    Then Click on create button in New Quote page
+    And User click on Back to orderlist button from Quote summary page and Read order number
+    Then Verify User is on Order Entry Page and verify Quote is existing
+    Then User selects Quote in Order Entry grid
+    And User should be navigated to Quote summary page and click on Convert Order button
+    Then Enter PO# for New order
+      |PO123|
+    Then Click on Next button
+    And Click on SubmitOrder button
+    Then User should be navigated to Order Entry page
+    Examples:
+      |QuoteName|
+      | Quote123|

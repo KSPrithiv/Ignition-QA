@@ -81,8 +81,8 @@ public class IconsSelectionPageStep2 {
     }
 
 
-    @Then("Select Account and start Order1")
-    public void select_account_and_start_order1() throws InterruptedException {
+    @Then("Select Account and start Order2")
+    public void select_account_and_start_order2() throws InterruptedException {
         badgeBuilderPage = new BadgeBuilderPage(driver, scenario);
         badgeBuilderPage1 = new BadgeBuilderPage1(driver, scenario);
         //badgeBuilderPage.ChangeAccount1();
@@ -121,8 +121,8 @@ public class IconsSelectionPageStep2 {
        badgeBuilderPage1.AddTocart();
     }
 
-    @And("Click on Cart")
-    public void click_on_cart() throws InterruptedException {
+    @And("Click on Cart1")
+    public void click_on_cart1() throws InterruptedException {
         badgeBuilderPage1 = new BadgeBuilderPage1(driver, scenario);
 //        badgeBuilderPage1.SearchBoxActionCat_2();
 //        badgeBuilderPage1.Addcart2();
@@ -163,8 +163,8 @@ public class IconsSelectionPageStep2 {
         badgeBuilderPage1 = new BadgeBuilderPage1(driver, scenario);
         badgeBuilderPage1.ColorCheckCatalogSearch();
     }
-    @And("Logout")
-    public void logout() throws InterruptedException {
+    @And("Logout1")
+    public void logout1() throws InterruptedException {
         badgeBuilderPage = new BadgeBuilderPage(driver, scenario);
         badgeBuilderPage.Click_On_UserIcon();
         badgeBuilderPage.Click_On_Signout();
@@ -177,16 +177,16 @@ public class IconsSelectionPageStep2 {
         badgeBuilderPage1.Click_Back();
     }
 
-    @Then("Select any date from Pickup Order")
-    public void select_any_date_from_pickup_order() {
+    @Then("Select any date from Pickup Order1")
+    public void select_any_date_from_pickup_order1() {
         badgeBuilderPage1 = new BadgeBuilderPage1(driver, scenario);
         badgeBuilderPage1.Click_DropDown();
         badgeBuilderPage1.Select_PickupOrder1();
         badgeBuilderPage1.SelectDate1();
 
     }
-    @Then("Add Product in Order Entry")
-    public void add_product_in_order_entry() throws AWTException, InterruptedException {
+    @Then("Add Product in Order Entry1")
+    public void add_product_in_order_entry1() throws AWTException, InterruptedException {
         badgeBuilderPage = new BadgeBuilderPage(driver, scenario);
         badgeBuilderPage1 = new BadgeBuilderPage1(driver, scenario);
 //        HelpersMethod.waitTillPageLoaded(driver, 2000);

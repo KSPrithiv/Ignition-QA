@@ -59,7 +59,15 @@ public class OrderGuidePageStep1
     {
         createOGPage=new CreateOGPage(driver,scenario);
         createOGPage.ValidateCatalogDisplay();
-        createOGPage.CatalogPopup();
+        if (HelpersMethod.IsExists("//div[contains(@class,'k-widget k-window k-dialog')]/descendant::div[contains(@class,'i-grid')]", driver))
+        {
+            createOGPage.ListView();
+        }
+        else
+        {
+            createOGPage.cardView();
+        }
+        createOGPage.CatalogPopupOk();
     }
 
     //Code to delete OG from the OG grid
@@ -89,14 +97,14 @@ public class OrderGuidePageStep1
         orderGuidePage.AddFilterClick(AddOption.get(0).get(0),AddOption.get(0).get(1));
     }
 
-    @Then("User enters OG Description {string} in search box")
+/*    @Then("User enters OG Description {string} in search box")
     public void userEntersOGDescriptionInSearchBox(String arg0) throws InterruptedException, AWTException
     {
         exists=false;
         orderGuidePage = new OrderGuidePage(driver, scenario);
         exists=orderGuidePage.OGSearchBox(arg0);
         Assert.assertEquals(exists,false);
-    }
+    }*/
 
     @And("User verifies New OG page and clicks on import button")
     public void userVerifiesNewOGPageAndClicksOnImportButton()
@@ -209,8 +217,7 @@ public class OrderGuidePageStep1
     @And("User selects end date as past date")
     public void userSelectsEndDateAsPastDate() throws InterruptedException, AWTException {
         createOGPage = new CreateOGPage(driver, scenario);
-        exists=createOGPage.OGDetailValidate();
-        Assert.assertEquals(exists,true);
+        createOGPage.OGDetailValidate();
         createOGPage.clickOnStatus();
         createOGPage.selectStatus("Expired");
         //createOGPage.CalenderEnd();
@@ -257,8 +264,7 @@ public class OrderGuidePageStep1
         //Click on OG and navigate to OG details page
         orderGuidePage.SearchOGSelect(Og);
         createOGPage = new CreateOGPage(driver, scenario);
-        exists=createOGPage.OGDetailValidate();
-        Assert.assertEquals(exists,true);
+        createOGPage.OGDetailValidate();
         DayWeek=createOGPage.ValidateWeekOfDay();
         Assert.assertEquals(DayWeek,WDay);
     }
@@ -323,7 +329,7 @@ public class OrderGuidePageStep1
     {
         createOGPage = new CreateOGPage(driver, scenario);
         exists=createOGPage.ValidateCatalogDisplay();
-        createOGPage.AddFromCatalog(DataBaseConnection.DataConn1(TestBase.testEnvironment.getMultiple_Prod_Sql()));
+        createOGPage.AddFromCatalog(DataBaseConnection.DataConn1(TestBase.testEnvironment.getMultiple_Prod_Sql1()));
     }
 
     @And("User verifies New OG page and clicks on export button")

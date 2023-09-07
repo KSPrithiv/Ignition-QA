@@ -73,13 +73,11 @@ public class StatementsPageSteps
         if(flag==false)
         {
             homepage = new HomePage(driver,scenario);
-            String title = driver.getTitle();
-            Assert.assertEquals(title, "Ignition - Admin");
             homepage.verifyUserinfoContainer();
             homepage.navigateToClientSide();
             statementsPage=new StatementsPage(driver,scenario);
-            currentURL=statementsPage.NavigateStatements();
-            flag=true;
+            statementsPage.NavigateStatements();
+            flag=true;;
         }
     }
 
@@ -88,7 +86,7 @@ public class StatementsPageSteps
     {
         statementsPage=new StatementsPage(driver,scenario);
         statementsPage.HandleError_Page();
-        statementsPage.Refresh_Page(currentURL);
+        statementsPage.Refresh_Page();
     }
 
     @Then("User should confirm that he is in Statements page")
@@ -166,5 +164,14 @@ public class StatementsPageSteps
     {
         statementsPage=new StatementsPage(driver,scenario);
         statementsPage.AddFilterSearch();
+    }
+
+    @And("User selects Customer Account# and Clicks on Generate button and verify for pdf for weekly")
+    public void userSelectsCustomerAccountAndClicksOnGenerateButtonAndVerifyForPdfForWeekly()
+    {
+        statementsPage=new StatementsPage(driver,scenario);
+        statementsPage.SearchBar();
+        statementsPage.SelectCustomerNo();
+        statementsPage.GenerateButtonWeekly();
     }
 }

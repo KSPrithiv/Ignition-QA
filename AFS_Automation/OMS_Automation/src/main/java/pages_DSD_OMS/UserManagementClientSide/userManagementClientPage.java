@@ -54,6 +54,9 @@ public class userManagementClientPage
     @FindBy(id="saveEditButton")
     private WebElement regirstrationButton;
 
+    @FindBy(id="cancelEditButton")
+    private WebElement cancelButton;
+
     public userManagementClientPage(WebDriver driver,Scenario scenario)
     {
         this.driver=driver;
@@ -82,7 +85,7 @@ public class userManagementClientPage
             if (HelpersMethod.IsExists("//div[@class='loader']", driver))
             {
                 WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 2000);
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 80000);
             }
             status = HelpersMethod.returnDocumentStatus(driver);
             if (status.equals("loading"))
@@ -277,9 +280,30 @@ public class userManagementClientPage
 
     public void clickOnRegristration()
     {
+        exists=false;
         try
         {
-            HelpersMethod.ClickBut(driver,regirstrationButton,200);
+            if(regirstrationButton.isDisplayed() && regirstrationButton.isEnabled())
+            {
+                HelpersMethod.ClickBut(driver, regirstrationButton, 200);
+                exists=true;
+            }
+            Assert.assertEquals(exists,true);
+        }
+        catch (Exception e){}
+    }
+
+    public void clickOnCancel()
+    {
+        exists=false;
+        try
+        {
+            if(cancelButton.isDisplayed() && cancelButton.isEnabled())
+            {
+                HelpersMethod.ClickBut(driver, cancelButton, 200);
+                exists=true;
+            }
+            Assert.assertEquals(exists,true);
         }
         catch (Exception e){}
     }

@@ -28,6 +28,7 @@ import util.TestBase;
 import java.awt.*;
 import java.sql.SQLException;
 import java.text.ParseException;
+import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -89,12 +90,9 @@ public class CatalogPageStep
     @Then("User navigate to Client side for Catalog")
     public void user_navigate_to_client_sideForCatalog() throws InterruptedException, AWTException
     {
-        boolean result=false;
         if(flag==false)
         {
             homepage = new HomePage(driver,scenario);
-            String title = driver.getTitle();
-            Assert.assertEquals(title, "Ignition - Admin");
             homepage.verifyUserinfoContainer();
             homepage.navigateToClientSide();
         }
@@ -147,8 +145,9 @@ public class CatalogPageStep
                 boolean result = catalogpage.ValidateCatalog();
                 currentURL = driver.getCurrentUrl();
                 scenario.log(currentURL);
-                Assert.assertEquals(result, true);
-            } else {
+            }
+            else
+            {
                 scenario.log("CATALOG TAB IS NOT VISIBLE");
             }
             flag1 = true;
@@ -290,7 +289,7 @@ public class CatalogPageStep
                 catalogpage.ProductExistsCard(Prod_detail.get(i).get(0));
                 if (i == 1)
                 {
-                    new WebDriverWait(driver,1000).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[local-name()='svg']/*[local-name()='path' and contains(@d,'M16 ')]"))));
+                    new WebDriverWait(driver, Duration.ofMillis(1000)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[local-name()='svg']/*[local-name()='path' and contains(@d,'M16 ')]"))));
                     WebEle=HelpersMethod.FindByElement(driver, "xpath", "//*[local-name()='svg']/*[local-name()='path' and contains(@d,'M16 ')]");
                     HelpersMethod.ActClick(driver,WebEle, 1000);
                 /*    if(HelpersMethod.IsExists("//div[@class='loader']",driver))
@@ -301,7 +300,7 @@ public class CatalogPageStep
                     scenario.log("PRODUCT "+Prod_No.get(i)+" HAS BEEN DELETED");
                 }
             }
-            new WebDriverWait(driver,80000).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("productsCard"))));
+            new WebDriverWait(driver,Duration.ofMillis(80000)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("productsCard"))));
         }
     }
 

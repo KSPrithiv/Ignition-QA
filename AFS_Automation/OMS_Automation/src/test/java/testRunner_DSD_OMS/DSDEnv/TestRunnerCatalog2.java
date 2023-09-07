@@ -27,7 +27,7 @@ import java.io.IOException;
 public class TestRunnerCatalog2 extends AbstractTestNGCucumberTests
 {
     /* Created by Divya.Ramadas@afs.com */
-  /*  @Parameters({"environment"})
+    @Parameters({"environment"})
     @BeforeClass
     public static void beforeClass(@Optional String envi)
     {
@@ -55,9 +55,9 @@ public class TestRunnerCatalog2 extends AbstractTestNGCucumberTests
         {
             Runtime.getRuntime().exec("taskkill /F /IM chromedriver.exe");
         }
-    }*/
+    }
 
-    @Parameters({"environment"})
+   /* @Parameters({"environment"})
     @BeforeMethod
     public static void beforeClass(@Optional("environment") String envi)
     {
@@ -84,5 +84,5 @@ public class TestRunnerCatalog2 extends AbstractTestNGCucumberTests
         {
             Runtime.getRuntime().exec("taskkill /F /IM chromedriver.exe");
         }
-    }
+    }*/
 }

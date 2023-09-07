@@ -7,6 +7,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
@@ -14,6 +15,7 @@ import util.DataBaseConnection;
 import util.TestBase;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
@@ -28,6 +30,7 @@ public class NewQuotePage
     Scenario scenario;
     static boolean exists = false;
     static String Product = null;
+    static String bogoProduct=null;
 
     @FindBy(id = "cancelQuoteButton")
     private WebElement CancelButton;
@@ -220,13 +223,14 @@ public class NewQuotePage
         if(HelpersMethod.IsExists("//div[@class='loader']",driver))
         {
             WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 6000);
+            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 10000);
         }
         try
         {
             if(CancelButton.isDisplayed())
             {
-                HelpersMethod.ClickBut(driver, CancelButton, 100);
+                HelpersMethod.ScrollUpScrollBar(driver);
+                HelpersMethod.ClickBut(driver, CancelButton, 1000);
                 scenario.log("QUOTES CREATION HAS BEEN CANCELLED");
                 exists = true;
             }
@@ -646,23 +650,23 @@ public void EnterProductQtyCatalog(String unit,String cases)
         catch (Exception e){}
     }
 
-//    public void AddMultipleProducts(List<List<String>> qtyList)
-//    {
-//        try
-//        {
-//            WebElement WebEle=HelpersMethod.FindByElement(driver,"id","quickProduct");
-//            List<String> Prod=DataBaseConnection.DataConn1(TestBase.testEnvironment.getMultiple_Prod_Sql1());
-//            for(int i=0;i<=qtyList.size()-1;i++)
-//            {
-//                //Enter product number in input box
-//                String pro = String.valueOf(Prod.get(i));
-//                QuickProdEntryMutlipleProduct(pro);
-//                //Enter Qty in product grid
-//                QtyInGridMultipleProduct(qtyList.get(i).get(0),qtyList.get(i).get(1),i);
-//            }
-//        }
-//        catch (Exception e){}
-//    }
+    public void AddMultipleProducts(List<List<String>> qtyList)
+    {
+        try
+        {
+            WebElement WebEle=HelpersMethod.FindByElement(driver,"id","quickProduct");
+            List<String> Prod=DataBaseConnection.DataConn1(TestBase.testEnvironment.getMultiple_Prod_Sql1());
+            for(int i=0;i<=qtyList.size()-1;i++)
+            {
+                //Enter product number in input box
+                String pro = String.valueOf(Prod.get(i));
+                QuickProdEntryMutlipleProduct(pro);
+                //Enter Qty in product grid
+                QtyInGridMultipleProduct(qtyList.get(i).get(0),qtyList.get(i).get(1),i);
+            }
+        }
+        catch (Exception e){}
+    }
 
     public void SelectProductInProductGrid()
     {
@@ -800,6 +804,57 @@ public void EnterProductQtyCatalog(String unit,String cases)
              exists=true;
             }
             Assert.assertEquals(exists,true);
+        }
+        catch (Exception e){}
+    }
+
+    public void boGoItemsAdding()
+    {
+        exists=false;
+        try
+        {
+            if (QuickProd.isDisplayed())
+            {
+                bogoProduct = TestBase.testEnvironment.get_BOGO();
+                HelpersMethod.ActSendKey(driver,QuickProd,20,bogoProduct);
+                if(HelpersMethod.IsExists("//div[contains(text(),'Product not found')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
+                {
+                    WebElement OK_Button=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-widget k-window k-dialog')]/descendant::button[text()='Ok']");
+                    HelpersMethod.ClickBut(driver,OK_Button,20);
+                    scenario.log("BOGO PRODUCT HAS NOT BEEN FOUND");
+                }
+                else
+                {
+                    scenario.log("BOGO PRODUCT ENTERED IN QUICK PRODUCT INPUT BOX IS: "+bogoProduct);
+                }
+                exists = true;
+            }
+            Assert.assertEquals(exists,true);
+        }
+        catch (Exception e){}
+    }
+
+    public void readProductQuote()
+    {
+        exists=false;
+        Actions act1=new Actions(driver);
+        List<String> prods = new ArrayList<>();
+        String prodText;
+        try
+        {
+            List<WebElement> Prods=HelpersMethod.FindByElements(driver,"xpath","//div[contains(@id,'ProductIdCol')]/a");
+            scenario.log("PRODUCTS FOUND IN QUOTES");
+            for(WebElement prod:Prods)
+            {
+                act1.moveToElement(prod).build().perform();
+                prodText=prod.getText();
+                prods.add(prodText);
+                scenario.log(prodText);
+                if(!bogoProduct.equals(prodText))
+                {
+                    scenario.log("BOGO PRODUCT FOUND IN QUOTE IS "+prodText);
+                }
+            }
         }
         catch (Exception e){}
     }

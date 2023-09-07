@@ -15,6 +15,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.time.Duration;
 import java.util.*;
 
 public class CRMPage {
@@ -157,7 +158,7 @@ public class CRMPage {
             }
             if (HelpersMethod.IsExists("//div[@class='loader']", driver))
             {
-                new WebDriverWait(driver,4000).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+                new WebDriverWait(driver, Duration.ofMillis(6000)).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
             }
             if (status.equals("loading"))
             {
@@ -165,13 +166,13 @@ public class CRMPage {
             }
             HelpersMethod.WaitElementPresent(driver, "xpath", "//div[@class='item-searchbar']", 2400);
             WebElement Hamburger = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='item-searchbar']");
-            new WebDriverWait(driver, 4000).until(ExpectedConditions.visibilityOf(Hamburger));
-            new WebDriverWait(driver, 4000).until(ExpectedConditions.elementToBeClickable(Hamburger));
+            new WebDriverWait(driver, Duration.ofMillis(4000)).until(ExpectedConditions.visibilityOf(Hamburger));
+            new WebDriverWait(driver, Duration.ofMillis(4000)).until(ExpectedConditions.elementToBeClickable(Hamburger));
             HelpersMethod.JScriptClick(driver, Hamburger, 4000);
             exists = true;
             if (HelpersMethod.IsExists("//div[@class='loader']", driver))
             {
-                new WebDriverWait(driver,4000).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+                new WebDriverWait(driver,Duration.ofMillis(4000)).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
             }
         }
         catch (Exception e){}
@@ -188,7 +189,7 @@ public class CRMPage {
             }
             if (HelpersMethod.IsExists("//div[@class='loader']", driver))
             {
-                new WebDriverWait(driver,6000).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+                new WebDriverWait(driver, Duration.ofMillis(5000)).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
             }
             if (status.equals("loading"))
             {
@@ -196,13 +197,13 @@ public class CRMPage {
             }
             HelpersMethod.WaitElementPresent(driver, "xpath", "//span[contains(@class, 'menu-item-text')][contains(text(), 'CRM Tickets')]", 4400);
             WebElement CRMTicketOption = HelpersMethod.FindByElement(driver, "xpath", "//span[contains(@class, 'menu-item-text')][contains(text(), 'CRM Tickets')]");
-            new WebDriverWait(driver, 6000).until(ExpectedConditions.visibilityOf(CRMTicketOption));
-            new WebDriverWait(driver, 6000).until(ExpectedConditions.elementToBeClickable(CRMTicketOption));
+            new WebDriverWait(driver, Duration.ofMillis(6000)).until(ExpectedConditions.visibilityOf(CRMTicketOption));
+            new WebDriverWait(driver, Duration.ofMillis(6000)).until(ExpectedConditions.elementToBeClickable(CRMTicketOption));
             HelpersMethod.JScriptClick(driver, CRMTicketOption, 4000);
             exists = true;
             if (HelpersMethod.IsExists("//div[@class='loader']", driver))
             {
-                new WebDriverWait(driver,4000).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+                new WebDriverWait(driver,Duration.ofMillis(4000)).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
             }
         }
         catch (Exception e){}
@@ -587,7 +588,7 @@ public class CRMPage {
             }
             if (HelpersMethod.IsExists("//div[@class='loader']", driver))
             {
-                new WebDriverWait(driver,4000).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+                new WebDriverWait(driver, Duration.ofMillis(4000)).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
             }
             if (status.equals("loading"))
             {
@@ -595,13 +596,13 @@ public class CRMPage {
             }
             HelpersMethod.WaitElementPresent(driver, "xpath", "//button[@id='QuestionModalButton0']", 2400);
             WebElement popUpOkBtn = HelpersMethod.FindByElement(driver, "xpath", "//button[@id='QuestionModalButton0']");
-            new WebDriverWait(driver, 4000).until(ExpectedConditions.visibilityOf(popUpOkBtn));
-            new WebDriverWait(driver, 4000).until(ExpectedConditions.elementToBeClickable(popUpOkBtn));
+            new WebDriverWait(driver, Duration.ofMillis(4000)).until(ExpectedConditions.visibilityOf(popUpOkBtn));
+            new WebDriverWait(driver, Duration.ofMillis(4000)).until(ExpectedConditions.elementToBeClickable(popUpOkBtn));
             HelpersMethod.ActClick(driver, popUpOkBtn, 4000);
             exists = true;
             if (HelpersMethod.IsExists("//div[@class='loader']", driver))
             {
-                new WebDriverWait(driver,4000).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+                new WebDriverWait(driver, Duration.ofMillis(4000)).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
             }
         }
         catch (Exception e){}
@@ -631,7 +632,7 @@ public class CRMPage {
             }
             if (HelpersMethod.IsExists("//div[@class='loader']", driver))
             {
-                new WebDriverWait(driver,4000).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+                new WebDriverWait(driver,Duration.ofMillis(4000)).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
             }
             if (status.equals("loading"))
             {
@@ -639,13 +640,13 @@ public class CRMPage {
             }
             HelpersMethod.WaitElementPresent(driver, "xpath", "//span[@class='k-link' and text()='Purge']", 2400);
             WebElement PurgeTab = HelpersMethod.FindByElement(driver, "xpath", "//span[@class='k-link' and text()='Purge']");
-            new WebDriverWait(driver, 4000).until(ExpectedConditions.visibilityOf(PurgeTab));
-            new WebDriverWait(driver, 4000).until(ExpectedConditions.elementToBeClickable(PurgeTab));
+            new WebDriverWait(driver, Duration.ofMillis(4000)).until(ExpectedConditions.visibilityOf(PurgeTab));
+            new WebDriverWait(driver, Duration.ofMillis(4000)).until(ExpectedConditions.elementToBeClickable(PurgeTab));
             HelpersMethod.ActClick(driver, PurgeTab, 2000);
             exists = true;
             if (HelpersMethod.IsExists("//div[@class='loader']", driver))
             {
-                new WebDriverWait(driver,4000).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+                new WebDriverWait(driver, Duration.ofMillis(4000)).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
             }
         }
         catch (Exception e){}
@@ -682,7 +683,7 @@ public class CRMPage {
             }
             if (HelpersMethod.IsExists("//div[@class='loader']", driver))
             {
-                new WebDriverWait(driver,4000).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+                new WebDriverWait(driver, Duration.ofMillis(4000)).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
             }
             if (status.equals("loading"))
             {
@@ -690,13 +691,13 @@ public class CRMPage {
             }
             HelpersMethod.WaitElementPresent(driver, "xpath", "//span[@class='k-link' and text()='Notifications']", 2400);
             WebElement NotificationsTab = HelpersMethod.FindByElement(driver, "xpath", "//span[@class='k-link' and text()='Notifications']");
-            new WebDriverWait(driver, 4000).until(ExpectedConditions.visibilityOf(NotificationsTab));
-            new WebDriverWait(driver, 4000).until(ExpectedConditions.elementToBeClickable(NotificationsTab));
+            new WebDriverWait(driver, Duration.ofMillis(4000)).until(ExpectedConditions.visibilityOf(NotificationsTab));
+            new WebDriverWait(driver, Duration.ofMillis(4000)).until(ExpectedConditions.elementToBeClickable(NotificationsTab));
             HelpersMethod.ActClick(driver, NotificationsTab, 3000);
             exists = true;
             if (HelpersMethod.IsExists("//div[@class='loader']", driver))
             {
-                new WebDriverWait(driver,4000).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+                new WebDriverWait(driver,Duration.ofMillis(4000)).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
             }
         }
         catch (Exception e){}
@@ -705,8 +706,8 @@ public class CRMPage {
     public void verifyNotificationPageOpened(){
         HelpersMethod.WaitElementPresent(driver, "xpath", "//span[@class='i-card__header__title i-card__header__title--on i-card__title']", 2400);
         WebElement NotificationTitle = HelpersMethod.FindByElement(driver, "xpath", "//span[@class='i-card__header__title i-card__header__title--on i-card__title']");
-        new WebDriverWait(driver, 4000).until(ExpectedConditions.visibilityOf(NotificationTitle));
-        new WebDriverWait(driver, 4000).until(ExpectedConditions.elementToBeClickable(NotificationTitle));
+        new WebDriverWait(driver, Duration.ofMillis(4000)).until(ExpectedConditions.visibilityOf(NotificationTitle));
+        new WebDriverWait(driver, Duration.ofMillis(4000)).until(ExpectedConditions.elementToBeClickable(NotificationTitle));
         //WebElement NotificationTitle=driver.findElement(By.xpath("//span[@class='i-card__header__title i-card__header__title--on i-card__title']"));
 
         String ActualNotyTitle=NotificationTitle.getText();
@@ -740,7 +741,7 @@ public class CRMPage {
             }
             if (HelpersMethod.IsExists("//div[@class='loader']", driver))
             {
-                new WebDriverWait(driver,4000).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+                new WebDriverWait(driver, Duration.ofMillis(4000)).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
             }
             if (status.equals("loading"))
             {
@@ -748,13 +749,13 @@ public class CRMPage {
             }
             HelpersMethod.WaitElementPresent(driver, "xpath", "//button[@class='k-button k-flat k-button-icontext  i-button--icon-only']", 2400);
             WebElement AddNotificationBtn = HelpersMethod.FindByElement(driver, "xpath", "//button[@class='k-button k-flat k-button-icontext  i-button--icon-only']");
-            new WebDriverWait(driver, 4000).until(ExpectedConditions.visibilityOf(AddNotificationBtn));
-            new WebDriverWait(driver, 4000).until(ExpectedConditions.elementToBeClickable(AddNotificationBtn));
+            new WebDriverWait(driver, Duration.ofMillis(4000)).until(ExpectedConditions.visibilityOf(AddNotificationBtn));
+            new WebDriverWait(driver, Duration.ofMillis(4000)).until(ExpectedConditions.elementToBeClickable(AddNotificationBtn));
             HelpersMethod.ActClick(driver, AddNotificationBtn, 2000);
             exists = true;
             if (HelpersMethod.IsExists("//div[@class='loader']", driver))
             {
-                new WebDriverWait(driver,4000).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+                new WebDriverWait(driver, Duration.ofMillis(4000)).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
             }
         }
         catch (Exception e){}
@@ -854,7 +855,7 @@ public class CRMPage {
             }
             if (HelpersMethod.IsExists("//div[@class='loader']", driver))
             {
-                new WebDriverWait(driver,4000).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+                new WebDriverWait(driver,Duration.ofMillis(4000)).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
             }
             if (status.equals("loading"))
             {
@@ -862,13 +863,13 @@ public class CRMPage {
             }
             HelpersMethod.WaitElementPresent(driver, "xpath", "//button[@id='ModalButton0']", 2400);
             WebElement ClickCancelBtn = HelpersMethod.FindByElement(driver, "xpath", "//button[@id='ModalButton0']");
-            new WebDriverWait(driver, 4000).until(ExpectedConditions.visibilityOf(ClickCancelBtn));
-            new WebDriverWait(driver, 4000).until(ExpectedConditions.elementToBeClickable(ClickCancelBtn));
+            new WebDriverWait(driver, Duration.ofMillis(4000)).until(ExpectedConditions.visibilityOf(ClickCancelBtn));
+            new WebDriverWait(driver, Duration.ofMillis(4000)).until(ExpectedConditions.elementToBeClickable(ClickCancelBtn));
             HelpersMethod.ActClick(driver, ClickCancelBtn, 2000);
             exists = true;
             if (HelpersMethod.IsExists("//div[@class='loader']", driver))
             {
-                new WebDriverWait(driver,4000).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+                new WebDriverWait(driver, Duration.ofMillis(4000)).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
             }
         }
         catch (Exception e){}
@@ -964,7 +965,7 @@ public class CRMPage {
             }
             if (HelpersMethod.IsExists("//div[@class='loader']", driver))
             {
-                new WebDriverWait(driver,4000).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+                new WebDriverWait(driver, Duration.ofMillis(4000)).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
             }
             if (status.equals("loading"))
             {
@@ -972,13 +973,13 @@ public class CRMPage {
             }
             HelpersMethod.WaitElementPresent(driver, "xpath", "//button[@id='CancelBtn']", 2400);
             WebElement CancelBtnFromPopUp = HelpersMethod.FindByElement(driver, "xpath", "//button[@id='CancelBtn']");
-            new WebDriverWait(driver, 4000).until(ExpectedConditions.visibilityOf(CancelBtnFromPopUp));
-            new WebDriverWait(driver, 4000).until(ExpectedConditions.elementToBeClickable(CancelBtnFromPopUp));
+            new WebDriverWait(driver, Duration.ofMillis(4000)).until(ExpectedConditions.visibilityOf(CancelBtnFromPopUp));
+            new WebDriverWait(driver, Duration.ofMillis(4000)).until(ExpectedConditions.elementToBeClickable(CancelBtnFromPopUp));
             HelpersMethod.ActClick(driver, CancelBtnFromPopUp, 2000);
             exists = true;
             if (HelpersMethod.IsExists("//div[@class='loader']", driver))
             {
-                new WebDriverWait(driver,4000).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+                new WebDriverWait(driver, Duration.ofMillis(4000)).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
             }
         }
         catch (Exception e){}
@@ -999,7 +1000,7 @@ public class CRMPage {
             }
             if (HelpersMethod.IsExists("//div[@class='loader']", driver))
             {
-                new WebDriverWait(driver,4000).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+                new WebDriverWait(driver,Duration.ofMillis(4000)).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
             }
             if (status.equals("loading"))
             {
@@ -1007,13 +1008,13 @@ public class CRMPage {
             }
             HelpersMethod.WaitElementPresent(driver, "xpath", "//button[@id='OKBtn']", 2400);
             WebElement CancelBtnFromPopUp = HelpersMethod.FindByElement(driver, "xpath", "//button[@id='OKBtn']");
-            new WebDriverWait(driver, 4000).until(ExpectedConditions.visibilityOf(CancelBtnFromPopUp));
-            new WebDriverWait(driver, 4000).until(ExpectedConditions.elementToBeClickable(CancelBtnFromPopUp));
+            new WebDriverWait(driver, Duration.ofMillis(4000)).until(ExpectedConditions.visibilityOf(CancelBtnFromPopUp));
+            new WebDriverWait(driver, Duration.ofMillis(4000)).until(ExpectedConditions.elementToBeClickable(CancelBtnFromPopUp));
             HelpersMethod.ActClick(driver, CancelBtnFromPopUp, 2000);
             exists = true;
             if (HelpersMethod.IsExists("//div[@class='loader']", driver))
             {
-                new WebDriverWait(driver,4000).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+                new WebDriverWait(driver, Duration.ofMillis(4000)).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
             }
         }
         catch (Exception e){}
@@ -1033,7 +1034,7 @@ public class CRMPage {
             }
             if (HelpersMethod.IsExists("//div[@class='loader']", driver))
             {
-                new WebDriverWait(driver,4000).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+                new WebDriverWait(driver, Duration.ofMillis(4000)).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
             }
             if (status.equals("loading"))
             {
@@ -1041,13 +1042,13 @@ public class CRMPage {
             }
             HelpersMethod.WaitElementPresent(driver, "xpath", "//button[@class='k-button k-flat k-button-icontext']", 2400);
             WebElement EditNotyBtn = HelpersMethod.FindByElement(driver, "xpath", "//button[@class='k-button k-flat k-button-icontext']");
-            new WebDriverWait(driver, 4000).until(ExpectedConditions.visibilityOf(EditNotyBtn));
-            new WebDriverWait(driver, 4000).until(ExpectedConditions.elementToBeClickable(EditNotyBtn));
+            new WebDriverWait(driver, Duration.ofMillis(4000)).until(ExpectedConditions.visibilityOf(EditNotyBtn));
+            new WebDriverWait(driver, Duration.ofMillis(4000)).until(ExpectedConditions.elementToBeClickable(EditNotyBtn));
             HelpersMethod.ActClick(driver, EditNotyBtn, 2000);
             exists = true;
             if (HelpersMethod.IsExists("//div[@class='loader']", driver))
             {
-                new WebDriverWait(driver,4000).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+                new WebDriverWait(driver,Duration.ofMillis(4000)).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
             }
         }
         catch (Exception e){}
@@ -1089,7 +1090,7 @@ public class CRMPage {
             }
             if (HelpersMethod.IsExists("//div[@class='loader']", driver))
             {
-                new WebDriverWait(driver,4000).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+                new WebDriverWait(driver, Duration.ofMillis(4000)).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
             }
             if (status.equals("loading"))
             {
@@ -1097,13 +1098,13 @@ public class CRMPage {
             }
             HelpersMethod.WaitElementPresent(driver, "xpath", "//span[@class='k-link' and text()='Configure']", 2400);
             WebElement ConfigureTab = HelpersMethod.FindByElement(driver, "xpath", "//span[@class='k-link' and text()='Configure']");
-            new WebDriverWait(driver, 4000).until(ExpectedConditions.visibilityOf(ConfigureTab));
-            new WebDriverWait(driver, 4000).until(ExpectedConditions.elementToBeClickable(ConfigureTab));
+            new WebDriverWait(driver, Duration.ofMillis(4000)).until(ExpectedConditions.visibilityOf(ConfigureTab));
+            new WebDriverWait(driver, Duration.ofMillis(4000)).until(ExpectedConditions.elementToBeClickable(ConfigureTab));
             HelpersMethod.ActClick(driver, ConfigureTab, 3000);
             exists = true;
             if (HelpersMethod.IsExists("//div[@class='loader']", driver))
             {
-                new WebDriverWait(driver,4000).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+                new WebDriverWait(driver, Duration.ofMillis(4000)).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
             }
         }
         catch (Exception e){}
@@ -1169,7 +1170,7 @@ public class CRMPage {
         }
     }
     public void verifyRightSideGridConfig() {
-        WebDriverWait wait = new WebDriverWait(driver, 10); // Initialize WebDriverWait with an appropriate timeout value
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(1000)); // Initialize WebDriverWait with an appropriate timeout value
         //Locate the table element containing the options
         WebElement TableGrid = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//table[@class='k-grid-table']"))); // Locate the table element on the right side using an appropriate selector
         if (TableGrid.isDisplayed()) {
@@ -1272,7 +1273,7 @@ public class CRMPage {
             }
             if (HelpersMethod.IsExists("//div[@class='loader']", driver))
             {
-                new WebDriverWait(driver,4000).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+                new WebDriverWait(driver,Duration.ofMillis(4000)).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
             }
             if (status.equals("loading"))
             {
@@ -1280,13 +1281,13 @@ public class CRMPage {
             }
             HelpersMethod.WaitElementPresent(driver, "xpath", "//table//tr[last()]/td[1]", 2400);
             WebElement SelectRowToEdit = HelpersMethod.FindByElement(driver, "xpath", "//table//tr[last()]/td[1]");
-            new WebDriverWait(driver, 4000).until(ExpectedConditions.visibilityOf(SelectRowToEdit));
-            new WebDriverWait(driver, 4000).until(ExpectedConditions.elementToBeClickable(SelectRowToEdit));
+            new WebDriverWait(driver, Duration.ofMillis(4000)).until(ExpectedConditions.visibilityOf(SelectRowToEdit));
+            new WebDriverWait(driver,Duration.ofMillis(4000)).until(ExpectedConditions.elementToBeClickable(SelectRowToEdit));
             HelpersMethod.ActClick(driver, SelectRowToEdit, 2000);
             exists = true;
             if (HelpersMethod.IsExists("//div[@class='loader']", driver))
             {
-                new WebDriverWait(driver,4000).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+                new WebDriverWait(driver,Duration.ofMillis(4000)).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
             }
         }
         catch (Exception e){}
@@ -1452,7 +1453,7 @@ public class CRMPage {
             }
             if (HelpersMethod.IsExists("//div[@class='loader']", driver))
             {
-                new WebDriverWait(driver,4000).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+                new WebDriverWait(driver,Duration.ofMillis(4000)).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
             }
             if (status.equals("loading"))
             {
@@ -1460,13 +1461,13 @@ public class CRMPage {
             }
             HelpersMethod.WaitElementPresent(driver, "xpath", "//button[@id='OKBtn']", 2400);
             WebElement OkBtnOfDelConfig = HelpersMethod.FindByElement(driver, "xpath", "//button[@id='OKBtn']");
-            new WebDriverWait(driver, 4000).until(ExpectedConditions.visibilityOf(OkBtnOfDelConfig));
-            new WebDriverWait(driver, 4000).until(ExpectedConditions.elementToBeClickable(OkBtnOfDelConfig));
+            new WebDriverWait(driver, Duration.ofMillis(4000)).until(ExpectedConditions.visibilityOf(OkBtnOfDelConfig));
+            new WebDriverWait(driver, Duration.ofMillis(4000)).until(ExpectedConditions.elementToBeClickable(OkBtnOfDelConfig));
             HelpersMethod.ActClick(driver, OkBtnOfDelConfig, 2000);
             exists = true;
             if (HelpersMethod.IsExists("//div[@class='loader']", driver))
             {
-                new WebDriverWait(driver,4000).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+                new WebDriverWait(driver, Duration.ofMillis(4000)).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
             }
         }
         catch (Exception e){}
@@ -1515,7 +1516,7 @@ public class CRMPage {
             }
             if (HelpersMethod.IsExists("//div[@class='loader']", driver))
             {
-                new WebDriverWait(driver,4000).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+                new WebDriverWait(driver,Duration.ofMillis(4000)).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
             }
             if (status.equals("loading"))
             {
@@ -1523,13 +1524,13 @@ public class CRMPage {
             }
             HelpersMethod.WaitElementPresent(driver, "xpath", "//div[@class='settings-container admin-mode']", 2400);
             WebElement SettingsBtn = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='settings-container admin-mode']");
-            new WebDriverWait(driver, 4000).until(ExpectedConditions.visibilityOf(SettingsBtn));
-            new WebDriverWait(driver, 4000).until(ExpectedConditions.elementToBeClickable(SettingsBtn));
+            new WebDriverWait(driver, Duration.ofMillis(4000)).until(ExpectedConditions.visibilityOf(SettingsBtn));
+            new WebDriverWait(driver, Duration.ofMillis(4000)).until(ExpectedConditions.elementToBeClickable(SettingsBtn));
             HelpersMethod.ActClick(driver, SettingsBtn, 5000);
             exists = true;
             if (HelpersMethod.IsExists("//div[@class='loader']", driver))
             {
-                new WebDriverWait(driver,4000).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+                new WebDriverWait(driver,Duration.ofMillis(4000)).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
             }
         }
         catch (Exception e){}
@@ -1577,7 +1578,7 @@ public class CRMPage {
             }
             if (HelpersMethod.IsExists("//div[@class='loader']", driver))
             {
-                new WebDriverWait(driver,4000).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+                new WebDriverWait(driver, Duration.ofMillis(4000)).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
             }
             if (status.equals("loading"))
             {
@@ -1585,13 +1586,13 @@ public class CRMPage {
             }
             HelpersMethod.WaitElementPresent(driver, "xpath", "//span[@class='menu-item-text' and text()='CRM Tickets']", 2400);
             WebElement ClientCRMModule = HelpersMethod.FindByElement(driver, "xpath", "//span[@class='menu-item-text' and text()='CRM Tickets']");
-            new WebDriverWait(driver, 4000).until(ExpectedConditions.visibilityOf(ClientCRMModule));
-            new WebDriverWait(driver, 4000).until(ExpectedConditions.elementToBeClickable(ClientCRMModule));
+            new WebDriverWait(driver, Duration.ofMillis(4000)).until(ExpectedConditions.visibilityOf(ClientCRMModule));
+            new WebDriverWait(driver, Duration.ofMillis(4000)).until(ExpectedConditions.elementToBeClickable(ClientCRMModule));
             HelpersMethod.ActClick(driver, ClientCRMModule, 2000);
             exists = true;
             if (HelpersMethod.IsExists("//div[@class='loader']", driver))
             {
-                new WebDriverWait(driver,4000).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+                new WebDriverWait(driver, Duration.ofMillis(4000)).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
             }
         }
         catch (Exception e){}
@@ -1604,7 +1605,7 @@ public class CRMPage {
         //HelpersMethod.waitTillPageLoaded(driver, 2000);
     }
     public void verifyClientCRMPageOpened(){
-        WebDriverWait wait = new WebDriverWait(driver, 10);
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(1000));
         WebElement CRMPageTitle = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[@class='i-breadcrumb-item__button' and text()='CRM Tickets']")));
 
         //WebElement CRMPageTitle=driver.findElement(By.xpath("//button[@class='i-breadcrumb-item__button' and text()='CRM Tickets']"));
@@ -1811,7 +1812,7 @@ public class CRMPage {
     }
     ///For Module configuration
     public void clickOnModuleOption() throws InterruptedException {
-        WebDriverWait wait = new WebDriverWait(driver, 30);
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(3000));
         WebElement ModuleOption = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='list']//button[4]")));
         HelpersMethod.ActClick(driver, ModuleOption, 600);
         //ModuleOption.click();
@@ -1901,7 +1902,7 @@ public class CRMPage {
     }
 
     public void clickOnTypeOption() throws InterruptedException {
-        WebDriverWait wait = new WebDriverWait(driver, 10);
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(1000));
         WebElement TypeOption = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='list']//button[6]")));
         //TypeOption.click();
         HelpersMethod.ActClick(driver, TypeOption, 100);
@@ -1961,7 +1962,7 @@ public class CRMPage {
     }
 
     public void clickOnReasonOption() throws InterruptedException {
-        WebDriverWait wait = new WebDriverWait(driver, 10);
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(1000));
         WebElement ReasonOption = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='list']//button[2]")));
         //ReasonOption.click();
         HelpersMethod.ActClick(driver, ReasonOption, 100);
@@ -2026,7 +2027,7 @@ public class CRMPage {
     }
 
     public void clickOnCategoryOption() throws InterruptedException {
-        WebDriverWait wait = new WebDriverWait(driver, 10);
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(1000));
         WebElement CategoryOption = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='list']//button[7]")));
         //CategoryOption.click();
         HelpersMethod.ActClick(driver, CategoryOption, 100);
@@ -2081,7 +2082,7 @@ public class CRMPage {
     }
 
     public void clickOnActionOption() throws InterruptedException {
-        WebDriverWait wait = new WebDriverWait(driver, 10);
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(1000));
         WebElement ActionOption = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='list']//button[8]")));
         HelpersMethod.ActClick(driver, ActionOption, 100);
     }
@@ -2119,7 +2120,7 @@ public class CRMPage {
     }
 
     public void clickOnFeedbackOption() throws InterruptedException {
-        WebDriverWait wait = new WebDriverWait(driver, 10);
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(1000));
         WebElement FeedbackOption = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='list']//button[9]")));
         HelpersMethod.ActClick(driver, FeedbackOption, 100);
     }
@@ -2157,7 +2158,7 @@ public class CRMPage {
     }
 
     public void clickOnFeedbackTypeOption() throws InterruptedException {
-        WebDriverWait wait = new WebDriverWait(driver, 10);
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(1000));
         WebElement FeedbackTypeOption = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='list']//button[10]")));
         HelpersMethod.ActClick(driver, FeedbackTypeOption, 100);
     }

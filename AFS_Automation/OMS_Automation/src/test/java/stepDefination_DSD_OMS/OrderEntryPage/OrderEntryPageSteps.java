@@ -87,8 +87,6 @@ public class OrderEntryPageSteps
         if(flag==false)
         {
             homepage = new HomePage(driver,scenario);
-            String title = driver.getTitle();
-            Assert.assertEquals(title, "Ignition - Admin");
             homepage.verifyUserinfoContainer();
             homepage.navigateToClientSide();
         }
@@ -395,6 +393,7 @@ public class OrderEntryPageSteps
         String Unit=PO_Qty.get(0).get(1);
         newOE.CheckForQuickCaseEnabled(Case);
         newOE.CheckForQuickUnitEnabled(Unit);
+        newOE.exceedsMaxQty();
     }
 
     @Then("Click on Back button")

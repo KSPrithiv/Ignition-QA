@@ -1,7 +1,7 @@
 package helper;
 
-import org.openqa.selenium.Dimension;
 import org.openqa.selenium.*;
+import org.openqa.selenium.Dimension;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -9,6 +9,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.awt.*;
 import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
+import java.time.Duration;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -81,7 +82,7 @@ public class HelpersMethod
           if (HelpersMethod.IsExists("//div[@class='loader']", driver))
           {
               WebElement WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-              HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 4000);
+              HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 20000);
           }
     }
 
@@ -98,13 +99,13 @@ public class HelpersMethod
     {
         if(!ele.isDisplayed())
         {
-            WebDriverWait wait = new WebDriverWait(driver, timeOut);
+            WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis( timeOut));
             wait.until(ExpectedConditions.visibilityOf(ele));
         }
         else
         {
-            ElementNotVisibleException EleVis= new ElementNotVisibleException("Element not Visible");
-            throw EleVis;
+           // ElementNotVisibleException EleVis= new ElementNotVisibleException("Element not Visible");
+           // throw EleVis;
         }
         return true;
     }
@@ -113,20 +114,20 @@ public class HelpersMethod
     {
            if (!ele.isDisplayed())
             {
-                WebDriverWait wait = new WebDriverWait(driver,timeOut);
+                WebDriverWait wait = new WebDriverWait(driver,Duration.ofMillis(timeOut));
                 wait.until(ExpectedConditions.elementToBeClickable(ele));
             }
            else
            {
-                ElementNotVisibleException EleVis = new ElementNotVisibleException("Element not Visible");
-                throw EleVis;
+               // ElementNotVisibleException EleVis = new ElementNotVisibleException("Element not Visible");
+               // throw EleVis;
             }
            return true;
     }
 
     public static void WaitElementPresent(WebDriver driver,String selector,String val,int timeOut)
     {
-        WebDriverWait wait = new WebDriverWait(driver,timeOut);
+        WebDriverWait wait = new WebDriverWait(driver,Duration.ofMillis(timeOut));
             if(selector.equalsIgnoreCase("id"))
             {
                wait.until(ExpectedConditions.presenceOfElementLocated(By.id(val)));
@@ -177,8 +178,8 @@ public class HelpersMethod
         {((JavascriptExecutor)driver).executeScript("arguments[0].scrollIntoView(true);", ele);}
         else
         {
-            ElementNotVisibleException EleVis= new ElementNotVisibleException("Element not Visible");
-            throw EleVis;
+            //ElementNotVisibleException EleVis= new ElementNotVisibleException("Element not Visible");
+            //throw EleVis;
         }
     }
 
@@ -191,14 +192,17 @@ public class HelpersMethod
 
     public static void ScrollUpScrollBar(WebDriver driver)
     {
-           /* Actions act = new Actions(driver);
-            act.sendKeys(Keys.PAGE_UP).build().perform();*/
         driver.findElement(By.cssSelector("body")).sendKeys(Keys.HOME);
+    }
+
+    public static void ScrollDownScrollBar(WebDriver driver)
+    {
+        driver.findElement(By.cssSelector("body")).sendKeys(Keys.END);
     }
 
     public static void EnterText(WebDriver driver,WebElement element,int timeOut ,String val)
     {
-            new WebDriverWait(driver,timeOut).until(ExpectedConditions.visibilityOf(element));
+            new WebDriverWait(driver,Duration.ofMillis(timeOut)).until(ExpectedConditions.visibilityOf(element));
             if ((element.isDisplayed() && element.isEnabled()) == true)
             {
                 element.sendKeys(val);
@@ -207,27 +211,27 @@ public class HelpersMethod
 
     public static void ClearText(WebDriver driver,WebElement element,int timeOut)
     {
-            new WebDriverWait(driver,timeOut).until(ExpectedConditions.visibilityOf(element));
+            new WebDriverWait(driver,Duration.ofMillis(timeOut)).until(ExpectedConditions.visibilityOf(element));
             if (element.isDisplayed() && element.isEnabled() == true)
             {
                 element.clear();
             }
             else
             {
-                ElementNotVisibleException EleVis = new ElementNotVisibleException("Element not Visible");
-                throw EleVis;
+               // ElementNotVisibleException EleVis = new ElementNotVisibleException("Element not Visible");
+               // throw EleVis;
             }
     }
 
     public static void ClickBut(WebDriver driver,WebElement element,int timeOut)
     {
-            new WebDriverWait(driver,timeOut).until(ExpectedConditions.elementToBeClickable(element));
+            new WebDriverWait(driver,Duration.ofMillis(timeOut)).until(ExpectedConditions.elementToBeClickable(element));
             element.click();
     }
 
     public static void ActSendKey(WebDriver driver,WebElement element,int timeOut,String val) throws InterruptedException
     {
-        new WebDriverWait(driver,timeOut).until(ExpectedConditions.visibilityOf(element));
+        new WebDriverWait(driver,Duration.ofMillis(timeOut)).until(ExpectedConditions.visibilityOf(element));
                 Actions act = new Actions(driver);
                 act.moveToElement(element).build().perform();
                 element.sendKeys(val);
@@ -237,7 +241,7 @@ public class HelpersMethod
 
     public static void ActClearKey(WebDriver driver,WebElement element,int timeOut)
     {
-        new WebDriverWait(driver,timeOut).until(ExpectedConditions.visibilityOf(element));
+        new WebDriverWait(driver,Duration.ofMillis(timeOut)).until(ExpectedConditions.visibilityOf(element));
                 Actions act = new Actions(driver);
                 act.click(element).sendKeys(Keys.END).keyDown(Keys.SHIFT).sendKeys(Keys.HOME).keyUp(Keys.SHIFT).sendKeys(Keys.BACK_SPACE).perform();
     }
@@ -251,8 +255,8 @@ public class HelpersMethod
             }
             else
             {
-                ElementNotVisibleException EleVis = new ElementNotVisibleException("Element not Visible");
-                throw EleVis;
+                //ElementNotVisibleException EleVis = new ElementNotVisibleException("Element not Visible");
+                //throw EleVis;
             }
             return Read_Val;
     }
@@ -288,7 +292,7 @@ public class HelpersMethod
 
     public static void ActClick(WebDriver driver,WebElement element,int timeOut) throws InterruptedException
     {
-            new WebDriverWait(driver,timeOut).until(ExpectedConditions.elementToBeClickable(element));
+            new WebDriverWait(driver,Duration.ofMillis(timeOut)).until(ExpectedConditions.elementToBeClickable(element));
             Actions act = new Actions(driver);
             act.moveToElement(element).build().perform();
             act.click(element).build().perform();
@@ -296,7 +300,7 @@ public class HelpersMethod
 
     public static void JScriptClick(WebDriver driver,WebElement element,int timeOut)
     {
-        new WebDriverWait(driver,timeOut).until(ExpectedConditions.elementToBeClickable(element));
+        new WebDriverWait(driver,Duration.ofMillis(timeOut)).until(ExpectedConditions.elementToBeClickable(element));
         if (element.isDisplayed() && element.isEnabled())
         {
             JavascriptExecutor executor = (JavascriptExecutor) driver;
@@ -304,14 +308,14 @@ public class HelpersMethod
         }
         else
         {
-            ElementNotVisibleException EleVis= new ElementNotVisibleException("Element not Visible");
-            throw EleVis;
+            //ElementNotVisibleException EleVis= new ElementNotVisibleException("Element not Visible");
+            //throw EleVis;
         }
     }
 
     public static void JSSetValueEle(WebDriver driver,WebElement element,int timeOut,String val)
     {
-        new WebDriverWait(driver,timeOut).until(ExpectedConditions.visibilityOf(element));
+        new WebDriverWait(driver,Duration.ofMillis(timeOut)).until(ExpectedConditions.visibilityOf(element));
         if(element.isDisplayed() && element.isEnabled())
         {
             JavascriptExecutor js = (JavascriptExecutor) driver;
@@ -319,24 +323,26 @@ public class HelpersMethod
         }
         else
         {
-            ElementNotVisibleException EleVis= new ElementNotVisibleException("Element not Visible");
-            throw EleVis;
+            //ElementNotVisibleException EleVis= new ElementNotVisibleException("Element not Visible");
+            //throw EleVis;
         }
     }
 
     public static String JSGetValueEle(WebDriver driver,WebElement element,int timeOut)
     {
-        new WebDriverWait(driver,timeOut).until(ExpectedConditions.visibilityOf(element));
+        String value=null;
+        new WebDriverWait(driver,Duration.ofMillis(timeOut)).until(ExpectedConditions.visibilityOf(element));
         if(element.isDisplayed() && element.isEnabled())
         {
             JavascriptExecutor js=(JavascriptExecutor) driver;
-            return js.executeScript("return arguments[0].value", element).toString();
+            value= js.executeScript("return arguments[0].value", element).toString();
         }
         else
         {
-            ElementNotVisibleException EleVis= new ElementNotVisibleException("Element not Visible");
-            throw EleVis;
+            //ElementNotVisibleException EleVis= new ElementNotVisibleException("Element not Visible");
+            //throw EleVis;
         }
+        return value;
     }
 
     //To check whether element is enabled or not
@@ -400,7 +406,7 @@ public class HelpersMethod
 
     public static void ActScroll(WebDriver driver,WebElement element,int timeOut)
     {
-            new WebDriverWait(driver,timeOut).until(ExpectedConditions.elementToBeClickable(element));
+            new WebDriverWait(driver,Duration.ofMillis(timeOut)).until(ExpectedConditions.elementToBeClickable(element));
             Actions act = new Actions(driver);
             act.moveToElement(element);
             act.perform();
@@ -466,8 +472,8 @@ public class HelpersMethod
     {
         WebElement WebEle=null;
         Actions act1= new Actions(driver);
-        new WebDriverWait(driver,2000).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class,'k-popup k-child-animation-container')]"))));
-        //HelpersMethod.waitTillElementLocatedDisplayed(driver,"xpath","//div[contains(@class,'k-popup k-child-animation-container')]",1000);
+        new WebDriverWait(driver,Duration.ofMillis(2000)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class,'k-popup k-child-animation-container')]"))));
+
         // to fetch the web element of the modal container
         WebElement menuContainer = HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-popup k-child-animation-container')]");
         List<WebElement> Options=menuContainer.findElements (By.xpath(".//ul/li"));
@@ -577,28 +583,28 @@ public class HelpersMethod
     /*For clearing input box*/
     public static void clearText(WebDriver driver,WebElement element,int timeOut)
     {
-        new WebDriverWait(driver,timeOut).until(ExpectedConditions.visibilityOf(element));
+        new WebDriverWait(driver,Duration.ofMillis(timeOut)).until(ExpectedConditions.visibilityOf(element));
         element.clear();
     }
 
     /*Send key with wait method*/
     public static void sendKeys(WebDriver driver,WebElement element,int timeOut,String value)
     {
-        new WebDriverWait(driver,timeOut).until(ExpectedConditions.visibilityOf(element));
+        new WebDriverWait(driver,Duration.ofMillis(timeOut)).until(ExpectedConditions.visibilityOf(element));
         element.sendKeys(value);
     }
 
     /*For clicking any button*/
     public static void clickOn(WebDriver driver,WebElement element,int timeOut)
     {
-        new WebDriverWait(driver,timeOut).until(ExpectedConditions.elementToBeClickable(element));
+        new WebDriverWait(driver,Duration.ofMillis(timeOut)).until(ExpectedConditions.elementToBeClickable(element));
         element.click();
     }
 
     /*For selecting some option from list of options*/
     public static void SelectingOption(WebDriver driver,WebElement element,int timeOut,String text_option) throws InterruptedException
     {
-        new WebDriverWait(driver,timeOut).until(ExpectedConditions.elementToBeClickable(element));
+        new WebDriverWait(driver,Duration.ofMillis(timeOut)).until(ExpectedConditions.elementToBeClickable(element));
         element.click();
 
         List<WebElement> options =element.findElements(By.tagName("li"));
@@ -615,14 +621,14 @@ public class HelpersMethod
     /*Wait till visiblity of element*/
     public static boolean waitTillElementDisplayed(WebDriver driver,WebElement element,int timeOut)
     {
-        new WebDriverWait(driver,timeOut).until(ExpectedConditions.visibilityOf(element));
+        new WebDriverWait(driver,Duration.ofMillis(timeOut)).until(ExpectedConditions.visibilityOf(element));
         return true;
     }
 
     /*Wait till Visiblity of element located at*/
     public static boolean waitTillElementLocatedDisplayed(WebDriver driver,String selector,String val,int timeOut)
     {
-        WebDriverWait wait = new WebDriverWait(driver, timeOut);
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(timeOut));
         if (selector.equalsIgnoreCase("id"))
         {
             wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(val)));
@@ -644,7 +650,7 @@ public class HelpersMethod
 
     public static boolean waitTillTitleContains(WebDriver driver, String title, int timeOut)
     {
-        new WebDriverWait(driver,timeOut).until(ExpectedConditions.titleIs(title));
+        new WebDriverWait(driver,Duration.ofMillis(timeOut)).until(ExpectedConditions.titleIs(title));
         return true;
     }
 
@@ -656,11 +662,11 @@ public class HelpersMethod
 
     public static boolean waitTillLoadingWheelDisappears(WebDriver driver,WebElement element,int timeOut)
     {
-       new WebDriverWait(driver,timeOut).until(ExpectedConditions.invisibilityOf(element));
+       new WebDriverWait(driver,Duration.ofMillis(timeOut)).until(ExpectedConditions.invisibilityOf(element));
        return true;
     }
 
-    //Code to handle page load issues. Method that can be used when java scripts are still running behind and not letting automation cod to execute
+    //Code to handle page load issues. Method that can be used when java scripts are still running behind and not letting automation code to execute
     public static boolean waitTillLoadingPage(WebDriver driver)
     {
         String pageLoadStatus="";
@@ -706,7 +712,7 @@ public class HelpersMethod
             HelpersMethod.waitTillLoadingPage(driver);
         }
         //Click on Add filter button
-        new WebDriverWait(driver,60).until(ExpectedConditions.elementToBeClickable(By.xpath("//button/descendant::span[contains(text(),'Add filter')]")));
+        new WebDriverWait(driver,Duration.ofMillis(60)).until(ExpectedConditions.elementToBeClickable(By.xpath("//button/descendant::span[contains(text(),'Add filter')]")));
         driver.findElement(By.xpath("//button/descendant::span[contains(text(),'Add filter')]")).click();
 
         waitTillElementLocatedDisplayed(driver,"xpath","//div[contains(@class,'k-animation-container k-animation-container-relative k-animation-container-shown')]",40);
@@ -722,12 +728,12 @@ public class HelpersMethod
         WebElement Search1=modalContainer1.findElement(By.xpath(".//input[contains(@class,'i-search-box__input')]"));
         ActSendKey(driver,Search1,60,SearchBoxValue);
         //Click on Check box
-        new WebDriverWait(driver,40).until(ExpectedConditions.elementToBeClickable(By.xpath(".//input[contains(@class,'k-checkbox')]")));
+        new WebDriverWait(driver,Duration.ofMillis(60)).until(ExpectedConditions.elementToBeClickable(By.xpath(".//input[contains(@class,'k-checkbox')]")));
         WebElement WebEle1=modalContainer1.findElement(By.xpath(".//input[contains(@class,'k-checkbox')]"));
         ClickBut(driver,WebEle1,20);
 
         //Identify radio button and click on Radio button
-        new WebDriverWait(driver,40).until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath("//div[contains(@class,'i-btn-radio filter-radio')]/ancestor::div[contains(@class,'k-child-animation-container')]")));
+        new WebDriverWait(driver,Duration.ofMillis(40)).until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath("//div[contains(@class,'i-btn-radio filter-radio')]/ancestor::div[contains(@class,'k-child-animation-container')]")));
         waitTillElementLocatedDisplayed(driver,"xpath","//div[contains(@class,'k-child-animation-container')]/descendant::form[contains(@class,'i-filter-popup')]",40);
         if(IsExists("//div[contains(@class,'i-btn-radio filter-radio')]/ancestor::div[contains(@class,'k-child-animation-container')]",driver))
         {
@@ -767,7 +773,7 @@ public class HelpersMethod
         WebElement WebEle;
 
         //Click on Add filter button
-        WebDriverWait wait=new WebDriverWait(driver,80);
+        WebDriverWait wait=new WebDriverWait(driver,Duration.ofMillis(80));
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(@class,'k-widget k-window k-dialog')]/descendant::button/descendant::span[contains(text(),'Add filter')]")));
         driver.findElement(By.xpath("//div[contains(@class,'k-widget k-window k-dialog')]/descendant::button/descendant::span[contains(text(),'Add filter')]")).click();
 
@@ -782,12 +788,12 @@ public class HelpersMethod
         WebElement Search1=modalContainer1.findElement(By.xpath(".//input[contains(@class,'i-search-box__input')]"));
         ActSendKey(driver,Search1,60,SearchBoxValue);
         //Click on Check box
-        new WebDriverWait(driver,40).until(ExpectedConditions.elementToBeClickable(By.xpath(".//input[contains(@class,'k-checkbox')]")));
+        new WebDriverWait(driver,Duration.ofMillis(40)).until(ExpectedConditions.elementToBeClickable(By.xpath(".//input[contains(@class,'k-checkbox')]")));
         WebElement WebEle1=modalContainer1.findElement(By.xpath(".//input[contains(@class,'k-checkbox')]"));
         ClickBut(driver,WebEle1,20);
 
         //Identify radio button and click on Radio button
-        new WebDriverWait(driver,40).until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath("//div[contains(@class,'i-btn-radio filter-radio')]/ancestor::div[contains(@class,'k-child-animation-container')]")));
+        new WebDriverWait(driver,Duration.ofMillis(40)).until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath("//div[contains(@class,'i-btn-radio filter-radio')]/ancestor::div[contains(@class,'k-child-animation-container')]")));
         waitTillElementLocatedDisplayed(driver,"xpath","//div[contains(@class,'k-child-animation-container')]/descendant::form[contains(@class,'i-filter-popup')]",40);
         if(IsExists("//div[contains(@class,'i-btn-radio filter-radio')]/ancestor::div[contains(@class,'k-child-animation-container')]",driver))
         {

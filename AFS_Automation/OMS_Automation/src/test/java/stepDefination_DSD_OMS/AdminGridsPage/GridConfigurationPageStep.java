@@ -396,4 +396,13 @@ public class GridConfigurationPageStep
         adminHomePage.EnterValueInSearchBox1(arg0,arg1);
         adminHomePage.handleSaveConfirmationPopup();
     }
+
+    @Then("User refreshes page Clicks on Permissions by drop down to select Customer Account# grid")
+    public void userRefreshesPageClicksOnPermissionsByDropDownToSelectCustomerAccountGrid() throws InterruptedException
+    {
+        adminHomePage=new AdminHomePage(driver,scenario);
+        adminHomePage.refreshPage();
+        adminHomePage.ClickPermissionBy();
+        adminHomePage.SelectCompany();
+    }
 }

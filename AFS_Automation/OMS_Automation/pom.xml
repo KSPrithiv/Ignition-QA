@@ -1,16 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>org.example</groupId>
         <artifactId>AFS_Automation</artifactId>
         <version>1.0-SNAPSHOT</version>
     </parent>
-
     <artifactId>OMS_Automation</artifactId>
-
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <java.version>1.8</java.version>
@@ -29,18 +28,16 @@
             <version>3.18.1</version>
             <scope>test</scope>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/io.github.bonigarcia/webdrivermanager -->
         <dependency>
             <groupId>io.github.bonigarcia</groupId>
             <artifactId>webdrivermanager</artifactId>
-            <version>5.2.3</version>
+            <version>5.4.1</version>
         </dependency>
-
-        <!-- https://mvnrepository.com/artifact/org.testng/testng -->
         <dependency>
-            <groupId>org.testng</groupId>
-            <artifactId>testng</artifactId>
-            <version>7.0.0</version>
-            <scope>test</scope>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>31.0.1-jre</version>
         </dependency>
         <!-- https://mvnrepository.com/artifact/io.cucumber/cucumber-junit -->
         <dependency>
@@ -92,42 +89,38 @@
             <artifactId>json-simple</artifactId>
             <version>1.1.1</version>
         </dependency>
-
         <!-- https://mvnrepository.com/artifact/net.masterthought/cucumber-reporting -->
         <dependency>
             <groupId>net.masterthought</groupId>
             <artifactId>cucumber-reporting</artifactId>
             <version>5.6.0</version>
         </dependency>
-
-        <!-- https://mvnrepository.com/artifact/net.masterthought/maven-cucumber-reporting -->
+        <!-- https://mvnrepository.com/artifact/net.masterthought/maven-cucumber-reporting
+-->
         <dependency>
             <groupId>net.masterthought</groupId>
             <artifactId>maven-cucumber-reporting</artifactId>
             <version>5.5.4</version>
         </dependency>
-
-        <!-- https://mvnrepository.com/artifact/tech.grasshopper/extentreports-cucumber6-adapter -->
+        <!-- https://mvnrepository.com/artifact/tech.grasshopper/extentreports-cucumber6-
+adapter -->
         <dependency>
             <groupId>tech.grasshopper</groupId>
             <artifactId>extentreports-cucumber6-adapter</artifactId>
             <version>2.13.0</version>
         </dependency>
-
         <!-- https://mvnrepository.com/artifact/tech.grasshopper/extent-pdf-report -->
         <dependency>
             <groupId>tech.grasshopper</groupId>
             <artifactId>extent-pdf-report</artifactId>
             <version>1.7.4</version>
         </dependency>
-
         <!-- https://mvnrepository.com/artifact/info.cukes/cucumber-java -->
         <dependency>
             <groupId>info.cukes</groupId>
             <artifactId>cucumber-java</artifactId>
             <version>1.1.3</version>
         </dependency>
-
         <!-- Dependencies for sending mail-->
         <!-- https://mvnrepository.com/artifact/com.sun.mail/javax.mail -->
         <dependency>
@@ -135,11 +128,11 @@
             <artifactId>javax.mail</artifactId>
             <version>1.6.2</version>
         </dependency>
-
+        <!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java -->
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-java</artifactId>
-            <version>3.141.59</version>
+            <version>4.11.0</version>
         </dependency>
         <dependency>
             <groupId>org.aspectj</groupId>
@@ -158,20 +151,12 @@
             <version>4.0.3</version>
             <scope>compile</scope>
         </dependency>
-
-
         <!-- https://mvnrepository.com/artifact/com.hynnet/jacob -->
         <dependency>
             <groupId>com.hynnet</groupId>
             <artifactId>jacob</artifactId>
             <version>1.18</version>
         </dependency>
-        <dependency>
-            <groupId>org.seleniumhq.selenium</groupId>
-            <artifactId>selenium-ie-driver</artifactId>
-            <version>3.141.59</version>
-        </dependency>
-
         <!--For reading multiple config files  -->
         <dependency>
             <groupId>org.aeonbits.owner</groupId>
@@ -179,14 +164,12 @@
             <version>1.0.8</version>
         </dependency>
         <!--For SQL server-->
-
         <!-- https://mvnrepository.com/artifact/net.sourceforge.jtds/jtds -->
         <dependency>
             <groupId>net.sourceforge.jtds</groupId>
             <artifactId>jtds</artifactId>
             <version>1.3.1</version>
         </dependency>
-
         <!-- https://mvnrepository.com/artifact/com.microsoft.sqlserver/mssql-jdbc -->
         <dependency>
             <groupId>com.microsoft.sqlserver</groupId>
@@ -204,32 +187,29 @@
             <version>3.1.1</version>
             <scope>test</scope>
         </dependency>
-
         <dependency>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-jar-plugin</artifactId>
             <version>2.4</version>
             <type>maven-plugin</type>
         </dependency>
-
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <version>1.18.20</version>
         </dependency>
-
         <!-- https://mvnrepository.com/artifact/com.beust/jcommander -->
         <dependency>
             <groupId>com.beust</groupId>
             <artifactId>jcommander</artifactId>
             <version>1.27</version>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-support -->
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-support</artifactId>
-            <version>3.141.59</version>
+            <version>4.11.0</version>
         </dependency>
-
         <dependency>
             <groupId>org.apache.logging.log4j</groupId>
             <artifactId>log4j-api</artifactId>
@@ -243,12 +223,7 @@
         <dependency>
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
-            <version>7.4.0</version>
-        </dependency>
-        <dependency>
-            <groupId>org.seleniumhq.selenium</groupId>
-            <artifactId>selenium-api</artifactId>
-            <version>3.141.59</version>
+            <version>7.0.0</version>
         </dependency>
     </dependencies>
     <build>
@@ -291,7 +266,8 @@
                     </archive>
                 </configuration>
             </plugin>
-            <!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-resources-plugin -->
+            <!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-resources-
+plugin -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-resources-plugin</artifactId>
@@ -322,20 +298,23 @@
                         </goals>
                         <configuration>
                             <projectName>AFS_Automation</projectName>
-                            <outputDirectory>target/cucumber-reports/advanced-reports</outputDirectory>
-                            <!--  <cucumberOutput>target/cucumber-reports/cucumber.json</cucumberOutput>-->
+                            <outputDirectory>target/cucumber-reports/advanced-
+                                reports</outputDirectory>
+                            <!--
+<cucumberOutput>target/cucumber-reports/cucumber.json</cucumberOutput>-->
                             <skip>false</skip>
-                            <inputDirectory>${project.build.directory}/cucumber-reports</inputDirectory>
+                            <inputDirectory>${project.build.directory}/cucumber-
+                                reports</inputDirectory>
                             <jsonFiles>
                                 <param>**/*.json</param>
                             </jsonFiles>
-                            <classificationDirectory>${project.build.directory}/cucumber-reports</classificationDirectory>
+                            <classificationDirectory>${project.build.directory}/cucumber-
+                                reports</classificationDirectory>
                             <checkBuildResult>false</checkBuildResult>
                         </configuration>
                     </execution>
                 </executions>
             </plugin>
-
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-failsafe-plugin</artifactId>
@@ -347,7 +326,8 @@
                     <groups>create</groups>
                     <testFailureIgnore>false</testFailureIgnore>
                     <argLine>
-                        -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/1.9.6/aspectjweaver-1.9.6.jar"
+                        -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/1.9.6/
+                        aspectjweaver-1.9.6.jar"
                     </argLine>
                     <systemProperties>
                         <property>
@@ -357,14 +337,18 @@
                     </systemProperties>
                 </configuration>
                 <dependencies>
+
+                    <!-- https://mvnrepository.com/artifact/org.aspectj/aspectjweaver -->
                     <dependency>
                         <groupId>org.aspectj</groupId>
                         <artifactId>aspectjweaver</artifactId>
                         <version>1.9.6</version>
                     </dependency>
+
                 </dependencies>
             </plugin>
         </plugins>
         <testOutputDirectory>target/classes</testOutputDirectory>
     </build>
 </project>
+

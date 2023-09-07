@@ -14,6 +14,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import util.TestBase;
 
+import java.time.Duration;
 import java.util.List;
 import java.util.Set;
 
@@ -186,7 +187,7 @@ public class orderAdminPage
         {
             HelpersMethod.ActClick(driver,startDate,1000);
             exists=true;
-            new WebDriverWait(driver,40000).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class,'k-popup k-child-animation-container')]")));
+            new WebDriverWait(driver, Duration.ofMillis(40000)).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class,'k-popup k-child-animation-container')]")));
             Assert.assertEquals(exists,true);
         }
         catch(Exception e){}
@@ -200,7 +201,7 @@ public class orderAdminPage
         {
             HelpersMethod.ActClick(driver,toDate,100);
             exists=true;
-            new WebDriverWait(driver,20000).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class,'k-popup k-child-animation-container')]")));
+            new WebDriverWait(driver,Duration.ofMillis(20000)).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class,'k-popup k-child-animation-container')]")));
             Assert.assertEquals(exists,true);
         }
         catch(Exception e){}
@@ -210,7 +211,7 @@ public class orderAdminPage
     {
         Thread.sleep(400);
         //HelpersMethod.waitTillElementLocatedDisplayed(driver,"xpath","//div[contains(@class,'k-calendar-monthview')]",40000);
-        new WebDriverWait(driver,40000).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class,'k-calendar-monthview')]")));
+        new WebDriverWait(driver,Duration.ofMillis(40000)).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class,'k-calendar-monthview')]")));
         try
         {
             String formattedDate1 = null;
@@ -335,10 +336,16 @@ public class orderAdminPage
 
     public void clickOnResetButton()
     {
+        exists=false;
         WebElement resetButton=HelpersMethod.FindByElement(driver,"xpath","//button[text()='Reset']");
         try
         {
-            HelpersMethod.ActClick(driver,resetButton,1000);
+            if(resetButton.isDisplayed()&&resetButton.isEnabled())
+            {
+                HelpersMethod.ActClick(driver, resetButton, 1000);
+                exists=true;
+            }
+            Assert.assertEquals(exists,true);
         }
         catch (Exception e){}
     }
@@ -369,6 +376,55 @@ public class orderAdminPage
         catch(Exception e){}
     }
 
+    public void validateWebElementClear1()
+    {
+        exists=false;
+        WebElement tDate=HelpersMethod.FindByElement(driver,"id","toDate");
+        String toValue=HelpersMethod.JSGetValueEle(driver,tDate,40);
+        try
+        {
+            if(toValue.equals("MM/DD/YYYY"))
+            {
+                scenario.log("RESET BUTTON HAS BEEN CLICKED");
+                exists=true;
+            }
+            else
+            {
+                scenario.log("RESET BUTTON IS NOT WORKING");
+                exists=false;
+            }
+            Assert.assertEquals(exists,true);
+        }
+        catch(Exception e){}
+    }
+
+    public void validateWebElementClear2()
+    {
+        exists=false;
+        try
+        {
+            WebElement fDate=HelpersMethod.FindByElement(driver,"id","OrderDate");
+            String fromValue=HelpersMethod.JSGetValueEle(driver,fDate,40);
+            WebElement tDate=HelpersMethod.FindByElement(driver,"id","ShipDate");
+            String toValue=HelpersMethod.JSGetValueEle(driver,tDate,40);
+            WebElement accNumber=HelpersMethod.FindByElement(driver,"id","orderNumber");
+            String acc_Text=HelpersMethod.JSGetValueEle(driver,accNumber,100);
+            WebElement custNumber=HelpersMethod.FindByElement(driver,"id","customerNumber");
+            String cust_Text=HelpersMethod.JSGetValueEle(driver,custNumber,100);
+            if(acc_Text.equals("") && cust_Text.equals("") && fromValue.equals("MM/DD/YYYY") && toValue.equals("MM/DD/YYYY"))
+            {
+                scenario.log("RESET BUTTON HAS BEEN CLICKED");
+                exists=true;
+            }
+            else
+            {
+                scenario.log("RESET BUTTON IS NOT WORKING");
+                exists=false;
+            }
+            Assert.assertEquals(exists,true);
+        }
+        catch(Exception e){}
+    }
 
     public void clickOnEvent() throws InterruptedException
     {

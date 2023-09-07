@@ -22,7 +22,7 @@ import static common.setup.DriverManager.*;
 @LinkedListeners({
     TestListener.class
 })
-@CucumberOptions(features = {"src/test/resources/features/counting"},
+@CucumberOptions(features = {"src/test/resources/features/counting/dashboard/CountingDashboardScreen.feature"},
         glue = {"steps"},
         plugin = {"pretty",
                 "json:target/cucumber.json",

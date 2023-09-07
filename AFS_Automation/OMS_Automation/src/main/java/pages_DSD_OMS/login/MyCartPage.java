@@ -13,6 +13,7 @@ import org.testng.Assert;
 import util.TestBase;
 
 import java.awt.*;
+import java.time.Duration;
 
 /**
  * @Project DSD_OMS
@@ -60,7 +61,7 @@ public class MyCartPage
         {
             HelpersMethod.waitTillLoadingPage(driver);
         }
-        new WebDriverWait(driver,20000).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("cartItemsCard"))));
+        new WebDriverWait(driver, Duration.ofMillis(20000)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("cartItemsCard"))));
             HelpersMethod.ScrollElement(driver,CheOutOrder);
             HelpersMethod.ClickBut(driver,CheOutOrder,1000);
             if(HelpersMethod.IsExists("//div[@class='loader']",driver))

@@ -10,6 +10,8 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.BeforeMethod;
 
+import java.time.Duration;
+
 public class GeneralSettingsPage {
     WebDriver driver;
     Scenario scenario;
@@ -36,7 +38,7 @@ public class GeneralSettingsPage {
             }
             if (HelpersMethod.IsExists("//div[@class='loader']", driver))
             {
-                new WebDriverWait(driver,4000).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+                new WebDriverWait(driver, Duration.ofMillis(10000)).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
             }
             if (status.equals("loading"))
             {
@@ -44,13 +46,13 @@ public class GeneralSettingsPage {
             }
             HelpersMethod.WaitElementPresent(driver, "xpath", "//div[@class='item-searchbar']", 2400);
             WebElement Hamburger = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='item-searchbar']");
-            new WebDriverWait(driver, 4000).until(ExpectedConditions.visibilityOf(Hamburger));
-            new WebDriverWait(driver, 4000).until(ExpectedConditions.elementToBeClickable(Hamburger));
+            new WebDriverWait(driver, Duration.ofMillis(10000)).until(ExpectedConditions.visibilityOf(Hamburger));
+            new WebDriverWait(driver, Duration.ofMillis(10000)).until(ExpectedConditions.elementToBeClickable(Hamburger));
             HelpersMethod.JScriptClick(driver, Hamburger, 4000);
             exists = true;
             if (HelpersMethod.IsExists("//div[@class='loader']", driver))
             {
-                new WebDriverWait(driver,4000).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+                new WebDriverWait(driver,Duration.ofMillis(10000)).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
             }
         }
         catch (Exception e){}
