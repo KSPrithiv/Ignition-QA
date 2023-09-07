@@ -14,7 +14,6 @@ import org.aeonbits.owner.ConfigFactory;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.ITestResult;
 import org.testng.annotations.*;
-import utilWMS.MailSend_WMS;
 
 import javax.mail.MessagingException;
 import java.io.IOException;
@@ -23,7 +22,7 @@ import static common.setup.DriverManager.*;
 @LinkedListeners({
     TestListener.class
 })
-@CucumberOptions(features = {"src/test/resources/features/counting/dashboard/CountingDashboardScreen.feature"},
+@CucumberOptions(features = {"src/test/resources/features/counting"},
         glue = {"steps"},
         plugin = {"pretty",
                 "json:target/cucumber.json",
@@ -32,7 +31,7 @@ import static common.setup.DriverManager.*;
                 "rerun:target/failedrerun.txt"
         }, monochrome = true, tags = "@Counting")
 @Slf4j
-public class CoutingCucumberRunner extends AbstractTestNGCucumberTests {
+public class CountingCucumberRunner extends AbstractTestNGCucumberTests {
     public static Environment environment;
 
     @Parameters({"environment","browser"})

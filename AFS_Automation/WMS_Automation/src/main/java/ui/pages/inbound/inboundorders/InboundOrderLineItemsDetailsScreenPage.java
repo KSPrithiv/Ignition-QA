@@ -6,12 +6,14 @@ import org.openqa.selenium.WebElement;
 import ui.pages.BasePage;
 import java.util.List;
 
+import static common.setup.DriverManager.getDriver;
+
 public class InboundOrderLineItemsDetailsScreenPage extends BasePage {
     By orderLinesTableColumnDetails = By.cssSelector(".k-grid-table tr.k-master-row");
     By orderLabel = By.xpath("//span[contains(text(), 'Order')]");
     By orderDet = By.cssSelector("#spnOrderNo");
     By orderNumber = By.xpath("//span[contains(text(),'Order')]//following-sibling::span[@id='spnOrderNo']");
-    By ownerField = By.xpath("//span[contains(text(), 'Owner')]");
+    By customerField = By.xpath("//span[contains(text(), 'Customer')]");
     By sourceField = By.xpath("//span[contains(text(), 'Source')]");
     By doorField = By.xpath("//span[contains(text(), 'Door')]");
     By qaField = By.xpath("//span[contains(text(), 'QA')]");
@@ -43,8 +45,8 @@ public class InboundOrderLineItemsDetailsScreenPage extends BasePage {
     By orderLabelOnData = By.xpath("//span[contains(text(), 'Order')]");
     By temperatureLabel = By.xpath("//label[text()='Temperature']");
     By temperatureInput = By.xpath("//label[text()='Temperature']//following-sibling::input");
-    By sealNumberLabel = By.xpath("//label[text()='Seal number']");
-    By sealNumberInput = By.xpath("//label[text()='Seal number']//following-sibling::input");
+    By sealNumberLabel = By.xpath("//label[text()='Seal Number']");
+    By sealNumberInput = By.xpath("//label[text()='Seal Number']//following-sibling::input");
     By commentsLabels = By.xpath("//label[text()='Comments']");
     By commentsInputs = By.xpath("//label[text()='Comments']//following-sibling::input");
     By yesRadioButtons = By.xpath("//label[text()='Yes']//preceding-sibling::input");
@@ -83,33 +85,44 @@ public class InboundOrderLineItemsDetailsScreenPage extends BasePage {
     }
 
     public void clickOrderLocationLink() {
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(getOrderLocationLink());
         clickOnElement(getOrderLocationLink());
+        Waiters.waitTillLoadingPage(getDriver());
     }
 
     public void clickRouteBackButton() {
+        Waiters.waitTillLoadingPage(getDriver());
         clickOnElement(routeBackButton);
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
     }
 
     public void clickProductDataBtn() {
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(btnProductData);
         clickOnElement(btnProductData);
+        Waiters.waitTillLoadingPage(getDriver());
     }
 
     public void clickProductEditBtn() {
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(btnProductEdit);
         clickOnElement(btnProductEdit);
+        Waiters.waitTillLoadingPage(getDriver());
     }
 
     public void clickOrderLineFieldsImageBtn() {
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(btnOrderLineFieldsImage);
         clickOnElement(btnOrderLineFieldsImage);
+        Waiters.waitTillLoadingPage(getDriver());
     }
 
     public void clickCancel() {
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(getCancelButton());
         clickOnElement(getCancelButton());
+        Waiters.waitTillLoadingPage(getDriver());
     }
 
     public boolean isOrderLabelPresent() { return isElementPresent(getOrderLabel()); }
@@ -120,7 +133,7 @@ public class InboundOrderLineItemsDetailsScreenPage extends BasePage {
 
     public boolean isQaFieldDisplayed() {  return isElementDisplay(getQaField()); }
 
-    public boolean isOwnerFieldDisplayed() { return isElementDisplay(getOwnerField()); }
+    public boolean isCustomerFieldDisplayed() { return isElementDisplay(getCustomerField()); }
 
     public boolean isCarrierFieldDisplayed() { return isElementDisplay(getCarrierField()); }
 
@@ -134,47 +147,23 @@ public class InboundOrderLineItemsDetailsScreenPage extends BasePage {
 
     public boolean isWeightFieldDisplayed() { return isElementDisplay(getWeightField()); }
 
-    public boolean isProductLabelDisplayed() {
-        Waiters.waitABit(2000);
-        return isElementDisplay(getProductLabel());
-    }
+    public boolean isProductLabelDisplayed() { return isElementDisplay(getProductLabel()); }
 
     public boolean isLocationColumnDisplayed() { return isElementDisplay(getLocationColumn()); }
 
-    public boolean isLocationTypeColumnDisplayed() {
-        Waiters.waitABit(2000);
-        return isElementDisplay(getLocationTypeColumn());
-    }
+    public boolean isLocationTypeColumnDisplayed() { return isElementDisplay(getLocationTypeColumn()); }
 
-    public boolean isQtyColumnDisplayed() {
-        Waiters.waitABit(2000);
-        return isElementDisplay(getQtyColumn());
-    }
+    public boolean isQtyColumnDisplayed() { return isElementDisplay(getQtyColumn()); }
 
-    public boolean isUomColumnDisplayed() {
-        Waiters.waitABit(2000);
-        return isElementDisplay(getUomColumn());
-    }
+    public boolean isUomColumnDisplayed() { return isElementDisplay(getUomColumn()); }
 
-    public boolean isLotColumnDisplayed() {
-        Waiters.waitABit(2000);
-        return isElementDisplay(getLotColumn());
-    }
+    public boolean isLotColumnDisplayed() { return isElementDisplay(getLotColumn()); }
 
-    public boolean isExpDateColumnDisplayed() {
-        Waiters.waitABit(2000);
-        return isElementDisplay(getExpDateColumn());
-    }
+    public boolean isExpDateColumnDisplayed() { return isElementDisplay(getExpDateColumn()); }
 
-    public boolean isStatusColumnDisplayed() {
-        Waiters.waitABit(2000);
-        return isElementDisplay(getStatusColumn());
-    }
+    public boolean isStatusColumnDisplayed() { return isElementDisplay(getStatusColumn()); }
 
-    public boolean isWeightColumnDisplayed() {
-        Waiters.waitABit(2000);
-        return isElementDisplay(getWeightColumn());
-    }
+    public boolean isWeightColumnDisplayed() { return isElementDisplay(getWeightColumn()); }
 
     public boolean isStagedColumnDisplayed() {
         return isElementDisplay(getStagedColumn());
@@ -196,88 +185,85 @@ public class InboundOrderLineItemsDetailsScreenPage extends BasePage {
 
     public int areCommentsInputsDisplayed() { return elementsArePresent(getCommentsInputs()); }
 
-    public int areYesRadioButtonsDisplayed() {
-        Waiters.waitABit(2000);
-        return elementsArePresent(getYesRadioButtons());
-    }
+    public int areYesRadioButtonsDisplayed() { return elementsArePresent(getYesRadioButtons()); }
 
     public int areNoRadioButtonsDisplayed() {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         return elementsArePresent(getNoRadioButtons());
     }
 
     public boolean isBtnAddProductCancelDisplayed() {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         return isElementDisplay(getBtnAddProductCancel());
     }
 
     public boolean isOrderedQuantityLabelDisplayed() {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         return isElementDisplay(getOrderedQuantityLabel());
     }
 
     public boolean isOrderedQuantityInputDisplayed() {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         return isElementDisplay(getOrderedQuantityInput());
     }
 
     public boolean isLotCodeDisplayed() {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         return isElementDisplay(getLotCode());
     }
 
     public boolean isLotCodeDropDownDisplayed() {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         return isElementDisplay(getLotCodeDropDown());
     }
 
     public boolean isExpirationDateDisplayed() {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         return isElementDisplay(getExpirationDate());
     }
 
     public boolean isExpirationDateInputDisplayed() {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         return isElementDisplay(getExpirationDateInput());
     }
 
     public boolean isRequiredStatusDisplayed() {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         return isElementDisplay(getRequiredStatus());
     }
 
     public boolean isRefusedQtyLabelDisplayed() {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         return isElementDisplay(getRefusedQtyLabel());
     }
 
     public boolean isRefusedQtyInputDisplayed() {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         return isElementDisplay(getRefusedQtyInput());
     }
 
     public boolean isCommentLabelDisplayed() {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         return isElementDisplay(getCommentLabel());
     }
 
     public boolean isCommentTextAreaDisplayed() {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         return isElementDisplay(getCommentTextArea());
     }
 
     public boolean isReceivedWeightLabelDisplayed() {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         return isElementDisplay(getReceivedWeightLabel());
     }
 
     public boolean isReceivedWeightInputDisplayed() {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         return isElementDisplay(getReceivedWeightInput());
     }
 
     public boolean isGtinLabelDisplayed() {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         return isElementDisplay(getGtinLabel());
     }
 
@@ -368,7 +354,7 @@ public class InboundOrderLineItemsDetailsScreenPage extends BasePage {
 
     public WebElement getQaField() { return findWebElement(qaField); }
 
-    public WebElement getOwnerField() { return findWebElement(ownerField); }
+    public WebElement getCustomerField() { return findWebElement(customerField); }
 
     public WebElement getCarrierField() { return findWebElement(carrierField); }
 

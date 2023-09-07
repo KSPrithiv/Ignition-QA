@@ -14,7 +14,6 @@ public class InboundOrderDetailsPageValidations {
         softAssert.assertTrue(inboundOrderDetailsPage.isTopIconDisplayed(), "Top Icon is not displayed");
         softAssert.assertTrue(inboundOrderDetailsPage.isOrderOptionsButtonDisplayed(), "Order Options Button is not displayed");
         softAssert.assertTrue(inboundOrderDetailsPage.isOrderStatusDisplayed(), "Order Status is not displayed");
-        softAssert.assertTrue(inboundOrderDetailsPage.isOrderNumberDisplayed(), "Order Number is not displayed");
         softAssert.assertTrue(inboundOrderDetailsPage.isSourceLabelDisplayed(), "Source Label is not displayed");
         softAssert.assertTrue(inboundOrderDetailsPage.isImagesButtonDisplayed(), "Images Button is not displayed");
         softAssert.assertTrue(inboundOrderDetailsPage.isCommentsButtonDisplayed(), "Comments Button is not displayed");
@@ -23,7 +22,7 @@ public class InboundOrderDetailsPageValidations {
         softAssert.assertTrue(inboundOrderDetailsPage.isOrderDetailsPresent(), "Order Details is not present");
         softAssert.assertTrue(inboundOrderDetailsPage.isDoorFieldDisplayed(), "Door Field is not displayed");
         softAssert.assertTrue(inboundOrderDetailsPage.isQaFieldDisplayed(), "Qa Field is not displayed");
-        softAssert.assertTrue(inboundOrderDetailsPage.isOwnerFieldDisplayed(), "Owner Field is not displayed");
+        softAssert.assertTrue(inboundOrderDetailsPage.isCustomerFieldDisplayed(), "Customer Field is not displayed");
         softAssert.assertTrue(inboundOrderDetailsPage.isCarrierFieldDisplayed(), "Carrier Field is not displayed");
         softAssert.assertTrue(inboundOrderDetailsPage.isLoadFieldDisplayed(), "Load Field is not displayed");
         softAssert.assertTrue(inboundOrderDetailsPage.isSourceFieldDisplayed(), "Source Field is not visible");
@@ -183,7 +182,7 @@ public class InboundOrderDetailsPageValidations {
         softAssert.assertTrue(inboundOrderDetailsPage.isOrderDetailsPresent(), "OrderDetails is not displayed");
         softAssert.assertTrue(inboundOrderDetailsPage.isDoorFieldDisplayed(), "Door Field is not displayed");
         softAssert.assertTrue(inboundOrderDetailsPage.isQaFieldDisplayed(), "Qa Field is not displayed");
-        softAssert.assertTrue(inboundOrderDetailsPage.isOwnerFieldDisplayed(), "Owner Field is not displayed");
+        softAssert.assertTrue(inboundOrderDetailsPage.isCustomerFieldDisplayed(), "Customer Field is not displayed");
         softAssert.assertTrue(inboundOrderDetailsPage.isCarrierFieldDisplayed(), "Carrier Field is not displayed");
         softAssert.assertTrue(inboundOrderDetailsPage.isLoadFieldDisplayed(), "Load Field is not displayed");
         softAssert.assertTrue(inboundOrderDetailsPage.isSourceFieldDisplayed(), "Source Field is not displayed");

@@ -97,16 +97,16 @@ public class DockManagementSummaryPageSteps {
     }
 
     @Step
-    @When("Main page is loaded")
+    @When("User goes to Dock Management Summary Page")
     public void goToDockManagementSummaryPage() {
         log.info("Go to Dock Management Summary Page");
         dockManagementSummaryPage.clickApplicationIconContainer();
     }
 
     @Step
-    @And("User waits for Main page to load")
+    @And("Main page is loaded")
     public void waitForMainPageToLoad() {
-        log.info("Waiting for Dock Management Summary Page To Load");
+        log.info("Waiting for Main Page To Load");
         dockManagementSummaryPage.waitForDockManagementSummaryPageToLoad();
     }
 

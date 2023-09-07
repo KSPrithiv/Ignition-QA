@@ -20,7 +20,7 @@ public class InboundLoadOrderDetailsPageValidations {
         softAssert.assertTrue(inboundLoadOrderDetailsPage.isOrderDetailsPresent(), "OrderDetails is not displayed");
         softAssert.assertTrue(inboundLoadOrderDetailsPage.isDoorFieldDisplayed(), "Door Field is not displayed");
         softAssert.assertTrue(inboundLoadOrderDetailsPage.isQaFieldDisplayed(), "Qa Field is not displayed");
-        softAssert.assertTrue(inboundLoadOrderDetailsPage.isOwnerFieldDisplayed(), "Owner Field is not displayed");
+        softAssert.assertTrue(inboundLoadOrderDetailsPage.isCustomerFieldDisplayed(), "Customer Field is not displayed");
         softAssert.assertTrue(inboundLoadOrderDetailsPage.isCarrierFieldDisplayed(), "Carrier Field is not displayed");
         softAssert.assertTrue(inboundLoadOrderDetailsPage.isLoadFieldDisplayed(), "Load Field is not displayed");
         softAssert.assertTrue(inboundLoadOrderDetailsPage.isSourceFieldDisplayed(), "Source Field is not displayed");

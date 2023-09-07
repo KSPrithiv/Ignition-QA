@@ -8,7 +8,7 @@ Feature: Testing of Inbound Orders details screen
     And Go to Inbound Orders page
     And User waits for Inbound Order Summary page to load
     And Validates Inbound Order Summary Page contains all web elements
-    When User finds all orders from "01/01/2018" to "06/01/2022"
+    When User finds all orders from start date by index 0 to end date by index 0
     Then Selects order with index 0 on Inbound Order Summary page
     And Validates Inbound Order Details Page contains all web elements
 
@@ -19,7 +19,7 @@ Feature: Testing of Inbound Orders details screen
     And Go to Inbound Orders page
     And User waits for Inbound Order Summary page to load
     And Validates Inbound Order Summary Page contains all web elements
-    When User finds all orders from "01/01/2018" to "06/01/2022"
+    When User finds all orders from start date by index 0 to end date by index 0
     Then Selects order with index 0 on Inbound Order Summary page
     And Validates items are present on Inbound Order Details page
 
@@ -30,7 +30,7 @@ Feature: Testing of Inbound Orders details screen
     And Go to Inbound Orders page
     And User waits for Inbound Order Summary page to load
     And Validates Inbound Order Summary Page contains all web elements
-    When User finds all orders from "01/01/2018" to "06/01/2022"
+    When User finds all orders from start date by index 0 to end date by index 0
     And Clicks order status "All statuses" on Inbound Order Details page
     And Selects order status "Received Order" on Inbound Order Details page
     Then Selects order with index 0 on Inbound Order Details page
@@ -46,7 +46,7 @@ Feature: Testing of Inbound Orders details screen
     And Go to Inbound Orders page
     And User waits for Inbound Order Summary page to load
     And Validates Inbound Order Summary Page contains all web elements
-    When User finds all orders from "01/01/2018" to "06/01/2022"
+    When User finds all orders from start date by index 0 to end date by index 0
     And Clicks order status "All statuses" on Inbound Order Details page
     And Selects order status "Open" on Inbound Order Details page
     Then Selects order with index 0 on Inbound Order Details page
@@ -62,7 +62,7 @@ Feature: Testing of Inbound Orders details screen
     And Go to Inbound Orders page
     And User waits for Inbound Order Summary page to load
     And Validates Inbound Order Summary Page contains all web elements
-    When User finds all orders from "01/01/2018" to "06/01/2022"
+    When User finds all orders from start date by index 0 to end date by index 0
     And Clicks order status "All statuses" on Inbound Order Details page
     And Selects order status "Ready To Receive" on Inbound Order Details page
     Then Selects order with index 0 on Inbound Order Details page
@@ -78,11 +78,13 @@ Feature: Testing of Inbound Orders details screen
     And Go to Inbound Orders page
     And User waits for Inbound Order Summary page to load
     And Validates Inbound Order Summary Page contains all web elements
-    When User finds all orders from "01/01/2018" to "06/01/2022"
+    When User finds all orders from start date by index 0 to end date by index 0
     Then Selects order with index 0 on Inbound Order Summary page
+    And User waits for Inbound Order Details page to load
     And Validates items are present on Inbound Order Details page
     And Validates Received, Staged, Over and Remainder are present on Inbound Order Details page with correct color
 
+    #4
   Scenario: Checking Source option on Inbound Order details page
     Given User signs in the application
     And Main page is loaded
@@ -90,8 +92,9 @@ Feature: Testing of Inbound Orders details screen
     And Go to Inbound Orders page
     And User waits for Inbound Order Summary page to load
     And Validates Inbound Order Summary Page contains all web elements
-    When User finds all orders from "01/01/2018" to "06/01/2022"
+    When User finds all orders from start date by index 0 to end date by index 0
     Then Selects order with index 0 on Inbound Order Summary page
+    And User waits for Inbound Order Details page to load
     And Validates items are present on Inbound Order Details page
     And User applies order "Source" option on Inbound Order Details page
     And Validates Source order screen on Inbound Order Details page
@@ -106,8 +109,9 @@ Feature: Testing of Inbound Orders details screen
     And Go to Inbound Orders page
     And User waits for Inbound Order Summary page to load
     And Validates Inbound Order Summary Page contains all web elements
-    When User finds all orders from "02/01/2023" to "06/01/2023"
+    When User finds all orders from start date by index 0 to end date by index 0
     Then Selects order with index 0 on Inbound Order Summary page
+    And User waits for Inbound Order Details page to load
     And Validates items are present on Inbound Order Details page
     And User applies order "Receive" option on Inbound Order Details page
     And Receiving page loads
@@ -122,8 +126,9 @@ Feature: Testing of Inbound Orders details screen
     And Go to Inbound Orders page
     And User waits for Inbound Order Summary page to load
     And Validates Inbound Order Summary Page contains all web elements
-    When User finds all orders from "02/01/2023" to "06/01/2023"
+    When User finds all orders from start date by index 0 to end date by index 0
     Then Selects order with index 0 on Inbound Order Summary page
+    And User waits for Inbound Order Details page to load
     And Validates items are present on Inbound Order Details page
     And User applies order "Edit" option on Inbound Order Details page
     And Validates Edit load popup on Inbound Order Details page
@@ -136,8 +141,9 @@ Feature: Testing of Inbound Orders details screen
     And Go to Inbound Orders page
     And User waits for Inbound Order Summary page to load
     And Validates Inbound Order Summary Page contains all web elements
-    When User finds all orders from "02/01/2023" to "06/01/2023"
+    When User finds all orders from start date by index 0 to end date by index 0
     Then Selects order with index 0 on Inbound Order Summary page
+    And User waits for Inbound Order Details page to load
     And Validates items are present on Inbound Order Details page
     And Clicks data option on Inbound Order Details page
     And Validates Enter data screen on Inbound Order Details page
@@ -149,8 +155,9 @@ Feature: Testing of Inbound Orders details screen
     And Go to Inbound Orders page
     And User waits for Inbound Order Summary page to load
     And Validates Inbound Order Summary Page contains all web elements
-    When User finds all orders from "02/01/2023" to "06/01/2023"
+    When User finds all orders from start date by index 0 to end date by index 0
     Then Selects order with index 0 on Inbound Order Summary page
+    And User waits for Inbound Order Details page to load
     And Validates items are present on Inbound Order Details page
     And Validates Comments Button is present on Inbound Order Details page
 
@@ -161,8 +168,9 @@ Feature: Testing of Inbound Orders details screen
     And Go to Inbound Orders page
     And User waits for Inbound Order Summary page to load
     And Validates Inbound Order Summary Page contains all web elements
-    When User finds all orders from "02/01/2023" to "06/01/2023"
+    When User finds all orders from start date by index 0 to end date by index 0
     Then Selects order with index 0 on Inbound Order Summary page
+    And User waits for Inbound Order Details page to load
     And Validates items are present on Inbound Order Details page
     And Validates Images Button is present on Inbound Order Details page
 
@@ -173,8 +181,9 @@ Feature: Testing of Inbound Orders details screen
     And Go to Inbound Orders page
     And User waits for Inbound Order Summary page to load
     And Validates Inbound Order Summary Page contains all web elements
-    When User finds all orders from "02/01/2023" to "06/01/2023"
+    When User finds all orders from start date by index 0 to end date by index 0
     Then Selects order with index 0 on Inbound Order Summary page
+    And User waits for Inbound Order Details page to load
     And Validates items are present on Inbound Order Details page
     And Clicks door option on Inbound Order Details page
     And Clicks Select door option on Inbound Order Details page
@@ -194,8 +203,9 @@ Feature: Testing of Inbound Orders details screen
     And Go to Inbound Orders page
     And User waits for Inbound Order Summary page to load
     And Validates Inbound Order Summary Page contains all web elements
-    When User finds all orders from "02/01/2023" to "06/01/2023"
+    When User finds all orders from start date by index 0 to end date by index 0
     Then Selects order with index 0 on Inbound Order Summary page
+    And User waits for Inbound Order Details page to load
     And Validates items are present on Inbound Order Details page
     And Validates Inbound Order Details page contains all web elements
     And Validates Received, Staged, Over and Remainder are present on Inbound Order Details page with correct color
@@ -208,8 +218,9 @@ Feature: Testing of Inbound Orders details screen
     And Go to Inbound Orders page
     And User waits for Inbound Order Summary page to load
     And Validates Inbound Order Summary Page contains all web elements
-    When User finds all orders from "02/01/2023" to "06/01/2023"
+    When User finds all orders from start date by index 0 to end date by index 0
     Then Selects order with index 0 on Inbound Order Summary page
+    And User waits for Inbound Order Details page to load
     And Validates items are present on Inbound Order Details page
     And User applies order "Log" option on Inbound Order Details page
     And Validates popup Receiver details on Inbound Order Details page
@@ -223,13 +234,14 @@ Feature: Testing of Inbound Orders details screen
     And Go to Inbound Orders page
     And User waits for Inbound Order Summary page to load
     And Validates Inbound Order Summary Page contains all web elements
-    When User finds all orders from "02/01/2023" to "06/01/2023"
+    When User finds all orders from start date by index 0 to end date by index 0
     Then Selects order with index 0 on Inbound Order Summary page
+    And User waits for Inbound Order Details page to load
     And Validates items are present on Inbound Order Details page
     And User applies order "Move" option on Inbound Order Details page
     And Validates Save button is disabled on Inbound Order Details page
-    And Types "04/14/2022" Ship Date on Inbound Order Details page
-    And Types "__20651" Load on Inbound Order Details page
+    And Types Ship Date by index 5 on Inbound Order Details page
+    And Types Load name by index 0 on Inbound Order Details page
     And Validates Save button is enabled on Inbound Order Details page
 
   Scenario: Checking Back button on Inbound Order details page
@@ -239,8 +251,9 @@ Feature: Testing of Inbound Orders details screen
     And Go to Inbound Orders page
     And User waits for Inbound Order Summary page to load
     And Validates Inbound Order Summary Page contains all web elements
-    When User finds all orders from "02/01/2023" to "06/01/2023"
+    When User finds all orders from start date by index 0 to end date by index 0
     Then Selects order with index 0 on Inbound Order Summary page
+    And User waits for Inbound Order Details page to load
     And Validates Inbound Order Details Page contains all web elements
     And Clicks Route Back button on Inbound Order Details page
     And Validates Inbound Order Summary Page contains all web elements
@@ -252,8 +265,9 @@ Feature: Testing of Inbound Orders details screen
     And Go to Inbound Orders page
     And User waits for Inbound Order Summary page to load
     And Validates Inbound Order Summary Page contains all web elements
-    When User finds all orders from "02/01/2023" to "06/01/2023"
+    When User finds all orders from start date by index 0 to end date by index 0
     Then Selects order with index 0 on Inbound Order Summary page
+    And User waits for Inbound Order Details page to load
     And Validates Inbound Order Details Page contains all web elements
     And Select Order Product with index 0 on Inbound Order Details page
     And Clicks Order Line Image button on Inbound Order Details page

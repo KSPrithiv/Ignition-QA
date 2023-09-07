@@ -55,6 +55,10 @@ public class Waiters {
         wait.until(ExpectedConditions.visibilityOf(element));
     }
 
+    public static void waitForStalenessOfElement(WebElement element) {
+        wait.until(ExpectedConditions.stalenessOf(element));
+    }
+
     public static void waitForElementToBeDisplay(By locator) {
         wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
     }

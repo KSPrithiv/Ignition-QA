@@ -8,7 +8,7 @@ Feature: Testing of Inbound Load Order Details screen functionality
     And Go to Loads page
     And Inbound Load Summary page appears
     And Inbound Load Summary page main elements are present
-    When Types "01/01/2018" start date on Inbound Load Summary page
+    When Types start date by index 0 on Inbound Load Summary page
     And Validates loads are present on Inbound Load Summary page
     Then Select Load with index 0 on Inbound Load Summary page
     And Select Load Order with index 0 on Inbound Load Summary page
@@ -21,7 +21,7 @@ Feature: Testing of Inbound Load Order Details screen functionality
     And Go to Loads page
     And Inbound Load Summary page appears
     And Inbound Load Summary page main elements are present
-    When Types "01/01/2018" start date on Inbound Load Summary page
+    When Types start date by index 0 on Inbound Load Summary page
     And Validates loads are present on Inbound Load Summary page
     Then Select Load with index 0 on Inbound Load Summary page
     And Select Load Order with index 0 on Inbound Load Summary page
@@ -34,7 +34,7 @@ Feature: Testing of Inbound Load Order Details screen functionality
     And Go to Loads page
     And Inbound Load Summary page appears
     And Inbound Load Summary page main elements are present
-    When Types "01/01/2018" start date on Inbound Load Summary page
+    When Types start date by index 0 on Inbound Load Summary page
     And Validates loads are present on Inbound Load Summary page
     Then Select Load with index 0 on Inbound Load Summary page
     And Select Load Order with index 0 on Inbound Load Summary page
@@ -47,7 +47,7 @@ Feature: Testing of Inbound Load Order Details screen functionality
     And Go to Loads page
     And Inbound Load Summary page appears
     And Inbound Load Summary page main elements are present
-    When Types "01/01/2018" start date on Inbound Load Summary page
+    When Types start date by index 0 on Inbound Load Summary page
     And Validates loads are present on Inbound Load Summary page
     Then Select Load with index 0 on Inbound Load Summary page
     And Select Load Order with index 0 on Inbound Load Summary page
@@ -60,7 +60,7 @@ Feature: Testing of Inbound Load Order Details screen functionality
     And Go to Loads page
     And Inbound Load Summary page appears
     And Inbound Load Summary page main elements are present
-    When Types "01/01/2018" start date on Inbound Load Summary page
+    When Types start date by index 0 on Inbound Load Summary page
     And Validates loads are present on Inbound Load Summary page
     And Clicks load status "All statuses" on Inbound Load Summary page
     And Selects load status "Received Order" on Inbound Load Summary page
@@ -79,7 +79,7 @@ Feature: Testing of Inbound Load Order Details screen functionality
     And Go to Loads page
     And Inbound Load Summary page appears
     And Inbound Load Summary page main elements are present
-    When Types "01/01/2022" start date on Inbound Load Summary page
+    When Types start date by index 2 on Inbound Load Summary page
     And Validates loads are present on Inbound Load Summary page
     And Clicks load status "All statuses" on Inbound Load Summary page
     And Selects load status "Ready To Receive" on Inbound Load Summary page
@@ -93,7 +93,7 @@ Feature: Testing of Inbound Load Order Details screen functionality
     And Clicks No button on Inbound Load Order Summary page
     And Clicks back to Inbound Load Order Summary page
     And Clicks Route Back button on Inbound Load Summary page
-    And Types "04/18/2022" start date on Inbound Load Summary page
+    And Types start date by index 2 on Inbound Load Summary page
     And Select Load with index 0 on Inbound Load Summary page
     And Select Load Order with index 0 on Inbound Load Summary page
     And Clicks change status option on Inbound Load Order Summary page
@@ -111,7 +111,7 @@ Feature: Testing of Inbound Load Order Details screen functionality
     And Go to Loads page
     And Inbound Load Summary page appears
     And Inbound Load Summary page main elements are present
-    When Types "01/01/2019" start date on Inbound Load Summary page
+    When Types start date by index 4 on Inbound Load Summary page
     And Validates loads are present on Inbound Load Summary page
     And Clicks load status "All statuses" on Inbound Load Summary page
     And Selects load status "Open" on Inbound Load Summary page
@@ -135,7 +135,7 @@ Feature: Testing of Inbound Load Order Details screen functionality
     And Go to Loads page
     And Inbound Load Summary page appears
     And Inbound Load Summary page main elements are present
-    When Types "01/01/2019" start date on Inbound Load Summary page
+    When Types start date by index 0 on Inbound Load Summary page
     And Validates loads are present on Inbound Load Summary page
     And Clicks load status "All statuses" on Inbound Load Summary page
     And Selects load status "Ready To Receive" on Inbound Load Summary page
@@ -150,7 +150,7 @@ Feature: Testing of Inbound Load Order Details screen functionality
     And Go to Loads page
     And Inbound Load Summary page appears
     And Inbound Load Summary page main elements are present
-    When Types "01/01/2019" start date on Inbound Load Summary page
+    When Types start date by index 0 on Inbound Load Summary page
     And Validates loads are present on Inbound Load Summary page
     And Clicks load status "All statuses" on Inbound Load Summary page
     And Selects load status "Ready To Receive" on Inbound Load Summary page
@@ -167,7 +167,7 @@ Feature: Testing of Inbound Load Order Details screen functionality
     And Go to Loads page
     And Inbound Load Summary page appears
     And Inbound Load Summary page main elements are present
-    When Types "01/01/2019" start date on Inbound Load Summary page
+    When Types start date by index 0 on Inbound Load Summary page
     And Validates loads are present on Inbound Load Summary page
     And Clicks load status "All statuses" on Inbound Load Summary page
     And Selects load status "Ready To Receive" on Inbound Load Summary page
@@ -184,7 +184,7 @@ Feature: Testing of Inbound Load Order Details screen functionality
     And Go to Loads page
     And Inbound Load Summary page appears
     And Inbound Load Summary page main elements are present
-    When Types "01/01/2019" start date on Inbound Load Summary page
+    When Types start date by index 0 on Inbound Load Summary page
     And Validates loads are present on Inbound Load Summary page
     And Clicks load status "All statuses" on Inbound Load Summary page
     And Selects load status "Ready To Receive" on Inbound Load Summary page
@@ -200,7 +200,7 @@ Feature: Testing of Inbound Load Order Details screen functionality
     And Go to Loads page
     And Inbound Load Summary page appears
     And Inbound Load Summary page main elements are present
-    When Types "01/01/2019" start date on Inbound Load Summary page
+    When Types start date by index 0 on Inbound Load Summary page
     And Validates loads are present on Inbound Load Summary page
     And Clicks load status "All statuses" on Inbound Load Summary page
     And Selects load status "Ready To Receive" on Inbound Load Summary page
@@ -229,7 +229,7 @@ Feature: Testing of Inbound Load Order Details screen functionality
     And Go to Loads page
     And Inbound Load Summary page appears
     And Inbound Load Summary page main elements are present
-    When Types "04/18/2022" start date on Inbound Load Summary page
+    When Types start date by index 0 on Inbound Load Summary page
     And Validates loads are present on Inbound Load Summary page
     Then Select Load with index 0 on Inbound Load Summary page
     And Select Load Order with index 0 on Inbound Load Summary page
@@ -242,7 +242,7 @@ Feature: Testing of Inbound Load Order Details screen functionality
     And Go to Loads page
     And Inbound Load Summary page appears
     And Inbound Load Summary page main elements are present
-    When Types "04/18/2022" start date on Inbound Load Summary page
+    When Types start date by index 2 on Inbound Load Summary page
     And Validates loads are present on Inbound Load Summary page
     And Select Load with index 0 on Inbound Load Summary page
     Then Select Load Order with index 0 on Inbound Load Summary page
@@ -258,7 +258,7 @@ Feature: Testing of Inbound Load Order Details screen functionality
     And Go to Loads page
     And Inbound Load Summary page appears
     And Inbound Load Summary page main elements are present
-    When Types "04/18/2022" start date on Inbound Load Summary page
+    When Types start date by index 2 on Inbound Load Summary page
     And Validates loads are present on Inbound Load Summary page
     And Select Load with index 0 on Inbound Load Summary page
     Then Select Load Order with index 0 on Inbound Load Summary page
@@ -277,7 +277,7 @@ Feature: Testing of Inbound Load Order Details screen functionality
     And Go to Loads page
     And Inbound Load Summary page appears
     And Inbound Load Summary page main elements are present
-    When Types "04/18/2022" start date on Inbound Load Summary page
+    When Types start date by index 2 on Inbound Load Summary page
     And Validates loads are present on Inbound Load Summary page
     And Select Load with index 0 on Inbound Load Summary page
     Then Select Load Order with index 0 on Inbound Load Summary page
@@ -293,7 +293,7 @@ Feature: Testing of Inbound Load Order Details screen functionality
     And Go to Loads page
     And Inbound Load Summary page appears
     And Inbound Load Summary page main elements are present
-    When Types "04/18/2022" start date on Inbound Load Summary page
+    When Types start date by index 2 on Inbound Load Summary page
     And Validates loads are present on Inbound Load Summary page
     And Select Load with index 0 on Inbound Load Summary page
     Then Select Load Order with index 0 on Inbound Load Summary page
@@ -308,7 +308,7 @@ Feature: Testing of Inbound Load Order Details screen functionality
     And Go to Loads page
     And Inbound Load Summary page appears
     And Inbound Load Summary page main elements are present
-    When Types "04/18/2022" start date on Inbound Load Summary page
+    When Types start date by index 2 on Inbound Load Summary page
     And Validates loads are present on Inbound Load Summary page
     And Select Load with index 0 on Inbound Load Summary page
     Then Select Load Order with index 0 on Inbound Load Summary page

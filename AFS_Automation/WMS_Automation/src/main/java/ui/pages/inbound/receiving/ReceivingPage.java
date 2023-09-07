@@ -71,6 +71,7 @@ public class ReceivingPage extends BasePage {
             clickOkButton();
         }
         Waiters.waitForElementToBeDisplay(getIconReceiving());
+        Waiters.waitTillLoadingPage(getDriver());
     }
 
     public boolean isTopIconDisplayed() { return isElementDisplay(getIconReceiving()); }
