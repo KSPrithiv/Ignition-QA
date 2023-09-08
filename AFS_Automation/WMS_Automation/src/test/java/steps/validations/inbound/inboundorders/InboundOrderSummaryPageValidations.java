@@ -1,12 +1,19 @@
 package steps.validations.inbound.inboundorders;
 
+import common.constants.FilePaths;
 import common.constants.Notifications;
+import common.utils.objectmapper.ObjectMapperWrapper;
 import io.cucumber.java.en.And;
+import objects.inbound.InboundOrderLoadsDTO;
 import org.testng.asserts.SoftAssert;
 import ui.pages.inbound.inboundorders.InboundOrderSummaryPage;
 
+import java.util.List;
+
 public class InboundOrderSummaryPageValidations {
     InboundOrderSummaryPage inboundOrderSummaryPage = new InboundOrderSummaryPage();
+    InboundOrderLoadsDTO inboundOrderLoadsDTO = new ObjectMapperWrapper()
+            .getObject(FilePaths.INBOUND_ORDER_LOAD_DATA, InboundOrderLoadsDTO.class);
 
     @And("Validates Inbound Order Summary Page contains all web elements")
     public void validateInboundOrderSummaryPage() {
@@ -206,6 +213,20 @@ public class InboundOrderSummaryPageValidations {
         softAssert.assertAll();
     }
 
+    @And("Validates scheduled date by index {int} and scheduled time {string} on Inbound Order Summary page")
+    public void validateDateAndTime(int index, String time) {
+        SoftAssert softAssert = new SoftAssert();
+        List<String> dates = List.of(inboundOrderLoadsDTO.getStartDates().getStartDate1(), inboundOrderLoadsDTO
+                .getStartDates().getStartDate2(), inboundOrderLoadsDTO.getStartDates().getStartDate3(), inboundOrderLoadsDTO
+                .getStartDates().getStartDate4(), inboundOrderLoadsDTO.getStartDates().getStartDate5(), inboundOrderLoadsDTO
+                .getStartDates().getStartDate6());
+        softAssert.assertTrue(inboundOrderSummaryPage.getScheduledDateValue().contains(dates.get(index)),
+                "Scheduled date is not correct");
+        softAssert.assertTrue(inboundOrderSummaryPage.getScheduledTimeValue().contains(time),
+                "Scheduled time is not correct");
+        softAssert.assertAll();
+    }
+
     @And("Validates Enter data screen on Inbound Order Summary page")
     public void verifyEnterDataScreen() {
         SoftAssert softAssert = new SoftAssert();
@@ -221,7 +242,7 @@ public class InboundOrderSummaryPageValidations {
         softAssert.assertAll();
     }
 
-    @And("Validates popup Assign doors title for Inbound Order Summary")
+    @And("Validates popup Assign door title for Inbound Order Summary")
     public void validatePopupAssignDoorTitle() {
         SoftAssert softAssert = new SoftAssert();
         softAssert.assertEquals(inboundOrderSummaryPage.getDialogPopUpText(), Notifications.ASSIGN_DOORS,

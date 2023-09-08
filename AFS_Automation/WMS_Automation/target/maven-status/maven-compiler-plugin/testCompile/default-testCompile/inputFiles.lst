@@ -1,4 +1,3 @@
-C:\Users\Irina.Holovan\Documents\ignition-qa\AFS_Automation\WMS_Automation\src\test\java\runners\CoutingCucumberRunner.java
 C:\Users\Irina.Holovan\Documents\ignition-qa\AFS_Automation\WMS_Automation\src\test\java\steps\setupWarehouse\EquipmentTypePageSteps.java
 C:\Users\Irina.Holovan\Documents\ignition-qa\AFS_Automation\WMS_Automation\src\test\java\steps\validations\outbound\processing\ChangeViewParametersPageValidations.java
 C:\Users\Irina.Holovan\Documents\ignition-qa\AFS_Automation\WMS_Automation\src\test\java\steps\workqueue\userhistory\WorkQueueUserHistoryPageSteps.java
@@ -11,11 +10,14 @@ C:\Users\Irina.Holovan\Documents\ignition-qa\AFS_Automation\WMS_Automation\src\t
 C:\Users\Irina.Holovan\Documents\ignition-qa\AFS_Automation\WMS_Automation\src\test\java\steps\validations\outbound\routesummary\OutboundRouteSummaryPageValidations.java
 C:\Users\Irina.Holovan\Documents\ignition-qa\AFS_Automation\WMS_Automation\src\test\java\steps\validations\inbound\loads\InboundLoadOrderLineItemsPageValidations.java
 C:\Users\Irina.Holovan\Documents\ignition-qa\AFS_Automation\WMS_Automation\src\test\java\steps\DockManagementSummaryPageSteps.java
+C:\Users\Irina.Holovan\Documents\ignition-qa\AFS_Automation\WMS_Automation\src\test\java\steps\setupSystem\RegistryPageSteps.java
 C:\Users\Irina.Holovan\Documents\ignition-qa\AFS_Automation\WMS_Automation\src\test\java\steps\setupWarehouse\WarehousePageSteps.java
 C:\Users\Irina.Holovan\Documents\ignition-qa\AFS_Automation\WMS_Automation\src\test\java\steps\validations\workqueue\filteroption\WorkQueueAssignmentsPageValidations.java
 C:\Users\Irina.Holovan\Documents\ignition-qa\AFS_Automation\WMS_Automation\src\test\java\runners\Phase3Runner.java
 C:\Users\Irina.Holovan\Documents\ignition-qa\AFS_Automation\WMS_Automation\src\test\java\steps\validations\outbound\processing\AddAllocationBatchPageValidations.java
 C:\Users\Irina.Holovan\Documents\ignition-qa\AFS_Automation\WMS_Automation\src\test\java\steps\appointments\AppointmentSchedulerLinkedOrdersPopUpPageSteps.java
+C:\Users\Irina.Holovan\Documents\ignition-qa\AFS_Automation\WMS_Automation\src\test\java\steps\setupSystem\UserGroupPageSteps.java
+C:\Users\Irina.Holovan\Documents\ignition-qa\AFS_Automation\WMS_Automation\src\test\java\steps\setupSystem\LabelRulePageSteps.java
 C:\Users\Irina.Holovan\Documents\ignition-qa\AFS_Automation\WMS_Automation\src\test\java\steps\validations\workqueue\workassign\WorkQueueWorkAssignPageValidations.java
 C:\Users\Irina.Holovan\Documents\ignition-qa\AFS_Automation\WMS_Automation\src\test\java\steps\validations\inbound\receiving\ReceivingPage.java
 C:\Users\Irina.Holovan\Documents\ignition-qa\AFS_Automation\WMS_Automation\src\test\java\steps\lookup\lookupdockmanagement\DockManagementPageSteps.java
@@ -30,6 +32,7 @@ C:\Users\Irina.Holovan\Documents\ignition-qa\AFS_Automation\WMS_Automation\src\t
 C:\Users\Irina.Holovan\Documents\ignition-qa\AFS_Automation\WMS_Automation\src\test\java\steps\setupLabor\SetupLaborCodePageSteps.java
 C:\Users\Irina.Holovan\Documents\ignition-qa\AFS_Automation\WMS_Automation\src\test\java\steps\validations\lookup\lookupdockmanagement\DockManagementPageValidations.java
 C:\Users\Irina.Holovan\Documents\ignition-qa\AFS_Automation\WMS_Automation\src\test\java\steps\validations\outbound\processing\ProcessingPageValidations.java
+C:\Users\Irina.Holovan\Documents\ignition-qa\AFS_Automation\WMS_Automation\src\test\java\steps\setupSystem\PermissionPageSteps.java
 C:\Users\Irina.Holovan\Documents\ignition-qa\AFS_Automation\WMS_Automation\src\test\java\runners\LoginCucumberRunner.java
 C:\Users\Irina.Holovan\Documents\ignition-qa\AFS_Automation\WMS_Automation\src\test\java\steps\validations\inbound\inboundorders\InboundOrderLocationLookupPageValidations.java
 C:\Users\Irina.Holovan\Documents\ignition-qa\AFS_Automation\WMS_Automation\src\test\java\steps\outbound\loadplanning\OutboundAssignmentsPageSteps.java
@@ -55,6 +58,7 @@ C:\Users\Irina.Holovan\Documents\ignition-qa\AFS_Automation\WMS_Automation\src\t
 C:\Users\Irina.Holovan\Documents\ignition-qa\AFS_Automation\WMS_Automation\src\test\java\steps\validations\outbound\ordersummary\OutboundOrderSummaryPageValidations.java
 C:\Users\Irina.Holovan\Documents\ignition-qa\AFS_Automation\WMS_Automation\src\test\java\steps\outbound\routesummary\OutboundRouteSummaryPageSteps.java
 C:\Users\Irina.Holovan\Documents\ignition-qa\AFS_Automation\WMS_Automation\src\test\java\steps\outbound\processing\AddAllocationBatchPageSteps.java
+C:\Users\Irina.Holovan\Documents\ignition-qa\AFS_Automation\WMS_Automation\src\test\java\steps\setupSystem\PurgePageSteps.java
 C:\Users\Irina.Holovan\Documents\ignition-qa\AFS_Automation\WMS_Automation\src\test\java\steps\validations\inbound\loads\InboundLoadLocationLookupPageValidations.java
 C:\Users\Irina.Holovan\Documents\ignition-qa\AFS_Automation\WMS_Automation\src\test\java\steps\setupWarehouse\DockDoorPageSteps.java
 C:\Users\Irina.Holovan\Documents\ignition-qa\AFS_Automation\WMS_Automation\src\test\java\steps\validations\LoginPageValidations.java
@@ -62,6 +66,7 @@ C:\Users\Irina.Holovan\Documents\ignition-qa\AFS_Automation\WMS_Automation\src\t
 C:\Users\Irina.Holovan\Documents\ignition-qa\AFS_Automation\WMS_Automation\src\test\java\steps\validations\inbound\receiving\ReceivingPageValidations.java
 C:\Users\Irina.Holovan\Documents\ignition-qa\AFS_Automation\WMS_Automation\src\test\java\steps\counting\sessions\CountingSessionsPageSteps.java
 C:\Users\Irina.Holovan\Documents\ignition-qa\AFS_Automation\WMS_Automation\src\test\java\steps\inbound\inboundorders\InboundOrderSummaryPageSteps.java
+C:\Users\Irina.Holovan\Documents\ignition-qa\AFS_Automation\WMS_Automation\src\test\java\runners\CountingCucumberRunner.java
 C:\Users\Irina.Holovan\Documents\ignition-qa\AFS_Automation\WMS_Automation\src\test\java\steps\security\SecurityPermissionsSteps.java
 C:\Users\Irina.Holovan\Documents\ignition-qa\AFS_Automation\WMS_Automation\src\test\java\steps\setupWarehouse\RackTypePageSteps.java
 C:\Users\Irina.Holovan\Documents\ignition-qa\AFS_Automation\WMS_Automation\src\test\java\steps\setupConfiguration\TaskGroupPageSteps.java
@@ -71,6 +76,7 @@ C:\Users\Irina.Holovan\Documents\ignition-qa\AFS_Automation\WMS_Automation\src\t
 C:\Users\Irina.Holovan\Documents\ignition-qa\AFS_Automation\WMS_Automation\src\test\java\steps\setupWarehouse\AisleTypePageSteps.java
 C:\Users\Irina.Holovan\Documents\ignition-qa\AFS_Automation\WMS_Automation\src\test\java\steps\validations\DockManagementSummaryPageValidations.java
 C:\Users\Irina.Holovan\Documents\ignition-qa\AFS_Automation\WMS_Automation\src\test\java\steps\setupWarehouse\AislePageSteps.java
+C:\Users\Irina.Holovan\Documents\ignition-qa\AFS_Automation\WMS_Automation\src\test\java\steps\setupWarehouse\LocationPageSteps.java
 C:\Users\Irina.Holovan\Documents\ignition-qa\AFS_Automation\WMS_Automation\src\test\java\steps\outbound\loadplanning\OutboundLoadPlanningPageSteps.java
 C:\Users\Irina.Holovan\Documents\ignition-qa\AFS_Automation\WMS_Automation\src\test\java\steps\workqueue\workassign\WorkQueueWorkAssignSteps.java
 C:\Users\Irina.Holovan\Documents\ignition-qa\AFS_Automation\WMS_Automation\src\test\java\steps\validations\workqueue\task\WorkQueueTaskPageValidations.java
@@ -96,6 +102,7 @@ C:\Users\Irina.Holovan\Documents\ignition-qa\AFS_Automation\WMS_Automation\src\t
 C:\Users\Irina.Holovan\Documents\ignition-qa\AFS_Automation\WMS_Automation\src\test\java\runners\OutboundCucumberRunner.java
 C:\Users\Irina.Holovan\Documents\ignition-qa\AFS_Automation\WMS_Automation\src\test\java\steps\inbound\inboundorders\InboundOrderLineItemsDetailsScreenPageSteps.java
 C:\Users\Irina.Holovan\Documents\ignition-qa\AFS_Automation\WMS_Automation\src\test\java\steps\setupLabor\FatiguePageSteps.java
+C:\Users\Irina.Holovan\Documents\ignition-qa\AFS_Automation\WMS_Automation\src\test\java\steps\setupWarehouse\DockDoorGroupPageSteps.java
 C:\Users\Irina.Holovan\Documents\ignition-qa\AFS_Automation\WMS_Automation\src\test\java\steps\inbound\loads\InboundLoadSummaryPageSteps.java
 C:\Users\Irina.Holovan\Documents\ignition-qa\AFS_Automation\WMS_Automation\src\test\java\steps\outbound\ordersummary\OutboundOrderSummaryPageSteps.java
 C:\Users\Irina.Holovan\Documents\ignition-qa\AFS_Automation\WMS_Automation\src\test\java\steps\appointments\AppointmentScheduledPopUpPageSteps.java

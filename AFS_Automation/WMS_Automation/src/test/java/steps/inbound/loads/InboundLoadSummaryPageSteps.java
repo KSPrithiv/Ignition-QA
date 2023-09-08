@@ -10,16 +10,21 @@ import io.cucumber.java.en.When;
 import io.qameta.allure.Step;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
+import objects.inbound.InboundOrderLoadsDTO;
 import objects.storeproceduresdata.inbound.InboundLoadsSummaryParams;
 import objects.userdata.DataBaseData;
 import steps.LoginPageSteps;
+import ui.pages.inbound.inboundorders.InboundOrderSummaryPage;
 import ui.pages.inbound.loads.InboundLoadSummaryPage;
 
 import java.sql.ResultSet;
+import java.util.List;
 
 @Slf4j
 public class InboundLoadSummaryPageSteps {
     InboundLoadSummaryPage inboundLoadSummaryPage = new InboundLoadSummaryPage();
+    InboundOrderLoadsDTO inboundOrderLoadsDTO = new ObjectMapperWrapper()
+            .getObject(FilePaths.INBOUND_ORDER_LOAD_DATA, InboundOrderLoadsDTO.class);
     StoreProceduresUtils storeProceduresUtils = new StoreProceduresUtils();
 
     @Step
@@ -41,7 +46,6 @@ public class InboundLoadSummaryPageSteps {
     public void findLoadsFromDate(String date) {
         log.info("Finding Loads starting range " + date);
         inboundLoadSummaryPage.typeDateLoadStart(date);
-     //   inboundLoadSummaryPage.clickSearchSupplierButton();
     }
 
     @Step
@@ -52,10 +56,32 @@ public class InboundLoadSummaryPageSteps {
     }
 
     @Step
+    @When("Types start date by index {int} on Inbound Load Summary page")
+    public void typeStartDateByIndex(int index) {
+        log.info("Types Start Date by index");
+        List<String> startDates = List.of(inboundOrderLoadsDTO.getStartDates().getStartDate1(), inboundOrderLoadsDTO
+                .getStartDates().getStartDate2(), inboundOrderLoadsDTO.getStartDates().getStartDate3(), inboundOrderLoadsDTO
+                .getStartDates().getStartDate4(), inboundOrderLoadsDTO.getStartDates().getStartDate5(), inboundOrderLoadsDTO
+                .getStartDates().getStartDate6());
+        inboundLoadSummaryPage.typeDateLoadStart(startDates.get(index));
+    }
+
+    @Step
     @And("Types {string} end date on Inbound Load Summary page")
     public void typeEndDate(String date) {
         log.info("Types End Date " + date);
         inboundLoadSummaryPage.typeDateRouteEnd(date);
+    }
+
+    @Step
+    @And("Types end date by index {int} on Inbound Load Summary page")
+    public void typeEndDateByIndex(int index) {
+        log.info("Types End Date by index");
+        List<String> endDates = List.of(inboundOrderLoadsDTO.getEndDates().getEndDate1(), inboundOrderLoadsDTO
+                .getEndDates().getEndDate2(), inboundOrderLoadsDTO.getEndDates().getEndDate3(), inboundOrderLoadsDTO
+                .getEndDates().getEndDate4(), inboundOrderLoadsDTO.getEndDates().getEndDate5(), inboundOrderLoadsDTO
+                .getEndDates().getEndDate6());
+        inboundLoadSummaryPage.typeDateRouteEnd(endDates.get(index));
     }
 
     @Step
@@ -66,10 +92,32 @@ public class InboundLoadSummaryPageSteps {
     }
 
     @Step
+    @And("Types temperature by index {int} on Inbound Load Summary page")
+    public void typeTemperatureByIndex(int index) {
+        log.info("Types Temperature by index");
+        List<String> temperatures = List.of(inboundOrderLoadsDTO.getTemperatures().getTemperature1(), inboundOrderLoadsDTO
+                .getTemperatures().getTemperature2(), inboundOrderLoadsDTO.getTemperatures().getTemperature3(),
+                inboundOrderLoadsDTO.getTemperatures().getTemperature4(), inboundOrderLoadsDTO.getTemperatures()
+                .getTemperature5());
+        inboundLoadSummaryPage.typeTemperature(temperatures.get(index));
+    }
+
+    @Step
     @And("Types {string} seal number on Inbound Load Summary page")
     public void typeSealNumber(String sealNum) {
         log.info("Types Seal Number " + sealNum);
         inboundLoadSummaryPage.typeSealNumber(sealNum);
+    }
+
+    @Step
+    @And("Types seal number by index {int} on Inbound Load Summary page")
+    public void typeSealNumber(int index) {
+        log.info("Types Seal Number by index");
+        List<String> seals = List.of(inboundOrderLoadsDTO.getTemperatures().getTemperature1(), inboundOrderLoadsDTO
+                .getTemperatures().getTemperature2(), inboundOrderLoadsDTO.getTemperatures().getTemperature3(),
+                 inboundOrderLoadsDTO.getTemperatures().getTemperature4(), inboundOrderLoadsDTO.getTemperatures()
+                .getTemperature5());
+        inboundLoadSummaryPage.typeSealNumber(seals.get(index));
     }
 
     @Step
