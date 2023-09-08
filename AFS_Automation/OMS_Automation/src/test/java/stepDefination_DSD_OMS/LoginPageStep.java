@@ -80,6 +80,11 @@ public class LoginPageStep
     public void user_on_login_page() throws InterruptedException, AWTException
     {
         driver.navigate().to(TestBase.testEnvironment.get_url());
+        String status = HelpersMethod.returnDocumentStatus(driver);
+        if (status.equals("loading"))
+        {
+            HelpersMethod.waitTillLoadingPage(driver);
+        }
     }
 
     @Given("User on login page for external catalog")
@@ -214,8 +219,8 @@ public class LoginPageStep
 
     //Enter product# in search bar, and enter qty if product exists. When Products are displayed in Card view
     @Then("User enters Product# in Search bar in Catalog popup and enter Qty card view")
-    public void user_enters_product_in_search_bar_in_catalog_popup_and_enter_qty_card_view(DataTable dataTable) throws InterruptedException, AWTException, SQLException, ClassNotFoundException, InstantiationException, IllegalAccessException {
-
+    public void user_enters_product_in_search_bar_in_catalog_popup_and_enter_qty_card_view(DataTable dataTable) throws InterruptedException, AWTException, SQLException, ClassNotFoundException, InstantiationException, IllegalAccessException
+    {
         List<List<String>> Prod_detail = dataTable.asLists(String.class);
         ArrayList<String> Prod_No = (ArrayList<String>) DataBaseConnection.DataConn1(TestBase.testEnvironment.getMultiple_Prod_Sql1());
         productPage = new ProductPage(driver, scenario);
@@ -252,8 +257,7 @@ public class LoginPageStep
     public void user_should_navigate_to_my_cart_and_click_on_chekout_to_order_button() throws InterruptedException, AWTException
     {
         myCartpage = new MyCartPage(driver, scenario);
-        PageTitle = HelpersMethod.gettingTitle(driver);
-        Assert.assertEquals(PageTitle, "Ignition - Order Cart");
+        myCartpage.navigateToOrderCart();
         myCartpage.CheckOut_To_Order();
     }
 
@@ -272,7 +276,7 @@ public class LoginPageStep
     {
         myCartpage = new MyCartPage(driver, scenario);
         PageTitle = HelpersMethod.gettingTitle(driver);
-        Assert.assertEquals(PageTitle, "Ignition - Order Cart");
+        Assert.assertEquals(PageTitle, "Order Cart");
         myCartpage.DeleteButton();
         myCartpage.CheckOut_To_Order();
     }
@@ -307,7 +311,7 @@ public class LoginPageStep
             exists = HelpersMethod.IsExists("//div[contains(text(),'Sorry, no products matched')]", driver);
             if (exists == true)
             {
-                HelpersMethod.ClickBut(driver, HelpersMethod.FindByElement(driver, "xpath", "//span[contains(@class,'search-button')]/*[local-name()='svg']/*[local-name()='path' and contains(@d,'M17')]"), 1);
+                HelpersMethod.ClickBut(driver, HelpersMethod.FindByElement(driver, "xpath", "//span[contains(@class,'search-button')]/*[local-name()='svg']/*[local-name()='path' and contains(@d,'M17')]"), 1000);
 
             }
             else if (exists == false)
@@ -326,7 +330,7 @@ public class LoginPageStep
         loginpage.EnterUsername(TestBase.testEnvironment.username());
         loginpage.EnterPassword(TestBase.testEnvironment.password());
         loginpage.ClickSignin();
-        HelpersMethod.waitTillPageLoaded(driver, 10000);
+        HelpersMethod.waitTillPageLoaded(driver, 200000);
     }
 
     @When("user enters admin username and password")
@@ -345,9 +349,9 @@ public class LoginPageStep
         if (HelpersMethod.IsExists("//div[@class='loader']", driver))
         {
             WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000);
+            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100000);
         }
-        Assert.assertEquals("Ignition - Admin", driver.getTitle());
+        Assert.assertEquals("Admin", driver.getTitle());
     }
 
     //Click on Register here link
@@ -368,9 +372,15 @@ public class LoginPageStep
     public void customer_registration_page_should_get_displayed() throws InterruptedException, AWTException
     {
         boolean Result = false;
-        HelpersMethod.waitTillElementLocatedDisplayed(driver, "xpath", "//div[contains(text(),'Customer Registration')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]", 2000);
+        String status = HelpersMethod.returnDocumentStatus(driver);
+        if (status.equals("loading"))
+        {
+            HelpersMethod.waitTillLoadingPage(driver);
+        }
+        HelpersMethod.waitTillElementLocatedDisplayed(driver, "xpath", "//div[contains(text(),'Customer Registration')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]", 20000);
         if (HelpersMethod.IsExists("//div[contains(text(),'Customer Registration')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]", driver))
         {
+            scenario.log("CUSTOMER REGISTRATION PAGE HAS BEEN FOUND");
             Result = true;
         }
         Assert.assertEquals(true, Result);
@@ -561,7 +571,7 @@ public class LoginPageStep
         driver.get(CurrentURL);
         if (HelpersMethod.IsExists("//div[@class='loader']", driver)) {
             WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100);
+            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 10000);
         }
     }
 
@@ -580,7 +590,7 @@ public class LoginPageStep
 
         orderpage = new OrderEntryPage(driver, scenario);
         String title = HelpersMethod.gettingTitle(driver);
-        if (!title.equals("Ignition - Login"))
+        if (!title.equals("Login"))
         {
             orderpage.Click_On_UserIcon();
             orderpage.Click_On_Signout();
@@ -607,7 +617,7 @@ public class LoginPageStep
     {
             homepage = new HomePage(driver, scenario);
             String title = driver.getTitle();
-            Assert.assertEquals(title, "Ignition - Admin");
+            Assert.assertEquals(title, "Admin");
             homepage.verifyUserinfoContainer();
             homepage.navigateToClientSide();
     }
@@ -630,7 +640,7 @@ public class LoginPageStep
     {
         homepage = new HomePage(driver, scenario);
         String title = driver.getTitle();
-        Assert.assertEquals(title, "Ignition - Admin");
+        Assert.assertEquals(title, "Admin");
         homepage.verifyUserinfoContainer();
         homepage.navigateToClientSide();
     }
@@ -647,6 +657,11 @@ public class LoginPageStep
     {
         orderpage = new OrderEntryPage(driver, scenario);
         driver.navigate().refresh();
+        if(HelpersMethod.IsExists("//div[@class='loader']",driver))
+        {
+            WebElement WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
+            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 40000);
+        }
         orderpage.selecteCommerceOption();
     }
 

@@ -130,7 +130,7 @@ public class OrderEntryPageSteps6
         exists=false;
         newOE = new NewOrderEntryPage(driver,scenario);
         exists=newOE.ClickNext();
-        //newOE.OutOfStockPop_ERP();
+        newOE.OutOfStockPop_ERP();
         checkorder = new CheckOutOrderPage(driver, scenario);
         checkorder.Select_PaymentMethod_ClickDownArrow();
         if(checkorder.Verify_Existence_of_ContinuePayment())

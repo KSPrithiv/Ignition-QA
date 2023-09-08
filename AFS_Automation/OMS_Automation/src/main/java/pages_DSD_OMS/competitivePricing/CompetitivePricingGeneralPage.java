@@ -3,10 +3,7 @@ package pages_DSD_OMS.competitivePricing;
 import helper.HelpersMethod;
 import io.cucumber.java.Scenario;
 import io.cucumber.java.bs.A;
-import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -156,12 +153,35 @@ public class CompetitivePricingGeneralPage
 
     public void Refresh_Page()
     {
-        driver.navigate().to(currentURL);
-       /* if (HelpersMethod.IsExists("//div[@class='loader']", driver))
+        Actions act1=new Actions(driver);
+        try
         {
-            WebElement WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 20000);
-        }*/
+            if(HelpersMethod.IsExists("//div[contains(@class,'k-widget k-window k-dialog')]",driver))
+            {
+                JavascriptExecutor js = ((JavascriptExecutor) driver);
+                js.executeScript("window.location.reload()");
+                WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(40));
+                if(wait.until(ExpectedConditions.alertIsPresent())==null)
+                {
+
+                }
+                else
+                {
+                    Alert alert = driver.switchTo().alert();
+                    alert.accept();
+                }
+            }
+            else
+            {
+                driver.navigate().to(currentURL);
+                if (HelpersMethod.IsExists("//div[@class='loader']", driver))
+                {
+                    WebElement WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
+                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100000);
+                }
+            }
+        }
+        catch (Exception e){}
     }
 
     public void ValidateCompetitorGeneral()

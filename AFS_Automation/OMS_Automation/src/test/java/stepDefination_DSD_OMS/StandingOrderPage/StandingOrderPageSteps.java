@@ -131,6 +131,7 @@ public class StandingOrderPageSteps
         orderpage.HandleError_Page();
         standingOrder=new NewStandingOrderPage(driver,scenario);
         standingOrder.Refresh_Page(currentURL);
+        standingOrder.validateStandingOrder();
     }
 
     @And("User click on Start standing order button and selects start and end date from popup")
@@ -164,6 +165,7 @@ public class StandingOrderPageSteps
     {
         standingOrder=new NewStandingOrderPage(driver,scenario);
         standingOrder.ClickSaveButton();
+        standingOrder.sucessPopup();
     }
 
     @Then("User clicks on Save button and handles popup and continue creation of multiple standing order")
@@ -171,9 +173,8 @@ public class StandingOrderPageSteps
     {
         standingOrder=new NewStandingOrderPage(driver,scenario);
         standingOrder.ClickSaveButton();
-        orderpage=new OrderEntryPage(driver,scenario);
-        orderpage.Refresh_Page(currentURL);
-        standingOrder=new NewStandingOrderPage(driver,scenario);
+        standingOrder.sucessPopup();
+        standingOrder.Refresh_Page(currentURL);
         standingOrder.ValidateSO();
     }
 

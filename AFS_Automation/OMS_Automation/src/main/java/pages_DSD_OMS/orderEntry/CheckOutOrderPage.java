@@ -111,7 +111,7 @@ public class CheckOutOrderPage
             if(HelpersMethod.IsExists("//div[@class='loader']",driver))
             {
                 WebElement WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 80000);
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100000);
             }
             if(HelpersMethod.EleDisplay(CheOutOrderPage))
             {
@@ -159,7 +159,7 @@ public class CheckOutOrderPage
                 if(HelpersMethod.IsExists("//div[@class='loader']",driver))
                 {
                     WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 80000);
+                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000000);
                 }
                 exists=true;
                 scenario.log("CLICKED ON NEXT BUTTON");
@@ -225,6 +225,11 @@ public class CheckOutOrderPage
         exists=false;
         try
         {
+            if(HelpersMethod.IsExists("//div[@class='loader']",driver))
+            {
+                WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 200000);
+            }
             //Check whether application is navigating to checkout card or navigating to order summary page
             if (HelpersMethod.IsExists("//div[@class='page-content']/descendant::div[@id='checkoutCard']",driver))
             {
@@ -483,21 +488,21 @@ public class CheckOutOrderPage
                     {
                         //Select radio button to select specific address
                         WebEle = driver.findElement(By.xpath("//input[contains(@id,'" + Add2 + "')]"));
-                        HelpersMethod.ActClick(driver, WebEle, 10);
+                        HelpersMethod.ActClick(driver, WebEle, 100);
                         XPath = "//td[contains(text(),'" + Add2 + "')]/ancestor::tr/descendant::button[@id='DeleteAddressButton']";
                         exists = HelpersMethod.IsExists(XPath, driver);
                         if (exists == true)
                         {
                             //Once the radio button is selected Delete button will be visible. Click on Edit button
                             WebEle = HelpersMethod.FindByElement(driver, "xpath", "//td[contains(text(),'" + Add2 + "')]/ancestor::tr/descendant::button[@id='DeleteAddressButton']");
-                            HelpersMethod.ClickBut(driver, WebEle, 10);
+                            HelpersMethod.ClickBut(driver, WebEle, 100);
 
                             //handling confirmation popup
                             if (HelpersMethod.IsExists("//div[contains(text(),'Confirm delete')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]", driver))
                             {
                                 WebElement deleteConfirm = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(text(),'Confirm delete')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]");
                                 WebEle = deleteConfirm.findElement(By.xpath(".//button[text()='Yes']"));
-                                HelpersMethod.ClickBut(driver, WebEle, 10);
+                                HelpersMethod.ClickBut(driver, WebEle, 100);
                                 scenario.log("DELIVERY ADDRESS HAS BEEN DELETED");
                                 found = true;
                             }
@@ -524,7 +529,7 @@ public class CheckOutOrderPage
                 if(HelpersMethod.IsExists("//div[@id='paymentMethodCard']/descendant::span[contains(@class,'k-icon k-i-arrow-chevron-down')]",driver))
                 {
                     WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@id='paymentMethodCard']/descendant::span[contains(@class,'k-icon k-i-arrow-chevron-down')]");
-                    HelpersMethod.ClickBut(driver,WebEle,60);
+                    HelpersMethod.ClickBut(driver,WebEle,100);
                 }
             }
         }

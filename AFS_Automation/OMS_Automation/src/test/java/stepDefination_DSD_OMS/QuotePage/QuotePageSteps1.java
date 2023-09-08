@@ -66,6 +66,7 @@ public class QuotePageSteps1
     public void userShouldBeNavigatedToQuoteSummaryPageAndClickOnEditButton()
     {
         quoteSummaryPage=new QuoteSummaryPage(driver,scenario);
+        quoteSummaryPage.ValidateQuoteSummary();
         quoteSummaryPage.ClickOnEdit();
     }
 

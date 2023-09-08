@@ -13,8 +13,9 @@ Feature: Quotes1
     Given User must be on Order Entry Page
     And User clicks on drop down next to Start order button and select Quote option
     Then User enters Quote name "<QuoteName>" and Quote End date click on OK button
-    Then User should find select Order guide from popup
-    Then User should select Note from popup
+    #Then User should find select Order guide from popup
+    #Then User should select Note from popup
+    Then User should select Note from popup and Order guide from popup
     Then Enter multiple Pro# in Quick Product Entry area in New Qutoe page and enter Qty for Case and Unit
       |40|40|
       |20|10|
@@ -32,8 +33,9 @@ Feature: Quotes1
     Given User must be on Order Entry Page
     And User clicks on drop down next to Start order button and select Quote option
     Then User enters Quote name "<QuoteName>" and Quote End date click on OK button
-    Then User should find select Order guide from popup
-    Then User should select Note from popup
+    #Then User should find select Order guide from popup
+    #Then User should select Note from popup
+    Then User should select Note from popup and Order guide from popup
     Then Enter Pro# in Quick Product Entry area in New Qutoe page and enter Qty for Case and Unit
       |40|40|
     Then Click on create button in New Quote page
@@ -55,8 +57,9 @@ Feature: Quotes1
     Given User must be on Order Entry Page
     And User clicks on drop down next to Start order button and select Quote option
     Then User enters Quote name "<QuoteName>" and Quote End date click on OK button
-    Then User should find select Order guide from popup
-    Then User should select Note from popup
+    #Then User should find select Order guide from popup
+    #Then User should select Note from popup
+    Then User should select Note from popup and Order guide from popup
     Then Enter Pro# in Quick Product Entry area in New Qutoe page and enter Qty for Case and Unit
       |40|40|
     Then Click on create button in New Quote page
@@ -78,8 +81,9 @@ Feature: Quotes1
     Given User must be on Order Entry Page
     And User clicks on drop down next to Start order button and select Quote option
     Then User enters Quote name "<QuoteName>" and Quote End date click on OK button
-    Then User should find select Order guide from popup
-    Then User should select Note from popup
+    #Then User should find select Order guide from popup
+    #Then User should select Note from popup
+    Then User should select Note from popup and Order guide from popup
     Then Enter Pro# in Quick Product Entry area in New Qutoe page and enter Qty for Case and Unit
       |40|40|
     Then Click on create button in New Quote page
@@ -99,8 +103,9 @@ Feature: Quotes1
     Given User must be on Order Entry Page
     And User clicks on drop down next to Start order button and select Quote option
     Then User enters Quote name "<QuoteName>" and Quote End date click on OK button
-    Then User should find select Order guide from popup
-    Then User should select Note from popup
+    #Then User should find select Order guide from popup
+    #Then User should select Note from popup
+    Then User should select Note from popup and Order guide from popup
     Then Enter Pro# in Quick Product Entry area in New Qutoe page and enter Qty for Case and Unit
       |40|40|
     And User click on Comment Icon in Quote page and select Internal comment flag
@@ -117,8 +122,9 @@ Feature: Quotes1
     Given User must be on Order Entry Page
     And User clicks on drop down next to Start order button and select Quote option
     Then User enters Quote name "<QuoteName>" and Quote End date click on OK button
-    Then User should find select Order guide from popup
-    Then User should select Note from popup
+    #Then User should find select Order guide from popup
+    #Then User should select Note from popup
+    Then User should select Note from popup and Order guide from popup
     Then Enter Pro# in Quick Product Entry area in New Qutoe page and enter Qty for Case and Unit
       |40|40|
     Then Click on create button in New Quote page
@@ -135,8 +141,9 @@ Feature: Quotes1
     Given User must be on Order Entry Page
     And User clicks on drop down next to Start order button and select Quote option
     Then User enters Quote name "<QuoteName>" and Quote End date click on OK button
-    Then User should find select Order guide from popup
-    Then User should select Note from popup
+    #Then User should find select Order guide from popup
+    #Then User should select Note from popup
+    Then User should select Note from popup and Order guide from popup
     Then Enter Pro# in Quick Product Entry area in New Qutoe page and enter Qty for Case and Unit
       |40|40|
     Then Click on create button in New Quote page
@@ -168,8 +175,9 @@ Feature: Quotes1
     Given User must be on Order Entry Page
     And User clicks on drop down next to Start order button and select Quote option
     Then User enters Quote name "<QuoteName>" and Quote End date click on OK button
-    Then User should find select Order guide from popup
-    Then User should select Note from popup
+    #Then User should find select Order guide from popup
+    #Then User should select Note from popup
+    Then User should select Note from popup and Order guide from popup
     Then Enter BOGO Pro# in Quick Product Entry area in New Qutoe page and enter Qty for Case and Unit
       |40|40|
     And User verifies the products added to Quote
@@ -185,8 +193,9 @@ Feature: Quotes1
     Given User must be on Order Entry Page
     And User clicks on drop down next to Start order button and select Quote option
     Then User enters Quote name "<QuoteName>" and Quote End date click on OK button
-    Then User should find select Order guide from popup
-    Then User should select Note from popup
+    #Then User should find select Order guide from popup
+    #Then User should select Note from popup
+    Then User should select Note from popup and Order guide from popup
     Then Enter BOGO Pro# in Quick Product Entry area in New Qutoe page and enter Qty for Case and Unit
       |40|40|
     And User verifies the products added to Quote

@@ -78,8 +78,6 @@ public class InventoryPageSteps
         if(flag==false)
         {
             homepage = new HomePage(driver,scenario);
-          //  String title = driver.getTitle();
-         //   Assert.assertEquals(title, "Admin");
             homepage.verifyUserinfoContainer();
             homepage.navigateToClientSide();
         }
@@ -169,6 +167,7 @@ public class InventoryPageSteps
         inventory.validateCatalogPopup();
         if (HelpersMethod.IsExists("//div[contains(@class,'k-widget k-window k-dialog')]/descendant::div[contains(@class,'i-grid')]", driver))
         {
+                scenario.log("CATALOG IN THE FORM OF LIST VIEW HAS BEEN FOUND");
                     inventory.ListView(qtyValue);
         }
         else
@@ -176,10 +175,33 @@ public class InventoryPageSteps
             List<String> Prods= DataBaseConnection.DataConn1(TestBase.testEnvironment.getMultiple_Prod_Sql());
             for(int i=0;i<=Prods.size()-1;i++)
             {
+                scenario.log("CATALOG IN THE FORM OF CARD VIEW HAS BEEN FOUND");
                 inventory.cardView(qtyValue,Prods.get(i),i);
             }
         }
         inventory.clickOnCatalogOkButton();
         inventory.clickSaveButton();
+    }
+
+    @Then("User should change store inventroy dropdown value")
+    public void userShouldChangeStoreInventroyDropdownValue()
+    {
+        InventoryPage inventory=new InventoryPage(driver,scenario);
+        inventory.clickOnStoreInventory();
+        inventory.selectStoreInventory();
+    }
+
+    @And("User enters product#, <Case>,<Unit>, <Sequence> in quick product entry")
+    public void userEntersProductCaseUnitSequenceInQuickProductEntry() {
+    }
+
+    @And("User enters product#, {string}, {string}, {string} in quick product entry")
+    public void userEntersProductInQuickProductEntry(String cases, String unit, String sequence)
+    {
+        InventoryPage inventory=new InventoryPage(driver,scenario);
+        inventory.enterQuickProduct();
+        inventory.enterQuickCases(cases);
+        inventory.enterQuickUnit(unit);
+        inventory.enterSequenceNo(sequence);
     }
 }

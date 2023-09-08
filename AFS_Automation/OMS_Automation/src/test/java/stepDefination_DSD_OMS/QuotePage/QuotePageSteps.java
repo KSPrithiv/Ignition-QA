@@ -110,7 +110,7 @@ public class QuotePageSteps
         if(flag1==false)
         {
             orderEntryPage.ChangeAccount();
-            //orderEntryPage.PopUps_After_AccountChange();
+            orderEntryPage.PopUps_After_AccountChange();
             //orderEntryPage.Read_DeliveryDate();
             flag1=true;
         }
@@ -153,6 +153,7 @@ public class QuotePageSteps
         summary =new CheckOutSummaryPage(driver,scenario);
         Quote_No=summary.Get_Quote_No();
         quoteSummaryPage=new QuoteSummaryPage(driver,scenario);
+        quoteSummaryPage.ValidateQuoteSummary();
         quoteSummaryPage.ClickOnBackToOrder();
     }
 
@@ -197,6 +198,7 @@ public class QuotePageSteps
     public void userShouldBeNavigatedToQuoteSummaryPageAndClickOnCancelButton()
     {
         quoteSummaryPage=new QuoteSummaryPage(driver,scenario);
+        quoteSummaryPage.ValidateQuoteSummary();
         quoteSummaryPage.ClickOnCancel();
     }
 
@@ -245,6 +247,7 @@ public class QuotePageSteps
     public void userClickOnCopyButtonInSummaryPageAndEnterQuoteNameAndClickOnCreateButton(String Quote1)
     {
         quoteSummaryPage=new QuoteSummaryPage(driver,scenario);
+        quoteSummaryPage.ValidateQuoteSummary();
         quoteSummaryPage.ClickOnCopy();
         quotePage=new QuotePage(driver,scenario);
         quotePage.EnterQuotName(Quote1);

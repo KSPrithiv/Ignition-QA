@@ -256,15 +256,15 @@ public class UserRegistrationPage
     {
         try
         {
-            HelpersMethod.waitTillElementDisplayed(driver,Registration,10);
+            HelpersMethod.waitTillElementDisplayed(driver,Registration,1000);
             if(HelpersMethod.EleDisplay(Registration))
             {
                 HelpersMethod.ScrollElement(driver,Registration);
-                HelpersMethod.ClickBut(driver,Registration,10);
+                HelpersMethod.ClickBut(driver,Registration,1000);
                 if(HelpersMethod.IsExists("//div[@class='loader']",driver))
                 {
                     WebElement WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 400);
+                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 40000);
                 }
             }
             if(HelpersMethod.IsExists("//div[contains(text(),'pending approval')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))

@@ -87,7 +87,7 @@ public class StatementsPage
             if (HelpersMethod.IsExists("//div[@class='loader']", driver))
             {
                 WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 80000);
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 200000);
             }
 
             Actions act = new Actions(driver);
@@ -95,7 +95,7 @@ public class StatementsPage
                 act.moveToElement(Search_Input).click().sendKeys("Statements").build().perform();
                 WebElement StaementMenu = HelpersMethod.FindByElement(driver, "xpath", "//ul[contains(@class,'MuiList-root ')]/descendant::span[contains(text(),'Statements')]");
                 HelpersMethod.ClickBut(driver, StaementMenu, 2000);
-                Thread.sleep(2000);
+                Thread.sleep(4000);
                 exists = true;
             status = HelpersMethod.returnDocumentStatus(driver);
             if (status.equals("loading"))
@@ -500,9 +500,11 @@ public class StatementsPage
                 {
                     HelpersMethod.waitTillLoadingPage(driver);
                 }
+
                 Set<String> PCWindows = driver.getWindowHandles();
                 for (String PCwind : PCWindows)
                 {
+                    Thread.sleep(80000);
                     status = HelpersMethod.returnDocumentStatus(driver);
                     if (status.equals("loading"))
                     {
@@ -510,7 +512,6 @@ public class StatementsPage
                     }
                     if (!PCwind.equals(ParentWindow))
                     {
-                        Thread.sleep(200000);
                         driver.switchTo().window(PCwind);
                         scenario.log(".pdf HAS BEEN FOUND");
                         driver.close();
@@ -522,7 +523,7 @@ public class StatementsPage
                 if (HelpersMethod.IsExists("//div[@class='loader']", driver))
                 {
                     WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100000);
+                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 200000);
                 }
             }
             Assert.assertEquals(exists,true);
