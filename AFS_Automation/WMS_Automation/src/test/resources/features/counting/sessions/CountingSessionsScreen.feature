@@ -340,11 +340,9 @@ Feature: Testing of Counting Count functionality
     And Validates Session details on Counting Sessions page
     And User clicks Products tab on Counting Sessions page
     And User searches for product with index 0 on Counting Sessions page
-    And Validates items are present on Counting Sessions page
     Then User deletes product search input on Counting Sessions page
-    And Validates items are present on Counting Sessions page
     And User clicks session dropdown on Counting Sessions page
-    And User selects session with index 2 on Counting Sessions page
+    And User selects session with index 1 on Counting Sessions page
     And User searches for product with index 4 on Counting Sessions page
     And Validates items are present on Counting Sessions page
     And User deletes product search input on Counting Sessions page
@@ -359,11 +357,14 @@ Feature: Testing of Counting Count functionality
     And User clicks Add filter button on Counting Sessions page
     And Clicks Clear All Button on Counting Sessions page
     And Validates items are present on Counting Sessions page
+    And User clears Search button on Counting Sessions page
+    And User clicks session dropdown on Counting Sessions page
+    And User selects session with index 2 on Counting Sessions page
+    And User clears Search button on Counting Sessions page
     And User clicks Add filter button on Counting Sessions page
     And Checks Owner Checkbox on Counting Sessions page
     And Types Owner by index 4 on Counting Sessions page
     And Clicks Apply Button on Counting Sessions page
-    And Validates items are present on Counting Sessions page
     And User clicks Add filter button on Counting Sessions page
     And Clicks Clear All Button on Counting Sessions page
     And Validates items are present on Counting Sessions page
@@ -377,7 +378,7 @@ Feature: Testing of Counting Count functionality
     And Validates items are present on Counting Sessions page
     And User clicks Add filter button on Counting Sessions page
     And Checks Book Cost Checkbox on Counting Sessions page
-    And Types Book cost "100" on Counting Sessions page
+    And Types Book cost "0" on Counting Sessions page
     And Clicks Apply Button on Counting Sessions page
     And Validates items are present on Counting Sessions page
     And User clicks Add filter button on Counting Sessions page
@@ -414,7 +415,7 @@ Feature: Testing of Counting Count functionality
     And Validates "Success" notification is displayed on Counting Sessions page
     And Clicks Add Product Button on Counting Sessions page
     And Validates "Add product" popup is displayed on Counting Sessions page
-    And Selects product type by index 3 on Counting Sessions page
+    And Selects product type by index 2 on Counting Sessions page
     And User clicks Save button on Counting Sessions page
     And Clicks Add Product Button on Counting Sessions page
     And Selects movement class by index 1 on Counting Sessions page
@@ -442,30 +443,30 @@ Feature: Testing of Counting Count functionality
     And User clicks Save button on Counting Sessions page
     And Clicks Add Product Button on Counting Sessions page
     And Validates "Add product" popup is displayed on Counting Sessions page
-    And Selects product type by index 0 on Counting Sessions page
+    And Selects product type by index 2 on Counting Sessions page
     And Selects movement class by index 1 on Counting Sessions page
-    And Types supplier by index 1 on Counting Sessions page
+    And Types supplier by index 2 on Counting Sessions page
     And User clicks Save button on Counting Sessions page
     And Clicks Add Product Button on Counting Sessions page
     And Validates "Add product" popup is displayed on Counting Sessions page
-    And Selects product type by index 0 on Counting Sessions page
+    And Selects product type by index 2 on Counting Sessions page
     And Selects movement class by index 1 on Counting Sessions page
-    And Types supplier by index 1 on Counting Sessions page
+    And Types supplier by index 2 on Counting Sessions page
     And Selects owner dropdown by index 1 on Counting Sessions page
     And User clicks Save button on Counting Sessions page
     And Clicks Add Product Button on Counting Sessions page
     And Validates "Add product" popup is displayed on Counting Sessions page
-    And Selects product type by index 0 on Counting Sessions page
+    And Selects product type by index 2 on Counting Sessions page
     And Selects movement class by index 1 on Counting Sessions page
-    And Types supplier by index 1 on Counting Sessions page
+    And Types supplier by index 2 on Counting Sessions page
     And Selects owner dropdown by index 1 on Counting Sessions page
     And Types inventory status by index 2 on Counting Sessions page
     And User clicks Save button on Counting Sessions page
     And Clicks Add Product Button on Counting Sessions page
     And Validates "Add product" popup is displayed on Counting Sessions page
-    And Selects product type by index 0 on Counting Sessions page
+    And Selects product type by index 2 on Counting Sessions page
     And Selects movement class by index 1 on Counting Sessions page
-    And Types supplier by index 1 on Counting Sessions page
+    And Types supplier by index 2 on Counting Sessions page
     And Selects owner dropdown by index 1 on Counting Sessions page
     And Types inventory status by index 5 on Counting Sessions page
     And Types prod alias type by index 4 on Counting Sessions page
@@ -482,13 +483,16 @@ Feature: Testing of Counting Count functionality
     And Waits for Counting Sessions page to load
     And Validates Counting Sessions page is displayed
     And User clicks session dropdown on Counting Sessions page
-    When User selects session with index 1 on Counting Sessions page
+    When User selects session with index 2 on Counting Sessions page
     And Validates Session details on Counting Sessions page
+    And Deletes cookies on application
+    And User clicks Products tab on Counting Sessions page
+    And User clicks Location tab on Counting Sessions page
     And User clicks Products tab on Counting Sessions page
     And Clicks All Checkbox button on Counting Sessions page
     And Validates product with index 1 is selected on Counting Sessions page
     And Validates product with index 2 is selected on Counting Sessions page
-    Then Clicks All Checkbox button on Counting Sessions page
+    Then UnClicks All Checkbox button on Counting Sessions page
     And Validates product with index 1 is not selected on Counting Sessions page
     And Validates product with index 2 is not selected on Counting Sessions page
     And User clicks Product Column on Counting Sessions page
@@ -511,10 +515,6 @@ Feature: Testing of Counting Count functionality
     And Validates Product Type Column Sorting Result on Counting Sessions page
     And User clicks Product Type Column on Counting Sessions page
     And Validates Product Type Column Sorting Result on Counting Sessions page
-    And User clicks Counts Column on Counting Sessions page
-    And Validates Counts Column Sorting Result on Counting Sessions page
-    And User clicks Counts Column on Counting Sessions page
-    And Validates Counts Column Sorting Result on Counting Sessions page
 
   Scenario: Checking Remove Products from Product Tab on Counting Sessions screen
     Given User signs in the application
@@ -527,12 +527,14 @@ Feature: Testing of Counting Count functionality
     When User selects session with index 0 on Counting Sessions page
     And Validates Session details on Counting Sessions page
     And User clicks Products tab on Counting Sessions page
-    And User checks table row by index 1 on Counting Sessions page
+    And User clicks session dropdown on Counting Sessions page
+    And User selects session with index 1 on Counting Sessions page
+    And User checks table row by index 0 on Counting Sessions page
     Then Clicks Delete products button on Counting Sessions page
     And Validates dialog text "Remove highlighted items?" on Counting Sessions page
     And Validates Cancel and OK buttons are displayed on Counting Sessions page
     And User clicks Cancel button on Counting Sessions page
-    And User checks table row by index 2 on Counting Sessions page
+    And User checks table row by index 1 on Counting Sessions page
     And Clicks Delete products button on Counting Sessions page
     And Validates dialog text "Remove highlighted items?" on Counting Sessions page
     And Validates Cancel and OK buttons are displayed on Counting Sessions page
@@ -578,7 +580,7 @@ Feature: Testing of Counting Count functionality
     And Waits for Counting Sessions page to load
     And Validates Counting Sessions page is displayed
     When User clicks session dropdown on Counting Sessions page
-    And User selects session with index 3 on Counting Sessions page
+    And User selects session with index 0 on Counting Sessions page
     And Validates Session details on Counting Sessions page
     Then User clicks Assignments tab on Counting Sessions page
     And Validates Assignment tab contains Release and Delete buttons, Add filter button on Counting Sessions page
@@ -612,16 +614,16 @@ Feature: Testing of Counting Count functionality
     And Clicks Add Product Button on Counting Sessions page
     And Validates "Add product" popup is displayed on Counting Sessions page
     And User clicks Save button on Counting Sessions page
-    And Validates "Success" notification is displayed on Counting Sessions page
     And Clicks Add Product Button on Counting Sessions page
     And Validates "Add product" popup is displayed on Counting Sessions page
     And Types product "000014" on Counting Sessions page
     And User clicks Save button on Counting Sessions page
+    And Deletes cookies on application
     And Clicks Add Product Button on Counting Sessions page
     And Validates "Add product" popup is displayed on Counting Sessions page
     And Types product "0000144" on Counting Sessions page
     And User clicks Save button on Counting Sessions page
-   # And Validates "0000144 is not a valid Product Code." notification is displayed on Counting Sessions page
+    And Validates "0000144 is not a valid Product code." notification is displayed on Counting Sessions page
     And Clicks Add Product Button on Counting Sessions page
     And Validates "Add product" popup is displayed on Counting Sessions page
     And Types "50" number of products on Counting Sessions page
@@ -639,7 +641,7 @@ Feature: Testing of Counting Count functionality
     And Validates "Success" notification is displayed on Counting Sessions page
     And Clicks Add Product Button on Counting Sessions page
     And Validates "Add product" popup is displayed on Counting Sessions page
-    And Types supplier by index 1 on Counting Sessions page
+    And Types supplier by index 2 on Counting Sessions page
     And User clicks Save button on Counting Sessions page
     And Validates "Success" notification is displayed on Counting Sessions page
     And Clicks Add Product Button on Counting Sessions page

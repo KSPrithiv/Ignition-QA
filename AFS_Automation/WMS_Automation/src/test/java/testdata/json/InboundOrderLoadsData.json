@@ -1,0 +1,110 @@
+{
+  "start dates":
+  {
+    "start date 1": "01/01/2018",
+    "start date 2": "09/01/2023",
+    "start date 3": "01/01/2022",
+    "start date 4": "01/01/2020",
+    "start date 5": "01/01/2010",
+    "start date 6": "01/06/2022"
+  },
+  "end dates":
+  {
+    "end date 1": "09/01/2023",
+    "end date 2": "05/23/2023",
+    "end date 3": "08/01/2023",
+    "end date 4": "09/01/2023",
+    "end date 5": "06/01/2023",
+    "end date 6": "12/12/2022"
+  },
+  "product codes":
+  {
+    "product code 1": "160049",
+    "product code 2": "01147",
+    "product code 3": "00493",
+    "product code 4": "00540",
+    "product code 5": "00610"
+  },
+  "temperatures":
+  {
+    "temperature 1": "44",
+    "temperature 2": "30",
+    "temperature 3": "32",
+    "temperature 4": "41",
+    "temperature 5": "25"
+  },
+  "seal numbers":
+  {
+    "seal number 1": "55",
+    "seal number 2": "49",
+    "seal number 3": "12",
+    "seal number 4": "36",
+    "seal number 5": "57",
+    "seal number 6": "74"
+  },
+  "load names":
+  {
+    "load name 1": "__20651",
+    "load name 2": "LOADAUTO1",
+    "load name 3": "1190",
+    "load name 4": "01",
+    "load name 5": "02",
+    "load name 6": "03"
+  },
+  "order names":
+  {
+    "order name 1": "R00001159",
+    "order name 2": "R00001156",
+    "order name 3": "R00001157",
+    "order name 4": "4446",
+    "order name 5": "4367",
+    "order name 6": "R00001146",
+    "order name 7": "4450"
+  },
+  "inbound carriers":
+  {
+    "inbound carrier 1": "Select carrier",
+    "inbound carrier 2": "ALLOWANCE",
+    "inbound carrier 3": "Reed Trucking",
+    "inbound carrier 4": "Inbound Freight Expense",
+    "inbound carrier 5": "Outbound Freight Reed"
+  },
+  "inbound load types":
+  {
+    "inbound load type 1": "Select load type",
+    "inbound load type 2": "Inbound",
+    "inbound load type 3": "Inbound WillCall"
+  },
+  "inbound buyers":
+  {
+    "inbound buyer 1": "Select buyer",
+    "inbound buyer 2": "AFS - AFS - User",
+    "inbound buyer 3": "AFS2 - AFS2 - User",
+    "inbound buyer 4": "AFSRF - AFSRF - User",
+    "inbound buyer 5": "AFSSUPPORT - Afs - Support"
+  },
+  "inbound suppliers":
+  {
+    "inbound supplier 1": "0026",
+    "inbound supplier 2": "0030",
+    "inbound supplier 3": "0044",
+    "inbound supplier 4": "005534",
+    "inbound supplier 5": "01"
+  },
+  "inbound customers":
+  {
+    "inbound customer 1": "Select customer",
+    "inbound customer 2": "02 02",
+    "inbound customer 3": "01 ABC Company"
+  },
+  "inbound order types":
+  {
+    "inbound order type 1": "Select order type",
+    "inbound order type 2": "Customer Return",
+    "inbound order type 3": "Hot Receipt",
+    "inbound order type 4": "Inbound Receipt",
+    "inbound order type 5": "Inbound Transfer",
+    "inbound order type 6": "Production Inbound",
+    "inbound order type 7": "Purchase Order"
+  }
+}

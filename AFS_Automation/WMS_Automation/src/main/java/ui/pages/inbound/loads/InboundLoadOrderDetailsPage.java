@@ -27,6 +27,7 @@ public class InboundLoadOrderDetailsPage extends BasePage {
     By yesButton = By.xpath("//button[contains(text(), 'Yes')]");
     By orderLoadNumber = By.xpath("//span[contains(text(), 'Order')]//following-sibling::span[contains(@id, 'spnOrderNo')]");
     By ownerField = By.xpath("//span[contains(text(), 'Owner')]");
+    By customerField = By.xpath("//span[contains(text(), 'Customer')]");
     By sourceField = By.xpath("//span[contains(text(), 'Source')]");
     By loadNumber = By.cssSelector("#spnRouteCodeNo");
     By doorField = By.xpath("//span[contains(text(), 'Door')]");
@@ -125,6 +126,8 @@ public class InboundLoadOrderDetailsPage extends BasePage {
     public boolean isQaFieldDisplayed() {  return isElementDisplay(getQaField());  }
 
     public boolean isOwnerFieldDisplayed() { return isElementDisplay(getOwnerField()); }
+
+    public boolean isCustomerFieldDisplayed() { return isElementDisplay(getCustomerField()); }
 
     public boolean isCarrierFieldDisplayed() { return isElementDisplay(getCarrierField()); }
 
@@ -592,6 +595,8 @@ public class InboundLoadOrderDetailsPage extends BasePage {
     public WebElement getOrderLoadNumber() { return findWebElement(orderLoadNumber); }
 
     public WebElement getOwnerField() { return findWebElement(ownerField); }
+
+    public WebElement getCustomerField() { return findWebElement(customerField); }
 
     public WebElement getSourceField() { return findWebElement(sourceField); }
 
