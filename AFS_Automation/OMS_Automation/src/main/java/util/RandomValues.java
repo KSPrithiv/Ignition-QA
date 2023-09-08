@@ -14,7 +14,7 @@ import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 
 /**
- * @Project Krupa@2000
+ * @Project DSD_OMS
  * @Author Divya.Ramadas@afsi.com
  */
 public class RandomValues

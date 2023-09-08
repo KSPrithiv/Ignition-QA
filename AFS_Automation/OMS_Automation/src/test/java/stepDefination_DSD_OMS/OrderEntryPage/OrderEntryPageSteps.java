@@ -252,7 +252,7 @@ public class OrderEntryPageSteps
         newOE = new NewOrderEntryPage(driver,scenario);
         newOE.readProductsInOrder();
         exists=newOE.ClickNext();
-        //newOE.OutOfStockPop_ERP();
+        newOE.OutOfStockPop_ERP();
         checkorder=new CheckOutOrderPage(driver,scenario);
         checkorder.DeliveryAddressCard();
         if(HelpersMethod.IsExists("//div[@id='paymentMethodCard']",driver))
@@ -309,6 +309,7 @@ public class OrderEntryPageSteps
     {
         summary = new CheckOutSummaryPage(driver,scenario);
         summary.ClickSubmit();
+        summary.cutoffDialog();
         Ord_No = summary.Get_Order_No();
         summary.SucessPopup();
     }
@@ -651,6 +652,7 @@ public class OrderEntryPageSteps
     public void clickOnNextButtonInPaymentPage() throws InterruptedException, AWTException
     {
         checkorder=new CheckOutOrderPage(driver,scenario);
+        checkorder.VerifyCheckOut();
         checkorder.Select_PaymentMethod_ClickDownArrow();
         if(checkorder.Verify_Existence_of_ContinuePayment())
         {

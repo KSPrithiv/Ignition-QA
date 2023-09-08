@@ -402,7 +402,7 @@ public class GridConfigurationPageStep
     {
         adminHomePage=new AdminHomePage(driver,scenario);
         adminHomePage.refreshPage();
-        adminHomePage.ClickPermissionBy();
+        adminHomePage.ClickPermissionByAgain();
         adminHomePage.SelectCompany();
     }
 }

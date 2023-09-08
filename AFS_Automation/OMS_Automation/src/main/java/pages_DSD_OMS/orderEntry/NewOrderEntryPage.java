@@ -150,6 +150,7 @@ public class NewOrderEntryPage
         {
            if(HelpersMethod.IsExists("//div[contains(@class,'order-entry-page')]",driver))
            {
+                scenario.log("NEW ORDER ENTRY PAGE HAS BEEN FOUND");
                 exists=true;
            }
            Assert.assertEquals(exists,true);
@@ -689,7 +690,7 @@ public class NewOrderEntryPage
                 HelpersMethod.ClickBut(driver,Next_But,100);
             }*/
 
-         /*   for (int i = 0; i <= 4; i++)
+            for (int i = 0; i <= 4; i++)
             {
                //Frequently ordered items
                 if(HelpersMethod.IsExists("//div[contains(text(),'Frequently ordered items not ordered')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
@@ -697,7 +698,8 @@ public class NewOrderEntryPage
                     WebElement modalContainer = HelpersMethod.FindByElement(driver,"xpath","//div[contains(text(),'Frequently ordered items not ordered')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]");
                     //click on No button
                     WebEle=modalContainer.findElement(By.xpath(".//button[text()='No']"));
-                    HelpersMethod.ClickBut(driver,WebEle, 80);
+                    HelpersMethod.ClickBut(driver,WebEle, 100);
+                    scenario.log("FREQUENTLY ORDERED ITEMS POPUP HAS BEEN HANDLED");
                 }
                 // requires an order factor of 8 units. the quantity order has been increased to 16
                 if (HelpersMethod.IsExists("//div[contains(text(),'the quantity order has been increased to')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
@@ -706,6 +708,7 @@ public class NewOrderEntryPage
                     //click on Continue button
                     WebEle=modalContainer.findElement(By.xpath(".//button[text()='Continue']"));
                     HelpersMethod.ClickBut(driver,WebEle, 80);
+                    scenario.log("QUANTITY ORDER HAS BEEN INCREASED POPUP HANDLED");
                 }
 
                 //out of stock popup
@@ -715,12 +718,13 @@ public class NewOrderEntryPage
                     //click on Continue button
                     WebEle=modalContainer.findElement(By.xpath(".//button[text()='Continue']"));
                     HelpersMethod.ClickBut(driver,WebEle, 80);
+                    scenario.log("% OF YOUR AVERAGE ORDER POPUP HAS BEEN HANDLED");
                     if(HelpersMethod.IsExists("//div[@class='loader']",driver))
                     {
                         WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                        HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100);
+                        HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 10000);
                     }
-                }*/
+                }
 
             //Minimum order amount has not been reached
             if (HelpersMethod.IsExists("//div[contains(text(),'the minimum order amount')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
@@ -730,17 +734,18 @@ public class NewOrderEntryPage
                 WebEle=modalContainer.findElement(By.xpath(".//button[text()='Ok']"));
                 HelpersMethod.ClickBut(driver,WebEle, 80);
             }
-            /*    //Critical item popup
+                //Critical item popup
                 if (HelpersMethod.IsExists("//div[contains(text(),'Critical items not ordered')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
                 {
                     WebElement modalContainer = HelpersMethod.FindByElement(driver,"xpath","//div[contains(text(),'Critical items not ordered')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]");
                     //click on Yes button
-                    WebEle=modalContainer.findElement(By.xpath(".//button[text()='Yes']"));
+                    WebEle=modalContainer.findElement(By.xpath(".//button[text()='No']"));
                     HelpersMethod.ClickBut(driver,WebEle, 80);
-                    ClickNext();
+                    scenario.log("CRITICAL ITEMS NOT ORDERED POPUP HANDLED");
+                    //ClickNext();
                 }
-            }*/
-            ClickNext();
+            }
+            //ClickNext();
             exists=true;
             Assert.assertEquals(exists,true);
         }
