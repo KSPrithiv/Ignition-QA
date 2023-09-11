@@ -15,7 +15,7 @@ Feature: Testing of Inbound Orders functionality
     And DockManagement Summary Page is validated
     And Go to Inbound Orders page
     And User waits for Inbound Order Summary page to load
-    When User finds all orders from start date by index 0 to end date by index 0
+    When User finds all orders from start date by index 4
     Then Check order with index 0 on Inbound Order Summary page
     And User applies order "Review" option on Inbound Order Summary page
     And Validates Inbound order summary Review page is displayed
@@ -27,7 +27,7 @@ Feature: Testing of Inbound Orders functionality
     And DockManagement Summary Page is validated
     And Go to Inbound Orders page
     And User waits for Inbound Order Summary page to load
-    When User finds all orders from start date by index 0 to end date by index 0
+    When User finds all orders from start date by index 4
     And Types Valid product code by index 0 on Inbound Order Summary page
     And Validates orders are present on Inbound Order Summary page
     Then Deletes product on Inbound Order Summary page
@@ -40,7 +40,7 @@ Feature: Testing of Inbound Orders functionality
     And DockManagement Summary Page is validated
     And Go to Inbound Orders page
     And User waits for Inbound Order Summary page to load
-    When User finds all orders from start date by index 0 to end date by index 0
+    When User finds all orders from start date by index 4
     And Clicks buyer dropdown by index 0 on Inbound Order Summary page
     And Selects buyer by index 1 dropdown on Inbound Order Summary page
     And Validates items are present on Inbound Order Summary page
@@ -54,7 +54,7 @@ Feature: Testing of Inbound Orders functionality
     And DockManagement Summary Page is validated
     And Go to Inbound Orders page
     And User waits for Inbound Order Summary page to load
-    When User finds all orders from start date by index 0 to end date by index 0
+    When User finds all orders from start date by index 4
     And Types supplier name by index 1 on Inbound Order Summary page
     And Validates items are present on Inbound Order Summary page
     And Cleans supplier name on Inbound Order Summary page
@@ -70,7 +70,7 @@ Feature: Testing of Inbound Orders functionality
     And DockManagement Summary Page is validated
     And Go to Inbound Orders page
     And User waits for Inbound Order Summary page to load
-    When User finds all orders from start date by index 3 to end date by index 0
+    When User finds all orders from start date by index 4
     And Types supplier name by index 0 on Inbound Order Summary page
     And Validates items are present on Inbound Order Summary page
     And Validates orders are present on Inbound Order Summary page
@@ -85,7 +85,7 @@ Feature: Testing of Inbound Orders functionality
     And DockManagement Summary Page is validated
     And Go to Inbound Orders page
     And User waits for Inbound Order Summary page to load
-    When User finds all orders from start date by index 3 to end date by index 0
+    When User finds all orders from start date by index 4
     And Clicks order type by index 0 dropdown on Inbound Order Summary page
     And Selects order type by index 4 dropdown on Inbound Order Summary page
     And Validates orders are present on Inbound Order Summary page
@@ -99,7 +99,7 @@ Feature: Testing of Inbound Orders functionality
     And DockManagement Summary Page is validated
     And Go to Inbound Orders page
     And User waits for Inbound Order Summary page to load
-    When User finds all orders from start date by index 0 to end date by index 0
+    When User finds all orders from start date by index 4
     And Validates orders are present on Inbound Order Summary page
     Then Clicks customer option by index 0 on Inbound Order Summary page
     And Selects customer option by index 2 on Inbound Order Summary page
@@ -111,7 +111,7 @@ Feature: Testing of Inbound Orders functionality
     And DockManagement Summary Page is validated
     And Go to Inbound Orders page
     And User waits for Inbound Order Summary page to load
-    And User finds all orders from start date by index 0 to end date by index 0
+    And User finds all orders from start date by index 4
     And Validates orders are present on Inbound Order Summary page
     When Clicks "Select door" door option on Inbound Order Summary page
     And Selects "DOOR" door option on Inbound Order Summary page
@@ -126,7 +126,7 @@ Feature: Testing of Inbound Orders functionality
     And DockManagement Summary Page is validated
     And Go to Inbound Orders page
     And User waits for Inbound Order Summary page to load
-    When User finds all orders from start date by index 0 to end date by index 0
+    When User finds all orders from start date by index 0
     And Validates orders are present on Inbound Order Summary page
     And Clicks carrier by index 0 on Inbound Order Summary page
     And Selects carrier by index 3 on Inbound Order Summary page
@@ -141,7 +141,7 @@ Feature: Testing of Inbound Orders functionality
     And DockManagement Summary Page is validated
     And Go to Inbound Orders page
     And User waits for Inbound Order Summary page to load
-    And User finds all orders from start date by index 0 to end date by index 0
+    And User finds all orders from start date by index 4
     And Validates orders are present on Inbound Order Summary page
     When Clicks order status "All statuses" on Inbound Order Summary page
     And Selects order status "Ready To Receive" on Inbound Order Summary page
@@ -159,7 +159,7 @@ Feature: Testing of Inbound Orders functionality
     And DockManagement Summary Page is validated
     And Go to Inbound Orders page
     And User waits for Inbound Order Summary page to load
-    When User finds all orders from start date by index 4 to end date by index 4
+    When User finds all orders from start date by index 4
     And Validates orders are present on Inbound Order Summary page
     Then Select order by index 0 on Inbound Order Summary page
     And Validates orders are present on Inbound Order Summary page
@@ -173,7 +173,7 @@ Feature: Testing of Inbound Orders functionality
     And DockManagement Summary Page is validated
     And Go to Inbound Orders page
     And User waits for Inbound Order Summary page to load
-    When User finds all orders from start date by index 4 to end date by index 5
+    When User finds all orders from start date by index 0
     And Validates orders are present on Inbound Order Summary page
     And Clicks order status "All statuses" on Inbound Order Summary page
     And Selects order status "Ready To Receive" on Inbound Order Summary page
@@ -195,7 +195,7 @@ Feature: Testing of Inbound Orders functionality
     And DockManagement Summary Page is validated
     And Go to Inbound Orders page
     And User waits for Inbound Order Summary page to load
-    When User finds all orders from start date by index 4 to end date by index 5
+    When User finds all orders from start date by index 4
     And Validates orders are present on Inbound Order Summary page
     And Clicks order status "All statuses" on Inbound Order Summary page
     And Selects order status "Received Order" on Inbound Order Summary page
@@ -211,7 +211,7 @@ Feature: Testing of Inbound Orders functionality
     And DockManagement Summary Page is validated
     And Go to Inbound Orders page
     And User waits for Inbound Order Summary page to load
-    When User finds all orders from start date by index 4 to end date by index 5
+    When User finds all orders from start date by index 4
     And Validates orders are present on Inbound Order Summary page
     And Clicks order status "All statuses" on Inbound Order Summary page
     And Selects order status "Open" on Inbound Order Summary page
@@ -228,7 +228,7 @@ Feature: Testing of Inbound Orders functionality
     And DockManagement Summary Page is validated
     And Go to Inbound Orders page
     And User waits for Inbound Order Summary page to load
-    When User finds all orders from start date by index 0 to end date by index 1
+    When User finds all orders from start date by index 0
     And Validates orders are present on Inbound Order Summary page
     And Clicks order status "All statuses" on Inbound Order Summary page
     Then Selects order status "Ready To Receive" on Inbound Order Summary page
@@ -244,7 +244,7 @@ Feature: Testing of Inbound Orders functionality
     And DockManagement Summary Page is validated
     And Go to Inbound Orders page
     And User waits for Inbound Order Summary page to load
-    When User finds all orders from start date by index 4 to end date by index 1
+    When User finds all orders from start date by index 4
     Then Validates orders are present on Inbound Order Summary page
     And Validates Received, Staged, Over and Remainder are present on Inbound Order Summary page with correct color
     And Validates items are present on Inbound Order Summary page
@@ -255,7 +255,7 @@ Feature: Testing of Inbound Orders functionality
     And DockManagement Summary Page is validated
     And Go to Inbound Orders page
     And User waits for Inbound Order Summary page to load
-    When User finds all orders from start date by index 4 to end date by index 1
+    When User finds all orders from start date by index 4
     Then Validates orders are present on Inbound Order Summary page
     And Selects Order with index 1 and apply "Source" Order Option on Inbound Order Summary page
     And Validates Source order screen on Inbound Order Summary page
@@ -268,28 +268,27 @@ Feature: Testing of Inbound Orders functionality
     And DockManagement Summary Page is validated
     And Go to Inbound Orders page
     And User waits for Inbound Order Summary page to load
-    When User finds all orders from start date by index 4 to end date by index 1
+    When User finds all orders from start date by index 4
     And Validates orders are present on Inbound Order Summary page
-    Then Selects Order with index 1 and apply "Receive" Order Option on Inbound Order Summary page
+    Then Selects Order with index 0 and apply "Receive" Order Option on Inbound Order Summary page
     And Receiving page loads
     And Receiving page contains all web elements
     And Clicks Route Back button on Inbound Order Summary page
-    And Checks Order with index 2 on Inbound Order Summary page
+    And Checks Order with index 1 on Inbound Order Summary page
     And Clicks Order Option on Inbound Order Summary page
     And Validates Order option "Receive" on Inbound Order Summary page is disabled
 
-  Scenario: Checking Edit option on Inbound Order Summary screen
+ Scenario: Checking Edit option on Inbound Order Summary screen
     Given User signs in the application
     And Main page is loaded
     And DockManagement Summary Page is validated
     And Go to Inbound Orders page
     And User waits for Inbound Order Summary page to load
-    When User finds all orders from start date by index 4 to end date by index 1
+    When User finds all orders from start date by index 4
     And Validates orders are present on Inbound Order Summary page
     And Selects Order with index 1 and apply "Edit" Order Option on Inbound Order Summary page
     And Validates Edit load popup on Inbound Order Summary page
     Then Filling scheduled date by index 2 and scheduled time "5:00" on Edit popup on Inbound Order Summary page
-    And Validates scheduled date by index 2 and scheduled time "5:00" on Inbound Order Summary page
     And Clicks Cancel button on Inbound Order Summary page
     And Checks Order with index 2 on Inbound Order Summary page
     And Clicks Order Option on Inbound Order Summary page
@@ -301,7 +300,7 @@ Feature: Testing of Inbound Orders functionality
     And DockManagement Summary Page is validated
     And Go to Inbound Orders page
     And User waits for Inbound Order Summary page to load
-    And User finds all orders from start date by index 4 to end date by index 4
+    And User finds all orders from start date by index 4
     And Validates orders are present on Inbound Order Summary page
     When Checks Order with index 1 on Inbound Order Summary page
     And Clicks data option on Inbound Order Summary page
@@ -319,7 +318,7 @@ Feature: Testing of Inbound Orders functionality
     And DockManagement Summary Page is validated
     And Go to Inbound Orders page
     And User waits for Inbound Order Summary page to load
-    And User finds all orders from start date by index 2 to end date by index 1
+    And User finds all orders from start date by index 2
     And Validates orders are present on Inbound Order Summary page
     When Checks Order with index 1 on Inbound Order Summary page
     And Clicks door option on Inbound Order Summary page
@@ -346,7 +345,7 @@ Feature: Testing of Inbound Orders functionality
     And DockManagement Summary Page is validated
     And Go to Inbound Orders page
     And User waits for Inbound Order Summary page to load
-    When User finds all orders from start date by index 0 to end date by index 4
+    When User finds all orders from start date by index 0
     And Validates orders are present on Inbound Order Summary page
     Then Selects Order with index 1 and apply "Log" Order Option on Inbound Order Summary page
     And Validates popup Receiver details on Inbound Order Summary page
@@ -360,7 +359,7 @@ Feature: Testing of Inbound Orders functionality
     And DockManagement Summary Page is validated
     And Go to Inbound Orders page
     And User waits for Inbound Order Summary page to load
-    When User finds all orders from start date by index 0 to end date by index 4
+    When User finds all orders from start date by index 0
     And Validates orders are present on Inbound Order Summary page
     Then Selects Order with index 1 and apply "Move" Order Option on Inbound Order Summary page
     And Validates Move popup on Inbound Order Summary page

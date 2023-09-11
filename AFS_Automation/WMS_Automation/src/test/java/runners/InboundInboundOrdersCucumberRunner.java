@@ -1,17 +1,14 @@
 package runners;
 
-import com.nordstrom.automation.testng.LinkedListeners;
 import common.constants.FilePaths;
 import common.setup.DriverManager;
 import common.setup.Environment;
 import common.utils.Waiters;
 import io.cucumber.testng.AbstractTestNGCucumberTests;
 import io.cucumber.testng.CucumberOptions;
-import listeners.TestListener;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.aeonbits.owner.ConfigFactory;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.ITestResult;
 import org.testng.annotations.*;
 
@@ -19,19 +16,17 @@ import javax.mail.MessagingException;
 import java.io.IOException;
 
 import static common.setup.DriverManager.*;
-@LinkedListeners({
-    TestListener.class
-})
-@CucumberOptions(features = {"src/test/resources/features/counting/dashboard/CountingDashboardScreen.feature"},
+
+@CucumberOptions(features = {"src/test/resources/features/inbound/inboundorders"},
         glue = {"steps"},
         plugin = {"pretty",
                 "json:target/cucumber.json",
                 "html:Reports/Index.html",
                 "json:target/cucumber-reports/cucumber.json",
                 "rerun:target/failedrerun.txt"
-        }, monochrome = true, tags = "@Counting")
+        }, monochrome = true, tags = "@Inbound")
 @Slf4j
-public class CountingCucumberRunner extends AbstractTestNGCucumberTests {
+public class InboundInboundOrdersCucumberRunner extends AbstractTestNGCucumberTests {
     public static Environment environment;
 
     @Parameters({"environment","browser"})
@@ -47,22 +42,23 @@ public class CountingCucumberRunner extends AbstractTestNGCucumberTests {
 
     @SneakyThrows
     @AfterMethod
-    public void closeBrowserInstance(ITestResult iTestResult){
+    public void closeBrowserInstance(ITestResult iTestResult) {
         if (driverEnabled(getDriver())) {
-            try{
+            try {
                 driverThreadLocal.get().close();
                 driverThreadLocal.get().quit();
-            } catch(Exception e) {
+                quitDriver();
+            } catch (Exception e) {
                 //   FileUtils.forceDelete(new File("C:/Users/Irina.Holovan/Desktop/chrome/" + DriverManager.COUNTER));
-                System.out.println("Error closing and quitting the web driver: " + e.getMessage());
-                if(getDriver() instanceof ChromeDriver){
+               /* System.out.println("Error closing and quitting the web driver: " + e.getMessage());
+                quitDriver();
+//             if(getDriver() instanceof ChromeDriver){
                     try {
                         //  FileUtils.forceDelete(new File("C:/Users/Irina.Holovan/Desktop/chrome/" + DriverManager.COUNTER));
                         Runtime.getRuntime().exec("taskkill /F /IM chromedriver.exe");
                     } catch (IOException ex) {
                         System.out.println("Error force quitting the ChromeDriver process: " + ex.getMessage());
-                    }
-                }
+                    }*/
             }
         }
     }

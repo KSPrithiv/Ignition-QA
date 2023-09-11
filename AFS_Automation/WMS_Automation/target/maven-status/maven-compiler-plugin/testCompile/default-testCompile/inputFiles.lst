@@ -93,6 +93,7 @@ C:\Users\Irina.Holovan\Documents\ignition-qa\AFS_Automation\WMS_Automation\src\t
 C:\Users\Irina.Holovan\Documents\ignition-qa\AFS_Automation\WMS_Automation\src\test\java\steps\setupConfiguration\OrderTypePageSteps.java
 C:\Users\Irina.Holovan\Documents\ignition-qa\AFS_Automation\WMS_Automation\src\test\java\steps\outbound\processing\ProcessingPageSteps.java
 C:\Users\Irina.Holovan\Documents\ignition-qa\AFS_Automation\WMS_Automation\src\test\java\steps\setupConfiguration\AssignmentTypePageSteps.java
+C:\Users\Irina.Holovan\Documents\ignition-qa\AFS_Automation\WMS_Automation\src\test\java\steps\setupSystem\LabelFormatPageSteps.java
 C:\Users\Irina.Holovan\Documents\ignition-qa\AFS_Automation\WMS_Automation\src\test\java\steps\setupLabor\JobTypePageSteps.java
 C:\Users\Irina.Holovan\Documents\ignition-qa\AFS_Automation\WMS_Automation\src\test\java\steps\inbound\receiving\ReceivingPageSteps.java
 C:\Users\Irina.Holovan\Documents\ignition-qa\AFS_Automation\WMS_Automation\src\test\java\steps\validations\setup\SetupSystemPageValidations.java
@@ -103,6 +104,7 @@ C:\Users\Irina.Holovan\Documents\ignition-qa\AFS_Automation\WMS_Automation\src\t
 C:\Users\Irina.Holovan\Documents\ignition-qa\AFS_Automation\WMS_Automation\src\test\java\steps\inbound\inboundorders\InboundOrderLineItemsDetailsScreenPageSteps.java
 C:\Users\Irina.Holovan\Documents\ignition-qa\AFS_Automation\WMS_Automation\src\test\java\steps\setupLabor\FatiguePageSteps.java
 C:\Users\Irina.Holovan\Documents\ignition-qa\AFS_Automation\WMS_Automation\src\test\java\steps\setupWarehouse\DockDoorGroupPageSteps.java
+C:\Users\Irina.Holovan\Documents\ignition-qa\AFS_Automation\WMS_Automation\src\test\java\steps\setupSystem\LabelFilePageSteps.java
 C:\Users\Irina.Holovan\Documents\ignition-qa\AFS_Automation\WMS_Automation\src\test\java\steps\inbound\loads\InboundLoadSummaryPageSteps.java
 C:\Users\Irina.Holovan\Documents\ignition-qa\AFS_Automation\WMS_Automation\src\test\java\steps\outbound\ordersummary\OutboundOrderSummaryPageSteps.java
 C:\Users\Irina.Holovan\Documents\ignition-qa\AFS_Automation\WMS_Automation\src\test\java\steps\appointments\AppointmentScheduledPopUpPageSteps.java
