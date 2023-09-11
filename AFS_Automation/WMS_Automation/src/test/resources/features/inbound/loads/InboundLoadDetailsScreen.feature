@@ -8,9 +8,9 @@ Feature: Testing of Inbound Load Details screen functionality
     And Go to Loads page
     And Inbound Load Summary page appears
     And Inbound Load Summary page main elements are present
-    When Types start date by index 0 on Inbound Load Summary page
+    When Types start date by index 4 on Inbound Load Summary page
     And Validates loads are present on Inbound Load Summary page
-    Then Select Load with index 3 on Inbound Load Summary page
+    Then Select Load with index 1 on Inbound Load Summary page
     And Inbound Load Summary Details page main elements are present
 
   Scenario: Checking the Load details
@@ -21,7 +21,7 @@ Feature: Testing of Inbound Load Details screen functionality
     And Inbound Load Summary page appears
     And Inbound Load Summary page main elements are present
     When Types start date by index 0 on Inbound Load Summary page
-    Then Select Load with index 4 on Inbound Load Summary page
+    Then Select Load with index 1 on Inbound Load Summary page
     And Inbound Load Summary Details page main elements are present
 
   Scenario: Checking Number of images on Load details screen
@@ -64,7 +64,7 @@ Feature: Testing of Inbound Load Details screen functionality
     And Go to Loads page
     And Inbound Load Summary page appears
     And Inbound Load Summary page main elements are present
-    When Types start date by index 3 on Inbound Load Summary page
+    When Types start date by index 4 on Inbound Load Summary page
     Then Select Load with index 3 on Inbound Load Summary page
     And Validates orders are present for load on Inbound Load Summary page
 
@@ -75,7 +75,7 @@ Feature: Testing of Inbound Load Details screen functionality
     And Go to Loads page
     And Inbound Load Summary page appears
     And Inbound Load Summary page main elements are present
-    When Types start date by index 0 on Inbound Load Summary page
+    When Types start date by index 4 on Inbound Load Summary page
     Then Clicks load status "All statuses" on Inbound Load Summary page
     And Selects load status "Received Order" on Inbound Load Summary page
     And Checks Load with index 0 on Inbound Load Summary page
@@ -91,7 +91,7 @@ Feature: Testing of Inbound Load Details screen functionality
     And Go to Loads page
     And Inbound Load Summary page appears
     And Inbound Load Summary page main elements are present
-    When Types start date by index 2 on Inbound Load Summary page
+    When Types start date by index 4 on Inbound Load Summary page
     And Types end date by index 4 on Inbound Load Summary page
     Then Clicks load status "All statuses" on Inbound Load Summary page
     And Selects load status "Ready To Receive" on Inbound Load Summary page
@@ -110,7 +110,7 @@ Feature: Testing of Inbound Load Details screen functionality
     And Go to Loads page
     And Inbound Load Summary page appears
     And Inbound Load Summary page main elements are present
-    When Types start date by index 2 on Inbound Load Summary page
+    When Types start date by index 4 on Inbound Load Summary page
     Then Clicks load status "All statuses" on Inbound Load Summary page
     And Selects load status "Open" on Inbound Load Summary page
     And Select Load with index 0 on Inbound Load Summary page
@@ -155,7 +155,7 @@ Feature: Testing of Inbound Load Details screen functionality
     And DockManagement Summary Page is validated
     And Go to Loads page
     And Inbound Load Summary page appears
-    Then Inbound Load Summary page main elements are present
+    And Inbound Load Summary page main elements are present
     When Types start date by index 2 on Inbound Load Summary page
     Then Select Load with index 0 on Inbound Load Summary page
     And Clicks data option on Inbound Load Summary page
@@ -191,7 +191,7 @@ Feature: Testing of Inbound Load Details screen functionality
     And Go to Loads page
     And Inbound Load Summary page appears
     And Inbound Load Summary page main elements are present
-    When Types start date by index 2 on Inbound Load Summary page
+    When Types start date by index 4 on Inbound Load Summary page
     Then Select Load with index 0 on Inbound Load Summary page
     And Clicks door option on Inbound Load Summary page
     And Validates popup Assign doors title for Inbound Load Summary
@@ -216,7 +216,7 @@ Feature: Testing of Inbound Load Details screen functionality
     And Go to Loads page
     And Inbound Load Summary page appears
     And Inbound Load Summary page main elements are present
-    When Types start date by index 2 on Inbound Load Summary page
+    When Types start date by index 4 on Inbound Load Summary page
     Then Select Load with index 0 on Inbound Load Summary page
     And Clicks Route Back button on Inbound Load Summary page
     And Inbound Load Summary page appears

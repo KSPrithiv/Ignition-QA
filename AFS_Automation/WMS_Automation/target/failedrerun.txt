@@ -1,2 +1,0 @@
-file:src/test/resources/features/counting/counting/CountingCountScreen.feature:74:102:192:212
-file:src/test/resources/features/counting/sessions/CountingSessionsScreen.feature:12:43:80:178:197:331:603
