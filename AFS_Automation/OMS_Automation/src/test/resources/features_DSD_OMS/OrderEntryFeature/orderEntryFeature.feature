@@ -116,7 +116,6 @@ Feature: Order Entry
     Given User must be on Order Entry Page
     Then Click on History button
     Then User verifies Order history page and add history Order to order
-      |2023|
     And Click on Copy button
     Then User should Select delivery date from popup
     And Select New order option from popup
@@ -145,11 +144,11 @@ Feature: Order Entry
     And Click on Submit Order button and read Order_no
     Then User should be navigated to Order Entry page
     Then Enter Order# in Search box in Order Entry page
-    Then Click on Order number in Order Entry page and check for New OE page
+    Then Click on Order number in Order Entry page and check for New OE page for editing Order
 #    Then Navigate to Summary order entry page
     Then Enter new product# in the quick product entry with qty
       |80|40|
-    Then Click on Next button
+    Then Click on Next button after editing order
     And Click on SubmitOrder button
     Then User should be navigated to Order Entry page
 
@@ -162,6 +161,9 @@ Feature: Order Entry
     Then User should select Note from popup and Order guide from popup
     Then Enter PO# for New order
       |PO123|
+    And Enter Qty for the products in Product grid
+      |50|70|
+      |40|60|
     Then Enter Pro# in Quick Product Entry area
     And Check for Case and Unit input box enabled or not based on that enter value
       |60|80|

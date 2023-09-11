@@ -131,9 +131,8 @@ public class TestBase {
 
         getDriver().manage().window().maximize();
         getDriver().manage().deleteAllCookies();
-        //karthik
         getDriver().manage().timeouts().pageLoadTimeout(TestUtil.PAGE_LOAD_TIMEOUT, TimeUnit.SECONDS);
-        //getDriver().manage().timeouts().implicitlyWait(TestUtil.IMPLICIT_WAIT, TimeUnit.SECONDS);
+        getDriver().manage().timeouts().implicitlyWait(TestUtil.IMPLICIT_WAIT, TimeUnit.SECONDS);
         getDriver().get(testEnvironment.get_url());
     }
 

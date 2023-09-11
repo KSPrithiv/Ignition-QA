@@ -119,4 +119,21 @@ public class OrderGuidePageStep2
         createOGPage=new CreateOGPage(driver,scenario);
         createOGPage.validateCustomerReference(custRef);
     }
+
+    @Then("User enters OG Description {string} in search box and Delete cancel the OG verify same in OG grid")
+    public void userEntersOGDescriptionInSearchBoxAndDeleteCancelTheOGVerifySameInOGGrid(String arg0) throws InterruptedException, AWTException
+    {
+        exists = false;
+        orderGuidePage = new OrderGuidePage(driver, scenario);
+        exists= orderGuidePage.OGSearchBox(arg0);
+        Assert.assertEquals(exists,true);
+        orderGuidePage.SearchOGSelect(arg0);
+        createOGPage = new CreateOGPage(driver, scenario);
+        createOGPage.Click_Delete();
+        createOGPage.DeleteCancel_Popup();
+        orderGuidePage = new OrderGuidePage(driver, scenario);
+        //once OG is deleted, search for OG in OG grid
+        exists=orderGuidePage.OGSearchBox(arg0);
+        Assert.assertEquals(exists,false);
+    }
 }

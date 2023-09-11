@@ -145,6 +145,15 @@ Feature: Order Guide2
       |  OG           |   OGType                 |
       | AllCustomer1  |  All customer accounts # |
 
+  @OGDeleteCancel
+  Scenario Outline: Test scenario for cancel deleteing of OG
+    Given User must be on Order Entry Page to select OG
+    And User should navigate to OG
+    Then User enters OG Description "<OG>" in search box and Delete cancel the OG verify same in OG grid
+    Examples:
+      |  OG   |
+      |OGDis1 |
+
   @OGDelete
   Scenario Outline: Deleting Order guide and verifying it in OG grid
     Given User must be on Order Entry Page to select OG

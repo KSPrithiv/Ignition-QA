@@ -13,7 +13,9 @@ import java.io.IOException;
  * @Project DSD_OMS
  * @Author Divya.Ramadas@afsi.com
  */
-@CucumberOptions(features ={"src/test/resources/features_DSD_OMS/OrderEntryFeature/orderEntryFeature3.feature",
+@CucumberOptions(features ={
+                            "src/test/resources/features_DSD_OMS/OrderEntryFeature/orderEntryFeature2.feature",
+                            "src/test/resources/features_DSD_OMS/OrderEntryFeature/orderEntryFeature3.feature",
                             "src/test/resources/features_DSD_OMS/OrderEntryFeature/orderEntryFeature4.feature"
                             },
         glue = {"stepDefination_DSD_OMS"},
@@ -43,7 +45,7 @@ public class TestRunnerOE1 extends AbstractTestNGCucumberTests
     @AfterClass
     public static void afterclass() throws InterruptedException, MessagingException, IOException
     {
-        Thread.sleep(10000);
+        Thread.sleep(1000);
         //MailSend.sendMail();
         TestBase.CloseBrowser();
         if(TestBase.testEnvironment.get_browser().equalsIgnoreCase("Firefox"))

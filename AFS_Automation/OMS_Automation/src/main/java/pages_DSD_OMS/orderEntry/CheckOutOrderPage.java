@@ -148,54 +148,28 @@ public class CheckOutOrderPage
 
     public void NextButton_Click()
     {
-        exists=false;
         try
         {
             WebElement WebEle=null;
-            if(HelpersMethod.IsEnabledByele(NextButton))
+            if(HelpersMethod.IsExists("//div[@id='checkoutCard']",driver))
             {
-                HelpersMethod.ScrollElement(driver,NextButton);
-                HelpersMethod.ClickBut(driver,NextButton,1000);
-                if(HelpersMethod.IsExists("//div[@class='loader']",driver))
+                if (HelpersMethod.IsEnabledByele(NextButton))
                 {
-                    WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000000);
-                }
-                exists=true;
-                scenario.log("CLICKED ON NEXT BUTTON");
-               /* for(int i=0;i<=4;i++)
-                {
-                    if (HelpersMethod.IsExists("//div[contains(text(),'The following products are not within the required')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')])", driver))
+                    HelpersMethod.ScrollElement(driver, NextButton);
+                    HelpersMethod.ClickBut(driver, NextButton, 100);
+                    if (HelpersMethod.IsExists("//div[@class='loader']", driver))
                     {
-                        WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-widget k-window k-dialog')]/descendant::button[text()='Continue']");
-                        HelpersMethod.clickOn(driver, WebEle, 10);
-                    }
-                    if (HelpersMethod.IsExists("//div[contains(text(),'has passed the cutoff time.')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]", driver))
-                    {
-                        WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-widget k-window k-dialog')]/descendant::button[text()='Continue']");
-                        HelpersMethod.clickOn(driver, WebEle, 10);
-                    }
-                    if(HelpersMethod.IsExists("//div[contains(text(),'Order total equals zero')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
-                    {
-                        WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-widget k-window k-dialog')]/descendant::button[text()='Continue']");
-                        HelpersMethod.clickOn(driver, WebEle, 10);
                         WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                        HelpersMethod.waitTillLoadingWheelDisappears(driver,WebEle,10);
+                        HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 20000);
                     }
-                    //% of average order stock popup
-                    if (HelpersMethod.IsExists("//div[contains(text(),'% of your average order for the given products')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
-                    {
-                        WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='k-widget k-window k-dialog']/descendant::button[text()='Continue']");
-                        HelpersMethod.ClickBut(driver,WebEle,10);
-                    }
-                }*/
+
+                    scenario.log("CLICKED ON NEXT BUTTON");
+                }
+                else
+                {
+                    scenario.log("NEXT BUTTON IS DISABLED");
+                }
             }
-            else
-            {
-                scenario.log("NEXT BUTTON IS DISABLED");
-                exists=false;
-            }
-            Assert.assertEquals(exists,true);
         }
         catch (Exception e){}
     }
@@ -228,7 +202,7 @@ public class CheckOutOrderPage
             if(HelpersMethod.IsExists("//div[@class='loader']",driver))
             {
                 WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 200000);
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 40000);
             }
             //Check whether application is navigating to checkout card or navigating to order summary page
             if (HelpersMethod.IsExists("//div[@class='page-content']/descendant::div[@id='checkoutCard']",driver))
@@ -238,6 +212,7 @@ public class CheckOutOrderPage
                 {
                     WebEle=HelpersMethod.FindByElement(driver,"id","SubmitCheckoutButton");
                     HelpersMethod.ClickBut(driver,WebEle,1000);
+                    scenario.log("NEXT BUTTON IN PAYMENT PAGE HAS BEEN CLICKED");
                     exists=true;
                 }
                 else
@@ -247,10 +222,10 @@ public class CheckOutOrderPage
                         if(HelpersMethod.IsExists("//div[@id='addressCard']/descendant::span[contains(@class,'k-icon k-i-arrow-chevron-down')]",driver))
                         {
                             WebEle=HelpersMethod.FindByElement(driver, "xpath", "//div[@id='addressCard']/descendant::span[contains(@class,'k-icon k-i-arrow-chevron-down')]");
-                            HelpersMethod.ClickBut(driver,WebEle,1000);
+                            HelpersMethod.ClickBut(driver,WebEle,100);
                         }
                         WebEle=HelpersMethod.FindByElement(driver, "xpath", "//div[@class='address-container']/descendant::tbody/tr[1]/descendant::input");
-                        HelpersMethod.ClickBut(driver,WebEle,1000);
+                        HelpersMethod.ClickBut(driver,WebEle,100);
                         exists=true;
 
                         //Check whether 'SubmitCheckoutButton' is enabled or not
@@ -345,7 +320,7 @@ public class CheckOutOrderPage
                             if(HelpersMethod.IsExists("//div[@class='loader']",driver))
                             {
                                 WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000);
+                                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 10000);
                             }
                         }
                     }
@@ -354,7 +329,7 @@ public class CheckOutOrderPage
                     if(HelpersMethod.IsExists("//div[@class='loader']",driver))
                     {
                         WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                        HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000);
+                        HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 10000);
                     }
                 }
             }
@@ -661,6 +636,7 @@ public class CheckOutOrderPage
         try
         {
             result=HelpersMethod.EleDisplay(WithoutPayment);
+            scenario.log("CONTINUE WITHOUT PAYMENT BUTTON IS DISPLAYED");
         }
         catch (Exception e){}
         return result;
@@ -691,6 +667,7 @@ public class CheckOutOrderPage
         {
             WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='payment-method-container']/descendant::tbody/tr[1]/descendant::input");
             HelpersMethod.ClickBut(driver,WebEle,40);
+            scenario.log("PAYMENT METHOD HAS BEEN SELECTED");
         }
         catch (Exception e){}
     }

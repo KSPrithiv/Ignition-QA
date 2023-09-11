@@ -366,6 +366,11 @@ public class NewQuotePage
                     {
                         act1.moveToElement(og).build().perform();
                         act1.click(og).build().perform();
+                        if(HelpersMethod.IsExists("//div[@class='loader']",driver))
+                        {
+                            WebElement  WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
+                            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 40000);
+                        }
                         scenario.log("CATALOG OPTION HAS BEEN SELECTED FROM ADD PRODUCTS DROP DOWN");
                         exists=true;
                         break;
@@ -381,7 +386,13 @@ public class NewQuotePage
     {
         exists = false;
         WebElement WebEle = null;
-        try {
+        try
+        {
+            if(HelpersMethod.IsExists("//div[@class='loader']",driver))
+            {
+                WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 80000);
+            }
             if (HelpersMethod.IsExists("//div[text()='Catalog']/ancestor::div[contains(@class,'k-widget k-window k-dialog')]", driver)) {
                 String Prod = DataBaseConnection.DataBaseConn(TestBase.testEnvironment.getSingle_OneMoreProd());
                 //check for existence of list view of catalog
@@ -576,6 +587,11 @@ public void EnterProductQtyCatalog(String unit,String cases)
                 HelpersMethod.ActClick(driver,WebEle,60);
                 WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-widget k-window k-dialog')]/descendant::button[text()='Ok']");
                 HelpersMethod.ActClick(driver,WebEle,80);
+                if(HelpersMethod.IsExists("//div[@class='loader']",driver))
+                {
+                    WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
+                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 80000);
+                }
                 exists=true;
                 scenario.log("FIRST OG HAS BEEN SELECTED FROM POPUP");
             }
@@ -856,7 +872,8 @@ public void EnterProductQtyCatalog(String unit,String cases)
             if (QuickProd.isDisplayed())
             {
                 bogoProduct = TestBase.testEnvironment.get_BOGO();
-                HelpersMethod.ActSendKey(driver,QuickProd,40,bogoProduct);
+                HelpersMethod.EnterText(driver,QuickProd,40,bogoProduct);
+                QuickProd.sendKeys(Keys.TAB);
                 if(HelpersMethod.IsExists("//div[contains(text(),'Product not found')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
                 {
                     WebElement OK_Button=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-widget k-window k-dialog')]/descendant::button[text()='Ok']");

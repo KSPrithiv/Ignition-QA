@@ -129,7 +129,6 @@ public class OrderEntryPageSteps2
     public void compare_route_selected_in_oe_page_with_route_in_newoe_page() throws InterruptedException, AWTException
     {
         boolean result=false;
-        HelpersMethod.Implicitwait(driver,8);
         newOE=new NewOrderEntryPage(driver,scenario);
         Route1=newOE.Read_Route();
         if(Route1.equals(TestBase.testEnvironment.get_Route()) || Route1.contains(TestBase.testEnvironment.get_Route()))
@@ -180,6 +179,7 @@ public class OrderEntryPageSteps2
         newOE=new NewOrderEntryPage(driver,scenario);
         if(HelpersMethod.IsExists("//div[@id='orderEntryCard']/descendant::label[contains(text(),'New order')]",driver))
         {
+            scenario.log("FOUND NEW ORDER ENTRY PAGE");
             exists=true;
         }
         else
@@ -206,31 +206,10 @@ public class OrderEntryPageSteps2
     @Then("Click on Cancel button in OE summary page and handle warning popup")
     public void click_on_cancel_button_in_oe_summary_page_and_handle_warning_popup() throws InterruptedException, AWTException
     {
-            newOE=new NewOrderEntryPage(driver,scenario);
-            newOE.ClickNext();
-            newOE.OutOfStockPop_ERP();
-            checkorder=new CheckOutOrderPage(driver,scenario);
-            checkorder.Select_PaymentMethod_ClickDownArrow();
-            if(checkorder.Verify_Existence_of_ContinuePayment())
-            {
-                checkorder.Click_On_Without_Providing_Payment();
-            }
-            checkorder.DeliveryAddressCard();
-            checkorder.NextButton_Click();
         summary=new CheckOutSummaryPage(driver,scenario);
-        Order_No=summary.Get_Order_No();
         summary.Cancel_Button();
         summary.VerifyCancelPopUp();
         summary.CancelPop();
-    }
-
-    //verifying whether ordernumber is existing in OG or not
-    @And("verify whether Order number is not existing in OG")
-    public void verify_whether_order_number_is_not_existing_in_OG() throws InterruptedException, AWTException
-    {
-        orderpage=new OrderEntryPage(driver, scenario);
-        orderpage.Enter_OrderNo_Searchbox(Order_No);
-        orderpage.Existence_OrderNo_OG();
     }
 
     //To check whether the products in order summary page are in sorted order or not
@@ -241,9 +220,36 @@ public class OrderEntryPageSteps2
         summary.Product_UpArrow();
     }
 
-    @And("Order type Popup should display there user should select Regular order by using Add filter button")
+    @Then("Click on Next button to naviagate to OE summary page to cancle order")
+    public void clickOnNextButtonToNaviagateToOESummaryPageToCancleOrder() throws InterruptedException, AWTException
+    {
+        exists=false;
+        newOE = new NewOrderEntryPage(driver,scenario);
+        newOE.readProductsInOrder();
+        exists=newOE.ClickNext();
+        newOE.OutOfStockPop_ERP();
+        if(HelpersMethod.IsExists("//div[@id='checkoutCard']",driver))
+        {
+            checkorder = new CheckOutOrderPage(driver, scenario);
+            if (HelpersMethod.IsExists("//div[@id='paymentMethodCard']", driver))
+            {
+                checkorder.Select_PaymentMethod_ClickDownArrow();
+                if (HelpersMethod.IsExists("//tr[1]/descendant::td[@class='payment-method-type-cell']", driver)) {
+                    checkorder.SelectPaymentMethod();
+                    scenario.log("FIRST PAYMENT OPTION HAS BEEN SELECTED");
+                } else {
+                    checkorder.Click_On_Without_Providing_Payment();
+                    scenario.log("WITHOUT PROVIIDNG PAYMENT OPTION HAS BEEN SELECTED");
+                }
+            }
+            checkorder.DeliveryAddressCard();
+            checkorder.NextButton_Click();
+        }
+    }
+
+  /*  @And("Order type Popup should display there user should select Regular order by using Add filter button")
     public void orderTypePopupShouldDisplayThereUserShouldSelectRegularOrderByUsingAddFilterButton()
     {
 
-    }
+    }*/
 }

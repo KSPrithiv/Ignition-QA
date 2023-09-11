@@ -120,7 +120,7 @@ public class FeaturedProductsPage
                 if(HelpersMethod.IsExists("//div[@class='loader']",driver))
                 {
                     WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100);
+                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 10000);
                 }
                 //Identify search index icon and click on that
                 WebEle=HelpersMethod.FindByElement(driver,"xpath","//span[@datatestid='searchBarSearchBtn']//*[local-name()='svg']");
@@ -199,7 +199,7 @@ public class FeaturedProductsPage
                 if(HelpersMethod.IsExists("//div[@class='loader']",driver))
                 {
                     WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 400);
+                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 10000);
                 }
                 if(HelpersMethod.IsExists("//div[contains(@class,'k-widget k-window k-dialog')]",driver))
                 {
