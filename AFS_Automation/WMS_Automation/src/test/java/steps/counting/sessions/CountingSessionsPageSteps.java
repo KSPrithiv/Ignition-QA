@@ -81,7 +81,7 @@ public class CountingSessionsPageSteps {
     public void selectSessionWithIndex(int index) {
         log.info("User selects session with index on Counting Sessions page");
         List<String> sessions = List.of(countingSessionsDTO.getSessions().getSession1(), countingSessionsDTO.getSessions()
-            .getSession2(), countingSessionsDTO.getSessions().getSession3(),countingSessionsDTO.getSessions().getSession4(),
+            .getSession2(), countingSessionsDTO.getSessions().getSession3(), countingSessionsDTO.getSessions().getSession4(),
             countingSessionsDTO.getSessions().getSession5());
         countingSessionsPage.selectSession(sessions.get(index));
     }
@@ -560,6 +560,13 @@ public class CountingSessionsPageSteps {
     }
 
     @Step
+    @And("User clears Search button on Counting Sessions page")
+    public void clearSearchButton() {
+        log.info("User clears Search button on Counting Sessions page");
+        countingSessionsPage.clearSearchButton();
+    }
+
+    @Step
     @And("Checks Product Checkbox on Counting Sessions page")
     public void checkProductCodeFilterCheckBox() {
         log.info("Checks Product Checkbox on Counting Sessions page");
@@ -915,6 +922,13 @@ public class CountingSessionsPageSteps {
     public void clickAllCheckboxButton() {
         log.info("Clicks All Checkbox button on Counting Sessions page");
         countingSessionsPage.clickAllCheckboxButton();
+    }
+
+    @Step
+    @And("UnClicks All Checkbox button on Counting Sessions page")
+    public void unClickAllCheckboxButton() {
+        log.info("UnClicks All Checkbox button on Counting Sessions page");
+        countingSessionsPage.unClickAllCheckboxButton();
     }
 
     @Step

@@ -1,18 +1,23 @@
 package steps.inbound.inboundorders;
 
+import common.constants.FilePaths;
 import common.enums.DockDoorOption;
 import common.utils.Waiters;
-import common.utils.database.StoreProceduresUtils;
+import common.utils.objectmapper.ObjectMapperWrapper;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.qameta.allure.Step;
 import lombok.extern.slf4j.Slf4j;
+import objects.inbound.InboundOrderLoadsDTO;
 import ui.pages.inbound.inboundorders.InboundOrderDetailsPage;
+
+import java.util.List;
 
 @Slf4j
 public class InboundOrderDetailsPageSteps {
     InboundOrderDetailsPage inboundOrderDetailsPage = new InboundOrderDetailsPage();
-    StoreProceduresUtils storeProceduresUtils = new StoreProceduresUtils();
+    InboundOrderLoadsDTO inboundOrderLoadsDTO = new ObjectMapperWrapper()
+            .getObject(FilePaths.INBOUND_ORDER_LOAD_DATA, InboundOrderLoadsDTO.class);
 
     @Step
     @And("User waits for Inbound Order Details page to load")
@@ -25,7 +30,6 @@ public class InboundOrderDetailsPageSteps {
     @Then("User applies order {string} option on Inbound Order Details page")
     public void applyOrderOptionForOrder(String option) {
         log.info("Applying Order option " + option + " for order ");
-        Waiters.waitABit(2000);
         inboundOrderDetailsPage.selectOrderOption(option);
     }
 
@@ -121,10 +125,32 @@ public class InboundOrderDetailsPageSteps {
     }
 
     @Step
+    @And("Types Ship Date by index {int} on Inbound Order Details page")
+    public void typeShipDateByIndex(int index) {
+        log.info("Typing Ship Date by index");
+        List<String> dates = List.of(inboundOrderLoadsDTO.getEndDates().getEndDate1(), inboundOrderLoadsDTO
+                .getEndDates().getEndDate2(), inboundOrderLoadsDTO.getEndDates().getEndDate3(), inboundOrderLoadsDTO
+                .getEndDates().getEndDate4(), inboundOrderLoadsDTO.getEndDates().getEndDate5(), inboundOrderLoadsDTO
+                .getEndDates().getEndDate6());
+        inboundOrderDetailsPage.typeShipDate(dates.get(index));
+    }
+
+    @Step
     @And("Types {string} Load on Inbound Order Details page")
     public void typeLoad(String load) {
         log.info("Typing Load " + load);
         inboundOrderDetailsPage.typeLoad(load);
+    }
+
+    @Step
+    @And("Types Load name by index {int} on Inbound Order Details page")
+    public void typeLoadByIndex(int index) {
+        log.info("Typing Load by index");
+        List<String> loads = List.of(inboundOrderLoadsDTO.getLoadNames().getLoadName1(), inboundOrderLoadsDTO
+                .getLoadNames().getLoadName2(), inboundOrderLoadsDTO.getLoadNames().getLoadName3(), inboundOrderLoadsDTO
+                .getLoadNames().getLoadName4(), inboundOrderLoadsDTO.getLoadNames().getLoadName5(), inboundOrderLoadsDTO
+                .getLoadNames().getLoadName6());
+        inboundOrderDetailsPage.typeLoad(loads.get(index));
     }
 
     @Step

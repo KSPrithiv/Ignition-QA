@@ -13,7 +13,7 @@ public class ReceivingPageSteps {
     @Step
     @Then("Receiving page loads")
     public void waitReceivingPageToLoad() {
-        log.info("Go to Receiving page");
+        log.info("Receiving page loads");
         receivingPage.waitReceivingPageToLoad();
     }
 

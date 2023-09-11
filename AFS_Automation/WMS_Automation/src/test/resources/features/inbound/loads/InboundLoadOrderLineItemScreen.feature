@@ -8,7 +8,7 @@ Feature: Testing of Inbound Load Order Line Item screen functionality
     And Go to Loads page
     And Inbound Load Summary page appears
     And Inbound Load Summary page main elements are present
-    When Types "01/01/2018" start date on Inbound Load Summary page
+    When Types start date by index 0 on Inbound Load Summary page
     And Validates loads are present on Inbound Load Summary page
     Then Select Load with index 0 on Inbound Load Summary page
     And Select Load Order with index 0 on Inbound Load Summary page
@@ -22,7 +22,7 @@ Feature: Testing of Inbound Load Order Line Item screen functionality
     And Go to Loads page
     And Inbound Load Summary page appears
     And Inbound Load Summary page main elements are present
-    When Types "01/01/2018" start date on Inbound Load Summary page
+    When Types start date by index 0 on Inbound Load Summary page
     And Validates loads are present on Inbound Load Summary page
     Then Select Load with index 0 on Inbound Load Summary page
     And Select Load Order with index 0 on Inbound Load Summary page
@@ -37,7 +37,7 @@ Feature: Testing of Inbound Load Order Line Item screen functionality
     And Go to Loads page
     And Inbound Load Summary page appears
     And Inbound Load Summary page main elements are present
-    When Types "04/18/2022" start date on Inbound Load Summary page
+    When Types start date by index 2 on Inbound Load Summary page
     And Validates loads are present on Inbound Load Summary page
     Then Select Load with index 0 on Inbound Load Summary page
     And Select Load Order with index 0 on Inbound Load Summary page
@@ -54,7 +54,7 @@ Feature: Testing of Inbound Load Order Line Item screen functionality
     And Go to Loads page
     And Inbound Load Summary page appears
     And Inbound Load Summary page main elements are present
-    When Types "01/01/2018" start date on Inbound Load Summary page
+    When Types start date by index 0 on Inbound Load Summary page
     And Validates loads are present on Inbound Load Summary page
     And Select Load with index 0 on Inbound Load Summary page
     Then Select Load Order with index 0 on Inbound Load Summary page
@@ -69,7 +69,7 @@ Feature: Testing of Inbound Load Order Line Item screen functionality
     And Go to Loads page
     And Inbound Load Summary page appears
     And Inbound Load Summary page main elements are present
-    When Types "01/01/2018" start date on Inbound Load Summary page
+    When Types start date by index 0 on Inbound Load Summary page
     And Validates loads are present on Inbound Load Summary page
     Then Select Load with index 0 on Inbound Load Summary page
     And Select Load Order with index 0 on Inbound Load Summary page
@@ -85,7 +85,7 @@ Feature: Testing of Inbound Load Order Line Item screen functionality
     And Go to Loads page
     And Inbound Load Summary page appears
     And Inbound Load Summary page main elements are present
-    When Types "01/01/2018" start date on Inbound Load Summary page
+    When Types start date by index 0 on Inbound Load Summary page
     And Validates loads are present on Inbound Load Summary page
     Then Select Load with index 0 on Inbound Load Summary page
     And Select Load Order with index 0 on Inbound Load Summary page
@@ -102,7 +102,7 @@ Feature: Testing of Inbound Load Order Line Item screen functionality
     And Go to Loads page
     And Inbound Load Summary page appears
     And Inbound Load Summary page main elements are present
-    When Types "01/01/2018" start date on Inbound Load Summary page
+    When Types start date by index 0 on Inbound Load Summary page
     And Validates loads are present on Inbound Load Summary page
     Then Select Load with index 0 on Inbound Load Summary page
     And Select Load Order with index 0 on Inbound Load Summary page
@@ -123,7 +123,7 @@ Feature: Testing of Inbound Load Order Line Item screen functionality
     And Go to Loads page
     And Inbound Load Summary page appears
     And Inbound Load Summary page main elements are present
-    When Types "01/01/2018" start date on Inbound Load Summary page
+    When Types start date by index 0 on Inbound Load Summary page
     And Validates loads are present on Inbound Load Summary page
     Then Select Load with index 0 on Inbound Load Summary page
     And Select Load Order with index 0 on Inbound Load Summary page
@@ -137,9 +137,22 @@ Feature: Testing of Inbound Load Order Line Item screen functionality
     And Go to Loads page
     And Inbound Load Summary page appears
     And Inbound Load Summary page main elements are present
-    When Types "01/01/2018" start date on Inbound Load Summary page
+    When Types start date by index 0 on Inbound Load Summary page
     And Validates loads are present on Inbound Load Summary page
     Then Select Load with index 0 on Inbound Load Summary page
     And Select Load Order with index 0 on Inbound Load Summary page
     And Select Order Product with index 0 on Inbound Load Order Summary page
     And Validates Images Button is displayed on Inbound Load Order Line Items page
+
+  Scenario: Searching order details on Inbound Load order line item details page
+    Given User signs in the application
+    And Main page is loaded
+    And DockManagement Summary Page is validated
+    And Go to Loads page
+    And Inbound Load Summary page appears
+    And Inbound Load Summary page main elements are present
+    When Types start date by index 0 on Inbound Load Summary page
+    And Validates loads are present on Inbound Load Summary page
+    Then Select Load with index 0 on Inbound Load Summary page
+    And Select Load Order with index 0 on Inbound Load Summary page
+    And Validates Inbound Load Order details page contains all web elements
