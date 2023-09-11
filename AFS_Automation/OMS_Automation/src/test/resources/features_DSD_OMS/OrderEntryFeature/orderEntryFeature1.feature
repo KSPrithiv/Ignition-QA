@@ -53,7 +53,6 @@ Feature: Order Entry1
     Then User should click on Copy from dropdown and Select Order history
       |Order history|
     Then User verifies Order history page and add history Order to order
-      |2023|
     And Click on Copy button
     Then Click on Next button
     And Click on SubmitOrder button
@@ -98,8 +97,7 @@ Feature: Order Entry1
   Scenario: Creating new order using history order, and click on copy button in order history summary page
     Given User must be on Order Entry Page
     Then Click on History button
-    Then User verifies Order history page and add history Order to order
-      |2023|
+    Then User verifies Order history page and add history Order to order select Order
     Then Click on Copy button in Summary page
     And User should Select delivery date from popup
     And Select New order option from popup

@@ -2,8 +2,6 @@ package pages_DSD_OMS.orderGuide;
 
 import helper.HelpersMethod;
 import io.cucumber.java.Scenario;
-import org.apache.commons.collections.IteratorUtils;
-import org.apache.logging.log4j.core.tools.picocli.CommandLine;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
@@ -331,7 +329,7 @@ public class OrderGuidePage
         {
             HelpersMethod.waitTillElementLocatedDisplayed(driver,"xpath","//div[contains(@class,'k-popup k-child-animation-container')]",40);
             // to fetch the web element of the modal container
-            WebElement menuContainer = driver.findElement(By.xpath("//div[contains(@class,'k-popup k-child-animation-container')]"));
+            WebElement menuContainer = driver.findElement(By.xpath("//div[contains(@class,'k-animation-container k-animation-container-relative k-list-container')]"));
             List<WebElement> custRefs=menuContainer.findElements (By.xpath(".//ul/li"));
             for(int i=0;i<=custRefs.size()-1;i++)
             {
@@ -342,6 +340,11 @@ public class OrderGuidePage
                 {
                     act1.moveToElement(WebEle).build().perform();
                     act1.click().build().perform();
+                    if(HelpersMethod.IsExists("//div[@class='loader']",driver))
+                    {
+                        WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
+                        HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 8000);
+                    }
                     break;
                 }
               /* else
@@ -528,7 +531,7 @@ public class OrderGuidePage
         WebElement modalContainer = HelpersMethod.FindByElement(driver,"xpath", "//div[contains(@class,'k-widget k-window k-dialog')]");
         //Enter the national chain name in search box
         WebElement searchBox=modalContainer.findElement(By.xpath(".//input[@id='SearchBox1']"));
-        HelpersMethod.EnterText(driver,searchBox,60,nationalChain);
+        HelpersMethod.EnterText(driver,searchBox,100,nationalChain);
         //click on search index
         searchBox=modalContainer.findElement(By.xpath(".//*[local-name()='svg' and contains(@class,'i-search-box__search')]"));
         HelpersMethod.ClickBut(driver,searchBox,100);

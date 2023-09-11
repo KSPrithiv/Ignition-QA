@@ -49,7 +49,7 @@ public class OrderEntryPageSteps4
         newOE=new NewOrderEntryPage(driver,scenario);
         exists=newOE.ClickNext();
         Assert.assertEquals(exists,true);
-        //newOE.OutOfStockPop_ERP();
+        newOE.OutOfStockPop_ERP();
         checkorder=new CheckOutOrderPage(driver,scenario);
         checkorder.DeliveryAddressCard();
         checkorder.Click_On_Without_Providing_Payment();

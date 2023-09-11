@@ -9,6 +9,7 @@ import io.cucumber.java.Scenario;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import org.openqa.selenium.WebDriver;
+import org.testng.Assert;
 import pages_DSD_OMS.login.HomePage;
 import pages_DSD_OMS.login.LoginPage;
 import pages_DSD_OMS.orderEntry.CheckOutSummaryPage;
@@ -76,9 +77,10 @@ public class OrderEntryPageSteps1
     }
 
     @Then("Enter Qty for the products in Product grid")
-    public void enter_qty_for_the_products_in_product_grid(DataTable tabledata)
+    public void enter_qty_for_the_products_in_product_grid(DataTable tabledata) throws InterruptedException, AWTException
     {
         List<List<String>> QtyDetails = tabledata.asLists(String.class);
+        newOE=new NewOrderEntryPage(driver,scenario);
         newOE.EnterQty_ProductGrid(driver, QtyDetails);
     }
 
@@ -124,9 +126,10 @@ public class OrderEntryPageSteps1
     }
 
     @And("Enter Comment in summary page")
-    public void enter_comment_in_summary_page(DataTable tabledata)
+    public void enter_comment_in_summary_page(DataTable tabledata) throws InterruptedException, AWTException
     {
         List<List<String>> Comment=tabledata.asLists(String.class);
+        summary=new CheckOutSummaryPage(driver,scenario);
         summary.Comment_Popup(Comment.get(0).get(0));
     }
 
@@ -259,5 +262,16 @@ public class OrderEntryPageSteps1
         newOE.SelectOGFromDropdown();
         newOE.validateOGPopup();
         newOE.OrderGuideGrid(OGName.get(0).get(0));
+    }
+
+    @Then("User verifies Order history page and add history Order to order select Order")
+    public void userVerifiesOrderHistoryPageAndAddHistoryOrderToOrderSelectOrder() throws InterruptedException, AWTException
+    {
+        orderhistory=new OrderHistoryPage(driver,scenario);
+        exists=orderhistory.VerifiyHistoryGrid();
+        Assert.assertEquals(exists,true);
+        orderhistory.FilterActiveOrder();
+        //Click on first row in the order historhy page
+        orderhistory.Click_On_OrderNumber();
     }
 }

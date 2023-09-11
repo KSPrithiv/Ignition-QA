@@ -195,7 +195,7 @@ public class OrderEntryPageSteps3
         List<List<String>> AccDetails=tabledata.asLists(String.class);
         newOE = new NewOrderEntryPage(driver,scenario);
         newOE.ClickNext();
-       // newOE.OutOfStockPop_ERP();
+        newOE.OutOfStockPop_ERP();
         checkorder=new CheckOutOrderPage(driver,scenario);
         checkorder.Select_PaymentMethod_ClickDownArrow();
         checkorder.Delete_PaymentMethod();

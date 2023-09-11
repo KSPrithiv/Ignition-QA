@@ -110,8 +110,8 @@ public class OrderEntryPageSteps
         {
             orderpage = new OrderEntryPage(driver, scenario);
             orderpage.ChangeAccount();
-          //  orderpage.PopUps_After_AccountChange();
-            orderpage.Read_DeliveryDate();
+            //orderpage.PopUps_After_AccountChange();
+            //orderpage.Read_DeliveryDate();
             flag1=true;
         }
     }
@@ -122,9 +122,7 @@ public class OrderEntryPageSteps
         orderpage = new OrderEntryPage(driver, scenario);
         orderpage.HandleError_Page();
         orderpage.Refresh_Page2();
-        //orderpage.ClickCalender();
-       // orderpage.ResetToCurrentDate();
-      //  orderpage.ChangedDeliveryDate();
+        orderpage.NoPendingOrderPopup();
     }
 
     @Then("Change the date {int} days after current date")
@@ -133,7 +131,7 @@ public class OrderEntryPageSteps
         if(HelpersMethod.IsExists("//div[@class='loader']",driver))
         {
             WebElement WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 2000);
+            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 50000);
         }
         //create object of OE Page
         orderpage = new OrderEntryPage(driver, scenario);
@@ -185,6 +183,11 @@ public class OrderEntryPageSteps
     public void userShouldSelectNoteFromPopupAndOrderGuideFromPopup() throws InterruptedException, AWTException
     {
         orderpage = new OrderEntryPage(driver, scenario);
+        if (HelpersMethod.IsExists("//div[@class='loader']", driver))
+        {
+            WebElement WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
+            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 40000);
+        }
         for(int i=0;i<=1;i++)
         {
             orderpage.OrderGuidePopup();
@@ -254,28 +257,21 @@ public class OrderEntryPageSteps
         exists=newOE.ClickNext();
         newOE.OutOfStockPop_ERP();
         checkorder=new CheckOutOrderPage(driver,scenario);
-        checkorder.DeliveryAddressCard();
         if(HelpersMethod.IsExists("//div[@id='paymentMethodCard']",driver))
         {
             checkorder.Select_PaymentMethod_ClickDownArrow();
             if(HelpersMethod.IsExists("//tr[1]/descendant::td[@class='payment-method-type-cell']",driver))
             {
                 checkorder.SelectPaymentMethod();
+                scenario.log("FIRST PAYMENT OPTION HAS BEEN SELECTED");
             }
             else
             {
                 checkorder.Click_On_Without_Providing_Payment();
+                scenario.log("WITHOUT PROVIIDNG PAYMENT OPTION HAS BEEN SELECTED");
             }
-
-            /*if(HelpersMethod.IsExists("//div[contains(@class,'payment-method-container')]",driver))
-            {
-                checkorder.SelectPaymentMethod();
-            }*/
-        /* if(checkorder.Verify_Existence_of_ContinuePayment())
-        {
-            checkorder.Click_On_Without_Providing_Payment();
-        }*/
         }
+        checkorder.DeliveryAddressCard();
         checkorder.NextButton_Click();
     }
 
@@ -301,6 +297,7 @@ public class OrderEntryPageSteps
     {
         summary = new CheckOutSummaryPage(driver,scenario);
         summary.ClickSubmit();
+        summary.cutoffDialog();
         summary.SucessPopup();
     }
 
@@ -444,13 +441,12 @@ public class OrderEntryPageSteps
     }
 
     @Then("User verifies Order history page and add history Order to order")
-    public void user_verifies_order_history_page(DataTable tabledata) throws InterruptedException, AWTException
+    public void user_verifies_order_history_page() throws InterruptedException, AWTException
     {
-        List<List<String>> year=tabledata.asLists(String.class);
         orderhistory=new OrderHistoryPage(driver,scenario);
         exists=orderhistory.VerifiyHistoryGrid();
         Assert.assertEquals(exists,true);
-        orderhistory.FilterActiveOrder(year.get(0).get(0));
+        orderhistory.FilterActiveOrder();
         //Click on first row in the order historhy page
         orderhistory.Click_On_RowIn_OrderHistoryGrid();
     }
@@ -542,6 +538,7 @@ public class OrderEntryPageSteps
         String Unit=ProdDetails.get(0).get(1);
         newOE.CheckForQuickCaseEnabled(Case);
         newOE.CheckForQuickUnitEnabled(Unit);
+        newOE.exceedsMaxQty();
     }
 
     @Then("User should Select delivery date from popup")
@@ -570,6 +567,8 @@ public class OrderEntryPageSteps
     public void user_clicks_on_drop_down_next_to_start_order_button() throws InterruptedException, AWTException
     {
         orderpage = new OrderEntryPage(driver, scenario);
+        orderpage.ValidateOE();
+        orderpage.Scroll_start();
         orderpage.Click_DropDown();
     }
 
@@ -660,5 +659,46 @@ public class OrderEntryPageSteps
         }
         checkorder.DeliveryAddressCard();
          checkorder.NextButton_Click();
+    }
+
+    @Then("Click on Order number in Order Entry page and check for New OE page for editing Order")
+    public void clickOnOrderNumberInOrderEntryPageAndCheckForNewOEPageForEditingOrder() throws InterruptedException, AWTException
+    {
+        orderpage = new OrderEntryPage(driver, scenario);
+        orderpage.Select_Order_OrdersGrid();
+        //Check if user is on New OE page
+        newOE=new NewOrderEntryPage(driver,scenario);
+        exists=newOE.ValidateNewOE1();
+        Assert.assertEquals(exists,true);
+    }
+
+    @Then("Click on Next button after editing order")
+    public void clickOnNextButtonAfterEditingOrder() throws InterruptedException, AWTException {
+        exists = false;
+        newOE = new NewOrderEntryPage(driver, scenario);
+        newOE.readProductsInOrder();
+        exists = newOE.ClickNext();
+        newOE.OutOfStockPop_ERP();
+        if (HelpersMethod.IsExists("//div[@class='page-content']/descendant::div[@id='checkoutCard']",driver)) {
+            checkorder = new CheckOutOrderPage(driver, scenario);
+            checkorder.DeliveryAddressCard();
+            if (HelpersMethod.IsExists("//div[@id='paymentMethodCard']", driver)) {
+                checkorder.Select_PaymentMethod_ClickDownArrow();
+                if (HelpersMethod.IsExists("//tr[1]/descendant::td[@class='payment-method-type-cell']", driver)) {
+                    checkorder.SelectPaymentMethod();
+                } else {
+                    checkorder.Click_On_Without_Providing_Payment();
+                }
+            }
+            checkorder.NextButton_Click();
+        }
+    }
+    //verifying whether ordernumber is existing in OG or not
+    @And("verify whether Order number is not existing in OG")
+    public void verify_whether_order_number_is_not_existing_in_OG() throws InterruptedException, AWTException
+    {
+        orderpage=new OrderEntryPage(driver, scenario);
+        orderpage.Enter_OrderNo_Searchbox(Ord_No);
+        orderpage.Existence_OrderNo_OG();
     }
 }

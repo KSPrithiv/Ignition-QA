@@ -156,7 +156,7 @@ Feature: Order Guide1
     Then User should navigate back to OG page and verify OG "<OG>" by selecting status as expired
     Examples:
       |  OG        |
-      | SampleOG1  |
+      | OGDis14    |
 
   @OGLocalChain
   Scenario Outline: For creating OG using local chain

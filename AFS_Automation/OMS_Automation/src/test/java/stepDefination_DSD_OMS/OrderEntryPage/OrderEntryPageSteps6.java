@@ -68,6 +68,7 @@ public class OrderEntryPageSteps6
         summary.ValidateSummaryOrderPage();
         summary.PickupOrderValidate();
         summary.ClickSubmit();
+        summary.cutoffDialog();
         summary.SucessPopup();
     }
 
