@@ -304,6 +304,11 @@ public class orderAdminPage
         {
             String ParentWindow = driver.getWindowHandle();
             HelpersMethod.ActClick(driver,downloadPdf,100);
+            if(HelpersMethod.IsExists("//div[@class='loader']",driver))
+            {
+                WebElement WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 80000);
+            }
             if(HelpersMethod.IsExists("//div[contains(text(),'The report returned no data. Choose other parameters.')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
             {
                 WebElement dialogPopup=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-widget k-window k-dialog')]");
@@ -313,7 +318,7 @@ public class orderAdminPage
             if(HelpersMethod.IsExists("//div[@class='loader']",driver))
             {
                 WebElement WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 2000);
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 80000);
             }
             Thread.sleep(5000);
             Set<String> PCWindows = driver.getWindowHandles();
@@ -343,6 +348,11 @@ public class orderAdminPage
             if(resetButton.isDisplayed()&&resetButton.isEnabled())
             {
                 HelpersMethod.ActClick(driver, resetButton, 1000);
+                if(HelpersMethod.IsExists("//div[@class='loader']",driver))
+                {
+                    WebElement WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
+                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 400000);
+                }
                 exists=true;
             }
             Assert.assertEquals(exists,true);
@@ -354,13 +364,13 @@ public class orderAdminPage
     {
         exists=false;
         WebElement fDate=HelpersMethod.FindByElement(driver,"id","fromDate");
-        String fromValue=HelpersMethod.JSGetValueEle(driver,fDate,40);
+        String fromValue=HelpersMethod.JSGetValueEle(driver,fDate,100);
         WebElement tDate=HelpersMethod.FindByElement(driver,"id","toDate");
-        String toValue=HelpersMethod.JSGetValueEle(driver,tDate,40);
+        String toValue=HelpersMethod.JSGetValueEle(driver,tDate,100);
         try
         {
             WebElement accNumber=HelpersMethod.FindByElement(driver,"id","customerDropDown_AC");
-            String acc_Text=HelpersMethod.JSGetValueEle(driver,accNumber,100);
+            String acc_Text=HelpersMethod.JSGetValueEle(driver,accNumber,1000);
             if(acc_Text.equals("") && fromValue.equals("MM/DD/YYYY") && toValue.equals("MM/DD/YYYY"))
             {
                 scenario.log("RESET BUTTON HAS BEEN CLICKED");

@@ -57,7 +57,12 @@ public class ProductReferencePage
             if(HelpersMethod.IsExists("//tr[contains(@class,'k-master-row')]/descendant::button[text()='"+Og+"']",driver))
             {
                 WebElement og= HelpersMethod.FindByElement(driver,"xpath","//tr[contains(@class,'k-master-row')]/descendant::button[text()='"+Og+"']");
-                HelpersMethod.ClickBut(driver,og,100);
+                HelpersMethod.ClickBut(driver,og,1000);
+                if (HelpersMethod.IsExists("//div[@class='loader']", driver))
+                {
+                    WebElement WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
+                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 200000);
+                }
                 exists=true;
             }
         }
@@ -70,18 +75,26 @@ public class ProductReferencePage
         WebElement WebEle;
         try
         {
+            if (HelpersMethod.IsExists("//div[@class='loader']", driver))
+            {
+                WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 200000);
+            }
             if(HelpersMethod.IsExists("//span[contains(text(),'Product reference')]",driver))
             {
-                WebElement ProductRef=HelpersMethod.FindByElement(driver,"xpath","//span[contains(text(),'Product reference')]");
-                HelpersMethod.ScrollElement(driver,ProductRef);
+                    if(HelpersMethod.IsExists("//span[contains(text(),'Product reference')]",driver))
+                    {
+                        WebElement ParList = HelpersMethod.FindByElement(driver, "xpath", "//span[contains(text(),'Par list')]");
+                        HelpersMethod.ScrollElement(driver, ParList);
 
-                HelpersMethod.navigate_Horizantal_Tab(driver, "Product reference", "//li[contains(@class,'k-item')]/span[@class='k-link' and contains(text(),'Product reference')]", "xpath", "//li[contains(@class,'k-item')]/span[@class='k-link']");
-                exists=true;
-                if(HelpersMethod.IsExists("//div[@class='loader']",driver))
-                {
-                    WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 8000);
-                }
+                        HelpersMethod.navigate_Horizantal_Tab(driver, "Product reference", "//li[contains(@class,'k-item')]/span[@class='k-link' and contains(text(),'Product reference')]", "xpath", "//li[contains(@class,'k-item')]/span[@class='k-link']");
+                        exists = true;
+                        if (HelpersMethod.IsExists("//div[@class='loader']", driver))
+                        {
+                            WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
+                            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 200000);
+                        }
+                    }
             }
             else
             {

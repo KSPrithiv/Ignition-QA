@@ -60,19 +60,19 @@ public class NewStandingOrderCard
     {
         exists = false;
         WebElement WebEle = null;
-       /* if (HelpersMethod.IsExists("//div[@class='loader']", driver))
+        if (HelpersMethod.IsExists("//div[@class='loader']", driver))
         {
             WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 800);
-        }*/
+            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 80000);
+        }
 
         new WebDriverWait(driver, Duration.ofMillis(10000)).until(ExpectedConditions.presenceOfElementLocated(By.id("card1")));
         //Click on arrow if Start standing order card is not visible
         if (HelpersMethod.IsExists("//div[contains(@class,'StandingOrder-expandable-card')]/descendant::span[contains(@class,'k-icon k-i-arrow-chevron-down')]", driver))
         {
             WebEle= HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'StandingOrder-expandable-card')]/descendant::span[contains(@class,'k-icon k-i-arrow-chevron-down')]");
-            new WebDriverWait(driver, Duration.ofMillis(200)).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class,'StandingOrder-expandable-card')]/descendant::span[contains(@class,'k-icon k-i-arrow-chevron-down')]")));
-            new WebDriverWait(driver,Duration.ofMillis(200)).until(ExpectedConditions.elementToBeClickable(By.xpath("//div[contains(@class,'StandingOrder-expandable-card')]/descendant::span[contains(@class,'k-icon k-i-arrow-chevron-down')]")));
+            new WebDriverWait(driver, Duration.ofMillis(2000)).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class,'StandingOrder-expandable-card')]/descendant::span[contains(@class,'k-icon k-i-arrow-chevron-down')]")));
+            new WebDriverWait(driver,Duration.ofMillis(20000)).until(ExpectedConditions.elementToBeClickable(By.xpath("//div[contains(@class,'StandingOrder-expandable-card')]/descendant::span[contains(@class,'k-icon k-i-arrow-chevron-down')]")));
             HelpersMethod.ScrollElement(driver, WebEle);
             HelpersMethod.ActClick(driver, WebEle, 1000);
             String status = HelpersMethod.returnDocumentStatus(driver);
@@ -92,9 +92,9 @@ public class NewStandingOrderCard
             if (HelpersMethod.IsExists("//div[@class='loader']", driver))
             {
                 WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 4000);
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100000);
             }
-            driver.manage().timeouts().pageLoadTimeout(2000, TimeUnit.SECONDS);
+
             if (HelpersMethod.IsExists("//span[contains(@class,'k-icon k-i-arrow-chevron-up')]", driver))
             {
                 if (StartStandingOrder.isDisplayed() && StartStandingOrder.isEnabled())
@@ -107,8 +107,8 @@ public class NewStandingOrderCard
                     {
                         HelpersMethod.waitTillLoadingPage(driver);
                     }
-                    new WebDriverWait(driver, Duration.ofMillis(1000)).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(text(),'Add standing order')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]")));
-                    HelpersMethod.waitTillElementLocatedDisplayed(driver, "xpath", "//div[contains(text(),'Add standing order')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]", 20000);
+                    new WebDriverWait(driver, Duration.ofMillis(40000)).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(text(),'Add standing order')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]")));
+                    HelpersMethod.waitTillElementLocatedDisplayed(driver, "xpath", "//div[contains(text(),'Add standing order')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]", 80000);
                     exists = true;
                 }
             }
@@ -136,7 +136,7 @@ public class NewStandingOrderCard
             if (status.equals("loading")) {
                 HelpersMethod.waitTillLoadingPage(driver);
             }
-            new WebDriverWait(driver, Duration.ofMillis(200)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(@class,'k-animation-container k-animation-container-relative k-calendar-container k-group k-reset k-animation-container-shown')]")));
+            new WebDriverWait(driver, Duration.ofMillis(2000)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(@class,'k-animation-container k-animation-container-relative k-calendar-container k-group k-reset k-animation-container-shown')]")));
 
             //Select 'From' date from Start date calender
             if (HelpersMethod.IsExists("//div[contains(@class,'k-widget k-calendar k-calendar-infinite')]", driver)) {
@@ -167,7 +167,7 @@ public class NewStandingOrderCard
             if (status.equals("loading")) {
                 HelpersMethod.waitTillLoadingPage(driver);
             }
-            new WebDriverWait(driver, Duration.ofMillis(60)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(@class,'k-animation-container k-animation-container-relative k-calendar-container k-group k-reset k-animation-container-shown')]")));
+            new WebDriverWait(driver, Duration.ofMillis(100)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(@class,'k-animation-container k-animation-container-relative k-calendar-container k-group k-reset k-animation-container-shown')]")));
 
             //Select 'To' date from End date calender
             if (HelpersMethod.IsExists("//div[contains(@class,'k-widget k-calendar k-calendar-infinite')]", driver)) {
@@ -195,7 +195,7 @@ public class NewStandingOrderCard
             if (HelpersMethod.IsExists("//div[@class='loader']", driver))
             {
                 WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 10000);
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 80000);
             }
         }
         catch (Exception e){}
@@ -227,13 +227,13 @@ public class NewStandingOrderCard
             HelpersMethod.JScriptClick(driver, startDateIcon, 600);
             exists = true;
             HelpersMethod.WaitElementPresent(driver, "xpath", "//div[contains(@class,'k-animation-container k-animation-container-relative k-calendar-container k-group k-reset k-animation-container-shown')]", 800);
-            new WebDriverWait(driver,Duration.ofMillis(600)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(@class,'k-animation-container k-animation-container-relative k-calendar-container k-group k-reset k-animation-container-shown')]")));
+            new WebDriverWait(driver,Duration.ofMillis(1000)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(@class,'k-animation-container k-animation-container-relative k-calendar-container k-group k-reset k-animation-container-shown')]")));
             String status = HelpersMethod.returnDocumentStatus(driver);
             if (status.equals("loading"))
             {
                 HelpersMethod.waitTillLoadingPage(driver);
             }
-            new WebDriverWait(driver,Duration.ofMillis(100)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(@class,'k-animation-container k-animation-container-relative k-calendar-container k-group k-reset k-animation-container-shown')]")));
+            new WebDriverWait(driver,Duration.ofMillis(1000)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(@class,'k-animation-container k-animation-container-relative k-calendar-container k-group k-reset k-animation-container-shown')]")));
             Assert.assertEquals(exists, true);
         }
         catch (Exception e){}
@@ -298,7 +298,7 @@ public class NewStandingOrderCard
                     scenario.log("FAILED TO SELECT START DATE");
                 }
             }
-            new WebDriverWait(driver, Duration.ofMillis(200)).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[contains(@class,'k-calendar-monthview')]")));
+            new WebDriverWait(driver, Duration.ofMillis(1000)).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[contains(@class,'k-calendar-monthview')]")));
             Assert.assertEquals(exists, true);
         }
         catch (Exception e){}
@@ -368,7 +368,7 @@ public class NewStandingOrderCard
             if (HelpersMethod.IsExists("//div[@class='loader']", driver))
             {
                 WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 4000);
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 80000);
             }
             Assert.assertEquals(exists, true);
         }
@@ -377,16 +377,22 @@ public class NewStandingOrderCard
 
     public void DeleteStandingOrders() throws InterruptedException
     {
-        try {
+        try
+        {
             exists = false;
             WebElement WebEle = null;
+            int i=0;
             List<WebElement> StandingOrders = HelpersMethod.FindByElements(driver, "xpath", "//div[contains(@class,'standing-orders')]/descendant::span[contains(@class,'standing-orders-status active  ')]/ancestor::button|//div[contains(@class,'standing-orders')]/descendant::span[contains(@class,'standing-orders-status   pending')]/ancestor::button");
             scenario.log("TOTAL NUMBER OF ACTIVE AND PENDING SO FOUND ARE " + StandingOrders.size());
-            for (WebElement SO : StandingOrders) {
+            for (WebElement SO : StandingOrders)
+            {
+                i++;
+                scenario.log(i+" STANDING ORDER HAS BEEN DELETED");
                 HelpersMethod.ScrollElement(driver, SO);
                 HelpersMethod.ActClick(driver, SO, 200);
                 String status = HelpersMethod.returnDocumentStatus(driver);
-                if (status.equals("loading")) {
+                if (status.equals("loading"))
+                {
                     HelpersMethod.waitTillLoadingPage(driver);
                 }
                 //Click on down arrow in standing order card
@@ -592,7 +598,7 @@ public class NewStandingOrderCard
             if (HelpersMethod.IsExists("//div[@class='loader']", driver))
             {
                 WebElement WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 4000);
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 80000);
             }
 
             HelpersMethod.WaitElementPresent(driver, "xpath", "//div[text()='Success']/ancestor::div[contains(@class,'k-widget k-window k-dialog')]", 2000);
@@ -626,7 +632,7 @@ public class NewStandingOrderCard
            }
            HelpersMethod.ClickBut(driver, ShowStandingOrder, 400);
            exists = true;
-           new WebDriverWait(driver, Duration.ofMillis(400)).until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath("//div[contains(@class,'k-widget k-window k-dialog')]")));
+           new WebDriverWait(driver, Duration.ofMillis(1000)).until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath("//div[contains(@class,'k-widget k-window k-dialog')]")));
            HelpersMethod.waitTillElementLocatedDisplayed(driver, "xpath", "//div[contains(@class,'k-widget k-window k-dialog')]", 100);
            status = HelpersMethod.returnDocumentStatus(driver);
            if (status.equals("loading"))
@@ -706,10 +712,18 @@ public class NewStandingOrderCard
     public void clickOnShowSelectedCustomerTaggle() throws InterruptedException
     {
         exists=false;
-            WebElement modalContainer = HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-widget k-window k-dialog')]");
-            WebElement custFilterButton=modalContainer.findElement(By.xpath(".//span[@id='selectedCustomersSwitch']"));
-            HelpersMethod.ActClick(driver,custFilterButton,200);
-            exists=true;
+        if(HelpersMethod.IsExists("//div[@class='loader']",driver))
+        {
+            WebElement WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
+            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 80000);
+        }
+        if(HelpersMethod.IsExists("//div[@id='standingOrderRegisterDialog']/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
+        {
+            //WebElement modalContainer = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-widget k-window k-dialog')]");
+            WebElement custFilterButton = HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-widget k-window k-dialog')]/descendant::span[@id='selectedCustomersSwitch']");
+            HelpersMethod.ActClick(driver, custFilterButton, 2000);
+            exists = true;
+        }
             Assert.assertEquals(exists,true);
     }
 
@@ -864,13 +878,24 @@ public class NewStandingOrderCard
     public void clickOnGenerateStandingOrder()
     {
         exists=false;
-        try {
+        try
+        {
             String status = HelpersMethod.returnDocumentStatus(driver);
-            if (status.equals("loading")) {
+            if (status.equals("loading"))
+            {
                 HelpersMethod.waitTillLoadingPage(driver);
             }
-            if (GenerateStandingOrder.isDisplayed() && GenerateStandingOrder.isEnabled()) {
-                HelpersMethod.ClickBut(driver, GenerateStandingOrder, 200);
+            if(HelpersMethod.IsExists("//div[@class='loader']",driver))
+            {
+                WebElement WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 80000);
+            }
+
+            if (GenerateStandingOrder.isDisplayed() && GenerateStandingOrder.isEnabled())
+            {
+                HelpersMethod.ScrollElement(driver,GenerateStandingOrder);
+                HelpersMethod.ClickBut(driver, GenerateStandingOrder, 2000);
+                scenario.log("GENERATE STANDING ORDER HAS BEEN CLICKED");
                 exists = true;
             }
             status = HelpersMethod.returnDocumentStatus(driver);
@@ -901,8 +926,8 @@ public class NewStandingOrderCard
             //Identify From calender and click
             WebElement fromCalender = modalContainer.findElement(By.xpath(".//label[contains(text(),'From date')]/following-sibling::span/descendant::a/span"));
             HelpersMethod.JScriptClick(driver, fromCalender, 200);
-            new WebDriverWait(driver,Duration.ofMillis(400)).until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath("//div[contains(@class,'k-widget k-calendar k-calendar-range')]")));
-            new WebDriverWait(driver, Duration.ofMillis(200)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(@class,'k-widget k-calendar k-calendar-range')]")));
+            new WebDriverWait(driver,Duration.ofMillis(1000)).until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath("//div[contains(@class,'k-widget k-calendar k-calendar-range')]")));
+            new WebDriverWait(driver, Duration.ofMillis(1000)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(@class,'k-widget k-calendar k-calendar-range')]")));
         }
         catch (Exception e){}
     }
@@ -937,8 +962,8 @@ public class NewStandingOrderCard
             //Identify From calender and click
             WebElement toCalender = modalContainer.findElement(By.xpath(".//label[contains(text(),'To date')]/following-sibling::span/descendant::a/span"));
             HelpersMethod.JScriptClick(driver, toCalender, 60);
-            new WebDriverWait(driver, Duration.ofMillis(400)).until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath("//div[contains(@class,'k-widget k-calendar k-calendar-range')]")));
-            new WebDriverWait(driver, Duration.ofMillis(100)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(@class,'k-widget k-calendar k-calendar-range')]")));
+            new WebDriverWait(driver, Duration.ofMillis(1000)).until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath("//div[contains(@class,'k-widget k-calendar k-calendar-range')]")));
+            new WebDriverWait(driver, Duration.ofMillis(1000)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(@class,'k-widget k-calendar k-calendar-range')]")));
         }
         catch (Exception e) {}
     }
@@ -985,7 +1010,7 @@ public class NewStandingOrderCard
     {
         if (HelpersMethod.IsExists("//div[contains(text(),'Getting list of standing order customers.')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]", driver))
         {
-            new WebDriverWait(driver,Duration.ofMillis(100)).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[contains(text(),'Getting list of standing order customers.')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]")));
+            new WebDriverWait(driver,Duration.ofMillis(1000)).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[contains(text(),'Getting list of standing order customers.')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]")));
         }
     }
 

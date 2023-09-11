@@ -143,6 +143,11 @@ public class adminReportPage
         try
         {
             HelpersMethod.ClickBut(driver,generateButton,100);
+            if(HelpersMethod.IsExists("//div[@class='loader']",driver))
+            {
+                WebElement WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 80000);
+            }
             exists=true;
             Assert.assertEquals(exists,true);
         }
@@ -155,12 +160,17 @@ public class adminReportPage
         try
         {
             HelpersMethod.ClickBut(driver,exportCSV,100);
+            if(HelpersMethod.IsExists("//div[@class='loader']",driver))
+            {
+                WebElement WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100000);
+            }
             scenario.log("TO GENERATE THE FILE IN .csv FORMATE BUTTON HAS BEEN CLICKED");
             exists=true;
             if(HelpersMethod.IsExists("//div[contains(text(),'The report returned no data. Choose other parameters.')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
             {
                 WebElement dialogPopup=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-widget k-window k-dialog')]");
-                WebElement okButton=dialogPopup.findElement(By.xpath(".//button"));
+                WebElement okButton=dialogPopup.findElement(By.xpath(".//button[text()='Ok']"));
                 HelpersMethod.ClickBut(driver,okButton,4000);
             }
             Assert.assertEquals(exists,true);
@@ -174,6 +184,11 @@ public class adminReportPage
         {
             String ParentWindow = driver.getWindowHandle();
             HelpersMethod.ClickBut(driver,downloadPdf,100);
+            if(HelpersMethod.IsExists("//div[@class='loader']",driver))
+            {
+                WebElement WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100000);
+            }
             scenario.log("TO GENERATE THE REPORT IN .pdf FORMATE BUTTON HAS BEEN CLICKED");
             Thread.sleep(5000);
             Set<String> PCWindows = driver.getWindowHandles();

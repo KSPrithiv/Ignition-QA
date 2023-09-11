@@ -16,6 +16,7 @@ import util.TestBase;
 
 import java.io.File;
 import java.io.FileFilter;
+import java.time.DayOfWeek;
 import java.time.Duration;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -101,6 +102,10 @@ public class CreateOGPage
     @FindBy(id="checkBoxD")
     private WebElement AllOrderCheckbox;
 
+    LocalDate today = LocalDate.now();
+    java.time.DayOfWeek dayOfWeek = today.getDayOfWeek();
+
+
     public CreateOGPage(WebDriver driver, Scenario scenario)
     {
         this.scenario = scenario;
@@ -178,7 +183,7 @@ public class CreateOGPage
         try
         {
             String formattedDate1 = null;
-            HelpersMethod.waitTillElementLocatedDisplayed(driver,"xpath","//div[contains(@class,'k-calendar-monthview')]",6);
+            HelpersMethod.waitTillElementLocatedDisplayed(driver,"xpath","//div[contains(@class,'k-calendar-monthview')]",1000);
             //finding element/date in calendar drop down is enabled or not. if not enabled increase the date by 6 days
             if (HelpersMethod.IsExists("//div[contains(@class,'k-calendar-monthview')]",driver))
             {
@@ -187,8 +192,9 @@ public class CreateOGPage
                 formattedDate1 = myDateObj.format(myFormatObj);
                 WebElement ele1 = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-calendar-monthview')]/descendant::td[contains(@title,'" + formattedDate1 + "')]");
                 HelpersMethod.JSScroll(driver,ele1);
-                HelpersMethod.ActClick(driver, ele1, 20);
+                HelpersMethod.ActClick(driver, ele1, 100);
                 scenario.log(formattedDate1 + " HAS BEEN SELECTED AS START DATE FOR OG");
+                new WebDriverWait(driver,Duration.ofMillis(500)).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[contains(@class,'k-calendar-monthview')]")));
             }
             else
             {
@@ -204,7 +210,7 @@ public class CreateOGPage
         try
         {
             String formattedDate1 = null;
-            HelpersMethod.waitTillElementLocatedDisplayed(driver,"xpath","//div[contains(@class,'k-calendar-monthview')]",6);
+            HelpersMethod.waitTillElementLocatedDisplayed(driver,"xpath","//div[contains(@class,'k-calendar-monthview')]",100);
             //finding element/date in calendar drop down is enabled or not. if not enabled increase the date by 6 days
             String ele = "//div[contains(@class,'k-calendar-monthview')]";
             boolean visible = HelpersMethod.IsExists(ele, driver);
@@ -774,30 +780,45 @@ public class CreateOGPage
     //Code for Delete OG
     public void Click_Delete()
     {
+        exists=false;
         try
         {
-            HelpersMethod.ScrollElement(driver,OG_Delete);
-            HelpersMethod.ActClick(driver,OG_Delete,20);
+            if(OG_Delete.isDisplayed() && OG_Delete.isEnabled())
+            {
+                HelpersMethod.ScrollElement(driver, OG_Delete);
+                HelpersMethod.ClickBut(driver, OG_Delete, 1000);
+                scenario.log("OG DELETE BUTTON HAS BEEN CLICKED");
+                exists=true;
+            }
+            else
+            {
+                scenario.log("OG DELETE BUTTON HAS NOT BEEN FOUND");
+            }
+            Assert.assertEquals(exists,true);
         }
         catch (Exception e){}
     }
     //Code for handling Delete popup
     public void DeleteOk_Popup()
     {
+        exists=false;
         try
         {
-            HelpersMethod.waitTillElementLocatedDisplayed(driver,"xpath","//div[contains(text(),'delete this order guide ?')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",6);
+            HelpersMethod.waitTillElementLocatedDisplayed(driver,"xpath","//div[contains(text(),'Are you sure you want to delete this order guide ?')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",1000);
             if(HelpersMethod.IsExists("//div[contains(text(),'delete this order guide ?')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
             {
-                WebElement DeleteOk=HelpersMethod.FindByElement(driver,"xpath", "//div[contains(@class,'k-widget k-window k-dialog')]/descendant::button[text()='Ok']");
-                HelpersMethod.ClickBut(driver,DeleteOk,20);
-                HelpersMethod.waitTillElementLocatedDisplayed(driver,"xpath","//div[contains(text(),'Order guides deleted')]/ancestor::div[@class='k-widget k-window k-dialog']",2);
+                WebElement DeleteOk=HelpersMethod.FindByElement(driver,"xpath", "//div[contains(@class,'k-widget k-window k-dialog')]/descendant::button[text()='Yes']");
+                HelpersMethod.ClickBut(driver,DeleteOk,100);
+                HelpersMethod.waitTillElementLocatedDisplayed(driver,"xpath","//div[contains(text(),'Order guides deleted')]/ancestor::div[@class='k-widget k-window k-dialog']",1000);
                 if(HelpersMethod.IsExists("//div[contains(text(),'Order guides deleted')]/ancestor::div[@class='k-widget k-window k-dialog']",driver))
                 {
                     DeleteOk=HelpersMethod.FindByElement(driver,"xpath", "//div[contains(@class,'k-widget k-window k-dialog')]/descendant::button[text()='Ok']");
-                    HelpersMethod.ClickBut(driver,DeleteOk,20);
+                    HelpersMethod.ClickBut(driver,DeleteOk,100);
+                    scenario.log("OG DELETE HAS BEEN CLEARED");
+                    exists=true;
                 }
             }
+            Assert.assertEquals(exists,true);
         }
         catch (Exception e){}
     }
@@ -805,13 +826,17 @@ public class CreateOGPage
     //Code for cancel the delete
     public void DeleteCancel_Popup()
     {
+        exists=false;
         try
         {
             if(HelpersMethod.IsExists("//div[contains(text(),'delete this order guide ?')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
             {
                 WebElement DeleteCancel=HelpersMethod.FindByElement(driver,"xpath", "//div[contains(@class,'k-widget k-window k-dialog')]/descendant::button[text()='Cancel']");
-                HelpersMethod.ClickBut(driver,DeleteCancel,20);
+                HelpersMethod.ClickBut(driver,DeleteCancel,100);
+                scenario.log("CANCEL DELETE HAS BEEN SELECTED");
+                exists=true;
             }
+            Assert.assertEquals(exists,true);
         }
         catch (Exception e){}
     }
@@ -905,7 +930,7 @@ public class CreateOGPage
                     if (HelpersMethod.IsExists("//div[@class='loader']", driver))
                     {
                         WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                        HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000);
+                        HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 10000);
                     }
                 }
             }
@@ -967,10 +992,10 @@ public class CreateOGPage
     {
         try
         {
-            HelpersMethod.waitTillElementLocatedDisplayed(driver,"xpath","//label[contains(text(),'Day of week')]/following-sibling::span[contains(@class,'k-widget k-dropdown')]/span",40);
+            HelpersMethod.waitTillElementLocatedDisplayed(driver,"xpath","//label[contains(text(),'Day of week')]/following-sibling::span[contains(@class,'k-widget k-dropdown')]/span",1000);
             if (HelpersMethod.IsExists("//label[contains(text(),'Day of week')]/following-sibling::span[contains(@class,'k-widget k-dropdown')]/span",driver))
             {
-                HelpersMethod.ActClick(driver,DayOfWeek,20);
+                HelpersMethod.ActClick(driver,DayOfWeek,100);
             }
             else
             {scenario.log("DAY OF WEEK DROP DOWN IS NOT VISIBLE");}
@@ -982,7 +1007,7 @@ public class CreateOGPage
     {
         try
         {
-            HelpersMethod.waitTillElementLocatedDisplayed(driver,"xpath","//div[contains(@class,'k-popup k-child-animation-container ')]/descendant::li",8);
+            HelpersMethod.waitTillElementLocatedDisplayed(driver,"xpath","//div[contains(@class,'k-popup k-child-animation-container ')]/descendant::li",100);
             List<WebElement> WeekDays=HelpersMethod.FindByElements(driver,"xpath","//div[contains(@class,'k-popup k-child-animation-container ')]/descendant::li");
             if(HelpersMethod.IsExists("//div[contains(@class,'k-popup k-child-animation-container ')]",driver))
             {
@@ -998,7 +1023,7 @@ public class CreateOGPage
         String DayWeek=null;
         try
         {
-            HelpersMethod.WaitElementPresent(driver,"xpath","//label[contains(text(),'Day of week')]",10);
+            HelpersMethod.WaitElementPresent(driver,"xpath","//label[contains(text(),'Day of week')]",100);
             WebElement DWeek=HelpersMethod.FindByElement(driver,"xpath","//label[contains(text(),'Day of week')]/following-sibling::span/descendant::span[@class='k-input']");
             DayWeek=DWeek.getText();
         }
@@ -1416,11 +1441,11 @@ public class CreateOGPage
             {
                 HelpersMethod.ScrollElement(driver, PrintBut);
                 String ParentWindow = driver.getWindowHandle();
-                HelpersMethod.ClickBut(driver, PrintBut, 10);
+                HelpersMethod.ClickBut(driver, PrintBut, 100);
                 if (HelpersMethod.IsExists("//div[@class='loader']", driver))
                 {
                     WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000);
+                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 80000);
                 }
                 Set<String> PCWindows = driver.getWindowHandles();
                 for (String PCwind : PCWindows)

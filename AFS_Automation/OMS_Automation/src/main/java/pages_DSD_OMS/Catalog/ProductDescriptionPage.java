@@ -57,10 +57,11 @@ public class ProductDescriptionPage
         exists=false;
         try
         {
-            HelpersMethod.WaitElementPresent(driver,"classname","product-detail-container",10);
+
+            //HelpersMethod.WaitElementPresent(driver,"classname","product-detail-container",100000);
             HelpersMethod.ScrollElement(driver,Qty_In);
             //Code to enter Qty in Input box
-            HelpersMethod.EnterText(driver, Qty_In, 40, Qty);
+            HelpersMethod.EnterText(driver, Qty_In, 4000, Qty);
             exists = true;
         }
         catch (Exception e) {}

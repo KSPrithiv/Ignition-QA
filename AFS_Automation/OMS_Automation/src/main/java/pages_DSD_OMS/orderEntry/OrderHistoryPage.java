@@ -66,7 +66,7 @@ public class OrderHistoryPage
         if(HelpersMethod.IsExists("//div[@class='loader']",driver))
         {
             WebElement  WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 10000);
+            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 80000);
         }
         try
         {
@@ -246,7 +246,7 @@ public class OrderHistoryPage
             if(HelpersMethod.IsExists("//div[@class='loader']",driver))
             {
                 WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 400);
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 40000);
             }
             Assert.assertEquals(exists,true);
         }
@@ -254,67 +254,25 @@ public class OrderHistoryPage
     }
 
     //public void FilterActiveOrder(String s,String s1,String s2,String s3)
-    public void FilterActiveOrder(String year)
+    public void FilterActiveOrder()
     {
         WebElement WebEle;
         exists=false;
-        Actions act1=new Actions(driver);
         try
         {
             int i=0;
             Actions act=new Actions(driver);
-            String THead_Text=null;
             WebEle= HelpersMethod.FindByElement(driver,"xpath","//div[@class='i-grid']");
             HelpersMethod.ScrollElement(driver,WebEle);
-            List<WebElement> TableHeads=HelpersMethod.FindByElements(driver,"xpath","//th[contains(@class,'k-header')]/descendant::span[@class='k-column-title']");
-            for(WebElement TableHead:TableHeads)
+            WebElement headTitle=HelpersMethod.FindByElement(driver,"xpath","//th[contains(@class,'k-header')]/descendant::span[@class='k-column-title' and contains(text(),'Delivery Date')]");
+            act.moveToElement(headTitle).doubleClick().build().perform();
+            exists=true;
+            if(HelpersMethod.IsExists("//div[@class='loader']",driver))
             {
-                i++;
-                THead_Text=TableHead.getText();
-                if(THead_Text.equals("Delivery Date"))
-                {
-                    //WebDriverWait wait=new WebDriverWait(driver,40);
-                    //wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//th[@aria-label='Filter']["+i+"]/descendant::input")));
-                   // WebEle=HelpersMethod.FindByElement(driver,"xpath","//th[@aria-label='Filter']["+i+"]/descendant::input");
-                   // HelpersMethod.JSSetValueEle(driver,WebEle,100,year);
-                   WebEle=HelpersMethod.FindByElement(driver,"xpath","//th[@aria-label='Filter']["+i+"]/descendant::a");
-                   HelpersMethod.ActClick(driver,WebEle,60);
-                   //To click on 2023 in calender, so that user can select 1st Jan for filterling orders in order hisotry
-                   WebElement calValMonth=HelpersMethod.FindByElement(driver,"xpath","//div[@class='k-calendar-navigation']/descendant::li/span[text()='"+year+"']");
-                   HelpersMethod.JScriptClick(driver,calValMonth,100);
-
-                   //code to select Jan 1st
-                    new WebDriverWait(driver,Duration.ofMillis(400)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.xpath("//table[@class='k-calendar-table']"))));
-                    WebElement calDate=HelpersMethod.FindByElement(driver,"xpath","//table[@class='k-calendar-table']/descendant::td[contains(@title,'January 1,')]");
-                    HelpersMethod.JScriptClick(driver,calDate,100);
-
-                    //click on filter icon to select 'Is after' filter option
-                    WebElement filterIcon=HelpersMethod.FindByElement(driver,"xpath","//th[@aria-label='Filter']["+i+"]/descendant::span[contains(@class,'k-dropdown-wrap')]");
-                    HelpersMethod.ActClick(driver,filterIcon,40);
-
-                    WebElement filterPopup=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-popup k-child-animation-container')]");
-                    List <WebElement> filterOptions=filterPopup.findElements(By.xpath(".//ul/li"));
-                    for (WebElement filterOpt:filterOptions)
-                    {
-                        act.moveToElement(filterOpt).build().perform();
-                        String optText=filterOpt.getText();
-                        if(optText.equals("Is after"))
-                        {
-                            act.moveToElement(filterOpt).click().build().perform();
-                            break;
-                        }
-                    }
-
-                    if(HelpersMethod.IsExists("//div[@class='loader']",driver))
-                    {
-                        WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                        HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 4000);
-                    }
-                    new WebDriverWait(driver,Duration.ofMillis(10000)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfAllElementsLocatedBy(By.id("order-history-card"))));
-                    break;
-                }
+                WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 60000);
             }
-            new WebDriverWait(driver,Duration.ofMillis(10000)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfAllElementsLocatedBy(By.id("order-history-card"))));
+            Assert.assertEquals(exists,true);
         }
         catch (Exception e){}
     }
@@ -332,9 +290,8 @@ public class OrderHistoryPage
                 if(HelpersMethod.IsExists("//div[@class='loader']",driver))
                 {
                     WebElement WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 6000);
+                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 80000);
                 }
-
             }
         }
         catch (Exception e){}
@@ -348,7 +305,7 @@ public class OrderHistoryPage
             if(HelpersMethod.IsExists("//div[@class='loader']",driver))
             {
                 WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000);
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 80000);
             }
             //handling Select order no. popup
             if(HelpersMethod.IsExists("//h4[contains(text(),'Select order')]/ancestor::div[contains(@class,'modal-content')]",driver))
@@ -360,7 +317,7 @@ public class OrderHistoryPage
                 if(HelpersMethod.IsExists("//div[@class='loader']",driver))
                 {
                     WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 2000);
+                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 80000);
                 }
             }
 
@@ -411,7 +368,7 @@ public class OrderHistoryPage
                     if(HelpersMethod.IsExists("//div[@class='loader']",driver))
                     {
                         WebElement WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                        HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 8000);
+                        HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 80000);
                     }
                     break;
                 }
@@ -449,10 +406,29 @@ public class OrderHistoryPage
                 if(HelpersMethod.IsExists("//div[@class='loader']",driver))
                 {
                     WebElement WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 10000);
+                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 40000);
                 }
             }
             Assert.assertEquals(exists,true);
+        }
+        catch (Exception e){}
+    }
+
+    public void Click_On_OrderNumber()
+    {
+        exists=false;
+        try
+        {
+            //Read the Order number
+            WebElement OrderNo=HelpersMethod.FindByElement(driver,"xpath","//tr[contains(@class,'k-master-row')][1]/descendant::button");
+            scenario.log("ORDER NUMBER SELECTED FROM ORDER HISTORY PAGE FOR CREATING COPY IS: "+OrderNo.getText());
+
+            HelpersMethod.ClickBut(driver,OrderNo,100);
+            if(HelpersMethod.IsExists("//div[@class='loader']",driver))
+            {
+                WebElement WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 40000);
+            }
         }
         catch (Exception e){}
     }

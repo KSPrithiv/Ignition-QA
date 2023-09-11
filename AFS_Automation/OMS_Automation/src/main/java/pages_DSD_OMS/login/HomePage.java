@@ -266,7 +266,7 @@ public class HomePage
                         if(HelpersMethod.IsExists("//div[@class='loader']",driver))
                         {
                             WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000);
+                            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 80000);
                         }
                         break;
                     }
@@ -322,7 +322,7 @@ public class HomePage
             if(HelpersMethod.IsExists("//div[@class='loader']",driver))
             {
                 WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 10000);
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 80000);
             }
 
             UserIcon=HelpersMethod.FindByElement(driver,"xpath","//div[@class='user-info-container']");

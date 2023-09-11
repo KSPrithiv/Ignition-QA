@@ -561,6 +561,11 @@ public class GridConfigurationPage
             if(WebEle.isDisplayed() && WebEle.isEnabled())
             {
                 HelpersMethod.ClickBut(driver,WebEle,1000);
+                if(HelpersMethod.IsExists("//div[@class='loader']",driver))
+                {
+                    WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
+                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 80000);
+                }
                 exists=true;
             }
             Assert.assertEquals(exists,true);
@@ -578,6 +583,11 @@ public class GridConfigurationPage
             if (WebEle.isDisplayed() && WebEle.isEnabled())
             {
                 HelpersMethod.ClickBut(driver, WebEle, 1000);
+                String status = HelpersMethod.returnDocumentStatus(driver);
+                if (status.equals("loading"))
+                {
+                    HelpersMethod.waitTillLoadingPage(driver);
+                }
                 exists = true;
             }
         }

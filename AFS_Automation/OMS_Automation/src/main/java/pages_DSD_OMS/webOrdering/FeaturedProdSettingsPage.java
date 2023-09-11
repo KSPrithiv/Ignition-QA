@@ -51,17 +51,16 @@ public class FeaturedProdSettingsPage
         {
             HelpersMethod.waitTillLoadingPage(driver);
         }
-        Thread.sleep(20000);
+        Thread.sleep(2000);
        // new WebDriverWait(driver,100).until(ExpectedConditions.elementToBeClickable(By.xpath("//span[contains(@class,'k-icon k-i-arrow-chevron-down i-header-toolbar-expandable-button__icon')]")));
 
         if(HelpersMethod.IsExists("//div[@class='loader']",driver))
         {
             WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 400);
+            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 80000);
         }
         try
         {
-            HelpersMethod.Implicitwait(driver,80);
             title=driver.getTitle();
             if(title.contains("Admin"))
             {
@@ -93,7 +92,7 @@ public class FeaturedProdSettingsPage
         exists=false;
         try
         {
-            HelpersMethod.ClickBut(driver,DropDown,20);
+            HelpersMethod.ClickBut(driver,DropDown,100);
         }
         catch (Exception e){}
     }

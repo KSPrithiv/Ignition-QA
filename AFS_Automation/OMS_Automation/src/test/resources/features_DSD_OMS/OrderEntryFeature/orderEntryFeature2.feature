@@ -138,7 +138,6 @@ Feature: Order Entry2
     @CancelAndVerifyInOrderGrid
     Scenario: Create new order, and once Order created Cancel that order from Order summary page
       Given User must be on Order Entry Page
-      Then Change the date 2 days after current date
       Then User must click Start Order button
       Then User should make selection between Pending order or Start New order
       Then User should select Note from popup and Order guide from popup
@@ -149,31 +148,36 @@ Feature: Order Entry2
         |50|50|
       Then Click on Next button
       And Click on Submit Order button and read Order_no
-      Then User should be navigated to Order Entry page
       Then Enter Order# in Search box in Order Entry page
       Then Click on Order number in Order Entry page
+      Then Click on Next button to naviagate to OE summary page to cancle order
       Then Click on Cancel button in OE summary page and handle warning popup
       Then User should be navigated to Order Entry page
       And verify whether Order number is not existing in OG
 
-     # @CancelInNewOE
-     # Scenario: Cancleing order while creating order, in new Order entry page
-     #   Given User must be on Order Entry Page
-     #   Then User must click Start Order button
-     #   Then User should make selection between Pending order or Start New order
-     #   Then User should select Note from popup and Order guide from popup
-     #   Then Enter PO# for New order
-     #     |PO123|
-     #   Then Enter Pro# in Quick Product Entry area
-     #   And Check for Case and Unit input box enabled or not based on that enter value
-     #     |50|80|
-     #   Then Click on Cancel button
-     #   And Check for Warning popup
-     #   Then User should be navigated to Order Entry page
+      @OrderCancelInNewOE
+      Scenario: Test scenario for creating order and once order is created cancel it in new order entry page
+           Given User must be on Order Entry Page
+           Then User must click Start Order button
+           Then User should make selection between Pending order or Start New order
+           Then User should select Note from popup and Order guide from popup
+           Then Enter PO# for New order
+             |PO123|
+           Then Enter Pro# in Quick Product Entry area
+           And Check for Case and Unit input box enabled or not based on that enter value
+             |50|50|
+           Then Click on Next button
+           And Click on Submit Order button and read Order_no
+           Then User should be navigated to Order Entry page
+           Then Enter Order# in Search box in Order Entry page
+           Then Click on Order number in Order Entry page
+           Then Click on Cancel button
+           And Check for Warning popup
+           Then User should be navigated to Order Entry page
 
 #this scenario is only for ERP env
 @LowInventroy
-Scenario: Products whcich are low in inventory should not be displayed in Order summary page
+Scenario: Products which are low in inventory should not be displayed in Order summary page
   Given User must be on Order Entry Page
   Then User must click Start Order button
   Then User should make selection between Pending order or Start New order

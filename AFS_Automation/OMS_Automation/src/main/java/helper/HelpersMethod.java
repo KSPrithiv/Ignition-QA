@@ -561,6 +561,11 @@ public class HelpersMethod
                 {
                     WebElement menuItem=FindByElement(driver,selector,MenuItemLocator);
                     JScriptClick(driver,menuItem,100);
+                    if(IsExists("//div[@class='loader']",driver))
+                    {
+                        WebElement WebEle=FindByElement(driver,"xpath","//div[@class='loader']");
+                        waitTillLoadingWheelDisappears(driver, WebEle, 80000);
+                    }
                     break;
                 }
             }
@@ -681,7 +686,7 @@ public class HelpersMethod
             {
                 e.printStackTrace();
             }
-            if(pageLoadStatus.equals("complete") || pageLoadStatus.equals("interactive"))
+            if(pageLoadStatus.equals("complete"))// || pageLoadStatus.equals("interactive"))
             {
                 pageWasLoaded=true;
             }

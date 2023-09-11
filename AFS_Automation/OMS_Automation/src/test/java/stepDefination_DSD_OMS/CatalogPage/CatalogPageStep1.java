@@ -145,23 +145,7 @@ public class CatalogPageStep1
     public void user_clicks_on_product_details_to_navigate_to_description_page()
     {
         catalogpage=new CatalogPage(driver,scenario);
-        exists=false;
-        exists=HelpersMethod.IsExists("//div[@class='card-view']",driver);
-        if(exists==true)
-        {
-            WebElement Element =HelpersMethod.FindByElement(driver,"xpath","//div[@class='card-view']/descendant::div[@class='product-catalog-image-and-number-and-price-container'][1]");
-            HelpersMethod.ClickBut(driver,Element,40);
-        }
-        else
-        {
-            exists=false;
-            exists=HelpersMethod.IsExists("//div[@class='list-view']",driver);
-            if(exists==true)
-            {
-                WebElement Element =HelpersMethod.FindByElement(driver,"xpath","//div[@class='list-view']/descendant::tr[contains(@class,'k-master-row')][1]/descendant::a/ancestor::td");
-                HelpersMethod.ClickBut(driver,Element,40);
-            }
-        }
+        catalogpage.navigateToDescriptionPage();
     }
 
     @And("User lists all the product numbers which comes under Frequently bought together")

@@ -28,6 +28,7 @@ import java.util.concurrent.TimeUnit;
 
 public class TestBase {
     public static Environment testEnvironment;
+   // public static MenuValues testMenuValues;
     private static TestBase instanceOfDriver = null;
     public static ThreadLocal<WebDriver> driver = new ThreadLocal<WebDriver>();
 
@@ -35,10 +36,14 @@ public class TestBase {
 
 
     //Reading property file for Parallel execution of the feature files
-    public static void InitializeProp(String envi) throws InterruptedException {
-        try {
+    public static void InitializeProp(String envi/*,String menu*/) throws InterruptedException
+    {
+        try
+        {
             ConfigFactory.setProperty("env", envi);
+           // ConfigFactory.setProperty("menu",menu);
             testEnvironment = ConfigFactory.create(Environment.class);
+           // testMenuValues = ConfigFactory.create(MenuValues.class);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -70,7 +75,6 @@ public class TestBase {
             case "chrome": {
                 WebDriverManager.chromedriver().setup();
                 ChromeOptions chromeOptions = new ChromeOptions();
-
 
                 chromeOptions.addArguments("--safebrowsing-disable-download-protection");
                 chromeOptions.addArguments("--disable-popup-blocking");
@@ -127,11 +131,9 @@ public class TestBase {
 
         getDriver().manage().window().maximize();
         getDriver().manage().deleteAllCookies();
-        //karthik
         getDriver().manage().timeouts().pageLoadTimeout(TestUtil.PAGE_LOAD_TIMEOUT, TimeUnit.SECONDS);
-        //getDriver().manage().timeouts().implicitlyWait(TestUtil.IMPLICIT_WAIT, TimeUnit.SECONDS);
+        getDriver().manage().timeouts().implicitlyWait(TestUtil.IMPLICIT_WAIT, TimeUnit.SECONDS);
         getDriver().get(testEnvironment.get_url());
-       // getDriver().navigate().refresh();
     }
 
     public static void unload() throws IOException {

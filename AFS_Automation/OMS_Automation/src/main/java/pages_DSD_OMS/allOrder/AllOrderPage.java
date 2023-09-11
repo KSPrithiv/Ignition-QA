@@ -166,14 +166,7 @@ public class AllOrderPage
         WebElement WebEle = null;
         String status=null;
         exists = false;
-      /*  if(HelpersMethod.IsExists("//div[@class='loader']",driver))
-        {
-            WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000);
-        }*/
-       // new WebDriverWait(driver,100).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='allOrdersCheckbox']")));
-        //new WebDriverWait(driver,100).until(ExpectedConditions.textToBePresentInElementLocated(By.xpath("//div[@class='allOrdersCheckbox']"),"Show all orders"));
-        try
+       try
         {
             status=HelpersMethod.returnDocumentStatus(driver);
             if(status.equals("loading"))
@@ -224,8 +217,6 @@ public class AllOrderPage
             WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
             HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100000);
         }
-        // new WebDriverWait(driver,100).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='allOrdersCheckbox']")));
-        //new WebDriverWait(driver,100).until(ExpectedConditions.textToBePresentInElementLocated(By.xpath("//div[@class='allOrdersCheckbox']"),"Show all orders"));
         try
         {
             status=HelpersMethod.returnDocumentStatus(driver);
@@ -238,8 +229,6 @@ public class AllOrderPage
                 if (HelpersMethod.IsExists("//div[@class='allOrdersCheckbox']",driver))
                 {
                     exists = false;
-                    //new WebDriverWait(driver, 100).until(ExpectedConditions.visibilityOf(AllOrderCheckbox));
-                    //new WebDriverWait(driver, 100).until(ExpectedConditions.elementToBeClickable(AllOrderCheckbox));
                     HelpersMethod.ScrollElement(driver, AllOrderCheckbox);
                     HelpersMethod.ActClick(driver, AllOrderCheckbox, 10000);
                     scenario.log("SHOW ALL ORDER CHECK BOX HAS BEEN CLICKED");
@@ -324,12 +313,8 @@ public class AllOrderPage
             }
 
             WebElement starOrderBut = HelpersMethod.FindByElement(driver, "xpath", "//button[contains(text(),'Start order')]");
-            //new WebDriverWait(driver, 6000).until(ExpectedConditions.elementToBeClickable(starOrderBut));
             //Click on Start Order button
-            //act1.moveToElement(starOrderBut).build().perform();
-            //act1.click(starOrderBut).build().perform();
             HelpersMethod.JScriptClick(driver,starOrderBut,100);
-
 
             status = HelpersMethod.returnDocumentStatus(driver);
             if (status.equals("loading"))

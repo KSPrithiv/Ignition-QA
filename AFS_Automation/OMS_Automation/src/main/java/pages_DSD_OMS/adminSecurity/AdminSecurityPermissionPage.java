@@ -247,7 +247,7 @@ public class AdminSecurityPermissionPage
                 if(HelpersMethod.IsExists("//div[@class='loader']",driver))
                 {
                     WebElement WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 10000);
+                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100000);
                 }
             }
         }
@@ -423,10 +423,11 @@ public class AdminSecurityPermissionPage
             if(HelpersMethod.IsExists("//div[@class='loader']",driver))
             {
                 WebElement WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 20000);
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 80000);
             }
             if(HelpersMethod.IsExists("//div[contains(text(),'Copy permissions')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
             {
+
                 exists=true;
             }
             Assert.assertEquals(exists,true);
@@ -753,6 +754,28 @@ public class AdminSecurityPermissionPage
                 scenario.log("COPYING OF ADMIN PERMISSION FROM "+arg0+"TO "+roleName+" WAS NOT SUCESSFULL");
             }
             Assert.assertEquals(exists,true);
+        }
+        catch (Exception e){}
+    }
+
+    public void confirmationPopup1()
+    {
+        try
+        {
+            if(HelpersMethod.IsExists("//div[contains(text(),'Are you sure you wish to copy')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
+            {
+                exists=false;
+                WebElement dialogPopup=HelpersMethod.FindByElement(driver,"xpath","//div[contains(text(),'Are you sure you wish to copy')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]");
+                WebElement yesButton=dialogPopup.findElement(By.xpath(".//button[text()='Yes']"));
+                HelpersMethod.ClickBut(driver,yesButton,100);
+                exists=true;
+                if(HelpersMethod.IsExists("//div[@class='loader']",driver))
+                {
+                    WebElement WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
+                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 80000);
+                }
+                Assert.assertEquals(exists,true);
+            }
         }
         catch (Exception e){}
     }

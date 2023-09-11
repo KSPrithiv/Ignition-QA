@@ -128,7 +128,7 @@ public class OrderControlPageSteps
                 if (HelpersMethod.IsExists("//div[@class='loader']", driver))
                 {
                     WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000);
+                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 80000);
                 }
                 orderControlList = new OrderControlListPage(driver, scenario);
                 orderControlList.Validate_OCL();

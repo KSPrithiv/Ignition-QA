@@ -38,7 +38,6 @@ Feature: Order Entry4
       Then User should click on Copy from dropdown and Select Order history
         |Order history|
       Then User verifies Order history page and add history Order to order
-      |2023|
       And Click on Copy button
       # Then Enter PO# for New order
       #  |PO123|
