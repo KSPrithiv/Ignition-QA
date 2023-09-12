@@ -28,7 +28,7 @@ public class CatalogPage
     static boolean exists=false;
     static int totalNum;
 
-    @FindBy(xpath="//button[@data-test-id='productFilterResetBtn']")
+    @FindBy(xpath="//button[@data-test-id='productFilterResetBtn' and contains(text(),'Reset filter')]//*[local-name()='svg']")
     private WebElement ResetFilter;
 
     @FindBy(xpath = "//input[contains(@placeholder,'Search products')]")
@@ -98,6 +98,7 @@ public class CatalogPage
         }
         try
         {
+            ResetFilter=HelpersMethod.FindByElement(driver,"xpath","//button[@data-test-id='productFilterResetBtn' and contains(text(),'Reset filter')]//*[local-name()='svg']");
             HelpersMethod.ScrollElement(driver,ResetFilter);
             HelpersMethod.ClickBut(driver,ResetFilter,1000);
             if(HelpersMethod.IsExists("//div[@class='loader']",driver))
