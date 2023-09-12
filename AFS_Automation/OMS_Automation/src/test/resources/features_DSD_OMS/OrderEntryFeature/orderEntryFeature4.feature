@@ -96,7 +96,8 @@ Feature: Order Entry4
     And Check for Case and Unit input box enabled or not based on that enter value
       |80|65|
     Then User should click on Comment icon in Product grid
-    And User should enter comment in comment popup at Product level
+   # And User should enter comment in comment popup at Product level
+    And should enter comment in comment popup for updating
       |Comment at Product level|
     Then User should select comment from grid and edit comment as "<UpdateComm>"
     And User click on Update button in popup and Validate "<UpdateComm>"
@@ -176,6 +177,5 @@ Feature: Order Entry4
       |65|80|
     Then User should click on Back button in NewOE page and popup should appear
     And In Save order without submitting popup should select next button
-    Then Click on Next button
     And Click on SubmitOrder button
     Then User should be navigated to Order Entry page

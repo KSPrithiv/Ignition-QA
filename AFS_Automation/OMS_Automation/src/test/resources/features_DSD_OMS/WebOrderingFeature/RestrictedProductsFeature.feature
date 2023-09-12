@@ -9,6 +9,7 @@ Feature: Admin setting
   @AddProducts
   Scenario Outline: Test scenario for Adding product to restricted products
     Given User is on Home Page for Admin setting to select Admin option
+    Then User refreshes page Clicks on Permissions by drop down to select Customer Account# grid
     And User should enter menu "<Option>" in search bar to navigate to Authorized Products
     Then User should select "<MenuOption>" from horizantal menu to select Restricted product list
     And User should be on Restricted product list
@@ -22,6 +23,7 @@ Feature: Admin setting
  @DeleteProducts
  Scenario Outline: Test scenario for Deleting product from restricted products
    Given User is on Home Page for Admin setting to select Admin option
+   Then User refreshes page Clicks on Permissions by drop down to select Customer Account# grid for WebOrder
    And User should enter menu "<Option>" in search bar to navigate to Authorized Products
    Then User should select "<MenuOption>" from horizantal menu to select Restricted product list
    And User should be on Restricted product list
@@ -34,6 +36,7 @@ Feature: Admin setting
  @AddCategory
  Scenario Outline: Test scenario for Adding category of product to restricted products group
    Given User is on Home Page for Admin setting to select Admin option
+   Then User refreshes page Clicks on Permissions by drop down to select Customer Account# grid for WebOrder
    And User should enter menu "<Option>" in search bar to navigate to Authorized Products
    Then User should select "<MenuOption>" from horizantal menu to select Restricted product list
    And User should be on Restricted product list
@@ -46,6 +49,7 @@ Feature: Admin setting
  @DeleteCategory
  Scenario Outline: Test scenario for Deleting category of product from restricted products group
    Given User is on Home Page for Admin setting to select Admin option
+   Then User refreshes page Clicks on Permissions by drop down to select Customer Account# grid for WebOrder
    And User should enter menu "<Option>" in search bar to navigate to Authorized Products
    Then User should select "<MenuOption>" from horizantal menu to select Restricted product list
    And User should be on Restricted product list

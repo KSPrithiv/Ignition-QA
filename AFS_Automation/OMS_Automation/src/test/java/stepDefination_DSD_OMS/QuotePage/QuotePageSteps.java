@@ -84,8 +84,6 @@ public class QuotePageSteps
         if(flag==false)
         {
             homepage = new HomePage(driver,scenario);
-            String title = driver.getTitle();
-            //Assert.assertEquals(title, "Admin");
             homepage.verifyUserinfoContainer();
             homepage.navigateToClientSide();
         }
@@ -110,7 +108,7 @@ public class QuotePageSteps
         if(flag1==false)
         {
             orderEntryPage.ChangeAccount();
-            orderEntryPage.PopUps_After_AccountChange();
+            //orderEntryPage.PopUps_After_AccountChange();
             //orderEntryPage.Read_DeliveryDate();
             flag1=true;
         }

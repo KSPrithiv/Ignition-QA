@@ -180,11 +180,11 @@ public class RestrictedProductListPage
         {
             if(DeleteButton.isEnabled())
             {
-                HelpersMethod.ClickBut(driver, DeleteButton, 20);
+                HelpersMethod.ClickBut(driver, DeleteButton, 100);
                 if(HelpersMethod.IsExists("//div[contains(text(),'Are you sure you want to delete this record?')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
                 {
                     WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-widget k-window k-dialog')]/descendant::button[text()='OK']");
-                    HelpersMethod.ClickBut(driver,WebEle,20);
+                    HelpersMethod.ClickBut(driver,WebEle,100);
                     exists = true;
                 }
             }
@@ -201,7 +201,7 @@ public class RestrictedProductListPage
         {
             if(!ProdGroup.isSelected())
             {
-                HelpersMethod.ActClick(driver,ProdGroup,10);
+                HelpersMethod.ActClick(driver,ProdGroup,100);
                 exists=true;
                 if(HelpersMethod.IsExists("//div[@class='loader']",driver))
                 {
@@ -327,7 +327,7 @@ public class RestrictedProductListPage
         Actions act=new Actions(driver);
         try
         {
-            List<WebElement> Products=HelpersMethod.FindByElements(driver,"xpath","//tr[contains(@class,'k-master-row')]/td[1]");
+            List<WebElement> Products=HelpersMethod.FindByElements(driver,"xpath","//tr[contains(@class,'k-master-row')]/td[2]");
             for(WebElement Pro:Products)
             {
                 act.moveToElement(Pro).build().perform();

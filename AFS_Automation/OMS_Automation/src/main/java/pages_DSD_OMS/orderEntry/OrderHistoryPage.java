@@ -265,7 +265,8 @@ public class OrderHistoryPage
             WebEle= HelpersMethod.FindByElement(driver,"xpath","//div[@class='i-grid']");
             HelpersMethod.ScrollElement(driver,WebEle);
             WebElement headTitle=HelpersMethod.FindByElement(driver,"xpath","//th[contains(@class,'k-header')]/descendant::span[@class='k-column-title' and contains(text(),'Delivery Date')]");
-            act.moveToElement(headTitle).doubleClick().build().perform();
+            act.moveToElement(headTitle).click().build().perform();
+            act.moveToElement(headTitle).click().build().perform();
             exists=true;
             if(HelpersMethod.IsExists("//div[@class='loader']",driver))
             {

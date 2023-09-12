@@ -176,5 +176,6 @@ Feature: Order Guide2
       |Push OG1Push OG1|
       |AllOrderAllOrder|
       | AllCustomer1   |
+      | QToOG |
 
 

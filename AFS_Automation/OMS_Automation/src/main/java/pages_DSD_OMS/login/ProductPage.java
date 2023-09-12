@@ -361,11 +361,12 @@ public class ProductPage
             {
                 HelpersMethod.ScrollElement(driver, Cart);
                 HelpersMethod.ClickBut(driver, Cart, 40);
+                Thread.sleep(500);
                 exists=true;
                 if (HelpersMethod.IsExists("//div[@class='loader']", driver))
                 {
                     WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 400);
+                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 40000);
                 }
             }
             Assert.assertEquals(exists,true);
@@ -405,7 +406,7 @@ public class ProductPage
             if (HelpersMethod.IsExists("//div[@class='loader']", driver))
             {
                 WebElement WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 6000);
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 10000);
             }
             Assert.assertEquals(exists, true);
         }

@@ -171,4 +171,19 @@ public class FeaturedProdSettingsPage
         }
         catch (Exception e){}
     }
+
+    public void validateFeatureProd()
+    {
+        exists=false;
+        try
+        {
+            if(HelpersMethod.FindByElement(driver,"xpath","//span[contains(@class,'spnmoduleNameHeader withoutBreadcrumbs')]").getText().equals("Featured Products"))
+            {
+                scenario.log("FEATURED PRODUCTS PAGE HAS BEEN FOUND");
+                exists=true;
+            }
+            Assert.assertEquals(exists,true);
+        }
+        catch (Exception e){}
+    }
 }
