@@ -35,10 +35,10 @@ Feature: Testing of Inbound Load Summary screen functionality
     And Inbound Load Summary page main elements are present
     And Validates default values of Start Date and End date on Inbound Load Summary page
     When Types start date by index 0 on Inbound Load Summary page
-    And Types load "LOADAUTO1" on Inbound Load Summary page
+    And Types load by index 1 on Inbound Load Summary page
     And Validates loads are present on Inbound Load Summary page
     And Cleans load input on Inbound Load Summary page
-    Then Types load "01" on Inbound Load Summary page
+    Then Types load by index 3 on Inbound Load Summary page
     And Validates loads are present on Inbound Load Summary page
     And Cleans load input on Inbound Load Summary page
     And Types load "E4vrdv" on Inbound Load Summary page
@@ -46,7 +46,7 @@ Feature: Testing of Inbound Load Summary screen functionality
     And Cleans load input on Inbound Load Summary page
     And Types start date by index 0 on Inbound Load Summary page
     And Types end date by index 4 on Inbound Load Summary page
-    And Types load "LOADAUTO1" on Inbound Load Summary page
+    And Types load by index 1 on Inbound Load Summary page
     And Validates loads are present on Inbound Load Summary page
 
   Scenario: Checking Load Summary screen Status Filter
@@ -75,14 +75,11 @@ Feature: Testing of Inbound Load Summary screen functionality
     And Validates default values of Start Date and End date on Inbound Load Summary page
     When Types start date by index 0 on Inbound Load Summary page
     And Types end date by index 4 on Inbound Load Summary page
-
-    And Clicks carrier "Select carrier" on Inbound Load Summary page
-
-    Then Selects carrier "Inbound Freight Expense" on Inbound Load Summary page
-
+    And Clicks carrier by index 0 on Inbound Load Summary page
+    Then Selects carrier by index 3 on Inbound Load Summary page
     And Validates Items found is displayed on Inbound Load Summary page
-    And Clicks carrier "Inbound Freight Expense" on Inbound Load Summary page
-    And Selects carrier "Reed Trucking" on Inbound Load Summary page
+    And Clicks carrier by index 3 on Inbound Load Summary page
+    And Selects carrier by index 2 on Inbound Load Summary page
     And Validates Items found is displayed on Inbound Load Summary page
 
   Scenario: Checking Load Summary screen Door Filter
@@ -112,8 +109,10 @@ Feature: Testing of Inbound Load Summary screen functionality
     And Validates default values of Start Date and End date on Inbound Load Summary page
     When Types start date by index 0 on Inbound Load Summary page
     And Types end date by index 4 on Inbound Load Summary page
+
     Then Clicks load type "Select load type" dropdown on Inbound Load Summary page
     And Clicks load type "Inbound" on Inbound Load Summary page
+
     And Validates Items found is displayed on Inbound Load Summary page
 
   Scenario: Checking Load Summary screen Supplier code filter

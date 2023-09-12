@@ -64,10 +64,10 @@
   "inbound carriers":
   {
     "inbound carrier 1": "Select carrier",
-    "inbound carrier 2": "ALLOWANCE",
+    "inbound carrier 2": "Bond Trucking",
     "inbound carrier 3": "Reed Trucking",
     "inbound carrier 4": "Inbound Freight Expense",
-    "inbound carrier 5": "Outbound Freight Reed"
+    "inbound carrier 5": "Ocean Freight"
   },
   "inbound load types":
   {
@@ -78,10 +78,10 @@
   "inbound buyers":
   {
     "inbound buyer 1": "Select buyer",
-    "inbound buyer 2": "AFS - AFS - User",
-    "inbound buyer 3": "AFS2 - AFS2 - User",
-    "inbound buyer 4": "AFSRF - AFSRF - User",
-    "inbound buyer 5": "AFSSUPPORT - Afs - Support"
+    "inbound buyer 2": "MIKEM",
+    "inbound buyer 3": "AFS2",
+    "inbound buyer 4": "AFSRF",
+    "inbound buyer 5": "AFSSUPPORT"
   },
   "inbound suppliers":
   {

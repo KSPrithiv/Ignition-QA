@@ -1,8 +1,6 @@
 package steps.inbound.loads;
 
 import common.constants.FilePaths;
-import common.utils.database.DataBaseConnection;
-import common.utils.database.StoreProceduresUtils;
 import common.utils.objectmapper.ObjectMapperWrapper;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
@@ -11,13 +9,7 @@ import io.qameta.allure.Step;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import objects.inbound.InboundOrderLoadsDTO;
-import objects.storeproceduresdata.inbound.InboundLoadsSummaryParams;
-import objects.userdata.DataBaseData;
-import steps.LoginPageSteps;
-import ui.pages.inbound.inboundorders.InboundOrderSummaryPage;
 import ui.pages.inbound.loads.InboundLoadSummaryPage;
-
-import java.sql.ResultSet;
 import java.util.List;
 
 @Slf4j
@@ -25,7 +17,6 @@ public class InboundLoadSummaryPageSteps {
     InboundLoadSummaryPage inboundLoadSummaryPage = new InboundLoadSummaryPage();
     InboundOrderLoadsDTO inboundOrderLoadsDTO = new ObjectMapperWrapper()
             .getObject(FilePaths.INBOUND_ORDER_LOAD_DATA, InboundOrderLoadsDTO.class);
-    StoreProceduresUtils storeProceduresUtils = new StoreProceduresUtils();
 
     @Step
     @And("Inbound Load Summary page appears")
@@ -184,6 +175,17 @@ public class InboundLoadSummaryPageSteps {
     }
 
     @Step
+    @Then("Clicks carrier by index {int} on Inbound Load Summary page")
+    public void clickCarrierByIndex(int index) {
+        log.info("Clicking Carrier by index");
+        List<String> carriers = List.of(inboundOrderLoadsDTO.getInboundCarriers().getInboundCarrier1(), inboundOrderLoadsDTO
+                 .getInboundCarriers().getInboundCarrier2(), inboundOrderLoadsDTO.getInboundCarriers().getInboundCarrier3(),
+                  inboundOrderLoadsDTO.getInboundCarriers().getInboundCarrier4(), inboundOrderLoadsDTO.getInboundCarriers()
+                 .getInboundCarrier5());
+        inboundLoadSummaryPage.clickCarrierDropdown(carriers.get(index));
+    }
+
+    @Step
     @Then("Clicks door {string} dropdown on Inbound Load Summary page")
     public void clickDoorDropdown(String door) {
         log.info("Clicking Door  " + door);
@@ -331,10 +333,31 @@ public class InboundLoadSummaryPageSteps {
     }
 
     @Step
+    @Then("Selects carrier by index {int} on Inbound Load Summary page")
+    public void selectCarrierByIndex(int index) {
+        log.info("Selecting Carrier by index");
+        List<String> carriers = List.of(inboundOrderLoadsDTO.getInboundCarriers().getInboundCarrier1(), inboundOrderLoadsDTO
+                .getInboundCarriers().getInboundCarrier2(), inboundOrderLoadsDTO.getInboundCarriers().getInboundCarrier3(),
+                inboundOrderLoadsDTO.getInboundCarriers().getInboundCarrier4(), inboundOrderLoadsDTO.getInboundCarriers()
+                .getInboundCarrier5());
+        inboundLoadSummaryPage.selectOption(carriers.get(index));
+    }
+
+    @Step
     @Then("Types load {string} on Inbound Load Summary page")
     public void typesLoad(String load) {
         log.info("Types Load " + load);
         inboundLoadSummaryPage.searchLoad(load);
+    }
+
+    @Step
+    @Then("Types load by index {int} on Inbound Load Summary page")
+    public void typesLoadByIndex(int index) {
+        log.info("Types Load by index");
+        List<String> loads = List.of(inboundOrderLoadsDTO.getLoadNames().getLoadName1(), inboundOrderLoadsDTO.getLoadNames()
+                .getLoadName2(), inboundOrderLoadsDTO.getLoadNames().getLoadName3(), inboundOrderLoadsDTO.getLoadNames()
+                .getLoadName4(), inboundOrderLoadsDTO.getLoadNames().getLoadName5(), inboundOrderLoadsDTO.getLoadNames().getLoadName6());
+        inboundLoadSummaryPage.searchLoad(loads.get(index));
     }
 
     @Step
@@ -406,22 +429,8 @@ public class InboundLoadSummaryPageSteps {
     @Step
     @And("Selects Load Route and {string} Load Option for Load")
     public void applyLoadOptionForLoadByLoadRoute(String option) {
-        DataBaseData dataBaseData = DataBaseData.builder()
-                .username(LoginPageSteps.environment.getDbUserName())
-                .password(LoginPageSteps.environment.getDbUserPassword())
-                .host(LoginPageSteps.environment.getDbIp())
-                .schema(LoginPageSteps.environment.getDbName())
-                .build();
-        InboundLoadsSummaryParams inboundLoadsSummaryParams = new ObjectMapperWrapper()
-                .getObject(FilePaths.INBOUND_LOAD_SUMMARY_DATA, InboundLoadsSummaryParams.class);
-        inboundLoadsSummaryParams.setStart_date("2017-01-01");
-        inboundLoadsSummaryParams.setEnd_date("2022-01-01");
-        ResultSet resultSet = storeProceduresUtils.executeStoreProcedureInboundRouteSummary(DataBaseConnection
-                .getDataBaseConnection(dataBaseData), inboundLoadsSummaryParams);
-        inboundLoadsSummaryParams.setRoute_code(resultSet.getString(1).trim());
-       // DataBaseConnection.closeDataBaseConnection();
-        log.info("Applying Load option " + option + " Load by route " + inboundLoadsSummaryParams.getRoute_code());
-        inboundLoadSummaryPage.selectLoadByLoadRouteCode(inboundLoadsSummaryParams.getRoute_code());
+        log.info("Applying Load option " + option + " Load by route ");
+        inboundLoadSummaryPage.selectLoadByLoadRouteCode("");
         inboundLoadSummaryPage.selectLoadOption(option);
     }
 
@@ -429,22 +438,8 @@ public class InboundLoadSummaryPageSteps {
     @Step
     @And("Checks Load Route and {string} Load Option for Load")
     public void checkAndApplyLoadOptionForLoadByLoadRoute(String option) {
-        DataBaseData dataBaseData = DataBaseData.builder()
-                .username(LoginPageSteps.environment.getDbUserName())
-                .password(LoginPageSteps.environment.getDbUserPassword())
-                .host(LoginPageSteps.environment.getDbIp())
-                .schema(LoginPageSteps.environment.getDbName())
-                .build();
-        InboundLoadsSummaryParams inboundLoadsSummaryParams = new ObjectMapperWrapper()
-                .getObject(FilePaths.INBOUND_LOAD_SUMMARY_DATA, InboundLoadsSummaryParams.class);
-        inboundLoadsSummaryParams.setStart_date("2017-01-01");
-        inboundLoadsSummaryParams.setEnd_date("2022-01-01");
-        ResultSet resultSet = storeProceduresUtils.executeStoreProcedureInboundRouteSummary(DataBaseConnection
-                .getDataBaseConnection(dataBaseData), inboundLoadsSummaryParams);
-        inboundLoadsSummaryParams.setRoute_code(resultSet.getString(1).trim());
-        // DataBaseConnection.closeDataBaseConnection();
-        log.info("Applying Load option " + option + " Load by route " + inboundLoadsSummaryParams.getRoute_code());
-        inboundLoadSummaryPage.checkLoadByLoadRouteCode(inboundLoadsSummaryParams.getRoute_code());
+        log.info("Applying Load option " + option + " Load by route ");
+        inboundLoadSummaryPage.checkLoadByLoadRouteCode("");
         inboundLoadSummaryPage.selectLoadOption(option);
     }
 }

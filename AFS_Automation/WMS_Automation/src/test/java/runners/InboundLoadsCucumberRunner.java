@@ -11,14 +11,13 @@ import lombok.extern.slf4j.Slf4j;
 import org.aeonbits.owner.ConfigFactory;
 import org.testng.ITestResult;
 import org.testng.annotations.*;
-import utilWMS.MailSend_WMS;
 
 import javax.mail.MessagingException;
 import java.io.IOException;
-import static common.setup.DriverManager.*;
-import static common.setup.DriverManager.getDriver;
 
-@CucumberOptions(features = {"src/test/resources/features/inbound"},
+import static common.setup.DriverManager.*;
+
+@CucumberOptions(features = {"src/test/resources/features/inbound/loads"},
         glue = {"steps"},
         plugin = {"pretty",
                 "json:target/cucumber.json",
@@ -27,7 +26,7 @@ import static common.setup.DriverManager.getDriver;
                 "rerun:target/failedrerun.txt"
         }, monochrome = true, tags = "@Inbound")
 @Slf4j
-public class InboundCucumberRunner extends AbstractTestNGCucumberTests {
+public class InboundLoadsCucumberRunner extends AbstractTestNGCucumberTests {
     public static Environment environment;
 
     @Parameters({"environment","browser"})

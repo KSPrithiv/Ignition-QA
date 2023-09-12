@@ -38,7 +38,6 @@ public class InboundOrderSummaryPageSteps {
     @Then("User applies order {string} option on Inbound Order Summary page")
     public void applyOrderOptionForOrder(String option) {
         log.info("Applying Order option " + option + " for order ");
-        Waiters.waitABit(2000);
         inboundOrderSummaryPage.selectOrderOption(option);
     }
 
@@ -78,6 +77,17 @@ public class InboundOrderSummaryPageSteps {
                 .getEndDates().getEndDate6());
         inboundOrderSummaryPage.typeDateRouteStart(startDates.get(fromDateIndex));
         inboundOrderSummaryPage.typeDateRouteEnd(endDates.get(toDateIndex));
+    }
+
+    @Step
+    @When("User finds all orders from start date by index {int}")
+    public void findOrdersFromDateToDateByIndex(int fromDateIndex) {
+        log.info("Finding Orders starting from date by index");
+        List<String> startDates = List.of(inboundOrderLoadsDTO.getStartDates().getStartDate1(), inboundOrderLoadsDTO
+                .getStartDates().getStartDate2(), inboundOrderLoadsDTO.getStartDates().getStartDate3(), inboundOrderLoadsDTO
+                .getStartDates().getStartDate4(), inboundOrderLoadsDTO.getStartDates().getStartDate5(), inboundOrderLoadsDTO
+                .getStartDates().getStartDate6());
+        inboundOrderSummaryPage.typeDateRouteStart(startDates.get(fromDateIndex));
     }
 
     @Step
