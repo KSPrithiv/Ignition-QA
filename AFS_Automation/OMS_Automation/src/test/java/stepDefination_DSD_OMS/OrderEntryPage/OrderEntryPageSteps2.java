@@ -124,28 +124,29 @@ public class OrderEntryPageSteps2
         //Select Route number using Add Filter
         orderpage.Route_No(TestBase.testEnvironment.get_RouteFilt(),TestBase.testEnvironment.get_Route());
     }
+
     //Compare route selected in OE page and New OE page
     @Then ("Compare route selected in OE page with route in NewOE page")
     public void compare_route_selected_in_oe_page_with_route_in_newoe_page() throws InterruptedException, AWTException
     {
         boolean result=false;
         newOE=new NewOrderEntryPage(driver,scenario);
+        String route2=TestBase.testEnvironment.get_Route();
         Route1=newOE.Read_Route();
-        if(Route1.equals(TestBase.testEnvironment.get_Route()) || Route1.contains(TestBase.testEnvironment.get_Route()))
+        if(Route1.equals(route2) || Route1.contains(route2))
         {
             result=true;
         }
         Assert.assertEquals(result,true);
     }
+
     //To find total number of products in summary page
     @Then ("In Order Summary page compare Total no of line compare it with no of products")
     public void in_order_summary_page_compare_total_no_of_line_compare_it_with_no_of_products() throws InterruptedException, AWTException
     {
-        String TotalProd,TotGrid;
         summary= new CheckOutSummaryPage(driver,scenario);
-        TotalProd=driver.findElement(By.xpath("//div[contains(text(),'Total lines')]/following-sibling::div")).getText();
-        TotGrid=Integer.toString(summary.Read_no_of_Product_Grid());
-        Assert.assertEquals(TotalProd,TotGrid);
+        //summary.compareTotal();
+        summary.totalProducts();
     }
 
     //To compare total amount in summary card and order total card

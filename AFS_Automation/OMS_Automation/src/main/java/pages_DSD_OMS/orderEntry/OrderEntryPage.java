@@ -502,7 +502,7 @@ public class OrderEntryPage
                     WebElement closeButton=HelpersMethod.FindByElement(driver,"xpath","//i[@class='searchbar-container-close-icon']");
                     if(closeButton.isDisplayed() && closeButton.isDisplayed())
                     {
-                        HelpersMethod.ActClick(driver, closeButton, 10000);
+                        HelpersMethod.ActClick(driver, closeButton, 1000);
                     }
                 }
 
@@ -513,7 +513,7 @@ public class OrderEntryPage
                 if (HelpersMethod.IsExists("//div[@class='loader']", driver))
                 {
                     WebElement   WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 400000);
+                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 80000);
                 }
                 if(HelpersMethod.IsExists("//div[contains(text(),'Your order has not been submitted')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
                 {
@@ -527,7 +527,7 @@ public class OrderEntryPage
             if (HelpersMethod.IsExists("//div[@class='loader']", driver))
             {
                 WebElement   WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 400000);
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 80000);
             }
         }
         catch (Exception e){}
@@ -657,7 +657,7 @@ public class OrderEntryPage
         if (HelpersMethod.IsExists("//div[@class='loader']", driver))
         {
             WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000);
+            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 10000);
         }
 
         new WebDriverWait(driver, Duration.ofMillis(200)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(@class,'k-widget k-window k-dialog')]")));
@@ -1835,6 +1835,7 @@ public class OrderEntryPage
     {
         WebElement WebEle = null;
         exists = false;
+        String routeChange=null;
         if (HelpersMethod.IsExists("//div[@class='loader']", driver))
         {
             WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
@@ -1855,10 +1856,17 @@ public class OrderEntryPage
 
             //Selecting route # in Route # popup
             HelpersMethod.Click_On_IndexFieldIcon(driver, SearchOpt, SearchDetail);
-            exists = true;
+
+            WebElement routeCha=HelpersMethod.FindByElement(driver,"id","RouteIndex");
+            routeChange=HelpersMethod.JSGetValueEle(driver,routeCha,1000);
+            if(routeChange.equals(TestBase.testEnvironment.get_Route())||routeChange.contains(TestBase.testEnvironment.get_Route()))
+            {
+                scenario.log("ROUTE SELECTED IS "+routeChange);
+                exists = true;
+            }
             Assert.assertEquals(exists, true);
-        } catch (Exception e) {
         }
+        catch (Exception e) {}
     }
 
     //Click on Route index icon

@@ -104,7 +104,7 @@ public class NewOrderEntryPage
     @FindBy(xpath = "//label[contains(text(),'Product total')]/following-sibling::label")
     private  WebElement Total_amt;
 
-    @FindBy(xpath = "//input[contains(@placeholder,'Route')]")
+    @FindBy(id = "RouteIndex")
     private  WebElement Route1;
 
     @FindBy(xpath = "//div[contains(@class,'order-header-separator-row')]")
@@ -628,7 +628,7 @@ public class NewOrderEntryPage
                 if(HelpersMethod.IsExists("//div[@class='loader']",driver))
                 {
                     WebElement WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 10000);
+                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 40000);
                 }
                 exists=true;
                /* for(int i=0;i<=3;i++)
@@ -1555,21 +1555,81 @@ public class NewOrderEntryPage
     public void Comment_PopupProd(String Comment)
     {
         exists=false;
+        int i=0;
+        Actions act=new Actions(driver);
         try
         {
-            WebElement WebEle=null;
+
             if(HelpersMethod.IsExists("//div[contains(text(),'comments')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
             {
                 WebElement prodCommentPopup=HelpersMethod.FindByElement(driver,"xpath","//div[contains(text(),'comments')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]");
                 //Sending comment to comment input box in product comment popup
                 WebElement prodCommText=prodCommentPopup.findElement(By.xpath(".//textarea[@id='textAreaA']"));
                 HelpersMethod.ActSendKey(driver,prodCommText,100,Comment);
+                //Select Comment flag
+                WebElement commentFlag=HelpersMethod.FindByElement(driver,"id","printFlagDropDown");
+                HelpersMethod.ActClick(driver,commentFlag,100);
+                //select value from comment flag drop down
+                List<WebElement> flags=HelpersMethod.FindByElements(driver,"xpath","//div[contains(@class,'k-animation-container k-animation-container-relative k-list-container k-reset')]/descendant::ul/li");
+                for(WebElement flag:flags)
+                {
+                    i++;
+                    act.moveToElement(flag).build().perform();
+                    if(i==2)
+                    {
+                        act.moveToElement(flag).click().build().perform();
+                        break;
+                    }
+                }
                 //Click on Add button in the popup
                 WebElement addButton=prodCommentPopup.findElement(By.xpath(".//button[text()='Add']"));
                 HelpersMethod.ClickBut(driver,addButton,80);
                 //Click on OK button
                 WebElement okButton=prodCommentPopup.findElement(By.xpath(".//button[text()='Ok']"));
                 HelpersMethod.ClickBut(driver,okButton,80);
+                exists=true;
+                scenario.log("COMMENT ADDED IS "+Comment);
+            }
+            Assert.assertEquals(exists,true);
+        }
+        catch (Exception e){}
+    }
+
+    public void Comment_PopupProdUpdate(String Comment)
+    {
+        exists=false;
+        int i=0;
+        Actions act=new Actions(driver);
+        try
+        {
+
+            if(HelpersMethod.IsExists("//div[contains(text(),'comments')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
+            {
+                WebElement prodCommentPopup=HelpersMethod.FindByElement(driver,"xpath","//div[contains(text(),'comments')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]");
+                //Sending comment to comment input box in product comment popup
+                WebElement prodCommText=prodCommentPopup.findElement(By.xpath(".//textarea[@id='textAreaA']"));
+                HelpersMethod.ActSendKey(driver,prodCommText,100,Comment);
+                //Select Comment flag
+                WebElement commentFlag=HelpersMethod.FindByElement(driver,"id","printFlagDropDown");
+                HelpersMethod.ActClick(driver,commentFlag,100);
+                //select value from comment flag drop down
+                List<WebElement> flags=HelpersMethod.FindByElements(driver,"xpath","//div[contains(@class,'k-animation-container k-animation-container-relative k-list-container k-reset')]/descendant::ul/li");
+                for(WebElement flag:flags)
+                {
+                    i++;
+                    act.moveToElement(flag).build().perform();
+                    if(i==2)
+                    {
+                        act.moveToElement(flag).click().build().perform();
+                        break;
+                    }
+                }
+                //Click on Add button in the popup
+                WebElement addButton=prodCommentPopup.findElement(By.xpath(".//button[text()='Add']"));
+                HelpersMethod.ClickBut(driver,addButton,80);
+                //Click on OK button
+               // WebElement okButton=prodCommentPopup.findElement(By.xpath(".//button[text()='Ok']"));
+               // HelpersMethod.ClickBut(driver,okButton,80);
                 exists=true;
                 scenario.log("COMMENT ADDED IS "+Comment);
             }
@@ -2159,7 +2219,7 @@ public class NewOrderEntryPage
         String New_route=null;
         try
         {
-            New_route=Route1.getAttribute("value");
+            New_route=driver.findElement(By.id("RouteIndex")).getAttribute("value");
             scenario.log("ROUTE NO. FOUND IN NEW OE PAGE IS "+New_route);
         }
         catch (Exception e){}
@@ -2250,6 +2310,13 @@ public class NewOrderEntryPage
                 RouteVal=WebEle.getText();
 
                 HelpersMethod.ActClick(driver,WebEle,100);
+                if(HelpersMethod.IsExists("//div[contains(text(),'The cutoff time')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
+                {
+                    WebElement cutoffPopup=HelpersMethod.FindByElement(driver,"xpath","//div[contains(text(),'The cutoff time')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]");
+                    WebElement okButton=cutoffPopup.findElement(By.xpath(".//button[text()='Ok']"));
+                    HelpersMethod.ClickBut(driver,okButton,100);
+                    scenario.log("CUTOFF HAS BEEN REACHED, SO ROUTE CHANGE HAS NOT BEEN DONE");
+                }
                 scenario.log("ROUTE VALUE SELECTED FROM POPUP IS "+RouteVal);
             }
         }
@@ -2279,7 +2346,7 @@ public class NewOrderEntryPage
             WebElement CommGrid=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-widget k-window k-dialog')]/descendant::tr[contains(@class,'k-master-row')]");
             if(CommGrid.isDisplayed())
             {
-                HelpersMethod.ActClick(driver, CommGrid, 100);
+                HelpersMethod.ClickBut(driver, CommGrid, 100);
                 scenario.log("COMMENT ICON FOR PRODUCT HAS BEEN FOUND");
             }
             else
@@ -2317,6 +2384,8 @@ public class NewOrderEntryPage
                 HelpersMethod.ClearText(driver,TextArea,100);
                 HelpersMethod.EnterText(driver,TextArea,100,Comment);
                 scenario.log("COMMENT UPDATED IS "+Comment);
+
+
             }
         }
         catch (Exception e){}
