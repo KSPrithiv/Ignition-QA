@@ -132,24 +132,24 @@ public class FeaturedProductsPage
                 ProdNo=ProdNo.substring(1);
                 //search input box and enter product number to it
                 WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-widget k-window k-dialog')]/descendant::input[contains(@placeholder,'Search Products')]");
-                HelpersMethod.EnterText(driver,WebEle,20,ProdNo);
+                HelpersMethod.EnterText(driver,WebEle,200,ProdNo);
                 if(HelpersMethod.IsExists("//div[@class='loader']",driver))
                 {
                     WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 40000);
+                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 80000);
                 }
                 //Identify search index icon and click on that
                 WebEle=HelpersMethod.FindByElement(driver,"xpath","//span[@datatestid='searchBarSearchBtn']//*[local-name()='svg']");
-                HelpersMethod.ClickBut(driver,WebEle,20);
+                HelpersMethod.ClickBut(driver,WebEle,200);
                 if(HelpersMethod.IsExists("//div[@class='loader']",driver))
                 {
                     WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 40000);
+                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 80000);
                 }
                 //Click on Select button
                 WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-widget k-window k-dialog')]/descendant::button[text()='Select']");
                 HelpersMethod.ScrollElement(driver,WebEle);
-                HelpersMethod.ClickBut(driver,WebEle,10);
+                HelpersMethod.ClickBut(driver,WebEle,200);
                 if (HelpersMethod.IsExists("//div[contains(@class,'k-widget k-window k-dialog')]/descendant::span[@class='item-value'] /descendant::button//*[local-name()='svg']",driver))
                 {
                     exists=true;

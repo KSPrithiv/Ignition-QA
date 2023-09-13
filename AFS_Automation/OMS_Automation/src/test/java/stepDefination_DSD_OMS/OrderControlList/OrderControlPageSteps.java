@@ -121,6 +121,11 @@ public class OrderControlPageSteps
         if(flag1==false)
         {
             WebElement WebEle = null;
+            String status = HelpersMethod.returnDocumentStatus(driver);
+            if (status.equals("loading"))
+            {
+                HelpersMethod.waitTillLoadingPage(driver);
+            }
             WebEle = HelpersMethod.FindByElement(driver, "xpath", "//li[contains(@class,'k-item')]/span[@class='k-link' and contains(text(),'Order control list')]");
             if (HelpersMethod.EleDisplay(WebEle))
             {

@@ -408,9 +408,17 @@ public class AdminHomePage {
     }
 
     //Click on Save button
-    public void Click_SaveButton() {
+    public void Click_SaveButton()
+    {
         exists = false;
-        try {
+        try
+        {
+            if (HelpersMethod.IsExists("//div[@class='loader']", driver))
+            {
+                WebElement WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 80000);
+            }
+
             if (SaveButton.isEnabled())
             {
                 HelpersMethod.ClickBut(driver, SaveButton, 100);
@@ -423,6 +431,7 @@ public class AdminHomePage {
                 {
                     WebElement savePopup=HelpersMethod.FindByElement(driver,"xpath","//div[contains(text(),'saved successfully')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]");
                     WebElement okButton=savePopup.findElement(By.xpath(".//button[text()='OK']"));
+                    HelpersMethod.ClickBut(driver,okButton,100);
                 }
                 exists = true;
             }

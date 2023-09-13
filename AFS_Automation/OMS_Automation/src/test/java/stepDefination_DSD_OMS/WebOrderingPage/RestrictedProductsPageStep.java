@@ -182,7 +182,6 @@ public class RestrictedProductsPageStep
         restrictedProductListPage=new RestrictedProductListPage(driver,scenario);
         restrictedProductListPage.SelectProdutInCatGroup();
         restrictedProductListPage.ClickOnDeleteButton();
-        restrictedProductListPage.ClickOnOkInPopup();
         adminHomePage=new AdminHomePage(driver,scenario);
         adminHomePage.Click_SaveButton();
     }
