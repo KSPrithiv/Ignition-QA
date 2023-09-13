@@ -147,6 +147,11 @@ public class OrderHistoryPage
         {
             HelpersMethod.waitTillLoadingPage(driver);
         }
+        if(HelpersMethod.IsExists("//div[@class='loader']",driver))
+        {
+            WebElement WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
+            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 20000);
+        }
         if (HelpersMethod.IsExists("//div[@id='order-history-card']", driver))
         {
             exists=true;
@@ -164,7 +169,7 @@ public class OrderHistoryPage
             {
                 //code to select first order in order history
                 WebElement OrderHist = HelpersMethod.FindByElement(driver, "xpath", "//tr[contains(@class,'k-master-row')][1]/descendant::input[contains(@class,'k-checkbox')]");
-                HelpersMethod.ActClick(driver, OrderHist, 40);
+                HelpersMethod.ActClick(driver, OrderHist, 100);
             }
             else
             {
@@ -266,6 +271,11 @@ public class OrderHistoryPage
             HelpersMethod.ScrollElement(driver,WebEle);
             WebElement headTitle=HelpersMethod.FindByElement(driver,"xpath","//th[contains(@class,'k-header')]/descendant::span[@class='k-column-title' and contains(text(),'Delivery Date')]");
             act.moveToElement(headTitle).click().build().perform();
+            if(HelpersMethod.IsExists("//div[@class='loader']",driver))
+            {
+                WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 60000);
+            }
             act.moveToElement(headTitle).click().build().perform();
             exists=true;
             if(HelpersMethod.IsExists("//div[@class='loader']",driver))

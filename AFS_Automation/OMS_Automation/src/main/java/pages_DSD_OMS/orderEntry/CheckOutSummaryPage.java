@@ -116,9 +116,9 @@ public class CheckOutSummaryPage
         if(HelpersMethod.IsExists("//div[@class='loader']",driver))
         {
             WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 20000);
+            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 80000);
         }
-         new WebDriverWait(driver,Duration.ofMillis(6000)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("ConfirmSummaryButton"))));
+         //new WebDriverWait(driver,Duration.ofMillis(6000)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("ConfirmSummaryButton"))));
          new WebDriverWait(driver,Duration.ofMillis(6000)).until(ExpectedConditions.refreshed(ExpectedConditions.visibilityOfElementLocated(By.id("ConfirmSummaryButton"))));
 
             HelpersMethod.ScrollUpScrollBar(driver);
@@ -127,7 +127,7 @@ public class CheckOutSummaryPage
         if(HelpersMethod.IsExists("//div[@class='loader']",driver))
         {
             WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 40000);
+            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 80000);
         }
         exists=true;
             scenario.log("SUBMIT BUTTON IN ORDER SUMMARY PAGE HAS BEEN CLICKED");
