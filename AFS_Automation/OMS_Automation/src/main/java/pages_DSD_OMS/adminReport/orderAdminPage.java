@@ -118,6 +118,12 @@ public class orderAdminPage
         WebElement Search2;
         String AccNo = TestBase.testEnvironment.get_Account();
 
+        if(HelpersMethod.IsExists("//div[@class='loader']",driver))
+        {
+            WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
+            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 80000);
+        }
+
         WebElement WebEle1=HelpersMethod.FindByElement(driver,"xpath","//label[@id='customerDropDown-label']/following-sibling::div/descendant::button");
         try
         {

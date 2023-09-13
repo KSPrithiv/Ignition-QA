@@ -121,16 +121,6 @@ public class OrderGuidePageStep
     @Given("User must be on Order Entry Page to select OG")
     public void user_must_be_on_order_entry_page_to_select_og() throws InterruptedException, AWTException
     {
-            orderpage = new OrderEntryPage(driver, scenario);
-            //orderpage.HandleError_Page();
-            //newOE = new NewOrderEntryPage(driver, scenario);
-            //newOE.Click_Back_But();
-
-    }
-
-    @And("User should navigate to OG")
-    public void user_should_navigate_to_og() throws InterruptedException, AWTException
-    {
         if(flag1==false)
         {
             WebElement WebEle;
@@ -140,11 +130,11 @@ public class OrderGuidePageStep
                 exists = false;
                 orderGuidePage = new OrderGuidePage(driver, scenario);
                 HelpersMethod.navigate_Horizantal_Tab(driver, "Order Guides", "//li[contains(@class,'k-item')]/span[@class='k-link' and contains(text(),'Order Guides')]", "xpath", "//li[contains(@class,'k-item')]/span[@class='k-link']");
-                /*if (HelpersMethod.IsExists("//div[@class='loader']", driver))
+                if (HelpersMethod.IsExists("//div[@class='loader']", driver))
                 {
                     WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 400);
-                }*/
+                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100000);
+                }
                 exists = orderGuidePage.ValidateOG();
                 currentURL=driver.getCurrentUrl();
                 Assert.assertEquals(exists, true);
@@ -156,6 +146,11 @@ public class OrderGuidePageStep
             }
             flag1=true;
         }
+    }
+
+    @And("User should navigate to OG")
+    public void user_should_navigate_to_og() throws InterruptedException, AWTException
+    {
         orderpage = new OrderEntryPage(driver, scenario);
         orderpage.HandleError_Page();
         orderGuidePage=new OrderGuidePage(driver,scenario);

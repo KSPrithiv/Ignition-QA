@@ -111,6 +111,11 @@ public class CatalogPage
                 WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
                 HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100000);
             }
+            status = HelpersMethod.returnDocumentStatus(driver);
+            if (status.equals("loading"))
+            {
+                HelpersMethod.waitTillLoadingPage(driver);
+            }
             exists=true;
             Assert.assertEquals(exists,true);
         }
@@ -575,11 +580,17 @@ public class CatalogPage
         exists=false;
         try
         {
-         /*   if(HelpersMethod.IsExists("//div[@class='loader']",driver))
+            String status = HelpersMethod.returnDocumentStatus(driver);
+            if (status.equals("loading"))
+            {
+                HelpersMethod.waitTillLoadingPage(driver);
+            }
+
+            if(HelpersMethod.IsExists("//div[@class='loader']",driver))
             {
                 WebElement  WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000);
-            }*/
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 10000);
+            }
 
              if(Cart.isDisplayed())
             {
@@ -591,7 +602,7 @@ public class CatalogPage
                 scenario.log("CART ICON HAS BEEN CLICKED");
                 exists=true;
             }
-            String status = HelpersMethod.returnDocumentStatus(driver);
+            status = HelpersMethod.returnDocumentStatus(driver);
             if (status.equals("loading"))
             {
                 HelpersMethod.waitTillLoadingPage(driver);

@@ -242,6 +242,7 @@ public class AdminHomePage {
             {
                 HelpersMethod.waitTillLoadingPage(driver);
             }
+            Thread.sleep(1000);
             Assert.assertEquals(exists, true);
         } catch (Exception e) {
         }
