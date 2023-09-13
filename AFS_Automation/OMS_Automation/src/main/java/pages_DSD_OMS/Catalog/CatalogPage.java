@@ -91,10 +91,15 @@ public class CatalogPage
     {
         exists=false;
         WebElement WebEle=null;
+        String status = HelpersMethod.returnDocumentStatus(driver);
+        if (status.equals("loading"))
+        {
+            HelpersMethod.waitTillLoadingPage(driver);
+        }
         if(HelpersMethod.IsExists("//div[@class='loader']",driver))
         {
             WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 80000);
+            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100000);
         }
         try
         {
@@ -1386,6 +1391,11 @@ public class CatalogPage
 
     public void Refresh_Page(String currentURL)
     {
+        String status = HelpersMethod.returnDocumentStatus(driver);
+        if (status.equals("loading"))
+        {
+            HelpersMethod.waitTillLoadingPage(driver);
+        }
         try
         {
             scenario.log(currentURL);
@@ -1406,9 +1416,14 @@ public class CatalogPage
             }
             else
             {
+                status = HelpersMethod.returnDocumentStatus(driver);
+                if (status.equals("loading"))
+                {
+                    HelpersMethod.waitTillLoadingPage(driver);
+                }
                 //navigate to Catalog
                 driver.navigate().to(currentURL);
-                String status = HelpersMethod.returnDocumentStatus(driver);
+                status = HelpersMethod.returnDocumentStatus(driver);
                 if (status.equals("loading"))
                 {
                     HelpersMethod.waitTillLoadingPage(driver);

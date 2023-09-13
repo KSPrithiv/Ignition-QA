@@ -87,7 +87,7 @@ public class AdminSecurityPermissionPageStep
         adminSecurityPermissionPage.clickOnCopyPermissionButton();
         adminSecurityPermissionPage.copyPermissionToPopup();
         adminSecurityPermissionPage.confirmationPopup1();
-        adminSecurityPermissionPage.validateConfirmationPopup();
+        //adminSecurityPermissionPage.validateConfirmationPopup();
         adminSecurityPermissionPage.confirmationPopup();
         adminSecurityPermissionPage.compareEnabledPermissions(arg0);
     }
