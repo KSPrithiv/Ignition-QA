@@ -8,7 +8,7 @@ Feature: Testing of Inbound Orders Line Item details screen
     When Go to Inbound Orders page
     And User waits for Inbound Order Summary page to load
     And Validates Inbound Order Summary Page contains all web elements
-    Then User finds all orders from start date by index 1 to end date by index 0
+    Then User finds all orders from start date by index 4
     And Selects order with index 0 on Inbound Order Summary page
     And Validates Inbound Order Details Page contains all web elements
     And Select Order Line Item with index 0 on Inbound Order Details page
@@ -21,7 +21,7 @@ Feature: Testing of Inbound Orders Line Item details screen
     When Go to Inbound Orders page
     And User waits for Inbound Order Summary page to load
     And Validates Inbound Order Summary Page contains all web elements
-    Then User finds all orders from start date by index 1 to end date by index 0
+    Then User finds all orders from start date by index 4
     And Selects order with index 0 on Inbound Order Summary page
     And Validates Inbound Order Details Page contains all web elements
     And Select Order Line Item with index 0 on Inbound Order Details page
@@ -35,8 +35,8 @@ Feature: Testing of Inbound Orders Line Item details screen
     When Go to Inbound Orders page
     And User waits for Inbound Order Summary page to load
     And Validates Inbound Order Summary Page contains all web elements
-    Then User finds all orders from start date by index 1 to end date by index 0
-    And Selects order with index 0 on Inbound Order Summary page
+    Then User finds all orders from start date by index 4
+    And Selects order with index 2 on Inbound Order Summary page
     And Validates Inbound Order Details Page contains all web elements
     And Select Order Line Item with index 0 on Inbound Order Details page
     And Validates Inbound Order Line Item Details page contains all web elements
@@ -52,7 +52,7 @@ Feature: Testing of Inbound Orders Line Item details screen
     When Go to Inbound Orders page
     And User waits for Inbound Order Summary page to load
     And Validates Inbound Order Summary Page contains all web elements
-    Then User finds all orders from start date by index 0 to end date by index 0
+    Then User finds all orders from start date by index 4
     And Selects order with index 0 on Inbound Order Summary page
     And Validates Inbound Order Details Page contains all web elements
     And Select Order Line Item with index 0 on Inbound Order Details page
@@ -67,7 +67,7 @@ Feature: Testing of Inbound Orders Line Item details screen
     When Go to Inbound Orders page
     And User waits for Inbound Order Summary page to load
     And Validates Inbound Order Summary Page contains all web elements
-    Then User finds all orders from start date by index 4 to end date by index 0
+    Then User finds all orders from start date by index 4
     And Selects order with index 0 on Inbound Order Summary page
     And Validates Inbound Order Details Page contains all web elements
     And Select Order Line Item with index 0 on Inbound Order Details page
@@ -82,7 +82,7 @@ Feature: Testing of Inbound Orders Line Item details screen
     When Go to Inbound Orders page
     And User waits for Inbound Order Summary page to load
     And Validates Inbound Order Summary Page contains all web elements
-    Then User finds all orders from start date by index 4 to end date by index 0
+    Then User finds all orders from start date by index 4
     And Selects order with index 0 on Inbound Order Summary page
     And Validates Inbound Order Details Page contains all web elements
     And Select Order Line Item with index 0 on Inbound Order Details page
@@ -97,7 +97,7 @@ Feature: Testing of Inbound Orders Line Item details screen
     When Go to Inbound Orders page
     And User waits for Inbound Order Summary page to load
     And Validates Inbound Order Summary Page contains all web elements
-    Then User finds all orders from start date by index 4 to end date by index 0
+    Then User finds all orders from start date by index 4
     And Selects order with index 0 on Inbound Order Summary page
     And Validates Inbound Order Details Page contains all web elements
     And Select Order Line Item with index 0 on Inbound Order Details page
@@ -115,7 +115,7 @@ Feature: Testing of Inbound Orders Line Item details screen
     When Go to Inbound Orders page
     And User waits for Inbound Order Summary page to load
     And Validates Inbound Order Summary Page contains all web elements
-    Then User finds all orders from start date by index 4 to end date by index 0
+    Then User finds all orders from start date by index 4
     And Selects order with index 0 on Inbound Order Summary page
     And Validates Inbound Order Details Page contains all web elements
     And Select Order Line Item with index 0 on Inbound Order Details page
@@ -129,7 +129,7 @@ Feature: Testing of Inbound Orders Line Item details screen
     When Go to Inbound Orders page
     And User waits for Inbound Order Summary page to load
     And Validates Inbound Order Summary Page contains all web elements
-    Then User finds all orders from start date by index 4 to end date by index 0
+    Then User finds all orders from start date by index 4
     And Selects order with index 0 on Inbound Order Summary page
     And Validates Inbound Order Details Page contains all web elements
     And Select Order Line Item with index 0 on Inbound Order Details page

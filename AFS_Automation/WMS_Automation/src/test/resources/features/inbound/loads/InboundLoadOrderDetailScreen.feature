@@ -79,7 +79,7 @@ Feature: Testing of Inbound Load Order Details screen functionality
     And Go to Loads page
     And Inbound Load Summary page appears
     And Inbound Load Summary page main elements are present
-    When Types start date by index 2 on Inbound Load Summary page
+    When Types start date by index 4 on Inbound Load Summary page
     And Validates loads are present on Inbound Load Summary page
     And Clicks load status "All statuses" on Inbound Load Summary page
     And Selects load status "Ready To Receive" on Inbound Load Summary page
@@ -119,7 +119,7 @@ Feature: Testing of Inbound Load Order Details screen functionality
     And Select Load Order with index 0 on Inbound Load Summary page
     And Clicks change status option on Inbound Load Order Summary page
     And Validates popup Change status title for Inbound Load Order Summary page
-    And Validates Change status popup with Reopen Order status on Inbound Load Order Summary page
+    And Validates Change status popup with Ready To Receive Order status on Inbound Load Order Summary page
     And Clicks Cancel button on Inbound Load Order Summary page
     And Clicks Route Back button on Inbound Load Summary page
     And Select Load Order with index 1 on Inbound Load Summary page
@@ -265,11 +265,12 @@ Feature: Testing of Inbound Load Order Details screen functionality
     And User applies order "Move" option on Inbound Load Order Summary page
     And Validates Move popup on Inbound Load Order Details page
     And Validates Save button is disabled for Move order to Load
-    And Types Ship Date "04/14/2022" to move Order to Load on Inbound Load Order Summary page
-    And Types Load "__20651" to move Order to Load on Inbound Load Order Summary page
+    And Types Ship Date by index 5 to move Order to Load on Inbound Load Order Summary page
+    And Types Load by index 0 to move Order to Load on Inbound Load Order Summary page
     And Validates Save button is enabled for Move order to Load
     And Clicks Cancel button on Inbound Load Order Summary page
 
+    #
   Scenario: Checking Add/Delete Image to the order on Load Order Details page
     Given User signs in the application
     And Main page is loaded
@@ -277,7 +278,7 @@ Feature: Testing of Inbound Load Order Details screen functionality
     And Go to Loads page
     And Inbound Load Summary page appears
     And Inbound Load Summary page main elements are present
-    When Types start date by index 2 on Inbound Load Summary page
+    When Types start date by index 4 on Inbound Load Summary page
     And Validates loads are present on Inbound Load Summary page
     And Select Load with index 0 on Inbound Load Summary page
     Then Select Load Order with index 0 on Inbound Load Summary page
@@ -315,4 +316,4 @@ Feature: Testing of Inbound Load Order Details screen functionality
     And Clicks data option on Inbound Load Order Summary page
     And Validates Enter data screen on Inbound Load Order Details page
     And Clicks Cancel on Order Data on Inbound Load Order Summary page
-    And Clicks Cancel button on Inbound Order Summary page
+    And Clicks Route Back button on Inbound Load Summary page

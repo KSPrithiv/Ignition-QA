@@ -9,6 +9,8 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static common.setup.DriverManager.getDriver;
+
 public class InboundLoadOrderDetailsPage extends BasePage {
 
     By topIcon = By.xpath("//span[contains(text(), 'Inbound load summary')]");
@@ -61,7 +63,7 @@ public class InboundLoadOrderDetailsPage extends BasePage {
     By redQty = By.xpath("//span[contains(@class, 'dot--red')]/following-sibling::span[contains(text(), 'Over')]");
     By grayQty = By.xpath("//span[contains(@class, 'dot--gray')]/following-sibling::span[contains(text(), 'Remainder')]");
     By sourceOrderTypeColumn = By.xpath("//span[text()='Order type']");
-    By sourceOrderColumn = By.xpath("//span[text()='Order #']");
+    By sourceOrderColumn = By.xpath("//span[text()='Order no.']");
     By sourceStatusColumn = By.xpath("//span[text()='Status']");
     By loadCodeLabel = By.xpath("//div[contains(@class,'k-textbox-container')][.//label[text()='Load code']]");
     By loadCodeInput = By.xpath("//div[contains(@class,'k-textbox-container')][.//label[text()='Load code']]//input");
@@ -88,7 +90,7 @@ public class InboundLoadOrderDetailsPage extends BasePage {
     By moveShipDate = By.id("moveStartDate-label");
     By moveShipDateInput = By.id("moveStartDate");
     By loadInput = By.id("OrderSummaryMove__loadrouteTxtBox");
-    By orderProducts = By.cssSelector("#crdInboundOrderPortrait .BarsBlock");
+    By orderProducts = By.xpath("//div[contains(@class, 'BarsBlock')]//span[contains(@id, 'spnOrderSource')]");
     By btnProductData = By.id("btnProductData");
     By btnProductEdit = By.id("btnProductEdit");
     By saveEditButton = By.id("saveEditButton");
@@ -97,13 +99,14 @@ public class InboundLoadOrderDetailsPage extends BasePage {
     By loadImageLabel = By.xpath("//span[text()='Load image(s)']");
     By temperatureLabel = By.xpath("//label[text()='Temperature']");
     By temperatureInput = By.xpath("//label[text()='Temperature']//following-sibling::input");
-    By sealNumberLabel = By.xpath("//label[text()='Seal number']");
-    By sealNumberInput = By.xpath("//label[text()='Seal number']//following-sibling::input");
+    By sealNumberLabel = By.xpath("//label[text()='Seal Number']");
+    By sealNumberInput = By.xpath("//label[text()='Seal Number']//following-sibling::input");
     By commentsLabels = By.xpath("//label[text()='Comments']");
     By commentsInputs = By.xpath("//label[text()='Comments']//following-sibling::input");
     By yesRadioButtons = By.xpath("//label[text()='Yes']//preceding-sibling::input");
     By noRadioButtons = By.xpath("//label[text()='No']//preceding-sibling::input");
     By btnAddProductCancel = By.id("btnAddProductCancel");
+    By loader = By.cssSelector(".loader");
 
     public void waitForInboundLoadOrderDetailsPageToLoad() {
         Waiters.waitUntilPageWillLoadedSelenide();
@@ -509,27 +512,27 @@ public class InboundLoadOrderDetailsPage extends BasePage {
     }
 
     public void clickDataOption() {
-        Waiters.waitABit(4000);
+        Waiters.waitTillLoadingPage(getDriver());
         clickOnElement(getDataOption());
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
     }
 
     public void clickCancel() {
-        Waiters.waitABit(4000);
+        Waiters.waitTillLoadingPage(getDriver());
         clickOnElement(cancelButton);
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
     }
 
     public void clickDoorDropdown() {
-        Waiters.waitABit(4000);
+        Waiters.waitTillLoadingPage(getDriver());
         clickOnElement(By.id("ddDoorList"));
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
     }
 
     public void clickBtnAddProductCancel() {
-        Waiters.waitABit(4000);
+        Waiters.waitTillLoadingPage(getDriver());
         clickOnElement(getBtnAddProductCancel());
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
     }
 
     public void typeShipDate(String date) {
@@ -540,15 +543,16 @@ public class InboundLoadOrderDetailsPage extends BasePage {
     }
 
     public void typeLoad(String load) {
-        Waiters.waitABit(4000);
+        Waiters.waitTillLoadingPage(getDriver());
         typeText(getLoadInput(), load);
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         pressTab(getLoadInput());
     }
 
     public void clickOrderProductByNumber(int num) {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         clickOnElement(getOrderProducts().get(num));
+        waitUntilInvisible(1, loader);
     }
 
     public void clickProductDataBtn() {
