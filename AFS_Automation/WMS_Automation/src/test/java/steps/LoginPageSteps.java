@@ -32,7 +32,7 @@ public class LoginPageSteps {
     public Waiters waiters;
     public static Environment environment;
 
-/*    @Before
+    @Before
     public void beforeClassSetup() {
         ConfigFactory.setProperty("path", FilePaths.PROPERTIES_PATH);
         environment = ConfigFactory.create(Environment.class);
@@ -40,7 +40,7 @@ public class LoginPageSteps {
         buildWebDriver(environment.getBrowser());
         DriverManager.openPage(environment.getUrl());
         new Waiters();
-    }*/
+    }
 
     @Step
     @Given("User signs in the application")
@@ -103,7 +103,7 @@ public class LoginPageSteps {
 
     }
 
-/*    @SneakyThrows
+    @SneakyThrows
     @After
     public void closeBrowserInstance(Scenario scenario) {
        if (driverEnabled(getDriver())) {
@@ -117,5 +117,5 @@ public class LoginPageSteps {
                 }
             }
        }
-    }*/
+    }
 }

@@ -15,7 +15,7 @@ public class InboundOrderLocationLookupPage extends BasePage {
     By addLocProdButton = By.id("addLocProdButton");
     By editButton = By.xpath("//button[contains(text(), 'Edit')]");
     By deleteButton = By.xpath("//button[contains(text(), 'Delete')]");
-    By transferButton = By.xpath("//button[contains(text(), 'Transfer')]");
+    By transferButton = By.xpath("//button[contains(text(), 'Move')]");
     By statusButton = By.xpath("//button[contains(text(), 'Status')]");
     By labelsButton = By.xpath("//button[contains(text(), 'Labels')]");
     By palletColumn = By.xpath("//span[text()='Pallet']");
@@ -42,7 +42,6 @@ public class InboundOrderLocationLookupPage extends BasePage {
         Waiters.waitForElementToBeDisplay(deleteButton);
         Waiters.waitForElementToBeDisplay(transferButton);
         Waiters.waitForElementToBeDisplay(statusButton);
-        Waiters.waitForElementToBeDisplay(labelsButton);
     }
 
     public boolean isTopIconPresent() {

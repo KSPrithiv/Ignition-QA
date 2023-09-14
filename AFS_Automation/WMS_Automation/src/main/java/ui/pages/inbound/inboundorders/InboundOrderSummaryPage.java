@@ -76,8 +76,8 @@ public class InboundOrderSummaryPage extends BasePage {
     By commentsInput = By.xpath("//label[text()='Comment']//following-sibling::textarea");
     By temperatureLabel = By.xpath("//label[text()='Temperature']");
     By temperatureInput = By.xpath("//label[text()='Temperature']//following-sibling::input");
-    By sealNumberLabel = By.xpath("//label[text()='Seal number']");
-    By sealNumberInput = By.xpath("//label[text()='Seal number']//following-sibling::input");
+    By sealNumberLabel = By.xpath("//label[text()='Seal Number']");
+    By sealNumberInput = By.xpath("//label[text()='Seal Number']//following-sibling::input");
     By commentsLabels = By.xpath("//label[text()='Comments']");
     By commentsInputs = By.xpath("//label[text()='Comments']//following-sibling::input");
     By yesRadioButtons = By.xpath("//label[text()='Yes']//preceding-sibling::input");
@@ -410,6 +410,7 @@ public class InboundOrderSummaryPage extends BasePage {
                 + option + "')]"));
         clickOnElement(orderOption);
         Waiters.waitTillLoadingPage(getDriver());
+        waitUntilInvisible(2, loader);
     }
 
     public void clickOrderOption() {
@@ -438,7 +439,6 @@ public class InboundOrderSummaryPage extends BasePage {
     public void checkOrderByOrderNumber(int ordNum) {
         Waiters.waitABit(5000);
         Waiters.waitTillLoadingPage(getDriver());
-        Waiters.waitForElementsToBeDisplay(findWebElements(By.xpath("//div[contains(@class, 'BarsContainer')]")));
         clickOnElement(findWebElements(By.xpath("//div[contains(@class, 'BarsContainer')]/parent::*//input[@type='checkbox']"))
                 .get(ordNum));
     }
@@ -452,6 +452,7 @@ public class InboundOrderSummaryPage extends BasePage {
     public void typeTemperature(CharSequence temperature) {
         Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(getTemperatureInput());
+        scrollToCenter(getTemperatureInput());
         clear(getTemperatureInput());
         inputText(getTemperatureInput(), temperature);
         pressEnter(getTemperatureInput());
@@ -461,6 +462,7 @@ public class InboundOrderSummaryPage extends BasePage {
     public void typeSealNumber(CharSequence sealNumber) {
         Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(getSealNumberInput());
+        scrollToCenter(getSealNumberInput());
         clear(getSealNumberInput());
         inputText(getSealNumberInput(), sealNumber);
         pressEnter(getSealNumberInput());
@@ -484,7 +486,7 @@ public class InboundOrderSummaryPage extends BasePage {
         WebElement orderStatus = findWebElement(By.xpath("//div[contains(@class, 'k-animation-container-shown')]//*[contains(text(), '"
                 + status + "')]"));
         clickOnElement(orderStatus);
-        waitUntilInvisible(3, loader);
+        waitUntilInvisible(5, loader);
     }
 
     public void selectWarehouse(String warehouse) {
@@ -533,6 +535,7 @@ public class InboundOrderSummaryPage extends BasePage {
     }
 
     public void clickBuyerDropDown(String buyer) {
+        Waiters.waitABit(4000);
         Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(getBuyerDropDown(buyer));
         clickOnElement(getBuyerDropDown(buyer));
@@ -552,6 +555,7 @@ public class InboundOrderSummaryPage extends BasePage {
     }
 
     public void clickOrderTypeDropDown(String orderType) {
+        waitUntilInvisible(3, loader);
         Waiters.waitTillLoadingPage(getDriver());
         clickOnElement(getOrderTypeDropDown(orderType));
         Waiters.waitTillLoadingPage(getDriver());
@@ -578,6 +582,7 @@ public class InboundOrderSummaryPage extends BasePage {
     public void clickRouteBackButton() {
         clickOnElement(routeBackButton);
         Waiters.waitTillLoadingPage(getDriver());
+        waitUntilInvisible(2, loader);
     }
 
     public void selectOption(String buyer) {
@@ -590,24 +595,25 @@ public class InboundOrderSummaryPage extends BasePage {
         scrollToCenter(option);
         clickOnElement(option);
         Waiters.waitTillLoadingPage(getDriver());
-        waitUntilInvisible(2, loader);
+        waitUntilInvisible(3, loader);
     }
 
     public void selectOrderByOrderNumber(int orderNum) {
         Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForPresenceOfElement(tableContent);
-        List<WebElement> orders = getTableContent().findElements(By.xpath(".//tr[contains(@class, 'k-detail-row')]"));
+        List<WebElement> orders = findWebElements(By.xpath("//div[contains(@class, 'BarsContainer')]"));
         Waiters.waitForElementToBeDisplay(orders.get(orderNum));
         clickOnElement(orders.get(orderNum));
         Waiters.waitTillLoadingPage(getDriver());
     }
 
     public void selectOrderCheckboxByOrderNumber(int orderNum) {
+        waitUntilInvisible(1, loader);
         Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForPresenceOfElement(tableContent);
-        List<WebElement> checkBoxes = getTableContent().findElements(By.xpath(".//tr[contains(@class, 'k-detail-row')]//input"));
+        List<WebElement> checkBoxes = findWebElements(By.xpath("//div[contains(@class, 'BarsContainer')]/parent::*//input[@type='checkbox']"));
         Waiters.waitABit(3000);
-        checkBoxes.get(orderNum).click();
+        clickOnElement(checkBoxes.get(orderNum));
         Waiters.waitTillLoadingPage(getDriver());
     }
 
