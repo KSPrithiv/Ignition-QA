@@ -218,7 +218,6 @@ public class OrderGuidePageStep
         exists=false;
         orderGuidePage = new OrderGuidePage(driver, scenario);
         exists = orderGuidePage.ValidateOG();
-        //Assert.assertEquals(exists, true);
         scenario.log("USER IS ON ORDER GUIDE PAGE");
 
         exists=false;
