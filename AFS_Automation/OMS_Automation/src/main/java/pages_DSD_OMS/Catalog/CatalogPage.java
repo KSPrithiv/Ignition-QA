@@ -106,6 +106,11 @@ public class CatalogPage
             ResetFilter=HelpersMethod.FindByElement(driver,"xpath","//button[@data-test-id='productFilterResetBtn' and contains(text(),'Reset filter')]//*[local-name()='svg']");
             HelpersMethod.ScrollElement(driver,ResetFilter);
             HelpersMethod.ClickBut(driver,ResetFilter,1000);
+            status = HelpersMethod.returnDocumentStatus(driver);
+            if (status.equals("loading"))
+            {
+                HelpersMethod.waitTillLoadingPage(driver);
+            }
             if(HelpersMethod.IsExists("//div[@class='loader']",driver))
             {
                 WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
