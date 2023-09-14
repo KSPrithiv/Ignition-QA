@@ -3,6 +3,7 @@ package pages_DSD_OMS.orderEntry;
 import helper.HelpersMethod;
 import io.cucumber.java.Scenario;
 import org.apache.logging.log4j.core.tools.picocli.CommandLine;
+import org.checkerframework.checker.units.qual.C;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -115,9 +116,9 @@ public class CheckOutSummaryPage
         if(HelpersMethod.IsExists("//div[@class='loader']",driver))
         {
             WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 20000);
+            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 80000);
         }
-         new WebDriverWait(driver,Duration.ofMillis(6000)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("ConfirmSummaryButton"))));
+         //new WebDriverWait(driver,Duration.ofMillis(6000)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("ConfirmSummaryButton"))));
          new WebDriverWait(driver,Duration.ofMillis(6000)).until(ExpectedConditions.refreshed(ExpectedConditions.visibilityOfElementLocated(By.id("ConfirmSummaryButton"))));
 
             HelpersMethod.ScrollUpScrollBar(driver);
@@ -126,7 +127,7 @@ public class CheckOutSummaryPage
         if(HelpersMethod.IsExists("//div[@class='loader']",driver))
         {
             WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 40000);
+            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 80000);
         }
         exists=true;
             scenario.log("SUBMIT BUTTON IN ORDER SUMMARY PAGE HAS BEEN CLICKED");
@@ -336,6 +337,7 @@ public class CheckOutSummaryPage
         try
         {
             count=driver.findElements(By.xpath("//table[@class='k-grid-table']/descendant::tr[contains(@class,'k-master-row')]")).size();
+            scenario.log("NUMBER OF PRODUCTS FOUND IN SUMMARY PAGE "+ count);
         }
         catch (Exception e){}
         return count;
@@ -642,8 +644,28 @@ public class CheckOutSummaryPage
             {
                 WebElement okButton=HelpersMethod.FindByElement(driver,"xpath","//div[contains(text(),'Comments')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]/descendant::button[text()='Ok']");
                 HelpersMethod.ClickBut(driver,okButton,100);
+                exists=true;
             }
+            Assert.assertEquals(exists,true);
         }
         catch (Exception e){}
+    }
+
+    public void compareTotal()
+    {
+        exists=false;
+        String TotalProd,TotGrid;
+        try
+        {
+           // TotalProd=driver.findElement(By.xpath("//div[contains(text(),'Total lines')]/following-sibling::div")).getText();
+            TotGrid=Integer.toString(Read_no_of_Product_Grid());
+            //Assert.assertEquals(TotalProd,TotGrid);
+        }
+        catch (Exception e){}
+    }
+
+    public void totalProducts()
+    {
+        Read_no_of_Product_Grid();
     }
 }

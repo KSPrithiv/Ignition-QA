@@ -360,12 +360,18 @@ public class ProductPage
             if (HelpersMethod.EleDisplay(Cart))
             {
                 HelpersMethod.ScrollElement(driver, Cart);
-                HelpersMethod.ClickBut(driver, Cart, 40);
+                HelpersMethod.ClickBut(driver, Cart, 100);
+                Thread.sleep(1000);
                 exists=true;
                 if (HelpersMethod.IsExists("//div[@class='loader']", driver))
                 {
                     WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 400);
+                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 80000);
+                }
+                String status = HelpersMethod.returnDocumentStatus(driver);
+                if (status.equals("loading"))
+                {
+                    HelpersMethod.waitTillLoadingPage(driver);
                 }
             }
             Assert.assertEquals(exists,true);
@@ -381,7 +387,7 @@ public class ProductPage
             exists = false;
             WebElement Del_But = HelpersMethod.FindByElement(driver, "xpath", "//tr[1]//*[local-name()='svg' and contains(@class,'delete')]");
             HelpersMethod.ScrollElement(driver, Del_But);
-            HelpersMethod.ActClick(driver, Del_But, 80);
+            HelpersMethod.ActClick(driver, Del_But, 100);
             exists = true;
             WebElement WebEle = HelpersMethod.FindByElement(driver, "xpath", "//tr[1]/descendant::div[@class='product-number']");
             scenario.log("PRODUCT DELETED FROM CART IS " + WebEle.getText());
@@ -405,7 +411,7 @@ public class ProductPage
             if (HelpersMethod.IsExists("//div[@class='loader']", driver))
             {
                 WebElement WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 6000);
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 10000);
             }
             Assert.assertEquals(exists, true);
         }

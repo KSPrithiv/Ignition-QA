@@ -9,6 +9,7 @@ Feature: Admin setting
   @DragAndDropMenu
   Scenario Outline: Test scenario to drag and drop menu item in admin setting
     Given User is on Home Page for Admin setting to select Admin option
+    Then User refreshes page Clicks on Permissions by drop down to select Customer Account# grid for WebOrder
     And User should enter menu "<Option>" in search bar to navigate to Authorized Products
     Then User should Drag and drop menu item from Web order menu to Available apps
     And User should Drag and drop Available apps item to Web order menu
@@ -19,6 +20,7 @@ Feature: Admin setting
   @LabelChange
   Scenario Outline: Test scenario to change label in Navigation menu
     Given User is on Home Page for Admin setting to select Admin option
+    Then User refreshes page Clicks on Permissions by drop down to select Customer Account# grid for WebOrder
     And User should enter menu "<Option>" in search bar to navigate to Authorized Products
     Then User selects menu under web order menu label
     And User changes the label name and verifies that label has been changed to new label name

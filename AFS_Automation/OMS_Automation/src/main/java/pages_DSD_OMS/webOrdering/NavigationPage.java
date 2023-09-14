@@ -2,6 +2,7 @@ package pages_DSD_OMS.webOrdering;
 
 import helper.HelpersMethod;
 import io.cucumber.java.Scenario;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -130,7 +131,9 @@ public class NavigationPage
         try
         {
             labelNameText=label+"_Test";
-            HelpersMethod.JSSetValueEle(driver,labelInput,60,labelNameText);
+            HelpersMethod.ScrollElement(driver,labelInput);
+            HelpersMethod.EnterText(driver,labelInput,60,labelNameText);
+            labelInput.sendKeys(Keys.ENTER);
             labelNameText=HelpersMethod.JSGetValueEle(driver,labelInput,40);
             if(!label.equals(labelNameText))
             {

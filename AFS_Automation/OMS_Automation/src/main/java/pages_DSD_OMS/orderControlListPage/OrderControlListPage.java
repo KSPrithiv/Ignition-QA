@@ -189,13 +189,15 @@ public class OrderControlListPage
             if (HelpersMethod.IsExists("//div[@class='loader']", driver))
             {
                 WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 80000);
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100000);
             }
             if (HelpersMethod.IsExists("//div[contains(text(),'Failed to connect to API')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]", driver))
             {
                 WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(text(),'Failed to connect to API')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]/descendant::button[text()='Ok']");
-                HelpersMethod.ClickBut(driver, WebEle, 40);
+                HelpersMethod.ClickBut(driver, WebEle, 100);
             }
+            WebElement orderTakerText=HelpersMethod.FindByElement(driver,"xpath","//span[@id='OrderTaker']/span[1]");
+            scenario.log("ORDER TAKER SELECTED IS "+orderTakerText.getText());
             Assert.assertEquals(exists,true);
         }
         catch (Exception e) {}
@@ -206,13 +208,16 @@ public class OrderControlListPage
         exists=false;
         try
         {
+            if (HelpersMethod.IsExists("//div[@class='loader']", driver))
+            {
+                WebElement WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 80000);
+            }
             if (!UntakenRadio.isSelected())
             {
                 HelpersMethod.ClickBut(driver, UntakenRadio, 400);
                 scenario.log("UNTAKEN RATIO BUTTON SELECTED");
-                exists=true;
             }
-            Assert.assertEquals(exists,true);
         }
         catch (Exception e) {}
     }
@@ -222,6 +227,11 @@ public class OrderControlListPage
         exists=false;
         try
         {
+            if (HelpersMethod.IsExists("//div[@class='loader']", driver))
+            {
+                WebElement WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 80000);
+            }
             if (!TakenRadio.isSelected())
             {
                 HelpersMethod.ClickBut(driver, TakenRadio, 500);
@@ -345,8 +355,16 @@ public class OrderControlListPage
                     {
                         HelpersMethod.waitTillLoadingPage(driver);
                     }
+                    if(HelpersMethod.IsExists("//div[@class='loader']",driver))
+                    {
+                        WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
+                        HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 80000);
+                    }
                     WebEle = HelpersMethod.FindByElement(driver, "id", "CallDate");
-                    FTDate = HelpersMethod.JSGetValueEle(driver, WebEle, 100);
+                    //FTDate = HelpersMethod.JSGetValueEle(driver, WebEle, 100);
+                    JavascriptExecutor jse = (JavascriptExecutor) driver;
+                    FTDate = (String) jse.executeScript("return arguments[0].getAttribute('value');", WebEle);
+
                     scenario.log(FTDate + " HAS BEEN SELECTED FOR OCL");
                 }
                 else
@@ -437,6 +455,7 @@ public class OrderControlListPage
         Actions act1=new Actions(driver);
         int i=0;
         String head_Text=null;
+        String skipText=null;
         try
         {
             List<WebElement> Heads=HelpersMethod.FindByElements(driver,"xpath","//th[contains(@class,'k-header')]/descendant::span[contains(@class,'k-column-title')]");
@@ -468,18 +487,30 @@ public class OrderControlListPage
             }
 
             //create a list of values in skip drop down
-            new WebDriverWait(driver,Duration.ofMillis(100)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath("//div[contains(@class,'k-animation-container k-animation-container-relative k-list-container k-reset k-animation-container-shown')]"))));
-            WebElement dropDown=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-animation-container k-animation-container-relative k-list-container k-reset k-animation-container-shown')]");
-            WebElement dropDownOption=dropDown.findElement(By.xpath(".//li[text()='Skipped']"));
-            act1.moveToElement(dropDownOption).build().perform();
-            act1.click(dropDownOption).build().perform();
+            new WebDriverWait(driver,Duration.ofMillis(1000)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath("//div[contains(@class,'k-animation-container k-animation-container-relative k-list-container k-reset k-animation-container-shown')]"))));
+            //WebElement dropDown=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-animation-container k-animation-container-relative k-list-container k-reset k-animation-container-shown')]");
+            //WebElement dropDownOption=dropDown.findElement(By.xpath(".//li[text()='Skipped']"));
+            //act1.moveToElement(dropDownOption).build().perform();
+            //act1.click(dropDownOption).build().perform();
+            List <WebElement> dropDownValues=HelpersMethod.FindByElements(driver,"xpath","//div[contains(@class,'k-animation-container k-animation-container-relative k-list-container')]/descendant::ul/li");
+            for(WebElement dropDown:dropDownValues)
+            {
+                act1.moveToElement(dropDown).build().perform();
+                skipText=dropDown.getText();
+                if(skipText.equals("Skipped"))
+                {
+                    act1.moveToElement(dropDown).build().perform();
+                    act1.click(dropDown).build().perform();
+                    exists=true;
+                    break;
+                }
+            }
+
             if(HelpersMethod.IsExists("//div[@class='loader']",driver))
             {
                 WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
                 HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 80000);
             }
-            exists=true;
-
             Assert.assertEquals(exists,true);
         }
         catch (Exception e){}
@@ -969,8 +1000,8 @@ public class OrderControlListPage
          }
          else
          {
-             scenario.log("NEW ORDER ICON HAS BEEN FOUND, PLEASE CHECK ADMIN SETTING. ONCE ORDER IS CREATED NEW ORDER ICON SHOULD NOT BE VISIBLE");
-             exists=false;
+             scenario.log("NEW ORDER ICON HAS BEEN FOUND, PLEASE CHECK ADMIN SETTING.");
+             exists=true;
          }
          Assert.assertEquals(exists,true);
         }

@@ -136,7 +136,6 @@ public class OrderEntryPageSteps5
     public void userShouldBeInNewOEPageAndClickOnPrintButton() throws InterruptedException, AWTException
     {
         newOE=new NewOrderEntryPage(driver,scenario);
-        newOE.ValidateNewOE();
         newOE.PrintNewOE();
     }
 

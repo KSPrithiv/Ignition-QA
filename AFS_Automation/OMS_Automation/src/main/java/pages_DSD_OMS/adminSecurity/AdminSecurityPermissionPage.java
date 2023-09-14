@@ -2,6 +2,7 @@ package pages_DSD_OMS.adminSecurity;
 
 import helper.HelpersMethod;
 import io.cucumber.java.Scenario;
+import org.apache.logging.log4j.core.tools.picocli.CommandLine;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
@@ -222,6 +223,9 @@ public class AdminSecurityPermissionPage
             }
             if(HelpersMethod.IsExists("//div[contains(text(),'saved successfully')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
             {
+                WebElement savePopup= HelpersMethod.FindByElement(driver,"xpath","//div[contains(text(),'saved successfully')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]");
+                WebElement okButton=savePopup.findElement(By.xpath(".//button[text()='OK']"));
+                HelpersMethod.ClickBut(driver,okButton,1000);
                 exists=true;
             }
             Assert.assertEquals(exists,true);
@@ -427,7 +431,9 @@ public class AdminSecurityPermissionPage
             }
             if(HelpersMethod.IsExists("//div[contains(text(),'Copy permissions')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
             {
-
+                WebElement copyPermission=HelpersMethod.FindByElement(driver,"xpath","//div[contains(text(),'Copy permissions')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]");
+                WebElement copyPerButton=copyPermission.findElement(By.xpath(".//button[@id='CopyPermsBtn']"));
+                HelpersMethod.ClickBut(driver,copyPerButton,100);
                 exists=true;
             }
             Assert.assertEquals(exists,true);
@@ -613,7 +619,7 @@ public class AdminSecurityPermissionPage
             if(HelpersMethod.IsExists("//div[@class='loader']",driver))
             {
                 WebElement WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 10000);
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 80000);
             }
 
             scenario.log("CLICKED ON COPY PERMISSION BUTTON");
@@ -631,13 +637,13 @@ public class AdminSecurityPermissionPage
             if(HelpersMethod.IsExists("//div[contains(text(),'Copy permissions to')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
             {
                 WebElement yesButton=HelpersMethod.FindByElement(driver,"id","CopyPermsYesBtn");
-                HelpersMethod.ActClick(driver,yesButton,10000);
+                HelpersMethod.ClickBut(driver,yesButton,10000);
                 exists=true;
                 scenario.log("COPY PERMISSION HAS BEEN DONE");
                 if(HelpersMethod.IsExists("//div[@class='loader']",driver))
                 {
                     WebElement WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 80000);
+                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100000);
                 }
             }
             Assert.assertEquals(exists,true);

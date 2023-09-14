@@ -139,7 +139,7 @@ Feature: Quotes
     Then User should navigated to Order Entry page from OG page
     Examples:
       |QuoteName| OG   |
-      | Quote123|OGDis123|
+      | Quote123|QToOG|
 
   @CreateCopyQuote
   Scenario Outline: Test scenario to create copy of Quote

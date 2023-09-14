@@ -149,7 +149,7 @@ Feature: Catalog
         |40|
         |30|
       Then User click on cart in catalog and click on Gotocart and select existing order
-      Then Click on Next button
+      Then Click on Next button in Payment page
       Then Click on SubmitOrder button for creating order from Catalog
       Then User should be navigated to Order Entry page
 

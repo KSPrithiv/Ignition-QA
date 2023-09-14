@@ -28,7 +28,7 @@ public class CatalogPage
     static boolean exists=false;
     static int totalNum;
 
-    @FindBy(xpath="//button[@data-test-id='productFilterResetBtn']")
+    @FindBy(xpath="//button[@data-test-id='productFilterResetBtn' and contains(text(),'Reset filter')]//*[local-name()='svg']")
     private WebElement ResetFilter;
 
     @FindBy(xpath = "//input[contains(@placeholder,'Search products')]")
@@ -91,19 +91,30 @@ public class CatalogPage
     {
         exists=false;
         WebElement WebEle=null;
+        String status = HelpersMethod.returnDocumentStatus(driver);
+        if (status.equals("loading"))
+        {
+            HelpersMethod.waitTillLoadingPage(driver);
+        }
         if(HelpersMethod.IsExists("//div[@class='loader']",driver))
         {
             WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 80000);
+            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100000);
         }
         try
         {
+            ResetFilter=HelpersMethod.FindByElement(driver,"xpath","//button[@data-test-id='productFilterResetBtn' and contains(text(),'Reset filter')]//*[local-name()='svg']");
             HelpersMethod.ScrollElement(driver,ResetFilter);
             HelpersMethod.ClickBut(driver,ResetFilter,1000);
             if(HelpersMethod.IsExists("//div[@class='loader']",driver))
             {
                 WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
                 HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100000);
+            }
+            status = HelpersMethod.returnDocumentStatus(driver);
+            if (status.equals("loading"))
+            {
+                HelpersMethod.waitTillLoadingPage(driver);
             }
             exists=true;
             Assert.assertEquals(exists,true);
@@ -569,11 +580,17 @@ public class CatalogPage
         exists=false;
         try
         {
-         /*   if(HelpersMethod.IsExists("//div[@class='loader']",driver))
+            String status = HelpersMethod.returnDocumentStatus(driver);
+            if (status.equals("loading"))
+            {
+                HelpersMethod.waitTillLoadingPage(driver);
+            }
+
+            if(HelpersMethod.IsExists("//div[@class='loader']",driver))
             {
                 WebElement  WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000);
-            }*/
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 10000);
+            }
 
              if(Cart.isDisplayed())
             {
@@ -585,7 +602,7 @@ public class CatalogPage
                 scenario.log("CART ICON HAS BEEN CLICKED");
                 exists=true;
             }
-            String status = HelpersMethod.returnDocumentStatus(driver);
+            status = HelpersMethod.returnDocumentStatus(driver);
             if (status.equals("loading"))
             {
                 HelpersMethod.waitTillLoadingPage(driver);
@@ -1385,6 +1402,11 @@ public class CatalogPage
 
     public void Refresh_Page(String currentURL)
     {
+        String status = HelpersMethod.returnDocumentStatus(driver);
+        if (status.equals("loading"))
+        {
+            HelpersMethod.waitTillLoadingPage(driver);
+        }
         try
         {
             scenario.log(currentURL);
@@ -1405,9 +1427,14 @@ public class CatalogPage
             }
             else
             {
+                status = HelpersMethod.returnDocumentStatus(driver);
+                if (status.equals("loading"))
+                {
+                    HelpersMethod.waitTillLoadingPage(driver);
+                }
                 //navigate to Catalog
                 driver.navigate().to(currentURL);
-                String status = HelpersMethod.returnDocumentStatus(driver);
+                status = HelpersMethod.returnDocumentStatus(driver);
                 if (status.equals("loading"))
                 {
                     HelpersMethod.waitTillLoadingPage(driver);
