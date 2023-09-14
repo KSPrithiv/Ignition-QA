@@ -261,8 +261,10 @@ public class InboundOrderDetailsPage extends BasePage {
     public void typeShipDate(String date) {
         Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(getMoveShipDateInput());
+        Waiters.waitABit(4000);
         clickOnElement(getMoveShipDateInput());
         pressDelete(getMoveShipDateInput());
+        Waiters.waitABit(4000);
         inputText(getMoveShipDateInput(), date);
         pressEnter(getMoveShipDateInput());
         Waiters.waitTillLoadingPage(getDriver());
@@ -347,6 +349,7 @@ public class InboundOrderDetailsPage extends BasePage {
         WebElement item = getOrderLineItems().get(num);
         clickOnElement(item);
         Waiters.waitTillLoadingPage(getDriver());
+        waitUntilInvisible(5, loader);
     }
 
     public void clickProductDataBtn() {

@@ -263,6 +263,15 @@ public class InboundLoadSummaryPageSteps {
     }
 
     @Step
+    @Then("Clicks load type by index {int} dropdown on Inbound Load Summary page")
+    public void clickLoadTypeByIndexDropdown(int index) {
+        log.info("Clicking Load Type by index");
+        List<String> loadTypes = List.of(inboundOrderLoadsDTO.getInboundLoadTypes().getInboundLoadType1(), inboundOrderLoadsDTO
+                .getInboundLoadTypes().getInboundLoadType2(), inboundOrderLoadsDTO.getInboundLoadTypes().getInboundLoadType3());
+        inboundLoadSummaryPage.clickLoadTypeDropdown(loadTypes.get(index));
+    }
+
+    @Step
     @Then("Clicks buyer {string} dropdown on Inbound Load Summary page")
     public void clickBuyerDropdown(String buyer) {
         log.info("Clicking Buyer  " + buyer);
@@ -270,10 +279,32 @@ public class InboundLoadSummaryPageSteps {
     }
 
     @Step
+    @Then("Clicks buyer by index {int} dropdown on Inbound Load Summary page")
+    public void clickBuyerByIndexDropdown(int index) {
+        log.info("Clicking Buyer by index");
+        List<String> buyers = List.of(inboundOrderLoadsDTO.getInboundBuyers().getInboundBuyer1(), inboundOrderLoadsDTO
+                .getInboundBuyers().getInboundBuyer2(), inboundOrderLoadsDTO.getInboundBuyers().getInboundBuyer3(),
+                 inboundOrderLoadsDTO.getInboundBuyers().getInboundBuyer4(), inboundOrderLoadsDTO.getInboundBuyers()
+                .getInboundBuyer5());
+        inboundLoadSummaryPage.clickBuyerDropDown(buyers.get(index));
+    }
+
+    @Step
     @And("Selects buyer {string} dropdown on Inbound Load Summary page")
     public void selectBuyer(String buyer) {
         log.info("Selecting Buyer  " + buyer);
         inboundLoadSummaryPage.selectOption(buyer);
+    }
+
+    @Step
+    @And("Selects buyer by index {int} dropdown on Inbound Load Summary page")
+    public void selectBuyer(int index) {
+        log.info("Selecting Buyer by index");
+        List<String> buyers = List.of(inboundOrderLoadsDTO.getInboundBuyers().getInboundBuyer1(), inboundOrderLoadsDTO
+                .getInboundBuyers().getInboundBuyer2(), inboundOrderLoadsDTO.getInboundBuyers().getInboundBuyer3(),
+                 inboundOrderLoadsDTO.getInboundBuyers().getInboundBuyer4(), inboundOrderLoadsDTO.getInboundBuyers()
+                .getInboundBuyer5());
+        inboundLoadSummaryPage.selectOption(buyers.get(index));
     }
 
     @Step
@@ -291,10 +322,30 @@ public class InboundLoadSummaryPageSteps {
     }
 
     @Step
+    @Then("Clicks load type by index {int} on Inbound Load Summary page")
+    public void clickLoadTypeByIndex(int index) {
+        log.info("Clicking Load Type by index");
+        List<String> loadTypes = List.of(inboundOrderLoadsDTO.getInboundLoadTypes().getInboundLoadType1(), inboundOrderLoadsDTO
+                .getInboundLoadTypes().getInboundLoadType2(), inboundOrderLoadsDTO.getInboundLoadTypes().getInboundLoadType3());
+        inboundLoadSummaryPage.selectOption(loadTypes.get(index));
+    }
+
+    @Step
     @Then("Types supplier code {string} on Inbound Load Summary page")
     public void typeSupplierCode(String code) {
         log.info("Searching supplier code " + code);
         inboundLoadSummaryPage.searchSupplierByCode(code);
+    }
+
+    @Step
+    @Then("Types supplier code by index {int} on Inbound Load Summary page")
+    public void typeSupplierCodeByIndex(int index) {
+        log.info("Searching supplier code by index");
+        List<String> suppliers = List.of(inboundOrderLoadsDTO.getInboundSuppliers().getInboundSupplier1(), inboundOrderLoadsDTO
+                .getInboundSuppliers().getInboundSupplier2(), inboundOrderLoadsDTO.getInboundSuppliers().getInboundSupplier3(),
+                 inboundOrderLoadsDTO.getInboundSuppliers().getInboundSupplier4(), inboundOrderLoadsDTO.getInboundSuppliers()
+                .getInboundSupplier5());
+        inboundLoadSummaryPage.searchSupplierByCode(suppliers.get(index));
     }
 
     @Step
@@ -309,6 +360,16 @@ public class InboundLoadSummaryPageSteps {
     public void typeProduct(String product) {
         log.info("Searching product " + product);
         inboundLoadSummaryPage.typeProduct(product);
+    }
+
+    @Step
+    @Then("Types product by index {int} on Inbound Load Summary page")
+    public void typeProductByIndex(int index) {
+        log.info("Searching product by index");
+        List<String> products = List.of(inboundOrderLoadsDTO.getProductCodes().getProductCode1(), inboundOrderLoadsDTO
+                .getProductCodes().getProductCode2(), inboundOrderLoadsDTO.getProductCodes().getProductCode3(),
+                inboundOrderLoadsDTO.getProductCodes().getProductCode4(), inboundOrderLoadsDTO.getProductCodes().getProductCode5());
+        inboundLoadSummaryPage.typeProduct(products.get(index));
     }
 
     @Step

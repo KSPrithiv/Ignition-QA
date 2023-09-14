@@ -168,6 +168,7 @@ public class InboundLoadSummaryPage extends BasePage {
     }
 
     public void clickLoadTypeDropdown(String loadType) {
+        Waiters.waitABit(3000);
         Waiters.waitTillLoadingPage(getDriver());
         clickOnElement(getLoadTypeDropDown(loadType));
         Waiters.waitTillLoadingPage(getDriver());
@@ -261,15 +262,14 @@ public class InboundLoadSummaryPage extends BasePage {
     public void cleanSupplierName() {
         Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(getEnterNameInput());
-        doubleClick(getEnterNameInput());
-        pressDelete(getEnterNameInput());
-        pressEnter(getEnterNameInput());
+        clearText(getEnterNameInput());
         waitUntilInvisible(2, loader);
     }
 
     public void cleanProduct() {
         Waiters.waitTillLoadingPage(getDriver());
         clickOnElement(getClearButton());
+        waitUntilInvisible(4, loader);
     }
 
     public void cleanLoad() {
@@ -303,7 +303,7 @@ public class InboundLoadSummaryPage extends BasePage {
         Waiters.waitTillLoadingPage(getDriver());
         clickOnElement(getDoorOption());
         Waiters.waitTillLoadingPage(getDriver());
-        waitUntilInvisible(5, loader);
+        waitUntilInvisible(2, loader);
     }
 
     public void clickDataOption() {
@@ -320,6 +320,7 @@ public class InboundLoadSummaryPage extends BasePage {
     }
 
     public void selectOption(String option) {
+        Waiters.waitABit(3000);
         List<WebElement> warehouses = findWebElements(By.xpath("//div[contains(@class, 'k-animation-container-shown')]//*[@role='option']"));
         WebElement webElement = warehouses.stream()
                 .filter(el -> el.getText().contains(option))
@@ -510,6 +511,7 @@ public class InboundLoadSummaryPage extends BasePage {
     }
 
     public void clickReadyToReceiveStatus() {
+        Waiters.waitABit(4000);
         Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(getReadyToReceiveStatus());
         clickOnElement(getReadyToReceiveStatus());
@@ -800,11 +802,13 @@ public class InboundLoadSummaryPage extends BasePage {
     }
 
     public boolean isItemsFoundLabelDisplayed() {
+        Waiters.waitABit(3000);
         Waiters.waitTillLoadingPage(getDriver());
         return isElementDisplay(itemsFoundLabel);
     }
 
     public boolean isItemsFoundValueDisplayed() {
+        Waiters.waitABit(3000);
         Waiters.waitTillLoadingPage(getDriver());
         return isElementDisplay(itemsFoundValue);
     }
@@ -929,6 +933,7 @@ public class InboundLoadSummaryPage extends BasePage {
     }
 
     public String getItemsFoundText() {
+        Waiters.waitABit(3000);
         Waiters.waitTillLoadingPage(getDriver());
         return getText(itemsFoundValue);
     }
@@ -940,7 +945,7 @@ public class InboundLoadSummaryPage extends BasePage {
     }
 
     public String getDialogPopUpText() {
-        Waiters.waitABit(4000);
+        waitUntilInvisible(3, loader);
         Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForPresenceOfElement(".k-dialog-title");
         return getText(getDialogPopup());
@@ -1236,9 +1241,7 @@ public class InboundLoadSummaryPage extends BasePage {
         return findWebElement(sourceStatusColumn);
     }
 
-    public WebElement getReadyToReceiveStatus() {
-        return findWebElement(readyToReceiveStatus);
-    }
+    public WebElement getReadyToReceiveStatus() { return findWebElement(readyToReceiveStatus); }
 
     public WebElement getCancelInboundStatus() {
         return findWebElement(cancelInboundStatus);

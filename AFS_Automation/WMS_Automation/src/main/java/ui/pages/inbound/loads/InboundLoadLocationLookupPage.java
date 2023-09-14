@@ -13,12 +13,12 @@ public class InboundLoadLocationLookupPage extends BasePage {
 
     By topIcon = By.xpath("//span[contains(text(), 'Location lookup')]");
     By locationSearchACField = By.id("locationSearchACField-label");
-    By locationInput = By.cssSelector("input[placeholder='Enter a location']");
+    By locationInput = By.cssSelector("input[placeholder='Enter location']");
     By locationButton = By.xpath("//div[@id='locationGrid']//button[contains(@class, 'i-indexfield-container')]");
     By addLocProdButton = By.id("addLocProdButton");
     By editButton = By.xpath("//button[contains(text(), 'Edit')]");
     By deleteButton = By.xpath("//button[contains(text(), 'Delete')]");
-    By transferButton = By.xpath("//button[contains(text(), 'Transfer')]");
+    By transferButton = By.xpath("//button[contains(text(), 'Move')]");
     By statusButton = By.xpath("//button[contains(text(), 'Status')]");
     By labelsButton = By.xpath("//button[contains(text(), 'Labels')]");
     By palletColumn = By.xpath("//span[text()='Pallet']");
@@ -30,21 +30,20 @@ public class InboundLoadLocationLookupPage extends BasePage {
     By expDateColumn = By.xpath("//span[text()='Exp Date']");
     By weightColumn = By.xpath("//span[text()='Weight']");
     By ownerColumn = By.xpath("//span[text()='Owner']");
-    By palletsLabel = By.xpath("//span[text()='Pallets:']");
-    By quantityLabel = By.xpath("//span[text()='Quantity:']");
+    By palletsLabel = By.xpath("//span[text()='Pallets']");
+    By quantityLabel = By.xpath("//span[text()='Quantity']");
     By itemsFoundLabel = By.xpath("//span[contains(text(), 'Items found:')]");
     By lookupLocationSearch = By.id("lookupLocationSearch");
     By gridTable = By.cssSelector(".k-grid-table tr");
 
     public void waitForInboundLoadLocationLookupPageToLoad() {
-        Waiters.waitUntilPageWillLoadedSelenide();
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(getTopIcon());
         Waiters.waitForElementToBeDisplay(addLocProdButton);
         Waiters.waitForElementToBeDisplay(editButton);
         Waiters.waitForElementToBeDisplay(deleteButton);
         Waiters.waitForElementToBeDisplay(transferButton);
         Waiters.waitForElementToBeDisplay(statusButton);
-        Waiters.waitForElementToBeDisplay(labelsButton);
     }
 
     public boolean isTopIconPresent() {
