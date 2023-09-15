@@ -40,6 +40,17 @@ public class InboundLoadSummaryPageSteps {
     }
 
     @Step
+    @When("User searches for Loads starting from date by index {int}")
+    public void findLoadsFromDateByIndex(int index) {
+        log.info("Finding Loads starting range from date by index");
+        List<String> startDates = List.of(inboundOrderLoadsDTO.getStartDates().getStartDate1(), inboundOrderLoadsDTO
+                .getStartDates().getStartDate2(), inboundOrderLoadsDTO.getStartDates().getStartDate3(), inboundOrderLoadsDTO
+                .getStartDates().getStartDate4(), inboundOrderLoadsDTO.getStartDates().getStartDate5(), inboundOrderLoadsDTO
+                .getStartDates().getStartDate6());
+        inboundLoadSummaryPage.typeDateLoadStart(startDates.get(index));
+    }
+
+    @Step
     @When("Types {string} start date on Inbound Load Summary page")
     public void typeStartDate(String date) {
         log.info("Types Start Date " + date);

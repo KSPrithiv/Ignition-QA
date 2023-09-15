@@ -7,7 +7,7 @@ Feature: Testing of Receiving functionality
     And DockManagement Summary Page is validated
     And Go to Loads page
     And Inbound Load Summary page appears
-    When User searches for Loads starting from "01/01/2017" date
+    When User searches for Loads starting from date by index 4
     And Inbound Load Summary page main elements are present
     And Clicks load status "All statuses" on Inbound Load Summary page
     And Selects load status "Ready To Receive" on Inbound Load Summary page
@@ -16,7 +16,7 @@ Feature: Testing of Receiving functionality
     And Receiving page contains all web elements
     And Back button is clickable on Receiving page
     And Go to Inbound Orders page
-    And User finds orders from "01/01/2017" date on Inbound Order summary page
+    And User finds orders from date by index 4 on Inbound Order summary page
     And Clicks load status "All statuses" on Inbound Load Summary page
     And Selects order status "Ready To Receive" on Inbound Order Summary page
     And Check order with index 0 on Inbound Order Summary page
@@ -37,7 +37,7 @@ Feature: Testing of Receiving functionality
     And Go to Loads page
     And Inbound Load Summary page appears
     And Inbound Load Summary page main elements are present
-    When User searches for Loads starting from "01/01/2017" date
+    When User searches for Loads starting from date by index 4
     And Clicks load status "All statuses" on Inbound Load Summary page
     And Selects load status "Ready To Receive" on Inbound Load Summary page
     Then Checks Load with index 0 and apply "Review" Load Option for Load
@@ -50,7 +50,7 @@ Feature: Testing of Receiving functionality
     And Go to Loads page
     And Inbound Load Summary page appears
     And Inbound Load Summary page main elements are present
-    When User searches for Loads starting from "01/01/2017" date
+    When User searches for Loads starting from date by index 4
     And Clicks load status "All statuses" on Inbound Load Summary page
     And Selects load status "Ready To Receive" on Inbound Load Summary page
     Then Checks Load with index 0 and apply "Receive" Load Option for Load
@@ -74,7 +74,7 @@ Feature: Testing of Receiving functionality
     And Go to Loads page
     And Inbound Load Summary page appears
     And Inbound Load Summary page main elements are present
-    When User searches for Loads starting from "01/01/2017" date
+    When User searches for Loads starting from date by index 4
     And Clicks load status "All statuses" on Inbound Load Summary page
     And Selects load status "Ready To Receive" on Inbound Load Summary page
     Then Checks Load with index 0 and apply "Receive" Load Option for Load
@@ -94,7 +94,7 @@ Feature: Testing of Receiving functionality
     And Go to Loads page
     And Inbound Load Summary page appears
     And Inbound Load Summary page main elements are present
-    When User searches for Loads starting from "01/01/2017" date
+    When User searches for Loads starting from date by index 4
     And Clicks load status "All statuses" on Inbound Load Summary page
     And Selects load status "Ready To Receive" on Inbound Load Summary page
     Then Checks Load with index 0 and apply "Receive" Load Option for Load
@@ -118,7 +118,7 @@ Feature: Testing of Receiving functionality
     And Go to Loads page
     And Inbound Load Summary page appears
     And Inbound Load Summary page main elements are present
-    When User searches for Loads starting from "01/01/2017" date
+    When User searches for Loads starting from date by index 4
     And Clicks load status "All statuses" on Inbound Load Summary page
     And Selects load status "Ready To Receive" on Inbound Load Summary page
     Then Checks Load with index 0 and apply "Receive" Load Option for Load
@@ -145,7 +145,7 @@ Feature: Testing of Receiving functionality
     And Go to Loads page
     And Inbound Load Summary page appears
     And Inbound Load Summary page main elements are present
-    When User searches for Loads starting from "01/01/2017" date
+    When User searches for Loads starting from date by index 4
     And Clicks load status "All statuses" on Inbound Load Summary page
     And Selects load status "Ready To Receive" on Inbound Load Summary page
     Then Checks Load with index 0 and apply "Receive" Load Option for Load
@@ -184,7 +184,7 @@ Feature: Testing of Receiving functionality
     And Go to Loads page
     And Inbound Load Summary page appears
     And Inbound Load Summary page main elements are present
-    When User searches for Loads starting from "01/01/2021" date
+    When User searches for Loads starting from date by index 4
     And Clicks load status "All statuses" on Inbound Load Summary page
     And Selects load status "Ready To Receive" on Inbound Load Summary page
     Then Checks Load with index 0 and apply "Receive" Load Option for Load
@@ -226,7 +226,7 @@ Feature: Testing of Receiving functionality
     And Go to Loads page
     And Inbound Load Summary page appears
     And Inbound Load Summary page main elements are present
-    When User searches for Loads starting from "01/01/2017" date
+    When User searches for Loads starting from date by index 4
     And Clicks load status "All statuses" on Inbound Load Summary page
     And Selects load status "Ready To Receive" on Inbound Load Summary page
     Then Checks Load with index 0 and apply "Receive" Load Option for Load

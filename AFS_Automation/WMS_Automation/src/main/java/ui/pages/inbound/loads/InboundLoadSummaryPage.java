@@ -386,7 +386,7 @@ public class InboundLoadSummaryPage extends BasePage {
         Waiters.waitTillLoadingPage(getDriver());
         scrollTo(By.xpath("//span[contains(text(), 'Statistics')]"));
         Waiters.waitTillLoadingPage(getDriver());
-        scrollTo(By.xpath("//span[contains(text(), 'Statistics')]"));
+        Waiters.waitABit(1000);
         clickOnElement(findWebElements(By.xpath("//div[contains(@class, 'BarsContainer')]/parent::*//input[@type='checkbox']"))
                 .get(index));
     }
