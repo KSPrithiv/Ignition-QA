@@ -49,6 +49,17 @@ public class InboundOrderSummaryPageSteps {
     }
 
     @Step
+    @When("User finds orders from date by index {int} on Inbound Order summary page")
+    public void findOrdersFromDate(int index) {
+        log.info("Finding Orders starting from date by index");
+        List<String> startDates = List.of(inboundOrderLoadsDTO.getStartDates().getStartDate1(), inboundOrderLoadsDTO
+                .getStartDates().getStartDate2(), inboundOrderLoadsDTO.getStartDates().getStartDate3(), inboundOrderLoadsDTO
+                .getStartDates().getStartDate4(), inboundOrderLoadsDTO.getStartDates().getStartDate5(), inboundOrderLoadsDTO
+                .getStartDates().getStartDate6());
+        inboundOrderSummaryPage.typeDateRouteStart(startDates.get(index));
+    }
+
+    @Step
     @When("User clicks supplier button on Inbound Order summary page")
     public void clickSupplierButton() {
         log.info("Clicks supplier button on Inbound Order summary page");

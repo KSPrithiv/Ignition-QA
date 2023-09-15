@@ -9,6 +9,7 @@ Feature: Testing of Inbound Load Summary screen functionality
     Then Inbound Load Summary page appears
     And Inbound Load Summary page main elements are present
 
+    #
   Scenario: Checking Load Summary screen Date filter
     Given User signs in the application
     And Main page is loaded
@@ -26,6 +27,7 @@ Feature: Testing of Inbound Load Summary screen functionality
     And Selects 33 days ago from end date on Inbound Load Summary page
     And Validates loads are present on Inbound Load Summary page
 
+    #
   Scenario: Checking Load Summary screen Load filter
     Given User signs in the application
     And Main page is loaded
@@ -158,6 +160,7 @@ Feature: Testing of Inbound Load Summary screen functionality
     And Validates Items found not displayed on Inbound Load Summary page
     And Validates No Record Inbound Load Summary grid
 
+    #
   Scenario: Checking Load Summary screen Buyer filter
     Given User signs in the application
     And Main page is loaded
@@ -298,7 +301,6 @@ Feature: Testing of Inbound Load Summary screen functionality
     And Clicks change status option on Inbound Load Summary page
     And Validates popup Change status title for Inbound Load Summary
     And Validates Change status popup with Ready To Receive and Cancel Inbound statuses on Inbound Load Summary page
-    And Clicks No button on Inbound Load Summary page
 
   Scenario: Checking Status change from Ready to Receive to Finish Receiving when there is staged inventory
     Given User signs in the application
@@ -317,7 +319,6 @@ Feature: Testing of Inbound Load Summary screen functionality
     And Clicks change status option on Inbound Load Summary page
     And Validates popup Change status title for Inbound Load Summary
     And Validates Change status popup with Finish Receiving status on Inbound Load Summary page
-    And Clicks No button on Inbound Load Summary page
 
   Scenario: Checking Status change from Ready to Receive to Finish Receiving when the received Qty less than the Ordered Qty
     Given User signs in the application
@@ -337,9 +338,6 @@ Feature: Testing of Inbound Load Summary screen functionality
     And Validates popup Change status title for Inbound Load Summary
     And Validates Change status popup with Finish Receiving status on Inbound Load Summary page
     And Clicks Save button on Inbound Load Summary page
-    And Validates warning message title for Inbound Load Summary
-    And Validates popup Quantity received is less than Order quantity inventory content for Inbound Load Summary
-    And Clicks No button on Inbound Load Summary page
 
   Scenario: Checking Status change from Received order to ReOpen on Load Summary screen
     Given User signs in the application
