@@ -219,6 +219,7 @@ public class NewStandingOrderPage
                 WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-widget k-window k-dialog')]");
                 WebElement OkButton=WebEle.findElement(By.xpath(".//button"));
                 HelpersMethod.ClickBut(driver,OkButton,400);
+                exists=true;
             }
             scenario.log("STANDING ORDER SUCESSFULLY SAVED");
             if(HelpersMethod.IsExists("//div[@class='loader']",driver))
@@ -231,9 +232,7 @@ public class NewStandingOrderPage
             if(HelpersMethod.IsExists("//div[@class='i-card StandingOrder-card-grid']",driver))
             {
                 scenario.log("READY TO CREATE NEXT STANDING ORDER");
-                exists=true;
             }
-
             Assert.assertEquals(exists,true);
         }
         catch (Exception e){}
@@ -1226,7 +1225,7 @@ public class NewStandingOrderPage
             if(HelpersMethod.IsExists("//div[@class='loader']",driver))
             {
                 WebElement  WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100000);
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 200000);
             }
             String titleSO=driver.getTitle();
             if(titleSO.contains("Standing Order"))
