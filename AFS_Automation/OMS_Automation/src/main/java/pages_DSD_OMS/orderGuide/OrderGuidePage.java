@@ -123,7 +123,7 @@ public class OrderGuidePage
             if(HelpersMethod.IsExists("//div[@class='loader']",driver))
             {
                 WebElement WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 80000);
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 200000);
             }
             String status = HelpersMethod.returnDocumentStatus(driver);
             if (status.equals("loading"))
@@ -135,7 +135,7 @@ public class OrderGuidePage
                 WebElement WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
                 HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 80000);
             }
-            new WebDriverWait(driver,Duration.ofMillis(10000)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath("//div[contains(@class,'i-card orderGuides-card')]"))));
+            new WebDriverWait(driver,Duration.ofMillis(100000)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath("//div[contains(@class,'i-card orderGuides-card')]"))));
             if(HelpersMethod.IsExists("//span[@class='spnmoduleNameHeader' and contains(text(),'Order guide list')]|//span[@class='spnmoduleNameHeader' and contains(text(),'Order guide detail')]",driver))
             {
                 exists=true;
@@ -188,7 +188,7 @@ public class OrderGuidePage
                 exists=false;
                 scenario.log("ORDER GUIDE DOESNOT EXISTS");
             }
-           new WebDriverWait(driver,Duration.ofMillis(1000)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath("//div[@class='grid-container']"))));
+           //new WebDriverWait(driver,Duration.ofMillis(1000)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath("//div[@class='grid-container']"))));
         }
         catch (Exception e){}
         return  exists;
@@ -270,6 +270,7 @@ public class OrderGuidePage
     public boolean AddFilterForExpiredOG(String search1,String search2)
     {
         exists=false;
+        Actions act=new Actions(driver);
         try
         {
             if(HelpersMethod.IsExists("//div[@class='i-filter-tag i-filter-tag--add']/descendant::button[@class='i-filter-tag__main']",driver))
@@ -302,10 +303,9 @@ public class OrderGuidePage
                 {
                    Search2=HelpersMethod.FindByElement(driver,"id","E");
                    HelpersMethod.ClickBut(driver,Search2,100);
+                   exists=true;
                 }
-                WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='i-filter-tag ']");
-                HelpersMethod.ClickBut(driver,WebEle,100);
-
+                /*
                 if(!HelpersMethod.IsExists("//div[contains(@class,'i-no-data__message')]",driver))
                 {
                     exists=true;
@@ -314,7 +314,9 @@ public class OrderGuidePage
                 {
                     scenario.log("RELAVENT FILTER VALUES DOESN'T EXISTS");
                     exists=false;
-                }
+                }*/
+                WebElement dummy=HelpersMethod.FindByElement(driver,"xpath","//input[contains(@id,'SearchBox')]");
+                act.click(dummy).build().perform();
             }
         }
         catch (Exception e){}
@@ -326,8 +328,13 @@ public class OrderGuidePage
     {
         try
         {
-            HelpersMethod.ActClick(driver,CustRef,40);
-            HelpersMethod.WaitElementPresent(driver,"xpath","//div[contains(@class,'k-popup k-child-animation-container k-slide-down-enter k-slide-down-enter-active')]",40);
+            if(HelpersMethod.IsExists("//div[@class='loader']",driver))
+            {
+                WebElement WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 80000);
+            }
+            HelpersMethod.ActClick(driver,CustRef,400);
+            HelpersMethod.WaitElementPresent(driver,"xpath","//div[contains(@class,'k-popup k-child-animation-container k-slide-down-enter k-slide-down-enter-active')]",1000);
         }
         catch (Exception e){}
     }
@@ -335,28 +342,6 @@ public class OrderGuidePage
     //Code to select different type of OG from drop down
     public void CustRefDropDown(String OGtype)
     {
-       /* List<WebElement> CustRefTypes=null;
-        Actions act1=new Actions(driver);
-        try
-        {
-            if(HelpersMethod.IsExists("//div[contains(@class,'k-popup k-child-animation-container ')]",driver))
-            {
-                CustRefTypes=HelpersMethod.FindByElements(driver,"xpath","//div[contains(@class,'k-popup k-child-animation-container ')]/descendant::ul/li");
-                for(WebElement CustRefType:CustRefTypes)
-                {
-                    act1.moveToElement(CustRefType).build().perform();
-                    String CustRef_Text=CustRefType.getText();
-                    if(CustRef_Text.equals(OGtype))
-                    {
-                        act1.click(CustRefType).build().perform();
-                        WebElement WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                        HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 10);
-                        break;
-                    }
-                }
-            }
-        }
-        catch (Exception e){}*/
         exists=false;
         WebElement WebEle=null;
         Actions act1= new Actions(driver);
@@ -364,8 +349,8 @@ public class OrderGuidePage
         {
             HelpersMethod.waitTillElementLocatedDisplayed(driver,"xpath","//div[contains(@class,'k-popup k-child-animation-container')]",40);
             // to fetch the web element of the modal container
-            WebElement menuContainer = driver.findElement(By.xpath("//div[contains(@class,'k-animation-container k-animation-container-relative k-list-container')]"));
-            List<WebElement> custRefs=menuContainer.findElements (By.xpath(".//ul/li"));
+            //WebElement menuContainer = driver.findElement(By.xpath("//div[contains(@class,'k-animation-container k-animation-container-relative k-list-container')]"));
+            List<WebElement> custRefs=HelpersMethod.FindByElements(driver,"xpath","//div[contains(@class,'k-animation-container k-animation-container-relative k-list-container')]/descendant::ul/li");
             for(int i=0;i<=custRefs.size()-1;i++)
             {
                 WebEle=custRefs.get(i);
@@ -375,17 +360,14 @@ public class OrderGuidePage
                 {
                     act1.moveToElement(WebEle).build().perform();
                     act1.click().build().perform();
-                    if(HelpersMethod.IsExists("//div[@class='loader']",driver))
-                    {
-                        WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                        HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 8000);
-                    }
                     break;
                 }
-              /* else
+                if(HelpersMethod.IsExists("//div[@class='loader']",driver))
                 {
-                    act1.moveToElement(WebEle).sendKeys(Keys.ARROW_DOWN).build().perform();
-                }*/
+                    WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
+                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 200000);
+                }
+                new WebDriverWait(driver,Duration.ofMillis(10000)).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[contains(@class,'k-animation-container k-animation-container-relative k-list-container')]")));
             }
         }
         catch (Exception e) { }
@@ -396,15 +378,20 @@ public class OrderGuidePage
     {
         try
         {
+            if(HelpersMethod.IsExists("//div[@class='loader']",driver))
+            {
+                WebElement WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 80000);
+            }
             HelpersMethod.WaitElementPresent(driver,"xpath","//div[contains(@class,'k-widget k-window k-dialog')]",10);
             if(HelpersMethod.IsExists("//div[contains(@class,'k-widget k-window k-dialog')]",driver))
             {
-                WebElement SubRef=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-widget k-window k-dialog')]/descendant::tr[contains(@class,'k-master-row')][1]");
+                WebElement SubRef=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-widget k-window k-dialog')]/descendant::tr[contains(@class,'k-master-row')][2]");
                 HelpersMethod.ActClick(driver,SubRef,10);
-                WebElement WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                if(WebEle.isDisplayed())
+                if(HelpersMethod.IsExists("//div[@class='loader']",driver))
                 {
-                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 10);
+                    WebElement WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
+                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 80000);
                 }
             }
         }

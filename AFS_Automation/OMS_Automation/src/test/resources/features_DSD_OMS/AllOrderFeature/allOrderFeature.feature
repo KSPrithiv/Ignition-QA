@@ -51,6 +51,8 @@ Feature: All orders
     And User should navigate to All Orders
     Then User clicks on Start order button and selects Add from drop down
     Then User selects customer account# and delivery date from popup
+    Then User should make selection between Pending order or Start New order
+    Then User should select Note from popup and Order guide from popup
     Then Enter PO# for New order for All orders
       |PO123|
     Then Enter Pro# in Quick Product Entry area
@@ -101,6 +103,8 @@ Feature: All orders
     And User should navigate to All Orders
     Then User clicks on Start order button and selects Add from drop down
     Then User selects customer account# and delivery date from popup to edit all order
+    Then User should make selection between Pending order or Start New order
+    Then User should select Note from popup and Order guide from popup
     Then Enter PO# for New order for All orders
       |PO123|
     Then Enter Pro# in Quick Product Entry area
@@ -115,7 +119,7 @@ Feature: All orders
     Then Navigate to Summary order entry page and user clicks on Edit button
     And If user navigates to payment and address page click on Back button or else add product# in Quick product entry for editng all order
       |50|50|
-    Then Click on Next button
+    Then Click on Next button after editing all order, order
     And Click on Submit Order button and read Order_no created for All order
     Then User should be navigated back to All order page
     And User clicks on Show all orders check box after navigating back
@@ -158,8 +162,8 @@ Feature: All orders
     And User should navigate to All Orders
     Then User clicks on Start order button and selects Pick up order from drop down
     Then User selects customer account# and delivery date for pickup order
-    #Then User should make selection between Pending order or Start New order
-    #Then User should select Note from popup and Order guide from popup
+    Then User should make selection between Pending order or Start New order
+    Then User should select Note from popup and Order guide from popup
     Then Enter PO# for New order for All orders
       |PO123|
     And User validates Pickup order check box is selected
@@ -179,8 +183,8 @@ Feature: All orders
     And User clicks on Order status and select Active order option from drop down
     And User clicks on search button
     And User Clicks on Add filter button and enter values for search options
-    Then User select the order and click on copy button and select delivery date
-    #Then User should select Note from popup and Order guide from popup
+    Then User should make selection between Pending order or Start New order
+    Then User should select Note from popup and Order guide from popup
     Then Enter PO# for New order for All orders
       |PO123|
     Then Click on Next button and select option Continue without payment option
