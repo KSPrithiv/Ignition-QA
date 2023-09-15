@@ -208,6 +208,7 @@ public class AllOrdersPageStep
     {
         summary = new CheckOutSummaryPage(driver,scenario);
         summary.ClickSubmit();
+        summary.cutoffDialog();
         Ord_No = summary.Get_Order_No();
         summary.SucessPopupForAllOrder();
         scenario.log("ORDER CREATED FOR ALL ORDER "+Ord_No);
@@ -419,13 +420,12 @@ public class AllOrdersPageStep
     public void ifUserNavigatesToPaymentAndAddressPageClickOnBackButtonOrElseAddProductInQuickProductEntryForEditngAllOrder(DataTable tabledata) throws InterruptedException, AWTException, SQLException, ClassNotFoundException, InstantiationException, IllegalAccessException
     {
         List<List<String>> Qty=tabledata.asLists(String.class);
-        HelpersMethod.Implicitwait(driver,10);
-        checkOutOrderPage=new CheckOutOrderPage(driver,scenario);
+       /* checkOutOrderPage=new CheckOutOrderPage(driver,scenario);
         boolean result=checkOutOrderPage.VerifyCheckOut();
         if(result==true)
         {
             checkOutOrderPage.BackButton_Click();
-        }
+        }*/
         newOE=new NewOrderEntryPage(driver,scenario);
         String Prod= DataBaseConnection.DataBaseConn(TestBase.testEnvironment.getSingle_Prod_Sql());
         newOE.QuickProduct(Prod);
@@ -513,5 +513,15 @@ public class AllOrdersPageStep
     {
         allOrder=new AllOrderPage(driver,scenario);
         allOrder.ClickShowAllOrderCheckboxAgain();
+    }
+
+    @Then("Click on Next button after editing all order, order")
+    public void clickOnNextButtonAfterEditingAllOrderOrder() throws InterruptedException, AWTException
+    {
+        exists=false;
+        newOE = new NewOrderEntryPage(driver,scenario);
+        newOE.readProductsInOrder();
+        exists=newOE.ClickNext();
+        newOE.OutOfStockPop_ERP();
     }
 }

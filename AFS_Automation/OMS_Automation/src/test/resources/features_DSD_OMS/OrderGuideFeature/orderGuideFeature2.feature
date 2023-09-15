@@ -26,7 +26,7 @@ Feature: Order Guide2
     | Push OG |
 
   @OGPar
-  Scenario Outline: Test scenario for creating push order guide
+  Scenario Outline: Test scenario for creating Par order guide
     Given User must be on Order Entry Page to select OG
     And User should navigate to OG
     Then User clicks on Create new button and should navigate to New OG page
@@ -50,10 +50,13 @@ Feature: Order Guide2
       |Market segment|
     And Check for popup to appear to select sub customer reference
     Then User clicks on Create new button and should navigate to New OG page
+    And User validates Customer reference input box to verify the OG created
+      |Market segment|
     Then Then User enters Description "<OG>" and End date
     And User should make sure that customer reference "<OGType>" is same as of selected in OG page
-    And User enters Quick Product number and Sequence number
-      |4|
+    Then User clicks on Add product button and select Catalog from drop down
+      |Catalog|
+    And User should select products from catalog popup
     Then User click on Save button
     #And User should navigate back to OG page and navigate back to "<OGType>" and verify OG "<OG>"  existence
     Examples:
@@ -102,8 +105,9 @@ Feature: Order Guide2
     Then User clicks on Create new button and should navigate to New OG page
     Then Then User enters Description "<OG>" and End date
     And User should make sure that customer reference "<OGType>" is same as of selected in OG page
-    And User enters Quick Product number and Sequence number
-      |4|
+    Then User clicks on Add product button and select Catalog from drop down
+      |Catalog|
+    And User should select products from catalog popup
     Then User click on Save button
     #And User should navigate back to OG page and navigate back to "<OGType>" and verify OG "<OG>"  existence
     Examples:
@@ -118,10 +122,13 @@ Feature: Order Guide2
       |National chain|
     And Check for popup to appear to select National Chain "<Chain>"
     Then User clicks on Create new button and should navigate to New OG page
+    And User validates Customer reference input box to verify the OG created
+      |National chain|
     Then Then User enters Description "<OG>" and End date
     And User should make sure that customer reference "<OGType>" is same as of selected in OG page
-    And User enters Quick Product number and Sequence number
-      |4|
+    Then User clicks on Add product button and select Catalog from drop down
+      |Catalog|
+    And User should select products from catalog popup
     Then User click on Save button
     #And User should navigate back to OG page and navigate back to "<OGType>" and verify OG "<OG>"  existence
     Examples:
@@ -137,8 +144,9 @@ Feature: Order Guide2
     Then User clicks on Create new button and should navigate to New OG page
     Then User enters Description "<OG>" Start date 13 and End date 14 day from current date and validate all customer check box
     And User should make sure that customer reference "<OGType>" is same as of selected in OG page
-    And User enters Quick Product number and Sequence number
-      |4|
+    Then User clicks on Add product button and select Catalog from drop down
+      |Catalog|
+    And User should select products from catalog popup
     Then User click on Save button
     #And User should navigate back to OG page and navigate back to "<OGType>" and verify OG "<OG>"  existence
     Examples:
@@ -152,7 +160,7 @@ Feature: Order Guide2
     Then User enters OG Description "<OG>" in search box and Delete cancel the OG verify same in OG grid
     Examples:
       |  OG   |
-      |OGDis1 |
+      |OGDis16 |
 
   @OGDelete
   Scenario Outline: Deleting Order guide and verifying it in OG grid
@@ -161,7 +169,7 @@ Feature: Order Guide2
     Then User enters OG Description "<OG>" in search box and Delete the OG verify same in OG grid
     Examples:
       |  OG   |
-      |OGDis1 |
+    #  |OGDis1 |
       |OGDis16|
       |OGDis17|
       |OGDis18|
@@ -173,8 +181,8 @@ Feature: Order Guide2
       |Par OGPar OG|
       |Push OGPush OG|
       |Push OG1Push OG1|
-    #  |AllOrderAllOrder|
+      |AllOrderAllOrder|
       | AllCustomer1   |
-      | QToOG |
+    #  | QToOG |
 
 

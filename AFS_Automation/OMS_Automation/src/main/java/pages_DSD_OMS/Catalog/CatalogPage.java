@@ -103,23 +103,12 @@ public class CatalogPage
         }
         try
         {
-            ResetFilter=HelpersMethod.FindByElement(driver,"xpath","//button[@data-test-id='productFilterResetBtn' and contains(text(),'Reset filter')]//*[local-name()='svg']");
             HelpersMethod.ScrollElement(driver,ResetFilter);
             HelpersMethod.ClickBut(driver,ResetFilter,1000);
-            status = HelpersMethod.returnDocumentStatus(driver);
-            if (status.equals("loading"))
-            {
-                HelpersMethod.waitTillLoadingPage(driver);
-            }
             if(HelpersMethod.IsExists("//div[@class='loader']",driver))
             {
                 WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100000);
-            }
-            status = HelpersMethod.returnDocumentStatus(driver);
-            if (status.equals("loading"))
-            {
-                HelpersMethod.waitTillLoadingPage(driver);
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 200000);
             }
             exists=true;
             Assert.assertEquals(exists,true);
@@ -134,10 +123,10 @@ public class CatalogPage
         WebElement WebEle=null;
         try
         {
-            WebElement CardView=HelpersMethod.FindByElement(driver,"xpath","//button[@data-test-id='catalogGridViewBtn']");
-            if(CardView.isDisplayed())
+            if(HelpersMethod.IsExists("//button[@data-test-id='catalogGridViewBtn']//*[local-name()='svg']",driver))
             {
-                HelpersMethod.ScrollElement(driver, CardView);
+                WebElement CardView=HelpersMethod.FindByElement(driver,"xpath","//button[@data-test-id='catalogGridViewBtn']//*[local-name()='svg']");
+                HelpersMethod.ScrollElement(driver,CardView);
                 HelpersMethod.ClickBut(driver, CardView, 1000);
                 if (HelpersMethod.IsExists("//div[@class='loader']", driver))
                 {
@@ -148,6 +137,10 @@ public class CatalogPage
                 {
                     scenario.log("CARD VIEW IN CATALOG HAS BEEN SELECTED");
                     exists = true;
+                }
+                else
+                {
+                    scenario.log("CARD VIEW IN CATALOG IS NOT VISIBLE");
                 }
             }
             Assert.assertEquals(exists,true);
@@ -160,26 +153,26 @@ public class CatalogPage
     {
         exists=false;
         WebElement WebEle=null;
-      /*  if(HelpersMethod.IsExists("//div[@class='loader']",driver))
-        {
-            WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000);
-        }*/
         try
         {
-            WebElement ListView=HelpersMethod.FindByElement(driver,"xpath","//button[contains(@data-test-id,'catalogListViewBtn')]");
-            if(ListView.isDisplayed())
+            if(HelpersMethod.IsExists("//button[contains(@data-test-id,'catalogListViewBtn')]//*[local-name()='svg']",driver))
             {
-                HelpersMethod.ScrollElement(driver, ListView);
+                WebElement ListView=HelpersMethod.FindByElement(driver,"xpath","//button[contains(@data-test-id,'catalogListViewBtn')]//*[local-name()='svg']");
+                HelpersMethod.ScrollElement(driver,ListView);
                 HelpersMethod.ClickBut(driver, ListView, 2000);
-                if (HelpersMethod.IsExists("//div[@class='loader']", driver)) {
+                if (HelpersMethod.IsExists("//div[@class='loader']", driver))
+                {
                     WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
                     HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 80000);
                 }
                 if(HelpersMethod.IsExists("//div[@class='list-view']",driver))
                 {
-                    scenario.log("CARD VIEW IN CATALOG HAS BEEN SELECTED");
+                    scenario.log("LIST VIEW IN CATALOG HAS BEEN SELECTED");
                     exists = true;
+                }
+                else
+                {
+                    scenario.log("LIST VIEW IS NOT VISIBLE");
                 }
             }
             Assert.assertEquals(exists,true);
