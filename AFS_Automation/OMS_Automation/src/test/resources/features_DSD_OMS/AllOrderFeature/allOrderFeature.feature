@@ -183,6 +183,7 @@ Feature: All orders
     And User clicks on Order status and select Active order option from drop down
     And User clicks on search button
     And User Clicks on Add filter button and enter values for search options
+    Then User select the order and click on copy button and select delivery date
     Then User should make selection between Pending order or Start New order
     Then User should select Note from popup and Order guide from popup
     Then Enter PO# for New order for All orders

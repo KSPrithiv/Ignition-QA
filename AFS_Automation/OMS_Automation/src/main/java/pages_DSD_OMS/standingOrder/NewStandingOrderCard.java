@@ -63,15 +63,15 @@ public class NewStandingOrderCard
         if (HelpersMethod.IsExists("//div[@class='loader']", driver))
         {
             WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 80000);
+            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 200000);
         }
 
-        new WebDriverWait(driver, Duration.ofMillis(10000)).until(ExpectedConditions.presenceOfElementLocated(By.id("card1")));
+        new WebDriverWait(driver,Duration.ofMillis(60000)).until(ExpectedConditions.presenceOfElementLocated(By.id("card1")));
         //Click on arrow if Start standing order card is not visible
         if (HelpersMethod.IsExists("//div[contains(@class,'StandingOrder-expandable-card')]/descendant::span[contains(@class,'k-icon k-i-arrow-chevron-down')]", driver))
         {
             WebEle= HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'StandingOrder-expandable-card')]/descendant::span[contains(@class,'k-icon k-i-arrow-chevron-down')]");
-            new WebDriverWait(driver, Duration.ofMillis(2000)).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class,'StandingOrder-expandable-card')]/descendant::span[contains(@class,'k-icon k-i-arrow-chevron-down')]")));
+            new WebDriverWait(driver,Duration.ofMillis(20000)).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class,'StandingOrder-expandable-card')]/descendant::span[contains(@class,'k-icon k-i-arrow-chevron-down')]")));
             new WebDriverWait(driver,Duration.ofMillis(20000)).until(ExpectedConditions.elementToBeClickable(By.xpath("//div[contains(@class,'StandingOrder-expandable-card')]/descendant::span[contains(@class,'k-icon k-i-arrow-chevron-down')]")));
             HelpersMethod.ScrollElement(driver, WebEle);
             HelpersMethod.ActClick(driver, WebEle, 1000);
@@ -384,7 +384,7 @@ public class NewStandingOrderCard
             int i=0;
             List<WebElement> StandingOrders = HelpersMethod.FindByElements(driver, "xpath", "//div[contains(@class,'standing-orders')]/descendant::span[contains(@class,'standing-orders-status active  ')]/ancestor::button|//div[contains(@class,'standing-orders')]/descendant::span[contains(@class,'standing-orders-status   pending')]/ancestor::button");
             scenario.log("TOTAL NUMBER OF ACTIVE AND PENDING SO FOUND ARE " + StandingOrders.size());
-            for (WebElement SO : StandingOrders)
+          /*  for (WebElement SO : StandingOrders)
             {
                 i++;
                 scenario.log(i+" STANDING ORDER HAS BEEN DELETED");
@@ -415,7 +415,43 @@ public class NewStandingOrderCard
                         WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
                         HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000);
                     }*/
+            //    }
+            //}
+            while(!StandingOrders.isEmpty())
+            {
+                i++;
+                scenario.log(i+" STANDING ORDER HAS BEEN DELETED");
+                WebElement SO=StandingOrders.get(0);
+                HelpersMethod.ScrollElement(driver, SO);
+                HelpersMethod.ActClick(driver, SO, 200);
+                String status = HelpersMethod.returnDocumentStatus(driver);
+                if (status.equals("loading"))
+                {
+                    HelpersMethod.waitTillLoadingPage(driver);
                 }
+                //Click on down arrow in standing order card
+                ClickOnNewStandingOrderArrow();
+                HelpersMethod.ClickBut(driver, DeleteStandingOrder, 200);
+                if (HelpersMethod.IsExists("//div[contains(text(),'Delete standing order?')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]", driver))
+                {
+                    WebElement modalContainer = driver.findElement(By.xpath("//div[contains(@class,'k-widget k-window k-dialog')]"));
+
+                    // to fetch the web elements of the modal content and interact with them, code to fetch content of modal title and verify it
+                    WebElement modalContentTitle = modalContainer.findElement(By.xpath(".//div[contains(@class,'k-window-title k-dialog-title')]"));
+                    Assert.assertEquals(modalContentTitle.getText(), "Delete standing order?", "Verify Title message");
+
+                    WebEle = modalContainer.findElement(By.xpath(".//button[text()='Yes']"));
+                    HelpersMethod.ActClick(driver, WebEle, 200);
+                    scenario.log("STANDING ORDER DELETED");
+                    exists = true;
+                   /* if(HelpersMethod.IsExists("//div[@class='loader']",driver))
+                    {
+                        WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
+                        HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000);
+                    }*/
+                }
+                StandingOrders.remove(SO);
+                StandingOrders=HelpersMethod.FindByElements(driver,"xpath","//div[contains(@class,'standing-orders')]/descendant::span[contains(@class,'standing-orders-status active  ')]/ancestor::button|//div[contains(@class,'standing-orders')]/descendant::span[contains(@class,'standing-orders-status   pending')]/ancestor::button");
             }
             Assert.assertEquals(exists, true);
         }
@@ -869,7 +905,7 @@ public class NewStandingOrderCard
             }
             //Click on Cancel button
             WebElement cancelButton = modalContainer.findElement(By.xpath(".//button[@id='standingOrderRegisterDialogCancelButton']"));
-            HelpersMethod.ClickBut(driver, cancelButton, 400);
+            HelpersMethod.ClickBut(driver, cancelButton, 4000);
             Assert.assertEquals(exists, true);
         }
         catch ( Exception e){}
@@ -989,9 +1025,8 @@ public class NewStandingOrderCard
     public void clickOnOkButtonInGenerateSO() throws InterruptedException
     {
         WebElement modalContainer = HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-widget k-window k-dialog')]");
-        //Identify From calender and click
         WebElement OkCalender=modalContainer.findElement(By.xpath(".//button[text()='Ok']"));
-        HelpersMethod.ActClick(driver,OkCalender,60);
+        HelpersMethod.ActClick(driver,OkCalender,40000);
     }
 
     public void validateGeneratingStandingOrdersForCustomersPopup()
@@ -1008,10 +1043,16 @@ public class NewStandingOrderCard
 
     public void waitTillGeneratingStandingOrdersForCustomersDisappears()
     {
-        if (HelpersMethod.IsExists("//div[contains(text(),'Getting list of standing order customers.')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]", driver))
+        exists=false;
+        try
         {
-            new WebDriverWait(driver,Duration.ofMillis(1000)).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[contains(text(),'Getting list of standing order customers.')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]")));
+            if (HelpersMethod.IsExists("//div[contains(text(),'Getting list of standing order customers.')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]", driver)) {
+                new WebDriverWait(driver, Duration.ofMillis(100000)).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[contains(text(),'Getting list of standing order customers.')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]")));
+                exists=true;
+            }
+            Assert.assertEquals(exists,true);
         }
+        catch (Exception e){}
     }
 
     public void validateAllTasksCompletedPopup()

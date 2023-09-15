@@ -420,14 +420,15 @@ public class AllOrdersPageStep
     public void ifUserNavigatesToPaymentAndAddressPageClickOnBackButtonOrElseAddProductInQuickProductEntryForEditngAllOrder(DataTable tabledata) throws InterruptedException, AWTException, SQLException, ClassNotFoundException, InstantiationException, IllegalAccessException
     {
         List<List<String>> Qty=tabledata.asLists(String.class);
-       /* checkOutOrderPage=new CheckOutOrderPage(driver,scenario);
+        checkOutOrderPage=new CheckOutOrderPage(driver,scenario);
         boolean result=checkOutOrderPage.VerifyCheckOut();
         if(result==true)
         {
             checkOutOrderPage.BackButton_Click();
-        }*/
+        }
         newOE=new NewOrderEntryPage(driver,scenario);
         String Prod= DataBaseConnection.DataBaseConn(TestBase.testEnvironment.getSingle_Prod_Sql());
+        newOE.ValidateNewOE1();
         newOE.QuickProduct(Prod);
         String Case=Qty.get(0).get(0);
         String Unit=Qty.get(0).get(1);
