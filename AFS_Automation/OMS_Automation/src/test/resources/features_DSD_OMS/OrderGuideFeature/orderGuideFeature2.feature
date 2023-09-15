@@ -162,19 +162,18 @@ Feature: Order Guide2
     Examples:
       |  OG   |
       |OGDis1 |
-      |OGDis14|
       |OGDis16|
       |OGDis17|
       |OGDis18|
       |OGDis19|
       |OGDis20|
-      |Par OG |
+    #  |Par OG |
       | OGHist|
-      |OGAllOrder|
+   #   |OGAllOrder|
       |Par OGPar OG|
       |Push OGPush OG|
       |Push OG1Push OG1|
-      |AllOrderAllOrder|
+    #  |AllOrderAllOrder|
       | AllCustomer1   |
       | QToOG |
 

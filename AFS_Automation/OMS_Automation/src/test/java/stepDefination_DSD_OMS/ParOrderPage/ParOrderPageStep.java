@@ -161,8 +161,8 @@ public class ParOrderPageStep
             exists = false;
             parOrderPage = new ParOrderPage(driver, scenario);
             parOrderPage.ClickParTab();
-        exists=parOrderPage.ValidateParlistTab();
-        Assert.assertEquals(exists,true);
+            parOrderPage.ValidateParlistTab();
+
        /* orderpage=new OrderEntryPage(driver,scenario);
         //orderpage.HandleError_Page();
         //orderpage.Refresh_Page(currentURL);*/
@@ -219,8 +219,7 @@ public class ParOrderPageStep
             parOrderPage.ClickParTab();
             parOrderPage.ValidateParlistTab();
         parOrderPage = new ParOrderPage(driver, scenario);
-        exists=parOrderPage.ValidateParlistTab();
-        Assert.assertEquals(exists,true);
+        parOrderPage.ValidateParlistTab();
         parOrderPage.ClickParDropDown();
         parOrderPage.SelectParlistFromDropdown(ParList);
     }
@@ -290,14 +289,18 @@ public class ParOrderPageStep
         parOrderPage=new ParOrderPage(driver,scenario);
         Prod_No=parOrderPage.ReadProductValueFromOG();
         parOrderPage.ClickParTab();
-        exists=parOrderPage.ValidateParlistTab();
-        Assert.assertEquals(exists,true);
+     /*   parOrderPage.ValidateParlistTab();
         for(int i=0;i<=ParDetails.size()-1;i++)
         {
             parOrderPage.ClickParDropDown();
             parOrderPage.SelectParlistFromDropdown(ParDetails.get(0).get(0));
             parOrderPage.DeletePar();
-        }
+        }*/
+
+        parOrderPage=new ParOrderPage(driver,scenario);
+
+        parOrderPage.deleteAllPar();
+
     }
 
     @And("User should enter valid value for Qty for the first product in product grid")
