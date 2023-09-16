@@ -112,6 +112,11 @@ Feature: Order Entry5
     Then User Should handle Pending order popup, and select continue with pending order button
     Then User should select Note from popup and Order guide from popup
     And User should click on delivery date and select delivery date by increasing one day then user should handle the popup also
+    Then Enter PO# for New order
+      |PO123|
+    Then Enter Pro# in Quick Product Entry area
+    And Check for Case and Unit input box enabled or not based on that enter value
+      |20|20|
     Then Click on Next button
     And Click on SubmitOrder button
     Then User should be navigated to Order Entry page

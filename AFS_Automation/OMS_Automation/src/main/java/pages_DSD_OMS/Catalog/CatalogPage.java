@@ -121,6 +121,11 @@ public class CatalogPage
     {
         exists=false;
         WebElement WebEle=null;
+        if (HelpersMethod.IsExists("//div[@class='loader']", driver))
+        {
+            WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
+            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100000);
+        }
         try
         {
             if(HelpersMethod.IsExists("//button[@data-test-id='catalogGridViewBtn']//*[local-name()='svg']",driver))
@@ -153,6 +158,11 @@ public class CatalogPage
     {
         exists=false;
         WebElement WebEle=null;
+        if (HelpersMethod.IsExists("//div[@class='loader']", driver))
+        {
+            WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
+            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 80000);
+        }
         try
         {
             if(HelpersMethod.IsExists("//button[contains(@data-test-id,'catalogListViewBtn')]//*[local-name()='svg']",driver))
