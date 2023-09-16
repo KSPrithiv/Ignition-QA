@@ -610,6 +610,11 @@ public class OrderEntryPageSteps
     {
         newOE=new NewOrderEntryPage(driver,scenario);
         newOE.Import_button(Ord_No);
+        if(HelpersMethod.IsExists("//div[@class='loader']",driver))
+        {
+            WebElement WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
+            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 80000);
+        }
     }
 
     @Then("Add Qty for first product in product grid")

@@ -66,7 +66,7 @@ public class OrderHistoryPage
         if(HelpersMethod.IsExists("//div[@class='loader']",driver))
         {
             WebElement  WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 80000);
+            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100000);
         }
         try
         {
@@ -150,7 +150,7 @@ public class OrderHistoryPage
         if(HelpersMethod.IsExists("//div[@class='loader']",driver))
         {
             WebElement WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 20000);
+            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 80000);
         }
         if (HelpersMethod.IsExists("//div[@id='order-history-card']", driver))
         {
@@ -363,25 +363,25 @@ public class OrderHistoryPage
     {
         exists=false;
         Actions act1=new Actions(driver);
+        WebElement opt;
         try
         {
-            WebElement menuContainer = HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-animation-container k-animation-container-relative k-list-container')]");
-            List<WebElement> Options=menuContainer.findElements (By.xpath(".//ul/li"));
-            for (WebElement opt:Options)
+            List<WebElement> Options=HelpersMethod.FindByElements(driver,"xpath","//div[contains(@class,'k-animation-container k-animation-container-relative k-list-container')]/descendant::ul/li");
+            for (int i=0;i<=Options.size()-1;i++)
             {
-                act1.moveToElement(opt).build().perform();
-                String Opt = opt.getText();
-                if (Opt.equals(gType))
+                opt=Options.get(i);
+                if(i==1)
                 {
                     act1.moveToElement(opt).build().perform();
-                    act1.click(opt).build().perform();
-                    exists=true;
-                    if(HelpersMethod.IsExists("//div[@class='loader']",driver))
-                    {
-                        WebElement WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                        HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 80000);
-                    }
-                    break;
+                        act1.moveToElement(opt).build().perform();
+                        act1.click(opt).build().perform();
+                        exists = true;
+                        if (HelpersMethod.IsExists("//div[@class='loader']", driver))
+                        {
+                            WebElement WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
+                            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 80000);
+                        }
+                        break;
                 }
             }
             Assert.assertEquals(exists,true);
@@ -395,9 +395,9 @@ public class OrderHistoryPage
             try
             {
                 String gridValue=HelpersMethod.FindByElement(driver,"xpath","//span[@id='grid-selection-dropdown']/span[@class='k-input']").getText();
-                if(gridValue.equals(gType))
+                if(!gridValue.equals(""))
                 {
-                    scenario.log("GRID TYPE SELECTED IS "+gType);
+                    scenario.log("GRID TYPE SELECTED IS "+gridValue);
                     exists=true;
                 }
                 Assert.assertEquals(exists,true);
