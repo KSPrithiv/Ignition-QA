@@ -44,7 +44,7 @@ public class ReceivingPage extends BasePage {
     By lotColumn = By.xpath("//div[@class='k-grid-header-wrap']//span[text()= 'Lot']");
     By expDateColumn = By.xpath("//div[@class='k-grid-header-wrap']//span[text()= 'Expiration date']");
     By weightColumn = By.xpath("//div[@class='k-grid-header-wrap']//span[text()= 'Weight']");
-    By ownerColumn = By.xpath("//div[@class='k-grid-header-wrap']//span[text()= 'Owner']");
+    By customerColumn = By.xpath("//div[@class='k-grid-header-wrap']//span[text()= 'Customer']");
     By tableContent = By.cssSelector(".k-grid-table");
     By dialogTextContent = By.id("dialogTextContent");
     By dialogTitle = By.cssSelector(".k-dialog-title");
@@ -63,6 +63,7 @@ public class ReceivingPage extends BasePage {
     By searchProductList = By.id("searchProductList");
     By clearProduct = By.cssSelector(".k-clear-value");
     By invalidEntryTitle = By.xpath("//div[contains(text(), 'Invalid entry')]");
+    By loader = By.cssSelector(".loader");
 
     public void waitReceivingPageToLoad() {
         Waiters.waitTillLoadingPage(getDriver());
@@ -166,7 +167,7 @@ public class ReceivingPage extends BasePage {
 
     public boolean isWeightColumnDisplayed() {  return isElementDisplay(getWeightColumn()); }
 
-    public boolean isOwnerColumnDisplayed() { return isElementDisplay(getOwnerColumn()); }
+    public boolean isCustomerColumnDisplayed() { return isElementDisplay(getCustomerColumn()); }
 
     public boolean isPalletsLabelDisplayed() {
         Waiters.waitABit(2000);
@@ -205,7 +206,7 @@ public class ReceivingPage extends BasePage {
 
     public void clickNextButton() {
         Waiters.waitForElementToBeClickable(getNextButton());
-        clickOnElement(getNextButton());
+        jsClick(getNextButton());
         Waiters.waitABit(5000);
     }
 
@@ -252,6 +253,7 @@ public class ReceivingPage extends BasePage {
         if(getInvalidEntryTitle() != null) {
             clickOkButton();
         }
+        waitUntilInvisible(2, loader);
     }
 
     public void enterLocation(String location) {
@@ -268,17 +270,19 @@ public class ReceivingPage extends BasePage {
 
     public void clearProduct() {
         Waiters.waitForElementToBeClickable(getSearchProductListInput());
-        clearText(getSearchProductListInput());
+        clickOnElement(getClearProduct());
     }
 
     public void enterQty(String qty) {
         Waiters.waitForElementToBeDisplay(getQtyInput());
         enterText(getQtyInput(), qty);
+        pressTab(getQtyInput());
     }
 
     public void enterLot(String lot) {
         Waiters.waitForElementToBeDisplay(lotInput);
         enterText(getLotInput(), lot);
+        pressTab(getLotInput());
     }
 
     public void enterExpDate(String expDate) {
@@ -286,7 +290,7 @@ public class ReceivingPage extends BasePage {
         doubleClick(getExpDateInput());
         pressDelete(getExpDateInput());
         inputText(getExpDateInput(), expDate);
-        pressEnter(getExpDateInput());
+        pressTab(getExpDateInput());
         Waiters.waitABit(2000);
     }
 
@@ -451,7 +455,7 @@ public class ReceivingPage extends BasePage {
 
     public WebElement getWeightColumn() { return findWebElement(weightColumn); }
 
-    public WebElement getOwnerColumn() { return findWebElement(ownerColumn); }
+    public WebElement getCustomerColumn() { return findWebElement(customerColumn); }
 
     public WebElement getTableContent() { return findWebElement(tableContent); }
 

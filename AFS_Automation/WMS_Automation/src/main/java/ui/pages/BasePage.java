@@ -141,7 +141,7 @@ public class BasePage {
             Waiters.waitForElementToBeClickable(element);
             element.click();
         } catch (ElementClickInterceptedException | StaleElementReferenceException e) {
-            element.click();
+            clickOnElement(element);
         } catch (WebDriverException e) {
             throw new IllegalStateException("WebDriver exception encountered: " + e.getMessage(), e);
         }
