@@ -72,7 +72,7 @@ public class OrderEntryPageSteps5
         DateTimeFormatter myFormatObj = DateTimeFormatter.ofPattern("EEEE, MMMM d, yyyy");
         String formattedDate = myDateObj.format(myFormatObj);
         orderpage.ClickCalender();
-        orderpage.SelectDate(formattedDate, 1);
+        orderpage.SelectDatePendingOrder(formattedDate, 1);
         orderpage.ChangedDeliveryDate();
 
         //Handle Popup that appears after changing delivery date

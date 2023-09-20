@@ -790,7 +790,6 @@ public class OrderControlListPage
                     WebElement WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
                     HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 80000);
                 }
-
             }
             else
             {
@@ -818,16 +817,17 @@ public class OrderControlListPage
                 head_Text=head.getText();
                 if(head_Text.equals("Order note")||head_Text.equals("Order Note"))
                 {
-                    WebEle=HelpersMethod.FindByElement(driver,"xpath","//tr[contains(@class,'k-master-row')][1]/descendant::td["+i+"]/descendant::span[contains(@class,'CPKendoDataGrid')]");
-                    String orderNote=WebEle.getText();
-                    if(orderNote.equals("")||orderNote.equals("&nbsp;"))
+                    //WebEle=HelpersMethod.FindByElement(driver,"xpath","//tr[contains(@class,'k-master-row')][1]/descendant::td["+i+"]/descendant::span[contains(@class,'CPKendoDataGrid')]//tr[contains(@class,'k-master-row')][1]/descendant::td["+i+"]/descendant::span[contains(@class,'CPKendoDataGrid')]");
+                    //String orderNote=WebEle.getText();
+                    //if(orderNote.equals("")||orderNote.equals("&nbsp;"))
+                    if(!HelpersMethod.IsExists("//tr[contains(@class,'k-master-row')][1]/descendant::td["+i+"]/descendant::span[contains(@class,'CPKendoDataGrid')]",driver))
                     {
                         scenario.log("NO ORDER NOTE HAS BEEN ADDED");
                         exists=false;
                     }
                     else
                     {
-                        scenario.log("ORDER NOTE ADDED IS "+orderNote);
+                        scenario.log("ORDER NOTE IS ADDED");
                         exists=true;
                     }
                     break;
@@ -841,6 +841,7 @@ public class OrderControlListPage
     public void enterRouteValue()
     {
         Actions act=new Actions(driver);
+        exists=false;
         try
         {
             act.moveToElement(Route).build().perform();
@@ -850,23 +851,34 @@ public class OrderControlListPage
             HelpersMethod.ActClick(driver,dropDown,400);
             WebElement dummyEle= HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'notification-center-container')]");
             HelpersMethod.ClickBut(driver,dummyEle,80);
+            exists=true;
             if(HelpersMethod.IsExists("//div[@class='loader']",driver))
             {
                 WebElement WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
                 HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 80000);
             }
             scenario.log("ROUTE ENTERED FOR SEARCH: "+TestBase.testEnvironment.get_Route());
+            Assert.assertEquals(exists,true);
         }
         catch (Exception e){}
     }
 
     public void readAllTheCustomer()
     {
+        exists=false;
         try
         {
             List<WebElement> noRows=HelpersMethod.FindByElements(driver,"xpath","//tr[contains(@class,'k-master-row')]");
             int size= noRows.size();
-            scenario.log("NUMBER OF RECORDS FOUND FOR THE SELECTED ROUTE: "+size);
+            if(size>=0) {
+                scenario.log("NUMBER OF RECORDS FOUND FOR THE SELECTED ROUTE: " + size);
+            }
+            else
+            {
+                scenario.log("NO RECORDS FOUND");
+                exists=true;
+            }
+            Assert.assertEquals(exists,true);
         }
         catch (Exception e){}
     }
@@ -888,6 +900,7 @@ public class OrderControlListPage
 
     public void selectCustomerAndClickCommentIcon()
     {
+        exists=false;
         int i=0;
         Actions act=new Actions(driver);
         try
@@ -904,9 +917,11 @@ public class OrderControlListPage
                     HelpersMethod.ScrollElement(driver,CustomerNote);
                     act.moveToElement(CustomerNote).build().perform();
                     act.click(CustomerNote).build().perform();
+                    exists=true;
                     break;
                 }
             }
+            Assert.assertEquals(exists,true);
         }
         catch (Exception e){}
     }
@@ -954,6 +969,7 @@ public class OrderControlListPage
 
     public void verifyCustomerNoteInOCL()
     {
+        exists=false;
         int i=0;
         Actions act=new Actions(driver);
         try
@@ -968,9 +984,11 @@ public class OrderControlListPage
                 {
                     WebElement CustomerNote=HelpersMethod.FindByElement(driver,"xpath","//tr[contains(@class,'k-master-row')][1]/td["+i+"]/span/descendant::span");
                     scenario.log("CUSTOMER NOTE ADDED IS "+CustomerNote.getText());
+                    exists=true;
                     break;
                 }
             }
+            Assert.assertEquals(exists,true);
         }
         catch (Exception e){}
     }

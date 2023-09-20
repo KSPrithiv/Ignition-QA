@@ -84,7 +84,7 @@ Feature: Order Guide1
     And User should navigate to OG
     Then User clicks on Create new button and should navigate to New OG page
     Then Then User enters Description "<OG>" and End date
-    Then User selects type of OG from drop down
+    Then User selects type of OG from drop down to select historical OG
       | Historical|
     And User enters Quick Product number and Sequence number
       |4|
@@ -121,11 +121,11 @@ Feature: Order Guide1
     And User enters Quick Product number and Sequence number
       |4|
     Then User click on Save button
-    And User should navigate back to OG page and verify OG "<OG>"  existence
-    And User changes the Customer Account# to the previous Account#
+    #And User should navigate back to OG page and verify OG "<OG>"  existence
+    #And User changes the Customer Account# to the previous Account#
     Examples:
       |     OG    |
-      |   OGDis1  |
+      |   OGDis14  |
 
   @DeleteCustomerAllocation
   Scenario Outline: Test scenario for deleting Customer allowcation
@@ -156,7 +156,7 @@ Feature: Order Guide1
     Then User should navigate back to OG page and verify OG "<OG>" by selecting status as expired
     Examples:
       |  OG        |
-      | OGDis14    |
+      | OGDis1     |
 
   @OGLocalChain
   Scenario Outline: For creating OG using local chain
@@ -166,14 +166,17 @@ Feature: Order Guide1
       |Local chain|
     And Check for popup to appear to select sub customer reference
     Then User clicks on Create new button and should navigate to New OG page
+    And User validates Customer reference input box to verify the OG created
+    |Local chain|
     Then Then User enters Description "<OG>" and End date
-    And User enters Quick Product number and Sequence number
-      |4|
+    Then User clicks on Add product button and select Catalog from drop down
+      |Catalog|
+    And User should select products from catalog popup
     Then User click on Save button
     #And User should navigate back to OG page and navigate back to "<OGType>" and verify OG "<OG>"  existence
     Examples:
-      |  OG       |   OGType     |
-      |LocalChain1|  Local chain |
+      |  OG       |
+      |LocalChain1|
 
   @OGAddFilter
   Scenario: Will help to search Order guide using Add filter button

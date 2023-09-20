@@ -16,6 +16,8 @@ import util.TestBase;
 
 import java.awt.*;
 import java.sql.SQLException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 /**
@@ -386,5 +388,38 @@ public class OrderGuidePageStep1
     {
         orderGuidePage=new OrderGuidePage(driver,scenario);
         orderGuidePage.ClickCustomerAccount_No_PreviousAcc();
+    }
+
+    @Then("Then User enters Description {string} and End date for loacl chain")
+    public void thenUserEntersDescriptionAndEndDateForLoaclChain(String Og)
+    {
+        createOGPage=new CreateOGPage(driver,scenario);
+        createOGPage.DescriptionOG(Og);
+        //selecting end date
+        LocalDate myDateObj = LocalDate.now();
+        DateTimeFormatter myFormatObj = DateTimeFormatter.ofPattern("EEEE, MMMM d, yyyy");
+        String formattedDate = myDateObj.format(myFormatObj);
+        createOGPage.CalenderEnd();
+        createOGPage.SelectEndDate(formattedDate,20);
+    }
+
+    @And("User validates Customer reference input box to verify the OG created")
+    public void userValidatesCustomerReferenceInputBoxToVerifyTheOGCreated(DataTable tableData)
+    {
+        List<List<String>> custRef=tableData.asLists(String.class);
+        createOGPage=new CreateOGPage(driver,scenario);
+        createOGPage.validateCustomerReference(custRef.get(0).get(0));
+    }
+
+    @Then("User selects type of OG from drop down to select historical OG")
+    public void userSelectsTypeOfOGFromDropDownToSelectHistoricalOG(DataTable dataTable)
+    {
+        List<List<String>> Type=dataTable.asLists(String.class);
+        createOGPage = new CreateOGPage(driver, scenario);
+        createOGPage.ValidateNewOG();
+        createOGPage.Click_On_Type();
+        createOGPage.validateOGTypeDropDown();
+        createOGPage.SelectHistoricalFromDropDown(Type.get(0).get(0));
+        createOGPage.validateOGType(Type.get(0).get(0));
     }
 }
