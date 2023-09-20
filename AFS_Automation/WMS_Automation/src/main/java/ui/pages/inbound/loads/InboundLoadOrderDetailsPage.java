@@ -69,16 +69,18 @@ public class InboundLoadOrderDetailsPage extends BasePage {
     By loadCodeInput = By.xpath("//div[contains(@class,'k-textbox-container')][.//label[text()='Load code']]//input");
     By scheduledDateLabel = By.cssSelector("#cpDate-label");
     By scheduledDate = By.cssSelector("#cpDate");
+    By scheduledTimeLabel = By.cssSelector("#cpTile-label");
+    By scheduledTimeInput = By.cssSelector("#cpTile");
     By carrierLabel = By.xpath("//label[contains(text(), 'Carrier')]");
     By carrierInput = By.xpath("//span[contains(@class, 'k-textbox-container')][.//label[contains(text(), 'Carrier')]]//span[@class='k-input']");
     By trailerLabel = By.xpath("//label[contains(text(), 'Trailer')]");
     By trailerInput = By.xpath("//span[contains(@class, 'k-textbox-container')][.//label[contains(text(), 'Trailer')]]//span[@class='k-input']");
+    By paymentTypeLabel = By.xpath("//label[contains(text(), 'Payment type')]");
+    By paymentTypeInput = By.xpath("//span[contains(@class, 'k-textbox-container')][.//label[contains(text(), 'Payment type')]]//span[@class='k-input']");
     By doorLabel = By.xpath("//label[contains(text(), 'Door')]");
     By doorInput = By.xpath("//span[contains(@class, 'k-textbox-container')][.//label[contains(text(), 'Door')]]//span[@class='k-input']");
     By loadTypeLabel = By.xpath("//label[contains(text(), 'Load type')]");
     By loadTypeInput = By.xpath("//span[contains(@class, 'k-textbox-container')][.//label[contains(text(), 'Load type')]]//span[@class='k-input']");
-    By scheduledTimeLabel = By.cssSelector("#cpTile-label");
-    By scheduledTimeInput = By.cssSelector("#cpTile");
     By driverLabel = By.xpath("//label[contains(text(), 'Driver')]");
     By driverInput = By.xpath("//div[contains(@class,'k-textbox-container')][.//label[text()='Driver']]//input");
     By temperatureField = By.xpath("//span[contains(@class,'k-textbox-container')][.//label[text()='Temperature']]//input");
@@ -266,6 +268,16 @@ public class InboundLoadOrderDetailsPage extends BasePage {
     public boolean isTrailerInputDisplayed() {
         Waiters.waitForElementToBeDisplay(getTrailerInput());
         return isElementDisplay(getTrailerInput());
+    }
+
+    public boolean isPaymentTypeLabelDisplayed() {
+        Waiters.waitForElementToBeDisplay(getPaymentTypeLabel());
+        return isElementDisplay(getPaymentTypeLabel());
+    }
+
+    public boolean isPaymentTypeInputDisplayed() {
+        Waiters.waitForElementToBeDisplay(getPaymentTypeInput());
+        return isElementDisplay(getPaymentTypeInput());
     }
 
     public boolean isDoorLabelDisplayed() {
@@ -565,6 +577,13 @@ public class InboundLoadOrderDetailsPage extends BasePage {
         clickOnElement(getBtnProductEdit());
     }
 
+    public void clickImagesButton() {
+        Waiters.waitTillLoadingPage(getDriver());
+        Waiters.waitForElementToBeDisplay(getImagesButton());
+        clickOnElement(getImagesButton());
+        Waiters.waitTillLoadingPage(getDriver());
+    }
+
     public boolean isInvalidEntryPopUpPresent() {
         return isElementPresent(getInvalidEntryPopup());
     }
@@ -678,13 +697,17 @@ public class InboundLoadOrderDetailsPage extends BasePage {
 
     public WebElement getCarrierInput() { return findWebElement(carrierInput); }
 
-    public WebElement getDoorLabel() { return findWebElement(doorLabel); }
-
-    public WebElement getDoorInput() { return findWebElement(doorInput); }
-
     public WebElement getTrailerLabel() { return findWebElement(trailerLabel); }
 
     public WebElement getTrailerInput() { return findWebElement(trailerInput); }
+
+    public WebElement getPaymentTypeLabel() { return findWebElement(paymentTypeLabel); }
+
+    public WebElement getPaymentTypeInput() { return findWebElement(paymentTypeInput); }
+
+    public WebElement getDoorLabel() { return findWebElement(doorLabel); }
+
+    public WebElement getDoorInput() { return findWebElement(doorInput); }
 
     public WebElement getLoadTypeLabel() { return findWebElement(loadTypeLabel); }
 

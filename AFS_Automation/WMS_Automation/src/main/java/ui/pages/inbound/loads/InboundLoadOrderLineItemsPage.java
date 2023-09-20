@@ -76,6 +76,10 @@ public class InboundLoadOrderLineItemsPage extends BasePage {
     By refusalReasonInput = By.xpath("//label[contains(text(), 'Refusal reason')]//following-sibling::span");
     By saveButton = By.xpath("//button[contains(text(), 'Save')]");
     By cancelButton = By.xpath("//button[contains(text(), 'Cancel')]");
+    By saveEditButton = By.id("saveEditButton");
+    By inboundImageCaptureButton = By.cssSelector(".inboundImageCaptureOpButtonDiv button");
+    By selectFilesBtn = By.xpath("//div[@aria-label='Select files']");
+    By loadImageLabel = By.xpath("//span[text()='Load image(s)']");
 
     public void waitForInboundLoadOrderLineItemsPageToLoad() {
         Waiters.waitUntilPageWillLoadedSelenide();
@@ -320,6 +324,26 @@ public class InboundLoadOrderLineItemsPage extends BasePage {
         return isElementDisplay(getCommentsButton());
     }
 
+    public boolean isSaveEditButtonDisplayed() {
+        Waiters.waitForElementToBeDisplay(getSaveEditButton());
+        return isElementDisplay(getSaveEditButton());
+    }
+
+    public boolean isInboundImageCaptureButtonDisplayed() {
+        Waiters.waitForElementToBeDisplay(getInboundImageCaptureButton());
+        return isElementDisplay(getInboundImageCaptureButton());
+    }
+
+    public boolean isSelectFilesBtnDisplayed() {
+        Waiters.waitForElementToBeDisplay(getSelectFilesBtn());
+        return isElementDisplay(getSelectFilesBtn());
+    }
+
+    public boolean isLoadImageLabelDisplayed() {
+        Waiters.waitForElementToBeDisplay(getLoadImageLabel());
+        return isElementDisplay(getLoadImageLabel());
+    }
+
     public void clickOrderLocationLink() {
         Waiters.waitForElementToBeDisplay(getOrderLocationLink());
         clickOnElement(getOrderLocationLink());
@@ -477,4 +501,11 @@ public class InboundLoadOrderLineItemsPage extends BasePage {
 
     public WebElement getCancelButton() { return findWebElement(cancelButton); }
 
+    public WebElement getInboundImageCaptureButton() { return findWebElement(inboundImageCaptureButton); }
+
+    public WebElement getSelectFilesBtn() { return findWebElement(selectFilesBtn); }
+
+    public WebElement getLoadImageLabel() { return findWebElement(loadImageLabel); }
+
+    public WebElement getSaveEditButton() { return findWebElement(saveEditButton); }
 }

@@ -148,6 +148,8 @@ Feature: Testing of Inbound Orders details screen
     And Clicks data option on Inbound Order Details page
     And Validates Enter data screen on Inbound Order Details page
 
+
+
   Scenario: Checking Comments on Inbound Order details page
     Given User signs in the application
     And Main page is loaded

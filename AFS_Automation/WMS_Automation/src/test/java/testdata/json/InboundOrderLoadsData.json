@@ -23,7 +23,18 @@
     "product code 2": "01147",
     "product code 3": "00493",
     "product code 4": "00540",
-    "product code 5": "00610"
+    "product code 5": "00610",
+    "product code 6": "0044",
+    "product code 7": "0045"
+  },
+  "product names":
+  {
+    "product name 1": "ACME Co.",
+    "product name 2": "ackson, Lincoln and Adams Atorneys at Law",
+    "product name 3": "Formen Inc",
+    "product name 4": "DD Foods",
+    "product name 5": "Grand Company",
+    "product name 6": "Koch Foods, Inc."
   },
   "temperatures":
   {

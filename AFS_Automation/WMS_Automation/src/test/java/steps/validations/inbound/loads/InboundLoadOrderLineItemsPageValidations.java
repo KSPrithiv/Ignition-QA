@@ -113,4 +113,15 @@ public class InboundLoadOrderLineItemsPageValidations {
         softAssert.assertTrue(inboundLoadOrderLineItemsPage.isCommentsButtonDisplayed(),"Comments Button is not displayed");
         softAssert.assertAll();
     }
+
+    @And("Validates Load Images on Inbound Load Order Line Items page")
+    public void validateLoadImagesForOrder() {
+        SoftAssert softAssert = new SoftAssert();
+        softAssert.assertTrue(inboundLoadOrderLineItemsPage.isSaveEditButtonDisplayed(), "Save Edit Button is not displayed");
+        softAssert.assertTrue(inboundLoadOrderLineItemsPage.isInboundImageCaptureButtonDisplayed(), "Inbound Image Capture Button is not displayed");
+        softAssert.assertTrue(inboundLoadOrderLineItemsPage.isSelectFilesBtnDisplayed(), "Select Files Button is not displayed");
+        softAssert.assertTrue(inboundLoadOrderLineItemsPage.isLoadImageLabelDisplayed(), "Load Image Label is not displayed");
+        softAssert.assertAll();
+    }
+
 }

@@ -22,4 +22,8 @@ public class ProductCodesDTO implements Serializable {
 	private String productCode4;
 	@JsonProperty("product code 5")
 	private String productCode5;
+	@JsonProperty("product code 6")
+	private String productCode6;
+	@JsonProperty("product code 7")
+	private String productCode7;
 }

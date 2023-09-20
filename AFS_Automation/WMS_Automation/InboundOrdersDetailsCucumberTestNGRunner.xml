@@ -5,7 +5,7 @@
         <parameter name="environment" value="properties/config_test.properties"/>
         <parameter name="browser" value="properties/config_test.properties"/>
         <classes>
-            <class name="runners.InboundInboundOrdersCucumberRunner" />
+            <class name="runners.InboundOrdersDetailsCucumberRunner" />
         </classes>
     </test>
 </suite>

@@ -156,3 +156,18 @@ Feature: Testing of Inbound Load Order Line Item screen functionality
     Then Select Load with index 0 on Inbound Load Summary page
     And Select Load Order with index 0 on Inbound Load Summary page
     And Validates Inbound Load Order details page contains all web elements
+
+  Scenario: Verification of image link on Inbound Load order line item details page
+    Given User signs in the application
+    And Main page is loaded
+    And DockManagement Summary Page is validated
+    And Go to Loads page
+    And Inbound Load Summary page appears
+    And Inbound Load Summary page main elements are present
+    When Types start date by index 4 on Inbound Load Summary page
+    And Validates loads are present on Inbound Load Summary page
+    Then Select Load with index 0 on Inbound Load Summary page
+    And Select Load Order with index 0 on Inbound Load Summary page
+    And Select Order Product with index 0 on Inbound Load Order Summary page
+    And Clicks Images button on Inbound Load Summary page
+    And Validates Load Images on Inbound Load Order Details page

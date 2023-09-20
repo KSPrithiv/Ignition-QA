@@ -18,6 +18,8 @@ public class InboundOrderLoadsDTO implements Serializable {
 	private EndDatesDTO endDates;
 	@JsonProperty("product codes")
 	private ProductCodesDTO productCodes;
+	@JsonProperty("product names")
+	private ProductNamesDTO productNames;
 	@JsonProperty("temperatures")
 	private TemperaturesDTO temperatures;
 	@JsonProperty("seal numbers")

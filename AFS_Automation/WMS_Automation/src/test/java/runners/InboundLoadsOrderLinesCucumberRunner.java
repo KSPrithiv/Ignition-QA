@@ -17,7 +17,7 @@ import java.io.IOException;
 
 import static common.setup.DriverManager.*;
 
-@CucumberOptions(features = {"src/test/resources/features/inbound/inboundorders"},
+@CucumberOptions(features = {"src/test/resources/features/inbound/loads/loadorderline"},
         glue = {"steps"},
         plugin = {"pretty",
                 "json:target/cucumber.json",
@@ -26,7 +26,7 @@ import static common.setup.DriverManager.*;
                 "rerun:target/failedrerun.txt"
         }, monochrome = true, tags = "@Inbound")
 @Slf4j
-public class InboundInboundOrdersCucumberRunner extends AbstractTestNGCucumberTests {
+public class InboundLoadsOrderLinesCucumberRunner extends AbstractTestNGCucumberTests {
     public static Environment environment;
 
     @Parameters({"environment","browser"})
