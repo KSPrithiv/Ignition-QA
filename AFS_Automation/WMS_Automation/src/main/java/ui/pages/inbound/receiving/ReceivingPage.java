@@ -206,8 +206,8 @@ public class ReceivingPage extends BasePage {
 
     public void clickNextButton() {
         Waiters.waitForElementToBeClickable(getNextButton());
-        jsClick(getNextButton());
-        Waiters.waitABit(5000);
+        clickOnElement(getNextButton());
+        Waiters.waitABit(2000);
     }
 
     public void clickReceiveButton() {
@@ -295,8 +295,20 @@ public class ReceivingPage extends BasePage {
     }
 
     public void enterLPN(String lpn) {
+        if(isVisible(By.xpath("//button[text()='No']"))) {
+            clickOnElement(findWebElement(By.xpath("//button[text()='No']")));
+        }
         Waiters.waitForElementToBeDisplay(getTxtAddProductLPN());
-        enterText(getTxtAddProductLPN(), lpn);
+        clearText(getTxtAddProductLPN());
+        Waiters.waitABit(2000);
+        if(isVisible(By.xpath("//button[text()='Yes']"))) {
+            clickOnElement(findWebElement(By.xpath("//button[text()='Yes']")));
+        }
+        Waiters.waitABit(2000);
+        inputText(getTxtAddProductLPN(), lpn);
+        if(isVisible(By.xpath("//button[text()='No']"))) {
+            clickOnElement(findWebElement(By.xpath("//button[text()='No']")));
+        }
     }
 
     public void clearLPN() {

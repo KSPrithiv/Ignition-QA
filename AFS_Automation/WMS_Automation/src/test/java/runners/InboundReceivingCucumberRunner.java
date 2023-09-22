@@ -9,6 +9,7 @@ import io.cucumber.testng.CucumberOptions;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.aeonbits.owner.ConfigFactory;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.ITestResult;
 import org.testng.annotations.*;
 
@@ -49,19 +50,13 @@ public class InboundReceivingCucumberRunner extends AbstractTestNGCucumberTests 
                 driverThreadLocal.get().quit();
                 quitDriver();
             } catch (Exception e) {
-                //   FileUtils.forceDelete(new File("C:/Users/Irina.Holovan/Desktop/chrome/" + DriverManager.COUNTER));
-               /* System.out.println("Error closing and quitting the web driver: " + e.getMessage());
-                quitDriver();
-//             if(getDriver() instanceof ChromeDriver){
-                    try {
-                        //  FileUtils.forceDelete(new File("C:/Users/Irina.Holovan/Desktop/chrome/" + DriverManager.COUNTER));
-                        Runtime.getRuntime().exec("taskkill /F /IM chromedriver.exe");
-                    } catch (IOException ex) {
-                        System.out.println("Error force quitting the ChromeDriver process: " + ex.getMessage());
-                    }*/
+                if(getDriver() instanceof ChromeDriver) {
+                    //   Runtime.getRuntime().exec("taskkill /F /IM chromedriver.exe");
+                }
             }
         }
     }
+
     @AfterClass
     public static void afterClass() throws InterruptedException, MessagingException, IOException {
       //  MailSend_WMS.sendMail();

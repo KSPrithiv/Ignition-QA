@@ -7,7 +7,6 @@ import ui.pages.inbound.receiving.ReceivingPage;
 
 public class ReceivingPageValidations {
     ReceivingPage receivingPage = new ReceivingPage();
-    SoftAssert softAssert = new SoftAssert();
 
     @And("Receiving page contains all web elements")
     public void validateReceivingPage() {
