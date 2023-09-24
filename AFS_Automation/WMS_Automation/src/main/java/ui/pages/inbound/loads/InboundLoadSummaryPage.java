@@ -161,6 +161,9 @@ public class InboundLoadSummaryPage extends BasePage {
         clickOnElement(loadedOption);
         Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitABit(2000);
+        if(isVisible(By.xpath("//button[text()='Ok']"))) {
+            clickOnElement(findWebElement(By.xpath("//button[text()='Ok']")));
+        }
     }
 
     public void clickLoadOptionDropDown() {

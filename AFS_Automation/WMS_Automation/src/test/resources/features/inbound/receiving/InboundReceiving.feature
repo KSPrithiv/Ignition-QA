@@ -192,6 +192,8 @@ Feature: Testing of Receiving functionality
     And Receiving page contains all web elements
     And Back button is clickable on Receiving page
     And User clicks Next button on Receiving page
+    And User clicks Next button on Receiving page
+    And User clicks Next button on Receiving page
     And Types "0011" LPN on Receiving page
     And User clicks Next button on Receiving page
     And Validates "Invalid pallet number 0011" message content on dialog popup on Receiving page
@@ -230,8 +232,6 @@ Feature: Testing of Receiving functionality
     And Types "00493" product on Receiving page
     And Clears Product on Receiving page
     And Types "1234" product on Receiving page
-    And Clears Product on Receiving page
-    And Types "1234" product on Receiving page
-    And Types "1" Lot on Receiving page
-    And Types "01/01/2050" Expiration date on Receiving page
+ #   And Types "1" Lot on Receiving page
+  #  And Types "01/01/2050" Expiration date on Receiving page
     And Types "1" Qty on Receiving page

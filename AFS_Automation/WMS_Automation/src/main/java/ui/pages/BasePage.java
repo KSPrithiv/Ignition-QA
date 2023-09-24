@@ -141,7 +141,7 @@ public class BasePage {
             Waiters.waitForElementToBeClickable(element);
             element.click();
         } catch (ElementClickInterceptedException | StaleElementReferenceException e) {
-            clickOnElement(element);
+            jsClick(element);
         } catch (WebDriverException e) {
             throw new IllegalStateException("WebDriver exception encountered: " + e.getMessage(), e);
         }
@@ -368,7 +368,7 @@ public class BasePage {
         }
     }
 
-    public void waitUntilVisible(By by, int timeout) {
+    public void waitUntilVisible(int timeout, By by) {
         try {
             ExpectedCondition<Boolean> elementInvisible = driver -> isVisible(by);
             until(elementInvisible, timeout);
