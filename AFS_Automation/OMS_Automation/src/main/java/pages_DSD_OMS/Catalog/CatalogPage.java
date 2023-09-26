@@ -148,8 +148,8 @@ public class CatalogPage
                 if(!HelpersMethod.IsExists("//button[@data-test-id='catalogGridViewBtn' and contains(@class,'k-primary')]//*[local-name()='svg']",driver))
                 {
                     WebElement CardView = HelpersMethod.FindByElement(driver, "xpath", "//button[@data-test-id='catalogGridViewBtn']");
-                    act.moveToElement(CardView).build().perform();
-                    HelpersMethod.JScriptClick(driver, CardView, 4000);
+                    act.moveToElement(CardView).click().build().perform();
+                    //HelpersMethod.JScriptClick(driver, CardView, 4000);
                     if (HelpersMethod.IsExists("//div[@class='loader']", driver))
                     {
                         WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
@@ -179,12 +179,17 @@ public class CatalogPage
                 if(!HelpersMethod.IsExists("//button[contains(@data-test-id,'catalogListViewBtn' and contains(@class,'k-primary')]//*[local-name()='svg']",driver))
                 {
                     WebElement LView = HelpersMethod.FindByElement(driver, "xpath", "//button[contains(@data-test-id,'catalogListViewBtn')]");
-                    act.moveToElement(LView).build().perform();
-                    HelpersMethod.JScriptClick(driver, LView, 4000);
+                    act.moveToElement(LView).click().build().perform();
+                    //HelpersMethod.JScriptClick(driver, LView, 4000);
                     if (HelpersMethod.IsExists("//div[@class='loader']", driver))
                     {
                         WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
                         HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 600000);
+                    }
+                    String status = HelpersMethod.returnDocumentStatus(driver);
+                    if (status.equals("loading"))
+                    {
+                        HelpersMethod.waitTillLoadingPage(driver);
                     }
                 }
             }

@@ -906,10 +906,20 @@ public class OrderEntryPage
                 WebElement okButton = ogPopup.findElement(By.xpath(".//button[text()='Ok']"));
                 HelpersMethod.ClickBut(driver, okButton, 1000);
                 scenario.log("ORDER GUIDE POPUP HAS BEEN FOUND");
+                status = HelpersMethod.returnDocumentStatus(driver);
+                if (status.equals("loading"))
+                {
+                    HelpersMethod.waitTillLoadingPage(driver);
+                }
                 if (HelpersMethod.IsExists("//div[@class='loader']", driver))
                 {
                     WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 600000);
+                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 800000);
+                }
+                status = HelpersMethod.returnDocumentStatus(driver);
+                if (status.equals("loading"))
+                {
+                    HelpersMethod.waitTillLoadingPage(driver);
                 }
             }
         }

@@ -129,6 +129,7 @@ public class CatalogPageStep
         orderpage = new OrderEntryPage(driver, scenario);
         if(flag1==false)
         {
+            orderpage = new OrderEntryPage(driver, scenario);
             orderpage.NavigateToOrderEntry();
         }
     }

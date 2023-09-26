@@ -195,7 +195,10 @@ public class QuotePageSteps
     public void userShouldBeNavigatedToQuoteSummaryPageAndClickOnConvertOrderButton()
     {
         quoteSummaryPage=new QuoteSummaryPage(driver,scenario);
+        quoteSummaryPage.ValidateQuoteSummary();
         quoteSummaryPage.ClickOnConvertOrder();
+        quoteSummaryPage.validateConvertOrderDialog();
+        quoteSummaryPage.clickOnYesInConvertOrderDialog();
     }
 
     @And("User should be navigated to Quote summary page and click on cancel button")
