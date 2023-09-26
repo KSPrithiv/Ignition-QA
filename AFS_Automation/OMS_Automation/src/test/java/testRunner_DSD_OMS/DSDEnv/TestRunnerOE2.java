@@ -14,14 +14,9 @@ import java.io.IOException;
  * @Author Divya.Ramadas@afsi.com
  */
 @CucumberOptions(features = {
-        "src/test/resources/features_DSD_OMS/OrderEntryFeature/orderEntryFeature1.feature",
-        "src/test/resources/features_DSD_OMS/OrderEntryFeature/orderEntryFeature2.feature",
-        "src/test/resources/features_DSD_OMS/OrderEntryFeature/orderEntryFeature3.feature",
-        "src/test/resources/features_DSD_OMS/OrderEntryFeature/orderEntryFeature4.feature",
+
         "src/test/resources/features_DSD_OMS/OrderEntryFeature/orderEntryFeature5.feature",
                              "src/test/resources/features_DSD_OMS/OrderEntryFeature/orderEntryFeature6.feature",
-        "src/test/resources/features_DSD_OMS/OrderEntryFeature/orderEntryFeature7.feature",
-        "src/test/resources/features_DSD_OMS/OrderEntryFeature/orderEntryFeature8.feature",
 },
         glue = {"stepDefination_DSD_OMS"},
         plugin = {"pretty",
