@@ -33,6 +33,16 @@ public class InboundLoadSummaryPageSteps {
     }
 
     @Step
+    @And("User types product code by index {int} on Inbound Load Summary page")
+    public void typeValueInSearch(int index) {
+        log.info("User types product code by index {int} on Inbound Load Summary page");
+        List<String> codes = List.of(inboundOrderLoadsDTO.getProductCodes().getProductCode1(), inboundOrderLoadsDTO
+                .getProductCodes().getProductCode2(), inboundOrderLoadsDTO.getProductCodes().getProductCode3(),
+                inboundOrderLoadsDTO.getProductCodes().getProductCode4(), inboundOrderLoadsDTO.getProductCodes().getProductCode5());
+        inboundLoadSummaryPage.typeValueInSearch(codes.get(index));
+    }
+
+    @Step
     @When("User searches for Loads starting from {string} date")
     public void findLoadsFromDate(String date) {
         log.info("Finding Loads starting range " + date);
@@ -374,13 +384,46 @@ public class InboundLoadSummaryPageSteps {
     }
 
     @Step
-    @Then("Types product by index {int} on Inbound Load Summary page")
+    @Then("Types {string} in Search Input on Inbound Load Summary page")
+    public void typeValueInSearch(String value) {
+        log.info("Searching " + value + " in Search");
+        inboundLoadSummaryPage.typeValueInSearch(value);
+    }
+
+    @Step
+    @Then("Types product code by index {int} on Inbound Load Summary page")
+    public void typeProductCodeByIndex(int index) {
+        log.info("Searching product by index");
+        List<String> productCodes = List.of(inboundOrderLoadsDTO.getProductCodes().getProductCode1(), inboundOrderLoadsDTO
+                .getProductCodes().getProductCode2(), inboundOrderLoadsDTO.getProductCodes().getProductCode3(),
+                inboundOrderLoadsDTO.getProductCodes().getProductCode4(), inboundOrderLoadsDTO.getProductCodes().getProductCode5(),
+                inboundOrderLoadsDTO.getProductCodes().getProductCode6(),  inboundOrderLoadsDTO.getProductCodes().getProductCode7());
+        inboundLoadSummaryPage.typeValueInSearch(productCodes.get(index));
+    }
+
+    @Step
+    @Then("Types product name by index {int} on Inbound Load Summary page")
     public void typeProductByIndex(int index) {
         log.info("Searching product by index");
-        List<String> products = List.of(inboundOrderLoadsDTO.getProductCodes().getProductCode1(), inboundOrderLoadsDTO
-                .getProductCodes().getProductCode2(), inboundOrderLoadsDTO.getProductCodes().getProductCode3(),
-                inboundOrderLoadsDTO.getProductCodes().getProductCode4(), inboundOrderLoadsDTO.getProductCodes().getProductCode5());
-        inboundLoadSummaryPage.typeProduct(products.get(index));
+        List<String> products = List.of(inboundOrderLoadsDTO.getProductNames().getProductName1(), inboundOrderLoadsDTO
+                .getProductNames().getProductName2(), inboundOrderLoadsDTO.getProductNames().getProductName3(),
+                inboundOrderLoadsDTO.getProductNames().getProductName4(), inboundOrderLoadsDTO.getProductNames().getProductName5(),
+                inboundOrderLoadsDTO.getProductNames().getProductName6());
+        inboundLoadSummaryPage.typeValueInSearch(products.get(index));
+    }
+
+    @Step
+    @And("Clicks clear icon search input on Inbound Load Summary page")
+    public void clickClearSearchInput() {
+        log.info("Click Clear Search input");
+        inboundLoadSummaryPage.clearSearchInput();
+    }
+
+    @Step
+    @And("Cleans search input on Inbound Load Summary page")
+    public void cleanSearchInput() {
+        log.info("Clean Search Input");
+        inboundLoadSummaryPage.cleanSearchInput();
     }
 
     @Step
@@ -481,6 +524,20 @@ public class InboundLoadSummaryPageSteps {
     public void selectLoadOrderByLoadNumber(int num) {
         log.info("Check Load Order by number " + num);
         inboundLoadSummaryPage.clickLoadOrderByNumber(num);
+    }
+
+    @Step
+    @And("Clicks Images button on Inbound Load Summary page")
+    public void clickImagesButton() {
+        log.info("Clicks Images button");
+        inboundLoadSummaryPage.clickImagesButton();
+    }
+
+    @Step
+    @And("Clicks Comments button on Inbound Load Summary page")
+    public void clickCommentsButton() {
+        log.info("Clicks Comments button");
+        inboundLoadSummaryPage.clickCommentsButton();
     }
 
     @Step

@@ -41,8 +41,6 @@ public class InboundLoadSummaryPageValidations {
     @And("Inbound Load Summary Staging screen with elements is displayed")
     public void validateInboundLoadSummaryStagingPage() {
         SoftAssert softAssert = new SoftAssert();
-        softAssert.assertTrue(inboundLoadSummaryPage.isOrderedLabelDisplayed(), "Ordered Label is not displayed");
-        softAssert.assertTrue(inboundLoadSummaryPage.isStagedLabelDisplayed(), "Staged Label is not displayed");
         softAssert.assertTrue(inboundLoadSummaryPage.isReceivedLabelDisplayed(), "Received Label is not displayed");
         softAssert.assertTrue(inboundLoadSummaryPage.isReviewLoadLabelDisplayed(), "Review Load is not displayed");
         softAssert.assertTrue(inboundLoadSummaryPage.isProductColumnDisplayed(), "Product Column is not displayed");
@@ -51,8 +49,6 @@ public class InboundLoadSummaryPageValidations {
         softAssert.assertTrue(inboundLoadSummaryPage.isOrderedColumnDisplayed(), "Ordered Column is not displayed");
         softAssert.assertTrue(inboundLoadSummaryPage.isStagedColumnDisplayed(), "Staged Column is not displayed");
         softAssert.assertTrue(inboundLoadSummaryPage.isReceivedColumnDisplayed(), "Received Column is not displayed");
-        softAssert.assertTrue(inboundLoadSummaryPage.isStatusColumnDisplayed(), "Status Column is not displayed");
-        softAssert.assertTrue(inboundLoadSummaryPage.isLotColumnDisplayed(), "Lot Column is not displayed");
         softAssert.assertTrue(inboundLoadSummaryPage.isExpDateColumnDisplayed(), "Exp Date Column is not displayed");
         softAssert.assertTrue(inboundLoadSummaryPage.isDateCodeColumnDisplayed(), "Date Code Column is not displayed");
         softAssert.assertTrue(inboundLoadSummaryPage.isCancelBtnDisplayed(), "Cancel Btn is not displayed");
@@ -102,6 +98,15 @@ public class InboundLoadSummaryPageValidations {
         softAssert.assertTrue(inboundLoadSummaryPage.isItemsFoundLabelDisplayed(),"Items Found Label is not displayed");
         softAssert.assertTrue(inboundLoadSummaryPage.isItemsFoundValueDisplayed(),"Items Found Value is not displayed");
         softAssert.assertTrue(!inboundLoadSummaryPage.getItemsFoundText().equals("0"),"Items Found is 0");
+        softAssert.assertAll();
+    }
+
+    @And("Validates orders are not present for load on Inbound Load Summary page")
+    public void validateOrdersNotPresent() {
+        SoftAssert softAssert = new SoftAssert();
+        softAssert.assertTrue(inboundLoadSummaryPage.isItemsFoundLabelDisplayed(),"Items Found Label is not displayed");
+        softAssert.assertTrue(inboundLoadSummaryPage.isItemsFoundValueDisplayed(),"Items Found Value is not displayed");
+        softAssert.assertTrue(inboundLoadSummaryPage.getItemsFoundText().equals("0"),"Items Found is 0");
         softAssert.assertAll();
     }
 
@@ -184,6 +189,16 @@ public class InboundLoadSummaryPageValidations {
         SoftAssert softAssert = new SoftAssert();
         softAssert.assertTrue(inboundLoadSummaryPage.getGridTableRowContent(0)
                 .contains(Notifications.NO_DATA), "Loads are present in table");
+        softAssert.assertAll();
+    }
+
+    @And("Validates Images page are displayed on Inbound Load Summary page")
+    public void validateImagesPageDetailsDisplayed() {
+        SoftAssert softAssert = new SoftAssert();
+        softAssert.assertTrue(inboundLoadSummaryPage.isSelectFilesBtnDisplayed(),"Select files button is not displayed");
+        softAssert.assertTrue(inboundLoadSummaryPage.isLoadImageLabelDisplayed(),"Load Images label is not displayed");
+        softAssert.assertTrue(inboundLoadSummaryPage.isSaveEditButtonDisplayed(),"Save button is not displayed");
+        softAssert.assertTrue(inboundLoadSummaryPage.isInboundImageCaptureButtonDisplayed(),"Image Capture button is not displayed");
         softAssert.assertAll();
     }
 

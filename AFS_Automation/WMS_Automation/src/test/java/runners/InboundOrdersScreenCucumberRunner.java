@@ -15,10 +15,10 @@ import org.testng.annotations.*;
 
 import javax.mail.MessagingException;
 import java.io.IOException;
-import static common.setup.DriverManager.*;
-import static common.setup.DriverManager.getDriver;
 
-@CucumberOptions(features = {"src/test/resources/features/inbound/receiving"},
+import static common.setup.DriverManager.*;
+
+@CucumberOptions(features = {"src/test/resources/features/inbound/inboundorders/screen"},
         glue = {"steps"},
         plugin = {"pretty",
                 "json:target/cucumber.json",
@@ -27,7 +27,7 @@ import static common.setup.DriverManager.getDriver;
                 "rerun:target/failedrerun.txt"
         }, monochrome = true, tags = "@Inbound")
 @Slf4j
-public class InboundReceivingCucumberRunner extends AbstractTestNGCucumberTests {
+public class InboundOrdersScreenCucumberRunner extends AbstractTestNGCucumberTests {
     public static Environment environment;
 
     @Parameters({"environment","browser"})
@@ -56,7 +56,6 @@ public class InboundReceivingCucumberRunner extends AbstractTestNGCucumberTests 
             }
         }
     }
-
     @AfterClass
     public static void afterClass() throws InterruptedException, MessagingException, IOException {
       //  MailSend_WMS.sendMail();

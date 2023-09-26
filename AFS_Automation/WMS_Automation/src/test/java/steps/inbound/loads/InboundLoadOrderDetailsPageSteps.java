@@ -27,9 +27,17 @@ public class InboundLoadOrderDetailsPageSteps {
     }
 
     @Step
+    @And("Getting Product Details on Inbound Load Summary page")
     public List<ProductData> getProductDetails() {
-        log.info("Getting Product Details ");
+        log.info("Getting Product Details on Inbound Load Summary page");
         return inboundLoadOrderDetailsPage.getProductDetails();
+    }
+
+    @Step
+    @And("Clicks Images button on Inbound Load Order Summary page")
+    public void clickImagesButton() {
+        log.info("Clicks Images button on Inbound Load Summary page");
+        inboundLoadOrderDetailsPage.clickImagesButton();
     }
 
     @Step

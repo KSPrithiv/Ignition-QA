@@ -115,6 +115,12 @@ public class InboundLoadSummaryPage extends BasePage {
     By cancelBtn = By.id("btnReviewCancel");
     By saveBtn = By.id("btnReviewSave");
     By loader = By.cssSelector(".loader");
+    By searchInput = By.cssSelector("#SummaryInboundLoad_DataSearch");
+    By clearSearchButton = By.cssSelector(".i-search-box .i-search-box__clear");
+    By selectFilesBtn = By.xpath("//div[@aria-label='Select files']");
+    By loadImageLabel = By.xpath("//span[text()='Load image(s)']");
+    By saveEditButton = By.id("saveEditButton");
+    By inboundImageCaptureButton = By.cssSelector(".inboundImageCaptureOpButtonDiv button");
 
     private By getCarrier(String carrier) {
         return By.xpath("//span[contains(@role,'listbox')][.//span[contains(text(), '" + carrier + "')]]");
@@ -146,12 +152,18 @@ public class InboundLoadSummaryPage extends BasePage {
     public void selectLoadOption(String option) {
         Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(getLoadOptionsButton());
-        Waiters.waitABit(4000);
+        Waiters.waitABit(2000);
         clickOnElement(getLoadOptionsButton());
         WebElement loadedOption = findWebElement(By.xpath("//div[contains(@class, 'k-animation-container-shown')]//*[contains(text(), '"
                 + option + "')]"));
+        scrollToCenter(loadedOption);
+        Waiters.waitABit(2000);
         clickOnElement(loadedOption);
-        waitUntilInvisible(2, loader);
+        Waiters.waitTillLoadingPage(getDriver());
+        Waiters.waitABit(2000);
+        if(isVisible(By.xpath("//button[text()='Ok']"))) {
+            clickOnElement(findWebElement(By.xpath("//button[text()='Ok']")));
+        }
     }
 
     public void clickLoadOptionDropDown() {
@@ -194,7 +206,7 @@ public class InboundLoadSummaryPage extends BasePage {
                     .findFirst()
                     .orElseThrow(() -> new IllegalArgumentException("Status " + status + " is not found"));
         clickOnElement(option);
-        waitUntilInvisible(2, loader);
+        Waiters.waitTillLoadingPage(getDriver());
     }
 
     public void selectWarehouse(String warehouse) {
@@ -205,7 +217,7 @@ public class InboundLoadSummaryPage extends BasePage {
                 .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException("Warehouse " + warehouse + " is not found"));
         clickOnElement(option);
-        waitUntilInvisible(2, loader);
+        Waiters.waitTillLoadingPage(getDriver());
     }
 
     public int getRowsCount() {
@@ -232,7 +244,7 @@ public class InboundLoadSummaryPage extends BasePage {
         scrollTo(By.xpath("//span[contains(text(), 'Statistics')]"));
         Waiters.waitTillLoadingPage(getDriver());
         jsClick(loads.get(loadNum));
-        waitUntilInvisible(5, loader);
+        waitUntilInvisible(3, loader);
     }
 
     public void searchLoad(String load) {
@@ -264,6 +276,20 @@ public class InboundLoadSummaryPage extends BasePage {
         Waiters.waitForElementToBeDisplay(getEnterNameInput());
         clearText(getEnterNameInput());
         waitUntilInvisible(2, loader);
+    }
+
+    public void clearSearchInput() {
+        Waiters.waitTillLoadingPage(getDriver());
+        Waiters.waitForElementToBeDisplay(clearSearchButton);
+        clickOnElement(clearSearchButton);
+    }
+
+    public void cleanSearchInput() {
+        Waiters.waitTillLoadingPage(getDriver());
+        Waiters.waitForElementToBeDisplay(getSearchInput());
+        doubleClick(getSearchInput());
+        pressDelete(getSearchInput());
+        pressEnter(getSearchInput());
     }
 
     public void cleanProduct() {
@@ -386,9 +412,16 @@ public class InboundLoadSummaryPage extends BasePage {
         Waiters.waitTillLoadingPage(getDriver());
         scrollTo(By.xpath("//span[contains(text(), 'Statistics')]"));
         Waiters.waitTillLoadingPage(getDriver());
-        Waiters.waitABit(1000);
-        clickOnElement(findWebElements(By.xpath("//div[contains(@class, 'BarsContainer')]/parent::*//input[@type='checkbox']"))
+        Waiters.waitABit(2000);
+        jsClick(findWebElements(By.xpath("//div[contains(@class, 'BarsContainer')]/parent::*//input[@type='checkbox']"))
                 .get(index));
+    }
+
+    public void typeValueInSearch(String text) {
+        Waiters.waitTillLoadingPage(getDriver());
+        Waiters.waitForElementToBeDisplay(getSearchInput());
+        inputText(getSearchInput(), text);
+        pressEnter(getSearchInput());
     }
 
     public void typeDateLoadStart(CharSequence date) {
@@ -398,7 +431,7 @@ public class InboundLoadSummaryPage extends BasePage {
         pressDelete(getDateRouteStart());
         inputText(getDateRouteStart(), date);
         clickOnElement(findWebElement(By.cssSelector(".i-card__card__title-area__title")));
-        waitUntilInvisible(5, loader);
+        waitUntilInvisible(3, loader);
     }
 
     public void typePastDateLoadStart(int days) {
@@ -500,6 +533,20 @@ public class InboundLoadSummaryPage extends BasePage {
         Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(getOkButton());
         clickOnElement(getOkButton());
+        Waiters.waitTillLoadingPage(getDriver());
+    }
+
+    public void clickImagesButton() {
+        Waiters.waitTillLoadingPage(getDriver());
+        Waiters.waitForElementToBeDisplay(getImagesButton());
+        clickOnElement(getImagesButton());
+        Waiters.waitTillLoadingPage(getDriver());
+    }
+
+    public void clickCommentsButton() {
+        Waiters.waitTillLoadingPage(getDriver());
+        Waiters.waitForElementToBeDisplay(getCommentsButton());
+        clickOnElement(getCommentsButton());
         Waiters.waitTillLoadingPage(getDriver());
     }
 
@@ -1007,6 +1054,18 @@ public class InboundLoadSummaryPage extends BasePage {
 
     public boolean isSaveBtnDisplayed() { return isElementDisplay(getSaveBtn()); }
 
+    public boolean isSelectFilesBtnDisplayed() { return isElementDisplay(getSelectFilesBtn()); }
+
+    public boolean isLoadImageLabelDisplayed() { return isElementDisplay(getLoadImageLabel()); }
+
+    public boolean isSaveEditButtonDisplayed() { return isElementDisplay(getSaveEditButton()); }
+
+    public boolean isInboundImageCaptureButtonDisplayed() { return isElementDisplay(getInboundImageCaptureButton()); }
+
+
+
+
+
     public String isDataOptionDisabled() {
         return getElementAttribute(getDataOption(), "aria-disabled");
     }
@@ -1091,9 +1150,7 @@ public class InboundLoadSummaryPage extends BasePage {
         return findWebElement(dialogContent);
     }
 
-    public WebElement getOkButton() {
-        return findWebElement(okButton);
-    }
+    public WebElement getOkButton() { return findWebElement(okButton); }
 
     public WebElement getClearButton() {
         return findWebElement(clearButton);
@@ -1169,9 +1226,7 @@ public class InboundLoadSummaryPage extends BasePage {
         return findWebElement(loadCodeInput);
     }
 
-    public WebElement getScheduledDateLabel() {
-        return findWebElement(scheduledDateLabel);
-    }
+    public WebElement getScheduledDateLabel() { return findWebElement(scheduledDateLabel); }
 
     public WebElement getScheduledDate() {
         return findWebElement(scheduledDate);
@@ -1295,13 +1350,9 @@ public class InboundLoadSummaryPage extends BasePage {
         return findWebElement(weightField);
     }
 
-    public WebElement getImagesButton() {
-        return findWebElement(imagesButton);
-    }
+    public WebElement getImagesButton() { return findWebElement(imagesButton); }
 
-    public WebElement getCommentsButton() {
-        return findWebElement(commentsButton);
-    }
+    public WebElement getCommentsButton() { return findWebElement(commentsButton); }
 
     public WebElement getReceivedQty() {
         return findWebElement(receivedQty);
@@ -1390,5 +1441,15 @@ public class InboundLoadSummaryPage extends BasePage {
     public WebElement getCancelBtn() { return findWebElement(cancelBtn); }
 
     public WebElement getSaveBtn() { return findWebElement(saveBtn); }
+
+    public WebElement getSearchInput() { return findWebElement(searchInput); }
+
+    public WebElement getSelectFilesBtn() { return findWebElement(selectFilesBtn); }
+
+    public WebElement getLoadImageLabel() { return findWebElement(loadImageLabel); }
+
+    public WebElement getSaveEditButton() { return findWebElement(saveEditButton); }
+
+    public WebElement getInboundImageCaptureButton() { return findWebElement(inboundImageCaptureButton); }
 
 }
