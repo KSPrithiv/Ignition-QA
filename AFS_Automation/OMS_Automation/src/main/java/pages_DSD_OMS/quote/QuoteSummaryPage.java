@@ -150,27 +150,13 @@ public class QuoteSummaryPage
 
             if(ConvertOrder.isDisplayed())
             {
-                HelpersMethod.ClickBut(driver,ConvertOrder,1000);
+                HelpersMethod.ClickBut(driver,ConvertOrder,4000);
                 scenario.log("QUOTE CONVERT TO ORDER BUTTON CLICKED");
                 exists=true;
                 if(HelpersMethod.IsExists("//div[@class='loader']",driver))
                 {
                     WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
                     HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 800000);
-                }
-            }
-            Assert.assertEquals(exists,true);
-            exists=false;
-            if(HelpersMethod.IsExists("//div[contains(text(),'Convert quote to order')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
-            {
-                WebElement confirmDialog=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-widget k-window k-dialog')]");
-                WebElement yesButton=confirmDialog.findElement(By.xpath(".//button[text()='Yes']"));
-                HelpersMethod.ClickBut(driver,yesButton,6000);
-                exists=true;
-                if(HelpersMethod.IsExists("//div[@class='loader']",driver))
-                {
-                    WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 600000);
                 }
             }
             Assert.assertEquals(exists,true);
@@ -274,6 +260,43 @@ public class QuoteSummaryPage
                 HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 200000);
             }
             scenario.log("NAVIGATED BACK TO ORDER ENTRY");
+        }
+        catch (Exception e){}
+    }
+
+    public void validateConvertOrderDialog()
+    {
+        exists=false;
+        try
+        {
+            if(HelpersMethod.IsExists("//div[contains(text(),'convert this quote to an order')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
+            {
+                scenario.log("CONVERT QUOTE TO AN ORDER DIALOG BOX FOUND");
+                exists=true;
+            }
+            Assert.assertEquals(exists,true);
+        }
+        catch (Exception e){}
+    }
+
+    public void clickOnYesInConvertOrderDialog()
+    {
+        try
+        {
+            exists=false;
+            if(HelpersMethod.IsExists("//div[contains(text(),'Convert quote to order')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
+            {
+                WebElement confirmDialog=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-widget k-window k-dialog')]");
+                WebElement yesButton=confirmDialog.findElement(By.xpath(".//button[text()='Yes']"));
+                HelpersMethod.ClickBut(driver,yesButton,6000);
+                exists=true;
+                if(HelpersMethod.IsExists("//div[@class='loader']",driver))
+                {
+                    WebElement WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
+                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 800000);
+                }
+            }
+            Assert.assertEquals(exists,true);
         }
         catch (Exception e){}
     }
