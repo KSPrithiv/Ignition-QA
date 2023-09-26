@@ -21,12 +21,13 @@ import pages_DSD_OMS.login.LoginPage;
 @CucumberOptions
         (features =
                 {
+                        "src/test/resources/features_DSD_OMS/AdminReportsFeature/adminEventActivitiesFeature.feature",
 //                       "src/test/resources/features_DSD_OMS/AdminReports",
                         //"src/test/resources/features_DSD_OMS/ARInquiryFeature",
                         //"src/test/resources/features_DSD_OMS/BillToBill(DSD)",
                         //"src/test/resources/features_DSD_OMS/CatalogFeature",
                         //"src/test/resources/features_DSD_OMS/CompetitivePricingFeature",
-                        //"src/test/resources/features_DSD_OMS/CustomerInqFeature_DSD",
+                        //"src/test/resources/features_DSD_OMS/CustomerInqFeature_DSDFeature",
                         //"src/test/resources/features_DSD_OMS/DisconnectedModeOEFeature",
                         //"src/test/resources/features_DSD_OMS/OrderControlListFeature",
                         //"src/test/resources/features_DSD_OMS/OrderEntryFeature/orderEntryFeature.feature",
@@ -62,8 +63,8 @@ import pages_DSD_OMS.login.LoginPage;
 //                        "src/test/resources/features_Shared/features_Shared_DSD/CRMFeature/crmFeatures2.feature",
                         //"src/test/resources/features_Shared/features_Shared_DSD/CRMFeature/crmFeatures3.feature",
                         //"src/test/resources/features_Shared/features_Shared_DSD/MyAccount_NewAddress_Add.feature",
-                      "src/test/resources/features_Shared/features_Shared_DSD/BadgeBuilderFeature",
-                        "src/test/resources/features_Shared/features_Shared_DSD/BadgeBuilderFeature_Phase2",
+                        //"src/test/resources/features_Shared/features_Shared_DSD/BadgeBuilderFeature",
+                        //"src/test/resources/features_Shared/features_Shared_DSD/BadgeBuilderFeature_Phase2",
 
 
                 },
@@ -88,29 +89,6 @@ public class TestRunnSingleSce extends AbstractTestNGCucumberTests {
             e.printStackTrace();
         }
     }
-
-
-  /*   @Parameters({"environment" })
-     @BeforeMethod
-     public static void beforeMethod(@Optional("environment") String envi) {
-      try {
-//            TestBase.InitializeProp(envi);
-//            TestBase.SetDriver(TestBase.testEnvironment.get_browser());
-//
-//            //Karthik
-//            //TestBase.refreshPage();
-//
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//    }
-
-    @AfterMethod
-    public static void afterMethod() throws InterruptedException, MessagingException, IOException {
-        //Thread.sleep(10000);
-
-        TestBase.CloseBrowser();
-    }*/
 
     @AfterClass
     public static void afterClass() throws InterruptedException, MessagingException, IOException {

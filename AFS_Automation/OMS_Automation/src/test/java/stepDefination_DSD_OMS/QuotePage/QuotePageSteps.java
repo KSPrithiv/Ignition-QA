@@ -13,6 +13,7 @@ import org.testng.Assert;
 import pages_DSD_OMS.login.HomePage;
 import pages_DSD_OMS.login.LoginPage;
 import pages_DSD_OMS.orderEntry.*;
+import pages_DSD_OMS.orderGuide.CreateOGPage;
 import pages_DSD_OMS.quote.NewQuotePage;
 import pages_DSD_OMS.quote.QuotePage;
 import pages_DSD_OMS.quote.QuoteSummaryPage;
@@ -20,6 +21,8 @@ import util.TestBase;
 
 import java.awt.*;
 import java.text.ParseException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 /**
@@ -46,6 +49,7 @@ public class QuotePageSteps
     NewQuotePage newQuotePage;
     QuoteSummaryPage quoteSummaryPage;
     CheckOutSummaryPage summary;
+    CreateOGPage createOGPage;
 
     @Before
     public void LaunchBrowser1(Scenario scenario) throws Exception
@@ -114,6 +118,7 @@ public class QuotePageSteps
         }
         orderEntryPage.HandleError_Page();
         orderEntryPage.Refresh_Page2();
+        orderEntryPage.Read_DeliveryDate();
     }
 
     @Then("User enters Quote name {string} and Quote End date click on OK button")
@@ -125,8 +130,8 @@ public class QuotePageSteps
         quotePage.ClickOnCalender();
         quotePage.SelectEndDate();
         quotePage.ClickOnOKButton();
-       // newQuotePage=new NewQuotePage(driver,scenario);
-       // newQuotePage.validateNewQuote();
+        //newQuotePage=new NewQuotePage(driver,scenario);
+        //newQuotePage.validateNewQuote();
     }
 
     @Then("Enter Pro# in Quick Product Entry area in New Qutoe page and enter Qty for Case and Unit")
@@ -134,6 +139,7 @@ public class QuotePageSteps
     {
       List<List<String>> QtyValue = tabledata.asLists(String.class);
       newQuotePage=new NewQuotePage(driver,scenario);
+      newQuotePage.validateNewQuote();
       newQuotePage.EnterQuickProductNo();
       newQuotePage.QtyInGrid(QtyValue.get(0).get(0),QtyValue.get(0).get(1));
     }
@@ -268,5 +274,27 @@ public class QuotePageSteps
     {
         quoteSummaryPage=new QuoteSummaryPage(driver,scenario);
         quoteSummaryPage.NavgiateBackToOE();
+    }
+
+    @Then("User enters Description {string} Start date {int} and End date {int} day from current date for Quote to OG")
+    public void userEntersDescriptionStartDateSdateAndEndDateEdateDayFromCurrentDateForQuoteToOG(String arg0,int Sdate,int Edate)
+    {
+        createOGPage=new CreateOGPage(driver,scenario);
+        createOGPage.ValidateNewOG();
+        createOGPage.DescriptionOG(arg0);
+
+        //selecting start date
+        LocalDate myDateObj = LocalDate.now();
+        DateTimeFormatter myFormatObj = DateTimeFormatter.ofPattern("EEEE, MMMM d, yyyy");
+        String formattedDate = myDateObj.format(myFormatObj);
+        createOGPage.CalenderStart();
+        createOGPage.SelectStartDate(formattedDate, Sdate);
+
+        //selecting end date
+        LocalDate myDateObj1 = LocalDate.now();
+        DateTimeFormatter myFormatObj1= DateTimeFormatter.ofPattern("EEEE, MMMM d, yyyy");
+        String formattedDate1 = myDateObj1.format(myFormatObj1);
+        createOGPage.CalenderEnd();
+        createOGPage.SelectEndDate(formattedDate1,Edate);
     }
 }

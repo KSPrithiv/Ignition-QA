@@ -26,6 +26,7 @@ public class AdminReportPageStep
     static boolean flag2=false;
     static boolean flag3=false;
     static boolean flag4=false;
+    static boolean flag5=false;
     WebDriver driver;
     Scenario scenario;
     LoginPage loginpage;
@@ -161,6 +162,18 @@ public class AdminReportPageStep
         }
     }
 
+    @And("User should enter menu {string} in search bar and select {string} for Reports, Admin Options for event and activities")
+    public void userShouldEnterMenuInSearchBarAndSelectForReportsAdminOptionsForEventAndActivities(String arg0, String arg1)
+    {
+        if(flag5==false)
+        {
+            adminHomePage = new AdminHomePage(driver, scenario);
+            adminHomePage.ClickOnHumburger();
+            adminHomePage.EnterValueInSearchBox1(arg0, arg1);
+            adminHomePage.CloseHumburger();
+            flag5=true;
+        }
+    }
 
     @And("User click Generate button and clicks on export .csv")
     public void userClickGenerateButtonAndClicksOnExportCsv()

@@ -48,7 +48,7 @@ Feature: Order Guide2
     And User should navigate to OG
     Then User should click on Customer Reference drop down and select type of OG
       |Market segment|
-    And Check for popup to appear to select sub customer reference
+    And Check for popup to appear to select sub customer reference for market segment
     Then User clicks on Create new button and should navigate to New OG page
     And User validates Customer reference input box to verify the OG created
       |Market segment|
@@ -120,7 +120,8 @@ Feature: Order Guide2
     And User should navigate to OG
     Then User should click on Customer Reference drop down and select type of OG
       |National chain|
-    And Check for popup to appear to select National Chain "<Chain>"
+    #And Check for popup to appear to select National Chain "<Chain>"
+    And Check for popup to appear to select sub customer reference for National chain
     Then User clicks on Create new button and should navigate to New OG page
     And User validates Customer reference input box to verify the OG created
       |National chain|
@@ -130,10 +131,10 @@ Feature: Order Guide2
       |Catalog|
     And User should select products from catalog popup
     Then User click on Save button
-    #And User should navigate back to OG page and navigate back to "<OGType>" and verify OG "<OG>"  existence
+   # And User should navigate back to OG page and navigate back to "<OGType>" and verify OG "<OG>"  existence
     Examples:
-      |  OG           |   OGType        |  Chain             |
-      | NationalChain1|  National chain | Test National Chain |
+      |  OG           |   OGType        |
+      | NationalChain1|  National chain |
 
   @AllCustomerAccount#
   Scenario Outline: For creating OG using All Customer Account# from customer reference drop down
@@ -162,6 +163,15 @@ Feature: Order Guide2
       |  OG   |
       |OGDis16 |
 
+  @DragAndDropInOGPage
+  Scenario Outline: Test scenario to test drag and drop functionality in OG page
+    Given User must be on Order Entry Page to select OG
+    And User should navigate to OG
+    Then User should select header in OG grid for "<Drag Drop>" functionality
+    Examples:
+        |Drag Drop|
+        | Status  |
+
   @OGDelete
   Scenario Outline: Deleting Order guide and verifying it in OG grid
     Given User must be on Order Entry Page to select OG
@@ -169,15 +179,13 @@ Feature: Order Guide2
     Then User enters OG Description "<OG>" in search box and Delete the OG verify same in OG grid
     Examples:
       |  OG   |
-    #  |OGDis1 |
+      |OGDis14|
       |OGDis16|
       |OGDis17|
       |OGDis18|
       |OGDis19|
       |OGDis20|
-    #  |Par OG |
       | OGHist|
-   #   |OGAllOrder|
       |Par OGPar OG|
       |Push OGPush OG|
       |Push OG1Push OG1|

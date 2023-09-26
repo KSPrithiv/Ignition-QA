@@ -136,4 +136,26 @@ public class OrderGuidePageStep2
         exists=orderGuidePage.OGSearchBox(arg0);
         Assert.assertEquals(exists,false);
     }
+
+    @Then("User should select header in OG grid for {string} functionality")
+    public void userShouldSelectHeaderInOGGridForFunctionality(String TableHead) throws InterruptedException, AWTException
+    {
+        orderGuidePage=new OrderGuidePage(driver,scenario);
+        orderGuidePage.FindtableHeader(TableHead);
+        orderGuidePage.DisplayGroupDetails();
+    }
+
+    @And("Check for popup to appear to select sub customer reference for market segment")
+    public void checkForPopupToAppearToSelectSubCustomerReferenceForMarketSegment() throws InterruptedException, AWTException
+    {
+        orderGuidePage=new OrderGuidePage(driver,scenario);
+        orderGuidePage.selectSubMarketRef();
+    }
+
+    @And("Check for popup to appear to select sub customer reference for National chain")
+    public void checkForPopupToAppearToSelectSubCustomerReferenceForNationalChain() throws InterruptedException, AWTException
+    {
+        orderGuidePage=new OrderGuidePage(driver,scenario);
+        orderGuidePage.selectSubMarketRef();
+    }
 }

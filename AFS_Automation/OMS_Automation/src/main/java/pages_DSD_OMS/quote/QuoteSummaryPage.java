@@ -57,7 +57,7 @@ public class QuoteSummaryPage
             if(HelpersMethod.IsExists("//div[@class='loader']",driver))
             {
                 WebElement WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 80000);
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 200000);
             }
 
             String status = HelpersMethod.returnDocumentStatus(driver);
@@ -80,17 +80,11 @@ public class QuoteSummaryPage
     {
         exists=false;
         WebElement WebEle=null;
-       /* if(HelpersMethod.IsExists("//div[@class='loader']",driver))
-        {
-            WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100);
-        }*/
-
         try
         {
             if(BackToOrderList.isDisplayed())
             {
-                HelpersMethod.ClickBut(driver,BackToOrderList,60);
+                HelpersMethod.ClickBut(driver,BackToOrderList,1000);
                 scenario.log("QUOTE BACK BUTTON HAS BEEN CLICKED");
                 exists=true;
             }
@@ -98,7 +92,7 @@ public class QuoteSummaryPage
             if(HelpersMethod.IsExists("//div[@class='loader']",driver))
             {
                 WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100000);
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 200000);
             }
         }
         catch (Exception e){}
@@ -109,15 +103,27 @@ public class QuoteSummaryPage
         exists=true;
         try
         {
-         if(ConvertOG.isDisplayed())
+            if(HelpersMethod.IsExists("//div[@class='loader']",driver))
+            {
+                WebElement WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 600000);
+            }
+            String status = HelpersMethod.returnDocumentStatus(driver);
+            if (status.equals("loading"))
+            {
+                HelpersMethod.waitTillLoadingPage(driver);
+            }
+
+            if(ConvertOG.isDisplayed())
          {
-             HelpersMethod.ClickBut(driver,ConvertOG,100);
+             HelpersMethod.ScrollElement(driver,ConvertOG);
+             HelpersMethod.ClickBut(driver,ConvertOG,6000);
              scenario.log("CONVERT QUOTE AS ORDER GUIDE");
              exists=true;
              if(HelpersMethod.IsExists("//div[@class='loader']",driver))
              {
                  WebElement WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                 HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 20000);
+                 HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 400000);
              }
          }
          Assert.assertEquals(exists,true);
@@ -131,29 +137,40 @@ public class QuoteSummaryPage
         WebElement WebEle=null;
         try
         {
+            if(HelpersMethod.IsExists("//div[@class='loader']",driver))
+            {
+                WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 600000);
+            }
+            String status = HelpersMethod.returnDocumentStatus(driver);
+            if (status.equals("loading"))
+            {
+                HelpersMethod.waitTillLoadingPage(driver);
+            }
+
             if(ConvertOrder.isDisplayed())
             {
-                HelpersMethod.ClickBut(driver,ConvertOrder,100);
+                HelpersMethod.ClickBut(driver,ConvertOrder,1000);
                 scenario.log("QUOTE CONVERT TO ORDER BUTTON CLICKED");
                 exists=true;
                 if(HelpersMethod.IsExists("//div[@class='loader']",driver))
                 {
                     WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 80000);
+                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 800000);
                 }
             }
             Assert.assertEquals(exists,true);
             exists=false;
-            WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[contains(text(),'Convert quote to order')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]");
-            if(WebEle.isDisplayed())
+            if(HelpersMethod.IsExists("//div[contains(text(),'Convert quote to order')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
             {
-                WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-widget k-window k-dialog')]/descendant::button[text()='Yes']");
-                HelpersMethod.ClickBut(driver,WebEle,100);
+                WebElement confirmDialog=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-widget k-window k-dialog')]");
+                WebElement yesButton=confirmDialog.findElement(By.xpath(".//button[text()='Yes']"));
+                HelpersMethod.ClickBut(driver,yesButton,6000);
                 exists=true;
                 if(HelpersMethod.IsExists("//div[@class='loader']",driver))
                 {
                     WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 80000);
+                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 600000);
                 }
             }
             Assert.assertEquals(exists,true);
@@ -165,16 +182,11 @@ public class QuoteSummaryPage
     {
         exists=true;
         WebElement WebEle=null;
-       /* if(HelpersMethod.IsExists("//div[@class='loader']",driver))
-        {
-            WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000);
-        }*/
         try
         {
             if(ConvertOrder.isDisplayed())
             {
-                HelpersMethod.ClickBut(driver,CancelButton,200);
+                HelpersMethod.ClickBut(driver,CancelButton,1000);
                 scenario.log("CANCEL BUTTON TO CANCEL QUOTE");
                 exists=true;
             }
@@ -183,12 +195,12 @@ public class QuoteSummaryPage
             if(HelpersMethod.IsExists("//div[contains(text(),'Cancel quote')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
             {
                 WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-widget k-window k-dialog')]/descendant::button[text()='Yes']");
-                HelpersMethod.ClickBut(driver,WebEle,100);
+                HelpersMethod.ClickBut(driver,WebEle,1000);
                 exists=true;
                 if(HelpersMethod.IsExists("//div[@class='loader']",driver))
                 {
                     WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 80000);
+                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 200000);
                 }
                 String status = HelpersMethod.returnDocumentStatus(driver);
                 if (status.equals("loading"))
@@ -208,17 +220,17 @@ public class QuoteSummaryPage
         if(HelpersMethod.IsExists("//div[@class='loader']",driver))
         {
             WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 80000);
+            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 200000);
         }
         try
         {
             if(CopyQuote.isDisplayed() && CopyQuote.isEnabled())
             {
-                HelpersMethod.ClickBut(driver,CopyQuote,100);
+                HelpersMethod.ClickBut(driver,CopyQuote,1000);
                 if(HelpersMethod.IsExists("//div[@class='loader']",driver))
                 {
                     WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 80000);
+                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 200000);
                 }
                 scenario.log("QUOTE COPY BUTTON HAS BEEN CLICKED");
                 exists=true;
@@ -235,12 +247,12 @@ public class QuoteSummaryPage
         {
             if(EditButton.isDisplayed())
             {
-                HelpersMethod.ClickBut(driver,EditButton,100);
+                HelpersMethod.ClickBut(driver,EditButton,1000);
                 scenario.log("QUOTE EDIT BUTTON HAS BEEN CLICKED");
                 if(HelpersMethod.IsExists("//div[@class='loader']",driver))
                 {
                     WebElement WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 80000);
+                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 200000);
                 }
                 exists=true;
             }
@@ -259,7 +271,7 @@ public class QuoteSummaryPage
             if(HelpersMethod.IsExists("//div[@class='loader']",driver))
             {
                 WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 80000);
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 200000);
             }
             scenario.log("NAVIGATED BACK TO ORDER ENTRY");
         }

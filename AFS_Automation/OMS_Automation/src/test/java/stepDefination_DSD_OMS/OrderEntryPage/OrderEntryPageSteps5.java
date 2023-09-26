@@ -51,7 +51,7 @@ public class OrderEntryPageSteps5
         newOE=new NewOrderEntryPage(driver,scenario);
         newOE.OECancel();
         newOE.VerifyCancelPopUp();
-        newOE.CancelAndSkipPopupDisabled();
+        newOE.CancelAndSkipPopupEnabled();
         newOE.CancelPop();
     }
 

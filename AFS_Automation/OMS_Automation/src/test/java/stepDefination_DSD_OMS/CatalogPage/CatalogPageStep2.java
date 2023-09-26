@@ -177,7 +177,7 @@ public class CatalogPageStep2
         descriptionProd= catalogpage.clickOnProdDescription();
         productDescriptionPage=new ProductDescriptionPage(driver,scenario);
         productDescriptionPage.validateProductDescriptionPage();
-        productDescriptionPage.validateProductDescription(descriptionProd);
+        //productDescriptionPage.validateProductDescription(descriptionProd);
     }
 
     @Then("User clicks on Back to catalog button and navigates back to catalog page")

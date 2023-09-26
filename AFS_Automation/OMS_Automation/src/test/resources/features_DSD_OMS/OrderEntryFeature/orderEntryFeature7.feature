@@ -25,7 +25,7 @@ Feature: Order Entry7
     Then User should be navigated to Order Entry page
     Then Enter Order# in Search box in Order Entry page
     Then Click on Order number in Order Entry page
-    Then Click on Next button
+    Then Click on Next button after editing order
     And User should be in Order summary page and click on back to Orderlist button
 
   @FiltersInCatalogIndexPage
@@ -76,6 +76,8 @@ Feature: Order Entry7
       |SampleOG|
     Then Enter PO# for New order
       |PO123|
+    Then User should enter Units and Cases in product grid
+      |80|60|
     And User clicks on Grid type drop down and select different grid
       |New grid|
     Then User verifies visibility of Price override icon change the Price in price override and reset Grid type to Main grid

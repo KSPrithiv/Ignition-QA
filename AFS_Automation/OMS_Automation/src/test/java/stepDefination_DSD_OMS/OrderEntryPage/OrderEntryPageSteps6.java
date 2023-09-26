@@ -78,6 +78,7 @@ public class OrderEntryPageSteps6
         newOE=new NewOrderEntryPage(driver,scenario);
         newOE.ValidateNewOE();
         newOE.ClickPickupCheckBox();
+        newOE.validatePickupCheckBoxSelected();
     }
 
     @And("Select Pickup Order from drop down options and select delivery date by verifying existence of todays date")
@@ -104,7 +105,7 @@ public class OrderEntryPageSteps6
         orderpage=new OrderEntryPage(driver,scenario);
         WebElement StartBut= HelpersMethod.FindByElement(driver,"id","addButton");
         HelpersMethod.ScrollElement(driver,StartBut);
-        HelpersMethod.ClickBut(driver,StartBut,100);
+        HelpersMethod.ClickBut(driver,StartBut,1000);
         orderpage.ValidateRouteMandatoryPopup();
     }
 
@@ -131,6 +132,7 @@ public class OrderEntryPageSteps6
         exists=false;
         newOE = new NewOrderEntryPage(driver,scenario);
         exists=newOE.ClickNext();
+        newOE.exceedsMaxQty();
         newOE.OutOfStockPop_ERP();
         checkorder = new CheckOutOrderPage(driver, scenario);
         checkorder.Select_PaymentMethod_ClickDownArrow();

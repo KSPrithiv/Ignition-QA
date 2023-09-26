@@ -43,13 +43,12 @@ public class DMOEPage
         exists=false;
         WebElement WebEle=null;
         Thread.sleep(20000);
-        HelpersMethod.Implicitwait(driver,40);
         try
         {
             if(HelpersMethod.IsExists("//div[contains(@class,'connection-mode-container')]//*[local-name()='svg']//*[local-name()='path' and  contains(@d,'M17')]",driver))
             {
                 WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'connection-mode-container')]//*[local-name()='svg']//*[local-name()='path' and  contains(@d,'M17')]");
-                HelpersMethod.ActClick(driver,WebEle,40);
+                HelpersMethod.ActClick(driver,WebEle,100);
                 exists=true;
             }
             else{scenario.log("NETWORK SYMBOL IS NOT VISIBLE");}
@@ -62,13 +61,12 @@ public class DMOEPage
     {
         exists=false;
         WebElement WebEle=null;
-        HelpersMethod.Implicitwait(driver,40);
         try
         {
             if(HelpersMethod.IsExists("//div[text()='Connection']/ancestor::div[contains(@class,'k-popup')]",driver))
             {
                 WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-popup')]/descendant::span[contains(@class,'k-widget k-switch k-switch-on')]");
-                HelpersMethod.ActClick(driver,WebEle,60);
+                HelpersMethod.ActClick(driver,WebEle,100);
                 exists = true;
             }
         }
@@ -97,7 +95,7 @@ public class DMOEPage
         try
         {
             WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-widget k-window k-dialog')]/descendant::button[text()='Go offline']");
-            HelpersMethod.ActClick(driver,WebEle,40);
+            HelpersMethod.ActClick(driver,WebEle,100);
         }
         catch (Exception e){}
         Assert.assertEquals(exists,true);
@@ -112,7 +110,7 @@ public class DMOEPage
             if(HelpersMethod.IsExists("//div[contains(text(),'Disconnected mode')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
             {
                 WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-widget k-window k-dialog')]/descendant::button[text()='Cancel']");
-                HelpersMethod.ClickBut(driver,WebEle,10);
+                HelpersMethod.ClickBut(driver,WebEle,100);
                 exists = true;
             }
         }
@@ -126,6 +124,11 @@ public class DMOEPage
         WebElement WebEle=null;
         try
         {
+            if(HelpersMethod.IsExists("//div[@class='loader']",driver))
+            {
+                WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 80000);
+            }
             if(HelpersMethod.IsExists("//div[contains(text(),'Select customers')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
             {
                 exists=true;
@@ -160,7 +163,7 @@ public class DMOEPage
         try
         {
             WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='k-widget k-window k-dialog']/descendant::table[@class='k-grid-table']/descendant::input[@type='checkbox']");
-            HelpersMethod.ClickBut(driver,WebEle,10);
+            HelpersMethod.ClickBut(driver,WebEle,100);
             exists=true;
         }
         catch (Exception e){}
@@ -174,7 +177,7 @@ public class DMOEPage
         try
         {
             WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='k-widget k-window k-dialog']/descendant::button[text()='Ok']");
-            HelpersMethod.ClickBut(driver,WebEle,10);
+            HelpersMethod.ClickBut(driver,WebEle,100);
             exists=true;
         }
         catch (Exception e){}
@@ -203,7 +206,7 @@ public class DMOEPage
         try
         {
             WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-widget k-window k-dialog')]/descendant::button[2]");
-            HelpersMethod.ClickBut(driver,WebEle,10);
+            HelpersMethod.ClickBut(driver,WebEle,100);
             exists=true;
         }
         catch (Exception e){}
@@ -217,7 +220,7 @@ public class DMOEPage
         try
         {
             WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-widget k-window k-dialog')]/descendant::button[text()='Ok']");
-            HelpersMethod.ClickBut(driver,WebEle,10);
+            HelpersMethod.ClickBut(driver,WebEle,100);
             exists=true;
         }
         catch (Exception e){}
@@ -232,7 +235,7 @@ public class DMOEPage
             if(HelpersMethod.IsExists("//div[contains(text(),'Synchronizing Device Data')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
             {
                 WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[contains(text(),'Synchronizing Device Data')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]");
-                new WebDriverWait(driver, Duration.ofMillis(6000)).until(ExpectedConditions.invisibilityOf(WebEle));
+                new WebDriverWait(driver, Duration.ofMillis(400000)).until(ExpectedConditions.invisibilityOf(WebEle));
             }
         }
         catch (Exception e){}

@@ -47,6 +47,7 @@ public class ProductReferencePageStep
     CreateOGPage createOGPage;
     ProductReferencePage productReferencePage;
     OrderGuidePage orderGuidePage;
+    ParOrderPage parOrderPage;
 
     @Before
     public void LaunchBrowser(Scenario scenario) throws Exception
@@ -119,41 +120,41 @@ public class ProductReferencePageStep
     @Given("User must be on Order Entry Page to select OG for Product reference")
     public void userMustBeOnOrderEntryPageToSelectOGForProductReference() throws InterruptedException, AWTException
     {
-        orderpage = new OrderEntryPage(driver, scenario);
-    }
-
-    @And("User should navigate to OG and select {string} from grid for Product reference")
-    public void userShouldNavigateToOGAndSelectFromGridForProductReference(String arg0) throws InterruptedException, AWTException
-    {
-        if(flag2==false)
+        if (flag2 == false)
         {
+            exists = false;
             WebElement WebEle;
-            WebEle = HelpersMethod.FindByElement(driver, "xpath", "//li[contains(@class,'k-item')]/span[@class='k-link' and contains(text(),'Order Guides')]");
-            if (HelpersMethod.EleDisplay(WebEle))
+            if (HelpersMethod.IsExists("//li[contains(@class,'k-item')]/span[@class='k-link' and contains(text(),'Order Guides')]",driver))
             {
-                exists = false;
-                orderGuidePage = new OrderGuidePage(driver, scenario);
-                HelpersMethod.navigate_Horizantal_Tab(driver, "Order Guides", "//li[contains(@class,'k-item')]/span[@class='k-link' and contains(text(),'Order Guides')]", "xpath", "//li[contains(@class,'k-item')]/span[@class='k-link']");
+                //Code to navigate to Order guide
                 if (HelpersMethod.IsExists("//div[@class='loader']", driver))
                 {
                     WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000);
+                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 400000);
                 }
-                exists = orderGuidePage.ValidateOG();
-                currentURL=driver.getCurrentUrl();
-                Assert.assertEquals(exists, true);
+                HelpersMethod.navigate_Horizantal_Tab(driver, "Order Guides", "//li[contains(@class,'k-item')]/span[@class='k-link' and contains(text(),'Order Guides')]", "xpath", "//li[contains(@class,'k-item')]/span[@class='k-link']");
+                currentURL = driver.getCurrentUrl();
+                exists=true;
             }
-            else
-            {
-                scenario.log("ORDER GUIDE TAB DOESN'T EXISTS");
-            }
+            Assert.assertEquals(exists,true);
             flag2=true;
         }
-        orderpage = new OrderEntryPage(driver, scenario);
-        orderpage.HandleError_Page();
-        orderpage.Refresh_Page(currentURL);
-        productReferencePage=new ProductReferencePage(driver,scenario);
-        productReferencePage.selectOGForPR(arg0);
+    }
+
+    @And("User should navigate to OG and select {string} from grid for Product reference")
+    public void userShouldNavigateToOGAndSelectFromGridForProductReference(String OG) throws InterruptedException, AWTException
+    {
+        parOrderPage = new ParOrderPage(driver, scenario);
+        parOrderPage.Refresh_Page(currentURL);
+        orderGuidePage=new OrderGuidePage(driver,scenario);
+        exists=false;
+        exists = orderGuidePage.ValidateOG();
+        Assert.assertEquals(exists, true);
+        //Code to select OG from grid
+        exists = false;
+        exists = orderGuidePage.OGSearchBox(OG);
+        Assert.assertEquals(exists, true);
+        orderGuidePage.SearchOGSelect(OG);
     }
 
     @Then("User clicks on Product reference tab")

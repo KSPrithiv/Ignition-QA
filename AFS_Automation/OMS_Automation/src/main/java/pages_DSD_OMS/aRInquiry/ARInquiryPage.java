@@ -89,7 +89,7 @@ public class ARInquiryPage
         if (HelpersMethod.IsExists("//div[@class='loader']", driver))
         {
             WebElement WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000);
+            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100000);
         }
     }
 
@@ -101,7 +101,7 @@ public class ARInquiryPage
             {
                 JavascriptExecutor js = ((JavascriptExecutor) driver);
                 js.executeScript("window.location.reload()");
-                WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(100));
+                WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(10000));
                 if (wait.until(ExpectedConditions.alertIsPresent()) == null)
                 {
 
@@ -120,7 +120,7 @@ public class ARInquiryPage
             if (HelpersMethod.IsExists("//div[@class='loader']", driver))
             {
                 WebElement   WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 8000);
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100000);
             }
         }
         catch (Exception e){}
@@ -142,12 +142,12 @@ public class ARInquiryPage
                 WebElement Search_Input = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='drawer-menu-search-container']/descendant::input");
                     act.moveToElement(Search_Input).click().sendKeys("AR Inquiry").build().perform();
                     WebElement ARMenu = HelpersMethod.FindByElement(driver, "xpath", "//ul[contains(@class,'MuiList-root ')]/descendant::span[contains(text(),'AR Inquiry')]");
-                    HelpersMethod.ClickBut(driver, ARMenu, 100);
+                    HelpersMethod.ClickBut(driver, ARMenu, 1000);
                     exists = true;
                     if (HelpersMethod.IsExists("//div[@class='loader']", driver))
                     {
                         WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                        HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 500);
+                        HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100000);
                     }
                     status = HelpersMethod.returnDocumentStatus(driver);
                     if (status.equals("loading"))
@@ -182,7 +182,7 @@ public class ARInquiryPage
         if (HelpersMethod.IsExists("//div[@class='loader']", driver))
         {
             WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 80000);
+            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100000);
         }
         try
         {
@@ -198,18 +198,18 @@ public class ARInquiryPage
         WebElement WebEle=null;
         try
         {
-            HelpersMethod.ClickBut(driver,Cust_Accout,40);
+            HelpersMethod.ClickBut(driver,Cust_Accout,1000);
             if(HelpersMethod.IsExists("//div[contains(text(),'Customer account')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
             {
                 //Entering customer account# in search box
                 WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-widget k-window k-dialog')]/descendant::input[contains(@class,'i-search-box__input')]");
-                HelpersMethod.EnterText(driver,WebEle,20, TestBase.testEnvironment.get_Account());
+                HelpersMethod.EnterText(driver,WebEle,1000, TestBase.testEnvironment.get_Account());
                 //Click on search index
                 WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-widget k-window k-dialog')]//*[local-name()='svg' and contains(@class,'i-icon   i-search-box__search')]");
-                HelpersMethod.ClickBut(driver,WebEle,20);
+                HelpersMethod.ClickBut(driver,WebEle,1000);
                 //Click on Account no. filtered
                 WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-widget k-window k-dialog')]/descendant::tr[contains(@class,'k-master-row')]");
-                HelpersMethod.ActClick(driver,WebEle,20);
+                HelpersMethod.ActClick(driver,WebEle,1000);
                 exists=true;
             }
             Assert.assertEquals(exists,true);
@@ -224,7 +224,7 @@ public class ARInquiryPage
         if(HelpersMethod.IsExists("//div[@class='loader']",driver))
         {
             WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 80000);
+            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100000);
         }
         try
         {
@@ -239,7 +239,7 @@ public class ARInquiryPage
                 if(HelpersMethod.IsExists("//div[contains(@class,'grid-container')]/descendant::tr[contains(@class,'k-master-row')][1]",driver))
                 {
                     WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'grid-container')]/descendant::tr[contains(@class,'k-master-row')][1]/descendant::input");
-                    HelpersMethod.ClickBut(driver,WebEle,100);
+                    HelpersMethod.ClickBut(driver,WebEle,1000);
                     exists = true;
                 }
             }
@@ -255,7 +255,7 @@ public class ARInquiryPage
         {
             if(PostBut.isDisplayed() && PostBut.isEnabled())
             {
-                HelpersMethod.ClickBut(driver,PostBut,20);
+                HelpersMethod.ClickBut(driver,PostBut,1000);
                 exists=true;
             }
             else
@@ -278,11 +278,11 @@ public class ARInquiryPage
             {
                 HelpersMethod.ScrollElement(driver, PrintBut);
                 String ParentWindow = driver.getWindowHandle();
-                HelpersMethod.ClickBut(driver, PrintBut, 100);
+                HelpersMethod.ClickBut(driver, PrintBut, 1000);
                 if (HelpersMethod.IsExists("//div[@class='loader']", driver))
                 {
                     WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100);
+                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100000);
                 }
                 Set<String> PCWindows = driver.getWindowHandles();
                 for (String PCwind : PCWindows)
@@ -292,7 +292,6 @@ public class ARInquiryPage
                         driver.switchTo().window(PCwind);
                         scenario.log(".pdf HAS BEEN FOUND");
                         driver.close();
-                        HelpersMethod.Implicitwait(driver, 10);
                         exists= true;
                         scenario.log("PRINT BUTTON FOR AR INQUIRY HAS BEEN HANDLED");
                     }
@@ -313,7 +312,6 @@ public class ARInquiryPage
     {
         WebElement WebEle=null;
         exists=false;
-        HelpersMethod.Implicitwait(driver,40);
         try
         {
             HelpersMethod.AddFilterSearch(driver,"Invoice",InvoiceNo);
@@ -375,11 +373,10 @@ public class ARInquiryPage
     public void SearchBar()
     {
         exists=false;
-        //HelpersMethod.Implicitwait(driver,40);
         try
         {
-            HelpersMethod.EnterText(driver,SearchBox,20,InvoiceNo);
-            HelpersMethod.ClickBut(driver,SearchIndex,10);
+            HelpersMethod.EnterText(driver,SearchBox,1000,InvoiceNo);
+            HelpersMethod.ClickBut(driver,SearchIndex,1000);
             if(HelpersMethod.IsExists("//div[contains(@class,'i-no-data__icon')]",driver))
             {
                 scenario.log("INVOICE HAS NOT BEEN FOUND");

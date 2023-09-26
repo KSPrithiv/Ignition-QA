@@ -67,15 +67,18 @@ public class OrderEntryPageSteps2
             if(unitOfMeasure.equals("Units"))
             {
                 newOE.CheckForQuickUnitEnabled(Prod_details.get(i).get(1));
+                newOE.exceedsMaxQty();
             }
              else if(unitOfMeasure.equals("Cases"))
             {
                 newOE.CheckForQuickCaseEnabled(Prod_details.get(i).get(0));
+                newOE.exceedsMaxQty();
             }
              else if(unitOfMeasure.equals("Cases, Units"))
             {
                 newOE.CheckForQuickCaseEnabled(Prod_details.get(i).get(0));
                 newOE.CheckForQuickUnitEnabled(Prod_details.get(i).get(1));
+                newOE.exceedsMaxQty();
             }
         }
     }
@@ -123,6 +126,7 @@ public class OrderEntryPageSteps2
         orderpage=new OrderEntryPage(driver, scenario);
         //Select Route number using Add Filter
         orderpage.Route_No(TestBase.testEnvironment.get_RouteFilt(),TestBase.testEnvironment.get_Route());
+        orderpage.validateRouteSelected(TestBase.testEnvironment.get_Route());
     }
 
     //Compare route selected in OE page and New OE page

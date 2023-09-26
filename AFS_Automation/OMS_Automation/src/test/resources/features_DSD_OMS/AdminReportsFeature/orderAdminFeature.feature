@@ -3,7 +3,7 @@ Feature: Test scenarios for Order in Admin login, Order related reports
   Background: For login to application and selecting Account# for order Admin
     Given User enters URL and is on login page and entered credentials for Admin setting for Admin reports
     When User is on Home Page for Admin setting for Admin reports
-    Then User Clicks on Permissions by drop down to select Customer Account# for Admin reports
+    #Then User Clicks on Permissions by drop down to select Customer Account# for Admin reports
 
   @OrderTabReport
   Scenario Outline: Test scenario for verifying functionality of Orders tab

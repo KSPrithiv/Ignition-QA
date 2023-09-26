@@ -113,54 +113,51 @@ public class AllOrdersPageStep
     @Given("User must be on Order Entry Page to select All Orders")
     public void userMustBeOnOrderEntryPageToSelectAllOrders() throws InterruptedException, AWTException
     {
-        if(flag1==false)
-        {
-            orderpage = new OrderEntryPage(driver, scenario);
-        }
+            if(flag1==false)
+            {
+                try
+                {
+                    exists = false;
+                    WebElement WebEle = HelpersMethod.FindByElement(driver, "xpath", "//li[contains(@class,'k-item')]/span[@class='k-link' and contains(text(),'All orders')]|//li[contains(@class,'k-item')]/span[@class='k-link' and contains(text(),'All Orders')]|//li[contains(@class,'k-item')]/span[@class='k-link' and contains(text(),'Open orders')]");
+                    if (HelpersMethod.EleDisplay(WebEle))
+                    {
+                        String Menu_Text=null;
+                        Actions act=new Actions(driver);
+                        List<WebElement> MenuBar=HelpersMethod.FindByElements(driver,"xpath","//li[contains(@class,'k-item')]/span[@class='k-link']");
+                        for(WebElement Menu:MenuBar)
+                        {
+                            act.moveToElement(Menu).build().perform();
+                            Menu_Text=Menu.getText();
+                            if(Menu_Text.contains("All Orders")||Menu_Text.contains("Open orders")||Menu_Text.contains("All orders"))
+                            {
+                                WebElement menuItem=HelpersMethod.FindByElement(driver,"xpath","//li[contains(@class,'k-item')]/span[@class='k-link' and contains(text(),'All orders')]|//li[contains(@class,'k-item')]/span[@class='k-link' and contains(text(),'All Orders')]|//li[contains(@class,'k-item')]/span[@class='k-link' and contains(text(),'Open orders')]");
+                                HelpersMethod.JScriptClick(driver,menuItem,1000);
+                                break;
+                            }
+                        }
+                        if (HelpersMethod.IsExists("//div[@class='loader']", driver))
+                        {
+                            WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
+                            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100000);
+                        }
+                        String status = HelpersMethod.returnDocumentStatus(driver);
+                        if (status.equals("loading"))
+                        {
+                            HelpersMethod.waitTillLoadingPage(driver);
+                        }
+                        CurrentULR= driver.getCurrentUrl();
+                        scenario.log(CurrentULR);
+                    }
+                }
+                catch (Exception e) {}
+                flag1=true;
+            }
     }
 
     @And("User should navigate to All Orders")
     public void userShouldNavigateToAllOrders() throws InterruptedException, AWTException
     {
-        if(flag1==false)
-        {
-            try
-            {
-                exists = false;
-                WebElement WebEle = HelpersMethod.FindByElement(driver, "xpath", "//li[contains(@class,'k-item')]/span[@class='k-link' and contains(text(),'All orders')]|//li[contains(@class,'k-item')]/span[@class='k-link' and contains(text(),'All Orders')]|//li[contains(@class,'k-item')]/span[@class='k-link' and contains(text(),'Open orders')]");
-                if (HelpersMethod.EleDisplay(WebEle))
-                {
-                    String Menu_Text=null;
-                    Actions act=new Actions(driver);
-                    List<WebElement> MenuBar=HelpersMethod.FindByElements(driver,"xpath","//li[contains(@class,'k-item')]/span[@class='k-link']");
-                    for(WebElement Menu:MenuBar)
-                    {
-                        act.moveToElement(Menu).build().perform();
-                        Menu_Text=Menu.getText();
-                        if(Menu_Text.contains("All Orders")||Menu_Text.contains("Open orders")||Menu_Text.contains("All orders"))
-                        {
-                            WebElement menuItem=HelpersMethod.FindByElement(driver,"xpath","//li[contains(@class,'k-item')]/span[@class='k-link' and contains(text(),'All orders')]|//li[contains(@class,'k-item')]/span[@class='k-link' and contains(text(),'All Orders')]|//li[contains(@class,'k-item')]/span[@class='k-link' and contains(text(),'Open orders')]");
-                            HelpersMethod.JScriptClick(driver,menuItem,1000);
-                            break;
-                        }
-                    }
-                    if (HelpersMethod.IsExists("//div[@class='loader']", driver))
-                    {
-                        WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                        HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000);
-                    }
-                    String status = HelpersMethod.returnDocumentStatus(driver);
-                    if (status.equals("loading"))
-                    {
-                        HelpersMethod.waitTillLoadingPage(driver);
-                    }
-                    CurrentULR= driver.getCurrentUrl();
-                    scenario.log(CurrentULR);
-                }
-            }
-            catch (Exception e) {}
-            flag1=true;
-        }
+
         orderpage = new OrderEntryPage(driver, scenario);
         orderpage.HandleError_Page();
         allOrder=new AllOrderPage(driver,scenario);
@@ -208,7 +205,11 @@ public class AllOrdersPageStep
     {
         summary = new CheckOutSummaryPage(driver,scenario);
         summary.ClickSubmit();
-        summary.cutoffDialog();
+        for(int i=0;i<=2;i++)
+        {
+            summary.cutoffDialog();
+            summary.additionalOrderPopup();
+        }
         Ord_No = summary.Get_Order_No();
         summary.SucessPopupForAllOrder();
         scenario.log("ORDER CREATED FOR ALL ORDER "+Ord_No);
@@ -291,11 +292,13 @@ public class AllOrdersPageStep
     }
 
     @Then("User clicks on OrderNo in All Order grid and User should be navigated Ordersummary page")
-    public void userClicksOnOrderNoInAllOrderGridAndUserShouldBeNavigatedOrdersummaryPage()
+    public void userClicksOnOrderNoInAllOrderGridAndUserShouldBeNavigatedOrdersummaryPage() throws InterruptedException, AWTException
     {
         allOrder=new AllOrderPage(driver,scenario);
         allOrder.ClickOnOrderInAllOrderGrid();
         allOrder.NavigateToOrderSummaryPage();
+        summary=new CheckOutSummaryPage(driver,scenario);
+        summary.clickOnAllOrder();
     }
 
     @Then("User clicks on Back to Order list button and should be navigated to OE page")
@@ -434,6 +437,7 @@ public class AllOrdersPageStep
         String Unit=Qty.get(0).get(1);
         newOE.CheckForQuickCaseEnabled(Case);
         newOE.CheckForQuickUnitEnabled(Unit);
+        newOE.exceedsMaxQty();
     }
 
     @Then("User clicks on Start order button and selects Pick up order from drop down")

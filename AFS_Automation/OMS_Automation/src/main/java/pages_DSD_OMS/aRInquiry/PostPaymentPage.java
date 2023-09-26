@@ -63,7 +63,7 @@ public class PostPaymentPage
             if (HelpersMethod.IsExists("//div[contains(@class,'payment-method-container')]/descendant::tbody/tr[2]/descendant::input", driver))
             {
                 WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'payment-method-container')]/descendant::tbody/tr[2]/descendant::input");
-                HelpersMethod.ClickBut(driver, WebEle, 20);
+                HelpersMethod.ClickBut(driver, WebEle, 1000);
                 exists = true;
             }
             else
@@ -81,16 +81,16 @@ public class PostPaymentPage
         WebElement WebEle=null;
         try
         {
-            HelpersMethod.ClickBut(driver,PostBut,20);
+            HelpersMethod.ClickBut(driver,PostBut,1000);
             if(HelpersMethod.IsExists("//div[@class='loader']",driver))
             {
                 WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100);
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100000);
             }
             if(HelpersMethod.IsExists("//div[contains(text(),'Thank you')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
             {
                 WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-widget k-window k-dialog')]/descendant::button");
-                HelpersMethod.ClickBut(driver,WebEle,20);
+                HelpersMethod.ClickBut(driver,WebEle,1000);
             }
             exists=true;
         }
@@ -102,7 +102,7 @@ public class PostPaymentPage
         exists=false;
         try
         {
-            HelpersMethod.ClickBut(driver,CancelBut,20);
+            HelpersMethod.ClickBut(driver,CancelBut,1000);
             exists=true;
             Assert.assertEquals(exists,true);
         }
@@ -121,7 +121,7 @@ public class PostPaymentPage
                 Assert.assertEquals(modalContentTitle.getText(), "Discard payment", "Verify Title message");
 
                 WebElement button=modalContainer.findElement(By.xpath(".//button[text()='Yes']"));
-                HelpersMethod.ClickBut(driver,button,40);
+                HelpersMethod.ClickBut(driver,button,1000);
             }
         }
         catch(Exception e){}
@@ -132,7 +132,7 @@ public class PostPaymentPage
         exists=false;
         try
         {
-            HelpersMethod.ClickBut(driver,AddPayment,20);
+            HelpersMethod.ClickBut(driver,AddPayment,1000);
             exists=true;
             Assert.assertEquals(exists,true);
         }
@@ -159,7 +159,7 @@ public class PostPaymentPage
         try
         {
             WebElement PaymentDropDown=HelpersMethod.FindByElement(driver,"id","PaymentType");
-            HelpersMethod.ClickBut(driver,PaymentDropDown,10);
+            HelpersMethod.ClickBut(driver,PaymentDropDown,1000);
             exists=true;
             Assert.assertEquals(exists,true);
         }
@@ -186,7 +186,7 @@ public class PostPaymentPage
         {
             if(FirstName.isDisplayed() && FirstName.isEnabled())
             {
-                HelpersMethod.EnterText(driver,FirstName,10,FName);
+                HelpersMethod.EnterText(driver,FirstName,1000,FName);
                 exists=true;
             }
             Assert.assertEquals(exists,true);
@@ -202,7 +202,7 @@ public class PostPaymentPage
         {
             if(LastName.isDisplayed() && LastName.isEnabled())
             {
-                HelpersMethod.EnterText(driver,LastName,10,LName);
+                HelpersMethod.EnterText(driver,LastName,1000,LName);
                 exists=true;
             }
             Assert.assertEquals(exists,true);
@@ -218,7 +218,7 @@ public class PostPaymentPage
         {
             if(BankAccType.isDisplayed() && BankAccType.isEnabled())
             {
-                HelpersMethod.ClickBut(driver,BankAccType,10);
+                HelpersMethod.ClickBut(driver,BankAccType,1000);
                 exists=true;
             }
             Assert.assertEquals(exists,true);
@@ -232,7 +232,7 @@ public class PostPaymentPage
         try
         {
             List<WebElement> AccTypes=HelpersMethod.FindByElements(driver,"xpath","//div[contains(@class,'k-list-scroller')]/ul/li");
-            HelpersMethod.ActClick(driver,AccTypes.get(1),20);
+            HelpersMethod.ActClick(driver,AccTypes.get(1),1000);
             exists=true;
             Assert.assertEquals(exists,true);
         }
@@ -245,7 +245,7 @@ public class PostPaymentPage
         WebElement RouteNo=HelpersMethod.FindByElement(driver,"id","BARoutingNumber");
         try
         {
-            HelpersMethod.EnterText(driver,RouteNo,100, RandomValues.generateRandomAlphaNumeric(5));
+            HelpersMethod.EnterText(driver,RouteNo,1000, RandomValues.generateRandomAlphaNumeric(5));
             exists=true;
             Assert.assertEquals(exists,true);
         }
@@ -258,7 +258,7 @@ public class PostPaymentPage
         WebElement BankNo=HelpersMethod.FindByElement(driver,"id","BAAccountNumber");
         try
         {
-            HelpersMethod.EnterText(driver,BankNo,100, RandomValues.generateRandomNumber(10));
+            HelpersMethod.EnterText(driver,BankNo,1000, RandomValues.generateRandomNumber(10));
             exists=true;
             Assert.assertEquals(exists,true);
         }
@@ -271,7 +271,7 @@ public class PostPaymentPage
         WebElement SetPrefer=HelpersMethod.FindByElement(driver,"id","IsPreferred");
         try
         {
-            HelpersMethod.ClickBut(driver,SetPrefer,10);
+            HelpersMethod.ClickBut(driver,SetPrefer,1000);
             exists=true;
             Assert.assertEquals(exists,true);
         }
@@ -284,7 +284,7 @@ public class PostPaymentPage
         WebElement WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-widget k-window k-dialog')]/descendant::button[text()='Ok']");
         try
         {
-            HelpersMethod.ClickBut(driver,WebEle,10);
+            HelpersMethod.ClickBut(driver,WebEle,1000);
             exists=true;
             Assert.assertEquals(exists,true);
         }
