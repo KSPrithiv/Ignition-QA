@@ -83,9 +83,9 @@ public class LoginPage
             if(HelpersMethod.IsExists("//div[@class='loader']",driver))
             {
                 WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 80000);
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100000);
             }
-            HelpersMethod.waitTillTitleContains(driver,"Login",200);
+            HelpersMethod.waitTillTitleContains(driver,"Login",2000);
             String title= driver.getTitle();
             if(title.contains("Login"))
             {
@@ -188,7 +188,7 @@ public class LoginPage
             if (Forgotten.isDisplayed())
             {
                 HelpersMethod.ScrollElement(driver,Forgotten);
-                HelpersMethod.ActClick(driver, Forgotten, 100);
+                HelpersMethod.ActClick(driver, Forgotten, 1000);
                 exists=true;
             }
             else
@@ -210,13 +210,13 @@ public class LoginPage
             {
                 //Enter user name in input box, in popup
                 WebElement UserInput = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(text(),'Password')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]/descendant::input");
-                HelpersMethod.clearText(driver, UserInput, 40);
-                HelpersMethod.sendKeys(driver, UserInput, 40,username);
-                String emailUserName=HelpersMethod.JSGetValueEle(driver,UserInput,100);
+                HelpersMethod.clearText(driver, UserInput, 1000);
+                HelpersMethod.sendKeys(driver, UserInput, 1000,username);
+                String emailUserName=HelpersMethod.JSGetValueEle(driver,UserInput,1000);
                 scenario.log("USER NAME ENTERED FOR PASSWORD ASSISTANCE "+emailUserName);
                 //Click on Send button
                 WebElement SendBut = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-widget k-window k-dialog')]/descendant::button[text()='Send']");
-                HelpersMethod.clickOn(driver, SendBut, 100);
+                HelpersMethod.clickOn(driver, SendBut, 1000);
                 scenario.log("FORGOTTEN PASSWORD BUTTON HAS BEEN HANDLED");
                 exists=true;
             }
@@ -236,7 +236,7 @@ public class LoginPage
             if(HelpersMethod.EleDisplay(ExternalCatalog))
             {
                 HelpersMethod.ScrollElement(driver,ExternalCatalog);
-                HelpersMethod.ActClick(driver,ExternalCatalog,100);
+                HelpersMethod.ActClick(driver,ExternalCatalog,1000);
                 exists=true;
                 String status = HelpersMethod.returnDocumentStatus(driver);
                 if (status.equals("loading"))
@@ -247,7 +247,7 @@ public class LoginPage
                 if(HelpersMethod.IsExists("//div[@class='loader']",driver))
                 {
                     WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 4000);
+                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100000);
                 }
                 HelpersMethod.WaitElementPresent(driver,"xpath","//div[contains(@class,'product-catalog-page')]",1000);
                 //new WebDriverWait(driver,1000).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(@id,'ext-product-catalog-app')]")));
@@ -315,7 +315,7 @@ public class LoginPage
         {
             if (RememberMe.isDisplayed())
             {
-                HelpersMethod.ActClick(driver, RememberMe, 10);
+                HelpersMethod.ActClick(driver, RememberMe, 1000);
                 exists=true;
             }
             else
@@ -386,7 +386,7 @@ public class LoginPage
             HelpersMethod.waitTillElementLocatedDisplayed(driver, "xpath", "//div[contains(@class,'k-child-animation-container')]/descendant::form[contains(@class,'i-filter-popup')]", 1000);
             WebElement RadioPop = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-child-animation-container')]/descendant::form[contains(@class,'i-filter-popup')]");
             Search2 = RadioPop.findElement(By.xpath(".//div[contains(@class,'i-btn-radio filter-radio')][1]/following-sibling::div[contains(@class,'k-textbox-container i-filter-popup__content__input')]/input"));
-            HelpersMethod.ActSendKey(driver, Search2, 800, AccNo);
+            HelpersMethod.ActSendKey(driver, Search2, 1000, AccNo);
 
             //Click on Apply button
             WebElement ApplyButton = RadioPop.findElement(By.xpath(".//button[text()='Apply']"));
@@ -427,7 +427,7 @@ public class LoginPage
         if(HelpersMethod.IsExists("//button[contains(@class,'k-button k-primary k-button-icontext')]",driver))
         {
                 HelpersMethod.ScrollElement(driver, SignIn);
-                HelpersMethod.JScriptClick(driver, SignIn, 100);
+                HelpersMethod.JScriptClick(driver, SignIn, 1000);
                 HelpersMethod.waitTillPageLoaded(driver, 500);
                 exists = true;
                 String status = HelpersMethod.returnDocumentStatus(driver);
@@ -437,7 +437,8 @@ public class LoginPage
                 }
                 if (HelpersMethod.IsExists("//div[@class='loader']", driver))
                 {
-                   // new WebDriverWait(driver, 6000).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+                    WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
+                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 400000);
                 }
                 scenario.log("SIGNIN BUTTON CLICKED");
         }
@@ -450,7 +451,7 @@ public class LoginPage
         try
         {
                 HelpersMethod.ScrollElement(driver, SignIn);
-                HelpersMethod.ClickBut(driver, SignIn, 100);
+                HelpersMethod.ClickBut(driver, SignIn, 1000);
                 HelpersMethod.waitTillPageLoaded(driver, 100000);
 
                 String status = HelpersMethod.returnDocumentStatus(driver);

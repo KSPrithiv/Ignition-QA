@@ -61,6 +61,16 @@ Feature: Order Guide
       | OG |
       |OGDis1|
 
+  @DragAndDropInCreateOG
+  Scenario Outline: Test sceanrio for dragging and droping feature in create order guide page
+    Given User must be on Order Entry Page to select OG
+    And User should navigate to OG
+    Then User enters OG "<OG>" Description in search box
+    And User must be on create OG page and "<Drag Drop>" the grid header
+    Examples:
+    |  OG     | Drag Drop |
+    | OGDis1  | Category  |
+
   @SearchForProduct
    Scenario: Searching for product in new OG page
      Given User must be on Order Entry Page to select OG

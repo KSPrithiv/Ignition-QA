@@ -43,7 +43,7 @@ public class userAndAdmin_PendingRegApprovalPage
         {
             try
             {
-                HelpersMethod.ActClick(driver,pendingReg,60);
+                HelpersMethod.ActClick(driver,pendingReg,1000);
             }
             catch (Exception e){}
         }
@@ -55,7 +55,7 @@ public class userAndAdmin_PendingRegApprovalPage
                 WebElement WebEle=null;
                 String Opt=null;
                 Actions act1= new Actions(driver);
-                HelpersMethod.waitTillElementLocatedDisplayed(driver,"xpath","//div[contains(@class,'k-popup k-child-animation-container')]",40);
+                HelpersMethod.waitTillElementLocatedDisplayed(driver,"xpath","//div[contains(@class,'k-popup k-child-animation-container')]",10000);
                 // to fetch the web element of the modal container
                 WebElement menuContainer = HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-popup k-child-animation-container')]");
                 List<WebElement> Options=menuContainer.findElements (By.xpath(".//ul/li"));
@@ -81,7 +81,7 @@ public class userAndAdmin_PendingRegApprovalPage
     {
         try
         {
-            HelpersMethod.ClickBut(driver,denyButton,100);
+            HelpersMethod.ClickBut(driver,denyButton,1000);
             if(HelpersMethod.IsExists("//div[contains(text(),'This will delete the user.')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
             {
                 WebElement modalContainer = driver.findElement(By.xpath("//div[contains(@class,'k-widget k-window k-dialog')]"));
@@ -90,12 +90,12 @@ public class userAndAdmin_PendingRegApprovalPage
                 WebElement modalContentTitle = modalContainer.findElement(By.xpath(".//div[contains(@class,'k-window-title k-dialog-title')]"));
                 Assert.assertEquals(modalContentTitle.getText(), "Pending Registration Approval", "Verify Title message");
                 WebElement yesButton = modalContainer.findElement(By.xpath(".//button[text()='Yes']"));
-                HelpersMethod.ClickBut(driver, yesButton, 100);
+                HelpersMethod.ClickBut(driver, yesButton, 1000);
                 scenario.log("PENDING REGISTRATION APPROVAL DENEY");
                 if(HelpersMethod.IsExists("//div[@class='loader']",driver))
                 {
                     WebElement WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 10000);
+                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100000);
                 }
 
             }
@@ -111,7 +111,7 @@ public class userAndAdmin_PendingRegApprovalPage
         {
             if(confirmButton.isDisplayed()&&confirmButton.isEnabled())
             {
-                HelpersMethod.ClickBut(driver, confirmButton, 100);
+                HelpersMethod.ClickBut(driver, confirmButton, 1000);
                 if (HelpersMethod.IsExists("//div[contains(text(),'Pending Registration Approval')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]", driver))
                 {
                     WebElement modalContainer = driver.findElement(By.xpath("//div[contains(@class,'k-widget k-window k-dialog')]"));
@@ -120,13 +120,12 @@ public class userAndAdmin_PendingRegApprovalPage
                     WebElement modalContentTitle = modalContainer.findElement(By.xpath(".//div[contains(@class,'k-window-title k-dialog-title')]"));
                     Assert.assertEquals(modalContentTitle.getText(), "Pending Registration Approval", "Verify Title message");
                     WebElement yesButton = modalContainer.findElement(By.xpath(".//button[text()='Yes']"));
-                    HelpersMethod.ClickBut(driver, yesButton, 100);
+                    HelpersMethod.ClickBut(driver, yesButton, 1000);
                     if(HelpersMethod.IsExists("//div[@class='loader']",driver))
                     {
                         WebElement WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                        HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 4000);
+                        HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100000);
                     }
-
                     scenario.log("PENDING REGISTRATION APPROVAL");
                     exists = true;
                 }
@@ -144,7 +143,7 @@ public class userAndAdmin_PendingRegApprovalPage
             if(HelpersMethod.IsExists("//div[@class='loader']",driver))
             {
                 WebElement WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 8000);
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100000);
             }
             if(HelpersMethod.IsExists("//div[contains(text(),'Delete Account')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
             {
@@ -154,7 +153,7 @@ public class userAndAdmin_PendingRegApprovalPage
                 WebElement modalContentTitle = modalContainer.findElement(By.xpath(".//div[contains(@class,'k-window-title k-dialog-title')]"));
                 Assert.assertEquals(modalContentTitle.getText(), "Delete Account", "Verify Title message");
                 WebElement okButton=modalContainer.findElement(By.xpath(".//button[text()='OK']"));
-                HelpersMethod.ClickBut(driver,okButton,100);
+                HelpersMethod.ClickBut(driver,okButton,1000);
                 exists=true;
                 scenario.log("PENDING REGISTRATION DENYED AND ACCOUNT DELETED");
             }
@@ -175,7 +174,7 @@ public class userAndAdmin_PendingRegApprovalPage
                 WebElement modalContentTitle = modalContainer.findElement(By.xpath(".//div[contains(@class,'k-window-title k-dialog-title')]"));
                 Assert.assertEquals(modalContentTitle.getText(), "Update User Info", "Verify Title message");
                 WebElement okButton=modalContainer.findElement(By.xpath(".//button[text()='OK']"));
-                HelpersMethod.ClickBut(driver,okButton,100);
+                HelpersMethod.ClickBut(driver,okButton,1000);
                 exists=true;
                 scenario.log("USER INFO HAS BEEN SUCESSFULLY UPDATEDss");
             }

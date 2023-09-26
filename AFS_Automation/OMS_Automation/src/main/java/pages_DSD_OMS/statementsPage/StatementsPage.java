@@ -199,7 +199,7 @@ public class StatementsPage
         {
             if(!weeklyCheckbox.isSelected())
             {
-                HelpersMethod.ClickBut(driver,weeklyCheckbox,100);
+                HelpersMethod.ClickBut(driver,weeklyCheckbox,1000);
             }
             if(weeklyCheckbox.isSelected())
             {
@@ -218,7 +218,7 @@ public class StatementsPage
         {
             if(!monthlyCheckbox.isSelected())
             {
-                HelpersMethod.ClickBut(driver,monthlyCheckbox, 100);
+                HelpersMethod.ClickBut(driver,monthlyCheckbox, 1000);
             }
             if(monthlyCheckbox.isSelected())
             {
@@ -237,7 +237,7 @@ public class StatementsPage
         {
             if(!dateCheckbox.isSelected())
             {
-                HelpersMethod.ClickBut(driver,dateCheckbox,100);
+                HelpersMethod.ClickBut(driver,dateCheckbox,1000);
             }
             if(dateCheckbox.isSelected())
             {
@@ -261,7 +261,7 @@ public class StatementsPage
         {
             prYear=HelpersMethod.FindByElement(driver,"xpath","//span[@id='ddlYear']/span[contains(@class,'input')]").getText();
             scenario.log("YEAR BEFORE CHAINGING: "+prYear);
-            HelpersMethod.ClickBut(driver,yearlyDropdown,100);
+            HelpersMethod.ClickBut(driver,yearlyDropdown,1000);
             List<WebElement> Values=HelpersMethod.FindByElements(driver,"xpath","//div[contains(@class,'k-animation-container ')]/descendant::ul/li");
             for(int i=0;i<= Values.size()-1;i++)
             {
@@ -312,7 +312,7 @@ public class StatementsPage
         {
             prMonth=HelpersMethod.FindByElement(driver,"xpath","//span[@id='ddlMonth']/span[contains(@class,'input')]").getText();
             scenario.log("MONTH BEFORE CHANGING: "+prMonth);
-            HelpersMethod.ClickBut(driver,monthDropdown,100);
+            HelpersMethod.ClickBut(driver,monthDropdown,1000);
             List<WebElement> Values=HelpersMethod.FindByElements(driver,"xpath","//div[contains(@class,'k-animation-container ')]/descendant::ul/li");
             for(int i=0;i<= Values.size()-1;i++)
             {
@@ -363,7 +363,7 @@ public class StatementsPage
         {
             prDate=HelpersMethod.FindByElement(driver,"xpath","//span[@id='ddlDay']/span[contains(@class,'input')]").getText();
             scenario.log("DATE BEFORE CHANGING: "+prDate);
-            HelpersMethod.ClickBut(driver,dateDropdown,100);
+            HelpersMethod.ClickBut(driver,dateDropdown,1000);
             List<WebElement> Values=HelpersMethod.FindByElements(driver,"xpath","//div[contains(@class,'k-animation-container ')]/descendant::ul/li");
             for(int i=0;i<= Values.size()-1;i++)
             {
@@ -484,7 +484,7 @@ public class StatementsPage
                 if (HelpersMethod.IsExists("//div[@class='loader']", driver))
                 {
                     WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100000);
+                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 200000);
                 }
             }
             if(HelpersMethod.IsExists("//div[contains(text(),'There is no data to display for your defined date range')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
@@ -500,16 +500,10 @@ public class StatementsPage
                 {
                     HelpersMethod.waitTillLoadingPage(driver);
                 }
-
+                Thread.sleep(5000);
                 Set<String> PCWindows = driver.getWindowHandles();
                 for (String PCwind : PCWindows)
                 {
-                    Thread.sleep(80000);
-                    status = HelpersMethod.returnDocumentStatus(driver);
-                    if (status.equals("loading"))
-                    {
-                        HelpersMethod.waitTillLoadingPage(driver);
-                    }
                     if (!PCwind.equals(ParentWindow))
                     {
                         driver.switchTo().window(PCwind);
@@ -569,6 +563,7 @@ public class StatementsPage
                 {
                     HelpersMethod.waitTillLoadingPage(driver);
                 }
+                Thread.sleep(5000);
                 Set<String> PCWindows = driver.getWindowHandles();
                 for (String PCwind : PCWindows)
                 {
@@ -579,7 +574,6 @@ public class StatementsPage
                     }
                     if (!PCwind.equals(ParentWindow))
                     {
-                        Thread.sleep(80000);
                         driver.switchTo().window(PCwind);
                         scenario.log(".pdf HAS BEEN FOUND");
                         driver.close();
@@ -638,12 +632,12 @@ public class StatementsPage
         try
         {
             WebEle= HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-textbox-container')][1]/descendant::a[contains(@class,'k-select k-select')]");
-            HelpersMethod.ClickBut(driver,WebEle,100);
-            HelpersMethod.WaitElementPresent(driver,"xpath","//div[contains(@class,'k-calendar-view k-calendar-monthview')]",40);
-            HelpersMethod.waitTillElementLocatedDisplayed(driver,"xpath","//div[contains(@class,'k-calendar-view k-calendar-monthview')]",40);
+            HelpersMethod.ClickBut(driver,WebEle,1000);
+            HelpersMethod.WaitElementPresent(driver,"xpath","//div[contains(@class,'k-calendar-view k-calendar-monthview')]",4000);
+            HelpersMethod.waitTillElementLocatedDisplayed(driver,"xpath","//div[contains(@class,'k-calendar-view k-calendar-monthview')]",4000);
 
             WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-content k-calendar-content k-scrollable')]/table[contains(@class,'k-calendar-table')]/descendant::tr[3]/td[1]/span");
-            HelpersMethod.ClickBut(driver,WebEle,100);
+            HelpersMethod.ClickBut(driver,WebEle,1000);
         }
         catch (Exception e){}
     }
@@ -654,12 +648,12 @@ public class StatementsPage
         try
         {
             WebEle= HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-textbox-container')][2]/descendant::a[contains(@class,'k-select k-select')]");
-            HelpersMethod.ClickBut(driver,WebEle,100);
-            HelpersMethod.WaitElementPresent(driver,"xpath","//div[contains(@class,'k-calendar-view k-calendar-monthview')]",40);
-            HelpersMethod.waitTillElementLocatedDisplayed(driver,"xpath","//div[contains(@class,'k-calendar-view k-calendar-monthview')]",40);
+            HelpersMethod.ClickBut(driver,WebEle,1000);
+            HelpersMethod.WaitElementPresent(driver,"xpath","//div[contains(@class,'k-calendar-view k-calendar-monthview')]",4000);
+            HelpersMethod.waitTillElementLocatedDisplayed(driver,"xpath","//div[contains(@class,'k-calendar-view k-calendar-monthview')]",4000);
 
             WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-content k-calendar-content k-scrollable')]/table[contains(@class,'k-calendar-table')]/descendant::tr/td[contains(@class,'k-calendar-td k-state-pending-focus k-state-selected k-today')]");
-            HelpersMethod.ClickBut(driver,WebEle,100);
+            HelpersMethod.ClickBut(driver,WebEle,1000);
         }
         catch (Exception e){}
     }

@@ -76,7 +76,7 @@ public class NewPaymentMethodPage
         exists=false;
         try
         {
-            HelpersMethod.ClickBut(driver,PaymentDropDown,100);
+            HelpersMethod.ClickBut(driver,PaymentDropDown,1000);
             exists=true;
         }
         catch (Exception e){}
@@ -102,7 +102,7 @@ public class NewPaymentMethodPage
         {
             if(FirstName.isDisplayed() && FirstName.isEnabled())
             {
-                HelpersMethod.EnterText(driver,FirstName,10,FName);
+                HelpersMethod.EnterText(driver,FirstName,1000,FName);
                 exists=true;
             }
         }
@@ -117,7 +117,7 @@ public class NewPaymentMethodPage
         {
             if(LastName.isDisplayed() && LastName.isEnabled())
             {
-                HelpersMethod.EnterText(driver,LastName,10,LName);
+                HelpersMethod.EnterText(driver,LastName,1000,LName);
                 exists=true;
             }
         }
@@ -132,7 +132,7 @@ public class NewPaymentMethodPage
         {
             if(BankAccType.isDisplayed() && BankAccType.isEnabled())
             {
-                HelpersMethod.ClickBut(driver,BankAccType,10);
+                HelpersMethod.ClickBut(driver,BankAccType,1000);
                 exists=true;
             }
         }
@@ -146,7 +146,7 @@ public class NewPaymentMethodPage
         try
         {
             List<WebElement> AccTypes=HelpersMethod.FindByElements(driver,"xpath","//div[contains(@class,'k-list-scroller')]/ul/li");
-            HelpersMethod.ActClick(driver,AccTypes.get(1),20);
+            HelpersMethod.ActClick(driver,AccTypes.get(1),1000);
             exists=true;
         }
         catch (Exception e){}
@@ -158,7 +158,7 @@ public class NewPaymentMethodPage
         exists=false;
         try
         {
-            HelpersMethod.EnterText(driver,RouteNo,20,RandomValues.generateRandomAlphaNumeric(5));
+            HelpersMethod.EnterText(driver,RouteNo,1000,RandomValues.generateRandomAlphaNumeric(5));
             exists=true;
         }
         catch (Exception e){}
@@ -170,7 +170,7 @@ public class NewPaymentMethodPage
         exists=false;
         try
         {
-            HelpersMethod.EnterText(driver,BankNo,10, RandomValues.generateRandomNumber(10));
+            HelpersMethod.EnterText(driver,BankNo,1000, RandomValues.generateRandomNumber(10));
             exists=true;
         }
         catch (Exception e){}
@@ -182,7 +182,7 @@ public class NewPaymentMethodPage
         exists=false;
         try
         {
-            HelpersMethod.ClickBut(driver,SetPrefer,10);
+            HelpersMethod.ClickBut(driver,SetPrefer,1000);
             exists=true;
         }
         catch (Exception e){}
@@ -194,7 +194,7 @@ public class NewPaymentMethodPage
         exists=false;
         try
         {
-            HelpersMethod.ClickBut(driver,SaveBut,10);
+            HelpersMethod.ClickBut(driver,SaveBut,1000);
             exists=true;
         }
         catch (Exception e){}
@@ -206,7 +206,7 @@ public class NewPaymentMethodPage
         exists=false;
         try
         {
-            HelpersMethod.ClickBut(driver,CancelBut,10);
+            HelpersMethod.ClickBut(driver,CancelBut,1000);
             exists=true;
         }
         catch (Exception e){}

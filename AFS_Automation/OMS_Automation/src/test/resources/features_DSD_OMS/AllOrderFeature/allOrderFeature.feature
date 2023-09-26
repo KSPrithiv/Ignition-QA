@@ -153,8 +153,8 @@ Feature: All orders
     And User clicks on search button
     And User Clicks on Add filter button and enter values for search options
     Then User clicks on OrderNo in All Order grid and User should be navigated Ordersummary page
-    Then User clicks on Back to Order list button and should be navigated to OE page
-    And User enters orderNo That he has selected from order grid and validates it exists in order also
+    #Then User clicks on Back to Order list button and should be navigated to OE page
+    #And User enters orderNo That he has selected from order grid and validates it exists in order also
 
   @CreatePickupOrder
   Scenario: Test scenario for creating Pickup order

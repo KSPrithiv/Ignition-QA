@@ -253,6 +253,7 @@ public class StandingOrderPageSteps
         standingOrder.ClickOnSkipReason();
         standingOrder.SelectDateToSkip();
         standingOrder.SkipOkButton();
+        standingOrder.orderAlreadyExists();
         standingOrder.SkipConfirmation();
     }
 
@@ -328,6 +329,7 @@ public class StandingOrderPageSteps
         LocalDate myDateObj = LocalDate.parse(sDate, DateTimeFormatter.ofPattern("MM/dd/yyyy"));
         DateTimeFormatter myFormatObj = DateTimeFormatter.ofPattern("EEEE, MMMM d, yyyy");
         sDate = myDateObj.format(myFormatObj);
+        scenario.log("SKIP DATE FOUND IN STANDING ORDER IS "+sDate);
     }
 
     @And("User should navigate to OE page, User should select the same delivery date from calender")

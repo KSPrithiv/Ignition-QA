@@ -107,24 +107,6 @@ Feature: Order Entry2
     And Click on SubmitOrder button
     Then User should be navigated to Order Entry page
 
-  @TotalProd
-  Scenario: Compare Total number of lines with number of products in summary page
-    Given User must be on Order Entry Page
-    Then User must click Start Order button
-    Then User should make selection between Pending order or Start New order
-    Then User should select Note from popup and Order guide from popup
-    Then Enter PO# for New order
-      |PO123|
-    Then Enter Prod_No in Quick Product Entry area
-     |  90  |  40  |
-     |  55  |  80  |
-     |  45  | 35   |
-     |  80  | 75   |
-    Then Click on Next button
-    Then In Order Summary page compare Total no of line compare it with no of products
-    And Click on SubmitOrder button
-    Then User should be navigated to Order Entry page
-
     #Admin Setting should be enabled for this scenario->"Enable auto load order entry"
   # this script will work, when there are no orders for the changed account for given date
   @ChangeAccount

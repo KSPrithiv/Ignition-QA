@@ -57,7 +57,7 @@ public class FeaturedProdSettingsPage
         if(HelpersMethod.IsExists("//div[@class='loader']",driver))
         {
             WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 80000);
+            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100000);
         }
         try
         {
@@ -92,7 +92,7 @@ public class FeaturedProdSettingsPage
         exists=false;
         try
         {
-            HelpersMethod.ClickBut(driver,DropDown,100);
+            HelpersMethod.ClickBut(driver,DropDown,1000);
         }
         catch (Exception e){}
     }

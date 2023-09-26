@@ -82,7 +82,7 @@ public class HelpersMethod
           if (HelpersMethod.IsExists("//div[@class='loader']", driver))
           {
               WebElement WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-              HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 20000);
+              HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 80000);
           }
     }
 
@@ -496,7 +496,7 @@ public class HelpersMethod
                 if(IsExists("//div[@class='loader']",driver))
                 {
                     WebEle=FindByElement(driver,"xpath","//div[@class='loader']");
-                    waitTillLoadingWheelDisappears(driver, WebEle, 1000);
+                    waitTillLoadingWheelDisappears(driver, WebEle, 80000);
                 }
             }
         }
@@ -563,14 +563,24 @@ public class HelpersMethod
                 {
                     WebElement menuItem=FindByElement(driver,selector,MenuItemLocator);
                     JScriptClick(driver,menuItem,100);
-                    if(IsExists("//div[@class='loader']",driver))
-                    {
-                        WebElement WebEle=FindByElement(driver,"xpath","//div[@class='loader']");
-                        waitTillLoadingWheelDisappears(driver, WebEle, 80000);
-                    }
                     break;
                 }
             }
+        if(IsExists("//div[@class='loader']",driver))
+        {
+            WebElement WebEle=FindByElement(driver,"xpath","//div[@class='loader']");
+            waitTillLoadingWheelDisappears(driver, WebEle, 200000);
+        }
+        String status=returnDocumentStatus(driver);
+        if (status.equals("loading"))
+        {
+          waitTillLoadingPage(driver);
+        }
+        if(IsExists("//div[@class='loader']",driver))
+        {
+            WebElement WebEle=FindByElement(driver,"xpath","//div[@class='loader']");
+            waitTillLoadingWheelDisappears(driver, WebEle, 200000);
+        }
     }
 
     public static String gettingTitle(WebDriver driver)
@@ -722,7 +732,7 @@ public class HelpersMethod
         new WebDriverWait(driver,Duration.ofMillis(10000)).until(ExpectedConditions.elementToBeClickable(By.xpath("//button/descendant::span[contains(text(),'Add filter')]")));
         driver.findElement(By.xpath("//button/descendant::span[contains(text(),'Add filter')]")).click();
 
-        waitTillElementLocatedDisplayed(driver,"xpath","//div[contains(@class,'k-animation-container k-animation-container-relative k-animation-container-shown')]",40000);
+        waitTillElementLocatedDisplayed(driver,"xpath","//div[contains(@class,'k-animation-container k-animation-container-relative k-animation-container-shown')]",80000);
         WebElement modalContainer1=FindByElement(driver,"xpath","//div[contains(@class,'k-animation-container k-animation-container-relative k-animation-container-shown')]");
 
         //Click on Clear all button
@@ -783,7 +793,7 @@ public class HelpersMethod
         WebDriverWait wait=new WebDriverWait(driver,Duration.ofMillis(8000));
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(@class,'k-widget k-window k-dialog')]/descendant::button/descendant::span[contains(text(),'Add filter')]")));
         driver.findElement(By.xpath("//div[contains(@class,'k-widget k-window k-dialog')]/descendant::button/descendant::span[contains(text(),'Add filter')]")).click();
-
+        new WebDriverWait(driver,Duration.ofMillis(2000)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(@class,'k-animation-container k-animation-container-relative k-animation-container-shown')]")));
         //Click on Clear all button
         WebElement modalContainer1=FindByElement(driver,"xpath","//div[contains(@class,'k-animation-container k-animation-container-relative k-animation-container-shown')]");
         WebElement Clear=modalContainer1.findElement(By.xpath(".//button[contains(text(),'Clear all')]"));
@@ -842,6 +852,6 @@ public class HelpersMethod
         HelpersMethod.AddFilterSearch_Popup(driver,Search1_Value,Search2_Value);
 
         //click on the table row after filter
-        HelpersMethod.ActClick(driver,driver.findElement(By.xpath("//div[contains(@class,'k-widget k-window k-dialog')]/descendant::tr[@class='k-master-row']")),40);
+        HelpersMethod.ActClick(driver,driver.findElement(By.xpath("//div[contains(@class,'k-widget k-window k-dialog')]/descendant::tr[@class='k-master-row']")),100);
     }
 }

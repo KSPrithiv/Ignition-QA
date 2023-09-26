@@ -32,17 +32,21 @@ Feature: Order Entry4
       Then User should select Note from popup and Order guide from popup
       Then Enter PO# for New order
         |PO123|
-      Then Enter Pro# in Quick Product Entry area
-      And Check for Case and Unit input box enabled or not based on that enter value
-        |50|50|
+      Then Click on Add product drop down and select OrderGuide option
+        |SampleOG|
+      And Enter Qty for the products in Product grid
+        |50|70|
+        |40|60|
       Then User should click on Copy from dropdown and Select Order history
         |Order history|
       Then User verifies Order history page and add history Order to order
       And Click on Copy button
-      # Then Enter PO# for New order
-      #  |PO123|
-      Then User should enter Units and Cases in product grid
-        |40|50|
+      Then User should select Note from popup and Order guide from popup
+      Then Enter PO# for New order
+       |PO123|
+      Then Enter Pro# in Quick Product Entry area
+      And Check for Case and Unit input box enabled or not based on that enter value
+        |50|50|
       Then Click on Next button
       And Click on SubmitOrder button
       Then User should be navigated to Order Entry page
