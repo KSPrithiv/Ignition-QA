@@ -111,50 +111,59 @@ public class OrderControlPageSteps
     @Given("User must be on Order Entry Page to select OCL")
     public void UserMustBeOnOrderEntryPageToSelectOCL() throws InterruptedException, AWTException
     {
-        orderpage=new OrderEntryPage(driver,scenario);
-       // orderpage.navigateToOrderEntry1();
+        if(flag1==false)
+    {
+        WebElement WebEle = null;
+        String status = HelpersMethod.returnDocumentStatus(driver);
+        if (status.equals("loading"))
+        {
+            HelpersMethod.waitTillLoadingPage(driver);
+        }
+        if (HelpersMethod.IsExists("//div[@class='loader']", driver))
+        {
+            WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
+            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 400000);
+        }
+        status = HelpersMethod.returnDocumentStatus(driver);
+        if (status.equals("loading"))
+        {
+            HelpersMethod.waitTillLoadingPage(driver);
+        }
+        WebEle = HelpersMethod.FindByElement(driver, "xpath", "//li[contains(@class,'k-item')]/span[@class='k-link' and contains(text(),'Order control list')]");
+        status = HelpersMethod.returnDocumentStatus(driver);
+        if (status.equals("loading"))
+        {
+            HelpersMethod.waitTillLoadingPage(driver);
+        }
+        if (HelpersMethod.EleDisplay(WebEle))
+        {
+            HelpersMethod.navigate_Horizantal_Tab(driver, "Order control list", "//li[contains(@class,'k-item')]/span[@class='k-link' and contains(text(),'Order control list')]", "xpath", "//li[contains(@class,'k-item')]/span[@class='k-link']");
+            if (HelpersMethod.IsExists("//div[@class='loader']", driver))
+            {
+                WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 400000);
+            }
+            orderControlList = new OrderControlListPage(driver, scenario);
+            orderControlList.Validate_OCL();
+            currentURL=driver.getCurrentUrl();
+            scenario.log("CURRENT URL IS "+currentURL);
+        }
+        else
+        {
+            scenario.log("ORDER CONTROL TAB DOESN'T EXISTS");
+        }
+        flag1=true;
+    }
     }
 
     @And("User should navigate to OCL")
     public void userShouldNavigateToOCL() throws InterruptedException, AWTException
     {
-        if(flag1==false)
-        {
-            WebElement WebEle = null;
-            String status = HelpersMethod.returnDocumentStatus(driver);
-            if (status.equals("loading"))
-            {
-                HelpersMethod.waitTillLoadingPage(driver);
-            }
-            if (HelpersMethod.IsExists("//div[@class='loader']", driver))
-            {
-                WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 80000);
-            }
-            WebEle = HelpersMethod.FindByElement(driver, "xpath", "//li[contains(@class,'k-item')]/span[@class='k-link' and contains(text(),'Order control list')]");
-            if (HelpersMethod.EleDisplay(WebEle))
-            {
-                HelpersMethod.navigate_Horizantal_Tab(driver, "Order control list", "//li[contains(@class,'k-item')]/span[@class='k-link' and contains(text(),'Order control list')]", "xpath", "//li[contains(@class,'k-item')]/span[@class='k-link']");
-                if (HelpersMethod.IsExists("//div[@class='loader']", driver))
-                {
-                    WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 80000);
-                }
-                orderControlList = new OrderControlListPage(driver, scenario);
-                orderControlList.Validate_OCL();
-                currentURL=driver.getCurrentUrl();
-                scenario.log("CURRENT URL IS "+currentURL);
-            }
-            else
-            {
-                scenario.log("ORDER CONTROL TAB DOESN'T EXISTS");
-            }
-           flag1=true;
-        }
         orderpage = new OrderEntryPage(driver, scenario);
         orderpage.HandleError_Page();
         orderControlList=new OrderControlListPage(driver,scenario);
         orderControlList.Refresh_Page(currentURL);
+        orderControlList.Validate_OCL();
     }
 
     @Then("User should select Order traker from drop down")
@@ -261,6 +270,7 @@ public class OrderControlPageSteps
     {
         orderControlList=new OrderControlListPage(driver,scenario);
         orderControlList.RemoveSkipPopUp();
+        orderControlList.validateChangeOfRemoveSkip();
     }
 
     @Then("User validates Not skip option")
@@ -320,6 +330,11 @@ public class OrderControlPageSteps
     {
         summary = new CheckOutSummaryPage(driver,scenario);
         summary.ClickSubmit();
+        for(int i=0;i<=2;i++)
+        {
+            summary.cutoffDialog();
+            summary.additionalOrderPopup();
+        }
         Ord_No = summary.Get_Order_No();
         summary.SucessPopup();
     }

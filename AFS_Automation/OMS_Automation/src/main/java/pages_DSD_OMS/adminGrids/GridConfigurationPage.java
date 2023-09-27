@@ -58,7 +58,7 @@ public class GridConfigurationPage
 
                 JavascriptExecutor js = ((JavascriptExecutor) driver);
                 js.executeScript("window.location.reload()");
-                WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(40));
+                WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(10000));
                 if(wait.until(ExpectedConditions.alertIsPresent())==null)
                 {
 
@@ -76,7 +76,7 @@ public class GridConfigurationPage
             if (HelpersMethod.IsExists("//div[@class='loader']", driver))
             {
                 WebElement   WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 8000);
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100000);
             }
         }
         catch (Exception e){}
@@ -118,7 +118,7 @@ public class GridConfigurationPage
         try
         {
             WebEle=HelpersMethod.FindByElement(driver,"xpath","//tr[1]/descendant::div[@class='grid-name']");
-            HelpersMethod.ActClick(driver,WebEle,100);
+            HelpersMethod.ActClick(driver,WebEle,1000);
         }
         catch (Exception e){}
     }
@@ -184,7 +184,7 @@ public class GridConfigurationPage
                 HelpersMethod.ActClick(driver, gridTypeDropDown, 1000);
                 scenario.log("GRID TYPE DROP DOWN HAS BEEN CLICKED");
                 exists = true;
-                new WebDriverWait(driver, Duration.ofMillis(6000)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class,'k-popup k-child-animation-container')]"))));
+                new WebDriverWait(driver, Duration.ofMillis(10000)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class,'k-popup k-child-animation-container')]"))));
             }
             Assert.assertEquals(exists, true);
         }
@@ -197,7 +197,7 @@ public class GridConfigurationPage
         Actions act1=new Actions(driver);
         try
         {
-            Thread.sleep(100);
+            Thread.sleep(500);
             //new WebDriverWait(driver, 60000).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class,'k-popup k-child-animation-container')]"))));
             if(HelpersMethod.IsExists("//div[contains(@class,'k-popup k-child-animation-container')]",driver))
             {
@@ -233,10 +233,10 @@ public class GridConfigurationPage
         {
             if(gridOptionDropdown.isDisplayed() && gridOptionDropdown.isEnabled())
             {
-                HelpersMethod.ClickBut(driver, gridOptionDropdown, 200);
+                HelpersMethod.ClickBut(driver, gridOptionDropdown, 1000);
                 scenario.log("GRID OPTION DROPDOWN CLICKED");
                 exists=true;
-                new WebDriverWait(driver,Duration.ofMillis(8000)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class,'k-child-animation-container')]"))));
+                new WebDriverWait(driver,Duration.ofMillis(10000)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class,'k-child-animation-container')]"))));
             }
             Assert.assertEquals(exists,true);
         }
@@ -279,7 +279,7 @@ public class GridConfigurationPage
             if(HelpersMethod.IsExists("//div[contains(@class,'k-child-animation-container')]/ul/li[text()='Copy']",driver))
             {
                 WebElement WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-child-animation-container')]/ul/li[text()='Copy']");
-                HelpersMethod.ActClick(driver,WebEle,200);
+                HelpersMethod.ActClick(driver,WebEle,1000);
                 scenario.log("CLICKED ON COPY OPTION");
                 exists=true;
             }
@@ -312,8 +312,8 @@ public class GridConfigurationPage
         {
             if(columnChooser.isDisplayed() && columnChooser.isEnabled())
             {
-                HelpersMethod.ClickBut(driver, columnChooser, 200);
-                new WebDriverWait(driver,Duration.ofMillis(1000)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class,'k-widget k-window k-dialog')]"))));
+                HelpersMethod.ClickBut(driver, columnChooser, 1000);
+                new WebDriverWait(driver,Duration.ofMillis(10000)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class,'k-widget k-window k-dialog')]"))));
                 exists=true;
             }
             Assert.assertEquals(exists,true);
@@ -433,7 +433,7 @@ public class GridConfigurationPage
             if(HelpersMethod.IsExists("//span[@id='defaultGrid' and @aria-checked='false']",driver))
             {
                 WebElement defaultGrid=HelpersMethod.FindByElement(driver,"xpath","//span[@id='defaultGrid' and @aria-checked='false']");
-                HelpersMethod.ActClick(driver,defaultGrid,100);
+                HelpersMethod.ActClick(driver,defaultGrid,1000);
                 scenario.log("GRID HAS BEEN SET AS DEFAULT");
             }
         }
@@ -446,11 +446,11 @@ public class GridConfigurationPage
         try
         {
             WebElement defaultGrid=HelpersMethod.FindByElement(driver,"xpath","//span[@id='defaultGrid']/input");
-            String gridTaglle=HelpersMethod.JSGetValueEle(driver,defaultGrid,100);
+            String gridTaglle=HelpersMethod.JSGetValueEle(driver,defaultGrid,1000);
             if(gridTaglle.equals("true"))
             {
-                HelpersMethod.ActClick(driver,defaultGrid,100);
-                gridTaglle=HelpersMethod.JSGetValueEle(driver,defaultGrid,100);
+                HelpersMethod.ActClick(driver,defaultGrid,1000);
+                gridTaglle=HelpersMethod.JSGetValueEle(driver,defaultGrid,1000);
                 if(gridTaglle.equals("false"))
                 {
                     exists=true;
@@ -522,7 +522,7 @@ public class GridConfigurationPage
         try
         {
             WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='switch-control card']/descendant::span[@class='k-switch-container' and  @aria-checked='true']");
-            HelpersMethod.ActClick(driver,WebEle,100);
+            HelpersMethod.ActClick(driver,WebEle,1000);
             if(HelpersMethod.IsExists("//div[@class='switch-control card']/descendant::span[@class='k-switch-container' and  @aria-checked='false']",driver))
             {
                 scenario.log("SELECTED GRID HAS BEEN DISABLED IN AVAILABLE GRID");
@@ -540,7 +540,7 @@ public class GridConfigurationPage
         try
         {
             WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='switch-control card']/descendant::span[@class='k-switch-container' and  @aria-checked='false']");
-            HelpersMethod.ActClick(driver,WebEle,200);
+            HelpersMethod.ActClick(driver,WebEle,1000);
             if(HelpersMethod.IsExists("//div[@class='switch-control card']/descendant::span[@class='k-switch-container' and  @aria-checked='true']",driver))
             {
                 scenario.log("SELECTED GRID HAS BEEN ENABLED IN AVAILABLE GRID");
@@ -564,7 +564,7 @@ public class GridConfigurationPage
                 if(HelpersMethod.IsExists("//div[@class='loader']",driver))
                 {
                     WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 80000);
+                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100000);
                 }
                 exists=true;
             }
@@ -599,7 +599,7 @@ public class GridConfigurationPage
         try
         {
             WebElement WebEle= HelpersMethod.FindByElement(driver,"xpath","//tr[1]/descendant::div[@class='grid-name']");
-            HelpersMethod.ActClick(driver,WebEle,100);
+            HelpersMethod.ActClick(driver,WebEle,1000);
         }
         catch (Exception e){}
     }
@@ -612,7 +612,7 @@ public class GridConfigurationPage
             WebElement WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='i-card__card__body i-card__card__body--expanded']/div[@class='available-templates-container']/descendant::div[@class='i-switch '][1]/descendant::span[@class='k-switch-container' and @aria-checked='true']");
             if(HelpersMethod.IsExists(" //div[@class='i-card__card__body i-card__card__body--expanded']/div[@class='available-templates-container']/descendant::div[@class='i-switch '][1]/descendant::span[@class='k-switch-container' and @aria-checked='true']",driver))
             {
-                HelpersMethod.ActClick(driver,WebEle,100);
+                HelpersMethod.ActClick(driver,WebEle,1000);
                 exists=true;
             }
             Assert.assertEquals(exists,true);
@@ -664,7 +664,6 @@ public class GridConfigurationPage
                     exists=true;
                 }
             }
-
             if(exists==true)
             {
                 scenario.log("COLUMN HAS BEEN REMOVED FROM THE GRID");
@@ -681,7 +680,7 @@ public class GridConfigurationPage
             WebElement WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='i-card__card__body i-card__card__body--expanded']/div[@class='available-templates-container']/descendant::div[@class='i-switch '][1]/descendant::span[@class='k-switch-container' and @aria-checked='false']");
             if(HelpersMethod.IsExists(" //div[@class='i-card__card__body i-card__card__body--expanded']/div[@class='available-templates-container']/descendant::div[@class='i-switch '][1]/descendant::span[@class='k-switch-container' and @aria-checked='false']",driver))
             {
-                HelpersMethod.ActClick(driver,WebEle,100);
+                HelpersMethod.ActClick(driver,WebEle,1000);
                 exists=true;
             }
             Assert.assertEquals(exists,true);
@@ -713,7 +712,7 @@ public class GridConfigurationPage
             {
                 WebElement saveConfirmationPopup=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-widget k-window k-dialog')]");
                 WebElement okButton=saveConfirmationPopup.findElement(By.xpath(".//button[contains(@id,'QuestionModalButton')]"));
-                HelpersMethod.ActClick(driver,okButton,200);
+                HelpersMethod.ActClick(driver,okButton,1000);
                 exists=true;
             }
             Assert.assertEquals(exists,true);

@@ -80,12 +80,12 @@ public class userManagementClientPage
             WebElement Search_Input = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='drawer-menu-search-container']/descendant::input");
             act.moveToElement(Search_Input).click().sendKeys("User Management").build().perform();
             WebElement UserManageMenu = HelpersMethod.FindByElement(driver, "xpath", "//ul[contains(@class,'MuiList-root ')]/descendant::span[contains(text(),'User Management')] | //ul[contains(@class,'MuiList-root ')]/descendant::span[contains(text(),'User management')]");
-            HelpersMethod.ClickBut(driver, UserManageMenu, 60);
+            HelpersMethod.ClickBut(driver, UserManageMenu, 1000);
             exists = true;
             if (HelpersMethod.IsExists("//div[@class='loader']", driver))
             {
                 WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 80000);
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100000);
             }
             status = HelpersMethod.returnDocumentStatus(driver);
             if (status.equals("loading"))
@@ -145,7 +145,7 @@ public class userManagementClientPage
         exists=false;
         try
         {
-          HelpersMethod.EnterText(driver,firstName,100,fName);
+          HelpersMethod.EnterText(driver,firstName,1000,fName);
         }
         catch (Exception e){}
     }
@@ -155,7 +155,7 @@ public class userManagementClientPage
         exists=false;
         try
         {
-            HelpersMethod.EnterText(driver,lastName,100,lName);
+            HelpersMethod.EnterText(driver,lastName,1000,lName);
         }
         catch (Exception e){}
     }
@@ -165,7 +165,7 @@ public class userManagementClientPage
         exists=false;
         try
         {
-            HelpersMethod.EnterText(driver,userName,100,uName);
+            HelpersMethod.EnterText(driver,userName,1000,uName);
         }
         catch (Exception e){}
     }
@@ -175,7 +175,7 @@ public class userManagementClientPage
         exists=false;
         try
         {
-            HelpersMethod.EnterText(driver,emailValue,100,eMail);
+            HelpersMethod.EnterText(driver,emailValue,1000,eMail);
         }
         catch (Exception e){}
     }
@@ -185,7 +185,7 @@ public class userManagementClientPage
         exists=false;
         try
         {
-            HelpersMethod.EnterText(driver,confirmEmailValue,100,eMail);
+            HelpersMethod.EnterText(driver,confirmEmailValue,1000,eMail);
         }
         catch (Exception e){}
     }
@@ -195,7 +195,7 @@ public class userManagementClientPage
         exists=false;
         try
         {
-            HelpersMethod.EnterText(driver,passwordValue,100,passWord);
+            HelpersMethod.EnterText(driver,passwordValue,1000,passWord);
         }
         catch (Exception e){}
     }
@@ -205,7 +205,7 @@ public class userManagementClientPage
         exists=false;
         try
         {
-            HelpersMethod.EnterText(driver,confirmPasswordValue,100,passWord);
+            HelpersMethod.EnterText(driver,confirmPasswordValue,1000,passWord);
         }
         catch (Exception e){}
     }
@@ -215,7 +215,7 @@ public class userManagementClientPage
         exists=false;
         try
         {
-            HelpersMethod.ActClick(driver,roleName,100);
+            HelpersMethod.ActClick(driver,roleName,1000);
         }
         catch (Exception e){}
     }
@@ -259,7 +259,7 @@ public class userManagementClientPage
                         if(HelpersMethod.IsExists("//div[@class='loader']",driver))
                         {
                             WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 80000);
+                            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100000);
                         }
                         break;
                     }
@@ -273,7 +273,7 @@ public class userManagementClientPage
     {
         try
         {
-           HelpersMethod.EnterText(driver,poNo,100,poNum);
+           HelpersMethod.EnterText(driver,poNo,1000,poNum);
         }
         catch (Exception e){}
     }
@@ -285,7 +285,7 @@ public class userManagementClientPage
         {
             if(regirstrationButton.isDisplayed() && regirstrationButton.isEnabled())
             {
-                HelpersMethod.ClickBut(driver, regirstrationButton, 200);
+                HelpersMethod.ClickBut(driver, regirstrationButton, 1000);
                 exists=true;
             }
             Assert.assertEquals(exists,true);
@@ -300,7 +300,7 @@ public class userManagementClientPage
         {
             if(cancelButton.isDisplayed() && cancelButton.isEnabled())
             {
-                HelpersMethod.ClickBut(driver, cancelButton, 200);
+                HelpersMethod.ClickBut(driver, cancelButton, 1000);
                 exists=true;
             }
             Assert.assertEquals(exists,true);

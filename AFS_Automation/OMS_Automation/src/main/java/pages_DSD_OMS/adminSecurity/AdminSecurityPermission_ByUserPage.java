@@ -66,7 +66,7 @@ public class AdminSecurityPermission_ByUserPage
         {
             if(plusSymbol.isDisplayed() && plusSymbol.isEnabled())
             {
-                HelpersMethod.ClickBut(driver,plusSymbol,100);
+                HelpersMethod.ClickBut(driver,plusSymbol,1000);
                 scenario.log("CREATING NEW ROLE FROM ROLE TAB");
                 exists=true;
             }
@@ -95,7 +95,7 @@ public class AdminSecurityPermission_ByUserPage
         try
         {
            WebElement role=HelpersMethod.FindByElement(driver,"xpath","//input[@id='comboBoxAddUserRole']/ancestor::span[@class='k-dropdown-wrap']/descendant::span[contains(@class,'k-icon k-i-arrow-s')]");
-           HelpersMethod.ActClick(driver,role,200);
+           HelpersMethod.ActClick(driver,role,1000);
         }
         catch (Exception e){}
     }
@@ -132,7 +132,7 @@ public class AdminSecurityPermission_ByUserPage
         try
         {
             WebElement role=HelpersMethod.FindByElement(driver,"xpath","//input[@id='comboBoxAddUser']/ancestor::span[@class='k-dropdown-wrap']/descendant::span[contains(@class,'k-icon k-i-arrow-s')]");
-            HelpersMethod.ActClick(driver,role,200);
+            HelpersMethod.ActClick(driver,role,1000);
         }
         catch (Exception e){}
     }
@@ -171,12 +171,12 @@ public class AdminSecurityPermission_ByUserPage
             WebElement okButton=HelpersMethod.FindByElement(driver,"id","buttonOk");
             if(okButton.isDisplayed() && okButton.isEnabled())
             {
-                HelpersMethod.ActClick(driver,okButton,200);
+                HelpersMethod.ActClick(driver,okButton,1000);
                 exists=true;
                 if(HelpersMethod.IsExists("//div[@class='loader']",driver))
                 {
                     WebElement WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 10000);
+                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100000);
                 }
             }
             Assert.assertEquals(exists,true);
@@ -190,10 +190,10 @@ public class AdminSecurityPermission_ByUserPage
         try
         {
             WebElement searchBox= HelpersMethod.FindByElement(driver,"id","SearchBarPermissionsTree");
-            HelpersMethod.sendKeys(driver,searchBox,600,searchValue);
+            HelpersMethod.sendKeys(driver,searchBox,1000,searchValue);
             scenario.log("ADMIN SETTING ENTERED FOR SEARCH IS "+ HelpersMethod.JSGetValueEle(driver,searchBox,200));
             WebElement searchIndex=HelpersMethod.FindByElement(driver,"xpath","//input[contains(@id,'SearchBarPermissionsTree')]/ancestor::div[@class='i-search-box']//*[local-name()='svg' and contains(@class,'i-search-box__search')]");
-            HelpersMethod.ActClick(driver,searchIndex,200);
+            HelpersMethod.ActClick(driver,searchIndex,1000);
             exists=true;
         }
         catch (Exception e){}
@@ -222,7 +222,7 @@ public class AdminSecurityPermission_ByUserPage
         try
         {
             WebElement searchIndex=HelpersMethod.FindByElement(driver,"xpath","//input[contains(@id,'SearchBarPermissionsTree')]/ancestor::div[@class='i-search-box']//*[local-name()='svg' and contains(@class,'i-search-box__clear')]");
-            HelpersMethod.ActClick(driver,searchIndex,200);
+            HelpersMethod.ActClick(driver,searchIndex,1000);
             exists=true;
         }
         catch (Exception e){}

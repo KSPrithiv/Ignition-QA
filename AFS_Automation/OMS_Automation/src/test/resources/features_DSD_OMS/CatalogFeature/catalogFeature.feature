@@ -46,7 +46,7 @@ Feature: Catalog
       |PO123|
     Then Click on Next button
     Then Click on SubmitOrder button for creating order from Catalog
-    Then User should be navigated to Order Entry page
+    Then User should be navigated to Order Entry page after creating order from catalog
 
   @DeleteCardView
   Scenario: Delete the product after adding it to cart,card view delete product
@@ -63,7 +63,7 @@ Feature: Catalog
       |PO123|
     Then Click on Next button
     Then Click on SubmitOrder button for creating order from Catalog
-    Then User should be navigated to Order Entry page
+    Then User should be navigated to Order Entry page after creating order from catalog
 
   @DeleteFromShoppingCartDropdown
   Scenario: Deleting the product from the cart
@@ -80,7 +80,7 @@ Feature: Catalog
       |PO123|
     Then Click on Next button
     Then Click on SubmitOrder button for creating order from Catalog
-    Then User should be navigated to Order Entry page
+    Then User should be navigated to Order Entry page after creating order from catalog
 
   @DeleteFromMyCart
   Scenario: Adding product to cart using catalog tab and Deleting product from cart, in My cart page
@@ -97,7 +97,7 @@ Feature: Catalog
       |PO123|
     Then Click on Next button
     Then Click on SubmitOrder button for creating order from Catalog
-    Then User should be navigated to Order Entry page
+    Then User should be navigated to Order Entry page after creating order from catalog
 
     # Admin setting need to be enabled for popup to get displayed for new order or existing order
     @AddingProdToOrder
@@ -110,7 +110,7 @@ Feature: Catalog
       Then User click on cart in catalog and click on Gotocart and select existing order
       Then Click on Next button in Payment page
       Then Click on SubmitOrder button for creating order from Catalog
-      Then User should be navigated to Order Entry page
+      Then User should be navigated to Order Entry page after creating order from catalog
 
     @OrderUsingDescriptionPage
      Scenario: Searching of product and adding product to order using Product description page
@@ -123,7 +123,7 @@ Feature: Catalog
       Then User click on cart in catalog and click on Gotocart and select existing order
       Then Click on Next button in Payment page
       Then Click on SubmitOrder button for creating order from Catalog
-      Then User should be navigated to Order Entry page
+      Then User should be navigated to Order Entry page after creating order from catalog
 
     @MultipleProductFromDescriptionPage
     Scenario: Searching of multiple products and adding product to order using Product description page
@@ -137,7 +137,7 @@ Feature: Catalog
       Then User click on cart in catalog and click on Gotocart and select existing order
       Then Click on Next button in Payment page
       Then Click on SubmitOrder button for creating order from Catalog
-      Then User should be navigated to Order Entry page
+      Then User should be navigated to Order Entry page after creating order from catalog
 
     @ProductDescriptionDelete
     Scenario: Search for multiple products, add products to cart from discription page, Delete product from Discription page
@@ -151,7 +151,7 @@ Feature: Catalog
       Then User click on cart in catalog and click on Gotocart and select existing order
       Then Click on Next button in Payment page
       Then Click on SubmitOrder button for creating order from Catalog
-      Then User should be navigated to Order Entry page
+      Then User should be navigated to Order Entry page after creating order from catalog
 
 
 

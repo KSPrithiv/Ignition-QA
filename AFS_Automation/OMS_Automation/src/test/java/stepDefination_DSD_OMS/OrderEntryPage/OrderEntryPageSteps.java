@@ -117,11 +117,15 @@ public class OrderEntryPageSteps
     }
 
     @Given("User must be on Order Entry Page")
-    public void user_must_be_on_order_entry_page() throws InterruptedException, AWTException
+    public void user_must_be_on_order_entry_page() throws InterruptedException, AWTException, ParseException
     {
         orderpage = new OrderEntryPage(driver, scenario);
         orderpage.HandleError_Page();
         orderpage.Refresh_Page2();
+        orderpage.Read_DeliveryDate();
+        newOE=new NewOrderEntryPage(driver,scenario);
+        newOE.Discard_All_Pending_Order();
+        orderpage=new OrderEntryPage(driver,scenario);
         orderpage.NoPendingOrderPopup();
     }
 
@@ -131,7 +135,7 @@ public class OrderEntryPageSteps
         if(HelpersMethod.IsExists("//div[@class='loader']",driver))
         {
             WebElement WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 50000);
+            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 600000);
         }
         //create object of OE Page
         orderpage = new OrderEntryPage(driver, scenario);
@@ -141,6 +145,7 @@ public class OrderEntryPageSteps
         String formattedDate = myDateObj.format(myFormatObj);
         orderpage.ClickCalender();
         orderpage.SelectDate(formattedDate, int1);
+        orderpage.cancelOGselection();
         orderpage.ChangedDeliveryDate();
     }
 
@@ -179,6 +184,7 @@ public class OrderEntryPageSteps
         exists=orderpage.Start_OrderAgain();
         Assert.assertEquals(exists,true);
     }
+
     @Then("User should select Note from popup and Order guide from popup")
     public void userShouldSelectNoteFromPopupAndOrderGuideFromPopup() throws InterruptedException, AWTException
     {
@@ -186,12 +192,81 @@ public class OrderEntryPageSteps
         if (HelpersMethod.IsExists("//div[@class='loader']", driver))
         {
             WebElement WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
+            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 400000);
+        }
+        for(int i=0;i<=1;i++)
+        {
+            orderpage.OrderGuidePopup();
+          /*  if (HelpersMethod.IsExists("//div[@class='loader']", driver))
+            {
+                WebElement WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 80000);
+            }*/
+            orderpage.NoNotePopHandling();
+        }
+        if (HelpersMethod.IsExists("//div[@class='loader']", driver))
+        {
+            WebElement WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
+            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 400000);
+        }
+    }
+
+    @Then("User should select Note from popup and Order guide from popup for OG")
+    public void userShouldSelectNoteFromPopupAndOrderGuideFromPopupForOG() throws InterruptedException, AWTException
+    {
+        String status = HelpersMethod.returnDocumentStatus(driver);
+        if (status.equals("loading"))
+        {
+            HelpersMethod.waitTillLoadingPage(driver);
+        }
+
+        if (HelpersMethod.IsExists("//div[@class='loader']", driver))
+        {
+            WebElement WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
             HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 80000);
+        }
+        status = HelpersMethod.returnDocumentStatus(driver);
+        if (status.equals("loading"))
+        {
+            HelpersMethod.waitTillLoadingPage(driver);
+        }
+
+        orderpage = new OrderEntryPage(driver, scenario);
+        for(int i=0;i<=1;i++)
+        {
+            orderpage.OrderGuidePopup();
+            orderpage.NoNotePopHandling();
+        }
+        if (HelpersMethod.IsExists("//div[@class='loader']", driver))
+        {
+            WebElement WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
+            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 400000);
+        }
+        status = HelpersMethod.returnDocumentStatus(driver);
+        if (status.equals("loading"))
+        {
+            HelpersMethod.waitTillLoadingPage(driver);
+        }
+    }
+
+    @Then("User should select Note from popup and Order guide from popup for quote")
+    public void userShouldSelectNoteFromPopupAndOrderGuideFromPopupForQuote() throws InterruptedException, AWTException
+    {
+        orderpage = new OrderEntryPage(driver, scenario);
+        if (HelpersMethod.IsExists("//div[@class='loader']", driver))
+        {
+            WebElement WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
+            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 400000);
         }
         for(int i=0;i<=1;i++)
         {
             orderpage.OrderGuidePopup();
             orderpage.NoNotePopHandling();
+        }
+        if (HelpersMethod.IsExists("//div[@class='loader']", driver))
+        {
+            WebElement WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
+            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 400000);
         }
     }
 
@@ -203,6 +278,11 @@ public class OrderEntryPageSteps
         for(int i=0;i<=1;i++)
         {
             orderpage.NoNotePopHandling();
+            if (HelpersMethod.IsExists("//div[@class='loader']", driver))
+            {
+                WebElement WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100000);
+            }
             orderpage.selectOGPopup(og_Name.get(0).get(0));
         }
     }
@@ -234,7 +314,9 @@ public class OrderEntryPageSteps
     {
         newOE=new NewOrderEntryPage(driver,scenario);
         exists=newOE.ValidateNewOE();
-
+        orderpage=new OrderEntryPage(driver,scenario);
+        orderpage.NO_NotePopup();
+        newOE=new NewOrderEntryPage(driver,scenario);
         List<List<String>> PO_No = tabledata.asLists(String.class);
         newOE.EnterPO_No(PO_No.get(0).get(0));
     }
@@ -297,7 +379,11 @@ public class OrderEntryPageSteps
     {
         summary = new CheckOutSummaryPage(driver,scenario);
         summary.ClickSubmit();
-        summary.cutoffDialog();
+        for(int i=0;i<=2;i++)
+        {
+            summary.additionalOrderPopup();
+            summary.cutoffDialog();
+        }
         summary.SucessPopup();
     }
 
@@ -306,7 +392,11 @@ public class OrderEntryPageSteps
     {
         summary = new CheckOutSummaryPage(driver,scenario);
         summary.ClickSubmit();
-        summary.cutoffDialog();
+        for(int i=0;i<=2;i++)
+        {
+            summary.cutoffDialog();
+            summary.additionalOrderPopup();
+        }
         Ord_No = summary.Get_Order_No();
         summary.SucessPopup();
     }
@@ -373,13 +463,17 @@ public class OrderEntryPageSteps
         orderpage = new OrderEntryPage(driver, scenario);
         orderpage.ClickRemoveSkip();
         orderpage.RemoveSkipOK();
+        orderpage.ClickCalender();
+        orderpage.ResetToCurrentDate();
     }
 
     @Then("Check for visibility of Skip button")
     public void check_for_visibility_of_skip_button() throws InterruptedException, AWTException
     {
+        exists=false;
         orderpage = new OrderEntryPage(driver, scenario);
-        Assert.assertEquals(orderpage.CheckForSkip(),true);
+        exists=orderpage.CheckForSkip();
+        Assert.assertEquals(exists,true);
     }
 
     @Then("Check for Case and Unit input box enabled or not based on that enter value")

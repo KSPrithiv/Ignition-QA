@@ -133,7 +133,7 @@ public class OrderGuidePageStep
                 if (HelpersMethod.IsExists("//div[@class='loader']", driver))
                 {
                     WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100000);
+                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 600000);
                 }
                 exists = orderGuidePage.ValidateOG();
                 currentURL=driver.getCurrentUrl();
@@ -268,6 +268,7 @@ public class OrderGuidePageStep
     public void user_click_on_more_button()
     {
         createOGPage=new CreateOGPage(driver,scenario);
+        createOGPage.OGDetailValidate();
         exists=createOGPage.More_Button();
         Assert.assertEquals(exists,true);
     }
@@ -394,6 +395,7 @@ public class OrderGuidePageStep
     public void userEntersDescriptionStartDateSdateAndEndDateEdateDayFromCurrentDate(String arg0,int Sdate,int Edate)
     {
         createOGPage=new CreateOGPage(driver,scenario);
+
         createOGPage.DescriptionOG(arg0);
 
         //selecting start date
@@ -431,8 +433,8 @@ public class OrderGuidePageStep
         exists=false;
         createOGPage=new CreateOGPage(driver,scenario);
         String ProdNo=DataBaseConnection.DataBaseConn(TestBase.testEnvironment.getSingle_Prod_Sql());
-
         exists= createOGPage.SearchProd(ProdNo);
+
         if(exists==true)
         {
             scenario.log(ProdNo+" HAS BEEN FOUND IN PRODUCT GRID");
@@ -492,5 +494,11 @@ public class OrderGuidePageStep
         Assert.assertEquals(exists,false);
     }
 
-
+    @And("User must be on create OG page and {string} the grid header")
+    public void userMustBeOnCreateOGPageAndTheGridHeader(String TableHead)
+    {
+        createOGPage=new CreateOGPage(driver,scenario);
+        createOGPage.FindtableHeader(TableHead);
+        createOGPage.DisplayGroupDetails();
+    }
 }

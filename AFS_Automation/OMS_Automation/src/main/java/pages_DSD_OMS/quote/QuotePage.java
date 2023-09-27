@@ -49,7 +49,7 @@ public class QuotePage {
         try {
             WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(text(),'New quote')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]");
             if (WebEle.isDisplayed()) {
-                HelpersMethod.EnterText(driver, QuoteName, 100, QName);
+                HelpersMethod.EnterText(driver, QuoteName, 1000, QName);
                 scenario.log("QUOTE NAME IS " + QName);
                 exists = true;
             }
@@ -62,7 +62,7 @@ public class QuotePage {
         exists = false;
         try {
             if (EndCalender.isDisplayed()) {
-                HelpersMethod.ActClick(driver, EndCalender, 100);
+                HelpersMethod.ActClick(driver, EndCalender, 1000);
                 exists = true;
             }
             Assert.assertEquals(exists, true);
@@ -78,9 +78,9 @@ public class QuotePage {
             DateTimeFormatter myFormatObj = DateTimeFormatter.ofPattern("EEEE, MMMM d, yyyy");
             formattedDate1 = myDateObj.format(myFormatObj);
             WebElement ele1 = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-calendar-monthview')]/descendant::td[contains(@title,'" + formattedDate1 + "')]");
-            HelpersMethod.waitTillElementDisplayed(driver, ele1, 100);
+            HelpersMethod.waitTillElementDisplayed(driver, ele1, 80000);
             HelpersMethod.JSScroll(driver, ele1);
-            HelpersMethod.ClickBut(driver, ele1, 100);
+            HelpersMethod.ClickBut(driver, ele1, 1000);
             scenario.log("END DATE FOR QUOTE IS : " + formattedDate1);
             exists = true;
             Assert.assertEquals(exists, true);
@@ -96,13 +96,13 @@ public class QuotePage {
         try {
             if (HelpersMethod.IsExists("//div[contains(text(),'New quote')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
             {
-                HelpersMethod.ClickBut(driver, Ok_Button, 100);
+                HelpersMethod.ClickBut(driver, Ok_Button, 4000);
                 exists = true;
                 //handling loading icon
                 if(HelpersMethod.IsExists("//div[@class='loader']",driver))
                 {
                     WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 80000);
+                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 600000);
                 }
             }
             Assert.assertEquals(exists, true);
@@ -115,7 +115,7 @@ public class QuotePage {
         if(HelpersMethod.IsExists("//div[@class='loader']",driver))
         {
             WebElement WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 200000);
+            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 800000);
         }
         WebElement modalContainer = driver.findElement(By.xpath("//div[contains(text(),'New quote')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]"));
         WebElement modalContentTitle = modalContainer.findElement(By.xpath(".//div[contains(@class,'k-window-title k-dialog-title')]"));

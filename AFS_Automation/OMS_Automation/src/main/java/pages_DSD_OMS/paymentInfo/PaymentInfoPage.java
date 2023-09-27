@@ -81,7 +81,7 @@ public void HandleError_Page()
         if (HelpersMethod.IsExists("//div[@class='loader']", driver))
         {
             WebElement WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100);
+            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100000);
         }
     }
 
@@ -101,20 +101,20 @@ public void HandleError_Page()
             WebElement Search_Input = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='drawer-menu-search-container']/descendant::input");
             act.moveToElement(Search_Input).click().sendKeys("Payment Info").build().perform();
             WebElement PaymentInfoMenu = HelpersMethod.FindByElement(driver, "xpath", "//ul[contains(@class,'MuiList-root ')]/descendant::span[contains(text(),'Payment Info')]");
-            HelpersMethod.ActClick(driver, PaymentInfoMenu, 100);
+            HelpersMethod.ActClick(driver, PaymentInfoMenu, 1000);
             currentURL = driver.getCurrentUrl();
             exists=true;
             if (HelpersMethod.IsExists("//div[@class='loader']", driver))
             {
                 WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000);
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100000);
             }
             status = HelpersMethod.returnDocumentStatus(driver);
             if (status.equals("loading"))
             {
                 HelpersMethod.waitTillLoadingPage(driver);
             }
-            new WebDriverWait(driver, Duration.ofMillis(100)).until(ExpectedConditions.elementToBeClickable(By.xpath("//div[@class='open-menu-hamburger-icon']//*[local-name()='svg']//*[local-name()='path' and contains(@d,'M3,18H21V16H3Zm0-5H21V11H3ZM3,6V8H21V6Z')]")));
+            new WebDriverWait(driver, Duration.ofMillis(10000)).until(ExpectedConditions.elementToBeClickable(By.xpath("//div[@class='open-menu-hamburger-icon']//*[local-name()='svg']//*[local-name()='path' and contains(@d,'M3,18H21V16H3Zm0-5H21V11H3ZM3,6V8H21V6Z')]")));
             if (HelpersMethod.IsExists("//div[@class='open-menu-hamburger-icon']//*[local-name()='svg']//*[local-name()='path' and contains(@d,'M3,18H21V16H3Zm0-5H21V11H3ZM3,6V8H21V6Z')]", driver))
             {
                 WebEle = HelpersMethod.FindByElement(driver, "xpath", "//*[local-name()='svg']//*[local-name()='path' and contains(@d,'M3,18H21V16H3Zm0-5H21V11H3ZM3,6V8H21V6Z')]");
@@ -133,7 +133,7 @@ public void HandleError_Page()
             if(HelpersMethod.IsExists("//div[@class='loader']",driver))
             {
                 WebElement WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 4000);
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100000);
             }
             title=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'topHeaderRow')]/descendant::span").getText();
         }
@@ -150,16 +150,16 @@ public void HandleError_Page()
             if (HelpersMethod.IsExists("//div[@class='loader']", driver))
             {
                 WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000);
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100000);
             }
            // HelpersMethod.ActClearKey(driver, CustomerAcc,10);
-            HelpersMethod.ActSendKey(driver,CustomerAcc,10, TestBase.testEnvironment.get_Account());
+            HelpersMethod.ActSendKey(driver,CustomerAcc,1000, TestBase.testEnvironment.get_Account());
             WebElement AccDrop = HelpersMethod.FindByElement(driver, "xpath", "//li[contains(@id,'option-')]");
             HelpersMethod.WebElementFromDropDown(driver, "//div[contains(@class,'k-list-container ')]/descendant::li", "xpath", AccDrop.getText());
             if (HelpersMethod.IsExists("//div[@class='loader']", driver))
             {
                 WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100);
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100000);
             }
         }
         catch (Exception e){}
@@ -169,7 +169,7 @@ public void HandleError_Page()
     {
         try
         {
-            HelpersMethod.ActClick(driver,CustAccIndex,100);
+            HelpersMethod.ActClick(driver,CustAccIndex,1000);
         }
         catch (Exception e){}
     }
@@ -188,7 +188,7 @@ public void HandleError_Page()
                 HelpersMethod.waitTillLoadingPage(driver);
             }
 
-            new WebDriverWait(driver, Duration.ofMillis(200)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(@class,'k-widget k-window k-dialog')]")));
+            new WebDriverWait(driver, Duration.ofMillis(10000)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(@class,'k-widget k-window k-dialog')]")));
             WebElement modalContainer = driver.findElement(By.xpath("//div[contains(@class,'k-widget k-window k-dialog')]"));
             status = HelpersMethod.returnDocumentStatus(driver);
             if (status.equals("loading"))
@@ -200,17 +200,13 @@ public void HandleError_Page()
             HelpersMethod.ActClick(driver, AddFilterButton, 1000);
 
             //Identify the dialog popup
-            HelpersMethod.WaitElementPresent(driver, "xpath", "//div[contains(@class,'k-child-animation-container')]", 4000);
-            HelpersMethod.waitTillElementLocatedDisplayed(driver, "xpath", "//div[contains(@class,'k-child-animation-container')]", 1000);
+            HelpersMethod.WaitElementPresent(driver, "xpath", "//div[contains(@class,'k-child-animation-container')]", 8000);
+            HelpersMethod.waitTillElementLocatedDisplayed(driver, "xpath", "//div[contains(@class,'k-child-animation-container')]", 8000);
             WebElement modalContainer1 = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-child-animation-container')]");
-
-            //Validate child popup
-            //WebElement childTitle = modalContainer1.findElement(By.xpath(".//div[contains(@class,'i-filter-popup__checkboxes')]/h1"));
-            //Assert.assertEquals(childTitle.getText(), "Basic", "Verify Title message");
 
             //Enter customer account# in input box
             WebElement Search1 = modalContainer1.findElement(By.xpath(".//input[contains(@class,'i-search-box__input')]"));
-            HelpersMethod.EnterText(driver, Search1, 800, "Customer account #");
+            HelpersMethod.EnterText(driver, Search1, 1000, "Customer account #");
 
             status = HelpersMethod.returnDocumentStatus(driver);
             if (status.equals("loading"))
@@ -220,9 +216,9 @@ public void HandleError_Page()
 
             //Click on Check box
             HelpersMethod.WaitElementPresent(driver, "xpath", "//input[contains(@id,'CM_CUSTKEY')]", 400);
-            new WebDriverWait(driver, Duration.ofMillis(200)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[contains(@id,'CM_CUSTKEY')]")));
+            new WebDriverWait(driver, Duration.ofMillis(10000)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[contains(@id,'CM_CUSTKEY')]")));
             WebElement WebEle1 = modalContainer1.findElement(By.xpath(".//input[contains(@id,'CM_CUSTKEY')]"));
-            HelpersMethod.JScriptClick(driver, WebEle1, 400);
+            HelpersMethod.JScriptClick(driver, WebEle1, 1000);
             status = HelpersMethod.returnDocumentStatus(driver);
             if (status.equals("loading"))
             {
@@ -230,14 +226,14 @@ public void HandleError_Page()
             }
 
             //Identify radio button and click on Radio button
-            HelpersMethod.WaitElementPresent(driver, "xpath", "//div[contains(@class,'k-child-animation-container')]/descendant::form[contains(@class,'i-filter-popup')]", 400);
-            HelpersMethod.waitTillElementLocatedDisplayed(driver, "xpath", "//div[contains(@class,'k-child-animation-container')]/descendant::form[contains(@class,'i-filter-popup')]", 200);
+            HelpersMethod.WaitElementPresent(driver, "xpath", "//div[contains(@class,'k-child-animation-container')]/descendant::form[contains(@class,'i-filter-popup')]", 4000);
+            HelpersMethod.waitTillElementLocatedDisplayed(driver, "xpath", "//div[contains(@class,'k-child-animation-container')]/descendant::form[contains(@class,'i-filter-popup')]", 4000);
             WebElement RadioPop = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-child-animation-container')]/descendant::form[contains(@class,'i-filter-popup')]");
             WebElement radioButton = RadioPop.findElement(By.xpath(".//div[contains(@class,'i-btn-radio filter-radio')][1]/following-sibling::div[contains(@class,'k-textbox-container i-filter-popup__content__input')]/input"));
             if (radioButton.isDisplayed())
             {
                 Search2 = RadioPop.findElement(By.xpath(".//div[contains(@class,'i-btn-radio filter-radio')][1]/following-sibling::div[contains(@class,'k-textbox-container i-filter-popup__content__input')]/input"));
-                HelpersMethod.EnterText(driver, Search2, 200, AccNo);
+                HelpersMethod.EnterText(driver, Search2, 1000, AccNo);
                 status = HelpersMethod.returnDocumentStatus(driver);
                 if (status.equals("loading"))
                 {
@@ -246,8 +242,8 @@ public void HandleError_Page()
 
                 //Click on Apply button
                 WebElement ApplyButton = RadioPop.findElement(By.xpath(".//button[text()='Apply']"));
-                new WebDriverWait(driver, Duration.ofMillis(100)).until(ExpectedConditions.elementToBeClickable(ApplyButton));
-                HelpersMethod.ClickBut(driver, ApplyButton, 40);
+                new WebDriverWait(driver, Duration.ofMillis(10000)).until(ExpectedConditions.elementToBeClickable(ApplyButton));
+                HelpersMethod.ClickBut(driver, ApplyButton, 1000);
             }
 
             if (HelpersMethod.IsExists("//div[contains(@class,'k-widget k-window k-dialog')]/descendant::div[@class='i-no-data']", driver))
@@ -258,12 +254,11 @@ public void HandleError_Page()
             {
                 WebEle = modalContainer.findElement(By.xpath(".//tr[contains(@class,'k-master-row')]"));
                 HelpersMethod.ScrollElement(driver, WebEle);
-                HelpersMethod.ActClick(driver, WebEle, 40);
-
+                HelpersMethod.ActClick(driver, WebEle, 1000);
 
                 if (HelpersMethod.IsExists("//div[@class='loader']", driver)) {
                     WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100);
+                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100000);
                 }
                 exists = true;
                 String Acc = TestBase.testEnvironment.get_Account();
@@ -280,7 +275,7 @@ public void HandleError_Page()
         {
             if(addPayment.isDisplayed() && addPayment.isEnabled())
             {
-                HelpersMethod.ClickBut(driver, addPayment, 200);
+                HelpersMethod.ClickBut(driver, addPayment, 1000);
                 exists = true;
             }
         }

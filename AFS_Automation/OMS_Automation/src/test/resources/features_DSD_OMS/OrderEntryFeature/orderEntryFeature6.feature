@@ -15,6 +15,7 @@ Feature: Order Entry6
     When User clicks on drop down next to Start order button
     And Select Pickup Order from drop down options and select delivery date
     Then User should select Note from popup and Order guide from popup
+    And User validates Pickup order check box is selected
     Then Enter PO# for New order
       |PO123|
     Then Enter Pro# in Quick Product Entry area

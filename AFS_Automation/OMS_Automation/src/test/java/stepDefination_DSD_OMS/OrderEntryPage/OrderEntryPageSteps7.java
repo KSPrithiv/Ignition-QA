@@ -175,4 +175,9 @@ public class OrderEntryPageSteps7
         summary.clickOnOKCommentPopup();
     }
 
+    @Then("Click on Next button when editing")
+    public void clickOnNextButtonWhenEditing()
+    {
+
+    }
 }

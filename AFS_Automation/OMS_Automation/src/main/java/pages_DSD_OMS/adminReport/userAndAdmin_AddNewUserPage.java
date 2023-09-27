@@ -77,7 +77,7 @@ public class userAndAdmin_AddNewUserPage
     {
         try
         {
-            HelpersMethod.ClickBut(driver,allCustomerAccount,100);
+            HelpersMethod.ClickBut(driver,allCustomerAccount,1000);
         }
         catch (Exception e){}
     }
@@ -95,14 +95,14 @@ public class userAndAdmin_AddNewUserPage
             if(fullAcc.contains("-"))
             {
                 splitAcc= fullAcc.split("-");
-                HelpersMethod.EnterText(driver,Acc1,40,splitAcc[0]);
-                HelpersMethod.EnterText(driver,Acc2,40,splitAcc[1]);
-                HelpersMethod.EnterText(driver,Acc3,40,splitAcc[2]);
+                HelpersMethod.EnterText(driver,Acc1,1000,splitAcc[0]);
+                HelpersMethod.EnterText(driver,Acc2,1000,splitAcc[1]);
+                HelpersMethod.EnterText(driver,Acc3,1000,splitAcc[2]);
                 exists=true;
             }
             else
             {
-                HelpersMethod.EnterText(driver,Acc1,40,fullAcc);
+                HelpersMethod.EnterText(driver,Acc1,1000,fullAcc);
                 exists=true;
             }
             Assert.assertEquals(exists,true);
@@ -117,7 +117,7 @@ public class userAndAdmin_AddNewUserPage
         {
             WebElement confirmationPopup= HelpersMethod.FindByElement(driver,"xpath","//div[contains(text(),'This will add all customer accounts to this login.')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]");
             WebElement yesButton=confirmationPopup.findElement(By.xpath(".//button[text()='Yes']"));
-            HelpersMethod.ClickBut(driver,yesButton,100);
+            HelpersMethod.ClickBut(driver,yesButton,1000);
             exists=true;
             Assert.assertEquals(exists,true);
         }
@@ -130,9 +130,9 @@ public class userAndAdmin_AddNewUserPage
         try
         {
           fName= RandomValues.generateRandomString(6);
-          HelpersMethod.EnterText(driver,firstName,40,fName);
+          HelpersMethod.EnterText(driver,firstName,1000,fName);
           exists=true;
-          scenario.log("FIRST NAME ENTERED IS "+HelpersMethod.JSGetValueEle(driver,firstName,40));
+          scenario.log("FIRST NAME ENTERED IS "+HelpersMethod.JSGetValueEle(driver,firstName,1000));
           Assert.assertEquals(exists,true);
         }
         catch (Exception e){}
@@ -143,8 +143,8 @@ public class userAndAdmin_AddNewUserPage
         try
         {
             lName= RandomValues.generateRandomString(4);
-            HelpersMethod.EnterText(driver,lastName,40,lName);
-            scenario.log("LAST NAME ENTERED IS "+HelpersMethod.JSGetValueEle(driver,lastName,40));
+            HelpersMethod.EnterText(driver,lastName,1000,lName);
+            scenario.log("LAST NAME ENTERED IS "+HelpersMethod.JSGetValueEle(driver,lastName,1000));
         }
         catch (Exception e){}
     }
@@ -154,8 +154,8 @@ public class userAndAdmin_AddNewUserPage
         try
         {
             uName= RandomValues.generateRandomString(4);
-            HelpersMethod.EnterText(driver,userName,40,uName);
-            scenario.log("USER NAME ENTERED IS "+HelpersMethod.JSGetValueEle(driver,userName,40));
+            HelpersMethod.EnterText(driver,userName,1000,uName);
+            scenario.log("USER NAME ENTERED IS "+HelpersMethod.JSGetValueEle(driver,userName,1000));
         }
         catch (Exception e){}
     }
@@ -164,7 +164,7 @@ public class userAndAdmin_AddNewUserPage
     {
         try
         {
-            HelpersMethod.ClickBut(driver,defaultEmailToggle,40);
+            HelpersMethod.ClickBut(driver,defaultEmailToggle,1000);
         }
         catch (Exception e){}
     }
@@ -173,7 +173,7 @@ public class userAndAdmin_AddNewUserPage
     {
         try
         {
-            scenario.log("DEFAULT EMAIL ID IS "+HelpersMethod.JSGetValueEle(driver,emailAddress,40));
+            scenario.log("DEFAULT EMAIL ID IS "+HelpersMethod.JSGetValueEle(driver,emailAddress,1000));
         }
         catch (Exception e){}
     }
@@ -182,7 +182,7 @@ public class userAndAdmin_AddNewUserPage
     {
         try
         {
-            scenario.log("CONFIRM DEFAULT EMAIL IS "+HelpersMethod.JSGetValueEle(driver,confirmEmail,40));
+            scenario.log("CONFIRM DEFAULT EMAIL IS "+HelpersMethod.JSGetValueEle(driver,confirmEmail,1000));
         }
         catch (Exception e){}
     }
@@ -192,8 +192,8 @@ public class userAndAdmin_AddNewUserPage
         try
         {
             newEmail=RandomValues.generateEmail(8);
-            HelpersMethod.EnterText(driver,emailAddress,40,newEmail);
-            scenario.log("EMAIL ADDRESS ENTERED IS "+HelpersMethod.JSGetValueEle(driver,emailAddress,40));
+            HelpersMethod.EnterText(driver,emailAddress,1000,newEmail);
+            scenario.log("EMAIL ADDRESS ENTERED IS "+HelpersMethod.JSGetValueEle(driver,emailAddress,1000));
         }
         catch (Exception e){}
     }
@@ -202,8 +202,8 @@ public class userAndAdmin_AddNewUserPage
     {
         try
         {
-            HelpersMethod.EnterText(driver,confirmEmail,40,newEmail);
-            scenario.log("CONFIRMATION EMAIL ENTERED IS "+HelpersMethod.JSGetValueEle(driver,confirmEmail,40));
+            HelpersMethod.EnterText(driver,confirmEmail,1000,newEmail);
+            scenario.log("CONFIRMATION EMAIL ENTERED IS "+HelpersMethod.JSGetValueEle(driver,confirmEmail,1000));
         }
         catch (Exception e){}
     }
@@ -214,8 +214,8 @@ public class userAndAdmin_AddNewUserPage
         try
         {
             pWord=RandomValues.generateStringWithAllobedSplChars(5);
-            HelpersMethod.EnterText(driver,passwordTobe,40,pWord);
-            scenario.log("PASSWORD ENTERED IS "+HelpersMethod.JSGetValueEle(driver,passwordTobe,40));
+            HelpersMethod.EnterText(driver,passwordTobe,1000,pWord);
+            scenario.log("PASSWORD ENTERED IS "+HelpersMethod.JSGetValueEle(driver,passwordTobe,1000));
         }
         catch (Exception e){}
     }
@@ -224,8 +224,8 @@ public class userAndAdmin_AddNewUserPage
     {
         try
         {
-            HelpersMethod.EnterText(driver,confirmPassword,40,pWord);
-            scenario.log("CONFIRMATION PASSWORD ENTERED IS "+HelpersMethod.JSGetValueEle(driver,confirmPassword,40));
+            HelpersMethod.EnterText(driver,confirmPassword,1000,pWord);
+            scenario.log("CONFIRMATION PASSWORD ENTERED IS "+HelpersMethod.JSGetValueEle(driver,confirmPassword,1000));
         }
         catch (Exception e){}
     }
@@ -234,7 +234,7 @@ public class userAndAdmin_AddNewUserPage
     {
         try
         {
-            HelpersMethod.ClickBut(driver,rolesButton,40);
+            HelpersMethod.ClickBut(driver,rolesButton,1000);
         }
         catch (Exception e){}
     }
@@ -265,11 +265,11 @@ public class userAndAdmin_AddNewUserPage
                 HelpersMethod.JScriptClick(driver, WebEle1, 1000);
 
                 //Identify radio button and click on Radio button
-                HelpersMethod.WaitElementPresent(driver, "xpath", "//div[contains(@class,'k-child-animation-container')]/descendant::form[contains(@class,'i-filter-popup')]", 1000);
-                HelpersMethod.waitTillElementLocatedDisplayed(driver, "xpath", "//div[contains(@class,'k-child-animation-container')]/descendant::form[contains(@class,'i-filter-popup')]", 1000);
+                HelpersMethod.WaitElementPresent(driver, "xpath", "//div[contains(@class,'k-child-animation-container')]/descendant::form[contains(@class,'i-filter-popup')]", 40000);
+                HelpersMethod.waitTillElementLocatedDisplayed(driver, "xpath", "//div[contains(@class,'k-child-animation-container')]/descendant::form[contains(@class,'i-filter-popup')]", 40000);
                 WebElement RadioPop = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-child-animation-container')]/descendant::form[contains(@class,'i-filter-popup')]");
                 Search2 = RadioPop.findElement(By.xpath(".//div[contains(@class,'i-btn-radio filter-radio')][1]/following-sibling::div[contains(@class,'k-textbox-container i-filter-popup__content__input')]/input"));
-                HelpersMethod.ActSendKey(driver, Search2, 800, filterDesc);
+                HelpersMethod.ActSendKey(driver, Search2, 1000, filterDesc);
 
                 //Click on Apply button
                 WebElement ApplyButton = RadioPop.findElement(By.xpath(".//button[text()='Apply']"));
@@ -277,7 +277,7 @@ public class userAndAdmin_AddNewUserPage
 
 
                 WebElement rowInPopup=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-widget k-window k-dialog')]/descendant::tr[contains(@class,'k-master-row')]");
-                HelpersMethod.ActClick(driver,rowInPopup,40);
+                HelpersMethod.ActClick(driver,rowInPopup,1000);
             }
         }
         catch (Exception e){}
@@ -287,11 +287,8 @@ public class userAndAdmin_AddNewUserPage
     {
         try
         {
-            HelpersMethod.ClickBut(driver,registerButton,40);
+            HelpersMethod.ClickBut(driver,registerButton,1000);
         }
         catch (Exception e){}
     }
-
-
-
 }

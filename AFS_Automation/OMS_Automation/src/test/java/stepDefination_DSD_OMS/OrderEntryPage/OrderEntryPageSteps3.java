@@ -68,7 +68,7 @@ public class OrderEntryPageSteps3
         List<List<String>> Address_Add=tabledata.asLists(String.class);
         newOE=new NewOrderEntryPage(driver,scenario);
         newOE.ClickNext();
-        //newOE.OutOfStockPop_ERP();
+        newOE.OutOfStockPop_ERP();
         checkorder=new CheckOutOrderPage(driver,scenario);
         checkorder.Add_Delivery_Address(Address_Add.get(0).get(0),Address_Add.get(0).get(1),Address_Add.get(0).get(2),Address_Add.get(0).get(3),Address_Add.get(0).get(4),Address_Add.get(0).get(5));
         checkorder.Click_On_Without_Providing_Payment();
@@ -83,7 +83,7 @@ public class OrderEntryPageSteps3
         List<List<String>> Change_Add=tabledata.asLists(String.class);
         newOE=new NewOrderEntryPage(driver,scenario);
         newOE.ClickNext();
-        //newOE.OutOfStockPop_ERP();
+        newOE.OutOfStockPop_ERP();
         checkorder=new CheckOutOrderPage(driver,scenario);
         result=checkorder.Edit_DeliveryAddress(Change_Add.get(0).get(0),Change_Add.get(0).get(1));
         Assert.assertEquals(true,result);
@@ -99,7 +99,7 @@ public class OrderEntryPageSteps3
         List<List<String>> DelAdd=tabledata.asLists(String.class);
         newOE=new NewOrderEntryPage(driver,scenario);
         newOE.ClickNext();
-        //newOE.OutOfStockPop_ERP();
+        newOE.OutOfStockPop_ERP();
         checkorder=new CheckOutOrderPage(driver,scenario);
         result=checkorder.Delete_DeliveryAddress(DelAdd.get(0).get(0));
         Assert.assertEquals(true,result);
@@ -178,7 +178,7 @@ public class OrderEntryPageSteps3
         List<List<String>> AccDetails=tabledata.asLists(String.class);
         newOE = new NewOrderEntryPage(driver,scenario);
         newOE.ClickNext();
-        //newOE.OutOfStockPop_ERP();
+        newOE.OutOfStockPop_ERP();
         checkorder=new CheckOutOrderPage(driver,scenario);
         checkorder.Select_PaymentMethod_ClickDownArrow();
         checkorder.Adding_New_PaymentMethod(AccDetails.get(0).get(0),AccDetails.get(0).get(1));

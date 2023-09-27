@@ -155,7 +155,6 @@ public class InventoryPageSteps
     {
         inventory=new InventoryPage(driver,scenario);
         inventory.navigateToStoreInventoryTab();
-
     }
 
     @And("User should click on Add product button and select products from Product popup")
@@ -168,7 +167,7 @@ public class InventoryPageSteps
         if (HelpersMethod.IsExists("//div[contains(@class,'k-widget k-window k-dialog')]/descendant::div[contains(@class,'i-grid')]", driver))
         {
                 scenario.log("CATALOG IN THE FORM OF LIST VIEW HAS BEEN FOUND");
-                    inventory.ListView(qtyValue);
+                inventory.ListView(qtyValue);
         }
         else
         {

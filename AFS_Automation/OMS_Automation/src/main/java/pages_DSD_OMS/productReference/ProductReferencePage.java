@@ -111,7 +111,7 @@ public class ProductReferencePage
         WebElement webEle=null;
         try
         {
-            new WebDriverWait(driver, Duration.ofMillis(4000)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfAllElementsLocatedBy(By.id("customerProdutRefCard"))));
+            new WebDriverWait(driver, Duration.ofMillis(10000)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfAllElementsLocatedBy(By.id("customerProdutRefCard"))));
             if(HelpersMethod.IsExists("//div[@id='customerProdutRefCard']",driver))
             {
                 exists = true;
@@ -139,9 +139,9 @@ public class ProductReferencePage
                 {
                     WebEle=HelpersMethod.FindByElement(driver,"xpath","//tr[contains(@class,'k-master-row k-grid-edit-row')]/td["+(i)+"]/input");
                     HelpersMethod.ScrollElement(driver,WebEle);
-                    HelpersMethod.clearText(driver,WebEle,20);
-                    HelpersMethod.ActSendKey(driver,WebEle,80, Acc_NO);
-                    scenario.log("ACCOUNT NUMBER ENTERED IS "+HelpersMethod.JSGetValueEle(driver,WebEle,100));
+                    HelpersMethod.clearText(driver,WebEle,1000);
+                    HelpersMethod.ActSendKey(driver,WebEle,1000, Acc_NO);
+                    scenario.log("ACCOUNT NUMBER ENTERED IS "+HelpersMethod.JSGetValueEle(driver,WebEle,1000));
                     exists = true;
                 }
             }
@@ -202,7 +202,7 @@ public class ProductReferencePage
         String prod=null;
         try
         {
-            new WebDriverWait(driver,Duration.ofMillis(4000)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfAllElementsLocatedBy(By.id("customerProdutRefCard"))));
+            new WebDriverWait(driver,Duration.ofMillis(40000)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfAllElementsLocatedBy(By.id("customerProdutRefCard"))));
             WebElement prod_No=HelpersMethod.FindByElement(driver,"xpath","//tr[contains(@class,'k-master-row')][1]/descendant::button");
             prod=prod_No.getText();
             scenario.log("PRODUCT TO BE SEARCHED IS "+prod);
@@ -215,7 +215,7 @@ public class ProductReferencePage
     {
         try
         {
-            new WebDriverWait(driver,Duration.ofMillis(4000)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfAllElementsLocatedBy(By.id("customerProdutRefCard"))));
+            new WebDriverWait(driver,Duration.ofMillis(40000)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfAllElementsLocatedBy(By.id("customerProdutRefCard"))));
             HelpersMethod.AddFilterSearch(driver,s,prodNo);
         }
         catch (Exception e){}

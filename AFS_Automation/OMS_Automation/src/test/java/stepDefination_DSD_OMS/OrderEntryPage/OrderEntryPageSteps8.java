@@ -74,4 +74,14 @@ public class OrderEntryPageSteps8
         //orderpage.Verify_OEPage();
         orderpage.Verify_OE_Title();
     }
+
+    @And("Cancel popup should appear and verify button Cancel and Skip button for current date")
+    public void cancelPopupShouldAppearAndVerifyButtonCancelAndSkipButtonForCurrentDate() throws InterruptedException, AWTException
+    {
+        newOE=new NewOrderEntryPage(driver,scenario);
+        newOE.OECancel();
+        newOE.VerifyCancelPopUp();
+        newOE.CancelAndSkipPopupDisabled();
+        newOE.CancelPop();
+    }
 }

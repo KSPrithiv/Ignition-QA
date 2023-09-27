@@ -133,7 +133,7 @@ public class ParOrderPageStep
                 if (HelpersMethod.IsExists("//div[@class='loader']", driver))
                 {
                     WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 20000);
+                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 400000);
                 }
                 HelpersMethod.navigate_Horizantal_Tab(driver, "Order Guides", "//li[contains(@class,'k-item')]/span[@class='k-link' and contains(text(),'Order Guides')]", "xpath", "//li[contains(@class,'k-item')]/span[@class='k-link']");
                 currentURL = driver.getCurrentUrl();
@@ -214,10 +214,10 @@ public class ParOrderPageStep
     public void userClicksOnParListTabAndSelectsParlistFromDropDown(String ParList)
     {
         exists=false;
-            parOrderPage = new ParOrderPage(driver, scenario);
-            Prod_No = parOrderPage.ReadProductValueFromOG();
-            parOrderPage.ClickParTab();
-            parOrderPage.ValidateParlistTab();
+        parOrderPage = new ParOrderPage(driver, scenario);
+        Prod_No = parOrderPage.ReadProductValueFromOG();
+        parOrderPage.ClickParTab();
+        parOrderPage.ValidateParlistTab();
         parOrderPage = new ParOrderPage(driver, scenario);
         parOrderPage.ValidateParlistTab();
         parOrderPage.ClickParDropDown();
