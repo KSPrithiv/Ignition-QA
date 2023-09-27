@@ -182,6 +182,20 @@ public class InboundOrderSummaryPageSteps {
     }
 
     @Step
+    @And("Clicks Images button on Inbound Order Summary page")
+    public void clickImagesButton() {
+        log.info("Clicks Images button on Inbound Order Summary page");
+        inboundOrderSummaryPage.clickImagesButton();
+    }
+
+    @Step
+    @And("Clicks Comments button on Inbound Order Summary page")
+    public void clickCommentsButton() {
+        log.info("Clicks Comments button on Inbound Order Summary page");
+        inboundOrderSummaryPage.clickCommentsButton();
+    }
+
+    @Step
     @And("Select order by index {int} on Inbound Order Summary page")
     public void selectOrderByIndex(int index) {
         log.info("Select order by index");
@@ -247,28 +261,6 @@ public class InboundOrderSummaryPageSteps {
     public void clearOrderName() {
         log.info("Clear order name");
         inboundOrderSummaryPage.clearOrderInput();
-    }
-
-    @SneakyThrows
-    @Step
-    @And("Selects Order from Inbound Order Summary table")
-    public void selectOrderByOrderName() {
-        DataBaseData dataBaseData = DataBaseData.builder()
-                .username(LoginPageSteps.environment.getDbUserName())
-                .password(LoginPageSteps.environment.getDbUserPassword())
-                .host(LoginPageSteps.environment.getDbIp())
-                .schema(LoginPageSteps.environment.getDbName())
-                .build();
-        InboundOrderSummaryParams inboundOrderSummaryParams = new ObjectMapperWrapper()
-                .getObject(FilePaths.INBOUND_ORDER_SUMMARY_DATA, InboundOrderSummaryParams.class);
-        inboundOrderSummaryParams.setStart_date("2017-01-01");
-        inboundOrderSummaryParams.setEnd_date("2022-01-01");
-        ResultSet rs = storeProceduresUtils.executeStoreProcedureInboundOrderSummary(DataBaseConnection
-                .getDataBaseConnection(dataBaseData), inboundOrderSummaryParams);
-        inboundOrderSummaryParams.setOrder_no(rs.getString(2).trim());
-        DataBaseConnection.closeDataBaseConnection();
-        log.info("Selecting Order " + inboundOrderSummaryParams.getOrder_no());
-        inboundOrderSummaryPage.selectOrderByOrderName(inboundOrderSummaryParams.getOrder_no());
     }
 
     @Step

@@ -362,6 +362,11 @@ public class InboundOrderDetailsPage extends BasePage {
         clickOnElement(btnProductEdit);
     }
 
+    public void clickImagesButton() {
+        Waiters.waitForElementToBeDisplay(getImagesButton());
+        clickOnElement(getImagesButton());
+    }
+
     public void clickOrderLineFieldsImageBtn() {
         Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(btnOrderLineFieldsImage);

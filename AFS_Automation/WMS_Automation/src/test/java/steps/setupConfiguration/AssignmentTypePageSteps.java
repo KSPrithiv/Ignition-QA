@@ -38,12 +38,14 @@ public class AssignmentTypePageSteps {
         assignmentTypePage.assignmentTypeTab();
         assignmentTypePage.searchBoxActionAssignmentType();
     }
+
     @Step
     @And("Verify Search functionalities1")
     public void verifyAssignmentTypeSearchFunctionality() throws InterruptedException {
         log.info("Verify Search Functionality");
         assignmentTypePage.rownumber1();
     }
+
     @Step
     @And("Verify remove icon1")
     public void closeIcononAssignmentType() throws InterruptedException {
