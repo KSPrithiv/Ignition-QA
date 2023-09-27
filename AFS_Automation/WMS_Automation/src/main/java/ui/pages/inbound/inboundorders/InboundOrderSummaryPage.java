@@ -108,6 +108,8 @@ public class InboundOrderSummaryPage extends BasePage {
     By dropdownList = By.id("dropdownList");
     By loader = By.cssSelector(".loader");
     By arrowChevron = By.xpath("//button[contains(@class, 'i-card__card__title-area')]//span[contains(@class, 'k-i-arrow-chevron')]");
+    By imagesButton = By.xpath("//button[@id='btnImageNo' and contains(text(), 'Images')]");
+    By commentsButton = By.xpath("//button[@id='btnImageNo' and contains(text(), 'Comments')]");
 
     private By getOrderTypeDropDown(String orderType) { return By.xpath("//span[contains(text(),'" + orderType + "')]"); }
 
@@ -410,13 +412,23 @@ public class InboundOrderSummaryPage extends BasePage {
                 + option + "')]"));
         clickOnElement(orderOption);
         Waiters.waitTillLoadingPage(getDriver());
-        waitUntilInvisible(2, loader);
+        waitUntilInvisible(1, loader);
     }
 
     public void clickOrderOption() {
         Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(getOrderOptionsButton());
         clickOnElement(getOrderOptionsButton());
+    }
+
+    public void clickImagesButton() {
+        Waiters.waitForElementToBeDisplay(getImagesButton());
+        clickOnElement(getImagesButton());
+    }
+
+    public void clickCommentsButton() {
+        Waiters.waitForElementToBeDisplay(getCommentsButton());
+        clickOnElement(getCommentsButton());
     }
 
     public void clickYesButton() {
@@ -437,7 +449,7 @@ public class InboundOrderSummaryPage extends BasePage {
     }
 
     public void checkOrderByOrderNumber(int ordNum) {
-        Waiters.waitABit(5000);
+        Waiters.waitABit(2000);
         Waiters.waitTillLoadingPage(getDriver());
         clickOnElement(findWebElements(By.xpath("//div[contains(@class, 'BarsContainer')]/parent::*//input[@type='checkbox']"))
                 .get(ordNum));
@@ -636,14 +648,13 @@ public class InboundOrderSummaryPage extends BasePage {
         if(findWebElement(arrowChevron).getAttribute("class").contains("down")) {
             clickOnElement(arrowChevron);
         }
-        Waiters.waitABit(2000);
-        jsClick(getDateRouteStart());
+        waitUntilInvisible(1, loader);
+        clickOnElement(getDateRouteStart());
         Waiters.waitABit(1000);
         clearText(getDateRouteStart());
         Waiters.waitABit(2000);
         inputText(getDateRouteStart(), date);
-        Waiters.waitTillLoadingPage(getDriver());
-        clickOnElement(findWebElement(By.cssSelector(".i-card__card__title-area__title")));
+        pressTab(getDateRouteStart());
         waitUntilInvisible(5, loader);
     }
 
@@ -893,6 +904,10 @@ public class InboundOrderSummaryPage extends BasePage {
     public WebElement getSearchProductButton() { return findWebElement(searchProductButton); }
 
     public WebElement getOrderOptionsButton() { return findWebElement(orderOptionsButton); }
+
+    public WebElement getImagesButton() { return findWebElement(imagesButton); }
+
+    public WebElement getCommentsButton() { return findWebElement(commentsButton); }
 
     public WebElement getTableContent() { return findWebElement(tableContent); }
 

@@ -86,7 +86,7 @@ Feature: Testing of Counting Count functionality
     And Validates Location Label on Counting Count page is displayed
     And Validates Count Quantity inputs are editable on Counting Count page
     And Validates Items Found, Add product, Product inputs, Cancel and Save buttons are displayed on Counting Count page
-    And Validates Each and Bag are displayed on Counting Count page
+    And Validates Each and Cases are displayed on Counting Count page
 
   Scenario: Checking Count Pick Location on Counting Count screen
     Given User signs in the application
