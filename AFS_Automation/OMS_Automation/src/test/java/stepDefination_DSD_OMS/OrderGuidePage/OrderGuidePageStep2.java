@@ -29,8 +29,8 @@ public class OrderGuidePageStep2
     static String OGDis=null;
     static String WDay=null;
 
-    OrderGuidePage orderGuidePage;
-    CreateOGPage createOGPage;
+    static OrderGuidePage orderGuidePage;
+    static CreateOGPage createOGPage;
 
     @Before
     public void LaunchBrowser1(Scenario scenario) throws Exception
@@ -157,5 +157,12 @@ public class OrderGuidePageStep2
     {
         orderGuidePage=new OrderGuidePage(driver,scenario);
         orderGuidePage.selectSubMarketRef();
+    }
+
+    @And("User removes filter from OG page")
+    public void userRemovesFilterFromOGPage() throws InterruptedException, AWTException
+    {
+        orderGuidePage=new OrderGuidePage(driver,scenario);
+        orderGuidePage.clearAddfilter();
     }
 }

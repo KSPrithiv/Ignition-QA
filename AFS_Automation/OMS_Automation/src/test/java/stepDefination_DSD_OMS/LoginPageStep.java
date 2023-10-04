@@ -38,13 +38,13 @@ public class LoginPageStep
     static boolean result = false;
     static boolean result1=false;
 
-    LoginPage loginpage;
-    HomePage homepage;
-    ProductPage productPage;
-    OrderEntryPage orderpage;
-    MyCartPage myCartpage;
-    UserRegistrationPage UserReg;
-    CheckOutOrderPage checkOutOrder;
+    static LoginPage loginpage;
+    static HomePage homepage;
+    static ProductPage productPage;
+    static OrderEntryPage orderpage;
+    static MyCartPage myCartpage;
+    static UserRegistrationPage UserReg;
+    static CheckOutOrderPage checkOutOrder;
 
     @Before
     public void LaunchBrowser(Scenario scenario) throws Exception

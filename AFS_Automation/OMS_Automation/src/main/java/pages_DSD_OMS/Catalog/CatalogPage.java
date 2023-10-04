@@ -124,7 +124,7 @@ public class CatalogPage
             {
                 HelpersMethod.waitTillLoadingPage(driver);
             }
-
+            Thread.sleep(2000);
             exists=true;
             Assert.assertEquals(exists,true);
         }
@@ -143,6 +143,17 @@ public class CatalogPage
         }
         try
         {
+            //To zoom out browser by 67%
+            if(TestBase.testEnvironment.get_browser().equalsIgnoreCase("chrome")|TestBase.testEnvironment.get_browser().equalsIgnoreCase("edge"))
+            {
+                JavascriptExecutor js = (JavascriptExecutor) driver;
+                js.executeScript("document.body.style.zoom='67%'");
+            }
+            else if(TestBase.testEnvironment.get_browser().equalsIgnoreCase("firefox"))
+            {
+                JavascriptExecutor js=(JavascriptExecutor)driver;
+                js.executeScript("document.body.style.MozTransform='67%'");
+            }
             if(HelpersMethod.IsExists("//button[@data-test-id='catalogGridViewBtn']//*[local-name()='svg']",driver))
             {
                 if(!HelpersMethod.IsExists("//button[@data-test-id='catalogGridViewBtn' and contains(@class,'k-primary')]//*[local-name()='svg']",driver))
@@ -153,9 +164,20 @@ public class CatalogPage
                     if (HelpersMethod.IsExists("//div[@class='loader']", driver))
                     {
                         WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                        HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 600000);
+                        HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 800000);
                     }
                 }
+            }
+            //To zoom out browser by 100%
+            if(TestBase.testEnvironment.get_browser().equalsIgnoreCase("chrome")|TestBase.testEnvironment.get_browser().equalsIgnoreCase("edge"))
+            {
+                JavascriptExecutor js = (JavascriptExecutor) driver;
+                js.executeScript("document.body.style.zoom='100%'");
+            }
+            else if(TestBase.testEnvironment.get_browser().equalsIgnoreCase("firefox"))
+            {
+                JavascriptExecutor js=(JavascriptExecutor)driver;
+                js.executeScript("document.body.style.MozTransform='100%'");
             }
         }
         catch (Exception e){}
@@ -174,13 +196,25 @@ public class CatalogPage
         }
         try
         {
+            //To zoom out browser by 67%
+            if(TestBase.testEnvironment.get_browser().equalsIgnoreCase("chrome")|TestBase.testEnvironment.get_browser().equalsIgnoreCase("edge"))
+            {
+                JavascriptExecutor js = (JavascriptExecutor) driver;
+                js.executeScript("document.body.style.zoom='67%'");
+            }
+            else if(TestBase.testEnvironment.get_browser().equalsIgnoreCase("firefox"))
+            {
+                JavascriptExecutor js=(JavascriptExecutor)driver;
+                js.executeScript("document.body.style.MozTransform='67%'");
+            }
             if(HelpersMethod.IsExists("//button[contains(@data-test-id,'catalogListViewBtn')]//*[local-name()='svg']",driver))
             {
                 if(!HelpersMethod.IsExists("//button[contains(@data-test-id,'catalogListViewBtn' and contains(@class,'k-primary')]//*[local-name()='svg']",driver))
                 {
                     WebElement LView = HelpersMethod.FindByElement(driver, "xpath", "//button[contains(@data-test-id,'catalogListViewBtn')]");
-                    act.moveToElement(LView).click().build().perform();
-                    //HelpersMethod.JScriptClick(driver, LView, 4000);
+                    HelpersMethod.ScrollElement(driver,LView);
+                    HelpersMethod.JScriptClick(driver, LView, 4000);
+
                     if (HelpersMethod.IsExists("//div[@class='loader']", driver))
                     {
                         WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
@@ -193,7 +227,18 @@ public class CatalogPage
                     }
                 }
             }
-        }
+            //To zoom out browser by 100%
+            if(TestBase.testEnvironment.get_browser().equalsIgnoreCase("chrome")|TestBase.testEnvironment.get_browser().equalsIgnoreCase("edge"))
+            {
+                JavascriptExecutor js = (JavascriptExecutor) driver;
+                js.executeScript("document.body.style.zoom='100%'");
+            }
+            else if(TestBase.testEnvironment.get_browser().equalsIgnoreCase("firefox"))
+            {
+                JavascriptExecutor js=(JavascriptExecutor)driver;
+                js.executeScript("document.body.style.MozTransform='100%'");
+            }
+         }
         catch (Exception e){}
     }
 
@@ -437,43 +482,45 @@ public class CatalogPage
                 if (HelpersMethod.IsExists("//div[@class='loader']", driver))
                 {
                     WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 200000);
+                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 400000);
                 }
                 status = HelpersMethod.returnDocumentStatus(driver);
                 if (status.equals("loading"))
                 {
                     HelpersMethod.waitTillLoadingPage(driver);
                 }
-                new WebDriverWait(driver,Duration.ofMillis(20000)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[contains(text(),'Add to cart')]/ancestor::button")));
-                Thread.sleep(1000);
+                //new WebDriverWait(driver,Duration.ofMillis(20000)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[contains(text(),'Add to cart')]/ancestor::button")));
+                Thread.sleep(2000);
             }
 
             //Identify input box for Qty
             WebElement qtyBox = HelpersMethod.FindByElement(driver, "xpath", "//input[contains(@id,'ProductGridItemQuantityContainer')]");
             HelpersMethod.ScrollElement(driver, qtyBox);
-                HelpersMethod.EnterText(driver,qtyBox,8000,Qty_UnitCase);
-                qtyBox.sendKeys(Keys.TAB);
-                Thread.sleep(1000);
-                scenario.log("QTY ENTERE IS " + Qty_UnitCase);
-                status=HelpersMethod.returnDocumentStatus(driver);
-                if(status.equals("loading"))
-                {
-                    HelpersMethod.waitTillLoadingPage(driver);
-                }
+            HelpersMethod.EnterText(driver,qtyBox,8000,Qty_UnitCase);
+            qtyBox.sendKeys(Keys.TAB);
+            //WebElement plusSymbol=HelpersMethod.FindByElement(driver,"xpath","//button[contains(@class,' i-numeric-box-int__buttonPlus ')]");
+            //plusSymbol.sendKeys(Keys.TAB);
+            scenario.log("QTY ENTERE IS " + Qty_UnitCase);
+           /* status=HelpersMethod.returnDocumentStatus(driver);
+            if(status.equals("loading"))
+            {
+                HelpersMethod.waitTillLoadingPage(driver);
+            }
 
-               /* if (HelpersMethod.IsExists("//div[contains(text(),'currently unavailable.')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]", driver))
+                if (HelpersMethod.IsExists("//div[contains(text(),'currently unavailable.')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]", driver))
                 {
                     WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-widget k-window k-dialog')]/descendant::button");
                     HelpersMethod.ClickBut(driver, WebEle, 40);
                 }*/
                 //Click on Add to cart button
-                //new WebDriverWait(driver,Duration.ofMillis(10000)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.xpath("//span[contains(text(),'Add to cart')]/ancestor::button//*[local-name()='svg']"))));
-                new WebDriverWait(driver,Duration.ofMillis(20000)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[contains(text(),'Add to cart')]/ancestor::button")));
-                WebElement addToCart = HelpersMethod.FindByElement(driver, "xpath", "//span[contains(text(),'Add to cart')]/ancestor::button//*[local-name()='svg']");
+                WebElement addToCart = HelpersMethod.FindByElement(driver, "xpath", "//span[@class='item-value']/descendant::button[@class='k-button k-primary k-button-icontext']//*[local-name()='svg']");
                 if (addToCart.isDisplayed() && addToCart.isEnabled())
-                    HelpersMethod.ScrollElement(driver, WebEle);
-                    HelpersMethod.ClickBut(driver, addToCart, 60000);
+                {
+                    HelpersMethod.ClickBut(driver,addToCart,6000);
+                    //HelpersMethod.ScrollElement(driver, addToCart);
+                    //addToCart.sendKeys(Keys.ENTER);
                     exists = true;
+
                     status=HelpersMethod.returnDocumentStatus(driver);
                     if(status.equals("loading"))
                     {
@@ -482,15 +529,21 @@ public class CatalogPage
                     if (HelpersMethod.IsExists("//div[@class='loader']", driver))
                     {
                         WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                        HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 400000);
+                        HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 800000);
                     }
                     status=HelpersMethod.returnDocumentStatus(driver);
-                    {
                     if(status.equals("loading"))
                     {
                         HelpersMethod.waitTillLoadingPage(driver);
                     }
+                    Thread.sleep(2000);
                 }
+            if (HelpersMethod.IsExists("//div[contains(text(),'currently unavailable.')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]", driver))
+            {
+                WebElement dialogBox = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-widget k-window k-dialog')]/descendant::button");
+                WebElement okButton=dialogBox.findElement(By.xpath(".//button[text()='Ok']"));
+                HelpersMethod.ClickBut(driver, okButton, 1000);
+            }
             Assert.assertEquals(exists,true);
         }
         catch (Exception e){}
@@ -1304,10 +1357,10 @@ public class CatalogPage
             if(HelpersMethod.IsExists("//div[@class='loader']",driver))
             {
                 WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100000);
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 400000);
             }
-            HelpersMethod.ActSendKey(driver,SearchBar,1000,pro);
-            HelpersMethod.ActClick(driver,SearchIndex,1000);
+            HelpersMethod.ActSendKey(driver,SearchBar,4000,pro);
+            HelpersMethod.ActClick(driver,SearchIndex,4000);
             if(HelpersMethod.IsExists("//div[@class='loader']",driver))
             {
                 WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
@@ -1338,7 +1391,7 @@ public class CatalogPage
         catch (Exception e){}
     }
 
-    public void productInputList(String s)
+    public void productInputList(String qty)
     {
         exists=false;
         try
@@ -1347,7 +1400,7 @@ public class CatalogPage
             {
                 WebElement listInput = HelpersMethod.FindByElement(driver, "xpath", "//input[contains(@id,'catalog-list-view-quantity-input')]");
                 HelpersMethod.ScrollElement(driver, listInput);
-                HelpersMethod.EnterText(driver, listInput, 1000, s);
+                HelpersMethod.EnterText(driver, listInput, 1000, qty);
                 listInput.sendKeys(Keys.TAB);
                 exists=true;
             }

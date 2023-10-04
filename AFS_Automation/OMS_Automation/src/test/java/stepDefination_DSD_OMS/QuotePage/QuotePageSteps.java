@@ -42,14 +42,14 @@ public class QuotePageSteps
     static boolean flag1=false;
     static String currentURL=null;
 
-    LoginPage loginpage;
-    HomePage homepage;
-    OrderEntryPage orderEntryPage;
-    QuotePage quotePage;
-    NewQuotePage newQuotePage;
-    QuoteSummaryPage quoteSummaryPage;
-    CheckOutSummaryPage summary;
-    CreateOGPage createOGPage;
+    static LoginPage loginpage;
+    static HomePage homepage;
+    static OrderEntryPage orderEntryPage;
+    static QuotePage quotePage;
+    static NewQuotePage newQuotePage;
+    static QuoteSummaryPage quoteSummaryPage;
+    static CheckOutSummaryPage summary;
+    static CreateOGPage createOGPage;
 
     @Before
     public void LaunchBrowser1(Scenario scenario) throws Exception

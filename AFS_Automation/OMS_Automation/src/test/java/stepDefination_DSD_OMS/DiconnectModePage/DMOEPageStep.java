@@ -30,14 +30,14 @@ public class DMOEPageStep
     WebDriver driver;
     Scenario scenario;
 
-    DMOEPage dmoePage;
-    LoginPage loginpage;
-    HomePage homepage;
-    OrderEntryPage orderpage;
-    NewOrderEntryPage newOE;
-    CheckOutSummaryPage summary;
-    OrderHistoryPage orderhistory;
-    CheckOutOrderPage checkorder;
+    static DMOEPage dmoePage;
+    static LoginPage loginpage;
+    static HomePage homepage;
+    static OrderEntryPage orderpage;
+    static NewOrderEntryPage newOE;
+    static CheckOutSummaryPage summary;
+    static OrderHistoryPage orderhistory;
+    static CheckOutOrderPage checkorder;
 
     @Before
     public void LaunchBrowser1(Scenario scenario) throws Exception

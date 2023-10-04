@@ -130,6 +130,12 @@ public class CheckOutOrderPage
         WebElement WebEle=null;
         try
         {
+            if(HelpersMethod.IsExists("//div[@class='loader']",driver))
+            {
+                WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 400000);
+            }
+
           if(HelpersMethod.IsEnabledByele(BackButton))
           {
               HelpersMethod.ClickBut(driver,BackButton,1000);
@@ -137,7 +143,7 @@ public class CheckOutOrderPage
               if(HelpersMethod.IsExists("//div[@class='loader']",driver))
               {
                   WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                  HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 80000);
+                  HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 400000);
               }
               exists=true;
           }
@@ -160,7 +166,7 @@ public class CheckOutOrderPage
                     if (HelpersMethod.IsExists("//div[@class='loader']", driver))
                     {
                         WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                        HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 200000);
+                        HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 400000);
                     }
 
                     scenario.log("CLICKED ON NEXT BUTTON");
@@ -202,7 +208,7 @@ public class CheckOutOrderPage
             if(HelpersMethod.IsExists("//div[@class='loader']",driver))
             {
                 WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 80000);
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 200000);
             }
             //Check whether application is navigating to checkout card or navigating to order summary page
             if (HelpersMethod.IsExists("//div[@class='page-content']/descendant::div[@id='checkoutCard']",driver))
@@ -329,7 +335,7 @@ public class CheckOutOrderPage
                     if(HelpersMethod.IsExists("//div[@class='loader']",driver))
                     {
                         WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                        HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 80000);
+                        HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 200000);
                     }
                 }
             }

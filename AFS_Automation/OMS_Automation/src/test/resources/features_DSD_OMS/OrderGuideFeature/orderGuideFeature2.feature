@@ -176,6 +176,9 @@ Feature: Order Guide2
   Scenario Outline: Deleting Order guide and verifying it in OG grid
     Given User must be on Order Entry Page to select OG
     And User should navigate to OG
+    Then User should click on Customer Reference drop down and select type of OG
+      |All customer accounts #|
+    And User removes filter from OG page
     Then User enters OG Description "<OG>" in search box and Delete the OG verify same in OG grid
     Examples:
       |  OG   |
@@ -191,6 +194,10 @@ Feature: Order Guide2
       |Push OG1Push OG1|
       |AllOrderAllOrder|
       | AllCustomer1   |
+      | NationalChain1 |
+      |LocalChain1     |
+      |MarketOG        |
+      |PriceBaseOG     |
     #  | QToOG |
 
 

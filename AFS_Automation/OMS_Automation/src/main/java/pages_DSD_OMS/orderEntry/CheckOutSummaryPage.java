@@ -290,19 +290,20 @@ public class CheckOutSummaryPage
         if(HelpersMethod.IsExists("//div[@class='loader']",driver))
         {
             WebElement WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 200000);
+            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 400000);
         }
         try
         {
             if (Edit_But.isDisplayed() && Edit_But.isEnabled())
             {
+                Edit_But=HelpersMethod.FindByElement(driver,"id","EditButton");
                 HelpersMethod.ScrollElement(driver,Edit_But);
-                HelpersMethod.ActClick(driver,Edit_But,1000);
+                HelpersMethod.ActClick(driver,Edit_But,4000);
                 exists=true;
                 if(HelpersMethod.IsExists("//div[@class='loader']",driver))
                 {
                     WebElement WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100000);
+                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 400000);
                 }
             }
             Assert.assertEquals(exists,true);

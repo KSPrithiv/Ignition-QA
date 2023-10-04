@@ -30,10 +30,10 @@ public class OrderEntryPageSteps4
 
     static boolean exists=false;
 
-    OrderEntryPage orderpage;
-    NewOrderEntryPage newOE;
-    CheckOutSummaryPage summary;
-    CheckOutOrderPage checkorder;
+    static OrderEntryPage orderpage;
+    static NewOrderEntryPage newOE;
+    static CheckOutSummaryPage summary;
+    static CheckOutOrderPage checkorder;
 
     @Before
     public void LaunchBrowser1(Scenario scenario) throws Exception

@@ -37,8 +37,8 @@ public class Manage_Registration_PageStep {
     static String currentURL = null;
 
 
-    LoginPage loginpage;
-    HomePage homepage;
+    static LoginPage loginpage;
+    static HomePage homepage;
 
 
     ManageRegistrationPage manage_reg_page;

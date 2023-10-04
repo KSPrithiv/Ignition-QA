@@ -17,7 +17,7 @@ public class OrderEntryPageEnd
     WebDriver driver;
     Scenario scenario;
 
-    OrderEntryPage orderpage;
+    static OrderEntryPage orderpage;
     static String currentURL=null;
 
     @Before

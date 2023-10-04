@@ -46,12 +46,12 @@ public class ParOrderPageStep
     static boolean flag3=false;
     static String currentURL=null;
 
-    LoginPage loginpage;
-    HomePage homepage;
-    OrderEntryPage orderpage;
-    CreateOGPage createOGPage;
-    OrderGuidePage orderGuidePage;
-    ParOrderPage parOrderPage;
+    static LoginPage loginpage;
+    static HomePage homepage;
+    static OrderEntryPage orderpage;
+    static CreateOGPage createOGPage;
+    static OrderGuidePage orderGuidePage;
+    static ParOrderPage parOrderPage;
 
     @Before
     public void LaunchBrowser(Scenario scenario) throws Exception

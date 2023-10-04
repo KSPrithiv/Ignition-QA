@@ -25,12 +25,12 @@ public class OrderEntryPageSteps7
     Scenario scenario;
 
     static boolean exists=false;
-    OrderEntryPage orderEntryPage;
-    NewOrderEntryPage newOE;
-    CheckOutSummaryPage summary;
-    OrderHistoryPage orderHistoryPage;
-    OrderEntryPage orderpage;
-    CheckOutOrderPage checkorder;
+    static OrderEntryPage orderEntryPage;
+    static NewOrderEntryPage newOE;
+    static CheckOutSummaryPage summary;
+    static OrderHistoryPage orderHistoryPage;
+    static OrderEntryPage orderpage;
+    static CheckOutOrderPage checkorder;
 
     @Before
     public void LaunchBrowser1(Scenario scenario) throws Exception

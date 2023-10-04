@@ -35,8 +35,8 @@ public class OrderGuidePageStep1
     static String OGDis=null;
     static String WDay=null;
 
-    OrderGuidePage orderGuidePage;
-    CreateOGPage createOGPage;
+    static OrderGuidePage orderGuidePage;
+    static CreateOGPage createOGPage;
 
     @Before
     public void LaunchBrowser1(Scenario scenario) throws Exception
@@ -110,7 +110,7 @@ public class OrderGuidePageStep1
     }*/
 
     @And("User verifies New OG page and clicks on import button")
-    public void userVerifiesNewOGPageAndClicksOnImportButton()
+    public void userVerifiesNewOGPageAndClicksOnImportButton() throws InterruptedException
     {
         createOGPage = new CreateOGPage(driver, scenario);
         createOGPage.ValidateNewOG();
@@ -218,7 +218,8 @@ public class OrderGuidePageStep1
     }
 
     @And("User selects end date as past date")
-    public void userSelectsEndDateAsPastDate() throws InterruptedException, AWTException {
+    public void userSelectsEndDateAsPastDate() throws InterruptedException, AWTException
+    {
         createOGPage = new CreateOGPage(driver, scenario);
         createOGPage.OGDetailValidate();
         createOGPage.clickOnStatus();
@@ -238,6 +239,7 @@ public class OrderGuidePageStep1
         Assert.assertEquals(exists,true);
         exists=orderGuidePage.AddFilterForExpiredOG("Status","Expired");
         Assert.assertEquals(exists,true);
+        orderGuidePage.OGSearchBoxClear();
         exists=orderGuidePage.OGSearchBox(OGDis);
         Assert.assertEquals(exists,true);
     }
