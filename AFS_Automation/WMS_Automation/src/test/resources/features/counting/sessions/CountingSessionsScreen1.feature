@@ -50,7 +50,7 @@ Feature: Testing of Counting Count functionality
     And User clicks New Session button on Counting Sessions page
     And Validates Session name and Count type are displayed on Counting Sessions page
     When User types count type 3 on Counting Sessions page
-    And Deletes cookies on application
+    And User types randomly created session name on Counting Sessions page
     And User clicks Save button on Counting Sessions page
     And Wait until Loader invisible on Counting Sessions page
     Then User clicks session dropdown on Counting Sessions page

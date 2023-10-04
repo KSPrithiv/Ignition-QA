@@ -121,4 +121,33 @@ Feature: Testing of Inbound Orders functionality
     And User applies order "Move" option on Inbound Order Summary page
     And Types Load name by index 2 on Inbound Order Details page
     And Validates Save button is enabled on Inbound Order Details page
-    And Validates "Success" notification is displayed on Inbound Order Details page
+    And Clicks Cancel button on Inbound Order Details page
+    And Go to Loads page
+    And Inbound Load Summary page appears
+    And Inbound Load Summary page main elements are present
+    And Validates default values of Start Date and End date on Inbound Load Summary page
+
+  Scenario: Check Searching on Inbound Order Summary screen
+    Given User signs in the application
+    And Main page is loaded
+    And DockManagement Summary Page is validated
+    And Go to Inbound Orders page
+    And User waits for Inbound Order Summary page to load
+    When User finds orders from date by index 4 on Inbound Order summary page
+    And Types Valid product code by index 1 on Inbound Order Summary page
+    And Validates orders are present on Inbound Order Summary page
+    Then Deletes product on Inbound Order Summary page
+    And Types invalid product code "Ht5frK" on Inbound Order Summary page
+    And Validates orders are not present on Inbound Order Summary page
+
+  Scenario: Check Uploading images on Inbound Order Summary screen
+    Given User signs in the application
+    And Main page is loaded
+    And DockManagement Summary Page is validated
+    And Go to Inbound Orders page
+    And User waits for Inbound Order Summary page to load
+    When User finds orders from date by index 4 on Inbound Order summary page
+    And Selects order with index 1 on Inbound Order Summary page
+    Then Validates Images Button is present on Inbound Order Details page
+    And Clicks Images button on Inbound Order Summary page
+    And Validates Load Images on Inbound Order Details page
