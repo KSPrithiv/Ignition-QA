@@ -13,9 +13,8 @@ public class NavigationPageStep
 {
     WebDriver driver;
     Scenario scenario;
-    static String label=null;
-    static boolean exists=false;
-    NavigationPage navigationPage;
+
+    static NavigationPage navigationPage;
 
     @Before
     public void LaunchBrowser1(Scenario scenario) throws Exception

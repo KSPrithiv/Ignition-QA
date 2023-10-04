@@ -28,9 +28,9 @@ public class UserManagement_ClientSideStep
     static boolean flag=false;
     WebDriver driver;
     Scenario scenario;
-    LoginPage loginpage;
-    HomePage homepage;
-    userManagementClientPage userManagementpage;
+    static LoginPage loginpage;
+    static HomePage homepage;
+    static userManagementClientPage userManagementpage;
 
     @Before
     public void LaunchBrowser1(Scenario scenario) throws Exception

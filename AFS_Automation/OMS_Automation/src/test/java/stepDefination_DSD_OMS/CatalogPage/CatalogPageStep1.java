@@ -34,11 +34,11 @@ public class CatalogPageStep1
     static boolean exists=false;
     Scenario scenario;
 
-    OrderEntryPage orderpage;
-    CatalogPage catalogpage;
-    NewOrderEntryPage newOE;
-    CheckOutOrderPage checkorder;
-    ProductDescriptionPage productdesctiptionpage;
+    static OrderEntryPage orderpage;
+    static CatalogPage catalogpage;
+    static NewOrderEntryPage newOE;
+    static CheckOutOrderPage checkorder;
+    static ProductDescriptionPage productdesctiptionpage;
 
     @Before
     public void LaunchBrowser1(Scenario scenario) throws Exception

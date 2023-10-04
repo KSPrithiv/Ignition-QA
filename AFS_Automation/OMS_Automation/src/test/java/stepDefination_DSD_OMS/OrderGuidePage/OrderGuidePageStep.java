@@ -43,12 +43,12 @@ public class OrderGuidePageStep
     static boolean flag1=false;
     static String currentURL=null;
 
-    LoginPage loginpage;
-    HomePage homepage;
-    OrderEntryPage orderpage;
-    NewOrderEntryPage newOE;
-    OrderGuidePage orderGuidePage;
-    CreateOGPage createOGPage;
+    static LoginPage loginpage;
+    static HomePage homepage;
+    static OrderEntryPage orderpage;
+    static NewOrderEntryPage newOE;
+    static OrderGuidePage orderGuidePage;
+    static CreateOGPage createOGPage;
 
     @Before
     public void LaunchBrowser1(Scenario scenario) throws Exception
@@ -223,11 +223,12 @@ public class OrderGuidePageStep
         exists=false;
         //Code to verify whether OG is existing in OG grid or not
         orderGuidePage = new OrderGuidePage(driver, scenario);
+        orderGuidePage.OGSearchBoxClear();
         exists=orderGuidePage.OGSearchBox(Og);
         Assert.assertEquals(exists,true);
     }
 
-    //Code to search for OG using search box//////////////////////////////////////////////
+    //Code to search for OG using search box//
     @Then("User enters OG Description in search box")
     public void user_enters_og_description_in_search_box(DataTable tabledata) throws InterruptedException, AWTException
     {
@@ -418,6 +419,7 @@ public class OrderGuidePageStep
     {
         exists=false;
         orderGuidePage = new OrderGuidePage(driver, scenario);
+        orderGuidePage.OGSearchBoxClear();
         exists=orderGuidePage.OGSearchBox(Og);
         Assert.assertEquals(exists,true);
         orderGuidePage.SearchOGSelect(Og);

@@ -40,18 +40,18 @@ public class CustomerInqStep
     static String currentURL=null;
     WebElement WebEle;
 
-    LoginPage loginpage;
-    HomePage homepage;
-    CustomerInquiryPage customerInquiryPage;
-    PrimaryPage primaryPage;
-    BillToPage billToPage;
-    OrderPage orderPage;
-    DeliveriesPage deliveriesPage;
-    AccountPage accountPage;
-    PricePage pricePage;
-    MiscTaxPage miscTaxPage;
-    DEX_EDIPage dex_ediPage;
-    IgnitionPage ignitionPage;
+    static LoginPage loginpage;
+    static HomePage homepage;
+    static CustomerInquiryPage customerInquiryPage;
+    static PrimaryPage primaryPage;
+    static BillToPage billToPage;
+    static OrderPage orderPage;
+    static DeliveriesPage deliveriesPage;
+    static AccountPage accountPage;
+    static PricePage pricePage;
+    static MiscTaxPage miscTaxPage;
+    static DEX_EDIPage dex_ediPage;
+    static IgnitionPage ignitionPage;
 
 
     @Before

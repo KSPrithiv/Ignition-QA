@@ -48,13 +48,13 @@ public class AllOrdersPageStep
     static boolean flag1=false;
     static String CurrentULR=null;
 
-    LoginPage loginpage;
-    HomePage homepage;
-    OrderEntryPage orderpage;
-    AllOrderPage allOrder;
-    CheckOutSummaryPage summary;
-    NewOrderEntryPage newOE;
-    CheckOutOrderPage checkOutOrderPage;
+    static LoginPage loginpage;
+    static HomePage homepage;
+    static OrderEntryPage orderpage;
+    static AllOrderPage allOrder;
+    static CheckOutSummaryPage summary;
+    static NewOrderEntryPage newOE;
+    static CheckOutOrderPage checkOutOrderPage;
 
     @Before
     public void LaunchBrowser1(Scenario scenario) throws Exception

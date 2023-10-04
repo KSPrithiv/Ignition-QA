@@ -45,11 +45,11 @@ public class StandingOrderPageSteps
     List<WebElement> dateList1;
     List<WebElement> dateList2;
 
-    LoginPage loginpage;
-    HomePage homepage;
-    OrderEntryPage orderpage;
-    NewStandingOrderPage standingOrder;
-    NewStandingOrderCard standingOrderCard;
+    static LoginPage loginpage;
+    static HomePage homepage;
+    static OrderEntryPage orderpage;
+    static NewStandingOrderPage standingOrder;
+    static NewStandingOrderCard standingOrderCard;
 
     @Before
     public void LaunchBrowser1(Scenario scenario) throws Exception
@@ -144,8 +144,8 @@ public class StandingOrderPageSteps
         standingOrderCard.VerifyCalenderPopupStandingOrder();
     }
 
-    @Then("User enters Product# in Quick product entry inputbox")
-    public void userEntersProductInQuickProductEntryInputbox()
+    @Then("User enters Product# in Quick product entry inputbox and sequenceNo")
+    public void userEntersProductInQuickProductEntryInputboxAndSequenceNo()
     {
         standingOrder=new NewStandingOrderPage(driver,scenario);
         standingOrder.ValidateSO();

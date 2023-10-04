@@ -145,7 +145,7 @@ Feature: Order Guide1
     Then User click on Save button
     Examples:
       |  OG    |
-      |OGDis1  |
+      |OGDis14 |
 
   @ActiveToExpired
   Scenario Outline: Test scenario to convert active OG to expired OG

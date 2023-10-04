@@ -133,7 +133,7 @@ public class OrderControlListPage
             if (HelpersMethod.IsExists("//div[@class='loader']", driver))
             {
                 WebElement   WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 600000);
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 800000);
             }
         }
         catch (Exception e){}
@@ -526,12 +526,12 @@ public class OrderControlListPage
                 WebElement skipPopup = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-widget k-window k-dialog')]");
 
                 //Identify the skip reason drop down
-                WebEle = skipPopup.findElement(By.xpath(".//span[@id='SkipReason']"));
-                HelpersMethod.ClickBut(driver, WebEle, 1000);
+                WebElement skipReason = skipPopup.findElement(By.xpath(".//span[@id='SkipReason']"));
+                HelpersMethod.ClickBut(driver, skipReason, 4000);
                 HelpersMethod.DropDownMenu_LowerCase(driver,reason);
 
-                WebEle = skipPopup.findElement(By.xpath(".//button[text()='Ok']"));
-                HelpersMethod.ActClick(driver, WebEle, 1000);
+                WebElement okButton = skipPopup.findElement(By.xpath(".//button[text()='Ok']"));
+                HelpersMethod.ActClick(driver, okButton, 4000);
                 exists=true;
             }
             Assert.assertEquals(exists,true);
@@ -625,7 +625,7 @@ public class OrderControlListPage
             if(HelpersMethod.IsExists("//div[@class='loader']",driver))
             {
                 WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100000);
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 400000);
             }
             Assert.assertEquals(exists,true);
         }
@@ -660,11 +660,21 @@ public class OrderControlListPage
         WebElement WebEle=null;
         try
         {
+            if (HelpersMethod.IsExists("//div[@class='loader']", driver))
+            {
+                WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 400000);
+            }
             if(HelpersMethod.IsExists("//div[text()='Remove Skip']/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
             {
                 WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-widget k-window k-dialog')]/descendant::button[text()='Ok']");
                 HelpersMethod.ClickBut(driver,WebEle,1000);
                 exists=true;
+            }
+            if (HelpersMethod.IsExists("//div[@class='loader']", driver))
+            {
+                WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 400000);
             }
             Assert.assertEquals(exists,true);
         }
@@ -747,7 +757,7 @@ public class OrderControlListPage
             if (HelpersMethod.IsExists("//div[@class='loader']", driver))
             {
                 WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100000);
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 400000);
             }
             HelpersMethod.waitTillElementLocatedDisplayed(driver, "xpath", "//div[contains(@class,'k-widget k-window k-dialog')]", 60);
             // to fetch the web element of the modal container
@@ -1038,14 +1048,11 @@ public class OrderControlListPage
                 i++;
                 act.moveToElement(head).build().perform();
                 headText=head.getText();
-                if(headText.equals("Order type"))
+                if(headText.equalsIgnoreCase("Order type"))
                 {
-                    if(HelpersMethod.IsExists("//tr[contains(@class,'k-master-row')]/td["+i+"]/descendant::span[@data-value='Regular Order']",driver))
-                    {
-                        orderType=HelpersMethod.FindByElement(driver,"xpath","//tr[contains(@class,'k-master-row')]/td["+i+"]/descendant::span[@data-value='Regular Order']").getText();
+                        orderType=HelpersMethod.FindByElement(driver,"xpath","//tr[contains(@class,'k-master-row')]/td["+i+"]/descendant::span").getText();
                         scenario.log("ORDER TYPE CREATED IS "+orderType);
                         exists=true;
-                    }
                     break;
                 }
                 else

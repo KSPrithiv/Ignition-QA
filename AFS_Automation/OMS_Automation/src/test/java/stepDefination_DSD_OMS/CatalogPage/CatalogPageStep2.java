@@ -37,10 +37,10 @@ public class CatalogPageStep2
         static boolean exists = false;
         Scenario scenario;
 
-        CatalogPage catalogpage;
-        NewOrderEntryPage newOE;
-        CheckOutOrderPage checkorder;
-        ProductDescriptionPage productDescriptionPage;
+        static CatalogPage catalogpage;
+        static NewOrderEntryPage newOE;
+        static CheckOutOrderPage checkorder;
+        static ProductDescriptionPage productDescriptionPage;
 
         @Before
         public void LaunchBrowser1(Scenario scenario) throws Exception {
@@ -50,7 +50,8 @@ public class CatalogPageStep2
         }
 
         @Then("User enters Product# in Search bar and enters Qty for single Product in list view")
-        public void userEntersProductInSearchBarAndEntersQtyForSingleProductInListView(DataTable tabledata) throws SQLException, ClassNotFoundException, InstantiationException, IllegalAccessException, SQLException {
+        public void userEntersProductInSearchBarAndEntersQtyForSingleProductInListView(DataTable tabledata) throws SQLException, ClassNotFoundException, InstantiationException, IllegalAccessException, SQLException
+        {
                 exists = true;
                 List<List<String>> Prod_detail = tabledata.asLists(String.class);
                 catalogpage = new CatalogPage(driver, scenario);
@@ -59,7 +60,7 @@ public class CatalogPageStep2
                 exists = HelpersMethod.IsExists("//div[contains(text(),'Sorry, no products matched')]", driver);
                 if (exists == true)
                 {
-                        HelpersMethod.ClickBut(driver, HelpersMethod.FindByElement(driver, "xpath", "//span[contains(@class,'search-button')]/*[local-name()='svg']/*[local-name()='path' and contains(@d,'M17')]"), 10);
+                        HelpersMethod.ClickBut(driver, HelpersMethod.FindByElement(driver, "xpath", "//span[contains(@class,'search-button')]/*[local-name()='svg']/*[local-name()='path' and contains(@d,'M17')]"), 1000);
                 }
                 else if (exists == false)
                 {

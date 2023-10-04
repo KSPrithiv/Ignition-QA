@@ -24,8 +24,8 @@ public class OrderAdminPageStep
         /* Created by Divya.Ramadas@afsi.com */
         WebDriver driver;
         Scenario scenario;
-        AdminHomePage adminHomePage;
-        orderAdminPage orderadminPage;
+        static AdminHomePage adminHomePage;
+        static orderAdminPage orderadminPage;
 
         @Before
         public void LaunchBrowser1(Scenario scenario) throws Exception

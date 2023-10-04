@@ -32,16 +32,16 @@ public class OrderEntryPageSteps2
     WebDriver driver;
     Scenario scenario;
 
-    OrderEntryPage orderpage;
-    NewOrderEntryPage newOE;
-    CheckOutSummaryPage summary;
-    CheckOutOrderPage checkorder;
+    static OrderEntryPage orderpage;
+    static NewOrderEntryPage newOE;
+    static CheckOutSummaryPage summary;
+    static CheckOutOrderPage checkorder;
 
-    String Tot_Amt=null;
-    String Tot_Amt1=null;
-    String Route=null;
-    String Route1=null;
-    String Order_No=null;
+    static String Tot_Amt=null;
+    static String Tot_Amt1=null;
+    static String Route=null;
+    static String Route1=null;
+    static String Order_No=null;
 
     @Before
     public void LaunchBrowser1(Scenario scenario) throws Exception

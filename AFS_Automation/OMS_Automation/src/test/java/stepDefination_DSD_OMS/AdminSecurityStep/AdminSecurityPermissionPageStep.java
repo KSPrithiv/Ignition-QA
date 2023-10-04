@@ -18,8 +18,8 @@ public class AdminSecurityPermissionPageStep
         /* Created by Divya.Ramadas@afsi.com */
         WebDriver driver;
         Scenario scenario;
-        AdminSecurityPermissionPage adminSecurityPermissionPage;
-        AdminSecurityPermission_ByUserPage adminSecurityPermission_byUserPage;
+        static AdminSecurityPermissionPage adminSecurityPermissionPage;
+        static AdminSecurityPermission_ByUserPage adminSecurityPermission_byUserPage;
 
         @Before
         public void LaunchBrowser1(Scenario scenario) throws Exception

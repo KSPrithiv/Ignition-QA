@@ -31,12 +31,12 @@ public class OrderControlPageSteps
     WebDriver driver;
     Scenario scenario;
 
-    LoginPage loginpage;
-    HomePage homepage;
-    OrderEntryPage orderpage;
-    NewOrderEntryPage newOE;
-    CheckOutSummaryPage summary;
-    OrderControlListPage orderControlList;
+    static LoginPage loginpage;
+    static HomePage homepage;
+    static OrderEntryPage orderpage;
+    static NewOrderEntryPage newOE;
+    static CheckOutSummaryPage summary;
+    static OrderControlListPage orderControlList;
 
     static boolean exists=false;
     static boolean flag=false;
@@ -370,5 +370,17 @@ public class OrderControlPageSteps
         orderControlList.verifyOrderInOCLgrid(Ord_No);
         orderControlList.verifyOrderType();
         orderControlList.clearSearchBar();
+    }
+
+    @Then("User refreshes page and Clicks on Taken radio button delivery date should be increased by {int}")
+    public void userRefreshesPageAndClicksOnTakenRadioButtonDeliveryDateShouldBeIncreasedBy(int i)
+    {
+        orderControlList=new OrderControlListPage(driver,scenario);
+        orderControlList.Refresh_Click();
+        orderControlList.Click_OrderTracker();
+        orderControlList.Select_OrderTracker();
+        orderControlList.Call_Date_Click();
+        orderControlList.Call_Date_Selection(i);
+        orderControlList.Select_Taken();
     }
 }

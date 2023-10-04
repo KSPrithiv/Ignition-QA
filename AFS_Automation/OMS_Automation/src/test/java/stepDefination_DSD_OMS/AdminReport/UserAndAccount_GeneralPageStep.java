@@ -23,11 +23,11 @@ public class UserAndAccount_GeneralPageStep
     /* Created by Divya.Ramadas@afsi.com */
     WebDriver driver;
     Scenario scenario;
-    userAndAdmin_GeneralPage userAndAdminGeneralPage;
-    AdminHomePage adminHomePage;
-    HomePage homepage;
-    LoginPage loginpage;
-    UserRegistrationPage userRegistrationPage;
+    static userAndAdmin_GeneralPage userAndAdminGeneralPage;
+    static AdminHomePage adminHomePage;
+    static HomePage homepage;
+    static LoginPage loginpage;
+    static UserRegistrationPage userRegistrationPage;
 
     @Before
     public void LaunchBrowser1(Scenario scenario) throws Exception

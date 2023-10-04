@@ -21,13 +21,13 @@ import pages_DSD_OMS.login.LoginPage;
 @CucumberOptions
         (features =
                 {
-                        "src/test/resources/features_DSD_OMS/AdminReportsFeature/adminEventActivitiesFeature.feature",
+                       // "src/test/resources/features_DSD_OMS/AdminReportsFeature/adminEventActivitiesFeature.feature",
 //                       "src/test/resources/features_DSD_OMS/AdminReports",
                         //"src/test/resources/features_DSD_OMS/ARInquiryFeature",
                         //"src/test/resources/features_DSD_OMS/BillToBill(DSD)",
                         //"src/test/resources/features_DSD_OMS/CatalogFeature",
                         //"src/test/resources/features_DSD_OMS/CompetitivePricingFeature",
-                        //"src/test/resources/features_DSD_OMS/CustomerInqFeature_DSDFeature",
+                        "src/test/resources/features_DSD_OMS/CustomerInqFeature_DSDFeature",
                         //"src/test/resources/features_DSD_OMS/DisconnectedModeOEFeature",
                         //"src/test/resources/features_DSD_OMS/OrderControlListFeature",
                         //"src/test/resources/features_DSD_OMS/OrderEntryFeature/orderEntryFeature.feature",
