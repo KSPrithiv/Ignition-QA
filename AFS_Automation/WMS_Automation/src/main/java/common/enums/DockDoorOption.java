@@ -15,6 +15,7 @@ public enum DockDoorOption {
     DOOR04("DR04"),
     DOOR05("DR05"),
     DOOR06("DR06"),
+    DOOR10("DR10"),
     GOLD("GOLD"),
     PRODUCTION("PRODUCTION"),
     TD01("TD01"),

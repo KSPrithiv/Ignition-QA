@@ -88,7 +88,7 @@ public class SetupLaborCodePage extends BasePage {
     }
     public void searchBoxAction(){
 //        Waiters.waitABit(5000);
-        Waiters.waitForPresenceOfElement("form > .i-icon.i-search-box__search");
+        Waiters.waitForElementToBeDisplay(By.cssSelector("form > .i-icon.i-search-box__search"));
         clickOnElement(searchBox);
         try {
             searchBox().sendKeys("A",Keys.ENTER);
@@ -215,7 +215,7 @@ public class SetupLaborCodePage extends BasePage {
     }
     public void addButton() {
 //        Waiters.waitABit(8000);
-        Waiters.waitForPresenceOfElement("form > .i-icon.i-search-box__search");
+        Waiters.waitForElementToBeDisplay(By.cssSelector("form > .i-icon.i-search-box__search"));
         Waiters.waitForElementToBeDisplay(getAddButton());
         clickOnElement(getAddButton());
     }

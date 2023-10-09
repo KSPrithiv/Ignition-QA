@@ -146,7 +146,7 @@ public class AppointmentSchedulerOrderPage extends BasePage {
     }
 
     public int getRowsCount() {
-        Waiters.waitForPresenceOfElement(tableContent);
+        Waiters.waitForElementToBeDisplay(tableContent);
         List<WebElement> rows = getTableContent().findElements(By.xpath(".//tr"));
         Waiters.waitABit(2000);
         return rows.size();

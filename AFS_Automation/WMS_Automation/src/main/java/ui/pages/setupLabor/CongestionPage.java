@@ -28,8 +28,7 @@ public class CongestionPage extends BasePage {
 
     public void searchBoxActionCongestion(){
         Waiters.waitABit(5000);
-
-        Waiters.waitForPresenceOfElement("form > .i-icon.i-search-box__search");
+        Waiters.waitForElementToBeDisplay(By.cssSelector("form > .i-icon.i-search-box__search"));
 //        Waiters.waitForElementToBeDisplay(searchBox4());
         clickOnElement(searchBox4);
         try {

@@ -9,6 +9,8 @@ import java.util.List;
 import java.util.Random;
 import java.util.stream.Collectors;
 
+import static common.setup.DriverManager.getDriver;
+
 public class OutboundOrderSummaryPage extends BasePage {
     By title = By.cssSelector(".i-card__card__title-area__title");
     By loadingImage = By.cssSelector(".k-loading-image");
@@ -21,7 +23,8 @@ public class OutboundOrderSummaryPage extends BasePage {
             .xpath("//div[@class='i-indexfield-container__main'][.//input[@placeholder='Enter a account']]//button");
     By allStatusesDropDown = By.cssSelector("#ddlStatus");
     By doorsDropDown = By.cssSelector("#ddlDoor");
-    By doorsListDropDown = By.cssSelector("#ddDoorList");
+    By doorsListDropDown = By.cssSelector("#ddlDoor");
+    By ddDoorListDropDown = By.cssSelector("#ddDoorList");
     By orderTypeDropDown = By.cssSelector("#ddlOrderType");
     By enterProduct = By.cssSelector("input[placeholder='Enter a product']");
     By searchProductButton = By
@@ -36,8 +39,8 @@ public class OutboundOrderSummaryPage extends BasePage {
     By remainderStatus = By.xpath("//span[contains(@class,'i-bar-description')][.//span[contains(@class, 'dot--gray')]]");
     By tableContent = By.xpath("//div[@class='k-grid-container']");
     By tableHeaders = By.cssSelector(".k-grid-header th");
-    By detailRows = By.cssSelector(".k-grid-table .k-detail-row");
-    By accountRows = By.cssSelector(".k-grid-table .k-master-row");
+    By detailRows = By.xpath("//div[contains(@class, 'BarsContainer')]");
+    By accountRows = By.xpath("//div[contains(@class, 'BarsContainer')]");
     By accountIndexRows = By.xpath("//div[@class='k-widget k-grid k-grid-virtual']//tr[contains(@class, 'k-master-row')]");
     By accountSearch = By.cssSelector("#gridUtilSearch_productSearchIndex");
     By orderAccount = By.xpath("//span[contains(text(), 'Test Account')]");
@@ -134,24 +137,37 @@ public class OutboundOrderSummaryPage extends BasePage {
     By dataAlt1 = By.xpath("//input[@name='Alt1']");
     By dataAlt2 = By.xpath("//input[@name='Alt2']");
     By dataAlt3 = By.xpath("//input[@name='alt3']");
+    By routeLabel = By.xpath("//span[text()='Route']");
+    By enterNameInput = By.xpath("//input[contains(@placeholder, 'Enter NAME')]");
+    By routeTxtBox = By.xpath("//input[contains(@id, 'loadrouteTxtBox')]");
     By dropdownList = By.id("dropdownList");
+    By loader = By.cssSelector(".loader");
+    By arrowChevron = By.xpath("//button[contains(@class, 'i-card__card__title-area')]//span[contains(@class, 'k-i-arrow-chevron')]");
+    By routes = By.xpath("//div[contains(@class, 'BarsContainer')]");
+    By imagesButton = By.xpath("//button[@id='btnImageNo' and contains(text(), 'Images')]");
+    By commentsButton = By.xpath("//button[@id='btnImageNo' and contains(text(), 'Comments')]");
 
     public void waitOutboundOrderSummaryPageToLoad() {
-        Waiters.waitUntilPageWillLoadedSelenide();
+        waitUntilInvisible(1, loader);
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(getTitle());
         Waiters.waitForElementToBeDisplay(getTableContent());
     }
 
     public void waitForWorkPageToLoad() {
-        Waiters.waitUntilPageWillLoadedSelenide();
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(workQueue);
         Waiters.waitForElementToBeDisplay(assignmentTab);
         Waiters.waitForElementToBeDisplay(assignmentTab);
     }
 
-    public String getOutboundOrderPageTitle() {
-        Waiters.waitForElementToBeDisplay(getTitle());
-        return getTitle().getText().trim();
+    public boolean isOutboundOrderOptionActive(String name) {
+        WebElement orderOption = findWebElements(By.xpath("//div[contains(@class, 'k-animation-container-shown')]//li"))
+                .stream()
+                .filter(el -> el.getText().equals(name))
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException("Order option not found"));
+        return orderOption.getAttribute("class").contains("disabled");
     }
 
     public List<WebElement> getRoutes() {
@@ -168,6 +184,7 @@ public class OutboundOrderSummaryPage extends BasePage {
     public void clickAssignItem() {
         Waiters.waitForElementToBeClickable(getAssignIcon());
         clickOnElement(getAssignIcon());
+        waitUntilInvisible(2, loader);
     }
 
     public void clickSaveButton() {
@@ -176,41 +193,53 @@ public class OutboundOrderSummaryPage extends BasePage {
     }
 
     public void selectOrderByOrderName(String order) {
-        Waiters.waitForPresenceOfElement(tableContent);
-        typeText(getEnterOrderInput(), order);
+        waitUntilInvisible(5, loader);
+        Waiters.waitTillLoadingPage(getDriver());
+        Waiters.waitForAllElementsToBeDisplay(tableContent);
+        clear(getEnterOrderInput());
+        waitUntilInvisible(2, loader);
+        enterText(getEnterOrderInput(), order);
+        waitUntilInvisible(2, loader);
         pressTab(getEnterOrderInput());
-        clickOnElement(findWebElement(By.xpath("//tr[@class='k-detail-row'][.//span[contains(text(), '" + order + "')]]")));
-        Waiters.waitABit(3000);
+        waitUntilInvisible(3, loader);
+        List<WebElement> orders = getOutboundRoutes();
+        waitUntilStalenessOf(2, orders.get(0));
+        orders.get(0).click();
+        waitUntilInvisible(1, loader);
     }
 
     public void clickTaskItem() {
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeClickable(getTaskIcon());
         clickOnElement(getTaskIcon());
     }
 
     public void clickUserDropdown() {
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeClickable(getUserDropdown());
         clickOnElement(getUserDropdown());
+        Waiters.waitABit(2000);
     }
 
     public void selectRandomUserFromDropdown() {
-        Waiters.waitForPresenceOfAllElements(By.xpath("//div[contains(@class, 'k-animation-container-shown')]//li[@role='option']"));
+        Waiters.waitTillLoadingPage(getDriver());
+        Waiters.waitForElementsToBeDisplay(findWebElements(By
+                .xpath("//div[contains(@class, 'k-animation-container-shown')]//li[@role='option']")));
         List<WebElement> users = findWebElements(By.xpath("//div[contains(@class, 'k-animation-container-shown')]//li[@role='option']"));
         clickOnElement(users.get(new Random().nextInt(users.size())));
     }
 
-    public void selectOrderCheckboxByOrderNumber(int orderNum) {
-        Waiters.waitForPresenceOfElement(tableContent);
-        Waiters.waitABit(2000);
-        List<WebElement> checkBoxes = getTableContent().findElements(By.xpath(".//tr[@class='k-detail-row']//input"));
-        Waiters.waitForElementToBeDisplay(checkBoxes.get(orderNum));
-        Waiters.waitABit(4000);
-        clickOnElement(checkBoxes.get(orderNum));
-        Waiters.waitABit(2000);
+    public void selectOrderDetailsBox(int num) {
+        Waiters.waitTillLoadingPage(getDriver());
+        Waiters.waitForElementToBeClickable(getDetailedRowsCheckboxes().get(num));
+        scrollToCenter(getDetailedRowsCheckboxes().get(num));
+        waitUntilStalenessOf(2, getDetailedRowsCheckboxes().get(num));
+        clickOnElement(getDetailedRowsCheckboxes().get(num));
+        Waiters.waitTillLoadingPage(getDriver());
     }
 
     public String getNotificationMessageText() {
-        Waiters.waitForPresenceOfElement(By.cssSelector(".toast-message"));
+        Waiters.waitForElementToBeDisplay(By.cssSelector(".toast-message"));
         return getNotificationMsg().getText().trim();
     }
 
@@ -225,71 +254,89 @@ public class OutboundOrderSummaryPage extends BasePage {
     }
 
     public String getGridTableRowByIndex(int row) {
-        Waiters.waitABit(2000);
-        return getText(getTableContent().findElements(By.xpath(".//tr")).get(row));
+        Waiters.waitTillLoadingPage(getDriver());
+        return getText(findWebElements(By.xpath("//div[contains(@class, 'BarsContainer')]")).get(row));
     }
 
     public String getNoRecordsRowContent() {
-        Waiters.waitABit(2000);
-        Waiters.waitForElementToBeDisplay(By.cssSelector(".k-grid-norecords"));
-        return getText(By.cssSelector(".k-grid-norecords"));
+        Waiters.waitTillLoadingPage(getDriver());
+        Waiters.waitForElementToBeDisplay(By.cssSelector(".k-grid-norecords .i-no-data__message"));
+        return getText(By.cssSelector(".k-grid-norecords .i-no-data__message"));
     }
 
     public String getOrderStartCurrentValue() {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForAllElementsToBeDisplay(getOrderStart().get(0), getOrderStart().get(1));
         return getValue(findWebElements(By.id("dateOrderStart")).get(0));
     }
 
     public String getOrderStartFutureValue() {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForAllElementsToBeDisplay(getOrderStart().get(0), getOrderStart().get(1));
         return getValue(findWebElements(By.id("dateOrderStart")).get(1));
     }
 
     public void typeOrderStartDate(String date) {
-        Waiters.waitABit(3000);
-        Waiters.waitForElementToBeClickable(getOrderStart().get(0));
+        Waiters.waitABit(4000);
+        if(findWebElement(arrowChevron).getAttribute("class").contains("down")) {
+            clickOnElement(arrowChevron);
+        }
+        Waiters.waitTillLoadingPage(getDriver());
+        waitUntilStalenessOf(1, getOrderStart().get(0));
         clickOnElement(getOrderStart().get(0));
-        pressDelete(getOrderStart().get(0));
+        Waiters.waitABit(1000);
+        clearText(getOrderStart().get(0));
+        Waiters.waitABit(2000);
         inputText(getOrderStart().get(0), date);
+        Waiters.waitABit(1000);
         pressTab(getOrderStart().get(0));
-        Waiters.waitABit(8000);
+        Waiters.waitABit(2000);
     }
 
     public void selectWarehouse(String warehouse) {
+        Waiters.waitTillLoadingPage(getDriver());
         clickOnElement(getDropdownList());
         clickOnElement(findWebElement(By.xpath("//div[contains(@class, 'k-animation-container-shown')]//li[contains(text(), '"
                 + warehouse + "') and @role='option']")));
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
     }
 
     public void typeOrderEndDate(String date) {
-        Waiters.waitABit(3000);
-        doubleClick(getOrderStart().get(1));
-        Waiters.waitABit(3000);
-        pressDelete(getOrderStart().get(1));
-        Waiters.waitABit(3000);
+        Waiters.waitABit(4000);
+        if(findWebElement(arrowChevron).getAttribute("class").contains("down")) {
+            clickOnElement(arrowChevron);
+        }
+        Waiters.waitTillLoadingPage(getDriver());
+        waitUntilInvisible(1, loader);
+        clickOnElement(getOrderStart().get(1));
+        Waiters.waitABit(1000);
+        clearText(getOrderStart().get(1));
+        Waiters.waitABit(2000);
         inputText(getOrderStart().get(1), date);
-        Waiters.waitABit(3000);
+        Waiters.waitABit(2000);
         pressTab(getOrderStart().get(1));
-        Waiters.waitABit(3000);
+        waitUntilInvisible(2, loader);
     }
 
     public void typeScheduledDate(String date) {
-        doubleClick(getScheduledDate());
-        pressDelete(getScheduledDate());
-        inputText(getScheduledDate(), date);
-        pressEnter(getScheduledDate());
+        Waiters.waitTillLoadingPage(getDriver());
+        Waiters.waitForElementToBeClickable(getScheduledDate());
+        waitUntilInvisible(1, loader);
+        clickOnElement(getScheduledDate());
+        Waiters.waitABit(1000);
+        clearText(getScheduledDate());
         Waiters.waitABit(2000);
+        inputText(getScheduledDate(), date);
+        Waiters.waitABit(1000);
+        pressTab(getScheduledDate());
+        waitUntilInvisible(1, loader);
     }
 
     public void typeComments(String comments) {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(getCommentsArea());
         clear(getCommentsArea());
         inputText(getCommentsArea(), comments);
-        Waiters.waitABit(2000);
     }
 
     public void typeScheduledTime(String time) {
@@ -308,29 +355,40 @@ public class OutboundOrderSummaryPage extends BasePage {
     }
 
     public void typeAccount(String account) {
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeClickable(getEnterAccount());
         enterText(getEnterAccount(), account);
     }
 
     public void typeProduct(String product) {
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeClickable(getEnterProduct());
         enterText(getEnterProduct(), product);
         Waiters.waitABit(1000);
         pressTab(getEnterProduct());
+        waitUntilInvisible(1, loader);
     }
 
     public void searchAccount(String account) {
-        Waiters.waitABit(1000);
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(getAccountSearch());
         enterText(getAccountSearch(), account);
         pressEnter(getAccountSearch());
     }
 
     public void searchOrder(CharSequence order) {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         clear(getEnterOrder());
         inputText(getEnterOrder(), order);
         pressEnter(getEnterOrder());
+        waitUntilInvisible(1, loader);
+    }
+
+    public void clearSearchOrder() {
+        waitUntilInvisible(1, loader);
+        Waiters.waitTillLoadingPage(getDriver());
+        clearText(getEnterOrder());
+        waitUntilInvisible(1, loader);
     }
 
     public void clickSearchOrderButton() {
@@ -339,7 +397,7 @@ public class OutboundOrderSummaryPage extends BasePage {
     }
 
     public void selectItemByNumber(int num) {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(getWorkQueueAssignmentTable());
         clickOnElement(getWorkQueueAssignmentTable().findElements(By.xpath(".//tr")).get(num));
     }
@@ -352,73 +410,90 @@ public class OutboundOrderSummaryPage extends BasePage {
     public void clickClearButton() {
         Waiters.waitForElementToBeClickable(getClearAccount());
         clickOnElement(getClearAccount());
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
     }
 
     public void clearAccountField() {
-        Waiters.waitABit(4000);
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeClickable(getEnterAccount());
-        clickOnElement(getEnterAccount());
-        doubleClick(enterAccount);
-        clear(getEnterAccount());
         Waiters.waitABit(2000);
+        clearText(getEnterAccount());
+        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
     }
 
     public void clickClearAccountSearchButton() {
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeClickable(getClearAccountIndex());
         clickOnElement(getClearAccountIndex());
+        Waiters.waitTillLoadingPage(getDriver());
     }
 
     public void clickAllStatusButton() {
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeClickable(getAllStatusesDropDown());
         clickOnElement(getAllStatusesDropDown());
+        Waiters.waitTillLoadingPage(getDriver());
+        waitUntilInvisible(1, loader);
     }
 
     public void clickAssignmentType() {
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeClickable(getEditAssignmentType());
         clickOnElement(getEditAssignmentType());
+        Waiters.waitTillLoadingPage(getDriver());
     }
 
     public void clickOrderOption() {
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeClickable(getOrderOptions());
+        waitUntilStalenessOf(1, getOrderOptions());
         clickOnElement(getOrderOptions());
+        Waiters.waitTillLoadingPage(getDriver());
     }
 
     public List<WebElement> getAssignmentTypes() {
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForPresenceOfAllElements(By.xpath("//div[contains(@class, 'k-animation-container-shown')]//li[@role='option']"));
         return findWebElements(By.xpath("//div[contains(@class, 'k-animation-container-shown')]//li[@role='option']"));
     }
 
     public List<WebElement> getUsers() {
-        Waiters.waitForPresenceOfElement(By.xpath("//div[contains(@class, 'k-animation-container-shown')]//li[@role='option']"));
+        Waiters.waitTillLoadingPage(getDriver());
+        Waiters.waitForElementsToBeDisplay(findWebElements(By.xpath("//div[contains(@class, 'k-animation-container-shown')]//li[@role='option']")));
         return findWebElements(By.xpath("//div[contains(@class, 'k-animation-container-shown')]//li[@role='option']"));
     }
 
     public List<WebElement> getOrderTypes() {
-        Waiters.waitForPresenceOfElement(By.xpath("//div[contains(@class, 'k-animation-container-shown')]//li[@role='option']"));
+        Waiters.waitTillLoadingPage(getDriver());
+        Waiters.waitForElementToBeDisplay(By.xpath("//div[contains(@class, 'k-animation-container-shown')]//li[@role='option']"));
         return findWebElements(By.xpath("//div[contains(@class, 'k-animation-container-shown')]//li[@role='option']"));
     }
 
     public String getAllStatusDropdownText() {
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(getAllStatusesDropDown());
         return getText(getAllStatusesDropDown());
     }
 
     public void clickBackButton() {
+        Waiters.waitTillLoadingPage(getDriver());
         pressPageUp(getBackButton());
         Waiters.waitForElementToBeDisplay(By.xpath("//button[contains(text(), 'Back')]"));
         clickOnElement(By.xpath("//button[contains(text(), 'Back')]"));
-        Waiters.waitABit(8000);
+        waitUntilInvisible(1, loader);
     }
 
     public void clearOrderInput() {
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(getEnterOrderInput());
         doubleClick(getEnterOrderInput());
         pressDelete(getEnterOrderInput());
-        Waiters.waitABit(8000);
+        waitUntilInvisible(1, loader);
     }
 
     public List<String> getAllStatuses() {
+        Waiters.waitTillLoadingPage(getDriver());
         return Arrays.stream(getText(findWebElement(By.xpath("//div[contains(@class, 'k-animation-container-shown')]")))
                 .split("\\n"))
                 .collect(Collectors.toList());
@@ -429,36 +504,45 @@ public class OutboundOrderSummaryPage extends BasePage {
     }
 
     public void selectOutboundOrderStatus(String status) {
-        Waiters.waitABit(4000);
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeClickable(getAllStatusesDropDown());
         clickOnElement(getAllStatusesDropDown());
-        clickOnElement(findWebElement(By.xpath("//div[contains(@class, 'k-animation-container-shown')]//*[contains(text(), '"
-                + status + "')]")));
-        Waiters.waitABit(8000);
+        Waiters.waitABit(3000);
+        List<WebElement> statuses = findWebElements(By.xpath("//div[contains(@class, 'k-animation-container-shown')]//li[@role='option']"));
+        Waiters.waitABit(3000);
+        WebElement option = statuses.stream()
+                 .filter(el -> el.getText().contains(status))
+                 .findFirst()
+                 .orElse(null);
+        clickOnElement(option);
+        waitUntilInvisible(1, loader);
     }
 
     public void selectOutboundOrderOption(String option) {
-        Waiters.waitABit(4000);
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeClickable(getOrderOptions());
         clickOnElement(getOrderOptions());
-        Waiters.waitABit(2000);
-        WebElement orderOption = findWebElement(By
-                .xpath("//div[contains(@class, 'k-animation-container-shown')]//li[@class='k-item' and contains(text(), '"
-                + option + "')]"));
-        clickOnElement(orderOption);
         Waiters.waitABit(4000);
+        List<WebElement> options = findWebElements(By.xpath("//div[contains(@class, 'k-animation-container-shown')]//li"));
+        Waiters.waitABit(4000);
+        WebElement orderOption = options.stream()
+                .filter(el -> el.getText().contains(option))
+                .findFirst()
+                .orElse(null);
+        clickOnElement(orderOption);
+        Waiters.waitTillLoadingPage(getDriver());
     }
 
     public void selectOutboundOrderAccount(String account) {
-        Waiters.waitABit(4000);
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeClickable(getEnterAccount());
         inputText(getEnterAccount(), account);
-        clickOnElement(findWebElement(By.xpath("//div[contains(@class, 'k-animation-container-shown')]//*[contains(text(), '"
-                + account + "')]")));
-        pressEnter(getEnterAccount());
+        pressTab(getEnterAccount());
+        waitUntilInvisible(1, loader);
     }
 
     public void selectOutboundOrderProduct(String product) {
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(getEnterProduct());
         Waiters.waitABit(1000);
         doubleClick(getEnterProduct());
@@ -472,11 +556,11 @@ public class OutboundOrderSummaryPage extends BasePage {
                 + product + "')]")));
         pressEnter(getEnterProduct());
         pressEnter(getEnterProduct());
-        Waiters.waitABit(8000);
+        waitUntilInvisible(1, loader);
     }
 
     public void clickDoorDropDown(String door) {
-        Waiters.waitABit(4000);
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeClickable(getDoorsDropDown());
         clickOnElement(getDoorsDropDown());
         clickOnElement(findWebElement(By.xpath("//div[contains(@class, 'k-animation-container-shown')]//*[contains(text(), '"
@@ -485,53 +569,54 @@ public class OutboundOrderSummaryPage extends BasePage {
     }
 
     public void selectDoorListOption(String door) {
-        Waiters.waitABit(4000);
-        Waiters.waitForElementToBeClickable(doorsListDropDown);
-        clickOnElement(doorsListDropDown);
-        clickOnElement(findWebElement(By.xpath("//div[contains(@class, 'k-animation-container-shown')]//*[contains(text(), '"
-                + door + "')]")));
-        Waiters.waitABit(6000);
+        Waiters.waitTillLoadingPage(getDriver());
+        Waiters.waitForElementToBeClickable(ddDoorListDropDown);
+        clickOnElement(ddDoorListDropDown);
+        List<WebElement> doors = findWebElements(By
+                .xpath("//div[contains(@class, 'k-animation-container-shown')]//li[@role='option']"));
+        WebElement option = doors.stream()
+                     .filter(el -> el.getText().contains(door))
+                     .findFirst()
+                     .orElse(null);
+        clickOnElement(option);
     }
 
     public void selectDetailsRow(int num) {
-        Waiters.waitABit(4000);
-        Waiters.waitForElementToBeClickable(getDetailRows().get(num));
+        Waiters.waitTillLoadingPage(getDriver());
+        Waiters.waitABit(3000);
         Waiters.waitForElementToBeDisplay(getDetailRows().get(num));
         clickOnElement(getDetailRows().get(num));
-        Waiters.waitABit(4000);
+        waitUntilInvisible(1, loader);
     }
 
     public void selectProductRow(int num) {
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForPresenceOfAllElements(By.xpath("//div[contains(@id, 'divProgressbar')]"));
         clickOnElement(getProducts().get(num));
-        Waiters.waitForPresenceOfElement(By.cssSelector("#spnDoor"));
+        Waiters.waitForElementToBeDisplay(By.cssSelector("#spnDoor"));
+        Waiters.waitTillLoadingPage(getDriver());
     }
 
     public List<String> getProductsText() {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForPresenceOfAllElements(By.xpath("//div[@class='BarsBlock']//span[contains(@class, 'Title2 h15')]"));
         return getProducts().stream()
                 .map(row -> row.getText())
                 .collect(Collectors.toList());
     }
 
-    public void selectOrderDetailsBox(int num) {
-        Waiters.waitABit(6000);
-        Waiters.waitForElementToBeClickable(getDetailedRowsCheckboxes().get(num));
-        clickOnElement(getDetailedRowsCheckboxes().get(num));
-    }
-
     public int getOrderDetailsRowsNumber() {
-        Waiters.waitABit(4000);
+        Waiters.waitTillLoadingPage(getDriver());
         return getDetailRows().size();
     }
 
     public int getAccountRowsNumber() {
-        Waiters.waitABit(4000);
+        Waiters.waitTillLoadingPage(getDriver());
         return getAccountRows().size();
     }
 
     public List<String> getAccounts() {
+        Waiters.waitTillLoadingPage(getDriver());
         return getAccountIndexRows().stream()
                 .map(WebElement::getText)
                 .map(detail -> detail.split("\\n"))
@@ -540,17 +625,17 @@ public class OutboundOrderSummaryPage extends BasePage {
     }
 
     public String getOrderStatusText() {
-        Waiters.waitABit(3000);
+        Waiters.waitTillLoadingPage(getDriver());
         return getText(By.cssSelector("#span_Status"));
     }
 
     public String getOrderDoorText() {
-        Waiters.waitABit(3000);
+        Waiters.waitTillLoadingPage(getDriver());
         return getText(By.cssSelector("#spnDoor"));
     }
 
     public String getCarrierDropdownText() {
-        Waiters.waitABit(3000);
+        Waiters.waitTillLoadingPage(getDriver());
         return getText(getCarrierDropdown());
     }
 
@@ -580,61 +665,71 @@ public class OutboundOrderSummaryPage extends BasePage {
     }
 
     public String getEnterAccountText() {
-        Waiters.waitABit(3000);
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(getEnterAccount());
         return getElementAttribute(getEnterAccount(), "placeholder");
     }
 
     public String getEnterProductText() {
-        Waiters.waitABit(3000);
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(getEnterProduct());
         return getElementAttribute(getEnterProduct(), "placeholder");
     }
 
     public String getEnterAccountDropDownText(String value) {
-        Waiters.waitABit(3000);
+        Waiters.waitTillLoadingPage(getDriver());
         return getText(findWebElement(By.xpath("//div[contains(@class, 'k-animation-container-shown')]//*[contains(text(), '"
                 + value + "')]")));
     }
 
     public WebElement getEnterAccountDropDownOption(String value) {
-        Waiters.waitABit(3000);
+        Waiters.waitTillLoadingPage(getDriver());
         return findWebElement(By.xpath("//div[contains(@class, 'k-animation-container-shown')]//*[contains(text(), '"
                 + value + "')]"));
     }
 
     public String getEnterProductDropDownText(String value) {
-        Waiters.waitABit(4000);
+        Waiters.waitTillLoadingPage(getDriver());
         return getText(findWebElement(By.xpath("//div[contains(@class, 'k-animation-container-shown')]//*[contains(text(), '"
                 + value + "')]")));
     }
 
     public String getEnterProductDropDownValue() {
-        Waiters.waitABit(4000);
+        Waiters.waitTillLoadingPage(getDriver());
         return getValue(getEnterProduct());
     }
 
     public String getAccountDropDownValue() {
-        Waiters.waitABit(3000);
+        Waiters.waitTillLoadingPage(getDriver());
         return getValue(By.cssSelector("input[placeholder='Enter a account']"));
     }
 
     public void clickOkButton() {
-        Waiters.waitForPresenceOfElement(By.xpath("//button[contains(text(), 'Ok')]"));
+        Waiters.waitTillLoadingPage(getDriver());
+        Waiters.waitForElementToBeDisplay(By.xpath("//button[contains(text(), 'Ok')]"));
         clickOnElement(By.xpath("//button[contains(text(), 'Ok')]"));
     }
 
-    public void clickRandomPopup() {
+    public void selectRandomRoutePopup() {
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementsToBeDisplay(getRoutes().get(0), getRoutes().get(getRoutes().size()-1));
         clickOnElement(getRoutes().get(new Random().nextInt(getRoutes().size())));
     }
 
+    public void typeRoute(String route) {
+        Waiters.waitTillLoadingPage(getDriver());
+        Waiters.waitForElementsToBeDisplay(getRouteTxtBox());
+        enterText(getRouteTxtBox(), route);
+    }
+
     public void clickRouteDropdownButton() {
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeClickable(getRouteInput());
         clickOnElement(getRouteInput());
     }
 
     public void clickOrderTypeDropdownButton() {
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeClickable(getOrderTypeDropDown());
         clickOnElement(getOrderTypeDropDown());
     }
@@ -642,7 +737,7 @@ public class OutboundOrderSummaryPage extends BasePage {
     public void selectOrderType(String type) {
         clickOnElement(findWebElement(By.xpath("//div[contains(@class, 'k-animation-container-shown')]//li[contains(text(), '"
                 + type + "') and @role='option']")));
-        Waiters.waitABit(3000);
+        Waiters.waitTillLoadingPage(getDriver());
     }
 
     public String getItemsCountValue() { return getText(getItemsCount()); }
@@ -979,6 +1074,18 @@ public class OutboundOrderSummaryPage extends BasePage {
         return isElementDisplay(getDataAlt3());
     }
 
+    public boolean isRouteLabelDisplayed() {
+        Waiters.waitABit(2000);
+        Waiters.waitForElementToBeDisplay(getRouteLabel());
+        return isElementDisplay(getRouteLabel());
+    }
+
+    public boolean isEnterNameInputDisplayed() {
+        Waiters.waitABit(2000);
+        Waiters.waitForElementToBeDisplay(getEnterNameInput());
+        return isElementDisplay(getEnterNameInput());
+    }
+
     public boolean areTableHeadersPresent() {
         return elementsArePresent(getTableHeaders()) > 0;
     }
@@ -1237,6 +1344,14 @@ public class OutboundOrderSummaryPage extends BasePage {
 
     public WebElement getDataAlt3() { return findWebElement(dataAlt3); }
 
+    public WebElement getRouteLabel() { return findWebElement(routeLabel); }
+
+    public WebElement getEnterNameInput() { return findWebElement(enterNameInput); }
+
+    public WebElement getRouteTxtBox() { return findWebElement(routeTxtBox); }
+
     public WebElement getDropdownList() { return findWebElement(dropdownList); }
+
+    public List<WebElement> getOutboundRoutes() { return findWebElements(routes); }
 
 }

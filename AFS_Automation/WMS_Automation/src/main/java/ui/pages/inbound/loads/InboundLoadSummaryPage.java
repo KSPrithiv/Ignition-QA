@@ -12,7 +12,6 @@ import java.util.List;
 import static common.setup.DriverManager.getDriver;
 
 public class InboundLoadSummaryPage extends BasePage {
-
     By topIcon = By.xpath("//span[contains(text(), 'Inbound load summary')]");
     By dropdownList = By.id("dropdownList");
     By cardRouteSummaryFilter = By.cssSelector("#cardRouteSummaryFilter");
@@ -221,13 +220,13 @@ public class InboundLoadSummaryPage extends BasePage {
     }
 
     public int getRowsCount() {
-        Waiters.waitForPresenceOfElement(tableContent);
+        Waiters.waitForElementToBeDisplay(tableContent);
         return getTableContent().findElements(By.xpath(".//tr")).size();
     }
 
     public void selectLoadByLoadNumber(int loadNum) {
         Waiters.waitTillLoadingPage(getDriver());
-        Waiters.waitForPresenceOfElement(tableContent);
+        Waiters.waitForElementToBeDisplay(tableContent);
         List<WebElement> loads = getTableContent().findElements(By.xpath(".//tr[@class='k-detail-row']"));
         Waiters.waitTillLoadingPage(getDriver());
         scrollTo(By.xpath("//span[contains(text(), 'Statistics')]"));
@@ -238,7 +237,7 @@ public class InboundLoadSummaryPage extends BasePage {
 
     public void clickLoadByLoadNumber(int loadNum) {
         Waiters.waitTillLoadingPage(getDriver());
-        Waiters.waitForPresenceOfElement(tableContent);
+        Waiters.waitForElementToBeDisplay(tableContent);
         List<WebElement> loads = findWebElements(By.xpath("//div[contains(@class, 'BarsBlock')]"));
         Waiters.waitTillLoadingPage(getDriver());
         scrollTo(By.xpath("//span[contains(text(), 'Statistics')]"));
@@ -249,7 +248,7 @@ public class InboundLoadSummaryPage extends BasePage {
 
     public void searchLoad(String load) {
         Waiters.waitTillLoadingPage(getDriver());
-        Waiters.waitForPresenceOfElement(tableContent);
+        Waiters.waitForElementToBeDisplay(tableContent);
         enterText(getEnterLoadInput(), load);
         pressEnter(getEnterLoadInput());
         waitUntilInvisible(2, loader);
@@ -299,7 +298,7 @@ public class InboundLoadSummaryPage extends BasePage {
     }
 
     public void cleanLoad() {
-        Waiters.waitForPresenceOfElement(tableContent);
+        Waiters.waitForElementToBeDisplay(tableContent);
         doubleClick(getEnterLoadInput());
         pressDelete(getEnterLoadInput());
         pressEnter(getEnterLoadInput());
@@ -380,7 +379,7 @@ public class InboundLoadSummaryPage extends BasePage {
 
     public void selectLoadByLoadRouteCode(String routeCode) {
         Waiters.waitTillLoadingPage(getDriver());
-        Waiters.waitForPresenceOfElement(tableContent);
+        Waiters.waitForElementToBeDisplay(tableContent);
         List<WebElement> loads = getTableContent().findElements(By.xpath(".//tr[contains(@class, 'k-detail-row')]"));
         Waiters.waitABit(1000);
         scrollTo(By.xpath("//span[contains(text(), 'Statistics')]"));
@@ -394,7 +393,7 @@ public class InboundLoadSummaryPage extends BasePage {
 
     public void checkLoadByLoadRouteCode(String routeCode) {
         Waiters.waitTillLoadingPage(getDriver());
-        Waiters.waitForPresenceOfElement(tableContent);
+        Waiters.waitForElementToBeDisplay(tableContent);
         List<WebElement> loads = getTableContent().findElements(By.xpath(".//tr[contains(@class, 'k-detail-row')]"));
         Waiters.waitABit(1000);
         scrollTo(By.xpath("//span[contains(text(), 'Statistics')]"));
@@ -407,7 +406,7 @@ public class InboundLoadSummaryPage extends BasePage {
 
     public void checkLoadByLoadRouteIndex(int index) {
         Waiters.waitTillLoadingPage(getDriver());
-        Waiters.waitForPresenceOfElement(tableContent);
+        Waiters.waitForElementToBeDisplay(tableContent);
         List<WebElement> loads = findWebElements(By.xpath("//div[contains(@class, 'BarsContainer')]"));
         Waiters.waitTillLoadingPage(getDriver());
         scrollTo(By.xpath("//span[contains(text(), 'Statistics')]"));
@@ -573,7 +572,7 @@ public class InboundLoadSummaryPage extends BasePage {
 
     public boolean isTopIconPresent() {
         Waiters.waitTillLoadingPage(getDriver());
-        Waiters.waitForPresenceOfElement(By.xpath("//span[contains(text(), 'Inbound load summary')]"));
+        Waiters.waitForElementToBeDisplay(By.xpath("//span[contains(text(), 'Inbound load summary')]"));
         return isElementPresent(getTopIcon());
     }
 
@@ -585,31 +584,31 @@ public class InboundLoadSummaryPage extends BasePage {
 
     public boolean isDateRouteStartPresent() {
         Waiters.waitTillLoadingPage(getDriver());
-        Waiters.waitForPresenceOfElement(By.cssSelector("#dateRouteStart"));
+        Waiters.waitForElementToBeDisplay(By.cssSelector("#dateRouteStart"));
         return isElementPresent(getDateRouteStart());
     }
 
     public boolean isDateRouteEndPresent() {
         Waiters.waitTillLoadingPage(getDriver());
-        Waiters.waitForPresenceOfElement(By.cssSelector("#dateRouteEnd"));
+        Waiters.waitForElementToBeDisplay(By.cssSelector("#dateRouteEnd"));
         return isElementPresent(getDateRouteEnd());
     }
 
     public boolean isStatusDropDownPresent() {
         Waiters.waitTillLoadingPage(getDriver());
-        Waiters.waitForPresenceOfElement(By.xpath("//span[@class='k-input' and text()='All statuses']"));
+        Waiters.waitForElementToBeDisplay(By.xpath("//span[@class='k-input' and text()='All statuses']"));
         return isElementPresent(getStatusDropDown("All statuses"));
     }
 
     public boolean isCardRouteSummaryFilterPresent() {
         Waiters.waitTillLoadingPage(getDriver());
-        Waiters.waitForPresenceOfElement(By.cssSelector("#cardRouteSummaryFilter"));
+        Waiters.waitForElementToBeDisplay(By.cssSelector("#cardRouteSummaryFilter"));
         return isElementPresent(getCardRouteSummaryFilter());
     }
 
     public boolean isCardRouteSummaryGridPresent() {
         Waiters.waitTillLoadingPage(getDriver());
-        Waiters.waitForPresenceOfElement(By.cssSelector("#divSummaryCommon"));
+        Waiters.waitForElementToBeDisplay(By.cssSelector("#divSummaryCommon"));
         return isElementPresent(getCardRouteSummaryGrid());
     }
 
@@ -987,26 +986,26 @@ public class InboundLoadSummaryPage extends BasePage {
 
     public String getInvalidEntryPopUpText() {
         Waiters.waitTillLoadingPage(getDriver());
-        Waiters.waitForPresenceOfElement(".k-window-title");
+        Waiters.waitForElementToBeDisplay(By.cssSelector(".k-window-title"));
         return getText(getInvalidEntryPopup());
     }
 
     public String getDialogPopUpText() {
         waitUntilInvisible(3, loader);
         Waiters.waitTillLoadingPage(getDriver());
-        Waiters.waitForPresenceOfElement(".k-dialog-title");
+        Waiters.waitForElementToBeDisplay(By.cssSelector(".k-dialog-title"));
         return getText(getDialogPopup());
     }
 
     public String getDialogTextTitle() {
         Waiters.waitTillLoadingPage(getDriver());
-        Waiters.waitForPresenceOfElement("#dialogTextContent");
+        Waiters.waitForElementToBeDisplay(By.cssSelector("#dialogTextContent"));
         return getText(getDialogTextContent());
     }
 
     public String getDialogPopUpContentText() {
         Waiters.waitTillLoadingPage(getDriver());
-        Waiters.waitForPresenceOfElement(".k-dialog-content");
+        Waiters.waitForElementToBeDisplay(By.cssSelector(".k-dialog-content"));
         return getText(getDialogContent());
     }
 
@@ -1061,10 +1060,6 @@ public class InboundLoadSummaryPage extends BasePage {
     public boolean isSaveEditButtonDisplayed() { return isElementDisplay(getSaveEditButton()); }
 
     public boolean isInboundImageCaptureButtonDisplayed() { return isElementDisplay(getInboundImageCaptureButton()); }
-
-
-
-
 
     public String isDataOptionDisabled() {
         return getElementAttribute(getDataOption(), "aria-disabled");

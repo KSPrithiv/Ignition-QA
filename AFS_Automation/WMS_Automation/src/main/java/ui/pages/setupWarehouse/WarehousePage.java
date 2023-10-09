@@ -13,9 +13,6 @@ public class WarehousePage extends BasePage{
     By table=By.xpath("//table[@class='k-grid-table']");
     By message=By.xpath("//div[@class='i-no-data__message']");
 
-
-
-
     public void clickSetupWarehouse() {
         Waiters.waitABit(2000);
         Waiters.waitForElementToBeDisplay(setupWarehouse);
@@ -33,7 +30,7 @@ public class WarehousePage extends BasePage{
     }
     public void searchBoxActionWarehouse(){
 //        Waiters.waitABit(8000);
-        Waiters.waitForPresenceOfElement("form > .i-icon.i-search-box__search");
+        Waiters.waitForElementToBeDisplay(By.cssSelector("form > .i-icon.i-search-box__search"));
         Waiters.waitForElementToBeDisplay(searchBox6());
         clickOnElement(searchBox6);
         try {

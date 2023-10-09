@@ -2,9 +2,7 @@ package steps.outbound.ordersummary;
 
 import common.constants.FilePaths;
 import common.constants.TimeFormats;
-import common.enums.DockDoorOption;
 import common.enums.OrderOptions;
-import common.enums.OrderTypes;
 import common.enums.Statuses;
 import common.utils.database.DataBaseConnection;
 import common.utils.database.StoreProceduresUtils;
@@ -16,6 +14,7 @@ import io.cucumber.java.en.When;
 import io.qameta.allure.Step;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
+import objects.outbound.OutboundOrderLoadsDTO;
 import objects.storeproceduresdata.outbound.OutboundSummaryParams;
 import objects.userdata.DataBaseData;
 import org.apache.commons.lang3.RandomStringUtils;
@@ -23,11 +22,14 @@ import steps.LoginPageSteps;
 import ui.pages.outbound.ordersummary.OutboundOrderSummaryPage;
 import java.sql.ResultSet;
 import java.util.Calendar;
+import java.util.List;
 
 @Slf4j
 public class OutboundOrderSummaryPageSteps {
     OutboundOrderSummaryPage outboundOrderSummaryPage = new OutboundOrderSummaryPage();
     StoreProceduresUtils storeProceduresUtils = new StoreProceduresUtils();
+    OutboundOrderLoadsDTO outboundOrderLoadsDTO = new ObjectMapperWrapper()
+            .getObject(FilePaths.OUTBOUND_ORDER_LOAD_DATA, OutboundOrderLoadsDTO.class);
 
     @Step
     @And("Waits for Outbound Order Summary page to load")
@@ -47,8 +49,27 @@ public class OutboundOrderSummaryPageSteps {
     @Then("Filling start date {string} and end date {string} on Outbound Order Summary page")
     public void fillingStartDateAndEndDate(String startDate, String endDate) {
         log.info("Filling Outbound Order Start Date And End Date");
-        outboundOrderSummaryPage.typeOrderEndDate(endDate);
         outboundOrderSummaryPage.typeOrderStartDate(startDate);
+        outboundOrderSummaryPage.typeOrderEndDate(endDate);
+
+    }
+
+    @Step
+    @Then("Filling start date {string} on Outbound Order Summary page")
+    public void fillingStartDate(String startDate) {
+        log.info("Filling Outbound Order Start Date");
+        outboundOrderSummaryPage.typeOrderStartDate(startDate);
+    }
+
+    @Step
+    @Then("Filling start date by index {int} on Outbound Order Summary page")
+    public void fillingStartDateAndEndDate(int index) {
+        log.info("Filling Outbound Order Start Date by index");
+        List<String> dates = List.of(outboundOrderLoadsDTO.getStartDates().getStartDate1(), outboundOrderLoadsDTO
+                .getStartDates().getStartDate2(), outboundOrderLoadsDTO.getStartDates().getStartDate3(),
+                outboundOrderLoadsDTO.getStartDates().getStartDate4(), outboundOrderLoadsDTO.getStartDates().getStartDate5(),
+                outboundOrderLoadsDTO.getStartDates().getStartDate6(), outboundOrderLoadsDTO.getStartDates().getStartDate7());
+        outboundOrderSummaryPage.typeOrderStartDate(dates.get(index));
     }
 
     @Step
@@ -66,10 +87,34 @@ public class OutboundOrderSummaryPageSteps {
     }
 
     @Step
+    @And("Selects order by index {int} on Outbound Order Summary page")
+    public void selectOrderByIndex(int index) {
+        log.info("Selecting Order by index");
+        List<String> orders = List.of(outboundOrderLoadsDTO.getOutboundOrders().getOutboundOrder1(), outboundOrderLoadsDTO
+                .getOutboundOrders().getOutboundOrder2(), outboundOrderLoadsDTO.getOutboundOrders().getOutboundOrder3(),
+                 outboundOrderLoadsDTO.getOutboundOrders().getOutboundOrder4(), outboundOrderLoadsDTO.getOutboundOrders()
+                .getOutboundOrder5(), outboundOrderLoadsDTO.getOutboundOrders().getOutboundOrder6(), outboundOrderLoadsDTO
+                .getOutboundOrders().getOutboundOrder7());
+        outboundOrderSummaryPage.selectOrderByOrderName(orders.get(index));
+    }
+
+    @Step
     @When("Filling scheduled date {string} and scheduled time {string}")
     public void fillingDateAndTime(String date, String time) {
         log.info("Filling scheduled date and time");
         outboundOrderSummaryPage.typeScheduledDate(date);
+        outboundOrderSummaryPage.typeScheduledTime(time);
+    }
+
+    @Step
+    @When("Filling scheduled date by index {int} and scheduled time {string}")
+    public void fillingDateByIndexAndTime(int index, String time) {
+        log.info("Filling scheduled date by index and time");
+        List<String> dates = List.of(outboundOrderLoadsDTO.getStartDates().getStartDate1(), outboundOrderLoadsDTO
+                .getStartDates().getStartDate2(), outboundOrderLoadsDTO.getStartDates().getStartDate3(),
+                outboundOrderLoadsDTO.getStartDates().getStartDate4(), outboundOrderLoadsDTO.getStartDates().getStartDate5(),
+                outboundOrderLoadsDTO.getStartDates().getStartDate6(), outboundOrderLoadsDTO.getStartDates().getStartDate7());
+        outboundOrderSummaryPage.typeScheduledDate(dates.get(index));
         outboundOrderSummaryPage.typeScheduledTime(time);
     }
 
@@ -113,6 +158,17 @@ public class OutboundOrderSummaryPageSteps {
     public void clickCustomerOrderTypeDropdown(String type) {
         log.info("Selecting Order type " + type);
         outboundOrderSummaryPage.selectOrderType(type);
+    }
+
+    @Step
+    @And("User selects option by index {int} on Outbound Order Summary page")
+    public void clickCustomerOrderTypeByIndex(int index) {
+        log.info("Selecting Order type by index");
+        List<String> types = List.of(outboundOrderLoadsDTO.getOutboundOrderTypes().getOutboundOrderType1(), outboundOrderLoadsDTO
+                .getOutboundOrderTypes().getOutboundOrderType2(), outboundOrderLoadsDTO.getOutboundOrderTypes().getOutboundOrderType3(),
+                 outboundOrderLoadsDTO.getOutboundOrderTypes().getOutboundOrderType4(), outboundOrderLoadsDTO.getOutboundOrderTypes()
+                .getOutboundOrderType5(), outboundOrderLoadsDTO.getOutboundOrderTypes().getOutboundOrderType6());
+        outboundOrderSummaryPage.selectOrderType(types.get(index));
     }
 
     @Step
@@ -182,6 +238,26 @@ public class OutboundOrderSummaryPageSteps {
     }
 
     @Step
+    @And("Searches for order by index {int} on Outbound Order Summary page")
+    public void fillingOrderDataByIndex(int index) {
+        log.info("Search Outbound Order Number");
+        List<String> orders = List.of(outboundOrderLoadsDTO.getOutboundOrders().getOutboundOrder1(), outboundOrderLoadsDTO
+                 .getOutboundOrders().getOutboundOrder2(), outboundOrderLoadsDTO.getOutboundOrders().getOutboundOrder3(),
+                  outboundOrderLoadsDTO.getOutboundOrders().getOutboundOrder4(), outboundOrderLoadsDTO.getOutboundOrders()
+                 .getOutboundOrder5(), outboundOrderLoadsDTO.getOutboundOrders().getOutboundOrder6(), outboundOrderLoadsDTO
+                 .getOutboundOrders().getOutboundOrder7());
+        outboundOrderSummaryPage.searchOrder(orders.get(index));
+    }
+
+    @Step
+    @And("Clears Search on Outbound Order Summary page")
+    public void clearSearchOrder() {
+        log.info("Clears Search Outbound Order Number");
+        outboundOrderSummaryPage.clearSearchOrder();
+    }
+
+
+    @Step
     @When("User searches for Order that does not exist in DB on Outbound Order Summary page")
     public void fillingRandomOrderData() {
         log.info("Search Random Outbound Order Number");
@@ -196,7 +272,7 @@ public class OutboundOrderSummaryPageSteps {
     }
 
     @Step
-    @And("User clicks All Status button on Outbound Order Summary page")
+    @And("User clicks All Statuses dropdown on Outbound Order Summary page")
     public void clickAllStatusButton() {
         log.info("Click All Status Button");
         outboundOrderSummaryPage.clickAllStatusButton();
@@ -281,6 +357,18 @@ public class OutboundOrderSummaryPageSteps {
     }
 
     @Step
+    @And("Selects Account by index {int} on Outbound Order Summary page")
+    public void selectAccountByIndex(int index) {
+        log.info("Selecting Outbound Account index");
+        List<String> accounts = List.of(outboundOrderLoadsDTO.getOutboundAccounts().getOutboundAccount1(), outboundOrderLoadsDTO
+                .getOutboundAccounts().getOutboundAccount2(), outboundOrderLoadsDTO.getOutboundAccounts().getOutboundAccount3(),
+                 outboundOrderLoadsDTO.getOutboundAccounts().getOutboundAccount4(), outboundOrderLoadsDTO.getOutboundAccounts()
+                .getOutboundAccount5(), outboundOrderLoadsDTO.getOutboundAccounts().getOutboundAccount6(), outboundOrderLoadsDTO
+                .getOutboundAccounts().getOutboundAccount7());
+        outboundOrderSummaryPage.selectOutboundOrderAccount(accounts.get(index));
+    }
+
+    @Step
     @Then("Selects Outbound Order product {string} on Outbound Order Summary page")
     public void selectOutboundOrderProduct(String product) {
         log.info("Selecting Outbound Order Product " + product);
@@ -323,11 +411,35 @@ public class OutboundOrderSummaryPageSteps {
         outboundOrderSummaryPage.typeProduct(product);
     }
 
+    @SneakyThrows
+    @Step
+    @And("Enters Product by index {int} on Outbound Order Summary page")
+    public void enterProductByIndex(int index) {
+        log.info("Typing product by index");
+        List<String> products = List.of(outboundOrderLoadsDTO.getOutboundProducts().getOutboundProduct1(), outboundOrderLoadsDTO
+                .getOutboundProducts().getOutboundProduct2(), outboundOrderLoadsDTO.getOutboundProducts().getOutboundProduct3(),
+                 outboundOrderLoadsDTO.getOutboundProducts().getOutboundProduct4(), outboundOrderLoadsDTO.getOutboundProducts()
+                .getOutboundProduct5(), outboundOrderLoadsDTO.getOutboundProducts().getOutboundProduct6());
+        outboundOrderSummaryPage.typeProduct(products.get(index));
+    }
+
     @Step
     @Then("Searches account {string} on Outbound Order Summary page")
     public void searchAccount(String account) {
         log.info("Search account " + account);
         outboundOrderSummaryPage.searchAccount(account);
+    }
+
+    @Step
+    @Then("Searches account by index {int} on Outbound Order Summary page")
+    public void searchAccountByIndex(int index) {
+        log.info("Search account by index");
+        List<String> accounts = List.of(outboundOrderLoadsDTO.getOutboundAccounts().getOutboundAccount1(), outboundOrderLoadsDTO
+                .getOutboundAccounts().getOutboundAccount2(), outboundOrderLoadsDTO.getOutboundAccounts().getOutboundAccount3(),
+                 outboundOrderLoadsDTO.getOutboundAccounts().getOutboundAccount4(), outboundOrderLoadsDTO.getOutboundAccounts()
+                .getOutboundAccount5(), outboundOrderLoadsDTO.getOutboundAccounts().getOutboundAccount6(), outboundOrderLoadsDTO
+                .getOutboundAccounts().getOutboundAccount7());
+        outboundOrderSummaryPage.searchAccount(accounts.get(index));
     }
 
     @Step
@@ -362,7 +474,7 @@ public class OutboundOrderSummaryPageSteps {
     @And("Selects order checkbox with index {int} on Outbound Order Summary page")
     public void selectOrderCheckboxByNumber(int orderNum) {
         log.info("Selecting Order by number " + orderNum);
-        outboundOrderSummaryPage.selectOrderCheckboxByOrderNumber(orderNum);
+        outboundOrderSummaryPage.selectOrderDetailsBox(orderNum);
     }
 
     @Step
@@ -494,7 +606,14 @@ public class OutboundOrderSummaryPageSteps {
     @And("Selects random route on Move popup")
     public void selectRandomRoute() {
         log.info("Selects random route");
-        outboundOrderSummaryPage.clickRandomPopup();
+        outboundOrderSummaryPage.selectRandomRoutePopup();
+    }
+
+    @Step
+    @And("Types {string} route on Move popup")
+    public void typeRandomRoute(String route) {
+        log.info("Types route on Move popup");
+        outboundOrderSummaryPage.typeRoute(route);
     }
 
     @Step

@@ -33,7 +33,7 @@ public class FatiguePage extends BasePage {
     }
     public void searchBoxActionFatigue(){
 //        Waiters.waitABit(5000);
-        Waiters.waitForPresenceOfElement("form > .i-icon.i-search-box__search");
+        Waiters.waitForElementToBeDisplay(By.cssSelector("form > .i-icon.i-search-box__search"));
         Waiters.waitForElementToBeDisplay(searchBox5());
         clickOnElement(searchBox5);
         try {

@@ -1,14 +1,14 @@
 @Outbound @Regression
 Feature: Testing of Outbound Summary Assign functionality
-
   Scenario: Checking Assign functionality
     Given User signs in the application
     And Main page is loaded
     And DockManagement Summary Page is validated
     And Go to Outbound Order page
-    When Filling start date "01/01/2017" and end date "02/22/2022" on Outbound Order Summary page
+    And Waits for Outbound Order Summary page to load
+    When Filling start date by index 2 on Outbound Order Summary page
     And Verifies Assign Item is disabled on Outbound Order Summary page
-    Then Selects order "CO00001442" on Outbound Order Summary page
+    Then Selects order by index 6 on Outbound Order Summary page
     And Verifies Assign Item is enabled on Outbound Order Summary page
     And User selects assign item on Outbound Order Summary page
     And Verifies Assign popup is displayed on Outbound Order Summary page

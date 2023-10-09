@@ -31,12 +31,12 @@ public class Waiters {
                 .ignoring(IllegalStateException.class);
     }
 
-    public static void waitForPresenceOfElement(By locator) {
+    public static void waitForPresenceOfElement1(By locator) {
         wait.until(ExpectedConditions.presenceOfElementLocated(locator));
     }
 
-    public static void waitForPresenceOfElement(String cssSelector) {
-        waitForPresenceOfElement(By.cssSelector(cssSelector));
+    public static void waitForPresenceOfElement1(String cssSelector) {
+      //  waitForPresenceOfElement(By.cssSelector(cssSelector));
     }
 
     public void waitForPresenceOfNestedElement(WebElement parentElement, By locator) {
