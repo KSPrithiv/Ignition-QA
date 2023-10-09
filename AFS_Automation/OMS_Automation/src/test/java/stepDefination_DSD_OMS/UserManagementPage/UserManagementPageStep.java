@@ -31,11 +31,10 @@ public class UserManagementPageStep {
     static String currentURL = null;
 
 
-    LoginPage loginpage;
-    HomePage homepage;
-
-    UserManagementPage userManagementPage;
-    OrderEntryPage orderpage;
+    static LoginPage loginpage;
+    static HomePage homepage;
+    static UserManagementPage userManagementPage;
+    static OrderEntryPage orderpage;
 
     @Before
     public void LaunchBrowser1(Scenario scenario) throws Exception {

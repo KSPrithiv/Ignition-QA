@@ -19,7 +19,7 @@ public class AllOrderPageStep1
     /* Created by Divya.Ramadas@afsi.com */
     WebDriver driver;
     Scenario scenario;
-    AllOrderPage allOrders;
+    static AllOrderPage allOrders;
 
     @Before
     public void LaunchBrowser1(Scenario scenario) throws Exception

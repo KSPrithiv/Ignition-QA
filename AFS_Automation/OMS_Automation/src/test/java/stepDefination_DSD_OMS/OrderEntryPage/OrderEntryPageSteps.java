@@ -36,15 +36,15 @@ public class OrderEntryPageSteps
     WebDriver driver;
     Scenario scenario;
 
-    LoginPage loginpage;
-    HomePage homepage;
-    OrderEntryPage orderpage;
-    NewOrderEntryPage newOE;
-    CheckOutSummaryPage summary;
-    OrderHistoryPage orderhistory;
-    CheckOutOrderPage checkorder;
+    static LoginPage loginpage;
+    static HomePage homepage;
+    static OrderEntryPage orderpage;
+    static NewOrderEntryPage newOE;
+    static CheckOutSummaryPage summary;
+    static OrderHistoryPage orderhistory;
+    static CheckOutOrderPage checkorder;
 
-    boolean exists=false;
+    static boolean exists=false;
     static String Ord_No=null;
     static String ProdNo=null;
     static String PageTitle=null;

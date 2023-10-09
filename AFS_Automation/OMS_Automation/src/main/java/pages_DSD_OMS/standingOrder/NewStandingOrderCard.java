@@ -920,7 +920,7 @@ public class NewStandingOrderCard
             if(HelpersMethod.IsExists("//div[@class='loader']",driver))
             {
                 WebElement WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100000);
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 200000);
             }
 
             if (GenerateStandingOrder.isDisplayed() && GenerateStandingOrder.isEnabled())

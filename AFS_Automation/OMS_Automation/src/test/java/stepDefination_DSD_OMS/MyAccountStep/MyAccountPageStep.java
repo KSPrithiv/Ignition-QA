@@ -22,8 +22,8 @@ public class MyAccountPageStep {
         static String currentURL = null;
 
 
-        LoginPage loginpage;
-        HomePage homepage;
+        static LoginPage loginpage;
+        static HomePage homepage;
 
         MyAccountPage myAccountPage;
 

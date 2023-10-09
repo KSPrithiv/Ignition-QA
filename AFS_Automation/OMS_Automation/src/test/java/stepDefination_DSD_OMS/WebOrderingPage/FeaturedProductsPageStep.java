@@ -22,9 +22,9 @@ public class FeaturedProductsPageStep
     Scenario scenario;
     static int MaxProd;
     static int SetProd;
-    AdminHomePage adminHomePage;
-    FeaturedProdSettingsPage featuredProdSettingsPage;
-    FeaturedProductsPage featuredProductsPage;
+    static AdminHomePage adminHomePage;
+    static FeaturedProdSettingsPage featuredProdSettingsPage;
+    static FeaturedProductsPage featuredProductsPage;
 
     @Before
     public void LaunchBrowser1(Scenario scenario) throws Exception

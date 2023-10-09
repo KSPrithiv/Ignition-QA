@@ -27,10 +27,10 @@ public class CatalogPageStep3
     static boolean exists = false;
     Scenario scenario;
 
-    CatalogPage catalogpage;
-    NewOrderEntryPage newOE;
-    CheckOutOrderPage checkorder;
-    ProductDescriptionPage productDescriptionPage;
+    static CatalogPage catalogpage;
+    static NewOrderEntryPage newOE;
+    static CheckOutOrderPage checkorder;
+    static ProductDescriptionPage productDescriptionPage;
 
     @Before
     public void LaunchBrowser1(Scenario scenario) throws Exception

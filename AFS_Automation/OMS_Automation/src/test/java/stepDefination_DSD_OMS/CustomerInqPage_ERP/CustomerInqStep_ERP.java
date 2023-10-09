@@ -39,18 +39,18 @@ public class CustomerInqStep_ERP
     static String currentURL=null;
     WebElement WebEle;
 
-    LoginPage loginpage;
-    HomePage homepage;
-    CustomerInquiryPageERP customerInquiryPageERP;
-    MainPage mainPage;
-    ARRulesPage arRulesPage;
-    CreditPage credit;
-    BillingInfoPage billingInfo;
-    MarketingPage marketingPage;
-    PricingPage pricingPage;
-    OrderEntryPage orderEntryPage;
-    IgnitionPageERP ignitionPageERP;
-    ShippingPage shippingPage;
+    static LoginPage loginpage;
+    static HomePage homepage;
+    static CustomerInquiryPageERP customerInquiryPageERP;
+    static MainPage mainPage;
+    static ARRulesPage arRulesPage;
+    static CreditPage credit;
+    static BillingInfoPage billingInfo;
+    static MarketingPage marketingPage;
+    static PricingPage pricingPage;
+    static OrderEntryPage orderEntryPage;
+    static IgnitionPageERP ignitionPageERP;
+    static ShippingPage shippingPage;
 
     @Before
     public void LaunchBrowser1(Scenario scenario) throws Exception

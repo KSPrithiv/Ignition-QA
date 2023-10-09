@@ -20,7 +20,7 @@ public class UserAndAccount_PendingApprovalPageStep
         /* Created by Divya.Ramadas@afsi.com */
         WebDriver driver;
         Scenario scenario;
-        userAndAdmin_PendingRegApprovalPage  userAndAdminPendingRegApprovalPage;
+        static userAndAdmin_PendingRegApprovalPage  userAndAdminPendingRegApprovalPage;
 
         @Before
         public void LaunchBrowser1(Scenario scenario) throws Exception

@@ -295,6 +295,7 @@ public class QuoteSummaryPage
                     WebElement WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
                     HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 800000);
                 }
+                Thread.sleep(4000);
             }
             Assert.assertEquals(exists,true);
         }

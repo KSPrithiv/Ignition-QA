@@ -29,9 +29,9 @@ public class RestrictedProductsPageStep
     WebDriver driver;
     Scenario scenario;
     static boolean exists=false;
-    LoginPage loginPage;
-    AdminHomePage adminHomePage;
-    RestrictedProductListPage restrictedProductListPage;
+    static LoginPage loginPage;
+    static AdminHomePage adminHomePage;
+    static RestrictedProductListPage restrictedProductListPage;
 
     @Before
     public void LaunchBrowser1(Scenario scenario) throws Exception

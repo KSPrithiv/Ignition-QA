@@ -25,9 +25,9 @@ public class AdminSecurityRolePageStep
         static boolean flag=false;
         WebDriver driver;
         Scenario scenario;
-        AdminSecurityRolePage adminSecurityRolePage;
-        LoginPage loginpage;
-        AdminHomePage adminHomePage;
+        static AdminSecurityRolePage adminSecurityRolePage;
+        static LoginPage loginpage;
+        static AdminHomePage adminHomePage;
 
         @Before
         public void LaunchBrowser1(Scenario scenario) throws Exception

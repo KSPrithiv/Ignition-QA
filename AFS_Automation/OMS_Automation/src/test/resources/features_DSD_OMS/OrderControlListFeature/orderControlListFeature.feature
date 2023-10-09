@@ -86,7 +86,7 @@ Feature: Order control list
     Then User should select Note from popup and Order guide from popup
     Then User validate that he is in NewOE page
     And User Clicks on Back button in NewOE page and User must be in OCL page
-    Then User Clicks on Taken radio button
+    Then User refreshes page and Clicks on Taken radio button delivery date should be increased by 4
     And User should verify Order number created in OCL grid and Order type in OCL
 
   @AddFilterInOCL

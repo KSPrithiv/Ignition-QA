@@ -31,10 +31,10 @@ public class StatementsPageSteps
     static boolean flag=false;
     static String currentURL=null;
 
-    LoginPage loginpage;
-    HomePage homepage;
-    StatementsPage statementsPage;
-    OrderEntryPage orderPage;
+    static LoginPage loginpage;
+    static HomePage homepage;
+    static StatementsPage statementsPage;
+    static OrderEntryPage orderPage;
 
     @Before
     public void LaunchBrowser1(Scenario scenario) throws Exception

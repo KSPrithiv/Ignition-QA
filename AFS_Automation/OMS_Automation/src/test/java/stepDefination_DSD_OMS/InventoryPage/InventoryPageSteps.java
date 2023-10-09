@@ -36,10 +36,10 @@ public class InventoryPageSteps
     static boolean flag1=false;
     static String currentURL=null;
 
-    LoginPage loginpage;
-    HomePage homepage;
-    InventoryPage inventory;
-    OrderEntryPage orderpage;
+    static LoginPage loginpage;
+    static HomePage homepage;
+    static InventoryPage inventory;
+    static OrderEntryPage orderpage;
 
     @Before
     public void LaunchBrowser(Scenario scenario) throws Exception

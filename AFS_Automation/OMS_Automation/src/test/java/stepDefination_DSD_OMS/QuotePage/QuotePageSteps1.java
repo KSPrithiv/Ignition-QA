@@ -32,12 +32,12 @@ public class QuotePageSteps1
     WebDriver driver;
     Scenario scenario;
 
-    OrderEntryPage orderEntryPage;
-    NewOrderEntryPage newOE;
-    NewQuotePage newQuotePage;
-    QuoteSummaryPage quoteSummaryPage;
-    CheckOutOrderPage checkOutOrderPage;
-    OrderEntryPage orderpage;
+    static OrderEntryPage orderEntryPage;
+    static NewOrderEntryPage newOE;
+    static NewQuotePage newQuotePage;
+    static QuoteSummaryPage quoteSummaryPage;
+    static CheckOutOrderPage checkOutOrderPage;
+    static OrderEntryPage orderpage;
 
     @Before
     public void LaunchBrowser1(Scenario scenario) throws Exception

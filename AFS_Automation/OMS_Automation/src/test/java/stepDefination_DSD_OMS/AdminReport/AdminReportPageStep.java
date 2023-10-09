@@ -29,9 +29,9 @@ public class AdminReportPageStep
     static boolean flag5=false;
     WebDriver driver;
     Scenario scenario;
-    LoginPage loginpage;
-    AdminHomePage adminHomePage;
-    adminReportPage adminreportPage;
+    static LoginPage loginpage;
+    static AdminHomePage adminHomePage;
+    static adminReportPage adminreportPage;
 
 
     @Before

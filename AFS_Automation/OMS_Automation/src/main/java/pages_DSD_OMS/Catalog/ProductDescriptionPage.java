@@ -188,7 +188,10 @@ public class ProductDescriptionPage
                 HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 200000);
             }
 
-           if(HelpersMethod.IsExists("//span[contains(text(),'Frequently bought together')]",driver)) {
+           if(HelpersMethod.IsExists("//span[contains(text(),'Frequently bought together')]",driver))
+           {
+               WebElement frequentDetails=HelpersMethod.FindByElement(driver,"xpath","//span[contains(text(),'Frequently bought together')]");
+               HelpersMethod.ScrollElement(driver,frequentDetails);
                List<WebElement> Product_Names = HelpersMethod.FindByElements(driver, "xpath", "//div[@id='products-may-like-card']/descendant::div[@class='product-description']/a");
                for (WebElement Prod_Name : Product_Names) {
                    String Prod_Text = Prod_Name.getText();

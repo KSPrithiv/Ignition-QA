@@ -48,14 +48,14 @@ public class CatalogPageStep
     static boolean flag1=false;
     static String currentURL=null;
 
-    LoginPage loginpage;
-    HomePage homepage;
-    OrderEntryPage orderpage;
-    CatalogPage catalogpage;
-    NewOrderEntryPage newOE;
-    CheckOutOrderPage checkorder;
-    ProductDescriptionPage productdesctiptionpage;
-    CheckOutSummaryPage summary;
+    static LoginPage loginpage;
+    static HomePage homepage;
+    static OrderEntryPage orderpage;
+    static CatalogPage catalogpage;
+    static NewOrderEntryPage newOE;
+    static CheckOutOrderPage checkorder;
+    static ProductDescriptionPage productdesctiptionpage;
+    static CheckOutSummaryPage summary;
 
     @Before
     public void LaunchBrowser1(Scenario scenario) throws Exception

@@ -41,13 +41,13 @@ public class ProductReferencePageStep
     static String currentURL=null;
 
 
-    LoginPage loginpage;
-    HomePage homepage;
-    OrderEntryPage orderpage;
-    CreateOGPage createOGPage;
-    ProductReferencePage productReferencePage;
-    OrderGuidePage orderGuidePage;
-    ParOrderPage parOrderPage;
+    static LoginPage loginpage;
+    static HomePage homepage;
+    static OrderEntryPage orderpage;
+    static CreateOGPage createOGPage;
+    static ProductReferencePage productReferencePage;
+    static OrderGuidePage orderGuidePage;
+    static ParOrderPage parOrderPage;
 
     @Before
     public void LaunchBrowser(Scenario scenario) throws Exception

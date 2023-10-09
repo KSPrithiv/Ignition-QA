@@ -35,19 +35,17 @@ public class OrderEntryPageSteps1
     WebDriver driver;
     Scenario scenario;
 
-    LoginPage loginpage;
-    HomePage homepage;
-    OrderEntryPage orderpage;
-    NewOrderEntryPage newOE;
-    CheckOutSummaryPage summary;
-    OrderHistoryPage orderhistory;
+    static LoginPage loginpage;
+    static HomePage homepage;
+    static OrderEntryPage orderpage;
+    static NewOrderEntryPage newOE;
+    static CheckOutSummaryPage summary;
+    static OrderHistoryPage orderhistory;
 
-    String XPath=null;
-    boolean exists=false;
-    String Ord_No=null;
-    String ProdNo=null;
-    ExtentReports extent;
-    ExtentTest test;
+    static String XPath=null;
+    static boolean exists=false;
+    static String Ord_No=null;
+    static String ProdNo=null;
 
     @Before
     public void LaunchBrowser1(Scenario scenario) throws Exception
@@ -82,7 +80,6 @@ public class OrderEntryPageSteps1
         List<List<String>> QtyDetails = tabledata.asLists(String.class);
         newOE=new NewOrderEntryPage(driver,scenario);
         newOE.EnterQty_ProductGrid(driver, QtyDetails);
-
     }
 
     //For Clicking Comment
