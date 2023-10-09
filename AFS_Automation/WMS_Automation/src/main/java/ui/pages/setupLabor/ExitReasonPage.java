@@ -27,7 +27,7 @@ public class ExitReasonPage extends BasePage {
     }
     public void searchBoxActionExit(){
 //        Waiters.waitABit(5000);
-        Waiters.waitForPresenceOfElement("form > .i-icon.i-search-box__search");
+        Waiters.waitForElementToBeDisplay(By.cssSelector("form > .i-icon.i-search-box__search"));
         Waiters.waitForElementToBeDisplay(searchBox7());
         clickOnElement(searchBox7);
         try {

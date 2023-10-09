@@ -1,15 +1,23 @@
 package steps.outbound.loadplanning;
 
+import common.constants.FilePaths;
+import common.utils.objectmapper.ObjectMapperWrapper;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import io.qameta.allure.Step;
 import lombok.extern.slf4j.Slf4j;
+import objects.inbound.InboundOrderLoadsDTO;
+import objects.outbound.OutboundOrderLoadsDTO;
 import ui.pages.outbound.loadplanning.OutboundTruckInfoPage;
+
+import java.util.List;
 
 @Slf4j
 public class OutboundTruckInfoPageSteps {
     OutboundTruckInfoPage outboundTruckInfoPage = new OutboundTruckInfoPage();
+    OutboundOrderLoadsDTO outboundOrderLoadsDTO = new ObjectMapperWrapper()
+            .getObject(FilePaths.OUTBOUND_ORDER_LOAD_DATA, OutboundOrderLoadsDTO.class);
 
     @Step
     @And("Waits for Outbound Truck Info page to load")
@@ -208,6 +216,18 @@ public class OutboundTruckInfoPageSteps {
     }
 
     @Step
+    @And("Edit route by index {int}")
+    public void editRouteByIndex(int index) {
+        log.info("Edit route by index");
+        List<String> routes = List.of(outboundOrderLoadsDTO.getOutboundRoutes().getOutboundRoute1(), outboundOrderLoadsDTO
+                .getOutboundRoutes().getOutboundRoute2(), outboundOrderLoadsDTO.getOutboundRoutes().getOutboundRoute3(),
+                 outboundOrderLoadsDTO.getOutboundRoutes().getOutboundRoute4(), outboundOrderLoadsDTO.getOutboundRoutes()
+                .getOutboundRoute5(), outboundOrderLoadsDTO.getOutboundRoutes().getOutboundRoute6(), outboundOrderLoadsDTO
+                .getOutboundRoutes().getOutboundRoute7());
+        outboundTruckInfoPage.typeRoute(routes.get(index));
+    }
+
+    @Step
     @And("Clicks Ok button on Truck Info")
     public void clickOkButton() {
         log.info("Clicking Yes button");
@@ -271,10 +291,42 @@ public class OutboundTruckInfoPageSteps {
     }
 
     @Step
+    @And("Type Ship Date by index {int} on Truck Info page")
+    public void changeShipDateByIndex(int index) {
+        log.info("Typing Ship Date on Truck Info page by index");
+        List<String> dates = List.of(outboundOrderLoadsDTO.getStartDates().getStartDate1(), outboundOrderLoadsDTO.getStartDates()
+                .getStartDate2(), outboundOrderLoadsDTO.getStartDates().getStartDate3(), outboundOrderLoadsDTO.getStartDates()
+                .getStartDate4(), outboundOrderLoadsDTO.getStartDates().getStartDate5(), outboundOrderLoadsDTO.getStartDates()
+                .getStartDate6(), outboundOrderLoadsDTO.getStartDates().getStartDate7());
+        outboundTruckInfoPage.typeShipDate(dates.get(index));
+    }
+
+    @Step
     @And("Type {string} Ship Time on Truck Info page")
     public void changeShipTime(String time) {
         log.info("Typing Ship Time on Truck Info page " + time);
         outboundTruckInfoPage.typeShipTime(time);
+    }
+
+    @Step
+    @And("Clicks assignment popup header on Truck Info page")
+    public void clickAssignmentPopupHeader() {
+        log.info("Clicks assignment popup header on Truck Info page");
+        outboundTruckInfoPage.clickAssignmentPopupHeader();
+    }
+
+    @Step
+    @And("Clicks assignment popup header container on Truck Info page")
+    public void clickAssignmentHeaderContainer() {
+        log.info("Clicks assignment popup header container on Truck Info page");
+        outboundTruckInfoPage.clickAssignmentHeaderContainer();
+    }
+
+    @Step
+    @And("Clicks assignment popup footer on Truck Info page")
+    public void clickAssignmentFooter() {
+        log.info("Clicks assignment popup footer on Truck Info page");
+        outboundTruckInfoPage.clickAssignmentFooter();
     }
 
     @Step

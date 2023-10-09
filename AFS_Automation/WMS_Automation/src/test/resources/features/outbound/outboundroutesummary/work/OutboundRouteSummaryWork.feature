@@ -1,21 +1,20 @@
 @Outbound @Regression
 Feature: Testing of Outbound Route Summary Work option
-
   Scenario: Checking Work Route Assignments functionality
     Given User signs in the application
     And Main page is loaded
     And DockManagement Summary Page is validated
-    When Go to Outbound Route page
+    And Go to Outbound Route page
     And Waits for Outbound Route Summary page to load
     And Validates Outbound Route Summary page is displayed
     And Validates Outbound Route Summary dates on Outbound Route Summary page
-    Then Filling route start date "01/01/2022" and end date "03/31/2022" on Outbound Route Summary page
+    When Filling route start date by index 2 on Outbound Route Summary page
     And Click on route with index 0 on Outbound Route Summary page
     And Validates work item is active on Outbound Route Summary page
     And Click Back button on Outbound Route Summary page
     And Selects route with index 2 on Outbound Route Summary page
     And Validates work item is active on Outbound Route Summary page
-    And User selects work item on Outbound Route Summary page
+    Then User selects work item on Outbound Route Summary page
     And Validates Assignments tab and Tasks tab are displayed on Outbound Route Summary page
     And Validates Assignments tab is active by default on Outbound Route Summary page
     And Validates Assignment Type filter is displayed on Outbound Route Summary page
@@ -44,17 +43,17 @@ Feature: Testing of Outbound Route Summary Work option
     Given User signs in the application
     And Main page is loaded
     And DockManagement Summary Page is validated
-    When Go to Outbound Route page
+    And Go to Outbound Route page
     And Waits for Outbound Route Summary page to load
     And Validates Outbound Route Summary page is displayed
     And Validates Outbound Route Summary dates on Outbound Route Summary page
-    Then Filling route start date "01/01/2022" and end date "04/01/2022" on Outbound Route Summary page
+    When Filling route start date by index 2 on Outbound Route Summary page
     And Selects route with index 2 on Outbound Route Summary page
     And Validates work item is active on Outbound Route Summary page
     And User selects work item on Outbound Route Summary page
     And Validates Assignments tab and Tasks tab are displayed on Outbound Route Summary page
     And Validates Assignments tab is active by default on Outbound Route Summary page
-    And Selects Tasks Tab on Outbound Route Summary page
+    Then Selects Tasks Tab on Outbound Route Summary page
     And Validates Types Tab is displayed on Outbound Route Summary page
     And Validates Tasks Items is displayed on Outbound Route Summary page
     And Validates Tasks Items Count is displayed on Outbound Route Summary page

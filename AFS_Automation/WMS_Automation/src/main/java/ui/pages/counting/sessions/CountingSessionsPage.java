@@ -415,6 +415,7 @@ public class CountingSessionsPage extends BasePage {
         Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForPresenceOfAllElements(sessionTableRows);
         List<WebElement> rows = findWebElements(sessionTableRows);
+        Waiters.waitABit(4000);
         clickOnElement(rows.get(index).findElements(By.xpath(".//button[contains(@class, 'i-link-button')]")).get(0));
         Waiters.waitTillLoadingPage(getDriver());
     }
@@ -1040,7 +1041,7 @@ public class CountingSessionsPage extends BasePage {
     public String getTasksPerAssignmentsInputValue() { return getValue(getTasksPerAssignmentsInput()); }
 
     public String getLocationColumnHeaderSortingResult() {
-        Waiters.waitABit(3000);
+        waitUntilInvisible(2, loader);
         return getElementAttribute(getLocationColumnHeader(), "aria-sort");
     }
 

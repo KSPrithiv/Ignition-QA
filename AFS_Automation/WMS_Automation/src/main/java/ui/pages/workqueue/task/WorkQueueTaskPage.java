@@ -111,7 +111,7 @@ public class WorkQueueTaskPage extends BasePage {
     }
 
     public void checkTaskByTaskIndex(int index) {
-        Waiters.waitForPresenceOfElement(tableContent);
+        Waiters.waitForElementToBeDisplay(tableContent);
         List<WebElement> tasks = getTableContent().findElements(By.xpath(".//tr[contains(@class, 'k-master-row')]"));
         clickOnElement(tasks.get(index).findElement(By.xpath(".//input[@type='checkbox']")));
     }

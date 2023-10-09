@@ -1,24 +1,23 @@
 @Outbound @Regression
 Feature: Testing of Outbound Summary Work functionality
-
   Scenario: Checking Work Assignments functionality
     Given User signs in the application
     And Main page is loaded
     And DockManagement Summary Page is validated
-    When Go to Outbound Order page
+    And Go to Outbound Order page
     And Waits for Outbound Order Summary page to load
-    And Filling start date "12/01/2021" and end date "02/22/2022" on Outbound Order Summary page
+    When Filling start date by index 2 on Outbound Order Summary page
     And Verifies Work Item is disabled
-    Then Selects order "CO00001442" on Outbound Order Summary page
+    Then Selects order by index 0 on Outbound Order Summary page
     And Verifies Work Item is enabled
     And User selects work item on Outbound Order Summary page
     And Waits for Work Queue Page to load
     And Verifies Work Queue is displayed
     And Validates Assignment and Tasks tabs are displayed
     And Validates Assignment tab is active
-    And Validates Work Queue order "S00001442" is displayed
+    And Validates Work Queue order by index 0 is displayed
     And Validates Edit, Delete, Release, Labels and Move are disabled
-    And Validates Order "S00001442" assignments are displayed
+    And Validates Order by index 0 assignments are displayed
     And Validates Edit, Delete, Release, Labels and Move are displayed
     And User selects first assignment on Outbound Order Summary page
     And Validates Edit, Delete, Release, Labels and Move are enabled
@@ -39,10 +38,11 @@ Feature: Testing of Outbound Summary Work functionality
     Given User signs in the application
     And Main page is loaded
     And DockManagement Summary Page is validated
-    When Go to Outbound Order page
-    And Filling start date "12/01/2021" and end date "02/22/2022" on Outbound Order Summary page
+    And Go to Outbound Order page
+    And Waits for Outbound Order Summary page to load
+    When Filling start date by index 2 on Outbound Order Summary page
     And Verifies Work Item is disabled
-    Then Selects order "CO00001442" on Outbound Order Summary page
+    Then Selects order by index 0 on Outbound Order Summary page
     And Verifies Work Item is enabled
     And User selects work item on Outbound Order Summary page
     And Waits for Work Queue Page to load

@@ -510,12 +510,12 @@ public class InboundOrderSummaryPage extends BasePage {
     }
 
     public String getDialogPopUpText() {
-        Waiters.waitForPresenceOfElement(".k-dialog-title");
+        Waiters.waitForElementToBeDisplay(By.cssSelector(".k-dialog-title"));
         return getText(getDialogPopup());
     }
 
     public int getRowsCount() {
-        Waiters.waitForPresenceOfElement(tableContent);
+        Waiters.waitForElementToBeDisplay(tableContent);
         return getTableContent().findElements(By.xpath(".//tr")).size();
     }
 
@@ -612,7 +612,7 @@ public class InboundOrderSummaryPage extends BasePage {
 
     public void selectOrderByOrderNumber(int orderNum) {
         Waiters.waitTillLoadingPage(getDriver());
-        Waiters.waitForPresenceOfElement(tableContent);
+        Waiters.waitForElementToBeDisplay(tableContent);
         List<WebElement> orders = findWebElements(By.xpath("//div[contains(@class, 'BarsContainer')]"));
         Waiters.waitForElementToBeDisplay(orders.get(orderNum));
         clickOnElement(orders.get(orderNum));
@@ -622,7 +622,7 @@ public class InboundOrderSummaryPage extends BasePage {
     public void selectOrderCheckboxByOrderNumber(int orderNum) {
         waitUntilInvisible(1, loader);
         Waiters.waitTillLoadingPage(getDriver());
-        Waiters.waitForPresenceOfElement(tableContent);
+        Waiters.waitForElementToBeDisplay(tableContent);
         List<WebElement> checkBoxes = findWebElements(By.xpath("//div[contains(@class, 'BarsContainer')]/parent::*//input[@type='checkbox']"));
         Waiters.waitABit(3000);
         clickOnElement(checkBoxes.get(orderNum));
@@ -631,7 +631,7 @@ public class InboundOrderSummaryPage extends BasePage {
 
     public void selectOrderByOrderName(String order) {
         Waiters.waitTillLoadingPage(getDriver());
-        Waiters.waitForPresenceOfElement(tableContent);
+        Waiters.waitForElementToBeDisplay(tableContent);
         typeText(getEnterOrderInput(), order);
         pressEnter(getEnterOrderInput());
         Waiters.waitTillLoadingPage(getDriver());
@@ -877,7 +877,7 @@ public class InboundOrderSummaryPage extends BasePage {
 
     public String getInvalidEntryPopUpText() {
         Waiters.waitTillLoadingPage(getDriver());
-        Waiters.waitForPresenceOfElement(".k-window-title");
+        Waiters.waitForElementToBeDisplay(By.cssSelector(".k-window-title"));
         return getText(getInvalidEntryPopup());
     }
 

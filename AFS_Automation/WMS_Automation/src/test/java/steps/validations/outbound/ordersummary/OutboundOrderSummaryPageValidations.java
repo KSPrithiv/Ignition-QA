@@ -4,7 +4,6 @@ import common.constants.FilePaths;
 import common.constants.Notifications;
 import common.constants.TimeFormats;
 import common.enums.Statuses;
-import common.utils.database.DataBaseConnection;
 import common.utils.database.StoreProceduresUtils;
 import common.utils.objectmapper.ObjectMapperWrapper;
 import common.utils.time.TimeConversion;
@@ -12,19 +11,20 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.qameta.allure.Step;
 import lombok.SneakyThrows;
+import objects.outbound.OutboundOrderLoadsDTO;
 import org.apache.commons.lang3.StringUtils;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
 import org.testng.asserts.SoftAssert;
 import ui.pages.outbound.ordersummary.OutboundOrderSummaryPage;
 import ui.pages.outbound.processing.AddAllocationBatchPage;
 import java.util.Calendar;
+import java.util.List;
 
 
 public class OutboundOrderSummaryPageValidations {
     OutboundOrderSummaryPage outboundOrderSummaryPage = new OutboundOrderSummaryPage();
     AddAllocationBatchPage addAllocationBatchPage = new AddAllocationBatchPage();
-    StoreProceduresUtils storeProceduresUtils = new StoreProceduresUtils();
+    OutboundOrderLoadsDTO outboundOrderLoadsDTO = new ObjectMapperWrapper()
+            .getObject(FilePaths.OUTBOUND_ORDER_LOAD_DATA, OutboundOrderLoadsDTO.class);
 
     @And("Validates Outbound Order Summary page is displayed")
     public void validateOutboundOrderSummaryPage() {
@@ -72,15 +72,28 @@ public class OutboundOrderSummaryPageValidations {
     @And("Validates Outbound Order Summary grid with order {string}")
     public void validateOutboundOrderSummaryGrid(String order) {
         SoftAssert softAssert = new SoftAssert();
-        softAssert.assertTrue(outboundOrderSummaryPage.getGridTableRowByIndex(1).contains(order), "Order is not in table");
+        softAssert.assertTrue(outboundOrderSummaryPage.getGridTableRowByIndex(0).contains(order), "Order is not in table");
+        softAssert.assertAll();
+    }
+
+    @SneakyThrows
+    @And("Validates Outbound Order Summary grid with order by index {int}")
+    public void validateOutboundOrderSummaryGridByIndex(int index) {
+        List<String> orders = List.of(outboundOrderLoadsDTO.getOutboundOrders().getOutboundOrder1(), outboundOrderLoadsDTO
+                .getOutboundOrders().getOutboundOrder2(), outboundOrderLoadsDTO.getOutboundOrders().getOutboundOrder3(),
+                 outboundOrderLoadsDTO.getOutboundOrders().getOutboundOrder4(), outboundOrderLoadsDTO.getOutboundOrders()
+                .getOutboundOrder5(), outboundOrderLoadsDTO.getOutboundOrders().getOutboundOrder6(), outboundOrderLoadsDTO
+                .getOutboundOrders().getOutboundOrder7());
+        SoftAssert softAssert = new SoftAssert();
+        softAssert.assertTrue(outboundOrderSummaryPage.getGridTableRowByIndex(0).contains(orders.get(index)), "Order is not in table");
         softAssert.assertAll();
     }
 
     @And("Validates No Record Outbound Order Summary grid")
     public void validateNoRecordInOutboundOrderSummaryGrid() {
         SoftAssert softAssert = new SoftAssert();
-        softAssert.assertTrue(outboundOrderSummaryPage.getGridTableRowByIndex(0)
-                .contains(Notifications.NO_DATA), "Order is not in table");
+        softAssert.assertTrue(outboundOrderSummaryPage.getNoRecordsRowContent()
+                .equals(Notifications.NO_DATA), "Order is not in table");
         softAssert.assertAll();
     }
 
@@ -158,6 +171,19 @@ public class OutboundOrderSummaryPageValidations {
         softAssert.assertTrue(outboundOrderSummaryPage.getWorkQueueOrder().contains(order), "Order is not displayed");
         softAssert.assertAll();
     }
+
+    @And("Validates Work Queue order by index {int} is displayed")
+    public void verifyWorkQueueByIndexIsCorrect(int index) {
+        List<String> orders = List.of(outboundOrderLoadsDTO.getOutboundOrders().getOutboundOrder1(), outboundOrderLoadsDTO
+                .getOutboundOrders().getOutboundOrder2(), outboundOrderLoadsDTO.getOutboundOrders().getOutboundOrder3(),
+                 outboundOrderLoadsDTO.getOutboundOrders().getOutboundOrder4(), outboundOrderLoadsDTO.getOutboundOrders()
+                .getOutboundOrder5(), outboundOrderLoadsDTO.getOutboundOrders().getOutboundOrder6(), outboundOrderLoadsDTO
+                .getOutboundOrders().getOutboundOrder7());
+        SoftAssert softAssert = new SoftAssert();
+        softAssert.assertTrue(outboundOrderSummaryPage.getWorkQueueOrder().contains(orders.get(index)), "Order is not displayed");
+        softAssert.assertAll();
+    }
+
 
     @And("Validates Edit, Delete, Release, Labels and Move are disabled")
     public void verifyWorkQueueItemsAreDisabled() {
@@ -298,6 +324,21 @@ public class OutboundOrderSummaryPageValidations {
         softAssert.assertTrue(outboundOrderSummaryPage.getAssignmentTableRowsNumber() > 0,
                 "Assignment Table Rows are not present");
         softAssert.assertTrue(outboundOrderSummaryPage.isGetWorkQueueOrderDisplayed(order), "Order in not Displayed");
+        softAssert.assertAll();
+    }
+
+    @And("Validates Order by index {int} assignments are displayed")
+    public void verifyOrderAssignmentsAreDisplayed(int index) {
+        List<String> orders = List.of(outboundOrderLoadsDTO.getOutboundOrders().getOutboundOrder1(), outboundOrderLoadsDTO
+                .getOutboundOrders().getOutboundOrder2(), outboundOrderLoadsDTO.getOutboundOrders().getOutboundOrder3(),
+                 outboundOrderLoadsDTO.getOutboundOrders().getOutboundOrder4(), outboundOrderLoadsDTO.getOutboundOrders()
+                .getOutboundOrder5(), outboundOrderLoadsDTO.getOutboundOrders().getOutboundOrder6(), outboundOrderLoadsDTO
+                .getOutboundOrders().getOutboundOrder7());
+        SoftAssert softAssert = new SoftAssert();
+        softAssert.assertTrue(outboundOrderSummaryPage.isAssignmentTabActive(), "Assignment Tab is disabled");
+        softAssert.assertTrue(outboundOrderSummaryPage.getAssignmentTableRowsNumber() > 0,
+                "Assignment Table Rows are not present");
+        softAssert.assertTrue(outboundOrderSummaryPage.isGetWorkQueueOrderDisplayed(orders.get(index)), "Order in not Displayed");
         softAssert.assertAll();
     }
 
@@ -532,9 +573,8 @@ public class OutboundOrderSummaryPageValidations {
     @And("Validates Order Data page is displayed")
     public void validateDataPageIsDisplayed() {
         SoftAssert softAssert = new SoftAssert();
-        softAssert.assertTrue(outboundOrderSummaryPage.isDataAlt1Displayed(),"Data Alt1 is not displayed");
-        softAssert.assertTrue(outboundOrderSummaryPage.isDataAlt2Displayed(),"Data Alt2 is not displayed");
-        softAssert.assertTrue(outboundOrderSummaryPage.isDataAlt3Displayed(),"Data Alt3 is not displayed");
+        softAssert.assertTrue(outboundOrderSummaryPage.isRouteLabelDisplayed(),"Route Label is not displayed");
+        softAssert.assertTrue(outboundOrderSummaryPage.isEnterNameInputDisplayed(),"Enter Name Input is not displayed");
         softAssert.assertAll();
     }
 
@@ -577,13 +617,8 @@ public class OutboundOrderSummaryPageValidations {
 
     @And("Validates {string} option is not active")
     public void validateOrderOptionIsNotActive(String option) {
-        WebElement orderOption = outboundOrderSummaryPage.findWebElements(By.xpath("//div[contains(@class, 'k-animation-container-shown')]//li[@role='menuItem']"))
-                .stream()
-                .filter(el -> el.getText().equals(option))
-                .findFirst()
-                .orElseThrow(() -> new IllegalArgumentException("Order option not found"));
         SoftAssert softAssert = new SoftAssert();
-        softAssert.assertTrue(orderOption.getAttribute("class").contains("disabled"),
+        softAssert.assertTrue(outboundOrderSummaryPage.isOutboundOrderOptionActive(option),
                 "Source Order Type is not displayed");
         softAssert.assertAll();
     }
@@ -628,6 +663,20 @@ public class OutboundOrderSummaryPageValidations {
         SoftAssert softAssert = new SoftAssert();
         softAssert.assertTrue(outboundOrderSummaryPage.getAccountDetailText().contains(account),
                 "Account value " + account + " is not correct");
+        softAssert.assertAll();
+    }
+
+    @SneakyThrows
+    @And("Validates Account value by index {int} is correct on Outbound Order Summary page")
+    public void validateAccountFieldValueByIndex(int index) {
+        List<String> accounts = List.of(outboundOrderLoadsDTO.getOutboundAccounts().getOutboundAccount1(), outboundOrderLoadsDTO
+                .getOutboundAccounts().getOutboundAccount2(), outboundOrderLoadsDTO.getOutboundAccounts().getOutboundAccount3(),
+                outboundOrderLoadsDTO.getOutboundAccounts().getOutboundAccount4(), outboundOrderLoadsDTO.getOutboundAccounts()
+                .getOutboundAccount5(), outboundOrderLoadsDTO.getOutboundAccounts().getOutboundAccount6(), outboundOrderLoadsDTO
+                .getOutboundAccounts().getOutboundAccount7());
+        SoftAssert softAssert = new SoftAssert();
+        softAssert.assertTrue(outboundOrderSummaryPage.getAccountDetailText().contains(accounts.get(index)),
+                "Account value " + accounts.get(index) + " is not correct");
         softAssert.assertAll();
     }
 
@@ -781,10 +830,37 @@ public class OutboundOrderSummaryPageValidations {
         softAssert.assertAll();
     }
 
+    @And("Validates Edit Order by index {int}")
+    public void validateEditOrderNameByIndex(int index) {
+        List<String> orders = List.of(outboundOrderLoadsDTO.getOutboundOrders().getOutboundOrder1(), outboundOrderLoadsDTO
+                .getOutboundOrders().getOutboundOrder2(), outboundOrderLoadsDTO.getOutboundOrders().getOutboundOrder3(),
+                 outboundOrderLoadsDTO.getOutboundOrders().getOutboundOrder4(), outboundOrderLoadsDTO.getOutboundOrders()
+                .getOutboundOrder5(), outboundOrderLoadsDTO.getOutboundOrders().getOutboundOrder6(), outboundOrderLoadsDTO
+                .getOutboundOrders().getOutboundOrder7());
+        SoftAssert softAssert = new SoftAssert();
+        softAssert.assertTrue(outboundOrderSummaryPage.getAccountWindowTitleText().contains(orders.get(index)),
+                "Order on Edit order popup is not displayed");
+        softAssert.assertAll();
+    }
+
     @And("Validates scheduled date {string} and scheduled time {string}")
     public void validateDateAndTime(String date, String time) {
         SoftAssert softAssert = new SoftAssert();
         softAssert.assertTrue(outboundOrderSummaryPage.getScheduledDateValue().contains(date),
+                "Scheduled date is not correct");
+        softAssert.assertTrue(outboundOrderSummaryPage.getScheduledTimeValue().contains(time),
+                "Scheduled time is not correct");
+        softAssert.assertAll();
+    }
+
+    @And("Validates scheduled date by index {int} and scheduled time {string}")
+    public void validateDateAndTime(int index, String time) {
+        List<String> dates = List.of(outboundOrderLoadsDTO.getStartDates().getStartDate1(), outboundOrderLoadsDTO
+                .getStartDates().getStartDate2(), outboundOrderLoadsDTO.getStartDates().getStartDate3(),
+                outboundOrderLoadsDTO.getStartDates().getStartDate4(), outboundOrderLoadsDTO.getStartDates().getStartDate5(),
+                outboundOrderLoadsDTO.getStartDates().getStartDate6());
+        SoftAssert softAssert = new SoftAssert();
+        softAssert.assertTrue(outboundOrderSummaryPage.getScheduledDateValue().contains(dates.get(index)),
                 "Scheduled date is not correct");
         softAssert.assertTrue(outboundOrderSummaryPage.getScheduledTimeValue().contains(time),
                 "Scheduled time is not correct");

@@ -200,7 +200,7 @@ public class ReceivingPage extends BasePage {
     }
 
     public void clickBackButton() {
-        Waiters.waitForPresenceOfElement("#RouteBackButton");
+        Waiters.waitForElementToBeDisplay(By.cssSelector("#RouteBackButton"));
         clickOnElement(By.cssSelector("#RouteBackButton"));
     }
 

@@ -12,7 +12,6 @@ import java.util.stream.Collectors;
 import static common.setup.DriverManager.getDriver;
 
 public class InboundLoadOrderDetailsPage extends BasePage {
-
     By topIcon = By.xpath("//span[contains(text(), 'Inbound load summary')]");
     By loadCards = By.cssSelector(".i-card__card .i-card__card");
     By toolBarContainer = By.cssSelector(".i-toolbar-container");
@@ -449,7 +448,7 @@ public class InboundLoadOrderDetailsPage extends BasePage {
     }
 
     public String getStatusCellContentText() {
-        Waiters.waitForPresenceOfElement(statusCellContent);
+        Waiters.waitForElementToBeDisplay(statusCellContent);
         return getText(getStatusCellContent());
     }
 
@@ -568,12 +567,12 @@ public class InboundLoadOrderDetailsPage extends BasePage {
     }
 
     public void clickProductDataBtn() {
-        Waiters.waitForPresenceOfElement(btnProductData);
+        Waiters.waitForElementToBeDisplay(btnProductData);
         clickOnElement(getBtnProductData());
     }
 
     public void clickProductEditBtn() {
-        Waiters.waitForPresenceOfElement(btnProductEdit);
+        Waiters.waitForElementToBeDisplay(btnProductEdit);
         clickOnElement(getBtnProductEdit());
     }
 
@@ -589,7 +588,7 @@ public class InboundLoadOrderDetailsPage extends BasePage {
     }
 
     public String getDialogPopUpText() {
-        Waiters.waitForPresenceOfElement(".k-dialog-title");
+        Waiters.waitForElementToBeDisplay(By.cssSelector(".k-dialog-title"));
         return getText(getDialogPopup());
     }
 

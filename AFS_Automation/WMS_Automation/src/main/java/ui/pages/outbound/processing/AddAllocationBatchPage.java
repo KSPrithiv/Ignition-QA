@@ -30,12 +30,12 @@ public class AddAllocationBatchPage extends BasePage {
     }
 
     public String getNotificationTitleText() {
-        Waiters.waitForPresenceOfElement(By.cssSelector(".toast-title"));
+        Waiters.waitForElementToBeDisplay(By.cssSelector(".toast-title"));
         return getNotificationTitle().getText().trim();
     }
 
     public String getNotificationMessageText() {
-        Waiters.waitForPresenceOfElement(By.cssSelector(".toast-message"));
+        Waiters.waitForElementToBeDisplay(By.cssSelector(".toast-message"));
         return getNotificationMessage().getText().trim();
     }
 
