@@ -418,7 +418,7 @@ public class WorkQueueAssignmentsPage extends BasePage {
 
     public void checkAssignmentByAssignmentIndex(int index) {
         Waiters.waitABit(5000);
-        Waiters.waitForPresenceOfElement(tableContent);
+        Waiters.waitForElementToBeDisplay(tableContent);
         List<WebElement> assignments = getTableContent().findElements(By.xpath(".//tbody//tr[contains(@class, 'k-master-row')]"));
         Waiters.waitABit(1000);
         clickOnElement(assignments.get(index).findElement(By.xpath(".//input[@type='checkbox']")));
@@ -426,7 +426,7 @@ public class WorkQueueAssignmentsPage extends BasePage {
 
     public void clickAssignmentByAssignmentIndex(int index) {
         Waiters.waitABit(5000);
-        Waiters.waitForPresenceOfElement(tableContent);
+        Waiters.waitForElementToBeDisplay(tableContent);
         List<WebElement> assignments = getTableContent().findElements(By.xpath(".//tbody//tr[contains(@class, 'k-master-row')]"));
         Waiters.waitABit(1000);
         clickOnElement(assignments.get(index).findElement(By.xpath(".//td[contains(@id, 'assignmentlink')]")));
@@ -853,17 +853,17 @@ public class WorkQueueAssignmentsPage extends BasePage {
     }
 
     public String getNotificationMessageText() {
-        Waiters.waitForPresenceOfElement(By.cssSelector(".toast-message"));
+        Waiters.waitForElementToBeDisplay(By.cssSelector(".toast-message"));
         return getNotificationMessage().getText().trim();
     }
 
     public String getEditAssignmentDateValue() {
-        Waiters.waitForPresenceOfElement(editAssignmentEditDate);
+        Waiters.waitForElementToBeDisplay(editAssignmentEditDate);
         return getValue(editAssignmentEditDate);
     }
 
     public String getEditAssignmentTimeValue() {
-        Waiters.waitForPresenceOfElement(editAssignmentEditTime);
+        Waiters.waitForElementToBeDisplay(editAssignmentEditTime);
         return getValue(editAssignmentEditTime);
     }
 
@@ -874,13 +874,13 @@ public class WorkQueueAssignmentsPage extends BasePage {
 
     public String getReleaseDateValue() {
         Waiters.waitABit(2_000);
-        Waiters.waitForPresenceOfElement(releaseDate);
+        Waiters.waitForElementToBeDisplay(releaseDate);
         return getValue(releaseDate);
     }
 
     public String getReleaseTimeValue() {
         Waiters.waitABit(2_000);
-        Waiters.waitForPresenceOfElement(releaseTime);
+        Waiters.waitForElementToBeDisplay(releaseTime);
         return getValue(releaseTime);
     }
 

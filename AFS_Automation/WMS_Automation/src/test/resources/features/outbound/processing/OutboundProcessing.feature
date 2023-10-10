@@ -1,6 +1,5 @@
 @Processing @Regression
 Feature: Testing of Receiving functionality
-
   Scenario: Checking Processing orders functionality
     Given User signs in the application
     When Main page is loaded

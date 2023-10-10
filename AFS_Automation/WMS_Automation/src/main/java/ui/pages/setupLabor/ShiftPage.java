@@ -32,7 +32,7 @@ public class ShiftPage extends BasePage {
     }
     public void searchBoxActionShift(){
         Waiters.waitABit(5000);
-        Waiters.waitForPresenceOfElement("form > .i-icon.i-search-box__search");
+        Waiters.waitForElementToBeDisplay(By.cssSelector("form > .i-icon.i-search-box__search"));
         Waiters.waitForElementToBeDisplay(searchBox6());
         clickOnElement(searchBox6);
         try {

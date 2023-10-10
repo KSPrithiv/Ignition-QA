@@ -52,22 +52,22 @@ public class ProcessingPage extends BasePage {
     }
 
     public String getBatchErrorPopUpText() {
-        Waiters.waitForPresenceOfElement(batchErrorPopUp);
+        Waiters.waitForElementToBeDisplay(batchErrorPopUp);
         return getText(batchErrorPopUp).trim();
     }
 
     public void clickOkButton() {
-        Waiters.waitForPresenceOfElement(okButton);
+        Waiters.waitForElementToBeDisplay(okButton);
         clickOnElement(By.xpath("//button[contains(text(), 'OK')]"));
     }
 
     public List<WebElement> getRows() {
-        Waiters.waitForPresenceOfElement(processingGridTable);
+        Waiters.waitForElementToBeDisplay(processingGridTable);
         return getProcessingGridTable().findElements(By.xpath(".//tr"));
     }
 
     public int getRowsCount() {
-        Waiters.waitForPresenceOfElement(processingGridTable);
+        Waiters.waitForElementToBeDisplay(processingGridTable);
         return getProcessingGridTable().findElements(By.xpath(".//tr")).size();
     }
 
@@ -88,12 +88,12 @@ public class ProcessingPage extends BasePage {
     }
 
     public String getDeleteBatchText() {
-        Waiters.waitForPresenceOfElement(deleteBatchPopup);
+        Waiters.waitForElementToBeDisplay(deleteBatchPopup);
         return getText(By.cssSelector(".k-window-content"));
     }
 
     public String getProcessingInputValue() {
-        Waiters.waitForPresenceOfElement(processingInput);
+        Waiters.waitForElementToBeDisplay(processingInput);
         return getValue(processingInput);
     }
 
@@ -103,7 +103,7 @@ public class ProcessingPage extends BasePage {
     }
 
     public void clickDeleteButton() {
-        Waiters.waitForPresenceOfElement(By.cssSelector("#addLocProdButton3"));
+        Waiters.waitForElementToBeDisplay(By.cssSelector("#addLocProdButton3"));
         clickOnElement(getDeleteButton());
         Waiters.waitABit(2000);
     }
@@ -176,24 +176,24 @@ public class ProcessingPage extends BasePage {
     }
 
     public void clickBatches() {
-        Waiters.waitForPresenceOfElement(batchesIcon);
+        Waiters.waitForElementToBeDisplay(batchesIcon);
         clickOnElement(getBatchesIcon());
     }
 
     public void clickYesButton() {
         Waiters.waitABit(2000);
-        Waiters.waitForPresenceOfElement(yesButton);
+        Waiters.waitForElementToBeDisplay(yesButton);
         clickOnElement(yesButton);
     }
 
     public void clickNoButton() {
         Waiters.waitABit(2000);
-        Waiters.waitForPresenceOfElement(noButton);
+        Waiters.waitForElementToBeDisplay(noButton);
         clickOnElement(noButton);
     }
 
     public void clickBatch(String batchName) {
-        Waiters.waitForPresenceOfElement(batchList);
+        Waiters.waitForElementToBeDisplay(batchList);
         WebElement batch = getBatchesList().stream()
            .filter(b -> b.getText().equals(batchName))
            .findFirst()
@@ -239,7 +239,7 @@ public class ProcessingPage extends BasePage {
     public List<String> getOrdersDates() {
         Waiters.waitUntilPageWillLoadedSelenide();
         Waiters.waitABit(3000);
-        Waiters.waitForPresenceOfElement(processingGridTable);
+        Waiters.waitForElementToBeDisplay(processingGridTable);
         return getProcessingGridTable()
                 .findElements(By.cssSelector(".CPKendoDataGrid-Date"))
                 .stream()
@@ -393,13 +393,13 @@ public class ProcessingPage extends BasePage {
 
     public boolean isDateValueExists() {
         Waiters.waitABit(2000);
-        Waiters.waitForPresenceOfElement("#dtProcessingDate");
+        Waiters.waitForElementToBeDisplay(By.cssSelector("#dtProcessingDate"));
         return isElementDisplay(By.cssSelector("#dtProcessingDate"));
     }
 
     public void clickCalendarOption() {
         Waiters.waitABit(2000);
-        Waiters.waitForPresenceOfElement("a[title='Toggle calendar']");
+        Waiters.waitForElementToBeDisplay(By.cssSelector("a[title='Toggle calendar']"));
         clickOnElement(By.cssSelector("a[title='Toggle calendar']"));
     }
 

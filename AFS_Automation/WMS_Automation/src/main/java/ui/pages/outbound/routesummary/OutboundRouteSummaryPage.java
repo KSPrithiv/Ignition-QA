@@ -7,6 +7,8 @@ import ui.pages.BasePage;
 import java.util.List;
 import java.util.Random;
 
+import static common.setup.DriverManager.getDriver;
+
 public class OutboundRouteSummaryPage extends BasePage {
     By title = By.cssSelector(".spnmoduleNameHeader");
     By routeStart = By.id("dateRouteStart");
@@ -202,11 +204,17 @@ public class OutboundRouteSummaryPage extends BasePage {
     By pickedLabel = By.xpath("//label[contains(text(), 'Picked:')]");
     By shippedLabel = By.xpath("//label[contains(text(), 'Shipped:')]");
     By dropdownList = By.id("dropdownList");
+    By arrowChevron = By.xpath("//button[contains(@class, 'i-card__card__title-area')]//span[contains(@class, 'k-i-arrow-chevron')]");
+    By routeLabel = By.xpath("//span[text()='Route']");
+    By enterNameInput = By.xpath("//input[contains(@placeholder, 'Enter NAME')]");
+    By loader = By.cssSelector(".loader");
 
     public void waitOutboundRouteSummaryPageToLoad() {
-        Waiters.waitUntilPageWillLoadedSelenide();
+        waitUntilInvisible(2, loader);
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(getTitle());
         Waiters.waitForElementToBeDisplay(getTableContent());
+        waitUntilInvisible(2, loader);
     }
 
     private By getStatusDropDown(String status) {
@@ -229,13 +237,13 @@ public class OutboundRouteSummaryPage extends BasePage {
     }
 
     public String getGridTableRowContent(int row) {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(getTableContent());
         return getText(getTableContent().findElements(By.xpath(".//tr")).get(row));
     }
 
     public WebElement getGridTableRow(int row) {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(getTableContent());
         return getTableContent().findElements(By.xpath(".//tr")).get(row);
     }
@@ -247,22 +255,36 @@ public class OutboundRouteSummaryPage extends BasePage {
     }
 
     public void typeRouteStartDate(String date) {
-        Waiters.waitABit(2000);
+        Waiters.waitABit(4000);
+        if(findWebElement(arrowChevron).getAttribute("class").contains("down")) {
+            clickOnElement(arrowChevron);
+        }
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(getRouteStart());
         clickOnElement(getRouteStart());
+        Waiters.waitABit(2000);
         pressDelete(getRouteStart());
+        Waiters.waitABit(2000);
         inputText(getRouteStart(), date);
+        Waiters.waitABit(2000);
         pressEnter(getRouteStart());
         Waiters.waitABit(8000);
     }
 
     public void typeRouteEndDate(String date) {
-        Waiters.waitABit(2000);
-        Waiters.waitForElementToBeDisplay(getRouteEnd());
+        Waiters.waitABit(4000);
+        if(findWebElement(arrowChevron).getAttribute("class").contains("down")) {
+            clickOnElement(arrowChevron);
+        }
+        Waiters.waitTillLoadingPage(getDriver());
+        waitUntilStalenessOf(1, getRouteEnd());
         clickOnElement(getRouteEnd());
-        pressDelete(getRouteEnd());
+        Waiters.waitABit(1000);
+        clearText(getRouteEnd());
+        Waiters.waitABit(2000);
         inputText(getRouteEnd(), date);
-        pressEnter(getRouteEnd());
+        Waiters.waitABit(1000);
+        pressTab(getRouteEnd());
         Waiters.waitABit(7000);
     }
 
@@ -277,39 +299,46 @@ public class OutboundRouteSummaryPage extends BasePage {
     }
 
     public String getRouteValue() {
-        Waiters.waitABit(6000);
+        Waiters.waitTillLoadingPage(getDriver());
         return getValue(getEnterRoute()).trim();
     }
 
     public String getAccountValue() {
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(getEnterAccount());
         return getValue(getEnterAccount()).trim();
     }
 
     public String getStatusText(String status) {
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(getStatusDropDown(status));
         return getText(getStatusesDropDown(status)).trim();
     }
 
     public String getDoorText() {
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(getDoorList());
         return getText(getDoorList()).trim();
     }
 
     public List<WebElement> getDoors() {
-        Waiters.waitForPresenceOfAllElements(By.xpath("//div[contains(@class, 'k-animation-container-shown')]//li[@role='option']"));
+        Waiters.waitForElementsToBeDisplay(findWebElements(By.xpath("//div[contains(@class, 'k-animation-container-shown')]//li[@role='option']")));
         return findWebElements(By.xpath("//div[contains(@class, 'k-animation-container-shown')]//li[@role='option']"));
     }
 
     public List<WebElement> getRoutes() {
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(getTableContent());
         return getTableContent().findElements(By.xpath(".//span[contains(@id, 'spnRouteCode')]"));
     }
 
     public void typeRoute(String route) {
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitABit(2000);
         inputText(getEnterRoute(), route);
+        Waiters.waitABit(2000);
         pressEnter(getEnterRoute());
+        waitUntilInvisible(2, loader);
     }
 
     public void typeMaxStops(String maxStops) {
@@ -318,6 +347,7 @@ public class OutboundRouteSummaryPage extends BasePage {
     }
 
     public void typeTemperature(String temperature) {
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(getTemperatureInput());
         doubleClick(getTemperatureInput());
         Waiters.waitABit(2000);
@@ -328,25 +358,30 @@ public class OutboundRouteSummaryPage extends BasePage {
     }
 
     public String getMaxStopsValue() {
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(getMaxStopsInput());
         return getValue(getMaxStopsInput());
     }
 
     public String getTemperatureValue() {
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(getTemperatureInput());
         return getValue(getTemperatureInput());
     }
 
     public void typeProduct(String product) {
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(getEnterProduct());
         enterText(getEnterProduct(), product);
         pressEnter(getEnterProduct());
+        waitUntilInvisible(1, loader);
     }
 
     public void typeAccount(String account) {
         Waiters.waitForElementToBeDisplay(getEnterAccount());
         enterText(getEnterAccount(), account);
         pressEnter(getEnterAccount());
+        waitUntilInvisible(1, loader);
     }
 
     public void deleteRoute() {
@@ -360,7 +395,7 @@ public class OutboundRouteSummaryPage extends BasePage {
         doubleClick(getEnterAccount());
         pressDelete(getEnterAccount());
         pressEnter(getEnterAccount());
-        Waiters.waitABit(3000);
+        waitUntilInvisible(1, loader);
     }
 
     public void deleteProduct() {
@@ -368,7 +403,7 @@ public class OutboundRouteSummaryPage extends BasePage {
         doubleClick(getEnterProduct());
         pressDelete(getEnterProduct());
         pressEnter(getEnterProduct());
-        Waiters.waitABit(3000);
+        waitUntilInvisible(1, loader);
     }
 
     public void clickDoorDropdown() {
@@ -409,7 +444,7 @@ public class OutboundRouteSummaryPage extends BasePage {
     public void clickAssignments() {
         Waiters.waitForElementToBeDisplay(getAssignmentTab());
         clickOnElement(getAssignmentTab());
-        Waiters.waitABit(2000);
+        waitUntilInvisible(1, loader);
     }
 
     public void clickTasks() {
@@ -445,21 +480,22 @@ public class OutboundRouteSummaryPage extends BasePage {
         clickOnElement(getDropdownList());
         clickOnElement(findWebElement(By.xpath("//div[contains(@class, 'k-animation-container-shown')]//li[contains(text(), '"
                 + warehouse + "') and @role='option']")));
-        Waiters.waitABit(2000);
+        waitUntilInvisible(1, loader);
     }
 
     public List<WebElement> getAssignmentTypes() {
-        Waiters.waitForPresenceOfAllElements(By.xpath("//div[contains(@class, 'k-animation-container-shown')]//div[contains(@class,'i-btn-checkbox')]"));
+        Waiters.waitForElementsToBeDisplay(findWebElements(By
+                .xpath("//div[contains(@class, 'k-animation-container-shown')]//div[contains(@class,'i-btn-checkbox')]")));
         return findWebElements(By.xpath("//div[contains(@class, 'k-animation-container-shown')]//div[contains(@class,'i-btn-checkbox')]"));
     }
 
     public List<WebElement> getUsers() {
-        Waiters.waitForPresenceOfElement(By.xpath("//div[contains(@class, 'k-animation-container-shown')]//li[@role='option']"));
+        Waiters.waitForElementToBeDisplay(By.xpath("//div[contains(@class, 'k-animation-container-shown')]//li[@role='option']"));
         return findWebElements(By.xpath("//div[contains(@class, 'k-animation-container-shown')]//li[@role='option']"));
     }
 
     public List<WebElement> getDoorOptions() {
-        Waiters.waitForPresenceOfElement(By.xpath("//div[contains(@class, 'k-animation-container-shown')]//li[@role='option']"));
+        Waiters.waitForElementToBeDisplay(By.xpath("//div[contains(@class, 'k-animation-container-shown')]//li[@role='option']"));
         return findWebElements(By.xpath("//div[contains(@class, 'k-animation-container-shown')]//li[@role='option']"));
     }
 
@@ -469,12 +505,14 @@ public class OutboundRouteSummaryPage extends BasePage {
     }
 
     public List<WebElement> getTaskGroupItems() {
-        Waiters.waitForPresenceOfAllElements(By.xpath("//div[contains(@class, 'k-animation-container-shown')]//div[contains(@class,'i-btn-checkbox')]"));
+        Waiters.waitForElementsToBeDisplay(findWebElements(By
+                .xpath("//div[contains(@class, 'k-animation-container-shown')]//div[contains(@class,'i-btn-checkbox')]")));
         return findWebElements(By.xpath("//div[contains(@class, 'k-animation-container-shown')]//div[contains(@class,'i-btn-checkbox')]"));
     }
 
     public List<WebElement> getRouteDropdownOptions() {
-        Waiters.waitForPresenceOfAllElements(By.xpath("//div[contains(@class, 'k-animation-container-shown')]//li[@role='menuItem']"));
+        Waiters.waitForElementsToBeDisplay(findWebElements(By
+                .xpath("//div[contains(@class, 'k-animation-container-shown')]//li[@role='menuItem']")));
         return findWebElements(By.xpath("//div[contains(@class, 'k-animation-container-shown')]//li[@role='menuItem']"));
     }
 
@@ -484,7 +522,8 @@ public class OutboundRouteSummaryPage extends BasePage {
     }
 
     public List<WebElement> getTypesItems() {
-        Waiters.waitForPresenceOfAllElements(By.xpath("//div[contains(@class, 'k-animation-container-shown')]//div[contains(@class,'i-btn-checkbox')]"));
+        Waiters.waitForElementsToBeDisplay(findWebElements(By
+                .xpath("//div[contains(@class, 'k-animation-container-shown')]//div[contains(@class,'i-btn-checkbox')]")));
         return findWebElements(By.xpath("//div[contains(@class, 'k-animation-container-shown')]//div[contains(@class,'i-btn-checkbox')]"));
     }
 
@@ -494,20 +533,21 @@ public class OutboundRouteSummaryPage extends BasePage {
     }
 
     public List<WebElement> getStatusesTabItems() {
-        Waiters.waitForPresenceOfAllElements(By.xpath("//div[contains(@class, 'k-animation-container-shown')]//div[contains(@class,'i-btn-checkbox')]"));
+        Waiters.waitForElementsToBeDisplay(findWebElements(By
+                .xpath("//div[contains(@class, 'k-animation-container-shown')]//div[contains(@class,'i-btn-checkbox')]")));
         return findWebElements(By.xpath("//div[contains(@class, 'k-animation-container-shown')]//div[contains(@class,'i-btn-checkbox')]"));
     }
 
     public void clickTaskItem() {
         Waiters.waitForElementToBeDisplay(getTasksTab());
         clickOnElement(getTasksTab());
-        Waiters.waitABit(2000);
+        waitUntilInvisible(1, loader);
     }
 
     public void clickCancelButton() {
         Waiters.waitForElementToBeDisplay(getCancelButton());
         clickOnElement(getCancelButton());
-        Waiters.waitABit(2000);
+        waitUntilInvisible(1, loader);
     }
 
     public String getWindowContentText() {
@@ -554,7 +594,7 @@ public class OutboundRouteSummaryPage extends BasePage {
     }
 
     public String getDriverInputValue() {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         return getValue(getDriverInput());
     }
 
@@ -576,49 +616,51 @@ public class OutboundRouteSummaryPage extends BasePage {
     }
 
     public void searchAccount(String account) {
-        Waiters.waitABit(1000);
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(getAccountSearch());
         enterText(getAccountSearch(), account);
         pressEnter(getAccountSearch());
     }
 
     public void searchProduct(String product) {
-        Waiters.waitABit(1000);
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(getSearchIcon());
         inputText(getSearchIcon(), product);
         pressEnter(getSearchIcon());
     }
 
     public void clickOnProductFromGridByIndex(int index) {
-        Waiters.waitABit(1000);
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(getProductSearchIndex());
         clickOnElement(getProductSearchIndex().findElements(By.xpath(".//tr[@class='k-master-row']")).get(index));
     }
 
     public void selectOption(String status) {
+        waitUntilInvisible(1, loader);
         clickOnElement(findWebElement(By.xpath("//div[contains(@class, 'k-animation-container-shown')]//*[contains(text(), '"
                 + status + "')]")));
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
+        waitUntilInvisible(2, loader);
     }
 
     public void selectOutboundRouteCarrier(String carrier) {
         clickOnElement(findWebElement(By.xpath("//div[contains(@class, 'k-animation-container-shown')]//li[@role='option' and contains(text(), '"
                 + carrier + "')]")));
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
     }
 
     public void selectOutboundRouteOption(String option) {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         clickOnElement(findWebElement(By.xpath("//div[contains(@class, 'k-animation-container-shown')]//li[contains(text(), '"
                 + option + "') and @role='menuItem']")));
-        Waiters.waitABit(10000);
+        waitUntilInvisible(2, loader);
     }
 
     public void selectTrailerOption(String option) {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         clickOnElement(findWebElement(By.xpath("//div[contains(@class, 'k-animation-container-shown')]//li[contains(text(), '"
                         + option + "') and @role='option']")));
-        Waiters.waitABit(2000);
+        waitUntilInvisible(2, loader);
     }
 
     public void selectOutboundRouteType(String routeType) {
@@ -626,7 +668,7 @@ public class OutboundRouteSummaryPage extends BasePage {
         clickOnElement(getRouteTypeInput());
         clickOnElement(findWebElement(By.xpath("//div[contains(@class, 'k-animation-container-shown')]//*[contains(text(), '"
                         + routeType + "')]")));
-        Waiters.waitABit(2000);
+        waitUntilInvisible(2, loader);
     }
 
     public void typeScheduledDate(String scheduledDate) {
@@ -635,10 +677,11 @@ public class OutboundRouteSummaryPage extends BasePage {
         clear(getScheduledDate());
         typeText(getScheduledDate(), scheduledDate);
         pressEnter(getScheduledDate());
-        Waiters.waitABit(2000);
+       waitUntilInvisible(2, loader);
     }
 
     public void typeScheduledTime(String time) {
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitABit(2000);
         Waiters.waitForElementToBeDisplay(getScheduledTimeInput());
         doubleClick(getScheduledTimeInput());
@@ -664,6 +707,7 @@ public class OutboundRouteSummaryPage extends BasePage {
     }
 
     public void clickStatus(String status) {
+        waitUntilInvisible(2, loader);
         Waiters.waitForElementToBeDisplay(getStatusesDropDown(status));
         clickOnElement(getStatusesDropDown(status));
     }
@@ -675,19 +719,19 @@ public class OutboundRouteSummaryPage extends BasePage {
     }
 
     public void clickDoorDropdown(String door) {
-        Waiters.waitABit(2000);
+        waitUntilInvisible(1, loader);
+        Waiters.waitTillLoadingPage(getDriver());
         clickOnElement(getDoorDropDown(door));
-        Waiters.waitABit(2000);
     }
 
     public void clickTemperatureTypeDropdown(String temperatureType) {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         clickOnElement(getTemperatureTypeDropDown(temperatureType));
-        Waiters.waitABit(2000);
+        waitUntilInvisible(1, loader);
     }
 
     public void selectTemperatureType(String temperatureType) {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         clickOnElement(findWebElement(By.xpath("//div[contains(@class, 'k-animation-container-shown')]//li[contains(text(), '"
                         + temperatureType + "') and @role='option']")));
         Waiters.waitABit(2000);
@@ -713,21 +757,25 @@ public class OutboundRouteSummaryPage extends BasePage {
     }
 
     public void checkRouteByRowNumber(int index) {
-        Waiters.waitForPresenceOfElement(tableContent);
-        List<WebElement> routes = getTableContent().findElements(By.xpath(".//tr[contains(@class,'k-detail-row')]//input"));
+        waitUntilInvisible(2, loader);
+        Waiters.waitTillLoadingPage(getDriver());
+        Waiters.waitForElementToBeDisplay(tableContent);
+        List<WebElement> routes = findWebElements(By.xpath("//div[contains(@class, 'BarsContainer')]//..//input"));
         Waiters.waitABit(4000);
+        waitUntilStalenessOf(2, routes.get(index));
         clickOnElement(routes.get(index));
     }
 
     public void selectRouteByRowNumber(int index) {
-        Waiters.waitForPresenceOfElement(tableContent);
-        List<WebElement> routes = getTableContent().findElements(By.xpath(".//tr[contains(@class,'k-detail-row')]"));
+        Waiters.waitForElementToBeDisplay(tableContent);
+        List<WebElement> routes = findWebElements(By.xpath("//div[contains(@class, 'BarsContainer')]"));
         Waiters.waitABit(4000);
+        waitUntilStalenessOf(2, routes.get(index));
         clickOnElement(routes.get(index));
     }
 
     public WebElement getGridTableRowTime(int row) {
-        Waiters.waitABit(4000);
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(getTableContent());
         return getTableContent().findElements(By.xpath(".//tr[contains(@class,'k-detail-row')]//span[contains(@id, 'spnRouteTime')]"))
                 .get(row);
@@ -752,73 +800,73 @@ public class OutboundRouteSummaryPage extends BasePage {
     }
 
     public void clickAllAssignmentsCheckbox() {
-        Waiters.waitABit(3000);
+        Waiters.waitTillLoadingPage(getDriver());
         clickOnElement(getAllAssignmentsCheckbox());
     }
 
     public void clickAllTasksCheckbox() {
-        Waiters.waitABit(3000);
+        Waiters.waitTillLoadingPage(getDriver());
         clickOnElement(getAllTasksCheckbox());
     }
 
     public void clickEditTask() {
-        Waiters.waitABit(3000);
+        Waiters.waitTillLoadingPage(getDriver());
         clickOnElement(getEditTaskButton());
     }
 
     public void clickReprocessTask() {
-        Waiters.waitABit(3000);
+        Waiters.waitTillLoadingPage(getDriver());
         clickOnElement(getReprocessTaskButton());
     }
 
     public void clickDeleteTask() {
-        Waiters.waitABit(3000);
+        Waiters.waitTillLoadingPage(getDriver());
         clickOnElement(getDeleteTaskButton());
     }
 
     public void clickTopOffTask() {
-        Waiters.waitABit(3000);
+        Waiters.waitTillLoadingPage(getDriver());
         clickOnElement(getTopOffTaskButton());
     }
 
     public void clickMoveToNewAssignmentRadioButton() {
-        Waiters.waitABit(3000);
+        Waiters.waitTillLoadingPage(getDriver());
         clickOnElement(getMoveToNewAssignmentRadioButton());
     }
 
     public void clickMoveToExistingAssignmentRadioButton() {
-        Waiters.waitABit(3000);
+        Waiters.waitTillLoadingPage(getDriver());
         clickOnElement(getMoveToExistingAssignmentRadioButton());
     }
 
     public void clickMoveTask() {
-        Waiters.waitABit(3000);
+        Waiters.waitTillLoadingPage(getDriver());
         clickOnElement(getMoveTaskButton());
     }
 
     public void clickMoveAssignment() {
-        Waiters.waitABit(3000);
+        Waiters.waitTillLoadingPage(getDriver());
         clickOnElement(getMoveAssignmentButton());
     }
 
     public void clickDoorDropDown(String door) {
-        Waiters.waitABit(3000);
+        Waiters.waitTillLoadingPage(getDriver());
         clickOnElement(getSelectDoorDropDown(door));
     }
 
     public void selectRouteAssignmentByNumber(int num) {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(getAssignmentsGridTable());
         clickOnElement(getAssignmentsGridTable().findElements(By.xpath(".//tr[contains(@class, 'k-master-row')]")).get(num));
     }
 
     public void clickTopOffModalZoneDropdown() {
-        Waiters.waitABit(3000);
+        Waiters.waitTillLoadingPage(getDriver());
         clickOnElement(getTopOffModalZoneDropDown());
     }
 
     public void selectTopOffModalZoneDropdown(String option) {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         clickOnElement(getTopOffModalZoneDropDown());
         clickOnElement(findWebElement(By.xpath("//div[contains(@class, 'k-animation-container-shown')]//li[contains(text(), '"
                         + option + "') and @role='option']")));
@@ -826,17 +874,17 @@ public class OutboundRouteSummaryPage extends BasePage {
     }
 
     public void clickSave() {
-        Waiters.waitABit(3000);
+        Waiters.waitTillLoadingPage(getDriver());
         clickOnElement(getSaveButton());
     }
 
     public void clickOrderTypeColumn(String orderType, int index) {
-        Waiters.waitABit(3000);
+        Waiters.waitTillLoadingPage(getDriver());
         clickOnElement(getOrderTypeRowsByName(orderType).get(index));
     }
 
     public void checkTasksCheckboxByIndex(int index) {
-        Waiters.waitABit(3000);
+        Waiters.waitTillLoadingPage(getDriver());
         List<WebElement> checkboxes = getTasksGridTable().findElements(By.xpath(".//input"));
         clickOnElement(checkboxes.get(index));
     }
@@ -873,12 +921,12 @@ public class OutboundRouteSummaryPage extends BasePage {
     }
 
     public String getScheduledDateValue() {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         return getValue(getScheduledDate());
     }
 
     public String getScheduledTimeValue() {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         return getValue(getScheduledTimeInput());
     }
 
@@ -1119,6 +1167,18 @@ public class OutboundRouteSummaryPage extends BasePage {
     public boolean isDataAlt3Displayed() {
         Waiters.waitForElementToBeDisplay(getDataAlt3());
         return isElementDisplay(getDataAlt3());
+    }
+
+    public boolean isRouteLabelDisplayed() {
+        Waiters.waitABit(2000);
+        Waiters.waitForElementToBeDisplay(getRouteLabel());
+        return isElementDisplay(getRouteLabel());
+    }
+
+    public boolean isEnterNameInputDisplayed() {
+        Waiters.waitABit(2000);
+        Waiters.waitForElementToBeDisplay(getEnterNameInput());
+        return isElementDisplay(getEnterNameInput());
     }
 
     public boolean isSourceListDisplayed() {
@@ -2026,4 +2086,8 @@ public class OutboundRouteSummaryPage extends BasePage {
     public WebElement getSourceShipperColumn() { return findWebElement(sourceShipperColumn); }
 
     public WebElement getDropdownList() { return findWebElement(dropdownList); }
+
+    public WebElement getRouteLabel() { return findWebElement(routeLabel); }
+
+    public WebElement getEnterNameInput() { return findWebElement(enterNameInput); }
 }

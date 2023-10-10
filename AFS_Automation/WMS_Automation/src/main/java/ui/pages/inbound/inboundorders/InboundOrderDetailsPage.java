@@ -236,7 +236,7 @@ public class InboundOrderDetailsPage extends BasePage {
 
     public void selectOrderByOrderNumber(int orderNum) {
         Waiters.waitTillLoadingPage(getDriver());
-        Waiters.waitForPresenceOfElement(tableContent);
+        Waiters.waitForElementToBeDisplay(tableContent);
         List<WebElement> orders = findWebElements(By.xpath("//tr[contains(@class, 'k-detail-row')]//td[contains(@class, 'k-detail-cell')]"));
         WebElement order = orders.get(orderNum);
         clickOnElement(order);
@@ -326,7 +326,7 @@ public class InboundOrderDetailsPage extends BasePage {
     }
 
     public String getDialogPopUpText() {
-        Waiters.waitForPresenceOfElement(".k-dialog-title");
+        Waiters.waitForElementToBeDisplay(By.cssSelector(".k-dialog-title"));
         return getText(getDialogPopup());
     }
 
