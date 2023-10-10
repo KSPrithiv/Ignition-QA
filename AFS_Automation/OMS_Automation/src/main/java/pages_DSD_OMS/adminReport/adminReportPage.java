@@ -58,7 +58,7 @@ public class adminReportPage
         PageFactory.initElements(driver,this);
     }
 
-    public  void clickOnStartCalender()
+    public void clickOnStartCalender()
     {
         exists=false;
         try

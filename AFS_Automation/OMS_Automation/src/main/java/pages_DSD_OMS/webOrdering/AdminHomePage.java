@@ -48,7 +48,7 @@ public class AdminHomePage {
         WebElement WebEle;
         String status = null;
 
-       status = HelpersMethod.returnDocumentStatus(driver);
+        status = HelpersMethod.returnDocumentStatus(driver);
         if (status.equals("loading")) {
             HelpersMethod.waitTillLoadingPage(driver);
         }
@@ -537,4 +537,3 @@ public class AdminHomePage {
         } catch (Exception e) {}
     }
 }
-

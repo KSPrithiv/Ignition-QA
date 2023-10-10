@@ -17,8 +17,8 @@ import util.TestBase;
 import java.time.Duration;
 
 /**
-        * @Project OMS_DSD
-        * @Author Divya.Ramadas@afsi.com
+ * @Project OMS_DSD
+ * @Author Divya.Ramadas@afsi.com
  */
 public class PaymentInfoPage
 {
@@ -54,26 +54,26 @@ public class PaymentInfoPage
         PageFactory.initElements(driver,this);
     }
 
-//Actions
-public void HandleError_Page()
-{
-    try
+    //Actions
+    public void HandleError_Page()
     {
-        String URL = HelpersMethod.gettingURL(driver);
-        if (URL.contains("cpError"))
+        try
         {
-            HelpersMethod.NavigateBack(driver);
-            URL = HelpersMethod.gettingURL(driver);
+            String URL = HelpersMethod.gettingURL(driver);
+            if (URL.contains("cpError"))
+            {
+                HelpersMethod.NavigateBack(driver);
+                URL = HelpersMethod.gettingURL(driver);
+            }
+            if (HelpersMethod.gettingURL(driver).contains("CPAdmin"))
+            {
+                HomePage homepage = new HomePage(driver, scenario);
+                homepage.navigateToClientSide();
+                NavigateToPaymentInfo();
+            }
         }
-        if (HelpersMethod.gettingURL(driver).contains("CPAdmin"))
-        {
-            HomePage homepage = new HomePage(driver, scenario);
-            homepage.navigateToClientSide();
-            NavigateToPaymentInfo();
-        }
+        catch (Exception e) {}
     }
-    catch (Exception e) {}
-}
 
     public void Refresh_Page()
     {
@@ -152,7 +152,7 @@ public void HandleError_Page()
                 WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
                 HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100000);
             }
-           // HelpersMethod.ActClearKey(driver, CustomerAcc,10);
+            // HelpersMethod.ActClearKey(driver, CustomerAcc,10);
             HelpersMethod.ActSendKey(driver,CustomerAcc,1000, TestBase.testEnvironment.get_Account());
             WebElement AccDrop = HelpersMethod.FindByElement(driver, "xpath", "//li[contains(@id,'option-')]");
             HelpersMethod.WebElementFromDropDown(driver, "//div[contains(@class,'k-list-container ')]/descendant::li", "xpath", AccDrop.getText());

@@ -15,7 +15,7 @@ import org.testng.Assert;
 
 import java.util.List;
 
-public class FeaturedProdSettingsPage 
+public class FeaturedProdSettingsPage
 {
     /* Created by Divya.Ramadas@afsi.com */
     WebDriver driver;
@@ -52,7 +52,7 @@ public class FeaturedProdSettingsPage
             HelpersMethod.waitTillLoadingPage(driver);
         }
         Thread.sleep(2000);
-       // new WebDriverWait(driver,100).until(ExpectedConditions.elementToBeClickable(By.xpath("//span[contains(@class,'k-icon k-i-arrow-chevron-down i-header-toolbar-expandable-button__icon')]")));
+        // new WebDriverWait(driver,100).until(ExpectedConditions.elementToBeClickable(By.xpath("//span[contains(@class,'k-icon k-i-arrow-chevron-down i-header-toolbar-expandable-button__icon')]")));
 
         if(HelpersMethod.IsExists("//div[@class='loader']",driver))
         {
@@ -109,17 +109,17 @@ public class FeaturedProdSettingsPage
             length=ArrayValues.size();
             if(!(MaxVal==length))
             {
-              for(WebElement ArrayVal:ArrayValues)
-              {
-                  act.moveToElement(ArrayVal).build().perform();
-                  ArrayText=ArrayVal.getText();
-                  if(ArrayText.equals(Integer.toString(MaxVal)))
-                  {
-                    act.click(ArrayVal).build().perform();
-                    exists=true;
-                    break;
-                  }
-              }
+                for(WebElement ArrayVal:ArrayValues)
+                {
+                    act.moveToElement(ArrayVal).build().perform();
+                    ArrayText=ArrayVal.getText();
+                    if(ArrayText.equals(Integer.toString(MaxVal)))
+                    {
+                        act.click(ArrayVal).build().perform();
+                        exists=true;
+                        break;
+                    }
+                }
             }
             else
             {

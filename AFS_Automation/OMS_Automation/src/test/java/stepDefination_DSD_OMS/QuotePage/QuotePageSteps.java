@@ -50,6 +50,7 @@ public class QuotePageSteps
     static QuoteSummaryPage quoteSummaryPage;
     static CheckOutSummaryPage summary;
     static CreateOGPage createOGPage;
+    static NewOrderEntryPage newOE;
 
     @Before
     public void LaunchBrowser1(Scenario scenario) throws Exception
@@ -137,11 +138,11 @@ public class QuotePageSteps
     @Then("Enter Pro# in Quick Product Entry area in New Qutoe page and enter Qty for Case and Unit")
     public void enterProInQuickProductEntryAreaInNewQutoePageAndEnterQtyForCaseAndUnit(DataTable tabledata)
     {
-      List<List<String>> QtyValue = tabledata.asLists(String.class);
-      newQuotePage=new NewQuotePage(driver,scenario);
-      newQuotePage.validateNewQuote();
-      newQuotePage.EnterQuickProductNo();
-      newQuotePage.QtyInGrid(QtyValue.get(0).get(0),QtyValue.get(0).get(1));
+        List<List<String>> QtyValue = tabledata.asLists(String.class);
+        newQuotePage=new NewQuotePage(driver,scenario);
+        newQuotePage.validateNewQuote();
+        newQuotePage.EnterQuickProductNo();
+        newQuotePage.QtyInGrid(QtyValue.get(0).get(0),QtyValue.get(0).get(1));
     }
 
     @Then("Click on create button in New Quote page")
@@ -173,6 +174,7 @@ public class QuotePageSteps
     public void verifyUserIsOnOrderEntryPageAndVerifyQuoteIsExisting() throws InterruptedException, AWTException
     {
         orderEntryPage=new OrderEntryPage(driver,scenario);
+        orderEntryPage.ValidateOE();
         orderEntryPage.SearchBoxAction(Quote_No);
         orderEntryPage.ValidateQuoteOrder(Quote_No);
     }
@@ -192,13 +194,13 @@ public class QuotePageSteps
     }
 
     @And("User should be navigated to Quote summary page and click on Convert Order button")
-    public void userShouldBeNavigatedToQuoteSummaryPageAndClickOnConvertOrderButton()
+    public void userShouldBeNavigatedToQuoteSummaryPageAndClickOnConvertOrderButton() throws InterruptedException, AWTException
     {
         quoteSummaryPage=new QuoteSummaryPage(driver,scenario);
         quoteSummaryPage.ValidateQuoteSummary();
         quoteSummaryPage.ClickOnConvertOrder();
-        quoteSummaryPage.validateConvertOrderDialog();
-        quoteSummaryPage.clickOnYesInConvertOrderDialog();
+        newOE=new NewOrderEntryPage(driver,scenario);
+        newOE.ValidateNewOE();
     }
 
     @And("User should be navigated to Quote summary page and click on cancel button")

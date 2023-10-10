@@ -21,7 +21,6 @@ public class MyAccountPageStep {
         static boolean flag = false;
         static String currentURL = null;
 
-
         static LoginPage loginpage;
         static HomePage homepage;
 
@@ -32,7 +31,6 @@ public class MyAccountPageStep {
             this.scenario = scenario;
             TestBase driver1 = TestBase.getInstanceOfDriver();
             driver = driver1.getDriver();
-
         }
 
 

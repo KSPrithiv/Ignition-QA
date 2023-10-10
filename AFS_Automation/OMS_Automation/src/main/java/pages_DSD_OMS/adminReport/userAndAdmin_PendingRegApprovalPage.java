@@ -18,63 +18,63 @@ import java.util.List;
  */
 public class userAndAdmin_PendingRegApprovalPage
 {
-        /* Created by Divya.Ramadas@afsi.com */
-        WebDriver driver;
-        Scenario scenario;
-        static boolean exists=false;
+    /* Created by Divya.Ramadas@afsi.com */
+    WebDriver driver;
+    Scenario scenario;
+    static boolean exists=false;
 
-        @FindBy(id="CPUsersPendingRegistrationsConfirmation")
-        private WebElement pendingReg;
+    @FindBy(id="CPUsersPendingRegistrationsConfirmation")
+    private WebElement pendingReg;
 
-        @FindBy(xpath="//button[text()='Deny']")
-        private WebElement denyButton;
+    @FindBy(xpath="//button[text()='Deny']")
+    private WebElement denyButton;
 
-        @FindBy(xpath="//button[text()='Confirm']")
-        private WebElement confirmButton;
+    @FindBy(xpath="//button[text()='Confirm']")
+    private WebElement confirmButton;
 
-        public userAndAdmin_PendingRegApprovalPage(WebDriver driver,Scenario scenario)
+    public userAndAdmin_PendingRegApprovalPage(WebDriver driver,Scenario scenario)
+    {
+        this.driver=driver;
+        this.scenario=scenario;
+        PageFactory.initElements(driver,this);
+    }
+
+    public void clickOnPendingRegDropDown()
+    {
+        try
         {
-            this.driver=driver;
-            this.scenario=scenario;
-            PageFactory.initElements(driver,this);
+            HelpersMethod.ActClick(driver,pendingReg,1000);
         }
+        catch (Exception e){}
+    }
 
-        public void clickOnPendingRegDropDown()
+    public void selectUserPendingReg()
+    {
+        try
         {
-            try
+            WebElement WebEle=null;
+            String Opt=null;
+            Actions act1= new Actions(driver);
+            HelpersMethod.waitTillElementLocatedDisplayed(driver,"xpath","//div[contains(@class,'k-popup k-child-animation-container')]",10000);
+            // to fetch the web element of the modal container
+            WebElement menuContainer = HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-popup k-child-animation-container')]");
+            List<WebElement> Options=menuContainer.findElements (By.xpath(".//ul/li"));
+            for(int i=0;i<=Options.size()-1;i++)
             {
-                HelpersMethod.ActClick(driver,pendingReg,1000);
-            }
-            catch (Exception e){}
-        }
-
-        public void selectUserPendingReg()
-        {
-            try
-            {
-                WebElement WebEle=null;
-                String Opt=null;
-                Actions act1= new Actions(driver);
-                HelpersMethod.waitTillElementLocatedDisplayed(driver,"xpath","//div[contains(@class,'k-popup k-child-animation-container')]",10000);
-                // to fetch the web element of the modal container
-                WebElement menuContainer = HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-popup k-child-animation-container')]");
-                List<WebElement> Options=menuContainer.findElements (By.xpath(".//ul/li"));
-                for(int i=0;i<=Options.size()-1;i++)
+                WebEle = Options.get(i);
+                act1.moveToElement(WebEle).build().perform();
+                Opt = WebEle.getText();
+                if (i == 0)
                 {
-                    WebEle = Options.get(i);
                     act1.moveToElement(WebEle).build().perform();
-                    Opt = WebEle.getText();
-                    if (i == 0)
-                    {
-                        act1.moveToElement(WebEle).build().perform();
-                        act1.click(WebEle).build().perform();
-                        break;
-                    }
+                    act1.click(WebEle).build().perform();
+                    break;
                 }
-                scenario.log("USER SELECTED FROM DROP DOWN "+Opt);
             }
-            catch (Exception e){}
+            scenario.log("USER SELECTED FROM DROP DOWN "+Opt);
         }
+        catch (Exception e){}
+    }
 
 
     public void clickOnDeny()

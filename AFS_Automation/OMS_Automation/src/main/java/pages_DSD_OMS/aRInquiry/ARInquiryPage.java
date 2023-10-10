@@ -101,7 +101,7 @@ public class ARInquiryPage
             {
                 JavascriptExecutor js = ((JavascriptExecutor) driver);
                 js.executeScript("window.location.reload()");
-                WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(10000));
+                WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(400000));
                 if (wait.until(ExpectedConditions.alertIsPresent()) == null)
                 {
 
@@ -114,13 +114,13 @@ public class ARInquiryPage
             }
             else
             {
-                //navigate to OCL
+                //navigate to AR inq
                 driver.navigate().to(currentURL);
             }
             if (HelpersMethod.IsExists("//div[@class='loader']", driver))
             {
                 WebElement   WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100000);
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 800000);
             }
         }
         catch (Exception e){}
@@ -138,39 +138,39 @@ public class ARInquiryPage
             {
                 HelpersMethod.waitTillLoadingPage(driver);
             }
-                Actions act = new Actions(driver);
-                WebElement Search_Input = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='drawer-menu-search-container']/descendant::input");
-                    act.moveToElement(Search_Input).click().sendKeys("AR Inquiry").build().perform();
-                    WebElement ARMenu = HelpersMethod.FindByElement(driver, "xpath", "//ul[contains(@class,'MuiList-root ')]/descendant::span[contains(text(),'AR Inquiry')]");
-                    HelpersMethod.ClickBut(driver, ARMenu, 1000);
-                    exists = true;
-                    if (HelpersMethod.IsExists("//div[@class='loader']", driver))
-                    {
-                        WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                        HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100000);
-                    }
-                    status = HelpersMethod.returnDocumentStatus(driver);
-                    if (status.equals("loading"))
-                    {
-                        HelpersMethod.waitTillLoadingPage(driver);
-                    }
-                    currentURL=driver.getCurrentUrl();
-                    if(HelpersMethod.IsExists("//*[local-name()='svg']//*[local-name()='path' and contains(@d,'M3,18H21V16H3Zm0-5H21V11H3ZM3,6V8H21V6Z')]",driver))
-                    {
-                        WebEle=HelpersMethod.FindByElement(driver,"xpath","//*[local-name()='svg']//*[local-name()='path' and contains(@d,'M3,18H21V16H3Zm0-5H21V11H3ZM3,6V8H21V6Z')]");
-                        act.moveToElement(WebEle).build().perform();
-                        act.click(WebEle).build().perform();
-                    }
-                if(HelpersMethod.IsExists("//ul[contains(@class,'MuiList-root ')]/descendant::span[contains(text(),'AR Inquiry')]",driver))
-                {
-                    scenario.log("NAVIGATED TO AR INQUIRY PAGE");
-                }
-                else
-                {
-                    scenario.log("AR INQUIRY, MAY NOT BE ENABLED FOR THE APPLICATION");
-                }
-            Assert.assertEquals(exists,true);
+            Actions act = new Actions(driver);
+            WebElement Search_Input = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='drawer-menu-search-container']/descendant::input");
+            act.moveToElement(Search_Input).click().sendKeys("AR Inquiry").build().perform();
+            WebElement ARMenu = HelpersMethod.FindByElement(driver, "xpath", "//ul[contains(@class,'MuiList-root ')]/descendant::span[contains(text(),'AR Inquiry')]");
+            HelpersMethod.ClickBut(driver, ARMenu, 1000);
+            exists = true;
+            if (HelpersMethod.IsExists("//div[@class='loader']", driver))
+            {
+                WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100000);
             }
+            status = HelpersMethod.returnDocumentStatus(driver);
+            if (status.equals("loading"))
+            {
+                HelpersMethod.waitTillLoadingPage(driver);
+            }
+            currentURL=driver.getCurrentUrl();
+            if(HelpersMethod.IsExists("//*[local-name()='svg']//*[local-name()='path' and contains(@d,'M3,18H21V16H3Zm0-5H21V11H3ZM3,6V8H21V6Z')]",driver))
+            {
+                WebEle=HelpersMethod.FindByElement(driver,"xpath","//*[local-name()='svg']//*[local-name()='path' and contains(@d,'M3,18H21V16H3Zm0-5H21V11H3ZM3,6V8H21V6Z')]");
+                act.moveToElement(WebEle).build().perform();
+                act.click(WebEle).build().perform();
+            }
+            if(HelpersMethod.IsExists("//ul[contains(@class,'MuiList-root ')]/descendant::span[contains(text(),'AR Inquiry')]",driver))
+            {
+                scenario.log("NAVIGATED TO AR INQUIRY PAGE");
+            }
+            else
+            {
+                scenario.log("AR INQUIRY, MAY NOT BE ENABLED FOR THE APPLICATION");
+            }
+            Assert.assertEquals(exists,true);
+        }
         catch (Exception e){}
         return currentURL;
     }

@@ -129,7 +129,6 @@ public class CatalogPageStep
         orderpage = new OrderEntryPage(driver, scenario);
         if(flag1==false)
         {
-            orderpage = new OrderEntryPage(driver, scenario);
             orderpage.NavigateToOrderEntry();
         }
     }
@@ -428,7 +427,7 @@ public class CatalogPageStep
                 catalogpage = new CatalogPage(driver, scenario);
                 catalogpage.ClickImage();
                 productdesctiptionpage = new ProductDescriptionPage(driver, scenario);
-               if(HelpersMethod.IsExists("//div[@class='loader']",driver))
+                if(HelpersMethod.IsExists("//div[@class='loader']",driver))
                 {
                     WebElement WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
                     HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 20000);

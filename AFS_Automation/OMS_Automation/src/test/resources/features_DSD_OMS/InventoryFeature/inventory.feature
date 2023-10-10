@@ -34,5 +34,5 @@ Feature: Inventory
     Then User should change store inventroy dropdown value
     And User enters product#, "<Case>", "<Unit>", "<Sequence>" in quick product entry
     Examples:
-    |Case|Unit|Sequence|
-    | 20 | 10 |  2     |
+      |Case|Unit|Sequence|
+      | 20 | 10 |  2     |

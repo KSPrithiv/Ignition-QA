@@ -142,26 +142,26 @@ public class ParOrderPageStep
             Assert.assertEquals(exists,true);
             flag2=true;
         }
-            parOrderPage = new ParOrderPage(driver, scenario);
-            parOrderPage.Refresh_Page(currentURL);
-            orderGuidePage=new OrderGuidePage(driver,scenario);
-            exists=false;
-            exists = orderGuidePage.ValidateOG();
-            Assert.assertEquals(exists, true);
-            //Code to select OG from grid
-            exists = false;
-            exists = orderGuidePage.OGSearchBox(OG);
-            Assert.assertEquals(exists, true);
-            orderGuidePage.SearchOGSelect(OG);
+        parOrderPage = new ParOrderPage(driver, scenario);
+        parOrderPage.Refresh_Page(currentURL);
+        orderGuidePage=new OrderGuidePage(driver,scenario);
+        exists=false;
+        exists = orderGuidePage.ValidateOG();
+        Assert.assertEquals(exists, true);
+        //Code to select OG from grid
+        exists = false;
+        exists = orderGuidePage.OGSearchBox(OG);
+        Assert.assertEquals(exists, true);
+        orderGuidePage.SearchOGSelect(OG);
     }
 
     @Then("User clicks on ParList tab and Click on New Par list button")
     public void userClicksOnParListTabAndClickOnNewParListButton() throws InterruptedException, AWTException
     {
-            exists = false;
-            parOrderPage = new ParOrderPage(driver, scenario);
-            parOrderPage.ClickParTab();
-            parOrderPage.ValidateParlistTab();
+        exists = false;
+        parOrderPage = new ParOrderPage(driver, scenario);
+        parOrderPage.ClickParTab();
+        parOrderPage.ValidateParlistTab();
 
        /* orderpage=new OrderEntryPage(driver,scenario);
         //orderpage.HandleError_Page();
@@ -326,5 +326,4 @@ public class ParOrderPageStep
         parOrderPage.clearFilterOption();
     }
 }
-
 

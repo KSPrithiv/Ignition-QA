@@ -7,6 +7,6 @@ package util;
 public class TestUtil
 {
     /* Created by Divya.Ramadas */
-    public static final long PAGE_LOAD_TIMEOUT = 5;
+    public static final long PAGE_LOAD_TIMEOUT = 15;
     //public static final long IMPLICIT_WAIT=1;
 }

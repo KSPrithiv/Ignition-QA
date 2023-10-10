@@ -141,22 +141,22 @@ Feature: Quotes1
       |QuoteName|
       | Quote123|
 
-    @SkipQuoteFromOE
-    Scenario: Test scenario to verify skip in Quote
-      Given User must be on Order Entry Page
-      Then Change the date 4 days after current date
-      And User verifies skip button in OE page when Quotes is already created
-      Then User should reset the delivery date to current date
+  @SkipQuoteFromOE
+  Scenario: Test scenario to verify skip in Quote
+    Given User must be on Order Entry Page
+    Then Change the date 4 days after current date
+    And User verifies skip button in OE page when Quotes is already created
+    Then User should reset the delivery date to current date
 
-    @SkipQuoteInNewOE
-    Scenario: Test scenario to verify skip in New OE page, when Quote is already existing
-      Given User must be on Order Entry Page
-      Then Change the date 4 days after current date
-      Then User must click Start Order button
-      Then User should make selection between Pending order or Start New order
-      Then User should select Note from popup and Order guide from popup for quote
-      And User verifies Skip button in New OE page
-      Then User should navigate to OE page, User should select the current date as delivery date
+  @SkipQuoteInNewOE
+  Scenario: Test scenario to verify skip in New OE page, when Quote is already existing
+    Given User must be on Order Entry Page
+    Then Change the date 4 days after current date
+    Then User must click Start Order button
+    Then User should make selection between Pending order or Start New order
+    Then User should select Note from popup and Order guide from popup for quote
+    And User verifies Skip button in New OE page
+    Then User should navigate to OE page, User should select the current date as delivery date
 
   @BogoItemsInQuote
   Scenario Outline: Test scenario for adding bogo item to quote and verify the behaviour

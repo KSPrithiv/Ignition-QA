@@ -15,8 +15,8 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 /**
-        * @Project DSD_OMS
-        * @Author Divya.Ramadas@afsi.com
+ * @Project DSD_OMS
+ * @Author Divya.Ramadas@afsi.com
  */
 public class OrderGuidePageStep2
 {
@@ -159,10 +159,10 @@ public class OrderGuidePageStep2
         orderGuidePage.selectSubMarketRef();
     }
 
-    @And("User removes filter from OG page")
-    public void userRemovesFilterFromOGPage() throws InterruptedException, AWTException
+    @And("Clear filter to display both active and inactive OG")
+    public void clearFilterToDisplayBothActiveAndInactiveOG() throws InterruptedException, AWTException
     {
         orderGuidePage=new OrderGuidePage(driver,scenario);
-        orderGuidePage.clearAddfilter();
+        orderGuidePage.clickAddFilterClear();
     }
 }

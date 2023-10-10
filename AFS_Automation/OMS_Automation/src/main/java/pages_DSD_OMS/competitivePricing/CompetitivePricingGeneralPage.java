@@ -567,7 +567,7 @@ public class CompetitivePricingGeneralPage
         List <WebElement> Products=null;
         try
         {
-           // List<String> Prods= DataBaseConnection.DataConn1(TestBase.testEnvironment.getMultiple_Prod_Sql());
+            // List<String> Prods= DataBaseConnection.DataConn1(TestBase.testEnvironment.getMultiple_Prod_Sql());
             if(HelpersMethod.IsExists("//div[contains(text(),'Product index')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
             {
                 WebElement productIndex = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-widget k-window k-dialog')]");
@@ -713,7 +713,7 @@ public class CompetitivePricingGeneralPage
         int i=0;
         try
         {
-           List<WebElement> tableHeads=HelpersMethod.FindByElements(driver,"xpath","//th[contains(@class,'k-header')]/descendant::span[@class='k-column-title']");
+            List<WebElement> tableHeads=HelpersMethod.FindByElements(driver,"xpath","//th[contains(@class,'k-header')]/descendant::span[@class='k-column-title']");
             for (WebElement tablehead:tableHeads)
             {
                 i++;

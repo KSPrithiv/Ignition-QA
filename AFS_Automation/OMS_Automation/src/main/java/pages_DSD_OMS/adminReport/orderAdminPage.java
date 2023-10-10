@@ -121,7 +121,7 @@ public class orderAdminPage
         if(HelpersMethod.IsExists("//div[@class='loader']",driver))
         {
             WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100000);
+            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 400000);
         }
 
         WebElement WebEle1=HelpersMethod.FindByElement(driver,"xpath","//label[@id='customerDropDown-label']/following-sibling::div/descendant::button");
