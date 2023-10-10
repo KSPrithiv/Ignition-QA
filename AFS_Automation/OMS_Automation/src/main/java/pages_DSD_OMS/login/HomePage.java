@@ -45,7 +45,7 @@ public class HomePage
         WebElement WebEle;
         try
         {
-           String status = HelpersMethod.returnDocumentStatus(driver);
+            String status = HelpersMethod.returnDocumentStatus(driver);
             if (status.equals("loading"))
             {
                 HelpersMethod.waitTillLoadingPage(driver);

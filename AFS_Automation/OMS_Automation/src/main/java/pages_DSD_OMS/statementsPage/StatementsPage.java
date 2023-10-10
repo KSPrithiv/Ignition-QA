@@ -92,34 +92,34 @@ public class StatementsPage
 
             Actions act = new Actions(driver);
             WebElement Search_Input = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='drawer-menu-search-container']/descendant::input");
-                act.moveToElement(Search_Input).click().sendKeys("Statements").build().perform();
-                WebElement StaementMenu = HelpersMethod.FindByElement(driver, "xpath", "//ul[contains(@class,'MuiList-root ')]/descendant::span[contains(text(),'Statements')]");
-                HelpersMethod.ClickBut(driver, StaementMenu, 2000);
-                Thread.sleep(4000);
-                exists = true;
+            act.moveToElement(Search_Input).click().sendKeys("Statements").build().perform();
+            WebElement StaementMenu = HelpersMethod.FindByElement(driver, "xpath", "//ul[contains(@class,'MuiList-root ')]/descendant::span[contains(text(),'Statements')]");
+            HelpersMethod.ClickBut(driver, StaementMenu, 2000);
+            Thread.sleep(4000);
+            exists = true;
             status = HelpersMethod.returnDocumentStatus(driver);
             if (status.equals("loading"))
             {
                 HelpersMethod.waitTillLoadingPage(driver);
             }
-                if (HelpersMethod.IsExists("//div[@class='loader']", driver))
-                {
-                    WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100000);
-                }
-                status = HelpersMethod.returnDocumentStatus(driver);
-                if (status.equals("loading"))
-                {
-                    HelpersMethod.waitTillLoadingPage(driver);
-                }
-                if(HelpersMethod.IsExists("//*[local-name()='svg']//*[local-name()='path' and contains(@d,'M3,18H21V16H3Zm0-5H21V11H3ZM3,6V8H21V6Z')]",driver))
-                {
-                    WebEle=HelpersMethod.FindByElement(driver,"xpath","//*[local-name()='svg']//*[local-name()='path' and contains(@d,'M3,18H21V16H3Zm0-5H21V11H3ZM3,6V8H21V6Z')]");
-                    act.moveToElement(WebEle).build().perform();
-                    act.click(WebEle).build().perform();
-                }
-                currentURL=driver.getCurrentUrl();
-                scenario.log(currentURL);
+            if (HelpersMethod.IsExists("//div[@class='loader']", driver))
+            {
+                WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100000);
+            }
+            status = HelpersMethod.returnDocumentStatus(driver);
+            if (status.equals("loading"))
+            {
+                HelpersMethod.waitTillLoadingPage(driver);
+            }
+            if(HelpersMethod.IsExists("//*[local-name()='svg']//*[local-name()='path' and contains(@d,'M3,18H21V16H3Zm0-5H21V11H3ZM3,6V8H21V6Z')]",driver))
+            {
+                WebEle=HelpersMethod.FindByElement(driver,"xpath","//*[local-name()='svg']//*[local-name()='path' and contains(@d,'M3,18H21V16H3Zm0-5H21V11H3ZM3,6V8H21V6Z')]");
+                act.moveToElement(WebEle).build().perform();
+                act.click(WebEle).build().perform();
+            }
+            currentURL=driver.getCurrentUrl();
+            scenario.log(currentURL);
             if(HelpersMethod.IsExists("//ul[contains(@class,'MuiList-root ')]/descendant::span[contains(text(),'Statements')]",driver))
             {
                 scenario.log("NAVIGATED TO STATEMENTS PAGE");
@@ -338,14 +338,14 @@ public class StatementsPage
             pMonth=HelpersMethod.FindByElement(driver,"xpath","//span[@id='ddlMonth']/span[contains(@class,'input')]").getText();
             scenario.log("MONTH AFTER CHANING: "+pMonth);
             if(prMonth.equals(pMonth))
-        {
-            scenario.log("FAILED TO CHANGE MONTH");
-            exists = false;
-        }
-        else if(!prMonth.equals(pMonth))
-        {
-            exists=true;
-        }
+            {
+                scenario.log("FAILED TO CHANGE MONTH");
+                exists = false;
+            }
+            else if(!prMonth.equals(pMonth))
+            {
+                exists=true;
+            }
             Assert.assertEquals(exists,true);
         }
         catch (Exception e){}
@@ -390,7 +390,7 @@ public class StatementsPage
             if(prDate.equals(pDate))
             {
                 scenario.log("FAILED TO CHANGE DATE");
-               exists=false;
+                exists=false;
             }
             else if(!prDate.equals(pDate))
             {

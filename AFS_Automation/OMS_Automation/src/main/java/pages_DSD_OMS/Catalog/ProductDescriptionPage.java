@@ -188,21 +188,18 @@ public class ProductDescriptionPage
                 HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 200000);
             }
 
-           if(HelpersMethod.IsExists("//span[contains(text(),'Frequently bought together')]",driver))
-           {
-               WebElement frequentDetails=HelpersMethod.FindByElement(driver,"xpath","//span[contains(text(),'Frequently bought together')]");
-               HelpersMethod.ScrollElement(driver,frequentDetails);
-               List<WebElement> Product_Names = HelpersMethod.FindByElements(driver, "xpath", "//div[@id='products-may-like-card']/descendant::div[@class='product-description']/a");
-               for (WebElement Prod_Name : Product_Names) {
-                   String Prod_Text = Prod_Name.getText();
-                   scenario.log("PRODUCT FOUND IS: " + Prod_Text);
-               }
-               exists = true;
-           }
-           else
-           {
-               scenario.log("FREQUENTLY BOUGHT TOGETHER PRODUCTS ARE NOT DISPLAYED, CHECK ADMIN SETTINGS");
-           }
+            if(HelpersMethod.IsExists("//span[contains(text(),'Frequently bought together')]",driver)) {
+                List<WebElement> Product_Names = HelpersMethod.FindByElements(driver, "xpath", "//div[@id='products-may-like-card']/descendant::div[@class='product-description']/a");
+                for (WebElement Prod_Name : Product_Names) {
+                    String Prod_Text = Prod_Name.getText();
+                    scenario.log("PRODUCT FOUND IS: " + Prod_Text);
+                }
+                exists = true;
+            }
+            else
+            {
+                scenario.log("FREQUENTLY BOUGHT TOGETHER PRODUCTS ARE NOT DISPLAYED, CHECK ADMIN SETTINGS");
+            }
             Assert.assertEquals(exists,true);
         }
         catch (Exception e){}

@@ -19,6 +19,7 @@ import pages_DSD_OMS.standingOrder.NewStandingOrderPage;
 import util.DataBaseConnection;
 import util.TestBase;
 
+import javax.enterprise.inject.New;
 import java.awt.*;
 import java.sql.SQLException;
 import java.text.ParseException;
@@ -27,8 +28,8 @@ import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 /**
-        * @Project DSD_OMS
-        * @Author Divya.Ramadas@afsi.com
+ * @Project DSD_OMS
+ * @Author Divya.Ramadas@afsi.com
  */
 
 public class StandingOrderPageSteps
@@ -137,6 +138,8 @@ public class StandingOrderPageSteps
     @And("User click on Start standing order button and selects start and end date from popup")
     public void userClickOnStartStandingOrderButtonAndSelectsStartAndEndDateFromPopup() throws InterruptedException, AWTException
     {
+        standingOrder=new NewStandingOrderPage(driver,scenario);
+        standingOrder.validateStandingOrder();
         standingOrderCard=new NewStandingOrderCard(driver,scenario);
         standingOrderCard.ClickOnNewStandingOrderArrow();
         standingOrderCard.ClickOnStartStandingOrder();
@@ -144,8 +147,8 @@ public class StandingOrderPageSteps
         standingOrderCard.VerifyCalenderPopupStandingOrder();
     }
 
-    @Then("User enters Product# in Quick product entry inputbox and sequenceNo")
-    public void userEntersProductInQuickProductEntryInputboxAndSequenceNo()
+    @Then("User enters Product# in Quick product entry inputbox")
+    public void userEntersProductInQuickProductEntryInputbox()
     {
         standingOrder=new NewStandingOrderPage(driver,scenario);
         standingOrder.ValidateSO();
@@ -181,6 +184,8 @@ public class StandingOrderPageSteps
     @And("User click on Start standing order button and selects Start date {int} and End date {int} day from current date")
     public void userClickOnStartStandingOrderButtonAndSelectsStartDateAndEndDateDayFromCurrentDate(int Sdate,int Edate) throws InterruptedException
     {
+        standingOrder=new NewStandingOrderPage(driver,scenario);
+        standingOrder.validateStandingOrder();
         standingOrderCard= new NewStandingOrderCard(driver,scenario);
         standingOrderCard.ClickOnNewStandingOrderArrow();
         standingOrderCard.ClickOnStartStandingOrder();
@@ -270,6 +275,8 @@ public class StandingOrderPageSteps
     @Then("User navigates to Standing order card and clicks on Delete button")
     public void userNavigatesToStandingOrderCardAndClicksOnDeleteButton() throws InterruptedException
     {
+        standingOrder=new NewStandingOrderPage(driver,scenario);
+        standingOrder.validateStandingOrder();
         standingOrderCard=new NewStandingOrderCard(driver,scenario);
         standingOrderCard.ClickOnNewStandingOrderArrow();
         standingOrderCard.DeleteStandingOrders();
@@ -322,6 +329,7 @@ public class StandingOrderPageSteps
     public void userClickOnSkipSpecificDayAndReadTheSkipDateValueAndClickOnOk() throws ParseException, InterruptedException
     {
         standingOrder=new NewStandingOrderPage(driver,scenario);
+        standingOrder.validateStandingOrder();
         standingOrder.ClickOnSkipSpecificDay();
         standingOrder.ValidateSkipPopup();
         sDate= standingOrder.readSkipDate();

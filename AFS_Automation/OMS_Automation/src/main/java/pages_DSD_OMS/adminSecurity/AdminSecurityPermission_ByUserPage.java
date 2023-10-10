@@ -94,8 +94,8 @@ public class AdminSecurityPermission_ByUserPage
         exists=false;
         try
         {
-           WebElement role=HelpersMethod.FindByElement(driver,"xpath","//input[@id='comboBoxAddUserRole']/ancestor::span[@class='k-dropdown-wrap']/descendant::span[contains(@class,'k-icon k-i-arrow-s')]");
-           HelpersMethod.ActClick(driver,role,1000);
+            WebElement role=HelpersMethod.FindByElement(driver,"xpath","//input[@id='comboBoxAddUserRole']/ancestor::span[@class='k-dropdown-wrap']/descendant::span[contains(@class,'k-icon k-i-arrow-s')]");
+            HelpersMethod.ActClick(driver,role,1000);
         }
         catch (Exception e){}
     }
@@ -229,4 +229,3 @@ public class AdminSecurityPermission_ByUserPage
         Assert.assertEquals(exists,true);
     }
 }
-

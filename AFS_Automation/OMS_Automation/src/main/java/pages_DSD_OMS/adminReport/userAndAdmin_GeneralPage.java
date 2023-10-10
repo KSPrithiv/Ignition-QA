@@ -17,28 +17,28 @@ import org.testng.Assert;
  */
 public class userAndAdmin_GeneralPage
 {
-   /* Created by Divya.Ramadas@afsi.com */
-        WebDriver driver;
-        Scenario scenario;
-        static boolean exists=false;
+    /* Created by Divya.Ramadas@afsi.com */
+    WebDriver driver;
+    Scenario scenario;
+    static boolean exists=false;
 
-        @FindBy (id="CPEnforceUniqueUserEmail")
-        private WebElement enforceUniqueEmail;
+    @FindBy (id="CPEnforceUniqueUserEmail")
+    private WebElement enforceUniqueEmail;
 
-        @FindBy (id="CPAdminApprovesRegistrations")
-        private WebElement pendingRegistration;
+    @FindBy (id="CPAdminApprovesRegistrations")
+    private WebElement pendingRegistration;
 
-        @FindBy (id="CPExcludeNonWebCustomers")
-        private WebElement excludeNonWebEle;
+    @FindBy (id="CPExcludeNonWebCustomers")
+    private WebElement excludeNonWebEle;
 
-        @FindBy (id="CPEnableCustomerRegistration")
-        private WebElement newCustomerRegi;
+    @FindBy (id="CPEnableCustomerRegistration")
+    private WebElement newCustomerRegi;
 
-        @FindBy (id="CPCCPrimarySalesmanOnRegistrationEmail")
-        private WebElement primarySalRegistration;
+    @FindBy (id="CPCCPrimarySalesmanOnRegistrationEmail")
+    private WebElement primarySalRegistration;
 
-        @FindBy(id="save-btn")
-        private WebElement saveButton;
+    @FindBy(id="save-btn")
+    private WebElement saveButton;
 
     public userAndAdmin_GeneralPage(WebDriver driver, Scenario scenario)
     {
@@ -71,12 +71,12 @@ public class userAndAdmin_GeneralPage
         String result=null;
         try
         {
-           result=pendingRegistration.getAttribute("aria-checked");
-           if(result.equals("false"))
-           {
-               HelpersMethod.ClickBut(driver, pendingRegistration, 1000);
-               scenario.log("PENDING REGISTRATION TAGGLE BUTTON ENABLED");
-           }
+            result=pendingRegistration.getAttribute("aria-checked");
+            if(result.equals("false"))
+            {
+                HelpersMethod.ClickBut(driver, pendingRegistration, 1000);
+                scenario.log("PENDING REGISTRATION TAGGLE BUTTON ENABLED");
+            }
         }
         catch (Exception e){}
     }
@@ -96,7 +96,7 @@ public class userAndAdmin_GeneralPage
         catch (Exception e){}
     }
 
-   public void enableNewCustomerRegistrationFromLoginPage()
+    public void enableNewCustomerRegistrationFromLoginPage()
     {
         exists=false;
         String result=null;
@@ -111,8 +111,8 @@ public class userAndAdmin_GeneralPage
             }
             else
             {
-               scenario.log("NEW CUSTOMER REGISTRATION FROM LOGIN PAGE TOGGLE ALREADY DESELECTED");
-               exists=true;
+                scenario.log("NEW CUSTOMER REGISTRATION FROM LOGIN PAGE TOGGLE ALREADY DESELECTED");
+                exists=true;
             }
             Assert.assertEquals(exists,true);
         }

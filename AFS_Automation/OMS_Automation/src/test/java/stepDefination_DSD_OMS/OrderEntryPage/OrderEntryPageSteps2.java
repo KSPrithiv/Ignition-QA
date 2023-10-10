@@ -68,17 +68,20 @@ public class OrderEntryPageSteps2
             {
                 newOE.CheckForQuickUnitEnabled(Prod_details.get(i).get(1));
                 newOE.exceedsMaxQty();
+                newOE.toastCurrentlyUnavailable();
             }
              else if(unitOfMeasure.equals("Cases"))
             {
                 newOE.CheckForQuickCaseEnabled(Prod_details.get(i).get(0));
                 newOE.exceedsMaxQty();
+                newOE.toastCurrentlyUnavailable();
             }
              else if(unitOfMeasure.equals("Cases, Units"))
             {
                 newOE.CheckForQuickCaseEnabled(Prod_details.get(i).get(0));
                 newOE.CheckForQuickUnitEnabled(Prod_details.get(i).get(1));
                 newOE.exceedsMaxQty();
+                newOE.toastCurrentlyUnavailable();
             }
         }
     }

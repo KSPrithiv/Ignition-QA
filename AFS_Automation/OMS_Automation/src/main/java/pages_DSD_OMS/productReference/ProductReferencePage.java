@@ -82,19 +82,19 @@ public class ProductReferencePage
             }
             if(HelpersMethod.IsExists("//span[contains(text(),'Product reference')]",driver))
             {
-                    if(HelpersMethod.IsExists("//span[contains(text(),'Product reference')]",driver))
-                    {
-                        WebElement ParList = HelpersMethod.FindByElement(driver, "xpath", "//span[contains(text(),'Par list')]");
-                        HelpersMethod.ScrollElement(driver, ParList);
+                if(HelpersMethod.IsExists("//span[contains(text(),'Product reference')]",driver))
+                {
+                    WebElement ParList = HelpersMethod.FindByElement(driver, "xpath", "//span[contains(text(),'Par list')]");
+                    HelpersMethod.ScrollElement(driver, ParList);
 
-                        HelpersMethod.navigate_Horizantal_Tab(driver, "Product reference", "//li[contains(@class,'k-item')]/span[@class='k-link' and contains(text(),'Product reference')]", "xpath", "//li[contains(@class,'k-item')]/span[@class='k-link']");
-                        exists = true;
-                        if (HelpersMethod.IsExists("//div[@class='loader']", driver))
-                        {
-                            WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 200000);
-                        }
+                    HelpersMethod.navigate_Horizantal_Tab(driver, "Product reference", "//li[contains(@class,'k-item')]/span[@class='k-link' and contains(text(),'Product reference')]", "xpath", "//li[contains(@class,'k-item')]/span[@class='k-link']");
+                    exists = true;
+                    if (HelpersMethod.IsExists("//div[@class='loader']", driver))
+                    {
+                        WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
+                        HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 200000);
                     }
+                }
             }
             else
             {

@@ -136,7 +136,7 @@ public class CheckOutOrderPage
                 HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 400000);
             }
 
-          if(HelpersMethod.IsEnabledByele(BackButton))
+            if(HelpersMethod.IsEnabledByele(BackButton))
           {
               HelpersMethod.ClickBut(driver,BackButton,1000);
               scenario.log("CLICKED ON BACK BUTTON");
@@ -162,13 +162,12 @@ public class CheckOutOrderPage
                 if (HelpersMethod.IsEnabledByele(NextButton))
                 {
                     HelpersMethod.ScrollElement(driver, NextButton);
-                    HelpersMethod.ClickBut(driver, NextButton, 1000);
+                    HelpersMethod.ClickBut(driver, NextButton, 2000);
                     if (HelpersMethod.IsExists("//div[@class='loader']", driver))
                     {
                         WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                        HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 400000);
+                        HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 800000);
                     }
-
                     scenario.log("CLICKED ON NEXT BUTTON");
                 }
                 else

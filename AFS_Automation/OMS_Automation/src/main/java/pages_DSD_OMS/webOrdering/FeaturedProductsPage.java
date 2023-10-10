@@ -41,20 +41,20 @@ public class FeaturedProductsPage
         PageFactory.initElements(driver,this);
     }
 
-    public void ValidateFeautedProduct() 
+    public void ValidateFeautedProduct()
     {
         exists=false;
         try
         {
-          if(HelpersMethod.IsExists("//div[@class='CPFeaturedProductsPage']",driver))
-          {
-              scenario.log("NAVIGATED TO FEATURED PRODUCTS PAGE");
-              exists=true;
-          }
-          else
-          {
-              scenario.log("FAILED TO NAVIGATE TO FEATURED PRODUCTS PAGE");
-          }
+            if(HelpersMethod.IsExists("//div[@class='CPFeaturedProductsPage']",driver))
+            {
+                scenario.log("NAVIGATED TO FEATURED PRODUCTS PAGE");
+                exists=true;
+            }
+            else
+            {
+                scenario.log("FAILED TO NAVIGATE TO FEATURED PRODUCTS PAGE");
+            }
             Assert.assertEquals(exists,true);
         }
         catch (Exception e){}
@@ -256,11 +256,11 @@ public class FeaturedProductsPage
                 //Click on Sub Category dropdown
                 HelpersMethod.ClickBut(driver,SubCateDrop,1000);
                 Lists=HelpersMethod.FindByElements(driver,"xpath","//div[contains(@class,'k-child-animation-container')]/descendant::li");
-               if(Lists.size()>=2)
-               {
-                   WebEle = Lists.get(2);
-                   subCategory = WebEle.getText();
-               }
+                if(Lists.size()>=2)
+                {
+                    WebEle = Lists.get(2);
+                    subCategory = WebEle.getText();
+                }
                 HelpersMethod.DropDownMenu(driver,subCategory);
                 subCategory=HelpersMethod.FindByElement(driver,"xpath","//span[@id='CPbrands']/span[@class='k-input']").getText();
                 scenario.log("SUBCATEGORY  SELECTED IS "+subCategory);
@@ -327,8 +327,8 @@ public class FeaturedProductsPage
             }
             if (HelpersMethod.IsExists("//div[text()='Catalog']/ancestor::div[contains(@class,'k-widget k-window k-dialog')]", driver))
             {
-               WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'card-view')]/descendant::button[text()='Select'][1]");
-               HelpersMethod.ClickBut(driver,WebEle,1000);
+                WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'card-view')]/descendant::button[text()='Select'][1]");
+                HelpersMethod.ClickBut(driver,WebEle,1000);
             }
         }
         catch (Exception e){}

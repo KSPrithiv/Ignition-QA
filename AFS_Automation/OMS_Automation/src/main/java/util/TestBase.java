@@ -72,8 +72,10 @@ public class TestBase
 
         String browserName = browser;
         boolean isHeadless = false;
-        switch (browserName.toLowerCase()) {
-            case "chrome": {
+        switch (browserName.toLowerCase())
+        {
+            case "chrome":
+            {
                 WebDriverManager.chromedriver().setup();
                 ChromeOptions chromeOptions = new ChromeOptions();
 
@@ -90,7 +92,8 @@ public class TestBase
                 driver.set(new ChromeDriver());
             }
             break;
-            case "firefox": {
+            case "firefox":
+            {
                 WebDriverManager.firefoxdriver().setup();
                 FirefoxOptions firefoxOptions = new FirefoxOptions();
                 FirefoxProfile profile = new FirefoxProfile();
@@ -113,7 +116,8 @@ public class TestBase
                 driver.set(new FirefoxDriver(firefoxOptions));
             }
             break;
-            case "edge": {
+            case "edge":
+            {
                 //WebDriverManager.edgedriver().setup();
                 //EdgeOptions edgeOptions = new EdgeOptions();
 

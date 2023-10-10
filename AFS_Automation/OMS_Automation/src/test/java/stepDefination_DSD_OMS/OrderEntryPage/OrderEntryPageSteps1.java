@@ -112,6 +112,7 @@ public class OrderEntryPageSteps1
     public void click_on_copy_button_in_summary_page() throws InterruptedException, AWTException
     {
         summary=new CheckOutSummaryPage(driver,scenario);
+        summary.validateSummaryPage();
         summary.Click_copy();
     }
 
@@ -120,6 +121,7 @@ public class OrderEntryPageSteps1
     public void click_on_comment_icon_in_summary_page() throws InterruptedException, AWTException
     {
         summary=new CheckOutSummaryPage(driver,scenario);
+        summary.validateSummaryPage();
         summary.CommentBut();
     }
 
@@ -128,6 +130,7 @@ public class OrderEntryPageSteps1
     {
         List<List<String>> Comment=tabledata.asLists(String.class);
         summary=new CheckOutSummaryPage(driver,scenario);
+        summary.validateSummaryPage();
         summary.Comment_Popup(Comment.get(0).get(0));
     }
 

@@ -61,25 +61,25 @@ public class UserRegistrationPage
     private WebElement Registration;
 
     @FindBy(id = "NewUserCompanyRegistration")
-            private WebElement NoAccCheckbox;
+    private WebElement NoAccCheckbox;
 
     @FindBy(id="CustomerName")
-            private WebElement CustomerName;
+    private WebElement CustomerName;
 
     @FindBy(id="AddressLine1")
-            private WebElement Address1;
+    private WebElement Address1;
 
     @FindBy(id="City")
-            private WebElement City;
+    private WebElement City;
 
     @FindBy(id="State")
-            private WebElement State;
+    private WebElement State;
 
     @FindBy(id="Zip")
-            private WebElement Zip;
+    private WebElement Zip;
 
     @FindBy(id="PhoneNumber")
-            private WebElement Phone;
+    private WebElement Phone;
 
     String Email= RandomValues.generateEmail(30);
     String Pass_Confirm= RandomValues.generateStringWithAllobedSplChars(15);
@@ -151,7 +151,7 @@ public class UserRegistrationPage
             {
                 lname=RandomValues.generateRandomString(20);
                 HelpersMethod.EnterText(driver,Lname,1000,lname);
-                    exists=true;
+                exists=true;
             }
             Assert.assertEquals(exists,true);
         }
@@ -189,7 +189,7 @@ public class UserRegistrationPage
             {
                 HelpersMethod.ScrollElement(driver,Actual_Email);
                 HelpersMethod.EnterText(driver,Actual_Email,1000,Email);
-                    exists=true;
+                exists=true;
                 scenario.log("ACTUAL EMAIL IS "+HelpersMethod.JSGetValueEle(driver,Actual_Email,1000));
             }
             Assert.assertEquals(exists,true);
@@ -207,7 +207,7 @@ public class UserRegistrationPage
             if(HelpersMethod.EleDisplay(ConfirmMail))
             {
                 HelpersMethod.EnterText(driver,ConfirmMail,1000,Email);
-                    exists=true;
+                exists=true;
                 scenario.log("CONFIRM MAIL ID IS "+HelpersMethod.JSGetValueEle(driver,ConfirmMail,1000));
             }
             Assert.assertEquals(exists,true);
@@ -225,7 +225,7 @@ public class UserRegistrationPage
             if(HelpersMethod.EleDisplay(Pass))
             {
                 HelpersMethod.EnterText(driver,Pass,1000,Pass_Confirm);
-                    exists=true;
+                exists=true;
                 scenario.log("PASSWORD ENTERED IS "+HelpersMethod.JSGetValueEle(driver,Pass,1000));
             }
             Assert.assertEquals(exists,true);
@@ -243,7 +243,7 @@ public class UserRegistrationPage
             if(HelpersMethod.EleDisplay(ConfirmPass))
             {
                 HelpersMethod.EnterText(driver,ConfirmPass,1000,Pass_Confirm);
-                    exists=true;
+                exists=true;
                 scenario.log("CONFIRM PASSWORD ENTERED IS "+HelpersMethod.JSGetValueEle(driver,ConfirmPass,1000));
             }
             Assert.assertEquals(exists,true);

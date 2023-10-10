@@ -399,7 +399,7 @@ public class AdminSecurityPermissionPage
         catch (Exception e){}
     }
 
-    public void clickOnCopyButton() 
+    public void clickOnCopyButton()
     {
         exists=false;
         try

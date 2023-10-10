@@ -22,8 +22,8 @@ Feature: Order Guide2
     Then User click on Save button
     And User should navigate back to OG page and verify OG "<OG>"  existence
     Examples:
-    |   OG    |
-    | Push OG |
+      |   OG    |
+      | Push OG |
 
   @OGPar
   Scenario Outline: Test scenario for creating Par order guide
@@ -120,7 +120,6 @@ Feature: Order Guide2
     And User should navigate to OG
     Then User should click on Customer Reference drop down and select type of OG
       |National chain|
-    #And Check for popup to appear to select National Chain "<Chain>"
     And Check for popup to appear to select sub customer reference for National chain
     Then User clicks on Create new button and should navigate to New OG page
     And User validates Customer reference input box to verify the OG created
@@ -169,8 +168,8 @@ Feature: Order Guide2
     And User should navigate to OG
     Then User should select header in OG grid for "<Drag Drop>" functionality
     Examples:
-        |Drag Drop|
-        | Status  |
+      |Drag Drop|
+      | Status  |
 
   @OGDelete
   Scenario Outline: Deleting Order guide and verifying it in OG grid
@@ -178,7 +177,7 @@ Feature: Order Guide2
     And User should navigate to OG
     Then User should click on Customer Reference drop down and select type of OG
       |All customer accounts #|
-    And User removes filter from OG page
+    And Clear filter to display both active and inactive OG
     Then User enters OG Description "<OG>" in search box and Delete the OG verify same in OG grid
     Examples:
       |  OG   |
@@ -188,16 +187,14 @@ Feature: Order Guide2
       |OGDis18|
       |OGDis19|
       |OGDis20|
-      | OGHist|
+      |OGHistory|
       |Par OGPar OG|
       |Push OGPush OG|
       |Push OG1Push OG1|
       |AllOrderAllOrder|
       | AllCustomer1   |
+      | DayOfWeek      |
+      | LocalChain1    |
       | NationalChain1 |
-      |LocalChain1     |
-      |MarketOG        |
-      |PriceBaseOG     |
     #  | QToOG |
-
 
