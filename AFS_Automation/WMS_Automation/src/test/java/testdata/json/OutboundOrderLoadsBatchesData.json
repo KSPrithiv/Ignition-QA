@@ -96,9 +96,9 @@
   "outbound carriers":
   {
     "outbound carrier 1": "APPLY ACTUAL FRT",
-    "outbound carrier 2": "",
-    "outbound carrier 3": "",
-    "outbound carrier 4": "",
+    "outbound carrier 2": "ALLOWANCE",
+    "outbound carrier 3": "Backhaul",
+    "outbound carrier 4": "Bond Trucking",
     "outbound carrier 5": "",
     "outbound carrier 6": ""
   },
