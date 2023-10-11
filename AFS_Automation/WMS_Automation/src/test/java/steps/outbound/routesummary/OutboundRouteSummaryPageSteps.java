@@ -16,11 +16,14 @@ import lombok.extern.slf4j.Slf4j;
 import objects.outbound.OutboundOrderLoadsDTO;
 import objects.storeproceduresdata.outbound.ProductsParams;
 import objects.userdata.DataBaseData;
+import org.apache.commons.lang3.RandomStringUtils;
 import steps.LoginPageSteps;
 import ui.pages.outbound.routesummary.OutboundRouteSummaryPage;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
+
+import static ui.pages.outbound.routesummary.OutboundRouteSummaryPage.setRandomRouteCode;
 
 @Slf4j
 public class OutboundRouteSummaryPageSteps {
@@ -741,13 +744,22 @@ public class OutboundRouteSummaryPageSteps {
 
     @Step
     @And("Typing Outbound Route code by index {int} on Outbound Route Summary page")
-    public void selectOutboundRouteEditOptionByIndex(int index) {
+    public void typeOutboundRouteEditOptionByIndex(int index) {
         log.info("Typing Outbound Route code by index");
         List<String> routeCodes = List.of(outboundOrderLoadsDTO.getOutboundRouteCodes().getOutboundRouteCode1(), outboundOrderLoadsDTO
                 .getOutboundRouteCodes().getOutboundRouteCode2(), outboundOrderLoadsDTO.getOutboundRouteCodes().getOutboundRouteCode3(),
                  outboundOrderLoadsDTO.getOutboundRouteCodes().getOutboundRouteCode4(), outboundOrderLoadsDTO.getOutboundRouteCodes()
                 .getOutboundRouteCode5());
         outboundRouteSummaryPage.typeRouteCode(routeCodes.get(index));
+    }
+
+    @Step
+    @And("Typing random Outbound Route code on Outbound Route Summary page")
+    public void typeRandomOutboundRouteEditOption() {
+        log.info("Typing random Outbound Route code");
+        String code = RandomStringUtils.randomAlphabetic(6);
+        setRandomRouteCode(code);
+        outboundRouteSummaryPage.typeRouteCode(code);
     }
 
     @Step
