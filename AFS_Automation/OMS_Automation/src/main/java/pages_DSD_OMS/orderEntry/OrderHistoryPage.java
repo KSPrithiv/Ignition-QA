@@ -195,28 +195,13 @@ public class OrderHistoryPage
         int i=0;
         try
         {
-            new WebDriverWait(driver,Duration.ofMillis(10000)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfAllElementsLocatedBy(By.id("order-history-card"))));
-          /*  if (HelpersMethod.IsExists("//tr[contains(@class,'k-master-row')][1]", driver))
-            {
-                //Read the Order number
-                WebElement OrderNo=HelpersMethod.FindByElement(driver,"xpath","//tr[contains(@class,'k-master-row')][1]/descendant::button");
-                scenario.log("ORDER NUMBER SELECTED FROM ORDER HISTORY PAGE FOR CREATING COPY IS: "+OrderNo.getText());
-
-                //code to select first order in order history
-                WebElement OrderHist = HelpersMethod.FindByElement(driver, "xpath", "//table[contains(@class,'k-grid-table')]/descendant::tr[contains(@class,'k-master-row')][1]");
-                HelpersMethod.ActClick(driver, OrderHist, 100);
-                exists=true;
-            }
-            Assert.assertEquals(exists,true);*/
-
           //creating list of 'status' column value to find active order and to neglect skip and cancel orders
           List<WebElement> status=HelpersMethod.FindByElements(driver,"xpath","//tr[contains(@class,'k-master-row')]/descendant::span[contains(@class,'status-cell')]");
-          for (int j=0;j<=status.size()-1;j++)
-          {
+            for(WebElement sta:status)
+            {
               i++;
-              statu=status.get(i);
-              act1.moveToElement(statu).build().perform();
-              statusText=statu.getText();
+              act1.moveToElement(sta).build().perform();
+              statusText=sta.getText();
               if(statusText.equalsIgnoreCase("ACTIVE"))
               {
                   //Read the Order number
@@ -234,7 +219,7 @@ public class OrderHistoryPage
             if(HelpersMethod.IsExists("//div[@class='loader']",driver))
             {
                 WebElement  WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 80000);
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100000);
             }
             Assert.assertEquals(exists,true);
         }
@@ -311,7 +296,7 @@ public class OrderHistoryPage
             if(HelpersMethod.IsExists("//div[@class='loader']",driver))
             {
                 WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 80000);
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 200000);
             }
             act.moveToElement(headTitle).click().build().perform();
             exists=true;
@@ -475,7 +460,7 @@ public class OrderHistoryPage
             if(HelpersMethod.IsExists("//div[@class='loader']",driver))
             {
                 WebElement WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 80000);
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 800000);
             }
         }
         catch (Exception e){}

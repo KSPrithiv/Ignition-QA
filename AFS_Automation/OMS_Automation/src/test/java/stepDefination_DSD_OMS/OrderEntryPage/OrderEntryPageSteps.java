@@ -483,9 +483,26 @@ public class OrderEntryPageSteps
         List<List<String>> PO_Qty = tabledata.asLists(String.class);
         String Case=PO_Qty.get(0).get(0);
         String Unit=PO_Qty.get(0).get(1);
-        newOE.CheckForQuickCaseEnabled(Case);
-        newOE.CheckForQuickUnitEnabled(Unit);
-        newOE.exceedsMaxQty();
+        String uomString=newOE.VerifyUOM();
+        if(uomString.equals("Units"))
+        {
+            newOE.CheckForQuickUnitEnabled(Unit);
+            newOE.exceedsMaxQty();
+            newOE.toastCurrentlyUnavailable();
+        }
+        else if(uomString.equals("Cases"))
+        {
+            newOE.CheckForQuickCaseEnabled(Case);
+            newOE.exceedsMaxQty();
+            newOE.toastCurrentlyUnavailable();
+        }
+        else if(uomString.equals("Cases, Units")||uomString.equals("Units, Cases"))
+        {
+            newOE.CheckForQuickCaseEnabled(Case);
+            newOE.CheckForQuickUnitEnabled(Unit);
+            newOE.exceedsMaxQty();
+            newOE.toastCurrentlyUnavailable();
+        }
     }
 
     @Then("Click on Back button")
@@ -626,13 +643,31 @@ public class OrderEntryPageSteps
     {
         List<List<String>> ProdDetails=table.asLists(String.class);
         newOE=new NewOrderEntryPage(driver,scenario);
+        newOE.ValidateNewOE();
         String Prod=DataBaseConnection.DataBaseConn(TestBase.testEnvironment.getSingle_Prod_Sql());
         newOE.QuickProduct(Prod);
+        String uomValue=newOE.VerifyUOM();
         String Case=ProdDetails.get(0).get(0);
         String Unit=ProdDetails.get(0).get(1);
-        newOE.CheckForQuickCaseEnabled(Case);
-        newOE.CheckForQuickUnitEnabled(Unit);
-        newOE.exceedsMaxQty();
+        if(uomValue.equals("Units"))
+        {
+            newOE.CheckForQuickUnitEnabled(Unit);
+            newOE.exceedsMaxQty();
+            newOE.toastCurrentlyUnavailable();
+        }
+        else if(uomValue.equals("Cases"))
+        {
+            newOE.CheckForQuickCaseEnabled(Case);
+            newOE.exceedsMaxQty();
+            newOE.toastCurrentlyUnavailable();
+        }
+        else if(uomValue.equals("Cases, Units") || uomValue.equals("Units, Cases"))
+        {
+            newOE.CheckForQuickCaseEnabled(Case);
+            newOE.CheckForQuickUnitEnabled(Unit);
+            newOE.exceedsMaxQty();
+            newOE.toastCurrentlyUnavailable();
+        }
     }
 
     @Then("User should Select delivery date from popup")
@@ -671,7 +706,7 @@ public class OrderEntryPageSteps
     {
         orderpage = new OrderEntryPage(driver, scenario);
         orderpage.Select_Par_Order();
-        exists=orderpage.ParOrderPopup();
+        orderpage.ParOrderPopup();
         orderpage.ParOrderPopupOk();
     }
 

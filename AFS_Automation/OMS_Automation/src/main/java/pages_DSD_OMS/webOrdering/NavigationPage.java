@@ -137,7 +137,7 @@ public class NavigationPage
             labelNameText=HelpersMethod.JSGetValueEle(driver,labelInput,1000);
             if(!label.equals(labelNameText))
             {
-               exists=true;
+                exists=true;
             }
             else
             {

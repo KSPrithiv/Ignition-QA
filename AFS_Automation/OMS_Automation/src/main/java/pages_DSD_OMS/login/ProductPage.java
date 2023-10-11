@@ -763,7 +763,7 @@ public class ProductPage
             if(driver.getTitle().contains("Login"))
             {
                 scenario.log("NAVIGATED BACK TO LOGIN PAGE");
-             exists=true;
+                exists=true;
             }
             Assert.assertEquals(exists,true);
         }

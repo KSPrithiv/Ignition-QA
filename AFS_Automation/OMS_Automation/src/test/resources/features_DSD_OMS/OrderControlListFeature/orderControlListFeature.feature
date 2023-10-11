@@ -86,7 +86,7 @@ Feature: Order control list
     Then User should select Note from popup and Order guide from popup
     Then User validate that he is in NewOE page
     And User Clicks on Back button in NewOE page and User must be in OCL page
-    Then User refreshes page and Clicks on Taken radio button delivery date should be increased by 4
+    Then User Clicks on Taken radio button
     And User should verify Order number created in OCL grid and Order type in OCL
 
   @AddFilterInOCL
@@ -96,7 +96,7 @@ Feature: Order control list
     Then User should select Order traker from drop down
     And Change the delivery date 4 days after current date
     Then User clicks on Add filter button and enter value for first search box and second search box
-        |Customer key|
+      |Customer key|
 
   @SkipInOCL
   Scenario: For skipping order from OCL
@@ -107,11 +107,11 @@ Feature: Order control list
     Then User Clicks on Untaken radio button
     Then User select OCL which is not skipped
     And User Clicks on Skip button and validates the skip popup selects the reason
-       |closed|
+      |closed|
     Then User validates skip option
 
   @VerifySkipInTaken
-    Scenario: Test scenario for verifying skip under taken orders
+  Scenario: Test scenario for verifying skip under taken orders
     Given User must be on Order Entry Page to select OCL
     And User should navigate to OCL
     Then User should select Order traker from drop down
@@ -139,7 +139,7 @@ Feature: Order control list
     And Change the delivery date 4 days after current date
     And User clicks on All radio button
     Then User should drag and drop grid header
-    |Customer|
+      |Customer|
 
   @CreatePendingOrder
   Scenario: Test scenario for creating pending order via OCL
@@ -167,6 +167,5 @@ Feature: Order control list
     Then User should select Order traker from drop down
     And Change the delivery date 4 days after current date
     Then User clicks on Print button and handle the new browser window
-
 
 

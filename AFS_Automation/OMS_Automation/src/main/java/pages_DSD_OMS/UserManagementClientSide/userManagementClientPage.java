@@ -133,7 +133,7 @@ public class userManagementClientPage
         {
             if(HelpersMethod.IsExists("//span[contains(text(),'New user')]/parent::li[@aria-selected='true']",driver))
             {
-             exists=true;
+                exists=true;
             }
             Assert.assertEquals(exists,true);
         }
@@ -145,7 +145,7 @@ public class userManagementClientPage
         exists=false;
         try
         {
-          HelpersMethod.EnterText(driver,firstName,1000,fName);
+            HelpersMethod.EnterText(driver,firstName,1000,fName);
         }
         catch (Exception e){}
     }
@@ -246,26 +246,26 @@ public class userManagementClientPage
         Actions act=new Actions(driver);
         try
         {
-                List<WebElement> Values = HelpersMethod.FindByElements(driver, "xpath", "//div[contains(@class,'k-popup k-child-animation-container')]/descendant::ul/li[contains(@class,'k-item')]");
-                for (WebElement Val : Values)
+            List<WebElement> Values = HelpersMethod.FindByElements(driver, "xpath", "//div[contains(@class,'k-popup k-child-animation-container')]/descendant::ul/li[contains(@class,'k-item')]");
+            for (WebElement Val : Values)
+            {
+                act.moveToElement(Val).build().perform();
+                String Val_Text = Val.getText();
+                if (Val_Text.equals(role))
                 {
                     act.moveToElement(Val).build().perform();
-                    String Val_Text = Val.getText();
-                    if (Val_Text.equals(role))
+                    act.click(Val).build().perform();
+                    exists=true;
+                    if(HelpersMethod.IsExists("//div[@class='loader']",driver))
                     {
-                        act.moveToElement(Val).build().perform();
-                        act.click(Val).build().perform();
-                        exists=true;
-                        if(HelpersMethod.IsExists("//div[@class='loader']",driver))
-                        {
-                            WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100000);
-                        }
-                        break;
+                        WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
+                        HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100000);
                     }
+                    break;
                 }
-                Assert.assertEquals(exists,true);
             }
+            Assert.assertEquals(exists,true);
+        }
         catch (Exception e){}
     }
 
@@ -273,7 +273,7 @@ public class userManagementClientPage
     {
         try
         {
-           HelpersMethod.EnterText(driver,poNo,1000,poNum);
+            HelpersMethod.EnterText(driver,poNo,1000,poNum);
         }
         catch (Exception e){}
     }
@@ -308,5 +308,3 @@ public class userManagementClientPage
         catch (Exception e){}
     }
 }
-
-

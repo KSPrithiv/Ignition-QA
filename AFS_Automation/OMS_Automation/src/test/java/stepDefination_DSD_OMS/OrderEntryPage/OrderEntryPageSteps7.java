@@ -95,24 +95,23 @@ public class OrderEntryPageSteps7
     }
 
     @And("User clicks on Grid type drop down and select different grid")
-    public void userClicksOnGridTypeDropDownAndSelectDifferentGrid(DataTable tabledata) throws InterruptedException, AWTException
+    public void userClicksOnGridTypeDropDownAndSelectDifferentGrid() throws InterruptedException, AWTException
     {
-        List<List<String>> gridtype=tabledata.asLists(String.class);
+        //List<List<String>> gridtype=tabledata.asLists(String.class);
         newOE=new NewOrderEntryPage(driver,scenario);
         newOE.clickOnGridTypeDropdown();
-        newOE.selectGridTypeDropDown(gridtype.get(0).get(0));
-        newOE.validateGridType(gridtype.get(0).get(0));
+        newOE.selectGridTypeDropDown();
+        newOE.validateGridType();
     }
 
     @Then("User verifies visibility of Price override icon and reset Grid type to Main grid")
-    public void userVerifiesVisibilityOfPriceOverrideIconAndResetGridTypeToMainGrid(DataTable tabledata) throws InterruptedException, AWTException
+    public void userVerifiesVisibilityOfPriceOverrideIconAndResetGridTypeToMainGrid() throws InterruptedException, AWTException
     {
-        List<List<String>> gridtype=tabledata.asLists(String.class);
         newOE=new NewOrderEntryPage(driver,scenario);
         newOE.validatePriceOverrideIcon();
         newOE.clickOnGridTypeDropdown();
-        newOE.selectGridTypeDropDown(gridtype.get(0).get(0));
-        newOE.validateGridType(gridtype.get(0).get(0));
+        newOE.selectMainGridTypeDropDown();
+        newOE.validateMainGridType();
     }
 
     @And("User navigates back to OE by selecting Discard all option from pending order popup")
@@ -132,8 +131,8 @@ public class OrderEntryPageSteps7
         newOE.Click_On_PriceOverrideIcon();
         newOE.PriceOverridePopup_WhatIfPriceUnit(gridtype.get(0).get(1));
         newOE.clickOnGridTypeDropdown();
-        newOE.selectGridTypeDropDown(gridtype.get(0).get(0));
-        newOE.validateGridType(gridtype.get(0).get(0));
+        newOE.selectMainGridTypeDropDown();
+        newOE.validateMainGridType();
     }
 
     @Then("User verifies Order history page and change grid types")

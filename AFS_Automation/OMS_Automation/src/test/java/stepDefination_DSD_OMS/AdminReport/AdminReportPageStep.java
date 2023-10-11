@@ -32,8 +32,7 @@ public class AdminReportPageStep
     static LoginPage loginpage;
     static AdminHomePage adminHomePage;
     static adminReportPage adminreportPage;
-
-
+    
     @Before
     public void LaunchBrowser1(Scenario scenario) throws Exception
     {
@@ -86,17 +85,17 @@ public class AdminReportPageStep
         }
     }
 
-  /*  @And("User should enter menu {string} in search bar to navigate to Web Payments")
-    public void userShouldEnterMenuInSearchBarToNavigateToNavigateToWebPayments(String arg0)
-    {
-        if(flag1==false)
-          {
-            adminHomePage = new AdminHomePage(driver, scenario);
-            adminHomePage.ClickOnHumburger();
-            adminHomePage.EnterValueInSearchBox(arg0);
-            adminHomePage.CloseHumburger();
-          }
-    }*/
+    /*  @And("User should enter menu {string} in search bar to navigate to Web Payments")
+      public void userShouldEnterMenuInSearchBarToNavigateToNavigateToWebPayments(String arg0)
+      {
+          if(flag1==false)
+            {
+              adminHomePage = new AdminHomePage(driver, scenario);
+              adminHomePage.ClickOnHumburger();
+              adminHomePage.EnterValueInSearchBox(arg0);
+              adminHomePage.CloseHumburger();
+            }
+      }*/
     @And("User should enter menu {string} in search bar and select {string} for Reports, Web Payment")
     public void userShouldEnterMenuInSearchBarAndSelectForReportsWebPayment(String arg0, String arg1)
     {

@@ -58,13 +58,13 @@ Feature: Order Entry7
     Then User must click Start Order button
     Then User should make selection between Pending order or Start New order
     Then User should select Note from popup and select any OG from popup
-     |SampleOG|
+      |SampleOG|
     Then Enter PO# for New order
       |PO123|
     And User clicks on Grid type drop down and select different grid
       |New grid|
     Then User verifies visibility of Price override icon and reset Grid type to Main grid
-    |Main grid|
+      |Main grid|
     And User navigates back to OE by selecting Discard all option from pending order popup
 
   @ChangeGridAndChangePriceOverride
@@ -95,7 +95,7 @@ Feature: Order Entry7
     Then User should click on Copy from dropdown and Select Order history
       |Order history|
     Then User verifies Order history page and change grid types
-       |test grid|
+      |test grid|
     Then User verifies visibility of Price override icon and reset Grid type to Main grid in Order history page
       |Main grid|
     And User should navigate back to Order entry page from Order history page

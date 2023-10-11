@@ -33,8 +33,8 @@ Feature: Order Guide
     Then User click on Save button
     And User should navigate back to OG page and verify OG "<OG>"  existence
     Examples:
-    |  OG |
-    |OGDis1|
+      |  OG |
+      |OGDis1|
 
   @PrintOG
   Scenario Outline: Test scenario for printing OG
@@ -42,7 +42,7 @@ Feature: Order Guide
     And User should navigate to OG
     Then User enters OG "<OG>" Description in search box
     Then User clicks on print button
-      Examples:
+    Examples:
       |  OG |
       |OGDis1|
 
@@ -68,16 +68,16 @@ Feature: Order Guide
     Then User enters OG "<OG>" Description in search box
     And User must be on create OG page and "<Drag Drop>" the grid header
     Examples:
-    |  OG     | Drag Drop |
-    | OGDis1  | Category  |
+      |  OG     | Drag Drop |
+      | OGDis1  | Category  |
 
   @SearchForProduct
-   Scenario: Searching for product in new OG page
-     Given User must be on Order Entry Page to select OG
-     And User should navigate to OG
-     Then User enters OG Description in search box
-       |OGDis1|
-     And  User search for Product# in New OG page
+  Scenario: Searching for product in new OG page
+    Given User must be on Order Entry Page to select OG
+    And User should navigate to OG
+    Then User enters OG Description in search box
+      |OGDis1|
+    And  User search for Product# in New OG page
 
   @DeleteProduct
   Scenario Outline: Deleting product from OG
@@ -122,9 +122,9 @@ Feature: Order Guide
       |24|
     Then User click on Save button
     And User should navigate back to OG page and verify OG "<OG>"  existence
-  Examples:
-    |  OG  |
-    |OGDis1|
+    Examples:
+      |  OG  |
+      |OGDis1|
 
   @MultipleProdOG
   Scenario Outline: Creating OG using multiple products, from Quick product and Catalog
@@ -137,8 +137,8 @@ Feature: Order Guide
     Then User click on Save button
     And User should navigate back to OG page and verify OG "<OG>"  existence
     Examples:
-    |   OG   |
-    |OGDis14 |
+      |   OG   |
+      |OGDis14 |
 
   @OGFromOG
   Scenario Outline: Creating OG using OG
@@ -169,7 +169,6 @@ Feature: Order Guide
     Examples:
       | OG    |
       |OGDis17|
-
 
 
 

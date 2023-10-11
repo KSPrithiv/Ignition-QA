@@ -121,12 +121,12 @@ public class RestrictedProductListPage
         WebElement WebEle;
         try
         {
-          product=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-widget k-window k-dialog')]/descendant::tr[contains(@class,'k-master-row')][1]/td[1]/descendant::button").getText();
-          WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-widget k-window k-dialog')]/descendant::tr[contains(@class,'k-master-row')][1]");
-          HelpersMethod.ClickBut(driver,WebEle,1000);
-          exists=true;
-          scenario.log("PRODUCT ADDED AS RESTRICTED PRODCUCT "+product);
-          Assert.assertEquals(exists,true);
+            product=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-widget k-window k-dialog')]/descendant::tr[contains(@class,'k-master-row')][1]/td[1]/descendant::button").getText();
+            WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-widget k-window k-dialog')]/descendant::tr[contains(@class,'k-master-row')][1]");
+            HelpersMethod.ClickBut(driver,WebEle,1000);
+            exists=true;
+            scenario.log("PRODUCT ADDED AS RESTRICTED PRODCUCT "+product);
+            Assert.assertEquals(exists,true);
         }
         catch (Exception e){}
     }
@@ -251,7 +251,7 @@ public class RestrictedProductListPage
             HelpersMethod.ActClick(driver,WebEle,1000);
             if(HelpersMethod.IsExists("//div[contains(text(),'Add')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
             {
-               exists=true;
+                exists=true;
             }
             Assert.assertEquals(exists,true);
         }

@@ -7,18 +7,18 @@ Feature: Test scenarios for Admin, for genterating reports in events/activies ta
 
   @Logon/Logoff
   Scenario Outline: Test scenario for verifying functionality of Event activities log tab with logon/logoff event
-     Given User is on Home Page for Admin setting to select Admin option for Admin reports
-     And User should enter menu "<Main menu>" in search bar and select "<Sub menu>" for Reports, Admin Options for event and activities
-     Then User refreshes page Clicks on Permissions by drop down to select Customer Account# grid
-     Then User selects "<Admin Options>" in Orders page in admin login and validate user is in selected Tab
-     Then User selects Customer Accoun# "<Add filter>", From and End dates for Creating reports
-     And User selects User name and "<Event>" to genrate report
-     And User click on clicks on export .csv
-     Then User click on Download .pdf to download document
-     Then User click on reset button in Administration tab and all the webelement should be clear
-     Examples:
-     | Main menu  |  Sub menu        |   Admin Options          | Add filter  |Event          |
-     | Reports    |  Administration  |   Events/ Activities log | Account #   |Log on/Log off |
+    Given User is on Home Page for Admin setting to select Admin option for Admin reports
+    And User should enter menu "<Main menu>" in search bar and select "<Sub menu>" for Reports, Admin Options for event and activities
+    Then User refreshes page Clicks on Permissions by drop down to select Customer Account# grid
+    Then User selects "<Admin Options>" in Orders page in admin login and validate user is in selected Tab
+    Then User selects Customer Accoun# "<Add filter>", From and End dates for Creating reports
+    And User selects User name and "<Event>" to genrate report
+    And User click on clicks on export .csv
+    Then User click on Download .pdf to download document
+    Then User click on reset button in Administration tab and all the webelement should be clear
+    Examples:
+      | Main menu  |  Sub menu        |   Admin Options          | Add filter  |Event          |
+      | Reports    |  Administration  |   Events/ Activities log | Account #   |Log on/Log off |
 
   @Registration
   Scenario Outline: Test scenario for verifying functionality of Event activities log tab with Registration
@@ -95,20 +95,20 @@ Feature: Test scenarios for Admin, for genterating reports in events/activies ta
       | Main menu  |  Sub menu        |   Admin Options          | Add filter  |Event                   |
       | Reports    |  Administration  |   Events/ Activities log | Account #   |New standing order      |
 
-    @EditStandingOrder
-    Scenario Outline: Test scenario for verifying functionality of Event activities log tab with edit order
-      Given User is on Home Page for Admin setting to select Admin option for Admin reports
-      And User should enter menu "<Main menu>" in search bar and select "<Sub menu>" for Reports, Admin Options for event and activities
-      Then User refreshes page Clicks on Permissions by drop down to select Customer Account# grid
-      Then User selects "<Admin Options>" in Orders page in admin login and validate user is in selected Tab
-      Then User selects Customer Accoun# "<Add filter>", From and End dates for Creating reports
-      And User selects User name and "<Event>" to genrate report
-      And User click on clicks on export .csv
-      Then User click on Download .pdf to download document
-      Then User click on reset button in Administration tab and all the webelement should be clear
-      Examples:
-        | Main menu  |  Sub menu        |   Admin Options          | Add filter  |Event                 |
-        | Reports    |  Administration  |   Events/ Activities log | Account #   |Edit standing order   |
+  @EditStandingOrder
+  Scenario Outline: Test scenario for verifying functionality of Event activities log tab with edit order
+    Given User is on Home Page for Admin setting to select Admin option for Admin reports
+    And User should enter menu "<Main menu>" in search bar and select "<Sub menu>" for Reports, Admin Options for event and activities
+    Then User refreshes page Clicks on Permissions by drop down to select Customer Account# grid
+    Then User selects "<Admin Options>" in Orders page in admin login and validate user is in selected Tab
+    Then User selects Customer Accoun# "<Add filter>", From and End dates for Creating reports
+    And User selects User name and "<Event>" to genrate report
+    And User click on clicks on export .csv
+    Then User click on Download .pdf to download document
+    Then User click on reset button in Administration tab and all the webelement should be clear
+    Examples:
+      | Main menu  |  Sub menu        |   Admin Options          | Add filter  |Event                 |
+      | Reports    |  Administration  |   Events/ Activities log | Account #   |Edit standing order   |
 
   @PasswordRequest
   Scenario Outline: Test scenario for verifying functionality of Event activities log tab with New order
@@ -214,4 +214,3 @@ Feature: Test scenarios for Admin, for genterating reports in events/activies ta
     Examples:
       | Main menu  |  Sub menu        |   Admin Options          | Add filter  |Event                        |
       | Reports    |  Administration  |   Events/ Activities log | Account #   |Cutoff override modification |
-

@@ -1,13 +1,17 @@
 package pages_DSD_OMS.standingOrder;
 
+import gherkin.lexer.He;
 import helper.HelpersMethod;
 import io.cucumber.java.Scenario;
 
+import org.apache.logging.log4j.core.tools.picocli.CommandLine;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.FluentWait;
+import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
@@ -103,7 +107,7 @@ public class NewStandingOrderPage
             Assert.assertEquals(exists,true);
         }
         catch (Exception e){}
-            return currentURL;
+        return currentURL;
     }
 
     public void ValidateSO()
@@ -134,7 +138,8 @@ public class NewStandingOrderPage
                 act1.moveToElement(QuickProduct).click().build().perform();
                 HelpersMethod.sendKeys(driver,QuickProduct,1000,Pro);
                 QuickProduct.sendKeys(Keys.TAB);
-                QuickProduct.sendKeys(Keys.TAB);
+                WebElement uomSO= HelpersMethod.FindByElement(driver,"id","quickEntryUMs");
+                uomSO.sendKeys(Keys.TAB);
                 Thread.sleep(8000);
                 scenario.log("PRODUCT ENTERED IN QUICK ENTRY IS " + Pro);
                 exists = true;
@@ -174,7 +179,7 @@ public class NewStandingOrderPage
         Assert.assertEquals(exists,true);
     }
 
-//For Clicking on Save button
+    //For Clicking on Save button
     public void ClickSaveButton()
     {
         exists=false;
@@ -207,10 +212,10 @@ public class NewStandingOrderPage
         try
         {
             if(HelpersMethod.IsExists("//div[@class='loader']",driver))
-        {
-            WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 200000);
-        }
+            {
+                WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 200000);
+            }
 
             if(HelpersMethod.IsExists("//div[text()='Success']/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
             {
@@ -339,15 +344,15 @@ public class NewStandingOrderPage
                 HelpersMethod.clickOn(driver, WebEle, 1000);
 
                 //Click on clear all
-                    WebElement dropDown=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-child-animation-container')]");
-                    WebElement clearAll=dropDown.findElement(By.xpath("//div[contains(@class,'k-child-animation-container')]/descendant::button[contains(text(),'Clear all')]"));
-                    if(clearAll.isDisplayed() && clearAll.isEnabled())
-                    {
-                        HelpersMethod.ActClick(driver,clearAll,1000);
-                        //Click on Add filter again
-                        HelpersMethod.clickOn(driver, WebEle, 1000);
-                    }
-                    //Enter value in 1st input
+                WebElement dropDown=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-child-animation-container')]");
+                WebElement clearAll=dropDown.findElement(By.xpath("//div[contains(@class,'k-child-animation-container')]/descendant::button[contains(text(),'Clear all')]"));
+                if(clearAll.isDisplayed() && clearAll.isEnabled())
+                {
+                    HelpersMethod.ActClick(driver,clearAll,1000);
+                    //Click on Add filter again
+                    HelpersMethod.clickOn(driver, WebEle, 1000);
+                }
+                //Enter value in 1st input
                 WebElement fistSearch=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-child-animation-container')]/descendant::input[contains(@class,'i-search-box__input')]");
                 HelpersMethod.EnterText(driver,fistSearch,1000,"Product #");
                 //Click on check box
@@ -707,17 +712,17 @@ public class NewStandingOrderPage
                     }
                     else
                     {
-                            myDateObj = LocalDate.now().plusDays(11);
-                            myFormatObj = DateTimeFormatter.ofPattern("EEEE, MMMM d, yyyy");
-                            formattedDate1 = myDateObj.format(myFormatObj);
-                            ele1 = HelpersMethod.FindByElement(driver, "xpath", "//td[contains(@style,'opacity:')]/span[contains(@title,'" + formattedDate1 + "')]");
-                            HelpersMethod.waitTillElementDisplayed(driver, ele1, 40000);
-                            HelpersMethod.JSScroll(driver, ele1);
-                            HelpersMethod.ClickBut(driver, ele1, 1000);
-                            scenario.log("SKIP DATE IS "+formattedDate1);
-                        }
+                        myDateObj = LocalDate.now().plusDays(11);
+                        myFormatObj = DateTimeFormatter.ofPattern("EEEE, MMMM d, yyyy");
+                        formattedDate1 = myDateObj.format(myFormatObj);
+                        ele1 = HelpersMethod.FindByElement(driver, "xpath", "//td[contains(@style,'opacity:')]/span[contains(@title,'" + formattedDate1 + "')]");
+                        HelpersMethod.waitTillElementDisplayed(driver, ele1, 40000);
+                        HelpersMethod.JSScroll(driver, ele1);
+                        HelpersMethod.ClickBut(driver, ele1, 1000);
+                        scenario.log("SKIP DATE IS "+formattedDate1);
                     }
                 }
+            }
         }
         catch (Exception e){}
     }
@@ -734,11 +739,11 @@ public class NewStandingOrderPage
             WebElement okButton = modalContainer.findElement(By.xpath(".//button[text()='Ok']"));
             HelpersMethod.ClickBut(driver, okButton, 1000);
             exists = true;
-        if (HelpersMethod.IsExists("//div[@class='loader']", driver))
-        {
-            WebElement WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 200000);
-        }
+            if (HelpersMethod.IsExists("//div[@class='loader']", driver))
+            {
+                WebElement WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 200000);
+            }
             Assert.assertEquals(exists, true);
         }
         catch (Exception e){}
@@ -1047,7 +1052,7 @@ public class NewStandingOrderPage
                 driver.navigate().to(currentURL);
                 scenario.log("STANDING ORDER PAGE HAS BEEN FOUND");
             }
-            String status = HelpersMethod.returnDocumentStatus(driver);
+            /*String status = HelpersMethod.returnDocumentStatus(driver);
             if (status.equals("loading"))
             {
                 HelpersMethod.waitTillLoadingPage(driver);
@@ -1067,7 +1072,12 @@ public class NewStandingOrderPage
             {
                 WebElement   WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
                 HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 4000000);
-            }
+            }*/
+            Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(100))
+                    .pollingEvery(Duration.ofSeconds(5))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
         }
         catch (Exception e){}
     }
@@ -1086,34 +1096,34 @@ public class NewStandingOrderPage
                 if(HelpersMethod.IsExists("//span[contains(text(),'load all products')]",driver))
                 {
                     WebElement loadProducts=HelpersMethod.FindByElement(driver,"xapth","//span[contains(text(),'load all products')]");
-                    HelpersMethod.ActClick(driver,loadProducts,1000);
+                    HelpersMethod.ActClick(driver,loadProducts,4000);
                 }
 
                 //Click on 'Add filter'
                 WebElement catalogPopup=HelpersMethod.FindByElement(driver,"xpath","//div[text()='Catalog']/ancestor::div[contains(@class,'k-widget k-window k-dialog')]");
                 WebEle = catalogPopup.findElement(By.xpath("//button[contains(@class,'i-filter-tag__main')]/descendant::span[text()='Add filter']"));
-                HelpersMethod.clickOn(driver, WebEle, 1000);
+                HelpersMethod.clickOn(driver, WebEle, 2000);
 
                 //Click on clear all
                 WebElement dropDown=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-child-animation-container')]");
                 WebElement clearAll=dropDown.findElement(By.xpath("//div[contains(@class,'k-child-animation-container')]/descendant::button[contains(text(),'Clear all')]"));
                 if(clearAll.isDisplayed() && clearAll.isEnabled())
                 {
-                    HelpersMethod.ActClick(driver,clearAll,1000);
+                    HelpersMethod.ActClick(driver,clearAll,2000);
                     //Click on Add filter again
-                    HelpersMethod.clickOn(driver, WebEle, 80);
+                    HelpersMethod.clickOn(driver, WebEle, 2000);
                 }
                 //Enter value in 1st input
                 WebElement fistSearch=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-child-animation-container')]/descendant::input[contains(@class,'i-search-box__input')]");
-                HelpersMethod.EnterText(driver,fistSearch,1000,"Product #");
+                HelpersMethod.EnterText(driver,fistSearch,2000,"Product #");
                 //Click on check box
                 WebElement checkBox=HelpersMethod.FindByElement(driver,"id","ProductNumber");
-                HelpersMethod.ActClick(driver,checkBox,1000);
+                HelpersMethod.ActClick(driver,checkBox,2000);
                 WebElement secondSearch=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-child-animation-container')]/descendant::input[contains(@class,'k-textbox')]");
-                HelpersMethod.EnterText(driver,secondSearch,1000,Prod_No);
+                HelpersMethod.EnterText(driver,secondSearch,2000,Prod_No);
                 //Click on Apply button
                 WebElement applyButton=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-child-animation-container')]/descendant::button[text()='Apply']");
-                HelpersMethod.ClickBut(driver,applyButton,1000);
+                HelpersMethod.ClickBut(driver,applyButton,2000);
                 if(HelpersMethod.IsExists("//div[@class='loader']",driver))
                 {
                     WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
@@ -1124,30 +1134,29 @@ public class NewStandingOrderPage
             }
             else
             {
-                    //enter product number in input box
-                    WebEle = HelpersMethod.FindByElement(driver, "xpath", "//input[contains(@class,' product-search-input rounded-corners-left')]");
-                    HelpersMethod.EnterText(driver, WebEle, 1000, Prod_No);
-                    scenario.log(WebEle.getText()+"PRODUCT# ENTERED FOR SEARCH");
-                    //new WebDriverWait(driver,Duration.ofMillis(2000)).until(ExpectedConditions.refreshed(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("//div[@id='react-autowhatever-searchBarAutoSuggest']/ul/li/"))));
-                    Thread.sleep(1000);
-                    String autoValueText;
-                    List<WebElement> autoComplete=driver.findElements(By.xpath("//div[@id='react-autowhatever-searchBarAutoSuggest']/ul/li/descendant::span[@class='product-number']"));
-                    for(WebElement autoValue:autoComplete)
+                //enter product number in input box
+                WebEle = HelpersMethod.FindByElement(driver, "xpath", "//input[contains(@class,' product-search-input rounded-corners-left')]");
+                HelpersMethod.EnterText(driver, WebEle, 2000, Prod_No);
+                scenario.log(WebEle.getText()+"PRODUCT# ENTERED FOR SEARCH");
+                Thread.sleep(1000);
+                String autoValueText;
+                List<WebElement> autoComplete=driver.findElements(By.xpath("//div[@id='react-autowhatever-searchBarAutoSuggest']/ul/li/descendant::span[@class='product-number']"));
+                for(WebElement autoValue:autoComplete)
+                {
+                    act1.moveToElement(autoValue).build().perform();
+                    autoValueText=autoValue.getText();
+                    if(autoValueText.contains(Prod_No))
                     {
-                        act1.moveToElement(autoValue).build().perform();
-                        autoValueText=autoValue.getText();
-                        if(autoValueText.contains(Prod_No))
-                        {
-                            act1.moveToElement(autoValue).click().build().perform();
-                            break;
-                        }
+                        act1.moveToElement(autoValue).click().build().perform();
+                        break;
                     }
+                }
 
-                    if (HelpersMethod.IsExists("//div[@class='loader']", driver))
-                    {
-                        WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                        HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 200000);
-                    }
+                if (HelpersMethod.IsExists("//div[@class='loader']", driver))
+                {
+                    WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
+                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 200000);
+                }
                 scenario.log("PRODUCT FOUND IN CATALOG IS "+Prod_No);
                 exists=true;
             }

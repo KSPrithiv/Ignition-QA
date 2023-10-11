@@ -113,45 +113,45 @@ public class AllOrdersPageStep
     @Given("User must be on Order Entry Page to select All Orders")
     public void userMustBeOnOrderEntryPageToSelectAllOrders() throws InterruptedException, AWTException
     {
-            if(flag1==false)
+        if(flag1==false)
+        {
+            try
             {
-                try
+                exists = false;
+                WebElement WebEle = HelpersMethod.FindByElement(driver, "xpath", "//li[contains(@class,'k-item')]/span[@class='k-link' and contains(text(),'All orders')]|//li[contains(@class,'k-item')]/span[@class='k-link' and contains(text(),'All Orders')]|//li[contains(@class,'k-item')]/span[@class='k-link' and contains(text(),'Open orders')]");
+                if (HelpersMethod.EleDisplay(WebEle))
                 {
-                    exists = false;
-                    WebElement WebEle = HelpersMethod.FindByElement(driver, "xpath", "//li[contains(@class,'k-item')]/span[@class='k-link' and contains(text(),'All orders')]|//li[contains(@class,'k-item')]/span[@class='k-link' and contains(text(),'All Orders')]|//li[contains(@class,'k-item')]/span[@class='k-link' and contains(text(),'Open orders')]");
-                    if (HelpersMethod.EleDisplay(WebEle))
+                    String Menu_Text=null;
+                    Actions act=new Actions(driver);
+                    List<WebElement> MenuBar=HelpersMethod.FindByElements(driver,"xpath","//li[contains(@class,'k-item')]/span[@class='k-link']");
+                    for(WebElement Menu:MenuBar)
                     {
-                        String Menu_Text=null;
-                        Actions act=new Actions(driver);
-                        List<WebElement> MenuBar=HelpersMethod.FindByElements(driver,"xpath","//li[contains(@class,'k-item')]/span[@class='k-link']");
-                        for(WebElement Menu:MenuBar)
+                        act.moveToElement(Menu).build().perform();
+                        Menu_Text=Menu.getText();
+                        if(Menu_Text.contains("All Orders")||Menu_Text.contains("Open orders")||Menu_Text.contains("All orders"))
                         {
-                            act.moveToElement(Menu).build().perform();
-                            Menu_Text=Menu.getText();
-                            if(Menu_Text.contains("All Orders")||Menu_Text.contains("Open orders")||Menu_Text.contains("All orders"))
-                            {
-                                WebElement menuItem=HelpersMethod.FindByElement(driver,"xpath","//li[contains(@class,'k-item')]/span[@class='k-link' and contains(text(),'All orders')]|//li[contains(@class,'k-item')]/span[@class='k-link' and contains(text(),'All Orders')]|//li[contains(@class,'k-item')]/span[@class='k-link' and contains(text(),'Open orders')]");
-                                HelpersMethod.JScriptClick(driver,menuItem,1000);
-                                break;
-                            }
+                            WebElement menuItem=HelpersMethod.FindByElement(driver,"xpath","//li[contains(@class,'k-item')]/span[@class='k-link' and contains(text(),'All orders')]|//li[contains(@class,'k-item')]/span[@class='k-link' and contains(text(),'All Orders')]|//li[contains(@class,'k-item')]/span[@class='k-link' and contains(text(),'Open orders')]");
+                            HelpersMethod.JScriptClick(driver,menuItem,1000);
+                            break;
                         }
-                        if (HelpersMethod.IsExists("//div[@class='loader']", driver))
-                        {
-                            WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100000);
-                        }
-                        String status = HelpersMethod.returnDocumentStatus(driver);
-                        if (status.equals("loading"))
-                        {
-                            HelpersMethod.waitTillLoadingPage(driver);
-                        }
-                        CurrentULR= driver.getCurrentUrl();
-                        scenario.log(CurrentULR);
                     }
+                    if (HelpersMethod.IsExists("//div[@class='loader']", driver))
+                    {
+                        WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
+                        HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100000);
+                    }
+                    String status = HelpersMethod.returnDocumentStatus(driver);
+                    if (status.equals("loading"))
+                    {
+                        HelpersMethod.waitTillLoadingPage(driver);
+                    }
+                    CurrentULR= driver.getCurrentUrl();
+                    scenario.log(CurrentULR);
                 }
-                catch (Exception e) {}
-                flag1=true;
             }
+            catch (Exception e) {}
+            flag1=true;
+        }
     }
 
     @And("User should navigate to All Orders")

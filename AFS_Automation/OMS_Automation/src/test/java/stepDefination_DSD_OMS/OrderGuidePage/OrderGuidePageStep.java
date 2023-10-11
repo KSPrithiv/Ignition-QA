@@ -223,12 +223,12 @@ public class OrderGuidePageStep
         exists=false;
         //Code to verify whether OG is existing in OG grid or not
         orderGuidePage = new OrderGuidePage(driver, scenario);
-        orderGuidePage.OGSearchBoxClear();
+        orderGuidePage.clearAddfilter();
         exists=orderGuidePage.OGSearchBox(Og);
         Assert.assertEquals(exists,true);
     }
 
-    //Code to search for OG using search box//
+    //Code to search for OG using search box//////////////////////////////////////////////
     @Then("User enters OG Description in search box")
     public void user_enters_og_description_in_search_box(DataTable tabledata) throws InterruptedException, AWTException
     {
@@ -362,6 +362,7 @@ public class OrderGuidePageStep
     public void user_should_select_order_from_order_popup()
     {
         createOGPage=new CreateOGPage(driver,scenario);
+        createOGPage.validateOrderPopup();
         createOGPage.OrderPopup();
     }
 
@@ -387,7 +388,7 @@ public class OrderGuidePageStep
         }
         else
         {
-                createOGPage.cardView();
+            createOGPage.cardView();
         }
         createOGPage.CatalogPopupOk();
     }
@@ -419,7 +420,6 @@ public class OrderGuidePageStep
     {
         exists=false;
         orderGuidePage = new OrderGuidePage(driver, scenario);
-        orderGuidePage.OGSearchBoxClear();
         exists=orderGuidePage.OGSearchBox(Og);
         Assert.assertEquals(exists,true);
         orderGuidePage.SearchOGSelect(Og);

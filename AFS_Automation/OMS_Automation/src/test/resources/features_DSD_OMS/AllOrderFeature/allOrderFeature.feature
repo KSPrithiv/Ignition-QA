@@ -1,5 +1,5 @@
 Feature: All orders
- Test scenarios to create all orders, edit,delete etc
+  Test scenarios to create all orders, edit,delete etc
 
   Background: For login to application and selecting Account#
     Given User enters URL and is on login page and entered credentials for All order
@@ -8,7 +8,7 @@ Feature: All orders
     Then User should select Order Entry tab for All order
 
   @AllOrderCheckBox
-    Scenario: Test scenario to display all the orders
+  Scenario: Test scenario to display all the orders
     Given User must be on Order Entry Page to select All Orders
     And User should navigate to All Orders
     Then User clicks on Show all orders check box after Clicking All orders tab
@@ -29,7 +29,7 @@ Feature: All orders
     And User Clicks on Add filter button and enter values for search options
 
   @AllSubmittedOrders
-   Scenario: Test scenario for displaying all orders which are submitted using submitted status drop down
+  Scenario: Test scenario for displaying all orders which are submitted using submitted status drop down
     Given User must be on Order Entry Page to select All Orders
     And User should navigate to All Orders
     And User clicks on Submitted status and select Submitted option from drop down
@@ -37,7 +37,7 @@ Feature: All orders
     And User goes through all the order in Open order grid
 
   @AllOpenOrderAllOrders
-    Scenario: Test scenario for displaying all Open order in all orders
+  Scenario: Test scenario for displaying all Open order in all orders
     Given User must be on Order Entry Page to select All Orders
     And User should navigate to All Orders
     Then User clicks on Show all orders check box after Clicking All orders tab
@@ -193,7 +193,6 @@ Feature: All orders
     Then User should be navigated back to All order page
     And User clicks on Show all orders check box
     And User Clicks on Add filter button and Search for OrderNo
-
 
 
 

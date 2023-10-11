@@ -347,7 +347,7 @@ public class ParOrderPage
                 WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
                 HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 600000);
             }
-           Assert.assertEquals(exists,true);
+            Assert.assertEquals(exists,true);
         }
         catch (Exception e){}
     }
@@ -489,9 +489,9 @@ public class ParOrderPage
             List<WebElement> prods=HelpersMethod.FindByElements(driver,"xpath","//tr[contains(@class,'k-master-row')]/descendant::button");
             for (WebElement prod:prods)
             {
-              act.moveToElement(prod).build().perform();
-              String prod_Text=prod.getText();
-              scenario.log("PRODUCT NUMBER FOUND UNDER PAR LIST: "+prod_Text);
+                act.moveToElement(prod).build().perform();
+                String prod_Text=prod.getText();
+                scenario.log("PRODUCT NUMBER FOUND UNDER PAR LIST: "+prod_Text);
             }
         }
         catch (Exception e){}

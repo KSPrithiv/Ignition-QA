@@ -109,7 +109,7 @@ public class AdminSecurityRolePage
         {
             WebElement descriptionEle=HelpersMethod.FindByElement(driver,"id","role-description");
             HelpersMethod.ActSendKey(driver,descriptionEle,1000,description);
-        scenario.log("DESCRIPTION ENTERED IS "+HelpersMethod.JSGetValueEle(driver,descriptionEle,1000));
+            scenario.log("DESCRIPTION ENTERED IS "+HelpersMethod.JSGetValueEle(driver,descriptionEle,1000));
             exists=true;
         }
         catch (Exception e){}

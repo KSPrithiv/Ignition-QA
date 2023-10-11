@@ -1006,17 +1006,17 @@ public class OrderControlListPage
         exists=false;
         try
         {
-         if(!HelpersMethod.IsExists("//div[contains(@id,'PlaceOrderColIcon')]//*[local-name()='svg' and @fill='blue']",driver))
-         {
-             scenario.log("NEW ORDER ICON HAS NOT BEEN FOUND");
-             exists=true;
-         }
-         else
-         {
-             scenario.log("NEW ORDER ICON HAS BEEN FOUND, PLEASE CHECK ADMIN SETTING.");
-             exists=true;
-         }
-         Assert.assertEquals(exists,true);
+            if(!HelpersMethod.IsExists("//div[contains(@id,'PlaceOrderColIcon')]//*[local-name()='svg' and @fill='blue']",driver))
+            {
+                scenario.log("NEW ORDER ICON HAS NOT BEEN FOUND");
+                exists=true;
+            }
+            else
+            {
+                scenario.log("NEW ORDER ICON HAS BEEN FOUND, PLEASE CHECK ADMIN SETTING.");
+                exists=true;
+            }
+            Assert.assertEquals(exists,true);
         }
         catch (Exception e){}
     }
@@ -1050,9 +1050,9 @@ public class OrderControlListPage
                 headText=head.getText();
                 if(headText.equalsIgnoreCase("Order type"))
                 {
-                        orderType=HelpersMethod.FindByElement(driver,"xpath","//tr[contains(@class,'k-master-row')]/td["+i+"]/descendant::span").getText();
-                        scenario.log("ORDER TYPE CREATED IS "+orderType);
-                        exists=true;
+                    orderType=HelpersMethod.FindByElement(driver,"xpath","//tr[contains(@class,'k-master-row')]/td["+i+"]/descendant::span").getText();
+                    scenario.log("ORDER TYPE CREATED IS "+orderType);
+                    exists=true;
                     break;
                 }
                 else

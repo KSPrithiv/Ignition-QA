@@ -129,11 +129,11 @@ public class userAndAdmin_AddNewUserPage
         exists=false;
         try
         {
-          fName= RandomValues.generateRandomString(6);
-          HelpersMethod.EnterText(driver,firstName,1000,fName);
-          exists=true;
-          scenario.log("FIRST NAME ENTERED IS "+HelpersMethod.JSGetValueEle(driver,firstName,1000));
-          Assert.assertEquals(exists,true);
+            fName= RandomValues.generateRandomString(6);
+            HelpersMethod.EnterText(driver,firstName,1000,fName);
+            exists=true;
+            scenario.log("FIRST NAME ENTERED IS "+HelpersMethod.JSGetValueEle(driver,firstName,1000));
+            Assert.assertEquals(exists,true);
         }
         catch (Exception e){}
     }
