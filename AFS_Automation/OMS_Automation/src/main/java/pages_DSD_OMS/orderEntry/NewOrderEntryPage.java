@@ -2,6 +2,7 @@ package pages_DSD_OMS.orderEntry;
 
 import helper.HelpersMethod;
 import io.cucumber.java.Scenario;
+import lombok.val;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Action;
 import org.openqa.selenium.interactions.Actions;
@@ -477,7 +478,7 @@ public class NewOrderEntryPage
                                 WebElement modalContainer = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(text(),'Quantity exceeds maximum of')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]");
                                 //click on Yes button
                                 WebElement yesButton = modalContainer.findElement(By.xpath(".//button[text()='Yes']"));
-                                HelpersMethod.ClickBut(driver, yesButton, 1000);
+                                HelpersMethod.ActClick(driver, yesButton, 1000);
                                 }
                                 //Check for "Out of Stock" popup
                                /* if (HelpersMethod.IsExists("//div[contains(text(),'Out of stock')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
@@ -492,7 +493,7 @@ public class NewOrderEntryPage
                                     WebElement modalContainer =HelpersMethod.FindByElement (driver, "xpath","//div[contains(text(),'This product is currently unavailable.')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]");
 
                                     WebElement okButton=modalContainer.findElement(By.xpath(".//button[text()='Ok']"));
-                                    HelpersMethod.ClickBut(driver,okButton, 1000);
+                                    HelpersMethod.ActClick(driver,okButton, 1000);
                                 }
                             }
                         }
@@ -517,7 +518,7 @@ public class NewOrderEntryPage
                                    WebElement modalContainer = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(text(),'Quantity exceeds maximum of')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]");
                                    //click on Yes button
                                    WebEle = modalContainer.findElement(By.xpath(".//button[text()='Yes']"));
-                                   HelpersMethod.ClickBut(driver, WebEle, 1000);
+                                   HelpersMethod.ActClick(driver, WebEle, 1000);
                                    scenario.log("QUANTITY EXCEEDS MAXIMUM OF POPUP HANDLED");
                                }
                                //Check for "Out of Stock" popup
@@ -533,7 +534,7 @@ public class NewOrderEntryPage
                                    WebElement modalContainer = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(text(),'This product is currently unavailable.')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]");
 
                                    WebEle = modalContainer.findElement(By.xpath(".//button[text()='Ok']"));
-                                   HelpersMethod.ClickBut(driver, WebEle, 60);
+                                   HelpersMethod.ActClick(driver, WebEle, 60);
                                }
                            }
                         }
@@ -564,7 +565,7 @@ public class NewOrderEntryPage
                                             WebElement modalContainer = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(text(),'Quantity exceeds maximum of')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]");
                                             //click on Yes button
                                             WebEle = modalContainer.findElement(By.xpath(".//button[text()='Yes']"));
-                                            HelpersMethod.ClickBut(driver, WebEle, 1000);
+                                            HelpersMethod.ActClick(driver, WebEle, 1000);
                                             scenario.log("QUANTITY EXCEEDS MAXIMUM OF POPUP HANDLED");
                                         }
                                             //Check for "Out of Stock" popup
@@ -578,7 +579,7 @@ public class NewOrderEntryPage
                                                 WebElement modalContainer = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(text(),'This product is currently unavailable.')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]");
 
                                                 WebEle = modalContainer.findElement(By.xpath(".//button"));
-                                                HelpersMethod.ClickBut(driver, WebEle, 60);
+                                                HelpersMethod.ActClick(driver, WebEle, 60);
                                             }
                                         }
                                     }
@@ -603,7 +604,7 @@ public class NewOrderEntryPage
                                                 WebElement modalContainer = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(text(),'Quantity exceeds maximum of')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]");
                                                 //click on Yes button
                                                 WebEle = modalContainer.findElement(By.xpath(".//button[text()='Yes']"));
-                                                HelpersMethod.ClickBut(driver, WebEle, 2000);
+                                                HelpersMethod.ActClick(driver, WebEle, 2000);
                                                 scenario.log("QUANTITY EXCEEDS MAXIMUM OF POPUP HANDLED");
                                             }
                                                //Check for "Out of Stock" popup
@@ -617,7 +618,7 @@ public class NewOrderEntryPage
                                                     WebElement modalContainer = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(text(),'This product is currently unavailable.')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]");
 
                                                     WebEle = modalContainer.findElement(By.xpath(".//button"));
-                                                    HelpersMethod.ClickBut(driver, WebEle, 60);
+                                                    HelpersMethod.ActClick(driver, WebEle, 60);
                                                 }
                                             }
                                         }
@@ -697,12 +698,17 @@ public class NewOrderEntryPage
                 HelpersMethod.ClickBut(driver,Next_But,100);
             }*/
 
-            Thread.sleep(1000);
-            for (int i = 0; i <= 4; i++)
+            Thread.sleep(2000);
+            for (int i = 0; i <= 5; i++)
             {
                 //out of stock popup
                 if (HelpersMethod.IsExists("//div[contains(text(),'% of your average order for the given products')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
                 {
+                    if(HelpersMethod.IsExists("//div[@class='loader']",driver))
+                    {
+                        WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
+                        HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 200000);
+                    }
                     WebElement modalContainer = HelpersMethod.FindByElement(driver,"xpath","//div[contains(text(),'% of your average order for the given products')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]");
                     //click on Continue button
                     WebEle=modalContainer.findElement(By.xpath(".//button[text()='Continue']"));
@@ -717,6 +723,11 @@ public class NewOrderEntryPage
                 //Critical item popup
                 if (HelpersMethod.IsExists("//div[contains(text(),'Critical items not ordered')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
                 {
+                    if(HelpersMethod.IsExists("//div[@class='loader']",driver))
+                    {
+                        WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
+                        HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 200000);
+                    }
                     WebElement modalContainer = HelpersMethod.FindByElement(driver,"xpath","//div[contains(text(),'Critical items not ordered')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]");
                     //click on No button
                     WebEle=modalContainer.findElement(By.xpath(".//button[text()='No']"));
@@ -730,6 +741,11 @@ public class NewOrderEntryPage
                 }
                 if (HelpersMethod.IsExists("//div[contains(text(),'which is less than the minimum order amount of')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]", driver))
                 {
+                    if(HelpersMethod.IsExists("//div[@class='loader']",driver))
+                    {
+                        WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
+                        HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 200000);
+                    }
                     WebElement modalContainer = driver.findElement(By.xpath("//div[contains(@class,'k-widget k-window k-dialog')]"));
                     WebElement yesButton = modalContainer.findElement(By.xpath(".//button[text()='Yes']"));
                     HelpersMethod.ActClick(driver, yesButton, 1000);
@@ -742,6 +758,11 @@ public class NewOrderEntryPage
                 }
                 if(HelpersMethod.IsExists("//div[contains(text(),' the quantity order has been increased')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
                 {
+                    if(HelpersMethod.IsExists("//div[@class='loader']",driver))
+                    {
+                        WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
+                        HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 200000);
+                    }
                     WebElement modalContainer = driver.findElement(By.xpath("//div[contains(@class,'k-widget k-window k-dialog')]"));
                     WebElement continueButton = modalContainer.findElement(By.xpath(".//button[text()='Continue']"));
                     HelpersMethod.ActClick(driver,continueButton, 1000);
@@ -754,6 +775,11 @@ public class NewOrderEntryPage
                 }
                 if(HelpersMethod.IsExists("//div[contains(text(),'Frequently ordered items')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
                 {
+                    if(HelpersMethod.IsExists("//div[@class='loader']",driver))
+                    {
+                        WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
+                        HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 200000);
+                    }
                     WebElement modalContainer = driver.findElement(By.xpath("//div[contains(@class,'k-widget k-window k-dialog')]"));
                     WebElement noButton = modalContainer.findElement(By.xpath(".//button[text()='No']"));
                     HelpersMethod.ActClick(driver,noButton, 1000);
@@ -768,7 +794,7 @@ public class NewOrderEntryPage
             if(HelpersMethod.IsExists("//div[@class='loader']",driver))
             {
                 WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 200000);
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 400000);
             }
         }
         catch (Exception e){}
@@ -782,6 +808,7 @@ public class NewOrderEntryPage
             WebElement WebEle=null;
             for (int i = 0; i <= 4; i++)
             {
+                Thread.sleep(500);
                 //Frequently ordered items
                 if(HelpersMethod.IsExists("//div[contains(text(),'Frequently ordered items not ordered')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
                 {
@@ -1046,7 +1073,7 @@ public class NewOrderEntryPage
                             WebElement modalContainer = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(text(),'Quantity exceeds maximum of')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]");
                             //click on Yes button
                             WebEle = modalContainer.findElement(By.xpath(".//button[text()='Yes']"));
-                            HelpersMethod.ClickBut(driver, WebEle, 1000);
+                            HelpersMethod.ActClick(driver, WebEle, 1000);
                             status = HelpersMethod.returnDocumentStatus(driver);
                             if (status.equals("loading"))
                             {
@@ -1066,7 +1093,7 @@ public class NewOrderEntryPage
                         {
                             WebElement modalContainer = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(text(),'This product is currently unavailable.')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]");
                             WebEle = modalContainer.findElement(By.xpath(".//button[text()='Ok']"));
-                            HelpersMethod.ClickBut(driver, WebEle, 1000);
+                            HelpersMethod.ActClick(driver, WebEle, 1000);
                         }
                         //Check for 'Product low in invetory' popup
                         if (HelpersMethod.IsExists("//div[contains(text(),'This product is currently low')]/ancestor::div[@id='toast-container']",driver))
@@ -2934,19 +2961,25 @@ public class NewOrderEntryPage
     public void PriceOverridePopup_WhatIfPricePrice(String priceOverride)
     {
         WebElement WebEle=null;
+        Actions act=new Actions(driver);
         try
         {
             if(HelpersMethod.IsExists("//div[contains(text(),'Price override')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
             {
                 //What if button, finding webelement
-                WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-widget k-window k-dialog')]/descendant::button[contains(text(),'What if (alt-w)')]");
-                HelpersMethod.ClickBut(driver,WebEle,1000);
+                WebElement whatIf =HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-widget k-window k-dialog')]/descendant::button[contains(text(),'What if (alt-w)')]");
+                HelpersMethod.ClickBut(driver,whatIf,1000);
                 if(HelpersMethod.IsExists("//div[contains(@class,'priceOverride-table-container')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
                 {
-                    WebEle=HelpersMethod.FindByElement(driver,"id","overridePrice");
-                    String PriceFound=HelpersMethod.JSGetValueEle(driver,WebEle,1000);
+                    WebElement overridePrice=HelpersMethod.FindByElement(driver,"id","overridePrice");
+                    String PriceFound=HelpersMethod.JSGetValueEle(driver,overridePrice,1000);
                     scenario.log("ACTUAL PRICE FOUND IS "+PriceFound);
-                    HelpersMethod.JSSetValueEle(driver,WebEle,1000,priceOverride);
+
+                    act.moveToElement(overridePrice).click().build().perform();
+                    HelpersMethod.JSSetValueEle(driver,overridePrice,1000,"$0.01");
+                    HelpersMethod.JSSetValueEle(driver,overridePrice,1000,priceOverride);
+                    //act.moveToElement(overridePrice).sendKeys(Keys.TAB).build().perform();
+                    overridePrice.sendKeys(Keys.TAB);
                     scenario.log("PRICE OVERRIDED BY "+priceOverride);
                     //Click on Ok button in popup
                     WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'priceOverride-table-container')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]/descendant::button[text()='Ok']");
@@ -2954,8 +2987,10 @@ public class NewOrderEntryPage
                     if(HelpersMethod.IsExists("//li[contains(text(),'price was set to the original price.')]/ancestor::div[contains(@class,'k-widget k-notification k-notification-error')]",driver))
                     {
                         WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-notification-error')]//*[local-name()='svg' and contains(@class,'close-error')]//*[local-name()='path']");
-                        HelpersMethod.ClickBut(driver,WebEle,1000);
+                        HelpersMethod.ActClick(driver,WebEle,1000);
+                        scenario.log("BASE PRICE SET BACK TO ORIGINAL PRICE");
                     }
+                    Thread.sleep(1000);
                 }
             }
         }
@@ -2971,25 +3006,28 @@ public class NewOrderEntryPage
             if(HelpersMethod.IsExists("//div[contains(text(),'Price override')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
             {
                 //What if button, finding webelement
-                WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-widget k-window k-dialog')]/descendant::button[contains(text(),'What if (alt-w)')]");
-                HelpersMethod.ClickBut(driver,WebEle,1000);
-                if(HelpersMethod.IsExists("//div[contains(@class,'priceOverride-table-container')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
-                {
-                    WebElement pricePerUnit=HelpersMethod.FindByElement(driver,"id","overridePricePerUnit");
-                    String PriceFound=HelpersMethod.JSGetValueEle(driver,pricePerUnit,1000);
-                    scenario.log("ACTUAL PRICE FOUND IS "+PriceFound);
-                    act.moveToElement(pricePerUnit).build().perform();
-                    HelpersMethod.JSSetValueEle(driver,pricePerUnit,1000,priceOverride);
-                    pricePerUnit.sendKeys(Keys.TAB);
-                    scenario.log("PRICE OVERRIDED BY "+priceOverride);
+                WebElement whatIf =HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-widget k-window k-dialog')]/descendant::button[contains(text(),'What if (alt-w)')]");
+                HelpersMethod.ClickBut(driver,whatIf,1000);
+                if(HelpersMethod.IsExists("//div[contains(@class,'priceOverride-table-container')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver)) {
+                    WebElement pricePerUnit = HelpersMethod.FindByElement(driver, "id", "overridePricePerUnit");
+                    String PriceFound = HelpersMethod.JSGetValueEle(driver, pricePerUnit, 1000);
+                    scenario.log("ACTUAL PRICE FOUND IS " + PriceFound);
+
+                    act.moveToElement(pricePerUnit).click().build().perform();
+                    HelpersMethod.JSSetValueEle(driver, pricePerUnit, 1000, "");
+                    HelpersMethod.JSSetValueEle(driver, pricePerUnit, 1000, priceOverride);
+                    act.moveToElement(pricePerUnit).click().build().perform();
+                    act.sendKeys(Keys.TAB).build().perform();
+                    scenario.log("PRICE OVERRIDED BY " + priceOverride);
                     //Click on Ok button in popup
-                    WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'priceOverride-table-container')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]/descendant::button[text()='Ok']");
-                    HelpersMethod.ClickBut(driver,WebEle,1000);
-                    if(HelpersMethod.IsExists("//li[contains(text(),'price was set to the original price.')]/ancestor::div[contains(@class,'k-widget k-notification k-notification-error')]",driver))
-                    {
-                        WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-notification-error')]//*[local-name()='svg' and contains(@class,'close-error')]//*[local-name()='path']");
-                        HelpersMethod.ClickBut(driver,WebEle,1000);
+                    WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'priceOverride-table-container')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]/descendant::button[text()='Ok']");
+                    HelpersMethod.ClickBut(driver, WebEle, 1000);
+                    if (HelpersMethod.IsExists("//li[contains(text(),'price was set to the original price.')]/ancestor::div[contains(@class,'k-widget k-notification k-notification-error')]", driver)) {
+                        WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-notification-error')]//*[local-name()='svg' and contains(@class,'close-error')]//*[local-name()='path']");
+                        HelpersMethod.ActClick(driver, WebEle, 1000);
+                        scenario.log("BASE PRICE SET BACK TO ORIGINAL PRICE");
                     }
+                    Thread.sleep(1000);
                 }
             }
         }
@@ -4127,8 +4165,9 @@ public class NewOrderEntryPage
         {
             if(HelpersMethod.IsExists("//div[@class='toast-message' and contains(text(),'This product is currently unavailable.')]",driver))
             {
+               Thread.sleep(500);
                WebElement toastCurrentlyUnavailable=HelpersMethod.FindByElement(driver,"xpath","//div[@class='toast-message' and contains(text(),'This product is currently unavailable.')]/preceding-sibling::button[text()='×']");
-               HelpersMethod.ActClick(driver,toastCurrentlyUnavailable,2000);
+               HelpersMethod.ActClick(driver,toastCurrentlyUnavailable,4000);
                scenario.log("TOAST MESSAGE FOR: CURRENTLY UNAVAILABLE HAS BEEN HANDLED");
                Thread.sleep(500);
             }

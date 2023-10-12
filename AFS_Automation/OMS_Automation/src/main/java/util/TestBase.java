@@ -129,6 +129,15 @@ public class TestBase
                 driver.set(new InternetExplorerDriver());*/
             }
             break;
+            case "headless":
+            {
+                WebDriverManager.chromedriver().setup();
+                ChromeOptions chromeOptions = new ChromeOptions();
+                chromeOptions.addArguments("--headless=new");
+                chromeOptions.addArguments("window-size=1280,720");
+                driver.set(new ChromeDriver(chromeOptions));
+            }
+            break;
             default:
                 System.out.println("NO BROWSER HAS BEEN IDENTIFIED");
                 break;

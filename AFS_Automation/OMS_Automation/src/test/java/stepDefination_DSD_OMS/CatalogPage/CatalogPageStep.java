@@ -10,9 +10,12 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.FluentWait;
+import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import pages_DSD_OMS.Catalog.CatalogPage;
@@ -47,6 +50,7 @@ public class CatalogPageStep
     static boolean flag=false;
     static boolean flag1=false;
     static String currentURL=null;
+    static String Ord_No=null;
 
     static LoginPage loginpage;
     static HomePage homepage;
@@ -377,16 +381,21 @@ public class CatalogPageStep
         catalogpage = new CatalogPage(driver, scenario);
         catalogpage.ClickImage();
         productdesctiptionpage = new ProductDescriptionPage(driver, scenario);
+        Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                .withTimeout(Duration.ofSeconds(30))
+                .pollingEvery(Duration.ofSeconds(5))
+                .ignoring(NoSuchElementException.class);
+        wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
         if(HelpersMethod.IsExistsById("delete-from-cart-button",driver))
         {
-            if(HelpersMethod.IsExists("//div[@class='loader']",driver))
-            {
-                WebElement WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 40000);
-            }
             WebElement Del_But=HelpersMethod.FindByElement(driver,"id","delete-from-cart-button");
             HelpersMethod.ScrollElement(driver,Del_But);
             HelpersMethod.ClickBut(driver,Del_But,1000);
+            if(HelpersMethod.IsExists("//div[@class='loader']",driver))
+            {
+                WebElement WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 400000);
+            }
             productdesctiptionpage.Qty_Inputbox(Qty.get(0).get(0));
             productdesctiptionpage.Add_to_cart();
             productdesctiptionpage.Increase_Descrease();
@@ -396,7 +405,7 @@ public class CatalogPageStep
             if(HelpersMethod.IsExists("//div[@class='loader']",driver))
             {
                 WebElement WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 40000);
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 400000);
             }
             productdesctiptionpage.Qty_Inputbox(Qty.get(0).get(0));
             productdesctiptionpage.Add_to_cart();
@@ -430,7 +439,7 @@ public class CatalogPageStep
                 if(HelpersMethod.IsExists("//div[@class='loader']",driver))
                 {
                     WebElement WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 20000);
+                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 400000);
                 }
                 WebElement WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'cart-container')]/ancestor::div[contains(@class,'price-cart-container')]");
                 HelpersMethod.ScrollElement(driver,WebEle);
@@ -475,7 +484,7 @@ public class CatalogPageStep
                 if(HelpersMethod.IsExists("//div[@class='loader']",driver))
                 {
                     WebElement WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 20000);
+                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 800000);
                 }
                 productdesctiptionpage = new ProductDescriptionPage(driver, scenario);
                 if(HelpersMethod.IsExists("//button[@id='delete-from-cart-button']",driver))
@@ -513,9 +522,10 @@ public class CatalogPageStep
         summary.ClickSubmit();
         for(int i=0;i<=2;i++)
         {
-            summary.additionalOrderPopup();
             summary.cutoffDialog();
+            summary.additionalOrderPopup();
         }
+        Ord_No = summary.Get_Order_No();
         summary.SucessPopup();
     }
 

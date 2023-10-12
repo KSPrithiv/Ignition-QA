@@ -7,6 +7,8 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.FluentWait;
+import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.w3c.dom.Text;
@@ -92,7 +94,7 @@ public class OrderControlListPage
             if (HelpersMethod.IsExists("//div[@class='loader']", driver))
             {
                 WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100000);
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 400000);
             }
             Title = HelpersMethod.gettingTitle(driver);
             if(Title.equalsIgnoreCase("Order Control List"))
@@ -113,7 +115,7 @@ public class OrderControlListPage
             {
                 JavascriptExecutor js = ((JavascriptExecutor) driver);
                 js.executeScript("window.location.reload()");
-                WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(10000));
+                WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(800000));
                 if (wait.until(ExpectedConditions.alertIsPresent()) == null)
                 {
 
@@ -130,11 +132,16 @@ public class OrderControlListPage
                 driver.navigate().to(currentURL);
                 scenario.log("REFRESHED PAGE IN OCL");
             }
-            if (HelpersMethod.IsExists("//div[@class='loader']", driver))
+           /* if (HelpersMethod.IsExists("//div[@class='loader']", driver))
             {
                 WebElement   WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
                 HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 800000);
-            }
+            }*/
+            Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(60))
+                    .pollingEvery(Duration.ofSeconds(5))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
         }
         catch (Exception e){}
     }
@@ -147,11 +154,11 @@ public class OrderControlListPage
             if (HelpersMethod.IsExists("//div[@class='loader']", driver))
             {
                 WebElement   WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100000);
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 400000);
             }
             if(OrderTaker.isDisplayed())
             {
-                HelpersMethod.ActClick(driver, OrderTaker, 1000);
+                HelpersMethod.ActClick(driver, OrderTaker, 6000);
                 exists = true;
             }
             else

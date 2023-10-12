@@ -108,7 +108,11 @@ Feature: Catalog
     Then User enters Product# in Search bar and enters Qty for single Product
       |50|
     Then User click on cart in catalog and click on Gotocart and select existing order
-    Then Click on Next button in Payment page
+    #Then Click on Back button in Checkout Card page
+    And user should be on New Order entry page
+    Then Enter PO# for New order
+      |PO123|
+    Then Click on Next button
     Then Click on SubmitOrder button for creating order from Catalog
     Then User should be navigated to Order Entry page after creating order from catalog
 
@@ -121,7 +125,11 @@ Feature: Catalog
     And User clicks on product image and enters Qty in Description page
       |40|
     Then User click on cart in catalog and click on Gotocart and select existing order
-    Then Click on Next button in Payment page
+    #Then Click on Back button in Checkout Card page
+    And user should be on New Order entry page
+    Then Enter PO# for New order
+      |PO123|
+    Then Click on Next button
     Then Click on SubmitOrder button for creating order from Catalog
     Then User should be navigated to Order Entry page after creating order from catalog
 
@@ -135,7 +143,11 @@ Feature: Catalog
       |40|
       |30|
     Then User click on cart in catalog and click on Gotocart and select existing order
-    Then Click on Next button in Payment page
+    #Then Click on Back button in Checkout Card page
+    And user should be on New Order entry page
+    Then Enter PO# for New order
+      |PO123|
+    Then Click on Next button
     Then Click on SubmitOrder button for creating order from Catalog
     Then User should be navigated to Order Entry page after creating order from catalog
 
@@ -149,11 +161,13 @@ Feature: Catalog
       |40|
       |30|
     Then User click on cart in catalog and click on Gotocart and select existing order
-    Then Click on Next button in Payment page
+    #Then Click on Back button in Checkout Card page
+    And user should be on New Order entry page
+    Then Enter PO# for New order
+      |PO123|
+    Then Click on Next button
     Then Click on SubmitOrder button for creating order from Catalog
     Then User should be navigated to Order Entry page after creating order from catalog
-
-
 
 
 
