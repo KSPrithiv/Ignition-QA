@@ -352,9 +352,9 @@ public class OrderEntryPageSteps
                 checkorder.Click_On_Without_Providing_Payment();
                 scenario.log("WITHOUT PROVIIDNG PAYMENT OPTION HAS BEEN SELECTED");
             }
+            checkorder.DeliveryAddressCard();
+            checkorder.NextButton_Click();
         }
-        checkorder.DeliveryAddressCard();
-        checkorder.NextButton_Click();
     }
 
     @Then("Click on Next after editing order All order")

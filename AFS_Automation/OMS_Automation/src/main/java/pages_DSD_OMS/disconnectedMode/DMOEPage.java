@@ -2,11 +2,14 @@ package pages_DSD_OMS.disconnectedMode;
 
 import helper.HelpersMethod;
 import io.cucumber.java.Scenario;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.FluentWait;
+import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import util.Environment;
@@ -235,7 +238,13 @@ public class DMOEPage
             if(HelpersMethod.IsExists("//div[contains(text(),'Synchronizing Device Data')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
             {
                 WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[contains(text(),'Synchronizing Device Data')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]");
-                new WebDriverWait(driver, Duration.ofMillis(400000)).until(ExpectedConditions.invisibilityOf(WebEle));
+                //new WebDriverWait(driver, Duration.ofMillis(400000)).until(ExpectedConditions.invisibilityOf(WebEle));
+                Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                        .withTimeout(Duration.ofSeconds(300))
+                        .pollingEvery(Duration.ofSeconds(5))
+                        .ignoring(NoSuchElementException.class);
+                wait.until(ExpectedConditions.invisibilityOf(WebEle));
+
             }
         }
         catch (Exception e){}

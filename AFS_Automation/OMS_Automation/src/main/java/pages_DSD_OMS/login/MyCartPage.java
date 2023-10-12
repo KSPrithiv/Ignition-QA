@@ -118,14 +118,14 @@ public class MyCartPage
                 WebElement WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
                 HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100000);
             }
-            WebElement Del_But = HelpersMethod.FindByElement(driver, "xpath", "//tr[1]//*[local-name()='svg' and contains(@class,'delete')]");
+            WebElement Del_But = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'delete-button-container')]//*[local-name()='svg']");
             if(Del_But.isDisplayed() && Del_But.isEnabled())
             {
                 HelpersMethod.ActClick(driver, Del_But, 1000);
                 if(HelpersMethod.IsExists("//div[@class='loader']",driver))
                 {
                     WebElement WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100000);
+                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 400000);
                 }
 
                 scenario.log("DELETE BUTTON CLICKED");

@@ -552,8 +552,10 @@ public class StatementsPage
             }
             if(HelpersMethod.IsExists("//div[contains(text(),'There is no data to display for your defined date range')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
             {
-                WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-widget k-window k-dialog')]/descendant::button[text()='OK']");
-                HelpersMethod.ClickBut(driver,WebEle,8000);
+                WebElement dialogPopup=HelpersMethod.FindByElement(driver,"xpath","//div[contains(text(),'There is no data to display for your defined date range')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]");
+                WebElement okButton=dialogPopup.findElement(By.xpath(".//button[text()='Ok']"));
+                HelpersMethod.ActClick(driver,okButton,8000);
+                scenario.log("***************THERE IS NO DATA TO DISPLAY IN THE SELECTED RANGE OF DATE**************");
                 exists=true;
             }
             else

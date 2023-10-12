@@ -376,9 +376,9 @@ public class LoginPage
             HelpersMethod.EnterText(driver, Search1, 1000, "Customer #");
 
             //Click on Check box
-            HelpersMethod.WaitElementPresent(driver, "xpath", "//input[@id='CM_CUSTKEY']", 400);
-            //new WebDriverWait(driver, 200).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@id='CM_CUSTKEY']")));
-            WebElement WebEle1 = modalContainer1.findElement(By.xpath(".//input[@id='CM_CUSTKEY']"));
+            HelpersMethod.WaitElementPresent(driver, "xpath", "//input[@id='FORMATTED_CM_CUSTKEY']", 400);
+           // new WebDriverWait(driver, 20000).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@id='CM_CUSTKEY']")));
+            WebElement WebEle1 = modalContainer1.findElement(By.xpath(".//input[@id='FORMATTED_CM_CUSTKEY']"));
             HelpersMethod.JScriptClick(driver, WebEle1, 1000);
 
             //Identify radio button and click on Radio button
@@ -452,7 +452,7 @@ public class LoginPage
         {
             HelpersMethod.ScrollElement(driver, SignIn);
             HelpersMethod.ClickBut(driver, SignIn, 1000);
-            HelpersMethod.waitTillPageLoaded(driver, 100000);
+            HelpersMethod.waitTillPageLoaded(driver, 400000);
 
             String status = HelpersMethod.returnDocumentStatus(driver);
             if (status.equals("loading"))
@@ -462,7 +462,7 @@ public class LoginPage
             if (HelpersMethod.IsExists("//div[@class='loader']", driver))
             {
                 WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 200000);
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 400000);
             }
             status = HelpersMethod.returnDocumentStatus(driver);
             if (status.equals("loading"))

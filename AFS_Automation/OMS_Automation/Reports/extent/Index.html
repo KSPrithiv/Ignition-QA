@@ -49,7 +49,7 @@
 		<!-- nav-right -->
 		<ul id='nav-mobile' class='right hide-on-med-and-down nav-right'>
 			<a href='#!'>
-			<span class='label blue darken-3 suite-start-time'>Oct 10, 2023 02:23:11 pm</span>
+			<span class='label blue darken-3 suite-start-time'>Oct 12, 2023 04:52:18 pm</span>
 			</a>
 		</ul>
 	</div>
@@ -76,10 +76,7 @@
 				<i class='material-icons'>local_offer</i> Category
 				</a>
 				<ul id='category-toggle' class='dropdown-content'>
-					<li><a href='#'>@LogoutInventory</a></li>
-					<li><a href='#'>@AddingProductsToInventory</a></li>
-					<li><a href='#'>@QuickEntryInventroy</a></li>
-					<li><a href='#'>@DragAndDrop</a></li>
+					<li><a href='#'>@PriceOverRidePriceByPrice</a></li>
 					<li class='divider'></li>
 					<li class='clear'><a href='#!' clear='true'>Clear Filters</a></li>
 				</ul>
@@ -140,7 +137,7 @@
                 </div>
                 <div class='block text-small'>
                     <span class='tooltipped' data-position='top' data-tooltip='100%'>
-                    <span class='strong'>4</span> scenarios passed</span>
+                    <span class='strong'>1</span> scenarios passed</span>
                 </div>
                 <div class='block text-small'>
                     <span class='strong tooltipped' data-position='top' data-tooltip='0%'>
@@ -160,7 +157,7 @@
                 </div>
                 <div class='block text-small'>
                     <span class='tooltipped' data-position='top' data-tooltip='100%'>
-                    <span class='strong'>36</span> steps passed</span>
+                    <span class='strong'>16</span> steps passed</span>
                 </div>
                 <div class='block text-small'>
                     <span class='strong tooltipped' data-position='top' data-tooltip='0%'>
@@ -189,8 +186,8 @@
 			<ul id='test-collection' class='test-collection'>
 				<li class='test displayed active has-leaf pass' status='pass' bdd='true' test-id='1'>
 					<div class='test-heading'>
-						<span class='test-name'>Inventory</span>
-						<span class='test-time'>Oct 10, 2023 02:23:25 pm</span>
+						<span class='test-name'>Order Entry3</span>
+						<span class='test-time'>Oct 12, 2023 04:52:33 pm</span>
 						<span class='test-status right pass'>Pass</span>
 					</div>
 					<div class='test-content hide'>
@@ -200,266 +197,145 @@
 	<a class="btn-floating waves-effect waves-light skip blue" title="skip"><i class='material-icons'>redo</i></a>
 	<a class="btn-floating waves-effect waves-light clear grey" title="clear"><i class='material-icons'>clear</i></a>
 </div>
-	<div class='test-desc'>  Used for performing different operations on inventory tab</div>
+	<div class='test-desc'>  Used for cration of New order in different ways
+  Used for canceling order, editing of order, skipping of order</div>
 
 <div class='scenario node' test-id='2' status='pass'>
 
-	<span class='duration right label'>00 01 10.393</span>
+	<span class='duration right label'>00 08 28.491</span>
 	<div class="bdd-test">
-		<div class="scenario-name"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span> Scenario: Test scneario for adding products to inventory</div>
+		<div class="scenario-name"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span> Scenario: Test scenario for testing price override with "What if" option, price by price option</div>
 	</div>
 	
 	
 		<div class='category-list'>
-				<span class='category label'>@AddingProductsToInventory</span>
+				<span class='category label'>@PriceOverRidePriceByPrice</span>
 		</div>
 	
 	<ul class='steps'>
 		<li test-id='58' class='node given Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.InventoryPage.InventoryPageSteps.userEntersUrlAndIsOnLoginPageAndEnteredCredentialsForInventory())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Given User enters URL and is on login page and entered credentials for Inventory</div>
+			<div class="step-name" title="(stepDefination_DSD_OMS.OrderEntryPage.OrderEntryPageSteps.user_enters_url_and_is_on_login_page_and_entered_credentials())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Given User enters URL and is on login page and entered credentials</div>
 
 
 					<div class="node-step">SIGNIN BUTTON CLICKED</div>
 		</li>
 		<li test-id='59' class='node when Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.InventoryPage.InventoryPageSteps.userIsOnHomePageForInventory())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>When User is on Home Page for Inventory</div>
+			<div class="step-name" title="(stepDefination_DSD_OMS.OrderEntryPage.OrderEntryPageSteps.user_is_on_home_page())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>When User is on Home Page</div>
 
 
 					<div class="node-step">ADMIN PAGE FOUND</div>
 		</li>
 		<li test-id='60' class='node then Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.InventoryPage.InventoryPageSteps.userNavigateToClientSideForInventory())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User navigate to Client side for Inventory</div>
+			<div class="step-name" title="(stepDefination_DSD_OMS.OrderEntryPage.OrderEntryPageSteps.user_navigate_to_client_side())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User navigate to Client side</div>
 
 
 					<div class="node-step">USER ICON FOUND</div>
 					<div class="node-step">IN ADMIN PAGE</div>
 		</li>
 		<li test-id='61' class='node then Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.InventoryPage.InventoryPageSteps.userShouldSelectOrderEntryTabForInventory())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User should select Order Entry tab for Inventory</div>
+			<div class="step-name" title="(stepDefination_DSD_OMS.OrderEntryPage.OrderEntryPageSteps.user_should_select_order_entry_tab())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User should select Order Entry tab</div>
 
 
 					<div class="node-step">https://ignitionqadsd.afsi.com/clientportal/apps/cpOrderEntry.html?p=Km530c8XSlYiXYABAQY6Y%2fH4h8U05NAvkuXBE2RCxgnlbt%2btBuFlqw%3d%3d</div>
 					<div class="node-step">NAVIGATED TO ORDER ENTRY PAGE</div>
 		</li>
 		<li test-id='62' class='node then Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.InventoryPage.InventoryPageSteps.userSelectsAccountForInventory())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User selects Account# for Inventory</div>
+			<div class="step-name" title="(stepDefination_DSD_OMS.OrderEntryPage.OrderEntryPageSteps.user_selects_account())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User selects Account#</div>
 
 
 					<div class="node-step">CUSTOMER ACCOUNT# SELECTED IS 40035978-0-3029</div>
-					<div class="node-step">DELIBERY DATE FOUND, AFTER LOGGING IN TO APPLICATION  Tuesday, October 10, 2023</div>
 		</li>
 		<li test-id='63' class='node given Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.InventoryPage.InventoryPageSteps.userMustBeOnOrderEntryPageToSelectInventoryTab())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Given User must be on Order Entry Page to select Inventory tab</div>
+			<div class="step-name" title="(stepDefination_DSD_OMS.OrderEntryPage.OrderEntryPageSteps.user_must_be_on_order_entry_page())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Given User must be on Order Entry Page</div>
 
 
+					<div class="node-step">DELIBERY DATE FOUND, AFTER LOGGING IN TO APPLICATION  Thursday, October 12, 2023</div>
 		</li>
-		<li test-id='64' class='node and Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.InventoryPage.InventoryPageSteps.userShouldNavigateToInventoryTab())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>And User should navigate to Inventory tab</div>
+		<li test-id='64' class='node then Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.OrderEntryPage.OrderEntryPageSteps.user_must_click_start_order_button())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User must click Start Order button</div>
 
 
-					<div class="node-step">CURRENT URL IS https://ignitionqadsd.afsi.com/clientportal/apps/cpInventory.html?p=Km530c8XSlYiXYABAQY6Y%2fH4h8U05NAvkuXBE2RCxgnlbt%2btBuFlqw%3d%3d</div>
+					<div class="node-step">NAVIGATED TO ORDER ENTRY PAGE</div>
+					<div class="node-step">START BUTTON HAS BEEN CLICKED</div>
 		</li>
 		<li test-id='65' class='node then Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.InventoryPage.InventoryPageSteps.userShouldBeInStoreInventoryTabInInventroyPage())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User should be in Store inventory tab, in inventroy page</div>
+			<div class="step-name" title="(stepDefination_DSD_OMS.OrderEntryPage.OrderEntryPageSteps.user_should_make_selection_between_pending_order_or_start_new_order())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User should make selection between Pending order or Start New order</div>
 
 
-					<div class="node-step">STORE INVENTORY TAB IS SELECTED</div>
 		</li>
 		<li test-id='66' class='node then Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.InventoryPage.InventoryPageSteps.userShouldChangeStoreInventroyDropdownValue())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User should change store inventroy dropdown value</div>
+			<div class="step-name" title="(stepDefination_DSD_OMS.OrderEntryPage.OrderEntryPageSteps.userShouldSelectNoteFromPopupAndOrderGuideFromPopup())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User should select Note from popup and Order guide from popup</div>
 
 
+					<div class="node-step">ORDER GUIDE POPUP HAS BEEN FOUND</div>
 		</li>
-		<li test-id='67' class='node and Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.InventoryPage.InventoryPageSteps.userShouldClickOnAddProductButtonAndSelectProductsFromProductPopup(io.cucumber.datatable.DataTable))"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>And User should click on Add product button and select products from Product popup</div>
+		<li test-id='67' class='node then Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.OrderEntryPage.OrderEntryPageSteps.enter_po_for_new_order(io.cucumber.datatable.DataTable))"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then Enter PO# for New order</div>
 
 
-					<div class="node-step"><table class='markup-table table '><tr><td>5</td><td>10</td></tr><tr><td>20</td><td>8</td></tr><tr><td>6</td><td>10</td></tr></table></div>
-					<div class="node-step">PRODUCT DIALOG HAS BEEN FOUND</div>
-					<div class="node-step">CATALOG IN THE FORM OF LIST VIEW HAS BEEN FOUND</div>
-					<div class="node-step">PRODUCT FOUND IN CATALOG IS 00000001</div>
-					<div class="node-step">PRODUCT FOUND IN CATALOG IS 00000002</div>
-					<div class="node-step">PRODUCT FOUND IN CATALOG IS 00000003</div>
+					<div class="node-step"><table class='markup-table table '><tr><td>PO123</td></tr></table></div>
+					<div class="node-step">NEW ORDER ENTRY PAGE HAS BEEN FOUND</div>
+					<div class="node-step">PO# ENTERED IS PO123</div>
 		</li>
-	</ul>
-</div>
-<div class='scenario node' test-id='69' status='pass'>
-
-	<span class='duration right label'>00 00 07.122</span>
-	<div class="bdd-test">
-		<div class="scenario-name"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span> Scenario: Test scenario for Drag and drop operation in Inventory</div>
-	</div>
-	
-	
-		<div class='category-list'>
-				<span class='category label'>@DragAndDrop</span>
-		</div>
-	
-	<ul class='steps'>
-		<li test-id='125' class='node given Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.InventoryPage.InventoryPageSteps.userEntersUrlAndIsOnLoginPageAndEnteredCredentialsForInventory())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Given User enters URL and is on login page and entered credentials for Inventory</div>
+		<li test-id='68' class='node then Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.OrderEntryPage.OrderEntryPageSteps.enter_pro_in_quick_product_entry_area())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then Enter Pro# in Quick Product Entry area</div>
 
 
+					<div class="node-step">PRODUCT ADDED TO THE ORDER Via QUICK PRODUCT ENTRY 00000004</div>
 		</li>
-		<li test-id='126' class='node when Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.InventoryPage.InventoryPageSteps.userIsOnHomePageForInventory())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>When User is on Home Page for Inventory</div>
+		<li test-id='69' class='node and Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.OrderEntryPage.OrderEntryPageSteps.check_for_case_and_unit_input_box_enabled_or_not_based_on_that_enter_value(io.cucumber.datatable.DataTable))"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>And Check for Case and Unit input box enabled or not based on that enter value</div>
 
 
+					<div class="node-step"><table class='markup-table table '><tr><td>50</td><td>60</td></tr></table></div>
+					<div class="node-step">UOM IS ENABLED AND IT CONTAINS Cases, Units VALUE IN IT</div>
+					<div class="node-step">CASE ENTERED FOR QUICK PRODUCT IS 50</div>
+					<div class="node-step">UNIT ENTERED FOR QUICK PRODUCT IS 60</div>
+					<div class="node-step">QUANTITY EXCEEDS MAXIMUM POPUP HANDLED</div>
+					<div class="node-step">TOAST MESSAGE FOR: CURRENTLY UNAVAILABLE HAS BEEN HANDLED</div>
 		</li>
-		<li test-id='127' class='node then Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.InventoryPage.InventoryPageSteps.userNavigateToClientSideForInventory())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User navigate to Client side for Inventory</div>
+		<li test-id='70' class='node then Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.OrderEntryPage.OrderEntryPageSteps3.userShouldClickOnPriceOverrideIconAndChangePriceUsingWhatIfOption(io.cucumber.datatable.DataTable))"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User should click on price override icon and Change price using What if option Price by price</div>
 
 
+					<div class="node-step"><table class='markup-table table '><tr><td>$2.00</td></tr></table></div>
+					<div class="node-step">16</div>
+					<div class="node-step">PRICE FOUND BEFORE PRICE OVERRIDE </div>
+					<div class="node-step">PRICE OVERRIDE DIALOG BOX HAS BEEN FOUND</div>
+					<div class="node-step">ACTUAL PRICE FOUND IS $4.25</div>
+					<div class="node-step">PRICE OVERRIDED BY $2.00</div>
 		</li>
-		<li test-id='128' class='node then Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.InventoryPage.InventoryPageSteps.userShouldSelectOrderEntryTabForInventory())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User should select Order Entry tab for Inventory</div>
+		<li test-id='71' class='node then Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.OrderEntryPage.OrderEntryPageSteps.click_on_next_button())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then Click on Next button</div>
 
 
+					<div class="node-step">PRODUCT FOUND IN ORDER ARE </div>
+					<div class="node-step">112882</div>
+					<div class="node-step">122216</div>
+					<div class="node-step">135444</div>
+					<div class="node-step">820032</div>
+					<div class="node-step">4</div>
+					<div class="node-step">NEXT BUTTON CLICKED</div>
+					<div class="node-step">FREQUENTLY ORDERED ITEMS POPUP HAS BEEN HANDLED</div>
+					<div class="node-step">% OF YOUR AVERAGE ORDER POPUP HAS BEEN HANDLED</div>
+					<div class="node-step">PAYMENT METHOD HAS BEEN SELECTED</div>
+					<div class="node-step">FIRST PAYMENT OPTION HAS BEEN SELECTED</div>
+					<div class="node-step">NEXT BUTTON IN PAYMENT PAGE HAS BEEN CLICKED</div>
 		</li>
-		<li test-id='129' class='node then Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.InventoryPage.InventoryPageSteps.userSelectsAccountForInventory())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User selects Account# for Inventory</div>
+		<li test-id='72' class='node and Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.OrderEntryPage.OrderEntryPageSteps.click_on_submit_order_button())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>And Click on SubmitOrder button</div>
 
 
+					<div class="node-step">SUBMIT BUTTON IN ORDER SUMMARY PAGE HAS BEEN CLICKED</div>
+					<div class="node-step">ORDER CUTOFF DIALOG BOX HAS BEEN HANDLED</div>
+					<div class="node-step">% POPUP HAS BEEN HANDLED</div>
+					<div class="node-step">ORDER HAS BEEN SUCESSFULLY CREATED</div>
 		</li>
-		<li test-id='130' class='node given Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.InventoryPage.InventoryPageSteps.userMustBeOnOrderEntryPageToSelectInventoryTab())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Given User must be on Order Entry Page to select Inventory tab</div>
+		<li test-id='73' class='node then Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.OrderEntryPage.OrderEntryPageSteps.user_should_be_navigated_to_order_entry_page())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User should be navigated to Order Entry page</div>
 
 
-		</li>
-		<li test-id='131' class='node and Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.InventoryPage.InventoryPageSteps.userShouldNavigateToInventoryTab())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>And User should navigate to Inventory tab</div>
-
-
-					<div class="node-step">CURRENT URL IS https://ignitionqadsd.afsi.com/clientportal/apps/cpInventory.html?p=Km530c8XSlYiXYABAQY6Y%2fH4h8U05NAvkuXBE2RCxgnlbt%2btBuFlqw%3d%3d</div>
-		</li>
-		<li test-id='132' class='node then Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.InventoryPage.InventoryPageSteps.userShouldDragAndDropAnyOfTheTableHeaderForGrouping(io.cucumber.datatable.DataTable))"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User should Drag and drop any of the table header for grouping</div>
-
-
-					<div class="node-step"><table class='markup-table table '><tr><td>Total Units</td></tr></table></div>
-		</li>
-	</ul>
-</div>
-<div class='scenario outline node' test-id='134' status='pass'>
-
-	<span class='duration right label'>00 00 09.994</span>
-	<div class="bdd-test">
-		<div class="scenario-name"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span> Scenario Outline: Test scneario for adding product from quick entry</div>
-	</div>
-	
-		<div class='node-desc'><br><br><table class='markup-table table '><tr><td>Case</td><td>Unit</td><td>Sequence</td></tr><tr><td>20</td><td>10</td><td>2</td></tr></table></div>
-	
-		<div class='category-list'>
-				<span class='category label'>@QuickEntryInventroy</span>
-		</div>
-	
-	<ul class='steps'>
-		<li test-id='135' class='node scenario Pass' status='Pass'>
-			<div class="step-name" title="()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Test scneario for adding product from quick entry</div>
-
-				<div class='category-list'>
-						<span class='category label'>@QuickEntryInventroy</span>
-				</div>
-
-			<ul class='gc steps'>
-				<li test-id='191' class='gc given Pass' status='Pass'>
-					<h6 class="step-name" title="stepDefination_DSD_OMS.InventoryPage.InventoryPageSteps.userEntersUrlAndIsOnLoginPageAndEnteredCredentialsForInventory()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Given User enters URL and is on login page and entered credentials for Inventory</h6>
-
-				</li>
-				<li test-id='192' class='gc when Pass' status='Pass'>
-					<h6 class="step-name" title="stepDefination_DSD_OMS.InventoryPage.InventoryPageSteps.userIsOnHomePageForInventory()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>When User is on Home Page for Inventory</h6>
-
-				</li>
-				<li test-id='193' class='gc then Pass' status='Pass'>
-					<h6 class="step-name" title="stepDefination_DSD_OMS.InventoryPage.InventoryPageSteps.userNavigateToClientSideForInventory()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User navigate to Client side for Inventory</h6>
-
-				</li>
-				<li test-id='194' class='gc then Pass' status='Pass'>
-					<h6 class="step-name" title="stepDefination_DSD_OMS.InventoryPage.InventoryPageSteps.userShouldSelectOrderEntryTabForInventory()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User should select Order Entry tab for Inventory</h6>
-
-				</li>
-				<li test-id='195' class='gc then Pass' status='Pass'>
-					<h6 class="step-name" title="stepDefination_DSD_OMS.InventoryPage.InventoryPageSteps.userSelectsAccountForInventory()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User selects Account# for Inventory</h6>
-
-				</li>
-				<li test-id='196' class='gc given Pass' status='Pass'>
-					<h6 class="step-name" title="stepDefination_DSD_OMS.InventoryPage.InventoryPageSteps.userMustBeOnOrderEntryPageToSelectInventoryTab()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Given User must be on Order Entry Page to select Inventory tab</h6>
-
-				</li>
-				<li test-id='197' class='gc and Pass' status='Pass'>
-					<h6 class="step-name" title="stepDefination_DSD_OMS.InventoryPage.InventoryPageSteps.userShouldNavigateToInventoryTab()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>And User should navigate to Inventory tab</h6>
-
-							<div class="node-step">CURRENT URL IS https://ignitionqadsd.afsi.com/clientportal/apps/cpInventory.html?p=Km530c8XSlYiXYABAQY6Y%2fH4h8U05NAvkuXBE2RCxgnlbt%2btBuFlqw%3d%3d</div>
-				</li>
-				<li test-id='198' class='gc then Pass' status='Pass'>
-					<h6 class="step-name" title="stepDefination_DSD_OMS.InventoryPage.InventoryPageSteps.userShouldBeInStoreInventoryTabInInventroyPage()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User should be in Store inventory tab, in inventroy page</h6>
-
-							<div class="node-step">STORE INVENTORY TAB IS SELECTED</div>
-				</li>
-				<li test-id='199' class='gc then Pass' status='Pass'>
-					<h6 class="step-name" title="stepDefination_DSD_OMS.InventoryPage.InventoryPageSteps.userShouldChangeStoreInventroyDropdownValue()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User should change store inventroy dropdown value</h6>
-
-				</li>
-				<li test-id='200' class='gc and Pass' status='Pass'>
-					<h6 class="step-name" title="stepDefination_DSD_OMS.InventoryPage.InventoryPageSteps.userEntersProductInQuickProductEntry(java.lang.String,java.lang.String,java.lang.String)"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>And User enters product#, "20", "10", "2" in quick product entry</h6>
-
-				</li>
-			</ul>
-		</li>
-	</ul>
-</div>
-<div class='scenario node' test-id='202' status='pass'>
-
-	<span class='duration right label'>00 00 08.605</span>
-	<div class="bdd-test">
-		<div class="scenario-name"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span> Scenario: Loging out from the application</div>
-	</div>
-	
-	
-		<div class='category-list'>
-				<span class='category label'>@LogoutInventory</span>
-		</div>
-	
-	<ul class='steps'>
-		<li test-id='258' class='node given Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.InventoryPage.InventoryPageSteps.userEntersUrlAndIsOnLoginPageAndEnteredCredentialsForInventory())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Given User enters URL and is on login page and entered credentials for Inventory</div>
-
-
-		</li>
-		<li test-id='259' class='node when Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.InventoryPage.InventoryPageSteps.userIsOnHomePageForInventory())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>When User is on Home Page for Inventory</div>
-
-
-		</li>
-		<li test-id='260' class='node then Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.InventoryPage.InventoryPageSteps.userNavigateToClientSideForInventory())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User navigate to Client side for Inventory</div>
-
-
-		</li>
-		<li test-id='261' class='node then Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.InventoryPage.InventoryPageSteps.userShouldSelectOrderEntryTabForInventory())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User should select Order Entry tab for Inventory</div>
-
-
-		</li>
-		<li test-id='262' class='node then Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.InventoryPage.InventoryPageSteps.userSelectsAccountForInventory())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User selects Account# for Inventory</div>
-
-
-		</li>
-		<li test-id='263' class='node and Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.LoginPageStep.refreshThePageIfAnyDialogBoxIsDisplayed())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>And Refresh the page if any dialog box is displayed</div>
-
-
-		</li>
-		<li test-id='264' class='node then Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.LoginPageStep.clickOnUserIconOnOrderEntryPage())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then Click on user Icon on Order Entry page</div>
-
-
-		</li>
-		<li test-id='265' class='node and Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.LoginPageStep.clickOnLogoutOnOrderEntryPage())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>And Click on Logout on Order Entry page</div>
-
-
+					<div class="node-step">ORDER ENTRY PAGE HAS BEEN FOUND</div>
 		</li>
 	</ul>
 </div>
@@ -507,7 +383,7 @@
 			<ul id='category-collection' class='category-collection'>
 				<li class='category displayed active'>
 					<div class='category-heading'>
-						<span class='category-name'>@LogoutInventory</span>
+						<span class='category-name'>@PriceOverRidePriceByPrice</span>
 						<span class='category-status right'>
 						<span class='label pass'>1</span>
 						</span>
@@ -529,112 +405,8 @@
 								</thead>
 								<tbody>
 									<tr>
-										<td>Oct 10, 2023 02:24:53 pm</td>
-										<td class='linked' test-id='202'>Loging out from the application</td>
-										<td><span class='test-status Pass'>Pass</span></td>
-									</tr>
-								</tbody>
-							</table>
-						</div>
-					</div>
-				</li>
-				<li class='category displayed active'>
-					<div class='category-heading'>
-						<span class='category-name'>@AddingProductsToInventory</span>
-						<span class='category-status right'>
-						<span class='label pass'>1</span>
-						</span>
-					</div>
-					<div class='category-content hide'>
-						<div class='category-status-counts'>
-							<span status="pass" class='label green accent-4 white-text'>Passed: 1</span>
-							
-							
-						</div>
-						<div class='category-tests'>
-							<table class='bordered table-results'>
-								<thead>
-									<tr>
-										<th>Timestamp</th>
-										<th>TestName</th>
-										<th>Status</th>
-									</tr>
-								</thead>
-								<tbody>
-									<tr>
-										<td>Oct 10, 2023 02:23:25 pm</td>
-										<td class='linked' test-id='2'>Test scneario for adding products to inventory</td>
-										<td><span class='test-status Pass'>Pass</span></td>
-									</tr>
-								</tbody>
-							</table>
-						</div>
-					</div>
-				</li>
-				<li class='category displayed active'>
-					<div class='category-heading'>
-						<span class='category-name'>@QuickEntryInventroy</span>
-						<span class='category-status right'>
-						<span class='label pass'>2</span>
-						</span>
-					</div>
-					<div class='category-content hide'>
-						<div class='category-status-counts'>
-							<span status="pass" class='label green accent-4 white-text'>Passed: 2</span>
-							
-							
-						</div>
-						<div class='category-tests'>
-							<table class='bordered table-results'>
-								<thead>
-									<tr>
-										<th>Timestamp</th>
-										<th>TestName</th>
-										<th>Status</th>
-									</tr>
-								</thead>
-								<tbody>
-									<tr>
-										<td>Oct 10, 2023 02:24:43 pm</td>
-										<td class='linked' test-id='134'>Test scneario for adding product from quick entry</td>
-										<td><span class='test-status Pass'>Pass</span></td>
-									</tr>
-									<tr>
-										<td>Oct 10, 2023 02:24:43 pm</td>
-										<td class='linked' test-id='135'>Test scneario for adding product from quick entry</td>
-										<td><span class='test-status Pass'>Pass</span></td>
-									</tr>
-								</tbody>
-							</table>
-						</div>
-					</div>
-				</li>
-				<li class='category displayed active'>
-					<div class='category-heading'>
-						<span class='category-name'>@DragAndDrop</span>
-						<span class='category-status right'>
-						<span class='label pass'>1</span>
-						</span>
-					</div>
-					<div class='category-content hide'>
-						<div class='category-status-counts'>
-							<span status="pass" class='label green accent-4 white-text'>Passed: 1</span>
-							
-							
-						</div>
-						<div class='category-tests'>
-							<table class='bordered table-results'>
-								<thead>
-									<tr>
-										<th>Timestamp</th>
-										<th>TestName</th>
-										<th>Status</th>
-									</tr>
-								</thead>
-								<tbody>
-									<tr>
-										<td>Oct 10, 2023 02:24:35 pm</td>
-										<td class='linked' test-id='69'>Test scenario for Drag and drop operation in Inventory</td>
+										<td>Oct 12, 2023 04:52:33 pm</td>
+										<td class='linked' test-id='2'>Test scenario for testing price override with "What if" option, price by price option</td>
 										<td><span class='test-status Pass'>Pass</span></td>
 									</tr>
 								</tbody>
@@ -665,31 +437,31 @@
 			<div class='col s2'>
 				<div class='card-panel r'>
 					Scenarios
-					<div class='panel-lead'>4</div>
+					<div class='panel-lead'>1</div>
 				</div>
 			</div>
 			<div class='col s2'>
 				<div class='card-panel r'>
 					Steps
-					<div class='panel-lead'>36</div>
+					<div class='panel-lead'>16</div>
 				</div>
 			</div>
 			<div class='col s2'>
 				<div class='card-panel r'>
 					Start
-					<div class='panel-lead'>Oct 10, 2023 02:23:11 pm</div>
+					<div class='panel-lead'>Oct 12, 2023 04:52:18 pm</div>
 				</div>
 			</div>
 			<div class='col s2'>
 				<div class='card-panel r'>
 			 		End
-			 		<div class='panel-lead'>Oct 10, 2023 02:25:12 pm</div>
+			 		<div class='panel-lead'>Oct 12, 2023 05:01:12 pm</div>
 				</div>
 			</div>
 			<div class='col s2'>
 				<div class='card-panel r'>
 					Time Taken
-					<div class='panel-lead'>00 02 00.409</div>
+					<div class='panel-lead'>00 08 53.895</div>
 				</div>
 			</div>
 			<div class='col s4'>
@@ -729,34 +501,7 @@
 							<th>Passed %</th>
 						</tr>
 						<tr>
-							<td>@LogoutInventory</td>
-							<td>1</td>
-							<td>0</td>
-							<td>0</td>
-							<td>
-									100%
-							</td>
-						</tr>
-						<tr>
-							<td>@AddingProductsToInventory</td>
-							<td>1</td>
-							<td>0</td>
-							<td>0</td>
-							<td>
-									100%
-							</td>
-						</tr>
-						<tr>
-							<td>@QuickEntryInventroy</td>
-							<td>2</td>
-							<td>0</td>
-							<td>0</td>
-							<td>
-									100%
-							</td>
-						</tr>
-						<tr>
-							<td>@DragAndDrop</td>
+							<td>@PriceOverRidePriceByPrice</td>
 							<td>1</td>
 							<td>0</td>
 							<td>0</td>
@@ -782,16 +527,16 @@
 				errorParent: 0,
 				warningParent: 0,
 				skipParent: 0,
-				childCount: 4,
-				passChild: 4,
+				childCount: 1,
+				passChild: 1,
 				failChild: 0,
 				fatalChild: 0,
 				errorChild: 0,
 				warningChild: 0,
 				skipChild: 0,
 				infoChild: 0,
-				grandChildCount: 36,
-				passGrandChild: 36,
+				grandChildCount: 16,
+				passGrandChild: 16,
 				failGrandChild: 0,
 				fatalGrandChild: 0,
 				errorGrandChild: 0,
@@ -803,7 +548,7 @@
 		
 		<script>
 			var timeline = {
-			        "Inventory":96.426
+			        "Order Entry3":508.495
 			};
 		</script>
 		

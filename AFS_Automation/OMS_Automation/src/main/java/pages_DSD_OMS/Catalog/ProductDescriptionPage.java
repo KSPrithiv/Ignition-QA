@@ -2,12 +2,20 @@ package pages_DSD_OMS.Catalog;
 
 import helper.HelpersMethod;
 import io.cucumber.java.Scenario;
+import io.cucumber.java8.Th;
+import org.apache.logging.log4j.core.tools.picocli.CommandLine;
+import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.FluentWait;
+import org.openqa.selenium.support.ui.Wait;
 import org.testng.Assert;
 
+import java.time.Duration;
 import java.util.List;
 
 /**
@@ -75,12 +83,25 @@ public class ProductDescriptionPage
         try
         {
             //code to click on Add to cart button
+            Add_Cart= HelpersMethod.FindByElement(driver,"id","add-to-cart-button");
             HelpersMethod.ScrollElement(driver,Add_Cart);
-            HelpersMethod.ActClick(driver,Add_Cart,1000);
+            HelpersMethod.ClickBut(driver,Add_Cart,4000);
             if(HelpersMethod.IsExists("//div[@class='loader']",driver))
             {
                 WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100000);
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 600000);
+            }
+            Thread.sleep(2000);
+            if (HelpersMethod.IsExists("//div[contains(text(),'This product is currently unavailable')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]", driver))
+            {
+                WebElement unavailablePopup=HelpersMethod.FindByElement(driver,"xpath","//div[contains(text(),'This product is currently unavailable')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]");
+                WebElement yesButton = unavailablePopup.findElement(By.xpath(".//button[text()='Ok']"));
+                HelpersMethod.ActClick(driver, yesButton, 1000);
+                if(HelpersMethod.IsExists("//div[@class='loader']",driver))
+                {
+                    WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
+                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 400000);
+                }
             }
             exists=true;
             Assert.assertEquals(exists,true);
@@ -99,12 +120,23 @@ public class ProductDescriptionPage
             {
                 //Incrase the Qty by one, by pressing up arrow
                 HelpersMethod.ClickBut(driver,Increase,1000);
-
                 HelpersMethod.ClickBut(driver,Update_Cart,1000);
                 if(HelpersMethod.IsExists("//div[@class='loader']",driver))
                 {
                     WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
                     HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100000);
+                }
+                Thread.sleep(1000);
+                if (HelpersMethod.IsExists("//div[contains(text(),'This product is currently unavailable')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]", driver))
+                {
+                    WebElement unavailablePopup=HelpersMethod.FindByElement(driver,"xpath","//div[contains(text(),'This product is currently unavailable')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]");
+                    WebElement yesButton = unavailablePopup.findElement(By.xpath(".//button[text()='Ok']"));
+                    HelpersMethod.ActClick(driver, yesButton, 1000);
+                    if(HelpersMethod.IsExists("//div[@class='loader']",driver))
+                    {
+                        WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
+                        HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 400000);
+                    }
                 }
                 scenario.log("INCREASE BUTTON CLICKED IN PRODUCT DESCRIPTION PAGE");
             }
@@ -117,6 +149,18 @@ public class ProductDescriptionPage
                 {
                     WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
                     HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100000);
+                }
+                Thread.sleep(1000);
+                if (HelpersMethod.IsExists("//div[contains(text(),'This product is currently unavailable')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]", driver))
+                {
+                    WebElement unavailablePopup=HelpersMethod.FindByElement(driver,"xpath","//div[contains(text(),'This product is currently unavailable')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]");
+                    WebElement yesButton = unavailablePopup.findElement(By.xpath(".//button[text()='Ok']"));
+                    HelpersMethod.ActClick(driver, yesButton, 1000);
+                    if(HelpersMethod.IsExists("//div[@class='loader']",driver))
+                    {
+                        WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
+                        HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 400000);
+                    }
                 }
                 scenario.log("DECREASE BUTTON CLICKED IN PRODUCT DESCRIPTION PAGE");
             }
@@ -182,11 +226,11 @@ public class ProductDescriptionPage
         exists=false;
         try
         {
-            if(HelpersMethod.IsExists("//div[@class='loader']",driver))
-            {
-                WebElement WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 200000);
-            }
+            Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(30))
+                    .pollingEvery(Duration.ofSeconds(5))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
 
             if(HelpersMethod.IsExists("//span[contains(text(),'Frequently bought together')]",driver)) {
                 List<WebElement> Product_Names = HelpersMethod.FindByElements(driver, "xpath", "//div[@id='products-may-like-card']/descendant::div[@class='product-description']/a");
@@ -198,7 +242,7 @@ public class ProductDescriptionPage
             }
             else
             {
-                scenario.log("FREQUENTLY BOUGHT TOGETHER PRODUCTS ARE NOT DISPLAYED, CHECK ADMIN SETTINGS");
+                scenario.log("******************FREQUENTLY BOUGHT TOGETHER PRODUCTS ARE NOT DISPLAYED, CHECK ADMIN SETTINGS*******************");
             }
             Assert.assertEquals(exists,true);
         }
@@ -213,7 +257,7 @@ public class ProductDescriptionPage
             if(HelpersMethod.IsExists("//div[@class='loader']",driver))
             {
                 WebElement WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 10000);
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 200000);
             }
             String head=HelpersMethod.FindByElement(driver,"xpath","//span[contains(@class,'spnmoduleNameHeader')]").getText();
             if(head.contains("Product detail"))
@@ -230,11 +274,11 @@ public class ProductDescriptionPage
         exists=false;
         try
         {
-            if(HelpersMethod.IsExists("//div[@class='loader']",driver))
-            {
-                WebElement WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100000);
-            }
+            Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(60))
+                    .pollingEvery(Duration.ofSeconds(5))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
 
             String prodDesc=HelpersMethod.FindByElement(driver,"xpath","//div[@class='product-description-container']/div[@class='product-description']").getText();
             if(prodDesc.equals("descriptionProd"))
