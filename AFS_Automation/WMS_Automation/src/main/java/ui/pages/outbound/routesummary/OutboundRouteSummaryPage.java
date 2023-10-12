@@ -145,7 +145,7 @@ public class OutboundRouteSummaryPage extends BasePage {
     By editTaskGroup = By.cssSelector("#wqListTaskGroup");
     By editTaskPalletsLabel = By.cssSelector("#wqListTaskPallets-label");
     By editTaskPallets = By.cssSelector("#wqListTaskPallets");
-    By taskNotification = By.cssSelector(".i-notification-text");
+    By taskNotification = By.cssSelector(".k-dialog-content .i-notification-text");
     By saveButton = By.xpath("//button[contains(text(), 'Save')]");
     By okButton = By.xpath("//button[contains(text(), 'Ok')]");
     By replenishToCleanCheckBox = By.cssSelector("#replenishToClean");
@@ -198,7 +198,7 @@ public class OutboundRouteSummaryPage extends BasePage {
             .xpath("//span[contains(@class, 'i-bar-description')][.//span[text()='Unallocated']]//span[contains(@class, 'description__dot')]");
     By sourceAllocatedColor = By
             .xpath("//span[contains(@class, 'i-bar-description')][.//span[text()='Allocated']]//span[contains(@class, 'description__dot')]");
-    By reviewRoute = By.xpath("//div[@class='inboundAppPageNew']//label[contains(text(), 'Review route')]");
+    By reviewRoute = By.xpath("//div[@class='inboundAppPageNew']//label[contains(text(), 'Review')]");
     By reviewRouteTableContent = By.xpath("//div[@class='inboundAppPageNew']//table[@class='k-grid-table']");
     By orderedLabel = By.xpath("//label[contains(text(), 'Ordered:')]");
     By pickedLabel = By.xpath("//label[contains(text(), 'Picked:')]");
@@ -208,6 +208,7 @@ public class OutboundRouteSummaryPage extends BasePage {
     By routeLabel = By.xpath("//span[text()='Route']");
     By enterNameInput = By.xpath("//input[contains(@placeholder, 'Enter NAME')]");
     By loader = By.cssSelector(".loader");
+    private static String randomRouteCode = null;
 
     public void waitOutboundRouteSummaryPageToLoad() {
         waitUntilInvisible(2, loader);
@@ -216,6 +217,10 @@ public class OutboundRouteSummaryPage extends BasePage {
         Waiters.waitForElementToBeDisplay(getTableContent());
         waitUntilInvisible(2, loader);
     }
+
+    public static synchronized void setRandomRouteCode(String randomRouteCode) { randomRouteCode = randomRouteCode; }
+
+    public static synchronized String getRandomRouteCode() { return randomRouteCode; }
 
     private By getStatusDropDown(String status) {
         return By.xpath("//span[contains(text(),'" + status + "')]");
@@ -644,6 +649,7 @@ public class OutboundRouteSummaryPage extends BasePage {
     }
 
     public void selectOutboundRouteCarrier(String carrier) {
+        Waiters.waitTillLoadingPage(getDriver());
         clickOnElement(findWebElement(By.xpath("//div[contains(@class, 'k-animation-container-shown')]//li[@role='option' and contains(text(), '"
                 + carrier + "')]")));
         Waiters.waitTillLoadingPage(getDriver());
@@ -653,14 +659,14 @@ public class OutboundRouteSummaryPage extends BasePage {
         Waiters.waitTillLoadingPage(getDriver());
         clickOnElement(findWebElement(By.xpath("//div[contains(@class, 'k-animation-container-shown')]//li[contains(text(), '"
                 + option + "') and @role='menuItem']")));
-        waitUntilInvisible(2, loader);
+        waitUntilInvisible(1, loader);
     }
 
     public void selectTrailerOption(String option) {
         Waiters.waitTillLoadingPage(getDriver());
         clickOnElement(findWebElement(By.xpath("//div[contains(@class, 'k-animation-container-shown')]//li[contains(text(), '"
                         + option + "') and @role='option']")));
-        waitUntilInvisible(2, loader);
+        waitUntilInvisible(1, loader);
     }
 
     public void selectOutboundRouteType(String routeType) {
@@ -668,7 +674,7 @@ public class OutboundRouteSummaryPage extends BasePage {
         clickOnElement(getRouteTypeInput());
         clickOnElement(findWebElement(By.xpath("//div[contains(@class, 'k-animation-container-shown')]//*[contains(text(), '"
                         + routeType + "')]")));
-        waitUntilInvisible(2, loader);
+        waitUntilInvisible(1, loader);
     }
 
     public void typeScheduledDate(String scheduledDate) {
@@ -677,7 +683,7 @@ public class OutboundRouteSummaryPage extends BasePage {
         clear(getScheduledDate());
         typeText(getScheduledDate(), scheduledDate);
         pressEnter(getScheduledDate());
-       waitUntilInvisible(2, loader);
+        waitUntilInvisible(1, loader);
     }
 
     public void typeScheduledTime(String time) {
@@ -715,7 +721,7 @@ public class OutboundRouteSummaryPage extends BasePage {
     public void clickDoor(String door) {
         clickOnElement(findWebElement(By.xpath("//div[contains(@class, 'k-animation-container-shown')]//li[contains(text(), '"
                         + door + "') and @role='option']")));
-        Waiters.waitABit(2000);
+        waitUntilInvisible(1, loader);
     }
 
     public void clickDoorDropdown(String door) {
@@ -734,36 +740,38 @@ public class OutboundRouteSummaryPage extends BasePage {
         Waiters.waitTillLoadingPage(getDriver());
         clickOnElement(findWebElement(By.xpath("//div[contains(@class, 'k-animation-container-shown')]//li[contains(text(), '"
                         + temperatureType + "') and @role='option']")));
-        Waiters.waitABit(2000);
+        waitUntilInvisible(1, loader);
     }
 
     public void clickOption(String door) {
         clickOnElement(getDoorList());
         clickOnElement(findWebElement(By.xpath("//div[contains(@class, 'k-animation-container-shown')]//div[contains(text(), '"
                         + door + "')]")));
-        Waiters.waitABit(6000);
+        waitUntilInvisible(1, loader);
     }
 
     public void clickBack() {
-        Waiters.waitABit(4000);
+        waitUntilInvisible(1, loader);
         clickOnElement(getBackButton());
-        Waiters.waitABit(4000);
+        waitUntilInvisible(1, loader);
     }
 
     public void clickRouteBack() {
         Waiters.waitForElementToBeDisplay(getRouteBackButton());
         clickOnElement(getRouteBackButton());
-        Waiters.waitForForElementToDisappear(getLoadingImage());
+        waitUntilInvisible(1, loader);
     }
 
     public void checkRouteByRowNumber(int index) {
-        waitUntilInvisible(2, loader);
+        waitUntilInvisible(1, loader);
         Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(tableContent);
         List<WebElement> routes = findWebElements(By.xpath("//div[contains(@class, 'BarsContainer')]//..//input"));
         Waiters.waitABit(4000);
         waitUntilStalenessOf(2, routes.get(index));
+        Waiters.waitABit(4000);
         clickOnElement(routes.get(index));
+        waitUntilInvisible(1, loader);
     }
 
     public void selectRouteByRowNumber(int index) {
@@ -784,19 +792,19 @@ public class OutboundRouteSummaryPage extends BasePage {
     public void clickAddFilter() {
         Waiters.waitForElementToBeClickable(getAddFilterButton());
         clickOnElement(getAddFilterButton());
-        Waiters.waitABit(3000);
+        waitUntilInvisible(1, loader);
     }
 
     public void clickReplenishToCleanCheckBox() {
         Waiters.waitForElementToBeClickable(getReplenishToCleanCheckBox());
         clickOnElement(getReplenishToCleanCheckBox());
-        Waiters.waitABit(3000);
+        waitUntilInvisible(1, loader);
     }
 
     public void clickOk() {
         Waiters.waitForElementToBeClickable(getOkButton());
         clickOnElement(getOkButton());
-        Waiters.waitABit(3000);
+        waitUntilInvisible(1, loader);
     }
 
     public void clickAllAssignmentsCheckbox() {
@@ -1525,41 +1533,49 @@ public class OutboundRouteSummaryPage extends BasePage {
     }
 
     public boolean isProductColumnDisplayed() {
+        scrollToCenter(getProductColumn());
         Waiters.waitABit(2000);
         return isElementDisplay(getProductColumn());
     }
 
     public boolean isQtyColumnDisplayed() {
+        scrollToCenter(getProductColumn());
         Waiters.waitABit(2000);
         return isElementDisplay(getQtyColumn());
     }
 
     public boolean isFromColumnDisplayed() {
+        scrollToCenter(getFromColumn());
         Waiters.waitABit(2000);
         return isElementDisplay(getFromColumn());
     }
 
     public boolean isToColumnDisplayed() {
+        scrollToCenter(getToColumn());
         Waiters.waitABit(2000);
         return isElementDisplay(getToColumn());
     }
 
     public boolean isTypeColumnDisplayed() {
+        scrollToCenter(getTypeColumn());
         Waiters.waitABit(2000);
         return isElementDisplay(getTypeColumn());
     }
 
     public boolean isTaskGroupColumnDisplayed() {
+        scrollToCenter(getTaskGroupColumn());
         Waiters.waitABit(2000);
         return isElementDisplay(getTaskGroupColumn());
     }
 
     public boolean isStatusColumnDisplayed() {
+        scrollToCenter(getStatusColumn());
         Waiters.waitABit(2000);
         return isElementDisplay(getStatusColumn());
     }
 
     public boolean isAssignmentNumColumnDisplayed() {
+        scrollToCenter(getAssignmentNumColumn());
         Waiters.waitABit(2000);
         return isElementDisplay(getAssignmentNumColumn());
     }
@@ -1570,31 +1586,37 @@ public class OutboundRouteSummaryPage extends BasePage {
     }
 
     public boolean isPriorityColumnDisplayed() {
+        scrollToCenter(getPriorityColumn());
         Waiters.waitABit(2000);
         return isElementDisplay(getPriorityColumn());
     }
 
     public boolean isRouteColumnDisplayed() {
+        scrollToCenter(getRouteColumn());
         Waiters.waitABit(2000);
         return isElementDisplay(getRouteColumn());
     }
 
     public boolean isStopColumnDisplayed() {
+        scrollToCenter(getStopColumn());
         Waiters.waitABit(2000);
         return isElementDisplay(getStopColumn());
     }
 
     public boolean isShipperColumnDisplayed() {
+        scrollToCenter(getShipperColumn());
         Waiters.waitABit(2000);
         return isElementDisplay(getShipperColumn());
     }
 
     public boolean isVelocityColumnDisplayed() {
+        scrollToCenter(getVelocityColumn());
         Waiters.waitABit(2000);
         return isElementDisplay(getVelocityColumn());
     }
 
     public boolean isDescriptionColumnDisplayed() {
+        scrollToCenter(getDescriptionColumn());
         Waiters.waitABit(2000);
         return isElementDisplay(getDescriptionColumn());
     }

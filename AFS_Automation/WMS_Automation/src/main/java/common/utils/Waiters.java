@@ -130,11 +130,11 @@ public class Waiters {
     }
 
     public static boolean waitTillLoadingPage(WebDriver driver) {
-        String pageLoadStatus="";
-        boolean pageWasLoaded=false;
+        String pageLoadStatus = "";
+        boolean pageWasLoaded = false;
         do {
             try {
-                pageLoadStatus=returnDocumentStatus(driver);
+                pageLoadStatus = returnDocumentStatus(driver);
             }
             catch(Exception e) {
                 e.printStackTrace();

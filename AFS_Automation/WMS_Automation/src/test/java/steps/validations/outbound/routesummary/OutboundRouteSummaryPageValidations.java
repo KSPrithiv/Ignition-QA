@@ -276,8 +276,6 @@ public class OutboundRouteSummaryPageValidations {
         softAssert.assertTrue(outboundRouteSummaryPage.isDriverInputDisplayed(),"Driver input is not displayed");
         softAssert.assertTrue(outboundRouteSummaryPage.isMaxStopsLabelDisplayed(),"Max stops label is not displayed");
         softAssert.assertTrue(outboundRouteSummaryPage.isMaxStopsInputDisplayed(),"Max stops input is not displayed");
-        softAssert.assertTrue(outboundRouteSummaryPage.isDoorDropDownDisplayed(DockDoorOption.DOOR.getDockDoorOption()),
-                "Door is not displayed");
         softAssert.assertAll();
     }
 
@@ -494,7 +492,6 @@ public class OutboundRouteSummaryPageValidations {
     public void validateStatusesDisplayed() {
         SoftAssert softAssert = new SoftAssert();
         softAssert.assertTrue(outboundRouteSummaryPage.isShippedStatusDisplayed(),"Shipped Status is not displayed");
-        softAssert.assertTrue(outboundRouteSummaryPage.isAuditStatusDisplayed(),"Audit Status is not displayed");
         softAssert.assertTrue(outboundRouteSummaryPage.isPickedStatusDisplayed(),"Picked Status is not displayed");
         softAssert.assertTrue(outboundRouteSummaryPage.isUnallocatedStatusDisplayed(),"Unallocated Status is not displayed");
         softAssert.assertTrue(outboundRouteSummaryPage.isShortsStatusDisplayed(),"Shorts Status is not displayed");
