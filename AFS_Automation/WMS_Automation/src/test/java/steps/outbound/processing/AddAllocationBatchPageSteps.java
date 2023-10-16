@@ -32,7 +32,7 @@ public class AddAllocationBatchPageSteps {
     }
 
     @Step
-    @When("User types batch code")
+    @When("User types batch code on Processing page")
     public void typeBatchCode() {
         AddAllocationBatchPage.generateBatchName(4, true, false);
         log.info("Typing Batch Code " + AddAllocationBatchPage.getBatchName());
@@ -40,23 +40,23 @@ public class AddAllocationBatchPageSteps {
     }
 
     @Step
-    @When("User types invalid batch code {string}")
+    @When("User types invalid batch code {string} on Processing page")
     public void typeInvalidBatchCode(String code) {
         log.info("Typing Invalid Batch Code");
         addAllocationBatchPage.typeBatchCode(code);
     }
 
     @Step
-    @And("Clicks Save button")
+    @And("Clicks Save button on Processing page")
     public void clickSave() {
         log.info("Clicking Save");
         addAllocationBatchPage.clickSaveButton();
     }
 
     @Step
-    @Then("User clicks on batch type")
+    @Then("User clicks on batch type on Processing page")
     public void clickOnBatchType() {
-        log.info("Clicking Batch Type");
+        log.info("Clicking Batch Type on Processing page");
         addAllocationBatchPage.clickBatchType();
     }
 }

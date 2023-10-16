@@ -6,6 +6,8 @@ import org.openqa.selenium.WebElement;
 import ui.pages.BasePage;
 import java.util.stream.Collectors;
 
+import static common.setup.DriverManager.getDriver;
+
 public class ChangeViewParametersPage extends BasePage {
     By pageTitle = By.cssSelector(".k-window-title");
     By sourceLabel = By.cssSelector("#accountDropdown-label");
@@ -37,9 +39,10 @@ public class ChangeViewParametersPage extends BasePage {
     By endDate = By.cssSelector("#EndDate");
     By okButton = By.xpath("//button[contains(text(), 'OK')]");
     By cancelButton = By.xpath("//button[contains(text(), 'Cancel')]");
+    By loader = By.cssSelector(".loader");
 
     public void waitChangeViewParametersPageToLoad() {
-        Waiters.waitUntilPageWillLoadedSelenide();
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(getPageTitle());
         Waiters.waitForElementToBeDisplay(getSourceLabel());
     }
@@ -88,29 +91,37 @@ public class ChangeViewParametersPage extends BasePage {
     }
 
     public void selectStartDate(String date) {
-        Waiters.waitForElementToBeDisplay(getStartDate());
-        doubleClick(By.cssSelector("#StartDate"));
+        waitUntilInvisible(1, loader);
+        waitUntilStalenessOf(1, getStartDate());
+        doubleClick(getStartDate());
         pressDelete(getStartDate());
+        waitUntilStalenessOf(1, getStartDate());
         inputText(getStartDate(), date);
         Waiters.waitABit(2000);
+        pressTab(getStartDate());
     }
 
     public void selectEndDate(String date) {
-        Waiters.waitForElementToBeDisplay(getEndDate());
-        doubleClick(By.cssSelector("#EndDate"));
+        waitUntilInvisible(1, loader);
+        waitUntilStalenessOf(1, getEndDate());
+        doubleClick(getEndDate());
         pressDelete(getEndDate());
+        waitUntilStalenessOf(1, getEndDate());
         inputText(getEndDate(), date);
         Waiters.waitABit(2000);
+        pressTab(getEndDate());
     }
 
     public void clickOKbutton() {
         Waiters.waitForElementToBeDisplay(getOkButton());
         clickOnElement(getOkButton());
+        Waiters.waitABit(2000);
     }
 
     public void clickCancelButton() {
         Waiters.waitForElementToBeDisplay(getCancelButton());
         clickOnElement(getCancelButton());
+        Waiters.waitABit(2000);
     }
 
     public void clickSourceButton() {
@@ -238,9 +249,7 @@ public class ChangeViewParametersPage extends BasePage {
         return isElementDisplay(startDateLabel);
     }
 
-    public boolean isStartDateDisplayed() {
-        return isElementDisplay(startDate);
-    }
+    public boolean isStartDateDisplayed() { return isElementDisplay(startDate); }
 
     public boolean isEndDateLabelDisplayed() {
         return isElementDisplay(endDateLabel);
@@ -356,9 +365,7 @@ public class ChangeViewParametersPage extends BasePage {
         return findWebElement(startDateLabel);
     }
 
-    public WebElement getStartDate() {
-        return findWebElement(startDate);
-    }
+    public WebElement getStartDate() { return findWebElement(startDate); }
 
     public WebElement getEndDateLabel() {
         return findWebElement(endDateLabel);

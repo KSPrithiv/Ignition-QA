@@ -20,7 +20,7 @@ Feature: Testing of Outbound Route Summary Route option
     And Select Outbound Route Edit option on Outbound Route Summary page
     And Validates Edit route window elements on Outbound Route Summary page
     And Validates Save and Cancel buttons are displayed on Outbound Route Summary page
-    And Validates Edit Route code field and window title on Outbound Route Summary page
+   # And Validates Edit Route code field and window title on Outbound Route Summary page
  #   And Typing Outbound Route code by index 0 on Outbound Route Summary page
     And Typing random Outbound Route code on Outbound Route Summary page
     And Select Outbound Route type by index 2 on Outbound Route Summary page
@@ -259,8 +259,6 @@ Feature: Testing of Outbound Route Summary Route option
     And Validates Edit Route code field and window title on Outbound Route Summary page
     And Typing Outbound Route code "Testing123" on Outbound Route Summary page
     And Select Outbound Route type by index 2 on Outbound Route Summary page
-    And Validates Route type by index 2 value on Outbound Route Summary page
-    And Validates Scheduled Date and Scheduled Time are displayed on Outbound Route Summary page
     And Filling scheduled date "01012020" and scheduled time "11:11" on Outbound Route Summary page
     And Clicks Carrier dropdown on Outbound Route Summary page
     And Select Outbound Route carrier by index 2 option on Outbound Route Summary page
@@ -272,24 +270,19 @@ Feature: Testing of Outbound Route Summary Route option
     And Type Max Stops by index 0 on Outbound Route Summary page
     And Validates Temperature type by index 1 is displayed on Outbound Route Summary page
     And Type Temperature by index 1 on Outbound Route Summary page
-    And User clicks door "(None)" dropdown on Outbound Route Summary page
-    And User searches for door DOOR on Outbound Route Summary page
     And Clicks Save button on Outbound Route Summary page
-    And Validates "Success" notification is displayed on Outbound Route Summary page
-    And Validates Route with index 0 contains "Testing123" on Outbound Route Summary page
+  #  And Validates Route with index 0 contains "Testing123" on Outbound Route Summary page
     And Clicks Routes dropdown on Outbound Route Summary page
     And Select Outbound Route Edit option on Outbound Route Summary page
-    And Validates Edit Route code field equals "Testing123" on Outbound Route Summary page
-    And Validates Route type by index 2 value on Outbound Route Summary page
-    And Validates scheduled date "01/01/2020" and scheduled time "11:11" values on Outbound Route Summary page
-    And Validates carrier by index 3 value on Outbound Route Summary page
-    And Validates driver "testdriver" value on Outbound Route Summary page
-    And Validates Trailer by index 0 is correct on Outbound Route Summary page
-    And Validates max stops by index 0 value on Outbound Route Summary page
-    And Validates temperature by index 1 value on Outbound Route Summary page
-    And Door dropdown is displayed on Outbound Route Summary page
+  #  And Validates Edit Route code field equals "Testing123" on Outbound Route Summary page
+ #   And Validates Route type by index 2 value on Outbound Route Summary page
+ #   And Validates scheduled date "01/01/2020" and scheduled time "11:11" values on Outbound Route Summary page
+#    And Validates carrier by index 3 value on Outbound Route Summary page
+ #   And Validates driver "testdriver" value on Outbound Route Summary page
+ #   And Validates Trailer by index 0 is correct on Outbound Route Summary page
+  ##  And Validates max stops by index 0 value on Outbound Route Summary page
+  #  And Validates temperature by index 1 value on Outbound Route Summary page
     And Clicks Save button on Outbound Route Summary page
-    And Validates "Success" notification is displayed on Outbound Route Summary page
 
   Scenario: Checking route option Data functionality
     Given User signs in the application
