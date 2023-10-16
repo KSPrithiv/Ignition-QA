@@ -138,7 +138,7 @@ public class AllOrdersPageStep
                     if (HelpersMethod.IsExists("//div[@class='loader']", driver))
                     {
                         WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                        HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100000);
+                        HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 400000);
                     }
                     String status = HelpersMethod.returnDocumentStatus(driver);
                     if (status.equals("loading"))
@@ -157,7 +157,6 @@ public class AllOrdersPageStep
     @And("User should navigate to All Orders")
     public void userShouldNavigateToAllOrders() throws InterruptedException, AWTException
     {
-
         orderpage = new OrderEntryPage(driver, scenario);
         orderpage.HandleError_Page();
         allOrder=new AllOrderPage(driver,scenario);
@@ -197,6 +196,7 @@ public class AllOrdersPageStep
         allOrder.validateDeliveryDatePopup();
         allOrder.SelectDeliveryDate();
         allOrder.WarningChangeDeliveryDate();
+        allOrder.validateSelectOrder();
         allOrder.SelectOrder();
     }
 
@@ -416,6 +416,7 @@ public class AllOrdersPageStep
     public void navigateToSummaryOrderEntryPageAndUserClicksOnEditButton() throws InterruptedException, AWTException
     {
         summary=new CheckOutSummaryPage(driver,scenario);
+        summary.validateSummaryPage();
         summary.Click_Edit();
     }
 
@@ -435,9 +436,26 @@ public class AllOrdersPageStep
         newOE.QuickProduct(Prod);
         String Case=Qty.get(0).get(0);
         String Unit=Qty.get(0).get(1);
-        newOE.CheckForQuickCaseEnabled(Case);
-        newOE.CheckForQuickUnitEnabled(Unit);
-        newOE.exceedsMaxQty();
+        String uomString=newOE.VerifyUOM();
+        if(uomString.equals("Units"))
+        {
+            newOE.CheckForQuickUnitEnabled(Unit);
+            newOE.exceedsMaxQty();
+            newOE.toastCurrentlyUnavailable();
+        }
+        else if(uomString.equals("Cases"))
+        {
+            newOE.CheckForQuickCaseEnabled(Case);
+            newOE.exceedsMaxQty();
+            newOE.toastCurrentlyUnavailable();
+        }
+        else if(uomString.equals("Cases, Units")||uomString.equals("Units, Cases"))
+        {
+            newOE.CheckForQuickCaseEnabled(Case);
+            newOE.CheckForQuickUnitEnabled(Unit);
+            newOE.exceedsMaxQty();
+            newOE.toastCurrentlyUnavailable();
+        }
     }
 
     @Then("User clicks on Start order button and selects Pick up order from drop down")
@@ -463,6 +481,7 @@ public class AllOrdersPageStep
         allOrder.CustomerIndexPopup();
         allOrder.validateSelectDeliveryDatePickupOrder();
         allOrder.selectDeliveryDateForPickupOrder();
+        allOrder.validateSelectOrder();
         allOrder.SelectNewOrderInPopUp();
     }
 
@@ -476,6 +495,7 @@ public class AllOrdersPageStep
         allOrder.SelectDeliveryDate();
         //allOrder.SelectDeliveryDateForEdit();
         allOrder.WarningChangeDeliveryDate();
+        allOrder.validateSelectOrder();
         allOrder.SelectOrder();
     }
 

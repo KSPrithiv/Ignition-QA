@@ -50,7 +50,7 @@ Feature: scenarios for admin security and submenu permission, for creating role,
     Then User should enter "<Role>" and "<User>" in add user to table
     Examples:
       |Main menu|Sub menu      | Navigate to |Role     |User     |
-      |Security |Permissions   | By user     |custadmin|Divya_dsd|
+      |Security |Permissions   | By user     |custadmin|Divya_DSD|
 
   @SearchPermissionByUser
   Scenario Outline: Test scenario for searching in By user tab

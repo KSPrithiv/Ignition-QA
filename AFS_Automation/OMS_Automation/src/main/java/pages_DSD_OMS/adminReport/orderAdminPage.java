@@ -292,11 +292,19 @@ public class orderAdminPage
             }
             if(HelpersMethod.IsExists("//div[contains(text(),'The report returned no data. Choose other parameters.')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
             {
-                WebElement dialogPopup=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-widget k-window k-dialog')]");
+                WebElement dialogPopup=HelpersMethod.FindByElement(driver,"xpath","//div[contains(text(),'The report returned no data. Choose other parameters.')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]");
                 WebElement okButton=dialogPopup.findElement(By.xpath(".//button"));
-                HelpersMethod.ClickBut(driver,okButton,1000);
+                HelpersMethod.ActClick(driver,okButton,1000);
                 scenario.log("THE REPORT IS NOT RETURNING ANY DATA");
             }
+            if(HelpersMethod.IsExists("//div[contains(text(),'Please select one or more events for the report.')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
+            {
+                WebElement dialogPopup=HelpersMethod.FindByElement(driver,"xpath","//div[contains(text(),'Please select one or more events for the report.')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]");
+                WebElement okButton=dialogPopup.findElement(By.xpath(".//button[text()='Ok']"));
+                HelpersMethod.ActClick(driver,okButton,1000);
+                scenario.log("************** MAY BE THE EVENT IS NOT PART OF THIS APPLICATION ***************");
+            }
+
             Assert.assertEquals(exists,true);
         }
         catch (Exception e){}

@@ -153,7 +153,7 @@ Feature: Order Entry3
     And Check for Case and Unit input box enabled or not based on that enter value
       |50|60|
     Then User should click on price override icon and Change price using What if option Price by price
-      |0.01|
+      |$2.00|
     Then Click on Next button
     And Click on SubmitOrder button
     Then User should be navigated to Order Entry page
@@ -170,7 +170,7 @@ Feature: Order Entry3
     And Check for Case and Unit input box enabled or not based on that enter value
       |50|80|
     Then User should click on price override icon and Change price using What if option Price per unit
-      |0.01|
+      |$2.01|
     Then Click on Next button
     And Click on SubmitOrder button
     Then User should be navigated to Order Entry page
