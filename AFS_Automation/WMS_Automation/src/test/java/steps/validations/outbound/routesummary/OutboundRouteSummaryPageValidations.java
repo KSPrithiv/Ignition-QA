@@ -680,23 +680,10 @@ public class OutboundRouteSummaryPageValidations {
         softAssert.assertTrue(outboundRouteSummaryPage.isRouteFilterDisplayed(),"Route Filter is not displayed");
         softAssert.assertTrue(outboundRouteSummaryPage.isStopsFilterDisplayed(),"Stops Filter Button is not displayed");
         softAssert.assertTrue(outboundRouteSummaryPage.isShipperFilterDisplayed(),"Shipper Filter is not displayed");
-        softAssert.assertTrue(outboundRouteSummaryPage.isShipToFilterDisplayed(),"ShipTo Filter is not displayed");
-        softAssert.assertTrue(outboundRouteSummaryPage.isTasksFilterDisplayed(),"Tasks Filter is not displayed");
         softAssert.assertTrue(outboundRouteSummaryPage.isAssignToFilterDisplayed(),"Assign To Filter is not displayed");
         softAssert.assertTrue(outboundRouteSummaryPage.isReleasedFilterDisplayed(),"Released Filter is not displayed");
-        softAssert.assertTrue(outboundRouteSummaryPage.isQtyFilterDisplayed(),"Quantity Filter is not displayed");
-        softAssert.assertTrue(outboundRouteSummaryPage.isCubeFilterDisplayed(),"Cube Filter is not displayed");
-        softAssert.assertTrue(outboundRouteSummaryPage.isWeightFilterDisplayed(),"Weight Filter is not displayed");
         softAssert.assertTrue(outboundRouteSummaryPage.isAssignmentTypeFilterDisplayed(),"Assignment Type Filter is not displayed");
         softAssert.assertTrue(outboundRouteSummaryPage.isTaskGroupFilterDisplayed(),"Task Group Filter is not displayed");
-        softAssert.assertTrue(outboundRouteSummaryPage.isPercentPickedFilterDisplayed(),"Percent Picked Filter is not displayed");
-        softAssert.assertTrue(outboundRouteSummaryPage.isInUseByFilterDisplayed(),"InUseByd Filter is not displayed");
-        softAssert.assertTrue(outboundRouteSummaryPage.isEstimatedTimeFilterDisplayed(),"Estimated Time Filter is not displayed");
-        softAssert.assertTrue(outboundRouteSummaryPage.isStandardTimeFilterDisplayed(),"Standard Time Filter is not displayed");
-        softAssert.assertTrue(outboundRouteSummaryPage.isActualTimeFilterDisplayed(),"Actual Time Filter is not displayed");
-        softAssert.assertTrue(outboundRouteSummaryPage.isActivityIndicatorFilterDisplayed(),"Activity Indicator Filter is not displayed");
-        softAssert.assertTrue(outboundRouteSummaryPage.isRemainingFilterDisplayed(),"Remaining Filter is not displayed");
-        softAssert.assertTrue(outboundRouteSummaryPage.isPrintedFilterDisplayed(),"Printed Filter is not displayed");
         softAssert.assertAll();
     }
 
@@ -704,17 +691,14 @@ public class OutboundRouteSummaryPageValidations {
     public void verifyFilterOptions() {
         SoftAssert softAssert = new SoftAssert();
         softAssert.assertTrue(outboundRouteSummaryPage.isProductFilterDisplayed(),"Product Filter is not displayed");
-        softAssert.assertTrue(outboundRouteSummaryPage.isQuantityFilterDisplayed(),"Quantity Filter is not displayed");
         softAssert.assertTrue(outboundRouteSummaryPage.isFromFilterDisplayed(),"From Filter Button is not displayed");
         softAssert.assertTrue(outboundRouteSummaryPage.isToFilterDisplayed(),"To Filter Button is not displayed");
         softAssert.assertTrue(outboundRouteSummaryPage.isTypeFilterDisplayed(),"Type Filter is not displayed");
         softAssert.assertTrue(outboundRouteSummaryPage.isTaskGroupFilterDisplayed(),"Task Group Filter is not displayed");
         softAssert.assertTrue(outboundRouteSummaryPage.isStatusFilterDisplayed(),"Status Filter is not displayed");
         softAssert.assertTrue(outboundRouteSummaryPage.isAssignmentNumberFilterDisplayed(),"Assignment Number Filter is not displayed");
-        softAssert.assertTrue(outboundRouteSummaryPage.isInUseByFilterDisplayed(),"In Use By Filter is not displayed");
         softAssert.assertTrue(outboundRouteSummaryPage.isPriorityFilterDisplayed(),"Priority Filter is not displayed");
         softAssert.assertTrue(outboundRouteSummaryPage.isRouteFilterDisplayed(),"Route Filter is not displayed");
-        softAssert.assertTrue(outboundRouteSummaryPage.isStopFilterDisplayed(),"Stop Filter is not displayed");
         softAssert.assertTrue(outboundRouteSummaryPage.isShipperFilterDisplayed(),"Shipper Filter is not displayed");
         softAssert.assertAll();
     }

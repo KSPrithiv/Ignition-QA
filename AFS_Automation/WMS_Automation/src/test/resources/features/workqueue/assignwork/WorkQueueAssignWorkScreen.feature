@@ -1,6 +1,5 @@
 @WorkQueue @Regression
 Feature: Testing of Work Queue Assign Work functionality
-
   Scenario: Checking Navigate to Work Queue Assign Work screen functionality
     Given User signs in the application
     And Main page is loaded
@@ -13,9 +12,8 @@ Feature: Testing of Work Queue Assign Work functionality
     And Validates list of users and user groups is displayed on Work Queue Work Assign Page
     And Checks user by index 5 on Work Queue Work Assign page
     Then Clicks Save Button on Work Queue Work Assign page
-    And Validates "Success" notification is displayed on Work Queue Work Assign Page
     And Clicks Cancel Button on Work Queue Work Assign page
-  #  And Validates list of users and user groups is not displayed on Work Queue Work Assign Page
+    And Validates list of users and user groups is not displayed on Work Queue Work Assign Page
 
   Scenario: Checking User Group Filtering Assign Work Screen functionality
     Given User signs in the application

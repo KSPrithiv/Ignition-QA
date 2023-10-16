@@ -24,4 +24,6 @@ public class EndDatesDTO implements Serializable {
 	private String endDate5;
 	@JsonProperty("end date 6")
 	private String endDate6;
+	@JsonProperty("end date 7")
+	private String endDate7;
 }

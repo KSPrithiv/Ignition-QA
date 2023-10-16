@@ -84,6 +84,7 @@ public class OutboundLoadPlanningPage extends BasePage {
         deleteCookies();
         List<WebElement> options = findWebElements(By.xpath("//div[contains(@class, 'k-animation-container-shown')]//li[@role='option']"));
         if(options.equals(null)) {
+            deleteCookies();
             refresh();
         }
         options = findWebElements(By.xpath("//div[contains(@class, 'k-animation-container-shown')]//li[@role='option']"));
@@ -106,11 +107,14 @@ public class OutboundLoadPlanningPage extends BasePage {
 
     public void typeShipDate(String date) {
         Waiters.waitTillLoadingPage(getDriver());
-        Waiters.waitForElementToBeDisplay(getLoadPlanningShipDate());
+        waitUntilInvisible(1, loader);
+        waitUntilStalenessOf(2, getLoadPlanningShipDate());
         Waiters.waitABit(2000);
         doubleClick(getLoadPlanningShipDate());
         pressDelete(getLoadPlanningShipDate());
+        waitUntilStalenessOf(2, getLoadPlanningShipDate());
         inputText(getLoadPlanningShipDate(), date);
+        waitUntilStalenessOf(2, getLoadPlanningShipDate());
         pressEnter(getLoadPlanningShipDate());
         pressTab(getLoadPlanningShipDate());
         waitUntilInvisible(1, loader);

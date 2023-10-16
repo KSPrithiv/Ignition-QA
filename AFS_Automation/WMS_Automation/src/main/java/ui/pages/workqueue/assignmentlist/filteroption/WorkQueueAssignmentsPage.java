@@ -6,6 +6,8 @@ import org.openqa.selenium.WebElement;
 import ui.pages.BasePage;
 import java.util.List;
 
+import static common.setup.DriverManager.getDriver;
+
 public class WorkQueueAssignmentsPage extends BasePage {
     By assignmentsTitle = By.className("spnmoduleNameHeader");
     By editAssignmentBtn = By.cssSelector("#EditAssignmentButton");
@@ -115,24 +117,27 @@ public class WorkQueueAssignmentsPage extends BasePage {
     By pickedColumnHeader = By.xpath("//th[@role='columnheader'][.//span[text()='%picked']]");
     By pickedColumn = By.xpath("//span[text()='%picked']");
     By btnClose = By.id("btnWQClose");
+    By loader = By.cssSelector(".loader");
+    By rows = By.xpath("//tr[contains(@class, 'k-master-row')]");
+    By rowCheckboxes = By.xpath("//tr[contains(@class, 'k-master-row')]");
 
     public void waitWorkQueueAssignmentsPageToLoad() {
-        Waiters.waitABit(7000);
-        Waiters.waitUntilPageWillLoadedSelenide();
+        waitUntilInvisible(4, loader);
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(getAssignmentsTitle());
         Waiters.waitForElementToBeDisplay(editAssignmentBtn);
         Waiters.waitForElementToBeDisplay(deleteAssignmentBtn);
         Waiters.waitForElementToBeDisplay(releaseAssignmentBtn);
         Waiters.waitForElementToBeDisplay(printAssignmentBtn);
         Waiters.waitForElementToBeDisplay(moveAssignmentBtn);
-        Waiters.waitForElementToBeDisplay(addFilterButton);
         Waiters.waitForElementToBeDisplay(assignmentGridSearch);
+        Waiters.waitTillLoadingPage(getDriver());
     }
 
     public void clickAssignmentsTitle() {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(assignmentsTitle);
-        clickOnElement(assignmentsTitle);
+        jsClick(getAssignmentsTitle());
     }
 
     public void findValuesInSearch(String text) {
@@ -142,132 +147,133 @@ public class WorkQueueAssignmentsPage extends BasePage {
     }
 
     public void cleanTextFromInput() {
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(assignmentGridSearch);
         clearText(getAssignmentGridSearch());
     }
 
     public void typeFilter(String filter) {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(getInputContains());
         inputText(getInputContains(), filter);
     }
 
     public void typeSearch(String filter) {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(getInputSearch());
         inputText(getInputSearch(), filter);
     }
 
     public void clickIsEmptyButton() {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(isEmptyButton);
         clickOnElement(isEmptyButton);
     }
 
     public void clickNotStartedStatus() {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(notStartedStatus);
         clickOnElement(notStartedStatus);
     }
 
     public void clickInProgressStatus() {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(inProgressStatus);
         clickOnElement(inProgressStatus);
     }
 
     public void clickInActiveStatus() {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(inActiveStatus);
         clickOnElement(inActiveStatus);
     }
 
     public void clickCompletedStatus() {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(completedStatus);
         clickOnElement(completedStatus);
     }
 
     public void clickInputCount() {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(inputCount);
         clickOnElement(inputCount);
     }
 
     public void clickInputDee() {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(inputDee);
         clickOnElement(inputDee);
     }
 
     public void clickInputDefault() {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(inputDefault);
         clickOnElement(inputDefault);
     }
 
     public void clickInputLoad() {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(inputLoad);
         clickOnElement(inputLoad);
     }
 
     public void clickInputNeedsLoc() {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(inputNeedsLoc);
         clickOnElement(inputNeedsLoc);
     }
 
     public void clickAssignmentTypeCount() {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(assignmentTypeCount);
         clickOnElement(assignmentTypeCount);
     }
 
     public void clickAssignmentTypeCrossDockPallet() {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(assignmentTypeCrossDockPallet);
         clickOnElement(assignmentTypeCrossDockPallet);
     }
 
     public void clickAssignmentTypeDynamic() {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(assignmentTypeDynamic);
         clickOnElement(assignmentTypeDynamic);
     }
 
     public void clickAssignmentTypePickCooler() {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(assignmentTypePickCooler);
         clickOnElement(assignmentTypePickCooler);
     }
 
     public void clickAssignmentTypePickDry() {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(assignmentTypePickDry);
         clickOnElement(assignmentTypePickDry);
     }
 
     public void clickAssignmentTypePickFreezer() {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(assignmentTypePickFreezer);
         clickOnElement(assignmentTypePickFreezer);
     }
 
     public void clickAssignmentTypePick() {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(assignmentTypePick);
         clickOnElement(assignmentTypePick);
     }
 
     public void clickAssignmentTypePickDoNotSplit() {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(assignmentTypePickDoNotSplit);
         clickOnElement(assignmentTypePickDoNotSplit);
     }
 
     public void clickAssignmentTypePickFullPallets() {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(assignmentTypePickFullPallets);
         clickOnElement(assignmentTypePickFullPallets);
     }
@@ -276,36 +282,35 @@ public class WorkQueueAssignmentsPage extends BasePage {
         clickOnElement(editAssignmentType);
         clickOnElement(findWebElement(By.xpath("//div[contains(@class, 'k-animation-container-shown')]//li[contains(text(), '"
                 + text + "') and @role='option']")));
-        Waiters.waitABit(1000);
+        Waiters.waitTillLoadingPage(getDriver());
     }
 
     public void selectAssignmentTaskGroup(String text) {
+        Waiters.waitTillLoadingPage(getDriver());
         clickOnElement(editAssignmentTaskGroup);
         List<WebElement> tasks = findWebElements(By.xpath("//div[contains(@class, 'k-animation-container-shown')]//li"));
-        System.out.println(tasks.get(0).getText());
-        System.out.println(tasks.get(1).getText());
-        System.out.println(tasks.get(2).getText());
         WebElement task = tasks.stream()
                 .filter(el -> el.getText().trim().contains(text))
                 .findFirst().orElseThrow(() -> new RuntimeException("Task is not found"));
         clickOnElement(task);
-        Waiters.waitABit(1000);
+        Waiters.waitTillLoadingPage(getDriver());
     }
 
     public void selectAssignmentUser(String text) {
+        Waiters.waitTillLoadingPage(getDriver());
         clickOnElement(editAssignmentUsers);
-        Waiters.waitABit(3000);
+        Waiters.waitTillLoadingPage(getDriver());
         List<WebElement> users = findWebElements(By.xpath("//div[contains(@class, 'k-animation-container-shown')]//li"));
         WebElement user = users.stream()
                 .filter(el -> el.getText().trim().contains(text))
                 .findFirst().orElseThrow(() -> new RuntimeException("User is not found"));
         clickOnElement(user);
-        Waiters.waitABit(1000);
+        Waiters.waitTillLoadingPage(getDriver());
     }
 
     public void enterDate(String dayNum) {
+        waitUntilInvisible(1, loader);
         WebElement toggle = findWebElement(By.xpath("//div[./input[@id='wqAssignmentEditDate']]//following-sibling::a"));
-        Waiters.waitForElementToBeClickable(toggle);
         clickOnElement(toggle);
         Waiters.waitABit(2000);
         List<WebElement> days = findWebElements(By.xpath("//div[contains(@class, 'k-animation-container-shown')]//td[@aria-selected='false']//span"));
@@ -313,10 +318,11 @@ public class WorkQueueAssignmentsPage extends BasePage {
                 .filter(el -> el.getText().trim().equals(dayNum))
                 .findFirst().orElseThrow(() -> new RuntimeException("Date is not found"));
         clickOnElement(day);
-        Waiters.waitABit(1000);
+        Waiters.waitTillLoadingPage(getDriver());
     }
 
     public void enterTime(String time) {
+        waitUntilInvisible(1, loader);
         WebElement timeInput = findWebElement(By.cssSelector("#wqAssignmentEditTime"));
         click(timeInput);
         pressLeftArrow(timeInput);
@@ -332,6 +338,7 @@ public class WorkQueueAssignmentsPage extends BasePage {
     }
 
     public void enterReleaseDate(String dayNum) {
+        Waiters.waitTillLoadingPage(getDriver());
         WebElement toggle = findWebElement(By.cssSelector("a[title='Toggle calendar']"));
         Waiters.waitForElementToBeClickable(toggle);
         clickOnElement(toggle);
@@ -341,10 +348,11 @@ public class WorkQueueAssignmentsPage extends BasePage {
                 .filter(el -> el.getText().trim().equals(dayNum))
                 .findFirst().orElseThrow(() -> new RuntimeException("Date is not found"));
         clickOnElement(day);
-        Waiters.waitABit(1000);
+        Waiters.waitTillLoadingPage(getDriver());
     }
 
     public void enterReleaseTime(String time) {
+        Waiters.waitTillLoadingPage(getDriver());
         WebElement assignmentsTime = findWebElement(releaseTime);
         click(findWebElement(releaseTime));
         pressLeftArrow(assignmentsTime);
@@ -360,22 +368,25 @@ public class WorkQueueAssignmentsPage extends BasePage {
     }
 
     public void enterFromDate(String dayNum) {
-        List<WebElement> toggles = findWebElements(By.cssSelector("a[title='Toggle calendar']"));
-        Waiters.waitForElementToBeClickable(toggles.get(0));
+        Waiters.waitTillLoadingPage(getDriver());
+        clickOnElement(findWebElement(By.cssSelector(".i-filter-popup__content__connector")));
+        List<WebElement> toggles = findWebElements(By.cssSelector("a[title='Toggle calendar'] span"));
+        waitUntilStalenessOf(1, toggles.get(0));
         clickOnElement(toggles.get(0));
-        Waiters.waitABit(2000);
         List<WebElement> days = findWebElements(By.xpath("//div[contains(@class, 'k-animation-container-shown')]//td[@aria-selected='false']//span"));
         WebElement day = days.stream()
                         .filter(el -> el.getText().trim().equals(dayNum))
-                        .findFirst().orElseThrow(() -> new RuntimeException("From Date is not found"));
+                        .findFirst()
+                        .orElseThrow(() -> new RuntimeException("From Date is not found"));
         clickOnElement(day);
     }
 
     public void enterTillDate(String dayNum) {
-        List<WebElement> toggles = findWebElements(By.cssSelector("a[title='Toggle calendar']"));
-        Waiters.waitForElementToBeClickable(toggles.get(1));
+        Waiters.waitTillLoadingPage(getDriver());
+        clickOnElement(findWebElement(By.cssSelector(".i-filter-popup__content__connector")));
+        List<WebElement> toggles = findWebElements(By.cssSelector("a[title='Toggle calendar'] span"));
+        waitUntilStalenessOf(1, toggles.get(1));
         clickOnElement(toggles.get(1));
-        Waiters.waitABit(2000);
         List<WebElement> days = findWebElements(By.xpath("//div[contains(@class, 'k-animation-container-shown')]//td[@aria-selected='false']//span"));
         WebElement day = days.stream()
                 .filter(el -> el.getText().trim().equals(dayNum))
@@ -384,250 +395,292 @@ public class WorkQueueAssignmentsPage extends BasePage {
     }
 
     public void clickClearAllButton() {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(getСlearAllButton());
         clickOnElement(getСlearAllButton());
     }
 
     public void clickCloseBtn() {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(btnClose);
         clickOnElement(btnClose);
     }
 
     public void clickApplyButton() {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(getApplyButton());
         clickOnElement(getApplyButton());
     }
 
     public void clickAddFilter() {
-        Waiters.waitForElementToBeDisplay(addFilterButton);
-        clickOnElement(addFilterButton);
+        Waiters.waitABit(2000);
+        Waiters.waitForElementToBeDisplay(getAddFilterButton());
+        clickOnElement(getAddFilterButton());
+        Waiters.waitTillLoadingPage(getDriver());
     }
 
     public void clickSaveButton() {
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(saveButton);
         clickOnElement(saveButton);
+        waitUntilInvisible(1, loader);
     }
 
     public void clickCancelButton() {
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(cancelButton);
         clickOnElement(cancelButton);
     }
 
     public void checkAssignmentByAssignmentIndex(int index) {
-        Waiters.waitABit(5000);
-        Waiters.waitForElementToBeDisplay(tableContent);
-        List<WebElement> assignments = getTableContent().findElements(By.xpath(".//tbody//tr[contains(@class, 'k-master-row')]"));
+        Waiters.waitTillLoadingPage(getDriver());
+        List<WebElement> assignments = getAssignmentRowsCheckboxes();
         Waiters.waitABit(1000);
-        clickOnElement(assignments.get(index).findElement(By.xpath(".//input[@type='checkbox']")));
+        waitUntilStalenessOf(1, assignments.get(index));
+        clickOnElement(assignments.get(index));
+        Waiters.waitTillLoadingPage(getDriver());
     }
 
     public void clickAssignmentByAssignmentIndex(int index) {
-        Waiters.waitABit(5000);
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(tableContent);
         List<WebElement> assignments = getTableContent().findElements(By.xpath(".//tbody//tr[contains(@class, 'k-master-row')]"));
         Waiters.waitABit(1000);
         clickOnElement(assignments.get(index).findElement(By.xpath(".//td[contains(@id, 'assignmentlink')]")));
-        Waiters.waitABit(5000);
+        Waiters.waitTillLoadingPage(getDriver());
     }
 
     public void clickEditAssignment() {
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(getEditAssignmentBtn());
         clickOnElement(getEditAssignmentBtn());
+        Waiters.waitTillLoadingPage(getDriver());
     }
 
     public void clickDeleteAssignment() {
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(getDeleteAssignmentBtn());
         clickOnElement(getDeleteAssignmentBtn());
     }
 
     public void clickReleaseAssignment() {
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(getReleaseAssignmentBtn());
         clickOnElement(getReleaseAssignmentBtn());
+        waitUntilInvisible(1, loader);
     }
 
     public void clickPrintAssignment() {
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(getPrintAssignmentBtn());
         clickOnElement(getPrintAssignmentBtn());
     }
 
     public void clickMoveAssignment() {
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(getMoveAssignmentBtn());
         clickOnElement(getMoveAssignmentBtn());
     }
 
     public void checkAssignmentCodeFilterCheckBox() {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(getAssignmentCodeFilter());
+        scrollToCenter(getAssignmentCodeFilter());
         clickOnElement(getAssignmentCodeFilter());
     }
 
     public void checkRouteFilterCheckBox() {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(getRouteFilter());
+        scrollToCenter(getRouteFilter());
         clickOnElement(getRouteFilter());
     }
 
     public void checkStopsFilterCheckBox() {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(getStopsFilter());
+        scrollToCenter(getStopsFilter());
         clickOnElement(getStopsFilter());
     }
 
     public void checkShipperFilterCheckBox() {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(getShipperFilter());
+        scrollToCenter(getShipperFilter());
         clickOnElement(getShipperFilter());
     }
 
     public void checkShipToFilterCheckBox() {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(getShipToFilter());
+        scrollToCenter(getShipToFilter());
         clickOnElement(getShipToFilter());
     }
 
     public void checkTasksFilterCheckBox() {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(getTasksFilter());
+        scrollToCenter(getTasksFilter());
         clickOnElement(getTasksFilter());
     }
 
     public void checkAssignToFilterCheckBox() {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(getAssignToFilter());
+        scrollToCenter(getAssignToFilter());
         clickOnElement(getAssignToFilter());
     }
 
     public void checkReleasedFilterCheckBox() {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(getReleasedFilter());
+        scrollToCenter(getReleasedFilter());
         clickOnElement(getReleasedFilter());
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
     }
 
     public void checkQtyFilterCheckBox() {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(getQtyFilter());
+        scrollToCenter(getQtyFilter());
         clickOnElement(getQtyFilter());
     }
 
     public void checkCubeFilterCheckBox() {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(getCubeFilter());
+        scrollToCenter(getCubeFilter());
         clickOnElement(getCubeFilter());
     }
 
     public void checkWeightFilterCheckBox() {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(getWeightFilter());
+        scrollToCenter(getWeightFilter());
         clickOnElement(getWeightFilter());
     }
 
     public void checkAssignmentTypeFilterCheckBox() {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(getAssignmentTypeFilter());
+        scrollToCenter(getAssignmentTypeFilter());
         clickOnElement(getAssignmentTypeFilter());
-        Waiters.waitABit(8000);
+        Waiters.waitTillLoadingPage(getDriver());
     }
 
     public void checkTaskGroupFilterCheckBox() {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(getTaskGroupFilter());
+        scrollToCenter(getTaskGroupFilter());
         clickOnElement(getTaskGroupFilter());
     }
 
     public void checkPercentPickedFilterCheckBox() {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(getPercentPickedFilter());
+        scrollToCenter(getPercentPickedFilter());
         clickOnElement(getPercentPickedFilter());
     }
 
     public void checkInUseByFilterCheckBox() {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(getInUseByFilter());
+        scrollToCenter(getInUseByFilter());
         clickOnElement(getInUseByFilter());
     }
 
     public void checkEstimatedTimeFilterCheckBox() {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(getEstimatedTimeFilter());
+        scrollToCenter(getEstimatedTimeFilter());
         clickOnElement(getEstimatedTimeFilter());
     }
 
     public void checkStandardTimeFilterCheckBox() {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(getStandardTimeFilter());
+        scrollToCenter(getStandardTimeFilter());
         clickOnElement(getStandardTimeFilter());
     }
 
     public void checkActualTimeFilterCheckBox() {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(getActualTimeFilter());
+        scrollToCenter(getActualTimeFilter());
         clickOnElement(getActualTimeFilter());
     }
 
     public void checkActivityIndicatorFilterCheckBox() {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(getActivityIndicatorFilter());
+        scrollToCenter(getActivityIndicatorFilter());
         clickOnElement(getActivityIndicatorFilter());
     }
 
     public void checkRemainingFilterCheckBox() {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(getRemainingFilter());
+        scrollToCenter(getRemainingFilter());
         clickOnElement(getRemainingFilter());
     }
 
     public void checkPrintedFilterCheckBox() {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(getPrintedFilter());
+        scrollToCenter(getPrintedFilter());
         clickOnElement(getPrintedFilter());
     }
 
     public void clickClearRelease() {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(getClearRelease());
         clickOnElement(getClearRelease());
     }
 
     public boolean isAssignmentsTitleDisplayed() {
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(getAssignmentsTitle());
         return isElementDisplay(getAssignmentsTitle());
     }
 
     public boolean isEditAssignmentBtnDisplayed() {
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(getEditAssignmentBtn());
         return isElementDisplay(getEditAssignmentBtn());
     }
 
     public boolean isDeleteAssignmentBtnDisplayed() {
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(getDeleteAssignmentBtn());
         return isElementDisplay(getDeleteAssignmentBtn());
     }
 
     public boolean isReleaseAssignmentBtnDisplayed() {
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(getReleaseAssignmentBtn());
         return isElementDisplay(getReleaseAssignmentBtn());
     }
 
     public boolean isPrintAssignmentBtnDisplayed() {
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(getPrintAssignmentBtn());
         return isElementDisplay(getPrintAssignmentBtn());
     }
 
     public boolean isMoveAssignmentBtnDisplayed() {
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(getMoveAssignmentBtn());
         return isElementDisplay(getMoveAssignmentBtn());
     }
 
     public boolean isAddFilterButtonDisplayed() {
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(getAddFilterButton());
         return isElementDisplay(getAddFilterButton());
     }
 
     public boolean isAssignmentGridSearchDisplayed() {
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(getAssignmentGridSearch());
         return isElementDisplay(getAssignmentGridSearch());
     }
@@ -648,17 +701,17 @@ public class WorkQueueAssignmentsPage extends BasePage {
     }
 
     public boolean isItemsFoundLabelDisplayed() {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         return isElementDisplay(getItemsFoundLabel());
     }
 
     public boolean isItemsFoundValueDisplayed() {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         return isElementDisplay(getItemsFoundValue());
     }
 
     public String getItemsFoundText() {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         return getText(itemsFoundValue);
     }
 
@@ -753,133 +806,153 @@ public class WorkQueueAssignmentsPage extends BasePage {
     }
 
     public boolean isEditAssignmentTypeDisplayed() {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         return isElementDisplay(getEditAssignmentType());
     }
 
     public boolean isEditAssignmentTaskGroupDisplayed() {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         return isElementDisplay(getEditAssignmentTaskGroup());
     }
 
     public boolean isEditAssignmentDateDisplayed() {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         return isElementDisplay(getEditAssignmentEditDate());
     }
 
     public boolean isEditAssignmentTimeDisplayed() {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         return isElementDisplay(getEditAssignmentEditTime());
     }
 
     public boolean isEditAssignmentUsersDisplayed() {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         return isElementDisplay(getEditAssignmentUsers());
     }
 
     public boolean isEditAssignmentCompleteDisplayed() {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         return isElementDisplay(getEditAssignmentEditComplete());
     }
 
     public boolean isSaveButtonDisplayed() {
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(saveButton);
         return isElementDisplay(saveButton);
     }
 
     public boolean isCancelButtonDisplayed() {
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(cancelButton);
         return isElementDisplay(cancelButton);
     }
 
     public boolean isOkButtonDisplayed() {
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(okButton);
         return isElementDisplay(okButton);
     }
 
     public boolean isReleaseDateDisplayed() {
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(getReleaseDate());
         return isElementDisplay(getReleaseDate());
     }
 
     public boolean isReleaseTimeDisplayed() {
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(getReleaseTime());
         return isElementDisplay(getReleaseTime());
     }
 
     public boolean isReleaseLabelDisplayed() {
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(getReleaseLabel());
         return isElementDisplay(getReleaseLabel());
     }
 
     public boolean isAssignLabelDisplayed() {
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(getAssignLabel());
         return isElementDisplay(getAssignLabel());
     }
 
     public boolean isReleaseUsersLabelDisplayed() {
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(getReleaseUsersLabel());
         return isElementDisplay(getReleaseUsersLabel());
     }
 
     public boolean isEditTaskButtonDisplayed() {
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(getEditTaskButton());
         return isElementDisplay(getEditTaskButton());
     }
 
     public boolean isDeleteAssignmentButtonDisplayed() {
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(getDeleteAssignmentButton());
         return isElementDisplay(getDeleteAssignmentButton());
     }
 
     public boolean isAssignmentsTabDisplayed() {
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(getAssignmentsTab());
         return isElementDisplay(getAssignmentsTab());
     }
 
     public boolean isLaborEstimateTabDisplayed() {
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(getLaborEstimateTab());
         return isElementDisplay(getLaborEstimateTab());
     }
 
     public boolean isLaborActualTabDisplayed() {
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(getLaborActualTab());
         return isElementDisplay(getLaborActualTab());
     }
 
     public String getDialogPopupText() {
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(getDialogPopup());
         return getDialogPopup().getText().trim();
     }
 
     public String getNotificationMessageText() {
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(By.cssSelector(".toast-message"));
         return getNotificationMessage().getText().trim();
     }
 
     public String getEditAssignmentDateValue() {
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(editAssignmentEditDate);
+        waitUntilStalenessOf(1, getEditAssignmentEditDate());
         return getValue(editAssignmentEditDate);
     }
 
     public String getEditAssignmentTimeValue() {
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(editAssignmentEditTime);
+        waitUntilStalenessOf(1, getEditAssignmentEditTime());
         return getValue(editAssignmentEditTime);
     }
 
     public String getDialogTextContentText() {
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(getDialogTextContent());
         return getText(getDialogTextContent());
     }
 
     public String getReleaseDateValue() {
-        Waiters.waitABit(2_000);
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(releaseDate);
         return getValue(releaseDate);
     }
 
     public String getReleaseTimeValue() {
-        Waiters.waitABit(2_000);
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(releaseTime);
         return getValue(releaseTime);
     }
@@ -1191,5 +1264,9 @@ public class WorkQueueAssignmentsPage extends BasePage {
     public WebElement getPickedColumnHeader() { return findWebElement(pickedColumnHeader); }
 
     public WebElement getPickedColumn() { return findWebElement(pickedColumn); }
+
+    public List<WebElement> getAssignmentRows() { return findWebElements(rows); }
+
+    public List<WebElement> getAssignmentRowsCheckboxes() { return findWebElements(rowCheckboxes); }
 
 }

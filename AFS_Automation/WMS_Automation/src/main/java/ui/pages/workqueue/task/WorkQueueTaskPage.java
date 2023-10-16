@@ -6,6 +6,8 @@ import org.openqa.selenium.WebElement;
 import ui.pages.BasePage;
 import java.util.List;
 
+import static common.setup.DriverManager.getDriver;
+
 public class WorkQueueTaskPage extends BasePage {
     By taskListTitle = By.xpath("//span[contains(text(), 'Task list')]");
     By editTaskBtn = By.cssSelector("#editTaskButton");
@@ -87,10 +89,10 @@ public class WorkQueueTaskPage extends BasePage {
     By inputShort = By.xpath("//input[contains(@id, 'SHORT')]");
     By inputTestcode = By.xpath("//input[contains(@id, 'TESTCODE')]");
     By inputWpBrpMed = By.xpath("//input[contains(@id, 'WP BRP, MED')]");
+    By loader = By.cssSelector(".loader");
 
     public void waitWorkQueueTaskPageToLoad() {
-        Waiters.waitABit(6000);
-        Waiters.waitUntilPageWillLoadedSelenide();
+        waitUntilInvisible(5, loader);
         Waiters.waitForElementToBeDisplay(getTaskListTitle());
         Waiters.waitForElementToBeDisplay(getEditTaskButton());
         Waiters.waitForElementToBeDisplay(getDeleteTaskButton());
@@ -117,7 +119,7 @@ public class WorkQueueTaskPage extends BasePage {
     }
 
     public void clickAddFilter() {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(getAddFilterButton());
         clickOnElement(getAddFilterButton());
     }
@@ -368,237 +370,237 @@ public class WorkQueueTaskPage extends BasePage {
     }
 
     public boolean isTaskListTitleDisplayed() {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         return isElementDisplay(getTaskListTitle());
     }
 
     public boolean isTypesDropdownDisplayed() {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         return isElementDisplay(getTypesDropdown());
     }
 
     public boolean isTaskGroupDropdownDisplayed() {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         return isElementDisplay(getTaskGroupDropdown());
     }
 
     public boolean isAddFilterButtonDisplayed() {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         return isElementDisplay(getAddFilterButton());
     }
 
     public boolean isEditButtonDisplayed() {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         return isElementDisplay(getEditTaskButton());
     }
 
     public boolean isDeleteButtonDisplayed() {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         return isElementDisplay(getDeleteTaskButton());
     }
 
     public boolean isTopOffTaskButtonDisplayed() {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         return isElementDisplay(getTopOffTaskButton());
     }
 
     public boolean isMoveTaskButtonDisplayed() {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         return isElementDisplay(getMoveTaskButton());
     }
 
     public boolean isReprocessTaskButtonDisplayed() {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         return isElementDisplay(getReprocessTaskButton());
     }
 
     public boolean isSearchInputWorkQueueTaskDisplayed() {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         return isElementDisplay(getSearchInputWorkQueueTask());
     }
 
     public boolean isWorkQueueTasksToolTipDisplayed() {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         return isElementDisplay(getWorkQueueTasksToolTip());
     }
 
     public boolean isProductColumnDisplayed() {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         return isElementDisplay(getProductColumn());
     }
 
     public boolean isQtyColumnDisplayed() {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         return isElementDisplay(getQtyColumn());
     }
 
     public boolean isFromColumnDisplayed() {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         return isElementDisplay(getFromColumn());
     }
 
     public boolean isToColumnDisplayed() {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         return isElementDisplay(getToColumn());
     }
 
     public boolean isTypeColumnDisplayed() {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         return isElementDisplay(getTypeColumn());
     }
 
     public boolean isTaskGroupColumnDisplayed() {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         return isElementDisplay(getTaskGroupColumn());
     }
 
     public boolean isStatusColumnDisplayed() {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         return isElementDisplay(getStatusColumn());
     }
 
     public boolean isAssignmentNumColumnDisplayed() {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         return isElementDisplay(getAssignmentNumColumn());
     }
 
     public boolean isPriorityColumnDisplayed() {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         return isElementDisplay(getPriorityColumn());
     }
 
     public boolean isRouteColumnDisplayed() {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         return isElementDisplay(getRouteColumn());
     }
 
     public boolean isStopColumnDisplayed() {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         return isElementDisplay(getStopColumn());
     }
 
     public boolean isShipperColumnDisplayed() {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         return isElementDisplay(getShipperColumn());
     }
 
     public boolean isVelocityColumnDisplayed() {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         return isElementDisplay(getVelocityColumn());
     }
 
     public boolean isDescriptionColumnDisplayed() {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         return isElementDisplay(getDescriptionColumn());
     }
 
     public boolean isItemsFoundLabelDisplayed() {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         return isElementDisplay(itemsFoundLabel);
     }
 
     public boolean isItemsFoundValueDisplayed() {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         return isElementDisplay(itemsFoundValue);
     }
 
     public boolean isTasksSelectedItemsCountNumberDisplayed() {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         return isElementDisplay(getTasksItemsCountNumber());
     }
 
     public boolean isTasksSelectedItemsFoundDisplayed() {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         return isElementDisplay(getTasksSelectedItemsFound());
     }
 
     public boolean isTasksSelectedCountNumberDisplayed() {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         return isElementDisplay(getTasksSelectedCountNumber());
     }
 
     public boolean isProductFilterDisplayed() {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         return isElementDisplay(getProductFilter());
     }
 
     public boolean isStrQtyFilterDisplayed() {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         return isElementDisplay(getStrQtyFilter());
     }
 
     public boolean isFromFilterDisplayed() {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         return isElementDisplay(getFromFilter());
     }
 
     public boolean isToFilterDisplayed() {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         return isElementDisplay(getToFilter());
     }
 
     public boolean isTypeFilterDisplayed() {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         return isElementDisplay(getTypeFilter());
     }
 
     public boolean isTaskGroupFilterDisplayed() {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         return isElementDisplay(getTaskGroupFilter());
     }
 
     public boolean isStatusFilterDisplayed() {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         return isElementDisplay(getStatusFilter());
     }
 
     public boolean isAssignmentNumberFilterDisplayed() {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());;
         return isElementDisplay(getAssignmentNumberFilter());
     }
 
     public boolean isPriorityFilterDisplayed() {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         return isElementDisplay(getPriorityFilter());
     }
 
     public boolean isRouteFilterDisplayed() {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         return isElementDisplay(getRouteFilter());
     }
 
     public boolean isStopFilterDisplayed() {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         return isElementDisplay(getStopFilter());
     }
 
     public boolean isShipperFilterDisplayed() {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         return isElementDisplay(getShipperFilter());
     }
 
     public boolean isVelocityFilterDisplayed() {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         return isElementDisplay(getVelocityFilter());
     }
 
     public boolean isDescriptionFilterDisplayed() {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         return isElementDisplay(getDescriptionFilter());
     }
 
     public String getItemsFoundText() {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         return getText(itemsFoundValue);
     }
 
     public String getSelectedItemsFoundText() {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         return getText(tasksSelectedItemsFound);
     }
 
     public String getSelectedItemsFoundNumber() {
-        Waiters.waitABit(1000);
+        Waiters.waitTillLoadingPage(getDriver());
         return getText(tasksSelectedCountNumber);
     }
 

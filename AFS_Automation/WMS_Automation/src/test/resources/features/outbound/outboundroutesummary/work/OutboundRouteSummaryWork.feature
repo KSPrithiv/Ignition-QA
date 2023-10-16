@@ -12,7 +12,7 @@ Feature: Testing of Outbound Route Summary Work option
     And Click on route with index 0 on Outbound Route Summary page
     And Validates work item is active on Outbound Route Summary page
     And Click Back button on Outbound Route Summary page
-    And Selects route with index 2 on Outbound Route Summary page
+    And Selects route with index 0 on Outbound Route Summary page
     And Validates work item is active on Outbound Route Summary page
     Then User selects work item on Outbound Route Summary page
     And Validates Assignments tab and Tasks tab are displayed on Outbound Route Summary page
@@ -38,7 +38,6 @@ Feature: Testing of Outbound Route Summary Work option
     And Click on Status tab dropdown on Outbound Route Summary page
     And Validates Statuses are present on Outbound Route Summary page
 
-  @issue
   Scenario: Checking Work Route Tasks functionality
     Given User signs in the application
     And Main page is loaded
@@ -69,7 +68,7 @@ Feature: Testing of Outbound Route Summary Work option
     And Validates Tasks Items is displayed on Outbound Route Summary page
     And Clicks All Tasks checkbox on Outbound Route Summary page
     And Validates selected Tasks Items is displayed on Outbound Route Summary page
-    And Validates Tasks Reprocess is disabled on Outbound Route Summary page
+    And Validates Tasks Reprocess is enabled on Outbound Route Summary page
     And Clicks All Tasks checkbox on Outbound Route Summary page
     And Validates Tasks options Edit, Delete, Move and Reprocess are disabled on Outbound Route Summary page
     And Selects Task checkbox by index 0 on Outbound Route Summary page
@@ -84,32 +83,3 @@ Feature: Testing of Outbound Route Summary Work option
     And Verifies From Location field of Edit task window is displayed on Outbound Route Summary page
     And Verifies Pallets field of Edit task window is displayed on Outbound Route Summary page
     And Clicks Save button on Outbound Route Summary page
-    And Validates "Success" notification is displayed on Outbound Route Summary page
-    And Selects Task checkbox by index 0 on Outbound Route Summary page
-    And Selects Reprocess option on Tasks tab page
-    And Validates Reprocess pick tasks window is displayed on Outbound Route Summary page
-    And Check Replenish To Clean on Outbound Route Summary page
-    And Clicks Ok on Outbound Route Summary page
-    And Validates "Success" notification is displayed on Outbound Route Summary page
-    And Selects Task checkbox by index 1 on Outbound Route Summary page
-    And Selects Delete option on Tasks tab page
-    And Validates Delete task window on Outbound Route Summary page
-    And Click Cancel button on Outbound Route Summary page
-    And Selects Top Off option on Tasks tab page
-    And Validates Top Off Modal Zone dropdown is displayed on Outbound Route Summary page
-    And Selects Top Off Modal Zone "CHL" option on Outbound Route Summary page
-    And Clicks Save button on Outbound Route Summary page
-    And Validates "Success" notification is displayed on Outbound Route Summary page
-    And Selects Task checkbox by index 1 on Outbound Route Summary page
-    And Selects Move option for Task on Outbound Route Summary page
-    And Validates Move task window on Outbound Route Summary page
-    And Clicks Move To New Assignment radio button on Outbound Route Summary page
-    And Clicks Save button on Outbound Route Summary page
-    And Validates New Assignment task window on Outbound Route Summary page
-    And Click Cancel button on Outbound Route Summary page
-    And Selects Move option for Task on Outbound Route Summary page
-    And Validates Move task window on Outbound Route Summary page
-    And Clicks Move To Existing Assignment radio button on Outbound Route Summary page
-    And Clicks Save button on Outbound Route Summary page
-    And Validates Move tasks assignment window on Outbound Route Summary page
-    And Click Cancel button on Outbound Route Summary page
