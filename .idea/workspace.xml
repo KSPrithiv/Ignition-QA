@@ -142,6 +142,7 @@
     </file-type-list>
   </component>
   <component name="ProjectId" id="2WKzgXUj4gBBIx54ni28vht4jNP" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -178,6 +179,5 @@
         </entry>
       </map>
     </option>
-    <option name="oldMeFiltersMigrated" value="true" />
   </component>
 </project>

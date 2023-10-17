@@ -91,7 +91,7 @@ public class DriverManager {
         options.addArguments("--remote-allow-origins=*");
         options.addArguments("--disable-blink-features=AutomationControlled");
        // options.addArguments("--user-data-dir=C:/Users/Irina.Holovan/AppData/Local/Google/Chrome/User Data");
-        options.addArguments("profile-directory=PROFILE 2");
+//        options.addArguments("profile-directory=PROFILE 2");
         options.setCapability("download.prompt_for_download", false);
         options.setCapability("download.directory_upgrade", true);
         options.setCapability("safebrowsing.enabled", false);
