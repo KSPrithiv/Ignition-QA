@@ -1,18 +1,21 @@
 package steps.outbound.processing;
 
-import common.utils.database.SqlQueriesUtils;
-import common.utils.database.StoreProceduresUtils;
+import common.constants.FilePaths;
+import common.utils.objectmapper.ObjectMapperWrapper;
 import io.cucumber.java.en.And;
 import io.qameta.allure.Step;
 import lombok.extern.slf4j.Slf4j;
+import objects.outbound.OutboundOrderLoadsDTO;
 import ui.pages.outbound.processing.AddAllocationBatchPage;
 import ui.pages.outbound.processing.ProcessingPage;
+
+import java.util.List;
 
 @Slf4j
 public class ProcessingPageSteps {
     ProcessingPage processingPage = new ProcessingPage();
-    StoreProceduresUtils storeProceduresUtils = new StoreProceduresUtils();
-    SqlQueriesUtils sqlQueriesUtils = new SqlQueriesUtils();
+    OutboundOrderLoadsDTO outboundOrderLoadsDTO = new ObjectMapperWrapper()
+            .getObject(FilePaths.OUTBOUND_ORDER_LOAD_DATA, OutboundOrderLoadsDTO.class);
 
     @Step
     @And("Wait for Processing page to load")
@@ -143,8 +146,19 @@ public class ProcessingPageSteps {
     @Step
     @And("User selects processing date {string} on Processing page")
     public void selectDate(String date) {
-        log.info("Selecting date");
+        log.info("Selecting date on Processing page");
         processingPage.selectDate(date);
+    }
+
+    @Step
+    @And("User selects processing date by index {int} on Processing page")
+    public void selectDateByIndex(int index) {
+        log.info("Selecting date by index on Processing page");
+        List<String> dates = List.of(outboundOrderLoadsDTO.getEndDates().getEndDate1(),outboundOrderLoadsDTO.getEndDates()
+                .getEndDate2(), outboundOrderLoadsDTO.getEndDates().getEndDate3(), outboundOrderLoadsDTO.getEndDates()
+                .getEndDate4(), outboundOrderLoadsDTO.getEndDates().getEndDate5(), outboundOrderLoadsDTO.getEndDates()
+                .getEndDate6());
+        processingPage.selectDate(dates.get(index));
     }
 
     @Step

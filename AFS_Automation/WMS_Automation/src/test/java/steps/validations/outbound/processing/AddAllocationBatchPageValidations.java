@@ -1,12 +1,19 @@
 package steps.validations.outbound.processing;
 
+import common.constants.FilePaths;
 import common.constants.Notifications;
+import common.utils.objectmapper.ObjectMapperWrapper;
 import io.cucumber.java.en.And;
+import objects.outbound.OutboundOrderLoadsDTO;
 import org.testng.asserts.SoftAssert;
 import ui.pages.outbound.processing.AddAllocationBatchPage;
 
+import java.util.List;
+
 public class AddAllocationBatchPageValidations {
     AddAllocationBatchPage addAllocationBatchPage = new AddAllocationBatchPage();
+    OutboundOrderLoadsDTO outboundOrderLoadsDTO = new ObjectMapperWrapper()
+            .getObject(FilePaths.OUTBOUND_ORDER_LOAD_DATA, OutboundOrderLoadsDTO.class);
 
     @And("Validate Add Allocation Batch page is displayed")
     public void validateAddAllocationBatchPage() {
@@ -57,4 +64,15 @@ public class AddAllocationBatchPageValidations {
                     "Batch Type " + type + " is not Displayed");
         softAssert.assertAll();
     }
+
+    @And("Validates Batch Type by index {int} is displayed")
+    public void validateBatchTypeByIndexIsDisplayed(int index) {
+        List<String> types = List.of(outboundOrderLoadsDTO.getOutboundBatches().getOutboundBatch1(), outboundOrderLoadsDTO
+                .getOutboundBatches().getOutboundBatch2(), outboundOrderLoadsDTO.getOutboundBatches().getOutboundBatch3());
+        SoftAssert softAssert = new SoftAssert();
+        softAssert.assertTrue(addAllocationBatchPage.isBatchTypeDropDownDisplayed(types.get(index)),
+                "Batch Type " + types.get(index) + " is not Displayed");
+        softAssert.assertAll();
+    }
+
 }

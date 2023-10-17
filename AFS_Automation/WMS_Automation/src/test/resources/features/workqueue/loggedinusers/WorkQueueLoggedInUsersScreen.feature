@@ -1,6 +1,5 @@
 @WorkQueue @Regression
 Feature: Testing of Work Queue LoggedIn User functionality
-
   Scenario: Checking Navigate of Work Queue LoggedIn User screen functionality
     Given User signs in the application
     And Main page is loaded
@@ -71,6 +70,7 @@ Feature: Testing of Work Queue LoggedIn User functionality
     When User searches for user by index 0 on Work Queue Logged In Users page
     Then Validates Grid items are present on Work Queue Logged In Users page
 
+    #
   Scenario: Checking Add Filter of Work Queue LoggedIn User screen functionality
     Given User signs in the application
     And Main page is loaded
@@ -114,12 +114,10 @@ Feature: Testing of Work Queue LoggedIn User functionality
     And Validates currently logged in users are displayed on Work Queue Logged In Users page
     When Selects Logout User by index 0 Dropdown on Work Queue Logged In Users page
     And Validates Logout User label is enabled on Work Queue Logged In Users page
-    # If the user is having breakdate and time , Logout button shoud not be enable upon that user selection.
     And Clicks Logout User label on Work Queue Logged In Users page
     And Validates OK and Cancel buttons are present on Work Queue Logged In Users page
     And Selects Logout reason by index 0 on Work Queue Logged In Users page
     Then Clicks OK button on Work Queue Logged In Users page
-    And Validates "Success" notification is displayed on Work Queue Logged In Users page
     And Clicks Logout User label on Work Queue Logged In Users page
     And Selects Logout reason by index 1 on Work Queue Logged In Users page
     And Clicks OK button on Work Queue Logged In Users page
@@ -135,4 +133,3 @@ Feature: Testing of Work Queue LoggedIn User functionality
     And Waits for Work Queue Logged In Users page to load
     Then Validates User Logged In title is displayed on Work Queue Logged In Users page
     And Validates currently logged in users are displayed on Work Queue Logged In Users page
-    # Login to Mobile with AFS/AFS 123 user

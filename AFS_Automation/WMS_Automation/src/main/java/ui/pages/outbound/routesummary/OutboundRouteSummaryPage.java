@@ -751,9 +751,9 @@ public class OutboundRouteSummaryPage extends BasePage {
     }
 
     public void clickBack() {
-        waitUntilInvisible(1, loader);
+        waitUntilInvisible(2, loader);
         clickOnElement(getBackButton());
-        waitUntilInvisible(1, loader);
+        waitUntilInvisible(3, loader);
     }
 
     public void clickRouteBack() {
@@ -765,12 +765,12 @@ public class OutboundRouteSummaryPage extends BasePage {
     public void checkRouteByRowNumber(int index) {
         waitUntilInvisible(1, loader);
         Waiters.waitTillLoadingPage(getDriver());
-        Waiters.waitForElementToBeDisplay(tableContent);
         List<WebElement> routes = findWebElements(By.xpath("//div[contains(@class, 'BarsContainer')]//..//input"));
-        Waiters.waitABit(4000);
+        waitUntilInvisible(1, loader);
+        scrollToCenter(routes.get(index));
         waitUntilStalenessOf(2, routes.get(index));
-        Waiters.waitABit(4000);
-        clickOnElement(routes.get(index));
+        Waiters.waitABit(3000);
+        jsClick(routes.get(index));
         waitUntilInvisible(1, loader);
     }
 
@@ -780,6 +780,7 @@ public class OutboundRouteSummaryPage extends BasePage {
         Waiters.waitABit(4000);
         waitUntilStalenessOf(2, routes.get(index));
         clickOnElement(routes.get(index));
+        waitUntilInvisible(2, loader);
     }
 
     public WebElement getGridTableRowTime(int row) {
@@ -814,6 +815,7 @@ public class OutboundRouteSummaryPage extends BasePage {
 
     public void clickAllTasksCheckbox() {
         Waiters.waitTillLoadingPage(getDriver());
+        Waiters.waitABit(4000);
         clickOnElement(getAllTasksCheckbox());
     }
 

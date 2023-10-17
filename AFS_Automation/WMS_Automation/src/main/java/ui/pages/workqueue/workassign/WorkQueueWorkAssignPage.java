@@ -6,6 +6,8 @@ import org.openqa.selenium.WebElement;
 import ui.pages.BasePage;
 import java.util.List;
 
+import static common.setup.DriverManager.getDriver;
+
 public class WorkQueueWorkAssignPage extends BasePage {
     By taskGroupTitle = By.xpath("//span[contains(text(), 'Task group')]");
     By taskGroupDropdown = By.id("wqListTaskGroup");
@@ -27,6 +29,7 @@ public class WorkQueueWorkAssignPage extends BasePage {
     By operatorsUserGroup = By.xpath("//div[contains(@class,'i-btn-checkbox')]//span[contains(text(), 'O')]");
     By clearAllButton = By.xpath("//button[text()='Clear all']");
     By dropdownList = By.id("dropdownList");
+    By loader = By.cssSelector(".loader");
 
     private WebElement getUserByUserName(String name) {
         return findWebElement(By.xpath("//label[contains(text(), '" + name + "')]//preceding-sibling::input[@type='checkbox']"));
@@ -37,147 +40,148 @@ public class WorkQueueWorkAssignPage extends BasePage {
     }
 
     public void waitWorkQueueWorkAssignPageToLoad() {
-        Waiters.waitABit(6000);
-        Waiters.waitUntilPageWillLoadedSelenide();
+        waitUntilInvisible(3, loader);
         Waiters.waitForElementToBeDisplay(getTaskGroupTitle());
         Waiters.waitForElementToBeDisplay(getSaveEditButton());
         Waiters.waitForElementToBeDisplay(getCancelEditButton());
     }
 
     public void selectWarehouse(String warehouse) {
+        Waiters.waitTillLoadingPage(getDriver());
         clickOnElement(getDropdownList());
         clickOnElement(findWebElement(By.xpath("//div[contains(@class, 'k-animation-container-shown')]//li[contains(text(), '"
                 + warehouse + "') and @role='option']")));
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
     }
 
     public void clickOnTaskGroup() {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(getTaskGroupDropdown());
         clickOnElement(getTaskGroupDropdown());
+        Waiters.waitTillLoadingPage(getDriver());
     }
 
     public void selectTaskGroup(String option) {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(getTaskGroupDropdown());
         clickOnElement(getTaskGroupDropdown());
         WebElement taskGroupOption = findWebElement(By
                 .xpath("//div[contains(@class, 'k-animation-container-shown')]//li[@class='k-item' and contains(text(), '"
                 + option + "')]"));
         clickOnElement(taskGroupOption);
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
     }
 
     public void clickSaveEditButton() {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(getTaskGroupDropdown());
         clickOnElement(getSaveEditButton());
     }
 
     public void clickCancelEditButton() {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(getCancelEditButton());
         clickOnElement(getCancelEditButton());
     }
 
     public void clickFilterButton() {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(getAddFilterButton());
         clickOnElement(getAddFilterButton());
     }
 
     public void clickUserGroupCheckbox() {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(userGroupCheckbox);
         clickOnElement(userGroupCheckbox);
     }
 
     public void clickClearAllButton() {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(getClearAllButton());
         clickOnElement(getClearAllButton());
     }
 
     public void checkUserByName(String name) {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(getUserByUserName(name));
         clickOnElement(getUserByUserName(name));
     }
 
     public void checkAdminUserGroup() {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(adminUserGroup);
         clickOnElement(adminUserGroup);
     }
 
     public void checkBuyersUserGroup() {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(buyersUserGroup);
         clickOnElement(buyersUserGroup);
     }
 
     public void checkDefaultUserGroup() {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(defaultUserGroup);
         clickOnElement(defaultUserGroup);
     }
 
     public void checkFreezerUserGroup() {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(freezerUserGroup);
         clickOnElement(freezerUserGroup);
     }
 
     public void checkManagersUserGroup() {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(managersUserGroup);
         clickOnElement(managersUserGroup);
     }
 
     public void checkOperatorsUserGroup() {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(operatorsUserGroup);
         clickOnElement(operatorsUserGroup);
     }
 
     public boolean isTaskGroupTitleDisplayed() {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         return isElementDisplay(getTaskGroupTitle());
     }
 
     public boolean isTaskGroupDropdownDisplayed() {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         return isElementDisplay(getTaskGroupDropdown());
     }
 
     public boolean isAddFilterButtonDisplayed() {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         return isElementDisplay(getAddFilterButton());
     }
 
     public boolean isAssignWorkUserFormDisplayed() {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         return isElementDisplay(getAssignWorkUserForm());
     }
 
     public boolean isSaveEditButtonDisplayed() {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         return isElementDisplay(getSaveEditButton());
     }
 
     public boolean isCancelEditButtonDisplayed() {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         return isElementDisplay(getCancelEditButton());
     }
 
     public boolean isWmUserHeaderDisplayed() {
-        Waiters.waitABit(2000);
-        return isElementDisplay(getWmUserHeader());
+        Waiters.waitTillLoadingPage(getDriver());
+        return isVisible(wmUserHeader);
     }
 
     public boolean isWmUserGrpHeaderDisplayed() {
-        Waiters.waitABit(2000);
-        return isElementDisplay(getWmUserGrpHeader());
+        Waiters.waitTillLoadingPage(getDriver());
+        return isVisible(wmUserGrpHeader);
     }
 
     public WebElement getTaskGroupTitle() { return findWebElement(taskGroupTitle); }

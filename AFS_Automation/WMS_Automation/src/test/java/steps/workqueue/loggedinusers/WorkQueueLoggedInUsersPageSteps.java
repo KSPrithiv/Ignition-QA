@@ -108,7 +108,7 @@ public class WorkQueueLoggedInUsersPageSteps {
                 .getLoggedInUsersDTO().getLoggedInUser2(), workQueueDataDTO.getLoggedInUsersDTO().getLoggedInUser3(),
                 workQueueDataDTO.getLoggedInUsersDTO().getLoggedInUser4(), workQueueDataDTO.getLoggedInUsersDTO()
                 .getLoggedInUser5(), workQueueDataDTO.getLoggedInUsersDTO().getLoggedInUser6());
-        workQueueLoggedInUsersPage.findValuesInSearch(users.get(index));
+        workQueueLoggedInUsersPage.findValuesInLoggedInUserGridSearch(users.get(index));
     }
 
     @Step

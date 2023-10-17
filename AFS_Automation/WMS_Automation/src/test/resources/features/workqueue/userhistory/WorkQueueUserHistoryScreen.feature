@@ -1,6 +1,5 @@
 @WorkQueue @Regression
 Feature: Testing of Work Queue User history functionality
-
   Scenario: Checking Navigate to Work Queue User history screen functionality
     Given User signs in the application
     And Main page is loaded
