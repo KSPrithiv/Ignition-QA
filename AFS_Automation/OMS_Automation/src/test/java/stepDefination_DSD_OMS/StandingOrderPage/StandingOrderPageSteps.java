@@ -19,6 +19,7 @@ import pages_DSD_OMS.standingOrder.NewStandingOrderPage;
 import util.DataBaseConnection;
 import util.TestBase;
 
+import javax.enterprise.inject.New;
 import java.awt.*;
 import java.sql.SQLException;
 import java.text.ParseException;
@@ -27,8 +28,8 @@ import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 /**
-        * @Project DSD_OMS
-        * @Author Divya.Ramadas@afsi.com
+ * @Project DSD_OMS
+ * @Author Divya.Ramadas@afsi.com
  */
 
 public class StandingOrderPageSteps
@@ -45,11 +46,11 @@ public class StandingOrderPageSteps
     List<WebElement> dateList1;
     List<WebElement> dateList2;
 
-    LoginPage loginpage;
-    HomePage homepage;
-    OrderEntryPage orderpage;
-    NewStandingOrderPage standingOrder;
-    NewStandingOrderCard standingOrderCard;
+    static LoginPage loginpage;
+    static HomePage homepage;
+    static OrderEntryPage orderpage;
+    static NewStandingOrderPage standingOrder;
+    static NewStandingOrderCard standingOrderCard;
 
     @Before
     public void LaunchBrowser1(Scenario scenario) throws Exception
@@ -131,11 +132,14 @@ public class StandingOrderPageSteps
         orderpage.HandleError_Page();
         standingOrder=new NewStandingOrderPage(driver,scenario);
         standingOrder.Refresh_Page(currentURL);
+        standingOrder.validateStandingOrder();
     }
 
     @And("User click on Start standing order button and selects start and end date from popup")
     public void userClickOnStartStandingOrderButtonAndSelectsStartAndEndDateFromPopup() throws InterruptedException, AWTException
     {
+        standingOrder=new NewStandingOrderPage(driver,scenario);
+        standingOrder.validateStandingOrder();
         standingOrderCard=new NewStandingOrderCard(driver,scenario);
         standingOrderCard.ClickOnNewStandingOrderArrow();
         standingOrderCard.ClickOnStartStandingOrder();
@@ -164,6 +168,7 @@ public class StandingOrderPageSteps
     {
         standingOrder=new NewStandingOrderPage(driver,scenario);
         standingOrder.ClickSaveButton();
+        standingOrder.sucessPopup();
     }
 
     @Then("User clicks on Save button and handles popup and continue creation of multiple standing order")
@@ -171,15 +176,16 @@ public class StandingOrderPageSteps
     {
         standingOrder=new NewStandingOrderPage(driver,scenario);
         standingOrder.ClickSaveButton();
-        orderpage=new OrderEntryPage(driver,scenario);
-        orderpage.Refresh_Page(currentURL);
-        standingOrder=new NewStandingOrderPage(driver,scenario);
+        standingOrder.sucessPopup();
+        standingOrder.Refresh_Page(currentURL);
         standingOrder.ValidateSO();
     }
 
     @And("User click on Start standing order button and selects Start date {int} and End date {int} day from current date")
     public void userClickOnStartStandingOrderButtonAndSelectsStartDateAndEndDateDayFromCurrentDate(int Sdate,int Edate) throws InterruptedException
     {
+        standingOrder=new NewStandingOrderPage(driver,scenario);
+        standingOrder.validateStandingOrder();
         standingOrderCard= new NewStandingOrderCard(driver,scenario);
         standingOrderCard.ClickOnNewStandingOrderArrow();
         standingOrderCard.ClickOnStartStandingOrder();
@@ -252,6 +258,7 @@ public class StandingOrderPageSteps
         standingOrder.ClickOnSkipReason();
         standingOrder.SelectDateToSkip();
         standingOrder.SkipOkButton();
+        standingOrder.orderAlreadyExists();
         standingOrder.SkipConfirmation();
     }
 
@@ -268,6 +275,8 @@ public class StandingOrderPageSteps
     @Then("User navigates to Standing order card and clicks on Delete button")
     public void userNavigatesToStandingOrderCardAndClicksOnDeleteButton() throws InterruptedException
     {
+        standingOrder=new NewStandingOrderPage(driver,scenario);
+        standingOrder.validateStandingOrder();
         standingOrderCard=new NewStandingOrderCard(driver,scenario);
         standingOrderCard.ClickOnNewStandingOrderArrow();
         standingOrderCard.DeleteStandingOrders();
@@ -320,6 +329,7 @@ public class StandingOrderPageSteps
     public void userClickOnSkipSpecificDayAndReadTheSkipDateValueAndClickOnOk() throws ParseException, InterruptedException
     {
         standingOrder=new NewStandingOrderPage(driver,scenario);
+        standingOrder.validateStandingOrder();
         standingOrder.ClickOnSkipSpecificDay();
         standingOrder.ValidateSkipPopup();
         sDate= standingOrder.readSkipDate();
@@ -327,6 +337,7 @@ public class StandingOrderPageSteps
         LocalDate myDateObj = LocalDate.parse(sDate, DateTimeFormatter.ofPattern("MM/dd/yyyy"));
         DateTimeFormatter myFormatObj = DateTimeFormatter.ofPattern("EEEE, MMMM d, yyyy");
         sDate = myDateObj.format(myFormatObj);
+        scenario.log("SKIP DATE FOUND IN STANDING ORDER IS "+sDate);
     }
 
     @And("User should navigate to OE page, User should select the same delivery date from calender")

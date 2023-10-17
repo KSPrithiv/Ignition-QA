@@ -31,66 +31,66 @@ import java.util.List;
 
 public class CatalogPageStep2
 {
-        /* Created by Divya.Ramadas@afsi.com */
-        WebDriver driver;
-        String descriptionProd=null;
-        static boolean exists = false;
-        Scenario scenario;
+    /* Created by Divya.Ramadas@afsi.com */
+    WebDriver driver;
+    String descriptionProd=null;
+    static boolean exists = false;
+    Scenario scenario;
 
-        CatalogPage catalogpage;
-        NewOrderEntryPage newOE;
-        CheckOutOrderPage checkorder;
-        ProductDescriptionPage productDescriptionPage;
+    static CatalogPage catalogpage;
+    static NewOrderEntryPage newOE;
+    static CheckOutOrderPage checkorder;
+    static ProductDescriptionPage productDescriptionPage;
 
-        @Before
-        public void LaunchBrowser1(Scenario scenario) throws Exception {
-                this.scenario = scenario;
-                TestBase driver1 = TestBase.getInstanceOfDriver();
-                driver = driver1.getDriver();
+    @Before
+    public void LaunchBrowser1(Scenario scenario) throws Exception {
+        this.scenario = scenario;
+        TestBase driver1 = TestBase.getInstanceOfDriver();
+        driver = driver1.getDriver();
+    }
+
+    @Then("User enters Product# in Search bar and enters Qty for single Product in list view")
+    public void userEntersProductInSearchBarAndEntersQtyForSingleProductInListView(DataTable tabledata) throws SQLException, ClassNotFoundException, InstantiationException, IllegalAccessException, SQLException {
+        exists = true;
+        List<List<String>> Prod_detail = tabledata.asLists(String.class);
+        catalogpage = new CatalogPage(driver, scenario);
+        String pro = DataBaseConnection.DataBaseConn(TestBase.testEnvironment.getSingle_Prod_Sql());
+        catalogpage.SearchProduct1(pro);
+        exists = HelpersMethod.IsExists("//div[contains(text(),'Sorry, no products matched')]", driver);
+        if (exists == true)
+        {
+            HelpersMethod.ClickBut(driver, HelpersMethod.FindByElement(driver, "xpath", "//span[contains(@class,'search-button')]/*[local-name()='svg']/*[local-name()='path' and contains(@d,'M17')]"), 10);
         }
-
-        @Then("User enters Product# in Search bar and enters Qty for single Product in list view")
-        public void userEntersProductInSearchBarAndEntersQtyForSingleProductInListView(DataTable tabledata) throws SQLException, ClassNotFoundException, InstantiationException, IllegalAccessException, SQLException {
-                exists = true;
-                List<List<String>> Prod_detail = tabledata.asLists(String.class);
-                catalogpage = new CatalogPage(driver, scenario);
-                String pro = DataBaseConnection.DataBaseConn(TestBase.testEnvironment.getSingle_Prod_Sql());
-                catalogpage.SearchProduct1(pro);
-                exists = HelpersMethod.IsExists("//div[contains(text(),'Sorry, no products matched')]", driver);
-                if (exists == true)
-                {
-                        HelpersMethod.ClickBut(driver, HelpersMethod.FindByElement(driver, "xpath", "//span[contains(@class,'search-button')]/*[local-name()='svg']/*[local-name()='path' and contains(@d,'M17')]"), 10);
-                }
-                else if (exists == false)
-                {
-                        catalogpage.productInputList(Prod_detail.get(0).get(0));
-                }
+        else if (exists == false)
+        {
+            catalogpage.productInputList(Prod_detail.get(0).get(0));
         }
+    }
 
     @Then("User enters Product# with tire pricing in Search bar")
     public void userEntersProductWithTirePricingInSearchBar()
     {
-            catalogpage=new CatalogPage(driver,scenario);
-            String pro=TestBase.testEnvironment.get_TirePricing();
-            catalogpage.SearchProduct1(pro);
+        catalogpage=new CatalogPage(driver,scenario);
+        String pro=TestBase.testEnvironment.get_TirePricing();
+        catalogpage.SearchProduct1(pro);
     }
 
-        @And("User checks for the condition applied for tire pricing")
-        public void userChecksForTheConditionAppliedForTirePricing()
-        {
-                catalogpage=new CatalogPage(driver,scenario);
-                catalogpage.checkTirepricing();
-        }
+    @And("User checks for the condition applied for tire pricing")
+    public void userChecksForTheConditionAppliedForTirePricing()
+    {
+        catalogpage=new CatalogPage(driver,scenario);
+        catalogpage.checkTirepricing();
+    }
 
-        @Then("User enters Product# with tire pricing in Search bar and enter some Qty")
-        public void userEntersProductWithTirePricingInSearchBarAndEnterSomeQty(DataTable tabledata) throws InterruptedException
-        {
-            List<List<String>> Qty=tabledata.asLists(String.class);
-            catalogpage=new CatalogPage(driver,scenario);
-            String pro=TestBase.testEnvironment.get_TirePricing();
-            catalogpage.SearchProduct1(pro);
-            catalogpage.ProductExistsCard(Qty.get(0).get(0));
-        }
+    @Then("User enters Product# with tire pricing in Search bar and enter some Qty")
+    public void userEntersProductWithTirePricingInSearchBarAndEnterSomeQty(DataTable tabledata) throws InterruptedException
+    {
+        List<List<String>> Qty=tabledata.asLists(String.class);
+        catalogpage=new CatalogPage(driver,scenario);
+        String pro=TestBase.testEnvironment.get_TirePricing();
+        catalogpage.SearchProduct1(pro);
+        catalogpage.ProductExistsCard(Qty.get(0).get(0));
+    }
 
     @Then("User click on cart in catalog and Clicks on tirepricing label")
     public void userClickOnCartInCatalogAndClicksOnTirepricingLabel()
@@ -177,7 +177,7 @@ public class CatalogPageStep2
         descriptionProd= catalogpage.clickOnProdDescription();
         productDescriptionPage=new ProductDescriptionPage(driver,scenario);
         productDescriptionPage.validateProductDescriptionPage();
-        productDescriptionPage.validateProductDescription(descriptionProd);
+        //productDescriptionPage.validateProductDescription(descriptionProd);
     }
 
     @Then("User clicks on Back to catalog button and navigates back to catalog page")

@@ -43,12 +43,12 @@ public class OrderGuidePageStep
     static boolean flag1=false;
     static String currentURL=null;
 
-    LoginPage loginpage;
-    HomePage homepage;
-    OrderEntryPage orderpage;
-    NewOrderEntryPage newOE;
-    OrderGuidePage orderGuidePage;
-    CreateOGPage createOGPage;
+    static LoginPage loginpage;
+    static HomePage homepage;
+    static OrderEntryPage orderpage;
+    static NewOrderEntryPage newOE;
+    static OrderGuidePage orderGuidePage;
+    static CreateOGPage createOGPage;
 
     @Before
     public void LaunchBrowser1(Scenario scenario) throws Exception
@@ -121,16 +121,6 @@ public class OrderGuidePageStep
     @Given("User must be on Order Entry Page to select OG")
     public void user_must_be_on_order_entry_page_to_select_og() throws InterruptedException, AWTException
     {
-            orderpage = new OrderEntryPage(driver, scenario);
-            //orderpage.HandleError_Page();
-            //newOE = new NewOrderEntryPage(driver, scenario);
-            //newOE.Click_Back_But();
-
-    }
-
-    @And("User should navigate to OG")
-    public void user_should_navigate_to_og() throws InterruptedException, AWTException
-    {
         if(flag1==false)
         {
             WebElement WebEle;
@@ -140,11 +130,11 @@ public class OrderGuidePageStep
                 exists = false;
                 orderGuidePage = new OrderGuidePage(driver, scenario);
                 HelpersMethod.navigate_Horizantal_Tab(driver, "Order Guides", "//li[contains(@class,'k-item')]/span[@class='k-link' and contains(text(),'Order Guides')]", "xpath", "//li[contains(@class,'k-item')]/span[@class='k-link']");
-                /*if (HelpersMethod.IsExists("//div[@class='loader']", driver))
+                if (HelpersMethod.IsExists("//div[@class='loader']", driver))
                 {
                     WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 400);
-                }*/
+                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 600000);
+                }
                 exists = orderGuidePage.ValidateOG();
                 currentURL=driver.getCurrentUrl();
                 Assert.assertEquals(exists, true);
@@ -156,6 +146,11 @@ public class OrderGuidePageStep
             }
             flag1=true;
         }
+    }
+
+    @And("User should navigate to OG")
+    public void user_should_navigate_to_og() throws InterruptedException, AWTException
+    {
         orderpage = new OrderEntryPage(driver, scenario);
         orderpage.HandleError_Page();
         orderGuidePage=new OrderGuidePage(driver,scenario);
@@ -223,12 +218,12 @@ public class OrderGuidePageStep
         exists=false;
         orderGuidePage = new OrderGuidePage(driver, scenario);
         exists = orderGuidePage.ValidateOG();
-        //Assert.assertEquals(exists, true);
         scenario.log("USER IS ON ORDER GUIDE PAGE");
 
         exists=false;
         //Code to verify whether OG is existing in OG grid or not
         orderGuidePage = new OrderGuidePage(driver, scenario);
+        orderGuidePage.clearAddfilter();
         exists=orderGuidePage.OGSearchBox(Og);
         Assert.assertEquals(exists,true);
     }
@@ -274,6 +269,7 @@ public class OrderGuidePageStep
     public void user_click_on_more_button()
     {
         createOGPage=new CreateOGPage(driver,scenario);
+        createOGPage.OGDetailValidate();
         exists=createOGPage.More_Button();
         Assert.assertEquals(exists,true);
     }
@@ -366,6 +362,7 @@ public class OrderGuidePageStep
     public void user_should_select_order_from_order_popup()
     {
         createOGPage=new CreateOGPage(driver,scenario);
+        createOGPage.validateOrderPopup();
         createOGPage.OrderPopup();
     }
 
@@ -391,7 +388,7 @@ public class OrderGuidePageStep
         }
         else
         {
-                createOGPage.cardView();
+            createOGPage.cardView();
         }
         createOGPage.CatalogPopupOk();
     }
@@ -400,6 +397,7 @@ public class OrderGuidePageStep
     public void userEntersDescriptionStartDateSdateAndEndDateEdateDayFromCurrentDate(String arg0,int Sdate,int Edate)
     {
         createOGPage=new CreateOGPage(driver,scenario);
+
         createOGPage.DescriptionOG(arg0);
 
         //selecting start date
@@ -437,8 +435,8 @@ public class OrderGuidePageStep
         exists=false;
         createOGPage=new CreateOGPage(driver,scenario);
         String ProdNo=DataBaseConnection.DataBaseConn(TestBase.testEnvironment.getSingle_Prod_Sql());
-
         exists= createOGPage.SearchProd(ProdNo);
+
         if(exists==true)
         {
             scenario.log(ProdNo+" HAS BEEN FOUND IN PRODUCT GRID");
@@ -498,5 +496,11 @@ public class OrderGuidePageStep
         Assert.assertEquals(exists,false);
     }
 
-
+    @And("User must be on create OG page and {string} the grid header")
+    public void userMustBeOnCreateOGPageAndTheGridHeader(String TableHead)
+    {
+        createOGPage=new CreateOGPage(driver,scenario);
+        createOGPage.FindtableHeader(TableHead);
+        createOGPage.DisplayGroupDetails();
+    }
 }

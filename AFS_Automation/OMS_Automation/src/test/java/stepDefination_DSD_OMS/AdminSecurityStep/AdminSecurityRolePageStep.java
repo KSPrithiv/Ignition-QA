@@ -25,9 +25,9 @@ public class AdminSecurityRolePageStep
         static boolean flag=false;
         WebDriver driver;
         Scenario scenario;
-        AdminSecurityRolePage adminSecurityRolePage;
-        LoginPage loginpage;
-        AdminHomePage adminHomePage;
+        static AdminSecurityRolePage adminSecurityRolePage;
+        static LoginPage loginpage;
+        static AdminHomePage adminHomePage;
 
         @Before
         public void LaunchBrowser1(Scenario scenario) throws Exception
@@ -73,12 +73,11 @@ public class AdminSecurityRolePageStep
     @Then("User Clicks on Permissions by drop down to select Customer Account# for admin security")
     public void userClicksOnPermissionsByDropDownToSelectCustomerAccountForAdminSecurity() throws InterruptedException
     {
-        if(flag==false)
-        {
             adminHomePage = new AdminHomePage(driver, scenario);
+            adminHomePage.handleError_Page();
+            adminHomePage.refreshPage();
             adminHomePage.ClickPermissionBy();
             adminHomePage.SelectCompany();
-        }
     }
 
     @Then("User clicks on plus symbol to create new role, popup will appear enter all required fields, {string} and save")

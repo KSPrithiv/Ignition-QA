@@ -17,28 +17,28 @@ import org.testng.Assert;
  */
 public class userAndAdmin_GeneralPage
 {
-   /* Created by Divya.Ramadas@afsi.com */
-        WebDriver driver;
-        Scenario scenario;
-        static boolean exists=false;
+    /* Created by Divya.Ramadas@afsi.com */
+    WebDriver driver;
+    Scenario scenario;
+    static boolean exists=false;
 
-        @FindBy (id="CPEnforceUniqueUserEmail")
-        private WebElement enforceUniqueEmail;
+    @FindBy (id="CPEnforceUniqueUserEmail")
+    private WebElement enforceUniqueEmail;
 
-        @FindBy (id="CPAdminApprovesRegistrations")
-        private WebElement pendingRegistration;
+    @FindBy (id="CPAdminApprovesRegistrations")
+    private WebElement pendingRegistration;
 
-        @FindBy (id="CPExcludeNonWebCustomers")
-        private WebElement excludeNonWebEle;
+    @FindBy (id="CPExcludeNonWebCustomers")
+    private WebElement excludeNonWebEle;
 
-        @FindBy (id="CPEnableCustomerRegistration")
-        private WebElement newCustomerRegi;
+    @FindBy (id="CPEnableCustomerRegistration")
+    private WebElement newCustomerRegi;
 
-        @FindBy (id="CPCCPrimarySalesmanOnRegistrationEmail")
-        private WebElement primarySalRegistration;
+    @FindBy (id="CPCCPrimarySalesmanOnRegistrationEmail")
+    private WebElement primarySalRegistration;
 
-        @FindBy(id="save-btn")
-        private WebElement saveButton;
+    @FindBy(id="save-btn")
+    private WebElement saveButton;
 
     public userAndAdmin_GeneralPage(WebDriver driver, Scenario scenario)
     {
@@ -71,12 +71,12 @@ public class userAndAdmin_GeneralPage
         String result=null;
         try
         {
-           result=pendingRegistration.getAttribute("aria-checked");
-           if(result.equals("false"))
-           {
-               HelpersMethod.ClickBut(driver, pendingRegistration, 100);
-               scenario.log("PENDING REGISTRATION TAGGLE BUTTON ENABLED");
-           }
+            result=pendingRegistration.getAttribute("aria-checked");
+            if(result.equals("false"))
+            {
+                HelpersMethod.ClickBut(driver, pendingRegistration, 1000);
+                scenario.log("PENDING REGISTRATION TAGGLE BUTTON ENABLED");
+            }
         }
         catch (Exception e){}
     }
@@ -96,7 +96,7 @@ public class userAndAdmin_GeneralPage
         catch (Exception e){}
     }
 
-   public void enableNewCustomerRegistrationFromLoginPage()
+    public void enableNewCustomerRegistrationFromLoginPage()
     {
         exists=false;
         String result=null;
@@ -105,14 +105,14 @@ public class userAndAdmin_GeneralPage
             result=newCustomerRegi.getAttribute("aria-checked");
             if(result.equals("true"))
             {
-                HelpersMethod.ClickBut(driver, newCustomerRegi, 100);
+                HelpersMethod.ClickBut(driver, newCustomerRegi, 1000);
                 scenario.log("NEW CUSTOMER REGISTRATION FROM LOGIN PAGE TOGGLE ALREADY SELECTED");
                 exists=true;
             }
             else
             {
-               scenario.log("NEW CUSTOMER REGISTRATION FROM LOGIN PAGE TOGGLE ALREADY DESELECTED");
-               exists=true;
+                scenario.log("NEW CUSTOMER REGISTRATION FROM LOGIN PAGE TOGGLE ALREADY DESELECTED");
+                exists=true;
             }
             Assert.assertEquals(exists,true);
         }
@@ -124,13 +124,13 @@ public class userAndAdmin_GeneralPage
         exists=true;
         try
         {
-            HelpersMethod.ClickBut(driver,saveButton,40);
+            HelpersMethod.ClickBut(driver,saveButton,1000);
 
             if(HelpersMethod.IsExists("//div[contains(@class,'k-widget k-window k-dialog')]",driver))
             {
                 WebElement confirmationPopup = HelpersMethod.FindByElement(driver,"xpath", "//div[contains(@class,'k-widget k-window k-dialog')]");
                 WebElement okButton = confirmationPopup.findElement(By.xpath(".//button"));
-                HelpersMethod.ClickBut(driver,okButton,40);
+                HelpersMethod.ClickBut(driver,okButton,1000);
                 exists=true;
             }
             Assert.assertEquals(exists,true);
@@ -147,7 +147,7 @@ public class userAndAdmin_GeneralPage
             result=newCustomerRegi.getAttribute("aria-checked");
             if(result.equals("false"))
             {
-                HelpersMethod.ClickBut(driver, newCustomerRegi, 40);
+                HelpersMethod.ClickBut(driver, newCustomerRegi, 1000);
                 scenario.log("ENABLES NEW CUSTOMER REGISTRATION FROM LOGIN PAGE TOGGLE BUTTON");
                 exists=true;
                 if(HelpersMethod.IsExists("//div[@class='loader']",driver))

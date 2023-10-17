@@ -6,6 +6,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import ui.pages.BasePage;
 
+import static common.setup.DriverManager.getDriver;
+
 public class AddAllocationBatchPage extends BasePage {
     private static String batchName = null;
     By addBatchTitle = By.cssSelector(".k-window-title");
@@ -17,6 +19,7 @@ public class AddAllocationBatchPage extends BasePage {
     By saveButton = By.xpath("//button[contains(text(), 'Save')]");
     By notificationTitle = By.cssSelector(".toast-title");
     By notificationMessage = By.cssSelector(".toast-message");
+    By loader = By.cssSelector(".loader");
 
     public void waitAddAllocationBatchPageToLoad() {
         Waiters.waitUntilPageWillLoadedSelenide();
@@ -30,12 +33,12 @@ public class AddAllocationBatchPage extends BasePage {
     }
 
     public String getNotificationTitleText() {
-        Waiters.waitForPresenceOfElement(By.cssSelector(".toast-title"));
+        Waiters.waitForElementToBeDisplay(By.cssSelector(".toast-title"));
         return getNotificationTitle().getText().trim();
     }
 
     public String getNotificationMessageText() {
-        Waiters.waitForPresenceOfElement(By.cssSelector(".toast-message"));
+        Waiters.waitForElementToBeDisplay(By.cssSelector(".toast-message"));
         return getNotificationMessage().getText().trim();
     }
 
@@ -46,7 +49,9 @@ public class AddAllocationBatchPage extends BasePage {
     }
 
     public void selectBatchType(String type) {
+        Waiters.waitTillLoadingPage(getDriver());
         clickBatchType();
+        Waiters.waitABit(2000);
         WebElement option = findWebElement(By.xpath("//div[contains(@class, 'k-animation-container-shown')]//*[contains(text(), '"
                 + type + "')]"));
         clickOnElement(option);
@@ -70,7 +75,7 @@ public class AddAllocationBatchPage extends BasePage {
 
     public void clickSaveButton() {
         Waiters.waitForElementToBeDisplay(getSaveButton());
-        clickOnElement(getSaveButton());
+        jsClick(getSaveButton());
     }
 
     public void clickCancelButton() {

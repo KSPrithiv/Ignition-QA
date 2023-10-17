@@ -25,14 +25,14 @@ public class OrderControlPageSteps1
     WebDriver driver;
     Scenario scenario;
 
-    LoginPage loginpage;
-    HomePage homepage;
-    OrderEntryPage orderpage;
-    NewOrderEntryPage newOE;
-    CheckOutSummaryPage summary;
-    OrderHistoryPage orderhistory;
-    CheckOutOrderPage checkorder;
-    OrderControlListPage orderControlList;
+    static LoginPage loginpage;
+    static HomePage homepage;
+    static OrderEntryPage orderpage;
+    static NewOrderEntryPage newOE;
+    static CheckOutSummaryPage summary;
+    static OrderHistoryPage orderhistory;
+    static CheckOutOrderPage checkorder;
+    static OrderControlListPage orderControlList;
 
     static boolean exists=false;
 

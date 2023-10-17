@@ -8,6 +8,8 @@ import io.cucumber.java.en.And;
 import io.qameta.allure.Step;
 import lombok.extern.slf4j.Slf4j;
 import objects.countingsessions.CountingSessionsDTO;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import ui.pages.counting.sessions.CountingSessionsPage;
 
 import java.util.Calendar;
@@ -15,6 +17,7 @@ import java.util.List;
 
 @Slf4j
 public class CountingSessionsPageSteps {
+    private static final Logger LOG = LoggerFactory.getLogger(CountingSessionsPageSteps.class);
     CountingSessionsPage countingSessionsPage = new CountingSessionsPage();
     CountingSessionsDTO countingSessionsDTO = new ObjectMapperWrapper()
                 .getObject(FilePaths.COUNTING_SESSIONS_DATA, CountingSessionsDTO.class);
@@ -22,49 +25,49 @@ public class CountingSessionsPageSteps {
     @Step
     @And("Waits for Counting Sessions page to load")
     public void waitForCountingSessionsPageToLoad() {
-        log.info("Waiting for Counting Sessions page to load");
+        LOG.info("Waiting for Counting Sessions page to load");
         countingSessionsPage.waitCountingSessionsPageToLoad();
     }
 
     @Step
     @And("User selects warehouse {string} on Counting Sessions page")
     public void selectWarehouse(String warehouse) {
-        log.info("User selects warehouse on Counting Sessions page");
+        LOG.info("User selects warehouse on Counting Sessions page");
         countingSessionsPage.selectWarehouse(warehouse);
     }
 
     @Step
     @And("User clicks session dropdown on Counting Sessions page")
     public void clickSessionDropdown() {
-        log.info("User clicks session dropdown on Counting Sessions page");
+        LOG.info("User clicks session dropdown on Counting Sessions page");
         countingSessionsPage.clickSessionDropdown();
     }
 
     @Step
     @And("User clicks Select All Checkbox on Counting Sessions page")
     public void clickSelectAllCheckbox() {
-        log.info("User clicks Select All Checkbox on Counting Sessions page");
+        LOG.info("User clicks Select All Checkbox on Counting Sessions page");
         countingSessionsPage.clickSelectAllCheckbox();
     }
 
     @Step
     @And("User clicks Unselect All Checkbox on Counting Sessions page")
     public void clickUnselectAllCheckbox() {
-        log.info("User clicks Unselect All Checkbox on Counting Sessions page");
+        LOG.info("User clicks Unselect All Checkbox on Counting Sessions page");
         countingSessionsPage.clickUnselectAllCheckbox();
     }
 
     @Step
     @And("User clicks session page title on Counting Sessions page")
     public void clickSessionsPageTitle() {
-        log.info("User clicks session page title on Counting Sessions page");
+        LOG.info("User clicks session page title on Counting Sessions page");
         countingSessionsPage.clickSessionsPageTitle();
     }
 
     @Step
     @And("User selects randomly created session on Counting Sessions page")
     public void selectRandomlyCreatedSession() {
-        log.info("User selects randomly created session on Counting Sessions page");
+        LOG.info("User selects randomly created session on Counting Sessions page");
         String session = countingSessionsPage.getSession();
         countingSessionsPage.selectSession(session);
     }
@@ -72,16 +75,16 @@ public class CountingSessionsPageSteps {
     @Step
     @And("User selects session {string} on Counting Sessions page")
     public void selectSession(String session) {
-        log.info("User selects session on Counting Sessions page");
+        LOG.info("User selects session on Counting Sessions page");
         countingSessionsPage.selectSession(session);
     }
 
     @Step
     @And("User selects session with index {int} on Counting Sessions page")
     public void selectSessionWithIndex(int index) {
-        log.info("User selects session with index on Counting Sessions page");
+        LOG.info("User selects session with index on Counting Sessions page");
         List<String> sessions = List.of(countingSessionsDTO.getSessions().getSession1(), countingSessionsDTO.getSessions()
-            .getSession2(), countingSessionsDTO.getSessions().getSession3(),countingSessionsDTO.getSessions().getSession4(),
+            .getSession2(), countingSessionsDTO.getSessions().getSession3(), countingSessionsDTO.getSessions().getSession4(),
             countingSessionsDTO.getSessions().getSession5());
         countingSessionsPage.selectSession(sessions.get(index));
     }
@@ -89,42 +92,42 @@ public class CountingSessionsPageSteps {
     @Step
     @And("User checks table row by index {int} on Counting Sessions page")
     public void selectTableRowByIndex(int index) {
-        log.info("User checks table row by index on Counting Sessions page");
+        LOG.info("User checks table row by index on Counting Sessions page");
         countingSessionsPage.selectTableRowByIndex(index);
     }
 
     @Step
     @And("User clicks table location by index {int} on Counting Sessions page")
     public void clickTableLocationByIndex(int index) {
-        log.info("User clicks table location by index on Counting Sessions page");
+        LOG.info("User clicks table location by index on Counting Sessions page");
         countingSessionsPage.clickTableLocationByIndex(index);
     }
 
     @Step
     @And("User clicks table count by index {int} on Counting Sessions page")
     public void selectTableCountByIndex(int index) {
-        log.info("User clicks table count by index on Counting Sessions page");
+        LOG.info("User clicks table count by index on Counting Sessions page");
         countingSessionsPage.selectTableCountByIndex(index);
     }
 
     @Step
     @And("User clicks all inputs checkbox on Count details popup on Counting Sessions page")
     public void clickAllInputsCheckbox() {
-        log.info("User clicks all inputs checkbox on Count details popup on Counting Sessions page");
+        LOG.info("User clicks all inputs checkbox on Count details popup on Counting Sessions page");
         countingSessionsPage.clickAllInputsCheckbox();
     }
 
     @Step
     @And("User clicks Add location button on Counting Sessions page")
     public void getLocationAdd() {
-        log.info("User clicks Add location button on Counting Sessions page");
+        LOG.info("User clicks Add location button on Counting Sessions page");
         countingSessionsPage.clickLocationAdd();
     }
 
     @Step
     @And("User clicks New Session button on Counting Sessions page")
     public void clickNewSession() {
-        log.info("User clicks New Session button on Counting Sessions page");
+        LOG.info("User clicks New Session button on Counting Sessions page");
         countingSessionsPage.clickNewSession();
     }
 
@@ -145,28 +148,28 @@ public class CountingSessionsPageSteps {
     @Step
     @And("User types session {string} name on Counting Sessions page")
     public void typeSessionName(String name) {
-        log.info("User types session name on Counting Sessions page");
+        LOG.info("User types session name on Counting Sessions page");
         countingSessionsPage.typeSessionName(name);
     }
 
     @Step
     @And("User types randomly created session name on Counting Sessions page")
     public void typeRandomSessionName() {
-        log.info("User types randomly created session name on Counting Sessions page");
+        LOG.info("User types randomly created session name on Counting Sessions page");
         countingSessionsPage.typeRandomSessionName();
     }
 
     @Step
     @And("User types count type {string} on Counting Sessions page")
     public void selectCountType(String type) {
-        log.info("User types count type on Counting Sessions page");
+        LOG.info("User types count type on Counting Sessions page");
         countingSessionsPage.selectCountType(type);
     }
 
     @Step
     @And("User types count type {int} on Counting Sessions page")
     public void selectCountTypeWithIndex(int index) {
-        log.info("User types count type with index on Counting Sessions page");
+        LOG.info("User types count type with index on Counting Sessions page");
         List<String> types = List.of(countingSessionsDTO.getCountTypes().getCountType1(), countingSessionsDTO.getCountTypes().getCountType2(),
                 countingSessionsDTO.getCountTypes().getCountType3(), countingSessionsDTO.getCountTypes().getCountType4());
         countingSessionsPage.selectCountType(types.get(index));
@@ -175,91 +178,91 @@ public class CountingSessionsPageSteps {
     @Step
     @And("User selects reason {string} on Counting Sessions page")
     public void selectDeleteReason(String reason) {
-        log.info("User selects reason on Counting Sessions page");
+        LOG.info("User selects reason on Counting Sessions page");
         countingSessionsPage.selectDeleteReason(reason);
     }
 
     @Step
     @And("User clicks OK button on Counting Sessions page")
     public void clickOKButton() {
-        log.info("User clicks OK button on Counting Sessions page");
+        LOG.info("User clicks OK button on Counting Sessions page");
         countingSessionsPage.clickOKButton();
     }
 
     @Step
     @And("User clicks Ok button on Counting Sessions page")
     public void clickOkButton() {
-        log.info("User clicks Ok button on Counting Sessions page");
+        LOG.info("User clicks Ok button on Counting Sessions page");
         countingSessionsPage.clickOkButton();
     }
 
     @Step
     @And("User clicks Cancel button on Counting Sessions page")
     public void clickCancelButton() {
-        log.info("User clicks Cancel button on Counting Sessions page");
+        LOG.info("User clicks Cancel button on Counting Sessions page");
         countingSessionsPage.clickCancelButton();
     }
 
     @Step
     @And("User clicks Save button on Counting Sessions page")
     public void clickSaveButton() {
-        log.info("User clicks Save button on Counting Sessions page");
+        LOG.info("User clicks Save button on Counting Sessions page");
         countingSessionsPage.clickSaveButton();
     }
 
     @Step
     @And("User clicks Yes button if need to add on Counting Sessions page")
     public void clickYesButtonIfNeeded() {
-        log.info("User clicks Yes button if need to add on Counting Sessions page");
+        LOG.info("User clicks Yes button if need to add on Counting Sessions page");
         countingSessionsPage.clickYesButtonIfNeeded();
     }
 
     @Step
     @And("Wait until Loader invisible on Counting Sessions page")
     public void waitUntilLoaderInvisible() {
-        log.info("Wait until Loader invisible on Counting Sessions page");
+        LOG.info("Wait until Loader invisible on Counting Sessions page");
         countingSessionsPage.waitUntilLoaderInvisible();
     }
 
     @Step
     @And("User clicks Yes button on Counting Sessions page")
     public void clickYesButton() {
-        log.info("User clicks Yes button on Counting Sessions page");
+        LOG.info("User clicks Yes button on Counting Sessions page");
         countingSessionsPage.clickYesButton();
     }
 
     @Step
     @And("User clicks No button on Counting Sessions page")
     public void clickNoButton() {
-        log.info("User clicks No button on Counting Sessions page");
+        LOG.info("User clicks No button on Counting Sessions page");
         countingSessionsPage.clickNoButton();
     }
 
     @Step
     @And("User clicks Active checkbox on Counting Sessions page")
     public void clickActiveCheckbox() {
-        log.info("User clicks Active checkbox on Counting Sessions page");
+        LOG.info("User clicks Active checkbox on Counting Sessions page");
         countingSessionsPage.clickActiveCheckbox();
     }
 
     @Step
     @And("User checks All Assignments input on Counting Sessions page")
     public void checkAllAssignments() {
-        log.info("User checks All Assignments input on Counting Sessions page");
+        LOG.info("User checks All Assignments input on Counting Sessions page");
         countingSessionsPage.checkAllAssignments();
     }
 
     @Step
     @And("User types Location code {string} on Counting Sessions page")
     public void typeLocationCode(String code) {
-        log.info("User types Location code on Counting Sessions page");
+        LOG.info("User types Location code on Counting Sessions page");
         countingSessionsPage.typeLocationCode(code);
     }
 
     @Step
     @And("User types Location code with index {int} on Counting Sessions page")
     public void typeRandomLocationCode(int index) {
-        log.info("User types Location code with index on Counting Sessions page");
+        LOG.info("User types Location code with index on Counting Sessions page");
         List<String> codes = List.of(countingSessionsDTO.getLocationCodes().getLocationCode1(), countingSessionsDTO
            .getLocationCodes().getLocationCode2(), countingSessionsDTO.getLocationCodes().getLocationCode3(),
             countingSessionsDTO.getLocationCodes().getLocationCode3(), countingSessionsDTO.getLocationCodes().getLocationCode4(),
@@ -270,14 +273,14 @@ public class CountingSessionsPageSteps {
     @Step
     @And("User selects Location code {string} on Counting Sessions page")
     public void selectLocationCode(String code) {
-        log.info("User selects Location code on Counting Sessions page");
+        LOG.info("User selects Location code on Counting Sessions page");
         countingSessionsPage.selectLocationCode(code);
     }
 
     @Step
     @And("User selects Location code with index {int} on Counting Sessions page")
     public void selectRandomLocationCode(int index) {
-        log.info("User selects Location code with index on Counting Sessions page");
+        LOG.info("User selects Location code with index on Counting Sessions page");
         List<String> codes = List.of(countingSessionsDTO.getLocationCodes().getLocationCode1(), countingSessionsDTO
            .getLocationCodes().getLocationCode2(), countingSessionsDTO.getLocationCodes().getLocationCode3(),
            countingSessionsDTO.getLocationCodes().getLocationCode3(), countingSessionsDTO.getLocationCodes().getLocationCode4(),
@@ -288,35 +291,35 @@ public class CountingSessionsPageSteps {
     @Step
     @And("User clicks Location code button on Counting Sessions page")
     public void clickLocCodeButton() {
-        log.info("User clicks Location code button on Counting Sessions page");
+        LOG.info("User clicks Location code button on Counting Sessions page");
         countingSessionsPage.clickLocCodeButton();
     }
 
     @Step
     @And("Selects location by index {int} on Counting Sessions page")
     public void selectTableContentByIndex(int index) {
-        log.info("Selects location by index on Counting Sessions page");
+        LOG.info("Selects location by index on Counting Sessions page");
         countingSessionsPage.selectTableContentByIndex(index);
     }
 
     @Step
     @And("User types Partial location code {string} on Counting Sessions page")
     public void typePartialLocationCode(String code) {
-        log.info("User types Partial location code on Counting Sessions page");
+        LOG.info("User types Partial location code on Counting Sessions page");
         countingSessionsPage.typePartialLocationCode(code);
     }
 
     @Step
     @And("User selects Zone {string} on Counting Sessions page")
     public void selectZone(String zone) {
-        log.info("User selects Zone on Counting Sessions page");
+        LOG.info("User selects Zone on Counting Sessions page");
         countingSessionsPage.selectZone(zone);
     }
 
     @Step
     @And("User selects random Zone with index {int} on Counting Sessions page")
     public void selectZone(int index) {
-        log.info("User selects random Zone with index on Counting Sessions page");
+        LOG.info("User selects random Zone with index on Counting Sessions page");
         List<String> zones = List.of(countingSessionsDTO.getZones().getZone1(), countingSessionsDTO.getZones().getZone2(),
              countingSessionsDTO.getZones().getZone3(), countingSessionsDTO.getZones().getZone4(), countingSessionsDTO
             .getZones().getZone5(), countingSessionsDTO.getZones().getZone6());
@@ -326,14 +329,14 @@ public class CountingSessionsPageSteps {
     @Step
     @And("User selects Location type {string} on Counting Sessions page")
     public void selectLocationType(String type) {
-        log.info("User selects Location type on Counting Sessions page");
+        LOG.info("User selects Location type on Counting Sessions page");
         countingSessionsPage.selectLocationType(type);
     }
 
     @Step
     @And("User selects random Location type with index {int} on Counting Sessions page")
     public void selectRandomLocationType(int index) {
-        log.info("User selects random Location type on Counting Sessions page");
+        LOG.info("User selects random Location type on Counting Sessions page");
         List<String> types = List.of(countingSessionsDTO.getLocationTypes().getLocationType1(), countingSessionsDTO
             .getLocationTypes().getLocationType2(), countingSessionsDTO.getLocationTypes().getLocationType3(),
             countingSessionsDTO.getLocationTypes().getLocationType4(), countingSessionsDTO.getLocationTypes().getLocationType5());
@@ -343,14 +346,14 @@ public class CountingSessionsPageSteps {
     @Step
     @And("User types Starting Location {string} on Counting Sessions page")
     public void typeStartingLocation(String code) {
-        log.info("User types Starting Location on Counting Sessions page");
+        LOG.info("User types Starting Location on Counting Sessions page");
         countingSessionsPage.typeStartingLocation(code);
     }
 
     @Step
     @And("User types Starting Location with index {int} on Counting Sessions page")
     public void typeStartingLocationByIndex(int index) {
-        log.info("User types Starting Location with index on Counting Sessions page");
+        LOG.info("User types Starting Location with index on Counting Sessions page");
         List<String> locations = List.of(countingSessionsDTO.getStartingLocations().getStartingLocation1(), countingSessionsDTO
               .getStartingLocations().getStartingLocation2(), countingSessionsDTO.getStartingLocations().getStartingLocation3(),
               countingSessionsDTO.getStartingLocations().getStartingLocation4());
@@ -360,14 +363,14 @@ public class CountingSessionsPageSteps {
     @Step
     @And("User types Ending Location {string} on Counting Sessions page")
     public void typeEndingLocation(String code) {
-        log.info("User types Ending Location on Counting Sessions page");
+        LOG.info("User types Ending Location on Counting Sessions page");
         countingSessionsPage.typeEndingLocation(code);
     }
 
     @Step
     @And("User types Ending Location with index {int} on Counting Sessions page")
     public void typeEndingLocationByIndex(int index) {
-        log.info("User types Ending Location with index on Counting Sessions page");
+        LOG.info("User types Ending Location with index on Counting Sessions page");
         List<String> locations = List.of(countingSessionsDTO.getEndingLocations().getEndingLocation1(), countingSessionsDTO
                .getEndingLocations().getEndingLocation2(), countingSessionsDTO.getEndingLocations().getEndingLocation3(),
                 countingSessionsDTO.getEndingLocations().getEndingLocation4());
@@ -377,126 +380,126 @@ public class CountingSessionsPageSteps {
     @Step
     @And("User clicks Location tab on Counting Sessions page")
     public void clickLocationsTab() {
-        log.info("User clicks Location tab on Counting Sessions page");
+        LOG.info("User clicks Location tab on Counting Sessions page");
         countingSessionsPage.clickLocationsTab();
     }
 
     @Step
     @And("User clicks Products tab on Counting Sessions page")
     public void clickProductsTab() {
-        log.info("User clicks Products tab on Counting Sessions page");
+        LOG.info("User clicks Products tab on Counting Sessions page");
         countingSessionsPage.clickProductsTab();
     }
 
     @Step
     @And("User clicks Assignments tab on Counting Sessions page")
     public void clickAssignmentsTab() {
-        log.info("User clicks Assignments tab on Counting Sessions page");
+        LOG.info("User clicks Assignments tab on Counting Sessions page");
         countingSessionsPage.clickAssignmentsTab();
     }
 
     @Step
     @And("User clicks Add Filter on Counting Sessions page")
     public void clickAddFilterButton() {
-        log.info("User clicks Add Filter on Counting Sessions page");
+        LOG.info("User clicks Add Filter on Counting Sessions page");
         countingSessionsPage.clickAddFilterButton();
     }
 
     @Step
     @And("User clicks Clear Filter on Counting Sessions page")
     public void clickClearFilter() {
-        log.info("User clicks Clear Filter on Counting Sessions page");
+        LOG.info("User clicks Clear Filter on Counting Sessions page");
         countingSessionsPage.clickClearFilter();
     }
 
     @Step
     @And("User clicks Location Column on Counting Sessions page")
     public void clickLocationColumnHeader() {
-        log.info("User clicks Location Column on Counting Sessions page");
+        LOG.info("User clicks Location Column on Counting Sessions page");
         countingSessionsPage.clickLocationColumnHeader();
     }
 
     @Step
     @And("User clicks Zone Column on Counting Sessions page")
     public void clickZoneColumnHeader() {
-        log.info("User clicks Zone Column on Counting Sessions page");
+        LOG.info("User clicks Zone Column on Counting Sessions page");
         countingSessionsPage.clickZoneColumnHeader();
     }
 
     @Step
     @And("User clicks Type Column on Counting Sessions page")
     public void clickTypeColumnHeader() {
-        log.info("User clicks Type Column on Counting Sessions page");
+        LOG.info("User clicks Type Column on Counting Sessions page");
         countingSessionsPage.clickTypeColumnHeader();
     }
 
     @Step
     @And("User clicks Status Column on Counting Sessions page")
     public void clickStatusColumnHeader() {
-        log.info("User clicks Status Column on Counting Sessions page");
+        LOG.info("User clicks Status Column on Counting Sessions page");
         countingSessionsPage.clickStatusColumnHeader();
     }
 
     @Step
     @And("User clicks Counts Column on Counting Sessions page")
     public void clickCountsColumnHeader() {
-        log.info("User clicks Counts Column on Counting Sessions page");
+        LOG.info("User clicks Counts Column on Counting Sessions page");
         countingSessionsPage.clickCountsColumnHeader();
     }
 
     @Step
     @And("User clicks Release Date and Time Column on Counting Sessions page")
     public void clickReleaseDateTimeColumn() {
-        log.info("User clicks Release Date and Time Column on Counting Sessions page");
+        LOG.info("User clicks Release Date and Time Column on Counting Sessions page");
         countingSessionsPage.clickReleaseDateTimeColumn();
     }
 
     @Step
     @And("User clicks Product Column on Counting Sessions page")
     public void clickProductColumn() {
-        log.info("User clicks Product Column on Counting Sessions page");
+        LOG.info("User clicks Product Column on Counting Sessions page");
         countingSessionsPage.clickProductColumn();
     }
 
     @Step
     @And("User clicks Owner Column on Counting Sessions page")
     public void clickOwnerColumnHeader() {
-        log.info("User clicks Owner Column on Counting Sessions page");
+        LOG.info("User clicks Owner Column on Counting Sessions page");
         countingSessionsPage.clickOwnerColumnHeader();
     }
 
     @Step
     @And("User clicks Description Column on Counting Sessions page")
     public void clickDescriptionColumnHeader() {
-        log.info("User clicks Description Column on Counting Sessions page");
+        LOG.info("User clicks Description Column on Counting Sessions page");
         countingSessionsPage.clickDescriptionColumnHeader();
     }
 
     @Step
     @And("User clicks Book Qty Column on Counting Sessions page")
     public void clickBookQtyColumnHeader() {
-        log.info("User clicks Book Qty Column on Counting Sessions page");
+        LOG.info("User clicks Book Qty Column on Counting Sessions page");
         countingSessionsPage.clickBookQtyColumnHeader();
     }
 
     @Step
     @And("User clicks Book Cost Column on Counting Sessions page")
     public void clickBookCostColumnHeader() {
-        log.info("User clicks Book Cost Column on Counting Sessions page");
+        LOG.info("User clicks Book Cost Column on Counting Sessions page");
         countingSessionsPage.clickBookCostColumnHeader();
     }
 
     @Step
     @And("User clicks Product Type Column on Counting Sessions page")
     public void clickProductTypeColumnHeader() {
-        log.info("User clicks Product Type on Counting Sessions page");
+        LOG.info("User clicks Product Type on Counting Sessions page");
         countingSessionsPage.clickProductTypeColumnHeader();
     }
 
     @Step
     @And("User clicks Location Delete on Counting Sessions page")
     public void clickLocationDeleteButton() {
-        log.info("User clicks Location Delete on Counting Sessions page");
+        LOG.info("User clicks Location Delete on Counting Sessions page");
         countingSessionsPage.clickLocationDeleteButton();
     }
 
@@ -557,6 +560,13 @@ public class CountingSessionsPageSteps {
     public void clickAddFilter() {
         log.info("Clicking add filter on Counting Sessions page");
         countingSessionsPage.clickAddFilter();
+    }
+
+    @Step
+    @And("User clears Search button on Counting Sessions page")
+    public void clearSearchButton() {
+        log.info("User clears Search button on Counting Sessions page");
+        countingSessionsPage.clearSearchButton();
     }
 
     @Step
@@ -915,6 +925,13 @@ public class CountingSessionsPageSteps {
     public void clickAllCheckboxButton() {
         log.info("Clicks All Checkbox button on Counting Sessions page");
         countingSessionsPage.clickAllCheckboxButton();
+    }
+
+    @Step
+    @And("UnClicks All Checkbox button on Counting Sessions page")
+    public void unClickAllCheckboxButton() {
+        log.info("UnClicks All Checkbox button on Counting Sessions page");
+        countingSessionsPage.unClickAllCheckboxButton();
     }
 
     @Step

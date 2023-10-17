@@ -6,6 +6,8 @@ import org.openqa.selenium.WebElement;
 import ui.pages.BasePage;
 import java.util.List;
 
+import static common.setup.DriverManager.getDriver;
+
 public class WorkQueueUserHistoryPage extends BasePage {
     By userHistoryTitle = By.xpath("//span[contains(text(), 'User history')]");
     By loginColumn = By.xpath("//span[contains(text(), 'Login')]");
@@ -22,10 +24,10 @@ public class WorkQueueUserHistoryPage extends BasePage {
     By itemsFoundValue = By.xpath("//span[contains(text(), 'Items found:')]//following-sibling::span[@class='i-summary-area__main__value']");
     By tableContent = By.xpath("//table[@class='k-grid-table']");
     By dropdownList = By.id("dropdownList");
+    By loader = By.cssSelector(".loader");
 
     public void waitWorkQueueUserHistoryPageToLoad() {
-        Waiters.waitABit(6000);
-        Waiters.waitUntilPageWillLoadedSelenide();
+        waitUntilInvisible(5, loader);
         Waiters.waitForElementToBeDisplay(getUserHistoryTitle());
         Waiters.waitForElementToBeDisplay(getLoginColumn());
         Waiters.waitForElementToBeDisplay(getLogoutColumn());
@@ -37,78 +39,78 @@ public class WorkQueueUserHistoryPage extends BasePage {
         clickOnElement(getDropdownList());
         clickOnElement(findWebElement(By.xpath("//div[contains(@class, 'k-animation-container-shown')]//li[contains(text(), '"
                 + warehouse + "') and @role='option']")));
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
     }
 
     public boolean isUserHistoryTitleDisplayed() {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         return isElementDisplay(getUserHistoryTitle());
     }
 
     public boolean isLoginColumnDisplayed() {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         return isElementDisplay(getLoginColumn());
     }
 
     public boolean isLogoutColumnDisplayed() {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         return isElementDisplay(getLogoutColumn());
     }
 
     public boolean isUserIdColumnDisplayed() {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         return isElementDisplay(getUserIdColumn());
     }
 
     public boolean isUserNameColumnDisplayed() {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         return isElementDisplay(getUserNameColumn());
     }
 
     public boolean isAddFilterButtonDisplayed() {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         return isElementDisplay(getAddFilterButton());
     }
 
     public boolean isUserHistorySearchDisplayed() {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         return isElementDisplay(getUserHistorySearch());
     }
 
     public boolean isItemsFoundLabelDisplayed() {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         return isElementDisplay(getItemsFoundLabel());
     }
 
     public boolean isItemsFoundValueDisplayed() {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         return isElementDisplay(getItemsFoundValue());
     }
 
     public boolean isTableContentDisplayed() {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         return isElementDisplay(getTableContent());
     }
 
     public boolean isTableEndIsDisplayed() {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         WebElement el = getTableContent().findElements(By.xpath(".//tr[contains(@class, 'k-master-row')]"))
                 .get(getTableContent().findElements(By.xpath(".//tr[contains(@class, 'k-master-row')]")).size()-1);
         return isElementDisplay(el);
     }
 
     public List<WebElement> getUserHistoryTableRows() {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         return getTableContent().findElements(By.xpath(".//tr[contains(@class, 'k-master-row')]"));
     }
 
     public int getUserHistoryTableRowsSize() {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         return getTableContent().findElements(By.xpath(".//tr[contains(@class, 'k-master-row')]")).size();
     }
 
     public void scrollToUserHistoryTableEnd() {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         WebElement el = getTableContent().findElements(By.xpath(".//tr[contains(@class, 'k-master-row')]"))
                 .get(getTableContent().findElements(By.xpath(".//tr[contains(@class, 'k-master-row')]")).size()-1);
         Waiters.waitABit(2000);
@@ -116,6 +118,7 @@ public class WorkQueueUserHistoryPage extends BasePage {
     }
 
     public void findValuesInSearch(String text) {
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(getUserHistorySearch());
         inputText(getUserHistorySearch(), text);
         pressEnter(getUserHistorySearch());

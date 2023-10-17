@@ -15,8 +15,8 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 /**
-        * @Project DSD_OMS
-        * @Author Divya.Ramadas@afsi.com
+ * @Project DSD_OMS
+ * @Author Divya.Ramadas@afsi.com
  */
 public class OrderGuidePageStep2
 {
@@ -29,8 +29,8 @@ public class OrderGuidePageStep2
     static String OGDis=null;
     static String WDay=null;
 
-    OrderGuidePage orderGuidePage;
-    CreateOGPage createOGPage;
+    static OrderGuidePage orderGuidePage;
+    static CreateOGPage createOGPage;
 
     @Before
     public void LaunchBrowser1(Scenario scenario) throws Exception
@@ -118,5 +118,51 @@ public class OrderGuidePageStep2
     {
         createOGPage=new CreateOGPage(driver,scenario);
         createOGPage.validateCustomerReference(custRef);
+    }
+
+    @Then("User enters OG Description {string} in search box and Delete cancel the OG verify same in OG grid")
+    public void userEntersOGDescriptionInSearchBoxAndDeleteCancelTheOGVerifySameInOGGrid(String arg0) throws InterruptedException, AWTException
+    {
+        exists = false;
+        orderGuidePage = new OrderGuidePage(driver, scenario);
+        exists= orderGuidePage.OGSearchBox(arg0);
+        Assert.assertEquals(exists,true);
+        orderGuidePage.SearchOGSelect(arg0);
+        createOGPage = new CreateOGPage(driver, scenario);
+        createOGPage.Click_Delete();
+        createOGPage.DeleteCancel_Popup();
+        orderGuidePage = new OrderGuidePage(driver, scenario);
+        //once OG is deleted, search for OG in OG grid
+        exists=orderGuidePage.OGSearchBox(arg0);
+        Assert.assertEquals(exists,false);
+    }
+
+    @Then("User should select header in OG grid for {string} functionality")
+    public void userShouldSelectHeaderInOGGridForFunctionality(String TableHead) throws InterruptedException, AWTException
+    {
+        orderGuidePage=new OrderGuidePage(driver,scenario);
+        orderGuidePage.FindtableHeader(TableHead);
+        orderGuidePage.DisplayGroupDetails();
+    }
+
+    @And("Check for popup to appear to select sub customer reference for market segment")
+    public void checkForPopupToAppearToSelectSubCustomerReferenceForMarketSegment() throws InterruptedException, AWTException
+    {
+        orderGuidePage=new OrderGuidePage(driver,scenario);
+        orderGuidePage.selectSubMarketRef();
+    }
+
+    @And("Check for popup to appear to select sub customer reference for National chain")
+    public void checkForPopupToAppearToSelectSubCustomerReferenceForNationalChain() throws InterruptedException, AWTException
+    {
+        orderGuidePage=new OrderGuidePage(driver,scenario);
+        orderGuidePage.selectSubMarketRef();
+    }
+
+    @And("Clear filter to display both active and inactive OG")
+    public void clearFilterToDisplayBothActiveAndInactiveOG() throws InterruptedException, AWTException
+    {
+        orderGuidePage=new OrderGuidePage(driver,scenario);
+        orderGuidePage.clickAddFilterClear();
     }
 }

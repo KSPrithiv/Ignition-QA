@@ -6,6 +6,8 @@ import org.openqa.selenium.WebElement;
 import ui.pages.BasePage;
 import java.util.List;
 
+import static common.setup.DriverManager.getDriver;
+
 public class WorkQueueLoggedInUsersPage extends BasePage {
     By loggedInTitle = By.xpath("//span[contains(text(), 'Logged-in users')]");
     By userIdColumn = By.xpath("//span[text()='User id']");
@@ -25,6 +27,7 @@ public class WorkQueueLoggedInUsersPage extends BasePage {
     By laborCodeColumn = By.xpath("//span[text()='Labor code']");
     By laborCodeColumnHeader = By.xpath("//th[@role='columnheader'][.//span[text()='Labor code']]");
     By assignmentGridSearch = By.id("AssignmentGridSearch");
+    By loggedInUserGridSearch = By.id("LoggedInUserGridSearch");
     By itemsFoundLabel = By.xpath("//span[contains(text(), 'Items found:')]");
     By itemsFoundValue = By.xpath("//span[contains(text(), 'Items found:')]//following-sibling::span[@class='i-summary-area__main__value']");
     By tableContent = By.xpath("//table[@class='k-grid-table']");
@@ -47,10 +50,10 @@ public class WorkQueueLoggedInUsersPage extends BasePage {
     By cancelButton = By.xpath("//button[contains(text(), 'Cancel')]");
     By notificationMsg = By.cssSelector(".toast-message");
     By dropdownList = By.id("dropdownList");
+    By loader = By.cssSelector(".loader");
 
     public void waitWorkQueueLoggedInUsersPageToLoad() {
-        Waiters.waitABit(6_000);
-        Waiters.waitUntilPageWillLoadedSelenide();
+        waitUntilInvisible(5, loader);
         Waiters.waitForElementToBeDisplay(getLoggedInTitle());
         Waiters.waitForElementToBeDisplay(getUserIdColumn());
         Waiters.waitForElementToBeDisplay(getUserNameColumn());
@@ -59,134 +62,142 @@ public class WorkQueueLoggedInUsersPage extends BasePage {
     }
 
     public boolean isLoggedInTitleDisplayed() {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         return isElementDisplay(getLoggedInTitle());
     }
 
     public boolean isUserIdColumnDisplayed() {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         return isElementDisplay(getUserIdColumn());
     }
 
     public boolean isUserNameColumnDisplayed() {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         return isElementDisplay(getUserNameColumn());
     }
 
     public boolean isComputerColumnDisplayed() {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         return isElementDisplay(getComputerColumn());
     }
 
     public boolean isEquipmentColumnDisplayed() {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         return isElementDisplay(getEquipmentColumn());
     }
 
     public boolean isPrinterColumnDisplayed() {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         return isElementDisplay(getPrinterColumn());
     }
 
     public boolean isLoginDateColumnDisplayed() {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         return isElementDisplay(getLoginDateColumn());
     }
 
     public boolean isBreakDateColumnDisplayed() {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         return isElementDisplay(getBreakDateColumn());
     }
 
     public boolean isLaborCodeColumnDisplayed() {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         return isElementDisplay(getLaborCodeColumn());
     }
 
     public boolean isTableContentDisplayed() {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         return isElementDisplay(getTableContent());
     }
 
     public boolean isItemsFoundLabelDisplayed() {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         return isElementDisplay(getItemsFoundLabel());
     }
 
     public boolean isItemsFoundValueDisplayed() {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         return isElementDisplay(getItemsFoundValue());
     }
 
     public boolean isTableEndIsDisplayed() {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         WebElement el = getTableContent().findElements(By.xpath(".//tr[contains(@class, 'k-master-row')]"))
                 .get(getTableContent().findElements(By.xpath(".//tr[contains(@class, 'k-master-row')]")).size()-1);
         return isElementDisplay(el);
     }
 
     public boolean isUserIdFilterDisplayed() {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
+        scrollToCenter(getUserIdFilter());
         return isElementDisplay(getUserIdFilter());
     }
 
     public boolean isUserNameFilterDisplayed() {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
+        scrollToCenter(getUserIdFilter());
         return isElementDisplay(getUserNameFilter());
     }
 
     public boolean isComputerFilterDisplayed() {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
+        scrollToCenter(getUserIdFilter());
         return isElementDisplay(getComputerFilter());
     }
 
     public boolean isEquipmentFilterDisplayed() {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
+        scrollToCenter(getUserIdFilter());
         return isElementDisplay(getEquipmentFilter());
     }
 
     public boolean isPrinterCodeFilterDisplayed() {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
+        scrollToCenter(getUserIdFilter());
         return isElementDisplay(getPrinterCodeFilter());
     }
 
     public boolean isLoginDateTimeFilterDisplayed() {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
+        scrollToCenter(getUserIdFilter());
         return isElementDisplay(getLoginDateTimeFilter());
     }
 
     public boolean isBreakDateTimeFilterDisplayed() {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
+        scrollToCenter(getUserIdFilter());
         return isElementDisplay(getBreakDateTimeFilter());
     }
 
     public boolean isLaborCodeFilterDisplayed() {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
+        scrollToCenter(getUserIdFilter());
         return isElementDisplay(getLaborCodeFilter());
     }
 
     public boolean isLogOutUserLabelDisplayed() {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         return isElementDisplay(getBtnRemove());
     }
 
     public boolean isOKButtonDisplayed() {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         return isElementDisplay(okButton);
     }
 
     public boolean isCancelButtonDisplayed() {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         return isElementDisplay(cancelButton);
     }
 
     public boolean isLogOutUserPopUpTitleDisplayed() {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         return isElementDisplay(getLogOutUserPopUpTitle());
     }
 
     public void clickLogoutUserDropdown() {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         clickOnElement(getLogoutUserDropdown());
     }
 
@@ -196,41 +207,41 @@ public class WorkQueueLoggedInUsersPage extends BasePage {
                 .xpath("//div[contains(@class, 'k-animation-container-shown')]//li[@role='option' and contains(text(), '"
                         + reason + "')]"));
         clickOnElement(option);
-        Waiters.waitABit(5_000);
+        waitUntilInvisible(2, loader);
     }
 
     public void clickOK() {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         clickOnElement(okButton);
     }
 
     public void clickCancel() {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         clickOnElement(cancelButton);
     }
 
     public void clickLogoutUserLabel() {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         clickOnElement(getBtnRemove());
     }
 
     public boolean isLogOutUserLabelDisabled() {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         return getElementAttribute(getBtnRemove(), "class").contains("disabled");
     }
 
     public List<WebElement> getLoggedInUsersTableRows() {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         return getTableContent().findElements(By.xpath(".//tr[contains(@class, 'k-master-row')]"));
     }
 
     public int getLoggedInUsersTableRowsSize() {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         return getTableContent().findElements(By.xpath(".//tr[contains(@class, 'k-master-row')]")).size();
     }
 
     public void clickOnLoggedInUserByIndex(int index) {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         List<WebElement> rows = getTableContent().findElements(By.xpath(".//tr[contains(@class, 'k-master-row')]"));
         clickOnElement(rows.get(index));
     }
@@ -239,6 +250,14 @@ public class WorkQueueLoggedInUsersPage extends BasePage {
         Waiters.waitForElementToBeDisplay(getAssignmentGridSearch());
         inputText(getAssignmentGridSearch(), text);
         pressEnter(getAssignmentGridSearch());
+        waitUntilInvisible(2, loader);
+    }
+
+    public void findValuesInLoggedInUserGridSearch(String text) {
+        Waiters.waitForElementToBeDisplay(getLoggedInUserGridSearch());
+        inputText(getLoggedInUserGridSearch(), text);
+        pressEnter(getLoggedInUserGridSearch());
+        waitUntilInvisible(2, loader);
     }
 
     public void clearValueInSearch() {
@@ -247,15 +266,15 @@ public class WorkQueueLoggedInUsersPage extends BasePage {
     }
 
     public void scrollToLoggedInUserTableEnd() {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         WebElement el = getTableContent().findElements(By.xpath(".//tr[contains(@class, 'k-master-row')]"))
                 .get(getTableContent().findElements(By.xpath(".//tr[contains(@class, 'k-master-row')]")).size()-1);
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         moveToElement(el);
     }
 
     public String getItemsFoundText() {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         return getText(itemsFoundValue);
     }
 
@@ -300,31 +319,31 @@ public class WorkQueueLoggedInUsersPage extends BasePage {
     }
 
     public void clickAddFilter() {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(getAddFilterButton());
         clickOnElement(getAddFilterButton());
     }
 
     public void checkUserIdFilterCheckBox() {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(getUserIdFilter());
         clickOnElement(getUserIdFilter());
     }
 
     public void checkUserNameFilterCheckBox() {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(getUserNameFilter());
         clickOnElement(getUserNameFilter());
     }
 
     public void checkComputerFilterCheckBox() {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(getComputerFilter());
         clickOnElement(getComputerFilter());
     }
 
     public void checkEquipmentFilterCheckBox() {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(getEquipmentFilter());
         clickOnElement(getEquipmentFilter());
     }
@@ -335,7 +354,7 @@ public class WorkQueueLoggedInUsersPage extends BasePage {
     }
 
     public void typeFilter(String filter) {
-        Waiters.waitABit(1000);
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(getInputContains());
         inputText(getInputContains(), filter);
     }
@@ -346,7 +365,7 @@ public class WorkQueueLoggedInUsersPage extends BasePage {
     }
 
     public void clickBtnRemove() {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(getBtnRemove());
         clickOnElement(getBtnRemove());
     }
@@ -355,7 +374,7 @@ public class WorkQueueLoggedInUsersPage extends BasePage {
         clickOnElement(getDropdownList());
         clickOnElement(findWebElement(By.xpath("//div[contains(@class, 'k-animation-container-shown')]//li[contains(text(), '"
                 + warehouse + "') and @role='option']")));
-        Waiters.waitABit(2000);
+        waitUntilInvisible(1, loader);
     }
 
     public String getUserIdColumnHeaderSortingResult() {
@@ -425,6 +444,8 @@ public class WorkQueueLoggedInUsersPage extends BasePage {
     public WebElement getLaborCodeColumnHeader() { return findWebElement(laborCodeColumnHeader); }
 
     public WebElement getAssignmentGridSearch() { return findWebElement(assignmentGridSearch); }
+
+    public WebElement getLoggedInUserGridSearch() { return findWebElement(loggedInUserGridSearch); }
 
     public WebElement getItemsFoundLabel() { return findWebElement(itemsFoundLabel); }
 

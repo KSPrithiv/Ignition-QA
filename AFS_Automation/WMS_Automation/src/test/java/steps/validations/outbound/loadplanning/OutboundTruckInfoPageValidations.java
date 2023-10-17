@@ -1,16 +1,21 @@
 package steps.validations.outbound.loadplanning;
 
+import common.constants.FilePaths;
 import common.constants.Notifications;
+import common.utils.objectmapper.ObjectMapperWrapper;
 import io.cucumber.java.en.And;
-import io.qameta.allure.Step;
+import objects.outbound.OutboundOrderLoadsDTO;
 import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.By;
 import org.testng.asserts.SoftAssert;
 import ui.pages.outbound.loadplanning.OutboundTruckInfoPage;
-import ui.pages.outbound.processing.AddAllocationBatchPage;
+
+import java.util.List;
 
 public class OutboundTruckInfoPageValidations {
     OutboundTruckInfoPage outboundTruckInfoPage = new OutboundTruckInfoPage();
+    OutboundOrderLoadsDTO outboundOrderLoadsDTO = new ObjectMapperWrapper()
+            .getObject(FilePaths.OUTBOUND_ORDER_LOAD_DATA, OutboundOrderLoadsDTO.class);
 
     @And("Validates Truck Info trailers exist")
     public void validateTruckInfoTrailersExist() {
@@ -62,11 +67,6 @@ public class OutboundTruckInfoPageValidations {
                     softAssert.assertTrue(el.isDisplayed(), "Assignment location is not displayed");
                 });
         outboundTruckInfoPage.getAssignmentPopupRows(0).stream()
-               .map(row -> row.findElement(By.xpath(".//div[contains(@class, 'lp_overlayChildPBoxColor')]")))
-                .forEach(el -> {
-                    softAssert.assertTrue(el.isDisplayed(), "Assignment indicator color is not displayed");
-                });
-        outboundTruckInfoPage.getAssignmentPopupRows(0).stream()
                 .map(row -> row.findElement(By.xpath(".//div[contains(@class, 'lp_overlayChildPNAME')]")))
                 .forEach(el -> {
                     softAssert.assertTrue(el.isDisplayed(), "Assignment product is not displayed");
@@ -92,6 +92,13 @@ public class OutboundTruckInfoPageValidations {
     public void validateNotificationOnSplitTaskDetails(String notification) {
         SoftAssert softAssert = new SoftAssert();
         softAssert.assertEquals(outboundTruckInfoPage.getNotificationText(), notification, "Notification is not displayed");
+        softAssert.assertAll();
+    }
+
+    @And("Validates Assignment is selected with the blue border on Split Task")
+    public void validateAssignmentIsBlueOnSplitTaskDetails() {
+        SoftAssert softAssert = new SoftAssert();
+        softAssert.assertTrue(outboundTruckInfoPage.isAssignmentBorderBlue(), "Assignment selected is not with blue border");
         softAssert.assertAll();
     }
 
@@ -310,6 +317,18 @@ public class OutboundTruckInfoPageValidations {
         softAssert.assertAll();
     }
 
+    @And("Validates that Route by index {int} for Truck Info is correct")
+    public void validateRouteByIndexIsCorrect(int index) {
+        List<String> routes = List.of(outboundOrderLoadsDTO.getOutboundRoutes().getOutboundRoute1(), outboundOrderLoadsDTO
+                .getOutboundRoutes().getOutboundRoute2(), outboundOrderLoadsDTO.getOutboundRoutes().getOutboundRoute3(),
+                 outboundOrderLoadsDTO.getOutboundRoutes().getOutboundRoute4(), outboundOrderLoadsDTO.getOutboundRoutes()
+                .getOutboundRoute5(), outboundOrderLoadsDTO.getOutboundRoutes().getOutboundRoute6(), outboundOrderLoadsDTO
+                .getOutboundRoutes().getOutboundRoute7());
+        SoftAssert softAssert = new SoftAssert();
+        softAssert.assertTrue(outboundTruckInfoPage.getRouteName().contains(routes.get(index)), "Route is not correct on Truck Info");
+        softAssert.assertAll();
+    }
+
     @And("Validates Truck diagram with details is displayed")
     public void validateTruckDiagramDisplayed() {
         SoftAssert softAssert = new SoftAssert();
@@ -353,6 +372,7 @@ public class OutboundTruckInfoPageValidations {
     @And("Validates Edit Form Control is displayed")
     public void validateEditFormControlDisplayed() {
         SoftAssert softAssert = new SoftAssert();
+        softAssert.assertTrue(outboundTruckInfoPage.isEditFormControlDisplayed(),"Edit Form Control is not displayed");
         softAssert.assertTrue(outboundTruckInfoPage.isEditFormControlDisplayed(),"Edit Form Control is not displayed");
         softAssert.assertAll();
     }
@@ -426,6 +446,17 @@ public class OutboundTruckInfoPageValidations {
     public void verifyChangeShipDateValue(String value) {
         SoftAssert softAssert = new SoftAssert();
         softAssert.assertEquals(outboundTruckInfoPage.getShipDateValue(), value,"Ship Date value is not correct");
+        softAssert.assertAll();
+    }
+
+    @And("Validates Ship Date by index {int} value")
+    public void verifyChangeShipDateValueByIndex(int index) {
+        List<String> dates = List.of(outboundOrderLoadsDTO.getStartDates().getStartDate1(), outboundOrderLoadsDTO.getStartDates()
+                .getStartDate2(), outboundOrderLoadsDTO.getStartDates().getStartDate3(), outboundOrderLoadsDTO.getStartDates()
+                .getStartDate4(), outboundOrderLoadsDTO.getStartDates().getStartDate5(), outboundOrderLoadsDTO.getStartDates()
+                .getStartDate6(), outboundOrderLoadsDTO.getStartDates().getStartDate7());
+        SoftAssert softAssert = new SoftAssert();
+        softAssert.assertEquals(outboundTruckInfoPage.getShipDateValue(), dates.get(index),"Ship Date value is not correct");
         softAssert.assertAll();
     }
 

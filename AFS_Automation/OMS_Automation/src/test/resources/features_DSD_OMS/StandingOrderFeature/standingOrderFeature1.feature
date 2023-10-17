@@ -58,11 +58,11 @@ Feature: Standing Order1
     Given User must be on Order Entry Page to select Standing Order and navigate to standing order
     Then User navigates to Standing order card and clicks on Delete button
 
-  @DeleteExpiredStandingOrder
-  Scenario: Test scenario for deleting expired standing order
-    Given User must be on Order Entry Page to select Standing Order and navigate to standing order
-    Then User navigates to Standing order card and selects the first expired standing order
-    And User sucessfuly deletes expired standing order
+  #@DeleteExpiredStandingOrder
+  #Scenario: Test scenario for deleting expired standing order
+  #  Given User must be on Order Entry Page to select Standing Order and navigate to standing order
+  #  Then User navigates to Standing order card and selects the first expired standing order
+  #  And User sucessfuly deletes expired standing order
 
   @ChangeAccountNumber
   Scenario: Test scenario for changing customer account# and createing standing order

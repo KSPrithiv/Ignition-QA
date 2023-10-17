@@ -9,8 +9,9 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class InboundLoadOrderDetailsPage extends BasePage {
+import static common.setup.DriverManager.getDriver;
 
+public class InboundLoadOrderDetailsPage extends BasePage {
     By topIcon = By.xpath("//span[contains(text(), 'Inbound load summary')]");
     By loadCards = By.cssSelector(".i-card__card .i-card__card");
     By toolBarContainer = By.cssSelector(".i-toolbar-container");
@@ -27,6 +28,7 @@ public class InboundLoadOrderDetailsPage extends BasePage {
     By yesButton = By.xpath("//button[contains(text(), 'Yes')]");
     By orderLoadNumber = By.xpath("//span[contains(text(), 'Order')]//following-sibling::span[contains(@id, 'spnOrderNo')]");
     By ownerField = By.xpath("//span[contains(text(), 'Owner')]");
+    By customerField = By.xpath("//span[contains(text(), 'Customer')]");
     By sourceField = By.xpath("//span[contains(text(), 'Source')]");
     By loadNumber = By.cssSelector("#spnRouteCodeNo");
     By doorField = By.xpath("//span[contains(text(), 'Door')]");
@@ -60,22 +62,24 @@ public class InboundLoadOrderDetailsPage extends BasePage {
     By redQty = By.xpath("//span[contains(@class, 'dot--red')]/following-sibling::span[contains(text(), 'Over')]");
     By grayQty = By.xpath("//span[contains(@class, 'dot--gray')]/following-sibling::span[contains(text(), 'Remainder')]");
     By sourceOrderTypeColumn = By.xpath("//span[text()='Order type']");
-    By sourceOrderColumn = By.xpath("//span[text()='Order #']");
+    By sourceOrderColumn = By.xpath("//span[text()='Order no.']");
     By sourceStatusColumn = By.xpath("//span[text()='Status']");
     By loadCodeLabel = By.xpath("//div[contains(@class,'k-textbox-container')][.//label[text()='Load code']]");
     By loadCodeInput = By.xpath("//div[contains(@class,'k-textbox-container')][.//label[text()='Load code']]//input");
     By scheduledDateLabel = By.cssSelector("#cpDate-label");
     By scheduledDate = By.cssSelector("#cpDate");
+    By scheduledTimeLabel = By.cssSelector("#cpTile-label");
+    By scheduledTimeInput = By.cssSelector("#cpTile");
     By carrierLabel = By.xpath("//label[contains(text(), 'Carrier')]");
     By carrierInput = By.xpath("//span[contains(@class, 'k-textbox-container')][.//label[contains(text(), 'Carrier')]]//span[@class='k-input']");
     By trailerLabel = By.xpath("//label[contains(text(), 'Trailer')]");
     By trailerInput = By.xpath("//span[contains(@class, 'k-textbox-container')][.//label[contains(text(), 'Trailer')]]//span[@class='k-input']");
+    By paymentTypeLabel = By.xpath("//label[contains(text(), 'Payment type')]");
+    By paymentTypeInput = By.xpath("//span[contains(@class, 'k-textbox-container')][.//label[contains(text(), 'Payment type')]]//span[@class='k-input']");
     By doorLabel = By.xpath("//label[contains(text(), 'Door')]");
     By doorInput = By.xpath("//span[contains(@class, 'k-textbox-container')][.//label[contains(text(), 'Door')]]//span[@class='k-input']");
     By loadTypeLabel = By.xpath("//label[contains(text(), 'Load type')]");
     By loadTypeInput = By.xpath("//span[contains(@class, 'k-textbox-container')][.//label[contains(text(), 'Load type')]]//span[@class='k-input']");
-    By scheduledTimeLabel = By.cssSelector("#cpTile-label");
-    By scheduledTimeInput = By.cssSelector("#cpTile");
     By driverLabel = By.xpath("//label[contains(text(), 'Driver')]");
     By driverInput = By.xpath("//div[contains(@class,'k-textbox-container')][.//label[text()='Driver']]//input");
     By temperatureField = By.xpath("//span[contains(@class,'k-textbox-container')][.//label[text()='Temperature']]//input");
@@ -87,7 +91,7 @@ public class InboundLoadOrderDetailsPage extends BasePage {
     By moveShipDate = By.id("moveStartDate-label");
     By moveShipDateInput = By.id("moveStartDate");
     By loadInput = By.id("OrderSummaryMove__loadrouteTxtBox");
-    By orderProducts = By.cssSelector("#crdInboundOrderPortrait .BarsBlock");
+    By orderProducts = By.xpath("//div[contains(@class, 'BarsBlock')]//span[contains(@id, 'spnOrderSource')]");
     By btnProductData = By.id("btnProductData");
     By btnProductEdit = By.id("btnProductEdit");
     By saveEditButton = By.id("saveEditButton");
@@ -96,13 +100,14 @@ public class InboundLoadOrderDetailsPage extends BasePage {
     By loadImageLabel = By.xpath("//span[text()='Load image(s)']");
     By temperatureLabel = By.xpath("//label[text()='Temperature']");
     By temperatureInput = By.xpath("//label[text()='Temperature']//following-sibling::input");
-    By sealNumberLabel = By.xpath("//label[text()='Seal number']");
-    By sealNumberInput = By.xpath("//label[text()='Seal number']//following-sibling::input");
+    By sealNumberLabel = By.xpath("//label[text()='Seal Number']");
+    By sealNumberInput = By.xpath("//label[text()='Seal Number']//following-sibling::input");
     By commentsLabels = By.xpath("//label[text()='Comments']");
     By commentsInputs = By.xpath("//label[text()='Comments']//following-sibling::input");
     By yesRadioButtons = By.xpath("//label[text()='Yes']//preceding-sibling::input");
     By noRadioButtons = By.xpath("//label[text()='No']//preceding-sibling::input");
     By btnAddProductCancel = By.id("btnAddProductCancel");
+    By loader = By.cssSelector(".loader");
 
     public void waitForInboundLoadOrderDetailsPageToLoad() {
         Waiters.waitUntilPageWillLoadedSelenide();
@@ -125,6 +130,8 @@ public class InboundLoadOrderDetailsPage extends BasePage {
     public boolean isQaFieldDisplayed() {  return isElementDisplay(getQaField());  }
 
     public boolean isOwnerFieldDisplayed() { return isElementDisplay(getOwnerField()); }
+
+    public boolean isCustomerFieldDisplayed() { return isElementDisplay(getCustomerField()); }
 
     public boolean isCarrierFieldDisplayed() { return isElementDisplay(getCarrierField()); }
 
@@ -260,6 +267,16 @@ public class InboundLoadOrderDetailsPage extends BasePage {
     public boolean isTrailerInputDisplayed() {
         Waiters.waitForElementToBeDisplay(getTrailerInput());
         return isElementDisplay(getTrailerInput());
+    }
+
+    public boolean isPaymentTypeLabelDisplayed() {
+        Waiters.waitForElementToBeDisplay(getPaymentTypeLabel());
+        return isElementDisplay(getPaymentTypeLabel());
+    }
+
+    public boolean isPaymentTypeInputDisplayed() {
+        Waiters.waitForElementToBeDisplay(getPaymentTypeInput());
+        return isElementDisplay(getPaymentTypeInput());
     }
 
     public boolean isDoorLabelDisplayed() {
@@ -431,7 +448,7 @@ public class InboundLoadOrderDetailsPage extends BasePage {
     }
 
     public String getStatusCellContentText() {
-        Waiters.waitForPresenceOfElement(statusCellContent);
+        Waiters.waitForElementToBeDisplay(statusCellContent);
         return getText(getStatusCellContent());
     }
 
@@ -506,27 +523,27 @@ public class InboundLoadOrderDetailsPage extends BasePage {
     }
 
     public void clickDataOption() {
-        Waiters.waitABit(4000);
+        Waiters.waitTillLoadingPage(getDriver());
         clickOnElement(getDataOption());
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
     }
 
     public void clickCancel() {
-        Waiters.waitABit(4000);
+        Waiters.waitTillLoadingPage(getDriver());
         clickOnElement(cancelButton);
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
     }
 
     public void clickDoorDropdown() {
-        Waiters.waitABit(4000);
+        Waiters.waitTillLoadingPage(getDriver());
         clickOnElement(By.id("ddDoorList"));
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
     }
 
     public void clickBtnAddProductCancel() {
-        Waiters.waitABit(4000);
+        Waiters.waitTillLoadingPage(getDriver());
         clickOnElement(getBtnAddProductCancel());
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
     }
 
     public void typeShipDate(String date) {
@@ -537,25 +554,33 @@ public class InboundLoadOrderDetailsPage extends BasePage {
     }
 
     public void typeLoad(String load) {
-        Waiters.waitABit(4000);
+        Waiters.waitTillLoadingPage(getDriver());
         typeText(getLoadInput(), load);
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         pressTab(getLoadInput());
     }
 
     public void clickOrderProductByNumber(int num) {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         clickOnElement(getOrderProducts().get(num));
+        waitUntilInvisible(1, loader);
     }
 
     public void clickProductDataBtn() {
-        Waiters.waitForPresenceOfElement(btnProductData);
+        Waiters.waitForElementToBeDisplay(btnProductData);
         clickOnElement(getBtnProductData());
     }
 
     public void clickProductEditBtn() {
-        Waiters.waitForPresenceOfElement(btnProductEdit);
+        Waiters.waitForElementToBeDisplay(btnProductEdit);
         clickOnElement(getBtnProductEdit());
+    }
+
+    public void clickImagesButton() {
+        Waiters.waitTillLoadingPage(getDriver());
+        Waiters.waitForElementToBeDisplay(getImagesButton());
+        clickOnElement(getImagesButton());
+        Waiters.waitTillLoadingPage(getDriver());
     }
 
     public boolean isInvalidEntryPopUpPresent() {
@@ -563,7 +588,7 @@ public class InboundLoadOrderDetailsPage extends BasePage {
     }
 
     public String getDialogPopUpText() {
-        Waiters.waitForPresenceOfElement(".k-dialog-title");
+        Waiters.waitForElementToBeDisplay(By.cssSelector(".k-dialog-title"));
         return getText(getDialogPopup());
     }
 
@@ -592,6 +617,8 @@ public class InboundLoadOrderDetailsPage extends BasePage {
     public WebElement getOrderLoadNumber() { return findWebElement(orderLoadNumber); }
 
     public WebElement getOwnerField() { return findWebElement(ownerField); }
+
+    public WebElement getCustomerField() { return findWebElement(customerField); }
 
     public WebElement getSourceField() { return findWebElement(sourceField); }
 
@@ -669,13 +696,17 @@ public class InboundLoadOrderDetailsPage extends BasePage {
 
     public WebElement getCarrierInput() { return findWebElement(carrierInput); }
 
-    public WebElement getDoorLabel() { return findWebElement(doorLabel); }
-
-    public WebElement getDoorInput() { return findWebElement(doorInput); }
-
     public WebElement getTrailerLabel() { return findWebElement(trailerLabel); }
 
     public WebElement getTrailerInput() { return findWebElement(trailerInput); }
+
+    public WebElement getPaymentTypeLabel() { return findWebElement(paymentTypeLabel); }
+
+    public WebElement getPaymentTypeInput() { return findWebElement(paymentTypeInput); }
+
+    public WebElement getDoorLabel() { return findWebElement(doorLabel); }
+
+    public WebElement getDoorInput() { return findWebElement(doorInput); }
 
     public WebElement getLoadTypeLabel() { return findWebElement(loadTypeLabel); }
 

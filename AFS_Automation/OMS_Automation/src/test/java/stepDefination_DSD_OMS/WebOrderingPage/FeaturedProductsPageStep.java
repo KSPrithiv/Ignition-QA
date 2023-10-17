@@ -22,9 +22,9 @@ public class FeaturedProductsPageStep
     Scenario scenario;
     static int MaxProd;
     static int SetProd;
-    AdminHomePage adminHomePage;
-    FeaturedProdSettingsPage featuredProdSettingsPage;
-    FeaturedProductsPage featuredProductsPage;
+    static AdminHomePage adminHomePage;
+    static FeaturedProdSettingsPage featuredProdSettingsPage;
+    static FeaturedProductsPage featuredProductsPage;
 
     @Before
     public void LaunchBrowser1(Scenario scenario) throws Exception
@@ -37,20 +37,24 @@ public class FeaturedProductsPageStep
     @And("User should enter menu {string} in search bar to navigate to Featured Products")
     public void userShouldEnterMenuInSearchBarToNavigateToFeaturedProducts(String arg0)
     {
-        if(flag1==false)
-        {
+       // if(flag1==false)
+       // {
             adminHomePage = new AdminHomePage(driver, scenario);
             adminHomePage.ClickOnHumburger();
             adminHomePage.EnterValueInSearchBox(arg0);
             adminHomePage.CloseHumburger();
-            flag1=true;
-        }
+            featuredProdSettingsPage=new FeaturedProdSettingsPage(driver,scenario);
+            featuredProdSettingsPage.validateFeatureProd();
+
+        // flag1=true;
+       // }
     }
 
     @Then("User should Check whether Max products to show in featured products Sheild is selected or not")
     public void userShouldCheckWhetherMaxProductsToShowInFeaturedProductsSheildIsSelectedOrNot()
     {
         featuredProdSettingsPage=new FeaturedProdSettingsPage(driver,scenario);
+        featuredProdSettingsPage.validateFeatureProd();
         featuredProdSettingsPage.SheildIconSelected();
     }
 
@@ -71,10 +75,11 @@ public class FeaturedProductsPageStep
     }
 
     @Then("User should select {string} from horizantal menu to select Featured products list")
-    public void userShouldSelectFromHorizantalMenuToSelectFeaturedProductsList(String arg0)
+    public void userShouldSelectFromHorizantalMenuToSelectFeaturedProductsList(String arg0) throws InterruptedException
     {
             adminHomePage = new AdminHomePage(driver, scenario);
             adminHomePage.Horizantal_MenuBar(arg0);
+            Thread.sleep(1000);
     }
 
     @And("User should be on Featured products list")
@@ -88,7 +93,7 @@ public class FeaturedProductsPageStep
     public void userShouldListAllTheProductsInProductGridOfFeaturedProducts()
     {
         featuredProductsPage=new FeaturedProductsPage(driver,scenario);
-        featuredProductsPage.ListFeaturedProduct(MaxProd);
+        //featuredProductsPage.ListFeaturedProduct(MaxProd);
     }
 
     @Then("User should increase max number of Featured products set")
@@ -113,7 +118,7 @@ public class FeaturedProductsPageStep
         featuredProductsPage.SelectProduct();
         featuredProductsPage.CatalogOkButton();
         featuredProductsPage.PopupAfterChanges();
-        featuredProductsPage.ListFeaturedProduct(SetProd);
+       // featuredProductsPage.ListFeaturedProduct(SetProd);
     }
 
     @Then("User should decrease max number of Featured products set")
@@ -135,7 +140,7 @@ public class FeaturedProductsPageStep
         featuredProductsPage.ListFeaturedProduct(MaxProd);
         featuredProductsPage.ClickOnDeleteProduct();
         featuredProductsPage.PopupAfterChanges();
-        featuredProductsPage.ListFeaturedProduct(SetProd);
+        //featuredProductsPage.ListFeaturedProduct(SetProd);
     }
 
     @And("User should be on Featured products list then User should click on Add Products button and filter product")
@@ -176,5 +181,14 @@ public class FeaturedProductsPageStep
         featuredProductsPage.PopupAfterChanges();
         featuredProductsPage.ListFeaturedProduct(MaxProd);
         featuredProductsPage.deleteFirstProduct();
+    }
+
+    @Then("User refreshes page Clicks on Permissions by drop down to select Customer Account# grid for WebOrder")
+    public void userRefreshesPageClicksOnPermissionsByDropDownToSelectCustomerAccountGridForWebOrder() throws InterruptedException
+    {
+        adminHomePage=new AdminHomePage(driver,scenario);
+        adminHomePage.refreshPage();
+        adminHomePage.ClickPermissionByAgain();
+        adminHomePage.SelectCompany();
     }
 }

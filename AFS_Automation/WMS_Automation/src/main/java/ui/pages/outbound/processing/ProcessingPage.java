@@ -12,6 +12,8 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static common.setup.DriverManager.getDriver;
+
 public class ProcessingPage extends BasePage {
     By topIcon = By.xpath("//span[contains(text(), 'Processing')]");
     By processingLabel = By.cssSelector("#dtProcessingDate-label");
@@ -22,11 +24,11 @@ public class ProcessingPage extends BasePage {
     By addButton = By.cssSelector("#addLocProdButton2");
     By deleteButton = By.cssSelector("#addLocProdButton3");
     By processingGridHeader = By.cssSelector(".k-grid-header");
-    By processingGridTable = By.cssSelector(".k-grid-table");
+    By processingGridTable = By.cssSelector(".k-grid tbody");
     By allOrdersList = By.cssSelector("#divAllOrders");
     By filteredOrdersList = By.cssSelector("#divFilteredOrders");
     By unbatchedOrdersList = By.cssSelector("#divUnbatchedOrders");
-    By batchesIcon = By.cssSelector("#divBatches");
+    By batchesIcon = By.xpath("//div[text()='Batches']");
     By batchListIcon = By.cssSelector("#divBatchList");
     By batchList = By.cssSelector("#divBatchList .listItemDivUnSelected");
     By orderStatusesPanel = By.cssSelector(".i-toolbar-container__summary");
@@ -44,66 +46,77 @@ public class ProcessingPage extends BasePage {
     By dropdownList = By.id("dropdownList");
     By dialogContent = By.cssSelector(".k-dialog-content");
     By notificationMsg = By.cssSelector(".toast-message");
+    By loader = By.cssSelector(".loader");
 
     public void waitProcessingPageToLoad() {
-        Waiters.waitUntilPageWillLoadedSelenide();
-        Waiters.waitABit(3000);
+        waitUntilInvisible(1, loader);
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(getTopIcon());
     }
 
     public String getBatchErrorPopUpText() {
-        Waiters.waitForPresenceOfElement(batchErrorPopUp);
+        Waiters.waitTillLoadingPage(getDriver());
+        Waiters.waitForElementToBeDisplay(batchErrorPopUp);
         return getText(batchErrorPopUp).trim();
     }
 
     public void clickOkButton() {
-        Waiters.waitForPresenceOfElement(okButton);
+        Waiters.waitTillLoadingPage(getDriver());
+        Waiters.waitForElementToBeDisplay(okButton);
         clickOnElement(By.xpath("//button[contains(text(), 'OK')]"));
     }
 
     public List<WebElement> getRows() {
-        Waiters.waitForPresenceOfElement(processingGridTable);
+        Waiters.waitTillLoadingPage(getDriver());
+        Waiters.waitForElementToBeDisplay(processingGridTable);
         return getProcessingGridTable().findElements(By.xpath(".//tr"));
     }
 
     public int getRowsCount() {
-        Waiters.waitForPresenceOfElement(processingGridTable);
+        Waiters.waitTillLoadingPage(getDriver());
+        Waiters.waitForElementToBeDisplay(processingGridTable);
         return getProcessingGridTable().findElements(By.xpath(".//tr")).size();
     }
 
     public int getBatchesCount() {
-        Waiters.waitForPresenceOfAllElements(batchList);
+        Waiters.waitTillLoadingPage(getDriver());
+        Waiters.waitForElementsToBeDisplay(getBatchesList());
         return getBatchesList().size();
     }
 
     public void clickAllOrders() {
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeClickable(allOrdersList);
         clickOnElement(getAllOrdersList());
-        Waiters.waitABit(5000);
+        waitUntilInvisible(1, loader);
     }
 
     public void clickFilteredOrders() {
-        Waiters.waitABit(5000);
+        waitUntilInvisible(1, loader);
         clickOnElement(getFilteredOrdersList());
     }
 
     public String getDeleteBatchText() {
-        Waiters.waitForPresenceOfElement(deleteBatchPopup);
+        Waiters.waitTillLoadingPage(getDriver());
+        Waiters.waitForElementToBeDisplay(deleteBatchPopup);
         return getText(By.cssSelector(".k-window-content"));
     }
 
     public String getProcessingInputValue() {
-        Waiters.waitForPresenceOfElement(processingInput);
+        Waiters.waitTillLoadingPage(getDriver());
+        Waiters.waitForElementToBeDisplay(processingInput);
         return getValue(processingInput);
     }
 
     public void clickCloseButton() {
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeClickable(getButtonClose());
         clickOnElement(getButtonClose());
     }
 
     public void clickDeleteButton() {
-        Waiters.waitForPresenceOfElement(By.cssSelector("#addLocProdButton3"));
+        Waiters.waitTillLoadingPage(getDriver());
+        Waiters.waitForElementToBeDisplay(By.cssSelector("#addLocProdButton3"));
         clickOnElement(getDeleteButton());
         Waiters.waitABit(2000);
     }
@@ -115,6 +128,7 @@ public class ProcessingPage extends BasePage {
     }
 
     public void clickOrderByNumber(int num) {
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(getProcessingGridTable());
         Waiters.waitABit(2000);
         clickOnElement(getProcessingGridTable().findElements(By.xpath(".//tr")).get(num));
@@ -122,6 +136,7 @@ public class ProcessingPage extends BasePage {
     }
 
     public void selectWarehouse(String warehouse) {
+        Waiters.waitTillLoadingPage(getDriver());
         clickOnElement(getDropdownList());
         clickOnElement(findWebElement(By.xpath("//div[contains(@class, 'k-animation-container-shown')]//li[contains(text(), '"
                 + warehouse + "') and @role='option']")));
@@ -129,6 +144,7 @@ public class ProcessingPage extends BasePage {
     }
 
     public void clickOrderByName(String orderName) {
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(getProcessingGridTable());
         Waiters.waitABit(2000);
         WebElement row = getProcessingGridTable().findElements(By.xpath(".//tr"))
@@ -141,6 +157,7 @@ public class ProcessingPage extends BasePage {
     }
 
     public void checkUnbatchedOrderByNumber(int num) {
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(getUnbatchedOrdersList());
         Waiters.waitABit(2000);
         clickOnElement(getProcessingGridTable().findElements(By.cssSelector("tr input")).get(num));
@@ -148,6 +165,7 @@ public class ProcessingPage extends BasePage {
     }
 
     public void checkOrderByNumber(int num) {
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(getProcessingGridTable());
         Waiters.waitABit(2000);
         clickOnElement(getProcessingGridTable().findElements(By.cssSelector("tr input")).get(num));
@@ -155,6 +173,7 @@ public class ProcessingPage extends BasePage {
     }
 
     public void dragAndDropOrderToBatch(int num, String batchName) {
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(getProcessingGridTable());
         Waiters.waitABit(2000);
         WebElement order = getProcessingGridTable().findElements(By.cssSelector("tr input")).get(num);
@@ -168,6 +187,7 @@ public class ProcessingPage extends BasePage {
     }
 
     public boolean isOrderUnbatchedChecked(int num) {
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(getUnbatchedOrdersList());
         Waiters.waitABit(2000);
         return getElementAttribute(getProcessingGridTable()
@@ -176,33 +196,40 @@ public class ProcessingPage extends BasePage {
     }
 
     public void clickBatches() {
-        Waiters.waitForPresenceOfElement(batchesIcon);
+        Waiters.waitTillLoadingPage(getDriver());
+        Waiters.waitForElementToBeDisplay(batchesIcon);
+        waitUntilInvisible(1, loader);
         clickOnElement(getBatchesIcon());
+        Waiters.waitABit(2000);
     }
 
     public void clickYesButton() {
-        Waiters.waitABit(2000);
-        Waiters.waitForPresenceOfElement(yesButton);
+        Waiters.waitTillLoadingPage(getDriver());
+        Waiters.waitForElementToBeDisplay(yesButton);
         clickOnElement(yesButton);
     }
 
     public void clickNoButton() {
-        Waiters.waitABit(2000);
-        Waiters.waitForPresenceOfElement(noButton);
+        Waiters.waitTillLoadingPage(getDriver());
+        Waiters.waitForElementToBeDisplay(noButton);
         clickOnElement(noButton);
     }
 
     public void clickBatch(String batchName) {
-        Waiters.waitForPresenceOfElement(batchList);
+        Waiters.waitTillLoadingPage(getDriver());
+        Waiters.waitForElementToBeDisplay(batchList);
+        Waiters.waitABit(3000);
         WebElement batch = getBatchesList().stream()
-           .filter(b -> b.getText().equals(batchName))
+           .filter(b -> b.getText().contains(batchName))
            .findFirst()
           .orElseThrow(() -> new IllegalArgumentException(("Batch " + batchName + " does not present")));
+        Waiters.waitABit(3000);
         clickOnElement(batch);
     }
 
     public boolean isBatchSelected(String batchName) {
-        Waiters.waitForPresenceOfAllElements("#divBatchList .listItemDivUnSelected");
+        Waiters.waitTillLoadingPage(getDriver());
+        Waiters.waitForElementsToBeDisplay(getBatchesList());
         WebElement batch = getBatchesList().stream()
                 .filter(b -> b.getText().equals(batchName))
                 .findFirst()
@@ -212,22 +239,26 @@ public class ProcessingPage extends BasePage {
     }
 
     public void clickAddButton() {
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeClickable(getAddButton());
         clickOnElement(getAddButton());
     }
 
     public void clickProcessButton() {
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeClickable(getProcessButton());
         clickOnElement(getProcessButton());
     }
 
     public void clickUnprocessButton() {
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeClickable(getUnprocessButton());
         clickOnElement(getUnprocessButton());
     }
 
     public void selectDate(String date) {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
+        waitUntilStalenessOf(1, getProcessingInput());
         Waiters.waitForElementToBeDisplay(getProcessingInput());
         doubleClick(getProcessingInput());
         pressDelete(getProcessingInput());
@@ -237,9 +268,9 @@ public class ProcessingPage extends BasePage {
     }
 
     public List<String> getOrdersDates() {
-        Waiters.waitUntilPageWillLoadedSelenide();
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitABit(3000);
-        Waiters.waitForPresenceOfElement(processingGridTable);
+        Waiters.waitForElementToBeDisplay(processingGridTable);
         return getProcessingGridTable()
                 .findElements(By.cssSelector(".CPKendoDataGrid-Date"))
                 .stream()
@@ -248,56 +279,65 @@ public class ProcessingPage extends BasePage {
     }
 
     public WebElement getShippedStatusColorPoint() {
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(getShippedStatus());
         return getShippedStatus().findElement(By.xpath("span"));
     }
 
     public WebElement getUnallocatedStatusColorPoint() {
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(getUnallocatedStatus());
         return getUnallocatedStatus().findElement(By.xpath("span"));
     }
 
     public WebElement getAllocatedStatusColorPoint() {
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(getAllocatedStatus());
         return getAllocatedStatus().findElement(By.xpath("span"));
     }
 
     public String getOrdersNumber() {
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(getOrdersCount());
         return getOrdersCount().getText();
     }
 
     public String getDialogContentText() {
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(getDialogContent());
         return getDialogContent().getText();
     }
 
     public String getOrderDetailsInfo() {
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(getOrderDetails());
         return getOrderDetails().getText().trim();
     }
 
     public String getFilteredOrderDetailsInfo(WebElement element) {
+        Waiters.waitTillLoadingPage(getDriver());
         return element.getText().trim();
     }
 
     public List<WebElement> getFilteredOrders() {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(getProcessingGridTable());
         return getProcessingGridTable().findElements(By.xpath(".//tr"));
     }
 
     public int getFilteredOrdersNumber() {
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(getProcessingGridTable());
         return getProcessingGridTable().findElements(By.xpath(".//tr")).size();
     }
 
     public boolean isDeleteBatchPopupDisplayed() {
+        Waiters.waitTillLoadingPage(getDriver());
         return isElementDisplay(getDeleteBatchPopUp());
     }
 
     public boolean isBatchDisplayed(String name) {
-        Waiters.waitABit(1000);
+        Waiters.waitTillLoadingPage(getDriver());
         WebElement batch = getBatchesList()
                 .stream()
                 .filter(el -> el.getText().equals(name))
@@ -325,85 +365,110 @@ public class ProcessingPage extends BasePage {
         return ResponseDTO.builder().ordersList(ordersListDTOList).build();
     }
 
-    public boolean isTopIconDisplayed() { return isElementDisplay(getTopIcon()); }
+    public boolean isTopIconDisplayed() {
+        Waiters.waitTillLoadingPage(getDriver());
+        return isElementDisplay(getTopIcon());
+    }
 
     public boolean isProcessingLabelDisplayed() {
+        Waiters.waitTillLoadingPage(getDriver());
         return isElementDisplay(getProcessingLabel());
     }
 
     public boolean isProcessingInputDisplayed() {
+        Waiters.waitTillLoadingPage(getDriver());
         return isElementDisplay(getProcessingInput());
     }
 
-    public boolean isProcessButtonDisplayed() { return isElementDisplay(getProcessButton()); }
+    public boolean isProcessButtonDisplayed() {
+        Waiters.waitTillLoadingPage(getDriver());
+        return isElementDisplay(getProcessButton());
+    }
 
-    public boolean isUnprocessButtonDisplayed() { return isElementDisplay(getUnprocessButton()); }
+    public boolean isUnprocessButtonDisplayed() {
+        Waiters.waitTillLoadingPage(getDriver());
+        return isElementDisplay(getUnprocessButton());
+    }
 
     public boolean isAddButtonDisplayed() {
+        Waiters.waitTillLoadingPage(getDriver());
         return isElementDisplay(getAddButton());
     }
 
     public boolean isDeleteButtonDisplayed() {
+        Waiters.waitTillLoadingPage(getDriver());
         return isElementDisplay(getDeleteButton());
     }
 
     public boolean isProcessingGridHeaderDisplayed() {
+        Waiters.waitTillLoadingPage(getDriver());
         return isElementDisplay(getProcessingGridHeader());
     }
 
     public boolean isProcessingGridTableDisplayed() {
+        Waiters.waitTillLoadingPage(getDriver());
         return isElementDisplay(getProcessingGridTable());
     }
 
     public boolean isAllOrdersListDisplayed() {
+        Waiters.waitTillLoadingPage(getDriver());
         return isElementDisplay(getAllOrdersList());
     }
 
     public boolean isFilteredOrdersListDisplayed() {
+        Waiters.waitTillLoadingPage(getDriver());
         return isElementDisplay(getFilteredOrdersList());
     }
 
     public boolean isUnbatchedOrdersListDisplayed() {
+        Waiters.waitTillLoadingPage(getDriver());
         return isElementDisplay(getUnbatchedOrdersList());
     }
 
     public boolean isBatchesIconDisplayed() {
+        Waiters.waitTillLoadingPage(getDriver());
         return isElementDisplay(getBatchesIcon());
     }
 
     public boolean isYesButtonDisplayed() {
+        Waiters.waitTillLoadingPage(getDriver());
         return isElementDisplay(yesButton);
     }
 
     public boolean isNoButtonDisplayed() {
+        Waiters.waitTillLoadingPage(getDriver());
         return isElementDisplay(noButton);
     }
 
     public boolean isAllOrdersListSelected() {
+        Waiters.waitTillLoadingPage(getDriver());
         return !getAllOrdersList().getAttribute("style").contains("black");
     }
 
     public String getDateValue() {
+        Waiters.waitTillLoadingPage(getDriver());
         return getValue(By.cssSelector("#dtProcessingDate"));
     }
 
     public String isDateValueCorrect() {
+        Waiters.waitTillLoadingPage(getDriver());
         return getValue(By.cssSelector("#dtProcessingDate"));
     }
 
     public boolean isDateValueExists() {
-        Waiters.waitABit(2000);
-        Waiters.waitForPresenceOfElement("#dtProcessingDate");
+        Waiters.waitTillLoadingPage(getDriver());
+        Waiters.waitForElementToBeDisplay(By.cssSelector("#dtProcessingDate"));
         return isElementDisplay(By.cssSelector("#dtProcessingDate"));
     }
 
     public void clickCalendarOption() {
-        Waiters.waitABit(2000);
-        Waiters.waitForPresenceOfElement("a[title='Toggle calendar']");
+        Waiters.waitTillLoadingPage(getDriver());
+        Waiters.waitForElementToBeDisplay(By.cssSelector("a[title='Toggle calendar']"));
         clickOnElement(By.cssSelector("a[title='Toggle calendar']"));
     }
 
     public boolean isCalendarDisplayed() {
+        Waiters.waitTillLoadingPage(getDriver());
         WebElement calendar = findWebElement(By.xpath("//div[contains(@class, 'k-animation-container-shown')]"));
         return isElementDisplay(calendar);
     }

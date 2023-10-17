@@ -45,7 +45,7 @@ public class HomePage
         WebElement WebEle;
         try
         {
-           String status = HelpersMethod.returnDocumentStatus(driver);
+            String status = HelpersMethod.returnDocumentStatus(driver);
             if (status.equals("loading"))
             {
                 HelpersMethod.waitTillLoadingPage(driver);
@@ -113,16 +113,16 @@ public class HomePage
             if(HelpersMethod.IsExists("//div[@class='loader']",driver))
             {
                 WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 200000);
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 600000);
             }
-            new WebDriverWait(driver, Duration.ofMillis(1000)).until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.id("app")));
+            new WebDriverWait(driver, Duration.ofMillis(40000)).until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.id("app")));
             scenario.log("IN ADMIN PAGE");
             WebElement side_menu = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'MuiPaper-root MuiDrawer-paper drawer')]");
-            new WebDriverWait(driver,Duration.ofMillis(1000)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(@class,'MuiPaper-root MuiDrawer-paper drawer')]")));
+            new WebDriverWait(driver,Duration.ofMillis(10000)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(@class,'MuiPaper-root MuiDrawer-paper drawer')]")));
             Actions act1 = new Actions(driver);
             //Move mouse on menu icon
-            new WebDriverWait(driver,Duration.ofMillis(1000)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class='item-searchbar']//*[local-name()='svg']//*[local-name()='path' and contains(@d,'M3,18H21V16H3Zm0-5H21V11H3ZM3,6V8H21V6Z')]"))));
-            new WebDriverWait(driver,Duration.ofMillis(1000)).until(ExpectedConditions.elementToBeClickable(By.xpath("//div[@class='item-searchbar']//*[local-name()='svg']//*[local-name()='path' and contains(@d,'M3,18H21V16H3Zm0-5H21V11H3ZM3,6V8H21V6Z')]")));
+            new WebDriverWait(driver,Duration.ofMillis(10000)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class='item-searchbar']//*[local-name()='svg']//*[local-name()='path' and contains(@d,'M3,18H21V16H3Zm0-5H21V11H3ZM3,6V8H21V6Z')]"))));
+            new WebDriverWait(driver,Duration.ofMillis(10000)).until(ExpectedConditions.elementToBeClickable(By.xpath("//div[@class='item-searchbar']//*[local-name()='svg']//*[local-name()='path' and contains(@d,'M3,18H21V16H3Zm0-5H21V11H3ZM3,6V8H21V6Z')]")));
 
             WebEle = HelpersMethod.FindByElement(driver, "xpath", "//*[local-name()='svg']//*[local-name()='path' and contains(@d,'M3,18H21V16H3Zm0-5H21V11H3ZM3,6V8H21V6Z')]");
             act1.moveToElement(WebEle).click().build().perform();
@@ -141,7 +141,7 @@ public class HomePage
                 act1.click(ele4).build().perform();
             }
             //Identify side menu bar to identify the webelements
-            new WebDriverWait(driver,Duration.ofMillis(200)).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class,'MuiPaper-root MuiDrawer-paper drawer-opened MuiDrawer-paperAnchorLeft MuiDrawer-paperAnchorDockedLeft MuiPaper-elevation0')]")));
+            new WebDriverWait(driver,Duration.ofMillis(20000)).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class,'MuiPaper-root MuiDrawer-paper drawer-opened MuiDrawer-paperAnchorLeft MuiDrawer-paperAnchorDockedLeft MuiPaper-elevation0')]")));
             side_menu = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'MuiPaper-root MuiDrawer-paper drawer-opened MuiDrawer-paperAnchorLeft MuiDrawer-paperAnchorDockedLeft MuiPaper-elevation0')]");
             exists = true;
 
@@ -169,11 +169,11 @@ public class HomePage
             if (HelpersMethod.IsExists("//div[@class='loader']", driver))
             {
                 WebElement WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 80000);
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100000);
             }
             HelpersMethod.WaitElementPresent(driver, "xpath", "//div[contains(@class,'user-info-container')]/div[contains(@class,'user-info-initial-container')]/following-sibling::div[contains(@class,'user-info-setting-shape')]", 2400);
             WebElement UserIcon = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'user-info-container')]/div[contains(@class,'user-info-initial-container')]/following-sibling::div[contains(@class,'user-info-setting-shape')]");
-            new WebDriverWait(driver, Duration.ofMillis(1000)).until(ExpectedConditions.refreshed(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(@class,'user-info-container')]/div[contains(@class,'user-info-initial-container')]/following-sibling::div[contains(@class,'user-info-setting-shape')]"))));
+            new WebDriverWait(driver, Duration.ofMillis(10000)).until(ExpectedConditions.refreshed(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(@class,'user-info-container')]/div[contains(@class,'user-info-initial-container')]/following-sibling::div[contains(@class,'user-info-setting-shape')]"))));
             HelpersMethod.JScriptClick(driver, UserIcon, 8000);
 
             exists = true;
@@ -190,7 +190,7 @@ public class HomePage
             exists = false;
             WebElement WebEle;
             //new WebDriverWait(driver,10000).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class,'k-popup k-child-animation-container')]"))));
-            new WebDriverWait(driver,Duration.ofMillis(1000)).until(ExpectedConditions.elementToBeClickable(By.xpath("//div[contains(@class,'k-popup k-child-animation-container')]/div[@class='popup-content']/descendant::div[contains(@class,'user-info-line user-info-line-signout')]")));
+            new WebDriverWait(driver,Duration.ofMillis(10000)).until(ExpectedConditions.elementToBeClickable(By.xpath("//div[contains(@class,'k-popup k-child-animation-container')]/div[@class='popup-content']/descendant::div[contains(@class,'user-info-line user-info-line-signout')]")));
             WebElement dropDown = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-popup k-child-animation-container')]/div[@class='popup-content']");
             WebElement signOut = dropDown.findElement(By.xpath(".//div[contains(@class,'user-info-line user-info-line-signout')]"));
             HelpersMethod.ActClick(driver, signOut, 1000);
@@ -200,11 +200,11 @@ public class HomePage
             {
                 WebElement popUp=HelpersMethod.FindByElement(driver,"xpath","//div[contains(text(),'Your order has not been submitted.')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]");
                 WebElement discardAll=popUp.findElement(By.xpath(".//button[contains(text(),'Discard all')]"));
-                HelpersMethod.ActClick(driver,discardAll,200);
+                HelpersMethod.ActClick(driver,discardAll,1000);
                 if (HelpersMethod.IsExists("//div[@class='loader']", driver))
                 {
                     WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 20000);
+                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100000);
                 }
                 //Click again on user icon for signout
                 HelpersMethod.WaitElementPresent(driver, "xpath", "//div[contains(@class,'user-info-container')]/div[contains(@class,'user-info-initial-container')]/following-sibling::div[contains(@class,'user-info-setting-shape')]", 2400);
@@ -213,7 +213,7 @@ public class HomePage
                 HelpersMethod.JScriptClick(driver, UserIcon, 8000);
                 new WebDriverWait(driver,Duration.ofMillis(20000)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class,'k-animation-container k-animation-container-relative popup-with-arrow standard-view user-info k-animation-container-shown')]"))));
                 //Click on signout, in drop down
-                new WebDriverWait(driver,Duration.ofMillis(1000)).until(ExpectedConditions.elementToBeClickable(By.xpath("//div[contains(@class,'k-popup k-child-animation-container')]/div[@class='popup-content']/descendant::div[contains(@class,'user-info-line user-info-line-signout')]")));
+                new WebDriverWait(driver,Duration.ofMillis(10000)).until(ExpectedConditions.elementToBeClickable(By.xpath("//div[contains(@class,'k-popup k-child-animation-container')]/div[@class='popup-content']/descendant::div[contains(@class,'user-info-line user-info-line-signout')]")));
                 dropDown = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-popup k-child-animation-container')]/div[@class='popup-content']");
                 signOut = dropDown.findElement(By.xpath(".//div[contains(@class,'user-info-line user-info-line-signout')]"));
                 HelpersMethod.ActClick(driver, signOut, 1000);
@@ -221,10 +221,10 @@ public class HomePage
             if (HelpersMethod.IsExists("//div[@class='loader']", driver))
             {
                 WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 20000);
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100000);
             }
-
-            HelpersMethod.waitTillTitleContains(driver, "Login", 1000);
+            Thread.sleep(4000);
+            HelpersMethod.waitTillTitleContains(driver, "Login", 40000);
             String title = driver.getTitle();
             if (title.contains("Login"))
             {
@@ -266,7 +266,7 @@ public class HomePage
                         if(HelpersMethod.IsExists("//div[@class='loader']",driver))
                         {
                             WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000);
+                            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100000);
                         }
                         break;
                     }
@@ -275,7 +275,7 @@ public class HomePage
             HelpersMethod.ActClick(driver,UserIcon,1000);
 
             LangInMenu=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'user-info-line bgonhover')]/descendant::li");
-            HelpersMethod.waitTillElementDisplayed(driver,LangInMenu,1000);
+            HelpersMethod.waitTillElementDisplayed(driver,LangInMenu,10000);
             Lang2=LangInMenu.getAttribute("aria-label");
             scenario.log("LANGUAGE FOUND IS "+Lang2);
             WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='topMenu']");
@@ -290,19 +290,18 @@ public class HomePage
         String Lang1=null;
         String Lang2=null;
         WebElement WebEle=null;
-        Actions act2=new Actions(driver);
         try
         {
 
             Actions act1 = new Actions(driver);
             WebElement LangInMenu = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'user-info-line bgonhover')]/descendant::li");
-            HelpersMethod.waitTillElementDisplayed(driver, LangInMenu, 1000);
+            HelpersMethod.waitTillElementDisplayed(driver, LangInMenu, 10000);
             Lang1 = LangInMenu.getAttribute("aria-label");
             scenario.log("LANGAUGE BEFORE CHANGING LANGUAGE " + Lang1);
 
             LangInMenu=HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'user-info-line bgonhover')]/descendant::li");
             act1.moveToElement(LangInMenu).build().perform();
-            new WebDriverWait(driver,Duration.ofMillis(1000)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class,'k-popup k-menu-popup k-child-animation-container')]"))));
+            new WebDriverWait(driver,Duration.ofMillis(10000)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class,'k-popup k-menu-popup k-child-animation-container')]"))));
             //Code to check for drop down containing different language option
             if (HelpersMethod.IsExists("//div[contains(@class,'k-popup k-menu-popup k-child-animation-container')]", driver)) ;
             {
@@ -322,14 +321,14 @@ public class HomePage
             if(HelpersMethod.IsExists("//div[@class='loader']",driver))
             {
                 WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 10000);
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100000);
             }
 
             UserIcon=HelpersMethod.FindByElement(driver,"xpath","//div[@class='user-info-container']");
             HelpersMethod.ActClick(driver,UserIcon,1000);
 
             LangInMenu=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'user-info-line bgonhover')]/descendant::li");
-            HelpersMethod.waitTillElementDisplayed(driver,LangInMenu,8000);
+            HelpersMethod.waitTillElementDisplayed(driver,LangInMenu,10000);
             Lang2=LangInMenu.getAttribute("aria-label");
             scenario.log("LANGUAGE FOUND IS "+Lang2);
             if(Lang2.contains(s))
@@ -382,7 +381,7 @@ public class HomePage
             {
                 JavascriptExecutor js = ((JavascriptExecutor) driver);
                 js.executeScript("window.location.reload()");
-                WebDriverWait wait = new WebDriverWait(driver,Duration.ofMillis(400));
+                WebDriverWait wait = new WebDriverWait(driver,Duration.ofMillis(10000));
                 if(wait.until(ExpectedConditions.alertIsPresent())==null)
                 {
 

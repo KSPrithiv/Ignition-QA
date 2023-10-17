@@ -7,8 +7,9 @@ import ui.pages.BasePage;
 
 import java.util.List;
 
-public class InboundOrderDetailsPage extends BasePage {
+import static common.setup.DriverManager.getDriver;
 
+public class InboundOrderDetailsPage extends BasePage {
     By topIcon = By.xpath("//span[contains(text(), 'Inbound order summary')]");
     By toolBarContainer = By.cssSelector(".i-toolbar-container");
     By barContainer = By.cssSelector(".BarsContainer");
@@ -16,7 +17,7 @@ public class InboundOrderDetailsPage extends BasePage {
     By orderDet = By.cssSelector("#spnOrderNo");
     By productList = By.cssSelector("#crdInboundOrderPortrait .BarsBlock");
     By orderNumber = By.xpath("//span[contains(text(),'Order')]//following-sibling::span[@id='spnOrderNo']");
-    By ownerField = By.xpath("//span[contains(text(), 'Owner')]");
+    By customerField = By.xpath("//span[contains(text(), 'Customer')]");
     By sourceField = By.xpath("//span[contains(text(), 'Source')]");
  //   By loadNumber = By.xpath("//span[contains(text(),'Load')]//following-sibling::span");
     By doorField = By.xpath("//span[contains(text(), 'Door')]");
@@ -90,8 +91,8 @@ public class InboundOrderDetailsPage extends BasePage {
     By moveShipDateInput = By.id("moveStartDate");
     By moveLoad = By.id("OrderSummaryMove__loadrouteTxtBox-label");
     By moveLoadInput = By.id("OrderSummaryMove__loadrouteTxtBox");
-    By orderProducts = By.cssSelector("#crdInboundOrderPortrait .BarsBlock");
-    By orderLineItems = By.cssSelector("#crdInboundOrderPortrait .BarsContainer");
+    By orderProducts = By.xpath("//div[contains(@class, 'BarsContainer')]//span[contains(@id, 'spnOrder_')]");
+    By orderLineItems = By.xpath("//div[contains(@class, 'BarsBlock')]//span[contains(@id, 'spnOrderSource')]");
     By btnProductData = By.id("btnProductData");
     By btnProductEdit = By.id("btnProductEdit");
     By btnOrderLineFieldsImage = By.id("btnOrderLineFieldsImage");
@@ -109,6 +110,7 @@ public class InboundOrderDetailsPage extends BasePage {
     By statusColumn = By.xpath("//table[@role='presentation']//span[text() ='Status']");
     By weightColumn = By.xpath("//table[@role='presentation']//span[text() ='Weight']");
     By stagedColumn = By.xpath("//table[@role='presentation']//span[text() ='Staged?']");
+    By loader = By.cssSelector(".loader");
 
     private By getStatus(String status) {
         return By.xpath("//span[@class='k-input' and text()='" + status + "']");
@@ -117,39 +119,39 @@ public class InboundOrderDetailsPage extends BasePage {
     private By getDoorDropDown(String door) { return By.xpath("//span[contains(text(),'" + door + "')]"); }
 
     public void waitInboundOrderDetailsPageToLoad() {
-        Waiters.waitABit(6000);
-        Waiters.waitUntilPageWillLoadedSelenide();
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(getTopIcon());
         Waiters.waitForElementToBeDisplay(toolBarContainer);
+        Waiters.waitTillLoadingPage(getDriver());
     }
 
     public boolean isItemsFoundLabelDisplayed() {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         return isElementDisplay(itemsFoundLabel);
     }
 
     public boolean isItemsFoundValueDisplayed() {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         return isElementDisplay(itemsFoundValue);
     }
 
     public boolean isReceivedQtyDisplayed() {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         return isElementDisplay(getReceivedQty());
     }
 
     public boolean isStagedQtyDisplayed() {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         return isElementDisplay(getStagedQty());
     }
 
     public boolean isRedQtyDisplayed() {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         return isElementDisplay(getRedQty());
     }
 
     public boolean isGrayQtyDisplayed() {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         return isElementDisplay(getGrayQty());
     }
 
@@ -209,134 +211,145 @@ public class InboundOrderDetailsPage extends BasePage {
     }
 
     public String getItemsFoundText() {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         return getText(itemsFoundValue);
     }
 
     public void selectOrderOption(String option) {
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(getOrderOptionsButton());
-        Waiters.waitABit(1000);
+        Waiters.waitTillLoadingPage(getDriver());
         clickOnElement(getOrderOptionsButton());
         WebElement orderOption = findWebElement(By.xpath("//div[contains(@class, 'k-animation-container-shown')]//*[contains(text(), '"
                 + option + "')]"));
         clickOnElement(orderOption);
+        Waiters.waitTillLoadingPage(getDriver());
     }
 
     public void selectOrderStatus(String status) {
+        Waiters.waitTillLoadingPage(getDriver());
         WebElement orderStatus = findWebElement(By.xpath("//div[contains(@class, 'k-animation-container-shown')]//*[contains(text(), '"
                 + status + "')]"));
         clickOnElement(orderStatus);
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
     }
 
     public void selectOrderByOrderNumber(int orderNum) {
-        Waiters.waitABit(1000);
-        Waiters.waitForPresenceOfElement(tableContent);
-        List<WebElement> orders = getTableContent().findElements(By.xpath(".//div[contains(@class, 'BarsBlock')]"));
-        Waiters.waitForElementToBeDisplay(orders.get(orderNum));
-        clickOnElement(orders.get(orderNum));
-        Waiters.waitABit(1000);
+        Waiters.waitTillLoadingPage(getDriver());
+        Waiters.waitForElementToBeDisplay(tableContent);
+        List<WebElement> orders = findWebElements(By.xpath("//tr[contains(@class, 'k-detail-row')]//td[contains(@class, 'k-detail-cell')]"));
+        WebElement order = orders.get(orderNum);
+        clickOnElement(order);
+        Waiters.waitTillLoadingPage(getDriver());
     }
 
     public void clickOrderStatus(String status) {
-        Waiters.waitABit(4000);
+        Waiters.waitTillLoadingPage(getDriver());
         clickOnElement(getStatusDropDown(status));
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
     }
 
     public void selectOption(String option) {
+        Waiters.waitTillLoadingPage(getDriver());
         clickOnElement(findWebElements(By
                 .xpath("//div[contains(@class, 'k-animation-container-shown')]//li[contains(text(), '"
                         + option + "') and @role='option']"))
                 .stream().findFirst().get());
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
     }
 
     public void typeShipDate(String date) {
-        Waiters.waitABit(1000);
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(getMoveShipDateInput());
+        Waiters.waitABit(4000);
         clickOnElement(getMoveShipDateInput());
         pressDelete(getMoveShipDateInput());
+        Waiters.waitABit(4000);
         inputText(getMoveShipDateInput(), date);
         pressEnter(getMoveShipDateInput());
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
     }
 
     public void typeLoad(String load) {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         typeText(getMoveLoadInput(), load);
-        Waiters.waitABit(2000);
         pressTab(getMoveLoadInput());
+        Waiters.waitTillLoadingPage(getDriver());
     }
 
     public void clickChangeStatusOption() {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         clickOnElement(getChangeStatusOption());
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
     }
 
     public void clickDoorOption() {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         clickOnElement(getDoorOption());
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
     }
 
     public void clickDataOption() {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         clickOnElement(getDataOption());
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
     }
 
     public void selectDoorDropDown(String door) {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         clickOnElement(getDoorDropDown(door));
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
     }
 
     public void clickDoorDropdown() {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         clickOnElement(By.id("ddDoorList"));
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
     }
 
     public void clickCancel() {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         clickOnElement(cancelButton);
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
     }
 
     public void clickSave() {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         clickOnElement(saveButton);
-        Waiters.waitABit(1000);
+        Waiters.waitTillLoadingPage(getDriver());
     }
 
     public void clickRouteBackButton() {
+        Waiters.waitTillLoadingPage(getDriver());
         clickOnElement(routeBackButton);
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
     }
 
     public String getDialogPopUpText() {
-        Waiters.waitForPresenceOfElement(".k-dialog-title");
+        Waiters.waitForElementToBeDisplay(By.cssSelector(".k-dialog-title"));
         return getText(getDialogPopup());
     }
 
     public void clickAddFilter() {
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeClickable(getAddFilterButton());
         clickOnElement(getAddFilterButton());
-        Waiters.waitABit(3000);
+        Waiters.waitTillLoadingPage(getDriver());
     }
 
     public void clickOrderProductByNumber(int num) {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         clickOnElement(getOrderProducts().get(num));
-        Waiters.waitABit(1000);
+        Waiters.waitTillLoadingPage(getDriver());
     }
 
     public void clickOrderLineItemByNumber(int num) {
-        Waiters.waitABit(2000);
-        clickOnElement(getOrderLineItems().get(num));
-        Waiters.waitABit(1000);
+        waitUntilInvisible(2, loader);
+        Waiters.waitTillLoadingPage(getDriver());
+        WebElement item = getOrderLineItems().get(num);
+        clickOnElement(item);
+        Waiters.waitTillLoadingPage(getDriver());
+        waitUntilInvisible(5, loader);
     }
 
     public void clickProductDataBtn() {
@@ -349,19 +362,31 @@ public class InboundOrderDetailsPage extends BasePage {
         clickOnElement(btnProductEdit);
     }
 
+    public void clickImagesButton() {
+        Waiters.waitForElementToBeDisplay(getImagesButton());
+        clickOnElement(getImagesButton());
+    }
+
     public void clickOrderLineFieldsImageBtn() {
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(btnOrderLineFieldsImage);
         clickOnElement(btnOrderLineFieldsImage);
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
     }
 
     public boolean isTopIconDisplayed() {  return isElementDisplay(getTopIcon()); }
 
     public boolean isOrderOptionsButtonDisplayed() {  return isElementDisplay(getOrderOptionsButton()); }
 
-    public boolean isOrderStatusDisplayed() {  return isElementDisplay(getOrderStatus()); }
+    public boolean isOrderStatusDisplayed() {
+        Waiters.waitTillLoadingPage(getDriver());
+        return isElementDisplay(getOrderStatus());
+    }
 
-    public boolean isOrderNumberDisplayed() {  return isElementDisplay(getOrderNumber()); }
+    public boolean isOrderNumberDisplayed() {
+        Waiters.waitTillLoadingPage(getDriver());
+        return isElementDisplay(getOrderNumber());
+    }
 
     public boolean isSourceLabelDisplayed() {  return isElementDisplay(getSourceLabel()); }
 
@@ -379,15 +404,13 @@ public class InboundOrderDetailsPage extends BasePage {
 
     public boolean isOrderDetailsPresent() { return isElementPresent(getOrderDet()); }
 
- //   public boolean isLoadNumberDisplayed() {  return isElementDisplay(getLoadNumber()); }
-
     public boolean isDoorFieldDisplayed() {  return isElementDisplay(getDoorField()); }
 
     public boolean isQaFieldDisplayed() {  return isElementDisplay(getQaField()); }
 
     public int isProductListDisplayed() { return elementsArePresent(getProductList()); }
 
-    public boolean isOwnerFieldDisplayed() { return isElementDisplay(getOwnerField()); }
+    public boolean isCustomerFieldDisplayed() { return isElementDisplay(getCustomerField()); }
 
     public boolean isCarrierFieldDisplayed() { return isElementDisplay(getCarrierField()); }
 
@@ -602,11 +625,9 @@ public class InboundOrderDetailsPage extends BasePage {
 
     public List<WebElement> getProductList() { return findWebElements(productList); }
 
-    public WebElement getOwnerField() { return findWebElement(ownerField); }
+    public WebElement getCustomerField() { return findWebElement(customerField); }
 
     public WebElement getSourceField() { return findWebElement(sourceField); }
-
-//    public SelenideElement getLoadNumber() { return $(loadNumber); }
 
     public WebElement getDoorField() { return findWebElement(doorField); }
 

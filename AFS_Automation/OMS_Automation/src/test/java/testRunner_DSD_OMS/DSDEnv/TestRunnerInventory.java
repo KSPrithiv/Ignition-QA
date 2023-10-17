@@ -25,16 +25,19 @@ import java.io.IOException;
                         "rerun:target/failedrerun.txt"},
                 monochrome = true)
 
-public class TestRunnerInventory extends AbstractTestNGCucumberTests {
+public class TestRunnerInventory extends AbstractTestNGCucumberTests
+{
     /* Created by Divya.Ramadas@afsi.com */
-    @Parameters({"environment"})
+    @Parameters({"environment"/*,"menuoptions"*/})
     @BeforeClass
-    public static void beforeClass(@Optional("environment") String envi) {
-        try {
-            TestBase.InitializeProp(envi);
+    public static void beforeClass(@Optional("environment") String envi/*,@Optional("menuoptions") String menu*/)
+    {
+        try
+        {
+            TestBase.InitializeProp(envi/*,menu*/);
             TestBase.SetDriver(TestBase.testEnvironment.get_browser());
-        } catch (Exception e) {
         }
+        catch (Exception e) {}
     }
 
     @AfterClass

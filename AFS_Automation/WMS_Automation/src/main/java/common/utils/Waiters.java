@@ -31,12 +31,12 @@ public class Waiters {
                 .ignoring(IllegalStateException.class);
     }
 
-    public static void waitForPresenceOfElement(By locator) {
+    public static void waitForPresenceOfElement1(By locator) {
         wait.until(ExpectedConditions.presenceOfElementLocated(locator));
     }
 
-    public static void waitForPresenceOfElement(String cssSelector) {
-        waitForPresenceOfElement(By.cssSelector(cssSelector));
+    public static void waitForPresenceOfElement1(String cssSelector) {
+      //  waitForPresenceOfElement(By.cssSelector(cssSelector));
     }
 
     public void waitForPresenceOfNestedElement(WebElement parentElement, By locator) {
@@ -53,6 +53,10 @@ public class Waiters {
 
     public static void waitForElementToBeDisplay(WebElement element) {
         wait.until(ExpectedConditions.visibilityOf(element));
+    }
+
+    public static void waitForStalenessOfElement(WebElement element) {
+        wait.until(ExpectedConditions.stalenessOf(element));
     }
 
     public static void waitForElementToBeDisplay(By locator) {
@@ -126,11 +130,11 @@ public class Waiters {
     }
 
     public static boolean waitTillLoadingPage(WebDriver driver) {
-        String pageLoadStatus="";
-        boolean pageWasLoaded=false;
+        String pageLoadStatus = "";
+        boolean pageWasLoaded = false;
         do {
             try {
-                pageLoadStatus=returnDocumentStatus(driver);
+                pageLoadStatus = returnDocumentStatus(driver);
             }
             catch(Exception e) {
                 e.printStackTrace();

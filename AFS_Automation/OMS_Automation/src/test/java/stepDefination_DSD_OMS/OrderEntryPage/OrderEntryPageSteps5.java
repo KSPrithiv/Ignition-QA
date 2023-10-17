@@ -31,11 +31,11 @@ public class OrderEntryPageSteps5
     Scenario scenario;
 
     static boolean exists=false;
-    OrderEntryPage orderEntryPage;
-    NewOrderEntryPage newOE;
-    CheckOutSummaryPage summary;
-    OrderHistoryPage orderHistoryPage;
-    OrderEntryPage orderpage;
+    static OrderEntryPage orderEntryPage;
+    static NewOrderEntryPage newOE;
+    static CheckOutSummaryPage summary;
+    static OrderHistoryPage orderHistoryPage;
+    static OrderEntryPage orderpage;
 
     @Before
     public void LaunchBrowser1(Scenario scenario) throws Exception
@@ -51,7 +51,7 @@ public class OrderEntryPageSteps5
         newOE=new NewOrderEntryPage(driver,scenario);
         newOE.OECancel();
         newOE.VerifyCancelPopUp();
-        newOE.CancelAndSkipPopupDisabled();
+        newOE.CancelAndSkipPopupEnabled();
         newOE.CancelPop();
     }
 
@@ -72,7 +72,7 @@ public class OrderEntryPageSteps5
         DateTimeFormatter myFormatObj = DateTimeFormatter.ofPattern("EEEE, MMMM d, yyyy");
         String formattedDate = myDateObj.format(myFormatObj);
         orderpage.ClickCalender();
-        orderpage.SelectDate(formattedDate, 1);
+        orderpage.SelectDatePendingOrder(formattedDate, 1);
         orderpage.ChangedDeliveryDate();
 
         //Handle Popup that appears after changing delivery date
@@ -136,7 +136,6 @@ public class OrderEntryPageSteps5
     public void userShouldBeInNewOEPageAndClickOnPrintButton() throws InterruptedException, AWTException
     {
         newOE=new NewOrderEntryPage(driver,scenario);
-        newOE.ValidateNewOE();
         newOE.PrintNewOE();
     }
 

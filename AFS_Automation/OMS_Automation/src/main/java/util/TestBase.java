@@ -2,8 +2,10 @@ package util;
 
 
 import helper.HelpersMethod;
+import io.cucumber.java.Scenario;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.aeonbits.owner.ConfigFactory;
+import org.apache.http.ExceptionLogger;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -26,8 +28,10 @@ import java.util.concurrent.TimeUnit;
  * @Author Divya.Ramadas@afsi.com
  */
 
-public class TestBase {
+public class TestBase
+{
     public static Environment testEnvironment;
+   // public static MenuValues testMenuValues;
     private static TestBase instanceOfDriver = null;
     public static ThreadLocal<WebDriver> driver = new ThreadLocal<WebDriver>();
 
@@ -35,10 +39,14 @@ public class TestBase {
 
 
     //Reading property file for Parallel execution of the feature files
-    public static void InitializeProp(String envi) throws InterruptedException {
-        try {
+    public static void InitializeProp(String envi/*,String menu*/) throws InterruptedException
+    {
+        try
+        {
             ConfigFactory.setProperty("env", envi);
+           // ConfigFactory.setProperty("menu",menu);
             testEnvironment = ConfigFactory.create(Environment.class);
+           // testMenuValues = ConfigFactory.create(MenuValues.class);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -66,11 +74,12 @@ public class TestBase {
 
         String browserName = browser;
         boolean isHeadless = false;
-        switch (browserName.toLowerCase()) {
-            case "chrome": {
+        switch (browserName.toLowerCase())
+        {
+            case "chrome":
+            {
                 WebDriverManager.chromedriver().setup();
                 ChromeOptions chromeOptions = new ChromeOptions();
-
 
                 chromeOptions.addArguments("--safebrowsing-disable-download-protection");
                 chromeOptions.addArguments("--disable-popup-blocking");
@@ -85,7 +94,8 @@ public class TestBase {
                 driver.set(new ChromeDriver());
             }
             break;
-            case "firefox": {
+            case "firefox":
+            {
                 WebDriverManager.firefoxdriver().setup();
                 FirefoxOptions firefoxOptions = new FirefoxOptions();
                 FirefoxProfile profile = new FirefoxProfile();
@@ -108,7 +118,8 @@ public class TestBase {
                 driver.set(new FirefoxDriver(firefoxOptions));
             }
             break;
-            case "edge": {
+            case "edge":
+            {
                 //WebDriverManager.edgedriver().setup();
                 //EdgeOptions edgeOptions = new EdgeOptions();
 
@@ -120,6 +131,15 @@ public class TestBase {
                 driver.set(new InternetExplorerDriver());*/
             }
             break;
+            case "headless":
+            {
+                WebDriverManager.chromedriver().setup();
+                ChromeOptions chromeOptions = new ChromeOptions();
+                chromeOptions.addArguments("--headless=new");
+                chromeOptions.addArguments("window-size=1280,720");
+                driver.set(new ChromeDriver(chromeOptions));
+            }
+            break;
             default:
                 System.out.println("NO BROWSER HAS BEEN IDENTIFIED");
                 break;
@@ -127,11 +147,11 @@ public class TestBase {
 
         getDriver().manage().window().maximize();
         getDriver().manage().deleteAllCookies();
-        //karthik
         getDriver().manage().timeouts().pageLoadTimeout(TestUtil.PAGE_LOAD_TIMEOUT, TimeUnit.SECONDS);
         //getDriver().manage().timeouts().implicitlyWait(TestUtil.IMPLICIT_WAIT, TimeUnit.SECONDS);
+        System.out.println(testEnvironment.get_url());
         getDriver().get(testEnvironment.get_url());
-       // getDriver().navigate().refresh();
+        Thread.sleep(4000);
     }
 
     public static void unload() throws IOException {

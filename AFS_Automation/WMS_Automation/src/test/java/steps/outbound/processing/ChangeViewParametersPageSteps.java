@@ -2,31 +2,22 @@ package steps.outbound.processing;
 
 import common.constants.FilePaths;
 import common.enums.Sources;
-import common.utils.database.DataBaseConnection;
-import common.utils.database.SqlQueriesUtils;
-import common.utils.database.StoreProceduresUtils;
 import common.utils.objectmapper.ObjectMapperWrapper;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.When;
 import io.qameta.allure.Step;
-import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
-import objects.orderdata.ProcessingOrderDTO;
-import objects.storeproceduresdata.outbound.ProcessingParams;
-import objects.userdata.DataBaseData;
+import objects.outbound.OutboundOrderLoadsDTO;
 import org.apache.commons.lang3.RandomStringUtils;
-import steps.LoginPageSteps;
 import ui.pages.outbound.processing.ChangeViewParametersPage;
 
-import java.sql.ResultSet;
-import java.util.ArrayList;
 import java.util.List;
 
 @Slf4j
 public class ChangeViewParametersPageSteps {
     ChangeViewParametersPage changeViewParametersPage = new ChangeViewParametersPage();
-    StoreProceduresUtils storeProceduresUtils = new StoreProceduresUtils();
-    SqlQueriesUtils sqlQueriesUtils = new SqlQueriesUtils();
+    OutboundOrderLoadsDTO outboundOrderLoadsDTO = new ObjectMapperWrapper()
+            .getObject(FilePaths.OUTBOUND_ORDER_LOAD_DATA, OutboundOrderLoadsDTO.class);
 
     @Step
     public void waitForChangeViewParametersPageToLoad() {
@@ -56,6 +47,18 @@ public class ChangeViewParametersPageSteps {
     }
 
     @Step
+    @And("Enters Code by index {int} on Change View Parameters page")
+    public void enterCodeByIndex(int index) {
+        List<String> codes = List.of(outboundOrderLoadsDTO.getOutboundAccounts().getOutboundAccount1(), outboundOrderLoadsDTO
+                .getOutboundAccounts().getOutboundAccount2(), outboundOrderLoadsDTO.getOutboundAccounts().getOutboundAccount3(),
+                 outboundOrderLoadsDTO.getOutboundAccounts().getOutboundAccount4(), outboundOrderLoadsDTO.getOutboundAccounts()
+                .getOutboundAccount5(), outboundOrderLoadsDTO.getOutboundAccounts().getOutboundAccount6(), outboundOrderLoadsDTO
+                .getOutboundAccounts().getOutboundAccount7());
+        log.info("Entering code by index");
+        changeViewParametersPage.enterCode(codes.get(index));
+    }
+
+    @Step
     @When("Enters Code that does not exist in DB on Change View Parameters page")
     public void enterRandomCode() {
         String code = RandomStringUtils.randomAlphabetic(6);
@@ -78,10 +81,33 @@ public class ChangeViewParametersPageSteps {
     }
 
     @Step
+    @And("Enters order by index {int} on Change View Parameters page")
+    public void enterOrderByIndex(int index) {
+        log.info("Entering order by index");
+        List<String> orders = List.of(outboundOrderLoadsDTO.getOutboundOrders().getOutboundOrder1(), outboundOrderLoadsDTO
+                .getOutboundOrders().getOutboundOrder2(), outboundOrderLoadsDTO.getOutboundOrders().getOutboundOrder3(),
+                 outboundOrderLoadsDTO.getOutboundOrders().getOutboundOrder4(), outboundOrderLoadsDTO.getOutboundOrders()
+                .getOutboundOrder5(), outboundOrderLoadsDTO.getOutboundOrders().getOutboundOrder6(), outboundOrderLoadsDTO
+                .getOutboundOrders().getOutboundOrder7());
+        changeViewParametersPage.typeOrder(orders.get(index));
+    }
+
+    @Step
     @And("Selects Start Date {string} on Change View Parameters page")
     public void selectStartDate(String date) {
         log.info("Selecting Start Date " + date);
         changeViewParametersPage.selectStartDate(date);
+    }
+
+    @Step
+    @And("Selects Start Date by index {int} on Change View Parameters page")
+    public void selectStartDate(int index) {
+        log.info("Selecting Start Date by index on Change View Parameters page");
+        List<String> dates = List.of(outboundOrderLoadsDTO.getEndDates().getEndDate1(), outboundOrderLoadsDTO.getEndDates()
+                .getEndDate2(), outboundOrderLoadsDTO.getEndDates().getEndDate3(), outboundOrderLoadsDTO.getEndDates()
+                .getEndDate4(), outboundOrderLoadsDTO.getEndDates().getEndDate5(), outboundOrderLoadsDTO.getEndDates()
+                .getEndDate6(), outboundOrderLoadsDTO.getEndDates().getEndDate7());
+        changeViewParametersPage.selectStartDate(dates.get(index));
     }
 
     @Step

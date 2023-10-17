@@ -18,6 +18,7 @@ Feature: Admin setting
   @CheckFeaturedProducts
   Scenario Outline: Test scenario to check Featured products list
     Given User is on Home Page for Admin setting to select Admin option
+    Then User refreshes page Clicks on Permissions by drop down to select Customer Account# grid for WebOrder
     And User should enter menu "<Option>" in search bar to navigate to Featured Products
     Then User should check max number of Featured products set
     Then User should select "<MenuOption2>" from horizantal menu to select Featured products list
@@ -27,27 +28,29 @@ Feature: Admin setting
       |Option             | MenuOption2      |
       |Featured Products  | Featured products|
 
-  @AddFeaturedProducts
-  Scenario Outline: Test scenario to add new product to Featured products list
+  @DeleteFeaturedProducts
+  Scenario Outline: Test scenario to Delete product from Featured products list
     Given User is on Home Page for Admin setting to select Admin option
+    Then User refreshes page Clicks on Permissions by drop down to select Customer Account# grid for WebOrder
     And User should enter menu "<Option>" in search bar to navigate to Featured Products
     Then User should navigate to "<MenuOption1>" from horizantal menu to select Featured products list
-    Then User should increase max number of Featured products set
+    #Then User should decrease max number of Featured products set
     Then User should select "<MenuOption2>" from horizantal menu to select Featured products list
-    And User should be on Featured products list then User should click on Add Products button and add products to list
+    And User should be on Featured products list then User should select product from grid and click on Delete button
     Then User should list all the products in Product grid of Featured products
     Examples:
       |Option             | MenuOption1 | MenuOption2      |
       |Featured Products  |  Settings   | Featured products|
 
-  @DeleteFeaturedProducts
-  Scenario Outline: Test scenario to Delete product from Featured products list
+  @AddFeaturedProducts
+  Scenario Outline: Test scenario to add new product to Featured products list
     Given User is on Home Page for Admin setting to select Admin option
+    Then User refreshes page Clicks on Permissions by drop down to select Customer Account# grid for WebOrder
     And User should enter menu "<Option>" in search bar to navigate to Featured Products
     Then User should navigate to "<MenuOption1>" from horizantal menu to select Featured products list
-    Then User should decrease max number of Featured products set
+   # Then User should increase max number of Featured products set
     Then User should select "<MenuOption2>" from horizantal menu to select Featured products list
-    And User should be on Featured products list then User should select product from grid and click on Delete button
+    And User should be on Featured products list then User should click on Add Products button and add products to list
     Then User should list all the products in Product grid of Featured products
     Examples:
       |Option             | MenuOption1 | MenuOption2      |
@@ -56,6 +59,7 @@ Feature: Admin setting
   @SelectionOfProducts
   Scenario Outline: Test scenario for adding and deleting products and verifying whether they are displaying properly or not
     Given User is on Home Page for Admin setting to select Admin option
+    Then User refreshes page Clicks on Permissions by drop down to select Customer Account# grid for WebOrder
     And User should enter menu "<Option>" in search bar to navigate to Featured Products
     Then User should navigate to "<MenuOption1>" from horizantal menu to select Featured products list
     Then User changes max number of feature products and set it as 3
@@ -71,6 +75,7 @@ Feature: Admin setting
   @CatalogFilters
   Scenario Outline: Test scenario to use filter in catalog popup
     Given User is on Home Page for Admin setting to select Admin option
+    Then User refreshes page Clicks on Permissions by drop down to select Customer Account# grid for WebOrder
     And User should enter menu "<Option>" in search bar to navigate to Featured Products
     Then User should navigate to "<MenuOption1>" from horizantal menu to select Featured products list
     Then User should select "<MenuOption2>" from horizantal menu to select Featured products list

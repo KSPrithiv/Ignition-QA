@@ -61,25 +61,25 @@ public class UserRegistrationPage
     private WebElement Registration;
 
     @FindBy(id = "NewUserCompanyRegistration")
-            private WebElement NoAccCheckbox;
+    private WebElement NoAccCheckbox;
 
     @FindBy(id="CustomerName")
-            private WebElement CustomerName;
+    private WebElement CustomerName;
 
     @FindBy(id="AddressLine1")
-            private WebElement Address1;
+    private WebElement Address1;
 
     @FindBy(id="City")
-            private WebElement City;
+    private WebElement City;
 
     @FindBy(id="State")
-            private WebElement State;
+    private WebElement State;
 
     @FindBy(id="Zip")
-            private WebElement Zip;
+    private WebElement Zip;
 
     @FindBy(id="PhoneNumber")
-            private WebElement Phone;
+    private WebElement Phone;
 
     String Email= RandomValues.generateEmail(30);
     String Pass_Confirm= RandomValues.generateStringWithAllobedSplChars(15);
@@ -123,12 +123,12 @@ public class UserRegistrationPage
         String fname;
         try
         {
-            HelpersMethod.waitTillElementDisplayed(driver,Fname,2);
+            HelpersMethod.waitTillElementDisplayed(driver,Fname,10000);
             if(HelpersMethod.EleDisplay(Fname))
             {
                 fname=RandomValues.generateRandomString(20);
-                HelpersMethod.EnterText(driver,Fname,1,fname);
-                if(fname.equals(HelpersMethod.JSGetValueEle(driver,Fname,20)))
+                HelpersMethod.EnterText(driver,Fname,1000,fname);
+                if(fname.equals(HelpersMethod.JSGetValueEle(driver,Fname,1000)))
                 {
                     exists=true;
                     scenario.log("FIRST NAME: "+fname);
@@ -146,12 +146,12 @@ public class UserRegistrationPage
         String lname;
         try
         {
-            HelpersMethod.waitTillElementDisplayed(driver,Lname,10);
+            HelpersMethod.waitTillElementDisplayed(driver,Lname,10000);
             if(HelpersMethod.EleDisplay(Lname))
             {
                 lname=RandomValues.generateRandomString(20);
-                HelpersMethod.EnterText(driver,Lname,1,lname);
-                    exists=true;
+                HelpersMethod.EnterText(driver,Lname,1000,lname);
+                exists=true;
             }
             Assert.assertEquals(exists,true);
         }
@@ -165,13 +165,13 @@ public class UserRegistrationPage
         String uname=null;
         try
         {
-            HelpersMethod.waitTillElementDisplayed(driver,Uname,10);
+            HelpersMethod.waitTillElementDisplayed(driver,Uname,10000);
             if(HelpersMethod.EleDisplay(Uname))
             {
                 uname=RandomValues.generateRandomString(20);
-                HelpersMethod.EnterText(driver,Uname,10,uname);
+                HelpersMethod.EnterText(driver,Uname,1000,uname);
                 exists=true;
-                scenario.log("USER NAME IS "+HelpersMethod.JSGetValueEle(driver,Uname,10));
+                scenario.log("USER NAME IS "+HelpersMethod.JSGetValueEle(driver,Uname,1000));
             }
             Assert.assertEquals(exists,true);
         }
@@ -184,13 +184,13 @@ public class UserRegistrationPage
         exists=false;
         try
         {
-            HelpersMethod.waitTillElementDisplayed(driver,Actual_Email,2);
+            HelpersMethod.waitTillElementDisplayed(driver,Actual_Email,1000);
             if(HelpersMethod.EleDisplay(Actual_Email))
             {
                 HelpersMethod.ScrollElement(driver,Actual_Email);
-                HelpersMethod.EnterText(driver,Actual_Email,2,Email);
-                    exists=true;
-                scenario.log("ACTUAL EMAIL IS "+HelpersMethod.JSGetValueEle(driver,Actual_Email,10));
+                HelpersMethod.EnterText(driver,Actual_Email,1000,Email);
+                exists=true;
+                scenario.log("ACTUAL EMAIL IS "+HelpersMethod.JSGetValueEle(driver,Actual_Email,1000));
             }
             Assert.assertEquals(exists,true);
         }
@@ -203,12 +203,12 @@ public class UserRegistrationPage
         exists=false;
         try
         {
-            HelpersMethod.waitTillElementDisplayed(driver,ConfirmMail,4);
+            HelpersMethod.waitTillElementDisplayed(driver,ConfirmMail,10000);
             if(HelpersMethod.EleDisplay(ConfirmMail))
             {
-                HelpersMethod.EnterText(driver,ConfirmMail,1,Email);
-                    exists=true;
-                scenario.log("CONFIRM MAIL ID IS "+HelpersMethod.JSGetValueEle(driver,ConfirmMail,10));
+                HelpersMethod.EnterText(driver,ConfirmMail,1000,Email);
+                exists=true;
+                scenario.log("CONFIRM MAIL ID IS "+HelpersMethod.JSGetValueEle(driver,ConfirmMail,1000));
             }
             Assert.assertEquals(exists,true);
         }
@@ -221,12 +221,12 @@ public class UserRegistrationPage
         exists=false;
         try
         {
-            HelpersMethod.waitTillElementDisplayed(driver, Pass,4);
+            HelpersMethod.waitTillElementDisplayed(driver, Pass,1000);
             if(HelpersMethod.EleDisplay(Pass))
             {
-                HelpersMethod.EnterText(driver,Pass,1,Pass_Confirm);
-                    exists=true;
-                scenario.log("PASSWORD ENTERED IS "+HelpersMethod.JSGetValueEle(driver,Pass,10));
+                HelpersMethod.EnterText(driver,Pass,1000,Pass_Confirm);
+                exists=true;
+                scenario.log("PASSWORD ENTERED IS "+HelpersMethod.JSGetValueEle(driver,Pass,1000));
             }
             Assert.assertEquals(exists,true);
         }
@@ -239,12 +239,12 @@ public class UserRegistrationPage
         exists=false;
         try
         {
-            HelpersMethod.waitTillElementDisplayed(driver,ConfirmPass,40);
+            HelpersMethod.waitTillElementDisplayed(driver,ConfirmPass,1000);
             if(HelpersMethod.EleDisplay(ConfirmPass))
             {
-                HelpersMethod.EnterText(driver,ConfirmPass,10,Pass_Confirm);
-                    exists=true;
-                scenario.log("CONFIRM PASSWORD ENTERED IS "+HelpersMethod.JSGetValueEle(driver,ConfirmPass,10));
+                HelpersMethod.EnterText(driver,ConfirmPass,1000,Pass_Confirm);
+                exists=true;
+                scenario.log("CONFIRM PASSWORD ENTERED IS "+HelpersMethod.JSGetValueEle(driver,ConfirmPass,1000));
             }
             Assert.assertEquals(exists,true);
         }
@@ -256,15 +256,15 @@ public class UserRegistrationPage
     {
         try
         {
-            HelpersMethod.waitTillElementDisplayed(driver,Registration,10);
+            HelpersMethod.waitTillElementDisplayed(driver,Registration,1000);
             if(HelpersMethod.EleDisplay(Registration))
             {
                 HelpersMethod.ScrollElement(driver,Registration);
-                HelpersMethod.ClickBut(driver,Registration,10);
+                HelpersMethod.ClickBut(driver,Registration,1000);
                 if(HelpersMethod.IsExists("//div[@class='loader']",driver))
                 {
                     WebElement WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 400);
+                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100000);
                 }
             }
             if(HelpersMethod.IsExists("//div[contains(text(),'pending approval')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
@@ -273,7 +273,7 @@ public class UserRegistrationPage
                 WebElement popupTitle = pendingApprovalPopup.findElement(By.xpath(".//div[contains(@class,'k-window-title k-dialog-title')]"));
                 Assert.assertEquals(popupTitle.getText(), "Registration pending approval", "Verify Title message");
                 WebElement oKButton=pendingApprovalPopup.findElement(By.xpath(".//button"));
-                HelpersMethod.ClickBut(driver,oKButton,40);
+                HelpersMethod.ClickBut(driver,oKButton,1000);
             }
         }
         catch (Exception e) {}
@@ -284,15 +284,15 @@ public class UserRegistrationPage
     {
         try
         {
-            HelpersMethod.waitTillElementDisplayed(driver,RegCancel,40);
+            HelpersMethod.waitTillElementDisplayed(driver,RegCancel,1000);
             if (HelpersMethod.EleDisplay(RegCancel))
             {
                 HelpersMethod.ScrollElement(driver,RegCancel);
-                HelpersMethod.ClickBut(driver,RegCancel,10);
+                HelpersMethod.ClickBut(driver,RegCancel,1000);
             }
             if(HelpersMethod.IsExists("//div[contains(@class,'k-widget k-window k-dialog')]",driver))
             {
-                HelpersMethod.ClickBut(driver,HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-widget k-window k-dialog')]/descendant::button"),40);
+                HelpersMethod.ClickBut(driver,HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-widget k-window k-dialog')]/descendant::button"),1000);
             }
         }
         catch (Exception e) {}
@@ -321,7 +321,7 @@ public class UserRegistrationPage
         {
             if(HelpersMethod.EleDisplay(NoAccCheckbox))
             {
-                HelpersMethod.ActClick(driver,NoAccCheckbox, 1);
+                HelpersMethod.ActClick(driver,NoAccCheckbox, 1000);
             }
         }
         catch (Exception e) {}
@@ -334,8 +334,8 @@ public class UserRegistrationPage
         {
             if(HelpersMethod.EleDisplay(CustomerName))
             {
-                HelpersMethod.EnterText(driver,CustomerName,2,RandomValues.generateRandomString(10));
-                scenario.log("CUSTOMER NAME: "+HelpersMethod.JSGetValueEle(driver,CustomerName,10));
+                HelpersMethod.EnterText(driver,CustomerName,2,RandomValues.generateRandomString(1000));
+                scenario.log("CUSTOMER NAME: "+HelpersMethod.JSGetValueEle(driver,CustomerName,1000));
             }
         }
         catch (Exception e) {}
@@ -348,8 +348,8 @@ public class UserRegistrationPage
         {
             if(HelpersMethod.EleDisplay(Address1))
             {
-                HelpersMethod.EnterText(driver,Address1,2,RandomValues.generateRandomString(10));
-                scenario.log("ADDRESS ENTERED IS: "+HelpersMethod.JSGetValueEle(driver,Address1,10));
+                HelpersMethod.EnterText(driver,Address1,1000,RandomValues.generateRandomString(10));
+                scenario.log("ADDRESS ENTERED IS: "+HelpersMethod.JSGetValueEle(driver,Address1,1000));
             }
         }
         catch (Exception e) {}
@@ -362,8 +362,8 @@ public class UserRegistrationPage
         {
             if(HelpersMethod.EleDisplay(City))
             {
-                HelpersMethod.EnterText(driver,City,2,RandomValues.generateRandomString(10));
-                scenario.log("CITY VALUE ENTERED: "+HelpersMethod.JSGetValueEle(driver,City,10));
+                HelpersMethod.EnterText(driver,City,1000,RandomValues.generateRandomString(10));
+                scenario.log("CITY VALUE ENTERED: "+HelpersMethod.JSGetValueEle(driver,City,1000));
             }
         }
         catch (Exception e) {}
@@ -376,8 +376,8 @@ public class UserRegistrationPage
         {
             if (HelpersMethod.EleDisplay(State))
             {
-                HelpersMethod.EnterText(driver,State, 2,RandomValues.generateRandomString(2));
-                scenario.log("SATE VALUE ENTERED: "+HelpersMethod.JSGetValueEle(driver,State,10));
+                HelpersMethod.EnterText(driver,State, 1000,RandomValues.generateRandomString(2));
+                scenario.log("SATE VALUE ENTERED: "+HelpersMethod.JSGetValueEle(driver,State,1000));
             }
         }
         catch (Exception e) {}
@@ -390,8 +390,8 @@ public class UserRegistrationPage
         {
             if (HelpersMethod.EleDisplay(Zip))
             {
-                HelpersMethod.EnterText(driver,Zip,2,RandomValues.generateRandomNumber(10));
-                scenario.log("ZIP VALUE IS: "+HelpersMethod.JSGetValueEle(driver,Zip,10));
+                HelpersMethod.EnterText(driver,Zip,1000,RandomValues.generateRandomNumber(10));
+                scenario.log("ZIP VALUE IS: "+HelpersMethod.JSGetValueEle(driver,Zip,1000));
             }
         }
         catch (Exception e) {}
@@ -404,8 +404,8 @@ public class UserRegistrationPage
         {
             if(HelpersMethod.EleDisplay(Phone))
             {
-                HelpersMethod.EnterText(driver,Phone,2,RandomValues.generateRandomNumber(16));
-                scenario.log("PHONE VALUE ENTERD IS: "+HelpersMethod.JSGetValueEle(driver,Phone,10));
+                HelpersMethod.EnterText(driver,Phone,1000,RandomValues.generateRandomNumber(16));
+                scenario.log("PHONE VALUE ENTERD IS: "+HelpersMethod.JSGetValueEle(driver,Phone,1000));
             }
         }
         catch (Exception e) {}

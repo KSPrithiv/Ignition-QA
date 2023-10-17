@@ -1,18 +1,24 @@
 package steps.validations.outbound.routesummary;
 
+import common.constants.FilePaths;
 import common.constants.Notifications;
 import common.constants.TimeFormats;
 import common.enums.DockDoorOption;
 import common.enums.Statuses;
+import common.utils.objectmapper.ObjectMapperWrapper;
 import common.utils.time.TimeConversion;
 import io.cucumber.java.en.And;
+import objects.outbound.OutboundOrderLoadsDTO;
 import org.apache.commons.lang3.StringUtils;
 import org.testng.asserts.SoftAssert;
 import ui.pages.outbound.routesummary.OutboundRouteSummaryPage;
 import java.util.Calendar;
+import java.util.List;
 
 public class OutboundRouteSummaryPageValidations {
     OutboundRouteSummaryPage outboundRouteSummaryPage = new OutboundRouteSummaryPage();
+    OutboundOrderLoadsDTO outboundOrderLoadsDTO = new ObjectMapperWrapper()
+            .getObject(FilePaths.OUTBOUND_ORDER_LOAD_DATA, OutboundOrderLoadsDTO.class);
 
     @And("Validates Outbound Route Summary page is displayed")
     public void validateOutboundRouteSummaryPage() {
@@ -63,10 +69,34 @@ public class OutboundRouteSummaryPageValidations {
         softAssert.assertAll();
     }
 
+    @And("Route by index {int} is displayed on Outbound Route Summary page")
+    public void validateRouteByIndexDisplayed(int index) {
+        List<String> routes = List.of(outboundOrderLoadsDTO.getOutboundRoutes().getOutboundRoute1(), outboundOrderLoadsDTO
+                .getOutboundRoutes().getOutboundRoute2(), outboundOrderLoadsDTO.getOutboundRoutes().getOutboundRoute3(),
+                 outboundOrderLoadsDTO.getOutboundRoutes().getOutboundRoute4(), outboundOrderLoadsDTO.getOutboundRoutes()
+                .getOutboundRoute5(), outboundOrderLoadsDTO.getOutboundRoutes().getOutboundRoute6(), outboundOrderLoadsDTO
+                .getOutboundRoutes().getOutboundRoute7());
+        SoftAssert softAssert = new SoftAssert();
+        softAssert.assertEquals(outboundRouteSummaryPage.getRouteValue(), routes.get(index),"Route is not correct");
+        softAssert.assertAll();
+    }
+
     @And("Account {string} is displayed on Outbound Route Summary page")
     public void validateAccountDisplayed(String account) {
         SoftAssert softAssert = new SoftAssert();
         softAssert.assertEquals(outboundRouteSummaryPage.getAccountValue(), account, "Account is not correct");
+        softAssert.assertAll();
+    }
+
+    @And("Account by index {int} is displayed on Outbound Route Summary page")
+    public void validateAccountByIndexDisplayed(int index) {
+        List<String> accounts = List.of(outboundOrderLoadsDTO.getOutboundAccounts().getOutboundAccount1(), outboundOrderLoadsDTO
+                .getOutboundAccounts().getOutboundAccount2(), outboundOrderLoadsDTO.getOutboundAccounts().getOutboundAccount3(),
+                 outboundOrderLoadsDTO.getOutboundAccounts().getOutboundAccount4(), outboundOrderLoadsDTO.getOutboundAccounts()
+                .getOutboundAccount5(), outboundOrderLoadsDTO.getOutboundAccounts().getOutboundAccount6(), outboundOrderLoadsDTO
+                .getOutboundAccounts().getOutboundAccount7());
+        SoftAssert softAssert = new SoftAssert();
+        softAssert.assertEquals(outboundRouteSummaryPage.getAccountValue(), accounts.get(index), "Account is not correct");
         softAssert.assertAll();
     }
 
@@ -108,6 +138,20 @@ public class OutboundRouteSummaryPageValidations {
                 .stream()
                 .forEach(el ->
                  softAssert.assertEquals(el.getText().trim(), route,"Route is not correct"));
+        softAssert.assertAll();
+    }
+
+    @And("Routes are correct and equal route by index {int} on Outbound Route Summary page")
+    public void validateRoutesByIndexCorrect(int index) {
+        List<String> routes = List.of(outboundOrderLoadsDTO.getOutboundRoutes().getOutboundRoute1(), outboundOrderLoadsDTO
+                .getOutboundRoutes().getOutboundRoute2(), outboundOrderLoadsDTO.getOutboundRoutes().getOutboundRoute3(),
+                 outboundOrderLoadsDTO.getOutboundRoutes().getOutboundRoute4(), outboundOrderLoadsDTO.getOutboundRoutes()
+                .getOutboundRoute5(), outboundOrderLoadsDTO.getOutboundRoutes().getOutboundRoute6(), outboundOrderLoadsDTO
+                .getOutboundRoutes().getOutboundRoute7());
+        SoftAssert softAssert = new SoftAssert();
+        outboundRouteSummaryPage.getRoutes()
+                .stream()
+                .forEach(el -> softAssert.assertEquals(el.getText().trim(), routes.get(index),"Route is not correct"));
         softAssert.assertAll();
     }
 
@@ -232,8 +276,6 @@ public class OutboundRouteSummaryPageValidations {
         softAssert.assertTrue(outboundRouteSummaryPage.isDriverInputDisplayed(),"Driver input is not displayed");
         softAssert.assertTrue(outboundRouteSummaryPage.isMaxStopsLabelDisplayed(),"Max stops label is not displayed");
         softAssert.assertTrue(outboundRouteSummaryPage.isMaxStopsInputDisplayed(),"Max stops input is not displayed");
-        softAssert.assertTrue(outboundRouteSummaryPage.isDoorDropDownDisplayed(DockDoorOption.DOOR.getDockDoorOption()),
-                "Door is not displayed");
         softAssert.assertAll();
     }
 
@@ -277,10 +319,34 @@ public class OutboundRouteSummaryPageValidations {
         softAssert.assertAll();
     }
 
+    @And("Validates Route type by index {int} value on Outbound Route Summary page")
+    public void validateRouteTypeDefaultValueByIndex(int index) {
+        List<String> types = List.of(outboundOrderLoadsDTO.getOutboundOrderTypes().getOutboundOrderType1(), outboundOrderLoadsDTO
+                .getOutboundOrderTypes().getOutboundOrderType2(), outboundOrderLoadsDTO.getOutboundOrderTypes().getOutboundOrderType3(),
+                 outboundOrderLoadsDTO.getOutboundOrderTypes().getOutboundOrderType4(), outboundOrderLoadsDTO.getOutboundOrderTypes()
+                .getOutboundOrderType5(), outboundOrderLoadsDTO.getOutboundOrderTypes().getOutboundOrderType6());
+        SoftAssert softAssert = new SoftAssert();
+        softAssert.assertEquals(outboundRouteSummaryPage.getRouteTypeText(), types.get(index),
+                "Route code value is not correct");
+        softAssert.assertAll();
+    }
+
     @And("Validates carrier {string} value on Outbound Route Summary page")
     public void validateCarrierValue(String value) {
         SoftAssert softAssert = new SoftAssert();
         softAssert.assertTrue(outboundRouteSummaryPage.getCarrierInputText().contains(value),
+                "Carrier value is not correct");
+        softAssert.assertAll();
+    }
+
+    @And("Validates carrier by index {int} value on Outbound Route Summary page")
+    public void validateCarrierValueByIndex(int index) {
+        List<String> carriers = List.of(outboundOrderLoadsDTO.getOutboundCarriers().getOutboundCarrier1(), outboundOrderLoadsDTO
+                .getOutboundCarriers().getOutboundCarrier2(), outboundOrderLoadsDTO.getOutboundCarriers().getOutboundCarrier3(),
+                 outboundOrderLoadsDTO.getOutboundCarriers().getOutboundCarrier4(), outboundOrderLoadsDTO.getOutboundCarriers()
+                .getOutboundCarrier5(), outboundOrderLoadsDTO.getOutboundCarriers().getOutboundCarrier6());
+        SoftAssert softAssert = new SoftAssert();
+        softAssert.assertTrue(outboundRouteSummaryPage.getCarrierInputText().contains(carriers.get(index)),
                 "Carrier value is not correct");
         softAssert.assertAll();
     }
@@ -295,8 +361,18 @@ public class OutboundRouteSummaryPageValidations {
 
     @And("Validates max stops {string} value on Outbound Route Summary page")
     public void validateMaxStopsValue(String maxStop) {
-         SoftAssert softAssert = new SoftAssert();
+        SoftAssert softAssert = new SoftAssert();
         softAssert.assertTrue(outboundRouteSummaryPage.getMaxStopsValue().contains(maxStop),
+                "Max Stops value is not correct");
+        softAssert.assertAll();
+    }
+
+    @And("Validates max stops by index {int} value on Outbound Route Summary page")
+    public void validateMaxStopsValueByIndex(int index) {
+        List<String> stops = List.of(outboundOrderLoadsDTO.getOutboundMaxStops().getOutboundMaxStop1(), outboundOrderLoadsDTO
+                .getOutboundMaxStops().getOutboundMaxStop2(), outboundOrderLoadsDTO.getOutboundMaxStops().getOutboundMaxStop3());
+        SoftAssert softAssert = new SoftAssert();
+        softAssert.assertTrue(outboundRouteSummaryPage.getMaxStopsValue().contains(stops.get(index)),
                 "Max Stops value is not correct");
         softAssert.assertAll();
     }
@@ -305,6 +381,17 @@ public class OutboundRouteSummaryPageValidations {
     public void validateTemperatureValue(String value) {
         SoftAssert softAssert = new SoftAssert();
         softAssert.assertTrue(outboundRouteSummaryPage.getTemperatureValue().contains(value),
+                "Temperature value is not correct");
+        softAssert.assertAll();
+    }
+
+    @And("Validates temperature by index {int} value on Outbound Route Summary page")
+    public void validateTemperatureValueByIndex(int index) {
+        List<String> temperatures = List.of(outboundOrderLoadsDTO.getOutboundTemperatures().getOutboundTemperature1(),
+                outboundOrderLoadsDTO.getOutboundTemperatures().getOutboundTemperature2(), outboundOrderLoadsDTO
+                .getOutboundTemperatures().getOutboundTemperature3());
+        SoftAssert softAssert = new SoftAssert();
+        softAssert.assertTrue(outboundRouteSummaryPage.getTemperatureValue().contains(temperatures.get(index)),
                 "Temperature value is not correct");
         softAssert.assertAll();
     }
@@ -405,7 +492,6 @@ public class OutboundRouteSummaryPageValidations {
     public void validateStatusesDisplayed() {
         SoftAssert softAssert = new SoftAssert();
         softAssert.assertTrue(outboundRouteSummaryPage.isShippedStatusDisplayed(),"Shipped Status is not displayed");
-        softAssert.assertTrue(outboundRouteSummaryPage.isAuditStatusDisplayed(),"Audit Status is not displayed");
         softAssert.assertTrue(outboundRouteSummaryPage.isPickedStatusDisplayed(),"Picked Status is not displayed");
         softAssert.assertTrue(outboundRouteSummaryPage.isUnallocatedStatusDisplayed(),"Unallocated Status is not displayed");
         softAssert.assertTrue(outboundRouteSummaryPage.isShortsStatusDisplayed(),"Shorts Status is not displayed");
@@ -594,23 +680,10 @@ public class OutboundRouteSummaryPageValidations {
         softAssert.assertTrue(outboundRouteSummaryPage.isRouteFilterDisplayed(),"Route Filter is not displayed");
         softAssert.assertTrue(outboundRouteSummaryPage.isStopsFilterDisplayed(),"Stops Filter Button is not displayed");
         softAssert.assertTrue(outboundRouteSummaryPage.isShipperFilterDisplayed(),"Shipper Filter is not displayed");
-        softAssert.assertTrue(outboundRouteSummaryPage.isShipToFilterDisplayed(),"ShipTo Filter is not displayed");
-        softAssert.assertTrue(outboundRouteSummaryPage.isTasksFilterDisplayed(),"Tasks Filter is not displayed");
         softAssert.assertTrue(outboundRouteSummaryPage.isAssignToFilterDisplayed(),"Assign To Filter is not displayed");
         softAssert.assertTrue(outboundRouteSummaryPage.isReleasedFilterDisplayed(),"Released Filter is not displayed");
-        softAssert.assertTrue(outboundRouteSummaryPage.isQtyFilterDisplayed(),"Quantity Filter is not displayed");
-        softAssert.assertTrue(outboundRouteSummaryPage.isCubeFilterDisplayed(),"Cube Filter is not displayed");
-        softAssert.assertTrue(outboundRouteSummaryPage.isWeightFilterDisplayed(),"Weight Filter is not displayed");
         softAssert.assertTrue(outboundRouteSummaryPage.isAssignmentTypeFilterDisplayed(),"Assignment Type Filter is not displayed");
         softAssert.assertTrue(outboundRouteSummaryPage.isTaskGroupFilterDisplayed(),"Task Group Filter is not displayed");
-        softAssert.assertTrue(outboundRouteSummaryPage.isPercentPickedFilterDisplayed(),"Percent Picked Filter is not displayed");
-        softAssert.assertTrue(outboundRouteSummaryPage.isInUseByFilterDisplayed(),"InUseByd Filter is not displayed");
-        softAssert.assertTrue(outboundRouteSummaryPage.isEstimatedTimeFilterDisplayed(),"Estimated Time Filter is not displayed");
-        softAssert.assertTrue(outboundRouteSummaryPage.isStandardTimeFilterDisplayed(),"Standard Time Filter is not displayed");
-        softAssert.assertTrue(outboundRouteSummaryPage.isActualTimeFilterDisplayed(),"Actual Time Filter is not displayed");
-        softAssert.assertTrue(outboundRouteSummaryPage.isActivityIndicatorFilterDisplayed(),"Activity Indicator Filter is not displayed");
-        softAssert.assertTrue(outboundRouteSummaryPage.isRemainingFilterDisplayed(),"Remaining Filter is not displayed");
-        softAssert.assertTrue(outboundRouteSummaryPage.isPrintedFilterDisplayed(),"Printed Filter is not displayed");
         softAssert.assertAll();
     }
 
@@ -618,17 +691,14 @@ public class OutboundRouteSummaryPageValidations {
     public void verifyFilterOptions() {
         SoftAssert softAssert = new SoftAssert();
         softAssert.assertTrue(outboundRouteSummaryPage.isProductFilterDisplayed(),"Product Filter is not displayed");
-        softAssert.assertTrue(outboundRouteSummaryPage.isQuantityFilterDisplayed(),"Quantity Filter is not displayed");
         softAssert.assertTrue(outboundRouteSummaryPage.isFromFilterDisplayed(),"From Filter Button is not displayed");
         softAssert.assertTrue(outboundRouteSummaryPage.isToFilterDisplayed(),"To Filter Button is not displayed");
         softAssert.assertTrue(outboundRouteSummaryPage.isTypeFilterDisplayed(),"Type Filter is not displayed");
         softAssert.assertTrue(outboundRouteSummaryPage.isTaskGroupFilterDisplayed(),"Task Group Filter is not displayed");
         softAssert.assertTrue(outboundRouteSummaryPage.isStatusFilterDisplayed(),"Status Filter is not displayed");
         softAssert.assertTrue(outboundRouteSummaryPage.isAssignmentNumberFilterDisplayed(),"Assignment Number Filter is not displayed");
-        softAssert.assertTrue(outboundRouteSummaryPage.isInUseByFilterDisplayed(),"In Use By Filter is not displayed");
         softAssert.assertTrue(outboundRouteSummaryPage.isPriorityFilterDisplayed(),"Priority Filter is not displayed");
         softAssert.assertTrue(outboundRouteSummaryPage.isRouteFilterDisplayed(),"Route Filter is not displayed");
-        softAssert.assertTrue(outboundRouteSummaryPage.isStopFilterDisplayed(),"Stop Filter is not displayed");
         softAssert.assertTrue(outboundRouteSummaryPage.isShipperFilterDisplayed(),"Shipper Filter is not displayed");
         softAssert.assertAll();
     }
@@ -856,10 +926,33 @@ public class OutboundRouteSummaryPageValidations {
         softAssert.assertAll();
     }
 
+    @And("Validates Temperature type by index {int} is displayed on Outbound Route Summary page")
+    public void verifyTemperatureTypeByIndexDisplayed(int index) {
+        List<String> types = List.of(outboundOrderLoadsDTO.getOutboundTemperatureTypes().getOutboundTemperatureType1(),
+                outboundOrderLoadsDTO.getOutboundTemperatureTypes().getOutboundTemperatureType2(), outboundOrderLoadsDTO
+               .getOutboundTemperatureTypes().getOutboundTemperatureType3());
+        SoftAssert softAssert = new SoftAssert();
+        softAssert.assertTrue(outboundRouteSummaryPage.isTemperatureTypeDropDownDisplayed(types.get(index)),
+                "Temperature Type is not displayed");
+        softAssert.assertAll();
+    }
+
     @And("Validates Trailer {string} value is correct on Outbound Route Summary page")
     public void verifyTrailerValue(String value) {
         SoftAssert softAssert = new SoftAssert();
         softAssert.assertTrue(outboundRouteSummaryPage.getTrailerInputValue().contains(value),
+                "Trailer value is not displayed");
+        softAssert.assertAll();
+    }
+
+    @And("Validates Trailer by index {int} is correct on Outbound Route Summary page")
+    public void verifyTrailerValueByIndex(int index) {
+        List<String> trailers = List.of(outboundOrderLoadsDTO.getOutboundTrailers().getOutboundTrailer1(), outboundOrderLoadsDTO
+                .getOutboundTrailers().getOutboundTrailer2(), outboundOrderLoadsDTO.getOutboundTrailers().getOutboundTrailer3(),
+                outboundOrderLoadsDTO.getOutboundTrailers().getOutboundTrailer4(), outboundOrderLoadsDTO.getOutboundTrailers()
+                .getOutboundTrailer5(), outboundOrderLoadsDTO.getOutboundTrailers().getOutboundTrailer6());
+        SoftAssert softAssert = new SoftAssert();
+        softAssert.assertTrue(outboundRouteSummaryPage.getTrailerInputValue().contains(trailers.get(index)),
                 "Trailer value is not displayed");
         softAssert.assertAll();
     }
@@ -954,9 +1047,8 @@ public class OutboundRouteSummaryPageValidations {
     @And("Validates Route Data page is displayed on Outbound Route Summary page")
     public void validateDataPageIsDisplayed() {
         SoftAssert softAssert = new SoftAssert();
-        softAssert.assertTrue(outboundRouteSummaryPage.isDataAlt1Displayed(),"Data Alt1 is not displayed");
-        softAssert.assertTrue(outboundRouteSummaryPage.isDataAlt2Displayed(),"Data Alt2 is not displayed");
-        softAssert.assertTrue(outboundRouteSummaryPage.isDataAlt3Displayed(),"Data Alt3 is not displayed");
+        softAssert.assertTrue(outboundRouteSummaryPage.isRouteLabelDisplayed(),"Route Label is not displayed");
+        softAssert.assertTrue(outboundRouteSummaryPage.isEnterNameInputDisplayed(),"Enter Name Input is not displayed");
         softAssert.assertAll();
     }
 

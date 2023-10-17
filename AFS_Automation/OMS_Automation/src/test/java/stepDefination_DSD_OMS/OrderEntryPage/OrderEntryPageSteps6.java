@@ -29,12 +29,12 @@ public class OrderEntryPageSteps6
     Scenario scenario;
 
     static boolean exists=false;
-    OrderEntryPage orderEntryPage;
-    NewOrderEntryPage newOE;
-    CheckOutSummaryPage summary;
-    OrderHistoryPage orderHistoryPage;
-    OrderEntryPage orderpage;
-    CheckOutOrderPage checkorder;
+    static OrderEntryPage orderEntryPage;
+    static NewOrderEntryPage newOE;
+    static CheckOutSummaryPage summary;
+    static OrderHistoryPage orderHistoryPage;
+    static OrderEntryPage orderpage;
+    static CheckOutOrderPage checkorder;
 
     @Before
     public void LaunchBrowser1(Scenario scenario) throws Exception
@@ -68,6 +68,7 @@ public class OrderEntryPageSteps6
         summary.ValidateSummaryOrderPage();
         summary.PickupOrderValidate();
         summary.ClickSubmit();
+        summary.cutoffDialog();
         summary.SucessPopup();
     }
 
@@ -77,6 +78,7 @@ public class OrderEntryPageSteps6
         newOE=new NewOrderEntryPage(driver,scenario);
         newOE.ValidateNewOE();
         newOE.ClickPickupCheckBox();
+        newOE.validatePickupCheckBoxSelected();
     }
 
     @And("Select Pickup Order from drop down options and select delivery date by verifying existence of todays date")
@@ -103,7 +105,7 @@ public class OrderEntryPageSteps6
         orderpage=new OrderEntryPage(driver,scenario);
         WebElement StartBut= HelpersMethod.FindByElement(driver,"id","addButton");
         HelpersMethod.ScrollElement(driver,StartBut);
-        HelpersMethod.ClickBut(driver,StartBut,100);
+        HelpersMethod.ClickBut(driver,StartBut,1000);
         orderpage.ValidateRouteMandatoryPopup();
     }
 
@@ -130,8 +132,10 @@ public class OrderEntryPageSteps6
         exists=false;
         newOE = new NewOrderEntryPage(driver,scenario);
         exists=newOE.ClickNext();
-        //newOE.OutOfStockPop_ERP();
+        newOE.exceedsMaxQty();
+        newOE.OutOfStockPop_ERP();
         checkorder = new CheckOutOrderPage(driver, scenario);
+        checkorder.VerifyCheckOut();
         checkorder.Select_PaymentMethod_ClickDownArrow();
         if(checkorder.Verify_Existence_of_ContinuePayment())
         {

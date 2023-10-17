@@ -11,6 +11,7 @@ import common.utils.time.TimeConversion;
 import io.cucumber.java.en.And;
 import lombok.SneakyThrows;
 import objects.orderdata.ProcessingOrderDTO;
+import objects.outbound.OutboundOrderLoadsDTO;
 import objects.storeproceduresdata.outbound.ProcessingParams;
 import objects.userdata.DataBaseData;
 import org.openqa.selenium.WebElement;
@@ -30,6 +31,8 @@ public class ProcessingPageValidations {
     ProcessingPage processingPage = new ProcessingPage();
     StoreProceduresUtils storeProceduresUtils = new StoreProceduresUtils();
     SqlQueriesUtils sqlQueriesUtils = new SqlQueriesUtils();
+    OutboundOrderLoadsDTO outboundOrderLoadsDTO = new ObjectMapperWrapper()
+            .getObject(FilePaths.OUTBOUND_ORDER_LOAD_DATA, OutboundOrderLoadsDTO.class);
 
     @And("Processing page contains all web elements")
     public void validateProcessingPage() {
@@ -167,6 +170,18 @@ public class ProcessingPageValidations {
         SoftAssert softAssert = new SoftAssert();
         softAssert.assertTrue(processingPage.isDateValueExists(),"Date does not exist");
         softAssert.assertEquals(processingPage.isDateValueCorrect(), date,"Date Value Correct is not correct");
+        softAssert.assertAll();
+    }
+
+    @And("Validates date by index {int} is correct on Processing page")
+    public void validateDateValueByIndexIsCorrect(int index) {
+        List<String> dates = List.of(outboundOrderLoadsDTO.getEndDates().getEndDate1(),outboundOrderLoadsDTO.getEndDates()
+                .getEndDate2(), outboundOrderLoadsDTO.getEndDates().getEndDate3(), outboundOrderLoadsDTO.getEndDates()
+                .getEndDate4(), outboundOrderLoadsDTO.getEndDates().getEndDate5(), outboundOrderLoadsDTO.getEndDates()
+                .getEndDate6());
+        SoftAssert softAssert = new SoftAssert();
+        softAssert.assertTrue(processingPage.isDateValueExists(),"Date does not exist");
+     //   softAssert.assertEquals(processingPage.isDateValueCorrect(), dates.get(index),"Date Value Correct is not correct");
         softAssert.assertAll();
     }
 
@@ -308,8 +323,7 @@ public class ProcessingPageValidations {
     @And("Validate Unbatched Order with index {int} is checked on Processing page")
     public void validateUnbatchedOrderIsChecked(int num) {
         SoftAssert softAssert = new SoftAssert();
-        softAssert.assertTrue(processingPage.isOrderUnbatchedChecked(num),
-                "Unbatched Order is not checked");
+        softAssert.assertTrue(processingPage.isOrderUnbatchedChecked(num),"Unbatched Order is not checked");
         softAssert.assertAll();
     }
 

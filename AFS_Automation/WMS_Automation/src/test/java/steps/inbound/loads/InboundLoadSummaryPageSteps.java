@@ -1,8 +1,6 @@
 package steps.inbound.loads;
 
 import common.constants.FilePaths;
-import common.utils.database.DataBaseConnection;
-import common.utils.database.StoreProceduresUtils;
 import common.utils.objectmapper.ObjectMapperWrapper;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
@@ -10,17 +8,15 @@ import io.cucumber.java.en.When;
 import io.qameta.allure.Step;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
-import objects.storeproceduresdata.inbound.InboundLoadsSummaryParams;
-import objects.userdata.DataBaseData;
-import steps.LoginPageSteps;
+import objects.inbound.InboundOrderLoadsDTO;
 import ui.pages.inbound.loads.InboundLoadSummaryPage;
-
-import java.sql.ResultSet;
+import java.util.List;
 
 @Slf4j
 public class InboundLoadSummaryPageSteps {
     InboundLoadSummaryPage inboundLoadSummaryPage = new InboundLoadSummaryPage();
-    StoreProceduresUtils storeProceduresUtils = new StoreProceduresUtils();
+    InboundOrderLoadsDTO inboundOrderLoadsDTO = new ObjectMapperWrapper()
+            .getObject(FilePaths.INBOUND_ORDER_LOAD_DATA, InboundOrderLoadsDTO.class);
 
     @Step
     @And("Inbound Load Summary page appears")
@@ -37,11 +33,31 @@ public class InboundLoadSummaryPageSteps {
     }
 
     @Step
+    @And("User types product code by index {int} on Inbound Load Summary page")
+    public void typeValueInSearch(int index) {
+        log.info("User types product code by index {int} on Inbound Load Summary page");
+        List<String> codes = List.of(inboundOrderLoadsDTO.getProductCodes().getProductCode1(), inboundOrderLoadsDTO
+                .getProductCodes().getProductCode2(), inboundOrderLoadsDTO.getProductCodes().getProductCode3(),
+                inboundOrderLoadsDTO.getProductCodes().getProductCode4(), inboundOrderLoadsDTO.getProductCodes().getProductCode5());
+        inboundLoadSummaryPage.typeValueInSearch(codes.get(index));
+    }
+
+    @Step
     @When("User searches for Loads starting from {string} date")
     public void findLoadsFromDate(String date) {
         log.info("Finding Loads starting range " + date);
         inboundLoadSummaryPage.typeDateLoadStart(date);
-     //   inboundLoadSummaryPage.clickSearchSupplierButton();
+    }
+
+    @Step
+    @When("User searches for Loads starting from date by index {int}")
+    public void findLoadsFromDateByIndex(int index) {
+        log.info("Finding Loads starting range from date by index");
+        List<String> startDates = List.of(inboundOrderLoadsDTO.getStartDates().getStartDate1(), inboundOrderLoadsDTO
+                .getStartDates().getStartDate2(), inboundOrderLoadsDTO.getStartDates().getStartDate3(), inboundOrderLoadsDTO
+                .getStartDates().getStartDate4(), inboundOrderLoadsDTO.getStartDates().getStartDate5(), inboundOrderLoadsDTO
+                .getStartDates().getStartDate6());
+        inboundLoadSummaryPage.typeDateLoadStart(startDates.get(index));
     }
 
     @Step
@@ -52,10 +68,32 @@ public class InboundLoadSummaryPageSteps {
     }
 
     @Step
+    @When("Types start date by index {int} on Inbound Load Summary page")
+    public void typeStartDateByIndex(int index) {
+        log.info("Types Start Date by index");
+        List<String> startDates = List.of(inboundOrderLoadsDTO.getStartDates().getStartDate1(), inboundOrderLoadsDTO
+                .getStartDates().getStartDate2(), inboundOrderLoadsDTO.getStartDates().getStartDate3(), inboundOrderLoadsDTO
+                .getStartDates().getStartDate4(), inboundOrderLoadsDTO.getStartDates().getStartDate5(), inboundOrderLoadsDTO
+                .getStartDates().getStartDate6());
+        inboundLoadSummaryPage.typeDateLoadStart(startDates.get(index));
+    }
+
+    @Step
     @And("Types {string} end date on Inbound Load Summary page")
     public void typeEndDate(String date) {
         log.info("Types End Date " + date);
         inboundLoadSummaryPage.typeDateRouteEnd(date);
+    }
+
+    @Step
+    @And("Types end date by index {int} on Inbound Load Summary page")
+    public void typeEndDateByIndex(int index) {
+        log.info("Types End Date by index");
+        List<String> endDates = List.of(inboundOrderLoadsDTO.getEndDates().getEndDate1(), inboundOrderLoadsDTO
+                .getEndDates().getEndDate2(), inboundOrderLoadsDTO.getEndDates().getEndDate3(), inboundOrderLoadsDTO
+                .getEndDates().getEndDate4(), inboundOrderLoadsDTO.getEndDates().getEndDate5(), inboundOrderLoadsDTO
+                .getEndDates().getEndDate6());
+        inboundLoadSummaryPage.typeDateRouteEnd(endDates.get(index));
     }
 
     @Step
@@ -66,10 +104,32 @@ public class InboundLoadSummaryPageSteps {
     }
 
     @Step
+    @And("Types temperature by index {int} on Inbound Load Summary page")
+    public void typeTemperatureByIndex(int index) {
+        log.info("Types Temperature by index");
+        List<String> temperatures = List.of(inboundOrderLoadsDTO.getTemperatures().getTemperature1(), inboundOrderLoadsDTO
+                .getTemperatures().getTemperature2(), inboundOrderLoadsDTO.getTemperatures().getTemperature3(),
+                inboundOrderLoadsDTO.getTemperatures().getTemperature4(), inboundOrderLoadsDTO.getTemperatures()
+                .getTemperature5());
+        inboundLoadSummaryPage.typeTemperature(temperatures.get(index));
+    }
+
+    @Step
     @And("Types {string} seal number on Inbound Load Summary page")
     public void typeSealNumber(String sealNum) {
         log.info("Types Seal Number " + sealNum);
         inboundLoadSummaryPage.typeSealNumber(sealNum);
+    }
+
+    @Step
+    @And("Types seal number by index {int} on Inbound Load Summary page")
+    public void typeSealNumber(int index) {
+        log.info("Types Seal Number by index");
+        List<String> seals = List.of(inboundOrderLoadsDTO.getTemperatures().getTemperature1(), inboundOrderLoadsDTO
+                .getTemperatures().getTemperature2(), inboundOrderLoadsDTO.getTemperatures().getTemperature3(),
+                 inboundOrderLoadsDTO.getTemperatures().getTemperature4(), inboundOrderLoadsDTO.getTemperatures()
+                .getTemperature5());
+        inboundLoadSummaryPage.typeSealNumber(seals.get(index));
     }
 
     @Step
@@ -133,6 +193,17 @@ public class InboundLoadSummaryPageSteps {
     public void clickCarrier(String carrier) {
         log.info("Clicking Carrier  " + carrier);
         inboundLoadSummaryPage.clickCarrierDropdown(carrier);
+    }
+
+    @Step
+    @Then("Clicks carrier by index {int} on Inbound Load Summary page")
+    public void clickCarrierByIndex(int index) {
+        log.info("Clicking Carrier by index");
+        List<String> carriers = List.of(inboundOrderLoadsDTO.getInboundCarriers().getInboundCarrier1(), inboundOrderLoadsDTO
+                 .getInboundCarriers().getInboundCarrier2(), inboundOrderLoadsDTO.getInboundCarriers().getInboundCarrier3(),
+                  inboundOrderLoadsDTO.getInboundCarriers().getInboundCarrier4(), inboundOrderLoadsDTO.getInboundCarriers()
+                 .getInboundCarrier5());
+        inboundLoadSummaryPage.clickCarrierDropdown(carriers.get(index));
     }
 
     @Step
@@ -213,6 +284,15 @@ public class InboundLoadSummaryPageSteps {
     }
 
     @Step
+    @Then("Clicks load type by index {int} dropdown on Inbound Load Summary page")
+    public void clickLoadTypeByIndexDropdown(int index) {
+        log.info("Clicking Load Type by index");
+        List<String> loadTypes = List.of(inboundOrderLoadsDTO.getInboundLoadTypes().getInboundLoadType1(), inboundOrderLoadsDTO
+                .getInboundLoadTypes().getInboundLoadType2(), inboundOrderLoadsDTO.getInboundLoadTypes().getInboundLoadType3());
+        inboundLoadSummaryPage.clickLoadTypeDropdown(loadTypes.get(index));
+    }
+
+    @Step
     @Then("Clicks buyer {string} dropdown on Inbound Load Summary page")
     public void clickBuyerDropdown(String buyer) {
         log.info("Clicking Buyer  " + buyer);
@@ -220,10 +300,32 @@ public class InboundLoadSummaryPageSteps {
     }
 
     @Step
+    @Then("Clicks buyer by index {int} dropdown on Inbound Load Summary page")
+    public void clickBuyerByIndexDropdown(int index) {
+        log.info("Clicking Buyer by index");
+        List<String> buyers = List.of(inboundOrderLoadsDTO.getInboundBuyers().getInboundBuyer1(), inboundOrderLoadsDTO
+                .getInboundBuyers().getInboundBuyer2(), inboundOrderLoadsDTO.getInboundBuyers().getInboundBuyer3(),
+                 inboundOrderLoadsDTO.getInboundBuyers().getInboundBuyer4(), inboundOrderLoadsDTO.getInboundBuyers()
+                .getInboundBuyer5());
+        inboundLoadSummaryPage.clickBuyerDropDown(buyers.get(index));
+    }
+
+    @Step
     @And("Selects buyer {string} dropdown on Inbound Load Summary page")
     public void selectBuyer(String buyer) {
         log.info("Selecting Buyer  " + buyer);
         inboundLoadSummaryPage.selectOption(buyer);
+    }
+
+    @Step
+    @And("Selects buyer by index {int} dropdown on Inbound Load Summary page")
+    public void selectBuyer(int index) {
+        log.info("Selecting Buyer by index");
+        List<String> buyers = List.of(inboundOrderLoadsDTO.getInboundBuyers().getInboundBuyer1(), inboundOrderLoadsDTO
+                .getInboundBuyers().getInboundBuyer2(), inboundOrderLoadsDTO.getInboundBuyers().getInboundBuyer3(),
+                 inboundOrderLoadsDTO.getInboundBuyers().getInboundBuyer4(), inboundOrderLoadsDTO.getInboundBuyers()
+                .getInboundBuyer5());
+        inboundLoadSummaryPage.selectOption(buyers.get(index));
     }
 
     @Step
@@ -241,10 +343,30 @@ public class InboundLoadSummaryPageSteps {
     }
 
     @Step
+    @Then("Clicks load type by index {int} on Inbound Load Summary page")
+    public void clickLoadTypeByIndex(int index) {
+        log.info("Clicking Load Type by index");
+        List<String> loadTypes = List.of(inboundOrderLoadsDTO.getInboundLoadTypes().getInboundLoadType1(), inboundOrderLoadsDTO
+                .getInboundLoadTypes().getInboundLoadType2(), inboundOrderLoadsDTO.getInboundLoadTypes().getInboundLoadType3());
+        inboundLoadSummaryPage.selectOption(loadTypes.get(index));
+    }
+
+    @Step
     @Then("Types supplier code {string} on Inbound Load Summary page")
     public void typeSupplierCode(String code) {
         log.info("Searching supplier code " + code);
         inboundLoadSummaryPage.searchSupplierByCode(code);
+    }
+
+    @Step
+    @Then("Types supplier code by index {int} on Inbound Load Summary page")
+    public void typeSupplierCodeByIndex(int index) {
+        log.info("Searching supplier code by index");
+        List<String> suppliers = List.of(inboundOrderLoadsDTO.getInboundSuppliers().getInboundSupplier1(), inboundOrderLoadsDTO
+                .getInboundSuppliers().getInboundSupplier2(), inboundOrderLoadsDTO.getInboundSuppliers().getInboundSupplier3(),
+                 inboundOrderLoadsDTO.getInboundSuppliers().getInboundSupplier4(), inboundOrderLoadsDTO.getInboundSuppliers()
+                .getInboundSupplier5());
+        inboundLoadSummaryPage.searchSupplierByCode(suppliers.get(index));
     }
 
     @Step
@@ -259,6 +381,49 @@ public class InboundLoadSummaryPageSteps {
     public void typeProduct(String product) {
         log.info("Searching product " + product);
         inboundLoadSummaryPage.typeProduct(product);
+    }
+
+    @Step
+    @Then("Types {string} in Search Input on Inbound Load Summary page")
+    public void typeValueInSearch(String value) {
+        log.info("Searching " + value + " in Search");
+        inboundLoadSummaryPage.typeValueInSearch(value);
+    }
+
+    @Step
+    @Then("Types product code by index {int} on Inbound Load Summary page")
+    public void typeProductCodeByIndex(int index) {
+        log.info("Searching product by index");
+        List<String> productCodes = List.of(inboundOrderLoadsDTO.getProductCodes().getProductCode1(), inboundOrderLoadsDTO
+                .getProductCodes().getProductCode2(), inboundOrderLoadsDTO.getProductCodes().getProductCode3(),
+                inboundOrderLoadsDTO.getProductCodes().getProductCode4(), inboundOrderLoadsDTO.getProductCodes().getProductCode5(),
+                inboundOrderLoadsDTO.getProductCodes().getProductCode6(),  inboundOrderLoadsDTO.getProductCodes().getProductCode7());
+        inboundLoadSummaryPage.typeValueInSearch(productCodes.get(index));
+    }
+
+    @Step
+    @Then("Types product name by index {int} on Inbound Load Summary page")
+    public void typeProductByIndex(int index) {
+        log.info("Searching product by index");
+        List<String> products = List.of(inboundOrderLoadsDTO.getProductNames().getProductName1(), inboundOrderLoadsDTO
+                .getProductNames().getProductName2(), inboundOrderLoadsDTO.getProductNames().getProductName3(),
+                inboundOrderLoadsDTO.getProductNames().getProductName4(), inboundOrderLoadsDTO.getProductNames().getProductName5(),
+                inboundOrderLoadsDTO.getProductNames().getProductName6());
+        inboundLoadSummaryPage.typeValueInSearch(products.get(index));
+    }
+
+    @Step
+    @And("Clicks clear icon search input on Inbound Load Summary page")
+    public void clickClearSearchInput() {
+        log.info("Click Clear Search input");
+        inboundLoadSummaryPage.clearSearchInput();
+    }
+
+    @Step
+    @And("Cleans search input on Inbound Load Summary page")
+    public void cleanSearchInput() {
+        log.info("Clean Search Input");
+        inboundLoadSummaryPage.cleanSearchInput();
     }
 
     @Step
@@ -283,10 +448,31 @@ public class InboundLoadSummaryPageSteps {
     }
 
     @Step
+    @Then("Selects carrier by index {int} on Inbound Load Summary page")
+    public void selectCarrierByIndex(int index) {
+        log.info("Selecting Carrier by index");
+        List<String> carriers = List.of(inboundOrderLoadsDTO.getInboundCarriers().getInboundCarrier1(), inboundOrderLoadsDTO
+                .getInboundCarriers().getInboundCarrier2(), inboundOrderLoadsDTO.getInboundCarriers().getInboundCarrier3(),
+                inboundOrderLoadsDTO.getInboundCarriers().getInboundCarrier4(), inboundOrderLoadsDTO.getInboundCarriers()
+                .getInboundCarrier5());
+        inboundLoadSummaryPage.selectOption(carriers.get(index));
+    }
+
+    @Step
     @Then("Types load {string} on Inbound Load Summary page")
     public void typesLoad(String load) {
         log.info("Types Load " + load);
         inboundLoadSummaryPage.searchLoad(load);
+    }
+
+    @Step
+    @Then("Types load by index {int} on Inbound Load Summary page")
+    public void typesLoadByIndex(int index) {
+        log.info("Types Load by index");
+        List<String> loads = List.of(inboundOrderLoadsDTO.getLoadNames().getLoadName1(), inboundOrderLoadsDTO.getLoadNames()
+                .getLoadName2(), inboundOrderLoadsDTO.getLoadNames().getLoadName3(), inboundOrderLoadsDTO.getLoadNames()
+                .getLoadName4(), inboundOrderLoadsDTO.getLoadNames().getLoadName5(), inboundOrderLoadsDTO.getLoadNames().getLoadName6());
+        inboundLoadSummaryPage.searchLoad(loads.get(index));
     }
 
     @Step
@@ -341,6 +527,20 @@ public class InboundLoadSummaryPageSteps {
     }
 
     @Step
+    @And("Clicks Images button on Inbound Load Summary page")
+    public void clickImagesButton() {
+        log.info("Clicks Images button");
+        inboundLoadSummaryPage.clickImagesButton();
+    }
+
+    @Step
+    @And("Clicks Comments button on Inbound Load Summary page")
+    public void clickCommentsButton() {
+        log.info("Clicks Comments button");
+        inboundLoadSummaryPage.clickCommentsButton();
+    }
+
+    @Step
     @And("Checks Load with index {int} on Inbound Load Summary page")
     public void checkLoadByLoadNumber(int loadNum) {
         log.info("Check Load by number " + loadNum);
@@ -358,22 +558,8 @@ public class InboundLoadSummaryPageSteps {
     @Step
     @And("Selects Load Route and {string} Load Option for Load")
     public void applyLoadOptionForLoadByLoadRoute(String option) {
-        DataBaseData dataBaseData = DataBaseData.builder()
-                .username(LoginPageSteps.environment.getDbUserName())
-                .password(LoginPageSteps.environment.getDbUserPassword())
-                .host(LoginPageSteps.environment.getDbIp())
-                .schema(LoginPageSteps.environment.getDbName())
-                .build();
-        InboundLoadsSummaryParams inboundLoadsSummaryParams = new ObjectMapperWrapper()
-                .getObject(FilePaths.INBOUND_LOAD_SUMMARY_DATA, InboundLoadsSummaryParams.class);
-        inboundLoadsSummaryParams.setStart_date("2017-01-01");
-        inboundLoadsSummaryParams.setEnd_date("2022-01-01");
-        ResultSet resultSet = storeProceduresUtils.executeStoreProcedureInboundRouteSummary(DataBaseConnection
-                .getDataBaseConnection(dataBaseData), inboundLoadsSummaryParams);
-        inboundLoadsSummaryParams.setRoute_code(resultSet.getString(1).trim());
-       // DataBaseConnection.closeDataBaseConnection();
-        log.info("Applying Load option " + option + " Load by route " + inboundLoadsSummaryParams.getRoute_code());
-        inboundLoadSummaryPage.selectLoadByLoadRouteCode(inboundLoadsSummaryParams.getRoute_code());
+        log.info("Applying Load option " + option + " Load by route ");
+        inboundLoadSummaryPage.selectLoadByLoadRouteCode("");
         inboundLoadSummaryPage.selectLoadOption(option);
     }
 
@@ -381,22 +567,8 @@ public class InboundLoadSummaryPageSteps {
     @Step
     @And("Checks Load Route and {string} Load Option for Load")
     public void checkAndApplyLoadOptionForLoadByLoadRoute(String option) {
-        DataBaseData dataBaseData = DataBaseData.builder()
-                .username(LoginPageSteps.environment.getDbUserName())
-                .password(LoginPageSteps.environment.getDbUserPassword())
-                .host(LoginPageSteps.environment.getDbIp())
-                .schema(LoginPageSteps.environment.getDbName())
-                .build();
-        InboundLoadsSummaryParams inboundLoadsSummaryParams = new ObjectMapperWrapper()
-                .getObject(FilePaths.INBOUND_LOAD_SUMMARY_DATA, InboundLoadsSummaryParams.class);
-        inboundLoadsSummaryParams.setStart_date("2017-01-01");
-        inboundLoadsSummaryParams.setEnd_date("2022-01-01");
-        ResultSet resultSet = storeProceduresUtils.executeStoreProcedureInboundRouteSummary(DataBaseConnection
-                .getDataBaseConnection(dataBaseData), inboundLoadsSummaryParams);
-        inboundLoadsSummaryParams.setRoute_code(resultSet.getString(1).trim());
-        // DataBaseConnection.closeDataBaseConnection();
-        log.info("Applying Load option " + option + " Load by route " + inboundLoadsSummaryParams.getRoute_code());
-        inboundLoadSummaryPage.checkLoadByLoadRouteCode(inboundLoadsSummaryParams.getRoute_code());
+        log.info("Applying Load option " + option + " Load by route ");
+        inboundLoadSummaryPage.checkLoadByLoadRouteCode("");
         inboundLoadSummaryPage.selectLoadOption(option);
     }
 }

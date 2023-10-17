@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="1a8bad37-0989-4f45-b875-e6fe48a82ed7" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/ignition-qa.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/jarRepositories.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AFS_Automation/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/AFS_Automation/.idea/encodings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AFS_Automation/OMS_Automation/target/classes/features_DSD_OMS/QuoteFeature/quoteFeature.feature" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AFS_Automation/OMS_Automation/target/classes/features_DSD_OMS/QuoteFeature/quoteFeature1.feature" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AFS_Automation/OMS_Automation/target/classes/features_Shared/features_Shared_DSD/BadgeBuilderFeature/iconsSelectionFeature.feature" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AFS_Automation/OMS_Automation/target/classes/features_Shared/features_Shared_DSD/BadgeBuilderFeature/iconsSelectionFeature1.feature" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AFS_Automation/OMS_Automation/target/classes/features_Shared/features_Shared_DSD/BadgeBuilderFeature_Phase2/iconsSelectionFeature2.feature" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AFS_Automation/WMS_Automation/target/WMS_Automation-1.0-SNAPSHOT.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AFS_Automation/WMS_Automation/target/classes/common/setup/DriverManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/AFS_Automation/WMS_Automation/target/classes/common/setup/DriverManager.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AFS_Automation/WMS_Automation/target/classes/common/utils/Waiters.class" beforeDir="false" afterPath="$PROJECT_DIR$/AFS_Automation/WMS_Automation/target/classes/common/utils/Waiters.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AFS_Automation/WMS_Automation/target/classes/common/utils/database/implementation/CallableStatementImplementation.class" beforeDir="false" afterPath="$PROJECT_DIR$/AFS_Automation/WMS_Automation/target/classes/common/utils/database/implementation/CallableStatementImplementation.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AFS_Automation/WMS_Automation/target/classes/listeners/TestListener.class" beforeDir="false" afterPath="$PROJECT_DIR$/AFS_Automation/WMS_Automation/target/classes/listeners/TestListener.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AFS_Automation/WMS_Automation/target/classes/objects/countingcount/CountingCountDTO$CountingCountDTOBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/AFS_Automation/WMS_Automation/target/classes/objects/countingcount/CountingCountDTO$CountingCountDTOBuilder.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AFS_Automation/WMS_Automation/target/classes/objects/countingcount/CountingCountDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/AFS_Automation/WMS_Automation/target/classes/objects/countingcount/CountingCountDTO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AFS_Automation/WMS_Automation/target/classes/objects/countingsessions/CountingSessionsDTO$CountingSessionsDTOBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/AFS_Automation/WMS_Automation/target/classes/objects/countingsessions/CountingSessionsDTO$CountingSessionsDTOBuilder.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AFS_Automation/WMS_Automation/target/classes/objects/countingsessions/CountingSessionsDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/AFS_Automation/WMS_Automation/target/classes/objects/countingsessions/CountingSessionsDTO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AFS_Automation/WMS_Automation/target/classes/objects/lookupproductslocationsdata/LookupDataDTO$LookupDataDTOBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/AFS_Automation/WMS_Automation/target/classes/objects/lookupproductslocationsdata/LookupDataDTO$LookupDataDTOBuilder.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AFS_Automation/WMS_Automation/target/classes/objects/lookupproductslocationsdata/LookupDataDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/AFS_Automation/WMS_Automation/target/classes/objects/lookupproductslocationsdata/LookupDataDTO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AFS_Automation/WMS_Automation/target/classes/objects/orderdata/LinkedOrdersListDTO$LinkedOrdersListDTOBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/AFS_Automation/WMS_Automation/target/classes/objects/orderdata/LinkedOrdersListDTO$LinkedOrdersListDTOBuilder.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AFS_Automation/WMS_Automation/target/classes/objects/orderdata/LinkedOrdersListDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/AFS_Automation/WMS_Automation/target/classes/objects/orderdata/LinkedOrdersListDTO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AFS_Automation/WMS_Automation/target/classes/objects/orderdata/ResponseDTO$ResponseDTOBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/AFS_Automation/WMS_Automation/target/classes/objects/orderdata/ResponseDTO$ResponseDTOBuilder.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AFS_Automation/WMS_Automation/target/classes/objects/orderdata/ResponseDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/AFS_Automation/WMS_Automation/target/classes/objects/orderdata/ResponseDTO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AFS_Automation/WMS_Automation/target/classes/objects/processedorderdata/OrdersListDTO$OrdersListDTOBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/AFS_Automation/WMS_Automation/target/classes/objects/processedorderdata/OrdersListDTO$OrdersListDTOBuilder.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AFS_Automation/WMS_Automation/target/classes/objects/processedorderdata/OrdersListDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/AFS_Automation/WMS_Automation/target/classes/objects/processedorderdata/OrdersListDTO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AFS_Automation/WMS_Automation/target/classes/objects/processedorderdata/ResponseDTO$ResponseDTOBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/AFS_Automation/WMS_Automation/target/classes/objects/processedorderdata/ResponseDTO$ResponseDTOBuilder.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AFS_Automation/WMS_Automation/target/classes/objects/processedorderdata/ResponseDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/AFS_Automation/WMS_Automation/target/classes/objects/processedorderdata/ResponseDTO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AFS_Automation/WMS_Automation/target/classes/objects/workqueuedata/WorkQueueDataDTO$WorkQueueDataDTOBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/AFS_Automation/WMS_Automation/target/classes/objects/workqueuedata/WorkQueueDataDTO$WorkQueueDataDTOBuilder.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AFS_Automation/WMS_Automation/target/classes/objects/workqueuedata/WorkQueueDataDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/AFS_Automation/WMS_Automation/target/classes/objects/workqueuedata/WorkQueueDataDTO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AFS_Automation/WMS_Automation/target/classes/ui/pages/appointments/AppointmentSchedulerOrderPage.class" beforeDir="false" afterPath="$PROJECT_DIR$/AFS_Automation/WMS_Automation/target/classes/ui/pages/appointments/AppointmentSchedulerOrderPage.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AFS_Automation/WMS_Automation/target/classes/ui/pages/lookup/dockmanagement/DockManagementLookupPage.class" beforeDir="false" afterPath="$PROJECT_DIR$/AFS_Automation/WMS_Automation/target/classes/ui/pages/lookup/dockmanagement/DockManagementLookupPage.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AFS_Automation/WMS_Automation/target/cucumber-reports/cucumber.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AFS_Automation/WMS_Automation/target/cucumber.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AFS_Automation/WMS_Automation/target/failedrerun.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AFS_Automation/WMS_Automation/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AFS_Automation/WMS_Automation/target/test-classes/cucumber.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AFS_Automation/WMS_Automation/target/test-classes/features/setupConfiguration/palletType/PalletType.feature" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AFS_Automation/WMS_Automation/target/test-classes/features/setupConfiguration/routeType/RouteType.feature" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AFS_Automation/WMS_Automation/target/test-classes/features/setupConfiguration/taskGroup/TaskGroup.feature" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AFS_Automation/WMS_Automation/target/test-classes/features/setupLabor/jobType/JobType.feature" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AFS_Automation/WMS_Automation/target/test-classes/features/setupWarehouse/aisle/aisle.feature" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AFS_Automation/WMS_Automation/target/test-classes/features/setupWarehouse/aisleType/aisleType.feature" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AFS_Automation/WMS_Automation/target/test-classes/features/setupWarehouse/dockDoor/Dockdoor.feature" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AFS_Automation/WMS_Automation/target/test-classes/features/setupWarehouse/equipment/Equipment.feature" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AFS_Automation/WMS_Automation/target/test-classes/features/setupWarehouse/equipmentChecklist/EquipmentChecklist.feature" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AFS_Automation/WMS_Automation/target/test-classes/features/setupWarehouse/equipmentType/EquipmentType.feature" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AFS_Automation/WMS_Automation/target/test-classes/features/setupWarehouse/locationType/LocationType.feature" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AFS_Automation/WMS_Automation/target/test-classes/features/setupWarehouse/rackType/RackType.feature" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AFS_Automation/WMS_Automation/target/test-classes/features/setupWarehouse/setup.feature" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AFS_Automation/WMS_Automation/target/test-classes/features/setupWarehouse/warehouse/Warehouse.feature" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AFS_Automation/WMS_Automation/target/test-classes/features/setupWarehouse/yard/Yard.feature" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AFS_Automation/WMS_Automation/target/test-classes/features/setupWarehouse/zone/Zone.feature" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AFS_Automation/WMS_Automation/target/test-classes/properties/config_test.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AFS_Automation/WMS_Automation/target/test-classes/runners/AppointmentsCucumberRunner.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AFS_Automation/WMS_Automation/target/test-classes/runners/DashboardCucumberRunner.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AFS_Automation/WMS_Automation/target/test-classes/runners/LoginCucumberRunner.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AFS_Automation/WMS_Automation/target/test-classes/runners/LookupCucumberRunner.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AFS_Automation/WMS_Automation/target/test-classes/runners/OutboundCucumberRunner.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AFS_Automation/WMS_Automation/target/test-classes/runners/Phase3Runner.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AFS_Automation/WMS_Automation/target/test-classes/runners/RegressionRunner.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AFS_Automation/WMS_Automation/target/test-classes/runners/SetupCucumberRunner.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AFS_Automation/WMS_Automation/target/test-classes/runners/WorkQueueCucumberRunner.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AFS_Automation/WMS_Automation/target/test-classes/runners/msg_delay_wms.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AFS_Automation/WMS_Automation/target/test-classes/steps/DockManagementSummaryPageSteps.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AFS_Automation/WMS_Automation/target/test-classes/steps/LoginPageSteps.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AFS_Automation/WMS_Automation/target/test-classes/steps/counting/counting/CountingCountPageSteps.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AFS_Automation/WMS_Automation/target/test-classes/steps/counting/sessions/CountingSessionsPageSteps.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AFS_Automation/WMS_Automation/target/test-classes/steps/lookup/lookupdockmanagement/DockManagementPageSteps.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AFS_Automation/WMS_Automation/target/test-classes/steps/lookup/lookuplocation/LocationLookupPageSteps.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AFS_Automation/WMS_Automation/target/test-classes/steps/setupConfiguration/AccountPageSteps.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AFS_Automation/WMS_Automation/target/test-classes/steps/setupConfiguration/AllocationBatchPageSteps.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AFS_Automation/WMS_Automation/target/test-classes/steps/setupConfiguration/AssignmentTypePageSteps.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AFS_Automation/WMS_Automation/target/test-classes/steps/setupConfiguration/CompanyPageSteps.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AFS_Automation/WMS_Automation/target/test-classes/steps/setupConfiguration/CountTypePageSteps.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AFS_Automation/WMS_Automation/target/test-classes/steps/setupConfiguration/OrderTypePageSteps.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AFS_Automation/WMS_Automation/target/test-classes/steps/setupConfiguration/PalletTypePageSteps.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AFS_Automation/WMS_Automation/target/test-classes/steps/setupConfiguration/RouteTpePageSteps.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AFS_Automation/WMS_Automation/target/test-classes/steps/setupConfiguration/TaskGroupPageSteps.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AFS_Automation/WMS_Automation/target/test-classes/steps/setupConfiguration/TrailerPageSteps.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AFS_Automation/WMS_Automation/target/test-classes/steps/setupConfiguration/TrailerTypePageSteps.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AFS_Automation/WMS_Automation/target/test-classes/steps/setupLabor/CongestionPageSteps.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AFS_Automation/WMS_Automation/target/test-classes/steps/setupLabor/ExitReasonPageSteps.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AFS_Automation/WMS_Automation/target/test-classes/steps/setupLabor/FatiguePageSteps.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AFS_Automation/WMS_Automation/target/test-classes/steps/setupLabor/JobTypePageSteps.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AFS_Automation/WMS_Automation/target/test-classes/steps/setupLabor/SetupLaborCodePageSteps.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AFS_Automation/WMS_Automation/target/test-classes/steps/setupLabor/ShiftPageSteps.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AFS_Automation/WMS_Automation/target/test-classes/steps/setupWarehouse/AislePageSteps.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AFS_Automation/WMS_Automation/target/test-classes/steps/setupWarehouse/AisleTypePageSteps.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AFS_Automation/WMS_Automation/target/test-classes/steps/setupWarehouse/DockDoorPageSteps.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AFS_Automation/WMS_Automation/target/test-classes/steps/setupWarehouse/EquipmentChecklistPageSteps.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AFS_Automation/WMS_Automation/target/test-classes/steps/setupWarehouse/EquipmentPageSteps.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AFS_Automation/WMS_Automation/target/test-classes/steps/setupWarehouse/EquipmentTypePageSteps.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AFS_Automation/WMS_Automation/target/test-classes/steps/setupWarehouse/LocationTypePageSteps.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AFS_Automation/WMS_Automation/target/test-classes/steps/setupWarehouse/RackTypePageSteps.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AFS_Automation/WMS_Automation/target/test-classes/steps/setupWarehouse/WarehousePageSteps.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AFS_Automation/WMS_Automation/target/test-classes/steps/setupWarehouse/YardPageSteps.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AFS_Automation/WMS_Automation/target/test-classes/steps/setupWarehouse/ZonePageSteps.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AFS_Automation/WMS_Automation/target/test-classes/steps/validations/counting/counting/CountingCountPageValidations.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AFS_Automation/WMS_Automation/target/test-classes/steps/validations/counting/sessions/CountingSessionsPageValidations.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AFS_Automation/WMS_Automation/target/test-classes/steps/validations/lookup/lookupdockmanagement/DockManagementPageValidations.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AFS_Automation/WMS_Automation/target/test-classes/steps/validations/lookup/lookuplocation/LocationLookupPageValidations.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AFS_Automation/WMS_Automation/target/test-classes/steps/validations/lookup/lookupproduct/ProductLookupPageValidations.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AFS_Automation/WMS_Automation/target/test-classes/steps/validations/outbound/loadplanning/OutboundAssignmentsPageValidations.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AFS_Automation/WMS_Automation/target/test-classes/steps/validations/outbound/ordersummary/OutboundOrderSummaryPageValidations.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AFS_Automation/WMS_Automation/target/test-classes/steps/validations/outbound/processing/ProcessingPageValidations.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AFS_Automation/WMS_Automation/target/test-classes/steps/validations/workqueue/filteroption/WorkQueueAssignmentsPageValidations.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AFS_Automation/WMS_Automation/target/test-classes/steps/workqueue/filteroption/WorkQueueAssignmentsPageSteps.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AFS_Automation/WMS_Automation/target/test-classes/steps/workqueue/loggedinusers/WorkQueueLoggedInUsersPageSteps.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AFS_Automation/WMS_Automation/target/test-classes/steps/workqueue/task/WorkQueueTaskPageSteps.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AFS_Automation/WMS_Automation/target/test-classes/steps/workqueue/userhistory/WorkQueueUserHistoryPageSteps.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AFS_Automation/WMS_Automation/target/test-classes/steps/workqueue/workassign/WorkQueueWorkAssignSteps.class" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
+  </component>
+  <component name="ProjectId" id="2WKzgXUj4gBBIx54ni28vht4jNP" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/AFS_Automation/pom.xml" />
+    <property name="settings.editor.selected.configurable" value="reference.settings.project.maven.repository.indices" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Divya.Ramadas\Downloads\ignition-qa\AFS_Automation\.idea" />
+    </key>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="1a8bad37-0989-4f45-b875-e6fe48a82ed7" name="Changes" comment="" />
+      <created>1696496887359</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1696496887359</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+</project>

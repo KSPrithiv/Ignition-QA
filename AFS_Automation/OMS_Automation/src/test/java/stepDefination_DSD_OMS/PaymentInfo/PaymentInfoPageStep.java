@@ -34,11 +34,11 @@ public class PaymentInfoPageStep
     static boolean flag1=false;
     static String currentURL=null;
 
-    LoginPage loginpage;
-    HomePage homepage;
-    OrderEntryPage orderpage;
-    PaymentInfoPage paymentInfoPage;
-    NewPaymentMethodPage newPaymentMethodPage;
+    static LoginPage loginpage;
+    static HomePage homepage;
+    static OrderEntryPage orderpage;
+    static PaymentInfoPage paymentInfoPage;
+    static NewPaymentMethodPage newPaymentMethodPage;
 
     @Before
     public void LaunchBrowser(Scenario scenario) throws Exception

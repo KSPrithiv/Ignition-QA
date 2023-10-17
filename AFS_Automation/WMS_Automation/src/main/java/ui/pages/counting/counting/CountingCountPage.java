@@ -253,6 +253,7 @@ public class CountingCountPage extends BasePage {
 
     public void typeFilter(String filter) {
         Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(getInputContains());
         inputText(getInputContains(), filter);
         Waiters.waitTillLoadingPage(getDriver());

@@ -15,6 +15,7 @@ Feature: Order Entry6
     When User clicks on drop down next to Start order button
     And Select Pickup Order from drop down options and select delivery date
     Then User should select Note from popup and Order guide from popup
+    And User validates Pickup order check box is selected
     Then Enter PO# for New order
       |PO123|
     Then Enter Pro# in Quick Product Entry area
@@ -103,7 +104,7 @@ Feature: Order Entry6
       |50|70|
       |40|60|
     Then User should enter price for product in price input box
-       |$0.50|
+      |$0.50|
     Then Click on Next button
     And Click on SubmitOrder button
     Then User should be navigated to Order Entry page
@@ -141,8 +142,8 @@ Feature: Order Entry6
     And Click on SubmitOrder button
     Then User should be navigated to Order Entry page
     Examples:
-    |Qty filter                                 |
-    |Show only products with available inventory|
+      |Qty filter                                 |
+      |Show only products with available inventory|
 
   @ProfileProduct
   Scenario: Test scneario for adding products from product profile

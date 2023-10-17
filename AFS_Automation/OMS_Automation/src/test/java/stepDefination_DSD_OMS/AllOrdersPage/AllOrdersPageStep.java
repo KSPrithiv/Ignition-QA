@@ -48,13 +48,13 @@ public class AllOrdersPageStep
     static boolean flag1=false;
     static String CurrentULR=null;
 
-    LoginPage loginpage;
-    HomePage homepage;
-    OrderEntryPage orderpage;
-    AllOrderPage allOrder;
-    CheckOutSummaryPage summary;
-    NewOrderEntryPage newOE;
-    CheckOutOrderPage checkOutOrderPage;
+    static LoginPage loginpage;
+    static HomePage homepage;
+    static OrderEntryPage orderpage;
+    static AllOrderPage allOrder;
+    static CheckOutSummaryPage summary;
+    static NewOrderEntryPage newOE;
+    static CheckOutOrderPage checkOutOrderPage;
 
     @Before
     public void LaunchBrowser1(Scenario scenario) throws Exception
@@ -115,15 +115,6 @@ public class AllOrdersPageStep
     {
         if(flag1==false)
         {
-            orderpage = new OrderEntryPage(driver, scenario);
-        }
-    }
-
-    @And("User should navigate to All Orders")
-    public void userShouldNavigateToAllOrders() throws InterruptedException, AWTException
-    {
-        if(flag1==false)
-        {
             try
             {
                 exists = false;
@@ -147,7 +138,7 @@ public class AllOrdersPageStep
                     if (HelpersMethod.IsExists("//div[@class='loader']", driver))
                     {
                         WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                        HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000);
+                        HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 400000);
                     }
                     String status = HelpersMethod.returnDocumentStatus(driver);
                     if (status.equals("loading"))
@@ -161,6 +152,11 @@ public class AllOrdersPageStep
             catch (Exception e) {}
             flag1=true;
         }
+    }
+
+    @And("User should navigate to All Orders")
+    public void userShouldNavigateToAllOrders() throws InterruptedException, AWTException
+    {
         orderpage = new OrderEntryPage(driver, scenario);
         orderpage.HandleError_Page();
         allOrder=new AllOrderPage(driver,scenario);
@@ -200,6 +196,7 @@ public class AllOrdersPageStep
         allOrder.validateDeliveryDatePopup();
         allOrder.SelectDeliveryDate();
         allOrder.WarningChangeDeliveryDate();
+        allOrder.validateSelectOrder();
         allOrder.SelectOrder();
     }
 
@@ -208,6 +205,11 @@ public class AllOrdersPageStep
     {
         summary = new CheckOutSummaryPage(driver,scenario);
         summary.ClickSubmit();
+        for(int i=0;i<=2;i++)
+        {
+            summary.cutoffDialog();
+            summary.additionalOrderPopup();
+        }
         Ord_No = summary.Get_Order_No();
         summary.SucessPopupForAllOrder();
         scenario.log("ORDER CREATED FOR ALL ORDER "+Ord_No);
@@ -290,11 +292,13 @@ public class AllOrdersPageStep
     }
 
     @Then("User clicks on OrderNo in All Order grid and User should be navigated Ordersummary page")
-    public void userClicksOnOrderNoInAllOrderGridAndUserShouldBeNavigatedOrdersummaryPage()
+    public void userClicksOnOrderNoInAllOrderGridAndUserShouldBeNavigatedOrdersummaryPage() throws InterruptedException, AWTException
     {
         allOrder=new AllOrderPage(driver,scenario);
         allOrder.ClickOnOrderInAllOrderGrid();
         allOrder.NavigateToOrderSummaryPage();
+        summary=new CheckOutSummaryPage(driver,scenario);
+        summary.clickOnAllOrder();
     }
 
     @Then("User clicks on Back to Order list button and should be navigated to OE page")
@@ -412,6 +416,7 @@ public class AllOrdersPageStep
     public void navigateToSummaryOrderEntryPageAndUserClicksOnEditButton() throws InterruptedException, AWTException
     {
         summary=new CheckOutSummaryPage(driver,scenario);
+        summary.validateSummaryPage();
         summary.Click_Edit();
     }
 
@@ -419,7 +424,6 @@ public class AllOrdersPageStep
     public void ifUserNavigatesToPaymentAndAddressPageClickOnBackButtonOrElseAddProductInQuickProductEntryForEditngAllOrder(DataTable tabledata) throws InterruptedException, AWTException, SQLException, ClassNotFoundException, InstantiationException, IllegalAccessException
     {
         List<List<String>> Qty=tabledata.asLists(String.class);
-        HelpersMethod.Implicitwait(driver,10);
         checkOutOrderPage=new CheckOutOrderPage(driver,scenario);
         boolean result=checkOutOrderPage.VerifyCheckOut();
         if(result==true)
@@ -428,11 +432,30 @@ public class AllOrdersPageStep
         }
         newOE=new NewOrderEntryPage(driver,scenario);
         String Prod= DataBaseConnection.DataBaseConn(TestBase.testEnvironment.getSingle_Prod_Sql());
+        newOE.ValidateNewOE1();
         newOE.QuickProduct(Prod);
         String Case=Qty.get(0).get(0);
         String Unit=Qty.get(0).get(1);
-        newOE.CheckForQuickCaseEnabled(Case);
-        newOE.CheckForQuickUnitEnabled(Unit);
+        String uomString=newOE.VerifyUOM();
+        if(uomString.equals("Units"))
+        {
+            newOE.CheckForQuickUnitEnabled(Unit);
+            newOE.exceedsMaxQty();
+            newOE.toastCurrentlyUnavailable();
+        }
+        else if(uomString.equals("Cases"))
+        {
+            newOE.CheckForQuickCaseEnabled(Case);
+            newOE.exceedsMaxQty();
+            newOE.toastCurrentlyUnavailable();
+        }
+        else if(uomString.equals("Cases, Units")||uomString.equals("Units, Cases"))
+        {
+            newOE.CheckForQuickCaseEnabled(Case);
+            newOE.CheckForQuickUnitEnabled(Unit);
+            newOE.exceedsMaxQty();
+            newOE.toastCurrentlyUnavailable();
+        }
     }
 
     @Then("User clicks on Start order button and selects Pick up order from drop down")
@@ -458,6 +481,7 @@ public class AllOrdersPageStep
         allOrder.CustomerIndexPopup();
         allOrder.validateSelectDeliveryDatePickupOrder();
         allOrder.selectDeliveryDateForPickupOrder();
+        allOrder.validateSelectOrder();
         allOrder.SelectNewOrderInPopUp();
     }
 
@@ -471,6 +495,7 @@ public class AllOrdersPageStep
         allOrder.SelectDeliveryDate();
         //allOrder.SelectDeliveryDateForEdit();
         allOrder.WarningChangeDeliveryDate();
+        allOrder.validateSelectOrder();
         allOrder.SelectOrder();
     }
 
@@ -513,5 +538,15 @@ public class AllOrdersPageStep
     {
         allOrder=new AllOrderPage(driver,scenario);
         allOrder.ClickShowAllOrderCheckboxAgain();
+    }
+
+    @Then("Click on Next button after editing all order, order")
+    public void clickOnNextButtonAfterEditingAllOrderOrder() throws InterruptedException, AWTException
+    {
+        exists=false;
+        newOE = new NewOrderEntryPage(driver,scenario);
+        newOE.readProductsInOrder();
+        exists=newOE.ClickNext();
+        newOE.OutOfStockPop_ERP();
     }
 }

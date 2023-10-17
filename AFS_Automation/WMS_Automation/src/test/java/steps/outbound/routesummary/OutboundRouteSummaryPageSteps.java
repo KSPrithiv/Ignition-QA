@@ -1,28 +1,32 @@
 package steps.outbound.routesummary;
 
+import common.constants.FilePaths;
 import common.enums.DockDoorOption;
 import common.enums.RouteOptions;
 import common.enums.Statuses;
-import common.utils.Waiters;
 import common.utils.database.DataBaseConnection;
 import common.utils.database.StoreProceduresUtils;
 import common.utils.datautils.RandomData;
+import common.utils.objectmapper.ObjectMapperWrapper;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import io.qameta.allure.Step;
 import lombok.extern.slf4j.Slf4j;
-import objects.storeproceduresdata.outbound.ProductsParams;
-import objects.userdata.DataBaseData;
-import steps.LoginPageSteps;
+import objects.outbound.OutboundOrderLoadsDTO;
+import org.apache.commons.lang3.RandomStringUtils;
 import ui.pages.outbound.routesummary.OutboundRouteSummaryPage;
-import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
+
+import static ui.pages.outbound.routesummary.OutboundRouteSummaryPage.setRandomRouteCode;
 
 @Slf4j
 public class OutboundRouteSummaryPageSteps {
     OutboundRouteSummaryPage outboundRouteSummaryPage = new OutboundRouteSummaryPage();
     StoreProceduresUtils storeProceduresUtils = new StoreProceduresUtils();
+    OutboundOrderLoadsDTO outboundOrderLoadsDTO = new ObjectMapperWrapper()
+            .getObject(FilePaths.OUTBOUND_ORDER_LOAD_DATA, OutboundOrderLoadsDTO.class);
 
     @Step
     @And("Waits for Outbound Route Summary page to load")
@@ -40,41 +44,28 @@ public class OutboundRouteSummaryPageSteps {
     }
 
     @Step
+    @Then("Filling route start date by index {int} on Outbound Route Summary page")
+    public void fillingScheduledDateAndScheduledDate(int index) {
+        log.info("Filling Outbound Route Start Date by index");
+        List<String> dates = List.of(outboundOrderLoadsDTO.getStartDates().getStartDate1(), outboundOrderLoadsDTO
+                .getStartDates().getStartDate2(), outboundOrderLoadsDTO.getStartDates().getStartDate3(),
+                outboundOrderLoadsDTO.getStartDates().getStartDate4(), outboundOrderLoadsDTO.getStartDates().getStartDate5(),
+                outboundOrderLoadsDTO.getStartDates().getStartDate6(), outboundOrderLoadsDTO.getStartDates().getStartDate7());
+        outboundRouteSummaryPage.typeRouteStartDate(dates.get(index));
+    }
+
+    @Step
     @Then("Types valid product on Outbound Route Summary page")
     public void typesProduct() throws SQLException {
-        DataBaseData dataBaseData = DataBaseData.builder()
-                .username(LoginPageSteps.environment.getDbUserName())
-                .password(LoginPageSteps.environment.getDbUserPassword())
-                .host(LoginPageSteps.environment.getDbIp())
-                .schema(LoginPageSteps.environment.getDbName())
-                .build();
-        ProductsParams productsParams = new ProductsParams();
-        productsParams.setActive_only(1);
-        ResultSet resultSet = storeProceduresUtils.executeStoreProcedureExportProducts(DataBaseConnection
-                .getDataBaseConnection(dataBaseData), productsParams);
-        String product = RandomData.getRandomResultSetRow(resultSet, RandomData.getRandomNumber(4, 8))
-                .getString(1).trim();
-        log.info("Typing product " + product);
-        outboundRouteSummaryPage.typeProduct(product);
+     //   log.info("Typing product " + product);
+     //   outboundRouteSummaryPage.typeProduct(product);
     }
 
     @Step
     @Then("Searches product on Outbound Route Summary page")
     public void searchProduct() throws SQLException {
-        DataBaseData dataBaseData = DataBaseData.builder()
-                .username(LoginPageSteps.environment.getDbUserName())
-                .password(LoginPageSteps.environment.getDbUserPassword())
-                .host(LoginPageSteps.environment.getDbIp())
-                .schema(LoginPageSteps.environment.getDbName())
-                .build();
-        ProductsParams productsParams = new ProductsParams();
-        productsParams.setActive_only(1);
-        ResultSet resultSet = storeProceduresUtils.executeStoreProcedureExportProducts(DataBaseConnection
-                .getDataBaseConnection(dataBaseData), productsParams);
-        String product = RandomData.getRandomResultSetRow(resultSet, RandomData.getRandomNumber(3, 9))
-                .getString(1).trim();
-        log.info("Typing product " + product);
-        outboundRouteSummaryPage.searchProduct(product);
+       // log.info("Typing product " + product);
+       // outboundRouteSummaryPage.searchProduct(product);
     }
 
     @Step
@@ -92,10 +83,34 @@ public class OutboundRouteSummaryPageSteps {
     }
 
     @Step
+    @And("Types route by index {int} on Outbound Route Summary page")
+    public void typesRouteByIndex(int index) {
+        log.info("Typing route by index");
+        List<String> routes = List.of(outboundOrderLoadsDTO.getOutboundRoutes().getOutboundRoute1(), outboundOrderLoadsDTO
+                .getOutboundRoutes().getOutboundRoute2(), outboundOrderLoadsDTO.getOutboundRoutes().getOutboundRoute3(),
+                 outboundOrderLoadsDTO.getOutboundRoutes().getOutboundRoute4(), outboundOrderLoadsDTO.getOutboundRoutes()
+                .getOutboundRoute5(), outboundOrderLoadsDTO.getOutboundRoutes().getOutboundRoute6(), outboundOrderLoadsDTO
+                .getOutboundRoutes().getOutboundRoute7());
+        outboundRouteSummaryPage.typeRoute(routes.get(index));
+    }
+
+    @Step
     @And("Types account {string} on Outbound Route Summary page")
     public void typesAccount(String account) {
         log.info("Typing account " + account);
         outboundRouteSummaryPage.typeAccount(account);
+    }
+
+    @Step
+    @And("Types account by index {int} on Outbound Route Summary page")
+    public void typesAccountByIndex(int index) {
+        log.info("Typing account by index");
+        List<String> accounts = List.of(outboundOrderLoadsDTO.getOutboundAccounts().getOutboundAccount1(), outboundOrderLoadsDTO
+                .getOutboundAccounts().getOutboundAccount2(), outboundOrderLoadsDTO.getOutboundAccounts().getOutboundAccount3(),
+                 outboundOrderLoadsDTO.getOutboundAccounts().getOutboundAccount4(), outboundOrderLoadsDTO.getOutboundAccounts()
+                .getOutboundAccount5(), outboundOrderLoadsDTO.getOutboundAccounts().getOutboundAccount6(), outboundOrderLoadsDTO
+                .getOutboundAccounts().getOutboundAccount7());
+        outboundRouteSummaryPage.typeAccount(accounts.get(index));
     }
 
     @Step
@@ -422,7 +437,7 @@ public class OutboundRouteSummaryPageSteps {
     @Step
     @And("Selects route with index {int} on Outbound Route Summary page")
     public void selectRouteByIndex(int index) {
-        log.info("Select route");
+        log.info("Select route by index");
         outboundRouteSummaryPage.checkRouteByRowNumber(index);
     }
 
@@ -455,9 +470,9 @@ public class OutboundRouteSummaryPageSteps {
     }
 
     @Step
-    @And("User searches for door D1 on Outbound Route Summary page")
+    @And("User searches for door DR01 on Outbound Route Summary page")
     public void selectD1Door() {
-        log.info("Select door D1");
+        log.info("Select door DR01");
         outboundRouteSummaryPage.selectOption(DockDoorOption.D1.getDockDoorOption());
     }
 
@@ -493,6 +508,13 @@ public class OutboundRouteSummaryPageSteps {
     @And("User searches for door DOOR04 on Outbound Route Summary page")
     public void selectDOOR04Door() {
         log.info("Select door DOOR04");
+        outboundRouteSummaryPage.selectOption(DockDoorOption.DOOR04.getDockDoorOption());
+    }
+
+    @Step
+    @And("User searches for door DOOR10 on Outbound Route Summary page")
+    public void selectDOOR10Door() {
+        log.info("Select door DOOR10");
         outboundRouteSummaryPage.selectOption(DockDoorOption.DOOR04.getDockDoorOption());
     }
 
@@ -539,6 +561,17 @@ public class OutboundRouteSummaryPageSteps {
     }
 
     @Step
+    @And("Select Outbound Route carrier by index {int} option on Outbound Route Summary page")
+    public void selectOutboundRouteCarrierOption(int index) {
+        log.info("Selecting Outbound Route carrier by index");
+        List<String> carriers = List.of(outboundOrderLoadsDTO.getOutboundCarriers().getOutboundCarrier1(), outboundOrderLoadsDTO
+                .getOutboundCarriers().getOutboundCarrier2(), outboundOrderLoadsDTO.getOutboundCarriers().getOutboundCarrier3(),
+                 outboundOrderLoadsDTO.getOutboundCarriers().getOutboundCarrier4(), outboundOrderLoadsDTO.getOutboundCarriers()
+                .getOutboundCarrier5(), outboundOrderLoadsDTO.getOutboundCarriers().getOutboundCarrier6());
+        outboundRouteSummaryPage.selectOutboundRouteCarrier(carriers.get(index));
+    }
+
+    @Step
     @And("Type Route driver {string} on Outbound Route Summary page")
     public void typeOutboundRouteDriver(String driver) {
         log.info("Typing Outbound Route driver " + driver);
@@ -553,10 +586,29 @@ public class OutboundRouteSummaryPageSteps {
     }
 
     @Step
+    @And("Type Max Stops by index {int} on Outbound Route Summary page")
+    public void typeMaxStopsByIndex(int index) {
+        log.info("Typing Outbound Route max stops by index");
+        List<String> stops = List.of(outboundOrderLoadsDTO.getOutboundMaxStops().getOutboundMaxStop1(), outboundOrderLoadsDTO
+                .getOutboundMaxStops().getOutboundMaxStop2(), outboundOrderLoadsDTO.getOutboundMaxStops().getOutboundMaxStop3());
+        outboundRouteSummaryPage.typeMaxStops(stops.get(index));
+    }
+
+    @Step
     @And("Type Temperature {string} on Outbound Route Summary page")
     public void typeTemperature(String temperature) {
         log.info("Typing Outbound Route temperature " + temperature);
         outboundRouteSummaryPage.typeTemperature(temperature);
+    }
+
+    @Step
+    @And("Type Temperature by index {int} on Outbound Route Summary page")
+    public void typeTemperatureByIndex(int index) {
+        log.info("Typing Outbound Route temperature by index");
+        List<String> temperatures = List.of(outboundOrderLoadsDTO.getOutboundTemperatures().getOutboundTemperature1(),
+                outboundOrderLoadsDTO.getOutboundTemperatures().getOutboundTemperature2(), outboundOrderLoadsDTO
+                .getOutboundTemperatures().getOutboundTemperature3());
+        outboundRouteSummaryPage.typeTemperature(temperatures.get(index));
     }
 
     @Step
@@ -567,10 +619,30 @@ public class OutboundRouteSummaryPageSteps {
     }
 
     @Step
+    @And("Click Temperature type by index {int} on Outbound Route Summary page")
+    public void clickTemperatureTypeByIndex(int index) {
+        log.info("Clicking Outbound Route temperature type by index");
+        List<String> types = List.of(outboundOrderLoadsDTO.getOutboundTemperatureTypes().getOutboundTemperatureType1(),
+                 outboundOrderLoadsDTO.getOutboundTemperatureTypes().getOutboundTemperatureType2(), outboundOrderLoadsDTO
+                .getOutboundTemperatureTypes().getOutboundTemperatureType3());
+        outboundRouteSummaryPage.clickTemperatureTypeDropdown(types.get(index));
+    }
+
+    @Step
     @And("Select Temperature type {string} on Outbound Route Summary page")
     public void selectTemperatureType(String type) {
         log.info("Selecting Outbound Route temperature type " + type);
         outboundRouteSummaryPage.selectTemperatureType(type);
+    }
+
+    @Step
+    @And("Select Temperature type by index {int} on Outbound Route Summary page")
+    public void selectTemperatureTypeByIndex(int index) {
+        log.info("Selecting Outbound Route temperature type by index");
+        List<String> types = List.of(outboundOrderLoadsDTO.getOutboundTemperatureTypes().getOutboundTemperatureType1(),
+                outboundOrderLoadsDTO.getOutboundTemperatureTypes().getOutboundTemperatureType2(), outboundOrderLoadsDTO
+                .getOutboundTemperatureTypes().getOutboundTemperatureType3());
+        outboundRouteSummaryPage.selectTemperatureType(types.get(index));
     }
 
     @Step
@@ -623,10 +695,32 @@ public class OutboundRouteSummaryPageSteps {
     }
 
     @Step
+    @And("Select Trailer option by index {int} on Outbound Route Summary page")
+    public void selectTrailerOptionByIndex(int index) {
+        log.info("Selecting Trailer Option by index");
+        List<String> trailers = List.of(outboundOrderLoadsDTO.getOutboundTrailers().getOutboundTrailer1(), outboundOrderLoadsDTO
+                .getOutboundTrailers().getOutboundTrailer2(), outboundOrderLoadsDTO.getOutboundTrailers().getOutboundTrailer3(),
+                 outboundOrderLoadsDTO.getOutboundTrailers().getOutboundTrailer4(), outboundOrderLoadsDTO.getOutboundTrailers()
+                .getOutboundTrailer5(), outboundOrderLoadsDTO.getOutboundTrailers().getOutboundTrailer6());
+        outboundRouteSummaryPage.selectTrailerOption(trailers.get(index));
+    }
+
+    @Step
     @And("Select Outbound Route type {string} on Outbound Route Summary page")
     public void selectOutboundRouteType(String routeType) {
         log.info("Selecting Outbound Route type " + routeType);
         outboundRouteSummaryPage.selectOutboundRouteType(routeType);
+    }
+
+    @Step
+    @And("Select Outbound Route type by index {int} on Outbound Route Summary page")
+    public void selectOutboundRouteType(int index) {
+        log.info("Selecting Outbound Route type by index");
+        List<String> types = List.of(outboundOrderLoadsDTO.getOutboundOrderTypes().getOutboundOrderType1(), outboundOrderLoadsDTO
+                .getOutboundOrderTypes().getOutboundOrderType2(), outboundOrderLoadsDTO.getOutboundOrderTypes().getOutboundOrderType3(),
+                 outboundOrderLoadsDTO.getOutboundOrderTypes().getOutboundOrderType4(), outboundOrderLoadsDTO.getOutboundOrderTypes()
+                .getOutboundOrderType5(), outboundOrderLoadsDTO.getOutboundOrderTypes().getOutboundOrderType6());
+        outboundRouteSummaryPage.selectOutboundRouteType(types.get(index));
     }
 
     @Step
@@ -640,8 +734,28 @@ public class OutboundRouteSummaryPageSteps {
     @Step
     @And("Typing Outbound Route code {string} on Outbound Route Summary page")
     public void selectOutboundRouteEditOption(String routeCode) {
-        log.info("Typing Outbound Route code  " + routeCode);
+        log.info("Typing Outbound Route code " + routeCode);
         outboundRouteSummaryPage.typeRouteCode(routeCode);
+    }
+
+    @Step
+    @And("Typing Outbound Route code by index {int} on Outbound Route Summary page")
+    public void typeOutboundRouteEditOptionByIndex(int index) {
+        log.info("Typing Outbound Route code by index");
+        List<String> routeCodes = List.of(outboundOrderLoadsDTO.getOutboundRouteCodes().getOutboundRouteCode1(), outboundOrderLoadsDTO
+                .getOutboundRouteCodes().getOutboundRouteCode2(), outboundOrderLoadsDTO.getOutboundRouteCodes().getOutboundRouteCode3(),
+                 outboundOrderLoadsDTO.getOutboundRouteCodes().getOutboundRouteCode4(), outboundOrderLoadsDTO.getOutboundRouteCodes()
+                .getOutboundRouteCode5());
+        outboundRouteSummaryPage.typeRouteCode(routeCodes.get(index));
+    }
+
+    @Step
+    @And("Typing random Outbound Route code on Outbound Route Summary page")
+    public void typeRandomOutboundRouteEditOption() {
+        log.info("Typing random Outbound Route code");
+        String code = RandomStringUtils.randomAlphabetic(6);
+        setRandomRouteCode(code);
+        outboundRouteSummaryPage.typeRouteCode(code);
     }
 
     @Step

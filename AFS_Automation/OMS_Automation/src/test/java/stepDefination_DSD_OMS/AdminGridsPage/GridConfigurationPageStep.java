@@ -39,12 +39,12 @@ public class GridConfigurationPageStep
         static int size2;
         WebDriver driver;
         Scenario scenario;
-        GridConfigurationPage gridConfigPage;
-        HomePage homePage;
-        LoginPage loginpage;
-        OrderEntryPage orderPage;
-        NewOrderEntryPage newOE;
-        AdminHomePage adminHomePage;
+        static GridConfigurationPage gridConfigPage;
+        static HomePage homePage;
+        static LoginPage loginpage;
+        static OrderEntryPage orderPage;
+        static NewOrderEntryPage newOE;
+        static AdminHomePage adminHomePage;
 
         @Before
         public void LaunchBrowser1(Scenario scenario) throws Exception
@@ -400,9 +400,11 @@ public class GridConfigurationPageStep
     @Then("User refreshes page Clicks on Permissions by drop down to select Customer Account# grid")
     public void userRefreshesPageClicksOnPermissionsByDropDownToSelectCustomerAccountGrid() throws InterruptedException
     {
+
         adminHomePage=new AdminHomePage(driver,scenario);
+        adminHomePage.handleError_Page();
         adminHomePage.refreshPage();
-        adminHomePage.ClickPermissionBy();
+        adminHomePage.ClickPermissionByAgain();
         adminHomePage.SelectCompany();
     }
 }

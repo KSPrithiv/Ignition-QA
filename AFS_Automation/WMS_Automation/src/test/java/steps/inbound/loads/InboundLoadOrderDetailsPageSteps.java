@@ -1,10 +1,13 @@
 package steps.inbound.loads;
 
+import common.constants.FilePaths;
+import common.utils.objectmapper.ObjectMapperWrapper;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import io.qameta.allure.Step;
 import lombok.extern.slf4j.Slf4j;
+import objects.inbound.InboundOrderLoadsDTO;
 import objects.productdata.ProductData;
 import ui.pages.inbound.loads.InboundLoadOrderDetailsPage;
 
@@ -13,6 +16,8 @@ import java.util.List;
 @Slf4j
 public class InboundLoadOrderDetailsPageSteps {
     InboundLoadOrderDetailsPage inboundLoadOrderDetailsPage = new InboundLoadOrderDetailsPage();
+    InboundOrderLoadsDTO inboundOrderLoadsDTO = new ObjectMapperWrapper()
+            .getObject(FilePaths.INBOUND_ORDER_LOAD_DATA, InboundOrderLoadsDTO.class);
 
     @Step
     @And("Waits For Inbound Load Order details page to load")
@@ -22,9 +27,17 @@ public class InboundLoadOrderDetailsPageSteps {
     }
 
     @Step
+    @And("Getting Product Details on Inbound Load Summary page")
     public List<ProductData> getProductDetails() {
-        log.info("Getting Product Details ");
+        log.info("Getting Product Details on Inbound Load Summary page");
         return inboundLoadOrderDetailsPage.getProductDetails();
+    }
+
+    @Step
+    @And("Clicks Images button on Inbound Load Order Summary page")
+    public void clickImagesButton() {
+        log.info("Clicks Images button on Inbound Load Summary page");
+        inboundLoadOrderDetailsPage.clickImagesButton();
     }
 
     @Step
@@ -42,6 +55,17 @@ public class InboundLoadOrderDetailsPageSteps {
     }
 
     @Step
+    @And("Types Ship Date by index {int} to move Order to Load on Inbound Load Order Summary page")
+    public void typeShipDateByIndexForMoveOrderToLoad(int index) {
+        log.info("Type Ship Date by index" );
+        List<String> dates = List.of(inboundOrderLoadsDTO.getStartDates().getStartDate1(), inboundOrderLoadsDTO
+                .getStartDates().getStartDate2(), inboundOrderLoadsDTO.getStartDates().getStartDate3(), inboundOrderLoadsDTO
+                .getStartDates().getStartDate4(), inboundOrderLoadsDTO.getStartDates().getStartDate5(), inboundOrderLoadsDTO
+                .getStartDates().getStartDate6());
+        inboundLoadOrderDetailsPage.typeShipDate(dates.get(index));
+    }
+
+    @Step
     @And("Select Order Product with index {int} on Inbound Load Order Summary page")
     public void selectLoadOrderByLoadNumber(int num) {
         log.info("Select Order Product by number " + num);
@@ -53,6 +77,16 @@ public class InboundLoadOrderDetailsPageSteps {
     public void typeLoadForMoveOrderToLoad(String load) {
         log.info("Type Load " + load);
         inboundLoadOrderDetailsPage.typeLoad(load);
+    }
+
+    @Step
+    @And("Types Load by index {int} to move Order to Load on Inbound Load Order Summary page")
+    public void typeLoadBIndexForMoveOrderToLoad(int index) {
+        log.info("Type Load by index");
+        List<String> loads = List.of(inboundOrderLoadsDTO.getLoadNames().getLoadName1(), inboundOrderLoadsDTO.getLoadNames()
+                .getLoadName2(), inboundOrderLoadsDTO.getLoadNames().getLoadName3(), inboundOrderLoadsDTO.getLoadNames()
+                .getLoadName4(), inboundOrderLoadsDTO.getLoadNames().getLoadName5(), inboundOrderLoadsDTO.getLoadNames().getLoadName6());
+        inboundLoadOrderDetailsPage.typeLoad(loads.get(index));
     }
 
     @Step

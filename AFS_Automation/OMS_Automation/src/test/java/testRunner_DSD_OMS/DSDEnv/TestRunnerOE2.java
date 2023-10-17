@@ -13,9 +13,11 @@ import java.io.IOException;
  * @Project DSD_OMS
  * @Author Divya.Ramadas@afsi.com
  */
-@CucumberOptions(features = {"src/test/resources/features_DSD_OMS/OrderEntryFeature/orderEntryFeature5.feature",
+@CucumberOptions(features = {
+
+        "src/test/resources/features_DSD_OMS/OrderEntryFeature/orderEntryFeature5.feature",
                              "src/test/resources/features_DSD_OMS/OrderEntryFeature/orderEntryFeature6.feature",
-                },
+},
         glue = {"stepDefination_DSD_OMS"},
         plugin = {"pretty",
                 "json:target/cucumber.json",

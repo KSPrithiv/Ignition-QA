@@ -13,6 +13,7 @@ import org.testng.Assert;
 import pages_DSD_OMS.login.HomePage;
 import pages_DSD_OMS.login.LoginPage;
 import pages_DSD_OMS.orderEntry.*;
+import pages_DSD_OMS.orderGuide.CreateOGPage;
 import pages_DSD_OMS.quote.NewQuotePage;
 import pages_DSD_OMS.quote.QuotePage;
 import pages_DSD_OMS.quote.QuoteSummaryPage;
@@ -20,6 +21,8 @@ import util.TestBase;
 
 import java.awt.*;
 import java.text.ParseException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 /**
@@ -39,13 +42,15 @@ public class QuotePageSteps
     static boolean flag1=false;
     static String currentURL=null;
 
-    LoginPage loginpage;
-    HomePage homepage;
-    OrderEntryPage orderEntryPage;
-    QuotePage quotePage;
-    NewQuotePage newQuotePage;
-    QuoteSummaryPage quoteSummaryPage;
-    CheckOutSummaryPage summary;
+    static LoginPage loginpage;
+    static HomePage homepage;
+    static OrderEntryPage orderEntryPage;
+    static QuotePage quotePage;
+    static NewQuotePage newQuotePage;
+    static QuoteSummaryPage quoteSummaryPage;
+    static CheckOutSummaryPage summary;
+    static CreateOGPage createOGPage;
+    static NewOrderEntryPage newOE;
 
     @Before
     public void LaunchBrowser1(Scenario scenario) throws Exception
@@ -84,8 +89,6 @@ public class QuotePageSteps
         if(flag==false)
         {
             homepage = new HomePage(driver,scenario);
-            String title = driver.getTitle();
-            //Assert.assertEquals(title, "Admin");
             homepage.verifyUserinfoContainer();
             homepage.navigateToClientSide();
         }
@@ -116,6 +119,7 @@ public class QuotePageSteps
         }
         orderEntryPage.HandleError_Page();
         orderEntryPage.Refresh_Page2();
+        orderEntryPage.Read_DeliveryDate();
     }
 
     @Then("User enters Quote name {string} and Quote End date click on OK button")
@@ -127,17 +131,18 @@ public class QuotePageSteps
         quotePage.ClickOnCalender();
         quotePage.SelectEndDate();
         quotePage.ClickOnOKButton();
-       // newQuotePage=new NewQuotePage(driver,scenario);
-       // newQuotePage.validateNewQuote();
+        //newQuotePage=new NewQuotePage(driver,scenario);
+        //newQuotePage.validateNewQuote();
     }
 
     @Then("Enter Pro# in Quick Product Entry area in New Qutoe page and enter Qty for Case and Unit")
     public void enterProInQuickProductEntryAreaInNewQutoePageAndEnterQtyForCaseAndUnit(DataTable tabledata)
     {
-      List<List<String>> QtyValue = tabledata.asLists(String.class);
-      newQuotePage=new NewQuotePage(driver,scenario);
-      newQuotePage.EnterQuickProductNo();
-      newQuotePage.QtyInGrid(QtyValue.get(0).get(0),QtyValue.get(0).get(1));
+        List<List<String>> QtyValue = tabledata.asLists(String.class);
+        newQuotePage=new NewQuotePage(driver,scenario);
+        newQuotePage.validateNewQuote();
+        newQuotePage.EnterQuickProductNo();
+        newQuotePage.QtyInGrid(QtyValue.get(0).get(0),QtyValue.get(0).get(1));
     }
 
     @Then("Click on create button in New Quote page")
@@ -153,6 +158,7 @@ public class QuotePageSteps
         summary =new CheckOutSummaryPage(driver,scenario);
         Quote_No=summary.Get_Quote_No();
         quoteSummaryPage=new QuoteSummaryPage(driver,scenario);
+        quoteSummaryPage.ValidateQuoteSummary();
         quoteSummaryPage.ClickOnBackToOrder();
     }
 
@@ -168,6 +174,7 @@ public class QuotePageSteps
     public void verifyUserIsOnOrderEntryPageAndVerifyQuoteIsExisting() throws InterruptedException, AWTException
     {
         orderEntryPage=new OrderEntryPage(driver,scenario);
+        orderEntryPage.ValidateOE();
         orderEntryPage.SearchBoxAction(Quote_No);
         orderEntryPage.ValidateQuoteOrder(Quote_No);
     }
@@ -187,16 +194,20 @@ public class QuotePageSteps
     }
 
     @And("User should be navigated to Quote summary page and click on Convert Order button")
-    public void userShouldBeNavigatedToQuoteSummaryPageAndClickOnConvertOrderButton()
+    public void userShouldBeNavigatedToQuoteSummaryPageAndClickOnConvertOrderButton() throws InterruptedException, AWTException
     {
         quoteSummaryPage=new QuoteSummaryPage(driver,scenario);
+        quoteSummaryPage.ValidateQuoteSummary();
         quoteSummaryPage.ClickOnConvertOrder();
+        newOE=new NewOrderEntryPage(driver,scenario);
+        newOE.ValidateNewOE();
     }
 
     @And("User should be navigated to Quote summary page and click on cancel button")
     public void userShouldBeNavigatedToQuoteSummaryPageAndClickOnCancelButton()
     {
         quoteSummaryPage=new QuoteSummaryPage(driver,scenario);
+        quoteSummaryPage.ValidateQuoteSummary();
         quoteSummaryPage.ClickOnCancel();
     }
 
@@ -245,6 +256,7 @@ public class QuotePageSteps
     public void userClickOnCopyButtonInSummaryPageAndEnterQuoteNameAndClickOnCreateButton(String Quote1)
     {
         quoteSummaryPage=new QuoteSummaryPage(driver,scenario);
+        quoteSummaryPage.ValidateQuoteSummary();
         quoteSummaryPage.ClickOnCopy();
         quotePage=new QuotePage(driver,scenario);
         quotePage.EnterQuotName(Quote1);
@@ -267,5 +279,27 @@ public class QuotePageSteps
     {
         quoteSummaryPage=new QuoteSummaryPage(driver,scenario);
         quoteSummaryPage.NavgiateBackToOE();
+    }
+
+    @Then("User enters Description {string} Start date {int} and End date {int} day from current date for Quote to OG")
+    public void userEntersDescriptionStartDateSdateAndEndDateEdateDayFromCurrentDateForQuoteToOG(String arg0,int Sdate,int Edate)
+    {
+        createOGPage=new CreateOGPage(driver,scenario);
+        createOGPage.ValidateNewOG();
+        createOGPage.DescriptionOG(arg0);
+
+        //selecting start date
+        LocalDate myDateObj = LocalDate.now();
+        DateTimeFormatter myFormatObj = DateTimeFormatter.ofPattern("EEEE, MMMM d, yyyy");
+        String formattedDate = myDateObj.format(myFormatObj);
+        createOGPage.CalenderStart();
+        createOGPage.SelectStartDate(formattedDate, Sdate);
+
+        //selecting end date
+        LocalDate myDateObj1 = LocalDate.now();
+        DateTimeFormatter myFormatObj1= DateTimeFormatter.ofPattern("EEEE, MMMM d, yyyy");
+        String formattedDate1 = myDateObj1.format(myFormatObj1);
+        createOGPage.CalenderEnd();
+        createOGPage.SelectEndDate(formattedDate1,Edate);
     }
 }

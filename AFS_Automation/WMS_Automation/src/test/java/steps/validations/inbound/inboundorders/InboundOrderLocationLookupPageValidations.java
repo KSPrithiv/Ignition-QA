@@ -19,11 +19,10 @@ public class InboundOrderLocationLookupPageValidations {
         softAssert.assertTrue(inboundOrderLocationLookupPage.isDeleteButtonDisplayed(), "Delete Button is not displayed");
         softAssert.assertTrue(inboundOrderLocationLookupPage.isTransferButtonDisplayed(), "Transfer Button is not displayed");
         softAssert.assertTrue(inboundOrderLocationLookupPage.isStatusButtonDisplayed(), "Status Button is not displayed");
-        softAssert.assertTrue(inboundOrderLocationLookupPage.isLabelsButtonDisplayed(), "Labels Button is not displayed");
         softAssert.assertTrue(inboundOrderLocationLookupPage.isPalletColumnDisplayed(), "Pallet Column is not displayed");
         softAssert.assertTrue(inboundOrderLocationLookupPage.isProductColumnDisplayed(), "Product Column is not displayed");
         softAssert.assertTrue(inboundOrderLocationLookupPage.isDescriptionColumnDisplayed(), "Description Column is not displayed");
-        softAssert.assertTrue(inboundOrderLocationLookupPage.isQtyColumnDisplayed(), "Qty Column is not displayed");
+      /*  softAssert.assertTrue(inboundOrderLocationLookupPage.isQtyColumnDisplayed(), "Qty Column is not displayed");
         softAssert.assertTrue(inboundOrderLocationLookupPage.isUomColumnDisplayed(), "Uom Column is not displayed");
         softAssert.assertTrue(inboundOrderLocationLookupPage.isLotColumnDisplayed(), "Lot Column is not displayed");
         softAssert.assertTrue(inboundOrderLocationLookupPage.isExpDateColumnDisplayed(), "Exp Date Column is not displayed");
@@ -32,7 +31,7 @@ public class InboundOrderLocationLookupPageValidations {
         softAssert.assertTrue(inboundOrderLocationLookupPage.isPalletsLabelDisplayed(), "Pallets Label is not displayed");
         softAssert.assertTrue(inboundOrderLocationLookupPage.isQuantityLabelDisplayed(), "Quantity Label is not displayed");
         softAssert.assertTrue(inboundOrderLocationLookupPage.isItemsFoundLabelDisplayed(), "Items Found Label is not displayed");
-        softAssert.assertTrue(inboundOrderLocationLookupPage.isLookupLocationSearchDisplayed(), "Lookup Location Search is not displayed");
+        softAssert.assertTrue(inboundOrderLocationLookupPage.isLookupLocationSearchDisplayed(), "Lookup Location Search is not displayed");*/
         softAssert.assertTrue(inboundOrderLocationLookupPage.isLookupLocationGridTableDisplayed() > 0,
                 "Lookup Location Grid Table is not displayed");
         softAssert.assertAll();

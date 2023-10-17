@@ -23,34 +23,34 @@ public class HelpersMethod
     public static WebElement FindByElement(WebDriver driver,String selector,String value)
     {
         WebElement element=null;
-            if(selector.equalsIgnoreCase("id"))
-            {
-                element=driver.findElement(By.id(value));
-            }
-            else if(selector.equalsIgnoreCase("class"))
-            {
-                element=driver.findElement(By.className(value));
-            }
-            else if(selector.equalsIgnoreCase("xpath"))
-            {
-                element=driver.findElement(By.xpath(value));
-            }
-            else if(selector.equalsIgnoreCase("cssselector"))
-            {
-                element=driver.findElement(By.cssSelector(value));
-            }
-            else if(selector.equalsIgnoreCase("linktext"))
-            {
-                element=driver.findElement(By.linkText(value));
-            }
-            else if(selector.equalsIgnoreCase("partiallinkedtext"))
-            {
-                element=driver.findElement(By.partialLinkText(value));
-            }
-            else if(selector.equalsIgnoreCase("tagname"))
-            {
-                element=driver.findElement(By.tagName(value));
-            }
+        if(selector.equalsIgnoreCase("id"))
+        {
+            element=driver.findElement(By.id(value));
+        }
+        else if(selector.equalsIgnoreCase("class"))
+        {
+            element=driver.findElement(By.className(value));
+        }
+        else if(selector.equalsIgnoreCase("xpath"))
+        {
+            element=driver.findElement(By.xpath(value));
+        }
+        else if(selector.equalsIgnoreCase("cssselector"))
+        {
+            element=driver.findElement(By.cssSelector(value));
+        }
+        else if(selector.equalsIgnoreCase("linktext"))
+        {
+            element=driver.findElement(By.linkText(value));
+        }
+        else if(selector.equalsIgnoreCase("partiallinkedtext"))
+        {
+            element=driver.findElement(By.partialLinkText(value));
+        }
+        else if(selector.equalsIgnoreCase("tagname"))
+        {
+            element=driver.findElement(By.tagName(value));
+        }
         return element;
     }
 
@@ -58,37 +58,37 @@ public class HelpersMethod
     public static List<WebElement> FindByElements(WebDriver driver,String selector,String value)
     {
         List<WebElement> elements = null;
-            if (selector.equalsIgnoreCase("id")) {
-                elements = driver.findElements(By.id(value));
-            } else if (selector.equalsIgnoreCase("class")) {
-                elements = driver.findElements(By.className(value));
-            } else if (selector.equalsIgnoreCase("xpath")) {
-                elements = driver.findElements(By.xpath(value));
-            } else if (selector.equalsIgnoreCase("cssselector")) {
-                elements = driver.findElements(By.cssSelector(value));
-            } else if (selector.equalsIgnoreCase("linktext")) {
-                elements = driver.findElements(By.linkText(value));
-            } else if (selector.equalsIgnoreCase("partiallinkedtext")) {
-                elements = driver.findElements(By.partialLinkText(value));
-            } else if (selector.equalsIgnoreCase("tagname")) {
-                elements = driver.findElements(By.tagName(value));
-            }
+        if (selector.equalsIgnoreCase("id")) {
+            elements = driver.findElements(By.id(value));
+        } else if (selector.equalsIgnoreCase("class")) {
+            elements = driver.findElements(By.className(value));
+        } else if (selector.equalsIgnoreCase("xpath")) {
+            elements = driver.findElements(By.xpath(value));
+        } else if (selector.equalsIgnoreCase("cssselector")) {
+            elements = driver.findElements(By.cssSelector(value));
+        } else if (selector.equalsIgnoreCase("linktext")) {
+            elements = driver.findElements(By.linkText(value));
+        } else if (selector.equalsIgnoreCase("partiallinkedtext")) {
+            elements = driver.findElements(By.partialLinkText(value));
+        } else if (selector.equalsIgnoreCase("tagname")) {
+            elements = driver.findElements(By.tagName(value));
+        }
         return elements;
     }
 
     public static void Refresh(WebDriver driver)
     {
-          driver.navigate().to(driver.getCurrentUrl());
-          if (HelpersMethod.IsExists("//div[@class='loader']", driver))
-          {
-              WebElement WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-              HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 20000);
-          }
+        driver.navigate().to(driver.getCurrentUrl());
+        if (HelpersMethod.IsExists("//div[@class='loader']", driver))
+        {
+            WebElement WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
+            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 80000);
+        }
     }
 
     public static void NavigateBack(WebDriver driver)
     {
-            driver.navigate().back();
+        driver.navigate().back();
     }
 
     public static void Implicitwait(WebDriver driver, int sec)
@@ -104,71 +104,71 @@ public class HelpersMethod
         }
         else
         {
-           // ElementNotVisibleException EleVis= new ElementNotVisibleException("Element not Visible");
-           // throw EleVis;
+            // ElementNotVisibleException EleVis= new ElementNotVisibleException("Element not Visible");
+            // throw EleVis;
         }
         return true;
     }
 
     public static boolean waitClickableOfEle(WebDriver driver,WebElement ele,int timeOut)
     {
-           if (!ele.isDisplayed())
-            {
-                WebDriverWait wait = new WebDriverWait(driver,Duration.ofMillis(timeOut));
-                wait.until(ExpectedConditions.elementToBeClickable(ele));
-            }
-           else
-           {
-               // ElementNotVisibleException EleVis = new ElementNotVisibleException("Element not Visible");
-               // throw EleVis;
-            }
-           return true;
+        if (!ele.isDisplayed())
+        {
+            WebDriverWait wait = new WebDriverWait(driver,Duration.ofMillis(timeOut));
+            wait.until(ExpectedConditions.elementToBeClickable(ele));
+        }
+        else
+        {
+            // ElementNotVisibleException EleVis = new ElementNotVisibleException("Element not Visible");
+            // throw EleVis;
+        }
+        return true;
     }
 
     public static void WaitElementPresent(WebDriver driver,String selector,String val,int timeOut)
     {
         WebDriverWait wait = new WebDriverWait(driver,Duration.ofMillis(timeOut));
-            if(selector.equalsIgnoreCase("id"))
-            {
-               wait.until(ExpectedConditions.presenceOfElementLocated(By.id(val)));
-            }
-            else if(selector.equalsIgnoreCase("class"))
-            {
-               wait.until(ExpectedConditions.presenceOfElementLocated(By.className(val)));
-            }
-            else if(selector.equalsIgnoreCase("xpath"))
-            {
-                wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(val)));
-            }
-            else if(selector.equalsIgnoreCase("cssselector"))
-            {
-                wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(val)));
-            }
-            else if(selector.equalsIgnoreCase("linktext"))
-            {
-                wait.until(ExpectedConditions.presenceOfElementLocated(By.linkText(val)));
-            }
-            else if(selector.equalsIgnoreCase("partiallinkedtext"))
-            {
-                wait.until(ExpectedConditions.presenceOfElementLocated(By.partialLinkText(val)));
-            }
-            else if(selector.equalsIgnoreCase("tagname"))
-            {
-                wait.until(ExpectedConditions.presenceOfElementLocated(By.tagName(val)));
-            }
+        if(selector.equalsIgnoreCase("id"))
+        {
+            wait.until(ExpectedConditions.presenceOfElementLocated(By.id(val)));
+        }
+        else if(selector.equalsIgnoreCase("class"))
+        {
+            wait.until(ExpectedConditions.presenceOfElementLocated(By.className(val)));
+        }
+        else if(selector.equalsIgnoreCase("xpath"))
+        {
+            wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(val)));
+        }
+        else if(selector.equalsIgnoreCase("cssselector"))
+        {
+            wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(val)));
+        }
+        else if(selector.equalsIgnoreCase("linktext"))
+        {
+            wait.until(ExpectedConditions.presenceOfElementLocated(By.linkText(val)));
+        }
+        else if(selector.equalsIgnoreCase("partiallinkedtext"))
+        {
+            wait.until(ExpectedConditions.presenceOfElementLocated(By.partialLinkText(val)));
+        }
+        else if(selector.equalsIgnoreCase("tagname"))
+        {
+            wait.until(ExpectedConditions.presenceOfElementLocated(By.tagName(val)));
+        }
     }
 
     public static boolean EleDisplay(WebElement ele)
     {
         boolean display=false;
-            if (ele.isDisplayed())
-            {
-                display =true;
-            }
-            else
-            {
-                display= false;
-            }
+        if (ele.isDisplayed())
+        {
+            display =true;
+        }
+        else
+        {
+            display= false;
+        }
         return display;
     }
 
@@ -185,9 +185,9 @@ public class HelpersMethod
 
     public static void ScrollTillElementVisible(WebDriver driver,WebElement element)
     {
-            Dimension dim = element.getSize();
-            JavascriptExecutor jse = (JavascriptExecutor) driver;
-            jse.executeScript("window.scrollBy(" + dim.width + "," + dim.height + ")");
+        Dimension dim = element.getSize();
+        JavascriptExecutor jse = (JavascriptExecutor) driver;
+        jse.executeScript("window.scrollBy(" + dim.width + "," + dim.height + ")");
     }
 
     public static void ScrollUpScrollBar(WebDriver driver)
@@ -202,63 +202,63 @@ public class HelpersMethod
 
     public static void EnterText(WebDriver driver,WebElement element,int timeOut ,String val)
     {
-            new WebDriverWait(driver,Duration.ofMillis(timeOut)).until(ExpectedConditions.visibilityOf(element));
-            if ((element.isDisplayed() && element.isEnabled()) == true)
-            {
-                element.sendKeys(val);
-            }
+        new WebDriverWait(driver,Duration.ofMillis(timeOut)).until(ExpectedConditions.visibilityOf(element));
+        if ((element.isDisplayed() && element.isEnabled()) == true)
+        {
+            element.sendKeys(val);
+        }
     }
 
     public static void ClearText(WebDriver driver,WebElement element,int timeOut)
     {
-            new WebDriverWait(driver,Duration.ofMillis(timeOut)).until(ExpectedConditions.visibilityOf(element));
-            if (element.isDisplayed() && element.isEnabled() == true)
-            {
-                element.clear();
-            }
-            else
-            {
-               // ElementNotVisibleException EleVis = new ElementNotVisibleException("Element not Visible");
-               // throw EleVis;
-            }
+        new WebDriverWait(driver,Duration.ofMillis(timeOut)).until(ExpectedConditions.visibilityOf(element));
+        if (element.isDisplayed() && element.isEnabled() == true)
+        {
+            element.clear();
+        }
+        else
+        {
+            // ElementNotVisibleException EleVis = new ElementNotVisibleException("Element not Visible");
+            // throw EleVis;
+        }
     }
 
     public static void ClickBut(WebDriver driver,WebElement element,int timeOut)
     {
-            new WebDriverWait(driver,Duration.ofMillis(timeOut)).until(ExpectedConditions.elementToBeClickable(element));
-            element.click();
+        new WebDriverWait(driver,Duration.ofMillis(timeOut)).until(ExpectedConditions.elementToBeClickable(element));
+        element.click();
     }
 
     public static void ActSendKey(WebDriver driver,WebElement element,int timeOut,String val) throws InterruptedException
     {
         new WebDriverWait(driver,Duration.ofMillis(timeOut)).until(ExpectedConditions.visibilityOf(element));
-                Actions act = new Actions(driver);
-                act.moveToElement(element).build().perform();
-                element.sendKeys(val);
-                act.moveToElement(element).build().perform();
-                element.sendKeys(Keys.TAB);
+        Actions act = new Actions(driver);
+        act.moveToElement(element).build().perform();
+        element.sendKeys(val);
+        act.moveToElement(element).build().perform();
+        element.sendKeys(Keys.TAB);
     }
 
     public static void ActClearKey(WebDriver driver,WebElement element,int timeOut)
     {
         new WebDriverWait(driver,Duration.ofMillis(timeOut)).until(ExpectedConditions.visibilityOf(element));
-                Actions act = new Actions(driver);
-                act.click(element).sendKeys(Keys.END).keyDown(Keys.SHIFT).sendKeys(Keys.HOME).keyUp(Keys.SHIFT).sendKeys(Keys.BACK_SPACE).perform();
+        Actions act = new Actions(driver);
+        act.click(element).sendKeys(Keys.END).keyDown(Keys.SHIFT).sendKeys(Keys.HOME).keyUp(Keys.SHIFT).sendKeys(Keys.BACK_SPACE).perform();
     }
 
     public static String ReadValue(WebElement ele)
     {
         String Read_Val=null;
-            if (ele.isDisplayed())
-            {
-                Read_Val = ele.getText();
-            }
-            else
-            {
-                //ElementNotVisibleException EleVis = new ElementNotVisibleException("Element not Visible");
-                //throw EleVis;
-            }
-            return Read_Val;
+        if (ele.isDisplayed())
+        {
+            Read_Val = ele.getText();
+        }
+        else
+        {
+            //ElementNotVisibleException EleVis = new ElementNotVisibleException("Element not Visible");
+            //throw EleVis;
+        }
+        return Read_Val;
     }
 
     public static String AttributeValue(WebElement ele,String Attribute)
@@ -292,10 +292,10 @@ public class HelpersMethod
 
     public static void ActClick(WebDriver driver,WebElement element,int timeOut) throws InterruptedException
     {
-            new WebDriverWait(driver,Duration.ofMillis(timeOut)).until(ExpectedConditions.elementToBeClickable(element));
-            Actions act = new Actions(driver);
-            act.moveToElement(element).build().perform();
-            act.click(element).build().perform();
+        new WebDriverWait(driver,Duration.ofMillis(timeOut)).until(ExpectedConditions.elementToBeClickable(element));
+        Actions act = new Actions(driver);
+        act.moveToElement(element).build().perform();
+        act.click(element).build().perform();
     }
 
     public static void JScriptClick(WebDriver driver,WebElement element,int timeOut)
@@ -362,7 +362,7 @@ public class HelpersMethod
         boolean exists=false;
         WebElement ele=driver.findElement(By.xpath(eleXpath));
         if(ele.isEnabled())
-            {exists=true;}
+        {exists=true;}
         return exists;
     }
 
@@ -375,81 +375,83 @@ public class HelpersMethod
 
     public static void WebElementClearInput(WebElement element)
     {
-            element.clear();
+        element.clear();
     }
 
     public static void WebElementFromDropDown(WebDriver driver,String ListElements,String ItemXpath,String ListElement) throws InterruptedException
     {
         Actions act=new Actions(driver);
-            Implicitwait(driver,20);
-            int i = 0;
-            List<WebElement> ListItems = FindByElements(driver,ItemXpath,ListElements);
-            for (WebElement ListItem : ListItems)
+        int i = 0;
+        List<WebElement> ListItems = FindByElements(driver,ItemXpath,ListElements);
+        for (WebElement ListItem : ListItems)
+        {
+            i++;
+            String List_Item_value = ListItem.getText();
+            act.moveToElement(ListItem).build().perform();
+            if (List_Item_value.equalsIgnoreCase(ListElement) || List_Item_value.contains(ListElement.toLowerCase()))
             {
-                i++;
-                Implicitwait(driver,10);
-                String List_Item_value = ListItem.getText();
-                act.moveToElement(ListItem).build().perform();
-                if (List_Item_value.equalsIgnoreCase(ListElement) || List_Item_value.contains(ListElement.toLowerCase()))
-                {
-                    Implicitwait(driver,10);
-                    act.click(ListItem).build().perform();
-                    break;
-                }
+                act.click(ListItem).build().perform();
+                break;
             }
+        }
+        if(IsExists("//div[@class='loader']",driver))
+        {
+            WebElement WebEle=FindByElement(driver,"xpath","//div[@class='loader']");
+            waitTillLoadingWheelDisappears(driver, WebEle, 80000);
+        }
     }
 
     public static void JSScroll(WebDriver driver,WebElement ele)
     {
-            ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", ele);
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", ele);
     }
 
     public static void ActScroll(WebDriver driver,WebElement element,int timeOut)
     {
-            new WebDriverWait(driver,Duration.ofMillis(timeOut)).until(ExpectedConditions.elementToBeClickable(element));
-            Actions act = new Actions(driver);
-            act.moveToElement(element);
-            act.perform();
+        new WebDriverWait(driver,Duration.ofMillis(timeOut)).until(ExpectedConditions.elementToBeClickable(element));
+        Actions act = new Actions(driver);
+        act.moveToElement(element);
+        act.perform();
     }
 
-   public static void ActDragDrop(WebDriver driver,WebElement From,WebElement To)
+    public static void ActDragDrop(WebDriver driver,WebElement From,WebElement To)
     {
-            Actions act=new Actions(driver);
-            //Dragged and dropped.
-            act.dragAndDrop(From,To).build().perform();
+        Actions act=new Actions(driver);
+        //Dragged and dropped.
+        act.dragAndDrop(From,To).build().perform();
     }
 
     public static void FileUploadRobot() throws AWTException
     {
-            Robot robot = new Robot();
-            robot.setAutoDelay(50000);
-            robot.keyPress(KeyEvent.VK_CONTROL);
-            robot.keyPress(KeyEvent.VK_V);
+        Robot robot = new Robot();
+        robot.setAutoDelay(50000);
+        robot.keyPress(KeyEvent.VK_CONTROL);
+        robot.keyPress(KeyEvent.VK_V);
 
-            robot.keyRelease(KeyEvent.VK_CONTROL);
-            robot.keyRelease(KeyEvent.VK_V);
+        robot.keyRelease(KeyEvent.VK_CONTROL);
+        robot.keyRelease(KeyEvent.VK_V);
 
-            robot.setAutoDelay(50000);
+        robot.setAutoDelay(50000);
 
-            robot.keyPress(KeyEvent.VK_ENTER);
-            robot.keyRelease(KeyEvent.VK_ENTER);
+        robot.keyPress(KeyEvent.VK_ENTER);
+        robot.keyRelease(KeyEvent.VK_ENTER);
     }
 
     public static void FileDownload() throws InterruptedException, AWTException
     {
 
-            Robot robot = new Robot();
+        Robot robot = new Robot();
 
-            robot.setAutoDelay(5000);
-            robot.mouseMove(630, 420); // move mouse point to specific location
-            robot.delay(4000);        // delay is to make code wait for mentioned milliseconds before executing next step
-            robot.mousePress(InputEvent.BUTTON1_DOWN_MASK); // press left click
-            robot.mouseRelease(InputEvent.BUTTON1_DOWN_MASK); // release left click
-            robot.delay(5000);
+        robot.setAutoDelay(5000);
+        robot.mouseMove(630, 420); // move mouse point to specific location
+        robot.delay(4000);        // delay is to make code wait for mentioned milliseconds before executing next step
+        robot.mousePress(InputEvent.BUTTON1_DOWN_MASK); // press left click
+        robot.mouseRelease(InputEvent.BUTTON1_DOWN_MASK); // release left click
+        robot.delay(5000);
 
-            robot.keyPress(KeyEvent.VK_DOWN); // press keyboard arrow key to select Save radio button
+        robot.keyPress(KeyEvent.VK_DOWN); // press keyboard arrow key to select Save radio button
 
-            robot.keyPress(KeyEvent.VK_ENTER);
+        robot.keyPress(KeyEvent.VK_ENTER);
     }
 
     public static void FileDownloadsuccessPopup(WebDriver driver) throws AWTException, InterruptedException
@@ -494,7 +496,7 @@ public class HelpersMethod
                 if(IsExists("//div[@class='loader']",driver))
                 {
                     WebEle=FindByElement(driver,"xpath","//div[@class='loader']");
-                    waitTillLoadingWheelDisappears(driver, WebEle, 1000);
+                    waitTillLoadingWheelDisappears(driver, WebEle, 80000);
                 }
             }
         }
@@ -550,26 +552,41 @@ public class HelpersMethod
     //Code for navigating from tab to tab
     public static void navigate_Horizantal_Tab(WebDriver driver, String MenuItem,String MenuItemLocator,String selector,String MenuItems)
     {
-            String Menu_Text=null;
-            Actions act=new Actions(driver);
-            List<WebElement> MenuBar=FindByElements(driver,selector,MenuItems);
-            for(WebElement Menu:MenuBar)
+        String Menu_Text=null;
+        Actions act=new Actions(driver);
+        List<WebElement> MenuBar=FindByElements(driver,selector,MenuItems);
+        for(WebElement Menu:MenuBar)
+        {
+            act.moveToElement(Menu).build().perform();
+            Menu_Text=Menu.getText();
+            if(Menu_Text.contains(MenuItem))
             {
-                act.moveToElement(Menu).build().perform();
-                Menu_Text=Menu.getText();
-                if(Menu_Text.contains(MenuItem))
-                {
-                    WebElement menuItem=FindByElement(driver,selector,MenuItemLocator);
-                    JScriptClick(driver,menuItem,100);
-                    break;
-                }
+                WebElement menuItem=FindByElement(driver,selector,MenuItemLocator);
+                JScriptClick(driver,menuItem,6000);
+                break;
             }
+        }
+        if(IsExists("//div[@class='loader']",driver))
+        {
+            WebElement WebEle=FindByElement(driver,"xpath","//div[@class='loader']");
+            waitTillLoadingWheelDisappears(driver, WebEle, 600000);
+        }
+        String status=returnDocumentStatus(driver);
+        if (status.equals("loading"))
+        {
+            waitTillLoadingPage(driver);
+        }
+        if(IsExists("//div[@class='loader']",driver))
+        {
+            WebElement WebEle=FindByElement(driver,"xpath","//div[@class='loader']");
+            waitTillLoadingWheelDisappears(driver, WebEle, 600000);
+        }
     }
 
     public static String gettingTitle(WebDriver driver)
     {
         String title=null;
-         title=driver.getTitle();
+        title=driver.getTitle();
         return title;
     }
 
@@ -662,8 +679,8 @@ public class HelpersMethod
 
     public static boolean waitTillLoadingWheelDisappears(WebDriver driver,WebElement element,int timeOut)
     {
-       new WebDriverWait(driver,Duration.ofMillis(timeOut)).until(ExpectedConditions.invisibilityOf(element));
-       return true;
+        new WebDriverWait(driver,Duration.ofMillis(timeOut)).until(ExpectedConditions.invisibilityOf(element));
+        return true;
     }
 
     //Code to handle page load issues. Method that can be used when java scripts are still running behind and not letting automation code to execute
@@ -681,7 +698,7 @@ public class HelpersMethod
             {
                 e.printStackTrace();
             }
-            if(pageLoadStatus.equals("complete") || pageLoadStatus.equals("interactive"))
+            if(pageLoadStatus.equals("complete"))// || pageLoadStatus.equals("interactive"))
             {
                 pageWasLoaded=true;
             }
@@ -704,7 +721,7 @@ public class HelpersMethod
         if(HelpersMethod.IsExists("//div[@class='loader']",driver))
         {
             WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 2000);
+            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 80000);
         }
         String status=HelpersMethod.returnDocumentStatus(driver);
         if(status.equals("loading"))
@@ -712,10 +729,10 @@ public class HelpersMethod
             HelpersMethod.waitTillLoadingPage(driver);
         }
         //Click on Add filter button
-        new WebDriverWait(driver,Duration.ofMillis(60)).until(ExpectedConditions.elementToBeClickable(By.xpath("//button/descendant::span[contains(text(),'Add filter')]")));
+        new WebDriverWait(driver,Duration.ofMillis(10000)).until(ExpectedConditions.elementToBeClickable(By.xpath("//button/descendant::span[contains(text(),'Add filter')]")));
         driver.findElement(By.xpath("//button/descendant::span[contains(text(),'Add filter')]")).click();
 
-        waitTillElementLocatedDisplayed(driver,"xpath","//div[contains(@class,'k-animation-container k-animation-container-relative k-animation-container-shown')]",40);
+        waitTillElementLocatedDisplayed(driver,"xpath","//div[contains(@class,'k-animation-container k-animation-container-relative k-animation-container-shown')]",80000);
         WebElement modalContainer1=FindByElement(driver,"xpath","//div[contains(@class,'k-animation-container k-animation-container-relative k-animation-container-shown')]");
 
         //Click on Clear all button
@@ -726,24 +743,24 @@ public class HelpersMethod
         }
 
         WebElement Search1=modalContainer1.findElement(By.xpath(".//input[contains(@class,'i-search-box__input')]"));
-        ActSendKey(driver,Search1,60,SearchBoxValue);
+        ActSendKey(driver,Search1,100,SearchBoxValue);
         //Click on Check box
-        new WebDriverWait(driver,Duration.ofMillis(60)).until(ExpectedConditions.elementToBeClickable(By.xpath(".//input[contains(@class,'k-checkbox')]")));
+        new WebDriverWait(driver,Duration.ofMillis(10000)).until(ExpectedConditions.elementToBeClickable(By.xpath(".//input[contains(@class,'k-checkbox')]")));
         WebElement WebEle1=modalContainer1.findElement(By.xpath(".//input[contains(@class,'k-checkbox')]"));
-        ClickBut(driver,WebEle1,20);
+        ClickBut(driver,WebEle1,100);
 
         //Identify radio button and click on Radio button
-        new WebDriverWait(driver,Duration.ofMillis(40)).until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath("//div[contains(@class,'i-btn-radio filter-radio')]/ancestor::div[contains(@class,'k-child-animation-container')]")));
-        waitTillElementLocatedDisplayed(driver,"xpath","//div[contains(@class,'k-child-animation-container')]/descendant::form[contains(@class,'i-filter-popup')]",40);
+        new WebDriverWait(driver,Duration.ofMillis(40000)).until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath("//div[contains(@class,'i-btn-radio filter-radio')]/ancestor::div[contains(@class,'k-child-animation-container')]")));
+        new WebDriverWait(driver,Duration.ofMillis(20000)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(@class,'i-btn-radio filter-radio')]/ancestor::div[contains(@class,'k-child-animation-container')]")));
         if(IsExists("//div[contains(@class,'i-btn-radio filter-radio')]/ancestor::div[contains(@class,'k-child-animation-container')]",driver))
         {
             WebElement RadioPop=FindByElement(driver,"xpath","//div[contains(@class,'k-child-animation-container')]/descendant::form[contains(@class,'i-filter-popup')]");
             Search2=RadioPop.findElement(By.xpath(".//div[contains(@class,'i-btn-radio filter-radio')][1]/following-sibling::div[contains(@class,'k-textbox-container i-filter-popup__content__input')]/input"));
-            EnterText(driver,Search2,40,SearhBox2Value);
+            EnterText(driver,Search2,2000,SearhBox2Value);
 
             //Click on Apply button
             Clear =RadioPop.findElement(By.xpath(".//button[text()='Apply']"));
-            ClickBut(driver,Clear,40);
+            ClickBut(driver,Clear,100);
         }
         else
         {
@@ -751,16 +768,16 @@ public class HelpersMethod
             {
                 WebElement modalContainer=driver.findElement(By.xpath("//div[contains(@class,'k-animation-container')]"));
                 Search2=modalContainer.findElement(By.xpath(".//input[contains(@class,'k-textbox')]"));
-                EnterText(driver, Search2, 4, SearhBox2Value);
+                EnterText(driver, Search2, 100, SearhBox2Value);
 
                 //Click on Apply button
                 Clear = Search2.findElement(By.xpath(".//button[text()='Apply']"));
-                ClickBut(driver,Clear,80);
+                ClickBut(driver,Clear,100);
                 //loading Icon
                 if (IsExists("//div[@class='loader']", driver))
                 {
                     WebEle = FindByElement(driver, "xpath", "//div[@class='loader']");
-                    waitTillLoadingWheelDisappears(driver, WebEle, 1000);
+                    waitTillLoadingWheelDisappears(driver, WebEle, 80000);
                 }
             }
         }
@@ -773,10 +790,10 @@ public class HelpersMethod
         WebElement WebEle;
 
         //Click on Add filter button
-        WebDriverWait wait=new WebDriverWait(driver,Duration.ofMillis(80));
+        WebDriverWait wait=new WebDriverWait(driver,Duration.ofMillis(8000));
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(@class,'k-widget k-window k-dialog')]/descendant::button/descendant::span[contains(text(),'Add filter')]")));
         driver.findElement(By.xpath("//div[contains(@class,'k-widget k-window k-dialog')]/descendant::button/descendant::span[contains(text(),'Add filter')]")).click();
-
+        new WebDriverWait(driver,Duration.ofMillis(2000)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(@class,'k-animation-container k-animation-container-relative k-animation-container-shown')]")));
         //Click on Clear all button
         WebElement modalContainer1=FindByElement(driver,"xpath","//div[contains(@class,'k-animation-container k-animation-container-relative k-animation-container-shown')]");
         WebElement Clear=modalContainer1.findElement(By.xpath(".//button[contains(text(),'Clear all')]"));
@@ -786,24 +803,24 @@ public class HelpersMethod
         }
 
         WebElement Search1=modalContainer1.findElement(By.xpath(".//input[contains(@class,'i-search-box__input')]"));
-        ActSendKey(driver,Search1,60,SearchBoxValue);
+        ActSendKey(driver,Search1,100,SearchBoxValue);
         //Click on Check box
-        new WebDriverWait(driver,Duration.ofMillis(40)).until(ExpectedConditions.elementToBeClickable(By.xpath(".//input[contains(@class,'k-checkbox')]")));
+        new WebDriverWait(driver,Duration.ofMillis(40000)).until(ExpectedConditions.elementToBeClickable(By.xpath(".//input[contains(@class,'k-checkbox')]")));
         WebElement WebEle1=modalContainer1.findElement(By.xpath(".//input[contains(@class,'k-checkbox')]"));
-        ClickBut(driver,WebEle1,20);
+        ClickBut(driver,WebEle1,100);
 
         //Identify radio button and click on Radio button
-        new WebDriverWait(driver,Duration.ofMillis(40)).until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath("//div[contains(@class,'i-btn-radio filter-radio')]/ancestor::div[contains(@class,'k-child-animation-container')]")));
-        waitTillElementLocatedDisplayed(driver,"xpath","//div[contains(@class,'k-child-animation-container')]/descendant::form[contains(@class,'i-filter-popup')]",40);
+        new WebDriverWait(driver,Duration.ofMillis(100000)).until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath("//div[contains(@class,'i-btn-radio filter-radio')]/ancestor::div[contains(@class,'k-child-animation-container')]")));
+        waitTillElementLocatedDisplayed(driver,"xpath","//div[contains(@class,'k-child-animation-container')]/descendant::form[contains(@class,'i-filter-popup')]",80000);
         if(IsExists("//div[contains(@class,'i-btn-radio filter-radio')]/ancestor::div[contains(@class,'k-child-animation-container')]",driver))
         {
             WebElement RadioPop=FindByElement(driver,"xpath","//div[contains(@class,'k-child-animation-container')]/descendant::form[contains(@class,'i-filter-popup')]");
             Search2=RadioPop.findElement(By.xpath(".//div[contains(@class,'i-btn-radio filter-radio')][1]/following-sibling::div[contains(@class,'k-textbox-container i-filter-popup__content__input')]/input"));
-            EnterText(driver,Search2,40,SearhBox2Value);
+            EnterText(driver,Search2,100,SearhBox2Value);
 
             //Click on Apply button
             Clear =RadioPop.findElement(By.xpath(".//button[text()='Apply']"));
-            ClickBut(driver,Clear,40);
+            ClickBut(driver,Clear,100);
         }
         else
         {
@@ -811,16 +828,16 @@ public class HelpersMethod
             {
                 WebElement modalContainer=driver.findElement(By.xpath("//div[contains(@class,'k-animation-container')]"));
                 Search2=modalContainer.findElement(By.xpath(".//input[contains(@class,'k-textbox')]"));
-                EnterText(driver, Search2, 4, SearhBox2Value);
+                EnterText(driver, Search2, 100, SearhBox2Value);
 
                 //Click on Apply button
                 Clear = Search2.findElement(By.xpath(".//button[text()='Apply']"));
-                ClickBut(driver,Clear,80);
+                ClickBut(driver,Clear,100);
                 //loading Icon
                 if (IsExists("//div[@class='loader']", driver))
                 {
                     WebEle = FindByElement(driver, "xpath", "//div[@class='loader']");
-                    waitTillLoadingWheelDisappears(driver, WebEle, 1000);
+                    waitTillLoadingWheelDisappears(driver, WebEle, 80000);
                 }
             }
         }
@@ -835,6 +852,7 @@ public class HelpersMethod
         HelpersMethod.AddFilterSearch_Popup(driver,Search1_Value,Search2_Value);
 
         //click on the table row after filter
-        HelpersMethod.ActClick(driver,driver.findElement(By.xpath("//div[contains(@class,'k-widget k-window k-dialog')]/descendant::tr[@class='k-master-row']")),40);
+        HelpersMethod.ActClick(driver,driver.findElement(By.xpath("//div[contains(@class,'k-widget k-window k-dialog')]/descendant::tr[@class='k-master-row']")),100);
+        Thread.sleep(1000);
     }
 }

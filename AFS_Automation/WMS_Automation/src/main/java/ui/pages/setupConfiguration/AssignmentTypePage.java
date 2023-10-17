@@ -39,7 +39,7 @@ public class AssignmentTypePage extends BasePage{
     }
     public void searchBoxActionAssignmentType(){
 //        Waiters.waitABit(9000);
-        Waiters.waitForPresenceOfElement("form > .i-icon.i-search-box__search");
+        Waiters.waitForElementToBeDisplay(By.cssSelector("form > .i-icon.i-search-box__search"));
         Waiters.waitForElementToBeDisplay(searchBox6());
         clickOnElement(searchBox6);
         try {

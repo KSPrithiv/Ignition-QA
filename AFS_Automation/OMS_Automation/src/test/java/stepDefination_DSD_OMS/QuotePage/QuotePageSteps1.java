@@ -32,11 +32,12 @@ public class QuotePageSteps1
     WebDriver driver;
     Scenario scenario;
 
-    OrderEntryPage orderEntryPage;
-    NewOrderEntryPage newOE;
-    NewQuotePage newQuotePage;
-    QuoteSummaryPage quoteSummaryPage;
-    CheckOutOrderPage checkOutOrderPage;
+    static OrderEntryPage orderEntryPage;
+    static NewOrderEntryPage newOE;
+    static NewQuotePage newQuotePage;
+    static QuoteSummaryPage quoteSummaryPage;
+    static CheckOutOrderPage checkOutOrderPage;
+    static OrderEntryPage orderpage;
 
     @Before
     public void LaunchBrowser1(Scenario scenario) throws Exception
@@ -66,6 +67,7 @@ public class QuotePageSteps1
     public void userShouldBeNavigatedToQuoteSummaryPageAndClickOnEditButton()
     {
         quoteSummaryPage=new QuoteSummaryPage(driver,scenario);
+        quoteSummaryPage.ValidateQuoteSummary();
         quoteSummaryPage.ClickOnEdit();
     }
 
@@ -136,8 +138,8 @@ public class QuotePageSteps1
         quoteSummaryPage.ValidateQuoteSummary();
     }
 
-    @And("User verifies skip button in OE page when Quotes is already create")
-    public void userVerifiesSkipButtonInOEPageWhenQuotesIsAlreadyCreate() throws InterruptedException, AWTException
+    @And("User verifies skip button in OE page when Quotes is already created")
+    public void userVerifiesSkipButtonInOEPageWhenQuotesIsAlreadyCreated() throws InterruptedException, AWTException
     {
         orderEntryPage=new OrderEntryPage(driver,scenario);
         orderEntryPage.verifySkipButton();
@@ -164,5 +166,22 @@ public class QuotePageSteps1
     {
         newQuotePage=new NewQuotePage(driver,scenario);
         newQuotePage.readProductQuote();
+    }
+
+    @Then("User should reset the delivery date to current date")
+    public void userShouldResetTheDeliveryDateToCurrentDate() throws InterruptedException, AWTException
+    {
+        orderpage=new OrderEntryPage(driver,scenario);
+        orderpage.ClickCalender();
+        orderpage.ResetToCurrentDate();
+    }
+
+    @Then("User should navigate to OE page, User should select the current date as delivery date")
+    public void userShouldNavigateToOEPageUserShouldSelectTheCurrentDateAsDeliveryDate() throws InterruptedException, AWTException
+    {
+        orderpage=new OrderEntryPage(driver,scenario);
+        orderpage.Refresh_Page1();
+        orderpage.ClickCalender();
+        orderpage.ResetToCurrentDate();
     }
 }

@@ -58,19 +58,19 @@
     "product 2": "20",
     "product 3": "200004",
     "product 4": "00002",
-    "product 5": "000019"
+    "product 5": "000014"
   },
   "product types": {
-    "product type 1": "(Any)",
-    "product type 2": "DRY",
-    "product type 3": "CHILL",
-    "product type 4": "DRY GOODS",
-    "product type 5": "FREEZE",
-    "product type 6": "BREAK PACK"
+    "product type 1": "DEFAULT",
+    "product type 2": "99",
+    "product type 3": "Vegetables",
+    "product type 4": "Pies",
+    "product type 5": "Seasonings",
+    "product type 6": "Sausage"
   },
   "owners": {
     "owner 1": "(Any)",
-    "owner 2": "01",
+    "owner 2": "ABC Company",
     "owner 3": "02",
     "owner 4": "03",
     "owner 5": "02 02"
@@ -92,7 +92,7 @@
   "suppliers": {
     "supplier 1": "10",
     "supplier 2": "10000",
-    "supplier 3": "10001",
+    "supplier 3": "0042",
     "supplier 4": "10002",
     "supplier 5": "10005"
   },

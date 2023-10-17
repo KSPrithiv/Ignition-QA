@@ -31,11 +31,11 @@ public class BillToBillPageStep
     static boolean flag=false;
     static String currentURL=null;
 
-    BillToBillPage billToBill;
-    BillingSelectionPage billSelection;
-    LoginPage loginpage;
-    HomePage homepage;
-    OrderEntryPage orderpage;
+    static BillToBillPage billToBill;
+    static BillingSelectionPage billSelection;
+    static LoginPage loginpage;
+    static HomePage homepage;
+    static OrderEntryPage orderpage;
 
     @Before
     public void LaunchBrowser1(Scenario scenario) throws Exception

@@ -173,7 +173,6 @@ public class CountingSessionsPage extends BasePage {
     By dateInputSchedDate = By.id("dateInputSchedDate");
     By timeInputSchedTimeLabel= By.id("timeInputSchedTime-label");
     By timeInputSchedTime= By.id("timeInputSchedTime");
-    By timeInputTime = By.id("timeInputTime");
     By assignLabel = By.xpath("//label[contains(text(), 'Assign')]");
     By XcancelIcon = By.cssSelector(".i-button--icon-only");
     By toggleCalendar = By.cssSelector("a[title='Toggle calendar']");
@@ -195,6 +194,7 @@ public class CountingSessionsPage extends BasePage {
     By searchBox = By.cssSelector(".i-filter-popup--add .i-search-box__input");
     By addFilter = By.cssSelector(".i-filter-tag__main");
     By clearFilter = By.cssSelector(".i-filter-tag__clear");
+    By clearSearchButton = By.cssSelector(".i-search-box .i-search-box__clear");
     By loader = By.cssSelector(".loader");
 
     private static String session = null;
@@ -236,7 +236,9 @@ public class CountingSessionsPage extends BasePage {
     public void enterDate(String date) {
         Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeClickable(getToggleCalendar());
+        Waiters.waitABit(4000);
         clickOnElement(getToggleCalendar());
+        Waiters.waitABit(4000);
         Waiters.returnDocumentStatus(getDriver());
         String day = date.substring(3, 5).contains("0") ? date.substring(4, 5) : date.substring(3, 5);
         clickOnElement(getCalendarDay(day));
@@ -287,13 +289,13 @@ public class CountingSessionsPage extends BasePage {
     }
 
     public void waitUntilLoaderInvisible() {
-        waitUntilInvisible(8, loader);
+        waitUntilInvisible(3, loader);
     }
 
     public void clickSessionDropdown() {
         Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeClickable(sessionDropdown);
-        jsClick(getSessionDropdown());
+        clickOnElement(getSessionDropdown());
         Waiters.waitTillLoadingPage(getDriver());
     }
 
@@ -359,20 +361,20 @@ public class CountingSessionsPage extends BasePage {
     public void selectSession(String session) {
         Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementsToBeDisplay(findWebElements(By.xpath("//div[contains(@class, 'k-animation-container-shown')]//*[@role='option']")));
-        List<WebElement> options = findWebElements(By.xpath("//div[contains(@class, 'k-animation-container-shown')]//*[@role='option']"));
         Waiters.waitTillLoadingPage(getDriver());
+        List<WebElement> options = findWebElements(By.xpath("//div[contains(@class, 'k-animation-container-shown')]//*[@role='option']"));
         WebElement option = options.stream()
                 .filter(el -> el.getText().contains(session))
                 .findFirst()
                 .orElse(null);
         scrollToCenter(option);
         clickOnElement(option);
-        waitUntilLoaderInvisible();
         Waiters.waitTillLoadingPage(getDriver());
+        waitUntilInvisible(1, loader);
     }
 
     public void selectDeleteReason(String reason) {
-        Waiters.returnDocumentStatus(getDriver());
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(getDeleteReason());
         clickOnElement(getDeleteReason());
         List<WebElement> options = findWebElements(By.xpath("//div[contains(@class, 'k-animation-container-shown')]//li[@role='option']"));
@@ -381,7 +383,6 @@ public class CountingSessionsPage extends BasePage {
                 .findFirst()
                 .orElse(null);
         clickOnElement(option);
-        Waiters.waitTillLoadingPage(getDriver());
     }
 
     public void clickAllInputsCheckbox() {
@@ -391,7 +392,7 @@ public class CountingSessionsPage extends BasePage {
     }
 
     public void unselectTableRowByIndex(int index) {
-        Waiters.returnDocumentStatus(getDriver());
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForPresenceOfAllElements(sessionTableRows);
         List<WebElement> rows = findWebElements(sessionTableRows);
         unselectCheckbox(rows.get(index).findElement(By.xpath(".//input")));
@@ -399,10 +400,14 @@ public class CountingSessionsPage extends BasePage {
     }
 
     public void selectTableRowByIndex(int index) {
-        Waiters.returnDocumentStatus(getDriver());
+        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForPresenceOfAllElements(sessionTableRows);
         List<WebElement> rows = findWebElements(sessionTableRows);
-        selectCheckbox(rows.get(index).findElement(By.xpath(".//input")));
+        Waiters.waitABit(2000);
+        WebElement row = rows.get(index).findElement(By.xpath(".//input"));
+        Waiters.waitABit(2000);
+        clickOnElement(row);
         Waiters.waitTillLoadingPage(getDriver());
     }
 
@@ -410,6 +415,7 @@ public class CountingSessionsPage extends BasePage {
         Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForPresenceOfAllElements(sessionTableRows);
         List<WebElement> rows = findWebElements(sessionTableRows);
+        Waiters.waitABit(4000);
         clickOnElement(rows.get(index).findElements(By.xpath(".//button[contains(@class, 'i-link-button')]")).get(0));
         Waiters.waitTillLoadingPage(getDriver());
     }
@@ -434,7 +440,6 @@ public class CountingSessionsPage extends BasePage {
                 .findFirst()
                 .orElse(null);
         clickOnElement(option);
-        Waiters.waitTillLoadingPage(getDriver());
     }
 
     public void typeLocationCode(String code) {
@@ -442,7 +447,6 @@ public class CountingSessionsPage extends BasePage {
         clear(getLocationCodeInput());
         inputText(getLocationCodeInput(), code);
         pressEnter(getLocationCodeInput());
-        Waiters.waitTillLoadingPage(getDriver());
     }
 
     public void selectLocationCode(String code) {
@@ -453,14 +457,13 @@ public class CountingSessionsPage extends BasePage {
         WebElement locCode = findWebElement(By.xpath("//div[contains(@class, 'k-animation-container-shown')]//*[contains(text(), '"
                 + code + "') and @role='option']"));
         clickOnElement(locCode);
-        Waiters.waitTillLoadingPage(getDriver());
     }
 
     public void typePartialLocationCode(String code) {
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(getPartialLocationCodeInput());
         clear(getPartialLocationCodeInput());
         inputText(getPartialLocationCodeInput(), code);
-        Waiters.waitTillLoadingPage(getDriver());
     }
 
     public void selectZone(String zone) {
@@ -476,7 +479,6 @@ public class CountingSessionsPage extends BasePage {
                 .findFirst()
                 .orElse(null);
         clickOnElement(option);
-        Waiters.waitTillLoadingPage(getDriver());
     }
 
     public void selectLocationType(String type) {
@@ -490,7 +492,6 @@ public class CountingSessionsPage extends BasePage {
                 .findFirst()
                 .orElse(null);
         clickOnElement(option);
-        Waiters.waitTillLoadingPage(getDriver());
     }
 
     public void typeStartingLocation(String code) {
@@ -533,9 +534,10 @@ public class CountingSessionsPage extends BasePage {
     public void searchProduct(String product) {
         Waiters.waitForElementToBeDisplay(getProductGridSearch());
         enterText(getProductGridSearch(), product);
+        Waiters.waitABit(5000);
         pressEnter(getProductGridSearch());
+        Waiters.waitABit(6000);
         Waiters.waitTillLoadingPage(getDriver());
-        Waiters.waitABit(4000);
     }
 
     public void searchAssignment(String assignment) {
@@ -571,9 +573,11 @@ public class CountingSessionsPage extends BasePage {
     }
 
     public void clickSaveButton() {
+        Waiters.waitABit(2000);
         Waiters.waitForElementToBeDisplay(saveButton);
-        jsClick(getSaveButton());
+        clickOnElement(getSaveButton());
         Waiters.waitTillLoadingPage(getDriver());
+        waitUntilInvisible(1, loader);
     }
 
     public void clickYesButtonIfNeeded() {
@@ -630,21 +634,18 @@ public class CountingSessionsPage extends BasePage {
     }
 
     public void clickLocationsTab() {
-        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(getLocationsTab());
         clickOnElement(getLocationsTab());
         Waiters.waitTillLoadingPage(getDriver());
     }
 
     public void clickProductsTab() {
-        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(getProductsTab());
         clickOnElement(getProductsTab());
         Waiters.waitTillLoadingPage(getDriver());
     }
 
     public void clickAssignmentsTab() {
-        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(getAssignmentsTab());
         clickOnElement(getAssignmentsTab());
         Waiters.waitTillLoadingPage(getDriver());
@@ -793,30 +794,43 @@ public class CountingSessionsPage extends BasePage {
         Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(getAddFilter());
         clickOnElement(getAddFilter());
+        Waiters.waitTillLoadingPage(getDriver());
     }
 
     public void clickProductRemoveButton() {
         Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(getProductRemove());
         clickOnElement(getProductRemove());
+        Waiters.waitTillLoadingPage(getDriver());
     }
 
     public void clickProductResetButton() {
         Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(getProductReset());
         clickOnElement(getProductReset());
+        Waiters.waitTillLoadingPage(getDriver());
     }
 
     public void clickProductLocationsButton() {
         Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(getProductLocations());
         clickOnElement(getProductLocations());
+        Waiters.waitTillLoadingPage(getDriver());
     }
 
     public void typeFilter(String filter) {
         Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(getInputContains());
         inputText(getInputContains(), filter);
+        Waiters.waitTillLoadingPage(getDriver());
+    }
+
+    public void clearSearchButton() {
+        Waiters.waitTillLoadingPage(getDriver());
+        if(isVisible(By.cssSelector(".i-search-box__clear"))) {
+            clickOnElement(By.cssSelector(".i-search-box__clear"));
+        }
+        Waiters.waitTillLoadingPage(getDriver());
     }
 
     public String getLocationCodeInputValue() {
@@ -829,15 +843,25 @@ public class CountingSessionsPage extends BasePage {
         Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(getApplyButton());
         clickOnElement(getApplyButton());
+        Waiters.waitTillLoadingPage(getDriver());
     }
 
     public void clickAddProductButton() {
         Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(getBtnProductAdd());
         clickOnElement(getBtnProductAdd());
+        waitUntilInvisible(1, loader);
     }
 
     public void clickAllCheckboxButton() {
+        Waiters.waitTillLoadingPage(getDriver());
+        Waiters.waitForElementToBeDisplay(getAllCheckbox());
+        Waiters.waitABit(5000);
+        clickOnElement(getAllCheckbox());
+        Waiters.waitTillLoadingPage(getDriver());
+    }
+
+    public void unClickAllCheckboxButton() {
         Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(getAllCheckbox());
         clickOnElement(getAllCheckbox());
@@ -874,12 +898,15 @@ public class CountingSessionsPage extends BasePage {
     public void selectProductType(String type) {
         Waiters.waitForElementToBeDisplay(getProductTypeInput());
         clickOnElement(getProductTypeInput());
+        Waiters.waitABit(4000);
         List<WebElement> options = findWebElements(By.xpath("//div[contains(@class, 'k-animation-container-shown')]//li[@role='option']"));
+        Waiters.waitABit(4000);
         WebElement option = options
                 .stream()
                 .filter(el -> el.getText().contains(type))
                 .findFirst()
                 .orElse(null);
+        scrollToCenter(option);
         clickOnElement(option);
         Waiters.waitTillLoadingPage(getDriver());
     }
@@ -893,13 +920,15 @@ public class CountingSessionsPage extends BasePage {
     public void selectMovementClass(String mvmtClass) {
         Waiters.waitForElementToBeDisplay(movementDropdown);
         clickOnElement(movementDropdown);
+        Waiters.waitABit(2000);
         List<WebElement> options = findWebElements(By.xpath("//div[contains(@class, 'k-animation-container-shown')]//li[@role='option']"));
         WebElement option = options
                 .stream()
                 .filter(el -> el.getText().contains(mvmtClass))
                 .findFirst()
                 .orElse(null);
-        clickOnElement(option);
+        jsClick(option);
+        Waiters.waitABit(2000);
         Waiters.waitTillLoadingPage(getDriver());
     }
 
@@ -930,8 +959,9 @@ public class CountingSessionsPage extends BasePage {
 
     public void typeSupplier(String supplier) {
         Waiters.waitTillLoadingPage(getDriver());
-        Waiters.waitForElementToBeDisplay(supplierInput);
-        clickOnElement(supplierInputIcon);
+        Waiters.waitForElementToBeClickable(supplierInputIcon);
+        Waiters.waitABit(3000);
+        jsClick(getSupplierInputIcon());
         clickOnElement(getPopupTable().findElement(By.xpath(".//tr[contains(@class, 'k-master-row')][.//td[text()='" + supplier + "']]")));
         pressTab(getSupplierInput());
         Waiters.waitTillLoadingPage(getDriver());
@@ -990,6 +1020,8 @@ public class CountingSessionsPage extends BasePage {
                 .filter(el -> el.getText().contains(type))
                 .findFirst()
                 .orElse(null);
+        scrollToCenter(option);
+        clickOnElement(option);
         Waiters.waitTillLoadingPage(getDriver());
     }
 
@@ -998,7 +1030,7 @@ public class CountingSessionsPage extends BasePage {
     }
 
     public String isRowSelected(int row) {
-        Waiters.returnDocumentStatus(getDriver());
+        Waiters.waitTillLoadingPage(getDriver());
         return getElementAttribute(getSessionTableRows().get(row), "class");
     }
 
@@ -1008,67 +1040,129 @@ public class CountingSessionsPage extends BasePage {
 
     public String getTasksPerAssignmentsInputValue() { return getValue(getTasksPerAssignmentsInput()); }
 
-    public String getLocationColumnHeaderSortingResult() { return getElementAttribute(getLocationColumnHeader(), "aria-sort"); }
+    public String getLocationColumnHeaderSortingResult() {
+        waitUntilInvisible(2, loader);
+        return getElementAttribute(getLocationColumnHeader(), "aria-sort");
+    }
 
     public String getZoneColumnHeaderSortingResult() {
+        Waiters.waitABit(1000);
         return getElementAttribute(getZoneColumnHeader(), "aria-sort");
     }
 
     public String getTypeColumnHeaderSortingResult() {
+        Waiters.waitABit(1000);
         return getElementAttribute(getTypeColumnHeader(), "aria-sort");
     }
 
-    public String getStatusColumnHeaderSortingResult() { return getElementAttribute(getStatusColumnHeader(), "aria-sort"); }
+    public String getStatusColumnHeaderSortingResult() {
+        Waiters.waitABit(1000);
+        return getElementAttribute(getStatusColumnHeader(), "aria-sort");
+    }
 
-    public String getCountsColumnHeaderSortingResult() { return getElementAttribute(getCountsColumnHeader(), "aria-sort"); }
+    public String getCountsColumnHeaderSortingResult() {
+        Waiters.waitABit(1000);
+        return getElementAttribute(getCountsColumnHeader(), "aria-sort");
+    }
 
-    public String getReleaseDateTimeColumnHeaderSortingResult() { return getElementAttribute(getReleaseDateTimeColumnHeader(), "aria-sort"); }
+    public String getReleaseDateTimeColumnHeaderSortingResult() {
+        Waiters.waitABit(1000);
+        return getElementAttribute(getReleaseDateTimeColumnHeader(), "aria-sort");
+    }
 
-    public String getProductColumnHeaderSortingResult() { return getElementAttribute(getProductColumnHeader(), "aria-sort"); }
+    public String getProductColumnHeaderSortingResult() {
+        Waiters.waitABit(1000);
+        return getElementAttribute(getProductColumnHeader(), "aria-sort");
+    }
 
-    public String getOwnerColumnHeaderSortingResult() { return getElementAttribute(getOwnerColumnHeader(), "aria-sort"); }
+    public String getOwnerColumnHeaderSortingResult() {
+        Waiters.waitABit(1000);
+        return getElementAttribute(getOwnerColumnHeader(), "aria-sort");
+    }
 
-    public String getDescriptionColumnHeaderSortingResult() { return getElementAttribute(getDescriptionColumnHeader(), "aria-sort"); }
+    public String getDescriptionColumnHeaderSortingResult() {
+        Waiters.waitABit(1000);
+        return getElementAttribute(getDescriptionColumnHeader(), "aria-sort");
+    }
 
-    public String getBookQtyColumnHeaderSortingResult() { return getElementAttribute(getBookQtyColumnHeader(), "aria-sort"); }
+    public String getBookQtyColumnHeaderSortingResult() {
+        Waiters.waitABit(1000);
+        return getElementAttribute(getBookQtyColumnHeader(), "aria-sort");
+    }
 
-    public String getBookCostColumnHeaderSortingResult() { return getElementAttribute(getBookCostColumnHeader(), "aria-sort"); }
+    public String getBookCostColumnHeaderSortingResult() {
+        Waiters.waitABit(1000);
+        return getElementAttribute(getBookCostColumnHeader(), "aria-sort");
+    }
 
-    public String getProductTypeColumnHeaderSortingResult() { return getElementAttribute(getProductTypeColumnHeader(), "aria-sort"); }
+    public String getProductTypeColumnHeaderSortingResult() {
+        Waiters.waitABit(1000);
+        return getElementAttribute(getProductTypeColumnHeader(), "aria-sort");
+    }
 
-    public String isEditSessionBtnDisabled() { return getElementAttribute(getBtnEditSession(), "aria-disabled"); }
+    public String isEditSessionBtnDisabled() {
+        Waiters.waitABit(1000);
+        return getElementAttribute(getBtnEditSession(), "aria-disabled");
+    }
 
-    public String isDeleteSessionBtnDisabled() { return getElementAttribute(getBtnDeleteSession(), "aria-disabled"); }
+    public String isDeleteSessionBtnDisabled() {
+        Waiters.waitABit(1000);
+        return getElementAttribute(getBtnDeleteSession(), "aria-disabled");
+    }
 
-    public String isReleaseAssignmentBtnDisabled() { return getElementAttribute(getReleaseAssignmentBtn(), "aria-disabled"); }
+    public String isReleaseAssignmentBtnDisabled() {
+        Waiters.waitABit(1000);
+        return getElementAttribute(getReleaseAssignmentBtn(), "aria-disabled");
+    }
 
-    public String isRemoveAssignmentBtnDisabled() { return getElementAttribute(getRemoveAssignmentBtn(), "aria-disabled"); }
+    public String isRemoveAssignmentBtnDisabled() {
+        Waiters.waitABit(1000);
+        return getElementAttribute(getRemoveAssignmentBtn(), "aria-disabled");
+    }
 
-    public String isDeleteProductDisabled() { return getElementAttribute(getProductRemove(), "aria-disabled"); }
+    public String isDeleteProductDisabled() {
+        Waiters.waitABit(1000);
+        return getElementAttribute(getProductRemove(), "aria-disabled");
+    }
 
-    public String isResetProductDisabled() { return getElementAttribute(getProductReset(), "aria-disabled"); }
+    public String isResetProductDisabled() {
+        Waiters.waitABit(1000);
+        return getElementAttribute(getProductReset(), "aria-disabled");
+    }
 
-    public boolean isAddProductEnabled() { return elementIsEnabled(btnProductAdd); }
+    public boolean isAddProductEnabled() {
+        Waiters.waitABit(1000);
+        return elementIsEnabled(btnProductAdd);
+    }
 
-    public boolean isGenerateLocationsEnabled() { return elementIsEnabled(btnGenerateLocations); }
+    public boolean isGenerateLocationsEnabled() {
+        Waiters.waitABit(1000);
+        return elementIsEnabled(btnGenerateLocations);
+    }
 
     public String getWindowTitleText() { return getText(getWindowTitle()); }
 
-    public String getDialogTitleText() { return getText(getDialogTitle()); }
+    public String getDialogTitleText() {
+        Waiters.waitABit(2000);
+        return getText(getDialogTitle());
+    }
 
     public String getItemsFoundValueText() { return getText(getItemsFoundValue()); }
 
     public boolean isItemsFoundLabelDisplayed() {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         return isElementDisplay(itemsFoundLabel);
     }
 
     public boolean isItemsFoundValueDisplayed() {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         return isElementDisplay(itemsFoundValue);
     }
 
-    public boolean isReleaseLabelDisplayed() { return isElementDisplay(releaseLabel); }
+    public boolean isReleaseLabelDisplayed() {
+        Waiters.waitABit(2000);
+        return isElementDisplay(releaseLabel);
+    }
 
     public boolean isBuildCountAssignmentButtonDisplayed() { return isElementDisplay(buildCountAssignmentButton); }
 
@@ -1088,11 +1182,20 @@ public class CountingSessionsPage extends BasePage {
 
     public boolean isReleaseDateLabelDisplayed() { return isElementDisplay(dateInputSchedDateLabel); }
 
-    public boolean isReleaseDateInputDisplayed() { return isElementDisplay(dateInputSchedDate); }
+    public boolean isReleaseDateInputDisplayed() {
+        Waiters.waitABit(2000);
+        return isElementDisplay(dateInputSchedDate);
+    }
 
-    public boolean isTimeInputDisplayed() { return isElementDisplay(timeInputTime); }
+    public boolean isTimeInputDisplayed() {
+        Waiters.waitABit(2000);
+        return isElementDisplay(timeInputSchedTime);
+    }
 
-    public boolean isAssignLabelDisplayed() { return isElementDisplay(assignLabel); }
+    public boolean isAssignLabelDisplayed() {
+        Waiters.waitABit(2000);
+        return isElementDisplay(assignLabel);
+    }
 
     public boolean isSessionsPageTitleDisplayed() { return isElementDisplay(sessionsPageTitle); }
 
@@ -1310,7 +1413,10 @@ public class CountingSessionsPage extends BasePage {
 
     public boolean isReleasedColumnHeaderDisplayed() { return isElementDisplay(getReleasedColumnHeader()); }
 
-    public boolean isXcancelIconDisplayed() { return isElementDisplay(getXcancelIcon()); }
+    public boolean isXcancelIconDisplayed() {
+        Waiters.waitABit(2000);
+        return isElementDisplay(getXcancelIcon());
+    }
 
     public boolean isLocationsLabelDisplayed() { return isElementDisplay(getLocationsLabel()); }
 
@@ -1332,19 +1438,40 @@ public class CountingSessionsPage extends BasePage {
 
     public boolean isNotificationDisplayed(String text) { return isElementDisplay(getNotification(text)); }
 
-    public boolean isAssignmentCodeFilterDisplayed() { return isElementDisplay(assignmentCodeFilter); }
+    public boolean isAssignmentCodeFilterDisplayed() {
+        Waiters.waitABit(2000);
+        return isElementDisplay(assignmentCodeFilter);
+    }
 
-    public boolean isTotalTasksFilterDisplayed() { return isElementDisplay(totalTasksFilter); }
+    public boolean isTotalTasksFilterDisplayed() {
+        Waiters.waitABit(2000);
+        return isElementDisplay(totalTasksFilter);
+    }
 
-    public boolean isCompletedTasksFilterDisplayed() { return isElementDisplay(completedTasksFilter); }
+    public boolean isCompletedTasksFilterDisplayed() {
+        Waiters.waitABit(2000);
+        return isElementDisplay(completedTasksFilter);
+    }
 
-    public boolean isUserNameFilterDisplayed() { return isElementDisplay(userNameFilter); }
+    public boolean isUserNameFilterDisplayed() {
+        Waiters.waitABit(2000);
+        return isElementDisplay(userNameFilter);
+    }
 
-    public boolean isTaskGroupFilterDisplayed() { return isElementDisplay(taskGroupFilter); }
+    public boolean isTaskGroupFilterDisplayed() {
+        Waiters.waitABit(2000);
+        return isElementDisplay(taskGroupFilter);
+    }
 
-    public boolean isReleasedDateTimeFilterDisplayed() { return isElementDisplay(releasedDateTimeFilter); }
+    public boolean isReleasedDateTimeFilterDisplayed() {
+        Waiters.waitABit(2000);
+        return isElementDisplay(releasedDateTimeFilter);
+    }
 
-    public boolean isSearchBoxDisplayed() { return isElementDisplay(searchBox); }
+    public boolean isSearchBoxDisplayed() {
+        Waiters.waitABit(2000);
+        return isElementDisplay(searchBox);
+    }
 
     public boolean isAddFilterDisplayed() { return isElementDisplay(getAddFilter()); }
 
@@ -1442,7 +1569,10 @@ public class CountingSessionsPage extends BasePage {
 
     public WebElement getLocationColumn() { return findWebElement(locationColumn); }
 
-    public WebElement getLocationColumnHeader() { return findWebElement(locationColumnHeader); }
+    public WebElement getLocationColumnHeader() {
+        Waiters.waitABit(3000);
+        return findWebElement(locationColumnHeader);
+    }
 
     public WebElement getZoneColumn() { return findWebElement(zoneColumn); }
 
@@ -1582,6 +1712,8 @@ public class CountingSessionsPage extends BasePage {
 
     public WebElement getSupplierInput() { return findWebElement(supplierInput); }
 
+    public WebElement getSupplierInputIcon() { return findWebElement(supplierInputIcon); }
+
     public WebElement getStartingProdRangeLabel() { return findWebElement(startingProdRangeLabel); }
 
     public WebElement getStartingProdRange() { return findWebElement(startingProdRange); }
@@ -1647,8 +1779,6 @@ public class CountingSessionsPage extends BasePage {
     public WebElement getToggleCalendar() { return findWebElement(toggleCalendar); }
 
     public WebElement getTimeInputSchedTime() { return findWebElement(timeInputSchedTime); }
-
-    public WebElement getTimeInputTime() { return findWebElement(timeInputTime); }
 
     public WebElement getUserDropdown() { return findWebElement(userDropdown); }
 

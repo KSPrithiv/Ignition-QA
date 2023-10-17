@@ -15,7 +15,7 @@ import org.testng.Assert;
 
 import java.util.List;
 
-public class FeaturedProdSettingsPage 
+public class FeaturedProdSettingsPage
 {
     /* Created by Divya.Ramadas@afsi.com */
     WebDriver driver;
@@ -51,17 +51,16 @@ public class FeaturedProdSettingsPage
         {
             HelpersMethod.waitTillLoadingPage(driver);
         }
-        Thread.sleep(20000);
-       // new WebDriverWait(driver,100).until(ExpectedConditions.elementToBeClickable(By.xpath("//span[contains(@class,'k-icon k-i-arrow-chevron-down i-header-toolbar-expandable-button__icon')]")));
+        Thread.sleep(2000);
+        // new WebDriverWait(driver,100).until(ExpectedConditions.elementToBeClickable(By.xpath("//span[contains(@class,'k-icon k-i-arrow-chevron-down i-header-toolbar-expandable-button__icon')]")));
 
         if(HelpersMethod.IsExists("//div[@class='loader']",driver))
         {
             WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 400);
+            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100000);
         }
         try
         {
-            HelpersMethod.Implicitwait(driver,80);
             title=driver.getTitle();
             if(title.contains("Admin"))
             {
@@ -93,7 +92,7 @@ public class FeaturedProdSettingsPage
         exists=false;
         try
         {
-            HelpersMethod.ClickBut(driver,DropDown,20);
+            HelpersMethod.ClickBut(driver,DropDown,1000);
         }
         catch (Exception e){}
     }
@@ -110,17 +109,17 @@ public class FeaturedProdSettingsPage
             length=ArrayValues.size();
             if(!(MaxVal==length))
             {
-              for(WebElement ArrayVal:ArrayValues)
-              {
-                  act.moveToElement(ArrayVal).build().perform();
-                  ArrayText=ArrayVal.getText();
-                  if(ArrayText.equals(Integer.toString(MaxVal)))
-                  {
-                    act.click(ArrayVal).build().perform();
-                    exists=true;
-                    break;
-                  }
-              }
+                for(WebElement ArrayVal:ArrayValues)
+                {
+                    act.moveToElement(ArrayVal).build().perform();
+                    ArrayText=ArrayVal.getText();
+                    if(ArrayText.equals(Integer.toString(MaxVal)))
+                    {
+                        act.click(ArrayVal).build().perform();
+                        exists=true;
+                        break;
+                    }
+                }
             }
             else
             {
@@ -167,6 +166,21 @@ public class FeaturedProdSettingsPage
             else
             {
                 scenario.log("FEATURE PRODUCTS SHEILD ICON IS NOT SELECTED");
+            }
+            Assert.assertEquals(exists,true);
+        }
+        catch (Exception e){}
+    }
+
+    public void validateFeatureProd()
+    {
+        exists=false;
+        try
+        {
+            if(HelpersMethod.FindByElement(driver,"xpath","//span[contains(@class,'spnmoduleNameHeader withoutBreadcrumbs')]").getText().equals("Featured Products"))
+            {
+                scenario.log("FEATURED PRODUCTS PAGE HAS BEEN FOUND");
+                exists=true;
             }
             Assert.assertEquals(exists,true);
         }

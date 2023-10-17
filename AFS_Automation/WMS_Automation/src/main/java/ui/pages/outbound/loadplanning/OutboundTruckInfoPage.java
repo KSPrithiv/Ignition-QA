@@ -8,6 +8,8 @@ import java.util.List;
 import java.util.Random;
 import java.util.stream.Collectors;
 
+import static common.setup.DriverManager.getDriver;
+
 public class OutboundTruckInfoPage extends BasePage {
     By truckInfoTitle = By.cssSelector(".i-card__card__title-area__title");
     By exitButton = By.xpath("//button[contains(text(), 'Exit')]");
@@ -67,44 +69,53 @@ public class OutboundTruckInfoPage extends BasePage {
     By waitingToBeLoaded = By.xpath("//div[text()=' Waiting to be loaded']");
     By loaded = By.xpath("//div[text()=' Loaded']");
     By palletDoesNotFit = By.xpath("//div[text()=' Pallet does not fit']");
-    By freezerItems = By.xpath("//div[text()=' Freezer Items']");
-    By coolerItems = By.xpath("//div[text()=' Cooler items']");
-    By dryGoods = By.xpath("//div[text()=' Dry Goods']");
+    By freezerItems = By.xpath("//div[text()=' Freezer ']");
+    By coolerItems = By.xpath("//div[text()=' Cooler ']");
+    By dryGoods = By.xpath("//div[text()=' Dry ']");
     By toggleIcon = By.xpath("//span[@aria-label='Toggle Clock']");
     By setButton = By.xpath("//div[contains(@class, 'k-animation-container-shown')]//*[contains(text(), 'Set')]");
     By tableGrid = By.className("k-grid-container");
     By assignmentPopupHeader = By.xpath("//div[@class='lp_overlayChildWrap'][.//div[@class='lp_overlayChildheader h5']]");
+    By assignmentHeader = By.xpath("//div[contains(@class, 'lp_pallet_header')]//div[contains(@class, 'lp_pallet_no')]");
+    By assignmentHeaderContainer = By.xpath("//div[contains(@class, 'lp_pallet_assignment_text')]//div[contains(@class, 'palletHeaderContainer')]");
+    By assignmentFooter = By.xpath("//div[contains(@class, 'lp_pallet_header')]//div[contains(@class, 'lp_pallet_no')]");
+    By assignmentBorder = By.xpath("//div[contains(@class, 'assignmentWrapForHeight')]/div[@draggable='true' and contains(@style, 'border:')]");
     By quantity = By.id("wqTextTaskQty");
     By reasonDropdown = By.id("wqListTaskTopOff");
     By increaseValueArrow = By.xpath("//span[@title='Increase value']");
     By decreaseValueArrow = By.xpath("//span[@title='Decrease value']");
     By notification = By.className("i-notification-text");
+    By loader = By.cssSelector(".loader");
 
     public void waitOutboundTruckInfoPageToLoad() {
-        Waiters.waitUntilPageWillLoadedSelenide();
+        waitUntilInvisible(30, loader);
+        waitUntilVisible(20, truckDiagramLabel);
+        Waiters.waitABit(10000);
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(getTruckInfoTitle());
         Waiters.waitForElementToBeDisplay(getTruckDiagramLabel());
     }
 
     private WebElement getAvailableAssignment(String positionNum) {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         return findWebElement(By.xpath("//div[contains(@class, 'lp_pallet_body')][.//div[@class='lp_pallet_no']//div[text()='"
                 + positionNum + "']]//div[@class='lp_pallet_top_filler']"));
     }
 
     private WebElement getFreeAssignmentPlace(String positionNum) {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         return findWebElement(By.xpath("//div[contains(@class, 'palletChildMainDiv')][.//div[contains(@class, 'lp_pallet_no') and text()='"
                 + positionNum + "']]"));
     }
 
     private WebElement getFullAssignmentPlace(String positionNum) {
-        Waiters.waitABit(2000);
-        return findWebElement(By.xpath("//div[contains(@class, 'FullPalletWithDragSourceWrap')][.//div[contains(@class, 'lp_pallet_no')]//div[text()='"
-                + positionNum + "']]//div[@class='lp_pallet_top_filler']"));
+        Waiters.waitTillLoadingPage(getDriver());
+        return findWebElement(By.xpath("//div[contains(@class, 'lp_pallet_wrap')][.//div[contains(@class, 'lp_pallet_no_center') and text()='"
+                + positionNum + "']]"));
     }
 
     public List<WebElement> getAssignmentPopupRows(int number) {
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitABit(2000);
         String id = getAssignments().get(number).findElement(By.cssSelector(".palletHeaderContainer")).getText().trim()
                 .substring(getAssignments().get(number).findElement(By.cssSelector(".palletHeaderContainer"))
@@ -128,14 +139,14 @@ public class OutboundTruckInfoPage extends BasePage {
         Waiters.waitForElementToBeDisplay(getTrailerDropDown());
         clickOnElement(findWebElement(By.xpath("//div[contains(@class, 'k-animation-container-shown')]//li[@role='option'] and contains(text(), '"
                 + trailer + "')")));
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
     }
 
     public void selectRandomTrailer() {
         Waiters.waitForElementToBeDisplay(getTrailerDropDown());
         int size = getTrailersListSize();
         clickOnElement(getTrailers().get(new Random().nextInt(size)));
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
     }
 
     public void clickTrailerDropDown() {
@@ -150,15 +161,20 @@ public class OutboundTruckInfoPage extends BasePage {
 
     public void selectDoor(String door) {
         Waiters.waitForElementToBeDisplay(getDoorDropDown());
-        clickOnElement(findWebElement(By.xpath("//div[contains(@class, 'k-animation-container-shown')]//li[@role='option' and contains(text(), '"
-                + door + "')]")));
-        Waiters.waitABit(2000);
+        List<WebElement> options = findWebElements(By.xpath("//div[contains(@class, 'k-animation-container-shown')]//li[@role='option']"));
+        WebElement option = options
+                .stream()
+                .filter(el -> el.getText().contains(door))
+                .findFirst()
+                .orElse(null);
+        clickOnElement(option);
+        Waiters.waitTillLoadingPage(getDriver());
     }
 
     public void clickYesButton() {
         Waiters.waitForElementToBeDisplay(getYesButton());
         clickOnElement(getYesButton());
-        Waiters.waitABit(3000);
+        Waiters.waitTillLoadingPage(getDriver());
     }
 
     public void clickNoButton() {
@@ -167,6 +183,7 @@ public class OutboundTruckInfoPage extends BasePage {
     }
 
     public void clickYesBtn() {
+        Waiters.waitABit(3000);
         Waiters.waitForElementToBeDisplay(getYesBtn());
         clickOnElement(getYesBtn());
     }
@@ -199,6 +216,7 @@ public class OutboundTruckInfoPage extends BasePage {
     public void clickExitButton() {
         Waiters.waitForElementToBeDisplay(getExitButton());
         clickOnElement(getExitButton());
+        waitUntilInvisible(1, loader);
     }
 
     public void clickWorkButton() {
@@ -236,6 +254,21 @@ public class OutboundTruckInfoPage extends BasePage {
         clickOnElement(getShortsLink());
     }
 
+    public void clickAssignmentPopupHeader() {
+        Waiters.waitForElementToBeDisplay(getAssignmentPopupHeader());
+        clickOnElement(getAssignmentPopupHeader());
+    }
+
+    public void clickAssignmentHeaderContainer() {
+        Waiters.waitForElementToBeDisplay(getAssignmentHeaderContainer());
+        clickOnElement(getAssignmentHeaderContainer());
+    }
+
+    public void clickAssignmentFooter() {
+        Waiters.waitForElementToBeDisplay(getAssignmentFooter());
+        clickOnElement(getAssignmentFooter());
+    }
+
     public void typeRoute(String route) {
         Waiters.waitForElementToBeDisplay(getEditFormControlInput());
         clearText(getEditFormControlInput());
@@ -243,6 +276,8 @@ public class OutboundTruckInfoPage extends BasePage {
     }
 
     public void typeShipDate(String date) {
+        Waiters.waitTillLoadingPage(getDriver());
+        Waiters.waitABit(3000);
         Waiters.waitForElementToBeDisplay(getShipDateInput());
         clearText(getShipDateInput());
         inputText(getShipDateInput(), date);
@@ -250,17 +285,18 @@ public class OutboundTruckInfoPage extends BasePage {
     }
 
     public void dragAndDropAssignment(String fromPosition, String toPosition) {
-        Waiters.waitABit(4000);
+        Waiters.waitTillLoadingPage(getDriver());
+        waitUntilInvisible(4, loader);
         dragAndDropTo(getAvailableAssignment(fromPosition), getFreeAssignmentPlace(toPosition));
     }
 
     public void dragAndDropAssignmentToExistingAssignment(String fromPosition, String toPosition) {
-        Waiters.waitABit(4000);
+        Waiters.waitTillLoadingPage(getDriver());
         dragAndDropTo(getAvailableAssignment(fromPosition), getFullAssignmentPlace(toPosition));
     }
 
     public String getShipDateValue() {
-        Waiters.waitABit(3000);
+        Waiters.waitTillLoadingPage(getDriver());
         return getValue(getShipDateInput());
     }
 
@@ -298,12 +334,12 @@ public class OutboundTruckInfoPage extends BasePage {
     }
 
     public String getShipTimeValue() {
-        Waiters.waitABit(3000);
+        Waiters.waitTillLoadingPage(getDriver());
         return getValue(getShipTimeInput());
     }
 
     public String getDoorDropDownText() {
-        Waiters.waitABit(3000);
+        Waiters.waitTillLoadingPage(getDriver());
         return getText(getDoorDropDown());
     }
 
@@ -318,12 +354,12 @@ public class OutboundTruckInfoPage extends BasePage {
     }
 
     public String getWindowTitleText() {
-        Waiters.waitABit(4000);
+        Waiters.waitTillLoadingPage(getDriver());
         return getText(getWindowTitle());
     }
 
     public String getWarningMessageText() {
-        Waiters.waitABit(4000);
+        Waiters.waitTillLoadingPage(getDriver());
         return getText(getWarningMessage());
     }
 
@@ -348,8 +384,10 @@ public class OutboundTruckInfoPage extends BasePage {
     }
 
     public void clickFirstAssignment() {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
+        Waiters.waitABit(3000);
         clickOnElement(getAssignments().get(0).findElement(By.cssSelector(".lp_pallet_assignment_text")));
+        waitUntilInvisible(2, loader);
     }
 
     public void selectTopOfAssignmentByIndex(int index) {
@@ -381,7 +419,7 @@ public class OutboundTruckInfoPage extends BasePage {
         Waiters.waitForElementToBeDisplay(getReasonDropdown());
         clickOnElement(findWebElement(By.xpath("//div[contains(@class, 'k-animation-container-shown')]//li[@role='option' and contains(text(), '"
                         + reason + "')]")));
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
     }
 
     public void clickIncreaseValueArrow() {
@@ -402,14 +440,14 @@ public class OutboundTruckInfoPage extends BasePage {
     }
 
     public void setAssignmentsNumbersText() {
-        Waiters.waitForAllElementsToBeDisplay(getAssignments().get(getAssignments().size()-1));
+        Waiters.waitABit(3000);
         assignmentsNumbersList = getAssignments().stream()
                 .map(assignment -> assignment.findElement(By.xpath(".//div[@class='palletHeaderContainer']")).getText().trim())
                 .collect(Collectors.toList());
     }
 
     public List<String> getAssignmentsNumbers() {
-        Waiters.waitABit(4000);
+        Waiters.waitTillLoadingPage(getDriver());
         return assignmentsNumbersList;
     }
 
@@ -487,9 +525,15 @@ public class OutboundTruckInfoPage extends BasePage {
 
     public boolean isEditFormControlDisplayed() { return isElementDisplay(getEditFormControl()); }
 
-    public boolean isYesBtnDisplayed() { return isElementDisplay(getYesBtn()); }
+    public boolean isYesBtnDisplayed() {
+        Waiters.waitABit(2000);
+        return isElementDisplay(getYesBtn());
+    }
 
-    public boolean isNoBtnDisplayed() { return isElementDisplay(getNoBtn()); }
+    public boolean isNoBtnDisplayed() {
+        Waiters.waitABit(2000);
+        return isElementDisplay(getNoBtn());
+    }
 
     public boolean isSaveBtnDisplayed() { return isElementDisplay(getSaveBtn()); }
 
@@ -533,9 +577,14 @@ public class OutboundTruckInfoPage extends BasePage {
 
     public boolean isYesBtnActive() { return getElementAttribute(getYesBtn(), "class").contains("k-primary"); }
 
+    public boolean isAssignmentBorderBlue() { return getElementAttribute(getAssignmentBorder(), "style").contains("blue"); }
+
     public boolean isRouteWeightGreaterTrailerWeight() { return getElementAttribute(getRouteWeightValue(), "style").contains("red"); }
 
-    public WebElement getTruckInfoTitle() { return findWebElement(truckInfoTitle); }
+    public WebElement getTruckInfoTitle() {
+        Waiters.waitABit(4000);
+        return findWebElement(truckInfoTitle);
+    }
 
     public WebElement getExitButton() { return findWebElement(exitButton); }
 
@@ -595,7 +644,10 @@ public class OutboundTruckInfoPage extends BasePage {
 
     public WebElement getRouteWeightValue() { return findWebElement(routeWeightValue); }
 
-    public WebElement getTruckDiagramLabel() { return findWebElement(truckDiagramLabel); }
+    public WebElement getTruckDiagramLabel() {
+        Waiters.waitABit(4000);
+        return findWebElement(truckDiagramLabel);
+    }
 
     public WebElement getTruckInfoArrow() { return findWebElement(truckInfoArrow); }
 
@@ -666,5 +718,13 @@ public class OutboundTruckInfoPage extends BasePage {
     public WebElement getDecreaseValueArrow() { return findWebElement(decreaseValueArrow); }
 
     public WebElement getNotification() { return findWebElement(notification); }
+
+    public WebElement getAssignmentPopupHeader() { return findWebElement(assignmentHeader); }
+
+    public WebElement getAssignmentHeaderContainer() { return findWebElement(assignmentHeaderContainer); }
+
+    public WebElement getAssignmentFooter() { return findWebElement(assignmentFooter); }
+
+    public WebElement getAssignmentBorder() { return findWebElement(assignmentBorder); }
 
 }

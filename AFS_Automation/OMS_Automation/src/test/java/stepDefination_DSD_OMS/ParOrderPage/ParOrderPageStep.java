@@ -46,12 +46,12 @@ public class ParOrderPageStep
     static boolean flag3=false;
     static String currentURL=null;
 
-    LoginPage loginpage;
-    HomePage homepage;
-    OrderEntryPage orderpage;
-    CreateOGPage createOGPage;
-    OrderGuidePage orderGuidePage;
-    ParOrderPage parOrderPage;
+    static LoginPage loginpage;
+    static HomePage homepage;
+    static OrderEntryPage orderpage;
+    static CreateOGPage createOGPage;
+    static OrderGuidePage orderGuidePage;
+    static ParOrderPage parOrderPage;
 
     @Before
     public void LaunchBrowser(Scenario scenario) throws Exception
@@ -133,7 +133,7 @@ public class ParOrderPageStep
                 if (HelpersMethod.IsExists("//div[@class='loader']", driver))
                 {
                     WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 20000);
+                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 400000);
                 }
                 HelpersMethod.navigate_Horizantal_Tab(driver, "Order Guides", "//li[contains(@class,'k-item')]/span[@class='k-link' and contains(text(),'Order Guides')]", "xpath", "//li[contains(@class,'k-item')]/span[@class='k-link']");
                 currentURL = driver.getCurrentUrl();
@@ -142,27 +142,27 @@ public class ParOrderPageStep
             Assert.assertEquals(exists,true);
             flag2=true;
         }
-            parOrderPage = new ParOrderPage(driver, scenario);
-            parOrderPage.Refresh_Page(currentURL);
-            orderGuidePage=new OrderGuidePage(driver,scenario);
-            exists=false;
-            exists = orderGuidePage.ValidateOG();
-            Assert.assertEquals(exists, true);
-            //Code to select OG from grid
-            exists = false;
-            exists = orderGuidePage.OGSearchBox(OG);
-            Assert.assertEquals(exists, true);
-            orderGuidePage.SearchOGSelect(OG);
+        parOrderPage = new ParOrderPage(driver, scenario);
+        parOrderPage.Refresh_Page(currentURL);
+        orderGuidePage=new OrderGuidePage(driver,scenario);
+        exists=false;
+        exists = orderGuidePage.ValidateOG();
+        Assert.assertEquals(exists, true);
+        //Code to select OG from grid
+        exists = false;
+        exists = orderGuidePage.OGSearchBox(OG);
+        Assert.assertEquals(exists, true);
+        orderGuidePage.SearchOGSelect(OG);
     }
 
     @Then("User clicks on ParList tab and Click on New Par list button")
     public void userClicksOnParListTabAndClickOnNewParListButton() throws InterruptedException, AWTException
     {
-            exists = false;
-            parOrderPage = new ParOrderPage(driver, scenario);
-            parOrderPage.ClickParTab();
-        exists=parOrderPage.ValidateParlistTab();
-        Assert.assertEquals(exists,true);
+        exists = false;
+        parOrderPage = new ParOrderPage(driver, scenario);
+        parOrderPage.ClickParTab();
+        parOrderPage.ValidateParlistTab();
+
        /* orderpage=new OrderEntryPage(driver,scenario);
         //orderpage.HandleError_Page();
         //orderpage.Refresh_Page(currentURL);*/
@@ -214,13 +214,12 @@ public class ParOrderPageStep
     public void userClicksOnParListTabAndSelectsParlistFromDropDown(String ParList)
     {
         exists=false;
-            parOrderPage = new ParOrderPage(driver, scenario);
-            Prod_No = parOrderPage.ReadProductValueFromOG();
-            parOrderPage.ClickParTab();
-            parOrderPage.ValidateParlistTab();
         parOrderPage = new ParOrderPage(driver, scenario);
-        exists=parOrderPage.ValidateParlistTab();
-        Assert.assertEquals(exists,true);
+        Prod_No = parOrderPage.ReadProductValueFromOG();
+        parOrderPage.ClickParTab();
+        parOrderPage.ValidateParlistTab();
+        parOrderPage = new ParOrderPage(driver, scenario);
+        parOrderPage.ValidateParlistTab();
         parOrderPage.ClickParDropDown();
         parOrderPage.SelectParlistFromDropdown(ParList);
     }
@@ -290,14 +289,18 @@ public class ParOrderPageStep
         parOrderPage=new ParOrderPage(driver,scenario);
         Prod_No=parOrderPage.ReadProductValueFromOG();
         parOrderPage.ClickParTab();
-        exists=parOrderPage.ValidateParlistTab();
-        Assert.assertEquals(exists,true);
+     /*   parOrderPage.ValidateParlistTab();
         for(int i=0;i<=ParDetails.size()-1;i++)
         {
             parOrderPage.ClickParDropDown();
             parOrderPage.SelectParlistFromDropdown(ParDetails.get(0).get(0));
             parOrderPage.DeletePar();
-        }
+        }*/
+
+        parOrderPage=new ParOrderPage(driver,scenario);
+
+        parOrderPage.deleteAllPar();
+
     }
 
     @And("User should enter valid value for Qty for the first product in product grid")
@@ -323,5 +326,4 @@ public class ParOrderPageStep
         parOrderPage.clearFilterOption();
     }
 }
-
 

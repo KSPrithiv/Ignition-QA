@@ -150,5 +150,14 @@ public interface Environment extends Config
 
     @Key("DummypassTest")
     String DummyPassTest();
+
+    @Key("OrderHistoryYear")
+    String orderHistoryYear();
+
+    @Key("AdditionalAccount")
+    String additionalAccount();
+
+    @Key("PriceOverride")
+    String priceRide();
 }
 

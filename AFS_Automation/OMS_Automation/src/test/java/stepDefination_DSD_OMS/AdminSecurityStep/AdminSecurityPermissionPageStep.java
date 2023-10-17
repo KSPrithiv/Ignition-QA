@@ -3,6 +3,7 @@ package stepDefination_DSD_OMS.AdminSecurityStep;
 import io.cucumber.java.Before;
 import io.cucumber.java.Scenario;
 import io.cucumber.java.en.And;
+import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import org.openqa.selenium.WebDriver;
 import pages_DSD_OMS.adminSecurity.AdminSecurityPermissionPage;
@@ -18,8 +19,8 @@ public class AdminSecurityPermissionPageStep
         /* Created by Divya.Ramadas@afsi.com */
         WebDriver driver;
         Scenario scenario;
-        AdminSecurityPermissionPage adminSecurityPermissionPage;
-        AdminSecurityPermission_ByUserPage adminSecurityPermission_byUserPage;
+        static AdminSecurityPermissionPage adminSecurityPermissionPage;
+        static AdminSecurityPermission_ByUserPage adminSecurityPermission_byUserPage;
 
         @Before
         public void LaunchBrowser1(Scenario scenario) throws Exception
@@ -86,7 +87,8 @@ public class AdminSecurityPermissionPageStep
         adminSecurityPermissionPage.selectToRole();
         adminSecurityPermissionPage.clickOnCopyPermissionButton();
         adminSecurityPermissionPage.copyPermissionToPopup();
-        adminSecurityPermissionPage.validateConfirmationPopup();
+        adminSecurityPermissionPage.confirmationPopup1();
+        //adminSecurityPermissionPage.validateConfirmationPopup();
         adminSecurityPermissionPage.confirmationPopup();
         adminSecurityPermissionPage.compareEnabledPermissions(arg0);
     }

@@ -20,7 +20,7 @@ public class InboundLoadOrderDetailsPageValidations {
         softAssert.assertTrue(inboundLoadOrderDetailsPage.isOrderDetailsPresent(), "OrderDetails is not displayed");
         softAssert.assertTrue(inboundLoadOrderDetailsPage.isDoorFieldDisplayed(), "Door Field is not displayed");
         softAssert.assertTrue(inboundLoadOrderDetailsPage.isQaFieldDisplayed(), "Qa Field is not displayed");
-        softAssert.assertTrue(inboundLoadOrderDetailsPage.isOwnerFieldDisplayed(), "Owner Field is not displayed");
+        softAssert.assertTrue(inboundLoadOrderDetailsPage.isCustomerFieldDisplayed(), "Customer Field is not displayed");
         softAssert.assertTrue(inboundLoadOrderDetailsPage.isCarrierFieldDisplayed(), "Carrier Field is not displayed");
         softAssert.assertTrue(inboundLoadOrderDetailsPage.isLoadFieldDisplayed(), "Load Field is not displayed");
         softAssert.assertTrue(inboundLoadOrderDetailsPage.isSourceFieldDisplayed(), "Source Field is not displayed");
@@ -237,6 +237,22 @@ public class InboundLoadOrderDetailsPageValidations {
         softAssert.assertTrue(inboundLoadOrderDetailsPage.isInboundImageCaptureButtonDisplayed(), "Inbound Image Capture Button is not displayed");
         softAssert.assertTrue(inboundLoadOrderDetailsPage.isSelectFilesBtnDisplayed(), "Select Files Button is not displayed");
         softAssert.assertTrue(inboundLoadOrderDetailsPage.isLoadImageLabelDisplayed(), "Load Image Label is not displayed");
+        softAssert.assertAll();
+    }
+
+    @And("Validates Edit order popup on Inbound Load Summary page")
+    public void verifyEditOrderPopup() {
+        SoftAssert softAssert = new SoftAssert();
+        softAssert.assertTrue(inboundLoadOrderDetailsPage.isScheduledTimeLabelDisplayed(),"Scheduled Time Label is not displayed");
+        softAssert.assertTrue(inboundLoadOrderDetailsPage.isScheduledTimeInputDisplayed(),"Scheduled Time Input is not displayed");
+        softAssert.assertTrue(inboundLoadOrderDetailsPage.isScheduledDateLabelDisplayed(),"Scheduled Date Label is not displayed");
+        softAssert.assertTrue(inboundLoadOrderDetailsPage.isScheduledDateDisplayed(),"Scheduled Date is not displayed");
+        softAssert.assertTrue(inboundLoadOrderDetailsPage.isCarrierLabelDisplayed(),"Carrier Label is not displayed");
+        softAssert.assertTrue(inboundLoadOrderDetailsPage.isCarrierInputDisplayed(),"Carrier Input is not displayed");
+        softAssert.assertTrue(inboundLoadOrderDetailsPage.isTrailerLabelDisplayed(),"Trailer Label is not displayed");
+        softAssert.assertTrue(inboundLoadOrderDetailsPage.isTrailerInputDisplayed(),"Trailer Input is not displayed");
+        softAssert.assertTrue(inboundLoadOrderDetailsPage.isPaymentTypeLabelDisplayed(),"Payment Type Label is not displayed");
+        softAssert.assertTrue(inboundLoadOrderDetailsPage.isPaymentTypeInputDisplayed(),"Payment Type Input is not displayed");
         softAssert.assertAll();
     }
 

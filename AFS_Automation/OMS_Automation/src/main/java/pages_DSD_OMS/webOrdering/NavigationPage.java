@@ -2,6 +2,7 @@ package pages_DSD_OMS.webOrdering;
 
 import helper.HelpersMethod;
 import io.cucumber.java.Scenario;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -116,7 +117,7 @@ public class NavigationPage
         {
             //check box click
             WebElement checkBox=HelpersMethod.FindByElement(driver,"xpath","//div[@class='i-draggable-item'][1]/descendant::input");
-            HelpersMethod.ClickBut(driver,checkBox,100);
+            HelpersMethod.ClickBut(driver,checkBox,1000);
             //Read label value associated with check box
             label=HelpersMethod.FindByElement(driver,"xpath","//div[@class='i-draggable-item'][1]/descendant::div[@class='content active']").getText();
             scenario.log("LABEL SELECTED FOR CHANGING LABEL IS "+label);
@@ -130,11 +131,13 @@ public class NavigationPage
         try
         {
             labelNameText=label+"_Test";
-            HelpersMethod.JSSetValueEle(driver,labelInput,60,labelNameText);
-            labelNameText=HelpersMethod.JSGetValueEle(driver,labelInput,40);
+            HelpersMethod.ScrollElement(driver,labelInput);
+            HelpersMethod.EnterText(driver,labelInput,1000,labelNameText);
+            labelInput.sendKeys(Keys.ENTER);
+            labelNameText=HelpersMethod.JSGetValueEle(driver,labelInput,1000);
             if(!label.equals(labelNameText))
             {
-               exists=true;
+                exists=true;
             }
             else
             {
@@ -169,7 +172,7 @@ public class NavigationPage
         exists=false;
         try
         {
-            HelpersMethod.ClickBut(driver,resetButton,40);
+            HelpersMethod.ClickBut(driver,resetButton,1000);
             label1=HelpersMethod.FindByElement(driver,"xpath","//div[@class='i-draggable-item'][1]/descendant::div[@class='content active']").getText();
             scenario.log("AFTER RESETTING THE VALUE LABEL IS CHANGED TO "+label1);
             if(label1.equals(label))

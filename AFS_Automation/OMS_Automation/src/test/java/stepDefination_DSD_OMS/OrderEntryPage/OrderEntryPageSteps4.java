@@ -1,5 +1,6 @@
 package stepDefination_DSD_OMS.OrderEntryPage;
 
+import helper.HelpersMethod;
 import io.cucumber.datatable.DataTable;
 import io.cucumber.java.Before;
 import io.cucumber.java.Scenario;
@@ -29,10 +30,10 @@ public class OrderEntryPageSteps4
 
     static boolean exists=false;
 
-    OrderEntryPage orderpage;
-    NewOrderEntryPage newOE;
-    CheckOutSummaryPage summary;
-    CheckOutOrderPage checkorder;
+    static OrderEntryPage orderpage;
+    static NewOrderEntryPage newOE;
+    static CheckOutSummaryPage summary;
+    static CheckOutOrderPage checkorder;
 
     @Before
     public void LaunchBrowser1(Scenario scenario) throws Exception
@@ -49,7 +50,7 @@ public class OrderEntryPageSteps4
         newOE=new NewOrderEntryPage(driver,scenario);
         exists=newOE.ClickNext();
         Assert.assertEquals(exists,true);
-        //newOE.OutOfStockPop_ERP();
+        newOE.OutOfStockPop_ERP();
         checkorder=new CheckOutOrderPage(driver,scenario);
         checkorder.DeliveryAddressCard();
         checkorder.Click_On_Without_Providing_Payment();
@@ -176,8 +177,27 @@ public class OrderEntryPageSteps4
     public void inSaveOrderWithoutSubmittingPopupShouldSelectNextButton() throws InterruptedException, AWTException
     {
         exists=false;
+        newOE=new NewOrderEntryPage(driver,scenario);
         exists=newOE.SaveOrderWithOutSubmitting_Next();
         Assert.assertEquals(exists,true);
+        newOE.OutOfStockPop_ERP();
+        checkorder=new CheckOutOrderPage(driver,scenario);
+        if(HelpersMethod.IsExists("//div[@id='paymentMethodCard']",driver))
+        {
+            checkorder.Select_PaymentMethod_ClickDownArrow();
+            if(HelpersMethod.IsExists("//tr[1]/descendant::td[@class='payment-method-type-cell']",driver))
+            {
+                checkorder.SelectPaymentMethod();
+                scenario.log("FIRST PAYMENT OPTION HAS BEEN SELECTED");
+            }
+            else
+            {
+                checkorder.Click_On_Without_Providing_Payment();
+                scenario.log("WITHOUT PROVIIDNG PAYMENT OPTION HAS BEEN SELECTED");
+            }
+        }
+        checkorder.DeliveryAddressCard();
+        checkorder.NextButton_Click();
     }
 
     @Then("User should select Note from popup")
@@ -185,5 +205,12 @@ public class OrderEntryPageSteps4
     {
         orderpage=new OrderEntryPage(driver,scenario);
         orderpage.NO_NotePopup();
+    }
+
+    @And("should enter comment in comment popup for updating")
+    public void shouldEnterCommentInCommentPopupForUpdating(DataTable tabledata)
+    {
+        List<List<String>> Comment=tabledata.asLists(String.class);
+        newOE.Comment_PopupProdUpdate(Comment.get(0).get(0));
     }
 }

@@ -32,9 +32,9 @@ public class CompetitorPricingPageStep
     Scenario scenario;
     static boolean flag=false;
 
-    LoginPage loginpage;
-    HomePage homepage;
-    CompetitivePricingGeneralPage competitivePricingGeneralPage;
+    static LoginPage loginpage;
+    static HomePage homepage;
+    static CompetitivePricingGeneralPage competitivePricingGeneralPage;
 
     @Before
     public void LaunchBrowser1(Scenario scenario) throws Exception

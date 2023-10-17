@@ -15,7 +15,7 @@ public class InboundLoadOrderLineItemsPage extends BasePage {
     By orderLoadNumber = By.xpath("//span[contains(@id, 'span_Status')]//preceding-sibling::span[@id='spnOrderNo']");
     By doorField = By.xpath("//span[contains(text(), 'Door')]");
     By qaField = By.xpath("//span[contains(text(), 'QA')]");
-    By ownerField = By.xpath("//span[contains(text(), 'Owner')]");
+    By customerField = By.xpath("//span[contains(text(), 'Customer')]");
     By carrierField = By.xpath("//span[contains(text(), 'Carrier')]");
     By loadField = By.xpath("//span[contains(text(), 'Load')]");
     By sourceField = By.xpath("//span[contains(text(), 'Source')]");
@@ -26,13 +26,13 @@ public class InboundLoadOrderLineItemsPage extends BasePage {
     By commentsButton = By.xpath("//button[@id='btnImageNo' and contains(text(), 'Comments')]");
     By btnProductData = By.id("btnProductData");
     By btnProductEdit = By.id("btnProductEdit");
-    By btnOrderLineFieldsImage = By.id("btnOrderLineFieldsImage");
+    By btnOrderLineFieldsImage = By.xpath("btnOrderLineFieldsImage");
     By orderLocationLink = By.xpath("//td[contains(@id, 'orderLocationlink')]//a");
     By locationColumn = By.xpath("//table[@role='presentation']//span[text() ='Location']");
     By locationTypeColumn = By.xpath("//table[@role='presentation']//span[text() ='Location type']");
     By qtyColumn = By.xpath("//table[@role='presentation']//span[text() ='Qty']");
-    By uomColumn = By.xpath("//table[@role='presentation']//span[text() ='UOM']");
-    By lotColumn = By.xpath("//table[@role='presentation']//span[text() ='LOT']");
+    By uomColumn = By.xpath("//table[@role='presentation']//span[text() ='Uom']");
+    By lotColumn = By.xpath("//table[@role='presentation']//span[text() ='Lot']");
     By expDateColumn = By.xpath("//table[@role='presentation']//span[text() ='Expiration date']");
     By statusColumn = By.xpath("//table[@role='presentation']//span[text() ='Status']");
     By weightColumn = By.xpath("//table[@role='presentation']//span[text() ='Weight']");
@@ -46,8 +46,8 @@ public class InboundLoadOrderLineItemsPage extends BasePage {
     By orderLabelOnData = By.xpath("//span[contains(text(), 'Order')]");
     By temperatureLabel = By.xpath("//label[text()='Temperature']");
     By temperatureInput = By.xpath("//label[text()='Temperature']//following-sibling::input");
-    By sealNumberLabel = By.xpath("//label[text()='Seal number']");
-    By sealNumberInput = By.xpath("//label[text()='Seal number']//following-sibling::input");
+    By sealNumberLabel = By.xpath("//label[text()='Seal Number']");
+    By sealNumberInput = By.xpath("//label[text()='Seal Number']//following-sibling::input");
     By commentsLabels = By.xpath("//label[text()='Comments']");
     By commentsInputs = By.xpath("//label[text()='Comments']//following-sibling::input");
     By yesRadioButtons = By.xpath("//label[text()='Yes']//preceding-sibling::input");
@@ -76,13 +76,16 @@ public class InboundLoadOrderLineItemsPage extends BasePage {
     By refusalReasonInput = By.xpath("//label[contains(text(), 'Refusal reason')]//following-sibling::span");
     By saveButton = By.xpath("//button[contains(text(), 'Save')]");
     By cancelButton = By.xpath("//button[contains(text(), 'Cancel')]");
+    By saveEditButton = By.id("saveEditButton");
+    By inboundImageCaptureButton = By.cssSelector(".inboundImageCaptureOpButtonDiv button");
+    By selectFilesBtn = By.xpath("//div[@aria-label='Select files']");
+    By loadImageLabel = By.xpath("//span[text()='Load image(s)']");
 
     public void waitForInboundLoadOrderLineItemsPageToLoad() {
         Waiters.waitUntilPageWillLoadedSelenide();
         Waiters.waitForElementToBeDisplay(getTopIcon());
         Waiters.waitForElementToBeDisplay(btnProductData);
         Waiters.waitForElementToBeDisplay(btnProductEdit);
-        Waiters.waitForElementToBeDisplay(btnOrderLineFieldsImage);
         Waiters.waitForElementToBeDisplay(productLabel);
     }
 
@@ -100,7 +103,7 @@ public class InboundLoadOrderLineItemsPage extends BasePage {
 
     public boolean isQaFieldDisplayed() {  return isElementDisplay(getQaField());  }
 
-    public boolean isOwnerFieldDisplayed() { return isElementDisplay(getOwnerField()); }
+    public boolean isCustomerFieldDisplayed() { return isElementDisplay(getCustomerFieldField()); }
 
     public boolean isCarrierFieldDisplayed() { return isElementDisplay(getCarrierField()); }
 
@@ -321,6 +324,26 @@ public class InboundLoadOrderLineItemsPage extends BasePage {
         return isElementDisplay(getCommentsButton());
     }
 
+    public boolean isSaveEditButtonDisplayed() {
+        Waiters.waitForElementToBeDisplay(getSaveEditButton());
+        return isElementDisplay(getSaveEditButton());
+    }
+
+    public boolean isInboundImageCaptureButtonDisplayed() {
+        Waiters.waitForElementToBeDisplay(getInboundImageCaptureButton());
+        return isElementDisplay(getInboundImageCaptureButton());
+    }
+
+    public boolean isSelectFilesBtnDisplayed() {
+        Waiters.waitForElementToBeDisplay(getSelectFilesBtn());
+        return isElementDisplay(getSelectFilesBtn());
+    }
+
+    public boolean isLoadImageLabelDisplayed() {
+        Waiters.waitForElementToBeDisplay(getLoadImageLabel());
+        return isElementDisplay(getLoadImageLabel());
+    }
+
     public void clickOrderLocationLink() {
         Waiters.waitForElementToBeDisplay(getOrderLocationLink());
         clickOnElement(getOrderLocationLink());
@@ -337,8 +360,8 @@ public class InboundLoadOrderLineItemsPage extends BasePage {
     }
 
     public void clickOrderLineFieldsImageBtn() {
-        Waiters.waitForElementToBeDisplay(btnOrderLineFieldsImage);
-        clickOnElement(btnOrderLineFieldsImage);
+        Waiters.waitForElementToBeDisplay(imagesButton);
+        clickOnElement(imagesButton);
     }
 
     public void clickCancel() {
@@ -358,7 +381,7 @@ public class InboundLoadOrderLineItemsPage extends BasePage {
 
     public WebElement getQaField() { return findWebElement(qaField); }
 
-    public WebElement getOwnerField() { return findWebElement(ownerField); }
+    public WebElement getCustomerFieldField() { return findWebElement(customerField); }
 
     public WebElement getCarrierField() { return findWebElement(carrierField); }
 
@@ -478,4 +501,11 @@ public class InboundLoadOrderLineItemsPage extends BasePage {
 
     public WebElement getCancelButton() { return findWebElement(cancelButton); }
 
+    public WebElement getInboundImageCaptureButton() { return findWebElement(inboundImageCaptureButton); }
+
+    public WebElement getSelectFilesBtn() { return findWebElement(selectFilesBtn); }
+
+    public WebElement getLoadImageLabel() { return findWebElement(loadImageLabel); }
+
+    public WebElement getSaveEditButton() { return findWebElement(saveEditButton); }
 }

@@ -141,7 +141,7 @@ public class BasePage {
             Waiters.waitForElementToBeClickable(element);
             element.click();
         } catch (ElementClickInterceptedException | StaleElementReferenceException e) {
-            clickOnElement(element);
+            jsClick(element);
         } catch (WebDriverException e) {
             throw new IllegalStateException("WebDriver exception encountered: " + e.getMessage(), e);
         }
@@ -368,7 +368,15 @@ public class BasePage {
         }
     }
 
-    public void waitUntilVisible(By by, int timeout) {
+    public boolean isElementStale(WebElement element) {
+        try {
+            return new WebDriverWait(getDriver(), Duration.ofSeconds(2)).until(ExpectedConditions.stalenessOf(element)) != null;
+        } catch (TimeoutException | NoSuchElementException | StaleElementReferenceException ex) {
+            return false;
+        }
+    }
+
+    public void waitUntilVisible(int timeout, By by) {
         try {
             ExpectedCondition<Boolean> elementInvisible = driver -> isVisible(by);
             until(elementInvisible, timeout);
@@ -381,6 +389,15 @@ public class BasePage {
         try {
             ExpectedCondition<Boolean> elementInvisible = driver -> !isVisible(by);
             until(elementInvisible, timeoutSeconds);
+        } catch (TimeoutException | NoSuchElementException | StaleElementReferenceException ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    public void waitUntilStalenessOf(int timeoutSeconds, WebElement webElement) {
+        try {
+            ExpectedCondition<Boolean> elementAvailable = driver -> isElementStale(webElement);
+            until(elementAvailable, timeoutSeconds);
         } catch (TimeoutException | NoSuchElementException | StaleElementReferenceException ex) {
             ex.printStackTrace();
         }

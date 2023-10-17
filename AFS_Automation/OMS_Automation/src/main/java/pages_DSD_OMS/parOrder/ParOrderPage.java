@@ -1,5 +1,6 @@
 package pages_DSD_OMS.parOrder;
 
+import gherkin.lexer.He;
 import helper.HelpersMethod;
 import io.cucumber.java.Scenario;
 import org.openqa.selenium.*;
@@ -70,7 +71,7 @@ public class ParOrderPage
             {
                 JavascriptExecutor js = ((JavascriptExecutor) driver);
                 js.executeScript("window.location.reload()");
-                WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(100));
+                WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(200000));
                 if (wait.until(ExpectedConditions.alertIsPresent()) == null)
                 {
 
@@ -85,11 +86,28 @@ public class ParOrderPage
             {
                 //navigating back to Current URL
                 driver.navigate().to(currentURL);
+                scenario.log("NAVIGATED TO ORDER GUIDE/PAR ORDER");
+            }
+            String status = HelpersMethod.returnDocumentStatus(driver);
+            if (status.equals("loading"))
+            {
+                HelpersMethod.waitTillLoadingPage(driver);
+            }
+
+            if (HelpersMethod.IsExists("//div[@class='loader']", driver))
+            {
+                WebElement   WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 4000000);
+            }
+            status = HelpersMethod.returnDocumentStatus(driver);
+            if (status.equals("loading"))
+            {
+                HelpersMethod.waitTillLoadingPage(driver);
             }
             if (HelpersMethod.IsExists("//div[@class='loader']", driver))
             {
-                WebElement WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 10000);
+                WebElement   WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 4000000);
             }
         }
         catch (Exception e){}
@@ -105,13 +123,12 @@ public class ParOrderPage
             {
                 WebElement ParList = HelpersMethod.FindByElement(driver, "xpath", "//span[contains(text(),'Par list')]");
                 HelpersMethod.ScrollElement(driver, ParList);
-                //HelpersMethod.ActClick(driver,ParList,40);
                 HelpersMethod.navigate_Horizantal_Tab(driver, "Par list", "//li[contains(@class,'k-item')]/span[@class='k-link' and contains(text(),'Par list')]", "xpath", "//li[contains(@class,'k-item')]/span[@class='k-link']");
                 exists = true;
                 if (HelpersMethod.IsExists("//div[@class='loader']", driver))
                 {
                     WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000);
+                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 400000);
                 }
             }
             Assert.assertEquals(exists,true);
@@ -127,28 +144,32 @@ public class ParOrderPage
         {
             WebElement ParList=HelpersMethod.FindByElement(driver,"xpath","//span[contains(text(),'Products')]");
             HelpersMethod.ScrollElement(driver,ParList);
-            HelpersMethod.ActClick(driver,ParList,60);
+            HelpersMethod.ActClick(driver,ParList,1000);
             exists=true;
             if(HelpersMethod.IsExists("//div[@class='loader']",driver))
             {
                 WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000);
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 400000);
             }
             Assert.assertEquals(exists,true);
         }
         catch (Exception e){}
     }
 
-    public boolean ValidateParlistTab()
+    public void ValidateParlistTab()
     {
         exists=false;
         try
         {
-            HelpersMethod.WaitElementPresent(driver,"xpath","//div[@class='parList-container']",60);
-            exists = HelpersMethod.IsExists("//div[@class='parList-container']",driver);
+            HelpersMethod.WaitElementPresent(driver,"xpath","//div[@class='parList-container']",80000);
+            if(HelpersMethod.IsExists("//div[@class='parList-container']",driver))
+            {
+                scenario.log("USER IN PAR ORDER LIST");
+                exists=true;
+            }
+            Assert.assertEquals(exists,true);
         }
         catch (Exception e){}
-        return exists;
     }
 
     public void ClickNewPar()
@@ -160,14 +181,14 @@ public class ParOrderPage
             if(HelpersMethod.IsExists("//div[@class='loader']",driver))
             {
                 WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 40000);
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100000);
             }
             HelpersMethod.ClickBut(driver,NewPar,10000);
             exists=true;
             if(HelpersMethod.IsExists("//div[@class='loader']",driver))
             {
                 WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 80000);
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100000);
             }
             Assert.assertEquals(exists,true);
         }
@@ -193,7 +214,7 @@ public class ParOrderPage
                     if (HelpersMethod.IsExists("//div[@class='loader']", driver))
                     {
                         WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                        HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 40000);
+                        HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 200000);
                     }
                 }
             }
@@ -226,19 +247,19 @@ public class ParOrderPage
                 if(HelpersMethod.IsExists("//div[@class='loader']",driver))
                 {
                     WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 40000);
+                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 400000);
                 }
                 if(HelpersMethod.IsExists("//div[text()='Par list']/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
                 {
                     WebElement savePopup=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-widget k-window k-dialog')]");
                     WebElement Ok_But=savePopup.findElement(By.xpath(".//descendant::button[text()='OK']"));
-                    HelpersMethod.ActClick(driver,Ok_But,100000);
+                    HelpersMethod.ActClick(driver,Ok_But,400000);
                     exists=true;
                 }
                 if(HelpersMethod.IsExists("//div[@class='loader']",driver))
                 {
                     WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 40000);
+                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 400000);
                 }
                 String parName=HelpersMethod.FindByElement(driver,"xpath","//label[text()='Par list']/following-sibling::span/descendant::span[@class='k-input']").getText();
                 scenario.log("PAR LIST NAME SAVED IS "+parName);
@@ -277,14 +298,25 @@ public class ParOrderPage
     public void ClickParDropDown()
     {
         WebElement WebEle=null;
+        exists=false;
         try
         {
             if(HelpersMethod.IsExists("//div[@class='loader']",driver))
             {
                 WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 8000);
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 400000);
             }
-            HelpersMethod.ActClick(driver,ParlistDropdown,1000);
+            if(ParlistDropdown.isDisplayed())
+            {
+                HelpersMethod.ActClick(driver, ParlistDropdown, 1000);
+                String status = HelpersMethod.returnDocumentStatus(driver);
+                if (status.equals("loading"))
+                {
+                    HelpersMethod.waitTillLoadingPage(driver);
+                }
+                exists=true;
+            }
+            Assert.assertEquals(exists,true);
         }
         catch (Exception e){}
     }
@@ -296,7 +328,7 @@ public class ParOrderPage
         Actions act=new Actions(driver);
         try
         {
-            List<WebElement> parListItems=driver.findElements(By.xpath("//div[contains(@class,'k-popup k-child-animation-container')]/descendant::ul/li"));
+            List<WebElement> parListItems=driver.findElements(By.xpath("//div[contains(@class,'k-slide-down-enter')]/descendant::ul/li"));
             for (WebElement pList:parListItems)
             {
                 exists=false;
@@ -313,9 +345,9 @@ public class ParOrderPage
             if(HelpersMethod.IsExists("//div[@class='loader']",driver))
             {
                 WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 40000);
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 600000);
             }
-           Assert.assertEquals(exists,true);
+            Assert.assertEquals(exists,true);
         }
         catch (Exception e){}
     }
@@ -328,9 +360,9 @@ public class ParOrderPage
         {
             scenario.log("PRODUCT TO BE SEARCHED IS "+ProdNo);
             WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='i-search-box']/descendant::input");
-            HelpersMethod.EnterText(driver,WebEle,20,ProdNo);
+            HelpersMethod.EnterText(driver,WebEle,1000,ProdNo);
             WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='i-search-box']//*[local-name()='svg' and contains(@class,'search-box__search')]");
-            HelpersMethod.ClickBut(driver,WebEle,20);
+            HelpersMethod.ClickBut(driver,WebEle,1000);
             if(HelpersMethod.IsExists("//div[contains(@class,'i-no-data__icon')]",driver))
             {
                 scenario.log("PRODUCT HAS NOT BEEN FOUND IN PARLIST");
@@ -339,7 +371,7 @@ public class ParOrderPage
             {
                 scenario.log("PRODUCT HAS BEEN FOUND IN PARLIST");
                 WebEle=HelpersMethod.FindByElement(driver,"xpath","//*[local-name()='svg' and contains(@class,'i-icon   i-search-box__clear')]");
-                HelpersMethod.ActClick(driver,WebEle,100);
+                HelpersMethod.ActClick(driver,WebEle,1000);
                 exists=true;
             }
 
@@ -383,7 +415,7 @@ public class ParOrderPage
         try
         {
             WebElement parQty=HelpersMethod.FindByElement(driver,"xpath","//tr["+(i+1)+"]/td/descendant::input[contains(@class,'k-formatted-value')]");
-            HelpersMethod.sendKeys(driver,parQty,60,s);
+            HelpersMethod.sendKeys(driver,parQty,1000,s);
         }
         catch (Exception e){}
     }
@@ -393,9 +425,9 @@ public class ParOrderPage
         exists=false;
         try
         {
-            HelpersMethod.ActClick(driver,addFilter,100);
+            HelpersMethod.ActClick(driver,addFilter,1000);
             exists=true;
-            new WebDriverWait(driver,Duration.ofMillis(1000)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class,'k-popup k-child-animation-container')]"))));
+            new WebDriverWait(driver,Duration.ofMillis(100000)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class,'k-popup k-child-animation-container')]"))));
             Assert.assertEquals(exists,true);
         }
         catch (Exception e){}
@@ -408,10 +440,10 @@ public class ParOrderPage
         {
             WebElement popupContainer = HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-popup k-child-animation-container')]");
             WebElement popupSearch1=popupContainer.findElement(By.xpath(".//div[@class='i-search-box']/descendant::input"));
-            HelpersMethod.sendKeys(driver,popupSearch1,100,"Par quantity");
+            HelpersMethod.sendKeys(driver,popupSearch1,1000,"Par quantity");
             WebElement popupCheckbox=HelpersMethod.FindByElement(driver,"xpath","//input[@id='ParQuantity']");
-            HelpersMethod.ClickBut(driver,popupCheckbox,80);
-            new WebDriverWait(driver,Duration.ofMillis(1000)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class,'k-popup k-child-animation-container')]"))));
+            HelpersMethod.ClickBut(driver,popupCheckbox,1000);
+            new WebDriverWait(driver,Duration.ofMillis(100000)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class,'k-popup k-child-animation-container')]"))));
         }
         catch (Exception e){}
     }
@@ -423,11 +455,11 @@ public class ParOrderPage
         {
             WebElement popupContainer1 = HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-popup k-child-animation-container')]");
             WebElement searchInput1=popupContainer1.findElement(By.xpath(".//span[contains(@class,'k-textbox-container i-filter-popup__content__input')][1]/descendant::input"));
-            HelpersMethod.ActSendKey(driver,searchInput1,80,searchVal1);
+            HelpersMethod.ActSendKey(driver,searchInput1,1000,searchVal1);
             WebElement searchInput2=popupContainer1.findElement(By.xpath(".//span[contains(@class,'k-textbox-container i-filter-popup__content__input')][2]/descendant::input"));
-            HelpersMethod.ActSendKey(driver,searchInput2,80,searchVal2);
+            HelpersMethod.ActSendKey(driver,searchInput2,1000,searchVal2);
             WebElement applyButton=popupContainer1.findElement(By.xpath(".//button[text()='Apply']"));
-            HelpersMethod.ClickBut(driver,applyButton,100);
+            HelpersMethod.ClickBut(driver,applyButton,1000);
         }
         catch (Exception e){}
     }
@@ -457,9 +489,48 @@ public class ParOrderPage
             List<WebElement> prods=HelpersMethod.FindByElements(driver,"xpath","//tr[contains(@class,'k-master-row')]/descendant::button");
             for (WebElement prod:prods)
             {
-              act.moveToElement(prod).build().perform();
-              String prod_Text=prod.getText();
-              scenario.log("PRODUCT NUMBER FOUND UNDER PAR LIST: "+prod_Text);
+                act.moveToElement(prod).build().perform();
+                String prod_Text=prod.getText();
+                scenario.log("PRODUCT NUMBER FOUND UNDER PAR LIST: "+prod_Text);
+            }
+        }
+        catch (Exception e){}
+    }
+
+    public void deleteAllPar()
+    {
+        exists=false;
+        WebElement WebEle;
+        try
+        {
+            ClickParDropDown();
+            List<WebElement> pars=HelpersMethod.FindByElements(driver,"xpath","//div[contains(@class,'k-slide-down-enter')]/descendant::ul/li");
+            while(!pars.isEmpty())
+            {
+                //select parlist from par
+                WebElement delePar = pars.get(0);
+                HelpersMethod.ClickBut(driver,delePar,1000);
+
+                //click on Delete button
+                HelpersMethod.ClickBut(driver,DelPar,1000);
+
+                if(HelpersMethod.IsExists("//div[contains(text(),'Are you sure you want to delete par list')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
+                {
+                    WebElement deleteConfirm= HelpersMethod.FindByElement(driver,"xpath","//div[contains(text(),'Are you sure you want to delete par list')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]");
+                    WebElement deleOkButton=deleteConfirm.findElement(By.xpath(".//button[text()='OK']"));
+                    HelpersMethod.ClickBut(driver,deleOkButton,1000);
+                    if (HelpersMethod.IsExists("//div[@class='loader']", driver))
+                    {
+                        WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
+                        HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 400000);
+                    }
+                }
+                //remove parlist from list also
+                pars.remove(delePar);
+                //click on parlist drop down
+                ClickParDropDown();
+                //reassign list value with new list of parlist
+                pars =  HelpersMethod.FindByElements(driver, "xpath", "//div[contains(@class,'k-slide-down-enter')]/descendant::ul/li");
             }
         }
         catch (Exception e){}

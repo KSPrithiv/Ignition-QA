@@ -19,9 +19,9 @@ public class UserAndAccount_AddNewUserPageStep
         /* Created by Divya.Ramadas@afsi.com */
         WebDriver driver;
         Scenario scenario;
-        AdminHomePage adminHomePage;
-        orderAdminPage orderadminPage;
-        userAndAdmin_AddNewUserPage userandAdminPage;
+        static AdminHomePage adminHomePage;
+        static orderAdminPage orderadminPage;
+        static userAndAdmin_AddNewUserPage userandAdminPage;
 
         @Before
         public void LaunchBrowser1(Scenario scenario) throws Exception

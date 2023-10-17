@@ -1,5 +1,6 @@
 package stepDefination_DSD_OMS.CatalogPage;
 
+import gherkin.lexer.Ca;
 import helper.HelpersMethod;
 import io.cucumber.datatable.DataTable;
 import io.cucumber.java.Before;
@@ -9,9 +10,12 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.FluentWait;
+import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import pages_DSD_OMS.Catalog.CatalogPage;
@@ -46,15 +50,16 @@ public class CatalogPageStep
     static boolean flag=false;
     static boolean flag1=false;
     static String currentURL=null;
+    static String Ord_No=null;
 
-    LoginPage loginpage;
-    HomePage homepage;
-    OrderEntryPage orderpage;
-    CatalogPage catalogpage;
-    NewOrderEntryPage newOE;
-    CheckOutOrderPage checkorder;
-    ProductDescriptionPage productdesctiptionpage;
-    CheckOutSummaryPage summary;
+    static LoginPage loginpage;
+    static HomePage homepage;
+    static OrderEntryPage orderpage;
+    static CatalogPage catalogpage;
+    static NewOrderEntryPage newOE;
+    static CheckOutOrderPage checkorder;
+    static ProductDescriptionPage productdesctiptionpage;
+    static CheckOutSummaryPage summary;
 
     @Before
     public void LaunchBrowser1(Scenario scenario) throws Exception
@@ -142,7 +147,7 @@ public class CatalogPageStep
             {
                 HelpersMethod.navigate_Horizantal_Tab(driver, "Catalog", "//li[contains(@class,'k-item')]/span[@class='k-link' and contains(text(),'Catalog')]", "xpath", "//li[contains(@class,'k-item')]/span[@class='k-link']");
                 catalogpage = new CatalogPage(driver, scenario);
-                boolean result = catalogpage.ValidateCatalog();
+                catalogpage.ValidateCatalog();
                 currentURL = driver.getCurrentUrl();
                 scenario.log(currentURL);
             }
@@ -156,6 +161,7 @@ public class CatalogPageStep
         orderpage.HandleError_Page();
         catalogpage = new CatalogPage(driver, scenario);
         catalogpage.Refresh_Page(currentURL);
+        catalogpage.validateCatalog();
     }
 
     //Click on Resetfilter and validate the page, and click on List view
@@ -165,6 +171,7 @@ public class CatalogPageStep
         catalogpage = new CatalogPage(driver, scenario);
         catalogpage.Click_ResetFilterButton();
         catalogpage.Click_ListView();
+        catalogpage.validateListView();
     }
 
     @And("User should click on Reset filter button and all the products should displayed")
@@ -205,11 +212,12 @@ public class CatalogPageStep
         catalogpage = new CatalogPage(driver, scenario);
         String pro = DataBaseConnection.DataBaseConn(TestBase.testEnvironment.getSingle_Prod_Sql());
         scenario.log("PRODUCT SEARCHED IS "+pro);
-        catalogpage.SearchProduct1(pro);
+        //catalogpage.SearchProduct1(pro);
+        catalogpage.SearchProduct(pro);
         exists = HelpersMethod.IsExists("//div[contains(text(),'Sorry, no products matched')]", driver);
         if (exists == true)
         {
-            HelpersMethod.ClickBut(driver,HelpersMethod.FindByElement(driver, "xpath", "//span[contains(@class,'search-button')]/*[local-name()='svg']/*[local-name()='path' and contains(@d,'M17')]"),1);
+            HelpersMethod.ClickBut(driver,HelpersMethod.FindByElement(driver, "xpath", "//span[contains(@class,'search-button')]/*[local-name()='svg']/*[local-name()='path' and contains(@d,'M17')]"),10000);
         }
         else if (exists == false)
         {
@@ -225,6 +233,7 @@ public class CatalogPageStep
         List<List<String>> Best_Match = tabledata.asLists(String.class);
         catalogpage = new CatalogPage(driver, scenario);
         catalogpage.Best_MatchDropDown(Best_Match.get(0).get(0));
+        catalogpage.sortedValuesInCatalog();
     }
 
     //Code to click on Reset filter, and navigate to Card view
@@ -234,6 +243,7 @@ public class CatalogPageStep
         catalogpage = new CatalogPage(driver, scenario);
         catalogpage.Click_ResetFilterButton();
         catalogpage.Click_CardView();
+        catalogpage.validateCardView();
     }
 
     //Code to Search for product
@@ -282,21 +292,27 @@ public class CatalogPageStep
             if (HelpersMethod.IsExists("//div[contains(text(),'Sorry, no products matched')]",driver))
             {
                 WebEle=HelpersMethod.FindByElement(driver, "xpath", "//span[contains(@class,'search-button')]/*[local-name()='svg']/*[local-name()='path' and contains(@d,'M17')]");
-                HelpersMethod.ClickBut(driver,WebEle,1000);
+                HelpersMethod.ClickBut(driver,WebEle,200000);
             }
             else if (exists == false)
             {
                 catalogpage.ProductExistsCard(Prod_detail.get(i).get(0));
                 if (i == 1)
                 {
-                    new WebDriverWait(driver, Duration.ofMillis(1000)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[local-name()='svg']/*[local-name()='path' and contains(@d,'M16 ')]"))));
-                    WebEle=HelpersMethod.FindByElement(driver, "xpath", "//*[local-name()='svg']/*[local-name()='path' and contains(@d,'M16 ')]");
-                    HelpersMethod.ActClick(driver,WebEle, 1000);
-                /*    if(HelpersMethod.IsExists("//div[@class='loader']",driver))
+                    new WebDriverWait(driver, Duration.ofMillis(1000)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.xpath("//button[contains(@class,'update-cart-button')]/following-sibling::button//*[local-name()='svg']"))));
+                    WebElement deleteButton=HelpersMethod.FindByElement(driver, "xpath", "//button[contains(@class,'update-cart-button')]/following-sibling::button//*[local-name()='svg']");
+                    HelpersMethod.ActClick(driver,deleteButton, 1000);
+                    if(HelpersMethod.IsExists("//div[@class='loader']",driver))
                     {
                         WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                        HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000);
-                    }*/
+                        HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 200000);
+                    }
+                    String status = HelpersMethod.returnDocumentStatus(driver);
+                    if (status.equals("loading"))
+                    {
+                        HelpersMethod.waitTillLoadingPage(driver);
+                    }
+
                     scenario.log("PRODUCT "+Prod_No.get(i)+" HAS BEEN DELETED");
                 }
             }
@@ -365,17 +381,32 @@ public class CatalogPageStep
         catalogpage = new CatalogPage(driver, scenario);
         catalogpage.ClickImage();
         productdesctiptionpage = new ProductDescriptionPage(driver, scenario);
+        Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                .withTimeout(Duration.ofSeconds(30))
+                .pollingEvery(Duration.ofSeconds(5))
+                .ignoring(NoSuchElementException.class);
+        wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
         if(HelpersMethod.IsExistsById("delete-from-cart-button",driver))
         {
             WebElement Del_But=HelpersMethod.FindByElement(driver,"id","delete-from-cart-button");
             HelpersMethod.ScrollElement(driver,Del_But);
-            HelpersMethod.ClickBut(driver,Del_But,100);
+            HelpersMethod.ClickBut(driver,Del_But,1000);
+            if(HelpersMethod.IsExists("//div[@class='loader']",driver))
+            {
+                WebElement WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 400000);
+            }
             productdesctiptionpage.Qty_Inputbox(Qty.get(0).get(0));
             productdesctiptionpage.Add_to_cart();
             productdesctiptionpage.Increase_Descrease();
         }
         else
         {
+            if(HelpersMethod.IsExists("//div[@class='loader']",driver))
+            {
+                WebElement WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 400000);
+            }
             productdesctiptionpage.Qty_Inputbox(Qty.get(0).get(0));
             productdesctiptionpage.Add_to_cart();
             productdesctiptionpage.Increase_Descrease();
@@ -405,11 +436,11 @@ public class CatalogPageStep
                 catalogpage = new CatalogPage(driver, scenario);
                 catalogpage.ClickImage();
                 productdesctiptionpage = new ProductDescriptionPage(driver, scenario);
-               /* if(HelpersMethod.IsExists("//div[@class='loader']",driver))
+                if(HelpersMethod.IsExists("//div[@class='loader']",driver))
                 {
                     WebElement WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 2000);
-                }*/
+                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 400000);
+                }
                 WebElement WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'cart-container')]/ancestor::div[contains(@class,'price-cart-container')]");
                 HelpersMethod.ScrollElement(driver,WebEle);
                 if(HelpersMethod.IsExists("//button[contains(@id,'delete-from-cart-button')]",driver))
@@ -450,11 +481,11 @@ public class CatalogPageStep
             {
                 catalogpage = new CatalogPage(driver, scenario);
                 catalogpage.ClickImage();
-               /* if(HelpersMethod.IsExists("//div[@class='loader']",driver))
+                if(HelpersMethod.IsExists("//div[@class='loader']",driver))
                 {
                     WebElement WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 20000);
-                }*/
+                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 800000);
+                }
                 productdesctiptionpage = new ProductDescriptionPage(driver, scenario);
                 if(HelpersMethod.IsExists("//button[@id='delete-from-cart-button']",driver))
                 {
@@ -488,12 +519,13 @@ public class CatalogPageStep
     public void clickOnSubmitOrderButtonForCreatingOrderFromCatalog() throws InterruptedException, AWTException
     {
         summary = new CheckOutSummaryPage(driver,scenario);
-        /*if(HelpersMethod.IsExists("//div[@class='loader']",driver))
-        {
-            WebElement WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000);
-        }*/
         summary.ClickSubmit();
+        for(int i=0;i<=2;i++)
+        {
+            summary.cutoffDialog();
+            summary.additionalOrderPopup();
+        }
+        Ord_No = summary.Get_Order_No();
         summary.SucessPopup();
     }
 
@@ -506,5 +538,16 @@ public class CatalogPageStep
         catalogpage.Refresh_Page(currentURL);
         orderpage=new OrderEntryPage(driver,scenario);
         orderpage.NavigateToOrderEntry();
+    }
+
+    @Then("User should be navigated to Order Entry page after creating order from catalog")
+    public void userShouldBeNavigatedToOrderEntryPageAfterCreatingOrderFromCatalog() throws InterruptedException, AWTException
+    {
+        orderpage = new OrderEntryPage(driver, scenario);
+        orderpage.Verify_OE_Title();
+        //HelpersMethod.navigate_Horizantal_Tab(driver, "Catalog", "//li[contains(@class,'k-item')]/span[@class='k-link' and contains(text(),'Catalog')]", "xpath", "//li[contains(@class,'k-item')]/span[@class='k-link']");
+        catalogpage = new CatalogPage(driver, scenario);
+        catalogpage.navigateToCatalog();
+        catalogpage.ValidateCatalog();
     }
 }

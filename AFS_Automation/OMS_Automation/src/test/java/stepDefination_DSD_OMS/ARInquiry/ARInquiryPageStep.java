@@ -36,11 +36,11 @@ public class ARInquiryPageStep
     static boolean flag1=false;
     static String currentURL=null;
 
-    LoginPage loginpage;
-    HomePage homepage;
-    OrderEntryPage orderpage;
-    ARInquiryPage arInquiryPage;
-    PostPaymentPage postPaymentPage;
+    static LoginPage loginpage;
+    static HomePage homepage;
+    static OrderEntryPage orderpage;
+    static ARInquiryPage arInquiryPage;
+    static PostPaymentPage postPaymentPage;
 
     @Before
     public void LaunchBrowser1(Scenario scenario) throws Exception

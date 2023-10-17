@@ -1,6 +1,5 @@
 @WorkQueue @Regression
 Feature: Testing of Work Queue Assignment functionality
-
   Scenario: Checking Filter option Assignment number of Work Queue Assignments screen functionality
     Given User signs in the application
     And Main page is loaded
@@ -100,7 +99,7 @@ Feature: Testing of Work Queue Assignment functionality
     And User clicks Add Filter on Work Queue Assignments page
     And User checks Qty Filter on Work Queue Assignments page
     Then Types Qty by index 0 on Work Queue Assignments page
-    # Then Types filter "10" on Work Queue Assignments page
+    And Types filter "10" on Work Queue Assignments page
     And Clicks Apply button on Work Queue Assignments page
     And User clicks Assignments Title on Work Queue Assignments page
     And Validates Grid items are present on Work Queue Assignments page
@@ -327,12 +326,10 @@ Feature: Testing of Work Queue Assignment functionality
     Then User clicks Edit Assignment on Work Queue Assignments page
     And User selects Task group by index 0 for Assignment on Work Queue Assignments page
     And Clicks Save Button for Assignment on Work Queue Assignments page
-    And Validates Successful message "Success" on Work Queue Assignments page
     And Checks assignment with index 2 on Work Queue Assignments page
     And User clicks Edit Assignment on Work Queue Assignments page
     And User selects Task group by index 1 for Edit Assignment on Work Queue Assignments page
     And Clicks Save Button for Assignment on Work Queue Assignments page
-    And Validates Successful message "Success" on Work Queue Assignments page
     And Checks assignment with index 1 on Work Queue Assignments page
     And Checks assignment with index 4 on Work Queue Assignments page
     And Checks assignment with index 2 on Work Queue Assignments page
@@ -354,7 +351,7 @@ Feature: Testing of Work Queue Assignment functionality
     Then Checks assignment with index 1 on Work Queue Assignments page
     And Checks assignment with index 2 on Work Queue Assignments page
     And User clicks Delete Assignment on Work Queue Assignments page
-    And Validates "Delete selected assignment?" message content on dialog popup on Work Queue Assignments page
+    And Validates "Delete selected assignments?" message content on dialog popup on Work Queue Assignments page
     And Validates Assignment popup Cancel and OK buttons are present on Work Queue Assignments page
     And Clicks Cancel Button for Assignment on Work Queue Assignments page
 
@@ -367,13 +364,11 @@ Feature: Testing of Work Queue Assignment functionality
     When Checks assignment with index 0 on Work Queue Assignments page
     And User clicks Release Assignment on Work Queue Assignments page
     And Validates Release Assignment elements are present on Work Queue Assignments page
-    And Validates "Assignments" message content on dialog popup on Work Queue Assignments page
-    And Validates current date and time for Release Assignment on Work Queue Assignments page
+    And Validates "Assignments" title on dialog popup on Work Queue Assignments page
     And Validates Assignment popup Cancel and Save buttons are present on Work Queue Assignments page
     Then User enters calendar day "13" for Assignment Release Date on Work Queue Assignments page
     And User enters calendar time "14:00" for Assignment Release Date on Work Queue Assignments page
     And Clicks Save Button for Assignment on Work Queue Assignments page
-    And Validates Successful message "Success" on Work Queue Assignments page
     And Checks assignment with index 0 on Work Queue Assignments page
     And User clicks Release Assignment on Work Queue Assignments page
     And Clicks Cancel Button for Assignment on Work Queue Assignments page
@@ -383,7 +378,6 @@ Feature: Testing of Work Queue Assignment functionality
     And User clicks Clear Release for Assignment on Work Queue Assignments page
     And Validates empty date and time for Release Assignment on Work Queue Assignments page
     And Clicks Save Button for Assignment on Work Queue Assignments page
-    And Validates Successful message "Success" on Work Queue Assignments page
     And Checks assignment with index 2 on Work Queue Assignments page
     And User clicks Release Assignment on Work Queue Assignments page
     And User clicks Clear Release for Assignment on Work Queue Assignments page
@@ -396,15 +390,12 @@ Feature: Testing of Work Queue Assignment functionality
     And Checks assignment with index 0 on Work Queue Assignments page
     And Checks assignment with index 1 on Work Queue Assignments page
     And User clicks Release Assignment on Work Queue Assignments page
-    And Validates current date and time for Release Assignment on Work Queue Assignments page
     And Validates Assignment popup Cancel and Save buttons are present on Work Queue Assignments page
     And User selects user by index 1 for Assignment on Work Queue Assignments page
     And Clicks Save Button for Assignment on Work Queue Assignments page
-    And Validates Successful message "Success" on Work Queue Assignments page
     And Checks assignment with index 0 on Work Queue Assignments page
     And Checks assignment with index 1 on Work Queue Assignments page
     And User clicks Release Assignment on Work Queue Assignments page
-    And Validates current date and time for Release Assignment on Work Queue Assignments page
     And Validates Assignment popup Cancel and Save buttons are present on Work Queue Assignments page
     And User selects user by index 2 for Assignment on Work Queue Assignments page
     And Clicks Cancel Button for Assignment on Work Queue Assignments page

@@ -26,13 +26,14 @@ public class AdminReportPageStep
     static boolean flag2=false;
     static boolean flag3=false;
     static boolean flag4=false;
+    static boolean flag5=false;
+    static boolean flag6=false;
     WebDriver driver;
     Scenario scenario;
-    LoginPage loginpage;
-    AdminHomePage adminHomePage;
-    adminReportPage adminreportPage;
-
-
+    static LoginPage loginpage;
+    static AdminHomePage adminHomePage;
+    static adminReportPage adminreportPage;
+    
     @Before
     public void LaunchBrowser1(Scenario scenario) throws Exception
     {
@@ -66,12 +67,11 @@ public class AdminReportPageStep
     @Then("User Clicks on Permissions by drop down to select Customer Account# for Admin reports")
     public void userClicksOnPermissionsByDropDownToSelectCustomerAccountForAdminReports() throws InterruptedException
     {
-        if(flag==false)
-        {
             adminHomePage = new AdminHomePage(driver, scenario);
+            adminHomePage.handleError_Page();
+            adminHomePage.refreshPage();
             adminHomePage.ClickPermissionBy();
             adminHomePage.SelectCompany();
-        }
     }
 
     @Given("User is on Home Page for Admin setting to select Admin option for Admin reports")
@@ -85,17 +85,17 @@ public class AdminReportPageStep
         }
     }
 
-  /*  @And("User should enter menu {string} in search bar to navigate to Web Payments")
-    public void userShouldEnterMenuInSearchBarToNavigateToNavigateToWebPayments(String arg0)
-    {
-        if(flag1==false)
-          {
-            adminHomePage = new AdminHomePage(driver, scenario);
-            adminHomePage.ClickOnHumburger();
-            adminHomePage.EnterValueInSearchBox(arg0);
-            adminHomePage.CloseHumburger();
-          }
-    }*/
+    /*  @And("User should enter menu {string} in search bar to navigate to Web Payments")
+      public void userShouldEnterMenuInSearchBarToNavigateToNavigateToWebPayments(String arg0)
+      {
+          if(flag1==false)
+            {
+              adminHomePage = new AdminHomePage(driver, scenario);
+              adminHomePage.ClickOnHumburger();
+              adminHomePage.EnterValueInSearchBox(arg0);
+              adminHomePage.CloseHumburger();
+            }
+      }*/
     @And("User should enter menu {string} in search bar and select {string} for Reports, Web Payment")
     public void userShouldEnterMenuInSearchBarAndSelectForReportsWebPayment(String arg0, String arg1)
     {
@@ -148,6 +148,18 @@ public class AdminReportPageStep
         }
     }
 
+   /* @Given("User is on Home Page for Admin setting to select Admin option for Admin Permissions")
+    public void userIsOnHomePageForAdminSettingToSelectAdminOptionForAdminPermissions() throws InterruptedException
+    {
+        if(flag6==false)
+        {
+            adminHomePage = new AdminHomePage(driver, scenario);
+            adminHomePage.ValidatingAdminHome();
+            flag6=true;
+        }
+    }*/
+
+
     @And("User should enter menu {string} in search bar and select {string}, for user and accounts")
     public void userShouldEnterMenuInSearchBarAndSelectForUserAndAccounts(String arg0, String arg1)
     {
@@ -161,6 +173,18 @@ public class AdminReportPageStep
         }
     }
 
+    @And("User should enter menu {string} in search bar and select {string} for Reports, Admin Options for event and activities")
+    public void userShouldEnterMenuInSearchBarAndSelectForReportsAdminOptionsForEventAndActivities(String arg0, String arg1)
+    {
+        if(flag5==false)
+        {
+            adminHomePage = new AdminHomePage(driver, scenario);
+            adminHomePage.ClickOnHumburger();
+            adminHomePage.EnterValueInSearchBox1(arg0, arg1);
+            adminHomePage.CloseHumburger();
+            flag5=true;
+        }
+    }
 
     @And("User click Generate button and clicks on export .csv")
     public void userClickGenerateButtonAndClicksOnExportCsv()

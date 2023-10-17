@@ -25,9 +25,9 @@ public class StandingOrderPageSteps1
     WebDriver driver;
     Scenario scenario;
     static boolean exists=false;
-    NewStandingOrderCard standingOrderCard;
-    OrderEntryPage orderpage;
-    NewStandingOrderPage standingOrder;
+    static NewStandingOrderCard standingOrderCard;
+    static OrderEntryPage orderpage;
+    static NewStandingOrderPage standingOrder;
 
     @Before
     public void LaunchBrowser1(Scenario scenario) throws Exception
@@ -76,9 +76,10 @@ public class StandingOrderPageSteps1
     }
 
     @And("User should click on Generate Standing order  button")
-    public void userShouldClickOnGenerateStandingOrderButton()
+    public void userShouldClickOnGenerateStandingOrderButton() throws InterruptedException
     {
         standingOrderCard=new NewStandingOrderCard(driver,scenario);
+        standingOrderCard.ClickOnNewStandingOrderArrow();
         standingOrderCard.clickOnGenerateStandingOrder();
         standingOrderCard.verifyGenerateStandingOrderPopup();
     }

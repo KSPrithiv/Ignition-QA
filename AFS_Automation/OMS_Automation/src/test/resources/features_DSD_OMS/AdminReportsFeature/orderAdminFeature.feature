@@ -3,7 +3,7 @@ Feature: Test scenarios for Order in Admin login, Order related reports
   Background: For login to application and selecting Account# for order Admin
     Given User enters URL and is on login page and entered credentials for Admin setting for Admin reports
     When User is on Home Page for Admin setting for Admin reports
-    Then User Clicks on Permissions by drop down to select Customer Account# for Admin reports
+    #Then User Clicks on Permissions by drop down to select Customer Account# for Admin reports
 
   @OrderTabReport
   Scenario Outline: Test scenario for verifying functionality of Orders tab
@@ -20,8 +20,8 @@ Feature: Test scenarios for Order in Admin login, Order related reports
       | Main menu  |  Sub menu|   Orders Options   |
       | Reports    |  Orders  |   Orders           |
 
- @OrderHistoryAdminReport
- Scenario Outline: Test scenario for verifying functionality of Order history tab
+  @OrderHistoryAdminReport
+  Scenario Outline: Test scenario for verifying functionality of Order history tab
     Given User is on Home Page for Admin setting to select Admin option for Admin reports
     Then User refreshes page Clicks on Permissions by drop down to select Customer Account# grid
     And User should enter menu "<Main menu>" in search bar and select "<Sub menu>" for Reports, Orders tab
@@ -89,4 +89,3 @@ Feature: Test scenarios for Order in Admin login, Order related reports
     Examples:
       | Main menu  |  Sub menu|   Orders Options             |  Add filter  |
       | Reports    |  Orders  |   Multiple order submissions |  Account #   |
-

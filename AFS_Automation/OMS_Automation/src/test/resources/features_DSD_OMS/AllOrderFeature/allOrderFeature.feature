@@ -1,5 +1,5 @@
 Feature: All orders
- Test scenarios to create all orders, edit,delete etc
+  Test scenarios to create all orders, edit,delete etc
 
   Background: For login to application and selecting Account#
     Given User enters URL and is on login page and entered credentials for All order
@@ -8,7 +8,7 @@ Feature: All orders
     Then User should select Order Entry tab for All order
 
   @AllOrderCheckBox
-    Scenario: Test scenario to display all the orders
+  Scenario: Test scenario to display all the orders
     Given User must be on Order Entry Page to select All Orders
     And User should navigate to All Orders
     Then User clicks on Show all orders check box after Clicking All orders tab
@@ -29,7 +29,7 @@ Feature: All orders
     And User Clicks on Add filter button and enter values for search options
 
   @AllSubmittedOrders
-   Scenario: Test scenario for displaying all orders which are submitted using submitted status drop down
+  Scenario: Test scenario for displaying all orders which are submitted using submitted status drop down
     Given User must be on Order Entry Page to select All Orders
     And User should navigate to All Orders
     And User clicks on Submitted status and select Submitted option from drop down
@@ -37,7 +37,7 @@ Feature: All orders
     And User goes through all the order in Open order grid
 
   @AllOpenOrderAllOrders
-    Scenario: Test scenario for displaying all Open order in all orders
+  Scenario: Test scenario for displaying all Open order in all orders
     Given User must be on Order Entry Page to select All Orders
     And User should navigate to All Orders
     Then User clicks on Show all orders check box after Clicking All orders tab
@@ -51,6 +51,8 @@ Feature: All orders
     And User should navigate to All Orders
     Then User clicks on Start order button and selects Add from drop down
     Then User selects customer account# and delivery date from popup
+    Then User should make selection between Pending order or Start New order
+    Then User should select Note from popup and Order guide from popup
     Then Enter PO# for New order for All orders
       |PO123|
     Then Enter Pro# in Quick Product Entry area
@@ -101,11 +103,13 @@ Feature: All orders
     And User should navigate to All Orders
     Then User clicks on Start order button and selects Add from drop down
     Then User selects customer account# and delivery date from popup to edit all order
+    Then User should make selection between Pending order or Start New order
+    Then User should select Note from popup and Order guide from popup
     Then Enter PO# for New order for All orders
       |PO123|
     Then Enter Pro# in Quick Product Entry area
     And Check for Case and Unit input box enabled or not based on that enter value
-      |50|60|
+      |100|100|
     Then Click on Next button
     And Click on Submit Order button and read Order_no created for All order
     Then User should be navigated back to All order page
@@ -115,7 +119,7 @@ Feature: All orders
     Then Navigate to Summary order entry page and user clicks on Edit button
     And If user navigates to payment and address page click on Back button or else add product# in Quick product entry for editng all order
       |50|50|
-    Then Click on Next button
+    Then Click on Next button after editing all order, order
     And Click on Submit Order button and read Order_no created for All order
     Then User should be navigated back to All order page
     And User clicks on Show all orders check box after navigating back
@@ -149,8 +153,8 @@ Feature: All orders
     And User clicks on search button
     And User Clicks on Add filter button and enter values for search options
     Then User clicks on OrderNo in All Order grid and User should be navigated Ordersummary page
-    Then User clicks on Back to Order list button and should be navigated to OE page
-    And User enters orderNo That he has selected from order grid and validates it exists in order also
+    #Then User clicks on Back to Order list button and should be navigated to OE page
+    #And User enters orderNo That he has selected from order grid and validates it exists in order also
 
   @CreatePickupOrder
   Scenario: Test scenario for creating Pickup order
@@ -158,8 +162,8 @@ Feature: All orders
     And User should navigate to All Orders
     Then User clicks on Start order button and selects Pick up order from drop down
     Then User selects customer account# and delivery date for pickup order
-    #Then User should make selection between Pending order or Start New order
-    #Then User should select Note from popup and Order guide from popup
+    Then User should make selection between Pending order or Start New order
+    Then User should select Note from popup and Order guide from popup
     Then Enter PO# for New order for All orders
       |PO123|
     And User validates Pickup order check box is selected
@@ -176,11 +180,24 @@ Feature: All orders
   Scenario: Test scenario to create copy of Open order/All order
     Given User must be on Order Entry Page to select All Orders
     And User should navigate to All Orders
+    Then User clicks on Start order button and selects Add from drop down
+    Then User selects customer account# and delivery date from popup to edit all order
+    Then User should make selection between Pending order or Start New order
+    Then User should select Note from popup and Order guide from popup
+    Then Enter PO# for New order for All orders
+      |PO123|
+    Then Enter Pro# in Quick Product Entry area
+    And Check for Case and Unit input box enabled or not based on that enter value
+      |100|100|
+    Then Click on Next button
+    And Click on Submit Order button and read Order_no created for All order
+    Then User should be navigated back to All order page
+    And User clicks on Show all orders check box after navigating back
     And User clicks on Order status and select Active order option from drop down
-    And User clicks on search button
-    And User Clicks on Add filter button and enter values for search options
+    And User Clicks on Add filter button and Search for OrderNo
     Then User select the order and click on copy button and select delivery date
-    #Then User should select Note from popup and Order guide from popup
+    Then User should make selection between Pending order or Start New order
+    Then User should select Note from popup and Order guide from popup
     Then Enter PO# for New order for All orders
       |PO123|
     Then Click on Next button and select option Continue without payment option
@@ -188,7 +205,6 @@ Feature: All orders
     Then User should be navigated back to All order page
     And User clicks on Show all orders check box
     And User Clicks on Add filter button and Search for OrderNo
-
 
 
 

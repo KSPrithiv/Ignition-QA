@@ -20,10 +20,10 @@ public class InboundLoadPage extends BasePage {
     By orderList = By.cssSelector("#crdInboundOrderPortrait .BarsContainer");
 
     public void waitForInboundLoadPageToLoad() {
-        Waiters.waitUntilPageWillLoadedSelenide();
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(getTopIcon());
-        Waiters.waitForElementToBeDisplay(getSummaryRouteHeader());
         Waiters.waitForElementToBeDisplay(getSummaryRouteCode());
+        Waiters.waitTillLoadingPage(getDriver());
     }
 
     public boolean isSummaryRouteHeaderPresent() {

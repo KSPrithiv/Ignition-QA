@@ -4,6 +4,7 @@ import helper.HelpersMethod;
 import io.cucumber.java.Scenario;
 import io.cucumber.messages.Messages;
 import org.apache.logging.log4j.core.tools.picocli.CommandLine;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -82,12 +83,12 @@ public class RestrictedProductListPage
         WebElement WebEle;
         try
         {
-            HelpersMethod.ActClick(driver,AddProduct,20);
+            HelpersMethod.ActClick(driver,AddProduct,1000);
             exists=true;
             if(HelpersMethod.IsExists("//div[@class='loader']",driver))
             {
                 WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 400);
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100000);
             }
             Assert.assertEquals(exists,true);
         }
@@ -103,7 +104,7 @@ public class RestrictedProductListPage
             if(HelpersMethod.IsExists("//div[@class='loader']",driver))
             {
                 WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 400);
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100000);
             }
             if(HelpersMethod.IsExists("//div[text()='Products']/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
             {
@@ -120,12 +121,12 @@ public class RestrictedProductListPage
         WebElement WebEle;
         try
         {
-          product=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-widget k-window k-dialog')]/descendant::tr[contains(@class,'k-master-row')][1]/td[1]/descendant::button").getText();
-          WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-widget k-window k-dialog')]/descendant::tr[contains(@class,'k-master-row')][1]");
-          HelpersMethod.ClickBut(driver,WebEle,10);
-          exists=true;
-          scenario.log("PRODUCT ADDED AS RESTRICTED PRODCUCT "+product);
-          Assert.assertEquals(exists,true);
+            product=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-widget k-window k-dialog')]/descendant::tr[contains(@class,'k-master-row')][1]/td[1]/descendant::button").getText();
+            WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-widget k-window k-dialog')]/descendant::tr[contains(@class,'k-master-row')][1]");
+            HelpersMethod.ClickBut(driver,WebEle,1000);
+            exists=true;
+            scenario.log("PRODUCT ADDED AS RESTRICTED PRODCUCT "+product);
+            Assert.assertEquals(exists,true);
         }
         catch (Exception e){}
     }
@@ -139,7 +140,7 @@ public class RestrictedProductListPage
             if(HelpersMethod.IsExists("//div[text()='Products']/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
             {
                 WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[text()='Products']/ancestor::div[contains(@class,'k-widget k-window k-dialog')]/descendant::button[text()='OK']");
-                HelpersMethod.ClickBut(driver,WebEle,10);
+                HelpersMethod.ClickBut(driver,WebEle,1000);
                 exists=true;
             }
             Assert.assertEquals(exists,true);
@@ -178,13 +179,23 @@ public class RestrictedProductListPage
         WebElement WebEle;
         try
         {
-            if(DeleteButton.isEnabled())
+            String status = HelpersMethod.returnDocumentStatus(driver);
+            if (status.equals("loading"))
             {
-                HelpersMethod.ClickBut(driver, DeleteButton, 20);
+                HelpersMethod.waitTillLoadingPage(driver);
+            }
+            if(DeleteButton.isDisplayed() && DeleteButton.isEnabled())
+            {
+                HelpersMethod.ClickBut(driver, DeleteButton, 1000);
                 if(HelpersMethod.IsExists("//div[contains(text(),'Are you sure you want to delete this record?')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
                 {
                     WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-widget k-window k-dialog')]/descendant::button[text()='OK']");
-                    HelpersMethod.ClickBut(driver,WebEle,20);
+                    HelpersMethod.ClickBut(driver,WebEle,1000);
+                    if(HelpersMethod.IsExists("//div[@class='loader']",driver))
+                    {
+                        WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
+                        HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100000);
+                    }
                     exists = true;
                 }
             }
@@ -201,12 +212,12 @@ public class RestrictedProductListPage
         {
             if(!ProdGroup.isSelected())
             {
-                HelpersMethod.ActClick(driver,ProdGroup,10);
+                HelpersMethod.ActClick(driver,ProdGroup,1000);
                 exists=true;
                 if(HelpersMethod.IsExists("//div[@class='loader']",driver))
                 {
                     WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 400);
+                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100000);
                 }
             }
             Assert.assertEquals(exists,true);
@@ -237,10 +248,10 @@ public class RestrictedProductListPage
         try
         {
             WebEle= HelpersMethod.FindByElement(driver,"xpath","//button[contains(text(),'Add')]");
-            HelpersMethod.ActClick(driver,WebEle,10);
+            HelpersMethod.ActClick(driver,WebEle,1000);
             if(HelpersMethod.IsExists("//div[contains(text(),'Add')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
             {
-               exists=true;
+                exists=true;
             }
             Assert.assertEquals(exists,true);
         }
@@ -256,13 +267,13 @@ public class RestrictedProductListPage
             if(HelpersMethod.IsExists("//div[contains(text(),'Add')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
             {
                 WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-widget k-window k-dialog')]/descendant::span[contains(@class,'k-icon k-i-arrow-s')]");
-                HelpersMethod.ActClick(driver,WebEle,10);
+                HelpersMethod.ActClick(driver,WebEle,1000);
                 List<WebElement> Lists=HelpersMethod.FindByElements(driver,"xpath","//div[contains(@class,'k-popup k-child-animation-container')]/descendant::li");
                 for(int i=1;i<=Lists.size();i++)
                 {
-                    HelpersMethod.ActClick(driver,Lists.get(1),20);
+                    HelpersMethod.ActClick(driver,Lists.get(1),1000);
                     WebEle=HelpersMethod.FindByElement(driver,"xpath","//input[@id='ProductRestrictionsSubGroups']");
-                    selectCat=HelpersMethod.JSGetValueEle(driver,WebEle,40);
+                    selectCat=HelpersMethod.JSGetValueEle(driver,WebEle,1000);
                     scenario.log("CATEGORY GROUP SELECTED IS "+selectCat);
                     exists=true;
                     break;
@@ -282,12 +293,12 @@ public class RestrictedProductListPage
             if(HelpersMethod.IsExists("//div[contains(text(),'Add')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
             {
                 WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-widget k-window k-dialog')]/descendant::button[contains(text(),'Add')]");
-                HelpersMethod.ActClick(driver,WebEle,20);
+                HelpersMethod.ActClick(driver,WebEle,1000);
                 exists=true;
                 if(HelpersMethod.IsExists("//div[@class='loader']",driver))
                 {
                     WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 400);
+                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100000);
                 }
 
             }
@@ -327,18 +338,42 @@ public class RestrictedProductListPage
         Actions act=new Actions(driver);
         try
         {
-            List<WebElement> Products=HelpersMethod.FindByElements(driver,"xpath","//tr[contains(@class,'k-master-row')]/td[1]");
+            List<WebElement> Products=HelpersMethod.FindByElements(driver,"xpath","//tr[contains(@class,'k-master-row')]/td[2]");
             for(WebElement Pro:Products)
             {
                 act.moveToElement(Pro).build().perform();
                 String Prod_Text=Pro.getText();
                 if(Prod_Text.equals(selectCat))
                 {
+                    act.moveToElement(Pro).build().perform();
                     act.click(Pro).build().perform();
                     scenario.log("CATEGORY GROUP SELECTED FOR DELETING IS "+Prod_Text);
                     exists=true;
                     break;
                 }
+            }
+            Assert.assertEquals(exists,true);
+        }
+        catch (Exception e){}
+    }
+
+    public void ClickOnOkInDeletePopup()
+    {
+        try
+        {
+            exists=false;
+            WebElement WebEle;
+            String status = HelpersMethod.returnDocumentStatus(driver);
+            if (status.equals("loading"))
+            {
+                HelpersMethod.waitTillLoadingPage(driver);
+            }
+            if(HelpersMethod.IsExists("//div[contains(text(),'Are you sure you want to delete this record)]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
+            {
+                WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[contains(text(),'Are you sure you want to delete this record')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]");
+                WebElement okBtton=WebEle.findElement(By.xpath(".//button[text()='OK']"));
+                HelpersMethod.ClickBut(driver,okBtton,1000);
+                exists=true;
             }
             Assert.assertEquals(exists,true);
         }

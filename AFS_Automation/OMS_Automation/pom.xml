@@ -95,15 +95,13 @@ http://maven.apache.org/xsd/maven-4.0.0.xsd">
             <artifactId>cucumber-reporting</artifactId>
             <version>5.6.0</version>
         </dependency>
-        <!-- https://mvnrepository.com/artifact/net.masterthought/maven-cucumber-reporting
--->
+        <!-- https://mvnrepository.com/artifact/net.masterthought/maven-cucumber-reporting-->
         <dependency>
             <groupId>net.masterthought</groupId>
             <artifactId>maven-cucumber-reporting</artifactId>
             <version>5.5.4</version>
         </dependency>
-        <!-- https://mvnrepository.com/artifact/tech.grasshopper/extentreports-cucumber6-
-adapter -->
+        <!-- https://mvnrepository.com/artifact/tech.grasshopper/extentreports-cucumber6-adapter -->
         <dependency>
             <groupId>tech.grasshopper</groupId>
             <artifactId>extentreports-cucumber6-adapter</artifactId>
@@ -266,8 +264,7 @@ adapter -->
                     </archive>
                 </configuration>
             </plugin>
-            <!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-resources-
-plugin -->
+            <!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-resources-plugin -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-resources-plugin</artifactId>
@@ -300,8 +297,7 @@ plugin -->
                             <projectName>AFS_Automation</projectName>
                             <outputDirectory>target/cucumber-reports/advanced-
                                 reports</outputDirectory>
-                            <!--
-<cucumberOutput>target/cucumber-reports/cucumber.json</cucumberOutput>-->
+                            <!--<cucumberOutput>target/cucumber-reports/cucumber.json</cucumberOutput>-->
                             <skip>false</skip>
                             <inputDirectory>${project.build.directory}/cucumber-
                                 reports</inputDirectory>
@@ -326,8 +322,7 @@ plugin -->
                     <groups>create</groups>
                     <testFailureIgnore>false</testFailureIgnore>
                     <argLine>
-                        -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/1.9.6/
-                        aspectjweaver-1.9.6.jar"
+                        -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/1.9.6/aspectjweaver-1.9.6.jar"
                     </argLine>
                     <systemProperties>
                         <property>

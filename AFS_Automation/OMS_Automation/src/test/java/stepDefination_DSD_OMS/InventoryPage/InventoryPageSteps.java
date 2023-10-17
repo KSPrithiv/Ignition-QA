@@ -36,10 +36,10 @@ public class InventoryPageSteps
     static boolean flag1=false;
     static String currentURL=null;
 
-    LoginPage loginpage;
-    HomePage homepage;
-    InventoryPage inventory;
-    OrderEntryPage orderpage;
+    static LoginPage loginpage;
+    static HomePage homepage;
+    static InventoryPage inventory;
+    static OrderEntryPage orderpage;
 
     @Before
     public void LaunchBrowser(Scenario scenario) throws Exception
@@ -78,8 +78,6 @@ public class InventoryPageSteps
         if(flag==false)
         {
             homepage = new HomePage(driver,scenario);
-          //  String title = driver.getTitle();
-         //   Assert.assertEquals(title, "Admin");
             homepage.verifyUserinfoContainer();
             homepage.navigateToClientSide();
         }
@@ -123,9 +121,9 @@ public class InventoryPageSteps
     {
         if(flag1==false)
         {
-            if (HelpersMethod.IsExists("//li[contains(@class,'k-item')]/span[@class='k-link' and contains(text(),'Catalog')]", driver))
+            if (HelpersMethod.IsExists("//li[contains(@class,'k-item')]/span[@class='k-link' and contains(text(),'Inventory')]", driver))
             {
-                HelpersMethod.navigate_Horizantal_Tab(driver, "Catalog", "//li[contains(@class,'k-item')]/span[@class='k-link' and contains(text(),'Inventory')]", "xpath", "//li[contains(@class,'k-item')]/span[@class='k-link']");
+                HelpersMethod.navigate_Horizantal_Tab(driver, "Inventory", "//li[contains(@class,'k-item')]/span[@class='k-link' and contains(text(),'Inventory')]", "xpath", "//li[contains(@class,'k-item')]/span[@class='k-link']");
                 inventory = new InventoryPage(driver, scenario);
                 boolean result = inventory.ValidateInventory();
                 currentURL = driver.getCurrentUrl();
@@ -157,7 +155,6 @@ public class InventoryPageSteps
     {
         inventory=new InventoryPage(driver,scenario);
         inventory.navigateToStoreInventoryTab();
-
     }
 
     @And("User should click on Add product button and select products from Product popup")
@@ -169,17 +166,41 @@ public class InventoryPageSteps
         inventory.validateCatalogPopup();
         if (HelpersMethod.IsExists("//div[contains(@class,'k-widget k-window k-dialog')]/descendant::div[contains(@class,'i-grid')]", driver))
         {
-                    inventory.ListView(qtyValue);
+            scenario.log("CATALOG IN THE FORM OF LIST VIEW HAS BEEN FOUND");
+            inventory.ListView(qtyValue);
         }
         else
         {
             List<String> Prods= DataBaseConnection.DataConn1(TestBase.testEnvironment.getMultiple_Prod_Sql());
             for(int i=0;i<=Prods.size()-1;i++)
             {
+                scenario.log("CATALOG IN THE FORM OF CARD VIEW HAS BEEN FOUND");
                 inventory.cardView(qtyValue,Prods.get(i),i);
             }
         }
         inventory.clickOnCatalogOkButton();
         inventory.clickSaveButton();
+    }
+
+    @Then("User should change store inventroy dropdown value")
+    public void userShouldChangeStoreInventroyDropdownValue()
+    {
+        InventoryPage inventory=new InventoryPage(driver,scenario);
+        inventory.clickOnStoreInventory();
+        inventory.selectStoreInventory();
+    }
+
+    @And("User enters product#, <Case>,<Unit>, <Sequence> in quick product entry")
+    public void userEntersProductCaseUnitSequenceInQuickProductEntry() {
+    }
+
+    @And("User enters product#, {string}, {string}, {string} in quick product entry")
+    public void userEntersProductInQuickProductEntry(String cases, String unit, String sequence)
+    {
+        InventoryPage inventory=new InventoryPage(driver,scenario);
+        inventory.enterQuickProduct();
+        inventory.enterQuickCases(cases);
+        inventory.enterQuickUnit(unit);
+        inventory.enterSequenceNo(sequence);
     }
 }
