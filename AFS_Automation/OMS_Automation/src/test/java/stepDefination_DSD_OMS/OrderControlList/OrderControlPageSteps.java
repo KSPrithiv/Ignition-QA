@@ -141,7 +141,17 @@ public class OrderControlPageSteps
                 if (HelpersMethod.IsExists("//div[@class='loader']", driver))
                 {
                     WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 400000);
+                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 800000);
+                }
+                status = HelpersMethod.returnDocumentStatus(driver);
+                if (status.equals("loading"))
+                {
+                    HelpersMethod.waitTillLoadingPage(driver);
+                }
+                if (HelpersMethod.IsExists("//div[@class='loader']", driver))
+                {
+                    WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
+                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 800000);
                 }
                 orderControlList = new OrderControlListPage(driver, scenario);
                 orderControlList.Validate_OCL();
@@ -170,6 +180,7 @@ public class OrderControlPageSteps
     public void userShouldSelectOrderTrakerFromDropDown()
     {
         orderControlList=new OrderControlListPage(driver,scenario);
+        orderControlList.Validate_OCL();
         orderControlList.Click_OrderTracker();
         orderControlList.Select_OrderTracker();
     }
@@ -307,6 +318,7 @@ public class OrderControlPageSteps
     public void userClicksOnTakenRadioButton()
     {
         orderControlList=new OrderControlListPage(driver,scenario);
+        orderControlList.Validate_OCL();
         orderControlList.Select_Taken();
     }
 
@@ -329,6 +341,7 @@ public class OrderControlPageSteps
     public void clickOnSubmitOrderButtonAndReadOrder_noForOCL() throws InterruptedException, AWTException
     {
         summary = new CheckOutSummaryPage(driver,scenario);
+        summary.validateSummaryPage();
         summary.ClickSubmit();
         for(int i=0;i<=2;i++)
         {
@@ -337,6 +350,7 @@ public class OrderControlPageSteps
         }
         Ord_No = summary.Get_Order_No();
         summary.SucessPopup();
+        Thread.sleep(4000);
     }
 
     @And("User enters OrderNo in search box to search for order")

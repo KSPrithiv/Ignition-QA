@@ -10,7 +10,7 @@ Feature: Order entry End
   @CancelAndSkip
   Scenario: Test scenario for Skip using cancel button in new order entry page
     Given User must be on Order Entry Page
-    Then Change the date 6 days after current date
+    Then Change the date 3 days after current date
     Then User must click Start Order button
     Then User should make selection between Pending order or Start New order
     Then User should select Note from popup and Order guide from popup
@@ -23,7 +23,7 @@ Feature: Order entry End
   @CancelAndSkipEnabled
   Scenario: Test scenario for verifying Cancel and Skip button is enabled in new OE page
     Given User must be on Order Entry Page
-    Then Change the date 6 days after current date
+    Then Change the date 3 days after current date
     Then User must click Start Order button
     Then User should make selection between Pending order or Start New order
     Then User should select Note from popup and Order guide from popup
@@ -52,13 +52,13 @@ Feature: Order entry End
   @RemoveSkipOrder
   Scenario:Remove Skip order button, that appears in OE page
     Given User must be on Order Entry Page to Skip Order
-    Then Change the date 6 days after current date
+    Then Change the date 3 days after current date
     Then Check for Remove Skip button is visible and Click on Remove Skip button
 
   @SkipFromNewOrderEntry
   Scenario: Skip the creation of order from new order entry page
     Given User must be on Order Entry Page to Skip Order
-    Then Change the date 6 days after current date
+    Then Change the date 3 days after current date
     Then User must click Start Order button
     Then User should make selection between Pending order or Start New order
     Then User should select Note from popup and Order guide from popup

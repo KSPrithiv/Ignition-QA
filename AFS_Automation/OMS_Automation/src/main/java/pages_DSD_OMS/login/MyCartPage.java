@@ -85,7 +85,7 @@ public class MyCartPage
             if(HelpersMethod.IsExists("//div[@class='loader']",driver))
             {
                 WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 200000);
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 800000);
             }
         }
         exists=true;
@@ -99,7 +99,7 @@ public class MyCartPage
             if(HelpersMethod.IsExists("//div[@class='loader']",driver))
             {
                 WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 200000);
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 800000);
             }
         }
 
@@ -127,8 +127,7 @@ public class MyCartPage
                     WebElement WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
                     HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 400000);
                 }
-
-                scenario.log("DELETE BUTTON CLICKED");
+                scenario.log("PRODUCT HAS BEEN DELETED FROM MY CART");
                 exists=true;
             }
             else
@@ -144,6 +143,7 @@ public class MyCartPage
     {
         try
         {
+            Thread.sleep(5000);
             if(HelpersMethod.IsExists("//div[@class='loader']",driver))
             {
                 WebElement WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");

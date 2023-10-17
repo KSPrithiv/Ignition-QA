@@ -192,22 +192,33 @@ public class OrderEntryPageSteps
         if (HelpersMethod.IsExists("//div[@class='loader']", driver))
         {
             WebElement WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 400000);
+            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 800000);
         }
         for(int i=0;i<=1;i++)
         {
             orderpage.OrderGuidePopup();
-          /*  if (HelpersMethod.IsExists("//div[@class='loader']", driver))
-            {
-                WebElement WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 80000);
-            }*/
+            Thread.sleep(1000);
             orderpage.NoNotePopHandling();
+        }
+        String status = HelpersMethod.returnDocumentStatus(driver);
+        if (status.equals("loading"))
+        {
+            HelpersMethod.waitTillLoadingPage(driver);
         }
         if (HelpersMethod.IsExists("//div[@class='loader']", driver))
         {
             WebElement WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 400000);
+            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 800000);
+        }
+        status = HelpersMethod.returnDocumentStatus(driver);
+        if (status.equals("loading"))
+        {
+            HelpersMethod.waitTillLoadingPage(driver);
+        }
+        if (HelpersMethod.IsExists("//div[@class='loader']", driver))
+        {
+            WebElement WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
+            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 800000);
         }
     }
 
@@ -223,7 +234,7 @@ public class OrderEntryPageSteps
         if (HelpersMethod.IsExists("//div[@class='loader']", driver))
         {
             WebElement WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 80000);
+            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 800000);
         }
         status = HelpersMethod.returnDocumentStatus(driver);
         if (status.equals("loading"))
@@ -231,16 +242,16 @@ public class OrderEntryPageSteps
             HelpersMethod.waitTillLoadingPage(driver);
         }
 
-        orderpage = new OrderEntryPage(driver, scenario);
         for(int i=0;i<=1;i++)
         {
+            orderpage = new OrderEntryPage(driver, scenario);
             orderpage.OrderGuidePopup();
             orderpage.NoNotePopHandling();
         }
         if (HelpersMethod.IsExists("//div[@class='loader']", driver))
         {
             WebElement WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 400000);
+            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 800000);
         }
         status = HelpersMethod.returnDocumentStatus(driver);
         if (status.equals("loading"))
@@ -378,6 +389,7 @@ public class OrderEntryPageSteps
     public void click_on_submit_order_button() throws InterruptedException, AWTException
     {
         summary = new CheckOutSummaryPage(driver,scenario);
+        summary.validateSummaryPage();
         summary.ClickSubmit();
         for(int i=0;i<=2;i++)
         {
@@ -426,6 +438,13 @@ public class OrderEntryPageSteps
         newOE.QuickProduct(DataBaseConnection.DataBaseConn(TestBase.testEnvironment.getSingle_OneMoreProd()));
     }
 
+    @Then("Enter Pro# in Quick Product Entry area for price override")
+    public void enter_pro_in_quick_product_entry_area_for_price_override() throws InterruptedException, AWTException, SQLException, ClassNotFoundException, InstantiationException, IllegalAccessException
+    {
+        newOE = new NewOrderEntryPage(driver,scenario);
+        newOE.priceOverrideQuickProduct(TestBase.testEnvironment.priceRide());
+    }
+
     @Then("Click on Cancel button")
     public void click_on_cancel_button() throws InterruptedException, AWTException
     {
@@ -445,7 +464,7 @@ public class OrderEntryPageSteps
     {
         List<List<String>> Reason = tabledata.asLists(String.class);
         orderpage = new OrderEntryPage(driver, scenario);
-        //orderpage.validateSkip();//////////
+        orderpage.ValidateOE();
         orderpage.SkipVisible_Click(Reason.get(0).get(0));
     }
 

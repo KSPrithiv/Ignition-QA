@@ -7,15 +7,19 @@ import io.cucumber.java.Before;
 import io.cucumber.java.Scenario;
 import io.cucumber.java.en.*;
 import org.openqa.selenium.*;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import pages_DSD_OMS.login.*;
 import pages_DSD_OMS.orderEntry.CheckOutOrderPage;
+import pages_DSD_OMS.orderEntry.NewOrderEntryPage;
 import pages_DSD_OMS.orderEntry.OrderEntryPage;
 import util.DataBaseConnection;
 import util.TestBase;
 
 import java.awt.*;
 import java.sql.SQLException;
+import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,6 +36,11 @@ public class LoginPageStep
     public static boolean exists = false;
     static String PageTitle = null;
     static String CurrentURL = null;
+    static String tLogin=null;
+    static String pTitle=null;
+    static String pageTitle=null;
+    static String orderPageTitle=null;
+    static String oPage=null;
 
     WebDriver driver;
     public Scenario scenario;
@@ -42,6 +51,7 @@ public class LoginPageStep
     static HomePage homepage;
     static ProductPage productPage;
     static OrderEntryPage orderpage;
+    static NewOrderEntryPage newOE;
     static MyCartPage myCartpage;
     static UserRegistrationPage UserReg;
     static CheckOutOrderPage checkOutOrder;
@@ -72,6 +82,8 @@ public class LoginPageStep
         {
             scenario.log("LOADED APPLICATION URL");
             CurrentURL=driver.getCurrentUrl();
+            scenario.log(CurrentURL);
+            tLogin=driver.getTitle();
             flag = true;
         }
     }
@@ -79,32 +91,71 @@ public class LoginPageStep
     @Given("User on login page")
     public void user_on_login_page() throws InterruptedException, AWTException
     {
+        //Thread.sleep(6000);
+        if(HelpersMethod.IsExists("//div[@class='loader']",driver))
+        {
+            WebElement WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
+            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 800000);
+        }
         driver.navigate().to(TestBase.testEnvironment.get_url());
         String status = HelpersMethod.returnDocumentStatus(driver);
         if (status.equals("loading"))
         {
             HelpersMethod.waitTillLoadingPage(driver);
         }
+        if(HelpersMethod.IsExists("//div[@class='loader']",driver))
+        {
+            WebElement WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
+            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 800000);
+        }
     }
 
     @Given("User on login page for external catalog")
     public void user_on_login_page_for_external_catalog() throws InterruptedException, AWTException
     {
-        if(!CurrentURL.equals(driver.getCurrentUrl()))
+        String status = HelpersMethod.returnDocumentStatus(driver);
+        if (status.equals("loading"))
+        {
+            HelpersMethod.waitTillLoadingPage(driver);
+        }
+        Thread.sleep(4000);
+        String titleLogin=driver.getTitle();
+        if(titleLogin.equals("Order Cart") || titleLogin.equals("Product Catalog"))
+        {
+            driver.navigate().to(TestBase.testEnvironment.get_url());
+            status = HelpersMethod.returnDocumentStatus(driver);
+            if (status.equals("loading"))
+            {
+                HelpersMethod.waitTillLoadingPage(driver);
+            }
+            if(HelpersMethod.IsExists("//div[@class='loader']",driver))
+            {
+                WebElement WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 800000);
+            }
+        }
+        else if(!tLogin.equals(titleLogin))
         {
             productPage = new ProductPage(driver, scenario);
-            result1 = productPage.ValidateProductPage();
-            if(!result1)
+            pageTitle=driver.getTitle();
+            orderPageTitle=driver.getTitle();
+            if(!pTitle.equals(pageTitle))
             {
                 String url = driver.getCurrentUrl();
                 driver.navigate().to(url);
                 homepage = new HomePage(driver, scenario);
                 homepage.Click_On_UserIcon();
                 homepage.Click_On_Signout();
-            }
-            else
-            {
-                driver.navigate().to(TestBase.testEnvironment.get_url());
+                if(HelpersMethod.IsExists("//div[@class='loader']",driver))
+                {
+                    WebElement WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
+                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 800000);
+                }
+                status = HelpersMethod.returnDocumentStatus(driver);
+                if (status.equals("loading"))
+                {
+                    HelpersMethod.waitTillLoadingPage(driver);
+                }
             }
         }
     }
@@ -201,9 +252,15 @@ public class LoginPageStep
         if (HelpersMethod.IsExists("//div[contains(text(),'Failed to connect to API')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]", driver))
         {
             WebElement WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(text(),'Failed to connect to API')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]/descendant::button[text()='Ok']");
-            HelpersMethod.ClickBut(driver, WebEle, 600);
+            HelpersMethod.ClickBut(driver, WebEle, 2000);
         }
         loginpage.ClickExternalCatalog();
+        if(flag1==false)
+        {
+            productPage = new ProductPage(driver, scenario);
+            pTitle = productPage.productTitle();
+            flag1=true;
+        }
     }
 
     //Code to add products to cart, when Card view is enabled
@@ -288,17 +345,24 @@ public class LoginPageStep
         // orderpage.NoPendingOrderPopup();
         orderpage.NoNotePopHandling();
         orderpage.OrderGuidePopup();
+        if(HelpersMethod.IsExists("//div[@class='loader']",driver))
+        {
+            WebElement WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
+            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100000);
+        }
+
         if (HelpersMethod.IsExistsById("checkoutCard", driver))
         {
             checkOutOrder = new CheckOutOrderPage(driver, scenario);
             checkOutOrder.BackButton_Click();
+            newOE=new NewOrderEntryPage(driver,scenario);
+            newOE.ValidateNewOE();
         }
     }
 
     @Then("User enters Product# in Search bar in Catalog popup and enter Qty and delete the first product added")
     public void user_enters_product_in_search_bar_in_catalog_popup_and_enter_qty_and_delete_the_first_product_added(DataTable tabledata) throws InterruptedException, AWTException, SQLException
     {
-        WebElement WebEle = null;
         List<List<String>> Prod_detail = tabledata.asLists(String.class);
         ArrayList<String> Prod_No = (ArrayList<String>) DataBaseConnection.DataConn1(TestBase.testEnvironment.getMultiple_Prod_Sql1());
         int j = 0;
@@ -436,6 +500,7 @@ public class LoginPageStep
     public void user_should_click_on_reset_filter_button_and_all_the_products_should_displayed_in_list_view() throws InterruptedException, AWTException
     {
         productPage = new ProductPage(driver, scenario);
+        exists=productPage.ValidateProductPage();
         productPage.Click_ResetFilter();
         exists=productPage.ValidateProductPage();
         productPage.GridView();
@@ -489,6 +554,7 @@ public class LoginPageStep
     public void click_on_sort_by_best_match_and_select_ascending_order_and_verify_the_same(DataTable tabledata) throws InterruptedException, AWTException {
         List<List<String>> BestMatch = tabledata.asLists(String.class);
         productPage = new ProductPage(driver, scenario);
+        productPage.ValidateProductPage();
         productPage.Sort_By_ascending_order(BestMatch.get(0).get(0));
         productPage.ReturnToLogin();
     }
@@ -498,6 +564,7 @@ public class LoginPageStep
     public void user_enters_multiple_product_in_search_bar_separated_by_comma_and_read_the_product_available_in_catalog() throws SQLException, InterruptedException, AWTException {
         ArrayList<String> Prod_No = (ArrayList<String>) DataBaseConnection.DataConn1(TestBase.testEnvironment.getMultiple_Prod_Sql());
         productPage = new ProductPage(driver, scenario);
+        productPage.ValidateProductPage();
         productPage.Click_ResetFilter();
         productPage.EnterProdSeparatedByComma(Prod_No);
         productPage.ReturnToLogin();
@@ -507,6 +574,7 @@ public class LoginPageStep
     public void user_clicks_on_category_drop_down_and_selects_the_1st_category(DataTable tabledata) throws InterruptedException, AWTException {
         List<List<String>> categories = tabledata.asLists(String.class);
         productPage = new ProductPage(driver, scenario);
+        productPage.ValidateProductPage();
         productPage.Click_ResetFilter();
         productPage.CategoryDropDown(categories.get(0).get(0));
     }

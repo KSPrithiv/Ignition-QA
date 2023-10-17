@@ -135,6 +135,7 @@ public class OrderEntryPageSteps6
         newOE.exceedsMaxQty();
         newOE.OutOfStockPop_ERP();
         checkorder = new CheckOutOrderPage(driver, scenario);
+        checkorder.VerifyCheckOut();
         checkorder.Select_PaymentMethod_ClickDownArrow();
         if(checkorder.Verify_Existence_of_ContinuePayment())
         {

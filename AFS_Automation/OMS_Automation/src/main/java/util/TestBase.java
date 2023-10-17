@@ -2,8 +2,10 @@ package util;
 
 
 import helper.HelpersMethod;
+import io.cucumber.java.Scenario;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.aeonbits.owner.ConfigFactory;
+import org.apache.http.ExceptionLogger;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -147,6 +149,7 @@ public class TestBase
         getDriver().manage().deleteAllCookies();
         getDriver().manage().timeouts().pageLoadTimeout(TestUtil.PAGE_LOAD_TIMEOUT, TimeUnit.SECONDS);
         //getDriver().manage().timeouts().implicitlyWait(TestUtil.IMPLICIT_WAIT, TimeUnit.SECONDS);
+        System.out.println(testEnvironment.get_url());
         getDriver().get(testEnvironment.get_url());
         Thread.sleep(4000);
     }

@@ -24,7 +24,7 @@ import java.io.IOException;
                 "com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:Reports/spark/",
                 "rerun:target/failedrerun.txt"
         },
-        monochrome = true,tags = "@PriceOverRidePriceByPrice")
+        monochrome = true)
 public class TestRunnerOE extends AbstractTestNGCucumberTests
 {
     /* Created by Divya.Ramadas@afsi.com */

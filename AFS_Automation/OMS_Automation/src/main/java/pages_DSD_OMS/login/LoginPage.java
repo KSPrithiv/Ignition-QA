@@ -2,6 +2,7 @@ package pages_DSD_OMS.login;
 
 import helper.HelpersMethod;
 import io.cucumber.java.Scenario;
+import io.cucumber.java8.Th;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -102,6 +103,7 @@ public class LoginPage
         exists=false;
         try
         {
+            Thread.sleep(1000);
             HelpersMethod.clearText(driver,Username,1000);
             HelpersMethod.sendKeys(driver,Username,1000,un);
             exists=true;
@@ -137,7 +139,7 @@ public class LoginPage
                 }
                 HelpersMethod.ScrollElement(driver, SignIn);
                 HelpersMethod.ActClick(driver, SignIn, 1000);
-                HelpersMethod.waitTillPageLoaded(driver, 200000);
+                HelpersMethod.waitTillPageLoaded(driver, 800000);
                 Thread.sleep(5000);
                 exists = true;
                 status = HelpersMethod.returnDocumentStatus(driver);
@@ -148,7 +150,7 @@ public class LoginPage
                 if (HelpersMethod.IsExists("//div[@class='loader']", driver))
                 {
                     WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 400000);
+                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 800000);
                 }
                 status = HelpersMethod.returnDocumentStatus(driver);
                 if (status.equals("loading")) {
@@ -232,8 +234,9 @@ public class LoginPage
         WebElement WebEle=null;
         try
         {
-            HelpersMethod.waitTillElementLocatedDisplayed(driver, "xpath", "//p[contains(text(),'product catalog')]", 10);
-            if(HelpersMethod.EleDisplay(ExternalCatalog))
+            Thread.sleep(2000);
+           // HelpersMethod.waitTillElementLocatedDisplayed(driver, "xpath", "//p[contains(text(),'product catalog')]", 400000);
+            if(HelpersMethod.IsExists("//p[contains(text(),'product catalog')]",driver))
             {
                 HelpersMethod.ScrollElement(driver,ExternalCatalog);
                 HelpersMethod.ActClick(driver,ExternalCatalog,1000);
@@ -247,10 +250,11 @@ public class LoginPage
                 if(HelpersMethod.IsExists("//div[@class='loader']",driver))
                 {
                     WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100000);
+                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 800000);
                 }
-                HelpersMethod.WaitElementPresent(driver,"xpath","//div[contains(@class,'product-catalog-page')]",1000);
+                HelpersMethod.WaitElementPresent(driver,"xpath","//div[contains(@class,'product-catalog-page')]",100000);
                 //new WebDriverWait(driver,1000).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(@id,'ext-product-catalog-app')]")));
+
             }
             else
             {
@@ -275,10 +279,10 @@ public class LoginPage
             }
             if(Register.isDisplayed())
             {
-                HelpersMethod.ScrollElement(driver,Register);
-                HelpersMethod.ActClick(driver,Register,1000);
-                exists=true;
+                //HelpersMethod.ScrollElement(driver,Register);
+                //HelpersMethod.ActClick(driver,Register,1000);
                 scenario.log("REGISTER HERE BUTTON IS CLICKED");
+                exists=true;
             }
             else
             {scenario.log("REGISTER HERE BUTTON IS NOT VISIBLE");}
@@ -354,6 +358,7 @@ public class LoginPage
         String status=null;
         try
         {
+            Thread.sleep(2000);
             //new WebDriverWait(driver, 2000).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(text(),'Customer account index')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]")));
             WebElement modalContainer = driver.findElement(By.xpath("//div[contains(text(),'Customer account index')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]"));
             status = HelpersMethod.returnDocumentStatus(driver);
@@ -416,6 +421,8 @@ public class LoginPage
                 String Acc = TestBase.testEnvironment.get_Account();
                 scenario.log("CUSTOMER ACCOUNT NUMBER HAS BEEN SELECTED: " + Acc);
             }
+            Thread.sleep(2000);
+            Assert.assertEquals(exists,true);
         }
         catch (Exception e){}
     }

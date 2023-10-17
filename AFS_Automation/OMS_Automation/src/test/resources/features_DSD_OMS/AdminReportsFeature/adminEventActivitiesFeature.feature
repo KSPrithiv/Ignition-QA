@@ -3,13 +3,12 @@ Feature: Test scenarios for Admin, for genterating reports in events/activies ta
   Background: For login to application and selecting Account# for Admin reports
     Given User enters URL and is on login page and entered credentials for Admin setting for Admin reports
     When User is on Home Page for Admin setting for Admin reports
-    #Then User Clicks on Permissions by drop down to select Customer Account# for Admin reports
 
   @Logon/Logoff
   Scenario Outline: Test scenario for verifying functionality of Event activities log tab with logon/logoff event
     Given User is on Home Page for Admin setting to select Admin option for Admin reports
-    And User should enter menu "<Main menu>" in search bar and select "<Sub menu>" for Reports, Admin Options for event and activities
     Then User refreshes page Clicks on Permissions by drop down to select Customer Account# grid
+    And User should enter menu "<Main menu>" in search bar and select "<Sub menu>" for Reports, Admin Options for event and activities
     Then User selects "<Admin Options>" in Orders page in admin login and validate user is in selected Tab
     Then User selects Customer Accoun# "<Add filter>", From and End dates for Creating reports
     And User selects User name and "<Event>" to genrate report
@@ -23,8 +22,8 @@ Feature: Test scenarios for Admin, for genterating reports in events/activies ta
   @Registration
   Scenario Outline: Test scenario for verifying functionality of Event activities log tab with Registration
     Given User is on Home Page for Admin setting to select Admin option for Admin reports
-    And User should enter menu "<Main menu>" in search bar and select "<Sub menu>" for Reports, Admin Options for event and activities
     Then User refreshes page Clicks on Permissions by drop down to select Customer Account# grid
+    And User should enter menu "<Main menu>" in search bar and select "<Sub menu>" for Reports, Admin Options for event and activities
     Then User selects "<Admin Options>" in Orders page in admin login and validate user is in selected Tab
     Then User selects Customer Accoun# "<Add filter>", From and End dates for Creating reports
     And User selects User name and "<Event>" to genrate report
@@ -38,8 +37,8 @@ Feature: Test scenarios for Admin, for genterating reports in events/activies ta
   @NewOrder
   Scenario Outline: Test scenario for verifying functionality of Event activities log tab with New order
     Given User is on Home Page for Admin setting to select Admin option for Admin reports
-    And User should enter menu "<Main menu>" in search bar and select "<Sub menu>" for Reports, Admin Options for event and activities
     Then User refreshes page Clicks on Permissions by drop down to select Customer Account# grid
+    And User should enter menu "<Main menu>" in search bar and select "<Sub menu>" for Reports, Admin Options for event and activities
     Then User selects "<Admin Options>" in Orders page in admin login and validate user is in selected Tab
     Then User selects Customer Accoun# "<Add filter>", From and End dates for Creating reports
     And User selects User name and "<Event>" to genrate report
@@ -53,8 +52,8 @@ Feature: Test scenarios for Admin, for genterating reports in events/activies ta
   @EditOrder
   Scenario Outline: Test scenario for verifying functionality of Event activities log tab with New order
     Given User is on Home Page for Admin setting to select Admin option for Admin reports
-    And User should enter menu "<Main menu>" in search bar and select "<Sub menu>" for Reports, Admin Options for event and activities
     Then User refreshes page Clicks on Permissions by drop down to select Customer Account# grid
+    And User should enter menu "<Main menu>" in search bar and select "<Sub menu>" for Reports, Admin Options for event and activities
     Then User selects "<Admin Options>" in Orders page in admin login and validate user is in selected Tab
     Then User selects Customer Accoun# "<Add filter>", From and End dates for Creating reports
     And User selects User name and "<Event>" to genrate report
@@ -68,8 +67,8 @@ Feature: Test scenarios for Admin, for genterating reports in events/activies ta
   @CancelOrder
   Scenario Outline: Test scenario for verifying functionality of Event activities log tab with New order
     Given User is on Home Page for Admin setting to select Admin option for Admin reports
-    And User should enter menu "<Main menu>" in search bar and select "<Sub menu>" for Reports, Admin Options for event and activities
     Then User refreshes page Clicks on Permissions by drop down to select Customer Account# grid
+    And User should enter menu "<Main menu>" in search bar and select "<Sub menu>" for Reports, Admin Options for event and activities
     Then User selects "<Admin Options>" in Orders page in admin login and validate user is in selected Tab
     Then User selects Customer Accoun# "<Add filter>", From and End dates for Creating reports
     And User selects User name and "<Event>" to genrate report
@@ -83,8 +82,8 @@ Feature: Test scenarios for Admin, for genterating reports in events/activies ta
   @NewStandingOrder
   Scenario Outline: Test scenario for verifying functionality of Event activities log tab with New order
     Given User is on Home Page for Admin setting to select Admin option for Admin reports
-    And User should enter menu "<Main menu>" in search bar and select "<Sub menu>" for Reports, Admin Options for event and activities
     Then User refreshes page Clicks on Permissions by drop down to select Customer Account# grid
+    And User should enter menu "<Main menu>" in search bar and select "<Sub menu>" for Reports, Admin Options for event and activities
     Then User selects "<Admin Options>" in Orders page in admin login and validate user is in selected Tab
     Then User selects Customer Accoun# "<Add filter>", From and End dates for Creating reports
     And User selects User name and "<Event>" to genrate report
@@ -98,8 +97,8 @@ Feature: Test scenarios for Admin, for genterating reports in events/activies ta
   @EditStandingOrder
   Scenario Outline: Test scenario for verifying functionality of Event activities log tab with edit order
     Given User is on Home Page for Admin setting to select Admin option for Admin reports
-    And User should enter menu "<Main menu>" in search bar and select "<Sub menu>" for Reports, Admin Options for event and activities
     Then User refreshes page Clicks on Permissions by drop down to select Customer Account# grid
+    And User should enter menu "<Main menu>" in search bar and select "<Sub menu>" for Reports, Admin Options for event and activities
     Then User selects "<Admin Options>" in Orders page in admin login and validate user is in selected Tab
     Then User selects Customer Accoun# "<Add filter>", From and End dates for Creating reports
     And User selects User name and "<Event>" to genrate report
@@ -113,8 +112,8 @@ Feature: Test scenarios for Admin, for genterating reports in events/activies ta
   @PasswordRequest
   Scenario Outline: Test scenario for verifying functionality of Event activities log tab with New order
     Given User is on Home Page for Admin setting to select Admin option for Admin reports
-    And User should enter menu "<Main menu>" in search bar and select "<Sub menu>" for Reports, Admin Options for event and activities
     Then User refreshes page Clicks on Permissions by drop down to select Customer Account# grid
+    And User should enter menu "<Main menu>" in search bar and select "<Sub menu>" for Reports, Admin Options for event and activities
     Then User selects "<Admin Options>" in Orders page in admin login and validate user is in selected Tab
     Then User selects Customer Accoun# "<Add filter>", From and End dates for Creating reports
     And User selects User name and "<Event>" to genrate report
@@ -128,8 +127,8 @@ Feature: Test scenarios for Admin, for genterating reports in events/activies ta
   @AutoGeneratedOrder
   Scenario Outline: Test scenario for verifying functionality of Event activities log tab with New order
     Given User is on Home Page for Admin setting to select Admin option for Admin reports
-    And User should enter menu "<Main menu>" in search bar and select "<Sub menu>" for Reports, Admin Options for event and activities
     Then User refreshes page Clicks on Permissions by drop down to select Customer Account# grid
+    And User should enter menu "<Main menu>" in search bar and select "<Sub menu>" for Reports, Admin Options for event and activities
     Then User selects "<Admin Options>" in Orders page in admin login and validate user is in selected Tab
     Then User selects Customer Accoun# "<Add filter>", From and End dates for Creating reports
     And User selects User name and "<Event>" to genrate report
@@ -143,8 +142,8 @@ Feature: Test scenarios for Admin, for genterating reports in events/activies ta
   @EmailNotification
   Scenario Outline: Test scenario for verifying functionality of Event activities log tab with New order
     Given User is on Home Page for Admin setting to select Admin option for Admin reports
-    And User should enter menu "<Main menu>" in search bar and select "<Sub menu>" for Reports, Admin Options for event and activities
     Then User refreshes page Clicks on Permissions by drop down to select Customer Account# grid
+    And User should enter menu "<Main menu>" in search bar and select "<Sub menu>" for Reports, Admin Options for event and activities
     Then User selects "<Admin Options>" in Orders page in admin login and validate user is in selected Tab
     Then User selects Customer Accoun# "<Add filter>", From and End dates for Creating reports
     And User selects User name and "<Event>" to genrate report
@@ -158,8 +157,8 @@ Feature: Test scenarios for Admin, for genterating reports in events/activies ta
   @GoalModification
   Scenario Outline: Test scenario for verifying functionality of Event activities log tab with New order
     Given User is on Home Page for Admin setting to select Admin option for Admin reports
-    And User should enter menu "<Main menu>" in search bar and select "<Sub menu>" for Reports, Admin Options for event and activities
     Then User refreshes page Clicks on Permissions by drop down to select Customer Account# grid
+    And User should enter menu "<Main menu>" in search bar and select "<Sub menu>" for Reports, Admin Options for event and activities
     Then User selects "<Admin Options>" in Orders page in admin login and validate user is in selected Tab
     Then User selects Customer Accoun# "<Add filter>", From and End dates for Creating reports
     And User selects User name and "<Event>" to genrate report
@@ -173,8 +172,8 @@ Feature: Test scenarios for Admin, for genterating reports in events/activies ta
   @BlockOutDates
   Scenario Outline: Test scenario for verifying functionality of Event activities log tab with New order
     Given User is on Home Page for Admin setting to select Admin option for Admin reports
-    And User should enter menu "<Main menu>" in search bar and select "<Sub menu>" for Reports, Admin Options for event and activities
     Then User refreshes page Clicks on Permissions by drop down to select Customer Account# grid
+    And User should enter menu "<Main menu>" in search bar and select "<Sub menu>" for Reports, Admin Options for event and activities
     Then User selects "<Admin Options>" in Orders page in admin login and validate user is in selected Tab
     Then User selects Customer Accoun# "<Add filter>", From and End dates for Creating reports
     And User selects User name and "<Event>" to genrate report
@@ -188,8 +187,8 @@ Feature: Test scenarios for Admin, for genterating reports in events/activies ta
   @CutoffMgmtModification
   Scenario Outline: Test scenario for verifying functionality of Event activities log tab with New order
     Given User is on Home Page for Admin setting to select Admin option for Admin reports
-    And User should enter menu "<Main menu>" in search bar and select "<Sub menu>" for Reports, Admin Options for event and activities
     Then User refreshes page Clicks on Permissions by drop down to select Customer Account# grid
+    And User should enter menu "<Main menu>" in search bar and select "<Sub menu>" for Reports, Admin Options for event and activities
     Then User selects "<Admin Options>" in Orders page in admin login and validate user is in selected Tab
     Then User selects Customer Accoun# "<Add filter>", From and End dates for Creating reports
     And User selects User name and "<Event>" to genrate report
@@ -203,8 +202,8 @@ Feature: Test scenarios for Admin, for genterating reports in events/activies ta
   @CutoffOverrideModification
   Scenario Outline: Test scenario for verifying functionality of Event activities log tab with New order
     Given User is on Home Page for Admin setting to select Admin option for Admin reports
-    And User should enter menu "<Main menu>" in search bar and select "<Sub menu>" for Reports, Admin Options for event and activities
     Then User refreshes page Clicks on Permissions by drop down to select Customer Account# grid
+    And User should enter menu "<Main menu>" in search bar and select "<Sub menu>" for Reports, Admin Options for event and activities
     Then User selects "<Admin Options>" in Orders page in admin login and validate user is in selected Tab
     Then User selects Customer Accoun# "<Add filter>", From and End dates for Creating reports
     And User selects User name and "<Event>" to genrate report

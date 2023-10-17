@@ -27,6 +27,7 @@ public class AdminReportPageStep
     static boolean flag3=false;
     static boolean flag4=false;
     static boolean flag5=false;
+    static boolean flag6=false;
     WebDriver driver;
     Scenario scenario;
     static LoginPage loginpage;
@@ -66,12 +67,11 @@ public class AdminReportPageStep
     @Then("User Clicks on Permissions by drop down to select Customer Account# for Admin reports")
     public void userClicksOnPermissionsByDropDownToSelectCustomerAccountForAdminReports() throws InterruptedException
     {
-        if(flag==false)
-        {
             adminHomePage = new AdminHomePage(driver, scenario);
+            adminHomePage.handleError_Page();
+            adminHomePage.refreshPage();
             adminHomePage.ClickPermissionBy();
             adminHomePage.SelectCompany();
-        }
     }
 
     @Given("User is on Home Page for Admin setting to select Admin option for Admin reports")
@@ -147,6 +147,18 @@ public class AdminReportPageStep
             flag3=true;
         }
     }
+
+   /* @Given("User is on Home Page for Admin setting to select Admin option for Admin Permissions")
+    public void userIsOnHomePageForAdminSettingToSelectAdminOptionForAdminPermissions() throws InterruptedException
+    {
+        if(flag6==false)
+        {
+            adminHomePage = new AdminHomePage(driver, scenario);
+            adminHomePage.ValidatingAdminHome();
+            flag6=true;
+        }
+    }*/
+
 
     @And("User should enter menu {string} in search bar and select {string}, for user and accounts")
     public void userShouldEnterMenuInSearchBarAndSelectForUserAndAccounts(String arg0, String arg1)

@@ -149,7 +149,7 @@ Feature: Order Entry3
     Then User should select Note from popup and Order guide from popup
     Then Enter PO# for New order
       |PO123|
-    Then Enter Pro# in Quick Product Entry area
+    Then Enter Pro# in Quick Product Entry area for price override
     And Check for Case and Unit input box enabled or not based on that enter value
       |50|60|
     Then User should click on price override icon and Change price using What if option Price by price
@@ -166,11 +166,11 @@ Feature: Order Entry3
     Then User should select Note from popup and Order guide from popup
     Then Enter PO# for New order
       |PO123|
-    Then Enter Pro# in Quick Product Entry area
+    Then Enter Pro# in Quick Product Entry area for price override
     And Check for Case and Unit input box enabled or not based on that enter value
       |50|80|
     Then User should click on price override icon and Change price using What if option Price per unit
-      |$2.01|
+      |$2.50|
     Then Click on Next button
     And Click on SubmitOrder button
     Then User should be navigated to Order Entry page

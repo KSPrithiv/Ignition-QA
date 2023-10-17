@@ -400,7 +400,9 @@ public class GridConfigurationPageStep
     @Then("User refreshes page Clicks on Permissions by drop down to select Customer Account# grid")
     public void userRefreshesPageClicksOnPermissionsByDropDownToSelectCustomerAccountGrid() throws InterruptedException
     {
+
         adminHomePage=new AdminHomePage(driver,scenario);
+        adminHomePage.handleError_Page();
         adminHomePage.refreshPage();
         adminHomePage.ClickPermissionByAgain();
         adminHomePage.SelectCompany();
