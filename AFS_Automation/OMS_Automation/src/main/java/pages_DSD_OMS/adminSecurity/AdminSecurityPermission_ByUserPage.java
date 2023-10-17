@@ -119,6 +119,12 @@ public class AdminSecurityPermission_ByUserPage
                     break;
                 }
             }
+            if(HelpersMethod.IsExists("//div[@class='loader']",driver))
+            {
+                WebElement WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 400000);
+            }
+
             WebElement WebEle=HelpersMethod.FindByElement(driver,"id","comboBoxAddUserRole");
             scenario.log("ROLE SELECTED IS "+HelpersMethod.JSGetValueEle(driver,WebEle,100));
             Assert.assertEquals(exists,true);
@@ -156,6 +162,11 @@ public class AdminSecurityPermission_ByUserPage
                     break;
                 }
             }
+            if(HelpersMethod.IsExists("//div[@class='loader']",driver))
+            {
+                WebElement WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 400000);
+            }
             WebElement WebEle=HelpersMethod.FindByElement(driver,"id","comboBoxAddUser");
             scenario.log("ROLE SELECTED IS "+HelpersMethod.JSGetValueEle(driver,WebEle,100));
             Assert.assertEquals(exists,true);
@@ -176,7 +187,7 @@ public class AdminSecurityPermission_ByUserPage
                 if(HelpersMethod.IsExists("//div[@class='loader']",driver))
                 {
                     WebElement WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100000);
+                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 400000);
                 }
             }
             Assert.assertEquals(exists,true);

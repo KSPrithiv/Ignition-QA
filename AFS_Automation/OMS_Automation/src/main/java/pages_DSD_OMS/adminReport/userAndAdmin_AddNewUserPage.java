@@ -75,9 +75,16 @@ public class userAndAdmin_AddNewUserPage
 
     public void allCustomerAccountToggleButton()
     {
+        exists=true;
         try
         {
             HelpersMethod.ClickBut(driver,allCustomerAccount,1000);
+            if(HelpersMethod.IsExists("//div[contains(text(),'This will add all customer accounts to this login')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
+            {
+                WebElement allCustomerAccountPopup=HelpersMethod.FindByElement(driver,"xpath","//div[contains(text(),'This will add all customer accounts to this login')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]");
+                WebElement yesButton=allCustomerAccountPopup.findElement(By.xpath(".//button[text()='Yes']"));
+                HelpersMethod.ActClick(driver,yesButton,1000);
+            }
         }
         catch (Exception e){}
     }

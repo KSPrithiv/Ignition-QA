@@ -153,5 +153,11 @@ public interface Environment extends Config
 
     @Key("OrderHistoryYear")
     String orderHistoryYear();
+
+    @Key("AdditionalAccount")
+    String additionalAccount();
+
+    @Key("PriceOverride")
+    String priceRide();
 }
 

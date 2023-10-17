@@ -41,6 +41,7 @@ public class UserAndAccount_GeneralPageStep
     public void userClicksOnPermissionsByDropDownToSelectCustomerAccountToDefault()
     {
         adminHomePage = new AdminHomePage(driver, scenario);
+        adminHomePage.refreshPage();
         adminHomePage.ClickPermissionBy();
         adminHomePage.SelectDefaultCompany();
     }
@@ -72,6 +73,7 @@ public class UserAndAccount_GeneralPageStep
     public void userLogoutFromAdminPageAndClickOnRegisterHereButtonAndVerifyCheckBox() throws InterruptedException, AWTException
     {
         boolean Result=false;
+
         homepage=new HomePage(driver,scenario);
         homepage.Click_On_UserIcon();
         homepage.Click_On_Signout();
@@ -87,7 +89,7 @@ public class UserAndAccount_GeneralPageStep
             HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 8000);
         }
         loginpage.RegisterHere();
-        HelpersMethod.waitTillElementLocatedDisplayed(driver, "xpath", "//div[contains(text(),'Customer Registration')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]", 200);
+        //HelpersMethod.waitTillElementLocatedDisplayed(driver, "xpath", "//div[contains(text(),'Customer Registration')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]", 200);
         if (HelpersMethod.IsExists("//div[contains(text(),'Customer Registration')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]", driver))
         {
             Result = true;

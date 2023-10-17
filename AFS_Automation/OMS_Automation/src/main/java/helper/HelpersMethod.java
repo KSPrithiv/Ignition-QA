@@ -562,14 +562,14 @@ public class HelpersMethod
             if(Menu_Text.contains(MenuItem))
             {
                 WebElement menuItem=FindByElement(driver,selector,MenuItemLocator);
-                JScriptClick(driver,menuItem,1000);
+                JScriptClick(driver,menuItem,6000);
                 break;
             }
         }
         if(IsExists("//div[@class='loader']",driver))
         {
             WebElement WebEle=FindByElement(driver,"xpath","//div[@class='loader']");
-            waitTillLoadingWheelDisappears(driver, WebEle, 200000);
+            waitTillLoadingWheelDisappears(driver, WebEle, 600000);
         }
         String status=returnDocumentStatus(driver);
         if (status.equals("loading"))
@@ -579,7 +579,7 @@ public class HelpersMethod
         if(IsExists("//div[@class='loader']",driver))
         {
             WebElement WebEle=FindByElement(driver,"xpath","//div[@class='loader']");
-            waitTillLoadingWheelDisappears(driver, WebEle, 400000);
+            waitTillLoadingWheelDisappears(driver, WebEle, 600000);
         }
     }
 

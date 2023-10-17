@@ -639,14 +639,15 @@ public class AdminSecurityPermissionPage
             //new WebDriverWait(driver,8000).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(text(),'Copy permissions to')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]"))));
             if(HelpersMethod.IsExists("//div[contains(text(),'Copy permissions to')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
             {
-                WebElement yesButton=HelpersMethod.FindByElement(driver,"id","CopyPermsYesBtn");
-                HelpersMethod.ClickBut(driver,yesButton,10000);
+                WebElement copyPopup=HelpersMethod.FindByElement(driver,"xpath","//div[contains(text(),'Copy permissions to')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]");
+                WebElement yesButton=copyPopup.findElement(By.xpath(".//button[@id='CopyPermsYesBtn']"));
+                HelpersMethod.ActClick(driver,yesButton,10000);
                 exists=true;
                 scenario.log("COPY PERMISSION HAS BEEN DONE");
                 if(HelpersMethod.IsExists("//div[@class='loader']",driver))
                 {
                     WebElement WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100000);
+                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 800000);
                 }
             }
             Assert.assertEquals(exists,true);
@@ -659,6 +660,11 @@ public class AdminSecurityPermissionPage
         exists=false;
         try
         {
+            if(HelpersMethod.IsExists("//div[@class='loader']",driver))
+            {
+                WebElement WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 400000);
+            }
             WebElement searchBox= HelpersMethod.FindByElement(driver,"id","SearchBarPermissionsTree");
             HelpersMethod.sendKeys(driver,searchBox,1000,searchValue);
             scenario.log("ADMIN SETTING ENTERED FOR SEARCH IS "+ HelpersMethod.JSGetValueEle(driver,searchBox,200));
@@ -776,12 +782,12 @@ public class AdminSecurityPermissionPage
                 exists=false;
                 WebElement dialogPopup=HelpersMethod.FindByElement(driver,"xpath","//div[contains(text(),'Are you sure you wish to copy')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]");
                 WebElement yesButton=dialogPopup.findElement(By.xpath(".//button[text()='Yes']"));
-                HelpersMethod.ClickBut(driver,yesButton,1000);
+                HelpersMethod.ActClick(driver,yesButton,1000);
                 exists=true;
                 if(HelpersMethod.IsExists("//div[@class='loader']",driver))
                 {
                     WebElement WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100000);
+                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 800000);
                 }
                 Assert.assertEquals(exists,true);
             }

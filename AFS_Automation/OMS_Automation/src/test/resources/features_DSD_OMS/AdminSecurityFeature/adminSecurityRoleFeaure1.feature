@@ -3,7 +3,7 @@ Feature: scenarios for admin security and submenu roles, for creating role, edit
   Background: For login to application and selecting Account# for admin security
     Given User enters URL and is on login page and entered credentials for Admin setting for admin security
     When User is on Home Page for Admin setting for admin security
-    Then User Clicks on Permissions by drop down to select Customer Account# for admin security
+   # Then User Clicks on Permissions by drop down to select Customer Account# for admin security
 
   @LogoutAdimSecurity
   Scenario:Loging out from the application

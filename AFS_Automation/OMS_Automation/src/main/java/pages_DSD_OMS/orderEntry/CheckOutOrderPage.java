@@ -111,7 +111,7 @@ public class CheckOutOrderPage
             if(HelpersMethod.IsExists("//div[@class='loader']",driver))
             {
                 WebElement WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100000);
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 800000);
             }
             if(HelpersMethod.EleDisplay(CheOutOrderPage))
             {
@@ -168,6 +168,17 @@ public class CheckOutOrderPage
                         WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
                         HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 800000);
                     }
+                    String status = HelpersMethod.returnDocumentStatus(driver);
+                    if (status.equals("loading"))
+                    {
+                        HelpersMethod.waitTillLoadingPage(driver);
+                    }
+                    if (HelpersMethod.IsExists("//div[@class='loader']", driver))
+                    {
+                        WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
+                        HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 800000);
+                    }
+
                     scenario.log("CLICKED ON NEXT BUTTON");
                 }
                 else
@@ -207,7 +218,7 @@ public class CheckOutOrderPage
             if(HelpersMethod.IsExists("//div[@class='loader']",driver))
             {
                 WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 200000);
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 800000);
             }
             //Check whether application is navigating to checkout card or navigating to order summary page
             if (HelpersMethod.IsExists("//div[@class='page-content']/descendant::div[@id='checkoutCard']",driver))
@@ -230,7 +241,7 @@ public class CheckOutOrderPage
                             HelpersMethod.ClickBut(driver,WebEle,1000);
                         }
                         WebEle=HelpersMethod.FindByElement(driver, "xpath", "//div[@class='address-container']/descendant::tbody/tr[1]/descendant::input");
-                        HelpersMethod.ClickBut(driver,WebEle,1000);
+                        HelpersMethod.ClickBut(driver,WebEle,4000);
                         exists=true;
 
                         //Check whether 'SubmitCheckoutButton' is enabled or not
@@ -500,6 +511,11 @@ public class CheckOutOrderPage
     {
         try
         {
+            if(HelpersMethod.IsExists("//div[@class='loader']",driver))
+            {
+                WebElement WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 400000);
+            }
             WebElement WebEle=null;
             WebEle=HelpersMethod.FindByElement(driver,"id","addressCard");
             HelpersMethod.ScrollElement(driver,WebEle);
@@ -656,7 +672,8 @@ public class CheckOutOrderPage
             if(WithoutPayment.isDisplayed() && WithoutPayment.isEnabled())
             {
                 exists=true;
-                HelpersMethod.ClickBut(driver, WithoutPayment, 1000);
+                HelpersMethod.ScrollElement(driver,WithoutPayment);
+                HelpersMethod.ClickBut(driver, WithoutPayment, 4000);
                 scenario.log("CONTINUE ORDER WITHOUT PAYMENT METHOD IS SELECTED");
             }
             Assert.assertEquals(exists,true);
