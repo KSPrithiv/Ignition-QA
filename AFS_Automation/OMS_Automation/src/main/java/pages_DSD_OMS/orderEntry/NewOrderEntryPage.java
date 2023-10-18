@@ -153,7 +153,7 @@ public class NewOrderEntryPage
         if(HelpersMethod.IsExists("//div[@class='loader']",driver))
         {
             WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 800000);
+            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000000);
         }
         status = HelpersMethod.returnDocumentStatus(driver);
         if (status.equals("loading"))
@@ -187,7 +187,7 @@ public class NewOrderEntryPage
         if(HelpersMethod.IsExists("//div[@class='loader']",driver))
         {
             WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 800000);
+            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000000);
         }
         status=HelpersMethod.returnDocumentStatus(driver);
         if(status.equals("loading"))
@@ -197,7 +197,12 @@ public class NewOrderEntryPage
         if(HelpersMethod.IsExists("//div[@class='loader']",driver))
         {
             WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 800000);
+            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000000);
+        }
+        status=HelpersMethod.returnDocumentStatus(driver);
+        if(status.equals("loading"))
+        {
+            HelpersMethod.waitTillLoadingPage(driver);
         }
 
         try
@@ -665,13 +670,24 @@ public class NewOrderEntryPage
             {
                 HelpersMethod.ScrollUpScrollBar(driver);
                 //HelpersMethod.ScrollTillElementVisible(driver,Next_But);
-                Next_But=HelpersMethod.FindByElement(driver,"id","submitOrderButton");
+                Thread.sleep(1000);
+                Next_But=HelpersMethod.FindByElement(driver,"xpath","//button[@id='submitOrderButton']//*[local-name()='svg']");
                 HelpersMethod.ActClick(driver,Next_But,4000);
                 scenario.log("NEXT BUTTON CLICKED");
                 if(HelpersMethod.IsExists("//div[@class='loader']",driver))
                 {
                     WebElement WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 600000);
+                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 800000);
+                }
+                String status = HelpersMethod.returnDocumentStatus(driver);
+                if (status.equals("loading"))
+                {
+                    HelpersMethod.waitTillLoadingPage(driver);
+                }
+                if(HelpersMethod.IsExists("//div[@class='loader']",driver))
+                {
+                    WebElement WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
+                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 800000);
                 }
                 exists=true;
             }
@@ -709,8 +725,8 @@ public class NewOrderEntryPage
                 HelpersMethod.ClickBut(driver,Next_But,100);
             }*/
 
-            Thread.sleep(2000);
-            for (int i = 0; i <= 5; i++)
+            Thread.sleep(4000);
+            for (int i = 0; i <= 7; i++)
             {
                 //out of stock popup
                 if (HelpersMethod.IsExists("//div[contains(text(),'% of your average order for the given products')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
@@ -818,6 +834,24 @@ public class NewOrderEntryPage
                         HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 200000);
                     }
                 }
+                if(HelpersMethod.IsExists("//div[contains(text(),'Out of stock')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
+                {
+                    if(HelpersMethod.IsExists("//div[@class='loader']",driver))
+                    {
+                        WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
+                        HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 200000);
+                    }
+                    WebElement modalContainer = driver.findElement(By.xpath("//div[contains(text(),'Out of stock')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]"));
+                    WebElement continueButton = modalContainer.findElement(By.xpath(".//button[text()='Continue']"));
+                    HelpersMethod.ActClick(driver,continueButton, 1000);
+                    scenario.log("OUT OF STOCK POPUP HAS BEEN HANDLED");
+                    if(HelpersMethod.IsExists("//div[@class='loader']",driver))
+                    {
+                        WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
+                        HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 200000);
+                    }
+                }
+
             }
             if(HelpersMethod.IsExists("//div[@class='loader']",driver))
             {
@@ -1023,9 +1057,9 @@ public class NewOrderEntryPage
         {
             WebElement cancelSkipPopup=HelpersMethod.FindByElement(driver,"xpath","//div[contains(text(),'Cancel order')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]");
             WebElement CAndSButton=cancelSkipPopup.findElement(By.xpath(".//button[contains(text(),'Cancel & skip')]"));
-            if(CAndSButton.isEnabled())
+            if(!CAndSButton.isEnabled())
             {
-                scenario.log("CANCEL AND SKIP BUTTON IS ENABLED");
+                scenario.log("CANCEL AND SKIP BUTTON IS DISABLED");
                 exists=true;
             }
             Assert.assertEquals(exists,true);
@@ -3390,6 +3424,7 @@ public class NewOrderEntryPage
             {
                 scenario.log("NO PRODUCTS FOUND IN ORDER");
             }
+            HelpersMethod.ScrollUpScrollBar(driver);
             Assert.assertEquals(exists,true);
         }
         catch (Exception e){}
@@ -4231,6 +4266,30 @@ public class NewOrderEntryPage
                HelpersMethod.ActClick(driver,toastCurrentlyUnavailable,4000);
                scenario.log("TOAST MESSAGE FOR: CURRENTLY UNAVAILABLE HAS BEEN HANDLED");
                Thread.sleep(500);
+            }
+        }
+        catch (Exception e){}
+    }
+
+    public void navigateToOrderEntryIfNavigatedToNewOE()
+    {
+        if(HelpersMethod.IsExists("//div[@class='loader']",driver))
+        {
+            WebElement WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
+            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000000);
+        }
+        //check whether navigated to new OE page after changing account, if yes, navigate back to OE page
+        try
+        {
+            if(HelpersMethod.IsExists("//label[contains(text(),'New order')]",driver))
+            {
+                WebElement backButton=HelpersMethod.FindByElement(driver,"id","backButton");
+                HelpersMethod.ClickBut(driver,backButton,1000);
+                if(HelpersMethod.IsExists("//div[@class='loader']",driver))
+                {
+                    WebElement WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
+                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 400000);
+                }
             }
         }
         catch (Exception e){}

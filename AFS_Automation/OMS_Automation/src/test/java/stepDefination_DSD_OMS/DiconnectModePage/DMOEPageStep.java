@@ -98,11 +98,13 @@ public class DMOEPageStep
     @Given("User should be in Order entry page")
     public void userShouldBeInOrderEntryPage() throws InterruptedException, AWTException
     {
+        orderpage = new OrderEntryPage(driver, scenario);
         if(flag1==false)
         {
-            orderpage = new OrderEntryPage(driver, scenario);
             orderpage.ValidateOE();
         }
+        orderpage.HandleError_Page();
+        orderpage.Refresh_Page2();
     }
 
     @When("User Clicks on network symbol and click on taggle button to navigate to disconnected mode")
@@ -116,10 +118,19 @@ public class DMOEPageStep
         }
     }
 
+    @When("User Clicks on network symbol and click on taggle button to navigate to disconnected mode for cancel option")
+    public void userClicksOnNetworkSymbolAndClickOnTaggleButtonToNavigateToDisconnectedModeForCancelOption() throws InterruptedException, AWTException
+    {
+            dmoePage = new DMOEPage(driver, scenario);
+            dmoePage.NavigateToDM();
+            dmoePage.DisconnectModeTaggle();
+    }
+
     @And("Then User selects cancel option in Disconnected mode popup")
     public void thenUserSelectsCancelOptionInDisconnectedModePopup()
     {
         dmoePage=new DMOEPage(driver,scenario);
+        dmoePage.DisconnectModePopup();
         dmoePage.DisconnectModePopupCancel();
     }
 

@@ -31,20 +31,10 @@ Feature: Order entry End
     And Cancel popup should appear and verify button Cancel and Skip button
     Then User should be navigated to Order Entry page
 
-  @CancelAndSkipDisabled
-  Scenario: Test scenario for verifying Cancel and Skip button is disabled in new OE
-    Given User must be on Order Entry Page
-    Then User must click Start Order button
-    Then User should make selection between Pending order or Start New order
-    Then User should select Note from popup and Order guide from popup
-    Then Click on Cancel button
-    And Cancel popup should appear and verify button Cancel and Skip button for current date
-    Then User should be navigated to Order Entry page
-
   @SkipOrder
   Scenario: Skip order, which will not let user to create New order for selected date
     Given User must be on Order Entry Page to Skip Order
-    Then Change the date 6 days after current date
+    Then Change the date 3 days after current date
     Then Check for Skip button is visible and Click on Skip button and select reason
       |Closed|
     And Check for visibility of Remove Skip button
@@ -66,6 +56,16 @@ Feature: Order entry End
       |closed|
     Then User should be navigated to Order Entry page
     Then Check for Remove Skip button is visible and Click on Remove Skip button
+
+  @CancelAndSkipDisabled
+  Scenario: Test scenario for verifying Cancel and Skip button is disabled in new OE
+    Given User must be on Order Entry Page
+    Then User must click Start Order button
+    Then User should make selection between Pending order or Start New order
+    Then User should select Note from popup and Order guide from popup
+    Then Click on Cancel button
+    And Cancel popup should appear and verify button Cancel and Skip button for current date
+    Then User should be navigated to Order Entry page
 
   @LogoutOE
   Scenario:Loging out from the application

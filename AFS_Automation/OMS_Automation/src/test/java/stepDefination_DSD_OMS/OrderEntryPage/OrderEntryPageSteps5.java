@@ -111,6 +111,7 @@ public class OrderEntryPageSteps5
     public void userClickOnCancelButtonAndPopupShouldAppear() throws InterruptedException, AWTException
     {
         newOE=new NewOrderEntryPage(driver,scenario);
+        newOE.ValidateNewOE();
         newOE.OECancel();
     }
 
