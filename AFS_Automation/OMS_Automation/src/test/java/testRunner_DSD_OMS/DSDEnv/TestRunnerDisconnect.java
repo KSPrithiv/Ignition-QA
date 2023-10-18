@@ -2,21 +2,16 @@ package testRunner_DSD_OMS.DSDEnv;
 
 import io.cucumber.testng.AbstractTestNGCucumberTests;
 import io.cucumber.testng.CucumberOptions;
-import org.testng.annotations.*;
-import util.MailSend;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Optional;
+import org.testng.annotations.Parameters;
 import util.TestBase;
 
 import javax.mail.MessagingException;
 import java.io.IOException;
 
-/**
- * @Project DSD_OMS
- * @Author Divya.Ramadas@afsi.com
- */
-@CucumberOptions(features = { //"src/test/resources/features_DSD_OMS/OrderEntryFeature",
-                            "src/test/resources/features_DSD_OMS/OrderEntryFeature/orderEntryFeature.feature",
-                            "src/test/resources/features_DSD_OMS/OrderEntryFeature/orderEntryFeature1.feature",
-                            },
+@CucumberOptions(features = { "src/test/resources/features_DSD_OMS/DisconnectedModeOEFeature"},
         glue = {"stepDefination_DSD_OMS"},
         plugin = {"pretty",
                 "json:target/cucumber.json",
@@ -25,9 +20,13 @@ import java.io.IOException;
                 "rerun:target/failedrerun.txt"
         },
         monochrome = true)
-public class TestRunnerOE extends AbstractTestNGCucumberTests
+/**
+ * @Project DSD_OMS
+ * @Author Divya.Ramadas@telusagcg.com
+ */
+public class TestRunnerDisconnect extends AbstractTestNGCucumberTests
 {
-    /* Created by Divya.Ramadas@afsi.com */
+    /* Created by Divya.Ramadas@telusagcg.com */
     @Parameters({"environment"})
     @BeforeClass
     public static void beforeClass(@Optional String envi)

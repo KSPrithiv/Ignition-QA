@@ -181,6 +181,7 @@ public class OrderEntryPageSteps
     {
         exists=false;
         orderpage=new OrderEntryPage(driver,scenario);
+        orderpage.ValidateOE();
         exists=orderpage.Start_OrderAgain();
         Assert.assertEquals(exists,true);
     }
@@ -189,11 +190,11 @@ public class OrderEntryPageSteps
     public void userShouldSelectNoteFromPopupAndOrderGuideFromPopup() throws InterruptedException, AWTException
     {
         orderpage = new OrderEntryPage(driver, scenario);
-        if (HelpersMethod.IsExists("//div[@class='loader']", driver))
+        /*if (HelpersMethod.IsExists("//div[@class='loader']", driver))
         {
             WebElement WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
             HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 800000);
-        }
+        }*/
         for(int i=0;i<=1;i++)
         {
             orderpage.OrderGuidePopup();
@@ -352,6 +353,8 @@ public class OrderEntryPageSteps
         checkorder=new CheckOutOrderPage(driver,scenario);
         if(HelpersMethod.IsExists("//div[@id='paymentMethodCard']",driver))
         {
+            Thread.sleep(4000);
+            //checkorder.validateCheckOrder();
             checkorder.Select_PaymentMethod_ClickDownArrow();
             if(HelpersMethod.IsExists("//tr[1]/descendant::td[@class='payment-method-type-cell']",driver))
             {
@@ -403,6 +406,7 @@ public class OrderEntryPageSteps
     public void click_on_submit_order_button_and_read_order_no() throws InterruptedException, AWTException
     {
         summary = new CheckOutSummaryPage(driver,scenario);
+        summary.validateSummaryPage();
         summary.ClickSubmit();
         for(int i=0;i<=2;i++)
         {
@@ -449,6 +453,7 @@ public class OrderEntryPageSteps
     public void click_on_cancel_button() throws InterruptedException, AWTException
     {
         newOE = new NewOrderEntryPage(driver,scenario);
+        newOE.ValidateNewOE();
         newOE.OECancel();
     }
 
@@ -472,6 +477,7 @@ public class OrderEntryPageSteps
     public void check_for_visibility_of_remove_skip_button() throws InterruptedException, AWTException
     {
         orderpage = new OrderEntryPage(driver, scenario);
+        orderpage.ValidateOE();
         boolean visible = orderpage.CheckForRemoveSkip();
         Assert.assertEquals(visible, true);
     }
@@ -480,6 +486,7 @@ public class OrderEntryPageSteps
     public void check_for_remove_skip_button_is_visible_and_click_on_skip_button() throws InterruptedException, AWTException
     {
         orderpage = new OrderEntryPage(driver, scenario);
+        orderpage.ValidateOE();
         orderpage.ClickRemoveSkip();
         orderpage.RemoveSkipOK();
         orderpage.ClickCalender();
@@ -491,6 +498,7 @@ public class OrderEntryPageSteps
     {
         exists=false;
         orderpage = new OrderEntryPage(driver, scenario);
+        orderpage.ValidateOE();
         exists=orderpage.CheckForSkip();
         Assert.assertEquals(exists,true);
     }
@@ -528,6 +536,7 @@ public class OrderEntryPageSteps
     public void click_on_back_button() throws InterruptedException, AWTException
     {
         newOE=new NewOrderEntryPage(driver,scenario);
+        newOE.ValidateNewOE();
         newOE.Click_Back_But();
     }
 

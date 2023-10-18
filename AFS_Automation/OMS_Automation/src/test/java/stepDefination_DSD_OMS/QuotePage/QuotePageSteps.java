@@ -109,14 +109,15 @@ public class QuotePageSteps
     @Then("User selects Account# for Quotes")
     public void user_selects_accountForQuotes() throws InterruptedException, AWTException, ParseException
     {
-        orderEntryPage = new OrderEntryPage(driver, scenario);
         if(flag1==false)
         {
+            orderEntryPage = new OrderEntryPage(driver, scenario);
             orderEntryPage.ChangeAccount();
             //orderEntryPage.PopUps_After_AccountChange();
             //orderEntryPage.Read_DeliveryDate();
             flag1=true;
         }
+        orderEntryPage = new OrderEntryPage(driver, scenario);
         orderEntryPage.HandleError_Page();
         orderEntryPage.Refresh_Page2();
         orderEntryPage.Read_DeliveryDate();
@@ -190,6 +191,7 @@ public class QuotePageSteps
     public void userShouldBeNavigatedToQuoteSummaryPageAndClickOnConvertOGButton()
     {
         quoteSummaryPage=new QuoteSummaryPage(driver,scenario);
+        quoteSummaryPage.ValidateQuoteSummary();
         quoteSummaryPage.ClickOnConvertOG();
     }
 

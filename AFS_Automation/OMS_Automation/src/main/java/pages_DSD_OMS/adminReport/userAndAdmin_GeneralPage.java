@@ -124,13 +124,19 @@ public class userAndAdmin_GeneralPage
         exists=true;
         try
         {
+            //Thread.sleep(500);
             HelpersMethod.ClickBut(driver,saveButton,1000);
-
-            if(HelpersMethod.IsExists("//div[contains(@class,'k-widget k-window k-dialog')]",driver))
+            if(HelpersMethod.IsExists("//div[@class='loader']",driver))
             {
-                WebElement confirmationPopup = HelpersMethod.FindByElement(driver,"xpath", "//div[contains(@class,'k-widget k-window k-dialog')]");
-                WebElement okButton = confirmationPopup.findElement(By.xpath(".//button"));
-                HelpersMethod.ClickBut(driver,okButton,1000);
+                WebElement WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100000);
+            }
+
+            if(HelpersMethod.IsExists("//div[contains(text(),'The information has been')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
+            {
+                WebElement confirmationPopup = HelpersMethod.FindByElement(driver,"xpath", "//div[contains(text(),'The information has been')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]");
+                WebElement okButton = confirmationPopup.findElement(By.xpath(".//button[text()='OK']"));
+                HelpersMethod.ActClick(driver,okButton,1000);
                 exists=true;
             }
             Assert.assertEquals(exists,true);

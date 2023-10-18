@@ -235,8 +235,7 @@ public class DeliveriesPage
 
     public void selectDropDownValue()
     {
-        WebElement dropDownOption=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-animation-container k-animation-container-relative k-list-container k-reset i-common-dropdown i-common-dropdown__type-none')]");
-        List<WebElement> Options= dropDownOption.findElements(By.xpath(".//ul/li"));
+        List<WebElement> Options= HelpersMethod.FindByElements(driver,"xpath","//div[contains(@class,'k-popup k-child-animation-container')]/descendant::ul/li");
         try
         {
             if(Options.size()==1)

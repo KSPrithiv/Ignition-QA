@@ -171,7 +171,7 @@ public class PricePage
     public String DropDownInCustomerInq()
     {
         String ValueSele=null;
-        List<WebElement> Options= HelpersMethod.FindByElements(driver,"xpath","//div[contains(@class,'k-child-animation-container')]/descendant::li");
+        List<WebElement> Options= HelpersMethod.FindByElements(driver,"xpath","//div[contains(@class,'k-popup k-child-animation-container')]/descendant::ul/li");
         try
         {
             if(Options.size()==1)

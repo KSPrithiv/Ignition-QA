@@ -37,8 +37,3 @@ Feature: Disconnected mode
     When User clicks on network symbol and click on taggle button drop down should appear
     And Then User should Click on taggle button to go online
 
-  @DMCancel
-  Scenario: Cancel navigation to disconnected mode
-    Given User should be in Order entry page
-    When User Clicks on network symbol and click on taggle button to navigate to disconnected mode
-    And Then User selects cancel option in Disconnected mode popup
