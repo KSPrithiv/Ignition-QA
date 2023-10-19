@@ -3,6 +3,7 @@ package common.setup;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import lombok.SneakyThrows;
 import org.apache.commons.io.FileUtils;
+import org.openqa.selenium.PageLoadStrategy;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -14,7 +15,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import java.io.File;
 import java.io.IOException;
-import java.util.*;
 import java.util.concurrent.TimeUnit;
 
 public class DriverManager {
@@ -57,63 +57,48 @@ public class DriverManager {
 
     public static ChromeOptions buildChrome() {
         LOG.info("Building ChromeDriver");
-        WebDriverManager.chromedriver().setup();
         ChromeOptions options = new ChromeOptions();
-        Map<String, Object> prefs = new HashMap<>();
-        //turn off message "Let's save your password for this site"
-        prefs.put("credentials_enable_service", false);
-        prefs.put("profile.password_manager_enabled", false);
-        prefs.put("profile.managed_default_content_settings.images", 2);
-        prefs.put("profile.default_content_setting_values.notifications", 2);
-        prefs.put("profile.managed_default_content_settings.stylesheets", 2);
-      //  prefs.put("profile.managed_default_content_settings.cookies", 2);
-        prefs.put("profile.managed_default_content_settings.javascript", 1);
-        prefs.put("profile.managed_default_content_settings.plugins", 1);
-        prefs.put("profile.managed_default_content_settings.popups", 2);
-        prefs.put("profile.managed_default_content_settings.geolocation", 2);
-        /*   prefs.put("profile.managed_default_content_settings.media_stream", 2);*/
-        prefs.put("profile.password_manager_enabled", false);
-        prefs.put("credentials_enable_service", false);
-        prefs.put("profile.password_manager_enabled", false);
-        prefs.put("credentials_enable_service", false);
-        prefs.put("profile.password_manager_enabled", false);
-        prefs.put("credentials_enable_service", false);
-        prefs.put("profile.password_manager_enabled", false);
-        prefs.put("credentials_enable_service", false);
-        prefs.put("profile.password_manager_enabled", false);
-        // prefs.put("download.default_directory", PATH_TO_DOWNLOADS);
-        options.setExperimentalOption("prefs", prefs);
-        options.addArguments("--disable-extensions");
-        options.addArguments("--dns-prefetch-disable");
-        options.addArguments("--no-sandbox");
-        options.addArguments("--enable-automation");
-        options.addArguments("--disable-gpu");
+        //Map<String, Object> prefs = new HashMap<>();
+        //options.setExperimentalOption("prefs", prefs);
+        //Irina Mandatory
+        //options.addArguments("profile-directory=PROFILE 2");
+
+        //HEADLESS MODE CODE STARTS
+        //options.addArguments("--headless");
+        //options.addArguments("--headless=new");
+        options.addArguments("window-size=1280,720");
+        //Fast
         options.addArguments("--remote-allow-origins=*");
-        options.addArguments("--disable-blink-features=AutomationControlled");
-       // options.addArguments("--user-data-dir=C:/Users/Irina.Holovan/AppData/Local/Google/Chrome/User Data");
-        options.addArguments("profile-directory=PROFILE 2");
-        options.setCapability("download.prompt_for_download", false);
-        options.setCapability("download.directory_upgrade", true);
-        options.setCapability("safebrowsing.enabled", false);
-        options.setCapability("download.prompt_for_download", false);
-        options.setCapability("acceptInsecureCerts", true);
-        options.setCapability("chrome.switches", Arrays.asList("--ignore-certificate-errors"));
-        options.setExperimentalOption("excludeSwitches", Collections.singletonList("enable-automation"));
-        options.setExperimentalOption("useAutomationExtension", true);
-        //turn off message "Chrome is being controlled by automated test software"
-     /*   options.setExperimentalOption("excludeSwitches", Collections.singletonList("enable-automation"));
-        options.setExperimentalOption("useAutomationExtension", false);        //
+        options.addArguments("--no-proxy-server");
+        options.addArguments("--proxy-server='direct://'");
+        options.addArguments("--proxy-bypass-list=*");
+        //options.addArguments("window-size=1920,1080");
+
+        //options.setPageLoadStrategy(PageLoadStrategy.EAGER); //OCT-13
+        options.setPageLoadStrategy(PageLoadStrategy.NORMAL);
+        options.addArguments("enable-features=NetworkServiceInProcess");
+        options.addArguments("disable-features=NetworkService");
+        options.addArguments("--disable-browser-side-navigation");
+        options.addArguments("--disable-gpu"); //OCT-1
+        options.addArguments("--force-device-scale-factor=1");//OCT-13
         options.addArguments("--no-sandbox");
-        options.addArguments("--disable-logging");
-        options.addArguments("--start-maximized");
-        options.addArguments("--disable-extensions");
-        options.addArguments("--disable-web-security");
-        options.addArguments("--disable-notifications");
-        options.addArguments("disable-blink-features=AutomationControlled");
-        options.addArguments("--no-default-browser-check");*/
-     //   COUNTER++;
-      //  System.out.println("counter !!!! " + COUNTER);
-      //  options.addArguments("--user-data-dir=C:/Users/Irina.Holovan/Desktop/chrome/" + COUNTER);
+        //Another imp
+        options.addArguments("--disable-dev-shm-usage");
+        options.addArguments("--aggressive-cache-discard");
+        options.addArguments("--disable-cache");
+        options.addArguments("--disable-application-cache");
+        options.addArguments("--disable-offline-load-stale-cache");
+        options.addArguments("--disk-cache-size=0");
+        options.addArguments("--dns-prefetch-disable");
+        //options.addArguments("--no-proxy-server");
+        options.addArguments("--silent");
+        //options.setProxy(null);
+        //System.setProperty("webdriver.chrome.silentOutput", "true");//extra -delete
+        //Not imp
+        options.addArguments("--ignore-certificate-errors");
+        options.addArguments("--ignore-ssl-errors");
+        options.addArguments("--disable-dev-shm-usage");
+        options.addArguments("--log-level=3");
         return options;
     }
 

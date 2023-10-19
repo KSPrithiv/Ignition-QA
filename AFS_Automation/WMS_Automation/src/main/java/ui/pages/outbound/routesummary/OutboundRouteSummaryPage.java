@@ -211,7 +211,7 @@ public class OutboundRouteSummaryPage extends BasePage {
     private static String randomRouteCode = null;
 
     public void waitOutboundRouteSummaryPageToLoad() {
-        waitUntilInvisible(2, loader);
+        waitUntilInvisible(4, loader);
         Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(getTitle());
         Waiters.waitForElementToBeDisplay(getTableContent());

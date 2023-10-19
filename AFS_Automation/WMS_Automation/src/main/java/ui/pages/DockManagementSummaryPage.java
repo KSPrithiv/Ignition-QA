@@ -127,6 +127,7 @@ public class DockManagementSummaryPage extends BasePage {
     By wpChillTask = By.xpath("//div[contains(@class, 'i-card__card__body')][.//h4[text()='Assignments by Group']]//*[text()='WP CHILL']");
     By xdockPalTask = By.xpath("//div[contains(@class, 'i-card__card__body')][.//h4[text()='Assignments by Group']]//*[text()='XDOCK PAL']");
     By xrepNdFrzTask = By.xpath("//div[contains(@class, 'i-card__card__body')][.//h4[text()='Assignments by Group']]//*[text()='XREP ND FRZ']");
+    By loader = By.cssSelector(".loader");
 
     public void waitForDockManagementSummaryPageToLoad() {
         Waiters.waitABit(4000);
@@ -288,10 +289,13 @@ public class DockManagementSummaryPage extends BasePage {
     }
 
     public void clickSetupProductIcon() {
+        waitUntilInvisible(2, loader);
         Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(setupProductIcon);
+        waitUntilStalenessOf(2, getLoader());
         clickOnElement(setupProductIcon);
         Waiters.waitTillLoadingPage(getDriver());
+        waitUntilInvisible(3, loader);
     }
 
     public void clickDockManagementIcon() {
@@ -904,5 +908,7 @@ public class DockManagementSummaryPage extends BasePage {
     public WebElement getUserProfileIcon() { return findWebElement(userProfileIcon); }
 
     public WebElement getUserProfileLogoutIcon() { return findWebElement(userProfileLogoutIcon); }
+
+    public WebElement getLoader() { return findWebElement(loader); }
 
   }

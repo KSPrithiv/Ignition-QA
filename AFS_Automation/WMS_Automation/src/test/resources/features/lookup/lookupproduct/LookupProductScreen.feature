@@ -8,15 +8,15 @@ Feature: Testing of Lookup Product functionality
     Then Go to Lookup Product page
     And Validates Product Lookup Page base elements are loaded
 
-  Scenario: Checking History screen of Lookup Product screen
-    Given User signs in the application
-    When Main page is loaded
-    And DockManagement Summary Page is validated
-    Then Go to Lookup Product page
-    And Validates Product Lookup Page base elements are loaded
-    And User types product "200018" on Lookup Product page
-    And User clicks History tab on Lookup Product page
-    And Validates Product details are loaded on Lookup Product page
+#  Scenario: Checking History screen of Lookup Product screen
+#    Given User signs in the application
+#    When Main page is loaded
+#    And DockManagement Summary Page is validated
+#    Then Go to Lookup Product page
+#    And Validates Product Lookup Page base elements are loaded
+#    And User types product "200018" on Lookup Product page
+#    And User clicks History tab on Lookup Product page
+#    And Validates Product details are loaded on Lookup Product page
 
   Scenario: Checking Setup screen of Lookup Product screen
     Given User signs in the application

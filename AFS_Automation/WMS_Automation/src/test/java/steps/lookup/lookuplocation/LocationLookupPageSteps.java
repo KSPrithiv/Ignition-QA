@@ -265,6 +265,13 @@ public class LocationLookupPageSteps {
     }
 
     @Step
+    @And("User clicks Show detail checkbox on Lookup Location page")
+    public void clickLookupProductShowPalletCheck() {
+        log.info("User clicks Show detail checkbox on Lookup Location page");
+        locationLookupPage.clickLookupProductShowPalletCheck();
+    }
+
+    @Step
     @And("User clicks Edit button on Lookup Location page")
     public void clickEditButton() {
         log.info("User clicks Edit button on Lookup Location page");

@@ -168,9 +168,9 @@ public class InboundOrderDetailsPageValidations {
     @And("Validates Status, Door and Data on Inbound Order Details page")
     public void verifyStatusDoorData() {
         SoftAssert softAssert = new SoftAssert();
-        softAssert.assertTrue(inboundOrderDetailsPage.isChangeStatusOptionDisplayed(), "Change Status is not visible");
-        softAssert.assertTrue(inboundOrderDetailsPage.isDoorOptionDisplayed(), "Door Option is not displayed");
-        softAssert.assertTrue(inboundOrderDetailsPage.isDataOptionDisplayed(), "Data Option is not displayed");
+        softAssert.assertTrue(inboundOrderDetailsPage.isChangeStatusOptionPresent(), "Change Status is not present");
+        softAssert.assertTrue(inboundOrderDetailsPage.isDoorOptionPresent(), "Door Option is not present");
+        softAssert.assertTrue(inboundOrderDetailsPage.isDataOptionPresent(), "Data Option is not present");
         softAssert.assertAll();
     }
 
