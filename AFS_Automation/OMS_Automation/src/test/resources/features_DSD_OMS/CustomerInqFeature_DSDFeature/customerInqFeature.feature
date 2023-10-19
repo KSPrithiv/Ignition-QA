@@ -75,7 +75,6 @@ Feature: Customer Inq
     Then PO has been saved
     Then User selects time for order time for different days
     And User selects Order taker from drop down
-    Then User clicks on Save button
 
   @MultiplePO
   Scenario: Test scenario to create multiple PO in Ignition tab
@@ -112,7 +111,6 @@ Feature: Customer Inq
     Given User must be on Client side and select Customer Inq page
     When User should confirm that he is in Customer Inq page
     Then User clicks on Copy button and popup should display
-    Then PO has been saved
 
   @AddNote
   Scenario: Test scenario for adding note to customer inq in DSD

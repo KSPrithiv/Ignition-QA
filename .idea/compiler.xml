@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <bytecodeTargetLevel>
+      <module name="AFS_Automation" target="16" />
+      <module name="OMS_Automation" target="1.8" />
+      <module name="WMS_Automation" target="11" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

@@ -88,6 +88,17 @@ public class CheckOutSummaryPage
                 WebElement WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
                 HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 800000);
             }
+            String status = HelpersMethod.returnDocumentStatus(driver);
+            if (status.equals("loading"))
+            {
+                HelpersMethod.waitTillLoadingPage(driver);
+            }
+
+            if(HelpersMethod.IsExists("//div[@class='loader']",driver))
+            {
+                WebElement WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 800000);
+            }
 
             if(HelpersMethod.IsExists("//div[contains(@class,'checkout-summary-content')]",driver))
             {
@@ -117,11 +128,13 @@ public class CheckOutSummaryPage
         WebElement WebEle=null;
         HelpersMethod.ScrollUpScrollBar(driver);
         Actions act=new Actions(driver);
-        Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
-                .withTimeout(Duration.ofSeconds(30))
-                .pollingEvery(Duration.ofSeconds(5))
-                .ignoring(NoSuchElementException.class);
-                 wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
+        if(HelpersMethod.IsExists("//div[@class='loader']",driver))
+        {
+            WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
+            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000000);
+        }
+        HelpersMethod.ScrollUpScrollBar(driver);
 
         if(HelpersMethod.IsExists("//button[@id='ConfirmSummaryButton']",driver))
         {
@@ -137,7 +150,7 @@ public class CheckOutSummaryPage
             new WebDriverWait(driver,Duration.ofMillis(20000)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(@class,'k-animation-container k-animation-container-relative k-animation-container-shown')]/descendant::ul/li")));
             //Click on list that appears
             WebElement arrowCutoff=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-animation-container k-animation-container-relative k-animation-container-shown')]/descendant::ul/li");
-            HelpersMethod.ActClick(driver,arrowCutoff,8000);
+            HelpersMethod.ActClick(driver,arrowCutoff,10000);
             if (HelpersMethod.IsExists("//div[@class='loader']", driver))
             {
                 WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");

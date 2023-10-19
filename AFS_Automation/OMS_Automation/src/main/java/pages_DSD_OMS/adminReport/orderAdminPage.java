@@ -3,13 +3,12 @@ package pages_DSD_OMS.adminReport;
 import helper.HelpersMethod;
 import io.cucumber.java.Scenario;
 import org.apache.logging.log4j.core.tools.picocli.CommandLine;
-import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.FluentWait;
+import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import util.TestBase;
@@ -79,14 +78,18 @@ public class orderAdminPage
                             }
                         }
                     }
+                    if(HelpersMethod.IsExists("//div[@class='loader']",driver))
+                    {
+                        WebElement WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
+                        HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000000);
+                    }
                 }
             }
-
-            if(HelpersMethod.IsExists("//div[@class='loader']",driver))
-            {
-                WebElement WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 800000);
-            }
+            Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(100))
+                    .pollingEvery(Duration.ofSeconds(5))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
         }
         catch (Exception e){}
     }
@@ -97,6 +100,11 @@ public class orderAdminPage
         String tabValue=null;
         try
         {
+            Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(100))
+                    .pollingEvery(Duration.ofSeconds(5))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
             if(HelpersMethod.IsExists("//li[contains(@class,'k-state-active')]/span[@class='k-link']",driver))
             {
                 tabValue=HelpersMethod.FindByElement(driver,"xpath","//li[contains(@class,'k-state-active')]/span[@class='k-link']").getText();

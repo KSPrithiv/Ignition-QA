@@ -13,9 +13,9 @@ import java.io.IOException;
  * @Project DSD_OMS
  * @Author Divya.Ramadas@afsi.com
  */
-@CucumberOptions(features = { "src/test/resources/features_DSD_OMS/OrderEntryFeature",
-        //"src/test/resources/features_DSD_OMS/OrderEntryFeature/orderEntryFeature.feature",
-        //"src/test/resources/features_DSD_OMS/OrderEntryFeature/orderEntryFeature1.feature",
+@CucumberOptions(features = { //"src/test/resources/features_DSD_OMS/OrderEntryFeature",
+                            "src/test/resources/features_DSD_OMS/OrderEntryFeature/orderEntryFeature.feature",
+                            "src/test/resources/features_DSD_OMS/OrderEntryFeature/orderEntryFeature1.feature",
                             },
         glue = {"stepDefination_DSD_OMS"},
         plugin = {"pretty",
@@ -24,7 +24,7 @@ import java.io.IOException;
                 "com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:Reports/spark/",
                 "rerun:target/failedrerun.txt"
         },
-        monochrome = true,tags = "@PriceOverRidePriceByPrice")
+        monochrome = true)
 public class TestRunnerOE extends AbstractTestNGCucumberTests
 {
     /* Created by Divya.Ramadas@afsi.com */

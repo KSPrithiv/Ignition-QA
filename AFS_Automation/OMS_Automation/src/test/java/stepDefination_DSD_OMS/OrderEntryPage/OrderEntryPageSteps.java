@@ -181,6 +181,7 @@ public class OrderEntryPageSteps
     {
         exists=false;
         orderpage=new OrderEntryPage(driver,scenario);
+        orderpage.ValidateOE();
         exists=orderpage.Start_OrderAgain();
         Assert.assertEquals(exists,true);
     }
@@ -189,25 +190,36 @@ public class OrderEntryPageSteps
     public void userShouldSelectNoteFromPopupAndOrderGuideFromPopup() throws InterruptedException, AWTException
     {
         orderpage = new OrderEntryPage(driver, scenario);
-        if (HelpersMethod.IsExists("//div[@class='loader']", driver))
+        /*if (HelpersMethod.IsExists("//div[@class='loader']", driver))
         {
             WebElement WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 400000);
-        }
+            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 800000);
+        }*/
         for(int i=0;i<=1;i++)
         {
             orderpage.OrderGuidePopup();
-          /*  if (HelpersMethod.IsExists("//div[@class='loader']", driver))
-            {
-                WebElement WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 80000);
-            }*/
+            Thread.sleep(1000);
             orderpage.NoNotePopHandling();
+        }
+        String status = HelpersMethod.returnDocumentStatus(driver);
+        if (status.equals("loading"))
+        {
+            HelpersMethod.waitTillLoadingPage(driver);
         }
         if (HelpersMethod.IsExists("//div[@class='loader']", driver))
         {
             WebElement WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 400000);
+            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 800000);
+        }
+        status = HelpersMethod.returnDocumentStatus(driver);
+        if (status.equals("loading"))
+        {
+            HelpersMethod.waitTillLoadingPage(driver);
+        }
+        if (HelpersMethod.IsExists("//div[@class='loader']", driver))
+        {
+            WebElement WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
+            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 800000);
         }
     }
 
@@ -223,7 +235,7 @@ public class OrderEntryPageSteps
         if (HelpersMethod.IsExists("//div[@class='loader']", driver))
         {
             WebElement WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 80000);
+            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 800000);
         }
         status = HelpersMethod.returnDocumentStatus(driver);
         if (status.equals("loading"))
@@ -231,16 +243,16 @@ public class OrderEntryPageSteps
             HelpersMethod.waitTillLoadingPage(driver);
         }
 
-        orderpage = new OrderEntryPage(driver, scenario);
         for(int i=0;i<=1;i++)
         {
+            orderpage = new OrderEntryPage(driver, scenario);
             orderpage.OrderGuidePopup();
             orderpage.NoNotePopHandling();
         }
         if (HelpersMethod.IsExists("//div[@class='loader']", driver))
         {
             WebElement WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 400000);
+            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 800000);
         }
         status = HelpersMethod.returnDocumentStatus(driver);
         if (status.equals("loading"))
@@ -341,6 +353,8 @@ public class OrderEntryPageSteps
         checkorder=new CheckOutOrderPage(driver,scenario);
         if(HelpersMethod.IsExists("//div[@id='paymentMethodCard']",driver))
         {
+            Thread.sleep(4000);
+            //checkorder.validateCheckOrder();
             checkorder.Select_PaymentMethod_ClickDownArrow();
             if(HelpersMethod.IsExists("//tr[1]/descendant::td[@class='payment-method-type-cell']",driver))
             {
@@ -378,6 +392,7 @@ public class OrderEntryPageSteps
     public void click_on_submit_order_button() throws InterruptedException, AWTException
     {
         summary = new CheckOutSummaryPage(driver,scenario);
+        summary.validateSummaryPage();
         summary.ClickSubmit();
         for(int i=0;i<=2;i++)
         {
@@ -391,6 +406,7 @@ public class OrderEntryPageSteps
     public void click_on_submit_order_button_and_read_order_no() throws InterruptedException, AWTException
     {
         summary = new CheckOutSummaryPage(driver,scenario);
+        summary.validateSummaryPage();
         summary.ClickSubmit();
         for(int i=0;i<=2;i++)
         {
@@ -426,10 +442,18 @@ public class OrderEntryPageSteps
         newOE.QuickProduct(DataBaseConnection.DataBaseConn(TestBase.testEnvironment.getSingle_OneMoreProd()));
     }
 
+    @Then("Enter Pro# in Quick Product Entry area for price override")
+    public void enter_pro_in_quick_product_entry_area_for_price_override() throws InterruptedException, AWTException, SQLException, ClassNotFoundException, InstantiationException, IllegalAccessException
+    {
+        newOE = new NewOrderEntryPage(driver,scenario);
+        newOE.priceOverrideQuickProduct(TestBase.testEnvironment.priceRide());
+    }
+
     @Then("Click on Cancel button")
     public void click_on_cancel_button() throws InterruptedException, AWTException
     {
         newOE = new NewOrderEntryPage(driver,scenario);
+        newOE.ValidateNewOE();
         newOE.OECancel();
     }
 
@@ -445,7 +469,7 @@ public class OrderEntryPageSteps
     {
         List<List<String>> Reason = tabledata.asLists(String.class);
         orderpage = new OrderEntryPage(driver, scenario);
-        //orderpage.validateSkip();//////////
+        orderpage.ValidateOE();
         orderpage.SkipVisible_Click(Reason.get(0).get(0));
     }
 
@@ -453,6 +477,7 @@ public class OrderEntryPageSteps
     public void check_for_visibility_of_remove_skip_button() throws InterruptedException, AWTException
     {
         orderpage = new OrderEntryPage(driver, scenario);
+        orderpage.ValidateOE();
         boolean visible = orderpage.CheckForRemoveSkip();
         Assert.assertEquals(visible, true);
     }
@@ -461,6 +486,7 @@ public class OrderEntryPageSteps
     public void check_for_remove_skip_button_is_visible_and_click_on_skip_button() throws InterruptedException, AWTException
     {
         orderpage = new OrderEntryPage(driver, scenario);
+        orderpage.ValidateOE();
         orderpage.ClickRemoveSkip();
         orderpage.RemoveSkipOK();
         orderpage.ClickCalender();
@@ -472,6 +498,7 @@ public class OrderEntryPageSteps
     {
         exists=false;
         orderpage = new OrderEntryPage(driver, scenario);
+        orderpage.ValidateOE();
         exists=orderpage.CheckForSkip();
         Assert.assertEquals(exists,true);
     }
@@ -509,6 +536,7 @@ public class OrderEntryPageSteps
     public void click_on_back_button() throws InterruptedException, AWTException
     {
         newOE=new NewOrderEntryPage(driver,scenario);
+        newOE.ValidateNewOE();
         newOE.Click_Back_But();
     }
 

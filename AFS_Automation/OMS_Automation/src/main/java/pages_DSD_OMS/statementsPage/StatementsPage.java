@@ -51,7 +51,7 @@ public class StatementsPage
     @FindBy(id="SearchBar1")
     private WebElement searchBar;
 
-    @FindBy(xpath="//input[@id='SearchBar1']/ancestor::form//*[local-name()='svg' and contains(@class,'i-search-box__search')]")
+    @FindBy(xpath="//input[@id='SearchBar1']/ancestor::form//*[local-name()='svg' and contains(@class,'i-search-box__search')]//*[local-name()='path']")
     private WebElement searchIndex;
 
     @FindBy(id="generateEditButton")
@@ -409,7 +409,7 @@ public class StatementsPage
         {
             if(searchBar.isDisplayed())
             {
-                HelpersMethod.EnterText(driver,searchBar,2000, TestBase.testEnvironment.get_Account());
+                HelpersMethod.EnterText(driver,searchBar,2000, TestBase.testEnvironment.additionalAccount());
                 HelpersMethod.ClickBut(driver,searchIndex,2000);
                 exists=true;
                 status = HelpersMethod.returnDocumentStatus(driver);
@@ -547,9 +547,10 @@ public class StatementsPage
                 if (HelpersMethod.IsExists("//div[@class='loader']", driver))
                 {
                     WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100000);
+                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 800000);
                 }
             }
+            Thread.sleep(1000);
             if(HelpersMethod.IsExists("//div[contains(text(),'There is no data to display for your defined date range')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
             {
                 WebElement dialogPopup=HelpersMethod.FindByElement(driver,"xpath","//div[contains(text(),'There is no data to display for your defined date range')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]");
@@ -587,7 +588,7 @@ public class StatementsPage
                 if (HelpersMethod.IsExists("//div[@class='loader']", driver))
                 {
                     WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100000);
+                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 800000);
                 }
             }
             Assert.assertEquals(exists,true);

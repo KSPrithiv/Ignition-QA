@@ -94,7 +94,17 @@ public class OrderControlListPage
             if (HelpersMethod.IsExists("//div[@class='loader']", driver))
             {
                 WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 400000);
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 800000);
+            }
+            String status = HelpersMethod.returnDocumentStatus(driver);
+            if (status.equals("loading"))
+            {
+                HelpersMethod.waitTillLoadingPage(driver);
+            }
+            if (HelpersMethod.IsExists("//div[@class='loader']", driver))
+            {
+                WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 800000);
             }
             Title = HelpersMethod.gettingTitle(driver);
             if(Title.equalsIgnoreCase("Order Control List"))
@@ -132,16 +142,21 @@ public class OrderControlListPage
                 driver.navigate().to(currentURL);
                 scenario.log("REFRESHED PAGE IN OCL");
             }
-           /* if (HelpersMethod.IsExists("//div[@class='loader']", driver))
+           if (HelpersMethod.IsExists("//div[@class='loader']", driver))
             {
                 WebElement   WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
                 HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 800000);
-            }*/
-            Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
-                    .withTimeout(Duration.ofSeconds(60))
-                    .pollingEvery(Duration.ofSeconds(5))
-                    .ignoring(NoSuchElementException.class);
-            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+            }
+            String status = HelpersMethod.returnDocumentStatus(driver);
+            if (status.equals("loading"))
+            {
+                HelpersMethod.waitTillLoadingPage(driver);
+            }
+            if (HelpersMethod.IsExists("//div[@class='loader']", driver))
+            {
+                WebElement   WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 800000);
+            }
         }
         catch (Exception e){}
     }

@@ -223,8 +223,8 @@ public class HomePage
                 WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
                 HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100000);
             }
-
-            HelpersMethod.waitTillTitleContains(driver, "Login", 10000);
+            Thread.sleep(4000);
+            HelpersMethod.waitTillTitleContains(driver, "Login", 40000);
             String title = driver.getTitle();
             if (title.contains("Login"))
             {

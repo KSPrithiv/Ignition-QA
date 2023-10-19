@@ -326,16 +326,19 @@ public class AllOrdersPageStep
                 if (HelpersMethod.IsExists("//div[@class='loader']", driver))
                 {
                     WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100);
+                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 400000);
                 }
                 String status = HelpersMethod.returnDocumentStatus(driver);
                 if (status.equals("loading"))
                 {
                     HelpersMethod.waitTillLoadingPage(driver);
                 }
-                WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 150);
-                new WebDriverWait(driver, Duration.ofMillis(200)).until(ExpectedConditions.textToBePresentInElementLocated(By.xpath("//button[contains(text(),'Start order')]"), "Start order"));
+                if (HelpersMethod.IsExists("//div[@class='loader']", driver))
+                {
+                    WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
+                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 400000);
+                }
+                new WebDriverWait(driver, Duration.ofMillis(20000)).until(ExpectedConditions.textToBePresentInElementLocated(By.xpath("//button[contains(text(),'Start order')]"), "Start order"));
 
                 if (HelpersMethod.IsExists("//*[local-name()='svg']//*[local-name()='path' and contains(@d,'M3,18H21V16H3Zm0-5H21V11H3ZM3,6V8H21V6Z')]", driver))
                 {
@@ -548,5 +551,26 @@ public class AllOrdersPageStep
         newOE.readProductsInOrder();
         exists=newOE.ClickNext();
         newOE.OutOfStockPop_ERP();
+    }
+
+    @And("User Clicks on Add filter button and enter values for search options for searching in OE")
+    public void userClicksOnAddFilterButtonAndEnterValuesForSearchOptionsForSearchingInOE()
+    {
+        allOrder=new AllOrderPage(driver,scenario);
+        allOrder.SubmittedStatusDropDown();
+        allOrder.NotSubmitOptionFromDropDown();
+        allOrder.ClickOnSearchButton();
+        String oNo=allOrder.readNotSubmitedOrder();
+        allOrder.AddFilterClick(oNo);
+    }
+
+    @Then("User clicks on OrderNo in All Order grid and User should be navigated Ordersummary page click on Back to order list")
+    public void userClicksOnOrderNoInAllOrderGridAndUserShouldBeNavigatedOrdersummaryPageClickOnBackToOrderList() throws InterruptedException, AWTException
+    {
+        allOrder=new AllOrderPage(driver,scenario);
+        allOrder.ClickOnOrderInAllOrderGrid();
+        allOrder.NavigateToOrderSummaryPage();
+        summary=new CheckOutSummaryPage(driver,scenario);
+        summary.clickOnBackToOrderList();
     }
 }

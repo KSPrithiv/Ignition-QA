@@ -35,7 +35,7 @@
 <a href="#"><span class="badge badge-primary">Test execution report</span></a>
 </li>
 <li class="m-r-10">
-<a href="#"><span class="badge badge-primary">Oct 12, 2023 04:52:18 pm</span></a>
+<a href="#"><span class="badge badge-primary">Oct 19, 2023 12:41:25 am</span></a>
 </li>
 </ul>
 </div>
@@ -79,7 +79,7 @@
 <li class="dropdown">
 <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-tag"></i></a>
 <ul id="tag-toggle" class="dropdown-menu dropdown-md p-v-0">
-<a class="dropdown-item" href="#">@PriceOverRidePriceByPrice</a>
+<a class="dropdown-item" href="#">@CopyAllOrder</a>
 </ul>
 </li>
 </ul>
@@ -90,9 +90,9 @@
           tag=""
           device="">
           <div class="test-detail">
-            <p class="name">Order Entry3</p>
+            <p class="name">All orders</p>
             <p class="text-sm">
-              <span>4:52:33 pm</span> / <span>00:08:28:495</span>
+              <span>12:41:40 am</span> / <span>00:03:46:596</span>
               <span class="badge pass-bg log float-right">Pass</span>
             </p>
           </div>
@@ -100,78 +100,88 @@
 <div class="detail-head">
 <div class="p-v-10">
 <div class="info">
-<h5 class="test-status text-pass">Order Entry3</h5>
-<span class='badge badge-success'>10.12.2023 4:52:33 pm</span>
-<span class='badge badge-danger'>10.12.2023 5:01:02 pm</span>
-<span class='badge badge-default'>00:08:28:495</span>
+<h5 class="test-status text-pass">All orders</h5>
+<span class='badge badge-success'>10.19.2023 12:41:40 am</span>
+<span class='badge badge-danger'>10.19.2023 12:45:26 am</span>
+<span class='badge badge-default'>00:03:46:596</span>
 &middot; <span class='uri-anchor badge badge-default'>#test-id=1</span>
 <span class='badge badge-default pointer float-right ml-1 et'><i class="fa fa-chevron-down"></i></span>
 <span class='badge badge-default pointer float-right ct'><i class="fa fa-chevron-up"></i></span>
 </div>
-<div class="m-t-10 m-l-5"> Used for cration of New order in different ways
-Used for canceling order, editing of order, skipping of order</div>
+<div class="m-t-10 m-l-5"> Test scenarios to create all orders, edit,delete etc</div>
 </div>
 </div>
 <div class="accordion mt-4">
   <div class="card">
     <div class="card-header" role="tab">
       <div class="card-title">
-        <div class="node" id="2"><span class="badge log pass-bg mr-2">Pass</span>Test scenario for testing price override with "What if" option, price by price option</div>
+        <div class="node" id="2"><span class="badge log pass-bg mr-2">Pass</span>Test scenario to create copy of Open order/All order</div>
       </div>
     </div>
         <div class="collapse">
           <div class="card-body">
-              <div class="step pass-bg" title="stepDefination_DSD_OMS.OrderEntryPage.OrderEntryPageSteps.user_enters_url_and_is_on_login_page_and_entered_credentials()">
-                <span>Given User enters URL and is on login page and entered credentials</span>
+              <div class="step pass-bg" title="stepDefination_DSD_OMS.AllOrdersPage.AllOrdersPageStep.user_enters_url_and_is_on_login_page_and_entered_credentialsForAllOrder()">
+                <span>Given User enters URL and is on login page and entered credentials for All order</span>
       <div>SIGNIN BUTTON CLICKED
       </div>
       <div>
       </div>
               </div>
-              <div class="step pass-bg" title="stepDefination_DSD_OMS.OrderEntryPage.OrderEntryPageSteps.user_is_on_home_page()">
-                <span>When User is on Home Page</span>
+              <div class="step pass-bg" title="stepDefination_DSD_OMS.AllOrdersPage.AllOrdersPageStep.user_is_on_home_pageForAllOrder()">
+                <span>When User is on Home Page for All order</span>
       <div>ADMIN PAGE FOUND
       </div>
       <div>
       </div>
               </div>
-              <div class="step pass-bg" title="stepDefination_DSD_OMS.OrderEntryPage.OrderEntryPageSteps.user_navigate_to_client_side()">
-                <span>Then User navigate to Client side</span>
-      <div>USER ICON FOUND
-      </div>
+              <div class="step pass-bg" title="stepDefination_DSD_OMS.AllOrdersPage.AllOrdersPageStep.user_navigate_to_client_sideForAllOrder()">
+                <span>Then User navigate to Client side for All order</span>
       <div>IN ADMIN PAGE
       </div>
       <div>
       </div>
               </div>
-              <div class="step pass-bg" title="stepDefination_DSD_OMS.OrderEntryPage.OrderEntryPageSteps.user_should_select_order_entry_tab()">
-                <span>Then User should select Order Entry tab</span>
-      <div>https://ignitionqadsd.afsi.com/clientportal/apps/cpOrderEntry.html?p=Km530c8XSlYiXYABAQY6Y%2fH4h8U05NAvkuXBE2RCxgnlbt%2btBuFlqw%3d%3d
+              <div class="step pass-bg" title="stepDefination_DSD_OMS.AllOrdersPage.AllOrdersPageStep.user_should_select_order_entry_tabForAllOrder()">
+                <span>Then User should select Order Entry tab for All order</span>
+      <div>https://autodsd.afsi.com/ClientPortal/Apps/cpOrderEntry.html?p=Km530c8XSlYiXYABAQY6Y%2fH4h8U05NAvkuXBE2RCxgnlbt%2btBuFlqw%3d%3d
       </div>
       <div>NAVIGATED TO ORDER ENTRY PAGE
       </div>
       <div>
       </div>
               </div>
-              <div class="step pass-bg" title="stepDefination_DSD_OMS.OrderEntryPage.OrderEntryPageSteps.user_selects_account()">
-                <span>Then User selects Account#</span>
-      <div>CUSTOMER ACCOUNT# SELECTED IS 40035978-0-3029
+              <div class="step pass-bg" title="stepDefination_DSD_OMS.AllOrdersPage.AllOrdersPageStep.userMustBeOnOrderEntryPageToSelectAllOrders()">
+                <span>Given User must be on Order Entry Page to select All Orders</span>
+      <div>https://autodsd.afsi.com/ClientPortal/Apps/cpOpenOrders.html?p=Km530c8XSlYiXYABAQY6Y%2fH4h8U05NAvkuXBE2RCxgnlbt%2btBuFlqw%3d%3d
       </div>
       <div>
       </div>
               </div>
-              <div class="step pass-bg" title="stepDefination_DSD_OMS.OrderEntryPage.OrderEntryPageSteps.user_must_be_on_order_entry_page()">
-                <span>Given User must be on Order Entry Page</span>
-      <div>DELIBERY DATE FOUND, AFTER LOGGING IN TO APPLICATION  Thursday, October 12, 2023
+              <div class="step pass-bg" title="stepDefination_DSD_OMS.AllOrdersPage.AllOrdersPageStep.userShouldNavigateToAllOrders()">
+                <span>And User should navigate to All Orders</span>
+      <div>NAVIGATED TO https://autodsd.afsi.com/ClientPortal/Apps/cpOpenOrders.html?p=Km530c8XSlYiXYABAQY6Y%2fH4h8U05NAvkuXBE2RCxgnlbt%2btBuFlqw%3d%3d
+      </div>
+      <div>NAVIGATED TO ALL ORDERS
       </div>
       <div>
       </div>
               </div>
-              <div class="step pass-bg" title="stepDefination_DSD_OMS.OrderEntryPage.OrderEntryPageSteps.user_must_click_start_order_button()">
-                <span>Then User must click Start Order button</span>
-      <div>NAVIGATED TO ORDER ENTRY PAGE
+              <div class="step pass-bg" title="stepDefination_DSD_OMS.AllOrdersPage.AllOrdersPageStep.userClicksOnStartOrderButtonAndSelectsAddFromDropDown()">
+                <span>Then User clicks on Start order button and selects Add from drop down</span>
+      <div>
       </div>
-      <div>START BUTTON HAS BEEN CLICKED
+              </div>
+              <div class="step pass-bg" title="stepDefination_DSD_OMS.AllOrdersPage.AllOrdersPageStep.userSelectsCustomerAccountAndDeliveryDateFromPopupToEditAllOrder()">
+                <span>Then User selects customer account# and delivery date from popup to edit all order</span>
+      <div>ACCOUNT NUMBER SELECTED IS 0040035981-000000-002958
+      </div>
+      <div>CUSTOMER ACCOUNT NUMBER HAS BEEN SELECTED: 2958
+      </div>
+      <div>SELECTED DATE IS 19
+      </div>
+      <div>DEFAULT DELIVERY DATE HAS BEEN SLECTED
+      </div>
+      <div>SELECTED ORDER IS New order
       </div>
       <div>
       </div>
@@ -183,13 +193,11 @@ Used for canceling order, editing of order, skipping of order</div>
               </div>
               <div class="step pass-bg" title="stepDefination_DSD_OMS.OrderEntryPage.OrderEntryPageSteps.userShouldSelectNoteFromPopupAndOrderGuideFromPopup()">
                 <span>Then User should select Note from popup and Order guide from popup</span>
-      <div>ORDER GUIDE POPUP HAS BEEN FOUND
-      </div>
       <div>
       </div>
               </div>
-              <div class="step pass-bg" title="stepDefination_DSD_OMS.OrderEntryPage.OrderEntryPageSteps.enter_po_for_new_order(io.cucumber.datatable.DataTable)">
-                <span>Then Enter PO# for New order</span>
+              <div class="step pass-bg" title="stepDefination_DSD_OMS.AllOrdersPage.AllOrdersPageStep.enterPOForNewOrderForAllOrders(io.cucumber.datatable.DataTable)">
+                <span>Then Enter PO# for New order for All orders</span>
       <div><table class='markup-table table '><tr><td>PO123</td></tr></table>
       </div>
       <div>NEW ORDER ENTRY PAGE HAS BEEN FOUND
@@ -208,34 +216,15 @@ Used for canceling order, editing of order, skipping of order</div>
               </div>
               <div class="step pass-bg" title="stepDefination_DSD_OMS.OrderEntryPage.OrderEntryPageSteps.check_for_case_and_unit_input_box_enabled_or_not_based_on_that_enter_value(io.cucumber.datatable.DataTable)">
                 <span>And Check for Case and Unit input box enabled or not based on that enter value</span>
-      <div><table class='markup-table table '><tr><td>50</td><td>60</td></tr></table>
+      <div><table class='markup-table table '><tr><td>100</td><td>100</td></tr></table>
       </div>
       <div>UOM IS ENABLED AND IT CONTAINS Cases, Units VALUE IN IT
       </div>
-      <div>CASE ENTERED FOR QUICK PRODUCT IS 50
+      <div>CASE ENTERED FOR QUICK PRODUCT IS 100
       </div>
-      <div>UNIT ENTERED FOR QUICK PRODUCT IS 60
+      <div>UNIT ENTERED FOR QUICK PRODUCT IS 100
       </div>
-      <div>QUANTITY EXCEEDS MAXIMUM POPUP HANDLED
-      </div>
-      <div>TOAST MESSAGE FOR: CURRENTLY UNAVAILABLE HAS BEEN HANDLED
-      </div>
-      <div>
-      </div>
-              </div>
-              <div class="step pass-bg" title="stepDefination_DSD_OMS.OrderEntryPage.OrderEntryPageSteps3.userShouldClickOnPriceOverrideIconAndChangePriceUsingWhatIfOption(io.cucumber.datatable.DataTable)">
-                <span>Then User should click on price override icon and Change price using What if option Price by price</span>
-      <div><table class='markup-table table '><tr><td>$2.00</td></tr></table>
-      </div>
-      <div>16
-      </div>
-      <div>PRICE FOUND BEFORE PRICE OVERRIDE 
-      </div>
-      <div>PRICE OVERRIDE DIALOG BOX HAS BEEN FOUND
-      </div>
-      <div>ACTUAL PRICE FOUND IS $4.25
-      </div>
-      <div>PRICE OVERRIDED BY $2.00
+      <div>QUANTITY EXCEEDS MAXIMUM OF POPUP HANDLED
       </div>
       <div>
       </div>
@@ -244,47 +233,138 @@ Used for canceling order, editing of order, skipping of order</div>
                 <span>Then Click on Next button</span>
       <div>PRODUCT FOUND IN ORDER ARE 
       </div>
-      <div>112882
+      <div>00000001
       </div>
-      <div>122216
+      <div>00000002
       </div>
-      <div>135444
+      <div>59626700
       </div>
-      <div>820032
+      <div>00000003
       </div>
-      <div>4
+      <div>00000004
+      </div>
+      <div>10025300
+      </div>
+      <div>00000005
       </div>
       <div>NEXT BUTTON CLICKED
-      </div>
-      <div>FREQUENTLY ORDERED ITEMS POPUP HAS BEEN HANDLED
-      </div>
-      <div>% OF YOUR AVERAGE ORDER POPUP HAS BEEN HANDLED
       </div>
       <div>PAYMENT METHOD HAS BEEN SELECTED
       </div>
       <div>FIRST PAYMENT OPTION HAS BEEN SELECTED
       </div>
-      <div>NEXT BUTTON IN PAYMENT PAGE HAS BEEN CLICKED
+      <div>CLICKED ON NEXT BUTTON
       </div>
       <div>
       </div>
               </div>
-              <div class="step pass-bg" title="stepDefination_DSD_OMS.OrderEntryPage.OrderEntryPageSteps.click_on_submit_order_button()">
-                <span>And Click on SubmitOrder button</span>
+              <div class="step pass-bg" title="stepDefination_DSD_OMS.AllOrdersPage.AllOrdersPageStep.clickOnSubmitOrderButtonAndReadOrder_noCreatedForAllOrder()">
+                <span>And Click on Submit Order button and read Order_no created for All order</span>
       <div>SUBMIT BUTTON IN ORDER SUMMARY PAGE HAS BEEN CLICKED
       </div>
-      <div>ORDER CUTOFF DIALOG BOX HAS BEEN HANDLED
-      </div>
-      <div>% POPUP HAS BEEN HANDLED
+      <div>ORDER CRATED, ORDER # IS 0003709549
       </div>
       <div>ORDER HAS BEEN SUCESSFULLY CREATED
       </div>
+      <div>ORDER CREATED FOR ALL ORDER 0003709549
+      </div>
       <div>
       </div>
               </div>
-              <div class="step pass-bg" title="stepDefination_DSD_OMS.OrderEntryPage.OrderEntryPageSteps.user_should_be_navigated_to_order_entry_page()">
-                <span>Then User should be navigated to Order Entry page</span>
-      <div>ORDER ENTRY PAGE HAS BEEN FOUND
+              <div class="step pass-bg" title="stepDefination_DSD_OMS.AllOrdersPage.AllOrdersPageStep.userShouldBeNavigatedBackToAllOrderPage()">
+                <span>Then User should be navigated back to All order page</span>
+      <div>NAVIGATED TO ALL ORDERS
+      </div>
+      <div>
+      </div>
+              </div>
+              <div class="step pass-bg" title="stepDefination_DSD_OMS.AllOrdersPage.AllOrdersPageStep.userClicksOnShowAllOrdersCheckBoxAfterNavigatingBack()">
+                <span>And User clicks on Show all orders check box after navigating back</span>
+      <div>SHOW ALL ORDER CHECK BOX HAS BEEN CLICKED
+      </div>
+      <div>
+      </div>
+              </div>
+              <div class="step pass-bg" title="stepDefination_DSD_OMS.AllOrdersPage.AllOrdersPageStep.userClicksOnAddFilterButtonAndSearchForOrderNo()">
+                <span>And User Clicks on Add filter button and Search for OrderNo</span>
+      <div>SHOW ALL ORDER CHECK BOX HAS BEEN CLICKED
+      </div>
+      <div>
+      </div>
+              </div>
+              <div class="step pass-bg" title="stepDefination_DSD_OMS.AllOrdersPage.AllOrdersPageStep.userSelectTheOrderAndClickOnCopyButtonAndSelectDeliveryDate()">
+                <span>Then User select the order and click on copy button and select delivery date</span>
+      <div>COPYING OF ALL ORDER HAS BEEN DONE
+      </div>
+      <div>DATE SELECTED FOR COPY IS Oct 19, 2023
+      </div>
+      <div>NEW ORDER HAS BEEN SELECTED TO CREATE COPY OF ALL ORDER
+      </div>
+      <div>
+      </div>
+              </div>
+              <div class="step pass-bg" title="stepDefination_DSD_OMS.OrderEntryPage.OrderEntryPageSteps.user_should_make_selection_between_pending_order_or_start_new_order()">
+                <span>Then User should make selection between Pending order or Start New order</span>
+      <div>
+      </div>
+              </div>
+              <div class="step pass-bg" title="stepDefination_DSD_OMS.OrderEntryPage.OrderEntryPageSteps.userShouldSelectNoteFromPopupAndOrderGuideFromPopup()">
+                <span>Then User should select Note from popup and Order guide from popup</span>
+      <div>
+      </div>
+              </div>
+              <div class="step pass-bg" title="stepDefination_DSD_OMS.AllOrdersPage.AllOrdersPageStep.enterPOForNewOrderForAllOrders(io.cucumber.datatable.DataTable)">
+                <span>Then Enter PO# for New order for All orders</span>
+      <div><table class='markup-table table '><tr><td>PO123</td></tr></table>
+      </div>
+      <div>NEW ORDER ENTRY PAGE HAS BEEN FOUND
+      </div>
+      <div>PO# ENTERED IS PO123
+      </div>
+      <div>
+      </div>
+              </div>
+              <div class="step pass-bg" title="stepDefination_DSD_OMS.OrderEntryPage.OrderEntryPageSteps6.clickOnNextButtonAndSelectOptionContinueWithoutPaymentOption()">
+                <span>Then Click on Next button and select option Continue without payment option</span>
+      <div>NEXT BUTTON CLICKED
+      </div>
+      <div>CHECKOUT SUMMARY PAGE HAS BEEN FOUND
+      </div>
+      <div>CLICKED ON NEXT BUTTON
+      </div>
+      <div>
+      </div>
+              </div>
+              <div class="step pass-bg" title="stepDefination_DSD_OMS.AllOrdersPage.AllOrdersPageStep.clickOnSubmitOrderButtonAndReadOrder_noCreatedForAllOrder()">
+                <span>And Click on Submit Order button and read Order_no created for All order</span>
+      <div>SUBMIT BUTTON IN ORDER SUMMARY PAGE HAS BEEN CLICKED
+      </div>
+      <div>ORDER CRATED, ORDER # IS 0003709550
+      </div>
+      <div>ORDER HAS BEEN SUCESSFULLY CREATED
+      </div>
+      <div>ORDER CREATED FOR ALL ORDER 0003709550
+      </div>
+      <div>
+      </div>
+              </div>
+              <div class="step pass-bg" title="stepDefination_DSD_OMS.AllOrdersPage.AllOrdersPageStep.userShouldBeNavigatedBackToAllOrderPage()">
+                <span>Then User should be navigated back to All order page</span>
+      <div>NAVIGATED TO ALL ORDERS
+      </div>
+      <div>
+      </div>
+              </div>
+              <div class="step pass-bg" title="stepDefination_DSD_OMS.AllOrdersPage.AllOrdersPageStep.userClicksOnShowAllOrdersCheckBox()">
+                <span>And User clicks on Show all orders check box</span>
+      <div>SHOW ALL ORDER CHECK BOX HAS BEEN CLICKED
+      </div>
+      <div>
+      </div>
+              </div>
+              <div class="step pass-bg" title="stepDefination_DSD_OMS.AllOrdersPage.AllOrdersPageStep.userClicksOnAddFilterButtonAndSearchForOrderNo()">
+                <span>And User Clicks on Add filter button and Search for OrderNo</span>
+      <div>SHOW ALL ORDER CHECK BOX HAS BEEN CLICKED
       </div>
       <div>
       </div>
@@ -317,12 +397,12 @@ Used for canceling order, editing of order, skipping of order</div>
 <span class="meta">
 <span class='badge log pass-bg'>1</span>
 </span>
-<p class="name">@PriceOverRidePriceByPrice</p>
+<p class="name">@CopyAllOrder</p>
 <p class="duration text-sm">1 tests</p>
 </div>
 <div class="test-contents d-none">
 <div class="info">
-<h4>@PriceOverRidePriceByPrice</h4>
+<h4>@CopyAllOrder</h4>
 <span status="pass" class='badge log pass-bg'>1 passed</span>
 </div>
 <table class='table table-sm mt-4'>
@@ -336,11 +416,11 @@ Used for canceling order, editing of order, skipping of order</div>
 <tbody>
 <tr class="tag-test-status" status="pass">
 <td><span class="badge log pass-bg">Pass</span></td>
-<td>16:52:33 pm</td>
+<td>00:41:40 am</td>
 <td>
-<a href="#" class="linked" test-id='1' id='2'>Test scenario for testing price override with "What if" option, price by price option</a>
+<a href="#" class="linked" test-id='1' id='2'>Test scenario to create copy of Open order/All order</a>
 <div class="">
-<span class="badge badge-default">Order Entry3.Test scenario for testing price override with "What if" option, price by price option</span>
+<span class="badge badge-default">All orders.Test scenario to create copy of Open order/All order</span>
 </div>
 </td>
 </tr>
@@ -361,13 +441,13 @@ Used for canceling order, editing of order, skipping of order</div>
 <div class="col-md-3">
 <div class="card"><div class="card-body">
 <p class="m-b-0">Started</p>
-<h3>Oct 12, 2023 04:52:18 pm</h3>
+<h3>Oct 19, 2023 12:41:25 am</h3>
 </div></div>
 </div>
 <div class="col-md-3">
 <div class="card"><div class="card-body">
 <p class="m-b-0">Ended</p>
-<h3>Oct 12, 2023 05:01:12 pm</h3>
+<h3>Oct 19, 2023 12:45:27 am</h3>
 </div></div>
 </div>
 <div class="col-md-3">
@@ -438,7 +518,7 @@ Used for canceling order, editing of order, skipping of order</div>
 </div>
 </div>
 <div class="card-footer">
-<div><small data-tooltip='100%'><b>16</b> steps passed</small></div>
+<div><small data-tooltip='100%'><b>27</b> steps passed</small></div>
 <div>
 <small data-tooltip='0%'><b>0</b> steps failed,
 <b>0</b> skipped, <b data-tooltip='%'>0</b> others
@@ -457,7 +537,7 @@ Used for canceling order, editing of order, skipping of order</div>
 </div></div>
 <script>
 var timeline = {
-"Order Entry3":508.495
+"All orders":226.596
 };
 </script>
 <div class="row">
@@ -467,7 +547,7 @@ var timeline = {
 <div class="card-body pb-0 pt-0"><table class="table table-sm table-bordered">
 <thead><tr class="bg-gray"><th>Name</th><th>Passed</th><th>Failed</th><th>Skipped</th><th>Others</th><th>Passed %</th></tr></thead><tbody>
 <tr>
-<td>@PriceOverRidePriceByPrice</td>
+<td>@CopyAllOrder</td>
 <td>1</td>
 <td>0</td>
 <td>0</td>
@@ -516,7 +596,7 @@ warningChild: 0,
 skipChild: 0,
 infoChild: 0,
 grandChildCount: 5,
-passGrandChild: 16,
+passGrandChild: 27,
 failGrandChild: 0,
 warningGrandChild: 0,
 skipGrandChild: 0,

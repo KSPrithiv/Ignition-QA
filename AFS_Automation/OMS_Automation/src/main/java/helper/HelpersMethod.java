@@ -562,14 +562,14 @@ public class HelpersMethod
             if(Menu_Text.contains(MenuItem))
             {
                 WebElement menuItem=FindByElement(driver,selector,MenuItemLocator);
-                JScriptClick(driver,menuItem,1000);
+                JScriptClick(driver,menuItem,6000);
                 break;
             }
         }
         if(IsExists("//div[@class='loader']",driver))
         {
             WebElement WebEle=FindByElement(driver,"xpath","//div[@class='loader']");
-            waitTillLoadingWheelDisappears(driver, WebEle, 200000);
+            waitTillLoadingWheelDisappears(driver, WebEle, 600000);
         }
         String status=returnDocumentStatus(driver);
         if (status.equals("loading"))
@@ -579,7 +579,7 @@ public class HelpersMethod
         if(IsExists("//div[@class='loader']",driver))
         {
             WebElement WebEle=FindByElement(driver,"xpath","//div[@class='loader']");
-            waitTillLoadingWheelDisappears(driver, WebEle, 400000);
+            waitTillLoadingWheelDisappears(driver, WebEle, 600000);
         }
     }
 
@@ -743,24 +743,24 @@ public class HelpersMethod
         }
 
         WebElement Search1=modalContainer1.findElement(By.xpath(".//input[contains(@class,'i-search-box__input')]"));
-        ActSendKey(driver,Search1,100,SearchBoxValue);
+        ActSendKey(driver,Search1,1000,SearchBoxValue);
         //Click on Check box
         new WebDriverWait(driver,Duration.ofMillis(10000)).until(ExpectedConditions.elementToBeClickable(By.xpath(".//input[contains(@class,'k-checkbox')]")));
         WebElement WebEle1=modalContainer1.findElement(By.xpath(".//input[contains(@class,'k-checkbox')]"));
-        ClickBut(driver,WebEle1,100);
+        ClickBut(driver,WebEle1,1000);
 
         //Identify radio button and click on Radio button
-        new WebDriverWait(driver,Duration.ofMillis(40000)).until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath("//div[contains(@class,'i-btn-radio filter-radio')]/ancestor::div[contains(@class,'k-child-animation-container')]")));
-        new WebDriverWait(driver,Duration.ofMillis(20000)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(@class,'i-btn-radio filter-radio')]/ancestor::div[contains(@class,'k-child-animation-container')]")));
+        new WebDriverWait(driver,Duration.ofMillis(80000)).until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath("//div[contains(@class,'i-btn-radio filter-radio')]/ancestor::div[contains(@class,'k-child-animation-container')]")));
+        new WebDriverWait(driver,Duration.ofMillis(80000)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(@class,'i-btn-radio filter-radio')]/ancestor::div[contains(@class,'k-child-animation-container')]")));
         if(IsExists("//div[contains(@class,'i-btn-radio filter-radio')]/ancestor::div[contains(@class,'k-child-animation-container')]",driver))
         {
             WebElement RadioPop=FindByElement(driver,"xpath","//div[contains(@class,'k-child-animation-container')]/descendant::form[contains(@class,'i-filter-popup')]");
             Search2=RadioPop.findElement(By.xpath(".//div[contains(@class,'i-btn-radio filter-radio')][1]/following-sibling::div[contains(@class,'k-textbox-container i-filter-popup__content__input')]/input"));
-            EnterText(driver,Search2,2000,SearhBox2Value);
+            EnterText(driver,Search2,10000,SearhBox2Value);
 
             //Click on Apply button
             Clear =RadioPop.findElement(By.xpath(".//button[text()='Apply']"));
-            ClickBut(driver,Clear,100);
+            ClickBut(driver,Clear,1000);
         }
         else
         {
@@ -768,16 +768,16 @@ public class HelpersMethod
             {
                 WebElement modalContainer=driver.findElement(By.xpath("//div[contains(@class,'k-animation-container')]"));
                 Search2=modalContainer.findElement(By.xpath(".//input[contains(@class,'k-textbox')]"));
-                EnterText(driver, Search2, 100, SearhBox2Value);
+                EnterText(driver, Search2, 1000, SearhBox2Value);
 
                 //Click on Apply button
                 Clear = Search2.findElement(By.xpath(".//button[text()='Apply']"));
-                ClickBut(driver,Clear,100);
+                ClickBut(driver,Clear,1000);
                 //loading Icon
                 if (IsExists("//div[@class='loader']", driver))
                 {
                     WebEle = FindByElement(driver, "xpath", "//div[@class='loader']");
-                    waitTillLoadingWheelDisappears(driver, WebEle, 80000);
+                    waitTillLoadingWheelDisappears(driver, WebEle, 200000);
                 }
             }
         }
@@ -793,7 +793,7 @@ public class HelpersMethod
         WebDriverWait wait=new WebDriverWait(driver,Duration.ofMillis(8000));
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(@class,'k-widget k-window k-dialog')]/descendant::button/descendant::span[contains(text(),'Add filter')]")));
         driver.findElement(By.xpath("//div[contains(@class,'k-widget k-window k-dialog')]/descendant::button/descendant::span[contains(text(),'Add filter')]")).click();
-        new WebDriverWait(driver,Duration.ofMillis(2000)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(@class,'k-animation-container k-animation-container-relative k-animation-container-shown')]")));
+        new WebDriverWait(driver,Duration.ofMillis(20000)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(@class,'k-animation-container k-animation-container-relative k-animation-container-shown')]")));
         //Click on Clear all button
         WebElement modalContainer1=FindByElement(driver,"xpath","//div[contains(@class,'k-animation-container k-animation-container-relative k-animation-container-shown')]");
         WebElement Clear=modalContainer1.findElement(By.xpath(".//button[contains(text(),'Clear all')]"));
@@ -803,11 +803,11 @@ public class HelpersMethod
         }
 
         WebElement Search1=modalContainer1.findElement(By.xpath(".//input[contains(@class,'i-search-box__input')]"));
-        ActSendKey(driver,Search1,100,SearchBoxValue);
+        ActSendKey(driver,Search1,1000,SearchBoxValue);
         //Click on Check box
         new WebDriverWait(driver,Duration.ofMillis(40000)).until(ExpectedConditions.elementToBeClickable(By.xpath(".//input[contains(@class,'k-checkbox')]")));
         WebElement WebEle1=modalContainer1.findElement(By.xpath(".//input[contains(@class,'k-checkbox')]"));
-        ClickBut(driver,WebEle1,100);
+        ClickBut(driver,WebEle1,1000);
 
         //Identify radio button and click on Radio button
         new WebDriverWait(driver,Duration.ofMillis(100000)).until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath("//div[contains(@class,'i-btn-radio filter-radio')]/ancestor::div[contains(@class,'k-child-animation-container')]")));
@@ -816,11 +816,11 @@ public class HelpersMethod
         {
             WebElement RadioPop=FindByElement(driver,"xpath","//div[contains(@class,'k-child-animation-container')]/descendant::form[contains(@class,'i-filter-popup')]");
             Search2=RadioPop.findElement(By.xpath(".//div[contains(@class,'i-btn-radio filter-radio')][1]/following-sibling::div[contains(@class,'k-textbox-container i-filter-popup__content__input')]/input"));
-            EnterText(driver,Search2,100,SearhBox2Value);
+            EnterText(driver,Search2,1000,SearhBox2Value);
 
             //Click on Apply button
             Clear =RadioPop.findElement(By.xpath(".//button[text()='Apply']"));
-            ClickBut(driver,Clear,100);
+            ClickBut(driver,Clear,1000);
         }
         else
         {
@@ -828,16 +828,16 @@ public class HelpersMethod
             {
                 WebElement modalContainer=driver.findElement(By.xpath("//div[contains(@class,'k-animation-container')]"));
                 Search2=modalContainer.findElement(By.xpath(".//input[contains(@class,'k-textbox')]"));
-                EnterText(driver, Search2, 100, SearhBox2Value);
+                EnterText(driver, Search2, 1000, SearhBox2Value);
 
                 //Click on Apply button
                 Clear = Search2.findElement(By.xpath(".//button[text()='Apply']"));
-                ClickBut(driver,Clear,100);
+                ClickBut(driver,Clear,1000);
                 //loading Icon
                 if (IsExists("//div[@class='loader']", driver))
                 {
                     WebEle = FindByElement(driver, "xpath", "//div[@class='loader']");
-                    waitTillLoadingWheelDisappears(driver, WebEle, 80000);
+                    waitTillLoadingWheelDisappears(driver, WebEle, 200000);
                 }
             }
         }

@@ -560,13 +560,19 @@ import java.util.concurrent.ThreadLocalRandom;
                 Assert.assertEquals(modalContentTitle.getText(), "Delete standing po", "Verify Title message");
                 //Delete confirmation popup
                 WebElement deletePopup=modalContainer.findElement(By.xpath(".//button[text()='Delete']"));
-                HelpersMethod.ClickBut(driver,deletePopup,1000);
+                HelpersMethod.ActClick(driver,deletePopup,1000);
+                if(HelpersMethod.IsExists("//div[@class='loader']",driver))
+                {
+                    WebElement WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
+                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 800000);
+                }
+
                 //Delete success popup
                 if(HelpersMethod.IsExists("//div[contains(text(),'The information has been saved successfully.')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
                 {
                     WebElement popUp=HelpersMethod.FindByElement(driver,"xpath","//div[contains(text(),'The information has been saved successfully.')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]");
                     WebElement okButton=popUp.findElement(By.xpath(".//button[text()='Ok']"));
-                    HelpersMethod.ClickBut(driver,okButton,80);
+                    HelpersMethod.ActClick(driver,okButton,1000);
                 }
             }
             catch (Exception e){}

@@ -28,7 +28,8 @@ Feature: Order control list
       |Comment at Order level for OCL|Order notes|
     Then Click on Next button and select option Continue without payment option
     And Click on Submit Order button and read Order_no for OCL
-    Then User should select Note from popup and Order guide from popup for OG
+    #Then User should select Note from popup and Order guide from popup for OG
+    Then User should select Note from popup and Order guide from popup
     Then User validate that he is in NewOE page
     And User Clicks on Back button in NewOE page and User must be in OCL page
 
