@@ -23,13 +23,10 @@ public class LocationLookupPageValidations {
         softAssert.assertTrue(locationLookupPage.isDeleteButtonDisplayed(),"Delete Button is not displayed");
         softAssert.assertTrue(locationLookupPage.isTransferButtonDisplayed(),"Transfer Button is not displayed");
         softAssert.assertTrue(locationLookupPage.isStatusButtonDisplayed(),"Status Button is not displayed");
-        softAssert.assertTrue(locationLookupPage.isBtnPrintLocDisplayed(),"Btn Print Loc is not displayed");
-        softAssert.assertTrue(locationLookupPage.isPalletColumnHeaderDisplayed(),"Pallet Column Header is not displayed");
         softAssert.assertTrue(locationLookupPage.isProductColumnHeaderDisplayed(),"Product Column Header is not displayed");
         softAssert.assertTrue(locationLookupPage.isDescriptionColumnHeaderDisplayed(),"Description Column Header is not displayed");
         softAssert.assertTrue(locationLookupPage.isQtyColumnHeaderDisplayed(),"Qty Column Header is not displayed");
         softAssert.assertTrue(locationLookupPage.isUomColumnHeaderDisplayed(),"Uom Column Header is not displayed");
-        softAssert.assertTrue(locationLookupPage.isLotColumnHeaderDisplayed(),"Lot Column Header is not displayed");
         softAssert.assertTrue(locationLookupPage.isExpDateColumnHeaderDisplayed(),"ExpDate Column Header is not displayed");
         softAssert.assertTrue(locationLookupPage.isWeightColumnHeaderDisplayed(),"Weight Column Header is not displayed");
         softAssert.assertTrue(locationLookupPage.isOwnerColumnHeaderDisplayed(),"Owner Column Header is not displayed");

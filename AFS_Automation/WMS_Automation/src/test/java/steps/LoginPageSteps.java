@@ -16,6 +16,12 @@ import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import objects.userdata.UserData;
 import org.aeonbits.owner.ConfigFactory;
+
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
+import org.openqa.selenium.WebDriver;
+import static common.setup.DriverManager.*;
+
 import org.openqa.selenium.chrome.ChromeDriver;
 import ui.pages.BasePage;
 import ui.pages.LoginPage;
@@ -27,10 +33,12 @@ import static common.setup.DriverManager.*;
 })
 @Slf4j
 public class LoginPageSteps {
+    Scenario scenario;
     LoginPage loginPage = new LoginPage();
     BasePage basePage = new BasePage();
     public Waiters waiters;
     public static Environment environment;
+    public WebDriver driver;
 
     @Before
     public void beforeClassSetup() {
@@ -41,6 +49,15 @@ public class LoginPageSteps {
         DriverManager.openPage(environment.getUrl());
         new Waiters();
     }
+
+/*    @After
+    public void afterScenario1(Scenario scenario) {
+        if (scenario.isFailed()) {
+            TakesScreenshot ts = (TakesScreenshot) driver;
+            byte[] src = ts.getScreenshotAs(OutputType.BYTES);
+            scenario.attach(src,"image/png", scenario.getName());
+        }
+    }*/
 
     @Step
     @Given("User signs in the application")

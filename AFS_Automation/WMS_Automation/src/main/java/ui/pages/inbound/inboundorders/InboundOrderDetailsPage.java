@@ -27,7 +27,7 @@ public class InboundOrderDetailsPage extends BasePage {
     By qtyField = By.xpath("//span[contains(text(), 'Qty')]");
     By cubeField = By.xpath("//span[contains(text(), 'Cube')]");
     By weightField = By.xpath("//span[contains(text(), 'Weight')]");
-    By changeStatusOption = By.id("btnChangeStatus");
+    By changeStatusOption = By.cssSelector("#btnChangeStatus");
     By doorOption = By.id("ddDoorItem");
     By dataOption = By.id("ddDataItem");
     By statusInput = By.id("span_Status");
@@ -322,7 +322,7 @@ public class InboundOrderDetailsPage extends BasePage {
     public void clickRouteBackButton() {
         Waiters.waitTillLoadingPage(getDriver());
         clickOnElement(routeBackButton);
-        Waiters.waitTillLoadingPage(getDriver());
+        waitUntilInvisible(5, loader);
     }
 
     public String getDialogPopUpText() {
@@ -392,7 +392,10 @@ public class InboundOrderDetailsPage extends BasePage {
 
     public boolean isImagesButtonDisplayed() {  return isElementDisplay(getImagesButton()); }
 
-    public boolean isCommentsButtonDisplayed() {  return isElementDisplay(getCommentsButton()); }
+    public boolean isCommentsButtonDisplayed() {
+
+        return isElementDisplay(getCommentsButton());
+    }
 
     public boolean isToolBarDisplayed() {  return isElementDisplay(getToolBar()); }
 
@@ -429,6 +432,12 @@ public class InboundOrderDetailsPage extends BasePage {
     public boolean isDoorOptionDisplayed() { return isElementDisplay(getDoorOption()); }
 
     public boolean isDataOptionDisplayed() { return isElementDisplay(getDataOption()); }
+
+    public boolean isChangeStatusOptionPresent() { return isElementPresent(getChangeStatusOption()); }
+
+    public boolean isDoorOptionPresent() { return isElementPresent(getDoorOption()); }
+
+    public boolean isDataOptionPresent() { return isElementPresent(getDataOption()); }
 
     public boolean isStatusInputDisplayed() { return isElementDisplay(getStatusInput()); }
 
