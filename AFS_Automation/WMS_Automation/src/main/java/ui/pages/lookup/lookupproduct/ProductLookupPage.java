@@ -18,6 +18,7 @@ public class ProductLookupPage extends BasePage {
     By allocationTab = By.xpath("//ul[contains(@class, 'k-tabstrip-items')]//span[text()='Allocation']");
     By setupTab = By.xpath("//ul[contains(@class, 'k-tabstrip-items')]//span[text()='Setup']");
     By historyTab = By.xpath("//ul[contains(@class, 'k-tabstrip-items')]//span[text()='History']");
+    By tableContent = By.xpath("//table[@class='k-grid-table']");
     By productShowPalletCheck = By.id("lookupProductShowPalletCheck");
     By lookupProductHistory = By.id("lookupProductHistory");
     By palletsLabel = By.xpath("//span[text()='Pallets:']");
@@ -50,10 +51,10 @@ public class ProductLookupPage extends BasePage {
     By uomColumnHeader = By.xpath("//th[@role='columnheader'][.//span[text()='UOM']]");
     By conversionColumn = By.xpath("//span[text()='Conversion']");
     By conversionColumnHeader = By.xpath("//th[@role='columnheader'][.//span[text()='Conversion']]");
-    By actualColumn = By.xpath("//span[text()='Actual?']");
-    By actualColumnHeader = By.xpath("//th[@role='columnheader'][.//span[text()='Actual?']]");
-    By bookColumn = By.xpath("//span[text()='Book?']");
-    By bookColumnHeader = By.xpath("//th[@role='columnheader'][.//span[text()='Book?']]");
+    By actualColumn = By.xpath("//span[text()='Actual']");
+    By actualColumnHeader = By.xpath("//th[@role='columnheader'][.//span[text()='Actual']]");
+    By bookColumn = By.xpath("//span[text()='Book']");
+    By bookColumnHeader = By.xpath("//th[@role='columnheader'][.//span[text()='Book']]");
     By inboundColumn = By.xpath("//span[text()='Inbound']");
     By inboundColumnHeader = By.xpath("//th[@role='columnheader'][.//span[text()='Inbound']]");
     By outboundColumn = By.xpath("//span[text()='Outbound']");
@@ -76,8 +77,8 @@ public class ProductLookupPage extends BasePage {
     By weightColumnHeader = By.xpath("//th[@role='columnheader'][.//span[text()='Weight']]");
     By stagedColumn = By.xpath("//span[text()='Staged']");
     By stagedColumnHeader = By.xpath("//th[@role='columnheader'][.//span[text()='Staged']]");
-    By staged_Column = By.xpath("//span[text()='Staged?']");
-    By staged_ColumnHeader = By.xpath("//th[@role='columnheader'][.//span[text()='Staged?']]");
+    By staged_Column = By.xpath("//span[contains(text(),'Staged')]");
+    By staged_ColumnHeader = By.xpath("//th[@role='columnheader'][.//span[contains(text(),'Staged')]");
     By pickUomColumn = By.xpath("//span[text()='Pick UOM']");
     By pickUomColumnHeader = By.xpath("//th[@role='columnheader'][.//span[text()='Pick UOM']]");
     By replenishUomColumn = By.xpath("//span[text()='Replenish UOM']");
@@ -126,18 +127,18 @@ public class ProductLookupPage extends BasePage {
     By applyButton = By.xpath("//button[text()='Apply']");
     By inputSearch = By.xpath("//input[@placeholder='Search']");
     By palletsIndicator= By.xpath("//span[contains(text(), 'Pallets:')]");
-    By palletsIndicatorValue = By.xpath("//span[contains(text(), 'Pallets:')]//following-sibling::span[@class='i-summary-area__main__value']");
-    By quantityIndicator= By.xpath("//span[contains(text(), 'Quantity:')]");
-    By quantityIndicatorValue = By.xpath("//span[contains(text(), 'Quantity:')]//following-sibling::span[@class='i-summary-area__main__value']");
-    By itemsFoundIndicator= By.xpath("//span[contains(text(), 'Items found:')]");
-    By itemsFoundIndicatorValue = By.xpath("//span[contains(text(), 'Items found:')]//following-sibling::span[@class='i-summary-area__main__value']");
+    By palletsIndicatorValue = By.xpath("//span[contains(text(), 'Pallets')]//following-sibling::span[@class='i-summary-area__main__value']");
+    By quantityIndicator= By.xpath("//span[contains(text(), 'Quantity')]");
+    By quantityIndicatorValue = By.xpath("//span[contains(text(), 'Quantity')]//following-sibling::span[@class='i-summary-area__main__value']");
+    By itemsFoundIndicator= By.xpath("//span[contains(text(), 'Items found')]");
+    By itemsFoundIndicatorValue = By.xpath("//span[contains(text(), 'Items found')]//following-sibling::span[@class='i-summary-area__main__value']");
     By qtyInputs = By.cssSelector(".k-numerictextbox input");
     By dataInputs = By.cssSelector(".k-dateinput input");
     By dropdownList = By.id("dropdownList");
     By loader = By.cssSelector(".loader");
 
     public void waitForProductLookupPageToLoad() {
-        Waiters.returnDocumentStatus(getDriver());
+        waitUntilInvisible(5, loader);
         Waiters.waitForElementToBeDisplay(productLookupButton);
         Waiters.waitForElementToBeDisplay(productSearchLabel);
         Waiters.waitForElementToBeDisplay(productSearchInput);
@@ -153,6 +154,7 @@ public class ProductLookupPage extends BasePage {
         Waiters.waitForElementToBeDisplay(productSearchInput);
         inputText(getProductSearchInput(), product);
         pressEnter(getProductSearchInput());
+        waitUntilInvisible(2, loader);
     }
 
     public void deleteProduct() {
@@ -231,8 +233,24 @@ public class ProductLookupPage extends BasePage {
     }
 
     public void clickAddFilter() {
+        Waiters.waitABit(4000);
         Waiters.waitForElementToBeDisplay(addFilterButton);
         clickOnElement(addFilterButton);
+    }
+
+    public void clickAddProductLookupButton() {
+        Waiters.waitForElementToBeDisplay(productLookupButton);
+        clickOnElement(productLookupButton);
+        waitUntilInvisible(2, loader);
+    }
+
+    public void clickProductByProductIndex(int index) {
+        Waiters.waitForElementToBeDisplay(tableContent);
+        List<WebElement> tasks = getTableContent().findElements(By.xpath(".//tr[contains(@class, 'k-master-row')]"));
+        scrollToCenter(tasks.get(index));
+        Waiters.waitABit(2000);
+        clickOnElement(tasks.get(index));
+        waitUntilInvisible(1, loader);
     }
 
     public void typeFilter(String filter) {
@@ -259,14 +277,16 @@ public class ProductLookupPage extends BasePage {
     }
 
     public void clickApplyButton() {
-        Waiters.waitForElementToBeDisplay(getApplyButton());
+        waitUntilInvisible(1, loader);
+        waitUntilStalenessOf(2, getApplyButton());
         clickOnElement(getApplyButton());
-        waitUntilInvisible(5, loader);
+        waitUntilInvisible(3, loader);
         Waiters.waitTillLoadingPage(getDriver());
     }
 
     public void clickClearAllButton() {
-        Waiters.waitForElementToBeDisplay(getСlearAllButton());
+        waitUntilInvisible(1, loader);
+        waitUntilStalenessOf(2, getСlearAllButton());
         clickOnElement(getСlearAllButton());
         Waiters.waitTillLoadingPage(getDriver());
     }
@@ -491,37 +511,85 @@ public class ProductLookupPage extends BasePage {
 
     public boolean isQtyColumnHeaderDisplayed() { return isElementDisplay(getQtyColumnHeader()); }
 
-    public boolean isLocationColumnDisplayed() { return isElementDisplay(getLocationColumn()); }
+    public boolean isLocationColumnDisplayed() {
+        Waiters.waitABit(2000);
+        return isElementDisplay(getLocationColumn());
+    }
 
-    public boolean isLocationColumnHeaderDisplayed() { return isElementDisplay(getLocationColumnHeader()); }
+    public boolean isLocationColumnHeaderDisplayed() {
+        Waiters.waitABit(2000);
+        return isElementDisplay(getLocationColumnHeader());
+    }
 
-    public boolean isLocationTypeColumnDisplayed() { return isElementDisplay(getLocationTypeColumn()); }
+    public boolean isLocationTypeColumnDisplayed() {
+        Waiters.waitABit(2000);
+        return isElementDisplay(getLocationTypeColumn());
+    }
 
-    public boolean isLocationTypeColumnHeaderDisplayed() { return isElementDisplay(getLocationTypeColumnHeader()); }
+    public boolean isLocationTypeColumnHeaderDisplayed() {
+        Waiters.waitABit(2000);
+        return isElementDisplay(getLocationTypeColumnHeader());
+    }
 
-    public boolean isUomColumnDisplayed() { return isElementDisplay(getUomColumn()); }
+    public boolean isUomColumnDisplayed() {
+        Waiters.waitABit(2000);
+        return isElementDisplay(getUomColumn());
+    }
 
-    public boolean isUomColumnHeaderDisplayed() { return isElementDisplay(getUomColumnHeader()); }
+    public boolean isUomColumnHeaderDisplayed() {
+        Waiters.waitABit(2000);
+        return isElementDisplay(getUomColumnHeader());
+    }
 
-    public boolean isConversionColumnDisplayed() { return isElementDisplay(getConversionColumn()); }
+    public boolean isConversionColumnDisplayed() {
+        Waiters.waitABit(2000);
+        return isElementDisplay(getConversionColumn());
+    }
 
-    public boolean isConversionColumnHeaderDisplayed() { return isElementDisplay(getConversionColumnHeader()); }
+    public boolean isConversionColumnHeaderDisplayed() {
+        Waiters.waitABit(2000);
+        return isElementDisplay(getConversionColumnHeader());
+    }
 
-    public boolean isTaskTypeColumnDisplayed() { return isElementDisplay(getTaskTypeColumn()); }
+    public boolean isTaskTypeColumnDisplayed() {
+        Waiters.waitABit(2000);
+        return isElementDisplay(getTaskTypeColumn());
+    }
 
-    public boolean isTaskTypeColumnHeaderDisplayed() { return isElementDisplay(getTaskTypeColumnHeader()); }
+    public boolean isTaskTypeColumnHeaderDisplayed() {
+        Waiters.waitABit(2000);
+        return isElementDisplay(getTaskTypeColumnHeader());
+    }
 
-    public boolean isDestinationColumnDisplayed() { return isElementDisplay(getDestinationColumn()); }
+    public boolean isDestinationColumnDisplayed() {
+        Waiters.waitABit(2000);
+        return isElementDisplay(getDestinationColumn());
+    }
 
-    public boolean isDestinationColumnHeaderDisplayed() { return isElementDisplay(getDestinationColumnHeader()); }
+    public boolean isDestinationColumnHeaderDisplayed() {
+        Waiters.waitABit(2000);
+        return isElementDisplay(getDestinationColumnHeader());
+    }
 
-    public boolean isReceivedColumnDisplayed() { return isElementDisplay(getReceivedColumn()); }
+    public boolean isReceivedColumnDisplayed() {
+        Waiters.waitABit(2000);
+        return isElementDisplay(getReceivedColumn());
+    }
 
-    public boolean isReceivedColumnHeaderDisplayed() { return isElementDisplay(getReceivedColumnHeader()); }
+    public boolean isReceivedColumnHeaderDisplayed() {
+        Waiters.waitABit(2000);
+        return isElementDisplay(getReceivedColumnHeader());
+    }
 
-    public boolean isWeightColumnDisplayed() { return isElementDisplay(getWeightColumn()); }
+    public boolean isWeightColumnDisplayed() {
+        Waiters.waitABit(2000);
+        return isElementDisplay(getWeightColumn());
+    }
 
-    public boolean isWeightColumnHeaderDisplayed() { return isElementDisplay(getWeightColumnHeader()); }
+    public boolean isWeightColumnHeaderDisplayed() {
+        Waiters.waitABit(2000);
+        return isElementDisplay(getWeightColumnHeader());
+    }
 
     public boolean isStagedColumnDisplayed() { return isElementDisplay(getStagedColumn()); }
 
@@ -814,5 +882,7 @@ public class ProductLookupPage extends BasePage {
     public List<WebElement> geDataInputs() { return findWebElements(dataInputs); }
 
     public WebElement getDropdownList() { return findWebElement(dropdownList); }
+
+    public WebElement getTableContent() { return findWebElement(tableContent); }
 
 }

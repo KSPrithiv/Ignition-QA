@@ -95,6 +95,10 @@ public class DockManagementSummaryPage extends BasePage {
     By setupProductIcon = By.xpath("//div[contains(@id, 'accesscpwmssettingssystem')]//div[contains(text(), 'Product')]");
     By appointmentsIcon = By.xpath("//ul[contains(@class, 'drawer-menu-list-items')]//span[text()='Appointments']");
     By locationIcon = By.xpath("//div[@class='submenu-items-list']//div[contains(text(), 'Location') and @class='submenu-item-text']");
+
+    By labelIcon = By.xpath("//div[@class='submenu-items-list']//div[contains(text(), 'Label') and @class='submenu-item-text']");
+
+
     By productIcon = By.xpath("//div[@class='submenu-items-list']//div[contains(text(), 'Product') and @class='submenu-item-text']");
     By dockManagementIcon = By.xpath("//div[@class='submenu-items-list']//div[contains(text(), 'Dock Management') and @class='submenu-item-text']");
     By lookupReportsIcon = By.xpath("//div[@class='submenu-items-list']//div[contains(text(), 'Lookup Reports') and @class='submenu-item-text']");
@@ -271,6 +275,13 @@ public class DockManagementSummaryPage extends BasePage {
         Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(getLocationIcon());
         clickOnElement(getLocationIcon());
+        Waiters.waitTillLoadingPage(getDriver());
+    }
+
+    public void clickLabelIcon() {
+        Waiters.waitTillLoadingPage(getDriver());
+        Waiters.waitForElementToBeDisplay(getLabelIcon());
+        clickOnElement(getLabelIcon());
         Waiters.waitTillLoadingPage(getDriver());
     }
 
@@ -734,6 +745,8 @@ public class DockManagementSummaryPage extends BasePage {
     public WebElement getAppointmentsIcon() { return findWebElement(appointmentsIcon); }
 
     public WebElement getLocationIcon() { return findWebElement(locationIcon); }
+
+    public WebElement getLabelIcon() { return findWebElement(labelIcon); }
 
     public WebElement getProductIcon() { return findWebElement(productIcon); }
 

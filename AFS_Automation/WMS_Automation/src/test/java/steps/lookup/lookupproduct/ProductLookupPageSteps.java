@@ -66,6 +66,20 @@ public class ProductLookupPageSteps {
     }
 
     @Step
+    @And("User clicks Add Product on Lookup Product page")
+    public void clickAddProductLookupButton() {
+        log.info("User clicks Add Product on Lookup Product page");
+        productLookupPage.clickAddProductLookupButton();
+    }
+
+    @Step
+    @And("User clicks product by index {int} on Lookup Product page")
+    public void clickProductByProductIndex(int index) {
+        log.info("User clicks Add Product on Lookup Product page");
+        productLookupPage.clickProductByProductIndex(index);
+    }
+
+    @Step
     @And("User clicks Clear All on Lookup Product page")
     public void clickClearAllButton() {
         log.info("User clicks Clear All on Lookup Product page");

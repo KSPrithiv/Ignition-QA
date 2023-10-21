@@ -2,7 +2,6 @@ package common.setup;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import lombok.SneakyThrows;
-import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.PageLoadStrategy;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -134,8 +133,7 @@ public class DriverManager {
                 System.out.println(" AFTER  driverThreadLocal.remove(); ");
                 FileUtils.forceDelete(new File("C:/Users/Irina.Holovan/Desktop/chrome/" + DriverManager.COUNTER));*/
             } catch(Exception e) {
-                FileUtils.forceDelete(new File("C:/Users/Irina.Holovan/Desktop/chrome/" + DriverManager.COUNTER));
-                System.out.println("Error closing and quitting the web driver: " + e.getMessage());
+              //  FileUtils.forceDelete(new File("C:/Users/Irina.Holovan/Desktop/chrome/" + DriverManager.COUNTER));
                 if(getDriver() instanceof ChromeDriver){
                     try {
                       //  FileUtils.forceDelete(new File("C:/Users/Irina.Holovan/Desktop/chrome/" + DriverManager.COUNTER));

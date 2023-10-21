@@ -370,7 +370,6 @@ Feature: Testing Lookup Location functionality
     And Clicks supplier on Lookup Location page
     And Validates Suppliers number is more than 1 on Location Lookup page
 
-  @issue
   Scenario: Checking update existing LPN on Lookup Location screen
     Given User signs in the application
     And Main page is loaded
@@ -385,6 +384,8 @@ Feature: Testing Lookup Location functionality
     And User clears edit LPN on Lookup Location page
     And User types Expiration date "12/12/2050" on Lookup Location page
     And User clicks Save button on Lookup Location page
+    And User clicks Cancel button on Lookup Location page
+    And User checks Location Product 0 on Lookup Location page
     And User clicks Edit button on Lookup Location page
     And Validates Edit inventory elements are displayed on Location Lookup page
     And User edits LPN "090  21051222222" on Lookup Location page
