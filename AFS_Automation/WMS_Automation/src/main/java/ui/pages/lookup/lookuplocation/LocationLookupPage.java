@@ -142,9 +142,10 @@ public class LocationLookupPage extends BasePage {
     By weightSerialLabel = By.xpath("//span[text()='Weight/Serial No']");
     String locationTableRows = "//table[@class='k-grid-table']//tr[.//a[contains(text(), '%s')]]";
     By loader = By.cssSelector(".loader");
+    By loaderImage = By.cssSelector(".k-loading-image");
 
     public void waitForLocationLookupPageToLoad() {
-        waitUntilInvisible(7, loader);
+        waitUntilInvisible(5, loader);
         Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(locationSearchLabel);
         Waiters.waitForElementToBeDisplay(lookupLocationSearch);
@@ -158,15 +159,16 @@ public class LocationLookupPage extends BasePage {
         inputText(getSearchInput(), location);
         pressEnter(getSearchInput());
         findWebElement(By.xpath("//tr[.//td[text()='" + location +  "']]")).click();
-        Waiters.waitABit(10_000);
+        waitUntilInvisible(3, loader);
     }
 
     public void enterLocation(String location) {
         Waiters.waitABit(1000);
         Waiters.waitForElementToBeDisplay(locationSearchInput);
         inputText(getLocationSearchInput(), location);
-        pressEnter(getLocationSearchInput());
-        Waiters.waitABit(2000);
+        pressTab(getLocationSearchInput());
+        waitUntilInvisible(3, loaderImage);
+        waitUntilInvisible(3, loader);
     }
 
     public void clickLocationSearchButton() {
@@ -305,6 +307,7 @@ public class LocationLookupPage extends BasePage {
     }
 
     public void checksProductByIndex(int index) {
+        Waiters.waitABit(3000);
         Waiters.waitForElementToBeDisplay(tableContent);
         Waiters.waitForElementsToBeDisplay(getRows());
         List<WebElement> products = getTableContent().findElements(By.xpath(".//tr[contains(@class, 'k-master-row')]//input"));
@@ -381,7 +384,7 @@ public class LocationLookupPage extends BasePage {
     }
 
     public void clickLookupProductShowPalletCheck() {
-        Waiters.waitABit(3000);
+        waitUntilInvisible(2, loader);
         Waiters.waitForElementToBeDisplay(lookupProductShowPalletCheck);
         clickOnElement(lookupProductShowPalletCheck);
     }
@@ -425,7 +428,7 @@ public class LocationLookupPage extends BasePage {
         if(isVisible(OKButton) == true) {
             clickOnElement(OKButton);
         }
-        Waiters.waitABit(4000);
+        waitUntilInvisible(1, loader);
         Waiters.waitForElementToBeDisplay(cancelButton);
         scrollAndClick(getCancelBtn());
         Waiters.waitABit(2_000);

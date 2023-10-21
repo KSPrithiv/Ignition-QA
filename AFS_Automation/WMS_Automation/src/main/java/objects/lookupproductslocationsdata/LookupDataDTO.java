@@ -12,6 +12,11 @@ import java.io.Serializable;
 @NoArgsConstructor
 @AllArgsConstructor
 public class LookupDataDTO implements Serializable {
+	@JsonProperty("lookup dates")
+	private LookupDatesDTO lookupDatesDTO
+			;
+
+
 	@JsonProperty("lookup locations")
 	private LookupLocationsDTO lookupLocations;
 	@JsonProperty("lookup LPNs")
