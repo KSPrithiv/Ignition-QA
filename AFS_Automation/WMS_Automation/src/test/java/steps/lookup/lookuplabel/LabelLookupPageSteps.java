@@ -5,13 +5,13 @@ import common.utils.objectmapper.ObjectMapperWrapper;
 import io.cucumber.java.en.And;
 import io.qameta.allure.Step;
 import lombok.extern.slf4j.Slf4j;
-import objects.lookupproductslocationsdata.LookupDataDTO;
+import objects.lookupproductslocationsdata.LookupProductLocationsDTO;
 import ui.pages.lookup.lookuplabel.LabelLookupPage;
 
 @Slf4j
 public class LabelLookupPageSteps {
     LabelLookupPage labelLookupPage = new LabelLookupPage();
-    LookupDataDTO lookupDataDTO = new ObjectMapperWrapper().getObject(FilePaths.LOOKUP_DATA, LookupDataDTO.class);
+    LookupProductLocationsDTO lookupDataDTO = new ObjectMapperWrapper().getObject(FilePaths.LOOKUP_DATA, LookupProductLocationsDTO.class);
 
     @Step
     @And("Waits for Label Lookup page to load")
@@ -88,5 +88,26 @@ public class LabelLookupPageSteps {
     public void clickPrintLabelPrintBtn() {
         log.info("User clicks Print Label Print button on Lookup Label page");
         labelLookupPage.clickPrintLabelPrintBtn();
+    }
+
+    @Step
+    @And("User clicks From Location button on Lookup Label page")
+    public void clickFromLocationBtn() {
+        log.info("User clicks From Location button on Lookup Label page");
+        labelLookupPage.clickFromLocationBtn();
+    }
+
+    @Step
+    @And("User clicks To Location button on Lookup Label page")
+    public void clickToLocationBtn() {
+        log.info("User clicks To Location button on Lookup Label page");
+        labelLookupPage.clickToLocationBtn();
+    }
+
+    @Step
+    @And("User Cancel button on Lookup Label page")
+    public void clickCancelButton() {
+        log.info("User Cancel button on Lookup Label page");
+        labelLookupPage.clickCancelButton();
     }
 }

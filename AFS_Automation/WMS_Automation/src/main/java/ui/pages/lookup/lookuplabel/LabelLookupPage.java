@@ -20,20 +20,28 @@ public class LabelLookupPage extends BasePage {
     By dialogTitle = By.cssSelector(".k-dialog-title");
     By labelTypeLabel = By.xpath("//label[text()='Label type']");
     By unitInput = By.cssSelector("input[value='Unit']");
+    By locationInput = By.cssSelector("input[value='Location']");
+    By receivingUnitInput = By.cssSelector("input[value='Receiving Unit']");
+    By productInput = By.cssSelector("input[value='Product']");
     By labelFormatLabel = By.xpath("//label[text()='Label format']");
     By labelFormatDropDown = By.xpath("//label[text()='Label format']/following-sibling::span");
     By labelNumLabel = By.xpath("//label[text()='Label #']");
     By labelNumLInput = By.xpath("//label[text()='Label #']/following-sibling::span");
+    By lpnLabel = By.xpath("//label[text()='Lpn']");
+    By lpnInput = By.xpath("//label[text()='Lpn']/following-sibling::input");
+    By indexProductLabel = By.cssSelector("#indexProductIndex-label");
+    By selectProductInput = By.cssSelector("input[placeholder='Select a product']");
     By productIndexLabel = By.cssSelector("#indexProductIndex-label");
     By productIndexInput= By.cssSelector("span[data-test-id='lookup_UnitTypeDialog_product_autocomplete']");
-
     By fromLocationLabel = By.xpath("//label[text()='From location']");
     By enterFromLocation= By.cssSelector("input[placeholder='Enter from location']");
+    By fromLocationBtn = By.xpath("//div[contains(@class, 'i-indexfield-container')][.//input[@placeholder='Enter from location']]//button");
     By toLocationLabel = By.xpath("//label[text()='To location']");
-    By enterTomLocation= By.cssSelector("input[placeholder='Enter to location']");
-
-    By printLabelCancelBtn = By.cssSelector("button[data-test-id='lookup_UnitTypeDialog_dialogCancelBtn']");
-    By printLabelPrintBtn = By.cssSelector("button[data-test-id='lookup_UnitTypeDialog_dialogPrintBtn']");
+    By enterToLocation= By.cssSelector("input[placeholder='Enter to location']");
+    By toLocationBtn = By.xpath("//div[contains(@class, 'i-indexfield-container')][.//input[@placeholder='Enter to location']]//button");
+    By printLabelCancelBtn = By.cssSelector("button[data-test-id*=Dialog_dialogCancelBtn]");
+    By printLabelPrintBtn = By.cssSelector("button[data-test-id*=Dialog_dialogPrintBtn]");
+    By cancelButton = By.cssSelector("#autocompleteIndexFieldDialogCancelButton");
     By loader = By.cssSelector(".loader");
 
     public void waitForLabelLookupPageToLoad() {
@@ -42,6 +50,12 @@ public class LabelLookupPage extends BasePage {
         Waiters.waitForElementToBeDisplay(labelLookupTitle);
         Waiters.waitForElementToBeDisplay(shippingLabel);
         Waiters.waitForElementToBeDisplay(unitLabel);
+    }
+
+    public void clickCancelButton() {
+        Waiters.waitABit(2000);
+        Waiters.waitForElementToBeDisplay(cancelButton);
+        clickOnElement(cancelButton);
     }
 
     public void clickShippingLabel() {
@@ -104,6 +118,23 @@ public class LabelLookupPage extends BasePage {
         clickOnElement(getPrintLabelPrintBtn());
     }
 
+    public void clickFromLocationBtn() {
+        Waiters.waitABit(2000);
+        Waiters.waitForElementToBeDisplay(getFromLocationBtn());
+        clickOnElement(getFromLocationBtn());
+    }
+
+    public void clickToLocationBtn() {
+        Waiters.waitABit(2000);
+        Waiters.waitForElementToBeDisplay(getToLocationBtn());
+        clickOnElement(getToLocationBtn());
+    }
+
+    public String getDialogTitleText() {
+        Waiters.waitForElementToBeDisplay(getDialogTitle());
+        return getText(getDialogTitle()).trim();
+    }
+
     public boolean isLabelLookupTitleDisplayed() {
         Waiters.waitForElementToBeDisplay(getLabelLookupTitle());
         return isElementDisplay(getLabelLookupTitle());
@@ -159,6 +190,21 @@ public class LabelLookupPage extends BasePage {
         return isElementDisplay(getUnitInput());
     }
 
+    public boolean isLocationInputDisplayed() {
+        Waiters.waitForElementToBeDisplay(getLocationInput());
+        return isElementDisplay(getLocationInput());
+    }
+
+    public boolean isReceivingUnitInputDisplayed() {
+        Waiters.waitForElementToBeDisplay(getReceivingUnitInput());
+        return isElementDisplay(getReceivingUnitInput());
+    }
+
+    public boolean isProductInputDisplayed() {
+        Waiters.waitForElementToBeDisplay(getProductInput());
+        return isElementDisplay(getProductInput());
+    }
+
     public boolean isLabelFormatLabelDisplayed() {
         Waiters.waitForElementToBeDisplay(getLabelFormatLabel());
         return isElementDisplay(getLabelFormatLabel());
@@ -179,6 +225,26 @@ public class LabelLookupPage extends BasePage {
         return isElementDisplay(getLabelNumLInput());
     }
 
+    public boolean isLpnLabelDisplayed() {
+        Waiters.waitForElementToBeDisplay(getLpnLabel());
+        return isElementDisplay(getLpnLabel());
+    }
+
+    public boolean isLpnInputDisplayed() {
+        Waiters.waitForElementToBeDisplay(getLpnInput());
+        return isElementDisplay(getLpnInput());
+    }
+
+    public boolean isIndexProductLabelDisplayed() {
+        Waiters.waitForElementToBeDisplay(getIndexProductLabel());
+        return isElementDisplay(getIndexProductLabel());
+    }
+
+    public boolean isSelectProductInputDisplayed() {
+        Waiters.waitForElementToBeDisplay(getSelectProductInput());
+        return isElementDisplay(getSelectProductInput());
+    }
+
     public boolean isProductIndexLabelDisplayed() {
         Waiters.waitForElementToBeDisplay(getProductIndexLabel());
         return isElementDisplay(getProductIndexLabel());
@@ -197,6 +263,26 @@ public class LabelLookupPage extends BasePage {
     public boolean isPrintLabelPrintBtnDisplayed() {
         Waiters.waitForElementToBeDisplay(getPrintLabelPrintBtn());
         return isElementDisplay(getPrintLabelPrintBtn());
+    }
+
+    public boolean isFromLocationLabelDisplayed() {
+        Waiters.waitForElementToBeDisplay(getFromLocationLabel());
+        return isElementDisplay(getFromLocationLabel());
+    }
+
+    public boolean isEnterFromLocationDisplayed() {
+        Waiters.waitForElementToBeDisplay(getEnterFromLocation());
+        return isElementDisplay(getEnterFromLocation());
+    }
+
+    public boolean isToLocationLabelDisplayed() {
+        Waiters.waitForElementToBeDisplay(getToLocationLabel());
+        return isElementDisplay(getToLocationLabel());
+    }
+
+    public boolean isEnterToLocationDisplayed() {
+        Waiters.waitForElementToBeDisplay(getEnterToLocation());
+        return isElementDisplay(getEnterToLocation());
     }
 
     public WebElement getLabelLookupTitle() { return findWebElement(labelLookupTitle); }
@@ -231,6 +317,14 @@ public class LabelLookupPage extends BasePage {
 
     public WebElement getLabelNumLInput() { return findWebElement(labelNumLInput); }
 
+    public WebElement getLpnLabel() { return findWebElement(lpnLabel); }
+
+    public WebElement getLpnInput() { return findWebElement(lpnInput); }
+
+    public WebElement getIndexProductLabel() { return findWebElement(indexProductLabel); }
+
+    public WebElement getSelectProductInput() { return findWebElement(selectProductInput); }
+
     public WebElement getProductIndexLabel() { return findWebElement(productIndexLabel); }
 
     public WebElement getProductIndexInput() { return findWebElement(productIndexInput); }
@@ -239,6 +333,24 @@ public class LabelLookupPage extends BasePage {
 
     public WebElement getPrintLabelPrintBtn() { return findWebElement(printLabelPrintBtn); }
 
-    public WebElement getLoader() { return findWebElement(loader); }
+    public WebElement getLocationInput() { return findWebElement(locationInput); }
 
+    public WebElement getReceivingUnitInput() { return findWebElement(receivingUnitInput); }
+
+    public WebElement getProductInput() { return findWebElement(productInput); }
+
+    public WebElement getFromLocationLabel() { return findWebElement(fromLocationLabel); }
+
+    public WebElement getEnterFromLocation() { return findWebElement(enterFromLocation); }
+
+    public WebElement getFromLocationBtn() { return findWebElement(fromLocationBtn); }
+
+    public WebElement getToLocationLabel() { return findWebElement(toLocationLabel); }
+
+    public WebElement getEnterToLocation() { return findWebElement(enterToLocation); }
+
+    public WebElement getToLocationBtn() { return findWebElement(toLocationBtn); }
+
+
+    public WebElement getLoader() { return findWebElement(loader); }
 }
