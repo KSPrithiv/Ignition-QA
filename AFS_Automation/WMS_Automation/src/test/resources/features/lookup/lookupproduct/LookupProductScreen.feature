@@ -55,20 +55,20 @@ Feature: Testing of Lookup Product functionality
     And Validates Lookup, Allocation, Setup and History Tabs are displayed on Lookup Product page
     When User clicks Status button on Lookup Product page
     And Validates 'Unit status' and 'Unit status Reason' on Lookup Product page
-    And User selects Status "Stock" on Change Status popup on Lookup Product page
+    And User selects Status by index 0 on Change Status popup on Lookup Product page
     And User clicks Save button on Lookup Product page
     Then Validates Notification Message text "Please select status & reason" on Lookup Product page
     And User clicks Cancel button on Lookup Product page
     And User clicks Status button on Lookup Product page
-    And User selects Unit status reason "Damaged" on Change Status popup on Lookup Product page
+    And User selects Unit status reason by index 1 on Change Status popup on Lookup Product page
     And User clicks Save button on Lookup Product page
     And Validates Notification Message text "Please select status & reason" on Lookup Product page
-    And User selects Status "Ripening" on Change Status popup on Lookup Product page
+    And User selects Status by index 1 on Change Status popup on Lookup Product page
     And User clicks Save button on Lookup Product page
     And Validates "Success" notification is displayed on Lookup Product page
     And User clicks Status button on Lookup Product page
-    And User selects Status "Ripening" on Change Status popup on Lookup Product page
-    And User selects Unit status reason "Damaged" on Change Status popup on Lookup Product page
+    And User selects Status by index 1 on Change Status popup on Lookup Product page
+    And User selects Unit status reason by index 1 on Change Status popup on Lookup Product page
     And User clicks Cancel button on Lookup Product page
 
   Scenario: Checking Navigate to Location of Lookup Product screen

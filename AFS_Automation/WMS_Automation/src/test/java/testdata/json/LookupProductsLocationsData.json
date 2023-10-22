@@ -6,7 +6,7 @@
     "lookup date 3": "01012018",
     "lookup date 4": "01012023",
     "lookup date 5": "01012022",
-    "lookup date 6": "01/01/2050"
+    "lookup date 6": "01/01/2060"
   },
   "lookup trailers":
   {
@@ -21,7 +21,7 @@
   {
     "lookup location 1": "A02B2",
     "lookup location 2": "A03A1",
-    "lookup location 3": "A04A2",
+    "lookup location 3": "A02C2",
     "lookup location 4": "A01B1",
     "lookup location 5": "A03B2",
     "lookup location 6": "A04A1"

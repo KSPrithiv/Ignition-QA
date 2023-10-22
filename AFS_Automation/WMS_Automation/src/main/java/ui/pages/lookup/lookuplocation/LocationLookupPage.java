@@ -137,7 +137,7 @@ public class LocationLookupPage extends BasePage {
     By backLocProdButton = By.id("backLocProdButton");
     By selectAllCheckbox = By.xpath("//div[@class='k-grid-header']//input");
     By dropdownList = By.id("dropdownList");
-    By productionButton = By.cssSelector("#btnProductionOnOff");
+    By loadOptionDropDown = By.cssSelector("button[aria-label='Location option dropdownbutton']");
     By productionLabel = By.xpath("//label[@class='i-label autocomplete_custom_label']");
     By weightSerialLabel = By.xpath("//span[text()='Weight/Serial No']");
     String locationTableRows = "//table[@class='k-grid-table']//tr[.//a[contains(text(), '%s')]]";
@@ -525,8 +525,10 @@ public class LocationLookupPage extends BasePage {
     }
 
     public void clickProductionButton() {
-        Waiters.waitForElementToBeDisplay(productionButton);
-        clickOnElement(productionButton);
+        Waiters.waitForElementToBeDisplay(loadOptionDropDown);
+        clickOnElement(loadOptionDropDown);
+        clickOnElement(findWebElement(By
+                .xpath("//div[contains(@class, 'k-animation-container-shown')]//*[contains(text(), 'Production')]")));
     }
 
     public void clickInventoryReasonButton() {
@@ -1044,11 +1046,6 @@ public class LocationLookupPage extends BasePage {
         return isElementDisplay(getProductionReason());
     }
 
-    public boolean isProductionButtonDisplayed() {
-        Waiters.waitForElementToBeDisplay(getProductionButton());
-        return isElementDisplay(getProductionButton());
-    }
-
     public String getPalletsLabelText() {
         Waiters.waitABit(2000);
         return getText(palletsLabel);
@@ -1072,11 +1069,6 @@ public class LocationLookupPage extends BasePage {
     public String getProductionLabelText() {
         Waiters.waitABit(2000);
         return getText(getProductionLabel());
-    }
-
-    public String getProductionButtonText() {
-        Waiters.waitABit(2000);
-        return getText(getProductionButton());
     }
 
     public boolean isAddLocButtonDisabled() {
@@ -1319,8 +1311,6 @@ public class LocationLookupPage extends BasePage {
     public WebElement getNotification() { return findWebElement(notification); }
 
     public WebElement getDropdownList() { return findWebElement(dropdownList); }
-
-    public WebElement getProductionButton() { return findWebElement(productionButton); }
 
     public WebElement getProductionLabel() { return findWebElement(productionLabel); }
 

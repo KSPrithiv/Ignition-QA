@@ -1,13 +1,19 @@
 package steps.lookup.lookupproduct;
 
+import common.constants.FilePaths;
+import common.utils.objectmapper.ObjectMapperWrapper;
 import io.cucumber.java.en.And;
 import io.qameta.allure.Step;
 import lombok.extern.slf4j.Slf4j;
+import objects.lookupproductslocationsdata.LookupProductLocationsDTO;
 import ui.pages.lookup.lookupproduct.ProductLookupPage;
+
+import java.util.List;
 
 @Slf4j
 public class ProductLookupPageSteps {
     ProductLookupPage productLookupPage = new ProductLookupPage();
+    LookupProductLocationsDTO lookupDataDTO = new ObjectMapperWrapper().getObject(FilePaths.LOOKUP_DATA, LookupProductLocationsDTO.class);
 
     @Step
     @And("Waits for Product Lookup page to load")
@@ -115,10 +121,32 @@ public class ProductLookupPageSteps {
     }
 
     @Step
+    @And("User selects Unit status reason by index {int} on Change Status popup on Lookup Product page")
+    public void selectChangeUnitStatusReason(int index) {
+        log.info("User selects Unit status reason by index on Change Status popup on Lookup Product page");
+        List<String> reasons = List.of(lookupDataDTO.getLookupUnitStatusReasons().getLookupUnitStatusReason1(), lookupDataDTO
+                 .getLookupUnitStatusReasons().getLookupUnitStatusReason2(), lookupDataDTO.getLookupUnitStatusReasons()
+                 .getLookupUnitStatusReason3(), lookupDataDTO.getLookupUnitStatusReasons().getLookupUnitStatusReason4(),
+                 lookupDataDTO.getLookupUnitStatusReasons().getLookupUnitStatusReason5());
+        productLookupPage.selectChangeUnitStatusReason(reasons.get(index));
+    }
+
+    @Step
     @And("User selects Status {string} on Change Status popup on Lookup Product page")
     public void selectChangeStatus(String status) {
         log.info("User selects Status on Change Status popup on Lookup Product page");
         productLookupPage.selectChangeStatus(status);
+    }
+
+    @Step
+    @And("User selects Status by index {int} on Change Status popup on Lookup Product page")
+    public void selectChangeStatus(int index) {
+        log.info("User selects Status by index on Change Status popup on Lookup Product page");
+        List<String> statuses = List.of(lookupDataDTO.getLookupStatuses().getLookupStatus1(), lookupDataDTO.getLookupStatuses()
+                .getLookupStatus2(), lookupDataDTO.getLookupStatuses().getLookupStatus3(), lookupDataDTO.getLookupStatuses()
+                .getLookupStatus4(), lookupDataDTO.getLookupStatuses().getLookupStatus5(), lookupDataDTO.getLookupStatuses()
+                .getLookupStatus6(), lookupDataDTO.getLookupStatuses().getLookupStatus7());
+        productLookupPage.selectChangeStatus(statuses.get(index));
     }
 
     @Step

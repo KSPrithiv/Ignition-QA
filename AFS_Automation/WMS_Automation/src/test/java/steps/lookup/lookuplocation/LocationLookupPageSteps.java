@@ -7,8 +7,7 @@ import common.utils.time.TimeConversion;
 import io.cucumber.java.en.And;
 import io.qameta.allure.Step;
 import lombok.extern.slf4j.Slf4j;
-import objects.countingsessions.CountingSessionsDTO;
-import objects.lookupproductslocationsdata.LookupDataDTO;
+import objects.lookupproductslocationsdata.LookupProductLocationsDTO;
 import ui.pages.lookup.lookuplocation.LocationLookupPage;
 
 import java.util.Calendar;
@@ -17,7 +16,7 @@ import java.util.List;
 @Slf4j
 public class LocationLookupPageSteps {
     LocationLookupPage locationLookupPage = new LocationLookupPage();
-    LookupDataDTO lookupDataDTO = new ObjectMapperWrapper().getObject(FilePaths.LOOKUP_DATA, LookupDataDTO.class);
+    LookupProductLocationsDTO lookupDataDTO = new ObjectMapperWrapper().getObject(FilePaths.LOOKUP_DATA, LookupProductLocationsDTO.class);
 
     @Step
     @And("Waits for Location Lookup page to load")
@@ -49,6 +48,17 @@ public class LocationLookupPageSteps {
     public void enterLocation(String location) {
         log.info("User enters location on Lookup Location page");
         locationLookupPage.enterLocation(location);
+    }
+
+    @Step
+    @And("User enters location by index {int} on Lookup Location page")
+    public void enterLocationByIndex(int index) {
+        log.info("UUser enters location by index on Lookup Location page");
+        List<String> locations = List.of(lookupDataDTO.getLookupLocations().getLookupLocation1(), lookupDataDTO
+                .getLookupLocations().getLookupLocation2(), lookupDataDTO.getLookupLocations().getLookupLocation3(),
+                 lookupDataDTO.getLookupLocations().getLookupLocation4(), lookupDataDTO.getLookupLocations()
+                .getLookupLocation5());
+        locationLookupPage.enterLocation(locations.get(index));
     }
 
     @Step
@@ -135,6 +145,17 @@ public class LocationLookupPageSteps {
     }
 
     @Step
+    @And("User types Receipt date by index {int} on Lookup Location page")
+    public void typeReceiptDateByIndex(int index) {
+        log.info("User types Receipt date by index on Lookup Location page");
+        List<String> dates = List.of(lookupDataDTO.getLookupDates().getLookupDate1(), lookupDataDTO.getLookupDates()
+                .getLookupDate3(), lookupDataDTO.getLookupDates().getLookupDate3(), lookupDataDTO.getLookupDates()
+                .getLookupDate4(), lookupDataDTO.getLookupDates().getLookupDate5(), lookupDataDTO.getLookupDates()
+                .getLookupDate6());
+        locationLookupPage.typeReceiptDate(dates.get(index));
+    }
+
+    @Step
     @And("User types Expiration date {string} on Lookup Location page")
     public void typeExpDate(String date) {
         log.info("User types Expiration date on Lookup Location page");
@@ -142,10 +163,32 @@ public class LocationLookupPageSteps {
     }
 
     @Step
+    @And("User types Expiration date by index {int} on Lookup Location page")
+    public void typeExpDate(int index) {
+        log.info("User types Expiration date by index on Lookup Location page");
+        List<String> dates = List.of(lookupDataDTO.getLookupDates().getLookupDate1(), lookupDataDTO.getLookupDates()
+                .getLookupDate3(), lookupDataDTO.getLookupDates().getLookupDate3(), lookupDataDTO.getLookupDates()
+                .getLookupDate4(), lookupDataDTO.getLookupDates().getLookupDate5(), lookupDataDTO.getLookupDates()
+                .getLookupDate6());
+        locationLookupPage.typeExpDate(dates.get(index));
+    }
+
+    @Step
     @And("User types Product {string} on Lookup Location page")
     public void typeProduct(String code) {
         log.info("User types Product on Lookup Location page");
         locationLookupPage.typeProduct(code);
+    }
+
+    @Step
+    @And("User types Product by index {int} on Lookup Location page")
+    public void typeProduct(int index) {
+        log.info("User types Product by index on Lookup Location page");
+        List<String> products = List.of(lookupDataDTO.getLookupProducts().getLookupProduct1(), lookupDataDTO.getLookupProducts()
+                .getLookupProduct2(), lookupDataDTO.getLookupProducts().getLookupProduct3(), lookupDataDTO.getLookupProducts()
+                .getLookupProduct4(), lookupDataDTO.getLookupProducts().getLookupProduct5(), lookupDataDTO.getLookupProducts()
+                .getLookupProduct6(), lookupDataDTO.getLookupProducts().getLookupProduct7());
+        locationLookupPage.typeProduct(products.get(index));
     }
 
     @Step
@@ -163,10 +206,32 @@ public class LocationLookupPageSteps {
     }
 
     @Step
+    @And("Selects Production Reason by index {int} on Lookup Location page")
+    public void selectProductionReason(int index) {
+        log.info("Selects Production Reason by index on Lookup Location page");
+        List<String> reasons = List.of(lookupDataDTO.getLookupUnitStatusReasons().getLookupUnitStatusReason1(), lookupDataDTO
+                .getLookupUnitStatusReasons().getLookupUnitStatusReason2(), lookupDataDTO.getLookupUnitStatusReasons()
+                .getLookupUnitStatusReason3(), lookupDataDTO.getLookupUnitStatusReasons().getLookupUnitStatusReason4(),
+                lookupDataDTO.getLookupUnitStatusReasons().getLookupUnitStatusReason5());
+        locationLookupPage.selectProductionReason(reasons.get(index));
+    }
+
+    @Step
     @And("Selects Inventory Reason {string} on Lookup Location page")
     public void selectInventoryReason(String reason) {
         log.info("Selects Inventory Reason on Lookup Location page");
         locationLookupPage.selectInventoryReason(reason);
+    }
+
+    @Step
+    @And("Selects Inventory Reason by index {int} on Lookup Location page")
+    public void selectInventoryReason(int index) {
+        log.info("Selects Inventory Reason by index on Lookup Location page");
+        List<String> reasons = List.of(lookupDataDTO.getLookupUnitStatusReasons().getLookupUnitStatusReason1(), lookupDataDTO
+                .getLookupUnitStatusReasons().getLookupUnitStatusReason2(), lookupDataDTO.getLookupUnitStatusReasons()
+                .getLookupUnitStatusReason3(), lookupDataDTO.getLookupUnitStatusReasons().getLookupUnitStatusReason4(),
+                 lookupDataDTO.getLookupUnitStatusReasons().getLookupUnitStatusReason5());
+        locationLookupPage.selectInventoryReason(reasons.get(index));
     }
 
     @Step
@@ -195,6 +260,18 @@ public class LocationLookupPageSteps {
     public void checkProduct(String product) {
         log.info("User checks Product on Lookup Location page");
         locationLookupPage.checkProduct(product);
+    }
+
+    @Step
+    @And("User checks Product by index {int} on Lookup Location page")
+    public void checkProductByIndex(int index) {
+        log.info("User checks Product by index on Lookup Location page");
+        List<String> products = List.of(lookupDataDTO.getLookupProducts().getLookupProduct1(), lookupDataDTO
+                .getLookupProducts().getLookupProduct2(), lookupDataDTO.getLookupProducts().getLookupProduct3(),
+                 lookupDataDTO.getLookupProducts().getLookupProduct4(), lookupDataDTO.getLookupProducts()
+                .getLookupProduct5(), lookupDataDTO.getLookupProducts().getLookupProduct6(), lookupDataDTO.getLookupProducts()
+                .getLookupProduct7());
+        locationLookupPage.checkProduct(products.get(index));
     }
 
     @Step
@@ -405,6 +482,17 @@ public class LocationLookupPageSteps {
     }
 
     @Step
+    @And("Selects Product Status by index {int} on Lookup Location page")
+    public void selectProductStatus(int index) {
+        log.info("User selects product status by index on Lookup Location page");
+        List<String> statuses = List.of(lookupDataDTO.getLookupStatuses().getLookupStatus1(), lookupDataDTO
+                .getLookupStatuses().getLookupStatus2(), lookupDataDTO.getLookupStatuses().getLookupStatus3(),
+                lookupDataDTO.getLookupStatuses().getLookupStatus4(), lookupDataDTO.getLookupStatuses().getLookupStatus5(),
+                lookupDataDTO.getLookupStatuses().getLookupStatus6(), lookupDataDTO.getLookupStatuses().getLookupStatus7());
+        locationLookupPage.selectProductStatus(statuses.get(index));
+    }
+
+    @Step
     @And("Clicks Add Location button on Lookup Location page")
     public void clickAddLocProdButton() {
         log.info("Clicks Add Location button on Lookup Location page");
@@ -431,6 +519,17 @@ public class LocationLookupPageSteps {
     public void selectSupplier(String supplier) {
         log.info("Selects supplier on Lookup Location page");
         locationLookupPage.selectSupplier(supplier);
+    }
+
+    @Step
+    @And("Selects supplier by index {int} on Lookup Location page")
+    public void selectSupplier(int index) {
+        log.info("Selects supplier by index on Lookup Location page");
+        List<String> suppliers = List.of(lookupDataDTO.getLookupLocations().getLookupLocation1(), lookupDataDTO
+                .getLookupLocations().getLookupLocation2(), lookupDataDTO.getLookupLocations().getLookupLocation3(),
+                 lookupDataDTO.getLookupLocations().getLookupLocation4(), lookupDataDTO.getLookupLocations()
+                .getLookupLocation5());
+        locationLookupPage.selectSupplier(suppliers.get(index));
     }
 
     @Step

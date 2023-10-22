@@ -1,11 +1,17 @@
 package steps.validations.lookup.lookuplocation;
 
+import common.constants.FilePaths;
+import common.utils.objectmapper.ObjectMapperWrapper;
 import io.cucumber.java.en.And;
+import objects.lookupproductslocationsdata.LookupProductLocationsDTO;
 import org.testng.asserts.SoftAssert;
 import ui.pages.lookup.lookuplocation.LocationLookupPage;
 
+import java.util.List;
+
 public class LocationLookupPageValidations {
     LocationLookupPage locationLookupPage = new LocationLookupPage();
+    LookupProductLocationsDTO lookupDataDTO = new ObjectMapperWrapper().getObject(FilePaths.LOOKUP_DATA, LookupProductLocationsDTO.class);
 
     @And("Validates Location Lookup Page base elements are loaded")
     public void validateGridItemsPresent() {
@@ -330,13 +336,6 @@ public class LocationLookupPageValidations {
         softAssert.assertAll();
     }
 
-    @And("Validates Production On button is displayed on Lookup Location page")
-    public void validateProductionButtonDisplayed() {
-        SoftAssert softAssert = new SoftAssert();
-        softAssert.assertTrue(locationLookupPage.isProductionButtonDisplayed(),"Production button is not displayed");
-        softAssert.assertAll();
-    }
-
     @And("Validates Production label {string} on Lookup Location page")
     public void validateProductionLabelText(String text) {
         SoftAssert softAssert = new SoftAssert();
@@ -344,10 +343,15 @@ public class LocationLookupPageValidations {
         softAssert.assertAll();
     }
 
-    @And("Validates Production button {string} on Lookup Location page")
-    public void validateProductionButtonText(String text) {
+    @And("Validates Production label by index {int} on Lookup Location page")
+    public void validateProductionLabelText(int index) {
         SoftAssert softAssert = new SoftAssert();
-        softAssert.assertEquals(locationLookupPage.getProductionButtonText(), text, "Production button is not correct");
+        List<String> locations = List.of(lookupDataDTO.getLookupLocations().getLookupLocation1(), lookupDataDTO
+                .getLookupLocations().getLookupLocation2(), lookupDataDTO.getLookupLocations().getLookupLocation3(),
+                lookupDataDTO.getLookupLocations().getLookupLocation4(), lookupDataDTO.getLookupLocations()
+                .getLookupLocation5());
+        softAssert.assertEquals(locationLookupPage.getProductionLabelText(), "*Production* " + locations.get(index),
+                "Production label is not correct");
         softAssert.assertAll();
     }
 
