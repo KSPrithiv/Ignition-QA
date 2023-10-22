@@ -5,88 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f43555ca-ddbf-4ea6-890b-1e1d141bb229" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/WMS_Automation/src/main/java/objects/lookupproductslocationsdata/LookupExpDates.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/WMS_Automation/src/main/java/objects/lookupproductslocationsdata/LookupLocations.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/WMS_Automation/src/main/java/objects/lookupproductslocationsdata/LookupProductLocationsDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/WMS_Automation/src/main/java/objects/lookupproductslocationsdata/LookupProducts.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/WMS_Automation/src/main/java/objects/lookupproductslocationsdata/LookupSuppliers.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/WMS_Automation/src/main/java/objects/lookupproductslocationsdata/LookupTrailers.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WMS_Automation/WMS_Automation.iml" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/WMS_Automation.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WMS_Automation/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WMS_Automation/src/main/java/objects/lookupproductslocationsdata/LookupDataDTO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/WMS_Automation/src/main/java/objects/lookupproductslocationsdata/LookupDatesDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/src/main/java/objects/lookupproductslocationsdata/LookupDates.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WMS_Automation/src/main/java/objects/lookupproductslocationsdata/LookupDeleteReasonsDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/src/main/java/objects/lookupproductslocationsdata/LookupDeleteReasons.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WMS_Automation/src/main/java/objects/lookupproductslocationsdata/LookupLPNsDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/src/main/java/objects/lookupproductslocationsdata/LookupLPNs.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WMS_Automation/src/main/java/objects/lookupproductslocationsdata/LookupLabelsDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/src/main/java/objects/lookupproductslocationsdata/LookupLabels.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WMS_Automation/src/main/java/objects/lookupproductslocationsdata/LookupLocationTypesDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/src/main/java/objects/lookupproductslocationsdata/LookupLocationTypes.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WMS_Automation/src/main/java/objects/lookupproductslocationsdata/LookupLocationsDTO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/WMS_Automation/src/main/java/objects/lookupproductslocationsdata/LookupOwnersDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/src/main/java/objects/lookupproductslocationsdata/LookupOwners.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WMS_Automation/src/main/java/objects/lookupproductslocationsdata/LookupProductStagedDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/src/main/java/objects/lookupproductslocationsdata/LookupProductStaged.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WMS_Automation/src/main/java/objects/lookupproductslocationsdata/LookupProductTaskTypesDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/src/main/java/objects/lookupproductslocationsdata/LookupProductTaskTypes.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WMS_Automation/src/main/java/objects/lookupproductslocationsdata/LookupProductUOMsDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/src/main/java/objects/lookupproductslocationsdata/LookupProductUOMs.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WMS_Automation/src/main/java/objects/lookupproductslocationsdata/LookupProductsDTO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/WMS_Automation/src/main/java/objects/lookupproductslocationsdata/LookupStatusesDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/src/main/java/objects/lookupproductslocationsdata/LookupStatuses.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WMS_Automation/src/main/java/objects/lookupproductslocationsdata/LookupSuppliersDTO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/WMS_Automation/src/main/java/objects/lookupproductslocationsdata/LookupTrailersDTO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/WMS_Automation/src/main/java/objects/lookupproductslocationsdata/LookupUOMSDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/src/main/java/objects/lookupproductslocationsdata/LookupUOMS.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WMS_Automation/src/main/java/objects/lookupproductslocationsdata/LookupUnitProductsDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/src/main/java/objects/lookupproductslocationsdata/LookupUnitProducts.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WMS_Automation/src/main/java/objects/lookupproductslocationsdata/LookupUnitStatusReasonsDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/src/main/java/objects/lookupproductslocationsdata/LookupUnitStatusReasons.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WMS_Automation/src/main/java/objects/workqueuedata/WorkQueueDataDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/src/main/java/objects/workqueuedata/WorkQueueDataDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WMS_Automation/src/main/java/ui/pages/lookup/lookuplabel/LabelLookupPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/src/main/java/ui/pages/lookup/lookuplabel/LabelLookupPage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WMS_Automation/src/main/java/ui/pages/lookup/lookuplocation/LocationLookupPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/src/main/java/ui/pages/lookup/lookuplocation/LocationLookupPage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WMS_Automation/src/test/java/steps/lookup/lookupdockmanagement/DockManagementPageSteps.java" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/src/test/java/steps/lookup/lookupdockmanagement/DockManagementPageSteps.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WMS_Automation/src/test/java/steps/lookup/lookuplabel/LabelLookupPageSteps.java" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/src/test/java/steps/lookup/lookuplabel/LabelLookupPageSteps.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WMS_Automation/src/test/java/steps/lookup/lookuplocation/LocationLookupPageSteps.java" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/src/test/java/steps/lookup/lookuplocation/LocationLookupPageSteps.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WMS_Automation/src/test/java/steps/lookup/lookupproduct/ProductLookupPageSteps.java" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/src/test/java/steps/lookup/lookupproduct/ProductLookupPageSteps.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WMS_Automation/src/test/java/steps/setup/SetupProductPageSteps.java" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/src/test/java/steps/setup/SetupProductPageSteps.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WMS_Automation/src/test/java/steps/validations/lookup/lookuplocation/LocationLookupPageValidations.java" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/src/test/java/steps/validations/lookup/lookuplocation/LocationLookupPageValidations.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WMS_Automation/src/test/java/steps/validations/lookup/lookupplabel/LabelLookupPageValidations.java" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/src/test/java/steps/validations/lookup/lookupplabel/LabelLookupPageValidations.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WMS_Automation/src/test/java/testdata/json/LookupProductsLocationsData.json" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/src/test/java/testdata/json/LookupProductsLocationsData.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WMS_Automation/src/test/java/testdata/json/OutboundOrderLoadsBatchesData.json" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/src/test/java/testdata/json/OutboundOrderLoadsBatchesData.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WMS_Automation/src/test/resources/features/lookup/dockmanagement/LookupDockManagementScreen.feature" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/src/test/resources/features/lookup/dockmanagement/LookupDockManagementScreen.feature" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WMS_Automation/src/test/resources/features/lookup/lookuplabels/LookupLabelsScreen.feature" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/src/test/resources/features/lookup/lookuplabels/LookupLabelsScreen.feature" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WMS_Automation/src/test/resources/features/lookup/lookuplocation/LookupLocationScreen.feature" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/src/test/resources/features/lookup/lookuplocation/LookupLocationScreen.feature" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WMS_Automation/src/test/resources/features/lookup/lookupproduct/LookupProductScreen.feature" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/src/test/resources/features/lookup/lookupproduct/LookupProductScreen.feature" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WMS_Automation/target/classes/objects/lookupproductslocationsdata/LookupDataDTO$LookupDataDTOBuilder.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/WMS_Automation/target/classes/objects/lookupproductslocationsdata/LookupDataDTO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/WMS_Automation/target/classes/objects/lookupproductslocationsdata/LookupDeleteReasonsDTO$LookupDeleteReasonsDTOBuilder.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/WMS_Automation/target/classes/objects/lookupproductslocationsdata/LookupDeleteReasonsDTO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/WMS_Automation/target/classes/objects/lookupproductslocationsdata/LookupLPNsDTO$LookupLPNsDTOBuilder.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/WMS_Automation/target/classes/objects/lookupproductslocationsdata/LookupLPNsDTO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/WMS_Automation/target/classes/objects/lookupproductslocationsdata/LookupLabelsDTO$LookupLabelsDTOBuilder.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/WMS_Automation/target/classes/objects/lookupproductslocationsdata/LookupLabelsDTO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/WMS_Automation/target/classes/objects/lookupproductslocationsdata/LookupLocationTypesDTO$LookupLocationTypesDTOBuilder.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/WMS_Automation/target/classes/objects/lookupproductslocationsdata/LookupLocationTypesDTO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/WMS_Automation/target/classes/objects/lookupproductslocationsdata/LookupLocationsDTO$LookupLocationsDTOBuilder.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/WMS_Automation/target/classes/objects/lookupproductslocationsdata/LookupLocationsDTO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/WMS_Automation/target/classes/objects/lookupproductslocationsdata/LookupOwnersDTO$LookupOwnersDTOBuilder.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/WMS_Automation/target/classes/objects/lookupproductslocationsdata/LookupOwnersDTO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/WMS_Automation/target/classes/objects/lookupproductslocationsdata/LookupProductStagedDTO$LookupProductStagedDTOBuilder.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/WMS_Automation/target/classes/objects/lookupproductslocationsdata/LookupProductStagedDTO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/WMS_Automation/target/classes/objects/lookupproductslocationsdata/LookupProductTaskTypesDTO$LookupProductTaskTypesDTOBuilder.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/WMS_Automation/target/classes/objects/lookupproductslocationsdata/LookupProductTaskTypesDTO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/WMS_Automation/target/classes/objects/lookupproductslocationsdata/LookupProductUOMsDTO$LookupProductUOMsDTOBuilder.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/WMS_Automation/target/classes/objects/lookupproductslocationsdata/LookupProductUOMsDTO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/WMS_Automation/target/classes/objects/lookupproductslocationsdata/LookupProductsDTO$LookupProductsDTOBuilder.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/WMS_Automation/target/classes/objects/lookupproductslocationsdata/LookupProductsDTO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/WMS_Automation/target/classes/objects/lookupproductslocationsdata/LookupStatusesDTO$LookupStatusesDTOBuilder.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/WMS_Automation/target/classes/objects/lookupproductslocationsdata/LookupStatusesDTO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/WMS_Automation/target/classes/objects/lookupproductslocationsdata/LookupSuppliersDTO$LookupSuppliersDTOBuilder.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/WMS_Automation/target/classes/objects/lookupproductslocationsdata/LookupSuppliersDTO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/WMS_Automation/target/classes/objects/lookupproductslocationsdata/LookupUOMSDTO$LookupUOMSDTOBuilder.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/WMS_Automation/target/classes/objects/lookupproductslocationsdata/LookupUOMSDTO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/WMS_Automation/target/classes/objects/lookupproductslocationsdata/LookupUnitProductsDTO$LookupUnitProductsDTOBuilder.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/WMS_Automation/target/classes/objects/lookupproductslocationsdata/LookupUnitProductsDTO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/WMS_Automation/target/classes/objects/lookupproductslocationsdata/LookupUnitStatusReasonsDTO$LookupUnitStatusReasonsDTOBuilder.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/WMS_Automation/target/classes/objects/lookupproductslocationsdata/LookupUnitStatusReasonsDTO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/WMS_Automation/target/classes/objects/workqueuedata/WorkQueueDataDTO$WorkQueueDataDTOBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/target/classes/objects/workqueuedata/WorkQueueDataDTO$WorkQueueDataDTOBuilder.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WMS_Automation/target/classes/objects/workqueuedata/WorkQueueDataDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/target/classes/objects/workqueuedata/WorkQueueDataDTO.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WMS_Automation/target/classes/ui/pages/lookup/lookuplocation/LocationLookupPage.class" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/target/classes/ui/pages/lookup/lookuplocation/LocationLookupPage.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WMS_Automation/target/test-classes/steps/lookup/lookupdockmanagement/DockManagementPageSteps.class" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/target/test-classes/steps/lookup/lookupdockmanagement/DockManagementPageSteps.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WMS_Automation/target/test-classes/steps/lookup/lookuplocation/LocationLookupPageSteps.class" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/target/test-classes/steps/lookup/lookuplocation/LocationLookupPageSteps.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WMS_Automation/target/test-classes/steps/validations/lookup/lookuplocation/LocationLookupPageValidations.class" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/target/test-classes/steps/validations/lookup/lookuplocation/LocationLookupPageValidations.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WMS_Automation/src/test/resources/features/outbound/loadplanning/OutboundLoadPlanning1.feature" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/src/test/resources/features/outbound/loadplanning/OutboundLoadPlanning1.feature" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -147,7 +66,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/pom.xml" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/WMS_Automation" />
     <property name="project.structure.last.edited" value="SDKs" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.38390803" />
@@ -155,11 +74,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\Irina.Holovan\Documents\ignition-qa\AFS_Automation\WMS_Automation\src\test\resources\features\workqueue\assignmentlist\filteroption" />
       <recent name="C:\Users\Irina.Holovan\Documents\ignition-qa\AFS_Automation\WMS_Automation" />
+      <recent name="C:\Users\Irina.Holovan\Documents\ignition-qa\AFS_Automation\WMS_Automation\src\test\resources\features\lookup\lookuplocation" />
+      <recent name="C:\Users\Irina.Holovan\Documents\ignition-qa\AFS_Automation\WMS_Automation\src\test\resources\features\workqueue\assignmentlist\filteroption" />
       <recent name="C:\Users\Irina.Holovan\Documents\ignition-qa\AFS_Automation\WMS_Automation\src\test\java\runners" />
       <recent name="C:\Users\Irina.Holovan\Documents\ignition-qa\AFS_Automation\WMS_Automation\src\test\resources\features\outbound\loadplanning" />
-      <recent name="C:\Users\Irina.Holovan\Documents\ignition-qa\AFS_Automation\WMS_Automation\src\test\resources\features\counting\sessions" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\Irina.Holovan\Documents\ignition-qa\AFS_Automation\WMS_Automation" />
@@ -169,17 +88,18 @@
       <recent name="C:\Users\Irina.Holovan\Documents\ignition-qa\AFS_Automation\WMS_Automation\src\test\resources\features\inbound\loads\loaddetails" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="runners" />
       <recent name="objects.lookupproductslocationsdata" />
       <recent name="steps.validations.lookup.lookupplabel" />
-      <recent name="runners" />
       <recent name="objects.inbound" />
       <recent name="objects.workqueuedata" />
     </key>
   </component>
-  <component name="RunManager" selected="Cucumber Java.Feature: OutboundLoadPlanning1">
+  <component name="RunManager" selected="Cucumber Java.Scenario: Checking Exit information">
     <configuration name="Feature: OutboundLoadPlanning1" type="CucumberJavaRunConfigurationType" factoryName="Cucumber java" temporary="true" nameIsGenerated="true">
       <option name="CUCUMBER_CORE_VERSION" value="5" />
       <option name="FILE_PATH" value="$PROJECT_DIR$/WMS_Automation/src/test/resources/features/outbound/loadplanning/OutboundLoadPlanning1.feature" />
+      <option name="GLUE" value="stepDefination_DSD_OMS steps" />
       <option name="MAIN_CLASS_NAME" value="io.cucumber.core.cli.Main" />
       <module name="WMS_Automation" />
       <option name="PROGRAM_PARAMETERS" value=" --plugin org.jetbrains.plugins.cucumber.java.run.CucumberJvm5SMFormatter" />
@@ -195,35 +115,14 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Scenario: Checking Delete inventory in Production mode on Lookup Location screen" type="CucumberJavaRunConfigurationType" factoryName="Cucumber java" temporary="true" nameIsGenerated="true">
+    <configuration name="Scenario: Checking Exit information" type="CucumberJavaRunConfigurationType" factoryName="Cucumber java" temporary="true" nameIsGenerated="true">
       <option name="CUCUMBER_CORE_VERSION" value="5" />
-      <option name="FILE_PATH" value="$PROJECT_DIR$/WMS_Automation/src/test/resources/features/lookup/lookuplocation/LookupLocationScreen.feature" />
-      <option name="GLUE" value="stepDefination_DSD_OMS steps" />
+      <option name="FILE_PATH" value="$PROJECT_DIR$/WMS_Automation/src/test/resources/features/outbound/loadplanning/OutboundLoadPlanning1.feature" />
       <option name="MAIN_CLASS_NAME" value="io.cucumber.core.cli.Main" />
       <module name="WMS_Automation" />
-      <option name="NAME_FILTER" value="^Checking Delete inventory in Production mode on Lookup Location screen$" />
-      <option name="PROGRAM_PARAMETERS" value=" --plugin org.jetbrains.plugins.cucumber.java.run.CucumberJvm5SMFormatter --name &quot;^Checking Delete inventory in Production mode on Lookup Location screen$&quot;" />
-      <option name="SUGGESTED_NAME" value="Scenario: Checking Delete inventory in Production mode on Lookup Location screen" />
-      <option name="WORKING_DIRECTORY" value="$MODULE_WORKING_DIR$" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="io.cucumber.core.cli.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="Scenario: Checking Edit inventory in Production mode on Lookup Location screen" type="CucumberJavaRunConfigurationType" factoryName="Cucumber java" temporary="true" nameIsGenerated="true">
-      <option name="CUCUMBER_CORE_VERSION" value="5" />
-      <option name="FILE_PATH" value="$PROJECT_DIR$/WMS_Automation/src/test/resources/features/lookup/lookuplocation/LookupLocationScreen.feature" />
-      <option name="GLUE" value="stepDefination_DSD_OMS steps" />
-      <option name="MAIN_CLASS_NAME" value="io.cucumber.core.cli.Main" />
-      <module name="WMS_Automation" />
-      <option name="NAME_FILTER" value="^Checking Edit inventory in Production mode on Lookup Location screen$" />
-      <option name="PROGRAM_PARAMETERS" value=" --plugin org.jetbrains.plugins.cucumber.java.run.CucumberJvm5SMFormatter --name &quot;^Checking Edit inventory in Production mode on Lookup Location screen$&quot;" />
-      <option name="SUGGESTED_NAME" value="Scenario: Checking Edit inventory in Production mode on Lookup Location screen" />
+      <option name="NAME_FILTER" value="^Checking Exit information$" />
+      <option name="PROGRAM_PARAMETERS" value=" --plugin org.jetbrains.plugins.cucumber.java.run.CucumberJvm5SMFormatter --name &quot;^Checking Exit information$&quot;" />
+      <option name="SUGGESTED_NAME" value="Scenario: Checking Exit information" />
       <option name="WORKING_DIRECTORY" value="$MODULE_WORKING_DIR$" />
       <extension name="coverage">
         <pattern>
@@ -244,6 +143,26 @@
       <option name="NAME_FILTER" value="^Checking Non Product Reasons on Lookup Location screen$" />
       <option name="PROGRAM_PARAMETERS" value=" --plugin org.jetbrains.plugins.cucumber.java.run.CucumberJvm5SMFormatter --name &quot;^Checking Non Product Reasons on Lookup Location screen$&quot;" />
       <option name="SUGGESTED_NAME" value="Scenario: Checking Non Product Reasons on Lookup Location screen" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_WORKING_DIR$" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="io.cucumber.core.cli.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Scenario: Checking Truck top information" type="CucumberJavaRunConfigurationType" factoryName="Cucumber java" temporary="true" nameIsGenerated="true">
+      <option name="CUCUMBER_CORE_VERSION" value="5" />
+      <option name="FILE_PATH" value="$PROJECT_DIR$/WMS_Automation/src/test/resources/features/outbound/loadplanning/OutboundLoadPlanning1.feature" />
+      <option name="GLUE" value="stepDefination_DSD_OMS steps" />
+      <option name="MAIN_CLASS_NAME" value="io.cucumber.core.cli.Main" />
+      <module name="WMS_Automation" />
+      <option name="NAME_FILTER" value="^Checking Truck top information$" />
+      <option name="PROGRAM_PARAMETERS" value=" --plugin org.jetbrains.plugins.cucumber.java.run.CucumberJvm5SMFormatter --name &quot;^Checking Truck top information$&quot;" />
+      <option name="SUGGESTED_NAME" value="Scenario: Checking Truck top information" />
       <option name="WORKING_DIRECTORY" value="$MODULE_WORKING_DIR$" />
       <extension name="coverage">
         <pattern>
@@ -288,19 +207,19 @@
       </method>
     </configuration>
     <list>
-      <item itemvalue="Cucumber Java.Scenario: Checking Delete inventory in Production mode on Lookup Location screen" />
-      <item itemvalue="Cucumber Java.Scenario: Checking Edit inventory in Production mode on Lookup Location screen" />
       <item itemvalue="Cucumber Java.Scenario: Checking navigation functionality of Lookup Dock Management screen" />
       <item itemvalue="Cucumber Java.Scenario: Checking Non Product Reasons on Lookup Location screen" />
       <item itemvalue="Cucumber Java.Feature: OutboundLoadPlanning1" />
+      <item itemvalue="Cucumber Java.Scenario: Checking Truck top information" />
+      <item itemvalue="Cucumber Java.Scenario: Checking Exit information" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Cucumber Java.Scenario: Checking Exit information" />
+        <item itemvalue="Cucumber Java.Scenario: Checking Truck top information" />
         <item itemvalue="Cucumber Java.Feature: OutboundLoadPlanning1" />
         <item itemvalue="Cucumber Java.Scenario: Checking navigation functionality of Lookup Dock Management screen" />
         <item itemvalue="Cucumber Java.Scenario: Checking Non Product Reasons on Lookup Location screen" />
-        <item itemvalue="Cucumber Java.Scenario: Checking Delete inventory in Production mode on Lookup Location screen" />
-        <item itemvalue="Cucumber Java.Scenario: Checking Edit inventory in Production mode on Lookup Location screen" />
       </list>
     </recent_temporary>
   </component>
