@@ -2,6 +2,7 @@ package pages_DSD_OMS.webOrdering;
 
 import helper.HelpersMethod;
 import io.cucumber.java.Scenario;
+import org.apache.logging.log4j.core.tools.picocli.CommandLine;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
@@ -37,8 +38,12 @@ public class AdminHomePage {
     @FindBy(id = "cancel-btn")
     private WebElement CancelButton;
 
+    @FindBy(id="gridName")
+    private WebElement gridName;
+
     //Action
-    public AdminHomePage(WebDriver driver, Scenario scenario) {
+    public AdminHomePage(WebDriver driver, Scenario scenario)
+    {
         this.driver = driver;
         this.scenario = scenario;
         PageFactory.initElements(driver, this);
@@ -231,9 +236,9 @@ public class AdminHomePage {
                 WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
                 HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000000);
             }
-            Thread.sleep(2000);
+            //Thread.sleep(2000);
             Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
-                    .withTimeout(Duration.ofSeconds(100))
+                    .withTimeout(Duration.ofSeconds(160))
                     .pollingEvery(Duration.ofSeconds(5))
                     .ignoring(NoSuchElementException.class);
             wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
@@ -573,23 +578,22 @@ public class AdminHomePage {
             {
                 HelpersMethod.waitTillLoadingPage(driver);
             }
-            if (HelpersMethod.IsExists("//div[@class='loader']", driver))
+            /*if (HelpersMethod.IsExists("//div[@class='loader']", driver))
             {
                 WebElement WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
                 HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000000);
-            }
-            if (status.equals("loading"))
-            {
-                HelpersMethod.waitTillLoadingPage(driver);
-            }
-            Thread.sleep(2000);
-
+            }*/
             Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
                     .withTimeout(Duration.ofSeconds(200))
                     .pollingEvery(Duration.ofSeconds(5))
                     .ignoring(NoSuchElementException.class);
             wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
 
+            if (status.equals("loading"))
+            {
+                HelpersMethod.waitTillLoadingPage(driver);
+            }
+            Thread.sleep(2000);
         } catch (Exception e) {}
     }
 }

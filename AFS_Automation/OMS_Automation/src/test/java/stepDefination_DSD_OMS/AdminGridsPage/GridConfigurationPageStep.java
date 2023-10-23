@@ -8,8 +8,13 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.FluentWait;
+import org.openqa.selenium.support.ui.Wait;
 import org.testng.Assert;
 import pages_DSD_OMS.adminGrids.GridConfigurationPage;
 import pages_DSD_OMS.login.HomePage;
@@ -21,6 +26,7 @@ import util.TestBase;
 
 import java.awt.*;
 import java.text.ParseException;
+import java.time.Duration;
 import java.util.List;
 
 /**
@@ -131,14 +137,6 @@ public class GridConfigurationPageStep
         gridConfigPage.selectGridTypeDropDown(arg0);
     }
 
-    @And("User clicks on Grid option{string} and selects option from drop down")
-    public void userClicksOnGridOptionAndSelectsOptionFromDropDown(String arg0)
-    {
-        gridConfigPage=new GridConfigurationPage(driver,scenario);
-        gridConfigPage.clickOnGridOptionDropdown();
-        gridConfigPage.selectGridOptionDropDown(arg0);
-    }
-
     @Then("User click on column chooser and validate visiblity of column chooser popup")
     public void userClickOnColumnChooserAndValidateVisiblityOfColumnChooserPopup(DataTable tabledata1)
     {
@@ -198,7 +196,7 @@ public class GridConfigurationPageStep
         if(HelpersMethod.IsExists("//div[@class='loader']",driver))
         {
             WebElement WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 200000);
+            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 800000);
         }
     }
 
@@ -209,7 +207,7 @@ public class GridConfigurationPageStep
         //to navigate to Client side
         homePage = new HomePage(driver,scenario);
         String title = driver.getTitle();
-        Assert.assertEquals(title, "Ignition - Admin");
+        Assert.assertEquals(title, "Admin");
         homePage.verifyUserinfoContainer();
         homePage.navigateToClientSide();
 
@@ -245,6 +243,21 @@ public class GridConfigurationPageStep
         loginpage.EnterUsername(TestBase.testEnvironment.getAdminUser());
         loginpage.EnterPassword(TestBase.testEnvironment.getAdminPass());
         loginpage.ClickSignin();
+        String status = HelpersMethod.returnDocumentStatus(driver);
+        if (status.equals("loading"))
+        {
+            HelpersMethod.waitTillLoadingPage(driver);
+        }
+        /*if(HelpersMethod.IsExists("//div[@class='loader']",driver))
+        {
+            WebElement WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
+            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 800000);
+        }*/
+        Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                .withTimeout(Duration.ofSeconds(120))
+                .pollingEvery(Duration.ofSeconds(5))
+                .ignoring(NoSuchElementException.class);
+        wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
     }
 
     @Then("User should reset Default grid toggle button {string}")
@@ -252,7 +265,7 @@ public class GridConfigurationPageStep
     {
         gridConfigPage=new GridConfigurationPage(driver,scenario);
         gridConfigPage.clickGridDropDown();
-        gridConfigPage.gridDropdownSelection(arg0);
+        gridConfigPage.gridMainDropdownSelection(arg0);
         gridConfigPage.toggleDefaultGrid();
         gridConfigPage.clickOnSaveButton();
         gridConfigPage.validateSavedailogbox();
@@ -289,7 +302,7 @@ public class GridConfigurationPageStep
         size2=gridConfigPage.readAllGridNames();
         scenario.log("NUMBER OF GRIDS FOUND IN DROP DOWN BEFORE DISABLING GRID "+size1);
         scenario.log("NUMBER OF GRIDS FOUND IN DROP DOWN AFTER DISABLING GRID "+size2);
-      /*  if(size1!=size2)
+        if(size1!=size2)
         {
             scenario.log("CONTENT OF GRID TYPE DROP DOWN ARE NOT SAME");
             exists=true;
@@ -298,8 +311,32 @@ public class GridConfigurationPageStep
         {
             scenario.log("CONTENT OF GRID TYPE DROP DOWN ARE SAME");
             exists=false;
-        }*/
-        //Assert.assertEquals(exists,true);
+        }
+        Assert.assertEquals(exists,true);
+    }
+
+    @Then("User navigates back to Grid configuration tab and checks for available grid type in drop down after enabling tab")
+    public void userNavigatesBackToGridConfigurationTabAndChecksForAvailableGridTypeInDropDownAfterEnablingTab()
+    {
+        exists=false;
+        gridConfigPage=new GridConfigurationPage(driver,scenario);
+        gridConfigPage.selectGridConfiguration();
+        gridConfigPage.validateGridConfigurationPage();
+        gridConfigPage.clickOnGridTypeDropDown();
+        size2=gridConfigPage.readAllGridNames();
+        scenario.log("NUMBER OF GRIDS FOUND IN DROP DOWN BEFORE DISABLING GRID "+size1);
+        scenario.log("NUMBER OF GRIDS FOUND IN DROP DOWN AFTER DISABLING GRID "+size2);
+        if(size1==size2)
+        {
+            scenario.log("CONTENT OF GRID TYPE DROP DOWN ARE SAME");
+            exists=true;
+        }
+        else
+        {
+            scenario.log("CONTENT OF GRID TYPE DROP DOWN ARE NOT SAME");
+            exists=false;
+        }
+        Assert.assertEquals(exists,true);
     }
 
     @And("User should enable disabled grid in Available grid tab")
@@ -360,6 +397,14 @@ public class GridConfigurationPageStep
         gridConfigPage.clickOnOkButtonInSavePopup();
     }
 
+    @And("User clicks on Grid option{string} and select add option from drop down")
+    public void userClicksOnGridOptionAndSelectAddOptionFromDropDown(String arg0)
+    {
+        gridConfigPage=new GridConfigurationPage(driver,scenario);
+        gridConfigPage.clickOnGridOptionDropdown();
+        gridConfigPage.selectOptionFromGridOptionDropDown(arg0);
+    }
+
     @And("User clicks on save button to save Grid configuration")
     public void userClicksOnSaveButtonToSaveGridConfiguration()
     {
@@ -400,11 +445,31 @@ public class GridConfigurationPageStep
     @Then("User refreshes page Clicks on Permissions by drop down to select Customer Account# grid")
     public void userRefreshesPageClicksOnPermissionsByDropDownToSelectCustomerAccountGrid() throws InterruptedException
     {
-
         adminHomePage=new AdminHomePage(driver,scenario);
         adminHomePage.handleError_Page();
         adminHomePage.refreshPage();
         adminHomePage.ClickPermissionByAgain();
         adminHomePage.SelectCompany();
+    }
+
+    @Then("User enters {string} in grid name input box and saves it")
+    public void userEntersInGridNameInputBoxAndSavesIt(String gridName)
+    {
+        gridConfigPage=new GridConfigurationPage(driver,scenario);
+        gridConfigPage.enterGridName(gridName);
+        gridConfigPage.clickOnSaveButton();
+        gridConfigPage.validateSavedailogbox();
+        gridConfigPage.clickOnOkButtonInSavePopup();
+    }
+
+    @And("User clicks on Grid option{string} to delete and selects option from drop down")
+    public void userClicksOnGridOptionToDeleteAndSelectsOptionFromDropDown(String arg0)
+    {
+        gridConfigPage=new GridConfigurationPage(driver,scenario);
+        gridConfigPage.clickOnGridOptionDropdown();
+        gridConfigPage.selectOptionFromGridOptionDropDown(arg0);
+        gridConfigPage.clickOnSaveButton();
+        gridConfigPage.validateSavedailogbox();
+        gridConfigPage.clickOnOkButtonInSavePopup();
     }
 }

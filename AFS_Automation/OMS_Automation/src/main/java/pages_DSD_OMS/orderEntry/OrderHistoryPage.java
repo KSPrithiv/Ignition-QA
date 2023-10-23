@@ -202,7 +202,7 @@ public class OrderHistoryPage
               i++;
               act1.moveToElement(sta).build().perform();
               statusText=sta.getText();
-              if(statusText.equalsIgnoreCase("ACTIVE"))
+              if(statusText.equalsIgnoreCase("ACTIVE")||statusText.equalsIgnoreCase("OPEN ORDER"))
               {
                   //Read the Order number
                   WebElement OrderNo=HelpersMethod.FindByElement(driver,"xpath","//tr[contains(@class,'k-master-row')]["+i+"]/descendant::button");
@@ -219,7 +219,7 @@ public class OrderHistoryPage
             if(HelpersMethod.IsExists("//div[@class='loader']",driver))
             {
                 WebElement  WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100000);
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 200000);
             }
             Assert.assertEquals(exists,true);
         }

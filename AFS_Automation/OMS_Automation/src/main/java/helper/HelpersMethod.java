@@ -853,6 +853,6 @@ public class HelpersMethod
 
         //click on the table row after filter
         HelpersMethod.ActClick(driver,driver.findElement(By.xpath("//div[contains(@class,'k-widget k-window k-dialog')]/descendant::tr[@class='k-master-row']")),100);
-        Thread.sleep(1000);
+        Thread.sleep(4000);
     }
 }

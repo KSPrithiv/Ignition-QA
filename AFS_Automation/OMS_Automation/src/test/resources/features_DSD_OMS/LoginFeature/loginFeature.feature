@@ -17,7 +17,7 @@ Feature: Login
   @SalesHelp
   Scenario: Test scenario for handling Sales help from drop down
     Given User on login page
-    Then User entered username and password
+    Then User entered username and password for sales help
     When User is on Home Page for sales help
     Then User navigate to Client side for sales help
     Then User should select Order Entry tab for sales help
@@ -28,7 +28,7 @@ Feature: Login
   @eCommerceHelp
   Scenario: Test scenario for handling eCommerce drop down
     Given User on login page
-    Then User entered username and password
+    Then User entered username and password for sales help
     When User is on Home Page for eCommerce help
     Then User navigate to Client side for eCommerce help
     Then User should select Order Entry tab for eCommerce help

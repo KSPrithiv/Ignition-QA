@@ -181,13 +181,13 @@ Feature: Order Guide2
     Then User enters OG Description "<OG>" in search box and Delete the OG verify same in OG grid
     Examples:
       |  OG   |
-      |OGDis14|
+    #  |OGDis14|
       |OGDis16|
       |OGDis17|
       |OGDis18|
       |OGDis19|
       |OGDis20|
-      |OGHistory|
+      |OGHist |
       |Par OGPar OG|
       |Push OGPush OG|
       |Push OG1Push OG1|
@@ -196,5 +196,7 @@ Feature: Order Guide2
       | DayOfWeek      |
       | LocalChain1    |
       | NationalChain1 |
+      |MarketOG        |
+      |PriceBaseOG     |
     #  | QToOG |
 

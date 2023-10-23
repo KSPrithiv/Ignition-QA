@@ -217,6 +217,7 @@ public class OrderEntryPageSteps2
     public void click_on_cancel_button_in_oe_summary_page_and_handle_warning_popup() throws InterruptedException, AWTException
     {
         summary=new CheckOutSummaryPage(driver,scenario);
+        summary.validateSummaryPage();
         summary.Cancel_Button();
         summary.VerifyCancelPopUp();
         summary.CancelPop();
@@ -227,6 +228,7 @@ public class OrderEntryPageSteps2
     public void in_order_summary_page_click_on_up_arrow_for_sorting_product_in_descending_order_of_product_number() throws InterruptedException, AWTException
     {
         summary=new CheckOutSummaryPage(driver,scenario);
+        summary.validateSummaryPage();
         summary.Product_UpArrow();
     }
 
