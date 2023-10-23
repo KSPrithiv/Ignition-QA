@@ -8,6 +8,7 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
@@ -520,6 +521,8 @@ public class OrderEntryPageSteps
         else if(uomString.equals("Cases"))
         {
             newOE.CheckForQuickCaseEnabled(Case);
+            WebElement unitInput=HelpersMethod.FindByElement(driver,"id","quickUnits");
+            unitInput.sendKeys(Keys.TAB);
             newOE.exceedsMaxQty();
             newOE.toastCurrentlyUnavailable();
         }
@@ -860,6 +863,7 @@ public class OrderEntryPageSteps
     public void verify_whether_order_number_is_not_existing_in_OG() throws InterruptedException, AWTException
     {
         orderpage=new OrderEntryPage(driver, scenario);
+        orderpage.ValidateOE();
         orderpage.Enter_OrderNo_Searchbox(Ord_No);
         orderpage.Existence_OrderNo_OG();
     }

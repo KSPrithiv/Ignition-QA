@@ -164,7 +164,7 @@ public class CheckOutOrderPage
                 {
                     HelpersMethod.ScrollElement(driver, NextButton);
                     NextButton=HelpersMethod.FindByElement(driver,"id","SubmitCheckoutButton");
-                    HelpersMethod.ClickBut(driver, NextButton, 10000);
+                    HelpersMethod.ClickBut(driver, NextButton, 20000);
                     if (HelpersMethod.IsExists("//div[@class='loader']", driver))
                     {
                         WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
