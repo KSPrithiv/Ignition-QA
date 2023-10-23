@@ -165,14 +165,6 @@ public class DockManagementSummaryPageSteps {
     }
 
     @Step
-    @Then("Go to Lookup Location page")
-    public void goToLookupLocationPage() {
-        log.info("Go to Lookup Location page");
-        dockManagementSummaryPage.clickLookupIcon();
-        dockManagementSummaryPage.clickLocationIcon();
-    }
-
-    @Step
     @Then("Go to Counting Count page")
     public void goToCountingCountPage() {
         log.info("Go to Counting Count page");
@@ -217,6 +209,23 @@ public class DockManagementSummaryPageSteps {
         log.info("Go to Lookup DockManagement page");
         dockManagementSummaryPage.clickLookupIcon();
         dockManagementSummaryPage.clickDockManagementIcon();
+    }
+
+
+    @Step
+    @Then("Go to Lookup Location page")
+    public void goToLookupLocationPage() {
+        log.info("Go to Lookup Location page");
+        dockManagementSummaryPage.clickLookupIcon();
+        dockManagementSummaryPage.clickLocationIcon();
+    }
+
+    @Step
+    @Then("Go to Lookup Label page")
+    public void goToLookupLabelPage() {
+        log.info("Go to Lookup Label page");
+        dockManagementSummaryPage.clickLookupIcon();
+        dockManagementSummaryPage.clickLabelIcon();
     }
 
     @Step

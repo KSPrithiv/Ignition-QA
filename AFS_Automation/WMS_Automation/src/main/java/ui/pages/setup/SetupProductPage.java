@@ -279,6 +279,7 @@ public class SetupProductPage extends BasePage {
     By valueInput = By.cssSelector("input[id='Value']");
     By notificationMsg = By.cssSelector(".toast-message");
     By ddlDateEncodingDropDown = By.id("ddlDateEncoding");
+    By loader = By.cssSelector(".loader");
 
     public WebElement getDateEncodingRow(String row) {
         return findWebElement(By.xpath("//div[@role='dialog']//tr[@data-grid-row-index='" + row + "']"));
@@ -293,8 +294,7 @@ public class SetupProductPage extends BasePage {
     }
 
     public void waitSetupProductPageToLoad() {
-        Waiters.waitUntilPageWillLoadedSelenide();
-        Waiters.waitABit(3000);
+        waitUntilInvisible(5, loader);
         Waiters.waitForElementToBeDisplay(productLabel);
         Waiters.waitForElementToBeDisplay(productTypeLabel);
         Waiters.waitForElementToBeDisplay(unitOfMeasureLabel);

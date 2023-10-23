@@ -1,11 +1,30 @@
 {
+  "lookup dates":
+  {
+    "lookup date 1": "12/12/2050",
+    "lookup date 2": "01012017",
+    "lookup date 3": "01012018",
+    "lookup date 4": "01012023",
+    "lookup date 5": "01012022",
+    "lookup date 6": "01/01/2060"
+  },
+  "lookup trailers":
+  {
+    "lookup trailer 1": "(none)",
+    "lookup trailer 2": "S01",
+    "lookup trailer 3": "S02",
+    "lookup trailer 4": "T100",
+    "lookup trailer 5": "T200",
+    "lookup trailer 6": "T300"
+  },
   "lookup locations":
   {
-    "lookup location 1": "A03A2",
-    "lookup location 2": "A05B1",
-    "lookup location 3": "A01B1",
-    "lookup location 4": "A04B2",
-    "lookup location 5": "A03A1"
+    "lookup location 1": "A02B2",
+    "lookup location 2": "A03A1",
+    "lookup location 3": "A02C2",
+    "lookup location 4": "A01B1",
+    "lookup location 5": "A03B2",
+    "lookup location 6": "A04A1"
   },
   "lookup LPNs":
   {
@@ -47,11 +66,11 @@
   },
   "lookup unit status reasons":
   {
-    "lookup unit status reason 1": "Close to Expiring",
+    "lookup unit status reason 1": "Cleaning Process",
     "lookup unit status reason 2": "Damaged",
-    "lookup unit status reason 3": "Expired/Spoiled",
-    "lookup unit status reason 4": "Quality Control Inspection",
-    "lookup unit status reason 5": "Ripen Inventory"
+    "lookup unit status reason 3": "Driver Return",
+    "lookup unit status reason 4": "Receiving Error",
+    "lookup unit status reason 5": "Production Outputs"
   },
   "lookup unit products":
   {
@@ -72,12 +91,14 @@
   },
   "lookup suppliers":
   {
-    "lookup supplier 1": "ROWLAND - ROWLAND FARMS",
-    "lookup supplier 2": "61759 - Negocients U.S.e.",
-    "lookup supplier 3": "2451 - Nothern Haserot",
-    "lookup supplier 4": "29714 - Dreyfus eshby",
-    "lookup supplier 5": "6750 - Reynolds Metal",
-    "lookup supplier 6": "29714 - Dreyfus eshby"
+    "lookup supplier 1": "0044",
+    "lookup supplier 2": "15000",
+    "lookup supplier 3": "W01",
+    "lookup supplier 4": "2452",
+    "lookup supplier 5": "10616",
+    "lookup supplier 6": "8877",
+    "lookup supplier 7": "3802",
+    "lookup supplier 8": "4368"
   },
   "lookup UOMS":
   {
@@ -86,11 +107,13 @@
   },
   "lookup products":
   {
-    "lookup product 1": "000026",
-    "lookup product 2": "000028X",
-    "lookup product 3": "00023D",
-    "lookup product 4": "00610",
-    "lookup product 5": "00736"
+    "lookup product 1": "000013",
+    "lookup product 2": "000014",
+    "lookup product 3": "000015",
+    "lookup product 4": "000016",
+    "lookup product 5": "000020",
+    "lookup product 6": "000026",
+    "lookup product 7": "00002D"
   },
   "lookup product UOMs":
   {
@@ -113,5 +136,14 @@
   {
     "lookup staged 1": "No",
     "lookup staged 2": "Yes"
+  },
+  "lookup exp dates":
+  {
+    "lookup exp date 1": "12/12/2060",
+    "lookup exp date 2": "12/12/2050",
+    "lookup exp date 3": "01/01/2060",
+    "lookup exp date 4": "10/25/2020",
+    "lookup exp date 5": "10/25/2050",
+    "lookup exp date 6": "10/25/2060"
   }
 }

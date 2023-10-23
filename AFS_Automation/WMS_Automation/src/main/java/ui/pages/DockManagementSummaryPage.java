@@ -95,6 +95,10 @@ public class DockManagementSummaryPage extends BasePage {
     By setupProductIcon = By.xpath("//div[contains(@id, 'accesscpwmssettingssystem')]//div[contains(text(), 'Product')]");
     By appointmentsIcon = By.xpath("//ul[contains(@class, 'drawer-menu-list-items')]//span[text()='Appointments']");
     By locationIcon = By.xpath("//div[@class='submenu-items-list']//div[contains(text(), 'Location') and @class='submenu-item-text']");
+
+    By labelIcon = By.xpath("//div[@class='submenu-items-list']//div[contains(text(), 'Label') and @class='submenu-item-text']");
+
+
     By productIcon = By.xpath("//div[@class='submenu-items-list']//div[contains(text(), 'Product') and @class='submenu-item-text']");
     By dockManagementIcon = By.xpath("//div[@class='submenu-items-list']//div[contains(text(), 'Dock Management') and @class='submenu-item-text']");
     By lookupReportsIcon = By.xpath("//div[@class='submenu-items-list']//div[contains(text(), 'Lookup Reports') and @class='submenu-item-text']");
@@ -127,6 +131,7 @@ public class DockManagementSummaryPage extends BasePage {
     By wpChillTask = By.xpath("//div[contains(@class, 'i-card__card__body')][.//h4[text()='Assignments by Group']]//*[text()='WP CHILL']");
     By xdockPalTask = By.xpath("//div[contains(@class, 'i-card__card__body')][.//h4[text()='Assignments by Group']]//*[text()='XDOCK PAL']");
     By xrepNdFrzTask = By.xpath("//div[contains(@class, 'i-card__card__body')][.//h4[text()='Assignments by Group']]//*[text()='XREP ND FRZ']");
+    By loader = By.cssSelector(".loader");
 
     public void waitForDockManagementSummaryPageToLoad() {
         Waiters.waitABit(4000);
@@ -273,6 +278,13 @@ public class DockManagementSummaryPage extends BasePage {
         Waiters.waitTillLoadingPage(getDriver());
     }
 
+    public void clickLabelIcon() {
+        Waiters.waitTillLoadingPage(getDriver());
+        Waiters.waitForElementToBeDisplay(getLabelIcon());
+        clickOnElement(getLabelIcon());
+        Waiters.waitTillLoadingPage(getDriver());
+    }
+
     public void clickCountingIcon() {
         Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(getCountingIcon());
@@ -288,10 +300,13 @@ public class DockManagementSummaryPage extends BasePage {
     }
 
     public void clickSetupProductIcon() {
+        waitUntilInvisible(2, loader);
         Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(setupProductIcon);
+        waitUntilStalenessOf(2, getLoader());
         clickOnElement(setupProductIcon);
         Waiters.waitTillLoadingPage(getDriver());
+        waitUntilInvisible(3, loader);
     }
 
     public void clickDockManagementIcon() {
@@ -731,6 +746,8 @@ public class DockManagementSummaryPage extends BasePage {
 
     public WebElement getLocationIcon() { return findWebElement(locationIcon); }
 
+    public WebElement getLabelIcon() { return findWebElement(labelIcon); }
+
     public WebElement getProductIcon() { return findWebElement(productIcon); }
 
     public WebElement getDockManagementIcon() { return findWebElement(dockManagementIcon); }
@@ -904,5 +921,7 @@ public class DockManagementSummaryPage extends BasePage {
     public WebElement getUserProfileIcon() { return findWebElement(userProfileIcon); }
 
     public WebElement getUserProfileLogoutIcon() { return findWebElement(userProfileLogoutIcon); }
+
+    public WebElement getLoader() { return findWebElement(loader); }
 
   }

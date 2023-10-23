@@ -1,7 +1,7 @@
 {
   "start dates":
   {
-    "start date 1": "05/24/2023",
+    "start date 1": "10/13/2023",
     "start date 2": "06/29/2022",
     "start date 3": "01/01/2017",
     "start date 4": "01/01/2022",
@@ -21,8 +21,8 @@
   },
   "outbound routes":
   {
-    "outbound route 1": "ROUTE1",
-    "outbound route 2": "JUNE29",
+    "outbound route 1": "13R01",
+    "outbound route 2": "13R02",
     "outbound route 3": "1184",
     "outbound route 4": "1115",
     "outbound route 5": "1198",
