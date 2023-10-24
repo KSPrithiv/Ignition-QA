@@ -231,6 +231,7 @@ public class OutboundOrderSummaryPage extends BasePage {
 
     public void selectOrderDetailsBox(int num) {
         Waiters.waitTillLoadingPage(getDriver());
+        waitUntilInvisible(5, loader);
         Waiters.waitForElementToBeClickable(getDetailedRowsCheckboxes().get(num));
         scrollToCenter(getDetailedRowsCheckboxes().get(num));
         waitUntilStalenessOf(2, getDetailedRowsCheckboxes().get(num));
@@ -281,16 +282,16 @@ public class OutboundOrderSummaryPage extends BasePage {
         if(findWebElement(arrowChevron).getAttribute("class").contains("down")) {
             clickOnElement(arrowChevron);
         }
-        Waiters.waitTillLoadingPage(getDriver());
+        waitUntilInvisible(2, loader);
         waitUntilStalenessOf(1, getOrderStart().get(0));
         clickOnElement(getOrderStart().get(0));
-        Waiters.waitABit(1000);
+        Waiters.waitABit(2000);
         clearText(getOrderStart().get(0));
         Waiters.waitABit(2000);
         inputText(getOrderStart().get(0), date);
         Waiters.waitABit(1000);
         pressTab(getOrderStart().get(0));
-        Waiters.waitABit(2000);
+        waitUntilInvisible(5, loader);
     }
 
     public void selectWarehouse(String warehouse) {
@@ -408,7 +409,7 @@ public class OutboundOrderSummaryPage extends BasePage {
     }
 
     public void clickClearButton() {
-        Waiters.waitForElementToBeClickable(getClearAccount());
+        waitUntilInvisible(2, loader);
         clickOnElement(getClearAccount());
         Waiters.waitTillLoadingPage(getDriver());
     }
@@ -434,7 +435,7 @@ public class OutboundOrderSummaryPage extends BasePage {
         Waiters.waitForElementToBeClickable(getAllStatusesDropDown());
         clickOnElement(getAllStatusesDropDown());
         Waiters.waitTillLoadingPage(getDriver());
-        waitUntilInvisible(1, loader);
+        waitUntilInvisible(2, loader);
     }
 
     public void clickAssignmentType() {
@@ -477,6 +478,7 @@ public class OutboundOrderSummaryPage extends BasePage {
     }
 
     public void clickBackButton() {
+        waitUntilInvisible(1, loader);
         Waiters.waitTillLoadingPage(getDriver());
         pressPageUp(getBackButton());
         Waiters.waitForElementToBeDisplay(By.xpath("//button[contains(text(), 'Back')]"));
@@ -509,7 +511,7 @@ public class OutboundOrderSummaryPage extends BasePage {
         clickOnElement(getAllStatusesDropDown());
         Waiters.waitABit(3000);
         List<WebElement> statuses = findWebElements(By.xpath("//div[contains(@class, 'k-animation-container-shown')]//li[@role='option']"));
-        Waiters.waitABit(3000);
+        waitUntilInvisible(1, loader);
         WebElement option = statuses.stream()
                  .filter(el -> el.getText().contains(status))
                  .findFirst()
@@ -563,15 +565,17 @@ public class OutboundOrderSummaryPage extends BasePage {
         Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeClickable(getDoorsDropDown());
         clickOnElement(getDoorsDropDown());
+        waitUntilInvisible(1, loader);
         clickOnElement(findWebElement(By.xpath("//div[contains(@class, 'k-animation-container-shown')]//*[contains(text(), '"
                 + door + "')]")));
-        Waiters.waitForForElementToDisappear(getLoadingImage());
+        waitUntilInvisible(1, loader);
     }
 
     public void selectDoorListOption(String door) {
         Waiters.waitTillLoadingPage(getDriver());
-        Waiters.waitForElementToBeClickable(ddDoorListDropDown);
+        Waiters.waitABit(3000);
         clickOnElement(ddDoorListDropDown);
+        waitUntilInvisible(1, loader);
         List<WebElement> doors = findWebElements(By
                 .xpath("//div[contains(@class, 'k-animation-container-shown')]//li[@role='option']"));
         WebElement option = doors.stream()
@@ -584,9 +588,11 @@ public class OutboundOrderSummaryPage extends BasePage {
     public void selectDetailsRow(int num) {
         Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitABit(3000);
+        waitUntilInvisible(1, loader);
+        waitUntilStalenessOf(5, getDetailRows().get(num));
         Waiters.waitForElementToBeDisplay(getDetailRows().get(num));
         clickOnElement(getDetailRows().get(num));
-        waitUntilInvisible(1, loader);
+        waitUntilInvisible(2, loader);
     }
 
     public void selectProductRow(int num) {

@@ -134,7 +134,7 @@ public class DockManagementSummaryPage extends BasePage {
     By loader = By.cssSelector(".loader");
 
     public void waitForDockManagementSummaryPageToLoad() {
-        Waiters.waitABit(4000);
+       waitUntilInvisible(5, loader);
         Waiters.waitForElementToBeDisplay(getTopIcon());
     }
 

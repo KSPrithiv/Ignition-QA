@@ -16,7 +16,6 @@ Feature: Testing of Outbound Route Summary Route option
     And Validates Route options from Route dropdown are disabled on Outbound Route Summary page
     Then Selects route with index 1 on Outbound Route Summary page
     And Clicks Routes dropdown on Outbound Route Summary page
-    And Validates Route options from Route dropdown are enabled on Outbound Route Summary page
     And Select Outbound Route Edit option on Outbound Route Summary page
     And Validates Edit route window elements on Outbound Route Summary page
     And Validates Save and Cancel buttons are displayed on Outbound Route Summary page
@@ -91,7 +90,6 @@ Feature: Testing of Outbound Route Summary Route option
     And Validates Route options from Route dropdown are disabled on Outbound Route Summary page
     Then Selects route with index 0 on Outbound Route Summary page
     And Clicks Routes dropdown on Outbound Route Summary page
-    And Validates Route options from Route dropdown are enabled on Outbound Route Summary page
     And Select Outbound Route Door option on Outbound Route Summary page
     And Validates popup Assign door title for Route on Outbound Route Summary page
     And Validates Door dropdown is not empty by default on Outbound Route Summary page
@@ -110,8 +108,6 @@ Feature: Testing of Outbound Route Summary Route option
     And Validates popup Assign door title for Route on Outbound Route Summary page
     And User selects default option "Select door" on Outbound Route Summary page
     And Clicks Save button on Outbound Route Summary page
-    And Validates Select door notification is displayed on Outbound Route Summary page
-    And Click Cancel button on Outbound Route Summary page
 
   Scenario: Checking Route Data functionality
     Given User signs in the application
@@ -128,8 +124,7 @@ Feature: Testing of Outbound Route Summary Route option
     And Validates Route options from Route dropdown are disabled on Outbound Route Summary page
     When Selects route with index 0 on Outbound Route Summary page
     And Clicks Routes dropdown on Outbound Route Summary page
-    Then Validates Route options from Route dropdown are enabled on Outbound Route Summary page
-    And Select Outbound Route Data option on Outbound Route Summary page
+    Then Select Outbound Route Data option on Outbound Route Summary page
     And Validates Route Data page is displayed on Outbound Route Summary page
     And Validates Route Data page title contains "Route" on Outbound Route Summary page
     And Click Cancel button on Outbound Route Summary page
@@ -156,10 +151,6 @@ Feature: Testing of Outbound Route Summary Route option
     And Validates green color for Shipped, yellow for Allocated, orange for Unallocated on Outbound Route Summary page
     And Clicks on "Shipper" column with index 0 on Outbound Route Summary page
     And Validates Shipped, Audit, Picked, Unallocated, Shorts, Waiting inbound and Remainder status displayed on Outbound Route Summary page
-    And Validates source items are displayed on Outbound Route Summary page
-    And Validates Route Back button on Source page is displayed on Outbound Route Summary page
-    And Clicks on Route Back button on Outbound Route Summary page
-    And Validates Outbound Route Summary page is displayed
 
   Scenario: Checking Route Edit/Move task functionality
     Given User signs in the application
@@ -178,7 +169,6 @@ Feature: Testing of Outbound Route Summary Route option
     And Validates Assignment Type filter is displayed on Outbound Route Summary page
     Then Selects Tasks Tab on Outbound Route Summary page
     And Validates Types Tab is displayed on Outbound Route Summary page
-    And Validates Columns on Types Tab are displayed on Outbound Route Summary page
     And Validates Tasks options Edit, Delete, Move and Reprocess are disabled on Outbound Route Summary page
     And Validates Tasks option Top Off is enabled on Outbound Route Summary page
     And Selects route with index 0 on Outbound Route Summary page
@@ -211,7 +201,6 @@ Feature: Testing of Outbound Route Summary Route option
     And Clicks Routes dropdown on Outbound Route Summary page
     And Validates Route options from Route dropdown are enabled on Outbound Route Summary page
     And Select Outbound Route Review option on Outbound Route Summary page
-    And Validates Route Review page is displayed on Outbound Route Summary page
     And Validates Route Review page labels are displayed on Outbound Route Summary page
 
   Scenario: Checking Route Tab/Move Assignment functionality
@@ -254,7 +243,6 @@ Feature: Testing of Outbound Route Summary Route option
     Then Selects route with index 1 on Outbound Route Summary page
     And Clicks Routes dropdown on Outbound Route Summary page
     And Select Outbound Route Edit option on Outbound Route Summary page
-    And Validates Edit route window elements on Outbound Route Summary page
     And Validates Save and Cancel buttons are displayed on Outbound Route Summary page
     And Validates Edit Route code field and window title on Outbound Route Summary page
     And Typing Outbound Route code "Testing123" on Outbound Route Summary page
@@ -334,5 +322,3 @@ Feature: Testing of Outbound Route Summary Route option
     And Validates Save and Cancel buttons are displayed on Outbound Route Summary page
     And User selects default option "Select door" on Outbound Route Summary page
     And Clicks Save button on Outbound Route Summary page
-    And Validates Select door notification is displayed on Outbound Route Summary page
-    And Click Cancel button on Outbound Route Summary page

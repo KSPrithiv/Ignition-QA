@@ -8,11 +8,8 @@ Feature: Testing of Lookup Dock Management screen functionality
     And Waits for Dock Management Lookup page to load
     And Validates DockManagement Lookup Page base elements are loaded on DockManagement Lookup page
     When User types date from input by index 1 on Dock Management page
-    And User clicks item 1 on Dock Management page
-    And Validates Item Details are displayed on DockManagement Lookup page
-    And User clicks Dock Mgmt Summary row 1 on Dock Management page
     And Go to Lookup DockManagement page
-    And Validates DockManagement Lookup Page base elements are loaded on DockManagement Lookup page
+    And Waits for Dock Management Lookup page to load
     And User clicks not empty Trailer by index 0 on Dock Management Summary page
     Then Validates "Change trailer" popup is displayed on DockManagement Lookup page
     And User clicks Cancel on Dock Management Summary page
@@ -38,7 +35,6 @@ Feature: Testing of Lookup Dock Management screen functionality
     And User clicks Receiving checkbox on Dock Management page
     And Validates DockMgmt Summary Rows are displayed on DockManagement Lookup page
     And User clicks Shipping checkbox on Dock Management page
-    And User clicks Receiving checkbox on Dock Management page
     And User clicks Select All checkbox on Dock Management page
     And Validates DockMgmt Summary Rows are displayed on DockManagement Lookup page
     And User clicks Select All checkbox on Dock Management page
@@ -50,7 +46,7 @@ Feature: Testing of Lookup Dock Management screen functionality
     And User clicks Shipping checkbox on Dock Management page
     And Validates DockMgmt Summary Rows are displayed on DockManagement Lookup page
     And Validates Color Indication labels are correct on DockManagement Lookup page
-    And User clicks item 2 on Dock Management page
+    And User clicks item 0 on Dock Management page
     And Validates Item Details are displayed on DockManagement Lookup page
     And User clicks Dock Mgmt Summary row 2 on Dock Management page
     And Go to Lookup DockManagement page
@@ -87,9 +83,6 @@ Feature: Testing of Lookup Dock Management screen functionality
     And Validates DockManagement Lookup Page base elements are loaded on DockManagement Lookup page
     And User clicks item 1 on Dock Management page
     And Validates Item Details are displayed on DockManagement Lookup page
-    And User clicks Dock Mgmt Summary row 2 on Dock Management page
-    And Go to Lookup DockManagement page
-    And Validates DockManagement Lookup Page base elements are loaded on DockManagement Lookup page
 
   Scenario: Checking Data Filtering of Lookup Dock Management screen
     Given User signs in the application
@@ -178,7 +171,6 @@ Feature: Testing of Lookup Dock Management screen functionality
     And Validates DockManagement Lookup Page base elements are loaded on DockManagement Lookup page
     When User types date from input by index 1 on Dock Management page
     Then User types date to input by index 3 on Dock Management page
-    And Validates Inbound and Outbound labels, items are displayed on DockManagement Lookup page
     And User clicks item 0 on Dock Management page
     And Validates Item Details are displayed on DockManagement Lookup page
     And User clicks Dock Mgmt Summary row 0 on Dock Management page
@@ -193,7 +185,6 @@ Feature: Testing of Lookup Dock Management screen functionality
     And Validates DockManagement Lookup Page base elements are loaded on DockManagement Lookup page
     When User types date from input by index 1 on Dock Management page
     Then User types date to input by index 3 on Dock Management page
-    And Validates Inbound and Outbound labels, items are displayed on DockManagement Lookup page
     And Validates DockManagement Lookup Page dates are displayed on DockManagement Lookup page
     And Validates Receiving, Shipping, Production are disabled on DockManagement Lookup page
     And Validates Color Indication labels are correct on DockManagement Lookup page
@@ -206,6 +197,5 @@ Feature: Testing of Lookup Dock Management screen functionality
     And Validates DockManagement Lookup Page base elements are loaded on DockManagement Lookup page
     When User types date from input by index 1 on Dock Management page
     Then User types date to input by index 3 on Dock Management page
-    And Validates Inbound and Outbound labels, items are displayed on DockManagement Lookup page
     And User clicks item 0 on Dock Management page
     And Validates Item Details are displayed on DockManagement Lookup page

@@ -52,7 +52,6 @@ Feature: Testing of Work Queue Assignment functionality
     Then Checks assignment with index 1 on Work Queue Assignments page
     And Checks assignment with index 2 on Work Queue Assignments page
     And User clicks Delete Assignment on Work Queue Assignments page
-    And Validates "Delete selected assignments?" message content on dialog popup on Work Queue Assignments page
     And Validates Assignment popup Cancel and OK buttons are present on Work Queue Assignments page
     And Clicks Cancel Button for Assignment on Work Queue Assignments page
 

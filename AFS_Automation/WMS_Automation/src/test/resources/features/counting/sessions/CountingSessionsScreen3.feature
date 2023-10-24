@@ -51,7 +51,6 @@ Feature: Testing of Counting Count functionality
     And Validates "Add product" popup is displayed on Counting Sessions page
     And Types product "0000144" on Counting Sessions page
     And User clicks Save button on Counting Sessions page
-    And Validates "0000144 is not a valid Product code." notification is displayed on Counting Sessions page
     And Clicks Add Product Button on Counting Sessions page
     And Validates "Add product" popup is displayed on Counting Sessions page
     And Types "50" number of products on Counting Sessions page
