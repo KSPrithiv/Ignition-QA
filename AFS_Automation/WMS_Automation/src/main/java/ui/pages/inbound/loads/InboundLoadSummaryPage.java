@@ -142,6 +142,7 @@ public class InboundLoadSummaryPage extends BasePage {
     }
 
     public void waitInboundLoadSummaryPageToLoad() {
+        waitUntilInvisible(8, loader);
         Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(getTopIcon());
         Waiters.waitForElementToBeDisplay(getLoadOptionsButton());
@@ -369,7 +370,7 @@ public class InboundLoadSummaryPage extends BasePage {
         waitUntilInvisible(2, loader);
         Waiters.waitTillLoadingPage(getDriver());
         clickOnElement(routeBackButton);
-        Waiters.waitTillLoadingPage(getDriver());
+        waitUntilInvisible(2, loader);
     }
 
     public void clickNoButton() {

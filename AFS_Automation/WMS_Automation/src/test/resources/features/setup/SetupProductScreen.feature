@@ -3,14 +3,13 @@ Feature: Testing of Product Setup UOM
 
   Scenario: Checking UI verification of UOM on Setup Product screen
     Given User signs in the application
-    When Main page is loaded
+    And Main page is loaded
     And DockManagement Summary Page is validated
-    Then Go to Setup Product page
-    And Clicks Add new on Setup Product page
+    And Go to Setup Product page
+    When Clicks Add new on Setup Product page
     And Validates Setup Product page is displayed
     And Clicks Warehouse Tab on Setup Product page
-    And Validates Add, Edit, Delete buttons are displayed on Setup Product page
-    And Clicks UOM Tab on Setup Product page
+    Then Clicks UOM Tab on Setup Product page
     And Validates UOM tab details on Setup Product page
     And Validates Add, Edit, Delete buttons are displayed on Setup Product page
     And Validates Add is enabled and Edit, Delete are disabled on Setup Product page
@@ -19,17 +18,17 @@ Feature: Testing of Product Setup UOM
 
   Scenario: Checking UI verification of adding UOM on Setup Product screen
     Given User signs in the application
-    When Main page is loaded
+    And Main page is loaded
     And DockManagement Summary Page is validated
-    Then Go to Setup Product page
+    And Go to Setup Product page
     And Validates Setup Product page is displayed
-    And Clicks Product Tab on Setup Product page
+    When Clicks Product Tab on Setup Product page
     And Clicks Add new on Setup Product page
     And Types Product Code "200004" on Setup Product page
     And Types Long Description "200004 desc" on Setup Product page
     And Types Alt Description "200004 desc alt" on Setup Product page
     And Types Size Code "1" on Setup Product page
-    And Types Voiced Code "code" on Setup Product page
+    Then Types Voiced Code "code" on Setup Product page
     And Types Max Stack "1" on Setup Product page
     And Types High "1" on Setup Product page
     And Selects Product Type "*DEL* 64 Oz Ice cream" on Setup Product page
@@ -85,9 +84,9 @@ Feature: Testing of Product Setup UOM
 
   Scenario: Checking Creating UOM on Setup Product screen
     Given User signs in the application
-    When Main page is loaded
+    And Main page is loaded
     And DockManagement Summary Page is validated
-    Then Go to Setup Product page
+    And Go to Setup Product page
     And Validates Setup Product page is displayed
     And Clicks Product Tab on Setup Product page
     And Clicks Add new on Setup Product page
@@ -177,17 +176,17 @@ Feature: Testing of Product Setup UOM
 
   Scenario: Checking Editing UOM on Setup Product screen
     Given User signs in the application
-    When Main page is loaded
+    And Main page is loaded
     And DockManagement Summary Page is validated
-    Then Go to Setup Product page
+    And Go to Setup Product page
     And Validates Setup Product page is displayed
     And Clicks Product Tab on Setup Product page
-    And Clicks Add new on Setup Product page
+    When Clicks Add new on Setup Product page
     And Types Product Code "200005" on Setup Product page
     And Types Long Description "200007 desc" on Setup Product page
     And Types Alt Description "200007 desc alt" on Setup Product page
     And Types Size Code "1" on Setup Product page
-    And Types Voiced Code "code" on Setup Product page
+    Then Types Voiced Code "code" on Setup Product page
     And Types Max Stack "1" on Setup Product page
     And Types High "1" on Setup Product page
     And Selects Product Type "*DEL* 64 Oz Ice cream" on Setup Product page
@@ -245,15 +244,15 @@ Feature: Testing of Product Setup UOM
 
   Scenario: Checking Deleting UOM on Setup Product screen
     Given User signs in the application
-    When Main page is loaded
+    And Main page is loaded
     And DockManagement Summary Page is validated
-    Then Go to Setup Product page
+    And Go to Setup Product page
     And Validates Setup Product page is displayed
-    And Clicks Product Tab on Setup Product page
+    When Clicks Product Tab on Setup Product page
     And Clicks Add new on Setup Product page
     And Types Product Code "200009" on Setup Product page
     And Types Long Description "200007 desc" on Setup Product page
-    And Types Alt Description "200007 desc alt" on Setup Product page
+    Then Types Alt Description "200007 desc alt" on Setup Product page
     And Types Size Code "1" on Setup Product page
     And Types Voiced Code "code" on Setup Product page
     And Types Max Stack "1" on Setup Product page

@@ -10,9 +10,10 @@ public class AppointmentSchedulerLinkedOrdersPopUpPage extends BasePage {
     By linkedOrdersPopUpContent = By.cssSelector("div.k-window-content");
     By linkedOrdersPopUpCancelButton = By.xpath("//button[@class='k-button k-button-icontext']");
     By linkedOrdersPopUpOkButton = By.xpath("//button[@class='k-button k-primary k-button-icontext']");
+    By loader = By.cssSelector(".loader");
 
     public void waitForAppointmentSchedulerLinkedOrdersPopUpPageToLoad() {
-        Waiters.waitUntilPageWillLoadedSelenide();
+        waitUntilInvisible(8, loader);
         Waiters.waitForElementToBeDisplay(getLinkedOrdersPopUpTitle());
         Waiters.waitForElementToBeDisplay(getLinkedOrdersPopUpContent());
     }

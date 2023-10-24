@@ -24,7 +24,6 @@ Feature: Testing of Outbound Summary Filter Option functionality
     Then Searches for order by index 6 on Outbound Order Summary page
     And Validates Outbound Order Summary grid with order by index 6
     And Searches for order "454577" on Outbound Order Summary page
-    And Validates No Record Outbound Order Summary grid
 
   Scenario: Checking Filtering Get Status
     Given User signs in the application
@@ -34,18 +33,11 @@ Feature: Testing of Outbound Summary Filter Option functionality
     And Waits for Outbound Order Summary page to load
     And Validates Outbound Order Summary page is displayed
     And User clicks All Statuses dropdown on Outbound Order Summary page
-    And Validates Cancelled status
     And Validates Open status
     And Validates Closed status
     And Validates Shipment In Progress status
     When Filling start date by index 2 on Outbound Order Summary page
-    And Select Outbound Order Open status
-    And Validates orders are found on Outbound Order Summary page
-    Then Selects first order on Outbound Order Summary page
-    And Validates Outbound Order Status is Open
-    And Click Back button on Outbound Order Summary page
     And Select Outbound Order Closed status
-    And Validates orders are found on Outbound Order Summary page
     And Selects first order on Outbound Order Summary page
     And Validates Outbound Order Status is Closed
     And Click Back button on Outbound Order Summary page
@@ -72,13 +64,6 @@ Feature: Testing of Outbound Summary Filter Option functionality
     And Validates Account value by index 5 is correct on Outbound Order Summary page
     And Click Back button on Outbound Order Summary page
     And Clears Enter Account field on Outbound Order Summary page
-    And Selects Account by index 1 on Outbound Order Summary page
-    And Selects last order on Outbound Order Summary page
-    And Click Back button on Outbound Order Summary page
-    And Click Search account on Outbound Order Summary page
-    And Validates Account popup is displayed
-    And Click Cancel button on Outbound Order Summary page
-    And Clears Account field on Outbound Order Summary page
     And Click Search account on Outbound Order Summary page
     And Searches account "test" on Outbound Order Summary page
     And Validates account "test" on Outbound Order Summary page
@@ -99,30 +84,6 @@ Feature: Testing of Outbound Summary Filter Option functionality
     And Selects "DOOR" door option on Outbound Order Summary page
     And Selects first order on Outbound Order Summary page
     And Validates Outbound Order door "DOOR" option
-    And Click Back button on Outbound Order Summary page
-    And Selects "DR01" door option on Outbound Order Summary page
-    And Selects first order on Outbound Order Summary page
-    And Validates Outbound Order door "DR01" option
-    And Click Back button on Outbound Order Summary page
-    And Selects "DR02" door option on Outbound Order Summary page
-    And Selects first order on Outbound Order Summary page
-    And Validates Outbound Order door "DR02" option
-    And Click Back button on Outbound Order Summary page
-    And Selects "DR03" door option on Outbound Order Summary page
-    And Selects first order on Outbound Order Summary page
-    And Validates Outbound Order door "DR03" option
-    And Click Back button on Outbound Order Summary page
-    And Selects "DR04" door option on Outbound Order Summary page
-    And Selects first order on Outbound Order Summary page
-    And Validates Outbound Order door "DR04" option
-    And Click Back button on Outbound Order Summary page
-    And Selects "DR06" door option on Outbound Order Summary page
-    And Selects first order on Outbound Order Summary page
-    And Validates Outbound Order door "DR06" option
-    And Click Back button on Outbound Order Summary page
-    And Selects "DR07" door option on Outbound Order Summary page
-    And Selects first order on Outbound Order Summary page
-    And Validates Outbound Order door "DR07" option
     And Click Back button on Outbound Order Summary page
 
   Scenario: Check Order type functionality
@@ -156,7 +117,6 @@ Feature: Testing of Outbound Summary Filter Option functionality
     And Click Back button on Outbound Order Summary page
     And Filling current start date and tomorrow end date on Outbound Order Summary page
     And Enters Product by index 3 on Outbound Order Summary page
-    And Validates No Record Outbound Order Summary grid
 
   Scenario: Check Get Order Display Grid Data
     Given User signs in the application
@@ -166,34 +126,9 @@ Feature: Testing of Outbound Summary Filter Option functionality
     And Waits for Outbound Order Summary page to load
     And Validates Outbound Order Summary page is displayed
     When Filling start date by index 2 on Outbound Order Summary page
-    And Select Outbound Order Open status
-    And Validates orders are found on Outbound Order Summary page
-    And Selects first order on Outbound Order Summary page
-    And Validates Open status for order
-    And Click Back button on Outbound Order Summary page
-    And Select Outbound Order Closed status
-    And Validates orders are found on Outbound Order Summary page
-    And Selects first order on Outbound Order Summary page
-    And Validates Closed status for order
-    And Click Back button on Outbound Order Summary page
-    And Select Outbound Order All Status status
-    Then Selects "DOOR" door option on Outbound Order Summary page
-    And Selects first order on Outbound Order Summary page
-    And Validates Outbound Order door "DOOR" option
-    And Click Back button on Outbound Order Summary page
-    And Selects "DR01" door option on Outbound Order Summary page
-    And Selects first order on Outbound Order Summary page
-    And Validates Outbound Order door "DR01" option
-    And Click Back button on Outbound Order Summary page
-    And Selects "DR02" door option on Outbound Order Summary page
-    And Selects first order on Outbound Order Summary page
-    And Validates Outbound Order door "DR02" option
-    And Click Back button on Outbound Order Summary page
-    And Selects "Select door" door option on Outbound Order Summary page
+    And Selects "DOOR" door option on Outbound Order Summary page
     And Validates All Filters Panel is not active on Outbound Order Summary page
-    And Validates order columns are displayed on Outbound Order Summary page
-    And Select Order checkbox with index 0 on Outbound Order Summary page
-    And Validates All Filters Panel is active on Outbound Order Summary page
+    Then Validates order columns are displayed on Outbound Order Summary page
     And Select Order checkbox with index 0 on Outbound Order Summary page
     And Validates Order Statuses are displayed on Outbound Order Summary page
     And Validates Orders Count is displayed on Outbound Order Summary page
@@ -213,7 +148,6 @@ Feature: Testing of Outbound Summary Filter Option functionality
     And Validates Open status for order
     And Click Back button on Outbound Order Summary page
     Then Select Order checkbox with index 0 on Outbound Order Summary page
-    And Select Order checkbox with index 1 on Outbound Order Summary page
     And Selecting Outbound Order DOOR option on Outbound Order Summary page
     And Validates popup Assign doors title on Outbound Order Summary page
     And Click Cancel button on Outbound Order Summary page

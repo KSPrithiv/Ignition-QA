@@ -135,6 +135,7 @@ public class WorkQueueAssignmentsPage extends BasePage {
     }
 
     public void clickAssignmentsTitle() {
+        waitUntilInvisible(2, loader);
         Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(assignmentsTitle);
         jsClick(getAssignmentsTitle());
@@ -249,6 +250,7 @@ public class WorkQueueAssignmentsPage extends BasePage {
     }
 
     public void clickAssignmentTypePickDry() {
+        waitUntilInvisible(2, loader);
         Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(assignmentTypePickDry);
         clickOnElement(assignmentTypePickDry);
@@ -511,6 +513,7 @@ public class WorkQueueAssignmentsPage extends BasePage {
     }
 
     public void checkShipToFilterCheckBox() {
+        waitUntilInvisible(2, loader);
         Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(getShipToFilter());
         scrollToCenter(getShipToFilter());
@@ -518,6 +521,7 @@ public class WorkQueueAssignmentsPage extends BasePage {
     }
 
     public void checkTasksFilterCheckBox() {
+        waitUntilInvisible(2, loader);
         Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(getTasksFilter());
         scrollToCenter(getTasksFilter());
@@ -540,6 +544,7 @@ public class WorkQueueAssignmentsPage extends BasePage {
     }
 
     public void checkQtyFilterCheckBox() {
+        waitUntilInvisible(2, loader);
         Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(getQtyFilter());
         scrollToCenter(getQtyFilter());
@@ -547,6 +552,7 @@ public class WorkQueueAssignmentsPage extends BasePage {
     }
 
     public void checkCubeFilterCheckBox() {
+        waitUntilInvisible(2, loader);
         Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(getCubeFilter());
         scrollToCenter(getCubeFilter());
@@ -554,6 +560,7 @@ public class WorkQueueAssignmentsPage extends BasePage {
     }
 
     public void checkWeightFilterCheckBox() {
+        waitUntilInvisible(2, loader);
         Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(getWeightFilter());
         scrollToCenter(getWeightFilter());
@@ -576,6 +583,7 @@ public class WorkQueueAssignmentsPage extends BasePage {
     }
 
     public void checkPercentPickedFilterCheckBox() {
+        waitUntilInvisible(2, loader);
         Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(getPercentPickedFilter());
         scrollToCenter(getPercentPickedFilter());
@@ -590,6 +598,7 @@ public class WorkQueueAssignmentsPage extends BasePage {
     }
 
     public void checkEstimatedTimeFilterCheckBox() {
+        waitUntilInvisible(2, loader);
         Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(getEstimatedTimeFilter());
         scrollToCenter(getEstimatedTimeFilter());
@@ -597,6 +606,7 @@ public class WorkQueueAssignmentsPage extends BasePage {
     }
 
     public void checkStandardTimeFilterCheckBox() {
+        waitUntilInvisible(2, loader);
         Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(getStandardTimeFilter());
         scrollToCenter(getStandardTimeFilter());
@@ -604,6 +614,7 @@ public class WorkQueueAssignmentsPage extends BasePage {
     }
 
     public void checkActualTimeFilterCheckBox() {
+        waitUntilInvisible(2, loader);
         Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(getActualTimeFilter());
         scrollToCenter(getActualTimeFilter());
@@ -618,6 +629,7 @@ public class WorkQueueAssignmentsPage extends BasePage {
     }
 
     public void checkRemainingFilterCheckBox() {
+        waitUntilInvisible(2, loader);
         Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(getRemainingFilter());
         scrollToCenter(getRemainingFilter());

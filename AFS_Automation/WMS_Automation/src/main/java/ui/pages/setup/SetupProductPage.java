@@ -644,6 +644,7 @@ public class SetupProductPage extends BasePage {
     }
 
     public void clickDeleteSettingsBtn() {
+        waitUntilInvisible(2, loader);
         Waiters.waitForElementToBeDisplay(getDeleteSettingsButton());
         clickOnElement(getDeleteSettingsButton());
         Waiters.waitABit(2000);

@@ -87,10 +87,14 @@ public class DockManagementLookupPage extends BasePage {
     }
 
     public void clickNotEmptyTrailerByIndex(int index) {
+        waitUntilVisible(10, loader);
         Waiters.waitTillLoadingPage(getDriver());
-        Waiters.waitForPresenceOfAllElements(notEmptyTrailer);
-        waitUntilStalenessOf(2, getNotEmptyTrailers().get(index));
-        clickOnElement(getNotEmptyTrailers().get(index));
+        Waiters.waitABit(5000);
+        Waiters.waitForElementsToBeDisplay(getNotEmptyTrailers());
+        WebElement trailer = getNotEmptyTrailers().get(index);
+        waitUntilStalenessOf(2, trailer);
+        Waiters.waitABit(5000);
+        clickOnElement(trailer);
     }
 
     public void clickNotEmptyScheduledByIndex(int index) {
@@ -235,7 +239,7 @@ public class DockManagementLookupPage extends BasePage {
         Waiters.waitABit(1000);
         waitUntilStalenessOf(1, getDateInputFilterDate());
         pressTab(getDateInputFilterDate());
-        waitUntilInvisible(2, loader);
+        waitUntilInvisible(10, loader);
     }
 
     public void typeDockMgmtToDate(String date) {
@@ -259,7 +263,7 @@ public class DockManagementLookupPage extends BasePage {
         Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(chkBoxShowAll);
         Waiters.waitABit(1000);
-        clickOnElement(chkBoxShowAll);
+        jsClick(getChkBoxShowAll());
         waitUntilInvisible(2, loader);
     }
 
@@ -268,7 +272,7 @@ public class DockManagementLookupPage extends BasePage {
         Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(chkBoxReceiving);
         Waiters.waitABit(1000);
-        clickOnElement(chkBoxReceiving);
+        jsClick(getChkBoxReceiving());
         waitUntilInvisible(2, loader);
     }
 
@@ -277,7 +281,7 @@ public class DockManagementLookupPage extends BasePage {
         Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(chkBoxShipping);
         Waiters.waitABit(1000);
-        clickOnElement(chkBoxShipping);
+        jsClick(getChkBoxShipping());
         waitUntilInvisible(2, loader);
     }
 
@@ -286,7 +290,7 @@ public class DockManagementLookupPage extends BasePage {
         Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(chkBoxProduction);
         Waiters.waitABit(1000);
-        clickOnElement(chkBoxProduction);
+        jsClick(getChkBoxProduction());
         waitUntilInvisible(2, loader);
     }
 

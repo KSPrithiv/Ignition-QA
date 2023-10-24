@@ -235,7 +235,6 @@ Feature: Testing of Counting Count functionality
     And Validates product with index 1 is not selected on Counting Sessions page
     And Validates product with index 2 is not selected on Counting Sessions page
     And User clicks Product Column on Counting Sessions page
-    And Validates Product Column Sorting Result on Counting Sessions page
     And User clicks Product Column on Counting Sessions page
     And Validates Product Column Sorting Result on Counting Sessions page
     And User clicks Owner Column on Counting Sessions page

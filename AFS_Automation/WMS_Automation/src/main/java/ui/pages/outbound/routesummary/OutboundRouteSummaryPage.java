@@ -462,18 +462,21 @@ public class OutboundRouteSummaryPage extends BasePage {
         Waiters.waitForElementToBeDisplay(getUserDropdown());
         Waiters.waitABit(5000);
         clickOnElement(getUserDropdown());
+        waitUntilInvisible(2, loader);
     }
 
     public void clickRoutesDropdown() {
         Waiters.waitForElementToBeDisplay(getRouteOptions());
         Waiters.waitABit(4000);
         clickOnElement(getRouteOptions());
+        waitUntilInvisible(2, loader);
     }
 
     public void clickCarrierDropdown() {
         Waiters.waitForElementToBeDisplay(getCarrierInput());
         Waiters.waitABit(5000);
         clickOnElement(getCarrierInput());
+        waitUntilInvisible(2, loader);
     }
 
     public void clickAssignmentTypeFilter() {
@@ -770,8 +773,9 @@ public class OutboundRouteSummaryPage extends BasePage {
         scrollToCenter(routes.get(index));
         waitUntilStalenessOf(2, routes.get(index));
         Waiters.waitABit(3000);
+        waitUntilInvisible(2, loader);
         jsClick(routes.get(index));
-        waitUntilInvisible(1, loader);
+        waitUntilInvisible(2, loader);
     }
 
     public void selectRouteByRowNumber(int index) {

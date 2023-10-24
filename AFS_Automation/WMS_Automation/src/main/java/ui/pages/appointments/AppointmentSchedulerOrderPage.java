@@ -36,6 +36,10 @@ public class AppointmentSchedulerOrderPage extends BasePage {
     By orderTypeColumn = By.xpath("//span[contains(text(), 'Order type')]");
     By qtyColumn = By.xpath("//span[contains(text(), 'Qty')]");
     By invalidOrder = By.xpath("//span[contains(text(), 'Invalid order')]");
+    By dateInputSchedulerDateLabel = By.id("dateInputSchdulerDate-label");
+    By dateInputSchedulerDate = By.id("dateInputSchdulerDate");
+    By timeInputFilterTimeLabel = By.id("timeInputFilterTime-label");
+    By timeInputFilterTime = By.id("timeInputFilterTime");
 
     public void waitForAppointmentSchedulerPageToLoad() {
         Waiters.waitUntilPageWillLoadedSelenide();
@@ -214,47 +218,37 @@ public class AppointmentSchedulerOrderPage extends BasePage {
         return isElementDisplay(getWarehouseColumn());
     }
 
-    public boolean isSourceColumnDisplayed() {
-        return isElementDisplay(getSourceColumn());
-    }
+    public boolean isSourceColumnDisplayed() { return isElementDisplay(getSourceColumn()); }
 
-    public boolean isOrderTypeColumnDisplayed() {
-        return isElementDisplay(getOrderTypeColumn());
-    }
+    public boolean isDateSchedulerLabelDisplayed() { return isElementDisplay(dateInputSchedulerDateLabel); }
 
-    public boolean isQtyColumnDisplayed() {
-        return isElementDisplay(getQtyColumn());
-    }
+    public boolean isDateInputSchedulerLabelDisplayed() { return isElementDisplay(dateInputSchedulerDateLabel); }
 
-    public boolean isDeliveryTypeLabelDisplayed() {
-        return isElementDisplay(getDeliveryTypeLabel());
-    }
+    public boolean isDateInputSchedulerDisplayed() { return isElementDisplay(dateInputSchedulerDate); }
 
-    public boolean isDeliveryTypeDropDownDisplayed() {
-        return isElementDisplay(getDeliveryTypeDropDown());
-    }
+    public WebElement getTimeInputFilterLabel() { return findWebElement(timeInputFilterTimeLabel); }
 
-    public String getDeliveryTypeDropDownText() {
-        return getText(getDeliveryTypeDropDown());
-    }
+    public WebElement getTimeInputFilter() { return findWebElement(timeInputFilterTime); }
 
-    public boolean isEmailLabelDisplayed() {
-        return isElementDisplay(getEmailLabel());
-    }
+    public boolean isOrderTypeColumnDisplayed() { return isElementDisplay(getOrderTypeColumn()); }
 
-    public boolean isEmailInputBoxDisplayed() {
-        return isElementDisplay(getEmailInputBox());
-    }
+    public boolean isQtyColumnDisplayed() { return isElementDisplay(getQtyColumn()); }
 
-    public boolean isAlt1LabelDisplayed() {
-        return isElementDisplay(getAlt1Label());
-    }
+    public boolean isDeliveryTypeLabelDisplayed() { return isElementDisplay(getDeliveryTypeLabel()); }
 
-    public boolean isAlt1InputBoxDisplayed() {
-        return isElementDisplay(getAlt1InputBox());
-    }
+    public boolean isDeliveryTypeDropDownDisplayed() { return isElementDisplay(getDeliveryTypeDropDown()); }
 
-    public boolean isAlt2LabelDisplayed() { return isElementDisplay(getAlt2Label());    }
+    public String getDeliveryTypeDropDownText() { return getText(getDeliveryTypeDropDown()); }
+
+    public boolean isEmailLabelDisplayed() { return isElementDisplay(getEmailLabel()); }
+
+    public boolean isEmailInputBoxDisplayed() { return isElementDisplay(getEmailInputBox()); }
+
+    public boolean isAlt1LabelDisplayed() { return isElementDisplay(getAlt1Label()); }
+
+    public boolean isAlt1InputBoxDisplayed() { return isElementDisplay(getAlt1InputBox()); }
+
+    public boolean isAlt2LabelDisplayed() { return isElementDisplay(getAlt2Label()); }
 
     public boolean isAlt2InputBoxDisplayed() {
         return isElementDisplay(getAlt2InputBox());
@@ -345,5 +339,13 @@ public class AppointmentSchedulerOrderPage extends BasePage {
     public By getInvalidOrder() {
         return invalidOrder;
     }
+
+    public WebElement getDateInputSchedulerDateLabel() { return findWebElement(dateInputSchedulerDateLabel); }
+
+    public WebElement getDateInputSchedulerDate() { return findWebElement(dateInputSchedulerDate); }
+
+    public WebElement getTimeInputFilterTimeLabel() { return findWebElement(timeInputFilterTimeLabel); }
+
+    public WebElement getTimeInputFilterTime() { return findWebElement(timeInputFilterTime); }
 
 }

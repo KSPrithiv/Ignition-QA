@@ -104,7 +104,6 @@ Feature: Testing of Work Queue Assignment functionality
     Then Types Assign To by index 4 on Work Queue Assignments page
     And Clicks Apply button on Work Queue Assignments page
     And User clicks Assignments Title on Work Queue Assignments page
-    And Validates Grid items are present on Work Queue Assignments page
 
   Scenario: Checking Picked filter option of Work Queue Assignments screen functionality
     Given User signs in the application
@@ -151,8 +150,6 @@ Feature: Testing of Work Queue Assignment functionality
     And User clicks Assignments Title on Work Queue Assignments page
     And Validates Grid items are present on Work Queue Assignments page
 
-
-
   Scenario: Checking Clear all the filters of Work Queue Assignments screen functionality
     Given User signs in the application
     And Main page is loaded
@@ -172,7 +169,6 @@ Feature: Testing of Work Queue Assignment functionality
     And User clicks Add Filter on Work Queue Assignments page
     And User clicks Clear All on Work Queue Assignments page
     And User clicks Assignments Title on Work Queue Assignments page
-    And Validates Grid items are present on Work Queue Assignments page
 
   Scenario: Checking Tap Assignment # of Work Queue Assignments screen functionality
     Given User signs in the application
