@@ -23,8 +23,6 @@ import java.io.IOException;
                         "rerun:target/failedrerun.txt"},
                 monochrome = true)
 
-
-
 public class TestRunnerAdmin_Grid extends AbstractTestNGCucumberTests
 {
     /* Created by Divya.Ramadas@afsi.com */

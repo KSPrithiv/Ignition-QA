@@ -120,44 +120,52 @@ public class LoginPageStep
         }
         Thread.sleep(4000);
         String titleLogin=driver.getTitle();
-        if(titleLogin.equals("Order Cart") || titleLogin.equals("Product Catalog"))
+        if(HelpersMethod.IsExists("//div[contains(@class,'k-widget k-window k-dialog')]",driver))
         {
-            driver.navigate().to(TestBase.testEnvironment.get_url());
-            status = HelpersMethod.returnDocumentStatus(driver);
-            if (status.equals("loading"))
+            JavascriptExecutor js = ((JavascriptExecutor) driver);
+            js.executeScript("window.location.reload()");
+            WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(800000));
+          /*  if(wait.until(ExpectedConditions.alertIsPresent())==null)
             {
-                HelpersMethod.waitTillLoadingPage(driver);
+
             }
-            if(HelpersMethod.IsExists("//div[@class='loader']",driver))
-            {
-                WebElement WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 800000);
-            }
+            else
+            {*/
+                Alert alert = driver.switchTo().alert();
+                alert.accept();
+           // }
         }
-        else if(!tLogin.equals(titleLogin))
-        {
-            productPage = new ProductPage(driver, scenario);
-            pageTitle=driver.getTitle();
-            orderPageTitle=driver.getTitle();
-            if(!pTitle.equals(pageTitle))
-            {
-                String url = driver.getCurrentUrl();
-                driver.navigate().to(url);
-                homepage = new HomePage(driver, scenario);
-                homepage.Click_On_UserIcon();
-                homepage.Click_On_Signout();
-                if(HelpersMethod.IsExists("//div[@class='loader']",driver))
-                {
-                    WebElement WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 800000);
-                }
+            //if(titleLogin.equals("Order Cart") || titleLogin.equals("Product Catalog"))
+            if (titleLogin.equals("Product Catalog")) {
+                driver.navigate().to(TestBase.testEnvironment.get_url());
                 status = HelpersMethod.returnDocumentStatus(driver);
-                if (status.equals("loading"))
-                {
+                if (status.equals("loading")) {
                     HelpersMethod.waitTillLoadingPage(driver);
                 }
+                if (HelpersMethod.IsExists("//div[@class='loader']", driver)) {
+                    WebElement WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
+                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 800000);
+                }
+            } else if (!tLogin.equals(titleLogin)) {
+                productPage = new ProductPage(driver, scenario);
+                pageTitle = driver.getTitle();
+                orderPageTitle = driver.getTitle();
+                if (!pTitle.equals(pageTitle)) {
+                    String url = driver.getCurrentUrl();
+                    driver.navigate().to(url);
+                    homepage = new HomePage(driver, scenario);
+                    homepage.Click_On_UserIcon();
+                    homepage.Click_On_Signout();
+                    if (HelpersMethod.IsExists("//div[@class='loader']", driver)) {
+                        WebElement WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
+                        HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 800000);
+                    }
+                    status = HelpersMethod.returnDocumentStatus(driver);
+                    if (status.equals("loading")) {
+                        HelpersMethod.waitTillLoadingPage(driver);
+                    }
+                }
             }
-        }
     }
 
     @Then("User entered Invalid {string} and {string}")
@@ -173,7 +181,7 @@ public class LoginPageStep
     }
 
     @Then("User entered username and password")
-    public void i_entered_username_and_password() throws InterruptedException, AWTException
+    public void userEnteredUsernameAndPassword() throws InterruptedException, AWTException
     {
         loginpage = new LoginPage(driver, scenario);
         loginpage.EnterUsername(TestBase.testEnvironment.DummyUser());
@@ -345,11 +353,11 @@ public class LoginPageStep
         // orderpage.NoPendingOrderPopup();
         orderpage.NoNotePopHandling();
         orderpage.OrderGuidePopup();
-        if(HelpersMethod.IsExists("//div[@class='loader']",driver))
+       /* if(HelpersMethod.IsExists("//div[@class='loader']",driver))
         {
             WebElement WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
             HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100000);
-        }
+        }*/
 
         if (HelpersMethod.IsExistsById("checkoutCard", driver))
         {

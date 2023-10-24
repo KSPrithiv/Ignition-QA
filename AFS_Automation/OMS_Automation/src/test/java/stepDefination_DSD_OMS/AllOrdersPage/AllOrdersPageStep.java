@@ -10,10 +10,13 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.FluentWait;
+import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import pages_DSD_OMS.allOrder.AllOrderPage;
@@ -145,6 +148,12 @@ public class AllOrdersPageStep
                     {
                         HelpersMethod.waitTillLoadingPage(driver);
                     }
+                    Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                            .withTimeout(Duration.ofSeconds(60))
+                            .pollingEvery(Duration.ofSeconds(5))
+                            .ignoring(NoSuchElementException.class);
+                    wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
                     CurrentULR= driver.getCurrentUrl();
                     scenario.log(CurrentULR);
                 }

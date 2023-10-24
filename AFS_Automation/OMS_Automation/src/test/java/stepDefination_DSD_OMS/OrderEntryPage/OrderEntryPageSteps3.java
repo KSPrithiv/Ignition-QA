@@ -112,6 +112,7 @@ public class OrderEntryPageSteps3
     public void in_order_summary_page_check_whether_low_inventory_products_are_removed_or_not() throws InterruptedException, AWTException
     {
         summary=new CheckOutSummaryPage(driver,scenario);
+        summary.validateSummaryPage();
         int OutOfStockCount=driver.findElements(By.xpath("//tr[contains(@class,'k-master-row')]/descendant::div[contains(@class,'icon-preview-background') and contains(@title,'Out of stock')]")).size();
         List<WebElement> Heads=driver.findElements(By.xpath("//tr[1]/th"));
         int i=0;
@@ -223,6 +224,7 @@ public class OrderEntryPageSteps3
         newOE=new NewOrderEntryPage(driver,scenario);
         newOE.Click_On_PriceOverrideIcon();
         newOE.PriceOverridePopup_WhatIfPricePrice(priceVal.get(0).get(0));
+        newOE.priceCannotBeBleowCost();
         newOE.exceedsMaxQty();
     }
 

@@ -503,13 +503,14 @@ public class OrderEntryPage
                     alert.accept();
                 }
             }
-            else
+           else
             {
-                status = HelpersMethod.returnDocumentStatus(driver);
+               /* status = HelpersMethod.returnDocumentStatus(driver);
                 if (status.equals("loading"))
                 {
                     HelpersMethod.waitTillLoadingPage(driver);
-                }
+                }*/
+
                 WebElement humBurger=HelpersMethod.FindByElement(driver,"xpath","//*[local-name()='svg']//*[local-name()='path' and contains(@d,'M3,18H21V16H3Zm0-5H21V11H3ZM3,6V8H21V6Z')]");
                 act1.moveToElement(humBurger).build().perform();
                 act1.click().build().perform();
@@ -2026,6 +2027,7 @@ public class OrderEntryPage
             }
 
             //Read the route value from the route index
+            Thread.sleep(1000);
             WebElement routeCha=HelpersMethod.FindByElement(driver,"id","RouteIndex");
             routeChange=HelpersMethod.JSGetValueEle(driver,routeCha,1000);
             if(routeChange.equals(TestBase.testEnvironment.get_Route())||routeChange.contains(TestBase.testEnvironment.get_Route()))
@@ -2036,7 +2038,6 @@ public class OrderEntryPage
             if(HelpersMethod.IsExists("//div[@id='toast-container']",driver))
             {
                 new WebDriverWait(driver,Duration.ofMillis(100000)).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@id='toast-container']")));
-               // Thread.sleep(500);
             }
             Thread.sleep(6000);
             Assert.assertEquals(exists, true);
@@ -2349,7 +2350,7 @@ public class OrderEntryPage
             //Comparting system date with date in popup
             WebEle = DeliveryDates.get(0);
             CurrentDate = WebEle.getText();
-            scenario.log("CURRENT DATE IS " + CurrentDate);
+            scenario.log("FIRST DATE FOR PICKUP ORDER, IN POPUP IS " + CurrentDate);
             if (CurrentDate.equals(formattedDate))
             {
                 scenario.log("TODAYS DATE HAS BEEN FOUND IN PICKUP ORDER DELIVER DATE POPUP " + WebEle.getText());

@@ -90,7 +90,7 @@ public class TestBase
                 chromeOptions.addArguments("test-type");
                 chromeOptions.addArguments("user-data-dir=D:/temp/");
 
-              /*  chromeOptions.addArguments("window-size=1280,720");
+                /*chromeOptions.addArguments("window-size=1280,720");
                 chromeOptions.addArguments("--remote-allow-origins=*");
                 chromeOptions.addArguments("--no-proxy-server");
                 chromeOptions.addArguments("--proxy-server='direct://'");

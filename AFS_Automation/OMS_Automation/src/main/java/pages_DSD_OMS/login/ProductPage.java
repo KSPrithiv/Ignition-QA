@@ -421,6 +421,7 @@ public class ProductPage
                 {
                     HelpersMethod.waitTillLoadingPage(driver);
                 }
+
             }
             Assert.assertEquals(exists,true);
         }
@@ -449,6 +450,7 @@ public class ProductPage
     public void Checout_to_order() throws InterruptedException
     {
         exists=false;
+        String status;
         try
         {
             HelpersMethod.WaitElementPresent(driver, "xpath", "//div[contains(@id,'cartItemsCard')]", 10000);
@@ -457,12 +459,27 @@ public class ProductPage
             HelpersMethod.ScrollElement(driver, Checkout);
             HelpersMethod.ActClick(driver, Checkout, 1000);
             exists = true;
-            if (HelpersMethod.IsExists("//div[@class='loader']", driver))
+            /*if (HelpersMethod.IsExists("//div[@class='loader']", driver))
             {
                 WebElement WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 400000);
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000000);
+            }*/
+            status = HelpersMethod.returnDocumentStatus(driver);
+            if (status.equals("loading"))
+            {
+                HelpersMethod.waitTillLoadingPage(driver);
             }
-            Thread.sleep(1000);
+            Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(120))
+                    .pollingEvery(Duration.ofSeconds(5))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+            status = HelpersMethod.returnDocumentStatus(driver);
+            if (status.equals("loading"))
+            {
+                HelpersMethod.waitTillLoadingPage(driver);
+            }
+            Thread.sleep(6000);
             Assert.assertEquals(exists, true);
         }
         catch (Exception e){}
