@@ -85,7 +85,8 @@ public class TestBase
                 chromeOptions.addArguments("disable-notifications");
                 chromeOptions.addArguments("disable-infobars");
                 chromeOptions.addArguments("--start-maximized");
-                chromeOptions.addArguments("window-size=1920,1080");
+                //chromeOptions.addArguments("window-size=1920,1080");
+                chromeOptions.addArguments("window-size=1280,720");
                 chromeOptions.addArguments("PageLoadStrategy.NONE");
                 chromeOptions.addArguments("test-type");
                 chromeOptions.addArguments("user-data-dir=D:/temp/");

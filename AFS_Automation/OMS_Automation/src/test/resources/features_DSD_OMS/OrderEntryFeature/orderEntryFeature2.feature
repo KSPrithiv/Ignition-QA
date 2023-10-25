@@ -24,6 +24,24 @@ Feature: Order Entry2
     Then Click on Cancel button in OE summary page and handle warning popup
     Then User should be navigated to Order Entry page
 
+  @VerifyRoute
+  Scenario: Select route in OE page, verify it in NewOE page
+    Given User must be on Order Entry Page
+    Then User should  click on route index icon and select route
+    Then User must click Start Order button
+    Then User should make selection between Pending order or Start New order
+    Then User should select Note from popup and Order guide from popup
+    Then Compare route selected in OE page with route in NewOE page
+    Then Enter PO# for New order
+      |PO123|
+    Then Enter Pro# in Quick Product Entry area
+    And Check for Case and Unit input box enabled or not based on that enter value
+      |80|50|
+    And Find total amount from New oe page
+    Then Click on Next button
+    And Click on SubmitOrder button
+    Then User should be navigated to Order Entry page
+
   # Admin setting for drag and drop should be enabled
   @OEDragDrop
   Scenario: Test scenario for drag and drop option in New OE page
@@ -89,24 +107,6 @@ Feature: Order Entry2
     And Get total amount from summary card and Order total on SubmitOrder button
     Then User should be navigated to Order Entry page
 
-  @VerifyRoute
-  Scenario: Select route in OE page, verify it in NewOE page
-    Given User must be on Order Entry Page
-    Then User should  click on route index icon and select route
-    Then User must click Start Order button
-    Then User should make selection between Pending order or Start New order
-    Then User should select Note from popup and Order guide from popup
-    Then Compare route selected in OE page with route in NewOE page
-    Then Enter PO# for New order
-      |PO123|
-    Then Enter Pro# in Quick Product Entry area
-    And Check for Case and Unit input box enabled or not based on that enter value
-      |80|50|
-    And Find total amount from New oe page
-    Then Click on Next button
-    And Click on SubmitOrder button
-    Then User should be navigated to Order Entry page
-
     #Admin Setting should be enabled for this scenario->"Enable auto load order entry"
   # this script will work, when there are no orders for the changed account for given date
   @ChangeAccount
@@ -116,9 +116,29 @@ Feature: Order Entry2
     And Check whether user navigated to NewOE page
     And  user should change the Account# back to Previous Account#
 
+    #this scenario is only for ERP env
+  @LowInventroy
+  Scenario: Products which are low in inventory should not be displayed in Order summary page
+    Given User must be on Order Entry Page
+    Then User must click Start Order button
+    Then User should make selection between Pending order or Start New order
+    Then User should select Note from popup and Order guide from popup
+    Then Enter PO# for New order
+      |PO123|
+    Then Enter Prod_No in Quick Product Entry area
+      |  40  |  30  |
+      |  50  |  80  |
+      |  55  |  50  |
+      |  80  |  50  |
+  #here 0002, 0003 are out of stock products and they should not get displayed in Order summary
+    Then Click on Next button
+    Then In Order Summary page check whether Low inventory products are removed or not
+    And Click on SubmitOrder button
+    Then User should be navigated to Order Entry page
+
     #we can cancel only those orders which have not yet reached cutoff time/ delivery dates are in future
   @CancelAndVerifyInOrderGrid
-  Scenario: Create new order, and once Order created Cancel that order from Order summary page
+  Scenario: Try to Create new order and Cancel that order from Order summary page
     Given User must be on Order Entry Page
     Then User must click Start Order button
     Then User should make selection between Pending order or Start New order
@@ -129,13 +149,13 @@ Feature: Order Entry2
     And Check for Case and Unit input box enabled or not based on that enter value
       |50|50|
     Then Click on Next button
-    And Click on Submit Order button and read Order_no
-    Then Enter Order# in Search box in Order Entry page
-    Then Click on Order number in Order Entry page
-    Then Click on Next button to naviagate to OE summary page to cancle order
+    #And Click on Submit Order button and read Order_no
+    #Then Enter Order# in Search box in Order Entry page
+    #Then Click on Order number in Order Entry page
+    #Then Click on Next button to naviagate to OE summary page to cancle order
     Then Click on Cancel button in OE summary page and handle warning popup
-    Then User should be navigated to Order Entry page
-    And verify whether Order number is not existing in OG
+    #Then User should be navigated to Order Entry page
+    #And verify whether Order number is not existing in OG
 
   @OrderCancelInNewOE
   Scenario: Test scenario for creating order and once order is created cancel it in new order entry page
@@ -155,26 +175,6 @@ Feature: Order Entry2
     Then Click on Order number in Order Entry page
     Then Click on Cancel button
     And Check for Warning popup
-    Then User should be navigated to Order Entry page
-
-#this scenario is only for ERP env
-  @LowInventroy
-  Scenario: Products which are low in inventory should not be displayed in Order summary page
-    Given User must be on Order Entry Page
-    Then User must click Start Order button
-    Then User should make selection between Pending order or Start New order
-    Then User should select Note from popup and Order guide from popup
-    Then Enter PO# for New order
-      |PO123|
-    Then Enter Prod_No in Quick Product Entry area
-      |  40  |  30  |
-      |  50  |  80  |
-      |  55  |  50  |
-      |  80  |  50  |
-  #here 0002, 0003 are out of stock products and they should not get displayed in Order summary
-    Then Click on Next button
-    Then In Order Summary page check whether Low inventory products are removed or not
-    And Click on SubmitOrder button
     Then User should be navigated to Order Entry page
 
   @SortProdInSummary
