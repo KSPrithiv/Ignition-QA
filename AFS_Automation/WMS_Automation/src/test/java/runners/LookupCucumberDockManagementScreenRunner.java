@@ -18,7 +18,7 @@ import java.io.IOException;
 
 import static common.setup.DriverManager.*;
 
-@CucumberOptions(features = {"src/test/resources/features/dockmanagement/LookupDockManagementScreen.feature"},
+@CucumberOptions(features = {"src/test/resources/features/lookup/dockmanagement/LookupDockManagementScreen.feature"},
         glue = {"steps"},
         plugin = {"pretty",
                 "json:target/cucumber.json",
