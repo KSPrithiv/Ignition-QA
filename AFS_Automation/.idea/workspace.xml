@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3b62bb3d-ca91-4109-a154-f51a67f5e5ba" name="Changes" comment="">
+    <list default="true" id="27556c33-c863-4188-ade7-c0a2e720d151" name="Changes" comment="">
       <change afterPath="$PROJECT_DIR$/../.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
@@ -337,7 +337,6 @@
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/AFS_Automation.iml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/OMS_Automation/OMS_Automation.iml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/OMS_Automation/Reports/ExtentPdf.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/OMS_Automation/Reports/ExtentPdf.pdf" afterDir="false" />
@@ -360,6 +359,7 @@
       <change beforePath="$PROJECT_DIR$/OMS_Automation/src/test/resources/features_DSD_OMS/OrderEntryFeature/orderEntryFeature2.feature" beforeDir="false" afterPath="$PROJECT_DIR$/OMS_Automation/src/test/resources/features_DSD_OMS/OrderEntryFeature/orderEntryFeature2.feature" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/OMS_Automation/src/test/resources/features_DSD_OMS/StandingOrderFeature/standingOrderFeature.feature" beforeDir="false" afterPath="$PROJECT_DIR$/OMS_Automation/src/test/resources/features_DSD_OMS/StandingOrderFeature/standingOrderFeature.feature" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/OMS_Automation/target/classes/config_DSD_OMS/config_DSD.properties" beforeDir="false" afterPath="$PROJECT_DIR$/OMS_Automation/target/classes/config_DSD_OMS/config_DSD.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/OMS_Automation/target/classes/config_DSD_OMS/config_OMS.properties" beforeDir="false" afterPath="$PROJECT_DIR$/OMS_Automation/target/classes/config_DSD_OMS/config_OMS.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/OMS_Automation/test-output/base64_generated_pdf_1.png" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/OMS_Automation/test-output/base64_generated_pdf_17.png" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/OMS_Automation/test-output/base64_generated_pdf_18.png" beforeDir="false" />
@@ -389,8 +389,6 @@
       <change beforePath="$PROJECT_DIR$/WMS_Automation/target/classes/objects/workqueuedata/WorkQueueDataDTO$WorkQueueDataDTOBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/target/classes/objects/workqueuedata/WorkQueueDataDTO$WorkQueueDataDTOBuilder.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/WMS_Automation/target/classes/objects/workqueuedata/WorkQueueDataDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/target/classes/objects/workqueuedata/WorkQueueDataDTO.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/WMS_Automation/target/classes/ui/pages/BasePage.class" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/target/classes/ui/pages/BasePage.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WMS_Automation/target/classes/ui/pages/appointments/AppointmentSchedulerOrderPage.class" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/target/classes/ui/pages/appointments/AppointmentSchedulerOrderPage.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WMS_Automation/target/classes/ui/pages/lookup/dockmanagement/DockManagementLookupPage.class" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/target/classes/ui/pages/lookup/dockmanagement/DockManagementLookupPage.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/WMS_Automation/target/test-classes/steps/validations/outbound/loadplanning/OutboundAssignmentsPageValidations.class" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/target/test-classes/steps/validations/outbound/loadplanning/OutboundAssignmentsPageValidations.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/WMS_Automation/target/test-classes/steps/validations/outbound/processing/ProcessingPageValidations.class" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/target/test-classes/steps/validations/outbound/processing/ProcessingPageValidations.class" afterDir="false" />
     </list>
@@ -399,22 +397,189 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$/.." value="main" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
-  <component name="ProjectId" id="2XB4li81ij9q5E91Ak2yYXykXyC" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="useMavenConfig" value="true" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="MavenRunner">
+    <option name="skipTests" value="true" />
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
+  <component name="ProjectId" id="2SVjCTjhgRKLW79XxMV9QZiUn03" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
+    <option name="showMembers" value="true" />
+    <option name="showVisibilityIcons" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/pom.xml" />
-    <property name="settings.editor.selected.configurable" value="vcs.TFVC" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/WMS_Automation" />
+    <property name="project.structure.last.edited" value="SDKs" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.38390803" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
-  <component name="RunManager" selected="TestNG.C:/Users/Divya.Ramadas/Documents/Ign/AFS_Automation/OMS_Automation/TestNG_Login.xml">
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Irina.Holovan\Documents\ignition-qa\AFS_Automation\WMS_Automation" />
+      <recent name="C:\Users\Irina.Holovan\Documents\ignition-qa\AFS_Automation\WMS_Automation\src\test\resources" />
+      <recent name="C:\Users\Irina.Holovan\Documents\ignition-qa\AFS_Automation\WMS_Automation\src\test\java\runners" />
+      <recent name="C:\Users\Irina.Holovan\Documents\ignition-qa\AFS_Automation\WMS_Automation\src\test\resources\features\lookup\lookuplocation" />
+      <recent name="C:\Users\Irina.Holovan\Documents\ignition-qa\AFS_Automation\WMS_Automation\src\test\resources\features\workqueue\assignmentlist\filteroption" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Irina.Holovan\Documents\ignition-qa\AFS_Automation\WMS_Automation\src\test\resources\features" />
+      <recent name="C:\Users\Irina.Holovan\Documents\ignition-qa\AFS_Automation\WMS_Automation" />
+      <recent name="C:\Users\Irina.Holovan\Documents\ignition-qa\AFS_Automation\WMS_Automation\src\test\resources\features\inbound\loads\loadsummary" />
+      <recent name="C:\Users\Irina.Holovan\Documents\ignition-qa\AFS_Automation\WMS_Automation\src\test\resources\features\inbound\loads\loadorderline" />
+      <recent name="C:\Users\Irina.Holovan\Documents\ignition-qa\AFS_Automation\WMS_Automation\src\test\resources\features\inbound\loads\orderdetails" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="runners" />
+      <recent name="objects.lookupproductslocationsdata" />
+      <recent name="steps.validations.lookup.lookupplabel" />
+      <recent name="objects.inbound" />
+      <recent name="objects.workqueuedata" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Cucumber Java.Feature: DashboardScreen">
+    <configuration name="Feature: DashboardScreen" type="CucumberJavaRunConfigurationType" factoryName="Cucumber java" temporary="true" nameIsGenerated="true">
+      <option name="CUCUMBER_CORE_VERSION" value="5" />
+      <option name="FILE_PATH" value="$PROJECT_DIR$/WMS_Automation/src/test/resources/features/dashboard/DashboardScreen.feature" />
+      <option name="GLUE" value="stepDefination_DSD_OMS steps" />
+      <option name="MAIN_CLASS_NAME" value="io.cucumber.core.cli.Main" />
+      <module name="WMS_Automation" />
+      <option name="PROGRAM_PARAMETERS" value=" --plugin org.jetbrains.plugins.cucumber.java.run.CucumberJvm5SMFormatter" />
+      <option name="SUGGESTED_NAME" value="Feature: DashboardScreen" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_WORKING_DIR$" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="io.cucumber.core.cli.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Scenario: Checking Transactions -&gt; Assignments by Group widgets" type="CucumberJavaRunConfigurationType" factoryName="Cucumber java" temporary="true" nameIsGenerated="true">
+      <option name="CUCUMBER_CORE_VERSION" value="5" />
+      <option name="FILE_PATH" value="$PROJECT_DIR$/WMS_Automation/src/test/resources/features/dashboard/DashboardScreen.feature" />
+      <option name="GLUE" value="stepDefination_DSD_OMS steps" />
+      <option name="MAIN_CLASS_NAME" value="io.cucumber.core.cli.Main" />
+      <module name="WMS_Automation" />
+      <option name="NAME_FILTER" value="^Checking Transactions \-\&gt; Assignments by Group widgets$" />
+      <option name="PROGRAM_PARAMETERS" value=" --plugin org.jetbrains.plugins.cucumber.java.run.CucumberJvm5SMFormatter --name &quot;^Checking Transactions \-\&gt; Assignments by Group widgets$&quot;" />
+      <option name="SUGGESTED_NAME" value="Scenario: Checking Transactions -&gt; Assignments by Group widgets" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_WORKING_DIR$" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="io.cucumber.core.cli.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Scenario: Checking Transactions -&gt; Tasks by Type widget" type="CucumberJavaRunConfigurationType" factoryName="Cucumber java" temporary="true" nameIsGenerated="true">
+      <option name="CUCUMBER_CORE_VERSION" value="5" />
+      <option name="FILE_PATH" value="$PROJECT_DIR$/WMS_Automation/src/test/resources/features/dashboard/DashboardScreen.feature" />
+      <option name="GLUE" value="stepDefination_DSD_OMS steps" />
+      <option name="MAIN_CLASS_NAME" value="io.cucumber.core.cli.Main" />
+      <module name="WMS_Automation" />
+      <option name="NAME_FILTER" value="^Checking Transactions \-\&gt; Tasks by Type widget$" />
+      <option name="PROGRAM_PARAMETERS" value=" --plugin org.jetbrains.plugins.cucumber.java.run.CucumberJvm5SMFormatter --name &quot;^Checking Transactions \-\&gt; Tasks by Type widget$&quot;" />
+      <option name="SUGGESTED_NAME" value="Scenario: Checking Transactions -&gt; Tasks by Type widget" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_WORKING_DIR$" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="io.cucumber.core.cli.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Scenario: Verify INVENTORY - By Status" type="CucumberJavaRunConfigurationType" factoryName="Cucumber java" temporary="true" nameIsGenerated="true">
+      <option name="CUCUMBER_CORE_VERSION" value="5" />
+      <option name="FILE_PATH" value="$PROJECT_DIR$/WMS_Automation/src/test/resources/features/dashboard/DashboardScreen.feature" />
+      <option name="GLUE" value="stepDefination_DSD_OMS steps" />
+      <option name="MAIN_CLASS_NAME" value="io.cucumber.core.cli.Main" />
+      <module name="WMS_Automation" />
+      <option name="NAME_FILTER" value="^Verify INVENTORY \- By Status$" />
+      <option name="PROGRAM_PARAMETERS" value=" --plugin org.jetbrains.plugins.cucumber.java.run.CucumberJvm5SMFormatter --name &quot;^Verify INVENTORY \- By Status$&quot;" />
+      <option name="SUGGESTED_NAME" value="Scenario: Verify INVENTORY - By Status" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_WORKING_DIR$" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="io.cucumber.core.cli.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Scenario: Verify the Labor widgets is visible to the logged in user" type="CucumberJavaRunConfigurationType" factoryName="Cucumber java" temporary="true" nameIsGenerated="true">
+      <option name="CUCUMBER_CORE_VERSION" value="5" />
+      <option name="FILE_PATH" value="$PROJECT_DIR$/WMS_Automation/src/test/resources/features/dashboard/DashboardScreen.feature" />
+      <option name="GLUE" value="stepDefination_DSD_OMS steps" />
+      <option name="MAIN_CLASS_NAME" value="io.cucumber.core.cli.Main" />
+      <module name="WMS_Automation" />
+      <option name="NAME_FILTER" value="^Verify the Labor widgets is visible to the logged in user$" />
+      <option name="PROGRAM_PARAMETERS" value=" --plugin org.jetbrains.plugins.cucumber.java.run.CucumberJvm5SMFormatter --name &quot;^Verify the Labor widgets is visible to the logged in user$&quot;" />
+      <option name="SUGGESTED_NAME" value="Scenario: Verify the Labor widgets is visible to the logged in user" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_WORKING_DIR$" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="io.cucumber.core.cli.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration default="true" type="JetRunConfigurationType">
       <method v="2">
         <option name="Make" enabled="true" />
@@ -426,186 +591,260 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="C:/Users/Divya.Ramadas/Documents/Ign/AFS_Automation/OMS_Automation/TestNG_CompetitivePricing.xml" type="TestNG" temporary="true" nameIsGenerated="true">
-      <module name="OMS_Automation" />
-      <option name="SUITE_NAME" value="$PROJECT_DIR$/OMS_Automation/TestNG_CompetitivePricing.xml" />
-      <option name="TEST_OBJECT" value="SUITE" />
-      <properties />
-      <listeners />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="C:/Users/Divya.Ramadas/Documents/Ign/AFS_Automation/OMS_Automation/TestNG_CustInqDSD.xml" type="TestNG" temporary="true" nameIsGenerated="true">
-      <module name="OMS_Automation" />
-      <option name="SUITE_NAME" value="$PROJECT_DIR$/OMS_Automation/TestNG_CustInqDSD.xml" />
-      <option name="TEST_OBJECT" value="SUITE" />
-      <properties />
-      <listeners />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="C:/Users/Divya.Ramadas/Documents/Ign/AFS_Automation/OMS_Automation/TestNG_DisconnectedMode.xml" type="TestNG" temporary="true" nameIsGenerated="true">
-      <module name="OMS_Automation" />
-      <option name="SUITE_NAME" value="$PROJECT_DIR$/OMS_Automation/TestNG_DisconnectedMode.xml" />
-      <option name="TEST_OBJECT" value="SUITE" />
-      <properties />
-      <listeners />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="C:/Users/Divya.Ramadas/Documents/Ign/AFS_Automation/OMS_Automation/TestNG_Login.xml" type="TestNG" temporary="true" nameIsGenerated="true">
-      <module name="OMS_Automation" />
-      <option name="SUITE_NAME" value="$PROJECT_DIR$/OMS_Automation/TestNG_Login.xml" />
-      <option name="TEST_OBJECT" value="SUITE" />
-      <properties />
-      <listeners />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="TestRunnerLogin" type="TestNG" temporary="true" nameIsGenerated="true">
-      <module name="OMS_Automation" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="testRunner_DSD_OMS.DSDEnv.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="testRunner_DSD_OMS.DSDEnv" />
-      <option name="MAIN_CLASS_NAME" value="testRunner_DSD_OMS.DSDEnv.TestRunnerLogin" />
-      <option name="TEST_OBJECT" value="CLASS" />
-      <properties />
-      <listeners />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
+    <list>
+      <item itemvalue="Cucumber Java.Scenario: Checking Transactions -&gt; Tasks by Type widget" />
+      <item itemvalue="Cucumber Java.Scenario: Checking Transactions -&gt; Assignments by Group widgets" />
+      <item itemvalue="Cucumber Java.Scenario: Verify the Labor widgets is visible to the logged in user" />
+      <item itemvalue="Cucumber Java.Scenario: Verify INVENTORY - By Status" />
+      <item itemvalue="Cucumber Java.Feature: DashboardScreen" />
+    </list>
     <recent_temporary>
       <list>
-        <item itemvalue="TestNG.C:/Users/Divya.Ramadas/Documents/Ign/AFS_Automation/OMS_Automation/TestNG_Login.xml" />
-        <item itemvalue="TestNG.TestRunnerLogin" />
-        <item itemvalue="TestNG.C:/Users/Divya.Ramadas/Documents/Ign/AFS_Automation/OMS_Automation/TestNG_DisconnectedMode.xml" />
-        <item itemvalue="TestNG.C:/Users/Divya.Ramadas/Documents/Ign/AFS_Automation/OMS_Automation/TestNG_CustInqDSD.xml" />
-        <item itemvalue="TestNG.C:/Users/Divya.Ramadas/Documents/Ign/AFS_Automation/OMS_Automation/TestNG_CompetitivePricing.xml" />
+        <item itemvalue="Cucumber Java.Feature: DashboardScreen" />
+        <item itemvalue="Cucumber Java.Scenario: Verify INVENTORY - By Status" />
+        <item itemvalue="Cucumber Java.Scenario: Verify the Labor widgets is visible to the logged in user" />
+        <item itemvalue="Cucumber Java.Scenario: Checking Transactions -&gt; Assignments by Group widgets" />
+        <item itemvalue="Cucumber Java.Scenario: Checking Transactions -&gt; Tasks by Type widget" />
       </list>
     </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
-  <component name="SvnConfiguration">
-    <configuration>C:\Users\Divya.Ramadas\AppData\Roaming\Subversion</configuration>
-  </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="3b62bb3d-ca91-4109-a154-f51a67f5e5ba" name="Changes" comment="" />
-      <created>1698089293153</created>
+      <changelist id="f43555ca-ddbf-4ea6-890b-1e1d141bb229" name="Changes" comment="" />
+      <created>1689238514533</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1698089293153</updated>
+      <updated>1689238514533</updated>
     </task>
     <servers />
   </component>
-  <component name="Vcs.Log.Tabs.Properties">
-    <option name="TAB_STATES">
-      <map>
-        <entry key="MAIN">
-          <value>
-            <State />
-          </value>
-        </entry>
-      </map>
+  <component name="Vcs.Log.History.Properties">
+    <option name="COLUMN_ID_ORDER">
+      <list>
+        <option value="Default.Root" />
+        <option value="Default.Author" />
+        <option value="Default.Date" />
+        <option value="Default.Subject" />
+        <option value="Space.CommitStatus" />
+      </list>
     </option>
-    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/OMS_Automation/src/test/java/stepDefination_DSD_OMS/OrderEntryPage/OrderEntryPageSteps3.java</url>
-          <line>114</line>
-          <option name="timeStamp" value="1" />
+          <url>file://$PROJECT_DIR$/WMS_Automation/src/test/java/steps/counting/sessions/CountingSessionsPageSteps.java</url>
+          <line>230</line>
+          <option name="timeStamp" value="1345" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/OMS_Automation/src/test/java/stepDefination_DSD_OMS/OrderEntryPage/OrderEntryPageSteps3.java</url>
-          <line>115</line>
-          <option name="timeStamp" value="2" />
+          <url>file://$PROJECT_DIR$/WMS_Automation/src/main/java/ui/pages/setup/SetupProductPage.java</url>
+          <line>648</line>
+          <option name="timeStamp" value="1346" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/OMS_Automation/src/test/java/stepDefination_DSD_OMS/OrderEntryPage/OrderEntryPageSteps3.java</url>
-          <line>116</line>
-          <option name="timeStamp" value="3" />
+          <url>file://$PROJECT_DIR$/WMS_Automation/src/test/java/steps/setup/SetupProductPageSteps.java</url>
+          <line>88</line>
+          <option name="timeStamp" value="1347" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/OMS_Automation/src/test/java/stepDefination_DSD_OMS/OrderEntryPage/OrderEntryPageSteps3.java</url>
-          <line>128</line>
-          <option name="timeStamp" value="4" />
+          <url>file://$PROJECT_DIR$/WMS_Automation/src/test/java/steps/setup/SetupProductPageSteps.java</url>
+          <line>1138</line>
+          <option name="timeStamp" value="1348" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/OMS_Automation/src/test/java/stepDefination_DSD_OMS/OrderEntryPage/OrderEntryPageSteps3.java</url>
-          <line>127</line>
-          <option name="timeStamp" value="5" />
+          <url>file://$PROJECT_DIR$/WMS_Automation/src/main/java/ui/pages/setup/SetupProductPage.java</url>
+          <line>711</line>
+          <option name="timeStamp" value="1349" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/OMS_Automation/src/test/java/stepDefination_DSD_OMS/OrderEntryPage/OrderEntryPageSteps3.java</url>
-          <line>129</line>
-          <option name="timeStamp" value="6" />
+          <url>file://$PROJECT_DIR$/WMS_Automation/src/test/java/steps/lookup/lookupdockmanagement/DockManagementPageSteps.java</url>
+          <line>150</line>
+          <option name="timeStamp" value="1358" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/OMS_Automation/src/test/java/stepDefination_DSD_OMS/OrderEntryPage/OrderEntryPageSteps3.java</url>
-          <line>117</line>
-          <option name="timeStamp" value="7" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/OMS_Automation/src/test/java/stepDefination_DSD_OMS/OrderEntryPage/OrderEntryPageSteps3.java</url>
-          <line>118</line>
-          <option name="timeStamp" value="8" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/OMS_Automation/src/test/java/stepDefination_DSD_OMS/OrderEntryPage/OrderEntryPageSteps3.java</url>
-          <line>120</line>
-          <option name="timeStamp" value="9" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/OMS_Automation/src/test/java/stepDefination_DSD_OMS/OrderEntryPage/OrderEntryPageSteps3.java</url>
-          <line>121</line>
-          <option name="timeStamp" value="10" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/OMS_Automation/src/test/java/stepDefination_DSD_OMS/OrderEntryPage/OrderEntryPageSteps3.java</url>
-          <line>122</line>
-          <option name="timeStamp" value="11" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/OMS_Automation/src/test/java/stepDefination_DSD_OMS/OrderEntryPage/OrderEntryPageSteps3.java</url>
+          <url>file://$PROJECT_DIR$/WMS_Automation/src/test/java/steps/validations/appointments/AppointmentSchedulerOrderPageValidations.java</url>
           <line>124</line>
-          <option name="timeStamp" value="12" />
+          <option name="timeStamp" value="1369" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/OMS_Automation/src/test/java/stepDefination_DSD_OMS/OrderEntryPage/OrderEntryPageSteps3.java</url>
-          <line>131</line>
-          <option name="timeStamp" value="13" />
+          <url>file://$PROJECT_DIR$/WMS_Automation/src/main/java/ui/pages/appointments/AppointmentSchedulerOrderPage.java</url>
+          <line>56</line>
+          <option name="timeStamp" value="1371" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/OMS_Automation/src/test/java/stepDefination_DSD_OMS/OrderEntryPage/OrderEntryPageSteps3.java</url>
-          <line>135</line>
-          <option name="timeStamp" value="14" />
+          <url>file://$PROJECT_DIR$/WMS_Automation/src/test/java/steps/validations/appointments/AppointmentSchedulerOrderPageValidations.java</url>
+          <line>100</line>
+          <option name="timeStamp" value="1373" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/OMS_Automation/src/test/java/stepDefination_DSD_OMS/OrderEntryPage/OrderEntryPageSteps3.java</url>
-          <line>137</line>
-          <option name="timeStamp" value="15" />
+          <url>file://$PROJECT_DIR$/WMS_Automation/src/test/java/steps/validations/appointments/AppointmentSchedulerOrderPageValidations.java</url>
+          <line>108</line>
+          <option name="timeStamp" value="1374" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-method">
-          <url>file://$PROJECT_DIR$/OMS_Automation/src/test/java/stepDefination_DSD_OMS/OrderEntryPage/OrderEntryPageSteps.java</url>
-          <line>325</line>
-          <properties class="stepDefination_DSD_OMS.OrderEntryPage.OrderEntryPageSteps" method="enter_po_for_new_order">
-            <option name="EMULATED" value="true" />
-          </properties>
-          <option name="timeStamp" value="16" />
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/WMS_Automation/src/main/java/ui/pages/appointments/AppointmentSchedulerOrderPage.java</url>
+          <line>208</line>
+          <option name="timeStamp" value="1376" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/WMS_Automation/src/test/java/steps/validations/DockManagementSummaryPageValidations.java</url>
+          <line>157</line>
+          <option name="timeStamp" value="1378" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/WMS_Automation/src/test/java/steps/validations/DockManagementSummaryPageValidations.java</url>
+          <line>156</line>
+          <option name="timeStamp" value="1379" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/WMS_Automation/src/test/java/steps/validations/DockManagementSummaryPageValidations.java</url>
+          <line>158</line>
+          <option name="timeStamp" value="1380" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/WMS_Automation/src/test/java/steps/validations/DockManagementSummaryPageValidations.java</url>
+          <line>160</line>
+          <option name="timeStamp" value="1381" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/WMS_Automation/src/test/java/steps/validations/DockManagementSummaryPageValidations.java</url>
+          <line>161</line>
+          <option name="timeStamp" value="1382" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/WMS_Automation/src/test/java/steps/validations/DockManagementSummaryPageValidations.java</url>
+          <line>163</line>
+          <option name="timeStamp" value="1383" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/WMS_Automation/src/test/java/steps/DockManagementSummaryPageSteps.java</url>
+          <line>327</line>
+          <option name="timeStamp" value="1384" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/WMS_Automation/src/main/java/ui/pages/DockManagementSummaryPage.java</url>
+          <line>505</line>
+          <option name="timeStamp" value="1385" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/WMS_Automation/src/main/java/ui/pages/DockManagementSummaryPage.java</url>
+          <line>506</line>
+          <option name="timeStamp" value="1386" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/WMS_Automation/src/main/java/ui/pages/DockManagementSummaryPage.java</url>
+          <line>508</line>
+          <option name="timeStamp" value="1387" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/WMS_Automation/src/test/java/steps/DockManagementSummaryPageSteps.java</url>
+          <line>334</line>
+          <option name="timeStamp" value="1388" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/WMS_Automation/src/main/java/ui/pages/DockManagementSummaryPage.java</url>
+          <line>513</line>
+          <option name="timeStamp" value="1389" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/WMS_Automation/src/main/java/ui/pages/DockManagementSummaryPage.java</url>
+          <line>514</line>
+          <option name="timeStamp" value="1390" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/WMS_Automation/src/main/java/ui/pages/DockManagementSummaryPage.java</url>
+          <line>516</line>
+          <option name="timeStamp" value="1391" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/WMS_Automation/src/test/java/steps/counting/sessions/CountingSessionsPageSteps.java</url>
+          <line>78</line>
+          <option name="timeStamp" value="1392" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/WMS_Automation/src/main/java/ui/pages/counting/sessions/CountingSessionsPage.java</url>
+          <line>365</line>
+          <option name="timeStamp" value="1393" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/WMS_Automation/src/main/java/ui/pages/counting/sessions/CountingSessionsPage.java</url>
+          <line>366</line>
+          <option name="timeStamp" value="1394" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/WMS_Automation/src/test/java/steps/validations/DockManagementSummaryPageValidations.java</url>
+          <line>84</line>
+          <option name="timeStamp" value="1395" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/WMS_Automation/src/test/java/steps/validations/DockManagementSummaryPageValidations.java</url>
+          <line>85</line>
+          <option name="timeStamp" value="1396" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/WMS_Automation/src/test/java/steps/validations/DockManagementSummaryPageValidations.java</url>
+          <line>86</line>
+          <option name="timeStamp" value="1397" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/WMS_Automation/src/test/java/steps/validations/DockManagementSummaryPageValidations.java</url>
+          <line>83</line>
+          <option name="timeStamp" value="1398" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/WMS_Automation/src/test/java/steps/validations/DockManagementSummaryPageValidations.java</url>
+          <line>87</line>
+          <option name="timeStamp" value="1399" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/WMS_Automation/src/test/java/steps/validations/DockManagementSummaryPageValidations.java</url>
+          <line>90</line>
+          <option name="timeStamp" value="1400" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/WMS_Automation/src/test/java/steps/DockManagementSummaryPageSteps.java</url>
+          <line>123</line>
+          <option name="timeStamp" value="1404" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/WMS_Automation/src/main/java/ui/pages/DockManagementSummaryPage.java</url>
+          <line>160</line>
+          <option name="timeStamp" value="1405" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/WMS_Automation/src/main/java/ui/pages/DockManagementSummaryPage.java</url>
+          <line>433</line>
+          <option name="timeStamp" value="1411" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
+    <watches-manager>
+      <configuration name="CucumberJavaRunConfigurationType">
+        <watch expression="setupProductPage" language="JAVA" />
+      </configuration>
+    </watches-manager>
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/AFS_Automation$Scenario__Checking_navigation_functionality_of_Lookup_Dock_Management_screen.ic" NAME="Scenario: Checking navigation functionality of Lookup Dock Management screen Coverage Results" MODIFIED="1698151388735" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>io.cucumber.core.cli.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/AFS_Automation$Scenario__Checking_Navigate_to_Counting_Count_screen.ic" NAME="Scenario: Checking Navigate to Counting Count screen Coverage Results" MODIFIED="1689242715088" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>io.cucumber.core.cli.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/AFS_Automation$Scenario__Checking_Release_functionality_when_click_on_Exit_button.ic" NAME="Scenario: Checking Release functionality when click on Exit button Coverage Results" MODIFIED="1696075941430" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>io.cucumber.core.cli.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/AFS_Automation$Scenario__Checking_Sorting_and_Select_All_on_Counting_Sessions_screen.ic" NAME="Scenario: Checking Sorting and Select All on Counting Sessions screen Coverage Results" MODIFIED="1692813277428" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>io.cucumber.core.cli.*</FILTER>
+    </SUITE>
   </component>
 </project>

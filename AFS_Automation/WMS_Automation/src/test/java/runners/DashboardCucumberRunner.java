@@ -24,7 +24,7 @@ import static common.setup.DriverManager.*;
 @LinkedListeners({
     TestListener.class
 })
-@CucumberOptions(features = {"src/test/resources/features/dashboard"},
+@CucumberOptions(features = {"src/test/resources/features/dashboard/DashboardScreen.feature"},
         glue = {"steps"},
         plugin = {"pretty",
                 "json:target/cucumber.json",
