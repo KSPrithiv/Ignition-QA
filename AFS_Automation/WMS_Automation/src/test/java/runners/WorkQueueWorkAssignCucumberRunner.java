@@ -12,18 +12,13 @@ import org.aeonbits.owner.ConfigFactory;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.ITestResult;
 import org.testng.annotations.*;
-//import util.TestBase;
-
-import utilWMS.MailSend_WMS;
-
 
 import javax.mail.MessagingException;
 import java.io.IOException;
 
 import static common.setup.DriverManager.*;
-import static common.setup.DriverManager.getDriver;
 
-@CucumberOptions(features = {"src/test/resources/features/workqueue"},
+@CucumberOptions(features = {"src/test/resources/features/workqueue/assignwork/WorkQueueAssignWorkScreen.feature"},
         glue = {"steps"},
         plugin = {"pretty",
                 "json:target/cucumber.json",
@@ -33,7 +28,7 @@ import static common.setup.DriverManager.getDriver;
                 "rerun:target/failedrerun.txt"
         }, monochrome = true, tags = "@WorkQueue")
 @Slf4j
-public class WorkQueueCucumberRunner extends AbstractTestNGCucumberTests {
+public class WorkQueueWorkAssignCucumberRunner extends AbstractTestNGCucumberTests {
     public static Environment environment;
 
 /*    @Parameters({"environment"})

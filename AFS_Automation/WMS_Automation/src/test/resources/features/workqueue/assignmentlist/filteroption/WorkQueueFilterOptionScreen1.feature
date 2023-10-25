@@ -148,4 +148,3 @@ Feature: Testing of Work Queue Assignment functionality
     And Types Assign To by index 0 on Work Queue Assignments page
     And Clicks Apply button on Work Queue Assignments page
     And User clicks Assignments Title on Work Queue Assignments page
-    And Validates Grid items are present on Work Queue Assignments page

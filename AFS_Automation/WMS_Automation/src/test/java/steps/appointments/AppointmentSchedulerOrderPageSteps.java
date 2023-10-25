@@ -73,6 +73,13 @@ public class AppointmentSchedulerOrderPageSteps {
     }
 
     @Step
+    @And("User selects order by row number {int} on Appointment Scheduler page")
+    public void selectOrderByRowNumber(int rowNumber) {
+        log.info("Select order by row number on Appointment Scheduler page");
+        appointmentSchedulerPage.selectOrderByRowNumber(rowNumber);
+    }
+
+    @Step
     @And("User selects delivery {string} on Appointment Scheduler page")
     public void selectDelivery(String delivery) {
         log.info("Selecting delivery");
@@ -82,14 +89,14 @@ public class AppointmentSchedulerOrderPageSteps {
     @Step
     @And("Click Cancel button on Appointment Scheduler page")
     public void clickCancel() {
-        log.info("Clicking Cancel Button");
+        log.info("Clicking Cancel Button on Appointment Scheduler page");
         appointmentSchedulerPage.clickCancelButton();
     }
 
     @Step
     @And("Click Next on Appointment Scheduler page")
     public void clickNext() {
-        log.info("Clicking Next Button");
+        log.info("Clicking Next Button on Appointment Scheduler page");
         appointmentSchedulerPage.clickNextButton();
     }
 

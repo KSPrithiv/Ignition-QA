@@ -9,13 +9,9 @@ Feature: Testing of Outbound Load Planning functionality
     And Validates Load Planning page is displayed
     And Validates Load Planning popup title is displayed
     And Validates Load Planning popup Ship Date is current date
-    And Deletes cookies on application
-    When Selects Ship Date by index 6 on Load Planning popup
-    And Deletes cookies on application
-    And Clicks Route dropdown on Load Planning popup
-    And Clicks Route dropdown on Load Planning popup
-    And Clicks Route dropdown on Load Planning popup
-    Then Selects Route by index 6 for Load Planning
+    When Selects Ship Date by index 0 on Load Planning popup
+    Then Clicks Route dropdown on Load Planning popup
+    And Selects Route by index 0 for Load Planning
     And Clicks Done button on Load Planning page
     And Waits for Outbound Truck Info page to load
     And User gets all assignments from Truck diagram
@@ -35,13 +31,9 @@ Feature: Testing of Outbound Load Planning functionality
     And Validates Load Planning page is displayed
     And Validates Load Planning popup title is displayed
     And Validates Load Planning popup Ship Date is current date
-    And Deletes cookies on application
-    When Selects Ship Date by index 6 on Load Planning popup
-    And Deletes cookies on application
-    And Clicks Route dropdown on Load Planning popup
-    And Clicks Route dropdown on Load Planning popup
-    And Clicks Route dropdown on Load Planning popup
-    Then Selects Route by index 6 for Load Planning
+    When Selects Ship Date by index 0 on Load Planning popup
+    Then Clicks Route dropdown on Load Planning popup
+    And Selects Route by index 0 for Load Planning
     And Clicks Done button on Load Planning page
     And Waits for Outbound Truck Info page to load
     And User gets all assignments from Truck diagram
@@ -68,13 +60,9 @@ Feature: Testing of Outbound Load Planning functionality
     And Validates Load Planning page is displayed
     And Validates Load Planning popup title is displayed
     And Validates Load Planning popup Ship Date is current date
-    And Deletes cookies on application
-    When Selects Ship Date by index 6 on Load Planning popup
-    And Deletes cookies on application
-    And Clicks Route dropdown on Load Planning popup
-    And Clicks Route dropdown on Load Planning popup
-    And Clicks Route dropdown on Load Planning popup
-    Then Selects Route by index 6 for Load Planning
+    When Selects Ship Date by index 0 on Load Planning popup
+    Then Clicks Route dropdown on Load Planning popup
+    And Selects Route by index 0 for Load Planning
     And Clicks Done button on Load Planning page
     And Waits for Outbound Truck Info page to load
     And User gets all assignments from Truck diagram
@@ -94,13 +82,9 @@ Feature: Testing of Outbound Load Planning functionality
     And Validates Load Planning page is displayed
     And Validates Load Planning popup title is displayed
     And Validates Load Planning popup Ship Date is current date
-    And Deletes cookies on application
-    When Selects Ship Date by index 6 on Load Planning popup
-    And Deletes cookies on application
-    And Clicks Route dropdown on Load Planning popup
-    And Clicks Route dropdown on Load Planning popup
-    And Clicks Route dropdown on Load Planning popup
-    Then Selects Route by index 6 for Load Planning
+    When Selects Ship Date by index 0 on Load Planning popup
+    Then Clicks Route dropdown on Load Planning popup
+    And Selects Route by index 0 for Load Planning
     And Clicks Done button on Load Planning page
     And Waits for Outbound Truck Info page to load
     And User gets all assignments from Truck diagram
@@ -129,13 +113,9 @@ Feature: Testing of Outbound Load Planning functionality
     And Validates Load Planning page is displayed
     And Validates Load Planning popup title is displayed
     And Validates Load Planning popup Ship Date is current date
-    And Deletes cookies on application
-    When Selects Ship Date by index 6 on Load Planning popup
-    And Deletes cookies on application
-    And Clicks Route dropdown on Load Planning popup
-    And Clicks Route dropdown on Load Planning popup
-    And Clicks Route dropdown on Load Planning popup
-    Then Selects Route by index 6 for Load Planning
+    When Selects Ship Date by index 0 on Load Planning popup
+    Then Clicks Route dropdown on Load Planning popup
+    And Selects Route by index 0 for Load Planning
     And Clicks Done button on Load Planning page
     And Waits for Outbound Truck Info page to load
     And User gets all assignments from Truck diagram
@@ -161,13 +141,9 @@ Feature: Testing of Outbound Load Planning functionality
     And Validates Load Planning page is displayed
     And Validates Load Planning popup title is displayed
     And Validates Load Planning popup Ship Date is current date
-    And Deletes cookies on application
-    When Selects Ship Date by index 6 on Load Planning popup
-    And Deletes cookies on application
-    And Clicks Route dropdown on Load Planning popup
-    And Clicks Route dropdown on Load Planning popup
-    And Clicks Route dropdown on Load Planning popup
-    Then Selects Route by index 6 for Load Planning
+    When Selects Ship Date by index 0 on Load Planning popup
+    Then Clicks Route dropdown on Load Planning popup
+    And Selects Route by index 0 for Load Planning
     And Clicks Done button on Load Planning page
     And Waits for Outbound Truck Info page to load
     And User gets all assignments from Truck diagram

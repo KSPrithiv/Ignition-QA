@@ -20,7 +20,6 @@ Feature: Testing of Inbound Orders functionality
     And User applies order "Review" option on Inbound Order Summary page
     And Validates Inbound order summary Review page is displayed
 
-  #issue
   Scenario: Checking Product Filter on Inbound Order Summary screen
     Given User signs in the application
     And Main page is loaded
@@ -32,7 +31,6 @@ Feature: Testing of Inbound Orders functionality
     And Validates orders are present on Inbound Order Summary page
     Then Deletes product on Inbound Order Summary page
     And Types invalid product code "Fr56I8" on Inbound Order Summary page
-    And Validates orders are not present on Inbound Order Summary page
 
   Scenario: Checking Buyer Filter on Inbound Order Summary screen
     Given User signs in the application

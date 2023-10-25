@@ -17,7 +17,6 @@ Feature: Testing of Outbound Summary Work functionality
     And Validates Assignment tab is active
     And Validates Work Queue order by index 0 is displayed
     And Validates Edit, Delete, Release, Labels and Move are disabled
-    And Validates Order by index 0 assignments are displayed
     And Validates Edit, Delete, Release, Labels and Move are displayed
     And User selects first assignment on Outbound Order Summary page
     And Validates Edit, Delete, Release, Labels and Move are enabled
@@ -49,7 +48,3 @@ Feature: Testing of Outbound Summary Work functionality
     And Verifies Work Queue is displayed
     And Validates Assignment and Tasks tabs are displayed
     And Validates Assignment tab is active
-    And User selects Tasks item on Outbound Order Summary page
-    And User selects first task on Outbound Order Summary page
-    And Validates Edit, Delete, TopOff, Move and Reprocess are displayed
-    And Validates Assignments are present

@@ -125,6 +125,13 @@ public class SetupProductPageSteps {
     }
 
     @Step
+    @And("Clicks Cancel on popup on Setup Product page")
+    public void clickCancelOnPopup() {
+        log.info("Clicks Cancel on popup on Setup Product page");
+        setupProductPage.clickCancel();
+    }
+
+    @Step
     @And("Clicks Date encoding Label on Setup Product page")
     public void clickDateEncodingLabel() {
         log.info("Clicks Date encoding Label on Setup Product page");
