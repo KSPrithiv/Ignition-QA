@@ -2027,9 +2027,10 @@ public class OrderEntryPage
             }
 
             //Read the route value from the route index
-            Thread.sleep(1000);
+            Thread.sleep(2000);
             WebElement routeCha=HelpersMethod.FindByElement(driver,"id","RouteIndex");
-            routeChange=HelpersMethod.JSGetValueEle(driver,routeCha,1000);
+            routeCha.sendKeys(Keys.TAB);
+            routeChange=HelpersMethod.JSGetValueEle(driver,routeCha,2000);
             if(routeChange.equals(TestBase.testEnvironment.get_Route())||routeChange.contains(TestBase.testEnvironment.get_Route()))
             {
                 scenario.log("ROUTE SELECTED IS "+routeChange);
@@ -2044,14 +2045,14 @@ public class OrderEntryPage
         }
         catch (Exception e) {}
     }
+
     public void validateRouteSelected(String route)
     {
         exists=false;
         try
         {
-            //new WebDriverWait(driver,Duration.ofMillis(10000)).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[text()='Route #']/ancestor::div[contains(@class,'k-widget k-window k-dialog')]")));
             Thread.sleep(2000);
-            String routeFound=HelpersMethod.JSGetValueEle(driver,RouteInput,1000);
+            String routeFound=HelpersMethod.JSGetValueEle(driver,RouteInput,2000);
             if(routeFound.contains(route))
             {
                 scenario.log("SUCCESSFULY SET THE ROUTE VALUE");

@@ -439,7 +439,7 @@ public class CheckOutSummaryPage
         try
         {
             Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
-                    .withTimeout(Duration.ofSeconds(30))
+                    .withTimeout(Duration.ofSeconds(60))
                     .pollingEvery(Duration.ofSeconds(5))
                     .ignoring(NoSuchElementException.class);
             wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[@id='ConfirmSummaryButton']//*[local-name()='svg']|//button[@id='ConfirmSummarySplitButton']//*[local-name()='svg']")));
@@ -447,8 +447,11 @@ public class CheckOutSummaryPage
             if(HelpersMethod.IsExistsById("CancelSummaryButton",driver))
             {
                 WebElement CancelBut = HelpersMethod.FindByElement(driver, "id", "CancelSummaryButton");
-                HelpersMethod.ClickBut(driver, CancelBut, 1000);
-                exists = true;
+                if(CancelBut.isEnabled())
+                {
+                    HelpersMethod.ClickBut(driver, CancelBut, 1000);
+                    exists = true;
+                }
             }
             scenario.log("CANCEL ORDER BUTTON HAS BEEN CLICKED");
             new WebDriverWait(driver,Duration.ofMillis(10000)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(text(),'Cancel order')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]"))));

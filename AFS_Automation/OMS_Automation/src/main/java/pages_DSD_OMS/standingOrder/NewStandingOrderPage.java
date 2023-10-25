@@ -659,7 +659,7 @@ public class NewStandingOrderPage
         catch (Exception e){}
     }
 
-    public void SelectDateToSkip()
+    public void SelectDateToSkip(int days)
     {
         exists=false;
         WebElement WebEle=null;
@@ -668,7 +668,7 @@ public class NewStandingOrderPage
         {
             WebElement ele1;
             String formattedDate1 = null;
-            LocalDate myDateObj = LocalDate.now().plusDays(10);
+            LocalDate myDateObj = LocalDate.now().plusDays(days);
             DateTimeFormatter myFormatObj = DateTimeFormatter.ofPattern("EEEE, MMMM d, yyyy");
             formattedDate1 = myDateObj.format(myFormatObj);
             //code to be executed when the date is visible in existing calender
