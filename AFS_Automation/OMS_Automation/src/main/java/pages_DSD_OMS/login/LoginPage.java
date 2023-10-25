@@ -62,7 +62,7 @@ public class LoginPage
     @FindBy(id="rememberMe")
     private WebElement RememberMe;
 
-    @FindBy(id = "registerHereLink")
+    @FindBy(xpath = "//a[@id='registerHereLink']/p")
     private WebElement Register;
 
     // @BeforeClass
@@ -279,7 +279,7 @@ public class LoginPage
         exists=false;
         try
         {
-            Thread.sleep(1000);
+            Thread.sleep(2000);
             String status = HelpersMethod.returnDocumentStatus(driver);
             if (status.equals("loading"))
             {
@@ -288,7 +288,7 @@ public class LoginPage
             if(Register.isDisplayed())
             {
                 HelpersMethod.ScrollElement(driver,Register);
-                HelpersMethod.ActClick(driver,Register,1000);
+                HelpersMethod.ActClick(driver,Register,6000);
                 scenario.log("REGISTER HERE BUTTON IS CLICKED");
                 exists=true;
             }
