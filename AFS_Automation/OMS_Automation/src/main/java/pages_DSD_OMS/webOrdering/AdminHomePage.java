@@ -541,7 +541,7 @@ public class AdminHomePage {
             {
                 JavascriptExecutor js = ((JavascriptExecutor) driver);
                 js.executeScript("window.location.reload()");
-                WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(800000));
+                WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(1000000));
                 if (wait.until(ExpectedConditions.alertIsPresent()) == null) {}
                 else
                 {
@@ -559,7 +559,7 @@ public class AdminHomePage {
                 if (HelpersMethod.IsExists("//div[@class='loader']", driver))
                 {
                     WebElement WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 800000);
+                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000000);
                 }
                 //navigate to Catalog
                 driver.navigate().refresh();

@@ -201,10 +201,10 @@ public class GridConfigurationPage
         try
         {
             Thread.sleep(500);
-            //new WebDriverWait(driver, 60000).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class,'k-popup k-child-animation-container')]"))));
-            if(HelpersMethod.IsExists("//div[contains(@class,'k-popup k-child-animation-container')]",driver))
+            new WebDriverWait(driver, Duration.ofMillis(4000)).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class,'k-list-container')]/descendant::ul/li")));
+            if(HelpersMethod.IsExists("//div[contains(@class,'k-list-container')]/descendant::ul/li",driver))
             {
-                List<WebElement> options=driver.findElements(By.xpath("//div[contains(@class,'k-popup k-child-animation-container')]/descendant::ul/li"));
+                List<WebElement> options=driver.findElements(By.xpath("//div[contains(@class,'k-list-container')]/descendant::ul/li"));
                 for (WebElement opt:options)
                 {
                     act1.moveToElement(opt).build().perform();
@@ -218,6 +218,7 @@ public class GridConfigurationPage
                     }
                 }
             }
+            new WebDriverWait(driver, Duration.ofMillis(4000)).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[contains(@class,'k-list-container')]/descendant::ul/li")));
             String gType=HelpersMethod.FindByElement(driver,"xpath","//span[@id='SelectGridType']/span[@class='k-input']").getText();
             if(gType.equals(gridTypeSelect))
             {
@@ -535,8 +536,8 @@ public class GridConfigurationPage
         int listSize=0;
         try
         {
-            WebElement gridOption=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-popup k-child-animation-container')]");
-            List<WebElement> listOptions= gridOption.findElements(By.xpath(".//ul/li"));
+            List<WebElement> listOptions=HelpersMethod.FindByElements(driver,"xpath","//div[contains(@class,'k-list-container')]/descendant::ul/li");
+            scenario.log("DROP DOWN GRID "+listOptions.size());
             listSize=listOptions.size();
             for (WebElement listOpt:listOptions)
             {
@@ -545,6 +546,14 @@ public class GridConfigurationPage
                 scenario.log("GRID TYPE FOUND IN DROP DOWN: "+opt_Text);
                 exists=true;
             }
+
+            /*for(int i=0;i<=listOptions.size()-1;i++)
+            {
+                listOpt=listOptions.get(0);
+                opt_Text=listOpt.getText();
+                scenario.log("GRID TYPE FOUND IN DROP DOWN: "+opt_Text);
+                exists=true;
+            }*/
             Assert.assertEquals(exists,true);
         }
         catch (Exception e){}
@@ -556,6 +565,7 @@ public class GridConfigurationPage
         exists=true;
         try
         {
+            Thread.sleep(2000);
             if(HelpersMethod.IsExists("//div[@class='available-grids-container']",driver))
             {
                 scenario.log("USER IS IN AVAILABLE GRID CARD");
@@ -761,6 +771,12 @@ public class GridConfigurationPage
         exists=false;
         try
         {
+            //new WebDriverWait(driver,Duration.ofMillis(2000)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(text(),'saved successfully.')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]")));
+            if(HelpersMethod.IsExists("//div[@class='loader']",driver))
+            {
+                WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000000);
+            }
             if(HelpersMethod.IsExists("//div[contains(text(),'saved successfully.')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
             {
                 scenario.log("ADMIN SIDE CHANGES SAVE POPUP HAS APPEARED");
@@ -780,7 +796,7 @@ public class GridConfigurationPage
             {
                 WebElement saveConfirmationPopup=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-widget k-window k-dialog')]");
                 WebElement okButton=saveConfirmationPopup.findElement(By.xpath(".//button[contains(@id,'QuestionModalButton')]"));
-                HelpersMethod.ActClick(driver,okButton,1000);
+                HelpersMethod.ActClick(driver,okButton,6000);
                 if(HelpersMethod.IsExists("//div[@class='loader']",driver))
                 {
                     WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
