@@ -79,7 +79,7 @@ public class FeaturedProductsPageStep
     {
             adminHomePage = new AdminHomePage(driver, scenario);
             adminHomePage.Horizantal_MenuBar(arg0);
-            Thread.sleep(1000);
+            Thread.sleep(2000);
     }
 
     @And("User should be on Featured products list")
