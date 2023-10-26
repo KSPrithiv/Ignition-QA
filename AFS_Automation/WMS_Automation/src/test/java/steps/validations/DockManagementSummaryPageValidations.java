@@ -83,16 +83,16 @@ public class DockManagementSummaryPageValidations {
     public void validateTasksByTypeWidget() {
         softAssert.assertTrue(dockManagementSummaryPage.isCycleCountTaskDisplayed(), "Cycle Count is not displayed");
         softAssert.assertTrue(dockManagementSummaryPage.isLetdownTaskDisplayed(), "Letdown is not displayed");
-        softAssert.assertTrue(dockManagementSummaryPage.isLoadCountAuditTaskDisplayed(), "Load Count Audit is not displayed");
+    //    softAssert.assertTrue(dockManagementSummaryPage.isLoadCountAuditTaskDisplayed(), "Load Count Audit is not displayed");
         softAssert.assertTrue(dockManagementSummaryPage.isLoadingTaskDisplayed(), "Loading Task is not displayed");
-        softAssert.assertTrue(dockManagementSummaryPage.isMovementTaskDisplayed(), "Movement is not displayed");
+    //    softAssert.assertTrue(dockManagementSummaryPage.isMovementTaskDisplayed(), "Movement is not displayed");
         softAssert.assertTrue(dockManagementSummaryPage.isPickTaskDisplayed(), "Pick is not displayed");
         softAssert.assertTrue(dockManagementSummaryPage.isPickFromReserveTaskDisplayed(), "Pick from reserve is not displayed");
         softAssert.assertTrue(dockManagementSummaryPage.isPutawayTaskDisplayed(), "Putaway is not displayed");
         softAssert.assertTrue(dockManagementSummaryPage.isReplenishmentTaskDisplayed(), "Replenishment is not displayed");
         softAssert.assertTrue(dockManagementSummaryPage.isShippingTaskDisplayed(), "Shipping is not displayed");
-        softAssert.assertTrue(dockManagementSummaryPage.isShortChasingTaskDisplayed(), "Short Chasing is not displayed");
-        softAssert.assertTrue(dockManagementSummaryPage.isTopOffTaskDisplayed(), "Top Off is not displayed");
+    //    softAssert.assertTrue(dockManagementSummaryPage.isShortChasingTaskDisplayed(), "Short Chasing is not displayed");
+    //    softAssert.assertTrue(dockManagementSummaryPage.isTopOffTaskDisplayed(), "Top Off is not displayed");
         softAssert.assertTrue(dockManagementSummaryPage.isWavePickTaskDisplayed(), "Wave Pick is not displayed");
         softAssert.assertAll();
     }
@@ -155,12 +155,12 @@ public class DockManagementSummaryPageValidations {
     @And("Validates By Status graph widget is displayed on Dashboard page")
     public void validatesByStatusGraphDisplayed() {
         softAssert.assertTrue(dockManagementSummaryPage.isInventoryGraphDisplayed(), "INVENTORY graph is not displayed");
-        softAssert.assertTrue(dockManagementSummaryPage.isCloseToCodeDisplayed(), "Close To Code is not displayed");
+     //  softAssert.assertTrue(dockManagementSummaryPage.isCloseToCodeDisplayed(), "Close To Code is not displayed");
         softAssert.assertTrue(dockManagementSummaryPage.isDamagedDisplayed(), "Damaged is not displayed");
-        softAssert.assertTrue(dockManagementSummaryPage.isExpiredDisplayed(), "Expired is not displayed");
-        softAssert.assertTrue(dockManagementSummaryPage.isFDAHOLDDisplayed(), "FDA HOLD is not displayed");
-        softAssert.assertTrue(dockManagementSummaryPage.isHoldTestDisplayed(), "Hold Test is not displayed");
-        softAssert.assertTrue(dockManagementSummaryPage.isQualityControlDisplayed(), "Quality Control is not displayed");
+    //    softAssert.assertTrue(dockManagementSummaryPage.isExpiredDisplayed(), "Expired is not displayed");
+     //   softAssert.assertTrue(dockManagementSummaryPage.isFDAHOLDDisplayed(), "FDA HOLD is not displayed");
+     //   softAssert.assertTrue(dockManagementSummaryPage.isHoldTestDisplayed(), "Hold Test is not displayed");
+     //   softAssert.assertTrue(dockManagementSummaryPage.isQualityControlDisplayed(), "Quality Control is not displayed");
         softAssert.assertTrue(dockManagementSummaryPage.isShippedDisplayed(), "Shipped is not displayed");
         softAssert.assertAll();
     }

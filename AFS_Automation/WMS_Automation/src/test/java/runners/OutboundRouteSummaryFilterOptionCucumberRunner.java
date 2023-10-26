@@ -17,7 +17,7 @@ import java.io.IOException;
 
 import static common.setup.DriverManager.*;
 
-@CucumberOptions(features = {"src/test/resources/features/outbound/outboundroutesummary/filteroption/OutboundRouteSummaryFilterOption.feature "},
+@CucumberOptions(features = {"src/test/resources/features/outbound/outboundroutesummary/filteroption/OutboundRouteSummaryFilterOption.feature"},
         glue = {"steps"},
         plugin = {"pretty",
                 "json:target/cucumber.json",

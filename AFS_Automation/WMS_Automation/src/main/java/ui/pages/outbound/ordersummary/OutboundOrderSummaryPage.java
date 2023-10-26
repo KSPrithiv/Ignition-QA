@@ -148,7 +148,7 @@ public class OutboundOrderSummaryPage extends BasePage {
     By commentsButton = By.xpath("//button[@id='btnImageNo' and contains(text(), 'Comments')]");
 
     public void waitOutboundOrderSummaryPageToLoad() {
-        waitUntilInvisible(1, loader);
+        waitUntilInvisible(5, loader);
         Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(getTitle());
         Waiters.waitForElementToBeDisplay(getTableContent());

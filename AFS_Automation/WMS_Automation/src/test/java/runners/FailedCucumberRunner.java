@@ -26,7 +26,7 @@ import static common.setup.DriverManager.*;
                 "json:target/cucumber-reports/cucumber.json",
                 "rerun:target/failedrerun.txt"
         }, monochrome = true,
-        tags = "@Setup")
+        tags = "@setupfailed")
 
 @Slf4j
 public class FailedCucumberRunner extends AbstractTestNGCucumberTests {
