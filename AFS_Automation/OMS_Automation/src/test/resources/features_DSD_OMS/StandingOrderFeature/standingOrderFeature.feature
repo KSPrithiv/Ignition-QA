@@ -80,7 +80,7 @@ Feature: Standing Order
     Then User clicks on Save button and handles popup
 
   @CatalogCard
-  Scenario: Test scenario for creating standing order using catalog standing order
+  Scenario: Test scenario for creating standing order using catalog standing order, by selecting category value
     Given User must be on Order Entry Page to select Standing Order and navigate to standing order
     And User click on Start standing order button and selects Start date 16 and End date 17 day from current date
     Then User click on Add Product button in Standing order page and select catalog option

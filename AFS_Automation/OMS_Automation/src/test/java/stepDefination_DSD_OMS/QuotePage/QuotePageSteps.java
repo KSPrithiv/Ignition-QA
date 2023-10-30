@@ -224,12 +224,13 @@ public class QuotePageSteps
     public void userClicksOnPlusSymbolInNewQuotePageAndSelectsCatalogOptionFromDropDown()
     {
         newQuotePage=new NewQuotePage(driver,scenario);
+        newQuotePage.validateNewQuote();
         newQuotePage.ClickOnAddProduct();
         newQuotePage.SelectCatalog();
     }
 
-    @Then("User addes some products from catalog")
-    public void userAddesSomeProductsFromCatalog(DataTable tabledata)
+    @Then("User adds some products from catalog")
+    public void userAddsSomeProductsFromCatalog(DataTable tabledata)
     {
         List<List<String>> Qty=tabledata.asLists(String.class);
         newQuotePage=new NewQuotePage(driver,scenario);
@@ -241,6 +242,7 @@ public class QuotePageSteps
     public void userClicksOnPlusSymbolInNewQuotePageAndSelectsOGOptionFromDropDown()
     {
         newQuotePage=new NewQuotePage(driver,scenario);
+        newQuotePage.validateNewQuote();
         newQuotePage.ClickOnAddProduct();
         newQuotePage.SelectOG();
         newQuotePage.SelectOGFromPopup();

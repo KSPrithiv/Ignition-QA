@@ -334,6 +334,19 @@ public class OrderEntryPageSteps
         newOE.EnterPO_No(PO_No.get(0).get(0));
     }
 
+    @Then("Enter PO# for New order for Quote to Order")
+    public void enter_po_for_new_order_for_quote_to_order(DataTable tabledata) throws InterruptedException, AWTException
+    {
+        newOE=new NewOrderEntryPage(driver,scenario);
+        exists=newOE.ValidateNewOE();
+        orderpage=new OrderEntryPage(driver,scenario);
+        orderpage.NO_NotePopup();
+        newOE=new NewOrderEntryPage(driver,scenario);
+        List<List<String>> PO_No = tabledata.asLists(String.class);
+        newOE.EnterPO_No(PO_No.get(0).get(0));
+        newOE.unavailableProduct();
+    }
+
     //For entering Qty in catalog, based on catalog display. i.e. card catalog/list catalog
     @Then("Enter the Qty in the Product grid Case and Unit")
     public void enter_the_qty_in_the_product_grid_Case_and_Unit(DataTable tabledata) throws Throwable
@@ -521,8 +534,6 @@ public class OrderEntryPageSteps
         else if(uomString.equals("Cases"))
         {
             newOE.CheckForQuickCaseEnabled(Case);
-            WebElement unitInput=HelpersMethod.FindByElement(driver,"id","quickUnits");
-            unitInput.sendKeys(Keys.TAB);
             newOE.exceedsMaxQty();
             newOE.toastCurrentlyUnavailable();
         }

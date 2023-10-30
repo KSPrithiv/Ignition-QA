@@ -21,6 +21,9 @@ Then User navigate to Client side for User and account client login
     |CompanyAdmin|P123|
     Then User clicks on register buttton
 
+  @MangeRegistration
+  Scenario: Test scenario for
+
 
   @LogoutFromUserAndAccountClientside
   Scenario:Loging out from the application

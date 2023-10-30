@@ -280,7 +280,7 @@ public class CheckOutSummaryPage
         if(HelpersMethod.IsExists("//div[@class='loader']",driver))
         {
             WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100000);
+            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000000);
         }
 
         // to fetch the web element of the modal container
@@ -491,7 +491,7 @@ public class CheckOutSummaryPage
             if(HelpersMethod.IsExists("//div[@class='loader']",driver))
             {
                 WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 80000);
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000000);
             }
             Assert.assertEquals(exists,true);
         }
@@ -546,7 +546,6 @@ public class CheckOutSummaryPage
             }
             //Creating sorted list of products in Summary grid
             ArrayList<String> Pro_Sort=new ArrayList<>(Pro_List);
-            //Collections.sort(Pro_Sort,Collections.reverseOrder());
             Collections.sort(Pro_Sort);
             //Comparing the sorted order with list of products
             //Assert.assertEquals(Pro_List,Pro_Sort);
