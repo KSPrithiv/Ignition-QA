@@ -5,120 +5,48 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="bb98aa04-0c11-4234-8bb2-3e944f1d2191" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/OMS_Automation/OMS_Automation.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/OMS_Automation/test-output/base64_generated_pdf_10.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/OMS_Automation/test-output/base64_generated_pdf_11.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/OMS_Automation/test-output/base64_generated_pdf_12.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/OMS_Automation/test-output/base64_generated_pdf_13.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/OMS_Automation/test-output/base64_generated_pdf_14.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/OMS_Automation/test-output/base64_generated_pdf_15.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/OMS_Automation/test-output/base64_generated_pdf_16.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/OMS_Automation/test-output/base64_generated_pdf_19.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/OMS_Automation/test-output/base64_generated_pdf_20.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/OMS_Automation/test-output/base64_generated_pdf_21.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/OMS_Automation/test-output/base64_generated_pdf_22.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/OMS_Automation/test-output/base64_generated_pdf_23.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/OMS_Automation/test-output/base64_generated_pdf_24.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/OMS_Automation/test-output/base64_generated_pdf_25.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/OMS_Automation/test-output/base64_generated_pdf_26.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/OMS_Automation/test-output/base64_generated_pdf_27.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/OMS_Automation/test-output/base64_generated_pdf_28.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/OMS_Automation/test-output/base64_generated_pdf_29.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/OMS_Automation/test-output/base64_generated_pdf_30.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/OMS_Automation/test-output/base64_generated_pdf_31.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/OMS_Automation/test-output/base64_generated_pdf_32.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/OMS_Automation/test-output/base64_generated_pdf_33.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/OMS_Automation/test-output/base64_generated_pdf_34.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/OMS_Automation/test-output/base64_generated_pdf_35.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/OMS_Automation/test-output/base64_generated_pdf_36.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/OMS_Automation/test-output/base64_generated_pdf_37.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/OMS_Automation/test-output/base64_generated_pdf_38.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/OMS_Automation/test-output/base64_generated_pdf_39.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/OMS_Automation/test-output/base64_generated_pdf_40.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/OMS_Automation/test-output/base64_generated_pdf_41.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/OMS_Automation/test-output/base64_generated_pdf_42.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/OMS_Automation/test-output/base64_generated_pdf_43.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/OMS_Automation/test-output/base64_generated_pdf_44.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/OMS_Automation/test-output/base64_generated_pdf_45.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/OMS_Automation/test-output/base64_generated_pdf_46.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/OMS_Automation/test-output/base64_generated_pdf_47.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/OMS_Automation/test-output/base64_generated_pdf_48.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/OMS_Automation/test-output/base64_generated_pdf_49.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/OMS_Automation/test-output/base64_generated_pdf_50.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/OMS_Automation/test-output/base64_generated_pdf_51.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/OMS_Automation/test-output/base64_generated_pdf_52.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/OMS_Automation/test-output/base64_generated_pdf_53.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/OMS_Automation/test-output/base64_generated_pdf_54.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/OMS_Automation/test-output/base64_generated_pdf_55.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/OMS_Automation/test-output/base64_generated_pdf_56.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/OMS_Automation/test-output/base64_generated_pdf_57.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/OMS_Automation/test-output/base64_generated_pdf_58.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/OMS_Automation/test-output/base64_generated_pdf_59.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/OMS_Automation/test-output/base64_generated_pdf_60.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/OMS_Automation/test-output/base64_generated_pdf_61.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/OMS_Automation/test-output/base64_generated_pdf_62.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/OMS_Automation/test-output/base64_generated_pdf_63.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/OMS_Automation/test-output/base64_generated_pdf_64.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/OMS_Automation/test-output/base64_generated_pdf_65.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/OMS_Automation/test-output/base64_generated_pdf_66.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/OMS_Automation/test-output/base64_generated_pdf_67.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/OMS_Automation/test-output/base64_generated_pdf_68.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/OMS_Automation/test-output/base64_generated_pdf_69.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/OMS_Automation/test-output/base64_generated_pdf_7.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/OMS_Automation/test-output/base64_generated_pdf_70.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/OMS_Automation/test-output/base64_generated_pdf_71.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/OMS_Automation/test-output/base64_generated_pdf_72.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/OMS_Automation/test-output/base64_generated_pdf_73.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/OMS_Automation/test-output/base64_generated_pdf_74.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/OMS_Automation/test-output/base64_generated_pdf_75.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/OMS_Automation/test-output/base64_generated_pdf_76.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/OMS_Automation/test-output/base64_generated_pdf_8.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/OMS_Automation/test-output/base64_generated_pdf_9.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/WMS_Automation/WMS_Automation.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/OMS_Automation/Reports/ExtentPdf.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/OMS_Automation/Reports/ExtentPdf.pdf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/OMS_Automation/Reports/extent/Index.html" beforeDir="false" afterPath="$PROJECT_DIR$/OMS_Automation/Reports/extent/Index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/OMS_Automation/Reports/spark/Index.html" beforeDir="false" afterPath="$PROJECT_DIR$/OMS_Automation/Reports/spark/Index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/OMS_Automation/src/main/java/pages_DSD_OMS/adminGrids/GridConfigurationPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/OMS_Automation/src/main/java/pages_DSD_OMS/adminGrids/GridConfigurationPage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/OMS_Automation/src/main/java/pages_DSD_OMS/allOrder/AllOrderPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/OMS_Automation/src/main/java/pages_DSD_OMS/allOrder/AllOrderPage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/OMS_Automation/src/main/java/pages_DSD_OMS/login/LoginPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/OMS_Automation/src/main/java/pages_DSD_OMS/login/LoginPage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/OMS_Automation/src/main/java/pages_DSD_OMS/login/ProductPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/OMS_Automation/src/main/java/pages_DSD_OMS/login/ProductPage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/OMS_Automation/src/main/java/pages_DSD_OMS/orderEntry/CheckOutOrderPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/OMS_Automation/src/main/java/pages_DSD_OMS/orderEntry/CheckOutOrderPage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/OMS_Automation/src/main/java/pages_DSD_OMS/orderEntry/CheckOutSummaryPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/OMS_Automation/src/main/java/pages_DSD_OMS/orderEntry/CheckOutSummaryPage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/OMS_Automation/src/main/java/pages_DSD_OMS/orderEntry/NewOrderEntryPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/OMS_Automation/src/main/java/pages_DSD_OMS/orderEntry/NewOrderEntryPage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/OMS_Automation/src/main/java/pages_DSD_OMS/orderEntry/OrderEntryPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/OMS_Automation/src/main/java/pages_DSD_OMS/orderEntry/OrderEntryPage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/OMS_Automation/src/main/java/pages_DSD_OMS/standingOrder/NewStandingOrderCard.java" beforeDir="false" afterPath="$PROJECT_DIR$/OMS_Automation/src/main/java/pages_DSD_OMS/standingOrder/NewStandingOrderCard.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/OMS_Automation/src/main/java/pages_DSD_OMS/standingOrder/NewStandingOrderPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/OMS_Automation/src/main/java/pages_DSD_OMS/standingOrder/NewStandingOrderPage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/OMS_Automation/src/main/java/pages_DSD_OMS/webOrdering/AdminHomePage.java" beforeDir="false" afterPath="$PROJECT_DIR$/OMS_Automation/src/main/java/pages_DSD_OMS/webOrdering/AdminHomePage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/OMS_Automation/src/main/java/util/TestBase.java" beforeDir="false" afterPath="$PROJECT_DIR$/OMS_Automation/src/main/java/util/TestBase.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/OMS_Automation/src/main/resources/config_DSD_OMS/config_OMS.properties" beforeDir="false" afterPath="$PROJECT_DIR$/OMS_Automation/src/main/resources/config_DSD_OMS/config_OMS.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/OMS_Automation/src/test/java/stepDefination_DSD_OMS/AdminGridsPage/GridConfigurationPageStep.java" beforeDir="false" afterPath="$PROJECT_DIR$/OMS_Automation/src/test/java/stepDefination_DSD_OMS/AdminGridsPage/GridConfigurationPageStep.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/OMS_Automation/src/test/java/stepDefination_DSD_OMS/OrderEntryPage/OrderEntryPageSteps3.java" beforeDir="false" afterPath="$PROJECT_DIR$/OMS_Automation/src/test/java/stepDefination_DSD_OMS/OrderEntryPage/OrderEntryPageSteps3.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/OMS_Automation/src/test/java/stepDefination_DSD_OMS/StandingOrderPage/StandingOrderPageSteps.java" beforeDir="false" afterPath="$PROJECT_DIR$/OMS_Automation/src/test/java/stepDefination_DSD_OMS/StandingOrderPage/StandingOrderPageSteps.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/OMS_Automation/src/test/java/stepDefination_DSD_OMS/WebOrderingPage/FeaturedProductsPageStep.java" beforeDir="false" afterPath="$PROJECT_DIR$/OMS_Automation/src/test/java/stepDefination_DSD_OMS/WebOrderingPage/FeaturedProductsPageStep.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/OMS_Automation/src/test/java/testRunner_DSD_OMS/DSDEnv/TestRunnerLogin.java" beforeDir="false" afterPath="$PROJECT_DIR$/OMS_Automation/src/test/java/testRunner_DSD_OMS/DSDEnv/TestRunnerLogin.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/OMS_Automation/src/test/java/testRunner_DSD_OMS/DSDEnv/TestRunnerOE.java" beforeDir="false" afterPath="$PROJECT_DIR$/OMS_Automation/src/test/java/testRunner_DSD_OMS/DSDEnv/TestRunnerOE.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/OMS_Automation/src/test/java/testRunner_DSD_OMS/TestRunnSingleSce.java" beforeDir="false" afterPath="$PROJECT_DIR$/OMS_Automation/src/test/java/testRunner_DSD_OMS/TestRunnSingleSce.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/OMS_Automation/src/test/resources/features_DSD_OMS/AdminGridFeature/adminGridFeature.feature" beforeDir="false" afterPath="$PROJECT_DIR$/OMS_Automation/src/test/resources/features_DSD_OMS/AdminGridFeature/adminGridFeature.feature" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/OMS_Automation/src/test/resources/features_DSD_OMS/OrderEntryFeature/orderEntryFeature2.feature" beforeDir="false" afterPath="$PROJECT_DIR$/OMS_Automation/src/test/resources/features_DSD_OMS/OrderEntryFeature/orderEntryFeature2.feature" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/OMS_Automation/src/test/resources/features_DSD_OMS/StandingOrderFeature/standingOrderFeature.feature" beforeDir="false" afterPath="$PROJECT_DIR$/OMS_Automation/src/test/resources/features_DSD_OMS/StandingOrderFeature/standingOrderFeature.feature" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/OMS_Automation/src/test/resources/features_DSD_OMS/WebOrderingFeature/FeaturedProductsFeature.feature" beforeDir="false" afterPath="$PROJECT_DIR$/OMS_Automation/src/test/resources/features_DSD_OMS/WebOrderingFeature/FeaturedProductsFeature.feature" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/OMS_Automation/target/classes/config_DSD_OMS/config_DSD.properties" beforeDir="false" afterPath="$PROJECT_DIR$/OMS_Automation/target/classes/config_DSD_OMS/config_DSD.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/OMS_Automation/target/classes/config_DSD_OMS/config_OMS.properties" beforeDir="false" afterPath="$PROJECT_DIR$/OMS_Automation/target/classes/config_DSD_OMS/config_OMS.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/OMS_Automation/test-output/base64_generated_pdf_1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/OMS_Automation/test-output/base64_generated_pdf_17.png" beforeDir="false" afterPath="$PROJECT_DIR$/OMS_Automation/test-output/base64_generated_pdf_17.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/OMS_Automation/test-output/base64_generated_pdf_18.png" beforeDir="false" afterPath="$PROJECT_DIR$/OMS_Automation/test-output/base64_generated_pdf_18.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/OMS_Automation/test-output/base64_generated_pdf_2.png" beforeDir="false" afterPath="$PROJECT_DIR$/OMS_Automation/test-output/base64_generated_pdf_2.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/OMS_Automation/test-output/base64_generated_pdf_3.png" beforeDir="false" afterPath="$PROJECT_DIR$/OMS_Automation/test-output/base64_generated_pdf_3.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/OMS_Automation/test-output/base64_generated_pdf_4.png" beforeDir="false" afterPath="$PROJECT_DIR$/OMS_Automation/test-output/base64_generated_pdf_4.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/OMS_Automation/test-output/base64_generated_pdf_5.png" beforeDir="false" afterPath="$PROJECT_DIR$/OMS_Automation/test-output/base64_generated_pdf_5.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/OMS_Automation/test-output/base64_generated_pdf_6.png" beforeDir="false" afterPath="$PROJECT_DIR$/OMS_Automation/test-output/base64_generated_pdf_6.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/OMS_Automation/OMS_Automation.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WMS_Automation/FailedTestNGRunner.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WMS_Automation/Reports/Index.html" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/Reports/Index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WMS_Automation/src/main/java/ui/pages/outbound/loadplanning/OutboundLoadPlanningPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/src/main/java/ui/pages/outbound/loadplanning/OutboundLoadPlanningPage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WMS_Automation/src/main/java/ui/pages/outbound/loadplanning/OutboundTruckInfoPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/src/main/java/ui/pages/outbound/loadplanning/OutboundTruckInfoPage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WMS_Automation/src/test/java/runners/CountingSessionsCucumberRunner.java" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/src/test/java/runners/CountingSessionsCucumberRunner.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WMS_Automation/src/test/java/runners/FailedCucumberRunner.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WMS_Automation/src/test/java/runners/InboundReceivingCucumberRunner.java" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/src/test/java/runners/InboundReceivingCucumberRunner.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WMS_Automation/src/test/java/runners/LoginCucumberRunner.java" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/src/test/java/runners/LoginCucumberRunner.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WMS_Automation/src/test/java/runners/LookupCucumberLocationsScreenRunner1.java" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/src/test/java/runners/LookupCucumberLocationsScreenRunner1.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WMS_Automation/src/test/java/runners/LookupCucumberLocationsScreenRunner2.java" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/src/test/java/runners/LookupCucumberLocationsScreenRunner2.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WMS_Automation/src/test/java/runners/SetupCucumberRunner.java" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/src/test/java/runners/SetupCucumberRunner.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WMS_Automation/src/test/java/runners/WorkQueueFilterOptionCucumberRunner1.java" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/src/test/java/runners/WorkQueueFilterOptionCucumberRunner1.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WMS_Automation/src/test/java/runners/WorkQueueFilterOptionCucumberRunner2.java" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/src/test/java/runners/WorkQueueFilterOptionCucumberRunner2.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WMS_Automation/src/test/java/runners/WorkQueueFilterOptionCucumberRunner3.java" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/src/test/java/runners/WorkQueueFilterOptionCucumberRunner3.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WMS_Automation/src/test/java/runners/WorkQueueFilterOptionCucumberRunner4.java" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/src/test/java/runners/WorkQueueFilterOptionCucumberRunner4.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/WMS_Automation/src/test/java/steps/LoginPageSteps.java" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/src/test/java/steps/LoginPageSteps.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WMS_Automation/src/test/resources/features/Failed.feature" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WMS_Automation/src/test/resources/features/counting/counting/CountingCountScreen2.feature" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/src/test/resources/features/counting/counting/CountingCountScreen2.feature" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WMS_Automation/src/test/resources/features/counting/sessions/CountingSessionsScreen1.feature" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/src/test/resources/features/counting/sessions/CountingSessionsScreen1.feature" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WMS_Automation/src/test/resources/features/counting/sessions/CountingSessionsScreen2.feature" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/src/test/resources/features/counting/sessions/CountingSessionsScreen2.feature" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WMS_Automation/src/test/resources/features/counting/sessions/CountingSessionsScreen3.feature" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/src/test/resources/features/counting/sessions/CountingSessionsScreen3.feature" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WMS_Automation/src/test/resources/features/inbound/receiving/InboundReceiving.feature" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/src/test/resources/features/inbound/receiving/InboundReceiving.feature" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WMS_Automation/src/test/resources/features/login/Login.feature" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/src/test/resources/features/login/Login.feature" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WMS_Automation/src/test/resources/features/lookup/lookuplocation/LookupLocationScreen1.feature" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/src/test/resources/features/lookup/lookuplocation/LookupLocationScreen1.feature" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WMS_Automation/src/test/resources/features/lookup/lookuplocation/LookupLocationScreen2.feature" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/src/test/resources/features/lookup/lookuplocation/LookupLocationScreen2.feature" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WMS_Automation/src/test/resources/features/outbound/loadplanning/OutboundLoadPlanning1.feature" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/src/test/resources/features/outbound/loadplanning/OutboundLoadPlanning1.feature" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WMS_Automation/src/test/resources/features/outbound/loadplanning/OutboundLoadPlanning2.feature" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/src/test/resources/features/outbound/loadplanning/OutboundLoadPlanning2.feature" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WMS_Automation/src/test/resources/features/setup/SetupProductDateEncodingConfigScreen.feature" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/src/test/resources/features/setup/SetupProductDateEncodingConfigScreen.feature" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WMS_Automation/src/test/resources/features/setup/SetupProductScreen.feature" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/src/test/resources/features/setup/SetupProductScreen.feature" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WMS_Automation/src/test/resources/features/workqueue/assignmentlist/filteroption/WorkQueueFilterOptionScreen1.feature" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/src/test/resources/features/workqueue/assignmentlist/filteroption/WorkQueueFilterOptionScreen1.feature" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WMS_Automation/src/test/resources/features/workqueue/assignmentlist/filteroption/WorkQueueFilterOptionScreen2.feature" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/src/test/resources/features/workqueue/assignmentlist/filteroption/WorkQueueFilterOptionScreen2.feature" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WMS_Automation/src/test/resources/features/workqueue/assignmentlist/filteroption/WorkQueueFilterOptionScreen3.feature" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/src/test/resources/features/workqueue/assignmentlist/filteroption/WorkQueueFilterOptionScreen3.feature" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WMS_Automation/src/test/resources/features/workqueue/assignmentlist/filteroption/WorkQueueFilterOptionScreen4.feature" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/src/test/resources/features/workqueue/assignmentlist/filteroption/WorkQueueFilterOptionScreen4.feature" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WMS_Automation/target/classes/ui/pages/outbound/loadplanning/OutboundLoadPlanningPage.class" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/target/classes/ui/pages/outbound/loadplanning/OutboundLoadPlanningPage.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WMS_Automation/target/classes/ui/pages/outbound/loadplanning/OutboundTruckInfoPage.class" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/target/classes/ui/pages/outbound/loadplanning/OutboundTruckInfoPage.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WMS_Automation/target/test-classes/runners/LoginCucumberRunner.class" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/target/test-classes/runners/LoginCucumberRunner.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WMS_Automation/target/test-classes/runners/SetupCucumberRunner.class" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/target/test-classes/runners/SetupCucumberRunner.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/WMS_Automation/target/test-classes/steps/LoginPageSteps.class" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/target/test-classes/steps/LoginPageSteps.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -165,7 +93,27 @@
     <property name="project.structure.side.proportion" value="0.0" />
     <property name="settings.editor.selected.configurable" value="vcs.TFVC" />
   </component>
-  <component name="RunManager" selected="Cucumber Java.Scenario: Checking Changing Ship date/time functionality on Outbound Truck Info page">
+  <component name="RunManager" selected="TestNG.C:/Users/Irina.Holovan/Documents/ignition-qa/AFS_Automation/WMS_Automation/OutboundRouteSummaryOptionTestNGRunner.xml">
+    <configuration name="Scenario: Checking Assignment Status filter option of Work Queue Assignments screen functionality" type="CucumberJavaRunConfigurationType" factoryName="Cucumber java" temporary="true" nameIsGenerated="true">
+      <option name="CUCUMBER_CORE_VERSION" value="5" />
+      <option name="FILE_PATH" value="$PROJECT_DIR$/WMS_Automation/src/test/resources/features/workqueue/assignmentlist/filteroption/WorkQueueFilterOptionScreen3.feature" />
+      <option name="GLUE" value="stepDefination_DSD_OMS steps" />
+      <option name="MAIN_CLASS_NAME" value="io.cucumber.core.cli.Main" />
+      <module name="WMS_Automation" />
+      <option name="NAME_FILTER" value="^Checking Assignment Status filter option of Work Queue Assignments screen functionality$" />
+      <option name="PROGRAM_PARAMETERS" value=" --plugin org.jetbrains.plugins.cucumber.java.run.CucumberJvm5SMFormatter --name &quot;^Checking Assignment Status filter option of Work Queue Assignments screen functionality$&quot;" />
+      <option name="SUGGESTED_NAME" value="Scenario: Checking Assignment Status filter option of Work Queue Assignments screen functionality" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_WORKING_DIR$" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="io.cucumber.core.cli.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="Scenario: Checking Changing Ship date/time functionality on Outbound Truck Info page" type="CucumberJavaRunConfigurationType" factoryName="Cucumber java" temporary="true" nameIsGenerated="true">
       <option name="CUCUMBER_CORE_VERSION" value="5" />
       <option name="FILE_PATH" value="$PROJECT_DIR$/WMS_Automation/src/test/resources/features/outbound/loadplanning/OutboundLoadPlanning2.feature" />
@@ -186,15 +134,15 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Scenario: Checking Trailer in functionality on Outbound Truck Info page" type="CucumberJavaRunConfigurationType" factoryName="Cucumber java" temporary="true" nameIsGenerated="true">
+    <configuration name="Scenario: Checking Load Planning login screen" type="CucumberJavaRunConfigurationType" factoryName="Cucumber java" temporary="true" nameIsGenerated="true">
       <option name="CUCUMBER_CORE_VERSION" value="5" />
-      <option name="FILE_PATH" value="$PROJECT_DIR$/WMS_Automation/src/test/resources/features/outbound/loadplanning/OutboundLoadPlanning2.feature" />
+      <option name="FILE_PATH" value="$PROJECT_DIR$/WMS_Automation/src/test/resources/features/outbound/loadplanning/OutboundLoadPlanning1.feature" />
       <option name="GLUE" value="stepDefination_DSD_OMS steps" />
       <option name="MAIN_CLASS_NAME" value="io.cucumber.core.cli.Main" />
       <module name="WMS_Automation" />
-      <option name="NAME_FILTER" value="^Checking Trailer in functionality on Outbound Truck Info page$" />
-      <option name="PROGRAM_PARAMETERS" value=" --plugin org.jetbrains.plugins.cucumber.java.run.CucumberJvm5SMFormatter --name &quot;^Checking Trailer in functionality on Outbound Truck Info page$&quot;" />
-      <option name="SUGGESTED_NAME" value="Scenario: Checking Trailer in functionality on Outbound Truck Info page" />
+      <option name="NAME_FILTER" value="^Checking Load Planning login screen$" />
+      <option name="PROGRAM_PARAMETERS" value=" --plugin org.jetbrains.plugins.cucumber.java.run.CucumberJvm5SMFormatter --name &quot;^Checking Load Planning login screen$&quot;" />
+      <option name="SUGGESTED_NAME" value="Scenario: Checking Load Planning login screen" />
       <option name="WORKING_DIRECTORY" value="$MODULE_WORKING_DIR$" />
       <extension name="coverage">
         <pattern>
@@ -206,36 +154,29 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="AppointmentsCucumberRunner" type="TestNG" temporary="true" nameIsGenerated="true">
+    <configuration name="Scenario: Checking Route Cube on Outbound Truck Info page" type="CucumberJavaRunConfigurationType" factoryName="Cucumber java" temporary="true" nameIsGenerated="true">
+      <option name="CUCUMBER_CORE_VERSION" value="5" />
+      <option name="FILE_PATH" value="$PROJECT_DIR$/WMS_Automation/src/test/resources/features/outbound/loadplanning/OutboundLoadPlanning2.feature" />
+      <option name="GLUE" value="stepDefination_DSD_OMS steps" />
+      <option name="MAIN_CLASS_NAME" value="io.cucumber.core.cli.Main" />
       <module name="WMS_Automation" />
+      <option name="NAME_FILTER" value="^Checking Route Cube on Outbound Truck Info page$" />
+      <option name="PROGRAM_PARAMETERS" value=" --plugin org.jetbrains.plugins.cucumber.java.run.CucumberJvm5SMFormatter --name &quot;^Checking Route Cube on Outbound Truck Info page$&quot;" />
+      <option name="SUGGESTED_NAME" value="Scenario: Checking Route Cube on Outbound Truck Info page" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_WORKING_DIR$" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="runners.*" />
+          <option name="PATTERN" value="io.cucumber.core.cli.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="runners" />
-      <option name="MAIN_CLASS_NAME" value="runners.AppointmentsCucumberRunner" />
-      <option name="TEST_OBJECT" value="CLASS" />
-      <properties />
-      <listeners />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="C:/Users/Irina.Holovan/Documents/ignition-qa/AFS_Automation/WMS_Automation/AppointmentsTestNGRunner.xml" type="TestNG" temporary="true" nameIsGenerated="true">
+    <configuration name="C:/Users/Irina.Holovan/Documents/ignition-qa/AFS_Automation/WMS_Automation/OutboundRouteSummaryOptionTestNGRunner.xml" type="TestNG" temporary="true" nameIsGenerated="true">
       <module name="WMS_Automation" />
-      <option name="SUITE_NAME" value="$PROJECT_DIR$/WMS_Automation/AppointmentsTestNGRunner.xml" />
-      <option name="TEST_OBJECT" value="SUITE" />
-      <properties />
-      <listeners />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="C:/Users/Irina.Holovan/Documents/ignition-qa/AFS_Automation/WMS_Automation/DashboardTestNGRunner.xml" type="TestNG" temporary="true" nameIsGenerated="true">
-      <module name="WMS_Automation" />
-      <option name="SUITE_NAME" value="$PROJECT_DIR$/WMS_Automation/DashboardTestNGRunner.xml" />
+      <option name="SUITE_NAME" value="$PROJECT_DIR$/WMS_Automation/OutboundRouteSummaryOptionTestNGRunner.xml" />
       <option name="TEST_OBJECT" value="SUITE" />
       <properties />
       <listeners />
@@ -245,11 +186,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="TestNG.C:/Users/Irina.Holovan/Documents/ignition-qa/AFS_Automation/WMS_Automation/OutboundRouteSummaryOptionTestNGRunner.xml" />
+        <item itemvalue="Cucumber Java.Scenario: Checking Route Cube on Outbound Truck Info page" />
+        <item itemvalue="Cucumber Java.Scenario: Checking Assignment Status filter option of Work Queue Assignments screen functionality" />
+        <item itemvalue="Cucumber Java.Scenario: Checking Load Planning login screen" />
         <item itemvalue="Cucumber Java.Scenario: Checking Changing Ship date/time functionality on Outbound Truck Info page" />
-        <item itemvalue="Cucumber Java.Scenario: Checking Trailer in functionality on Outbound Truck Info page" />
-        <item itemvalue="TestNG.AppointmentsCucumberRunner" />
-        <item itemvalue="TestNG.C:/Users/Irina.Holovan/Documents/ignition-qa/AFS_Automation/WMS_Automation/AppointmentsTestNGRunner.xml" />
-        <item itemvalue="TestNG.C:/Users/Irina.Holovan/Documents/ignition-qa/AFS_Automation/WMS_Automation/DashboardTestNGRunner.xml" />
       </list>
     </recent_temporary>
   </component>

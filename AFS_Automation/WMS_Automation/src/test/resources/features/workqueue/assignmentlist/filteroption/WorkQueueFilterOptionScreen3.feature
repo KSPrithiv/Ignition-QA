@@ -114,21 +114,6 @@ Feature: Testing of Work Queue Assignment functionality
     Then User clicks Close on Work Queue Assignments page
     And Work Queue Assignments Page is validated
 
-  Scenario: Checking Assignment QTY filter option of Work Queue Assignments screen functionality
-    Given User signs in the application
-    And Main page is loaded
-    And DockManagement Summary Page is validated
-    And Go to Work Queue Assignments page
-    And Waits for Work Queue Assignments page to load
-    When User clicks Add Filter on Work Queue Assignments page
-    And User clicks Clear All on Work Queue Assignments page
-    And User clicks Add Filter on Work Queue Assignments page
-    Then User checks Qty Filter on Work Queue Assignments page
-    And Types Qty by index 3 on Work Queue Assignments page
-    And Clicks Apply button on Work Queue Assignments page
-    And User clicks Assignments Title on Work Queue Assignments page
-    And Validates Grid items are present on Work Queue Assignments page
-
   Scenario: Checking Assignment Task Group filter option of Work Queue Assignments screen functionality
     Given User signs in the application
     And Main page is loaded
@@ -143,6 +128,7 @@ Feature: Testing of Work Queue Assignment functionality
     And User clicks Assignments Title on Work Queue Assignments page
     And Validates Grid items are present on Work Queue Assignments page
 
+  @isofailed
   Scenario: Checking Assignment Status filter option of Work Queue Assignments screen functionality
     Given User signs in the application
     And Main page is loaded

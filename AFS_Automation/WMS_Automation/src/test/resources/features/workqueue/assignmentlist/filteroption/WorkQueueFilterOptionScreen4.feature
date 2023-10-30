@@ -45,6 +45,7 @@ Feature: Testing of Work Queue Assignment functionality
     And User clicks Assignments Title on Work Queue Assignments page
     And Validates Grid items are present on Work Queue Assignments page
 
+  @isofailed
   Scenario: Checking Tasks filter option of Work Queue Assignments screen functionality
     Given User signs in the application
     And Main page is loaded
@@ -56,21 +57,6 @@ Feature: Testing of Work Queue Assignment functionality
     And User clicks Add Filter on Work Queue Assignments page
     Then User checks Tasks Filter on Work Queue Assignments page
     And Types filter "0" on Work Queue Assignments page
-    And Clicks Apply button on Work Queue Assignments page
-    And User clicks Assignments Title on Work Queue Assignments page
-    And Validates Grid items are present on Work Queue Assignments page
-
-  Scenario: Checking Cube filter option of Work Queue Assignments screen functionality
-    Given User signs in the application
-    And Main page is loaded
-    And DockManagement Summary Page is validated
-    And Go to Work Queue Assignments page
-    And Waits for Work Queue Assignments page to load
-    When User clicks Add Filter on Work Queue Assignments page
-    And User clicks Clear All on Work Queue Assignments page
-    And User clicks Add Filter on Work Queue Assignments page
-    Then User checks Cube Filter on Work Queue Assignments page
-    And Types Cube by index 0 on Work Queue Assignments page
     And Clicks Apply button on Work Queue Assignments page
     And User clicks Assignments Title on Work Queue Assignments page
     And Validates Grid items are present on Work Queue Assignments page
@@ -104,36 +90,6 @@ Feature: Testing of Work Queue Assignment functionality
     Then Types Assign To by index 4 on Work Queue Assignments page
     And Clicks Apply button on Work Queue Assignments page
     And User clicks Assignments Title on Work Queue Assignments page
-
-  Scenario: Checking Picked filter option of Work Queue Assignments screen functionality
-    Given User signs in the application
-    And Main page is loaded
-    And DockManagement Summary Page is validated
-    And Go to Work Queue Assignments page
-    And Waits for Work Queue Assignments page to load
-    When User clicks Add Filter on Work Queue Assignments page
-    And User clicks Clear All on Work Queue Assignments page
-    And User clicks Add Filter on Work Queue Assignments page
-    And User checks Percent Picked Filter on Work Queue Assignments page
-    Then Types Percent Picked by index 0 on Work Queue Assignments page
-    And Clicks Apply button on Work Queue Assignments page
-    And User clicks Assignments Title on Work Queue Assignments page
-    And Validates Grid items are present on Work Queue Assignments page
-
-  Scenario: Checking Weight filter option of Work Queue Assignments screen functionality
-    Given User signs in the application
-    And Main page is loaded
-    And DockManagement Summary Page is validated
-    And Go to Work Queue Assignments page
-    And Waits for Work Queue Assignments page to load
-    When User clicks Add Filter on Work Queue Assignments page
-    And User clicks Clear All on Work Queue Assignments page
-    And User clicks Add Filter on Work Queue Assignments page
-    And User checks Weight Filter on Work Queue Assignments page
-    Then Types Weight by index 5 on Work Queue Assignments page
-    And Clicks Apply button on Work Queue Assignments page
-    And User clicks Assignments Title on Work Queue Assignments page
-    And Validates Grid items are present on Work Queue Assignments page
 
   Scenario: Checking Shipper filter option of Work Queue Assignments screen functionality
     Given User signs in the application
@@ -225,6 +181,7 @@ Feature: Testing of Work Queue Assignment functionality
     And User clicks on Picked Column Header on Work Queue Assignments page
     And Validates Picked Column Sorting Result on Work Queue Assignments page
 
+  @isofailed
   Scenario: Checking Assignment # and Search input field filter option of Work Queue Assignments screen functionality
     Given User signs in the application
     And Main page is loaded

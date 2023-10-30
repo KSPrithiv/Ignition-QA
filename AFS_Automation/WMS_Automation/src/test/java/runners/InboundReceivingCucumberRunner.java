@@ -25,7 +25,7 @@ import static common.setup.DriverManager.getDriver;
                 "html:Reports/Index.html",
                 "json:target/cucumber-reports/cucumber.json",
                 "rerun:target/failedrerun.txt"
-        }, monochrome = true, tags = "@Inbound")
+        }, monochrome = true, tags = "@isofailed")
 @Slf4j
 public class InboundReceivingCucumberRunner extends AbstractTestNGCucumberTests {
     public static Environment environment;

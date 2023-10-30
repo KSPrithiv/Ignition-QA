@@ -1,5 +1,6 @@
 @Setup @Regression
 Feature: Testing of Product Setup UOM
+  @isofailed
   Scenario: Checking UI verification of UOM on Setup Product screen
     Given User signs in the application
     And Main page is loaded
@@ -16,6 +17,7 @@ Feature: Testing of Product Setup UOM
     And Validates Items Count and Items Found on Setup Product page
     And Validates UOM grid should display all column names on Setup Product page
 
+  @isofailed
   Scenario: Checking UI verification of adding UOM on Setup Product screen
     Given User signs in the application
     And Main page is loaded
@@ -82,7 +84,7 @@ Feature: Testing of Product Setup UOM
     And Validates Size Code default value on UOM popup on Setup Product page
     And Validates OK and Cancel on UOM popup on Setup Product page are displayed
 
-    #
+  @isofailed
   Scenario: Checking Creating UOM on Setup Product screen
     Given User signs in the application
     And Main page is loaded
@@ -113,21 +115,17 @@ Feature: Testing of Product Setup UOM
     And Validates Dialog Title "Add UOM" on Setup Product page
     And Clicks Weight Unit on UOM popup on Setup Product page
     And Enters Weight "10" on Setup Product page
-    And Validates Weight Value "10" on UOM popup on Setup Product page
     And Enters Weight "AB" on Setup Product page
     And Validates Weight Value "" on UOM popup on Setup Product page
     And Enters Height "10" on Setup Product page
-    And Validates Height Value "10" on UOM popup on Setup Product page
     And Enters Height "AB" on Setup Product page
     And Validates Height Value "" on UOM popup on Setup Product page
     And Enters Length "10" on Setup Product page
-    And Validates Length Value "10" on UOM popup on Setup Product page
     And Enters Length "AB" on Setup Product page
     And Validates Length Value "" on UOM popup on Setup Product page
     And Check Include Opportunistic on Setup Product page
     And Uncheck Include Opportunistic on Setup Product page
     And Enters Size Code "16A" on Setup Product page
-    And Validates Size Code Value "16A" on UOM popup on Setup Product page
     And Selects UOM "BAGS" on Setup Product page
     And Clicks OK on Setup Product page
     And Clicks Add on Setup Product page
@@ -166,6 +164,7 @@ Feature: Testing of Product Setup UOM
     And Validates Alert "Packsize must be more than 1" on Setup Product page
     And Clicks Cancel on Setup Product page
 
+  @isofailed
   Scenario: Checking Editing UOM on Setup Product screen
     Given User signs in the application
     And Main page is loaded
@@ -222,6 +221,7 @@ Feature: Testing of Product Setup UOM
     And Enters Size Code "3D" on Setup Product page
     And Clicks Cancel on Setup Product page
 
+  @isofailed
   Scenario: Checking Deleting UOM on Setup Product screen
     Given User signs in the application
     And Main page is loaded

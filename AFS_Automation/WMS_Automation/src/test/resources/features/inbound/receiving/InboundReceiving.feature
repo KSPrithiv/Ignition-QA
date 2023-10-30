@@ -1,6 +1,5 @@
 @Inbound @Regression
 Feature: Testing of Receiving functionality
-
   Scenario: Checking Receiving Navigation functionality
     Given User signs in the application
     And Main page is loaded
@@ -112,6 +111,7 @@ Feature: Testing of Receiving functionality
     And Validates "Warning" title on dialog popup on Receiving page
     And Clicks No button on Warning on Receiving page
 
+  @isofailed
   Scenario: Checking delete selected unit/pallet from staging screen
     Given User signs in the application
     And Main page is loaded
