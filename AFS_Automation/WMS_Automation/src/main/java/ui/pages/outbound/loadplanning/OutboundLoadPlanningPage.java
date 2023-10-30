@@ -20,7 +20,7 @@ public class OutboundLoadPlanningPage extends BasePage {
 
     public void waitOutboundLoadPlanningPageToLoad() {
         Waiters.waitABit(7000);
-        Waiters.waitUntilPageWillLoadedSelenide();
+        waitUntilInvisible(8, loader);
         Waiters.waitForElementToBeDisplay(getLoadPlanningShipDate());
         Waiters.waitForElementToBeDisplay(getLoadPlanningShipDateLabel());
     }
@@ -114,11 +114,13 @@ public class OutboundLoadPlanningPage extends BasePage {
         waitUntilStalenessOf(2, getLoadPlanningShipDate());
         Waiters.waitABit(2000);
         doubleClick(getLoadPlanningShipDate());
+        waitUntilStalenessOf(2, getLoadPlanningShipDate());
         pressDelete(getLoadPlanningShipDate());
         waitUntilStalenessOf(2, getLoadPlanningShipDate());
         inputText(getLoadPlanningShipDate(), date);
         waitUntilStalenessOf(2, getLoadPlanningShipDate());
         pressEnter(getLoadPlanningShipDate());
+        waitUntilStalenessOf(2, getLoadPlanningShipDate());
         pressTab(getLoadPlanningShipDate());
         waitUntilInvisible(1, loader);
     }

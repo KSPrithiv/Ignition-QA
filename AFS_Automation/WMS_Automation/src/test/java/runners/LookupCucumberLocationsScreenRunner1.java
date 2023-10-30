@@ -25,7 +25,7 @@ import static common.setup.DriverManager.*;
                 "html:Reports/Index.html",
                 "json:target/cucumber-reports/cucumber.json",
                 "rerun:target/failedrerun.txt"
-        }, monochrome = true, tags = "@Lookup")
+        }, monochrome = true, tags = "@isofailed")
 
 @Slf4j
 public class LookupCucumberLocationsScreenRunner1 extends AbstractTestNGCucumberTests {

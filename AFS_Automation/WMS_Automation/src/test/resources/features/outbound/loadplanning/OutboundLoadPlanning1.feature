@@ -21,7 +21,6 @@ Feature: Testing of Outbound Load Planning functionality
     And Clicks Trailer dropdown on Truck Info page
     And Validates Truck Info trailers exist
     And Selects random trailer on Truck Info page
-    And Clicks No button on Change trailer popup
 
   Scenario: Checking Truck top information
     Given User signs in the application

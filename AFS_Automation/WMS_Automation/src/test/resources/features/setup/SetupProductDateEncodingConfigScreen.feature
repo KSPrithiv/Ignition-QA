@@ -1,6 +1,6 @@
 @Setup @Regression
 Feature: Testing of Product Setup Date encoding
-
+  @isofailed
   Scenario: Checking Navigation to Date encoding on Setup Product screen
     Given User signs in the application
     And Main page is loaded
@@ -11,6 +11,7 @@ Feature: Testing of Product Setup Date encoding
     Then Clicks Date encoding Label on Setup Product page
     And Validates Date encoding tab grid should display all column names on Setup Product page
 
+  @isofailed
   Scenario: Checking UI verification of Date Encoding on Setup Product screen
     Given User signs in the application
     And Main page is loaded
@@ -24,6 +25,7 @@ Feature: Testing of Product Setup Date encoding
     Then Validates Search Box and Add Filter are displayed on Setup Product page
     And Validates Items Count and Items Found on Setup Product page
 
+  @isofailed
   Scenario: Checking filters of Date Encoding on Setup Product screen
     Given User signs in the application
     And Main page is loaded
@@ -77,6 +79,7 @@ Feature: Testing of Product Setup Date encoding
     And User clicks Add Filter on Setup Product page
     And User clicks Clear All button on Setup Product page
 
+  @isofailed
   Scenario: Checking search controls of Date Encoding on Setup Product screen
     Given User signs in the application
     And Main page is loaded
@@ -89,6 +92,7 @@ Feature: Testing of Product Setup Date encoding
     And Validates Items Count and Items Found on Setup Product page
     Then User clicks Add Filter on Setup Product page
 
+  @isofailed
   Scenario: Checking UI verification of encoding tab on Setup Product screen
     Given User signs in the application
     And Main page is loaded
@@ -114,6 +118,7 @@ Feature: Testing of Product Setup Date encoding
     And Clicks Month Mapping dropdown on Setup Product page
     And Validates Month Mapping options on Setup Product page
 
+  @isofailed
   Scenario: Checking UI verification of Used by tab on Setup Product screen
     Given User signs in the application
     And Main page is loaded
@@ -127,6 +132,7 @@ Feature: Testing of Product Setup Date encoding
     And Clicks Used By Tab Label on Setup Product page
     And Validates Supplier and Product are displayed on Setup Product page
 
+  @isofailed
   Scenario: Checking verification of Day mapping of encoding tab on Setup Product screen
     Given User signs in the application
     And Main page is loaded
@@ -184,6 +190,7 @@ Feature: Testing of Product Setup Date encoding
     And Selects row "1" on Setup Product page
     And Clicks Delete on Date encoding popup on Setup Product page
 
+  @isofailed
   Scenario: Checking verification of Month mapping of encoding tab on Setup Product screen
     Given User signs in the application
     And Main page is loaded
@@ -241,6 +248,7 @@ Feature: Testing of Product Setup Date encoding
     And Selects row "1" on Setup Product page
     And Clicks Delete on Date encoding popup on Setup Product page
 
+  @isofailed
   Scenario: Checking verification of Year mapping of encoding tab on Setup Product screen
     Given User signs in the application
     And Main page is loaded
@@ -304,6 +312,7 @@ Feature: Testing of Product Setup Date encoding
     And Selects row "1" on Setup Product page
     And Clicks Delete on Date encoding popup on Setup Product page
 
+  @isofailed
   Scenario: Checking verification of Week mapping of encoding tab on Setup Product screen
     Given User signs in the application
     And Main page is loaded
@@ -367,6 +376,7 @@ Feature: Testing of Product Setup Date encoding
     And Selects row "1" on Setup Product page
     And Clicks Delete on Date encoding popup on Setup Product page
 
+  @isofailed
   Scenario: Checking validations of encoding tab on Setup Product screen
     Given User signs in the application
     And Main page is loaded
@@ -402,6 +412,7 @@ Feature: Testing of Product Setup Date encoding
     And Clicks Save on popup on Setup Product page
     And Validates warning message "Select Extract date as" on Date encoding popup on Setup Product page
 
+  @isofailed
   Scenario: Checking creation with mandatory values on Date encoding popup on Setup Product screen
     Given User signs in the application
     And Main page is loaded
@@ -462,6 +473,7 @@ Feature: Testing of Product Setup Date encoding
     And User clicks Delete Settings button on Setup Product page
     And Clicks OK Button on Setup Product page
 
+  @isofailed
   Scenario: Checking Editing date encoding on Setup Product screen
     Given User signs in the application
     And Main page is loaded

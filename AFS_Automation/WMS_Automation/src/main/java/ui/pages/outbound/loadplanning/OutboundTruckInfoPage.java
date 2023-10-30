@@ -141,6 +141,7 @@ public class OutboundTruckInfoPage extends BasePage {
     }
 
     public void selectRandomTrailer() {
+        waitUntilInvisible(3, loader);
         Waiters.waitForElementToBeDisplay(getTrailerDropDown());
         int size = getTrailersListSize();
         clickOnElement(getTrailers().get(new Random().nextInt(size)));

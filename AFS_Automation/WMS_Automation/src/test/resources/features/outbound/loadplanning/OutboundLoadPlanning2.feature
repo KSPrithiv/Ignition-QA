@@ -163,7 +163,7 @@ Feature: Testing of Outbound Load Planning functionality
     And Waits for Outbound Truck Info page to load
     And Validates Position and Pallets are present
 
-    #
+  @isofailed
   Scenario: Checking Trailer Cube on Outbound Truck Info page
     Given User signs in the application
     And Main page is loaded
@@ -184,7 +184,7 @@ Feature: Testing of Outbound Load Planning functionality
     And Waits for Outbound Truck Info page to load
     And Validates Trailer Cube is present
 
-    #
+  @isofailed
   Scenario: Checking Route Cube on Outbound Truck Info page
     Given User signs in the application
     And Main page is loaded

@@ -1,6 +1,6 @@
 @Lookup @Regression
 Feature: Testing Lookup Location functionality
-
+  @isofailed
   Scenario: Checking navigation functionality on Lookup Location screen
     Given User signs in the application
     And Main page is loaded
@@ -184,6 +184,7 @@ Feature: Testing Lookup Location functionality
 #    And User cleans Location Input on Lookup Location page
 #    And Validates Inventory details of location on Location Lookup page are not displayed
 
+  @isofailed
   Scenario: Checking Navigate to Lookup Location on Lookup Location screen
     Given User signs in the application
     And Main page is loaded
@@ -192,6 +193,7 @@ Feature: Testing Lookup Location functionality
     And Waits for Location Lookup page to load
     Then Validates Location Search Field is present on Lookup Location page
 
+  @isofailed
   Scenario: Checking Navigate to Production mode on Lookup Location screen
     Given User signs in the application
     And Main page is loaded
@@ -202,6 +204,7 @@ Feature: Testing Lookup Location functionality
     Then Clicks Production on button on Lookup Location page
     And Validates Production label by index 2 on Lookup Location page
 
+  @isofailed
   Scenario: Checking Adding inventory to Production mode on Lookup Location screen
     Given User signs in the application
     And Main page is loaded

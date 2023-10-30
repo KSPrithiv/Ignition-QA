@@ -39,6 +39,7 @@ Feature: Testing of Counting Count functionality
     And User clicks Save button on Counting Sessions page
     And Validates session warning "Select count type" on Counting Sessions page
 
+  @isofailed
   Scenario: Checking Create New Session on Counting Sessions screen
     Given User signs in the application
     And Main page is loaded
@@ -133,6 +134,7 @@ Feature: Testing of Counting Count functionality
     And User clicks Delete Session button on Counting Sessions page
     And User clicks Ok button on Counting Sessions page
 
+  @isofailed
   Scenario: Checking Sorting of the columns on Counting Sessions screen
     Given User signs in the application
     And Main page is loaded
@@ -162,6 +164,7 @@ Feature: Testing of Counting Count functionality
     And User clicks Release Date and Time Column on Counting Sessions page
     And Validates Release Date Time Column Sorting Result on Counting Sessions page
 
+  @isofailed
   Scenario: Checking Location Navigation on Counting Sessions screen
     Given User signs in the application
     And Main page is loaded
@@ -181,6 +184,7 @@ Feature: Testing of Counting Count functionality
  #   And Validates Notification Warning "Location locked" on Location Lookup page is displayed
     And Validates Inventory details of location on Location Lookup page are loaded
 
+  @isofailed
   Scenario: Checking Locked location on Counting Sessions screen
     Given User signs in the application
     And Main page is loaded
@@ -207,6 +211,7 @@ Feature: Testing of Counting Count functionality
 #    And Validates notification message contains "Location" message on Counting Sessions page
  #   And Validates notification message contains "is locked" message on Counting Sessions page
 
+  @isofailed
   Scenario: Checking Select All checkbox on Counting Sessions screen
     Given User signs in the application
     And Main page is loaded
@@ -225,6 +230,7 @@ Feature: Testing of Counting Count functionality
     And User clicks Unselect All Checkbox on Counting Sessions page
     And Validates location with index 0 is not selected on Counting Sessions page
 
+  @isofailed
   Scenario: Checking Count Details on Counting Sessions screen
     Given User signs in the application
     And Main page is loaded

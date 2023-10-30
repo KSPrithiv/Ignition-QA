@@ -40,7 +40,7 @@ public class LoginPageSteps {
     public static Environment environment;
     public WebDriver driver;
 
-/*   @Before
+/*    @Before
     public void beforeClassSetup() {
         ConfigFactory.setProperty("path", FilePaths.PROPERTIES_PATH);
         environment = ConfigFactory.create(Environment.class);
