@@ -40,6 +40,8 @@ public class AppointmentSchedulerOrderPage extends BasePage {
     By dateInputSchedulerDate = By.id("dateInputSchdulerDate");
     By timeInputFilterTimeLabel = By.id("timeInputFilterTime-label");
     By timeInputFilterTime = By.id("timeInputFilterTime");
+    By invalidOrderLabel = By.xpath("//span[text()='Invalid order']");
+    By loader = By.cssSelector(".loader");
 
     public void waitForAppointmentSchedulerPageToLoad() {
         Waiters.waitUntilPageWillLoadedSelenide();
@@ -59,6 +61,8 @@ public class AppointmentSchedulerOrderPage extends BasePage {
         Waiters.waitForElementToBeDisplay(getOrderInput());
         doubleClick(getOrderInput());
         inputText(getOrderInput(), orderNum);
+        pressTab(getOrderInput());
+        waitUntilInvisible(2, loader);
     }
 
     public void addValidOrderThatOnInboundRouteWithOtherOrders(CharSequence orderNum) {
@@ -102,6 +106,7 @@ public class AppointmentSchedulerOrderPage extends BasePage {
     }
 
     public void clickNextButton() {
+        waitUntilInvisible(2, loader);
         Waiters.waitForElementToBeClickable(getNextButton());
         clickOnElement(getNextButton());
     }
@@ -170,10 +175,12 @@ public class AppointmentSchedulerOrderPage extends BasePage {
     public void enterDate(String date) {
         Waiters.waitForElementToBeClickable(getToggleCalendar());
         clickOnElement(getToggleCalendar());
-        Waiters.waitABit(2000);
+        waitUntilStalenessOf(5, getToggleCalendar());
         String day = date.substring(3, 5).contains("0") ? date.substring(4, 5) : date.substring(3, 5);
+        waitUntilStalenessOf(5, getToggleCalendar());
+        Waiters.waitABit(5000);
         clickOnElement(getCalendarDay(day));
-        Waiters.waitABit(2000);
+        Waiters.waitABit(5000);
     }
 
     public void inputAlt1(String atl1) {
@@ -200,6 +207,10 @@ public class AppointmentSchedulerOrderPage extends BasePage {
         return getElementAttribute(getNextButton(), "aria-disabled");
     };
 
+    public String getCancelButtonDisabilityResult() {
+        return getElementAttribute(getCancelButton(), "aria-disabled");
+    };
+
     public boolean isAppointmentSchedulerHeaderDisplayed() {
        return isElementDisplay(getTableHeader());
     }
@@ -222,13 +233,11 @@ public class AppointmentSchedulerOrderPage extends BasePage {
 
     public boolean isDateSchedulerLabelDisplayed() { return isElementDisplay(dateInputSchedulerDateLabel); }
 
-    public boolean isDateInputSchedulerLabelDisplayed() { return isElementDisplay(dateInputSchedulerDateLabel); }
-
     public boolean isDateInputSchedulerDisplayed() { return isElementDisplay(dateInputSchedulerDate); }
 
-    public WebElement getTimeInputFilterLabel() { return findWebElement(timeInputFilterTimeLabel); }
+    public boolean isTimeSchedulerLabelDisplayed() { return isElementDisplay(timeInputFilterTimeLabel); }
 
-    public WebElement getTimeInputFilter() { return findWebElement(timeInputFilterTime); }
+    public boolean isTimeSchedulerInputDisplayed() { return isElementDisplay(timeInputFilterTime); }
 
     public boolean isOrderTypeColumnDisplayed() { return isElementDisplay(getOrderTypeColumn()); }
 
@@ -256,13 +265,13 @@ public class AppointmentSchedulerOrderPage extends BasePage {
 
     public boolean isNotificationDisplayed(String text) { return isElementDisplay(getNotification(text)); }
 
+    public boolean isInvalidOrderLabelDisplayed() { return isElementDisplay(getInvalidOrderLabel()); }
+
     public WebElement getAppointmentSchedulerIcon() {
         return findWebElement(appointmentSchedulerIcon);
     }
 
-    public WebElement getOrderInput() {
-        return findWebElement(orderInput);
-    }
+    public WebElement getOrderInput() { return findWebElement(orderInput); }
 
     public WebElement getClearButton() {
         return findWebElement(clearButton);
@@ -347,5 +356,7 @@ public class AppointmentSchedulerOrderPage extends BasePage {
     public WebElement getTimeInputFilterTimeLabel() { return findWebElement(timeInputFilterTimeLabel); }
 
     public WebElement getTimeInputFilterTime() { return findWebElement(timeInputFilterTime); }
+
+    public WebElement getInvalidOrderLabel() { return findWebElement(invalidOrderLabel); }
 
 }

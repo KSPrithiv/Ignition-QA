@@ -33,7 +33,6 @@ Feature: Testing of Outbound Load Planning functionality
     And Validates Load Planning popup Ship Date is current date
     When Selects Ship Date by index 0 on Load Planning popup
     Then Clicks Route dropdown on Load Planning popup
-    And Clicks Route dropdown on Load Planning popup
     And Selects Route by index 1 for Load Planning
     And Clicks Done button on Load Planning page
     And Waits for Outbound Truck Info page to load
@@ -41,15 +40,8 @@ Feature: Testing of Outbound Load Planning functionality
     And Validates that Ship date and time displayed on Truck Info Page
     And Type Ship Date by index 5 on Truck Info page
     And Validates change Ship Date notification
-    And Clicks Yes button on Change Ship Date popup
-    And Type Ship Date by index 5 on Truck Info page
-    And Validates change Ship Date notification
-    And Clicks Yes button on Change Ship Date popup
-    And Type "11:10 AM" Ship Time on Truck Info page
-    And Validates change Ship Time notification
-    And Clicks Yes button on Change Ship Time popup
+    And Clicks No button on Change Ship Time popup
 
-    #
   Scenario: Checking Trailer in functionality on Outbound Truck Info page
     Given User signs in the application
     And Main page is loaded

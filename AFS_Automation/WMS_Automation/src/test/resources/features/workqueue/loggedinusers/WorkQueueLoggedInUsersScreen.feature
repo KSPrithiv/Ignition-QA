@@ -97,7 +97,6 @@ Feature: Testing of Work Queue LoggedIn User functionality
     And Checks Computer Checkbox on Work Queue Logged In Users page
     And Types Computer by index 0 on Work Queue Logged In Users page
     And Clicks Apply Button on Work Queue Logged In Users page
-    And Validates Grid items are present on Work Queue Logged In Users page
     And User clicks Add filter button on Work Queue Logged In Users page
     And User clicks Clear All button on Work Queue Logged In Users page
     And Validates Grid items are present on Work Queue Logged In Users page

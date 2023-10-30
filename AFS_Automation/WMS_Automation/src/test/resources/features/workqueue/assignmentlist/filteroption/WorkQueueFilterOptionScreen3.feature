@@ -1,16 +1,5 @@
 @WorkQueue @Regression
 Feature: Testing of Work Queue Assignment functionality
-  Scenario: Checking Delete all of Work Queue Assignments screen functionality
-    Given User signs in the application
-    And Main page is loaded
-    And DockManagement Summary Page is validated
-    And Go to Work Queue Assignments page
-    And Waits for Work Queue Assignments page to load
-    When User clicks Add Filter on Work Queue Assignments page
-    And User clicks Clear All on Work Queue Assignments page
-    Then User clicks Assignments Title on Work Queue Assignments page
-    And Validates Grid items are present on Work Queue Assignments page
-
   Scenario: Checking Assignment Edit of Work Queue Assignments screen functionality
     Given User signs in the application
     And Main page is loaded

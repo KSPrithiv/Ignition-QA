@@ -87,6 +87,7 @@ Feature: Testing of Receiving functionality
     And Validates table is displayed on Staging screen
     And Validates Back button is displayed on Stage page
 
+  @isofailed
   Scenario: Checking Receive staged qty - Select pallet/pallets
     Given User signs in the application
     And Main page is loaded

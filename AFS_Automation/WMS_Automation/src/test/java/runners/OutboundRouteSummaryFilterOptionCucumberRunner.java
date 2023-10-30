@@ -17,14 +17,14 @@ import java.io.IOException;
 
 import static common.setup.DriverManager.*;
 
-@CucumberOptions(features = {"src/test/resources/features/outbound/outboundroutesummary/filteroption/OutboundRouteSummaryFilterOption.feature "},
+@CucumberOptions(features = {"src/test/resources/features/outbound/outboundroutesummary/filteroption/OutboundRouteSummaryFilterOption.feature"},
         glue = {"steps"},
         plugin = {"pretty",
                 "json:target/cucumber.json",
                 "html:Reports/Index.html",
                 "json:target/cucumber-reports/cucumber.json",
                 "rerun:target/failedrerun.txt"
-        }, monochrome = true, tags = "@Outbound")
+        }, monochrome = true, tags = "@isofailed")
 @Slf4j
 public class OutboundRouteSummaryFilterOptionCucumberRunner extends AbstractTestNGCucumberTests {
     public static Environment environment;

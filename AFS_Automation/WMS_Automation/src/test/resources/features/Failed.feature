@@ -236,6 +236,7 @@ Feature: Testing of Failed
     Then Deletes product on Inbound Order Summary page
     And Types invalid product code "Ht5frK" on Inbound Order Summary page
 
+  @setupfailed
   Scenario: Checking UI verification of encoding tab on Setup Product screen
     Given User signs in the application
     When Main page is loaded
@@ -260,6 +261,7 @@ Feature: Testing of Failed
     And Clicks Month Mapping dropdown on Setup Product page
     And Validates Month Mapping options on Setup Product page
 
+  @setupfailed
   Scenario: Checking creation with mandatory values on Date encoding popup on Setup Product screen
     Given User signs in the application
     And Main page is loaded
@@ -320,6 +322,7 @@ Feature: Testing of Failed
     And User clicks Delete Settings button on Setup Product page
     And Clicks OK Button on Setup Product page
 
+  @setupfailed
   Scenario: Checking Editing date encoding on Setup Product screen
     Given User signs in the application
     And Main page is loaded
@@ -350,6 +353,7 @@ Feature: Testing of Failed
     And User clicks Delete Settings button on Setup Product page
     And Clicks OK Button on Setup Product page
 
+  @setupfailed
   Scenario: Checking UI verification of UOM on Setup Product screen
     Given User signs in the application
     And Main page is loaded
@@ -546,3 +550,298 @@ Feature: Testing of Failed
     Then User types date to input by index 3 on Dock Management page
     And User clicks item 0 on Dock Management page
     And Validates Item Details are displayed on DockManagement Lookup page
+
+  Scenario: Checking Appointment Scheduler Creation With Valid Order functionality
+    Given User signs in the application
+    And Main page is loaded
+    And DockManagement Summary Page is validated
+    And Go to Appointment scheduler page
+    And Waiting Appointment Scheduler Page To Load
+    And Appointment Scheduler page is displayed
+    And User searches for valid order "R" for appointment on Appointment Scheduler page
+    And Validates Order Data on Appointment Scheduler page
+    And User selects order by row number 0 on Appointment Scheduler page
+    And Click Next on Appointment Scheduler page
+    And Validates Delivery Type and Email on Appointment Scheduler Delivery page are displayed
+    And Click Next on Appointment Scheduler page
+    And Validates Submit button is active on Appointment Scheduler page
+    And Validates Scheduler date and Scheduler time on Appointment Scheduler page
+
+  Scenario: Enter not valid username and password, get error message
+    Given User signs in the application with wrong credentials
+    When Login page is displayed
+    Then Wrong credentials notification error "Either Username or Password is incorrect. Please try again." is displayed
+
+  Scenario: Check every screen should have warehouse at top
+    Given User signs in the application
+    And Main page is loaded
+    And DockManagement Summary Page is validated
+    And Go to Loads page
+    And Inbound Load Summary page appears
+    And Inbound Load Summary page main elements are present
+    And Validates warehouse dropdown is displayed on Inbound Load Summary page
+    When Go to Inbound Orders page
+    And User waits for Inbound Order Summary page to load
+    And Validates warehouse dropdown is displayed on Inbound Load Summary page
+    And Go to Counting Count page
+    And Waits for Counting Count page to load
+    And Validates warehouse dropdown is displayed on Inbound Load Summary page
+    Then Go to Outbound Order page
+    And Waits for Outbound Order Summary page to load
+    And Validates warehouse dropdown is displayed on Inbound Load Summary page
+    And Go to Work Queue Assign Work page
+    And Waits for Work Queue Work Assign page to load
+    And Validates warehouse dropdown is displayed on Inbound Load Summary page
+
+  Scenario: Checking Dashboard Icon and Spelling
+    Given User signs in the application
+    And Main page is loaded
+    When DockManagement Summary Page is validated
+    Then Validates Dashboard Icons and Spelling on Dashboard page
+
+  Scenario: Checking Dashboard menu item
+    Given User signs in the application
+    And Main page is loaded
+    And DockManagement Summary Page is validated
+    And Validates Dashboard Icons and Spelling on Dashboard page
+    When User clicks user profile icon on Dashboard page
+    Then Clicks user profile logout icon on Dashboard page
+    And Waits until Login page is visible
+
+  Scenario: Checking Visibility Of Dashboard
+    Given User signs in the application
+    And Main page is loaded
+    And DockManagement Summary Page is validated
+    And Validates Dashboard Icons and Spelling on Dashboard page
+    And User clicks user profile icon on Dashboard page
+    And Clicks user profile logout icon on Dashboard page
+    And Waits until Login page is visible
+    And Admin user signs in the application
+    And Main page is loaded
+    When Go to Security Permissions page
+    And Unselects allow user access to Dashboard checkbox on Security Permissions page
+    And User clicks user profile icon on Dashboard page
+    Then Clicks user profile logout icon on Dashboard page
+    And Waits until Login page is visible
+    And User signs in the application
+    And Main page is loaded
+    And User clicks user profile icon on Dashboard page
+    And Clicks user profile logout icon on Dashboard page
+    And Waits until Login page is visible
+    And Admin user signs in the application
+    And Main page is loaded
+    And Go to Security Permissions page
+    And Selects allow user access to Dashboard checkbox on Security Permissions page
+    And User clicks user profile icon on Dashboard page
+    And Clicks user profile logout icon on Dashboard page
+    And Waits until Login page is visible
+
+  Scenario: Checking Transactions -> Tasks by Type widget
+    Given User signs in the application
+    And Main page is loaded
+    And DockManagement Summary Page is validated
+    When Go to Work Queue Task page
+    And Waits for Work Queue Task page to load
+    And Validates Work Queue Task page is displayed
+    And Validates Search Field in right top corner of the grid is displayed on Work Queue Task page
+    Then Go to Dashboard page
+    And Hover over Cycle Count graph bar on DockManagement page
+    And Validates number of Tasks popup is displayed on Dashboard page
+
+  Scenario: Checking Transactions -> Assignments by Group widgets
+    Given User signs in the application
+    And Main page is loaded
+    And DockManagement Summary Page is validated
+    And Go to Counting Sessions page
+    And Validates Counting Sessions page is displayed
+    And User clicks session dropdown on Counting Sessions page
+    When User selects session with index 2 on Counting Sessions page
+    And Validates Session details on Counting Sessions page
+    And User clicks Assignments tab on Counting Sessions page
+    And Validates Assignment tab contains Release and Delete buttons, Add filter button on Counting Sessions page
+    Then Go to Work Queue Assign Work page
+    And Waits for Work Queue Work Assign page to load
+    And Validates Assign work screen is displayed on Work Queue Work Assign Page
+    And Go to Dashboard page
+    And Validates Dashboard Icons and Spelling on Dashboard page
+
+  Scenario: Checking Transactions -> Picking Status widget
+    Given User signs in the application
+    And Main page is loaded
+    When DockManagement Summary Page is validated
+    And Validates Dashboard Icons and Spelling on Dashboard page
+    Then Validates Picking Status graph is displayed on Dashboard page
+
+  Scenario: Checking Transactions -> Late Outbound widget
+    Given User signs in the application
+    And Main page is loaded
+    When DockManagement Summary Page is validated
+    And Validates Dashboard Icons and Spelling on Dashboard page
+    Then Validates Late Outbound graph is displayed on Dashboard page
+
+  Scenario: Checking Transactions -> Late Inbound widget
+    Given User signs in the application
+    And Main page is loaded
+    When DockManagement Summary Page is validated
+    And Validates Dashboard Icons and Spelling on Dashboard page
+    Then Validates Late Inbound graph is displayed on Dashboard page
+
+  Scenario: Checking Transactions -> Inbound Loads widget
+    Given User signs in the application
+    And Main page is loaded
+    When DockManagement Summary Page is validated
+    And Validates Dashboard Icons and Spelling on Dashboard page
+    Then Validates Inbound Loads graph is displayed on Dashboard page
+
+  Scenario: Checking Transactions -> Outbound Routes widget
+    Given User signs in the application
+    And Main page is loaded
+    When DockManagement Summary Page is validated
+    And Validates Dashboard Icons and Spelling on Dashboard page
+    Then Validates Outbound Routes graph is displayed on Dashboard page
+
+  Scenario: Checking Transactions -> Inbound Orders widget
+    Given User signs in the application
+    And Main page is loaded
+    When DockManagement Summary Page is validated
+    And Validates Dashboard Icons and Spelling on Dashboard page
+    Then Validates Inbound Orders graph is displayed on Dashboard page
+
+  Scenario: Verify that Labor widget is divided into two Parts
+    Given User signs in the application
+    And Main page is loaded
+    When DockManagement Summary Page is validated
+    And Validates Dashboard Icons and Spelling on Dashboard page
+    And Validates Active Operators graph is displayed on Dashboard page
+    Then Validates Operators by Group graph is displayed on Dashboard page
+
+  Scenario: Verify Labor Active Operators
+    Given User signs in the application
+    And Main page is loaded
+    When DockManagement Summary Page is validated
+    And Validates Dashboard Icons and Spelling on Dashboard page
+    And Validates Active Operators graph is displayed on Dashboard page
+    Then Validates Active Operators Time Groups is displayed on Dashboard page
+
+  Scenario: Verify the Labor widgets is visible to the logged in user
+    Given User signs in the application
+    And Main page is loaded
+    And DockManagement Summary Page is validated
+    And Validates Dashboard Icons and Spelling on Dashboard page
+    And Clicks On Break graph bar on DockManagement page
+    And Waits for Work Queue Logged In Users page to load
+    And Validates User Logged In title is displayed on Work Queue Logged In Users page
+    And Validates table columns are displayed on Work Queue Logged In Users page
+
+#    #
+#  Scenario: Verify that Assignment logged in user display
+#    Given User signs in the application
+#    When Main page is loaded
+#    Then DockManagement Summary Page is validated
+#    And Validates Dashboard Icons and Spelling on Dashboard page
+#    And Clicks Pal Dry graph bar on DockManagement page
+#    And Waits for Work Queue Assignments page to load
+#    And Work Queue Assignments Page is validated
+
+  Scenario: Verify Operators by Group
+    Given User signs in the application
+    When Main page is loaded
+    Then DockManagement Summary Page is validated
+    And Validates Dashboard Icons and Spelling on Dashboard page
+    And Validates Operators by Group graph is displayed on Dashboard page
+
+  Scenario: Verify LABOR Graph display
+    Given User signs in the application
+    When Main page is loaded
+    Then DockManagement Summary Page is validated
+    And Validates Dashboard Icons and Spelling on Dashboard page
+    And Validates Active Operators Time Groups is displayed on Dashboard page
+
+  Scenario: Verify Operators by Group - Graph displayed
+    Given User signs in the application
+    When Main page is loaded
+    Then DockManagement Summary Page is validated
+    And Validates Dashboard Icons and Spelling on Dashboard page
+    And Validates Operators by Group graph is displayed on Dashboard page
+
+  Scenario: Verify INVENTORY - By Status
+    Given User signs in the application
+    When Main page is loaded
+    Then DockManagement Summary Page is validated
+    And Validates Dashboard Icons and Spelling on Dashboard page
+    And Validates By Status graph widget is displayed on Dashboard page
+
+  Scenario: Verify WAREHOUSE CAPACITY - Graph display
+    Given User signs in the application
+    When Main page is loaded
+    Then DockManagement Summary Page is validated
+    And Validates Dashboard Icons and Spelling on Dashboard page
+    And Validates Warehouse Capacity graph is displayed on Dashboard page
+
+  Scenario: Verify WAREHOUSE CAPACITY - Empty Locations by Zone
+    Given User signs in the application
+    When Main page is loaded
+    Then DockManagement Summary Page is validated
+    And Validates Dashboard Icons and Spelling on Dashboard page
+    And Validates Empty Locations by Zone graph is displayed on Dashboard page
+
+  Scenario: Verify WAREHOUSE CAPACITY - Warehouse Capacity
+    Given User signs in the application
+    When Main page is loaded
+    Then DockManagement Summary Page is validated
+    And Validates Dashboard Icons and Spelling on Dashboard page
+    And Validates Warehouse Capacity graph is displayed on Dashboard page
+    And Validates Warehouse Capacity picture is displayed on Dashboard page
+
+  Scenario: Checking Appointment Scheduler Navigation functionality
+    Given User signs in the application
+    And Main page is loaded
+    And DockManagement Summary Page is validated
+    When Go to Appointment scheduler page
+    Then Appointment Scheduler page is displayed
+
+  Scenario: Checking Appointment Scheduler Creation With Valid Order functionality
+    Given User signs in the application
+    And Main page is loaded
+    And DockManagement Summary Page is validated
+    And Go to Appointment scheduler page
+    And Waiting Appointment Scheduler Page To Load
+    And Appointment Scheduler page is displayed
+    When User searches for valid order "R" for appointment on Appointment Scheduler page
+    And Validates Order Data on Appointment Scheduler page
+    And User selects order by row number 0 on Appointment Scheduler page
+    Then Click Next on Appointment Scheduler page
+    And Validates Delivery Type and Email on Appointment Scheduler Delivery page are displayed
+    And Click Next on Appointment Scheduler page
+    And Validates Submit button is active on Appointment Scheduler page
+    And Validates Scheduler date and Scheduler time on Appointment Scheduler page
+
+  Scenario: Checking Cancel Appointment Scheduler Creation With Valid Order
+    Given User signs in the application
+    And Main page is loaded
+    And DockManagement Summary Page is validated
+    And Go to Appointment scheduler page
+    And Waiting Appointment Scheduler Page To Load
+    And Appointment Scheduler page is displayed
+    When User types order number "1" on Appointment Scheduler page
+    Then Validates Invalid Order Warning on Appointment Scheduler page
+    And Validates Next Button is not active on Appointment Scheduler page
+    And Validates Cancel Button is not active on Appointment Scheduler page
+
+  Scenario: Checking Cancel Appointment Scheduler Creation With Valid Order
+    Given User signs in the application
+    And Main page is loaded
+    And DockManagement Summary Page is validated
+    And Go to Appointment scheduler page
+    And Waiting Appointment Scheduler Page To Load
+    And Appointment Scheduler page is displayed
+    When User searches for valid order "R" for appointment on Appointment Scheduler page
+    And Validates Order Data on Appointment Scheduler page
+    And User selects order by row number 0 on Appointment Scheduler page
+    Then Click Next on Appointment Scheduler page
+    And Validates Delivery Type and Email on Appointment Scheduler Delivery page are displayed
+    And Types email "testuser@gmail.com" on Appointment Scheduler page
+    And User selects delivery "DRY" on Appointment Scheduler page
+    And Click Next on Appointment Scheduler page
+    And User types Future Date in 3 days on Appointment Scheduler page
+    And Click Cancel button on Appointment Scheduler page

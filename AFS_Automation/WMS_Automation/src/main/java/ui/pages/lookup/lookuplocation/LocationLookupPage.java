@@ -425,17 +425,18 @@ public class LocationLookupPage extends BasePage {
     }
 
     public void clickCancelButton() {
+        waitUntilInvisible(3, loader);
         if(isVisible(OKButton) == true) {
             clickOnElement(OKButton);
         }
-        waitUntilInvisible(1, loader);
+        waitUntilInvisible(2, loader);
         Waiters.waitForElementToBeDisplay(cancelButton);
         scrollAndClick(getCancelBtn());
         Waiters.waitABit(2_000);
     }
 
     public void clickSaveButton() {
-        Waiters.waitABit(4000);
+        waitUntilInvisible(3, loader);
         Waiters.waitForElementToBeDisplay(saveButton);
         jsClick(getSaveBtn());
         waitUntilInvisible(1, loader);

@@ -364,7 +364,6 @@ public class CountingSessionsPage extends BasePage {
     public void selectSession(String session) {
         Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementsToBeDisplay(findWebElements(By.xpath("//div[contains(@class, 'k-animation-container-shown')]//*[@role='option']")));
-        Waiters.waitTillLoadingPage(getDriver());
         waitUntilInvisible(2, loader);
         List<WebElement> options = findWebElements(By.xpath("//div[contains(@class, 'k-animation-container-shown')]//*[@role='option']"));
         waitUntilInvisible(2, loader);
