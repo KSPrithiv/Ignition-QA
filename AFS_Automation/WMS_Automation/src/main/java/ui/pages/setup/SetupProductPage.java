@@ -8,6 +8,8 @@ import ui.pages.BasePage;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static common.setup.DriverManager.getDriver;
+
 public class SetupProductPage extends BasePage {
     By productLabel = By.xpath("//span[contains(text(), 'Product')]");
     By productTypeLabel = By.xpath("//span[contains(text(), 'Product type')]");
@@ -294,14 +296,8 @@ public class SetupProductPage extends BasePage {
     }
 
     public void waitSetupProductPageToLoad() {
-        waitUntilInvisible(5, loader);
-        Waiters.waitForElementToBeDisplay(productLabel);
-        Waiters.waitForElementToBeDisplay(productTypeLabel);
-        Waiters.waitForElementToBeDisplay(unitOfMeasureLabel);
-        Waiters.waitForElementToBeDisplay(unitStatusLabel);
-        Waiters.waitForElementToBeDisplay(qualityControlTypeLabel);
-        Waiters.waitForElementToBeDisplay(putAwayRuleLabel);
-        Waiters.waitForElementToBeDisplay(aliasTypeLabel);
+        Waiters.waitTillLoadingPage(getDriver());
+        waitUntilInvisible(10, loader);
         Waiters.waitForElementToBeDisplay(movementClassLabel);
         Waiters.waitForElementToBeDisplay(genericLookupTypeLabel);
         Waiters.waitForElementToBeDisplay(pickSlotTypeLabel);

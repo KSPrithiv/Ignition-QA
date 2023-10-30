@@ -131,9 +131,9 @@ public class DockManagementSummaryPage extends BasePage {
     By loader = By.cssSelector(".loader");
 
     public void waitForDockManagementSummaryPageToLoad() {
-        waitUntilInvisible(5, loader);
+        waitUntilInvisible(3, loader);
         Waiters.waitForElementToBeDisplay(getTopIcon());
-        waitUntilInvisible(5, loader);
+        waitUntilInvisible(3, loader);
     }
 
     public void refreshPage() {
@@ -306,7 +306,7 @@ public class DockManagementSummaryPage extends BasePage {
         waitUntilStalenessOf(2, getLoader());
         clickOnElement(setupProductIcon);
         Waiters.waitTillLoadingPage(getDriver());
-        waitUntilInvisible(3, loader);
+        Waiters.waitABit(8000);
     }
 
     public void clickDockManagementIcon() {

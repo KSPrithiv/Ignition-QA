@@ -27,7 +27,7 @@ import static common.setup.DriverManager.getDriver;
                 "json:target/cucumber-reports/cucumber.json",
                 "rerun:target/failedrerun.txt"
         }, monochrome = true,
-        tags = "@Login")
+        tags = "@isofailed")
 
 @Slf4j
 public class LoginCucumberRunner extends AbstractTestNGCucumberTests {

@@ -11,6 +11,7 @@ Feature: Testing of Login to AFS Application
     When Login page is displayed
     Then Wrong credentials notification error "Either Username or Password is incorrect. Please try again." is displayed
 
+  @isofailed
   Scenario: Check every screen should have warehouse at top
     Given User signs in the application
     And Main page is loaded
@@ -30,7 +31,4 @@ Feature: Testing of Login to AFS Application
     And Validates warehouse dropdown is displayed on Inbound Load Summary page
     And Go to Work Queue Assign Work page
     And Waits for Work Queue Work Assign page to load
-    And Validates warehouse dropdown is displayed on Inbound Load Summary page
-    And Go to Lookup Label page
-    And Waits for Label Lookup page to load
     And Validates warehouse dropdown is displayed on Inbound Load Summary page

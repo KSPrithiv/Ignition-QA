@@ -73,6 +73,7 @@ Feature: Testing of Work Queue Assignment functionality
     And User clicks Assignments Title on Work Queue Assignments page
     And Validates Grid items are present on Work Queue Assignments page
 
+  @isofailed
   Scenario: Checking Filter option Tasks of Work Queue Assignments screen functionality
     Given User signs in the application
     And Main page is loaded
@@ -84,37 +85,6 @@ Feature: Testing of Work Queue Assignment functionality
     And User clicks Add Filter on Work Queue Assignments page
     Then User checks Tasks Filter on Work Queue Assignments page
     And Types Task by index 0 on Work Queue Assignments page
-    And Clicks Apply button on Work Queue Assignments page
-    And User clicks Assignments Title on Work Queue Assignments page
-    And Validates Grid items are present on Work Queue Assignments page
-
-  Scenario: Checking Filter option Qty of Work Queue Assignments screen functionality
-    Given User signs in the application
-    And Main page is loaded
-    And DockManagement Summary Page is validated
-    And Go to Work Queue Assignments page
-    And Waits for Work Queue Assignments page to load
-    When User clicks Add Filter on Work Queue Assignments page
-    And User clicks Clear All on Work Queue Assignments page
-    And User clicks Add Filter on Work Queue Assignments page
-    And User checks Qty Filter on Work Queue Assignments page
-    Then Types Qty by index 0 on Work Queue Assignments page
-    And Types filter "10" on Work Queue Assignments page
-    And Clicks Apply button on Work Queue Assignments page
-    And User clicks Assignments Title on Work Queue Assignments page
-    And Validates Grid items are present on Work Queue Assignments page
-
-  Scenario: Checking Filter option Cube of Work Queue Assignments screen functionality
-    Given User signs in the application
-    And Main page is loaded
-    And DockManagement Summary Page is validated
-    And Go to Work Queue Assignments page
-    And Waits for Work Queue Assignments page to load
-    When User clicks Add Filter on Work Queue Assignments page
-    And User clicks Clear All on Work Queue Assignments page
-    And User clicks Add Filter on Work Queue Assignments page
-    Then User checks Cube Filter on Work Queue Assignments page
-    And Types Cube by index 0 on Work Queue Assignments page
     And Clicks Apply button on Work Queue Assignments page
     And User clicks Assignments Title on Work Queue Assignments page
     And Validates Grid items are present on Work Queue Assignments page

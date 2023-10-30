@@ -19,14 +19,14 @@ import java.io.IOException;
 import static common.setup.DriverManager.*;
 import static common.setup.DriverManager.getDriver;
 
-@CucumberOptions(features = {"src/test/resources/features/AppointmentScheduler.feature"},
+@CucumberOptions(features = {"src/test/resources/features/appointments/AppointmentScheduler.feature"},
         glue = {"steps"},
         plugin = {"pretty",
                 "json:target/cucumber.json",
                 "html:Reports/Index.html",
                 "json:target/cucumber-reports/cucumber.json",
                 "rerun:target/failedrerun.txt"
-        }, monochrome = true, tags = "@Appointments")
+        }, monochrome = true, tags = "@isofailed")
 @Slf4j
 public class AppointmentsCucumberRunner extends AbstractTestNGCucumberTests {
     public static Environment environment;

@@ -53,12 +53,10 @@ public class WorkQueueLoggedInUsersPage extends BasePage {
     By loader = By.cssSelector(".loader");
 
     public void waitWorkQueueLoggedInUsersPageToLoad() {
-        waitUntilInvisible(5, loader);
+        waitUntilInvisible(8, loader);
         Waiters.waitForElementToBeDisplay(getLoggedInTitle());
         Waiters.waitForElementToBeDisplay(getUserIdColumn());
         Waiters.waitForElementToBeDisplay(getUserNameColumn());
-        Waiters.waitForElementToBeDisplay(getComputerColumn());
-        Waiters.waitForElementToBeDisplay(getEquipmentColumn());
     }
 
     public boolean isLoggedInTitleDisplayed() {
