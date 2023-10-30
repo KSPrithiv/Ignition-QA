@@ -17,7 +17,7 @@ Feature: scenarios for User and Accounts admin feature, for Grid related setting
       |Grids    |Configuration  | Grid Configuration |
 
   @CheckAvailabilityOfGrid
-  Scenario Outline: Test scenario for verifying availablity of same grid in different companies
+  Scenario Outline: Test scenario for verifying availablity of same grid under Configuration tab and Available grids tab
     Given User is on Home Page for Admin setting to select Admin option
     Then User refreshes page Clicks on Permissions by drop down to select Customer Account# grid
     And User should enter menu "<Main menu>" in search bar and select "<Sub menu>"
@@ -25,10 +25,10 @@ Feature: scenarios for User and Accounts admin feature, for Grid related setting
     Then User reads all the grid names
     And User navigate to Available grid tab and finds all the grids available and disable any grid
     Then User navigates back to Grid configuration tab and checks for available grid type in drop down
-    And User clicks on save button to save Grid configuration
+    #And User clicks on save button to save Grid configuration
     And User should enable disabled grid in Available grid tab
     Then User navigates back to Grid configuration tab and checks for available grid type in drop down after enabling tab
-    And User clicks on save button to save Grid configuration
+    #And User clicks on save button to save Grid configuration
     Examples:
       |Main menu|Sub menu       |
       |Grids    |Configuration  |
@@ -44,7 +44,7 @@ Feature: scenarios for User and Accounts admin feature, for Grid related setting
     And User clicks on save button to save Grid configuration
     Then User validates availablity of disabled column in grid "<Grid type>"
     And User again enables column availability in Available grid
-    Then User should navigate back to Grid configuration and click on Save button
+   # Then User should navigate back to Grid configuration and click on Save button
     Examples:
       |Main menu|Sub menu       |Grid type  |
       |Grids    |Configuration  |Order Entry|

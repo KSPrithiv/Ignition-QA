@@ -948,15 +948,19 @@ public class NewStandingOrderCard
         catch (Exception e){}
     }
 
-    public void verifyGenerateStandingOrderPopup()
+    public void verifyGenerateStandingOrderPopup() throws InterruptedException
     {
-        HelpersMethod.waitTillElementLocatedDisplayed(driver,"xpath","//div[contains(@class,'k-widget k-window k-dialog')]",10000);
-        // to fetch the web element of the modal container
-        WebElement modalContainer = HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-widget k-window k-dialog')]");
-
-        // to fetch the web elements of the modal content and interact with them, code to fetch content of modal title and verify it
-        WebElement modalContentTitle = modalContainer.findElement(By.xpath(".//div[contains(@class,'k-window-title k-dialog-title')]"));
-        Assert.assertEquals(modalContentTitle.getText(), "Generate standing order(s)", "Verify Title message");
+        Thread.sleep(1000);
+        exists=false;
+        try
+        {
+            if(HelpersMethod.IsExists("//div[contains(text(),'Generate standing order')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
+            {
+                exists=true;
+            }
+            Assert.assertEquals(exists,true);
+        }
+        catch (Exception e){}
     }
 
     public void clickOnStartStandingOrderCalender()

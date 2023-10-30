@@ -12,6 +12,7 @@ import java.io.IOException;
  * @Project OMS_DSD
  * @Author Divya.Ramadas@afsi.com
  */
+
 @CucumberOptions
         (features = "src/test/resources/features_DSD_OMS/LoginFeature",
                 glue = {"stepDefination_DSD_OMS"},
@@ -21,7 +22,6 @@ import java.io.IOException;
                         "com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:Reports/spark/",
                         "rerun:target/failedrerun.txt"},
                 monochrome = true)
-
 
 public class TestRunnerLogin extends AbstractTestNGCucumberTests
 {

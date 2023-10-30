@@ -288,7 +288,10 @@ public class GridConfigurationPageStep
         gridConfigPage.selectAnyGridInAvailableGrid();
         gridConfigPage.readGridNameDisabledInAvailableGrid();
         gridConfigPage.disableAvailableGrid();
-        gridConfigPage.clickSaveButtonInAvailablegrid();
+        //gridConfigPage.clickSaveButtonInAvailablegrid();
+        gridConfigPage.clickOnSaveButton();
+        gridConfigPage.validateSavedailogbox();
+        gridConfigPage.clickOnOkButtonInSavePopup();
     }
 
     @Then("User navigates back to Grid configuration tab and checks for available grid type in drop down")
@@ -322,9 +325,9 @@ public class GridConfigurationPageStep
         gridConfigPage=new GridConfigurationPage(driver,scenario);
         gridConfigPage.selectGridConfiguration();
         gridConfigPage.validateGridConfigurationPage();
+        scenario.log("NUMBER OF GRIDS FOUND IN DROP DOWN BEFORE DISABLING GRID "+size1);
         gridConfigPage.clickOnGridTypeDropDown();
         size2=gridConfigPage.readAllGridNames();
-        scenario.log("NUMBER OF GRIDS FOUND IN DROP DOWN BEFORE DISABLING GRID "+size1);
         scenario.log("NUMBER OF GRIDS FOUND IN DROP DOWN AFTER DISABLING GRID "+size2);
         if(size1==size2)
         {
@@ -347,7 +350,10 @@ public class GridConfigurationPageStep
         gridConfigPage.validateAvailableGrid();
         gridConfigPage.readGridNameDisabledInAvailableGrid();
         gridConfigPage.enableAvailableGrid();
-        gridConfigPage.clickSaveButtonInAvailablegrid();
+        //gridConfigPage.clickSaveButtonInAvailablegrid();
+        gridConfigPage.clickOnSaveButton();
+        gridConfigPage.validateSavedailogbox();
+        gridConfigPage.clickOnOkButtonInSavePopup();
     }
 
     @And("User navigate to Available grid tab and select one of the grid and read all the column header available for selected grid")
@@ -383,7 +389,11 @@ public class GridConfigurationPageStep
         gridConfigPage.readGridNameDisabledInAvailableGrid();
         columnName=gridConfigPage.readColumnNameDisabled();
         gridConfigPage.enableAnyColumnNameInAvailableGrid();
-        gridConfigPage.clickSaveButtonInAvailablegrid();
+        //gridConfigPage.clickSaveButtonInAvailablegrid();
+        gridConfigPage=new GridConfigurationPage(driver,scenario);
+        gridConfigPage.clickOnSaveButton();
+        gridConfigPage.validateSavedailogbox();
+        gridConfigPage.clickOnOkButtonInSavePopup();
     }
 
     @And("User clicks on Grid option{string} to copy and selects option from drop down")

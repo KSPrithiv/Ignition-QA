@@ -224,8 +224,11 @@ public class OrderEntryPageSteps3
         newOE=new NewOrderEntryPage(driver,scenario);
         newOE.Click_On_PriceOverrideIcon();
         newOE.PriceOverridePopup_WhatIfPricePrice(priceVal.get(0).get(0));
-        newOE.priceCannotBeBleowCost();
-        newOE.exceedsMaxQty();
+        for(int i=0;i<=1;i++)
+        {
+            newOE.priceCannotBeBleowCost();
+            newOE.exceedsMaxQty();
+        }
     }
 
     @Then("User should click on price override icon and Change price using What if option Price per unit")
@@ -235,5 +238,10 @@ public class OrderEntryPageSteps3
         newOE=new NewOrderEntryPage(driver,scenario);
         newOE.Click_On_PriceOverrideIcon();
         newOE.PriceOverridePopup_WhatIfPriceUnit(priceVal.get(0).get(0));
+        for(int i=0;i<=1;i++)
+        {
+            newOE.priceCannotBeBleowCost();
+            newOE.exceedsMaxQty();
+        }
     }
 }

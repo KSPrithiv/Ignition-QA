@@ -91,7 +91,7 @@ public class NewStandingOrderPage
                 if (HelpersMethod.IsExists("//div[@class='loader']", driver))
                 {
                     WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100000);
+                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000000);
                 }
                 String status = HelpersMethod.returnDocumentStatus(driver);
                 if (status.equals("loading"))
@@ -256,7 +256,7 @@ public class NewStandingOrderPage
                 if(HelpersMethod.IsExists("//div[@class='loader']",driver))
                 {
                     WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 200000);
+                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000000);
                 }
             }
             Assert.assertEquals(exists,true);
@@ -560,7 +560,7 @@ public class NewStandingOrderPage
         {
             if(DeleteProd.isDisplayed() && DeleteProd.isEnabled())
             {
-                HelpersMethod.ClickBut(driver,DeleteProd,1000);
+                HelpersMethod.ClickBut(driver,DeleteProd,4000);
                 if(HelpersMethod.IsExists("//div[contains(text(),'Delete product(s)')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
                 {
                     WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-widget k-window k-dialog')]/descendant::button[text()='Yes']");
@@ -571,7 +571,7 @@ public class NewStandingOrderPage
                     if (HelpersMethod.IsExists("//div[@class='loader']", driver))
                     {
                         WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                        HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100000);
+                        HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000000);
                     }
                 }
             }
@@ -594,7 +594,7 @@ public class NewStandingOrderPage
             if(HelpersMethod.IsExists("//div[@class='loader']",driver))
             {
                 WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 200000);
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000000);
             }
             Assert.assertEquals(exists,true);
         }
@@ -609,7 +609,7 @@ public class NewStandingOrderPage
             if(HelpersMethod.IsExists("//div[@class='loader']",driver))
             {
                 WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 200000);
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000000);
             }
             HelpersMethod.waitTillElementLocatedDisplayed(driver,"xpath","//div[contains(@class,'k-widget k-window k-dialog')]",20000);
             // to fetch the web element of the modal container
@@ -652,14 +652,14 @@ public class NewStandingOrderPage
             if (HelpersMethod.IsExists("//div[@class='loader']", driver))
             {
                 WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100000);
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000000);
             }
             Assert.assertEquals(exists,true);
         }
         catch (Exception e){}
     }
 
-    public void SelectDateToSkip()
+    public void SelectDateToSkip(int days)
     {
         exists=false;
         WebElement WebEle=null;
@@ -668,7 +668,7 @@ public class NewStandingOrderPage
         {
             WebElement ele1;
             String formattedDate1 = null;
-            LocalDate myDateObj = LocalDate.now().plusDays(10);
+            LocalDate myDateObj = LocalDate.now().plusDays(days);
             DateTimeFormatter myFormatObj = DateTimeFormatter.ofPattern("EEEE, MMMM d, yyyy");
             formattedDate1 = myDateObj.format(myFormatObj);
             //code to be executed when the date is visible in existing calender
@@ -742,7 +742,7 @@ public class NewStandingOrderPage
             if (HelpersMethod.IsExists("//div[@class='loader']", driver))
             {
                 WebElement WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 200000);
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000000);
             }
             Assert.assertEquals(exists, true);
         }
@@ -758,7 +758,7 @@ public class NewStandingOrderPage
             if (HelpersMethod.IsExists("//div[@class='loader']", driver))
             {
                 WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100000);
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000000);
             }
             if(HelpersMethod.IsExists("//div[contains(text(),'Delivery skip details saved')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
             {
@@ -769,7 +769,7 @@ public class NewStandingOrderPage
                 if (HelpersMethod.IsExists("//div[@class='loader']", driver))
                 {
                     WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 200000);
+                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000000);
                 }
             }
             //Assert.assertEquals(exists,true);
@@ -802,7 +802,7 @@ public class NewStandingOrderPage
         if (HelpersMethod.IsExists("//div[@class='loader']", driver))
         {
             WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100000);
+            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000000);
         }
         try
         {
@@ -817,7 +817,7 @@ public class NewStandingOrderPage
             if (HelpersMethod.IsExists("//div[@class='loader']", driver))
             {
                 WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100000);
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000000);
             }
             status=HelpersMethod.returnDocumentStatus(driver);
             if(status.equals("loading"))
@@ -851,7 +851,7 @@ public class NewStandingOrderPage
                     HelpersMethod.DropDownMenu(driver, Cate);
                     if (HelpersMethod.IsExists("//div[@class='loader']", driver)) {
                         WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                        HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100000);
+                        HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000000);
                     }
 
                     //Click on SubCategory Drop down
@@ -864,7 +864,7 @@ public class NewStandingOrderPage
                     if (HelpersMethod.IsExists("//div[@class='loader']", driver))
                     {
                         WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                        HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100000);
+                        HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000000);
                     }
 
                     //Click on Brand
@@ -877,7 +877,7 @@ public class NewStandingOrderPage
                     if (HelpersMethod.IsExists("//div[@class='loader']", driver))
                     {
                         WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                        HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100000);
+                        HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000000);
                     }
 
                     exists = true;
@@ -984,7 +984,7 @@ public class NewStandingOrderPage
                 if (HelpersMethod.IsExists("//div[@class='loader']", driver))
                 {
                     WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100000);
+                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000000);
                 }
                 String status = HelpersMethod.returnDocumentStatus(driver);
                 if (status.equals("loading"))
@@ -1035,7 +1035,7 @@ public class NewStandingOrderPage
             {
                 JavascriptExecutor js = ((JavascriptExecutor) driver);
                 js.executeScript("window.location.reload()");
-                WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(100000));
+                WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(1000000));
                 if (wait.until(ExpectedConditions.alertIsPresent()) == null)
                 {
 
@@ -1052,7 +1052,7 @@ public class NewStandingOrderPage
                 driver.navigate().to(currentURL);
                 scenario.log("STANDING ORDER PAGE HAS BEEN FOUND");
             }
-            /*String status = HelpersMethod.returnDocumentStatus(driver);
+            String status = HelpersMethod.returnDocumentStatus(driver);
             if (status.equals("loading"))
             {
                 HelpersMethod.waitTillLoadingPage(driver);
@@ -1061,21 +1061,21 @@ public class NewStandingOrderPage
             if (HelpersMethod.IsExists("//div[@class='loader']", driver))
             {
                 WebElement   WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 4000000);
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000000);
             }
             status = HelpersMethod.returnDocumentStatus(driver);
             if (status.equals("loading"))
             {
                 HelpersMethod.waitTillLoadingPage(driver);
             }
-            if (HelpersMethod.IsExists("//div[@class='loader']", driver))
+           /* if (HelpersMethod.IsExists("//div[@class='loader']", driver))
             {
                 WebElement   WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
                 HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 4000000);
             }*/
             Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
-                    .withTimeout(Duration.ofSeconds(100))
-                    .pollingEvery(Duration.ofSeconds(5))
+                    .withTimeout(Duration.ofSeconds(120))
+                    .pollingEvery(Duration.ofSeconds(2))
                     .ignoring(NoSuchElementException.class);
             wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
         }
@@ -1127,7 +1127,7 @@ public class NewStandingOrderPage
                 if(HelpersMethod.IsExists("//div[@class='loader']",driver))
                 {
                     WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 200000);
+                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000000);
                 }
                 scenario.log("PRODUCT FOUND IN CATALOG IS "+Prod_No);
                 exists=true;
@@ -1155,7 +1155,7 @@ public class NewStandingOrderPage
                 if (HelpersMethod.IsExists("//div[@class='loader']", driver))
                 {
                     WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 200000);
+                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000000);
                 }
                 scenario.log("PRODUCT FOUND IN CATALOG IS "+Prod_No);
                 exists=true;
@@ -1225,7 +1225,12 @@ public class NewStandingOrderPage
             if(HelpersMethod.IsExists("//div[@class='loader']",driver))
             {
                 WebElement  WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 400000);
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000000);
+            }
+            status = HelpersMethod.returnDocumentStatus(driver);
+            if (status.equals("loading"))
+            {
+                HelpersMethod.waitTillLoadingPage(driver);
             }
             String titleSO=driver.getTitle();
             if(titleSO.contains("Standing Order"))

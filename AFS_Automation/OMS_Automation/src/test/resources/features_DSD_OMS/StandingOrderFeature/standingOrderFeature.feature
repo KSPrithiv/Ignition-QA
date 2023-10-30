@@ -37,7 +37,7 @@ Feature: Standing Order
   @SkipSpecificDay
   Scenario: Test scenario for skipping specific date in standing order
     Given User must be on Order Entry Page to select Standing Order and navigate to standing order
-    Then Click on Skip specific day and select reason date for skip in skip popup and click on ok
+    Then Click on Skip specific day and select 3 rd day from current date,select reason date for skip in skip popup and click on ok
 
   @VerifySkipDateSetInSOWithOE
   Scenario: Test scenario for verifying skip in SO with skip in OE page
