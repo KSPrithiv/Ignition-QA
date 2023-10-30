@@ -11,6 +11,7 @@ Feature: Testing of Outbound Summary Filter Option functionality
     When Filling start date "01/01/2022" and end date "01/31/2022" on Outbound Order Summary page
     Then Validates Outbound Order Summary start date "01/01/2022" and end date "01/31/2022"
 
+  @isofailed
   Scenario: Checking Filtering Enter Order Data
     Given User signs in the application
     And Main page is loaded
@@ -72,6 +73,7 @@ Feature: Testing of Outbound Summary Filter Option functionality
     And Validates Adjust filter to display data on Outbound Order Summary grid
     And Click Cancel button on Outbound Order Summary page
 
+  @isofailed
   Scenario: Checking Filtering Search by door
     Given User signs in the application
     And Main page is loaded
@@ -102,6 +104,7 @@ Feature: Testing of Outbound Summary Filter Option functionality
     And User selects option by index 1 on Outbound Order Summary page
     And Validates orders are found on Outbound Order Summary page
 
+  @isofailed
   Scenario: Check Get Filter product
     Given User signs in the application
     And Main page is loaded
@@ -118,6 +121,7 @@ Feature: Testing of Outbound Summary Filter Option functionality
     And Filling current start date and tomorrow end date on Outbound Order Summary page
     And Enters Product by index 3 on Outbound Order Summary page
 
+  @isofailed
   Scenario: Check Get Order Display Grid Data
     Given User signs in the application
     And Main page is loaded

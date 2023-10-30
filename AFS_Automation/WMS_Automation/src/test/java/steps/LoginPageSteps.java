@@ -40,7 +40,7 @@ public class LoginPageSteps {
     public static Environment environment;
     public WebDriver driver;
 
-    @Before
+/*   @Before
     public void beforeClassSetup() {
         ConfigFactory.setProperty("path", FilePaths.PROPERTIES_PATH);
         environment = ConfigFactory.create(Environment.class);
@@ -48,16 +48,27 @@ public class LoginPageSteps {
         buildWebDriver(environment.getBrowser());
         DriverManager.openPage(environment.getUrl());
         new Waiters();
+    }*/
+
+    @Before
+    public void LaunchBrowser(Scenario scenario) throws Exception
+    {
+        this.scenario = scenario;
+        //TestBase driver1 = TestBase.getInstanceOfDriver();
+        //driver = driver1.getDriver();
+        //driver = TestBase.getDriver();
+        driver = DriverManager.getDriver();
     }
 
-/*    @After
+    @After
     public void afterScenario1(Scenario scenario) {
-        if (scenario.isFailed()) {
+        if (scenario.isFailed())
+        {
             TakesScreenshot ts = (TakesScreenshot) driver;
             byte[] src = ts.getScreenshotAs(OutputType.BYTES);
             scenario.attach(src,"image/png", scenario.getName());
         }
-    }*/
+    }
 
     @Step
     @Given("User signs in the application")
@@ -120,7 +131,7 @@ public class LoginPageSteps {
 
     }
 
-    @SneakyThrows
+/*    @SneakyThrows
     @After
     public void closeBrowserInstance(Scenario scenario) {
        if (driverEnabled(getDriver())) {
@@ -134,5 +145,5 @@ public class LoginPageSteps {
                 }
             }
        }
-    }
+    }*/
 }

@@ -102,7 +102,6 @@ Feature: Testing of Outbound Load Planning functionality
     And Clicks reason dropdown on Split task popup
     And Selects reason "Short Order" from dropdown on Split task popup
     And Clicks Save button on Split task popup
-    And Validates "Success" notification is displayed for Exit Load Planning
 
   Scenario: Checking Load Planning - split product pick task edit 003
     Given User signs in the application

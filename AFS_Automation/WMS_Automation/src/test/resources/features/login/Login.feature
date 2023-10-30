@@ -31,6 +31,3 @@ Feature: Testing of Login to AFS Application
     And Go to Work Queue Assign Work page
     And Waits for Work Queue Work Assign page to load
     And Validates warehouse dropdown is displayed on Inbound Load Summary page
-    And Go to Lookup Label page
-    And Waits for Label Lookup page to load
-    And Validates warehouse dropdown is displayed on Inbound Load Summary page

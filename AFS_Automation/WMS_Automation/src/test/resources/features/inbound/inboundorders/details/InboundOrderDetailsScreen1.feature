@@ -229,6 +229,7 @@ Feature: Testing of Inbound Orders details screen
     And Clicks Add Filter button on Inbound Order Details page
     And Validates popup Add Filter on Inbound Order Details page
 
+  @isofailed
   Scenario: Checking Move Order to a Load on Inbound Order details page
     Given User signs in the application
     And Main page is loaded
@@ -246,6 +247,7 @@ Feature: Testing of Inbound Orders details screen
     And Types Load name by index 0 on Inbound Order Details page
     And Validates Save button is enabled on Inbound Order Details page
 
+  @isofailed
   Scenario: Checking Back button on Inbound Order details page
     Given User signs in the application
     And Main page is loaded
@@ -260,6 +262,7 @@ Feature: Testing of Inbound Orders details screen
     And Clicks Route Back button on Inbound Order Details page
     And Validates Inbound Order Summary Page contains all web elements
 
+  @isofailed
   Scenario: Checking Add/Delete Images on Inbound Order details page
     Given User signs in the application
     And Main page is loaded

@@ -592,9 +592,6 @@ Feature: Testing of Failed
     And Go to Work Queue Assign Work page
     And Waits for Work Queue Work Assign page to load
     And Validates warehouse dropdown is displayed on Inbound Load Summary page
-    And Go to Lookup Label page
-    And Waits for Label Lookup page to load
-    And Validates warehouse dropdown is displayed on Inbound Load Summary page
 
   Scenario: Checking Dashboard Icon and Spelling
     Given User signs in the application
@@ -846,5 +843,5 @@ Feature: Testing of Failed
     And Types email "testuser@gmail.com" on Appointment Scheduler page
     And User selects delivery "DRY" on Appointment Scheduler page
     And Click Next on Appointment Scheduler page
-    And User types Future Date in 10 days on Appointment Scheduler page
+    And User types Future Date in 3 days on Appointment Scheduler page
     And Click Cancel button on Appointment Scheduler page

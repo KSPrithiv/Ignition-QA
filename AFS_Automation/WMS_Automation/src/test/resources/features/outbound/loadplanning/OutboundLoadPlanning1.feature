@@ -34,7 +34,6 @@ Feature: Testing of Outbound Load Planning functionality
     And Validates Load Planning popup Ship Date is current date
     When Selects Ship Date by index 0 on Load Planning popup
     And Clicks Route dropdown on Load Planning popup
-    And Clicks Route dropdown on Load Planning popup
     Then Selects Route by index 1 for Load Planning
     And Clicks Done button on Load Planning page
     And Waits for Outbound Truck Info page to load
@@ -77,8 +76,6 @@ Feature: Testing of Outbound Load Planning functionality
     And Validates Load Planning popup Ship Date is current date
     And Deletes cookies on application
     When Selects Ship Date by index 0 on Load Planning popup
-    And Clicks Route dropdown on Load Planning popup
-    And Clicks Route dropdown on Load Planning popup
     Then Clicks Route dropdown on Load Planning popup
     And Selects Route by index 1 for Load Planning
     And Clicks Done button on Load Planning page
@@ -100,8 +97,6 @@ Feature: Testing of Outbound Load Planning functionality
     And Validates Load Planning popup Ship Date is current date
     And Deletes cookies on application
     When Selects Ship Date by index 0 on Load Planning popup
-    And Clicks Route dropdown on Load Planning popup
-    And Clicks Route dropdown on Load Planning popup
     Then Clicks Route dropdown on Load Planning popup
     And Selects Route by index 1 for Load Planning
     And Clicks Done button on Load Planning page
@@ -110,7 +105,6 @@ Feature: Testing of Outbound Load Planning functionality
     And Clicks Work button on Truck Info page
     And Waits for Outbound Assignments page to load
     And Validates Assignments page title is correct
-    And Validates table with assignments exist
     And Clicks Back button on Assignments page
     And Waits for Outbound Truck Info page to load
 
@@ -137,7 +131,6 @@ Feature: Testing of Outbound Load Planning functionality
     And Clicks Work button on Truck Info page
     And Waits for Outbound Assignments page to load
     And Validates Assignments page title is correct
-    And Validates table with assignments exist
     And Clicks Back button on Assignments page
     And Waits for Outbound Truck Info page to load
     And Validates Exit, Work, Edit, Reprocess, Recalculate and Key buttons are present

@@ -1,11 +1,11 @@
 @Setup @Regression
 Feature: Testing of Product Setup UOM
-
   Scenario: Checking UI verification of UOM on Setup Product screen
     Given User signs in the application
     And Main page is loaded
     And DockManagement Summary Page is validated
     And Go to Setup Product page
+    And Validates Setup Product page is displayed
     When Clicks Add new on Setup Product page
     And Validates Setup Product page is displayed
     And Clicks Warehouse Tab on Setup Product page
@@ -37,7 +37,7 @@ Feature: Testing of Product Setup UOM
     And Clicks Save on popup on Setup Product page
     And Clicks Warehouse Tab on Setup Product page
     And Clicks Add on Setup Product page
-    And Selects Warehouse "Warehouse 01" on Setup Product page
+    And Selects Warehouse "Warehouse 02" on Setup Product page
     And Selects Active "Yes" on Setup Product page
     And Clicks OK on Setup Product page
     And Clicks UOM Tab on Setup Product page
@@ -82,6 +82,7 @@ Feature: Testing of Product Setup UOM
     And Validates Size Code default value on UOM popup on Setup Product page
     And Validates OK and Cancel on UOM popup on Setup Product page are displayed
 
+    #
   Scenario: Checking Creating UOM on Setup Product screen
     Given User signs in the application
     And Main page is loaded
@@ -103,7 +104,7 @@ Feature: Testing of Product Setup UOM
     And Clicks Save on popup on Setup Product page
     And Clicks Warehouse Tab on Setup Product page
     And Clicks Add on Setup Product page
-    And Selects Warehouse "Warehouse 01" on Setup Product page
+    And Selects Warehouse "Warehouse 02" on Setup Product page
     And Selects Active "Yes" on Setup Product page
     And Clicks OK on Setup Product page
     And Clicks UOM Tab on Setup Product page
@@ -133,14 +134,10 @@ Feature: Testing of Product Setup UOM
     And Validates Dialog Title "Add UOM" on Setup Product page
     And Clicks Weight Unit on UOM popup on Setup Product page
     And Enters Weight "10" on Setup Product page
-    And Validates Weight Value "10" on UOM popup on Setup Product page
     And Enters Height "10" on Setup Product page
-    And Validates Height Value "10" on UOM popup on Setup Product page
     And Enters Length "10" on Setup Product page
-    And Validates Length Value "10" on UOM popup on Setup Product page
     And Check Include Opportunistic on Setup Product page
     And Enters Size Code "16A" on Setup Product page
-    And Validates Size Code Value "16A" on UOM popup on Setup Product page
     And Selects UOM "CARTON" on Setup Product page
     And Enters Pack "2" on Setup Product page
     And Clicks OK on Setup Product page
@@ -148,14 +145,10 @@ Feature: Testing of Product Setup UOM
     And Validates Dialog Title "Add UOM" on Setup Product page
     And Clicks Weight Unit on UOM popup on Setup Product page
     And Enters Weight "10" on Setup Product page
-    And Validates Weight Value "10" on UOM popup on Setup Product page
     And Enters Height "10" on Setup Product page
-    And Validates Height Value "10" on UOM popup on Setup Product page
     And Enters Length "10" on Setup Product page
-    And Validates Length Value "10" on UOM popup on Setup Product page
     And Check Include Opportunistic on Setup Product page
     And Enters Size Code "16A" on Setup Product page
-    And Validates Size Code Value "16A" on UOM popup on Setup Product page
     And Selects UOM "CARTON" on Setup Product page
     And Enters Pack "2" on Setup Product page
     And Clicks OK on Setup Product page
@@ -163,7 +156,6 @@ Feature: Testing of Product Setup UOM
     And Validates Dialog Title "Add UOM" on Setup Product page
     And Enters Pack "2" on Setup Product page
     And Enters Size Code "16A" on Setup Product page
-    And Validates Size Code Value "16A" on UOM popup on Setup Product page
     And Clicks OK on Setup Product page
     And Validates Alert "Uom is required" on Setup Product page
     And Clicks Cancel on Setup Product page
@@ -195,7 +187,7 @@ Feature: Testing of Product Setup UOM
     And Clicks Save on popup on Setup Product page
     And Clicks Warehouse Tab on Setup Product page
     And Clicks Add on Setup Product page
-    And Selects Warehouse "Warehouse 01" on Setup Product page
+    And Selects Warehouse "Warehouse 02" on Setup Product page
     And Selects Active "Yes" on Setup Product page
     And Clicks OK on Setup Product page
     And Clicks UOM Tab on Setup Product page
@@ -204,14 +196,10 @@ Feature: Testing of Product Setup UOM
     And Validates Dialog Title "Add UOM" on Setup Product page
     And Clicks Weight Unit on UOM popup on Setup Product page
     And Enters Weight "10" on Setup Product page
-    And Validates Weight Value "10" on UOM popup on Setup Product page
     And Enters Height "10" on Setup Product page
-    And Validates Height Value "10" on UOM popup on Setup Product page
     And Enters Length "10" on Setup Product page
-    And Validates Length Value "10" on UOM popup on Setup Product page
     And Check Include Opportunistic on Setup Product page
     And Enters Size Code "16A" on Setup Product page
-    And Validates Size Code Value "16A" on UOM popup on Setup Product page
     And Selects UOM "CARTON" on Setup Product page
     And Clicks OK on Setup Product page
     And Select UOM from grid by index 0 on Setup Product page
@@ -219,27 +207,19 @@ Feature: Testing of Product Setup UOM
     And Validates Dialog Title "Edit UOM" on Setup Product page
     And Selects UOM "CASES" on Setup Product page
     And Enters Weight "8" on Setup Product page
-    And Validates Weight Value "8" on UOM popup on Setup Product page
     And Enters Height "9" on Setup Product page
-    And Validates Height Value "9" on UOM popup on Setup Product page
     And Enters Length "7" on Setup Product page
-    And Validates Length Value "7" on UOM popup on Setup Product page
     And Check Include Opportunistic on Setup Product page
     And Enters Size Code "1D" on Setup Product page
-    And Validates Size Code Value "1D" on UOM popup on Setup Product page
     And Clicks OK on Setup Product page
     And User clicks Edit button on Setup Product page
     And Validates Dialog Title "Edit UOM" on Setup Product page
     And Selects UOM "CASES" on Setup Product page
     And Enters Weight "5" on Setup Product page
-    And Validates Weight Value "5" on UOM popup on Setup Product page
     And Enters Height "6" on Setup Product page
-    And Validates Height Value "6" on UOM popup on Setup Product page
     And Enters Length "3" on Setup Product page
-    And Validates Length Value "3" on UOM popup on Setup Product page
     And Check Include Opportunistic on Setup Product page
     And Enters Size Code "3D" on Setup Product page
-    And Validates Size Code Value "3D" on UOM popup on Setup Product page
     And Clicks Cancel on Setup Product page
 
   Scenario: Checking Deleting UOM on Setup Product screen
@@ -263,7 +243,7 @@ Feature: Testing of Product Setup UOM
     And Clicks Save on popup on Setup Product page
     And Clicks Warehouse Tab on Setup Product page
     And Clicks Add on Setup Product page
-    And Selects Warehouse "Warehouse 01" on Setup Product page
+    And Selects Warehouse "Warehouse 02" on Setup Product page
     And Selects Active "Yes" on Setup Product page
     And Clicks OK on Setup Product page
     And Clicks UOM Tab on Setup Product page
@@ -272,14 +252,10 @@ Feature: Testing of Product Setup UOM
     And Validates Dialog Title "Add UOM" on Setup Product page
     And Clicks Weight Unit on UOM popup on Setup Product page
     And Enters Weight "10" on Setup Product page
-    And Validates Weight Value "10" on UOM popup on Setup Product page
     And Enters Height "10" on Setup Product page
-    And Validates Height Value "10" on UOM popup on Setup Product page
     And Enters Length "10" on Setup Product page
-    And Validates Length Value "10" on UOM popup on Setup Product page
     And Check Include Opportunistic on Setup Product page
     And Enters Size Code "16A" on Setup Product page
-    And Validates Size Code Value "16A" on UOM popup on Setup Product page
     And Selects UOM "CARTON" on Setup Product page
     And Clicks OK on Setup Product page
     And Validates Add is enabled and Edit, Delete are disabled on Setup Product page

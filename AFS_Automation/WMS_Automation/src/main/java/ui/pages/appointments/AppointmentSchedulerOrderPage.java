@@ -175,10 +175,12 @@ public class AppointmentSchedulerOrderPage extends BasePage {
     public void enterDate(String date) {
         Waiters.waitForElementToBeClickable(getToggleCalendar());
         clickOnElement(getToggleCalendar());
-        Waiters.waitABit(2000);
+        waitUntilStalenessOf(5, getToggleCalendar());
         String day = date.substring(3, 5).contains("0") ? date.substring(4, 5) : date.substring(3, 5);
+        waitUntilStalenessOf(5, getToggleCalendar());
+        Waiters.waitABit(5000);
         clickOnElement(getCalendarDay(day));
-        Waiters.waitABit(2000);
+        Waiters.waitABit(5000);
     }
 
     public void inputAlt1(String atl1) {

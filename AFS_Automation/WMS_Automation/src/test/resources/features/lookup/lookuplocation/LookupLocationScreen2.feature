@@ -136,11 +136,11 @@ Feature: Testing Lookup Location functionality
     And User enters location by index 2 on Lookup Location page
     And User clicks Show detail checkbox on Lookup Location page
     And User checks Location Product 0 on Lookup Location page
-    And User clicks Edit button on Lookup Location page
+    When User clicks Edit button on Lookup Location page
     And Validates Edit inventory elements are displayed on Location Lookup page
     And User clears edit LPN on Lookup Location page
     And User types Expiration date by index 5 on Lookup Location page
-    And User clicks Save button on Lookup Location page
+    Then User clicks Save button on Lookup Location page
     And User clicks Cancel button on Lookup Location page
     And User checks Location Product 0 on Lookup Location page
     And User clicks Edit button on Lookup Location page
@@ -164,7 +164,7 @@ Feature: Testing Lookup Location functionality
     And Waits for Location Lookup page to load
     And User enters location by index 2 on Lookup Location page
     And Validates Inventory details of location on Location Lookup page are loaded
-    And Clicks Add Location button on Lookup Location page
+    When Clicks Add Location button on Lookup Location page
     And Validates LPN, Product and Type are displayed on Location Lookup page
     And Validates Cancel and Save buttons are displayed on Add inventory on Location Lookup page
     And Validates LPN field should be empty on Location Lookup page

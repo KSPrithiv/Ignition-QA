@@ -35,6 +35,7 @@ Feature: Testing of Appointment Scheduler functionality
     And Validates Next Button is not active on Appointment Scheduler page
     And Validates Cancel Button is not active on Appointment Scheduler page
 
+  @isofailed
   Scenario: Checking Cancel Appointment Scheduler Creation With Valid Order
     Given User signs in the application
     And Main page is loaded
@@ -50,5 +51,5 @@ Feature: Testing of Appointment Scheduler functionality
     And Types email "testuser@gmail.com" on Appointment Scheduler page
     And User selects delivery "DRY" on Appointment Scheduler page
     And Click Next on Appointment Scheduler page
-    And User types Future Date in 10 days on Appointment Scheduler page
+    And User types Future Date in 3 days on Appointment Scheduler page
     And Click Cancel button on Appointment Scheduler page
