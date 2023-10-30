@@ -51,7 +51,7 @@ public class StatementsPage
     @FindBy(id="SearchBar1")
     private WebElement searchBar;
 
-    @FindBy(xpath="//input[@id='SearchBar1']/ancestor::form//*[local-name()='svg' and contains(@class,'i-search-box__search')]//*[local-name()='path']")
+    @FindBy(xpath="//div[contains(@class,'i-search-box')]//*[local-name()='svg' and contains(@class,'i-search-box__search')]")
     private WebElement searchIndex;
 
     @FindBy(id="generateEditButton")
@@ -87,7 +87,7 @@ public class StatementsPage
             if (HelpersMethod.IsExists("//div[@class='loader']", driver))
             {
                 WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 200000);
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000000);
             }
 
             Actions act = new Actions(driver);

@@ -60,7 +60,7 @@ Feature: Quotes
     Then User enters Quote name "<QuoteName>" and Quote End date click on OK button
     Then User should select Note from popup and Order guide from popup for quote
     And User clicks on Plus symbol in new Quote page and selects Catalog option from drop down
-    Then User addes some products from catalog
+    Then User adds some products from catalog
       |30|40|
     Then Click on create button in New Quote page
     And User click on Back to orderlist button from Quote summary page and Read order number

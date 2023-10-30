@@ -188,7 +188,7 @@ Feature: Quotes1
     Then Verify User is on Order Entry Page and verify Quote is existing
     Then User selects Quote in Order Entry grid
     And User should be navigated to Quote summary page and click on Convert Order button
-    Then Enter PO# for New order
+    Then Enter PO# for New order for Quote to Order
       |PO123|
     Then Click on Next button
     And Click on SubmitOrder button

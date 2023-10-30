@@ -80,16 +80,22 @@ public class TestBase
                 WebDriverManager.chromedriver().setup();
                 ChromeOptions chromeOptions = new ChromeOptions();
 
-                chromeOptions.addArguments("--safebrowsing-disable-download-protection");
-                chromeOptions.addArguments("--disable-popup-blocking");
-                chromeOptions.addArguments("disable-notifications");
-                chromeOptions.addArguments("disable-infobars");
+                //chromeOptions.addArguments("--safebrowsing-disable-download-protection");
+                //chromeOptions.addArguments("--disable-popup-blocking");
+                //chromeOptions.addArguments("disable-notifications");
+                //chromeOptions.addArguments("disable-infobars");
                 chromeOptions.addArguments("--start-maximized");
                 //chromeOptions.addArguments("window-size=1920,1080");
                 chromeOptions.addArguments("window-size=1280,720");
-                chromeOptions.addArguments("PageLoadStrategy.NONE");
-                chromeOptions.addArguments("test-type");
-                chromeOptions.addArguments("user-data-dir=D:/temp/");
+                chromeOptions.addArguments("PageLoadStrategy.NORMAL");
+                //chromeOptions.addArguments("test-type");
+                //chromeOptions.addArguments("user-data-dir=D:/temp/");
+                chromeOptions.addArguments("--aggressive-cache-discard");
+                chromeOptions.addArguments("--disable-cache");
+                chromeOptions.addArguments("--disable-application-cache");
+                chromeOptions.addArguments("--disable-offline-load-stale-cache");
+                chromeOptions.addArguments("--disk-cache-size=0");
+                chromeOptions.addArguments("--dns-prefetch-disable");
 
                 /*chromeOptions.addArguments("window-size=1280,720");
                 chromeOptions.addArguments("--remote-allow-origins=*");
@@ -118,7 +124,7 @@ public class TestBase
                 chromeOptions.addArguments("--disable-dev-shm-usage");
                 chromeOptions.addArguments("--log-level=3");*/
 
-                driver.set(new ChromeDriver());
+                driver.set(new ChromeDriver(chromeOptions));
             }
             break;
             case "firefox":
@@ -168,7 +174,7 @@ public class TestBase
                 chromeOptions.addArguments("--no-proxy-server");
                 chromeOptions.addArguments("--proxy-server='direct://'");
                 chromeOptions.addArguments("--proxy-bypass-list=*");
-                chromeOptions.setPageLoadStrategy(PageLoadStrategy.EAGER);
+                chromeOptions.setPageLoadStrategy(PageLoadStrategy.NORMAL);
                 chromeOptions.addArguments("enable-features=NetworkServiceInProcess");
                 chromeOptions.addArguments("disable-features=NetworkService");
                 chromeOptions.addArguments("--disable-browser-side-navigation");
@@ -189,6 +195,14 @@ public class TestBase
                 chromeOptions.addArguments("--ignore-ssl-errors");
                 chromeOptions.addArguments("--disable-dev-shm-usage");
                 chromeOptions.addArguments("--log-level=3");
+
+                chromeOptions.addArguments("--aggressive-cache-discard");
+                chromeOptions.addArguments("--disable-cache");
+                chromeOptions.addArguments("--disable-application-cache");
+                chromeOptions.addArguments("--disable-offline-load-stale-cache");
+                chromeOptions.addArguments("--disk-cache-size=0");
+                chromeOptions.addArguments("--dns-prefetch-disable");
+
                 driver.set(new ChromeDriver(chromeOptions));
             }
             break;

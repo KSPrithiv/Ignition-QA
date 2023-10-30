@@ -9,8 +9,8 @@ Feature: Order Entry7
     Then User should select Order Entry tab
     Then User selects Account#
 
-  @EditWithOutChangeing
-  Scenario:Test scenario for creating Order and edit it without making any changes, or usage of back to orderlist in summary page
+  @EditWithOutChanging
+  Scenario:Test scenario for creating Order and edit it without making any changes, or usage of back to order list in summary page
     Given User must be on Order Entry Page
     Then User must click Start Order button
     Then User should make selection between Pending order or Start New order
@@ -48,7 +48,7 @@ Feature: Order Entry7
     Then User clicks on icon next to address
 
   @PrivacyPolicy
-  Scenario: Test scenario for finding the contact information details
+  Scenario: Test scenario for finding the privacy policy
     Given User must be on Order Entry Page
     Then User clicks on Privacy policy link and window with pivacy policy will open, user handles it
 
@@ -62,9 +62,9 @@ Feature: Order Entry7
     Then Enter PO# for New order
       |PO123|
     And User clicks on Grid type drop down and select different grid
-      |New grid|
+    #  |Regression grid|
     Then User verifies visibility of Price override icon and reset Grid type to Main grid
-      |Main grid|
+     # |Main grid|
     And User navigates back to OE by selecting Discard all option from pending order popup
 
   @ChangeGridAndChangePriceOverride
@@ -79,9 +79,9 @@ Feature: Order Entry7
     Then User should enter Units and Cases in product grid
       |80|60|
     And User clicks on Grid type drop down and select different grid
-      |New grid|
+   #   |Regression grid|
     Then User verifies visibility of Price override icon change the Price in price override and reset Grid type to Main grid
-      |Main grid|0.01|
+     |0.01|
     And User navigates back to OE by selecting Discard all option from pending order popup
 
   @OrderHistoryChangeGridType
