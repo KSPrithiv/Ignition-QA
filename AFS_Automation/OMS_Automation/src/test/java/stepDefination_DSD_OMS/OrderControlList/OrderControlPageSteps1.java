@@ -52,10 +52,11 @@ public class OrderControlPageSteps1
         orderControlList.readAllTheCustomer();
     }
 
-    @Then("User should find the customer to whome comment has not been added and click on Comment icon")
-    public void userShouldFindTheCustomerToWhomeCommentHasNotBeenAddedAndClickOnCommentIcon() throws InterruptedException, AWTException
+    @Then("User should find the customer to whome comment has to be added and click on Comment icon")
+    public void userShouldFindTheCustomerToWhomeCommentHasToBeAddedAndClickOnCommentIcon() throws InterruptedException, AWTException
     {
         orderControlList=new OrderControlListPage(driver,scenario);
+        orderControlList.Validate_OCL();
         orderControlList.selectCustomerAndClickCommentIcon();
     }
 

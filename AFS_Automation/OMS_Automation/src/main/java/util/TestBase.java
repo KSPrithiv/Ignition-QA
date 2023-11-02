@@ -96,33 +96,7 @@ public class TestBase
                 chromeOptions.addArguments("--disable-offline-load-stale-cache");
                 chromeOptions.addArguments("--disk-cache-size=0");
                 chromeOptions.addArguments("--dns-prefetch-disable");
-
-                /*chromeOptions.addArguments("window-size=1280,720");
                 chromeOptions.addArguments("--remote-allow-origins=*");
-                chromeOptions.addArguments("--no-proxy-server");
-                chromeOptions.addArguments("--proxy-server='direct://'");
-                chromeOptions.addArguments("--proxy-bypass-list=*");
-                chromeOptions.setPageLoadStrategy(PageLoadStrategy.EAGER);
-                chromeOptions.addArguments("enable-features=NetworkServiceInProcess");
-                chromeOptions.addArguments("disable-features=NetworkService");
-                chromeOptions.addArguments("--disable-browser-side-navigation");
-                chromeOptions.addArguments("--disable-gpu");
-                chromeOptions.addArguments("--force-device-scale-factor=1");
-                chromeOptions.addArguments("--no-sandbox");
-                chromeOptions.addArguments("--disable-dev-shm-usage");
-                chromeOptions.addArguments("--aggressive-cache-discard");
-                chromeOptions.addArguments("--disable-cache");
-                chromeOptions.addArguments("--disable-application-cache");
-                chromeOptions.addArguments("--disable-offline-load-stale-cache");
-                chromeOptions.addArguments("--disk-cache-size=0");
-                chromeOptions.addArguments("--dns-prefetch-disable");
-                chromeOptions.addArguments("--silent");
-                //chromeOptions.setProxy(null);
-                System.setProperty("webdriver.chrome.silentOutput", "true");// extra -delete
-                chromeOptions.addArguments("--ignore-certificate-errors");
-                chromeOptions.addArguments("--ignore-ssl-errors");
-                chromeOptions.addArguments("--disable-dev-shm-usage");
-                chromeOptions.addArguments("--log-level=3");*/
 
                 driver.set(new ChromeDriver(chromeOptions));
             }

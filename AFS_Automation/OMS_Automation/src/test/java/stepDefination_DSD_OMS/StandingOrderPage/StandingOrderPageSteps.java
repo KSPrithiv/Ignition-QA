@@ -335,6 +335,7 @@ public class StandingOrderPageSteps
         standingOrder.ClickOnSkipSpecificDay();
         standingOrder.ValidateSkipPopup();
         sDate= standingOrder.readSkipDate();
+        scenario.log(sDate);
         standingOrder.SkipOkButton();
         LocalDate myDateObj = LocalDate.parse(sDate, DateTimeFormatter.ofPattern("MM/dd/yyyy"));
         DateTimeFormatter myFormatObj = DateTimeFormatter.ofPattern("EEEE, MMMM d, yyyy");

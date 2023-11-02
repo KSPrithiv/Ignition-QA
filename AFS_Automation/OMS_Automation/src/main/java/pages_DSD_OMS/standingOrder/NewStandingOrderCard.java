@@ -11,6 +11,8 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.FluentWait;
+import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import util.Environment;
@@ -749,11 +751,18 @@ public class NewStandingOrderCard
     public void clickOnShowSelectedCustomerTaggle() throws InterruptedException
     {
         exists=false;
-        if(HelpersMethod.IsExists("//div[@class='loader']",driver))
+        /*if(HelpersMethod.IsExists("//div[@class='loader']",driver))
         {
             WebElement WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
             HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100000);
-        }
+        }*/
+        Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                .withTimeout(Duration.ofSeconds(120))
+                .pollingEvery(Duration.ofSeconds(2))
+                .ignoring(NoSuchElementException.class);
+        wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
+
         if(HelpersMethod.IsExists("//div[@id='standingOrderRegisterDialog']/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
         {
             WebElement custFilterButton = HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-widget k-window k-dialog')]/descendant::span[@id='selectedCustomersSwitch']");
@@ -862,6 +871,7 @@ public class NewStandingOrderCard
             if (HelpersMethod.IsExists("//div[@id='toast-container']", driver))
             {
                 scenario.log("NO DATA HAS BEEN GENERATED");
+                Thread.sleep(2000);
             }
             else
             {
@@ -869,6 +879,7 @@ public class NewStandingOrderCard
             }
             WebElement cancelButton = modalContainer.findElement(By.xpath(".//button[@id='standingOrderRegisterDialogCancelButton']"));
             HelpersMethod.ClickBut(driver, cancelButton, 1000);
+            Thread.sleep(6000);
             Assert.assertEquals(exists, true);
         }
         catch (Exception e){}
@@ -1159,6 +1170,7 @@ public class NewStandingOrderCard
                 WebEle=HelpersMethod.FindByElement(driver,"xpath","//button[@id='standingOrderRegisterDialogCancelButton']");
                 HelpersMethod.ClickBut(driver,WebEle,1000);
                 exists=true;
+                Thread.sleep(2000);
             }
             Assert.assertEquals(exists,true);
         }

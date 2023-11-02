@@ -201,6 +201,7 @@ public class OrderControlPageSteps
     public void changeTheDeliveryDateDaysAfterCurrentDate(int days)
     {
         orderControlList=new OrderControlListPage(driver,scenario);
+        orderControlList.Validate_OCL();
         orderControlList.Call_Date_Click();
         orderControlList.Call_Date_Selection(days);
     }
@@ -209,6 +210,7 @@ public class OrderControlPageSteps
     public void userClicksOnUntakenRadioButton()
     {
         orderControlList=new OrderControlListPage(driver,scenario);
+        orderControlList.Validate_OCL();
         orderControlList.Select_Untaken();
     }
 
@@ -285,6 +287,7 @@ public class OrderControlPageSteps
     public void userSelectOCLWhichIsSkipped()
     {
         orderControlList=new OrderControlListPage(driver,scenario);
+        orderControlList.Validate_OCL();
         orderControlList.Skip();
     }
 
@@ -294,6 +297,7 @@ public class OrderControlPageSteps
         orderControlList=new OrderControlListPage(driver,scenario);
         orderControlList.RemoveSkipPopUp();
         orderControlList.validateChangeOfRemoveSkip();
+        orderControlList.Validate_OCL();
     }
 
     @Then("User validates Not skip option")
@@ -384,6 +388,7 @@ public class OrderControlPageSteps
     public void userShouldVerifyOrderNumberCreatedInOCLGridAndOrderIconInOCL()
     {
         orderControlList = new OrderControlListPage(driver, scenario);
+        orderControlList.Validate_OCL();
         orderControlList.verifyOrderInOCLgrid(Ord_No);
         orderControlList.verifyNewOrderIconInOCLgrid();
         orderControlList.clearSearchBar();

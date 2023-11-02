@@ -9,6 +9,7 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import pages_DSD_OMS.login.HomePage;
 import pages_DSD_OMS.login.LoginPage;
@@ -102,20 +103,19 @@ public class QuotePageSteps
             orderEntryPage = new OrderEntryPage(driver, scenario);
             orderEntryPage.NavigateToOrderEntry();
             currentURL=driver.getCurrentUrl();
-            flag=true;
         }
     }
 
     @Then("User selects Account# for Quotes")
     public void user_selects_accountForQuotes() throws InterruptedException, AWTException, ParseException
     {
-        if(flag1==false)
+        if(flag==false)
         {
             orderEntryPage = new OrderEntryPage(driver, scenario);
             orderEntryPage.ChangeAccount();
             //orderEntryPage.PopUps_After_AccountChange();
             //orderEntryPage.Read_DeliveryDate();
-            flag1=true;
+            flag=true;
         }
         orderEntryPage = new OrderEntryPage(driver, scenario);
         orderEntryPage.HandleError_Page();
@@ -150,6 +150,7 @@ public class QuotePageSteps
     public void clickOnCreateButtonInNewQuotePage()
     {
         newQuotePage=new NewQuotePage(driver,scenario);
+        newQuotePage.validateNewQuote();
         newQuotePage.ClickOnCreateButton();
     }
 
@@ -217,6 +218,7 @@ public class QuotePageSteps
     public void clickOnCancelButtonInNewQuotePage()
     {
         newQuotePage=new NewQuotePage(driver,scenario);
+        newQuotePage.validateNewQuote();
         newQuotePage.ClickOnCancelButton();
     }
 
@@ -230,12 +232,14 @@ public class QuotePageSteps
     }
 
     @Then("User adds some products from catalog")
-    public void userAddsSomeProductsFromCatalog(DataTable tabledata)
+    public void userAddsSomeProductsFromCatalog(DataTable tabledata) throws InterruptedException, AWTException
     {
         List<List<String>> Qty=tabledata.asLists(String.class);
         newQuotePage=new NewQuotePage(driver,scenario);
         newQuotePage.SelectProductFromCatalog();
-        newQuotePage.EnterProductQtyCatalog(Qty.get(0).get(0), Qty.get(0).get(1));
+        newOE=new NewOrderEntryPage(driver,scenario);
+        newOE.EnterQty(Qty.get(0).get(0), Qty.get(0).get(1));
+        //newQuotePage.EnterProductQtyCatalog(Qty.get(0).get(0), Qty.get(0).get(1));
     }
 
     @And("User clicks on Plus symbol in new Quote page and selects OG option from drop down")
@@ -257,7 +261,7 @@ public class QuotePageSteps
     }
 
     @Then("User click on Copy button in summary page and enter Quote name {string} and Click on Create button")
-    public void userClickOnCopyButtonInSummaryPageAndEnterQuoteNameAndClickOnCreateButton(String Quote1)
+    public void userClickOnCopyButtonInSummaryPageAndEnterQuoteNameAndClickOnCreateButton(String Quote1) throws InterruptedException, AWTException
     {
         quoteSummaryPage=new QuoteSummaryPage(driver,scenario);
         quoteSummaryPage.ValidateQuoteSummary();
@@ -267,6 +271,22 @@ public class QuotePageSteps
         quotePage.ClickOnCalender();
         quotePage.SelectEndDate();
         quotePage.ClickOnOKButton();
+        orderEntryPage = new OrderEntryPage(driver, scenario);
+        if (HelpersMethod.IsExists("//div[@class='loader']", driver))
+        {
+            WebElement WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
+            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000000);
+        }
+        for(int i=0;i<=1;i++)
+        {
+            orderEntryPage.OrderGuidePopup();
+            orderEntryPage.NoNotePopHandling();
+        }
+        if (HelpersMethod.IsExists("//div[@class='loader']", driver))
+        {
+            WebElement WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
+            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000000);
+        }
         newQuotePage=new NewQuotePage(driver,scenario);
         newQuotePage.ClickOnCreateButton();
     }

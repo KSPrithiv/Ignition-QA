@@ -693,16 +693,30 @@ public class NewStandingOrderPage
     {
         exists=false;
         WebElement WebEle=null;
-        int length;
+        Actions act=new Actions(driver);
+        String dateVal=null;
+        int j=0;
+        int index=0;
         try
         {
             WebElement ele1;
             String formattedDate1 = null;
+            String formattedDate2=null;
+
+            LocalDate currentDate=LocalDate.now();
+            DateTimeFormatter currentFormatObj = DateTimeFormatter.ofPattern("d");
+            formattedDate2 = currentDate.format(currentFormatObj);
+            scenario.log(formattedDate2);
+
+
+
+
             LocalDate myDateObj = LocalDate.now().plusDays(days);
             DateTimeFormatter myFormatObj = DateTimeFormatter.ofPattern("EEEE, MMMM d, yyyy");
             formattedDate1 = myDateObj.format(myFormatObj);
+            scenario.log(formattedDate1);
             //code to be executed when the date is visible in existing calender
-            if(HelpersMethod.IsExists("//td[contains(@style,'opacity:')]/span[contains(@title,'" + formattedDate1 +"')]",driver))
+           /* if(HelpersMethod.IsExists("//td[contains(@style,'opacity:')]/span[contains(@title,'" + formattedDate1 +"')]",driver))
             {
                 if (!HelpersMethod.IsExists("//td[contains(@style,'opacity:')]/span[@class='k-link-disabled' and contains(@title,'" + formattedDate1 + "')]", driver))
                 {
@@ -714,7 +728,7 @@ public class NewStandingOrderPage
                 }
                 else
                 {
-                    myDateObj = LocalDate.now().plusDays(11);
+                    myDateObj = LocalDate.now().plusDays(days+1);
                     myFormatObj = DateTimeFormatter.ofPattern("EEEE, MMMM d, yyyy");
                     formattedDate1 = myDateObj.format(myFormatObj);
                     ele1 = HelpersMethod.FindByElement(driver, "xpath", "//td[contains(@style,'opacity:')]/span[contains(@title,'" + formattedDate1 + "')]");
@@ -752,6 +766,73 @@ public class NewStandingOrderPage
                         scenario.log("SKIP DATE IS "+formattedDate1);
                     }
                 }
+            }*/
+            //to check whether date is visible in displayed calender
+            if(HelpersMethod.IsExists("//td[contains(@style,'opacity:')]/span[contains(@title,'" + formattedDate1 +"')]",driver))
+            {
+                if (!HelpersMethod.IsExists("//td[contains(@style,'opacity:')]/span[@class='k-link-disabled' and contains(@title,'" + formattedDate1 + "')]", driver))
+                {
+                    ele1 = HelpersMethod.FindByElement(driver, "xpath", "//td[contains(@style,'opacity:')]/span[contains(@title,'" + formattedDate1 + "')]");
+                    HelpersMethod.waitTillElementDisplayed(driver, ele1, 10000);
+                    HelpersMethod.JSScroll(driver, ele1);
+                    HelpersMethod.ClickBut(driver, ele1, 1000);
+                    scenario.log("SKIP DATE IS "+formattedDate1);
+                }
+                else
+                {
+                    List<WebElement> displayedDates=HelpersMethod.FindByElements(driver,"xpath","//table[contains(@class,'k-calendar-table k-calendar-content k-content')]/descendant::td/span");
+                    for(int i=0;i<=displayedDates.size()-1;i++)
+                    {
+                        j=j+5;
+                        WebEle=displayedDates.get(i);
+                        act.moveToElement(WebEle).build().perform();
+                        //dateVal= WebEle.getText();
+                        //index=(Integer.parseInt(formattedDate2))-1+j;
+                        if(HelpersMethod.IsExists("//table[contains(@class,'k-calendar-table k-calendar-content k-content')]/descendant::td[contains(@style,'background-color: rgb')]["+((Integer.parseInt(formattedDate2))-1+j)+"]/span",driver))
+                        {
+                            WebEle=displayedDates.get((Integer.parseInt(formattedDate2))-1+j);
+                            act.moveToElement(WebEle).build().perform();
+                            act.click().build().perform();
+                            break;
+                        }
+                    }
+                }
+            }
+            else
+            {
+                //if the date is not present in visible calender, click on arrow button to navigate to next month
+                if (HelpersMethod.IsExists("//button[contains(@class,'k-nav-next')]/span[contains(@class,'k-i-arrow-chevron-right')]", driver))
+                {
+                    //Click on Arrow in calender, when date has not been found in visible calender
+                    WebElement arrow = HelpersMethod.FindByElement(driver, "xpath", "//button[contains(@class,'k-nav-next')]/span[contains(@class,'k-i-arrow-chevron-right')]");
+                    HelpersMethod.ClickBut(driver, arrow, 1000);
+
+                    if (!HelpersMethod.IsExists("//td[contains(@style,'opacity:')]/span[@class='k-link-disabled' and contains(@title,'" + formattedDate1 + "')]", driver))
+                    {
+                        ele1 = HelpersMethod.FindByElement(driver, "xpath", "//td[contains(@style,'opacity:')]/span[contains(@title,'" + formattedDate1 + "')]");
+                        HelpersMethod.waitTillElementDisplayed(driver, ele1, 10000);
+                        HelpersMethod.JSScroll(driver, ele1);
+                        HelpersMethod.ClickBut(driver, ele1, 1000);
+                        scenario.log("SKIP DATE IS "+formattedDate1);
+                    }
+                    else
+                    {
+                        List<WebElement> displayedDates=HelpersMethod.FindByElements(driver,"xpath","//table[contains(@class,'k-calendar-table k-calendar-content k-content')]/descendant::td/span");
+                        for(int i=0;i<=displayedDates.size()-1;i++)
+                        {
+                            j=j+5;
+                            WebEle=displayedDates.get(i);
+                            act.moveToElement(WebEle).build().perform();
+                            if(HelpersMethod.IsExists("//table[contains(@class,'k-calendar-table k-calendar-content k-content')]/descendant::td[contains(@style,'background-color: rgb')]["+((Integer.parseInt(formattedDate2))-1+j)+"]/span",driver))
+                            {
+                                WebEle=displayedDates.get((Integer.parseInt(formattedDate2))-1+j);
+                                act.moveToElement(WebEle).build().perform();
+                                act.click().build().perform();
+                                break;
+                            }
+                        }
+                    }
+                }
             }
         }
         catch (Exception e){}
@@ -767,7 +848,7 @@ public class NewStandingOrderPage
             WebElement modalContainer = driver.findElement(By.xpath("//div[contains(@class,'k-widget k-window k-dialog')]"));
 
             WebElement okButton = modalContainer.findElement(By.xpath(".//button[text()='Ok']"));
-            HelpersMethod.ClickBut(driver, okButton, 1000);
+            HelpersMethod.ActClick(driver, okButton, 1000);
             exists = true;
             String status = HelpersMethod.returnDocumentStatus(driver);
             if (status.equals("loading"))
@@ -777,7 +858,7 @@ public class NewStandingOrderPage
             if (HelpersMethod.IsExists("//div[@class='loader']", driver))
             {
                 WebElement WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000000);
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 2000000);
             }
             status = HelpersMethod.returnDocumentStatus(driver);
             if (status.equals("loading"))
@@ -1176,11 +1257,13 @@ public class NewStandingOrderPage
                 //Click on Apply button
                 WebElement applyButton=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-child-animation-container')]/descendant::button[text()='Apply']");
                 HelpersMethod.ClickBut(driver,applyButton,2000);
-                if(HelpersMethod.IsExists("//div[@class='loader']",driver))
-                {
-                    WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000000);
-                }
+
+                Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                        .withTimeout(Duration.ofSeconds(120))
+                        .pollingEvery(Duration.ofSeconds(2))
+                        .ignoring(NoSuchElementException.class);
+                wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
                 scenario.log("PRODUCT FOUND IN CATALOG IS "+Prod_No);
                 exists=true;
             }
@@ -1274,11 +1357,6 @@ public class NewStandingOrderPage
                 HelpersMethod.waitTillLoadingPage(driver);
             }
 
-           /* if(HelpersMethod.IsExists("//div[@class='loader']",driver))
-            {
-                WebElement  WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000000);
-            }*/
             Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
                     .withTimeout(Duration.ofSeconds(120))
                     .pollingEvery(Duration.ofSeconds(2))
@@ -1290,6 +1368,7 @@ public class NewStandingOrderPage
             {
                 HelpersMethod.waitTillLoadingPage(driver);
             }
+
             wait = new FluentWait<WebDriver>(driver)
                     .withTimeout(Duration.ofSeconds(120))
                     .pollingEvery(Duration.ofSeconds(2))
@@ -1353,8 +1432,8 @@ public class NewStandingOrderPage
         String cat=TestBase.testEnvironment.get_Category();
         try
         {
-            WebElement dropDown=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-popup k-child-animation-container')]");
-            List<WebElement> allProds=dropDown.findElements(By.xpath(".//ul/li"));
+            //WebElement dropDown=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-popup k-child-animation-container')]");
+            List<WebElement> allProds=HelpersMethod.FindByElements(driver,"xpath","//div[contains(@class,'k-animation-container-relative k-list-container')]/descendant::ul/li");
             for(WebElement prod:allProds)
             {
                 act.moveToElement(prod).build().perform();
