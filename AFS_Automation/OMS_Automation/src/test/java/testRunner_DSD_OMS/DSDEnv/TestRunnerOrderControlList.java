@@ -25,7 +25,8 @@ import java.io.IOException;
                         "rerun:target/failedrerun.txt"},
                 monochrome = true)
 
-public class TestRunnerOrderControlList extends AbstractTestNGCucumberTests {
+public class TestRunnerOrderControlList extends AbstractTestNGCucumberTests
+{
     /* Created by Divya.Ramadas@afsi.com */
     @Parameters({"environment"})
     @BeforeClass

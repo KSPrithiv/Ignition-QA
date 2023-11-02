@@ -280,6 +280,11 @@ public class NewQuotePage
             if(AddProdcutButton.isDisplayed())
             {
                 HelpersMethod.ClickBut(driver, AddProdcutButton, 1000);
+                String status = HelpersMethod.returnDocumentStatus(driver);
+                if (status.equals("loading"))
+                {
+                    HelpersMethod.waitTillLoadingPage(driver);
+                }
                 exists = true;
             }
             Assert.assertEquals(exists,true);
@@ -365,9 +370,7 @@ public class NewQuotePage
         {
             if(HelpersMethod.IsExists("//div[contains(@class,'k-animation-container k-animation-container-relative')]/div[contains(@class,'k-popup k-list-container k-reset k-group k-child-animation-container')]",driver))
             {
-                //HelpersMethod.WebElementFromDropDown(driver,"//div[contains(@class,'k-animation-container')]/descendant::ul/li","xpath","From Order guides");
-                WebElement addDropDown=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-animation-container k-animation-container-relative')]/div[contains(@class,'k-popup k-list-container k-reset k-group k-child-animation-container')]");
-                List<WebElement> ogS=addDropDown.findElements(By.xpath(".//ul/li"));
+                List<WebElement> ogS=HelpersMethod.FindByElements(driver,"xpath","//div[contains(@class,'k-animation-container-relative')]/descendant::ul/li");
                 for(WebElement og:ogS)
                 {
                     act1.moveToElement(og).build().perform();
@@ -402,6 +405,11 @@ public class NewQuotePage
             {
                 WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
                 HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000000);
+            }
+            String status = HelpersMethod.returnDocumentStatus(driver);
+            if (status.equals("loading"))
+            {
+                HelpersMethod.waitTillLoadingPage(driver);
             }
             if (HelpersMethod.IsExists("//div[text()='Catalog']/ancestor::div[contains(@class,'k-widget k-window k-dialog')]", driver)) {
                 String Prod = DataBaseConnection.DataBaseConn(TestBase.testEnvironment.getSingle_OneMoreProd());
@@ -459,8 +467,7 @@ public class NewQuotePage
     }
 
 
-    public void EnterProductQtyCatalog(String unit,String cases)
-    {
+    public void EnterProductQtyCatalog(String unit,String cases) throws InterruptedException {
         WebElement WebEle=null;
         int j=0;
         try
@@ -563,6 +570,12 @@ public class NewQuotePage
             WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
             HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000000);
         }
+        String status = HelpersMethod.returnDocumentStatus(driver);
+        if (status.equals("loading"))
+        {
+            HelpersMethod.waitTillLoadingPage(driver);
+        }
+        Thread.sleep(3000);
     }
 
     public void SelectOG()
@@ -574,8 +587,8 @@ public class NewQuotePage
         {
             if(HelpersMethod.IsExists("//div[contains(@class,'k-animation-container k-animation-container-relative')]/div[contains(@class,'k-popup k-list-container k-reset k-group k-child-animation-container')]",driver))
             {
-                WebElement addDropDown=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-animation-container k-animation-container-relative')]/div[contains(@class,'k-popup k-list-container k-reset k-group k-child-animation-container')]");
-                List<WebElement> ogS=addDropDown.findElements(By.xpath(".//ul/li"));
+                //WebElement addDropDown=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-animation-container k-animation-container-relative')]/div[contains(@class,'k-popup k-list-container k-reset k-group k-child-animation-container')]");
+                List<WebElement> ogS=HelpersMethod.FindByElements(driver,"xpath","//div[contains(@class,'k-animation-container-relative')]/descendant::ul/li");
                 for(WebElement og:ogS)
                 {
                     act1.moveToElement(og).build().perform();

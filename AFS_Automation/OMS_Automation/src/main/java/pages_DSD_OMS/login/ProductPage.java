@@ -266,11 +266,18 @@ public class ProductPage
             HelpersMethod.ActClick(driver, SearchIndex, 2000);
             scenario.log("PRODUCT NUMBER ENTERED IN SEARCH BOX IS " + Prod_No);
 
-            if (HelpersMethod.IsExists("//div[@class='loader']", driver))
+           /* if (HelpersMethod.IsExists("//div[@class='loader']", driver))
             {
                 WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
                 HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000000);
-            }
+            }*/
+            Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(120))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
+
         }
         catch (Exception e){}
     }
@@ -503,7 +510,7 @@ public class ProductPage
             {
                 unit_Qty = HelpersMethod.FindByElement(driver, "xpath", "//input[contains(@id,'catalog-list-view-quantity-input')]");
                 HelpersMethod.ScrollElement(driver, unit_Qty);
-                HelpersMethod.ClearText(driver, unit_Qty, 1000);///////////////////
+                HelpersMethod.ClearText(driver, unit_Qty, 1000);
                 HelpersMethod.EnterText(driver, unit_Qty, 1000, QtyUnitCase);
                 unit_Qty.sendKeys(Keys.TAB);
                 Thread.sleep(2000);
@@ -521,9 +528,10 @@ public class ProductPage
             else
             {
                 QtyList=HelpersMethod.FindByElement(driver,"xpath","//input[contains(@id,'catalog-list-view-quantity-input')]");
-                HelpersMethod.ClearText(driver, QtyList, 1000);////////
+                HelpersMethod.ClearText(driver, QtyList, 1000);
                 HelpersMethod.EnterText(driver, QtyList, 1000, QtyUnitCase);
                 QtyList.sendKeys(Keys.TAB);
+                Thread.sleep(2000);
                 //"Product is currently unavailable" popup
                 if (HelpersMethod.IsExists("//div[contains(text(),'This product is currently unavailable.')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
                 {

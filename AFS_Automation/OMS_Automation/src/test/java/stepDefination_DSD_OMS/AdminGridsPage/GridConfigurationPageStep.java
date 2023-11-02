@@ -229,7 +229,7 @@ public class GridConfigurationPageStep
         }
 
         newOE=new NewOrderEntryPage(driver,scenario);
-        exists=newOE.ValidateNewOE();
+        newOE.ValidateNewOE();
         newOE.EnterPO_No(PO_No.get(0).get(0));
         newOE.validateDefaultGrid(arg0);
 

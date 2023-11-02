@@ -212,7 +212,7 @@ public class QuoteSummaryPage
                 if(HelpersMethod.IsExists("//div[@class='loader']",driver))
                 {
                     WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 200000);
+                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000000);
                 }
                 String status = HelpersMethod.returnDocumentStatus(driver);
                 if (status.equals("loading"))
@@ -258,8 +258,14 @@ public class QuoteSummaryPage
         exists=false;
         try
         {
+            String status = HelpersMethod.returnDocumentStatus(driver);
+            if (status.equals("loading"))
+            {
+                HelpersMethod.waitTillLoadingPage(driver);
+            }
             if(EditButton.isDisplayed())
             {
+                HelpersMethod.ScrollElement(driver,EditButton);
                 HelpersMethod.ClickBut(driver,EditButton,1000);
                 scenario.log("QUOTE EDIT BUTTON HAS BEEN CLICKED");
                 if(HelpersMethod.IsExists("//div[@class='loader']",driver))
