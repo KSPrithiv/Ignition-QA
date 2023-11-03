@@ -8,6 +8,8 @@ import io.cucumber.java.Scenario;
 import io.cucumber.java.en.*;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.FluentWait;
+import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import pages_DSD_OMS.login.*;
@@ -124,7 +126,12 @@ public class LoginPageStep
         {
             JavascriptExecutor js = ((JavascriptExecutor) driver);
             js.executeScript("window.location.reload()");
-            WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(800000));
+            //WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(800000));
+            Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(120))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
           /*  if(wait.until(ExpectedConditions.alertIsPresent())==null)
             {
 
@@ -133,33 +140,56 @@ public class LoginPageStep
             {*/
                 Alert alert = driver.switchTo().alert();
                 alert.accept();
-           // }
+                Wait<WebDriver> wait1 = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(120))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+                wait1.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+            // }
         }
             //if(titleLogin.equals("Order Cart") || titleLogin.equals("Product Catalog"))
-            if (titleLogin.equals("Product Catalog")) {
+            if (titleLogin.equals("Product Catalog"))
+            {
                 driver.navigate().to(TestBase.testEnvironment.get_url());
                 status = HelpersMethod.returnDocumentStatus(driver);
-                if (status.equals("loading")) {
+                if (status.equals("loading"))
+                {
                     HelpersMethod.waitTillLoadingPage(driver);
                 }
-                if (HelpersMethod.IsExists("//div[@class='loader']", driver)) {
+                /*if (HelpersMethod.IsExists("//div[@class='loader']", driver))
+                {
                     WebElement WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
                     HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 800000);
-                }
-            } else if (!tLogin.equals(titleLogin)) {
+                }*/
+                Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                        .withTimeout(Duration.ofSeconds(120))
+                        .pollingEvery(Duration.ofSeconds(2))
+                        .ignoring(NoSuchElementException.class);
+                wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+            }
+            else if (!tLogin.equals(titleLogin))
+            {
                 productPage = new ProductPage(driver, scenario);
                 pageTitle = driver.getTitle();
                 orderPageTitle = driver.getTitle();
-                if (!pTitle.equals(pageTitle)) {
+                if (!pTitle.equals(pageTitle))
+                {
                     String url = driver.getCurrentUrl();
                     driver.navigate().to(url);
                     homepage = new HomePage(driver, scenario);
                     homepage.Click_On_UserIcon();
                     homepage.Click_On_Signout();
-                    if (HelpersMethod.IsExists("//div[@class='loader']", driver)) {
+                  /*  if (HelpersMethod.IsExists("//div[@class='loader']", driver))
+                    {
                         WebElement WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
                         HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 800000);
-                    }
+                    }*/
+                    Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                            .withTimeout(Duration.ofSeconds(120))
+                            .pollingEvery(Duration.ofSeconds(2))
+                            .ignoring(NoSuchElementException.class);
+                    wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
                     status = HelpersMethod.returnDocumentStatus(driver);
                     if (status.equals("loading")) {
                         HelpersMethod.waitTillLoadingPage(driver);
@@ -384,7 +414,6 @@ public class LoginPageStep
             if (exists == true)
             {
                 HelpersMethod.ClickBut(driver, HelpersMethod.FindByElement(driver, "xpath", "//span[contains(@class,'search-button')]/*[local-name()='svg']/*[local-name()='path' and contains(@d,'M17')]"), 1000);
-
             }
             else if (exists == false)
             {
@@ -528,7 +557,8 @@ public class LoginPageStep
             exists = HelpersMethod.IsExists("//div[contains(text(),'Sorry, no products matched')]", driver);
             if (exists == true)
             {
-                HelpersMethod.ClickBut(driver, HelpersMethod.FindByElement(driver, "xpath", "//span[contains(@class,'search-button')]/*[local-name()='svg']/*[local-name()='path' and contains(@d,'M17')]"), 80);
+                WebElement clearButton=HelpersMethod.FindByElement(driver, "xpath", "//span[contains(@class,'search-button')]/*[local-name()='svg']/*[local-name()='path' and contains(@d,'M17')]");
+                HelpersMethod.ClickBut(driver, clearButton, 10000);
             }
             else if (exists == false)
             {

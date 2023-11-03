@@ -76,7 +76,7 @@ public class RandomValues
     //To generate the mail id randomly
     public static String generateEmail(int length)
     {
-        String allowedChars="abcdefghijklmnopqrstuvwxyz" + "1234567890";
+        String allowedChars="ABCDEFGHIJKLMNOPQRSTUVWXYZ"+"abcdefghijklmnopqrstuvwxyz" + "1234567890";
 
         String email="";
         String temp= RandomStringUtils.random(length,allowedChars);

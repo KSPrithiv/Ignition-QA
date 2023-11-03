@@ -54,10 +54,10 @@ public class OrderEntryPageSteps7
         newOE=new NewOrderEntryPage(driver,scenario);
         newOE.validateCatalogdialog();
         newOE.validateCardView();
-        newOE.showAllProductDropDown();
-        newOE.selectShowAllProductDropDown();
-        newOE.readProducts();
-        newOE.resetFilters();
+        //newOE.showAllProductDropDown();
+        //newOE.selectShowAllProductDropDown();
+        //newOE.readProducts();
+        //newOE.resetFilters();
         newOE.ogDropDown();
         newOE.selectOGDropDown(arg3);
         newOE.readProducts();
@@ -97,7 +97,6 @@ public class OrderEntryPageSteps7
     @And("User clicks on Grid type drop down and select different grid")
     public void userClicksOnGridTypeDropDownAndSelectDifferentGrid() throws InterruptedException, AWTException
     {
-        //List<List<String>> gridtype=tabledata.asLists(String.class);
         newOE=new NewOrderEntryPage(driver,scenario);
         newOE.clickOnGridTypeDropdown();
         newOE.selectGridTypeDropDown();

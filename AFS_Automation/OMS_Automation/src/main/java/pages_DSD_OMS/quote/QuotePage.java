@@ -43,12 +43,15 @@ public class QuotePage {
     }
 
     //Actions
-    public void EnterQuotName(String QName) {
+    public void EnterQuotName(String QName)
+    {
         exists = false;
         WebElement WebEle;
-        try {
+        try
+        {
             WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(text(),'New quote')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]");
-            if (WebEle.isDisplayed()) {
+            if (WebEle.isDisplayed())
+            {
                 HelpersMethod.EnterText(driver, QuoteName, 1000, QName);
                 scenario.log("QUOTE NAME IS " + QName);
                 exists = true;
@@ -58,27 +61,32 @@ public class QuotePage {
         }
     }
 
-    public void ClickOnCalender() {
+    public void ClickOnCalender()
+    {
         exists = false;
-        try {
-            if (EndCalender.isDisplayed()) {
+        try
+        {
+            if (EndCalender.isDisplayed())
+            {
                 HelpersMethod.ActClick(driver, EndCalender, 1000);
                 exists = true;
             }
             Assert.assertEquals(exists, true);
-        } catch (Exception e) {
         }
+        catch (Exception e) {}
     }
 
-    public void SelectEndDate() {
+    public void SelectEndDate()
+    {
         exists = false;
         String formattedDate1 = null;
-        try {
+        try
+        {
             LocalDate myDateObj = LocalDate.now().plusDays(4);
             DateTimeFormatter myFormatObj = DateTimeFormatter.ofPattern("EEEE, MMMM d, yyyy");
             formattedDate1 = myDateObj.format(myFormatObj);
             WebElement ele1 = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-calendar-monthview')]/descendant::td[contains(@title,'" + formattedDate1 + "')]");
-            HelpersMethod.waitTillElementDisplayed(driver, ele1, 80000);
+            HelpersMethod.waitTillElementDisplayed(driver, ele1, 1000000);
             HelpersMethod.JSScroll(driver, ele1);
             HelpersMethod.ClickBut(driver, ele1, 1000);
             scenario.log("END DATE FOR QUOTE IS : " + formattedDate1);
@@ -93,7 +101,13 @@ public class QuotePage {
     {
         exists = false;
         WebElement WebEle;
-        try {
+        try
+        {
+            String status = HelpersMethod.returnDocumentStatus(driver);
+            if (status.equals("loading"))
+            {
+                HelpersMethod.waitTillLoadingPage(driver);
+            }
             if (HelpersMethod.IsExists("//div[contains(text(),'New quote')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
             {
                 HelpersMethod.ClickBut(driver, Ok_Button, 4000);
@@ -102,7 +116,12 @@ public class QuotePage {
                 if(HelpersMethod.IsExists("//div[@class='loader']",driver))
                 {
                     WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 600000);
+                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000000);
+                }
+                status = HelpersMethod.returnDocumentStatus(driver);
+                if (status.equals("loading"))
+                {
+                    HelpersMethod.waitTillLoadingPage(driver);
                 }
             }
             Assert.assertEquals(exists, true);
@@ -115,7 +134,7 @@ public class QuotePage {
         if(HelpersMethod.IsExists("//div[@class='loader']",driver))
         {
             WebElement WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 800000);
+            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000000);
         }
         WebElement modalContainer = driver.findElement(By.xpath("//div[contains(text(),'New quote')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]"));
         WebElement modalContentTitle = modalContainer.findElement(By.xpath(".//div[contains(@class,'k-window-title k-dialog-title')]"));

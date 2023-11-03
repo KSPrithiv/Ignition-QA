@@ -57,7 +57,7 @@ Feature: Standing Order
     And User click on Start standing order button and selects Start date 2 and End date 2 day from current date
     Then User enters Product# in Quick product entry inputbox
     And User enters Qty in standing order product grid based on enabled days
-      |10|20|30|40|15|10|5|
+      |1|2|3|4|5|6|7|
     Then User clicks on Save button and handles popup
 
   @MultipleStandingOrder
@@ -66,28 +66,28 @@ Feature: Standing Order
     And User click on Start standing order button and selects Start date 3 and End date 4 day from current date
     Then User enters Product# in Quick product entry inputbox
     And User enters Qty in standing order product grid based on enabled days
-      |10|20|30|40|15|10|5|
+        |11|22|33|44|55|66|77|
     Then User clicks on Save button and handles popup and continue creation of multiple standing order
     And User click on Start standing order button and selects Start date 9 and End date 15 day from current date
     Then User enters Product# in Quick product entry inputbox
     And User enters Qty in standing order product grid based on enabled days
-      |10|20|30|40|15|10|5|
+      |11|22|33|44|55|66|77|
     Then User clicks on Save button and handles popup and continue creation of multiple standing order
     And User click on Start standing order button and selects Start date 4 and End date 8 day from current date
     Then User enters Product# in Quick product entry inputbox
     And User enters Qty in standing order product grid based on enabled days
-      |10|20|30|40|15|10|5|
+      |11|22|33|44|55|66|77|
     Then User clicks on Save button and handles popup
 
   @CatalogCard
-  Scenario: Test scenario for creating standing order using catalog standing order
+  Scenario: Test scenario for creating standing order using catalog standing order, by selecting category value
     Given User must be on Order Entry Page to select Standing Order and navigate to standing order
     And User click on Start standing order button and selects Start date 16 and End date 17 day from current date
     Then User click on Add Product button in Standing order page and select catalog option
     And User should make sure that Catalog popup displayed in card view and select Category values
     Then Select products from card view
     And User enters Qty in standing order product grid based on enabled days
-      |10|20|30|40|15|10|5|
+      |12|12|12|12|12|12|12|
     Then User clicks on Save button and handles popup
 
   @OverlappingDates
@@ -96,13 +96,13 @@ Feature: Standing Order
     And User click on Start standing order button and selects Start date 21 and End date 24 day from current date
     Then User enters Product# in Quick product entry inputbox
     And User enters Qty in standing order product grid based on enabled days
-      |10|20|30|40|15|10|5|
+      |10|10|10|10|10|10|10|
     Then User clicks on Save button and handles popup
     And User should go through dates of standing order and count number of standing orders
     And User click on Start standing order button and selects Start date 18 and End date 22 day from current date
     Then User enters Product# in Quick product entry inputbox
     And User enters Qty in standing order product grid based on enabled days
-      |40|15|20|40|15|10|15|
+      |20|20|20|20|20|20|20|
     Then User clicks on Save button and handles popup
     And User should go through dates of standing order and count number of standing orders after overlapping dates
 

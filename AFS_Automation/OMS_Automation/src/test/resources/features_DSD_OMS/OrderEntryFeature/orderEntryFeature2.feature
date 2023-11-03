@@ -149,13 +149,13 @@ Feature: Order Entry2
     And Check for Case and Unit input box enabled or not based on that enter value
       |50|50|
     Then Click on Next button
-    #And Click on Submit Order button and read Order_no
-    #Then Enter Order# in Search box in Order Entry page
-    #Then Click on Order number in Order Entry page
-    #Then Click on Next button to naviagate to OE summary page to cancle order
+    And Click on Submit Order button and read Order_no
+    Then Enter Order# in Search box in Order Entry page
+    Then Click on Order number in Order Entry page
+    Then Click on Next button to naviagate to OE summary page to cancle order
     Then Click on Cancel button in OE summary page and handle warning popup
-    #Then User should be navigated to Order Entry page
-    #And verify whether Order number is not existing in OG
+    Then User should be navigated to Order Entry page
+    And verify whether Order number is not existing in OG
 
   @OrderCancelInNewOE
   Scenario: Test scenario for creating order and once order is created cancel it in new order entry page

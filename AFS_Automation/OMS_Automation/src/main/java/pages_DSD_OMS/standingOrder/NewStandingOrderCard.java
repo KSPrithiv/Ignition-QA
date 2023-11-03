@@ -2,13 +2,17 @@ package pages_DSD_OMS.standingOrder;
 
 import helper.HelpersMethod;
 import io.cucumber.java.Scenario;
+import lombok.val;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.FluentWait;
+import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import util.Environment;
@@ -60,11 +64,11 @@ public class NewStandingOrderCard
     {
         exists = false;
         WebElement WebEle = null;
-       /* if (HelpersMethod.IsExists("//div[@class='loader']", driver))
+        if (HelpersMethod.IsExists("//div[@class='loader']", driver))
         {
             WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
             HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 200000);
-        }*/
+        }
         new WebDriverWait(driver,Duration.ofMillis(60000)).until(ExpectedConditions.presenceOfElementLocated(By.id("card1")));
         //Click on arrow if Start standing order card is not visible
         if (HelpersMethod.IsExists("//div[contains(@class,'StandingOrder-expandable-card')]/descendant::span[contains(@class,'k-icon k-i-arrow-chevron-down')]", driver))
@@ -189,9 +193,9 @@ public class NewStandingOrderCard
                     {
                         HelpersMethod.waitTillLoadingPage(driver);
                     }
-                    WebEle = HelpersMethod.FindByElement(driver, "id", "addFromDate");
+                    WebEle = HelpersMethod.FindByElement(driver, "id", "addToDate");
                     FTDate = HelpersMethod.JSGetValueEle(driver, WebEle, 1000);
-                    scenario.log(FTDate + " HAS BEEN SELECTED AS START DATE FOR STANDING ORDER");
+                    scenario.log(FTDate + " HAS BEEN SELECTED AS END DATE FOR STANDING ORDER");
                 }
                 else
                 {
@@ -747,11 +751,18 @@ public class NewStandingOrderCard
     public void clickOnShowSelectedCustomerTaggle() throws InterruptedException
     {
         exists=false;
-        if(HelpersMethod.IsExists("//div[@class='loader']",driver))
+        /*if(HelpersMethod.IsExists("//div[@class='loader']",driver))
         {
             WebElement WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
             HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100000);
-        }
+        }*/
+        Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                .withTimeout(Duration.ofSeconds(120))
+                .pollingEvery(Duration.ofSeconds(2))
+                .ignoring(NoSuchElementException.class);
+        wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
+
         if(HelpersMethod.IsExists("//div[@id='standingOrderRegisterDialog']/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
         {
             WebElement custFilterButton = HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-widget k-window k-dialog')]/descendant::span[@id='selectedCustomersSwitch']");
@@ -860,6 +871,7 @@ public class NewStandingOrderCard
             if (HelpersMethod.IsExists("//div[@id='toast-container']", driver))
             {
                 scenario.log("NO DATA HAS BEEN GENERATED");
+                Thread.sleep(2000);
             }
             else
             {
@@ -867,6 +879,7 @@ public class NewStandingOrderCard
             }
             WebElement cancelButton = modalContainer.findElement(By.xpath(".//button[@id='standingOrderRegisterDialogCancelButton']"));
             HelpersMethod.ClickBut(driver, cancelButton, 1000);
+            Thread.sleep(6000);
             Assert.assertEquals(exists, true);
         }
         catch (Exception e){}
@@ -956,6 +969,17 @@ public class NewStandingOrderCard
         {
             if(HelpersMethod.IsExists("//div[contains(text(),'Generate standing order')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
             {
+                //To zoom out browser by 67%
+                if(TestBase.testEnvironment.get_browser().equalsIgnoreCase("chrome")|TestBase.testEnvironment.get_browser().equalsIgnoreCase("edge"))
+                {
+                    JavascriptExecutor js = (JavascriptExecutor) driver;
+                    js.executeScript("document.body.style.zoom='67%'");
+                }
+                else if(TestBase.testEnvironment.get_browser().equalsIgnoreCase("firefox"))
+                {
+                    JavascriptExecutor js=(JavascriptExecutor)driver;
+                    js.executeScript("document.body.style.MozTransform='67%'");
+                }
                 exists=true;
             }
             Assert.assertEquals(exists,true);
@@ -983,8 +1007,12 @@ public class NewStandingOrderCard
         {
             Actions act1 = new Actions(driver);
             WebElement fromCalender = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-calendar-view k-hstack k-align-items-start k-justify-content-center k-calendar-monthview')]");
-            WebElement selectableDate = fromCalender.findElement(By.xpath(".//td[contains(@class,'k-calendar-td k-today') and contains(@style,'opacity: 1;')]"));
-            act1.moveToElement(selectableDate).click().build().perform();
+            WebElement selectableDate = fromCalender.findElement(By.xpath(".//td[contains(@class,'k-today') and contains(@style,'opacity: 1;')]"));
+            HelpersMethod.ScrollDownScrollBar(driver);
+            HelpersMethod.ScrollTillElementVisible(driver,selectableDate);
+
+            act1.moveToElement(selectableDate).build().perform();
+            act1.click(selectableDate).build().perform();
         }
         catch ( Exception e){}
     }
@@ -1006,18 +1034,22 @@ public class NewStandingOrderCard
 
     public void selectToDateForGenerateSO()
     {
-        try {
+        try
+        {
             Actions act1 = new Actions(driver);
-            WebElement fromCalender = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-calendar-view k-hstack k-align-items-start k-justify-content-center k-calendar-monthview')]");
-            List<WebElement> selectableDates = fromCalender.findElements(By.xpath(".//td[contains(@class,'k-calendar-td') and contains(@style,'opacity: 1;')]"));
-            for (int i = selectableDates.size() - 1; i >= 0; i--) {
+            List<WebElement> selectableDates = HelpersMethod.FindByElements(driver,"xpath","//td[contains(@class,'k-calendar-td') and contains(@style,'opacity: 1;')]");
+            int j=selectableDates.size()-1;
+            for (int i = selectableDates.size() - 1; i >= 0; i--)
+            {
                 act1.moveToElement(selectableDates.get(i)).build().perform();
-                if (i == selectableDates.size() - 1) {
-                    WebElement selectTo = selectableDates.get(selectableDates.size() - 1);
-                    act1.moveToElement(selectTo).click().build().perform();
+                if (i == selectableDates.size() - 1)
+                {
+                    String selectTo=selectableDates.get(j).getAttribute("title");
+                    WebElement selTo=HelpersMethod.FindByElement(driver,"xpath","//td[contains(@class,'k-calendar-td') and @title='"+selectTo+"']");
+                    act1.moveToElement(selTo).build().perform();
+                    HelpersMethod.JScriptClick(driver,selTo,1000);
                     break;
                 }
-                new WebDriverWait(driver,Duration.ofMillis(10000)).until(ExpectedConditions.invisibilityOf(fromCalender));
             }
         }
         catch(Exception e){}
@@ -1025,6 +1057,17 @@ public class NewStandingOrderCard
 
     public void clickOnOkButtonInGenerateSO() throws InterruptedException
     {
+        //To zoom out browser by 100%
+        if(TestBase.testEnvironment.get_browser().equalsIgnoreCase("chrome")|TestBase.testEnvironment.get_browser().equalsIgnoreCase("edge"))
+        {
+            JavascriptExecutor js = (JavascriptExecutor) driver;
+            js.executeScript("document.body.style.zoom='100%'");
+        }
+        else if(TestBase.testEnvironment.get_browser().equalsIgnoreCase("firefox"))
+        {
+            JavascriptExecutor js=(JavascriptExecutor)driver;
+            js.executeScript("document.body.style.MozTransform='100%'");
+        }
         WebElement modalContainer = HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-widget k-window k-dialog')]");
         WebElement OkCalender=modalContainer.findElement(By.xpath(".//button[text()='Ok']"));
         HelpersMethod.ActClick(driver,OkCalender,40000);
@@ -1127,6 +1170,7 @@ public class NewStandingOrderCard
                 WebEle=HelpersMethod.FindByElement(driver,"xpath","//button[@id='standingOrderRegisterDialogCancelButton']");
                 HelpersMethod.ClickBut(driver,WebEle,1000);
                 exists=true;
+                Thread.sleep(2000);
             }
             Assert.assertEquals(exists,true);
         }

@@ -474,6 +474,7 @@ public class AllOrdersPageStep
     public void userClicksOnStartOrderButtonAndSelectsPickUpOrderFromDropDown() throws InterruptedException
     {
         allOrder=new AllOrderPage(driver,scenario);
+        allOrder.ValidateAllOrder();
         allOrder.ClickOnStartOrderToSelectPickupOrder();
     }
 

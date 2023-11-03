@@ -49,7 +49,7 @@
 		<!-- nav-right -->
 		<ul id='nav-mobile' class='right hide-on-med-and-down nav-right'>
 			<a href='#!'>
-			<span class='label blue darken-3 suite-start-time'>Oct 26, 2023 10:52:38 pm</span>
+			<span class='label blue darken-3 suite-start-time'>Nov 2, 2023 07:18:11 pm</span>
 			</a>
 		</ul>
 	</div>
@@ -76,14 +76,25 @@
 				<i class='material-icons'>local_offer</i> Category
 				</a>
 				<ul id='category-toggle' class='dropdown-content'>
-					<li><a href='#'>@CopyGrid</a></li>
-					<li><a href='#'>@DeleteGrid</a></li>
-					<li><a href='#'>@AvailableGrid</a></li>
-					<li><a href='#'>@DefaultGridInClient</a></li>
-					<li><a href='#'>@LogoutGrid</a></li>
-					<li><a href='#'>@CheckAvailabilityOfGrid</a></li>
-					<li><a href='#'>@CheckAvailablityOfGridheader</a></li>
-					<li><a href='#'>@AddGrid</a></li>
+					<li><a href='#'>@DeleteProductFromStandingOrder</a></li>
+					<li><a href='#'>@RemoveSkipSpecificDay</a></li>
+					<li><a href='#'>@StandingOrderCatalogCreate</a></li>
+					<li><a href='#'>@StandingOrderRegisterExcel</a></li>
+					<li><a href='#'>@VerifyingDisableSelectButton</a></li>
+					<li><a href='#'>@CopyStandingOrder</a></li>
+					<li><a href='#'>@StandingOrderRegisterCancel</a></li>
+					<li><a href='#'>@OverlappingDates</a></li>
+					<li><a href='#'>@LogoutSO</a></li>
+					<li><a href='#'>@MultipleStandingOrder</a></li>
+					<li><a href='#'>@StandingOrderRegisterPdf</a></li>
+					<li><a href='#'>@VerifySkipDateSetInSOWithOE</a></li>
+					<li><a href='#'>@DeleteStandingOrder</a></li>
+					<li><a href='#'>@SkipSpecificDay</a></li>
+					<li><a href='#'>@GenerateStandingOrder</a></li>
+					<li><a href='#'>@StandingOrderWithoutEndDate</a></li>
+					<li><a href='#'>@StandingOrderQuickProCreate</a></li>
+					<li><a href='#'>@ChangeAccountNumber</a></li>
+					<li><a href='#'>@CatalogCard</a></li>
 					<li class='divider'></li>
 					<li class='clear'><a href='#!' clear='true'>Clear Filters</a></li>
 				</ul>
@@ -126,7 +137,7 @@
                 </div>
                 <div class='block text-small'>
                     <span class='tooltipped' data-position='top' data-tooltip='$100%'>
-                    <span class='strong'>1</span> features passed</span>
+                    <span class='strong'>3</span> features passed</span>
                 </div>
                 <div class='block text-small'>
                     <span class='strong tooltipped' data-position='top' data-tooltip='0%'>
@@ -144,7 +155,7 @@
                 </div>
                 <div class='block text-small'>
                     <span class='tooltipped' data-position='top' data-tooltip='100%'>
-                    <span class='strong'>8</span> scenarios passed</span>
+                    <span class='strong'>19</span> scenarios passed</span>
                 </div>
                 <div class='block text-small'>
                     <span class='strong tooltipped' data-position='top' data-tooltip='0%'>
@@ -164,7 +175,7 @@
                 </div>
                 <div class='block text-small'>
                     <span class='tooltipped' data-position='top' data-tooltip='100%'>
-                    <span class='strong'>87</span> steps passed</span>
+                    <span class='strong'>189</span> steps passed</span>
                 </div>
                 <div class='block text-small'>
                     <span class='strong tooltipped' data-position='top' data-tooltip='0%'>
@@ -193,8 +204,1426 @@
 			<ul id='test-collection' class='test-collection'>
 				<li class='test displayed active has-leaf pass' status='pass' bdd='true' test-id='1'>
 					<div class='test-heading'>
-						<span class='test-name'>scenarios for User and Accounts admin feature, for Grid related settings</span>
-						<span class='test-time'>Oct 26, 2023 10:52:53 pm</span>
+						<span class='test-name'>Standing Order</span>
+						<span class='test-time'>Nov 2, 2023 07:18:28 pm</span>
+						<span class='test-status right pass'>Pass</span>
+					</div>
+					<div class='test-content hide'>
+<div class="sr-filters bdd-filters">
+	<a class="btn-floating waves-effect waves-light pass green" title="pass"><i class='material-icons'>check_circle</i></a>
+	<a class="btn-floating waves-effect waves-light fail red" title="fail"><i class='material-icons'>cancel</i></a>
+	<a class="btn-floating waves-effect waves-light skip blue" title="skip"><i class='material-icons'>redo</i></a>
+	<a class="btn-floating waves-effect waves-light clear grey" title="clear"><i class='material-icons'>clear</i></a>
+</div>
+	<div class='test-desc'>  Creation of Standing order and all operation related to standing order</div>
+
+<div class='scenario node' test-id='2' status='pass'>
+
+	<span class='duration right label'>00 02 12.888</span>
+	<div class="bdd-test">
+		<div class="scenario-name"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span> Scenario: Test scenario for creating standing order, using catalog</div>
+	</div>
+	
+	
+		<div class='category-list'>
+				<span class='category label'>@StandingOrderCatalogCreate</span>
+		</div>
+	
+	<ul class='steps'>
+		<li test-id='58' class='node given Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.StandingOrderPage.StandingOrderPageSteps.user_enters_url_and_is_on_login_page_and_entered_credentialsForSO())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Given User enters URL and is on login page and entered credentials for SO</div>
+
+
+					<div class="node-step">SIGNIN BUTTON CLICKED</div>
+		</li>
+		<li test-id='59' class='node when Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.StandingOrderPage.StandingOrderPageSteps.user_is_on_home_pageForSO())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>When User is on Home Page for SO</div>
+
+
+					<div class="node-step">ADMIN PAGE FOUND</div>
+		</li>
+		<li test-id='60' class='node then Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.StandingOrderPage.StandingOrderPageSteps.user_navigate_to_client_sideForSO())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User navigate to Client side for SO</div>
+
+
+					<div class="node-step">USER ICON FOUND</div>
+					<div class="node-step">IN ADMIN PAGE</div>
+		</li>
+		<li test-id='61' class='node then Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.StandingOrderPage.StandingOrderPageSteps.user_should_select_order_entry_tabForSO())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User should select Order Entry tab for SO</div>
+
+
+					<div class="node-step">https://ignitionqadsd.afsi.com/clientportal/apps/cpOrderEntry.html?p=Km530c8XSlYiXYABAQY6Y%2fH4h8U05NAvkuXBE2RCxgnlbt%2btBuFlqw%3d%3d</div>
+					<div class="node-step">NAVIGATED TO ORDER ENTRY PAGE</div>
+		</li>
+		<li test-id='62' class='node then Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.StandingOrderPage.StandingOrderPageSteps.user_selects_accountForSO())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User selects Account# for SO</div>
+
+
+					<div class="node-step">CUSTOMER ACCOUNT# SELECTED IS 40035978-0-3029</div>
+		</li>
+		<li test-id='63' class='node given Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.StandingOrderPage.StandingOrderPageSteps.userMustBeOnOrderEntryPageToSelectStandingOrderAndNavigateToStandingOrder())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Given User must be on Order Entry Page to select Standing Order and navigate to standing order</div>
+
+
+					<div class="node-step">STANDING ORDER PAGE HAS BEEN FOUND</div>
+					<div class="node-step">STANDING ORDER PAGE HAS BEEN FOUND</div>
+		</li>
+		<li test-id='64' class='node and Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.StandingOrderPage.StandingOrderPageSteps.userClickOnStartStandingOrderButtonAndSelectsStartAndEndDateFromPopup())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>And User click on Start standing order button and selects start and end date from popup</div>
+
+
+					<div class="node-step">START STANDING ORDER BUTTON CLICKED</div>
+					<div class="node-step">11/02/2023 HAS BEEN SELECTED AS START DATE FOR STANDING ORDER</div>
+					<div class="node-step">11/02/2023 HAS BEEN SELECTED AS END DATE FOR STANDING ORDER</div>
+		</li>
+		<li test-id='65' class='node then Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.StandingOrderPage.StandingOrderPageSteps.userClickOnAddProductButtonInStandingOrderPageAndSelectCatalogOption())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User click on Add Product button in Standing order page and select catalog option</div>
+
+
+		</li>
+		<li test-id='66' class='node and Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.StandingOrderPage.StandingOrderPageSteps.userChecksForCatalogPopupAndSearchesForProductInCatalog())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>And User checks for catalog popup and searches for product in catalog</div>
+
+
+					<div class="node-step">CATALOG DIALOG BOX HAS BEEN FOUND</div>
+					<div class="node-step">PRODUCT FOUND IN CATALOG IS 00000001</div>
+					<div class="node-step">PRODUCT FOUND IN CATALOG IS 00000002</div>
+					<div class="node-step">PRODUCT FOUND IN CATALOG IS 00000003</div>
+					<div class="node-step">PRODUCT FOUND IN CATALOG IS 00000004</div>
+					<div class="node-step">PRODUCT FOUND IN CATALOG IS 00000005</div>
+		</li>
+		<li test-id='67' class='node and Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.StandingOrderPage.StandingOrderPageSteps.userEntersQtyInStandingOrderProductGridBasedOnEnabledDaysForMultipleProducts(io.cucumber.datatable.DataTable))"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>And User enters Qty in standing order product grid based on enabled days for multiple products</div>
+
+
+					<div class="node-step"><table class='markup-table table '><tr><td>10</td><td>20</td><td>30</td><td>40</td><td>15</td><td>10</td><td>5</td></tr><tr><td>2</td><td>4</td><td>6</td><td>8</td><td>10</td><td>12</td><td>14</td></tr><tr><td>3</td><td>5</td><td>7</td><td>9</td><td>11</td><td>13</td><td>15</td></tr><tr><td>12</td><td>24</td><td>6</td><td>32</td><td>16</td><td>12</td><td>8</td></tr><tr><td>24</td><td>8</td><td>14</td><td>22</td><td>12</td><td>10</td><td>8</td></tr></table></div>
+		</li>
+		<li test-id='68' class='node then Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.StandingOrderPage.StandingOrderPageSteps.userClicksOnSaveButtonAndHandlesPopup())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User clicks on Save button and handles popup</div>
+
+
+					<div class="node-step">STANDING ORDER SAVE BUTTON CLICKED</div>
+					<div class="node-step">STANDING ORDER SUCESSFULLY SAVED</div>
+					<div class="node-step">READY TO CREATE NEXT STANDING ORDER</div>
+		</li>
+	</ul>
+</div>
+<div class='scenario node' test-id='70' status='pass'>
+
+	<span class='duration right label'>00 00 16.777</span>
+	<div class="bdd-test">
+		<div class="scenario-name"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span> Scenario: Test scenario for verifying whether select button is disabled or not in catalog popup</div>
+	</div>
+	
+	
+		<div class='category-list'>
+				<span class='category label'>@VerifyingDisableSelectButton</span>
+		</div>
+	
+	<ul class='steps'>
+		<li test-id='126' class='node given Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.StandingOrderPage.StandingOrderPageSteps.user_enters_url_and_is_on_login_page_and_entered_credentialsForSO())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Given User enters URL and is on login page and entered credentials for SO</div>
+
+
+		</li>
+		<li test-id='127' class='node when Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.StandingOrderPage.StandingOrderPageSteps.user_is_on_home_pageForSO())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>When User is on Home Page for SO</div>
+
+
+		</li>
+		<li test-id='128' class='node then Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.StandingOrderPage.StandingOrderPageSteps.user_navigate_to_client_sideForSO())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User navigate to Client side for SO</div>
+
+
+		</li>
+		<li test-id='129' class='node then Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.StandingOrderPage.StandingOrderPageSteps.user_should_select_order_entry_tabForSO())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User should select Order Entry tab for SO</div>
+
+
+		</li>
+		<li test-id='130' class='node then Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.StandingOrderPage.StandingOrderPageSteps.user_selects_accountForSO())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User selects Account# for SO</div>
+
+
+		</li>
+		<li test-id='131' class='node given Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.StandingOrderPage.StandingOrderPageSteps.userMustBeOnOrderEntryPageToSelectStandingOrderAndNavigateToStandingOrder())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Given User must be on Order Entry Page to select Standing Order and navigate to standing order</div>
+
+
+					<div class="node-step">STANDING ORDER PAGE HAS BEEN FOUND</div>
+					<div class="node-step">STANDING ORDER PAGE HAS BEEN FOUND</div>
+		</li>
+		<li test-id='132' class='node then Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.StandingOrderPage.StandingOrderPageSteps.readTheFirstProductFromTheProductGridAndClickOnAddProductButton())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then read the first product from the product grid and click on add product button</div>
+
+
+					<div class="node-step">PRODUCT NUMBER FOUND IN GRID IS : 1</div>
+		</li>
+		<li test-id='133' class='node and Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.StandingOrderPage.StandingOrderPageSteps.verifyForDisplayOfCatalogEnterProductNumberToBeSearchedAndValidateSelectButton())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>And verify for display of catalog, enter product number to be searched and validate select button</div>
+
+
+					<div class="node-step">CATALOG DIALOG BOX HAS BEEN FOUND</div>
+					<div class="node-step">PRODUCT# ENTERED FOR SEARCH</div>
+					<div class="node-step">PRODUCT FOUND IN CATALOG IS 1</div>
+					<div class="node-step">PRODUCT IS ALREADY SELECTED, IN CARD VIEW. AND SELECT BUTTON IS DISABLED</div>
+		</li>
+	</ul>
+</div>
+<div class='scenario node' test-id='135' status='pass'>
+
+	<span class='duration right label'>00 00 09.088</span>
+	<div class="bdd-test">
+		<div class="scenario-name"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span> Scenario: Test scenario for Deleting product from standing order</div>
+	</div>
+	
+	
+		<div class='category-list'>
+				<span class='category label'>@DeleteProductFromStandingOrder</span>
+		</div>
+	
+	<ul class='steps'>
+		<li test-id='191' class='node given Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.StandingOrderPage.StandingOrderPageSteps.user_enters_url_and_is_on_login_page_and_entered_credentialsForSO())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Given User enters URL and is on login page and entered credentials for SO</div>
+
+
+		</li>
+		<li test-id='192' class='node when Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.StandingOrderPage.StandingOrderPageSteps.user_is_on_home_pageForSO())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>When User is on Home Page for SO</div>
+
+
+		</li>
+		<li test-id='193' class='node then Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.StandingOrderPage.StandingOrderPageSteps.user_navigate_to_client_sideForSO())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User navigate to Client side for SO</div>
+
+
+		</li>
+		<li test-id='194' class='node then Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.StandingOrderPage.StandingOrderPageSteps.user_should_select_order_entry_tabForSO())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User should select Order Entry tab for SO</div>
+
+
+		</li>
+		<li test-id='195' class='node then Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.StandingOrderPage.StandingOrderPageSteps.user_selects_accountForSO())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User selects Account# for SO</div>
+
+
+		</li>
+		<li test-id='196' class='node given Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.StandingOrderPage.StandingOrderPageSteps.userMustBeOnOrderEntryPageToSelectStandingOrderAndNavigateToStandingOrder())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Given User must be on Order Entry Page to select Standing Order and navigate to standing order</div>
+
+
+					<div class="node-step">STANDING ORDER PAGE HAS BEEN FOUND</div>
+					<div class="node-step">STANDING ORDER PAGE HAS BEEN FOUND</div>
+		</li>
+		<li test-id='197' class='node then Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.StandingOrderPage.StandingOrderPageSteps.readTheFirstProductFromTheProductGridAndClickOnCheckBox())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then read the first product from the product grid and click on check box</div>
+
+
+					<div class="node-step">PRODUCT NUMBER FOUND IN GRID IS : 1</div>
+		</li>
+		<li test-id='198' class='node and Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.StandingOrderPage.StandingOrderPageSteps.userClicksOnDeleteProductButtonAndConfirmsDeletion())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>And User clicks on Delete Product button and confirms deletion</div>
+
+
+					<div class="node-step">PRODUCT HAS BEEN DELETED FROM STANDING ORDER</div>
+		</li>
+	</ul>
+</div>
+<div class='scenario node' test-id='200' status='pass'>
+
+	<span class='duration right label'>00 00 12.471</span>
+	<div class="bdd-test">
+		<div class="scenario-name"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span> Scenario: Test scenario for skipping specific date in standing order</div>
+	</div>
+	
+	
+		<div class='category-list'>
+				<span class='category label'>@SkipSpecificDay</span>
+		</div>
+	
+	<ul class='steps'>
+		<li test-id='256' class='node given Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.StandingOrderPage.StandingOrderPageSteps.user_enters_url_and_is_on_login_page_and_entered_credentialsForSO())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Given User enters URL and is on login page and entered credentials for SO</div>
+
+
+		</li>
+		<li test-id='257' class='node when Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.StandingOrderPage.StandingOrderPageSteps.user_is_on_home_pageForSO())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>When User is on Home Page for SO</div>
+
+
+		</li>
+		<li test-id='258' class='node then Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.StandingOrderPage.StandingOrderPageSteps.user_navigate_to_client_sideForSO())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User navigate to Client side for SO</div>
+
+
+		</li>
+		<li test-id='259' class='node then Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.StandingOrderPage.StandingOrderPageSteps.user_should_select_order_entry_tabForSO())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User should select Order Entry tab for SO</div>
+
+
+		</li>
+		<li test-id='260' class='node then Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.StandingOrderPage.StandingOrderPageSteps.user_selects_accountForSO())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User selects Account# for SO</div>
+
+
+		</li>
+		<li test-id='261' class='node given Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.StandingOrderPage.StandingOrderPageSteps.userMustBeOnOrderEntryPageToSelectStandingOrderAndNavigateToStandingOrder())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Given User must be on Order Entry Page to select Standing Order and navigate to standing order</div>
+
+
+					<div class="node-step">STANDING ORDER PAGE HAS BEEN FOUND</div>
+					<div class="node-step">STANDING ORDER PAGE HAS BEEN FOUND</div>
+		</li>
+		<li test-id='262' class='node then Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.StandingOrderPage.StandingOrderPageSteps.clickOnSkipSpecificDayAndSelectRdDayFromCurrentDateSelectReasonDateForSkipInSkipPopupAndClickOnOk(int))"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then Click on Skip specific day and select 3 rd day from current date,select reason date for skip in skip popup and click on ok</div>
+
+
+					<div class="node-step">SKIP DAY POPUP HAS BEEN FOUND</div>
+					<div class="node-step">2</div>
+					<div class="node-step">Sunday, November 5, 2023</div>
+		</li>
+	</ul>
+</div>
+<div class='scenario node' test-id='264' status='pass'>
+
+	<span class='duration right label'>00 00 21.910</span>
+	<div class="bdd-test">
+		<div class="scenario-name"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span> Scenario: Test scenario for verifying skip in SO with skip in OE page</div>
+	</div>
+	
+	
+		<div class='category-list'>
+				<span class='category label'>@VerifySkipDateSetInSOWithOE</span>
+		</div>
+	
+	<ul class='steps'>
+		<li test-id='320' class='node given Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.StandingOrderPage.StandingOrderPageSteps.user_enters_url_and_is_on_login_page_and_entered_credentialsForSO())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Given User enters URL and is on login page and entered credentials for SO</div>
+
+
+		</li>
+		<li test-id='321' class='node when Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.StandingOrderPage.StandingOrderPageSteps.user_is_on_home_pageForSO())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>When User is on Home Page for SO</div>
+
+
+		</li>
+		<li test-id='322' class='node then Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.StandingOrderPage.StandingOrderPageSteps.user_navigate_to_client_sideForSO())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User navigate to Client side for SO</div>
+
+
+		</li>
+		<li test-id='323' class='node then Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.StandingOrderPage.StandingOrderPageSteps.user_should_select_order_entry_tabForSO())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User should select Order Entry tab for SO</div>
+
+
+		</li>
+		<li test-id='324' class='node then Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.StandingOrderPage.StandingOrderPageSteps.user_selects_accountForSO())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User selects Account# for SO</div>
+
+
+		</li>
+		<li test-id='325' class='node given Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.StandingOrderPage.StandingOrderPageSteps.userMustBeOnOrderEntryPageToSelectStandingOrderAndNavigateToStandingOrder())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Given User must be on Order Entry Page to select Standing Order and navigate to standing order</div>
+
+
+					<div class="node-step">STANDING ORDER PAGE HAS BEEN FOUND</div>
+					<div class="node-step">STANDING ORDER PAGE HAS BEEN FOUND</div>
+		</li>
+		<li test-id='326' class='node then Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.StandingOrderPage.StandingOrderPageSteps.userClickOnSkipSpecificDayAndReadTheSkipDateValueAndClickOnOk())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User Click on Skip specific day and read the skip date value and click on Ok</div>
+
+
+					<div class="node-step">STANDING ORDER PAGE HAS BEEN FOUND</div>
+					<div class="node-step">SKIP DAY POPUP HAS BEEN FOUND</div>
+					<div class="node-step">11/07/2023</div>
+					<div class="node-step">SKIP DATE FOUND IN STANDING ORDER IS Tuesday, November 7, 2023</div>
+		</li>
+		<li test-id='327' class='node and Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.StandingOrderPage.StandingOrderPageSteps.userShouldNavigateToOEPageUserShouldSelectTheSameDeliveryDateFromCalender())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>And User should navigate to OE page, User should select the same delivery date from calender</div>
+
+
+		</li>
+		<li test-id='328' class='node then Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.StandingOrderPage.StandingOrderPageSteps.userShouldVerifyForThatDateRemoveSkipHasBeenEnabledOrSkipHasBeenDisabled())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User should verify for that date remove skip has been enabled or Skip has been disabled</div>
+
+
+					<div class="node-step">REMOVE SKIP HAS BEEN FOUND</div>
+		</li>
+	</ul>
+</div>
+<div class='scenario node' test-id='330' status='pass'>
+
+	<span class='duration right label'>00 00 12.520</span>
+	<div class="bdd-test">
+		<div class="scenario-name"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span> Scenario: Test scenario for remove skipping specific date in standing order</div>
+	</div>
+	
+	
+		<div class='category-list'>
+				<span class='category label'>@RemoveSkipSpecificDay</span>
+		</div>
+	
+	<ul class='steps'>
+		<li test-id='386' class='node given Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.StandingOrderPage.StandingOrderPageSteps.user_enters_url_and_is_on_login_page_and_entered_credentialsForSO())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Given User enters URL and is on login page and entered credentials for SO</div>
+
+
+		</li>
+		<li test-id='387' class='node when Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.StandingOrderPage.StandingOrderPageSteps.user_is_on_home_pageForSO())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>When User is on Home Page for SO</div>
+
+
+		</li>
+		<li test-id='388' class='node then Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.StandingOrderPage.StandingOrderPageSteps.user_navigate_to_client_sideForSO())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User navigate to Client side for SO</div>
+
+
+		</li>
+		<li test-id='389' class='node then Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.StandingOrderPage.StandingOrderPageSteps.user_should_select_order_entry_tabForSO())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User should select Order Entry tab for SO</div>
+
+
+		</li>
+		<li test-id='390' class='node then Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.StandingOrderPage.StandingOrderPageSteps.user_selects_accountForSO())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User selects Account# for SO</div>
+
+
+		</li>
+		<li test-id='391' class='node given Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.StandingOrderPage.StandingOrderPageSteps.userMustBeOnOrderEntryPageToSelectStandingOrderAndNavigateToStandingOrder())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Given User must be on Order Entry Page to select Standing Order and navigate to standing order</div>
+
+
+					<div class="node-step">STANDING ORDER PAGE HAS BEEN FOUND</div>
+					<div class="node-step">STANDING ORDER PAGE HAS BEEN FOUND</div>
+		</li>
+		<li test-id='392' class='node then Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.StandingOrderPage.StandingOrderPageSteps.clickOnSkipSpecificDayAndSelectFirstDateInTheListOfSkipDaysInSkipPopupAndClickOnOk())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then Click on Skip specific day and select first date in the list of skip days in skip popup and click on ok</div>
+
+
+					<div class="node-step">SKIP DAY POPUP HAS BEEN FOUND</div>
+					<div class="node-step">SKIP CANCEL HAS BEEN DONE ON :11/07/2023</div>
+		</li>
+	</ul>
+</div>
+<div class='scenario node' test-id='394' status='pass'>
+
+	<span class='duration right label'>00 00 25.977</span>
+	<div class="bdd-test">
+		<div class="scenario-name"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span> Scenario: Test scenario for creating standing order using Quick product entry input box</div>
+	</div>
+	
+	
+		<div class='category-list'>
+				<span class='category label'>@StandingOrderQuickProCreate</span>
+		</div>
+	
+	<ul class='steps'>
+		<li test-id='450' class='node given Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.StandingOrderPage.StandingOrderPageSteps.user_enters_url_and_is_on_login_page_and_entered_credentialsForSO())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Given User enters URL and is on login page and entered credentials for SO</div>
+
+
+		</li>
+		<li test-id='451' class='node when Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.StandingOrderPage.StandingOrderPageSteps.user_is_on_home_pageForSO())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>When User is on Home Page for SO</div>
+
+
+		</li>
+		<li test-id='452' class='node then Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.StandingOrderPage.StandingOrderPageSteps.user_navigate_to_client_sideForSO())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User navigate to Client side for SO</div>
+
+
+		</li>
+		<li test-id='453' class='node then Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.StandingOrderPage.StandingOrderPageSteps.user_should_select_order_entry_tabForSO())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User should select Order Entry tab for SO</div>
+
+
+		</li>
+		<li test-id='454' class='node then Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.StandingOrderPage.StandingOrderPageSteps.user_selects_accountForSO())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User selects Account# for SO</div>
+
+
+		</li>
+		<li test-id='455' class='node given Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.StandingOrderPage.StandingOrderPageSteps.userMustBeOnOrderEntryPageToSelectStandingOrderAndNavigateToStandingOrder())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Given User must be on Order Entry Page to select Standing Order and navigate to standing order</div>
+
+
+					<div class="node-step">STANDING ORDER PAGE HAS BEEN FOUND</div>
+					<div class="node-step">STANDING ORDER PAGE HAS BEEN FOUND</div>
+		</li>
+		<li test-id='456' class='node and Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.StandingOrderPage.StandingOrderPageSteps.userClickOnStartStandingOrderButtonAndSelectsStartDateAndEndDateDayFromCurrentDate(int,int))"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>And User click on Start standing order button and selects Start date 2 and End date 2 day from current date</div>
+
+
+					<div class="node-step">STANDING ORDER PAGE HAS BEEN FOUND</div>
+					<div class="node-step">START STANDING ORDER BUTTON CLICKED</div>
+					<div class="node-step">11/04/2023 HAS BEEN SELECTED AS START DATE FOR STANDING ORDER</div>
+					<div class="node-step">11/04/2023 HAS BEEN SELECTED AS START DATE FOR STANDING ORDER</div>
+		</li>
+		<li test-id='457' class='node then Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.StandingOrderPage.StandingOrderPageSteps.userEntersProductInQuickProductEntryInputbox())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User enters Product# in Quick product entry inputbox</div>
+
+
+					<div class="node-step">STANDING ORDER PAGE HAS BEEN FOUND</div>
+					<div class="node-step">PRODUCT ENTERED IN QUICK ENTRY IS 00000003</div>
+		</li>
+		<li test-id='458' class='node and Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.StandingOrderPage.StandingOrderPageSteps.userEntersQtyInStandingOrderProductGridBasedOnEnabledDays(io.cucumber.datatable.DataTable))"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>And User enters Qty in standing order product grid based on enabled days</div>
+
+
+					<div class="node-step"><table class='markup-table table '><tr><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td></tr></table></div>
+		</li>
+		<li test-id='459' class='node then Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.StandingOrderPage.StandingOrderPageSteps.userClicksOnSaveButtonAndHandlesPopup())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User clicks on Save button and handles popup</div>
+
+
+					<div class="node-step">STANDING ORDER SAVE BUTTON CLICKED</div>
+					<div class="node-step">STANDING ORDER SUCESSFULLY SAVED</div>
+					<div class="node-step">READY TO CREATE NEXT STANDING ORDER</div>
+		</li>
+	</ul>
+</div>
+<div class='scenario node' test-id='461' status='pass'>
+
+	<span class='duration right label'>00 01 22.241</span>
+	<div class="bdd-test">
+		<div class="scenario-name"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span> Scenario: Test scenario for creating multiple standing orders</div>
+	</div>
+	
+	
+		<div class='category-list'>
+				<span class='category label'>@MultipleStandingOrder</span>
+		</div>
+	
+	<ul class='steps'>
+		<li test-id='517' class='node given Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.StandingOrderPage.StandingOrderPageSteps.user_enters_url_and_is_on_login_page_and_entered_credentialsForSO())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Given User enters URL and is on login page and entered credentials for SO</div>
+
+
+		</li>
+		<li test-id='518' class='node when Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.StandingOrderPage.StandingOrderPageSteps.user_is_on_home_pageForSO())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>When User is on Home Page for SO</div>
+
+
+		</li>
+		<li test-id='519' class='node then Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.StandingOrderPage.StandingOrderPageSteps.user_navigate_to_client_sideForSO())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User navigate to Client side for SO</div>
+
+
+		</li>
+		<li test-id='520' class='node then Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.StandingOrderPage.StandingOrderPageSteps.user_should_select_order_entry_tabForSO())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User should select Order Entry tab for SO</div>
+
+
+		</li>
+		<li test-id='521' class='node then Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.StandingOrderPage.StandingOrderPageSteps.user_selects_accountForSO())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User selects Account# for SO</div>
+
+
+		</li>
+		<li test-id='522' class='node given Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.StandingOrderPage.StandingOrderPageSteps.userMustBeOnOrderEntryPageToSelectStandingOrderAndNavigateToStandingOrder())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Given User must be on Order Entry Page to select Standing Order and navigate to standing order</div>
+
+
+					<div class="node-step">STANDING ORDER PAGE HAS BEEN FOUND</div>
+					<div class="node-step">STANDING ORDER PAGE HAS BEEN FOUND</div>
+		</li>
+		<li test-id='523' class='node and Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.StandingOrderPage.StandingOrderPageSteps.userClickOnStartStandingOrderButtonAndSelectsStartDateAndEndDateDayFromCurrentDate(int,int))"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>And User click on Start standing order button and selects Start date 3 and End date 4 day from current date</div>
+
+
+					<div class="node-step">STANDING ORDER PAGE HAS BEEN FOUND</div>
+					<div class="node-step">START STANDING ORDER BUTTON CLICKED</div>
+					<div class="node-step">11/05/2023 HAS BEEN SELECTED AS START DATE FOR STANDING ORDER</div>
+					<div class="node-step">11/06/2023 HAS BEEN SELECTED AS START DATE FOR STANDING ORDER</div>
+		</li>
+		<li test-id='524' class='node then Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.StandingOrderPage.StandingOrderPageSteps.userEntersProductInQuickProductEntryInputbox())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User enters Product# in Quick product entry inputbox</div>
+
+
+					<div class="node-step">STANDING ORDER PAGE HAS BEEN FOUND</div>
+					<div class="node-step">PRODUCT ENTERED IN QUICK ENTRY IS 00000003</div>
+		</li>
+		<li test-id='525' class='node and Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.StandingOrderPage.StandingOrderPageSteps.userEntersQtyInStandingOrderProductGridBasedOnEnabledDays(io.cucumber.datatable.DataTable))"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>And User enters Qty in standing order product grid based on enabled days</div>
+
+
+					<div class="node-step"><table class='markup-table table '><tr><td>11</td><td>22</td><td>33</td><td>44</td><td>55</td><td>66</td><td>77</td></tr></table></div>
+		</li>
+		<li test-id='526' class='node then Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.StandingOrderPage.StandingOrderPageSteps.userClicksOnSaveButtonAndHandlesPopupAndContinueCreationOfMultipleStandingOrder())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User clicks on Save button and handles popup and continue creation of multiple standing order</div>
+
+
+					<div class="node-step">STANDING ORDER SAVE BUTTON CLICKED</div>
+					<div class="node-step">STANDING ORDER SUCESSFULLY SAVED</div>
+					<div class="node-step">READY TO CREATE NEXT STANDING ORDER</div>
+					<div class="node-step">STANDING ORDER PAGE HAS BEEN FOUND</div>
+					<div class="node-step">STANDING ORDER PAGE HAS BEEN FOUND</div>
+		</li>
+		<li test-id='527' class='node and Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.StandingOrderPage.StandingOrderPageSteps.userClickOnStartStandingOrderButtonAndSelectsStartDateAndEndDateDayFromCurrentDate(int,int))"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>And User click on Start standing order button and selects Start date 9 and End date 15 day from current date</div>
+
+
+					<div class="node-step">STANDING ORDER PAGE HAS BEEN FOUND</div>
+					<div class="node-step">START STANDING ORDER BUTTON CLICKED</div>
+					<div class="node-step">11/11/2023 HAS BEEN SELECTED AS START DATE FOR STANDING ORDER</div>
+					<div class="node-step">11/17/2023 HAS BEEN SELECTED AS START DATE FOR STANDING ORDER</div>
+		</li>
+		<li test-id='528' class='node then Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.StandingOrderPage.StandingOrderPageSteps.userEntersProductInQuickProductEntryInputbox())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User enters Product# in Quick product entry inputbox</div>
+
+
+					<div class="node-step">STANDING ORDER PAGE HAS BEEN FOUND</div>
+					<div class="node-step">PRODUCT ENTERED IN QUICK ENTRY IS 00000003</div>
+		</li>
+		<li test-id='529' class='node and Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.StandingOrderPage.StandingOrderPageSteps.userEntersQtyInStandingOrderProductGridBasedOnEnabledDays(io.cucumber.datatable.DataTable))"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>And User enters Qty in standing order product grid based on enabled days</div>
+
+
+					<div class="node-step"><table class='markup-table table '><tr><td>11</td><td>22</td><td>33</td><td>44</td><td>55</td><td>66</td><td>77</td></tr></table></div>
+		</li>
+		<li test-id='530' class='node then Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.StandingOrderPage.StandingOrderPageSteps.userClicksOnSaveButtonAndHandlesPopupAndContinueCreationOfMultipleStandingOrder())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User clicks on Save button and handles popup and continue creation of multiple standing order</div>
+
+
+					<div class="node-step">STANDING ORDER SAVE BUTTON CLICKED</div>
+					<div class="node-step">STANDING ORDER SUCESSFULLY SAVED</div>
+					<div class="node-step">READY TO CREATE NEXT STANDING ORDER</div>
+					<div class="node-step">STANDING ORDER PAGE HAS BEEN FOUND</div>
+					<div class="node-step">STANDING ORDER PAGE HAS BEEN FOUND</div>
+		</li>
+		<li test-id='531' class='node and Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.StandingOrderPage.StandingOrderPageSteps.userClickOnStartStandingOrderButtonAndSelectsStartDateAndEndDateDayFromCurrentDate(int,int))"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>And User click on Start standing order button and selects Start date 4 and End date 8 day from current date</div>
+
+
+					<div class="node-step">STANDING ORDER PAGE HAS BEEN FOUND</div>
+					<div class="node-step">START STANDING ORDER BUTTON CLICKED</div>
+					<div class="node-step">11/06/2023 HAS BEEN SELECTED AS START DATE FOR STANDING ORDER</div>
+					<div class="node-step">11/10/2023 HAS BEEN SELECTED AS START DATE FOR STANDING ORDER</div>
+		</li>
+		<li test-id='532' class='node then Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.StandingOrderPage.StandingOrderPageSteps.userEntersProductInQuickProductEntryInputbox())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User enters Product# in Quick product entry inputbox</div>
+
+
+					<div class="node-step">STANDING ORDER PAGE HAS BEEN FOUND</div>
+					<div class="node-step">PRODUCT ENTERED IN QUICK ENTRY IS 00000003</div>
+		</li>
+		<li test-id='533' class='node and Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.StandingOrderPage.StandingOrderPageSteps.userEntersQtyInStandingOrderProductGridBasedOnEnabledDays(io.cucumber.datatable.DataTable))"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>And User enters Qty in standing order product grid based on enabled days</div>
+
+
+					<div class="node-step"><table class='markup-table table '><tr><td>11</td><td>22</td><td>33</td><td>44</td><td>55</td><td>66</td><td>77</td></tr></table></div>
+		</li>
+		<li test-id='534' class='node then Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.StandingOrderPage.StandingOrderPageSteps.userClicksOnSaveButtonAndHandlesPopup())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User clicks on Save button and handles popup</div>
+
+
+					<div class="node-step">STANDING ORDER SAVE BUTTON CLICKED</div>
+					<div class="node-step">STANDING ORDER SUCESSFULLY SAVED</div>
+					<div class="node-step">READY TO CREATE NEXT STANDING ORDER</div>
+		</li>
+	</ul>
+</div>
+<div class='scenario node' test-id='536' status='pass'>
+
+	<span class='duration right label'>00 01 01.672</span>
+	<div class="bdd-test">
+		<div class="scenario-name"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span> Scenario: Test scenario for creating standing order using catalog standing order, by selecting category value</div>
+	</div>
+	
+	
+		<div class='category-list'>
+				<span class='category label'>@CatalogCard</span>
+		</div>
+	
+	<ul class='steps'>
+		<li test-id='592' class='node given Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.StandingOrderPage.StandingOrderPageSteps.user_enters_url_and_is_on_login_page_and_entered_credentialsForSO())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Given User enters URL and is on login page and entered credentials for SO</div>
+
+
+		</li>
+		<li test-id='593' class='node when Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.StandingOrderPage.StandingOrderPageSteps.user_is_on_home_pageForSO())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>When User is on Home Page for SO</div>
+
+
+		</li>
+		<li test-id='594' class='node then Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.StandingOrderPage.StandingOrderPageSteps.user_navigate_to_client_sideForSO())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User navigate to Client side for SO</div>
+
+
+		</li>
+		<li test-id='595' class='node then Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.StandingOrderPage.StandingOrderPageSteps.user_should_select_order_entry_tabForSO())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User should select Order Entry tab for SO</div>
+
+
+		</li>
+		<li test-id='596' class='node then Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.StandingOrderPage.StandingOrderPageSteps.user_selects_accountForSO())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User selects Account# for SO</div>
+
+
+		</li>
+		<li test-id='597' class='node given Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.StandingOrderPage.StandingOrderPageSteps.userMustBeOnOrderEntryPageToSelectStandingOrderAndNavigateToStandingOrder())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Given User must be on Order Entry Page to select Standing Order and navigate to standing order</div>
+
+
+					<div class="node-step">STANDING ORDER PAGE HAS BEEN FOUND</div>
+					<div class="node-step">STANDING ORDER PAGE HAS BEEN FOUND</div>
+		</li>
+		<li test-id='598' class='node and Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.StandingOrderPage.StandingOrderPageSteps.userClickOnStartStandingOrderButtonAndSelectsStartDateAndEndDateDayFromCurrentDate(int,int))"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>And User click on Start standing order button and selects Start date 16 and End date 17 day from current date</div>
+
+
+					<div class="node-step">STANDING ORDER PAGE HAS BEEN FOUND</div>
+					<div class="node-step">START STANDING ORDER BUTTON CLICKED</div>
+					<div class="node-step">11/18/2023 HAS BEEN SELECTED AS START DATE FOR STANDING ORDER</div>
+					<div class="node-step">11/19/2023 HAS BEEN SELECTED AS START DATE FOR STANDING ORDER</div>
+		</li>
+		<li test-id='599' class='node then Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.StandingOrderPage.StandingOrderPageSteps.userClickOnAddProductButtonInStandingOrderPageAndSelectCatalogOption())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User click on Add Product button in Standing order page and select catalog option</div>
+
+
+		</li>
+		<li test-id='600' class='node and Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.StandingOrderPage.StandingOrderPageSteps.userShouldMakeSureThatCatalogPopupDisplayedInCardViewAndSelectCategoryValues())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>And User should make sure that Catalog popup displayed in card view and select Category values</div>
+
+
+					<div class="node-step">OPTION SELECTED FROM CATEGORY DROP DOWN Juices/Juice Drinks/Water</div>
+		</li>
+		<li test-id='601' class='node then Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.StandingOrderPage.StandingOrderPageSteps.selectProductsFromCardView())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then Select products from card view</div>
+
+
+		</li>
+		<li test-id='602' class='node and Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.StandingOrderPage.StandingOrderPageSteps.userEntersQtyInStandingOrderProductGridBasedOnEnabledDays(io.cucumber.datatable.DataTable))"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>And User enters Qty in standing order product grid based on enabled days</div>
+
+
+					<div class="node-step"><table class='markup-table table '><tr><td>12</td><td>12</td><td>12</td><td>12</td><td>12</td><td>12</td><td>12</td></tr></table></div>
+		</li>
+		<li test-id='603' class='node then Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.StandingOrderPage.StandingOrderPageSteps.userClicksOnSaveButtonAndHandlesPopup())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User clicks on Save button and handles popup</div>
+
+
+					<div class="node-step">STANDING ORDER SAVE BUTTON CLICKED</div>
+					<div class="node-step">STANDING ORDER SUCESSFULLY SAVED</div>
+					<div class="node-step">READY TO CREATE NEXT STANDING ORDER</div>
+		</li>
+	</ul>
+</div>
+<div class='scenario node' test-id='605' status='pass'>
+
+	<span class='duration right label'>00 00 49.672</span>
+	<div class="bdd-test">
+		<div class="scenario-name"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span> Scenario: Test scenario for creating Standing orders with overlapped dates</div>
+	</div>
+	
+	
+		<div class='category-list'>
+				<span class='category label'>@OverlappingDates</span>
+		</div>
+	
+	<ul class='steps'>
+		<li test-id='661' class='node given Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.StandingOrderPage.StandingOrderPageSteps.user_enters_url_and_is_on_login_page_and_entered_credentialsForSO())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Given User enters URL and is on login page and entered credentials for SO</div>
+
+
+		</li>
+		<li test-id='662' class='node when Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.StandingOrderPage.StandingOrderPageSteps.user_is_on_home_pageForSO())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>When User is on Home Page for SO</div>
+
+
+		</li>
+		<li test-id='663' class='node then Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.StandingOrderPage.StandingOrderPageSteps.user_navigate_to_client_sideForSO())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User navigate to Client side for SO</div>
+
+
+		</li>
+		<li test-id='664' class='node then Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.StandingOrderPage.StandingOrderPageSteps.user_should_select_order_entry_tabForSO())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User should select Order Entry tab for SO</div>
+
+
+		</li>
+		<li test-id='665' class='node then Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.StandingOrderPage.StandingOrderPageSteps.user_selects_accountForSO())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User selects Account# for SO</div>
+
+
+		</li>
+		<li test-id='666' class='node given Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.StandingOrderPage.StandingOrderPageSteps.userMustBeOnOrderEntryPageToSelectStandingOrderAndNavigateToStandingOrder())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Given User must be on Order Entry Page to select Standing Order and navigate to standing order</div>
+
+
+					<div class="node-step">STANDING ORDER PAGE HAS BEEN FOUND</div>
+					<div class="node-step">STANDING ORDER PAGE HAS BEEN FOUND</div>
+		</li>
+		<li test-id='667' class='node and Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.StandingOrderPage.StandingOrderPageSteps.userClickOnStartStandingOrderButtonAndSelectsStartDateAndEndDateDayFromCurrentDate(int,int))"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>And User click on Start standing order button and selects Start date 21 and End date 24 day from current date</div>
+
+
+					<div class="node-step">STANDING ORDER PAGE HAS BEEN FOUND</div>
+					<div class="node-step">START STANDING ORDER BUTTON CLICKED</div>
+					<div class="node-step">11/23/2023 HAS BEEN SELECTED AS START DATE FOR STANDING ORDER</div>
+					<div class="node-step">11/26/2023 HAS BEEN SELECTED AS START DATE FOR STANDING ORDER</div>
+		</li>
+		<li test-id='668' class='node then Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.StandingOrderPage.StandingOrderPageSteps.userEntersProductInQuickProductEntryInputbox())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User enters Product# in Quick product entry inputbox</div>
+
+
+					<div class="node-step">STANDING ORDER PAGE HAS BEEN FOUND</div>
+					<div class="node-step">PRODUCT ENTERED IN QUICK ENTRY IS 00000003</div>
+		</li>
+		<li test-id='669' class='node and Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.StandingOrderPage.StandingOrderPageSteps.userEntersQtyInStandingOrderProductGridBasedOnEnabledDays(io.cucumber.datatable.DataTable))"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>And User enters Qty in standing order product grid based on enabled days</div>
+
+
+					<div class="node-step"><table class='markup-table table '><tr><td>10</td><td>10</td><td>10</td><td>10</td><td>10</td><td>10</td><td>10</td></tr></table></div>
+		</li>
+		<li test-id='670' class='node then Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.StandingOrderPage.StandingOrderPageSteps.userClicksOnSaveButtonAndHandlesPopup())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User clicks on Save button and handles popup</div>
+
+
+					<div class="node-step">STANDING ORDER SAVE BUTTON CLICKED</div>
+					<div class="node-step">STANDING ORDER SUCESSFULLY SAVED</div>
+					<div class="node-step">READY TO CREATE NEXT STANDING ORDER</div>
+		</li>
+		<li test-id='671' class='node and Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.StandingOrderPage.StandingOrderPageSteps.userShouldGoThroughDatesOfStandingOrderAndCountNumberOfStandingOrders())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>And User should go through dates of standing order and count number of standing orders</div>
+
+
+					<div class="node-step">TOTAL ACTIVE AND PENDING STANDING ORDERS FOUND ARE 1</div>
+		</li>
+		<li test-id='672' class='node and Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.StandingOrderPage.StandingOrderPageSteps.userClickOnStartStandingOrderButtonAndSelectsStartDateAndEndDateDayFromCurrentDate(int,int))"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>And User click on Start standing order button and selects Start date 18 and End date 22 day from current date</div>
+
+
+					<div class="node-step">STANDING ORDER PAGE HAS BEEN FOUND</div>
+					<div class="node-step">START STANDING ORDER BUTTON CLICKED</div>
+					<div class="node-step">11/20/2023 HAS BEEN SELECTED AS START DATE FOR STANDING ORDER</div>
+					<div class="node-step">11/24/2023 HAS BEEN SELECTED AS START DATE FOR STANDING ORDER</div>
+		</li>
+		<li test-id='673' class='node then Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.StandingOrderPage.StandingOrderPageSteps.userEntersProductInQuickProductEntryInputbox())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User enters Product# in Quick product entry inputbox</div>
+
+
+					<div class="node-step">STANDING ORDER PAGE HAS BEEN FOUND</div>
+					<div class="node-step">PRODUCT ENTERED IN QUICK ENTRY IS 00000003</div>
+		</li>
+		<li test-id='674' class='node and Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.StandingOrderPage.StandingOrderPageSteps.userEntersQtyInStandingOrderProductGridBasedOnEnabledDays(io.cucumber.datatable.DataTable))"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>And User enters Qty in standing order product grid based on enabled days</div>
+
+
+					<div class="node-step"><table class='markup-table table '><tr><td>20</td><td>20</td><td>20</td><td>20</td><td>20</td><td>20</td><td>20</td></tr></table></div>
+		</li>
+		<li test-id='675' class='node then Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.StandingOrderPage.StandingOrderPageSteps.userClicksOnSaveButtonAndHandlesPopup())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User clicks on Save button and handles popup</div>
+
+
+					<div class="node-step">STANDING ORDER SAVE BUTTON CLICKED</div>
+					<div class="node-step">STANDING ORDER SUCESSFULLY SAVED</div>
+					<div class="node-step">READY TO CREATE NEXT STANDING ORDER</div>
+		</li>
+		<li test-id='676' class='node and Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.StandingOrderPage.StandingOrderPageSteps.userShouldGoThroughDatesOfStandingOrderAndCountNumberOfStandingOrdersAfterOverlappingDates())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>And User should go through dates of standing order and count number of standing orders after overlapping dates</div>
+
+
+					<div class="node-step">TOTAL ACTIVE AND PENDING STANDING ORDERS FOUND ARE 1</div>
+					<div class="node-step">NO NEW STANDING ORDER HAS BEEN CRATED!!!</div>
+		</li>
+	</ul>
+</div>
+					</div>
+				</li>
+				<li class='test displayed active has-leaf pass' status='pass' bdd='true' test-id='678'>
+					<div class='test-heading'>
+						<span class='test-name'>Standing Order1</span>
+						<span class='test-time'>Nov 2, 2023 07:25:37 pm</span>
+						<span class='test-status right pass'>Pass</span>
+					</div>
+					<div class='test-content hide'>
+<div class="sr-filters bdd-filters">
+	<a class="btn-floating waves-effect waves-light pass green" title="pass"><i class='material-icons'>check_circle</i></a>
+	<a class="btn-floating waves-effect waves-light fail red" title="fail"><i class='material-icons'>cancel</i></a>
+	<a class="btn-floating waves-effect waves-light skip blue" title="skip"><i class='material-icons'>redo</i></a>
+	<a class="btn-floating waves-effect waves-light clear grey" title="clear"><i class='material-icons'>clear</i></a>
+</div>
+	<div class='test-desc'>  Creation of Standing order and all operation related to standing order</div>
+
+<div class='scenario node' test-id='679' status='pass'>
+
+	<span class='duration right label'>00 00 14.683</span>
+	<div class="bdd-test">
+		<div class="scenario-name"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span> Scenario: Test scenario for copying Standing order</div>
+	</div>
+	
+	
+		<div class='category-list'>
+				<span class='category label'>@CopyStandingOrder</span>
+		</div>
+	
+	<ul class='steps'>
+		<li test-id='735' class='node given Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.StandingOrderPage.StandingOrderPageSteps.user_enters_url_and_is_on_login_page_and_entered_credentialsForSO())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Given User enters URL and is on login page and entered credentials for SO</div>
+
+
+		</li>
+		<li test-id='736' class='node when Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.StandingOrderPage.StandingOrderPageSteps.user_is_on_home_pageForSO())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>When User is on Home Page for SO</div>
+
+
+		</li>
+		<li test-id='737' class='node then Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.StandingOrderPage.StandingOrderPageSteps.user_navigate_to_client_sideForSO())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User navigate to Client side for SO</div>
+
+
+		</li>
+		<li test-id='738' class='node then Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.StandingOrderPage.StandingOrderPageSteps.user_should_select_order_entry_tabForSO())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User should select Order Entry tab for SO</div>
+
+
+		</li>
+		<li test-id='739' class='node then Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.StandingOrderPage.StandingOrderPageSteps.user_selects_accountForSO())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User selects Account# for SO</div>
+
+
+		</li>
+		<li test-id='740' class='node given Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.StandingOrderPage.StandingOrderPageSteps.userMustBeOnOrderEntryPageToSelectStandingOrderAndNavigateToStandingOrder())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Given User must be on Order Entry Page to select Standing Order and navigate to standing order</div>
+
+
+					<div class="node-step">STANDING ORDER PAGE HAS BEEN FOUND</div>
+					<div class="node-step">STANDING ORDER PAGE HAS BEEN FOUND</div>
+		</li>
+		<li test-id='741' class='node then Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.StandingOrderPage.StandingOrderPageSteps.userChecksForAllTheProdcutsInActiveSO())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User checks for all the prodcuts in Active SO</div>
+
+
+					<div class="node-step">PRODUCTS FOUND IN STANDING ORDER:</div>
+					<div class="node-step">2</div>
+					<div class="node-step">3</div>
+					<div class="node-step">4</div>
+					<div class="node-step">5</div>
+		</li>
+		<li test-id='742' class='node and Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.StandingOrderPage.StandingOrderPageSteps.userClicksOnCopyStandingOrderButtonSelectsStartAndEndDateAsAndDayFromCurrentDate(int,int))"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>And User clicks on Copy Standing order button selects start and end date as 25 and 26 day from current date</div>
+
+
+					<div class="node-step">COPY STANDING ORDER HAS BEEN CLICKED</div>
+					<div class="node-step">11/27/2023 HAS BEEN SELECTED AS START DATE FOR COPY STANDING ORDER</div>
+					<div class="node-step">11/28/2023 HAS BEEN SELECTED AS END DATE FOR COPY STANDING ORDER</div>
+					<div class="node-step">STANDING ORDER HAS BEEN COPIED SUCESSFULLY</div>
+		</li>
+		<li test-id='743' class='node then Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.StandingOrderPage.StandingOrderPageSteps.userChecksForTheProductsAddedToCopiedSO())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User checks for the products added to copied SO</div>
+
+
+					<div class="node-step">STANDING ORDER AND VLIDITY PERIOD: Standing order 1 (11/27/2023 - 11/28/2023)
+PENDING</div>
+					<div class="node-step">PRODUCTS FOUND IN STANDING ORDER:</div>
+					<div class="node-step">2</div>
+					<div class="node-step">3</div>
+					<div class="node-step">4</div>
+					<div class="node-step">5</div>
+		</li>
+	</ul>
+</div>
+<div class='scenario node' test-id='745' status='pass'>
+
+	<span class='duration right label'>00 00 25.859</span>
+	<div class="bdd-test">
+		<div class="scenario-name"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span> Scenario: Creation of standing order without giving any end date</div>
+	</div>
+	
+	
+		<div class='category-list'>
+				<span class='category label'>@StandingOrderWithoutEndDate</span>
+		</div>
+	
+	<ul class='steps'>
+		<li test-id='801' class='node given Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.StandingOrderPage.StandingOrderPageSteps.user_enters_url_and_is_on_login_page_and_entered_credentialsForSO())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Given User enters URL and is on login page and entered credentials for SO</div>
+
+
+		</li>
+		<li test-id='802' class='node when Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.StandingOrderPage.StandingOrderPageSteps.user_is_on_home_pageForSO())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>When User is on Home Page for SO</div>
+
+
+		</li>
+		<li test-id='803' class='node then Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.StandingOrderPage.StandingOrderPageSteps.user_navigate_to_client_sideForSO())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User navigate to Client side for SO</div>
+
+
+		</li>
+		<li test-id='804' class='node then Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.StandingOrderPage.StandingOrderPageSteps.user_should_select_order_entry_tabForSO())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User should select Order Entry tab for SO</div>
+
+
+		</li>
+		<li test-id='805' class='node then Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.StandingOrderPage.StandingOrderPageSteps.user_selects_accountForSO())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User selects Account# for SO</div>
+
+
+		</li>
+		<li test-id='806' class='node given Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.StandingOrderPage.StandingOrderPageSteps.userMustBeOnOrderEntryPageToSelectStandingOrderAndNavigateToStandingOrder())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Given User must be on Order Entry Page to select Standing Order and navigate to standing order</div>
+
+
+					<div class="node-step">STANDING ORDER PAGE HAS BEEN FOUND</div>
+					<div class="node-step">STANDING ORDER PAGE HAS BEEN FOUND</div>
+		</li>
+		<li test-id='807' class='node and Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.StandingOrderPage.StandingOrderPageSteps1.userClickOnStartStandingOrderButtonAndSelectsStartDateFromCurrentDate(int))"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>And User click on Start standing order button and selects Start date 27 from current date</div>
+
+
+					<div class="node-step">START STANDING ORDER BUTTON CLICKED</div>
+					<div class="node-step">11/29/2023 HAS BEEN SELECTED AS START DATE FOR STANDING ORDER</div>
+		</li>
+		<li test-id='808' class='node then Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.StandingOrderPage.StandingOrderPageSteps.userEntersProductInQuickProductEntryInputbox())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User enters Product# in Quick product entry inputbox</div>
+
+
+					<div class="node-step">STANDING ORDER PAGE HAS BEEN FOUND</div>
+					<div class="node-step">PRODUCT ENTERED IN QUICK ENTRY IS 00000003</div>
+		</li>
+		<li test-id='809' class='node and Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.StandingOrderPage.StandingOrderPageSteps.userEntersQtyInStandingOrderProductGridBasedOnEnabledDays(io.cucumber.datatable.DataTable))"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>And User enters Qty in standing order product grid based on enabled days</div>
+
+
+					<div class="node-step"><table class='markup-table table '><tr><td>10</td><td>20</td><td>30</td><td>40</td><td>15</td><td>10</td><td>5</td></tr></table></div>
+		</li>
+		<li test-id='810' class='node then Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.StandingOrderPage.StandingOrderPageSteps.userClicksOnSaveButtonAndHandlesPopup())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User clicks on Save button and handles popup</div>
+
+
+					<div class="node-step">STANDING ORDER SAVE BUTTON CLICKED</div>
+					<div class="node-step">STANDING ORDER SUCESSFULLY SAVED</div>
+					<div class="node-step">READY TO CREATE NEXT STANDING ORDER</div>
+		</li>
+		<li test-id='811' class='node and Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.StandingOrderPage.StandingOrderPageSteps1.userShouldValidateThatThereIsNoEndDateAssignedToStandingOrder())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>And User should validate that there is no end date assigned to standing order</div>
+
+
+		</li>
+	</ul>
+</div>
+<div class='scenario node' test-id='813' status='pass'>
+
+	<span class='duration right label'>00 00 13.300</span>
+	<div class="bdd-test">
+		<div class="scenario-name"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span> Scenario: Test scenario for generating Excel sheet for standing order registeration</div>
+	</div>
+	
+	
+		<div class='category-list'>
+				<span class='category label'>@StandingOrderRegisterExcel</span>
+		</div>
+	
+	<ul class='steps'>
+		<li test-id='869' class='node given Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.StandingOrderPage.StandingOrderPageSteps.user_enters_url_and_is_on_login_page_and_entered_credentialsForSO())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Given User enters URL and is on login page and entered credentials for SO</div>
+
+
+		</li>
+		<li test-id='870' class='node when Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.StandingOrderPage.StandingOrderPageSteps.user_is_on_home_pageForSO())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>When User is on Home Page for SO</div>
+
+
+		</li>
+		<li test-id='871' class='node then Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.StandingOrderPage.StandingOrderPageSteps.user_navigate_to_client_sideForSO())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User navigate to Client side for SO</div>
+
+
+		</li>
+		<li test-id='872' class='node then Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.StandingOrderPage.StandingOrderPageSteps.user_should_select_order_entry_tabForSO())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User should select Order Entry tab for SO</div>
+
+
+		</li>
+		<li test-id='873' class='node then Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.StandingOrderPage.StandingOrderPageSteps.user_selects_accountForSO())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User selects Account# for SO</div>
+
+
+		</li>
+		<li test-id='874' class='node given Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.StandingOrderPage.StandingOrderPageSteps.userMustBeOnOrderEntryPageToSelectStandingOrderAndNavigateToStandingOrder())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Given User must be on Order Entry Page to select Standing Order and navigate to standing order</div>
+
+
+					<div class="node-step">STANDING ORDER PAGE HAS BEEN FOUND</div>
+					<div class="node-step">STANDING ORDER PAGE HAS BEEN FOUND</div>
+		</li>
+		<li test-id='875' class='node and Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.StandingOrderPage.StandingOrderPageSteps1.userShouldClickOnStatndingOrderRegisterButton())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>And User should click on Standing Order Register button</div>
+
+
+		</li>
+		<li test-id='876' class='node then Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.StandingOrderPage.StandingOrderPageSteps1.userShouldSearchForCustomerAndRouteInStandingOrderRegisterPopup())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User should search for Customer and Route in Standing order register popup</div>
+
+
+					<div class="node-step">CUSTOMER ACCOUNT# ENTERED IS 3029</div>
+		</li>
+		<li test-id='877' class='node and Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.StandingOrderPage.StandingOrderPageSteps1.userShouldClickOnExcelButtonShouldDownloadCsvFiles())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>And User should click on Excel button, should download csv files</div>
+
+
+		</li>
+	</ul>
+</div>
+<div class='scenario node' test-id='879' status='pass'>
+
+	<span class='duration right label'>00 16 47.367</span>
+	<div class="bdd-test">
+		<div class="scenario-name"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span> Scenario: Test scenario for generating Excel sheet for standing order registeration</div>
+	</div>
+	
+	
+		<div class='category-list'>
+				<span class='category label'>@StandingOrderRegisterPdf</span>
+		</div>
+	
+	<ul class='steps'>
+		<li test-id='935' class='node given Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.StandingOrderPage.StandingOrderPageSteps.user_enters_url_and_is_on_login_page_and_entered_credentialsForSO())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Given User enters URL and is on login page and entered credentials for SO</div>
+
+
+		</li>
+		<li test-id='936' class='node when Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.StandingOrderPage.StandingOrderPageSteps.user_is_on_home_pageForSO())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>When User is on Home Page for SO</div>
+
+
+		</li>
+		<li test-id='937' class='node then Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.StandingOrderPage.StandingOrderPageSteps.user_navigate_to_client_sideForSO())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User navigate to Client side for SO</div>
+
+
+		</li>
+		<li test-id='938' class='node then Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.StandingOrderPage.StandingOrderPageSteps.user_should_select_order_entry_tabForSO())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User should select Order Entry tab for SO</div>
+
+
+		</li>
+		<li test-id='939' class='node then Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.StandingOrderPage.StandingOrderPageSteps.user_selects_accountForSO())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User selects Account# for SO</div>
+
+
+		</li>
+		<li test-id='940' class='node given Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.StandingOrderPage.StandingOrderPageSteps.userMustBeOnOrderEntryPageToSelectStandingOrderAndNavigateToStandingOrder())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Given User must be on Order Entry Page to select Standing Order and navigate to standing order</div>
+
+
+					<div class="node-step">STANDING ORDER PAGE HAS BEEN FOUND</div>
+		</li>
+		<li test-id='941' class='node and Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.StandingOrderPage.StandingOrderPageSteps1.userShouldClickOnStatndingOrderRegisterButton())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>And User should click on Standing Order Register button</div>
+
+
+		</li>
+		<li test-id='942' class='node then Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.StandingOrderPage.StandingOrderPageSteps1.userShouldSearchForCustomerAndRouteInStandingOrderRegisterPopup())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User should search for Customer and Route in Standing order register popup</div>
+
+
+					<div class="node-step">CUSTOMER ACCOUNT# ENTERED IS 3029</div>
+		</li>
+		<li test-id='943' class='node and Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.StandingOrderPage.StandingOrderPageSteps1.userShouldClickOnPDFButtonShouldsOpenNewBrowser())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>And User should click on PDF button, should Open new browser</div>
+
+
+		</li>
+	</ul>
+</div>
+<div class='scenario node' test-id='945' status='pass'>
+
+	<span class='duration right label'>00 16 46.911</span>
+	<div class="bdd-test">
+		<div class="scenario-name"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span> Scenario: Test scenario for generating Excel sheet for standing order registeration cancel option</div>
+	</div>
+	
+	
+		<div class='category-list'>
+				<span class='category label'>@StandingOrderRegisterCancel</span>
+		</div>
+	
+	<ul class='steps'>
+		<li test-id='1,001' class='node given Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.StandingOrderPage.StandingOrderPageSteps.user_enters_url_and_is_on_login_page_and_entered_credentialsForSO())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Given User enters URL and is on login page and entered credentials for SO</div>
+
+
+		</li>
+		<li test-id='1,002' class='node when Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.StandingOrderPage.StandingOrderPageSteps.user_is_on_home_pageForSO())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>When User is on Home Page for SO</div>
+
+
+		</li>
+		<li test-id='1,003' class='node then Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.StandingOrderPage.StandingOrderPageSteps.user_navigate_to_client_sideForSO())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User navigate to Client side for SO</div>
+
+
+		</li>
+		<li test-id='1,004' class='node then Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.StandingOrderPage.StandingOrderPageSteps.user_should_select_order_entry_tabForSO())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User should select Order Entry tab for SO</div>
+
+
+		</li>
+		<li test-id='1,005' class='node then Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.StandingOrderPage.StandingOrderPageSteps.user_selects_accountForSO())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User selects Account# for SO</div>
+
+
+		</li>
+		<li test-id='1,006' class='node given Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.StandingOrderPage.StandingOrderPageSteps.userMustBeOnOrderEntryPageToSelectStandingOrderAndNavigateToStandingOrder())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Given User must be on Order Entry Page to select Standing Order and navigate to standing order</div>
+
+
+					<div class="node-step">STANDING ORDER PAGE HAS BEEN FOUND</div>
+		</li>
+		<li test-id='1,007' class='node and Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.StandingOrderPage.StandingOrderPageSteps1.userShouldClickOnStatndingOrderRegisterButton())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>And User should click on Standing Order Register button</div>
+
+
+		</li>
+		<li test-id='1,008' class='node then Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.StandingOrderPage.StandingOrderPageSteps1.userShouldSearchForCustomerAndRouteInStandingOrderRegisterPopup())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User should search for Customer and Route in Standing order register popup</div>
+
+
+					<div class="node-step">CUSTOMER ACCOUNT# ENTERED IS 3029</div>
+		</li>
+		<li test-id='1,009' class='node and Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.StandingOrderPage.StandingOrderPageSteps1.userShouldClickOnCancelButton())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>And User should Click on Cancel button</div>
+
+
+		</li>
+	</ul>
+</div>
+<div class='scenario node' test-id='1,011' status='pass'>
+
+	<span class='duration right label'>00 00 16.925</span>
+	<div class="bdd-test">
+		<div class="scenario-name"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span> Scenario: Test scenario for generating standing order</div>
+	</div>
+	
+	
+		<div class='category-list'>
+				<span class='category label'>@GenerateStandingOrder</span>
+		</div>
+	
+	<ul class='steps'>
+		<li test-id='1,067' class='node given Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.StandingOrderPage.StandingOrderPageSteps.user_enters_url_and_is_on_login_page_and_entered_credentialsForSO())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Given User enters URL and is on login page and entered credentials for SO</div>
+
+
+		</li>
+		<li test-id='1,068' class='node when Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.StandingOrderPage.StandingOrderPageSteps.user_is_on_home_pageForSO())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>When User is on Home Page for SO</div>
+
+
+		</li>
+		<li test-id='1,069' class='node then Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.StandingOrderPage.StandingOrderPageSteps.user_navigate_to_client_sideForSO())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User navigate to Client side for SO</div>
+
+
+		</li>
+		<li test-id='1,070' class='node then Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.StandingOrderPage.StandingOrderPageSteps.user_should_select_order_entry_tabForSO())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User should select Order Entry tab for SO</div>
+
+
+		</li>
+		<li test-id='1,071' class='node then Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.StandingOrderPage.StandingOrderPageSteps.user_selects_accountForSO())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User selects Account# for SO</div>
+
+
+		</li>
+		<li test-id='1,072' class='node given Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.StandingOrderPage.StandingOrderPageSteps.userMustBeOnOrderEntryPageToSelectStandingOrderAndNavigateToStandingOrder())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Given User must be on Order Entry Page to select Standing Order and navigate to standing order</div>
+
+
+					<div class="node-step">STANDING ORDER PAGE HAS BEEN FOUND</div>
+					<div class="node-step">STANDING ORDER PAGE HAS BEEN FOUND</div>
+		</li>
+		<li test-id='1,073' class='node and Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.StandingOrderPage.StandingOrderPageSteps1.userShouldClickOnGenerateStandingOrderButton())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>And User should click on Generate Standing order  button</div>
+
+
+					<div class="node-step">GENERATE STANDING ORDER HAS BEEN CLICKED</div>
+		</li>
+		<li test-id='1,074' class='node then Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.StandingOrderPage.StandingOrderPageSteps1.userShouldSelectFromAndToDateInGenerateStandingOrderSPopupClickOnOk())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User should select From and To date in Generate standing order(s) popup, Click on Ok</div>
+
+
+		</li>
+		<li test-id='1,075' class='node and Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.StandingOrderPage.StandingOrderPageSteps1.userShouldClickOnOkInAllTaskCompletedPopup())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>And User should click on ok, in All task completed popup</div>
+
+
+		</li>
+	</ul>
+</div>
+<div class='scenario node' test-id='1,077' status='pass'>
+
+	<span class='duration right label'>00 17 05.519</span>
+	<div class="bdd-test">
+		<div class="scenario-name"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span> Scenario: Test scenario for deleting all the standing orders which are active and pending</div>
+	</div>
+	
+	
+		<div class='category-list'>
+				<span class='category label'>@DeleteStandingOrder</span>
+		</div>
+	
+	<ul class='steps'>
+		<li test-id='1,133' class='node given Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.StandingOrderPage.StandingOrderPageSteps.user_enters_url_and_is_on_login_page_and_entered_credentialsForSO())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Given User enters URL and is on login page and entered credentials for SO</div>
+
+
+		</li>
+		<li test-id='1,134' class='node when Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.StandingOrderPage.StandingOrderPageSteps.user_is_on_home_pageForSO())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>When User is on Home Page for SO</div>
+
+
+		</li>
+		<li test-id='1,135' class='node then Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.StandingOrderPage.StandingOrderPageSteps.user_navigate_to_client_sideForSO())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User navigate to Client side for SO</div>
+
+
+		</li>
+		<li test-id='1,136' class='node then Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.StandingOrderPage.StandingOrderPageSteps.user_should_select_order_entry_tabForSO())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User should select Order Entry tab for SO</div>
+
+
+		</li>
+		<li test-id='1,137' class='node then Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.StandingOrderPage.StandingOrderPageSteps.user_selects_accountForSO())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User selects Account# for SO</div>
+
+
+		</li>
+		<li test-id='1,138' class='node given Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.StandingOrderPage.StandingOrderPageSteps.userMustBeOnOrderEntryPageToSelectStandingOrderAndNavigateToStandingOrder())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Given User must be on Order Entry Page to select Standing Order and navigate to standing order</div>
+
+
+					<div class="node-step">STANDING ORDER PAGE HAS BEEN FOUND</div>
+		</li>
+		<li test-id='1,139' class='node then Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.StandingOrderPage.StandingOrderPageSteps.userNavigatesToStandingOrderCardAndClicksOnDeleteButton())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User navigates to Standing order card and clicks on Delete button</div>
+
+
+					<div class="node-step">STANDING ORDER PAGE HAS BEEN FOUND</div>
+					<div class="node-step">TOTAL NUMBER OF ACTIVE AND PENDING SO FOUND ARE 10</div>
+					<div class="node-step">1 STANDING ORDER HAS BEEN DELETED</div>
+					<div class="node-step">STANDING ORDER DELETED</div>
+					<div class="node-step">2 STANDING ORDER HAS BEEN DELETED</div>
+					<div class="node-step">STANDING ORDER DELETED</div>
+					<div class="node-step">3 STANDING ORDER HAS BEEN DELETED</div>
+					<div class="node-step">STANDING ORDER DELETED</div>
+					<div class="node-step">4 STANDING ORDER HAS BEEN DELETED</div>
+					<div class="node-step">STANDING ORDER DELETED</div>
+					<div class="node-step">5 STANDING ORDER HAS BEEN DELETED</div>
+					<div class="node-step">STANDING ORDER DELETED</div>
+					<div class="node-step">6 STANDING ORDER HAS BEEN DELETED</div>
+					<div class="node-step">STANDING ORDER DELETED</div>
+					<div class="node-step">7 STANDING ORDER HAS BEEN DELETED</div>
+					<div class="node-step">STANDING ORDER DELETED</div>
+					<div class="node-step">8 STANDING ORDER HAS BEEN DELETED</div>
+					<div class="node-step">STANDING ORDER DELETED</div>
+					<div class="node-step">9 STANDING ORDER HAS BEEN DELETED</div>
+					<div class="node-step">STANDING ORDER DELETED</div>
+					<div class="node-step">10 STANDING ORDER HAS BEEN DELETED</div>
+					<div class="node-step">STANDING ORDER DELETED</div>
+		</li>
+	</ul>
+</div>
+<div class='scenario node' test-id='1,141' status='pass'>
+
+	<span class='duration right label'>00 00 40.745</span>
+	<div class="bdd-test">
+		<div class="scenario-name"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span> Scenario: Test scenario for changing customer account# and createing standing order</div>
+	</div>
+	
+	
+		<div class='category-list'>
+				<span class='category label'>@ChangeAccountNumber</span>
+		</div>
+	
+	<ul class='steps'>
+		<li test-id='1,197' class='node given Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.StandingOrderPage.StandingOrderPageSteps.user_enters_url_and_is_on_login_page_and_entered_credentialsForSO())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Given User enters URL and is on login page and entered credentials for SO</div>
+
+
+		</li>
+		<li test-id='1,198' class='node when Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.StandingOrderPage.StandingOrderPageSteps.user_is_on_home_pageForSO())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>When User is on Home Page for SO</div>
+
+
+		</li>
+		<li test-id='1,199' class='node then Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.StandingOrderPage.StandingOrderPageSteps.user_navigate_to_client_sideForSO())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User navigate to Client side for SO</div>
+
+
+		</li>
+		<li test-id='1,200' class='node then Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.StandingOrderPage.StandingOrderPageSteps.user_should_select_order_entry_tabForSO())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User should select Order Entry tab for SO</div>
+
+
+		</li>
+		<li test-id='1,201' class='node then Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.StandingOrderPage.StandingOrderPageSteps.user_selects_accountForSO())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User selects Account# for SO</div>
+
+
+		</li>
+		<li test-id='1,202' class='node given Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.StandingOrderPage.StandingOrderPageSteps.userMustBeOnOrderEntryPageToSelectStandingOrderAndNavigateToStandingOrder())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Given User must be on Order Entry Page to select Standing Order and navigate to standing order</div>
+
+
+					<div class="node-step">STANDING ORDER PAGE HAS BEEN FOUND</div>
+					<div class="node-step">STANDING ORDER PAGE HAS BEEN FOUND</div>
+		</li>
+		<li test-id='1,203' class='node and Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.StandingOrderPage.StandingOrderPageSteps1.userChangesCustomerAccountForCreatingSOForSomeOtherCustomer())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>And User changes Customer account# for creating SO for some other customer</div>
+
+
+					<div class="node-step">ACCOUNT NUMBER WILL BE CHANGED TO 3021</div>
+					<div class="node-step">CUSTOMER ACCOUNT# SELECTED IS 40035984-0-3021</div>
+		</li>
+		<li test-id='1,204' class='node and Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.StandingOrderPage.StandingOrderPageSteps.userClickOnStartStandingOrderButtonAndSelectsStartAndEndDateFromPopup())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>And User click on Start standing order button and selects start and end date from popup</div>
+
+
+					<div class="node-step">START STANDING ORDER BUTTON CLICKED</div>
+					<div class="node-step">11/02/2023 HAS BEEN SELECTED AS START DATE FOR STANDING ORDER</div>
+					<div class="node-step">11/02/2023 HAS BEEN SELECTED AS END DATE FOR STANDING ORDER</div>
+		</li>
+		<li test-id='1,205' class='node then Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.StandingOrderPage.StandingOrderPageSteps.userEntersProductInQuickProductEntryInputbox())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User enters Product# in Quick product entry inputbox</div>
+
+
+					<div class="node-step">STANDING ORDER PAGE HAS BEEN FOUND</div>
+					<div class="node-step">PRODUCT ENTERED IN QUICK ENTRY IS 00000003</div>
+		</li>
+		<li test-id='1,206' class='node and Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.StandingOrderPage.StandingOrderPageSteps.userEntersQtyInStandingOrderProductGridBasedOnEnabledDays(io.cucumber.datatable.DataTable))"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>And User enters Qty in standing order product grid based on enabled days</div>
+
+
+					<div class="node-step"><table class='markup-table table '><tr><td>10</td><td>20</td><td>30</td><td>40</td><td>15</td><td>10</td><td>5</td></tr></table></div>
+		</li>
+		<li test-id='1,207' class='node then Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.StandingOrderPage.StandingOrderPageSteps.userClicksOnSaveButtonAndHandlesPopup())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User clicks on Save button and handles popup</div>
+
+
+					<div class="node-step">STANDING ORDER SAVE BUTTON CLICKED</div>
+					<div class="node-step">STANDING ORDER SUCESSFULLY SAVED</div>
+					<div class="node-step">READY TO CREATE NEXT STANDING ORDER</div>
+		</li>
+		<li test-id='1,208' class='node and Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.StandingOrderPage.StandingOrderPageSteps1.userShouldChangeCustomerAccountBackToPreviousAccount())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>And User should change customer account# back to previous account</div>
+
+
+					<div class="node-step">CURRENT URL IS https://ignitionqadsd.afsi.com/clientportal/apps/cpOrderEntry.html?p=Km530c8XSlYiXYABAQY6Y%2fH4h8U05NAvkuXBE2RCxgnlbt%2btBuFlqw%3d%3d</div>
+					<div class="node-step">ACCOUNT NUMBER WILL BE CHANGED TO 3029</div>
+		</li>
+	</ul>
+</div>
+					</div>
+				</li>
+				<li class='test displayed active has-leaf pass' status='pass' bdd='true' test-id='1,210'>
+					<div class='test-heading'>
+						<span class='test-name'>Standing order1</span>
+						<span class='test-time'>Nov 2, 2023 08:18:10 pm</span>
 						<span class='test-status right pass'>Pass</span>
 					</div>
 					<div class='test-content hide'>
@@ -205,708 +1634,55 @@
 	<a class="btn-floating waves-effect waves-light clear grey" title="clear"><i class='material-icons'>clear</i></a>
 </div>
 
-<div class='scenario outline node' test-id='2' status='pass'>
+<div class='scenario node' test-id='1,211' status='pass'>
 
-	<span class='duration right label'>00 00 40.804</span>
-	<div class="bdd-test">
-		<div class="scenario-name"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span> Scenario Outline: Test scenario to verifing avaiablity of grid from Available grid to Grid configuration</div>
-	</div>
-	
-		<div class='node-desc'><br><br><table class='markup-table table '><tr><td>Main menu</td><td>Sub menu</td><td>ConfigTab1</td></tr><tr><td>Grids</td><td>Configuration</td><td>Grid Configuration</td></tr></table></div>
-	
-		<div class='category-list'>
-				<span class='category label'>@AvailableGrid</span>
-		</div>
-	
-	<ul class='steps'>
-		<li test-id='3' class='node scenario Pass' status='Pass'>
-			<div class="step-name" title="()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Test scenario to verifing avaiablity of grid from Available grid to Grid configuration</div>
-
-				<div class='category-list'>
-						<span class='category label'>@AvailableGrid</span>
-				</div>
-
-			<ul class='gc steps'>
-				<li test-id='59' class='gc given Pass' status='Pass'>
-					<h6 class="step-name" title="stepDefination_DSD_OMS.AdminGridsPage.GridConfigurationPageStep.userEntersURLAndIsOnLoginPageAndEnteredCredentialsForAdminSettingForGrid()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Given User enters URL and is on login page and entered credentials for Admin setting for grid</h6>
-
-							<div class="node-step">SIGNIN BUTTON CLICKED</div>
-				</li>
-				<li test-id='60' class='gc when Pass' status='Pass'>
-					<h6 class="step-name" title="stepDefination_DSD_OMS.AdminGridsPage.GridConfigurationPageStep.userIsOnHomePageForAdminSettingForGrid()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>When User is on Home Page for Admin setting for grid</h6>
-
-							<div class="node-step">ADMIN PAGE HAS BEEN FOUND</div>
-				</li>
-				<li test-id='61' class='gc then Pass' status='Pass'>
-					<h6 class="step-name" title="stepDefination_DSD_OMS.AdminGridsPage.GridConfigurationPageStep.userClicksOnPermissionsByDropDownToSelectCustomerAccountGrid()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User Clicks on Permissions by drop down to select Customer Account# grid</h6>
-
-							<div class="node-step">PERMISSION DROP DOWN HAS BEEN CLICKED, TO SELECT COMPANY</div>
-							<div class="node-step">COMPANY HAS BEEN SELECTED</div>
-				</li>
-				<li test-id='62' class='gc given Pass' status='Pass'>
-					<h6 class="step-name" title="stepDefination_DSD_OMS.AdminGridsPage.GridConfigurationPageStep.userIsOnHomePageForAdminSettingToSelectAdminOptionForGrid()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Given User is on Home Page for Admin setting to select Admin option for grid</h6>
-
-							<div class="node-step">ADMIN PAGE HAS BEEN FOUND</div>
-				</li>
-				<li test-id='63' class='gc and Pass' status='Pass'>
-					<h6 class="step-name" title="stepDefination_DSD_OMS.AdminReport.OrderAdminPageStep.user_should_enter_menu_in_search_bar_and_select(java.lang.String,java.lang.String)"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>And User should enter menu "Grids" in search bar and select "Configuration"</h6>
-
-							<div class="node-step">IN ADMIN PAGE</div>
-				</li>
-				<li test-id='64' class='gc then Pass' status='Pass'>
-					<h6 class="step-name" title="stepDefination_DSD_OMS.AdminGridsPage.GridConfigurationPageStep.userNavigatesToAvailableGridAndSelectsOneOfTheGridType()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User navigates to Available Grid and selects one of the grid type</h6>
-
-							<div class="node-step">GRID SELECTED IN AVAILABLE GRID IS Order Entry</div>
-				</li>
-				<li test-id='65' class='gc and Pass' status='Pass'>
-					<h6 class="step-name" title="stepDefination_DSD_OMS.AdminGridsPage.GridConfigurationPageStep.userNavigatesToAndTheSelectedGridTypeShouldBeLoaded(java.lang.String)"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>And User navigates to "Grid Configuration" and the selected grid type should be loaded</h6>
-
-							<div class="node-step">GRID SHOWN IN GRID CONFIGURATION TAB IS Order Entry</div>
-							<div class="node-step">GRID SELECTED IN AVIALABLE GRID AND GRID DISPLAYED IN GRID CONFIGURATION ARE SAME</div>
-				</li>
-			</ul>
-		</li>
-	</ul>
-</div>
-<div class='scenario outline node' test-id='67' status='pass'>
-
-	<span class='duration right label'>00 01 05.967</span>
-	<div class="bdd-test">
-		<div class="scenario-name"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span> Scenario Outline: Test scenario for verifying availablity of same grid under Configuration tab and Available grids tab</div>
-	</div>
-	
-		<div class='node-desc'><br><br><table class='markup-table table '><tr><td>Main menu</td><td>Sub menu</td></tr><tr><td>Grids</td><td>Configuration</td></tr></table></div>
-	
-		<div class='category-list'>
-				<span class='category label'>@CheckAvailabilityOfGrid</span>
-		</div>
-	
-	<ul class='steps'>
-		<li test-id='68' class='node scenario Pass' status='Pass'>
-			<div class="step-name" title="()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Test scenario for verifying availablity of same grid under Configuration tab and Available grids tab</div>
-
-				<div class='category-list'>
-						<span class='category label'>@CheckAvailabilityOfGrid</span>
-				</div>
-
-			<ul class='gc steps'>
-				<li test-id='124' class='gc given Pass' status='Pass'>
-					<h6 class="step-name" title="stepDefination_DSD_OMS.AdminGridsPage.GridConfigurationPageStep.userEntersURLAndIsOnLoginPageAndEnteredCredentialsForAdminSettingForGrid()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Given User enters URL and is on login page and entered credentials for Admin setting for grid</h6>
-
-				</li>
-				<li test-id='125' class='gc when Pass' status='Pass'>
-					<h6 class="step-name" title="stepDefination_DSD_OMS.AdminGridsPage.GridConfigurationPageStep.userIsOnHomePageForAdminSettingForGrid()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>When User is on Home Page for Admin setting for grid</h6>
-
-				</li>
-				<li test-id='126' class='gc then Pass' status='Pass'>
-					<h6 class="step-name" title="stepDefination_DSD_OMS.AdminGridsPage.GridConfigurationPageStep.userClicksOnPermissionsByDropDownToSelectCustomerAccountGrid()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User Clicks on Permissions by drop down to select Customer Account# grid</h6>
-
-				</li>
-				<li test-id='127' class='gc given Pass' status='Pass'>
-					<h6 class="step-name" title="stepDefination_DSD_OMS.WebOrderingPage.RestrictedProductsPageStep.userIsOnHomePageForAdminSettingToSelectAdminOption()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Given User is on Home Page for Admin setting to select Admin option</h6>
-
-							<div class="node-step">ADMIN PAGE HAS BEEN FOUND</div>
-				</li>
-				<li test-id='128' class='gc then Pass' status='Pass'>
-					<h6 class="step-name" title="stepDefination_DSD_OMS.AdminGridsPage.GridConfigurationPageStep.userRefreshesPageClicksOnPermissionsByDropDownToSelectCustomerAccountGrid()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User refreshes page Clicks on Permissions by drop down to select Customer Account# grid</h6>
-
-							<div class="node-step">PERMISSION DROP DOWN HAS BEEN CLICKED, TO SELECT COMPANY</div>
-							<div class="node-step">COMPANY HAS BEEN SELECTED</div>
-				</li>
-				<li test-id='129' class='gc and Pass' status='Pass'>
-					<h6 class="step-name" title="stepDefination_DSD_OMS.AdminReport.OrderAdminPageStep.user_should_enter_menu_in_search_bar_and_select(java.lang.String,java.lang.String)"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>And User should enter menu "Grids" in search bar and select "Configuration"</h6>
-
-							<div class="node-step">IN ADMIN PAGE</div>
-				</li>
-				<li test-id='130' class='gc then Pass' status='Pass'>
-					<h6 class="step-name" title="stepDefination_DSD_OMS.AdminGridsPage.GridConfigurationPageStep.userShouldValidateThatItIsGridConfigurationPageThenClickOnGridTypeDropDown()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User should validate that it is Grid Configuration page, then click on Grid type Drop Down</h6>
-
-							<div class="node-step">GRID TYPE DROP DOWN HAS BEEN CLICKED</div>
-				</li>
-				<li test-id='131' class='gc then Pass' status='Pass'>
-					<h6 class="step-name" title="stepDefination_DSD_OMS.AdminGridsPage.GridConfigurationPageStep.userReadsAllTheGridNames()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User reads all the grid names</h6>
-
-							<div class="node-step">DROP DOWN GRID 13</div>
-							<div class="node-step">GRID TYPE FOUND IN DROP DOWN: </div>
-							<div class="node-step">GRID TYPE FOUND IN DROP DOWN: Order Summary</div>
-							<div class="node-step">GRID TYPE FOUND IN DROP DOWN: Product Catalog Search</div>
-							<div class="node-step">GRID TYPE FOUND IN DROP DOWN: Quick Product Search</div>
-							<div class="node-step">GRID TYPE FOUND IN DROP DOWN: Customer Selection</div>
-							<div class="node-step">GRID TYPE FOUND IN DROP DOWN: Quote Entry</div>
-							<div class="node-step">GRID TYPE FOUND IN DROP DOWN: Quote Summary</div>
-							<div class="node-step">GRID TYPE FOUND IN DROP DOWN: Order Guide Details</div>
-							<div class="node-step">GRID TYPE FOUND IN DROP DOWN: Order Control List</div>
-							<div class="node-step">GRID TYPE FOUND IN DROP DOWN: Order History</div>
-							<div class="node-step">GRID TYPE FOUND IN DROP DOWN: All Orders</div>
-							<div class="node-step">GRID TYPE FOUND IN DROP DOWN: CRM Tickets</div>
-							<div class="node-step">GRID TYPE FOUND IN DROP DOWN: Inventory</div>
-				</li>
-				<li test-id='132' class='gc and Pass' status='Pass'>
-					<h6 class="step-name" title="stepDefination_DSD_OMS.AdminGridsPage.GridConfigurationPageStep.userNavigateToAvailableGridTabAndFindsAllTheGridsAvailableAndDisableAnyGrid()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>And User navigate to Available grid tab and finds all the grids available and disable any grid</h6>
-
-							<div class="node-step">USER IS IN AVAILABLE GRID CARD</div>
-							<div class="node-step">GRID SELECTED FOR DISABLING IN GRID TYPE DROP DOWN IS Order Entry</div>
-							<div class="node-step">SELECTED GRID HAS BEEN DISABLED IN AVAILABLE GRID</div>
-							<div class="node-step">ADMIN SIDE CHANGES SAVE POPUP HAS APPEARED</div>
-				</li>
-				<li test-id='133' class='gc then Pass' status='Pass'>
-					<h6 class="step-name" title="stepDefination_DSD_OMS.AdminGridsPage.GridConfigurationPageStep.userNavigatesBackToGridConfigurationTabAndChecksForAvailableGridTypeInDropDown()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User navigates back to Grid configuration tab and checks for available grid type in drop down</h6>
-
-							<div class="node-step">GRID TYPE DROP DOWN HAS BEEN CLICKED</div>
-							<div class="node-step">DROP DOWN GRID 12</div>
-							<div class="node-step">GRID TYPE FOUND IN DROP DOWN: </div>
-							<div class="node-step">GRID TYPE FOUND IN DROP DOWN: Product Catalog Search</div>
-							<div class="node-step">GRID TYPE FOUND IN DROP DOWN: Quick Product Search</div>
-							<div class="node-step">GRID TYPE FOUND IN DROP DOWN: Customer Selection</div>
-							<div class="node-step">GRID TYPE FOUND IN DROP DOWN: Quote Entry</div>
-							<div class="node-step">GRID TYPE FOUND IN DROP DOWN: Quote Summary</div>
-							<div class="node-step">GRID TYPE FOUND IN DROP DOWN: Order Guide Details</div>
-							<div class="node-step">GRID TYPE FOUND IN DROP DOWN: Order Control List</div>
-							<div class="node-step">GRID TYPE FOUND IN DROP DOWN: Order History</div>
-							<div class="node-step">GRID TYPE FOUND IN DROP DOWN: All Orders</div>
-							<div class="node-step">GRID TYPE FOUND IN DROP DOWN: CRM Tickets</div>
-							<div class="node-step">GRID TYPE FOUND IN DROP DOWN: Inventory</div>
-							<div class="node-step">NUMBER OF GRIDS FOUND IN DROP DOWN BEFORE DISABLING GRID 13</div>
-							<div class="node-step">NUMBER OF GRIDS FOUND IN DROP DOWN AFTER DISABLING GRID 12</div>
-							<div class="node-step">CONTENT OF GRID TYPE DROP DOWN ARE NOT SAME</div>
-				</li>
-				<li test-id='134' class='gc and Pass' status='Pass'>
-					<h6 class="step-name" title="stepDefination_DSD_OMS.AdminGridsPage.GridConfigurationPageStep.userShouldEnableDisabledGridInAvailableGridTab()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>And User should enable disabled grid in Available grid tab</h6>
-
-							<div class="node-step">USER IS IN AVAILABLE GRID CARD</div>
-							<div class="node-step">GRID SELECTED FOR DISABLING IN GRID TYPE DROP DOWN IS Order Entry</div>
-							<div class="node-step">SELECTED GRID HAS BEEN ENABLED IN AVAILABLE GRID</div>
-							<div class="node-step">ADMIN SIDE CHANGES SAVE POPUP HAS APPEARED</div>
-				</li>
-				<li test-id='135' class='gc then Pass' status='Pass'>
-					<h6 class="step-name" title="stepDefination_DSD_OMS.AdminGridsPage.GridConfigurationPageStep.userNavigatesBackToGridConfigurationTabAndChecksForAvailableGridTypeInDropDownAfterEnablingTab()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User navigates back to Grid configuration tab and checks for available grid type in drop down after enabling tab</h6>
-
-							<div class="node-step">NUMBER OF GRIDS FOUND IN DROP DOWN BEFORE DISABLING GRID 13</div>
-							<div class="node-step">GRID TYPE DROP DOWN HAS BEEN CLICKED</div>
-							<div class="node-step">DROP DOWN GRID 13</div>
-							<div class="node-step">GRID TYPE FOUND IN DROP DOWN: </div>
-							<div class="node-step">GRID TYPE FOUND IN DROP DOWN: Order Summary</div>
-							<div class="node-step">GRID TYPE FOUND IN DROP DOWN: Product Catalog Search</div>
-							<div class="node-step">GRID TYPE FOUND IN DROP DOWN: Quick Product Search</div>
-							<div class="node-step">GRID TYPE FOUND IN DROP DOWN: Customer Selection</div>
-							<div class="node-step">GRID TYPE FOUND IN DROP DOWN: Quote Entry</div>
-							<div class="node-step">GRID TYPE FOUND IN DROP DOWN: Quote Summary</div>
-							<div class="node-step">GRID TYPE FOUND IN DROP DOWN: Order Guide Details</div>
-							<div class="node-step">GRID TYPE FOUND IN DROP DOWN: Order Control List</div>
-							<div class="node-step">GRID TYPE FOUND IN DROP DOWN: Order History</div>
-							<div class="node-step">GRID TYPE FOUND IN DROP DOWN: All Orders</div>
-							<div class="node-step">GRID TYPE FOUND IN DROP DOWN: CRM Tickets</div>
-							<div class="node-step">GRID TYPE FOUND IN DROP DOWN: Inventory</div>
-							<div class="node-step">NUMBER OF GRIDS FOUND IN DROP DOWN AFTER DISABLING GRID 13</div>
-							<div class="node-step">CONTENT OF GRID TYPE DROP DOWN ARE SAME</div>
-				</li>
-			</ul>
-		</li>
-	</ul>
-</div>
-<div class='scenario outline node' test-id='137' status='pass'>
-
-	<span class='duration right label'>00 01 12.207</span>
-	<div class="bdd-test">
-		<div class="scenario-name"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span> Scenario Outline: Test scenario for disable one of the grid column and verifying same in Grid Configuration</div>
-	</div>
-	
-		<div class='node-desc'><br><br><table class='markup-table table '><tr><td>Main menu</td><td>Sub menu</td><td>Grid type</td></tr><tr><td>Grids</td><td>Configuration</td><td>Order Entry</td></tr></table></div>
-	
-		<div class='category-list'>
-				<span class='category label'>@CheckAvailablityOfGridheader</span>
-		</div>
-	
-	<ul class='steps'>
-		<li test-id='138' class='node scenario Pass' status='Pass'>
-			<div class="step-name" title="()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Test scenario for disable one of the grid column and verifying same in Grid Configuration</div>
-
-				<div class='category-list'>
-						<span class='category label'>@CheckAvailablityOfGridheader</span>
-				</div>
-
-			<ul class='gc steps'>
-				<li test-id='194' class='gc given Pass' status='Pass'>
-					<h6 class="step-name" title="stepDefination_DSD_OMS.AdminGridsPage.GridConfigurationPageStep.userEntersURLAndIsOnLoginPageAndEnteredCredentialsForAdminSettingForGrid()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Given User enters URL and is on login page and entered credentials for Admin setting for grid</h6>
-
-				</li>
-				<li test-id='195' class='gc when Pass' status='Pass'>
-					<h6 class="step-name" title="stepDefination_DSD_OMS.AdminGridsPage.GridConfigurationPageStep.userIsOnHomePageForAdminSettingForGrid()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>When User is on Home Page for Admin setting for grid</h6>
-
-				</li>
-				<li test-id='196' class='gc then Pass' status='Pass'>
-					<h6 class="step-name" title="stepDefination_DSD_OMS.AdminGridsPage.GridConfigurationPageStep.userClicksOnPermissionsByDropDownToSelectCustomerAccountGrid()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User Clicks on Permissions by drop down to select Customer Account# grid</h6>
-
-				</li>
-				<li test-id='197' class='gc given Pass' status='Pass'>
-					<h6 class="step-name" title="stepDefination_DSD_OMS.WebOrderingPage.RestrictedProductsPageStep.userIsOnHomePageForAdminSettingToSelectAdminOption()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Given User is on Home Page for Admin setting to select Admin option</h6>
-
-							<div class="node-step">ADMIN PAGE HAS BEEN FOUND</div>
-				</li>
-				<li test-id='198' class='gc then Pass' status='Pass'>
-					<h6 class="step-name" title="stepDefination_DSD_OMS.AdminGridsPage.GridConfigurationPageStep.userRefreshesPageClicksOnPermissionsByDropDownToSelectCustomerAccountGrid()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User refreshes page Clicks on Permissions by drop down to select Customer Account# grid</h6>
-
-							<div class="node-step">PERMISSION DROP DOWN HAS BEEN CLICKED, TO SELECT COMPANY</div>
-							<div class="node-step">COMPANY HAS BEEN SELECTED</div>
-				</li>
-				<li test-id='199' class='gc and Pass' status='Pass'>
-					<h6 class="step-name" title="stepDefination_DSD_OMS.AdminReport.OrderAdminPageStep.user_should_enter_menu_in_search_bar_and_select(java.lang.String,java.lang.String)"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>And User should enter menu "Grids" in search bar and select "Configuration"</h6>
-
-							<div class="node-step">IN ADMIN PAGE</div>
-				</li>
-				<li test-id='200' class='gc and Pass' status='Pass'>
-					<h6 class="step-name" title="stepDefination_DSD_OMS.AdminGridsPage.GridConfigurationPageStep.userNavigateToAvailableGridTabAndSelectOneOfTheGridAndReadAllTheColumnHeaderAvailableForSelectedGrid()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>And User navigate to Available grid tab and select one of the grid and read all the column header available for selected grid</h6>
-
-							<div class="node-step">USER IS IN AVAILABLE GRID CARD</div>
-							<div class="node-step">GRID SELECTED FOR DISABLING IN GRID TYPE DROP DOWN IS Order Entry</div>
-				</li>
-				<li test-id='201' class='gc then Pass' status='Pass'>
-					<h6 class="step-name" title="stepDefination_DSD_OMS.AdminGridsPage.GridConfigurationPageStep.userShouldValidateThatItIsGridConfigurationPageThenClickOnGridTypeDropDown()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User should validate that it is Grid Configuration page, then click on Grid type Drop Down</h6>
-
-							<div class="node-step">GRID TYPE DROP DOWN HAS BEEN CLICKED</div>
-				</li>
-				<li test-id='202' class='gc and Pass' status='Pass'>
-					<h6 class="step-name" title="stepDefination_DSD_OMS.AdminGridsPage.GridConfigurationPageStep.userShouldSelectGridTypeFromTheDropDown(java.lang.String)"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>And User should select Grid type "Order Entry" from the drop down</h6>
-
-							<div class="node-step">GRID TYPE SELECTED IS Order Entry</div>
-							<div class="node-step">GRID TYPE SELECTED IS Order Entry</div>
-				</li>
-				<li test-id='203' class='gc and Pass' status='Pass'>
-					<h6 class="step-name" title="stepDefination_DSD_OMS.AdminGridsPage.GridConfigurationPageStep.userClicksOnSaveButtonToSaveGridConfiguration()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>And User clicks on save button to save Grid configuration</h6>
-
-							<div class="node-step">ADMIN SIDE CHANGES SAVE POPUP HAS APPEARED</div>
-				</li>
-				<li test-id='204' class='gc then Pass' status='Pass'>
-					<h6 class="step-name" title="stepDefination_DSD_OMS.AdminGridsPage.GridConfigurationPageStep.userValidatesAvailablityOfDisabledColumnInGrid(java.lang.String)"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User validates availablity of disabled column in grid "Order Entry"</h6>
-
-							<div class="node-step">GRID TYPE DROP DOWN HAS BEEN CLICKED</div>
-							<div class="node-step">GRID TYPE SELECTED IS Order Entry</div>
-							<div class="node-step">GRID TYPE SELECTED IS Order Entry</div>
-							<div class="node-step">COLUMN HAS BEEN REMOVED FROM THE GRID</div>
-				</li>
-				<li test-id='205' class='gc and Pass' status='Pass'>
-					<h6 class="step-name" title="stepDefination_DSD_OMS.AdminGridsPage.GridConfigurationPageStep.userAgainEnablesColumnAvailabilityInAvailableGrid()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>And User again enables column availability in Available grid</h6>
-
-							<div class="node-step">USER IS IN AVAILABLE GRID CARD</div>
-							<div class="node-step">GRID SELECTED FOR DISABLING IN GRID TYPE DROP DOWN IS Order Entry</div>
-							<div class="node-step">ADMIN SIDE CHANGES SAVE POPUP HAS APPEARED</div>
-				</li>
-			</ul>
-		</li>
-	</ul>
-</div>
-<div class='scenario outline node' test-id='207' status='pass'>
-
-	<span class='duration right label'>00 00 52.178</span>
-	<div class="bdd-test">
-		<div class="scenario-name"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span> Scenario Outline: Test scenario for adding new grid</div>
-	</div>
-	
-		<div class='node-desc'><br><br><table class='markup-table table '><tr><td>Main menu</td><td>Sub menu</td><td>Grid type</td><td>Grid name</td><td>Grid option</td></tr><tr><td>Grids</td><td>Configuration</td><td>Order Entry</td><td>New</td><td>Add</td></tr></table></div>
-	
-		<div class='category-list'>
-				<span class='category label'>@AddGrid</span>
-		</div>
-	
-	<ul class='steps'>
-		<li test-id='208' class='node scenario Pass' status='Pass'>
-			<div class="step-name" title="()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Test scenario for adding new grid</div>
-
-				<div class='category-list'>
-						<span class='category label'>@AddGrid</span>
-				</div>
-
-			<ul class='gc steps'>
-				<li test-id='264' class='gc given Pass' status='Pass'>
-					<h6 class="step-name" title="stepDefination_DSD_OMS.AdminGridsPage.GridConfigurationPageStep.userEntersURLAndIsOnLoginPageAndEnteredCredentialsForAdminSettingForGrid()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Given User enters URL and is on login page and entered credentials for Admin setting for grid</h6>
-
-				</li>
-				<li test-id='265' class='gc when Pass' status='Pass'>
-					<h6 class="step-name" title="stepDefination_DSD_OMS.AdminGridsPage.GridConfigurationPageStep.userIsOnHomePageForAdminSettingForGrid()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>When User is on Home Page for Admin setting for grid</h6>
-
-				</li>
-				<li test-id='266' class='gc then Pass' status='Pass'>
-					<h6 class="step-name" title="stepDefination_DSD_OMS.AdminGridsPage.GridConfigurationPageStep.userClicksOnPermissionsByDropDownToSelectCustomerAccountGrid()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User Clicks on Permissions by drop down to select Customer Account# grid</h6>
-
-				</li>
-				<li test-id='267' class='gc given Pass' status='Pass'>
-					<h6 class="step-name" title="stepDefination_DSD_OMS.WebOrderingPage.RestrictedProductsPageStep.userIsOnHomePageForAdminSettingToSelectAdminOption()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Given User is on Home Page for Admin setting to select Admin option</h6>
-
-							<div class="node-step">ADMIN PAGE HAS BEEN FOUND</div>
-				</li>
-				<li test-id='268' class='gc then Pass' status='Pass'>
-					<h6 class="step-name" title="stepDefination_DSD_OMS.AdminGridsPage.GridConfigurationPageStep.userRefreshesPageClicksOnPermissionsByDropDownToSelectCustomerAccountGrid()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User refreshes page Clicks on Permissions by drop down to select Customer Account# grid</h6>
-
-							<div class="node-step">PERMISSION DROP DOWN HAS BEEN CLICKED, TO SELECT COMPANY</div>
-							<div class="node-step">COMPANY HAS BEEN SELECTED</div>
-				</li>
-				<li test-id='269' class='gc and Pass' status='Pass'>
-					<h6 class="step-name" title="stepDefination_DSD_OMS.AdminReport.OrderAdminPageStep.user_should_enter_menu_in_search_bar_and_select(java.lang.String,java.lang.String)"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>And User should enter menu "Grids" in search bar and select "Configuration"</h6>
-
-							<div class="node-step">IN ADMIN PAGE</div>
-				</li>
-				<li test-id='270' class='gc then Pass' status='Pass'>
-					<h6 class="step-name" title="stepDefination_DSD_OMS.AdminGridsPage.GridConfigurationPageStep.userShouldValidateThatItIsGridConfigurationPageThenClickOnGridTypeDropDown()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User should validate that it is Grid Configuration page, then click on Grid type Drop Down</h6>
-
-							<div class="node-step">GRID TYPE DROP DOWN HAS BEEN CLICKED</div>
-				</li>
-				<li test-id='271' class='gc and Pass' status='Pass'>
-					<h6 class="step-name" title="stepDefination_DSD_OMS.AdminGridsPage.GridConfigurationPageStep.userShouldSelectGridTypeFromTheDropDown(java.lang.String)"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>And User should select Grid type "Order Entry" from the drop down</h6>
-
-							<div class="node-step">GRID TYPE SELECTED IS Order Entry</div>
-							<div class="node-step">GRID TYPE SELECTED IS Order Entry</div>
-				</li>
-				<li test-id='272' class='gc and Pass' status='Pass'>
-					<h6 class="step-name" title="stepDefination_DSD_OMS.AdminGridsPage.GridConfigurationPageStep.userClicksOnGridOptionAndSelectAddOptionFromDropDown(java.lang.String)"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>And User clicks on Grid option"Add" and select add option from drop down</h6>
-
-							<div class="node-step">GRID OPTION DROPDOWN CLICKED</div>
-							<div class="node-step">SELECTED OPTION Add</div>
-				</li>
-				<li test-id='273' class='gc then Pass' status='Pass'>
-					<h6 class="step-name" title="stepDefination_DSD_OMS.AdminGridsPage.GridConfigurationPageStep.userEntersInGridNameInputBoxAndSavesIt(java.lang.String)"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User enters "New" in grid name input box and saves it</h6>
-
-							<div class="node-step">NEW GRID NAME SELECTED IS New</div>
-							<div class="node-step">ADMIN SIDE CHANGES SAVE POPUP HAS APPEARED</div>
-				</li>
-			</ul>
-		</li>
-	</ul>
-</div>
-<div class='scenario outline node' test-id='275' status='pass'>
-
-	<span class='duration right label'>00 00 54.118</span>
-	<div class="bdd-test">
-		<div class="scenario-name"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span> Scenario Outline: Test scneario for crating copy of the grid</div>
-	</div>
-	
-		<div class='node-desc'><br><br><table class='markup-table table '><tr><td>Main menu</td><td>Sub menu</td><td>Grid type</td><td>Grid name</td><td>Grid option</td></tr><tr><td>Grids</td><td>Configuration</td><td>Order Entry</td><td>New</td><td>Copy</td></tr></table></div>
-	
-		<div class='category-list'>
-				<span class='category label'>@CopyGrid</span>
-		</div>
-	
-	<ul class='steps'>
-		<li test-id='276' class='node scenario Pass' status='Pass'>
-			<div class="step-name" title="()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Test scneario for crating copy of the grid</div>
-
-				<div class='category-list'>
-						<span class='category label'>@CopyGrid</span>
-				</div>
-
-			<ul class='gc steps'>
-				<li test-id='332' class='gc given Pass' status='Pass'>
-					<h6 class="step-name" title="stepDefination_DSD_OMS.AdminGridsPage.GridConfigurationPageStep.userEntersURLAndIsOnLoginPageAndEnteredCredentialsForAdminSettingForGrid()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Given User enters URL and is on login page and entered credentials for Admin setting for grid</h6>
-
-				</li>
-				<li test-id='333' class='gc when Pass' status='Pass'>
-					<h6 class="step-name" title="stepDefination_DSD_OMS.AdminGridsPage.GridConfigurationPageStep.userIsOnHomePageForAdminSettingForGrid()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>When User is on Home Page for Admin setting for grid</h6>
-
-				</li>
-				<li test-id='334' class='gc then Pass' status='Pass'>
-					<h6 class="step-name" title="stepDefination_DSD_OMS.AdminGridsPage.GridConfigurationPageStep.userClicksOnPermissionsByDropDownToSelectCustomerAccountGrid()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User Clicks on Permissions by drop down to select Customer Account# grid</h6>
-
-				</li>
-				<li test-id='335' class='gc given Pass' status='Pass'>
-					<h6 class="step-name" title="stepDefination_DSD_OMS.WebOrderingPage.RestrictedProductsPageStep.userIsOnHomePageForAdminSettingToSelectAdminOption()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Given User is on Home Page for Admin setting to select Admin option</h6>
-
-							<div class="node-step">ADMIN PAGE HAS BEEN FOUND</div>
-				</li>
-				<li test-id='336' class='gc then Pass' status='Pass'>
-					<h6 class="step-name" title="stepDefination_DSD_OMS.AdminGridsPage.GridConfigurationPageStep.userRefreshesPageClicksOnPermissionsByDropDownToSelectCustomerAccountGrid()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User refreshes page Clicks on Permissions by drop down to select Customer Account# grid</h6>
-
-							<div class="node-step">PERMISSION DROP DOWN HAS BEEN CLICKED, TO SELECT COMPANY</div>
-							<div class="node-step">COMPANY HAS BEEN SELECTED</div>
-				</li>
-				<li test-id='337' class='gc and Pass' status='Pass'>
-					<h6 class="step-name" title="stepDefination_DSD_OMS.AdminReport.OrderAdminPageStep.user_should_enter_menu_in_search_bar_and_select(java.lang.String,java.lang.String)"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>And User should enter menu "Grids" in search bar and select "Configuration"</h6>
-
-							<div class="node-step">IN ADMIN PAGE</div>
-				</li>
-				<li test-id='338' class='gc then Pass' status='Pass'>
-					<h6 class="step-name" title="stepDefination_DSD_OMS.AdminGridsPage.GridConfigurationPageStep.userShouldValidateThatItIsGridConfigurationPageThenClickOnGridTypeDropDown()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User should validate that it is Grid Configuration page, then click on Grid type Drop Down</h6>
-
-							<div class="node-step">GRID TYPE DROP DOWN HAS BEEN CLICKED</div>
-				</li>
-				<li test-id='339' class='gc and Pass' status='Pass'>
-					<h6 class="step-name" title="stepDefination_DSD_OMS.AdminGridsPage.GridConfigurationPageStep.userShouldSelectGridTypeFromTheDropDown(java.lang.String)"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>And User should select Grid type "Order Entry" from the drop down</h6>
-
-							<div class="node-step">GRID TYPE SELECTED IS Order Entry</div>
-							<div class="node-step">GRID TYPE SELECTED IS Order Entry</div>
-				</li>
-				<li test-id='340' class='gc and Pass' status='Pass'>
-					<h6 class="step-name" title="stepDefination_DSD_OMS.AdminGridsPage.GridConfigurationPageStep.userShouldClickAndSelectFromGridsDropdown(java.lang.String)"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>And User should Click and select "New" from grids dropdown</h6>
-
-							<div class="node-step">GRID NAME SELECTED IS New</div>
-				</li>
-				<li test-id='341' class='gc and Pass' status='Pass'>
-					<h6 class="step-name" title="stepDefination_DSD_OMS.AdminGridsPage.GridConfigurationPageStep.userClicksOnGridOptionToCopyAndSelectsOptionFromDropDown(java.lang.String)"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>And User clicks on Grid option"Copy" to copy and selects option from drop down</h6>
-
-							<div class="node-step">GRID OPTION DROPDOWN CLICKED</div>
-							<div class="node-step">CLICKED ON COPY OPTION</div>
-							<div class="node-step">ADMIN SIDE CHANGES SAVE POPUP HAS APPEARED</div>
-				</li>
-			</ul>
-		</li>
-	</ul>
-</div>
-<div class='scenario outline node' test-id='343' status='pass'>
-
-	<span class='duration right label'>00 02 52.017</span>
-	<div class="bdd-test">
-		<div class="scenario-name"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span> Scenario Outline: Test scenario to set any grid as default(in Admin), and verify the same in client</div>
-	</div>
-	
-		<div class='node-desc'><br><br><table class='markup-table table '><tr><td>Main menu</td><td>Sub menu</td><td>Grid type</td><td>Grid name</td><td>Grid name1</td></tr><tr><td>Grids</td><td>Configuration</td><td>Order Entry</td><td>New</td><td>Main</td></tr></table></div>
-	
-		<div class='category-list'>
-				<span class='category label'>@DefaultGridInClient</span>
-		</div>
-	
-	<ul class='steps'>
-		<li test-id='344' class='node scenario Pass' status='Pass'>
-			<div class="step-name" title="()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Test scenario to set any grid as default(in Admin), and verify the same in client</div>
-
-				<div class='category-list'>
-						<span class='category label'>@DefaultGridInClient</span>
-				</div>
-
-			<ul class='gc steps'>
-				<li test-id='400' class='gc given Pass' status='Pass'>
-					<h6 class="step-name" title="stepDefination_DSD_OMS.AdminGridsPage.GridConfigurationPageStep.userEntersURLAndIsOnLoginPageAndEnteredCredentialsForAdminSettingForGrid()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Given User enters URL and is on login page and entered credentials for Admin setting for grid</h6>
-
-				</li>
-				<li test-id='401' class='gc when Pass' status='Pass'>
-					<h6 class="step-name" title="stepDefination_DSD_OMS.AdminGridsPage.GridConfigurationPageStep.userIsOnHomePageForAdminSettingForGrid()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>When User is on Home Page for Admin setting for grid</h6>
-
-				</li>
-				<li test-id='402' class='gc then Pass' status='Pass'>
-					<h6 class="step-name" title="stepDefination_DSD_OMS.AdminGridsPage.GridConfigurationPageStep.userClicksOnPermissionsByDropDownToSelectCustomerAccountGrid()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User Clicks on Permissions by drop down to select Customer Account# grid</h6>
-
-				</li>
-				<li test-id='403' class='gc given Pass' status='Pass'>
-					<h6 class="step-name" title="stepDefination_DSD_OMS.WebOrderingPage.RestrictedProductsPageStep.userIsOnHomePageForAdminSettingToSelectAdminOption()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Given User is on Home Page for Admin setting to select Admin option</h6>
-
-							<div class="node-step">ADMIN PAGE HAS BEEN FOUND</div>
-				</li>
-				<li test-id='404' class='gc then Pass' status='Pass'>
-					<h6 class="step-name" title="stepDefination_DSD_OMS.AdminGridsPage.GridConfigurationPageStep.userRefreshesPageClicksOnPermissionsByDropDownToSelectCustomerAccountGrid()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User refreshes page Clicks on Permissions by drop down to select Customer Account# grid</h6>
-
-							<div class="node-step">PERMISSION DROP DOWN HAS BEEN CLICKED, TO SELECT COMPANY</div>
-							<div class="node-step">COMPANY HAS BEEN SELECTED</div>
-				</li>
-				<li test-id='405' class='gc and Pass' status='Pass'>
-					<h6 class="step-name" title="stepDefination_DSD_OMS.AdminReport.OrderAdminPageStep.user_should_enter_menu_in_search_bar_and_select(java.lang.String,java.lang.String)"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>And User should enter menu "Grids" in search bar and select "Configuration"</h6>
-
-							<div class="node-step">IN ADMIN PAGE</div>
-				</li>
-				<li test-id='406' class='gc then Pass' status='Pass'>
-					<h6 class="step-name" title="stepDefination_DSD_OMS.AdminGridsPage.GridConfigurationPageStep.userShouldValidateThatItIsGridConfigurationPageThenClickOnGridTypeDropDown()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User should validate that it is Grid Configuration page, then click on Grid type Drop Down</h6>
-
-							<div class="node-step">GRID TYPE DROP DOWN HAS BEEN CLICKED</div>
-				</li>
-				<li test-id='407' class='gc and Pass' status='Pass'>
-					<h6 class="step-name" title="stepDefination_DSD_OMS.AdminGridsPage.GridConfigurationPageStep.userShouldSelectGridTypeFromTheDropDown(java.lang.String)"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>And User should select Grid type "Order Entry" from the drop down</h6>
-
-							<div class="node-step">GRID TYPE SELECTED IS Order Entry</div>
-							<div class="node-step">GRID TYPE SELECTED IS Order Entry</div>
-				</li>
-				<li test-id='408' class='gc and Pass' status='Pass'>
-					<h6 class="step-name" title="stepDefination_DSD_OMS.AdminGridsPage.GridConfigurationPageStep.userShouldClickAndSelectFromGridsDropdown(java.lang.String)"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>And User should Click and select "New" from grids dropdown</h6>
-
-							<div class="node-step">GRID NAME SELECTED IS New</div>
-				</li>
-				<li test-id='409' class='gc then Pass' status='Pass'>
-					<h6 class="step-name" title="stepDefination_DSD_OMS.AdminGridsPage.GridConfigurationPageStep.userClicksOnDefaultGridToggleButton()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User clicks on Default grid toggle button</h6>
-
-							<div class="node-step">GRID HAS BEEN SET AS DEFAULT</div>
-							<div class="node-step">ADMIN SIDE CHANGES SAVE POPUP HAS APPEARED</div>
-				</li>
-				<li test-id='410' class='gc then Pass' status='Pass'>
-					<h6 class="step-name" title="stepDefination_DSD_OMS.AdminGridsPage.GridConfigurationPageStep.userLogoutFromAdminPageAndLogInWithClientCredentials()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User logout from Admin page and log in with client credentials</h6>
-
-							<div class="node-step">SIGNIN BUTTON CLICKED</div>
-				</li>
-				<li test-id='411' class='gc then Pass' status='Pass'>
-					<h6 class="step-name" title="stepDefination_DSD_OMS.AdminGridsPage.GridConfigurationPageStep.userNavigatesToOrderEntryPageAndInNewOrderEntryPageFindsSameGridAsDefaultGrid(java.lang.String,io.cucumber.datatable.DataTable)"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User navigates to Order entry page and in new order entry page finds same grid as default grid "New"</h6>
-
-							<div class="node-step"><table class='markup-table table '><tr><td>PO123</td></tr></table></div>
-							<div class="node-step">USER ICON FOUND</div>
-							<div class="node-step">IN ADMIN PAGE</div>
-							<div class="node-step">https://ignitionqadsd.afsi.com/clientportal/apps/cpOrderEntry.html?p=Km530c8XSlYiXYABAQY6Y%2fH4h8U05NAvkuXBE2RCxgnlbt%2btBuFlqw%3d%3d</div>
-							<div class="node-step">NAVIGATED TO ORDER ENTRY PAGE</div>
-							<div class="node-step">CUSTOMER ACCOUNT# SELECTED IS 40035981-0-2958</div>
-							<div class="node-step">NAVIGATED TO ORDER ENTRY PAGE</div>
-							<div class="node-step">ORDER GUIDE POPUP HAS BEEN FOUND</div>
-							<div class="node-step">NEW ORDER ENTRY PAGE HAS BEEN FOUND</div>
-							<div class="node-step">PO# ENTERED IS PO123</div>
-							<div class="node-step">GRID SELECTED IN NEW ORDER New grid</div>
-							<div class="node-step">SIGNIN BUTTON CLICKED</div>
-				</li>
-				<li test-id='412' class='gc then Pass' status='Pass'>
-					<h6 class="step-name" title="stepDefination_DSD_OMS.AdminGridsPage.GridConfigurationPageStep.userClicksOnPermissionsByDropDownToSelectCustomerAccountForGrids()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User Clicks on Permissions by drop down to select Customer Account# for grids</h6>
-
-							<div class="node-step">PERMISSION DROP DOWN HAS BEEN CLICKED, TO SELECT COMPANY</div>
-							<div class="node-step">COMPANY HAS BEEN SELECTED</div>
-				</li>
-				<li test-id='413' class='gc and Pass' status='Pass'>
-					<h6 class="step-name" title="stepDefination_DSD_OMS.AdminGridsPage.GridConfigurationPageStep.userShouldNavigateBackToViaSearchBarAndSelect(java.lang.String,java.lang.String)"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>And User should navigate back to "Grids" via search bar and select "Configuration"</h6>
-
-							<div class="node-step">IN ADMIN PAGE</div>
-				</li>
-				<li test-id='414' class='gc then Pass' status='Pass'>
-					<h6 class="step-name" title="stepDefination_DSD_OMS.AdminGridsPage.GridConfigurationPageStep.userShouldValidateThatItIsGridConfigurationPageThenClickOnGridTypeDropDown()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User should validate that it is Grid Configuration page, then click on Grid type Drop Down</h6>
-
-							<div class="node-step">GRID TYPE DROP DOWN HAS BEEN CLICKED</div>
-				</li>
-				<li test-id='415' class='gc and Pass' status='Pass'>
-					<h6 class="step-name" title="stepDefination_DSD_OMS.AdminGridsPage.GridConfigurationPageStep.userShouldSelectGridTypeFromTheDropDown(java.lang.String)"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>And User should select Grid type "Order Entry" from the drop down</h6>
-
-							<div class="node-step">GRID TYPE SELECTED IS Order Entry</div>
-							<div class="node-step">GRID TYPE SELECTED IS Order Entry</div>
-				</li>
-				<li test-id='416' class='gc then Pass' status='Pass'>
-					<h6 class="step-name" title="stepDefination_DSD_OMS.AdminGridsPage.GridConfigurationPageStep.userShouldResetDefaultGridToggleButton(java.lang.String)"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User should reset Default grid toggle button "Main"</h6>
-
-							<div class="node-step">CLICKED ON COPY OPTION</div>
-							<div class="node-step">GRID HAS BEEN SET AS DEFAULT</div>
-							<div class="node-step">ADMIN SIDE CHANGES SAVE POPUP HAS APPEARED</div>
-				</li>
-			</ul>
-		</li>
-	</ul>
-</div>
-<div class='scenario outline node' test-id='418' status='pass'>
-
-	<span class='duration right label'>00 01 05.966</span>
-	<div class="bdd-test">
-		<div class="scenario-name"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span> Scenario Outline: Test scenario for Deleting grid</div>
-	</div>
-	
-		<div class='node-desc'><br><br><table class='markup-table table '><tr><td>Main menu</td><td>Sub menu</td><td>Grid type</td><td>Grid name</td><td>Grid name1</td><td>Grid option</td></tr><tr><td>Grids</td><td>Configuration</td><td>Order Entry</td><td>New</td><td>New - Copy</td><td>Delete</td></tr></table></div>
-	
-		<div class='category-list'>
-				<span class='category label'>@DeleteGrid</span>
-		</div>
-	
-	<ul class='steps'>
-		<li test-id='419' class='node scenario Pass' status='Pass'>
-			<div class="step-name" title="()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Test scenario for Deleting grid</div>
-
-				<div class='category-list'>
-						<span class='category label'>@DeleteGrid</span>
-				</div>
-
-			<ul class='gc steps'>
-				<li test-id='475' class='gc given Pass' status='Pass'>
-					<h6 class="step-name" title="stepDefination_DSD_OMS.AdminGridsPage.GridConfigurationPageStep.userEntersURLAndIsOnLoginPageAndEnteredCredentialsForAdminSettingForGrid()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Given User enters URL and is on login page and entered credentials for Admin setting for grid</h6>
-
-				</li>
-				<li test-id='476' class='gc when Pass' status='Pass'>
-					<h6 class="step-name" title="stepDefination_DSD_OMS.AdminGridsPage.GridConfigurationPageStep.userIsOnHomePageForAdminSettingForGrid()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>When User is on Home Page for Admin setting for grid</h6>
-
-				</li>
-				<li test-id='477' class='gc then Pass' status='Pass'>
-					<h6 class="step-name" title="stepDefination_DSD_OMS.AdminGridsPage.GridConfigurationPageStep.userClicksOnPermissionsByDropDownToSelectCustomerAccountGrid()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User Clicks on Permissions by drop down to select Customer Account# grid</h6>
-
-				</li>
-				<li test-id='478' class='gc given Pass' status='Pass'>
-					<h6 class="step-name" title="stepDefination_DSD_OMS.WebOrderingPage.RestrictedProductsPageStep.userIsOnHomePageForAdminSettingToSelectAdminOption()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Given User is on Home Page for Admin setting to select Admin option</h6>
-
-							<div class="node-step">ADMIN PAGE HAS BEEN FOUND</div>
-				</li>
-				<li test-id='479' class='gc then Pass' status='Pass'>
-					<h6 class="step-name" title="stepDefination_DSD_OMS.AdminGridsPage.GridConfigurationPageStep.userRefreshesPageClicksOnPermissionsByDropDownToSelectCustomerAccountGrid()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User refreshes page Clicks on Permissions by drop down to select Customer Account# grid</h6>
-
-							<div class="node-step">PERMISSION DROP DOWN HAS BEEN CLICKED, TO SELECT COMPANY</div>
-							<div class="node-step">COMPANY HAS BEEN SELECTED</div>
-				</li>
-				<li test-id='480' class='gc and Pass' status='Pass'>
-					<h6 class="step-name" title="stepDefination_DSD_OMS.AdminReport.OrderAdminPageStep.user_should_enter_menu_in_search_bar_and_select(java.lang.String,java.lang.String)"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>And User should enter menu "Grids" in search bar and select "Configuration"</h6>
-
-							<div class="node-step">IN ADMIN PAGE</div>
-				</li>
-				<li test-id='481' class='gc then Pass' status='Pass'>
-					<h6 class="step-name" title="stepDefination_DSD_OMS.AdminGridsPage.GridConfigurationPageStep.userShouldValidateThatItIsGridConfigurationPageThenClickOnGridTypeDropDown()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User should validate that it is Grid Configuration page, then click on Grid type Drop Down</h6>
-
-							<div class="node-step">GRID TYPE DROP DOWN HAS BEEN CLICKED</div>
-				</li>
-				<li test-id='482' class='gc and Pass' status='Pass'>
-					<h6 class="step-name" title="stepDefination_DSD_OMS.AdminGridsPage.GridConfigurationPageStep.userShouldSelectGridTypeFromTheDropDown(java.lang.String)"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>And User should select Grid type "Order Entry" from the drop down</h6>
-
-							<div class="node-step">GRID TYPE SELECTED IS Order Entry</div>
-							<div class="node-step">GRID TYPE SELECTED IS Order Entry</div>
-				</li>
-				<li test-id='483' class='gc and Pass' status='Pass'>
-					<h6 class="step-name" title="stepDefination_DSD_OMS.AdminGridsPage.GridConfigurationPageStep.userShouldClickAndSelectFromGridsDropdown(java.lang.String)"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>And User should Click and select "New" from grids dropdown</h6>
-
-							<div class="node-step">GRID NAME SELECTED IS New</div>
-				</li>
-				<li test-id='484' class='gc and Pass' status='Pass'>
-					<h6 class="step-name" title="stepDefination_DSD_OMS.AdminGridsPage.GridConfigurationPageStep.userClicksOnGridOptionToDeleteAndSelectsOptionFromDropDown(java.lang.String)"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>And User clicks on Grid option"Delete" to delete and selects option from drop down</h6>
-
-							<div class="node-step">GRID OPTION DROPDOWN CLICKED</div>
-							<div class="node-step">SELECTED OPTION Delete</div>
-							<div class="node-step">ADMIN SIDE CHANGES SAVE POPUP HAS APPEARED</div>
-				</li>
-				<li test-id='485' class='gc and Pass' status='Pass'>
-					<h6 class="step-name" title="stepDefination_DSD_OMS.AdminGridsPage.GridConfigurationPageStep.userShouldSelectGridTypeFromTheDropDown(java.lang.String)"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>And User should select Grid type "Order Entry" from the drop down</h6>
-
-				</li>
-				<li test-id='486' class='gc and Pass' status='Pass'>
-					<h6 class="step-name" title="stepDefination_DSD_OMS.AdminGridsPage.GridConfigurationPageStep.userShouldClickAndSelectFromGridsDropdown(java.lang.String)"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>And User should Click and select "New - Copy" from grids dropdown</h6>
-
-							<div class="node-step">GRID NAME SELECTED IS New - Copy</div>
-				</li>
-				<li test-id='487' class='gc and Pass' status='Pass'>
-					<h6 class="step-name" title="stepDefination_DSD_OMS.AdminGridsPage.GridConfigurationPageStep.userClicksOnGridOptionToDeleteAndSelectsOptionFromDropDown(java.lang.String)"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>And User clicks on Grid option"Delete" to delete and selects option from drop down</h6>
-
-							<div class="node-step">GRID OPTION DROPDOWN CLICKED</div>
-							<div class="node-step">SELECTED OPTION Delete</div>
-							<div class="node-step">ADMIN SIDE CHANGES SAVE POPUP HAS APPEARED</div>
-				</li>
-			</ul>
-		</li>
-	</ul>
-</div>
-<div class='scenario node' test-id='489' status='pass'>
-
-	<span class='duration right label'>00 00 11.854</span>
+	<span class='duration right label'>00 00 11.936</span>
 	<div class="bdd-test">
 		<div class="scenario-name"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span> Scenario: Loging out from the application</div>
 	</div>
 	
 	
 		<div class='category-list'>
-				<span class='category label'>@LogoutGrid</span>
+				<span class='category label'>@LogoutSO</span>
 		</div>
 	
 	<ul class='steps'>
-		<li test-id='545' class='node given Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.AdminGridsPage.GridConfigurationPageStep.userEntersURLAndIsOnLoginPageAndEnteredCredentialsForAdminSettingForGrid())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Given User enters URL and is on login page and entered credentials for Admin setting for grid</div>
+		<li test-id='1,267' class='node given Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.StandingOrderPage.StandingOrderPageSteps.user_enters_url_and_is_on_login_page_and_entered_credentialsForSO())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Given User enters URL and is on login page and entered credentials for SO</div>
 
 
 		</li>
-		<li test-id='546' class='node when Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.AdminGridsPage.GridConfigurationPageStep.userIsOnHomePageForAdminSettingForGrid())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>When User is on Home Page for Admin setting for grid</div>
+		<li test-id='1,268' class='node when Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.StandingOrderPage.StandingOrderPageSteps.user_is_on_home_pageForSO())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>When User is on Home Page for SO</div>
 
 
 		</li>
-		<li test-id='547' class='node then Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.AdminGridsPage.GridConfigurationPageStep.userClicksOnPermissionsByDropDownToSelectCustomerAccountGrid())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User Clicks on Permissions by drop down to select Customer Account# grid</div>
+		<li test-id='1,269' class='node then Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.StandingOrderPage.StandingOrderPageSteps.user_navigate_to_client_sideForSO())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User navigate to Client side for SO</div>
 
 
 		</li>
-		<li test-id='548' class='node and Pass' status='Pass'>
+		<li test-id='1,270' class='node then Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.StandingOrderPage.StandingOrderPageSteps.user_should_select_order_entry_tabForSO())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User should select Order Entry tab for SO</div>
+
+
+		</li>
+		<li test-id='1,271' class='node then Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.StandingOrderPage.StandingOrderPageSteps.user_selects_accountForSO())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User selects Account# for SO</div>
+
+
+		</li>
+		<li test-id='1,272' class='node and Pass' status='Pass'>
 			<div class="step-name" title="(stepDefination_DSD_OMS.LoginPageStep.refreshThePageIfAnyDialogBoxIsDisplayed())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>And Refresh the page if any dialog box is displayed</div>
 
 
 		</li>
-		<li test-id='549' class='node then Pass' status='Pass'>
+		<li test-id='1,273' class='node then Pass' status='Pass'>
 			<div class="step-name" title="(stepDefination_DSD_OMS.LoginPageStep.clickOnUserIconOnOrderEntryPage())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then Click on user Icon on Order Entry page</div>
 
 
 		</li>
-		<li test-id='550' class='node and Pass' status='Pass'>
+		<li test-id='1,274' class='node and Pass' status='Pass'>
 			<div class="step-name" title="(stepDefination_DSD_OMS.LoginPageStep.clickOnLogoutOnOrderEntryPage())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>And Click on Logout on Order Entry page</div>
 
 
@@ -957,159 +1733,7 @@
 			<ul id='category-collection' class='category-collection'>
 				<li class='category displayed active'>
 					<div class='category-heading'>
-						<span class='category-name'>@CopyGrid</span>
-						<span class='category-status right'>
-						<span class='label pass'>2</span>
-						</span>
-					</div>
-					<div class='category-content hide'>
-						<div class='category-status-counts'>
-							<span status="pass" class='label green accent-4 white-text'>Passed: 2</span>
-							
-							
-						</div>
-						<div class='category-tests'>
-							<table class='bordered table-results'>
-								<thead>
-									<tr>
-										<th>Timestamp</th>
-										<th>TestName</th>
-										<th>Status</th>
-									</tr>
-								</thead>
-								<tbody>
-									<tr>
-										<td>Oct 26, 2023 10:56:45 pm</td>
-										<td class='linked' test-id='275'>Test scneario for crating copy of the grid</td>
-										<td><span class='test-status Pass'>Pass</span></td>
-									</tr>
-									<tr>
-										<td>Oct 26, 2023 10:56:45 pm</td>
-										<td class='linked' test-id='276'>Test scneario for crating copy of the grid</td>
-										<td><span class='test-status Pass'>Pass</span></td>
-									</tr>
-								</tbody>
-							</table>
-						</div>
-					</div>
-				</li>
-				<li class='category displayed active'>
-					<div class='category-heading'>
-						<span class='category-name'>@DeleteGrid</span>
-						<span class='category-status right'>
-						<span class='label pass'>2</span>
-						</span>
-					</div>
-					<div class='category-content hide'>
-						<div class='category-status-counts'>
-							<span status="pass" class='label green accent-4 white-text'>Passed: 2</span>
-							
-							
-						</div>
-						<div class='category-tests'>
-							<table class='bordered table-results'>
-								<thead>
-									<tr>
-										<th>Timestamp</th>
-										<th>TestName</th>
-										<th>Status</th>
-									</tr>
-								</thead>
-								<tbody>
-									<tr>
-										<td>Oct 26, 2023 11:00:32 pm</td>
-										<td class='linked' test-id='418'>Test scenario for Deleting grid</td>
-										<td><span class='test-status Pass'>Pass</span></td>
-									</tr>
-									<tr>
-										<td>Oct 26, 2023 11:00:32 pm</td>
-										<td class='linked' test-id='419'>Test scenario for Deleting grid</td>
-										<td><span class='test-status Pass'>Pass</span></td>
-									</tr>
-								</tbody>
-							</table>
-						</div>
-					</div>
-				</li>
-				<li class='category displayed active'>
-					<div class='category-heading'>
-						<span class='category-name'>@AvailableGrid</span>
-						<span class='category-status right'>
-						<span class='label pass'>2</span>
-						</span>
-					</div>
-					<div class='category-content hide'>
-						<div class='category-status-counts'>
-							<span status="pass" class='label green accent-4 white-text'>Passed: 2</span>
-							
-							
-						</div>
-						<div class='category-tests'>
-							<table class='bordered table-results'>
-								<thead>
-									<tr>
-										<th>Timestamp</th>
-										<th>TestName</th>
-										<th>Status</th>
-									</tr>
-								</thead>
-								<tbody>
-									<tr>
-										<td>Oct 26, 2023 10:52:54 pm</td>
-										<td class='linked' test-id='2'>Test scenario to verifing avaiablity of grid from Available grid to Grid configuration</td>
-										<td><span class='test-status Pass'>Pass</span></td>
-									</tr>
-									<tr>
-										<td>Oct 26, 2023 10:52:54 pm</td>
-										<td class='linked' test-id='3'>Test scenario to verifing avaiablity of grid from Available grid to Grid configuration</td>
-										<td><span class='test-status Pass'>Pass</span></td>
-									</tr>
-								</tbody>
-							</table>
-						</div>
-					</div>
-				</li>
-				<li class='category displayed active'>
-					<div class='category-heading'>
-						<span class='category-name'>@DefaultGridInClient</span>
-						<span class='category-status right'>
-						<span class='label pass'>2</span>
-						</span>
-					</div>
-					<div class='category-content hide'>
-						<div class='category-status-counts'>
-							<span status="pass" class='label green accent-4 white-text'>Passed: 2</span>
-							
-							
-						</div>
-						<div class='category-tests'>
-							<table class='bordered table-results'>
-								<thead>
-									<tr>
-										<th>Timestamp</th>
-										<th>TestName</th>
-										<th>Status</th>
-									</tr>
-								</thead>
-								<tbody>
-									<tr>
-										<td>Oct 26, 2023 10:57:40 pm</td>
-										<td class='linked' test-id='343'>Test scenario to set any grid as default(in Admin), and verify the same in client</td>
-										<td><span class='test-status Pass'>Pass</span></td>
-									</tr>
-									<tr>
-										<td>Oct 26, 2023 10:57:40 pm</td>
-										<td class='linked' test-id='344'>Test scenario to set any grid as default(in Admin), and verify the same in client</td>
-										<td><span class='test-status Pass'>Pass</span></td>
-									</tr>
-								</tbody>
-							</table>
-						</div>
-					</div>
-				</li>
-				<li class='category displayed active'>
-					<div class='category-heading'>
-						<span class='category-name'>@LogoutGrid</span>
+						<span class='category-name'>@DeleteProductFromStandingOrder</span>
 						<span class='category-status right'>
 						<span class='label pass'>1</span>
 						</span>
@@ -1131,8 +1755,8 @@
 								</thead>
 								<tbody>
 									<tr>
-										<td>Oct 26, 2023 11:01:38 pm</td>
-										<td class='linked' test-id='489'>Loging out from the application</td>
+										<td>Nov 2, 2023 07:20:59 pm</td>
+										<td class='linked' test-id='135'>Test scenario for Deleting product from standing order</td>
 										<td><span class='test-status Pass'>Pass</span></td>
 									</tr>
 								</tbody>
@@ -1142,14 +1766,14 @@
 				</li>
 				<li class='category displayed active'>
 					<div class='category-heading'>
-						<span class='category-name'>@CheckAvailabilityOfGrid</span>
+						<span class='category-name'>@RemoveSkipSpecificDay</span>
 						<span class='category-status right'>
-						<span class='label pass'>2</span>
+						<span class='label pass'>1</span>
 						</span>
 					</div>
 					<div class='category-content hide'>
 						<div class='category-status-counts'>
-							<span status="pass" class='label green accent-4 white-text'>Passed: 2</span>
+							<span status="pass" class='label green accent-4 white-text'>Passed: 1</span>
 							
 							
 						</div>
@@ -1164,13 +1788,8 @@
 								</thead>
 								<tbody>
 									<tr>
-										<td>Oct 26, 2023 10:53:35 pm</td>
-										<td class='linked' test-id='67'>Test scenario for verifying availablity of same grid under Configuration tab and Available grids tab</td>
-										<td><span class='test-status Pass'>Pass</span></td>
-									</tr>
-									<tr>
-										<td>Oct 26, 2023 10:53:35 pm</td>
-										<td class='linked' test-id='68'>Test scenario for verifying availablity of same grid under Configuration tab and Available grids tab</td>
+										<td>Nov 2, 2023 07:21:44 pm</td>
+										<td class='linked' test-id='330'>Test scenario for remove skipping specific date in standing order</td>
 										<td><span class='test-status Pass'>Pass</span></td>
 									</tr>
 								</tbody>
@@ -1180,14 +1799,14 @@
 				</li>
 				<li class='category displayed active'>
 					<div class='category-heading'>
-						<span class='category-name'>@CheckAvailablityOfGridheader</span>
+						<span class='category-name'>@StandingOrderCatalogCreate</span>
 						<span class='category-status right'>
-						<span class='label pass'>2</span>
+						<span class='label pass'>1</span>
 						</span>
 					</div>
 					<div class='category-content hide'>
 						<div class='category-status-counts'>
-							<span status="pass" class='label green accent-4 white-text'>Passed: 2</span>
+							<span status="pass" class='label green accent-4 white-text'>Passed: 1</span>
 							
 							
 						</div>
@@ -1202,13 +1821,8 @@
 								</thead>
 								<tbody>
 									<tr>
-										<td>Oct 26, 2023 10:54:41 pm</td>
-										<td class='linked' test-id='137'>Test scenario for disable one of the grid column and verifying same in Grid Configuration</td>
-										<td><span class='test-status Pass'>Pass</span></td>
-									</tr>
-									<tr>
-										<td>Oct 26, 2023 10:54:41 pm</td>
-										<td class='linked' test-id='138'>Test scenario for disable one of the grid column and verifying same in Grid Configuration</td>
+										<td>Nov 2, 2023 07:18:28 pm</td>
+										<td class='linked' test-id='2'>Test scenario for creating standing order, using catalog</td>
 										<td><span class='test-status Pass'>Pass</span></td>
 									</tr>
 								</tbody>
@@ -1218,14 +1832,14 @@
 				</li>
 				<li class='category displayed active'>
 					<div class='category-heading'>
-						<span class='category-name'>@AddGrid</span>
+						<span class='category-name'>@StandingOrderRegisterExcel</span>
 						<span class='category-status right'>
-						<span class='label pass'>2</span>
+						<span class='label pass'>1</span>
 						</span>
 					</div>
 					<div class='category-content hide'>
 						<div class='category-status-counts'>
-							<span status="pass" class='label green accent-4 white-text'>Passed: 2</span>
+							<span status="pass" class='label green accent-4 white-text'>Passed: 1</span>
 							
 							
 						</div>
@@ -1240,13 +1854,503 @@
 								</thead>
 								<tbody>
 									<tr>
-										<td>Oct 26, 2023 10:55:53 pm</td>
-										<td class='linked' test-id='207'>Test scenario for adding new grid</td>
+										<td>Nov 2, 2023 07:26:18 pm</td>
+										<td class='linked' test-id='813'>Test scenario for generating Excel sheet for standing order registeration</td>
 										<td><span class='test-status Pass'>Pass</span></td>
 									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</li>
+				<li class='category displayed active'>
+					<div class='category-heading'>
+						<span class='category-name'>@VerifyingDisableSelectButton</span>
+						<span class='category-status right'>
+						<span class='label pass'>1</span>
+						</span>
+					</div>
+					<div class='category-content hide'>
+						<div class='category-status-counts'>
+							<span status="pass" class='label green accent-4 white-text'>Passed: 1</span>
+							
+							
+						</div>
+						<div class='category-tests'>
+							<table class='bordered table-results'>
+								<thead>
 									<tr>
-										<td>Oct 26, 2023 10:55:53 pm</td>
-										<td class='linked' test-id='208'>Test scenario for adding new grid</td>
+										<th>Timestamp</th>
+										<th>TestName</th>
+										<th>Status</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>Nov 2, 2023 07:20:42 pm</td>
+										<td class='linked' test-id='70'>Test scenario for verifying whether select button is disabled or not in catalog popup</td>
+										<td><span class='test-status Pass'>Pass</span></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</li>
+				<li class='category displayed active'>
+					<div class='category-heading'>
+						<span class='category-name'>@CopyStandingOrder</span>
+						<span class='category-status right'>
+						<span class='label pass'>1</span>
+						</span>
+					</div>
+					<div class='category-content hide'>
+						<div class='category-status-counts'>
+							<span status="pass" class='label green accent-4 white-text'>Passed: 1</span>
+							
+							
+						</div>
+						<div class='category-tests'>
+							<table class='bordered table-results'>
+								<thead>
+									<tr>
+										<th>Timestamp</th>
+										<th>TestName</th>
+										<th>Status</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>Nov 2, 2023 07:25:37 pm</td>
+										<td class='linked' test-id='679'>Test scenario for copying Standing order</td>
+										<td><span class='test-status Pass'>Pass</span></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</li>
+				<li class='category displayed active'>
+					<div class='category-heading'>
+						<span class='category-name'>@StandingOrderRegisterCancel</span>
+						<span class='category-status right'>
+						<span class='label pass'>1</span>
+						</span>
+					</div>
+					<div class='category-content hide'>
+						<div class='category-status-counts'>
+							<span status="pass" class='label green accent-4 white-text'>Passed: 1</span>
+							
+							
+						</div>
+						<div class='category-tests'>
+							<table class='bordered table-results'>
+								<thead>
+									<tr>
+										<th>Timestamp</th>
+										<th>TestName</th>
+										<th>Status</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>Nov 2, 2023 07:43:19 pm</td>
+										<td class='linked' test-id='945'>Test scenario for generating Excel sheet for standing order registeration cancel option</td>
+										<td><span class='test-status Pass'>Pass</span></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</li>
+				<li class='category displayed active'>
+					<div class='category-heading'>
+						<span class='category-name'>@OverlappingDates</span>
+						<span class='category-status right'>
+						<span class='label pass'>1</span>
+						</span>
+					</div>
+					<div class='category-content hide'>
+						<div class='category-status-counts'>
+							<span status="pass" class='label green accent-4 white-text'>Passed: 1</span>
+							
+							
+						</div>
+						<div class='category-tests'>
+							<table class='bordered table-results'>
+								<thead>
+									<tr>
+										<th>Timestamp</th>
+										<th>TestName</th>
+										<th>Status</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>Nov 2, 2023 07:24:47 pm</td>
+										<td class='linked' test-id='605'>Test scenario for creating Standing orders with overlapped dates</td>
+										<td><span class='test-status Pass'>Pass</span></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</li>
+				<li class='category displayed active'>
+					<div class='category-heading'>
+						<span class='category-name'>@LogoutSO</span>
+						<span class='category-status right'>
+						<span class='label pass'>1</span>
+						</span>
+					</div>
+					<div class='category-content hide'>
+						<div class='category-status-counts'>
+							<span status="pass" class='label green accent-4 white-text'>Passed: 1</span>
+							
+							
+						</div>
+						<div class='category-tests'>
+							<table class='bordered table-results'>
+								<thead>
+									<tr>
+										<th>Timestamp</th>
+										<th>TestName</th>
+										<th>Status</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>Nov 2, 2023 08:18:10 pm</td>
+										<td class='linked' test-id='1,211'>Loging out from the application</td>
+										<td><span class='test-status Pass'>Pass</span></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</li>
+				<li class='category displayed active'>
+					<div class='category-heading'>
+						<span class='category-name'>@MultipleStandingOrder</span>
+						<span class='category-status right'>
+						<span class='label pass'>1</span>
+						</span>
+					</div>
+					<div class='category-content hide'>
+						<div class='category-status-counts'>
+							<span status="pass" class='label green accent-4 white-text'>Passed: 1</span>
+							
+							
+						</div>
+						<div class='category-tests'>
+							<table class='bordered table-results'>
+								<thead>
+									<tr>
+										<th>Timestamp</th>
+										<th>TestName</th>
+										<th>Status</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>Nov 2, 2023 07:22:23 pm</td>
+										<td class='linked' test-id='461'>Test scenario for creating multiple standing orders</td>
+										<td><span class='test-status Pass'>Pass</span></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</li>
+				<li class='category displayed active'>
+					<div class='category-heading'>
+						<span class='category-name'>@StandingOrderRegisterPdf</span>
+						<span class='category-status right'>
+						<span class='label pass'>1</span>
+						</span>
+					</div>
+					<div class='category-content hide'>
+						<div class='category-status-counts'>
+							<span status="pass" class='label green accent-4 white-text'>Passed: 1</span>
+							
+							
+						</div>
+						<div class='category-tests'>
+							<table class='bordered table-results'>
+								<thead>
+									<tr>
+										<th>Timestamp</th>
+										<th>TestName</th>
+										<th>Status</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>Nov 2, 2023 07:26:32 pm</td>
+										<td class='linked' test-id='879'>Test scenario for generating Excel sheet for standing order registeration</td>
+										<td><span class='test-status Pass'>Pass</span></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</li>
+				<li class='category displayed active'>
+					<div class='category-heading'>
+						<span class='category-name'>@VerifySkipDateSetInSOWithOE</span>
+						<span class='category-status right'>
+						<span class='label pass'>1</span>
+						</span>
+					</div>
+					<div class='category-content hide'>
+						<div class='category-status-counts'>
+							<span status="pass" class='label green accent-4 white-text'>Passed: 1</span>
+							
+							
+						</div>
+						<div class='category-tests'>
+							<table class='bordered table-results'>
+								<thead>
+									<tr>
+										<th>Timestamp</th>
+										<th>TestName</th>
+										<th>Status</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>Nov 2, 2023 07:21:21 pm</td>
+										<td class='linked' test-id='264'>Test scenario for verifying skip in SO with skip in OE page</td>
+										<td><span class='test-status Pass'>Pass</span></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</li>
+				<li class='category displayed active'>
+					<div class='category-heading'>
+						<span class='category-name'>@DeleteStandingOrder</span>
+						<span class='category-status right'>
+						<span class='label pass'>1</span>
+						</span>
+					</div>
+					<div class='category-content hide'>
+						<div class='category-status-counts'>
+							<span status="pass" class='label green accent-4 white-text'>Passed: 1</span>
+							
+							
+						</div>
+						<div class='category-tests'>
+							<table class='bordered table-results'>
+								<thead>
+									<tr>
+										<th>Timestamp</th>
+										<th>TestName</th>
+										<th>Status</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>Nov 2, 2023 08:00:23 pm</td>
+										<td class='linked' test-id='1,077'>Test scenario for deleting all the standing orders which are active and pending</td>
+										<td><span class='test-status Pass'>Pass</span></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</li>
+				<li class='category displayed active'>
+					<div class='category-heading'>
+						<span class='category-name'>@SkipSpecificDay</span>
+						<span class='category-status right'>
+						<span class='label pass'>1</span>
+						</span>
+					</div>
+					<div class='category-content hide'>
+						<div class='category-status-counts'>
+							<span status="pass" class='label green accent-4 white-text'>Passed: 1</span>
+							
+							
+						</div>
+						<div class='category-tests'>
+							<table class='bordered table-results'>
+								<thead>
+									<tr>
+										<th>Timestamp</th>
+										<th>TestName</th>
+										<th>Status</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>Nov 2, 2023 07:21:09 pm</td>
+										<td class='linked' test-id='200'>Test scenario for skipping specific date in standing order</td>
+										<td><span class='test-status Pass'>Pass</span></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</li>
+				<li class='category displayed active'>
+					<div class='category-heading'>
+						<span class='category-name'>@GenerateStandingOrder</span>
+						<span class='category-status right'>
+						<span class='label pass'>1</span>
+						</span>
+					</div>
+					<div class='category-content hide'>
+						<div class='category-status-counts'>
+							<span status="pass" class='label green accent-4 white-text'>Passed: 1</span>
+							
+							
+						</div>
+						<div class='category-tests'>
+							<table class='bordered table-results'>
+								<thead>
+									<tr>
+										<th>Timestamp</th>
+										<th>TestName</th>
+										<th>Status</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>Nov 2, 2023 08:00:06 pm</td>
+										<td class='linked' test-id='1,011'>Test scenario for generating standing order</td>
+										<td><span class='test-status Pass'>Pass</span></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</li>
+				<li class='category displayed active'>
+					<div class='category-heading'>
+						<span class='category-name'>@StandingOrderWithoutEndDate</span>
+						<span class='category-status right'>
+						<span class='label pass'>1</span>
+						</span>
+					</div>
+					<div class='category-content hide'>
+						<div class='category-status-counts'>
+							<span status="pass" class='label green accent-4 white-text'>Passed: 1</span>
+							
+							
+						</div>
+						<div class='category-tests'>
+							<table class='bordered table-results'>
+								<thead>
+									<tr>
+										<th>Timestamp</th>
+										<th>TestName</th>
+										<th>Status</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>Nov 2, 2023 07:25:52 pm</td>
+										<td class='linked' test-id='745'>Creation of standing order without giving any end date</td>
+										<td><span class='test-status Pass'>Pass</span></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</li>
+				<li class='category displayed active'>
+					<div class='category-heading'>
+						<span class='category-name'>@StandingOrderQuickProCreate</span>
+						<span class='category-status right'>
+						<span class='label pass'>1</span>
+						</span>
+					</div>
+					<div class='category-content hide'>
+						<div class='category-status-counts'>
+							<span status="pass" class='label green accent-4 white-text'>Passed: 1</span>
+							
+							
+						</div>
+						<div class='category-tests'>
+							<table class='bordered table-results'>
+								<thead>
+									<tr>
+										<th>Timestamp</th>
+										<th>TestName</th>
+										<th>Status</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>Nov 2, 2023 07:21:56 pm</td>
+										<td class='linked' test-id='394'>Test scenario for creating standing order using Quick product entry input box</td>
+										<td><span class='test-status Pass'>Pass</span></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</li>
+				<li class='category displayed active'>
+					<div class='category-heading'>
+						<span class='category-name'>@ChangeAccountNumber</span>
+						<span class='category-status right'>
+						<span class='label pass'>1</span>
+						</span>
+					</div>
+					<div class='category-content hide'>
+						<div class='category-status-counts'>
+							<span status="pass" class='label green accent-4 white-text'>Passed: 1</span>
+							
+							
+						</div>
+						<div class='category-tests'>
+							<table class='bordered table-results'>
+								<thead>
+									<tr>
+										<th>Timestamp</th>
+										<th>TestName</th>
+										<th>Status</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>Nov 2, 2023 08:17:29 pm</td>
+										<td class='linked' test-id='1,141'>Test scenario for changing customer account# and createing standing order</td>
+										<td><span class='test-status Pass'>Pass</span></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</li>
+				<li class='category displayed active'>
+					<div class='category-heading'>
+						<span class='category-name'>@CatalogCard</span>
+						<span class='category-status right'>
+						<span class='label pass'>1</span>
+						</span>
+					</div>
+					<div class='category-content hide'>
+						<div class='category-status-counts'>
+							<span status="pass" class='label green accent-4 white-text'>Passed: 1</span>
+							
+							
+						</div>
+						<div class='category-tests'>
+							<table class='bordered table-results'>
+								<thead>
+									<tr>
+										<th>Timestamp</th>
+										<th>TestName</th>
+										<th>Status</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>Nov 2, 2023 07:23:45 pm</td>
+										<td class='linked' test-id='536'>Test scenario for creating standing order using catalog standing order, by selecting category value</td>
 										<td><span class='test-status Pass'>Pass</span></td>
 									</tr>
 								</tbody>
@@ -1271,37 +2375,37 @@
 			<div class='col s2'>
 				<div class='card-panel r'>
 					Features
-					<div class='panel-lead'>1</div>
+					<div class='panel-lead'>3</div>
 				</div>
 			</div>
 			<div class='col s2'>
 				<div class='card-panel r'>
 					Scenarios
-					<div class='panel-lead'>8</div>
+					<div class='panel-lead'>19</div>
 				</div>
 			</div>
 			<div class='col s2'>
 				<div class='card-panel r'>
 					Steps
-					<div class='panel-lead'>87</div>
+					<div class='panel-lead'>189</div>
 				</div>
 			</div>
 			<div class='col s2'>
 				<div class='card-panel r'>
 					Start
-					<div class='panel-lead'>Oct 26, 2023 10:52:38 pm</div>
+					<div class='panel-lead'>Nov 2, 2023 07:18:11 pm</div>
 				</div>
 			</div>
 			<div class='col s2'>
 				<div class='card-panel r'>
 			 		End
-			 		<div class='panel-lead'>Oct 26, 2023 11:01:51 pm</div>
+			 		<div class='panel-lead'>Nov 2, 2023 08:18:23 pm</div>
 				</div>
 			</div>
 			<div class='col s2'>
 				<div class='card-panel r'>
 					Time Taken
-					<div class='panel-lead'>00 09 12.176</div>
+					<div class='panel-lead'>01 00 11.499</div>
 				</div>
 			</div>
 			<div class='col s4'>
@@ -1341,43 +2445,7 @@
 							<th>Passed %</th>
 						</tr>
 						<tr>
-							<td>@CopyGrid</td>
-							<td>2</td>
-							<td>0</td>
-							<td>0</td>
-							<td>
-									100%
-							</td>
-						</tr>
-						<tr>
-							<td>@DeleteGrid</td>
-							<td>2</td>
-							<td>0</td>
-							<td>0</td>
-							<td>
-									100%
-							</td>
-						</tr>
-						<tr>
-							<td>@AvailableGrid</td>
-							<td>2</td>
-							<td>0</td>
-							<td>0</td>
-							<td>
-									100%
-							</td>
-						</tr>
-						<tr>
-							<td>@DefaultGridInClient</td>
-							<td>2</td>
-							<td>0</td>
-							<td>0</td>
-							<td>
-									100%
-							</td>
-						</tr>
-						<tr>
-							<td>@LogoutGrid</td>
+							<td>@DeleteProductFromStandingOrder</td>
 							<td>1</td>
 							<td>0</td>
 							<td>0</td>
@@ -1386,8 +2454,8 @@
 							</td>
 						</tr>
 						<tr>
-							<td>@CheckAvailabilityOfGrid</td>
-							<td>2</td>
+							<td>@RemoveSkipSpecificDay</td>
+							<td>1</td>
 							<td>0</td>
 							<td>0</td>
 							<td>
@@ -1395,8 +2463,8 @@
 							</td>
 						</tr>
 						<tr>
-							<td>@CheckAvailablityOfGridheader</td>
-							<td>2</td>
+							<td>@StandingOrderCatalogCreate</td>
+							<td>1</td>
 							<td>0</td>
 							<td>0</td>
 							<td>
@@ -1404,8 +2472,143 @@
 							</td>
 						</tr>
 						<tr>
-							<td>@AddGrid</td>
-							<td>2</td>
+							<td>@StandingOrderRegisterExcel</td>
+							<td>1</td>
+							<td>0</td>
+							<td>0</td>
+							<td>
+									100%
+							</td>
+						</tr>
+						<tr>
+							<td>@VerifyingDisableSelectButton</td>
+							<td>1</td>
+							<td>0</td>
+							<td>0</td>
+							<td>
+									100%
+							</td>
+						</tr>
+						<tr>
+							<td>@CopyStandingOrder</td>
+							<td>1</td>
+							<td>0</td>
+							<td>0</td>
+							<td>
+									100%
+							</td>
+						</tr>
+						<tr>
+							<td>@StandingOrderRegisterCancel</td>
+							<td>1</td>
+							<td>0</td>
+							<td>0</td>
+							<td>
+									100%
+							</td>
+						</tr>
+						<tr>
+							<td>@OverlappingDates</td>
+							<td>1</td>
+							<td>0</td>
+							<td>0</td>
+							<td>
+									100%
+							</td>
+						</tr>
+						<tr>
+							<td>@LogoutSO</td>
+							<td>1</td>
+							<td>0</td>
+							<td>0</td>
+							<td>
+									100%
+							</td>
+						</tr>
+						<tr>
+							<td>@MultipleStandingOrder</td>
+							<td>1</td>
+							<td>0</td>
+							<td>0</td>
+							<td>
+									100%
+							</td>
+						</tr>
+						<tr>
+							<td>@StandingOrderRegisterPdf</td>
+							<td>1</td>
+							<td>0</td>
+							<td>0</td>
+							<td>
+									100%
+							</td>
+						</tr>
+						<tr>
+							<td>@VerifySkipDateSetInSOWithOE</td>
+							<td>1</td>
+							<td>0</td>
+							<td>0</td>
+							<td>
+									100%
+							</td>
+						</tr>
+						<tr>
+							<td>@DeleteStandingOrder</td>
+							<td>1</td>
+							<td>0</td>
+							<td>0</td>
+							<td>
+									100%
+							</td>
+						</tr>
+						<tr>
+							<td>@SkipSpecificDay</td>
+							<td>1</td>
+							<td>0</td>
+							<td>0</td>
+							<td>
+									100%
+							</td>
+						</tr>
+						<tr>
+							<td>@GenerateStandingOrder</td>
+							<td>1</td>
+							<td>0</td>
+							<td>0</td>
+							<td>
+									100%
+							</td>
+						</tr>
+						<tr>
+							<td>@StandingOrderWithoutEndDate</td>
+							<td>1</td>
+							<td>0</td>
+							<td>0</td>
+							<td>
+									100%
+							</td>
+						</tr>
+						<tr>
+							<td>@StandingOrderQuickProCreate</td>
+							<td>1</td>
+							<td>0</td>
+							<td>0</td>
+							<td>
+									100%
+							</td>
+						</tr>
+						<tr>
+							<td>@ChangeAccountNumber</td>
+							<td>1</td>
+							<td>0</td>
+							<td>0</td>
+							<td>
+									100%
+							</td>
+						</tr>
+						<tr>
+							<td>@CatalogCard</td>
+							<td>1</td>
 							<td>0</td>
 							<td>0</td>
 							<td>
@@ -1423,23 +2626,23 @@
 		<!-- container -->
 		<script>
 			var statusGroup = {
-                parentCount: 1,
-				passParent: 1,
+                parentCount: 3,
+				passParent: 3,
 				failParent: 0,
 				fatalParent: 0,
 				errorParent: 0,
 				warningParent: 0,
 				skipParent: 0,
-				childCount: 8,
-				passChild: 8,
+				childCount: 19,
+				passChild: 19,
 				failChild: 0,
 				fatalChild: 0,
 				errorChild: 0,
 				warningChild: 0,
 				skipChild: 0,
 				infoChild: 0,
-				grandChildCount: 87,
-				passGrandChild: 87,
+				grandChildCount: 189,
+				passGrandChild: 189,
 				failGrandChild: 0,
 				fatalGrandChild: 0,
 				errorGrandChild: 0,
@@ -1451,7 +2654,7 @@
 		
 		<script>
 			var timeline = {
-			        "scenarios for User and Accounts admin feature, for Grid related settings":536.227
+			        "Standing Order":428.151,"Standing Order1":3152.895,"Standing order1":11.936
 			};
 		</script>
 		
