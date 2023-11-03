@@ -1,5 +1,6 @@
 @Outbound @Regression
 Feature: Testing of Outbound Load Planning functionality
+  @isofailed2
   Scenario: Checking Load Planning login screen
     Given User signs in the application
     And Main page is loaded
@@ -24,7 +25,7 @@ Feature: Testing of Outbound Load Planning functionality
     And Validates Truck Info trailers exist
     And Selects random trailer on Truck Info page
     And Clicks No button on Change trailer popup
-
+  @isofailed2
   Scenario: Checking Truck top information
     Given User signs in the application
     And Main page is loaded

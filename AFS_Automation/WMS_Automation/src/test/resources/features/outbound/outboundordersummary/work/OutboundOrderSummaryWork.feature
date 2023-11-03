@@ -1,5 +1,6 @@
 @Outbound @Regression
 Feature: Testing of Outbound Summary Work functionality
+  @isofailed2
   Scenario: Checking Work Assignments functionality
     Given User signs in the application
     And Main page is loaded
@@ -33,7 +34,7 @@ Feature: Testing of Outbound Summary Work functionality
     And Validates Assignments types are present
     And Validates Edit Assignment popup contains all elements
     And Click Cancel button on Outbound Order Summary page
-
+  @isofailed2
   Scenario: Checking Work Assignments Tasks functionality
     Given User signs in the application
     And Main page is loaded

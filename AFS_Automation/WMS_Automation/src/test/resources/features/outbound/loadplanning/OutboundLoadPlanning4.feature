@@ -1,5 +1,6 @@
 @Outbound @Regression
 Feature: Testing of Outbound Load Planning functionality
+  @isofailed2
   Scenario: Checking Exit label and icon displayed on the Truck Info
     Given User signs in the application
     And Main page is loaded
@@ -152,6 +153,7 @@ Feature: Testing of Outbound Load Planning functionality
     And Selects reason "Short Order" from dropdown on Split task popup
     And Clicks Save button on Split task popup
 
+  @isofailed2
   Scenario: Checking Load Planning - Recalculate based on selected Assignments
     Given User signs in the application
     And Main page is loaded

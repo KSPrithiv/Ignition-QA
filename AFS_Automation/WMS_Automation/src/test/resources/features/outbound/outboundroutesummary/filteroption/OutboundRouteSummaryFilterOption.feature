@@ -132,7 +132,7 @@ Feature: Testing of Outbound Route Summary Filter Option functionality
     And Searches product on Outbound Route Summary page
     Then Selects product by index 0 on Outbound Route Summary page
     And Validates Items Count on Outbound Route Summary page
-
+  @isofailed2
   Scenario: Checking Order Display Grid functionality
     Given User signs in the application
     And Main page is loaded

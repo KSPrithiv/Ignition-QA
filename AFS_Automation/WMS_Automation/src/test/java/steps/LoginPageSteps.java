@@ -32,15 +32,15 @@ public class LoginPageSteps {
     public Waiters waiters;
     public static Environment environment;
 
-    @Before
-    public void beforeClassSetup() {
-        ConfigFactory.setProperty("path", FilePaths.PROPERTIES_PATH);
-        environment = ConfigFactory.create(Environment.class);
-        log.info("Starting app url " + environment.getUrl() + " on browser " + environment.getBrowser());
-        buildWebDriver(environment.getBrowser());
-        DriverManager.openPage(environment.getUrl());
-        new Waiters();
-    }
+//    @Before
+//    public void beforeClassSetup() {
+//        ConfigFactory.setProperty("path", FilePaths.PROPERTIES_PATH);
+//        environment = ConfigFactory.create(Environment.class);
+//        log.info("Starting app url " + environment.getUrl() + " on browser " + environment.getBrowser());
+//        buildWebDriver(environment.getBrowser());
+//        DriverManager.openPage(environment.getUrl());
+//        new Waiters();
+//    }
 
     @Step
     @Given("User signs in the application")
