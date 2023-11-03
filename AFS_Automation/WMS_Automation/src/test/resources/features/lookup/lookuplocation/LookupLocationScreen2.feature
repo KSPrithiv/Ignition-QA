@@ -1,6 +1,6 @@
 @Lookup @Regression
 Feature: Testing Lookup Location functionality
-  @isofailed
+  @isofailed2
   Scenario: Checking Edit inventory in Production mode on Lookup Location screen
     Given User signs in the application
     And Main page is loaded
@@ -16,7 +16,7 @@ Feature: Testing Lookup Location functionality
     Then User types Receipt date by index 5 on Lookup Location page
     And User clicks Save button on Lookup Location page
 
-  @isofailed
+  @isofailed2
   Scenario: Checking Delete inventory in Production mode on Lookup Location screen
     Given User signs in the application
     And Main page is loaded
@@ -40,7 +40,7 @@ Feature: Testing Lookup Location functionality
     And User clicks Cancel button on Lookup Location page
     And Clicks Production on button on Lookup Location page
 
-  @isofailed
+  @isofailed2
   Scenario: Checking Non Product Reasons on Lookup Location screen
     Given User signs in the application
     And Main page is loaded
@@ -70,7 +70,7 @@ Feature: Testing Lookup Location functionality
     And User clicks Yes button on Lookup Location page
     And Validates Delete Reason label and dropdown are displayed on Location Lookup page
 
-  @isofailed
+  @isofailed2
   Scenario: Checking not able to create inventory for product configured on Lookup Location screen
     Given User signs in the application
     And Main page is loaded
@@ -110,7 +110,6 @@ Feature: Testing Lookup Location functionality
     And Validates Delete Reason label and dropdown are displayed on Location Lookup page
     And User clicks Ok button on Lookup Location page
 
-  @isofailed
   Scenario: Checking verification of supplier on Lookup Location screen
     Given User signs in the application
     And Main page is loaded
@@ -132,7 +131,7 @@ Feature: Testing Lookup Location functionality
     And Clicks supplier on Lookup Location page
     And Validates Suppliers number is more than 1 on Location Lookup page
 
-  @isofailed
+  @isofailed2
   Scenario: Checking update existing LPN on Lookup Location screen
     Given User signs in the application
     And Main page is loaded
@@ -162,7 +161,7 @@ Feature: Testing Lookup Location functionality
     And User types Expiration date by index 5 on Lookup Location page
     And User clicks Save button on Lookup Location page
 
-  @isofailed
+  @isofailed2
   Scenario: Checking Add Inventory button functionality on Lookup Location screen
     Given User signs in the application
     And Main page is loaded
@@ -197,5 +196,4 @@ Feature: Testing Lookup Location functionality
     And Selects Production Reason by index 2 on Lookup Location page
     And User types Expiration date by index 5 on Lookup Location page
     And User types Receipt date by index 5 on Lookup Location page
-  #  And User types Expiration date "12/12/2050" on Lookup Location page
     And User clicks Save button on Lookup Location page

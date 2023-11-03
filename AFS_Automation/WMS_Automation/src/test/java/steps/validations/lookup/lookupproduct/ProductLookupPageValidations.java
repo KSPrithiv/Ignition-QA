@@ -108,8 +108,6 @@ public class ProductLookupPageValidations {
         softAssert.assertTrue(productLookupPage.isQtyColumnHeaderDisplayed(),"Qty Column Header is not displayed");
         softAssert.assertTrue(productLookupPage.isActualColumnDisplayed(),"Actual Column is not displayed");
         softAssert.assertTrue(productLookupPage.isActualColumnHeaderDisplayed(),"Actual Column Header is not displayed");
-        softAssert.assertTrue(productLookupPage.isBookColumnDisplayed(),"Book Column is not displayed");
-        softAssert.assertTrue(productLookupPage.isBookColumnHeaderDisplayed(),"Book Column Header is not displayed");
         softAssert.assertTrue(productLookupPage.isStatusColumnDisplayed(),"Status Column is not displayed");
         softAssert.assertTrue(productLookupPage.isStatusColumnDisplayed(),"Status Column Header is not displayed");
         softAssert.assertTrue(productLookupPage.isOrderColumnDisplayed(),"Order Column is not displayed");

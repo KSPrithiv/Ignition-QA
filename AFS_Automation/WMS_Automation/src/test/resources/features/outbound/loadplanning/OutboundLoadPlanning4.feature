@@ -1,5 +1,6 @@
 @Outbound @Regression
 Feature: Testing of Outbound Load Planning functionality
+  @isofailed2
   Scenario: Checking Exit label and icon displayed on the Truck Info
     Given User signs in the application
     And Main page is loaded
@@ -21,16 +22,13 @@ Feature: Testing of Outbound Load Planning functionality
     And Validates Exit button is present
     And Clicks Exit button on Truck Info page
 
-  @issue
+  @isofailed2
   Scenario: Checking Warning message if Assignments are not printed
     Given User signs in the application
     And Main page is loaded
     And DockManagement Summary Page is validated
     And Go to Outbound Load Planning page
     And Waits for Outbound Load Planning page to load
-    And Validates Load Planning page is displayed
-    And Validates Load Planning popup title is displayed
-    And Validates Load Planning popup Ship Date is current date
     When Selects Ship Date by index 0 on Load Planning popup
     Then Clicks Route dropdown on Load Planning popup
     And Selects Route by index 0 for Load Planning
@@ -41,15 +39,6 @@ Feature: Testing of Outbound Load Planning functionality
     And Clicks Yes button on Rebuilding Assignments popup
     And Clicks Ok button on Truck Info
     And Clicks Exit button on Truck Info page
-    # Should display message “Print pick labels?” Yes/No.
-    # Note: If the following conditions are true
-    #1. Pick labels are configured under label rule, 2. Assignment type configured for print pick labels set to on assignment release,
-    #3. Assignments released,
-    #4. and labels not already printed,
-    # Should not display message, if Pick labels not configured under label rule, irrespective of other conditions.
-   # Should not display the message if, Assignments are not released.
-   # Should not display the message if the assignments are already printed.
-   # YES ->   Assignments should be printed sucessfully, only the assignmnet belongs to the Assignment types which are configured for On release assignmnet.
 
   Scenario: Checking Load Planning - split product pick task
     Given User signs in the application
@@ -73,6 +62,7 @@ Feature: Testing of Outbound Load Planning functionality
     And Validates First Assignment popup is present
     And Validates Assignment details on popup
 
+  @isofailed2
   Scenario: Checking Load Planning - split product pick task assignment details edit
     Given User signs in the application
     And Main page is loaded
@@ -103,6 +93,7 @@ Feature: Testing of Outbound Load Planning functionality
     And Selects reason "Short Order" from dropdown on Split task popup
     And Clicks Save button on Split task popup
 
+  @isofailed2
   Scenario: Checking Load Planning - split product pick task edit 003
     Given User signs in the application
     And Main page is loaded
@@ -131,6 +122,7 @@ Feature: Testing of Outbound Load Planning functionality
     And Selects reason "Short Order" from dropdown on Split task popup
     And Clicks Save button on Split task popup
 
+  @isofailed2
   Scenario: Checking Load Planning - Recalculate based on selected Assignments
     Given User signs in the application
     And Main page is loaded

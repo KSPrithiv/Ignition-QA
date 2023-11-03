@@ -63,6 +63,7 @@ Feature: Testing of Inbound Load Summary screen functionality
     And Checks Load with index 3 on Inbound Load Summary page
     And Validates Data option on Inbound Load Summary page is disabled
 
+  @isofailed2
   Scenario: Checking Load Summary screen Edit Load option
     Given User signs in the application
     And Main page is loaded

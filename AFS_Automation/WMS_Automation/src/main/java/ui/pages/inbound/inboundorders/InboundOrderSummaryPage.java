@@ -621,12 +621,14 @@ public class InboundOrderSummaryPage extends BasePage {
     }
 
     public void selectOrderCheckboxByOrderNumber(int orderNum) {
-        waitUntilInvisible(2, loader);
+        waitUntilInvisible(1, loader);
         Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(tableContent);
-        List<WebElement> checkBoxes = findWebElements(By.xpath("//div[contains(@class, 'BarsContainer')]/parent::*//input[@type='checkbox']"));
-        waitUntilInvisible(2, loader);
-        clickOnElement(checkBoxes.get(orderNum));
+        List<WebElement> checkBoxes = findWebElements(By.xpath("//div[contains(@class, 'BarsContainer')]//..//input"));
+        waitUntilInvisible(1, loader);
+        WebElement webElement = checkBoxes.get(orderNum);
+        waitUntilStalenessOf(1, webElement);
+        clickOnElement(webElement);
         Waiters.waitTillLoadingPage(getDriver());
     }
 

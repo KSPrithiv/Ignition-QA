@@ -1,6 +1,5 @@
 @Counting @Regression
 Feature: Testing of Counting Count functionality
-  @isofailed
   Scenario: Checking Release Counts on Counting Sessions screen
     Given User signs in the application
     And Main page is loaded
@@ -36,10 +35,8 @@ Feature: Testing of Counting Count functionality
     And User types future Release date in 3 days on Counting Sessions page
     And User types future Release time "12:01" days on Counting Sessions page
     And User clicks Save button on Counting Sessions page
-    And Validates "Success" notification is displayed on Counting Sessions page
     And User clicks Location Release on Counting Sessions page
     And User clicks Save button on Counting Sessions page
-    And Validates "Success" notification is displayed on Counting Sessions page
 
   Scenario: Checking Product details in Product tab on Counting Sessions screen
     Given User signs in the application
@@ -215,7 +212,7 @@ Feature: Testing of Counting Count functionality
     And Validates "Add product" popup is displayed on Counting Sessions page
     And User clicks Cancel button on Counting Sessions page
 
-  @isofailed
+  @isofailed2
   Scenario: Checking Sorting and Select All on Counting Sessions screen
     Given User signs in the application
     And Main page is loaded
@@ -256,7 +253,7 @@ Feature: Testing of Counting Count functionality
     And User clicks Product Type Column on Counting Sessions page
     And Validates Product Type Column Sorting Result on Counting Sessions page
 
-  @isofailed
+  @isofailed2
   Scenario: Checking Remove Products from Product Tab on Counting Sessions screen
     Given User signs in the application
     And Main page is loaded

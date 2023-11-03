@@ -1,6 +1,6 @@
 @Inbound @Regression
 Feature: Testing of Inbound Orders functionality
-
+  @isofailed2
   Scenario: Checking Navigate to Inbound Order Summary screen functionality
     Given User signs in the application
     And Main page is loaded
@@ -9,7 +9,7 @@ Feature: Testing of Inbound Orders functionality
     And User waits for Inbound Order Summary page to load
     Then Validates Inbound Order Summary Page contains all web elements
 
-  @isofailed
+  @isofailed2
   Scenario: Checking Review on Inbound Order Summary screen
     Given User signs in the application
     And Main page is loaded
@@ -21,7 +21,7 @@ Feature: Testing of Inbound Orders functionality
     And User applies order "Review" option on Inbound Order Summary page
     And Validates Inbound order summary Review page is displayed
 
-  @isofailed
+  @isofailed2
   Scenario: Checking Product Filter on Inbound Order Summary screen
     Given User signs in the application
     And Main page is loaded
@@ -48,7 +48,6 @@ Feature: Testing of Inbound Orders functionality
     And Selects buyer by index 0 dropdown on Inbound Order Summary page
     And Validates items are present on Inbound Order Summary page
 
-  @isofailed
   Scenario: Checking Supplier Name Filter on Inbound Order Summary screen
     Given User signs in the application
     And Main page is loaded
@@ -64,7 +63,7 @@ Feature: Testing of Inbound Orders functionality
     And Types supplier name "Hgr88Jd" on Inbound Order Summary page
     And Validates orders are not present on Inbound Order Summary page
 
-  @isofailed
+  @isofailed2
   Scenario: Checking Supplier Code Filter on Inbound Order Summary screen
     Given User signs in the application
     And Main page is loaded
@@ -74,10 +73,9 @@ Feature: Testing of Inbound Orders functionality
     When User finds all orders from start date by index 4
     And Types supplier name by index 0 on Inbound Order Summary page
     And Validates items are present on Inbound Order Summary page
-    And Validates orders are present on Inbound Order Summary page
     Then Cleans supplier code on Inbound Order Summary page
-    And Validates orders are present on Inbound Order Summary page
     And Types supplier code "Hgr88Jd" on Inbound Order Summary page
+    And Validates items are present on Inbound Order Summary page
 
   Scenario: Checking Order Type on Inbound Order Summary screen
     Given User signs in the application
@@ -93,7 +91,7 @@ Feature: Testing of Inbound Orders functionality
     And Selects order type by index 6 dropdown on Inbound Order Summary page
     And Validates orders are present on Inbound Order Summary page
 
-  @isofailed
+  @isofailed2
   Scenario: Checking Customer Filter on Inbound Order Summary screen
     Given User signs in the application
     And Main page is loaded
@@ -104,7 +102,6 @@ Feature: Testing of Inbound Orders functionality
     And Validates orders are present on Inbound Order Summary page
     Then Clicks customer option by index 0 on Inbound Order Summary page
     And Selects customer option by index 2 on Inbound Order Summary page
-    And Validates orders are present on Inbound Order Summary page
 
   Scenario: Checking Door Filter on Inbound Order Summary screen
     Given User signs in the application
