@@ -1,13 +1,19 @@
 package steps.lookup.lookupdockmanagement;
 
+import common.constants.FilePaths;
+import common.utils.objectmapper.ObjectMapperWrapper;
 import io.cucumber.java.en.And;
 import io.qameta.allure.Step;
 import lombok.extern.slf4j.Slf4j;
+import objects.lookupproductslocationsdata.LookupProductLocationsDTO;
 import ui.pages.lookup.dockmanagement.DockManagementLookupPage;
+
+import java.util.List;
 
 @Slf4j
 public class DockManagementPageSteps {
     DockManagementLookupPage dockManagementLookupPage = new DockManagementLookupPage();
+    LookupProductLocationsDTO lookupDataDTO = new ObjectMapperWrapper().getObject(FilePaths.LOOKUP_DATA, LookupProductLocationsDTO.class);
 
     @Step
     @And("Waits for Dock Management Lookup page to load")
@@ -23,11 +29,34 @@ public class DockManagementPageSteps {
         dockManagementLookupPage.typeDockMgmtStartDate(date);
     }
 
+
+    @Step
+    @And("User types date from input by index {int} on Dock Management page")
+    public void typeDockMgmtStartDate(int index) {
+        log.info("User types date from input by index on Dock Management page");
+        List<String> dates = List.of(lookupDataDTO.getLookupDates().getLookupDate1(), lookupDataDTO.getLookupDates()
+                .getLookupDate2(), lookupDataDTO.getLookupDates().getLookupDate3(), lookupDataDTO.getLookupDates()
+                .getLookupDate4(), lookupDataDTO.getLookupDates().getLookupDate5(), lookupDataDTO.getLookupDates()
+                .getLookupDate6());
+        dockManagementLookupPage.typeDockMgmtStartDate(dates.get(index));
+    }
+
     @Step
     @And("User types {string} date to input on Dock Management page")
     public void typeDockMgmtToDate(String date) {
         log.info("User types date to input on Dock Management page");
         dockManagementLookupPage.typeDockMgmtToDate(date);
+    }
+
+    @Step
+    @And("User types date to input by index {int} on Dock Management page")
+    public void typeDockMgmtToDate(int index) {
+        log.info("User types date to input by index on Dock Management page");
+        List<String> dates = List.of(lookupDataDTO.getLookupDates().getLookupDate1(), lookupDataDTO.getLookupDates()
+                .getLookupDate2(), lookupDataDTO.getLookupDates().getLookupDate3(), lookupDataDTO.getLookupDates()
+                .getLookupDate4(), lookupDataDTO.getLookupDates().getLookupDate5(), lookupDataDTO.getLookupDates()
+                .getLookupDate6());
+        dockManagementLookupPage.typeDockMgmtToDate(dates.get(index));
     }
 
     @Step
@@ -94,10 +123,32 @@ public class DockManagementPageSteps {
     }
 
     @Step
+    @And("User types Scheduled date by index {int} on Dock Management Summary page")
+    public void typeScheduledTime(int index) {
+        log.info("User types Scheduled date on Dock Management Summary page");
+        List<String> dates = List.of(lookupDataDTO.getLookupDates().getLookupDate1(), lookupDataDTO.getLookupDates()
+                .getLookupDate2(), lookupDataDTO.getLookupDates().getLookupDate3(), lookupDataDTO.getLookupDates()
+                .getLookupDate4(), lookupDataDTO.getLookupDates().getLookupDate5(), lookupDataDTO.getLookupDates()
+                .getLookupDate6());
+        dockManagementLookupPage.typeSchedDate(dates.get(index));
+    }
+
+    @Step
     @And("User selects trailer {string} on Dock Management Summary page")
     public void typeTrailer(String date) {
         log.info("User selects trailer on Dock Management Summary page");
         dockManagementLookupPage.selectDDlTrailer(date);
+    }
+
+    @Step
+    @And("User selects trailer by index {int} on Dock Management Summary page")
+    public void typeTrailerByIndex(int index) {
+        log.info("User selects trailer on Dock Management Summary page");
+        List<String> trailers = List.of(lookupDataDTO.getLookupTrailers().getLookupTrailer1(), lookupDataDTO.getLookupTrailers()
+                .getLookupTrailer2(), lookupDataDTO.getLookupTrailers().getLookupTrailer3(), lookupDataDTO.getLookupTrailers()
+                .getLookupTrailer4(), lookupDataDTO.getLookupTrailers().getLookupTrailer5(), lookupDataDTO.getLookupTrailers()
+                .getLookupTrailer6());
+        dockManagementLookupPage.selectDDlTrailer(trailers.get(index));
     }
 
     @Step

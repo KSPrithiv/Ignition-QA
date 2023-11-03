@@ -13,9 +13,10 @@ import java.io.IOException;
  * @Project DSD_OMS
  * @Author Divya.Ramadas@afsi.com
  */
-@CucumberOptions(features = {"src/test/resources/features_DSD_OMS/OrderEntryFeature/orderEntryFeature7.feature",
-                            // "src/test/resources/features_DSD_OMS/OrderEntryFeature/orderEntryFeature8.feature",
-                            // "src/test/resources/features_DSD_OMS/OrderEntryFeature/orderEntryFeatureEnd.feature",
+@CucumberOptions(features = {
+                              "src/test/resources/features_DSD_OMS/OrderEntryFeature/orderEntryFeature7.feature",
+                              "src/test/resources/features_DSD_OMS/OrderEntryFeature/orderEntryFeature8.feature",
+                              "src/test/resources/features_DSD_OMS/OrderEntryFeature/orderEntryFeatureEnd.feature",
                             },
         glue = {"stepDefination_DSD_OMS"},
         plugin = {"pretty",
@@ -24,7 +25,7 @@ import java.io.IOException;
                 "com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:Reports/spark/",
                 "rerun:target/failedrerun.txt"
         },
-        monochrome = true,tags="@FiltersInCatalogIndexPage")
+        monochrome = true)
 
 public class TestRunnerOE3 extends AbstractTestNGCucumberTests
 {

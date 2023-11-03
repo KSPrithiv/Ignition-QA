@@ -204,7 +204,7 @@ public class AccountPage
     public String DropDownInCustomerInq()
     {
         String ValueSele=null;
-        List<WebElement> Options= HelpersMethod.FindByElements(driver,"xpath","//div[contains(@class,'k-child-animation-container')]/descendant::li");
+        List<WebElement> Options= HelpersMethod.FindByElements(driver,"xpath","//div[contains(@class,'k-popup k-child-animation-container')]/descendant::ul/li");
         try
         {
             if(Options.size()==1)
@@ -219,7 +219,7 @@ public class AccountPage
                     {
                         if (i == 1)
                         {
-                            HelpersMethod.ActClick(driver, Options.get(1), 20);
+                            HelpersMethod.ActClick(driver, Options.get(1), 1000);
                             ValueSele=Options.get(1).getText();
                             break;
                         }
@@ -231,7 +231,7 @@ public class AccountPage
                     {
                         if (i == 2)
                         {
-                            HelpersMethod.ActClick(driver, Options.get(2), 20);
+                            HelpersMethod.ActClick(driver, Options.get(2), 1000);
                             ValueSele=Options.get(2).getText();
                             break;
                         }
@@ -251,7 +251,7 @@ public class AccountPage
         {
             if(!WebEle.isSelected())
             {
-                HelpersMethod.ClickBut(driver, WebEle, 10);
+                HelpersMethod.ClickBut(driver, WebEle, 1000);
             }
             if(WebEle.isSelected())
             {
@@ -270,7 +270,7 @@ public class AccountPage
         try
         {
             HelpersMethod.EnterText(driver,WebEle,10, RandomValues.generateRandomString(length));
-            InputValue=HelpersMethod.JSGetValueEle(driver,WebEle,10);
+            InputValue=HelpersMethod.JSGetValueEle(driver,WebEle,1000);
 
             if(InputValue!=null)
             {exists=true;}
@@ -288,8 +288,8 @@ public class AccountPage
        try
        {
             randomFloat=RandomFloat(minInclusive,maxInclusive,precision);
-            HelpersMethod.JSSetValueEle(driver,WebEle,10, String.valueOf(randomFloat));
-            InputValue=HelpersMethod.JSGetValueEle(driver,WebEle,10);
+            HelpersMethod.JSSetValueEle(driver,WebEle,1000, String.valueOf(randomFloat));
+            InputValue=HelpersMethod.JSGetValueEle(driver,WebEle,1000);
 
            if(InputValue!=null)
            {exists=true;}
@@ -319,8 +319,8 @@ public class AccountPage
         exists=false;
         try
         {
-            HelpersMethod.EnterText(driver,WebEle,10,RandomValues.generateRandomNumber(length));
-            InputValue=HelpersMethod.JSGetValueEle(driver,WebEle,10);
+            HelpersMethod.EnterText(driver,WebEle,1000,RandomValues.generateRandomNumber(length));
+            InputValue=HelpersMethod.JSGetValueEle(driver,WebEle,1000);
 
             if(InputValue!=null)
             {exists=true;}
@@ -453,8 +453,8 @@ public class AccountPage
         ExpMonth= ExpMonth.concat("/");
         CrExp=ExpMonth.concat(ExpYear);
         scenario.log("Cr. card exp "+CrExp);
-        HelpersMethod.EnterText(driver,CrExpDate,10, String.valueOf(CrExp));
-        scenario.log("CREDIT CARD EXPIRE DATE "+HelpersMethod.JSGetValueEle(driver,CrExpDate,20));
+        HelpersMethod.EnterText(driver,CrExpDate,1000, String.valueOf(CrExp));
+        scenario.log("CREDIT CARD EXPIRE DATE "+HelpersMethod.JSGetValueEle(driver,CrExpDate,2000));
     }
 
     public void CreditCardCustCheckbox()
@@ -478,7 +478,7 @@ public class AccountPage
     public void ARContactInput()
     {
         InputValue=EnterText(ARCont,10);
-        HelpersMethod.EnterText(driver,ARCont,10,InputValue);
+        HelpersMethod.EnterText(driver,ARCont,1000,InputValue);
         scenario.log("AR CONTACT VALUE ENTERED IS "+InputValue);
     }
 
@@ -550,14 +550,14 @@ public class AccountPage
     public void PrimaryEmailInput()
     {
         InputValue= RandomValues.generateEmail(10);
-        HelpersMethod.EnterText(driver,PrimaryEmail,10, InputValue);
+        HelpersMethod.EnterText(driver,PrimaryEmail,1000, InputValue);
         scenario.log("PRIMARY EMAIL VALUE "+InputValue);
     }
 
     public void SecondaryEmailInput()
     {
         InputValue= RandomValues.generateEmail(10);
-        HelpersMethod.EnterText(driver,SecondEmail,10, InputValue);
+        HelpersMethod.EnterText(driver,SecondEmail,1000, InputValue);
         scenario.log("SECONDARY EMAIL VALUE "+InputValue);
     }
 

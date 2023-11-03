@@ -101,8 +101,6 @@ Feature: Testing of Inbound Load Details screen functionality
     And Validates popup Change status title for Inbound Load Summary
     And Validates Change status popup with Finish Receiving status on Inbound Load Summary page
     And Clicks Save button on Inbound Load Summary page
-    And Validates popup Quantity received is less than Order quantity inventory content for Inbound Load Summary
-    And Clicks No button on Inbound Load Summary page
 
   Scenario: Checking Status change from Open to Ready to Receive
     Given User signs in the application

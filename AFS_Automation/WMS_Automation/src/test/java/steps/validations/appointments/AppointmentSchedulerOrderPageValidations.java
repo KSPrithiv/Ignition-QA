@@ -95,11 +95,19 @@ public class AppointmentSchedulerOrderPageValidations {
         softAssert.assertAll();
     }
 
-    @And("Validates invalid order warning")
-    public void validateInvalidOrderWarning() {
+    @And("Validates Next Button is not active on Appointment Scheduler page")
+    public void validateNextButtonIsNotActive() {
         SoftAssert softAssert = new SoftAssert();
-        softAssert.assertTrue(appointmentSchedulerPage.isInvalidOrderWarningHasText(Notifications
-                        .INVALID_ORDER_TITLE), "Invalid Order Warning is not Displayed");
+        softAssert.assertTrue(appointmentSchedulerPage.getNextButtonDisabilityResult().equals("true"),
+                "Next Button is active");
+        softAssert.assertAll();
+    }
+
+    @And("Validates Cancel Button is not active on Appointment Scheduler page")
+    public void validateCancelButtonIsNotActive() {
+        SoftAssert softAssert = new SoftAssert();
+        softAssert.assertTrue(appointmentSchedulerPage.getCancelButtonDisabilityResult().equals("true"),
+                "Cancel Button is active");
         softAssert.assertAll();
     }
 
@@ -141,6 +149,23 @@ public class AppointmentSchedulerOrderPageValidations {
         SoftAssert softAssert = new SoftAssert();
         softAssert.assertTrue(appointmentSchedulerPage.isNotificationDisplayed(Notifications.SELECT_DELIVERY_TYPE),
                 "Notification " + Notifications.SELECT_DELIVERY_TYPE + " is not present");
+        softAssert.assertAll();
+    }
+
+    @And("Validates Scheduler date and Scheduler time on Appointment Scheduler page")
+    public void validateSchedulerDateAndTime() {
+        SoftAssert softAssert = new SoftAssert();
+        softAssert.assertTrue(appointmentSchedulerPage.isDateSchedulerLabelDisplayed(), "Date Label is not displayed");
+        softAssert.assertTrue(appointmentSchedulerPage.isDateInputSchedulerDisplayed(), "Date Input is not displayed");
+        softAssert.assertTrue(appointmentSchedulerPage.isTimeSchedulerLabelDisplayed(), "Time Label is not displayed");
+        softAssert.assertTrue(appointmentSchedulerPage.isTimeSchedulerInputDisplayed(), "Time Input is not displayed");
+        softAssert.assertAll();
+    }
+
+    @And("Validates Invalid Order Warning on Appointment Scheduler page")
+    public void validateInvalidOrderText() {
+        SoftAssert softAssert = new SoftAssert();
+        softAssert.assertTrue(appointmentSchedulerPage.isInvalidOrderLabelDisplayed(), "Invalid order is not present");
         softAssert.assertAll();
     }
 

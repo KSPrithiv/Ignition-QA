@@ -12,7 +12,6 @@ import org.aeonbits.owner.ConfigFactory;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.ITestResult;
 import org.testng.annotations.*;
-import utilWMS.MailSend_WMS;
 
 import javax.mail.MessagingException;
 import java.io.IOException;
@@ -20,14 +19,14 @@ import java.io.IOException;
 import static common.setup.DriverManager.*;
 import static common.setup.DriverManager.getDriver;
 
-@CucumberOptions(features = {"src/test/resources/features/appointments"},
+@CucumberOptions(features = {"src/test/resources/features/appointments/AppointmentScheduler.feature"},
         glue = {"steps"},
         plugin = {"pretty",
                 "json:target/cucumber.json",
                 "html:Reports/Index.html",
                 "json:target/cucumber-reports/cucumber.json",
                 "rerun:target/failedrerun.txt"
-        }, monochrome = true, tags = "@Appointments")
+        }, monochrome = true, tags = "@isofailed")
 @Slf4j
 public class AppointmentsCucumberRunner extends AbstractTestNGCucumberTests {
     public static Environment environment;

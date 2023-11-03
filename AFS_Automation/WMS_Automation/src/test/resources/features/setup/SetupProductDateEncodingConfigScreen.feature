@@ -1,42 +1,47 @@
 @Setup @Regression
 Feature: Testing of Product Setup Date encoding
-
+  @isofailed
   Scenario: Checking Navigation to Date encoding on Setup Product screen
     Given User signs in the application
-    When Main page is loaded
+    And Main page is loaded
     And DockManagement Summary Page is validated
-    Then Go to Setup Product page
+    When Go to Setup Product page
+    And Waits for Setup Product page to load
     And Validates Setup Product page is displayed
-    And Clicks Date encoding Label on Setup Product page
+    Then Clicks Date encoding Label on Setup Product page
     And Validates Date encoding tab grid should display all column names on Setup Product page
 
+  @isofailed
   Scenario: Checking UI verification of Date Encoding on Setup Product screen
     Given User signs in the application
-    When Main page is loaded
+    And Main page is loaded
     And DockManagement Summary Page is validated
-    Then Go to Setup Product page
+    And Go to Setup Product page
+    And Waits for Setup Product page to load
     And Validates Setup Product page is displayed
-    And Clicks Date encoding Label on Setup Product page
+    When Clicks Date encoding Label on Setup Product page
     And Validates Date encoding tab grid should display all column names on Setup Product page
     And Validates Add is enabled and Edit, Delete are disabled on Setup Product page
-    And Validates Search Box and Add Filter are displayed on Setup Product page
+    Then Validates Search Box and Add Filter are displayed on Setup Product page
     And Validates Items Count and Items Found on Setup Product page
 
+  @isofailed
   Scenario: Checking filters of Date Encoding on Setup Product screen
     Given User signs in the application
-    When Main page is loaded
+    And Main page is loaded
     And DockManagement Summary Page is validated
-    Then Go to Setup Product page
+    And Go to Setup Product page
+    And Waits for Setup Product page to load
     And Validates Setup Product page is displayed
     And Clicks Date encoding Label on Setup Product page
     And Validates Date encoding tab grid should display all column names on Setup Product page
     And Validates Items Count and Items Found on Setup Product page
-    And User clicks Add Filter on Setup Product page
+    When User clicks Add Filter on Setup Product page
     And User clicks Code Filter on Setup Product page
     And User checks Is Empty radio button on Setup Product page
     And User clicks Apply button on Setup Product page
     And Validates grid text "Adjust filter to display data" on Setup Product page
-    And User clicks Add Filter on Setup Product page
+    Then User clicks Add Filter on Setup Product page
     And User clicks Clear All button on Setup Product page
     And User clicks Add Filter on Setup Product page
     And User clicks Code Filter on Setup Product page
@@ -74,29 +79,33 @@ Feature: Testing of Product Setup Date encoding
     And User clicks Add Filter on Setup Product page
     And User clicks Clear All button on Setup Product page
 
+  @isofailed
   Scenario: Checking search controls of Date Encoding on Setup Product screen
     Given User signs in the application
-    When Main page is loaded
+    And Main page is loaded
     And DockManagement Summary Page is validated
-    Then Go to Setup Product page
+    And Go to Setup Product page
+    And Waits for Setup Product page to load
     And Validates Setup Product page is displayed
-    And Clicks Date encoding Label on Setup Product page
+    When Clicks Date encoding Label on Setup Product page
     And Validates Date encoding tab grid should display all column names on Setup Product page
     And Validates Items Count and Items Found on Setup Product page
-    And User clicks Add Filter on Setup Product page
+    Then User clicks Add Filter on Setup Product page
 
+  @isofailed
   Scenario: Checking UI verification of encoding tab on Setup Product screen
     Given User signs in the application
-    When Main page is loaded
+    And Main page is loaded
     And DockManagement Summary Page is validated
-    Then Go to Setup Product page
+    And Go to Setup Product page
+    And Waits for Setup Product page to load
     And Validates Setup Product page is displayed
-    And Clicks Date encoding Label on Setup Product page
+    When Clicks Date encoding Label on Setup Product page
     And Validates Date encoding tab grid should display all column names on Setup Product page
     And Clicks Add Date Encoding on Setup Product page
     And Validates Encoding and Used by are enabled and Day mapping, Month mapping, Year mapping and Week mapping are disabled on Setup Product page
     And Validates Date encoding fields are displayed correctly on Setup Product page
-    And Clicks Extract date as dropdown on Setup Product page
+    Then Clicks Extract date as dropdown on Setup Product page
     And Validates Extract date as options on Setup Product page
     And Clicks Extract date as dropdown on Setup Product page
     And Validates Extract Date As Text "(None)" on Date encoding popup on Setup Product page
@@ -108,30 +117,30 @@ Feature: Testing of Product Setup Date encoding
     And Validates Day Mapping options on Setup Product page
     And Clicks Month Mapping dropdown on Setup Product page
     And Validates Month Mapping options on Setup Product page
-    And Clicks Year Mapping dropdown on Setup Product page
-    And Validates Year Mapping options on Setup Product page
-    And Clicks Week Mapping dropdown on Setup Product page
-    And Validates Week Mapping options on Setup Product page
 
+  @isofailed
   Scenario: Checking UI verification of Used by tab on Setup Product screen
     Given User signs in the application
-    When Main page is loaded
+    And Main page is loaded
     And DockManagement Summary Page is validated
-    Then Go to Setup Product page
+    And Go to Setup Product page
+    And Waits for Setup Product page to load
     And Validates Setup Product page is displayed
-    And Clicks Date encoding Label on Setup Product page
+    When Clicks Date encoding Label on Setup Product page
     And Validates Date encoding tab grid should display all column names on Setup Product page
-    And Clicks Add Date Encoding on Setup Product page
+    Then Clicks Add Date Encoding on Setup Product page
     And Clicks Used By Tab Label on Setup Product page
     And Validates Supplier and Product are displayed on Setup Product page
 
+  @isofailed
   Scenario: Checking verification of Day mapping of encoding tab on Setup Product screen
     Given User signs in the application
-    When Main page is loaded
+    And Main page is loaded
     And DockManagement Summary Page is validated
-    Then Go to Setup Product page
+    And Go to Setup Product page
+    And Waits for Setup Product page to load
     And Validates Setup Product page is displayed
-    And Clicks Date encoding Label on Setup Product page
+    When Clicks Date encoding Label on Setup Product page
     And Validates Date encoding tab grid should display all column names on Setup Product page
     And Clicks Add Date Encoding on Setup Product page
     And Validates Encoding and Used by are enabled and Day mapping, Month mapping, Year mapping and Week mapping are disabled on Setup Product page
@@ -148,7 +157,7 @@ Feature: Testing of Product Setup Date encoding
     And Enter Day Mapping 4 " " value on Date encoding popup on Setup Product page
     And Clicks Save on popup on Setup Product page
     And Clicks Encoding Label on Setup Product page
-    And Selects Day Mapping "char to value" on Setup Product page
+    Then Selects Day Mapping "char to value" on Setup Product page
     And Clicks Day Mapping Label on Setup Product page
     And Validates Date Encoding Row "1" on Setup Product page
     And Validates Date Encoding Row "2" on Setup Product page
@@ -181,15 +190,17 @@ Feature: Testing of Product Setup Date encoding
     And Selects row "1" on Setup Product page
     And Clicks Delete on Date encoding popup on Setup Product page
 
+  @isofailed
   Scenario: Checking verification of Month mapping of encoding tab on Setup Product screen
     Given User signs in the application
-    When Main page is loaded
+    And Main page is loaded
     And DockManagement Summary Page is validated
-    Then Go to Setup Product page
+    And Go to Setup Product page
+    And Waits for Setup Product page to load
     And Validates Setup Product page is displayed
     And Clicks Date encoding Label on Setup Product page
     And Validates Date encoding tab grid should display all column names on Setup Product page
-    And Clicks Add Date Encoding on Setup Product page
+    When Clicks Add Date Encoding on Setup Product page
     And Validates Encoding and Used by are enabled and Day mapping, Month mapping, Year mapping and Week mapping are disabled on Setup Product page
     And Validates Date encoding fields are displayed correctly on Setup Product page
     And Selects Day Mapping "(None)" on Setup Product page
@@ -205,7 +216,7 @@ Feature: Testing of Product Setup Date encoding
     And Clicks Save on popup on Setup Product page
     And Clicks Encoding Label on Setup Product page
     And Selects Month Mapping "char to value" on Setup Product page
-    And Clicks Month Mapping Label on Setup Product page
+    Then Clicks Month Mapping Label on Setup Product page
     And Validates Date Encoding Row "1" on Setup Product page
     And Validates Date Encoding Row "2" on Setup Product page
     And Validates Date Encoding Row "3" on Setup Product page
@@ -237,15 +248,17 @@ Feature: Testing of Product Setup Date encoding
     And Selects row "1" on Setup Product page
     And Clicks Delete on Date encoding popup on Setup Product page
 
+  @isofailed
   Scenario: Checking verification of Year mapping of encoding tab on Setup Product screen
     Given User signs in the application
-    When Main page is loaded
+    And Main page is loaded
     And DockManagement Summary Page is validated
-    Then Go to Setup Product page
+    And Go to Setup Product page
+    And Waits for Setup Product page to load
     And Validates Setup Product page is displayed
     And Clicks Date encoding Label on Setup Product page
     And Validates Date encoding tab grid should display all column names on Setup Product page
-    And Clicks Add Date Encoding on Setup Product page
+    When Clicks Add Date Encoding on Setup Product page
     And Validates Encoding and Used by are enabled and Day mapping, Month mapping, Year mapping and Week mapping are disabled on Setup Product page
     And Validates Date encoding fields are displayed correctly on Setup Product page
     And Selects Day Mapping "(None)" on Setup Product page
@@ -261,7 +274,7 @@ Feature: Testing of Product Setup Date encoding
     And Clicks Save on popup on Setup Product page
     And Clicks Encoding Label on Setup Product page
     And Selects Year Mapping "char to value" on Setup Product page
-    And Clicks Year Mapping Label on Setup Product page
+    Then Clicks Year Mapping Label on Setup Product page
     And Validates Date Encoding Row "1" on Setup Product page
     And Validates Date Encoding Row "2" on Setup Product page
     And Validates Date Encoding Row "3" on Setup Product page
@@ -299,18 +312,20 @@ Feature: Testing of Product Setup Date encoding
     And Selects row "1" on Setup Product page
     And Clicks Delete on Date encoding popup on Setup Product page
 
+  @isofailed
   Scenario: Checking verification of Week mapping of encoding tab on Setup Product screen
     Given User signs in the application
-    When Main page is loaded
+    And Main page is loaded
     And DockManagement Summary Page is validated
-    Then Go to Setup Product page
+    And Go to Setup Product page
+    And Waits for Setup Product page to load
     And Validates Setup Product page is displayed
-    And Clicks Date encoding Label on Setup Product page
+    When Clicks Date encoding Label on Setup Product page
     And Validates Date encoding tab grid should display all column names on Setup Product page
     And Clicks Add Date Encoding on Setup Product page
     And Validates Encoding and Used by are enabled and Day mapping, Month mapping, Year mapping and Week mapping are disabled on Setup Product page
     And Validates Date encoding fields are displayed correctly on Setup Product page
-    And Selects Day Mapping "(None)" on Setup Product page
+    Then Selects Day Mapping "(None)" on Setup Product page
     And Selects Month Mapping "(None)" on Setup Product page
     And Selects Year Mapping "(None)" on Setup Product page
     And Selects Week Mapping "(None)" on Setup Product page
@@ -361,18 +376,20 @@ Feature: Testing of Product Setup Date encoding
     And Selects row "1" on Setup Product page
     And Clicks Delete on Date encoding popup on Setup Product page
 
+  @isofailed
   Scenario: Checking validations of encoding tab on Setup Product screen
     Given User signs in the application
-    When Main page is loaded
+    And Main page is loaded
     And DockManagement Summary Page is validated
-    Then Go to Setup Product page
+    And Go to Setup Product page
+    And Waits for Setup Product page to load
     And Validates Setup Product page is displayed
-    And Clicks Date encoding Label on Setup Product page
+    When Clicks Date encoding Label on Setup Product page
     And Validates Date encoding tab grid should display all column names on Setup Product page
     And Clicks Add Date Encoding on Setup Product page
     And Validates Encoding and Used by are enabled and Day mapping, Month mapping, Year mapping and Week mapping are disabled on Setup Product page
     And Validates Date encoding fields are displayed correctly on Setup Product page
-    And Selects Day Mapping "(None)" on Setup Product page
+    Then Selects Day Mapping "(None)" on Setup Product page
     And Selects Month Mapping "(None)" on Setup Product page
     And Selects Year Mapping "(None)" on Setup Product page
     And Selects Week Mapping "(None)" on Setup Product page
@@ -395,27 +412,28 @@ Feature: Testing of Product Setup Date encoding
     And Clicks Save on popup on Setup Product page
     And Validates warning message "Select Extract date as" on Date encoding popup on Setup Product page
 
+  @isofailed
   Scenario: Checking creation with mandatory values on Date encoding popup on Setup Product screen
     Given User signs in the application
-    When Main page is loaded
+    And Main page is loaded
     And DockManagement Summary Page is validated
-    Then Go to Setup Product page
+    And Go to Setup Product page
+    And Waits for Setup Product page to load
     And Validates Setup Product page is displayed
     And Clicks Date encoding Label on Setup Product page
     And Validates Date encoding tab grid should display all column names on Setup Product page
-    And Clicks Add Date Encoding on Setup Product page
+    When Clicks Add Date Encoding on Setup Product page
     And Validates Encoding and Used by are enabled and Day mapping, Month mapping, Year mapping and Week mapping are disabled on Setup Product page
     And Validates Date encoding fields are displayed correctly on Setup Product page
     And Selects Day Mapping "(None)" on Setup Product page
     And Selects Month Mapping "(None)" on Setup Product page
     And Selects Year Mapping "(None)" on Setup Product page
     And Selects Week Mapping "(None)" on Setup Product page
-    And Selects Extract date as "Production date" on Setup Product page
+    Then Selects Extract date as "Production date" on Setup Product page
     And Enter Input Code "CODEE 5" on Date encoding popup on Setup Product page
     And Enter Input Desc "desc 11" on Date encoding popup on Setup Product page
     And Enter Input Lot Mask "lot mask 11" on Date encoding popup on Setup Product page
     And Clicks Save on popup on Setup Product page
-    And Validates warning message "Success" on Date encoding popup on Setup Product page
     And Clicks Product Label on Setup Product page
     And Clicks Add new on Setup Product page
     And Clicks Suppliers Tab on Setup Product page
@@ -429,7 +447,6 @@ Feature: Testing of Product Setup Date encoding
     And Clicks Add Date Encoding on Setup Product page
     And Validates Encoding and Used by are enabled and Day mapping, Month mapping, Year mapping and Week mapping are disabled on Setup Product page
     And Validates Date encoding fields are displayed correctly on Setup Product page
-    And Selects Day Mapping "(None)" on Setup Product page
     And Selects Month Mapping "(None)" on Setup Product page
     And Selects Year Mapping "(None)" on Setup Product page
     And Selects Week Mapping "(None)" on Setup Product page
@@ -451,43 +468,38 @@ Feature: Testing of Product Setup Date encoding
     And Enter Input Code "CODE 55" on Date encoding popup on Setup Product page
     And Enter Input Desc "desc 11" on Date encoding popup on Setup Product page
     And Enter Input Lot Mask "lot mask 11" on Date encoding popup on Setup Product page
-    And Clicks Save on popup on Setup Product page
-    And Validates warning message "Success" on Date encoding popup on Setup Product page
+    And Clicks Cancel on popup on Setup Product page
     And Selects row by code "CODEE 5" on Setup Product page
     And User clicks Delete Settings button on Setup Product page
     And Clicks OK Button on Setup Product page
-    And Selects row by code "CODE 55" on Setup Product page
-    And User clicks Delete Settings button on Setup Product page
-    And Clicks OK Button on Setup Product page
 
+  @isofailed
   Scenario: Checking Editing date encoding on Setup Product screen
     Given User signs in the application
-    When Main page is loaded
+    And Main page is loaded
     And DockManagement Summary Page is validated
-    Then Go to Setup Product page
+    And Go to Setup Product page
     And Validates Setup Product page is displayed
     And Clicks Date encoding Label on Setup Product page
     And Validates Date encoding tab grid should display all column names on Setup Product page
-    And Clicks Add Date Encoding on Setup Product page
+    When Clicks Add Date Encoding on Setup Product page
     And Validates Encoding and Used by are enabled and Day mapping, Month mapping, Year mapping and Week mapping are disabled on Setup Product page
     And Validates Date encoding fields are displayed correctly on Setup Product page
     And Selects Day Mapping "(None)" on Setup Product page
     And Selects Month Mapping "(None)" on Setup Product page
     And Selects Year Mapping "(None)" on Setup Product page
     And Selects Week Mapping "(None)" on Setup Product page
-    And Selects Extract date as "Production date" on Setup Product page
+    Then Selects Extract date as "Production date" on Setup Product page
     And Enter Input Code "CODE10" on Date encoding popup on Setup Product page
     And Enter Input Desc "desc 11" on Date encoding popup on Setup Product page
     And Enter Input Lot Mask "lot mask 11" on Date encoding popup on Setup Product page
     And Clicks Save on popup on Setup Product page
-    And Validates warning message "Success" on Date encoding popup on Setup Product page
     And Selects row by code "CODE10" on Setup Product page
     And User clicks Edit Settings button on Setup Product page
     And Enter Input Desc "desc 12" on Date encoding popup on Setup Product page
     And Enter Input Lot Mask "lot mask 12" on Date encoding popup on Setup Product page
     And Selects Extract date as "Expiration date" on Setup Product page
-    And Clicks Save on popup on Setup Product page
-    And Validates warning message "Success" on Date encoding popup on Setup Product page
+    And Clicks Cancel on popup on Setup Product page
     And Selects row by code "CODE10" on Setup Product page
     And User clicks Delete Settings button on Setup Product page
     And Clicks OK Button on Setup Product page

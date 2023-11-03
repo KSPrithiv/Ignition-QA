@@ -506,10 +506,17 @@ public class OutboundOrderSummaryPageSteps {
     }
 
     @Step
-    @And("Selects {string} door option on Outbound Order Summary page")
+    @And("Selects {string} option on Outbound Order Summary page")
     public void selectDoor(String door) {
         log.info("Selecting door " + door);
         outboundOrderSummaryPage.selectDoorListOption(door);
+    }
+
+    @Step
+    @And("Selects {string} door option on Outbound Order Summary page")
+    public void clickDoorByValue(String door) {
+        log.info("Selecting door option" + door);
+        outboundOrderSummaryPage.clickDoorDropDown(door);
     }
 
     @Step

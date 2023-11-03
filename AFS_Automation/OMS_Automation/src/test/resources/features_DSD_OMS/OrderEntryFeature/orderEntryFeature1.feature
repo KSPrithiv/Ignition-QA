@@ -27,7 +27,7 @@ Feature: Order Entry1
     Then User should be navigated to Order Entry page
 
   @SearchOrderAddfilter
-  Scenario: Creating New order and search for that order by
+  Scenario: Creating New order and search for that order by using add filter
     Given User must be on Order Entry Page
     Then User must click Start Order button
     Then User should make selection between Pending order or Start New order

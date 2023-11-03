@@ -40,7 +40,7 @@ public class WorkQueueWorkAssignPage extends BasePage {
     }
 
     public void waitWorkQueueWorkAssignPageToLoad() {
-        waitUntilInvisible(3, loader);
+        waitUntilInvisible(5, loader);
         Waiters.waitForElementToBeDisplay(getTaskGroupTitle());
         Waiters.waitForElementToBeDisplay(getSaveEditButton());
         Waiters.waitForElementToBeDisplay(getCancelEditButton());

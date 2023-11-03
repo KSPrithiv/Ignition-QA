@@ -8,6 +8,8 @@ import ui.pages.BasePage;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static common.setup.DriverManager.getDriver;
+
 public class SetupProductPage extends BasePage {
     By productLabel = By.xpath("//span[contains(text(), 'Product')]");
     By productTypeLabel = By.xpath("//span[contains(text(), 'Product type')]");
@@ -279,6 +281,7 @@ public class SetupProductPage extends BasePage {
     By valueInput = By.cssSelector("input[id='Value']");
     By notificationMsg = By.cssSelector(".toast-message");
     By ddlDateEncodingDropDown = By.id("ddlDateEncoding");
+    By loader = By.cssSelector(".loader");
 
     public WebElement getDateEncodingRow(String row) {
         return findWebElement(By.xpath("//div[@role='dialog']//tr[@data-grid-row-index='" + row + "']"));
@@ -293,15 +296,8 @@ public class SetupProductPage extends BasePage {
     }
 
     public void waitSetupProductPageToLoad() {
-        Waiters.waitUntilPageWillLoadedSelenide();
-        Waiters.waitABit(3000);
-        Waiters.waitForElementToBeDisplay(productLabel);
-        Waiters.waitForElementToBeDisplay(productTypeLabel);
-        Waiters.waitForElementToBeDisplay(unitOfMeasureLabel);
-        Waiters.waitForElementToBeDisplay(unitStatusLabel);
-        Waiters.waitForElementToBeDisplay(qualityControlTypeLabel);
-        Waiters.waitForElementToBeDisplay(putAwayRuleLabel);
-        Waiters.waitForElementToBeDisplay(aliasTypeLabel);
+        Waiters.waitTillLoadingPage(getDriver());
+        waitUntilInvisible(10, loader);
         Waiters.waitForElementToBeDisplay(movementClassLabel);
         Waiters.waitForElementToBeDisplay(genericLookupTypeLabel);
         Waiters.waitForElementToBeDisplay(pickSlotTypeLabel);
@@ -644,6 +640,7 @@ public class SetupProductPage extends BasePage {
     }
 
     public void clickDeleteSettingsBtn() {
+        waitUntilInvisible(2, loader);
         Waiters.waitForElementToBeDisplay(getDeleteSettingsButton());
         clickOnElement(getDeleteSettingsButton());
         Waiters.waitABit(2000);

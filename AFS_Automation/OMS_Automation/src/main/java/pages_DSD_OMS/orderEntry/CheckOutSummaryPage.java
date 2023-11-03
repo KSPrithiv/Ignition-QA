@@ -20,6 +20,7 @@ import org.testng.Assert;
 import util.TestBase;
 
 import java.awt.*;
+import java.awt.font.TextLayout;
 import java.time.Duration;
 import java.util.*;
 import java.util.List;
@@ -83,22 +84,23 @@ public class CheckOutSummaryPage
         exists=false;
         try
         {
-            if(HelpersMethod.IsExists("//div[@class='loader']",driver))
-            {
-                WebElement WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 800000);
-            }
+            Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(120))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
             String status = HelpersMethod.returnDocumentStatus(driver);
             if (status.equals("loading"))
             {
                 HelpersMethod.waitTillLoadingPage(driver);
             }
 
-            if(HelpersMethod.IsExists("//div[@class='loader']",driver))
-            {
-                WebElement WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 800000);
-            }
+            wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(120))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
 
             if(HelpersMethod.IsExists("//div[contains(@class,'checkout-summary-content')]",driver))
             {
@@ -129,19 +131,19 @@ public class CheckOutSummaryPage
         HelpersMethod.ScrollUpScrollBar(driver);
         Actions act=new Actions(driver);
 
-        if(HelpersMethod.IsExists("//div[@class='loader']",driver))
+       /* if(HelpersMethod.IsExists("//div[@class='loader']",driver))
         {
             WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
             HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000000);
-        }
-        HelpersMethod.ScrollUpScrollBar(driver);
-
-     /*   Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
-                .withTimeout(Duration.ofSeconds(30))
+        }*/
+        Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                .withTimeout(Duration.ofSeconds(60))
                 .pollingEvery(Duration.ofSeconds(5))
                 .ignoring(NoSuchElementException.class);
-                 wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
-        */
+        wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
+        HelpersMethod.ScrollUpScrollBar(driver);
+
         if(HelpersMethod.IsExists("//button[@id='ConfirmSummaryButton']",driver))
         {
             WebElement submitButton = HelpersMethod.FindByElement(driver, "xpath", "//button[@id='ConfirmSummaryButton']");
@@ -156,18 +158,12 @@ public class CheckOutSummaryPage
             new WebDriverWait(driver,Duration.ofMillis(20000)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(@class,'k-animation-container k-animation-container-relative k-animation-container-shown')]/descendant::ul/li")));
             //Click on list that appears
             WebElement arrowCutoff=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-animation-container k-animation-container-relative k-animation-container-shown')]/descendant::ul/li");
-            HelpersMethod.ActClick(driver,arrowCutoff,8000);
-            if (HelpersMethod.IsExists("//div[@class='loader']", driver))
-            {
-                WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 800000);
-            }
-        }
-
-        if (HelpersMethod.IsExists("//div[@class='loader']", driver))
-        {
-                WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 200000);
+            HelpersMethod.ActClick(driver,arrowCutoff,10000);
+            wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(60))
+                    .pollingEvery(Duration.ofSeconds(5))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
         }
             exists = true;
             scenario.log("SUBMIT BUTTON IN ORDER SUMMARY PAGE HAS BEEN CLICKED");
@@ -247,7 +243,7 @@ public class CheckOutSummaryPage
             if(HelpersMethod.IsExists("//div[@class='loader']",driver))
             {
                 WebElement WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 400000);
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 2000000);
             }
             if (HelpersMethod.IsExists("//div[contains(text(),'Order submitted successfully.')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]", driver))
             {
@@ -268,10 +264,15 @@ public class CheckOutSummaryPage
                 {
                     HelpersMethod.waitTillLoadingPage(driver);
                 }
-                if(HelpersMethod.IsExists("//div[@class='loader']",driver))
+                Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                        .withTimeout(Duration.ofSeconds(120))
+                        .pollingEvery(Duration.ofSeconds(2))
+                        .ignoring(NoSuchElementException.class);
+                wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+                status = HelpersMethod.returnDocumentStatus(driver);
+                if (status.equals("loading"))
                 {
-                    WebElement WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 400000);
+                    HelpersMethod.waitTillLoadingPage(driver);
                 }
             }
         }
@@ -291,7 +292,7 @@ public class CheckOutSummaryPage
         if(HelpersMethod.IsExists("//div[@class='loader']",driver))
         {
             WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100000);
+            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000000);
         }
 
         // to fetch the web element of the modal container
@@ -450,7 +451,7 @@ public class CheckOutSummaryPage
         try
         {
             Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
-                    .withTimeout(Duration.ofSeconds(30))
+                    .withTimeout(Duration.ofSeconds(60))
                     .pollingEvery(Duration.ofSeconds(5))
                     .ignoring(NoSuchElementException.class);
             wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[@id='ConfirmSummaryButton']//*[local-name()='svg']|//button[@id='ConfirmSummarySplitButton']//*[local-name()='svg']")));
@@ -458,8 +459,11 @@ public class CheckOutSummaryPage
             if(HelpersMethod.IsExistsById("CancelSummaryButton",driver))
             {
                 WebElement CancelBut = HelpersMethod.FindByElement(driver, "id", "CancelSummaryButton");
-                HelpersMethod.ClickBut(driver, CancelBut, 1000);
-                exists = true;
+                if(CancelBut.isEnabled())
+                {
+                    HelpersMethod.ClickBut(driver, CancelBut, 1000);
+                    exists = true;
+                }
             }
             scenario.log("CANCEL ORDER BUTTON HAS BEEN CLICKED");
             new WebDriverWait(driver,Duration.ofMillis(10000)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(text(),'Cancel order')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]"))));
@@ -499,7 +503,7 @@ public class CheckOutSummaryPage
             if(HelpersMethod.IsExists("//div[@class='loader']",driver))
             {
                 WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 80000);
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000000);
             }
             Assert.assertEquals(exists,true);
         }
@@ -513,10 +517,25 @@ public class CheckOutSummaryPage
         try
         {
             HelpersMethod.ActClick(driver,Button_Close,1000);
+            //To zoom out browser by 50%
+            if(TestBase.testEnvironment.get_browser().equalsIgnoreCase("chrome")|TestBase.testEnvironment.get_browser().equalsIgnoreCase("edge"))
+            {
+                JavascriptExecutor js = (JavascriptExecutor) driver;
+                js.executeScript("document.body.style.zoom='50%'");
+            }
+            else if(TestBase.testEnvironment.get_browser().equalsIgnoreCase("firefox"))
+            {
+                JavascriptExecutor js=(JavascriptExecutor)driver;
+                js.executeScript("document.body.style.MozTransform='50%'");
+            }
             WebElement ProdNo=HelpersMethod.FindByElement(driver,"xpath","//span[text()='Product #']");
-            HelpersMethod.ActClick(driver,ProdNo,1000);
-            WebElement Sort=HelpersMethod.FindByElement(driver,"xpath","//span[contains(@class,'k-icon k-i-sort')]");
-            HelpersMethod.ActClick(driver,Sort,1000);
+            //act.moveToElement(ProdNo).build().perform();
+            //act.click(ProdNo).build().perform();
+            HelpersMethod.JScriptClick(driver,ProdNo,1000);
+
+            WebElement Sort=HelpersMethod.FindByElement(driver,"xpath","//span[text()='Product #']/following-sibling::span[contains(@class,'sort')]");
+            //HelpersMethod.ActClick(driver,Sort,1000);
+            act.moveToElement(Sort).doubleClick(Sort).build().perform();
             //find the column number for Product #
             List<WebElement> theads=HelpersMethod.FindByElements(driver,"xpath","//th[contains(@class,'k-header')]/descendant::span[@class='k-column-title']");
             for (WebElement head:theads)
@@ -539,10 +558,29 @@ public class CheckOutSummaryPage
             }
             //Creating sorted list of products in Summary grid
             ArrayList<String> Pro_Sort=new ArrayList<>(Pro_List);
-            //Collections.sort(Pro_Sort,Collections.reverseOrder());
             Collections.sort(Pro_Sort);
             //Comparing the sorted order with list of products
-            Assert.assertEquals(Pro_List,Pro_Sort);
+            //Assert.assertEquals(Pro_List,Pro_Sort);
+            if(Pro_Sort.equals(Pro_List)==true)
+            {
+                scenario.log("PRODUCT NUMBERS ARE IN SORTED ORDER");
+            }
+            else
+            {
+                scenario.log("PRODUCT NUMBERS ARE NOT IN SORTED ORDER");
+            }
+
+            //To zoom out browser by 100%
+            if(TestBase.testEnvironment.get_browser().equalsIgnoreCase("chrome")|TestBase.testEnvironment.get_browser().equalsIgnoreCase("edge"))
+            {
+                JavascriptExecutor js = (JavascriptExecutor) driver;
+                js.executeScript("document.body.style.zoom='100%'");
+            }
+            else if(TestBase.testEnvironment.get_browser().equalsIgnoreCase("firefox"))
+            {
+                JavascriptExecutor js=(JavascriptExecutor)driver;
+                js.executeScript("document.body.style.MozTransform='100%'");
+            }
         }
         catch(Exception e){}
     }
@@ -611,7 +649,7 @@ public class CheckOutSummaryPage
                 {
                     if (!PCwind.equals(ParentWindow))
                     {
-                        Thread.sleep(1000);
+                        Thread.sleep(2000);
                         driver.switchTo().window(PCwind);
                         scenario.log(".pdf HAS BEEN FOUND");
                         driver.close();

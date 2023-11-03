@@ -186,8 +186,7 @@ public class CustomerInqStep
     }
 
     @Then("User clicks on Save button in Customer inq and handles popup")
-    public void userClicksOnSaveButtonInCustomerInqAndHandlesPopup()
-    {
+    public void userClicksOnSaveButtonInCustomerInqAndHandlesPopup() throws InterruptedException {
         customerInquiryPage=new CustomerInquiryPage(driver,scenario);
         customerInquiryPage.Save_ButtonClick();
     }
@@ -438,7 +437,7 @@ public class CustomerInqStep
         if(HelpersMethod.IsExists("//div[@class='loader']",driver))
         {
             WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 400);
+            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 4000);
         }
         dex_ediPage=new DEX_EDIPage(driver,scenario);
         dex_ediPage.ValidateDEXEDI();
@@ -467,7 +466,7 @@ public class CustomerInqStep
             if (HelpersMethod.IsExists("//div[@class='loader']", driver))
             {
                 WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 2000);
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 200000);
             }
             ignitionPage = new IgnitionPage(driver, scenario);
             ignitionPage.ValidateIgnition();
@@ -489,7 +488,7 @@ public class CustomerInqStep
     }
 
     @And("User selects {int} day from current date and {int} day from end date and Select Payment processing")
-    public void userSelectsDayFromCurrentDateAndDayFromEndDateAndSelectPaymentProcessing(int arg0, int arg1)
+    public void userSelectsDayFromCurrentDateAndDayFromEndDateAndSelectPaymentProcessing(int arg0, int arg1) throws InterruptedException
     {
         ignitionPage=new IgnitionPage(driver,scenario);
         ignitionPage.ValidateAddStandingPO();
@@ -528,8 +527,7 @@ public class CustomerInqStep
     }
 
     @Then("User clicks on Save button")
-    public void userClicksOnSaveButton()
-    {
+    public void userClicksOnSaveButton() throws InterruptedException {
         customerInquiryPage=new CustomerInquiryPage(driver,scenario);
         customerInquiryPage.Save_ButtonClick();
         customerInquiryPage.validateSaveConfirmationPopup();
@@ -570,8 +568,7 @@ public class CustomerInqStep
     }
 
     @Then("User clicks on Save button before adding values to ignition in DSD")
-    public void userClicksOnSaveButtonBeforeAddingValuesToIgnitionInDSD()
-    {
+    public void userClicksOnSaveButtonBeforeAddingValuesToIgnitionInDSD() throws InterruptedException {
         customerInquiryPage=new CustomerInquiryPage(driver,scenario);
         customerInquiryPage.BillNo();
         //customerInquiryPage.StoreNo();
@@ -640,10 +637,13 @@ public class CustomerInqStep
         List<WebElement> Pos= HelpersMethod.FindByElements(driver,"xpath","//tr[contains(@class,'k-master-row')]");
        for(int i=0;i<= Pos.size()-1;i++)
        {
-           IgnitionPageERP ignitionPageERP = new IgnitionPageERP(driver, scenario);
-           ignitionPageERP.selectPONoForDelete(i);
-           ignitionPageERP.clickDelete();
-           ignitionPageERP.confirmationPopUp();
+           ignitionPage=new IgnitionPage(driver,scenario);
+           ignitionPage.selectPONoForDelete(i);
+           ignitionPage.clickDelete();
+           ignitionPage.confirmationPopUp();
+          /* customerInquiryPage=new CustomerInquiryPage(driver,scenario);
+           customerInquiryPage.validateSaveConfirmationPopup();
+           customerInquiryPage.SaveButtonOK();*/
        }
     }
 }

@@ -7,6 +7,12 @@ Feature: Disconnected mode
     Then User navigate to Client side for DM
     Then User should select Order Entry tab for DM
 
+  @DMGoOfflineCancel
+  Scenario: Test scenario for canceling navigating to disconnected mode
+    Given User should be in Order entry page
+    When User Clicks on network symbol and click on taggle button to navigate to disconnected mode for cancel option
+    And Then User selects cancel option in Disconnected mode popup
+
   @DMGooffline
   Scenario: Go offline scenario
     Given User should be in Order entry page

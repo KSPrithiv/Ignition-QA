@@ -194,14 +194,14 @@ public class PrimaryPage
 
     public void selectDropDownValue()
     {
-        WebElement dropDownOption=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-popup k-child-animation-container')]");
-        List<WebElement> Options= dropDownOption.findElements(By.xpath(".//ul/li"));
+        //WebElement dropDownOption=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-popup k-child-animation-container')]");
+        List<WebElement> Options= HelpersMethod.FindByElements(driver,"xpath","//div[contains(@class,'k-popup k-child-animation-container')]/descendant::ul/li");
         try
         {
             if(Options.size()==1)
             {
                 scenario.log("THERE ARE NO OPTIONS OTHER THAN 'None'");
-                HelpersMethod.ActClick(driver, Options.get(0), 20);
+                HelpersMethod.ActClick(driver, Options.get(0), 1000);
             }
             else
             {
@@ -211,7 +211,7 @@ public class PrimaryPage
                     {
                         if (i == 1)
                         {
-                            HelpersMethod.ActClick(driver, Options.get(1), 20);
+                            HelpersMethod.ActClick(driver, Options.get(1), 1000);
                             break;
                         }
                     }
@@ -222,7 +222,7 @@ public class PrimaryPage
                     {
                         if (i == 2)
                         {
-                            HelpersMethod.ActClick(driver, Options.get(2), 20);
+                            HelpersMethod.ActClick(driver, Options.get(2), 1000);
                             break;
                         }
                     }
@@ -433,7 +433,7 @@ public class PrimaryPage
     public void DeliveryBranchDropDown() throws InterruptedException
     {
         HelpersMethod.ScrollElement(driver,branchDrop);
-        HelpersMethod.ActClick(driver,branchDrop,40);
+        HelpersMethod.ActClick(driver,branchDrop,1000);
         selectDropDownValue();
         scenario.log("BRANCH DROP DOWN IS "+branchDrop.getText());
     }

@@ -20,7 +20,7 @@ public class OutboundLoadPlanningPage extends BasePage {
 
     public void waitOutboundLoadPlanningPageToLoad() {
         Waiters.waitABit(7000);
-        Waiters.waitUntilPageWillLoadedSelenide();
+        waitUntilInvisible(8, loader);
         Waiters.waitForElementToBeDisplay(getLoadPlanningShipDate());
         Waiters.waitForElementToBeDisplay(getLoadPlanningShipDateLabel());
     }
@@ -68,6 +68,7 @@ public class OutboundLoadPlanningPage extends BasePage {
         clickOnElement(getDoneButton());
         waitUntilInvisible(10, loader);
         Waiters.waitTillLoadingPage(getDriver());
+        waitUntilInvisible(10, loader);
     }
 
     public void clickRouteTypeDropDown() {
@@ -76,7 +77,7 @@ public class OutboundLoadPlanningPage extends BasePage {
         Waiters.waitTillLoadingPage(getDriver());
         clickOnElement(getDropDownRouteType());
         Waiters.waitTillLoadingPage(getDriver());
-        Waiters.waitABit(4000);
+        waitUntilInvisible(5, loader);
     }
 
     public void selectRoute(String route) {
@@ -87,13 +88,15 @@ public class OutboundLoadPlanningPage extends BasePage {
             deleteCookies();
             refresh();
         }
+        waitUntilInvisible(4, loader);
         options = findWebElements(By.xpath("//div[contains(@class, 'k-animation-container-shown')]//li[@role='option']"));
+        waitUntilInvisible(4, loader);
         WebElement option = options
                 .stream()
                 .filter(el -> el.getText().contains(route))
                 .findFirst()
                 .orElse(null);
-        Waiters.waitABit(10000);
+        waitUntilInvisible(4, loader);
         clickOnElement(option);
         Waiters.waitABit(10000);
         waitUntilInvisible(20, loader);
@@ -111,11 +114,13 @@ public class OutboundLoadPlanningPage extends BasePage {
         waitUntilStalenessOf(2, getLoadPlanningShipDate());
         Waiters.waitABit(2000);
         doubleClick(getLoadPlanningShipDate());
+        waitUntilStalenessOf(2, getLoadPlanningShipDate());
         pressDelete(getLoadPlanningShipDate());
         waitUntilStalenessOf(2, getLoadPlanningShipDate());
         inputText(getLoadPlanningShipDate(), date);
         waitUntilStalenessOf(2, getLoadPlanningShipDate());
         pressEnter(getLoadPlanningShipDate());
+        waitUntilStalenessOf(2, getLoadPlanningShipDate());
         pressTab(getLoadPlanningShipDate());
         waitUntilInvisible(1, loader);
     }

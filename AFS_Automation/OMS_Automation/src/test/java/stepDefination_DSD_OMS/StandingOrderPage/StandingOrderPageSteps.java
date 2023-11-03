@@ -114,7 +114,7 @@ public class StandingOrderPageSteps
             orderpage = new OrderEntryPage(driver, scenario);
             orderpage.ChangeAccount();
             //orderpage.PopUps_After_AccountChange();
-            orderpage.Read_DeliveryDate();
+            //orderpage.Read_DeliveryDate();
             flag1=true;
         }
     }
@@ -138,8 +138,8 @@ public class StandingOrderPageSteps
     @And("User click on Start standing order button and selects start and end date from popup")
     public void userClickOnStartStandingOrderButtonAndSelectsStartAndEndDateFromPopup() throws InterruptedException, AWTException
     {
-        standingOrder=new NewStandingOrderPage(driver,scenario);
-        standingOrder.validateStandingOrder();
+        //standingOrder=new NewStandingOrderPage(driver,scenario);
+        //standingOrder.ValidateSO();
         standingOrderCard=new NewStandingOrderCard(driver,scenario);
         standingOrderCard.ClickOnNewStandingOrderArrow();
         standingOrderCard.ClickOnStartStandingOrder();
@@ -151,7 +151,7 @@ public class StandingOrderPageSteps
     public void userEntersProductInQuickProductEntryInputbox()
     {
         standingOrder=new NewStandingOrderPage(driver,scenario);
-        standingOrder.ValidateSO();
+        standingOrder.validateStandingOrder();
         standingOrder.QuickProductValue();
     }
 
@@ -178,7 +178,7 @@ public class StandingOrderPageSteps
         standingOrder.ClickSaveButton();
         standingOrder.sucessPopup();
         standingOrder.Refresh_Page(currentURL);
-        standingOrder.ValidateSO();
+        standingOrder.validateStandingOrder();
     }
 
     @And("User click on Start standing order button and selects Start date {int} and End date {int} day from current date")
@@ -249,14 +249,14 @@ public class StandingOrderPageSteps
         standingOrder.ClickDeleteProduct();
     }
 
-    @Then("Click on Skip specific day and select reason date for skip in skip popup and click on ok")
-    public void clickOnSkipSpecificDayAndSelectReasonDateForSkipInSkipPopupAndClickOnOk() throws InterruptedException
+    @Then("Click on Skip specific day and select {int} rd day from current date,select reason date for skip in skip popup and click on ok")
+    public void clickOnSkipSpecificDayAndSelectRdDayFromCurrentDateSelectReasonDateForSkipInSkipPopupAndClickOnOk(int days) throws InterruptedException
     {
         standingOrder=new NewStandingOrderPage(driver,scenario);
         standingOrder.ClickOnSkipSpecificDay();
         standingOrder.ValidateSkipPopup();
         standingOrder.ClickOnSkipReason();
-        standingOrder.SelectDateToSkip();
+        standingOrder.SelectDateToSkip(days);
         standingOrder.SkipOkButton();
         standingOrder.orderAlreadyExists();
         standingOrder.SkipConfirmation();
@@ -287,6 +287,8 @@ public class StandingOrderPageSteps
     {
         standingOrder=new NewStandingOrderPage(driver,scenario);
         standingOrder.ValidateCardView();
+        standingOrder.clickCategory();
+        standingOrder.selectCategory();
     }
 
     @Then("Select products from card view")
@@ -333,6 +335,7 @@ public class StandingOrderPageSteps
         standingOrder.ClickOnSkipSpecificDay();
         standingOrder.ValidateSkipPopup();
         sDate= standingOrder.readSkipDate();
+        scenario.log(sDate);
         standingOrder.SkipOkButton();
         LocalDate myDateObj = LocalDate.parse(sDate, DateTimeFormatter.ofPattern("MM/dd/yyyy"));
         DateTimeFormatter myFormatObj = DateTimeFormatter.ofPattern("EEEE, MMMM d, yyyy");
@@ -361,7 +364,7 @@ public class StandingOrderPageSteps
         orderpage.OrderGuidePopup();
         standingOrder = new NewStandingOrderPage(driver, scenario);
         standingOrder.navigateToStandingOrder();
-        standingOrder.ValidateSO();
+        //standingOrder.ValidateSO();
     }
 
     @Then("read the first product from the product grid and click on add product button")

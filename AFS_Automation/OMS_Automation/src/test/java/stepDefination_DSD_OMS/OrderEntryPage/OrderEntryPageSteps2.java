@@ -115,6 +115,7 @@ public class OrderEntryPageSteps2
     public void get_total_amount_from_summary_page_and_click_on_submitorder_button() throws InterruptedException, AWTException
     {
         summary=new CheckOutSummaryPage(driver,scenario);
+        summary.validateSummaryPage();
         Tot_Amt1=summary.Find_TotalAmt();
         summary.ClickSubmit();
         scenario.log("Product Total found in New OE page: "+Tot_Amt+" Product total found in summary page: "+Tot_Amt1);
@@ -138,6 +139,7 @@ public class OrderEntryPageSteps2
     {
         boolean result=false;
         newOE=new NewOrderEntryPage(driver,scenario);
+        newOE.ValidateNewOE();
         String route2=TestBase.testEnvironment.get_Route();
         Route1=newOE.Read_Route();
         if(Route1.equals(route2) || Route1.contains(route2))
@@ -215,6 +217,7 @@ public class OrderEntryPageSteps2
     public void click_on_cancel_button_in_oe_summary_page_and_handle_warning_popup() throws InterruptedException, AWTException
     {
         summary=new CheckOutSummaryPage(driver,scenario);
+        summary.validateSummaryPage();
         summary.Cancel_Button();
         summary.VerifyCancelPopUp();
         summary.CancelPop();
@@ -225,6 +228,7 @@ public class OrderEntryPageSteps2
     public void in_order_summary_page_click_on_up_arrow_for_sorting_product_in_descending_order_of_product_number() throws InterruptedException, AWTException
     {
         summary=new CheckOutSummaryPage(driver,scenario);
+        summary.validateSummaryPage();
         summary.Product_UpArrow();
     }
 

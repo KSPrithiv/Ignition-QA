@@ -38,6 +38,12 @@ public class AppointmentSchedulerOrderPage extends BasePage {
     By orderTypeColumn = By.xpath("//span[contains(text(), 'Order type')]");
     By qtyColumn = By.xpath("//span[contains(text(), 'Qty')]");
     By invalidOrder = By.xpath("//span[contains(text(), 'Invalid order')]");
+    By dateInputSchedulerDateLabel = By.id("dateInputSchdulerDate-label");
+    By dateInputSchedulerDate = By.id("dateInputSchdulerDate");
+    By timeInputFilterTimeLabel = By.id("timeInputFilterTime-label");
+    By timeInputFilterTime = By.id("timeInputFilterTime");
+    By invalidOrderLabel = By.xpath("//span[text()='Invalid order']");
+    By loader = By.cssSelector(".loader");
 
     public void waitForAppointmentSchedulerPageToLoad() {
         Waiters.waitUntilPageWillLoadedSelenide();
@@ -57,6 +63,8 @@ public class AppointmentSchedulerOrderPage extends BasePage {
         Waiters.waitForElementToBeDisplay(getOrderInput());
         doubleClick(getOrderInput());
         inputText(getOrderInput(), orderNum);
+        pressTab(getOrderInput());
+        waitUntilInvisible(2, loader);
     }
 
     public void addValidOrderThatOnInboundRouteWithOtherOrders(CharSequence orderNum) {
@@ -100,6 +108,7 @@ public class AppointmentSchedulerOrderPage extends BasePage {
     }
 
     public void clickNextButton() {
+        waitUntilInvisible(2, loader);
         Waiters.waitForElementToBeClickable(getNextButton());
         clickOnElement(getNextButton());
     }
@@ -168,10 +177,12 @@ public class AppointmentSchedulerOrderPage extends BasePage {
     public void enterDate(String date) {
         Waiters.waitForElementToBeClickable(getToggleCalendar());
         clickOnElement(getToggleCalendar());
-        Waiters.waitABit(2000);
+        waitUntilStalenessOf(5, getToggleCalendar());
         String day = date.substring(3, 5).contains("0") ? date.substring(4, 5) : date.substring(3, 5);
+        waitUntilStalenessOf(5, getToggleCalendar());
+        Waiters.waitABit(5000);
         clickOnElement(getCalendarDay(day));
-        Waiters.waitABit(2000);
+        Waiters.waitABit(5000);
     }
 
     public void inputAlt1(String atl1) {
@@ -198,6 +209,10 @@ public class AppointmentSchedulerOrderPage extends BasePage {
         return getElementAttribute(getNextButton(), "aria-disabled");
     };
 
+    public String getCancelButtonDisabilityResult() {
+        return getElementAttribute(getCancelButton(), "aria-disabled");
+    };
+
     public boolean isAppointmentSchedulerHeaderDisplayed() {
        return isElementDisplay(getTableHeader());
     }
@@ -216,47 +231,35 @@ public class AppointmentSchedulerOrderPage extends BasePage {
         return isElementDisplay(getWarehouseColumn());
     }
 
-    public boolean isSourceColumnDisplayed() {
-        return isElementDisplay(getSourceColumn());
-    }
+    public boolean isSourceColumnDisplayed() { return isElementDisplay(getSourceColumn()); }
 
-    public boolean isOrderTypeColumnDisplayed() {
-        return isElementDisplay(getOrderTypeColumn());
-    }
+    public boolean isDateSchedulerLabelDisplayed() { return isElementDisplay(dateInputSchedulerDateLabel); }
 
-    public boolean isQtyColumnDisplayed() {
-        return isElementDisplay(getQtyColumn());
-    }
+    public boolean isDateInputSchedulerDisplayed() { return isElementDisplay(dateInputSchedulerDate); }
 
-    public boolean isDeliveryTypeLabelDisplayed() {
-        return isElementDisplay(getDeliveryTypeLabel());
-    }
+    public boolean isTimeSchedulerLabelDisplayed() { return isElementDisplay(timeInputFilterTimeLabel); }
 
-    public boolean isDeliveryTypeDropDownDisplayed() {
-        return isElementDisplay(getDeliveryTypeDropDown());
-    }
+    public boolean isTimeSchedulerInputDisplayed() { return isElementDisplay(timeInputFilterTime); }
 
-    public String getDeliveryTypeDropDownText() {
-        return getText(getDeliveryTypeDropDown());
-    }
+    public boolean isOrderTypeColumnDisplayed() { return isElementDisplay(getOrderTypeColumn()); }
 
-    public boolean isEmailLabelDisplayed() {
-        return isElementDisplay(getEmailLabel());
-    }
+    public boolean isQtyColumnDisplayed() { return isElementDisplay(getQtyColumn()); }
 
-    public boolean isEmailInputBoxDisplayed() {
-        return isElementDisplay(getEmailInputBox());
-    }
+    public boolean isDeliveryTypeLabelDisplayed() { return isElementDisplay(getDeliveryTypeLabel()); }
 
-    public boolean isAlt1LabelDisplayed() {
-        return isElementDisplay(getAlt1Label());
-    }
+    public boolean isDeliveryTypeDropDownDisplayed() { return isElementDisplay(getDeliveryTypeDropDown()); }
 
-    public boolean isAlt1InputBoxDisplayed() {
-        return isElementDisplay(getAlt1InputBox());
-    }
+    public String getDeliveryTypeDropDownText() { return getText(getDeliveryTypeDropDown()); }
 
-    public boolean isAlt2LabelDisplayed() { return isElementDisplay(getAlt2Label());    }
+    public boolean isEmailLabelDisplayed() { return isElementDisplay(getEmailLabel()); }
+
+    public boolean isEmailInputBoxDisplayed() { return isElementDisplay(getEmailInputBox()); }
+
+    public boolean isAlt1LabelDisplayed() { return isElementDisplay(getAlt1Label()); }
+
+    public boolean isAlt1InputBoxDisplayed() { return isElementDisplay(getAlt1InputBox()); }
+
+    public boolean isAlt2LabelDisplayed() { return isElementDisplay(getAlt2Label()); }
 
     public boolean isAlt2InputBoxDisplayed() {
         return isElementDisplay(getAlt2InputBox());
@@ -264,13 +267,13 @@ public class AppointmentSchedulerOrderPage extends BasePage {
 
     public boolean isNotificationDisplayed(String text) { return isElementDisplay(getNotification(text)); }
 
+    public boolean isInvalidOrderLabelDisplayed() { return isElementDisplay(getInvalidOrderLabel()); }
+
     public WebElement getAppointmentSchedulerIcon() {
         return findWebElement(appointmentSchedulerIcon);
     }
 
-    public WebElement getOrderInput() {
-        return findWebElement(orderInput);
-    }
+    public WebElement getOrderInput() { return findWebElement(orderInput); }
 
     public WebElement getClearButton() {
         return findWebElement(clearButton);
@@ -347,5 +350,15 @@ public class AppointmentSchedulerOrderPage extends BasePage {
     public By getInvalidOrder() {
         return invalidOrder;
     }
+
+    public WebElement getDateInputSchedulerDateLabel() { return findWebElement(dateInputSchedulerDateLabel); }
+
+    public WebElement getDateInputSchedulerDate() { return findWebElement(dateInputSchedulerDate); }
+
+    public WebElement getTimeInputFilterTimeLabel() { return findWebElement(timeInputFilterTimeLabel); }
+
+    public WebElement getTimeInputFilterTime() { return findWebElement(timeInputFilterTime); }
+
+    public WebElement getInvalidOrderLabel() { return findWebElement(invalidOrderLabel); }
 
 }

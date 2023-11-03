@@ -12,7 +12,7 @@ http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <artifactId>OMS_Automation</artifactId>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <java.version>1.8</java.version>
+
         <cucumber.version>6.9.0</cucumber.version>
         <maven.source.version>1.8</maven.source.version>
         <maven.compiler.version>1.8</maven.compiler.version>

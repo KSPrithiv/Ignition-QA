@@ -16,6 +16,12 @@ import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import objects.userdata.UserData;
 import org.aeonbits.owner.ConfigFactory;
+
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
+import org.openqa.selenium.WebDriver;
+import static common.setup.DriverManager.*;
+
 import org.openqa.selenium.chrome.ChromeDriver;
 import ui.pages.BasePage;
 import ui.pages.LoginPage;
@@ -27,20 +33,42 @@ import static common.setup.DriverManager.*;
 })
 @Slf4j
 public class LoginPageSteps {
+    Scenario scenario;
     LoginPage loginPage = new LoginPage();
     BasePage basePage = new BasePage();
     public Waiters waiters;
     public static Environment environment;
+    public WebDriver driver;
 
-//    @Before
-//    public void beforeClassSetup() {
-//        ConfigFactory.setProperty("path", FilePaths.PROPERTIES_PATH);
-//        environment = ConfigFactory.create(Environment.class);
-//        log.info("Starting app url " + environment.getUrl() + " on browser " + environment.getBrowser());
-//        buildWebDriver(environment.getBrowser());
-//        DriverManager.openPage(environment.getUrl());
-//        new Waiters();
-//    }
+/*    @Before
+    public void beforeClassSetup() {
+        ConfigFactory.setProperty("path", FilePaths.PROPERTIES_PATH);
+        environment = ConfigFactory.create(Environment.class);
+        log.info("Starting app url " + environment.getUrl() + " on browser " + environment.getBrowser());
+        buildWebDriver(environment.getBrowser());
+        DriverManager.openPage(environment.getUrl());
+        new Waiters();
+    }*/
+
+    @Before
+    public void LaunchBrowser(Scenario scenario) throws Exception
+    {
+        this.scenario = scenario;
+        //TestBase driver1 = TestBase.getInstanceOfDriver();
+        //driver = driver1.getDriver();
+        //driver = TestBase.getDriver();
+        driver = DriverManager.getDriver();
+    }
+
+    @After
+    public void afterScenario1(Scenario scenario) {
+        if (scenario.isFailed())
+        {
+            TakesScreenshot ts = (TakesScreenshot) driver;
+            byte[] src = ts.getScreenshotAs(OutputType.BYTES);
+            scenario.attach(src,"image/png", scenario.getName());
+        }
+    }
 
     @Step
     @Given("User signs in the application")
@@ -103,7 +131,7 @@ public class LoginPageSteps {
 
     }
 
-    @SneakyThrows
+/*    @SneakyThrows
     @After
     public void closeBrowserInstance(Scenario scenario) {
        if (driverEnabled(getDriver())) {
@@ -117,5 +145,5 @@ public class LoginPageSteps {
                 }
             }
        }
-    }
+    }*/
 }

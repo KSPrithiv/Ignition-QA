@@ -31,6 +31,7 @@ public class UserManagement_ClientSideStep
     static LoginPage loginpage;
     static HomePage homepage;
     static userManagementClientPage userManagementpage;
+    static String currentURL;
 
     @Before
     public void LaunchBrowser1(Scenario scenario) throws Exception
@@ -73,8 +74,12 @@ public class UserManagement_ClientSideStep
             homepage.navigateToClientSide();
             userManagementpage = new userManagementClientPage(driver, scenario);
             userManagementpage.NavigateToUserManagement();
+            currentURL= driver.getCurrentUrl();
             flag=true;
         }
+        userManagementpage = new userManagementClientPage(driver, scenario);
+        userManagementpage.refreshPage(currentURL);
+        //driver.navigate().to(currentURL);
     }
 
     @Given("User must be on Client side and select User Management")

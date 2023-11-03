@@ -112,6 +112,7 @@ public class OrderEntryPageSteps3
     public void in_order_summary_page_check_whether_low_inventory_products_are_removed_or_not() throws InterruptedException, AWTException
     {
         summary=new CheckOutSummaryPage(driver,scenario);
+        summary.validateSummaryPage();
         int OutOfStockCount=driver.findElements(By.xpath("//tr[contains(@class,'k-master-row')]/descendant::div[contains(@class,'icon-preview-background') and contains(@title,'Out of stock')]")).size();
         List<WebElement> Heads=driver.findElements(By.xpath("//tr[1]/th"));
         int i=0;
@@ -137,8 +138,8 @@ public class OrderEntryPageSteps3
     }
 
     //Code for sorting the products based on Qty entered for 'Units', in products grid of New OE page
-    @And("Click on Aroow symbol to display products based on descending order of units")
-    public void click_on_arrow_symbol_to_display_products_based_on_descending_order_of_units() throws InterruptedException, AWTException
+    @And("Click on Aroow symbol to display products based on descending order")
+    public void click_on_arrow_symbol_to_display_products_based_on_descending_order() throws InterruptedException, AWTException
     {
         newOE=new NewOrderEntryPage(driver,scenario);
         boolean result=newOE.clickOnArrow_UnitsAscedning();
@@ -223,7 +224,11 @@ public class OrderEntryPageSteps3
         newOE=new NewOrderEntryPage(driver,scenario);
         newOE.Click_On_PriceOverrideIcon();
         newOE.PriceOverridePopup_WhatIfPricePrice(priceVal.get(0).get(0));
-        newOE.exceedsMaxQty();
+        for(int i=0;i<=1;i++)
+        {
+            newOE.priceCannotBeBleowCost();
+            newOE.exceedsMaxQty();
+        }
     }
 
     @Then("User should click on price override icon and Change price using What if option Price per unit")
@@ -233,5 +238,10 @@ public class OrderEntryPageSteps3
         newOE=new NewOrderEntryPage(driver,scenario);
         newOE.Click_On_PriceOverrideIcon();
         newOE.PriceOverridePopup_WhatIfPriceUnit(priceVal.get(0).get(0));
+        for(int i=0;i<=1;i++)
+        {
+            newOE.priceCannotBeBleowCost();
+            newOE.exceedsMaxQty();
+        }
     }
 }

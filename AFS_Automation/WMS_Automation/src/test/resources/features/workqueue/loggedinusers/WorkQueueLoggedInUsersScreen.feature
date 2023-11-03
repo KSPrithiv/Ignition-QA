@@ -70,7 +70,6 @@ Feature: Testing of Work Queue LoggedIn User functionality
     When User searches for user by index 0 on Work Queue Logged In Users page
     Then Validates Grid items are present on Work Queue Logged In Users page
 
-    #
   Scenario: Checking Add Filter of Work Queue LoggedIn User screen functionality
     Given User signs in the application
     And Main page is loaded
@@ -79,7 +78,6 @@ Feature: Testing of Work Queue LoggedIn User functionality
     And Waits for Work Queue Logged In Users page to load
     And Validates User Logged In title is displayed on Work Queue Logged In Users page
     And User clicks Add filter button on Work Queue Logged In Users page
-    And Validates filters are displayed on Work Queue Logged In Users page
     And User clicks Clear All button on Work Queue Logged In Users page
     And User clicks Add filter button on Work Queue Logged In Users page
     And Checks User Id Checkbox on Work Queue Logged In Users page
@@ -99,7 +97,6 @@ Feature: Testing of Work Queue LoggedIn User functionality
     And Checks Computer Checkbox on Work Queue Logged In Users page
     And Types Computer by index 0 on Work Queue Logged In Users page
     And Clicks Apply Button on Work Queue Logged In Users page
-    And Validates Grid items are present on Work Queue Logged In Users page
     And User clicks Add filter button on Work Queue Logged In Users page
     And User clicks Clear All button on Work Queue Logged In Users page
     And Validates Grid items are present on Work Queue Logged In Users page

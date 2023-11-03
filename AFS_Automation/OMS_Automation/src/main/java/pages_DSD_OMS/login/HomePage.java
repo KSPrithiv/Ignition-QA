@@ -108,7 +108,7 @@ public class HomePage
         WebElement WebEle;
         try
         {
-            Thread.sleep(6000);
+            Thread.sleep(2000);
             //create webdriverwait instance
             if(HelpersMethod.IsExists("//div[@class='loader']",driver))
             {
@@ -148,7 +148,7 @@ public class HomePage
             if (HelpersMethod.IsExists("//div[@class='loader']", driver))
             {
                 WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 200000);
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000000);
             }
             Assert.assertEquals(exists, true);
         }

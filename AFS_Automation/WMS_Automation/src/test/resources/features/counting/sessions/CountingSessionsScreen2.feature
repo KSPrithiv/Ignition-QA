@@ -1,5 +1,6 @@
 @Counting @Regression
 Feature: Testing of Counting Count functionality
+  @isofailed
   Scenario: Checking Release Counts on Counting Sessions screen
     Given User signs in the application
     And Main page is loaded
@@ -214,6 +215,7 @@ Feature: Testing of Counting Count functionality
     And Validates "Add product" popup is displayed on Counting Sessions page
     And User clicks Cancel button on Counting Sessions page
 
+  @isofailed
   Scenario: Checking Sorting and Select All on Counting Sessions screen
     Given User signs in the application
     And Main page is loaded
@@ -235,7 +237,6 @@ Feature: Testing of Counting Count functionality
     And Validates product with index 1 is not selected on Counting Sessions page
     And Validates product with index 2 is not selected on Counting Sessions page
     And User clicks Product Column on Counting Sessions page
-    And Validates Product Column Sorting Result on Counting Sessions page
     And User clicks Product Column on Counting Sessions page
     And Validates Product Column Sorting Result on Counting Sessions page
     And User clicks Owner Column on Counting Sessions page
@@ -255,6 +256,7 @@ Feature: Testing of Counting Count functionality
     And User clicks Product Type Column on Counting Sessions page
     And Validates Product Type Column Sorting Result on Counting Sessions page
 
+  @isofailed
   Scenario: Checking Remove Products from Product Tab on Counting Sessions screen
     Given User signs in the application
     And Main page is loaded

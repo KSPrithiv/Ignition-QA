@@ -88,11 +88,9 @@ public class OutboundTruckInfoPage extends BasePage {
     By loader = By.cssSelector(".loader");
 
     public void waitOutboundTruckInfoPageToLoad() {
-        waitUntilInvisible(30, loader);
-        waitUntilVisible(20, truckDiagramLabel);
+        waitUntilInvisible(40, loader);
         Waiters.waitABit(10000);
         Waiters.waitTillLoadingPage(getDriver());
-        Waiters.waitForElementToBeDisplay(getTruckInfoTitle());
         Waiters.waitForElementToBeDisplay(getTruckDiagramLabel());
     }
 
@@ -143,6 +141,7 @@ public class OutboundTruckInfoPage extends BasePage {
     }
 
     public void selectRandomTrailer() {
+        waitUntilInvisible(3, loader);
         Waiters.waitForElementToBeDisplay(getTrailerDropDown());
         int size = getTrailersListSize();
         clickOnElement(getTrailers().get(new Random().nextInt(size)));

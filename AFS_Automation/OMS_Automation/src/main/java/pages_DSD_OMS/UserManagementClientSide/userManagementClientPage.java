@@ -12,17 +12,21 @@ import util.RandomValues;
 
 import java.util.List;
 
+/**
+ * @Project DSD_OMS
+ * @Author Divya.Ramadas@telusagcg.com
+ */
 public class userManagementClientPage
 {
-    /* Created by Divya.Ramadas@afsi.com */
+    /* Created by Divya.Ramadas@telusagcg.com */
     WebDriver driver;
     Scenario scenario;
     static boolean exists=false;
     static String fName= RandomValues.generateRandomString(4);
     static String lName=RandomValues.generateRandomString(4);
     static String uName=fName+lName;
-    static String eMail=RandomValues.generateEmail(5);
-    static String passWord=RandomValues.generateRandomString(4);
+    static String eMail=RandomValues.generateEmail(30);
+    static String passWord=RandomValues.generateStringWithAllobedSplChars(7);
 
     @FindBy(id="FirstName")
     private WebElement firstName;
@@ -57,13 +61,14 @@ public class userManagementClientPage
     @FindBy(id="cancelEditButton")
     private WebElement cancelButton;
 
-    public userManagementClientPage(WebDriver driver,Scenario scenario)
+    //Constructor
+    public userManagementClientPage(WebDriver driver, Scenario scenario)
     {
         this.driver=driver;
         this.scenario=scenario;
         PageFactory.initElements(driver,this);
     }
-
+    /*Action methods*/
     public void NavigateToUserManagement()
     {
         exists = false;
@@ -74,6 +79,12 @@ public class userManagementClientPage
         {
             HelpersMethod.waitTillLoadingPage(driver);
         }
+        if (HelpersMethod.IsExists("//div[@class='loader']", driver))
+        {
+            WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
+            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000000);
+        }
+
         try
         {
             Actions act = new Actions(driver);
@@ -145,6 +156,7 @@ public class userManagementClientPage
         exists=false;
         try
         {
+            HelpersMethod.ClearText(driver,firstName,2000);
             HelpersMethod.EnterText(driver,firstName,1000,fName);
         }
         catch (Exception e){}
@@ -155,6 +167,7 @@ public class userManagementClientPage
         exists=false;
         try
         {
+            HelpersMethod.ClearText(driver,lastName,2000);
             HelpersMethod.EnterText(driver,lastName,1000,lName);
         }
         catch (Exception e){}
@@ -165,6 +178,7 @@ public class userManagementClientPage
         exists=false;
         try
         {
+            HelpersMethod.ClearText(driver,userName,2000);
             HelpersMethod.EnterText(driver,userName,1000,uName);
         }
         catch (Exception e){}
@@ -175,6 +189,7 @@ public class userManagementClientPage
         exists=false;
         try
         {
+            HelpersMethod.ClearText(driver,emailValue,2000);
             HelpersMethod.EnterText(driver,emailValue,1000,eMail);
         }
         catch (Exception e){}
@@ -185,6 +200,7 @@ public class userManagementClientPage
         exists=false;
         try
         {
+            HelpersMethod.ClearText(driver,confirmEmailValue,2000);
             HelpersMethod.EnterText(driver,confirmEmailValue,1000,eMail);
         }
         catch (Exception e){}
@@ -195,6 +211,7 @@ public class userManagementClientPage
         exists=false;
         try
         {
+            HelpersMethod.ClearText(driver,passwordValue,2000);
             HelpersMethod.EnterText(driver,passwordValue,1000,passWord);
         }
         catch (Exception e){}
@@ -205,6 +222,7 @@ public class userManagementClientPage
         exists=false;
         try
         {
+            HelpersMethod.ClearText(driver,confirmPasswordValue,2000);
             HelpersMethod.EnterText(driver,confirmPasswordValue,1000,passWord);
         }
         catch (Exception e){}
@@ -223,16 +241,16 @@ public class userManagementClientPage
     public void readAllRolesAvailable()
     {
         exists=false;
-        WebElement WebEle;
         Actions act=new Actions(driver);
         try
         {
-            List<WebElement> Values = HelpersMethod.FindByElements(driver, "xpath", "//div[contains(@class,'k-popup k-child-animation-container')]/descendant::ul/li[contains(@class,'k-item')]");
+            List<WebElement> Values = HelpersMethod.FindByElements(driver, "xpath", "//div[contains(@class,'k-list-container')]/descendant::ul/li");
             for (WebElement Val : Values)
             {
                 act.moveToElement(Val).build().perform();
                 String Val_Text = Val.getText();
-                scenario.log("ROLE VALUES IS "+Val_Text);
+                scenario.log("ROLE VALUE FOUND IS: "+Val_Text);
+                exists=true;
             }
             Assert.assertEquals(exists,true);
         }
@@ -246,7 +264,7 @@ public class userManagementClientPage
         Actions act=new Actions(driver);
         try
         {
-            List<WebElement> Values = HelpersMethod.FindByElements(driver, "xpath", "//div[contains(@class,'k-popup k-child-animation-container')]/descendant::ul/li[contains(@class,'k-item')]");
+            List<WebElement> Values = HelpersMethod.FindByElements(driver, "xpath", "//div[contains(@class,'k-list-container')]/descendant::ul/li");
             for (WebElement Val : Values)
             {
                 act.moveToElement(Val).build().perform();
@@ -259,7 +277,7 @@ public class userManagementClientPage
                     if(HelpersMethod.IsExists("//div[@class='loader']",driver))
                     {
                         WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                        HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100000);
+                        HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000000);
                     }
                     break;
                 }
@@ -304,6 +322,29 @@ public class userManagementClientPage
                 exists=true;
             }
             Assert.assertEquals(exists,true);
+        }
+        catch (Exception e){}
+    }
+
+    public void refreshPage(String currentURL)
+    {
+        try
+        {
+            WebElement WebEle = null;
+            scenario.log("CURRENT URL IS " + currentURL);
+            driver.navigate().to(currentURL);
+            String status = HelpersMethod.returnDocumentStatus(driver);
+            if (status.equals("loading")) {
+                HelpersMethod.waitTillLoadingPage(driver);
+            }
+            if (HelpersMethod.IsExists("//div[@class='loader']", driver)) {
+                WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000000);
+            }
+            status = HelpersMethod.returnDocumentStatus(driver);
+            if (status.equals("loading")) {
+                HelpersMethod.waitTillLoadingPage(driver);
+            }
         }
         catch (Exception e){}
     }

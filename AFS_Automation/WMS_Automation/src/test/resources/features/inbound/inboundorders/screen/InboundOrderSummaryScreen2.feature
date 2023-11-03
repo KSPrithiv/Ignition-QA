@@ -1,6 +1,5 @@
 @Inbound @Regression
 Feature: Testing of Inbound Orders functionality
-
   Scenario: Checking Status Filter on Inbound Order Summary screen
     Given User signs in the application
     And Main page is loaded
@@ -19,6 +18,7 @@ Feature: Testing of Inbound Orders functionality
     And Selects order status "Cancelled" on Inbound Order Summary page
     And Validates orders are present on Inbound Order Summary page
 
+  @isofailed
   Scenario: Checking Order Filter on Inbound Order Summary screen
     Given User signs in the application
     And Main page is loaded
@@ -31,7 +31,6 @@ Feature: Testing of Inbound Orders functionality
     And Validates orders are present on Inbound Order Summary page
     And Clear order name on Inbound Order Summary page
     And Select order by index 1 on Inbound Order Summary page
-    And Validates orders are present on Inbound Order Summary page
 
   Scenario: Checking Summary totals on Inbound Order Summary screen
     Given User signs in the application

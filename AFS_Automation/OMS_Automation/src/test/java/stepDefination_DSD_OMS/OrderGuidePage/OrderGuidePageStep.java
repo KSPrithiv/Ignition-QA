@@ -206,6 +206,7 @@ public class OrderGuidePageStep
     public void userClickOnSaveButtonToConvertQuoteAsOG()
     {
         createOGPage=new CreateOGPage(driver,scenario);
+        createOGPage.validateNewOGPage();
         createOGPage.ClickOnSave();
         createOGPage.validateSavePopup();
         createOGPage.clickOnOk();

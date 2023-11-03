@@ -149,12 +149,9 @@ Feature: All orders
     Given User must be on Order Entry Page to select All Orders
     And User should navigate to All Orders
     Then User clicks on Show all orders check box after Clicking All orders tab
-    And User clicks on Order status and select Active order option from drop down
-    And User clicks on search button
-    And User Clicks on Add filter button and enter values for search options
-    Then User clicks on OrderNo in All Order grid and User should be navigated Ordersummary page
-    #Then User clicks on Back to Order list button and should be navigated to OE page
-    #And User enters orderNo That he has selected from order grid and validates it exists in order also
+    And User Clicks on Add filter button and enter values for search options for searching in OE
+    Then User clicks on OrderNo in All Order grid and User should be navigated Ordersummary page click on Back to order list
+    And User enters orderNo That he has selected from order grid and validates it exists in order also
 
   @CreatePickupOrder
   Scenario: Test scenario for creating Pickup order
@@ -193,7 +190,7 @@ Feature: All orders
     And Click on Submit Order button and read Order_no created for All order
     Then User should be navigated back to All order page
     And User clicks on Show all orders check box after navigating back
-    And User clicks on Order status and select Active order option from drop down
+    #And User clicks on Order status and select Active order option from drop down
     And User Clicks on Add filter button and Search for OrderNo
     Then User select the order and click on copy button and select delivery date
     Then User should make selection between Pending order or Start New order

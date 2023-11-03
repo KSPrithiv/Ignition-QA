@@ -206,9 +206,9 @@ public class CountingSessionsPage extends BasePage {
     public static synchronized String getSession() { return session; }
 
     public void waitCountingSessionsPageToLoad() {
+        waitUntilVisible(8, loader);
         Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(countingSessionLabel);
-        Waiters.waitForElementToBeDisplay(sessionDropdown);
         Waiters.waitForElementToBeDisplay(btnNewSession);
         Waiters.waitForElementToBeDisplay(btnEditSession);
         Waiters.waitForElementToBeDisplay(btnDeleteSession);
@@ -297,20 +297,23 @@ public class CountingSessionsPage extends BasePage {
         Waiters.waitForElementToBeClickable(sessionDropdown);
         clickOnElement(getSessionDropdown());
         Waiters.waitTillLoadingPage(getDriver());
+        waitUntilInvisible(4, loader);
     }
 
     public void clickSelectAllCheckbox() {
-        waitUntilLoaderInvisible();
+        waitUntilInvisible(3, loader);
         Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(selectAllCheckbox);
+        waitUntilInvisible(1, loader);
         selectCheckbox(selectAllCheckbox);
         Waiters.waitTillLoadingPage(getDriver());
     }
 
     public void clickUnselectAllCheckbox() {
-        waitUntilLoaderInvisible();
+        waitUntilInvisible(3, loader);
         Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(selectAllCheckbox);
+        waitUntilInvisible(1, loader);
         unselectCheckbox(selectAllCheckbox);
         Waiters.waitTillLoadingPage(getDriver());
     }
@@ -361,8 +364,9 @@ public class CountingSessionsPage extends BasePage {
     public void selectSession(String session) {
         Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementsToBeDisplay(findWebElements(By.xpath("//div[contains(@class, 'k-animation-container-shown')]//*[@role='option']")));
-        Waiters.waitTillLoadingPage(getDriver());
+        waitUntilInvisible(2, loader);
         List<WebElement> options = findWebElements(By.xpath("//div[contains(@class, 'k-animation-container-shown')]//*[@role='option']"));
+        waitUntilInvisible(2, loader);
         WebElement option = options.stream()
                 .filter(el -> el.getText().contains(session))
                 .findFirst()
@@ -370,7 +374,7 @@ public class CountingSessionsPage extends BasePage {
         scrollToCenter(option);
         clickOnElement(option);
         Waiters.waitTillLoadingPage(getDriver());
-        waitUntilInvisible(1, loader);
+        waitUntilInvisible(2, loader);
     }
 
     public void selectDeleteReason(String reason) {
@@ -400,22 +404,24 @@ public class CountingSessionsPage extends BasePage {
     }
 
     public void selectTableRowByIndex(int index) {
-        Waiters.waitABit(2000);
+        waitUntilInvisible(2, loader);
         Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForPresenceOfAllElements(sessionTableRows);
         List<WebElement> rows = findWebElements(sessionTableRows);
-        Waiters.waitABit(2000);
+        waitUntilInvisible(2, loader);
         WebElement row = rows.get(index).findElement(By.xpath(".//input"));
-        Waiters.waitABit(2000);
+        waitUntilInvisible(2, loader);
         clickOnElement(row);
         Waiters.waitTillLoadingPage(getDriver());
     }
 
     public void clickTableLocationByIndex(int index) {
+        waitUntilInvisible(2, loader);
         Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForPresenceOfAllElements(sessionTableRows);
+        waitUntilInvisible(2, loader);
         List<WebElement> rows = findWebElements(sessionTableRows);
-        Waiters.waitABit(4000);
+        waitUntilInvisible(2, loader);
         clickOnElement(rows.get(index).findElements(By.xpath(".//button[contains(@class, 'i-link-button')]")).get(0));
         Waiters.waitTillLoadingPage(getDriver());
     }

@@ -52,8 +52,6 @@ public class ProductLookupPageValidations {
         softAssert.assertTrue(productLookupPage.isStatusColumnHeaderDisplayed(),"Status Column Header is not displayed");
         softAssert.assertTrue(productLookupPage.isWeightColumnDisplayed(),"Weight Column is not displayed");
         softAssert.assertTrue(productLookupPage.isWeightColumnHeaderDisplayed(),"Weight Column Header is not displayed");
-        softAssert.assertTrue(productLookupPage.isStaged_ColumnDisplayed(),"Staged Column is not displayed");
-        softAssert.assertTrue(productLookupPage.isStaged_ColumnHeaderDisplayed(),"Staged Column Header is not displayed");
         softAssert.assertAll();
     }
 

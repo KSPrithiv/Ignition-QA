@@ -16,7 +16,7 @@ public class DockManagementSummaryPage extends BasePage {
     By tasksByTypeGraph = By.xpath("//h4[text()='Tasks by Type']");
     By checkInTask = By.xpath("//div[contains(@class, 'i-card__card__body')][.//h4[text()='Tasks by Type']]//*[text()='Check In']");
     By cycleCountTask = By.xpath("//div[contains(@class, 'i-card__card__body')][.//h4[text()='Tasks by Type']]//*[text()='Cycle Count']");
-    By cycleCountPath = By.xpath("//div[contains(@class, 'i-card__card__body')][.//h4[text()='Tasks by Type']]//*[contains(@d, 'M55.939 63.903')]");
+    By cycleCountPath = By.xpath("//div[contains(@class, 'i-card__card__body')][.//h4[text()='Tasks by Type']]//*[contains(@d, 'M65.5 35.5 L 73.5')]");
     By letdownTask = By.xpath("//div[contains(@class, 'i-card__card__body')][.//h4[text()='Tasks by Type']]//*[text()='Letdown']");
     By letdownPath = By.xpath("//div[contains(@class, 'i-card__card__body')][.//h4[text()='Tasks by Type']]//*[contains(@d, 'M81.061 304.39')]");
     By loadCountAuditTask = By.xpath("//div[contains(@class, 'i-card__card__body')][.//h4[text()='Tasks by Type']]//*[text()='Load Count Audit']");
@@ -51,7 +51,7 @@ public class DockManagementSummaryPage extends BasePage {
     By activeOperators8h24h = By.xpath("//div[contains(@class, 'i-card__card__body')][.//h4[text()='Active Operators']]//*[contains(text(), '8-24 hours')]");
     By activeOperators24hPlus = By.xpath("//div[contains(@class, 'i-card__card__body')][.//h4[text()='Active Operators']]//*[contains(text(), '24+ hours')]");
     By activeOperatorsOnBreak = By.xpath("//div[contains(@class, 'i-card__card__body')][.//h4[text()='Active Operators']]//*[contains(text(), 'On break')]");
-    By onBreakBarPath = By.xpath("//div[contains(@class, 'i-card__card__body')][.//h4[text()='Active Operators']]//*[contains(@d, 'M328.5 72.5')]");
+    By onBreakBarPath = By.xpath("(//div[contains(@class, 'i-card__card__body')][.//h4[text()='Active Operators']]//*[contains(@d, '81.5 72.5 L 101.5')])[1]");
     By inventoryGraph = By.xpath("//span[text()='INVENTORY' and contains(@class, 'i-card__title')]");
     By byStatusGraph = By.xpath("//h4[text()='By Status']");
     By byStatusCloseToCode = By.xpath("//div[contains(@class, 'i-card__card__body')][.//h4[text()='By Status']]//*[contains(text(), 'Close to Code')]");
@@ -95,6 +95,7 @@ public class DockManagementSummaryPage extends BasePage {
     By setupProductIcon = By.xpath("//div[contains(@id, 'accesscpwmssettingssystem')]//div[contains(text(), 'Product')]");
     By appointmentsIcon = By.xpath("//ul[contains(@class, 'drawer-menu-list-items')]//span[text()='Appointments']");
     By locationIcon = By.xpath("//div[@class='submenu-items-list']//div[contains(text(), 'Location') and @class='submenu-item-text']");
+    By labelIcon = By.xpath("//div[@class='submenu-items-list']//div[contains(text(), 'Label') and @class='submenu-item-text']");
     By productIcon = By.xpath("//div[@class='submenu-items-list']//div[contains(text(), 'Product') and @class='submenu-item-text']");
     By dockManagementIcon = By.xpath("//div[@class='submenu-items-list']//div[contains(text(), 'Dock Management') and @class='submenu-item-text']");
     By lookupReportsIcon = By.xpath("//div[@class='submenu-items-list']//div[contains(text(), 'Lookup Reports') and @class='submenu-item-text']");
@@ -127,10 +128,12 @@ public class DockManagementSummaryPage extends BasePage {
     By wpChillTask = By.xpath("//div[contains(@class, 'i-card__card__body')][.//h4[text()='Assignments by Group']]//*[text()='WP CHILL']");
     By xdockPalTask = By.xpath("//div[contains(@class, 'i-card__card__body')][.//h4[text()='Assignments by Group']]//*[text()='XDOCK PAL']");
     By xrepNdFrzTask = By.xpath("//div[contains(@class, 'i-card__card__body')][.//h4[text()='Assignments by Group']]//*[text()='XREP ND FRZ']");
+    By loader = By.cssSelector(".loader");
 
     public void waitForDockManagementSummaryPageToLoad() {
-        Waiters.waitABit(4000);
+        waitUntilInvisible(3, loader);
         Waiters.waitForElementToBeDisplay(getTopIcon());
+        waitUntilInvisible(3, loader);
     }
 
     public void refreshPage() {
@@ -152,6 +155,7 @@ public class DockManagementSummaryPage extends BasePage {
     }
 
     public void clickUserProfileLogoutIcon() {
+        waitUntilInvisible(3, loader);
         Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeClickable(userProfileLogoutIcon);
         clickOnElement(userProfileLogoutIcon);
@@ -166,8 +170,9 @@ public class DockManagementSummaryPage extends BasePage {
     }
 
     public void clickDashboardIcon() {
+        Waiters.waitABit(8000);
         Waiters.waitTillLoadingPage(getDriver());
-        Waiters.waitForElementToBeClickable(getDashboardIcon());
+        Waiters.waitABit(8000);
         clickOnElement(getDashboardIcon());
         Waiters.waitABit(8000);
         Waiters.waitTillLoadingPage(getDriver());
@@ -273,6 +278,13 @@ public class DockManagementSummaryPage extends BasePage {
         Waiters.waitTillLoadingPage(getDriver());
     }
 
+    public void clickLabelIcon() {
+        Waiters.waitTillLoadingPage(getDriver());
+        Waiters.waitForElementToBeDisplay(getLabelIcon());
+        clickOnElement(getLabelIcon());
+        Waiters.waitTillLoadingPage(getDriver());
+    }
+
     public void clickCountingIcon() {
         Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(getCountingIcon());
@@ -288,10 +300,13 @@ public class DockManagementSummaryPage extends BasePage {
     }
 
     public void clickSetupProductIcon() {
+        waitUntilInvisible(2, loader);
         Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(setupProductIcon);
+        waitUntilStalenessOf(2, getLoader());
         clickOnElement(setupProductIcon);
         Waiters.waitTillLoadingPage(getDriver());
+        Waiters.waitABit(8000);
     }
 
     public void clickDockManagementIcon() {
@@ -417,6 +432,7 @@ public class DockManagementSummaryPage extends BasePage {
     public void hoverOverCycleCountGraphBar() {
         Waiters.waitABit(2000);
         hover(cycleCountPath);
+        Waiters.waitABit(2000);
     }
 
     public void hoverOverCountGraphBar() {
@@ -731,6 +747,8 @@ public class DockManagementSummaryPage extends BasePage {
 
     public WebElement getLocationIcon() { return findWebElement(locationIcon); }
 
+    public WebElement getLabelIcon() { return findWebElement(labelIcon); }
+
     public WebElement getProductIcon() { return findWebElement(productIcon); }
 
     public WebElement getDockManagementIcon() { return findWebElement(dockManagementIcon); }
@@ -904,5 +922,7 @@ public class DockManagementSummaryPage extends BasePage {
     public WebElement getUserProfileIcon() { return findWebElement(userProfileIcon); }
 
     public WebElement getUserProfileLogoutIcon() { return findWebElement(userProfileLogoutIcon); }
+
+    public WebElement getLoader() { return findWebElement(loader); }
 
   }

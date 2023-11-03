@@ -4,12 +4,15 @@ import helper.HelpersMethod;
 import io.cucumber.java.Scenario;
 import org.apache.logging.log4j.core.tools.picocli.CommandLine;
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.FluentWait;
+import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import pages_DSD_OMS.login.HomePage;
@@ -84,7 +87,7 @@ public class CustomerInquiryPage
         if (HelpersMethod.IsExists("//div[@class='loader']", driver))
         {
             WebElement WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 10000);
+            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100000);
         }
     }
 
@@ -104,12 +107,12 @@ public class CustomerInquiryPage
             WebElement Search_Input = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='drawer-menu-search-container']/descendant::input");
             act.moveToElement(Search_Input).click().sendKeys("Customer Inquiry").build().perform();
             WebElement CustInqMenu = HelpersMethod.FindByElement(driver, "xpath", "//ul[contains(@class,'MuiList-root ')]/descendant::span[contains(text(),'Customer Inquiry')] | //ul[contains(@class,'MuiList-root ')]/descendant::span[contains(text(),'Customer inquiry')]");
-                HelpersMethod.ClickBut(driver, CustInqMenu, 60);
+                HelpersMethod.ClickBut(driver, CustInqMenu, 1000);
                 exists = true;
                 if (HelpersMethod.IsExists("//div[@class='loader']", driver))
                 {
                     WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 10000);
+                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100000);
                 }
                 status = HelpersMethod.returnDocumentStatus(driver);
                 if (status.equals("loading"))
@@ -145,7 +148,7 @@ public class CustomerInquiryPage
             if (HelpersMethod.IsExists("//div[@class='loader']", driver))
             {
                 WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 20000);
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 200000);
             }
             WebEle=HelpersMethod.FindByElement(driver,"xpath","//span[contains(@class,'spnmoduleNameHeader')]");
             title=WebEle.getText();
@@ -174,7 +177,7 @@ public class CustomerInquiryPage
                     if(HelpersMethod.IsExists("//div[@class='loader']",driver))
                     {
                         WebElement WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                        HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 20000);
+                        HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 200000);
                     }
                     break;
                 }
@@ -196,8 +199,8 @@ public class CustomerInquiryPage
             HelpersMethod.ScrollElement(driver,WebEle);
             Bill=RandomValues.generateRandomNumber(10);
             act.moveToElement(bill_Input).click().build().perform();
-            HelpersMethod.EnterText(driver,bill_Input,10,Bill);
-            BillVal=HelpersMethod.JSGetValueEle(driver,bill_Input,10);
+            HelpersMethod.EnterText(driver,bill_Input,1000,Bill);
+            BillVal=HelpersMethod.JSGetValueEle(driver,bill_Input,1000);
         }
         catch (Exception e){}
     }
@@ -211,9 +214,9 @@ public class CustomerInquiryPage
         {
             Store=RandomValues.generateRandomNumber(8);
             act.moveToElement(store_Input).click().build().perform();
-            HelpersMethod.EnterText(driver,store_Input,10,Store);
+            HelpersMethod.EnterText(driver,store_Input,1000,Store);
             scenario.log("STORE # IS: "+Store);
-            StoreVal=HelpersMethod.JSGetValueEle(driver,store_Input,10);
+            StoreVal=HelpersMethod.JSGetValueEle(driver,store_Input,1000);
                 exists=true;
                 Assert.assertEquals(exists,true);
         }
@@ -229,9 +232,9 @@ public class CustomerInquiryPage
         {
             Dept=RandomValues.generateRandomNumber(6);
             act.moveToElement(dept_Input).click().build().perform();
-            HelpersMethod.EnterText(driver,dept_Input,10,Dept);
+            HelpersMethod.EnterText(driver,dept_Input,1000,Dept);
             scenario.log("DEPARTMENT NUMBER ENTERED IS "+Dept);
-            DeptVal=HelpersMethod.JSGetValueEle(driver,dept_Input,10);
+            DeptVal=HelpersMethod.JSGetValueEle(driver,dept_Input,1000);
                 exists=true;
             Assert.assertEquals(exists,true);
         }
@@ -247,10 +250,15 @@ public class CustomerInquiryPage
         {
             Desc=RandomValues.generateRandomString(6);
             act.moveToElement(description_Input).click().build().perform();
-            HelpersMethod.EnterText(driver,description_Input,100,Desc);
+            HelpersMethod.EnterText(driver,description_Input,1000,Desc);
             scenario.log("DESCRIPTION ENTERED IS "+Desc);
-            DescVal=HelpersMethod.JSGetValueEle(driver,description_Input,100);
+            DescVal=HelpersMethod.JSGetValueEle(driver,description_Input,1000);
                 exists=true;
+            if(HelpersMethod.IsExists("//div[@class='loader']",driver))
+            {
+                WebElement WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 800000);
+            }
             Assert.assertEquals(exists,true);
         }
         catch (Exception e){}
@@ -261,12 +269,12 @@ public class CustomerInquiryPage
         exists=false;
         try
         {
-            HelpersMethod.ActClick(driver,new_But,100);
+            HelpersMethod.ActClick(driver,new_But,1000);
             exists=true;
             if(HelpersMethod.IsExists("//div[@class='loader']",driver))
             {
                 WebElement WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 10000);
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100000);
             }
             HelpersMethod.WaitElementPresent(driver,"xpath","//div[@id='CustomerMasterBottom']",40);
             Assert.assertEquals(exists,true);
@@ -274,21 +282,27 @@ public class CustomerInquiryPage
         catch (Exception e){}
     }
 
-    public void Save_ButtonClick()
+    public void Save_ButtonClick() throws InterruptedException
     {
+        Thread.sleep(8000);
         exists=false;
         WebElement WebEle=null;
         try
         {
+            if(HelpersMethod.IsExists("//div[@class='loader']",driver))
+            {
+                WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100000);
+            }
             WebElement save_Button=HelpersMethod.FindByElement(driver,"xpath","//button[text()='Save']");
             if(save_Button.isEnabled())
             {
-                HelpersMethod.ClickBut(driver, save_Button, 200);
-                if(HelpersMethod.IsExists("//div[@class='loader']",driver))
-                {
-                    WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 80000);
-                }
+                HelpersMethod.ClickBut(driver, save_Button, 2000);
+                Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                        .withTimeout(Duration.ofSeconds(120))
+                        .pollingEvery(Duration.ofSeconds(5))
+                        .ignoring(NoSuchElementException.class);
+                wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
             }
         }
         catch (Exception e){}
@@ -299,13 +313,14 @@ public class CustomerInquiryPage
         exists=false;
         try
         {
+            Thread.sleep(4000);
+            if(HelpersMethod.IsExists("//div[@class='loader']",driver))
+            {
+                WebElement WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000000);
+            }
             if (HelpersMethod.IsExists("//div[contains(text(),'The information has been saved successfully.')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]", driver))
             {
-                if(HelpersMethod.IsExists("//div[@class='loader']",driver))
-                {
-                    WebElement WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 80000);
-                }
                exists=true;
             }
             Assert.assertEquals(exists,true);
@@ -319,11 +334,16 @@ public class CustomerInquiryPage
         {
                 if (HelpersMethod.IsExists("//div[contains(text(),'The information has been saved successfully.')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]", driver))
                 {
-                    WebElement confirmationPopup=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-widget k-window k-dialog')]");
+                    WebElement confirmationPopup=HelpersMethod.FindByElement(driver,"xpath","//div[contains(text(),'The information has been saved successfully.')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]");
                     WebElement okButton=confirmationPopup.findElement(By.xpath(".//button[text()='Ok']"));
-                    HelpersMethod.ClickBut(driver,okButton,100);
+                    HelpersMethod.ActClick(driver,okButton,1000);
                     exists=true;
-                    //new WebDriverWait(driver,2000).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class='cards']"))));
+
+                    Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                            .withTimeout(Duration.ofSeconds(120))
+                            .pollingEvery(Duration.ofSeconds(5))
+                            .ignoring(NoSuchElementException.class);
+                    wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
                 }
             Assert.assertEquals(exists,true);
         }
@@ -335,11 +355,11 @@ public class CustomerInquiryPage
         try
         {
             WebElement noteButton= HelpersMethod.FindByElement(driver,"xpath","//button[text()='Note']");
-            HelpersMethod.ActClick(driver,noteButton,100);
+            HelpersMethod.ActClick(driver,noteButton,1000);
             if(HelpersMethod.IsExists("//div[@class='loader']",driver))
             {
                 WebElement WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 10000);
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100000);
             }
         }
         catch (Exception e){}
@@ -364,7 +384,7 @@ public class CustomerInquiryPage
             {
                 WebElement vallidateNotePopup = HelpersMethod.FindByElement(driver, "xpath", "//p[contains(text(),'Notes')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]");
                 WebElement noteArea = vallidateNotePopup.findElement(By.xpath(".//textarea[@id='noteTextbox']"));
-                HelpersMethod.ActSendKey(driver, noteArea, 100, notes);
+                HelpersMethod.ActSendKey(driver, noteArea, 1000, notes);
                 scenario.log("CUSTOMER NOTES ENTERED IS: "+notes);
             }
         }
@@ -382,7 +402,7 @@ public class CustomerInquiryPage
                 //code to select alert type
                 WebElement vallidateNotePopup = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'customer-notes-header')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]");
                 WebEle = vallidateNotePopup.findElement(By.xpath(".//span[@id='AlertType']"));
-                HelpersMethod.ClickBut(driver, WebEle, 100);
+                HelpersMethod.ClickBut(driver, WebEle, 1000);
                 new WebDriverWait(driver, Duration.ofMillis(1000)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class,'k-popup k-child-animation-container k-slide-down-enter k-slide-down-enter-active')]"))));
                 HelpersMethod.DropDownMenu(driver, AltertType);
                 scenario.log("ALERT TYPE SELECTED IS: "+AltertType);
@@ -397,7 +417,7 @@ public class CustomerInquiryPage
                     if (AlertLoc_Text.equals(Altertloc1) || AlertLoc_Text.equals(Alertloc2))
                     {
                         WebEle = vallidateNotePopup.findElement(By.xpath(".//div[contains(@class,'col-md-3 col-xs-12')][" + i + "]/descendant::input"));
-                        HelpersMethod.JScriptClick(driver, WebEle, 100);
+                        HelpersMethod.JScriptClick(driver, WebEle, 1000);
                         scenario.log("ALERT LOCATION SELECTED");
                     }
                 }
@@ -415,13 +435,12 @@ public class CustomerInquiryPage
             WebElement vallidateNotePopup = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'customer-notes-header')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]");
             WebEle = vallidateNotePopup.findElement(By.xpath(".//button[@id='SaveButton']"));
             HelpersMethod.ScrollElement(driver, WebEle);
-            HelpersMethod.ClickBut(driver, WebEle, 100);
+            HelpersMethod.ClickBut(driver, WebEle, 1000);
             if (HelpersMethod.IsExists("//div[@class='loader']", driver))
             {
                 WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 2000);
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100000);
             }
-           // Ok_Note_Button();
         }
         catch (Exception e) {}
     }
@@ -433,15 +452,16 @@ public class CustomerInquiryPage
             WebElement vallidateNotePopup = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'customer-notes-header')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]");
             WebEle = vallidateNotePopup.findElement(By.xpath(".//button[@id='CustomerCommentDialogOK']"));
             HelpersMethod.ScrollElement(driver, WebEle);
-            HelpersMethod.ClickBut(driver, WebEle, 100);
+            HelpersMethod.ClickBut(driver, WebEle, 1000);
             if (HelpersMethod.IsExists("//div[@class='loader']", driver))
             {
                 WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000);
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100000);
             }
         }
         catch (Exception e) {}
     }
+
     //Creating list of customer note in customer note grid and select one of the note
     public void Select_Note(String cust_Note)
     {
@@ -459,7 +479,7 @@ public class CustomerInquiryPage
                 if(Note_Text.equals(cust_Note))
                 {
                     WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@id='customerCommentGrid']/descendant::div[contains(@class,'k-grid-container')]/descendant::tr["+i+"]/td[3]");
-                    HelpersMethod.ClickBut(driver,WebEle,1);
+                    HelpersMethod.ClickBut(driver,WebEle,1000);
                     exists=true;
                     break;
                 }
@@ -472,12 +492,11 @@ public class CustomerInquiryPage
     //Click on Copy button in Customer note popup
     public void Click_Copy_Note()
     {
-        HelpersMethod.Implicitwait(driver,20);
         exists=false;
         try
         {
             WebElement WebEle=HelpersMethod.FindByElement(driver,"id","copyNote");
-            HelpersMethod.ActClick(driver,WebEle,20);
+            HelpersMethod.ActClick(driver,WebEle,8000);
             exists=true;
             Assert.assertEquals(exists,true);
         }
@@ -502,15 +521,15 @@ public class CustomerInquiryPage
                 {
                     //Select the note
                     WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@id='customerCommentGrid']/descendant::div[contains(@class,'k-grid-container')]/descendant::tr[" + i + "]/td[3]");
-                    HelpersMethod.ActClick(driver,WebEle,2);
+                    HelpersMethod.ActClick(driver,WebEle,8000);
                     //Delete the note
                     WebEle=HelpersMethod.FindByElement(driver,"id","deleteNote");
-                    HelpersMethod.ActClick(driver,WebEle,2);
+                    HelpersMethod.ActClick(driver,WebEle,8000);
                     exists=true;
                     if(HelpersMethod.IsExists("//div[@class='loader']",driver))
                     {
                         WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                        HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000);
+                        HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100000);
                     }
                     break;
                 }
@@ -527,7 +546,7 @@ public class CustomerInquiryPage
         try
         {
             WebElement Button_Ele=HelpersMethod.FindByElement(driver,"id","resetNote");
-            HelpersMethod.ClickBut(driver,Button_Ele,1);
+            HelpersMethod.ClickBut(driver,Button_Ele,1000);
             exists=true;
             Assert.assertEquals(exists,true);
         }
@@ -541,14 +560,14 @@ public class CustomerInquiryPage
         String DescVal=null;
         try
         {
-            HelpersMethod.EnterText(driver,description_Input,10,Desc);
+            HelpersMethod.EnterText(driver,description_Input,1000,Desc);
             WebEle=HelpersMethod.FindByElement(driver,"xpath","//li[contains(@id,'react-autowhatever-AccountDescription--item')]");
-            HelpersMethod.ActClick(driver,WebEle,10);
-            DescVal=HelpersMethod.JSGetValueEle(driver,description_Input,10);
+            HelpersMethod.ActClick(driver,WebEle,1000);
+            DescVal=HelpersMethod.JSGetValueEle(driver,description_Input,1000);
             if(HelpersMethod.IsExists("//div[@class='loader']",driver))
             {
                 WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000);
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100000);
             }
         }
         catch (Exception e){}
@@ -562,7 +581,12 @@ public class CustomerInquiryPage
             if(HelpersMethod.IsExists("//button[text()='Copy']",driver))
             {
                 WebEle=HelpersMethod.FindByElement(driver,"xpath","//button[text()='Copy']");
-                HelpersMethod.ActClick(driver,WebEle,20);
+                HelpersMethod.ClickBut(driver,WebEle,2000);
+                Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                        .withTimeout(Duration.ofSeconds(120))
+                        .pollingEvery(Duration.ofSeconds(5))
+                        .ignoring(NoSuchElementException.class);
+                wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
             }
            else
             {
@@ -585,29 +609,30 @@ public class CustomerInquiryPage
                 WebElement modalContentTitle = modalContainer.findElement(By.xpath(".//div[contains(@class,'k-window-title k-dialog-title')]"));
                 Assert.assertEquals(modalContentTitle.getText(), "Copy customer", "Verify Title message");
 
+                InputVal=RandomValues.generateRandomNumber(6);
+                WebEle=HelpersMethod.FindByElement(driver,"id","CmCustNo");
+                HelpersMethod.EnterText(driver,WebEle,8000,InputVal);
+                scenario.log("CUSTOMER NUMBER IS "+InputVal);
+
                 InputVal=RandomValues.generateRandomString(10);
                 WebEle=HelpersMethod.FindByElement(driver,"id","CmFullName");
-                HelpersMethod.EnterText(driver,WebEle,80,InputVal);
+                HelpersMethod.EnterText(driver,WebEle,8000,InputVal);
                 scenario.log("CUSTOMER NAME IS "+InputVal);
 
-                InputVal=RandomValues.generateRandomNumber(6);
-                WebEle=HelpersMethod.FindByElement(driver,"id","CmOrigCustNo");
-                HelpersMethod.EnterText(driver,WebEle,80,InputVal);
-                scenario.log("ORIGINAL CUSTOMER NUMBER IS "+InputVal);
+                WebElement copyButton=HelpersMethod.FindByElement(driver,"xpath","//div[contains(text(),'Copy customer')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]/descendant::button[text()='Copy']");
+                HelpersMethod.ActClick(driver,copyButton,8000);
 
-                WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[contains(text(),'Copy customer')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]/descendant::button[text()='Copy']");
-                HelpersMethod.ClickBut(driver,WebEle,80);
-
-                if(HelpersMethod.IsExists("//div[@class='loader']",driver))
-                {
-                    WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 4000);
-                }
+                Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                        .withTimeout(Duration.ofSeconds(120))
+                        .pollingEvery(Duration.ofSeconds(5))
+                        .ignoring(NoSuchElementException.class);
+                wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
 
                 if(HelpersMethod.IsExists("//div[contains(text(),'The information has been saved successfully')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
                 {
-                    WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[contains(text(),'The information has been saved successfully')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]/descendant::button[text()='Ok']");
-                    HelpersMethod.ClickBut(driver,WebEle,100);
+                    WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[contains(text(),'The information has been saved successfully')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]");
+                    WebElement okButton=WebEle.findElement(By.xpath(".//button[text()='Ok']"));
+                    HelpersMethod.ActClick(driver,okButton,1000);
                 }
                 exists=true;
             }

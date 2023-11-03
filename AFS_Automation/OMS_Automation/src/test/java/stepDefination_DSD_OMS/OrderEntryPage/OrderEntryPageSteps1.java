@@ -87,6 +87,7 @@ public class OrderEntryPageSteps1
     public void user_should_click_on_comment_icon_in_order_entry_card() throws InterruptedException, AWTException
     {
         newOE=new NewOrderEntryPage(driver,scenario);
+        newOE.ValidateNewOE();
         newOE.Comment_Icon();
     }
 
@@ -195,10 +196,7 @@ public class OrderEntryPageSteps1
     {
         orderpage=new OrderEntryPage(driver, scenario);
         List<List<String>> Cust_Note = tabledata.asLists(String.class);
-        //Check for existence of customer note grid
-        XPath="//div[@class='customer-notes-header']/ancestor::div[contains(@class,'k-widget k-window k-dialog')]";
-        exists= HelpersMethod.IsExists(XPath,driver);
-        if(exists==true)
+        if(HelpersMethod.IsExists("//div[@class='customer-notes-header']/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
         {
             orderpage.Select_Customer_Note(Cust_Note.get(0).get(0));
         }

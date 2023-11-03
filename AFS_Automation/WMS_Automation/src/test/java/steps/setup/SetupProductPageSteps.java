@@ -1,13 +1,19 @@
 package steps.setup;
 
+import common.constants.FilePaths;
+import common.utils.objectmapper.ObjectMapperWrapper;
 import io.cucumber.java.en.And;
 import io.qameta.allure.Step;
 import lombok.extern.slf4j.Slf4j;
+import objects.lookupproductslocationsdata.LookupProductLocationsDTO;
 import ui.pages.setup.SetupProductPage;
+
+import java.util.List;
 
 @Slf4j
 public class SetupProductPageSteps {
     SetupProductPage setupProductPage = new SetupProductPage();
+    LookupProductLocationsDTO lookupDataDTO = new ObjectMapperWrapper().getObject(FilePaths.LOOKUP_DATA, LookupProductLocationsDTO.class);
 
     @Step
     @And("Waits for Setup Product page to load")
@@ -21,6 +27,17 @@ public class SetupProductPageSteps {
     public void selectProduct(String product) {
         log.info("User selects product on Setup Product page");
         setupProductPage.selectProduct(product);
+    }
+
+    @Step
+    @And("User selects product by index {int} on Setup Product page")
+    public void selectProductByIndex(int index) {
+        log.info("User selects product by index on Setup Product page");
+        List<String> products = List.of(lookupDataDTO.getLookupProducts().getLookupProduct1(), lookupDataDTO.getLookupProducts()
+                .getLookupProduct2(), lookupDataDTO.getLookupProducts().getLookupProduct3(), lookupDataDTO.getLookupProducts()
+                .getLookupProduct4(), lookupDataDTO.getLookupProducts().getLookupProduct5(), lookupDataDTO.getLookupProducts()
+                .getLookupProduct6(), lookupDataDTO.getLookupProducts().getLookupProduct7());
+        setupProductPage.selectProduct(products.get(index));
     }
 
     @Step
@@ -105,6 +122,13 @@ public class SetupProductPageSteps {
     public void clickSaveOnPopup() {
         log.info("Clicks Save on popup on Setup Product page");
          setupProductPage.clickSave();
+    }
+
+    @Step
+    @And("Clicks Cancel on popup on Setup Product page")
+    public void clickCancelOnPopup() {
+        log.info("Clicks Cancel on popup on Setup Product page");
+        setupProductPage.clickCancel();
     }
 
     @Step

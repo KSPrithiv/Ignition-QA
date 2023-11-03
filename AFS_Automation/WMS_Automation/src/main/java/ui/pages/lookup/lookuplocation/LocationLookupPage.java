@@ -1,10 +1,8 @@
 package ui.pages.lookup.lookuplocation;
 
-import com.google.gson.internal.bind.util.ISO8601Utils;
 import common.utils.Waiters;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import org.w3c.dom.ls.LSOutput;
 import ui.pages.BasePage;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -21,7 +19,8 @@ public class LocationLookupPage extends BasePage {
     By deleteButton = By.xpath("//button[text()='Delete']");
     By addLocProdButton = By.id("addLocProdButton");
     By editLocProdButton = By.id("editLocProdButton");
-    By transferButton = By.xpath("//button[text()='Transfer']");
+    By lookupProductShowPalletCheck = By.id("lookupProductShowPalletCheck");
+    By transferButton = By.xpath("//button[text()='Move']");
     By statusButton = By.xpath("//button[text()='Status']");
     By btnPrintLoc = By.id("btnPrintLoc");
     By labelTypeList = By.xpath("//span[@data-test-id='ddLocPrntLabelType']//span[@role='listbox']");
@@ -80,8 +79,8 @@ public class LocationLookupPage extends BasePage {
     By ddlEditProductPalletType = By.id("ddlEditProductPalletType");
     By txtEditProductCodeLabel = By.id("txtEditProductCode-label");
     By txtEditProductCode = By.id("txtEditProductCode");
-    By txtEditSupplierLabel = By.id("txtEditSupplier-label");
-    By txtEditSupplier = By.id("txtEditSupplier");
+    By txtEditSupplierLabel = By.id("ddlEditSupplier-label");
+    By txtEditSupplier = By.id("ddlEditSupplier");
     By nBoxAddProductQtyLabel = By.id("nBoxAddProductQty-label");
     By nBoxAddProductQty = By.id("nBoxAddProductQty");
     By ddlEditProductUOMLabel = By.id("ddlEditProductUOM-label");
@@ -138,12 +137,15 @@ public class LocationLookupPage extends BasePage {
     By backLocProdButton = By.id("backLocProdButton");
     By selectAllCheckbox = By.xpath("//div[@class='k-grid-header']//input");
     By dropdownList = By.id("dropdownList");
-    By productionButton = By.cssSelector("#btnProductionOnOff");
+    By loadOptionDropDown = By.cssSelector("button[aria-label='Location option dropdownbutton']");
     By productionLabel = By.xpath("//label[@class='i-label autocomplete_custom_label']");
     By weightSerialLabel = By.xpath("//span[text()='Weight/Serial No']");
     String locationTableRows = "//table[@class='k-grid-table']//tr[.//a[contains(text(), '%s')]]";
+    By loader = By.cssSelector(".loader");
+    By loaderImage = By.cssSelector(".k-loading-image");
 
     public void waitForLocationLookupPageToLoad() {
+        waitUntilInvisible(5, loader);
         Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(locationSearchLabel);
         Waiters.waitForElementToBeDisplay(lookupLocationSearch);
@@ -157,15 +159,16 @@ public class LocationLookupPage extends BasePage {
         inputText(getSearchInput(), location);
         pressEnter(getSearchInput());
         findWebElement(By.xpath("//tr[.//td[text()='" + location +  "']]")).click();
-        Waiters.waitABit(10_000);
+        waitUntilInvisible(3, loader);
     }
 
     public void enterLocation(String location) {
         Waiters.waitABit(1000);
         Waiters.waitForElementToBeDisplay(locationSearchInput);
         inputText(getLocationSearchInput(), location);
-        pressEnter(getLocationSearchInput());
-        Waiters.waitABit(2000);
+        pressTab(getLocationSearchInput());
+        waitUntilInvisible(3, loaderImage);
+        waitUntilInvisible(3, loader);
     }
 
     public void clickLocationSearchButton() {
@@ -304,8 +307,9 @@ public class LocationLookupPage extends BasePage {
     }
 
     public void checksProductByIndex(int index) {
+        Waiters.waitABit(3000);
         Waiters.waitForElementToBeDisplay(tableContent);
-        Waiters.waitForPresenceOfAllElements(rows);
+        Waiters.waitForElementsToBeDisplay(getRows());
         List<WebElement> products = getTableContent().findElements(By.xpath(".//tr[contains(@class, 'k-master-row')]//input"));
         clickOnElement(products.get(index));
         Waiters.waitABit(3000);
@@ -376,7 +380,13 @@ public class LocationLookupPage extends BasePage {
     public void clickEditButton() {
         Waiters.waitForElementToBeDisplay(editLocProdButton);
         clickOnElement(editLocProdButton);
-        Waiters.waitABit(15000);
+        waitUntilInvisible(2, loader);
+    }
+
+    public void clickLookupProductShowPalletCheck() {
+        waitUntilInvisible(2, loader);
+        Waiters.waitForElementToBeDisplay(lookupProductShowPalletCheck);
+        clickOnElement(lookupProductShowPalletCheck);
     }
 
     public void clickDeleteButton() {
@@ -415,16 +425,21 @@ public class LocationLookupPage extends BasePage {
     }
 
     public void clickCancelButton() {
+        waitUntilInvisible(3, loader);
+        if(isVisible(OKButton) == true) {
+            clickOnElement(OKButton);
+        }
+        waitUntilInvisible(2, loader);
         Waiters.waitForElementToBeDisplay(cancelButton);
         scrollAndClick(getCancelBtn());
         Waiters.waitABit(2_000);
     }
 
     public void clickSaveButton() {
-        Waiters.waitABit(4000);
+        waitUntilInvisible(3, loader);
         Waiters.waitForElementToBeDisplay(saveButton);
         jsClick(getSaveBtn());
-        Waiters.waitABit(2000);
+        waitUntilInvisible(1, loader);
     }
 
     public void clickYesButton() {
@@ -511,8 +526,10 @@ public class LocationLookupPage extends BasePage {
     }
 
     public void clickProductionButton() {
-        Waiters.waitForElementToBeDisplay(productionButton);
-        clickOnElement(productionButton);
+        Waiters.waitForElementToBeDisplay(loadOptionDropDown);
+        clickOnElement(loadOptionDropDown);
+        clickOnElement(findWebElement(By
+                .xpath("//div[contains(@class, 'k-animation-container-shown')]//*[contains(text(), 'Production')]")));
     }
 
     public void clickInventoryReasonButton() {
@@ -584,6 +601,7 @@ public class LocationLookupPage extends BasePage {
     }
 
     public void clickSupplier() {
+        Waiters.waitABit(2000);
         Waiters.waitForElementToBeDisplay(getDdlAddProductSupplier());
         clickOnElement(getDdlAddProductSupplier());
     }
@@ -1029,11 +1047,6 @@ public class LocationLookupPage extends BasePage {
         return isElementDisplay(getProductionReason());
     }
 
-    public boolean isProductionButtonDisplayed() {
-        Waiters.waitForElementToBeDisplay(getProductionButton());
-        return isElementDisplay(getProductionButton());
-    }
-
     public String getPalletsLabelText() {
         Waiters.waitABit(2000);
         return getText(palletsLabel);
@@ -1057,11 +1070,6 @@ public class LocationLookupPage extends BasePage {
     public String getProductionLabelText() {
         Waiters.waitABit(2000);
         return getText(getProductionLabel());
-    }
-
-    public String getProductionButtonText() {
-        Waiters.waitABit(2000);
-        return getText(getProductionButton());
     }
 
     public boolean isAddLocButtonDisabled() {
@@ -1304,8 +1312,6 @@ public class LocationLookupPage extends BasePage {
     public WebElement getNotification() { return findWebElement(notification); }
 
     public WebElement getDropdownList() { return findWebElement(dropdownList); }
-
-    public WebElement getProductionButton() { return findWebElement(productionButton); }
 
     public WebElement getProductionLabel() { return findWebElement(productionLabel); }
 

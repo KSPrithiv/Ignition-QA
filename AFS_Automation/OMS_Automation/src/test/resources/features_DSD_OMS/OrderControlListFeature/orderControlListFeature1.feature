@@ -23,7 +23,7 @@ Feature: Order control list1
     Then User should select Order traker from drop down
     And Change the delivery date 4 days after current date
     And User clicks on All radio button
-    Then User should find the customer to whome comment has not been added and click on Comment icon
+    Then User should find the customer to whome comment has to be added and click on Comment icon
     Then Add note in popup
       |Testing for Notes at customer level_OCL|
     And User should select the Alert Type and Alert location to display notes
@@ -38,7 +38,7 @@ Feature: Order control list1
     Then User should select Order traker from drop down
     And Change the delivery date 4 days after current date
     And User clicks on All radio button
-    Then User should find the customer to whome comment has not been added and click on Comment icon
+    Then User should find the customer to whome comment has to be added and click on Comment icon
     And Read all the Notes in Customer note grid and select one note
       |Testing for Notes at customer level_OCL|
     And Click on Copy button in Note grid
@@ -51,7 +51,7 @@ Feature: Order control list1
     Then User should select Order traker from drop down
     And Change the delivery date 4 days after current date
     And User clicks on All radio button
-    Then User should find the customer to whome comment has not been added and click on Comment icon
+    Then User should find the customer to whome comment has to be added and click on Comment icon
     And Read all the Notes in Customer note grid and select one note for Deleting
       |Testing for Notes at customer level_OCL|
     Then Click on Ok button
@@ -63,7 +63,7 @@ Feature: Order control list1
     Then User should select Order traker from drop down
     And Change the delivery date 4 days after current date
     And User clicks on All radio button
-    Then User should find the customer to whome comment has not been added and click on Comment icon
+    Then User should find the customer to whome comment has to be added and click on Comment icon
     And Read all the Notes in Customer note grid and select one note
       |Testing for Notes at customer level_OCL|
     Then Click on Reset button and Click on Ok button

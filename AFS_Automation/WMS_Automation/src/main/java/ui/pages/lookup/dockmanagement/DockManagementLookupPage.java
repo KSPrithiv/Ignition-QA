@@ -4,11 +4,10 @@ import common.utils.Waiters;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import ui.pages.BasePage;
-
 import java.util.List;
+import static common.setup.DriverManager.getDriver;
 
 public class DockManagementLookupPage extends BasePage {
-
     By dockManagementLookupTitle = By.className("spnmoduleNameHeader");
     By dateInputFilterDate = By.id("dateInputFilterDate");
     By dateInputFilterToDate = By.id("dateInputFilterToDate");
@@ -42,8 +41,8 @@ public class DockManagementLookupPage extends BasePage {
     By cancelButton = By.xpath("//button[contains(text(), 'Cancel')]");
     By okButton = By.xpath("//button[contains(text(), 'OK')]");
     By ordersAssignToDoor = By.xpath("//span[text()='Orders assigned to door']");
-    By notEmptyTrailer = By.xpath("//div[contains(@class, 'dockManagement_Col_2C')]//a[string-length() > 0]");
-    By notEmptyScheduled = By.xpath("//div[contains(@class, 'dockManagement_Col_2D')]//a[string-length() > 0]");
+    By notEmptyTrailer = By.xpath("//div[contains(@class, 'dockManagement_Col_')]//*[contains(@class, 'truckIcon')]");
+    By notEmptyScheduled = By.xpath("//div[contains(@class, 'dockManagement_Col_')]//*[contains(@class, 'clockIcon')]//following-sibling::a");
     By changeTrailerPopUpTitle = By.cssSelector("div.k-dialog-title");
     By dateInputSchedDateLabel = By.id("dateInputSchedDate-label");
     By dateInputSchedDate = By.id("dateInputSchedDate");
@@ -51,10 +50,11 @@ public class DockManagementLookupPage extends BasePage {
     By timeInputFilterTime = By.id("timeInputFilterTime");
     By ddlTrailer = By.id("ddlTrailer");
     By dropdownList = By.id("dropdownList");
+    By loader = By.cssSelector(".loader");
 
     public void waitForDockManagementLookupPageToLoad() {
-        Waiters.waitABit(7000);
-        Waiters.waitUntilPageWillLoadedSelenide();
+        waitUntilInvisible(5, loader);
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(dockManagementLookupTitle);
         Waiters.waitForElementToBeDisplay(dateInputFilterDate);
         Waiters.waitForElementToBeDisplay(dateInputFilterToDate);
@@ -65,62 +65,68 @@ public class DockManagementLookupPage extends BasePage {
     }
 
     public void clickItemByIndex(int index) {
-        Waiters.waitUntilPageWillLoadedSelenide();
+        waitUntilInvisible(2, loader);
         Waiters.waitForElementToBeDisplay(items);
         clickOnElement(getItems().get(index));
-        Waiters.waitABit(5000);
+        waitUntilInvisible(5, loader);
     }
 
     public void selectWarehouse(String warehouse) {
         clickOnElement(getDropdownList());
         clickOnElement(findWebElement(By.xpath("//div[contains(@class, 'k-animation-container-shown')]//li[contains(text(), '"
                 + warehouse + "') and @role='option']")));
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
     }
 
     public void clickDockMgmtSummaryRowsByIndex(int index) {
-        Waiters.waitABit(2000);
-        Waiters.waitUntilPageWillLoadedSelenide();
+        Waiters.waitTillLoadingPage(getDriver());
+        waitUntilVisible(1, loader);
         Waiters.waitForElementToBeDisplay(dockMgmtSummaryRows);
         clickOnElement(getDockMgmtSummaryRows().get(index).findElement(By.xpath(".//div[contains(@class, 'outerDuckCell')]//a")));
-        Waiters.waitABit(7000);
+        waitUntilVisible(3, loader);
     }
 
     public void clickNotEmptyTrailerByIndex(int index) {
-        Waiters.waitUntilPageWillLoadedSelenide();
-        Waiters.waitForPresenceOfAllElements(notEmptyTrailer);
-        clickOnElement(getNotEmptyTrailers().get(index));
+        waitUntilVisible(10, loader);
+        Waiters.waitTillLoadingPage(getDriver());
+        Waiters.waitABit(5000);
+        Waiters.waitForElementsToBeDisplay(getNotEmptyTrailers());
+        WebElement trailer = getNotEmptyTrailers().get(index);
+        waitUntilStalenessOf(2, trailer);
+        Waiters.waitABit(5000);
+        clickOnElement(trailer);
     }
 
     public void clickNotEmptyScheduledByIndex(int index) {
-        Waiters.waitUntilPageWillLoadedSelenide();
-        Waiters.waitForPresenceOfAllElements(notEmptyScheduled);
+        waitUntilVisible(1, loader);
+        Waiters.waitTillLoadingPage(getDriver());
+        Waiters.waitForElementToBeDisplay(notEmptyScheduled);
         clickOnElement(getNotEmptyScheduled().get(index));
     }
 
     public void clickBackButton() {
-        Waiters.waitUntilPageWillLoadedSelenide();
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(btnBack);
         clickOnElement(btnBack);
         Waiters.waitABit(7000);
     }
 
     public void clickCancelButton() {
-        Waiters.waitUntilPageWillLoadedSelenide();
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(cancelButton);
         clickOnElement(cancelButton);
         Waiters.waitABit(7000);
     }
 
     public void clickOKButton() {
-        Waiters.waitUntilPageWillLoadedSelenide();
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(okButton);
         clickOnElement(okButton);
         Waiters.waitABit(7000);
     }
 
     public void typeSchedDate(String date) {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(getDateInputSchedDate());
         clickOnElement(getDateInputSchedDate());
         pressDelete(getDateInputSchedDate());
@@ -221,55 +227,75 @@ public class DockManagementLookupPage extends BasePage {
     public String checkElementProductionChk() { return checkElementAttribute(getChkBoxProduction(), "disabled"); }
 
     public void typeDockMgmtStartDate(String date) {
-        Waiters.waitABit(2000);
-        Waiters.waitForElementToBeDisplay(getDateInputFilterDate());
+        Waiters.waitTillLoadingPage(getDriver());
+        waitUntilStalenessOf(1, getDateInputFilterDate());
         clickOnElement(getDateInputFilterDate());
-        pressDelete(getDateInputFilterDate());
+        Waiters.waitABit(1000);
+        waitUntilStalenessOf(1, getDateInputFilterDate());
+        clearText(getDateInputFilterDate());
+        Waiters.waitABit(1000);
+        waitUntilStalenessOf(1, getDateInputFilterDate());
         inputText(getDateInputFilterDate(), date);
-        pressEnter(getDateInputFilterDate());
-        Waiters.waitABit(7000);
+        Waiters.waitABit(1000);
+        waitUntilStalenessOf(1, getDateInputFilterDate());
+        pressTab(getDateInputFilterDate());
+        waitUntilInvisible(10, loader);
     }
 
     public void typeDockMgmtToDate(String date) {
-        Waiters.waitABit(2000);
-        Waiters.waitForElementToBeDisplay(getDateInputFilterToDate());
+        Waiters.waitTillLoadingPage(getDriver());
+        waitUntilStalenessOf(1, getDateInputFilterToDate());
         clickOnElement(getDateInputFilterToDate());
-        pressDelete(getDateInputFilterToDate());
+        Waiters.waitABit(1000);
+        waitUntilStalenessOf(1, getDateInputFilterToDate());
+        clearText(getDateInputFilterToDate());
+        Waiters.waitABit(1000);
+        waitUntilStalenessOf(1, getDateInputFilterToDate());
         inputText(getDateInputFilterToDate(), date);
-        pressEnter(getDateInputFilterToDate());
-        Waiters.waitABit(4000);
+        Waiters.waitABit(1000);
+        waitUntilStalenessOf(1, getDateInputFilterToDate());
+        pressTab(getDateInputFilterToDate());
+        waitUntilInvisible(2, loader);
     }
 
     public void clickSelectAll() {
-        Waiters.waitABit(2000);
+        waitUntilInvisible(2, loader);
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(chkBoxShowAll);
-        clickOnElement(chkBoxShowAll);
-        Waiters.waitABit(6000);
+        Waiters.waitABit(1000);
+        jsClick(getChkBoxShowAll());
+        waitUntilInvisible(2, loader);
     }
 
     public void clickReceiving() {
-        Waiters.waitABit(2000);
+        waitUntilInvisible(2, loader);
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(chkBoxReceiving);
-        clickOnElement(chkBoxReceiving);
-        Waiters.waitABit(6000);
+        Waiters.waitABit(1000);
+        jsClick(getChkBoxReceiving());
+        waitUntilInvisible(2, loader);
     }
 
     public void clickShipping() {
-        Waiters.waitABit(2000);
+        waitUntilInvisible(2, loader);
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(chkBoxShipping);
-        clickOnElement(chkBoxShipping);
-        Waiters.waitABit(6000);
+        Waiters.waitABit(1000);
+        jsClick(getChkBoxShipping());
+        waitUntilInvisible(2, loader);
     }
 
     public void clickProduction() {
-        Waiters.waitABit(2000);
+        waitUntilInvisible(2, loader);
+        Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(chkBoxProduction);
-        clickOnElement(chkBoxProduction);
-        Waiters.waitABit(6000);
+        Waiters.waitABit(1000);
+        jsClick(getChkBoxProduction());
+        waitUntilInvisible(2, loader);
     }
 
     public String getСhangeTrailerPopUpTitleText() {
-        Waiters.waitABit(2000);
+        Waiters.waitTillLoadingPage(getDriver());
         return getText(changeTrailerPopUpTitle);
     }
 

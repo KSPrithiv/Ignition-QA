@@ -1,11 +1,14 @@
 package stepDefination_DSD_OMS.OrderEntryPage;
 
+import helper.HelpersMethod;
 import io.cucumber.datatable.DataTable;
 import io.cucumber.java.Before;
 import io.cucumber.java.Scenario;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import pages_DSD_OMS.orderEntry.CheckOutSummaryPage;
 import pages_DSD_OMS.orderEntry.NewOrderEntryPage;
 import pages_DSD_OMS.orderEntry.OrderEntryPage;
@@ -72,6 +75,7 @@ public class OrderEntryPageSteps5
         DateTimeFormatter myFormatObj = DateTimeFormatter.ofPattern("EEEE, MMMM d, yyyy");
         String formattedDate = myDateObj.format(myFormatObj);
         orderpage.ClickCalender();
+
         orderpage.SelectDatePendingOrder(formattedDate, 1);
         orderpage.ChangedDeliveryDate();
 
@@ -111,6 +115,7 @@ public class OrderEntryPageSteps5
     public void userClickOnCancelButtonAndPopupShouldAppear() throws InterruptedException, AWTException
     {
         newOE=new NewOrderEntryPage(driver,scenario);
+        newOE.ValidateNewOE();
         newOE.OECancel();
     }
 
@@ -145,5 +150,45 @@ public class OrderEntryPageSteps5
         newOE = new NewOrderEntryPage(driver,scenario);
         String ProdName= TestBase.testEnvironment.getForeignLangDesc();
         newOE.EnterProdNo_InSearchBar(ProdName);
+    }
+
+    @Then("User should  click on sales rep index icon and select sales rep")
+    public void userShouldClickOnSalesRepIndexIconAndSelectSalesRep() throws InterruptedException, AWTException
+    {
+        orderpage=new OrderEntryPage(driver, scenario);
+        orderpage.salesRep();
+    }
+
+    @And("User should click on delivery date and select delivery date by increase day for pending order then user should handle the popup also")
+    public void userShouldClickOnDeliveryDateAndSelectDeliveryDateByIncreaseDayForPendingOrderThenUserShouldHandleThePopupAlso() throws InterruptedException, AWTException
+    {
+        orderpage = new OrderEntryPage(driver, scenario);
+        WebElement date;
+        Actions act=new Actions(driver);
+        orderpage.ClickCalender();
+        List<WebElement> dates= HelpersMethod.FindByElements(driver,"xapth","//div[contains(@class,'k-widget k-calendar k-calendar-infinite')]/descendant::tr[@role='row']/td[contains(@style,'background-color: rgb')]");
+        for(int i=1;i<=dates.size();i++)
+        {
+            act.moveToElement(dates.get(i)).build().perform();
+            if(i==1)
+            {
+                act.moveToElement(dates.get(i)).build().perform();
+                act.click(dates.get(i)).build().perform();
+                break;
+            }
+        }
+
+        //get current date add some days to current date
+        LocalDate myDateObj = LocalDate.now().plusDays(1);
+        DateTimeFormatter myFormatObj = DateTimeFormatter.ofPattern("EEEE, MMMM d, yyyy");
+        String formattedDate = myDateObj.format(myFormatObj);
+
+        orderpage.SelectDatePendingOrder(formattedDate, 1);
+        orderpage.ChangedDeliveryDate();
+
+        //Handle Popup that appears after changing delivery date
+        newOE=new NewOrderEntryPage(driver,scenario);
+        newOE.ValidateChangeDeliveryDatePopup();
+        newOE.SelectChangeDeliveryDatePopup();
     }
 }
