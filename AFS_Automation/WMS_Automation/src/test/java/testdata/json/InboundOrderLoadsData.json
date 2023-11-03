@@ -105,8 +105,8 @@
   "inbound customers":
   {
     "inbound customer 1": "Select customer",
-    "inbound customer 2": "02 02",
-    "inbound customer 3": "01 ABC Company"
+    "inbound customer 2": "02",
+    "inbound customer 3": "ABC Company"
   },
   "inbound order types":
   {

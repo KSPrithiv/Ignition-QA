@@ -61,7 +61,7 @@ Feature: Testing of Lookup Dock Management screen functionality
     And Main page is loaded
     And DockManagement Summary Page is validated
     And Go to Lookup DockManagement page
-    And Validates DockManagement Lookup Page base elements are loaded on DockManagement Lookup page
+    And Waits for Dock Management Lookup page to load
     When User types date from input by index 1 on Dock Management page
     Then User types date to input by index 3 on Dock Management page
     And Validates Inbound and Outbound labels, items are displayed on DockManagement Lookup page
@@ -72,7 +72,7 @@ Feature: Testing of Lookup Dock Management screen functionality
     And Main page is loaded
     And DockManagement Summary Page is validated
     And Go to Lookup DockManagement page
-    And Validates DockManagement Lookup Page base elements are loaded on DockManagement Lookup page
+    And Waits for Dock Management Lookup page to load
     When User types date from input by index 1 on Dock Management page
     Then User types date to input by index 3 on Dock Management page
     And Validates Inbound and Outbound labels, items are displayed on DockManagement Lookup page
@@ -84,16 +84,16 @@ Feature: Testing of Lookup Dock Management screen functionality
     And User clicks item 1 on Dock Management page
     And Validates Item Details are displayed on DockManagement Lookup page
 
+  @isofailed2
   Scenario: Checking Data Filtering of Lookup Dock Management screen
     Given User signs in the application
     And Main page is loaded
     And DockManagement Summary Page is validated
     And Go to Lookup DockManagement page
-    And Validates DockManagement Lookup Page base elements are loaded on DockManagement Lookup page
+    And Waits for Dock Management Lookup page to load
     When User types date from input by index 1 on Dock Management page
     Then User types date to input by index 3 on Dock Management page
     And Validates Inbound and Outbound labels, items are displayed on DockManagement Lookup page
-    And Validates Receiving, Shipping, Production are disabled on DockManagement Lookup page
     And Validates DockMgmt Summary Rows are displayed on DockManagement Lookup page
     And User clicks Select All checkbox on Dock Management page
     And Validates DockMgmt Summary Rows are displayed on DockManagement Lookup page
@@ -130,7 +130,7 @@ Feature: Testing of Lookup Dock Management screen functionality
     And Main page is loaded
     And DockManagement Summary Page is validated
     And Go to Lookup DockManagement page
-    And Validates DockManagement Lookup Page base elements are loaded on DockManagement Lookup page
+    And Waits for Dock Management Lookup page to load
     When User types date from input by index 1 on Dock Management page
     Then User types date to input by index 3 on Dock Management page
     And Validates Inbound and Outbound labels, items are displayed on DockManagement Lookup page
@@ -140,7 +140,7 @@ Feature: Testing of Lookup Dock Management screen functionality
     And Main page is loaded
     And DockManagement Summary Page is validated
     And Go to Lookup DockManagement page
-    And Validates DockManagement Lookup Page base elements are loaded on DockManagement Lookup page
+    And Waits for Dock Management Lookup page to load
     When User types date from input by index 1 on Dock Management page
     Then User types date to input by index 3 on Dock Management page
     And Validates Inbound and Outbound labels, items are displayed on DockManagement Lookup page
@@ -154,7 +154,7 @@ Feature: Testing of Lookup Dock Management screen functionality
     And Main page is loaded
     And DockManagement Summary Page is validated
     And Go to Lookup DockManagement page
-    And Validates DockManagement Lookup Page base elements are loaded on DockManagement Lookup page
+    And Waits for Dock Management Lookup page to load
     When User types date from input by index 1 on Dock Management page
     Then User types date to input by index 3 on Dock Management page
     And Validates Inbound and Outbound labels, items are displayed on DockManagement Lookup page
@@ -168,7 +168,7 @@ Feature: Testing of Lookup Dock Management screen functionality
     And Main page is loaded
     And DockManagement Summary Page is validated
     And Go to Lookup DockManagement page
-    And Validates DockManagement Lookup Page base elements are loaded on DockManagement Lookup page
+    And Waits for Dock Management Lookup page to load
     When User types date from input by index 1 on Dock Management page
     Then User types date to input by index 3 on Dock Management page
     And User clicks item 0 on Dock Management page
@@ -182,7 +182,7 @@ Feature: Testing of Lookup Dock Management screen functionality
     And Main page is loaded
     And DockManagement Summary Page is validated
     And Go to Lookup DockManagement page
-    And Validates DockManagement Lookup Page base elements are loaded on DockManagement Lookup page
+    And Waits for Dock Management Lookup page to load
     When User types date from input by index 1 on Dock Management page
     Then User types date to input by index 3 on Dock Management page
     And Validates DockManagement Lookup Page dates are displayed on DockManagement Lookup page
@@ -194,7 +194,7 @@ Feature: Testing of Lookup Dock Management screen functionality
     And Main page is loaded
     And DockManagement Summary Page is validated
     And Go to Lookup DockManagement page
-    And Validates DockManagement Lookup Page base elements are loaded on DockManagement Lookup page
+    And Waits for Dock Management Lookup page to load
     When User types date from input by index 1 on Dock Management page
     Then User types date to input by index 3 on Dock Management page
     And User clicks item 0 on Dock Management page

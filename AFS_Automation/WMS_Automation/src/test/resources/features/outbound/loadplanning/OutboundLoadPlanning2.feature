@@ -141,7 +141,6 @@ Feature: Testing of Outbound Load Planning functionality
     And Validates Shorts table is displayed
     And Clicks OK button on Shorts popup
 
-    #
   Scenario: Checking Positions and Pallets on Outbound Truck Info page
     Given User signs in the application
     And Main page is loaded
@@ -163,11 +162,12 @@ Feature: Testing of Outbound Load Planning functionality
     And Waits for Outbound Truck Info page to load
     And Validates Position and Pallets are present
 
-  @isofailed
+  @isofailed2
   Scenario: Checking Trailer Cube on Outbound Truck Info page
     Given User signs in the application
     And Main page is loaded
     And DockManagement Summary Page is validated
+    And Go to Outbound Load Planning page
     And Waits for Outbound Load Planning page to load
     And Validates Load Planning page is displayed
     And Validates Load Planning popup title is displayed
@@ -184,11 +184,12 @@ Feature: Testing of Outbound Load Planning functionality
     And Waits for Outbound Truck Info page to load
     And Validates Trailer Cube is present
 
-  @isofailed
+  @isofailed2
   Scenario: Checking Route Cube on Outbound Truck Info page
     Given User signs in the application
     And Main page is loaded
     And DockManagement Summary Page is validated
+    And Go to Outbound Load Planning page
     And Waits for Outbound Load Planning page to load
     And Validates Load Planning page is displayed
     And Validates Load Planning popup title is displayed

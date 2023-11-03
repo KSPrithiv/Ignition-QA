@@ -40,7 +40,7 @@ public class LoginPageSteps {
     public static Environment environment;
     public WebDriver driver;
 
-/*    @Before
+    @Before
     public void beforeClassSetup() {
         ConfigFactory.setProperty("path", FilePaths.PROPERTIES_PATH);
         environment = ConfigFactory.create(Environment.class);
@@ -48,7 +48,7 @@ public class LoginPageSteps {
         buildWebDriver(environment.getBrowser());
         DriverManager.openPage(environment.getUrl());
         new Waiters();
-    }*/
+    }
 
     @Before
     public void LaunchBrowser(Scenario scenario) throws Exception
@@ -131,7 +131,7 @@ public class LoginPageSteps {
 
     }
 
-/*    @SneakyThrows
+    @SneakyThrows
     @After
     public void closeBrowserInstance(Scenario scenario) {
        if (driverEnabled(getDriver())) {
@@ -145,5 +145,5 @@ public class LoginPageSteps {
                 }
             }
        }
-    }*/
+    }
 }

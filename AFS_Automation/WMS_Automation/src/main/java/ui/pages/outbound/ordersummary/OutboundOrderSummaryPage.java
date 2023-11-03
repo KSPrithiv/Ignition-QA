@@ -203,8 +203,9 @@ public class OutboundOrderSummaryPage extends BasePage {
         pressTab(getEnterOrderInput());
         waitUntilInvisible(3, loader);
         List<WebElement> orders = getOutboundRoutes();
-        waitUntilStalenessOf(2, orders.get(0));
-        orders.get(0).click();
+        WebElement ord = orders.get(0);
+        waitUntilStalenessOf(2, ord);
+        clickOnElement(ord);
         waitUntilInvisible(1, loader);
     }
 
@@ -400,7 +401,11 @@ public class OutboundOrderSummaryPage extends BasePage {
     public void selectItemByNumber(int num) {
         Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(getWorkQueueAssignmentTable());
-        clickOnElement(getWorkQueueAssignmentTable().findElements(By.xpath(".//tr")).get(num));
+        WebElement element = getWorkQueueAssignmentTable().findElements(By.xpath(".//tr")).get(num);
+        waitUntilStalenessOf(2, element);
+        waitUntilInvisible(1, loader);
+        clickOnElement(element);
+        waitUntilInvisible(1, loader);
     }
 
     public void clickCancelButton() {
