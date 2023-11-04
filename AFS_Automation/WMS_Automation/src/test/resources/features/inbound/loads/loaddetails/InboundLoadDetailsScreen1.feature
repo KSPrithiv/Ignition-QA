@@ -84,6 +84,7 @@ Feature: Testing of Inbound Load Details screen functionality
     And Validates Change status popup with Reopen Order status on Inbound Load Summary page
     And Clicks Cancel button on Inbound Load Summary page
 
+  # no test data
   @isofailed2
   Scenario: Checking Status change from Ready to Receive to Finish Receiving for Load
     Given User signs in the application
