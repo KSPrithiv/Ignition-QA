@@ -4,7 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8ce971e4-5836-47c9-99e5-6ddbb9e1224a" name="Changes" comment="" />
+    <list default="true" id="8ce971e4-5836-47c9-99e5-6ddbb9e1224a" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AFS_Automation.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/OMS_Automation/OMS_Automation.iml" beforeDir="false" afterPath="$PROJECT_DIR$/OMS_Automation/OMS_Automation.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WMS_Automation/WMS_Automation.iml" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/WMS_Automation.iml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -33,16 +38,13 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">
-    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
-    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/pom.xml" />
-    <property name="project.structure.last.edited" value="Project" />
-    <property name="project.structure.proportion" value="0.15" />
-    <property name="project.structure.side.proportion" value="0.152439" />
-    <property name="settings.editor.selected.configurable" value="vcs.TFVC" />
-  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "last_opened_file_path": "C:/Users/Sneha.Pallikunnath/ignition-qa/AFS_Automation/.idea",
+    "settings.editor.selected.configurable": "reference.settingsdialog.project.grazie"
+  }
+}]]></component>
   <component name="RunManager" selected="TestNG.C:/Users/Sneha.Pallikunnath/ignition-qa/AFS_Automation/WMS_Automation/OutboundRouteSummaryWorkTestNGRunner.xml">
     <configuration name="C:/Users/Sneha.Pallikunnath/ignition-qa/AFS_Automation/OMS_Automation/testng.xml" type="TestNG" temporary="true" nameIsGenerated="true">
       <module name="OMS_Automation" />
