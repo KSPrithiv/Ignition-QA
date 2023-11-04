@@ -51,8 +51,8 @@ public class ProductLookupPage extends BasePage {
     By uomColumnHeader = By.xpath("//th[@role='columnheader'][.//span[text()='UOM']]");
     By conversionColumn = By.xpath("//span[text()='Conversion']");
     By conversionColumnHeader = By.xpath("//th[@role='columnheader'][.//span[text()='Conversion']]");
-    By actualColumn = By.xpath("//span[text()='Actual']");
-    By actualColumnHeader = By.xpath("//th[@role='columnheader'][.//span[text()='Actual']]");
+    By actualColumn = By.xpath("//span[contains(text(), 'Actual')]");
+    By actualColumnHeader = By.xpath("//th[@role='columnheader'][.//span[contains(text(), 'Actual')]]");
     By bookColumn = By.xpath("//span[text()='Book']");
     By bookColumnHeader = By.xpath("//th[@role='columnheader'][.//span[text()='Book']]");
     By inboundColumn = By.xpath("//span[text()='Inbound']");

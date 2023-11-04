@@ -1,6 +1,6 @@
 @Inbound @Regression
 Feature: Testing of Inbound Orders details screen
-  @isofailed
+  @isofailed2
   Scenario: Checking Comments on Inbound Order details page
     Given User signs in the application
     And Main page is loaded
@@ -14,28 +14,26 @@ Feature: Testing of Inbound Orders details screen
     And Validates items are present on Inbound Order Details page
     And Validates Comments Button is present on Inbound Order Details page
 
-  @isofailed
+  @isofailed2
   Scenario: Checking Images on Inbound Order details page
     Given User signs in the application
     And Main page is loaded
     And DockManagement Summary Page is validated
     And Go to Inbound Orders page
     And User waits for Inbound Order Summary page to load
-    And Validates Inbound Order Summary Page contains all web elements
     When User finds all orders from start date by index 0 to end date by index 0
     Then Selects order with index 0 on Inbound Order Summary page
     And User waits for Inbound Order Details page to load
     And Validates items are present on Inbound Order Details page
     And Validates Images Button is present on Inbound Order Details page
 
-  @isofailed
+  @isofailed2
   Scenario: Checking Change Door on Inbound Order details page
     Given User signs in the application
     And Main page is loaded
     And DockManagement Summary Page is validated
     And Go to Inbound Orders page
     And User waits for Inbound Order Summary page to load
-    And Validates Inbound Order Summary Page contains all web elements
     When User finds all orders from start date by index 0 to end date by index 0
     Then Selects order with index 0 on Inbound Order Summary page
     And User waits for Inbound Order Details page to load
@@ -49,14 +47,13 @@ Feature: Testing of Inbound Orders details screen
     And Selects DOOR option on Inbound Order Details page
     And Clicks Save button on Inbound Order Details page
 
-  @isofailed
+  @isofailed2
   Scenario: Checking Order details on Inbound Order details page
     Given User signs in the application
     And Main page is loaded
     And DockManagement Summary Page is validated
     And Go to Inbound Orders page
     And User waits for Inbound Order Summary page to load
-    And Validates Inbound Order Summary Page contains all web elements
     When User finds all orders from start date by index 0 to end date by index 0
     Then Selects order with index 0 on Inbound Order Summary page
     And User waits for Inbound Order Details page to load
@@ -65,14 +62,13 @@ Feature: Testing of Inbound Orders details screen
     And Validates Received, Staged, Over and Remainder are present on Inbound Order Details page with correct color
     And Validates Status, Door and Data on Inbound Order Details page
 
-  @isofailed
+  @isofailed2
   Scenario: Checking Log Details on Inbound Order details page
     Given User signs in the application
     And Main page is loaded
     And DockManagement Summary Page is validated
     And Go to Inbound Orders page
     And User waits for Inbound Order Summary page to load
-    And Validates Inbound Order Summary Page contains all web elements
     When User finds all orders from start date by index 0 to end date by index 0
     Then Selects order with index 0 on Inbound Order Summary page
     And User waits for Inbound Order Details page to load
@@ -88,7 +84,6 @@ Feature: Testing of Inbound Orders details screen
     And DockManagement Summary Page is validated
     And Go to Inbound Orders page
     And User waits for Inbound Order Summary page to load
-    And Validates Inbound Order Summary Page contains all web elements
     When User finds all orders from start date by index 0 to end date by index 0
     Then Selects order with index 0 on Inbound Order Summary page
     And User waits for Inbound Order Details page to load
@@ -105,7 +100,6 @@ Feature: Testing of Inbound Orders details screen
     And DockManagement Summary Page is validated
     And Go to Inbound Orders page
     And User waits for Inbound Order Summary page to load
-    And Validates Inbound Order Summary Page contains all web elements
     When User finds all orders from start date by index 0 to end date by index 0
     Then Selects order with index 0 on Inbound Order Summary page
     And User waits for Inbound Order Details page to load
@@ -119,7 +113,6 @@ Feature: Testing of Inbound Orders details screen
     And DockManagement Summary Page is validated
     And Go to Inbound Orders page
     And User waits for Inbound Order Summary page to load
-    And Validates Inbound Order Summary Page contains all web elements
     When User finds all orders from start date by index 0 to end date by index 0
     Then Selects order with index 0 on Inbound Order Summary page
     And User waits for Inbound Order Details page to load

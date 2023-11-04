@@ -30,6 +30,7 @@ Feature: Testing of Inbound Load Order Line Item screen functionality
     And Validates Product details and UPC on Inbound Load Order Line Items page
     And Validates Product UPC is displayed on Inbound Load Order Line Items page
 
+  @isofailed2
   Scenario: Checking Navigate to lookup Location on Inbound Load order line item details page
     Given User signs in the application
     And Main page is loaded

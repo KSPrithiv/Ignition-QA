@@ -466,10 +466,11 @@ public class OutboundRouteSummaryPage extends BasePage {
     }
 
     public void clickRoutesDropdown() {
+        Waiters.waitABit(4000);
         Waiters.waitForElementToBeDisplay(getRouteOptions());
         Waiters.waitABit(4000);
         clickOnElement(getRouteOptions());
-        waitUntilInvisible(2, loader);
+        waitUntilInvisible(1, loader);
     }
 
     public void clickCarrierDropdown() {
@@ -769,13 +770,11 @@ public class OutboundRouteSummaryPage extends BasePage {
         waitUntilInvisible(1, loader);
         Waiters.waitTillLoadingPage(getDriver());
         List<WebElement> routes = findWebElements(By.xpath("//div[contains(@class, 'BarsContainer')]//..//input"));
+        WebElement webElement = routes.get(index);
+        scrollToCenter(webElement);
+        waitUntilStalenessOf(2, webElement);
+        clickOnElement(webElement);
         waitUntilInvisible(1, loader);
-        scrollToCenter(routes.get(index));
-        waitUntilStalenessOf(2, routes.get(index));
-        Waiters.waitABit(3000);
-        waitUntilInvisible(2, loader);
-        jsClick(routes.get(index));
-        waitUntilInvisible(2, loader);
     }
 
     public void selectRouteByRowNumber(int index) {
@@ -890,6 +889,7 @@ public class OutboundRouteSummaryPage extends BasePage {
     public void clickSave() {
         Waiters.waitTillLoadingPage(getDriver());
         clickOnElement(getSaveButton());
+        jsClick(getSaveButton());
     }
 
     public void clickOrderTypeColumn(String orderType, int index) {
