@@ -1,5 +1,6 @@
 @Counting @Regression
 Feature: Testing of Counting Count functionality
+  @isofailed2
   Scenario: Checking Release Counts on Counting Sessions screen
     Given User signs in the application
     And Main page is loaded
