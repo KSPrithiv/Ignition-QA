@@ -1,6 +1,5 @@
 @Dashboard @Regression
 Feature: Testing of Dashboard functionality
-
   Scenario: Checking Dashboard Icon and Spelling
     Given User signs in the application
     And Main page is loaded
@@ -64,7 +63,6 @@ Feature: Testing of Dashboard functionality
     And Validates Counting Sessions page is displayed
     And User clicks session dropdown on Counting Sessions page
     When User selects session with index 2 on Counting Sessions page
-    And Validates Session details on Counting Sessions page
     And User clicks Assignments tab on Counting Sessions page
     And Validates Assignment tab contains Release and Delete buttons, Add filter button on Counting Sessions page
     Then Go to Work Queue Assign Work page

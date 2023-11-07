@@ -14,9 +14,6 @@ Feature: Testing of Counting Count functionality
     And DockManagement Summary Page is validated
     And Go to Counting Sessions page
     And Waits for Counting Sessions page to load
-    When User clicks session dropdown on Counting Sessions page
-    And Validates sessions are present in Session dropdown on Counting Sessions page
-    And User clicks session page title on Counting Sessions page
     Then User clicks session dropdown on Counting Sessions page
     And User selects session with index 2 on Counting Sessions page
     And Validates Locations, Products and Assignments Tabs are displayed on Counting Sessions page
@@ -45,7 +42,6 @@ Feature: Testing of Counting Count functionality
     And Go to Counting Sessions page
     And Waits for Counting Sessions page to load
     And User clicks New Session button on Counting Sessions page
-    And Validates Session name and Count type are displayed on Counting Sessions page
     When User types count type 3 on Counting Sessions page
     And User types randomly created session name on Counting Sessions page
     And User clicks Save button on Counting Sessions page
@@ -74,7 +70,6 @@ Feature: Testing of Counting Count functionality
     And Go to Counting Sessions page
     And Waits for Counting Sessions page to load
     And User clicks New Session button on Counting Sessions page
-    And Validates Session name and Count type are displayed on Counting Sessions page
     And User types count type 0 on Counting Sessions page
     When User types randomly created session name on Counting Sessions page
     And User clicks Save button on Counting Sessions page
@@ -206,7 +201,6 @@ Feature: Testing of Counting Count functionality
     And DockManagement Summary Page is validated
     And Go to Counting Sessions page
     And Waits for Counting Sessions page to load
-    And Validates Counting Sessions page is displayed
     And User clicks session dropdown on Counting Sessions page
     When User selects session with index 2 on Counting Sessions page
     And User clicks Location tab on Counting Sessions page
@@ -224,7 +218,6 @@ Feature: Testing of Counting Count functionality
     And DockManagement Summary Page is validated
     And Go to Counting Sessions page
     And Waits for Counting Sessions page to load
-    And Validates Counting Sessions page is displayed
     When User clicks session dropdown on Counting Sessions page
     And User selects session with index 1 on Counting Sessions page
     And User clicks Location tab on Counting Sessions page

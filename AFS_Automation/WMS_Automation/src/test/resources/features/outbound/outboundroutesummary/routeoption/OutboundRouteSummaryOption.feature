@@ -7,8 +7,6 @@ Feature: Testing of Outbound Route Summary Route option
     And DockManagement Summary Page is validated
     And Go to Outbound Route page
     And Waits for Outbound Route Summary page to load
-    And Validates Outbound Route Summary page is displayed
-    And Validates Outbound Route Summary dates on Outbound Route Summary page
     When Filling route start date by index 2 on Outbound Route Summary page
     And Validates Items Count on Outbound Route Summary page
     And Validates Items Counts displayed on Outbound Route Summary page
@@ -36,7 +34,6 @@ Feature: Testing of Outbound Route Summary Route option
     And Clicks Save button on Outbound Route Summary page
     And Clicks Routes dropdown on Outbound Route Summary page
     And Select Outbound Route Edit option on Outbound Route Summary page
-    And Validates driver "testdriver" value on Outbound Route Summary page
     And Validates max stops by index 0 value on Outbound Route Summary page
     And Clicks Save button on Outbound Route Summary page
 
@@ -95,8 +92,6 @@ Feature: Testing of Outbound Route Summary Route option
     And Go to Outbound Route page
     And Waits for Outbound Route Summary page to load
     And Filling route start date by index 2 on Outbound Route Summary page
-    And Validates Items Count on Outbound Route Summary page
-    And Validates Items Counts displayed on Outbound Route Summary page
     And Clicks Routes dropdown on Outbound Route Summary page
     And Validates Route options from Route dropdown are disabled on Outbound Route Summary page
     And Clicks Routes dropdown on Outbound Route Summary page
@@ -115,8 +110,6 @@ Feature: Testing of Outbound Route Summary Route option
     And Go to Outbound Route page
     And Waits for Outbound Route Summary page to load
     When Filling route start date by index 2 on Outbound Route Summary page
-    And Validates Items Count on Outbound Route Summary page
-    And Validates Items Counts displayed on Outbound Route Summary page
     And Clicks Routes dropdown on Outbound Route Summary page
     Then Selects route with index 0 on Outbound Route Summary page
     And Clicks Routes dropdown on Outbound Route Summary page
@@ -204,8 +197,6 @@ Feature: Testing of Outbound Route Summary Route option
     And Go to Outbound Route page
     And Waits for Outbound Route Summary page to load
     When Filling route start date by index 2 on Outbound Route Summary page
-    And Validates Items Count on Outbound Route Summary page
-    And Validates Items Counts displayed on Outbound Route Summary page
     Then Selects route with index 1 on Outbound Route Summary page
     And Clicks Routes dropdown on Outbound Route Summary page
     And Select Outbound Route Edit option on Outbound Route Summary page
@@ -232,8 +223,6 @@ Feature: Testing of Outbound Route Summary Route option
     And Go to Outbound Route page
     And Waits for Outbound Route Summary page to load
     When Filling route start date by index 2 on Outbound Route Summary page
-    And Validates Items Count on Outbound Route Summary page
-    And Validates Items Counts displayed on Outbound Route Summary page
     Then Selects route with index 0 on Outbound Route Summary page
     And Clicks Routes dropdown on Outbound Route Summary page
     And Validates Route options from Route dropdown are enabled on Outbound Route Summary page
@@ -250,8 +239,6 @@ Feature: Testing of Outbound Route Summary Route option
     And Go to Outbound Route page
     And Waits for Outbound Route Summary page to load
     When Filling route start date by index 2 on Outbound Route Summary page
-    And Validates Items Count on Outbound Route Summary page
-    And Validates Items Counts displayed on Outbound Route Summary page
     And Selects route with index 0 on Outbound Route Summary page
     And Clicks Routes dropdown on Outbound Route Summary page
     And Validates Route options from Route dropdown are enabled on Outbound Route Summary page

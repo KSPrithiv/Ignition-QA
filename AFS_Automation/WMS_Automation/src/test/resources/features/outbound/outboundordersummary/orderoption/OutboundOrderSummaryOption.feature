@@ -1,4 +1,4 @@
-@Outbound @Regression
+km,l18gyhj@Outbound @Regression
 Feature: Testing of Outbound Summary order Edit option functionality
   Scenario: Checking Order Edit option functionality
     Given User signs in the application

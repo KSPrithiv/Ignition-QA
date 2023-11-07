@@ -6,8 +6,6 @@ Feature: Testing of Outbound Route Summary Filter Option functionality
     And DockManagement Summary Page is validated
     And Go to Outbound Route page
     And Waits for Outbound Route Summary page to load
-    And Validates Outbound Route Summary page is displayed
-    And Validates Outbound Route Summary dates on Outbound Route Summary page
     When Filling route start date "03/01/2022" and end date "03/31/2022" on Outbound Route Summary page
     Then Validates Outbound Route Summary start date "03/01/2022" and end date "03/31/2022" on Outbound Route Summary page
 

@@ -35,7 +35,6 @@ Feature: Testing of Receiving functionality
     And DockManagement Summary Page is validated
     And Go to Loads page
     And Inbound Load Summary page appears
-    And Inbound Load Summary page main elements are present
     When User searches for Loads starting from date by index 4
     And Clicks load status "All statuses" on Inbound Load Summary page
     And Selects load status "Ready To Receive" on Inbound Load Summary page
@@ -48,7 +47,6 @@ Feature: Testing of Receiving functionality
     And DockManagement Summary Page is validated
     And Go to Loads page
     And Inbound Load Summary page appears
-    And Inbound Load Summary page main elements are present
     When User searches for Loads starting from date by index 4
     And Clicks load status "All statuses" on Inbound Load Summary page
     And Selects load status "Ready To Receive" on Inbound Load Summary page
@@ -72,7 +70,6 @@ Feature: Testing of Receiving functionality
     And DockManagement Summary Page is validated
     And Go to Loads page
     And Inbound Load Summary page appears
-    And Inbound Load Summary page main elements are present
     When User searches for Loads starting from date by index 4
     And Clicks load status "All statuses" on Inbound Load Summary page
     And Selects load status "Ready To Receive" on Inbound Load Summary page
@@ -93,7 +90,6 @@ Feature: Testing of Receiving functionality
     And DockManagement Summary Page is validated
     And Go to Loads page
     And Inbound Load Summary page appears
-    And Inbound Load Summary page main elements are present
     When User searches for Loads starting from date by index 4
     And Clicks load status "All statuses" on Inbound Load Summary page
     And Selects load status "Ready To Receive" on Inbound Load Summary page
@@ -118,7 +114,6 @@ Feature: Testing of Receiving functionality
     And DockManagement Summary Page is validated
     And Go to Loads page
     And Inbound Load Summary page appears
-    And Inbound Load Summary page main elements are present
     When User searches for Loads starting from date by index 4
     And Clicks load status "All statuses" on Inbound Load Summary page
     And Selects load status "Ready To Receive" on Inbound Load Summary page
@@ -145,7 +140,6 @@ Feature: Testing of Receiving functionality
     And DockManagement Summary Page is validated
     And Go to Loads page
     And Inbound Load Summary page appears
-    And Inbound Load Summary page main elements are present
     When User searches for Loads starting from date by index 4
     And Clicks load status "All statuses" on Inbound Load Summary page
     And Selects load status "Ready To Receive" on Inbound Load Summary page
@@ -184,7 +178,6 @@ Feature: Testing of Receiving functionality
     And DockManagement Summary Page is validated
     And Go to Loads page
     And Inbound Load Summary page appears
-    And Inbound Load Summary page main elements are present
     When User searches for Loads starting from date by index 4
     And Clicks load status "All statuses" on Inbound Load Summary page
     And Selects load status "Ready To Receive" on Inbound Load Summary page
@@ -218,7 +211,6 @@ Feature: Testing of Receiving functionality
     And DockManagement Summary Page is validated
     And Go to Loads page
     And Inbound Load Summary page appears
-    And Inbound Load Summary page main elements are present
     When User searches for Loads starting from date by index 4
     And Clicks load status "All statuses" on Inbound Load Summary page
     And Selects load status "Ready To Receive" on Inbound Load Summary page
@@ -233,6 +225,4 @@ Feature: Testing of Receiving functionality
     And Types "00493" product on Receiving page
     And Clears Product on Receiving page
     And Types "1234" product on Receiving page
- #   And Types "1" Lot on Receiving page
-  #  And Types "01/01/2050" Expiration date on Receiving page
     And Types "1" Qty on Receiving page

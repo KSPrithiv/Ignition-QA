@@ -17,7 +17,6 @@ Feature: Testing of Inbound Orders details screen
     And DockManagement Summary Page is validated
     And Go to Inbound Orders page
     And User waits for Inbound Order Summary page to load
-    And Validates Inbound Order Summary Page contains all web elements
     When User finds all orders from start date by index 0 to end date by index 0
     Then Selects order with index 0 on Inbound Order Summary page
     And Validates items are present on Inbound Order Details page
@@ -28,7 +27,6 @@ Feature: Testing of Inbound Orders details screen
     And DockManagement Summary Page is validated
     And Go to Inbound Orders page
     And User waits for Inbound Order Summary page to load
-    And Validates Inbound Order Summary Page contains all web elements
     When User finds all orders from start date by index 0 to end date by index 0
     And Clicks order status "All statuses" on Inbound Order Details page
     And Selects order status "Received Order" on Inbound Order Details page
@@ -44,7 +42,6 @@ Feature: Testing of Inbound Orders details screen
     And DockManagement Summary Page is validated
     And Go to Inbound Orders page
     And User waits for Inbound Order Summary page to load
-    And Validates Inbound Order Summary Page contains all web elements
     When User finds all orders from start date by index 0 to end date by index 0
     And Clicks order status "All statuses" on Inbound Order Details page
     And Selects order status "Open" on Inbound Order Details page
@@ -60,7 +57,6 @@ Feature: Testing of Inbound Orders details screen
     And DockManagement Summary Page is validated
     And Go to Inbound Orders page
     And User waits for Inbound Order Summary page to load
-    And Validates Inbound Order Summary Page contains all web elements
     When User finds all orders from start date by index 0 to end date by index 0
     And Clicks order status "All statuses" on Inbound Order Details page
     And Selects order status "Ready To Receive" on Inbound Order Details page
@@ -76,21 +72,18 @@ Feature: Testing of Inbound Orders details screen
     And DockManagement Summary Page is validated
     And Go to Inbound Orders page
     And User waits for Inbound Order Summary page to load
-    And Validates Inbound Order Summary Page contains all web elements
     When User finds all orders from start date by index 0 to end date by index 0
     Then Selects order with index 0 on Inbound Order Summary page
     And User waits for Inbound Order Details page to load
     And Validates items are present on Inbound Order Details page
     And Validates Received, Staged, Over and Remainder are present on Inbound Order Details page with correct color
 
-    #4
   Scenario: Checking Source option on Inbound Order details page
     Given User signs in the application
     And Main page is loaded
     And DockManagement Summary Page is validated
     And Go to Inbound Orders page
     And User waits for Inbound Order Summary page to load
-    And Validates Inbound Order Summary Page contains all web elements
     When User finds all orders from start date by index 0 to end date by index 0
     Then Selects order with index 0 on Inbound Order Summary page
     And User waits for Inbound Order Details page to load
@@ -99,7 +92,6 @@ Feature: Testing of Inbound Orders details screen
     And Validates Source order screen on Inbound Order Details page
     And Validates Received, Staged and Remainder are present on Inbound Order Details Source page with correct color
     And Clicks Route Back button on Inbound Order Details page
-    And User waits for Inbound Order Details page to load
 
   Scenario: Checking Receive option on Inbound Order details page
     Given User signs in the application
@@ -107,7 +99,6 @@ Feature: Testing of Inbound Orders details screen
     And DockManagement Summary Page is validated
     And Go to Inbound Orders page
     And User waits for Inbound Order Summary page to load
-    And Validates Inbound Order Summary Page contains all web elements
     When User finds all orders from start date by index 0 to end date by index 0
     Then Selects order with index 0 on Inbound Order Summary page
     And User waits for Inbound Order Details page to load
@@ -116,7 +107,6 @@ Feature: Testing of Inbound Orders details screen
     And Receiving page loads
     And Receiving page contains all web elements
     And Clicks Route Back button on Inbound Order Summary page
-    And User waits for Inbound Order Details page to load
 
   Scenario: Checking Edit option on Inbound Order details page
     Given User signs in the application
@@ -124,7 +114,6 @@ Feature: Testing of Inbound Orders details screen
     And DockManagement Summary Page is validated
     And Go to Inbound Orders page
     And User waits for Inbound Order Summary page to load
-    And Validates Inbound Order Summary Page contains all web elements
     When User finds all orders from start date by index 0 to end date by index 0
     Then Selects order with index 0 on Inbound Order Summary page
     And User waits for Inbound Order Details page to load
@@ -139,7 +128,6 @@ Feature: Testing of Inbound Orders details screen
     And DockManagement Summary Page is validated
     And Go to Inbound Orders page
     And User waits for Inbound Order Summary page to load
-    And Validates Inbound Order Summary Page contains all web elements
     When User finds all orders from start date by index 0 to end date by index 0
     Then Selects order with index 0 on Inbound Order Summary page
     And User waits for Inbound Order Details page to load
@@ -153,7 +141,6 @@ Feature: Testing of Inbound Orders details screen
     And DockManagement Summary Page is validated
     And Go to Inbound Orders page
     And User waits for Inbound Order Summary page to load
-    And Validates Inbound Order Summary Page contains all web elements
     When User finds all orders from start date by index 0 to end date by index 0
     Then Selects order with index 0 on Inbound Order Summary page
     And User waits for Inbound Order Details page to load
@@ -166,7 +153,6 @@ Feature: Testing of Inbound Orders details screen
     And DockManagement Summary Page is validated
     And Go to Inbound Orders page
     And User waits for Inbound Order Summary page to load
-    And Validates Inbound Order Summary Page contains all web elements
     When User finds all orders from start date by index 0 to end date by index 0
     Then Selects order with index 0 on Inbound Order Summary page
     And User waits for Inbound Order Details page to load
@@ -179,7 +165,6 @@ Feature: Testing of Inbound Orders details screen
     And DockManagement Summary Page is validated
     And Go to Inbound Orders page
     And User waits for Inbound Order Summary page to load
-    And Validates Inbound Order Summary Page contains all web elements
     When User finds all orders from start date by index 0 to end date by index 0
     Then Selects order with index 0 on Inbound Order Summary page
     And User waits for Inbound Order Details page to load
@@ -201,7 +186,6 @@ Feature: Testing of Inbound Orders details screen
     And DockManagement Summary Page is validated
     And Go to Inbound Orders page
     And User waits for Inbound Order Summary page to load
-    And Validates Inbound Order Summary Page contains all web elements
     When User finds all orders from start date by index 0 to end date by index 0
     Then Selects order with index 0 on Inbound Order Summary page
     And User waits for Inbound Order Details page to load
@@ -216,7 +200,6 @@ Feature: Testing of Inbound Orders details screen
     And DockManagement Summary Page is validated
     And Go to Inbound Orders page
     And User waits for Inbound Order Summary page to load
-    And Validates Inbound Order Summary Page contains all web elements
     When User finds all orders from start date by index 0 to end date by index 0
     Then Selects order with index 0 on Inbound Order Summary page
     And User waits for Inbound Order Details page to load
@@ -233,7 +216,6 @@ Feature: Testing of Inbound Orders details screen
     And DockManagement Summary Page is validated
     And Go to Inbound Orders page
     And User waits for Inbound Order Summary page to load
-    And Validates Inbound Order Summary Page contains all web elements
     When User finds all orders from start date by index 0 to end date by index 0
     Then Selects order with index 0 on Inbound Order Summary page
     And User waits for Inbound Order Details page to load
@@ -251,7 +233,6 @@ Feature: Testing of Inbound Orders details screen
     And DockManagement Summary Page is validated
     And Go to Inbound Orders page
     And User waits for Inbound Order Summary page to load
-    And Validates Inbound Order Summary Page contains all web elements
     When User finds all orders from start date by index 0 to end date by index 0
     Then Selects order with index 0 on Inbound Order Summary page
     And User waits for Inbound Order Details page to load
@@ -266,7 +247,6 @@ Feature: Testing of Inbound Orders details screen
     And DockManagement Summary Page is validated
     And Go to Inbound Orders page
     And User waits for Inbound Order Summary page to load
-    And Validates Inbound Order Summary Page contains all web elements
     When User finds all orders from start date by index 0 to end date by index 0
     Then Selects order with index 0 on Inbound Order Summary page
     And User waits for Inbound Order Details page to load

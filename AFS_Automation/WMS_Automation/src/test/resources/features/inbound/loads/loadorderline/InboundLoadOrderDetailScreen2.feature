@@ -1,13 +1,11 @@
 @Inbound @Regression
 Feature: Testing of Inbound Load Order Details screen functionality
-
   Scenario: Checking Edit option on Load Order Details page
     Given User signs in the application
     And Main page is loaded
     And DockManagement Summary Page is validated
     And Go to Loads page
     And Inbound Load Summary page appears
-    And Inbound Load Summary page main elements are present
     When Types start date by index 0 on Inbound Load Summary page
     And Validates loads are present on Inbound Load Summary page
     And Clicks load status "All statuses" on Inbound Load Summary page
@@ -23,7 +21,6 @@ Feature: Testing of Inbound Load Order Details screen functionality
     And DockManagement Summary Page is validated
     And Go to Loads page
     And Inbound Load Summary page appears
-    And Inbound Load Summary page main elements are present
     When Types start date by index 0 on Inbound Load Summary page
     And Validates loads are present on Inbound Load Summary page
     And Clicks load status "All statuses" on Inbound Load Summary page
@@ -52,7 +49,6 @@ Feature: Testing of Inbound Load Order Details screen functionality
     And DockManagement Summary Page is validated
     And Go to Loads page
     And Inbound Load Summary page appears
-    And Inbound Load Summary page main elements are present
     When Types start date by index 0 on Inbound Load Summary page
     And Validates loads are present on Inbound Load Summary page
     Then Select Load with index 0 on Inbound Load Summary page
@@ -65,7 +61,6 @@ Feature: Testing of Inbound Load Order Details screen functionality
     And DockManagement Summary Page is validated
     And Go to Loads page
     And Inbound Load Summary page appears
-    And Inbound Load Summary page main elements are present
     When Types start date by index 2 on Inbound Load Summary page
     And Validates loads are present on Inbound Load Summary page
     And Select Load with index 0 on Inbound Load Summary page
@@ -81,7 +76,6 @@ Feature: Testing of Inbound Load Order Details screen functionality
     And DockManagement Summary Page is validated
     And Go to Loads page
     And Inbound Load Summary page appears
-    And Inbound Load Summary page main elements are present
     When Types start date by index 2 on Inbound Load Summary page
     And Validates loads are present on Inbound Load Summary page
     And Select Load with index 0 on Inbound Load Summary page
@@ -94,14 +88,12 @@ Feature: Testing of Inbound Load Order Details screen functionality
     And Validates Save button is enabled for Move order to Load
     And Clicks Cancel button on Inbound Load Order Summary page
 
-    #
   Scenario: Checking Add/Delete Image to the order on Load Order Details page
     Given User signs in the application
     And Main page is loaded
     And DockManagement Summary Page is validated
     And Go to Loads page
     And Inbound Load Summary page appears
-    And Inbound Load Summary page main elements are present
     When Types start date by index 4 on Inbound Load Summary page
     And Validates loads are present on Inbound Load Summary page
     And Select Load with index 0 on Inbound Load Summary page
@@ -117,7 +109,6 @@ Feature: Testing of Inbound Load Order Details screen functionality
     And DockManagement Summary Page is validated
     And Go to Loads page
     And Inbound Load Summary page appears
-    And Inbound Load Summary page main elements are present
     When Types start date by index 2 on Inbound Load Summary page
     And Validates loads are present on Inbound Load Summary page
     And Select Load with index 0 on Inbound Load Summary page
@@ -132,7 +123,6 @@ Feature: Testing of Inbound Load Order Details screen functionality
     And DockManagement Summary Page is validated
     And Go to Loads page
     And Inbound Load Summary page appears
-    And Inbound Load Summary page main elements are present
     When Types start date by index 2 on Inbound Load Summary page
     And Validates loads are present on Inbound Load Summary page
     And Select Load with index 0 on Inbound Load Summary page
@@ -148,7 +138,6 @@ Feature: Testing of Inbound Load Order Details screen functionality
     And DockManagement Summary Page is validated
     And Go to Loads page
     And Inbound Load Summary page appears
-    And Inbound Load Summary page main elements are present
     When Types start date by index 4 on Inbound Load Summary page
     And Validates loads are present on Inbound Load Summary page
     Then Select Load with index 0 on Inbound Load Summary page

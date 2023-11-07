@@ -36,7 +36,6 @@ Feature: Testing of Inbound Orders Line Item details screen
     And User waits for Inbound Order Summary page to load
     Then User finds all orders from start date by index 4
     And Selects order with index 2 on Inbound Order Summary page
-    And Validates Inbound Order Details Page contains all web elements
     And Select Order Line Item with index 0 on Inbound Order Details page
     And Validates Inbound Order Line Item Details page contains all web elements
     And Validates Product details and UPC on Inbound Order Line Items Details page

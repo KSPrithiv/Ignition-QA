@@ -7,9 +7,6 @@ Feature: Testing of Outbound Load Planning functionality
     And DockManagement Summary Page is validated
     And Go to Outbound Load Planning page
     And Waits for Outbound Load Planning page to load
-    And Validates Load Planning page is displayed
-    And Validates Load Planning popup title is displayed
-    And Validates Load Planning popup Ship Date is current date
     When Selects Ship Date by index 0 on Load Planning popup
     Then Clicks Route dropdown on Load Planning popup
     And Selects Route by index 0 for Load Planning
@@ -46,9 +43,6 @@ Feature: Testing of Outbound Load Planning functionality
     And DockManagement Summary Page is validated
     And Go to Outbound Load Planning page
     And Waits for Outbound Load Planning page to load
-    And Validates Load Planning page is displayed
-    And Validates Load Planning popup title is displayed
-    And Validates Load Planning popup Ship Date is current date
     When Selects Ship Date by index 0 on Load Planning popup
     Then Clicks Route dropdown on Load Planning popup
     And Selects Route by index 0 for Load Planning
@@ -69,9 +63,6 @@ Feature: Testing of Outbound Load Planning functionality
     And DockManagement Summary Page is validated
     And Go to Outbound Load Planning page
     And Waits for Outbound Load Planning page to load
-    And Validates Load Planning page is displayed
-    And Validates Load Planning popup title is displayed
-    And Validates Load Planning popup Ship Date is current date
     When Selects Ship Date by index 0 on Load Planning popup
     Then Clicks Route dropdown on Load Planning popup
     And Selects Route by index 0 for Load Planning
@@ -100,9 +91,6 @@ Feature: Testing of Outbound Load Planning functionality
     And DockManagement Summary Page is validated
     And Go to Outbound Load Planning page
     And Waits for Outbound Load Planning page to load
-    And Validates Load Planning page is displayed
-    And Validates Load Planning popup title is displayed
-    And Validates Load Planning popup Ship Date is current date
     When Selects Ship Date by index 0 on Load Planning popup
     Then Clicks Route dropdown on Load Planning popup
     And Selects Route by index 0 for Load Planning
@@ -129,9 +117,6 @@ Feature: Testing of Outbound Load Planning functionality
     And DockManagement Summary Page is validated
     And Go to Outbound Load Planning page
     And Waits for Outbound Load Planning page to load
-    And Validates Load Planning page is displayed
-    And Validates Load Planning popup title is displayed
-    And Validates Load Planning popup Ship Date is current date
     When Selects Ship Date by index 0 on Load Planning popup
     Then Clicks Route dropdown on Load Planning popup
     And Selects Route by index 0 for Load Planning

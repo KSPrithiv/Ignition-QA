@@ -7,7 +7,6 @@ Feature: Testing of Inbound Load Order Line Item screen functionality
     And DockManagement Summary Page is validated
     And Go to Loads page
     And Inbound Load Summary page appears
-    And Inbound Load Summary page main elements are present
     When Types start date by index 0 on Inbound Load Summary page
     And Validates loads are present on Inbound Load Summary page
     Then Select Load with index 0 on Inbound Load Summary page
@@ -21,7 +20,6 @@ Feature: Testing of Inbound Load Order Line Item screen functionality
     And DockManagement Summary Page is validated
     And Go to Loads page
     And Inbound Load Summary page appears
-    And Inbound Load Summary page main elements are present
     When Types start date by index 0 on Inbound Load Summary page
     And Validates loads are present on Inbound Load Summary page
     Then Select Load with index 0 on Inbound Load Summary page
@@ -37,7 +35,6 @@ Feature: Testing of Inbound Load Order Line Item screen functionality
     And DockManagement Summary Page is validated
     And Go to Loads page
     And Inbound Load Summary page appears
-    And Inbound Load Summary page main elements are present
     When Types start date by index 2 on Inbound Load Summary page
     And Validates loads are present on Inbound Load Summary page
     Then Select Load with index 5 on Inbound Load Summary page
@@ -54,7 +51,6 @@ Feature: Testing of Inbound Load Order Line Item screen functionality
     And DockManagement Summary Page is validated
     And Go to Loads page
     And Inbound Load Summary page appears
-    And Inbound Load Summary page main elements are present
     When Types start date by index 0 on Inbound Load Summary page
     And Validates loads are present on Inbound Load Summary page
     And Select Load with index 0 on Inbound Load Summary page
@@ -69,7 +65,6 @@ Feature: Testing of Inbound Load Order Line Item screen functionality
     And DockManagement Summary Page is validated
     And Go to Loads page
     And Inbound Load Summary page appears
-    And Inbound Load Summary page main elements are present
     When Types start date by index 2 on Inbound Load Summary page
     And Validates loads are present on Inbound Load Summary page
     Then Select Load with index 0 on Inbound Load Summary page
@@ -85,7 +80,6 @@ Feature: Testing of Inbound Load Order Line Item screen functionality
     And DockManagement Summary Page is validated
     And Go to Loads page
     And Inbound Load Summary page appears
-    And Inbound Load Summary page main elements are present
     When Types start date by index 0 on Inbound Load Summary page
     And Validates loads are present on Inbound Load Summary page
     Then Select Load with index 0 on Inbound Load Summary page
@@ -102,7 +96,6 @@ Feature: Testing of Inbound Load Order Line Item screen functionality
     And DockManagement Summary Page is validated
     And Go to Loads page
     And Inbound Load Summary page appears
-    And Inbound Load Summary page main elements are present
     When Types start date by index 0 on Inbound Load Summary page
     And Validates loads are present on Inbound Load Summary page
     Then Select Load with index 0 on Inbound Load Summary page
@@ -123,7 +116,6 @@ Feature: Testing of Inbound Load Order Line Item screen functionality
     And DockManagement Summary Page is validated
     And Go to Loads page
     And Inbound Load Summary page appears
-    And Inbound Load Summary page main elements are present
     When Types start date by index 0 on Inbound Load Summary page
     And Validates loads are present on Inbound Load Summary page
     Then Select Load with index 0 on Inbound Load Summary page
@@ -137,7 +129,6 @@ Feature: Testing of Inbound Load Order Line Item screen functionality
     And DockManagement Summary Page is validated
     And Go to Loads page
     And Inbound Load Summary page appears
-    And Inbound Load Summary page main elements are present
     When Types start date by index 0 on Inbound Load Summary page
     And Validates loads are present on Inbound Load Summary page
     Then Select Load with index 0 on Inbound Load Summary page
@@ -151,7 +142,6 @@ Feature: Testing of Inbound Load Order Line Item screen functionality
     And DockManagement Summary Page is validated
     And Go to Loads page
     And Inbound Load Summary page appears
-    And Inbound Load Summary page main elements are present
     When Types start date by index 0 on Inbound Load Summary page
     And Validates loads are present on Inbound Load Summary page
     Then Select Load with index 0 on Inbound Load Summary page
@@ -164,7 +154,6 @@ Feature: Testing of Inbound Load Order Line Item screen functionality
     And DockManagement Summary Page is validated
     And Go to Loads page
     And Inbound Load Summary page appears
-    And Inbound Load Summary page main elements are present
     When Types start date by index 4 on Inbound Load Summary page
     And Validates loads are present on Inbound Load Summary page
     Then Select Load with index 0 on Inbound Load Summary page

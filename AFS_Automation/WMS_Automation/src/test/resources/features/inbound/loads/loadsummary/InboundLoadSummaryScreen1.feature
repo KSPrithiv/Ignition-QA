@@ -15,8 +15,6 @@ Feature: Testing of Inbound Load Summary screen functionality
     And DockManagement Summary Page is validated
     And Go to Loads page
     And Inbound Load Summary page appears
-    And Inbound Load Summary page main elements are present
-    And Validates default values of Start Date and End date on Inbound Load Summary page
     When Selects 453 days ago from start date on Inbound Load Summary page
     And Validates loads are present on Inbound Load Summary page
     Then Selects 25 days forward from start date on Inbound Load Summary page
@@ -33,8 +31,6 @@ Feature: Testing of Inbound Load Summary screen functionality
     And DockManagement Summary Page is validated
     And Go to Loads page
     And Inbound Load Summary page appears
-    And Inbound Load Summary page main elements are present
-    And Validates default values of Start Date and End date on Inbound Load Summary page
     When Types start date by index 0 on Inbound Load Summary page
     And Types load by index 1 on Inbound Load Summary page
     And Validates loads are present on Inbound Load Summary page
@@ -55,8 +51,6 @@ Feature: Testing of Inbound Load Summary screen functionality
     And DockManagement Summary Page is validated
     And Go to Loads page
     And Inbound Load Summary page appears
-    And Inbound Load Summary page main elements are present
-    And Validates default values of Start Date and End date on Inbound Load Summary page
     When Types start date by index 0 on Inbound Load Summary page
     And Clicks load status "All statuses" on Inbound Load Summary page
     Then Selects load status "Ready To Receive" on Inbound Load Summary page
@@ -71,8 +65,6 @@ Feature: Testing of Inbound Load Summary screen functionality
     And DockManagement Summary Page is validated
     And Go to Loads page
     And Inbound Load Summary page appears
-    And Inbound Load Summary page main elements are present
-    And Validates default values of Start Date and End date on Inbound Load Summary page
     When Types start date by index 0 on Inbound Load Summary page
     And Types end date by index 4 on Inbound Load Summary page
     And Clicks carrier by index 0 on Inbound Load Summary page
@@ -89,8 +81,6 @@ Feature: Testing of Inbound Load Summary screen functionality
     And DockManagement Summary Page is validated
     And Go to Loads page
     And Inbound Load Summary page appears
-    And Inbound Load Summary page main elements are present
-    And Validates default values of Start Date and End date on Inbound Load Summary page
     When Types start date by index 0 on Inbound Load Summary page
     And Types end date by index 4 on Inbound Load Summary page
     And Clicks door "Select door" dropdown on Inbound Load Summary page
@@ -106,8 +96,6 @@ Feature: Testing of Inbound Load Summary screen functionality
     And DockManagement Summary Page is validated
     And Go to Loads page
     And Inbound Load Summary page appears
-    And Inbound Load Summary page main elements are present
-    And Validates default values of Start Date and End date on Inbound Load Summary page
     When Types start date by index 0 on Inbound Load Summary page
     And Types end date by index 4 on Inbound Load Summary page
     Then Clicks load type by index 0 dropdown on Inbound Load Summary page
@@ -120,7 +108,6 @@ Feature: Testing of Inbound Load Summary screen functionality
     And DockManagement Summary Page is validated
     And Go to Loads page
     And Inbound Load Summary page appears
-    And Inbound Load Summary page main elements are present
     And Validates default values of Start Date and End date on Inbound Load Summary page
     When Types start date by index 4 on Inbound Load Summary page
     Then Types supplier code by index 4 on Inbound Load Summary page
@@ -133,8 +120,6 @@ Feature: Testing of Inbound Load Summary screen functionality
     And DockManagement Summary Page is validated
     And Go to Loads page
     And Inbound Load Summary page appears
-    And Inbound Load Summary page main elements are present
-    And Validates default values of Start Date and End date on Inbound Load Summary page
     When Types start date by index 0 on Inbound Load Summary page
     Then Types supplier name "Jackson, Lincoln and Adams Atorneys at Law" on Inbound Load Summary page
     And Validates loads are present on Inbound Load Summary page
@@ -149,8 +134,6 @@ Feature: Testing of Inbound Load Summary screen functionality
     And DockManagement Summary Page is validated
     And Go to Loads page
     And Inbound Load Summary page appears
-    And Inbound Load Summary page main elements are present
-    And Validates default values of Start Date and End date on Inbound Load Summary page
     When Types start date by index 4 on Inbound Load Summary page
     Then User types product code by index 0 on Inbound Load Summary page
     And Validates loads are present on Inbound Load Summary page
@@ -164,8 +147,6 @@ Feature: Testing of Inbound Load Summary screen functionality
     And DockManagement Summary Page is validated
     And Go to Loads page
     And Inbound Load Summary page appears
-    And Inbound Load Summary page main elements are present
-    And Validates default values of Start Date and End date on Inbound Load Summary page
     When Types start date by index 4 on Inbound Load Summary page
     Then Clicks buyer by index 0 dropdown on Inbound Load Summary page
     And Selects buyer by index 2 dropdown on Inbound Load Summary page
@@ -179,8 +160,6 @@ Feature: Testing of Inbound Load Summary screen functionality
     And DockManagement Summary Page is validated
     And Go to Loads page
     And Inbound Load Summary page appears
-    And Inbound Load Summary page main elements are present
-    And Validates default values of Start Date and End date on Inbound Load Summary page
     When Types start date by index 0 on Inbound Load Summary page
     And Types end date by index 4 on Inbound Load Summary page
     And Validates loads are present on Inbound Load Summary page
@@ -207,8 +186,6 @@ Feature: Testing of Inbound Load Summary screen functionality
     And DockManagement Summary Page is validated
     And Go to Loads page
     And Inbound Load Summary page appears
-    And Inbound Load Summary page main elements are present
-    And Validates default values of Start Date and End date on Inbound Load Summary page
     When Types start date by index 0 on Inbound Load Summary page
     And Validates loads are present on Inbound Load Summary page
     Then Checks Load with index 2 on Inbound Load Summary page
@@ -227,8 +204,6 @@ Feature: Testing of Inbound Load Summary screen functionality
     And DockManagement Summary Page is validated
     And Go to Loads page
     And Inbound Load Summary page appears
-    And Inbound Load Summary page main elements are present
-    And Validates default values of Start Date and End date on Inbound Load Summary page
     When Types start date by index 4 on Inbound Load Summary page
     And Validates loads are present on Inbound Load Summary page
     Then Selects Load with index 1 and apply "Edit" Load Option for Load
@@ -247,8 +222,6 @@ Feature: Testing of Inbound Load Summary screen functionality
     And DockManagement Summary Page is validated
     And Go to Loads page
     And Inbound Load Summary page appears
-    And Inbound Load Summary page main elements are present
-    And Validates default values of Start Date and End date on Inbound Load Summary page
     When Types start date by index 0 on Inbound Load Summary page
     And Validates loads are present on Inbound Load Summary page
     Then Selects Load with index 0 and apply "Source" Load Option for Load
@@ -267,8 +240,6 @@ Feature: Testing of Inbound Load Summary screen functionality
     And DockManagement Summary Page is validated
     And Go to Loads page
     And Inbound Load Summary page appears
-    And Inbound Load Summary page main elements are present
-    And Validates default values of Start Date and End date on Inbound Load Summary page
     When Types start date by index 4 on Inbound Load Summary page
     And Validates loads are present on Inbound Load Summary page
     Then Selects Load with index 0 and apply "Receive" Load Option for Load
@@ -288,8 +259,6 @@ Feature: Testing of Inbound Load Summary screen functionality
     And DockManagement Summary Page is validated
     And Go to Loads page
     And Inbound Load Summary page appears
-    And Inbound Load Summary page main elements are present
-    And Validates default values of Start Date and End date on Inbound Load Summary page
     When Types start date by index 4 on Inbound Load Summary page
     And Validates loads are present on Inbound Load Summary page
     Then Clicks load status "All statuses" on Inbound Load Summary page
@@ -306,8 +275,6 @@ Feature: Testing of Inbound Load Summary screen functionality
     And DockManagement Summary Page is validated
     And Go to Loads page
     And Inbound Load Summary page appears
-    And Inbound Load Summary page main elements are present
-    And Validates default values of Start Date and End date on Inbound Load Summary page
     When Types start date by index 4 on Inbound Load Summary page
     And Validates loads are present on Inbound Load Summary page
     Then Clicks load status "All statuses" on Inbound Load Summary page
@@ -324,8 +291,6 @@ Feature: Testing of Inbound Load Summary screen functionality
     And DockManagement Summary Page is validated
     And Go to Loads page
     And Inbound Load Summary page appears
-    And Inbound Load Summary page main elements are present
-    And Validates default values of Start Date and End date on Inbound Load Summary page
     When Types start date by index 4 on Inbound Load Summary page
     And Validates loads are present on Inbound Load Summary page
     Then Clicks load status "All statuses" on Inbound Load Summary page
@@ -343,8 +308,6 @@ Feature: Testing of Inbound Load Summary screen functionality
     And DockManagement Summary Page is validated
     And Go to Loads page
     And Inbound Load Summary page appears
-    And Inbound Load Summary page main elements are present
-    And Validates default values of Start Date and End date on Inbound Load Summary page
     When Types start date by index 4 on Inbound Load Summary page
     And Validates loads are present on Inbound Load Summary page
     Then Clicks load status "All statuses" on Inbound Load Summary page
@@ -362,8 +325,6 @@ Feature: Testing of Inbound Load Summary screen functionality
     And DockManagement Summary Page is validated
     And Go to Loads page
     And Inbound Load Summary page appears
-    And Inbound Load Summary page main elements are present
-    And Validates default values of Start Date and End date on Inbound Load Summary page
     When Types start date by index 4 on Inbound Load Summary page
     And Validates loads are present on Inbound Load Summary page
     Then Clicks load status "All statuses" on Inbound Load Summary page

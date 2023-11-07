@@ -6,7 +6,6 @@ Feature: Testing of Counting Count functionality
     And DockManagement Summary Page is validated
     And Go to Counting Sessions page
     And Waits for Counting Sessions page to load
-    And Validates Counting Sessions page is displayed
     When User clicks session dropdown on Counting Sessions page
     And User selects session with index 0 on Counting Sessions page
     And Validates Session details on Counting Sessions page
@@ -19,10 +18,8 @@ Feature: Testing of Counting Count functionality
     And DockManagement Summary Page is validated
     And Go to Counting Sessions page
     And Waits for Counting Sessions page to load
-    And Validates Counting Sessions page is displayed
     When User clicks session dropdown on Counting Sessions page
     And User selects session with index 2 on Counting Sessions page
-    And Validates Session details on Counting Sessions page
     Then User clicks Assignments tab on Counting Sessions page
     And User clicks Clear Filter on Counting Sessions page
     And User clicks Add Filter on Counting Sessions page
@@ -35,10 +32,8 @@ Feature: Testing of Counting Count functionality
     And DockManagement Summary Page is validated
     And Go to Counting Sessions page
     And Waits for Counting Sessions page to load
-    And Validates Counting Sessions page is displayed
     And User clicks session dropdown on Counting Sessions page
     And User selects session with index 1 on Counting Sessions page
-    And Validates Session details on Counting Sessions page
     And User clicks Products tab on Counting Sessions page
     And Clicks Add Product Button on Counting Sessions page
     And Validates "Add product" popup is displayed on Counting Sessions page

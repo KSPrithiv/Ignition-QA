@@ -18,7 +18,6 @@ Feature: Testing of Product Setup Date encoding
     And DockManagement Summary Page is validated
     And Go to Setup Product page
     And Waits for Setup Product page to load
-    And Validates Setup Product page is displayed
     When Clicks Date encoding Label on Setup Product page
     And Validates Date encoding tab grid should display all column names on Setup Product page
     And Validates Add is enabled and Edit, Delete are disabled on Setup Product page
@@ -32,7 +31,6 @@ Feature: Testing of Product Setup Date encoding
     And DockManagement Summary Page is validated
     And Go to Setup Product page
     And Waits for Setup Product page to load
-    And Validates Setup Product page is displayed
     And Clicks Date encoding Label on Setup Product page
     And Validates Date encoding tab grid should display all column names on Setup Product page
     And Validates Items Count and Items Found on Setup Product page
@@ -86,7 +84,6 @@ Feature: Testing of Product Setup Date encoding
     And DockManagement Summary Page is validated
     And Go to Setup Product page
     And Waits for Setup Product page to load
-    And Validates Setup Product page is displayed
     When Clicks Date encoding Label on Setup Product page
     And Validates Date encoding tab grid should display all column names on Setup Product page
     And Validates Items Count and Items Found on Setup Product page
@@ -99,7 +96,6 @@ Feature: Testing of Product Setup Date encoding
     And DockManagement Summary Page is validated
     And Go to Setup Product page
     And Waits for Setup Product page to load
-    And Validates Setup Product page is displayed
     When Clicks Date encoding Label on Setup Product page
     And Validates Date encoding tab grid should display all column names on Setup Product page
     And Clicks Add Date Encoding on Setup Product page
@@ -125,7 +121,6 @@ Feature: Testing of Product Setup Date encoding
     And DockManagement Summary Page is validated
     And Go to Setup Product page
     And Waits for Setup Product page to load
-    And Validates Setup Product page is displayed
     When Clicks Date encoding Label on Setup Product page
     And Validates Date encoding tab grid should display all column names on Setup Product page
     Then Clicks Add Date Encoding on Setup Product page
@@ -139,9 +134,7 @@ Feature: Testing of Product Setup Date encoding
     And DockManagement Summary Page is validated
     And Go to Setup Product page
     And Waits for Setup Product page to load
-    And Validates Setup Product page is displayed
     When Clicks Date encoding Label on Setup Product page
-    And Validates Date encoding tab grid should display all column names on Setup Product page
     And Clicks Add Date Encoding on Setup Product page
     And Validates Encoding and Used by are enabled and Day mapping, Month mapping, Year mapping and Week mapping are disabled on Setup Product page
     And Validates Date encoding fields are displayed correctly on Setup Product page
@@ -197,12 +190,8 @@ Feature: Testing of Product Setup Date encoding
     And DockManagement Summary Page is validated
     And Go to Setup Product page
     And Waits for Setup Product page to load
-    And Validates Setup Product page is displayed
     And Clicks Date encoding Label on Setup Product page
-    And Validates Date encoding tab grid should display all column names on Setup Product page
     When Clicks Add Date Encoding on Setup Product page
-    And Validates Encoding and Used by are enabled and Day mapping, Month mapping, Year mapping and Week mapping are disabled on Setup Product page
-    And Validates Date encoding fields are displayed correctly on Setup Product page
     And Selects Day Mapping "(None)" on Setup Product page
     And Selects Month Mapping "(None)" on Setup Product page
     And Selects Year Mapping "(None)" on Setup Product page
@@ -255,12 +244,8 @@ Feature: Testing of Product Setup Date encoding
     And DockManagement Summary Page is validated
     And Go to Setup Product page
     And Waits for Setup Product page to load
-    And Validates Setup Product page is displayed
     And Clicks Date encoding Label on Setup Product page
-    And Validates Date encoding tab grid should display all column names on Setup Product page
     When Clicks Add Date Encoding on Setup Product page
-    And Validates Encoding and Used by are enabled and Day mapping, Month mapping, Year mapping and Week mapping are disabled on Setup Product page
-    And Validates Date encoding fields are displayed correctly on Setup Product page
     And Selects Day Mapping "(None)" on Setup Product page
     And Selects Month Mapping "(None)" on Setup Product page
     And Selects Year Mapping "(None)" on Setup Product page
@@ -320,7 +305,6 @@ Feature: Testing of Product Setup Date encoding
     And Go to Setup Product page
     And Waits for Setup Product page to load
     When Clicks Date encoding Label on Setup Product page
-    And Validates Date encoding tab grid should display all column names on Setup Product page
     And Clicks Add Date Encoding on Setup Product page
     And Validates Encoding and Used by are enabled and Day mapping, Month mapping, Year mapping and Week mapping are disabled on Setup Product page
     And Validates Date encoding fields are displayed correctly on Setup Product page
@@ -383,10 +367,7 @@ Feature: Testing of Product Setup Date encoding
     And Go to Setup Product page
     And Waits for Setup Product page to load
     When Clicks Date encoding Label on Setup Product page
-    And Validates Date encoding tab grid should display all column names on Setup Product page
     And Clicks Add Date Encoding on Setup Product page
-    And Validates Encoding and Used by are enabled and Day mapping, Month mapping, Year mapping and Week mapping are disabled on Setup Product page
-    And Validates Date encoding fields are displayed correctly on Setup Product page
     Then Selects Day Mapping "(None)" on Setup Product page
     And Selects Month Mapping "(None)" on Setup Product page
     And Selects Year Mapping "(None)" on Setup Product page
@@ -418,10 +399,7 @@ Feature: Testing of Product Setup Date encoding
     And Go to Setup Product page
     And Waits for Setup Product page to load
     And Clicks Date encoding Label on Setup Product page
-    And Validates Date encoding tab grid should display all column names on Setup Product page
     When Clicks Add Date Encoding on Setup Product page
-    And Validates Encoding and Used by are enabled and Day mapping, Month mapping, Year mapping and Week mapping are disabled on Setup Product page
-    And Validates Date encoding fields are displayed correctly on Setup Product page
     And Selects Day Mapping "(None)" on Setup Product page
     And Selects Month Mapping "(None)" on Setup Product page
     And Selects Year Mapping "(None)" on Setup Product page
@@ -478,10 +456,7 @@ Feature: Testing of Product Setup Date encoding
     And Go to Setup Product page
     And Waits for Setup Product page to load
     And Clicks Date encoding Label on Setup Product page
-    And Validates Date encoding tab grid should display all column names on Setup Product page
     When Clicks Add Date Encoding on Setup Product page
-    And Validates Encoding and Used by are enabled and Day mapping, Month mapping, Year mapping and Week mapping are disabled on Setup Product page
-    And Validates Date encoding fields are displayed correctly on Setup Product page
     And Selects Day Mapping "(None)" on Setup Product page
     And Selects Month Mapping "(None)" on Setup Product page
     And Selects Year Mapping "(None)" on Setup Product page

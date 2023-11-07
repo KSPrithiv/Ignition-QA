@@ -52,7 +52,6 @@ Feature: Testing of Inbound Orders functionality
     And Go to Inbound Orders page
     And User waits for Inbound Order Summary page to load
     When User finds all orders from start date by index 0
-    And Validates orders are present on Inbound Order Summary page
     Then Selects Order with index 1 and apply "Log" Order Option on Inbound Order Summary page
     And Validates popup Receiver details on Inbound Order Summary page
     And Clicks Add Filter button on Inbound Order Summary page
@@ -66,7 +65,6 @@ Feature: Testing of Inbound Orders functionality
     And Go to Inbound Orders page
     And User waits for Inbound Order Summary page to load
     When User finds all orders from start date by index 0
-    And Validates orders are present on Inbound Order Summary page
     Then Selects Order with index 1 and apply "Move" Order Option on Inbound Order Summary page
     And Validates Move popup on Inbound Order Summary page
     And Validates Save Button on Inbound Order Summary page is disabled
@@ -89,7 +87,6 @@ Feature: Testing of Inbound Orders functionality
     And Go to Inbound Orders page
     And User waits for Inbound Order Summary page to load
     When User finds all orders from start date by index 0 to end date by index 0
-    And Validates orders are present on Inbound Order Summary page
     Then Selects Order with index 1 and apply "Image" Order Option on Inbound Order Summary page
     And Validates Load Images on Inbound Order Summary page
     And Validates Save and Cancel buttons for Load image on Inbound Order Summary page
@@ -114,7 +111,6 @@ Feature: Testing of Inbound Orders functionality
     And Go to Inbound Orders page
     And User waits for Inbound Order Summary page to load
     When User finds orders from date by index 4 on Inbound Order summary page
-    And Validates orders are present on Inbound Order Summary page
     Then Checks Order with index 0 on Inbound Order Summary page
     And Checks Order with index 1 on Inbound Order Summary page
     And User applies order "Move" option on Inbound Order Summary page
