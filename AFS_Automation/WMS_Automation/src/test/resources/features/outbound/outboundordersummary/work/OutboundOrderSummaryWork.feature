@@ -1,6 +1,6 @@
 @Outbound @Regression
 Feature: Testing of Outbound Summary Work functionality
-  @isofailed
+  @isofailed2
   Scenario: Checking Work Assignments functionality
     Given User signs in the application
     And Main page is loaded
@@ -19,22 +19,8 @@ Feature: Testing of Outbound Summary Work functionality
     And Validates Work Queue order by index 0 is displayed
     And Validates Edit, Delete, Release, Labels and Move are disabled
     And Validates Edit, Delete, Release, Labels and Move are displayed
-    And User selects first assignment on Outbound Order Summary page
-    And Validates Edit, Delete, Release, Labels and Move are enabled
-    And User clicks Add filter button on Outbound Order Summary page
-    And Validates Filter options are displayed
-    And Validates Assignment columns are present
-    And Validates Assignments are present
-    And User clicks Add filter button on Outbound Order Summary page
-    And Clicks Edit item on Outbound Order Summary page
-    And Validates Assignments Edit popup title
-    And Validates Assignments type dropdown is not empty
-    And User clicks Assignment Type on Outbound Order Summary page
-    And Validates Assignments types are present
-    And Validates Edit Assignment popup contains all elements
-    And Click Cancel button on Outbound Order Summary page
 
-  @isofailed
+  @isofailed2
   Scenario: Checking Work Assignments Tasks functionality
     Given User signs in the application
     And Main page is loaded

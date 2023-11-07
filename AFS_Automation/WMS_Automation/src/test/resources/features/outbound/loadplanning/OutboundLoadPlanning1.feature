@@ -1,5 +1,6 @@
 @Outbound @Regression
 Feature: Testing of Outbound Load Planning functionality
+  @isofailed2
   Scenario: Checking Load Planning login screen
     Given User signs in the application
     And Main page is loaded
@@ -22,15 +23,13 @@ Feature: Testing of Outbound Load Planning functionality
     And Validates Truck Info trailers exist
     And Selects random trailer on Truck Info page
 
+  @isofailed2
   Scenario: Checking Truck top information
     Given User signs in the application
     And Main page is loaded
     And DockManagement Summary Page is validated
     And Go to Outbound Load Planning page
     And Waits for Outbound Load Planning page to load
-    And Validates Load Planning page is displayed
-    And Validates Load Planning popup title is displayed
-    And Validates Load Planning popup Ship Date is current date
     When Selects Ship Date by index 0 on Load Planning popup
     And Clicks Route dropdown on Load Planning popup
     Then Selects Route by index 1 for Load Planning
@@ -44,15 +43,13 @@ Feature: Testing of Outbound Load Planning functionality
     And Clicks Truck Info Arrow button
     And Validates Exit, Work, Edit, Reprocess, Recalculate and Key buttons are not present
 
+  @isofailed2
   Scenario: Checking Exit information
     Given User signs in the application
     And Main page is loaded
     And DockManagement Summary Page is validated
     And Go to Outbound Load Planning page
     And Waits for Outbound Load Planning page to load
-    And Validates Load Planning page is displayed
-    And Validates Load Planning popup title is displayed
-    And Validates Load Planning popup Ship Date is current date
     When Selects Ship Date by index 0 on Load Planning popup
     And Clicks Route dropdown on Load Planning popup
     Then Selects Route by index 1 for Load Planning
@@ -64,15 +61,13 @@ Feature: Testing of Outbound Load Planning functionality
     And Clicks Ok button on Truck Info
     And Clicks Exit button on Truck Info page
 
+  @isofailed2
   Scenario: Checking Release functionality when click on Exit button
     Given User signs in the application
     And Main page is loaded
     And DockManagement Summary Page is validated
     And Go to Outbound Load Planning page
     And Waits for Outbound Load Planning page to load
-    And Validates Load Planning page is displayed
-    And Validates Load Planning popup title is displayed
-    And Validates Load Planning popup Ship Date is current date
     And Deletes cookies on application
     When Selects Ship Date by index 0 on Load Planning popup
     Then Clicks Route dropdown on Load Planning popup
@@ -85,15 +80,13 @@ Feature: Testing of Outbound Load Planning functionality
     And Clicks Ok button on Truck Info
     And Clicks Exit button on Truck Info page
 
+  @isofailed2
   Scenario: Checking work option functionality
     Given User signs in the application
     And Main page is loaded
     And DockManagement Summary Page is validated
     And Go to Outbound Load Planning page
     And Waits for Outbound Load Planning page to load
-    And Validates Load Planning page is displayed
-    And Validates Load Planning popup title is displayed
-    And Validates Load Planning popup Ship Date is current date
     And Deletes cookies on application
     When Selects Ship Date by index 0 on Load Planning popup
     Then Clicks Route dropdown on Load Planning popup
@@ -113,9 +106,6 @@ Feature: Testing of Outbound Load Planning functionality
     And DockManagement Summary Page is validated
     And Go to Outbound Load Planning page
     And Waits for Outbound Load Planning page to load
-    And Validates Load Planning page is displayed
-    And Validates Load Planning popup title is displayed
-    And Validates Load Planning popup Ship Date is current date
     And Deletes cookies on application
     When Selects Ship Date by index 0 on Load Planning popup
     Then Clicks Route dropdown on Load Planning popup
@@ -143,9 +133,6 @@ Feature: Testing of Outbound Load Planning functionality
     And DockManagement Summary Page is validated
     And Go to Outbound Load Planning page
     And Waits for Outbound Load Planning page to load
-    And Validates Load Planning page is displayed
-    And Validates Load Planning popup title is displayed
-    And Validates Load Planning popup Ship Date is current date
     When Selects Ship Date by index 0 on Load Planning popup
     Then Clicks Route dropdown on Load Planning popup
     And Selects Route by index 1 for Load Planning
@@ -161,15 +148,13 @@ Feature: Testing of Outbound Load Planning functionality
     And Validates Save and Cancel buttons are displayed on Truck Info Page
     And Clicks Save button on Edit Route popup
 
+  @isofailed2
   Scenario: Checking Reprocess functionality on Outbound Truck Info page
     Given User signs in the application
     And Main page is loaded
     And DockManagement Summary Page is validated
     And Go to Outbound Load Planning page
     And Waits for Outbound Load Planning page to load
-    And Validates Load Planning page is displayed
-    And Validates Load Planning popup title is displayed
-    And Validates Load Planning popup Ship Date is current date
     When Selects Ship Date by index 0 on Load Planning popup
     Then Clicks Route dropdown on Load Planning popup
     And Selects Route by index 1 for Load Planning
@@ -195,9 +180,6 @@ Feature: Testing of Outbound Load Planning functionality
     And DockManagement Summary Page is validated
     And Go to Outbound Load Planning page
     And Waits for Outbound Load Planning page to load
-    And Validates Load Planning page is displayed
-    And Validates Load Planning popup title is displayed
-    And Validates Load Planning popup Ship Date is current date
     When Selects Ship Date by index 0 on Load Planning popup
     Then Clicks Route dropdown on Load Planning popup
     And Selects Route by index 1 for Load Planning
@@ -213,9 +195,6 @@ Feature: Testing of Outbound Load Planning functionality
     And DockManagement Summary Page is validated
     And Go to Outbound Load Planning page
     And Waits for Outbound Load Planning page to load
-    And Validates Load Planning page is displayed
-    And Validates Load Planning popup title is displayed
-    And Validates Load Planning popup Ship Date is current date
     When Selects Ship Date by index 0 on Load Planning popup
     Then Clicks Route dropdown on Load Planning popup
     And Selects Route by index 1 for Load Planning

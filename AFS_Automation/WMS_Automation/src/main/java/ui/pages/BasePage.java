@@ -140,7 +140,7 @@ public class BasePage {
         try {
             Waiters.waitForElementToBeClickable(element);
             element.click();
-        } catch (ElementClickInterceptedException | StaleElementReferenceException e) {
+        } catch (StaleElementReferenceException e) {
             jsClick(element);
         } catch (WebDriverException e) {
             throw new IllegalStateException("WebDriver exception encountered: " + e.getMessage(), e);

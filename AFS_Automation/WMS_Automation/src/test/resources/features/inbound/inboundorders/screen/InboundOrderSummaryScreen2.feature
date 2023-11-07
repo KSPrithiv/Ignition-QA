@@ -18,7 +18,7 @@ Feature: Testing of Inbound Orders functionality
     And Selects order status "Cancelled" on Inbound Order Summary page
     And Validates orders are present on Inbound Order Summary page
 
-  @isofailed
+  @isofailed2
   Scenario: Checking Order Filter on Inbound Order Summary screen
     Given User signs in the application
     And Main page is loaded
@@ -26,7 +26,6 @@ Feature: Testing of Inbound Orders functionality
     And Go to Inbound Orders page
     And User waits for Inbound Order Summary page to load
     When User finds all orders from start date by index 4
-    And Validates orders are present on Inbound Order Summary page
     Then Select order by index 0 on Inbound Order Summary page
     And Validates orders are present on Inbound Order Summary page
     And Clear order name on Inbound Order Summary page

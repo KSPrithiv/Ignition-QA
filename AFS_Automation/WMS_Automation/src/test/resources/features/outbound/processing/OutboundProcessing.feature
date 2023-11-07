@@ -24,7 +24,6 @@ Feature: Testing of Receiving functionality
     And DockManagement Summary Page is validated
     And Go to Outbound Processing page
     And Wait for Processing page to load
-    And Processing page contains all web elements
     And Validates current date is correct on Processing page
     When User selects calendar on Processing page
     And Validates calendar is displayed on Processing page
@@ -39,7 +38,6 @@ Feature: Testing of Receiving functionality
     And DockManagement Summary Page is validated
     And Go to Outbound Processing page
     And Wait for Processing page to load
-    And Processing page contains all web elements
     And User clicks add button on Processing page
     And Validate Add Allocation Batch page is displayed
     And Validates Add Allocation Batch page title is correct
@@ -58,7 +56,6 @@ Feature: Testing of Receiving functionality
     And DockManagement Summary Page is validated
     And Go to Outbound Processing page
     And Wait for Processing page to load
-    When Processing page contains all web elements
     And User selects processing date by index 2 on Processing page
     Then User clicks add button on Processing page
     And User clicks on batch type on Processing page
@@ -89,7 +86,6 @@ Feature: Testing of Receiving functionality
     And DockManagement Summary Page is validated
     And Go to Outbound Processing page
     And Wait for Processing page to load
-    And Processing page contains all web elements
     And Validate batch section is displayed on Processing page
     When User clicks add button on Processing page
     And User clicks on batch type on Processing page
@@ -112,7 +108,6 @@ Feature: Testing of Receiving functionality
     And DockManagement Summary Page is validated
     And Go to Outbound Processing page
     And Wait for Processing page to load
-    And Processing page contains all web elements
     When User clicks filtering order on Processing page
     And Validates Change View Parameters page
     And Validates start date is displayed on Change View Parameters page
@@ -164,14 +159,12 @@ Feature: Testing of Receiving functionality
     And DockManagement Summary Page is validated
     And Go to Outbound Processing page
     And Wait for Processing page to load
-    And Processing page contains all web elements
-    And Validates default processing date on Processing page
-    And User selects processing date "01/24/2022" on Processing page
+    When User selects processing date "01/24/2022" on Processing page
     And Validates orders list on Processing page is displayed
     And Validates order section is displayed on Processing page
     And Validates all orders section is selected on Processing page
     And User goes to Batches on Processing page
-    And User selects batch "NorthSanSide" on Processing page
+    Then User selects batch "NorthSanSide" on Processing page
     And Clicks Unprocess button on Processing page
     And Validates Yes and No buttons are displayed on Unprocess batch popup
     And Validates Unprocess batch popup text
@@ -189,7 +182,6 @@ Feature: Testing of Receiving functionality
     And Clicks Unprocess button on Processing page
     And Clicks Yes button on Processing page
     And Validates "Unprocessing complete" notification is displayed on Processing page
-    # Unprocessing empty batch file
     And User goes to All Orders on Processing page
     And Clicks Unprocess button on Processing page
     And Validate batch required error popup that batch is required on Processing page

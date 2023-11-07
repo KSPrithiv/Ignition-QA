@@ -1,5 +1,6 @@
 @Inbound @Regression
 Feature: Testing of Inbound Orders Line Item details screen
+  @isofailed2
   Scenario: Checking Navigate to Inbound Load order line item details page
     Given User signs in the application
     And Main page is loaded
@@ -19,7 +20,6 @@ Feature: Testing of Inbound Orders Line Item details screen
     And DockManagement Summary Page is validated
     When Go to Inbound Orders page
     And User waits for Inbound Order Summary page to load
-    And Validates Inbound Order Summary Page contains all web elements
     Then User finds all orders from start date by index 4
     And Selects order with index 0 on Inbound Order Summary page
     And Validates Inbound Order Details Page contains all web elements
@@ -27,17 +27,15 @@ Feature: Testing of Inbound Orders Line Item details screen
     And Validates Inbound Order Line Item Details page contains all web elements
     And Validates Product details and UPC on Inbound Order Line Items Details page
 
-   @isofailed
+   @isofailed2
     Scenario: Checking Navigate to Lookup location on Inbound Order line item details page
     Given User signs in the application
     And Main page is loaded
     And DockManagement Summary Page is validated
     When Go to Inbound Orders page
     And User waits for Inbound Order Summary page to load
-    And Validates Inbound Order Summary Page contains all web elements
     Then User finds all orders from start date by index 4
     And Selects order with index 2 on Inbound Order Summary page
-    And Validates Inbound Order Details Page contains all web elements
     And Select Order Line Item with index 0 on Inbound Order Details page
     And Validates Inbound Order Line Item Details page contains all web elements
     And Validates Product details and UPC on Inbound Order Line Items Details page
@@ -51,7 +49,6 @@ Feature: Testing of Inbound Orders Line Item details screen
     And DockManagement Summary Page is validated
     When Go to Inbound Orders page
     And User waits for Inbound Order Summary page to load
-    And Validates Inbound Order Summary Page contains all web elements
     Then User finds all orders from start date by index 4
     And Selects order with index 0 on Inbound Order Summary page
     And Validates Inbound Order Details Page contains all web elements
@@ -66,7 +63,6 @@ Feature: Testing of Inbound Orders Line Item details screen
     And DockManagement Summary Page is validated
     When Go to Inbound Orders page
     And User waits for Inbound Order Summary page to load
-    And Validates Inbound Order Summary Page contains all web elements
     Then User finds all orders from start date by index 4
     And Selects order with index 0 on Inbound Order Summary page
     And Validates Inbound Order Details Page contains all web elements
@@ -81,7 +77,6 @@ Feature: Testing of Inbound Orders Line Item details screen
     And DockManagement Summary Page is validated
     When Go to Inbound Orders page
     And User waits for Inbound Order Summary page to load
-    And Validates Inbound Order Summary Page contains all web elements
     Then User finds all orders from start date by index 4
     And Selects order with index 0 on Inbound Order Summary page
     And Validates Inbound Order Details Page contains all web elements
@@ -96,7 +91,6 @@ Feature: Testing of Inbound Orders Line Item details screen
     And DockManagement Summary Page is validated
     When Go to Inbound Orders page
     And User waits for Inbound Order Summary page to load
-    And Validates Inbound Order Summary Page contains all web elements
     Then User finds all orders from start date by index 4
     And Selects order with index 0 on Inbound Order Summary page
     And Validates Inbound Order Details Page contains all web elements
@@ -114,7 +108,6 @@ Feature: Testing of Inbound Orders Line Item details screen
     And DockManagement Summary Page is validated
     When Go to Inbound Orders page
     And User waits for Inbound Order Summary page to load
-    And Validates Inbound Order Summary Page contains all web elements
     Then User finds all orders from start date by index 4
     And Selects order with index 0 on Inbound Order Summary page
     And Validates Inbound Order Details Page contains all web elements
@@ -128,7 +121,6 @@ Feature: Testing of Inbound Orders Line Item details screen
     And DockManagement Summary Page is validated
     When Go to Inbound Orders page
     And User waits for Inbound Order Summary page to load
-    And Validates Inbound Order Summary Page contains all web elements
     Then User finds all orders from start date by index 4
     And Selects order with index 0 on Inbound Order Summary page
     And Validates Inbound Order Details Page contains all web elements

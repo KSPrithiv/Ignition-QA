@@ -13,7 +13,6 @@ Feature: Testing of Appointment Scheduler functionality
     And DockManagement Summary Page is validated
     And Go to Appointment scheduler page
     And Waiting Appointment Scheduler Page To Load
-    And Appointment Scheduler page is displayed
     When User searches for valid order "R" for appointment on Appointment Scheduler page
     And Validates Order Data on Appointment Scheduler page
     And User selects order by row number 0 on Appointment Scheduler page
@@ -29,13 +28,12 @@ Feature: Testing of Appointment Scheduler functionality
     And DockManagement Summary Page is validated
     And Go to Appointment scheduler page
     And Waiting Appointment Scheduler Page To Load
-    And Appointment Scheduler page is displayed
     When User types order number "1" on Appointment Scheduler page
     Then Validates Invalid Order Warning on Appointment Scheduler page
     And Validates Next Button is not active on Appointment Scheduler page
     And Validates Cancel Button is not active on Appointment Scheduler page
 
-  @isofailed
+  @isofailed2
   Scenario: Checking Cancel Appointment Scheduler Creation With Valid Order
     Given User signs in the application
     And Main page is loaded

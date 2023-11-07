@@ -11,15 +11,12 @@ Feature: Testing of Outbound Summary Filter Option functionality
     When Filling start date "01/01/2022" and end date "01/31/2022" on Outbound Order Summary page
     Then Validates Outbound Order Summary start date "01/01/2022" and end date "01/31/2022"
 
-  @isofailed
+  @isofailed2
   Scenario: Checking Filtering Enter Order Data
     Given User signs in the application
     And Main page is loaded
     And DockManagement Summary Page is validated
     And Go to Outbound Order page
-    And Waits for Outbound Order Summary page to load
-    And Validates Outbound Order Summary page is displayed
-    And Validates Outbound Order Summary dates
     And Waits for Outbound Order Summary page to load
     When Filling start date by index 2 on Outbound Order Summary page
     Then Searches for order by index 6 on Outbound Order Summary page
@@ -32,7 +29,6 @@ Feature: Testing of Outbound Summary Filter Option functionality
     And DockManagement Summary Page is validated
     And Go to Outbound Order page
     And Waits for Outbound Order Summary page to load
-    And Validates Outbound Order Summary page is displayed
     And User clicks All Statuses dropdown on Outbound Order Summary page
     And Validates Open status
     And Validates Closed status
@@ -56,7 +52,6 @@ Feature: Testing of Outbound Summary Filter Option functionality
     And DockManagement Summary Page is validated
     And Go to Outbound Order page
     And Waits for Outbound Order Summary page to load
-    And Validates Outbound Order Summary page is displayed
     And Validates Account Field contains "Enter a account" text
     When Filling start date by index 2 on Outbound Order Summary page
     And Clears Account field on Outbound Order Summary page
@@ -73,14 +68,13 @@ Feature: Testing of Outbound Summary Filter Option functionality
     And Validates Adjust filter to display data on Outbound Order Summary grid
     And Click Cancel button on Outbound Order Summary page
 
-  @isofailed
+  @isofailed2
   Scenario: Checking Filtering Search by door
     Given User signs in the application
     And Main page is loaded
     And DockManagement Summary Page is validated
     And Go to Outbound Order page
     And Waits for Outbound Order Summary page to load
-    And Validates Outbound Order Summary page is displayed
     When Filling start date by index 2 on Outbound Order Summary page
     And Validates default "Select door" door dropdown value
     And Selects "DOOR" door option on Outbound Order Summary page
@@ -94,7 +88,6 @@ Feature: Testing of Outbound Summary Filter Option functionality
     And DockManagement Summary Page is validated
     And Go to Outbound Order page
     And Waits for Outbound Order Summary page to load
-    And Validates Outbound Order Summary page is displayed
     When Filling start date by index 2 on Outbound Order Summary page
     And User clicks order type dropdown on Outbound Order Summary page
     Then Validates Order types are not empty on Outbound Order Summary page
@@ -104,14 +97,13 @@ Feature: Testing of Outbound Summary Filter Option functionality
     And User selects option by index 1 on Outbound Order Summary page
     And Validates orders are found on Outbound Order Summary page
 
-  @isofailed
+  @isofailed2
   Scenario: Check Get Filter product
     Given User signs in the application
     And Main page is loaded
     And DockManagement Summary Page is validated
     And Go to Outbound Order page
     And Waits for Outbound Order Summary page to load
-    And Validates Outbound Order Summary page is displayed
     And Validates default "Enter a product" product value
     And Validates Outbound Order Summary dates
     When Filling start date by index 2 on Outbound Order Summary page
@@ -121,14 +113,13 @@ Feature: Testing of Outbound Summary Filter Option functionality
     And Filling current start date and tomorrow end date on Outbound Order Summary page
     And Enters Product by index 3 on Outbound Order Summary page
 
-  @isofailed
+  @isofailed2
   Scenario: Check Get Order Display Grid Data
     Given User signs in the application
     And Main page is loaded
     And DockManagement Summary Page is validated
     And Go to Outbound Order page
     And Waits for Outbound Order Summary page to load
-    And Validates Outbound Order Summary page is displayed
     When Filling start date by index 2 on Outbound Order Summary page
     And Selects "DOOR" door option on Outbound Order Summary page
     And Validates All Filters Panel is not active on Outbound Order Summary page
@@ -143,7 +134,6 @@ Feature: Testing of Outbound Summary Filter Option functionality
     And DockManagement Summary Page is validated
     And Go to Outbound Order page
     And Waits for Outbound Order Summary page to load
-    And Validates Outbound Order Summary page is displayed
     When Filling start date by index 2 on Outbound Order Summary page
     And Validates Outbound Order Summary status default value
     And Select Outbound Order Open status

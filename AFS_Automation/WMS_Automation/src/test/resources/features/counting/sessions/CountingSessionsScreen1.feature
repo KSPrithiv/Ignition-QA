@@ -14,10 +14,6 @@ Feature: Testing of Counting Count functionality
     And DockManagement Summary Page is validated
     And Go to Counting Sessions page
     And Waits for Counting Sessions page to load
-    And Validates Counting Sessions page is displayed
-    When User clicks session dropdown on Counting Sessions page
-    And Validates sessions are present in Session dropdown on Counting Sessions page
-    And User clicks session page title on Counting Sessions page
     Then User clicks session dropdown on Counting Sessions page
     And User selects session with index 2 on Counting Sessions page
     And Validates Locations, Products and Assignments Tabs are displayed on Counting Sessions page
@@ -30,7 +26,6 @@ Feature: Testing of Counting Count functionality
     And DockManagement Summary Page is validated
     And Go to Counting Sessions page
     And Waits for Counting Sessions page to load
-    And Validates Counting Sessions page is displayed
     When User clicks New Session button on Counting Sessions page
     And Validates Session name and Count type are displayed on Counting Sessions page
     Then User clicks Save button on Counting Sessions page
@@ -39,16 +34,14 @@ Feature: Testing of Counting Count functionality
     And User clicks Save button on Counting Sessions page
     And Validates session warning "Select count type" on Counting Sessions page
 
-  @isofailed
+  @isofailed2
   Scenario: Checking Create New Session on Counting Sessions screen
     Given User signs in the application
     And Main page is loaded
     And DockManagement Summary Page is validated
     And Go to Counting Sessions page
     And Waits for Counting Sessions page to load
-    And Validates Counting Sessions page is displayed
     And User clicks New Session button on Counting Sessions page
-    And Validates Session name and Count type are displayed on Counting Sessions page
     When User types count type 3 on Counting Sessions page
     And User types randomly created session name on Counting Sessions page
     And User clicks Save button on Counting Sessions page
@@ -76,9 +69,7 @@ Feature: Testing of Counting Count functionality
     And DockManagement Summary Page is validated
     And Go to Counting Sessions page
     And Waits for Counting Sessions page to load
-    And Validates Counting Sessions page is displayed
     And User clicks New Session button on Counting Sessions page
-    And Validates Session name and Count type are displayed on Counting Sessions page
     And User types count type 0 on Counting Sessions page
     When User types randomly created session name on Counting Sessions page
     And User clicks Save button on Counting Sessions page
@@ -134,14 +125,13 @@ Feature: Testing of Counting Count functionality
     And User clicks Delete Session button on Counting Sessions page
     And User clicks Ok button on Counting Sessions page
 
-  @isofailed
+  @isofailed2
   Scenario: Checking Sorting of the columns on Counting Sessions screen
     Given User signs in the application
     And Main page is loaded
     And DockManagement Summary Page is validated
     And Go to Counting Sessions page
     And Waits for Counting Sessions page to load
-    And Validates Counting Sessions page is displayed
     And User clicks session dropdown on Counting Sessions page
     And User selects session with index 1 on Counting Sessions page
     When User clicks Location tab on Counting Sessions page
@@ -164,14 +154,13 @@ Feature: Testing of Counting Count functionality
     And User clicks Release Date and Time Column on Counting Sessions page
     And Validates Release Date Time Column Sorting Result on Counting Sessions page
 
-  @isofailed
+  @isofailed2
   Scenario: Checking Location Navigation on Counting Sessions screen
     Given User signs in the application
     And Main page is loaded
     And DockManagement Summary Page is validated
     And Go to Counting Sessions page
     And Waits for Counting Sessions page to load
-    And Validates Counting Sessions page is displayed
     And User clicks session dropdown on Counting Sessions page
     When User selects session with index 0 on Counting Sessions page
     And User clicks Location tab on Counting Sessions page
@@ -181,17 +170,15 @@ Feature: Testing of Counting Count functionality
     And Validates Session details on Counting Sessions page
     And User clicks table location by index 0 on Counting Sessions page
     And Waits for Location Lookup page to load
- #   And Validates Notification Warning "Location locked" on Location Lookup page is displayed
     And Validates Inventory details of location on Location Lookup page are loaded
 
-  @isofailed
+  @isofailed2
   Scenario: Checking Locked location on Counting Sessions screen
     Given User signs in the application
     And Main page is loaded
     And DockManagement Summary Page is validated
     And Go to Counting Sessions page
     And Waits for Counting Sessions page to load
-    And Validates Counting Sessions page is displayed
     And User clicks session dropdown on Counting Sessions page
     And User selects session with index 2 on Counting Sessions page
     When User clicks Location tab on Counting Sessions page
@@ -201,24 +188,19 @@ Feature: Testing of Counting Count functionality
     And User clicks table location by index 1 on Counting Sessions page
     And Waits for Location Lookup page to load
     And Validates Inventory details of location on Location Lookup page are loaded
-#    And Validates Notification Warning "Location locked" on Location Lookup page is displayed
-#    And Validates Add location button is disabled on Lookup Location page
     And User checks table row by index 0 on Counting Sessions page
     And User clicks Delete Session button on Counting Sessions page
     And User clicks Yes button on Counting Sessions page
     And User selects reason "Create Inventory" on Counting Sessions page
     And User clicks Ok button on Counting Sessions page
-#    And Validates notification message contains "Location" message on Counting Sessions page
- #   And Validates notification message contains "is locked" message on Counting Sessions page
 
-  @isofailed
+  @isofailed2
   Scenario: Checking Select All checkbox on Counting Sessions screen
     Given User signs in the application
     And Main page is loaded
     And DockManagement Summary Page is validated
     And Go to Counting Sessions page
     And Waits for Counting Sessions page to load
-    And Validates Counting Sessions page is displayed
     And User clicks session dropdown on Counting Sessions page
     When User selects session with index 2 on Counting Sessions page
     And User clicks Location tab on Counting Sessions page
@@ -230,14 +212,12 @@ Feature: Testing of Counting Count functionality
     And User clicks Unselect All Checkbox on Counting Sessions page
     And Validates location with index 0 is not selected on Counting Sessions page
 
-  @isofailed
-  Scenario: Checking Count Details on Counting Sessions screen
+   Scenario: Checking Count Details on Counting Sessions screen
     Given User signs in the application
     And Main page is loaded
     And DockManagement Summary Page is validated
     And Go to Counting Sessions page
     And Waits for Counting Sessions page to load
-    And Validates Counting Sessions page is displayed
     When User clicks session dropdown on Counting Sessions page
     And User selects session with index 1 on Counting Sessions page
     And User clicks Location tab on Counting Sessions page

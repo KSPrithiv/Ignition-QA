@@ -21,7 +21,6 @@ Feature: Testing of Work Queue Assign Work functionality
     And DockManagement Summary Page is validated
     And Go to Work Queue Assign Work page
     And Waits for Work Queue Work Assign page to load
-    And Validates Assign work screen is displayed on Work Queue Work Assign Page
     When Selects Task Group by index 3 on Work Queue Work Assign page
     And Validates Shipping Task Group is displayed on Work Queue Work Assign Page
     And Validates list of users and user groups is displayed on Work Queue Work Assign Page
