@@ -7,14 +7,7 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="WMS_Automation" />
-        <module name="OMS_Automation" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="AFS_Automation" target="16" />
-      <module name="OMS_Automation" target="1.8" />
-      <module name="WMS_Automation" target="11" />
-    </bytecodeTargetLevel>
   </component>
 </project>
