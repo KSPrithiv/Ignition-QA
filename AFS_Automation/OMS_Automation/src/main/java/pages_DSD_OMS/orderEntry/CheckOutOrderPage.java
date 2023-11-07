@@ -132,18 +132,32 @@ public class CheckOutOrderPage
             if(HelpersMethod.IsExists("//div[@class='loader']",driver))
             {
                 WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 400000);
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 2000000);
             }
 
             if(HelpersMethod.IsEnabledByele(BackButton))
           {
               HelpersMethod.ClickBut(driver,BackButton,1000);
               scenario.log("CLICKED ON BACK BUTTON");
+
+              String status = HelpersMethod.returnDocumentStatus(driver);
+              if (status.equals("loading"))
+              {
+                  HelpersMethod.waitTillLoadingPage(driver);
+              }
+
               if(HelpersMethod.IsExists("//div[@class='loader']",driver))
               {
                   WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                  HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 400000);
+                  HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 2000000);
               }
+
+              status = HelpersMethod.returnDocumentStatus(driver);
+              if (status.equals("loading"))
+              {
+                  HelpersMethod.waitTillLoadingPage(driver);
+              }
+
               exists=true;
           }
           Assert.assertEquals(exists,true);
@@ -164,10 +178,10 @@ public class CheckOutOrderPage
                     HelpersMethod.ScrollElement(driver, NextButton);
                     NextButton=HelpersMethod.FindByElement(driver,"id","SubmitCheckoutButton");
                     HelpersMethod.ClickBut(driver, NextButton, 40000);
-                    if (HelpersMethod.IsExists("//div[@class='loader']", driver))
+                    if(HelpersMethod.IsExists("//div[@class='loader']",driver))
                     {
-                        WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                        HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000000);
+                        WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
+                        HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 2000000);
                     }
                     String status = HelpersMethod.returnDocumentStatus(driver);
                     if (status.equals("loading"))
@@ -223,7 +237,7 @@ public class CheckOutOrderPage
             if(HelpersMethod.IsExists("//div[@class='loader']",driver))
             {
                 WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 800000);
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 2000000);
             }
             //Check whether application is navigating to checkout card or navigating to order summary page
             if (HelpersMethod.IsExists("//div[@class='page-content']/descendant::div[@id='checkoutCard']",driver))
@@ -312,7 +326,7 @@ public class CheckOutOrderPage
                             if(HelpersMethod.IsExists("//div[@class='loader']",driver))
                             {
                                 WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 80000);
+                                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 200000);
                             }
                         }
                     }
@@ -342,7 +356,7 @@ public class CheckOutOrderPage
                             if(HelpersMethod.IsExists("//div[@class='loader']",driver))
                             {
                                 WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 80000);
+                                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 2000000);
                             }
                         }
                     }
@@ -351,7 +365,7 @@ public class CheckOutOrderPage
                     if(HelpersMethod.IsExists("//div[@class='loader']",driver))
                     {
                         WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                        HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 200000);
+                        HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 2000000);
                     }
                 }
             }
@@ -520,7 +534,7 @@ public class CheckOutOrderPage
             if(HelpersMethod.IsExists("//div[@class='loader']",driver))
             {
                 WebElement WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000000);
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 2000000);
             }
             WebElement WebEle=null;
             WebEle=HelpersMethod.FindByElement(driver,"id","addressCard");
@@ -709,7 +723,7 @@ public class CheckOutOrderPage
             if(HelpersMethod.IsExists("//div[@class='loader']",driver))
             {
                 WebElement WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 800000);
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 2000000);
             }
             String status = HelpersMethod.returnDocumentStatus(driver);
             if (status.equals("loading"))

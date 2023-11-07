@@ -321,6 +321,7 @@ public class AllOrdersPageStep
     public void userEntersOrderNoThatHeHasSelectedFromOrderGridAndValidatesItExistsInOrderAlso() throws InterruptedException, AWTException
     {
         orderpage=new OrderEntryPage(driver,scenario);
+        orderpage.ValidateOE();
         orderpage.Enter_OrderNo_Searchbox(OrderNo);
         orderpage.Existence_OrderNo_OG1();
         allOrder=new AllOrderPage(driver,scenario);
@@ -335,7 +336,7 @@ public class AllOrdersPageStep
                 if (HelpersMethod.IsExists("//div[@class='loader']", driver))
                 {
                     WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 400000);
+                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 2000000);
                 }
                 String status = HelpersMethod.returnDocumentStatus(driver);
                 if (status.equals("loading"))
@@ -345,7 +346,7 @@ public class AllOrdersPageStep
                 if (HelpersMethod.IsExists("//div[@class='loader']", driver))
                 {
                     WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 400000);
+                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 2000000);
                 }
                 new WebDriverWait(driver, Duration.ofMillis(20000)).until(ExpectedConditions.textToBePresentInElementLocated(By.xpath("//button[contains(text(),'Start order')]"), "Start order"));
 
@@ -561,6 +562,25 @@ public class AllOrdersPageStep
         newOE.readProductsInOrder();
         exists=newOE.ClickNext();
         newOE.OutOfStockPop_ERP();
+        checkOutOrderPage=new CheckOutOrderPage(driver,scenario);
+        if(HelpersMethod.IsExists("//div[@id='paymentMethodCard']",driver))
+        {
+            Thread.sleep(4000);
+            //checkorder.validateCheckOrder();
+            checkOutOrderPage.Select_PaymentMethod_ClickDownArrow();
+            if(HelpersMethod.IsExists("//tr[1]/descendant::td[@class='payment-method-type-cell']",driver))
+            {
+                checkOutOrderPage.SelectPaymentMethod();
+                scenario.log("FIRST PAYMENT OPTION HAS BEEN SELECTED");
+            }
+            else
+            {
+                checkOutOrderPage.Click_On_Without_Providing_Payment();
+                scenario.log("WITHOUT PROVIIDNG PAYMENT OPTION HAS BEEN SELECTED");
+            }
+            checkOutOrderPage.DeliveryAddressCard();
+            checkOutOrderPage.NextButton_Click();
+        }
     }
 
     @And("User Clicks on Add filter button and enter values for search options for searching in OE")

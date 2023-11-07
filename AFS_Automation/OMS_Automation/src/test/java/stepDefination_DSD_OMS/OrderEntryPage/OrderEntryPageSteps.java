@@ -193,11 +193,7 @@ public class OrderEntryPageSteps
     public void userShouldSelectNoteFromPopupAndOrderGuideFromPopup() throws InterruptedException, AWTException
     {
         orderpage = new OrderEntryPage(driver, scenario);
-        /*if (HelpersMethod.IsExists("//div[@class='loader']", driver))
-        {
-            WebElement WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 800000);
-        }*/
+
         for(int i=0;i<=1;i++)
         {
             orderpage.OrderGuidePopup();
@@ -209,11 +205,7 @@ public class OrderEntryPageSteps
         {
             HelpersMethod.waitTillLoadingPage(driver);
         }
-       /* if (HelpersMethod.IsExists("//div[@class='loader']", driver))
-        {
-            WebElement WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000000);
-        }*/
+
         Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
                 .withTimeout(Duration.ofSeconds(120))
                 .pollingEvery(Duration.ofSeconds(2))
@@ -225,11 +217,7 @@ public class OrderEntryPageSteps
         {
             HelpersMethod.waitTillLoadingPage(driver);
         }
-      /*  if (HelpersMethod.IsExists("//div[@class='loader']", driver))
-        {
-            WebElement WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000000);
-        }*/
+
         wait = new FluentWait<WebDriver>(driver)
                 .withTimeout(Duration.ofSeconds(120))
                 .pollingEvery(Duration.ofSeconds(2))
@@ -560,6 +548,7 @@ public class OrderEntryPageSteps
             newOE.exceedsMaxQty();
             newOE.toastCurrentlyUnavailable();
         }
+        Thread.sleep(2000);
     }
 
     @Then("Click on Back button")
