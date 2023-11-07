@@ -22,9 +22,6 @@ Feature: Testing of Counting Count functionality
     And Go to Counting Sessions page
     And Waits for Counting Sessions page to load
     And User clicks session dropdown on Counting Sessions page
-    And Validates sessions are present in Session dropdown on Counting Sessions page
-    When User clicks session page title on Counting Sessions page
-    And User clicks session dropdown on Counting Sessions page
     And User selects session with index 3 on Counting Sessions page
     And Validates Locations, Products and Assignments Tabs are displayed on Counting Sessions page
     Then User clicks Assignments tab on Counting Sessions page

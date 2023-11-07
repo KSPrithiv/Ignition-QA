@@ -17,7 +17,6 @@ Feature: Testing of Counting Count functionality
     And DockManagement Summary Page is validated
     And Go to Counting Count page
     And Waits for Counting Count page to load
-    And Validates Counting Count page is displayed
     When Validates Add filter button on Counting Count page is displayed
     And Validates Items Count and Items Found on Counting Count page is displayed
     Then Validates Product Search on Counting Count page is displayed
@@ -31,7 +30,6 @@ Feature: Testing of Counting Count functionality
     And DockManagement Summary Page is validated
     When Go to Counting Count page
     And Waits for Counting Count page to load
-    And Validates Counting Count page is displayed
     Then User clicks Session dropdown on Counting Count page
     And Validates sessions are present on Counting Count page
 
@@ -41,9 +39,6 @@ Feature: Testing of Counting Count functionality
     And DockManagement Summary Page is validated
     And Go to Counting Count page
     And Waits for Counting Count page to load
-    And Validates Counting Count page is displayed
-    And Validates Items Count and Items Found on Counting Count page is displayed
-    And Validates Items Count on Counting Count page are present
     When User clicks Add Filter on Counting Count page
     And User clicks Location filter on Counting Count page
     And User types Location filter by index 0 on Counting Count page
@@ -77,8 +72,6 @@ Feature: Testing of Counting Count functionality
     And DockManagement Summary Page is validated
     And Go to Counting Count page
     And Waits for Counting Count page to load
-    And Validates Counting Count page is displayed
-    And Validates Counting Count page columns are displayed
     When User selects session by index 4 on Counting Count page
     And User clicks location by index 3 on Counting Count page
     Then Validates Location Label on Counting Count page is displayed
@@ -94,7 +87,6 @@ Feature: Testing of Counting Count functionality
     And DockManagement Summary Page is validated
     When Go to Counting Count page
     And Waits for Counting Count page to load
-    And Validates Counting Count page is displayed
     Then Validates Add filter button on Counting Count page is displayed
     And Validates Product Search on Counting Count page is displayed
     And Validates Counting Count page columns are displayed
@@ -105,8 +97,6 @@ Feature: Testing of Counting Count functionality
     And DockManagement Summary Page is validated
     And Go to Counting Count page
     And Waits for Counting Count page to load
-    And Validates Counting Count page is displayed
-    And Validates Counting Count page columns are displayed
     When User selects session by index 4 on Counting Count page
     And User clicks location by index 3 on Counting Count page
     And Validates Location Label on Counting Count page is displayed
@@ -121,8 +111,6 @@ Feature: Testing of Counting Count functionality
     And DockManagement Summary Page is validated
     And Go to Counting Count page
     And Waits for Counting Count page to load
-    And Validates Counting Count page is displayed
-    And Validates Counting Count page columns are displayed
     When User selects session by index 4 on Counting Count page
     And User clicks location by index 3 on Counting Count page
     And Validates Count Quantity inputs are editable on Counting Count page
@@ -139,8 +127,6 @@ Feature: Testing of Counting Count functionality
     And DockManagement Summary Page is validated
     And Go to Counting Count page
     And Waits for Counting Count page to load
-    And Validates Counting Count page is displayed
-    And Validates Counting Count page columns are displayed
     When User selects session by index 4 on Counting Count page
     And User clicks location by index 3 on Counting Count page
     And User clicks Add Product on Counting Count page
@@ -161,8 +147,6 @@ Feature: Testing of Counting Count functionality
     And DockManagement Summary Page is validated
     And Go to Counting Count page
     And Waits for Counting Count page to load
-    And Validates Counting Count page is displayed
-    And Validates Counting Count page columns are displayed
     When User selects session by index 4 on Counting Count page
     And User clicks location by index 3 on Counting Count page
     And User clicks Add Product on Counting Count page

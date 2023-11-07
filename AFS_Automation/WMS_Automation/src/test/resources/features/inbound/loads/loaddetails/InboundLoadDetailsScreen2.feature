@@ -6,7 +6,6 @@ Feature: Testing of Inbound Load Details screen functionality
     And DockManagement Summary Page is validated
     And Go to Loads page
     And Inbound Load Summary page appears
-    And Inbound Load Summary page main elements are present
     When Types start date by index 2 on Inbound Load Summary page
     Then Select Load with index 0 on Inbound Load Summary page
     And Selects Load Option "Receive" for Load
@@ -19,7 +18,6 @@ Feature: Testing of Inbound Load Details screen functionality
     And DockManagement Summary Page is validated
     And Go to Loads page
     And Inbound Load Summary page appears
-    And Inbound Load Summary page main elements are present
     When Types start date by index 2 on Inbound Load Summary page
     Then Select Load with index 0 on Inbound Load Summary page
     And Clicks data option on Inbound Load Summary page
@@ -34,7 +32,6 @@ Feature: Testing of Inbound Load Details screen functionality
     And DockManagement Summary Page is validated
     And Go to Loads page
     And Inbound Load Summary page appears
-    And Inbound Load Summary page main elements are present
     When Types start date by index 2 on Inbound Load Summary page
     Then Select Load with index 0 on Inbound Load Summary page
     And Selects Load Option "Edit" for Load

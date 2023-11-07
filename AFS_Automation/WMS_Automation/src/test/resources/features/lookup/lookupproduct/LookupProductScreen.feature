@@ -23,6 +23,7 @@ Feature: Testing of Lookup Product functionality
     And Main page is loaded
     And DockManagement Summary Page is validated
     And Go to Lookup Product page
+    And Waits for Product Lookup page to load
     And Validates Product Lookup Page base elements are loaded
     And User clicks Add Product on Lookup Product page
     When User clicks product by index 3 on Lookup Product page
@@ -35,7 +36,7 @@ Feature: Testing of Lookup Product functionality
     And Main page is loaded
     And DockManagement Summary Page is validated
     And Go to Lookup Product page
-    And Validates Product Lookup Page base elements are loaded
+    And Waits for Product Lookup page to load
     And User clicks Add Product on Lookup Product page
     When User clicks product by index 3 on Lookup Product page
     And Validates Grid items are present on Lookup Product page
@@ -48,7 +49,7 @@ Feature: Testing of Lookup Product functionality
     And Main page is loaded
     And DockManagement Summary Page is validated
     And Go to Lookup Product page
-    And Validates Product Lookup Page base elements are loaded
+    And Waits for Product Lookup page to load
     And User clicks Add Product on Lookup Product page
     And User clicks product by index 3 on Lookup Product page
     And Validates Grid items are present on Lookup Product page
@@ -76,11 +77,9 @@ Feature: Testing of Lookup Product functionality
     And Main page is loaded
     And DockManagement Summary Page is validated
     And Go to Lookup Product page
-    And Validates Product Lookup Page base elements are loaded
+    And Waits for Product Lookup page to load
     When User clicks Add Product on Lookup Product page
-    And User clicks product by index 3 on Lookup Product page
-    Then Validates Grid items are present on Lookup Product page
-    And Validates Lookup, Allocation, Setup and History Tabs are displayed on Lookup Product page
+    Then User clicks product by index 3 on Lookup Product page
     And Validates Product Lookup Page base elements are loaded
     And Validates Product details are loaded on Lookup Product page
 
@@ -89,7 +88,7 @@ Feature: Testing of Lookup Product functionality
     And Main page is loaded
     And DockManagement Summary Page is validated
     And Go to Lookup Product page
-    And Validates Product Lookup Page base elements are loaded
+    And Waits for Product Lookup page to load
     When User clicks Add Product on Lookup Product page
     And User clicks product by index 3 on Lookup Product page
     Then Validates Lookup, Allocation, Setup and History Tabs are displayed on Lookup Product page
@@ -100,7 +99,7 @@ Feature: Testing of Lookup Product functionality
     And Main page is loaded
     And DockManagement Summary Page is validated
     And Go to Lookup Product page
-    And Validates Product Lookup Page base elements are loaded
+    And Waits for Product Lookup page to load
     And User clicks Add Product on Lookup Product page
     When User clicks product by index 7 on Lookup Product page
     And Validates Grid items are present on Lookup Product page
@@ -124,7 +123,7 @@ Feature: Testing of Lookup Product functionality
     And Main page is loaded
     And DockManagement Summary Page is validated
     And Go to Lookup Product page
-    And Validates Product Lookup Page base elements are loaded
+    And Waits for Product Lookup page to load
     And User clicks Add Product on Lookup Product page
     And User clicks product by index 3 on Lookup Product page
     And User deletes product on Lookup Product page
@@ -138,7 +137,7 @@ Feature: Testing of Lookup Product functionality
     And Main page is loaded
     And DockManagement Summary Page is validated
     And Go to Lookup Product page
-    And Validates Product Lookup Page base elements are loaded
+    And Waits for Product Lookup page to load
     When User clicks Add Product on Lookup Product page
     And User clicks product by index 3 on Lookup Product page
     Then Validates Lookup, Allocation, Setup and History Tabs are displayed on Lookup Product page

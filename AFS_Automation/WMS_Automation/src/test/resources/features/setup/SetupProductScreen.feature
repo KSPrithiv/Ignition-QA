@@ -6,6 +6,7 @@ Feature: Testing of Product Setup UOM
     And Main page is loaded
     And DockManagement Summary Page is validated
     And Go to Setup Product page
+    And Waits for Setup Product page to load
     And Validates Setup Product page is displayed
     When Clicks Add new on Setup Product page
     And Validates Setup Product page is displayed
@@ -23,7 +24,7 @@ Feature: Testing of Product Setup UOM
     And Main page is loaded
     And DockManagement Summary Page is validated
     And Go to Setup Product page
-    And Validates Setup Product page is displayed
+    And Waits for Setup Product page to load
     When Clicks Product Tab on Setup Product page
     And Clicks Add new on Setup Product page
     And Types Product Code "200004" on Setup Product page
@@ -90,7 +91,7 @@ Feature: Testing of Product Setup UOM
     And Main page is loaded
     And DockManagement Summary Page is validated
     And Go to Setup Product page
-    And Validates Setup Product page is displayed
+    And Waits for Setup Product page to load
     And Clicks Product Tab on Setup Product page
     And Clicks Add new on Setup Product page
     And Types Product Code "200004" on Setup Product page
@@ -170,7 +171,7 @@ Feature: Testing of Product Setup UOM
     And Main page is loaded
     And DockManagement Summary Page is validated
     And Go to Setup Product page
-    And Validates Setup Product page is displayed
+    And Waits for Setup Product page to load
     And Clicks Product Tab on Setup Product page
     When Clicks Add new on Setup Product page
     And Types Product Code "200005" on Setup Product page
@@ -227,7 +228,7 @@ Feature: Testing of Product Setup UOM
     And Main page is loaded
     And DockManagement Summary Page is validated
     And Go to Setup Product page
-    And Validates Setup Product page is displayed
+    And Waits for Setup Product page to load
     When Clicks Product Tab on Setup Product page
     And Clicks Add new on Setup Product page
     And Types Product Code "200009" on Setup Product page

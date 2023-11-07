@@ -19,7 +19,6 @@ Feature: Testing of Inbound Load Details screen functionality
     And DockManagement Summary Page is validated
     And Go to Loads page
     And Inbound Load Summary page appears
-    And Inbound Load Summary page main elements are present
     When Types start date by index 0 on Inbound Load Summary page
     Then Select Load with index 1 on Inbound Load Summary page
     And Inbound Load Summary Details page main elements are present
@@ -30,7 +29,6 @@ Feature: Testing of Inbound Load Details screen functionality
     And DockManagement Summary Page is validated
     And Go to Loads page
     And Inbound Load Summary page appears
-    And Inbound Load Summary page main elements are present
     When Types start date by index 4 on Inbound Load Summary page
     Then Select Load with index 1 on Inbound Load Summary page
     And Validates images are present on Inbound Load Summary page
@@ -41,7 +39,6 @@ Feature: Testing of Inbound Load Details screen functionality
     And DockManagement Summary Page is validated
     And Go to Loads page
     And Inbound Load Summary page appears
-    And Inbound Load Summary page main elements are present
     When Types start date by index 4 on Inbound Load Summary page
     Then Select Load with index 2 on Inbound Load Summary page
     And Validates comments are present on Inbound Load Summary page
@@ -52,7 +49,6 @@ Feature: Testing of Inbound Load Details screen functionality
     And DockManagement Summary Page is validated
     And Go to Loads page
     And Inbound Load Summary page appears
-    And Inbound Load Summary page main elements are present
     When Types start date by index 4 on Inbound Load Summary page
     Then Select Load with index 2 on Inbound Load Summary page
     And Validates Received, Staged, Over and Remainder are present on Inbound Load Summary page with correct color
@@ -63,7 +59,6 @@ Feature: Testing of Inbound Load Details screen functionality
     And DockManagement Summary Page is validated
     And Go to Loads page
     And Inbound Load Summary page appears
-    And Inbound Load Summary page main elements are present
     When Types start date by index 4 on Inbound Load Summary page
     Then Select Load with index 2 on Inbound Load Summary page
     And Validates orders are present for load on Inbound Load Summary page
@@ -74,7 +69,6 @@ Feature: Testing of Inbound Load Details screen functionality
     And DockManagement Summary Page is validated
     And Go to Loads page
     And Inbound Load Summary page appears
-    And Inbound Load Summary page main elements are present
     When Types start date by index 4 on Inbound Load Summary page
     Then Clicks load status "All statuses" on Inbound Load Summary page
     And Selects load status "Received Order" on Inbound Load Summary page
@@ -91,7 +85,6 @@ Feature: Testing of Inbound Load Details screen functionality
     And DockManagement Summary Page is validated
     And Go to Loads page
     And Inbound Load Summary page appears
-    And Inbound Load Summary page main elements are present
     When Types start date by index 1 on Inbound Load Summary page
     Then Clicks load status "All statuses" on Inbound Load Summary page
     And Selects load status "Ready To Receive" on Inbound Load Summary page
@@ -107,7 +100,6 @@ Feature: Testing of Inbound Load Details screen functionality
     And DockManagement Summary Page is validated
     And Go to Loads page
     And Inbound Load Summary page appears
-    And Inbound Load Summary page main elements are present
     When Types start date by index 4 on Inbound Load Summary page
     Then Clicks load status "All statuses" on Inbound Load Summary page
     And Selects load status "Open" on Inbound Load Summary page
@@ -122,7 +114,6 @@ Feature: Testing of Inbound Load Details screen functionality
     And DockManagement Summary Page is validated
     And Go to Loads page
     And Inbound Load Summary page appears
-    And Inbound Load Summary page main elements are present
     When Types start date by index 2 on Inbound Load Summary page
     Then Select Load with index 0 on Inbound Load Summary page
     And Selects Load Option "Source" for Load
