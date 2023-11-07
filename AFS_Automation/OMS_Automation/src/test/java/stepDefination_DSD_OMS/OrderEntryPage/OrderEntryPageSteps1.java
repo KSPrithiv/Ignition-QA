@@ -97,6 +97,7 @@ public class OrderEntryPageSteps1
     {
         newOE=new NewOrderEntryPage(driver,scenario);
         List<List<String>> Comment = tabledata.asLists(String.class);
+        newOE.validateCommentPopup();
         newOE.Comment_Popup(Comment.get(0).get(0));
     }
 

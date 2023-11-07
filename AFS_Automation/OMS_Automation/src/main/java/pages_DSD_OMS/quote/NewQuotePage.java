@@ -368,7 +368,7 @@ public class NewQuotePage
         String ogText=null;
         try
         {
-            if(HelpersMethod.IsExists("//div[contains(@class,'k-animation-container k-animation-container-relative')]/div[contains(@class,'k-popup k-list-container k-reset k-group k-child-animation-container')]",driver))
+            if(HelpersMethod.IsExists("//div[contains(@class,'k-animation-container k-animation-container-relative')]/descendant::ul/li",driver))
             {
                 List<WebElement> ogS=HelpersMethod.FindByElements(driver,"xpath","//div[contains(@class,'k-animation-container-relative')]/descendant::ul/li");
                 for(WebElement og:ogS)
