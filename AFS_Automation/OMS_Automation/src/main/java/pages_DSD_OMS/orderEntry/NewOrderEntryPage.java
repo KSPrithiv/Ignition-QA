@@ -4297,6 +4297,7 @@ public class NewOrderEntryPage
         exists=false;
         String head_text;
         String status;
+        String listText;
         int i=0;
         Actions act1=new Actions(driver);
         try
@@ -4337,7 +4338,28 @@ public class NewOrderEntryPage
                 //act1.moveToElement(catalogFilter).build().perform();
                 //act1.sendKeys(catalogFilter,searchValue).build().perform();
                 //HelpersMethod.JSSetValueEle(driver,catalogFilter,1000,searchValue);
-                driver.findElement(By.xpath("//tr[@class='k-filter-row']/th["+i+"]/descendant::input")).sendKeys("value","searchValue");
+                WebElement filterInput= driver.findElement(By.xpath("//tr[@class='k-filter-row']/th["+i+"]/descendant::input"));
+                //.sendKeys("value","searchValue");
+                act1.moveToElement(filterInput).click().build().perform();
+                HelpersMethod.JSSetValueEle(driver,filterInput,1000,"");
+                filterInput.sendKeys(Keys.BACK_SPACE);
+                HelpersMethod.JSSetValueEle(driver,filterInput,1000,searchValue);
+                //Click on filter icon
+                WebElement filterIcon=HelpersMethod.FindByElement(driver,"xpath","//tr[@class='k-filter-row']/th["+i+"]/descendant::span[contains(@class,'k-icon k-i-filter k-icon')]");
+                HelpersMethod.ActClick(driver,filterIcon,1000);
+                List<WebElement> Lists=HelpersMethod.FindByElements(driver,"xpath","//div[contains(@class,'k-list-container')]/descendant::ul/li");
+                for(WebElement listValue:Lists)
+                {
+                    act1.moveToElement(listValue).build().perform();
+                    listText=listValue.getText();
+                    if(listText.equals("Is equal to"))
+                    {
+                        act1.moveToElement(listValue).build().perform();
+                        act1.click().build().perform();
+                        break;
+                    }
+                }
+
                 status = HelpersMethod.returnDocumentStatus(driver);
                 if (status.equals("loading"))
                 {

@@ -125,7 +125,7 @@ public class OrderEntryPageSteps
         orderpage = new OrderEntryPage(driver, scenario);
         orderpage.HandleError_Page();
         orderpage.Refresh_Page2();
-        orderpage.Read_DeliveryDate();
+        //orderpage.Read_DeliveryDate();
         newOE=new NewOrderEntryPage(driver,scenario);
         newOE.Discard_All_Pending_Order();
         orderpage=new OrderEntryPage(driver,scenario);

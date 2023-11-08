@@ -143,7 +143,7 @@ public class TestBase
                 WebDriverManager.chromedriver().setup();
                 ChromeOptions chromeOptions = new ChromeOptions();
                 chromeOptions.addArguments("--headless=new");
-                chromeOptions.addArguments("window-size=1280,720");
+                chromeOptions.addArguments("window-size=1920,1080");
                 chromeOptions.addArguments("--remote-allow-origins=*");
                 chromeOptions.addArguments("--no-proxy-server");
                 chromeOptions.addArguments("--proxy-server='direct://'");

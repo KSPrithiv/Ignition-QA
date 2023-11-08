@@ -4,93 +4,24 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3b62bb3d-ca91-4109-a154-f51a67f5e5ba" name="Changes" comment="">
+    <list default="true" id="6d99a8c4-a08f-459b-b0de-8a714785f81b" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/OMS_Automation/Reports/ExtentPdf.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/OMS_Automation/Reports/ExtentPdf.pdf" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/OMS_Automation/Reports/extent/Index.html" beforeDir="false" afterPath="$PROJECT_DIR$/OMS_Automation/Reports/extent/Index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/OMS_Automation/Reports/spark/Index.html" beforeDir="false" afterPath="$PROJECT_DIR$/OMS_Automation/Reports/spark/Index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/OMS_Automation/src/main/java/pages_DSD_OMS/allOrder/AllOrderPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/OMS_Automation/src/main/java/pages_DSD_OMS/allOrder/AllOrderPage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/OMS_Automation/src/main/java/pages_DSD_OMS/orderControlListPage/OrderControlListPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/OMS_Automation/src/main/java/pages_DSD_OMS/orderControlListPage/OrderControlListPage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/OMS_Automation/src/main/java/pages_DSD_OMS/orderEntry/CheckOutOrderPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/OMS_Automation/src/main/java/pages_DSD_OMS/orderEntry/CheckOutOrderPage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/OMS_Automation/src/main/java/pages_DSD_OMS/orderEntry/CheckOutSummaryPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/OMS_Automation/src/main/java/pages_DSD_OMS/orderEntry/CheckOutSummaryPage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/OMS_Automation/src/main/java/pages_DSD_OMS/UserManagementClientSide/userManagementClientPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/OMS_Automation/src/main/java/pages_DSD_OMS/UserManagementClientSide/userManagementClientPage.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/OMS_Automation/src/main/java/pages_DSD_OMS/orderEntry/NewOrderEntryPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/OMS_Automation/src/main/java/pages_DSD_OMS/orderEntry/NewOrderEntryPage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/OMS_Automation/src/main/java/pages_DSD_OMS/orderEntry/OrderEntryPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/OMS_Automation/src/main/java/pages_DSD_OMS/orderEntry/OrderEntryPage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/OMS_Automation/src/main/java/pages_DSD_OMS/quote/NewQuotePage.java" beforeDir="false" afterPath="$PROJECT_DIR$/OMS_Automation/src/main/java/pages_DSD_OMS/quote/NewQuotePage.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/OMS_Automation/src/main/java/pages_DSD_OMS/standingOrder/NewStandingOrderCard.java" beforeDir="false" afterPath="$PROJECT_DIR$/OMS_Automation/src/main/java/pages_DSD_OMS/standingOrder/NewStandingOrderCard.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/OMS_Automation/src/main/java/util/TestBase.java" beforeDir="false" afterPath="$PROJECT_DIR$/OMS_Automation/src/main/java/util/TestBase.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/OMS_Automation/src/main/resources/config_DSD_OMS/config_DSD.properties" beforeDir="false" afterPath="$PROJECT_DIR$/OMS_Automation/src/main/resources/config_DSD_OMS/config_DSD.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/OMS_Automation/src/test/java/stepDefination_DSD_OMS/AllOrdersPage/AllOrdersPageStep.java" beforeDir="false" afterPath="$PROJECT_DIR$/OMS_Automation/src/test/java/stepDefination_DSD_OMS/AllOrdersPage/AllOrdersPageStep.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/OMS_Automation/src/test/java/stepDefination_DSD_OMS/OrderEntryPage/OrderEntryPageSteps.java" beforeDir="false" afterPath="$PROJECT_DIR$/OMS_Automation/src/test/java/stepDefination_DSD_OMS/OrderEntryPage/OrderEntryPageSteps.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/OMS_Automation/src/test/java/stepDefination_DSD_OMS/OrderEntryPage/OrderEntryPageSteps1.java" beforeDir="false" afterPath="$PROJECT_DIR$/OMS_Automation/src/test/java/stepDefination_DSD_OMS/OrderEntryPage/OrderEntryPageSteps1.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/OMS_Automation/src/test/java/stepDefination_DSD_OMS/OrderEntryPage/OrderEntryPageSteps8.java" beforeDir="false" afterPath="$PROJECT_DIR$/OMS_Automation/src/test/java/stepDefination_DSD_OMS/OrderEntryPage/OrderEntryPageSteps8.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/OMS_Automation/src/test/java/stepDefination_DSD_OMS/StandingOrderPage/StandingOrderPageSteps1.java" beforeDir="false" afterPath="$PROJECT_DIR$/OMS_Automation/src/test/java/stepDefination_DSD_OMS/StandingOrderPage/StandingOrderPageSteps1.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/OMS_Automation/src/test/resources/features_DSD_OMS/OrderEntryFeature/orderEntryFeatureEnd.feature" beforeDir="false" afterPath="$PROJECT_DIR$/OMS_Automation/src/test/resources/features_DSD_OMS/OrderEntryFeature/orderEntryFeatureEnd.feature" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/OMS_Automation/test-output/base64_generated_pdf_14.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/OMS_Automation/test-output/base64_generated_pdf_15.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/OMS_Automation/test-output/base64_generated_pdf_16.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/OMS_Automation/test-output/base64_generated_pdf_17.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/OMS_Automation/test-output/base64_generated_pdf_18.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/OMS_Automation/test-output/base64_generated_pdf_19.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/OMS_Automation/test-output/base64_generated_pdf_20.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/OMS_Automation/test-output/base64_generated_pdf_21.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/OMS_Automation/test-output/base64_generated_pdf_22.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/OMS_Automation/test-output/base64_generated_pdf_23.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/OMS_Automation/test-output/base64_generated_pdf_24.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/OMS_Automation/test-output/base64_generated_pdf_25.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/OMS_Automation/test-output/base64_generated_pdf_26.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/OMS_Automation/test-output/base64_generated_pdf_27.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/OMS_Automation/test-output/base64_generated_pdf_28.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/OMS_Automation/test-output/base64_generated_pdf_29.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/OMS_Automation/test-output/base64_generated_pdf_30.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/OMS_Automation/test-output/base64_generated_pdf_31.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/OMS_Automation/test-output/base64_generated_pdf_32.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/OMS_Automation/test-output/base64_generated_pdf_33.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/OMS_Automation/test-output/base64_generated_pdf_34.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/OMS_Automation/test-output/base64_generated_pdf_35.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/OMS_Automation/test-output/base64_generated_pdf_36.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/OMS_Automation/test-output/base64_generated_pdf_37.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/OMS_Automation/test-output/base64_generated_pdf_38.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/OMS_Automation/test-output/base64_generated_pdf_39.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/OMS_Automation/test-output/base64_generated_pdf_40.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/OMS_Automation/test-output/base64_generated_pdf_41.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/OMS_Automation/test-output/base64_generated_pdf_42.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/OMS_Automation/test-output/base64_generated_pdf_43.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/OMS_Automation/test-output/base64_generated_pdf_44.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/OMS_Automation/test-output/base64_generated_pdf_45.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/OMS_Automation/test-output/base64_generated_pdf_46.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/OMS_Automation/test-output/base64_generated_pdf_47.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/OMS_Automation/test-output/base64_generated_pdf_48.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/OMS_Automation/test-output/base64_generated_pdf_49.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/OMS_Automation/test-output/base64_generated_pdf_50.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/OMS_Automation/test-output/base64_generated_pdf_51.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/OMS_Automation/test-output/base64_generated_pdf_52.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/OMS_Automation/test-output/base64_generated_pdf_53.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/OMS_Automation/test-output/base64_generated_pdf_54.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/OMS_Automation/test-output/base64_generated_pdf_55.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/OMS_Automation/test-output/base64_generated_pdf_56.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/OMS_Automation/test-output/base64_generated_pdf_57.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/OMS_Automation/test-output/base64_generated_pdf_58.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/OMS_Automation/test-output/base64_generated_pdf_59.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/OMS_Automation/test-output/base64_generated_pdf_60.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/OMS_Automation/test-output/base64_generated_pdf_61.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/OMS_Automation/test-output/base64_generated_pdf_62.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/OMS_Automation/test-output/base64_generated_pdf_63.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/OMS_Automation/test-output/base64_generated_pdf_64.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/OMS_Automation/test-output/base64_generated_pdf_65.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/OMS_Automation/test-output/base64_generated_pdf_66.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/OMS_Automation/test-output/base64_generated_pdf_67.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/OMS_Automation/test-output/base64_generated_pdf_68.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/OMS_Automation/test-output/base64_generated_pdf_69.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/OMS_Automation/test-output/base64_generated_pdf_70.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/OMS_Automation/test-output/base64_generated_pdf_71.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/OMS_Automation/test-output/base64_generated_pdf_72.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/OMS_Automation/test-output/base64_generated_pdf_73.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/OMS_Automation/test-output/base64_generated_pdf_74.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/OMS_Automation/test-output/base64_generated_pdf_75.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/OMS_Automation/test-output/base64_generated_pdf_76.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/OMS_Automation/test-output/embedded1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/OMS_Automation/test-output/embedded2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/OMS_Automation/test-output/embedded3.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/OMS_Automation/test-output/embedded4.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/OMS_Automation/test-output/embedded5.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/OMS_Automation/test-output/embedded6.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/OMS_Automation/src/test/resources/features_DSD_OMS/UserManagementClientSideFeature/userAndAccountsClientSideLoginFeature.feature" beforeDir="false" afterPath="$PROJECT_DIR$/OMS_Automation/src/test/resources/features_DSD_OMS/UserManagementClientSideFeature/userAndAccountsClientSideLoginFeature.feature" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -131,7 +62,7 @@
     <property name="project.structure.side.proportion" value="0.152439" />
     <property name="settings.editor.selected.configurable" value="vcs.TFVC" />
   </component>
-  <component name="RunManager" selected="TestNG.C:/Users/Divya.Ramadas/Documents/Ign/AFS_Automation/OMS_Automation/TestNG_SO.xml">
+  <component name="RunManager" selected="TestNG.C:/Users/Divya.Ramadas/Documents/Ign/AFS_Automation/OMS_Automation/TestNG_OE3.xml">
     <configuration default="true" type="JetRunConfigurationType">
       <method v="2">
         <option name="Make" enabled="true" />
@@ -139,16 +70,6 @@
     </configuration>
     <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
       <option name="filePath" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="C:/Users/Divya.Ramadas/Documents/Ign/AFS_Automation/OMS_Automation/TestNG_AllORder.xml" type="TestNG" temporary="true" nameIsGenerated="true">
-      <module name="OMS_Automation" />
-      <option name="SUITE_NAME" value="$PROJECT_DIR$/OMS_Automation/TestNG_AllORder.xml" />
-      <option name="TEST_OBJECT" value="SUITE" />
-      <properties />
-      <listeners />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -163,9 +84,9 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="C:/Users/Divya.Ramadas/Documents/Ign/AFS_Automation/OMS_Automation/TestNG_OCL.xml" type="TestNG" temporary="true" nameIsGenerated="true">
+    <configuration name="C:/Users/Divya.Ramadas/Documents/Ign/AFS_Automation/OMS_Automation/TestNG_OE3.xml" type="TestNG" temporary="true" nameIsGenerated="true">
       <module name="OMS_Automation" />
-      <option name="SUITE_NAME" value="$PROJECT_DIR$/OMS_Automation/TestNG_OCL.xml" />
+      <option name="SUITE_NAME" value="$PROJECT_DIR$/OMS_Automation/TestNG_OE3.xml" />
       <option name="TEST_OBJECT" value="SUITE" />
       <properties />
       <listeners />
@@ -173,9 +94,9 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="C:/Users/Divya.Ramadas/Documents/Ign/AFS_Automation/OMS_Automation/TestNG_Quote.xml" type="TestNG" temporary="true" nameIsGenerated="true">
+    <configuration name="C:/Users/Divya.Ramadas/Documents/Ign/AFS_Automation/OMS_Automation/TestNG_OG.xml" type="TestNG" temporary="true" nameIsGenerated="true">
       <module name="OMS_Automation" />
-      <option name="SUITE_NAME" value="$PROJECT_DIR$/OMS_Automation/TestNG_Quote.xml" />
+      <option name="SUITE_NAME" value="$PROJECT_DIR$/OMS_Automation/TestNG_OG.xml" />
       <option name="TEST_OBJECT" value="SUITE" />
       <properties />
       <listeners />
@@ -193,13 +114,23 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="C:/Users/Divya.Ramadas/Documents/Ign/AFS_Automation/OMS_Automation/TestNG_UserManagement.xml" type="TestNG" temporary="true" nameIsGenerated="true">
+      <module name="OMS_Automation" />
+      <option name="SUITE_NAME" value="$PROJECT_DIR$/OMS_Automation/TestNG_UserManagement.xml" />
+      <option name="TEST_OBJECT" value="SUITE" />
+      <properties />
+      <listeners />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="TestNG.C:/Users/Divya.Ramadas/Documents/Ign/AFS_Automation/OMS_Automation/TestNG_OE3.xml" />
+        <item itemvalue="TestNG.C:/Users/Divya.Ramadas/Documents/Ign/AFS_Automation/OMS_Automation/TestNG_OG.xml" />
+        <item itemvalue="TestNG.C:/Users/Divya.Ramadas/Documents/Ign/AFS_Automation/OMS_Automation/TestNG_UserManagement.xml" />
         <item itemvalue="TestNG.C:/Users/Divya.Ramadas/Documents/Ign/AFS_Automation/OMS_Automation/TestNG_SO.xml" />
-        <item itemvalue="TestNG.C:/Users/Divya.Ramadas/Documents/Ign/AFS_Automation/OMS_Automation/TestNG_OCL.xml" />
-        <item itemvalue="TestNG.C:/Users/Divya.Ramadas/Documents/Ign/AFS_Automation/OMS_Automation/TestNG_AllORder.xml" />
         <item itemvalue="TestNG.C:/Users/Divya.Ramadas/Documents/Ign/AFS_Automation/OMS_Automation/TestNG_Login.xml" />
-        <item itemvalue="TestNG.C:/Users/Divya.Ramadas/Documents/Ign/AFS_Automation/OMS_Automation/TestNG_Quote.xml" />
       </list>
     </recent_temporary>
   </component>
@@ -209,7 +140,7 @@
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="3b62bb3d-ca91-4109-a154-f51a67f5e5ba" name="Changes" comment="" />
+      <changelist id="6d99a8c4-a08f-459b-b0de-8a714785f81b" name="Changes" comment="" />
       <created>1698089293153</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
@@ -234,12 +165,12 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/OMS_Automation/src/main/java/pages_DSD_OMS/UserManagementClientSide/userManagementClientPage.java</url>
-          <line>121</line>
+          <line>127</line>
           <option name="timeStamp" value="53" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/OMS_Automation/src/main/java/pages_DSD_OMS/UserManagementClientSide/userManagementClientPage.java</url>
-          <line>122</line>
+          <line>128</line>
           <option name="timeStamp" value="80" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
@@ -922,6 +853,286 @@
           <line>796</line>
           <option name="timeStamp" value="485" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/OMS_Automation/src/main/java/pages_DSD_OMS/standingOrder/NewStandingOrderCard.java</url>
+          <line>1043</line>
+          <option name="timeStamp" value="546" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/OMS_Automation/src/main/java/pages_DSD_OMS/standingOrder/NewStandingOrderCard.java</url>
+          <line>1040</line>
+          <option name="timeStamp" value="547" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/OMS_Automation/src/main/java/pages_DSD_OMS/standingOrder/NewStandingOrderCard.java</url>
+          <line>1041</line>
+          <option name="timeStamp" value="548" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/OMS_Automation/src/main/java/pages_DSD_OMS/standingOrder/NewStandingOrderCard.java</url>
+          <line>1045</line>
+          <option name="timeStamp" value="549" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/OMS_Automation/src/main/java/pages_DSD_OMS/standingOrder/NewStandingOrderCard.java</url>
+          <line>1047</line>
+          <option name="timeStamp" value="550" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/OMS_Automation/src/main/java/pages_DSD_OMS/standingOrder/NewStandingOrderCard.java</url>
+          <line>1049</line>
+          <option name="timeStamp" value="551" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/OMS_Automation/src/main/java/pages_DSD_OMS/standingOrder/NewStandingOrderCard.java</url>
+          <line>1050</line>
+          <option name="timeStamp" value="552" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/OMS_Automation/src/main/java/pages_DSD_OMS/standingOrder/NewStandingOrderCard.java</url>
+          <line>1051</line>
+          <option name="timeStamp" value="553" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/OMS_Automation/src/main/java/pages_DSD_OMS/standingOrder/NewStandingOrderCard.java</url>
+          <line>1052</line>
+          <option name="timeStamp" value="554" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/OMS_Automation/src/main/java/pages_DSD_OMS/standingOrder/NewStandingOrderCard.java</url>
+          <line>1053</line>
+          <option name="timeStamp" value="555" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/OMS_Automation/src/main/java/pages_DSD_OMS/standingOrder/NewStandingOrderCard.java</url>
+          <line>1057</line>
+          <option name="timeStamp" value="556" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/OMS_Automation/src/test/java/stepDefination_DSD_OMS/OrderEntryPage/OrderEntryPageSteps1.java</url>
+          <line>143</line>
+          <option name="timeStamp" value="572" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/OMS_Automation/src/test/java/stepDefination_DSD_OMS/OrderEntryPage/OrderEntryPageSteps8.java</url>
+          <line>45</line>
+          <option name="timeStamp" value="575" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/OMS_Automation/src/test/java/stepDefination_DSD_OMS/OrderEntryPage/OrderEntryPageSteps8.java</url>
+          <line>44</line>
+          <option name="timeStamp" value="576" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/OMS_Automation/src/test/java/stepDefination_DSD_OMS/OrderEntryPage/OrderEntryPageSteps8.java</url>
+          <line>48</line>
+          <option name="timeStamp" value="578" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/OMS_Automation/src/test/java/stepDefination_DSD_OMS/OrderEntryPage/OrderEntryPageSteps8.java</url>
+          <line>49</line>
+          <option name="timeStamp" value="579" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/OMS_Automation/src/test/java/stepDefination_DSD_OMS/OrderEntryPage/OrderEntryPageSteps8.java</url>
+          <line>50</line>
+          <option name="timeStamp" value="580" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/OMS_Automation/src/test/java/stepDefination_DSD_OMS/OrderEntryPage/OrderEntryPageSteps8.java</url>
+          <line>52</line>
+          <option name="timeStamp" value="581" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/OMS_Automation/src/test/java/stepDefination_DSD_OMS/OrderEntryPage/OrderEntryPageSteps8.java</url>
+          <line>54</line>
+          <option name="timeStamp" value="582" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/OMS_Automation/src/test/java/stepDefination_DSD_OMS/OrderEntryPage/OrderEntryPageSteps8.java</url>
+          <line>55</line>
+          <option name="timeStamp" value="583" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/OMS_Automation/src/test/java/stepDefination_DSD_OMS/OrderEntryPage/OrderEntryPageSteps8.java</url>
+          <line>56</line>
+          <option name="timeStamp" value="584" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/OMS_Automation/src/main/java/pages_DSD_OMS/orderEntry/NewOrderEntryPage.java</url>
+          <line>4302</line>
+          <option name="timeStamp" value="599" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/OMS_Automation/src/main/java/pages_DSD_OMS/orderEntry/NewOrderEntryPage.java</url>
+          <line>4305</line>
+          <option name="timeStamp" value="600" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/OMS_Automation/src/main/java/pages_DSD_OMS/orderEntry/NewOrderEntryPage.java</url>
+          <line>4315</line>
+          <option name="timeStamp" value="601" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/OMS_Automation/src/main/java/pages_DSD_OMS/orderEntry/NewOrderEntryPage.java</url>
+          <line>4318</line>
+          <option name="timeStamp" value="602" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/OMS_Automation/src/main/java/pages_DSD_OMS/orderEntry/NewOrderEntryPage.java</url>
+          <line>4320</line>
+          <option name="timeStamp" value="603" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/OMS_Automation/src/main/java/pages_DSD_OMS/orderEntry/NewOrderEntryPage.java</url>
+          <line>4321</line>
+          <option name="timeStamp" value="604" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/OMS_Automation/src/main/java/pages_DSD_OMS/orderEntry/NewOrderEntryPage.java</url>
+          <line>4324</line>
+          <option name="timeStamp" value="605" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/OMS_Automation/src/main/java/pages_DSD_OMS/orderEntry/NewOrderEntryPage.java</url>
+          <line>4325</line>
+          <option name="timeStamp" value="606" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/OMS_Automation/src/main/java/pages_DSD_OMS/orderEntry/NewOrderEntryPage.java</url>
+          <line>4335</line>
+          <option name="timeStamp" value="610" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/OMS_Automation/src/main/java/pages_DSD_OMS/orderEntry/NewOrderEntryPage.java</url>
+          <line>4336</line>
+          <option name="timeStamp" value="611" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/OMS_Automation/src/main/java/pages_DSD_OMS/orderEntry/NewOrderEntryPage.java</url>
+          <line>4340</line>
+          <option name="timeStamp" value="612" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/OMS_Automation/src/main/java/pages_DSD_OMS/orderEntry/NewOrderEntryPage.java</url>
+          <line>4362</line>
+          <option name="timeStamp" value="613" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/OMS_Automation/src/main/java/pages_DSD_OMS/orderEntry/NewOrderEntryPage.java</url>
+          <line>4367</line>
+          <option name="timeStamp" value="614" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/OMS_Automation/src/main/java/pages_DSD_OMS/orderEntry/NewOrderEntryPage.java</url>
+          <line>4369</line>
+          <option name="timeStamp" value="615" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/OMS_Automation/src/main/java/pages_DSD_OMS/orderEntry/NewOrderEntryPage.java</url>
+          <line>4370</line>
+          <option name="timeStamp" value="616" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/OMS_Automation/src/main/java/pages_DSD_OMS/orderEntry/NewOrderEntryPage.java</url>
+          <line>4373</line>
+          <option name="timeStamp" value="617" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/OMS_Automation/src/main/java/pages_DSD_OMS/orderEntry/NewOrderEntryPage.java</url>
+          <line>4374</line>
+          <option name="timeStamp" value="618" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/OMS_Automation/src/main/java/pages_DSD_OMS/orderEntry/NewOrderEntryPage.java</url>
+          <line>4376</line>
+          <option name="timeStamp" value="619" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/OMS_Automation/src/main/java/pages_DSD_OMS/orderEntry/NewOrderEntryPage.java</url>
+          <line>4377</line>
+          <option name="timeStamp" value="620" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/OMS_Automation/src/main/java/pages_DSD_OMS/orderEntry/NewOrderEntryPage.java</url>
+          <line>4393</line>
+          <option name="timeStamp" value="622" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/OMS_Automation/src/main/java/pages_DSD_OMS/orderEntry/NewOrderEntryPage.java</url>
+          <line>4391</line>
+          <option name="timeStamp" value="623" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/OMS_Automation/src/main/java/pages_DSD_OMS/orderEntry/NewOrderEntryPage.java</url>
+          <line>4395</line>
+          <option name="timeStamp" value="624" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/OMS_Automation/src/main/java/pages_DSD_OMS/orderEntry/NewOrderEntryPage.java</url>
+          <line>4333</line>
+          <option name="timeStamp" value="625" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/OMS_Automation/src/main/java/pages_DSD_OMS/orderEntry/NewOrderEntryPage.java</url>
+          <line>4343</line>
+          <option name="timeStamp" value="628" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/OMS_Automation/src/main/java/pages_DSD_OMS/orderEntry/NewOrderEntryPage.java</url>
+          <line>4344</line>
+          <option name="timeStamp" value="629" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/OMS_Automation/src/main/java/pages_DSD_OMS/orderEntry/NewOrderEntryPage.java</url>
+          <line>4345</line>
+          <option name="timeStamp" value="630" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/OMS_Automation/src/main/java/pages_DSD_OMS/orderEntry/NewOrderEntryPage.java</url>
+          <line>4360</line>
+          <option name="timeStamp" value="631" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/OMS_Automation/src/main/java/pages_DSD_OMS/orderEntry/NewOrderEntryPage.java</url>
+          <line>4347</line>
+          <option name="timeStamp" value="632" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/OMS_Automation/src/main/java/pages_DSD_OMS/orderEntry/NewOrderEntryPage.java</url>
+          <line>4349</line>
+          <option name="timeStamp" value="634" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/OMS_Automation/src/main/java/pages_DSD_OMS/orderEntry/NewOrderEntryPage.java</url>
+          <line>4352</line>
+          <option name="timeStamp" value="636" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/OMS_Automation/src/main/java/pages_DSD_OMS/orderEntry/NewOrderEntryPage.java</url>
+          <line>4353</line>
+          <option name="timeStamp" value="637" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/OMS_Automation/src/main/java/pages_DSD_OMS/orderEntry/NewOrderEntryPage.java</url>
+          <line>4354</line>
+          <option name="timeStamp" value="638" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/OMS_Automation/src/main/java/pages_DSD_OMS/orderEntry/NewOrderEntryPage.java</url>
+          <line>4356</line>
+          <option name="timeStamp" value="639" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/OMS_Automation/src/main/java/pages_DSD_OMS/orderEntry/NewOrderEntryPage.java</url>
+          <line>4357</line>
+          <option name="timeStamp" value="640" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/OMS_Automation/src/main/java/pages_DSD_OMS/orderEntry/NewOrderEntryPage.java</url>
+          <line>4358</line>
+          <option name="timeStamp" value="641" />
+        </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/OMS_Automation/src/test/java/stepDefination_DSD_OMS/LoginPageStep.java</url>
           <line>791</line>
@@ -1010,8 +1221,53 @@
           </properties>
           <option name="timeStamp" value="390" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/OMS_Automation/src/main/java/pages_DSD_OMS/standingOrder/NewStandingOrderCard.java</url>
+          <line>1035</line>
+          <properties class="pages_DSD_OMS.standingOrder.NewStandingOrderCard" method="selectToDateForGenerateSO">
+            <option name="EMULATED" value="true" />
+          </properties>
+          <option name="timeStamp" value="545" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/OMS_Automation/src/test/java/stepDefination_DSD_OMS/OrderEntryPage/OrderEntryPageSteps1.java</url>
+          <line>140</line>
+          <properties class="stepDefination_DSD_OMS.OrderEntryPage.OrderEntryPageSteps1" method="click_on_add_product_drop_down_and_select_catalog_option">
+            <option name="EMULATED" value="true" />
+          </properties>
+          <option name="timeStamp" value="571" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/OMS_Automation/src/main/java/pages_DSD_OMS/orderEntry/NewOrderEntryPage.java</url>
+          <line>1996</line>
+          <properties class="pages_DSD_OMS.orderEntry.NewOrderEntryPage" method="Add_Product_From_Catalog">
+            <option name="EMULATED" value="true" />
+          </properties>
+          <option name="timeStamp" value="573" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/OMS_Automation/src/test/java/stepDefination_DSD_OMS/OrderEntryPage/OrderEntryPageSteps8.java</url>
+          <line>42</line>
+          <properties class="stepDefination_DSD_OMS.OrderEntryPage.OrderEntryPageSteps8" method="userSearchesForBrandAndGoesThroughTheProductNumbers">
+            <option name="EMULATED" value="true" />
+          </properties>
+          <option name="timeStamp" value="574" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/OMS_Automation/src/main/java/pages_DSD_OMS/orderEntry/NewOrderEntryPage.java</url>
+          <line>4294</line>
+          <properties class="pages_DSD_OMS.orderEntry.NewOrderEntryPage" method="listCatelog">
+            <option name="EMULATED" value="true" />
+          </properties>
+          <option name="timeStamp" value="598" />
+        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
+    <pin-to-top-manager>
+      <pinned-members>
+        <PinnedItemInfo parentTag="org.openqa.selenium.remote.RemoteWebElement" memberName="foundBy" />
+      </pinned-members>
+    </pin-to-top-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/AFS_Automation$C__Users_Divya_Ramadas_Documents_Ign_AFS_Automation_OMS_Automation_TestNG_SO_xml.ic" NAME="$PROJECT_DIR$/OMS_Automation/TestNG_SO.xml Coverage Results" MODIFIED="1698899856722" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />

@@ -50,10 +50,11 @@ public class OrderEntryPageSteps8
             newOE.readProductInList();
             newOE.catalogOK();
         }
-        else
+        else if(HelpersMethod.IsExists("//div[@class='product-catalog-container']",driver))
         {
             newOE.cardCatelog();
             newOE.readProductInCard();
+            newOE.catalogOK();
         }
     }
 
