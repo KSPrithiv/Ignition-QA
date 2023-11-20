@@ -148,7 +148,7 @@ public class CheckOutSummaryPage
         {
             WebElement submitButton = HelpersMethod.FindByElement(driver, "xpath", "//button[@id='ConfirmSummaryButton']");
             HelpersMethod.ScrollUpScrollBar(driver);
-            HelpersMethod.ClickBut(driver, submitButton, 6000);
+            HelpersMethod.ClickBut(driver, submitButton, 8000);
             wait = new FluentWait<WebDriver>(driver)
                     .withTimeout(Duration.ofSeconds(120))
                     .pollingEvery(Duration.ofSeconds(2))
@@ -159,7 +159,7 @@ public class CheckOutSummaryPage
         {
             //Click on Arrow button next to submit button
             WebElement submitCutOff=HelpersMethod.FindByElement(driver,"xpath","//button[@id='ConfirmSummarySplitButton']/following-sibling::div/button/span");
-            HelpersMethod.ClickBut(driver,submitCutOff,4000);
+            HelpersMethod.ClickBut(driver,submitCutOff,8000);
             new WebDriverWait(driver,Duration.ofMillis(20000)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(@class,'k-animation-container k-animation-container-relative k-animation-container-shown')]/descendant::ul/li")));
             //Click on list that appears
             WebElement arrowCutoff=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-animation-container k-animation-container-relative k-animation-container-shown')]/descendant::ul/li");

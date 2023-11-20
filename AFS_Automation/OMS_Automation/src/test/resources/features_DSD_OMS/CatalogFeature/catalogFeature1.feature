@@ -33,7 +33,7 @@ Scenario: To test + and - symbol orderation, that appears in my cart page
   Scenario: Testing of Category option
     Given User must be on Order Entry Page to select Catalog
     And User should navigate to Catalog tab
-    And User should click on Reset filter button and all the products should displayed in List view in Catalog page
+    And User should click on Reset filter button and all the products should displayed in Card view in Catalog page
     Then User should click on Category dropdown and select any of the category
     |Juices/Juice Drinks/Water|
     And User should read all the products available catalog page
@@ -42,7 +42,7 @@ Scenario: To test + and - symbol orderation, that appears in my cart page
   Scenario: Testing of SubCategory option
     Given User must be on Order Entry Page to select Catalog
     And User should navigate to Catalog tab
-    And User should click on Reset filter button and all the products should displayed in List view in Catalog page
+    And User should click on Reset filter button and all the products should displayed in Card view in Catalog page
     Then User should click on SubCategory dropdown and select any of the category
     |Breakfast|
     And User should read all the products available catalog page
@@ -51,7 +51,7 @@ Scenario: To test + and - symbol orderation, that appears in my cart page
   Scenario: Testing of Brand option
     Given User must be on Order Entry Page to select Catalog
     And User should navigate to Catalog tab
-    And User should click on Reset filter button and all the products should displayed in List view in Catalog page
+    And User should click on Reset filter button and all the products should displayed in Card view in Catalog page
     Then User should click on Brand dropdown and select any of the category
     |DR PEPPER|
     And User should read all the products available catalog page
@@ -60,7 +60,7 @@ Scenario: To test + and - symbol orderation, that appears in my cart page
   Scenario: Select OG from Dropdown and display products
     Given User must be on Order Entry Page to select Catalog
     And User should navigate to Catalog tab
-    And User should click on Reset filter button and all the products should displayed in List view in Catalog page
+    And User should click on Reset filter button and all the products should displayed in Card view in Catalog page
     Then User should click on Order Guide dropdown and select any of the category
     And User should read all the products available catalog page
 

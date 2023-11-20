@@ -124,7 +124,7 @@ Feature: Disconnected mode
     Then Enter PO# for New order
       |PO123|
     Then Click on Add product drop down and select catalog option
-    And User should select Product from catalog and Enter Qty for the products
+    And User should select Product from catalog and Enter Qty for the products in disconnected mode
       |50|40|
     Then Click on Next button
     And Click on SubmitOrder button
@@ -183,9 +183,9 @@ Feature: Disconnected mode
     And User should navigate to Catalog tab
     And User should click on Reset filter button and all the products should displayed in Card view in Catalog page
     Then User enters Product# in Search bar and enters Qty
-      |50|50|
-      |40|30|
-      |40|40|
+      |70|100|
+      |80|70|
+      |80|90|
     Then User click on cart in catalog and click on Gotocart, before that Delete Product from popup
     And user should be on New Order entry page
     Then Enter PO# for New order

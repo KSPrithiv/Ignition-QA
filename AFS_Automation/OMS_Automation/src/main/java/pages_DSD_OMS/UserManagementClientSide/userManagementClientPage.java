@@ -240,6 +240,12 @@ public class userManagementClientPage
         try
         {
             HelpersMethod.ActClick(driver,roleName,1000);
+            Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(120))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
         }
         catch (Exception e){}
     }

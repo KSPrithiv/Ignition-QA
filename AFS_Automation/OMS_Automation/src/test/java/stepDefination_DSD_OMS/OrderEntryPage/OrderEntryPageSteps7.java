@@ -128,7 +128,7 @@ public class OrderEntryPageSteps7
         newOE=new NewOrderEntryPage(driver,scenario);
         newOE.validatePriceOverrideIcon();
         newOE.Click_On_PriceOverrideIcon();
-        newOE.PriceOverridePopup_WhatIfPriceUnit(gridtype.get(0).get(1));
+        newOE.PriceOverridePopup_WhatIfPriceUnit(gridtype.get(0).get(0));
         newOE.clickOnGridTypeDropdown();
         newOE.selectMainGridTypeDropDown();
         newOE.validateMainGridType();

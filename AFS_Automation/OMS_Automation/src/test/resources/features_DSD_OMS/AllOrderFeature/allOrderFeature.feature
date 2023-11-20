@@ -133,7 +133,7 @@ Feature: All orders
     And User should drag and drop "<Drag and Drop>" then verify grouping with number of elements in each group
     Examples:
       | Drag and Drop |
-      | Day of week   |
+      | Order Type    |
 
   @PrintAllOrder
   Scenario: Test scenario for testing print button functionality

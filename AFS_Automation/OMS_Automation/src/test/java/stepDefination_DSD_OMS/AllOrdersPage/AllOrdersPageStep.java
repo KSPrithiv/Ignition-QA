@@ -121,7 +121,7 @@ public class AllOrdersPageStep
             try
             {
                 exists = false;
-                WebElement WebEle = HelpersMethod.FindByElement(driver, "xpath", "//li[contains(@class,'k-item')]/span[@class='k-link' and contains(text(),'All orders')]|//li[contains(@class,'k-item')]/span[@class='k-link' and contains(text(),'All Orders')]|//li[contains(@class,'k-item')]/span[@class='k-link' and contains(text(),'Open orders')]");
+                WebElement WebEle = HelpersMethod.FindByElement(driver, "xpath", "//li[contains(@class,'k-item')]/span[@class='k-link' and contains(text(),'All orders')]|//li[contains(@class,'k-item')]/span[@class='k-link' and contains(text(),'All Orders')]|//li[contains(@class,'k-item')]/span[@class='k-link' and contains(text(),'Open orders')]|//li[contains(@class,'k-item')]/span[@class='k-link' and contains(text(),'Open Orders')]");
                 if (HelpersMethod.EleDisplay(WebEle))
                 {
                     String Menu_Text=null;
@@ -131,26 +131,28 @@ public class AllOrdersPageStep
                     {
                         act.moveToElement(Menu).build().perform();
                         Menu_Text=Menu.getText();
-                        if(Menu_Text.contains("All Orders")||Menu_Text.contains("Open orders")||Menu_Text.contains("All orders"))
+                        if(Menu_Text.contains("All Orders")||Menu_Text.contains("Open orders")||Menu_Text.contains("All orders")||Menu_Text.contains("Open Orders"))
                         {
-                            WebElement menuItem=HelpersMethod.FindByElement(driver,"xpath","//li[contains(@class,'k-item')]/span[@class='k-link' and contains(text(),'All orders')]|//li[contains(@class,'k-item')]/span[@class='k-link' and contains(text(),'All Orders')]|//li[contains(@class,'k-item')]/span[@class='k-link' and contains(text(),'Open orders')]");
+                            WebElement menuItem=HelpersMethod.FindByElement(driver,"xpath","//li[contains(@class,'k-item')]/span[@class='k-link' and contains(text(),'All orders')]|//li[contains(@class,'k-item')]/span[@class='k-link' and contains(text(),'All Orders')]|//li[contains(@class,'k-item')]/span[@class='k-link' and contains(text(),'Open orders')]|//li[contains(@class,'k-item')]/span[@class='k-link' and contains(text(),'Open Orders')]");
                             HelpersMethod.JScriptClick(driver,menuItem,1000);
                             break;
                         }
                     }
-                    if (HelpersMethod.IsExists("//div[@class='loader']", driver))
-                    {
-                        WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                        HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 400000);
-                    }
+                    Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                            .withTimeout(Duration.ofSeconds(150))
+                            .pollingEvery(Duration.ofSeconds(2))
+                            .ignoring(NoSuchElementException.class);
+                    wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
                     String status = HelpersMethod.returnDocumentStatus(driver);
                     if (status.equals("loading"))
                     {
                         HelpersMethod.waitTillLoadingPage(driver);
                     }
-                    Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
-                            .withTimeout(Duration.ofSeconds(60))
-                            .pollingEvery(Duration.ofSeconds(5))
+
+                    wait = new FluentWait<WebDriver>(driver)
+                            .withTimeout(Duration.ofSeconds(150))
+                            .pollingEvery(Duration.ofSeconds(2))
                             .ignoring(NoSuchElementException.class);
                     wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
 
@@ -265,6 +267,7 @@ public class AllOrdersPageStep
     public void userClicksOnAddFilterButtonAndSearchForOrderNo()
     {
         allOrder=new AllOrderPage(driver,scenario);
+
         allOrder.ClickShowAllOrderCheckbox();
         allOrder.SearchNewlyCreatedOrder(Ord_No);
     }
@@ -273,6 +276,7 @@ public class AllOrdersPageStep
     public void userClicksOnShowAllOrdersCheckBoxAfterClickingAllOrdersTab()
     {
         allOrder=new AllOrderPage(driver,scenario);
+        allOrder.ValidateAllOrder();
         allOrder.ClickShowAllOrderCheckbox();
     }
 
@@ -588,7 +592,7 @@ public class AllOrdersPageStep
     {
         allOrder=new AllOrderPage(driver,scenario);
         allOrder.SubmittedStatusDropDown();
-        allOrder.NotSubmitOptionFromDropDown();
+        allOrder.SelectSubmitedOptionFromDropDown();
         allOrder.ClickOnSearchButton();
         String oNo=allOrder.readNotSubmitedOrder();
         allOrder.AddFilterClick(oNo);

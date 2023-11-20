@@ -40,6 +40,7 @@ public class OrderEntryPageSteps5
     static OrderHistoryPage orderHistoryPage;
     static OrderEntryPage orderpage;
 
+
     @Before
     public void LaunchBrowser1(Scenario scenario) throws Exception
     {
@@ -124,6 +125,7 @@ public class OrderEntryPageSteps5
     {
         List<List<String>> Reason = tabledata.asLists(String.class);
         newOE=new NewOrderEntryPage(driver,scenario);
+        newOE.VerifyCancelPopUp();
         newOE.CancelAndSkipPopup();
         newOE.New_OE_Validate_Skip_Button();
         newOE.New_OE_Select_SkipReason(Reason.get(0).get(0));
@@ -150,13 +152,6 @@ public class OrderEntryPageSteps5
         newOE = new NewOrderEntryPage(driver,scenario);
         String ProdName= TestBase.testEnvironment.getForeignLangDesc();
         newOE.EnterProdNo_InSearchBar(ProdName);
-    }
-
-    @Then("User should  click on sales rep index icon and select sales rep")
-    public void userShouldClickOnSalesRepIndexIconAndSelectSalesRep() throws InterruptedException, AWTException
-    {
-        orderpage=new OrderEntryPage(driver, scenario);
-        orderpage.salesRep();
     }
 
     @And("User should click on delivery date and select delivery date by increase day for pending order then user should handle the popup also")

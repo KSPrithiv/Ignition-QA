@@ -236,6 +236,8 @@ public class QuotePageSteps
     {
         List<List<String>> Qty=tabledata.asLists(String.class);
         newQuotePage=new NewQuotePage(driver,scenario);
+        newQuotePage.validateCatalog();
+        newQuotePage.ResetFilter_Catalog();
         newQuotePage.SelectProductFromCatalog();
         newOE=new NewOrderEntryPage(driver,scenario);
         newOE.EnterQty(Qty.get(0).get(0), Qty.get(0).get(1));

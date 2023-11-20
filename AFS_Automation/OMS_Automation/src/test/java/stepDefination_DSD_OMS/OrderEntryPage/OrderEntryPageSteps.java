@@ -125,7 +125,7 @@ public class OrderEntryPageSteps
         orderpage = new OrderEntryPage(driver, scenario);
         orderpage.HandleError_Page();
         orderpage.Refresh_Page2();
-        //orderpage.Read_DeliveryDate();
+        orderpage.Read_DeliveryDate();
         newOE=new NewOrderEntryPage(driver,scenario);
         newOE.Discard_All_Pending_Order();
         orderpage=new OrderEntryPage(driver,scenario);
@@ -270,11 +270,11 @@ public class OrderEntryPageSteps
     public void userShouldSelectNoteFromPopupAndOrderGuideFromPopupForQuote() throws InterruptedException, AWTException
     {
         orderpage = new OrderEntryPage(driver, scenario);
-        if (HelpersMethod.IsExists("//div[@class='loader']", driver))
+       /* if (HelpersMethod.IsExists("//div[@class='loader']", driver))
         {
             WebElement WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
             HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000000);
-        }
+        }*/
         for(int i=0;i<=1;i++)
         {
             orderpage.OrderGuidePopup();
@@ -357,6 +357,7 @@ public class OrderEntryPageSteps
     {
         newOE = new NewOrderEntryPage(driver,scenario);
         List<List<String>> ProQty = tabledata.asLists(String.class);
+        newOE.validateCatalogProducts();
         newOE.EnterQty(ProQty.get(0).get(0), ProQty.get(0).get(1));
     }
 
@@ -529,19 +530,19 @@ public class OrderEntryPageSteps
         String Case=PO_Qty.get(0).get(0);
         String Unit=PO_Qty.get(0).get(1);
         String uomString=newOE.VerifyUOM();
-        if(uomString.equals("Units"))
+        if(uomString.equals("Units")||uomString.equals("EA"))
         {
             newOE.CheckForQuickUnitEnabled(Unit);
             newOE.exceedsMaxQty();
             newOE.toastCurrentlyUnavailable();
         }
-        else if(uomString.equals("Cases"))
+        else if(uomString.equals("Cases")||uomString.equals("CS"))
         {
             newOE.CheckForQuickCaseEnabled(Case);
             newOE.exceedsMaxQty();
             newOE.toastCurrentlyUnavailable();
         }
-        else if(uomString.equals("Cases, Units")||uomString.equals("Units, Cases"))
+        else if(uomString.equals("Cases, Units")||uomString.equals("Units, Cases")||uomString.equals("CS, EA")||uomString.equals("EA, CS"))
         {
             newOE.CheckForQuickCaseEnabled(Case);
             newOE.CheckForQuickUnitEnabled(Unit);
@@ -786,11 +787,7 @@ public class OrderEntryPageSteps
     {
         newOE=new NewOrderEntryPage(driver,scenario);
         newOE.Import_button(Ord_No);
-        if(HelpersMethod.IsExists("//div[@class='loader']",driver))
-        {
-            WebElement WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 80000);
-        }
+        newOE.ValidateNewOE();
     }
 
     @Then("Add Qty for first product in product grid")
@@ -882,5 +879,50 @@ public class OrderEntryPageSteps
         orderpage.ValidateOE();
         orderpage.Enter_OrderNo_Searchbox(Ord_No);
         orderpage.Existence_OrderNo_OG();
+    }
+
+    @And("User should select Product from catalog and Enter Qty for the products in disconnected mode")
+    public void userShouldSelectProductFromCatalogAndEnterQtyForTheProductsInDisconnectedMode(DataTable tabledata) throws InterruptedException, AWTException, SQLException, ClassNotFoundException, InstantiationException, IllegalAccessException
+    {
+        List<List<String>> Prod_detail = tabledata.asLists(String.class);
+        String Prod_No= DataBaseConnection.DataBaseConn(TestBase.testEnvironment.getSingle_OneMoreProd());
+        newOE=new NewOrderEntryPage(driver,scenario);
+        newOE.Validate_Catalog();
+        newOE.ResetFilter_CatalogDisconnectedMode();
+        String pro=String.valueOf(Prod_No);
+        newOE.validateCatalogProducts();
+        newOE.Search_Prod_in_Catalog(pro);
+        newOE.EnterQty(Prod_detail.get(0).get(0),Prod_detail.get(0).get(1));
+        scenario.log("PRODUCT # "+pro+" PRODUCT QTY "+Prod_detail.get(0).get(0)+" "+Prod_detail.get(0).get(1));
+    }
+
+    @Then("Click on Next button and validate shipping address")
+    public void clickOnNextButtonAndValidateShippingAddress() throws InterruptedException, AWTException
+    {
+        exists=false;
+        newOE = new NewOrderEntryPage(driver,scenario);
+        newOE.readProductsInOrder();
+        exists=newOE.ClickNext();
+        newOE.OutOfStockPop_ERP();
+        checkorder=new CheckOutOrderPage(driver,scenario);
+        if(HelpersMethod.IsExists("//div[@id='paymentMethodCard']",driver))
+        {
+            Thread.sleep(4000);
+            //checkorder.validateCheckOrder();
+            checkorder.Select_PaymentMethod_ClickDownArrow();
+            if(HelpersMethod.IsExists("//tr[1]/descendant::td[@class='payment-method-type-cell']",driver))
+            {
+                checkorder.SelectPaymentMethod();
+                scenario.log("FIRST PAYMENT OPTION HAS BEEN SELECTED");
+            }
+            else
+            {
+                checkorder.Click_On_Without_Providing_Payment();
+                scenario.log("WITHOUT PROVIIDNG PAYMENT OPTION HAS BEEN SELECTED");
+            }
+            checkorder.validateDefaultShippingAddress();
+            //checkorder.DeliveryAddressCard();
+            checkorder.NextButton_Click();
+        }
     }
 }

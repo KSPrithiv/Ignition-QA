@@ -1452,7 +1452,7 @@ public class CatalogPage
             {
                 JavascriptExecutor js = ((JavascriptExecutor) driver);
                 js.executeScript("window.location.reload()");
-                WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(100000));
+                WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(1000));
                 if (wait.until(ExpectedConditions.alertIsPresent()) == null)
                 {
 
@@ -1463,8 +1463,8 @@ public class CatalogPage
                     alert.accept();
                 }
             }
-            else
-            {
+           /* else
+            {*/
                 status = HelpersMethod.returnDocumentStatus(driver);
                 if (status.equals("loading"))
                 {
@@ -1478,7 +1478,7 @@ public class CatalogPage
                         .pollingEvery(Duration.ofSeconds(10))
                         .ignoring(NoSuchElementException.class);
                 wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("productsCard")));
-            }
+            //}
         }
         catch (Exception e){}
     }
