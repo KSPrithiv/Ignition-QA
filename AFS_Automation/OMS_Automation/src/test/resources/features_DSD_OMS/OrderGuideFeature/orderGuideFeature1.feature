@@ -13,7 +13,7 @@ Feature: Order Guide1
     Given User must be on Order Entry Page to select OG
     And User should navigate to OG
     Then User clicks on Create new button and should navigate to New OG page
-    Then User enters Description "<OG>" Start date 4 and End date 5 day from current date
+    Then User enters Description "<OG>" Start date 10 and End date 11 day from current date
     Then User clicks on Add product button and select Catalog from drop down
       |Catalog|
     And User should select products from catalog popup
@@ -40,7 +40,7 @@ Feature: Order Guide1
     Given User must be on Order Entry Page to select OG
     And User should navigate to OG
     Then User clicks on Create new button and should navigate to New OG page
-    Then User enters Description "<OG>" Start date 5 and End date 6 day from current date
+    Then User enters Description "<OG>" Start date 12 and End date 13 day from current date
     And User verifies New OG page and clicks on import button
     Then User click on Save button
     And User should navigate back to OG page and verify OG "<OG>"  existence
@@ -53,7 +53,7 @@ Feature: Order Guide1
     Given User must be on Order Entry Page to select OG
     And User should navigate to OG
     Then User clicks on Create new button and should navigate to New OG page
-    Then User enters Description "<OG>" Start date 6 and End date 7 day from current date
+    Then User enters Description "<OG>" Start date 14 and End date 15 day from current date
     And User selects Day of week from drop down
     And User enters Quick Product number and Sequence number
       |4|
@@ -68,7 +68,7 @@ Feature: Order Guide1
     Given User must be on Order Entry Page to select OG
     And User should navigate to OG
     Then User clicks on Create new button and should navigate to New OG page
-    Then User enters Description "<OG>" Start date 7 and End date 8 day from current date
+    Then User enters Description "<OG>" Start date 16 and End date 17 day from current date
     Then User clicks on Add product button and select Catalog from drop down
       |Catalog|
     And User should select products from catalog popup to add muliple products

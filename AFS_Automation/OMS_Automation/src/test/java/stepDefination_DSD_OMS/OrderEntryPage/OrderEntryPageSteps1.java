@@ -153,9 +153,9 @@ public class OrderEntryPageSteps1
         newOE.Validate_Catalog();
         newOE.ResetFilter_Catalog();
         String pro=String.valueOf(Prod_No);
+        newOE.validateCatalogProducts();
         newOE.Search_Prod_in_Catalog(pro);
-        newOE.EnterQty_MutlipleProd(Prod_detail.get(0).get(0),Prod_detail.get(0).get(1));
-        newOE.Catalog_OK();
+        newOE.EnterQty(Prod_detail.get(0).get(0),Prod_detail.get(0).get(1));
         scenario.log("PRODUCT # "+pro+" PRODUCT QTY "+Prod_detail.get(0).get(0)+" "+Prod_detail.get(0).get(1));
     }
 

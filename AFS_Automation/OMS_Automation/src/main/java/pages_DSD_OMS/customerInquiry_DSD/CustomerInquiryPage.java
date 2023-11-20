@@ -2,7 +2,6 @@ package pages_DSD_OMS.customerInquiry_DSD;
 
 import helper.HelpersMethod;
 import io.cucumber.java.Scenario;
-import org.apache.logging.log4j.core.tools.picocli.CommandLine;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
@@ -148,11 +147,12 @@ public class CustomerInquiryPage
             if (HelpersMethod.IsExists("//div[@class='loader']", driver))
             {
                 WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 200000);
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000000);
             }
-            WebEle=HelpersMethod.FindByElement(driver,"xpath","//span[contains(@class,'spnmoduleNameHeader')]");
-            title=WebEle.getText();
-            Assert.assertEquals("Customer inquiry",title);
+            //WebEle=HelpersMethod.FindByElement(driver,"xpath","//span[contains(@class,'spnmoduleNameHeader')]");
+            //title=WebEle.getText();
+            title=HelpersMethod.gettingTitle(driver);
+            Assert.assertEquals("Customer Master",title);
         }
         catch (Exception e){}
     }

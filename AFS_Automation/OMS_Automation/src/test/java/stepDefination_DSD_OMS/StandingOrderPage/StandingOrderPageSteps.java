@@ -211,6 +211,7 @@ public class StandingOrderPageSteps
     {
         standingOrder=new NewStandingOrderPage(driver,scenario);
         standingOrder.ValidateCatalogPopup();
+        standingOrder.ResetFilter_Catalog();
         if (HelpersMethod.IsExists("//div[contains(@class,'k-widget k-window k-dialog')]/descendant::div[contains(@class,'i-grid')]", driver))
         {
             standingOrder.ListView();
@@ -287,6 +288,7 @@ public class StandingOrderPageSteps
     {
         standingOrder=new NewStandingOrderPage(driver,scenario);
         standingOrder.ValidateCardView();
+        standingOrder.ResetFilter_Catalog();
         standingOrder.clickCategory();
         standingOrder.selectCategory();
     }
@@ -380,6 +382,7 @@ public class StandingOrderPageSteps
     {
         standingOrder=new NewStandingOrderPage(driver,scenario);
         standingOrder.ValidateCatalogPopup();
+        standingOrder.ResetFilter_Catalog();
         standingOrder.SearchProductSingleProd();
         standingOrder.validateProductSelectedOrNot();
         standingOrder.CatalogOKButton();

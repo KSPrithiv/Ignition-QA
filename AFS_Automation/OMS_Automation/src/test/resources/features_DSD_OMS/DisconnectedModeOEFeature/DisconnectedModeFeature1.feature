@@ -19,10 +19,10 @@ Feature: Disconnected mode
     And User should click on Reset filter button and all the products should displayed in Card view in Catalog page
     Then User enters different Product# in Search bar and enter Qty by clicking image and click Delete product
       |60|
-      |40|
-      |30|
-      |30|
-      |50|
+      |100|
+      |70|
+      |60|
+      |80|
     Then User click on cart in catalog and click on Gotocart and select existing order
     And user should be on New Order entry page
     Then Enter PO# for New order
@@ -30,6 +30,11 @@ Feature: Disconnected mode
     Then Click on Next button
     Then Click on SubmitOrder button
     Then User should be navigated to Order Entry page
+
+
+
+
+
 
   @DMToConnected
   Scenario: for Disconnected mode to connected mode

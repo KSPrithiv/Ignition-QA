@@ -133,7 +133,7 @@ public class OrderGuidePageStep
                 if (HelpersMethod.IsExists("//div[@class='loader']", driver))
                 {
                     WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 600000);
+                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000000);
                 }
                 exists = orderGuidePage.ValidateOG();
                 currentURL=driver.getCurrentUrl();
@@ -382,6 +382,8 @@ public class OrderGuidePageStep
         //handling catalog popup. Selecting Catalog option from drop down
         createOGPage.ClickOnAddProduct();
         createOGPage.SelectValueFromAddProduct(ProdOption.get(0).get(1));
+        createOGPage.ValidateCatalogDisplay();
+        //createOGPage.validateProductExists();
         createOGPage.SelectProductCatalog();
         if (HelpersMethod.IsExists("//div[contains(@class,'k-widget k-window k-dialog')]/descendant::div[contains(@class,'i-grid')]", driver))
         {

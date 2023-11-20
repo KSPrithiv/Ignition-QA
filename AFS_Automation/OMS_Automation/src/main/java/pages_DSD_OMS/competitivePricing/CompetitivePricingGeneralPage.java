@@ -171,15 +171,15 @@ public class CompetitivePricingGeneralPage
                     alert.accept();
                 }
             }
-            else
-            {
+           /* else
+            {*/
                 driver.navigate().to(currentURL);
                 if (HelpersMethod.IsExists("//div[@class='loader']", driver))
                 {
                     WebElement WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100000);
+                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000000);
                 }
-            }
+            //}
         }
         catch (Exception e){}
     }

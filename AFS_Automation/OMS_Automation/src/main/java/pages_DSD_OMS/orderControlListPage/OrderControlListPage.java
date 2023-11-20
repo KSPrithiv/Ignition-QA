@@ -127,7 +127,7 @@ public class OrderControlListPage
             if (HelpersMethod.IsExists("//div[contains(@class,'k-widget k-window k-dialog')]", driver)) {
                 JavascriptExecutor js = ((JavascriptExecutor) driver);
                 js.executeScript("window.location.reload()");
-                WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(1000000));
+                WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(1000));
                 if (wait.until(ExpectedConditions.alertIsPresent()) == null) {
 
                 } else {
@@ -135,8 +135,8 @@ public class OrderControlListPage
                     alert.accept();
                 }
             }
-            else
-            {
+           /* else
+            {*/
                 WebElement humBurger = HelpersMethod.FindByElement(driver, "xpath", "//*[local-name()='svg']//*[local-name()='path' and contains(@d,'M3,18H21V16H3Zm0-5H21V11H3ZM3,6V8H21V6Z')]");
                 act1.moveToElement(humBurger).build().perform();
                 act1.click().build().perform();
@@ -275,7 +275,7 @@ public class OrderControlListPage
                         .pollingEvery(Duration.ofSeconds(2))
                         .ignoring(NoSuchElementException.class);
                 wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
-            }
+           // }
         }
         catch (Exception e){}
     }

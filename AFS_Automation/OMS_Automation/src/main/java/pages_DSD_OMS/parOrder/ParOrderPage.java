@@ -64,14 +64,13 @@ public class ParOrderPage
     //Actions methods
     public void Refresh_Page(String currentURL)
     {
-        Actions act1=new Actions(driver);
         try
         {
             if (HelpersMethod.IsExists("//div[contains(@class,'k-widget k-window k-dialog')]", driver))
             {
                 JavascriptExecutor js = ((JavascriptExecutor) driver);
                 js.executeScript("window.location.reload()");
-                WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(200000));
+                WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(1000));
                 if (wait.until(ExpectedConditions.alertIsPresent()) == null)
                 {
 
@@ -82,12 +81,10 @@ public class ParOrderPage
                     alert.accept();
                 }
             }
-            else
-            {
                 //navigating back to Current URL
                 driver.navigate().to(currentURL);
                 scenario.log("NAVIGATED TO ORDER GUIDE/PAR ORDER");
-            }
+
             String status = HelpersMethod.returnDocumentStatus(driver);
             if (status.equals("loading"))
             {

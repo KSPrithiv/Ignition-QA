@@ -52,6 +52,7 @@ public class OrderGuidePageStep1
     {
         List<List<String>> option=dataTable.asLists(String.class);
         createOGPage=new CreateOGPage(driver,scenario);
+        createOGPage.validateNewOGPage();
         createOGPage.ClickOnAddProduct();
         createOGPage.SelectValueFromAddProduct(option.get(0).get(0));
         scenario.log("OPTION SELECTED FROM ADD DROP DOWN IS "+option.get(0).get(0));
@@ -62,6 +63,8 @@ public class OrderGuidePageStep1
     {
         createOGPage=new CreateOGPage(driver,scenario);
         createOGPage.ValidateCatalogDisplay();
+        createOGPage.ResetFilter_Catalog();
+        createOGPage.validateProductInCatalog();
         if (HelpersMethod.IsExists("//div[contains(@class,'k-widget k-window k-dialog')]/descendant::div[contains(@class,'i-grid')]", driver))
         {
             createOGPage.ListView();
