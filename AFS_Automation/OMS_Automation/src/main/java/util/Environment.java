@@ -2,6 +2,7 @@ package util;
 
 import org.aeonbits.owner.Config;
 import org.aeonbits.owner.Config.Sources;
+import org.checkerframework.checker.units.qual.K;
 
 /**
  * @Project DSD_OMS
@@ -135,6 +136,9 @@ public interface Environment extends Config
 
     @Key("Bogo")
     String get_BOGO();
+
+    @Key("OrderGuide")
+    String get_OrderGuide();
 
     @Key("Category")
     String get_Category();

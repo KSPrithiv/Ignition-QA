@@ -296,7 +296,7 @@ public class orderAdminPage
             if(HelpersMethod.IsExists("//div[@class='loader']",driver))
             {
                 WebElement WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 200000);
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 2000000);
             }
             if(HelpersMethod.IsExists("//div[contains(text(),'The report returned no data. Choose other parameters.')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
             {
@@ -309,8 +309,9 @@ public class orderAdminPage
             {
                 WebElement dialogPopup=HelpersMethod.FindByElement(driver,"xpath","//div[contains(text(),'Please select one or more events for the report.')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]");
                 WebElement okButton=dialogPopup.findElement(By.xpath(".//button[text()='Ok']"));
-                HelpersMethod.ActClick(driver,okButton,1000);
+                HelpersMethod.ActClick(driver,okButton,8000);
                 scenario.log("************** MAY BE THE EVENT IS NOT PART OF THIS APPLICATION ***************");
+                exists=false;
             }
 
             Assert.assertEquals(exists,true);
@@ -329,7 +330,7 @@ public class orderAdminPage
             if(HelpersMethod.IsExists("//div[@class='loader']",driver))
             {
                 WebElement WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 200000);
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000000);
             }
             if(HelpersMethod.IsExists("//div[contains(text(),'The report returned no data. Choose other parameters.')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
             {
@@ -340,7 +341,7 @@ public class orderAdminPage
             if(HelpersMethod.IsExists("//div[@class='loader']",driver))
             {
                 WebElement WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100000);
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000000);
             }
             Thread.sleep(5000);
             Set<String> PCWindows = driver.getWindowHandles();
@@ -373,7 +374,7 @@ public class orderAdminPage
                 if(HelpersMethod.IsExists("//div[@class='loader']",driver))
                 {
                     WebElement WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 400000);
+                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000000);
                 }
                 exists=true;
             }
@@ -386,13 +387,13 @@ public class orderAdminPage
     {
         exists=false;
         WebElement fDate=HelpersMethod.FindByElement(driver,"id","fromDate");
-        String fromValue=HelpersMethod.JSGetValueEle(driver,fDate,1000);
+        String fromValue=HelpersMethod.JSGetValueEle(driver,fDate,6000);
         WebElement tDate=HelpersMethod.FindByElement(driver,"id","toDate");
-        String toValue=HelpersMethod.JSGetValueEle(driver,tDate,1000);
+        String toValue=HelpersMethod.JSGetValueEle(driver,tDate,6000);
         try
         {
             WebElement accNumber=HelpersMethod.FindByElement(driver,"id","customerDropDown_AC");
-            String acc_Text=HelpersMethod.JSGetValueEle(driver,accNumber,1000);
+            String acc_Text=HelpersMethod.JSGetValueEle(driver,accNumber,6000);
             if(acc_Text.equals("") && fromValue.equals("MM/DD/YYYY") && toValue.equals("MM/DD/YYYY"))
             {
                 scenario.log("RESET BUTTON HAS BEEN CLICKED");

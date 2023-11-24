@@ -59,6 +59,5 @@ public class UserAndAccount_PendingApprovalPageStep
         orderadminPage.navigateToDifferentTabsInOrder(navigateTab);
         userAndAdminPendingRegApprovalPage=new userAndAdmin_PendingRegApprovalPage(driver,scenario);
         userAndAdminPendingRegApprovalPage.validateTabNavigatedTo(navigateTab);
-
     }
 }

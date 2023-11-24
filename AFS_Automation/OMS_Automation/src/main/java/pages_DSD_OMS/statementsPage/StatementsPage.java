@@ -3,12 +3,15 @@ package pages_DSD_OMS.statementsPage;
 import helper.HelpersMethod;
 import io.cucumber.java.Scenario;
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.FluentWait;
+import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import pages_DSD_OMS.login.HomePage;
@@ -93,8 +96,8 @@ public class StatementsPage
             Actions act = new Actions(driver);
             WebElement Search_Input = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='drawer-menu-search-container']/descendant::input");
             act.moveToElement(Search_Input).click().sendKeys("Statements").build().perform();
-            WebElement StaementMenu = HelpersMethod.FindByElement(driver, "xpath", "//ul[contains(@class,'MuiList-root ')]/descendant::span[contains(text(),'Statements')]");
-            HelpersMethod.ClickBut(driver, StaementMenu, 2000);
+            WebElement StatementMenu = HelpersMethod.FindByElement(driver, "xpath", "//ul[contains(@class,'MuiList-root ')]/descendant::span[contains(text(),'Statements')]");
+            HelpersMethod.ClickBut(driver, StatementMenu, 2000);
             Thread.sleep(4000);
             exists = true;
             status = HelpersMethod.returnDocumentStatus(driver);
@@ -105,7 +108,7 @@ public class StatementsPage
             if (HelpersMethod.IsExists("//div[@class='loader']", driver))
             {
                 WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100000);
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000000);
             }
             status = HelpersMethod.returnDocumentStatus(driver);
             if (status.equals("loading"))
@@ -133,7 +136,7 @@ public class StatementsPage
         catch (Exception e) {}
     }
 
-    public void Refresh_Page()
+    public void Refresh_Page() throws InterruptedException
     {
         scenario.log("CURRENT URL IS "+currentURL);
         driver.navigate().to(currentURL);
@@ -142,6 +145,12 @@ public class StatementsPage
         {
             HelpersMethod.waitTillLoadingPage(driver);
         }
+        Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                .withTimeout(Duration.ofSeconds(120))
+                .pollingEvery(Duration.ofSeconds(2))
+                .ignoring(NoSuchElementException.class);
+        wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+        Thread.sleep(4000);
     }
 
     public void ValidateStatements()
@@ -181,6 +190,8 @@ public class StatementsPage
             {
                 HelpersMethod.NavigateBack(driver);
                 URL = HelpersMethod.gettingURL(driver);
+                scenario.log("URL FOUND "+URL);
+                scenario.log("**************ERROR PAGE HAS BEEN FOUND****************");
             }
             if (HelpersMethod.gettingURL(driver).contains("CPAdmin"))
             {
@@ -410,7 +421,8 @@ public class StatementsPage
             if(searchBar.isDisplayed())
             {
                 HelpersMethod.EnterText(driver,searchBar,2000, TestBase.testEnvironment.additionalAccount());
-                HelpersMethod.ClickBut(driver,searchIndex,2000);
+                HelpersMethod.ActClick(driver,searchIndex,2000);
+                Thread.sleep(4000);
                 exists=true;
                 status = HelpersMethod.returnDocumentStatus(driver);
                 if (status.equals("loading"))
@@ -434,6 +446,7 @@ public class StatementsPage
         String status=null;
         try
         {
+            Thread.sleep(2000);
             status = HelpersMethod.returnDocumentStatus(driver);
             if (status.equals("loading"))
             {
@@ -445,6 +458,7 @@ public class StatementsPage
                 if(!WebEle.isSelected())
                 {
                     HelpersMethod.ClickBut(driver,WebEle,4000);
+                    scenario.log("CUSTOMER ACCOUNT NUMBER HAS BEEN SELECTED FOR STATEMENT");
                     status = HelpersMethod.returnDocumentStatus(driver);
                     if (status.equals("loading"))
                     {
@@ -470,70 +484,7 @@ public class StatementsPage
         try
         {
             String ParentWindow = driver.getWindowHandle();
-            Thread.sleep(10000);
-            new WebDriverWait(driver, Duration.ofMillis(200000)).until(ExpectedConditions.refreshed(ExpectedConditions.elementToBeClickable(By.id("generateEditButton"))));
-            generateButton=HelpersMethod.FindByElement(driver,"id","generateEditButton");
-            if(generateButton.isDisplayed() && generateButton.isEnabled())
-            {
-                HelpersMethod.ClickBut(driver, generateButton, 60000);
-                status = HelpersMethod.returnDocumentStatus(driver);
-                if (status.equals("loading"))
-                {
-                    HelpersMethod.waitTillLoadingPage(driver);
-                }
-                if (HelpersMethod.IsExists("//div[@class='loader']", driver))
-                {
-                    WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 200000);
-                }
-            }
-            if(HelpersMethod.IsExists("//div[contains(text(),'There is no data to display for your defined date range')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
-            {
-                WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-widget k-window k-dialog')]/descendant::button[text()='OK']");
-                HelpersMethod.ClickBut(driver,WebEle,8000);
-                exists=true;
-            }
-            else
-            {
-                status = HelpersMethod.returnDocumentStatus(driver);
-                if (status.equals("loading"))
-                {
-                    HelpersMethod.waitTillLoadingPage(driver);
-                }
-                Thread.sleep(5000);
-                Set<String> PCWindows = driver.getWindowHandles();
-                for (String PCwind : PCWindows)
-                {
-                    if (!PCwind.equals(ParentWindow))
-                    {
-                        driver.switchTo().window(PCwind);
-                        scenario.log(".pdf HAS BEEN FOUND");
-                        driver.close();
-                        exists = true;
-                    }
-                }
-                driver.switchTo().window(ParentWindow);
-
-                if (HelpersMethod.IsExists("//div[@class='loader']", driver))
-                {
-                    WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 200000);
-                }
-            }
-            Assert.assertEquals(exists,true);
-        }
-        catch (Exception e){}
-    }
-
-    public void GenerateButton()
-    {
-        exists=false;
-        WebElement WebEle=null;
-        String status=null;
-        try
-        {
-            String ParentWindow = driver.getWindowHandle();
-            Thread.sleep(10000);
+            Thread.sleep(4000);
             new WebDriverWait(driver, Duration.ofMillis(200000)).until(ExpectedConditions.refreshed(ExpectedConditions.elementToBeClickable(By.id("generateEditButton"))));
             generateButton=HelpersMethod.FindByElement(driver,"id","generateEditButton");
             if(generateButton.isDisplayed() && generateButton.isEnabled())
@@ -550,7 +501,78 @@ public class StatementsPage
                     HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 800000);
                 }
             }
-            Thread.sleep(1000);
+            Thread.sleep(4000);
+            if(HelpersMethod.IsExists("//div[contains(text(),'There is no data to display for your defined date range')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
+            {
+                WebElement dialogPopup=HelpersMethod.FindByElement(driver,"xpath","//div[contains(text(),'There is no data to display for your defined date range')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]");
+                WebElement okButton=dialogPopup.findElement(By.xpath(".//button[text()='Ok']"));
+                HelpersMethod.ActClick(driver,okButton,8000);
+                scenario.log("***************THERE IS NO DATA TO DISPLAY IN THE SELECTED RANGE OF DATE**************");
+                exists=true;
+            }
+            else
+            {
+                status = HelpersMethod.returnDocumentStatus(driver);
+                if (status.equals("loading"))
+                {
+                    HelpersMethod.waitTillLoadingPage(driver);
+                }
+                Thread.sleep(5000);
+                Set<String> PCWindows = driver.getWindowHandles();
+                for (String PCwind : PCWindows)
+                {
+                    status = HelpersMethod.returnDocumentStatus(driver);
+                    if (status.equals("loading"))
+                    {
+                        HelpersMethod.waitTillLoadingPage(driver);
+                    }
+                    if (!PCwind.equals(ParentWindow))
+                    {
+                        driver.switchTo().window(PCwind);
+                        scenario.log(".pdf HAS BEEN FOUND");
+                        driver.close();
+                        exists = true;
+                    }
+                }
+                driver.switchTo().window(ParentWindow);
+
+                if (HelpersMethod.IsExists("//div[@class='loader']", driver))
+                {
+                    WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
+                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 800000);
+                }
+            }
+            Assert.assertEquals(exists,true);
+        }
+        catch (Exception e){}
+    }
+
+    public void GenerateButton()
+    {
+        exists=false;
+        WebElement WebEle=null;
+        String status=null;
+        try
+        {
+            String ParentWindow = driver.getWindowHandle();
+            Thread.sleep(4000);
+            new WebDriverWait(driver, Duration.ofMillis(200000)).until(ExpectedConditions.refreshed(ExpectedConditions.elementToBeClickable(By.id("generateEditButton"))));
+            generateButton=HelpersMethod.FindByElement(driver,"id","generateEditButton");
+            if(generateButton.isDisplayed() && generateButton.isEnabled())
+            {
+                HelpersMethod.ClickBut(driver, generateButton, 60000);
+                status = HelpersMethod.returnDocumentStatus(driver);
+                if (status.equals("loading"))
+                {
+                    HelpersMethod.waitTillLoadingPage(driver);
+                }
+                if (HelpersMethod.IsExists("//div[@class='loader']", driver))
+                {
+                    WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
+                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 800000);
+                }
+            }
+            Thread.sleep(4000);
             if(HelpersMethod.IsExists("//div[contains(text(),'There is no data to display for your defined date range')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
             {
                 WebElement dialogPopup=HelpersMethod.FindByElement(driver,"xpath","//div[contains(text(),'There is no data to display for your defined date range')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]");

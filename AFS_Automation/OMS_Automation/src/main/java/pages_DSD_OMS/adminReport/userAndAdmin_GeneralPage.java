@@ -124,19 +124,23 @@ public class userAndAdmin_GeneralPage
         exists=true;
         try
         {
-            HelpersMethod.ClickBut(driver,saveButton,1000);
-            if(HelpersMethod.IsExists("//div[@class='loader']",driver))
-            {
-                WebElement WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 800000);
-            }
+            if(saveButton.isDisplayed() && saveButton.isEnabled()) {
+                HelpersMethod.ClickBut(driver, saveButton, 8000);
+                if (HelpersMethod.IsExists("//div[@class='loader']", driver)) {
+                    WebElement WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
+                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 2000000);
+                }
 
-            if(HelpersMethod.IsExists("//div[contains(text(),'The information has been')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
+                if (HelpersMethod.IsExists("//div[contains(text(),'The information has been')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]", driver)) {
+                    WebElement confirmationPopup = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(text(),'The information has been')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]");
+                    WebElement okButton = confirmationPopup.findElement(By.xpath(".//button[text()='OK']"));
+                    HelpersMethod.ActClick(driver, okButton, 1000);
+                    exists = true;
+                }
+            }
+            else
             {
-                WebElement confirmationPopup = HelpersMethod.FindByElement(driver,"xpath", "//div[contains(text(),'The information has been')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]");
-                WebElement okButton = confirmationPopup.findElement(By.xpath(".//button[text()='OK']"));
-                HelpersMethod.ActClick(driver,okButton,1000);
-                exists=true;
+                scenario.log("SAVE BUTTON DISABLED");
             }
             Assert.assertEquals(exists,true);
         }

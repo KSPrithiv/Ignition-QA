@@ -138,6 +138,7 @@ public class OrderGuidePageStep1
     {
         List<List<String>> CusRef=dataTable.asLists(String.class);
         orderGuidePage = new OrderGuidePage(driver, scenario);
+        orderGuidePage.ValidateOG();
         orderGuidePage.CustomerRef();
         orderGuidePage.CustRefDropDown(CusRef.get(0).get(0));
     }

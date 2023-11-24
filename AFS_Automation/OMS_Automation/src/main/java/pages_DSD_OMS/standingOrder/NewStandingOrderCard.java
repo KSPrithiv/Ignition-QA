@@ -7,6 +7,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.devtools.v85.network.model.DataReceived;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -704,7 +705,10 @@ public class NewStandingOrderCard
         exists=false;
         try
         {
-            Thread.sleep(1000);
+            if(HelpersMethod.IsExists("//span[contains(@class,'k-icon k-i-loading')]",driver))
+            {
+                new WebDriverWait(driver, Duration.ofMillis(100000)).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//span[contains(@class,'k-icon k-i-loading')]")));
+            }
             WebElement modalContainer = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-widget k-window k-dialog')]");
             WebElement custFilterInput = modalContainer.findElement(By.xpath(".//th[2]/div[@class='k-filtercell'][1]/descendant::input"));
             String Acc_No = TestBase.testEnvironment.get_Account();

@@ -250,8 +250,8 @@ public class StandingOrderPageSteps
         standingOrder.ClickDeleteProduct();
     }
 
-    @Then("Click on Skip specific day and select {int} rd day from current date,select reason date for skip in skip popup and click on ok")
-    public void clickOnSkipSpecificDayAndSelectRdDayFromCurrentDateSelectReasonDateForSkipInSkipPopupAndClickOnOk(int days) throws InterruptedException
+    @Then("Click on Skip specific day and select {int} day from current date,select reason date for skip in skip popup and click on ok")
+    public void clickOnSkipSpecificDayAndSelectDayFromCurrentDateSelectReasonDateForSkipInSkipPopupAndClickOnOk(int days) throws InterruptedException
     {
         standingOrder=new NewStandingOrderPage(driver,scenario);
         standingOrder.ClickOnSkipSpecificDay();
@@ -377,13 +377,21 @@ public class StandingOrderPageSteps
         standingOrder.ClickOnAddProductButton();
     }
 
-    @And("verify for display of catalog, enter product number to be searched and validate select button")
+    @Then("read the first product description from the product grid and click on add product button")
+    public void readTheFirstProductDescriptionFromTheProductGridAndClickOnAddProductButton() throws InterruptedException
+    {
+        standingOrder=new NewStandingOrderPage(driver,scenario);
+        standingOrder.ReadProductNameInGrid();
+        standingOrder.ClickOnAddProductButton();
+    }
+
+    @And("verify for display of catalog, enter product Description to be searched and validate select button")
     public void verifyForDisplayOfCatalogEnterProductNumberToBeSearchedAndValidateSelectButton()
     {
         standingOrder=new NewStandingOrderPage(driver,scenario);
         standingOrder.ValidateCatalogPopup();
         standingOrder.ResetFilter_Catalog();
-        standingOrder.SearchProductSingleProd();
+        standingOrder.SearchProductDiscription();
         standingOrder.validateProductSelectedOrNot();
         standingOrder.CatalogOKButton();
     }

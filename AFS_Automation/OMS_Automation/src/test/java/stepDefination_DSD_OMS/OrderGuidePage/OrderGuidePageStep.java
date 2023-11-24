@@ -173,6 +173,7 @@ public class OrderGuidePageStep
     public void thenUserEntersDescriptionAndEndDate(String Og)
     {
         createOGPage=new CreateOGPage(driver,scenario);
+        createOGPage.validateNewOGPage();
         createOGPage.DescriptionOG(Og);
 
         //selecting end date

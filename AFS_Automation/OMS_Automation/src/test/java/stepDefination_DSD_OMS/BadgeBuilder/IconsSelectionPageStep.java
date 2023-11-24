@@ -85,21 +85,19 @@ public class IconsSelectionPageStep {
     }
 
     @Then("Click on General Setting tab1")
-    public void click_on_general_setting_tab1() throws InterruptedException {
-
+    public void click_on_general_setting_tab1() throws InterruptedException
+    {
         badgeBuilderPage = new BadgeBuilderPage(driver, scenario);
         badgeBuilderPage.ClicOnHumburger1();
         badgeBuilderPage.ClicOnGeneralSetting();
-
     }
 
 
     @Then("Clicks on Badge Builder")
-    public void clicks_on_badge_builder() throws InterruptedException {
-
+    public void clicks_on_badge_builder() throws InterruptedException
+    {
         badgeBuilderPage = new BadgeBuilderPage(driver, scenario);
         badgeBuilderPage.ClickOnBadgeBuilder();
-
     }
 
     @Then("Select Icon under icon selections")

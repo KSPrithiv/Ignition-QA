@@ -292,7 +292,7 @@ public class CatalogPageStep
             if (HelpersMethod.IsExists("//div[contains(text(),'Sorry, no products matched')]",driver))
             {
                 WebEle=HelpersMethod.FindByElement(driver, "xpath", "//span[contains(@class,'search-button')]/*[local-name()='svg']/*[local-name()='path' and contains(@d,'M17')]");
-                HelpersMethod.ClickBut(driver,WebEle,200000);
+                HelpersMethod.ClickBut(driver,WebEle,1000000);
             }
             else if (exists == false)
             {
@@ -305,7 +305,7 @@ public class CatalogPageStep
                     if(HelpersMethod.IsExists("//div[@class='loader']",driver))
                     {
                         WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                        HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 200000);
+                        HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000000);
                     }
                     String status = HelpersMethod.returnDocumentStatus(driver);
                     if (status.equals("loading"))
@@ -338,6 +338,7 @@ public class CatalogPageStep
         checkorder = new CheckOutOrderPage(driver, scenario);
         if (checkorder.VerifyCheckOut())
         {
+            checkorder.VerifyCheckOut();
             checkorder.BackButton_Click();
         }
     }
@@ -519,6 +520,7 @@ public class CatalogPageStep
     public void clickOnSubmitOrderButtonForCreatingOrderFromCatalog() throws InterruptedException, AWTException
     {
         summary = new CheckOutSummaryPage(driver,scenario);
+        summary.validateSummaryPage();
         summary.ClickSubmit();
         for(int i=0;i<=2;i++)
         {

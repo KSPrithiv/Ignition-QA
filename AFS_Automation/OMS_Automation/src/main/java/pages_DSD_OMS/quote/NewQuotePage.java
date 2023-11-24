@@ -366,18 +366,19 @@ public class NewQuotePage
 
     public void SelectCatalog()
     {
+        exists=false;
         Actions act1=new Actions(driver);
         String ogText=null;
         try
         {
-            if(HelpersMethod.IsExists("//div[contains(@class,'k-animation-container k-animation-container-relative')]/descendant::ul/li",driver))
+            if(HelpersMethod.IsExists("//div[contains(@class,'k-list-container')]/descendant::ul/li",driver))
             {
-                List<WebElement> ogS=HelpersMethod.FindByElements(driver,"xpath","//div[contains(@class,'k-animation-container-relative')]/descendant::ul/li");
+                List<WebElement> ogS=HelpersMethod.FindByElements(driver,"xpath","//div[contains(@class,'k-list-container')]/descendant::ul/li");
                 for(WebElement og:ogS)
                 {
                     act1.moveToElement(og).build().perform();
                     ogText=og.getText();
-                    if(ogText.equals("From Catalog"))
+                    if(ogText.equalsIgnoreCase("From Catalog"))
                     {
                         act1.moveToElement(og).build().perform();
                         act1.click(og).build().perform();
