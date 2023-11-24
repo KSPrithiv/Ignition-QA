@@ -25,8 +25,8 @@ Feature: Standing Order
   @VerifyingDisableSelectButton
    Scenario: Test scenario for verifying whether select button is disabled or not in catalog popup
     Given User must be on Order Entry Page to select Standing Order and navigate to standing order
-    Then read the first product from the product grid and click on add product button
-    And verify for display of catalog, enter product number to be searched and validate select button
+    Then read the first product description from the product grid and click on add product button
+    And verify for display of catalog, enter product Description to be searched and validate select button
 
   @DeleteProductFromStandingOrder
   Scenario:Test scenario for Deleting product from standing order
@@ -37,7 +37,7 @@ Feature: Standing Order
   @SkipSpecificDay
   Scenario: Test scenario for skipping specific date in standing order
     Given User must be on Order Entry Page to select Standing Order and navigate to standing order
-    Then Click on Skip specific day and select 3 rd day from current date,select reason date for skip in skip popup and click on ok
+    Then Click on Skip specific day and select 4 day from current date,select reason date for skip in skip popup and click on ok
 
   @VerifySkipDateSetInSOWithOE
   Scenario: Test scenario for verifying skip in SO with skip in OE page

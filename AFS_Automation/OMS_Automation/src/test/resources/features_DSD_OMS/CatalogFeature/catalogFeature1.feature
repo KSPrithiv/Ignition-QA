@@ -35,7 +35,6 @@ Scenario: To test + and - symbol orderation, that appears in my cart page
     And User should navigate to Catalog tab
     And User should click on Reset filter button and all the products should displayed in Card view in Catalog page
     Then User should click on Category dropdown and select any of the category
-    |Juices/Juice Drinks/Water|
     And User should read all the products available catalog page
 
   @SubCategoryCatalog
@@ -44,7 +43,6 @@ Scenario: To test + and - symbol orderation, that appears in my cart page
     And User should navigate to Catalog tab
     And User should click on Reset filter button and all the products should displayed in Card view in Catalog page
     Then User should click on SubCategory dropdown and select any of the category
-    |Breakfast|
     And User should read all the products available catalog page
 
   @BrandCatalog
@@ -53,7 +51,6 @@ Scenario: To test + and - symbol orderation, that appears in my cart page
     And User should navigate to Catalog tab
     And User should click on Reset filter button and all the products should displayed in Card view in Catalog page
     Then User should click on Brand dropdown and select any of the category
-    |DR PEPPER|
     And User should read all the products available catalog page
 
   @OrderGuideCatalog

@@ -371,6 +371,7 @@ public class AllOrdersPageStep
     public void userSelectTheOrderAndClickOnCopyButtonAndSelectDeliveryDate() throws InterruptedException
     {
         allOrder=new AllOrderPage(driver,scenario);
+        allOrder.ValidateAllOrder();
         allOrder.SelectOrderForCopying();
         allOrder.ClickOnCopyButton();
         allOrder.validateSelectDeliveryDateForCopy();

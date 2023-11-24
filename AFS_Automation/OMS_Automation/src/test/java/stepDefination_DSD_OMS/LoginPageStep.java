@@ -93,23 +93,24 @@ public class LoginPageStep
     @Given("User on login page")
     public void user_on_login_page() throws InterruptedException, AWTException
     {
-        //Thread.sleep(6000);
-        if(HelpersMethod.IsExists("//div[@class='loader']",driver))
-        {
-            WebElement WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 800000);
-        }
+        Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                .withTimeout(Duration.ofSeconds(120))
+                .pollingEvery(Duration.ofSeconds(2))
+                .ignoring(NoSuchElementException.class);
+        wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
         driver.navigate().to(TestBase.testEnvironment.get_url());
         String status = HelpersMethod.returnDocumentStatus(driver);
         if (status.equals("loading"))
         {
             HelpersMethod.waitTillLoadingPage(driver);
         }
-        if(HelpersMethod.IsExists("//div[@class='loader']",driver))
-        {
-            WebElement WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 800000);
-        }
+       wait = new FluentWait<WebDriver>(driver)
+                .withTimeout(Duration.ofSeconds(120))
+                .pollingEvery(Duration.ofSeconds(2))
+                .ignoring(NoSuchElementException.class);
+        wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
     }
 
     @Given("User on login page for external catalog")
@@ -126,26 +127,21 @@ public class LoginPageStep
         {
             JavascriptExecutor js = ((JavascriptExecutor) driver);
             js.executeScript("window.location.reload()");
-            //WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(800000));
+
             Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
                     .withTimeout(Duration.ofSeconds(120))
                     .pollingEvery(Duration.ofSeconds(2))
                     .ignoring(NoSuchElementException.class);
             wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
-          /*  if(wait.until(ExpectedConditions.alertIsPresent())==null)
-            {
 
-            }
-            else
-            {*/
                 Alert alert = driver.switchTo().alert();
                 alert.accept();
-                Wait<WebDriver> wait1 = new FluentWait<WebDriver>(driver)
+
+            wait = new FluentWait<WebDriver>(driver)
                     .withTimeout(Duration.ofSeconds(120))
                     .pollingEvery(Duration.ofSeconds(2))
                     .ignoring(NoSuchElementException.class);
-                wait1.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
-            // }
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
         }
             //if(titleLogin.equals("Order Cart") || titleLogin.equals("Product Catalog"))
             if (titleLogin.equals("Product Catalog"))
@@ -156,11 +152,7 @@ public class LoginPageStep
                 {
                     HelpersMethod.waitTillLoadingPage(driver);
                 }
-                /*if (HelpersMethod.IsExists("//div[@class='loader']", driver))
-                {
-                    WebElement WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 800000);
-                }*/
+
                 Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
                         .withTimeout(Duration.ofSeconds(120))
                         .pollingEvery(Duration.ofSeconds(2))
@@ -179,11 +171,7 @@ public class LoginPageStep
                     homepage = new HomePage(driver, scenario);
                     homepage.Click_On_UserIcon();
                     homepage.Click_On_Signout();
-                  /*  if (HelpersMethod.IsExists("//div[@class='loader']", driver))
-                    {
-                        WebElement WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                        HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 800000);
-                    }*/
+
                     Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
                             .withTimeout(Duration.ofSeconds(120))
                             .pollingEvery(Duration.ofSeconds(2))
@@ -194,6 +182,12 @@ public class LoginPageStep
                     if (status.equals("loading")) {
                         HelpersMethod.waitTillLoadingPage(driver);
                     }
+
+                    wait = new FluentWait<WebDriver>(driver)
+                            .withTimeout(Duration.ofSeconds(120))
+                            .pollingEvery(Duration.ofSeconds(2))
+                            .ignoring(NoSuchElementException.class);
+                    wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
                 }
             }
     }
@@ -286,12 +280,24 @@ public class LoginPageStep
     @And("User clicks on View product catalog and Product catalog should be displayed")
     public void user_clicks_on_view_product_catalog_and_product_catalog_should_be_displayed() throws InterruptedException, AWTException
     {
+        Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                .withTimeout(Duration.ofSeconds(120))
+                .pollingEvery(Duration.ofSeconds(2))
+                .ignoring(NoSuchElementException.class);
+        wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
         loginpage = new LoginPage(driver, scenario);
         if (HelpersMethod.IsExists("//div[contains(text(),'Failed to connect to API')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]", driver))
         {
             WebElement WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(text(),'Failed to connect to API')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]/descendant::button[text()='Ok']");
             HelpersMethod.ClickBut(driver, WebEle, 2000);
         }
+
+        wait = new FluentWait<WebDriver>(driver)
+                .withTimeout(Duration.ofSeconds(120))
+                .pollingEvery(Duration.ofSeconds(2))
+                .ignoring(NoSuchElementException.class);
+        wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
         loginpage.ClickExternalCatalog();
         if(flag1==false)
         {
@@ -392,6 +398,7 @@ public class LoginPageStep
         if (HelpersMethod.IsExistsById("checkoutCard", driver))
         {
             checkOutOrder = new CheckOutOrderPage(driver, scenario);
+            checkOutOrder.VerifyCheckOut();
             checkOutOrder.BackButton_Click();
             newOE=new NewOrderEntryPage(driver,scenario);
             newOE.ValidateNewOE();
@@ -459,12 +466,25 @@ public class LoginPageStep
     @And("Click on Register here link")
     public void click_on_register_here_link() throws InterruptedException, AWTException
     {
+        Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+            .withTimeout(Duration.ofSeconds(120))
+            .pollingEvery(Duration.ofSeconds(2))
+            .ignoring(NoSuchElementException.class);
+        wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
         loginpage = new LoginPage(driver, scenario);
-        String status = HelpersMethod.returnDocumentStatus(driver);
-        if (status.equals("loading"))
+        if (HelpersMethod.IsExists("//div[contains(text(),'Failed to connect to API')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]", driver))
         {
-            HelpersMethod.waitTillLoadingPage(driver);
+            WebElement WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(text(),'Failed to connect to API')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]/descendant::button[text()='Ok']");
+            HelpersMethod.ClickBut(driver, WebEle, 2000);
         }
+
+        wait = new FluentWait<WebDriver>(driver)
+                .withTimeout(Duration.ofSeconds(120))
+                .pollingEvery(Duration.ofSeconds(2))
+                .ignoring(NoSuchElementException.class);
+        wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
         loginpage.RegisterHere();
     }
 
@@ -478,7 +498,8 @@ public class LoginPageStep
         {
             HelpersMethod.waitTillLoadingPage(driver);
         }
-        HelpersMethod.waitTillElementLocatedDisplayed(driver, "xpath", "//div[contains(text(),'Customer Registration')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]", 20000);
+        Thread.sleep(2000);
+       // HelpersMethod.waitTillElementLocatedDisplayed(driver, "xpath", "//div[contains(text(),'Customer Registration')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]", 20000);
         if (HelpersMethod.IsExists("//div[contains(text(),'Customer Registration')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]", driver))
         {
             scenario.log("CUSTOMER REGISTRATION PAGE HAS BEEN FOUND");
@@ -766,7 +787,7 @@ public class LoginPageStep
         if(HelpersMethod.IsExists("//div[@class='loader']",driver))
         {
             WebElement WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 40000);
+            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000000);
         }
         orderpage.selecteCommerceOption();
     }

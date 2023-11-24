@@ -78,11 +78,11 @@ public class CatalogPageStep1
     }
 
     @Then("User should click on Category dropdown and select any of the category")
-    public void user_should_click_on_category_dropdown_and_select_any_of_the_category(DataTable tabledata)
+    public void user_should_click_on_category_dropdown_and_select_any_of_the_category()
     {
-        List<List<String>> category=tabledata.asLists(String.class);
+        String category=TestBase.testEnvironment.get_Category();
         catalogpage=new CatalogPage(driver,scenario);
-        catalogpage.CatalogCategoryDropDown(category.get(0).get(0));
+        catalogpage.CatalogCategoryDropDown(category);
         catalogpage.ReadProduct();
         /*catalogpage.CatalogSubCategoryDropDown();
         catalogpage.ReadProduct();
@@ -91,19 +91,19 @@ public class CatalogPageStep1
     }
 
     @Then("User should click on SubCategory dropdown and select any of the category")
-    public void user_should_click_on_subcategory_dropdown_and_select_any_of_the_category(DataTable dataTable)
+    public void user_should_click_on_subcategory_dropdown_and_select_any_of_the_category()
     {
-        List<List<String>> subCat=dataTable.asLists(String.class);
+        String subCat=TestBase.testEnvironment.get_SubCategory();
         catalogpage=new CatalogPage(driver,scenario);
-        catalogpage.CatalogSubCategoryDropDown(subCat.get(0).get(0));
+        catalogpage.CatalogSubCategoryDropDown(subCat);
     }
 
     @Then("User should click on Brand dropdown and select any of the category")
-    public void user_should_click_on_brand_dropdown_and_select_any_of_the_category(DataTable dataTable)
+    public void user_should_click_on_brand_dropdown_and_select_any_of_the_category()
     {
-        List<List<String>> brand=dataTable.asLists(String.class);
+        String brand=TestBase.testEnvironment.get_Brand();
         catalogpage=new CatalogPage(driver,scenario);
-        catalogpage.BrandDropDown(brand.get(0).get(0));
+        catalogpage.BrandDropDown(brand);
     }
 
     @Then ("User should click on Order Guide dropdown and select any of the category")

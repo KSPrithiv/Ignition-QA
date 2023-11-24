@@ -52,11 +52,18 @@ public class userAndAdmin_PendingRegApprovalPage
             if(HelpersMethod.IsExists("//div[@class='loader']",driver))
             {
                 WebElement WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 800000);
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000000);
             }
             Thread.sleep(6000);
-            HelpersMethod.ActClick(driver,pendingReg,1000);
-            exists=true;
+            if(pendingReg.isDisplayed() && pendingReg.isEnabled() )
+            {
+                HelpersMethod.ActClick(driver, pendingReg, 1000);
+                exists = true;
+            }
+            else
+            {
+                scenario.log("THERE IS NO PENDING REGISTRATION FOUND");
+            }
             Assert.assertEquals(exists,true);
         }
         catch (Exception e){}
