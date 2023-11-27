@@ -112,7 +112,7 @@ public class BasePage {
         element.sendKeys(Keys.ENTER);
     }
 
-    public void pressBackSpace(WebElement element) { element.sendKeys(Keys.BACK_SPACE); }
+    public void  pressBackSpace(WebElement element) { element.sendKeys(Keys.BACK_SPACE); }
 
     public void pressLeftArrow(WebElement element) {
         element.sendKeys(Keys.ARROW_LEFT);
