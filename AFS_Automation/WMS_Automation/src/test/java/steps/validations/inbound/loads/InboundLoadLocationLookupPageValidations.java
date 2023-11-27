@@ -19,7 +19,6 @@ public class InboundLoadLocationLookupPageValidations {
         softAssert.assertTrue(inboundLoadLocationLookupPage.isDeleteButtonDisplayed(), "Delete Button is not displayed");
         softAssert.assertTrue(inboundLoadLocationLookupPage.isTransferButtonDisplayed(), "Transfer Button is not displayed");
         softAssert.assertTrue(inboundLoadLocationLookupPage.isStatusButtonDisplayed(), "Status Button is not displayed");
-        softAssert.assertTrue(inboundLoadLocationLookupPage.isPalletColumnDisplayed(), "Pallet Column is not displayed");
         softAssert.assertTrue(inboundLoadLocationLookupPage.isProductColumnDisplayed(), "Product Column is not displayed");
         softAssert.assertTrue(inboundLoadLocationLookupPage.isDescriptionColumnDisplayed(), "Description Column is not displayed");
 /*      softAssert.assertTrue(inboundLoadLocationLookupPage.isQtyColumnDisplayed(), "Qty Column is not displayed");

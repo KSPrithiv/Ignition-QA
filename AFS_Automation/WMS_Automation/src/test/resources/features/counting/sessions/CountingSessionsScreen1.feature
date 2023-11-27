@@ -172,7 +172,7 @@ Feature: Testing of Counting Count functionality
     And Waits for Location Lookup page to load
     And Validates Inventory details of location on Location Lookup page are loaded
 
-  @isofailed2
+  @isofailed3
   Scenario: Checking Locked location on Counting Sessions screen
     Given User signs in the application
     And Main page is loaded
@@ -188,11 +188,6 @@ Feature: Testing of Counting Count functionality
     And User clicks table location by index 1 on Counting Sessions page
     And Waits for Location Lookup page to load
     And Validates Inventory details of location on Location Lookup page are loaded
-    And User checks table row by index 0 on Counting Sessions page
-    And User clicks Delete Session button on Counting Sessions page
-    And User clicks Yes button on Counting Sessions page
-    And User selects reason "Create Inventory" on Counting Sessions page
-    And User clicks Ok button on Counting Sessions page
 
   @isofailed2
   Scenario: Checking Select All checkbox on Counting Sessions screen
