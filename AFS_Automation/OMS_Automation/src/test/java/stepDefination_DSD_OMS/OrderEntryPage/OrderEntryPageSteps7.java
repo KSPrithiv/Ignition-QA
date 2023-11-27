@@ -48,8 +48,9 @@ public class OrderEntryPageSteps7
         summary.clickOnBackToOrderList();
     }
 
-    @And("User should validate Catalog dialogbox and use filters in customer index dialogbox {string},{string},{string},{string}")
-    public void userShouldValidateCatalogDialogboxAndUseFiltersInCustomerIndexDialogbox(String arg0, String arg1, String arg2,String arg3) throws InterruptedException, AWTException
+    @And("User should validate Catalog dialogbox and use filters in customer index dialogbox")
+    //public void userShouldValidateCatalogDialogboxAndUseFiltersInCustomerIndexDialogbox(String arg0, String arg1, String arg2,String arg3) throws InterruptedException, AWTException
+    public void userShouldValidateCatalogDialogboxAndUseFiltersInCustomerIndexDialogbox() throws InterruptedException, AWTException
     {
         newOE=new NewOrderEntryPage(driver,scenario);
         newOE.validateCatalogdialog();
@@ -58,7 +59,7 @@ public class OrderEntryPageSteps7
         //newOE.selectShowAllProductDropDown();
         //newOE.readProducts();
         //newOE.resetFilters();
-        newOE.ogDropDown();
+       /* newOE.ogDropDown();
         newOE.selectOGDropDown(arg3);
         newOE.readProducts();
         newOE.resetFilters();
@@ -73,7 +74,24 @@ public class OrderEntryPageSteps7
         newOE.brandDropDown();
         newOE.selectBrandDropDown(arg2);
         newOE.readProducts();
+        newOE.resetFilters();*/
+        newOE.ogDropDown();
+        newOE.selectOGDropDown();
+        newOE.readProducts();
         newOE.resetFilters();
+        newOE.categoryDropDown();
+        newOE.selectCategoryDropDown();
+        newOE.readProducts();
+        newOE.resetFilters();
+        newOE.subCategoryDropDown();
+        newOE.selectSubCategoryDropDown();
+        newOE.readProducts();
+        newOE.resetFilters();
+        newOE.brandDropDown();
+        newOE.selectBrandDropDown();
+        newOE.readProducts();
+        newOE.resetFilters();
+
     }
 
     @Then("User clicks on icon next to address")
@@ -117,7 +135,7 @@ public class OrderEntryPageSteps7
     public void userNavigatesBackToOEBySelectingDiscardAllOptionFromPendingOrderPopup() throws InterruptedException, AWTException
     {
         newOE=new NewOrderEntryPage(driver,scenario);
-        newOE.Click_on_BackButton();
+        newOE.clickonBackInNewOE();
         newOE.Discard_All_Pending_Order();
     }
 
@@ -128,7 +146,7 @@ public class OrderEntryPageSteps7
         newOE=new NewOrderEntryPage(driver,scenario);
         newOE.validatePriceOverrideIcon();
         newOE.Click_On_PriceOverrideIcon();
-        newOE.PriceOverridePopup_WhatIfPriceUnit(gridtype.get(0).get(1));
+        newOE.PriceOverridePopup_WhatIfPriceUnit(gridtype.get(0).get(0));
         newOE.clickOnGridTypeDropdown();
         newOE.selectMainGridTypeDropDown();
         newOE.validateMainGridType();

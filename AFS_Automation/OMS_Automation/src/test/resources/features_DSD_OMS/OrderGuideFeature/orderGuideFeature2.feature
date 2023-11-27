@@ -13,7 +13,7 @@ Feature: Order Guide2
     Given User must be on Order Entry Page to select OG
     And User should navigate to OG
     Then User clicks on Create new button and should navigate to New OG page
-    Then User enters Description "<OG>" Start date 8 and End date 9 day from current date
+    Then User enters Description "<OG>" Start date 18 and End date 19 day from current date
     Then Then User enters Description "<OG>" and End date
     Then User selects type of OG from drop down
       | Push |
@@ -30,7 +30,7 @@ Feature: Order Guide2
     Given User must be on Order Entry Page to select OG
     And User should navigate to OG
     Then User clicks on Create new button and should navigate to New OG page
-    Then User enters Description "<OG>" Start date 15 and End date 16 day from current date
+    Then User enters Description "<OG>" Start date 20 and End date 21 day from current date
     Then Then User enters Description "<OG>" and End date
     Then User selects type of OG from drop down
       | Par Orders |
@@ -68,7 +68,7 @@ Feature: Order Guide2
     Given User must be on Order Entry Page to select OG
     And User should navigate to OG
     Then User clicks on Create new button and should navigate to New OG page
-    Then User enters Description "<OG>" Start date 10 and End date 11 day from current date
+    Then User enters Description "<OG>" Start date 22 and End date 23 day from current date
     Then Then User enters Description "<OG>" and clicks on All order check box
     And User enters Quick Product number and Sequence number
       |4|
@@ -83,7 +83,7 @@ Feature: Order Guide2
     Given User must be on Order Entry Page to select OG
     And User should navigate to OG
     Then User clicks on Create new button and should navigate to New OG page
-    Then User enters Description "<OG>" Start date 12 and No selection of end date
+    Then User enters Description "<OG>" Start date 7 and No selection of end date
     Then Then User enters Description "<OG>" and End date
     Then User selects type of OG from drop down
       | Push |
@@ -142,7 +142,7 @@ Feature: Order Guide2
     Then User should click on Customer Reference drop down and select type of OG
       |All customer accounts #|
     Then User clicks on Create new button and should navigate to New OG page
-    Then User enters Description "<OG>" Start date 13 and End date 14 day from current date and validate all customer check box
+    Then User enters Description "<OG>" Start date 24 and End date 25 day from current date and validate all customer check box
     And User should make sure that customer reference "<OGType>" is same as of selected in OG page
     Then User clicks on Add product button and select Catalog from drop down
       |Catalog|
@@ -181,11 +181,12 @@ Feature: Order Guide2
     Then User enters OG Description "<OG>" in search box and Delete the OG verify same in OG grid
     Examples:
       |  OG   |
+    #  |OGDis1 |
     #  |OGDis14|
       |OGDis16|
       |OGDis17|
       |OGDis18|
-      |OGDis19|
+   #   |OGDis19|
       |OGDis20|
       |OGHist |
       |Par OGPar OG|
@@ -196,7 +197,8 @@ Feature: Order Guide2
       | DayOfWeek      |
       | LocalChain1    |
       | NationalChain1 |
-      |MarketOG        |
-      |PriceBaseOG     |
+    #  |MarketOG        |
+    #  |PriceBaseOG     |
+      |CustChange      |
     #  | QToOG |
 

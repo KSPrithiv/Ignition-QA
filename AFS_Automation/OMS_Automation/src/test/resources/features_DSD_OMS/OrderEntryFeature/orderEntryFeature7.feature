@@ -37,10 +37,10 @@ Feature: Order Entry7
     Then Enter PO# for New order
       | PO123 |
     Then Click on Add product drop down and select catalog option
-    And User should validate Catalog dialogbox and use filters in customer index dialogbox "<Category>","<Sub Category>","<Brand>","<OG>"
-    Examples:
-      | Category                | Sub Category | Brand       | OG        |
-      |Juices/Juice Drinks/Water| Breakfast    | DR PEPPER   | SampleOG  |
+    And User should validate Catalog dialogbox and use filters in customer index dialogbox
+  #  Examples:
+  #    | Category                | Sub Category | Brand       | OG        |
+  #    |Juices/Juice Drinks/Water| Breakfast    | DR PEPPER   | SampleOG  |
 
   @ContactInformation
   Scenario: Test scenario for finding the contact information details

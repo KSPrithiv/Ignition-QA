@@ -17,6 +17,7 @@ Feature: Catalog3
   @PendingOrderAndCatalogProd
   Scenario: Test scenario for creating pending order and then add prodcuts from catalog
     Given User must be on Order Entry Page
+    And User should navigate to Order Entry page from Catalog tab
     Then User must click Start Order button
     Then User should make selection between Pending order or Start New order
     Then User should select Note from popup and Order guide from popup

@@ -27,7 +27,9 @@ Feature: Order Guide
     Given User must be on Order Entry Page to select OG
     And User should navigate to OG
     Then User clicks on Create new button and should navigate to New OG page
+    #Then User enters Description "<OG>" Start date 1 and End date 2 day from current date
     Then Then User enters Description "<OG>"
+    And User selects Day of week from drop down
     And User enters Quick Product number and Sequence number
       |4|
     Then User click on Save button
@@ -68,8 +70,8 @@ Feature: Order Guide
     Then User enters OG "<OG>" Description in search box
     And User must be on create OG page and "<Drag Drop>" the grid header
     Examples:
-      |  OG     | Drag Drop |
-      | OGDis1  | Category  |
+      |  OG     | Drag Drop     |
+      | OGDis1  | UnitOfMeasure |
 
   @SearchForProduct
   Scenario: Searching for product in new OG page
@@ -145,7 +147,7 @@ Feature: Order Guide
     Given User must be on Order Entry Page to select OG
     And User should navigate to OG
     Then User clicks on Create new button and should navigate to New OG page
-    Then User enters Description "<OG>" Start date 2 and End date 3 day from current date
+    Then User enters Description "<OG>" Start date 3 and End date 4 day from current date
     Then User clicks on Add product button and select OG from drop down
       | Order guides |
     And User should select "<OrderGuide>" from popup
@@ -160,7 +162,7 @@ Feature: Order Guide
     Given User must be on Order Entry Page to select OG
     And User should navigate to OG
     Then User clicks on Create new button and should navigate to New OG page
-    Then User enters Description "<OG>" Start date 3 and End date 4 day from current date
+    Then User enters Description "<OG>" Start date 5 and End date 6 day from current date
     Then User clicks on Add product button and select Order from drop down
       |Orders|
     And User should select Order# from Order popup

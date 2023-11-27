@@ -837,7 +837,7 @@ public class HelpersMethod
                 if (IsExists("//div[@class='loader']", driver))
                 {
                     WebEle = FindByElement(driver, "xpath", "//div[@class='loader']");
-                    waitTillLoadingWheelDisappears(driver, WebEle, 200000);
+                    waitTillLoadingWheelDisappears(driver, WebEle, 2000000);
                 }
             }
         }

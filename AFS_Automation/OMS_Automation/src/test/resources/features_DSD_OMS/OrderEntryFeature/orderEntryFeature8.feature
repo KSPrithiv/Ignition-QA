@@ -23,8 +23,24 @@ Scenario: Test scenario for filtering Brand in catalog popup
   And Discard all Pending order should be displayed
   Then User should be navigated to Order Entry page
 
+@FilteringInCatalogByQoH
+Scenario: Test scenario for filtering Qty on Hand in catalog popup
+  Given User must be on Order Entry Page
+  Then User must click Start Order button
+  Then User should make selection between Pending order or Start New order
+  Then User should select Note from popup and Order guide from popup
+  Then Enter PO# for New order
+    |PO123|
+  Then Click on Add product drop down and select catalog option
+  And User searches for QoH and goes through the product numbers
+    |4|
+  Then Click on Back button
+  And Discard all Pending order should be displayed
+  Then User should be navigated to Order Entry page
+
+
 @LastdatePickupOrder
-Scenario: Test scenario for creating pending order for the Last date in Pickup order dialogbox
+Scenario: Test scenario for creating order for the Last date in Pickup order dialogbox
   Given User must be on Order Entry Page
   When User clicks on drop down next to Start order button
   And Select Pickup Order from drop down options and select last delivery date

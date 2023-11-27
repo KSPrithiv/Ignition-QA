@@ -118,6 +118,12 @@ public class OrderEntryPageSteps2
         summary.validateSummaryPage();
         Tot_Amt1=summary.Find_TotalAmt();
         summary.ClickSubmit();
+        for(int i=0;i<=2;i++)
+        {
+            summary.additionalOrderPopup();
+            summary.cutoffDialog();
+        }
+        summary.SucessPopup();
         scenario.log("Product Total found in New OE page: "+Tot_Amt+" Product total found in summary page: "+Tot_Amt1);
         //asserting totals
         Assert.assertEquals(Tot_Amt,Tot_Amt1);
@@ -146,6 +152,7 @@ public class OrderEntryPageSteps2
         {
             result=true;
         }
+        Thread.sleep(2000);
         Assert.assertEquals(result,true);
     }
 

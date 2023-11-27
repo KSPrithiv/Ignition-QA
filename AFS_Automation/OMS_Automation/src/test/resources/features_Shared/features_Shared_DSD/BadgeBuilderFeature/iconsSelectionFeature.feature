@@ -2,7 +2,6 @@ Feature: Badge Builder Icon Selection
   Background: For login to application and to select Badge Builder
     Given User enters URL and entered to login page
 
-#
   @IconSelection
   Scenario: Test Scenario for Selecting Icon from Badge Builder
     Given  User on login page and entered username and password
@@ -10,6 +9,7 @@ Feature: Badge Builder Icon Selection
     Then   Click on General Setting tab1
     And    Clicks on Badge Builder
     And    Select Icon under icon selections
+
   @BadgeName
   Scenario: Test Scenario for Editing Badge Name
     Given  User should be on BadgeBuilder page

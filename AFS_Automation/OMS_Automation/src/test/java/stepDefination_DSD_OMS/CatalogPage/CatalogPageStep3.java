@@ -10,6 +10,7 @@ import pages_DSD_OMS.Catalog.CatalogPage;
 import pages_DSD_OMS.Catalog.ProductDescriptionPage;
 import pages_DSD_OMS.orderEntry.CheckOutOrderPage;
 import pages_DSD_OMS.orderEntry.NewOrderEntryPage;
+import pages_DSD_OMS.orderEntry.OrderEntryPage;
 import util.TestBase;
 
 import java.awt.*;
@@ -28,6 +29,7 @@ public class CatalogPageStep3
     Scenario scenario;
 
     static CatalogPage catalogpage;
+    static OrderEntryPage orderEntryPage;
     static NewOrderEntryPage newOE;
     static CheckOutOrderPage checkorder;
     static ProductDescriptionPage productDescriptionPage;
@@ -75,5 +77,13 @@ public class CatalogPageStep3
         List<List<String>> Qty = tableData.asLists(String.class);
         catalogpage=new CatalogPage(driver,scenario);
         catalogpage.addProductToCart(Qty.get(0).get(0));
+    }
+
+    @And("User should navigate to Order Entry page from Catalog tab")
+    public void userShouldNavigateToOrderEntryPageFromCatalogTab() throws InterruptedException, AWTException
+    {
+        orderEntryPage=new OrderEntryPage(driver,scenario);
+        orderEntryPage.navigateToOrderEntry1();
+        orderEntryPage.ValidateOE();
     }
 }

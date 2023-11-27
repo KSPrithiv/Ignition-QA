@@ -35,6 +35,7 @@ public class OrderEntryPageSteps6
     static OrderHistoryPage orderHistoryPage;
     static OrderEntryPage orderpage;
     static CheckOutOrderPage checkorder;
+    static String changedSalesRep;
 
     @Before
     public void LaunchBrowser1(Scenario scenario) throws Exception
@@ -58,6 +59,7 @@ public class OrderEntryPageSteps6
     public void userValidatesPickupOrderCheckBoxIsSelected() throws InterruptedException, AWTException
     {
         newOE=new NewOrderEntryPage(driver,scenario);
+        newOE.ValidateNewOE();
         newOE.Validate_Pickup_Order();
     }
 
@@ -185,4 +187,19 @@ public class OrderEntryPageSteps6
         newOE.readProductsInOrder();
     }
 
+    @Then("User should  click on sales rep index icon and select sales rep")
+    public void userShouldClickOnSalesRepIndexIconAndSelectSalesRep() throws InterruptedException, AWTException
+    {
+        orderpage=new OrderEntryPage(driver, scenario);
+        changedSalesRep= orderpage.salesRep();
+    }
+
+    @Then("Compare Sales rep value selected in OE page with Sales rep in NewOE page")
+    public void compareSalesRepValueSelectedInOEPageWithSalesRepInNewOEPage() throws InterruptedException, AWTException
+    {
+        newOE=new NewOrderEntryPage(driver,scenario);
+        newOE.ValidateNewOE();
+        newOE.validateSalesRep(changedSalesRep);
+
+    }
 }

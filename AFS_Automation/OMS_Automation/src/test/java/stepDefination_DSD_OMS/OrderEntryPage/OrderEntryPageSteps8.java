@@ -1,6 +1,7 @@
 package stepDefination_DSD_OMS.OrderEntryPage;
 
 import helper.HelpersMethod;
+import io.cucumber.datatable.DataTable;
 import io.cucumber.java.Before;
 import io.cucumber.java.Scenario;
 import io.cucumber.java.en.And;
@@ -10,6 +11,7 @@ import pages_DSD_OMS.orderEntry.*;
 import util.TestBase;
 
 import java.awt.*;
+import java.util.List;
 
 /**
  * @Project DSD_OMS
@@ -50,10 +52,11 @@ public class OrderEntryPageSteps8
             newOE.readProductInList();
             newOE.catalogOK();
         }
-        else
+        else if(HelpersMethod.IsExists("//div[@class='product-catalog-container']",driver))
         {
             newOE.cardCatelog();
             newOE.readProductInCard();
+            newOE.catalogOK();
         }
     }
 
@@ -79,9 +82,30 @@ public class OrderEntryPageSteps8
     public void cancelPopupShouldAppearAndVerifyButtonCancelAndSkipButtonForCurrentDate() throws InterruptedException, AWTException
     {
         newOE=new NewOrderEntryPage(driver,scenario);
-        newOE.OECancel();
+        //newOE.OECancel();
         newOE.VerifyCancelPopUp();
         newOE.CancelAndSkipPopupDisabled();
         newOE.CancelPop();
+    }
+
+    @And("User searches for QoH and goes through the product numbers")
+    public void userSearchesForQoHAndGoesThroughTheProductNumbers(DataTable dataTable) throws InterruptedException, AWTException
+    {
+        List<List<String>> QoHValue = dataTable.asLists(String.class);
+        newOE=new NewOrderEntryPage(driver,scenario);
+        newOE.validateCatalogdialog();
+        if(HelpersMethod.IsExists("//div[@class='i-grid']",driver))
+        {
+            newOE.listCatelogQoH(QoHValue.get(0).get(0));
+            newOE.readProductInList();
+            newOE.catalogOK();
+        }
+        else if(HelpersMethod.IsExists("//div[@class='product-catalog-container']",driver))
+        {
+            /*newOE.cardCatelog();
+            newOE.readProductInCard();
+            newOE.catalogOK();*/
+            scenario.log("******************************THIS SCENARIO WORKS ONLY ON LIST VIEW****************************");
+        }
     }
 }

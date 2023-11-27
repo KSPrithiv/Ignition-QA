@@ -6,8 +6,13 @@ import io.cucumber.java.Scenario;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
+import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.FluentWait;
+import org.openqa.selenium.support.ui.Wait;
 import org.testng.Assert;
 import pages_DSD_OMS.adminReport.userAndAdmin_GeneralPage;
 import pages_DSD_OMS.login.HomePage;
@@ -17,6 +22,7 @@ import pages_DSD_OMS.webOrdering.AdminHomePage;
 import util.TestBase;
 
 import java.awt.*;
+import java.time.Duration;
 
 public class UserAndAccount_GeneralPageStep
 {
@@ -83,11 +89,14 @@ public class UserAndAccount_GeneralPageStep
         {
             HelpersMethod.waitTillLoadingPage(driver);
         }
-        if (HelpersMethod.IsExists("//div[@class='loader']", driver))
-        {
-            WebElement WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100000);
-        }
+
+        Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                .withTimeout(Duration.ofSeconds(120))
+                .pollingEvery(Duration.ofSeconds(2))
+                .ignoring(NoSuchElementException.class);
+        wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
+        loginpage.validateLoginPageTitle();
         loginpage.RegisterHere();
         //HelpersMethod.waitTillElementLocatedDisplayed(driver, "xpath", "//div[contains(text(),'Customer Registration')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]", 200);
         if (HelpersMethod.IsExists("//div[contains(text(),'Customer Registration')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]", driver))

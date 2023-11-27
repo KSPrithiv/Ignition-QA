@@ -135,12 +135,12 @@ public class ProductReferencePage
             {
                 i++;
                 headText=Thead.getText();
-                if(headText.equals("Custom Column 1"))
+                if(headText.contains("Custom Column") || headText.contains("Custom column"))
                 {
-                    WebEle=HelpersMethod.FindByElement(driver,"xpath","//tr[contains(@class,'k-master-row k-grid-edit-row')]/td["+(i)+"]/input");
+                    WebEle=HelpersMethod.FindByElement(driver,"xpath","//tr[contains(@class,'k-master-row k-grid-edit-row')][1]/td["+(i)+"]/input");
                     HelpersMethod.ScrollElement(driver,WebEle);
-                    HelpersMethod.clearText(driver,WebEle,1000);
-                    HelpersMethod.ActSendKey(driver,WebEle,1000, Acc_NO);
+                    HelpersMethod.clearText(driver,WebEle,4000);
+                    HelpersMethod.ActSendKey(driver,WebEle,6000, Acc_NO);
                     scenario.log("ACCOUNT NUMBER ENTERED IS "+HelpersMethod.JSGetValueEle(driver,WebEle,1000));
                     exists = true;
                 }

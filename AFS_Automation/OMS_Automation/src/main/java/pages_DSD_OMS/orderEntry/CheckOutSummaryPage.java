@@ -137,8 +137,8 @@ public class CheckOutSummaryPage
             HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000000);
         }*/
         Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
-                .withTimeout(Duration.ofSeconds(60))
-                .pollingEvery(Duration.ofSeconds(5))
+                .withTimeout(Duration.ofSeconds(120))
+                .pollingEvery(Duration.ofSeconds(2))
                 .ignoring(NoSuchElementException.class);
         wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
 
@@ -148,20 +148,25 @@ public class CheckOutSummaryPage
         {
             WebElement submitButton = HelpersMethod.FindByElement(driver, "xpath", "//button[@id='ConfirmSummaryButton']");
             HelpersMethod.ScrollUpScrollBar(driver);
-            HelpersMethod.ClickBut(driver, submitButton, 6000);
+            HelpersMethod.ClickBut(driver, submitButton, 8000);
+            wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(120))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
         }
         else if(HelpersMethod.IsExists("//button[@id='ConfirmSummarySplitButton']",driver))
         {
             //Click on Arrow button next to submit button
             WebElement submitCutOff=HelpersMethod.FindByElement(driver,"xpath","//button[@id='ConfirmSummarySplitButton']/following-sibling::div/button/span");
-            HelpersMethod.ClickBut(driver,submitCutOff,4000);
+            HelpersMethod.ClickBut(driver,submitCutOff,8000);
             new WebDriverWait(driver,Duration.ofMillis(20000)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(@class,'k-animation-container k-animation-container-relative k-animation-container-shown')]/descendant::ul/li")));
             //Click on list that appears
             WebElement arrowCutoff=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-animation-container k-animation-container-relative k-animation-container-shown')]/descendant::ul/li");
             HelpersMethod.ActClick(driver,arrowCutoff,10000);
             wait = new FluentWait<WebDriver>(driver)
-                    .withTimeout(Duration.ofSeconds(60))
-                    .pollingEvery(Duration.ofSeconds(5))
+                    .withTimeout(Duration.ofSeconds(120))
+                    .pollingEvery(Duration.ofSeconds(2))
                     .ignoring(NoSuchElementException.class);
             wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
         }
@@ -175,11 +180,35 @@ public class CheckOutSummaryPage
         try
         {
             Thread.sleep(2000);
-            if(HelpersMethod.IsExists("//div[@class='loader']",driver))
+            /*if(HelpersMethod.IsExists("//div[@class='loader']",driver))
             {
                 WebElement WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 200000);
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000000);
+            }*/
+            String status = HelpersMethod.returnDocumentStatus(driver);
+            if (status.equals("loading"))
+            {
+                HelpersMethod.waitTillLoadingPage(driver);
             }
+
+            Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(120))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
+            status = HelpersMethod.returnDocumentStatus(driver);
+            if (status.equals("loading"))
+            {
+                HelpersMethod.waitTillLoadingPage(driver);
+            }
+
+            wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(120))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
             if(HelpersMethod.IsExists("//div[contains(text(),'Additional order(s) have been found')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
             {
                 WebElement additionalPopup=HelpersMethod.FindByElement(driver,"xpath","//div[contains(text(),'Additional order(s) have been found')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]");
@@ -196,11 +225,12 @@ public class CheckOutSummaryPage
         {
             WebElement WebEle;
             Thread.sleep(2000);
-            if(HelpersMethod.IsExists("//div[@class='loader']",driver))
-            {
-                WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100000);
-            }
+            Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(120))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
             for(int i=0;i<=2;i++)
             {
                 if (HelpersMethod.IsExists("//div[contains(text(),'Attention: Although the cutoff time has been reached')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]", driver))
@@ -213,10 +243,11 @@ public class CheckOutSummaryPage
                     WebElement continueBut = dialogBox.findElement(By.xpath(".//button[contains(text(),'Continue')]"));
                     HelpersMethod.ActClick(driver, continueBut, 10000);
                     scenario.log("ORDER CUTOFF DIALOG BOX HAS BEEN HANDLED");
-                    if (HelpersMethod.IsExists("//div[@class='loader']", driver)) {
-                        WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                        HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 200000);
-                    }
+                    wait = new FluentWait<WebDriver>(driver)
+                            .withTimeout(Duration.ofSeconds(120))
+                            .pollingEvery(Duration.ofSeconds(2))
+                            .ignoring(NoSuchElementException.class);
+                    wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
                 }
                 if (HelpersMethod.IsExists("//div[contains(text(),'% of your average order for the given products:')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]", driver))
                 {
@@ -224,11 +255,12 @@ public class CheckOutSummaryPage
                     WebElement continueButton = percentagePopup.findElement(By.xpath(".//button[text()='Continue']"));
                     HelpersMethod.ActClick(driver, continueButton, 2000);
                     scenario.log("% POPUP HAS BEEN HANDLED");
-                    if (HelpersMethod.IsExists("//div[@class='loader']", driver))
-                    {
-                        WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                        HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 200000);
-                    }
+
+                    wait = new FluentWait<WebDriver>(driver)
+                            .withTimeout(Duration.ofSeconds(120))
+                            .pollingEvery(Duration.ofSeconds(2))
+                            .ignoring(NoSuchElementException.class);
+                    wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
                 }
             }
         }
@@ -289,10 +321,21 @@ public class CheckOutSummaryPage
         {
             HelpersMethod.waitTillLoadingPage(driver);
         }
-        if(HelpersMethod.IsExists("//div[@class='loader']",driver))
+       /*if(HelpersMethod.IsExists("//div[@class='loader']",driver))
         {
             WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
             HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000000);
+        }*/
+        Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                .withTimeout(Duration.ofSeconds(120))
+                .pollingEvery(Duration.ofSeconds(2))
+                .ignoring(NoSuchElementException.class);
+        wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
+        status = HelpersMethod.returnDocumentStatus(driver);
+        if (status.equals("loading"))
+        {
+            HelpersMethod.waitTillLoadingPage(driver);
         }
 
         // to fetch the web element of the modal container
@@ -313,7 +356,12 @@ public class CheckOutSummaryPage
         if(HelpersMethod.IsExists("//div[@class='loader']",driver))
         {
             WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100000);
+            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 2000000);
+        }
+        status = HelpersMethod.returnDocumentStatus(driver);
+        if (status.equals("loading"))
+        {
+            HelpersMethod.waitTillLoadingPage(driver);
         }
     }
 
@@ -325,7 +373,7 @@ public class CheckOutSummaryPage
             if(HelpersMethod.IsExists("//div[@class='loader']",driver))
             {
                 WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 400000);
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 2000000);
             }
             WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'order-number-item-container')]");
             HelpersMethod.ScrollElement(driver,WebEle);
@@ -356,7 +404,7 @@ public class CheckOutSummaryPage
         if(HelpersMethod.IsExists("//div[@class='loader']",driver))
         {
             WebElement WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 400000);
+            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 2000000);
         }
         try
         {
@@ -370,7 +418,7 @@ public class CheckOutSummaryPage
                 if(HelpersMethod.IsExists("//div[@class='loader']",driver))
                 {
                     WebElement WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 400000);
+                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 2000000);
                 }
             }
             Assert.assertEquals(exists,true);
@@ -451,8 +499,8 @@ public class CheckOutSummaryPage
         try
         {
             Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
-                    .withTimeout(Duration.ofSeconds(60))
-                    .pollingEvery(Duration.ofSeconds(5))
+                    .withTimeout(Duration.ofSeconds(120))
+                    .pollingEvery(Duration.ofSeconds(2))
                     .ignoring(NoSuchElementException.class);
             wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[@id='ConfirmSummaryButton']//*[local-name()='svg']|//button[@id='ConfirmSummarySplitButton']//*[local-name()='svg']")));
             HelpersMethod.ScrollUpScrollBar(driver);
@@ -503,7 +551,7 @@ public class CheckOutSummaryPage
             if(HelpersMethod.IsExists("//div[@class='loader']",driver))
             {
                 WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000000);
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 2000000);
             }
             Assert.assertEquals(exists,true);
         }
@@ -593,7 +641,7 @@ public class CheckOutSummaryPage
         if(HelpersMethod.IsExists("//div[@class='loader']",driver))
         {
             WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 80000);
+            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000000);
         }
         WebEle=HelpersMethod.FindByElement(driver,"id","OpenOrdersButton_sbc");
         try
@@ -604,7 +652,8 @@ public class CheckOutSummaryPage
                 HelpersMethod.ActClick(driver, WebEle, 1000);
                 if(HelpersMethod.IsExists("//div[@class='loader']",driver))
                 {
-                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 80000);
+                    WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
+                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000000);
                 }
                 exists=true;
             }
@@ -620,7 +669,7 @@ public class CheckOutSummaryPage
                 if(HelpersMethod.IsExists("//div[@class='loader']",driver))
                 {
                     WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 80000);
+                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000000);
                 }
             }
             Assert.assertEquals(exists,true);
@@ -642,7 +691,7 @@ public class CheckOutSummaryPage
                 if (HelpersMethod.IsExists("//div[@class='loader']", driver))
                 {
                     WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 80000);
+                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000000);
                 }
                 Set<String> PCWindows = driver.getWindowHandles();
                 for (String PCwind : PCWindows)
@@ -679,7 +728,7 @@ public class CheckOutSummaryPage
             if(HelpersMethod.IsExists("//div[@class='loader']",driver))
             {
                 WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 80000);
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000000);
             }
             HelpersMethod.WaitElementPresent(driver,"id","order-search-card",2000);
             Assert.assertEquals(exists,true);
@@ -709,7 +758,7 @@ public class CheckOutSummaryPage
             if(HelpersMethod.IsExists("//div[@class='loader']",driver))
             {
                 WebElement WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100000);
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000000);
             }
             HelpersMethod.ScrollElement(driver,Comment_But);
             if(HelpersMethod.IsExists("//div[contains(text(),'Pick up order')]//following-sibling::div[text()='Yes']",driver))
@@ -834,7 +883,7 @@ public class CheckOutSummaryPage
             if(HelpersMethod.IsExists("//div[@class='loader']",driver))
             {
                 WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 200000);
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000000);
             }
 
             status = HelpersMethod.returnDocumentStatus(driver);
@@ -845,7 +894,7 @@ public class CheckOutSummaryPage
             if(HelpersMethod.IsExists("//div[@class='loader']",driver))
             {
                 WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 200000);
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000000);
             }
         }
         catch (Exception e){}

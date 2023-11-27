@@ -136,7 +136,7 @@ Feature: Order Entry5
     Then User must click Start Order button
     Then User should make selection between Pending order or Start New order
     Then User should select Note from popup and Order guide from popup
-    Then Compare route selected in OE page with route in NewOE page
+    Then Compare Sales rep value selected in OE page with Sales rep in NewOE page
     Then Enter PO# for New order
       |PO123|
     Then Enter Pro# in Quick Product Entry area

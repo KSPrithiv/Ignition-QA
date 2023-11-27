@@ -7,6 +7,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.devtools.v85.network.model.DataReceived;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -704,7 +705,10 @@ public class NewStandingOrderCard
         exists=false;
         try
         {
-            Thread.sleep(1000);
+            if(HelpersMethod.IsExists("//span[contains(@class,'k-icon k-i-loading')]",driver))
+            {
+                new WebDriverWait(driver, Duration.ofMillis(100000)).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//span[contains(@class,'k-icon k-i-loading')]")));
+            }
             WebElement modalContainer = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-widget k-window k-dialog')]");
             WebElement custFilterInput = modalContainer.findElement(By.xpath(".//th[2]/div[@class='k-filtercell'][1]/descendant::input"));
             String Acc_No = TestBase.testEnvironment.get_Account();
@@ -1003,18 +1007,19 @@ public class NewStandingOrderCard
 
     public void selectFromDateForGenerateSO()
     {
+        exists=false;
         try
         {
             Actions act1 = new Actions(driver);
-            WebElement fromCalender = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-calendar-view k-hstack k-align-items-start k-justify-content-center k-calendar-monthview')]");
-            WebElement selectableDate = fromCalender.findElement(By.xpath(".//td[contains(@class,'k-today') and contains(@style,'opacity: 1;')]"));
+            WebElement selectableDate=HelpersMethod.FindByElement(driver,"xpath","//td[contains(@class,'k-calendar-td k-range-end k-range-start k-state-pending-focus k-state-selected')]/span");
             HelpersMethod.ScrollDownScrollBar(driver);
             HelpersMethod.ScrollTillElementVisible(driver,selectableDate);
-
             act1.moveToElement(selectableDate).build().perform();
             act1.click(selectableDate).build().perform();
+            exists=true;
         }
         catch ( Exception e){}
+        Assert.assertEquals(exists,true);
     }
 
     public void clickToDateForGenerateSO()
@@ -1039,12 +1044,14 @@ public class NewStandingOrderCard
             Actions act1 = new Actions(driver);
             List<WebElement> selectableDates = HelpersMethod.FindByElements(driver,"xpath","//td[contains(@class,'k-calendar-td') and contains(@style,'opacity: 1;')]");
             int j=selectableDates.size()-1;
-            for (int i = selectableDates.size() - 1; i >= 0; i--)
+            //for (int i = selectableDates.size() - 1; i >= 0; i--)
+            for(int i=0;i<=selectableDates.size()-1;i++)
             {
                 act1.moveToElement(selectableDates.get(i)).build().perform();
-                if (i == selectableDates.size() - 1)
+                //if (i == selectableDates.size() - 1)
+                if(i==2)
                 {
-                    String selectTo=selectableDates.get(j).getAttribute("title");
+                    String selectTo=selectableDates.get(i).getAttribute("title");
                     WebElement selTo=HelpersMethod.FindByElement(driver,"xpath","//td[contains(@class,'k-calendar-td') and @title='"+selectTo+"']");
                     act1.moveToElement(selTo).build().perform();
                     HelpersMethod.JScriptClick(driver,selTo,1000);
@@ -1209,6 +1216,36 @@ public class NewStandingOrderCard
             else
             {
                 scenario.log("NO EXPIRED STANDING ORDER HAS BEEN FOUND");
+            }
+            Assert.assertEquals(exists,true);
+        }
+        catch (Exception e){}
+    }
+
+    public void validateFromStandingOrderCalender()
+    {
+        exists=false;
+        try
+        {
+            Thread.sleep(500);
+            if(HelpersMethod.IsExists("//div[contains(@class,'k-animation-container k-animation-container-relative k-animation-container-shown')]",driver))
+            {
+                exists=true;
+            }
+            Assert.assertEquals(exists,true);
+        }
+        catch (Exception e){}
+    }
+
+    public void validateToStandingOrderCalender()
+    {
+        exists=false;
+        try
+        {
+            Thread.sleep(500);
+            if(HelpersMethod.IsExists("//div[contains(@class,'k-animation-container k-animation-container-relative k-animation-container-shown')]",driver))
+            {
+                exists=true;
             }
             Assert.assertEquals(exists,true);
         }

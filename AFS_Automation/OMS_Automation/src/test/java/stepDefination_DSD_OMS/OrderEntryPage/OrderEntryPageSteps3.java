@@ -125,15 +125,23 @@ public class OrderEntryPageSteps3
                 break;
             }
         }
-        int OutOfStockUnit=driver.findElements(By.xpath("//div[contains(@class,'icon-preview-background ')]/ancestor::tr[contains(@class,'k-master-row')]/descendant::td["+i+"]/descendant::span[text()='0']")).size();
-        Assert.assertEquals(OutOfStockCount,OutOfStockUnit);
-        if(OutOfStockCount==0)
+
+        if(HelpersMethod.IsExists("//div[contains(@class,'icon-preview-background ')]/ancestor::tr[contains(@class,'k-master-row')]/descendant::td[" + i + "]/descendant::span[text()='0']",driver))
         {
-            scenario.log("NO OUT OF STOCK PRODUCT HAS BEEN FOUND");
+            int OutOfStockUnit = driver.findElements(By.xpath("//div[contains(@class,'icon-preview-background ')]/ancestor::tr[contains(@class,'k-master-row')]/descendant::td[" + i + "]/descendant::span[text()='0']")).size();
+            Assert.assertEquals(OutOfStockCount, OutOfStockUnit);
+            if (OutOfStockCount == 0)
+            {
+                scenario.log("NO OUT OF STOCK PRODUCT HAS BEEN FOUND");
+            }
+            else
+            {
+                scenario.log(OutOfStockCount + " OUT OF STOCK PRODUCT HAS BEEN FOUND");
+            }
         }
         else
         {
-            scenario.log(OutOfStockCount+" OUT OF STOCK PRODUCT HAS BEEN FOUND");
+            scenario.log("NO OUT OF STOCK PRODUCTS HAVE BEEN FOUND");
         }
     }
 

@@ -85,8 +85,8 @@ public class TestBase
                 //chromeOptions.addArguments("disable-notifications");
                 //chromeOptions.addArguments("disable-infobars");
                 chromeOptions.addArguments("--start-maximized");
-                //chromeOptions.addArguments("window-size=1920,1080");
-                chromeOptions.addArguments("window-size=1280,720");
+                chromeOptions.addArguments("window-size=1920,1080");
+                //chromeOptions.addArguments("window-size=1280,720");
                 chromeOptions.addArguments("PageLoadStrategy.NORMAL");
                 //chromeOptions.addArguments("test-type");
                 //chromeOptions.addArguments("user-data-dir=D:/temp/");
@@ -143,7 +143,7 @@ public class TestBase
                 WebDriverManager.chromedriver().setup();
                 ChromeOptions chromeOptions = new ChromeOptions();
                 chromeOptions.addArguments("--headless=new");
-                chromeOptions.addArguments("window-size=1280,720");
+                chromeOptions.addArguments("window-size=1920,1080");
                 chromeOptions.addArguments("--remote-allow-origins=*");
                 chromeOptions.addArguments("--no-proxy-server");
                 chromeOptions.addArguments("--proxy-server='direct://'");
@@ -191,10 +191,11 @@ public class TestBase
         //getDriver().manage().timeouts().implicitlyWait(TestUtil.IMPLICIT_WAIT, TimeUnit.SECONDS);
         System.out.println(testEnvironment.get_url());
         getDriver().get(testEnvironment.get_url());
-        Thread.sleep(4000);
+        Thread.sleep(6000);
     }
 
-    public static void unload() throws IOException {
+    public static void unload() throws IOException
+    {
         driver.remove();
     }
 
@@ -202,10 +203,5 @@ public class TestBase
     {
         getDriver().close();
         unload();
-    }
-
-    //Karthik
-    public static void refreshPage() throws InterruptedException, AWTException, SQLException, ClassNotFoundException, InstantiationException, IllegalAccessException {
-        getDriver().navigate().refresh();
     }
 }

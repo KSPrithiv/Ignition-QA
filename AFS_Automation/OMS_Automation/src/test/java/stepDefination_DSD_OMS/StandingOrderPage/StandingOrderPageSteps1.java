@@ -89,8 +89,10 @@ public class StandingOrderPageSteps1
     {
         standingOrderCard=new NewStandingOrderCard(driver,scenario);
         standingOrderCard.clickOnStartStandingOrderCalender();
+        standingOrderCard.validateFromStandingOrderCalender();
         standingOrderCard.selectFromDateForGenerateSO();
         standingOrderCard.clickToDateForGenerateSO();
+        standingOrderCard.validateToStandingOrderCalender();
         standingOrderCard.selectToDateForGenerateSO();
         standingOrderCard.clickOnOkButtonInGenerateSO();
     }

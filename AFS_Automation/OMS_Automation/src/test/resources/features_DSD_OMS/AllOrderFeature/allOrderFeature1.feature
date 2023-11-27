@@ -37,7 +37,7 @@ Feature: All orders
     And User drag and drops "<Drag and Drop>" header
     Examples:
     | Drag and Drop |
-    | Day of week   |
+    | Order Type    |
 
   @DragAndDropAndSum
   Scenario Outline: Test scenario for drag and drop, and find sum of total and Qty columns
@@ -49,5 +49,5 @@ Feature: All orders
     And User drag and drops "<Drag and Drop>" header
     Examples:
       | Drag and Drop | Options |
-      | Day of week   |  Sum    |
+      | Order Type   |  Sum    |
 
