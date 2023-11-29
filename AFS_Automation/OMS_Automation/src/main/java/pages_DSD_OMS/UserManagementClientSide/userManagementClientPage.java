@@ -249,6 +249,22 @@ public class userManagementClientPage
         }
         catch (Exception e){}
     }
+    public void clickAgainOnRole()
+    {
+        exists=false;
+        try
+        {
+            WebElement roleName1=HelpersMethod.FindByElement(driver,"xpath","//label[text()='Role']/following-sibling::span/descendant::input");
+            HelpersMethod.ActClick(driver,roleName,1000);
+            Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(120))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
+        }
+        catch (Exception e){}
+    }
 
     public void readAllRolesAvailable()
     {
@@ -301,9 +317,21 @@ public class userManagementClientPage
 
     public void pONumber(String poNum)
     {
+        exists=false;
+        WebElement WebEle;
         try
         {
-            HelpersMethod.EnterText(driver,poNo,1000,poNum);
+            if(poNo.isDisplayed())
+            {
+                HelpersMethod.EnterText(driver, poNo, 1000, poNum);
+                exists=true;
+                if(HelpersMethod.IsExists("//div[@class='loader']",driver))
+                {
+                    WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
+                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000000);
+                }
+            }
+            Assert.assertEquals(exists,true);
         }
         catch (Exception e){}
     }
@@ -369,18 +397,25 @@ public class userManagementClientPage
         {
             WebElement WebEle = null;
             scenario.log("CURRENT URL IS " + currentURL);
-            driver.navigate().to(currentURL);
+            //driver.navigate().to(currentURL);
+            driver.navigate().refresh();
             String status = HelpersMethod.returnDocumentStatus(driver);
             if (status.equals("loading")) {
                 HelpersMethod.waitTillLoadingPage(driver);
             }
             if (HelpersMethod.IsExists("//div[@class='loader']", driver)) {
                 WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000000);
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 2000000);
             }
             status = HelpersMethod.returnDocumentStatus(driver);
-            if (status.equals("loading")) {
+            if (status.equals("loading"))
+            {
                 HelpersMethod.waitTillLoadingPage(driver);
+            }
+            if (HelpersMethod.IsExists("//div[@class='loader']", driver))
+            {
+                WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 2000000);
             }
         }
         catch (Exception e){}

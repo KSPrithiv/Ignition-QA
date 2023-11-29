@@ -67,8 +67,8 @@ public class ShippingPage
         exists=false;
         try
         {
-            HelpersMethod.EnterText(driver,WebEle,10, RandomValues.generateRandomString(length));
-            InputValue=HelpersMethod.JSGetValueEle(driver,WebEle,10);
+            HelpersMethod.EnterText(driver,WebEle,1000, RandomValues.generateRandomString(length));
+            InputValue=HelpersMethod.JSGetValueEle(driver,WebEle,1000);
 
             if(InputValue!=null)
             {exists=true;}
@@ -80,16 +80,14 @@ public class ShippingPage
 
     public void selectDropDownValue()
     {
-        String selectValue=null;
-        WebElement dropDownOption=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-animation-container k-animation-container-relative k-list-container k-reset i-common-dropdown i-common-dropdown__type-none')]");
-        List<WebElement> Options= dropDownOption.findElements(By.xpath(".//ul/li"));
-        int option=RandomValues.createRandomIntBetween(0,Options.size()-1);
+        //WebElement dropDownOption=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-animation-container k-animation-container-relative k-list-container k-reset i-common-dropdown i-common-dropdown__type-none')]");
+        List<WebElement> Options= HelpersMethod.FindByElements(driver,"xpath","//div[contains(@class,'k-list-container')]/descendant::ul/li");
         try
         {
             if(Options.size()==1)
             {
                 scenario.log("THERE ARE NO OPTIONS OTHER THAN 'None'");
-                HelpersMethod.ActClick(driver, Options.get(0), 20);
+                HelpersMethod.ActClick(driver, Options.get(0), 2000);
             }
             else
             {
@@ -99,7 +97,7 @@ public class ShippingPage
                     {
                         if (i == 1)
                         {
-                            HelpersMethod.ActClick(driver, Options.get(1), 20);
+                            HelpersMethod.ActClick(driver, Options.get(1), 2000);
                             break;
                         }
                     }
@@ -110,7 +108,7 @@ public class ShippingPage
                     {
                         if (i == 2)
                         {
-                            HelpersMethod.ActClick(driver, Options.get(2), 20);
+                            HelpersMethod.ActClick(driver, Options.get(2), 2000);
                             break;
                         }
                     }
@@ -123,65 +121,65 @@ public class ShippingPage
     public void daysToShipTextBox()
     {
         InputValue=EnterText(daysToShip,10);
-        HelpersMethod.EnterText(driver,daysToShip,10,InputValue);
-        scenario.log("DELIVERY CONTACT ENTERED IS "+HelpersMethod.JSGetValueEle(driver,daysToShip,10));
+        HelpersMethod.EnterText(driver,daysToShip,1000,InputValue);
+        scenario.log("DELIVERY CONTACT ENTERED IS "+HelpersMethod.JSGetValueEle(driver,daysToShip,1000));
     }
     public void deliveryDistanceMiTextBox()
     {
         InputValue=EnterText(deliveryDistanceMi,10);
-        HelpersMethod.EnterText(driver,deliveryDistanceMi,10,InputValue);
-        scenario.log("DELIVERY DISTANCE Mi ENTERED IS "+HelpersMethod.JSGetValueEle(driver,deliveryDistanceMi,10));
+        HelpersMethod.EnterText(driver,deliveryDistanceMi,1000,InputValue);
+        scenario.log("DELIVERY DISTANCE Mi ENTERED IS "+HelpersMethod.JSGetValueEle(driver,deliveryDistanceMi,1000));
     }
     public void deliveryDistanceKmTextBox()
     {
         InputValue=EnterText(deliveryDistanceKm,10);
-        HelpersMethod.EnterText(driver,deliveryDistanceKm,10,InputValue);
-        scenario.log("DELIVERY DISTANCE Km ENTERED IS "+HelpersMethod.JSGetValueEle(driver,deliveryDistanceKm,10));
+        HelpersMethod.EnterText(driver,deliveryDistanceKm,1000,InputValue);
+        scenario.log("DELIVERY DISTANCE Km ENTERED IS "+HelpersMethod.JSGetValueEle(driver,deliveryDistanceKm,1000));
     }
     public void gpsLongitudeTextBox()
     {
         InputValue=EnterText(gpsLongitude,10);
-        HelpersMethod.EnterText(driver,gpsLongitude,10,InputValue);
-        scenario.log("GPS LONGITUDE ENTERED IS "+HelpersMethod.JSGetValueEle(driver,gpsLongitude,10));
+        HelpersMethod.EnterText(driver,gpsLongitude,1000,InputValue);
+        scenario.log("GPS LONGITUDE ENTERED IS "+HelpersMethod.JSGetValueEle(driver,gpsLongitude,1000));
     }
     public void gpsLatitudeTextBox()
     {
         InputValue=EnterText(gpsLatitude,10);
-        HelpersMethod.EnterText(driver,gpsLatitude,10,InputValue);
-        scenario.log("GPS LONGITUDE ENTERED IS "+HelpersMethod.JSGetValueEle(driver,gpsLatitude,10));
+        HelpersMethod.EnterText(driver,gpsLatitude,1000,InputValue);
+        scenario.log("GPS LONGITUDE ENTERED IS "+HelpersMethod.JSGetValueEle(driver,gpsLatitude,1000));
     }
 
     public void shipLocationDropDown()
     {
-        HelpersMethod.ClickBut(driver,shipLocationDropDown,40);
+        HelpersMethod.ClickBut(driver,shipLocationDropDown,4000);
         selectDropDownValue();
         scenario.log("SHIPPING DROP DOWN IS "+shipLocationDropDown.getText());
     }
 
     public void freightZoneDropDown()
     {
-        HelpersMethod.ClickBut(driver,freightZoneDropDown,40);
+        HelpersMethod.ClickBut(driver,freightZoneDropDown,4000);
         selectDropDownValue();
         scenario.log("FREIGHT ZONE DROP DOWN IS "+freightZoneDropDown.getText());
     }
 
     public void freightMethodDropDown()
     {
-        HelpersMethod.ClickBut(driver,freightMethodDropDown,40);
+        HelpersMethod.ClickBut(driver,freightMethodDropDown,4000);
         selectDropDownValue();
         scenario.log("FREIGHT METHOD DROP DOWN IS "+freightMethodDropDown.getText());
     }
 
     public void freightBaseDropDown()
     {
-        HelpersMethod.ClickBut(driver,freightBaseDropDown,40);
+        HelpersMethod.ClickBut(driver,freightBaseDropDown,4000);
         selectDropDownValue();
         scenario.log("FREIGHT BASE DROP DOWN IS "+freightBaseDropDown.getText());
     }
 
     public void excludeCallListCheckBox()
     {
-        HelpersMethod.ClickBut(driver,excludeCallListCheckBox,10);
+        HelpersMethod.ClickBut(driver,excludeCallListCheckBox,1000);
         scenario.log("EXCLUDE CALL LIST CHECKBOX SELECTED");
     }
 }

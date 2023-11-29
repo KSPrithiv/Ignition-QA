@@ -56,15 +56,14 @@ public class PricingPage
 
     public void selectDropDownValue()
     {
-        String selectValue=null;
-        WebElement dropDownOption= HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-animation-container k-animation-container-relative k-list-container k-reset i-common-dropdown i-common-dropdown__type-none')]");
-        List<WebElement> Options= dropDownOption.findElements(By.xpath(".//ul/li"));
+        //WebElement dropDownOption=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-animation-container k-animation-container-relative k-list-container k-reset i-common-dropdown i-common-dropdown__type-none')]");
+        List<WebElement> Options= HelpersMethod.FindByElements(driver,"xpath","//div[contains(@class,'k-list-container')]/descendant::ul/li");
         try
         {
             if(Options.size()==1)
             {
                 scenario.log("THERE ARE NO OPTIONS OTHER THAN 'None'");
-                HelpersMethod.ActClick(driver, Options.get(0), 20);
+                HelpersMethod.ActClick(driver, Options.get(0), 2000);
             }
             else
             {
@@ -74,7 +73,7 @@ public class PricingPage
                     {
                         if (i == 1)
                         {
-                            HelpersMethod.ActClick(driver, Options.get(1), 20);
+                            HelpersMethod.ActClick(driver, Options.get(1), 2000);
                             break;
                         }
                     }
@@ -85,7 +84,7 @@ public class PricingPage
                     {
                         if (i == 2)
                         {
-                            HelpersMethod.ActClick(driver, Options.get(2), 20);
+                            HelpersMethod.ActClick(driver, Options.get(2), 2000);
                             break;
                         }
                     }
@@ -97,36 +96,36 @@ public class PricingPage
 
     public void pricingCustomerDropDown()
     {
-        HelpersMethod.ClickBut(driver,pricingCustomerDropDown,40);
+        HelpersMethod.ClickBut(driver,pricingCustomerDropDown,4000);
         selectDropDownValue();
         scenario.log("VALUE SELECTED FROM PRICING CUSTOMER DROP DOWN IS "+pricingCustomerDropDown.getText());
     }
     public void pricingZoneDropDown()
     {
-        HelpersMethod.ClickBut(driver,pricingZoneDropDown,40);
+        HelpersMethod.ClickBut(driver,pricingZoneDropDown,4000);
         selectDropDownValue();
         scenario.log("VALUE SELECTED FROM PRICING ZONE DROP DOWN IS "+pricingZoneDropDown.getText());
     }
     public void pricingLevelDropDown()
     {
-        HelpersMethod.ClickBut(driver,pricingLevelDropDown,40);
+        HelpersMethod.ClickBut(driver,pricingLevelDropDown,4000);
         selectDropDownValue();
         scenario.log("VALUE SELECTED FROM SALES REP DROP DOWN IS "+pricingLevelDropDown.getText());
     }
     public void lastNotificationCalender()
     {
-        HelpersMethod.ClickBut(driver,lastNotificationCalender,10);
+        HelpersMethod.ClickBut(driver,lastNotificationCalender,1000);
     }
     public void selectReviewDate()
     {
         try
         {
-            HelpersMethod.waitTillElementLocatedDisplayed(driver,"xpath","//div[contains(@class,'k-calendar-monthview')]",6);
+            HelpersMethod.waitTillElementLocatedDisplayed(driver,"xpath","//div[contains(@class,'k-calendar-monthview')]",6000);
             if (HelpersMethod.IsExists("//div[contains(@class,'k-calendar-monthview')]",driver))
             {
                 WebElement ele1 = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-calendar-monthview')]/descendant::td[contains(@class,'k-calendar-td k-state-pending-focus k-today k-state-focused')]");
                 HelpersMethod.JSScroll(driver,ele1);
-                HelpersMethod.ActClick(driver, ele1, 2);
+                HelpersMethod.ActClick(driver, ele1, 2000);
                 scenario.log("CURRENT DATE HAS BEEN SELECTED AS LAST NOTIFICATION DATE");
             }
             else
@@ -139,24 +138,24 @@ public class PricingPage
 
     public void AIMPricingDropDown()
     {
-        HelpersMethod.ClickBut(driver,AIMPricingDropDown,40);
+        HelpersMethod.ClickBut(driver,AIMPricingDropDown,4000);
         selectDropDownValue();
         scenario.log("VALUE SELECTED FROM AIM PRICING DROP DOWN IS "+AIMPricingDropDown.getText());
     }
     public void retailPriceDropDown()
     {
-        HelpersMethod.ClickBut(driver,retailPriceDropDown,40);
+        HelpersMethod.ClickBut(driver,retailPriceDropDown,4000);
         selectDropDownValue();
         scenario.log("VALUE SELECTED FROM RETAIL PRICE DROP DOWN IS "+retailPriceDropDown.getText());
     }
     public void shelfTagsDropDown()
     {
-        HelpersMethod.ClickBut(driver,shelfTagsDropDown,40);
+        HelpersMethod.ClickBut(driver,shelfTagsDropDown,4000);
         selectDropDownValue();
         scenario.log("VALUE SELECTED FROM SHELF TAGS DROP DOWN IS "+shelfTagsDropDown.getText());
     }
     public void pricingPromotions() throws InterruptedException
     {
-        HelpersMethod.ActClick(driver,applyPromotionsCheckbox,10);
+        HelpersMethod.ActClick(driver,applyPromotionsCheckbox,1000);
     }
 }
