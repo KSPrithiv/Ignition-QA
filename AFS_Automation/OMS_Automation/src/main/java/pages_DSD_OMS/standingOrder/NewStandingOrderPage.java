@@ -653,6 +653,7 @@ public class NewStandingOrderPage
                 WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
                 HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000000);
             }
+            Thread.sleep(2000);
             Assert.assertEquals(exists,true);
         }
         catch (Exception e){}
@@ -663,9 +664,9 @@ public class NewStandingOrderPage
         exists=false;
         WebElement WebEle=null;
         Actions act=new Actions(driver);
-        String dateVal=null;
-        int j=0;
-        int index=0;
+       // String dateVal=null;
+       // int j=0;
+       // int index=0;
         try
         {
             WebElement ele1;

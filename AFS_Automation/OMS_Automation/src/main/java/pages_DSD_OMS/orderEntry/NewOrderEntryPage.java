@@ -167,6 +167,11 @@ public class NewOrderEntryPage
         {
             HelpersMethod.waitTillLoadingPage(driver);
         }
+        wait = new FluentWait<WebDriver>(driver)
+                .withTimeout(Duration.ofSeconds(120))
+                .pollingEvery(Duration.ofSeconds(2))
+                .ignoring(NoSuchElementException.class);
+        wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
         try
         {
            if(HelpersMethod.IsExists("//div[contains(@class,'order-entry-page')]",driver))
@@ -715,41 +720,74 @@ public class NewOrderEntryPage
     public boolean ClickNext() throws InterruptedException
     {
         exists=false;
+        Wait<WebDriver> wait;
         try
         {
-            if(Next_But.isDisplayed() && Next_But.isEnabled())
+            if(HelpersMethod.IsExists("//button[@id='submitOrderButton']",driver))
             {
-                HelpersMethod.ScrollUpScrollBar(driver);
-
-                Thread.sleep(2000);
-                Next_But=HelpersMethod.FindByElement(driver,"xpath","//button[@id='submitOrderButton']//*[local-name()='svg']");
-                HelpersMethod.ActClick(driver,Next_But,10000);
-                scenario.log("NEXT BUTTON CLICKED");
-
-                String status = HelpersMethod.returnDocumentStatus(driver);
-                if (status.equals("loading"))
+                if (Next_But.isDisplayed() && Next_But.isEnabled())
                 {
-                    HelpersMethod.waitTillLoadingPage(driver);
+                    HelpersMethod.ScrollUpScrollBar(driver);
+                    Thread.sleep(2000);
+                    Next_But = HelpersMethod.FindByElement(driver, "xpath", "//button[@id='submitOrderButton']//*[local-name()='svg']");
+                    HelpersMethod.ActClick(driver, Next_But, 10000);
+                    scenario.log("NEXT BUTTON CLICKED");
+
+                    String status = HelpersMethod.returnDocumentStatus(driver);
+                    if (status.equals("loading"))
+                    {
+                        HelpersMethod.waitTillLoadingPage(driver);
+                    }
+
+                    wait = new FluentWait<WebDriver>(driver)
+                            .withTimeout(Duration.ofSeconds(120))
+                            .pollingEvery(Duration.ofSeconds(2))
+                            .ignoring(NoSuchElementException.class);
+                    wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
+                    status = HelpersMethod.returnDocumentStatus(driver);
+                    if (status.equals("loading")) {
+                        HelpersMethod.waitTillLoadingPage(driver);
+                    }
+
+                    wait = new FluentWait<WebDriver>(driver)
+                            .withTimeout(Duration.ofSeconds(60))
+                            .pollingEvery(Duration.ofSeconds(2))
+                            .ignoring(NoSuchElementException.class);
+                    wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+                    exists = true;
                 }
-
-                Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
-                        .withTimeout(Duration.ofSeconds(120))
-                        .pollingEvery(Duration.ofSeconds(2))
-                        .ignoring(NoSuchElementException.class);
-                wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
-
-                status = HelpersMethod.returnDocumentStatus(driver);
-                if (status.equals("loading"))
+            }
+            else if(HelpersMethod.IsExists("//div[contains(@class,'k-split-button')]",driver))
+            {
+                if (HelpersMethod.IsExists("//button[@id='ConfirmSummaryButton']", driver))
                 {
-                    HelpersMethod.waitTillLoadingPage(driver);
+                    WebElement submitButton = HelpersMethod.FindByElement(driver, "xpath", "//button[@id='ConfirmSummaryButton']");
+                    HelpersMethod.ScrollUpScrollBar(driver);
+                    HelpersMethod.ClickBut(driver, submitButton, 8000);
+                    wait = new FluentWait<WebDriver>(driver)
+                            .withTimeout(Duration.ofSeconds(120))
+                            .pollingEvery(Duration.ofSeconds(2))
+                            .ignoring(java.util.NoSuchElementException.class);
+                    wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+                    exists = true;
                 }
-
-               wait = new FluentWait<WebDriver>(driver)
-                        .withTimeout(Duration.ofSeconds(60))
-                        .pollingEvery(Duration.ofSeconds(2))
-                        .ignoring(NoSuchElementException.class);
-                wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
-                exists=true;
+                else if (HelpersMethod.IsExists("//button[@id='ConfirmSummarySplitButton']", driver))
+                {
+                    //Click on Arrow button next to submit button
+                    WebElement submitCutOff = HelpersMethod.FindByElement(driver, "xpath", "//button[@id='ConfirmSummarySplitButton']/following-sibling::div/button/span");
+                    HelpersMethod.ClickBut(driver, submitCutOff, 8000);
+                    new WebDriverWait(driver, Duration.ofMillis(20000)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(@class,'k-animation-container k-animation-container-relative k-animation-container-shown')]/descendant::ul/li")));
+                    //Click on list that appears
+                    WebElement arrowCutoff = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-animation-container k-animation-container-relative k-animation-container-shown')]/descendant::ul/li");
+                    HelpersMethod.ActClick(driver, arrowCutoff, 10000);
+                    wait = new FluentWait<WebDriver>(driver)
+                            .withTimeout(Duration.ofSeconds(120))
+                            .pollingEvery(Duration.ofSeconds(2))
+                            .ignoring(java.util.NoSuchElementException.class);
+                    wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+                    exists = true;
+                }
             }
             Assert.assertEquals(exists,true);
         }

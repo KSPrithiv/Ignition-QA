@@ -223,7 +223,7 @@ public class QuotePageSteps
     }
 
     @And("User clicks on Plus symbol in new Quote page and selects Catalog option from drop down")
-    public void userClicksOnPlusSymbolInNewQuotePageAndSelectsCatalogOptionFromDropDown()
+    public void userClicksOnPlusSymbolInNewQuotePageAndSelectsCatalogOptionFromDropDown() throws InterruptedException
     {
         newQuotePage=new NewQuotePage(driver,scenario);
         newQuotePage.validateNewQuote();

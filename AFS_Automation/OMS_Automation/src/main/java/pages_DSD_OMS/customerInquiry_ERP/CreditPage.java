@@ -78,8 +78,8 @@ public class CreditPage
         exists=false;
         try
         {
-            HelpersMethod.EnterText(driver,WebEle,10, RandomValues.generateRandomNumber(length));
-            InputValue=HelpersMethod.JSGetValueEle(driver,WebEle,10);
+            HelpersMethod.EnterText(driver,WebEle,1000, RandomValues.generateRandomNumber(length));
+            InputValue=HelpersMethod.JSGetValueEle(driver,WebEle,1000);
 
             if(InputValue!=null)
             {exists=true;}
@@ -94,8 +94,8 @@ public class CreditPage
         exists=false;
         try
         {
-            HelpersMethod.EnterText(driver,WebEle,10, RandomValues.generateRandomString(length));
-            InputValue=HelpersMethod.JSGetValueEle(driver,WebEle,10);
+            HelpersMethod.EnterText(driver,WebEle,1000, RandomValues.generateRandomString(length));
+            InputValue=HelpersMethod.JSGetValueEle(driver,WebEle,1000);
 
             if(InputValue!=null)
             {exists=true;}
@@ -107,14 +107,14 @@ public class CreditPage
 
     public void selectDropDownValue()
     {
-        WebElement dropDownOption=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-animation-container k-animation-container-relative k-list-container k-reset i-common-dropdown i-common-dropdown__type-none')]");
-        List<WebElement> Options= dropDownOption.findElements(By.xpath(".//ul/li"));
+        //WebElement dropDownOption=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-animation-container k-animation-container-relative k-list-container k-reset i-common-dropdown i-common-dropdown__type-none')]");
+        List<WebElement> Options= HelpersMethod.FindByElements(driver,"xpath","//div[contains(@class,'k-list-container')]/descendant::ul/li");
         try
         {
             if(Options.size()==1)
             {
                 scenario.log("THERE ARE NO OPTIONS OTHER THAN 'None'");
-                HelpersMethod.ActClick(driver, Options.get(0), 20);
+                HelpersMethod.ActClick(driver, Options.get(0), 2000);
             }
             else
             {
@@ -124,7 +124,7 @@ public class CreditPage
                     {
                         if (i == 1)
                         {
-                            HelpersMethod.ActClick(driver, Options.get(1), 20);
+                            HelpersMethod.ActClick(driver, Options.get(1), 2000);
                             break;
                         }
                     }
@@ -135,7 +135,7 @@ public class CreditPage
                     {
                         if (i == 2)
                         {
-                            HelpersMethod.ActClick(driver, Options.get(2), 20);
+                            HelpersMethod.ActClick(driver, Options.get(2), 2000);
                             break;
                         }
                     }
@@ -147,85 +147,85 @@ public class CreditPage
 
     public void statusDropDown()
     {
-        HelpersMethod.ClickBut(driver,statusDropDown,40);
+        HelpersMethod.ClickBut(driver,statusDropDown,1000);
         selectDropDownValue();
         scenario.log("VALUE SELECTED FROM STATUS DROP DOWN IS "+statusDropDown.getText());
     }
     public void defaultBranchDropDown()
     {
-        HelpersMethod.ClickBut(driver,defaultBranchDropDown,40);
+        HelpersMethod.ClickBut(driver,defaultBranchDropDown,1000);
         selectDropDownValue();
         scenario.log("VALUE SELECTED FROM DEFAULT BRANCH DROP DOWN IS "+defaultBranchDropDown.getText());
     }
     public void defaultWarehouseDropDown()
     {
-        HelpersMethod.ClickBut(driver,wareHouseDropDown,40);
+        HelpersMethod.ClickBut(driver,wareHouseDropDown,1000);
         selectDropDownValue();
         scenario.log("VALUE SELECTED FROM DEFAULT WAREHOUSE DROP DOWN IS "+wareHouseDropDown.getText());
     }
     public void creditToCompanyDropDown()
     {
-        HelpersMethod.ClickBut(driver,creditToCompanyDropDown,40);
+        HelpersMethod.ClickBut(driver,creditToCompanyDropDown,1000);
         selectDropDownValue();
         scenario.log("VALUE SELECTED FROM CREDIT TO COMPANY DROP DOWN IS "+creditToCompanyDropDown.getText());
     }
     public void creditToCustomerDropDown()
     {
-        HelpersMethod.ClickBut(driver,creditToCustomerDropDown,40);
+        HelpersMethod.ClickBut(driver,creditToCustomerDropDown,1000);
         selectDropDownValue();
         scenario.log("VALUE SELECTED FROM CREDIT TO COMPANY DROP DOWN IS "+creditToCustomerDropDown.getText());
     }
     public void creditHoldCodeDropDown()
     {
-        HelpersMethod.ClickBut(driver,creditHoldCodeDropDown,40);
+        HelpersMethod.ClickBut(driver,creditHoldCodeDropDown,1000);
         selectDropDownValue();
         scenario.log("VALUE SELECTED FROM CREDIT TO COMPANY DROP DOWN IS "+creditHoldCodeDropDown.getText());
     }
     public void creditTermsDropDown()
     {
-        HelpersMethod.ClickBut(driver,creditTermsDropDown,40);
+        HelpersMethod.ClickBut(driver,creditTermsDropDown,1000);
         selectDropDownValue();
         scenario.log("VALUE SELECTED FROM CREDIT TO COMPANY DROP DOWN IS "+creditTermsDropDown.getText());
     }
     public void serviceChargeDropDown()
     {
-        HelpersMethod.ClickBut(driver,creditServiceChargeDropDown,40);
+        HelpersMethod.ClickBut(driver,creditServiceChargeDropDown,1000);
         selectDropDownValue();
         scenario.log("VALUE SELECTED FROM SERVICE CHARGE DROP DOWN IS "+creditServiceChargeDropDown.getText());
     }
     public void creditRepDropDown()
     {
-        HelpersMethod.ClickBut(driver,creditRepDropDown,40);
+        HelpersMethod.ClickBut(driver,creditRepDropDown,1000);
         selectDropDownValue();
         scenario.log("VALUE SELECTED FROM SERVICE CHARGE DROP DOWN IS "+creditRepDropDown.getText());
     }
     public void creditLimit()
     {
         InputValue= EnterNumber(creditLimit,10);
-        HelpersMethod.EnterText(driver,creditLimit,10,InputValue);
-        scenario.log("CREDIT ENTERED IS "+HelpersMethod.JSGetValueEle(driver,creditLimit,10));
+        HelpersMethod.EnterText(driver,creditLimit,1000,InputValue);
+        scenario.log("CREDIT ENTERED IS "+HelpersMethod.JSGetValueEle(driver,creditLimit,1000));
     }
     public void memoLimit()
     {
         InputValue= EnterNumber(memoLimit,10);
-        HelpersMethod.EnterText(driver,memoLimit,10,InputValue);
-        scenario.log("MEMO LIMIT ENTERED IS "+HelpersMethod.JSGetValueEle(driver,memoLimit,10));
+        HelpersMethod.EnterText(driver,memoLimit,1000,InputValue);
+        scenario.log("MEMO LIMIT ENTERED IS "+HelpersMethod.JSGetValueEle(driver,memoLimit,1000));
     }
 
     public void reviewDateSelection()
     {
-        HelpersMethod.ClickBut(driver,creditReviewDate,10);
+        HelpersMethod.ClickBut(driver,creditReviewDate,1000);
     }
     public void selectReviewDate()
     {
         try
         {
-            HelpersMethod.waitTillElementLocatedDisplayed(driver,"xpath","//div[contains(@class,'k-calendar-monthview')]",6);
+            HelpersMethod.waitTillElementLocatedDisplayed(driver,"xpath","//div[contains(@class,'k-calendar-monthview')]",6000);
             if (HelpersMethod.IsExists("//div[contains(@class,'k-calendar-monthview')]",driver))
             {
                 WebElement ele1 = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-calendar-monthview')]/descendant::td[contains(@class,'k-calendar-td k-state-pending-focus k-today k-state-focused')]");
                 HelpersMethod.JSScroll(driver,ele1);
-                HelpersMethod.ActClick(driver, ele1, 2);
+                HelpersMethod.ActClick(driver, ele1, 1000);
                 scenario.log("CURRENT DATE HAS BEEN SELECTED AS REVIEW DATE");
             }
             else
@@ -238,14 +238,14 @@ public class CreditPage
 
     public void nextReviewDateSelection()
     {
-        HelpersMethod.ClickBut(driver,nextCreditReviewDate,10);
+        HelpersMethod.ClickBut(driver,nextCreditReviewDate,2000);
     }
     public void selectNextReviewDate()
     {
         try
         {
             String formattedDate1 = null;
-            HelpersMethod.waitTillElementLocatedDisplayed(driver,"xpath","//div[contains(@class,'k-calendar-monthview')]",6);
+            HelpersMethod.waitTillElementLocatedDisplayed(driver,"xpath","//div[contains(@class,'k-calendar-monthview')]",2000);
 
             if (HelpersMethod.IsExists("//div[contains(@class,'k-calendar-monthview')]",driver))
             {
@@ -254,7 +254,7 @@ public class CreditPage
                 formattedDate1 = myDateObj.format(myFormatObj);
                 WebElement ele1 = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-calendar-monthview')]/descendant::td[contains(@title,'" + formattedDate1 + "')]");
                 HelpersMethod.JSScroll(driver,ele1);
-                HelpersMethod.ActClick(driver, ele1, 2);
+                HelpersMethod.ActClick(driver, ele1, 2000);
                 scenario.log(formattedDate1 + " HAS BEEN SELECTED AS NEXT REVIEW DATE");
             }
             else

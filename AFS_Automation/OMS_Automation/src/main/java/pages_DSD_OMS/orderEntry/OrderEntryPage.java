@@ -544,12 +544,6 @@ public class OrderEntryPage
                     alert.accept();
                 }
             }
-               /* driver.navigate().refresh();
-                Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
-                        .withTimeout(Duration.ofSeconds(120))
-                        .pollingEvery(Duration.ofSeconds(2))
-                        .ignoring(NoSuchElementException.class);
-                wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));*/
 
                 WebElement humBurger=HelpersMethod.FindByElement(driver,"xpath","//*[local-name()='svg']//*[local-name()='path' and contains(@d,'M3,18H21V16H3Zm0-5H21V11H3ZM3,6V8H21V6Z')]");
                 act1.moveToElement(humBurger).build().perform();
@@ -1223,13 +1217,13 @@ public class OrderEntryPage
         exists=false;
         WebElement WebEle=null;
         Actions act=new Actions(driver);
+        WebElement ele1;
+        String formattedDate1 = null;
+        String formattedDate2=null;
+        String formDate1=null;
         try
         {
-            WebElement ele1;
-            String formattedDate1 = null;
-            String formattedDate2=null;
-            String formDate1=null;
-
+            Thread.sleep(1000);
             LocalDate currentDate=LocalDate.now();
             DateTimeFormatter currentFormatObj = DateTimeFormatter.ofPattern("d");
             formattedDate2 = currentDate.format(currentFormatObj);
@@ -1278,10 +1272,10 @@ public class OrderEntryPage
                     }
                 }
             }
-            else
+      /*      else
             {
                 //if the date is not present in visible calender, click on arrow button to navigate to next month
-                if (HelpersMethod.IsExists("//button[contains(@class,'k-nav-next')]/span[contains(@class,'k-i-arrow-chevron-right')]", driver))
+               if (HelpersMethod.IsExists("//button[contains(@class,'k-nav-next')]/span[contains(@class,'k-i-arrow-chevron-right')]", driver))
                 {
                     //Click on Arrow in calender, when date has not been found in visible calender
                     WebElement arrow = HelpersMethod.FindByElement(driver, "xpath", "//button[contains(@class,'k-nav-next')]/span[contains(@class,'k-i-arrow-chevron-right')]");
@@ -1319,8 +1313,8 @@ public class OrderEntryPage
                             }
                         }
                     }
-                }
-            }
+               }
+            }*/
             Assert.assertEquals(exists,true);
 
             Thread.sleep(2000);
@@ -2519,7 +2513,8 @@ public class OrderEntryPage
             WebElement WebEle = HelpersMethod.FindByElement(driver, "xpath", "//button[@class='i-link-button ']");
            if(WebEle.isDisplayed() && WebEle.isEnabled())
            {
-               HelpersMethod.ClickBut(driver, WebEle, 1000);
+               HelpersMethod.ScrollTillElementVisible(driver,WebEle);
+               HelpersMethod.ClickBut(driver, WebEle, 6000);
                if(HelpersMethod.IsExists("//div[@class='loader']",driver))
                {
                    WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");

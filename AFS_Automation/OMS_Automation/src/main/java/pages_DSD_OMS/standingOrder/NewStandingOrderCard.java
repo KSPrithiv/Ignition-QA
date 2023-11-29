@@ -683,9 +683,11 @@ public class NewStandingOrderCard
 
     public void validateStandingOrderRegisterPopup()
     {
-        try {
+        try
+        {
             String status = HelpersMethod.returnDocumentStatus(driver);
-            if (status.equals("loading")) {
+            if (status.equals("loading"))
+            {
                 HelpersMethod.waitTillLoadingPage(driver);
             }
 
@@ -993,7 +995,8 @@ public class NewStandingOrderCard
 
     public void clickOnStartStandingOrderCalender()
     {
-        try {
+        try
+        {
             // to fetch the web element of the modal container
             WebElement modalContainer = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-widget k-window k-dialog')]");
             //Identify From calender and click
@@ -1011,28 +1014,36 @@ public class NewStandingOrderCard
         try
         {
             Actions act1 = new Actions(driver);
-            WebElement selectableDate=HelpersMethod.FindByElement(driver,"xpath","//td[contains(@class,'k-calendar-td k-range-end k-range-start k-state-pending-focus k-state-selected')]/span");
-            HelpersMethod.ScrollDownScrollBar(driver);
-            HelpersMethod.ScrollTillElementVisible(driver,selectableDate);
-            act1.moveToElement(selectableDate).build().perform();
-            act1.click(selectableDate).build().perform();
-            exists=true;
+            if(HelpersMethod.IsExists("//div[contains(text(),'Generate standing order')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
+            {
+                WebElement selectableDate = HelpersMethod.FindByElement(driver, "xpath", "//td[contains(@class,'k-calendar-td k-range-end k-range-start k-state-pending-focus k-state-selected')]/span");
+                HelpersMethod.ScrollDownScrollBar(driver);
+                HelpersMethod.ScrollTillElementVisible(driver, selectableDate);
+                act1.moveToElement(selectableDate).build().perform();
+                act1.click(selectableDate).build().perform();
+                exists = true;
+            }
+            Assert.assertEquals(exists,true);
         }
         catch ( Exception e){}
-        Assert.assertEquals(exists,true);
     }
 
     public void clickToDateForGenerateSO()
     {
+        exists=false;
         try
         {
-            // to fetch the web element of the modal container
-            WebElement modalContainer = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-widget k-window k-dialog')]");
-            //Identify From calender and click
-            WebElement toCalender = modalContainer.findElement(By.xpath(".//label[contains(text(),'To date')]/following-sibling::span/descendant::a/span"));
-            HelpersMethod.JScriptClick(driver, toCalender, 6000);
-            new WebDriverWait(driver, Duration.ofMillis(10000)).until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath("//div[contains(@class,'k-widget k-calendar k-calendar-range')]")));
-            new WebDriverWait(driver, Duration.ofMillis(10000)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(@class,'k-widget k-calendar k-calendar-range')]")));
+            if(HelpersMethod.IsExists("//div[contains(text(),'Generate standing order')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver)) {
+                // to fetch the web element of the modal container
+                WebElement modalContainer = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-widget k-window k-dialog')]");
+                //Identify From calender and click
+                WebElement toCalender = modalContainer.findElement(By.xpath(".//label[contains(text(),'To date')]/following-sibling::span/descendant::a/span"));
+                HelpersMethod.JScriptClick(driver, toCalender, 6000);
+                exists=true;
+                new WebDriverWait(driver, Duration.ofMillis(10000)).until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath("//div[contains(@class,'k-widget k-calendar k-calendar-range')]")));
+                new WebDriverWait(driver, Duration.ofMillis(10000)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(@class,'k-widget k-calendar k-calendar-range')]")));
+            }
+            Assert.assertEquals(exists,true);
         }
         catch (Exception e) {}
     }
@@ -1041,43 +1052,56 @@ public class NewStandingOrderCard
     {
         try
         {
+            exists=false;
             Actions act1 = new Actions(driver);
-            List<WebElement> selectableDates = HelpersMethod.FindByElements(driver,"xpath","//td[contains(@class,'k-calendar-td') and contains(@style,'opacity: 1;')]");
-            int j=selectableDates.size()-1;
-            //for (int i = selectableDates.size() - 1; i >= 0; i--)
-            for(int i=0;i<=selectableDates.size()-1;i++)
+            if(HelpersMethod.IsExists("//div[contains(text(),'Generate standing order')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
             {
-                act1.moveToElement(selectableDates.get(i)).build().perform();
-                //if (i == selectableDates.size() - 1)
-                if(i==2)
-                {
-                    String selectTo=selectableDates.get(i).getAttribute("title");
-                    WebElement selTo=HelpersMethod.FindByElement(driver,"xpath","//td[contains(@class,'k-calendar-td') and @title='"+selectTo+"']");
-                    act1.moveToElement(selTo).build().perform();
-                    HelpersMethod.JScriptClick(driver,selTo,1000);
-                    break;
-                }
+                List<WebElement> selectableDates = HelpersMethod.FindByElements(driver,"xpath","//td[contains(@class,'k-calendar-td') and contains(@style,'opacity: 1;')]");
+                int j=selectableDates.size()-1;
+                //for (int i = selectableDates.size() - 1; i >= 0; i--)
+               for(int i=0;i<=selectableDates.size()-1;i++)
+               {
+                   act1.moveToElement(selectableDates.get(i)).build().perform();
+                   //if (i == selectableDates.size() - 1)
+                   if (i == 1)
+                   {
+                       String selectTo = selectableDates.get(i).getAttribute("title");
+                       WebElement selTo = HelpersMethod.FindByElement(driver, "xpath", "//td[contains(@class,'k-calendar-td') and @title='" + selectTo + "']");
+                       act1.moveToElement(selTo).build().perform();
+                       HelpersMethod.JScriptClick(driver, selTo, 1000);
+                       exists=true;
+                       break;
+                   }
+               }
             }
+            Assert.assertEquals(exists,true);
         }
         catch(Exception e){}
     }
 
     public void clickOnOkButtonInGenerateSO() throws InterruptedException
     {
-        //To zoom out browser by 100%
-        if(TestBase.testEnvironment.get_browser().equalsIgnoreCase("chrome")|TestBase.testEnvironment.get_browser().equalsIgnoreCase("edge"))
+        exists=false;
+        try
         {
-            JavascriptExecutor js = (JavascriptExecutor) driver;
-            js.executeScript("document.body.style.zoom='100%'");
+            if(HelpersMethod.IsExists("//div[contains(text(),'Generate standing order')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
+            {
+                WebElement modalContainer = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-widget k-window k-dialog')]");
+                WebElement OkCalender = modalContainer.findElement(By.xpath(".//button[text()='Ok']"));
+                HelpersMethod.ActClick(driver, OkCalender, 40000);
+                exists=true;
+            }
+                //To zoom out browser by 100%
+                if (TestBase.testEnvironment.get_browser().equalsIgnoreCase("chrome") | TestBase.testEnvironment.get_browser().equalsIgnoreCase("edge")) {
+                    JavascriptExecutor js = (JavascriptExecutor) driver;
+                    js.executeScript("document.body.style.zoom='100%'");
+                } else if (TestBase.testEnvironment.get_browser().equalsIgnoreCase("firefox")) {
+                    JavascriptExecutor js = (JavascriptExecutor) driver;
+                    js.executeScript("document.body.style.MozTransform='100%'");
+                }
+            Assert.assertEquals(exists,true);
         }
-        else if(TestBase.testEnvironment.get_browser().equalsIgnoreCase("firefox"))
-        {
-            JavascriptExecutor js=(JavascriptExecutor)driver;
-            js.executeScript("document.body.style.MozTransform='100%'");
-        }
-        WebElement modalContainer = HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-widget k-window k-dialog')]");
-        WebElement OkCalender=modalContainer.findElement(By.xpath(".//button[text()='Ok']"));
-        HelpersMethod.ActClick(driver,OkCalender,40000);
+        catch (Exception e){}
     }
 
     public void validateGeneratingStandingOrdersForCustomersPopup()
