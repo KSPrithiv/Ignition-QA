@@ -97,8 +97,8 @@ public class MainPage
         exists=false;
         try
         {
-            HelpersMethod.EnterText(driver,WebEle,10,RandomValues.generateRandomNumber(length));
-            InputValue=HelpersMethod.JSGetValueEle(driver,WebEle,10);
+            HelpersMethod.EnterText(driver,WebEle,1000,RandomValues.generateRandomNumber(length));
+            InputValue=HelpersMethod.JSGetValueEle(driver,WebEle,1000);
 
             if(InputValue!=null)
             {exists=true;}
@@ -113,8 +113,8 @@ public class MainPage
         exists=false;
         try
         {
-            HelpersMethod.EnterText(driver,WebEle,10, RandomValues.generateRandomString(length));
-            InputValue=HelpersMethod.JSGetValueEle(driver,WebEle,10);
+            HelpersMethod.EnterText(driver,WebEle,1000, RandomValues.generateRandomString(length));
+            InputValue=HelpersMethod.JSGetValueEle(driver,WebEle,1000);
 
             if(InputValue!=null)
             {exists=true;}
@@ -126,15 +126,14 @@ public class MainPage
 
     public void selectDropDownValue()
     {
-        String selectValue=null;
-        WebElement dropDownOption=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-animation-container k-animation-container-relative k-list-container k-reset i-common-dropdown i-common-dropdown__type-none')]");
-        List<WebElement> Options= dropDownOption.findElements(By.xpath(".//ul/li"));
+        //WebElement dropDownOption=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-animation-container k-animation-container-relative k-list-container k-reset i-common-dropdown i-common-dropdown__type-none')]");
+        List<WebElement> Options= HelpersMethod.FindByElements(driver,"xpath","//div[contains(@class,'k-list-container')]/descendant::ul/li");
         try
         {
             if(Options.size()==1)
             {
                 scenario.log("THERE ARE NO OPTIONS OTHER THAN 'None'");
-                HelpersMethod.ActClick(driver, Options.get(0), 20);
+                HelpersMethod.ActClick(driver, Options.get(0), 2000);
             }
             else
             {
@@ -144,7 +143,7 @@ public class MainPage
                     {
                         if (i == 1)
                         {
-                            HelpersMethod.ActClick(driver, Options.get(1), 20);
+                            HelpersMethod.ActClick(driver, Options.get(1), 2000);
                             break;
                         }
                     }
@@ -155,7 +154,7 @@ public class MainPage
                     {
                         if (i == 2)
                         {
-                            HelpersMethod.ActClick(driver, Options.get(2), 20);
+                            HelpersMethod.ActClick(driver, Options.get(2), 2000);
                             break;
                         }
                     }
@@ -167,28 +166,28 @@ public class MainPage
 
     public void countryDropDown()
     {
-       HelpersMethod.ClickBut(driver,countryDropDown,40);
+       HelpersMethod.ClickBut(driver,countryDropDown,4000);
        selectDropDownValue();
        scenario.log("VALUE SELECTED FROM COUNTY DROP DOWN IS "+countryDropDown.getText());
     }
 
     public void stateDropDown()
     {
-        HelpersMethod.ClickBut(driver,stateDropDown,40);
+        HelpersMethod.ClickBut(driver,stateDropDown,4000);
         selectDropDownValue();
         scenario.log("VALUE SELECTED FROM STATE DROP DOWN IS "+stateDropDown.getText());
     }
 
     public void languageDropDown()
     {
-        HelpersMethod.ClickBut(driver,languageDropDown,40);
+        HelpersMethod.ClickBut(driver,languageDropDown,4000);
         selectDropDownValue();
         scenario.log("VALUE SELECTED FROM LANGUAGE DROP DOWN IS "+languageDropDown.getText());
     }
 
     public void vendorDropDown()
     {
-        HelpersMethod.ClickBut(driver,vendorDropDown,40);
+        HelpersMethod.ClickBut(driver,vendorDropDown,4000);
         selectDropDownValue();
         scenario.log("VALUE SELECTED FROM VENDOR DROP DOWN IS "+vendorDropDown.getText());
     }
@@ -197,93 +196,93 @@ public class MainPage
     {
         InputValue=EnterText(FName,10);
         HelpersMethod.EnterText(driver,FName,80,InputValue);
-        scenario.log("FIRST NAME ENTERED IS "+HelpersMethod.JSGetValueEle(driver,FName,10));
+        scenario.log("FIRST NAME ENTERED IS "+HelpersMethod.JSGetValueEle(driver,FName,1000));
     }
     public void lastNameEntry()
     {
         InputValue=EnterText(LName,10);
-        HelpersMethod.EnterText(driver,LName,10,InputValue);
-        scenario.log("LAST NAME ENTERED IS "+HelpersMethod.JSGetValueEle(driver,LName,10));
+        HelpersMethod.EnterText(driver,LName,1000,InputValue);
+        scenario.log("LAST NAME ENTERED IS "+HelpersMethod.JSGetValueEle(driver,LName,1000));
     }
     public void storeNumberEntry()
     {
         InputValue= EnterNumber(storeNumber,10);
-        HelpersMethod.EnterText(driver,storeNumber,10,InputValue);
-        scenario.log("STORE NUMBER ENTERED IS "+HelpersMethod.JSGetValueEle(driver,storeNumber,10));
+        HelpersMethod.EnterText(driver,storeNumber,1000,InputValue);
+        scenario.log("STORE NUMBER ENTERED IS "+HelpersMethod.JSGetValueEle(driver,storeNumber,1000));
     }
     public void lookupInformation()
     {
         InputValue=EnterText(lookUpInfo,10);
-        HelpersMethod.EnterText(driver,lookUpInfo,10,InputValue);
-        scenario.log("LOOK UP INFORMATION ENTERED IS "+HelpersMethod.JSGetValueEle(driver,lookUpInfo,10));
+        HelpersMethod.EnterText(driver,lookUpInfo,1000,InputValue);
+        scenario.log("LOOK UP INFORMATION ENTERED IS "+HelpersMethod.JSGetValueEle(driver,lookUpInfo,1000));
     }
     public void address1()
     {
         InputValue=EnterText(address1,20);
-        HelpersMethod.EnterText(driver,address1,10,InputValue);
-        scenario.log("ADDRESS1 ENTERED IS "+HelpersMethod.JSGetValueEle(driver,address1,10));
+        HelpersMethod.EnterText(driver,address1,1000,InputValue);
+        scenario.log("ADDRESS1 ENTERED IS "+HelpersMethod.JSGetValueEle(driver,address1,1000));
     }
     public void address2()
     {
         InputValue=EnterText(address2,20);
-        HelpersMethod.EnterText(driver,address2,10,InputValue);
-        scenario.log("ADDRESS2 ENTERED IS "+HelpersMethod.JSGetValueEle(driver,address2,10));
+        HelpersMethod.EnterText(driver,address2,1000,InputValue);
+        scenario.log("ADDRESS2 ENTERED IS "+HelpersMethod.JSGetValueEle(driver,address2,1000));
     }
     public void cityName()
     {
         InputValue=EnterText(cityName,20);
-        HelpersMethod.EnterText(driver,cityName,10,InputValue);
-        scenario.log("CITY NAME ENTERED IS "+HelpersMethod.JSGetValueEle(driver,cityName,10));
+        HelpersMethod.EnterText(driver,cityName,1000,InputValue);
+        scenario.log("CITY NAME ENTERED IS "+HelpersMethod.JSGetValueEle(driver,cityName,1000));
     }
     public void zipCode()
     {
         InputValue=EnterNumber(zipNumber,10);
-        HelpersMethod.EnterText(driver,zipNumber,10,InputValue);
-        scenario.log("ZIP NUMBER ENTERED IS "+HelpersMethod.JSGetValueEle(driver,zipNumber,10));
+        HelpersMethod.EnterText(driver,zipNumber,1000,InputValue);
+        scenario.log("ZIP NUMBER ENTERED IS "+HelpersMethod.JSGetValueEle(driver,zipNumber,1000));
     }
     public void phoneNumber()
     {
         InputValue=EnterNumber(teleNumber,10);
-        HelpersMethod.EnterText(driver,teleNumber,10,InputValue);
-        scenario.log("TELEPHONE NUMBER ENTERED IS "+HelpersMethod.JSGetValueEle(driver,teleNumber,10));
+        HelpersMethod.EnterText(driver,teleNumber,1000,InputValue);
+        scenario.log("TELEPHONE NUMBER ENTERED IS "+HelpersMethod.JSGetValueEle(driver,teleNumber,1000));
     }
     public void faxNumber()
     {
         InputValue=EnterNumber(faxNumber,10);
-        HelpersMethod.EnterText(driver,faxNumber,10,InputValue);
-        scenario.log("FAX NUMBER ENTERED IS "+HelpersMethod.JSGetValueEle(driver,faxNumber,10));
+        HelpersMethod.EnterText(driver,faxNumber,1000,InputValue);
+        scenario.log("FAX NUMBER ENTERED IS "+HelpersMethod.JSGetValueEle(driver,faxNumber,1000));
     }
     public void emailAddress()
     {
-        HelpersMethod.EnterText(driver,emailId,10,RandomValues.generateEmail(10));
-        scenario.log("EMAIL ADDRESS ENTERED IS "+HelpersMethod.JSGetValueEle(driver,emailId,10));
+        HelpersMethod.EnterText(driver,emailId,1000,RandomValues.generateEmail(10));
+        scenario.log("EMAIL ADDRESS ENTERED IS "+HelpersMethod.JSGetValueEle(driver,emailId,1000));
     }
     public void contactName()
     {
         InputValue=EnterText(primaryContactName,20);
-        HelpersMethod.EnterText(driver,primaryContactName,10,InputValue);
-        scenario.log("PRIMARY CONTACT NAME ENTERED IS "+HelpersMethod.JSGetValueEle(driver,primaryContactName,10));
+        HelpersMethod.EnterText(driver,primaryContactName,1000,InputValue);
+        scenario.log("PRIMARY CONTACT NAME ENTERED IS "+HelpersMethod.JSGetValueEle(driver,primaryContactName,1000));
     }
     public void contactTitle()
     {
         InputValue=EnterText(primaryContactTitle,20);
-        HelpersMethod.EnterText(driver,primaryContactTitle,10,InputValue);
-        scenario.log("PRIMARY CONTACT TITLE ENTERED IS "+HelpersMethod.JSGetValueEle(driver,primaryContactTitle,10));
+        HelpersMethod.EnterText(driver,primaryContactTitle,1000,InputValue);
+        scenario.log("PRIMARY CONTACT TITLE ENTERED IS "+HelpersMethod.JSGetValueEle(driver,primaryContactTitle,1000));
     }
     public void contactPhone()
     {
         InputValue=EnterNumber(primaryPhone,20);
-        HelpersMethod.EnterText(driver,primaryPhone,10,InputValue);
-        scenario.log("PRIMARY CONTACT NAME ENTERED IS "+HelpersMethod.JSGetValueEle(driver,primaryPhone,10));
+        HelpersMethod.EnterText(driver,primaryPhone,1000,InputValue);
+        scenario.log("PRIMARY CONTACT NAME ENTERED IS "+HelpersMethod.JSGetValueEle(driver,primaryPhone,1000));
     }
     public void primaryEmailAddress()
     {
-        HelpersMethod.EnterText(driver,primaryEmail,10,RandomValues.generateEmail(10));
-        scenario.log("EMAIL ADDRESS ENTERED IS "+HelpersMethod.JSGetValueEle(driver,primaryEmail,10));
+        HelpersMethod.EnterText(driver,primaryEmail,1000,RandomValues.generateEmail(10));
+        scenario.log("EMAIL ADDRESS ENTERED IS "+HelpersMethod.JSGetValueEle(driver,primaryEmail,1000));
     }
     public void websiteAddress()
     {
-        HelpersMethod.EnterText(driver,websiteId,10,RandomValues.generateWebsite(20));
-        scenario.log("WEB SITE NAME ENTERED IS "+HelpersMethod.JSGetValueEle(driver,websiteId,10));
+        HelpersMethod.EnterText(driver,websiteId,1000,RandomValues.generateWebsite(20));
+        scenario.log("WEB SITE NAME ENTERED IS "+HelpersMethod.JSGetValueEle(driver,websiteId,1000));
     }
 }

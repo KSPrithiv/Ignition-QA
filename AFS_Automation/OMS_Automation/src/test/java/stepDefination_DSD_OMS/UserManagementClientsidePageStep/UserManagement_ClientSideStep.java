@@ -111,7 +111,7 @@ public class UserManagement_ClientSideStep
         userManagementpage.clickRole();
         userManagementpage.readAllRolesAvailable();
         userManagementpage.selectRole(role.get(0).get(0));
-        userManagementpage.clickRole();
+        userManagementpage.clickAgainOnRole();
         userManagementpage.pONumber(role.get(0).get(1));
     }
 
