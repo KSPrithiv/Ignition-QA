@@ -25,7 +25,6 @@ Feature: Testing of Inbound Load Details screen functionality
     And Types seal number by index 0 on Inbound Load Summary page
     And Clicks Add Product Cancel Button on Inbound Load Summary page
 
-  @isofailed3
   Scenario: Checking Edit option for Load on Load details screen
     Given User signs in the application
     And Main page is loaded

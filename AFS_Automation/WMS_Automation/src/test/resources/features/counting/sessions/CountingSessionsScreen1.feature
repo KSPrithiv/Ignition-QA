@@ -34,7 +34,6 @@ Feature: Testing of Counting Count functionality
     And User clicks Save button on Counting Sessions page
     And Validates session warning "Select count type" on Counting Sessions page
 
-  @isofailed2
   Scenario: Checking Create New Session on Counting Sessions screen
     Given User signs in the application
     And Main page is loaded
@@ -125,7 +124,6 @@ Feature: Testing of Counting Count functionality
     And User clicks Delete Session button on Counting Sessions page
     And User clicks Ok button on Counting Sessions page
 
-  @isofailed2
   Scenario: Checking Sorting of the columns on Counting Sessions screen
     Given User signs in the application
     And Main page is loaded
@@ -154,7 +152,6 @@ Feature: Testing of Counting Count functionality
     And User clicks Release Date and Time Column on Counting Sessions page
     And Validates Release Date Time Column Sorting Result on Counting Sessions page
 
-  @isofailed2
   Scenario: Checking Location Navigation on Counting Sessions screen
     Given User signs in the application
     And Main page is loaded
@@ -172,7 +169,6 @@ Feature: Testing of Counting Count functionality
     And Waits for Location Lookup page to load
     And Validates Inventory details of location on Location Lookup page are loaded
 
-  @isofailed3
   Scenario: Checking Locked location on Counting Sessions screen
     Given User signs in the application
     And Main page is loaded
@@ -189,7 +185,6 @@ Feature: Testing of Counting Count functionality
     And Waits for Location Lookup page to load
     And Validates Inventory details of location on Location Lookup page are loaded
 
-  @isofailed2
   Scenario: Checking Select All checkbox on Counting Sessions screen
     Given User signs in the application
     And Main page is loaded

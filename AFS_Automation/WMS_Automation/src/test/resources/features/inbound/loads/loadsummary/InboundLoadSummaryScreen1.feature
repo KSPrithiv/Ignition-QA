@@ -1,6 +1,5 @@
 @Inbound @Regression
 Feature: Testing of Inbound Load Summary screen functionality
-
   Scenario: Checking Load Summary screen
     Given User signs in the application
     And Main page is loaded
@@ -24,7 +23,6 @@ Feature: Testing of Inbound Load Summary screen functionality
     And Selects 33 days ago from end date on Inbound Load Summary page
     And Validates loads are present on Inbound Load Summary page
 
-  @isofailed2
   Scenario: Checking Load Summary screen Load filter
     Given User signs in the application
     And Main page is loaded
@@ -74,7 +72,6 @@ Feature: Testing of Inbound Load Summary screen functionality
     And Selects carrier by index 2 on Inbound Load Summary page
     And Validates Items found is displayed on Inbound Load Summary page
 
-  @isofailed2
   Scenario: Checking Load Summary screen Door Filter
     Given User signs in the application
     And Main page is loaded
@@ -113,7 +110,6 @@ Feature: Testing of Inbound Load Summary screen functionality
     Then Types supplier code by index 4 on Inbound Load Summary page
     And Validates loads are present on Inbound Load Summary page
 
-  @isofailed2
   Scenario: Checking Load Summary screen Supplier name filter
     Given User signs in the application
     And Main page is loaded
@@ -127,7 +123,6 @@ Feature: Testing of Inbound Load Summary screen functionality
     And Types supplier name "DtdGe" on Inbound Load Summary page
     And Validates Items found not displayed on Inbound Load Summary page
 
-  @isofailed2
   Scenario: Checking Load Summary screen Product filter
     Given User signs in the application
     And Main page is loaded
@@ -197,7 +192,6 @@ Feature: Testing of Inbound Load Summary screen functionality
     And Checks Load with index 3 on Inbound Load Summary page
     And Validates Data option on Inbound Load Summary page is disabled
 
-  @isofailed2
   Scenario: Checking Load Summary screen Edit Load option
     Given User signs in the application
     And Main page is loaded

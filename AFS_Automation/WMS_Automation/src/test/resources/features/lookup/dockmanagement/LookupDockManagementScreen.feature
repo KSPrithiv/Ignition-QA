@@ -84,7 +84,6 @@ Feature: Testing of Lookup Dock Management screen functionality
     And User clicks item 1 on Dock Management page
     And Validates Item Details are displayed on DockManagement Lookup page
 
-  @isofailed2
   Scenario: Checking Data Filtering of Lookup Dock Management screen
     Given User signs in the application
     And Main page is loaded

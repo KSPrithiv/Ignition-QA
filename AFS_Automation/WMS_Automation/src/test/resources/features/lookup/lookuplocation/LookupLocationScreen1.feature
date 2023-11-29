@@ -1,6 +1,5 @@
 @Lookup @Regression
 Feature: Testing Lookup Location functionality
-  @isofailed2
   Scenario: Checking navigation functionality on Lookup Location screen
     Given User signs in the application
     And Main page is loaded
@@ -12,7 +11,6 @@ Feature: Testing Lookup Location functionality
     Then User clicks Location Product 1 on Lookup Location page
     And Validates Product Lookup Page base elements are loaded
 
-  @isofailed2
   Scenario: Checking Navigate to Lookup Location on Lookup Location screen
     Given User signs in the application
     And Main page is loaded

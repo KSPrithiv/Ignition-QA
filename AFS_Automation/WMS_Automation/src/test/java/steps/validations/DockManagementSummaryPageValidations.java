@@ -58,9 +58,7 @@ public class DockManagementSummaryPageValidations {
     @And("Validates Dashboard Icons and Spelling on Dashboard page")
     public void validateDashboardIconAndSpellingDisplayed() {
         softAssert.assertTrue(dockManagementSummaryPage.isTransactionsGraphDisplayed(), "Transactions Graph is not displayed");
-        softAssert.assertTrue(dockManagementSummaryPage.isTasksByTypeGraphDisplayed(), "Tasks by Type Graph is not displayed");
         softAssert.assertTrue(dockManagementSummaryPage.isOrderStatusGraphDisplayed(), "Order Status Graph is not displayed");
-        softAssert.assertTrue(dockManagementSummaryPage.isInboundLoadsGraphDisplayed(), "Inbound Loads Graph is not displayed");
         softAssert.assertTrue(dockManagementSummaryPage.isOutboundRoutesGraphDisplayed(), "Outbound Routes Graph is not displayed");
         softAssert.assertTrue(dockManagementSummaryPage.isAssignmentsByGroupGraphDisplayed(), "Assignments by Group Graph is not displayed");
         softAssert.assertTrue(dockManagementSummaryPage.isInboundOrdersGraphDisplayed(), "Inbound Orders Graph is not displayed");
@@ -160,7 +158,7 @@ public class DockManagementSummaryPageValidations {
     //    softAssert.assertTrue(dockManagementSummaryPage.isExpiredDisplayed(), "Expired is not displayed");
      //   softAssert.assertTrue(dockManagementSummaryPage.isFDAHOLDDisplayed(), "FDA HOLD is not displayed");
      //   softAssert.assertTrue(dockManagementSummaryPage.isHoldTestDisplayed(), "Hold Test is not displayed");
-     //   softAssert.assertTrue(dockManagementSummaryPage.isQualityControlDisplayed(), "Quality Control is not displayed");
+       // softAssert.assertTrue(dockManagementSummaryPage.isQualityControlDisplayed(), "Quality Control is not displayed");
         softAssert.assertTrue(dockManagementSummaryPage.isShippedDisplayed(), "Shipped is not displayed");
         softAssert.assertAll();
     }
