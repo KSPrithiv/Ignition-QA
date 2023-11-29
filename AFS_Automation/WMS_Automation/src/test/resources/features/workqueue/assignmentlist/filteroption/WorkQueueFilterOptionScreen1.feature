@@ -73,7 +73,6 @@ Feature: Testing of Work Queue Assignment functionality
     And User clicks Assignments Title on Work Queue Assignments page
     And Validates Grid items are present on Work Queue Assignments page
 
-  @isofailed2
   Scenario: Checking Filter option Tasks of Work Queue Assignments screen functionality
     Given User signs in the application
     And Main page is loaded

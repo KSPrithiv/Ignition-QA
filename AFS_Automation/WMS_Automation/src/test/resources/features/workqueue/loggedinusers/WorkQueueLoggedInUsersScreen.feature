@@ -9,7 +9,6 @@ Feature: Testing of Work Queue LoggedIn User functionality
     Then Validates User Logged In title is displayed on Work Queue Logged In Users page
     And Validates table columns are displayed on Work Queue Logged In Users page
 
-  @isofailed2
   Scenario: Checking Summary Details of Work Queue LoggedIn User screen functionality
     Given User signs in the application
     And Main page is loaded
@@ -58,7 +57,6 @@ Feature: Testing of Work Queue LoggedIn User functionality
     And User clicks on Labor Code Header on Work Queue Logged In Users page
     And Validates Labor Code Column Sorting Result on Work Queue Logged In Users page
 
-  @isofailed2
   Scenario: Checking Search Control of Work Queue LoggedIn User screen functionality
     Given User signs in the application
     And Main page is loaded
@@ -68,7 +66,6 @@ Feature: Testing of Work Queue LoggedIn User functionality
     When User searches for user by index 0 on Work Queue Logged In Users page
     Then Validates Grid items are present on Work Queue Logged In Users page
 
-  @isofailed2
   Scenario: Checking Add Filter of Work Queue LoggedIn User screen functionality
     Given User signs in the application
     And Main page is loaded
@@ -99,7 +96,6 @@ Feature: Testing of Work Queue LoggedIn User functionality
     And User clicks Clear All button on Work Queue Logged In Users page
     And Validates Grid items are present on Work Queue Logged In Users page
 
-  @isofailed2
   Scenario: Checking Logout User of Work Queue LoggedIn User screen functionality
     Given User signs in the application
     And Main page is loaded

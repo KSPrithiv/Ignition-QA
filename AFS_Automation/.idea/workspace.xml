@@ -5,13 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="bb98aa04-0c11-4234-8bb2-3e944f1d2191" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WMS_Automation/src/main/java/ui/pages/BasePage.java" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/src/main/java/ui/pages/BasePage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WMS_Automation/src/main/java/ui/pages/counting/sessions/CountingSessionsPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/src/main/java/ui/pages/counting/sessions/CountingSessionsPage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WMS_Automation/src/main/java/ui/pages/inbound/inboundorders/InboundOrderSummaryPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/src/main/java/ui/pages/inbound/inboundorders/InboundOrderSummaryPage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WMS_Automation/src/main/java/ui/pages/inbound/loads/InboundLoadOrderDetailsPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/src/main/java/ui/pages/inbound/loads/InboundLoadOrderDetailsPage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WMS_Automation/src/main/java/ui/pages/outbound/routesummary/OutboundRouteSummaryPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/src/main/java/ui/pages/outbound/routesummary/OutboundRouteSummaryPage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WMS_Automation/src/main/java/ui/pages/DockManagementSummaryPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/src/main/java/ui/pages/DockManagementSummaryPage.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/WMS_Automation/src/test/java/runners/AppointmentsCucumberRunner.java" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/src/test/java/runners/AppointmentsCucumberRunner.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/WMS_Automation/src/test/java/runners/CountingCounterCucumberRunner.java" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/src/test/java/runners/CountingCounterCucumberRunner.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/WMS_Automation/src/test/java/runners/CountingDashboardCucumberRunner.java" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/src/test/java/runners/CountingDashboardCucumberRunner.java" afterDir="false" />
@@ -23,11 +18,13 @@
       <change beforePath="$PROJECT_DIR$/WMS_Automation/src/test/java/runners/InboundOrdersDetailsCucumberRunner.java" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/src/test/java/runners/InboundOrdersDetailsCucumberRunner.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/WMS_Automation/src/test/java/runners/InboundOrdersScreenCucumberRunner.java" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/src/test/java/runners/InboundOrdersScreenCucumberRunner.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/WMS_Automation/src/test/java/runners/InboundReceivingCucumberRunner.java" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/src/test/java/runners/InboundReceivingCucumberRunner.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WMS_Automation/src/test/java/runners/LoginCucumberRunner.java" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/src/test/java/runners/LoginCucumberRunner.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/WMS_Automation/src/test/java/runners/LookupCucumberDockManagementScreenRunner.java" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/src/test/java/runners/LookupCucumberDockManagementScreenRunner.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/WMS_Automation/src/test/java/runners/LookupCucumberLabelsScreenRunner.java" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/src/test/java/runners/LookupCucumberLabelsScreenRunner.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/WMS_Automation/src/test/java/runners/LookupCucumberLocationsScreenRunner1.java" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/src/test/java/runners/LookupCucumberLocationsScreenRunner1.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/WMS_Automation/src/test/java/runners/LookupCucumberLocationsScreenRunner2.java" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/src/test/java/runners/LookupCucumberLocationsScreenRunner2.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/WMS_Automation/src/test/java/runners/LookupCucumberProductScreenRunner.java" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/src/test/java/runners/LookupCucumberProductScreenRunner.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WMS_Automation/src/test/java/runners/LookupCucumberRunner.java" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/src/test/java/runners/LookupCucumberRunner.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/WMS_Automation/src/test/java/runners/OutboundLoadPlanning1CucumberRunner.java" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/src/test/java/runners/OutboundLoadPlanning1CucumberRunner.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/WMS_Automation/src/test/java/runners/OutboundLoadPlanning2CucumberRunner.java" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/src/test/java/runners/OutboundLoadPlanning2CucumberRunner.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/WMS_Automation/src/test/java/runners/OutboundLoadPlanning3CucumberRunner.java" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/src/test/java/runners/OutboundLoadPlanning3CucumberRunner.java" afterDir="false" />
@@ -40,6 +37,7 @@
       <change beforePath="$PROJECT_DIR$/WMS_Automation/src/test/java/runners/OutboundRouteSummaryFilterOptionCucumberRunner.java" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/src/test/java/runners/OutboundRouteSummaryFilterOptionCucumberRunner.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/WMS_Automation/src/test/java/runners/OutboundRouteSummaryOptionCucumberRunner.java" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/src/test/java/runners/OutboundRouteSummaryOptionCucumberRunner.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/WMS_Automation/src/test/java/runners/OutboundRouteSummaryWorkCucumberRunner.java" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/src/test/java/runners/OutboundRouteSummaryWorkCucumberRunner.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WMS_Automation/src/test/java/runners/SetupCucumberRunner.java" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/src/test/java/runners/SetupCucumberRunner.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/WMS_Automation/src/test/java/runners/WorkQueueFilterOptionCucumberRunner1.java" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/src/test/java/runners/WorkQueueFilterOptionCucumberRunner1.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/WMS_Automation/src/test/java/runners/WorkQueueFilterOptionCucumberRunner2.java" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/src/test/java/runners/WorkQueueFilterOptionCucumberRunner2.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/WMS_Automation/src/test/java/runners/WorkQueueFilterOptionCucumberRunner3.java" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/src/test/java/runners/WorkQueueFilterOptionCucumberRunner3.java" afterDir="false" />
@@ -49,43 +47,51 @@
       <change beforePath="$PROJECT_DIR$/WMS_Automation/src/test/java/runners/WorkQueueUserHistoryCucumberRunner.java" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/src/test/java/runners/WorkQueueUserHistoryCucumberRunner.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/WMS_Automation/src/test/java/runners/WorkQueueUsersLoggedinCucumberRunner.java" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/src/test/java/runners/WorkQueueUsersLoggedinCucumberRunner.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/WMS_Automation/src/test/java/runners/WorkQueueWorkAssignCucumberRunner.java" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/src/test/java/runners/WorkQueueWorkAssignCucumberRunner.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WMS_Automation/src/test/java/steps/validations/inbound/inboundorders/InboundOrderLocationLookupPageValidations.java" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/src/test/java/steps/validations/inbound/inboundorders/InboundOrderLocationLookupPageValidations.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WMS_Automation/src/test/java/steps/validations/inbound/loads/InboundLoadLocationLookupPageValidations.java" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/src/test/java/steps/validations/inbound/loads/InboundLoadLocationLookupPageValidations.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WMS_Automation/src/test/java/steps/LoginPageSteps.java" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/src/test/java/steps/LoginPageSteps.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WMS_Automation/src/test/java/steps/validations/DockManagementSummaryPageValidations.java" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/src/test/java/steps/validations/DockManagementSummaryPageValidations.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WMS_Automation/src/test/resources/features/appointments/AppointmentScheduler.feature" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/src/test/resources/features/appointments/AppointmentScheduler.feature" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WMS_Automation/src/test/resources/features/counting/counting/CountingCountScreen2.feature" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/src/test/resources/features/counting/counting/CountingCountScreen2.feature" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/WMS_Automation/src/test/resources/features/counting/sessions/CountingSessionsScreen1.feature" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/src/test/resources/features/counting/sessions/CountingSessionsScreen1.feature" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WMS_Automation/src/test/resources/features/counting/sessions/CountingSessionsScreen2.feature" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/src/test/resources/features/counting/sessions/CountingSessionsScreen2.feature" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/WMS_Automation/src/test/resources/features/counting/sessions/CountingSessionsScreen3.feature" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/src/test/resources/features/counting/sessions/CountingSessionsScreen3.feature" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WMS_Automation/src/test/resources/features/dashboard/DashboardScreen.feature" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/src/test/resources/features/dashboard/DashboardScreen.feature" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WMS_Automation/src/test/resources/features/inbound/inboundorders/details/InboundOrderDetailsScreen1.feature" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/src/test/resources/features/inbound/inboundorders/details/InboundOrderDetailsScreen1.feature" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/WMS_Automation/src/test/resources/features/inbound/inboundorders/details/InboundOrderDetailsScreen2.feature" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/src/test/resources/features/inbound/inboundorders/details/InboundOrderDetailsScreen2.feature" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/WMS_Automation/src/test/resources/features/inbound/inboundorders/details/InboundOrderLineItemDetailsScreen.feature" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/src/test/resources/features/inbound/inboundorders/details/InboundOrderLineItemDetailsScreen.feature" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WMS_Automation/src/test/resources/features/inbound/inboundorders/screen/InboundOrderSummaryScreen1.feature" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/src/test/resources/features/inbound/inboundorders/screen/InboundOrderSummaryScreen1.feature" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WMS_Automation/src/test/resources/features/inbound/inboundorders/screen/InboundOrderSummaryScreen2.feature" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/src/test/resources/features/inbound/inboundorders/screen/InboundOrderSummaryScreen2.feature" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WMS_Automation/src/test/resources/features/inbound/inboundorders/screen/InboundOrderSummaryScreen3.feature" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/src/test/resources/features/inbound/inboundorders/screen/InboundOrderSummaryScreen3.feature" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WMS_Automation/src/test/resources/features/inbound/loads/loaddetails/InboundLoadDetailsScreen1.feature" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/src/test/resources/features/inbound/loads/loaddetails/InboundLoadDetailsScreen1.feature" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/WMS_Automation/src/test/resources/features/inbound/loads/loaddetails/InboundLoadDetailsScreen2.feature" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/src/test/resources/features/inbound/loads/loaddetails/InboundLoadDetailsScreen2.feature" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/WMS_Automation/src/test/resources/features/inbound/loads/loadorderline/InboundLoadOrderDetailScreen1.feature" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/src/test/resources/features/inbound/loads/loadorderline/InboundLoadOrderDetailScreen1.feature" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WMS_Automation/src/test/resources/features/inbound/loads/loadsummary/InboundLoadSummaryScreen1.feature" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/src/test/resources/features/inbound/loads/loadsummary/InboundLoadSummaryScreen1.feature" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WMS_Automation/src/test/resources/features/inbound/loads/loadsummary/InboundLoadSummaryScreen2.feature" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/src/test/resources/features/inbound/loads/loadsummary/InboundLoadSummaryScreen2.feature" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/WMS_Automation/src/test/resources/features/inbound/loads/orderdetails/InboundLoadOrderLineItemScreen.feature" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/src/test/resources/features/inbound/loads/orderdetails/InboundLoadOrderLineItemScreen.feature" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WMS_Automation/src/test/resources/features/inbound/receiving/InboundReceiving.feature" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/src/test/resources/features/inbound/receiving/InboundReceiving.feature" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WMS_Automation/src/test/resources/features/login/Login.feature" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/src/test/resources/features/login/Login.feature" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WMS_Automation/src/test/resources/features/lookup/dockmanagement/LookupDockManagementScreen.feature" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/src/test/resources/features/lookup/dockmanagement/LookupDockManagementScreen.feature" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WMS_Automation/src/test/resources/features/lookup/lookuplocation/LookupLocationScreen1.feature" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/src/test/resources/features/lookup/lookuplocation/LookupLocationScreen1.feature" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WMS_Automation/src/test/resources/features/lookup/lookuplocation/LookupLocationScreen2.feature" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/src/test/resources/features/lookup/lookuplocation/LookupLocationScreen2.feature" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WMS_Automation/src/test/resources/features/outbound/loadplanning/OutboundLoadPlanning1.feature" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/src/test/resources/features/outbound/loadplanning/OutboundLoadPlanning1.feature" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WMS_Automation/src/test/resources/features/outbound/loadplanning/OutboundLoadPlanning2.feature" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/src/test/resources/features/outbound/loadplanning/OutboundLoadPlanning2.feature" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WMS_Automation/src/test/resources/features/outbound/loadplanning/OutboundLoadPlanning3.feature" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/src/test/resources/features/outbound/loadplanning/OutboundLoadPlanning3.feature" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/WMS_Automation/src/test/resources/features/outbound/loadplanning/OutboundLoadPlanning4.feature" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/src/test/resources/features/outbound/loadplanning/OutboundLoadPlanning4.feature" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WMS_Automation/src/test/resources/features/outbound/outboundordersummary/filteroption/OutboundOrderSummaryFilterOption.feature" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/src/test/resources/features/outbound/outboundordersummary/filteroption/OutboundOrderSummaryFilterOption.feature" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WMS_Automation/src/test/resources/features/outbound/outboundordersummary/work/OutboundOrderSummaryWork.feature" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/src/test/resources/features/outbound/outboundordersummary/work/OutboundOrderSummaryWork.feature" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WMS_Automation/src/test/resources/features/outbound/outboundroutesummary/filteroption/OutboundRouteSummaryFilterOption.feature" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/src/test/resources/features/outbound/outboundroutesummary/filteroption/OutboundRouteSummaryFilterOption.feature" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/WMS_Automation/src/test/resources/features/outbound/outboundroutesummary/routeoption/OutboundRouteSummaryOption.feature" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/src/test/resources/features/outbound/outboundroutesummary/routeoption/OutboundRouteSummaryOption.feature" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WMS_Automation/target/classes/common/setup/DriverManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/target/classes/common/setup/DriverManager.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WMS_Automation/target/classes/common/utils/Waiters.class" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/target/classes/common/utils/Waiters.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WMS_Automation/target/classes/common/utils/database/implementation/CallableStatementImplementation.class" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/target/classes/common/utils/database/implementation/CallableStatementImplementation.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WMS_Automation/target/classes/listeners/TestListener.class" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/target/classes/listeners/TestListener.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WMS_Automation/target/classes/objects/countingcount/CountingCountDTO$CountingCountDTOBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/target/classes/objects/countingcount/CountingCountDTO$CountingCountDTOBuilder.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WMS_Automation/target/classes/objects/countingcount/CountingCountDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/target/classes/objects/countingcount/CountingCountDTO.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WMS_Automation/target/classes/objects/countingsessions/CountingSessionsDTO$CountingSessionsDTOBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/target/classes/objects/countingsessions/CountingSessionsDTO$CountingSessionsDTOBuilder.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WMS_Automation/target/classes/objects/countingsessions/CountingSessionsDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/target/classes/objects/countingsessions/CountingSessionsDTO.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WMS_Automation/target/classes/objects/orderdata/LinkedOrdersListDTO$LinkedOrdersListDTOBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/target/classes/objects/orderdata/LinkedOrdersListDTO$LinkedOrdersListDTOBuilder.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WMS_Automation/target/classes/objects/orderdata/LinkedOrdersListDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/target/classes/objects/orderdata/LinkedOrdersListDTO.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WMS_Automation/target/classes/objects/orderdata/ResponseDTO$ResponseDTOBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/target/classes/objects/orderdata/ResponseDTO$ResponseDTOBuilder.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WMS_Automation/target/classes/objects/orderdata/ResponseDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/target/classes/objects/orderdata/ResponseDTO.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WMS_Automation/target/classes/objects/processedorderdata/OrdersListDTO$OrdersListDTOBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/target/classes/objects/processedorderdata/OrdersListDTO$OrdersListDTOBuilder.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WMS_Automation/target/classes/objects/processedorderdata/OrdersListDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/target/classes/objects/processedorderdata/OrdersListDTO.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WMS_Automation/target/classes/objects/processedorderdata/ResponseDTO$ResponseDTOBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/target/classes/objects/processedorderdata/ResponseDTO$ResponseDTOBuilder.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WMS_Automation/target/classes/objects/processedorderdata/ResponseDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/target/classes/objects/processedorderdata/ResponseDTO.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WMS_Automation/target/classes/objects/workqueuedata/WorkQueueDataDTO$WorkQueueDataDTOBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/target/classes/objects/workqueuedata/WorkQueueDataDTO$WorkQueueDataDTOBuilder.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WMS_Automation/target/classes/objects/workqueuedata/WorkQueueDataDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/target/classes/objects/workqueuedata/WorkQueueDataDTO.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WMS_Automation/target/classes/ui/pages/BasePage.class" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/target/classes/ui/pages/BasePage.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WMS_Automation/target/classes/ui/pages/appointments/AppointmentSchedulerOrderPage.class" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/target/classes/ui/pages/appointments/AppointmentSchedulerOrderPage.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WMS_Automation/target/classes/ui/pages/counting/sessions/CountingSessionsPage.class" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/target/classes/ui/pages/counting/sessions/CountingSessionsPage.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WMS_Automation/target/classes/ui/pages/inbound/inboundorders/InboundOrderSummaryPage.class" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/target/classes/ui/pages/inbound/inboundorders/InboundOrderSummaryPage.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WMS_Automation/target/classes/ui/pages/inbound/loads/InboundLoadOrderDetailsPage.class" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/target/classes/ui/pages/inbound/loads/InboundLoadOrderDetailsPage.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WMS_Automation/target/classes/ui/pages/outbound/routesummary/OutboundRouteSummaryPage.class" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/target/classes/ui/pages/outbound/routesummary/OutboundRouteSummaryPage.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WMS_Automation/target/test-classes/steps/validations/outbound/loadplanning/OutboundAssignmentsPageValidations.class" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/target/test-classes/steps/validations/outbound/loadplanning/OutboundAssignmentsPageValidations.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WMS_Automation/target/test-classes/steps/validations/outbound/processing/ProcessingPageValidations.class" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/target/test-classes/steps/validations/outbound/processing/ProcessingPageValidations.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WMS_Automation/src/test/resources/features/setup/SetupProductDateEncodingConfigScreen.feature" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/src/test/resources/features/setup/SetupProductDateEncodingConfigScreen.feature" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WMS_Automation/src/test/resources/features/setup/SetupProductScreen.feature" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/src/test/resources/features/setup/SetupProductScreen.feature" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WMS_Automation/src/test/resources/features/workqueue/assignmentlist/filteroption/WorkQueueFilterOptionScreen1.feature" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/src/test/resources/features/workqueue/assignmentlist/filteroption/WorkQueueFilterOptionScreen1.feature" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WMS_Automation/src/test/resources/features/workqueue/assignmentlist/filteroption/WorkQueueFilterOptionScreen2.feature" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/src/test/resources/features/workqueue/assignmentlist/filteroption/WorkQueueFilterOptionScreen2.feature" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WMS_Automation/src/test/resources/features/workqueue/assignmentlist/filteroption/WorkQueueFilterOptionScreen3.feature" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/src/test/resources/features/workqueue/assignmentlist/filteroption/WorkQueueFilterOptionScreen3.feature" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WMS_Automation/src/test/resources/features/workqueue/assignmentlist/filteroption/WorkQueueFilterOptionScreen4.feature" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/src/test/resources/features/workqueue/assignmentlist/filteroption/WorkQueueFilterOptionScreen4.feature" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WMS_Automation/src/test/resources/features/workqueue/loggedinusers/WorkQueueLoggedInUsersScreen.feature" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/src/test/resources/features/workqueue/loggedinusers/WorkQueueLoggedInUsersScreen.feature" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WMS_Automation/target/classes/ui/pages/DockManagementSummaryPage.class" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/target/classes/ui/pages/DockManagementSummaryPage.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WMS_Automation/target/test-classes/runners/AppointmentsCucumberRunner.class" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/target/test-classes/runners/AppointmentsCucumberRunner.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WMS_Automation/target/test-classes/runners/LoginCucumberRunner.class" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/target/test-classes/runners/LoginCucumberRunner.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WMS_Automation/target/test-classes/runners/LookupCucumberRunner.class" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/target/test-classes/runners/LookupCucumberRunner.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WMS_Automation/target/test-classes/runners/SetupCucumberRunner.class" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/target/test-classes/runners/SetupCucumberRunner.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -134,16 +140,15 @@
     <property name="project.structure.side.proportion" value="0.0" />
     <property name="settings.editor.selected.configurable" value="vcs.TFVC" />
   </component>
-  <component name="RunManager" selected="Cucumber Java.Scenario: Checking route option Edit when click on the Route">
-    <configuration name="Scenario: Checking Edit option for Load on Load details screen" type="CucumberJavaRunConfigurationType" factoryName="Cucumber java" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="Cucumber Java.Scenario: Verify WAREHOUSE CAPACITY - Empty Locations by Zone">
+    <configuration name="Feature: DashboardScreen" type="CucumberJavaRunConfigurationType" factoryName="Cucumber java" temporary="true" nameIsGenerated="true">
       <option name="CUCUMBER_CORE_VERSION" value="5" />
-      <option name="FILE_PATH" value="$PROJECT_DIR$/WMS_Automation/src/test/resources/features/inbound/loads/loaddetails/InboundLoadDetailsScreen2.feature" />
+      <option name="FILE_PATH" value="$PROJECT_DIR$/WMS_Automation/src/test/resources/features/dashboard/DashboardScreen.feature" />
       <option name="GLUE" value="stepDefination_DSD_OMS steps" />
       <option name="MAIN_CLASS_NAME" value="io.cucumber.core.cli.Main" />
       <module name="WMS_Automation" />
-      <option name="NAME_FILTER" value="^Checking Edit option for Load on Load details screen$" />
-      <option name="PROGRAM_PARAMETERS" value=" --plugin org.jetbrains.plugins.cucumber.java.run.CucumberJvm5SMFormatter --name &quot;^Checking Edit option for Load on Load details screen$&quot;" />
-      <option name="SUGGESTED_NAME" value="Scenario: Checking Edit option for Load on Load details screen" />
+      <option name="PROGRAM_PARAMETERS" value=" --plugin org.jetbrains.plugins.cucumber.java.run.CucumberJvm5SMFormatter" />
+      <option name="SUGGESTED_NAME" value="Feature: DashboardScreen" />
       <option name="WORKING_DIRECTORY" value="$MODULE_WORKING_DIR$" />
       <extension name="coverage">
         <pattern>
@@ -155,15 +160,15 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Scenario: Checking Navigate to Lookup location on Inbound Order line item details page" type="CucumberJavaRunConfigurationType" factoryName="Cucumber java" temporary="true" nameIsGenerated="true">
+    <configuration name="Scenario: Checking Transactions -&gt; Tasks by Type widget" type="CucumberJavaRunConfigurationType" factoryName="Cucumber java" temporary="true" nameIsGenerated="true">
       <option name="CUCUMBER_CORE_VERSION" value="5" />
-      <option name="FILE_PATH" value="$PROJECT_DIR$/WMS_Automation/src/test/resources/features/inbound/inboundorders/details/InboundOrderLineItemDetailsScreen.feature" />
+      <option name="FILE_PATH" value="$PROJECT_DIR$/WMS_Automation/src/test/resources/features/dashboard/DashboardScreen.feature" />
       <option name="GLUE" value="stepDefination_DSD_OMS steps" />
       <option name="MAIN_CLASS_NAME" value="io.cucumber.core.cli.Main" />
       <module name="WMS_Automation" />
-      <option name="NAME_FILTER" value="^Checking Navigate to Lookup location on Inbound Order line item details page$" />
-      <option name="PROGRAM_PARAMETERS" value=" --plugin org.jetbrains.plugins.cucumber.java.run.CucumberJvm5SMFormatter --name &quot;^Checking Navigate to Lookup location on Inbound Order line item details page$&quot;" />
-      <option name="SUGGESTED_NAME" value="Scenario: Checking Navigate to Lookup location on Inbound Order line item details page" />
+      <option name="NAME_FILTER" value="^Checking Transactions \-\&gt; Tasks by Type widget$" />
+      <option name="PROGRAM_PARAMETERS" value=" --plugin org.jetbrains.plugins.cucumber.java.run.CucumberJvm5SMFormatter --name &quot;^Checking Transactions \-\&gt; Tasks by Type widget$&quot;" />
+      <option name="SUGGESTED_NAME" value="Scenario: Checking Transactions -&gt; Tasks by Type widget" />
       <option name="WORKING_DIRECTORY" value="$MODULE_WORKING_DIR$" />
       <extension name="coverage">
         <pattern>
@@ -175,15 +180,15 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Scenario: Checking Navigate to lookup Location on Inbound Load order line item details page" type="CucumberJavaRunConfigurationType" factoryName="Cucumber java" temporary="true" nameIsGenerated="true">
+    <configuration name="Scenario: Verify INVENTORY - By Status" type="CucumberJavaRunConfigurationType" factoryName="Cucumber java" temporary="true" nameIsGenerated="true">
       <option name="CUCUMBER_CORE_VERSION" value="5" />
-      <option name="FILE_PATH" value="$PROJECT_DIR$/WMS_Automation/src/test/resources/features/inbound/loads/orderdetails/InboundLoadOrderLineItemScreen.feature" />
+      <option name="FILE_PATH" value="$PROJECT_DIR$/WMS_Automation/src/test/resources/features/dashboard/DashboardScreen.feature" />
       <option name="GLUE" value="stepDefination_DSD_OMS steps" />
       <option name="MAIN_CLASS_NAME" value="io.cucumber.core.cli.Main" />
       <module name="WMS_Automation" />
-      <option name="NAME_FILTER" value="^Checking Navigate to lookup Location on Inbound Load order line item details page$" />
-      <option name="PROGRAM_PARAMETERS" value=" --plugin org.jetbrains.plugins.cucumber.java.run.CucumberJvm5SMFormatter --name &quot;^Checking Navigate to lookup Location on Inbound Load order line item details page$&quot;" />
-      <option name="SUGGESTED_NAME" value="Scenario: Checking Navigate to lookup Location on Inbound Load order line item details page" />
+      <option name="NAME_FILTER" value="^Verify INVENTORY \- By Status$" />
+      <option name="PROGRAM_PARAMETERS" value=" --plugin org.jetbrains.plugins.cucumber.java.run.CucumberJvm5SMFormatter --name &quot;^Verify INVENTORY \- By Status$&quot;" />
+      <option name="SUGGESTED_NAME" value="Scenario: Verify INVENTORY - By Status" />
       <option name="WORKING_DIRECTORY" value="$MODULE_WORKING_DIR$" />
       <extension name="coverage">
         <pattern>
@@ -195,15 +200,15 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Scenario: Checking Status change from Ready to Receive to Finish Receiving on Load Order Details page" type="CucumberJavaRunConfigurationType" factoryName="Cucumber java" temporary="true" nameIsGenerated="true">
+    <configuration name="Scenario: Verify WAREHOUSE CAPACITY - Empty Locations by Zone" type="CucumberJavaRunConfigurationType" factoryName="Cucumber java" temporary="true" nameIsGenerated="true">
       <option name="CUCUMBER_CORE_VERSION" value="5" />
-      <option name="FILE_PATH" value="$PROJECT_DIR$/WMS_Automation/src/test/resources/features/inbound/loads/loadorderline/InboundLoadOrderDetailScreen1.feature" />
+      <option name="FILE_PATH" value="$PROJECT_DIR$/WMS_Automation/src/test/resources/features/dashboard/DashboardScreen.feature" />
       <option name="GLUE" value="stepDefination_DSD_OMS steps" />
       <option name="MAIN_CLASS_NAME" value="io.cucumber.core.cli.Main" />
       <module name="WMS_Automation" />
-      <option name="NAME_FILTER" value="^Checking Status change from Ready to Receive to Finish Receiving on Load Order Details page$" />
-      <option name="PROGRAM_PARAMETERS" value=" --plugin org.jetbrains.plugins.cucumber.java.run.CucumberJvm5SMFormatter --name &quot;^Checking Status change from Ready to Receive to Finish Receiving on Load Order Details page$&quot;" />
-      <option name="SUGGESTED_NAME" value="Scenario: Checking Status change from Ready to Receive to Finish Receiving on Load Order Details page" />
+      <option name="NAME_FILTER" value="^Verify WAREHOUSE CAPACITY \- Empty Locations by Zone$" />
+      <option name="PROGRAM_PARAMETERS" value=" --plugin org.jetbrains.plugins.cucumber.java.run.CucumberJvm5SMFormatter --name &quot;^Verify WAREHOUSE CAPACITY \- Empty Locations by Zone$&quot;" />
+      <option name="SUGGESTED_NAME" value="Scenario: Verify WAREHOUSE CAPACITY - Empty Locations by Zone" />
       <option name="WORKING_DIRECTORY" value="$MODULE_WORKING_DIR$" />
       <extension name="coverage">
         <pattern>
@@ -215,15 +220,15 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Scenario: Checking route option Edit when click on the Route" type="CucumberJavaRunConfigurationType" factoryName="Cucumber java" temporary="true" nameIsGenerated="true">
+    <configuration name="Scenario: Verify the Labor widgets is visible to the logged in user" type="CucumberJavaRunConfigurationType" factoryName="Cucumber java" temporary="true" nameIsGenerated="true">
       <option name="CUCUMBER_CORE_VERSION" value="5" />
-      <option name="FILE_PATH" value="$PROJECT_DIR$/WMS_Automation/src/test/resources/features/outbound/outboundroutesummary/routeoption/OutboundRouteSummaryOption.feature" />
+      <option name="FILE_PATH" value="$PROJECT_DIR$/WMS_Automation/src/test/resources/features/dashboard/DashboardScreen.feature" />
       <option name="GLUE" value="stepDefination_DSD_OMS steps" />
       <option name="MAIN_CLASS_NAME" value="io.cucumber.core.cli.Main" />
       <module name="WMS_Automation" />
-      <option name="NAME_FILTER" value="^Checking route option Edit when click on the Route$" />
-      <option name="PROGRAM_PARAMETERS" value=" --plugin org.jetbrains.plugins.cucumber.java.run.CucumberJvm5SMFormatter --name &quot;^Checking route option Edit when click on the Route$&quot;" />
-      <option name="SUGGESTED_NAME" value="Scenario: Checking route option Edit when click on the Route" />
+      <option name="NAME_FILTER" value="^Verify the Labor widgets is visible to the logged in user$" />
+      <option name="PROGRAM_PARAMETERS" value=" --plugin org.jetbrains.plugins.cucumber.java.run.CucumberJvm5SMFormatter --name &quot;^Verify the Labor widgets is visible to the logged in user$&quot;" />
+      <option name="SUGGESTED_NAME" value="Scenario: Verify the Labor widgets is visible to the logged in user" />
       <option name="WORKING_DIRECTORY" value="$MODULE_WORKING_DIR$" />
       <extension name="coverage">
         <pattern>
@@ -250,11 +255,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Cucumber Java.Scenario: Checking route option Edit when click on the Route" />
-        <item itemvalue="Cucumber Java.Scenario: Checking Edit option for Load on Load details screen" />
-        <item itemvalue="Cucumber Java.Scenario: Checking Status change from Ready to Receive to Finish Receiving on Load Order Details page" />
-        <item itemvalue="Cucumber Java.Scenario: Checking Navigate to lookup Location on Inbound Load order line item details page" />
-        <item itemvalue="Cucumber Java.Scenario: Checking Navigate to Lookup location on Inbound Order line item details page" />
+        <item itemvalue="Cucumber Java.Scenario: Verify WAREHOUSE CAPACITY - Empty Locations by Zone" />
+        <item itemvalue="Cucumber Java.Scenario: Verify INVENTORY - By Status" />
+        <item itemvalue="Cucumber Java.Scenario: Verify the Labor widgets is visible to the logged in user" />
+        <item itemvalue="Cucumber Java.Scenario: Checking Transactions -&gt; Tasks by Type widget" />
+        <item itemvalue="Cucumber Java.Feature: DashboardScreen" />
       </list>
     </recent_temporary>
   </component>
@@ -371,6 +376,46 @@
           <url>file://$PROJECT_DIR$/WMS_Automation/src/test/java/steps/outbound/routesummary/OutboundRouteSummaryPageSteps.java</url>
           <line>454</line>
           <option name="timeStamp" value="28" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/WMS_Automation/src/test/java/steps/validations/DockManagementSummaryPageValidations.java</url>
+          <line>208</line>
+          <option name="timeStamp" value="37" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/WMS_Automation/src/test/java/steps/validations/DockManagementSummaryPageValidations.java</url>
+          <line>209</line>
+          <option name="timeStamp" value="38" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/WMS_Automation/src/test/java/steps/validations/DockManagementSummaryPageValidations.java</url>
+          <line>207</line>
+          <option name="timeStamp" value="39" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/WMS_Automation/src/test/java/steps/DockManagementSummaryPageSteps.java</url>
+          <line>334</line>
+          <option name="timeStamp" value="42" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/WMS_Automation/src/main/java/ui/pages/DockManagementSummaryPage.java</url>
+          <line>513</line>
+          <option name="timeStamp" value="43" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/WMS_Automation/src/main/java/ui/pages/DockManagementSummaryPage.java</url>
+          <line>514</line>
+          <option name="timeStamp" value="44" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/WMS_Automation/src/main/java/ui/pages/DockManagementSummaryPage.java</url>
+          <line>516</line>
+          <option name="timeStamp" value="45" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/WMS_Automation/src/main/java/ui/pages/DockManagementSummaryPage.java</url>
+          <line>433</line>
+          <option name="timeStamp" value="46" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

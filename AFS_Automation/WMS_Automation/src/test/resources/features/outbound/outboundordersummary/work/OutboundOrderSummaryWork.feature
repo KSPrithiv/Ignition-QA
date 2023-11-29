@@ -1,6 +1,5 @@
 @Outbound @Regression
 Feature: Testing of Outbound Summary Work functionality
-  @isofailed2
   Scenario: Checking Work Assignments functionality
     Given User signs in the application
     And Main page is loaded
@@ -20,7 +19,6 @@ Feature: Testing of Outbound Summary Work functionality
     And Validates Edit, Delete, Release, Labels and Move are disabled
     And Validates Edit, Delete, Release, Labels and Move are displayed
 
-  @isofailed2
   Scenario: Checking Work Assignments Tasks functionality
     Given User signs in the application
     And Main page is loaded

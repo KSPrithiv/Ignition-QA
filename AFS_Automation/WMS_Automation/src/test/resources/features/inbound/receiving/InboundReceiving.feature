@@ -83,7 +83,6 @@ Feature: Testing of Receiving functionality
     And Validates table is displayed on Staging screen
     And Validates Back button is displayed on Stage page
 
-  @isofailed
   Scenario: Checking Receive staged qty - Select pallet/pallets
     Given User signs in the application
     And Main page is loaded
@@ -107,7 +106,6 @@ Feature: Testing of Receiving functionality
     And Validates "Warning" title on dialog popup on Receiving page
     And Clicks No button on Warning on Receiving page
 
-  @isofailed
   Scenario: Checking delete selected unit/pallet from staging screen
     Given User signs in the application
     And Main page is loaded

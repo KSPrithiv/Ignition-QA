@@ -45,7 +45,6 @@ Feature: Testing of Work Queue Assignment functionality
     And User clicks Assignments Title on Work Queue Assignments page
     And Validates Grid items are present on Work Queue Assignments page
 
-  @isofailed2
   Scenario: Checking Tasks filter option of Work Queue Assignments screen functionality
     Given User signs in the application
     And Main page is loaded
@@ -181,7 +180,6 @@ Feature: Testing of Work Queue Assignment functionality
     And User clicks on Picked Column Header on Work Queue Assignments page
     And Validates Picked Column Sorting Result on Work Queue Assignments page
 
-  @isofailed2
   Scenario: Checking Assignment # and Search input field filter option of Work Queue Assignments screen functionality
     Given User signs in the application
     And Main page is loaded

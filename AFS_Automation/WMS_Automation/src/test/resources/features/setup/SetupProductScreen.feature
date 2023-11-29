@@ -1,6 +1,6 @@
 @Setup @Regression
 Feature: Testing of Product Setup UOM
-  @isofailed2
+
   Scenario: Checking UI verification of UOM on Setup Product screen
     Given User signs in the application
     And Main page is loaded
@@ -18,7 +18,6 @@ Feature: Testing of Product Setup UOM
     And Validates Items Count and Items Found on Setup Product page
     And Validates UOM grid should display all column names on Setup Product page
 
-  @isofailed2
   Scenario: Checking UI verification of adding UOM on Setup Product screen
     Given User signs in the application
     And Main page is loaded
@@ -85,7 +84,6 @@ Feature: Testing of Product Setup UOM
     And Validates Size Code default value on UOM popup on Setup Product page
     And Validates OK and Cancel on UOM popup on Setup Product page are displayed
 
-  @isofailed2
   Scenario: Checking Creating UOM on Setup Product screen
     Given User signs in the application
     And Main page is loaded
@@ -165,7 +163,6 @@ Feature: Testing of Product Setup UOM
     And Validates Alert "Packsize must be more than 1" on Setup Product page
     And Clicks Cancel on Setup Product page
 
-  @isofailed2
   Scenario: Checking Editing UOM on Setup Product screen
     Given User signs in the application
     And Main page is loaded
@@ -222,7 +219,6 @@ Feature: Testing of Product Setup UOM
     And Enters Size Code "3D" on Setup Product page
     And Clicks Cancel on Setup Product page
 
-  @isofailed2
   Scenario: Checking Deleting UOM on Setup Product screen
     Given User signs in the application
     And Main page is loaded
