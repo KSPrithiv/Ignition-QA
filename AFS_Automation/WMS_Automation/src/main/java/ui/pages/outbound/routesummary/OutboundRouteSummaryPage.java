@@ -888,8 +888,9 @@ public class OutboundRouteSummaryPage extends BasePage {
 
     public void clickSave() {
         Waiters.waitTillLoadingPage(getDriver());
+        waitUntilStalenessOf(2, getLoader());
         clickOnElement(getSaveButton());
-        jsClick(getSaveButton());
+        waitUntilInvisible(2, loader);
     }
 
     public void clickOrderTypeColumn(String orderType, int index) {
@@ -1790,6 +1791,8 @@ public class OutboundRouteSummaryPage extends BasePage {
     public WebElement getItemsCount() { return findWebElement(itemsCount); }
 
     public WebElement getLoadingImage() { return findWebElement(loadingImage); }
+
+    public WebElement getLoader() { return findWebElement(loader); }
 
     public WebElement getWindowPopup() { return findWebElement(windowPopup); }
 

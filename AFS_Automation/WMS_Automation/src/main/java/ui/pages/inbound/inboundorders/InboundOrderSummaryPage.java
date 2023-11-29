@@ -126,7 +126,7 @@ public class InboundOrderSummaryPage extends BasePage {
     }
 
     public void waitInboundOrderSummaryToLoad() {
-        waitUntilInvisible(5, loader);
+        waitUntilInvisible(7, loader);
         Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(getTopIcon());
         Waiters.waitTillLoadingPage(getDriver());

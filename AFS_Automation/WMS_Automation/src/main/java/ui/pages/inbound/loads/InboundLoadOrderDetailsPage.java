@@ -496,13 +496,18 @@ public class InboundLoadOrderDetailsPage extends BasePage {
     }
 
     public void clickBackButton() {
+        waitUntilInvisible(2, loader);
         Waiters.waitForElementToBeDisplay(getBackButton());
         clickOnElement(getBackButton());
+        waitUntilInvisible(2, loader);
     }
 
     public void clickSaveButton() {
         Waiters.waitForElementToBeDisplay(getSaveButton());
         clickOnElement(getSaveButton());
+        if(isVisible(noButton)) {
+            clickOnElement(noButton);
+        }
     }
 
     public void clickNoButton() {

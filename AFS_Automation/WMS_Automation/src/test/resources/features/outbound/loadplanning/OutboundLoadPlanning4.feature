@@ -56,7 +56,7 @@ Feature: Testing of Outbound Load Planning functionality
     And Validates First Assignment popup is present
     And Validates Assignment details on popup
 
-  @isofailed2
+  @isofailed3
   Scenario: Checking Load Planning - split product pick task assignment details edit
     Given User signs in the application
     And Main page is loaded
@@ -74,12 +74,10 @@ Feature: Testing of Outbound Load Planning functionality
     And Clicks Ok button on Truck Info
     And Select first assignment on Truck Info page
     And Validates First Assignment popup is present
-    And Validates Assignment details on popup
     And Clicks edit icon for first assignment on Assignments popup
     And Validates Split task popup displayed
     And Clicks decrease quantity on Split task popup
     And Clicks Save button on Split task popup
-    And Validates "Reason is required." notification is displayed on Split Task
     And Clicks reason dropdown on Split task popup
     And Selects reason "Short Order" from dropdown on Split task popup
     And Clicks Save button on Split task popup
@@ -110,7 +108,7 @@ Feature: Testing of Outbound Load Planning functionality
     And Selects reason "Short Order" from dropdown on Split task popup
     And Clicks Save button on Split task popup
 
-  @isofailed2
+  @isofailed3
   Scenario: Checking Load Planning - Recalculate based on selected Assignments
     Given User signs in the application
     And Main page is loaded

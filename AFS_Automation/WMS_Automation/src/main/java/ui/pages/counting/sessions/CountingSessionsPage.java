@@ -913,7 +913,9 @@ public class CountingSessionsPage extends BasePage {
                 .findFirst()
                 .orElse(null);
         scrollToCenter(option);
+        Waiters.waitABit(4000);
         clickOnElement(option);
+        Waiters.waitABit(4000);
         Waiters.waitTillLoadingPage(getDriver());
     }
 

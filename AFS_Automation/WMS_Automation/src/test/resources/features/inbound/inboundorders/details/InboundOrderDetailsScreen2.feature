@@ -47,7 +47,7 @@ Feature: Testing of Inbound Orders details screen
     And Selects DOOR option on Inbound Order Details page
     And Clicks Save button on Inbound Order Details page
 
-  @isofailed2
+  @isofailed3
   Scenario: Checking Order details on Inbound Order details page
     Given User signs in the application
     And Main page is loaded
@@ -62,7 +62,7 @@ Feature: Testing of Inbound Orders details screen
     And Validates Received, Staged, Over and Remainder are present on Inbound Order Details page with correct color
     And Validates Status, Door and Data on Inbound Order Details page
 
-  @isofailed2
+  @isofailed3
   Scenario: Checking Log Details on Inbound Order details page
     Given User signs in the application
     And Main page is loaded

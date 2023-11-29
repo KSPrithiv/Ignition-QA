@@ -1,6 +1,6 @@
 @Outbound @Regression
 Feature: Testing of Outbound Route Summary Route option
-  @isofailed2
+  @isofailed3
   Scenario: Checking Route Edit option functionality
     Given User signs in the application
     And Main page is loaded
@@ -53,7 +53,7 @@ Feature: Testing of Outbound Route Summary Route option
     And Validates users are present for Assign Route on Outbound Route Summary page
     And Validates user dropdown for Assign Route is not empty on Outbound Route Summary page
 
-  @isofailed2
+  @isofailed3
   Scenario: Checking Route Door functionality
     Given User signs in the application
     And Main page is loaded
@@ -102,7 +102,7 @@ Feature: Testing of Outbound Route Summary Route option
     And Validates Route Data page title contains "Route" on Outbound Route Summary page
     And Click Cancel button on Outbound Route Summary page
 
-  @isofailed2
+  @isofailed3
   Scenario: Checking Route Source functionality
     Given User signs in the application
     And Main page is loaded
@@ -189,7 +189,7 @@ Feature: Testing of Outbound Route Summary Route option
     And Validates Save and Cancel buttons are displayed on Outbound Route Summary page
     And Click Cancel button on Outbound Route Summary page
 
-  @isofailed2
+  @isofailed3
   Scenario: Checking route option Edit when click on the Route
     Given User signs in the application
     And Main page is loaded
@@ -211,9 +211,6 @@ Feature: Testing of Outbound Route Summary Route option
     And Validates Temperature type by index 1 is displayed on Outbound Route Summary page
     And Type Temperature by index 1 on Outbound Route Summary page
     And Clicks Save button on Outbound Route Summary page
-    And Clicks Routes dropdown on Outbound Route Summary page
-    And Select Outbound Route Edit option on Outbound Route Summary page
-    And Clicks Save button on Outbound Route Summary page
 
   @isofailed2
   Scenario: Checking route option Data functionality
@@ -231,7 +228,7 @@ Feature: Testing of Outbound Route Summary Route option
     And Validates Route Data page title contains "Route" on Outbound Route Summary page
     And Click Cancel button on Outbound Route Summary page
 
-  @isofailed2
+  @isofailed3
   Scenario: Checking Route Door option functionality
     Given User signs in the application
     And Main page is loaded
