@@ -7,6 +7,7 @@ import io.cucumber.java.Scenario;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.Quotes;
 import pages_DSD_OMS.orderEntry.CheckOutOrderPage;
 import pages_DSD_OMS.orderEntry.CheckOutSummaryPage;
 import pages_DSD_OMS.orderEntry.NewOrderEntryPage;
@@ -71,8 +72,8 @@ public class QuotePageSteps1
         quoteSummaryPage.ClickOnEdit();
     }
 
-    @Then("If user navigates to payment and address page click on Back button or else add product# in Quick product entry")
-    public void ifUserNavigatesToPaymentAndAddressPageClickOnBackButtonOrElseAddProductInQuickProductEntry(DataTable tabledata) throws InterruptedException, AWTException
+    @Then("User should navigate to new Quotes page add product# in Quick product entry")
+    public void userShouldNavigateToNewQuotesPageAddProductInQuickProductEntry(DataTable tabledata) throws InterruptedException, AWTException
     {
         List<List<String>>Qty=tabledata.asLists(String.class);
         checkOutOrderPage=new CheckOutOrderPage(driver,scenario);
@@ -86,7 +87,7 @@ public class QuotePageSteps1
         newQuotePage.QtyInGrid(Qty.get(0).get(0),Qty.get(0).get(1));
     }
 
-    @Then("If user navigates to payment and address page click on Back button or else Click on Add product and select OG")
+   /* @Then("If user navigates to payment and address page click on Back button or else Click on Add product and select OG")
     public void ifUserNavigatesToPaymentAndAddressPageClickOnBackButtonOrElseClickOnAddProductAndSelectOG(DataTable tabledata) throws InterruptedException, AWTException
     {
         List<List<String>> Qty=tabledata.asLists(String.class);
@@ -99,10 +100,10 @@ public class QuotePageSteps1
         newQuotePage=new NewQuotePage(driver,scenario);
         newQuotePage.EnterQuickProductNoSecond();
         newQuotePage.QtyInGrid(Qty.get(0).get(0),Qty.get(0).get(1));
-    }
+    }*/
 
-    @Then("If user navigates to payment and address page click on Back button or else Click on Add product and select OG {string}")
-    public void ifUserNavigatesToPaymentAndAddressPageClickOnBackButtonOrElseClickOnAddProductAndSelectOG(String Og,DataTable tabledata) throws InterruptedException, AWTException
+    @Then("User should navigate to new Quotes page Click on Add product and select OG {string}")
+    public void userShouldNavigateToNewQuotesPageClickOnAddProductAndSelectOG(String Og, DataTable tabledata) throws InterruptedException, AWTException
     {
         List<List<String>> Qty=tabledata.asLists(String.class);
         checkOutOrderPage=new CheckOutOrderPage(driver,scenario);
@@ -172,6 +173,7 @@ public class QuotePageSteps1
     public void userShouldResetTheDeliveryDateToCurrentDate() throws InterruptedException, AWTException
     {
         orderpage=new OrderEntryPage(driver,scenario);
+        orderpage.ValidateOE();
         orderpage.ClickCalender();
         orderpage.ResetToCurrentDate();
     }

@@ -13,6 +13,7 @@ import pages_DSD_OMS.orderEntry.*;
 import util.TestBase;
 
 import java.awt.*;
+import java.text.ParseException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
@@ -84,7 +85,7 @@ public class OrderEntryPageSteps6
     }
 
     @And("Select Pickup Order from drop down options and select delivery date by verifying existence of todays date")
-    public void selectPickupOrderFromDropDownOptionsAndSelectDeliveryDateByVerifyingExistenceOfTodaysDate() throws InterruptedException, AWTException
+    public void selectPickupOrderFromDropDownOptionsAndSelectDeliveryDateByVerifyingExistenceOfTodaysDate() throws InterruptedException, AWTException, ParseException
     {
         //for selecting pickup order
         orderpage=new OrderEntryPage(driver, scenario);

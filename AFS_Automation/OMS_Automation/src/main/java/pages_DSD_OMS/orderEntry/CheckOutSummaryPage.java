@@ -84,13 +84,19 @@ public class CheckOutSummaryPage
         exists=false;
         try
         {
+            String status = HelpersMethod.returnDocumentStatus(driver);
+            if (status.equals("loading"))
+            {
+                HelpersMethod.waitTillLoadingPage(driver);
+            }
+
             Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
                     .withTimeout(Duration.ofSeconds(120))
                     .pollingEvery(Duration.ofSeconds(2))
                     .ignoring(NoSuchElementException.class);
             wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
 
-            String status = HelpersMethod.returnDocumentStatus(driver);
+            status = HelpersMethod.returnDocumentStatus(driver);
             if (status.equals("loading"))
             {
                 HelpersMethod.waitTillLoadingPage(driver);
@@ -117,6 +123,7 @@ public class CheckOutSummaryPage
         String Tot=null;
         try
         {
+            HelpersMethod.ScrollElement(driver,TotAmt);
             Tot= HelpersMethod.ReadValue(TotAmt);
             scenario.log("TOTAL ORDER AMOUNT IS "+Tot);
         }
@@ -565,8 +572,6 @@ public class CheckOutSummaryPage
                 js.executeScript("document.body.style.MozTransform='50%'");
             }
             WebElement ProdNo=HelpersMethod.FindByElement(driver,"xpath","//span[text()='Product #']");
-            //act.moveToElement(ProdNo).build().perform();
-            //act.click(ProdNo).build().perform();
             HelpersMethod.JScriptClick(driver,ProdNo,1000);
 
             WebElement Sort=HelpersMethod.FindByElement(driver,"xpath","//span[text()='Product #']/following-sibling::span[contains(@class,'sort')]");
@@ -596,7 +601,6 @@ public class CheckOutSummaryPage
             ArrayList<String> Pro_Sort=new ArrayList<>(Pro_List);
             Collections.sort(Pro_Sort);
             //Comparing the sorted order with list of products
-            //Assert.assertEquals(Pro_List,Pro_Sort);
             if(Pro_Sort.equals(Pro_List)==true)
             {
                 scenario.log("PRODUCT NUMBERS ARE IN SORTED ORDER");

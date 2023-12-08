@@ -1445,6 +1445,12 @@ public class NewStandingOrderPage
         int i=0;
         try
         {
+            Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(120))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
             if (HelpersMethod.IsExists("//div[@class='card-view']/ancestor::div[contains(@class,'k-widget k-window k-dialog')]", driver))
             {
                 if (HelpersMethod.IsExists("//span[@id='CPcategories']", driver))
@@ -1467,18 +1473,22 @@ public class NewStandingOrderPage
                     JavascriptExecutor js=(JavascriptExecutor)driver;
                     js.executeScript("document.body.style.MozTransform='67%'");
                 }
-                if(HelpersMethod.IsExists("//button[@class='i-grid__filter-button']",driver)) {
+                if(HelpersMethod.IsExists("//button[@class='i-grid__filter-button']",driver))
+                {
                     //if filter header is not displayed click on filter icon
-                    if (!HelpersMethod.IsExists("//span[contains(@class,'k-i-filter-clear k-icon')]", driver)) {
+                    if (!HelpersMethod.IsExists("//span[contains(@class,'k-i-filter-clear k-icon')]", driver))
+                    {
                         WebElement filterIcon = HelpersMethod.FindByElement(driver, "xpath", "//span[contains(@class,'k-i-filter-clear k-icon')]");
                         HelpersMethod.JScriptClick(driver, filterIcon, 1000);
                     }
                     //Find all the headers of catalog dialog box, when displayed in list view
                     List<WebElement> headers = HelpersMethod.FindByElements(driver, "xpath", "//th[@class='k-header']/descendant::span[contains(@class,'k-column-title')]");
-                    for (WebElement head : headers) {
+                    for (WebElement head : headers)
+                    {
                         i++;
                         head_text = head.getText();
-                        if (head_text.equals("Category")) {
+                        if (head_text.equals("Category"))
+                        {
                             break;
                         }
                     }
@@ -1496,10 +1506,12 @@ public class NewStandingOrderPage
                     WebElement filterIcon = HelpersMethod.FindByElement(driver, "xpath", "//tr[@class='k-filter-row']/th[" + i + "]/descendant::span[contains(@class,'k-icon k-i-filter k-icon')]");
                     HelpersMethod.ActClick(driver, filterIcon, 1000);
                     List<WebElement> Lists = HelpersMethod.FindByElements(driver, "xpath", "//div[contains(@class,'k-list-container')]/descendant::ul/li");
-                    for (WebElement listValue : Lists) {
+                    for (WebElement listValue : Lists)
+                    {
                         act1.moveToElement(listValue).build().perform();
                         listText = listValue.getText();
-                        if (listText.equals("Is equal to")) {
+                        if (listText.equals("Is equal to"))
+                        {
                             act1.moveToElement(listValue).build().perform();
                             act1.click().build().perform();
                             break;
@@ -1507,24 +1519,30 @@ public class NewStandingOrderPage
                     }
 
                     status = HelpersMethod.returnDocumentStatus(driver);
-                    if (status.equals("loading")) {
+                    if (status.equals("loading"))
+                    {
                         HelpersMethod.waitTillLoadingPage(driver);
                     }
-                    if (HelpersMethod.IsExists("//div[@class='loader']", driver)) {
+                    if (HelpersMethod.IsExists("//div[@class='loader']", driver))
+                    {
                         WebElement WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                        HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 80000);
+                        HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000000);
                     }
 
                     String catFilterVal = HelpersMethod.JSGetValueEle(driver, catalogFilter, 1000);
-                    if (catFilterVal.equals(searchValue)) {
+                    if (catFilterVal.equals(searchValue))
+                    {
                         scenario.log("IN CATEGORY OPTION SEARCHED IS " + searchValue);
                         exists = true;
                     }
                     //To zoom out browser by 100%
-                    if (TestBase.testEnvironment.get_browser().equalsIgnoreCase("chrome") | TestBase.testEnvironment.get_browser().equalsIgnoreCase("edge")) {
+                    if (TestBase.testEnvironment.get_browser().equalsIgnoreCase("chrome") | TestBase.testEnvironment.get_browser().equalsIgnoreCase("edge"))
+                    {
                         JavascriptExecutor js = (JavascriptExecutor) driver;
                         js.executeScript("document.body.style.zoom='100%'");
-                    } else if (TestBase.testEnvironment.get_browser().equalsIgnoreCase("firefox")) {
+                    }
+                    else if (TestBase.testEnvironment.get_browser().equalsIgnoreCase("firefox"))
+                    {
                         JavascriptExecutor js = (JavascriptExecutor) driver;
                         js.executeScript("document.body.style.MozTransform='100%'");
                     }

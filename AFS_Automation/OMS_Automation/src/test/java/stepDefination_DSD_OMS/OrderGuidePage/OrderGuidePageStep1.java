@@ -76,6 +76,24 @@ public class OrderGuidePageStep1
         createOGPage.CatalogPopupOk();
     }
 
+    @And("User should select products from catalog popup for Price base")
+    public void user_should_select_products_from_catalog_popupForPriceBase()
+    {
+        createOGPage=new CreateOGPage(driver,scenario);
+        createOGPage.ValidateCatalogDisplay();
+        createOGPage.ResetFilter_Catalog();
+        createOGPage.validateProductInCatalog();
+        if (HelpersMethod.IsExists("//div[contains(@class,'k-widget k-window k-dialog')]/descendant::div[contains(@class,'i-grid')]", driver))
+        {
+            createOGPage.ListViewPriceBase();
+        }
+        else
+        {
+            createOGPage.cardViewPriceBase();
+        }
+        createOGPage.CatalogPopupOk();
+    }
+
     //Code to delete OG from the OG grid
     @Then("User enters OG Description in search box and Delete the OG verify same in OG grid")
     public void user_enters_og_description_in_search_box_and_delete_the_og_verify_same_in_og_grid(DataTable tabledata) throws InterruptedException, AWTException
@@ -102,15 +120,6 @@ public class OrderGuidePageStep1
         orderGuidePage = new OrderGuidePage(driver, scenario);
         orderGuidePage.AddFilterClick(AddOption.get(0).get(0),AddOption.get(0).get(1));
     }
-
-/*    @Then("User enters OG Description {string} in search box")
-    public void userEntersOGDescriptionInSearchBox(String arg0) throws InterruptedException, AWTException
-    {
-        exists=false;
-        orderGuidePage = new OrderGuidePage(driver, scenario);
-        exists=orderGuidePage.OGSearchBox(arg0);
-        Assert.assertEquals(exists,false);
-    }*/
 
     @And("User verifies New OG page and clicks on import button")
     public void userVerifiesNewOGPageAndClicksOnImportButton() throws InterruptedException
@@ -170,26 +179,6 @@ public class OrderGuidePageStep1
         exists=orderGuidePage.OGSearchBox(Og);
         Assert.assertEquals(exists,true);
     }
-
-  /*  @And("User should navigate back to OG page and navigate back to local chain {string} and verify OG {string}  existence")
-    public void userShouldNavigateBackToOGPageAndNavigateBackToLocalChainAndVerifyOGExistence(String OGType, String Og) throws InterruptedException, AWTException
-    {
-        orderGuidePage = new OrderGuidePage(driver, scenario);
-        boolean result = orderGuidePage.ValidateOG();
-        Assert.assertEquals(result, true);
-        scenario.log("USER IS ON ORDER GUIDE PAGE");
-
-        //code to change Customer reference to Local chain
-        /*orderGuidePage = new OrderGuidePage(driver, scenario);
-        orderGuidePage.CustomerRef();
-        orderGuidePage.CustRefDropDown(OGType);
-        orderGuidePage.SubCustomerRef();*/
-
-        //Code to verify whether OG is existing in OG grid or not
-       /* orderGuidePage = new OrderGuidePage(driver, scenario);
-        exists=orderGuidePage.OGSearchBox(Og);
-        Assert.assertEquals(exists,true);
-    }*/
 
     @And("User selects Day of week from drop down")
     public void userSelectsDayOfWeekFromDropDown()
@@ -382,12 +371,6 @@ public class OrderGuidePageStep1
         createOGPage=new CreateOGPage(driver,scenario);
         createOGPage.ValidateNoProductsInGrid();
     }
-
-   /* @And("User should navigate back to OG page and navigate back to {string} and verify OG {string}  existence")
-    public void userShouldNavigateBackToOGPageAndNavigateBackToAndVerifyOGExistence(String arg0, String arg1)
-    {
-
-    }*/
 
     @And("User changes the Customer Account# to the previous Account#")
     public void userChangesTheCustomerAccountToThePreviousAccount() throws InterruptedException, AWTException

@@ -71,7 +71,7 @@ Feature: Order Entry2
     Then User enters ProdDes in Search box
     Then Check for Catalog popup
     Then Enter the Qty in the Product grid Case and Unit
-      | 50 | 50 |
+      | 100 | 100 |
     Then Click on Next button
     And Click on SubmitOrder button
     Then User should be navigated to Order Entry page

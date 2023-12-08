@@ -507,4 +507,14 @@ public class OrderGuidePageStep
         createOGPage.FindtableHeader(TableHead);
         createOGPage.DisplayGroupDetails();
     }
+
+    @Then("User should click on arrow symbol for sorting sequence numbers")
+    public void userShouldClickOnArrowSymbolForSortingSequenceNumbers()
+    {
+        createOGPage=new CreateOGPage(driver,scenario);
+        createOGPage.displaySequenceValueForFirstTime();
+        createOGPage.clickonArrowOfSeqeuence();
+        createOGPage.displaySequenceValueForSecondTime();
+        createOGPage.compareSequenceNosFound();
+    }
 }

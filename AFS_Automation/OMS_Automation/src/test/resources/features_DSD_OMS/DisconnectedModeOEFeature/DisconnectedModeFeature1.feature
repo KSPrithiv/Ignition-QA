@@ -31,10 +31,25 @@ Feature: Disconnected mode
     Then Click on SubmitOrder button
     Then User should be navigated to Order Entry page
 
-
-
-
-
+  @DMValidateShippingAddress
+  Scenario: Test scenario to validate whether default shipping address is selected or not in payment page
+    Given User should be in Order entry page
+    When User Clicks on network symbol and click on taggle button to navigate to disconnected mode
+    And Then User selects Go offline option in Disconnected mode popup
+    Then User should get Customer account# popup
+    And User should select Customer Account# from popup and select the delivery date from popup wait till synchronized
+    Then User must be on Order Entry Page in disconnected mode
+    Then User must click Start Order button
+    Then User should make selection between Pending order or Start New order
+    Then User should select Note from popup and Order guide from popup
+    Then Enter PO# for New order
+      |PO123|
+    Then Enter Pro# in Quick Product Entry area
+    And Check for Case and Unit input box enabled or not based on that enter value
+      |20|20|
+    Then Click on Next button and validate shipping address
+    And Click on SubmitOrder button
+    Then User should be navigated to Order Entry page
 
   @DMToConnected
   Scenario: for Disconnected mode to connected mode
