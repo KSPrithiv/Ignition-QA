@@ -905,7 +905,7 @@ public class NewStandingOrderCard
             {
                 HelpersMethod.waitTillLoadingPage(driver);
             }
-
+            Thread.sleep(2000);
             if (HelpersMethod.IsExists("//div[@id='toast-container']", driver))
             {
                 scenario.log("NO DATA HAS BEEN GENERATED");
@@ -976,7 +976,7 @@ public class NewStandingOrderCard
             if(HelpersMethod.IsExists("//div[contains(text(),'Generate standing order')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
             {
                 //To zoom out browser by 67%
-                if(TestBase.testEnvironment.get_browser().equalsIgnoreCase("chrome")|TestBase.testEnvironment.get_browser().equalsIgnoreCase("edge"))
+              /*  if(TestBase.testEnvironment.get_browser().equalsIgnoreCase("chrome")|TestBase.testEnvironment.get_browser().equalsIgnoreCase("edge"))
                 {
                     JavascriptExecutor js = (JavascriptExecutor) driver;
                     js.executeScript("document.body.style.zoom='67%'");
@@ -985,7 +985,7 @@ public class NewStandingOrderCard
                 {
                     JavascriptExecutor js=(JavascriptExecutor)driver;
                     js.executeScript("document.body.style.MozTransform='67%'");
-                }
+                }*/
                 exists=true;
             }
             Assert.assertEquals(exists,true);
@@ -1084,21 +1084,26 @@ public class NewStandingOrderCard
         exists=false;
         try
         {
+            new WebDriverWait(driver,Duration.ofMillis(2000)).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(text(),'Generate standing order')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]")));
+            new WebDriverWait(driver,Duration.ofMillis(2000)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(text(),'Generate standing order')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]")));
             if(HelpersMethod.IsExists("//div[contains(text(),'Generate standing order')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
             {
-                WebElement modalContainer = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-widget k-window k-dialog')]");
+                WebElement modalContainer = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(text(),'Generate standing order')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]");
                 WebElement OkCalender = modalContainer.findElement(By.xpath(".//button[text()='Ok']"));
-                HelpersMethod.ActClick(driver, OkCalender, 40000);
+                HelpersMethod.ActClick(driver, OkCalender, 10000);
                 exists=true;
             }
                 //To zoom out browser by 100%
-                if (TestBase.testEnvironment.get_browser().equalsIgnoreCase("chrome") | TestBase.testEnvironment.get_browser().equalsIgnoreCase("edge")) {
+              /*  if (TestBase.testEnvironment.get_browser().equalsIgnoreCase("chrome") | TestBase.testEnvironment.get_browser().equalsIgnoreCase("edge"))
+                {
                     JavascriptExecutor js = (JavascriptExecutor) driver;
                     js.executeScript("document.body.style.zoom='100%'");
-                } else if (TestBase.testEnvironment.get_browser().equalsIgnoreCase("firefox")) {
+                }
+                else if (TestBase.testEnvironment.get_browser().equalsIgnoreCase("firefox"))
+                {
                     JavascriptExecutor js = (JavascriptExecutor) driver;
                     js.executeScript("document.body.style.MozTransform='100%'");
-                }
+                }*/
             Assert.assertEquals(exists,true);
         }
         catch (Exception e){}
@@ -1121,7 +1126,8 @@ public class NewStandingOrderCard
         exists=false;
         try
         {
-            if (HelpersMethod.IsExists("//div[contains(text(),'Getting list of standing order customers.')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]", driver)) {
+            if (HelpersMethod.IsExists("//div[contains(text(),'Getting list of standing order customers.')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]", driver))
+            {
                 new WebDriverWait(driver, Duration.ofMillis(100000)).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[contains(text(),'Getting list of standing order customers.')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]")));
                 exists=true;
             }

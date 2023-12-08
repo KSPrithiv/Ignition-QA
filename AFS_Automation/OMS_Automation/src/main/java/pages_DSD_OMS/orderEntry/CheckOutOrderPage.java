@@ -752,9 +752,9 @@ public class CheckOutOrderPage
         exists=false;
         try
         {
-            if(HelpersMethod.IsExists("//div[@id='addressCard']/descendant::span[contains(@class,'i-summary-area__other__section__value')]",driver))
+            if(HelpersMethod.IsExists("//div[@id='addressCard']/descendant::tbody/tr[@class='selected']",driver))
             {
-                WebElement shippingValue = HelpersMethod.FindByElement(driver, "xpath", "//div[@id='addressCard']/descendant::span[contains(@class,'i-summary-area__other__section__value')]");
+                WebElement shippingValue = HelpersMethod.FindByElement(driver, "xpath", "//div[@id='addressCard']/descendant::tbody/tr[@class='selected']/td[2]");
                 HelpersMethod.ScrollTillElementVisible(driver,shippingValue);
                 scenario.log("SHIPPING ADDRESS ALREADY SELECTED IN PAYMENT PAGE IS " + shippingValue.getText());
                 exists=true;

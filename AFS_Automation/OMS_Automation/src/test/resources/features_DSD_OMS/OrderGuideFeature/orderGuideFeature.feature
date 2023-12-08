@@ -63,6 +63,16 @@ Feature: Order Guide
       | OG |
       |OGDis1|
 
+  @SequenceSortDisplay
+  Scenario Outline: Test scenario for verifying the seq numbers are displaying properly or not
+    Given User must be on Order Entry Page to select OG
+    And User should navigate to OG
+    Then User enters OG "<OG>" Description in search box
+    Then User should click on arrow symbol for sorting sequence numbers
+    Examples:
+      |  OG  |
+      |SampleOG|
+
   @DragAndDropInCreateOG
   Scenario Outline: Test sceanrio for dragging and droping feature in create order guide page
     Given User must be on Order Entry Page to select OG

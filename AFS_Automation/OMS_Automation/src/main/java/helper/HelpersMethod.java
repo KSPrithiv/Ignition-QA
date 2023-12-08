@@ -496,7 +496,7 @@ public class HelpersMethod
                 if(IsExists("//div[@class='loader']",driver))
                 {
                     WebEle=FindByElement(driver,"xpath","//div[@class='loader']");
-                    waitTillLoadingWheelDisappears(driver, WebEle, 80000);
+                    waitTillLoadingWheelDisappears(driver, WebEle, 1000000);//60000
                 }
             }
         }
@@ -569,7 +569,7 @@ public class HelpersMethod
         if(IsExists("//div[@class='loader']",driver))
         {
             WebElement WebEle=FindByElement(driver,"xpath","//div[@class='loader']");
-            waitTillLoadingWheelDisappears(driver, WebEle, 600000);
+            waitTillLoadingWheelDisappears(driver, WebEle, 1000000);//60000
         }
         String status=returnDocumentStatus(driver);
         if (status.equals("loading"))
@@ -579,7 +579,7 @@ public class HelpersMethod
         if(IsExists("//div[@class='loader']",driver))
         {
             WebElement WebEle=FindByElement(driver,"xpath","//div[@class='loader']");
-            waitTillLoadingWheelDisappears(driver, WebEle, 600000);
+            waitTillLoadingWheelDisappears(driver, WebEle, 1000000);//60000
         }
     }
 
@@ -721,7 +721,7 @@ public class HelpersMethod
         if(HelpersMethod.IsExists("//div[@class='loader']",driver))
         {
             WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 80000);
+            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000000);//80000
         }
         String status=HelpersMethod.returnDocumentStatus(driver);
         if(status.equals("loading"))
@@ -777,7 +777,7 @@ public class HelpersMethod
                 if (IsExists("//div[@class='loader']", driver))
                 {
                     WebEle = FindByElement(driver, "xpath", "//div[@class='loader']");
-                    waitTillLoadingWheelDisappears(driver, WebEle, 200000);
+                    waitTillLoadingWheelDisappears(driver, WebEle, 1000000);//200000
                 }
             }
         }

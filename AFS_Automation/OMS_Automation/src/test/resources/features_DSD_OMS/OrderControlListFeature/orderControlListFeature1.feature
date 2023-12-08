@@ -12,7 +12,7 @@ Feature: Order control list1
     Given User must be on Order Entry Page to select OCL
     And User should navigate to OCL
     Then User should select Order traker from drop down
-    And Change the delivery date 4 days after current date
+    And Change the delivery date 1 days after current date
     And User clicks on All radio button
     Then User enters Route# in Route search input box and count number of rows in OCL grid
 
@@ -21,7 +21,7 @@ Feature: Order control list1
     Given User must be on Order Entry Page to select OCL
     And User should navigate to OCL
     Then User should select Order traker from drop down
-    And Change the delivery date 4 days after current date
+    And Change the delivery date 1 days after current date
     And User clicks on All radio button
     Then User should find the customer to whome comment has to be added and click on Comment icon
     Then Add note in popup
@@ -36,7 +36,7 @@ Feature: Order control list1
     Given User must be on Order Entry Page to select OCL
     And User should navigate to OCL
     Then User should select Order traker from drop down
-    And Change the delivery date 4 days after current date
+    And Change the delivery date 1 days after current date
     And User clicks on All radio button
     Then User should find the customer to whome comment has to be added and click on Comment icon
     And Read all the Notes in Customer note grid and select one note
@@ -49,7 +49,7 @@ Feature: Order control list1
     Given User must be on Order Entry Page to select OCL
     And User should navigate to OCL
     Then User should select Order traker from drop down
-    And Change the delivery date 4 days after current date
+    And Change the delivery date 1 days after current date
     And User clicks on All radio button
     Then User should find the customer to whome comment has to be added and click on Comment icon
     And Read all the Notes in Customer note grid and select one note for Deleting
@@ -61,7 +61,7 @@ Feature: Order control list1
     Given User must be on Order Entry Page to select OCL
     And User should navigate to OCL
     Then User should select Order traker from drop down
-    And Change the delivery date 4 days after current date
+    And Change the delivery date 1 days after current date
     And User clicks on All radio button
     Then User should find the customer to whome comment has to be added and click on Comment icon
     And Read all the Notes in Customer note grid and select one note
@@ -74,6 +74,49 @@ Feature: Order control list1
     Given User must be on Order Entry Page to select OCL
     And User should navigate to OCL
     Then User should select Order traker from drop down
-    And Change the delivery date 4 days after current date
+    And Change the delivery date 1 days after current date
     Then the application should display all the account number in the grid in OCL
 
+  @ChangeOfGrid
+  Scenario: Test scenario for changing grid in OCL
+    Given User must be on Order Entry Page to select OCL
+    And User should navigate to OCL
+    Then User should select Order traker from drop down
+    And Change the delivery date 1 days after current date
+    Then User should gothrough the column names displayed
+    And User should change the grid and gothrough the column names displayed
+
+  @CallTimeFilter
+  Scenario: Test scenario for filter disabled for call time
+    Given User must be on Order Entry Page to select OCL
+    And User should navigate to OCL
+    Then User should select Order traker from drop down
+    And Change the delivery date 1 days after current date
+    Then User should search for call time column and check whether filter has been disabled
+
+  @CallBackTimeFilter
+  Scenario: Test scenario for filter disabled for call back time
+    Given User must be on Order Entry Page to select OCL
+    And User should navigate to OCL
+    Then User should select Order traker from drop down
+    And Change the delivery date 1 days after current date
+    Then User should search for call back time column and check whether filter has been disabled
+
+  @MultipleRoutes
+  Scenario: Test scenario for verifying selection of multiple routes
+    Given User must be on Order Entry Page to select OCL
+    And User should navigate to OCL
+    Then User should select Order traker from drop down
+    And Change the delivery date 1 days after current date
+    And User clicks on All radio button
+    Then User enters multiple Route# in Route search input box and count number of rows in OCL grid
+
+  @RemoveRoutes
+  Scenario: Test scenario for verifying functionality of removeing of multiple routes
+    Given User must be on Order Entry Page to select OCL
+    And User should navigate to OCL
+    Then User should select Order traker from drop down
+    And Change the delivery date 1 days after current date
+    And User clicks on All radio button
+    Then User enters multiple Route# in Route search input box and count number of rows in OCL grid
+    And User remove route from search bar

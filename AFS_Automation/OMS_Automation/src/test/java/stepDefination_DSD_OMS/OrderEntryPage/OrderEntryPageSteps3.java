@@ -231,12 +231,8 @@ public class OrderEntryPageSteps3
         List<List<String>> priceVal=tabledata.asLists(String.class);
         newOE=new NewOrderEntryPage(driver,scenario);
         newOE.Click_On_PriceOverrideIcon();
+        newOE.validatePriceOverridePopup();
         newOE.PriceOverridePopup_WhatIfPricePrice(priceVal.get(0).get(0));
-        for(int i=0;i<=1;i++)
-        {
-            newOE.priceCannotBeBleowCost();
-            newOE.exceedsMaxQty();
-        }
     }
 
     @Then("User should click on price override icon and Change price using What if option Price per unit")
@@ -245,11 +241,13 @@ public class OrderEntryPageSteps3
         List<List<String>> priceVal=tabledata.asLists(String.class);
         newOE=new NewOrderEntryPage(driver,scenario);
         newOE.Click_On_PriceOverrideIcon();
+        newOE.validatePriceOverridePopup();
         newOE.PriceOverridePopup_WhatIfPriceUnit(priceVal.get(0).get(0));
-        for(int i=0;i<=1;i++)
+        for(int i=0;i<=2;i++)
         {
             newOE.priceCannotBeBleowCost();
             newOE.exceedsMaxQty();
+            newOE.toastCurrentlyUnavailable();
         }
     }
 }

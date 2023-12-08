@@ -68,7 +68,7 @@ Feature: Order Entry6
     And Check for Warning popup
     Then User should be navigated to Order Entry page
 
-  @PickupOrderCheckBox
+  @PickupOrderTodaysDate
   Scenario: Test scenario for verifying Pickup order, Select date popup contains todays date
     Given User must be on Order Entry Page
     When User clicks on drop down next to Start order button

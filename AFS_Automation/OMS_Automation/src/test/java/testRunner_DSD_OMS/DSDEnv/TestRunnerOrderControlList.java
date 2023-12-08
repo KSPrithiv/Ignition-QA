@@ -23,19 +23,21 @@ import java.io.IOException;
                         "html:target/cucumber-html-report.html",
                         "com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:Reports/spark/",
                         "rerun:target/failedrerun.txt"},
-                monochrome = true)
+                monochrome = true,tags = "@CreateOrderWithLengthyNote")
 
 public class TestRunnerOrderControlList extends AbstractTestNGCucumberTests
 {
     /* Created by Divya.Ramadas@afsi.com */
     @Parameters({"environment"})
     @BeforeClass
-    public static void beforeClass(@Optional("environment") String envi) {
-        try {
+    public static void beforeClass(@Optional("environment") String envi)
+    {
+        try
+        {
             TestBase.InitializeProp(envi);
             TestBase.SetDriver(TestBase.testEnvironment.get_browser());
-        } catch (Exception e) {
         }
+        catch (Exception e) { }
     }
 
     @AfterClass

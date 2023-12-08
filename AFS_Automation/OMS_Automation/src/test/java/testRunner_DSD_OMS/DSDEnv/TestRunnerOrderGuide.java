@@ -35,8 +35,7 @@ public class TestRunnerOrderGuide extends AbstractTestNGCucumberTests
             TestBase.InitializeProp(envi);
             TestBase.SetDriver(TestBase.testEnvironment.get_browser());
         }
-        catch (Exception e)
-        {}
+        catch (Exception e) {}
     }
 
     @AfterClass

@@ -8,6 +8,7 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import io.cucumber.java.sl.In;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
@@ -49,8 +50,7 @@ public class OrderEntryPageSteps
 
     static boolean exists=false;
     static String Ord_No=null;
-    static String ProdNo=null;
-    static String PageTitle=null;
+    static String currentDate=null;
 
     @Before
     public void LaunchBrowser1(Scenario scenario) throws Exception
@@ -142,12 +142,8 @@ public class OrderEntryPageSteps
         }
         //create object of OE Page
         orderpage = new OrderEntryPage(driver, scenario);
-        //get current date add some days to current date
-        LocalDate myDateObj = LocalDate.now().plusDays(int1);
-        DateTimeFormatter myFormatObj = DateTimeFormatter.ofPattern("EEEE, MMMM d, yyyy");
-        String formattedDate = myDateObj.format(myFormatObj);
         orderpage.ClickCalender();
-        orderpage.SelectDate(formattedDate, int1);
+        orderpage.SelectDate(int1);
         orderpage.cancelOGselection();
         orderpage.ChangedDeliveryDate();
     }
@@ -367,6 +363,11 @@ public class OrderEntryPageSteps
         exists=false;
         newOE = new NewOrderEntryPage(driver,scenario);
         newOE.readProductsInOrder();
+        for(int i=0;i<=1;i++)
+        {
+            newOE.priceCannotBeBleowCost();
+            newOE.exceedsMaxQty();
+        }
         exists=newOE.ClickNext();
         newOE.OutOfStockPop_ERP();
         checkorder=new CheckOutOrderPage(driver,scenario);
@@ -533,12 +534,28 @@ public class OrderEntryPageSteps
         if(uomString.equals("Units")||uomString.equals("EA"))
         {
             newOE.CheckForQuickUnitEnabled(Unit);
+            if(uomString.equals("Units"))
+            {
+                WebElement caseIn = HelpersMethod.FindByElement(driver, "id", "quickCases");
+                if (caseIn.equals(driver.switchTo().activeElement()))
+                {
+                    caseIn.sendKeys(Keys.TAB);
+                }
+            }
             newOE.exceedsMaxQty();
             newOE.toastCurrentlyUnavailable();
         }
         else if(uomString.equals("Cases")||uomString.equals("CS"))
         {
             newOE.CheckForQuickCaseEnabled(Case);
+            if(uomString.equals("Cases"))
+            {
+                WebElement unitIn = HelpersMethod.FindByElement(driver, "id", "quickUnits");
+                if (unitIn.equals(driver.switchTo().activeElement()))
+                {
+                    unitIn.sendKeys(Keys.TAB);
+                }
+            }
             newOE.exceedsMaxQty();
             newOE.toastCurrentlyUnavailable();
         }
@@ -908,7 +925,6 @@ public class OrderEntryPageSteps
         if(HelpersMethod.IsExists("//div[@id='paymentMethodCard']",driver))
         {
             Thread.sleep(4000);
-            //checkorder.validateCheckOrder();
             checkorder.Select_PaymentMethod_ClickDownArrow();
             if(HelpersMethod.IsExists("//tr[1]/descendant::td[@class='payment-method-type-cell']",driver))
             {
@@ -921,7 +937,6 @@ public class OrderEntryPageSteps
                 scenario.log("WITHOUT PROVIIDNG PAYMENT OPTION HAS BEEN SELECTED");
             }
             checkorder.validateDefaultShippingAddress();
-            //checkorder.DeliveryAddressCard();
             checkorder.NextButton_Click();
         }
     }

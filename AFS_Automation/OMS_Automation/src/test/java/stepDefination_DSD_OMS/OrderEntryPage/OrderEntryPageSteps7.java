@@ -1,5 +1,6 @@
 package stepDefination_DSD_OMS.OrderEntryPage;
 
+import helper.HelpersMethod;
 import io.cucumber.datatable.DataTable;
 import io.cucumber.java.Before;
 import io.cucumber.java.Scenario;
@@ -52,46 +53,52 @@ public class OrderEntryPageSteps7
     //public void userShouldValidateCatalogDialogboxAndUseFiltersInCustomerIndexDialogbox(String arg0, String arg1, String arg2,String arg3) throws InterruptedException, AWTException
     public void userShouldValidateCatalogDialogboxAndUseFiltersInCustomerIndexDialogbox() throws InterruptedException, AWTException
     {
+        String filterValue=null;
         newOE=new NewOrderEntryPage(driver,scenario);
         newOE.validateCatalogdialog();
         newOE.validateCardView();
-        //newOE.showAllProductDropDown();
-        //newOE.selectShowAllProductDropDown();
-        //newOE.readProducts();
-        //newOE.resetFilters();
-       /* newOE.ogDropDown();
-        newOE.selectOGDropDown(arg3);
-        newOE.readProducts();
-        newOE.resetFilters();
-        newOE.categoryDropDown();
-        newOE.selectCategoryDropDown(arg0);
-        newOE.readProducts();
-        newOE.resetFilters();
-        newOE.subCategoryDropDown();
-        newOE.selectSubCategoryDropDown(arg1);
-        newOE.readProducts();
-        newOE.resetFilters();
-        newOE.brandDropDown();
-        newOE.selectBrandDropDown(arg2);
-        newOE.readProducts();
-        newOE.resetFilters();*/
-        newOE.ogDropDown();
-        newOE.selectOGDropDown();
-        newOE.readProducts();
-        newOE.resetFilters();
-        newOE.categoryDropDown();
-        newOE.selectCategoryDropDown();
-        newOE.readProducts();
-        newOE.resetFilters();
-        newOE.subCategoryDropDown();
-        newOE.selectSubCategoryDropDown();
-        newOE.readProducts();
-        newOE.resetFilters();
-        newOE.brandDropDown();
-        newOE.selectBrandDropDown();
-        newOE.readProducts();
-        newOE.resetFilters();
-
+        newOE.ResetFilter_Catalog();
+        newOE.validateCatalogProducts();
+        if(HelpersMethod.IsExists("//div[@class='card-view']",driver))
+        {
+            newOE.ogDropDown();
+            newOE.selectOGDropDown();
+            newOE.readProducts();
+            newOE.resetFilters();
+            newOE.categoryDropDown();
+            newOE.selectCategoryDropDown();
+            newOE.readProducts();
+            newOE.resetFilters();
+            newOE.subCategoryDropDown();
+            newOE.selectSubCategoryDropDown();
+            newOE.readProducts();
+            newOE.resetFilters();
+            newOE.brandDropDown();
+            newOE.selectBrandDropDown();
+            newOE.readProducts();
+            newOE.resetFilters();
+        }
+        else if(HelpersMethod.IsExists("//div[@class='i-grid']",driver))
+        {
+            int i=0;
+            filterValue=TestBase.testEnvironment.get_Category();
+            newOE.gridViewFilter("Category",filterValue,i);
+            newOE.readingProdcuts();
+            i=0;
+            newOE.removeFilter("Category",i);
+            i=0;
+            filterValue=TestBase.testEnvironment.get_SubCategory();
+            newOE.gridViewFilter("Sub Category",filterValue,i);
+            newOE.readingProdcuts();
+            i=0;
+            newOE.removeFilter("Sub Category",i);
+            i=0;
+            filterValue=TestBase.testEnvironment.get_Brand();
+            newOE.gridViewFilter("Brand",filterValue,i);
+            newOE.readingProdcuts();
+            i=0;
+            newOE.removeFilter("Brand",i);
+        }
     }
 
     @Then("User clicks on icon next to address")
