@@ -1,6 +1,5 @@
 @Outbound @Regression
 Feature: Testing of Outbound Load Planning functionality
-  @isofailed2
   Scenario: Checking Load Planning login screen
     Given User signs in the application
     And Main page is loaded
@@ -23,7 +22,6 @@ Feature: Testing of Outbound Load Planning functionality
     And Validates Truck Info trailers exist
     And Selects random trailer on Truck Info page
 
-  @isofailed2
   Scenario: Checking Truck top information
     Given User signs in the application
     And Main page is loaded
@@ -43,7 +41,6 @@ Feature: Testing of Outbound Load Planning functionality
     And Clicks Truck Info Arrow button
     And Validates Exit, Work, Edit, Reprocess, Recalculate and Key buttons are not present
 
-  @isofailed2
   Scenario: Checking Exit information
     Given User signs in the application
     And Main page is loaded
@@ -61,7 +58,6 @@ Feature: Testing of Outbound Load Planning functionality
     And Clicks Ok button on Truck Info
     And Clicks Exit button on Truck Info page
 
-  @isofailed2
   Scenario: Checking Release functionality when click on Exit button
     Given User signs in the application
     And Main page is loaded
@@ -80,7 +76,6 @@ Feature: Testing of Outbound Load Planning functionality
     And Clicks Ok button on Truck Info
     And Clicks Exit button on Truck Info page
 
-  @isofailed2
   Scenario: Checking work option functionality
     Given User signs in the application
     And Main page is loaded
@@ -148,7 +143,6 @@ Feature: Testing of Outbound Load Planning functionality
     And Validates Save and Cancel buttons are displayed on Truck Info Page
     And Clicks Save button on Edit Route popup
 
-  @isofailed2
   Scenario: Checking Reprocess functionality on Outbound Truck Info page
     Given User signs in the application
     And Main page is loaded

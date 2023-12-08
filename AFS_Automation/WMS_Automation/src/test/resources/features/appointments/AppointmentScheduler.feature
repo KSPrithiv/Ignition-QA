@@ -33,7 +33,6 @@ Feature: Testing of Appointment Scheduler functionality
     And Validates Next Button is not active on Appointment Scheduler page
     And Validates Cancel Button is not active on Appointment Scheduler page
 
-  @isofailed2
   Scenario: Checking Cancel Appointment Scheduler Creation With Valid Order
     Given User signs in the application
     And Main page is loaded

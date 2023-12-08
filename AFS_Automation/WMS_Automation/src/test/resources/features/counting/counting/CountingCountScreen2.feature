@@ -1,6 +1,5 @@
 @Counting @Regression
 Feature: Testing of Counting Count functionality
-  @isofailed2
   Scenario: Checking product history once Location is reconciled
     Given User signs in the application
     And Main page is loaded
@@ -14,7 +13,6 @@ Feature: Testing of Counting Count functionality
     Then User clicks History tab on Lookup Product page
     And Validates History tab details are loaded on Lookup Product page
 
-  @isofailed2
   Scenario: Checking Combine Release and Assign Option on Counting Session screen
     Given User signs in the application
     And Main page is loaded
@@ -30,7 +28,6 @@ Feature: Testing of Counting Count functionality
     And User checks Assignment by index 0 on Counting Sessions page
     And Clicks Release button on Counting Sessions page
 
-  @isofailed2
   Scenario: Checking Release Assignments on Counting Session screen
     Given User signs in the application
     And Main page is loaded

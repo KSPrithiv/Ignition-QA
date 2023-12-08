@@ -1,6 +1,5 @@
 @Inbound @Regression
 Feature: Testing of Inbound Orders functionality
-  @isofailed2
   Scenario: Checking Navigate to Inbound Order Summary screen functionality
     Given User signs in the application
     And Main page is loaded
@@ -9,7 +8,6 @@ Feature: Testing of Inbound Orders functionality
     And User waits for Inbound Order Summary page to load
     Then Validates Inbound Order Summary Page contains all web elements
 
-  @isofailed2
   Scenario: Checking Review on Inbound Order Summary screen
     Given User signs in the application
     And Main page is loaded
@@ -21,7 +19,6 @@ Feature: Testing of Inbound Orders functionality
     And User applies order "Review" option on Inbound Order Summary page
     And Validates Inbound order summary Review page is displayed
 
-  @isofailed2
   Scenario: Checking Product Filter on Inbound Order Summary screen
     Given User signs in the application
     And Main page is loaded
@@ -63,7 +60,6 @@ Feature: Testing of Inbound Orders functionality
     And Types supplier name "Hgr88Jd" on Inbound Order Summary page
     And Validates orders are not present on Inbound Order Summary page
 
-  @isofailed2
   Scenario: Checking Supplier Code Filter on Inbound Order Summary screen
     Given User signs in the application
     And Main page is loaded
@@ -91,7 +87,6 @@ Feature: Testing of Inbound Orders functionality
     And Selects order type by index 6 dropdown on Inbound Order Summary page
     And Validates orders are present on Inbound Order Summary page
 
-  @isofailed2
   Scenario: Checking Customer Filter on Inbound Order Summary screen
     Given User signs in the application
     And Main page is loaded

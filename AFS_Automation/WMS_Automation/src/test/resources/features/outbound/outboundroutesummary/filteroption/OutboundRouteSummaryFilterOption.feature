@@ -9,7 +9,6 @@ Feature: Testing of Outbound Route Summary Filter Option functionality
     When Filling route start date "03/01/2022" and end date "03/31/2022" on Outbound Route Summary page
     Then Validates Outbound Route Summary start date "03/01/2022" and end date "03/31/2022" on Outbound Route Summary page
 
-  @isofailed2
   Scenario: Checking Filtering Route Filter functionality
     Given User signs in the application
     And Main page is loaded
@@ -29,7 +28,6 @@ Feature: Testing of Outbound Route Summary Filter Option functionality
     And Routes are displayed on Outbound Route Summary page
     And Routes are correct and equal route by index 3 on Outbound Route Summary page
 
-  @isofailed2
   Scenario: Checking Account Filter functionality
     Given User signs in the application
     And Main page is loaded
@@ -115,7 +113,6 @@ Feature: Testing of Outbound Route Summary Filter Option functionality
     Then Selects product by index 0 on Outbound Route Summary page
     And Validates Items Count on Outbound Route Summary page
 
-  @isofailed2
   Scenario: Checking Order Display Grid functionality
     Given User signs in the application
     And Main page is loaded

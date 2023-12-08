@@ -122,7 +122,6 @@ Feature: Testing of Inbound Orders functionality
     And Inbound Load Summary page main elements are present
     And Validates default values of Start Date and End date on Inbound Load Summary page
 
-  @isofailed2
   Scenario: Check Searching on Inbound Order Summary screen
     Given User signs in the application
     And Main page is loaded

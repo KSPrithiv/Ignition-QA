@@ -1,7 +1,6 @@
 @Outbound @Regression
 Feature: Testing of Outbound Load Planning functionality
-  @isofailed2
-   Scenario: Checking Route Weight on Outbound Truck Info page
+  Scenario: Checking Route Weight on Outbound Truck Info page
     Given User signs in the application
     And Main page is loaded
     And DockManagement Summary Page is validated
@@ -19,7 +18,6 @@ Feature: Testing of Outbound Load Planning functionality
     And Waits for Outbound Truck Info page to load
     And Validates Route Weight is present
 
-  @isofailed2
   Scenario: Checking Right and Left sides of Truck
     Given User signs in the application
     And Main page is loaded
@@ -62,7 +60,6 @@ Feature: Testing of Outbound Load Planning functionality
     And Validates assignments are present
     And Validates Position and Pallets are present
 
-  @isofailed2
   Scenario: Checking Assignment Movement to different Empty position
     Given User signs in the application
     And Main page is loaded
@@ -82,7 +79,6 @@ Feature: Testing of Outbound Load Planning functionality
     And Validates assignments are present
     And Drag and drop assignment from position "5" to position "4" on Truck Info page
 
-  @isofailed2
   Scenario: Checking Assignment movement to different position which already has data in it
     Given User signs in the application
     And Main page is loaded
@@ -122,7 +118,6 @@ Feature: Testing of Outbound Load Planning functionality
     And Validates Yes button is active
     And Clicks Yes button on Warning Message
 
-  @isofailed2
   Scenario: Checking Warning message if Assignment Cube/Weight is more than Assignment type Cube/Weight
     Given User signs in the application
     And Main page is loaded
@@ -139,7 +134,6 @@ Feature: Testing of Outbound Load Planning functionality
     And Clicks Yes button on Rebuilding Assignments popup
     And Clicks Ok button on Truck Info
 
-  @isofailed2
   Scenario: Checking Warning message if right and left side of Trailer not balanced
     Given User signs in the application
     And Main page is loaded
@@ -157,7 +151,6 @@ Feature: Testing of Outbound Load Planning functionality
     And Clicks Ok button on Truck Info
     And Drag and drop assignment from position "5" to position "1" on Truck Info page
 
-  @isofailed2
   Scenario: Checking Warning message if Route Cube/Weight is more then Trailer cube/weight
     Given User signs in the application
     And Main page is loaded

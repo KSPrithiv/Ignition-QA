@@ -1,6 +1,5 @@
 @Outbound @Regression
 Feature: Testing of Outbound Load Planning functionality
-  @isofailed2
   Scenario: Checking Exit label and icon displayed on the Truck Info
     Given User signs in the application
     And Main page is loaded
@@ -19,7 +18,6 @@ Feature: Testing of Outbound Load Planning functionality
     And Validates Exit button is present
     And Clicks Exit button on Truck Info page
 
-  @isofailed2
   Scenario: Checking Warning message if Assignments are not printed
     Given User signs in the application
     And Main page is loaded
@@ -56,7 +54,6 @@ Feature: Testing of Outbound Load Planning functionality
     And Validates First Assignment popup is present
     And Validates Assignment details on popup
 
-  @isofailed3
   Scenario: Checking Load Planning - split product pick task assignment details edit
     Given User signs in the application
     And Main page is loaded
@@ -82,7 +79,6 @@ Feature: Testing of Outbound Load Planning functionality
     And Selects reason "Short Order" from dropdown on Split task popup
     And Clicks Save button on Split task popup
 
-  @isofailed2
   Scenario: Checking Load Planning - split product pick task edit 003
     Given User signs in the application
     And Main page is loaded
@@ -108,7 +104,6 @@ Feature: Testing of Outbound Load Planning functionality
     And Selects reason "Short Order" from dropdown on Split task popup
     And Clicks Save button on Split task popup
 
-  @isofailed3
   Scenario: Checking Load Planning - Recalculate based on selected Assignments
     Given User signs in the application
     And Main page is loaded

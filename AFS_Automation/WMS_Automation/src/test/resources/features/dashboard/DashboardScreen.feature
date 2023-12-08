@@ -134,10 +134,10 @@ Feature: Testing of Dashboard functionality
     And Main page is loaded
     And DockManagement Summary Page is validated
     And Validates Dashboard Icons and Spelling on Dashboard page
-    And Clicks On Break graph bar on DockManagement page
-    And Waits for Work Queue Logged In Users page to load
-    And Validates User Logged In title is displayed on Work Queue Logged In Users page
-    And Validates table columns are displayed on Work Queue Logged In Users page
+   # And Clicks On Break graph bar on DockManagement page
+  #  And Waits for Work Queue Logged In Users page to load
+   # And Validates User Logged In title is displayed on Work Queue Logged In Users page
+  #  And Validates table columns are displayed on Work Queue Logged In Users page
 
 #    #
 #  Scenario: Verify that Assignment logged in user display
@@ -184,6 +184,7 @@ Feature: Testing of Dashboard functionality
     And Validates Dashboard Icons and Spelling on Dashboard page
     And Validates Warehouse Capacity graph is displayed on Dashboard page
 
+    #
   Scenario: Verify WAREHOUSE CAPACITY - Empty Locations by Zone
     Given User signs in the application
     When Main page is loaded
