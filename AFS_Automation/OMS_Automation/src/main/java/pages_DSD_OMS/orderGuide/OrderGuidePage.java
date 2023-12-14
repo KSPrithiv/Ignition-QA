@@ -106,13 +106,16 @@ public class OrderGuidePage {
            /* else
             {*/
             status = HelpersMethod.returnDocumentStatus(driver);
-            if (status.equals("loading")) {
+            if (status.equals("loading"))
+            {
                 HelpersMethod.waitTillLoadingPage(driver);
             }
-            if (HelpersMethod.IsExists("//div[@class='loader']", driver)) {
-                WebElement WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000000);
-            }
+            Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(150))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='orderGuides-container']")));
+
             //navigating back to Current URL
             driver.navigate().to(currentURL);
             //}
@@ -121,7 +124,7 @@ public class OrderGuidePage {
                 HelpersMethod.waitTillLoadingPage(driver);
             }
 
-            Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+            wait = new FluentWait<WebDriver>(driver)
                     .withTimeout(Duration.ofSeconds(150))
                     .pollingEvery(Duration.ofSeconds(2))
                     .ignoring(NoSuchElementException.class);
@@ -137,11 +140,11 @@ public class OrderGuidePage {
                     .ignoring(NoSuchElementException.class);
             wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='orderGuides-container']")));
 
-        } catch (Exception e) {
-        }
+        } catch (Exception e) {}
     }
 
-    public boolean ValidateOG() {
+    public boolean ValidateOG()
+    {
         exists = false;
         try {
             String status = HelpersMethod.returnDocumentStatus(driver);
@@ -166,6 +169,7 @@ public class OrderGuidePage {
             wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
 
             new WebDriverWait(driver, Duration.ofMillis(100000)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath("//div[contains(@class,'i-card orderGuides-card')]"))));
+            new WebDriverWait(driver,Duration.ofMillis(10000)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(@class,'i-card orderGuides-card')]")));
             //if(HelpersMethod.IsExists("//span[@class='spnmoduleNameHeader' and contains(text(),'Order guide list')]|//span[@class='spnmoduleNameHeader' and contains(text(),'Order guide detail')]",driver))
             if (driver.getTitle().equals("Web Order Guides")) {
                 scenario.log("NAVIGATED TO ORDER GUIDE");
@@ -205,12 +209,20 @@ public class OrderGuidePage {
     }
 
     //code for searching OG using Searchbox
-    public boolean OGSearchBox(String OGSearch) {
+    public boolean OGSearchBox(String OGSearch)
+    {
         exists = false;
-        try {
+        try
+        {
+            Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(120))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
             //Enter OG name to be searched in search bar
             HelpersMethod.ScrollElement(driver, SearchIndex);
-            HelpersMethod.ActSendKey(driver, SearchBox, 2000, OGSearch);
+            HelpersMethod.ActSendKey(driver, SearchBox, 20000, OGSearch);
             String status = HelpersMethod.returnDocumentStatus(driver);
             if (status.equals("loading")) {
                 HelpersMethod.waitTillLoadingPage(driver);
@@ -219,7 +231,7 @@ public class OrderGuidePage {
             SearchIndex = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='i-search-box']//*[local-name()='svg' and contains(@class,'i-search-box__search')]");
             HelpersMethod.ActClick(driver, SearchIndex, 8000);
 
-            Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+            wait = new FluentWait<WebDriver>(driver)
                     .withTimeout(Duration.ofSeconds(120))
                     .pollingEvery(Duration.ofSeconds(2))
                     .ignoring(NoSuchElementException.class);
@@ -257,11 +269,7 @@ public class OrderGuidePage {
             if (status.equals("loading")) {
                 HelpersMethod.waitTillLoadingPage(driver);
             }
-            /*if(HelpersMethod.IsExists("//div[@class='loader']",driver))
-            {
-                WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000000);
-            }*/
+
             Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
                     .withTimeout(Duration.ofSeconds(120))
                     .pollingEvery(Duration.ofSeconds(2))
@@ -269,16 +277,24 @@ public class OrderGuidePage {
             wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
 
             status = HelpersMethod.returnDocumentStatus(driver);
-            if (status.equals("loading")) {
+            if (status.equals("loading"))
+            {
                 HelpersMethod.waitTillLoadingPage(driver);
             }
-            if (HelpersMethod.IsExists("//tr[@class='k-master-row']", driver)) {
+            wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(120))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
+            if (HelpersMethod.IsExists("//tr[@class='k-master-row']", driver))
+            {
                 WebElement OGNo = HelpersMethod.FindByElement(driver, "xpath", "//tr[contains(@class,'k-master-row')]/descendant::td/button[text()='" + OGSearch + "']");
                 HelpersMethod.ActClick(driver, OGNo, 4000);
                 exists = true;
 
                 wait = new FluentWait<WebDriver>(driver)
-                        .withTimeout(Duration.ofSeconds(120))
+                        .withTimeout(Duration.ofSeconds(200))
                         .pollingEvery(Duration.ofSeconds(2))
                         .ignoring(NoSuchElementException.class);
                 wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
@@ -293,7 +309,9 @@ public class OrderGuidePage {
                         .pollingEvery(Duration.ofSeconds(2))
                         .ignoring(NoSuchElementException.class);
                 wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
-            } else {
+            }
+            else
+            {
                 scenario.log("ORDER GUIDE DOESNOT EXISTS");
                 exists = false;
             }
@@ -706,18 +724,21 @@ public class OrderGuidePage {
         }
     }
 
-    public void clearAddfilter() {
+    public void clearAddfilter()
+    {
         exists = false;
-        try {
-            if (HelpersMethod.IsExists("//div[@class='i-filter-tag ']/descendant::button[contains(@class,'i-filter-tag__clear')]", driver)) {
+        try
+        {
+            if (HelpersMethod.IsExists("//div[@class='i-filter-tag ']/descendant::button[contains(@class,'i-filter-tag__clear')]", driver))
+            {
                 //Clear the filter option
                 WebElement WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='i-filter-tag ']/descendant::button[contains(@class,'i-filter-tag__clear')]");
                 HelpersMethod.ClickBut(driver, WebEle, 1000);
                 exists = true;
             }
             Assert.assertEquals(exists, true);
-        } catch (Exception e) {
         }
+        catch (Exception e) {}
     }
 
     public void clickAddFilterClear()

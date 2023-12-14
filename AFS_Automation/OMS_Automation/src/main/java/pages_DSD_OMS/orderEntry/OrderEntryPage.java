@@ -683,16 +683,16 @@ public class OrderEntryPage
     }
 
     //Preceding by zero, This feature is only for DSD
-    public boolean Account_Zero() {
-        try {
+    public boolean Account_Zero()
+    {
+        try
+        {
             result = false;
             String Acc1 = AccNo.getAttribute("value");
             //Code to read account# from properties file and remove preceding zeros
             String Acc_Sub[] = Acc1.split("-");
-            int i = 0;
             for (String Accs : Acc_Sub)
             {
-                int length = Accs.length();
                 if (Accs.length() != 1)
                 {
                     int firstValue =Integer.parseInt(String.valueOf(Accs.charAt(0)));
@@ -818,10 +818,7 @@ public class OrderEntryPage
             {
                 HelpersMethod.waitTillLoadingPage(driver);
             }
-           /* if (HelpersMethod.IsExists("//div[@class='loader']", driver)) {
-                WebElement  WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000000);
-            }*/
+
             Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
                     .withTimeout(Duration.ofSeconds(120))
                     .pollingEvery(Duration.ofSeconds(2))
@@ -974,24 +971,16 @@ public class OrderEntryPage
         {
             HelpersMethod.waitTillLoadingPage(driver);
         }
-       /* if (HelpersMethod.IsExists("//div[@class='loader']", driver))
-        {
-            WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 800000);
-        }*/
+
         status = HelpersMethod.returnDocumentStatus(driver);
         if (status.equals("loading"))
         {
             HelpersMethod.waitTillLoadingPage(driver);
         }
-       /* if (HelpersMethod.IsExists("//div[@class='loader']", driver))
-        {
-            WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 800000);
-        }*/
+
         try
         {
-            if (HelpersMethod.IsExists("//div[contains(text(),'Order guides')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]", driver))
+            if (HelpersMethod.IsExists("//div[@id='order-guide-grid']/ancestor::div[contains(@class,'k-widget k-window k-dialog')]", driver))
             {
                 // to fetch the web element
                 WebElement ogPopup = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-widget k-window k-dialog')]");
@@ -1033,7 +1022,8 @@ public class OrderEntryPage
         WebElement WebEle = null;
         try
         {
-            if (HelpersMethod.IsExists("//div[contains(text(),'Order guides')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]", driver)) {
+            if (HelpersMethod.IsExists("//div[@id='order-guide-grid']/ancestor::div[contains(@class,'k-widget k-window k-dialog')]", driver))
+            {
                 // to fetch the web element
                 WebElement ogPopup = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-widget k-window k-dialog')]");
 
@@ -1050,8 +1040,8 @@ public class OrderEntryPage
                     HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000000);
                 }
             }
-        } catch (Exception e) {
         }
+        catch (Exception e) {}
     }
 
     //public void NoNotePopHandling(String note)
@@ -1086,11 +1076,10 @@ public class OrderEntryPage
                 HelpersMethod.waitTillLoadingPage(driver);
             }
             //Check for Note popup
-            if (HelpersMethod.IsExists("//div/p[1][contains(text(),'Notes')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]", driver))
+            if(HelpersMethod.IsExists("//div[@id='customerCommentGrid']/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
             {
                 // to fetch the web element
                 WebElement notePopup = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-widget k-window k-dialog')]");
-
                 //code to click on 'Ok' button in OG popup
                 WebElement okButton = notePopup.findElement(By.xpath(".//button[text()='Ok']"));
                 HelpersMethod.ActClick(driver, okButton, 4000);
@@ -1150,7 +1139,6 @@ public class OrderEntryPage
             dateCurrent=fromUser.format(fromUser1.parse(formattedDate));
             scenario.log("DELIBERY DATE FOUND, AFTER LOGGING IN TO APPLICATION  " + C_Date1);
         }
-        //return currentDate;
     }
 
     public void ChangedDeliveryDate()
@@ -1395,7 +1383,8 @@ public class OrderEntryPage
                 HelpersMethod.ClickBut(driver, StartOrder, 1000);
                 scenario.log("START BUTTON HAS BEEN CLICKED");
                 status = HelpersMethod.returnDocumentStatus(driver);
-                if (status.equals("loading")) {
+                if (status.equals("loading"))
+                {
                     HelpersMethod.waitTillLoadingPage(driver);
                 }
                 exists = true;
@@ -3116,6 +3105,89 @@ public class OrderEntryPage
             }
         }
         catch (Exception e) {}
+    }
+
+    public void verifyNoteInDialogbox(String commentText)
+    {
+        exists=false;
+        Actions act=new Actions(driver);
+        String noteText=null;
+        String nText=null;
+        int i=0;
+        WebElement WebEle;
+        try
+        {
+            String status = HelpersMethod.returnDocumentStatus(driver);
+            if (status.equals("loading"))
+            {
+                HelpersMethod.waitTillLoadingPage(driver);
+            }
+            if (HelpersMethod.IsExists("//div[@class='loader']", driver))
+            {
+                WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000000);
+            }
+            status = HelpersMethod.returnDocumentStatus(driver);
+            if (status.equals("loading"))
+            {
+                HelpersMethod.waitTillLoadingPage(driver);
+            }
+            if (HelpersMethod.IsExists("//div[@class='loader']", driver))
+            {
+                WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000000);
+            }
+            status = HelpersMethod.returnDocumentStatus(driver);
+            if (status.equals("loading"))
+            {
+                HelpersMethod.waitTillLoadingPage(driver);
+            }
+            if(HelpersMethod.IsExists("//div[@id='customerCommentGrid']/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
+            {
+                List<WebElement> notes=HelpersMethod.FindByElements(driver,"xpath","//div[contains(@class,'k-widget k-window k-dialog')]/descendant::tr[contains(@class,'k-master-row')]/td[3]");
+                for(WebElement note:notes)
+                {
+                    i++;
+                    act.moveToElement(note).build().perform();
+                    noteText=note.getText();
+                    if (noteText.equalsIgnoreCase(commentText))
+                    {
+                        nText=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-widget k-window k-dialog')]/descendant::tr[contains(@class,'k-master-row')]["+i+"]/td[3]").getText();
+                        WebElement noteRow=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-widget k-window k-dialog')]/descendant::tr[contains(@class,'k-master-row')]["+i+"]");
+                        HelpersMethod.ActClick(driver,noteRow,1000);
+                        break;
+                    }
+                }
+                //compare comments
+                if(nText.equalsIgnoreCase(commentText))
+                {
+                    scenario.log("COMMENT FOUND IS SAME AS COMMENT ENTERED");
+                    exists=true;
+                }
+                // to fetch the web element
+                WebElement notePopup = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-widget k-window k-dialog')]");
+                //code to click on 'Ok' button in OG popup
+                WebElement okButton = notePopup.findElement(By.xpath(".//button[text()='Ok']"));
+                HelpersMethod.ActClick(driver, okButton, 4000);
+                status = HelpersMethod.returnDocumentStatus(driver);
+                if (status.equals("loading"))
+                {
+                    HelpersMethod.waitTillLoadingPage(driver);
+                }
+                if (HelpersMethod.IsExists("//div[@class='loader']", driver))
+                {
+                    WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
+                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000000);
+                }
+                status = HelpersMethod.returnDocumentStatus(driver);
+                if (status.equals("loading"))
+                {
+                    HelpersMethod.waitTillLoadingPage(driver);
+                }
+            }
+            Assert.assertEquals(exists,true);
+        }
+        catch (Exception e){}
     }
 }
 

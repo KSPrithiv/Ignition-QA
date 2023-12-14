@@ -77,8 +77,7 @@ public class OrderGuidePageStep1
     }
 
     @And("User should select products from catalog popup for Price base")
-    public void user_should_select_products_from_catalog_popupForPriceBase()
-    {
+    public void user_should_select_products_from_catalog_popupForPriceBase() throws InterruptedException {
         createOGPage=new CreateOGPage(driver,scenario);
         createOGPage.ValidateCatalogDisplay();
         createOGPage.ResetFilter_Catalog();
@@ -92,6 +91,7 @@ public class OrderGuidePageStep1
             createOGPage.cardViewPriceBase();
         }
         createOGPage.CatalogPopupOk();
+        Thread.sleep(2000);
     }
 
     //Code to delete OG from the OG grid
@@ -320,16 +320,14 @@ public class OrderGuidePageStep1
         createOGPage.CustomerAccountSelect();
         exists=createOGPage.ValidateCustSelect();
         createOGPage.clickOnCustomerAccountIndexOk();
-        //Assert.assertEquals(exists,true);
-        //Code to save OG
-        createOGPage.ClickOnSave();
+        //createOGPage.ClickOnSave();
     }
 
     @And("User should select products from catalog popup to add muliple products")
     public void userShouldSelectProductsFromCatalogPopupToAddMulipleProducts() throws SQLException, InterruptedException
     {
         createOGPage = new CreateOGPage(driver, scenario);
-        exists=createOGPage.ValidateCatalogDisplay();
+        createOGPage.ValidateCatalogDisplay();
         createOGPage.AddFromCatalog(DataBaseConnection.DataConn1(TestBase.testEnvironment.getMultiple_Prod_Sql1()));
     }
 

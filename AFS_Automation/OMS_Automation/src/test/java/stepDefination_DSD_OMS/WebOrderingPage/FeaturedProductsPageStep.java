@@ -121,6 +121,16 @@ public class FeaturedProductsPageStep
        // featuredProductsPage.ListFeaturedProduct(SetProd);
     }
 
+    @And("User should be on Featured products list then User should click on Add Products button and Close Product index dialogbox")
+    public void userShouldBeOnFeaturedProductsListThenUserShouldClickOnAddProductsButtonAndCloseProductIndexDialogbox()
+    {
+        featuredProductsPage=new FeaturedProductsPage(driver,scenario);
+        featuredProductsPage.ListFeaturedProduct(MaxProd);
+        featuredProductsPage.ClickAddProducts();
+        featuredProductsPage.CatalogOkButton();
+        featuredProductsPage.PopupAfterChanges();
+    }
+
     @Then("User should decrease max number of Featured products set")
     public void userShouldDecreaseMaxNumberOfFeaturedProductsSet()
     {

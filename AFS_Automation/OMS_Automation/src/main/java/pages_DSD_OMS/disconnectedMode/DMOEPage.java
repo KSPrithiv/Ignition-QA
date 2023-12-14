@@ -2,9 +2,12 @@ package pages_DSD_OMS.disconnectedMode;
 
 import helper.HelpersMethod;
 import io.cucumber.java.Scenario;
+import io.cucumber.java.en_old.Ac;
+import org.apache.logging.log4j.core.tools.picocli.CommandLine;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -17,6 +20,8 @@ import util.TestBase;
 
 import java.awt.font.TextLayout;
 import java.time.Duration;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @Project DSD_OMS
@@ -159,6 +164,42 @@ public class DMOEPage
         Assert.assertEquals(exists,true);
     }
 
+    public void selectFirstCustomerAccountNo()
+    {
+        exists=false;
+        WebElement WebEle=null;
+        String Acc=TestBase.testEnvironment.get_Account();
+        try
+        {
+            if(HelpersMethod.IsExists("//div[contains(@class,'k-widget k-window k-dialog')]/descendant::button[contains(@class,'i-filter-tag__main')]",driver))
+            {
+                HelpersMethod.AddFilterSearch_Popup(driver,"Customer #",Acc);
+                scenario.log("FIRST CUSTOMER ACCOUNT# HAS BEEN SELECTED");
+                exists = true;
+            }
+        }
+        catch (Exception e){}
+        Assert.assertEquals(exists,true);
+    }
+
+    public void selectSecondCustomerAccountNo()
+    {
+        exists=false;
+        WebElement WebEle=null;
+        String Acc=TestBase.testEnvironment.get_AnotherAcc();
+        try
+        {
+            if(HelpersMethod.IsExists("//div[contains(@class,'k-widget k-window k-dialog')]/descendant::button[contains(@class,'i-filter-tag__main')]",driver))
+            {
+                HelpersMethod.AddFilterSearch_Popup(driver,"Customer #",Acc);
+                scenario.log("SECOND CUSTOMER ACCOUNT# HAS BEEN SELECTED");
+                exists = true;
+            }
+        }
+        catch (Exception e){}
+        Assert.assertEquals(exists,true);
+    }
+
     public void SelectAccountCheckBox()
     {
         exists=false;
@@ -171,6 +212,22 @@ public class DMOEPage
         }
         catch (Exception e){}
         Assert.assertEquals(exists,true);
+    }
+
+    public void clearAccountNumberInDialogbox()
+    {
+        exists=true;
+        try
+        {
+            if(HelpersMethod.IsExists("//div[contains(@class,'k-widget k-window k-dialog')]/descendant::button[@class='i-filter-tag__clear']//*[local-name()='svg']",driver))
+            {
+                WebElement clearAccountButton=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-widget k-window k-dialog')]/descendant::button[@class='i-filter-tag__clear']//*[local-name()='svg']");
+                HelpersMethod.ActClick(driver,clearAccountButton,2000);
+                exists=true;
+            }
+            Assert.assertEquals(exists,true);
+        }
+        catch (Exception e){}
     }
 
     public void AccountPopupOK()
@@ -223,6 +280,60 @@ public class DMOEPage
         catch (Exception e){}
     }
 
+    public void selectSeconDeliveryDate()
+    {
+        exists=false;
+        WebElement WebEle=null;
+        try
+        {
+            if(HelpersMethod.IsExists("//div[contains(@class,'k-widget k-window k-dialog')]",driver))
+            {
+                WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-widget k-window k-dialog')]/descendant::button[3]");
+                HelpersMethod.ClickBut(driver,WebEle,2000);
+                scenario.log("DELIVERY DATE HAS BEEN SELECTED");
+                exists = true;
+            }
+            Assert.assertEquals(exists,true);
+        }
+        catch (Exception e){}
+    }
+
+    public void selectThirdDeliveryDate()
+    {
+        exists=false;
+        WebElement WebEle=null;
+        try
+        {
+            if(HelpersMethod.IsExists("//div[contains(@class,'k-widget k-window k-dialog')]",driver))
+            {
+                WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-widget k-window k-dialog')]/descendant::button[4]");
+                HelpersMethod.ClickBut(driver,WebEle,2000);
+                scenario.log("DELIVERY DATE HAS BEEN SELECTED");
+                exists = true;
+            }
+            Assert.assertEquals(exists,true);
+        }
+        catch (Exception e){}
+    }
+
+    public void selectFourthDeliveryDate()
+    {
+        exists=false;
+        WebElement WebEle=null;
+        try
+        {
+            if(HelpersMethod.IsExists("//div[contains(@class,'k-widget k-window k-dialog')]",driver))
+            {
+                WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-widget k-window k-dialog')]/descendant::button[5]");
+                HelpersMethod.ClickBut(driver,WebEle,2000);
+                scenario.log("DELIVERY DATE HAS BEEN SELECTED");
+                exists = true;
+            }
+            Assert.assertEquals(exists,true);
+        }
+        catch (Exception e){}
+    }
+
     public void SelectDeliveryDateOk()
     {
         exists=false;
@@ -247,8 +358,8 @@ public class DMOEPage
                 WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[contains(text(),'Synchronizing Device Data')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]");
                 //new WebDriverWait(driver, Duration.ofMillis(400000)).until(ExpectedConditions.invisibilityOf(WebEle));
                 Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
-                        .withTimeout(Duration.ofSeconds(500))
-                        .pollingEvery(Duration.ofSeconds(5))
+                        .withTimeout(Duration.ofSeconds(1000))
+                        .pollingEvery(Duration.ofSeconds(2))
                         .ignoring(NoSuchElementException.class);
                 wait.until(ExpectedConditions.invisibilityOf(WebEle));
             }
@@ -326,5 +437,78 @@ public class DMOEPage
         }
         catch (Exception e){}
         Assert.assertEquals(exists,true);
+    }
+
+    public void clickOnAccountIndex()
+    {
+        exists=false;
+        try
+        {
+            if(HelpersMethod.IsExists("//span[@data-test-id='customerAccountNumberComboBox']/following-sibling::button",driver))
+            {
+                WebElement customerIndex=HelpersMethod.FindByElement(driver,"xpath","//span[@data-test-id='customerAccountNumberComboBox']/following-sibling::button");
+                HelpersMethod.ClickBut(driver,customerIndex,2000);
+                exists=true;
+            }
+            Assert.assertEquals(exists,true);
+        }
+        catch (Exception e){}
+    }
+
+    public void validateAccountDialogPopup()
+    {
+        exists=false;
+        try
+        {
+            if(HelpersMethod.IsExists("//div[@class='i-grid']/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
+            {
+                scenario.log("CUSTOMER ACCOUNT INDEX POPUP HAS BEEN FOUND");
+                exists=true;
+            }
+            Assert.assertEquals(exists,true);
+        }
+        catch (Exception e){}
+    }
+
+    public void validateAccountNumbers()
+    {
+        exists=false;
+        Actions act=new Actions(driver);
+        String headText=null;
+        String accText=null;
+        ArrayList<String> accNumber=new ArrayList<String>();
+        int i=0;
+        try
+        {
+            List<WebElement> heads=HelpersMethod.FindByElements(driver,"xpath","//div[contains(@class,'k-widget k-window k-dialog')]/descendant::span[@class='k-link']");
+            for(WebElement head:heads)
+            {
+                i++;
+              act.moveToElement(head).build().perform();
+              headText=head.getText();
+              if(headText.equalsIgnoreCase("Customer #"))
+              {
+                  break;
+              }
+            }
+            scenario.log("CUSTOMER ACCOUNT# SELECTED ARE:");
+            List<WebElement> accounts=HelpersMethod.FindByElements(driver,"xapth","//div[contains(@class,'k-widget k-window k-dialog')]/descendant::tr[contains(@class,'k-master-row')]/td["+i+"]");
+            for (WebElement account:accounts)
+            {
+                act.moveToElement(account).build().perform();
+                accText=account.getText();
+                scenario.log(accText);
+                accNumber.add(accText.substring(accText.length()-4));
+            }
+            for(int j=0;j<=accNumber.size()-1;j++)
+            {
+               if(TestBase.testEnvironment.get_Account().equals(accNumber.get(j))||TestBase.testEnvironment.get_AnotherAcc().equals(accNumber.get(j)))
+               {
+                   exists=true;
+               }
+            }
+            Assert.assertEquals(exists,true);
+        }
+        catch (Exception e){}
     }
 }

@@ -189,7 +189,6 @@ public class OrderEntryPageSteps
     public void userShouldSelectNoteFromPopupAndOrderGuideFromPopup() throws InterruptedException, AWTException
     {
         orderpage = new OrderEntryPage(driver, scenario);
-
         for(int i=0;i<=1;i++)
         {
             orderpage.OrderGuidePopup();

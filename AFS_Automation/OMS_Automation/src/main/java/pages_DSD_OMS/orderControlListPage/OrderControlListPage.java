@@ -14,6 +14,7 @@ import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
+import org.testng.IAlterSuiteListener;
 import org.w3c.dom.Text;
 import util.TestBase;
 
@@ -1656,6 +1657,128 @@ public class OrderControlListPage
                 act.click().build().perform();
                 readAllTheCustomer();
             }
+        }
+        catch (Exception e){}
+    }
+
+    public void clickOnCustomerNote()
+    {
+        exists=false;
+        int i=0;
+        String headText=null;
+        Actions act=new Actions(driver);
+        try
+        {
+            List<WebElement> heads=HelpersMethod.FindByElements(driver,"xpath","//th[contains(@class,'k-header')]");
+            for(WebElement head:heads)
+            {
+              i++;
+              act.moveToElement(head).build().perform();
+              headText=head.getText();
+              if(headText.equalsIgnoreCase("Customer note"))
+              {
+                  act.moveToElement(head).build().perform();
+                  act.click().build().perform();
+                  break;
+              }
+            }
+            if(HelpersMethod.IsExists("//tr[1]/td[" + i + "]//*[local-name()='svg']",driver))
+            {
+                WebElement customerNote = HelpersMethod.FindByElement(driver, "xpath", "//tr[1]/td[" + i + "]//*[local-name()='svg']");
+                HelpersMethod.ClickBut(driver, customerNote, 1000);
+                exists = true;
+            }
+            Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(120))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
+            Assert.assertEquals(exists,true);
+        }
+        catch (Exception e){}
+    }
+
+    public void validateCustomerNotePopup()
+    {
+        exists=false;
+        try
+        {
+            Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(120))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
+            if (HelpersMethod.IsExists("//div[@id='CustomerNotesTopDiv']/ancestor::div[contains(@class,'k-widget k-window k-dialog')]", driver))
+            {
+                scenario.log("CUSTOMER NOTE DIALOG BOX HAS BEEN FOUND");
+                exists=true;
+            }
+            Assert.assertEquals(exists,true);
+        }
+        catch (Exception e){}
+    }
+
+    public void customerNotePopup(String commentText)
+    {
+        exists=false;
+        String alertText=null;
+        Actions act=new Actions(driver);
+        try
+        {
+            if(HelpersMethod.IsExists("//div[contains(@class,'k-widget k-window k-dialog')]",driver))
+            {
+                //Click on end date calender
+                WebElement commentPopup=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-widget k-window k-dialog')]");
+                WebElement endCalender = commentPopup.findElement(By.xpath(".//label[@id='EndDate-label']/following-sibling::span/descendant::a"));
+                HelpersMethod.ActClick(driver, endCalender, 1000);
+                //identify end date and click on end date
+                WebElement endDate=HelpersMethod.FindByElement(driver,"xpath","//td[contains(@class,'k-calendar-td k-state-pending-focus')]");
+                HelpersMethod.ActClick(driver,endDate,1000);
+                //identify text area for entering comment and enter text
+                WebElement commentArea=commentPopup.findElement(By.xpath(".//textarea[@id='noteTextbox']"));
+                HelpersMethod.EnterText(driver,commentArea,1000,commentText);
+                //Click on Alert type drop down
+                WebElement alertType=commentPopup.findElement(By.xpath(".//span[@id='AlertType']"));
+                HelpersMethod.ActClick(driver, alertType,1000);
+                List<WebElement> alertTypes=HelpersMethod.FindByElements(driver,"xpath","//div[contains(@class,'k-list-container')]/descendant::ul/li");
+                for(WebElement aType:alertTypes)
+                {
+                    act.moveToElement(aType).build().perform();
+                    alertText=aType.getText();
+                    if(alertText.equalsIgnoreCase("Both"))
+                    {
+                        act.moveToElement(aType).build().perform();
+                        act.click().build().perform();
+                        break;
+                    }
+                }
+                //identify checkbox for Order Entry under alert location and click on that
+                WebElement oeCheckbox=commentPopup.findElement(By.xpath(".//input[@id='showInOrderEntry']"));
+                HelpersMethod.ActClick(driver,oeCheckbox,1000);
+                //Click on save button
+                WebElement saveButton=HelpersMethod.FindByElement(driver,"xpath",".//button[@id='SaveButton']");
+                HelpersMethod.ActClick(driver,saveButton,1000);
+
+                Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                        .withTimeout(Duration.ofSeconds(120))
+                        .pollingEvery(Duration.ofSeconds(2))
+                        .ignoring(NoSuchElementException.class);
+                wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
+                //validate content of customer note/comment entered by user with comment accepted in dialog box size are same
+                String acceptedComment=commentPopup.findElement(By.xpath(".//tr[contains(@class,'k-master-row')]/descendant::td[3]")).getText();
+                if(commentText.equalsIgnoreCase(acceptedComment))
+                {
+                    scenario.log("ENTERED TEXT IS AS FOLLOWS "+acceptedComment);
+                    exists=true;
+                }
+                //click on ok button of customer note dialog box
+                WebElement okButton=commentPopup.findElement(By.xpath(".//button[text()='Ok']"));
+                HelpersMethod.ActClick(driver,okButton,1000);
+            }
+            Assert.assertEquals(exists,true);
         }
         catch (Exception e){}
     }

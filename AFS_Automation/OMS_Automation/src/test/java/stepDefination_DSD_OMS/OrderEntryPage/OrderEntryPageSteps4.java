@@ -69,6 +69,7 @@ public class OrderEntryPageSteps4
     public void should_enter_comment_in_comment_popup(DataTable tabledata)
     {
         List<List<String>> Comment=tabledata.asLists(String.class);
+        newOE.validateProductComment();
         newOE.Comment_PopupProd(Comment.get(0).get(0));
     }
 

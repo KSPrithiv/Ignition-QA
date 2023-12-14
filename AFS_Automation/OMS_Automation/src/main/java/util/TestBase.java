@@ -7,6 +7,7 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 import org.aeonbits.owner.ConfigFactory;
 import org.apache.http.ExceptionLogger;
 import org.openqa.selenium.*;
+import org.openqa.selenium.Dimension;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
@@ -85,7 +86,7 @@ public class TestBase
                 //chromeOptions.addArguments("disable-notifications");
                 //chromeOptions.addArguments("disable-infobars");
                 chromeOptions.addArguments("--start-maximized");
-                chromeOptions.addArguments("window-size=1920,1080");
+                //chromeOptions.addArguments("window-size=1920,1080");
                 //chromeOptions.addArguments("window-size=1280,720");
                 chromeOptions.addArguments("PageLoadStrategy.NORMAL");
                 //chromeOptions.addArguments("test-type");
@@ -96,8 +97,7 @@ public class TestBase
                 chromeOptions.addArguments("--disable-offline-load-stale-cache");
                 chromeOptions.addArguments("--disk-cache-size=0");
                 chromeOptions.addArguments("--dns-prefetch-disable");
-                chromeOptions.addArguments("--remote-allow-origins=*");
-
+                //chromeOptions.addArguments("--remote-allow-origins=*");
                 driver.set(new ChromeDriver(chromeOptions));
             }
             break;
@@ -143,7 +143,8 @@ public class TestBase
                 WebDriverManager.chromedriver().setup();
                 ChromeOptions chromeOptions = new ChromeOptions();
                 chromeOptions.addArguments("--headless=new");
-                chromeOptions.addArguments("window-size=1920,1080");
+                //chromeOptions.addArguments("window-size=1920,1080");
+                //chromeOptions.addArguments("window-size=");
                 chromeOptions.addArguments("--remote-allow-origins=*");
                 chromeOptions.addArguments("--no-proxy-server");
                 chromeOptions.addArguments("--proxy-server='direct://'");
@@ -176,7 +177,6 @@ public class TestBase
                 chromeOptions.addArguments("--disable-offline-load-stale-cache");
                 chromeOptions.addArguments("--disk-cache-size=0");
                 chromeOptions.addArguments("--dns-prefetch-disable");
-
                 driver.set(new ChromeDriver(chromeOptions));
             }
             break;
@@ -191,6 +191,7 @@ public class TestBase
         //getDriver().manage().timeouts().implicitlyWait(TestUtil.IMPLICIT_WAIT, TimeUnit.SECONDS);
         System.out.println(testEnvironment.get_url());
         getDriver().get(testEnvironment.get_url());
+        getDriver().manage().window().setSize(new Dimension(1920, 1080));
         Thread.sleep(6000);
     }
 
