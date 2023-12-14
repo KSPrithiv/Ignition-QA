@@ -1042,11 +1042,12 @@ public class CatalogPage
                     }
                 }
             }
-            if(HelpersMethod.IsExists("//div[@class='loader']",driver))
-            {
-                WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 2000000);
-            }
+            Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(120))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
             scenario.log("CATEGORY SELECTED IS "+category);
             Assert.assertEquals(exists,true);
         }
@@ -1120,11 +1121,11 @@ public class CatalogPage
                     }
                 }
             }
-            if(HelpersMethod.IsExists("//div[@class='loader']",driver))
-            {
-                WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 2000000);
-            }
+            Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(120))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
 
             scenario.log("SUB CATEGORY SELECTED IS "+subCat);
             Assert.assertEquals(exists,true);
@@ -1166,11 +1167,12 @@ public class CatalogPage
                     }
                 }
             }
-            if(HelpersMethod.IsExists("//div[@class='loader']",driver))
-            {
-                WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 2000000);
-            }
+
+            Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(120))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
 
             scenario.log("BRAND SELECTED IS "+brand);
             Assert.assertEquals(exists,true);
@@ -1208,11 +1210,12 @@ public class CatalogPage
                         break;
                     }
                 }
-                if(HelpersMethod.IsExists("//div[@class='loader']",driver))
-                {
-                    WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 2000000);
-                }
+                Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                        .withTimeout(Duration.ofSeconds(120))
+                        .pollingEvery(Duration.ofSeconds(2))
+                        .ignoring(NoSuchElementException.class);
+                wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
                 scenario.log("OG SELECTED IS " + ogName);
             }
             else

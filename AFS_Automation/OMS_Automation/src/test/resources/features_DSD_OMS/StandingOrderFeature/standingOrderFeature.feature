@@ -37,7 +37,7 @@ Feature: Standing Order
   @SkipSpecificDay
   Scenario: Test scenario for skipping specific date in standing order
     Given User must be on Order Entry Page to select Standing Order and navigate to standing order
-    Then Click on Skip specific day and select 4 day from current date,select reason date for skip in skip popup and click on ok
+    Then Click on Skip specific day and select 8 day from current date,select reason date for skip in skip popup and click on ok
 
   @VerifySkipDateSetInSOWithOE
   Scenario: Test scenario for verifying skip in SO with skip in OE page
@@ -85,7 +85,7 @@ Feature: Standing Order
     And User click on Start standing order button and selects Start date 16 and End date 17 day from current date
     Then User click on Add Product button in Standing order page and select catalog option
     And User should make sure that Catalog popup displayed in card view and select Category values
-    Then Select products from card view
+    Then Select products from Catalog popup
     And User enters Qty in standing order product grid based on enabled days
       |12|12|12|12|12|12|12|
     Then User clicks on Save button and handles popup

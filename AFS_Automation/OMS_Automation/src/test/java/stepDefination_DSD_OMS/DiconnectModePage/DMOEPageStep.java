@@ -34,10 +34,6 @@ public class DMOEPageStep
     static LoginPage loginpage;
     static HomePage homepage;
     static OrderEntryPage orderpage;
-    static NewOrderEntryPage newOE;
-    static CheckOutSummaryPage summary;
-    static OrderHistoryPage orderhistory;
-    static CheckOutOrderPage checkorder;
 
     @Before
     public void LaunchBrowser1(Scenario scenario) throws Exception

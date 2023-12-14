@@ -111,7 +111,6 @@ Feature: Order Guide2
     And User should select products from catalog popup for Price base
     Then User click on Save button
     And User should navigate back to OG page and verify OG "<OG>"  existence
-    #And User should navigate back to OG page and navigate back to "<OGType>" and verify OG "<OG>"  existence
     Examples:
       |  OG        |  OGType                      |
       |PriceBaseOG | Price group - base schedule  |

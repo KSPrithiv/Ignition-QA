@@ -287,14 +287,15 @@ public class StandingOrderPageSteps
     public void userShouldMakeSureThatCatalogPopupDisplayedInCardViewAndSelectCategoryValues() throws InterruptedException
     {
         standingOrder=new NewStandingOrderPage(driver,scenario);
-        standingOrder.ValidateCardView();
+        //standingOrder.ValidateCardView();
+        standingOrder.ValidateCatalogPopup();
         standingOrder.ResetFilter_Catalog();
         standingOrder.clickCategory();
         standingOrder.selectCategory();
     }
 
-    @Then("Select products from card view")
-    public void selectProductsFromCardView()
+    @Then("Select products from Catalog popup")
+    public void selectProductsFromCatalogPopup()
     {
         standingOrder=new NewStandingOrderPage(driver,scenario);
         standingOrder.CardViewProdSelection();

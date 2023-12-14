@@ -23,7 +23,7 @@ import java.io.IOException;
                         "html:target/cucumber-html-report.html",
                         "com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:Reports/spark/",
                         "rerun:target/failedrerun.txt"},
-                monochrome = true,tags = "@CreateOrderWithLengthyNote")
+                monochrome = true,tags = "@VerifyingCustomerNote")
 
 public class TestRunnerOrderControlList extends AbstractTestNGCucumberTests
 {

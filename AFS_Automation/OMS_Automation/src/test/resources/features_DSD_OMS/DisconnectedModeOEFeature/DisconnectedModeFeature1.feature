@@ -46,8 +46,28 @@ Feature: Disconnected mode
       |PO123|
     Then Enter Pro# in Quick Product Entry area
     And Check for Case and Unit input box enabled or not based on that enter value
-      |20|20|
+      |80|80|
     Then Click on Next button and validate shipping address
+    And Click on SubmitOrder button
+    Then User should be navigated to Order Entry page
+
+  @DMQuickProduct
+  Scenario: For adding comment to order
+    Given User should be in Order entry page
+    When User Clicks on network symbol and click on taggle button to navigate to disconnected mode
+    And Then User selects Go offline option in Disconnected mode popup
+    Then User should get Customer account# popup
+    And User should select Customer Account# from popup and select the delivery date from popup wait till synchronized
+    Then User must be on Order Entry Page in disconnected mode
+    Then User must click Start Order button
+    Then User should make selection between Pending order or Start New order
+    Then User should select Note from popup and Order guide from popup
+    Then Enter PO# for New order
+      |PO123|
+    Then Enter Pro# in Quick Product Entry area
+    And Check for Case and Unit input box enabled or not based on that enter value
+      |10|20|
+    Then Click on Next button
     And Click on SubmitOrder button
     Then User should be navigated to Order Entry page
 
@@ -55,5 +75,17 @@ Feature: Disconnected mode
   Scenario: for Disconnected mode to connected mode
     Given User should be in OE page in DM
     When User clicks on network symbol and click on taggle button drop down should appear
+    And Then User should Click on taggle button to go online
+
+  @DMTwoCustomerTwoDeliveryDate
+  Scenario: Test scenario for selecting 2 customer accounts and 2 delivery date and navigate to connected mode
+    Given User should be in Order entry page
+    When User Clicks on network symbol and click on taggle button to navigate to disconnected mode
+    And Then User selects Go offline option in Disconnected mode popup
+    Then User should get Customer account# popup
+    And User should select two Customer Account# from popup and select two delivery date from popup wait till synchronized
+    Then User must be on Order Entry Page in disconnected mode
+    And User should verify visibility of customer account#
+    Then User clicks on network symbol and click on taggle button drop down should appear
     And Then User should Click on taggle button to go online
 
