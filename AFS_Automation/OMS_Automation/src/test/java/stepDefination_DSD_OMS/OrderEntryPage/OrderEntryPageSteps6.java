@@ -98,6 +98,7 @@ public class OrderEntryPageSteps6
     public void userRemovesRouteDetailsFromRouteFieldAndRouteIsEmpty() throws InterruptedException, AWTException
     {
         orderpage=new OrderEntryPage(driver,scenario);
+        orderpage.ValidateOE();
         orderpage.RemoveRoute();
         orderpage.RouteIsEmpty();
     }

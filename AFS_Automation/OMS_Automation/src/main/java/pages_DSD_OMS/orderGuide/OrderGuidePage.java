@@ -349,11 +349,14 @@ public class OrderGuidePage {
         return exists;
     }
 
-    public boolean AddFilterForExpiredOG(String search1, String search2) {
+    public boolean AddFilterForExpiredOG(String search1, String search2)
+    {
         exists = false;
         Actions act = new Actions(driver);
-        try {
-            if (HelpersMethod.IsExists("//div[@class='i-filter-tag i-filter-tag--add']/descendant::button[@class='i-filter-tag__main']", driver)) {
+        try
+        {
+            if (HelpersMethod.IsExists("//div[@class='i-filter-tag i-filter-tag--add']/descendant::button[@class='i-filter-tag__main']", driver))
+            {
                 exists = true;
                 WebElement Search2 = null;
                 WebElement WebEle = null;
@@ -578,30 +581,60 @@ public class OrderGuidePage {
     public void ClickCustomerAccount_No() {
         exists = false;
         WebElement WebEle;
-        try {
-            HelpersMethod.ClickBut(driver, CustomerAccIndex, 2000);
-            if (HelpersMethod.IsExists("//div[@class='loader']", driver)) {
+        try
+        {
+            if (HelpersMethod.IsExists("//div[@class='loader']", driver))
+            {
                 WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
                 HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000000);
             }
-            if (HelpersMethod.IsExists("//div[contains(text(),'Select customer')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]", driver)) {
+            //To click on customer account index
+            HelpersMethod.ClickBut(driver, CustomerAccIndex, 6000);
+
+            String status = HelpersMethod.returnDocumentStatus(driver);
+            if (status.equals("loading"))
+            {
+                HelpersMethod.waitTillLoadingPage(driver);
+            }
+
+            if (HelpersMethod.IsExists("//div[@class='loader']", driver))
+            {
+                WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000000);
+            }
+            status = HelpersMethod.returnDocumentStatus(driver);
+            if (status.equals("loading"))
+            {
+                HelpersMethod.waitTillLoadingPage(driver);
+            }
+            if (HelpersMethod.IsExists("//div[@class='loader']", driver))
+            {
+                WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000000);
+            }
+            if (HelpersMethod.IsExists("//div[contains(text(),'Select customer')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]", driver))
+            {
                 //Enter Account number in search box in customer account # popup
                 WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-widget k-window k-dialog')]/descendant::input[@placeholder='Search']");
                 HelpersMethod.EnterText(driver, WebEle, 2000, TestBase.testEnvironment.get_AnotherAcc());
                 //Click on Search Index
                 WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-widget k-window k-dialog')]//*[local-name()='svg' and contains(@class,'i-icon   i-search-box__search')]");
                 HelpersMethod.ClickBut(driver, WebEle, 2000);
-                if (!HelpersMethod.IsExists("//div[contains(@class,'k-widget k-window k-dialog')]/descendant::div[@class='i-no-data']", driver)) {
+                if (!HelpersMethod.IsExists("//div[contains(@class,'k-widget k-window k-dialog')]/descendant::div[@class='i-no-data']", driver))
+                {
                     WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-widget k-window k-dialog')]/descendant::tr[@class='k-master-row']/td[1]");
                     scenario.log("ACCOUNT NUMBER SELECTED IS " + WebEle.getText());
                     WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-widget k-window k-dialog')]/descendant::tr[@class='k-master-row']");
                     HelpersMethod.ActClick(driver, WebEle, 2000);
-                    if (HelpersMethod.IsExists("//div[@class='loader']", driver)) {
+                    if (HelpersMethod.IsExists("//div[@class='loader']", driver))
+                    {
                         WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
                         HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000000);
                     }
                     exists = true;
-                } else {
+                }
+                else
+                {
                     scenario.log("CUSTOMER ACCOUNT # DOES NOT EXISTS");
                 }
                 Assert.assertEquals(exists, true);

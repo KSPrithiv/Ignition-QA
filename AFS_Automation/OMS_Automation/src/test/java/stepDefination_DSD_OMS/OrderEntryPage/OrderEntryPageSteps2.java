@@ -134,6 +134,8 @@ public class OrderEntryPageSteps2
     public void user_should_click_on_route_index_icon_and_select_route() throws InterruptedException, AWTException
     {
         orderpage=new OrderEntryPage(driver, scenario);
+        orderpage.clickRouteIndex();
+        //orderpage.validateRouteDialog();
         //Select Route number using Add Filter
         orderpage.Route_No(TestBase.testEnvironment.get_RouteFilt(),TestBase.testEnvironment.get_Route());
         orderpage.validateRouteSelected(TestBase.testEnvironment.get_Route());

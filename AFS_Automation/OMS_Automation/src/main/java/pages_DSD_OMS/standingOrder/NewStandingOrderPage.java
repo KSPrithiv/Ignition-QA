@@ -189,13 +189,19 @@ public class NewStandingOrderPage
         WebElement WebEle=null;
         try
         {
+            Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(120))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
             new WebDriverWait(driver,Duration.ofMillis(20000)).until(ExpectedConditions.visibilityOf(SaveButton));
             if(SaveButton.isDisplayed() && SaveButton.isEnabled())
             {
                 HelpersMethod.ScrollElement(driver,SaveButton);
                 HelpersMethod.ClickBut(driver,SaveButton,25000);
 
-                Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+            wait = new FluentWait<WebDriver>(driver)
                         .withTimeout(Duration.ofSeconds(120))
                         .pollingEvery(Duration.ofSeconds(2))
                         .ignoring(NoSuchElementException.class);

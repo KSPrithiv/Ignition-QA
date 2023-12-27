@@ -63,6 +63,7 @@ public class DMOEPageStep1
         dmoePage.clickOnAccountIndex();
         dmoePage.validateAccountDialogPopup();
         dmoePage.validateAccountNumbers();
+        dmoePage.closeAccountIndex();
 
     }
 }

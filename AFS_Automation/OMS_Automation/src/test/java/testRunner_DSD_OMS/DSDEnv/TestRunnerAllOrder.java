@@ -24,6 +24,7 @@ import java.io.IOException;
                         "com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:Reports/spark/",
                         "rerun:target/failedrerun.txt"},
                 monochrome = true)
+
 public class TestRunnerAllOrder extends AbstractTestNGCucumberTests
 {
     /* Created by Divya.Ramadas@afsi.com */

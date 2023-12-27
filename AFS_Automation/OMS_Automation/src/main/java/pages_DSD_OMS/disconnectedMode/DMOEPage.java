@@ -511,4 +511,20 @@ public class DMOEPage
         }
         catch (Exception e){}
     }
+
+    public void closeAccountIndex()
+    {
+        exists=false;
+        try
+        {
+            if (HelpersMethod.IsExists("//div[contains(text(),'Customer')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]", driver))
+            {
+                WebElement cancelButton=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-widget k-window k-dialog')]/descendant::button[text()='Cancel']");
+                HelpersMethod.ActClick(driver,cancelButton,1000);
+                exists=true;
+            }
+            Assert.assertEquals(exists,true);
+        }
+        catch (Exception e){}
+    }
 }

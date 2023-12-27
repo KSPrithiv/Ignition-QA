@@ -6,7 +6,6 @@ Feature: Admin setting
     When User is on Home Page for Admin setting
     Then User Clicks on Permissions by drop down to select Customer Account#
 
-
   @SheildIcon
   Scenario Outline: Test scenario to check Max Featured Products Sheild Icon
     Given User is on Home Page for Admin setting to select Admin option

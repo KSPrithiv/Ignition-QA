@@ -338,6 +338,7 @@ public class RestrictedProductListPage
         Actions act=new Actions(driver);
         try
         {
+            scenario.log("PRODUCT TO CATEGORY TO BE DELETED IS "+selectCat);
             List<WebElement> Products=HelpersMethod.FindByElements(driver,"xpath","//tr[contains(@class,'k-master-row')]/td[2]");
             for(WebElement Pro:Products)
             {

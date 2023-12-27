@@ -190,11 +190,7 @@ public class CheckOutOrderPage
                     {
                         HelpersMethod.waitTillLoadingPage(driver);
                     }
-                    /*if (HelpersMethod.IsExists("//div[@class='loader']", driver))
-                    {
-                        WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                        HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000000);
-                    }*/
+
                     Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
                             .withTimeout(Duration.ofSeconds(100))
                             .pollingEvery(Duration.ofSeconds(2))
@@ -337,7 +333,7 @@ public class CheckOutOrderPage
                     scenario.log("ZIP VALUE ENTERED IS "+zipNo);
                     WebEle=newAddressPopup.findElement(By.xpath(".//span[@id='Country']"));
                     HelpersMethod.ClickBut(driver,WebEle,1000);
-                    HelpersMethod.waitTillElementLocatedDisplayed(driver,"xpath","//div[contains(@class,'k-animation-container k-animation-container-relative k-list-container k-reset i-common-dropdown i-common-dropdown__type-none k-animation-container-shown')]",40);
+                    HelpersMethod.waitTillElementLocatedDisplayed(driver,"xpath","//div[contains(@class,'k-animation-container k-animation-container-relative k-list-container k-reset i-common-dropdown i-common-dropdown__type-none k-animation-container-shown')]",4000);
                     // to fetch the web element of the modal container
                     WebElement menuContainer1 = HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-animation-container k-animation-container-relative k-list-container k-reset i-common-dropdown i-common-dropdown__type-none k-animation-container-shown')]");
                     List<WebElement> Options1=menuContainer1.findElements (By.xpath(".//ul/li"));
@@ -727,16 +723,30 @@ public class CheckOutOrderPage
         exists=false;
         try
         {
-            if(HelpersMethod.IsExists("//div[@class='loader']",driver))
-            {
-                WebElement WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 2000000);
-            }
+            Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(120))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
             String status = HelpersMethod.returnDocumentStatus(driver);
             if (status.equals("loading"))
             {
                 HelpersMethod.waitTillLoadingPage(driver);
             }
+
+            wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(120))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
+            status = HelpersMethod.returnDocumentStatus(driver);
+            if (status.equals("loading"))
+            {
+                HelpersMethod.waitTillLoadingPage(driver);
+            }
+
             Thread.sleep(2000);
             if(HelpersMethod.IsExists("//div[@id='paymentMethodCard']",driver))
             {

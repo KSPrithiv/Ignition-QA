@@ -78,12 +78,12 @@ public class RestrictedProductsPageStep
     @Given("User is on Home Page for Admin setting to select Admin option")
     public void userIsOnHomePageForAdminSettingToSelectAdminOption() throws InterruptedException
     {
-       // if(flag==false)
+      // if(flag==false)
       //  {
             adminHomePage = new AdminHomePage(driver, scenario);
             adminHomePage.ValidatingAdminHome();
-        //    flag=true;
-       // }
+       //     flag=true;
+      //  }
     }
 
     @And("User should enter menu {string} in search bar to navigate to Authorized Products")

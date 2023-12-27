@@ -2,6 +2,7 @@ package pages_DSD_OMS.inventory;
 
 import helper.HelpersMethod;
 import io.cucumber.java.Scenario;
+import io.cucumber.java.en_old.Ac;
 import io.netty.handler.codec.spdy.SpdyHttpResponseStreamIdHandler;
 import org.apache.logging.log4j.core.tools.picocli.CommandLine;
 import org.openqa.selenium.By;
@@ -29,6 +30,9 @@ public class InventoryPage
     Scenario scenario;
     static String currentURL;
     static boolean exists=false;
+    static String runningTotalUnits=null;
+    int totalUitsValue;
+    int headIndex=0;
 
     @FindBy(xpath="//div[contains(@class,'k-grouping-header')]/descendant::div[contains(@class,'k-indicator-container')]")
     private WebElement To;
@@ -565,11 +569,93 @@ public class InventoryPage
                     break;
                 }
             }
+            String status = HelpersMethod.returnDocumentStatus(driver);
+            if (status.equals("loading"))
+            {
+                HelpersMethod.waitTillLoadingPage(driver);
+            }
+
             if(HelpersMethod.IsExists("//div[@class='loader']",driver))
             {
                 WebElement WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100000);
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000000);
             }
+
+            status = HelpersMethod.returnDocumentStatus(driver);
+            if (status.equals("loading"))
+            {
+                HelpersMethod.waitTillLoadingPage(driver);
+            }
+            if(HelpersMethod.IsExists("//div[@class='loader']",driver))
+            {
+                WebElement WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000000);
+            }
+
+        }
+        catch (Exception e){}
+    }
+
+    public void findTotalUnitsInColumn(String headTable)
+    {
+        String headText=null;
+        String totalValue=null;
+        Actions act=new Actions(driver);
+        exists=false;
+        try
+        {
+            List<WebElement> heads=HelpersMethod.FindByElements(driver,"xpath","//th[@class='k-header']/descendant::span[@class='k-column-title']");
+            for (WebElement head:heads)
+            {
+                headIndex++;
+                act.moveToElement(head).build().perform();
+                headText=head.getText();
+                if(headText.equalsIgnoreCase(headTable))
+                {
+                    break;
+                }
+            }
+            List<WebElement> totalUnits=HelpersMethod.FindByElements(driver,"xpath","//tr[contains(@class,'k-master-row')]/descendant::td["+headIndex+"]");
+            for(WebElement totalunit:totalUnits)
+            {
+                act.moveToElement(totalunit).build().perform();
+                totalValue=totalunit.getText();
+                totalUitsValue=totalUitsValue+Integer.parseInt(totalValue);
+                exists=true;
+            }
+            scenario.log("TOTAL OF TOTAL UNITS COLUMN "+totalUitsValue);
+            Assert.assertEquals(exists,true);
+        }
+        catch (Exception e){}
+    }
+
+    public void findRunningTotalUnits()
+    {
+        exists=false;
+        try
+        {
+            if(HelpersMethod.IsExists("//span[contains(text(),'Running total units')]/following-sibling::span",driver))
+            {
+                runningTotalUnits=HelpersMethod.FindByElement(driver,"xpath","//span[contains(text(),'Running total units')]/following-sibling::span").getText();
+                exists=true;
+            }
+            Assert.assertEquals(exists,true);
+        }
+        catch (Exception e){}
+    }
+
+    public void compareTotalUnits()
+    {
+        exists=false;
+        try
+        {
+            if(Integer.parseInt(runningTotalUnits)==totalUitsValue)
+            {
+                scenario.log("RUNNING TOTAL UNITS: "+ runningTotalUnits+" TOTAL NUMBER OF UNITS FOUND IN GRID: "+totalUitsValue);
+                exists=true;
+            }
+            scenario.log("RUNNING TOTAL UNITS: "+ runningTotalUnits+" TOTAL NUMBER OF UNITS FOUND IN GRID: "+totalUitsValue);
+            Assert.assertEquals(exists,true);
         }
         catch (Exception e){}
     }

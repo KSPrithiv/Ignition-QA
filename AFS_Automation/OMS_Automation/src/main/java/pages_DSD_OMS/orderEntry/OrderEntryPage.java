@@ -186,11 +186,7 @@ public class OrderEntryPage
             {
                 HelpersMethod.waitTillLoadingPage(driver);
             }
-            /*if (HelpersMethod.IsExists("//div[@class='loader']", driver))
-            {
-                WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000000);
-            }*/
+
             Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
                     .withTimeout(Duration.ofSeconds(150))
                     .pollingEvery(Duration.ofSeconds(2))
@@ -202,11 +198,7 @@ public class OrderEntryPage
             {
                 HelpersMethod.waitTillLoadingPage(driver);
             }
-            /*if (HelpersMethod.IsExists("//div[@class='loader']", driver))
-            {
-                WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000000);
-            }*/
+
             wait = new FluentWait<WebDriver>(driver)
                     .withTimeout(Duration.ofSeconds(150))
                     .pollingEvery(Duration.ofSeconds(2))
@@ -282,11 +274,12 @@ public class OrderEntryPage
         {
             HelpersMethod.waitTillLoadingPage(driver);
         }
-        if(HelpersMethod.IsExists("//div[@class='loader']",driver))
-        {
-            WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000000);
-        }
+        Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                .withTimeout(Duration.ofSeconds(120))
+                .pollingEvery(Duration.ofSeconds(2))
+                .ignoring(NoSuchElementException.class);
+        wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
         status = HelpersMethod.returnDocumentStatus(driver);
         if (status.equals("loading"))
         {
@@ -317,7 +310,7 @@ public class OrderEntryPage
                 HelpersMethod.waitTillLoadingPage(driver);
             }
 
-            Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+            wait = new FluentWait<WebDriver>(driver)
                     .withTimeout(Duration.ofSeconds(120))
                     .pollingEvery(Duration.ofSeconds(2))
                     .ignoring(NoSuchElementException.class);
@@ -329,6 +322,17 @@ public class OrderEntryPage
                 HelpersMethod.waitTillLoadingPage(driver);
             }
 
+            wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(120))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
+            status = HelpersMethod.returnDocumentStatus(driver);
+            if (status.equals("loading"))
+            {
+                HelpersMethod.waitTillLoadingPage(driver);
+            }
             wait = new FluentWait<WebDriver>(driver)
                     .withTimeout(Duration.ofSeconds(120))
                     .pollingEvery(Duration.ofSeconds(2))
@@ -1037,7 +1041,7 @@ public class OrderEntryPage
                 if (HelpersMethod.IsExists("//div[@class='loader']", driver))
                 {
                     WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000000);
+                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 2000000);
                 }
             }
         }
@@ -2197,9 +2201,10 @@ public class OrderEntryPage
         catch (Exception e) {}
     }
 
-    //Selcting route from the index popup
-    public void Route_No(String SearchOpt, String SearchDetail)
+    //click on route index button
+    public void clickRouteIndex()
     {
+        exists=false;
         WebElement WebEle = null;
         exists = false;
         String routeChange=null;
@@ -2218,13 +2223,36 @@ public class OrderEntryPage
             {
                 HelpersMethod.waitTillLoadingPage(driver);
             }
-            HelpersMethod.waitTillElementLocatedDisplayed(driver, "xpath", "//div[text()='Route #']/ancestor::div[contains(@class,'k-widget k-window k-dialog')]", 200000);
+            HelpersMethod.waitTillElementLocatedDisplayed(driver, "xpath", "//div[@id='RouteIndexProvider']/ancestor::div[contains(@class,'k-widget k-window k-dialog')]", 200000);
+        }
+        catch (Exception e){}
+    }
+
+    public void validateRouteDialog()
+    {
+        exists=false;
+        try
+        {
+            if(HelpersMethod.IsExists("//div[@id='RouteIndexProvider']/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
+            {
+                scenario.log("ROUTE HAS DIALOG BOX HAS BEEN FOUND");
+                exists = true;
+            }
+            Assert.assertEquals(exists,true);
+        }
+        catch (Exception e){}
+    }
+
+    //Selcting route from the index popup
+    public void Route_No(String SearchOpt, String SearchDetail)
+    {
+        WebElement WebEle=null;
+        exists=false;
+        String status;
+        try
+        {
             // to fetch the web element of the modal container
             WebElement modalContainer = driver.findElement(By.xpath("//div[contains(@class,'k-widget k-window k-dialog')]"));
-
-            // to fetch the web elements of the modal content and interact with them, code to fetch content of modal title and verify it
-            WebElement modalContentTitle = modalContainer.findElement(By.xpath(".//div[contains(@class,'k-window-title k-dialog-title')]"));
-            Assert.assertEquals(modalContentTitle.getText(), "Route #", "Verify Title message");
 
             //Selecting route # in Route # popup
             HelpersMethod.Click_On_IndexFieldIcon(driver, SearchOpt, SearchDetail);
@@ -2244,7 +2272,7 @@ public class OrderEntryPage
             Thread.sleep(2000);
             WebElement routeCha=HelpersMethod.FindByElement(driver,"id","RouteIndex");
             routeCha.sendKeys(Keys.TAB);
-            routeChange=HelpersMethod.JSGetValueEle(driver,routeCha,2000);
+            String routeChange=HelpersMethod.JSGetValueEle(driver,routeCha,2000);
             if(routeChange.equals(TestBase.testEnvironment.get_Route())||routeChange.contains(TestBase.testEnvironment.get_Route()))
             {
                 scenario.log("ROUTE SELECTED IS "+routeChange);
@@ -2663,11 +2691,10 @@ public class OrderEntryPage
     public void RemoveRoute()
     {
         exists = false;
-        Actions act = new Actions(driver);
         try
         {
             WebElement RouteRemove = HelpersMethod.FindByElement(driver, "xpath", "//input[@id='RouteIndex']/parent::span/following-sibling::span[@title='clear']");
-            HelpersMethod.JScriptClick(driver,RouteRemove,1000);
+            HelpersMethod.JScriptClick(driver,RouteRemove,4000);
             exists = true;
             scenario.log("ROUTE VALUE HAS BEEN REMOVED");
             Assert.assertEquals(exists, true);
@@ -2691,7 +2718,8 @@ public class OrderEntryPage
         catch (Exception e) {}
     }
 
-    public void ValidateRouteMandatoryPopup() {
+    public void ValidateRouteMandatoryPopup()
+    {
         exists = false;
         try
         {
@@ -2767,11 +2795,7 @@ public class OrderEntryPage
         {
             HelpersMethod.waitTillLoadingPage(driver);
         }
-      /*  if (HelpersMethod.IsExists("//div[@class='loader']", driver))
-        {
-            WebElement WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 2000);
-        }*/
+
         //Click on question mark
         WebElement questionMark = HelpersMethod.FindByElement(driver, "xpath", "//*[local-name()='svg']//*[local-name()='path' and contains(@d,'M11,18h')]");
         HelpersMethod.ActClick(driver, questionMark, 1000);

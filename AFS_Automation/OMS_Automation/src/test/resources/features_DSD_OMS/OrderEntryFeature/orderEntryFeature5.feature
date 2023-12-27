@@ -49,7 +49,7 @@ Feature: Order Entry5
       |PO123|
     Then Enter Pro# in Quick Product Entry area
     And Check for Case and Unit input box enabled or not based on that enter value
-      |20|20|
+      |150|100|
     Then Click on Next button
     And Click on Submit Order button and read Order_no
     Then User should be navigated to Order Entry page
@@ -116,7 +116,7 @@ Feature: Order Entry5
       |PO123|
     Then Enter Pro# in Quick Product Entry area
     And Check for Case and Unit input box enabled or not based on that enter value
-      |20|20|
+      |80|100|
     Then Click on Next button
     And Click on SubmitOrder button
     Then User should be navigated to Order Entry page

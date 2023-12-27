@@ -150,8 +150,8 @@ public class InventoryPageSteps
         inventory.readGroupingValue();
     }
 
-    @Then("User should be in Store inventory tab, in inventroy page")
-    public void userShouldBeInStoreInventoryTabInInventroyPage() throws SQLException
+    @Then("User should be in Store inventory tab, in inventory page")
+    public void userShouldBeInStoreInventoryTabInInventoryPage() throws SQLException
     {
         inventory=new InventoryPage(driver,scenario);
         inventory.navigateToStoreInventoryTab();
@@ -182,8 +182,8 @@ public class InventoryPageSteps
         inventory.clickSaveButton();
     }
 
-    @Then("User should change store inventroy dropdown value")
-    public void userShouldChangeStoreInventroyDropdownValue()
+    @Then("User should change store inventory dropdown value")
+    public void userShouldChangeStoreInventoryDropdownValue()
     {
         InventoryPage inventory=new InventoryPage(driver,scenario);
         inventory.clickOnStoreInventory();
@@ -202,5 +202,15 @@ public class InventoryPageSteps
         inventory.enterQuickCases(cases);
         inventory.enterQuickUnit(unit);
         inventory.enterSequenceNo(sequence);
+    }
+
+    @And("User should compare total units with Running total units")
+    public void userShouldCompareTotalUnitsWithRunningTotalUnits(DataTable dataTable)
+    {
+        List<List<String>> tablehead=dataTable.asLists(String.class);
+        InventoryPage inventory=new InventoryPage(driver,scenario);
+        inventory.findTotalUnitsInColumn(tablehead.get(0).get(0));
+        inventory.findRunningTotalUnits();
+        inventory.compareTotalUnits();
     }
 }

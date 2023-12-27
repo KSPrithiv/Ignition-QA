@@ -122,9 +122,3 @@ Feature: Customer Inq in ERP
     And User should select the Alert Type and Alert location to display notes in ERP cust inq
       |Both|Customer master|Order entry|
     Then Click on Save button in ERP cust inq
-
-  @LogoutCompetitorPricing
-  Scenario:Loging out from the application
-    And Refresh the page if any dialog box is displayed
-    Then Click on user Icon on Order Entry page
-    And Click on Logout on Order Entry page

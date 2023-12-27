@@ -70,6 +70,7 @@ public class OrderEntryPageSteps3
         newOE.ClickNext();
         newOE.OutOfStockPop_ERP();
         checkorder=new CheckOutOrderPage(driver,scenario);
+        checkorder.VerifyCheckOut();
         checkorder.Add_Delivery_Address(Address_Add.get(0).get(0),Address_Add.get(0).get(1),Address_Add.get(0).get(2),Address_Add.get(0).get(3),Address_Add.get(0).get(4),Address_Add.get(0).get(5));
         checkorder.Click_On_Without_Providing_Payment();
         checkorder.NextButton_Click();
@@ -85,6 +86,7 @@ public class OrderEntryPageSteps3
         newOE.ClickNext();
         newOE.OutOfStockPop_ERP();
         checkorder=new CheckOutOrderPage(driver,scenario);
+        checkorder.VerifyCheckOut();
         result=checkorder.Edit_DeliveryAddress(Change_Add.get(0).get(0),Change_Add.get(0).get(1));
         Assert.assertEquals(true,result);
         checkorder.Click_On_Without_Providing_Payment();
@@ -233,6 +235,7 @@ public class OrderEntryPageSteps3
         newOE.Click_On_PriceOverrideIcon();
         newOE.validatePriceOverridePopup();
         newOE.PriceOverridePopup_WhatIfPricePrice(priceVal.get(0).get(0));
+        newOE.readValueAfterOverride();
     }
 
     @Then("User should click on price override icon and Change price using What if option Price per unit")
@@ -243,6 +246,7 @@ public class OrderEntryPageSteps3
         newOE.Click_On_PriceOverrideIcon();
         newOE.validatePriceOverridePopup();
         newOE.PriceOverridePopup_WhatIfPriceUnit(priceVal.get(0).get(0));
+        newOE.readValueAfterOverride();
         for(int i=0;i<=2;i++)
         {
             newOE.priceCannotBeBleowCost();

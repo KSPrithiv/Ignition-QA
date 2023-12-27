@@ -21,7 +21,8 @@ import java.time.format.DateTimeFormatter;
  * @Author Divya.Ramadas@afsi.com
  */
 
-public class QuotePage {
+public class QuotePage
+{
     /* Created by Divya.Ramadas@afsi.com */
     WebDriver driver;
     Scenario scenario;

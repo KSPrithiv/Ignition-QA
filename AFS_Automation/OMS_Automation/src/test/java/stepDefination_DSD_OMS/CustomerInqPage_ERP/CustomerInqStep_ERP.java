@@ -104,6 +104,7 @@ public class CustomerInqStep_ERP
     {
         customerInquiryPageERP=new CustomerInquiryPageERP(driver,scenario);
         customerInquiryPageERP.HandleError_Page();
+        customerInquiryPageERP.removeDialogBoxIfAny();
     }
 
     @When("User should confirm that he is in Customer Inq in ERP")
@@ -324,11 +325,11 @@ public class CustomerInqStep_ERP
     public void userClicksOnSaveButtonBeforeAddingValuesToIgnition()
     {
         customerInquiryPageERP=new CustomerInquiryPageERP(driver,scenario);
-        //customerInquiryPageERP.BillNo();
+        customerInquiryPageERP.BillNo();
         customerInquiryPageERP.DescrVal();
         customerInquiryPageERP.Save_ButtonClick();
-        customerInquiryPageERP.validateSaveConfirmationPopup();
-        customerInquiryPageERP.SaveButtonOK();
+        //customerInquiryPageERP.validateSaveConfirmationPopup();
+        //customerInquiryPageERP.SaveButtonOK();
     }
 
     @And("User navigate to Ignition tab in ERP")

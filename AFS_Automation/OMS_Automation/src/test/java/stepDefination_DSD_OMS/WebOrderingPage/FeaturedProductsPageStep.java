@@ -17,7 +17,6 @@ import util.TestBase;
 public class FeaturedProductsPageStep
 {
     /* Created by Divya.Ramadas@afsi.com */
-    static boolean flag1=false;
     WebDriver driver;
     Scenario scenario;
     static int MaxProd;
@@ -42,10 +41,10 @@ public class FeaturedProductsPageStep
             adminHomePage = new AdminHomePage(driver, scenario);
             adminHomePage.ClickOnHumburger();
             adminHomePage.EnterValueInSearchBox(arg0);
+            adminHomePage.removeUnwantedDialogbox();
             adminHomePage.CloseHumburger();
             featuredProdSettingsPage=new FeaturedProdSettingsPage(driver,scenario);
             featuredProdSettingsPage.validateFeatureProd();
-
         // flag1=true;
        // }
     }

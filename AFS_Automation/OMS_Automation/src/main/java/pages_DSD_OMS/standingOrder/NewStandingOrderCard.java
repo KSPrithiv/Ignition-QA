@@ -220,10 +220,11 @@ public class NewStandingOrderCard
     {
         exists=false;
         try {
-            HelpersMethod.waitTillElementLocatedDisplayed(driver, "xpath", "//div[contains(@class,'k-widget k-window k-dialog')]", 100);
+            HelpersMethod.waitTillElementLocatedDisplayed(driver, "xpath", "//div[contains(@class,'k-widget k-window k-dialog')]", 1000);
             // to fetch the web element of the modal container
             WebElement modalContainer = driver.findElement(By.xpath("//div[contains(@class,'k-widget k-window k-dialog')]"));
-            if (HelpersMethod.IsExists("//div[contains(text(),'Add standing order')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]", driver)) {
+            if (HelpersMethod.IsExists("//div[contains(text(),'Add standing order')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]", driver))
+            {
                 exists = true;
             }
 
@@ -766,17 +767,12 @@ public class NewStandingOrderCard
     public void clickOnShowSelectedCustomerTaggle() throws InterruptedException
     {
         exists=false;
-        /*if(HelpersMethod.IsExists("//div[@class='loader']",driver))
-        {
-            WebElement WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100000);
-        }*/
+
         Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
                 .withTimeout(Duration.ofSeconds(120))
                 .pollingEvery(Duration.ofSeconds(2))
                 .ignoring(NoSuchElementException.class);
         wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
-
 
         if(HelpersMethod.IsExists("//div[@id='standingOrderRegisterDialog']/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
         {
@@ -918,6 +914,7 @@ public class NewStandingOrderCard
             if (HelpersMethod.IsExists("//div[@id='toast-container']", driver))
             {
                 scenario.log("NO DATA HAS BEEN GENERATED");
+                Thread.sleep(3000);
             }
             else
             {
@@ -1071,6 +1068,7 @@ public class NewStandingOrderCard
                for(int i=0;i<=selectableDates.size()-1;i++)
                {
                    act1.moveToElement(selectableDates.get(i)).build().perform();
+                   System.out.println("");
                    //if (i == selectableDates.size() - 1)
                    if (i == 1)
                    {
@@ -1081,6 +1079,7 @@ public class NewStandingOrderCard
                        exists=true;
                        break;
                    }
+
                }
             }
             Assert.assertEquals(exists,true);

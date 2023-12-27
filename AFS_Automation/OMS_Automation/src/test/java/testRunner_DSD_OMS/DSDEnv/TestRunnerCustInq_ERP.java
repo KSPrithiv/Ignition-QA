@@ -12,7 +12,7 @@ import javax.mail.MessagingException;
 import java.io.IOException;
 
 
-@CucumberOptions(features = { "src/test/resources/features_DSD_OMS/CustomerInqFeature_DSDFeature"},
+@CucumberOptions(features = { "src/test/resources/features_DSD_OMS/CustomerInqFeature_ERPFeature"},
         glue = {"stepDefination_DSD_OMS"},
         plugin = {"pretty",
                 "json:target/cucumber.json",
@@ -25,7 +25,7 @@ import java.io.IOException;
  * @Project DSD
  * @Author Divya.Ramadas@telusagcg.com
  */
-public class TestRunnerCustInq extends AbstractTestNGCucumberTests
+public class TestRunnerCustInq_ERP extends AbstractTestNGCucumberTests
 {
     /* Created by Divya.Ramadas@telusagcg.com */
     @Parameters({"environment"})

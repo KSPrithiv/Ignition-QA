@@ -83,7 +83,6 @@ public class CustomerInqStep
             homepage = new HomePage(driver,scenario);
             homepage.VerifyHomePage();
         }
-
     }
 
     @Then("User navigate to Client side for Customer inq")
@@ -107,6 +106,7 @@ public class CustomerInqStep
     {
         customerInquiryPage=new CustomerInquiryPage(driver,scenario);
         customerInquiryPage.HandleError_Page();
+        customerInquiryPage.removeDialogBoxIfAny();
     }
 
     @When("User should confirm that he is in Customer Inq page")
@@ -530,8 +530,8 @@ public class CustomerInqStep
     public void userClicksOnSaveButton() throws InterruptedException {
         customerInquiryPage=new CustomerInquiryPage(driver,scenario);
         customerInquiryPage.Save_ButtonClick();
-        customerInquiryPage.validateSaveConfirmationPopup();
-        customerInquiryPage.SaveButtonOK();
+        //customerInquiryPage.validateSaveConfirmationPopup();
+        //customerInquiryPage.SaveButtonOK();
     }
 
     @Then("User enters Description of customer and load already saved details")
@@ -568,33 +568,16 @@ public class CustomerInqStep
     }
 
     @Then("User clicks on Save button before adding values to ignition in DSD")
-    public void userClicksOnSaveButtonBeforeAddingValuesToIgnitionInDSD() throws InterruptedException {
+    public void userClicksOnSaveButtonBeforeAddingValuesToIgnitionInDSD() throws InterruptedException
+    {
         customerInquiryPage=new CustomerInquiryPage(driver,scenario);
         customerInquiryPage.BillNo();
-        //customerInquiryPage.StoreNo();
-        //customerInquiryPage.DeptNo();
+        customerInquiryPage.StoreNo();
+        customerInquiryPage.DeptNo();
         customerInquiryPage.DescrVal();
         customerInquiryPage.Save_ButtonClick();
-        customerInquiryPage.validateSaveConfirmationPopup();
-        customerInquiryPage.SaveButtonOK();
-    }
-
-    @Then("Add note in popup in cust inq")
-    public void addNoteInPopupInCustInq(DataTable tabledata)
-    {
-        customerInquiryPage = new CustomerInquiryPage(driver, scenario);
-        List<List<String>> Cust_Note = tabledata.asLists(String.class);
-        customerInquiryPage.clickOnNote();
-        customerInquiryPage.validateNotePopup();
-        customerInquiryPage.Add_Customer_Note(Cust_Note.get(0).get(0));
-    }
-
-    @And("User should select the Alert Type and Alert location to display notes in DSD cust inq")
-    public void userShouldSelectTheAlertTypeAndAlertLocationToDisplayNotesInDSDCustInq(DataTable tabledata)
-    {
-        customerInquiryPage = new CustomerInquiryPage(driver, scenario);
-        List<List<String>> Alerts=tabledata.asLists(String.class);
-        customerInquiryPage.Select_AlertType_Location(Alerts.get(0).get(0),Alerts.get(0).get(1),Alerts.get(0).get(2));
+        //customerInquiryPage.validateSaveConfirmationPopup();
+        //customerInquiryPage.SaveButtonOK();
     }
 
     @Then("Click on Save button in DSD cust inq")

@@ -37,10 +37,8 @@ public class QuotePageSteps
     WebDriver driver;
     Scenario scenario;
 
-    static String Ord_No=null;
     static String Quote_No=null;
     static boolean flag=false;
-    static boolean flag1=false;
     static String currentURL=null;
 
     static LoginPage loginpage;

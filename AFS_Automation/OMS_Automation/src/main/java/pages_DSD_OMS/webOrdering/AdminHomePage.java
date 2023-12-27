@@ -340,7 +340,8 @@ public class AdminHomePage {
         }
     }
 
-    public void CloseHumburger() {
+    public void CloseHumburger()
+    {
         exists = false;
         WebElement Humburger;
         try {
@@ -417,7 +418,7 @@ public class AdminHomePage {
             if (HelpersMethod.IsExists("//div[@class='loader']", driver))
             {
                 WebElement WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 800000);
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000000);
             }
 
             if (SaveButton.isEnabled())
@@ -426,19 +427,42 @@ public class AdminHomePage {
                 if (HelpersMethod.IsExists("//div[@class='loader']", driver))
                 {
                     WebElement WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 800000);
+                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000000);
                 }
+
+                String status = HelpersMethod.returnDocumentStatus(driver);
+                if (status.equals("loading"))
+                {
+                    HelpersMethod.waitTillLoadingPage(driver);
+                }
+
+                if (HelpersMethod.IsExists("//div[@class='loader']", driver))
+                {
+                    WebElement WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
+                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000000);
+                }
+
+                status = HelpersMethod.returnDocumentStatus(driver);
+                if (status.equals("loading"))
+                {
+                    HelpersMethod.waitTillLoadingPage(driver);
+                }
+
                 if(HelpersMethod.IsExists("//div[contains(text(),'saved successfully')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
                 {
-                    WebElement savePopup=HelpersMethod.FindByElement(driver,"xpath","//div[contains(text(),'saved successfully')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]");
+                    WebElement savePopup=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-widget k-window k-dialog')]");
                     WebElement okButton=savePopup.findElement(By.xpath(".//button[text()='OK']"));
                     HelpersMethod.ClickBut(driver,okButton,1000);
+                    if (HelpersMethod.IsExists("//div[@class='loader']", driver))
+                    {
+                        WebElement WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
+                        HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000000);
+                    }
                 }
                 exists = true;
             }
             Assert.assertEquals(exists, true);
-        } catch (Exception e) {
-        }
+        } catch (Exception e) {}
     }
 
     public void EnterValueInSearchBox1(String Menu_Value, String subMenuValue)
@@ -598,5 +622,34 @@ public class AdminHomePage {
             }
             Thread.sleep(2000);
         } catch (Exception e) {}
+    }
+
+    public void removeUnwantedDialogbox()
+    {
+        try
+        {
+            if(HelpersMethod.IsExists("//div[contains(@class,'k-widget k-window k-dialog')]",driver))
+            {
+                JavascriptExecutor js = ((JavascriptExecutor) driver);
+                js.executeScript("window.location.reload()");
+                WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(1000));
+                if(wait.until(ExpectedConditions.alertIsPresent())==null)
+                {
+
+                }
+                else
+                {
+                    Alert alert = driver.switchTo().alert();
+                    alert.accept();
+                }
+                //driver.navigate().refresh();
+                Wait<WebDriver> wait1 = new FluentWait<WebDriver>(driver)
+                        .withTimeout(Duration.ofSeconds(120))
+                        .pollingEvery(Duration.ofSeconds(2))
+                        .ignoring(NoSuchElementException.class);
+                wait1.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+            }
+        }
+        catch (Exception e){}
     }
 }
