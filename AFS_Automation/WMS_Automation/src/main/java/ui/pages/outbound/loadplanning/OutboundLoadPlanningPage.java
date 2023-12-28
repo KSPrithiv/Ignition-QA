@@ -6,7 +6,7 @@ import org.openqa.selenium.WebElement;
 import ui.pages.BasePage;
 import java.util.List;
 
-import static common.setup.DriverManager.getDriver;
+//import static common.setup.DriverManager.getDriver;
 
 public class OutboundLoadPlanningPage extends BasePage {
     By dialog = By.cssSelector(".k-dialog-title");
@@ -18,11 +18,13 @@ public class OutboundLoadPlanningPage extends BasePage {
     By dropdownList = By.id("dropdownList");
     By loader = By.cssSelector(".loader");
 
+    By LoadPlanningWarningMessage  = By.xpath("//button[@id='alertDialog'][text()='Ok']");
+
     public void waitOutboundLoadPlanningPageToLoad() {
-        Waiters.waitABit(7000);
+        //Waiters.waitABit(7000);
         waitUntilInvisible(8, loader);
-        Waiters.waitForElementToBeDisplay(getLoadPlanningShipDate());
-        Waiters.waitForElementToBeDisplay(getLoadPlanningShipDateLabel());
+        //Waiters.waitForElementToBeDisplay(getLoadPlanningShipDate());
+        //Waiters.waitForElementToBeDisplay(getLoadPlanningShipDateLabel());
     }
 
     public boolean isLoadPlanningDialogDisplayed() { return isElementDisplay(getLoadPlanningDialog()); }
@@ -38,81 +40,90 @@ public class OutboundLoadPlanningPage extends BasePage {
     public boolean isDoneButtonDisplayed() { return isElementDisplay(getDoneButton()); }
 
     public String getLoadPlanningDialogText() {
-        Waiters.waitForElementToBeDisplay(getLoadPlanningDialog());
+        //Waiters.waitForElementToBeDisplay(getLoadPlanningDialog());
         return getText(getLoadPlanningDialog()).trim();
     }
 
     public String getLoadPlanningShipDateValue() {
-        Waiters.waitForElementToBeDisplay(getLoadPlanningShipDate());
+        //Waiters.waitForElementToBeDisplay(getLoadPlanningShipDate());
         return getValue(getLoadPlanningShipDate()).trim();
     }
 
     public String getLoadPlanningShipDateLabelText() {
-        Waiters.waitForElementToBeDisplay(getLoadPlanningShipDateLabel());
+        //Waiters.waitForElementToBeDisplay(getLoadPlanningShipDateLabel());
         return getText(getLoadPlanningShipDateLabel()).trim();
     }
 
     public String getLoadPlanningRouteTypeValue() {
-        Waiters.waitForElementToBeDisplay(getDropDownRouteType());
+        //Waiters.waitForElementToBeDisplay(getDropDownRouteType());
         return getValue(getDropDownRouteType()).trim();
     }
 
     public String getLoadPlanningRouteTypeLabelText() {
-        Waiters.waitForElementToBeDisplay(getDropDownRouteTypeLabel());
+        //Waiters.waitForElementToBeDisplay(getDropDownRouteTypeLabel());
         return getText(getDropDownRouteTypeLabel()).trim();
     }
 
     public void clickDoneButton() {
         waitUntilInvisible(10, loader);
-        Waiters.waitTillLoadingPage(getDriver());
+        //Waiters.waitTillLoadingPage(getDriver());
         clickOnElement(getDoneButton());
-        waitUntilInvisible(10, loader);
-        Waiters.waitTillLoadingPage(getDriver());
-        waitUntilInvisible(10, loader);
+        //waitUntilInvisible(10, loader);
+        //Waiters.waitTillLoadingPage(getDriver());
+        //waitUntilInvisible(10, loader);
     }
 
     public void clickRouteTypeDropDown() {
-        Waiters.waitTillLoadingPage(getDriver());
+        //Waiters.waitTillLoadingPage(getDriver());
         deleteCookies();
-        Waiters.waitTillLoadingPage(getDriver());
+        //Waiters.waitTillLoadingPage(getDriver());
         clickOnElement(getDropDownRouteType());
-        Waiters.waitTillLoadingPage(getDriver());
+        //Waiters.waitTillLoadingPage(getDriver());
         waitUntilInvisible(5, loader);
     }
 
     public void selectRoute(String route) {
-        Waiters.waitTillLoadingPage(getDriver());
+        //Waiters.waitTillLoadingPage(getDriver());
         deleteCookies();
         List<WebElement> options = findWebElements(By.xpath("//div[contains(@class, 'k-animation-container-shown')]//li[@role='option']"));
         if(options.equals(null)) {
             deleteCookies();
             refresh();
         }
-        waitUntilInvisible(4, loader);
+        //waitUntilInvisible(4, loader);
         options = findWebElements(By.xpath("//div[contains(@class, 'k-animation-container-shown')]//li[@role='option']"));
-        waitUntilInvisible(4, loader);
+        //waitUntilInvisible(4, loader);
         WebElement option = options
                 .stream()
                 .filter(el -> el.getText().contains(route))
                 .findFirst()
                 .orElse(null);
-        waitUntilInvisible(4, loader);
-        clickOnElement(option);
-        Waiters.waitABit(10000);
+        //waitUntilInvisible(4, loader);
+        //commented by KKN//clickOnElement(option);
+            //Waiters.waitABit(5000);
+        try {
+            clickOnElement(option);
+
+        }
+        catch(org.openqa.selenium.StaleElementReferenceException ex)
+        {
+            clickOnElement(option);
+        }
+
         waitUntilInvisible(20, loader);
-        Waiters.waitTillLoadingPage(getDriver());
+        //Waiters.waitTillLoadingPage(getDriver());
     }
 
     public List<WebElement> getRoutes() {
-        Waiters.waitTillLoadingPage(getDriver());
+        //Waiters.waitTillLoadingPage(getDriver());
         return findWebElements(By.xpath("//div[contains(@class, 'k-animation-container-shown')]//li[@role='option']"));
     }
 
     public void typeShipDate(String date) {
-        Waiters.waitTillLoadingPage(getDriver());
+        //Waiters.waitTillLoadingPage(getDriver());
         waitUntilInvisible(1, loader);
         waitUntilStalenessOf(2, getLoadPlanningShipDate());
-        Waiters.waitABit(2000);
+        //Waiters.waitABit(2000);
         doubleClick(getLoadPlanningShipDate());
         waitUntilStalenessOf(2, getLoadPlanningShipDate());
         pressDelete(getLoadPlanningShipDate());
@@ -126,12 +137,14 @@ public class OutboundLoadPlanningPage extends BasePage {
     }
 
     public void selectWarehouse(String warehouse) {
-        Waiters.waitTillLoadingPage(getDriver());
+        //Waiters.waitTillLoadingPage(getDriver());
         clickOnElement(getDropdownList());
         clickOnElement(findWebElement(By.xpath("//div[contains(@class, 'k-animation-container-shown')]//li[contains(text(), '"
                 + warehouse + "') and @role='option']")));
-        Waiters.waitTillLoadingPage(getDriver());
+        //Waiters.waitTillLoadingPage(getDriver());
     }
+
+
 
     public WebElement getLoadPlanningDialog() { return findWebElement(dialog); }
 
@@ -146,5 +159,16 @@ public class OutboundLoadPlanningPage extends BasePage {
     public WebElement getDoneButton() { return findWebElement(doneButton); }
 
     public WebElement getDropdownList() { return findWebElement(dropdownList); }
+
+    public WebElement getLoadPlanningWarningMessage() { return findWebElement(LoadPlanningWarningMessage); }
+
+
+    public void clickLoadPlanningWarningMessage() throws InterruptedException {
+        //Waiters.waitTillLoadingPage(getDriver());
+        //Thread.sleep(12000);
+        clickOnElement(getLoadPlanningWarningMessage());
+        //Waiters.waitTillLoadingPage(getDriver());
+        //Waiters.waitABit(5000);
+    }
 
 }

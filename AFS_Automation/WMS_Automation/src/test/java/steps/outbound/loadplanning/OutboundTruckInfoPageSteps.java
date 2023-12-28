@@ -2,49 +2,118 @@ package steps.outbound.loadplanning;
 
 import common.constants.FilePaths;
 import common.utils.objectmapper.ObjectMapperWrapper;
+
+import io.cucumber.java.Before;
+import io.cucumber.java.Scenario;
 import io.cucumber.java.en.And;
+import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import io.qameta.allure.Step;
 import lombok.extern.slf4j.Slf4j;
 import objects.inbound.InboundOrderLoadsDTO;
 import objects.outbound.OutboundOrderLoadsDTO;
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.FluentWait;
+import org.openqa.selenium.support.ui.Wait;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import ui.pages.outbound.loadplanning.OutboundTruckInfoPage;
+import common.setup.DriverManager.*;
+import ui.pages.BasePage;
 
+import java.awt.*;
+import java.time.Duration;
 import java.util.List;
+
+import common.setup.DriverManager;
 
 @Slf4j
 public class OutboundTruckInfoPageSteps {
+    Scenario scenario;
+    static boolean flag=false;
+    static String currentURL=null;
+    WebDriver driver;
+
+    static OutboundTruckInfoPage outboundtruckInfoPage;
+
     OutboundTruckInfoPage outboundTruckInfoPage = new OutboundTruckInfoPage();
     OutboundOrderLoadsDTO outboundOrderLoadsDTO = new ObjectMapperWrapper()
             .getObject(FilePaths.OUTBOUND_ORDER_LOAD_DATA, OutboundOrderLoadsDTO.class);
 
+    public OutboundTruckInfoPageSteps() throws InterruptedException, AWTException {
+    }
+
+    @Before
+    public void LaunchBrowser1(Scenario scenario) throws Exception
+    {
+        this.scenario=scenario;
+        driver =DriverManager.getDriver();
+
+    }
+
     @Step
     @And("Waits for Outbound Truck Info page to load")
     public void waitForOutboundTruckInfoPageToLoad() {
-        log.info("Waiting for Outbound Truck Info Page To Load");
-        outboundTruckInfoPage.waitOutboundTruckInfoPageToLoad();
+        if(flag==false) {
+            log.info("Waiting for Outbound Truck Info Page To Load");
+            outboundTruckInfoPage.waitOutboundTruckInfoPageToLoad();
+        }
+    }
+//    @Step
+//    @Given("User is on Truck Info Page")
+//    public void User_is_on_Truck_Info_Page() {
+//        if(flag==true) {
+//            log.info("Clicking Trailer dropdown on Truck Info page");
+//            outboundTruckInfoPage.Refresh_Page();
+//        }
+//    }
+
+    @Step
+    @And("User is on Truck Info Page")
+    public void truckInfopage() throws InterruptedException {
+
+            log.info("Clicking Trailer dropdown on Truck Info page");
+
+            String currentURL = return_back_to_select_ship_date_page();
+            driver.navigate().to(currentURL);
+            wait(4000);
+            System.out.println("Gemini 3 =======>"+currentURL);
+
+
     }
 
     @Step
     @Then("Clicks Trailer dropdown on Truck Info page")
     public void clickTrailer() {
-        log.info("Clicking Trailer dropdown on Truck Info page");
-        outboundTruckInfoPage.clickTrailerDropDown();
+
+            log.info("Clicking Trailer dropdown on Truck Info page");
+            //String currentURL =setAssignments();
+            //driver.navigate().to(currentURL);
+
+            outboundTruckInfoPage.clickTrailerDropDown();
+
     }
 
     @Step
     @Then("Clicks Door dropdown on Truck Info page")
     public void clickDoor() {
-        log.info("Clicking Door dropdown on Truck Info page");
-        outboundTruckInfoPage.clickDoorDropDown();
+
+            log.info("Clicking Door dropdown on Truck Info page");
+            outboundTruckInfoPage.clickDoorDropDown();
+
     }
 
     @Step
     @Then("Selects random trailer on Truck Info page")
     public void selectRandomTrailer() {
-        log.info("Selecting random trailer on Truck Info page");
-        outboundTruckInfoPage.selectRandomTrailer();
+
+            log.info("Selecting random trailer on Truck Info page");
+            outboundTruckInfoPage.selectRandomTrailer();
+
     }
 
     @Step
@@ -57,8 +126,12 @@ public class OutboundTruckInfoPageSteps {
     @Step
     @Then("Clicks Exit button on Truck Info page")
     public void clickExitButton() {
-        log.info("Clicking Exit button on Truck Info page");
-        outboundTruckInfoPage.clickExitButton();
+        JavascriptExecutor jse = (JavascriptExecutor)driver;
+
+        jse.executeScript("scroll(250, 0)"); // if the element is on top.
+            log.info("Clicking Exit button on Truck Info page");
+            outboundTruckInfoPage.clickExitButton();
+
     }
 
     @Step
@@ -75,11 +148,26 @@ public class OutboundTruckInfoPageSteps {
         outboundTruckInfoPage.clickEditButton();
     }
 
+//    @Step
+//    @And("user is on the Truck Info Page")
+//    public void truckInfoPage()
+//    {
+//        //String currentURL=getDriver().getCurrentUrl();
+//
+//        //getDriver().navigate().to(currentURL);
+//        //getDriver().navigate().to("currentURL");
+//        //System.out.println("Gemini 2 ==================>"+currentURL);
+//        BasePage b= new BasePage();
+//        b.refresh_navigation(currentURL);
+//
+//    }
     @Step
     @Then("Clicks Reprocess button on Truck Info page")
     public void clickReprocessButton() {
-        log.info("Clicking Reprocess button on Truck Info page");
-        outboundTruckInfoPage.clickReprocessButton();
+
+            log.info("Clicking Reprocess button on Truck Info page");
+            outboundTruckInfoPage.clickReprocessButton();
+
     }
 
     @Step
@@ -112,9 +200,10 @@ public class OutboundTruckInfoPageSteps {
 
     @Step
     @Then("Clicks No button on Warning Message")
-    public void clickNoButtonOnWarningMsg() {
+    public void clickNoButtonOnWarningMsg() throws InterruptedException {
         log.info("Clicking No button on Warning Message");
         outboundTruckInfoPage.clickNoBtn();
+        //Thread.sleep(4000);
     }
 
     @Step
@@ -220,18 +309,23 @@ public class OutboundTruckInfoPageSteps {
     public void editRouteByIndex(int index) {
         log.info("Edit route by index");
         List<String> routes = List.of(outboundOrderLoadsDTO.getOutboundRoutes().getOutboundRoute1(), outboundOrderLoadsDTO
-                .getOutboundRoutes().getOutboundRoute2(), outboundOrderLoadsDTO.getOutboundRoutes().getOutboundRoute3(),
-                 outboundOrderLoadsDTO.getOutboundRoutes().getOutboundRoute4(), outboundOrderLoadsDTO.getOutboundRoutes()
-                .getOutboundRoute5(), outboundOrderLoadsDTO.getOutboundRoutes().getOutboundRoute6(), outboundOrderLoadsDTO
-                .getOutboundRoutes().getOutboundRoute7());
+                        .getOutboundRoutes().getOutboundRoute2(), outboundOrderLoadsDTO.getOutboundRoutes().getOutboundRoute3(),
+                outboundOrderLoadsDTO.getOutboundRoutes().getOutboundRoute4(), outboundOrderLoadsDTO.getOutboundRoutes()
+                        .getOutboundRoute5(), outboundOrderLoadsDTO.getOutboundRoutes().getOutboundRoute6(), outboundOrderLoadsDTO
+                        .getOutboundRoutes().getOutboundRoute7());
         outboundTruckInfoPage.typeRoute(routes.get(index));
     }
 
     @Step
     @And("Clicks Ok button on Truck Info")
     public void clickOkButton() {
-        log.info("Clicking Yes button");
-        outboundTruckInfoPage.clickOkBtn();
+
+            log.info("Clicking Yes button");
+            outboundTruckInfoPage.clickOkBtn();
+            //currentURL= outboundtruckInfoPage.navigateToTruckInfoPage();
+            currentURL= driver.getCurrentUrl();
+
+
     }
 
     @Step
@@ -243,16 +337,20 @@ public class OutboundTruckInfoPageSteps {
 
     @Step
     @And("Clicks Yes button on Rebuilding Assignments popup")
-    public void clickYesButtonOnRebuildingAssignments() {
-        log.info("Clicking Yes button");
-        outboundTruckInfoPage.clickYesBtn();
+    public void clickYesButtonOnRebuildingAssignments() throws InterruptedException {
+
+            log.info("Clicking Yes button");
+            outboundTruckInfoPage.clickYesBtn();
+            Thread.sleep(4000);
+
     }
 
     @Step
     @And("Clicks Save button on Edit Route popup")
-    public void clickSaveForEditRoute() {
+    public void clickSaveForEditRoute() throws InterruptedException {
         log.info("Clicking Save button");
         outboundTruckInfoPage.clickSaveBtn();
+        Thread.sleep(4000);
     }
 
     @Step
@@ -272,15 +370,45 @@ public class OutboundTruckInfoPageSteps {
     @Step
     @And("Clicks Truck Info Arrow button")
     public void clickTruckInfoArrowButton() {
-        log.info("Clicking Truck Info Arrow button");
-        outboundTruckInfoPage.clickTruckInfoArrow();
+        JavascriptExecutor jse = (JavascriptExecutor)driver;
+
+        jse.executeScript("scroll(250, 0)"); // if the element is on top.
+            log.info("Clicking Truck Info Arrow button");
+            outboundTruckInfoPage.clickTruckInfoArrow();
+            outboundTruckInfoPage.clickTruckInfoArrow();
+
+
     }
 
     @Step
     @And("User gets all assignments from Truck diagram")
     public void setAssignments() {
-        log.info("Get Assignments from Truck diagram page");
-        outboundTruckInfoPage.setAssignmentsNumbersText();
+        JavascriptExecutor jse = (JavascriptExecutor)driver;
+
+        jse.executeScript("scroll(250, 0)"); // if the element is on top.
+            log.info("Get Assignments from Truck diagram page");
+            outboundTruckInfoPage.setAssignmentsNumbersText();
+
+
+            //currentURL = driver.getCurrentUrl();
+            //System.out.println("Gemini 1 ==================>" + currentURL);
+
+
+        //return currentURL;
+
+    }
+
+    @Step
+    @And("return back to select ship date page in outbound load planning")
+    public String return_back_to_select_ship_date_page() throws InterruptedException {
+        currentURL = driver.getCurrentUrl();
+        System.out.println("Gemini 1 ==================>" + currentURL);
+        driver.navigate().to(currentURL);
+        wait(4000);
+
+
+        return currentURL;
+
     }
 
     @Step
@@ -377,4 +505,6 @@ public class OutboundTruckInfoPageSteps {
         log.info("Drag and drop assignment from position " + from + " to not empty position " + to);
         outboundTruckInfoPage.dragAndDropAssignmentToExistingAssignment(from, to);
     }
+
+
 }

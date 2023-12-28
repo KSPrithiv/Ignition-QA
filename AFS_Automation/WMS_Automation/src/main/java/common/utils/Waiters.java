@@ -13,7 +13,7 @@ import static common.setup.DriverManager.getDriver;
 
 public class Waiters {
     private static final Logger LOG = LoggerFactory.getLogger(Waiters.class);
-    public static final long defaultDurationInSeconds = 100;
+    public static final long defaultDurationInSeconds = 40;  //before 100
     public static final long defaultPollingTimeOut = 1;
     public static final long defaultTimeOut = 10;
     private static Wait<WebDriver> wait;
@@ -125,7 +125,8 @@ public class Waiters {
     }
 
     public static String returnDocumentStatus(WebDriver driver) {
-        JavascriptExecutor js=(JavascriptExecutor) driver;
+        WebDriver driver1 = getDriver();
+        JavascriptExecutor js=(JavascriptExecutor) driver1;
         return (String) js.executeScript("return document.readyState");
     }
 

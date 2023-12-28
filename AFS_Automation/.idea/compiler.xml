@@ -11,5 +11,8 @@
         <module name="OMS_Automation" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="Shared_Mod_Automation" target="1.8" />
+    </bytecodeTargetLevel>
   </component>
 </project>

@@ -145,10 +145,10 @@ public class TestBase
                 chromeOptions.addArguments("--headless=new");
                 chromeOptions.addArguments("window-size=1920,1080");
                 chromeOptions.addArguments("--remote-allow-origins=*");
+                chromeOptions.setPageLoadStrategy(PageLoadStrategy.NORMAL);
                 chromeOptions.addArguments("--no-proxy-server");
                 chromeOptions.addArguments("--proxy-server='direct://'");
                 chromeOptions.addArguments("--proxy-bypass-list=*");
-                chromeOptions.setPageLoadStrategy(PageLoadStrategy.NORMAL);
                 chromeOptions.addArguments("enable-features=NetworkServiceInProcess");
                 chromeOptions.addArguments("disable-features=NetworkService");
                 chromeOptions.addArguments("--disable-browser-side-navigation");

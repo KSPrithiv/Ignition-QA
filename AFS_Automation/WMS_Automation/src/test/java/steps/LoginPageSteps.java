@@ -40,15 +40,18 @@ public class LoginPageSteps {
     public static Environment environment;
     public WebDriver driver;
 
-/*    @Before
-    public void beforeClassSetup() {
-        ConfigFactory.setProperty("path", FilePaths.PROPERTIES_PATH);
-        environment = ConfigFactory.create(Environment.class);
-        log.info("Starting app url " + environment.getUrl() + " on browser " + environment.getBrowser());
-        buildWebDriver(environment.getBrowser());
-        DriverManager.openPage(environment.getUrl());
-        new Waiters();
-    }*/
+    static boolean flag=false;
+    static String currentURL=null;
+
+//   @Before
+//    public void beforeClassSetup() {
+//        ConfigFactory.setProperty("path", FilePaths.PROPERTIES_PATH);
+//        environment = ConfigFactory.create(Environment.class);
+//        log.info("Starting app url " + environment.getUrl() + " on browser " + environment.getBrowser());
+//        buildWebDriver(environment.getBrowser());
+//        DriverManager.openPage(environment.getUrl());
+//        new Waiters();
+//    }
 
     @Before
     public void LaunchBrowser(Scenario scenario) throws Exception
@@ -73,18 +76,20 @@ public class LoginPageSteps {
     @Step
     @Given("User signs in the application")
     public void loginToApplication() {
-        ConfigFactory.setProperty("path", FilePaths.PROPERTIES_PATH);
-        environment = ConfigFactory.create(Environment.class);
-        log.info("Login to application");
-        UserData userData = UserData.builder()
-                .username(environment.getUserName())
-                .password(environment.getPassword())
-                .build();
-        loginPage.waitForLoginPageToLoad();
-        loginPage.fillInLoginField(userData.getUsername());
-        loginPage.fillInPasswordField(userData.getPassword());
-        loginPage.clickSignIn();
-        Waiters.waitTillLoadingPage(getDriver());
+        if(flag==false) {
+            ConfigFactory.setProperty("path", FilePaths.PROPERTIES_PATH);
+            environment = ConfigFactory.create(Environment.class);
+            log.info("Login to application");
+            UserData userData = UserData.builder()
+                    .username(environment.getUserName())
+                    .password(environment.getPassword())
+                    .build();
+            loginPage.waitForLoginPageToLoad();
+            loginPage.fillInLoginField(userData.getUsername());
+            loginPage.fillInPasswordField(userData.getPassword());
+            loginPage.clickSignIn();
+            //Waiters.waitTillLoadingPage(getDriver());
+        }
     }
 
     @Step

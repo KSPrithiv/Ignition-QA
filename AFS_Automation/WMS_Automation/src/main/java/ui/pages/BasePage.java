@@ -90,6 +90,9 @@ public class BasePage {
 
     public void refresh() { getDriver().navigate().refresh(); }
 
+    public void refresh_navigation(String currentURL1)
+    { getDriver().navigate().to(currentURL1); }
+
     public void inputText(WebElement element, CharSequence... dataToSend) {
        element.sendKeys(dataToSend);
     }
@@ -138,7 +141,8 @@ public class BasePage {
 
     public void clickOnElement(WebElement element) {
         try {
-            Waiters.waitForElementToBeClickable(element);
+            getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+            //Waiters.waitForElementToBeClickable(element);
             element.click();
         } catch (StaleElementReferenceException e) {
             jsClick(element);

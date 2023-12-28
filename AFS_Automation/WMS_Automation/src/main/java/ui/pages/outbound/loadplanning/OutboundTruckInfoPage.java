@@ -1,16 +1,31 @@
 package ui.pages.outbound.loadplanning;
 
 import common.utils.Waiters;
+import io.cucumber.java.Scenario;
+import io.cucumber.java.Before;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.PageFactory;
 import ui.pages.BasePage;
+
+import java.awt.*;
 import java.util.List;
 import java.util.Random;
 import java.util.stream.Collectors;
 
-import static common.setup.DriverManager.getDriver;
+import common.setup.DriverManager;
 
 public class OutboundTruckInfoPage extends BasePage {
+
+    WebDriver driver;
+    Scenario scenario;
+    
+
+    static boolean exists=false;
+    static String currentURL=null;
+
+
     By truckInfoTitle = By.cssSelector(".i-card__card__title-area__title");
     By exitButton = By.xpath("//button[contains(text(), 'Exit')]");
     By exitIcon = By.xpath("//button[contains(text(), 'Exit')]//*[contains(@class, 'icon')]");
@@ -87,33 +102,37 @@ public class OutboundTruckInfoPage extends BasePage {
     By notification = By.className("i-notification-text");
     By loader = By.cssSelector(".loader");
 
+
+
+
+
     public void waitOutboundTruckInfoPageToLoad() {
-        waitUntilInvisible(40, loader);
-        Waiters.waitABit(10000);
-        Waiters.waitTillLoadingPage(getDriver());
+        waitUntilInvisible(15, loader);
+        Waiters.waitABit(5000);
+        //Waiters.waitTillLoadingPage(driver);
         Waiters.waitForElementToBeDisplay(getTruckDiagramLabel());
     }
 
     private WebElement getAvailableAssignment(String positionNum) {
-        Waiters.waitTillLoadingPage(getDriver());
+        Waiters.waitTillLoadingPage(driver);
         return findWebElement(By.xpath("//div[contains(@class, 'lp_pallet_body')][.//div[@class='lp_pallet_no']//div[text()='"
                 + positionNum + "']]//div[@class='lp_pallet_top_filler']"));
     }
 
     private WebElement getFreeAssignmentPlace(String positionNum) {
-        Waiters.waitTillLoadingPage(getDriver());
+        Waiters.waitTillLoadingPage(driver);
         return findWebElement(By.xpath("//div[contains(@class, 'palletChildMainDiv')][.//div[contains(@class, 'lp_pallet_no') and text()='"
                 + positionNum + "']]"));
     }
 
     private WebElement getFullAssignmentPlace(String positionNum) {
-        Waiters.waitTillLoadingPage(getDriver());
+        Waiters.waitTillLoadingPage(driver);
         return findWebElement(By.xpath("//div[contains(@class, 'lp_pallet_wrap')][.//div[contains(@class, 'lp_pallet_no_center') and text()='"
                 + positionNum + "']]"));
     }
 
     public List<WebElement> getAssignmentPopupRows(int number) {
-        Waiters.waitTillLoadingPage(getDriver());
+        Waiters.waitTillLoadingPage(driver);
         Waiters.waitABit(2000);
         String id = getAssignments().get(number).findElement(By.cssSelector(".palletHeaderContainer")).getText().trim()
                 .substring(getAssignments().get(number).findElement(By.cssSelector(".palletHeaderContainer"))
@@ -137,15 +156,19 @@ public class OutboundTruckInfoPage extends BasePage {
         Waiters.waitForElementToBeDisplay(getTrailerDropDown());
         clickOnElement(findWebElement(By.xpath("//div[contains(@class, 'k-animation-container-shown')]//li[@role='option'] and contains(text(), '"
                 + trailer + "')")));
-        Waiters.waitTillLoadingPage(getDriver());
+        Waiters.waitTillLoadingPage(driver);
     }
 
     public void selectRandomTrailer() {
         waitUntilInvisible(3, loader);
         Waiters.waitForElementToBeDisplay(getTrailerDropDown());
         int size = getTrailersListSize();
-        clickOnElement(getTrailers().get(new Random().nextInt(size)));
-        Waiters.waitTillLoadingPage(getDriver());
+        waitUntilInvisible(3, loader);
+        clickOnElement(getTrailers().get(new Random().nextInt(1)));
+        waitUntilInvisible(3, loader);
+        //clickOnElement(findWebElement(By.xpath("button[@id='btnWarnYes'][text()='Yes']")));
+        Waiters.waitTillLoadingPage(driver);
+        //button[@id='btnWarnYes'][text()='Yes']
     }
 
     public void clickTrailerDropDown() {
@@ -167,13 +190,13 @@ public class OutboundTruckInfoPage extends BasePage {
                 .findFirst()
                 .orElse(null);
         clickOnElement(option);
-        Waiters.waitTillLoadingPage(getDriver());
+        Waiters.waitTillLoadingPage(driver);
     }
 
     public void clickYesButton() {
         Waiters.waitForElementToBeDisplay(getYesButton());
         clickOnElement(getYesButton());
-        Waiters.waitTillLoadingPage(getDriver());
+        Waiters.waitTillLoadingPage(driver);
     }
 
     public void clickNoButton() {
@@ -229,6 +252,7 @@ public class OutboundTruckInfoPage extends BasePage {
     }
 
     public void clickReprocessButton() {
+        waitUntilInvisible(1, loader);
         Waiters.waitForElementToBeDisplay(getReprocessButton());
         clickOnElement(getReprocessButton());
     }
@@ -275,7 +299,7 @@ public class OutboundTruckInfoPage extends BasePage {
     }
 
     public void typeShipDate(String date) {
-        Waiters.waitTillLoadingPage(getDriver());
+        Waiters.waitTillLoadingPage(driver);
         Waiters.waitABit(3000);
         Waiters.waitForElementToBeDisplay(getShipDateInput());
         clearText(getShipDateInput());
@@ -284,18 +308,18 @@ public class OutboundTruckInfoPage extends BasePage {
     }
 
     public void dragAndDropAssignment(String fromPosition, String toPosition) {
-        Waiters.waitTillLoadingPage(getDriver());
+        Waiters.waitTillLoadingPage(driver);
         waitUntilInvisible(4, loader);
         dragAndDropTo(getAvailableAssignment(fromPosition), getFreeAssignmentPlace(toPosition));
     }
 
     public void dragAndDropAssignmentToExistingAssignment(String fromPosition, String toPosition) {
-        Waiters.waitTillLoadingPage(getDriver());
+        Waiters.waitTillLoadingPage(driver);
         dragAndDropTo(getAvailableAssignment(fromPosition), getFullAssignmentPlace(toPosition));
     }
 
     public String getShipDateValue() {
-        Waiters.waitTillLoadingPage(getDriver());
+        Waiters.waitTillLoadingPage(driver);
         return getValue(getShipDateInput());
     }
 
@@ -333,12 +357,12 @@ public class OutboundTruckInfoPage extends BasePage {
     }
 
     public String getShipTimeValue() {
-        Waiters.waitTillLoadingPage(getDriver());
+        Waiters.waitTillLoadingPage(driver);
         return getValue(getShipTimeInput());
     }
 
     public String getDoorDropDownText() {
-        Waiters.waitTillLoadingPage(getDriver());
+        Waiters.waitTillLoadingPage(driver);
         return getText(getDoorDropDown());
     }
 
@@ -353,12 +377,12 @@ public class OutboundTruckInfoPage extends BasePage {
     }
 
     public String getWindowTitleText() {
-        Waiters.waitTillLoadingPage(getDriver());
+        Waiters.waitTillLoadingPage(driver);
         return getText(getWindowTitle());
     }
 
     public String getWarningMessageText() {
-        Waiters.waitTillLoadingPage(getDriver());
+        Waiters.waitTillLoadingPage(driver);
         return getText(getWarningMessage());
     }
 
@@ -383,7 +407,7 @@ public class OutboundTruckInfoPage extends BasePage {
     }
 
     public void clickFirstAssignment() {
-        Waiters.waitTillLoadingPage(getDriver());
+        Waiters.waitTillLoadingPage(driver);
         Waiters.waitABit(3000);
         clickOnElement(getAssignments().get(0).findElement(By.cssSelector(".lp_pallet_assignment_text")));
         waitUntilInvisible(2, loader);
@@ -418,7 +442,7 @@ public class OutboundTruckInfoPage extends BasePage {
         Waiters.waitForElementToBeDisplay(getReasonDropdown());
         clickOnElement(findWebElement(By.xpath("//div[contains(@class, 'k-animation-container-shown')]//li[@role='option' and contains(text(), '"
                         + reason + "')]")));
-        Waiters.waitTillLoadingPage(getDriver());
+        Waiters.waitTillLoadingPage(driver);
     }
 
     public void clickIncreaseValueArrow() {
@@ -446,7 +470,7 @@ public class OutboundTruckInfoPage extends BasePage {
     }
 
     public List<String> getAssignmentsNumbers() {
-        Waiters.waitTillLoadingPage(getDriver());
+        Waiters.waitTillLoadingPage(driver);
         return assignmentsNumbersList;
     }
 
@@ -725,5 +749,17 @@ public class OutboundTruckInfoPage extends BasePage {
     public WebElement getAssignmentFooter() { return findWebElement(assignmentFooter); }
 
     public WebElement getAssignmentBorder() { return findWebElement(assignmentBorder); }
+
+    public String navigateToTruckInfoPage() {
+        //exists = false;
+        currentURL= driver.getCurrentUrl();
+        return currentURL;
+    }
+
+    public void Refresh_Page() {
+        String currentURL = this.driver.getCurrentUrl();
+        //currentURL=navigateToTruckInfoPage();
+        driver.navigate().to(currentURL);
+    }
 
 }
