@@ -1051,20 +1051,25 @@ public class NewQuotePage
                 }
                 else //if (HelpersMethod.IsExists("//div[@class='i-grid']", driver))
                 {
-                    //Click on 'Add filter'
-                    //WebEle = catalogPopup.findElement(By.xpath("//button[contains(@class,'i-filter-tag__main')]/descendant::span[text()='Add filter']"));
-                    WebEle=HelpersMethod.FindByElement(driver,"xpath","//button[contains(@class,'i-filter-tag__main')]/descendant::span[text()='Add filter']");
-                    HelpersMethod.ActClick(driver, WebEle, 1000);
-
-                    //Click on 'Clear all'
-                    WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'i-filter-popup__footer')]/button[contains(text(),'Clear all')]");
-                    if(WebEle.isEnabled())
+                    List<WebElement> filters=HelpersMethod.FindByElements(driver,"xpath","//div[contains(@class,'k-widget k-window k-dialog')]/descendant::div[contains(@class,'i-filter-tag')]");
+                    if(filters.size()>1)
                     {
+                        //Click on 'Add filter'
+                        //WebEle = catalogPopup.findElement(By.xpath("//button[contains(@class,'i-filter-tag__main')]/descendant::span[text()='Add filter']"));
+                        WebEle = HelpersMethod.FindByElement(driver, "xpath", "//button[contains(@class,'i-filter-tag__main')]/descendant::span[text()='Add filter']");
                         HelpersMethod.ActClick(driver, WebEle, 1000);
-                        exists = true;
-                        if (HelpersMethod.IsExists("//div[@class='loader']", driver)) {
-                            WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 2000000);
+
+                        //Click on 'Clear all'
+                        WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'i-filter-popup__footer')]/button[contains(text(),'Clear all')]");
+                        if (WebEle.isEnabled())
+                        {
+                            HelpersMethod.ActClick(driver, WebEle, 1000);
+                            exists = true;
+                            if (HelpersMethod.IsExists("//div[@class='loader']", driver))
+                            {
+                                WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
+                                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 2000000);
+                            }
                         }
                     }
                 }

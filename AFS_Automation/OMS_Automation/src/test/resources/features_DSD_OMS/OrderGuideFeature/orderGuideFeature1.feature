@@ -121,8 +121,9 @@ Feature: Order Guide1
     And User enters Quick Product number and Sequence number
       |4|
     Then User click on Save button
+    And User should navigate back to OG page and verify OG "<OG>"  existence
     #And User should navigate back to OG page and verify OG "<OG>"  existence
-    #And User changes the Customer Account# to the previous Account#
+    And User changes the Customer Account# to the previous Account#
     Examples:
       |     OG    |
       |   OGDis14  |
@@ -143,6 +144,7 @@ Feature: Order Guide1
     And User enters Quick Product number and Sequence number
       |4|
     Then User click on Save button
+    And User should navigate back to OG page and verify OG "<OG>"  existence
     Examples:
       |  OG    |
       |OGDis14 |

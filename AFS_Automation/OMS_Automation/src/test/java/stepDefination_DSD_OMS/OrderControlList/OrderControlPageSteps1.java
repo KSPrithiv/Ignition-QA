@@ -1,19 +1,14 @@
 package stepDefination_DSD_OMS.OrderControlList;
 
-import io.cucumber.datatable.DataTable;
 import io.cucumber.java.Before;
 import io.cucumber.java.Scenario;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import org.openqa.selenium.WebDriver;
-import pages_DSD_OMS.login.HomePage;
-import pages_DSD_OMS.login.LoginPage;
 import pages_DSD_OMS.orderControlListPage.OrderControlListPage;
-import pages_DSD_OMS.orderEntry.*;
 import util.TestBase;
 
 import java.awt.*;
-import java.util.List;
 
 /**
  * @Project DSD_OMS
@@ -25,13 +20,6 @@ public class OrderControlPageSteps1
     WebDriver driver;
     Scenario scenario;
 
-    static LoginPage loginpage;
-    static HomePage homepage;
-    static OrderEntryPage orderpage;
-    static NewOrderEntryPage newOE;
-    static CheckOutSummaryPage summary;
-    static OrderHistoryPage orderhistory;
-    static CheckOutOrderPage checkorder;
     static OrderControlListPage orderControlList;
 
     static boolean exists=false;
@@ -73,5 +61,52 @@ public class OrderControlPageSteps1
     {
         orderControlList=new OrderControlListPage(driver,scenario);
         orderControlList.verifyCustomerNoteInOCL();
+    }
+
+    @Then("User should gothrough the column names displayed")
+    public void userShouldGothroughTheColumnNamesDisplayed()
+    {
+        orderControlList=new OrderControlListPage(driver,scenario);
+        orderControlList.readOrginalGridName();
+        orderControlList.readAllHeadersOfGrid();
+    }
+
+    @And("User should change the grid and gothrough the column names displayed")
+    public void userShouldChangeTheGridAndGothroughTheColumnNamesDisplayed()
+    {
+        orderControlList=new OrderControlListPage(driver,scenario);
+        orderControlList.changeGridType();
+        orderControlList.readAllHeadersOfGrid();
+        orderControlList.resetGridTypeToOriginal();
+    }
+
+    @Then("User should search for call time column and check whether filter has been disabled")
+    public void userShouldSearchForCallTimeColumnAndCheckWhetherFilterHasBeenDisabled()
+    {
+        orderControlList=new OrderControlListPage(driver,scenario);
+        orderControlList.callTimeFilterDisabled();
+    }
+
+    @Then("User should search for call back time column and check whether filter has been disabled")
+    public void userShouldSearchForCallBackTimeColumnAndCheckWhetherFilterHasBeenDisabled()
+    {
+        orderControlList=new OrderControlListPage(driver,scenario);
+        orderControlList.callBackTimeFilterDisabled();
+    }
+
+    @Then("User enters multiple Route# in Route search input box and count number of rows in OCL grid")
+    public void userEntersMultipleRouteInRouteSearchInputBoxAndCountNumberOfRowsInOCLGrid()
+    {
+        orderControlList=new OrderControlListPage(driver,scenario);
+        orderControlList.enterMultipleRouteValue();
+        orderControlList.readAllTheCustomer();
+    }
+
+    @And("User remove route from search bar")
+    public void userRemoveRouteFromSearchBar()
+    {
+        orderControlList=new OrderControlListPage(driver,scenario);
+        orderControlList.enterMultipleRouteValue();
+        orderControlList.removeMutlipleRouteValue();
     }
 }

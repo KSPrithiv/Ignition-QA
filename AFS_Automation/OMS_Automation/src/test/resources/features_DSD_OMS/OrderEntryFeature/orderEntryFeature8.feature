@@ -38,7 +38,6 @@ Scenario: Test scenario for filtering Qty on Hand in catalog popup
   And Discard all Pending order should be displayed
   Then User should be navigated to Order Entry page
 
-
 @LastdatePickupOrder
 Scenario: Test scenario for creating order for the Last date in Pickup order dialogbox
   Given User must be on Order Entry Page
@@ -54,3 +53,17 @@ Scenario: Test scenario for creating order for the Last date in Pickup order dia
   And Click on SubmitOrder button
   Then User should be navigated to Order Entry page and compare the dates
 
+@SearchProductCatalogIndexDialogbox
+Scenario: Test scenario for searching for product in catalog index dialog box
+  Given User must be on Order Entry Page
+  Then User must click Start Order button
+  Then User should make selection between Pending order or Start New order
+  Then User should select Note from popup and Order guide from popup
+  Then Enter PO# for New order
+    |PO123|
+  Then Click on Add product drop down and select catalog option
+  And User should select Product from catalog Index popup search input box and Enter Qty for the products
+    |50|60|
+  Then Click on Next button
+  And Click on SubmitOrder button
+  Then User should be navigated to Order Entry page

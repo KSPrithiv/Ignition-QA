@@ -29,7 +29,7 @@ Feature: Order Entry7
     And User should be in Order summary page and click on back to Orderlist button
 
   @FiltersInCatalogIndexPage
-  Scenario Outline: Test scenario for filtering of products in catalog index popup
+  Scenario: Test scenario for filtering of products in catalog index popup
     Given User must be on Order Entry Page
     Then User must click Start Order button
     Then User should make selection between Pending order or Start New order
@@ -38,9 +38,6 @@ Feature: Order Entry7
       | PO123 |
     Then Click on Add product drop down and select catalog option
     And User should validate Catalog dialogbox and use filters in customer index dialogbox
-  #  Examples:
-  #    | Category                | Sub Category | Brand       | OG        |
-  #    |Juices/Juice Drinks/Water| Breakfast    | DR PEPPER   | SampleOG  |
 
   @ContactInformation
   Scenario: Test scenario for finding the contact information details

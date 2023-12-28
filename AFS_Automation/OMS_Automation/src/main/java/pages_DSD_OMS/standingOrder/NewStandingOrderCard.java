@@ -143,7 +143,8 @@ public class NewStandingOrderCard
             new WebDriverWait(driver, Duration.ofMillis(2000)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(@class,'k-animation-container k-animation-container-relative k-calendar-container k-group k-reset k-animation-container-shown')]")));
 
             //Select 'From' date from Start date calender
-            if (HelpersMethod.IsExists("//div[contains(@class,'k-widget k-calendar k-calendar-infinite')]", driver)) {
+            if (HelpersMethod.IsExists("//div[contains(@class,'k-widget k-calendar k-calendar-infinite')]", driver))
+            {
                 // to fetch the web element of the modal container
                 fromDateContainer = HelpersMethod.FindByElement(driver, "xpath", "//table[@class='k-calendar-table']");
                 WebElement ele1 = fromDateContainer.findElement(By.xpath(".//td[contains(@class,'k-state-focused')]"));
@@ -209,7 +210,7 @@ public class NewStandingOrderCard
             if (HelpersMethod.IsExists("//div[@class='loader']", driver))
             {
                 WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100000);
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000000);
             }
         }
         catch (Exception e){}
@@ -217,13 +218,21 @@ public class NewStandingOrderCard
 
     public void validateStartAddStandingOrderPopup()
     {
-        HelpersMethod.waitTillElementLocatedDisplayed(driver,"xpath","//div[contains(@class,'k-widget k-window k-dialog')]",100);
-        // to fetch the web element of the modal container
-        WebElement modalContainer = driver.findElement(By.xpath("//div[contains(@class,'k-widget k-window k-dialog')]"));
+        exists=false;
+        try {
+            HelpersMethod.waitTillElementLocatedDisplayed(driver, "xpath", "//div[contains(@class,'k-widget k-window k-dialog')]", 100);
+            // to fetch the web element of the modal container
+            WebElement modalContainer = driver.findElement(By.xpath("//div[contains(@class,'k-widget k-window k-dialog')]"));
+            if (HelpersMethod.IsExists("//div[contains(text(),'Add standing order')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]", driver)) {
+                exists = true;
+            }
 
-        // to fetch the web elements of the modal content and interact with them, code to fetch content of modal title and verify it
-        //WebElement modalContentTitle = modalContainer.findElement(By.xpath(".//div[contains(@class,'k-window-title k-dialog-title')]"));
-        //Assert.assertEquals(modalContentTitle.getText(), "Add standing order", "Verify Title message");
+            // to fetch the web elements of the modal content and interact with them, code to fetch content of modal title and verify it
+            //WebElement modalContentTitle = modalContainer.findElement(By.xpath(".//div[contains(@class,'k-window-title k-dialog-title')]"));
+            //Assert.assertEquals(modalContentTitle.getText(), "Add standing order", "Verify Title message");
+            Assert.assertEquals(exists,true);
+        }
+        catch (Exception e){}
     }
 
     public void ClickOnStartDateCalender() throws InterruptedException
@@ -905,7 +914,7 @@ public class NewStandingOrderCard
             {
                 HelpersMethod.waitTillLoadingPage(driver);
             }
-
+            Thread.sleep(2000);
             if (HelpersMethod.IsExists("//div[@id='toast-container']", driver))
             {
                 scenario.log("NO DATA HAS BEEN GENERATED");
@@ -976,7 +985,7 @@ public class NewStandingOrderCard
             if(HelpersMethod.IsExists("//div[contains(text(),'Generate standing order')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
             {
                 //To zoom out browser by 67%
-                if(TestBase.testEnvironment.get_browser().equalsIgnoreCase("chrome")|TestBase.testEnvironment.get_browser().equalsIgnoreCase("edge"))
+              /*  if(TestBase.testEnvironment.get_browser().equalsIgnoreCase("chrome")|TestBase.testEnvironment.get_browser().equalsIgnoreCase("edge"))
                 {
                     JavascriptExecutor js = (JavascriptExecutor) driver;
                     js.executeScript("document.body.style.zoom='67%'");
@@ -985,7 +994,7 @@ public class NewStandingOrderCard
                 {
                     JavascriptExecutor js=(JavascriptExecutor)driver;
                     js.executeScript("document.body.style.MozTransform='67%'");
-                }
+                }*/
                 exists=true;
             }
             Assert.assertEquals(exists,true);
@@ -1084,21 +1093,26 @@ public class NewStandingOrderCard
         exists=false;
         try
         {
+            new WebDriverWait(driver,Duration.ofMillis(2000)).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(text(),'Generate standing order')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]")));
+            new WebDriverWait(driver,Duration.ofMillis(2000)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(text(),'Generate standing order')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]")));
             if(HelpersMethod.IsExists("//div[contains(text(),'Generate standing order')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
             {
-                WebElement modalContainer = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-widget k-window k-dialog')]");
+                WebElement modalContainer = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(text(),'Generate standing order')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]");
                 WebElement OkCalender = modalContainer.findElement(By.xpath(".//button[text()='Ok']"));
-                HelpersMethod.ActClick(driver, OkCalender, 40000);
+                HelpersMethod.ActClick(driver, OkCalender, 10000);
                 exists=true;
             }
                 //To zoom out browser by 100%
-                if (TestBase.testEnvironment.get_browser().equalsIgnoreCase("chrome") | TestBase.testEnvironment.get_browser().equalsIgnoreCase("edge")) {
+              /*  if (TestBase.testEnvironment.get_browser().equalsIgnoreCase("chrome") | TestBase.testEnvironment.get_browser().equalsIgnoreCase("edge"))
+                {
                     JavascriptExecutor js = (JavascriptExecutor) driver;
                     js.executeScript("document.body.style.zoom='100%'");
-                } else if (TestBase.testEnvironment.get_browser().equalsIgnoreCase("firefox")) {
+                }
+                else if (TestBase.testEnvironment.get_browser().equalsIgnoreCase("firefox"))
+                {
                     JavascriptExecutor js = (JavascriptExecutor) driver;
                     js.executeScript("document.body.style.MozTransform='100%'");
-                }
+                }*/
             Assert.assertEquals(exists,true);
         }
         catch (Exception e){}
@@ -1121,7 +1135,8 @@ public class NewStandingOrderCard
         exists=false;
         try
         {
-            if (HelpersMethod.IsExists("//div[contains(text(),'Getting list of standing order customers.')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]", driver)) {
+            if (HelpersMethod.IsExists("//div[contains(text(),'Getting list of standing order customers.')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]", driver))
+            {
                 new WebDriverWait(driver, Duration.ofMillis(100000)).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[contains(text(),'Getting list of standing order customers.')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]")));
                 exists=true;
             }

@@ -1,5 +1,6 @@
 package stepDefination_DSD_OMS.OrderGuidePage;
 
+import io.cucumber.datatable.DataTable;
 import io.cucumber.java.Before;
 import io.cucumber.java.Scenario;
 import io.cucumber.java.en.And;
@@ -13,6 +14,7 @@ import util.TestBase;
 import java.awt.*;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 
 /**
  * @Project DSD_OMS
@@ -25,9 +27,6 @@ public class OrderGuidePageStep2
     Scenario scenario;
 
     static boolean exists = false;
-    static String Prod_No=null;
-    static String OGDis=null;
-    static String WDay=null;
 
     static OrderGuidePage orderGuidePage;
     static CreateOGPage createOGPage;
@@ -38,24 +37,6 @@ public class OrderGuidePageStep2
         this.scenario = scenario;
         TestBase driver1 = TestBase.getInstanceOfDriver();
         driver = driver1.getDriver();
-    }
-
-    @Then("User enters OG Description {string} in search box and Delete the OG verify same in OG grid")
-    public void userEntersOGDescriptionInSearchBoxAndDeleteTheOGVerifySameInOGGrid(String arg0) throws InterruptedException, AWTException
-    {
-        exists = false;
-        orderGuidePage = new OrderGuidePage(driver, scenario);
-        orderGuidePage.ValidateOG();
-        exists= orderGuidePage.OGSearchBox(arg0);
-        Assert.assertEquals(exists,true);
-        orderGuidePage.SearchOGSelect(arg0);
-        createOGPage = new CreateOGPage(driver, scenario);
-        createOGPage.Click_Delete();
-        createOGPage.DeleteOk_Popup();
-        orderGuidePage = new OrderGuidePage(driver, scenario);
-        //once OG is deleted, search for OG in OG grid
-        exists=orderGuidePage.OGSearchBox(arg0);
-        Assert.assertEquals(exists,false);
     }
 
     @Then("Then User enters Description {string} and clicks on All order check box")
@@ -81,7 +62,6 @@ public class OrderGuidePageStep2
         String formattedDate = myDateObj.format(myFormatObj);
         createOGPage.CalenderStart();
         createOGPage.SelectStartDate(formattedDate, Sdate);
-
     }
 
     @And("Check for popup to appear to select National Chain {string}")
@@ -115,27 +95,10 @@ public class OrderGuidePageStep2
     }
 
     @And("User should make sure that customer reference {string} is same as of selected in OG page")
-    public void userShouldMakeSureThatCustomerReferenceIsSameAsOfSelectedInOGPage(String custRef)
+    public void userShouldMakeSureThatCustomerReferenceIsSameAsOfSelectedInOGPage(String custRef) throws InterruptedException
     {
         createOGPage=new CreateOGPage(driver,scenario);
         createOGPage.validateCustomerReference(custRef);
-    }
-
-    @Then("User enters OG Description {string} in search box and Delete cancel the OG verify same in OG grid")
-    public void userEntersOGDescriptionInSearchBoxAndDeleteCancelTheOGVerifySameInOGGrid(String arg0) throws InterruptedException, AWTException
-    {
-        exists = false;
-        orderGuidePage = new OrderGuidePage(driver, scenario);
-        exists= orderGuidePage.OGSearchBox(arg0);
-        Assert.assertEquals(exists,true);
-        orderGuidePage.SearchOGSelect(arg0);
-        createOGPage = new CreateOGPage(driver, scenario);
-        createOGPage.Click_Delete();
-        createOGPage.DeleteCancel_Popup();
-        orderGuidePage = new OrderGuidePage(driver, scenario);
-        //once OG is deleted, search for OG in OG grid
-        exists=orderGuidePage.OGSearchBox(arg0);
-        Assert.assertEquals(exists,false);
     }
 
     @Then("User should select header in OG grid for {string} functionality")
@@ -165,5 +128,89 @@ public class OrderGuidePageStep2
     {
         orderGuidePage=new OrderGuidePage(driver,scenario);
         orderGuidePage.clickAddFilterClear();
+    }
+
+    @Then("User clicks on Add product button and select Catalog from drop down for price Base OG")
+    public void userClicksOnAddProductButtonAndSelectCatalogFromDropDownForPriceBaseOG(DataTable dataTable) throws InterruptedException
+    {
+        List<List<String>> option=dataTable.asLists(String.class);
+        createOGPage=new CreateOGPage(driver,scenario);
+        createOGPage.validateNewOGPage();
+        //createOGPage.validateAllCustomerCheckBox();
+        createOGPage.ClickOnAddProduct();
+        createOGPage.SelectValueFromAddProduct(option.get(0).get(0));
+        scenario.log("OPTION SELECTED FROM ADD DROP DOWN IS "+option.get(0).get(0));
+    }
+
+    @Then("User clicks on Add product button and select Catalog from drop down for Market segment OG")
+    public void userClicksOnAddProductButtonAndSelectCatalogFromDropDownForMarketSegmentOG(DataTable dataTable) throws InterruptedException
+    {
+        List<List<String>> option=dataTable.asLists(String.class);
+        createOGPage=new CreateOGPage(driver,scenario);
+        createOGPage.validateNewOGPage();
+        //createOGPage.validateAllCustomerCheckBox();
+        createOGPage.ClickOnAddProduct();
+        createOGPage.SelectValueFromAddProduct(option.get(0).get(0));
+        scenario.log("OPTION SELECTED FROM ADD DROP DOWN IS "+option.get(0).get(0));
+    }
+
+    @Then("User should use filter input box in the OG grid {string} {string}")
+    public void userShouldUseFilterInputBoxInTheOGGrid(String type, String status) throws InterruptedException, AWTException
+    {
+        orderGuidePage=new OrderGuidePage(driver,scenario);
+        int i = 0;
+        String og=TestBase.testEnvironment.get_OrderGuide();
+        orderGuidePage.filterToSearch("Description",og,i);
+        orderGuidePage.readingOG();
+        i=0;
+        orderGuidePage.resetFilter("Description",i);
+        i=0;
+        orderGuidePage.filterToSearch("Type",type,i);
+        orderGuidePage.readingOG();
+        i=0;
+        orderGuidePage.resetFilter("Type",i);
+        i=0;
+        orderGuidePage.statusFilter("Status",status,i);
+        orderGuidePage.readingOG();
+        i=0;
+        orderGuidePage.resetFilter("Status",i);
+    }
+
+    @Then("User should use arrow symbol to sort the value in the grid")
+    public void userShouldUseArrowSymbolToSortTheValueInTheGrid() throws InterruptedException, AWTException
+    {
+        orderGuidePage=new OrderGuidePage(driver,scenario);
+        int i=1;
+        orderGuidePage.displayGridValue(i);
+        orderGuidePage.clickArrowInGrid(i);
+        orderGuidePage.displaySortedGridValue(i);
+        orderGuidePage.resetGridValue(i);
+        i=2;
+        orderGuidePage.displayGridValue(i);
+        orderGuidePage.clickArrowInGrid(i);
+        orderGuidePage.displaySortedGridValue(i);
+        orderGuidePage.resetGridValue(i);
+        i=3;
+        orderGuidePage.displayGridValue(i);
+        orderGuidePage.clickArrowInGrid(i);
+        orderGuidePage.displaySortedGridValue(i);
+        orderGuidePage.resetGridValue(i);
+        i=4;
+        orderGuidePage.displayGridValue(i);
+        orderGuidePage.clickArrowInGrid(i);
+        orderGuidePage.displaySortedGridValue(i);
+        orderGuidePage.resetGridValue(i);
+        i=5;
+        orderGuidePage.displayGridValue(i);
+        orderGuidePage.clickArrowInGrid(i);
+        orderGuidePage.displaySortedGridValue(i);
+        orderGuidePage.resetGridValue(i);
+    }
+
+    @And("Check for popup to appear to select sub customer reference for Price group base schedule")
+    public void checkForPopupToAppearToSelectSubCustomerReferenceForPriceGroupBaseSchedule() throws InterruptedException, AWTException
+    {
+        orderGuidePage = new OrderGuidePage(driver, scenario);
+        orderGuidePage.SubCustomerRef();
     }
 }

@@ -8,9 +8,11 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import org.openqa.selenium.WebDriver;
 import pages_DSD_OMS.orderEntry.*;
+import util.DataBaseConnection;
 import util.TestBase;
 
 import java.awt.*;
+import java.sql.SQLException;
 import java.util.List;
 
 /**
@@ -107,5 +109,20 @@ public class OrderEntryPageSteps8
             newOE.catalogOK();*/
             scenario.log("******************************THIS SCENARIO WORKS ONLY ON LIST VIEW****************************");
         }
+    }
+
+    @And("User should select Product from catalog Index popup search input box and Enter Qty for the products")
+    public void userShouldSelectProductFromCatalogIndexPopupSearchInputBoxAndEnterQtyForTheProducts(DataTable tabledata) throws SQLException, ClassNotFoundException, InstantiationException, IllegalAccessException, InterruptedException, AWTException
+    {
+        List<List<String>> Prod_detail = tabledata.asLists(String.class);
+        String Prod_No= DataBaseConnection.DataBaseConn(TestBase.testEnvironment.getSingle_OneMoreProd());
+        newOE=new NewOrderEntryPage(driver,scenario);
+        newOE.Validate_Catalog();
+        newOE.ResetFilter_Catalog();
+        String pro=String.valueOf(Prod_No);
+        newOE.validateCatalogProducts();
+        newOE.Search_Prod_in_CatalogIndexDialogbox(pro);
+        newOE.EnterQty(Prod_detail.get(0).get(0),Prod_detail.get(0).get(1));
+        scenario.log("PRODUCT # "+pro+" PRODUCT QTY "+Prod_detail.get(0).get(0)+" "+Prod_detail.get(0).get(1));
     }
 }

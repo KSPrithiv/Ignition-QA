@@ -4,6 +4,7 @@ import helper.HelpersMethod;
 import io.cucumber.java.Scenario;
 import io.cucumber.java.bs.A;
 import io.cucumber.java.en_old.Ac;
+import org.apache.logging.log4j.core.tools.picocli.CommandLine;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
@@ -13,6 +14,7 @@ import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
+import org.testng.IAlterSuiteListener;
 import org.w3c.dom.Text;
 import util.TestBase;
 
@@ -34,6 +36,7 @@ public class OrderControlListPage
     Scenario scenario;
 
     static String Acc_No=null;
+    static String originalGrid=null;
     static boolean exists = false;
     List<WebElement> SkipList1=null;
     List<WebElement> Skiplist2=null;
@@ -77,6 +80,9 @@ public class OrderControlListPage
 
     @FindBy(xpath="//span[contains(@class,'k-multiselect')]/descendant::input")
     private  WebElement Route;
+
+    @FindBy(xpath="//span[contains(@class,'core-grid-grid-selection-dropdown')]")
+    private WebElement gridDropDown;
 
     public OrderControlListPage(WebDriver driver, Scenario scenario)
     {
@@ -1420,6 +1426,357 @@ public class OrderControlListPage
                     exists=true;
                     break;
                 }
+            }
+            Assert.assertEquals(exists,true);
+        }
+        catch (Exception e){}
+    }
+
+    public void readOrginalGridName()
+    {
+        exists=true;
+        try
+        {
+            if(HelpersMethod.IsExists("//span[contains(@class,'core-grid-grid-selection-dropdown')]/descendant::span[@class='k-input']",driver))
+            {
+                originalGrid=HelpersMethod.FindByElement(driver,"xpath","//span[contains(@class,'core-grid-grid-selection-dropdown')]/descendant::span[@class='k-input']").getText();
+                exists=true;
+            }
+            Assert.assertEquals(exists,true);
+        }
+        catch (Exception e){}
+    }
+
+    public void readAllHeadersOfGrid()
+    {
+        exists=false;
+        String headText=null;
+        try
+        {
+            if(HelpersMethod.IsExists("//span[contains(@class,'k-column-title')]",driver))
+            {
+                List<WebElement> headers = HelpersMethod.FindByElements(driver, "xpath", "//span[contains(@class,'k-column-title')]");
+                scenario.log("HEADERS FOUND THE OCL GRID: ");
+                for (WebElement header : headers)
+                {
+                    headText = header.getText();
+                    scenario.log(headText);
+                }
+                exists=true;
+            }
+            Assert.assertEquals(exists,true);
+        }
+        catch (Exception e){}
+    }
+
+    public void changeGridType()
+    {
+        exists=false;
+        String gridText=null;
+        Actions act=new Actions(driver);
+        try
+        {
+            HelpersMethod.ActClick(driver,gridDropDown,1000);
+            List<WebElement> gridLists=HelpersMethod.FindByElements(driver,"xpath","//div[contains(@class,'k-list-container')]/descendant::ul/li");
+            for (WebElement grid:gridLists)
+            {
+                act.moveToElement(grid).build().perform();
+                gridText=grid.getText();
+                if(!originalGrid.equalsIgnoreCase(gridText))
+                {
+                    act.moveToElement(grid).build().perform();
+                    act.click().build().perform();
+                    exists=true;
+                    break;
+                }
+            }
+            if(HelpersMethod.IsExists("//div[@class='loader']",driver))
+            {
+                WebElement  WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 2000000);
+            }
+            Assert.assertEquals(exists,true);
+        }
+        catch (Exception e){}
+    }
+
+    public void resetGridTypeToOriginal()
+    {
+        exists=false;
+        String gridText=null;
+        Actions act=new Actions(driver);
+        try
+        {
+            HelpersMethod.ActClick(driver,gridDropDown,1000);
+            List<WebElement> gridLists=HelpersMethod.FindByElements(driver,"xpath","//div[contains(@class,'k-list-container')]/descendant::ul/li");
+            for (WebElement grid:gridLists)
+            {
+                act.moveToElement(grid).build().perform();
+                gridText=grid.getText();
+                if(originalGrid.equalsIgnoreCase(gridText))
+                {
+                    act.moveToElement(grid).build().perform();
+                    act.click().build().perform();
+                    exists=true;
+                    break;
+                }
+            }
+            if(HelpersMethod.IsExists("//div[@class='loader']",driver))
+            {
+                WebElement  WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 2000000);
+            }
+            Assert.assertEquals(exists,true);
+        }
+        catch (Exception e){}
+    }
+
+    public void callTimeFilterDisabled()
+    {
+        exists=false;
+        Actions act=new Actions(driver);
+        String headText=null;
+        int i=0;
+        try
+        {
+            List<WebElement> gridHeaders= HelpersMethod.FindByElements(driver,"xpath","//span[@class='k-column-title']");
+            for (WebElement gridHead:gridHeaders)
+            {
+                i++;
+                act.moveToElement(gridHead).build().perform();
+                headText=gridHead.getText();
+                if(headText.equalsIgnoreCase("Call time"))
+                {
+                    break;
+                }
+            }
+            if(HelpersMethod.IsExists("//tr[@class='k-filter-row']/descendant::th[contains(@aria-label,'Filter') and contains(@aria-colindex,'"+i+"')]/div[@class='cp-grid-hide-filter']",driver))
+            {
+                scenario.log("FILTER FOR CALL TIME HAS BEEN DISABLED");
+                exists=true;
+            }
+            else
+            {
+                scenario.log("************FILTER FOR CALL TIME SHOULD BE DISABLED************");
+                exists=false;
+            }
+            Assert.assertEquals(exists,true);
+        }
+        catch (Exception e){}
+    }
+
+    public void callBackTimeFilterDisabled()
+    {
+        exists=false;
+        Actions act=new Actions(driver);
+        String headText=null;
+        int i=0;
+        try
+        {
+            List<WebElement> gridHeaders= HelpersMethod.FindByElements(driver,"xpath","//span[@class='k-column-title']");
+            for (WebElement gridHead:gridHeaders)
+            {
+                i++;
+                act.moveToElement(gridHead).build().perform();
+                headText=gridHead.getText();
+                if(headText.equalsIgnoreCase("Call back time"))
+                {
+                    break;
+                }
+            }
+            if(HelpersMethod.IsExists("//tr[@class='k-filter-row']/descendant::th[contains(@aria-label,'Filter') and contains(@aria-colindex,'"+i+"')]/div[@class='cp-grid-hide-filter']",driver))
+            {
+                scenario.log("FILTER FOR CALL BACK TIME HAS BEEN DISABLED");
+                exists=true;
+            }
+            else
+            {
+                scenario.log("************FILTER FOR CALL BACK TIME SHOULD BE DISABLED************");
+                exists=false;
+            }
+            Assert.assertEquals(exists,true);
+        }
+        catch (Exception e){}
+    }
+
+    public void enterMultipleRouteValue()
+    {
+        Actions act=new Actions(driver);
+        WebElement route;
+        String routeText=null;
+        exists=false;
+        try
+        {
+            act.moveToElement(Route).build().perform();
+            act.click().build().perform();
+            //select route value from drop down
+            List<WebElement> routes=HelpersMethod.FindByElements(driver,"xpath","//div[contains(@class,'k-list-container')]/descendant::ul/li");
+            for(int i=0;i<=routes.size()-1;i++)
+            {
+                route=routes.get(i);
+                act.moveToElement(route).build().perform();
+                if(i==1 || i==2 || i==3)
+                {
+                    act.moveToElement(route).build().perform();
+                    act.click().build().perform();
+                    exists=true;
+                }
+            }
+            //click some where on route input box
+            WebElement routeInput=HelpersMethod.FindByElement(driver,"xpath","//span[@class='k-searchbar']/descendant::input");
+            act.moveToElement(routeInput).click().build().perform();
+
+            if(HelpersMethod.IsExists("//div[@class='loader']",driver))
+            {
+                WebElement WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 2000000);
+            }
+            //to display route numbers selected
+            List<WebElement> routeNos=HelpersMethod.FindByElements(driver,"xpath","//span[contains(@class,'k-widget k-multiselect')]/descendant::li/span[1]");
+            for(WebElement routeNo:routeNos)
+            {
+                act.moveToElement(routeNo).build().perform();
+                scenario.log("ROUTE ENTERED FOR SEARCH: " + routeNo.getText());
+            }
+            Assert.assertEquals(exists,true);
+        }
+        catch (Exception e){}
+    }
+
+    public void removeMutlipleRouteValue()
+    {
+        Actions act=new Actions(driver);
+        WebElement removeRoute;
+        try
+        {
+            List<WebElement> removeRoutes= HelpersMethod.FindByElements(driver,"xpath","//span[contains(@class,'k-widget k-multiselect')]/descendant::span[contains(@class,'k-icon k-i-close')]");
+            for (int i=0;i<=removeRoutes.size()-1;i++)
+            {
+                removeRoute=removeRoutes.get(i);
+                act.moveToElement(removeRoute).build().perform();
+                act.click().build().perform();
+                readAllTheCustomer();
+            }
+        }
+        catch (Exception e){}
+    }
+
+    public void clickOnCustomerNote()
+    {
+        exists=false;
+        int i=0;
+        String headText=null;
+        Actions act=new Actions(driver);
+        try
+        {
+            List<WebElement> heads=HelpersMethod.FindByElements(driver,"xpath","//th[contains(@class,'k-header')]");
+            for(WebElement head:heads)
+            {
+              i++;
+              act.moveToElement(head).build().perform();
+              headText=head.getText();
+              if(headText.equalsIgnoreCase("Customer note"))
+              {
+                  act.moveToElement(head).build().perform();
+                  act.click().build().perform();
+                  break;
+              }
+            }
+            if(HelpersMethod.IsExists("//tr[1]/td[" + i + "]//*[local-name()='svg']",driver))
+            {
+                WebElement customerNote = HelpersMethod.FindByElement(driver, "xpath", "//tr[1]/td[" + i + "]//*[local-name()='svg']");
+                HelpersMethod.ClickBut(driver, customerNote, 1000);
+                exists = true;
+            }
+            Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(120))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
+            Assert.assertEquals(exists,true);
+        }
+        catch (Exception e){}
+    }
+
+    public void validateCustomerNotePopup()
+    {
+        exists=false;
+        try
+        {
+            Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(120))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
+            if (HelpersMethod.IsExists("//div[@id='CustomerNotesTopDiv']/ancestor::div[contains(@class,'k-widget k-window k-dialog')]", driver))
+            {
+                scenario.log("CUSTOMER NOTE DIALOG BOX HAS BEEN FOUND");
+                exists=true;
+            }
+            Assert.assertEquals(exists,true);
+        }
+        catch (Exception e){}
+    }
+
+    public void customerNotePopup(String commentText)
+    {
+        exists=false;
+        String alertText=null;
+        Actions act=new Actions(driver);
+        try
+        {
+            if(HelpersMethod.IsExists("//div[contains(@class,'k-widget k-window k-dialog')]",driver))
+            {
+                //Click on end date calender
+                WebElement commentPopup=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-widget k-window k-dialog')]");
+                WebElement endCalender = commentPopup.findElement(By.xpath(".//label[@id='EndDate-label']/following-sibling::span/descendant::a"));
+                HelpersMethod.ActClick(driver, endCalender, 1000);
+                //identify end date and click on end date
+                WebElement endDate=HelpersMethod.FindByElement(driver,"xpath","//td[contains(@class,'k-calendar-td k-state-pending-focus')]");
+                HelpersMethod.ActClick(driver,endDate,1000);
+                //identify text area for entering comment and enter text
+                WebElement commentArea=commentPopup.findElement(By.xpath(".//textarea[@id='noteTextbox']"));
+                HelpersMethod.EnterText(driver,commentArea,1000,commentText);
+                //Click on Alert type drop down
+                WebElement alertType=commentPopup.findElement(By.xpath(".//span[@id='AlertType']"));
+                HelpersMethod.ActClick(driver, alertType,1000);
+                List<WebElement> alertTypes=HelpersMethod.FindByElements(driver,"xpath","//div[contains(@class,'k-list-container')]/descendant::ul/li");
+                for(WebElement aType:alertTypes)
+                {
+                    act.moveToElement(aType).build().perform();
+                    alertText=aType.getText();
+                    if(alertText.equalsIgnoreCase("Both"))
+                    {
+                        act.moveToElement(aType).build().perform();
+                        act.click().build().perform();
+                        break;
+                    }
+                }
+                //identify checkbox for Order Entry under alert location and click on that
+                WebElement oeCheckbox=commentPopup.findElement(By.xpath(".//input[@id='showInOrderEntry']"));
+                HelpersMethod.ActClick(driver,oeCheckbox,1000);
+                //Click on save button
+                WebElement saveButton=HelpersMethod.FindByElement(driver,"xpath",".//button[@id='SaveButton']");
+                HelpersMethod.ActClick(driver,saveButton,1000);
+
+                Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                        .withTimeout(Duration.ofSeconds(120))
+                        .pollingEvery(Duration.ofSeconds(2))
+                        .ignoring(NoSuchElementException.class);
+                wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
+                //validate content of customer note/comment entered by user with comment accepted in dialog box size are same
+                String acceptedComment=commentPopup.findElement(By.xpath(".//tr[contains(@class,'k-master-row')]/descendant::td[3]")).getText();
+                if(commentText.equalsIgnoreCase(acceptedComment))
+                {
+                    scenario.log("ENTERED TEXT IS AS FOLLOWS "+acceptedComment);
+                    exists=true;
+                }
+                //click on ok button of customer note dialog box
+                WebElement okButton=commentPopup.findElement(By.xpath(".//button[text()='Ok']"));
+                HelpersMethod.ActClick(driver,okButton,1000);
             }
             Assert.assertEquals(exists,true);
         }
