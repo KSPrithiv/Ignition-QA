@@ -66,15 +66,14 @@ public class DriverManager {
 
         //HEADLESS MODE CODE STARTS
         //options.addArguments("--headless");
-        //options.addArguments("--headless=new");
-        //options.addArguments("window-size=1280,720");
-        //Fast
-        //options.addArguments("--remote-allow-origins=*");
+        options.addArguments("--headless=new");
+        options.addArguments("--remote-allow-origins=*");
         options.addArguments("--no-proxy-server");
         options.addArguments("--proxy-server='direct://'");
         options.addArguments("--proxy-bypass-list=*");
         //options.addArguments("window-size=1920,1080");
-
+        //options.addArguments("window-size=1280,720");
+        //Fast
         //options.setPageLoadStrategy(PageLoadStrategy.EAGER); //OCT-13
         options.setPageLoadStrategy(PageLoadStrategy.NORMAL);
         options.addArguments("enable-features=NetworkServiceInProcess");
