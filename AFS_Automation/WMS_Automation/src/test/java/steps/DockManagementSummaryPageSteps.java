@@ -76,8 +76,9 @@ public class DockManagementSummaryPageSteps {
 
     @Step
     @When("Go to Outbound Order page")
-    public void goToOutboundOrderPage() {
+    public void goToOutboundOrderPage() throws InterruptedException {
         log.info("Go to Outbound Order page");
+
         dockManagementSummaryPage.clickOutboundIcon();
         dockManagementSummaryPage.clickOutboundOrdersIcon();
     }

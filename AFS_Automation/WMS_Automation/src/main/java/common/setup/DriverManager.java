@@ -46,8 +46,8 @@ public class DriverManager {
                     driverThreadLocal.set(createdDriver);
                     //setPageLoadTimeout(120);
                     //setScriptTimeout(120);
-                    setPageLoadTimeout(30L);
-                    setScriptTimeout(3L);
+                    setPageLoadTimeout(50L);
+                    setScriptTimeout(5L);
             }
         } catch (Exception ex) {
             System.out.println(".CoutingCucumberRunner.startBrowserInstance  ex");

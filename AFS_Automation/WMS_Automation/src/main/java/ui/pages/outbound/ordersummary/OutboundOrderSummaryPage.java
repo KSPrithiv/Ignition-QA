@@ -148,7 +148,7 @@ public class OutboundOrderSummaryPage extends BasePage {
     By commentsButton = By.xpath("//button[@id='btnImageNo' and contains(text(), 'Comments')]");
 
     public void waitOutboundOrderSummaryPageToLoad() {
-        waitUntilInvisible(5, loader);
+        waitUntilInvisible(8, loader);
         Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(getTitle());
         Waiters.waitForElementToBeDisplay(getTableContent());
@@ -526,7 +526,8 @@ public class OutboundOrderSummaryPage extends BasePage {
     }
 
     public void selectOutboundOrderOption(String option) {
-        Waiters.waitTillLoadingPage(getDriver());
+        //Waiters.waitTillLoadingPage(getDriver());
+        waitUntilInvisible(20, loader);
         Waiters.waitForElementToBeClickable(getOrderOptions());
         clickOnElement(getOrderOptions());
         Waiters.waitABit(4000);
@@ -591,13 +592,13 @@ public class OutboundOrderSummaryPage extends BasePage {
     }
 
     public void selectDetailsRow(int num) {
-        Waiters.waitTillLoadingPage(getDriver());
+        //Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitABit(3000);
-        waitUntilInvisible(1, loader);
+        waitUntilInvisible(20, loader);
         waitUntilStalenessOf(5, getDetailRows().get(num));
         Waiters.waitForElementToBeDisplay(getDetailRows().get(num));
         clickOnElement(getDetailRows().get(num));
-        waitUntilInvisible(2, loader);
+        waitUntilInvisible(20, loader);
     }
 
     public void selectProductRow(int num) {

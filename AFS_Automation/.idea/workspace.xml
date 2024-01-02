@@ -5,49 +5,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="509c80e0-2f2e-4497-bee7-a6c4d904e2a0" name="Changes" comment="pushing">
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/OMS_Automation/src/main/java/util/TestBase.java" beforeDir="false" afterPath="$PROJECT_DIR$/OMS_Automation/src/main/java/util/TestBase.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/OMS_Automation/target/classes/config_DSD_OMS/config_DSD.properties" beforeDir="false" afterPath="$PROJECT_DIR$/OMS_Automation/target/classes/config_DSD_OMS/config_DSD.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/WMS_Automation/Reports/Index.html" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/Reports/Index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WMS_Automation/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/WMS_Automation/src/main/java/common/setup/DriverManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/src/main/java/common/setup/DriverManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WMS_Automation/src/main/java/common/utils/Waiters.java" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/src/main/java/common/utils/Waiters.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WMS_Automation/src/main/java/objects/outbound/OutboundRoutesDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/src/main/java/objects/outbound/OutboundRoutesDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WMS_Automation/src/main/java/objects/outbound/OutboundTrailersDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/src/main/java/objects/outbound/OutboundTrailersDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WMS_Automation/src/main/java/ui/pages/BasePage.java" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/src/main/java/ui/pages/BasePage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WMS_Automation/src/main/java/ui/pages/DockManagementSummaryPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/src/main/java/ui/pages/DockManagementSummaryPage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WMS_Automation/src/main/java/ui/pages/outbound/loadplanning/OutboundLoadPlanningPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/src/main/java/ui/pages/outbound/loadplanning/OutboundLoadPlanningPage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WMS_Automation/src/main/java/ui/pages/outbound/loadplanning/OutboundTruckInfoPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/src/main/java/ui/pages/outbound/loadplanning/OutboundTruckInfoPage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WMS_Automation/src/main/java/utilWMS/TestBase.java" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/src/main/java/utilWMS/TestBase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WMS_Automation/src/main/java/ui/pages/outbound/ordersummary/OutboundOrderSummaryPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/src/main/java/ui/pages/outbound/ordersummary/OutboundOrderSummaryPage.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/WMS_Automation/src/test/java/runners/OutboundLoadPlanning1CucumberRunner.java" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/src/test/java/runners/OutboundLoadPlanning1CucumberRunner.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WMS_Automation/src/test/java/runners/OutboundLoadPlanning2CucumberRunner.java" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/src/test/java/runners/OutboundLoadPlanning2CucumberRunner.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WMS_Automation/src/test/java/runners/OutboundLoadPlanning3CucumberRunner.java" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/src/test/java/runners/OutboundLoadPlanning3CucumberRunner.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WMS_Automation/src/test/java/runners/OutboundLoadPlanning4CucumberRunner.java" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/src/test/java/runners/OutboundLoadPlanning4CucumberRunner.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WMS_Automation/src/test/java/runners/OutboundOrderSummaryOptionCucumberRunner.java" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/src/test/java/runners/OutboundOrderSummaryOptionCucumberRunner.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/WMS_Automation/src/test/java/steps/DockManagementSummaryPageSteps.java" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/src/test/java/steps/DockManagementSummaryPageSteps.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WMS_Automation/src/test/java/steps/LoginPageSteps.java" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/src/test/java/steps/LoginPageSteps.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WMS_Automation/src/test/java/steps/outbound/loadplanning/OutboundLoadPlanningPageSteps.java" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/src/test/java/steps/outbound/loadplanning/OutboundLoadPlanningPageSteps.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WMS_Automation/src/test/java/steps/outbound/loadplanning/OutboundTruckInfoPageSteps.java" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/src/test/java/steps/outbound/loadplanning/OutboundTruckInfoPageSteps.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WMS_Automation/src/test/java/steps/setupLabor/ExitReasonPageSteps.java" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/src/test/java/steps/setupLabor/ExitReasonPageSteps.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WMS_Automation/src/test/java/steps/setupLabor/FatiguePageSteps.java" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/src/test/java/steps/setupLabor/FatiguePageSteps.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WMS_Automation/src/test/java/steps/setupLabor/ShiftPageSteps.java" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/src/test/java/steps/setupLabor/ShiftPageSteps.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WMS_Automation/src/test/java/steps/validations/outbound/loadplanning/OutboundAssignmentsPageValidations.java" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/src/test/java/steps/validations/outbound/loadplanning/OutboundAssignmentsPageValidations.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WMS_Automation/src/test/java/testdata/json/OutboundOrderLoadsBatchesData.json" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/src/test/java/testdata/json/OutboundOrderLoadsBatchesData.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WMS_Automation/src/test/resources/features/outbound/loadplanning/OutboundLoadPlanning1.feature" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/src/test/resources/features/outbound/loadplanning/OutboundLoadPlanning1.feature" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WMS_Automation/src/test/resources/features/outbound/loadplanning/OutboundLoadPlanning2.feature" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/src/test/resources/features/outbound/loadplanning/OutboundLoadPlanning2.feature" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WMS_Automation/src/test/resources/features/outbound/loadplanning/OutboundLoadPlanning3.feature" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/src/test/resources/features/outbound/loadplanning/OutboundLoadPlanning3.feature" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WMS_Automation/src/test/resources/features/outbound/loadplanning/OutboundLoadPlanning4.feature" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/src/test/resources/features/outbound/loadplanning/OutboundLoadPlanning4.feature" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WMS_Automation/src/test/java/steps/outbound/ordersummary/OutboundOrderSummaryPageSteps.java" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/src/test/java/steps/outbound/ordersummary/OutboundOrderSummaryPageSteps.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WMS_Automation/src/test/resources/features/outbound/outboundordersummary/assign/OutboundOrderSummaryAssign.feature" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/src/test/resources/features/outbound/outboundordersummary/assign/OutboundOrderSummaryAssign.feature" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WMS_Automation/src/test/resources/features/outbound/outboundordersummary/orderoption/OutboundOrderSummaryOption.feature" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/src/test/resources/features/outbound/outboundordersummary/orderoption/OutboundOrderSummaryOption.feature" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/WMS_Automation/target/classes/common/setup/DriverManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/target/classes/common/setup/DriverManager.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WMS_Automation/target/classes/common/utils/Waiters.class" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/target/classes/common/utils/Waiters.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WMS_Automation/target/classes/ui/pages/BasePage.class" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/target/classes/ui/pages/BasePage.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WMS_Automation/target/classes/ui/pages/DockManagementSummaryPage.class" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/target/classes/ui/pages/DockManagementSummaryPage.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WMS_Automation/target/classes/ui/pages/outbound/loadplanning/OutboundLoadPlanningPage.class" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/target/classes/ui/pages/outbound/loadplanning/OutboundLoadPlanningPage.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WMS_Automation/target/classes/ui/pages/outbound/loadplanning/OutboundTruckInfoPage.class" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/target/classes/ui/pages/outbound/loadplanning/OutboundTruckInfoPage.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WMS_Automation/target/test-classes/steps/DockManagementSummaryPageSteps.class" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/target/test-classes/steps/DockManagementSummaryPageSteps.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WMS_Automation/target/test-classes/steps/LoginPageSteps.class" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/target/test-classes/steps/LoginPageSteps.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WMS_Automation/target/test-classes/steps/validations/outbound/loadplanning/OutboundAssignmentsPageValidations.class" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/target/test-classes/steps/validations/outbound/loadplanning/OutboundAssignmentsPageValidations.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WMS_Automation/target/classes/ui/pages/outbound/ordersummary/OutboundOrderSummaryPage.class" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/target/classes/ui/pages/outbound/ordersummary/OutboundOrderSummaryPage.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -101,7 +70,7 @@
       <recent name="C:\Users\karthikeyan.Armugam\Documents\Git_Repositories\ignition-qa\AFS_Automation\WMS_Automation\src\main\java" />
     </key>
   </component>
-  <component name="RunManager" selected="TestNG.C:/Users/karthikeyan.Armugam/Documents/Git_Repositories/ignition-qa/AFS_Automation/WMS_Automation/OutboundLoadPlanning1TestNGRunner.xml">
+  <component name="RunManager" selected="TestNG.C:/Users/karthikeyan.Armugam/Documents/Git_Repositories/ignition-qa/AFS_Automation/WMS_Automation/OutboundOrderSummaryOptionTestNGRunner.xml">
     <configuration default="true" type="JetRunConfigurationType">
       <module name="WMS_Automation" />
       <method v="2">
@@ -155,17 +124,10 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="OutboundLoadPlanning2CucumberRunner" type="TestNG" temporary="true" nameIsGenerated="true">
+    <configuration name="C:/Users/karthikeyan.Armugam/Documents/Git_Repositories/ignition-qa/AFS_Automation/WMS_Automation/OutboundOrderSummaryOptionTestNGRunner.xml" type="TestNG" temporary="true" nameIsGenerated="true">
       <module name="WMS_Automation" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="runners.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="runners" />
-      <option name="MAIN_CLASS_NAME" value="runners.OutboundLoadPlanning2CucumberRunner" />
-      <option name="TEST_OBJECT" value="CLASS" />
+      <option name="SUITE_NAME" value="$PROJECT_DIR$/WMS_Automation/OutboundOrderSummaryOptionTestNGRunner.xml" />
+      <option name="TEST_OBJECT" value="SUITE" />
       <properties />
       <listeners />
       <method v="2">
@@ -173,19 +135,19 @@
       </method>
     </configuration>
     <list>
+      <item itemvalue="TestNG.C:/Users/karthikeyan.Armugam/Documents/Git_Repositories/ignition-qa/AFS_Automation/WMS_Automation/OutboundOrderSummaryOptionTestNGRunner.xml" />
       <item itemvalue="TestNG.C:/Users/karthikeyan.Armugam/Documents/Git_Repositories/ignition-qa/AFS_Automation/WMS_Automation/OutboundLoadPlanning3TestNGRunner.xml" />
       <item itemvalue="TestNG.C:/Users/karthikeyan.Armugam/Documents/Git_Repositories/ignition-qa/AFS_Automation/WMS_Automation/OutboundLoadPlanning4TestNGRunner.xml" />
       <item itemvalue="TestNG.C:/Users/karthikeyan.Armugam/Documents/Git_Repositories/ignition-qa/AFS_Automation/WMS_Automation/OutboundLoadPlanning2TestNGRunner.xml" />
-      <item itemvalue="TestNG.OutboundLoadPlanning2CucumberRunner" />
       <item itemvalue="TestNG.C:/Users/karthikeyan.Armugam/Documents/Git_Repositories/ignition-qa/AFS_Automation/WMS_Automation/OutboundLoadPlanning1TestNGRunner.xml" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="TestNG.C:/Users/karthikeyan.Armugam/Documents/Git_Repositories/ignition-qa/AFS_Automation/WMS_Automation/OutboundOrderSummaryOptionTestNGRunner.xml" />
         <item itemvalue="TestNG.C:/Users/karthikeyan.Armugam/Documents/Git_Repositories/ignition-qa/AFS_Automation/WMS_Automation/OutboundLoadPlanning1TestNGRunner.xml" />
         <item itemvalue="TestNG.C:/Users/karthikeyan.Armugam/Documents/Git_Repositories/ignition-qa/AFS_Automation/WMS_Automation/OutboundLoadPlanning4TestNGRunner.xml" />
         <item itemvalue="TestNG.C:/Users/karthikeyan.Armugam/Documents/Git_Repositories/ignition-qa/AFS_Automation/WMS_Automation/OutboundLoadPlanning3TestNGRunner.xml" />
         <item itemvalue="TestNG.C:/Users/karthikeyan.Armugam/Documents/Git_Repositories/ignition-qa/AFS_Automation/WMS_Automation/OutboundLoadPlanning2TestNGRunner.xml" />
-        <item itemvalue="TestNG.OutboundLoadPlanning2CucumberRunner" />
       </list>
     </recent_temporary>
   </component>
@@ -222,16 +184,6 @@
           <url>file://$PROJECT_DIR$/WMS_Automation/src/main/java/ui/pages/workqueue/assignmentlist/filteroption/WorkQueueAssignmentsPage.java</url>
           <line>527</line>
           <option name="timeStamp" value="9" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/WMS_Automation/src/main/java/ui/pages/outbound/ordersummary/OutboundOrderSummaryPage.java</url>
-          <line>406</line>
-          <option name="timeStamp" value="10" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/WMS_Automation/src/main/java/ui/pages/outbound/ordersummary/OutboundOrderSummaryPage.java</url>
-          <line>249</line>
-          <option name="timeStamp" value="11" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/WMS_Automation/src/main/java/ui/pages/inbound/inboundorders/InboundOrderSummaryPage.java</url>
@@ -315,7 +267,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/WMS_Automation/src/test/java/steps/DockManagementSummaryPageSteps.java</url>
-          <line>363</line>
+          <line>364</line>
           <option name="timeStamp" value="42" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">

@@ -17,7 +17,7 @@ import java.io.IOException;
 
 import static common.setup.DriverManager.*;
 
-@CucumberOptions(features = {"src/test/resources/features/outbound/loadplanning"},
+@CucumberOptions(features = {"src/test/resources/features/outbound/loadplanning/OutboundLoadPlanning1.feature"},
         glue = {"steps"},
         plugin = {"pretty",
                 "json:target/cucumber.json",

@@ -18,15 +18,21 @@ import objects.outbound.OutboundOrderLoadsDTO;
 import objects.storeproceduresdata.outbound.OutboundSummaryParams;
 import objects.userdata.DataBaseData;
 import org.apache.commons.lang3.RandomStringUtils;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 import steps.LoginPageSteps;
+import ui.pages.BasePage;
 import ui.pages.outbound.ordersummary.OutboundOrderSummaryPage;
 import java.sql.ResultSet;
 import java.util.Calendar;
 import java.util.List;
 
 @Slf4j
-public class OutboundOrderSummaryPageSteps {
+public class OutboundOrderSummaryPageSteps extends BasePage {
+    By loader = By.cssSelector(".loader");
+    By enterOrder = By.cssSelector("input[placeholder='Enter order']");
     OutboundOrderSummaryPage outboundOrderSummaryPage = new OutboundOrderSummaryPage();
+
     StoreProceduresUtils storeProceduresUtils = new StoreProceduresUtils();
     OutboundOrderLoadsDTO outboundOrderLoadsDTO = new ObjectMapperWrapper()
             .getObject(FilePaths.OUTBOUND_ORDER_LOAD_DATA, OutboundOrderLoadsDTO.class);
@@ -63,7 +69,8 @@ public class OutboundOrderSummaryPageSteps {
 
     @Step
     @Then("Filling start date by index {int} on Outbound Order Summary page")
-    public void fillingStartDateAndEndDate(int index) {
+    public void fillingStartDateAndEndDate(int index) throws InterruptedException {
+        waitUntilInvisible(15, loader);
         log.info("Filling Outbound Order Start Date by index");
         List<String> dates = List.of(outboundOrderLoadsDTO.getStartDates().getStartDate1(), outboundOrderLoadsDTO
                 .getStartDates().getStartDate2(), outboundOrderLoadsDTO.getStartDates().getStartDate3(),
@@ -237,16 +244,23 @@ public class OutboundOrderSummaryPageSteps {
         outboundOrderSummaryPage.searchOrder(order);
     }
 
+    public WebElement getEnterOrderInput() {  return findWebElement(enterOrder); }
     @Step
     @And("Searches for order by index {int} on Outbound Order Summary page")
-    public void fillingOrderDataByIndex(int index) {
+    public void fillingOrderDataByIndex(int index) throws InterruptedException {
         log.info("Search Outbound Order Number");
+        //clears input box
+        clear(getEnterOrderInput());
         List<String> orders = List.of(outboundOrderLoadsDTO.getOutboundOrders().getOutboundOrder1(), outboundOrderLoadsDTO
                  .getOutboundOrders().getOutboundOrder2(), outboundOrderLoadsDTO.getOutboundOrders().getOutboundOrder3(),
                   outboundOrderLoadsDTO.getOutboundOrders().getOutboundOrder4(), outboundOrderLoadsDTO.getOutboundOrders()
                  .getOutboundOrder5(), outboundOrderLoadsDTO.getOutboundOrders().getOutboundOrder6(), outboundOrderLoadsDTO
                  .getOutboundOrders().getOutboundOrder7());
         outboundOrderSummaryPage.searchOrder(orders.get(index));
+        //Thread.sleep(7000);
+
+        waitUntilInvisible(10, loader);
+
     }
 
     @Step
@@ -597,7 +611,9 @@ public class OutboundOrderSummaryPageSteps {
 
     @Step
     @And("Selecting Outbound Order Image option on Outbound Order Summary page")
-    public void selectOutboundOrderImageOption() {
+    public void selectOutboundOrderImageOption() throws InterruptedException {
+        waitUntilInvisible(15, loader);
+        Thread.sleep(5000);
         log.info("Selecting Outbound Order Option " + OrderOptions.IMAGE.getOrderOption());
         outboundOrderSummaryPage.selectOutboundOrderOption(OrderOptions.IMAGE.getOrderOption());
     }
@@ -646,8 +662,9 @@ public class OutboundOrderSummaryPageSteps {
 
     @Step
     @And("Select Outbound Order Edit option")
-    public void selectOutboundOrderEditOption() {
-        log.info("Selecting Outbound Order Option " + OrderOptions.EDIT.getOrderOption());
+    public void selectOutboundOrderEditOption() throws InterruptedException {
+        Thread.sleep(5000);
+        //log.info("Selecting Outbound Order Option " + OrderOptions.EDIT.getOrderOption());
         outboundOrderSummaryPage.selectOutboundOrderOption(OrderOptions.EDIT.getOrderOption());
     }
 
