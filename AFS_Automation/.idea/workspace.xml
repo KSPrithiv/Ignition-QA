@@ -6,17 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="509c80e0-2f2e-4497-bee7-a6c4d904e2a0" name="Changes" comment="pushing">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WMS_Automation/Reports/Index.html" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/Reports/Index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WMS_Automation/src/main/java/common/setup/DriverManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/src/main/java/common/setup/DriverManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WMS_Automation/src/main/java/ui/pages/outbound/ordersummary/OutboundOrderSummaryPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/src/main/java/ui/pages/outbound/ordersummary/OutboundOrderSummaryPage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WMS_Automation/src/test/java/runners/OutboundLoadPlanning1CucumberRunner.java" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/src/test/java/runners/OutboundLoadPlanning1CucumberRunner.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/WMS_Automation/src/test/java/runners/OutboundOrderSummaryOptionCucumberRunner.java" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/src/test/java/runners/OutboundOrderSummaryOptionCucumberRunner.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WMS_Automation/src/test/java/steps/DockManagementSummaryPageSteps.java" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/src/test/java/steps/DockManagementSummaryPageSteps.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WMS_Automation/src/test/java/steps/outbound/ordersummary/OutboundOrderSummaryPageSteps.java" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/src/test/java/steps/outbound/ordersummary/OutboundOrderSummaryPageSteps.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WMS_Automation/src/test/resources/features/outbound/outboundordersummary/assign/OutboundOrderSummaryAssign.feature" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/src/test/resources/features/outbound/outboundordersummary/assign/OutboundOrderSummaryAssign.feature" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WMS_Automation/src/test/resources/features/outbound/outboundordersummary/orderoption/OutboundOrderSummaryOption.feature" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/src/test/resources/features/outbound/outboundordersummary/orderoption/OutboundOrderSummaryOption.feature" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WMS_Automation/target/classes/common/setup/DriverManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/target/classes/common/setup/DriverManager.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WMS_Automation/target/classes/ui/pages/outbound/ordersummary/OutboundOrderSummaryPage.class" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/target/classes/ui/pages/outbound/ordersummary/OutboundOrderSummaryPage.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
