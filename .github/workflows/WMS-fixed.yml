@@ -2,7 +2,7 @@ name: WMS Regression
 on:
  push:
    branches:
-     - karthikcommented
+     - karthik
  workflow_dispatch:
   
 
@@ -29,8 +29,8 @@ jobs:
       
       - name: WMS Automation module-1
         run: |
-         mvn install test -DsuiteXmlFile='OutboundLoadPlanning1TestNGRunner.xml'
-        #working-directory: AFS_Automation/WMS_Automation 
+         mvn install test -DsuiteXmlFile='InboundLoadsSummary1CucumberTestNGRunner.xml'
+        working-directory: AFS_Automation/WMS_Automation 
         
        
         
@@ -57,8 +57,8 @@ jobs:
      
       - name: WMS Automation module-2
         run: |
-         mvn install test -DsuiteXmlFile='OutboundLoadPlanning2TestNGRunner.xml'
-        #working-directory: AFS_Automation/WMS_Automation 
+         mvn install test -DsuiteXmlFile='InboundLoadsSummary2CucumberTestNGRunner.xml'
+        working-directory: AFS_Automation/WMS_Automation 
         
        
         
@@ -85,8 +85,8 @@ jobs:
    
       - name: WMS Automation module-3
         run: |
-         mvn install test -DsuiteXmlFile='OutboundLoadPlanning3TestNGRunner.xml'
-        #working-directory: AFS_Automation/WMS_Automation 
+         mvn install test -DsuiteXmlFile='InboundLoadsSummary3CucumberTestNGRunner.xml'
+        working-directory: AFS_Automation/WMS_Automation 
         
        
         
@@ -112,8 +112,8 @@ jobs:
    
       - name: WMS Automation module-4
         run: |
-         mvn install test -DsuiteXmlFile='OutboundLoadPlanning4TestNGRunner.xml'
-        #working-directory: AFS_Automation/WMS_Automation 
+         mvn install test -DsuiteXmlFile='InboundLoadsSummary4CucumberTestNGRunner.xml'
+        working-directory: AFS_Automation/WMS_Automation 
         
         # ########################################################################### 
 
@@ -137,7 +137,32 @@ jobs:
    
       - name: WMS Automation module-5
         run: |
-         mvn install test -DsuiteXmlFile='OutboundOrderSummaryOptionTestNGRunner.xml'
+         mvn install test -DsuiteXmlFile='InboundOrdersScreenCucumberTestNGRunner.xml'
+        working-directory: AFS_Automation/WMS_Automation 
+        
+        # ########################################################################### 
+
+
+  job6:  
+    needs: job5
+    name : job6 name
+    if: success() || failure()
+    runs-on: self-hosted
+    steps:
+      - name: Checkout source code
+        uses: actions/checkout@v3
+      - uses: actions/checkout@v3
+      - uses: actions/setup-java@v3
+        with:
+           distribution: temurin
+           java-version: '16'
+           cache: maven
+           -name: Build with Maven
+           run: mvn -B package --file pom.xml
+   
+      - name: WMS Automation module-6
+        run: |
+         mvn install test -DsuiteXmlFile='InboundOrdersDetailsCucumberTestNGRunner.xml'
         working-directory: AFS_Automation/WMS_Automation 
         
         # ###########################################################################
