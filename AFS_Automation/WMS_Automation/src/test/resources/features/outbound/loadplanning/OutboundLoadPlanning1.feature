@@ -1,7 +1,7 @@
 #@Outbound @Regression
 Feature: Testing of Outbound Load Planning functionality
 
-  #Background: For login to application
+
 
 
   @1

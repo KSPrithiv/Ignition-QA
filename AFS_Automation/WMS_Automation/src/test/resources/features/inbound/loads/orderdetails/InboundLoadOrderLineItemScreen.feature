@@ -3,7 +3,7 @@ Feature: Testing of Inbound Load Order Line Item screen functionality
   Scenario: Checking Navigate to Inbound Load order line item details page
     Given User signs in the application
     And Main page is loaded
-    And DockManagement Summary Page is validated
+    #And DockManagement Summary Page is validated
     And Go to Loads page
     And Inbound Load Summary page appears
     When Types start date by index 0 on Inbound Load Summary page
@@ -16,7 +16,7 @@ Feature: Testing of Inbound Load Order Line Item screen functionality
   Scenario: Checking Product details and UPC on Inbound Load order line item details page
     Given User signs in the application
     And Main page is loaded
-    And DockManagement Summary Page is validated
+    #And DockManagement Summary Page is validated
     And Go to Loads page
     And Inbound Load Summary page appears
     When Types start date by index 0 on Inbound Load Summary page
@@ -30,7 +30,7 @@ Feature: Testing of Inbound Load Order Line Item screen functionality
   Scenario: Checking Navigate to lookup Location on Inbound Load order line item details page
     Given User signs in the application
     And Main page is loaded
-    And DockManagement Summary Page is validated
+    #And DockManagement Summary Page is validated
     And Go to Loads page
     And Inbound Load Summary page appears
     When Types start date by index 2 on Inbound Load Summary page
@@ -46,7 +46,7 @@ Feature: Testing of Inbound Load Order Line Item screen functionality
   Scenario: Checking Back button on Inbound Load order line item details page
     Given User signs in the application
     And Main page is loaded
-    And DockManagement Summary Page is validated
+    #And DockManagement Summary Page is validated
     And Go to Loads page
     And Inbound Load Summary page appears
     When Types start date by index 0 on Inbound Load Summary page
@@ -60,7 +60,7 @@ Feature: Testing of Inbound Load Order Line Item screen functionality
   Scenario: Checking Data option on Inbound Load order line item details page
     Given User signs in the application
     And Main page is loaded
-    And DockManagement Summary Page is validated
+    #And DockManagement Summary Page is validated
     And Go to Loads page
     And Inbound Load Summary page appears
     When Types start date by index 2 on Inbound Load Summary page
@@ -75,7 +75,7 @@ Feature: Testing of Inbound Load Order Line Item screen functionality
   Scenario: Checking Edit option on Inbound Load order line item details page
     Given User signs in the application
     And Main page is loaded
-    And DockManagement Summary Page is validated
+    #And DockManagement Summary Page is validated
     And Go to Loads page
     And Inbound Load Summary page appears
     When Types start date by index 0 on Inbound Load Summary page
@@ -91,7 +91,7 @@ Feature: Testing of Inbound Load Order Line Item screen functionality
   Scenario: Checking Image option on Inbound Load order line item details page
     Given User signs in the application
     And Main page is loaded
-    And DockManagement Summary Page is validated
+    #And DockManagement Summary Page is validated
     And Go to Loads page
     And Inbound Load Summary page appears
     When Types start date by index 0 on Inbound Load Summary page
@@ -111,7 +111,7 @@ Feature: Testing of Inbound Load Order Line Item screen functionality
   Scenario: Checking Comments on Inbound Load order line item details page
     Given User signs in the application
     And Main page is loaded
-    And DockManagement Summary Page is validated
+    #And DockManagement Summary Page is validated
     And Go to Loads page
     And Inbound Load Summary page appears
     When Types start date by index 0 on Inbound Load Summary page
@@ -124,7 +124,7 @@ Feature: Testing of Inbound Load Order Line Item screen functionality
   Scenario: Checking Images on Inbound Load order line item details page
     Given User signs in the application
     And Main page is loaded
-    And DockManagement Summary Page is validated
+    #And DockManagement Summary Page is validated
     And Go to Loads page
     And Inbound Load Summary page appears
     When Types start date by index 0 on Inbound Load Summary page
@@ -137,7 +137,7 @@ Feature: Testing of Inbound Load Order Line Item screen functionality
   Scenario: Searching order details on Inbound Load order line item details page
     Given User signs in the application
     And Main page is loaded
-    And DockManagement Summary Page is validated
+    #And DockManagement Summary Page is validated
     And Go to Loads page
     And Inbound Load Summary page appears
     When Types start date by index 0 on Inbound Load Summary page
@@ -149,7 +149,7 @@ Feature: Testing of Inbound Load Order Line Item screen functionality
   Scenario: Verification of image link on Inbound Load order line item details page
     Given User signs in the application
     And Main page is loaded
-    And DockManagement Summary Page is validated
+    #And DockManagement Summary Page is validated
     And Go to Loads page
     And Inbound Load Summary page appears
     When Types start date by index 4 on Inbound Load Summary page

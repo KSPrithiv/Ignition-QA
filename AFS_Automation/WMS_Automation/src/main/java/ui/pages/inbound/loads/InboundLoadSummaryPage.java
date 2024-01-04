@@ -121,6 +121,8 @@ public class InboundLoadSummaryPage extends BasePage {
     By saveEditButton = By.id("saveEditButton");
     By inboundImageCaptureButton = By.cssSelector(".inboundImageCaptureOpButtonDiv button");
 
+    By layoutexpand = By.xpath("//span[@class='k-icon k-i-arrow-chevron-up']");
+    By layoutcollapse = By.xpath("//*[@id='cardRouteSummaryFilter']/button/span[1]");
     private By getCarrier(String carrier) {
         return By.xpath("//span[contains(@role,'listbox')][.//span[contains(text(), '" + carrier + "')]]");
     }
@@ -354,6 +356,7 @@ public class InboundLoadSummaryPage extends BasePage {
                 .orElseThrow(() -> new IllegalArgumentException("Option " + option + " is not found"));
         clickOnElement(webElement);
         Waiters.waitTillLoadingPage(getDriver());
+        Waiters.waitABit(3000);
     }
 
     public void clickSave() {
@@ -1448,4 +1451,7 @@ public class InboundLoadSummaryPage extends BasePage {
 
     public WebElement getInboundImageCaptureButton() { return findWebElement(inboundImageCaptureButton); }
 
+    public List<WebElement> getlayoutexpand() { return findWebElements(layoutexpand); }
+
+    public WebElement getlayoutcollapse() { return findWebElement(layoutcollapse); }
 }

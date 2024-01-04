@@ -52,8 +52,9 @@ public class DockManagementSummaryPageSteps {
 
     @Step
     @Then("Go to Loads page")
-    public void goToLoadsPage() {
+    public void goToLoadsPage() throws InterruptedException {
         log.info("Go to Loads page");
+        Thread.sleep(2000);
         dockManagementSummaryPage.clickInboundIcon();
         dockManagementSummaryPage.clickLoadsIcon();
     }

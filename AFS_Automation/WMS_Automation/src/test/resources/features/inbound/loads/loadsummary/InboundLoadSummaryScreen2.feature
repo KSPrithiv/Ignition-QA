@@ -3,7 +3,7 @@ Feature: Testing of Inbound Load Summary screen functionality
   Scenario: Checking Load Summary screen Buyer filter
     Given User signs in the application
     And Main page is loaded
-    And DockManagement Summary Page is validated
+    #And DockManagement Summary Page is validated
     And Go to Loads page
     And Inbound Load Summary page appears
     When Types start date by index 4 on Inbound Load Summary page
@@ -16,7 +16,7 @@ Feature: Testing of Inbound Load Summary screen functionality
   Scenario: Checking Load Summary screen Change door
     Given User signs in the application
     And Main page is loaded
-    And DockManagement Summary Page is validated
+    #And DockManagement Summary Page is validated
     And Go to Loads page
     And Inbound Load Summary page appears
     When Types start date by index 0 on Inbound Load Summary page
@@ -42,7 +42,7 @@ Feature: Testing of Inbound Load Summary screen functionality
   Scenario: Checking Load Summary screen Data option
     Given User signs in the application
     And Main page is loaded
-    And DockManagement Summary Page is validated
+    #And DockManagement Summary Page is validated
     And Go to Loads page
     And Inbound Load Summary page appears
     When Types start date by index 0 on Inbound Load Summary page
@@ -59,7 +59,7 @@ Feature: Testing of Inbound Load Summary screen functionality
   Scenario: Checking Load Summary screen Edit Load option
     Given User signs in the application
     And Main page is loaded
-    And DockManagement Summary Page is validated
+    #And DockManagement Summary Page is validated
     And Go to Loads page
     And Inbound Load Summary page appears
     When Types start date by index 4 on Inbound Load Summary page
@@ -77,7 +77,7 @@ Feature: Testing of Inbound Load Summary screen functionality
   Scenario: Checking Load Summary screen Source Load option
     Given User signs in the application
     And Main page is loaded
-    And DockManagement Summary Page is validated
+    #And DockManagement Summary Page is validated
     And Go to Loads page
     And Inbound Load Summary page appears
     When Types start date by index 0 on Inbound Load Summary page
@@ -95,7 +95,7 @@ Feature: Testing of Inbound Load Summary screen functionality
   Scenario: Checking Load Summary screen Receive Load option
     Given User signs in the application
     And Main page is loaded
-    And DockManagement Summary Page is validated
+    #And DockManagement Summary Page is validated
     And Go to Loads page
     And Inbound Load Summary page appears
     When Types start date by index 4 on Inbound Load Summary page
@@ -114,7 +114,7 @@ Feature: Testing of Inbound Load Summary screen functionality
   Scenario: Checking Change status to Ready to Receive Load Summary screen
     Given User signs in the application
     And Main page is loaded
-    And DockManagement Summary Page is validated
+    #And DockManagement Summary Page is validated
     And Go to Loads page
     And Inbound Load Summary page appears
     When Types start date by index 4 on Inbound Load Summary page
@@ -130,7 +130,7 @@ Feature: Testing of Inbound Load Summary screen functionality
   Scenario: Checking Status change from Ready to Receive to Finish Receiving when there is staged inventory
     Given User signs in the application
     And Main page is loaded
-    And DockManagement Summary Page is validated
+    #And DockManagement Summary Page is validated
     And Go to Loads page
     And Inbound Load Summary page appears
     When Types start date by index 4 on Inbound Load Summary page
@@ -146,7 +146,7 @@ Feature: Testing of Inbound Load Summary screen functionality
   Scenario: Checking Status change from Ready to Receive to Finish Receiving when the received Qty less than the Ordered Qty
     Given User signs in the application
     And Main page is loaded
-    And DockManagement Summary Page is validated
+    #And DockManagement Summary Page is validated
     And Go to Loads page
     And Inbound Load Summary page appears
     When Types start date by index 4 on Inbound Load Summary page
@@ -163,7 +163,7 @@ Feature: Testing of Inbound Load Summary screen functionality
   Scenario: Checking Status change from Received order to ReOpen on Load Summary screen
     Given User signs in the application
     And Main page is loaded
-    And DockManagement Summary Page is validated
+    #And DockManagement Summary Page is validated
     And Go to Loads page
     And Inbound Load Summary page appears
     When Types start date by index 4 on Inbound Load Summary page

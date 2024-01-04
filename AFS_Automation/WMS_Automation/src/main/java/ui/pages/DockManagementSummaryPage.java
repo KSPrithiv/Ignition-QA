@@ -78,7 +78,9 @@ public class DockManagementSummaryPage extends BasePage {
     By listBoxIcon = By.cssSelector("span[class='k-input']");
     By searchIcon = By.cssSelector("div[class='item-searchbar']");
     By dashboardIcon = By.xpath("//ul[contains(@class, 'drawer-menu-list-items')]//span[text()='Dashboard']");
-    By inboundIcon = By.xpath("//ul[contains(@class, 'drawer-menu-list-items')]//span[text()='Inbound']");
+
+//    By inboundIcon = By.xpath("//ul[contains(@class, 'drawer-menu-list-items')]//span[text()='Inbound']");
+    By inboundIcon = By.xpath("//span[text()='Inbound']");
     By loadsSubmenuIcon = By.xpath("//div[@class='submenu-items-list']//div[contains(text(), 'Loads') and @class='submenu-item-text']");
     By inboundOrdersSubmenuIcon = By.xpath("//div[contains(text(), 'Inbound Orders') and @class='submenu-item-text']");
     By receivingSubmenuIcon = By.xpath("//div[@class='submenu-items-list']//div[contains(text(), 'Receiving') and @class='submenu-item-text']");

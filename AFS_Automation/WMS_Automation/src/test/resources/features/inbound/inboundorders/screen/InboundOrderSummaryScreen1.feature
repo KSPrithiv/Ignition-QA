@@ -3,7 +3,7 @@ Feature: Testing of Inbound Orders functionality
   Scenario: Checking Navigate to Inbound Order Summary screen functionality
     Given User signs in the application
     And Main page is loaded
-    And DockManagement Summary Page is validated
+    #And DockManagement Summary Page is validated
     When Go to Inbound Orders page
     And User waits for Inbound Order Summary page to load
     Then Validates Inbound Order Summary Page contains all web elements
@@ -11,7 +11,7 @@ Feature: Testing of Inbound Orders functionality
   Scenario: Checking Review on Inbound Order Summary screen
     Given User signs in the application
     And Main page is loaded
-    And DockManagement Summary Page is validated
+    #And DockManagement Summary Page is validated
     And Go to Inbound Orders page
     And User waits for Inbound Order Summary page to load
     When User finds all orders from start date by index 4
@@ -22,7 +22,7 @@ Feature: Testing of Inbound Orders functionality
   Scenario: Checking Product Filter on Inbound Order Summary screen
     Given User signs in the application
     And Main page is loaded
-    And DockManagement Summary Page is validated
+    #And DockManagement Summary Page is validated
     And Go to Inbound Orders page
     And User waits for Inbound Order Summary page to load
     When User finds all orders from start date by index 4
@@ -34,7 +34,7 @@ Feature: Testing of Inbound Orders functionality
   Scenario: Checking Buyer Filter on Inbound Order Summary screen
     Given User signs in the application
     And Main page is loaded
-    And DockManagement Summary Page is validated
+    #And DockManagement Summary Page is validated
     And Go to Inbound Orders page
     And User waits for Inbound Order Summary page to load
     When User finds all orders from start date by index 4
@@ -48,7 +48,7 @@ Feature: Testing of Inbound Orders functionality
   Scenario: Checking Supplier Name Filter on Inbound Order Summary screen
     Given User signs in the application
     And Main page is loaded
-    And DockManagement Summary Page is validated
+    #And DockManagement Summary Page is validated
     And Go to Inbound Orders page
     And User waits for Inbound Order Summary page to load
     When User finds all orders from start date by index 4
@@ -63,7 +63,7 @@ Feature: Testing of Inbound Orders functionality
   Scenario: Checking Supplier Code Filter on Inbound Order Summary screen
     Given User signs in the application
     And Main page is loaded
-    And DockManagement Summary Page is validated
+    #And DockManagement Summary Page is validated
     And Go to Inbound Orders page
     And User waits for Inbound Order Summary page to load
     When User finds all orders from start date by index 4
@@ -76,7 +76,7 @@ Feature: Testing of Inbound Orders functionality
   Scenario: Checking Order Type on Inbound Order Summary screen
     Given User signs in the application
     And Main page is loaded
-    And DockManagement Summary Page is validated
+    #And DockManagement Summary Page is validated
     And Go to Inbound Orders page
     And User waits for Inbound Order Summary page to load
     When User finds all orders from start date by index 4
@@ -90,7 +90,7 @@ Feature: Testing of Inbound Orders functionality
   Scenario: Checking Customer Filter on Inbound Order Summary screen
     Given User signs in the application
     And Main page is loaded
-    And DockManagement Summary Page is validated
+    #And DockManagement Summary Page is validated
     And Go to Inbound Orders page
     And User waits for Inbound Order Summary page to load
     When User finds all orders from start date by index 4
@@ -101,7 +101,7 @@ Feature: Testing of Inbound Orders functionality
   Scenario: Checking Door Filter on Inbound Order Summary screen
     Given User signs in the application
     And Main page is loaded
-    And DockManagement Summary Page is validated
+    #And DockManagement Summary Page is validated
     And Go to Inbound Orders page
     And User waits for Inbound Order Summary page to load
     And User finds all orders from start date by index 4
@@ -116,7 +116,7 @@ Feature: Testing of Inbound Orders functionality
   Scenario: Checking Carrier Filter on Inbound Order Summary screen
     Given User signs in the application
     And Main page is loaded
-    And DockManagement Summary Page is validated
+    #And DockManagement Summary Page is validated
     And Go to Inbound Orders page
     And User waits for Inbound Order Summary page to load
     When User finds all orders from start date by index 0

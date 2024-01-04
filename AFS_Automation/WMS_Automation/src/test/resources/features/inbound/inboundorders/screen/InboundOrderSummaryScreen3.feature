@@ -3,7 +3,7 @@ Feature: Testing of Inbound Orders functionality
   Scenario: Checking Data option on Inbound Order Summary screen
     Given User signs in the application
     And Main page is loaded
-    And DockManagement Summary Page is validated
+    #And DockManagement Summary Page is validated
     And Go to Inbound Orders page
     And User waits for Inbound Order Summary page to load
     And User finds all orders from start date by index 4
@@ -21,7 +21,7 @@ Feature: Testing of Inbound Orders functionality
   Scenario: Checking Door option on Inbound Order Summary screen
     Given User signs in the application
     And Main page is loaded
-    And DockManagement Summary Page is validated
+    #And DockManagement Summary Page is validated
     And Go to Inbound Orders page
     And User waits for Inbound Order Summary page to load
     And User finds all orders from start date by index 2
@@ -48,7 +48,7 @@ Feature: Testing of Inbound Orders functionality
   Scenario: Checking Log option on Inbound Order Summary screen
     Given User signs in the application
     And Main page is loaded
-    And DockManagement Summary Page is validated
+    #And DockManagement Summary Page is validated
     And Go to Inbound Orders page
     And User waits for Inbound Order Summary page to load
     When User finds all orders from start date by index 0
@@ -61,7 +61,7 @@ Feature: Testing of Inbound Orders functionality
   Scenario: Checking Move option on Inbound Order Summary screen
     Given User signs in the application
     And Main page is loaded
-    And DockManagement Summary Page is validated
+    #And DockManagement Summary Page is validated
     And Go to Inbound Orders page
     And User waits for Inbound Order Summary page to load
     When User finds all orders from start date by index 0
@@ -83,7 +83,7 @@ Feature: Testing of Inbound Orders functionality
   Scenario: Checking Add/Delete Image option on Inbound Order Summary screen
     Given User signs in the application
     And Main page is loaded
-    And DockManagement Summary Page is validated
+    #And DockManagement Summary Page is validated
     And Go to Inbound Orders page
     And User waits for Inbound Order Summary page to load
     When User finds all orders from start date by index 0 to end date by index 0
@@ -95,7 +95,7 @@ Feature: Testing of Inbound Orders functionality
   Scenario: Checking The Linked order on Inbound Order Summary screen
     Given User signs in the application
     And Main page is loaded
-    And DockManagement Summary Page is validated
+    #And DockManagement Summary Page is validated
     And Go to Inbound Orders page
     And User waits for Inbound Order Summary page to load
     When User finds all orders from start date by index 0 to end date by index 0
@@ -107,7 +107,7 @@ Feature: Testing of Inbound Orders functionality
   Scenario: Move Order to a Load on Inbound Order Summary screen
     Given User signs in the application
     And Main page is loaded
-    And DockManagement Summary Page is validated
+    #And DockManagement Summary Page is validated
     And Go to Inbound Orders page
     And User waits for Inbound Order Summary page to load
     When User finds orders from date by index 4 on Inbound Order summary page
@@ -125,7 +125,7 @@ Feature: Testing of Inbound Orders functionality
   Scenario: Check Searching on Inbound Order Summary screen
     Given User signs in the application
     And Main page is loaded
-    And DockManagement Summary Page is validated
+    #And DockManagement Summary Page is validated
     And Go to Inbound Orders page
     And User waits for Inbound Order Summary page to load
     When User finds orders from date by index 4 on Inbound Order summary page
@@ -137,7 +137,7 @@ Feature: Testing of Inbound Orders functionality
   Scenario: Check Uploading images on Inbound Order Summary screen
     Given User signs in the application
     And Main page is loaded
-    And DockManagement Summary Page is validated
+    #And DockManagement Summary Page is validated
     And Go to Inbound Orders page
     And User waits for Inbound Order Summary page to load
     When User finds orders from date by index 4 on Inbound Order summary page

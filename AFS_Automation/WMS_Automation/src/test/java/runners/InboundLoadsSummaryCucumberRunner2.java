@@ -9,7 +9,6 @@ import io.cucumber.testng.CucumberOptions;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.aeonbits.owner.ConfigFactory;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.ITestResult;
 import org.testng.annotations.*;
 
@@ -18,8 +17,7 @@ import java.io.IOException;
 
 import static common.setup.DriverManager.*;
 
-@CucumberOptions(features = {"src/test/resources/features/inbound/inboundorders/screen/InboundOrderSummaryScreen1.feature",
-"src/test/resources/features/inbound/inboundorders/screen/InboundOrderSummaryScreen2.feature","src/test/resources/features/inbound/inboundorders/screen/InboundOrderSummaryScreen3.feature"},
+@CucumberOptions(features = {"src/test/resources/features/inbound/loads/loadsummary/InboundLoadSummaryScreen2.feature"},
         glue = {"steps"},
         plugin = {"pretty",
                 "json:target/cucumber.json",
@@ -28,7 +26,7 @@ import static common.setup.DriverManager.*;
                 "rerun:target/failedrerun.txt"
         }, monochrome = true)
 @Slf4j
-public class InboundOrdersScreenCucumberRunner extends AbstractTestNGCucumberTests {
+public class InboundLoadsSummaryCucumberRunner2 extends AbstractTestNGCucumberTests {
     public static Environment environment;
 
     @Parameters({"environment","browser"})
@@ -42,21 +40,28 @@ public class InboundOrdersScreenCucumberRunner extends AbstractTestNGCucumberTes
         new Waiters();
     }
 
-    @SneakyThrows
-    @AfterMethod
-    public void closeBrowserInstance(ITestResult iTestResult) {
-        if (driverEnabled(getDriver())) {
-            try {
-                driverThreadLocal.get().close();
-                driverThreadLocal.get().quit();
-                quitDriver();
-            } catch (Exception e) {
-                if(getDriver() instanceof ChromeDriver) {
-                    //   Runtime.getRuntime().exec("taskkill /F /IM chromedriver.exe");
-                }
-            }
-        }
-    }
+//    @SneakyThrows
+//    @AfterMethod
+//    public void closeBrowserInstance(ITestResult iTestResult) {
+//        if (driverEnabled(getDriver())) {
+//            try {
+//                driverThreadLocal.get().close();
+//                driverThreadLocal.get().quit();
+//                quitDriver();
+//            } catch (Exception e) {
+//                //   FileUtils.forceDelete(new File("C:/Users/Irina.Holovan/Desktop/chrome/" + DriverManager.COUNTER));
+//               /* System.out.println("Error closing and quitting the web driver: " + e.getMessage());
+//                quitDriver();
+////             if(getDriver() instanceof ChromeDriver){
+//                    try {
+//                        //  FileUtils.forceDelete(new File("C:/Users/Irina.Holovan/Desktop/chrome/" + DriverManager.COUNTER));
+//                        Runtime.getRuntime().exec("taskkill /F /IM chromedriver.exe");
+//                    } catch (IOException ex) {
+//                        System.out.println("Error force quitting the ChromeDriver process: " + ex.getMessage());
+//                    }*/
+//            }
+//        }
+//    }
     @AfterClass
     public static void afterClass() throws InterruptedException, MessagingException, IOException {
       //  MailSend_WMS.sendMail();

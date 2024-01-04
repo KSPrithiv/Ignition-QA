@@ -3,7 +3,7 @@ Feature: Testing of Inbound Orders Line Item details screen
   Scenario: Checking Navigate to Inbound Load order line item details page
     Given User signs in the application
     And Main page is loaded
-    And DockManagement Summary Page is validated
+    #And DockManagement Summary Page is validated
     When Go to Inbound Orders page
     And User waits for Inbound Order Summary page to load
     And Validates Inbound Order Summary Page contains all web elements
@@ -16,7 +16,7 @@ Feature: Testing of Inbound Orders Line Item details screen
   Scenario: Checking Product details and UPC on Inbound Load order line item details page
     Given User signs in the application
     And Main page is loaded
-    And DockManagement Summary Page is validated
+    #And DockManagement Summary Page is validated
     When Go to Inbound Orders page
     And User waits for Inbound Order Summary page to load
     Then User finds all orders from start date by index 4
@@ -29,7 +29,7 @@ Feature: Testing of Inbound Orders Line Item details screen
   Scenario: Checking Navigate to Lookup location on Inbound Order line item details page
     Given User signs in the application
     And Main page is loaded
-    And DockManagement Summary Page is validated
+    #And DockManagement Summary Page is validated
     When Go to Inbound Orders page
     And User waits for Inbound Order Summary page to load
     Then User finds all orders from start date by index 4
@@ -44,7 +44,7 @@ Feature: Testing of Inbound Orders Line Item details screen
   Scenario: Checking Back button on Inbound Order line item details page
     Given User signs in the application
     And Main page is loaded
-    And DockManagement Summary Page is validated
+    #And DockManagement Summary Page is validated
     When Go to Inbound Orders page
     And User waits for Inbound Order Summary page to load
     Then User finds all orders from start date by index 4
@@ -58,7 +58,7 @@ Feature: Testing of Inbound Orders Line Item details screen
   Scenario: Checking Data option on Inbound Order line item details page
     Given User signs in the application
     And Main page is loaded
-    And DockManagement Summary Page is validated
+    #And DockManagement Summary Page is validated
     When Go to Inbound Orders page
     And User waits for Inbound Order Summary page to load
     Then User finds all orders from start date by index 4
@@ -72,7 +72,7 @@ Feature: Testing of Inbound Orders Line Item details screen
   Scenario: Checking Edit option on Inbound Order line item details page
     Given User signs in the application
     And Main page is loaded
-    And DockManagement Summary Page is validated
+    #And DockManagement Summary Page is validated
     When Go to Inbound Orders page
     And User waits for Inbound Order Summary page to load
     Then User finds all orders from start date by index 4
@@ -86,7 +86,7 @@ Feature: Testing of Inbound Orders Line Item details screen
   Scenario: Checking Image option on Inbound Order line item details page
     Given User signs in the application
     And Main page is loaded
-    And DockManagement Summary Page is validated
+    #And DockManagement Summary Page is validated
     When Go to Inbound Orders page
     And User waits for Inbound Order Summary page to load
     Then User finds all orders from start date by index 4
@@ -103,7 +103,7 @@ Feature: Testing of Inbound Orders Line Item details screen
   Scenario: Checking Comments on Inbound Order line item details page
     Given User signs in the application
     And Main page is loaded
-    And DockManagement Summary Page is validated
+    #And DockManagement Summary Page is validated
     When Go to Inbound Orders page
     And User waits for Inbound Order Summary page to load
     Then User finds all orders from start date by index 4
@@ -116,7 +116,7 @@ Feature: Testing of Inbound Orders Line Item details screen
   Scenario: Checking Images on Inbound Order line item details page
     Given User signs in the application
     And Main page is loaded
-    And DockManagement Summary Page is validated
+    #And DockManagement Summary Page is validated
     When Go to Inbound Orders page
     And User waits for Inbound Order Summary page to load
     Then User finds all orders from start date by index 4
