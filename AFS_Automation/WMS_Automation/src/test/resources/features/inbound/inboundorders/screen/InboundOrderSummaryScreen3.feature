@@ -3,7 +3,7 @@ Feature: Testing of Inbound Orders functionality
   Scenario: Checking Data option on Inbound Order Summary screen
     Given User signs in the application
     And Main page is loaded
-    #And DockManagement Summary Page is validated
+    ##And DockManagement Summary Page is validated
     And Go to Inbound Orders page
     And User waits for Inbound Order Summary page to load
     And User finds all orders from start date by index 4

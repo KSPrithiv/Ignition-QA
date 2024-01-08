@@ -24,7 +24,7 @@ import static common.setup.DriverManager.*;
                 "html:Reports/Index.html",
                 "json:target/cucumber-reports/cucumber.json",
                 "rerun:target/failedrerun.txt"
-        }, monochrome = true, tags ="@1 or @21")
+        }, monochrome = true)
 @Slf4j
 public class InboundLoadsSummaryCucumberRunner1 extends AbstractTestNGCucumberTests {
     public static Environment environment;
