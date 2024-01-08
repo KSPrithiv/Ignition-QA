@@ -2,10 +2,9 @@ name: WMS Regression
 on:
  push:
    branches:
-     - karthikcommented
+     - karthik
  workflow_dispatch:
   
-
 jobs:
   job1:
     name : WMS Automation
@@ -58,7 +57,7 @@ jobs:
       - name: WMS Automation module-2
         run: |
          mvn install test -DsuiteXmlFile='OutboundLoadPlanning2TestNGRunner.xml'
-        working-directory: AFS_Automation/WMS_Automation 
+        #working-directory: AFS_Automation/WMS_Automation 
         
        
         
@@ -86,7 +85,7 @@ jobs:
       - name: WMS Automation module-3
         run: |
          mvn install test -DsuiteXmlFile='OutboundLoadPlanning3TestNGRunner.xml'
-        working-directory: AFS_Automation/WMS_Automation 
+        #working-directory: AFS_Automation/WMS_Automation 
         
        
         
@@ -113,7 +112,7 @@ jobs:
       - name: WMS Automation module-4
         run: |
          mvn install test -DsuiteXmlFile='OutboundLoadPlanning4TestNGRunner.xml'
-        working-directory: AFS_Automation/WMS_Automation 
+        #working-directory: AFS_Automation/WMS_Automation 
         
         # ###########################################################################        
   job5:  
