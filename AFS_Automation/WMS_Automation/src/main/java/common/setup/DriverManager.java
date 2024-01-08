@@ -61,13 +61,13 @@ public class DriverManager {
         ChromeOptions options = new ChromeOptions();
         //Map<String, Object> prefs = new HashMap<>();
         //options.setExperimentalOption("prefs", prefs);
-        //Irina Mandatory
+        
         //options.addArguments("profile-directory=PROFILE 2");
 
         //HEADLESS MODE CODE STARTS
         //options.addArguments("--headless");
-        //options.addArguments("--headless=new");
-        //options.addArguments("--remote-allow-origins=*");
+        options.addArguments("--headless=new");
+        options.addArguments("--remote-allow-origins=*");
         options.addArguments("--no-proxy-server");
         options.addArguments("--proxy-server='direct://'");
         options.addArguments("--proxy-bypass-list=*");
