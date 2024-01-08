@@ -3,13 +3,13 @@ Feature: Testing of Dashboard functionality
   Scenario: Checking Dashboard Icon and Spelling
     Given User signs in the application
     And Main page is loaded
-    When DockManagement Summary Page is validated
+
     Then Validates Dashboard Icons and Spelling on Dashboard page
 
   Scenario: Checking Dashboard menu item
     Given User signs in the application
     And Main page is loaded
-    And DockManagement Summary Page is validated
+
     And Validates Dashboard Icons and Spelling on Dashboard page
     When User clicks user profile icon on Dashboard page
     Then Clicks user profile logout icon on Dashboard page
@@ -18,7 +18,7 @@ Feature: Testing of Dashboard functionality
   Scenario: Checking Visibility Of Dashboard
     Given User signs in the application
     And Main page is loaded
-    And DockManagement Summary Page is validated
+
     And Validates Dashboard Icons and Spelling on Dashboard page
     And User clicks user profile icon on Dashboard page
     And Clicks user profile logout icon on Dashboard page
@@ -46,7 +46,7 @@ Feature: Testing of Dashboard functionality
   Scenario: Checking Transactions -> Tasks by Type widget
     Given User signs in the application
     And Main page is loaded
-    And DockManagement Summary Page is validated
+
     When Go to Work Queue Task page
     And Waits for Work Queue Task page to load
     And Validates Work Queue Task page is displayed
@@ -58,7 +58,7 @@ Feature: Testing of Dashboard functionality
   Scenario: Checking Transactions -> Assignments by Group widgets
     Given User signs in the application
     And Main page is loaded
-    And DockManagement Summary Page is validated
+
     And Go to Counting Sessions page
     And Validates Counting Sessions page is displayed
     And User clicks session dropdown on Counting Sessions page
@@ -74,49 +74,49 @@ Feature: Testing of Dashboard functionality
   Scenario: Checking Transactions -> Picking Status widget
     Given User signs in the application
     And Main page is loaded
-    When DockManagement Summary Page is validated
+
     And Validates Dashboard Icons and Spelling on Dashboard page
     Then Validates Picking Status graph is displayed on Dashboard page
 
   Scenario: Checking Transactions -> Late Outbound widget
     Given User signs in the application
     And Main page is loaded
-    When DockManagement Summary Page is validated
+
     And Validates Dashboard Icons and Spelling on Dashboard page
     Then Validates Late Outbound graph is displayed on Dashboard page
 
   Scenario: Checking Transactions -> Late Inbound widget
     Given User signs in the application
     And Main page is loaded
-    When DockManagement Summary Page is validated
+
     And Validates Dashboard Icons and Spelling on Dashboard page
     Then Validates Late Inbound graph is displayed on Dashboard page
 
   Scenario: Checking Transactions -> Inbound Loads widget
     Given User signs in the application
     And Main page is loaded
-    When DockManagement Summary Page is validated
+
     And Validates Dashboard Icons and Spelling on Dashboard page
     Then Validates Inbound Loads graph is displayed on Dashboard page
 
   Scenario: Checking Transactions -> Outbound Routes widget
     Given User signs in the application
     And Main page is loaded
-    When DockManagement Summary Page is validated
+
     And Validates Dashboard Icons and Spelling on Dashboard page
     Then Validates Outbound Routes graph is displayed on Dashboard page
 
   Scenario: Checking Transactions -> Inbound Orders widget
     Given User signs in the application
     And Main page is loaded
-    When DockManagement Summary Page is validated
+
     And Validates Dashboard Icons and Spelling on Dashboard page
     Then Validates Inbound Orders graph is displayed on Dashboard page
 
   Scenario: Verify that Labor widget is divided into two Parts
     Given User signs in the application
     And Main page is loaded
-    When DockManagement Summary Page is validated
+
     And Validates Dashboard Icons and Spelling on Dashboard page
     And Validates Active Operators graph is displayed on Dashboard page
     Then Validates Operators by Group graph is displayed on Dashboard page
@@ -124,7 +124,7 @@ Feature: Testing of Dashboard functionality
   Scenario: Verify Labor Active Operators
     Given User signs in the application
     And Main page is loaded
-    When DockManagement Summary Page is validated
+
     And Validates Dashboard Icons and Spelling on Dashboard page
     And Validates Active Operators graph is displayed on Dashboard page
     Then Validates Active Operators Time Groups is displayed on Dashboard page
@@ -132,7 +132,7 @@ Feature: Testing of Dashboard functionality
   Scenario: Verify the Labor widgets is visible to the logged in user
     Given User signs in the application
     And Main page is loaded
-    And DockManagement Summary Page is validated
+
     And Validates Dashboard Icons and Spelling on Dashboard page
    # And Clicks On Break graph bar on DockManagement page
   #  And Waits for Work Queue Logged In Users page to load

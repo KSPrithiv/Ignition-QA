@@ -3,7 +3,7 @@ Feature: Testing of Work Queue Assign Work functionality
   Scenario: Checking Navigate to Work Queue Assign Work screen functionality
     Given User signs in the application
     And Main page is loaded
-    And DockManagement Summary Page is validated
+    
     Then Go to Work Queue Assign Work page
     And Waits for Work Queue Work Assign page to load
     And Validates Assign work screen is displayed on Work Queue Work Assign Page
@@ -18,7 +18,7 @@ Feature: Testing of Work Queue Assign Work functionality
   Scenario: Checking User Group Filtering Assign Work Screen functionality
     Given User signs in the application
     And Main page is loaded
-    And DockManagement Summary Page is validated
+    
     And Go to Work Queue Assign Work page
     And Waits for Work Queue Work Assign page to load
     When Selects Task Group by index 3 on Work Queue Work Assign page

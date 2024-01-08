@@ -3,7 +3,7 @@ Feature: Testing of Outbound Summary Filter Option functionality
   Scenario: Checking Filtering Start and End Date
     Given User signs in the application
     And Main page is loaded
-    And DockManagement Summary Page is validated
+    
     And Go to Outbound Order page
     And Waits for Outbound Order Summary page to load
     And Validates Outbound Order Summary page is displayed
@@ -14,7 +14,7 @@ Feature: Testing of Outbound Summary Filter Option functionality
   Scenario: Checking Filtering Enter Order Data
     Given User signs in the application
     And Main page is loaded
-    And DockManagement Summary Page is validated
+    
     And Go to Outbound Order page
     And Waits for Outbound Order Summary page to load
     When Filling start date by index 2 on Outbound Order Summary page
@@ -25,7 +25,7 @@ Feature: Testing of Outbound Summary Filter Option functionality
   Scenario: Checking Filtering Get Status
     Given User signs in the application
     And Main page is loaded
-    And DockManagement Summary Page is validated
+    
     And Go to Outbound Order page
     And Waits for Outbound Order Summary page to load
     And User clicks All Statuses dropdown on Outbound Order Summary page
@@ -48,7 +48,7 @@ Feature: Testing of Outbound Summary Filter Option functionality
   Scenario: Checking Filtering Account Index Search
     Given User signs in the application
     And Main page is loaded
-    And DockManagement Summary Page is validated
+    
     And Go to Outbound Order page
     And Waits for Outbound Order Summary page to load
     And Validates Account Field contains "Enter a account" text
@@ -70,7 +70,7 @@ Feature: Testing of Outbound Summary Filter Option functionality
   Scenario: Checking Filtering Search by door
     Given User signs in the application
     And Main page is loaded
-    And DockManagement Summary Page is validated
+    
     And Go to Outbound Order page
     And Waits for Outbound Order Summary page to load
     When Filling start date by index 2 on Outbound Order Summary page
@@ -83,7 +83,7 @@ Feature: Testing of Outbound Summary Filter Option functionality
   Scenario: Check Order type functionality
     Given User signs in the application
     And Main page is loaded
-    And DockManagement Summary Page is validated
+    
     And Go to Outbound Order page
     And Waits for Outbound Order Summary page to load
     When Filling start date by index 2 on Outbound Order Summary page
@@ -98,7 +98,7 @@ Feature: Testing of Outbound Summary Filter Option functionality
   Scenario: Check Get Filter product
     Given User signs in the application
     And Main page is loaded
-    And DockManagement Summary Page is validated
+    
     And Go to Outbound Order page
     And Waits for Outbound Order Summary page to load
     And Validates default "Enter a product" product value
@@ -113,7 +113,7 @@ Feature: Testing of Outbound Summary Filter Option functionality
   Scenario: Check Get Order Display Grid Data
     Given User signs in the application
     And Main page is loaded
-    And DockManagement Summary Page is validated
+    
     And Go to Outbound Order page
     And Waits for Outbound Order Summary page to load
     When Filling start date by index 2 on Outbound Order Summary page
@@ -127,7 +127,7 @@ Feature: Testing of Outbound Summary Filter Option functionality
   Scenario: Check Get Order Route Status
     Given User signs in the application
     And Main page is loaded
-    And DockManagement Summary Page is validated
+    
     And Go to Outbound Order page
     And Waits for Outbound Order Summary page to load
     When Filling start date by index 2 on Outbound Order Summary page

@@ -4,14 +4,14 @@ Feature: Testing of Lookup Product functionality
   Scenario: Checking navigation functionality of Lookup Product screen
     Given User signs in the application
     And Main page is loaded
-    And DockManagement Summary Page is validated
+    
     When Go to Lookup Product page
     Then Validates Product Lookup Page base elements are loaded
 
 #  Scenario: Checking History screen of Lookup Product screen
 #    Given User signs in the application
 #    When Main page is loaded
-#    And DockManagement Summary Page is validated
+#    
 #    Then Go to Lookup Product page
 #    And Validates Product Lookup Page base elements are loaded
 #    And User types product "200018" on Lookup Product page
@@ -21,7 +21,7 @@ Feature: Testing of Lookup Product functionality
   Scenario: Checking Setup screen of Lookup Product screen
     Given User signs in the application
     And Main page is loaded
-    And DockManagement Summary Page is validated
+    
     And Go to Lookup Product page
     And Waits for Product Lookup page to load
     And Validates Product Lookup Page base elements are loaded
@@ -34,7 +34,7 @@ Feature: Testing of Lookup Product functionality
   Scenario: Checking Allocation screen of Lookup Product screen
     Given User signs in the application
     And Main page is loaded
-    And DockManagement Summary Page is validated
+    
     And Go to Lookup Product page
     And Waits for Product Lookup page to load
     And User clicks Add Product on Lookup Product page
@@ -47,7 +47,7 @@ Feature: Testing of Lookup Product functionality
   Scenario: Checking Product Status Change functionality of Lookup Product screen
     Given User signs in the application
     And Main page is loaded
-    And DockManagement Summary Page is validated
+    
     And Go to Lookup Product page
     And Waits for Product Lookup page to load
     And User clicks Add Product on Lookup Product page
@@ -75,7 +75,7 @@ Feature: Testing of Lookup Product functionality
   Scenario: Checking Navigate to Location of Lookup Product screen
     Given User signs in the application
     And Main page is loaded
-    And DockManagement Summary Page is validated
+    
     And Go to Lookup Product page
     And Waits for Product Lookup page to load
     When User clicks Add Product on Lookup Product page
@@ -86,7 +86,7 @@ Feature: Testing of Lookup Product functionality
   Scenario: Checking Show Pallet is present on Lookup Product screen
     Given User signs in the application
     And Main page is loaded
-    And DockManagement Summary Page is validated
+    
     And Go to Lookup Product page
     And Waits for Product Lookup page to load
     When User clicks Add Product on Lookup Product page
@@ -97,7 +97,7 @@ Feature: Testing of Lookup Product functionality
   Scenario: Checking Grid Data on Lookup Product screen
     Given User signs in the application
     And Main page is loaded
-    And DockManagement Summary Page is validated
+    
     And Go to Lookup Product page
     And Waits for Product Lookup page to load
     And User clicks Add Product on Lookup Product page
@@ -121,7 +121,7 @@ Feature: Testing of Lookup Product functionality
   Scenario: Checking Product Index functionality on Lookup Product screen
     Given User signs in the application
     And Main page is loaded
-    And DockManagement Summary Page is validated
+    
     And Go to Lookup Product page
     And Waits for Product Lookup page to load
     And User clicks Add Product on Lookup Product page
@@ -135,7 +135,7 @@ Feature: Testing of Lookup Product functionality
   Scenario: Checking navigation to Product Lookup of Lookup Product screen
     Given User signs in the application
     And Main page is loaded
-    And DockManagement Summary Page is validated
+    
     And Go to Lookup Product page
     And Waits for Product Lookup page to load
     When User clicks Add Product on Lookup Product page

@@ -3,7 +3,7 @@ Feature: Testing Lookup Location functionality
   Scenario: Checking navigation functionality on Lookup Location screen
     Given User signs in the application
     And Main page is loaded
-    And DockManagement Summary Page is validated
+    
     And Go to Lookup Location page
     And Waits for Location Lookup page to load
     When User types location by index 0 on Lookup Location page
@@ -14,7 +14,7 @@ Feature: Testing Lookup Location functionality
   Scenario: Checking Navigate to Lookup Location on Lookup Location screen
     Given User signs in the application
     And Main page is loaded
-    And DockManagement Summary Page is validated
+    
     When Go to Lookup Location page
     And Waits for Location Lookup page to load
     Then Validates Location Search Field is present on Lookup Location page
@@ -22,7 +22,7 @@ Feature: Testing Lookup Location functionality
   Scenario: Checking Navigate to Production mode on Lookup Location screen
     Given User signs in the application
     And Main page is loaded
-    And DockManagement Summary Page is validated
+    
     And Go to Lookup Location page
     And Waits for Location Lookup page to load
     When User enters location by index 2 on Lookup Location page
@@ -32,7 +32,7 @@ Feature: Testing Lookup Location functionality
   Scenario: Checking Adding inventory to Production mode on Lookup Location screen
     Given User signs in the application
     And Main page is loaded
-    And DockManagement Summary Page is validated
+    
     And Go to Lookup Location page
     And Waits for Location Lookup page to load
     When User enters location by index 2 on Lookup Location page

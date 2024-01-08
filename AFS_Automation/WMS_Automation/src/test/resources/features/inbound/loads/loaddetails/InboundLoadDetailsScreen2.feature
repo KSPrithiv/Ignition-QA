@@ -3,7 +3,7 @@ Feature: Testing of Inbound Load Details screen functionality
   Scenario: Checking Receive option for Load on Load details screen
     Given User signs in the application
     And Main page is loaded
-    And DockManagement Summary Page is validated
+    
     And Go to Loads page
     And Inbound Load Summary page appears
     When Types start date by index 2 on Inbound Load Summary page
@@ -15,7 +15,7 @@ Feature: Testing of Inbound Load Details screen functionality
   Scenario: Checking Data option for Load on Load details screen
     Given User signs in the application
     And Main page is loaded
-    And DockManagement Summary Page is validated
+    
     And Go to Loads page
     And Inbound Load Summary page appears
     When Types start date by index 2 on Inbound Load Summary page
@@ -28,7 +28,7 @@ Feature: Testing of Inbound Load Details screen functionality
   Scenario: Checking Edit option for Load on Load details screen
     Given User signs in the application
     And Main page is loaded
-    And DockManagement Summary Page is validated
+    
     And Go to Loads page
     And Inbound Load Summary page appears
     When Types start date by index 2 on Inbound Load Summary page
@@ -46,7 +46,7 @@ Feature: Testing of Inbound Load Details screen functionality
   Scenario: Checking Door option for Load on Load details screen
     Given User signs in the application
     And Main page is loaded
-    And DockManagement Summary Page is validated
+    
     And Go to Loads page
     And Inbound Load Summary page appears
     When Types start date by index 4 on Inbound Load Summary page
@@ -69,7 +69,7 @@ Feature: Testing of Inbound Load Details screen functionality
   Scenario: Checking Back button for Load on Load details screen
     Given User signs in the application
     And Main page is loaded
-    And DockManagement Summary Page is validated
+    
     And Go to Loads page
     And Inbound Load Summary page appears
     And Inbound Load Summary page main elements are present

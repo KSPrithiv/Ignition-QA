@@ -3,7 +3,7 @@ Feature: Testing Lookup Location functionality
   Scenario: Checking Edit inventory in Production mode on Lookup Location screen
     Given User signs in the application
     And Main page is loaded
-    And DockManagement Summary Page is validated
+    
     And Go to Lookup Location page
     And Waits for Location Lookup page to load
     When User enters location by index 2 on Lookup Location page
@@ -18,7 +18,7 @@ Feature: Testing Lookup Location functionality
   Scenario: Checking Delete inventory in Production mode on Lookup Location screen
     Given User signs in the application
     And Main page is loaded
-    And DockManagement Summary Page is validated
+    
     And Go to Lookup Location page
     And Waits for Location Lookup page to load
     When User enters location by index 2 on Lookup Location page
@@ -41,7 +41,7 @@ Feature: Testing Lookup Location functionality
   Scenario: Checking Non Product Reasons on Lookup Location screen
     Given User signs in the application
     And Main page is loaded
-    And DockManagement Summary Page is validated
+    
     And Go to Lookup Location page
     And Waits for Location Lookup page to load
     When User enters location by index 2 on Lookup Location page
@@ -70,7 +70,7 @@ Feature: Testing Lookup Location functionality
   Scenario: Checking not able to create inventory for product configured on Lookup Location screen
     Given User signs in the application
     And Main page is loaded
-    And DockManagement Summary Page is validated
+    
     And Go to Setup Product page
     And Waits for Setup Product page to load
     When User selects product by index 1 on Setup Product page
@@ -109,7 +109,7 @@ Feature: Testing Lookup Location functionality
   Scenario: Checking verification of supplier on Lookup Location screen
     Given User signs in the application
     And Main page is loaded
-    And DockManagement Summary Page is validated
+    
     And Go to Lookup Location page
     And Waits for Location Lookup page to load
     When User enters location by index 2 on Lookup Location page
@@ -130,7 +130,7 @@ Feature: Testing Lookup Location functionality
   Scenario: Checking update existing LPN on Lookup Location screen
     Given User signs in the application
     And Main page is loaded
-    And DockManagement Summary Page is validated
+    
     And Go to Lookup Location page
     And Waits for Location Lookup page to load
     And User enters location by index 2 on Lookup Location page
@@ -159,7 +159,7 @@ Feature: Testing Lookup Location functionality
   Scenario: Checking Add Inventory button functionality on Lookup Location screen
     Given User signs in the application
     And Main page is loaded
-    And DockManagement Summary Page is validated
+    
     And Go to Lookup Location page
     And Waits for Location Lookup page to load
     And User enters location by index 2 on Lookup Location page

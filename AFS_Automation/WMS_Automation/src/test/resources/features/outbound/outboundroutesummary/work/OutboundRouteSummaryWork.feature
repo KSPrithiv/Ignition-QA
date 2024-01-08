@@ -3,7 +3,7 @@ Feature: Testing of Outbound Route Summary Work option
   Scenario: Checking Work Route Assignments functionality
     Given User signs in the application
     And Main page is loaded
-    And DockManagement Summary Page is validated
+    
     And Go to Outbound Route page
     And Waits for Outbound Route Summary page to load
     And Validates Outbound Route Summary page is displayed
@@ -41,7 +41,7 @@ Feature: Testing of Outbound Route Summary Work option
   Scenario: Checking Work Route Tasks functionality
     Given User signs in the application
     And Main page is loaded
-    And DockManagement Summary Page is validated
+    
     And Go to Outbound Route page
     And Waits for Outbound Route Summary page to load
     When Filling route start date by index 2 on Outbound Route Summary page

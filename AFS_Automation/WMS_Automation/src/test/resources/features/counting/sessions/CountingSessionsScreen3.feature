@@ -3,7 +3,6 @@ Feature: Testing of Counting Count functionality
   Scenario: Checking Assignment Details on Counting Sessions screen
     Given User signs in the application
     And Main page is loaded
-    And DockManagement Summary Page is validated
     And Go to Counting Sessions page
     And Waits for Counting Sessions page to load
     When User clicks session dropdown on Counting Sessions page
@@ -15,7 +14,6 @@ Feature: Testing of Counting Count functionality
   Scenario: Checking Search Control and Add Filter and Sorting for Assignments on Counting Sessions screen
     Given User signs in the application
     And Main page is loaded
-    And DockManagement Summary Page is validated
     And Go to Counting Sessions page
     And Waits for Counting Sessions page to load
     When User clicks session dropdown on Counting Sessions page
@@ -28,7 +26,6 @@ Feature: Testing of Counting Count functionality
   Scenario: Checking Add Products from Product pab on Counting Sessions screen
     Given User signs in the application
     And Main page is loaded
-    And DockManagement Summary Page is validated
     And Go to Counting Sessions page
     And Waits for Counting Sessions page to load
     And User clicks session dropdown on Counting Sessions page

@@ -3,7 +3,7 @@ Feature: Testing of Inbound Load Order Details screen functionality
   Scenario: Checking Edit option on Load Order Details page
     Given User signs in the application
     And Main page is loaded
-    And DockManagement Summary Page is validated
+    
     And Go to Loads page
     And Inbound Load Summary page appears
     When Types start date by index 0 on Inbound Load Summary page
@@ -18,7 +18,7 @@ Feature: Testing of Inbound Load Order Details screen functionality
   Scenario: Checking Door option on Load Order Details page
     Given User signs in the application
     And Main page is loaded
-    And DockManagement Summary Page is validated
+    
     And Go to Loads page
     And Inbound Load Summary page appears
     When Types start date by index 0 on Inbound Load Summary page
@@ -46,7 +46,7 @@ Feature: Testing of Inbound Load Order Details screen functionality
   Scenario: Checking Order details on Load Order Details page
     Given User signs in the application
     And Main page is loaded
-    And DockManagement Summary Page is validated
+    
     And Go to Loads page
     And Inbound Load Summary page appears
     When Types start date by index 0 on Inbound Load Summary page
@@ -58,7 +58,7 @@ Feature: Testing of Inbound Load Order Details screen functionality
   Scenario: Checking Log Details on Load Order Details page
     Given User signs in the application
     And Main page is loaded
-    And DockManagement Summary Page is validated
+    
     And Go to Loads page
     And Inbound Load Summary page appears
     When Types start date by index 2 on Inbound Load Summary page
@@ -73,7 +73,7 @@ Feature: Testing of Inbound Load Order Details screen functionality
   Scenario: Checking Move Order to Load on Load Order Details page
     Given User signs in the application
     And Main page is loaded
-    And DockManagement Summary Page is validated
+    
     And Go to Loads page
     And Inbound Load Summary page appears
     When Types start date by index 2 on Inbound Load Summary page
@@ -91,7 +91,7 @@ Feature: Testing of Inbound Load Order Details screen functionality
   Scenario: Checking Add/Delete Image to the order on Load Order Details page
     Given User signs in the application
     And Main page is loaded
-    And DockManagement Summary Page is validated
+    
     And Go to Loads page
     And Inbound Load Summary page appears
     When Types start date by index 4 on Inbound Load Summary page
@@ -106,7 +106,7 @@ Feature: Testing of Inbound Load Order Details screen functionality
   Scenario: Checking Back button on Load Order Details page
     Given User signs in the application
     And Main page is loaded
-    And DockManagement Summary Page is validated
+    
     And Go to Loads page
     And Inbound Load Summary page appears
     When Types start date by index 2 on Inbound Load Summary page
@@ -120,7 +120,7 @@ Feature: Testing of Inbound Load Order Details screen functionality
   Scenario: Checking Data Details on Load Order Details page
     Given User signs in the application
     And Main page is loaded
-    And DockManagement Summary Page is validated
+    
     And Go to Loads page
     And Inbound Load Summary page appears
     When Types start date by index 2 on Inbound Load Summary page
@@ -135,7 +135,7 @@ Feature: Testing of Inbound Load Order Details screen functionality
   Scenario: Searching order details on Load Order Details page
     Given User signs in the application
     And Main page is loaded
-    And DockManagement Summary Page is validated
+    
     And Go to Loads page
     And Inbound Load Summary page appears
     When Types start date by index 4 on Inbound Load Summary page

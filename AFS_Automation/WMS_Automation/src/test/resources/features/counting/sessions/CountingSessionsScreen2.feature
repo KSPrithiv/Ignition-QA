@@ -3,7 +3,6 @@ Feature: Testing of Counting Count functionality
   Scenario: Checking Release Counts on Counting Sessions screen
     Given User signs in the application
     And Main page is loaded
-    And DockManagement Summary Page is validated
     And Go to Counting Sessions page
     And Waits for Counting Sessions page to load
     And User clicks session dropdown on Counting Sessions page
@@ -40,7 +39,6 @@ Feature: Testing of Counting Count functionality
   Scenario: Checking Product details in Product tab on Counting Sessions screen
     Given User signs in the application
     And Main page is loaded
-    And DockManagement Summary Page is validated
     And Go to Counting Sessions page
     And Waits for Counting Sessions page to load
     When User clicks session dropdown on Counting Sessions page
@@ -56,7 +54,6 @@ Feature: Testing of Counting Count functionality
   Scenario: Checking Reconcile session on Counting Sessions screen
     Given User signs in the application
     And Main page is loaded
-    And DockManagement Summary Page is validated
     And Go to Counting Sessions page
     And Waits for Counting Sessions page to load
     When User clicks session dropdown on Counting Sessions page
@@ -67,7 +64,6 @@ Feature: Testing of Counting Count functionality
   Scenario: Checking Search and Add Filter functionality on Counting Sessions screen
     Given User signs in the application
     And Main page is loaded
-    And DockManagement Summary Page is validated
     And Go to Counting Sessions page
     And Waits for Counting Sessions page to load
     And User clicks session dropdown on Counting Sessions page
@@ -131,7 +127,6 @@ Feature: Testing of Counting Count functionality
   Scenario: Checking Add Products from Product tab on Counting Sessions screen
     Given User signs in the application
     And Main page is loaded
-    And DockManagement Summary Page is validated
     And Go to Counting Sessions page
     And Waits for Counting Sessions page to load
     And User clicks session dropdown on Counting Sessions page
@@ -207,7 +202,6 @@ Feature: Testing of Counting Count functionality
   Scenario: Checking Sorting and Select All on Counting Sessions screen
     Given User signs in the application
     And Main page is loaded
-    And DockManagement Summary Page is validated
     And Go to Counting Sessions page
     And Waits for Counting Sessions page to load
     And User clicks session dropdown on Counting Sessions page
@@ -245,7 +239,6 @@ Feature: Testing of Counting Count functionality
   Scenario: Checking Remove Products from Product Tab on Counting Sessions screen
     Given User signs in the application
     And Main page is loaded
-    And DockManagement Summary Page is validated
     And Go to Counting Sessions page
     And Waits for Counting Sessions page to load
     And User clicks session dropdown on Counting Sessions page
@@ -267,7 +260,6 @@ Feature: Testing of Counting Count functionality
   Scenario: Checking Generate locations from Product tab on Counting Sessions screen
     Given User signs in the application
     And Main page is loaded
-    And DockManagement Summary Page is validated
     And Go to Counting Sessions page
     And Waits for Counting Sessions page to load
     When User clicks session dropdown on Counting Sessions page
@@ -281,7 +273,6 @@ Feature: Testing of Counting Count functionality
   Scenario: Checking Delete Assignments on Counting Sessions screen
     Given User signs in the application
     And Main page is loaded
-    And DockManagement Summary Page is validated
     And Go to Counting Sessions page
     And Waits for Counting Sessions page to load
     And User clicks session dropdown on Counting Sessions page

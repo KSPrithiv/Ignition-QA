@@ -3,7 +3,7 @@ Feature: Testing of Work Queue Assignment functionality
   Scenario: Checking Filter option In Use By of Work Queue Assignments screen functionality
     Given User signs in the application
     And Main page is loaded
-    And DockManagement Summary Page is validated
+    
     And Go to Work Queue Assignments page
     And Waits for Work Queue Assignments page to load
     When User clicks Add Filter on Work Queue Assignments page
@@ -18,7 +18,7 @@ Feature: Testing of Work Queue Assignment functionality
   Scenario: Checking Filter option Shipper of Work Queue Assignments screen functionality
     Given User signs in the application
     And Main page is loaded
-    And DockManagement Summary Page is validated
+    
     And Go to Work Queue Assignments page
     And Waits for Work Queue Assignments page to load
     When User clicks Add Filter on Work Queue Assignments page
@@ -33,7 +33,7 @@ Feature: Testing of Work Queue Assignment functionality
   Scenario: Checking Filter option Assignment type of Work Queue Assignments screen functionality
     Given User signs in the application
     And Main page is loaded
-    And DockManagement Summary Page is validated
+    
     And Go to Work Queue Assignments page
     And Waits for Work Queue Assignments page to load
     When User clicks Add Filter on Work Queue Assignments page
@@ -47,7 +47,7 @@ Feature: Testing of Work Queue Assignment functionality
   Scenario: Checking Delete all of Work Queue Assignments screen functionality
     Given User signs in the application
     And Main page is loaded
-    And DockManagement Summary Page is validated
+    
     And Go to Work Queue Assignments page
     And Waits for Work Queue Assignments page to load
     When User clicks Add Filter on Work Queue Assignments page

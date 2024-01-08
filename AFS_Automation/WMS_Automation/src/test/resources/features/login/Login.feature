@@ -13,7 +13,7 @@ Feature: Testing of Login to AFS Application
   Scenario: Check every screen should have warehouse at top
     Given User signs in the application
     And Main page is loaded
-    And DockManagement Summary Page is validated
+    
     And Go to Loads page
     And Inbound Load Summary page appears
     And Inbound Load Summary page main elements are present

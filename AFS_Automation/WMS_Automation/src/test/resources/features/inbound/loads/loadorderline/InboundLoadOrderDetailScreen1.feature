@@ -4,7 +4,7 @@ Feature: Testing of Inbound Load Order Details screen functionality
   Scenario: Checking Navigate to Load Order Details page
     Given User signs in the application
     And Main page is loaded
-    And DockManagement Summary Page is validated
+    
     And Go to Loads page
     And Inbound Load Summary page appears
     When Types start date by index 4 on Inbound Load Summary page
@@ -16,7 +16,7 @@ Feature: Testing of Inbound Load Order Details screen functionality
   Scenario: Checking Summary totals on Load Order Details page
     Given User signs in the application
     And Main page is loaded
-    And DockManagement Summary Page is validated
+    
     And Go to Loads page
     And Inbound Load Summary page appears
     And Inbound Load Summary page main elements are present
@@ -29,7 +29,7 @@ Feature: Testing of Inbound Load Order Details screen functionality
   Scenario: Checking Comments on Load Order Details page
     Given User signs in the application
     And Main page is loaded
-    And DockManagement Summary Page is validated
+    
     And Go to Loads page
     And Inbound Load Summary page appears
     And Inbound Load Summary page main elements are present
@@ -42,7 +42,7 @@ Feature: Testing of Inbound Load Order Details screen functionality
   Scenario: Checking Images on Load Order Details page
     Given User signs in the application
     And Main page is loaded
-    And DockManagement Summary Page is validated
+    
     And Go to Loads page
     And Inbound Load Summary page appears
     And Inbound Load Summary page main elements are present
@@ -55,7 +55,7 @@ Feature: Testing of Inbound Load Order Details screen functionality
   Scenario: Checking Status change from Received order to ReOpen on Load Order Details page
     Given User signs in the application
     And Main page is loaded
-    And DockManagement Summary Page is validated
+    
     And Go to Loads page
     And Inbound Load Summary page appears
     And Inbound Load Summary page main elements are present
@@ -74,7 +74,7 @@ Feature: Testing of Inbound Load Order Details screen functionality
   Scenario: Checking Status change from Ready to Receive to Finish Receiving on Load Order Details page
     Given User signs in the application
     And Main page is loaded
-    And DockManagement Summary Page is validated
+    
     And Go to Loads page
     And Inbound Load Summary page appears
     And Inbound Load Summary page main elements are present
@@ -100,7 +100,7 @@ Feature: Testing of Inbound Load Order Details screen functionality
   Scenario: Checking Status change from Open to Ready to Receive on Load Order Details page
     Given User signs in the application
     And Main page is loaded
-    And DockManagement Summary Page is validated
+    
     And Go to Loads page
     And Inbound Load Summary page appears
     And Inbound Load Summary page main elements are present
@@ -124,7 +124,7 @@ Feature: Testing of Inbound Load Order Details screen functionality
   Scenario: Checking Progress bar colors on Load Order Details page
     Given User signs in the application
     And Main page is loaded
-    And DockManagement Summary Page is validated
+    
     And Go to Loads page
     And Inbound Load Summary page appears
     And Inbound Load Summary page main elements are present
@@ -139,7 +139,7 @@ Feature: Testing of Inbound Load Order Details screen functionality
   Scenario: Checking Source option on Load Order Details page
     Given User signs in the application
     And Main page is loaded
-    And DockManagement Summary Page is validated
+    
     And Go to Loads page
     And Inbound Load Summary page appears
     And Inbound Load Summary page main elements are present
@@ -156,7 +156,7 @@ Feature: Testing of Inbound Load Order Details screen functionality
   Scenario: Checking Receive option on Load Order Details page
     Given User signs in the application
     And Main page is loaded
-    And DockManagement Summary Page is validated
+    
     And Go to Loads page
     And Inbound Load Summary page appears
     And Inbound Load Summary page main elements are present
