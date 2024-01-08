@@ -196,7 +196,9 @@ public class FeaturedProductsPageStep
     public void userRefreshesPageClicksOnPermissionsByDropDownToSelectCustomerAccountGridForWebOrder() throws InterruptedException
     {
         adminHomePage=new AdminHomePage(driver,scenario);
+        adminHomePage.handleError_Page();
         adminHomePage.refreshPage();
+        adminHomePage.ValidatingAdminHome();
         adminHomePage.ClickPermissionByAgain();
         adminHomePage.SelectCompany();
     }

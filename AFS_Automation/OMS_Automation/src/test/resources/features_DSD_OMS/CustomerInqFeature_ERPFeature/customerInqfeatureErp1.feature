@@ -13,6 +13,16 @@ Feature: Customer Inq in ERP
     Then User clicks on Copy button and popup should display in ERP
     And User should enter required details in ERP Copy popup and user should cancel copy
 
+  @SystemDefaultRealTimeChanges
+  Scenario: Test scenario for verifying System default real time changes in Payment processing drop down
+    Given User must be on Client side and select Customer Inq in ERP
+    When User should confirm that he is in Customer Inq in ERP
+    Then User click on New button for copy of customer inq in ERP
+    And User should select customer account# in customer inq in ERP
+      |Customer|
+    Then User should navigate to Telus tab in ERP
+    And User click on Payment processing and verify visibility of System default Realtime charge option in ERP
+
   @AddNote
   Scenario: Test scenario for adding note to customer inq in DSD
     Given User must be on Client side and select Customer Inq page

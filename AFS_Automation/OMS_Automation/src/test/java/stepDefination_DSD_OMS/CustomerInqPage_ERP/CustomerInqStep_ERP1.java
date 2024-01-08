@@ -1,5 +1,6 @@
 package stepDefination_DSD_OMS.CustomerInqPage_ERP;
 
+import helper.HelpersMethod;
 import io.cucumber.datatable.DataTable;
 import io.cucumber.java.Before;
 import io.cucumber.java.Scenario;
@@ -8,6 +9,7 @@ import io.cucumber.java.en.Then;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import pages_DSD_OMS.customerInquiry_DSD.CustomerInquiryPage;
+import pages_DSD_OMS.customerInquiry_DSD.IgnitionPage;
 import pages_DSD_OMS.customerInquiry_ERP.*;
 import pages_DSD_OMS.login.HomePage;
 import pages_DSD_OMS.login.LoginPage;
@@ -89,14 +91,55 @@ public class CustomerInqStep_ERP1
     @Then("User clicks on Save button without entering customer name in ERP env")
     public void userClicksOnSaveButtonWithoutEnteringCustomerNameInERPEnv()
     {
-
+        customerInquiryPageERP=new CustomerInquiryPageERP(driver,scenario);
+        customerInquiryPageERP.BillNo();
+        //customerInquiryPageERP.DescrVal();
+        customerInquiryPageERP.Save_ButtonClick();
+        customerInquiryPageERP.popUpForCustomerNameRequired();
     }
     
     @Then("User click on New button in ERP Customer Inq for copy of customer inq")
-    public void userClickOnNewButtonInERPCustomerInqForCopyOfCustomerInq() {
+    public void userClickOnNewButtonInERPCustomerInqForCopyOfCustomerInq()
+    {
+        customerInquiryPageERP=new CustomerInquiryPageERP(driver,scenario);
+        customerInquiryPageERP.ValidateCustomInq();
+        customerInquiryPageERP.New_ButtonClick();
     }
 
     @And("User should click on save button to save copy of customer inq in ERP")
-    public void userShouldClickOnSaveButtonToSaveCopyOfCustomerInqInERP() {
+    public void userShouldClickOnSaveButtonToSaveCopyOfCustomerInqInERP()
+    {
+        customerInquiryPageERP=new CustomerInquiryPageERP(driver,scenario);
+        customerInquiryPageERP.Save_ButtonClick();
+    }
+
+    @Then("User click on New button for copy of customer inq in ERP")
+    public void userClickOnNewButtonForCopyOfCustomerInqInERP()
+    {
+        customerInquiryPageERP = new CustomerInquiryPageERP(driver, scenario);
+        customerInquiryPageERP.ValidateCustomInq();
+        customerInquiryPageERP.New_ButtonClick();
+    }
+
+    @Then("User should navigate to Telus tab in ERP")
+    public void userShouldNavigateToTelusTabInERP()
+    {
+        customerInquiryPageERP = new CustomerInquiryPageERP(driver, scenario);
+        customerInquiryPageERP.NavigateDifferentTabs("TELUS OMS");
+        if (HelpersMethod.IsExists("//div[@class='loader']", driver))
+        {
+            WebElement WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
+            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000000);
+        }
+        ignitionPageERP = new IgnitionPageERP(driver, scenario);
+        ignitionPageERP.ValidateIgnition();
+    }
+
+    @And("User click on Payment processing and verify visibility of System default Realtime charge option in ERP")
+    public void userClickOnPaymentProcessingAndVerifyVisibilityOfSystemDefaultRealtimeChargeOptionInERP()
+    {
+        customerInquiryPageERP=new CustomerInquiryPageERP(driver,scenario);
+        customerInquiryPageERP.clickOnPaymentProcessing();
+        customerInquiryPageERP.verifySystemDefaultRealTime();
     }
 }

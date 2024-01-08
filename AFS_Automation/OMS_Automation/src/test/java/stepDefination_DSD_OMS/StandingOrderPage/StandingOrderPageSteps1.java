@@ -162,4 +162,20 @@ public class StandingOrderPageSteps1
         standingOrderCard=new NewStandingOrderCard(driver,scenario);
         standingOrderCard.deleteExpiredSO();
     }
+
+    @Then("User should validate Standing Order dialog box for SO already existing")
+    public void userShouldValidateStandingOrderDialogBoxForSOAlreadyExisting()
+    {
+        standingOrderCard= new NewStandingOrderCard(driver,scenario);
+        standingOrderCard.validateDialogboxSOAllreadyExists();
+        standingOrderCard.cancelAddSO();
+    }
+
+    @Then("User should validate that Standing order Delivery schedule by default having Every week option")
+    public void userShouldValidateThatStandingOrderDeliveryScheduleByDefaultHavingEveryWeekOption()
+    {
+        standingOrder=new NewStandingOrderPage(driver,scenario);
+        //standingOrder.validateStandingOrder();
+        standingOrder.validateDeliveryScheduleDate();
+    }
 }

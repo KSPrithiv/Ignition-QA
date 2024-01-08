@@ -138,7 +138,6 @@ public class OrderGuidePageStep
                 exists = orderGuidePage.ValidateOG();
                 currentURL=driver.getCurrentUrl();
                 Assert.assertEquals(exists, true);
-
             }
             else
             {

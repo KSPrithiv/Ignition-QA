@@ -70,7 +70,7 @@ Feature: Customer Inq in ERP
     Then User clicks on Save button before adding values to ignition
     And User navigate to Ignition tab in ERP
     Then User clicks on Create new button and standing PO popup appeared
-    And User selects 1 day from current date and 4 day from end date and Select Payment processing
+    And User selects 1 day from current date and 2 day from end date and Select Payment processing
     Then PO has been saved in ERP
     Then User selects time for order time for different days
     And User selects Order taker from drop down
@@ -82,10 +82,10 @@ Feature: Customer Inq in ERP
     When User should confirm that he is in Customer Inq in ERP
     And User navigate to Ignition tab in ERP
     Then User clicks on Create new button and standing PO popup appeared
-    And User selects 5 day from current date and 10 day from end date and Select Payment processing
+    And User selects 3 day from current date and 4 day from end date and Select Payment processing
     Then PO has been saved in ERP
     Then User clicks on Create new button and standing PO popup appeared
-    And User selects 11 day from current date and 15 day from end date and Select Payment processing
+    And User selects 5 day from current date and 6 day from end date and Select Payment processing
     Then PO has been saved in ERP
 
   @EditStandingPO

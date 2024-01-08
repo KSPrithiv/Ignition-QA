@@ -30,21 +30,56 @@ public class CutOffManagementPage
     @FindBy(id="CPEnableCutoffBranchMgmt")
     private WebElement branchToggle;
 
+    @FindBy(id="CPEnableCutoffWarehouseMgmt")
+    private WebElement wareHouseToggle;
+
+    @FindBy(id="CPEnableCutoffRouteMgmt")
+    private WebElement routeToggle;
+
+    @FindBy(id="CPEnableCutoffCustomerMgmt")
+    private WebElement customerToggle;
+
     @FindBy(xpath="//div[@id='filter-by-branch']/descendant::div[@class='card-setting-area']/descendant::span[@class='k-switch-container']")
     private WebElement filterBranchToggle;
+
+    @FindBy(xpath="//div[@id='filter-by-warehouse']/descendant::div[@class='card-setting-area']/descendant::span[@class='k-switch-container']")
+    private WebElement filterWarehouseToggle;
+
+    @FindBy(xpath="//div[@id='filter-by-route']/descendant::div[@class='card-setting-area']/descendant::span[@class='k-switch-container']")
+    private WebElement filterRouteToggle;
+
+    @FindBy(xpath = "//div[@id='filter-by-customer']/descendant::div[@class='card-setting-area']/descendant::span[@class='k-switch-container']")
+    private WebElement filterCustomerMangementToggle;
 
     @FindBy(xpath="//div[@id='filter-by-branch']/descendant::span[@id='filter-by-active-cutoff-times']")
     private WebElement branchFilterCutoffTime;
 
+    @FindBy(xpath="//div[@id='filter-by-warehouse']/descendant::span[@id='filter-by-active-cutoff-times']")
+    private WebElement wareHouseFilterCutoffTime;
+
+    @FindBy(xpath="//div[@id='filter-by-route']/descendant::span[@id='filter-by-active-cutoff-times']")
+    private WebElement routeManagementFilterCutoffTime;
+
+    @FindBy(xpath="//div[@id='filter-by-customer']/descendant::span[@id='filter-by-active-cutoff-times']")
+    private WebElement customerManagementFilterCutoffTime;
+
     @FindBy(xpath="//div[@id='filter-by-branch']/descendant::span[@id='cutoff-branches']")
     private WebElement branchDropdown;
+
+    @FindBy(xpath="//div[@id='filter-by-warehouse']/descendant::span[@id='cutoff-branches']")
+    private WebElement wareHouseDropDown;
+
+    @FindBy(xpath="//div[@id='filter-by-route']/descendant::span[@id='cutoff-branches']")
+    private WebElement routeManagementDropDown;
+
+    @FindBy(xpath="//div[@id='filter-by-customer']/descendant::span[@id='cutoff-branches']")
+    private WebElement customerManagementDropDown;
 
     @FindBy(xpath="//div[@id='filter-by-branch']/descendant::span[@id='cutoff-timezones']")
     private WebElement timeZoneDropdown;
 
     @FindBy(xpath="//div[@id='cutoff-times']/descendant::span[@class='k-switch-container']")
     private WebElement timeSettingToggle;
-
 
     public CutOffManagementPage(WebDriver driver, Scenario scenario)
     {
@@ -60,17 +95,20 @@ public class CutOffManagementPage
         {
             if(branchToggle.isDisplayed())
             {
-                HelpersMethod.JScriptClick(driver,branchToggle,1000);
-                scenario.log("BRANCH TOGGLE BUTTON SELECTED");
-                if(HelpersMethod.IsExists("//div[@class='loader']",driver))
+                if(!HelpersMethod.IsExists("//span[@id='CPEnableCutoffBranchMgmt' and @aria-checked='true']",driver))
                 {
-                    WebElement WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 200000);
+                    HelpersMethod.JScriptClick(driver, branchToggle, 1000);
+                    scenario.log("BRANCH TOGGLE BUTTON SELECTED");
+                    if (HelpersMethod.IsExists("//div[@class='loader']", driver))
+                    {
+                        WebElement WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
+                        HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 200000);
+                    }
                 }
-                if(HelpersMethod.IsExists("//span[@id='CPEnableCutoffBranchMgmt' and @aria-checked='true']",driver))
-                {
-                    exists=true;
-                }
+                    if (HelpersMethod.IsExists("//span[@id='CPEnableCutoffBranchMgmt' and @aria-checked='true']", driver))
+                    {
+                        exists = true;
+                    }
             }
             Assert.assertEquals(exists,true);
         }
@@ -84,34 +122,37 @@ public class CutOffManagementPage
         {
             if(filterBranchToggle.isDisplayed())
             {
-                HelpersMethod.ScrollElement(driver,filterBranchToggle);
-               HelpersMethod.JScriptClick(driver,filterBranchToggle,1000);
-               scenario.log("FILTER BRANCH TOGGLE BUTTON");
-                if(HelpersMethod.IsExists("//div[@class='loader']",driver))
+                if(!HelpersMethod.IsExists("//div[@id='filter-by-branch']/descendant::div[@class='card-setting-area']/descendant::span[@class='k-switch-container' and @aria-checked='true']",driver))
                 {
-                    WebElement WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 200000);
+                    HelpersMethod.ScrollElement(driver, filterBranchToggle);
+                    HelpersMethod.JScriptClick(driver, filterBranchToggle, 1000);
+                    scenario.log("FILTER BRANCH TOGGLE BUTTON");
+                    if (HelpersMethod.IsExists("//div[@class='loader']", driver))
+                    {
+                        WebElement WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
+                        HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 200000);
+                    }
                 }
-               if(HelpersMethod.IsExists("//div[@id='filter-by-branch']/descendant::div[@class='card-setting-area']/descendant::span[@class='k-switch-container' and @aria-checked='true']",driver))
-               {
-                   exists=true;
-               }
+                    if (HelpersMethod.IsExists("//div[@id='filter-by-branch']/descendant::div[@class='card-setting-area']/descendant::span[@class='k-switch-container' and @aria-checked='true']", driver))
+                    {
+                        exists = true;
+                    }
             }
             Assert.assertEquals(exists,true);
         }
         catch (Exception e){}
     }
 
-    public void clickOnBranchDropdown()
+    public void clickOnWarehouseDropdown()
     {
         exists=false;
         try
         {
-            if(branchDropdown.isDisplayed())
+            if(wareHouseDropDown.isDisplayed())
             {
-                HelpersMethod.ScrollElement(driver,branchDropdown);
-                HelpersMethod.ClickBut(driver,branchDropdown,1000);
-                scenario.log("BRANCH DROPDOWN BUTTON CLICKED");
+                HelpersMethod.ScrollElement(driver,wareHouseDropDown);
+                HelpersMethod.ClickBut(driver,wareHouseDropDown,1000);
+                scenario.log("WAREHOUSE DROPDOWN BUTTON CLICKED");
                 exists=true;
             }
             Assert.assertEquals(exists,true);
@@ -119,7 +160,41 @@ public class CutOffManagementPage
         catch (Exception e){}
     }
 
-    public void selectBranchFromDropdown()
+    public void clickOnRouteDropdown()
+    {
+        exists=false;
+        try
+        {
+            if(routeManagementDropDown.isDisplayed())
+            {
+                HelpersMethod.ScrollElement(driver,routeManagementDropDown);
+                HelpersMethod.ClickBut(driver,routeManagementDropDown,1000);
+                scenario.log("ROUTE MANAGEMENT DROPDOWN BUTTON CLICKED");
+                exists=true;
+            }
+            Assert.assertEquals(exists,true);
+        }
+        catch (Exception e){}
+    }
+
+    public void clickOnCustomerManagementDropdown()
+    {
+        exists=false;
+        try
+        {
+            if(customerManagementDropDown.isDisplayed())
+            {
+                HelpersMethod.ScrollElement(driver,customerManagementDropDown);
+                HelpersMethod.ClickBut(driver,customerManagementDropDown,1000);
+                scenario.log("CUSTOMER MANAGEMENT DROPDOWN BUTTON CLICKED");
+                exists=true;
+            }
+            Assert.assertEquals(exists,true);
+        }
+        catch (Exception e){}
+    }
+
+    public void selectWarehouseFromDropdown()
     {
         try
         {
@@ -127,27 +202,121 @@ public class CutOffManagementPage
             Random rand = new Random();
             int list= rand.nextInt(options.size());
             options.get(list).click();
-            String branchSelect=HelpersMethod.FindByElement(driver,"xpath","//div[@id='filter-by-branch']/descendant::span[@id='cutoff-branches']/span").getText();
-            scenario.log("BRANCH SELECTED IS: "+branchSelect);
+            String warehouseSelect=HelpersMethod.FindByElement(driver,"xpath","//div[@id='filter-by-warehouse']/descendant::span[@id='cutoff-branches']/span").getText();
+            scenario.log("WAREHOUSE SELECTED IS: "+warehouseSelect);
+            if (HelpersMethod.IsExists("//div[@class='loader']", driver))
+            {
+                WebElement WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 200000);
+            }
         }
         catch (Exception e){}
     }
 
-    public void clickOnBranchFilterTogglebutton()
+    public void selectRouteFromDropdown()
+    {
+        try
+        {
+            List<WebElement> options = HelpersMethod.FindByElements(driver, "xpath","//div[contains(@class,'k-list-container')]/descendant::ul/li");
+            Random rand = new Random();
+            int list= rand.nextInt(options.size());
+            options.get(list).click();
+            String routeSelect=HelpersMethod.FindByElement(driver,"xpath","//div[@id='filter-by-route']/descendant::span[@id='cutoff-branches']/span").getText();
+            scenario.log("ROUTE SELECTED IS: "+routeSelect);
+            if (HelpersMethod.IsExists("//div[@class='loader']", driver))
+            {
+                WebElement WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 200000);
+            }
+        }
+        catch (Exception e){}
+    }
+
+    public void selectCustomerManagementFromDropdown()
+    {
+        try
+        {
+            List<WebElement> options = HelpersMethod.FindByElements(driver, "xpath","//div[contains(@class,'k-list-container')]/descendant::ul/li");
+            Random rand = new Random();
+            int list= rand.nextInt(options.size());
+            options.get(list).click();
+            String customerSelect=HelpersMethod.FindByElement(driver,"xpath","//div[@id='filter-by-route']/descendant::span[@id='cutoff-branches']/span").getText();
+            scenario.log("ROUTE SELECTED IS: "+customerSelect);if (HelpersMethod.IsExists("//div[@class='loader']", driver))
+            if (HelpersMethod.IsExists("//div[@class='loader']", driver))
+            {
+            WebElement WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
+            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 200000);
+            }
+        }
+        catch (Exception e){}
+    }
+
+    public void clickOnWarehouseFilterTogglebutton()
     {
         exists=false;
         try
         {
-            if(branchFilterCutoffTime.isDisplayed())
+            if(!HelpersMethod.IsExists("//div[@id='filter-by-warehouse']/descendant::span[@id='filter-by-active-cutoff-times' and @aria-checked='true']",driver))
             {
-                HelpersMethod.JScriptClick(driver,branchFilterCutoffTime,1000);
+                if (wareHouseFilterCutoffTime.isDisplayed())
+                {
+                    HelpersMethod.JScriptClick(driver, wareHouseFilterCutoffTime, 1000);
+                    scenario.log("FILTER CUT OFF TIME TOGGLE BUTTON HAS BEEN CLICKED");
+                    if (HelpersMethod.IsExists("//div[@class='loader']", driver))
+                    {
+                        WebElement WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
+                        HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 200000);
+                    }
+                    if (HelpersMethod.IsExists("//div[@id='filter-by-warehouse']/descendant::span[@id='filter-by-active-cutoff-times' and @aria-checked='true']", driver))
+                    {
+                        exists = true;
+                    }
+                }
+            }
+            Assert.assertEquals(exists,true);
+        }
+        catch (Exception e){}
+    }
+
+    public void clickOnRouteFilterTogglebutton()
+    {
+        exists=false;
+        try
+        {
+            if(routeManagementFilterCutoffTime.isDisplayed())
+            {
+                HelpersMethod.JScriptClick(driver,routeManagementFilterCutoffTime,1000);
                 scenario.log("FILTER CUT OFF TIME TOGGLE BUTTON HAS BEEN CLICKED");
                 if(HelpersMethod.IsExists("//div[@class='loader']",driver))
                 {
                     WebElement WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
                     HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 200000);
                 }
-                if(HelpersMethod.IsExists("//div[@id='filter-by-branch']/descendant::span[@id='filter-by-active-cutoff-times' and @aria-checked='true']",driver))
+                if(HelpersMethod.IsExists("//div[@id='filter-by-route']/descendant::span[@id='filter-by-active-cutoff-times' and @aria-checked='true']",driver))
+                {
+                    exists=true;
+                }
+            }
+            Assert.assertEquals(exists,true);
+        }
+        catch (Exception e){}
+    }
+
+    public void clickOnCustomerManagementFilterTogglebutton()
+    {
+        exists=false;
+        try
+        {
+            if(customerManagementFilterCutoffTime.isDisplayed())
+            {
+                HelpersMethod.JScriptClick(driver,customerManagementFilterCutoffTime,1000);
+                scenario.log("FILTER CUT OFF TIME TOGGLE BUTTON HAS BEEN CLICKED");
+                if(HelpersMethod.IsExists("//div[@class='loader']",driver))
+                {
+                    WebElement WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
+                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 200000);
+                }
+                if(HelpersMethod.IsExists("//div[@id='filter-by-customer']/descendant::span[@id='filter-by-active-cutoff-times' and @aria-checked='true']",driver))
                 {
                     exists=true;
                 }
@@ -164,16 +333,19 @@ public class CutOffManagementPage
         {
             if(timeSettingToggle.isDisplayed())
             {
-                HelpersMethod.JScriptClick(driver,timeSettingToggle,1000);
-                if(HelpersMethod.IsExists("//div[@class='loader']",driver))
+                if(!HelpersMethod.IsExists("//div[@id='cutoff-times']/descendant::span[@class='k-switch-container' and @aria-checked='true']",driver))
                 {
-                    WebElement WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 200000);
+                    HelpersMethod.JScriptClick(driver, timeSettingToggle, 1000);
+                    if (HelpersMethod.IsExists("//div[@class='loader']", driver))
+                    {
+                        WebElement WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
+                        HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 400000);
+                    }
                 }
-                if(HelpersMethod.IsExists("//div[@id='cutoff-times']/descendant::span[@class='k-switch-container' and @aria-checked='true']",driver))
-                {
-                    exists=true;
-                }
+                    if (HelpersMethod.IsExists("//div[@id='cutoff-times']/descendant::span[@class='k-switch-container' and @aria-checked='true']", driver))
+                    {
+                        exists = true;
+                    }
             }
             Assert.assertEquals(exists,true);
         }
@@ -290,12 +462,15 @@ public class CutOffManagementPage
         {
             if(branchToggle.isDisplayed())
             {
-                HelpersMethod.JScriptClick(driver,branchToggle,1000);
-                scenario.log("BRANCH TOGGLE BUTTON SELECTED");
-                if(HelpersMethod.IsExists("//div[@class='loader']",driver))
+                if(!HelpersMethod.IsExists("//span[@id='CPEnableCutoffBranchMgmt' and @aria-checked='false']",driver))
                 {
-                    WebElement WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 200000);
+                    HelpersMethod.JScriptClick(driver, branchToggle, 1000);
+                    scenario.log("BRANCH TOGGLE BUTTON SELECTED");
+                    if (HelpersMethod.IsExists("//div[@class='loader']", driver))
+                    {
+                        WebElement WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
+                        HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 200000);
+                    }
                 }
                 if(HelpersMethod.IsExists("//span[@id='CPEnableCutoffBranchMgmt' and @aria-checked='false']",driver))
                 {
@@ -304,6 +479,318 @@ public class CutOffManagementPage
             }
             Assert.assertEquals(exists,true);
             Thread.sleep(2000);
+        }
+        catch (Exception e){}
+    }
+
+    public void disableWarehouseToggleButton()
+    {
+        exists=false;
+        try
+        {
+            if(wareHouseToggle.isDisplayed())
+            {
+                if(!HelpersMethod.IsExists("//span[@id='CPEnableCutoffWarehouseMgmt' and @aria-checked='false']",driver))
+                {
+                    HelpersMethod.JScriptClick(driver, wareHouseToggle, 1000);
+                    scenario.log("WAREHOUSE TOGGLE BUTTON SELECTED");
+                    if (HelpersMethod.IsExists("//div[@class='loader']", driver))
+                    {
+                        WebElement WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
+                        HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 200000);
+                    }
+                }
+                    if (HelpersMethod.IsExists("//span[@id='CPEnableCutoffWarehouseMgmt' and @aria-checked='false']", driver))
+                    {
+                        exists = true;
+                    }
+            }
+            Assert.assertEquals(exists,true);
+            Thread.sleep(2000);
+        }
+        catch (Exception e){}
+    }
+
+    public void disableRouteToggleButton()
+    {
+        exists=false;
+        try
+        {
+            if(routeToggle.isDisplayed())
+            {
+                if(!HelpersMethod.IsExists("//span[@id='CPEnableCutoffRouteMgmt' and @aria-checked='false']",driver))
+                {
+                    HelpersMethod.JScriptClick(driver, routeToggle, 1000);
+                    scenario.log("ROUTE TOGGLE BUTTON SELECTED");
+                    if (HelpersMethod.IsExists("//div[@class='loader']", driver))
+                    {
+                        WebElement WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
+                        HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 200000);
+                    }
+                }
+                if(HelpersMethod.IsExists("//span[@id='CPEnableCutoffRouteMgmt' and @aria-checked='false']",driver))
+                {
+                    exists=true;
+                }
+            }
+            Assert.assertEquals(exists,true);
+            Thread.sleep(2000);
+        }
+        catch (Exception e){}
+    }
+
+    public void disableCustomerManagementToggleButton()
+    {
+        exists=false;
+        try
+        {
+            if(customerToggle.isDisplayed())
+            {
+                if(!HelpersMethod.IsExists("//span[@id='CPEnableCutoffCustomerMgmt' and @aria-checked='false']",driver))
+                {
+                    HelpersMethod.JScriptClick(driver, customerToggle, 1000);
+                    scenario.log("CUSTOMER MANAGEMENT TOGGLE BUTTON SELECTED");
+                    if (HelpersMethod.IsExists("//div[@class='loader']", driver))
+                    {
+                        WebElement WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
+                        HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 200000);
+                    }
+                }
+                if(HelpersMethod.IsExists("//span[@id='CPEnableCutoffCustomerMgmt' and @aria-checked='false']",driver))
+                {
+                    exists=true;
+                }
+            }
+            Assert.assertEquals(exists,true);
+            Thread.sleep(2000);
+        }
+        catch (Exception e){}
+    }
+
+    public void clickOnWareHouseManagementToggleButton()
+    {
+        exists=false;
+        try
+        {
+            if(wareHouseToggle.isDisplayed())
+            {
+                if(!HelpersMethod.IsExists("//span[@id='CPEnableCutoffWarehouseMgmt' and @aria-checked='true']",driver))
+                {
+                    HelpersMethod.JScriptClick(driver, wareHouseToggle, 1000);
+                    scenario.log("WAREHOUSE TOGGLE BUTTON SELECTED");
+                    if (HelpersMethod.IsExists("//div[@class='loader']", driver))
+                    {
+                        WebElement WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
+                        HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 200000);
+                    }
+                }
+                    if (HelpersMethod.IsExists("//span[@id='CPEnableCutoffWarehouseMgmt' and @aria-checked='true']", driver))
+                    {
+                        exists = true;
+                    }
+            }
+            Assert.assertEquals(exists,true);
+        }
+        catch (Exception e){}
+    }
+
+    public void clickOnRouteManagementToggleButton()
+    {
+        exists=false;
+        try
+        {
+            if(wareHouseToggle.isDisplayed())
+            {
+                if(!HelpersMethod.IsExists("//span[@id='CPEnableCutoffRouteMgmt' and @aria-checked='true']",driver))
+                {
+                    HelpersMethod.JScriptClick(driver, wareHouseToggle, 1000);
+                    scenario.log("ROUTE TOGGLE BUTTON SELECTED");
+                    if (HelpersMethod.IsExists("//div[@class='loader']", driver))
+                    {
+                        WebElement WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
+                        HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 200000);
+                    }
+                }
+                    if (HelpersMethod.IsExists("//span[@id='CPEnableCutoffRouteMgmt' and @aria-checked='true']", driver))
+                    {
+                        exists = true;
+                    }
+            }
+            Assert.assertEquals(exists,true);
+        }
+        catch (Exception e){}
+    }
+
+    public void clickOnCustomerManagementToggleButton()
+    {
+        exists=false;
+        try
+        {
+            if(customerToggle.isDisplayed())
+            {
+                if(!HelpersMethod.IsExists("//span[@id='CPEnableCutoffCustomerMgmt' and @aria-checked='true']",driver))
+                {
+                    HelpersMethod.JScriptClick(driver, wareHouseToggle, 1000);
+                    scenario.log("CUSTOMER MANAGEMENT TOGGLE BUTTON SELECTED");
+                    if (HelpersMethod.IsExists("//div[@class='loader']", driver))
+                    {
+                        WebElement WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
+                        HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 200000);
+                    }
+                }
+                    if (HelpersMethod.IsExists("//span[@id='CPEnableCutoffCustomerMgmt' and @aria-checked='true']", driver))
+                    {
+                        exists = true;
+                    }
+            }
+            Assert.assertEquals(exists,true);
+        }
+        catch (Exception e){}
+    }
+
+    public void clickOnFilterRouteToggleButton()
+    {
+        exists=false;
+        try
+        {
+            if(filterRouteToggle.isDisplayed())
+            {
+                if(!HelpersMethod.IsExists("//div[@id='filter-by-route']/descendant::div[@class='card-setting-area']/descendant::span[@class='k-switch-container' and @aria-checked='true']",driver))
+                {
+                    HelpersMethod.ScrollElement(driver, filterRouteToggle);
+                    HelpersMethod.JScriptClick(driver, filterRouteToggle, 1000);
+                    scenario.log("FILTER ROUTE TOGGLE BUTTON");
+                    if (HelpersMethod.IsExists("//div[@class='loader']", driver))
+                    {
+                        WebElement WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
+                        HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 200000);
+                    }
+                }
+                if(HelpersMethod.IsExists("//div[@id='filter-by-route']/descendant::div[@class='card-setting-area']/descendant::span[@class='k-switch-container' and @aria-checked='true']",driver))
+                {
+                    exists=true;
+                }
+            }
+            Assert.assertEquals(exists,true);
+        }
+        catch (Exception e){}
+    }
+
+    public void clickOnFilterCustomerManagementToggleButton()
+    {
+        exists=false;
+        try
+        {
+            if(filterCustomerMangementToggle.isDisplayed())
+            {
+                if(!HelpersMethod.IsExists("//div[@id='filter-by-customer']/descendant::div[@class='card-setting-area']/descendant::span[@class='k-switch-container' and @aria-checked='true']",driver))
+                {
+                    HelpersMethod.ScrollElement(driver, filterCustomerMangementToggle);
+                    HelpersMethod.JScriptClick(driver, filterCustomerMangementToggle, 1000);
+                    scenario.log("FILTER CUSTOMER MANAGEMENT TOGGLE BUTTON");
+                    if (HelpersMethod.IsExists("//div[@class='loader']", driver))
+                    {
+                        WebElement WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
+                        HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 200000);
+                    }
+                }
+                if(HelpersMethod.IsExists("//div[@id='filter-by-customer']/descendant::div[@class='card-setting-area']/descendant::span[@class='k-switch-container' and @aria-checked='true']",driver))
+                {
+                    exists=true;
+                }
+            }
+            Assert.assertEquals(exists,true);
+        }
+        catch (Exception e){}
+    }
+
+    public void clickOnFilterWarehouseToggleButton()
+    {
+        exists=false;
+        try
+        {
+            if(filterWarehouseToggle.isDisplayed())
+            {
+                if(!HelpersMethod.IsExists("//div[@id='filter-by-warehouse']/descendant::div[@class='card-setting-area']/descendant::span[@class='k-switch-container' and @aria-checked='true']",driver))
+                {
+                    HelpersMethod.ScrollElement(driver, filterWarehouseToggle);
+                    HelpersMethod.JScriptClick(driver, filterWarehouseToggle, 1000);
+                    scenario.log("FILTER WAREHOUSE TOGGLE BUTTON");
+                    if (HelpersMethod.IsExists("//div[@class='loader']", driver))
+                    {
+                        WebElement WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
+                        HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 200000);
+                    }
+                }
+                    if (HelpersMethod.IsExists("//div[@id='filter-by-warehouse']/descendant::div[@class='card-setting-area']/descendant::span[@class='k-switch-container' and @aria-checked='true']", driver))
+                    {
+                        exists = true;
+                    }
+            }
+            Assert.assertEquals(exists,true);
+        }
+        catch (Exception e){}
+    }
+
+    public void clickOnBranchDropdown()
+    {
+        exists=false;
+        try
+        {
+            if(branchDropdown.isDisplayed())
+            {
+                HelpersMethod.ScrollElement(driver,branchDropdown);
+                HelpersMethod.ClickBut(driver,branchDropdown,1000);
+                scenario.log("WAREHOUSE DROPDOWN BUTTON CLICKED");
+                exists=true;
+            }
+            Assert.assertEquals(exists,true);
+        }
+        catch (Exception e){}
+    }
+
+    public void selectBranchFromDropdown()
+    {
+        try
+        {
+            List<WebElement> options = HelpersMethod.FindByElements(driver, "xpath","//div[contains(@class,'k-list-container')]/descendant::ul/li");
+            Random rand = new Random();
+            int list= rand.nextInt(options.size());
+            options.get(list).click();
+            String branchSelect=HelpersMethod.FindByElement(driver,"xpath","//div[@id='filter-by-branch']/descendant::span[@id='cutoff-branches']/span").getText();
+            scenario.log("BRANCH SELECTED IS: "+branchSelect);
+            if (HelpersMethod.IsExists("//div[@class='loader']", driver))
+            {
+                WebElement WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 200000);
+            }
+        }
+        catch (Exception e){}
+    }
+
+    public void clickOnBranchFilterTogglebutton()
+    {
+        exists=false;
+        try
+        {
+            if(branchFilterCutoffTime.isDisplayed())
+            {
+                if(!HelpersMethod.IsExists("//div[@id='filter-by-branch']/descendant::span[@id='filter-by-active-cutoff-times' and @aria-checked='true']",driver))
+                {
+                    HelpersMethod.JScriptClick(driver, branchFilterCutoffTime, 1000);
+                    scenario.log("FILTER CUT OFF TIME TOGGLE BUTTON HAS BEEN CLICKED");
+                    if (HelpersMethod.IsExists("//div[@class='loader']", driver))
+                    {
+                        WebElement WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
+                        HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 200000);
+                    }
+                }
+                    if (HelpersMethod.IsExists("//div[@id='filter-by-branch']/descendant::span[@id='filter-by-active-cutoff-times' and @aria-checked='true']", driver))
+                    {
+                        exists = true;
+                    }
+            }
+            Assert.assertEquals(exists,true);
         }
         catch (Exception e){}
     }

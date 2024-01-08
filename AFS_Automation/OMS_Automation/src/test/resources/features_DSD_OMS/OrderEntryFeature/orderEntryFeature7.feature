@@ -58,6 +58,9 @@ Feature: Order Entry7
       |SampleOG|
     Then Enter PO# for New order
       |PO123|
+    Then Enter Pro# in Quick Product Entry area
+    And Check for Case and Unit input box enabled or not based on that enter value
+      |80|60|
     And User clicks on Grid type drop down and select different grid
     #  |Regression grid|
     Then User verifies visibility of Price override icon and reset Grid type to Main grid
@@ -73,7 +76,8 @@ Feature: Order Entry7
       |SampleOG|
     Then Enter PO# for New order
       |PO123|
-    Then User should enter Units and Cases in product grid
+    Then Enter Pro# in Quick Product Entry area
+    And Check for Case and Unit input box enabled or not based on that enter value
       |80|60|
     And User clicks on Grid type drop down and select different grid
    #   |Regression grid|

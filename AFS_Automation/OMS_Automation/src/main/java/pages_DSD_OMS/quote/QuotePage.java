@@ -86,7 +86,7 @@ public class QuotePage
         String formattedDate1 = null;
         try
         {
-            LocalDate myDateObj = LocalDate.now().plusDays(4);
+            LocalDate myDateObj = LocalDate.now().plusDays(2);
             DateTimeFormatter myFormatObj = DateTimeFormatter.ofPattern("EEEE, MMMM d, yyyy");
             formattedDate1 = myDateObj.format(myFormatObj);
             WebElement ele1 = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-calendar-monthview')]/descendant::td[contains(@title,'" + formattedDate1 + "')]");
@@ -96,9 +96,7 @@ public class QuotePage
             scenario.log("END DATE FOR QUOTE IS : " + formattedDate1);
             exists = true;
             Assert.assertEquals(exists, true);
-        } catch (Exception e) {
-        }
-
+        } catch (Exception e) {}
     }
 
     public void ClickOnOKButton()

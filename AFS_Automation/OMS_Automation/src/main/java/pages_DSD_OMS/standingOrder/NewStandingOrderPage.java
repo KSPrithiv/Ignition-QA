@@ -140,10 +140,10 @@ public class NewStandingOrderPage
                 String Pro = DataBaseConnection.DataBaseConn(TestBase.testEnvironment.getSingle_Prod_Sql());
                 act1.moveToElement(QuickProduct).click().build().perform();
                 HelpersMethod.sendKeys(driver,QuickProduct,1000,Pro);
-                QuickProduct.sendKeys(Keys.TAB);
-                WebElement uomSO= HelpersMethod.FindByElement(driver,"id","quickEntryUMs");
-                uomSO.sendKeys(Keys.TAB);
-                Thread.sleep(8000);
+                QuickProduct.sendKeys(Keys.ENTER);
+                //WebElement uomSO= HelpersMethod.FindByElement(driver,"id","quickEntryUMs");
+                //uomSO.sendKeys(Keys.TAB);
+                Thread.sleep(4000);
                 scenario.log("PRODUCT ENTERED IN QUICK ENTRY IS " + Pro);
                 exists = true;
             }
@@ -585,11 +585,12 @@ public class NewStandingOrderPage
         WebElement WebEle=null;
         try
         {
-            new WebDriverWait(driver,Duration.ofMillis(20000)).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//button[contains(@data-test-id,'skipDeliveryDaysStandingOrderBtn')]")));
-            new WebDriverWait(driver, Duration.ofMillis(20000)).until(ExpectedConditions.visibilityOf(SkipSpecificdays));
-
+            //new WebDriverWait(driver,Duration.ofMillis(20000)).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//button[contains(@data-test-id,'skipDeliveryDaysStandingOrderBtn')]")));
+            //new WebDriverWait(driver, Duration.ofMillis(20000)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[contains(@data-test-id,'skipDeliveryDaysStandingOrderBtn')]")));
+            WebElement staandingOrderDetailsGrid=HelpersMethod.FindByElement(driver,"xpath","//label[@class='cart-title-standing-order']");
+            HelpersMethod.ScrollElement(driver,staandingOrderDetailsGrid);
             SkipSpecificdays=HelpersMethod.FindByElement(driver,"xpath","//button[contains(@data-test-id,'skipDeliveryDaysStandingOrderBtn')]");
-            if(SkipSpecificdays.isEnabled())
+            if(SkipSpecificdays.isDisplayed() && SkipSpecificdays.isEnabled())
             {
                 HelpersMethod.ScrollElement(driver, SkipSpecificdays);
                 HelpersMethod.ClickBut(driver, SkipSpecificdays, 20000);
@@ -608,7 +609,6 @@ public class NewStandingOrderPage
 
     public void ValidateSkipPopup()
     {
-        WebElement WebEle=null;
         exists=false;
         try
         {
@@ -1744,6 +1744,34 @@ public class NewStandingOrderPage
                 js.executeScript("document.body.style.MozTransform='100%'");
             }
             Assert.assertEquals(exists,true);
+        }
+        catch (Exception e){}
+    }
+
+    public void validateDeliveryScheduleDate()
+    {
+        exists=false;
+        try
+        {
+            Thread.sleep(1000);
+            WebElement standingOrderDetailsGrid=HelpersMethod.FindByElement(driver,"xpath","//label[@class='cart-title-standing-order']");
+            HelpersMethod.ScrollElement(driver,standingOrderDetailsGrid);
+            WebElement DeliverySchedule=HelpersMethod.FindByElement(driver,"id","frequency");
+            if(DeliverySchedule.isDisplayed() && DeliverySchedule.isEnabled())
+            {
+                String deliveryScheduleText=HelpersMethod.FindByElement(driver,"xpath","//span[@id='frequency']/span[@class='k-input']").getText();
+                if(deliveryScheduleText.equals("Every week"))
+                {
+                    scenario.log("DELIVERY SCHEDULE VALUE FOUND IS " + deliveryScheduleText);
+                    exists = true;
+                }
+                else
+                {
+                    scenario.log("DELIVERY SCHEDULE VALUE FOUND IS "+deliveryScheduleText);
+                    exists=false;
+                }
+                Assert.assertEquals(exists,true);
+            }
         }
         catch (Exception e){}
     }

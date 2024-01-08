@@ -1640,7 +1640,7 @@ public class OrderEntryPage
         if (HelpersMethod.IsExists("//div[@class='loader']", driver))
         {
             WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000000);
+            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 2000000);
         }
         try
         {
@@ -1651,7 +1651,7 @@ public class OrderEntryPage
             if (HelpersMethod.IsExists("//div[@class='loader']", driver))
             {
                 WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000000);
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 4000000);
             }
             Assert.assertEquals(exists, true);
         } catch (Exception e) {

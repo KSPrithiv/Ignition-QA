@@ -267,6 +267,7 @@ public class StandingOrderPageSteps
     public void clickOnSkipSpecificDayAndSelectFirstDateInTheListOfSkipDaysInSkipPopupAndClickOnOk() throws InterruptedException
     {
         standingOrder=new NewStandingOrderPage(driver,scenario);
+        standingOrder.validateStandingOrder();
         standingOrder.ClickOnSkipSpecificDay();
         standingOrder.ValidateSkipPopup();
         standingOrder.RemoveSkipDate();

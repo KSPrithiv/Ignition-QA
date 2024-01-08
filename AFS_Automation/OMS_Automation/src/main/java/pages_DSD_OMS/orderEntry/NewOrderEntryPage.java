@@ -1093,8 +1093,20 @@ public class NewOrderEntryPage
                 HelpersMethod.ScrollElement(driver,QuickPro);
                 HelpersMethod.EnterText(driver, QuickPro, 4000, Prod);
                 QuickPro.sendKeys(Keys.TAB);
+
+                String status = HelpersMethod.returnDocumentStatus(driver);
+                if (status.equals("loading"))
+                {
+                    HelpersMethod.waitTillLoadingPage(driver);
+                }
+
                 uomDropDown.sendKeys(Keys.TAB);
 
+                status = HelpersMethod.returnDocumentStatus(driver);
+                if (status.equals("loading"))
+                {
+                    HelpersMethod.waitTillLoadingPage(driver);
+                }
                 Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
                         .withTimeout(Duration.ofSeconds(120))
                         .pollingEvery(Duration.ofSeconds(2))
@@ -1145,7 +1157,8 @@ public class NewOrderEntryPage
         wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
         try
         {
-            WebEle=HelpersMethod.FindByElement(driver,"xpath","//span[@id='quickEntryUMs']/span[@class='k-input']");
+            //WebEle=HelpersMethod.FindByElement(driver,"xpath","//span[@id='quickEntryUMs']/span[@class='k-input']");
+            WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'quickUMs')]/label[contains(@class,'quick-um-single-value')]");
             if(WebEle.isEnabled())
             {
                 scenario.log("UOM IS ENABLED AND IT CONTAINS "+WebEle.getText()+" VALUE IN IT");
@@ -1286,7 +1299,8 @@ public class NewOrderEntryPage
         String status=null;
         try
         {
-            WebElement uom=HelpersMethod.FindByElement(driver,"xpath","//span[@id='quickEntryUMs']/span[@class='k-input']|//div[contains(@class,'quickUnits')]/descendant::input[@id='quickUnits']");
+            //WebElement uom=HelpersMethod.FindByElement(driver,"xpath","//span[@id='quickEntryUMs']/span[@class='k-input']|//div[contains(@class,'quickUnits')]/descendant::input[@id='quickUnits']");
+            WebElement uom=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'quickUMs')]/label[contains(@class,'quick-um-single-value')]");
             new WebDriverWait(driver,Duration.ofMillis(10000)).until(ExpectedConditions.visibilityOf(uom));
             String uomText=uom.getText();
             if(uomText.contains("Cases")||uomText.contains("CS"))
@@ -1374,7 +1388,8 @@ public class NewOrderEntryPage
         String status=null;
         try
         {
-            WebElement uom=HelpersMethod.FindByElement(driver,"xpath","//span[@id='quickEntryUMs']/span[@class='k-input']|//div[contains(@class,'quickUnits')]/descendant::input[@id='quickUnits']");
+            //WebElement uom=HelpersMethod.FindByElement(driver,"xpath","//span[@id='quickEntryUMs']/span[@class='k-input']|//div[contains(@class,'quickUnits')]/descendant::input[@id='quickUnits']");
+            WebElement uom=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'quickUMs')]/label[contains(@class,'quick-um-single-value')]");
             String uomText=uom.getText();
             if(uomText.contains("Units")||uomText.contains("EA"))
             {

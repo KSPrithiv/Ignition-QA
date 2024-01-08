@@ -37,7 +37,8 @@ public class CustomerInqStep_ERP
     static boolean flag1=false;
     static boolean flag2=false;
     static String currentURL=null;
-    WebElement WebEle;
+    static String fName=null;
+    static String lName=null;
 
     static LoginPage loginpage;
     static HomePage homepage;
@@ -133,8 +134,8 @@ public class CustomerInqStep_ERP
     public void userEntersValueToAllTheInputBoxInMainPage()
     {
         mainPage=new MainPage(driver,scenario);
-        mainPage.firstNameEntry();
-        mainPage.lastNameEntry();
+        fName=mainPage.firstNameEntry();
+        lName=mainPage.lastNameEntry();
         mainPage.storeNumberEntry();
         mainPage.lookupInformation();
         mainPage.address1();
@@ -326,10 +327,11 @@ public class CustomerInqStep_ERP
     {
         customerInquiryPageERP=new CustomerInquiryPageERP(driver,scenario);
         customerInquiryPageERP.BillNo();
-        customerInquiryPageERP.DescrVal();
+        String Des=fName+" "+lName;
+        customerInquiryPageERP.DescrVal(Des);
         customerInquiryPageERP.Save_ButtonClick();
-        //customerInquiryPageERP.validateSaveConfirmationPopup();
-        //customerInquiryPageERP.SaveButtonOK();
+        customerInquiryPageERP.validateSaveConfirmationPopup();
+        customerInquiryPageERP.SaveButtonOK();
     }
 
     @And("User navigate to Ignition tab in ERP")

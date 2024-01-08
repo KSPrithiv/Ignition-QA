@@ -85,4 +85,82 @@ public class CutoffManagementStep
         adminHomePage=new AdminHomePage(driver,scenario);
         adminHomePage.Click_SaveButton();
     }
+
+    @And("User should click on Warehouse management toggle button select branch and set times for cutoff")
+    public void userShouldClickOnWarehouseManagementToggleButtonSelectBranchAndSetTimesForCutoff()
+    {
+        cutOffManagementPage=new CutOffManagementPage(driver,scenario);
+        cutOffManagementPage.clickOnWareHouseManagementToggleButton();
+        cutOffManagementPage.clickOnFilterWarehouseToggleButton();
+        cutOffManagementPage.clickOnWarehouseDropdown();
+        cutOffManagementPage.selectWarehouseFromDropdown();
+        cutOffManagementPage.clickOnCutOffTimesTogglebutton();
+        List<WebElement> Clocks= HelpersMethod.FindByElements(driver,"xpath","//tr[contains(@class,'k-master-row')]/descendant::span[contains(@class,'k-picker-wrap')]/descendant::span[@class='k-icon k-i-clock']");
+        for(int i=1;i<= Clocks.size();i++)
+        {
+            cutOffManagementPage.ClickClockIcon(i);
+            cutOffManagementPage.SelectHoursForAllDays();
+            cutOffManagementPage.SelectMinForAllDays();
+            cutOffManagementPage.ClickOnSetButton();
+        }
+        cutOffManagementPage.clickOnWarehouseFilterTogglebutton();
+        adminHomePage=new AdminHomePage(driver,scenario);
+        adminHomePage.Click_SaveButton();
+        cutOffManagementPage=new CutOffManagementPage(driver,scenario);
+        cutOffManagementPage.disableWarehouseToggleButton();
+        adminHomePage=new AdminHomePage(driver,scenario);
+        adminHomePage.Click_SaveButton();
+    }
+
+    @And("User should click on Route management toggle button select branch and set times for cutoff")
+    public void userShouldClickOnRouteManagementToggleButtonSelectBranchAndSetTimesForCutoff()
+    {
+        cutOffManagementPage=new CutOffManagementPage(driver,scenario);
+        cutOffManagementPage.clickOnRouteManagementToggleButton();
+        cutOffManagementPage.clickOnFilterRouteToggleButton();
+        cutOffManagementPage.clickOnRouteDropdown();
+        cutOffManagementPage.selectRouteFromDropdown();
+        cutOffManagementPage.clickOnCutOffTimesTogglebutton();
+        List<WebElement> Clocks= HelpersMethod.FindByElements(driver,"xpath","//tr[contains(@class,'k-master-row')]/descendant::span[contains(@class,'k-picker-wrap')]/descendant::span[@class='k-icon k-i-clock']");
+        for(int i=1;i<= Clocks.size();i++)
+        {
+            cutOffManagementPage.ClickClockIcon(i);
+            cutOffManagementPage.SelectHoursForAllDays();
+            cutOffManagementPage.SelectMinForAllDays();
+            cutOffManagementPage.ClickOnSetButton();
+        }
+        cutOffManagementPage.clickOnRouteFilterTogglebutton();
+        adminHomePage=new AdminHomePage(driver,scenario);
+        adminHomePage.Click_SaveButton();
+        cutOffManagementPage=new CutOffManagementPage(driver,scenario);
+        cutOffManagementPage.disableRouteToggleButton();
+        adminHomePage=new AdminHomePage(driver,scenario);
+        adminHomePage.Click_SaveButton();
+    }
+
+    @And("User should click on Customer management toggle button select branch and set times for cutoff")
+    public void userShouldClickOnCustomerManagementToggleButtonSelectBranchAndSetTimesForCutoff()
+    {
+        cutOffManagementPage=new CutOffManagementPage(driver,scenario);
+        cutOffManagementPage.clickOnCustomerManagementToggleButton();
+        cutOffManagementPage.clickOnFilterCustomerManagementToggleButton();
+        cutOffManagementPage.clickOnCustomerManagementDropdown();
+        cutOffManagementPage.selectCustomerManagementFromDropdown();
+        cutOffManagementPage.clickOnCutOffTimesTogglebutton();
+        List<WebElement> Clocks= HelpersMethod.FindByElements(driver,"xpath","//tr[contains(@class,'k-master-row')]/descendant::span[contains(@class,'k-picker-wrap')]/descendant::span[@class='k-icon k-i-clock']");
+        for(int i=1;i<= Clocks.size();i++)
+        {
+            cutOffManagementPage.ClickClockIcon(i);
+            cutOffManagementPage.SelectHoursForAllDays();
+            cutOffManagementPage.SelectMinForAllDays();
+            cutOffManagementPage.ClickOnSetButton();
+        }
+        cutOffManagementPage.clickOnCustomerManagementFilterTogglebutton();
+        adminHomePage=new AdminHomePage(driver,scenario);
+        adminHomePage.Click_SaveButton();
+        cutOffManagementPage=new CutOffManagementPage(driver,scenario);
+        cutOffManagementPage.disableCustomerManagementToggleButton();
+        adminHomePage=new AdminHomePage(driver,scenario);
+        adminHomePage.Click_SaveButton();
+    }
 }

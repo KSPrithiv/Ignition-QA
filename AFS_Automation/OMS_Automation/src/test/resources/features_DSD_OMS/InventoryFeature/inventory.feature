@@ -40,7 +40,7 @@ Feature: Inventory
     Given User must be on Order Entry Page to select Inventory tab
     And User should navigate to Inventory tab
     Then User should be in Store inventory tab, in inventory page
-    Then User should change store inventroy dropdown value
+    Then User should change store inventory dropdown value
     And User enters product#, "<Case>", "<Unit>", "<Sequence>" in quick product entry
     Examples:
       |Case|Unit|Sequence|

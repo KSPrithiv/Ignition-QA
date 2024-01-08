@@ -261,22 +261,20 @@ public class CustomerInquiryPageERP
         catch (Exception e){}
     }
 
-    public void DescrVal()
+    public void DescrVal(String desc)
     {
         exists=false;
         String DescVal=null;
         Actions act=new Actions(driver);
         try
         {
-           /* Desc=RandomValues.generateRandomString(4);
             HelpersMethod.ScrollElement(driver,description_Input);
             act.moveToElement(description_Input).click().build().perform();
             HelpersMethod.clearText(driver,description_Input,1000);
-            HelpersMethod.EnterText(driver,description_Input,1000,Desc);*/
-
+            HelpersMethod.EnterText(driver,description_Input,1000,desc);
             DescVal=HelpersMethod.JSGetValueEle(driver,description_Input,1000);
             scenario.log("CUSTOMER DESCRIPTION ENTERED IS: "+DescVal);
-            //Assert.assertEquals(exists,true);
+            Assert.assertEquals(desc,DescVal);
         }
         catch (Exception e){}
     }
@@ -326,12 +324,17 @@ public class CustomerInquiryPageERP
         exists=false;
         try
         {
+            if(HelpersMethod.IsExists("//div[@class='loader']",driver))
+            {
+                WebElement WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 2000000);
+            }
             if (HelpersMethod.IsExists("//div[contains(text(),'The information has been saved successfully.')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]", driver))
             {
                 if(HelpersMethod.IsExists("//div[@class='loader']",driver))
                 {
                     WebElement WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000000);
+                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 2000000);
                 }
                 exists=true;
             }
@@ -344,6 +347,11 @@ public class CustomerInquiryPageERP
     {
         try
         {
+            if(HelpersMethod.IsExists("//div[@class='loader']",driver))
+            {
+                WebElement WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 2000000);
+            }
             if (HelpersMethod.IsExists("//div[contains(text(),'The information has been saved successfully.')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]", driver))
             {
                 WebElement confirmationPopup=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-widget k-window k-dialog')]");
@@ -351,6 +359,11 @@ public class CustomerInquiryPageERP
                 HelpersMethod.ClickBut(driver,okButton,6000);
                 exists=true;
                 //new WebDriverWait(driver,2000).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class='cards']"))));
+                if(HelpersMethod.IsExists("//div[@class='loader']",driver))
+                {
+                    WebElement WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
+                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 2000000);
+                }
             }
             Assert.assertEquals(exists,true);
         }
@@ -727,6 +740,60 @@ public class CustomerInquiryPageERP
                 exists=true;
             }
             Assert.assertEquals(exists,true);
+        }
+        catch (Exception e){}
+    }
+
+    public void popUpForCustomerNameRequired()
+    {
+        exists=false;
+        try
+        {
+            if(HelpersMethod.IsExists("//div[contains(text(),'The following fields are invalid:')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
+            {
+                WebElement okButton=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-widget k-window k-dialog')]/descendant::button[text()='Ok']");
+                HelpersMethod.ActClick(driver,okButton,1000);
+                scenario.log("ENTERING OF CUSTOMER ACCOUNT NAME IS MUST");
+                exists=true;
+            }
+            Assert.assertEquals(exists,true);
+        }
+        catch (Exception e){}
+    }
+
+    public void clickOnPaymentProcessing()
+    {
+        exists=false;
+        try
+        {
+            if(HelpersMethod.IsExists("//span[@id='CmCCProc']/parent::span",driver))
+            {
+                scenario.log("PAYMENT PROCESS DROP DOWN FOUND");
+                exists=true;
+            }
+            Assert.assertEquals(exists,true);
+        }
+        catch (Exception e){}
+    }
+
+    public void verifySystemDefaultRealTime()
+    {
+        exists=false;
+        Actions act=new Actions(driver);
+        String payOptions=null;
+        try
+        {
+            List<WebElement> paymentProcess=HelpersMethod.FindByElements(driver,"xpath","//div[contains(@class,'k-list-container')]/descendant::ul/li");
+            for(WebElement payProcess:paymentProcess)
+            {
+                act.moveToElement(payProcess).build().perform();
+                payOptions=payProcess.getText();
+                if(payOptions.equalsIgnoreCase("System default (Realtime charge)"))
+                {
+                    scenario.log("PAYMENT PROCESS System default (Realtime charge) HAS BEEN FOUND");
+                    break;
+                }
+            }
         }
         catch (Exception e){}
     }

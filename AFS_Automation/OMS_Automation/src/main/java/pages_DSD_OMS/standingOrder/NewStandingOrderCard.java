@@ -1289,4 +1289,38 @@ public class NewStandingOrderCard
         }
         catch (Exception e){}
     }
+
+    public void validateDialogboxSOAllreadyExists()
+    {
+        exists=false;
+        try
+        {
+            if(HelpersMethod.IsExists("//div[contains(text(),'Standing order exist for the selected date.')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
+            {
+                WebElement modelContainer=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-widget k-window k-dialog')]");
+                WebElement okButton=modelContainer.findElement(By.xpath(".//button[text()='OK']"));
+                HelpersMethod.ActClick(driver,okButton,1000);
+                exists=true;
+            }
+            Assert.assertEquals(exists,true);
+        }
+        catch (Exception e){}
+    }
+
+    public void cancelAddSO()
+    {
+        exists=false;
+        try
+        {
+            if(HelpersMethod.IsExists("//div[contains(text(),'Add standing order')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
+            {
+                WebElement modelContainer=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-widget k-window k-dialog')]");
+                WebElement cancelButton=modelContainer.findElement(By.xpath(".//button[text()='Cancel']"));
+                HelpersMethod.ActClick(driver,cancelButton,1000);
+                exists=true;
+            }
+            Assert.assertEquals(exists,true);
+        }
+        catch (Exception e){}
+    }
 }
