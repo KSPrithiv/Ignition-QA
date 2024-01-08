@@ -5,6 +5,7 @@ on:
      - karthik
  workflow_dispatch:
   
+
 jobs:
   job1:
     name : WMS Automation
