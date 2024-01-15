@@ -29,7 +29,7 @@ jobs:
       - name: WMS Automation module-1
         run: |
          mvn install test -DsuiteXmlFile='OutboundLoadPlanning1TestNGRunner.xml'
-        working-directory: AFS_Automation/WMS_Automation 
+        #working-directory: AFS_Automation/WMS_Automation 
         
        
         
@@ -135,7 +135,7 @@ jobs:
       - name: WMS Automation module-5
         run: |
          mvn install test -DsuiteXmlFile='OutboundOrderSummaryAssignTestNGRunner.xml'
-        working-directory: AFS_Automation/WMS_Automation 
+        #working-directory: AFS_Automation/WMS_Automation 
         
 # ###########################################################################        
   job6:  
@@ -158,7 +158,7 @@ jobs:
       - name: WMS Automation module-6
         run: |
          mvn install test -DsuiteXmlFile='OutboundOrderSummaryFilterOptionTestNGRunner.xml'
-        working-directory: AFS_Automation/WMS_Automation 
+        #working-directory: AFS_Automation/WMS_Automation 
         
       
 # ###########################################################################        
@@ -206,7 +206,7 @@ jobs:
       - name: WMS Automation module-8
         run: |
          mvn install test -DsuiteXmlFile='OutboundOrderSummaryWorkTestNGRunner.xml'
-        working-directory: AFS_Automation/WMS_Automation
+        #working-directory: AFS_Automation/WMS_Automation
         
         
 # ###########################################################################        
@@ -230,7 +230,7 @@ jobs:
       - name: WMS Automation module-9
         run: |
          mvn install test -DsuiteXmlFile='OutboundRouteSummaryAssignTestNGRunner.xml'
-        working-directory: AFS_Automation/WMS_Automation 
+        #working-directory: AFS_Automation/WMS_Automation 
         
         
 
@@ -255,7 +255,7 @@ jobs:
       - name: WMS Automation module-10
         run: |
          mvn install test -DsuiteXmlFile='OutboundRouteSummaryFilterOptionTestNGRunner.xml'
-        working-directory: AFS_Automation/WMS_Automation 
+        #working-directory: AFS_Automation/WMS_Automation 
 
  # ###########################################################################   
 
@@ -279,7 +279,7 @@ jobs:
       - name: WMS Automation module-11
         run: |
          mvn install test -DsuiteXmlFile='OutboundRouteSummaryOptionTestNGRunner.xml'
-        working-directory: AFS_Automation/WMS_Automation 
+        #working-directory: AFS_Automation/WMS_Automation 
 
  # ###########################################################################
 
@@ -303,7 +303,7 @@ jobs:
       - name: WMS Automation module-12
         run: |
          mvn install test -DsuiteXmlFile='OutboundRouteSummaryWorkTestNGRunner.xml'
-        working-directory: AFS_Automation/WMS_Automation 
+        #working-directory: AFS_Automation/WMS_Automation 
 
  # ###########################################################################
         
@@ -421,7 +421,7 @@ jobs:
       - name: WMS Automation module-16
         run: |
          mvn install test -DsuiteXmlFile='InboundLoadsDetailsCucumberTestNGRunner.xml'
-        working-directory: AFS_Automation/WMS_Automation 
+        #working-directory: AFS_Automation/WMS_Automation 
         
        
         
@@ -449,7 +449,7 @@ jobs:
       - name: WMS Automation module-17
         run: |
          mvn install test -DsuiteXmlFile='InboundLoadsOrderDetailsCucumberTestNGRunner.xml'
-        working-directory: AFS_Automation/WMS_Automation 
+        #working-directory: AFS_Automation/WMS_Automation 
         
        
         
@@ -477,7 +477,7 @@ jobs:
       - name: WMS Automation module-18
         run: |
          mvn install test -DsuiteXmlFile='InboundLoadsOrderLinesCucumberTestNGRunner.xml'
-        working-directory: AFS_Automation/WMS_Automation 
+        #working-directory: AFS_Automation/WMS_Automation 
         
        
         
@@ -576,7 +576,7 @@ jobs:
       - name: WMS Automation module-22
         run: |
          mvn install test -DsuiteXmlFile='InboundReceivingCucumberTestNGRunner.xml'
-        working-directory: AFS_Automation/WMS_Automation 
+        #working-directory: AFS_Automation/WMS_Automation 
         
 
 # ###########################################################################  

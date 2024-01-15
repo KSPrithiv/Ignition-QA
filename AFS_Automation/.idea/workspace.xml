@@ -5,24 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="509c80e0-2f2e-4497-bee7-a6c4d904e2a0" name="Changes" comment="pushing">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WMS_Automation/Reports/Index.html" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/Reports/Index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WMS_Automation/src/main/java/common/setup/DriverManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/src/main/java/common/setup/DriverManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WMS_Automation/src/main/java/ui/pages/DockManagementSummaryPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/src/main/java/ui/pages/DockManagementSummaryPage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WMS_Automation/src/main/java/ui/pages/counting/counting/CountingCountPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/src/main/java/ui/pages/counting/counting/CountingCountPage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WMS_Automation/src/main/java/ui/pages/counting/dashboard/CountingDashboardPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/src/main/java/ui/pages/counting/dashboard/CountingDashboardPage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WMS_Automation/src/main/java/ui/pages/counting/sessions/CountingSessionsPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/src/main/java/ui/pages/counting/sessions/CountingSessionsPage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WMS_Automation/src/test/java/runners/CountingCounterCucumberRunner.java" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/src/test/java/runners/CountingCounterCucumberRunner.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WMS_Automation/src/test/java/runners/CountingSessionsCucumberRunner.java" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/src/test/java/runners/CountingSessionsCucumberRunner.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WMS_Automation/src/test/java/steps/validations/counting/sessions/CountingSessionsPageValidations.java" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/src/test/java/steps/validations/counting/sessions/CountingSessionsPageValidations.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WMS_Automation/src/test/resources/features/counting/sessions/CountingSessionsScreen1.feature" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/src/test/resources/features/counting/sessions/CountingSessionsScreen1.feature" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WMS_Automation/src/test/resources/features/counting/sessions/CountingSessionsScreen2.feature" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/src/test/resources/features/counting/sessions/CountingSessionsScreen2.feature" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WMS_Automation/src/test/resources/features/counting/sessions/CountingSessionsScreen3.feature" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/src/test/resources/features/counting/sessions/CountingSessionsScreen3.feature" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WMS_Automation/src/test/resources/properties/config_test.properties" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/src/test/resources/properties/config_test.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WMS_Automation/target/classes/ui/pages/DockManagementSummaryPage.class" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/target/classes/ui/pages/DockManagementSummaryPage.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WMS_Automation/target/classes/ui/pages/counting/counting/CountingCountPage.class" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/target/classes/ui/pages/counting/counting/CountingCountPage.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WMS_Automation/target/classes/ui/pages/counting/sessions/CountingSessionsPage.class" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/target/classes/ui/pages/counting/sessions/CountingSessionsPage.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WMS_Automation/target/test-classes/steps/validations/counting/sessions/CountingSessionsPageValidations.class" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/target/test-classes/steps/validations/counting/sessions/CountingSessionsPageValidations.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../.github/workflows/WMS-failed.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.github/workflows/WMS-Regression.yml" beforeDir="false" afterPath="$PROJECT_DIR$/../.github/workflows/WMS-Regression.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.github/workflows/WMS-test.yml" beforeDir="false" afterPath="$PROJECT_DIR$/../.github/workflows/WMS-test.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
