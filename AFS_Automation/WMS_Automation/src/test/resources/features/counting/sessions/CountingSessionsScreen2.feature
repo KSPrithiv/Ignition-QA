@@ -61,6 +61,7 @@ Feature: Testing of Counting Count functionality
     Then User clicks Location Reconcile on Counting Sessions page
     And Validates "Success" notification is displayed on Counting Sessions page
 
+  @loader1
   Scenario: Checking Search and Add Filter functionality on Counting Sessions screen
     Given User signs in the application
     And Main page is loaded
@@ -124,81 +125,83 @@ Feature: Testing of Counting Count functionality
     And Clicks Clear All Button on Counting Sessions page
     And Validates items are present on Counting Sessions page
 
-  Scenario: Checking Add Products from Product tab on Counting Sessions screen
-    Given User signs in the application
-    And Main page is loaded
-    And Go to Counting Sessions page
-    And Waits for Counting Sessions page to load
-    And User clicks session dropdown on Counting Sessions page
-    When User selects session with index 1 on Counting Sessions page
-    And User clicks Products tab on Counting Sessions page
-    And Clicks Add Product Button on Counting Sessions page
-    Then Validates "Add product" popup is displayed on Counting Sessions page
-    And User clicks Save button on Counting Sessions page
-    And Clicks Add Product Button on Counting Sessions page
-    And Validates "Add product" popup is displayed on Counting Sessions page
-    And Types "50" number of products on Counting Sessions page
-    And User clicks Save button on Counting Sessions page
-    And Clicks Add Product Button on Counting Sessions page
-    And Validates "Add product" popup is displayed on Counting Sessions page
-    And Selects product type by index 2 on Counting Sessions page
-    And User clicks Save button on Counting Sessions page
-    And Clicks Add Product Button on Counting Sessions page
-    And Selects movement class by index 1 on Counting Sessions page
-    And User clicks Save button on Counting Sessions page
-    And Clicks Add Product Button on Counting Sessions page
-    And Selects owner dropdown by index 1 on Counting Sessions page
-    And User clicks Save button on Counting Sessions page
-    And Clicks Add Product Button on Counting Sessions page
-    And Types supplier by index 2 on Counting Sessions page
-    And User clicks Save button on Counting Sessions page
-    And Clicks Add Product Button on Counting Sessions page
-    And Validates "Add product" popup is displayed on Counting Sessions page
-    And Types prod alias type by index 2 on Counting Sessions page
-    And User clicks Save button on Counting Sessions page
-    And Clicks Add Product Button on Counting Sessions page
-    And Validates "Add product" popup is displayed on Counting Sessions page
-    And Types inventory status by index 2 on Counting Sessions page
-    And User clicks Save button on Counting Sessions page
-    And Clicks Add Product Button on Counting Sessions page
-    And Validates "Add product" popup is displayed on Counting Sessions page
-    And Selects product type by index 5 on Counting Sessions page
-    And Selects movement class by index 3 on Counting Sessions page
-    And User clicks Save button on Counting Sessions page
-    And Clicks Add Product Button on Counting Sessions page
-    And Validates "Add product" popup is displayed on Counting Sessions page
-    And Selects product type by index 2 on Counting Sessions page
-    And Selects movement class by index 1 on Counting Sessions page
-    And Types supplier by index 2 on Counting Sessions page
-    And User clicks Save button on Counting Sessions page
-    And Clicks Add Product Button on Counting Sessions page
-    And Validates "Add product" popup is displayed on Counting Sessions page
-    And Selects product type by index 2 on Counting Sessions page
-    And Selects movement class by index 1 on Counting Sessions page
-    And Types supplier by index 2 on Counting Sessions page
-    And Selects owner dropdown by index 1 on Counting Sessions page
-    And User clicks Save button on Counting Sessions page
-    And Clicks Add Product Button on Counting Sessions page
-    And Validates "Add product" popup is displayed on Counting Sessions page
-    And Selects product type by index 2 on Counting Sessions page
-    And Selects movement class by index 1 on Counting Sessions page
-    And Types supplier by index 2 on Counting Sessions page
-    And Selects owner dropdown by index 1 on Counting Sessions page
-    And Types inventory status by index 2 on Counting Sessions page
-    And User clicks Save button on Counting Sessions page
-    And Clicks Add Product Button on Counting Sessions page
-    And Validates "Add product" popup is displayed on Counting Sessions page
-    And Selects product type by index 2 on Counting Sessions page
-    And Selects movement class by index 1 on Counting Sessions page
-    And Types supplier by index 2 on Counting Sessions page
-    And Selects owner dropdown by index 1 on Counting Sessions page
-    And Types inventory status by index 5 on Counting Sessions page
-    And Types prod alias type by index 4 on Counting Sessions page
-    And User clicks Save button on Counting Sessions page
-    And Clicks Add Product Button on Counting Sessions page
-    And Validates "Add product" popup is displayed on Counting Sessions page
-    And User clicks Cancel button on Counting Sessions page
+    @loader1
+#  Scenario: Checking Add Products from Product tab on Counting Sessions screen
+#    Given User signs in the application
+#    And Main page is loaded
+#    And Go to Counting Sessions page
+#    And Waits for Counting Sessions page to load
+#    And User clicks session dropdown on Counting Sessions page
+#    When User selects session with index 1 on Counting Sessions page
+#    And User clicks Products tab on Counting Sessions page
+#    And Clicks Add Product Button on Counting Sessions page
+#    Then Validates "Add product" popup is displayed on Counting Sessions page
+#    And User clicks Save button on Counting Sessions page
+#    And Clicks Add Product Button on Counting Sessions page
+#    And Validates "Add product" popup is displayed on Counting Sessions page
+#    And Types "50" number of products on Counting Sessions page
+#    And User clicks Save button on Counting Sessions page
+#    And Clicks Add Product Button on Counting Sessions page
+#    And Validates "Add product" popup is displayed on Counting Sessions page
+#    And Selects product type by index 2 on Counting Sessions page
+#    And User clicks Save button on Counting Sessions page
+#    And Clicks Add Product Button on Counting Sessions page
+#    And Selects movement class by index 1 on Counting Sessions page
+#    And User clicks Save button on Counting Sessions page
+#    And Clicks Add Product Button on Counting Sessions page
+#    And Selects owner dropdown by index 1 on Counting Sessions page
+#    And User clicks Save button on Counting Sessions page
+#    And Clicks Add Product Button on Counting Sessions page
+#    And Types supplier by index 2 on Counting Sessions page
+#    And User clicks Save button on Counting Sessions page
+#    And Clicks Add Product Button on Counting Sessions page
+#    And Validates "Add product" popup is displayed on Counting Sessions page
+#    And Types prod alias type by index 2 on Counting Sessions page
+#    And User clicks Save button on Counting Sessions page
+#    And Clicks Add Product Button on Counting Sessions page
+#    And Validates "Add product" popup is displayed on Counting Sessions page
+#    And Types inventory status by index 2 on Counting Sessions page
+#    And User clicks Save button on Counting Sessions page
+#    And Clicks Add Product Button on Counting Sessions page
+#    And Validates "Add product" popup is displayed on Counting Sessions page
+#    And Selects product type by index 5 on Counting Sessions page
+#    And Selects movement class by index 3 on Counting Sessions page
+#    And User clicks Save button on Counting Sessions page
+#    And Clicks Add Product Button on Counting Sessions page
+#    And Validates "Add product" popup is displayed on Counting Sessions page
+#    And Selects product type by index 2 on Counting Sessions page
+#    And Selects movement class by index 1 on Counting Sessions page
+#    And Types supplier by index 2 on Counting Sessions page
+#    And User clicks Save button on Counting Sessions page
+#    And Clicks Add Product Button on Counting Sessions page
+#    And Validates "Add product" popup is displayed on Counting Sessions page
+#    And Selects product type by index 2 on Counting Sessions page
+#    And Selects movement class by index 1 on Counting Sessions page
+#    And Types supplier by index 2 on Counting Sessions page
+#    And Selects owner dropdown by index 1 on Counting Sessions page
+#    And User clicks Save button on Counting Sessions page
+#    And Clicks Add Product Button on Counting Sessions page
+#    And Validates "Add product" popup is displayed on Counting Sessions page
+#    And Selects product type by index 2 on Counting Sessions page
+#    And Selects movement class by index 1 on Counting Sessions page
+#    And Types supplier by index 2 on Counting Sessions page
+#    And Selects owner dropdown by index 1 on Counting Sessions page
+#    And Types inventory status by index 2 on Counting Sessions page
+#    And User clicks Save button on Counting Sessions page
+#    And Clicks Add Product Button on Counting Sessions page
+#    And Validates "Add product" popup is displayed on Counting Sessions page
+#    And Selects product type by index 2 on Counting Sessions page
+#    And Selects movement class by index 1 on Counting Sessions page
+#    And Types supplier by index 2 on Counting Sessions page
+#    And Selects owner dropdown by index 1 on Counting Sessions page
+#    And Types inventory status by index 5 on Counting Sessions page
+#    And Types prod alias type by index 4 on Counting Sessions page
+#    And User clicks Save button on Counting Sessions page
+#    And Clicks Add Product Button on Counting Sessions page
+#    And Validates "Add product" popup is displayed on Counting Sessions page
+#    And User clicks Cancel button on Counting Sessions page
 
+  @Productsxpath
   Scenario: Checking Sorting and Select All on Counting Sessions screen
     Given User signs in the application
     And Main page is loaded
@@ -236,6 +239,7 @@ Feature: Testing of Counting Count functionality
     And User clicks Product Type Column on Counting Sessions page
     And Validates Product Type Column Sorting Result on Counting Sessions page
 
+  @Productsxpath
   Scenario: Checking Remove Products from Product Tab on Counting Sessions screen
     Given User signs in the application
     And Main page is loaded

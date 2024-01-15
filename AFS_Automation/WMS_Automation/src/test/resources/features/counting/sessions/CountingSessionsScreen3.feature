@@ -23,6 +23,7 @@ Feature: Testing of Counting Count functionality
     And User clicks Add Filter on Counting Sessions page
     And Validates Assignment filters are displayed on Counting Sessions page
 
+  @loader1
   Scenario: Checking Add Products from Product pab on Counting Sessions screen
     Given User signs in the application
     And Main page is loaded

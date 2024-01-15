@@ -100,7 +100,9 @@ public class DockManagementSummaryPage extends BasePage {
     By userHistoryIcon = By.xpath("//div[@class='submenu-items-list']//div[contains(text(), 'User History') and @class='submenu-item-text']");
     By loggedInUsersIcon = By.xpath("//div[@class='submenu-items-list']//div[contains(text(), 'Logged-In Users') and @class='submenu-item-text']");
     By assignmentsIcon = By.xpath("//div[@class='submenu-items-list']//div[contains(text(), 'Assignments') and @class='submenu-item-text']");
-    By countingIcon = By.xpath("//ul[contains(@class, 'drawer-menu-list-items')]//span[text()='Counting']");
+    //By countingIcon = By.xpath("//ul[contains(@class, 'drawer-menu-list-items')]//span[text()='Counting']");
+    //By countingIcon = By.xpath("//*[@id='menuWrapper_selected_AccessCPCountingCount']/li/span[1]");
+    By countingIcon = By.xpath("//span[normalize-space()='Counting']");
     By setupIcon = By.xpath("//ul[contains(@class, 'drawer-menu-list-items')]//span[text()='Setup']");
     By setupProductIcon = By.xpath("//div[contains(@id, 'accesscpwmssettingssystem')]//div[contains(text(), 'Product')]");
     By appointmentsIcon = By.xpath("//ul[contains(@class, 'drawer-menu-list-items')]//span[text()='Appointments']");
@@ -109,7 +111,9 @@ public class DockManagementSummaryPage extends BasePage {
     By productIcon = By.xpath("//div[@class='submenu-items-list']//div[contains(text(), 'Product') and @class='submenu-item-text']");
     By dockManagementIcon = By.xpath("//div[@class='submenu-items-list']//div[contains(text(), 'Dock Management') and @class='submenu-item-text']");
     By lookupReportsIcon = By.xpath("//div[@class='submenu-items-list']//div[contains(text(), 'Lookup Reports') and @class='submenu-item-text']");
-    By countIcon = By.xpath("//div[@class='submenu-items-list']//div[contains(text(), 'Counting') and @class='submenu-item-text']");
+    //By countIcon = By.xpath("//div[@class='submenu-items-list']//div[contains(text(), 'Counting') and @class='submenu-item-text']");
+    //By countIcon = By.xpath("//*[@id='menuWrapper_selected_AccessCPCountingCount']/li/span[1]");
+    By countIcon = By.xpath("//body/div[@id='app']/div[@class='authorized-wrapper']/div[@class='page-container']/div[@class='drawer-menu-container']/div[@class='MuiDrawer-root MuiDrawer-docked']/div[@class='MuiPaper-root MuiDrawer-paper drawer-opened MuiDrawer-paperAnchorLeft MuiDrawer-paperAnchorDockedLeft MuiPaper-elevation0']/div[@class='drawer-menu-items-container-expanded hidden-scrollbar']/ul[@class='MuiList-root MuiList-padding']/div[@id='menuWrapper_selected_AccessCPCountingCount']/div[@class='submenu-items-list']/div[1]");
     By countingDashboardIcon = By.xpath("//div[@class='submenu-items-list']//div[contains(text(), 'Dashboard') and @class='submenu-item-text']");
     By countingSessionsIcon = By.xpath("//div[@class='submenu-items-list']//div[contains(text(), 'Sessions') and @class='submenu-item-text']");
     By exportIcon = By.xpath("//div[@class='submenu-items-list']//div[contains(text(), 'Export') and @class='submenu-item-text']");

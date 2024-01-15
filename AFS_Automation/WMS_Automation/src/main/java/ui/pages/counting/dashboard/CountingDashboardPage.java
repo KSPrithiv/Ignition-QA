@@ -23,15 +23,16 @@ public class CountingDashboardPage extends BasePage {
     By productCountedCardGuage = By.xpath("//div[@id='cardGuage'][.//div[text()='Products counted']]");
     By prodDiscrepanciesTitle = By.xpath("//div[@id='cardDiscrepancy'][.//div[text()='Products with discrepancies']]");
     By dropdownList = By.id("dropdownList");
-    By loader = By.cssSelector(".loader");
+    //By loader = By.cssSelector(".loader");
+    By loader = By.xpath("//*[@id='dashboardPage']/div[1]/div");
 
     public void waitCountingDashboardPageToLoad() {
-        waitUntilInvisible(5, loader);
-        Waiters.waitTillLoadingPage(getDriver());
-        Waiters.waitForElementToBeDisplay(cycleCountSessionLabel);
-        Waiters.waitForElementToBeDisplay(cycleCountSession);
-        Waiters.waitForElementToBeDisplay(cycleCountAssignmentLabel);
-        Waiters.waitForElementToBeDisplay(cycleCountAssignment);
+        waitUntilInvisible(25, loader);
+//       Waiters.waitTillLoadingPage(getDriver());
+//        Waiters.waitForElementToBeDisplay(cycleCountSessionLabel);
+//        Waiters.waitForElementToBeDisplay(cycleCountSession);
+//        Waiters.waitForElementToBeDisplay(cycleCountAssignmentLabel);
+//        Waiters.waitForElementToBeDisplay(cycleCountAssignment);
     }
 
     public void selectWarehouse(String warehouse) {

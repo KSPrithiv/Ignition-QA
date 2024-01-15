@@ -17,7 +17,8 @@ public class CountingSessionsPage extends BasePage {
     By btnEditSession = By.id("btnEditSession");
     By btnDeleteSession = By.xpath("//button[contains(text(), 'Delete')]");
     By locationsTab = By.xpath("//li[@role='tab']//span[text()='Locations']");
-    By productsTab = By.xpath("//li[@role='tab']//span[text()='Products']");
+    //By productsTab = By.xpath("//li[@role='tab']//span[text()='Products']");
+    By productsTab = By.xpath("//span[normalize-space()='Products']");
     By assignmentsTab = By.xpath("//li[@role='tab']//span[text()='Assignments']");
     By dialogTitle = By.className("k-dialog-title");
     By sessionNameLabel = By.id("txtSessionName-label");
@@ -294,7 +295,9 @@ public class CountingSessionsPage extends BasePage {
 
     public void clickSessionDropdown() {
         Waiters.waitTillLoadingPage(getDriver());
+        waitUntilInvisible(4, loader);
         Waiters.waitForElementToBeClickable(sessionDropdown);
+        waitUntilInvisible(4, loader);
         clickOnElement(getSessionDropdown());
         Waiters.waitTillLoadingPage(getDriver());
         waitUntilInvisible(4, loader);
