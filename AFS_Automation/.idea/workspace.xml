@@ -5,22 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="509c80e0-2f2e-4497-bee7-a6c4d904e2a0" name="Changes" comment="pushing">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WMS_Automation/Reports/Index.html" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/Reports/Index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WMS_Automation/src/main/java/ui/pages/BasePage.java" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/src/main/java/ui/pages/BasePage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WMS_Automation/src/main/java/ui/pages/DockManagementSummaryPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/src/main/java/ui/pages/DockManagementSummaryPage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WMS_Automation/src/main/java/ui/pages/lookup/lookuplocation/LocationLookupPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/src/main/java/ui/pages/lookup/lookuplocation/LocationLookupPage.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/WMS_Automation/src/test/java/runners/CountingSessionsCucumberRunner.java" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/src/test/java/runners/CountingSessionsCucumberRunner.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WMS_Automation/src/test/resources/features/counting/sessions/CountingSessionsScreen1.feature" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/src/test/resources/features/counting/sessions/CountingSessionsScreen1.feature" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WMS_Automation/src/test/resources/features/login/Login.feature" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/src/test/resources/features/login/Login.feature" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WMS_Automation/src/test/resources/properties/config_test.properties" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/src/test/resources/properties/config_test.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WMS_Automation/target/classes/common/setup/DriverManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/target/classes/common/setup/DriverManager.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WMS_Automation/target/classes/ui/pages/BasePage.class" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/target/classes/ui/pages/BasePage.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WMS_Automation/target/classes/ui/pages/DockManagementSummaryPage.class" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/target/classes/ui/pages/DockManagementSummaryPage.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WMS_Automation/target/classes/ui/pages/counting/counting/CountingCountPage.class" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/target/classes/ui/pages/counting/counting/CountingCountPage.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WMS_Automation/target/classes/ui/pages/lookup/lookuplocation/LocationLookupPage.class" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/target/classes/ui/pages/lookup/lookuplocation/LocationLookupPage.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WMS_Automation/target/classes/ui/pages/setupLabor/SetupLaborCodePage.class" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/target/classes/ui/pages/setupLabor/SetupLaborCodePage.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WMS_Automation/target/test-classes/properties/config_test.properties" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/target/test-classes/properties/config_test.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
