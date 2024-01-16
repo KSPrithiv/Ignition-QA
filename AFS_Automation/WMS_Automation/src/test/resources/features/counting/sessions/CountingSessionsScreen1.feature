@@ -120,6 +120,7 @@ Feature: Testing of Counting Count functionality
     And User clicks Delete Session button on Counting Sessions page
     And User clicks Ok button on Counting Sessions page
 
+
   Scenario: Checking Sorting of the columns on Counting Sessions screen
     Given User signs in the application
     And Main page is loaded
@@ -178,6 +179,7 @@ Feature: Testing of Counting Count functionality
     And Waits for Location Lookup page to load
     And Validates Inventory details of location on Location Lookup page are loaded
 
+  @scroll
   Scenario: Checking Select All checkbox on Counting Sessions screen
     Given User signs in the application
     And Main page is loaded

@@ -4,7 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="509c80e0-2f2e-4497-bee7-a6c4d904e2a0" name="Changes" comment="pushing" />
+    <list default="true" id="509c80e0-2f2e-4497-bee7-a6c4d904e2a0" name="Changes" comment="pushing">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WMS_Automation/Reports/Index.html" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/Reports/Index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WMS_Automation/src/main/java/ui/pages/BasePage.java" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/src/main/java/ui/pages/BasePage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WMS_Automation/src/main/java/ui/pages/DockManagementSummaryPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/src/main/java/ui/pages/DockManagementSummaryPage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WMS_Automation/src/main/java/ui/pages/lookup/lookuplocation/LocationLookupPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/src/main/java/ui/pages/lookup/lookuplocation/LocationLookupPage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WMS_Automation/src/test/java/runners/CountingSessionsCucumberRunner.java" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/src/test/java/runners/CountingSessionsCucumberRunner.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WMS_Automation/src/test/resources/features/counting/sessions/CountingSessionsScreen1.feature" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/src/test/resources/features/counting/sessions/CountingSessionsScreen1.feature" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WMS_Automation/src/test/resources/features/login/Login.feature" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/src/test/resources/features/login/Login.feature" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WMS_Automation/src/test/resources/properties/config_test.properties" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/src/test/resources/properties/config_test.properties" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -61,7 +71,7 @@
       <recent name="runners" />
     </key>
   </component>
-  <component name="RunManager" selected="TestNG.C:/Users/karthikeyan.Armugam/Documents/Git_Repositories/ignition-qa/AFS_Automation/WMS_Automation/CountingCountingTestNGRunner.xml">
+  <component name="RunManager" selected="TestNG.C:/Users/karthikeyan.Armugam/Documents/Git_Repositories/ignition-qa/AFS_Automation/WMS_Automation/CountingSessionsTestNGRunner.xml">
     <configuration default="true" type="JetRunConfigurationType">
       <module name="WMS_Automation" />
       <method v="2">
@@ -134,10 +144,10 @@
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="TestNG.C:/Users/karthikeyan.Armugam/Documents/Git_Repositories/ignition-qa/AFS_Automation/WMS_Automation/CountingSessionsTestNGRunner.xml" />
         <item itemvalue="TestNG.C:/Users/karthikeyan.Armugam/Documents/Git_Repositories/ignition-qa/AFS_Automation/WMS_Automation/CountingCountingTestNGRunner.xml" />
         <item itemvalue="TestNG.C:/Users/karthikeyan.Armugam/Documents/Git_Repositories/ignition-qa/AFS_Automation/WMS_Automation/OutboundLoadPlanning1TestNGRunner.xml" />
         <item itemvalue="TestNG.C:/Users/karthikeyan.Armugam/Documents/Git_Repositories/ignition-qa/AFS_Automation/WMS_Automation/CountingDashboardTestNGRunner.xml" />
-        <item itemvalue="TestNG.C:/Users/karthikeyan.Armugam/Documents/Git_Repositories/ignition-qa/AFS_Automation/WMS_Automation/CountingSessionsTestNGRunner.xml" />
         <item itemvalue="TestNG.C:/Users/karthikeyan.Armugam/Documents/Git_Repositories/ignition-qa/AFS_Automation/WMS_Automation/InboundLoadsSummary1CucumberTestNGRunner.xml" />
       </list>
     </recent_temporary>
@@ -263,22 +273,22 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/WMS_Automation/src/main/java/ui/pages/DockManagementSummaryPage.java</url>
-          <line>545</line>
+          <line>549</line>
           <option name="timeStamp" value="43" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/WMS_Automation/src/main/java/ui/pages/DockManagementSummaryPage.java</url>
-          <line>546</line>
+          <line>550</line>
           <option name="timeStamp" value="44" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/WMS_Automation/src/main/java/ui/pages/DockManagementSummaryPage.java</url>
-          <line>548</line>
+          <line>552</line>
           <option name="timeStamp" value="45" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/WMS_Automation/src/main/java/ui/pages/DockManagementSummaryPage.java</url>
-          <line>465</line>
+          <line>469</line>
           <option name="timeStamp" value="46" />
         </line-breakpoint>
       </breakpoints>

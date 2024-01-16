@@ -429,7 +429,7 @@ public class LocationLookupPage extends BasePage {
         if(isVisible(OKButton) == true) {
             clickOnElement(OKButton);
         }
-        waitUntilInvisible(2, loader);
+        waitUntilInvisible(5, loader);
         Waiters.waitForElementToBeDisplay(cancelButton);
         scrollAndClick(getCancelBtn());
         Waiters.waitABit(2_000);

@@ -93,8 +93,10 @@ public class DockManagementSummaryPage extends BasePage {
     By loadPlanningIcon = By.xpath("//div[@class='submenu-items-list']//div[contains(text(), 'Load Planning') and @class='submenu-item-text']");
     By LoadPlanningWarningMessage  = By.xpath("//div[@id='button_focus_loop_container_14']/button[text()='Ok']");
     By outboundReportsIcon = By.xpath("//div[@class='submenu-items-list']//div[contains(text(), 'Outbound Reports') and @class='submenu-item-text']");
-    By lookupIcon = By.xpath("//ul[contains(@class, 'drawer-menu-list-items')]//span[text()='Lookup']");
-    By workQueueIcon = By.xpath("//ul[contains(@class, 'drawer-menu-list-items')]//span[text()='Work Queue']");
+    //By lookupIcon = By.xpath("//ul[contains(@class, 'drawer-menu-list-items')]//span[text()='Lookup']");
+    By lookupIcon = By.xpath("//span[normalize-space()='Lookup']");
+    //By workQueueIcon = By.xpath("//ul[contains(@class, 'drawer-menu-list-items')]//span[text()='Work Queue']");
+    By workQueueIcon = By.xpath("//span[normalize-space()='Work Queue']");
     By tasksIcon = By.xpath("//div[@class='submenu-items-list']//div[contains(text(), 'Tasks') and @class='submenu-item-text']");
     By assignWorkIcon = By.xpath("//div[@class='submenu-items-list']//div[contains(text(), 'Assign Work') and @class='submenu-item-text']");
     By userHistoryIcon = By.xpath("//div[@class='submenu-items-list']//div[contains(text(), 'User History') and @class='submenu-item-text']");
@@ -103,9 +105,11 @@ public class DockManagementSummaryPage extends BasePage {
     //By countingIcon = By.xpath("//ul[contains(@class, 'drawer-menu-list-items')]//span[text()='Counting']");
     //By countingIcon = By.xpath("//*[@id='menuWrapper_selected_AccessCPCountingCount']/li/span[1]");
     By countingIcon = By.xpath("//span[normalize-space()='Counting']");
-    By setupIcon = By.xpath("//ul[contains(@class, 'drawer-menu-list-items')]//span[text()='Setup']");
+//    By setupIcon = By.xpath("//ul[contains(@class, 'drawer-menu-list-items')]//span[text()='Setup']");
+    By setupIcon = By.xpath("//span[normalize-space()='Setup']");
     By setupProductIcon = By.xpath("//div[contains(@id, 'accesscpwmssettingssystem')]//div[contains(text(), 'Product')]");
-    By appointmentsIcon = By.xpath("//ul[contains(@class, 'drawer-menu-list-items')]//span[text()='Appointments']");
+    //By appointmentsIcon = By.xpath("//span[normalize-space()='Setup']");
+    By appointmentsIcon = By.xpath("//span[normalize-space()='Appointments']");
     By locationIcon = By.xpath("//div[@class='submenu-items-list']//div[contains(text(), 'Location') and @class='submenu-item-text']");
     By labelIcon = By.xpath("//div[@class='submenu-items-list']//div[contains(text(), 'Label') and @class='submenu-item-text']");
     By productIcon = By.xpath("//div[@class='submenu-items-list']//div[contains(text(), 'Product') and @class='submenu-item-text']");

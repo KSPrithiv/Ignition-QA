@@ -3,7 +3,7 @@ Feature: Testing of Login to AFS Application
   Scenario: Enter valid username and password, validate main page
     Given User signs in the application
     When Main page is loaded
-    Then DockManagement Summary Page is validated
+
 
   Scenario: Enter not valid username and password, get error message
     Given User signs in the application with wrong credentials

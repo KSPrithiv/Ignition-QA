@@ -170,7 +170,8 @@ public class BasePage {
 
     public void scrollAndClick(WebElement element) {
         try {
-            ((JavascriptExecutor) getDriver()).executeScript("arguments[0].scrollIntoView({block: 'center'});", element);
+            //((JavascriptExecutor) getDriver()).executeScript("arguments[0].scrollIntoView({block: 'center'});", element);
+            ((JavascriptExecutor) getDriver()).executeScript("arguments[0].scrollIntoView();", element);
             element.click();
         } catch (WebDriverException e) {
             throw new IllegalStateException("WebDriver exception encountered: " + e.getMessage(), e);
