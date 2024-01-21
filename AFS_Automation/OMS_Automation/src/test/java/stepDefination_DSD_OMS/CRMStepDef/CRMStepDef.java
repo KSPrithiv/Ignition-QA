@@ -630,7 +630,7 @@ public class CRMStepDef {
         crmPage.clickOnHamburgerMenu();
         crmPage.clickOnCRMTickets();
         adminHomePage=new AdminHomePage(driver,scenario);
-        adminHomePage.CloseHumburger();
+        adminHomePage.CloseHamburger();
         //crmPage.clickOnHamburgerMenu();
         crmPage.clickOnConfigurationTab();
         //adminHomePage=new AdminHomePage(driver,scenario);
@@ -1046,7 +1046,7 @@ public class CRMStepDef {
         adminHomePage=new AdminHomePage(driver,scenario);
         adminHomePage.ClickPermissionBy();
         adminHomePage.SelectCompany();
-        adminHomePage.CloseHumburger();
+        adminHomePage.CloseHamburger();
     }
 
     @And("User click on the Add Notification button and under that click on status dropdown")

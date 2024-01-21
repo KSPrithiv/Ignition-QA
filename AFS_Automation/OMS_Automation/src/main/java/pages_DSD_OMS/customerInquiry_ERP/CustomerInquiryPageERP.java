@@ -133,7 +133,7 @@ public class CustomerInquiryPageERP
             WebElement Search_Input = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='drawer-menu-search-container']/descendant::input");
             act.moveToElement(Search_Input).click().sendKeys("Customer Inquiry").build().perform();
             WebElement CustInqMenu = HelpersMethod.FindByElement(driver, "xpath", "//ul[contains(@class,'MuiList-root ')]/descendant::span[contains(text(),'Customer Inquiry')] | //ul[contains(@class,'MuiList-root ')]/descendant::span[contains(text(),'Customer inquiry')]");
-            HelpersMethod.ClickBut(driver, CustInqMenu, 6000);
+            HelpersMethod.ClickBut(driver, CustInqMenu, 10000);
             exists = true;
             if (HelpersMethod.IsExists("//div[@class='loader']", driver))
             {
@@ -703,6 +703,130 @@ public class CustomerInquiryPageERP
         catch (Exception e){}
     }
 
+    public void selectCustomerAccountForAdminSetting(String searchValue)
+    {
+        exists=false;
+        try
+        {
+            Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(120))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
+            if(HelpersMethod.IsExists("//div[contains(@class,'k-widget k-window k-dialog')]/descendant::span[contains(text(),'Add filter')]/ancestor::button",driver))
+            {
+                //Create webelement for account dialog box
+                WebElement modalContainer=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-widget k-window k-dialog')]");
+                WebElement addButton=modalContainer.findElement(By.xpath(".//span[contains(text(),'Add filter')]/ancestor::button"));
+                //find whether any filters are already enabled, if yes clear all the filters
+                List<WebElement> filters=modalContainer.findElements(By.xpath(".//div[contains(@class,'i-filter-tag')]"));
+                if(filters.size()!=1)
+                {
+                    //click on add button
+                    HelpersMethod.ActClick(driver,addButton,1000);
+                    //identify clear all button and click on that
+                    WebElement Clear=modalContainer.findElement(By.xpath(".//button[contains(text(),'Clear all')]"));
+                    if(Clear.isEnabled())
+                    {
+                        HelpersMethod.ActClick(driver,Clear,2000);
+                    }
+                }
+
+                //click on add button
+                HelpersMethod.ActClick(driver,addButton,1000);
+
+                //Enter value to first input of addfilter
+                WebElement addFilterInput1=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'i-filter-popup--add')]/descendant::input[@class='i-search-box__input']");
+                HelpersMethod.EnterText(driver,addFilterInput1,2000,searchValue);
+                //Click on check box
+                WebElement checkBox=HelpersMethod.FindByElement(driver,"id","CM_FULLNAME");
+                HelpersMethod.ActClick(driver,checkBox,2000);
+                //enter search value in second search input box
+                WebElement addFilterInput2=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'i-filter-popup__content__input')]/input");
+                HelpersMethod.EnterText(driver,addFilterInput2,4000,TestBase.testEnvironment.get_Account());
+                //Click on Apply button
+                WebElement applyButton=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'i-filter-popup__footer')]/button[text()='Apply']");
+                HelpersMethod.ActClick(driver,applyButton,1000);
+                //Select 1st row in the customer accout# dialog popup
+                WebElement custAccount=modalContainer.findElement(By.xpath(".//tr[contains(@class,'k-master-row')][1]"));
+                HelpersMethod.ActClick(driver,custAccount,1000);
+                //Click on cancel button to close dialog box
+                WebElement cancelButton=modalContainer.findElement(By.xpath(".//button[text()='Cancel']"));
+                HelpersMethod.ActClick(driver,cancelButton,1000);
+
+                wait = new FluentWait<WebDriver>(driver)
+                        .withTimeout(Duration.ofSeconds(120))
+                        .pollingEvery(Duration.ofSeconds(2))
+                        .ignoring(NoSuchElementException.class);
+                wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+            }
+        }
+        catch (Exception e){}
+    }
+
+    public void selectCustomerAccountUsingCustomerAccount(String searchValue)
+    {
+        exists=false;
+        try
+        {
+            Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(120))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
+            if(HelpersMethod.IsExists("//div[contains(@class,'k-widget k-window k-dialog')]/descendant::span[contains(text(),'Add filter')]/ancestor::button",driver))
+            {
+                //Create webelement for account dialog box
+                WebElement modalContainer=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-widget k-window k-dialog')]");
+                WebElement addButton=modalContainer.findElement(By.xpath(".//span[contains(text(),'Add filter')]/ancestor::button"));
+                //find whether any filters are already enabled, if yes clear all the filters
+                List<WebElement> filters=modalContainer.findElements(By.xpath(".//div[contains(@class,'i-filter-tag')]"));
+                if(filters.size()!=1)
+                {
+                    //click on add button
+                    HelpersMethod.ActClick(driver,addButton,1000);
+                    //identify clear all button and click on that
+                    WebElement Clear=modalContainer.findElement(By.xpath(".//button[contains(text(),'Clear all')]"));
+                    if(Clear.isEnabled())
+                    {
+                        HelpersMethod.ActClick(driver,Clear,2000);
+                    }
+                }
+
+                //click on add button
+                HelpersMethod.ActClick(driver,addButton,1000);
+
+                //Enter value to first input of addfilter
+                WebElement addFilterInput1=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'i-filter-popup--add')]/descendant::input[@class='i-search-box__input']");
+                HelpersMethod.EnterText(driver,addFilterInput1,2000,searchValue);
+                //Click on check box
+                WebElement checkBox=HelpersMethod.FindByElement(driver,"id","FORMATTED_CM_CUSTKEY");
+                HelpersMethod.ActClick(driver,checkBox,2000);
+                //enter search value in second search input box
+                WebElement addFilterInput2=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'i-filter-popup__content__input')]/input");
+                HelpersMethod.EnterText(driver,addFilterInput2,4000,TestBase.testEnvironment.get_Account());
+                //Click on Apply button
+                WebElement applyButton=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'i-filter-popup__footer')]/button[text()='Apply']");
+                HelpersMethod.ActClick(driver,applyButton,1000);
+                //Select 1st row in the customer accout# dialog popup
+                WebElement custAccount=modalContainer.findElement(By.xpath(".//tr[contains(@class,'k-master-row')][1]"));
+                HelpersMethod.ActClick(driver,custAccount,1000);
+                //Click on cancel button to close dialog box
+                WebElement cancelButton=modalContainer.findElement(By.xpath(".//button[text()='Cancel']"));
+                HelpersMethod.ActClick(driver,cancelButton,1000);
+
+                wait = new FluentWait<WebDriver>(driver)
+                        .withTimeout(Duration.ofSeconds(120))
+                        .pollingEvery(Duration.ofSeconds(2))
+                        .ignoring(NoSuchElementException.class);
+                wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+            }
+        }
+        catch (Exception e){}
+    }
+
     public void validateNoteInPopup(String custNote)
     {
         exists=false;
@@ -793,6 +917,32 @@ public class CustomerInquiryPageERP
                     scenario.log("PAYMENT PROCESS System default (Realtime charge) HAS BEEN FOUND");
                     break;
                 }
+            }
+        }
+        catch (Exception e){}
+    }
+
+    public void handleNotePopup()
+    {
+        try
+        {
+            Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(120))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
+            if(HelpersMethod.IsExists("//div[@id='customerNotesDialog']/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
+            {
+                WebElement moduleContainer=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-widget k-window k-dialog')]");
+                WebElement okButton=moduleContainer.findElement(By.xpath("//button[@id='CustomerCommentDialogOK']"));
+                HelpersMethod.ActClick(driver,okButton,10000);
+
+                wait = new FluentWait<WebDriver>(driver)
+                        .withTimeout(Duration.ofSeconds(120))
+                        .pollingEvery(Duration.ofSeconds(2))
+                        .ignoring(NoSuchElementException.class);
+                wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
             }
         }
         catch (Exception e){}

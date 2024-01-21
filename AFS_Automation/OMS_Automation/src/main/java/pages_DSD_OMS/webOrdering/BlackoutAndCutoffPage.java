@@ -89,7 +89,8 @@ public class BlackoutAndCutoffPage
         {
             WebElement modelContainer=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-widget k-window k-dialog')]");
             WebElement calenderButton=modelContainer.findElement(By.xpath(".//a[@class='k-select']"));
-            HelpersMethod.ClickBut(driver,calenderButton,1000);
+            HelpersMethod.ActClick(driver,calenderButton,6000);
+            //HelpersMethod.ClickBut(driver,calenderButton,6000);
             //verify existence of calender and select date
             if(HelpersMethod.IsExists("//div[contains(@class,'k-widget k-calendar k-calendar-infinite')]",driver))
             {

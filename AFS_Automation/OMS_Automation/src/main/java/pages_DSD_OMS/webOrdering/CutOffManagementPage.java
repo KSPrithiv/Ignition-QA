@@ -333,6 +333,7 @@ public class CutOffManagementPage
         {
             if(timeSettingToggle.isDisplayed())
             {
+                HelpersMethod.ScrollElement(driver,timeSettingToggle);
                 if(!HelpersMethod.IsExists("//div[@id='cutoff-times']/descendant::span[@class='k-switch-container' and @aria-checked='true']",driver))
                 {
                     HelpersMethod.JScriptClick(driver, timeSettingToggle, 1000);
@@ -630,7 +631,7 @@ public class CutOffManagementPage
             {
                 if(!HelpersMethod.IsExists("//span[@id='CPEnableCutoffCustomerMgmt' and @aria-checked='true']",driver))
                 {
-                    HelpersMethod.JScriptClick(driver, wareHouseToggle, 1000);
+                    HelpersMethod.JScriptClick(driver,customerToggle, 10000);
                     scenario.log("CUSTOMER MANAGEMENT TOGGLE BUTTON SELECTED");
                     if (HelpersMethod.IsExists("//div[@class='loader']", driver))
                     {

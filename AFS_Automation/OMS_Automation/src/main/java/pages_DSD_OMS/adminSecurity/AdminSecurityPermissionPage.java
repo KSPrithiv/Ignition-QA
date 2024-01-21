@@ -2,7 +2,9 @@ package pages_DSD_OMS.adminSecurity;
 
 import helper.HelpersMethod;
 import io.cucumber.java.Scenario;
+import io.cucumber.java.en_old.Ac;
 import org.apache.logging.log4j.core.tools.picocli.CommandLine;
+import org.apache.poi.hssf.record.SCLRecord;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
@@ -30,7 +32,12 @@ public class AdminSecurityPermissionPage
     static boolean exists=false;
     static String roleName=null;
     static String description=null;
+    static String disabledRole=null;
+    static  String enabledRoles=null;
     static String company = TestBase.testEnvironment.get_CompanyNo();
+    static ArrayList<String> adminGrid= new ArrayList<>();
+    static ArrayList<String> adminGrid1=new ArrayList<>();
+    static ArrayList<String> adminGrid2=new ArrayList<>();
 
     @FindBy(id = "AddBtn")
     private WebElement plusSymbol;
@@ -665,6 +672,7 @@ public class AdminSecurityPermissionPage
                 WebElement WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
                 HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 400000);
             }
+
             WebElement searchBox= HelpersMethod.FindByElement(driver,"id","SearchBarPermissionsTree");
             HelpersMethod.sendKeys(driver,searchBox,1000,searchValue);
             scenario.log("ADMIN SETTING ENTERED FOR SEARCH IS "+ HelpersMethod.JSGetValueEle(driver,searchBox,200));
@@ -698,7 +706,7 @@ public class AdminSecurityPermissionPage
         try
         {
             WebElement searchIndex=HelpersMethod.FindByElement(driver,"xpath","//input[contains(@id,'SearchBarPermissionsTree')]/ancestor::div[@class='i-search-box']//*[local-name()='svg' and contains(@class,'i-search-box__clear')]");
-            HelpersMethod.ActClick(driver,searchIndex,1000);
+            HelpersMethod.ActClick(driver,searchIndex,10000);
             exists=true;
         }
         catch (Exception e){}
@@ -791,6 +799,483 @@ public class AdminSecurityPermissionPage
                 }
                 Assert.assertEquals(exists,true);
             }
+        }
+        catch (Exception e){}
+    }
+
+    public void clickOnInModules()
+    {
+        exists=true;
+        try
+        {
+            HelpersMethod.ScrollUpScrollBar(driver);
+            /*/following-sibling::* selects All the following siblings, of any tag name. But this selects all the following siblings, not only adjacent following siblings. To make this precise [1] index added.*/
+            if(HelpersMethod.IsExists("//span[contains(text(),'In modules')]/following-sibling::*[1]/descendant::input",driver))
+            {
+                WebElement modulesInput=HelpersMethod.FindByElement(driver,"xpath","//span[contains(text(),'In modules')]/following-sibling::*[1]/descendant::input");
+                HelpersMethod.ScrollElement(driver,modulesInput);
+                HelpersMethod.ActClick(driver,modulesInput,1000);
+                new WebDriverWait(driver, Duration.ofMillis(40000)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(@class,'k-list-container')]/descendant::ul/li")));
+                exists=true;
+            }
+            Assert.assertEquals(exists,true);
+        }
+        catch (Exception e){}
+    }
+
+    public void readAllModulesSelected()
+    {
+        exists=false;
+        String checkBoxText;
+        try
+        {
+            if(HelpersMethod.IsExists("//div[contains(@class,'k-list-container')]/descendant::ul/li/descendant::input",driver))
+            {
+                scenario.log("ROLES SELECTED ARE AS FOLLOWS: ");
+                List<WebElement> checkBoxList=HelpersMethod.FindByElements(driver,"xpath","//div[contains(@class,'k-list-container')]/descendant::ul/li/descendant::input");
+                for(int i=0;i<=checkBoxList.size()-1;i++)
+                {
+                    if(HelpersMethod.IsExists("//div[contains(@class,'k-list-container')]/descendant::ul/li["+(i+1)+"]/descendant::input[@checked]",driver))
+                    {
+                        checkBoxText=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-list-container')]/descendant::ul/li["+(i+1)+"]/descendant::input[@checked]/following-sibling::label").getText();
+                        scenario.log(checkBoxText);
+                        exists=true;
+                    }
+                }
+            }
+            Assert.assertEquals(exists,true);
+        }
+        catch (Exception e){}
+    }
+
+    public void clickOnInRoles()
+    {
+        exists=true;
+        try
+        {
+            /*/following-sibling::* selects All the following siblings, of any tag name. But this selects all the following siblings, not only adjacent following siblings. To make this precise [1] index added.*/
+            if(HelpersMethod.IsExists("//span[contains(text(),'In roles')]/following-sibling::*[1]/descendant::input",driver))
+            {
+                WebElement rolesInput=HelpersMethod.FindByElement(driver,"xpath","//span[contains(text(),'In roles')]/following-sibling::*[1]/descendant::input");
+                HelpersMethod.ActClick(driver,rolesInput,1000);
+                new WebDriverWait(driver,Duration.ofMillis(40000)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(@class,'k-list-container')]/descendant::ul/li")));
+                exists=true;
+            }
+            Assert.assertEquals(exists,true);
+        }
+        catch (Exception e){}
+    }
+
+    public void readAllRolesSelected()
+    {
+        exists=false;
+        String checkBoxText;
+        try
+        {
+            if(HelpersMethod.IsExists("//div[contains(@class,'k-list-container')]/descendant::ul/li/descendant::input",driver))
+            {
+                scenario.log("ROLES SELECTED ARE AS FOLLOWS: ");
+                List<WebElement> checkBoxList=HelpersMethod.FindByElements(driver,"xpath","//div[contains(@class,'k-list-container')]/descendant::ul/li/descendant::input");
+                for(int i=0;i<=checkBoxList.size()-1;i++)
+                {
+                    if(HelpersMethod.IsExists("//div[contains(@class,'k-list-container')]/descendant::ul/li["+(i+1)+"]/descendant::input[@checked]",driver))
+                    {
+                        checkBoxText=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-list-container')]/descendant::ul/li["+(i+1)+"]/descendant::input[@checked]/following-sibling::label").getText();
+                        scenario.log(checkBoxText);
+                        exists=true;
+                    }
+                }
+            }
+            Assert.assertEquals(exists,true);
+        }
+        catch (Exception e){}
+    }
+
+    public void disableRoles()
+    {
+        exists=false;
+        WebElement disRole;
+        try
+        {
+            if(HelpersMethod.IsExists("//div[contains(@class,'k-list-container')]/descendant::ul/li/descendant::input",driver))
+            {
+                List<WebElement> checkBoxList=HelpersMethod.FindByElements(driver,"xpath","//div[contains(@class,'k-list-container')]/descendant::ul/li/descendant::input");
+                for(int i=0;i<=checkBoxList.size()-1;i++)
+                {
+                    if(i== checkBoxList.size()-1)
+                    {
+                          disabledRole=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-list-container')]/descendant::ul/li["+(i+1)+"]/descendant::input[@checked]/following-sibling::label").getText();
+                          scenario.log("ROLE THAT HAS BEEN DISABLED IS "+disabledRole);
+                          disRole=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-list-container')]/descendant::ul/li["+(i+1)+"]/descendant::input");
+                          HelpersMethod.ActClick(driver,disRole,1000);
+                          exists=true;
+                    }
+                }
+            }
+            Assert.assertEquals(exists,true);
+        }
+        catch (Exception e){}
+    }
+
+    public void verifyRolesGrid()
+    {
+        exists=true;
+        Actions act=new Actions(driver);
+        String headText=null;
+        try
+        {
+            List<WebElement> tableHeads=HelpersMethod.FindByElements(driver,"xpath","//span[@class='k-column-title']");
+            for(WebElement tableHead:tableHeads)
+            {
+                act.moveToElement(tableHead).build().perform();
+                headText=tableHead.getText();
+                if(headText.equals(disabledRole))
+                {
+                    exists=false;
+                }
+            }
+            Assert.assertEquals(exists,true);
+        }
+        catch (Exception e){}
+    }
+
+    public void enableRoles()
+    {
+        exists=false;
+        try
+        {
+            if(HelpersMethod.IsExists("//div[contains(@class,'k-list-container')]/descendant::ul/li[@class='k-item'][1]/descendant::input",driver))
+            {
+                enabledRoles=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-list-container')]/descendant::ul/li[@class='k-item'][1]/descendant::input[@checked]/following-sibling::label").getText();
+                scenario.log("ROLE THAT HAS BEEN ENABLED IS "+enabledRoles);
+                WebElement enableEle = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-list-container')]/descendant::ul/li[@class='k-item'][1]/descendant::input");
+                HelpersMethod.ActClick(driver, enableEle, 1000);
+            }
+        }
+        catch (Exception e){}
+    }
+
+    public void verifyRolesGridForEnabled()
+    {
+        exists=false;
+        Actions act=new Actions(driver);
+        String headText=null;
+        try
+        {
+            List<WebElement> tableHeads=HelpersMethod.FindByElements(driver,"xpath","//span[@class='k-column-title']");
+            for(WebElement tableHead:tableHeads)
+            {
+                act.moveToElement(tableHead).build().perform();
+                headText=tableHead.getText();
+                if(headText.equals(enabledRoles))
+                {
+                    exists=true;
+                }
+            }
+            Assert.assertEquals(exists,true);
+        }
+        catch (Exception e){}
+    }
+
+    public void disableModules(String module)
+    {
+        exists=false;
+        String checkBoxText=null;
+        try
+        {
+            if(HelpersMethod.IsExists("//div[contains(@class,'k-list-container')]/descendant::ul/li/descendant::input",driver))
+            {
+                scenario.log("ADMIN SETTING AFTER DISABLING MODULES");
+                List<WebElement> checkBoxList=HelpersMethod.FindByElements(driver,"xpath","//div[contains(@class,'k-list-container')]/descendant::ul/li/descendant::input");
+                for(int i=0;i<=checkBoxList.size()-1;i++)
+                {
+                    if(HelpersMethod.IsExists("//div[contains(@class,'k-list-container')]/descendant::ul/li["+(i+1)+"]/descendant::input[@checked]",driver))
+                    {
+                        checkBoxText=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-list-container')]/descendant::ul/li["+(i+1)+"]/descendant::input[@checked]/following-sibling::label").getText();
+                        if(module.equalsIgnoreCase(checkBoxText))
+                        {
+                            WebElement checkBox=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-list-container')]/descendant::ul/li["+(i+1)+"]/descendant::input[@checked]");
+                            HelpersMethod.ActClick(driver,checkBox,1000);
+                            exists=true;
+                            break;
+                        }
+                    }
+                }
+            }
+            Assert.assertEquals(exists,true);
+        }
+        catch (Exception e){}
+    }
+
+    public void enabledModules(String module)
+    {
+        exists=false;
+        String checkBoxText=null;
+        try
+        {
+            if(HelpersMethod.IsExists("//div[contains(@class,'k-list-container')]/descendant::ul/li/descendant::input",driver))
+            {
+                scenario.log("ENABLING MODULE");
+                List<WebElement> checkBoxList=HelpersMethod.FindByElements(driver,"xpath","//div[contains(@class,'k-list-container')]/descendant::ul/li/descendant::input");
+                for(int i=0;i<=checkBoxList.size()-1;i++)
+                {
+                    if(HelpersMethod.IsExists("//div[contains(@class,'k-list-container')]/descendant::ul/li["+(i+1)+"]/descendant::input",driver))
+                    {
+                        checkBoxText=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-list-container')]/descendant::ul/li["+(i+1)+"]/descendant::input/following-sibling::label").getText();
+                        if(module.equalsIgnoreCase(checkBoxText))
+                        {
+                            WebElement checkBox=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-list-container')]/descendant::ul/li["+(i+1)+"]/descendant::input");
+                            HelpersMethod.ActClick(driver,checkBox,1000);
+                            exists=true;
+                            break;
+                        }
+                    }
+                }
+            }
+            Assert.assertEquals(exists,true);
+        }
+        catch (Exception e){}
+    }
+
+    public void readAllAdminSettings()
+    {
+        exists=false;
+        Actions act=new Actions(driver);
+        String adminText=null;
+        try
+        {
+            if(HelpersMethod.IsExists("//span[@class='k-icon k-i-collapse']/following-sibling::div[contains(@class,'admin-control-table')]/descendant::div[@class='label-containerX']",driver))
+            {
+                scenario.log("ADMIN SETTING AVAILABLE IN GRID =>");
+                List<WebElement> adminSettingList = HelpersMethod.FindByElements(driver, "xpath", "//span[@class='k-icon k-i-collapse']/following-sibling::div[contains(@class,'admin-control-table')]/descendant::div[@class='label-containerX']");
+                for (WebElement adminSet : adminSettingList)
+                {
+                    act.moveToElement(adminSet).build().perform();
+                    adminText = adminSet.getText();
+                    adminGrid.add(adminText);
+                    scenario.log(adminText);
+                    exists=true;
+                }
+            }
+            Assert.assertEquals(exists,true);
+        }
+        catch (Exception e){}
+    }
+
+    public void readAllAdminSettingsAfterDisable()
+    {
+        exists=false;
+        Actions act=new Actions(driver);
+        String adminText=null;
+        try
+        {
+            if(HelpersMethod.IsExists("//span[@class='k-icon k-i-collapse']/following-sibling::div[contains(@class,'admin-control-table')]/descendant::div[@class='label-containerX']",driver))
+            {
+                scenario.log("ADMIN SETTING AVAILABLE IN GRID AFTER DISABLING SETTING=> ");
+                List<WebElement> adminSettingList = HelpersMethod.FindByElements(driver, "xpath", "//span[@class='k-icon k-i-collapse']/following-sibling::div[contains(@class,'admin-control-table')]/descendant::div[@class='label-containerX']");
+                for (WebElement adminSet : adminSettingList)
+                {
+                    act.moveToElement(adminSet).build().perform();
+                    adminText = adminSet.getText();
+                    adminGrid1.add(adminText);
+                    scenario.log(adminText);
+                    exists=true;
+                }
+            }
+            Assert.assertEquals(exists,true);
+        }
+        catch (Exception e){}
+    }
+
+    public void validateAdminSettingAfterDisable()
+    {
+        exists=false;
+        try
+        {
+            if(adminGrid.equals(adminGrid1))
+            {
+                scenario.log("ADMIN SETTING IS STILL ENABLED");
+                exists=false;
+            }
+            else
+            {
+                scenario.log("ADMIN SETTING IS NOT DISPLAYED");
+                exists=true;
+            }
+            Assert.assertEquals(exists,true);
+        }
+        catch (Exception e){}
+    }
+
+    public void readAllAdminSettingsAfterEnabling()
+    {
+        exists=false;
+        Actions act=new Actions(driver);
+        String adminText=null;
+        try
+        {
+            if(HelpersMethod.IsExists("//span[@class='k-icon k-i-collapse']/following-sibling::div[contains(@class,'admin-control-table')]/descendant::div[@class='label-containerX']",driver))
+            {
+                scenario.log("ADMIN SETTING AVAILABLE IN GRID AFTER ENABLING SETTING=> ");
+                List<WebElement> adminSettingList = HelpersMethod.FindByElements(driver, "xpath", "//span[@class='k-icon k-i-collapse']/following-sibling::div[contains(@class,'admin-control-table')]/descendant::div[@class='label-containerX']");
+                for (WebElement adminSet : adminSettingList)
+                {
+                    act.moveToElement(adminSet).build().perform();
+                    adminText = adminSet.getText();
+                    adminGrid1.add(adminText);
+                    scenario.log(adminText);
+                    exists=true;
+                }
+            }
+            Assert.assertEquals(exists,true);
+        }
+        catch (Exception e){}
+    }
+
+    public void validateAdminSettingAfterEnabling()
+    {
+        exists=false;
+        try
+        {
+            if(adminGrid.equals(adminGrid2))
+            {
+                scenario.log("ADMIN SETTING IS STILL ENABLED");
+                exists=false;
+            }
+            else
+            {
+                scenario.log("ADMIN SETTING IS NOT DISPLAYED");
+                exists=true;
+            }
+            Assert.assertEquals(exists,true);
+        }
+        catch (Exception e){}
+    }
+
+    public void readAllAdminSettingsAndDropDownArrow()
+    {
+        exists=false;
+        Actions act=new Actions(driver);
+        String adminText=null;
+        try
+        {
+            if(HelpersMethod.IsExists("//tr[@aria-expanded='true']/descendant::span[@class='k-icon k-i-collapse']/following-sibling::div[contains(@class,'admin-control-table')]/descendant::div[@class='label-containerX']|//tr[@aria-expanded='false']/descendant::span[@class='k-icon k-i-expand']/following-sibling::div[contains(@class,'admin-control-table')]/descendant::div[@class='label-containerX']",driver))
+            {
+                scenario.log("ADMIN SETTING AVAILABLE IN GRID =>");
+                List<WebElement> adminSettingList = HelpersMethod.FindByElements(driver, "xpath", "//tr[@aria-expanded='true']/descendant::span[@class='k-icon k-i-collapse']/following-sibling::div[contains(@class,'admin-control-table')]/descendant::div[@class='label-containerX']|//tr[@aria-expanded='false']/descendant::span[@class='k-icon k-i-expand']/following-sibling::div[contains(@class,'admin-control-table')]/descendant::div[@class='label-containerX']");
+                for (WebElement adminSet : adminSettingList)
+                {
+                    act.moveToElement(adminSet).build().perform();
+                    adminText = adminSet.getText();
+                    adminGrid.add(adminText);
+                    scenario.log(adminText);
+                    exists=true;
+                }
+            }
+            Assert.assertEquals(exists,true);
+        }
+        catch (Exception e){}
+    }
+
+    public void verifyColapsedDropDownWhenPageloaded()
+    {
+        exists=false;
+        try
+        {
+            if(HelpersMethod.IsExists("//tr[@aria-expanded='false']/descendant::span[@class='k-icon k-i-expand']",driver))
+            {
+                scenario.log("NONE OF THE ADMIN SETTINGS DROP DOWNS ARE COLLAPSED");
+                exists=false;
+            }
+            else if(!HelpersMethod.IsExists("//tr[@aria-expanded='false']/descendant::span[@class='k-icon k-i-expand']",driver))
+            {
+                exists=true;
+            }
+            Assert.assertEquals(exists,true);
+        }
+        catch (Exception e){}
+    }
+
+    public void expandedDropDownCollaps()
+    {
+        exists=false;
+        Actions act=new Actions(driver);
+        String adminText=null;
+        int i=0;
+        try
+        {
+            if(HelpersMethod.IsExists("//tr[@aria-expanded='true']/descendant::span[@class='k-icon k-i-collapse']/following-sibling::div[contains(@class,'admin-control-table')]/descendant::div[@class='label-containerX']",driver))
+            {
+                scenario.log("ADMIN SETTING AVAILABLE IN GRID =>");
+
+                //Arrow button in admin setting and disable first arrow button
+                List<WebElement> adminSettingArrows=HelpersMethod.FindByElements(driver,"xpath","//tr[@aria-expanded='true']/descendant::span[@class='k-icon k-i-collapse']");
+                for( i=1;i<=adminSettingArrows.size()-1;i++)
+                {
+                    if(i==1)
+                    {
+                        WebElement arrow1 = HelpersMethod.FindByElement(driver, "xpath", "//tr[@aria-expanded='true'][" + i + "]/descendant::span[@class='k-icon k-i-collapse']");
+                        HelpersMethod.ActClick(driver, arrow1, 2000);
+                        String collapsedSetting = HelpersMethod.FindByElement(driver, "xpath", "//tr["+i+"]/descendant::span[@class='k-icon k-i-expand']/following-sibling::div[contains(@class,'admin-control-table')]/descendant::div[@class='label-containerX']").getText();
+                        scenario.log("ADMIN SETTING COLLAPSED"+collapsedSetting);
+                        break;
+                    }
+                }
+
+                scenario.log("ADMIN SETTING EXPANDED: ");
+                List<WebElement> adminSettingList = HelpersMethod.FindByElements(driver, "xpath", "//tr[@aria-expanded='true']/descendant::span[@class='k-icon k-i-collapse']/following-sibling::div[contains(@class,'admin-control-table')]/descendant::div[@class='label-containerX']");
+                for (WebElement adminSet : adminSettingList)
+                {
+                    act.moveToElement(adminSet).build().perform();
+                    adminText = adminSet.getText();
+                    adminGrid.add(adminText);
+                    scenario.log(adminText);
+                    exists=true;
+                }
+            }
+            Assert.assertEquals(exists,true);
+        }
+        catch (Exception e){}
+    }
+
+    public void uncheckCheckbox(String id)
+    {
+        exists=true;
+        try
+        {
+            if(HelpersMethod.IsExists("//input[@id='"+id+"' and @data-checked='checked']|//input[@id='"+id+"' and @data-checked='indeterminate']",driver))
+            {
+                WebElement checkBox=HelpersMethod.FindByElement(driver,"xpath","//input[@id='"+id+"' and @data-checked='checked']|//input[@id='"+id+"' and @data-checked='indeterminate']");
+                HelpersMethod.ClickBut(driver,checkBox,10000);
+                scenario.log("CHECKBOX HAS BEEN UNCHECKED");
+                exists=true;
+            }
+            else
+            {
+                scenario.log("CHECKBOX HAS NOT BEEN FOUND");
+            }
+            Assert.assertEquals(exists,true);
+        }
+        catch (Exception e){}
+    }
+
+    public void checkCheckbox(String id)
+    {
+        exists=true;
+        try
+        {
+            if(HelpersMethod.IsExists("//input[@id='"+id+"' and @data-checked='unchecked']",driver))
+            {
+                WebElement checkBox=HelpersMethod.FindByElement(driver,"xpath","//input[@id='"+id+"' and @data-checked='unchecked']");
+                HelpersMethod.ClickBut(driver,checkBox,10000);
+                scenario.log("CHECKBOX HAS BEEN CHECKED");
+                exists=true;
+            }
+            else
+            {
+                scenario.log("CHECKBOX HAS NOT BEEN FOUND");
+            }
+            Assert.assertEquals(exists,true);
         }
         catch (Exception e){}
     }

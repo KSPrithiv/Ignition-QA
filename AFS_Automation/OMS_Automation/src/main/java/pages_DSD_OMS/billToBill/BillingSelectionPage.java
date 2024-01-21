@@ -4,13 +4,20 @@ import gherkin.lexer.He;
 import helper.HelpersMethod;
 import io.cucumber.java.Scenario;
 import org.apache.pdfbox.contentstream.operator.color.SetStrokingColorN;
+import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.FluentWait;
+import org.openqa.selenium.support.ui.Wait;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
 import java.awt.image.renderable.ParameterBlock;
+import java.time.Duration;
 import java.util.Set;
 
 /**
@@ -106,12 +113,12 @@ public class BillingSelectionPage
         exists=false;
         try
         {
-           if(PrintButton.isDisplayed())
-           {
-               HelpersMethod.ClickBut(driver, PrintButton, 200);
-               scenario.log("PRINT BUTTON HAS BEEN CLICKED");
-               exists = true;
-           }
+            if(PrintButton.isDisplayed())
+            {
+                HelpersMethod.ClickBut(driver, PrintButton, 200);
+                scenario.log("PRINT BUTTON HAS BEEN CLICKED");
+                exists = true;
+            }
             Assert.assertEquals(exists,true);
         }
         catch (Exception e){}

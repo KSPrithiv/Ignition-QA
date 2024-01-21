@@ -100,7 +100,7 @@ public class NewOrderEntryPage
     @FindBy(xpath = "//button[text()='Export']")
     private WebElement Export_but;
 
-    @FindBy(xpath = "//label[text()='Import']")
+    @FindBy(xpath = "//label[text()='Import']//*[local-name()='svg' and contains(@class,'i-icon   import-icon')]")
     private  WebElement Import_but;
 
     @FindBy(xpath = "//input[@id='ImportOrder']")
@@ -1158,7 +1158,7 @@ public class NewOrderEntryPage
         try
         {
             //WebEle=HelpersMethod.FindByElement(driver,"xpath","//span[@id='quickEntryUMs']/span[@class='k-input']");
-            WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'quickUMs')]/label[contains(@class,'quick-um-single-value')]");
+            WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'quickUMs')]/label[contains(@class,'quick-um-single-value')]|//span[@id='quickEntryUMs']/span[@class='k-input']");
             if(WebEle.isEnabled())
             {
                 scenario.log("UOM IS ENABLED AND IT CONTAINS "+WebEle.getText()+" VALUE IN IT");
@@ -1300,7 +1300,7 @@ public class NewOrderEntryPage
         try
         {
             //WebElement uom=HelpersMethod.FindByElement(driver,"xpath","//span[@id='quickEntryUMs']/span[@class='k-input']|//div[contains(@class,'quickUnits')]/descendant::input[@id='quickUnits']");
-            WebElement uom=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'quickUMs')]/label[contains(@class,'quick-um-single-value')]");
+            WebElement uom=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'quickUMs')]/label[contains(@class,'quick-um-single-value')]|//span[@id='quickEntryUMs']/span[@class='k-input']|//div[contains(@class,'quickUnits')]/descendant::input[@id='quickUnits']");
             new WebDriverWait(driver,Duration.ofMillis(10000)).until(ExpectedConditions.visibilityOf(uom));
             String uomText=uom.getText();
             if(uomText.contains("Cases")||uomText.contains("CS"))
@@ -1389,7 +1389,7 @@ public class NewOrderEntryPage
         try
         {
             //WebElement uom=HelpersMethod.FindByElement(driver,"xpath","//span[@id='quickEntryUMs']/span[@class='k-input']|//div[contains(@class,'quickUnits')]/descendant::input[@id='quickUnits']");
-            WebElement uom=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'quickUMs')]/label[contains(@class,'quick-um-single-value')]");
+            WebElement uom=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'quickUMs')]/label[contains(@class,'quick-um-single-value')]|//span[@id='quickEntryUMs']/span[@class='k-input']|//div[contains(@class,'quickUnits')]/descendant::input[@id='quickUnits']");
             String uomText=uom.getText();
             if(uomText.contains("Units")||uomText.contains("EA"))
             {
@@ -3276,19 +3276,26 @@ public class NewOrderEntryPage
         {
             WebEle=HelpersMethod.FindByElement(driver,"id","orderEntryGridContainer");
             HelpersMethod.ScrollElement(driver,WebEle);
-            if(HelpersMethod.IsExists("//tr[1][contains(@class,'k-master-row k-grid-edit-row')]",driver))
+            if (HelpersMethod.IsExists("//tr[contains(@class,'k-master-row')]/descendant::input[contains(@id,'TotalUnits')]", driver))
             {
-                if(HelpersMethod.IsExists("//tr[1][contains(@class,'k-master-row k-grid-edit-row')]/descendant::input[contains(@id,'TotalUnits')]",driver))
+                List<WebElement> unitInputs = HelpersMethod.FindByElements(driver, "xpath", "//tr[contains(@class,'k-master-row')]/descendant::input[contains(@id,'TotalUnits')]");
+                for (WebElement unitInput : unitInputs)
                 {
-                    UnitCase=HelpersMethod.FindByElement(driver,"xpath","//tr[1][contains(@class,'k-master-row k-grid-edit-row')]/descendant::input[contains(@id,'TotalUnits')]");
-                    HelpersMethod.ActSendKey(driver,UnitCase,1000,Unit);
-                    scenario.log("QTY ENTERED FOR HANDING UNUSUAL QTY POPUP IS "+Unit);
-                    if(HelpersMethod.IsExists("//div[@class='loader']",driver))
+                    if (unitInput.isDisplayed())
                     {
-                        WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                        HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000000);
+                        HelpersMethod.ScrollElement(driver, unitInput);
+                        HelpersMethod.ActSendKey(driver, unitInput, 1000, Unit);
+                        scenario.log("QTY ENTERED FOR HANDLING UNUSUAL QTY POPUP IS " + Unit);
+                        break;
                     }
-                    for(int i=0;i<=1;i++)
+                }
+                if (HelpersMethod.IsExists("//div[@class='loader']", driver))
+                {
+                    WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
+                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000000);
+                }
+            }
+            for(int i=0;i<=1;i++)
                     {
                         if (HelpersMethod.IsExists("//div[contains(text(),'Quantity exceeds maximum')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]", driver))
                         {
@@ -3314,8 +3321,6 @@ public class NewOrderEntryPage
                         }
                     }
                     scenario.log("UNUSUAL QTY, FOR UNITS POPUP HAS BEEN HANDLED");
-                }
-            }
         }
         catch (Exception e){}
     }
@@ -3325,50 +3330,55 @@ public class NewOrderEntryPage
         WebElement WebEle=null;
         WebElement UnitCase=null;
         WebElement YesBut=null;
+        int i=0;
         try
         {
-            WebEle=HelpersMethod.FindByElement(driver,"id","orderEntryGridContainer");
-            HelpersMethod.ScrollElement(driver,WebEle);
-            if(HelpersMethod.IsExists("//tr[1][contains(@class,'k-master-row k-grid-edit-row')]",driver))
+            WebEle = HelpersMethod.FindByElement(driver, "id", "orderEntryGridContainer");
+            HelpersMethod.ScrollElement(driver, WebEle);
+            if (HelpersMethod.IsExists("//tr[contains(@class,'k-master-row')]/descendant::input[contains(@id,'TotalCases')]", driver))
             {
-                if(HelpersMethod.IsExists("//tr[1][contains(@class,'k-master-row k-grid-edit-row')]/descendant::input[contains(@id,'TotalCases')]",driver))
+                List<WebElement> caseInputs = HelpersMethod.FindByElements(driver, "xpath", "//tr[contains(@class,'k-master-row')]/descendant::input[contains(@id,'TotalCases')]");
+                for (WebElement caseInput:caseInputs)
                 {
-                    UnitCase=HelpersMethod.FindByElement(driver,"xpath","//tr[1][contains(@class,'k-master-row k-grid-edit-row')]/descendant::input[contains(@id,'TotalCases')]");
-                    HelpersMethod.ScrollElement(driver,UnitCase);
-                    HelpersMethod.ActSendKey(driver,UnitCase,1000,Case);
-                    scenario.log("QTY ENTERED FOR HANDING UNUSUAL QTY POPUP IS "+Case);
-                    if(HelpersMethod.IsExists("//div[@class='loader']",driver))
+                    if(caseInput.isDisplayed())
                     {
-                        WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                        HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000000);
+                        HelpersMethod.ScrollElement(driver,caseInput);
+                        HelpersMethod.ActSendKey(driver,caseInput,1000,Case);
+                        scenario.log("QTY ENTERED FOR HANDLING UNUSUAL QTY POPUP IS "+Case);
+                        break;
                     }
-                    for(int i=0;i<=1;i++)
-                    {
-                        if (HelpersMethod.IsExists("//div[contains(text(),'Quantity exceeds maximum')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]", driver))
-                        {
-                            WebElement exceedPopup=HelpersMethod.FindByElement(driver,"xpath","//div[contains(text(),'Quantity exceeds maximum')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]");
-                            YesBut = exceedPopup.findElement(By.xpath(".//button[text()='Yes']"));
-                            HelpersMethod.ActClick(driver, YesBut, 1000);
-                            if(HelpersMethod.IsExists("//div[@class='loader']",driver))
-                            {
-                                WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 200000);
-                            }
-                        }
-                        if (HelpersMethod.IsExists("//div[contains(text(),'This product is currently unavailable')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]", driver))
-                        {
-                            WebElement unavailablePopup=HelpersMethod.FindByElement(driver,"xpath","//div[contains(text(),'This product is currently unavailable')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]");
-                            YesBut = unavailablePopup.findElement(By.xpath(".//button[text()='Ok']"));
-                            HelpersMethod.ActClick(driver, YesBut, 1000);
-                            if(HelpersMethod.IsExists("//div[@class='loader']",driver))
-                            {
-                                WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 200000);
-                            }
-                        }
-                    }
-                    scenario.log("UNUSUAL QTY, FOR CASE POPUP HAS BEEN HANDLED");
                 }
+                if (HelpersMethod.IsExists("//div[@class='loader']", driver))
+                {
+                    WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
+                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000000);
+                }
+            }
+            for (int j = 0; j <= 1; j++)
+            {
+                if (HelpersMethod.IsExists("//div[contains(text(),'Quantity exceeds maximum')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]", driver)) {
+                    {
+                        WebElement exceedPopup = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(text(),'Quantity exceeds maximum')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]");
+                        YesBut = exceedPopup.findElement(By.xpath(".//button[text()='Yes']"));
+                        HelpersMethod.ActClick(driver, YesBut, 1000);
+                        if (HelpersMethod.IsExists("//div[@class='loader']", driver)) {
+                            WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
+                            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 200000);
+                        }
+                    }
+                    if (HelpersMethod.IsExists("//div[contains(text(),'This product is currently unavailable')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]", driver))
+                    {
+                        WebElement unavailablePopup = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(text(),'This product is currently unavailable')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]");
+                        YesBut = unavailablePopup.findElement(By.xpath(".//button[text()='Ok']"));
+                        HelpersMethod.ActClick(driver, YesBut, 1000);
+                        if (HelpersMethod.IsExists("//div[@class='loader']", driver))
+                        {
+                            WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
+                            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 200000);
+                        }
+                    }
+                }
+                scenario.log("UNUSUAL QTY, FOR CASE POPUP HAS BEEN HANDLED");
             }
         }
         catch (Exception e){}

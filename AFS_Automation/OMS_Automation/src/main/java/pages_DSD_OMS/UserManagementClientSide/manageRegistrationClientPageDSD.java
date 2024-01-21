@@ -26,10 +26,6 @@ public class manageRegistrationClientPageDSD
     @FindBy(xpath="//label[@id='userSelect-label']/following-sibling::div/descendant::button")
     private WebElement userIndex;
 
-
-
-
-
     public manageRegistrationClientPageDSD(WebDriver driver, Scenario scenario)
     {
         this.driver=driver;

@@ -454,10 +454,12 @@ public class ReportsCustomerWithoutOrdersPage
             if(excelButton.isDisplayed() && excelButton.isEnabled())
             {
                 HelpersMethod.ClickBut(driver,excelButton,1000);
+                Thread.sleep(5000);
                 if (HelpersMethod.IsExists("//div[contains(text(),'No data returned, report was not generated.')]/ancestor::div[@id='toast-container']", driver))
                 {
                     scenario.log("**************NO DATA HAS BEEN FOUND TO GENERATE REPORTS************");
                     new WebDriverWait(driver, Duration.ofMillis(10000)).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[contains(text(),'No data returned, report was not generated.')]/ancestor::div[@id='toast-container']")));
+                    //exists=true;
                 }
                 else
                 {
@@ -494,6 +496,7 @@ public class ReportsCustomerWithoutOrdersPage
                 {
                     scenario.log("**************NO DATA HAS BEEN FOUND TO GENERATE REPORTS************");
                     new WebDriverWait(driver, Duration.ofMillis(10000)).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[contains(text(),'No data returned, report was not generated.')]/ancestor::div[@id='toast-container']")));
+                    //exists=true;
                 }
                 else
                 {

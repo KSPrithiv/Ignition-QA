@@ -53,7 +53,8 @@ public class CreateOGPage
     @FindBy(id = "quickProduct")
     private WebElement QuickProd;
 
-    @FindBy(xpath="//label[contains(text(),'Unit of measure')]/following-sibling::label")
+    //@FindBy(xpath="//label[contains(text(),'Unit of measure')]/following-sibling::label")
+    @FindBy(id="quickEntryUMs")
     private WebElement QuickUOM;
 
     @FindBy(id = "quickSequence")
@@ -298,8 +299,11 @@ public class CreateOGPage
             {
                 HelpersMethod.waitTillLoadingPage(driver);
             }
-
-            //QuickUOM.sendKeys(Keys.TAB);
+            //Check whether UOM is displayed or not
+            if(QuickUOM.isDisplayed())
+            {
+                QuickUOM.sendKeys(Keys.TAB);
+            }
             status = HelpersMethod.returnDocumentStatus(driver);
             if (status.equals("loading"))
             {
@@ -378,7 +382,7 @@ public class CreateOGPage
             {
                 WebElement OGSave = HelpersMethod.FindByElement(driver, "id", "OGSaveButton");
                 //Click on Save button
-                HelpersMethod.ClickBut(driver, OGSave, 40000);
+                HelpersMethod.ClickBut(driver, OGSave, 50000);
                 exists=true;
                 Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
                         .withTimeout(Duration.ofSeconds(120))
@@ -631,7 +635,8 @@ public class CreateOGPage
             if(AddProd.isDisplayed() && AddProd.isEnabled())
             {
                 HelpersMethod.ScrollElement(driver, AddProd);
-                HelpersMethod.ClickBut(driver, AddProd, 8000);
+                Thread.sleep(1000);
+                HelpersMethod.ClickBut(driver, AddProd, 15000);
                 exists=true;
             }
             Assert.assertEquals(exists,true);
@@ -886,15 +891,15 @@ public class CreateOGPage
         try
         {
             HelpersMethod.waitTillElementLocatedDisplayed(driver,"xpath","//div[contains(text(),'Select orders')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",10000);
-                if(HelpersMethod.IsExists("//div[contains(@class,'k-widget k-window k-dialog')]/descendant::tr[contains(@class,'k-master-row')][2]",driver))
+                if(HelpersMethod.IsExists("//div[contains(@class,'k-widget k-window k-dialog')]/descendant::tr[contains(@class,'k-master-row')][1]",driver))
                 {
                     //To select order from order popup, here i am selecting 2nd order in order popup
-                    OrderSel = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-widget k-window k-dialog')]/descendant::tr[contains(@class,'k-master-row')][2]/descendant::input");
+                    OrderSel = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-widget k-window k-dialog')]/descendant::tr[contains(@class,'k-master-row')][1]/descendant::input");
                     HelpersMethod.ScrollElement(driver, OrderSel);
                     HelpersMethod.ActClick(driver, OrderSel, 1000);
 
                     //to read the order number selected in order popup
-                    String Order_No = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-widget k-window k-dialog')]/descendant::tr[contains(@class,'k-master-row')][2]/descendant::td[2]").getText();
+                    String Order_No = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-widget k-window k-dialog')]/descendant::tr[contains(@class,'k-master-row')][1]/descendant::td[2]").getText();
                     if (!Order_No.isEmpty())
                     {
                         scenario.log("ORDER SELECTED FROM ORDER POPUP IS " + Order_No);
@@ -906,9 +911,9 @@ public class CreateOGPage
                         exists = false;
                     }
                 }
-                else
+                else  if(!HelpersMethod.IsExists("//div[contains(@class,'k-widget k-window k-dialog')]/descendant::tr[contains(@class,'k-master-row')][1]",driver))
                 {
-                    scenario.log("NO ORDER FOUND IN SELECTED ROW!!");
+                    scenario.log("NO ORDER POPUP FOUND !!");
                 }
 
                 //to click on OK button in order popup
@@ -1039,7 +1044,6 @@ public class CreateOGPage
                 File dir = new File("C:\\Users\\Divya.Ramadas\\Downloads");
                 FileFilter fileFilter = new WildcardFileFilter("*.csv");
                 File[] files = dir.listFiles(fileFilter);
-
 
                 for (File Exportfile:files)
                 {

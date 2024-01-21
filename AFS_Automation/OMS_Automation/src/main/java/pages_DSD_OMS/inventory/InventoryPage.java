@@ -2,26 +2,18 @@ package pages_DSD_OMS.inventory;
 
 import helper.HelpersMethod;
 import io.cucumber.java.Scenario;
-import io.cucumber.java.en_old.Ac;
-import io.netty.handler.codec.spdy.SpdyHttpResponseStreamIdHandler;
-import org.apache.logging.log4j.core.tools.picocli.CommandLine;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.devtools.v85.network.model.DataReceived;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import pages_DSD_OMS.login.HomePage;
 import util.DataBaseConnection;
 import util.TestBase;
 
-import java.nio.charset.StandardCharsets;
-import java.time.Duration;
 import java.util.List;
 
 public class InventoryPage

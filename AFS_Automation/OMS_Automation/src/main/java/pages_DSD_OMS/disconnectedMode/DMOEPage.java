@@ -4,6 +4,7 @@ import helper.HelpersMethod;
 import io.cucumber.java.Scenario;
 import io.cucumber.java.en_old.Ac;
 import org.apache.logging.log4j.core.tools.picocli.CommandLine;
+import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -20,8 +21,7 @@ import util.TestBase;
 
 import java.awt.font.TextLayout;
 import java.time.Duration;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 /**
  * @Project DSD_OMS
@@ -56,7 +56,7 @@ public class DMOEPage
             if(HelpersMethod.IsExists("//div[contains(@class,'connection-mode-container')]//*[local-name()='svg']//*[local-name()='path' and  contains(@d,'M17')]",driver))
             {
                 WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'connection-mode-container')]//*[local-name()='svg']//*[local-name()='path' and  contains(@d,'M17')]");
-                HelpersMethod.ActClick(driver,WebEle,1000);
+                HelpersMethod.ActClick(driver,WebEle,10000);
                 exists=true;
             }
             else{scenario.log("NETWORK SYMBOL IS NOT VISIBLE");}
@@ -74,7 +74,7 @@ public class DMOEPage
             if(HelpersMethod.IsExists("//div[text()='Connection']/ancestor::div[contains(@class,'k-popup')]",driver))
             {
                 WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-popup')]/descendant::span[contains(@class,'k-widget k-switch k-switch-on')]");
-                HelpersMethod.ActClick(driver,WebEle,1000);
+                HelpersMethod.ActClick(driver,WebEle,10000);
                 exists = true;
             }
         }
@@ -88,6 +88,7 @@ public class DMOEPage
         WebElement WebEle=null;
         try
         {
+            new WebDriverWait(driver,Duration.ofMillis(10000)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(@class,'k-widget k-window k-dialog')]")));
             if(HelpersMethod.IsExists("//div[contains(text(),'Disconnected mode')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
             {
                 exists = true;
@@ -103,7 +104,7 @@ public class DMOEPage
         try
         {
             WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-widget k-window k-dialog')]/descendant::button[text()='Go offline']");
-            HelpersMethod.ActClick(driver,WebEle,1000);
+            HelpersMethod.ActClick(driver,WebEle,10000);
         }
         catch (Exception e){}
         Assert.assertEquals(exists,true);
@@ -115,6 +116,7 @@ public class DMOEPage
         WebElement WebEle=null;
         try
         {
+            new WebDriverWait(driver,Duration.ofMillis(10000)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(@class,'k-widget k-window k-dialog')]")));
             if(HelpersMethod.IsExists("//div[contains(text(),'Disconnected mode')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
             {
                 WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-widget k-window k-dialog')]/descendant::button[text()='Cancel']");
@@ -477,6 +479,8 @@ public class DMOEPage
         String headText=null;
         String accText=null;
         ArrayList<String> accNumber=new ArrayList<String>();
+        List<WebElement> accounts = null;
+        
         int i=0;
         try
         {
@@ -488,11 +492,12 @@ public class DMOEPage
               headText=head.getText();
               if(headText.equalsIgnoreCase("Customer #"))
               {
+                  accounts=driver.findElements(By.xpath("//div[contains(@class,'k-widget k-window k-dialog')]/descendant::tr[contains(@class,'k-master-row')]/td["+i+"]"));
                   break;
               }
             }
             scenario.log("CUSTOMER ACCOUNT# SELECTED ARE:");
-            List<WebElement> accounts=HelpersMethod.FindByElements(driver,"xapth","//div[contains(@class,'k-widget k-window k-dialog')]/descendant::tr[contains(@class,'k-master-row')]/td["+i+"]");
+            //accounts=HelpersMethod.FindByElements(driver,"xapth","//div[contains(@class,'k-widget k-window k-dialog')]/descendant::tr[contains(@class,'k-master-row')]/td["+i+"]");
             for (WebElement account:accounts)
             {
                 act.moveToElement(account).build().perform();

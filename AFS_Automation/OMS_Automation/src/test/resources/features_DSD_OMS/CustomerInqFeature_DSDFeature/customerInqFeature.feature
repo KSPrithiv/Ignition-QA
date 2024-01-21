@@ -87,6 +87,7 @@ Feature: Customer Inq
     Then User clicks on Create new button and standing PO popup appeared
     And User selects 11 day from current date and 15 day from end date and Select Payment processing
     Then PO has been saved
+    #Then User clicks on Save button
 
   @EditPO
   Scenario: Test scenario to edit PO details in Ignition tab
@@ -98,6 +99,7 @@ Feature: Customer Inq
     And User should be able to select the PO details and edit end date as 16 days
     Then User changes PO value
     Then User clears search bar in ignition tab
+    #Then User clicks on Save button
 
   @DeleteStandingPO
   Scenario: Test scenario for Deleting Standing PO
@@ -105,12 +107,37 @@ Feature: Customer Inq
     When User should confirm that he is in Customer Inq page
     And User navigate to Ignition tab
     Then User selects Standing PO# from the grid and click Delete
+    #Then User clicks on Save button
 
-  @CopyCustomerInq
-  Scenario: Test scenario for creating copy of Customer inq
+  @SystemDefaultRealTimeChanges
+  Scenario: Test scenario for verifying System default real time changes in Payment processing drop down
     Given User must be on Client side and select Customer Inq page
     When User should confirm that he is in Customer Inq page
-    Then User clicks on Copy button and popup should display
+    Then User click on New button for copy of customer inq
+    And User should select customer account# in customer inq
+      |Customer|
+    Then User should navigate to Telus tab
+    And User click on Payment processing and verify visibility of System default Realtime charge option
+
+  @AddNote
+  Scenario: Test scenario for adding note to customer inq in DSD
+    Given User must be on Client side and select Customer Inq page
+    When User should confirm that he is in Customer Inq page
+    Then User click on New button
+    Then Add note in popup in cust inq
+      |Testing for Notes at Customer inq|
+    And User should select the Alert Type and Alert location to display notes in DSD cust inq
+      |Both|Customer master|Order entry|
+    Then Click on Save button in DSD cust inq
+    Then User refreshes customer inq page
+    And User should select customer account# in customer inq
+      |Customer|
+    Then User should click on customer note icon in customer inq page and validate that note added is existing in popup
+      |Testing for Notes at Customer inq|
+    Then User clicks on Save button
+
+
+
 
 
 

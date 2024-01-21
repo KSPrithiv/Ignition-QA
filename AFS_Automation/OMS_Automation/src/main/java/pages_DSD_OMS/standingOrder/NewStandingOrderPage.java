@@ -141,8 +141,11 @@ public class NewStandingOrderPage
                 act1.moveToElement(QuickProduct).click().build().perform();
                 HelpersMethod.sendKeys(driver,QuickProduct,1000,Pro);
                 QuickProduct.sendKeys(Keys.ENTER);
-                //WebElement uomSO= HelpersMethod.FindByElement(driver,"id","quickEntryUMs");
-                //uomSO.sendKeys(Keys.TAB);
+                if(HelpersMethod.IsExists("//span[@id='quickEntryUMs']",driver))
+                {
+                    WebElement uomSO= HelpersMethod.FindByElement(driver,"id","quickEntryUMs");
+                    uomSO.sendKeys(Keys.TAB);
+                }
                 Thread.sleep(4000);
                 scenario.log("PRODUCT ENTERED IN QUICK ENTRY IS " + Pro);
                 exists = true;

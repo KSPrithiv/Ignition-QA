@@ -37,7 +37,7 @@ Feature: Admin setting blackouts
       | Blackouts & Cutoffs |
 
   @AddBlackoutDateForCustomer
-  Scenario Outline: Test scenario for adding blackout for particular customer
+  Scenario Outline: Test scenario for adding blackout for particular customer Editing and deleting of blacckout date
     Given User is on Home Page for Admin setting to select Admin option
     Then User refreshes page Clicks on Permissions by drop down to select Customer Account# grid for WebOrder
     And User should navigate to "<Option>" tab

@@ -16,11 +16,7 @@ import java.io.IOException;
  * @Author Divya.Ramadas@afsi.com
  */
 @CucumberOptions
-        (features = {
-                  "src/test/resources/features_DSD_OMS/AdminReportsFeature",
-                //"src/test/resources/features_DSD_OMS/AdminReportsFeature/userAndAccountsFeature.feature",
-                //"src/test/resources/features_DSD_OMS/AdminReportsFeature/userAndAccountsFeature1.feature"
-                    },
+        (features = {"src/test/resources/features_DSD_OMS/AdminToClientNavigation"},
                 glue = {"stepDefination_DSD_OMS"},
                 plugin = {"pretty",
                         "json:target/cucumber.json",

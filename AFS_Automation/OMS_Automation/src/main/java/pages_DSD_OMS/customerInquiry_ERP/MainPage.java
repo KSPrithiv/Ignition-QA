@@ -2,6 +2,7 @@ package pages_DSD_OMS.customerInquiry_ERP;
 
 import helper.HelpersMethod;
 import io.cucumber.java.Scenario;
+import lombok.experimental.Helper;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -301,5 +302,55 @@ public class MainPage
     {
         HelpersMethod.EnterText(driver,websiteId,1000,RandomValues.generateWebsite(20));
         scenario.log("WEB SITE NAME ENTERED IS "+HelpersMethod.JSGetValueEle(driver,websiteId,1000));
+    }
+
+    public void verifyPrimaryContactDisabled()
+    {
+        exists=false;
+        try
+        {
+            //scroll till primary contact has been found
+            WebElement primaryContact=HelpersMethod.FindByElement(driver,"xpath","//p[contains(text(),'Primary contact')]");
+            HelpersMethod.ScrollElement(driver,primaryContact);
+
+            //verify all web elements that comes under primary contact are disabled
+            if(HelpersMethod.IsExists("//input[@id='CMPrimaryContactName' and @disabled]",driver)&&HelpersMethod.IsExists("//input[@id='CMPrimaryContactTitle' and @disabled]",driver) && HelpersMethod.IsExists("//input[@id='CMPrimaryContactPhone' and @disabled]",driver) && HelpersMethod.IsExists("//input[@id='CMPrimaryContactEmail' and @disabled]",driver) )
+            {
+                scenario.log("ALL PRIMARY CONTACT DETAILS ARE DISABLED");
+                exists=true;
+            }
+            else
+            {
+                scenario.log("MAY BE ANY OF THE PRIMARY CONTACT HAS NOT BEEN DISABLED");
+                exists=false;
+            }
+            Assert.assertEquals(exists,true);
+        }
+        catch (Exception e){}
+    }
+
+    public void verifyPrimaryContactEnabled()
+    {
+        exists=false;
+        try
+        {
+            //scroll till primary contact has been found
+            WebElement primaryContact=HelpersMethod.FindByElement(driver,"xpath","//p[contains(text(),'Primary contact')]");
+            HelpersMethod.ScrollElement(driver,primaryContact);
+
+            //verify all web elements that comes under primary contact are enabled
+            if(HelpersMethod.IsExists("//input[@id='CMPrimaryContactName' and @disabled]",driver) && HelpersMethod.IsExists("//input[@id='CMPrimaryContactTitle' and @disabled]",driver) && HelpersMethod.IsExists("//input[@id='CMPrimaryContactPhone' and @disabled]",driver) && HelpersMethod.IsExists("//input[@id='CMPrimaryContactEmail' and @disabled]",driver) )
+            {
+                scenario.log("MAY BE ANY OF THE PRIMARY CONTACT HAS BEEN DISABLED");
+                exists=false;
+            }
+            else
+            {
+                scenario.log("ALL PRIMARY CONTACT DETAILS ARE ENABLED");
+                exists=true;
+            }
+            Assert.assertEquals(exists,true);
+        }
+        catch (Exception e){}
     }
 }

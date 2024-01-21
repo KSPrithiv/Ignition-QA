@@ -12,31 +12,12 @@ Feature: Customer Inq
     When User should confirm that he is in Customer Inq page
     Then User clicks on Copy button and popup should display after entering values should cancel copy
 
-  @SystemDefaultRealTimeChanges
-  Scenario: Test scenario for verifying System default real time changes in Payment processing drop down
+  @CopyCustomerInq
+  Scenario: Test scenario for creating copy of Customer inq
     Given User must be on Client side and select Customer Inq page
     When User should confirm that he is in Customer Inq page
-    Then User click on New button for copy of customer inq
-    And User should select customer account# in customer inq
-      |Customer|
-    Then User should navigate to Telus tab
-    And User click on Payment processing and verify visibility of System default Realtime charge option
-
-  @AddNote
-  Scenario: Test scenario for adding note to customer inq in DSD
-    Given User must be on Client side and select Customer Inq page
-    When User should confirm that he is in Customer Inq page
-    Then User click on New button
-    Then Add note in popup in cust inq
-      |Testing for Notes at Customer inq|
-    And User should select the Alert Type and Alert location to display notes in DSD cust inq
-      |Both|Customer master|Order entry|
-    Then Click on Save button in DSD cust inq
-    Then User refreshes customer inq page
-    And User should select customer account# in customer inq
-    |Customer|
-    Then User should click on customer note icon in customer inq page and validate that note added is existing in popup
-      |Testing for Notes at Customer inq|
+    Then User clicks on Copy button and popup should display
+    Then User clicks on Save button
 
   @CustomerNameRequiredPopup
   Scenario: Test scenario for canceling Customer inq creation

@@ -35,7 +35,6 @@ public class TestBase
    // public static MenuValues testMenuValues;
     private static TestBase instanceOfDriver = null;
     public static ThreadLocal<WebDriver> driver = new ThreadLocal<WebDriver>();
-
     public static String url = null;
 
 
@@ -48,7 +47,9 @@ public class TestBase
            // ConfigFactory.setProperty("menu",menu);
             testEnvironment = ConfigFactory.create(Environment.class);
            // testMenuValues = ConfigFactory.create(MenuValues.class);
-        } catch (Exception e) {
+        }
+        catch (Exception e)
+        {
             e.printStackTrace();
         }
     }
@@ -65,20 +66,20 @@ public class TestBase
     }
 
     //To get driver
-    public static WebDriver getDriver() {
+    public static WebDriver getDriver()
+    {
         return driver.get();
     }
 
-    public static final void SetDriver(String browser) throws InterruptedException, AWTException, SQLException, ClassNotFoundException, InstantiationException, IllegalAccessException {
-
-
+    public static final void SetDriver(String browser) throws InterruptedException, AWTException, SQLException, ClassNotFoundException, InstantiationException, IllegalAccessException
+    {
         String browserName = browser;
-        boolean isHeadless = false;
+        //boolean isHeadless = false;
         switch (browserName.toLowerCase())
         {
             case "chrome":
             {
-                WebDriverManager.chromedriver().setup();
+                //WebDriverManager.chromedriver().setup();
                 ChromeOptions chromeOptions = new ChromeOptions();
 
                 //chromeOptions.addArguments("--safebrowsing-disable-download-protection");
@@ -103,7 +104,7 @@ public class TestBase
             break;
             case "firefox":
             {
-                WebDriverManager.firefoxdriver().setup();
+                //WebDriverManager.firefoxdriver().setup();
                 FirefoxOptions firefoxOptions = new FirefoxOptions();
                 FirefoxProfile profile = new FirefoxProfile();
                 // firefoxOptions.setUnhandledPromptBehaviour(UnexpectedAlertBehaviour.IGNORE);

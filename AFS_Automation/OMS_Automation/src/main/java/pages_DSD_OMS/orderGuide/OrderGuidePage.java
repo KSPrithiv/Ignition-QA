@@ -234,7 +234,7 @@ public class OrderGuidePage {
             }
             //Click on serch index icon
             SearchIndex = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='i-search-box']//*[local-name()='svg' and contains(@class,'i-search-box__search')]");
-            HelpersMethod.ActClick(driver, SearchIndex, 8000);
+            HelpersMethod.ActClick(driver, SearchIndex, 10000);
 
             wait = new FluentWait<WebDriver>(driver)
                     .withTimeout(Duration.ofSeconds(120))
@@ -254,6 +254,7 @@ public class OrderGuidePage {
                     .ignoring(NoSuchElementException.class);
             wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
 
+            //Thread.sleep(1000);
             if (HelpersMethod.IsExists("//tr[@class='k-master-row']", driver))
             {
                 exists = true;
@@ -338,10 +339,12 @@ public class OrderGuidePage {
     }
 
     //Code to click on Addfilter
-    public boolean AddFilterClick(String search1, String search2) {
+    public boolean AddFilterClick(String search1, String search2)
+    {
         exists = false;
         WebElement WebEle;
-        try {
+        try
+        {
             if (HelpersMethod.IsExists("//div[@class='i-filter-tag i-filter-tag--add']/descendant::button[@class='i-filter-tag__main']", driver)) {
                 //Clear the filter option
                 WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='i-filter-tag ']/descendant::button[contains(@class,'i-filter-tag__clear')]");
