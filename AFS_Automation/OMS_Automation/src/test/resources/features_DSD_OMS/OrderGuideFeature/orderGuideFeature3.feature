@@ -27,12 +27,12 @@ Feature: Order Guide3
     Then User enters OG Description "<OG>" in search box and Delete the OG verify same in OG grid
     Examples:
       |  OG   |
-    #  |OGDis1 |
-    #  |OGDis14|
+      |OGDis1 |
+      |OGDis14|
       |OGDis16|
       |OGDis17|
       |OGDis18|
-           #   |OGDis19|
+      |OGDis19|
       |OGDis20|
       |OGHist |
       |Par OGPar OG|

@@ -56,6 +56,17 @@ Feature: scenarios for admin security and submenu permission, for creating role,
       |Main menu|Sub menu      | Navigate to |Role     |User     |
       |Security |Permissions   | By user     |custadmin|Divya_DSD|
 
+  @ModulesVerifyUnderByUser
+  Scenario Outline: Test scenario for navigating to By user and add permission
+    Given User is on Home Page for Admin setting to select Admin option for admin security
+    Then User Clicks on Permissions by drop down to select Customer Account# for admin security
+    And User should enter menu "<Main menu>" in search bar and select "<Sub menu>"
+    Then User should navigate to "<Navigate to>" card
+    Then User should enter "<Role>" and "<User>" in add user to table and find modules enabled
+    Examples:
+      |Main menu|Sub menu      | Navigate to |Role     |User     |
+      |Security |Permissions   | By user     |custadmin|Divya_DSD|
+
   @SearchPermissionByUser
   Scenario Outline: Test scenario for searching in By user tab
     Given User is on Home Page for Admin setting to select Admin option for admin security
@@ -67,3 +78,39 @@ Feature: scenarios for admin security and submenu permission, for creating role,
     Examples:
       |Main menu|Sub menu      | Navigate to |Role     |User     |Admin permission                                         |
       |Security |Permissions   | By user     |custadmin|Divya_dsd|Allow user to access Administration - General - Punchout.|
+
+  @CheckForEnabledRoles
+  Scenario Outline: Test scenario for verifying roles that appears under roles
+    Given User is on Home Page for Admin setting to select Admin option for admin security
+    Then User Clicks on Permissions by drop down to select Customer Account# for admin security
+    And User should enter menu "<Main menu>" in search bar and select "<Sub menu>"
+    Then User clicks on In Roles input box and verify the roles enabled
+    Examples:
+      |Main menu|Sub menu    |
+      |Security |Permissions |
+
+  @EnableOrDisableRoles
+  Scenario Outline: Test scenario for verifying roles that appears under roles
+    Given User is on Home Page for Admin setting to select Admin option for admin security
+    Then User Clicks on Permissions by drop down to select Customer Account# for admin security
+    And User should enter menu "<Main menu>" in search bar and select "<Sub menu>"
+    Then User clicks on In Roles input box, disable roles and verify it in grid
+    Examples:
+      |Main menu|Sub menu    |
+      |Security |Permissions |
+
+  @ChangeCompanyAndReadModulesAndRoles
+  Scenario Outline: Test scenario for verifying modules,roles that appear after chaning company
+    Given User is on Home Page for Admin setting to select Admin option for admin security
+    Then User Clicks on Permissions by drop down to select Customer Account# for admin security
+    And User should enter menu "<Main menu>" in search bar and select "<Sub menu>"
+    Then User clicks on In Roles input box, disable roles and verify it in grid
+    Then User clicks on In Roles input box and verify the roles enabled
+    Then User Clicks on Permissions by drop down to select different Customer Account# for admin security
+    Then User clicks on In Modules input box and verify the modules enabled
+    Then User clicks on In Roles input box and verify the roles enabled
+    Examples:
+      |Main menu|Sub menu    |
+      |Security |Permissions |
+
+

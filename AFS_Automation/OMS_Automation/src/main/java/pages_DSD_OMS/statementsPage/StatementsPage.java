@@ -2,10 +2,10 @@ package pages_DSD_OMS.statementsPage;
 
 import helper.HelpersMethod;
 import io.cucumber.java.Scenario;
-import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import io.cucumber.java.bs.A;
+import io.cucumber.java.en_old.Ac;
+import org.apache.commons.collections4.CollectionUtils;
+import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -18,6 +18,8 @@ import pages_DSD_OMS.login.HomePage;
 import util.TestBase;
 
 import java.time.Duration;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 
@@ -32,6 +34,11 @@ public class StatementsPage
     Scenario scenario;
     static boolean exists=false;
     static String currentURL=null;
+    static ArrayList<String> customerAccNo=new ArrayList<>();
+    static ArrayList<String> customerAccNo1=new ArrayList<>();
+    static ArrayList<String> customerName=new ArrayList<>();
+    static ArrayList<String> customerName1=new ArrayList<>();
+    static List<WebElement> customers;
 
     @FindBy(id="cbStatementsWeekly")
     private WebElement weeklyCheckbox;
@@ -679,6 +686,163 @@ public class StatementsPage
 
             WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-content k-calendar-content k-scrollable')]/table[contains(@class,'k-calendar-table')]/descendant::tr/td[contains(@class,'k-calendar-td k-state-pending-focus k-state-selected k-today')]");
             HelpersMethod.ClickBut(driver,WebEle,1000);
+        }
+        catch (Exception e){}
+    }
+
+    public void readAllCustomerAccount()
+    {
+        String customerText=null;
+        Actions act=new Actions(driver);
+       try
+       {
+           customers=HelpersMethod.FindByElements(driver,"xpath","//tr[contains(@class,'k-master-row')]/descendant::td[@data-grid-col-index='1']");
+           for(WebElement customer:customers)
+           {
+               act.moveToElement(customer).build().perform();
+               customerText=customer.getText();
+               customerAccNo.add(customerText);
+           }
+           scenario.log("Customer account # found "+customerAccNo.size());
+           //Display first 10 customer account#
+           scenario.log("DISPLAYING FIRST 10 CUSTOMER ACCOUNT#");
+           for(int i=0;i<=10;i++)
+           {
+               scenario.log(customerAccNo.get(i));
+           }
+       }
+       catch (Exception e){}
+    }
+
+    public void moveToCustomerAccountNoColumn()
+    {
+        Actions act=new Actions(driver);
+        exists=false;
+        try
+        {
+            WebElement custAccColumn=HelpersMethod.FindByElement(driver,"xpath","//th[contains(@class,'k-filterable k-header')][1]");
+            act.moveToElement(custAccColumn).click().build().perform();
+            if(HelpersMethod.IsExists("//th[contains(@class,'k-filterable k-header')][1]/descendant::span[contains(@class,'k-icon k-i-sort-asc-sm')]",driver))
+            {
+                scenario.log("CUSTOMER ACCOUNT# SHOULD BE ARRANGED IN ACENDING ORDER NOW");
+                exists=true;
+            }
+            Assert.assertEquals(exists,true);
+        }
+        catch (Exception e){}
+    }
+
+    public void readAllCustomerAccountAfterSorting()
+    {
+        String customerText=null;
+        Actions act=new Actions(driver);
+        try
+        {
+            customers=HelpersMethod.FindByElements(driver,"xpath","//tr[contains(@class,'k-master-row')]/descendant::td[@data-grid-col-index='1']");
+            for(WebElement customer:customers)
+            {
+                act.moveToElement(customer).build().perform();
+                customerText=customer.getText();
+                customerAccNo1.add(customerText);
+            }
+            //Display first 10 customer account#
+            scenario.log("DISPLAYING FIRST 10 CUSTOMER ACCOUNT#");
+            for(int i=0;i<=10;i++)
+            {
+                scenario.log(customerAccNo1.get(i));
+            }
+        }
+        catch (Exception e){}
+    }
+
+    public void validatingSorting()
+    {
+        exists=false;
+        try
+        {
+            Collections.sort(customerAccNo);
+            if(customerAccNo.equals(customerAccNo1))
+            {
+                scenario.log("CUSTOMER ACCOUNT NUMBERS ARE IN ASCENDING ORDER");
+                exists=true;
+            }
+            Assert.assertEquals(exists,true);
+        }
+        catch (Exception e){}
+    }
+
+    public void readAllCustomerName()
+    {
+        String customerText=null;
+        Actions act=new Actions(driver);
+        try
+        {
+            customers=HelpersMethod.FindByElements(driver,"xpath","//tr[contains(@class,'k-master-row')]/descendant::td[@data-grid-col-index='2']");
+            for(WebElement customer:customers)
+            {
+                act.moveToElement(customer).build().perform();
+                customerText=customer.getText();
+                customerName.add(customerText);
+            }
+            scenario.log("TOTAL NUMBER OF CUSTOMER NAME FOUND "+customerName.size());
+            //Display first 10 customer account#
+            scenario.log("DISPLAYING FIRST 10 CUSTOMER NAME");
+            for(int i=0;i<=10;i++)
+            {
+                scenario.log(customerName.get(i));
+            }
+        }
+        catch (Exception e){}
+    }
+
+    public void moveToCustomerNameColumn()
+    {
+        Actions act=new Actions(driver);
+        exists=false;
+        try
+        {
+            WebElement custNameColumn=HelpersMethod.FindByElement(driver,"xpath","//th[contains(@class,'k-filterable k-header')][2]");
+            act.moveToElement(custNameColumn).click().build().perform();
+            if(HelpersMethod.IsExists("//th[contains(@class,'k-filterable k-header')][2]/descendant::span[contains(@class,'k-icon k-i-sort-asc-sm')]",driver))
+            {
+                scenario.log("CUSTOMER NAME SHOULD BE ARRANGED IN ACENDING ORDER NOW");
+                exists=true;
+            }
+            Assert.assertEquals(exists,true);
+        }
+        catch (Exception e){}
+    }
+
+    public void readAllCustomerNameAfterSorting()
+    {
+        String customerText=null;
+        Actions act=new Actions(driver);
+        try
+        {
+            customers=HelpersMethod.FindByElements(driver,"xpath","//tr[contains(@class,'k-master-row')]/descendant::td[@data-grid-col-index='2']");
+            for(WebElement customer:customers)
+            {
+                act.moveToElement(customer).build().perform();
+                customerText=customer.getText();
+                customerName1.add(customerText);
+            }
+            //Display first 10 customer account#
+            scenario.log("DISPLAYING FIRST 10 CUSTOMER NAME");
+            for(int i=0;i<=10;i++)
+            {
+                scenario.log(customerName1.get(i));
+            }
+        }
+        catch (Exception e){}
+    }
+
+    public void validatingCustomerNameSorting()
+    {
+        exists=false;
+        try
+        {
+            Collections.sort(customerName, String.CASE_INSENSITIVE_ORDER);
+            Assert.assertTrue(CollectionUtils.isEqualCollection(customerName, customerName1));
         }
         catch (Exception e){}
     }

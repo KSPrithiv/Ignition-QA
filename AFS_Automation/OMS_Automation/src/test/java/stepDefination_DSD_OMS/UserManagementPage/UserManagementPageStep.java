@@ -24,7 +24,8 @@ import util.TestBase;
 import java.awt.*;
 import java.time.Clock;
 
-public class UserManagementPageStep {
+public class UserManagementPageStep
+{
     WebDriver driver;
     Scenario scenario;
     static boolean flag = false;
@@ -34,10 +35,10 @@ public class UserManagementPageStep {
     static LoginPage loginpage;
     static HomePage homepage;
     static UserManagementPage userManagementPage;
-    static OrderEntryPage orderpage;
 
     @Before
-    public void LaunchBrowser1(Scenario scenario) throws Exception {
+    public void LaunchBrowser1(Scenario scenario) throws Exception
+    {
         this.scenario = scenario;
         TestBase driver1 = TestBase.getInstanceOfDriver();
         driver = driver1.getDriver();

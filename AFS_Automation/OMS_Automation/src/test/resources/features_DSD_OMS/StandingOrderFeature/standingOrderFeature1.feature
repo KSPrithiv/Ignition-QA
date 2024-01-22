@@ -15,6 +15,11 @@ Feature: Standing Order1
     And User clicks on Copy Standing order button selects start and end date as 25 and 26 day from current date
     Then User checks for the products added to copied SO
 
+  @ValidateDeliverySchedule
+  Scenario: Test scenario for validating Delivery schedule default value
+    Given User must be on Order Entry Page to select Standing Order and navigate to standing order
+    Then User should validate that Standing order Delivery schedule by default having Every week option
+
   @StandingOrderWithoutEndDate
   Scenario: Creation of standing order without giving any end date
     Given User must be on Order Entry Page to select Standing Order and navigate to standing order
@@ -24,6 +29,12 @@ Feature: Standing Order1
       |10|20|30|40|15|10|5|
     Then User clicks on Save button and handles popup
     And User should validate that there is no end date assigned to standing order
+
+  @OverlappedStandingOrder
+  Scenario: Test scenario for creating standing order using Quick product entry input box
+    Given User must be on Order Entry Page to select Standing Order and navigate to standing order
+    And User click on Start standing order button and selects Start date 2 and End date 2 day from current date
+    Then User should validate Standing Order dialog box for SO already existing
 
   @StandingOrderRegisterExcel
   Scenario: Test scenario for generating Excel sheet for standing order registeration

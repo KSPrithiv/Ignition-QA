@@ -19,7 +19,7 @@ import java.io.IOException;
                 "com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:Reports/spark/",
                 "rerun:target/failedrerun.txt"
         },
-        monochrome = true,tags="@DMTwoCustomerTwoDeliveryDate")
+        monochrome = true)
 /**
  * @Project DSD_OMS
  * @Author Divya.Ramadas@telusagcg.com

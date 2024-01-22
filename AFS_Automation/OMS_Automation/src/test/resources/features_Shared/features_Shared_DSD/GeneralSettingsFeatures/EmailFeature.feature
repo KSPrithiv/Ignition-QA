@@ -3,7 +3,6 @@ Feature: Email
   Background: For login to application
     Given User enters URL and is on login page
 
-
   @TestEmail-IGNI-21243
   Scenario: Test scenario for sending test emails from General Settings
     When User on login page

@@ -2,14 +2,21 @@ package pages_DSD_OMS.billToBill;
 
 import helper.HelpersMethod;
 import io.cucumber.java.Scenario;
+import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.FluentWait;
+import org.openqa.selenium.support.ui.Wait;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import pages_DSD_OMS.login.HomePage;
 
+import java.time.Duration;
 import java.util.List;
 
 /**
@@ -102,50 +109,50 @@ public class BillToBillPage
 
     public String NavigateToBillToBill()
     {
-            exists = false;
-            WebElement WebEle = null;
-            String status = null;
+        exists = false;
+        WebElement WebEle = null;
+        String status = null;
+        status = HelpersMethod.returnDocumentStatus(driver);
+        if (status.equals("loading"))
+        {
+            HelpersMethod.waitTillLoadingPage(driver);
+        }
+        try
+        {
+            Actions act = new Actions(driver);
+            WebElement Search_Input = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='drawer-menu-search-container']/descendant::input");
+            act.moveToElement(Search_Input).click().sendKeys("Bill To Billing").build().perform();
+            WebElement BillMenu = HelpersMethod.FindByElement(driver, "xpath", "//ul[contains(@class,'MuiList-root ')]/descendant::span[contains(text(),'Bill To Billing')]");
+            HelpersMethod.ClickBut(driver, BillMenu, 100);
+            exists = true;
+            if (HelpersMethod.IsExists("//div[@class='loader']", driver))
+            {
+                WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100);
+            }
             status = HelpersMethod.returnDocumentStatus(driver);
             if (status.equals("loading"))
             {
                 HelpersMethod.waitTillLoadingPage(driver);
             }
-            try
+            if(HelpersMethod.IsExists("//*[local-name()='svg']//*[local-name()='path' and contains(@d,'M3,18H21V16H3Zm0-5H21V11H3ZM3,6V8H21V6Z')]",driver))
             {
-                Actions act = new Actions(driver);
-                WebElement Search_Input = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='drawer-menu-search-container']/descendant::input");
-                act.moveToElement(Search_Input).click().sendKeys("Bill To Billing").build().perform();
-                WebElement BillMenu = HelpersMethod.FindByElement(driver, "xpath", "//ul[contains(@class,'MuiList-root ')]/descendant::span[contains(text(),'Bill To Billing')]");
-                HelpersMethod.ClickBut(driver, BillMenu, 100);
-                exists = true;
-                   if (HelpersMethod.IsExists("//div[@class='loader']", driver))
-                   {
-                       WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                       HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100);
-                   }
-                   status = HelpersMethod.returnDocumentStatus(driver);
-                   if (status.equals("loading"))
-                   {
-                       HelpersMethod.waitTillLoadingPage(driver);
-                   }
-                   if(HelpersMethod.IsExists("//*[local-name()='svg']//*[local-name()='path' and contains(@d,'M3,18H21V16H3Zm0-5H21V11H3ZM3,6V8H21V6Z')]",driver))
-                   {
-                       WebEle=HelpersMethod.FindByElement(driver,"xpath","//*[local-name()='svg']//*[local-name()='path' and contains(@d,'M3,18H21V16H3Zm0-5H21V11H3ZM3,6V8H21V6Z')]");
-                       act.moveToElement(WebEle).build().perform();
-                       act.click(WebEle).build().perform();
-                   }
-                if(HelpersMethod.IsExists("//ul[contains(@class,'MuiList-root ')]/descendant::span[contains(text(),'Bill To Billing')]",driver))
-                {
-                    scenario.log("NAVIGATED TO BILL TO BILL(DSD) PAGE");
-               }
-               else
-               {
-                   scenario.log("BILL TO BILLING (DSD) MAY NOT BE ENABLED FOR THE APPLICATION");
-               }
-               currentURL=driver.getCurrentUrl();
-                Assert.assertEquals(exists, true);
+                WebEle=HelpersMethod.FindByElement(driver,"xpath","//*[local-name()='svg']//*[local-name()='path' and contains(@d,'M3,18H21V16H3Zm0-5H21V11H3ZM3,6V8H21V6Z')]");
+                act.moveToElement(WebEle).build().perform();
+                act.click(WebEle).build().perform();
             }
-            catch (Exception e) {}
+            if(HelpersMethod.IsExists("//ul[contains(@class,'MuiList-root ')]/descendant::span[contains(text(),'Bill To Billing')]",driver))
+            {
+                scenario.log("NAVIGATED TO BILL TO BILL(DSD) PAGE");
+            }
+            else
+            {
+                scenario.log("BILL TO BILLING (DSD) MAY NOT BE ENABLED FOR THE APPLICATION");
+            }
+            currentURL=driver.getCurrentUrl();
+            Assert.assertEquals(exists, true);
+        }
+        catch (Exception e) {}
         return currentURL;
     }
 

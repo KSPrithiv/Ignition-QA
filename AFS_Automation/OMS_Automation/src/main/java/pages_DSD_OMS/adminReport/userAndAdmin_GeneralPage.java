@@ -132,9 +132,9 @@ public class userAndAdmin_GeneralPage
                 }
 
                 if (HelpersMethod.IsExists("//div[contains(text(),'The information has been')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]", driver)) {
-                    WebElement confirmationPopup = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(text(),'The information has been')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]");
+                    WebElement confirmationPopup = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-widget k-window k-dialog')]");
                     WebElement okButton = confirmationPopup.findElement(By.xpath(".//button[text()='OK']"));
-                    HelpersMethod.ActClick(driver, okButton, 1000);
+                    HelpersMethod.ActClick(driver, okButton, 10000);
                     exists = true;
                 }
             }

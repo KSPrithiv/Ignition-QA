@@ -6,7 +6,7 @@ Feature: Customer Inq
     When User is on Home Page for Customer inq
     Then User navigate to Client side for Customer inq
 
-  @LogoutCompetitorPricing
+  @LogoutCustinq
   Scenario:Loging out from the application
     And Refresh the page if any dialog box is displayed
     Then Click on user Icon on Order Entry page

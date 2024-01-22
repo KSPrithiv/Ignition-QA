@@ -86,8 +86,16 @@ Feature: Competitive Pricing
       | CustRef            |CustRef1|
       | Customer account # |  All customer accounts # |
 
-
-
+  @ReportSingleCustomer
+  Scenario Outline: Test scenario for generating report with single customer Account#
+    Given User must be on Client side and select Competitor pricing page
+    When User should confirm that he is in Competitor pricing page
+    And User navigates to "<Reportstab>" under competitor pricing and select "<Groupby>" tab under Reports
+    Then User should select customer account# in groupOne and even select customer
+       |Customer account #|
+    Examples:
+    |     Reportstab |  Groupby |
+    |    Report       |  Group by |
 
 
 
