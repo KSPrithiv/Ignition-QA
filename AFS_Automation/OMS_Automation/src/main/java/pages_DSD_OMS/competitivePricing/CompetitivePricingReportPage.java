@@ -49,12 +49,24 @@ public class CompetitivePricingReportPage
     public void validateReport()
     {
         exists=false;
+        WebElement WebEle;
         try
         {
+            if(HelpersMethod.IsExists("//div[@class='loader']",driver))
+            {
+                WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100000);
+            }
+
             if(HelpersMethod.IsExists("//div[contains(@class,'i-comppricing-card card2')]",driver))
             {
                 scenario.log("NAVIGATED TO REPORT PAGE");
                 exists=true;
+                if(HelpersMethod.IsExists("//div[@class='loader']",driver))
+                {
+                    WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
+                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100000);
+                }
             }
             Assert.assertEquals(exists,true);
         }
@@ -64,12 +76,23 @@ public class CompetitivePricingReportPage
     public void validateGroupBy()
     {
         exists=false;
+        WebElement WebEle;
         try
         {
+            if(HelpersMethod.IsExists("//div[@class='loader']",driver))
+            {
+                WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100000);
+            }
             if(HelpersMethod.IsExists("//div[@class='report-group-by']",driver))
             {
                 scenario.log("NAVIGATED TO GROUP BY CARD, UNDER REPORT PAGE");
                 exists=true;
+                if(HelpersMethod.IsExists("//div[@class='loader']",driver))
+                {
+                    WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
+                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100000);
+                }
             }
             Assert.assertEquals(exists,true);
         }
@@ -96,8 +119,15 @@ public class CompetitivePricingReportPage
        exists=false;
        Actions act=new Actions(driver);
        String listText=null;
+       WebElement WebEle;
        try
        {
+           if(HelpersMethod.IsExists("//div[@class='loader']",driver))
+           {
+               WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
+               HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100000);
+           }
+           new WebDriverWait(driver,Duration.ofMillis(1000)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(@class,'k-list-container')]/descendant::ul/li")));
            List<WebElement> listElements=HelpersMethod.FindByElements(driver,"xpath","//div[contains(@class,'k-list-container')]/descendant::ul/li");
            for (WebElement listEle:listElements)
            {
@@ -105,8 +135,15 @@ public class CompetitivePricingReportPage
               listText=listEle.getText();
               if(custAcc.equalsIgnoreCase(listText))
               {
+                  act.moveToElement(listEle).build().perform();
+                  HelpersMethod.JScriptClick(driver,listEle,10000);
                   break;
               }
+           }
+           if(HelpersMethod.IsExists("//div[@class='loader']",driver))
+           {
+               WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
+               HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100000);
            }
        }
        catch (Exception e){}
@@ -115,13 +152,25 @@ public class CompetitivePricingReportPage
     public void clickCustomerAccountIndex()
      {
          exists=false;
+         WebElement WebEle;
          try
          {
-             if(HelpersMethod.IsExists("//div[@class='report-group-by--component'][1]/descendant::div[@class='dialog-grid']//*[local-name()='svg']",driver))
+             if(HelpersMethod.IsExists("//div[@class='loader']",driver))
              {
-                 WebElement custIndexIcon=HelpersMethod.FindByElement(driver,"xpath","//div[@class='report-group-by--component'][1]/descendant::div[@class='dialog-grid']//*[local-name()='svg']");
+                 WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
+                 HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100000);
+             }
+
+             if(HelpersMethod.IsExists("//div[@class='report-group-by--component'][1]/descendant::button[contains(@class,'i-indexfield-container__main__button i-button--icon-only')]",driver))
+             {
+                 WebElement custIndexIcon=HelpersMethod.FindByElement(driver,"xpath","//div[@class='report-group-by--component'][1]/descendant::button[contains(@class,'i-indexfield-container__main__button i-button--icon-only')]");
                  HelpersMethod.ClickBut(driver,custIndexIcon,10000);
                  exists=true;
+             }
+             if(HelpersMethod.IsExists("//div[@class='loader']",driver))
+             {
+                 WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
+                 HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100000);
              }
              Assert.assertEquals(exists,true);
          }
@@ -133,7 +182,7 @@ public class CompetitivePricingReportPage
          exists=false;
          try
          {
-            if(HelpersMethod.IsExists("//div[@id='invoiceDetail_fiscalPeriodIndexProvider']/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
+            if(HelpersMethod.IsExists("//div[contains(@class,'k-widget k-window k-dialog')]",driver))
             {
                 scenario.log("CUSTOMER ACCOUNT INDEX DIALOG BOX HAS BEEN FOUND");
                 exists=true;
@@ -146,6 +195,7 @@ public class CompetitivePricingReportPage
      public void clickOnAddfilterToSelectCustomer(String custAcc,String accNo)
      {
          exists=false;
+         WebElement WebEle;
          try
          {
              if (HelpersMethod.IsExists("//div[@class='i-filter-tag i-filter-tag--add']/descendant::button[@class='i-filter-tag__main']", driver))
@@ -153,8 +203,13 @@ public class CompetitivePricingReportPage
                  //Clear the filter option
                  if(HelpersMethod.IsExists("//div[@class='i-filter-tag ']/descendant::button[contains(@class,'i-filter-tag__clear')]",driver))
                  {
-                     WebElement WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='i-filter-tag ']/descendant::button[contains(@class,'i-filter-tag__clear')]");
+                     WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='i-filter-tag ']/descendant::button[contains(@class,'i-filter-tag__clear')]");
                      HelpersMethod.ClickBut(driver, WebEle, 1000);
+                 }
+                 if(HelpersMethod.IsExists("//div[@class='loader']",driver))
+                 {
+                     WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
+                     HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100000);
                  }
 
                  HelpersMethod.AddFilterSearch(driver, custAcc, accNo);
@@ -177,8 +232,14 @@ public class CompetitivePricingReportPage
      public void selectCustomerAccountInDialogbox()
      {
          exists=false;
+         WebElement WebEle;
          try
          {
+             if(HelpersMethod.IsExists("//div[@class='loader']",driver))
+             {
+                 WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
+                 HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 200000);
+             }
             if(HelpersMethod.IsExists("//div[contains(@class,'k-widget k-window k-dialog')]/descendant::tr[@class='k-master-row'][1]/descendant::input",driver))
             {
                 WebElement webEle=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-widget k-window k-dialog')]/descendant::tr[@class='k-master-row'][1]/descendant::input");
@@ -187,6 +248,11 @@ public class CompetitivePricingReportPage
                 WebElement okButton=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-widget k-window k-dialog')]/descendant::button[text()='OK']");
                 HelpersMethod.ActClick(driver,okButton,10000);
             }
+             if(HelpersMethod.IsExists("//div[@class='loader']",driver))
+             {
+                 WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
+                 HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 200000);
+             }
          }
          catch (Exception e){}
      }
