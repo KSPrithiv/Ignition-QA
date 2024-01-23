@@ -38,6 +38,7 @@ public class orderAdminPage
 
     public void navigateToDifferentTabsInOrder(String horizontalMenu)
     {
+        exists=false;
         try
         {
             if(HelpersMethod.IsExists("//div[@class='loader']",driver))
@@ -56,7 +57,7 @@ public class orderAdminPage
                 if(Menu_Text.contains(horizontalMenu))
                 {
                     WebElement menuItem=HelpersMethod.FindByElement(driver,"xpath","//li[contains(@class,'k-item')]/span[@class='k-link' and contains(text(),'"+horizontalMenu+"')]");
-                    HelpersMethod.JScriptClick(driver,menuItem,1000);
+                    HelpersMethod.JScriptClick(driver,menuItem,10000);
                     break;
                 }
                 else
@@ -86,10 +87,21 @@ public class orderAdminPage
                 }
             }
             Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
-                    .withTimeout(Duration.ofSeconds(100))
-                    .pollingEvery(Duration.ofSeconds(5))
+                    .withTimeout(Duration.ofSeconds(120))
+                    .pollingEvery(Duration.ofSeconds(2))
                     .ignoring(NoSuchElementException.class);
             wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+            if(HelpersMethod.IsExists("//li[contains(@class,'k-item')]/span[@class='k-link' and contains(text(),'" + horizontalMenu + "')]",driver))
+            {
+                scenario.log("NAVIGATED TO TAB "+horizontalMenu);
+                exists=true;
+            }
+            else
+            {
+                scenario.log(horizontalMenu+" TAB HAS NOT BEEN FOUND");
+                exists=false;
+            }
+            Assert.assertEquals(exists,true);
         }
         catch (Exception e){}
     }
@@ -100,11 +112,30 @@ public class orderAdminPage
         String tabValue=null;
         try
         {
+            String status = HelpersMethod.returnDocumentStatus(driver);
+            if (status.equals("loading"))
+            {
+                HelpersMethod.waitTillLoadingPage(driver);
+            }
+
             Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
-                    .withTimeout(Duration.ofSeconds(100))
-                    .pollingEvery(Duration.ofSeconds(5))
+                    .withTimeout(Duration.ofSeconds(200))
+                    .pollingEvery(Duration.ofSeconds(2))
                     .ignoring(NoSuchElementException.class);
             wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
+            status = HelpersMethod.returnDocumentStatus(driver);
+            if (status.equals("loading"))
+            {
+                HelpersMethod.waitTillLoadingPage(driver);
+            }
+
+            wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(200))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
             if(HelpersMethod.IsExists("//li[contains(@class,'k-state-active')]/span[@class='k-link']",driver))
             {
                 tabValue=HelpersMethod.FindByElement(driver,"xpath","//li[contains(@class,'k-state-active')]/span[@class='k-link']").getText();
@@ -113,6 +144,11 @@ public class orderAdminPage
                     scenario.log("NAVIGATED TO "+tabValue);
                     exists = true;
                 }
+            }
+            else
+            {
+                scenario.log("NOT FOUND THE REQUIRED TAB");
+                exists=false;
             }
             Assert.assertEquals(exists,true);
         }

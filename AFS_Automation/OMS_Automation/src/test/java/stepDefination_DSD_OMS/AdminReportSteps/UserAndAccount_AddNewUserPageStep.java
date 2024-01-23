@@ -79,6 +79,4 @@ public class UserAndAccount_AddNewUserPageStep
         userandAdminPage.rolesButtonClick();
         userandAdminPage.rolesIndexPopup(filter,filterDesc);
     }
-
-
 }
