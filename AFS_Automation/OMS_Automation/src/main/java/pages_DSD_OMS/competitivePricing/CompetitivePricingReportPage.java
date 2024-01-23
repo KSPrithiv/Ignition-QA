@@ -303,4 +303,42 @@ public class CompetitivePricingReportPage
         }
         catch (Exception e){}
     }
+
+    public void clickAscendingRadioButton()
+    {
+        exists=false;
+        try
+        {
+            if(HelpersMethod.IsExists("//div[@class='report-group-by--component'][1]/descendant::input[@id='radioButton2']",driver))
+            {
+                if(!HelpersMethod.IsExists("//div[@class='report-group-by--component'][1]/descendant::input[@id='radioButton2' and @checked]",driver))
+                {
+                    WebElement ascending=HelpersMethod.FindByElement(driver,"xpath","//div[@class='report-group-by--component'][1]/descendant::input[@id='radioButton2']");
+                    HelpersMethod.ActClick(driver,ascending,1000);
+                }
+                exists=true;
+            }
+            Assert.assertEquals(exists,true);
+        }
+        catch (Exception e){}
+    }
+
+    public void clickDescendingRadioButton()
+    {
+        exists=false;
+        try
+        {
+            if(HelpersMethod.IsExists("//div[@class='report-group-by--component'][1]/descendant::input[@id='radioButton3']",driver))
+            {
+                if(!HelpersMethod.IsExists("//div[@class='report-group-by--component'][1]/descendant::input[@id='radioButton3' and @checked]",driver))
+                {
+                    WebElement ascending=HelpersMethod.FindByElement(driver,"xpath","//div[@class='report-group-by--component'][1]/descendant::input[@id='radioButton3']");
+                    HelpersMethod.ActClick(driver,ascending,1000);
+                }
+                exists=true;
+            }
+            Assert.assertEquals(exists,true);
+        }
+        catch (Exception e){}
+    }
 }

@@ -215,4 +215,54 @@ public class CompetitorPricingPageStep
         competitivePricingReportPage.selectCustomerAccountInDialogbox();
         competitivePricingReportPage.handlePrintButton();
     }
+
+    @Then("User should select multiple customer account# in groupOne and even select customer")
+    public void userShouldSelectMultipleCustomerAccountInGroupOneAndEvenSelectCustomer(DataTable tableData)
+    {
+        List<List<String>> listValue=tableData.asLists(String.class);
+        competitivePricingReportPage=new CompetitivePricingReportPage(driver,scenario);
+        competitivePricingReportPage.clickOnGroup1();
+        competitivePricingReportPage.selectCustomerAccountOptionDropdown(listValue.get(0).get(0));
+        //to select 1st customer account number
+        competitivePricingReportPage.clickCustomerAccountIndex();
+        competitivePricingReportPage.validateCustomerAccountDialogBox();
+        competitivePricingReportPage.clickOnAddfilterToSelectCustomer(listValue.get(0).get(0),TestBase.testEnvironment.get_Account());
+        competitivePricingReportPage.selectCustomerAccountInDialogbox();
+        //to select 2nd customer account number
+        competitivePricingReportPage.clickCustomerAccountIndex();
+        competitivePricingReportPage.validateCustomerAccountDialogBox();
+        competitivePricingReportPage.clickOnAddfilterToSelectCustomer(listValue.get(0).get(0),TestBase.testEnvironment.get_AnotherAcc());
+        competitivePricingReportPage.selectCustomerAccountInDialogbox();
+        competitivePricingReportPage.handlePrintButton();
+    }
+
+    @Then("User should select customer account# in groupOne and even select customer and select ascending order radio button")
+    public void userShouldSelectCustomerAccountInGroupOneAndEvenSelectCustomerAndSelectAscendingOrderRadioButton(DataTable tableData)
+    {
+        List<List<String>> listValue=tableData.asLists(String.class);
+        competitivePricingReportPage=new CompetitivePricingReportPage(driver,scenario);
+        competitivePricingReportPage.clickOnGroup1();
+        competitivePricingReportPage.selectCustomerAccountOptionDropdown(listValue.get(0).get(0));
+        competitivePricingReportPage.clickAscendingRadioButton();
+        competitivePricingReportPage.clickCustomerAccountIndex();
+        competitivePricingReportPage.validateCustomerAccountDialogBox();
+        competitivePricingReportPage.clickOnAddfilterToSelectCustomer(listValue.get(0).get(0),TestBase.testEnvironment.get_Account());
+        competitivePricingReportPage.selectCustomerAccountInDialogbox();
+        competitivePricingReportPage.handlePrintButton();
+    }
+
+    @Then("User should select customer account# in groupOne and even select customer and select descending order radio button")
+    public void userShouldSelectCustomerAccountInGroupOneAndEvenSelectCustomerAndSelectDescendingOrderRadioButton(DataTable tableData)
+    {
+        List<List<String>> listValue=tableData.asLists(String.class);
+        competitivePricingReportPage=new CompetitivePricingReportPage(driver,scenario);
+        competitivePricingReportPage.clickOnGroup1();
+        competitivePricingReportPage.selectCustomerAccountOptionDropdown(listValue.get(0).get(0));
+        competitivePricingReportPage.clickDescendingRadioButton();
+        competitivePricingReportPage.clickCustomerAccountIndex();
+        competitivePricingReportPage.validateCustomerAccountDialogBox();
+        competitivePricingReportPage.clickOnAddfilterToSelectCustomer(listValue.get(0).get(0),TestBase.testEnvironment.get_Account());
+        competitivePricingReportPage.selectCustomerAccountInDialogbox();
+        competitivePricingReportPage.handlePrintButton();
+    }
 }
