@@ -37,7 +37,7 @@ Feature: Standing Order
   @SkipSpecificDay
   Scenario: Test scenario for skipping specific date in standing order
     Given User must be on Order Entry Page to select Standing Order and navigate to standing order
-    Then Click on Skip specific day and select 8 day from current date,select reason date for skip in skip popup and click on ok
+    Then Click on Skip specific day and select any enabled day from current date,select reason date for skip in skip popup and click on ok
 
   @RemoveSkipSpecificDay
   Scenario: Test scenario for remove skipping specific date in standing order
@@ -47,7 +47,7 @@ Feature: Standing Order
   @VerifySkipDateSetInSOWithOE
   Scenario: Test scenario for verifying skip in SO with skip in OE page
     Given User must be on Order Entry Page to select Standing Order and navigate to standing order
-    Then Click on Skip specific day and select 8 day from current date,select reason date for skip in skip popup and click on ok
+    Then Click on Skip specific day and select any enabled day from current date,select reason date for skip in skip popup and click on ok
     Then User Click on Skip specific day and read the skip date value and click on Ok
     And User should navigate to OE page, User should select the same delivery date from calender
     Then User should verify for that date remove skip has been enabled or Skip has been disabled

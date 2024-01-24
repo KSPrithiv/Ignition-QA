@@ -248,14 +248,14 @@ public class StandingOrderPageSteps
         standingOrder.ClickDeleteProduct();
     }
 
-    @Then("Click on Skip specific day and select {int} day from current date,select reason date for skip in skip popup and click on ok")
-    public void clickOnSkipSpecificDayAndSelectDayFromCurrentDateSelectReasonDateForSkipInSkipPopupAndClickOnOk(int days) throws InterruptedException
+    @Then("Click on Skip specific day and select any enabled day from current date,select reason date for skip in skip popup and click on ok")
+    public void clickOnSkipSpecificDayAndSelectAnyEnabledDayFromCurrentDateSelectReasonDateForSkipInSkipPopupAndClickOnOk() throws InterruptedException
     {
         standingOrder=new NewStandingOrderPage(driver,scenario);
         standingOrder.ClickOnSkipSpecificDay();
         standingOrder.ValidateSkipPopup();
         standingOrder.ClickOnSkipReason();
-        standingOrder.SelectDateToSkip(days);
+        standingOrder.SelectDateToSkip();
         standingOrder.SkipOkButton();
         standingOrder.orderAlreadyExists();
         standingOrder.SkipConfirmation();
