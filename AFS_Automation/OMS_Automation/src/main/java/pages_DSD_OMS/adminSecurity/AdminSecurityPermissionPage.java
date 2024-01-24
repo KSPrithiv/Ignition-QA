@@ -814,7 +814,7 @@ public class AdminSecurityPermissionPage
             {
                 WebElement modulesInput=HelpersMethod.FindByElement(driver,"xpath","//span[contains(text(),'In modules')]/following-sibling::*[1]/descendant::input");
                 HelpersMethod.ScrollElement(driver,modulesInput);
-                HelpersMethod.ActClick(driver,modulesInput,1000);
+                HelpersMethod.ActClick(driver,modulesInput,10000);
                 new WebDriverWait(driver, Duration.ofMillis(40000)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(@class,'k-list-container')]/descendant::ul/li")));
                 exists=true;
             }

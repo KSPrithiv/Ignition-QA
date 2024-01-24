@@ -270,11 +270,11 @@ public class HelpersMethod
         return Value;
     }
 
-    public static boolean IsExists(String ele,WebDriver driver)
+    public static boolean IsExists(String Xpath,WebDriver driver)
     {
         try
         {
-            driver.findElement(By.xpath(ele));
+            driver.findElement(By.xpath(Xpath));
             return true;
         }
         catch (Exception e)

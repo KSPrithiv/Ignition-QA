@@ -90,7 +90,7 @@ public class OrderGuidePageStep1
             createOGPage.cardViewPriceBase();
         }
         createOGPage.CatalogPopupOk();
-        Thread.sleep(3000);
+        Thread.sleep(5000);
     }
 
     //Code to delete OG from the OG grid
