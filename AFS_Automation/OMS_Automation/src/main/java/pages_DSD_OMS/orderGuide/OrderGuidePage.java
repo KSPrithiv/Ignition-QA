@@ -786,7 +786,7 @@ public class OrderGuidePage {
             {
                 //Clear the filter option
                 WebElement WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='i-filter-tag ']/descendant::button[contains(@class,'i-filter-tag__clear')]");
-                HelpersMethod.ClickBut(driver, WebEle, 1000);
+                HelpersMethod.ClickBut(driver, WebEle, 10000);
                 exists = true;
             }
             Assert.assertEquals(exists, true);

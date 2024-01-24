@@ -54,8 +54,8 @@ public class CreateOGPage
     private WebElement QuickProd;
 
     //@FindBy(xpath="//label[contains(text(),'Unit of measure')]/following-sibling::label")
-    @FindBy(id="quickEntryUMs")
-    private WebElement QuickUOM;
+    //@FindBy(id="quickEntryUMs")
+    //private WebElement QuickUOM;
 
     @FindBy(id = "quickSequence")
     private WebElement Sequence;
@@ -300,8 +300,9 @@ public class CreateOGPage
                 HelpersMethod.waitTillLoadingPage(driver);
             }
             //Check whether UOM is displayed or not
-            if(QuickUOM.isDisplayed())
+            if(HelpersMethod.IsExistsById("quickEntryUMs",driver))
             {
+                WebElement QuickUOM=HelpersMethod.FindByElement(driver,"id","quickEntryUMs");
                 QuickUOM.sendKeys(Keys.TAB);
             }
             status = HelpersMethod.returnDocumentStatus(driver);

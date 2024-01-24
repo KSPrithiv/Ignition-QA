@@ -3974,7 +3974,15 @@ public class NewOrderEntryPage
 
     public String readUnitOfMeasure()
     {
-        WebElement unitOfMeasure= HelpersMethod.FindByElement(driver,"xpath","//span[@id='quickEntryUMs']/span[@class='k-input']");
+        WebElement unitOfMeasure=null;
+        if(HelpersMethod.IsExists("//span[@id='quickEntryUMs']/span[@class='k-input']",driver))
+        {
+            unitOfMeasure = HelpersMethod.FindByElement(driver, "xpath", "//span[@id='quickEntryUMs']/span[@class='k-input']");
+        }
+        else if(HelpersMethod.IsExists("//div[contains(@class,'quickUMs')]/descendant::label[contains(@class,'quick-um-single-value')]",driver))
+        {
+            unitOfMeasure = HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'quickUMs')]/descendant::label[contains(@class,'quick-um-single-value')]");
+        }
         return unitOfMeasure.getText();
     }
 

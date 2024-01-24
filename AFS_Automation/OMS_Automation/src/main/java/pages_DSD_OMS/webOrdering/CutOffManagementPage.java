@@ -336,7 +336,7 @@ public class CutOffManagementPage
                 HelpersMethod.ScrollElement(driver,timeSettingToggle);
                 if(!HelpersMethod.IsExists("//div[@id='cutoff-times']/descendant::span[@class='k-switch-container' and @aria-checked='true']",driver))
                 {
-                    HelpersMethod.JScriptClick(driver, timeSettingToggle, 1000);
+                    HelpersMethod.JScriptClick(driver, timeSettingToggle, 10000);
                     if (HelpersMethod.IsExists("//div[@class='loader']", driver))
                     {
                         WebElement WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
@@ -577,7 +577,7 @@ public class CutOffManagementPage
             {
                 if(!HelpersMethod.IsExists("//span[@id='CPEnableCutoffWarehouseMgmt' and @aria-checked='true']",driver))
                 {
-                    HelpersMethod.JScriptClick(driver, wareHouseToggle, 1000);
+                    HelpersMethod.JScriptClick(driver, wareHouseToggle, 10000);
                     scenario.log("WAREHOUSE TOGGLE BUTTON SELECTED");
                     if (HelpersMethod.IsExists("//div[@class='loader']", driver))
                     {
@@ -604,7 +604,7 @@ public class CutOffManagementPage
             {
                 if(!HelpersMethod.IsExists("//span[@id='CPEnableCutoffRouteMgmt' and @aria-checked='true']",driver))
                 {
-                    HelpersMethod.JScriptClick(driver, wareHouseToggle, 1000);
+                    HelpersMethod.JScriptClick(driver, wareHouseToggle, 10000);
                     scenario.log("ROUTE TOGGLE BUTTON SELECTED");
                     if (HelpersMethod.IsExists("//div[@class='loader']", driver))
                     {

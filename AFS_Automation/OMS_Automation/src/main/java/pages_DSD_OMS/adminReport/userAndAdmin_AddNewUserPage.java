@@ -94,13 +94,14 @@ public class userAndAdmin_AddNewUserPage
         exists=false;
         String fullAcc= TestBase.testEnvironment.FullAcc();
         String[] splitAcc;
-        WebElement Acc1=HelpersMethod.FindByElement(driver,"id","add-account-part-1");
-        WebElement Acc2=HelpersMethod.FindByElement(driver,"id","add-account-part-2");
-        WebElement Acc3=HelpersMethod.FindByElement(driver,"id","add-account-part-3");
+
         try
         {
             if(fullAcc.contains("-"))
             {
+                WebElement Acc1=HelpersMethod.FindByElement(driver,"id","add-account-part-1");
+                WebElement Acc2=HelpersMethod.FindByElement(driver,"id","add-account-part-2");
+                WebElement Acc3=HelpersMethod.FindByElement(driver,"id","add-account-part-3");
                 splitAcc= fullAcc.split("-");
                 HelpersMethod.EnterText(driver,Acc1,1000,splitAcc[0]);
                 HelpersMethod.EnterText(driver,Acc2,1000,splitAcc[1]);
@@ -109,6 +110,7 @@ public class userAndAdmin_AddNewUserPage
             }
             else
             {
+                WebElement Acc1=HelpersMethod.FindByElement(driver,"id","add-account-part-1");
                 HelpersMethod.EnterText(driver,Acc1,1000,fullAcc);
                 exists=true;
             }
