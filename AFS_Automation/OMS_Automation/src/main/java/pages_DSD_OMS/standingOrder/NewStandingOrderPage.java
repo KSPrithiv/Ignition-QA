@@ -677,7 +677,7 @@ public class NewStandingOrderPage
         catch (Exception e){}
     }
 
-    public void SelectDateToSkip(int days)
+    public void SelectDateToSkip()
     {
         exists=false;
         WebElement WebEle=null;
@@ -687,7 +687,7 @@ public class NewStandingOrderPage
        // int index=0;
         try
         {
-            WebElement ele1;
+          /*  WebElement ele1;
             String formattedDate1 = null;
             String formattedDate2=null;
             String formDate1=null;
@@ -780,6 +780,43 @@ public class NewStandingOrderPage
                                 }
                             }
                         }
+                    }
+                }
+            }*/
+            /**************check for all enabled dates in calender and if enabled dates size is 0 or null then should click on arrow button in the top of calender popup
+            //And select the very first enabled date in the next calender***************/
+            List<WebElement> enabledDates=HelpersMethod.FindByElements(driver,"xpath","//td[contains(@style,'opacity: 1')]/span");
+            int length=enabledDates.size();
+            WebElement tempEle;
+            if(length==0)
+            {
+                //Click on arrow
+                WebElement arrow=HelpersMethod.FindByElement(driver,"xpath","//span[contains(@class,'k-i-arrow-chevron-right')]");
+                HelpersMethod.ActClick(driver,arrow,1000);
+                enabledDates=HelpersMethod.FindByElements(driver,"xpath","//td[contains(@style,'opacity: 1')])/span");
+                for(int i=0;i<=enabledDates.size()-1;i++)
+                {
+                    if(i==0)
+                    {
+                        tempEle=HelpersMethod.FindByElement(driver,"xpath","(//td[contains(@style,'opacity: 1')])["+i+"]/span");
+                        scenario.log("DATE SELECTED FOR SKIP IS "+tempEle.getText());
+                        HelpersMethod.ActClick(driver,tempEle,1000);
+                        exists=true;
+                        break;
+                    }
+                }
+            }
+            else
+            {
+                for(int i=enabledDates.size()-1;i>=0;i--)
+                {
+                    if(i==length-1)
+                    {
+                        tempEle=HelpersMethod.FindByElement(driver,"xpath","(//td[contains(@style,'opacity: 1')])["+i+"]/span");
+                        scenario.log("DATE SELECTED FOR SKIP IS "+tempEle.getText());
+                        HelpersMethod.ActClick(driver,tempEle,1000);
+                        exists=true;
+                        break;
                     }
                 }
             }
