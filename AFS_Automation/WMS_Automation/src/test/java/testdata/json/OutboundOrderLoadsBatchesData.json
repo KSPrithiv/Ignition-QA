@@ -7,8 +7,7 @@
     "start date 4": "01/01/2022",
     "start date 5": "01/01/2019",
     "start date 6": "09/29/2023",
-    "start date 7": "10/20/2023",
-    "start date 8": "10/23/2023"
+    "start date 7": "10/20/2023"
   },
   "end dates":
   {
@@ -30,9 +29,7 @@
     "outbound route 6": "1203",
     "outbound route 7": "1208",
     "outbound route 8": "23R001",
-    "outbound route 9": "23R002",
-    "outbound route 10": "DEC001",
-    "outbound route 11": "DEC002"
+    "outbound route 9": "23R002"
   },
   "outbound route codes":
   {
