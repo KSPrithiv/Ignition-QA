@@ -422,7 +422,7 @@ public class OrderEntryPageSteps
         Assert.assertEquals(exists,true);
         checkorder=new CheckOutOrderPage(driver,scenario);
         checkorder.Select_PaymentMethod_ClickDownArrow();
-        if(checkorder.Verify_Existence_of_ContinuePayment())
+        if(HelpersMethod.IsExists("//div[@id='paymentMethodCard']",driver))
         {
             checkorder.Click_On_Without_Providing_Payment();
         }
@@ -699,7 +699,7 @@ public class OrderEntryPageSteps
             newOE.OutOfStockPop_ERP();
             checkorder=new CheckOutOrderPage(driver,scenario);
             checkorder.Select_PaymentMethod_ClickDownArrow();
-            if(checkorder.Verify_Existence_of_ContinuePayment())
+            if(HelpersMethod.IsExists("//div[@id='paymentMethodCard']",driver))
             {
                 checkorder.Click_On_Without_Providing_Payment();
             }
@@ -870,7 +870,7 @@ public class OrderEntryPageSteps
         checkorder=new CheckOutOrderPage(driver,scenario);
         checkorder.VerifyCheckOut();
         checkorder.Select_PaymentMethod_ClickDownArrow();
-        if(checkorder.Verify_Existence_of_ContinuePayment())
+        if(HelpersMethod.IsExists("//div[@id='paymentMethodCard']",driver))
         {
             checkorder.Click_On_Without_Providing_Payment();
         }

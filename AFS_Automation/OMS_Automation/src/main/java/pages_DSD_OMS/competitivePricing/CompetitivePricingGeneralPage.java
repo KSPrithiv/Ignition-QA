@@ -33,6 +33,8 @@ public class CompetitivePricingGeneralPage
     static String code=null;
     static String desc=null;
     static String currentURL=null;
+    static String Prod1=null;
+
 
     @FindBy(xpath="//label[contains(text(),'Customer reference')]/following-sibling::span/span")
     private WebElement CustomerRefDropdown;
@@ -605,6 +607,46 @@ public class CompetitivePricingGeneralPage
         catch (Exception e){}
     }
 
+    public void searchProductInCatalogDialogBox()
+    {
+        exists=false;
+        Actions act=new Actions(driver);
+        String headText;
+        int i=0;
+        try
+        {
+            List<WebElement> filterHeaders=HelpersMethod.FindByElements(driver,"xpath","//div[contains(@class,'k-widget k-window k-dialog')]/descendant::span[contains(@class,'k-column-title')]");
+            for(WebElement filterHead:filterHeaders)
+            {
+                i++;
+                act.moveToElement(filterHead).build().perform();
+                headText=filterHead.getText();
+                if(headText.equals("Product #"))
+                {
+                    exists=true;
+                    break;
+                }
+            }
+            Assert.assertEquals(exists,true);
+
+            exists=false;
+            //Enter product# in input box
+            WebElement productInput=HelpersMethod.FindByElement(driver,"xpath","//th["+i+"]/descendant::div[@class='k-filtercell-wrapper']/input");
+            HelpersMethod.EnterText(driver,productInput,1000,Prod1);
+            //Verify whether product found in catalog dialog box
+            if(HelpersMethod.IsExists("//tr[contains(@class,'k-master-row k-state-selected')]",driver))
+            {
+                  exists=true;
+            }
+            //close catalog index dialogbox
+            WebElement okButton=HelpersMethod.FindByElement(driver,"xpth","//div[contains(@class,'k-widget k-window k-dialog')]/descendant::button[text()='OK']");
+            HelpersMethod.ActClick(driver,okButton,1000);
+
+            Assert.assertEquals(exists,true);
+        }
+        catch (Exception e){}
+    }
+
     public void Selecting_SoldByUOM_Selecting_BaseUOM()
     {
         exists = false;
@@ -779,6 +821,32 @@ public class CompetitivePricingGeneralPage
         }
         catch (Exception e){}
     }
+
+    public void readFirstProductInGrid()
+    {
+        Actions act=new Actions(driver);
+        exists=false;
+        int i=0;
+        try
+        {
+            List<WebElement> tableHeads = HelpersMethod.FindByElements(driver, "xpath", "//th[contains(@class,'k-header')]/descendant::span[@class='k-column-title']");
+            for (WebElement tablehead : tableHeads)
+            {
+                i++;
+                act.moveToElement(tablehead).build().perform();
+                String headText = tablehead.getText();
+                if (headText.equals("Product #"))
+                {
+                    Prod1 = HelpersMethod.FindByElement(driver, "xpath", "//tr[contains(@class,'k-master-row')][1]/descendant::td[" + (i + 1) + "]").getText();
+                    break;
+                }
+            }
+        }
+        catch (Exception e){}
+    }
+
+
+
 
     public void Click_LoadExistingData()
     {

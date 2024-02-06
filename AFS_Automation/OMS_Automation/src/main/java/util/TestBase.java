@@ -192,7 +192,7 @@ public class TestBase
         //getDriver().manage().timeouts().implicitlyWait(TestUtil.IMPLICIT_WAIT, TimeUnit.SECONDS);
         System.out.println(testEnvironment.get_url());
         getDriver().get(testEnvironment.get_url());
-        getDriver().manage().window().setSize(new Dimension(1920, 1080));
+       // getDriver().manage().window().setSize(new Dimension(1920, 1080));
         Thread.sleep(6000);
     }
 

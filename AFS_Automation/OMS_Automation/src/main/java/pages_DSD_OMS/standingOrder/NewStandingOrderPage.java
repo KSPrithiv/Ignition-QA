@@ -1305,6 +1305,7 @@ public class NewStandingOrderPage
     {
         exists = false;
         WebElement WebEle=null;
+        WebElement WebEle1=null;
         Actions act1=new Actions(driver);
         try
         {
@@ -1359,7 +1360,9 @@ public class NewStandingOrderPage
                 WebEle = HelpersMethod.FindByElement(driver, "xpath", "//input[contains(@class,' product-search-input rounded-corners-left')]");
                 HelpersMethod.EnterText(driver, WebEle, 2000, Prod_Name);
                 scenario.log(WebEle.getText()+"PRODUCT DESCRIPTION ENTERED FOR SEARCH");
-                Thread.sleep(2000);
+                WebEle1=HelpersMethod.FindByElement(driver,"xpath","//span[@datatestid='searchBarSearchBtn']//*[local-name()='svg']");
+                HelpersMethod.ActClick(driver,WebEle1,2000);
+                /*Thread.sleep(2000);
                 if(HelpersMethod.IsExists("//div[@id='react-autowhatever-searchBarAutoSuggest']/ul/li/descendant::span[@class='product-number']",driver))
                 {
                     String autoValueText;
@@ -1375,12 +1378,23 @@ public class NewStandingOrderPage
                             break;
                         }
                     }
-                }
+                }*/
 
                 if (HelpersMethod.IsExists("//div[@class='loader']", driver))
                 {
                     WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
                     HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000000);
+                }
+
+                if(!HelpersMethod.IsExists("//div[contains(text(),'Sorry, no products matched')]",driver))
+                {
+                    scenario.log("PRODUCT HAS BEEN FOUND");
+                    exists=true;
+                }
+                else
+                {
+                    scenario.log("NO PRODUCTS FOUND");
+                    exists=false;
                 }
                 scenario.log("PRODUCT FOUND IN CATALOG IS "+Prod_Name);
             }

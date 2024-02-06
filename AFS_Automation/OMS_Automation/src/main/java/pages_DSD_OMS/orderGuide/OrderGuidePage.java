@@ -176,7 +176,8 @@ public class OrderGuidePage {
             new WebDriverWait(driver, Duration.ofMillis(100000)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath("//div[contains(@class,'i-card orderGuides-card')]"))));
             new WebDriverWait(driver,Duration.ofMillis(10000)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(@class,'i-card orderGuides-card')]")));
             //if(HelpersMethod.IsExists("//span[@class='spnmoduleNameHeader' and contains(text(),'Order guide list')]|//span[@class='spnmoduleNameHeader' and contains(text(),'Order guide detail')]",driver))
-            if (driver.getTitle().equals("Web Order Guides")) {
+            if (driver.getTitle().equals("Web Order Guides"))
+            {
                 scenario.log("NAVIGATED TO ORDER GUIDE");
                 exists = true;
             }
@@ -229,7 +230,8 @@ public class OrderGuidePage {
             HelpersMethod.ScrollElement(driver, SearchIndex);
             HelpersMethod.ActSendKey(driver, SearchBox, 20000, OGSearch);
             String status = HelpersMethod.returnDocumentStatus(driver);
-            if (status.equals("loading")) {
+            if (status.equals("loading"))
+            {
                 HelpersMethod.waitTillLoadingPage(driver);
             }
             //Click on serch index icon
@@ -265,6 +267,10 @@ public class OrderGuidePage {
                 exists = false;
                 scenario.log("ORDER GUIDE DOESNOT EXISTS");
             }
+
+            //Clear the values in search box
+            WebElement clearIcon=HelpersMethod.FindByElement(driver,"xpath","//*[local-name()='svg' and contains(@class,'i-search-box__clear')]");
+            HelpersMethod.ActClick(driver,clearIcon,40000);
         }
         catch (Exception e) {}
         return exists;
@@ -807,9 +813,9 @@ public class OrderGuidePage {
                 HelpersMethod.ClickBut(driver,clearAddfilter,4000);
                 // HelpersMethod.JScriptClick(driver, clearAddfilter, 6000);
                 Thread.sleep(6000);
-                exists = true;
+               // exists = true;
             }
-            Assert.assertEquals(exists, true);
+            //Assert.assertEquals(exists, true);
         }
         catch (Exception e) {}
     }

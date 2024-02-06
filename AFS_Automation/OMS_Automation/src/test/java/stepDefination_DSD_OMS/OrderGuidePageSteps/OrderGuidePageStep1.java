@@ -117,6 +117,7 @@ public class OrderGuidePageStep1
     {
         List<List<String>> AddOption=dataTable.asLists(String.class);
         orderGuidePage = new OrderGuidePage(driver, scenario);
+        orderGuidePage.ValidateOG();
         orderGuidePage.AddFilterClick(AddOption.get(0).get(0),AddOption.get(0).get(1));
     }
 

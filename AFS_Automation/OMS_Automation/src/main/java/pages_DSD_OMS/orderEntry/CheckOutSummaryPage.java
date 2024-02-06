@@ -134,9 +134,8 @@ public class CheckOutSummaryPage
     public void ClickSubmit() throws InterruptedException
     {
         exists=false;
-        WebElement WebEle=null;
+
         HelpersMethod.ScrollUpScrollBar(driver);
-        Actions act=new Actions(driver);
 
         Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
                 .withTimeout(Duration.ofSeconds(120))

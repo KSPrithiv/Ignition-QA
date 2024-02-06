@@ -1058,8 +1058,10 @@ public class CustomerInquiryPage
         exists=false;
         try
         {
-            if(HelpersMethod.IsExists("//span[@id='CmCCProc']/parent::span",driver))
+            if(HelpersMethod.IsExists("//span[@id='CmCCProc']",driver))
             {
+                WebElement payProcess=HelpersMethod.FindByElement(driver,"xpath","//span[@id='CmCCProc']");
+                HelpersMethod.ActClick(driver,payProcess,1000);
                 scenario.log("PAYMENT PROCESS DROP DOWN FOUND");
                 exists=true;
             }

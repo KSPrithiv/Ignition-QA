@@ -56,8 +56,8 @@ public class OrderEntryPageSteps7
         String filterValue=null;
         newOE=new NewOrderEntryPage(driver,scenario);
         newOE.validateCatalogdialog();
-        newOE.validateCardView();
         newOE.ResetFilter_Catalog();
+        newOE.validateCardView();
         newOE.validateCatalogProducts();
         if(HelpersMethod.IsExists("//div[@class='card-view']",driver))
         {
@@ -166,8 +166,10 @@ public class OrderEntryPageSteps7
         orderHistoryPage=new OrderHistoryPage(driver,scenario);
         orderHistoryPage.ValidateOrderHistory();
         orderHistoryPage.clickOnGridType();
-        orderHistoryPage.selectGridType(gridtype.get(0).get(0));
-        orderHistoryPage.validateGridType(gridtype.get(0).get(0));
+        //orderHistoryPage.selectGridType(gridtype.get(0).get(0));
+        //orderHistoryPage.validateGridType(gridtype.get(0).get(0));
+        orderHistoryPage.selectGridType();
+        orderHistoryPage.validateGridType();
     }
 
     @Then("User verifies visibility of Price override icon and reset Grid type to Main grid in Order history page")

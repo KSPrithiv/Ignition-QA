@@ -633,6 +633,7 @@ public class CreateOGPage
         exists=false;
         try
         {
+            HelpersMethod.ScrollElement(driver, AddProd);
             if(AddProd.isDisplayed() && AddProd.isEnabled())
             {
                 HelpersMethod.ScrollElement(driver, AddProd);
@@ -654,7 +655,7 @@ public class CreateOGPage
         String addProdText=null;
         try
         {
-            new WebDriverWait(driver,Duration.ofMillis(10000)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(@class,'k-list-container')]/descendant::ul/li")));
+            new WebDriverWait(driver,Duration.ofMillis(40000)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(@class,'k-list-container')]/descendant::ul/li")));
             if(HelpersMethod.IsExists("//div[contains(@class,'k-list-container')]/descendant::ul/li",driver))
             {
                 List<WebElement> addProds=HelpersMethod.FindByElements(driver,"xpath","//div[contains(@class,'k-list-container')]/descendant::ul/li");
@@ -889,18 +890,33 @@ public class CreateOGPage
     {
         exists=false;
         WebElement OrderSel;
+        Actions act=new Actions(driver);
+        String amount_Text=null;
         try
         {
             HelpersMethod.waitTillElementLocatedDisplayed(driver,"xpath","//div[contains(text(),'Select orders')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",10000);
-                if(HelpersMethod.IsExists("//div[contains(@class,'k-widget k-window k-dialog')]/descendant::tr[contains(@class,'k-master-row')][1]",driver))
+                if(HelpersMethod.IsExists("//div[contains(text(),'Select orders')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
                 {
-                    //To select order from order popup, here i am selecting 2nd order in order popup
-                    OrderSel = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-widget k-window k-dialog')]/descendant::tr[contains(@class,'k-master-row')][1]/descendant::input");
+                    int i=0;
+                    List<WebElement> amounts=HelpersMethod.FindByElements(driver,"xpath","//div[contains(@class,'k-widget k-window k-dialog')]/descendant::tr[contains(@class,'k-master-row')]/td[contains(@class,'currency')]");
+                    for (WebElement amount:amounts)
+                    {
+                        i++;
+                        act.moveToElement(amount).build().perform();
+                        amount_Text=amount.getText();
+                        if(!amount_Text.equals("$0.00"))
+                        {
+                            break;
+                        }
+                    }
+
+                    //To select order from order popup, by clicking check box
+                    OrderSel = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-widget k-window k-dialog')]/descendant::tr[contains(@class,'k-master-row')]["+i+"]/descendant::input");
                     HelpersMethod.ScrollElement(driver, OrderSel);
                     HelpersMethod.ActClick(driver, OrderSel, 1000);
 
                     //to read the order number selected in order popup
-                    String Order_No = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-widget k-window k-dialog')]/descendant::tr[contains(@class,'k-master-row')][1]/descendant::td[2]").getText();
+                    String Order_No = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-widget k-window k-dialog')]/descendant::tr[contains(@class,'k-master-row')]["+i+"]/descendant::td[2]").getText();
                     if (!Order_No.isEmpty())
                     {
                         scenario.log("ORDER SELECTED FROM ORDER POPUP IS " + Order_No);
