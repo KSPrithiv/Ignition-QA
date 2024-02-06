@@ -2206,10 +2206,11 @@ public class NewOrderEntryPage
         {
             if(HelpersMethod.IsExists("//div[contains(@class,'product-catalog-container')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
             {
-                if(HelpersMethod.IsExists("//div[@class='card-view']",driver))
+                //if(HelpersMethod.IsExists("//div[@class='card-view']",driver))
+                if(HelpersMethod.IsExists("//button[contains(text(),'Reset filter')]",driver))
                 {
                     WebEle=HelpersMethod.FindByElement(driver,"xpath","//button[contains(text(),'Reset filter')]");
-                    HelpersMethod.ActClick(driver,WebEle,1000);
+                    HelpersMethod.ActClick(driver,WebEle,10000);
                     exists=true;
                     if(HelpersMethod.IsExists("//div[@class='loader']",driver))
                     {
@@ -2217,7 +2218,8 @@ public class NewOrderEntryPage
                         HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000000);
                     }
                 }
-                else if (HelpersMethod.IsExists("//div[@class='i-grid']", driver))
+                //else if (HelpersMethod.IsExists("//div[@class='i-grid']", driver))
+                else if(HelpersMethod.IsExists("//button[contains(@class,'i-filter-tag__main')]/descendant::span[text()='Add filter']",driver))
                 {
                     List<WebElement> filters=HelpersMethod.FindByElements(driver,"xpath","//div[contains(@class,'k-widget k-window k-dialog')]/descendant::div[contains(@class,'i-filter-tag')]");
                     if(filters.size()>1)

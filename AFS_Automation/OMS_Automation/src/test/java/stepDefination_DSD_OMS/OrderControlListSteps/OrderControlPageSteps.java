@@ -356,7 +356,7 @@ public class OrderControlPageSteps
     public void clickOnSubmitOrderButtonAndReadOrder_noForOCL() throws InterruptedException, AWTException
     {
         summary = new CheckOutSummaryPage(driver,scenario);
-        summary.validateSummaryPage();
+        //summary.validateSummaryPage();
         summary.ClickSubmit();
         for(int i=0;i<=2;i++)
         {

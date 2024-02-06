@@ -12,6 +12,7 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.Wait;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
 import java.time.Duration;
@@ -68,6 +69,7 @@ public class PendingRegistrationClientPage
             {
                 HelpersMethod.ClickBut(driver,selectUserDrop,1000);
                 exists=true;
+                new WebDriverWait(driver,Duration.ofMillis(10000)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(@class,'k-list-container')]/descendant::ul/li")));
             }
             Assert.assertEquals(exists,true);
         }
@@ -81,7 +83,7 @@ public class PendingRegistrationClientPage
         String userNameSelect=null;
         try
         {
-            if (HelpersMethod.IsExists("//div[contains(@class,'k-list-container')]", driver))
+            if (HelpersMethod.IsExists("//div[contains(@class,'k-list-container')]/descendant::ul/li", driver))
             {
                List<WebElement> users=HelpersMethod.FindByElements(driver,"xpath","//div[contains(@class,'k-list-container')]/descendant::ul/li");
                 for (WebElement user:users)

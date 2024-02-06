@@ -60,22 +60,24 @@ public class AdminHomePage {
         if (status.equals("loading")) {
             HelpersMethod.waitTillLoadingPage(driver);
         }
-        if (HelpersMethod.IsExists("//div[@class='loader']", driver)) {
-            WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000000);
-        }
+        Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                .withTimeout(Duration.ofSeconds(100))
+                .pollingEvery(Duration.ofSeconds(2))
+                .ignoring(NoSuchElementException.class);
+        wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
         status = HelpersMethod.returnDocumentStatus(driver);
         if (status.equals("loading")) {
             HelpersMethod.waitTillLoadingPage(driver);
         }
-        if (HelpersMethod.IsExists("//div[@class='loader']", driver)) {
-            WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000000);
-        }
-        //Thread.sleep(6000);
-        Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+        wait = new FluentWait<WebDriver>(driver)
                 .withTimeout(Duration.ofSeconds(100))
-                .pollingEvery(Duration.ofSeconds(5))
+                .pollingEvery(Duration.ofSeconds(2))
+                .ignoring(NoSuchElementException.class);
+        wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+        //Thread.sleep(6000);
+        wait = new FluentWait<WebDriver>(driver)
+                .withTimeout(Duration.ofSeconds(100))
+                .pollingEvery(Duration.ofSeconds(2))
                 .ignoring(NoSuchElementException.class);
         wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
         try {
@@ -124,6 +126,7 @@ public class AdminHomePage {
                 WebElement WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
                 HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000000);
             }
+            Thread.sleep(1000);
             if (HelpersMethod.IsExists("//span[contains(@class,'k-icon k-i-arrow-chevron-down i-header-toolbar-expandable-button__icon')]", driver))
             {
                 PermissionBy = HelpersMethod.FindByElement(driver, "xpath", "//button[contains(@class,'i-header-toolbar-expandable-button')]");
@@ -302,7 +305,7 @@ public class AdminHomePage {
             {
                 //Click on Company drop down
                 WebEle = HelpersMethod.FindByElement(driver, "xpath", "//span[contains(@id,'dropdownList3')]");
-                HelpersMethod.ActClick(driver, WebEle, 8000);
+                HelpersMethod.ActClick(driver, WebEle, 10000);
                 //Create list of web elements in dropdown
                 company = TestBase.testEnvironment.get_CompanyNo();
                 //identify the company drop down, and values in list
@@ -755,7 +758,7 @@ public class AdminHomePage {
                     HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000000);
                 }
                 Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
-                    .withTimeout(Duration.ofSeconds(120))
+                    .withTimeout(Duration.ofSeconds(150))
                     .pollingEvery(Duration.ofSeconds(2))
                     .ignoring(NoSuchElementException.class);
                 wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
@@ -769,7 +772,7 @@ public class AdminHomePage {
                 }
 
             wait = new FluentWait<WebDriver>(driver)
-                    .withTimeout(Duration.ofSeconds(120))
+                    .withTimeout(Duration.ofSeconds(150))
                     .pollingEvery(Duration.ofSeconds(2))
                     .ignoring(NoSuchElementException.class);
             wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));

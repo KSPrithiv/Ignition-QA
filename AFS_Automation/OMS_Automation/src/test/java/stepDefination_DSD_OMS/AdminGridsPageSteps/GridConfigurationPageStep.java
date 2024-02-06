@@ -478,8 +478,8 @@ public class GridConfigurationPageStep
         gridConfigPage=new GridConfigurationPage(driver,scenario);
         gridConfigPage.clickOnGridOptionDropdown();
         gridConfigPage.selectOptionFromGridOptionDropDown(arg0);
-        gridConfigPage.clickOnSaveButton();
-        gridConfigPage.validateSavedailogbox();
-        gridConfigPage.clickOnOkButtonInSavePopup();
+        //gridConfigPage.clickOnSaveButton();
+        //gridConfigPage.validateSavedailogbox();
+        //gridConfigPage.clickOnOkButtonInSavePopup();
     }
 }

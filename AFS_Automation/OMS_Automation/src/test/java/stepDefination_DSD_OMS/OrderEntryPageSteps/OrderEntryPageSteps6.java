@@ -159,7 +159,7 @@ public class OrderEntryPageSteps6
             Thread.sleep(4000);
             //checkorder.validateCheckOrder();
             checkorder.Select_PaymentMethod_ClickDownArrow();
-            if(checkorder.Verify_Existence_of_ContinuePayment())
+            if(HelpersMethod.IsExists("//button[@id='allowOrderWithoutPayment']",driver))
             {
                 checkorder.Click_On_Without_Providing_Payment();
             }

@@ -92,8 +92,8 @@ public class CheckOutOrderPage
     @FindBy(id="SubmitCheckoutButton")
     private WebElement NextButton;
 
-    @FindBy(id="allowOrderWithoutPayment")
-    private WebElement WithoutPayment;
+    //@FindBy(id="allowOrderWithoutPayment")
+    //private WebElement WithoutPayment;
 
     public CheckOutOrderPage(WebDriver driver, Scenario scenario) throws InterruptedException, AWTException
     {
@@ -675,17 +675,17 @@ public class CheckOutOrderPage
     }
 
     //Code to verify Display of "Continue without providing payment"
-    public boolean Verify_Existence_of_ContinuePayment()
+   /* public boolean Verify_Existence_of_ContinuePayment()
     {
         result=false;
         try
         {
-            result=HelpersMethod.EleDisplay(WithoutPayment);
+            result=HelpersMethod.EleDisplay(withoutPayment);
             scenario.log("CONTINUE WITHOUT PAYMENT BUTTON IS DISPLAYED");
         }
         catch (Exception e){}
         return result;
-    }
+    }*/
 
     //Click on "Continue without providing payment"
     public void Click_On_Without_Providing_Payment()
@@ -693,11 +693,12 @@ public class CheckOutOrderPage
         exists=false;
         try
         {
-            if(WithoutPayment.isDisplayed() && WithoutPayment.isEnabled())
+            WebElement withoutPayment=HelpersMethod.FindByElement(driver,"xpath","//button[@id='allowOrderWithoutPayment']");
+            if(withoutPayment.isDisplayed() && withoutPayment.isEnabled())
             {
                 exists=true;
-                HelpersMethod.ScrollElement(driver,WithoutPayment);
-                HelpersMethod.ClickBut(driver, WithoutPayment, 4000);
+                HelpersMethod.ScrollElement(driver,withoutPayment);
+                HelpersMethod.ClickBut(driver, withoutPayment, 10000);
                 scenario.log("CONTINUE ORDER WITHOUT PAYMENT METHOD IS SELECTED");
             }
             Assert.assertEquals(exists,true);

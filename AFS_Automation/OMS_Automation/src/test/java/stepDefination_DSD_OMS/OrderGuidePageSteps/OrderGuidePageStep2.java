@@ -126,6 +126,7 @@ public class OrderGuidePageStep2
     public void clearFilterToDisplayBothActiveAndInactiveOG() throws InterruptedException, AWTException
     {
         orderGuidePage=new OrderGuidePage(driver,scenario);
+        orderGuidePage.ValidateOG();
         orderGuidePage.clickAddFilterClear();
     }
 

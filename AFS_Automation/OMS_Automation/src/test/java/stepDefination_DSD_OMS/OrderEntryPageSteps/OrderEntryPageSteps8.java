@@ -48,13 +48,15 @@ public class OrderEntryPageSteps8
     {
         newOE=new NewOrderEntryPage(driver,scenario);
         newOE.validateCatalogdialog();
-        if(HelpersMethod.IsExists("//div[@class='i-grid']",driver))
+        //if(HelpersMethod.IsExists("//div[@class='i-grid']",driver))
+        if(HelpersMethod.IsExists("//button[contains(@class,'i-filter-tag__main')]/descendant::span[text()='Add filter']",driver))
         {
             newOE.listCatelog();
             newOE.readProductInList();
             newOE.catalogOK();
         }
-        else if(HelpersMethod.IsExists("//div[@class='product-catalog-container']",driver))
+        //else if(HelpersMethod.IsExists("//div[@class='product-catalog-container']",driver))
+        else if(HelpersMethod.IsExists("//button[contains(text(),'Reset filter')]",driver))
         {
             newOE.cardCatelog();
             newOE.readProductInCard();

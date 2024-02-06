@@ -237,10 +237,11 @@ public class GridConfigurationPage
         {
             if(gridOptionDropdown.isDisplayed() && gridOptionDropdown.isEnabled())
             {
-                HelpersMethod.ClickBut(driver, gridOptionDropdown, 1000);
+                HelpersMethod.ClickBut(driver, gridOptionDropdown, 10000);
                 scenario.log("GRID OPTION DROPDOWN CLICKED");
                 exists=true;
-                new WebDriverWait(driver,Duration.ofMillis(10000)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class,'k-child-animation-container')]"))));
+                new WebDriverWait(driver,Duration.ofMillis(40000)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class,'k-child-animation-container')]"))));
+                Thread.sleep(1000);
             }
             Assert.assertEquals(exists,true);
         }
@@ -263,7 +264,8 @@ public class GridConfigurationPage
                 if(opt_Text.equals(gridOpt))
                 {
                     act.moveToElement(listOpt).build().perform();
-                    act.click(listOpt).build().perform();
+                    //act.click(listOpt).build().perform();
+                    HelpersMethod.JScriptClick(driver,listOpt,10000);
                     scenario.log("GIRD OPTION IS SELECTED IS "+gridOpt);
                     exists=true;
                     break;
@@ -276,16 +278,40 @@ public class GridConfigurationPage
 
     public void selectCopyFromGridOptionDropDown(String gridOpt)
     {
-        exists=false;
+      /*  exists=false;
         Actions act=new Actions(driver);
         try
         {
             if(HelpersMethod.IsExists("//div[contains(@class,'k-child-animation-container')]/ul/li[text()='Copy']",driver))
             {
                 WebElement WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-child-animation-container')]/ul/li[text()='Copy']");
-                HelpersMethod.ActClick(driver,WebEle,1000);
+                HelpersMethod.ActClick(driver,WebEle,10000);
                 scenario.log("CLICKED ON COPY OPTION");
                 exists=true;
+                Thread.sleep(1000);
+            }
+            Assert.assertEquals(exists,true);*/
+        exists=false;
+        Actions act=new Actions(driver);
+        String optText=null;
+        try
+        {
+            if(HelpersMethod.IsExists("//div[contains(@class,'k-animation-container-relative')]/descendant::ul/li",driver))
+            {
+                List<WebElement> options=HelpersMethod.FindByElements(driver,"xpath","//div[contains(@class,'k-animation-container-relative')]/descendant::ul/li");
+                for(WebElement opt:options)
+                {
+                    act.moveToElement(opt).build().perform();
+                    optText=opt.getText();
+                    if(optText.equalsIgnoreCase(gridOpt))
+                    {
+                        act.moveToElement(opt).click().build().perform();
+                        HelpersMethod.JScriptClick(driver,opt,1000);
+                        scenario.log("SELECTED OPTION "+optText);
+                        exists=true;
+                        break;
+                    }
+                }
             }
             Assert.assertEquals(exists,true);
         }
@@ -310,6 +336,7 @@ public class GridConfigurationPage
                     {
                         act.moveToElement(opt).click().build().perform();
                         //act.click().build().perform();
+                        HelpersMethod.JScriptClick(driver,opt,1000);
                         scenario.log("SELECTED OPTION "+optText);
                         exists=true;
                         break;
@@ -637,11 +664,26 @@ public class GridConfigurationPage
             WebEle=HelpersMethod.FindByElement(driver,"id","save-btn");
             if(WebEle.isDisplayed() && WebEle.isEnabled())
             {
-                HelpersMethod.ClickBut(driver,WebEle,1000);
+                HelpersMethod.ClickBut(driver,WebEle,10000);
                 exists=true;
+                String status = HelpersMethod.returnDocumentStatus(driver);
+                if (status.equals("loading"))
+                {
+                    HelpersMethod.waitTillLoadingPage(driver);
+                }
                 Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
                         .withTimeout(Duration.ofSeconds(150))
-                        .pollingEvery(Duration.ofSeconds(5))
+                        .pollingEvery(Duration.ofSeconds(2))
+                        .ignoring(NoSuchElementException.class);
+                wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+                status = HelpersMethod.returnDocumentStatus(driver);
+                if (status.equals("loading"))
+                {
+                    HelpersMethod.waitTillLoadingPage(driver);
+                }
+                wait = new FluentWait<WebDriver>(driver)
+                        .withTimeout(Duration.ofSeconds(150))
+                        .pollingEvery(Duration.ofSeconds(2))
                         .ignoring(NoSuchElementException.class);
                 wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
             }

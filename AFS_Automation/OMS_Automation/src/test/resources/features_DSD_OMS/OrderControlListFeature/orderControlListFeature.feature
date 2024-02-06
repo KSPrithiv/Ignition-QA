@@ -13,7 +13,7 @@ Feature: Order control list
     Given User must be on Order Entry Page to select OCL
     And User should navigate to OCL
     Then User should select Order traker from drop down
-    And Change the delivery date 1 days after current date
+    And Change the delivery date 2 days after current date
     Then User Clicks on Untaken radio button and user clicks on Refresh button
     Then User clicks on Order icon in OCL grid
     Then User should select Note from popup and Order guide from popup for OG
@@ -38,7 +38,7 @@ Feature: Order control list
     Given User must be on Order Entry Page to select OCL
     And User should navigate to OCL
     Then User should select Order traker from drop down
-    And Change the delivery date 1 days after current date
+    And Change the delivery date 2 days after current date
     Then User Clicks on Taken radio button
     And User enters OrderNo in search box to search for order
     Then User finds the comment for order in OCL
@@ -49,7 +49,7 @@ Feature: Order control list
     Given User must be on Order Entry Page to select OCL
     And User should navigate to OCL
     Then User should select Order traker from drop down
-    And Change the delivery date 1 days after current date
+    And Change the delivery date 2 days after current date
     Then User Clicks on Untaken radio button and user clicks on Refresh button
     Then User clicks on Order icon in OCL grid
     Then User should select Note from popup and Order guide from popup
@@ -72,7 +72,7 @@ Feature: Order control list
     Given User must be on Order Entry Page to select OCL
     And User should navigate to OCL
     Then User should select Order traker from drop down
-    And Change the delivery date 1 days after current date
+    And Change the delivery date 2 days after current date
     Then User Clicks on Untaken radio button and user clicks on Refresh button
     Then User clicks on Order icon in OCL grid
     Then User should select Note from popup and Order guide from popup
@@ -95,7 +95,7 @@ Feature: Order control list
     Given User must be on Order Entry Page to select OCL
     And User should navigate to OCL
     Then User should select Order traker from drop down
-    And Change the delivery date 1 days after current date
+    And Change the delivery date 2 days after current date
     Then User clicks on Add filter button and enter value for first search box and second search box
       |Customer key|
 
@@ -104,7 +104,7 @@ Feature: Order control list
     Given User must be on Order Entry Page to select OCL
     And User should navigate to OCL
     Then User should select Order traker from drop down
-    And Change the delivery date 1 days after current date
+    And Change the delivery date 2 days after current date
     Then User Clicks on Untaken radio button
     Then User select OCL which is not skipped
     And User Clicks on Skip button and validates the skip popup selects the reason
@@ -116,7 +116,7 @@ Feature: Order control list
     Given User must be on Order Entry Page to select OCL
     And User should navigate to OCL
     Then User should select Order traker from drop down
-    And Change the delivery date 1 days after current date
+    And Change the delivery date 2 days after current date
     Then User Clicks on Taken radio button
     And User verifies existance of customer account for which skip is enabled, exists under taken
 
@@ -125,7 +125,7 @@ Feature: Order control list
     Given User must be on Order Entry Page to select OCL
     And User should navigate to OCL
     Then User should select Order traker from drop down
-    And Change the delivery date 1 days after current date
+    And Change the delivery date 2 days after current date
     Then User Clicks on Taken radio button
     And User verifies existance of customer account for which skip is enabled, exists under taken
     Then User select OCL which is skipped
@@ -137,7 +137,7 @@ Feature: Order control list
     Given User must be on Order Entry Page to select OCL
     And User should navigate to OCL
     Then User should select Order traker from drop down
-    And Change the delivery date 1 days after current date
+    And Change the delivery date 2 days after current date
     And User clicks on All radio button
     Then User should drag and drop grid header
       |Customer|
@@ -147,7 +147,7 @@ Feature: Order control list
     Given User must be on Order Entry Page to select OCL
     And User should navigate to OCL
     Then User should select Order traker from drop down
-    And Change the delivery date 1 days after current date
+    And Change the delivery date 2 days after current date
     Then User Clicks on Untaken radio button
     Then User clicks on Order icon in OCL grid
     Then User should select Note from popup and Order guide from popup
@@ -166,7 +166,7 @@ Feature: Order control list
     Given User must be on Order Entry Page to select OCL
     And User should navigate to OCL
     Then User should select Order traker from drop down
-    And Change the delivery date 1 days after current date
+    And Change the delivery date 2 days after current date
     Then User clicks on Print button and handle the new browser window
 
 

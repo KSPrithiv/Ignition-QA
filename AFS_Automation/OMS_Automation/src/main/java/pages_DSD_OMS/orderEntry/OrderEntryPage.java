@@ -2,6 +2,7 @@ package pages_DSD_OMS.orderEntry;
 
 import helper.HelpersMethod;
 import io.cucumber.java.Scenario;
+import org.joda.time.DateTime;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
@@ -17,11 +18,11 @@ import util.TestBase;
 import java.awt.*;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.Duration;
-import java.time.LocalDate;
+import java.time.*;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 import java.util.Set;
 
 /**
@@ -1240,7 +1241,7 @@ public class OrderEntryPage
         try
         {
             Thread.sleep(1000);
-            LocalDate currentDate=LocalDate.now();
+          /*  LocalDate currentDate=LocalDate.now();
             DateTimeFormatter currentFormatObj = DateTimeFormatter.ofPattern("EEEE, MMMM d,yyyy");
             formattedDate2 = currentDate.format(currentFormatObj);
             scenario.log("TODAY'S DATE IS "+formattedDate2);
@@ -1250,18 +1251,26 @@ public class OrderEntryPage
             formattedDate1 = myDateObj.format(myFormatObj);
             DateTimeFormatter myFormObj = DateTimeFormatter.ofPattern("d");
             formDate1=myDateObj.format(myFormObj);
-            scenario.log("DATE TO BE CHANGED TO "+formDate1);
+            scenario.log("DATE TO BE CHANGED TO "+formDate1);*/
+
+            //read current date in OE page
+            String deliveryDate=HelpersMethod.FindByElement(driver,"id","delivery-date-web-order-header-calendar").getAttribute("value");
+            Date result =  new SimpleDateFormat("EE, MMM d,yyyy").parse(deliveryDate);
+            DateTime dtOrg = new DateTime(result);
+            DateTime pluseDates = dtOrg.plusDays(4);
+            formattedDate1=pluseDates.toString();
+            formDate1= String.valueOf(pluseDates.getDayOfMonth());
 
             //to check whether date is visible in displayed calender
-            if(HelpersMethod.IsExists("//td[contains(@style,'opacity:')]/span[contains(@title,'" + formattedDate1 +"')]",driver))
+            if(HelpersMethod.IsExists("//td[contains(@style,'opacity:')]/span[contains(@title,'" + formDate1 +"')]",driver))
             {
-                if (!HelpersMethod.IsExists("//td[contains(@style,'opacity:')]/span[@class='k-link-disabled' and contains(@title,'" + formattedDate1 + "')]", driver))
+                if (!HelpersMethod.IsExists("//td[contains(@style,'opacity:')]/span[@class='k-link-disabled' and contains(@title,'" + formDate1 + "')]", driver))
                 {
-                    ele1 = HelpersMethod.FindByElement(driver, "xpath", "//td[contains(@style,'opacity:')]/span[contains(@title,'" + formattedDate1 + "')]");
+                    ele1 = HelpersMethod.FindByElement(driver, "xpath", "//td[contains(@style,'opacity:')]/span[contains(@title,'" + formDate1 + "')]");
                     HelpersMethod.waitTillElementDisplayed(driver, ele1, 10000);
                     HelpersMethod.JSScroll(driver, ele1);
                     HelpersMethod.ClickBut(driver, ele1, 1000);
-                    scenario.log("SKIP DATE IS "+formattedDate1);
+                    scenario.log("SKIP DATE IS "+formDate1);
                     exists=true;
                 }
                 else
@@ -1420,6 +1429,12 @@ public class OrderEntryPage
         String status = null;
         try
         {
+            if (HelpersMethod.IsExists("//div[@class='loader']", driver))
+            {
+                WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000000);
+            }
+
             WebEle = HelpersMethod.FindByElement(driver, "id", "addButton");
             HelpersMethod.JScriptClick(driver, WebEle, 100);
             scenario.log("START ORDER HAS BEEN CLICKED");
@@ -2694,7 +2709,7 @@ public class OrderEntryPage
         try
         {
             WebElement RouteRemove = HelpersMethod.FindByElement(driver, "xpath", "//input[@id='RouteIndex']/parent::span/following-sibling::span[@title='clear']");
-            HelpersMethod.JScriptClick(driver,RouteRemove,4000);
+            HelpersMethod.JScriptClick(driver,RouteRemove,8000);
             exists = true;
             scenario.log("ROUTE VALUE HAS BEEN REMOVED");
             Assert.assertEquals(exists, true);
@@ -2843,7 +2858,7 @@ public class OrderEntryPage
             WebElement dropDown = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-popup k-child-animation-container k-slide-down-enter k-slide-down-enter-active')]");
             WebElement salesHelp = dropDown.findElement(By.xpath("//div[contains(@class,'help-links-line sales-link')]"));
 
-            HelpersMethod.ActClick(driver, salesHelp, 1000);
+            HelpersMethod.ActClick(driver, salesHelp, 6000);
 
             Set<String> PCWindows = driver.getWindowHandles();
             for (String PCwind : PCWindows)
