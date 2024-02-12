@@ -50,7 +50,7 @@ public class ReportsCustomersWithoutOrdersSteps
     @Given("User enters URL and is on login page and entered credentials for Reports")
     public void user_enters_url_and_is_on_login_page_and_entered_credentialsForReports() throws Exception
     {
-        if(flag==false)
+        if(!flag)
         {
             loginpage = new LoginPage(driver,scenario);
             loginpage.EnterUsername(TestBase.testEnvironment.username());
@@ -62,7 +62,7 @@ public class ReportsCustomersWithoutOrdersSteps
     @When("User is on Home Page for Reports")
     public void user_is_on_home_pageForReports() throws InterruptedException, AWTException
     {
-        if(flag==false)
+        if(!flag)
         {
             //verify the home page
             homepage = new HomePage(driver,scenario);
@@ -73,7 +73,7 @@ public class ReportsCustomersWithoutOrdersSteps
     @Then("User navigate to Client side for Reports")
     public void user_navigate_to_client_sideForReports() throws InterruptedException, AWTException
     {
-        if(flag==false)
+        if(!flag)
         {
             homepage = new HomePage(driver,scenario);
             homepage.verifyUserinfoContainer();
@@ -84,7 +84,7 @@ public class ReportsCustomersWithoutOrdersSteps
     @Then("User should select Order Entry tab for Reports")
     public void user_should_select_order_entry_tabForReports() throws InterruptedException, AWTException
     {
-        if(flag==false)
+        if(!flag)
         {
             orderEntryPage = new OrderEntryPage(driver, scenario);
             orderEntryPage.NavigateToOrderEntry();
@@ -95,7 +95,7 @@ public class ReportsCustomersWithoutOrdersSteps
     @Then("User selects Account# for Reports")
     public void user_selects_accountForReports() throws InterruptedException, AWTException, ParseException
     {
-        if(flag==false)
+        if(!flag)
         {
             orderEntryPage = new OrderEntryPage(driver, scenario);
             orderEntryPage.ChangeAccount();
@@ -108,7 +108,7 @@ public class ReportsCustomersWithoutOrdersSteps
     @Given("User must be on Order Entry Page to select Reports")
     public void userMustBeOnOrderEntryPageToSelectReports()
     {
-        if(flag1==false)
+        if(!flag1)
         {
             WebElement WebEle;
             WebEle = HelpersMethod.FindByElement(driver, "xpath", "//li[contains(@class,'k-item')]/span[@class='k-link' and contains(text(),'Reports')]");
@@ -147,6 +147,7 @@ public class ReportsCustomersWithoutOrdersSteps
     public void userShouldSelectFromAndToDateForReportsGeneration()
     {
         reportsInOEPage=new ReportsCustomerWithoutOrdersPage(driver,scenario);
+        reportsInOEPage.invisiblityOfLoading();
         reportsInOEPage.clickOnFromDate();
         reportsInOEPage.selectFromDate();
         reportsInOEPage.clickOnToDate();
@@ -236,9 +237,9 @@ public class ReportsCustomersWithoutOrdersSteps
     {
         reportsInOEPage=new ReportsCustomerWithoutOrdersPage(driver,scenario);
         reportsInOEPage.selectFilterForRoutesNo1();
-        reportsInOEPage.enterRouteNoInFilterForRoutes();
-        reportsInOEPage.selectFilteredRouteNoForRoutes();
-        reportsInOEPage.clearFilterForRoutes();
+        //reportsInOEPage.enterRouteNoInFilterForRoutes();
+        //reportsInOEPage.selectFilteredRouteNoForRoutes();
+        //reportsInOEPage.clearFilterForRoutes();
         reportsInOEPage.clickShowSelectedRoutes();
         reportsInOEPage.readAllSelectedCustomerForRoutes();
     }

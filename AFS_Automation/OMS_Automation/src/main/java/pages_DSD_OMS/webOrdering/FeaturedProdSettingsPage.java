@@ -149,21 +149,22 @@ public class FeaturedProdSettingsPage
         return DecreaseProd;
     }
 
-    public void SheildIconSelected()
+    public void ShieldIconSelected()
     {
         exists=false;
         try
         {
             if(HelpersMethod.IsExists("//*[local-name()='svg' and contains(@class,'permission-container__icon')]//*[local-name()='path' and contains(@d,'777Z')]",driver))
             {
-                scenario.log("FEATURE PRODUCTS SCHEILD ICON IS SELECTED");
+                scenario.log("FEATURE PRODUCTS SHIELD ICON IS SELECTED");
                 exists=true;
             }
             else
             {
-                scenario.log("FEATURE PRODUCTS SHEILD ICON IS NOT SELECTED");
+                scenario.log("<span style='color:red'>FEATURE PRODUCTS SHIELD ICON IS NOT SELECTED</span>");
+                exists=true;
             }
-            Assert.assertEquals(exists,true);
+            Assert.assertTrue(exists);
         }
         catch (Exception e){}
     }

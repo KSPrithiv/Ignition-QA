@@ -187,8 +187,8 @@ public class OrderControlPageSteps
         orderControlList.Validate_OCL();
     }
 
-    @Then("User should select Order traker from drop down")
-    public void userShouldSelectOrderTrakerFromDropDown()
+    @Then("User should select Order taker from drop down")
+    public void userShouldSelectOrderTakerFromDropDown()
     {
         orderControlList=new OrderControlListPage(driver,scenario);
         orderControlList.Validate_OCL();
@@ -345,8 +345,8 @@ public class OrderControlPageSteps
         orderControlList.Refresh_Click();
     }
 
-    @And("User verifies existance of customer account for which skip is enabled, exists under taken")
-    public void userVerifiesExistanceOfCustomerAccountForWhichSkipIsEnabledExistsUnderTaken()
+    @And("User verifies existence of customer account for which skip is enabled, exists under taken")
+    public void userVerifiesExistenceOfCustomerAccountForWhichSkipIsEnabledExistsUnderTaken() throws InterruptedException
     {
         orderControlList=new OrderControlListPage(driver,scenario);
         orderControlList.verifySkipInTaken();

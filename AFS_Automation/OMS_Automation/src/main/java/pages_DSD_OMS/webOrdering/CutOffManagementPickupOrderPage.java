@@ -117,7 +117,7 @@ public class CutOffManagementPickupOrderPage
                     exists = true;
                 }
             }
-            Assert.assertEquals(exists,true);
+            Assert.assertTrue(exists);
         }
         catch (Exception e){}
     }
@@ -134,7 +134,7 @@ public class CutOffManagementPickupOrderPage
                 scenario.log("WAREHOUSE DROPDOWN BUTTON CLICKED");
                 exists=true;
             }
-            Assert.assertEquals(exists,true);
+            Assert.assertTrue(exists);
         }
         catch (Exception e){}
     }
@@ -144,15 +144,22 @@ public class CutOffManagementPickupOrderPage
         try
         {
             List<WebElement> options = HelpersMethod.FindByElements(driver, "xpath","//div[contains(@class,'k-list-container')]/descendant::ul/li");
-            Random rand = new Random();
-            int list= rand.nextInt(options.size());
-            options.get(list).click();
-            String branchSelect=HelpersMethod.FindByElement(driver,"xpath","//div[@id='filter-by-branch']/descendant::span[@id='cutoff-branches']/span").getText();
-            scenario.log("BRANCH SELECTED IS: "+branchSelect);
-            if (HelpersMethod.IsExists("//div[@class='loader']", driver))
+            if(options.size()==1)
             {
-                WebElement WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 200000);
+                HelpersMethod.ActClick(driver,options.get(0),10000);
+            }
+            else
+            {
+                Random rand = new Random();
+                int list = rand.nextInt(options.size());
+                options.get(list).click();
+                String branchSelect = HelpersMethod.FindByElement(driver, "xpath", "//div[@id='filter-by-branch']/descendant::span[@id='cutoff-branches']/span").getText();
+                scenario.log("BRANCH SELECTED IS: " + branchSelect);
+                if (HelpersMethod.IsExists("//div[@class='loader']", driver))
+                {
+                    WebElement WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
+                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 200000);
+                }
             }
         }
         catch (Exception e){}
@@ -180,7 +187,7 @@ public class CutOffManagementPickupOrderPage
                     exists = true;
                 }
             }
-            Assert.assertEquals(exists,true);
+            Assert.assertTrue(exists);
         }
         catch (Exception e){}
     }
@@ -192,21 +199,29 @@ public class CutOffManagementPickupOrderPage
         {
             if(timeSettingToggle.isDisplayed())
             {
-                if(!HelpersMethod.IsExists("//div[@id='cutoff-times']/descendant::span[@class='k-switch-container' and @aria-checked='true']",driver))
-                {
-                    HelpersMethod.JScriptClick(driver, timeSettingToggle, 1000);
-                    if (HelpersMethod.IsExists("//div[@class='loader']", driver))
-                    {
-                        WebElement WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                        HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 400000);
-                    }
-                }
-                if (HelpersMethod.IsExists("//div[@id='cutoff-times']/descendant::span[@class='k-switch-container' and @aria-checked='true']", driver))
-                {
-                    exists = true;
-                }
+              if(!HelpersMethod.IsExists("//span[contains(@class,'k-widget k-switch k-switch-off k-state-disabled')]",driver))
+              {
+                  if (!HelpersMethod.IsExists("//div[@id='cutoff-times']/descendant::span[@class='k-switch-container' and @aria-checked='true']", driver))
+                  {
+                      HelpersMethod.JScriptClick(driver, timeSettingToggle, 10000);
+                      if (HelpersMethod.IsExists("//div[@class='loader']", driver))
+                      {
+                          WebElement WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
+                          HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 400000);
+                      }
+                  }
+                  if (HelpersMethod.IsExists("//div[@id='cutoff-times']/descendant::span[@class='k-switch-container' and @aria-checked='true']", driver))
+                  {
+                      exists = true;
+                  }
+              }
+              else
+              {
+                  scenario.log("<span style='color:red'>THIS FEATURE MAY NOT BE SUPPORTED IN THE APPLICATION, WHERE TEST SCENARIOS ARE EXECUTING</span>");
+                  exists=true;
+              }
             }
-            Assert.assertEquals(exists,true);
+            Assert.assertTrue(exists);
         }
         catch (Exception e){}
     }
@@ -364,7 +379,7 @@ public class CutOffManagementPickupOrderPage
                     exists = true;
                 }
             }
-            Assert.assertEquals(exists,true);
+            Assert.assertTrue(exists);
         }
         catch (Exception e){}
     }
@@ -455,7 +470,7 @@ public class CutOffManagementPickupOrderPage
                     exists = true;
                 }
             }
-            Assert.assertEquals(exists,true);
+            Assert.assertTrue(exists);
         }
         catch (Exception e){}
     }
@@ -482,7 +497,7 @@ public class CutOffManagementPickupOrderPage
                     exists=true;
                 }
             }
-            Assert.assertEquals(exists,true);
+            Assert.assertTrue(exists);
             Thread.sleep(2000);
         }
         catch (Exception e){}

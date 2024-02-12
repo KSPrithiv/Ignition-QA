@@ -2,6 +2,7 @@ package pages_DSD_OMS.adminSecurity;
 
 import helper.HelpersMethod;
 import io.cucumber.java.Scenario;
+import io.cucumber.java.bs.A;
 import io.cucumber.java.en_old.Ac;
 import org.apache.logging.log4j.core.tools.picocli.CommandLine;
 import org.apache.poi.hssf.record.SCLRecord;
@@ -670,18 +671,18 @@ public class AdminSecurityPermissionPage
             if(HelpersMethod.IsExists("//div[@class='loader']",driver))
             {
                 WebElement WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 400000);
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000000);
             }
 
             WebElement searchBox= HelpersMethod.FindByElement(driver,"id","SearchBarPermissionsTree");
-            HelpersMethod.sendKeys(driver,searchBox,1000,searchValue);
+            HelpersMethod.sendKeys(driver,searchBox,10000,searchValue);
             scenario.log("ADMIN SETTING ENTERED FOR SEARCH IS "+ HelpersMethod.JSGetValueEle(driver,searchBox,200));
             WebElement searchIndex=HelpersMethod.FindByElement(driver,"xpath","//input[contains(@id,'SearchBarPermissionsTree')]/ancestor::div[@class='i-search-box']//*[local-name()='svg' and contains(@class,'i-search-box__search')]");
-            HelpersMethod.ActClick(driver,searchIndex,1000);
+            HelpersMethod.ActClick(driver,searchIndex,10000);
             exists=true;
         }
         catch (Exception e){}
-        Assert.assertEquals(exists,true);
+        Assert.assertTrue(exists);
     }
 
     public void validateAdminSettingSearchValue(String searchValue)
@@ -689,13 +690,14 @@ public class AdminSecurityPermissionPage
         exists=false;
         try
         {
-            String adminSet=HelpersMethod.FindByElement(driver,"xpath","//input[@class='k-checkbox']/ancestor::div[contains(@class,'admin-control-table')]/descendant::div[@class='label-containerX']").getText();
-            if(adminSet.equals(searchValue))
+            WebElement adminSet=HelpersMethod.FindByElement(driver,"xpath","//input[@class='k-checkbox']/ancestor::div[contains(@class,'admin-control-table')]/descendant::div[@class='label-containerX']");
+            String adminSetText=HelpersMethod.AttributeValue(adminSet,"title");
+            if(adminSetText.equalsIgnoreCase(searchValue))
             {
                 scenario.log("VALUE SEARCHED HAS BEEN FOUND "+adminSet);
                 exists=true;
             }
-            Assert.assertEquals(exists,true);
+            Assert.assertTrue(exists);
         }
         catch (Exception e){}
     }
@@ -886,7 +888,7 @@ public class AdminSecurityPermissionPage
                     }
                 }
             }
-            Assert.assertEquals(exists,true);
+            Assert.assertTrue(exists);
         }
         catch (Exception e){}
     }
@@ -972,7 +974,7 @@ public class AdminSecurityPermissionPage
                     exists=true;
                 }
             }
-            Assert.assertEquals(exists,true);
+            Assert.assertTrue(exists);
         }
         catch (Exception e){}
     }
@@ -1002,7 +1004,7 @@ public class AdminSecurityPermissionPage
                     }
                 }
             }
-            Assert.assertEquals(exists,true);
+            Assert.assertTrue(exists);
         }
         catch (Exception e){}
     }
@@ -1032,7 +1034,7 @@ public class AdminSecurityPermissionPage
                     }
                 }
             }
-            Assert.assertEquals(exists,true);
+            Assert.assertTrue(exists);
         }
         catch (Exception e){}
     }
@@ -1057,7 +1059,7 @@ public class AdminSecurityPermissionPage
                     exists=true;
                 }
             }
-            Assert.assertEquals(exists,true);
+            Assert.assertTrue(exists);
         }
         catch (Exception e){}
     }
@@ -1082,7 +1084,7 @@ public class AdminSecurityPermissionPage
                     exists=true;
                 }
             }
-            Assert.assertEquals(exists,true);
+            Assert.assertTrue(exists);
         }
         catch (Exception e){}
     }
@@ -1102,7 +1104,7 @@ public class AdminSecurityPermissionPage
                 scenario.log("ADMIN SETTING IS NOT DISPLAYED");
                 exists=true;
             }
-            Assert.assertEquals(exists,true);
+            Assert.assertTrue(exists);
         }
         catch (Exception e){}
     }
@@ -1127,7 +1129,7 @@ public class AdminSecurityPermissionPage
                     exists=true;
                 }
             }
-            Assert.assertEquals(exists,true);
+            Assert.assertTrue(exists);
         }
         catch (Exception e){}
     }
@@ -1241,12 +1243,15 @@ public class AdminSecurityPermissionPage
     public void uncheckCheckbox(String id)
     {
         exists=true;
+        Actions act=new Actions(driver);
         try
         {
             if(HelpersMethod.IsExists("//input[@id='"+id+"' and @data-checked='checked']|//input[@id='"+id+"' and @data-checked='indeterminate']",driver))
             {
                 WebElement checkBox=HelpersMethod.FindByElement(driver,"xpath","//input[@id='"+id+"' and @data-checked='checked']|//input[@id='"+id+"' and @data-checked='indeterminate']");
-                HelpersMethod.ClickBut(driver,checkBox,10000);
+                //HelpersMethod.ActClick(driver,checkBox,10000);
+                act.moveToElement(checkBox).build().perform();
+                act.click(checkBox).build().perform();
                 scenario.log("CHECKBOX HAS BEEN UNCHECKED");
                 exists=true;
             }
@@ -1262,12 +1267,15 @@ public class AdminSecurityPermissionPage
     public void checkCheckbox(String id)
     {
         exists=true;
+        Actions act=new Actions(driver);
         try
         {
             if(HelpersMethod.IsExists("//input[@id='"+id+"' and @data-checked='unchecked']",driver))
             {
                 WebElement checkBox=HelpersMethod.FindByElement(driver,"xpath","//input[@id='"+id+"' and @data-checked='unchecked']");
-                HelpersMethod.ClickBut(driver,checkBox,10000);
+                //HelpersMethod.ClickBut(driver,checkBox,10000);
+                act.moveToElement(checkBox).build().perform();
+                act.click(checkBox).build().perform();
                 scenario.log("CHECKBOX HAS BEEN CHECKED");
                 exists=true;
             }

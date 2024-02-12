@@ -1398,7 +1398,7 @@ public class NewStandingOrderPage
                 }
                 scenario.log("PRODUCT FOUND IN CATALOG IS "+Prod_Name);
             }
-            Assert.assertEquals(exists, true);
+            Assert.assertTrue(exists);
         }
         catch (Exception e){}
     }

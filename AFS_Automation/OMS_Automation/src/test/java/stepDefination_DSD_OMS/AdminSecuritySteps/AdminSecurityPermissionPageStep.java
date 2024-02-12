@@ -109,8 +109,8 @@ public class AdminSecurityPermissionPageStep
         adminSecurityPermission_byUserPage.validatePermissionPage();
     }
 
-    @Then("User should enter {string} and {string} in add user to table")
-    public void userShouldEnterAndInAddUserToTable(String arg0, String arg1)
+    @Then("User should enter {string} and role to add user to table")
+    public void userShouldEnterAndRoleToAddUserToTable(String arg0)
     {
         adminSecurityPermission_byUserPage=new AdminSecurityPermission_ByUserPage(driver,scenario);
         adminSecurityPermission_byUserPage.clickOnPlusButton();
@@ -118,8 +118,8 @@ public class AdminSecurityPermissionPageStep
         adminSecurityPermission_byUserPage.clickRole();
         adminSecurityPermission_byUserPage.selectRole(arg0);
         adminSecurityPermission_byUserPage.clickUser();
-        adminSecurityPermission_byUserPage.selectUser(arg1);
-        adminSecurityPermission_byUserPage.validateUser(arg1);
+        adminSecurityPermission_byUserPage.selectUser();
+        adminSecurityPermission_byUserPage.validateUser();
         adminSecurityPermission_byUserPage.clickOnOkButton();
     }
 
@@ -132,8 +132,8 @@ public class AdminSecurityPermissionPageStep
         adminSecurityPermission_byUserPage.clickRole();
         adminSecurityPermission_byUserPage.selectRole(role);
         adminSecurityPermission_byUserPage.clickUser();
-        adminSecurityPermission_byUserPage.selectUser(user);
-        adminSecurityPermission_byUserPage.validateUser(user);
+        adminSecurityPermission_byUserPage.selectUser();
+        adminSecurityPermission_byUserPage.validateUser();
         adminSecurityPermission_byUserPage.clickOnOkButton();
         adminSecurityPermission_byUserPage.validateGridHeader(user);
         adminSecurityPermission_byUserPage.clickOnModulesDropdown();
@@ -174,6 +174,7 @@ public class AdminSecurityPermissionPageStep
         adminSecurityPermissionPage.disableRoles();
         adminSecurityPermissionPage.verifyRolesGrid();
         adminSecurityPermissionPage.enableRoles();
+        adminSecurityPermissionPage.clickOnInRoles();
         adminSecurityPermissionPage.verifyRolesGridForEnabled();
     }
 }

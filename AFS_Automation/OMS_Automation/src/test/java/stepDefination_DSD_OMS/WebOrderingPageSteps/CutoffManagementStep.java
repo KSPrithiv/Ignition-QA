@@ -53,8 +53,8 @@ public class CutoffManagementStep
         }
     }
 
-    @Then("User should select {string} from horizantal menu to select Cutoff management")
-    public void userShouldSelectFromHorizantalMenuToSelectCutoffManagement(String cutOff)
+    @Then("User should select {string} from horizontal menu to select Cutoff management")
+    public void userShouldSelectFromHorizontalMenuToSelectCutoffManagement(String cutOff)
     {
         adminHomePage = new AdminHomePage(driver, scenario);
         adminHomePage.Horizantal_MenuBar(cutOff);
@@ -63,27 +63,35 @@ public class CutoffManagementStep
     @And("User should click on Branch management toggle button select branch and set times for cutoff")
     public void userShouldClickOnBranchManagementToggleButtonSelectBranchAndSetTimesForCutoff() throws InterruptedException, AWTException
     {
-        cutOffManagementPage=new CutOffManagementPage(driver,scenario);
-        cutOffManagementPage.clickOnBranchManagementToggleButton();
-        cutOffManagementPage.clickOnFilterBranchToggleButton();
-        cutOffManagementPage.clickOnBranchDropdown();
-        cutOffManagementPage.selectBranchFromDropdown();
-        cutOffManagementPage.clickOnCutOffTimesTogglebutton();
-        List<WebElement> Clocks= HelpersMethod.FindByElements(driver,"xpath","//tr[contains(@class,'k-master-row')]/descendant::span[contains(@class,'k-picker-wrap')]/descendant::span[@class='k-icon k-i-clock']");
-        for(int i=1;i<= Clocks.size();i++)
-        {
-            cutOffManagementPage.ClickClockIcon(i);
-            cutOffManagementPage.SelectHoursForAllDays();
-            cutOffManagementPage.SelectMinForAllDays();
-            cutOffManagementPage.ClickOnSetButton();
-        }
-        cutOffManagementPage.clickOnBranchFilterTogglebutton();
-        adminHomePage=new AdminHomePage(driver,scenario);
-        adminHomePage.Click_SaveButton();
-        cutOffManagementPage=new CutOffManagementPage(driver,scenario);
-        cutOffManagementPage.disableBranchToggleButton();
-        adminHomePage=new AdminHomePage(driver,scenario);
-        adminHomePage.Click_SaveButton();
+       //Check whether the environment in which scenarios are running supports this admin settings
+      // if(HelpersMethod.IsExists("//*[local-name()='g' and @id='dsd']|//*[local-name()='g' and @id='rams']",driver))
+      // {
+           cutOffManagementPage = new CutOffManagementPage(driver, scenario);
+           cutOffManagementPage.clickOnBranchManagementToggleButton();
+           cutOffManagementPage.clickOnFilterBranchToggleButton();
+           cutOffManagementPage.clickOnBranchDropdown();
+           cutOffManagementPage.selectBranchFromDropdown();
+           cutOffManagementPage.clickOnCutOffTimesTogglebutton();
+           List<WebElement> Clocks = HelpersMethod.FindByElements(driver, "xpath", "//tr[contains(@class,'k-master-row')]/descendant::span[contains(@class,'k-picker-wrap')]/descendant::span[@class='k-icon k-i-clock']");
+           for (int i = 1; i <= Clocks.size(); i++)
+           {
+               cutOffManagementPage.ClickClockIcon(i);
+               cutOffManagementPage.SelectHoursForAllDays();
+               cutOffManagementPage.SelectMinForAllDays();
+               cutOffManagementPage.ClickOnSetButton();
+           }
+           cutOffManagementPage.clickOnBranchFilterTogglebutton();
+           adminHomePage = new AdminHomePage(driver, scenario);
+           adminHomePage.Click_SaveButton();
+           cutOffManagementPage = new CutOffManagementPage(driver, scenario);
+           cutOffManagementPage.disableBranchToggleButton();
+           adminHomePage = new AdminHomePage(driver, scenario);
+           adminHomePage.Click_SaveButton();
+    /*   }
+       else
+       {
+           scenario.log("**********SELECTED ENVIRONMENT IS NOT SUPPORTING THIS FEATURE-ONLY DSD AND RAMS SUPPORTS THIS FEATURE*********");
+       }*/
     }
 
     @And("User should click on Warehouse management toggle button select branch and set times for cutoff")

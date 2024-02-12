@@ -1,23 +1,14 @@
 package pages_DSD_OMS.billToBill;
 
-import gherkin.lexer.He;
+
 import helper.HelpersMethod;
 import io.cucumber.java.Scenario;
-import org.apache.pdfbox.contentstream.operator.color.SetStrokingColorN;
-import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.FluentWait;
-import org.openqa.selenium.support.ui.Wait;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
-import java.awt.image.renderable.ParameterBlock;
-import java.time.Duration;
 import java.util.Set;
 
 /**
@@ -119,7 +110,7 @@ public class BillingSelectionPage
                 scenario.log("PRINT BUTTON HAS BEEN CLICKED");
                 exists = true;
             }
-            Assert.assertEquals(exists,true);
+            Assert.assertTrue(exists);
         }
         catch (Exception e){}
     }
@@ -133,7 +124,7 @@ public class BillingSelectionPage
             {
                 exists = true;
             }
-            Assert.assertEquals(exists, true);
+            Assert.assertTrue(exists);
         }
         catch (Exception e){}
     }
@@ -141,7 +132,7 @@ public class BillingSelectionPage
     public void PrintCustomerBillPopUp()
     {
         exists=false;
-        WebElement WebEle=null;
+        WebElement WebEle;
         try
         {
             WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-widget k-window k-dialog')]/descendant::button[@id='PrintButton']");
@@ -167,14 +158,14 @@ public class BillingSelectionPage
                         scenario.log("PRINT BUTTON FOR BILL TO BILL(DSD) HAS BEEN HANDLED");
                     }
                 }
-                Assert.assertEquals(exists, true);
+                Assert.assertTrue(exists);
                 driver.switchTo().window(ParentWindow);
             }
             else
             {
                 scenario.log("PRINT BUTTON IS NOT ENABLED");
             }
-            Assert.assertEquals(exists,true);
+            Assert.assertTrue(exists);
         }
         catch (Exception e){}
     }
@@ -198,7 +189,7 @@ public class BillingSelectionPage
                 }
                 exists=true;
             }
-            Assert.assertEquals(exists,true);
+            Assert.assertTrue(exists);
         }
         catch (Exception e){}
     }
@@ -210,7 +201,7 @@ public class BillingSelectionPage
         {
             HelpersMethod.ClickBut(driver,CancelButton,100);
             exists=true;
-            scenario.log("CANCLE BUTTON HAS BEEN CLICKED");
+            scenario.log("CANCEL BUTTON HAS BEEN CLICKED");
             Assert.assertEquals(exists,true);
         }
         catch (Exception e){}
@@ -223,8 +214,8 @@ public class BillingSelectionPage
         {
             HelpersMethod.ClickBut(driver,UndoBillButton,20);
             exists=true;
-            scenario.log("UNDO BILLING HAS BEEN CICKED");
-            Assert.assertEquals(exists,true);
+            scenario.log("UNDO BILLING HAS BEEN CLICKED");
+            Assert.assertTrue(exists);
         }
         catch (Exception e){}
     }
@@ -242,7 +233,7 @@ public class BillingSelectionPage
                 exists = true;
                 scenario.log("UNDO BILLING POPUP HANDLED");
             }
-            Assert.assertEquals(exists,true);
+            Assert.assertTrue(exists);
         }
         catch (Exception e){}
     }
@@ -256,7 +247,7 @@ public class BillingSelectionPage
             HelpersMethod.ActSendKey(driver,FromRange,20, String.valueOf(arg0));
             exists=true;
             scenario.log("FROM RANGE HAS BEEN SELECTED "+arg0);
-            Assert.assertEquals(exists,true);
+            Assert.assertTrue(exists);
         }
         catch (Exception e){}
     }
@@ -269,8 +260,8 @@ public class BillingSelectionPage
             HelpersMethod.ActClearKey(driver,ToRange,20);
             HelpersMethod.ActSendKey(driver,ToRange,10, String.valueOf(arg1));
             exists=true;
-            scenario.log("TO RNAGE HAS BEEN SELECTED "+arg1);
-            Assert.assertEquals(exists,true);
+            scenario.log("TO RANGE HAS BEEN SELECTED "+arg1);
+            Assert.assertTrue(exists);
         }
         catch (Exception e){}
     }
@@ -282,7 +273,7 @@ public class BillingSelectionPage
         {
             ShowSelected.click();
             exists=true;
-            Assert.assertEquals(exists,true);
+            Assert.assertTrue(exists);
         }
         catch (Exception e){}
     }
@@ -295,7 +286,7 @@ public class BillingSelectionPage
             HelpersMethod.ClickBut(driver,SelectButton,20);
             exists=true;
             scenario.log("RANGE SELECTED BUTTON HAS BEEN SELECTED");
-            Assert.assertEquals(exists,true);
+            Assert.assertTrue(exists);
         }
         catch (Exception e){}
     }

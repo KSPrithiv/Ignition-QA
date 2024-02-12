@@ -12,6 +12,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.Wait;
@@ -25,8 +26,9 @@ import pages_DSD_OMS.webOrdering.AdminHomePage;
 import util.TestBase;
 
 import java.awt.*;
-import java.text.ParseException;
+
 import java.time.Duration;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -40,7 +42,6 @@ public class GridConfigurationPageStep
         static boolean exists=false;
         static String gType=null;
         static String columnName=null;
-        static String currentURL=null;
         static int size1;
         static int size2;
         WebDriver driver;
@@ -56,14 +57,14 @@ public class GridConfigurationPageStep
         public void LaunchBrowser1(Scenario scenario) throws Exception
         {
             this.scenario=scenario;
-            TestBase driver1=TestBase.getInstanceOfDriver();
-            driver= driver1.getDriver();
+            //TestBase driver1=TestBase.getInstanceOfDriver();
+            driver= TestBase.getDriver();
         }
 
     @Given("User enters URL and is on login page and entered credentials for Admin setting for grid")
     public void userEntersURLAndIsOnLoginPageAndEnteredCredentialsForAdminSettingForGrid() throws InterruptedException, AWTException
     {
-        if(flag==false)
+        if(!flag)
         {
             loginpage = new LoginPage(driver, scenario);
             loginpage.EnterUsername(TestBase.testEnvironment.getAdminUser());
@@ -75,7 +76,7 @@ public class GridConfigurationPageStep
     @Given("User is on Home Page for Admin setting to select Admin option for grid")
     public void userIsOnHomePageForAdminSettingToSelectAdminOptionForGrid() throws InterruptedException
     {
-        if(flag==false)
+        if(!flag)
         {
             adminHomePage = new AdminHomePage(driver, scenario);
             adminHomePage.ValidatingAdminHome();
@@ -86,7 +87,7 @@ public class GridConfigurationPageStep
     @When("User is on Home Page for Admin setting for grid")
     public void userIsOnHomePageForAdminSettingForGrid() throws InterruptedException
     {
-        if(flag==false)
+        if(!flag)
         {
             adminHomePage = new AdminHomePage(driver, scenario);
             adminHomePage.ValidatingAdminHome();
@@ -96,7 +97,7 @@ public class GridConfigurationPageStep
     @Then("User Clicks on Permissions by drop down to select Customer Account# grid")
     public void userClicksOnPermissionsByDropDownToSelectCustomerAccountGrid() throws InterruptedException
     {
-        if(flag==false)
+        if(!flag)
         {
             adminHomePage = new AdminHomePage(driver, scenario);
             adminHomePage.ClickPermissionBy();
@@ -114,7 +115,7 @@ public class GridConfigurationPageStep
     }
 
     @And("User navigates to {string} and the selected grid type should be loaded")
-    public void userNavigatesToAndTheSelectedGridTypeShouldBeLoaded(String arg0)
+    public void userNavigatesToAndTheSelectedGridTypeShouldBeLoaded(String gType)
     {
         gridConfigPage=new GridConfigurationPage(driver,scenario);
         gridConfigPage.selectGridConfiguration();
@@ -150,7 +151,7 @@ public class GridConfigurationPageStep
     @And("User should drag and drop grid header to be added")
     public void userShouldDragAndDropGridHeaderToBeAdded(DataTable tabledata)
     {
-        String tab=null;
+        String tab;
         List<List<String>> tabs=tabledata.asLists(String.class);
         gridConfigPage=new GridConfigurationPage(driver,scenario);
         for (int i=0;i<=tabs.size()-1;i++)
@@ -201,7 +202,7 @@ public class GridConfigurationPageStep
     }
 
     @Then("User navigates to Order entry page and in new order entry page finds same grid as default grid {string}")
-    public void userNavigatesToOrderEntryPageAndInNewOrderEntryPageFindsSameGridAsDefaultGrid(String arg0,DataTable tabledata) throws InterruptedException, AWTException, ParseException
+    public void userNavigatesToOrderEntryPageAndInNewOrderEntryPageFindsSameGridAsDefaultGrid(String arg0,DataTable tabledata) throws InterruptedException, AWTException
     {
         List<List<String>> PO_No = tabledata.asLists(String.class);
         //to navigate to Client side
@@ -253,7 +254,7 @@ public class GridConfigurationPageStep
             WebElement WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
             HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 800000);
         }*/
-        Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+        Wait<WebDriver> wait = new FluentWait<>(driver)
                 .withTimeout(Duration.ofSeconds(120))
                 .pollingEvery(Duration.ofSeconds(5))
                 .ignoring(NoSuchElementException.class);
@@ -315,7 +316,7 @@ public class GridConfigurationPageStep
             scenario.log("CONTENT OF GRID TYPE DROP DOWN ARE SAME");
             exists=false;
         }
-        Assert.assertEquals(exists,true);
+        Assert.assertTrue(exists);
     }
 
     @Then("User navigates back to Grid configuration tab and checks for available grid type in drop down after enabling tab")
@@ -339,7 +340,7 @@ public class GridConfigurationPageStep
             scenario.log("CONTENT OF GRID TYPE DROP DOWN ARE NOT SAME");
             exists=false;
         }
-        Assert.assertEquals(exists,true);
+        Assert.assertTrue(exists);
     }
 
     @And("User should enable disabled grid in Available grid tab")
@@ -481,5 +482,39 @@ public class GridConfigurationPageStep
         //gridConfigPage.clickOnSaveButton();
         //gridConfigPage.validateSavedailogbox();
         //gridConfigPage.clickOnOkButtonInSavePopup();
+    }
+
+    @And("User should select {string} from grids dropdown and selects {string} to delete grid")
+    public void userShouldSelectFromGridsDropdownAndSelectsToDeleteGrid(String arg0, String arg1)
+    {
+        String gridName;
+        String gridName1;
+        WebElement dummy;
+        Actions act=new Actions(driver);
+        gridConfigPage=new GridConfigurationPage(driver,scenario);
+        //to expand the dropdown
+        gridConfigPage.clickGridDropDown();
+        //to read all the values in dropdown
+        List<WebElement> gridNames=HelpersMethod.FindByElements(driver,"xpath","//div[contains(@class,'k-list-container')]/descendant::ul/li[contains(text(),'"+arg0+"')]");
+        ArrayList<String> gridText= new ArrayList<>();
+        for(int i=0;i<=gridNames.size()-1;i++)
+        {
+            act.moveToElement(gridNames.get(i)).build().perform();
+            dummy=gridNames.get(i);
+            gridName1=dummy.getText();
+            gridText.add(gridName1);
+        }
+
+        //to close dropdown
+        gridConfigPage.clickGridDropDown();
+        for(int i=0;i<=gridText.size()-1;i++)
+        {
+            gridConfigPage.clickGridDropDown();
+            gridName=gridText.get(i);
+            gridConfigPage.gridDropdownSelection(gridName);
+            //Select delete from drop down
+            gridConfigPage.clickOnGridOptionDropdown();
+            gridConfigPage.selectOptionFromGridOptionDropDown(arg1);
+        }
     }
 }

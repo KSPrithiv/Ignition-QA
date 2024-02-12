@@ -51,7 +51,8 @@ Feature: scenarios for admin security and submenu permission, for creating role,
     Then User Clicks on Permissions by drop down to select Customer Account# for admin security
     And User should enter menu "<Main menu>" in search bar and select "<Sub menu>"
     Then User should navigate to "<Navigate to>" card
-    Then User should enter "<Role>" and "<User>" in add user to table
+    #Then User should enter "<Role>" and "<User>" in add user to table
+    Then User should enter "<Role>" and role to add user to table
     Examples:
       |Main menu|Sub menu      | Navigate to |Role     |User     |
       |Security |Permissions   | By user     |custadmin|Divya_DSD|
@@ -62,7 +63,8 @@ Feature: scenarios for admin security and submenu permission, for creating role,
     Then User Clicks on Permissions by drop down to select Customer Account# for admin security
     And User should enter menu "<Main menu>" in search bar and select "<Sub menu>"
     Then User should navigate to "<Navigate to>" card
-    Then User should enter "<Role>" and "<User>" in add user to table and find modules enabled
+    #Then User should enter "<Role>" and "<User>" in add user to table and find modules enabled
+    Then User should enter "<Role>" and role to add user to table
     Examples:
       |Main menu|Sub menu      | Navigate to |Role     |User     |
       |Security |Permissions   | By user     |custadmin|Divya_DSD|
@@ -73,7 +75,8 @@ Feature: scenarios for admin security and submenu permission, for creating role,
     Then User Clicks on Permissions by drop down to select Customer Account# for admin security
     And User should enter menu "<Main menu>" in search bar and select "<Sub menu>"
     Then User should navigate to "<Navigate to>" card
-    Then User should enter "<Role>" and "<User>" in add user to table
+    #Then User should enter "<Role>" and "<User>" in add user to table
+    Then User should enter "<Role>" and role to add user to table
     And User selects admin permission "<Admin permission>" to be searched in search bar
     Examples:
       |Main menu|Sub menu      | Navigate to |Role     |User     |Admin permission                                         |

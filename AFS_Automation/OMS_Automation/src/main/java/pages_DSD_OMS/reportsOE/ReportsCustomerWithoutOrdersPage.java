@@ -262,7 +262,7 @@ public class ReportsCustomerWithoutOrdersPage
         {
             if(fromCal.isDisplayed() && fromCal.isEnabled())
             {
-                HelpersMethod.ClickBut(driver,fromCal,1000);
+                HelpersMethod.ClickBut(driver,fromCal,10000);
                 exists=true;
             }
             Assert.assertEquals(exists,true);
@@ -279,7 +279,7 @@ public class ReportsCustomerWithoutOrdersPage
             WebElement fromDate=HelpersMethod.FindByElement(driver,"xpath","//td[contains(@class,'k-calendar-td k-state-pending-focus k-today')]");
             if(fromDate.isDisplayed())
             {
-                HelpersMethod.ClickBut(driver,fromDate,10000);
+                HelpersMethod.ClickBut(driver,fromDate,20000);
                 scenario.log("FROM DATE HAS BEEN SELECTED");
                 exists=true;
             }
@@ -295,7 +295,7 @@ public class ReportsCustomerWithoutOrdersPage
         {
             if(toCal.isDisplayed() && toCal.isEnabled())
             {
-                HelpersMethod.ClickBut(driver,toCal,1000);
+                HelpersMethod.ClickBut(driver,toCal,10000);
                 exists=true;
             }
             Assert.assertEquals(exists,true);
@@ -333,6 +333,7 @@ public class ReportsCustomerWithoutOrdersPage
         exists=false;
         try
         {
+            Thread.sleep(1000);
             List<WebElement> checkBoxs=HelpersMethod.FindByElements(driver,"xpath","//div[@id='customersWithoutOrdersInfoNotification']/parent::div/descendant::div[contains(@class,'k-animation-container-relative')][1]/descendant::tr[@class='k-master-row']/descendant::input");
             for (int i = 1; i <=checkBoxs.size()-1; i++)
             {
@@ -341,7 +342,7 @@ public class ReportsCustomerWithoutOrdersPage
                     if (HelpersMethod.IsExists("//div[@id='customersWithoutOrdersInfoNotification']/parent::div/descendant::div[contains(@class,'k-animation-container-relative')][1]/descendant::tr[@class='k-master-row'][" + i + "]/descendant::input", driver))
                     {
                         WebElement accountCheckBox = HelpersMethod.FindByElement(driver, "xpath", "//div[@id='customersWithoutOrdersInfoNotification']/parent::div/descendant::div[contains(@class,'k-animation-container-relative')][1]/descendant::tr[@class='k-master-row'][" + i + "]/descendant::input");
-                        HelpersMethod.JScriptClick(driver, accountCheckBox, 1000);
+                        HelpersMethod.JScriptClick(driver, accountCheckBox, 10000);
                         scenario.log("SELECTED SOME RANDOM ACCOUNTS");
                         exists = true;
                     }
@@ -359,7 +360,7 @@ public class ReportsCustomerWithoutOrdersPage
         {
             if(filterForAccount.isDisplayed())
             {
-                HelpersMethod.EnterText(driver,filterForAccount,1000, TestBase.testEnvironment.get_Account());
+                HelpersMethod.EnterText(driver,filterForAccount,20000, TestBase.testEnvironment.get_Account());
                 scenario.log("ENTERED CUSTOMER ACCOUNT NUMBER IN FILTER");
                 exists=true;
             }
@@ -376,11 +377,12 @@ public class ReportsCustomerWithoutOrdersPage
             if (HelpersMethod.IsExists("//div[@id='customersWithoutOrdersInfoNotification']/parent::div/descendant::div[contains(@class,'k-animation-container-relative')][1]/descendant::tr[@class='k-master-row']/descendant::input", driver))
             {
                 WebElement accountCheckBox = HelpersMethod.FindByElement(driver, "xpath", "//div[@id='customersWithoutOrdersInfoNotification']/parent::div/descendant::div[contains(@class,'k-animation-container-relative')][1]/descendant::tr[@class='k-master-row']/descendant::input");
-                HelpersMethod.JScriptClick(driver, accountCheckBox, 1000);
+                HelpersMethod.ScrollElement(driver,accountCheckBox);
+                HelpersMethod.JScriptClick(driver, accountCheckBox, 10000);
                 scenario.log("SELECTED CUSTOMER ACCOUNT CHECKBOX");
                 exists=true;
             }
-            Assert.assertEquals(exists,true);
+            Assert.assertTrue(exists);
         }
         catch (Exception e){}
     }
@@ -393,7 +395,7 @@ public class ReportsCustomerWithoutOrdersPage
             WebElement clearFilter=HelpersMethod.FindByElement(driver,"xpath","//div[@id='customersWithoutOrdersInfoNotification']/parent::div/descendant::div[contains(@class,'k-animation-container-relative')][1]/descendant::tr[@class='k-filter-row']/descendant::button[contains(@class,'clear')]");
             if(clearFilter.isDisplayed()&& clearFilter.isEnabled())
             {
-                HelpersMethod.ClickBut(driver,clearFilter,1000);
+                HelpersMethod.ClickBut(driver,clearFilter,10000);
                 scenario.log("FILTER HAS BEEN CLEARED");
                 exists=true;
             }
@@ -409,9 +411,12 @@ public class ReportsCustomerWithoutOrdersPage
         {
             if(showSelectedCustomerToggle.isDisplayed())
             {
-                HelpersMethod.ActClick(driver,showSelectedCustomerToggle,1000);
-                scenario.log("SHOW SELECTED CUSTOMER TOGGLE BUTTON IS SELECTED");
-                exists=true;
+                HelpersMethod.ActClick(driver,showSelectedCustomerToggle,10000);
+                if(HelpersMethod.IsExists("//span[@id='selectedCustomersSwitch' and @aria-checked='true']",driver))
+                {
+                    scenario.log("SHOW SELECTED CUSTOMER TOGGLE BUTTON IS SELECTED");
+                    exists = true;
+                }
             }
             Assert.assertEquals(exists,true);
         }
@@ -453,7 +458,7 @@ public class ReportsCustomerWithoutOrdersPage
         {
             if(excelButton.isDisplayed() && excelButton.isEnabled())
             {
-                HelpersMethod.ClickBut(driver,excelButton,1000);
+                HelpersMethod.ClickBut(driver,excelButton,10000);
                 Thread.sleep(5000);
                 if (HelpersMethod.IsExists("//div[contains(text(),'No data returned, report was not generated.')]/ancestor::div[@id='toast-container']", driver))
                 {
@@ -598,7 +603,7 @@ public class ReportsCustomerWithoutOrdersPage
                     if (HelpersMethod.IsExists("//div[@id='customersWithoutOrdersInfoNotification']/parent::div/descendant::div[contains(@class,'k-animation-container-relative')][2]/descendant::tr[@class='k-master-row'][" + i + "]/descendant::input", driver))
                     {
                         WebElement accountCheckBox = HelpersMethod.FindByElement(driver, "xpath", "//div[@id='customersWithoutOrdersInfoNotification']/parent::div/descendant::div[contains(@class,'k-animation-container-relative')][2]/descendant::tr[@class='k-master-row'][" + i + "]/descendant::input");
-                        HelpersMethod.JScriptClick(driver, accountCheckBox, 1000);
+                        HelpersMethod.JScriptClick(driver, accountCheckBox, 10000);
                         scenario.log("SELECTED SOME RANDOM ROUTES");
                         exists = true;
                     }
@@ -607,7 +612,6 @@ public class ReportsCustomerWithoutOrdersPage
             Assert.assertEquals(exists,true);
         }
         catch (Exception e){}
-
     }
 
     public void enterRouteNoInFilterForRoutes()
@@ -618,7 +622,7 @@ public class ReportsCustomerWithoutOrdersPage
             WebElement filterForRoute= HelpersMethod.FindByElement(driver,"xpath",   "//div[@id='customersWithoutOrdersInfoNotification']/parent::div/descendant::div[contains(@class,'k-animation-container-relative')][2]/descendant::tr[@class='k-filter-row']/descendant::input[1]");
             if(filterForRoute.isDisplayed())
             {
-                HelpersMethod.EnterText(driver,filterForRoute,1000, TestBase.testEnvironment.get_Account());
+                HelpersMethod.EnterText(driver,filterForRoute,10000, TestBase.testEnvironment.get_Account());
                 scenario.log("ENTERED ROUTE NUMBER IN FILTER");
                 exists=true;
             }
@@ -635,7 +639,7 @@ public class ReportsCustomerWithoutOrdersPage
             if (HelpersMethod.IsExists("//div[@id='customersWithoutOrdersInfoNotification']/parent::div/descendant::div[contains(@class,'k-animation-container-relative')][2]/descendant::tr[@class='k-master-row']/descendant::input", driver))
             {
                 WebElement accountCheckBox = HelpersMethod.FindByElement(driver, "xpath", "//div[@id='customersWithoutOrdersInfoNotification']/parent::div/descendant::div[contains(@class,'k-animation-container-relative')][2]/descendant::tr[@class='k-master-row']/descendant::input");
-                HelpersMethod.JScriptClick(driver, accountCheckBox, 1000);
+                HelpersMethod.JScriptClick(driver, accountCheckBox, 10000);
                 scenario.log("SELECTED ROUTE CHECKBOX");
                 exists=true;
             }
@@ -652,7 +656,7 @@ public class ReportsCustomerWithoutOrdersPage
             WebElement clearFilter=HelpersMethod.FindByElement(driver,"xpath","//div[@id='customersWithoutOrdersInfoNotification']/parent::div/descendant::div[contains(@class,'k-animation-container-relative')][2]/descendant::tr[@class='k-filter-row']/descendant::button[contains(@class,'clear')]");
             if(clearFilter.isDisplayed()&& clearFilter.isEnabled())
             {
-                HelpersMethod.ClickBut(driver,clearFilter,1000);
+                HelpersMethod.ClickBut(driver,clearFilter,10000);
                 scenario.log("FILTER HAS BEEN CLEARED");
                 exists=true;
             }
@@ -669,7 +673,7 @@ public class ReportsCustomerWithoutOrdersPage
             showSelectedCustomerToggle=HelpersMethod.FindByElement(driver,"id","selectedRoutesSwitch");
             if(showSelectedCustomerToggle.isDisplayed())
             {
-                HelpersMethod.ActClick(driver,showSelectedCustomerToggle,1000);
+                HelpersMethod.ActClick(driver,showSelectedCustomerToggle,10000);
                 scenario.log("SHOW SELECTED CUSTOMER TOGGLE BUTTON IS SELECTED");
                 exists=true;
             }
@@ -701,7 +705,16 @@ public class ReportsCustomerWithoutOrdersPage
             {
                 scenario.log("**********NO ROUTE NUMBER HAS BEEN SELECTED***********");
             }
-            Assert.assertEquals(exists,true);
+            Assert.assertTrue(exists);
+        }
+        catch (Exception e){}
+    }
+
+    public void invisiblityOfLoading()
+    {
+        try
+        {
+            new WebDriverWait(driver,Duration.ofMillis(10000)).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//span[contains(@class,'k-icon k-i-loading')]")));
         }
         catch (Exception e){}
     }

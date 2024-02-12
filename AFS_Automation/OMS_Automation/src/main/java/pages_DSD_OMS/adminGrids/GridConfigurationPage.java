@@ -2,7 +2,6 @@ package pages_DSD_OMS.adminGrids;
 
 import helper.HelpersMethod;
 import io.cucumber.java.Scenario;
-import org.apache.logging.log4j.core.tools.picocli.CommandLine;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Action;
 import org.openqa.selenium.interactions.Actions;
@@ -14,7 +13,6 @@ import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
-import java.awt.event.HierarchyListener;
 import java.time.Duration;
 import java.util.List;
 
@@ -53,7 +51,6 @@ public class GridConfigurationPage
 
     public void Refresh_Page2(String currentURL)
     {
-        Actions act1=new Actions(driver);
         try
         {
             if(HelpersMethod.IsExists("//div[contains(@class,'k-widget k-window k-dialog')]",driver))
@@ -95,7 +92,7 @@ public class GridConfigurationPage
             {
                 exists=true;
             }
-            Assert.assertEquals(exists,true);
+            Assert.assertTrue(exists);
         }
         catch (Exception e){}
     }
@@ -110,7 +107,7 @@ public class GridConfigurationPage
                 HelpersMethod.navigate_Horizantal_Tab(driver, "Available grids", "//li[contains(@class,'k-item')]/span[@class='k-link' and contains(text(),'Available grids')]", "xpath", "//li[contains(@class,'k-item')]/span[@class='k-link']");
                 exists=true;
             }
-            Assert.assertEquals(exists,true);
+            Assert.assertTrue(exists);
         }
         catch (Exception e){}
     }
@@ -138,7 +135,7 @@ public class GridConfigurationPage
             {
                 exists=true;
             }
-            Assert.assertEquals(exists,true);
+            Assert.assertTrue(exists);
         }
         catch (Exception e){}
         return gType;
@@ -154,7 +151,7 @@ public class GridConfigurationPage
                 HelpersMethod.navigate_Horizantal_Tab(driver, "Grid configuration", "//li[contains(@class,'k-item')]/span[@class='k-link' and contains(text(),'Grid configuration')]", "xpath", "//li[contains(@class,'k-item')]/span[@class='k-link']");
                 exists=true;
             }
-            Assert.assertEquals(exists,true);
+            Assert.assertTrue(exists);
         }
         catch (Exception e){}
     }
@@ -162,7 +159,7 @@ public class GridConfigurationPage
     public void compareSelectedGrids(String gType)
     {
         exists=true;
-        String gType1=null;
+        String gType1;
         try
         {
             gType1=HelpersMethod.FindByElement(driver,"xpath","//label[@id='SelectGridType-label']/following-sibling::span/descendant::span[@class='k-input']").getText();
@@ -172,7 +169,7 @@ public class GridConfigurationPage
                 scenario.log("GRID SELECTED IN AVIALABLE GRID AND GRID DISPLAYED IN GRID CONFIGURATION ARE SAME");
                 exists=true;
             }
-            Assert.assertEquals(exists,true);
+            Assert.assertTrue(exists);
         }
         catch (Exception e){}
     }
@@ -189,7 +186,7 @@ public class GridConfigurationPage
                 exists = true;
                 new WebDriverWait(driver, Duration.ofMillis(10000)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class,'k-popup k-child-animation-container')]"))));
             }
-            Assert.assertEquals(exists, true);
+            Assert.assertTrue(exists);
         }
         catch (Exception e){}
     }
@@ -225,7 +222,7 @@ public class GridConfigurationPage
                 scenario.log("GRID TYPE SELECTED IS "+gType);
                 exists=true;
             }
-            Assert.assertEquals(exists,true);
+            Assert.assertTrue(exists);
         }
         catch (Exception e){}
     }
@@ -243,7 +240,7 @@ public class GridConfigurationPage
                 new WebDriverWait(driver,Duration.ofMillis(40000)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class,'k-child-animation-container')]"))));
                 Thread.sleep(1000);
             }
-            Assert.assertEquals(exists,true);
+            Assert.assertTrue(exists);
         }
         catch (Exception e){}
     }
@@ -271,7 +268,7 @@ public class GridConfigurationPage
                     break;
                 }
             }
-            Assert.assertEquals(exists,true);
+            Assert.assertTrue(exists);
         }
         catch (Exception e){}
     }
@@ -313,7 +310,7 @@ public class GridConfigurationPage
                     }
                 }
             }
-            Assert.assertEquals(exists,true);
+            Assert.assertTrue(exists);
         }
         catch (Exception e){}
     }
@@ -322,7 +319,7 @@ public class GridConfigurationPage
     {
         exists=false;
         Actions act=new Actions(driver);
-        String optText=null;
+        String optText;
         try
         {
             if(HelpersMethod.IsExists("//div[contains(@class,'k-animation-container-relative')]/descendant::ul/li",driver))
@@ -343,7 +340,7 @@ public class GridConfigurationPage
                     }
                 }
             }
-            Assert.assertEquals(exists,true);
+            Assert.assertTrue(exists);
         }
         catch (Exception e){}
     }
@@ -361,7 +358,7 @@ public class GridConfigurationPage
                 scenario.log("NEW GRID NAME SELECTED IS "+gName);
                 exists=true;
             }
-            Assert.assertEquals(exists,true);
+            Assert.assertTrue(exists);
         }
         catch (Exception e){}
     }
@@ -377,7 +374,7 @@ public class GridConfigurationPage
                 new WebDriverWait(driver,Duration.ofMillis(10000)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class,'k-widget k-window k-dialog')]"))));
                 exists=true;
             }
-            Assert.assertEquals(exists,true);
+            Assert.assertTrue(exists);
         }
         catch (Exception e){}
     }
@@ -432,16 +429,6 @@ public class GridConfigurationPage
         catch (Exception e){}
     }
 
-    public void gridHeaderAddedValidate()
-    {
-        exists=false;
-        try
-        {
-
-        }
-        catch (Exception e){}
-    }
-
     public void clickGridDropDown()
     {
         exists=false;
@@ -454,7 +441,7 @@ public class GridConfigurationPage
                 new WebDriverWait(driver,Duration.ofMillis(10000)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class,'k-popup k-child-animation-container')]"))));
                 exists=true;
             }
-            Assert.assertEquals(exists,true);
+            Assert.assertTrue(exists);
         }
         catch (Exception e){}
     }
@@ -489,7 +476,6 @@ public class GridConfigurationPage
     public void gridMainDropdownSelection(String arg0)
     {
         exists=false;
-        Actions act1=new Actions(driver);
         try
         {
            /* if(HelpersMethod.IsExists("//div[contains(@class,'k-popup k-child-animation-container')]",driver))
@@ -516,7 +502,7 @@ public class GridConfigurationPage
                 scenario.log("CLICKED ON COPY OPTION");
                 exists=true;
             }
-            Assert.assertEquals(exists,true);
+            Assert.assertTrue(exists);
         }
         catch (Exception e){}
     }
@@ -551,7 +537,7 @@ public class GridConfigurationPage
                     exists=true;
                 }
             }
-            Assert.assertEquals(exists,true);
+            Assert.assertTrue(exists);
         }
         catch (Exception e){}
     }
@@ -581,7 +567,7 @@ public class GridConfigurationPage
                 scenario.log("GRID TYPE FOUND IN DROP DOWN: "+opt_Text);
                 exists=true;
             }*/
-            Assert.assertEquals(exists,true);
+            Assert.assertTrue(exists);
         }
         catch (Exception e){}
         return listSize;
@@ -602,7 +588,7 @@ public class GridConfigurationPage
             {
                 scenario.log("USER NOT ABLE TO NAVIGATE TO AVAILABLE GRID CARD");
             }
-            Assert.assertEquals(exists,true);
+            Assert.assertTrue(exists);
         }
         catch (Exception e){}
     }
@@ -632,7 +618,7 @@ public class GridConfigurationPage
                 scenario.log("SELECTED GRID HAS BEEN DISABLED IN AVAILABLE GRID");
                 exists=true;
             }
-            Assert.assertEquals(exists,true);
+            Assert.assertTrue(exists);
         }
         catch (Exception e){}
     }
@@ -650,7 +636,7 @@ public class GridConfigurationPage
                 scenario.log("SELECTED GRID HAS BEEN ENABLED IN AVAILABLE GRID");
                 exists=true;
             }
-            Assert.assertEquals(exists,true);
+            Assert.assertTrue(exists);
         }
         catch (Exception e){}
     }
@@ -687,7 +673,7 @@ public class GridConfigurationPage
                         .ignoring(NoSuchElementException.class);
                 wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
             }
-            Assert.assertEquals(exists,true);
+            Assert.assertTrue(exists);
         }
         catch (Exception e){}
     }
@@ -735,7 +721,7 @@ public class GridConfigurationPage
                 HelpersMethod.ActClick(driver,WebEle,1000);
                 exists=true;
             }
-            Assert.assertEquals(exists,true);
+            Assert.assertTrue(exists);
         }
         catch (Exception e){}
     }
@@ -784,7 +770,7 @@ public class GridConfigurationPage
                     exists=true;
                 }
             }
-            if(exists==true)
+            if(exists)
             {
                 scenario.log("COLUMN HAS BEEN REMOVED FROM THE GRID");
             }
@@ -803,7 +789,7 @@ public class GridConfigurationPage
                 HelpersMethod.ActClick(driver,WebEle,1000);
                 exists=true;
             }
-            Assert.assertEquals(exists,true);
+            Assert.assertTrue(exists);
         }
         catch (Exception e){}
     }
@@ -824,7 +810,7 @@ public class GridConfigurationPage
                 scenario.log("ADMIN SIDE CHANGES SAVE POPUP HAS APPEARED");
                 exists=true;
             }
-            Assert.assertEquals(exists,true);
+            Assert.assertTrue(exists);
         }
         catch (Exception e){}
     }
@@ -846,7 +832,7 @@ public class GridConfigurationPage
                 }
                 exists=true;
             }
-            Assert.assertEquals(exists,true);
+            Assert.assertTrue(exists);
         }
         catch(Exception e){}
     }
