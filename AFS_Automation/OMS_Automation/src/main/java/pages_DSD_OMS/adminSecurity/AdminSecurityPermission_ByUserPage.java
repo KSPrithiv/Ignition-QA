@@ -2,16 +2,16 @@ package pages_DSD_OMS.adminSecurity;
 
 import helper.HelpersMethod;
 import io.cucumber.java.Scenario;
-import lombok.val;
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.FluentWait;
+import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
@@ -28,8 +28,7 @@ public class AdminSecurityPermission_ByUserPage
     WebDriver driver;
     Scenario scenario;
     static boolean exists=false;
-    static String roleName=null;
-    static String description=null;
+    static String roleNameText=null;
 
     @FindBy(id = "AddBtn")
     private WebElement plusSymbol;
@@ -50,7 +49,7 @@ public class AdminSecurityPermission_ByUserPage
             exists=true;
         }
         catch (Exception e){}
-        Assert.assertEquals(exists,true);
+        Assert.assertTrue(exists);
     }
 
     public void validatePermissionPage()
@@ -62,7 +61,7 @@ public class AdminSecurityPermission_ByUserPage
             {
                 exists=true;
             }
-            Assert.assertEquals(exists,true);
+            Assert.assertTrue(exists);
         }
         catch (Exception e){}
     }
@@ -78,7 +77,7 @@ public class AdminSecurityPermission_ByUserPage
                 scenario.log("CREATING NEW ROLE FROM ROLE TAB");
                 exists=true;
             }
-            Assert.assertEquals(exists,true);
+            Assert.assertTrue(exists);
         }
         catch (Exception e){}
     }
@@ -92,7 +91,7 @@ public class AdminSecurityPermission_ByUserPage
             {
                 exists=true;
             }
-            Assert.assertEquals(exists,true);
+            Assert.assertTrue(exists);
         }
         catch (Exception e){}
     }
@@ -127,15 +126,16 @@ public class AdminSecurityPermission_ByUserPage
                     break;
                 }
             }
-            if(HelpersMethod.IsExists("//div[@class='loader']",driver))
-            {
-                WebElement WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 400000);
-            }
+            Wait<WebDriver> wait = new FluentWait<>(driver)
+                    .withTimeout(Duration.ofSeconds(120))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
 
             WebElement WebEle=HelpersMethod.FindByElement(driver,"id","comboBoxAddUserRole");
             scenario.log("ROLE SELECTED IS "+HelpersMethod.JSGetValueEle(driver,WebEle,100));
-            Assert.assertEquals(exists,true);
+            Assert.assertTrue(exists);
         }
         catch (Exception e){}
     }
@@ -156,18 +156,20 @@ public class AdminSecurityPermission_ByUserPage
                 HelpersMethod.ActClick(driver, role, 1000);
                 exists=true;
             }
-            Assert.assertEquals(exists,true);
+            Assert.assertTrue(exists);
         }
         catch (Exception e){}
     }
 
-    public void selectUser(String userName)
+    public void selectUser()
     {
         exists=false;
-        String Val_Text=null;
+        WebElement Val;
+
         Actions act=new Actions(driver);
         try
         {
+            new WebDriverWait(driver,Duration.ofMillis(10000)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(@class,'k-popup k-child-animation-container')]/descendant::ul/li[contains(@class,'k-item')]")));
             if(HelpersMethod.IsExists("//label[@id='comboBoxAddUser-label']/following-sibling::span/descendant::span[contains(@class,'k-icon k-clear-value k-i-close')]",driver))
             {
                 WebElement closeEle=HelpersMethod.FindByElement(driver,"xpath","//label[@id='comboBoxAddUser-label']/following-sibling::span/descendant::span[contains(@class,'k-icon k-clear-value k-i-close')]");
@@ -177,7 +179,7 @@ public class AdminSecurityPermission_ByUserPage
             if(HelpersMethod.IsExists("//div[contains(@class,'k-popup k-child-animation-container')]/descendant::ul/li[contains(@class,'k-item')]",driver))
             {
                 List<WebElement> Values = HelpersMethod.FindByElements(driver, "xpath", "//div[contains(@class,'k-popup k-child-animation-container')]/descendant::ul/li[contains(@class,'k-item')]");
-                for (WebElement Val : Values)
+                /*for (WebElement Val : Values)
                 {
                     act.moveToElement(Val).build().perform();
                     Val_Text = Val.getText();
@@ -186,6 +188,18 @@ public class AdminSecurityPermission_ByUserPage
                         act.moveToElement(Val).build().perform();
                         HelpersMethod.JScriptClick(driver, Val, 1000);
                         exists = true;
+                        break;
+                    }
+                }*/
+                for(int i=0;i<=Values.size()-1;i++)
+                {
+                    Val=Values.get(i);
+                    act.moveToElement(Val).build().perform();
+                    if(i==0)
+                    {
+                        roleNameText = Val.getText();
+                        act.click(Val).build().perform();
+                        exists=true;
                         break;
                     }
                 }
@@ -202,7 +216,7 @@ public class AdminSecurityPermission_ByUserPage
         catch (Exception e){}
     }
 
-    public void validateUser(String user)
+    public void validateUser()
     {
         exists=false;
         try
@@ -211,11 +225,11 @@ public class AdminSecurityPermission_ByUserPage
             WebElement userSelected=modelcontainer.findElement(By.xpath(".//input[@id='comboBoxAddUser']"));
             String userText=HelpersMethod.AttributeValue(userSelected,"value");
             scenario.log("USER SELECTED IS "+userText);
-            if(userText.equalsIgnoreCase(user))
+            if(userText.equalsIgnoreCase(roleNameText))
             {
                 exists = true;
             }
-            Assert.assertEquals(exists,true);
+            Assert.assertTrue(exists);
         }
         catch (Exception e){}
     }
@@ -236,7 +250,7 @@ public class AdminSecurityPermission_ByUserPage
                     HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 400000);
                 }
             }
-            Assert.assertEquals(exists,true);
+            Assert.assertTrue(exists);
         }
         catch (Exception e){}
     }
@@ -254,7 +268,7 @@ public class AdminSecurityPermission_ByUserPage
             exists=true;
         }
         catch (Exception e){}
-        Assert.assertEquals(exists,true);
+        Assert.assertTrue(exists);
     }
 
     public void validateAdminSettingSearchValue(String searchValue)
@@ -268,7 +282,7 @@ public class AdminSecurityPermission_ByUserPage
                 scenario.log("VALUE SEARCHED HAS BEEN FOUND "+adminSet);
                 exists=true;
             }
-            Assert.assertEquals(exists,true);
+            Assert.assertTrue(exists);
         }
         catch (Exception e){}
     }
@@ -283,11 +297,11 @@ public class AdminSecurityPermission_ByUserPage
             exists=true;
         }
         catch (Exception e){}
-        Assert.assertEquals(exists,true);
+        Assert.assertTrue(exists);
     }
 
 
-    public void validateGridHeader(String userName)
+    public void validateGridHeader(String roleNameText)
     {
         exists=false;
         String headText;
@@ -299,13 +313,13 @@ public class AdminSecurityPermission_ByUserPage
             {
                 act.moveToElement(heads).build().perform();
                 headText=heads.getText();
-                if(headText.equals(userName))
+                if(headText.equals(roleNameText))
                 {
                     exists=true;
                     break;
                 }
             }
-            Assert.assertEquals(exists,true);
+            Assert.assertTrue(exists);
         }
         catch (Exception e){}
     }
@@ -323,7 +337,7 @@ public class AdminSecurityPermission_ByUserPage
                 new WebDriverWait(driver, Duration.ofMillis(40000)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(@class,'k-list-container')]/descendant::ul/li")));
                 exists=true;
             }
-            Assert.assertEquals(exists,true);
+            Assert.assertTrue(exists);
         }
         catch (Exception e){}
     }
@@ -348,7 +362,7 @@ public class AdminSecurityPermission_ByUserPage
                     }
                 }
             }
-            Assert.assertEquals(exists,true);
+            Assert.assertTrue(exists);
         }
         catch (Exception e){}
     }

@@ -226,5 +226,6 @@ public class AdminReportPageStep
         adminHomePage.refreshPage();
         adminHomePage.ClickPermissionBy();
         adminHomePage.SelectDifferentCompany();
+        adminHomePage.ClickPermissionByAgain1();
     }
 }

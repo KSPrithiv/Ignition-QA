@@ -36,8 +36,6 @@ public class FeaturedProductsPageStep
     @And("User should enter menu {string} in search bar to navigate to Featured Products")
     public void userShouldEnterMenuInSearchBarToNavigateToFeaturedProducts(String arg0)
     {
-       // if(flag1==false)
-       // {
             adminHomePage = new AdminHomePage(driver, scenario);
             adminHomePage.ClickOnHamburger();
             adminHomePage.EnterValueInSearchBox(arg0);
@@ -45,8 +43,6 @@ public class FeaturedProductsPageStep
             adminHomePage.CloseHamburger();
             featuredProdSettingsPage=new FeaturedProdSettingsPage(driver,scenario);
             featuredProdSettingsPage.validateFeatureProd();
-        // flag1=true;
-       // }
     }
 
     @Then("User should Check whether Max products to show in featured products Sheild is selected or not")
@@ -54,7 +50,7 @@ public class FeaturedProductsPageStep
     {
         featuredProdSettingsPage=new FeaturedProdSettingsPage(driver,scenario);
         featuredProdSettingsPage.validateFeatureProd();
-        featuredProdSettingsPage.SheildIconSelected();
+        featuredProdSettingsPage.ShieldIconSelected();
     }
 
     @Then("User should check max number of Featured products set")
@@ -175,21 +171,25 @@ public class FeaturedProductsPageStep
     {
         featuredProductsPage=new FeaturedProductsPage(driver,scenario);
         featuredProductsPage.deleteAllFeatureProduct();
+        featuredProductsPage.savePopup();
     }
 
     @Then("User should add new {int} products, and delete first product")
-    public void userShouldAddNewProductsAndDeleteFirstProduct(int arg0)
+    public void userShouldAddNewProductsAndDeleteFirstProduct(int MaxProd)
     {
         featuredProductsPage=new FeaturedProductsPage(driver,scenario);
+        featuredProductsPage.savePopup();
         featuredProductsPage.ClickAddProducts();
-        for(int i=0;i<=arg0-1;i++)
+        for(int i=0;i<=MaxProd-1;i++)
         {
             featuredProductsPage.selecting3Products();
+            featuredProductsPage.PopupAfterChanges();
         }
         featuredProductsPage.CatalogOkButton();
-        featuredProductsPage.PopupAfterChanges();
+        featuredProductsPage.savePopup();
         featuredProductsPage.ListFeaturedProduct(MaxProd);
         featuredProductsPage.deleteFirstProduct();
+        featuredProductsPage.savePopup();
     }
 
     @Then("User refreshes page Clicks on Permissions by drop down to select Customer Account# grid for WebOrder")

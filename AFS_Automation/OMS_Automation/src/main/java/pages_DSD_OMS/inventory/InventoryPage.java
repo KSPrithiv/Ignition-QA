@@ -651,4 +651,44 @@ public class InventoryPage
         }
         catch (Exception e){}
     }
+
+    public void listViewProductLoaded()
+    {
+        exists=false;
+        try
+        {
+            if(HelpersMethod.IsExists("//span[contains(text(),'load all products')]",driver))
+            {
+                scenario.log("AUTO LOAD OF PRODUCTS IN PRODUCT CATALOG DIALOG BOX HAS BEEN ACHIEVED");
+                exists=true;
+            }
+            else
+            {
+                scenario.log("<span style='color:red'>AUTO LOAD OF PRODUCTS IN PRODUCT CATALOG DIALOG BOX HAS NOT BEEN ACHIEVED </span>");
+                exists=false;
+            }
+            Assert.assertEquals(exists,true);
+        }
+        catch (Exception e){}
+    }
+
+    public void cardViewProductLoaded()
+    {
+        exists=false;
+        try
+        {
+            if(HelpersMethod.IsExists("//span[contains(text(),'load all products')]",driver))
+            {
+                scenario.log("AUTO LOAD OF PRODUCTS IN PRODUCT CATALOG DIALOG BOX HAS BEEN ACHIEVED");
+                exists=true;
+            }
+            else
+            {
+                scenario.log("<span style='color:red'>AUTO LOAD OF PRODUCTS IN PRODUCT CATALOG DIALOG BOX HAS NOT BEEN ACHIEVED </span>");
+                exists=false;
+            }
+            Assert.assertEquals(exists,true);
+        }
+        catch (Exception e){}
+    }
 }

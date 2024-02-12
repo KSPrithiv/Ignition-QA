@@ -12,7 +12,7 @@ Feature: Order control list
   Scenario: For creating order in OCL and Order has been created with order note
     Given User must be on Order Entry Page to select OCL
     And User should navigate to OCL
-    Then User should select Order traker from drop down
+    Then User should select Order taker from drop down
     And Change the delivery date 2 days after current date
     Then User Clicks on Untaken radio button and user clicks on Refresh button
     Then User clicks on Order icon in OCL grid
@@ -37,7 +37,7 @@ Feature: Order control list
   Scenario: Test scenario to find the comment added to Order in OCL
     Given User must be on Order Entry Page to select OCL
     And User should navigate to OCL
-    Then User should select Order traker from drop down
+    Then User should select Order taker from drop down
     And Change the delivery date 2 days after current date
     Then User Clicks on Taken radio button
     And User enters OrderNo in search box to search for order
@@ -48,7 +48,7 @@ Feature: Order control list
   Scenario: Test scenario for verifying Order icon in OCL once order is created via OCL
     Given User must be on Order Entry Page to select OCL
     And User should navigate to OCL
-    Then User should select Order traker from drop down
+    Then User should select Order taker from drop down
     And Change the delivery date 2 days after current date
     Then User Clicks on Untaken radio button and user clicks on Refresh button
     Then User clicks on Order icon in OCL grid
@@ -71,7 +71,7 @@ Feature: Order control list
   Scenario: Test scenario for verifying Order Type in OCL once order is created via OCL. Here Regular order has been created,and same has been passed as parameter
     Given User must be on Order Entry Page to select OCL
     And User should navigate to OCL
-    Then User should select Order traker from drop down
+    Then User should select Order taker from drop down
     And Change the delivery date 2 days after current date
     Then User Clicks on Untaken radio button and user clicks on Refresh button
     Then User clicks on Order icon in OCL grid
@@ -94,7 +94,7 @@ Feature: Order control list
   Scenario: Filtering of OCL details using customer account# using AddFilter
     Given User must be on Order Entry Page to select OCL
     And User should navigate to OCL
-    Then User should select Order traker from drop down
+    Then User should select Order taker from drop down
     And Change the delivery date 2 days after current date
     Then User clicks on Add filter button and enter value for first search box and second search box
       |Customer key|
@@ -103,7 +103,7 @@ Feature: Order control list
   Scenario: For skipping order from OCL
     Given User must be on Order Entry Page to select OCL
     And User should navigate to OCL
-    Then User should select Order traker from drop down
+    Then User should select Order taker from drop down
     And Change the delivery date 2 days after current date
     Then User Clicks on Untaken radio button
     Then User select OCL which is not skipped
@@ -115,19 +115,19 @@ Feature: Order control list
   Scenario: Test scenario for verifying skip under taken orders
     Given User must be on Order Entry Page to select OCL
     And User should navigate to OCL
-    Then User should select Order traker from drop down
+    Then User should select Order taker from drop down
     And Change the delivery date 2 days after current date
     Then User Clicks on Taken radio button
-    And User verifies existance of customer account for which skip is enabled, exists under taken
+    And User verifies existence of customer account for which skip is enabled, exists under taken
 
   @RemoveSkip
   Scenario: For remove skipping order from OCL
     Given User must be on Order Entry Page to select OCL
     And User should navigate to OCL
-    Then User should select Order traker from drop down
+    Then User should select Order taker from drop down
     And Change the delivery date 2 days after current date
     Then User Clicks on Taken radio button
-    And User verifies existance of customer account for which skip is enabled, exists under taken
+    And User verifies existence of customer account for which skip is enabled, exists under taken
     Then User select OCL which is skipped
     And User handles Remove skip popup
     Then User validates Not skip option
@@ -136,7 +136,7 @@ Feature: Order control list
   Scenario:Test scenario to Drag and drop OCL header
     Given User must be on Order Entry Page to select OCL
     And User should navigate to OCL
-    Then User should select Order traker from drop down
+    Then User should select Order taker from drop down
     And Change the delivery date 2 days after current date
     And User clicks on All radio button
     Then User should drag and drop grid header
@@ -146,7 +146,7 @@ Feature: Order control list
   Scenario: Test scenario for creating pending order via OCL
     Given User must be on Order Entry Page to select OCL
     And User should navigate to OCL
-    Then User should select Order traker from drop down
+    Then User should select Order taker from drop down
     And Change the delivery date 2 days after current date
     Then User Clicks on Untaken radio button
     Then User clicks on Order icon in OCL grid
@@ -165,7 +165,7 @@ Feature: Order control list
   Scenario: Test scenario for printing OCL
     Given User must be on Order Entry Page to select OCL
     And User should navigate to OCL
-    Then User should select Order traker from drop down
+    Then User should select Order taker from drop down
     And Change the delivery date 2 days after current date
     Then User clicks on Print button and handle the new browser window
 

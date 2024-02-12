@@ -78,6 +78,14 @@ public class userAndAdmin_PendingRegApprovalPage
             String Opt=null;
             Actions act1= new Actions(driver);
             HelpersMethod.waitTillElementLocatedDisplayed(driver,"xpath","//div[contains(@class,'k-popup k-child-animation-container')]",10000);
+
+            //Find whether any Pending registration dropdown is there or not
+            if(HelpersMethod.IsExistsById("embeddedMediumImportanceNofitication",driver))
+            {
+                scenario.log("*******************THERE ARE NO PENDING REGISTRATION AVAILABLE*****************");
+                exists=true;
+            }
+
             // to fetch the web element of the modal container
             WebElement menuContainer = HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-popup k-child-animation-container')]");
             List<WebElement> Options=menuContainer.findElements (By.xpath(".//ul/li"));

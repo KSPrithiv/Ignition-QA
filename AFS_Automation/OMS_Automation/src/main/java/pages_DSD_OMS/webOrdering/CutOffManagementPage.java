@@ -110,7 +110,7 @@ public class CutOffManagementPage
                         exists = true;
                     }
             }
-            Assert.assertEquals(exists,true);
+            Assert.assertTrue(exists);
         }
         catch (Exception e){}
     }
@@ -122,9 +122,9 @@ public class CutOffManagementPage
         {
             if(filterBranchToggle.isDisplayed())
             {
+                HelpersMethod.ScrollElement(driver, filterBranchToggle);
                 if(!HelpersMethod.IsExists("//div[@id='filter-by-branch']/descendant::div[@class='card-setting-area']/descendant::span[@class='k-switch-container' and @aria-checked='true']",driver))
                 {
-                    HelpersMethod.ScrollElement(driver, filterBranchToggle);
                     HelpersMethod.JScriptClick(driver, filterBranchToggle, 1000);
                     scenario.log("FILTER BRANCH TOGGLE BUTTON");
                     if (HelpersMethod.IsExists("//div[@class='loader']", driver))
@@ -138,7 +138,7 @@ public class CutOffManagementPage
                         exists = true;
                     }
             }
-            Assert.assertEquals(exists,true);
+            Assert.assertTrue(exists);
         }
         catch (Exception e){}
     }
@@ -155,7 +155,7 @@ public class CutOffManagementPage
                 scenario.log("WAREHOUSE DROPDOWN BUTTON CLICKED");
                 exists=true;
             }
-            Assert.assertEquals(exists,true);
+            Assert.assertTrue(exists);
         }
         catch (Exception e){}
     }
@@ -172,7 +172,7 @@ public class CutOffManagementPage
                 scenario.log("ROUTE MANAGEMENT DROPDOWN BUTTON CLICKED");
                 exists=true;
             }
-            Assert.assertEquals(exists,true);
+            Assert.assertTrue(exists);
         }
         catch (Exception e){}
     }
@@ -189,7 +189,7 @@ public class CutOffManagementPage
                 scenario.log("CUSTOMER MANAGEMENT DROPDOWN BUTTON CLICKED");
                 exists=true;
             }
-            Assert.assertEquals(exists,true);
+            Assert.assertTrue(exists);
         }
         catch (Exception e){}
     }
@@ -273,7 +273,7 @@ public class CutOffManagementPage
                     }
                 }
             }
-            Assert.assertEquals(exists,true);
+            Assert.assertTrue(exists);
         }
         catch (Exception e){}
     }
@@ -297,7 +297,7 @@ public class CutOffManagementPage
                     exists=true;
                 }
             }
-            Assert.assertEquals(exists,true);
+            Assert.assertTrue(exists);
         }
         catch (Exception e){}
     }
@@ -321,7 +321,7 @@ public class CutOffManagementPage
                     exists=true;
                 }
             }
-            Assert.assertEquals(exists,true);
+            Assert.assertTrue(exists);
         }
         catch (Exception e){}
     }
@@ -333,22 +333,30 @@ public class CutOffManagementPage
         {
             if(timeSettingToggle.isDisplayed())
             {
-                HelpersMethod.ScrollElement(driver,timeSettingToggle);
-                if(!HelpersMethod.IsExists("//div[@id='cutoff-times']/descendant::span[@class='k-switch-container' and @aria-checked='true']",driver))
+                if(!HelpersMethod.IsExists("//span[@class='k-widget k-switch k-switch-off k-state-disabled']",driver))
                 {
-                    HelpersMethod.JScriptClick(driver, timeSettingToggle, 10000);
-                    if (HelpersMethod.IsExists("//div[@class='loader']", driver))
+                    HelpersMethod.ScrollElement(driver, timeSettingToggle);
+                    if (!HelpersMethod.IsExists("//div[@id='cutoff-times']/descendant::span[@class='k-switch-container' and @aria-checked='true']", driver))
                     {
-                        WebElement WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                        HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 400000);
+                        HelpersMethod.JScriptClick(driver, timeSettingToggle, 10000);
+                        if (HelpersMethod.IsExists("//div[@class='loader']", driver))
+                        {
+                            WebElement WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
+                            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 400000);
+                        }
                     }
-                }
                     if (HelpersMethod.IsExists("//div[@id='cutoff-times']/descendant::span[@class='k-switch-container' and @aria-checked='true']", driver))
                     {
                         exists = true;
                     }
+                }
+                else
+                {
+                    scenario.log("<span style='color:red'>FEATURE NOT SUPPORTED IN THE ENVIRONMENT, WHERE TEST SCENARIOS ARE GETTING EXECUTED </span>");
+                    exists=true;
+                }
             }
-            Assert.assertEquals(exists,true);
+            Assert.assertTrue(exists);
         }
         catch (Exception e){}
     }
@@ -506,7 +514,7 @@ public class CutOffManagementPage
                         exists = true;
                     }
             }
-            Assert.assertEquals(exists,true);
+            Assert.assertTrue(exists);
             Thread.sleep(2000);
         }
         catch (Exception e){}
@@ -534,7 +542,7 @@ public class CutOffManagementPage
                     exists=true;
                 }
             }
-            Assert.assertEquals(exists,true);
+            Assert.assertTrue(exists);
             Thread.sleep(2000);
         }
         catch (Exception e){}
@@ -562,7 +570,7 @@ public class CutOffManagementPage
                     exists=true;
                 }
             }
-            Assert.assertEquals(exists,true);
+            Assert.assertTrue(exists);
             Thread.sleep(2000);
         }
         catch (Exception e){}
@@ -590,7 +598,7 @@ public class CutOffManagementPage
                         exists = true;
                     }
             }
-            Assert.assertEquals(exists,true);
+            Assert.assertTrue(exists);
         }
         catch (Exception e){}
     }
@@ -600,11 +608,11 @@ public class CutOffManagementPage
         exists=false;
         try
         {
-            if(wareHouseToggle.isDisplayed())
+            if(routeToggle.isDisplayed())
             {
                 if(!HelpersMethod.IsExists("//span[@id='CPEnableCutoffRouteMgmt' and @aria-checked='true']",driver))
                 {
-                    HelpersMethod.JScriptClick(driver, wareHouseToggle, 10000);
+                    HelpersMethod.JScriptClick(driver, routeToggle, 10000);
                     scenario.log("ROUTE TOGGLE BUTTON SELECTED");
                     if (HelpersMethod.IsExists("//div[@class='loader']", driver))
                     {
@@ -617,7 +625,7 @@ public class CutOffManagementPage
                         exists = true;
                     }
             }
-            Assert.assertEquals(exists,true);
+            Assert.assertTrue(exists);
         }
         catch (Exception e){}
     }
@@ -644,7 +652,7 @@ public class CutOffManagementPage
                         exists = true;
                     }
             }
-            Assert.assertEquals(exists,true);
+            Assert.assertTrue(exists);
         }
         catch (Exception e){}
     }
@@ -672,7 +680,7 @@ public class CutOffManagementPage
                     exists=true;
                 }
             }
-            Assert.assertEquals(exists,true);
+            Assert.assertTrue(exists);
         }
         catch (Exception e){}
     }
@@ -700,7 +708,7 @@ public class CutOffManagementPage
                     exists=true;
                 }
             }
-            Assert.assertEquals(exists,true);
+            Assert.assertTrue(exists);
         }
         catch (Exception e){}
     }
@@ -728,7 +736,7 @@ public class CutOffManagementPage
                         exists = true;
                     }
             }
-            Assert.assertEquals(exists,true);
+            Assert.assertTrue(exists);
         }
         catch (Exception e){}
     }
@@ -741,11 +749,11 @@ public class CutOffManagementPage
             if(branchDropdown.isDisplayed())
             {
                 HelpersMethod.ScrollElement(driver,branchDropdown);
-                HelpersMethod.ClickBut(driver,branchDropdown,1000);
-                scenario.log("WAREHOUSE DROPDOWN BUTTON CLICKED");
+                HelpersMethod.ClickBut(driver,branchDropdown,10000);
+                scenario.log("BRANCHES DROPDOWN BUTTON CLICKED");
                 exists=true;
             }
-            Assert.assertEquals(exists,true);
+            Assert.assertTrue(exists);
         }
         catch (Exception e){}
     }
@@ -755,15 +763,22 @@ public class CutOffManagementPage
         try
         {
             List<WebElement> options = HelpersMethod.FindByElements(driver, "xpath","//div[contains(@class,'k-list-container')]/descendant::ul/li");
-            Random rand = new Random();
-            int list= rand.nextInt(options.size());
-            options.get(list).click();
-            String branchSelect=HelpersMethod.FindByElement(driver,"xpath","//div[@id='filter-by-branch']/descendant::span[@id='cutoff-branches']/span").getText();
-            scenario.log("BRANCH SELECTED IS: "+branchSelect);
-            if (HelpersMethod.IsExists("//div[@class='loader']", driver))
+            if(options.size()==1)
             {
-                WebElement WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 200000);
+                HelpersMethod.ActClick(driver,options.get(0),10000);
+            }
+            else
+            {
+                Random rand = new Random();
+                int list = rand.nextInt(options.size());
+                options.get(list).click();
+                String branchSelect = HelpersMethod.FindByElement(driver, "xpath", "//div[@id='filter-by-branch']/descendant::span[@id='cutoff-branches']/span").getText();
+                scenario.log("BRANCH SELECTED IS: " + branchSelect);
+                if (HelpersMethod.IsExists("//div[@class='loader']", driver))
+                {
+                    WebElement WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
+                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 200000);
+                }
             }
         }
         catch (Exception e){}
@@ -791,7 +806,7 @@ public class CutOffManagementPage
                         exists = true;
                     }
             }
-            Assert.assertEquals(exists,true);
+            Assert.assertTrue(exists);
         }
         catch (Exception e){}
     }

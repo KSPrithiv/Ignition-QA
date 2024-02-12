@@ -209,7 +209,7 @@ public class OrderEntryPage
             currentURL = driver.getCurrentUrl();
             scenario.log(currentURL);
 
-            wait = new FluentWait<WebDriver>(driver)
+            wait = new FluentWait<>(driver)
                     .withTimeout(Duration.ofSeconds(120))
                     .pollingEvery(Duration.ofSeconds(2))
                     .ignoring(NoSuchElementException.class);

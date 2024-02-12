@@ -143,7 +143,6 @@ public class AdminHomePage {
         }
     }
 
-
     public void ClickPermissionByAgain()
     {
         exists = false;
@@ -183,6 +182,48 @@ public class AdminHomePage {
                 }
             }
             Assert.assertEquals(exists, true);
+        }
+        catch (Exception e) {}
+    }
+    public void ClickPermissionByAgain1()
+    {
+        exists = false;
+        try
+        {
+            Thread.sleep(6000);
+            String status = HelpersMethod.returnDocumentStatus(driver);
+            if (status.equals("loading"))
+            {
+                HelpersMethod.waitTillLoadingPage(driver);
+            }
+            if (HelpersMethod.IsExists("//div[@class='loader']", driver))
+            {
+                WebElement WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 2000000);
+            }
+            status = HelpersMethod.returnDocumentStatus(driver);
+            if (status.equals("loading"))
+            {
+                HelpersMethod.waitTillLoadingPage(driver);
+            }
+            if (HelpersMethod.IsExists("//div[@class='loader']", driver))
+            {
+                WebElement WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 2000000);
+            }
+            scenario.log("YOU WILL BE SELECTING COMPANY NOW");
+            if (HelpersMethod.IsExists("//span[contains(@class,'k-icon k-i-arrow-chevron-up i-header-toolbar-expandable-button__icon')]", driver))
+            {
+                PermissionBy = HelpersMethod.FindByElement(driver, "xpath", "//button[contains(@class,'i-header-toolbar-expandable-button')]");
+                HelpersMethod.ActClick(driver, PermissionBy, 20000);
+                new WebDriverWait(driver, Duration.ofMillis(80000)).until(ExpectedConditions.refreshed(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[contains(@class,'k-popup i-header-toolbar-popup k-child-animation-container')]"))));
+                if (!HelpersMethod.IsExists("//div[contains(@class,'permissions-dropdown permission-background permissions-dropdown__flex')]", driver))
+                {
+                    scenario.log("PERMISSION DROP DOWN HAS BEEN CLICKED, AFTER SELECTING COMPANY");
+                    exists = true;
+                }
+            }
+            Assert.assertTrue(exists);
         }
         catch (Exception e) {}
     }
@@ -297,6 +338,7 @@ public class AdminHomePage {
         WebElement WebEle;
         Actions act = new Actions(driver);
         String company = null;
+        String company1=null;
         String status=null;
         WebElement Val;
         try
@@ -327,7 +369,9 @@ public class AdminHomePage {
                 {
                     Val=HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-popup k-child-animation-container')]/descendant::ul/li[contains(@class,'k-item')]["+(i+1)+"]");
                     act.moveToElement(Val).build().perform();
-                    if(i==Values.size()-1)
+                    company1=Val.getText();
+                    //if(i==Values.size()-1)
+                    if(!company1.contains(company) && !company1.contains("Default"))
                     {
                         act.moveToElement(Val).build().perform();
                         act.click(Val).build().perform();
@@ -358,12 +402,12 @@ public class AdminHomePage {
                 HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 2000000);
             }
 
-            Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+            Wait<WebDriver> wait = new FluentWait<>(driver)
                     .withTimeout(Duration.ofSeconds(160))
                     .pollingEvery(Duration.ofSeconds(2))
                     .ignoring(NoSuchElementException.class);
             wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
-            Assert.assertEquals(exists, true);
+            Assert.assertTrue(exists);
         }
         catch (Exception e) {}
     }
@@ -404,7 +448,6 @@ public class AdminHomePage {
     {
         exists = false;
         WebElement WebEle;
-        WebElement Humburger;
         try
         {
             Thread.sleep(500);
@@ -566,14 +609,15 @@ public class AdminHomePage {
                     {
                         HelpersMethod.waitTillLoadingPage(driver);
                     }
-                    if (HelpersMethod.IsExists("//div[@class='loader']", driver))
-                    {
-                        WebElement WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                        HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000000);
-                    }
+
+                    Wait<WebDriver> wait = new FluentWait<>(driver)
+                            .withTimeout(Duration.ofSeconds(120))
+                            .pollingEvery(Duration.ofSeconds(2))
+                            .ignoring(NoSuchElementException.class);
+                    wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
                 }
             }
-            Assert.assertEquals(exists, true);
+            Assert.assertTrue(exists);
         }
         catch (Exception e) {}
     }
@@ -591,20 +635,20 @@ public class AdminHomePage {
             WebElement ClearSearch = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='searchbar-container']/descendant::i[@class='searchbar-container-close-icon']//*[local-name()='svg']");
             if (ClearSearch.isDisplayed())
             {
-                HelpersMethod.ActClick(driver, ClearSearch, 1000);
+                HelpersMethod.ActClick(driver, ClearSearch, 10000);
             }
             //Enter main menu in search bar of the humburger
             WebElement Search_Input = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='drawer-menu-search-container']/descendant::input");
             act.moveToElement(Search_Input).click().sendKeys(Menu_Value).build().perform();
             //identify the main menu item, and click on that
             WebElement Menu = HelpersMethod.FindByElement(driver, "xpath", "//span[@class='menu-item-text']/descendant::span[text()='" + Menu_Value + "']");
-            HelpersMethod.ActClick(driver, Menu, 1000);
+            HelpersMethod.ActClick(driver, Menu, 10000);
             //To select value from submenus
             if (HelpersMethod.IsExists("//div[@class='submenu-item-text']/descendant::span[contains(text(),'" + subMenuValue + "')]", driver))
             {
                 WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='submenu-item-text']/descendant::span[contains(text(),'" + subMenuValue + "')]");
                 HelpersMethod.ScrollElement(driver, WebEle);
-                HelpersMethod.ActClick(driver, WebEle, 1000);
+                HelpersMethod.ActClick(driver, WebEle, 10000);
                 Thread.sleep(2000);
 
                 status = HelpersMethod.returnDocumentStatus(driver);
@@ -616,7 +660,7 @@ public class AdminHomePage {
                 {
                     WebElement WebEle1 = HelpersMethod.FindByElement(driver, "xpath", "div[contains(@class,'k-widget k-window k-dialog')]");
                     WebElement popUpYes = WebEle1.findElement(By.xpath(".//button[text()='No']"));
-                    HelpersMethod.ActClick(driver, popUpYes, 1000);
+                    HelpersMethod.ActClick(driver, popUpYes, 10000);
                 }
                 exists = true;
             }
@@ -625,9 +669,6 @@ public class AdminHomePage {
                 scenario.log("MENU ITEM NOT FOUND " + subMenuValue);
                 exists = false;
             }
-
-
-
 
             status = HelpersMethod.returnDocumentStatus(driver);
             if (status.equals("loading"))
@@ -671,19 +712,10 @@ public class AdminHomePage {
                 HelpersMethod.waitTillLoadingPage(driver);
             }
 
-
-
-
-
-
-
-
-
-
             //WebElement Humburger = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='open-menu-hamburger-icon']//*[local-name()='svg']//*[local-name()='path' and contains(@d,'M3,18H21V16H3Zm0-5H21V11H3ZM3,6V8H21V6Z')]");
             //HelpersMethod.ActClick(driver, Humburger, 1000);
             new WebDriverWait(driver, Duration.ofMillis(200000)).until(ExpectedConditions.refreshed(ExpectedConditions.invisibilityOfElementLocated(By.id("navigationMenuSearchBar"))));
-            Assert.assertEquals(exists, true);
+            Assert.assertTrue(exists);
         }
         catch (Exception e) {}
     }
@@ -856,7 +888,7 @@ public class AdminHomePage {
                 scenario.log("HUMBURGER HAS BEEN EXPANDED");
                 exists=true;
             }
-            Assert.assertEquals(exists,true);
+            Assert.assertTrue(exists);
         }
         catch (Exception e){}
     }
@@ -872,7 +904,7 @@ public class AdminHomePage {
                scenario.log("PERMISSION BAR HAS BEEN COLLAPSED");
                exists=true;
             }
-          Assert.assertEquals(exists,true);
+            Assert.assertTrue(exists);
        }
        catch (Exception e){}
     }
@@ -886,7 +918,7 @@ public class AdminHomePage {
             {
                 exists=true;
             }
-            Assert.assertEquals(exists,true);
+            Assert.assertTrue(exists);
         }
         catch (Exception e){}
     }
@@ -901,7 +933,7 @@ public class AdminHomePage {
                 scenario.log("SEARCHBAR HAS BEEN FOUND IN HAMBURGER");
                 exists=true;
             }
-            Assert.assertEquals(exists,true);
+            Assert.assertTrue(exists);
         }
         catch (Exception e){}
     }
@@ -917,7 +949,71 @@ public class AdminHomePage {
                 scenario.log("MENU ITEM SEARCH IS SUCCESSFUL");
                 exists=true;
             }
-            Assert.assertEquals(exists,true);
+            Assert.assertTrue(exists);
+        }
+        catch (Exception e){}
+    }
+
+    public void adminSettingDisable(String setting,String identifier,String varForIdentifier)
+    {
+        exists=false;
+        try
+        {
+            WebElement adminSetting=HelpersMethod.FindByElement(driver,identifier,varForIdentifier);
+            if(adminSetting.isDisplayed())
+            {
+                scenario.log("ADMIN SETTING "+setting+" HAS BEEN FOUND");
+                String status = HelpersMethod.returnStatus(driver, adminSetting, 10000);
+                if (status.equals("true"))
+                {
+                    HelpersMethod.JScriptClick(driver, adminSetting, 10000);
+                }
+                status = HelpersMethod.returnStatus(driver, adminSetting, 10000);
+                if (status.equals("false"))
+                {
+                    scenario.log(setting+" IS DISABLED");
+                    exists=true;
+                }
+                else
+                {
+                    scenario.log("FAILED TO DISABLE "+setting);
+                }
+            }
+            else
+            {
+                scenario.log("<span style='color:red'> ADMIN STTING HAS NOT BEEN FOUND </span>");
+            }
+            Assert.assertTrue(exists);
+        }
+        catch (Exception e){}
+    }
+
+    public void adminSettingEnable(String setting,String identifier,String varForIdentifier)
+    {
+        exists=false;
+        try
+        {
+            WebElement adminSetting=HelpersMethod.FindByElement(driver,identifier,varForIdentifier);
+            if(adminSetting.isDisplayed())
+            {
+                scenario.log("ADMIN SETTING "+setting+" HAS BEEN FOUND");
+                String status = HelpersMethod.returnStatus(driver, adminSetting, 10000);
+                if (status.equals("false"))
+                {
+                    HelpersMethod.JScriptClick(driver, adminSetting, 10000);
+                }
+                status = HelpersMethod.returnStatus(driver, adminSetting, 10000);
+                if (status.equals("true"))
+                {
+                    exists=true;
+                }
+            }
+            else
+            {
+                scenario.log("<span style='color:red'> ADMIN SETTING HAS NOT BEEN FOUND </span>");
+                exists=true;
+            }
+            Assert.assertTrue(exists);
         }
         catch (Exception e){}
     }

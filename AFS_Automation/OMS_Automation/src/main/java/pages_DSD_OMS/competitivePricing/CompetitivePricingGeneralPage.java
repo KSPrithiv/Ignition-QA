@@ -8,6 +8,8 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.FluentWait;
+import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import pages_DSD_OMS.login.HomePage;
@@ -96,7 +98,8 @@ public class CompetitivePricingGeneralPage
         {
             HelpersMethod.waitTillLoadingPage(driver);
         }
-        try {
+        try
+        {
             Actions act = new Actions(driver);
             WebElement Search_Input = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='drawer-menu-search-container']/descendant::input");
 
@@ -104,23 +107,50 @@ public class CompetitivePricingGeneralPage
             WebElement CompetitorMenu = HelpersMethod.FindByElement(driver, "xpath", "//ul[contains(@class,'MuiList-root ')]/descendant::span[contains(text(),'Competitive Pricing')]");
             HelpersMethod.ClickBut(driver, CompetitorMenu, 1000);
             exists = true;
-            if (HelpersMethod.IsExists("//div[@class='loader']", driver))
+            status = HelpersMethod.returnDocumentStatus(driver);
+            if (status.equals("loading"))
             {
-                WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100000);
+                HelpersMethod.waitTillLoadingPage(driver);
+            }
+
+            Wait<WebDriver> wait = new FluentWait<>(driver)
+                    .withTimeout(Duration.ofSeconds(150))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
+            status = HelpersMethod.returnDocumentStatus(driver);
+            if (status.equals("loading"))
+            {
+                HelpersMethod.waitTillLoadingPage(driver);
+            }
+
+            wait = new FluentWait<>(driver)
+                    .withTimeout(Duration.ofSeconds(150))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
+            currentURL = driver.getCurrentUrl();
+            scenario.log(currentURL);
+
+            wait = new FluentWait<>(driver)
+                    .withTimeout(Duration.ofSeconds(120))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
+            if (HelpersMethod.IsExists("//div[@class='open-menu-hamburger-icon']//*[local-name()='svg']//*[local-name()='path' and contains(@d,'M3,18H21V16H3Zm0-5H21V11H3ZM3,6V8H21V6Z')]", driver))
+            {
+                WebEle = HelpersMethod.FindByElement(driver, "xpath", "//*[local-name()='svg']//*[local-name()='path' and contains(@d,'M3,18H21V16H3Zm0-5H21V11H3ZM3,6V8H21V6Z')]");
+                act.moveToElement(WebEle).click().build().perform();
             }
             status = HelpersMethod.returnDocumentStatus(driver);
             if (status.equals("loading"))
             {
                 HelpersMethod.waitTillLoadingPage(driver);
             }
-            if(HelpersMethod.IsExists("//*[local-name()='svg']//*[local-name()='path' and contains(@d,'M3,18H21V16H3Zm0-5H21V11H3ZM3,6V8H21V6Z')]",driver))
-            {
-                WebEle=HelpersMethod.FindByElement(driver,"xpath","//*[local-name()='svg']//*[local-name()='path' and contains(@d,'M3,18H21V16H3Zm0-5H21V11H3ZM3,6V8H21V6Z')]");
-                act.moveToElement(WebEle).build().perform();
-                act.click(WebEle).build().perform();
-            }
-            currentURL=driver.getCurrentUrl();
+
             if(HelpersMethod.IsExists("//ul[contains(@class,'MuiList-root ')]/descendant::span[contains(text(),'Competitive Pricing')]",driver))
             {
                 scenario.log("NAVIGATED TO COMPETITOR PRICING PAGE");
@@ -129,8 +159,9 @@ public class CompetitivePricingGeneralPage
             {
                 scenario.log("COMPETITOR PRICING MAY NOT BE ENABLED FOR THE APPLICATION, CHECK WITH ADMIN SETTINGS");
             }
-            Assert.assertEquals(exists, true);
-        } catch (Exception e) {}
+            Assert.assertTrue(exists);
+        }
+        catch (Exception e) {}
     }
 
     public void HandleError_Page()
@@ -176,11 +207,12 @@ public class CompetitivePricingGeneralPage
            /* else
             {*/
                 driver.navigate().to(currentURL);
-                if (HelpersMethod.IsExists("//div[@class='loader']", driver))
-                {
-                    WebElement WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000000);
-                }
+                Wait<WebDriver> wait1 = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(120))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+                wait1.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
             //}
         }
         catch (Exception e){}
@@ -196,7 +228,7 @@ public class CompetitivePricingGeneralPage
             {
                 exists=true;
             }
-            Assert.assertEquals(exists,true);
+            Assert.assertTrue(exists);
         }
         catch (Exception e){}
     }
@@ -207,9 +239,9 @@ public class CompetitivePricingGeneralPage
         WebElement WebEle=null;
         try
         {
-            HelpersMethod.ClickBut(driver,CustomerRefDropdown,1000);
+            HelpersMethod.ClickBut(driver,CustomerRefDropdown,10000);
             exists=true;
-            Assert.assertEquals(exists,true);
+            Assert.assertTrue(exists);
         }
         catch (Exception e){}
 
@@ -260,7 +292,7 @@ public class CompetitivePricingGeneralPage
         {
             HelpersMethod.ClickBut(driver, CustomerAccIndex, 1000);
             exists = true;
-            Assert.assertEquals(exists, true);
+            Assert.assertTrue(exists);
         }
         catch (Exception e){}
     }
@@ -548,6 +580,12 @@ public class CompetitivePricingGeneralPage
     {
         try
         {
+            Wait<WebDriver> wait = new FluentWait<>(driver)
+                    .withTimeout(Duration.ofSeconds(120))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
             HelpersMethod.waitTillElementLocatedDisplayed(driver, "xpath", "//div[contains(@class,'k-widget k-window k-dialog')]", 100);
             // to fetch the web element of the modal container
             WebElement modalContainer = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-widget k-window k-dialog')]");

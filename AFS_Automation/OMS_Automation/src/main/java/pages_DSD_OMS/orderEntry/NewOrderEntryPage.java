@@ -189,7 +189,6 @@ public class NewOrderEntryPage
     public boolean ValidateNewOEAllOrder() throws InterruptedException
     {
         exists=false;
-        WebElement WebEle=null;
 
         String status=HelpersMethod.returnDocumentStatus(driver);
         if(status.equals("loading"))
@@ -197,7 +196,7 @@ public class NewOrderEntryPage
             HelpersMethod.waitTillLoadingPage(driver);
         }
 
-        Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+        Wait<WebDriver> wait = new FluentWait<>(driver)
                 .withTimeout(Duration.ofSeconds(120))
                 .pollingEvery(Duration.ofSeconds(2))
                 .ignoring(NoSuchElementException.class);
@@ -227,7 +226,7 @@ public class NewOrderEntryPage
                 scenario.log("NEW ORDER ENTRY PAGE HAS BEEN FOUND");
                 exists=true;
             }
-            Assert.assertEquals(exists,true);
+            Assert.assertTrue(exists);
         }
         catch (Exception e){}
         return exists;
@@ -967,6 +966,27 @@ public class NewOrderEntryPage
                     WebEle=modalContainer.findElement(By.xpath(".//button[text()='Continue']"));
                     HelpersMethod.ActClick(driver,WebEle, 4000);
                     scenario.log("PRODUCT CUTOFF DIALOG BOX HAS BEEN HANDLED");
+
+                    wait = new FluentWait<WebDriver>(driver)
+                            .withTimeout(Duration.ofSeconds(120))
+                            .pollingEvery(Duration.ofSeconds(2))
+                            .ignoring(NoSuchElementException.class);
+                    wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+                }
+                //Order factor dialog box
+                if (HelpersMethod.IsExists("//div[contains(text(),'requires an order factor of')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
+                {
+                    wait = new FluentWait<WebDriver>(driver)
+                            .withTimeout(Duration.ofSeconds(120))
+                            .pollingEvery(Duration.ofSeconds(2))
+                            .ignoring(NoSuchElementException.class);
+                    wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
+                    WebElement modalContainer = HelpersMethod.FindByElement(driver,"xpath","//div[contains(text(),'requires an order factor of')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]");
+                    //click on Continue button
+                    WebEle=modalContainer.findElement(By.xpath(".//button[text()='Continue']"));
+                    HelpersMethod.ActClick(driver,WebEle, 4000);
+                    scenario.log("ORDER FACTOR OF DIALOG BOX HAS BEEN HANDLED");
 
                     wait = new FluentWait<WebDriver>(driver)
                             .withTimeout(Duration.ofSeconds(120))

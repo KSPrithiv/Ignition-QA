@@ -57,9 +57,9 @@ public class BlackoutAndCutoffPage
         exists=false;
         try
         {
-            if(AddButton.isEnabled())
+            if(HelpersMethod.IsExistsById("add-blackout-date",driver))
             {
-                HelpersMethod.ClickBut(driver,AddButton,1000);
+                HelpersMethod.ClickBut(driver,AddButton,10000);
                 scenario.log("ADD BUTTON HAS BEEN CLICKED");
                 exists=true;
             }
@@ -136,7 +136,7 @@ public class BlackoutAndCutoffPage
             WebElement modelContainer= HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-widget k-window k-dialog')]");
             WebElement messageBlackout=modelContainer.findElement(By.xpath(".//textarea[@id='new-blackout-message']"));
             String mesageForBlackout= RandomValues.generateRandomString(100);
-            HelpersMethod.EnterText(driver,messageBlackout,1000,mesageForBlackout);
+            HelpersMethod.EnterText(driver,messageBlackout,10000,mesageForBlackout);
             //read message entered
             WebElement warningMessage=HelpersMethod.FindByElement(driver,"id","new-blackout-message");
             readMessage=warningMessage.getText();

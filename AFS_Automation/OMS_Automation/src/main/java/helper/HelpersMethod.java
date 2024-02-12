@@ -347,6 +347,18 @@ public class HelpersMethod
         return value;
     }
 
+    public static String returnStatus(WebDriver driver,WebElement element,int timeOut)
+    {
+        String value=null;
+        new WebDriverWait(driver,Duration.ofMillis(timeOut)).until(ExpectedConditions.visibilityOf(element));
+        if(element.isDisplayed())
+        {
+            value= element.getAttribute("aria-checked");
+        }
+        return  value;
+    }
+
+
     //To check whether element is enabled or not
     public static boolean IsEnabledById(String eleId, WebDriver driver)
     {

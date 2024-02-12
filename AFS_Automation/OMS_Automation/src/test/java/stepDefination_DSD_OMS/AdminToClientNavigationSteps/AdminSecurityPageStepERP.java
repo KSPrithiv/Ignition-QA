@@ -28,10 +28,8 @@ import java.util.List;
 public class AdminSecurityPageStepERP
 {
     /* Created by Divya.Ramadas */
-    static boolean flag=false;
     WebDriver driver;
     Scenario scenario;
-    static AdminSecurityRolePage adminSecurityRolePage;
     static LoginPage loginpage;
     static HomePage homepage;
     static AdminHomePage adminHomePage;
@@ -149,9 +147,9 @@ public class AdminSecurityPageStepERP
         adminSecurityPermissionPage.searchAdminSettingInSearchBar(control1);
         adminSecurityPermissionPage.validateAdminSettingSearchValue(control1);
         adminSecurityPermissionPage.checkCheckbox("modifycpcustomermastercontactinfoonly");
-
         adminHomePage=new AdminHomePage(driver,scenario);
         adminHomePage.Click_SaveButton();
+
         adminSecurityPermissionPage=new AdminSecurityPermissionPage(driver,scenario);
         adminSecurityPermissionPage.searchAdminSettingInSearchBarClear();
         adminSecurityPermissionPage.searchAdminSettingInSearchBar(control2);

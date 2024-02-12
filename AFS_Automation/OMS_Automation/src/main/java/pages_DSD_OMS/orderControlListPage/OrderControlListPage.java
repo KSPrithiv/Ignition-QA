@@ -45,6 +45,9 @@ public class OrderControlListPage
     @FindBy(xpath = "//span[@id='OrderTaker']/descendant::span[@class='k-select']")
     private WebElement OrderTaker;
 
+    @FindBy(id="CallDesk")
+    private WebElement callDesk;
+
     @FindBy(id = "All")
     private WebElement AllRadio;
 
@@ -900,13 +903,14 @@ public class OrderControlListPage
         catch (Exception e){}
     }
 
-    public void verifySkipInTaken()
+    public void verifySkipInTaken() throws InterruptedException
     {
         exists=false;
+        Thread.sleep(10000);
         try
         {
-            HelpersMethod.EnterText(driver,SearchBox,1000,Acc_No);
-            HelpersMethod.ClickBut(driver,SearchIndex,1000);
+            HelpersMethod.EnterText(driver,SearchBox,10000,Acc_No);
+            HelpersMethod.ClickBut(driver,SearchIndex,10000);
             if(!HelpersMethod.IsExists("//td[contains(text(),'No records available')]",driver))
             {
                 scenario.log("SKIP CUSTOMER ACCOUNT# HAS BEEN FOUND UNDER TAKEN");
@@ -1066,6 +1070,28 @@ public class OrderControlListPage
             // to fetch the web elements of the modal content and interact with them, code to fetch content of modal title and verify it
             WebElement modalContentTitle = modalContainer.findElement(By.xpath(".//div[contains(@class,'k-window-title k-dialog-title')]"));
             Assert.assertEquals(modalContentTitle.getText(), "Skip", "Verify Title message");
+        }
+        catch (Exception e){}
+    }
+
+    public void validateSkipPopupNonExistence()
+    {
+        exists=false;
+        try
+        {
+            if (HelpersMethod.IsExists("//div[@class='loader']", driver))
+            {
+                WebElement WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000000);
+            }
+            HelpersMethod.waitTillElementLocatedDisplayed(driver, "xpath", "//div[contains(text(),'Skip')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]", 60);
+            // to fetch the web element of the modal container
+            WebElement modalContainer = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(text(),'Skip')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]");
+            if(!modalContainer.isDisplayed())
+            {
+                exists=true;
+            }
+            Assert.assertTrue(exists);
         }
         catch (Exception e){}
     }
@@ -1779,6 +1805,84 @@ public class OrderControlListPage
                 HelpersMethod.ActClick(driver,okButton,1000);
             }
             Assert.assertEquals(exists,true);
+        }
+        catch (Exception e){}
+    }
+
+    public void navigateToOCL()
+    {
+        exists=false;
+        WebElement WebEle = null;
+        String status;
+        try
+        {
+            status = HelpersMethod.returnDocumentStatus(driver);
+            if (status.equals("loading"))
+            {
+                HelpersMethod.waitTillLoadingPage(driver);
+            }
+            if (HelpersMethod.IsExists("//div[@class='loader']", driver))
+            {
+                WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000000);
+            }
+            status = HelpersMethod.returnDocumentStatus(driver);
+            if (status.equals("loading"))
+            {
+                HelpersMethod.waitTillLoadingPage(driver);
+            }
+
+            WebEle = HelpersMethod.FindByElement(driver, "xpath", "//li[contains(@class,'k-item')]/span[@class='k-link' and contains(text(),'Order control list')]");
+            status = HelpersMethod.returnDocumentStatus(driver);
+            if (status.equals("loading"))
+            {
+                HelpersMethod.waitTillLoadingPage(driver);
+            }
+            if (HelpersMethod.EleDisplay(WebEle))
+            {
+                HelpersMethod.navigate_Horizantal_Tab(driver, "Order control list", "//li[contains(@class,'k-item')]/span[@class='k-link' and contains(text(),'Order control list')]", "xpath", "//li[contains(@class,'k-item')]/span[@class='k-link']");
+                if (HelpersMethod.IsExists("//div[@class='loader']", driver))
+                {
+                    WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
+                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000000);
+                }
+
+                status = HelpersMethod.returnDocumentStatus(driver);
+                if (status.equals("loading"))
+                {
+                    HelpersMethod.waitTillLoadingPage(driver);
+                }
+
+                Wait<WebDriver> wait = new FluentWait<>(driver)
+                        .withTimeout(Duration.ofSeconds(140))
+                        .pollingEvery(Duration.ofSeconds(2))
+                        .ignoring(NoSuchElementException.class);
+                wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+            }
+            else
+            {
+                scenario.log("ORDER CONTROL TAB DOESN'T EXISTS");
+            }
+        }
+        catch (Exception e){}
+    }
+
+    public void validateCallDeskDisplayed()
+    {
+        exists=false;
+        try
+        {
+            if(!callDesk.isDisplayed())
+            {
+                scenario.log("CALL DESK INPUT BOX IS NOT DISPLAYED");
+                exists=true;
+            }
+            else
+            {
+                scenario.log("<span style='color:red'>CALL DESK INPUT BOX IS DISPLAYED</span>");
+                exists=false;
+            }
+            Assert.assertTrue(exists);
         }
         catch (Exception e){}
     }

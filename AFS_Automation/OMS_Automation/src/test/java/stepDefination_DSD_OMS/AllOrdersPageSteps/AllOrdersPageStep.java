@@ -195,6 +195,7 @@ public class AllOrdersPageStep
     public void userClicksOnStartOrderButtonAndSelectsAddFromDropDown() throws InterruptedException
     {
         allOrder=new AllOrderPage(driver,scenario);
+        allOrder.ValidateAllOrder();
         allOrder.ClickOnStartOrder();
     }
 
@@ -215,6 +216,7 @@ public class AllOrdersPageStep
     public void clickOnSubmitOrderButtonAndReadOrder_noCreatedForAllOrder() throws InterruptedException, AWTException
     {
         summary = new CheckOutSummaryPage(driver,scenario);
+        summary.validateSummaryPage();
         summary.ClickSubmit();
         for(int i=0;i<=2;i++)
         {
