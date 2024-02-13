@@ -2,7 +2,7 @@ name: WMS Regression
 on:
  push:
    branches:
-     - karthik
+     - karthikcommeted-1
  workflow_dispatch:
   
 jobs:
