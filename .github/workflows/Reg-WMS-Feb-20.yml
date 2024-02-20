@@ -2,7 +2,8 @@ name: WMS Regression
 on:
  push:
    branches:
-     - karthik
+     - karthikcom
+ 
  workflow_dispatch:
   
 jobs:
@@ -26,7 +27,7 @@ jobs:
       
       
       
-      - name: WMS R2402 before API2.0 Migration
+      - name: WMS API1.0 -R2402 before API2.0 Migration
         run: |
          mvn install test -DsuiteXmlFile='OutboundLoadPlanning1TestNGRunner.xml'
         #working-directory: AFS_Automation/WMS_Automation 
