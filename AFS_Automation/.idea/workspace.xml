@@ -5,27 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="509c80e0-2f2e-4497-bee7-a6c4d904e2a0" name="Changes" comment="pushing">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WMS_Automation/Reports/Index.html" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/Reports/Index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WMS_Automation/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WMS_Automation/src/main/java/common/setup/DriverManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/src/main/java/common/setup/DriverManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WMS_Automation/src/main/java/helper/HelpersMethod.java" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/src/main/java/helper/HelpersMethod.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WMS_Automation/src/main/java/objects/outbound/OutboundRoutesDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/src/main/java/objects/outbound/OutboundRoutesDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WMS_Automation/src/main/java/ui/pages/BasePage.java" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/src/main/java/ui/pages/BasePage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WMS_Automation/src/main/java/ui/pages/LoginPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/src/main/java/ui/pages/LoginPage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WMS_Automation/src/main/java/ui/pages/outbound/loadplanning/OutboundLoadPlanningPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/src/main/java/ui/pages/outbound/loadplanning/OutboundLoadPlanningPage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WMS_Automation/src/test/java/runners/msg_delay_wms.java" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/src/test/java/runners/msg_delay_wms.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WMS_Automation/src/test/java/steps/LoginPageSteps.java" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/src/test/java/steps/LoginPageSteps.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../.github/workflows/OB_IB_not_executed.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../.github/workflows/Reg-Jan30-WMS.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../.github/workflows/Reg-WMS-Feb-13.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../.github/workflows/Reg-WMS-Feb-20.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../.github/workflows/WMS-failed-Jan31.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.github/workflows/WMS-failed.yml" beforeDir="false" afterPath="$PROJECT_DIR$/../.github/workflows/WMS-failed.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/WMS_Automation/src/test/java/testdata/json/OutboundOrderLoadsBatchesData.json" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/src/test/java/testdata/json/OutboundOrderLoadsBatchesData.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WMS_Automation/src/test/resources/features/dashboard/DashboardScreen.feature" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/src/test/resources/features/dashboard/DashboardScreen.feature" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WMS_Automation/src/test/resources/features/workqueue/assignwork/msg_delay_wms.feature" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/src/test/resources/features/workqueue/assignwork/msg_delay_wms.feature" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/WMS_Automation/src/test/resources/properties/config_test.properties" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/src/test/resources/properties/config_test.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WMS_Automation/target/classes/common/setup/DriverManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/target/classes/common/setup/DriverManager.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WMS_Automation/target/classes/ui/pages/BasePage.class" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/target/classes/ui/pages/BasePage.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WMS_Automation/target/classes/ui/pages/LoginPage.class" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/target/classes/ui/pages/LoginPage.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WMS_Automation/target/test-classes/properties/config_test.properties" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/target/test-classes/properties/config_test.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WMS_Automation/target/test-classes/runners/msg_delay_wms.class" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/target/test-classes/runners/msg_delay_wms.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WMS_Automation/target/test-classes/steps/LoginPageSteps.class" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/target/test-classes/steps/LoginPageSteps.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
