@@ -41,3 +41,15 @@ Feature: Statements
     And User select Date check box in Statements
     Then User Selects start and end dates
     And User selects Customer Account# and Clicks on Generate button and verify for pdf
+
+  @SortAccount#
+  Scenario: Test scenario for sorting customer Account#
+    Given User must be on Client side and select Statements
+    Then User should confirm that he is in Statements page
+    And User moves mouse control to customer account# and clicks on sort arrow
+
+  @SortCustomerName
+  Scenario: Test scenario for sorting customer Name
+    Given User must be on Client side and select Statements
+    Then User should confirm that he is in Statements page
+    And User moves mouse control to customer name and clicks on sort arrow

@@ -104,6 +104,9 @@ public interface Environment extends Config
     @Key("FullAccount")
     String FullAcc();
 
+    @Key("FullAccount1")
+    String FullAcc1();
+
     @Key("DB_ProdDesc")
     String get_ProdDesc();
 
@@ -163,5 +166,8 @@ public interface Environment extends Config
 
     @Key("PriceOverride")
     String priceRide();
+
+    @Key("UserManageRegistration")
+    String userManageRegistration();
 }
 

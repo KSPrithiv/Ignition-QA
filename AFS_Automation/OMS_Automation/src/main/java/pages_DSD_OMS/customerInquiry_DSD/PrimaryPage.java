@@ -6,6 +6,7 @@ import org.apache.logging.log4j.core.tools.picocli.CommandLine;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -198,7 +199,7 @@ public class PrimaryPage
         List<WebElement> Options= HelpersMethod.FindByElements(driver,"xpath","//div[contains(@class,'k-popup k-child-animation-container')]/descendant::ul/li");
         try
         {
-            if(Options.size()==1)
+           if(Options.size()==1)
             {
                 scenario.log("THERE ARE NO OPTIONS OTHER THAN 'None'");
                 HelpersMethod.ActClick(driver, Options.get(0), 1000);
@@ -410,7 +411,19 @@ public class PrimaryPage
     {
         HelpersMethod.ScrollElement(driver,status);
         HelpersMethod.JScriptClick(driver,status,100);
-        selectDropDownValue();
+        List<WebElement> Options= HelpersMethod.FindByElements(driver,"xpath","//div[contains(@class,'k-popup k-child-animation-container')]/descendant::ul/li");        String optText=null;
+        Actions act=new Actions(driver);
+        for(WebElement opt:Options)
+        {
+            act.moveToElement(opt).build().perform();
+            optText=opt.getText();
+            if(optText.equalsIgnoreCase("Active"))
+            {
+                act.moveToElement(opt).build().perform();
+                act.click(opt).build().perform();
+                break;
+            }
+        }
         scenario.log("STATUS DROP DOWN IS "+status.getText());
     }
 

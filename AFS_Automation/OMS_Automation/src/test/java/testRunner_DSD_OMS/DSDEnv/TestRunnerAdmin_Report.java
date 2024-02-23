@@ -16,11 +16,7 @@ import java.io.IOException;
  * @Author Divya.Ramadas@afsi.com
  */
 @CucumberOptions
-        (features = {
-                  "src/test/resources/features_DSD_OMS/AdminReportsFeature",
-                //"src/test/resources/features_DSD_OMS/AdminReportsFeature/userAndAccountsFeature.feature",
-                //"src/test/resources/features_DSD_OMS/AdminReportsFeature/userAndAccountsFeature1.feature"
-                    },
+        (features = {"src/test/resources/features_DSD_OMS/AdminReportsFeature"},
                 glue = {"stepDefination_DSD_OMS"},
                 plugin = {"pretty",
                         "json:target/cucumber.json",
@@ -28,6 +24,7 @@ import java.io.IOException;
                         "com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:Reports/spark/",
                         "rerun:target/failedrerun.txt"},
                 monochrome = true)
+
 public class TestRunnerAdmin_Report extends AbstractTestNGCucumberTests
 {
     /* Created by Divya.Ramadas@afsi.com */

@@ -3,13 +3,15 @@ package pages_DSD_OMS.adminReport;
 import helper.HelpersMethod;
 import io.cucumber.java.Scenario;
 import io.cucumber.java.bs.A;
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.FluentWait;
+import org.openqa.selenium.support.ui.Wait;
 import org.testng.Assert;
+
+import java.time.Duration;
 
 /**
  * @Project DSD_OMS
@@ -124,17 +126,26 @@ public class userAndAdmin_GeneralPage
         exists=true;
         try
         {
-            if(saveButton.isDisplayed() && saveButton.isEnabled()) {
+            if (HelpersMethod.IsExists("//div[@class='loader']", driver))
+            {
+                WebElement WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 2000000);
+            }
+            if(saveButton.isDisplayed() && saveButton.isEnabled())
+            {
                 HelpersMethod.ClickBut(driver, saveButton, 8000);
-                if (HelpersMethod.IsExists("//div[@class='loader']", driver)) {
-                    WebElement WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 2000000);
-                }
 
-                if (HelpersMethod.IsExists("//div[contains(text(),'The information has been')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]", driver)) {
-                    WebElement confirmationPopup = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(text(),'The information has been')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]");
+                Wait<WebDriver> wait = new FluentWait<>(driver)
+                        .withTimeout(Duration.ofSeconds(120))
+                        .pollingEvery(Duration.ofSeconds(2))
+                        .ignoring(NoSuchElementException.class);
+                wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
+                if (HelpersMethod.IsExists("//div[contains(text(),'The information has been')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]", driver))
+                {
+                    WebElement confirmationPopup = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-widget k-window k-dialog')]");
                     WebElement okButton = confirmationPopup.findElement(By.xpath(".//button[text()='OK']"));
-                    HelpersMethod.ActClick(driver, okButton, 1000);
+                    HelpersMethod.ActClick(driver, okButton, 20000);
                     exists = true;
                 }
             }

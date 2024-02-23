@@ -16,7 +16,7 @@ import java.io.IOException;
  * @Author Divya.Ramadas@afsi.com
  */
 @CucumberOptions
-        (features = "src/test/resources/features_DSD_OMS/CustomerInqFeature_DSD",
+        (features = "src/test/resources/features_DSD_OMS/CustomerInqFeature_DSDFeature",
                 glue = {"stepDefination_DSD_OMS"},
                 plugin = {"pretty",
                         "json:target/cucumber.json",
@@ -24,26 +24,34 @@ import java.io.IOException;
                         "com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:Reports/spark/",
                         "rerun:target/failedrerun.txt"},
                 monochrome = true)
-public class TestRunnerCustInq_DSD extends AbstractTestNGCucumberTests {
+
+public class TestRunnerCustInq_DSD extends AbstractTestNGCucumberTests
+{
     /* Created by Divya.Ramadas@afsi.com */
     @Parameters({"environment"})
     @BeforeClass
-    public static void beforeClass(@Optional("environment") String envi) {
-        try {
+    public static void beforeClass(@Optional("environment") String envi)
+    {
+        try
+        {
             TestBase.InitializeProp(envi);
             TestBase.SetDriver(TestBase.testEnvironment.get_browser());
-        } catch (Exception e) {
         }
+        catch (Exception e) {}
     }
 
     @AfterClass
-    public static void afterclass() throws InterruptedException, MessagingException, IOException {
+    public static void afterclass() throws InterruptedException, MessagingException, IOException
+    {
         Thread.sleep(10000);
         //MailSend.sendMail();
         TestBase.CloseBrowser();
-        if (TestBase.testEnvironment.get_browser().equalsIgnoreCase("Firefox")) {
+        if (TestBase.testEnvironment.get_browser().equalsIgnoreCase("Firefox"))
+        {
             Runtime.getRuntime().exec("taskkill /F /IM geckodriver.exe");
-        } else if (TestBase.testEnvironment.get_browser().equalsIgnoreCase("Chrome")) {
+        }
+        else if (TestBase.testEnvironment.get_browser().equalsIgnoreCase("Chrome"))
+        {
             Runtime.getRuntime().exec("taskkill /F /IM chromedriver.exe");
         }
     }

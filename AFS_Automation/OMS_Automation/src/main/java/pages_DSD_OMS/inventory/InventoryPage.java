@@ -2,25 +2,18 @@ package pages_DSD_OMS.inventory;
 
 import helper.HelpersMethod;
 import io.cucumber.java.Scenario;
-import io.netty.handler.codec.spdy.SpdyHttpResponseStreamIdHandler;
-import org.apache.logging.log4j.core.tools.picocli.CommandLine;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.devtools.v85.network.model.DataReceived;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import pages_DSD_OMS.login.HomePage;
 import util.DataBaseConnection;
 import util.TestBase;
 
-import java.nio.charset.StandardCharsets;
-import java.time.Duration;
 import java.util.List;
 
 public class InventoryPage
@@ -29,6 +22,9 @@ public class InventoryPage
     Scenario scenario;
     static String currentURL;
     static boolean exists=false;
+    static String runningTotalUnits=null;
+    int totalUitsValue;
+    int headIndex=0;
 
     @FindBy(xpath="//div[contains(@class,'k-grouping-header')]/descendant::div[contains(@class,'k-indicator-container')]")
     private WebElement To;
@@ -565,11 +561,133 @@ public class InventoryPage
                     break;
                 }
             }
+            String status = HelpersMethod.returnDocumentStatus(driver);
+            if (status.equals("loading"))
+            {
+                HelpersMethod.waitTillLoadingPage(driver);
+            }
+
             if(HelpersMethod.IsExists("//div[@class='loader']",driver))
             {
                 WebElement WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100000);
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000000);
             }
+
+            status = HelpersMethod.returnDocumentStatus(driver);
+            if (status.equals("loading"))
+            {
+                HelpersMethod.waitTillLoadingPage(driver);
+            }
+            if(HelpersMethod.IsExists("//div[@class='loader']",driver))
+            {
+                WebElement WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000000);
+            }
+
+        }
+        catch (Exception e){}
+    }
+
+    public void findTotalUnitsInColumn(String headTable)
+    {
+        String headText=null;
+        String totalValue=null;
+        Actions act=new Actions(driver);
+        exists=false;
+        try
+        {
+            List<WebElement> heads=HelpersMethod.FindByElements(driver,"xpath","//th[@class='k-header']/descendant::span[@class='k-column-title']");
+            for (WebElement head:heads)
+            {
+                headIndex++;
+                act.moveToElement(head).build().perform();
+                headText=head.getText();
+                if(headText.equalsIgnoreCase(headTable))
+                {
+                    break;
+                }
+            }
+            List<WebElement> totalUnits=HelpersMethod.FindByElements(driver,"xpath","//tr[contains(@class,'k-master-row')]/descendant::td["+headIndex+"]");
+            for(WebElement totalunit:totalUnits)
+            {
+                act.moveToElement(totalunit).build().perform();
+                totalValue=totalunit.getText();
+                totalUitsValue=totalUitsValue+Integer.parseInt(totalValue);
+                exists=true;
+            }
+            scenario.log("TOTAL OF TOTAL UNITS COLUMN "+totalUitsValue);
+            Assert.assertEquals(exists,true);
+        }
+        catch (Exception e){}
+    }
+
+    public void findRunningTotalUnits()
+    {
+        exists=false;
+        try
+        {
+            if(HelpersMethod.IsExists("//span[contains(text(),'Running total units')]/following-sibling::span",driver))
+            {
+                runningTotalUnits=HelpersMethod.FindByElement(driver,"xpath","//span[contains(text(),'Running total units')]/following-sibling::span").getText();
+                exists=true;
+            }
+            Assert.assertEquals(exists,true);
+        }
+        catch (Exception e){}
+    }
+
+    public void compareTotalUnits()
+    {
+        exists=false;
+        try
+        {
+            if(Integer.parseInt(runningTotalUnits)==totalUitsValue)
+            {
+                scenario.log("RUNNING TOTAL UNITS: "+ runningTotalUnits+" TOTAL NUMBER OF UNITS FOUND IN GRID: "+totalUitsValue);
+                exists=true;
+            }
+            scenario.log("RUNNING TOTAL UNITS: "+ runningTotalUnits+" TOTAL NUMBER OF UNITS FOUND IN GRID: "+totalUitsValue);
+            Assert.assertEquals(exists,true);
+        }
+        catch (Exception e){}
+    }
+
+    public void listViewProductLoaded()
+    {
+        exists=false;
+        try
+        {
+            if(HelpersMethod.IsExists("//span[contains(text(),'load all products')]",driver))
+            {
+                scenario.log("AUTO LOAD OF PRODUCTS IN PRODUCT CATALOG DIALOG BOX HAS BEEN ACHIEVED");
+                exists=true;
+            }
+            else
+            {
+                scenario.log("<span style='color:red'>AUTO LOAD OF PRODUCTS IN PRODUCT CATALOG DIALOG BOX HAS NOT BEEN ACHIEVED </span>");
+                exists=false;
+            }
+            Assert.assertEquals(exists,true);
+        }
+        catch (Exception e){}
+    }
+
+    public void cardViewProductLoaded()
+    {
+        exists=false;
+        try
+        {
+            if(HelpersMethod.IsExists("//span[contains(text(),'load all products')]",driver))
+            {
+                scenario.log("AUTO LOAD OF PRODUCTS IN PRODUCT CATALOG DIALOG BOX HAS BEEN ACHIEVED");
+                exists=true;
+            }
+            else
+            {
+                scenario.log("<span style='color:red'>AUTO LOAD OF PRODUCTS IN PRODUCT CATALOG DIALOG BOX HAS NOT BEEN ACHIEVED </span>");
+                exists=false;
+            }
+            Assert.assertEquals(exists,true);
         }
         catch (Exception e){}
     }

@@ -107,6 +107,9 @@ Feature: Order Guide1
     And User enters Quick Product number and Sequence number
       |4|
     Then User click on Save button
+    And User should navigate back to OG page and verify OG "<OG>"  existence
+    And Clear filter to display both active and inactive OG
+    Then User enters OG Description "<OG>" in search box and Delete the OG verify same in OG grid
     Examples:
       |  OG         |   option      |
       | DayOfWeek   | National chain|
@@ -122,11 +125,12 @@ Feature: Order Guide1
       |4|
     Then User click on Save button
     And User should navigate back to OG page and verify OG "<OG>"  existence
-    #And User should navigate back to OG page and verify OG "<OG>"  existence
+    And Clear filter to display both active and inactive OG
+    Then User enters OG Description "<OG>" in search box and Delete the OG verify same in OG grid
     And User changes the Customer Account# to the previous Account#
     Examples:
       |     OG    |
-      |   OGDis14  |
+      |   OGDis21  |
 
   @DeleteCustomerAllocation
   Scenario Outline: Test scenario for deleting Customer allowcation
@@ -145,6 +149,8 @@ Feature: Order Guide1
       |4|
     Then User click on Save button
     And User should navigate back to OG page and verify OG "<OG>"  existence
+    And Clear filter to display both active and inactive OG
+    Then User enters OG Description "<OG>" in search box and Delete the OG verify same in OG grid
     Examples:
       |  OG    |
       |OGDis14 |
@@ -156,6 +162,8 @@ Feature: Order Guide1
     Then User enters OG "<OG>" Description in search box
     And User selects end date as past date
     Then User should navigate back to OG page and verify OG "<OG>" by selecting status as expired
+   # And Clear filter to display both active and inactive OG
+   # Then User enters OG Description "<OG>" in search box and Delete the OG verify same in OG grid
     Examples:
       |  OG        |
       | OGDis1     |
@@ -176,6 +184,8 @@ Feature: Order Guide1
     And User should select products from catalog popup
     Then User click on Save button
     #And User should navigate back to OG page and navigate back to "<OGType>" and verify OG "<OG>"  existence
+    And Clear filter to display both active and inactive OG
+    Then User enters OG Description "<OG>" in search box and Delete the OG verify same in OG grid
     Examples:
       |  OG       |
       |LocalChain1|

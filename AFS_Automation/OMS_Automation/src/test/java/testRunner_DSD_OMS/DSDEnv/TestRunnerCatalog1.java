@@ -25,6 +25,7 @@ import java.io.IOException;
                 "rerun:target/failedrerun.txt"
         },
         monochrome = true)
+
 public class TestRunnerCatalog1 extends AbstractTestNGCucumberTests
 {
     /* Created by Divya.Ramadas@afs.com */

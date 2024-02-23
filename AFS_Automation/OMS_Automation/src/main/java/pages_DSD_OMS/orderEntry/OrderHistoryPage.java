@@ -65,11 +65,12 @@ public class OrderHistoryPage
     public void ValidateOrderHistory()
     {
         exists=false;
-        if(HelpersMethod.IsExists("//div[@class='loader']",driver))
-        {
-            WebElement  WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000000);
-        }
+        Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                .withTimeout(Duration.ofSeconds(120))
+                .pollingEvery(Duration.ofSeconds(2))
+                .ignoring(NoSuchElementException.class);
+        wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
         try
         {
 
@@ -396,7 +397,7 @@ public class OrderHistoryPage
         {
             if(HelpersMethod.IsExists("//span[@id='grid-selection-dropdown']",driver))
             {
-                HelpersMethod.ClickBut(driver,gridType,1000);
+                HelpersMethod.JScriptClick(driver,gridType,6000);
                 exists=true;
             }
             Assert.assertEquals(exists,true);
@@ -448,6 +449,57 @@ public class OrderHistoryPage
                 Assert.assertEquals(exists,true);
             }
             catch (Exception e){}
+    }
+
+    public void selectGridType()
+    {
+        exists=false;
+        Actions act1=new Actions(driver);
+        //WebElement opt;
+        String optText;
+        try
+        {
+            new WebDriverWait(driver,Duration.ofMillis(2000)).until(ExpectedConditions.refreshed(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(@class,'k-animation-container k-animation-container-relative k-animation-container-shown')]/descendant::ul/li"))));
+            List<WebElement> Options=HelpersMethod.FindByElements(driver,"xpath","//div[contains(@class,'k-animation-container k-animation-container-relative k-animation-container-shown')]/descendant::ul/li");
+            //for (int i=0;i<=Options.size()-1;i++)
+            for(WebElement opt:Options)
+            {
+                act1.moveToElement(opt).build().perform();
+                optText=opt.getText();
+                if (optText.equals("Main grid"))
+                {
+                    act1.moveToElement(opt).build().perform();
+                    act1.click(opt).build().perform();
+                    exists=true;
+                    break;
+                }
+            }
+            if(HelpersMethod.IsExists("//div[@class='loader']",driver))
+            {
+                WebElement WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000000);
+            }
+            String gridName=HelpersMethod.FindByElement(driver,"xpath","//button[@data-test-id='grid-selection']").getText();
+            scenario.log("GRID SELECTED IS "+gridName);
+            Assert.assertEquals(exists,true);
+        }
+        catch (Exception e){}
+    }
+
+    public void validateGridType()
+    {
+        exists=false;
+        try
+        {
+            String gridValue=HelpersMethod.FindByElement(driver,"xpath","//span[@id='grid-selection-dropdown']/span[@class='k-input']").getText();
+            if(!gridValue.equals(""))
+            {
+                scenario.log("GRID TYPE SELECTED IS "+gridValue);
+                exists=true;
+            }
+            Assert.assertEquals(exists,true);
+        }
+        catch (Exception e){}
     }
 
     public void clickOnOrderButton()

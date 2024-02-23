@@ -78,7 +78,7 @@ public class adminReportPage
             HelpersMethod.ActClick(driver,toDate,1000);
             exists=true;
             new WebDriverWait(driver,Duration.ofMillis(40000)).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class,'k-calendar-monthview')]")));
-            Assert.assertEquals(exists,true);
+            Assert.assertTrue(exists);
         }
         catch(Exception e){}
     }
@@ -110,7 +110,7 @@ public class adminReportPage
                 {
                     scenario.log("NOT ABLE TO SELECT THE DATE");
                 }
-                Assert.assertEquals(exists,true);
+                Assert.assertTrue(exists);
             }
         }
         catch (Exception e) {}
@@ -138,7 +138,7 @@ public class adminReportPage
                 {
                     scenario.log("THERE IS NO FOCUSSED DATE");
                 }
-                Assert.assertEquals(exists,true);
+                Assert.assertTrue(exists);
             }
         }
         catch (Exception e){}
@@ -155,7 +155,7 @@ public class adminReportPage
                 HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100000);
             }
             exists=true;
-            Assert.assertEquals(exists,true);
+            Assert.assertTrue(exists);
         }
         catch (Exception e){}
     }
@@ -179,7 +179,7 @@ public class adminReportPage
                 WebElement okButton=dialogPopup.findElement(By.xpath(".//button[text()='Ok']"));
                 HelpersMethod.ClickBut(driver,okButton,4000);
             }
-            Assert.assertEquals(exists,true);
+            Assert.assertTrue(exists);
         }
         catch (Exception e){}
     }
@@ -209,7 +209,7 @@ public class adminReportPage
                 }
             }
             driver.switchTo().window(ParentWindow);
-            Assert.assertEquals(exists,true);
+            Assert.assertTrue(exists);
         }
         catch (Exception e){}
     }
@@ -242,7 +242,7 @@ public class adminReportPage
                 scenario.log("RESET BUTTON IS NOT WORKING");
                 exists=false;
             }
-            Assert.assertEquals(exists,true);
+            Assert.assertTrue(exists);
             Thread.sleep(2000);
         }
         catch(Exception e){}
@@ -259,7 +259,7 @@ public class adminReportPage
                 HelpersMethod.ActClick(driver, toCalender, 1000);
                 exists=true;
             }
-            Assert.assertEquals(exists,true);
+            Assert.assertTrue(exists);
         }
         catch (Exception e){}
     }
@@ -275,7 +275,7 @@ public class adminReportPage
                 HelpersMethod.ActClick(driver, dateSelection, 1000);
                 exists = true;
             }
-            Assert.assertEquals(exists, true);
+            Assert.assertTrue(exists);
         } catch (Exception e) {
         }
     }

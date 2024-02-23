@@ -11,8 +11,8 @@ Feature: Order control list
   Scenario: Test scenario for verifying customer note in OCL
     Given User must be on Order Entry Page to select OCL
     And User should navigate to OCL
-    Then User should select Order traker from drop down
-    And Change the delivery date 1 days after current date
+    Then User should select Order taker from drop down
+    And Change the delivery date 2 days after current date
     Then User Clicks on Untaken radio button and user clicks on Refresh button
     Then User should add customer note using Order control List
     Then User clicks on Order icon in OCL grid

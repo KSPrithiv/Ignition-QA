@@ -754,6 +754,7 @@ public class LoginPageStep
     {
             orderpage = new OrderEntryPage(driver, scenario);
             orderpage.NavigateToOrderEntry();
+            orderpage.ValidateOE();
     }
     @When("User is on Home Page for eCommerce help")
     public void userIsOnHomePageForECommerceHelp()
@@ -777,6 +778,7 @@ public class LoginPageStep
     {
         orderpage = new OrderEntryPage(driver, scenario);
         orderpage.NavigateToOrderEntry();
+        orderpage.ValidateOE();
     }
 
     @And("User click on Question mark and selects ecommerce option")

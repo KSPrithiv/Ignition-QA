@@ -4,6 +4,8 @@ import org.openqa.selenium.*;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.FluentWait;
+import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.awt.*;
@@ -268,11 +270,11 @@ public class HelpersMethod
         return Value;
     }
 
-    public static boolean IsExists(String ele,WebDriver driver)
+    public static boolean IsExists(String Xpath,WebDriver driver)
     {
         try
         {
-            driver.findElement(By.xpath(ele));
+            driver.findElement(By.xpath(Xpath));
             return true;
         }
         catch (Exception e)
@@ -344,6 +346,18 @@ public class HelpersMethod
         }
         return value;
     }
+
+    public static String returnStatus(WebDriver driver,WebElement element,int timeOut)
+    {
+        String value=null;
+        new WebDriverWait(driver,Duration.ofMillis(timeOut)).until(ExpectedConditions.visibilityOf(element));
+        if(element.isDisplayed())
+        {
+            value= element.getAttribute("aria-checked");
+        }
+        return  value;
+    }
+
 
     //To check whether element is enabled or not
     public static boolean IsEnabledById(String eleId, WebDriver driver)
@@ -566,21 +580,29 @@ public class HelpersMethod
                 break;
             }
         }
-        if(IsExists("//div[@class='loader']",driver))
-        {
-            WebElement WebEle=FindByElement(driver,"xpath","//div[@class='loader']");
-            waitTillLoadingWheelDisappears(driver, WebEle, 1000000);//60000
-        }
         String status=returnDocumentStatus(driver);
         if (status.equals("loading"))
         {
             waitTillLoadingPage(driver);
         }
-        if(IsExists("//div[@class='loader']",driver))
+
+        Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                .withTimeout(Duration.ofSeconds(120))
+                .pollingEvery(Duration.ofSeconds(2))
+                .ignoring(NoSuchElementException.class);
+        wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
+        status=returnDocumentStatus(driver);
+        if (status.equals("loading"))
         {
-            WebElement WebEle=FindByElement(driver,"xpath","//div[@class='loader']");
-            waitTillLoadingWheelDisappears(driver, WebEle, 1000000);//60000
+            waitTillLoadingPage(driver);
         }
+
+        wait = new FluentWait<WebDriver>(driver)
+                .withTimeout(Duration.ofSeconds(120))
+                .pollingEvery(Duration.ofSeconds(2))
+                .ignoring(NoSuchElementException.class);
+        wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
     }
 
     public static String gettingTitle(WebDriver driver)

@@ -21,9 +21,11 @@ Feature: Order Guide2
       |4|
     Then User click on Save button
     And User should navigate back to OG page and verify OG "<OG>"  existence
+    And Clear filter to display both active and inactive OG
+    Then User enters OG Description "<OG1>" in search box and Delete the OG verify same in OG grid
     Examples:
-      |   OG    |
-      | Push OG |
+      |   OG    |   OG1    |
+      | Push OG |Push OGPush OG|
 
   @OGPar
   Scenario Outline: Test scenario for creating Par order guide
@@ -38,9 +40,11 @@ Feature: Order Guide2
       |4|
     Then User click on Save button
     And User should navigate back to OG page and verify OG "<OG>"  existence
+    And Clear filter to display both active and inactive OG
+    Then User enters OG Description "<OG1>" in search box and Delete the OG verify same in OG grid
     Examples:
-      |   OG    |
-      | Par OG |
+      |   OG    |   OG1       |
+      | Par OG  | Par OGPar OG|
 
   @MarketSegment
   Scenario Outline: Test scenario for OG creation using Market segment
@@ -60,12 +64,14 @@ Feature: Order Guide2
     Then User click on Save button
     And User should navigate back to OG page and verify OG "<OG>"  existence
     #And User should navigate back to OG page and navigate back to "<OGType>" and verify OG "<OG>"  existence
+    And Clear filter to display both active and inactive OG
+    Then User enters OG Description "<OG>" in search box and Delete the OG verify same in OG grid
     Examples:
       |  OG     |  OGType         |
       |MarketOG | Market segment  |
 
   @AllOG
-  Scenario Outline:Test scenario for creating OG fo all customers
+  Scenario Outline:Test scenario for creating OG for all customers
     Given User must be on Order Entry Page to select OG
     And User should navigate to OG
     Then User clicks on Create new button and should navigate to New OG page
@@ -75,9 +81,11 @@ Feature: Order Guide2
       |4|
     Then User click on Save button
     And User should navigate back to OG page and verify OG "<OG>"  existence
+    And Clear filter to display both active and inactive OG
+    Then User enters OG Description "<OG1>" in search box and Delete the OG verify same in OG grid
     Examples:
-      |  OG |
-      |AllOrder|
+      |  OG    |    OG1         |
+      |AllOrder|AllOrderAllOrder|
 
   @PushOGWithoutValidToDate
   Scenario Outline: Test scenario for creating push order guide without any valid to date
@@ -92,9 +100,11 @@ Feature: Order Guide2
       |4|
     Then User click on Save button
     And User should navigate back to OG page and verify OG "<OG>"  existence
+    And Clear filter to display both active and inactive OG
+    Then User enters OG Description "<OG1>" in search box and Delete the OG verify same in OG grid
     Examples:
-      |   OG    |
-      | Push OG1 |
+      |   OG     |     OG1     |
+      | Push OG1 | Push OG1Push OG1|
 
   @ReferencePriceGroup
   Scenario Outline: Test scenario for creating customer Reference Price group base Scheduled
@@ -111,6 +121,8 @@ Feature: Order Guide2
     And User should select products from catalog popup for Price base
     Then User click on Save button
     And User should navigate back to OG page and verify OG "<OG>"  existence
+    And Clear filter to display both active and inactive OG
+    Then User enters OG Description "<OG>" in search box and Delete the OG verify same in OG grid
     Examples:
       |  OG        |  OGType                      |
       |PriceBaseOG | Price group - base schedule  |
@@ -133,6 +145,8 @@ Feature: Order Guide2
     Then User click on Save button
     And User should navigate back to OG page and verify OG "<OG>"  existence
    # And User should navigate back to OG page and navigate back to "<OGType>" and verify OG "<OG>"  existence
+    And Clear filter to display both active and inactive OG
+    Then User enters OG Description "<OG>" in search box and Delete the OG verify same in OG grid
     Examples:
       |  OG           |   OGType        |
       | NationalChain1|  National chain |

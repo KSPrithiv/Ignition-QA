@@ -928,7 +928,7 @@ public class CatalogPage
         {
             WebElement Prodimg=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'search-results-container')]/descendant::img[@class='product-thumb']");
             HelpersMethod.ScrollElement(driver,Prodimg);
-            HelpersMethod.ClickBut(driver,Prodimg,1000);
+            HelpersMethod.ClickBut(driver,Prodimg,4000);
             exists=true;
             if(HelpersMethod.IsExists("//div[@class='loader']",driver))
             {

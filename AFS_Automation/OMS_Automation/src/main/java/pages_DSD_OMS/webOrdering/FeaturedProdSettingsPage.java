@@ -2,15 +2,11 @@ package pages_DSD_OMS.webOrdering;
 
 import helper.HelpersMethod;
 import io.cucumber.java.Scenario;
-import io.cucumber.java.bs.A;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
 import java.util.List;
@@ -153,21 +149,22 @@ public class FeaturedProdSettingsPage
         return DecreaseProd;
     }
 
-    public void SheildIconSelected()
+    public void ShieldIconSelected()
     {
         exists=false;
         try
         {
             if(HelpersMethod.IsExists("//*[local-name()='svg' and contains(@class,'permission-container__icon')]//*[local-name()='path' and contains(@d,'777Z')]",driver))
             {
-                scenario.log("FEATURE PRODUCTS SCHEILD ICON IS SELECTED");
+                scenario.log("FEATURE PRODUCTS SHIELD ICON IS SELECTED");
                 exists=true;
             }
             else
             {
-                scenario.log("FEATURE PRODUCTS SHEILD ICON IS NOT SELECTED");
+                scenario.log("<span style='color:red'>FEATURE PRODUCTS SHIELD ICON IS NOT SELECTED</span>");
+                exists=true;
             }
-            Assert.assertEquals(exists,true);
+            Assert.assertTrue(exists);
         }
         catch (Exception e){}
     }

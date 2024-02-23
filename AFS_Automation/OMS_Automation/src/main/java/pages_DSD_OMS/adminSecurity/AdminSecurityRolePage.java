@@ -8,9 +8,12 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import util.RandomValues;
 
+import java.time.Duration;
 import java.util.List;
 
 /**
@@ -335,6 +338,45 @@ public class AdminSecurityRolePage
                 exists=true;
             }
             Assert.assertEquals(exists,true);
+        }
+        catch (Exception e){}
+    }
+
+    public void clickOnActiveCheckBox()
+    {
+        exists=false;
+        try
+        {
+            WebElement modalContainer = HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-widget k-window k-dialog')]");
+            modalContainer.findElement(By.xpath(".//input[@id='role-status']")).click();
+        }
+        catch (Exception e){}
+    }
+
+    public void validateActiveRolesInGrid()
+    {
+        exists=false;
+        Actions act=new Actions(driver);
+        String headText=null;
+        try
+        {
+            List<WebElement> gridHeads=HelpersMethod.FindByElements(driver,"xpath","//span[@class='k-column-title']");
+            for (WebElement head:gridHeads)
+            {
+                act.moveToElement(head).build().perform();
+                headText=head.getText();
+                if(headText.equals(roleName))
+                {
+                    scenario.log("ROLE HAS NOT BEEN DEACTIVATED");
+                    exists=false;
+                }
+                else
+                {
+                    scenario.log("ROLE HAS BEEN ACTIVATED");
+                    exists=true;
+                }
+                Assert.assertEquals(exists,true);
+            }
         }
         catch (Exception e){}
     }

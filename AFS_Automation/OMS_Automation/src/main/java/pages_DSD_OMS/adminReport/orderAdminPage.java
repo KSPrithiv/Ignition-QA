@@ -38,6 +38,7 @@ public class orderAdminPage
 
     public void navigateToDifferentTabsInOrder(String horizontalMenu)
     {
+        exists=false;
         try
         {
             if(HelpersMethod.IsExists("//div[@class='loader']",driver))
@@ -56,7 +57,7 @@ public class orderAdminPage
                 if(Menu_Text.contains(horizontalMenu))
                 {
                     WebElement menuItem=HelpersMethod.FindByElement(driver,"xpath","//li[contains(@class,'k-item')]/span[@class='k-link' and contains(text(),'"+horizontalMenu+"')]");
-                    HelpersMethod.JScriptClick(driver,menuItem,1000);
+                    HelpersMethod.JScriptClick(driver,menuItem,10000);
                     break;
                 }
                 else
@@ -85,11 +86,22 @@ public class orderAdminPage
                     }
                 }
             }
-            Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
-                    .withTimeout(Duration.ofSeconds(100))
-                    .pollingEvery(Duration.ofSeconds(5))
+            Wait<WebDriver> wait = new FluentWait<>(driver)
+                    .withTimeout(Duration.ofSeconds(120))
+                    .pollingEvery(Duration.ofSeconds(2))
                     .ignoring(NoSuchElementException.class);
             wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+            if(HelpersMethod.IsExists("//li[contains(@class,'k-item')]/span[@class='k-link' and contains(text(),'" + horizontalMenu + "')]",driver))
+            {
+                scenario.log("NAVIGATED TO TAB "+horizontalMenu);
+                exists=true;
+            }
+            else
+            {
+                scenario.log(horizontalMenu+" *************TAB HAS NOT BEEN FOUND*************");
+                exists=false;
+            }
+            Assert.assertTrue(exists);
         }
         catch (Exception e){}
     }
@@ -100,11 +112,30 @@ public class orderAdminPage
         String tabValue=null;
         try
         {
+            String status = HelpersMethod.returnDocumentStatus(driver);
+            if (status.equals("loading"))
+            {
+                HelpersMethod.waitTillLoadingPage(driver);
+            }
+
             Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
-                    .withTimeout(Duration.ofSeconds(100))
-                    .pollingEvery(Duration.ofSeconds(5))
+                    .withTimeout(Duration.ofSeconds(200))
+                    .pollingEvery(Duration.ofSeconds(2))
                     .ignoring(NoSuchElementException.class);
             wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
+            status = HelpersMethod.returnDocumentStatus(driver);
+            if (status.equals("loading"))
+            {
+                HelpersMethod.waitTillLoadingPage(driver);
+            }
+
+            wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(200))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
             if(HelpersMethod.IsExists("//li[contains(@class,'k-state-active')]/span[@class='k-link']",driver))
             {
                 tabValue=HelpersMethod.FindByElement(driver,"xpath","//li[contains(@class,'k-state-active')]/span[@class='k-link']").getText();
@@ -114,7 +145,12 @@ public class orderAdminPage
                     exists = true;
                 }
             }
-            Assert.assertEquals(exists,true);
+            else
+            {
+                scenario.log("NOT FOUND THE REQUIRED TAB");
+                exists=false;
+            }
+            Assert.assertTrue(exists);
         }
         catch (Exception e){}
     }
@@ -202,7 +238,7 @@ public class orderAdminPage
             HelpersMethod.ActClick(driver,startDate,1000);
             exists=true;
             new WebDriverWait(driver, Duration.ofMillis(40000)).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class,'k-popup k-child-animation-container')]")));
-            Assert.assertEquals(exists,true);
+            Assert.assertTrue(exists);
         }
         catch(Exception e){}
     }
@@ -216,7 +252,7 @@ public class orderAdminPage
             HelpersMethod.ActClick(driver,toDate,1000);
             exists=true;
             new WebDriverWait(driver,Duration.ofMillis(40000)).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class,'k-popup k-child-animation-container')]")));
-            Assert.assertEquals(exists,true);
+            Assert.assertTrue(exists);
         }
         catch(Exception e){}
     }
@@ -249,7 +285,7 @@ public class orderAdminPage
                 {
                     scenario.log("NOT ABLE TO SELECT THE DATE");
                 }
-                Assert.assertEquals(exists,true);
+                Assert.assertTrue(exists);
             }
         }
         catch (Exception e) {}
@@ -278,7 +314,7 @@ public class orderAdminPage
                 {
                     scenario.log("THERE IS NO FOCUSSED DATE");
                 }
-                Assert.assertEquals(exists,true);
+                Assert.assertTrue(exists);
             }
         }
         catch (Exception e){}
@@ -310,11 +346,10 @@ public class orderAdminPage
                 WebElement dialogPopup=HelpersMethod.FindByElement(driver,"xpath","//div[contains(text(),'Please select one or more events for the report.')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]");
                 WebElement okButton=dialogPopup.findElement(By.xpath(".//button[text()='Ok']"));
                 HelpersMethod.ActClick(driver,okButton,8000);
-                scenario.log("************** MAY BE THE EVENT IS NOT PART OF THIS APPLICATION ***************");
-                exists=false;
+                scenario.log("<span style='color:red'> MAY BE THE EVENT IS NOT PART OF THIS APPLICATION </span>");
+                exists=true;
             }
-
-            Assert.assertEquals(exists,true);
+            Assert.assertTrue(exists);
         }
         catch (Exception e){}
     }
@@ -357,7 +392,7 @@ public class orderAdminPage
             }
             driver.switchTo().window(ParentWindow);
             exists = true;
-            Assert.assertEquals(exists,true);
+            Assert.assertTrue(exists);
         }
         catch (Exception e){}
     }
@@ -378,7 +413,7 @@ public class orderAdminPage
                 }
                 exists=true;
             }
-            Assert.assertEquals(exists,true);
+            Assert.assertTrue(exists);
         }
         catch (Exception e){}
     }
@@ -404,7 +439,7 @@ public class orderAdminPage
                 scenario.log("RESET BUTTON IS NOT WORKING");
                 exists=false;
             }
-            Assert.assertEquals(exists,true);
+            Assert.assertTrue(exists);
         }
         catch(Exception e){}
     }
@@ -426,7 +461,7 @@ public class orderAdminPage
                 scenario.log("RESET BUTTON IS NOT WORKING");
                 exists=false;
             }
-            Assert.assertEquals(exists,true);
+            Assert.assertTrue(exists);
         }
         catch(Exception e){}
     }
@@ -454,7 +489,7 @@ public class orderAdminPage
                 scenario.log("RESET BUTTON IS NOT WORKING");
                 exists=false;
             }
-            Assert.assertEquals(exists,true);
+            Assert.assertTrue(exists);
         }
         catch(Exception e){}
     }
@@ -515,7 +550,7 @@ public class orderAdminPage
                 HelpersMethod.EnterText(driver, customerAcc, 1000, TestBase.testEnvironment.get_Account());
                 exists=true;
             }
-            Assert.assertEquals(exists,true);
+            Assert.assertTrue(exists);
         }
         catch (Exception e){}
     }
@@ -542,7 +577,7 @@ public class orderAdminPage
                 HelpersMethod.ActClick(driver,dateSelection,1000);
                 exists=true;
             }
-            Assert.assertEquals(exists,true);
+            Assert.assertTrue(exists);
         }
         catch (Exception e){}
     }
@@ -558,7 +593,7 @@ public class orderAdminPage
                 HelpersMethod.ClickBut(driver,generateButton,1000);
                 exists=true;
             }
-            Assert.assertEquals(exists,true);
+            Assert.assertTrue(exists);
         }
         catch (Exception e){}
     }

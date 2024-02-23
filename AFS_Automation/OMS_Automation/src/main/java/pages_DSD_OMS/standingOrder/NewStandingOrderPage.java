@@ -140,10 +140,13 @@ public class NewStandingOrderPage
                 String Pro = DataBaseConnection.DataBaseConn(TestBase.testEnvironment.getSingle_Prod_Sql());
                 act1.moveToElement(QuickProduct).click().build().perform();
                 HelpersMethod.sendKeys(driver,QuickProduct,1000,Pro);
-                QuickProduct.sendKeys(Keys.TAB);
-                WebElement uomSO= HelpersMethod.FindByElement(driver,"id","quickEntryUMs");
-                uomSO.sendKeys(Keys.TAB);
-                Thread.sleep(8000);
+                QuickProduct.sendKeys(Keys.ENTER);
+                if(HelpersMethod.IsExists("//span[@id='quickEntryUMs']",driver))
+                {
+                    WebElement uomSO= HelpersMethod.FindByElement(driver,"id","quickEntryUMs");
+                    uomSO.sendKeys(Keys.TAB);
+                }
+                Thread.sleep(4000);
                 scenario.log("PRODUCT ENTERED IN QUICK ENTRY IS " + Pro);
                 exists = true;
             }
@@ -189,13 +192,19 @@ public class NewStandingOrderPage
         WebElement WebEle=null;
         try
         {
+            Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(120))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
             new WebDriverWait(driver,Duration.ofMillis(20000)).until(ExpectedConditions.visibilityOf(SaveButton));
             if(SaveButton.isDisplayed() && SaveButton.isEnabled())
             {
                 HelpersMethod.ScrollElement(driver,SaveButton);
                 HelpersMethod.ClickBut(driver,SaveButton,25000);
 
-                Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+            wait = new FluentWait<WebDriver>(driver)
                         .withTimeout(Duration.ofSeconds(120))
                         .pollingEvery(Duration.ofSeconds(2))
                         .ignoring(NoSuchElementException.class);
@@ -579,11 +588,12 @@ public class NewStandingOrderPage
         WebElement WebEle=null;
         try
         {
-            new WebDriverWait(driver,Duration.ofMillis(20000)).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//button[contains(@data-test-id,'skipDeliveryDaysStandingOrderBtn')]")));
-            new WebDriverWait(driver, Duration.ofMillis(20000)).until(ExpectedConditions.visibilityOf(SkipSpecificdays));
-
+            //new WebDriverWait(driver,Duration.ofMillis(20000)).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//button[contains(@data-test-id,'skipDeliveryDaysStandingOrderBtn')]")));
+            //new WebDriverWait(driver, Duration.ofMillis(20000)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[contains(@data-test-id,'skipDeliveryDaysStandingOrderBtn')]")));
+            WebElement staandingOrderDetailsGrid=HelpersMethod.FindByElement(driver,"xpath","//label[@class='cart-title-standing-order']");
+            HelpersMethod.ScrollElement(driver,staandingOrderDetailsGrid);
             SkipSpecificdays=HelpersMethod.FindByElement(driver,"xpath","//button[contains(@data-test-id,'skipDeliveryDaysStandingOrderBtn')]");
-            if(SkipSpecificdays.isEnabled())
+            if(SkipSpecificdays.isDisplayed() && SkipSpecificdays.isEnabled())
             {
                 HelpersMethod.ScrollElement(driver, SkipSpecificdays);
                 HelpersMethod.ClickBut(driver, SkipSpecificdays, 20000);
@@ -602,7 +612,6 @@ public class NewStandingOrderPage
 
     public void ValidateSkipPopup()
     {
-        WebElement WebEle=null;
         exists=false;
         try
         {
@@ -668,7 +677,7 @@ public class NewStandingOrderPage
         catch (Exception e){}
     }
 
-    public void SelectDateToSkip(int days)
+    public void SelectDateToSkip()
     {
         exists=false;
         WebElement WebEle=null;
@@ -678,7 +687,7 @@ public class NewStandingOrderPage
        // int index=0;
         try
         {
-            WebElement ele1;
+          /*  WebElement ele1;
             String formattedDate1 = null;
             String formattedDate2=null;
             String formDate1=null;
@@ -771,6 +780,43 @@ public class NewStandingOrderPage
                                 }
                             }
                         }
+                    }
+                }
+            }*/
+            /**************check for all enabled dates in calender and if enabled dates size is 0 or null then should click on arrow button in the top of calender popup
+            //And select the very first enabled date in the next calender***************/
+            List<WebElement> enabledDates=HelpersMethod.FindByElements(driver,"xpath","//td[contains(@style,'opacity: 1')]/span");
+            int length=enabledDates.size();
+            WebElement tempEle;
+            if(length==0)
+            {
+                //Click on arrow
+                WebElement arrow=HelpersMethod.FindByElement(driver,"xpath","//span[contains(@class,'k-i-arrow-chevron-right')]");
+                HelpersMethod.ActClick(driver,arrow,1000);
+                enabledDates=HelpersMethod.FindByElements(driver,"xpath","//td[contains(@style,'opacity: 1')])/span");
+                for(int i=0;i<=enabledDates.size()-1;i++)
+                {
+                    if(i==0)
+                    {
+                        tempEle=HelpersMethod.FindByElement(driver,"xpath","(//td[contains(@style,'opacity: 1')])["+i+"]/span");
+                        scenario.log("DATE SELECTED FOR SKIP IS "+tempEle.getText());
+                        HelpersMethod.ActClick(driver,tempEle,1000);
+                        exists=true;
+                        break;
+                    }
+                }
+            }
+            else
+            {
+                for(int i=enabledDates.size()-1;i>=0;i--)
+                {
+                    if(i==length-1)
+                    {
+                        tempEle=HelpersMethod.FindByElement(driver,"xpath","(//td[contains(@style,'opacity: 1')])["+i+"]/span");
+                        scenario.log("DATE SELECTED FOR SKIP IS "+tempEle.getText());
+                        HelpersMethod.ActClick(driver,tempEle,1000);
+                        exists=true;
+                        break;
                     }
                 }
             }
@@ -1259,6 +1305,7 @@ public class NewStandingOrderPage
     {
         exists = false;
         WebElement WebEle=null;
+        WebElement WebEle1=null;
         Actions act1=new Actions(driver);
         try
         {
@@ -1313,7 +1360,9 @@ public class NewStandingOrderPage
                 WebEle = HelpersMethod.FindByElement(driver, "xpath", "//input[contains(@class,' product-search-input rounded-corners-left')]");
                 HelpersMethod.EnterText(driver, WebEle, 2000, Prod_Name);
                 scenario.log(WebEle.getText()+"PRODUCT DESCRIPTION ENTERED FOR SEARCH");
-                Thread.sleep(2000);
+                WebEle1=HelpersMethod.FindByElement(driver,"xpath","//span[@datatestid='searchBarSearchBtn']//*[local-name()='svg']");
+                HelpersMethod.ActClick(driver,WebEle1,2000);
+                /*Thread.sleep(2000);
                 if(HelpersMethod.IsExists("//div[@id='react-autowhatever-searchBarAutoSuggest']/ul/li/descendant::span[@class='product-number']",driver))
                 {
                     String autoValueText;
@@ -1329,16 +1378,27 @@ public class NewStandingOrderPage
                             break;
                         }
                     }
-                }
+                }*/
 
                 if (HelpersMethod.IsExists("//div[@class='loader']", driver))
                 {
                     WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
                     HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000000);
                 }
+
+                if(!HelpersMethod.IsExists("//div[contains(text(),'Sorry, no products matched')]",driver))
+                {
+                    scenario.log("PRODUCT HAS BEEN FOUND");
+                    exists=true;
+                }
+                else
+                {
+                    scenario.log("NO PRODUCTS FOUND");
+                    exists=false;
+                }
                 scenario.log("PRODUCT FOUND IN CATALOG IS "+Prod_Name);
             }
-            Assert.assertEquals(exists, true);
+            Assert.assertTrue(exists);
         }
         catch (Exception e){}
     }
@@ -1738,6 +1798,34 @@ public class NewStandingOrderPage
                 js.executeScript("document.body.style.MozTransform='100%'");
             }
             Assert.assertEquals(exists,true);
+        }
+        catch (Exception e){}
+    }
+
+    public void validateDeliveryScheduleDate()
+    {
+        exists=false;
+        try
+        {
+            Thread.sleep(1000);
+            WebElement standingOrderDetailsGrid=HelpersMethod.FindByElement(driver,"xpath","//label[@class='cart-title-standing-order']");
+            HelpersMethod.ScrollElement(driver,standingOrderDetailsGrid);
+            WebElement DeliverySchedule=HelpersMethod.FindByElement(driver,"id","frequency");
+            if(DeliverySchedule.isDisplayed() && DeliverySchedule.isEnabled())
+            {
+                String deliveryScheduleText=HelpersMethod.FindByElement(driver,"xpath","//span[@id='frequency']/span[@class='k-input']").getText();
+                if(deliveryScheduleText.equals("Every week"))
+                {
+                    scenario.log("DELIVERY SCHEDULE VALUE FOUND IS " + deliveryScheduleText);
+                    exists = true;
+                }
+                else
+                {
+                    scenario.log("DELIVERY SCHEDULE VALUE FOUND IS "+deliveryScheduleText);
+                    exists=false;
+                }
+                Assert.assertEquals(exists,true);
+            }
         }
         catch (Exception e){}
     }

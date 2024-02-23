@@ -37,19 +37,20 @@ Feature: Standing Order
   @SkipSpecificDay
   Scenario: Test scenario for skipping specific date in standing order
     Given User must be on Order Entry Page to select Standing Order and navigate to standing order
-    Then Click on Skip specific day and select 8 day from current date,select reason date for skip in skip popup and click on ok
-
-  @VerifySkipDateSetInSOWithOE
-  Scenario: Test scenario for verifying skip in SO with skip in OE page
-    Given User must be on Order Entry Page to select Standing Order and navigate to standing order
-    Then User Click on Skip specific day and read the skip date value and click on Ok
-    And User should navigate to OE page, User should select the same delivery date from calender
-    Then User should verify for that date remove skip has been enabled or Skip has been disabled
+    Then Click on Skip specific day and select any enabled day from current date,select reason date for skip in skip popup and click on ok
 
   @RemoveSkipSpecificDay
   Scenario: Test scenario for remove skipping specific date in standing order
     Given User must be on Order Entry Page to select Standing Order and navigate to standing order
     Then Click on Skip specific day and select first date in the list of skip days in skip popup and click on ok
+
+  @VerifySkipDateSetInSOWithOE
+  Scenario: Test scenario for verifying skip in SO with skip in OE page
+    Given User must be on Order Entry Page to select Standing Order and navigate to standing order
+    Then Click on Skip specific day and select any enabled day from current date,select reason date for skip in skip popup and click on ok
+    Then User Click on Skip specific day and read the skip date value and click on Ok
+    And User should navigate to OE page, User should select the same delivery date from calender
+    Then User should verify for that date remove skip has been enabled or Skip has been disabled
 
   @StandingOrderQuickProCreate
   Scenario: Test scenario for creating standing order using Quick product entry input box
@@ -90,8 +91,8 @@ Feature: Standing Order
       |12|12|12|12|12|12|12|
     Then User clicks on Save button and handles popup
 
-  @OverlappingDates
-  Scenario: Test scenario for creating Standing orders with overlapped dates
+  @DatesRangeValidation
+  Scenario: Test scenario for creating Standing orders with new standing order if the date range mentioned fall into the range of another active SO
     Given User must be on Order Entry Page to select Standing Order and navigate to standing order
     And User click on Start standing order button and selects Start date 21 and End date 24 day from current date
     Then User enters Product# in Quick product entry inputbox

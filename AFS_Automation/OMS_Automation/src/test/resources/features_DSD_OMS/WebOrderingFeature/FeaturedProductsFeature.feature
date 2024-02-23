@@ -6,7 +6,6 @@ Feature: Admin setting
     When User is on Home Page for Admin setting
     Then User Clicks on Permissions by drop down to select Customer Account#
 
-
   @SheildIcon
   Scenario Outline: Test scenario to check Max Featured Products Sheild Icon
     Given User is on Home Page for Admin setting to select Admin option
@@ -49,7 +48,7 @@ Feature: Admin setting
     Then User refreshes page Clicks on Permissions by drop down to select Customer Account# grid for WebOrder
     And User should enter menu "<Option>" in search bar to navigate to Featured Products
     Then User should navigate to "<MenuOption1>" from horizantal menu to select Featured products list
-   # Then User should increase max number of Featured products set
+    #Then User should increase max number of Featured products set
     Then User should select "<MenuOption2>" from horizantal menu to select Featured products list
     And User should be on Featured products list then User should click on Add Products button and add products to list
     Then User should list all the products in Product grid of Featured products
