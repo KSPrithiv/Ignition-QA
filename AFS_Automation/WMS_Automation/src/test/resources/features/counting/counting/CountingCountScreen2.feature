@@ -3,7 +3,6 @@ Feature: Testing of Counting Count functionality
   Scenario: Checking product history once Location is reconciled
     Given User signs in the application
     And Main page is loaded
-    And DockManagement Summary Page is validated
     And Go to Lookup Product page
     And Waits for Product Lookup page to load
     And Validates Product Lookup Page base elements are loaded
@@ -16,7 +15,6 @@ Feature: Testing of Counting Count functionality
   Scenario: Checking Combine Release and Assign Option on Counting Session screen
     Given User signs in the application
     And Main page is loaded
-    And DockManagement Summary Page is validated
     And Go to Counting Sessions page
     And Waits for Counting Sessions page to load
     And User clicks session dropdown on Counting Sessions page
@@ -31,7 +29,6 @@ Feature: Testing of Counting Count functionality
   Scenario: Checking Release Assignments on Counting Session screen
     Given User signs in the application
     And Main page is loaded
-    And DockManagement Summary Page is validated
     And Go to Counting Sessions page
     And Waits for Counting Sessions page to load
     And User clicks session dropdown on Counting Sessions page

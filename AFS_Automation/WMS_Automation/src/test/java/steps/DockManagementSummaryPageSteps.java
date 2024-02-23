@@ -1,16 +1,34 @@
 package steps;
 
+import common.setup.DriverManager;
+import io.cucumber.java.Before;
+import io.cucumber.java.Scenario;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import io.qameta.allure.Step;
 import lombok.extern.slf4j.Slf4j;
+import org.openqa.selenium.Alert;
+import org.openqa.selenium.WebDriver;
 import ui.pages.DockManagementSummaryPage;
 
 @Slf4j
 public class DockManagementSummaryPageSteps {
     DockManagementSummaryPage dockManagementSummaryPage = new DockManagementSummaryPage();
+    static boolean flag=false;
+    static String currentURL=null;
+    WebDriver driver;
+    Scenario scenario;
 
+
+
+    @Before
+    public void LaunchBrowser1(Scenario scenario) throws Exception
+    {
+
+        this.scenario=scenario;
+        driver= DriverManager.getDriver();
+    }
     @Step
     @And("User refreshes page")
     public void refreshPage() {
@@ -34,8 +52,9 @@ public class DockManagementSummaryPageSteps {
 
     @Step
     @Then("Go to Loads page")
-    public void goToLoadsPage() {
+    public void goToLoadsPage() throws InterruptedException {
         log.info("Go to Loads page");
+        Thread.sleep(2000);
         dockManagementSummaryPage.clickInboundIcon();
         dockManagementSummaryPage.clickLoadsIcon();
     }
@@ -58,8 +77,9 @@ public class DockManagementSummaryPageSteps {
 
     @Step
     @When("Go to Outbound Order page")
-    public void goToOutboundOrderPage() {
+    public void goToOutboundOrderPage() throws InterruptedException {
         log.info("Go to Outbound Order page");
+
         dockManagementSummaryPage.clickOutboundIcon();
         dockManagementSummaryPage.clickOutboundOrdersIcon();
     }
@@ -82,10 +102,19 @@ public class DockManagementSummaryPageSteps {
 
     @Step
     @When("Go to Outbound Load Planning page")
-    public void goToOutboundLoadPlanningPage() {
-        log.info("Go to Outbound Load Planning page");
-        dockManagementSummaryPage.clickOutboundIcon();
-        dockManagementSummaryPage.clickLoadPlanningIcon();
+    public void goToOutboundLoadPlanningPage() throws InterruptedException {
+        if(flag==false) {
+            log.info("Go to Outbound Load Planning page");
+
+
+            dockManagementSummaryPage.clickOutboundIcon();
+            dockManagementSummaryPage.clickLoadPlanningIcon();
+            //Thread.sleep(12000);
+
+
+            //dockManagementSummaryPage.clickLoadPlanningWarningMessage();
+
+        }
     }
 
     @Step
@@ -105,9 +134,11 @@ public class DockManagementSummaryPageSteps {
 
     @Step
     @And("Main page is loaded")
-    public void waitForMainPageToLoad() {
-        log.info("Waiting for Main Page To Load");
-        dockManagementSummaryPage.waitForDockManagementSummaryPageToLoad();
+    public void waitForMainPageToLoad() throws InterruptedException {
+
+            log.info("Waiting for Main Page To Load");
+            dockManagementSummaryPage.waitForDockManagementSummaryPageToLoad();
+
     }
 
     @Step

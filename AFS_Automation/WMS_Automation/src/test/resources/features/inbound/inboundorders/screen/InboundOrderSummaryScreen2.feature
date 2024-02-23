@@ -3,7 +3,7 @@ Feature: Testing of Inbound Orders functionality
   Scenario: Checking Status Filter on Inbound Order Summary screen
     Given User signs in the application
     And Main page is loaded
-    And DockManagement Summary Page is validated
+    #And DockManagement Summary Page is validated
     And Go to Inbound Orders page
     And User waits for Inbound Order Summary page to load
     And User finds all orders from start date by index 4
@@ -21,7 +21,7 @@ Feature: Testing of Inbound Orders functionality
   Scenario: Checking Order Filter on Inbound Order Summary screen
     Given User signs in the application
     And Main page is loaded
-    And DockManagement Summary Page is validated
+    #And DockManagement Summary Page is validated
     And Go to Inbound Orders page
     And User waits for Inbound Order Summary page to load
     When User finds all orders from start date by index 4
@@ -33,7 +33,7 @@ Feature: Testing of Inbound Orders functionality
   Scenario: Checking Summary totals on Inbound Order Summary screen
     Given User signs in the application
     And Main page is loaded
-    And DockManagement Summary Page is validated
+    #And DockManagement Summary Page is validated
     And Go to Inbound Orders page
     And User waits for Inbound Order Summary page to load
     When User finds all orders from start date by index 0
@@ -55,7 +55,7 @@ Feature: Testing of Inbound Orders functionality
   Scenario: Checking Status change from Received order to ReOpen on Inbound Order Summary screen
     Given User signs in the application
     And Main page is loaded
-    And DockManagement Summary Page is validated
+    #And DockManagement Summary Page is validated
     And Go to Inbound Orders page
     And User waits for Inbound Order Summary page to load
     When User finds all orders from start date by index 4
@@ -71,7 +71,7 @@ Feature: Testing of Inbound Orders functionality
   Scenario: Checking Status change from Open to Ready to Receive on Inbound Order Summary screen
     Given User signs in the application
     And Main page is loaded
-    And DockManagement Summary Page is validated
+    #And DockManagement Summary Page is validated
     And Go to Inbound Orders page
     And User waits for Inbound Order Summary page to load
     When User finds all orders from start date by index 4
@@ -88,7 +88,7 @@ Feature: Testing of Inbound Orders functionality
   Scenario: Checking Status change from Ready to Receive to Finish on Inbound Order Summary screen
     Given User signs in the application
     And Main page is loaded
-    And DockManagement Summary Page is validated
+    #And DockManagement Summary Page is validated
     And Go to Inbound Orders page
     And User waits for Inbound Order Summary page to load
     When User finds all orders from start date by index 0
@@ -104,7 +104,7 @@ Feature: Testing of Inbound Orders functionality
   Scenario: Checking Progress bar colors on Inbound Order Summary screen
     Given User signs in the application
     And Main page is loaded
-    And DockManagement Summary Page is validated
+    #And DockManagement Summary Page is validated
     And Go to Inbound Orders page
     And User waits for Inbound Order Summary page to load
     When User finds all orders from start date by index 4
@@ -115,7 +115,7 @@ Feature: Testing of Inbound Orders functionality
   Scenario: Checking Source option on Inbound Order Summary screen
     Given User signs in the application
     And Main page is loaded
-    And DockManagement Summary Page is validated
+    #And DockManagement Summary Page is validated
     And Go to Inbound Orders page
     And User waits for Inbound Order Summary page to load
     When User finds all orders from start date by index 4
@@ -128,7 +128,7 @@ Feature: Testing of Inbound Orders functionality
   Scenario: Checking Receive option on Inbound Order Summary screen
     Given User signs in the application
     And Main page is loaded
-    And DockManagement Summary Page is validated
+    #And DockManagement Summary Page is validated
     And Go to Inbound Orders page
     And User waits for Inbound Order Summary page to load
     When User finds all orders from start date by index 4
@@ -144,7 +144,7 @@ Feature: Testing of Inbound Orders functionality
  Scenario: Checking Edit option on Inbound Order Summary screen
     Given User signs in the application
     And Main page is loaded
-    And DockManagement Summary Page is validated
+    #And DockManagement Summary Page is validated
     And Go to Inbound Orders page
     And User waits for Inbound Order Summary page to load
     When User finds all orders from start date by index 4

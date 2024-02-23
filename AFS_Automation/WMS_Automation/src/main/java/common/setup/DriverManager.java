@@ -1,6 +1,6 @@
 package common.setup;
 
-import io.github.bonigarcia.wdm.WebDriverManager;
+//import io.github.bonigarcia.wdm.WebDriverManager;
 import lombok.SneakyThrows;
 import org.openqa.selenium.PageLoadStrategy;
 import org.openqa.selenium.WebDriver;
@@ -41,11 +41,13 @@ public class DriverManager {
                     //    storedDrivers.add(createdDriver);
                     break;
                 case "chrome":
-                    WebDriverManager.chromedriver().setup();
+                    //WebDriverManager.chromedriver().setup();
                     createdDriver = new ChromeDriver(buildChrome());
                     driverThreadLocal.set(createdDriver);
-                    setPageLoadTimeout(120);
-                    setScriptTimeout(120);
+                    //setPageLoadTimeout(120);
+                    //setScriptTimeout(120);
+                    setPageLoadTimeout(50L);
+                    setScriptTimeout(5L);
             }
         } catch (Exception ex) {
             System.out.println(".CoutingCucumberRunner.startBrowserInstance  ex");
@@ -59,20 +61,19 @@ public class DriverManager {
         ChromeOptions options = new ChromeOptions();
         //Map<String, Object> prefs = new HashMap<>();
         //options.setExperimentalOption("prefs", prefs);
-        //Irina Mandatory
+        
         //options.addArguments("profile-directory=PROFILE 2");
 
         //HEADLESS MODE CODE STARTS
-        //options.addArguments("--headless");
-        //options.addArguments("--headless=new");
-        options.addArguments("window-size=1280,720");
-        //Fast
-        options.addArguments("--remote-allow-origins=*");
+
+        //on Feb-3//options.addArguments("--headless=new");
+        //on Feb-3//options.addArguments("--remote-allow-origins=*");
         options.addArguments("--no-proxy-server");
         options.addArguments("--proxy-server='direct://'");
         options.addArguments("--proxy-bypass-list=*");
         //options.addArguments("window-size=1920,1080");
-
+        //options.addArguments("window-size=1280,720");
+        //Fast
         //options.setPageLoadStrategy(PageLoadStrategy.EAGER); //OCT-13
         options.setPageLoadStrategy(PageLoadStrategy.NORMAL);
         options.addArguments("enable-features=NetworkServiceInProcess");
@@ -103,7 +104,7 @@ public class DriverManager {
 
     public static FirefoxOptions buildFirefox() {
         LOG.info("Building FirefoxDriver");
-        WebDriverManager.firefoxdriver().setup();
+        //WebDriverManager.firefoxdriver().setup();
         FirefoxProfile profile = new FirefoxProfile();
         profile.setPreference("browser.shell.checkDefaultBrowser", false);
         profile.setAssumeUntrustedCertificateIssuer(false);
@@ -115,7 +116,7 @@ public class DriverManager {
 
     public static void buildEdge() {
         LOG.info("Building EdgeDriver");
-        WebDriverManager.edgedriver().setup();
+        //WebDriverManager.edgedriver().setup();
     }
 
     @SneakyThrows
@@ -157,11 +158,11 @@ public class DriverManager {
         }
     }
 
-    public static void setPageLoadTimeout(int timeout) {
+    public static void setPageLoadTimeout(long timeout) {
         getDriver().manage().timeouts().pageLoadTimeout(timeout, TimeUnit.SECONDS);
     }
 
-    public static void setScriptTimeout(int timeout) {
+    public static void setScriptTimeout(long timeout) {
         getDriver().manage().timeouts().setScriptTimeout(timeout, TimeUnit.SECONDS);
     }
 

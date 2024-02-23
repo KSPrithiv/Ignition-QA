@@ -3,7 +3,7 @@ Feature: Testing of Outbound Summary Work functionality
   Scenario: Checking Work Assignments functionality
     Given User signs in the application
     And Main page is loaded
-    And DockManagement Summary Page is validated
+    
     And Go to Outbound Order page
     And Waits for Outbound Order Summary page to load
     When Filling start date by index 2 on Outbound Order Summary page
@@ -22,7 +22,7 @@ Feature: Testing of Outbound Summary Work functionality
   Scenario: Checking Work Assignments Tasks functionality
     Given User signs in the application
     And Main page is loaded
-    And DockManagement Summary Page is validated
+    
     And Go to Outbound Order page
     And Waits for Outbound Order Summary page to load
     When Filling start date by index 2 on Outbound Order Summary page

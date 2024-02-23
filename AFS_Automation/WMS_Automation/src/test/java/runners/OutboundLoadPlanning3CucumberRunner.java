@@ -24,13 +24,13 @@ import static common.setup.DriverManager.*;
                 "html:Reports/Index.html",
                 "json:target/cucumber-reports/cucumber.json",
                 "rerun:target/failedrerun.txt"
-        }, monochrome = true, tags = "@Outbound")
+        }, monochrome = true)
 @Slf4j
 public class OutboundLoadPlanning3CucumberRunner extends AbstractTestNGCucumberTests {
     public static Environment environment;
 
     @Parameters({"environment","browser"})
-    @BeforeMethod
+    @BeforeClass
     public void startBrowserInstance(@Optional String env, @Optional String browser) {
         ConfigFactory.setProperty("path", FilePaths.PROPERTIES_PATH);
         environment = ConfigFactory.create(Environment.class);
@@ -40,29 +40,29 @@ public class OutboundLoadPlanning3CucumberRunner extends AbstractTestNGCucumberT
         new Waiters();
     }
 
-    @SneakyThrows
-    @AfterMethod
-    public void closeBrowserInstance(ITestResult iTestResult){
-        if (driverEnabled(getDriver())) {
-            try{
-                driverThreadLocal.get().close();
-                driverThreadLocal.get().quit();
-            } catch(Exception e) {
-                if (iTestResult.getStatus()==2 || iTestResult.getStatus()==3) {
-                    driverThreadLocal.get().quit();
-                }
-                //   FileUtils.forceDelete(new File("C:/Users/Irina.Holovan/Desktop/chrome/" + DriverManager.COUNTER));
-                System.out.println("Error closing and quitting the web driver: " + e.getMessage());
-            }
-    /*            if(getDriver() instanceof ChromeDriver){
-                    try {
-                        //  FileUtils.forceDelete(new File("C:/Users/Irina.Holovan/Desktop/chrome/" + DriverManager.COUNTER));
-                     //   Runtime.getRuntime().exec("taskkill /F /IM chromedriver.exe");
-                   // } catch (IOException ex) {
-                   //     System.out.println("Error force quitting the ChromeDriver process: " + ex.getMessage());
-                   // }
-            */    }
-            }
+//    @SneakyThrows
+//    @AfterMethod
+//    public void closeBrowserInstance(ITestResult iTestResult){
+//        if (driverEnabled(getDriver())) {
+//            try{
+//                driverThreadLocal.get().close();
+//                driverThreadLocal.get().quit();
+//            } catch(Exception e) {
+//                if (iTestResult.getStatus()==2 || iTestResult.getStatus()==3) {
+//                    driverThreadLocal.get().quit();
+//                }
+//                //   FileUtils.forceDelete(new File("C:/Users/Irina.Holovan/Desktop/chrome/" + DriverManager.COUNTER));
+//                System.out.println("Error closing and quitting the web driver: " + e.getMessage());
+//            }
+//    /*            if(getDriver() instanceof ChromeDriver){
+//                    try {
+//                        //  FileUtils.forceDelete(new File("C:/Users/Irina.Holovan/Desktop/chrome/" + DriverManager.COUNTER));
+//                     //   Runtime.getRuntime().exec("taskkill /F /IM chromedriver.exe");
+//                   // } catch (IOException ex) {
+//                   //     System.out.println("Error force quitting the ChromeDriver process: " + ex.getMessage());
+//                   // }
+//            */    }
+//            }
     @AfterClass
     public static void afterClass() throws InterruptedException, MessagingException, IOException {
         // MailSend_WMS.sendMail();

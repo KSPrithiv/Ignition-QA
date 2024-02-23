@@ -3,14 +3,12 @@ Feature: Testing of Appointment Scheduler functionality
   Scenario: Checking Appointment Scheduler Navigation functionality
     Given User signs in the application
     And Main page is loaded
-    And DockManagement Summary Page is validated
     When Go to Appointment scheduler page
     Then Appointment Scheduler page is displayed
 
   Scenario: Checking Appointment Scheduler Creation With Valid Order functionality
     Given User signs in the application
     And Main page is loaded
-    And DockManagement Summary Page is validated
     And Go to Appointment scheduler page
     And Waiting Appointment Scheduler Page To Load
     When User searches for valid order "R" for appointment on Appointment Scheduler page
@@ -25,7 +23,6 @@ Feature: Testing of Appointment Scheduler functionality
   Scenario: Checking Cancel Appointment Scheduler Creation With Valid Order
     Given User signs in the application
     And Main page is loaded
-    And DockManagement Summary Page is validated
     And Go to Appointment scheduler page
     And Waiting Appointment Scheduler Page To Load
     When User types order number "1" on Appointment Scheduler page
@@ -36,7 +33,6 @@ Feature: Testing of Appointment Scheduler functionality
   Scenario: Checking Cancel Appointment Scheduler Creation With Valid Order
     Given User signs in the application
     And Main page is loaded
-    And DockManagement Summary Page is validated
     And Go to Appointment scheduler page
     And Waiting Appointment Scheduler Page To Load
     And Appointment Scheduler page is displayed

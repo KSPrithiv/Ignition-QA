@@ -30,7 +30,7 @@ import static common.setup.DriverManager.*;
                 "html:Reports/Index.html",
                 "json:target/cucumber-reports/cucumber.json",
                 "rerun:target/failedrerun.txt"
-        }, monochrome = true, tags = "@Counting")
+        }, monochrome = true)
 @Slf4j
 public class CountingCounterCucumberRunner extends AbstractTestNGCucumberTests {
     public static Environment environment;

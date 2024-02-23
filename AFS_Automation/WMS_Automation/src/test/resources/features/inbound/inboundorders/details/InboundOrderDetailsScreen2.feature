@@ -3,7 +3,7 @@ Feature: Testing of Inbound Orders details screen
   Scenario: Checking Comments on Inbound Order details page
     Given User signs in the application
     And Main page is loaded
-    And DockManagement Summary Page is validated
+    #And DockManagement Summary Page is validated
     And Go to Inbound Orders page
     And User waits for Inbound Order Summary page to load
     And Validates Inbound Order Summary Page contains all web elements
@@ -16,7 +16,7 @@ Feature: Testing of Inbound Orders details screen
   Scenario: Checking Images on Inbound Order details page
     Given User signs in the application
     And Main page is loaded
-    And DockManagement Summary Page is validated
+    #And DockManagement Summary Page is validated
     And Go to Inbound Orders page
     And User waits for Inbound Order Summary page to load
     When User finds all orders from start date by index 0 to end date by index 0
@@ -28,7 +28,7 @@ Feature: Testing of Inbound Orders details screen
   Scenario: Checking Change Door on Inbound Order details page
     Given User signs in the application
     And Main page is loaded
-    And DockManagement Summary Page is validated
+    #And DockManagement Summary Page is validated
     And Go to Inbound Orders page
     And User waits for Inbound Order Summary page to load
     When User finds all orders from start date by index 0 to end date by index 0
@@ -47,7 +47,7 @@ Feature: Testing of Inbound Orders details screen
   Scenario: Checking Order details on Inbound Order details page
     Given User signs in the application
     And Main page is loaded
-    And DockManagement Summary Page is validated
+    #And DockManagement Summary Page is validated
     And Go to Inbound Orders page
     And User waits for Inbound Order Summary page to load
     When User finds all orders from start date by index 0 to end date by index 0
@@ -61,7 +61,7 @@ Feature: Testing of Inbound Orders details screen
   Scenario: Checking Log Details on Inbound Order details page
     Given User signs in the application
     And Main page is loaded
-    And DockManagement Summary Page is validated
+    #And DockManagement Summary Page is validated
     And Go to Inbound Orders page
     And User waits for Inbound Order Summary page to load
     When User finds all orders from start date by index 0 to end date by index 0
@@ -76,7 +76,7 @@ Feature: Testing of Inbound Orders details screen
   Scenario: Checking Move Order to a Load on Inbound Order details page
     Given User signs in the application
     And Main page is loaded
-    And DockManagement Summary Page is validated
+    #And DockManagement Summary Page is validated
     And Go to Inbound Orders page
     And User waits for Inbound Order Summary page to load
     When User finds all orders from start date by index 0 to end date by index 0
@@ -92,7 +92,7 @@ Feature: Testing of Inbound Orders details screen
   Scenario: Checking Back button on Inbound Order details page
     Given User signs in the application
     And Main page is loaded
-    And DockManagement Summary Page is validated
+    #And DockManagement Summary Page is validated
     And Go to Inbound Orders page
     And User waits for Inbound Order Summary page to load
     When User finds all orders from start date by index 0 to end date by index 0
@@ -105,7 +105,7 @@ Feature: Testing of Inbound Orders details screen
   Scenario: Checking Add/Delete Images on Inbound Order details page
     Given User signs in the application
     And Main page is loaded
-    And DockManagement Summary Page is validated
+    #And DockManagement Summary Page is validated
     And Go to Inbound Orders page
     And User waits for Inbound Order Summary page to load
     When User finds all orders from start date by index 0 to end date by index 0

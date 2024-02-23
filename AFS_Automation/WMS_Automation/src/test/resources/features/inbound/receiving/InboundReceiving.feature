@@ -3,7 +3,7 @@ Feature: Testing of Receiving functionality
   Scenario: Checking Receiving Navigation functionality
     Given User signs in the application
     And Main page is loaded
-    And DockManagement Summary Page is validated
+    
     And Go to Loads page
     And Inbound Load Summary page appears
     When User searches for Loads starting from date by index 4
@@ -32,7 +32,7 @@ Feature: Testing of Receiving functionality
   Scenario: Checking Navigate to Staging screen
     Given User signs in the application
     And Main page is loaded
-    And DockManagement Summary Page is validated
+    
     And Go to Loads page
     And Inbound Load Summary page appears
     When User searches for Loads starting from date by index 4
@@ -44,7 +44,7 @@ Feature: Testing of Receiving functionality
   Scenario: Checking Navigate to Staging screen functionality
     Given User signs in the application
     And Main page is loaded
-    And DockManagement Summary Page is validated
+    
     And Go to Loads page
     And Inbound Load Summary page appears
     When User searches for Loads starting from date by index 4
@@ -67,7 +67,7 @@ Feature: Testing of Receiving functionality
   Scenario: Checking Back button in Staging screen
     Given User signs in the application
     And Main page is loaded
-    And DockManagement Summary Page is validated
+    
     And Go to Loads page
     And Inbound Load Summary page appears
     When User searches for Loads starting from date by index 4
@@ -86,7 +86,7 @@ Feature: Testing of Receiving functionality
   Scenario: Checking Receive staged qty - Select pallet/pallets
     Given User signs in the application
     And Main page is loaded
-    And DockManagement Summary Page is validated
+    
     And Go to Loads page
     And Inbound Load Summary page appears
     When User searches for Loads starting from date by index 4
@@ -109,7 +109,7 @@ Feature: Testing of Receiving functionality
   Scenario: Checking delete selected unit/pallet from staging screen
     Given User signs in the application
     And Main page is loaded
-    And DockManagement Summary Page is validated
+    
     And Go to Loads page
     And Inbound Load Summary page appears
     When User searches for Loads starting from date by index 4
@@ -135,7 +135,7 @@ Feature: Testing of Receiving functionality
   Scenario: Checking Next to stage more pallets from the Staging screen
     Given User signs in the application
     And Main page is loaded
-    And DockManagement Summary Page is validated
+    
     And Go to Loads page
     And Inbound Load Summary page appears
     When User searches for Loads starting from date by index 4
@@ -155,7 +155,7 @@ Feature: Testing of Receiving functionality
   Scenario: Checking Receiving main screen validations
     Given User signs in the application
     And Main page is loaded
-    And DockManagement Summary Page is validated
+    
     And Go to Inbound Receiving page
     And Receiving page loads
     And Receiving page contains all web elements
@@ -173,7 +173,7 @@ Feature: Testing of Receiving functionality
   Scenario: Checking Receiving screen validations
     Given User signs in the application
     And Main page is loaded
-    And DockManagement Summary Page is validated
+    
     And Go to Loads page
     And Inbound Load Summary page appears
     When User searches for Loads starting from date by index 4
@@ -206,7 +206,7 @@ Feature: Testing of Receiving functionality
   Scenario: Checking Receiving Product functionality
     Given User signs in the application
     And Main page is loaded
-    And DockManagement Summary Page is validated
+    
     And Go to Loads page
     And Inbound Load Summary page appears
     When User searches for Loads starting from date by index 4

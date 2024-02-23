@@ -1,8 +1,13 @@
 package ui.pages;
 
 import common.utils.Waiters;
+//import helper.HelpersMethod;
+import helper.HelpersMethod;
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.NoAlertPresentException;
 
 import static common.setup.DriverManager.getDriver;
 
@@ -10,7 +15,8 @@ public class DockManagementSummaryPage extends BasePage {
     By applicationIconContainer = By.cssSelector(".application-icon-container");
     By hamburgerIcon = By.className("open-menu-hamburger-icon");
     By topHeaderRow = By.cssSelector("div[class='topHeaderRow  row']");
-    By topIcon = By.cssSelector(".spnmoduleNameHeader");
+    //By topIcon = By.cssSelector(".spnmoduleNameHeader");
+    By topIcon = By.xpath("//*[@id=\"app\"]/div/div[1]/div/div/div/div[2]/div");
     By dockManagementSummaryTableDivider = By.cssSelector(".DockManagementSummaryTableDivider");
     By transactionsGraph = By.xpath("//span[text()='TRANSACTIONS' and contains(@class, 'i-card__title')]");
     By tasksByTypeGraph = By.xpath("//h4[text()='Tasks by Type']");
@@ -72,34 +78,46 @@ public class DockManagementSummaryPage extends BasePage {
     By listBoxIcon = By.cssSelector("span[class='k-input']");
     By searchIcon = By.cssSelector("div[class='item-searchbar']");
     By dashboardIcon = By.xpath("//ul[contains(@class, 'drawer-menu-list-items')]//span[text()='Dashboard']");
-    By inboundIcon = By.xpath("//ul[contains(@class, 'drawer-menu-list-items')]//span[text()='Inbound']");
+
+//    By inboundIcon = By.xpath("//ul[contains(@class, 'drawer-menu-list-items')]//span[text()='Inbound']");
+    By inboundIcon = By.xpath("//span[text()='Inbound']");
     By loadsSubmenuIcon = By.xpath("//div[@class='submenu-items-list']//div[contains(text(), 'Loads') and @class='submenu-item-text']");
     By inboundOrdersSubmenuIcon = By.xpath("//div[contains(text(), 'Inbound Orders') and @class='submenu-item-text']");
     By receivingSubmenuIcon = By.xpath("//div[@class='submenu-items-list']//div[contains(text(), 'Receiving') and @class='submenu-item-text']");
     By inboundReportsSubmenuIcon = By.xpath("//div[@class='submenu-items-list']//div[contains(text(), 'Inbound reports') and @class='submenu-item-text']");
-    By outboundIcon = By.xpath("//ul[contains(@class, 'drawer-menu-list-items')]//span[text()='Outbound']");
+    //By outboundIcon = By.xpath("//ul[contains(@class,'drawer-menu-list-items')]//span[text()='Outbound']");
+    By outboundIcon = By.xpath("//span[text()='Outbound']");
     By processingIcon = By.xpath("//div[@class='submenu-items-list']//div[contains(text(), 'Processing') and @class='submenu-item-text']");
     By routesIcon = By.xpath("//div[@class='submenu-items-list']//div[contains(text(), 'Routes') and @class='submenu-item-text']");
     By outboundOrdersIcon = By.xpath("//div[@class='submenu-items-list']//div[contains(text(), 'Outbound Orders')]");
     By loadPlanningIcon = By.xpath("//div[@class='submenu-items-list']//div[contains(text(), 'Load Planning') and @class='submenu-item-text']");
+    By LoadPlanningWarningMessage  = By.xpath("//div[@id='button_focus_loop_container_14']/button[text()='Ok']");
     By outboundReportsIcon = By.xpath("//div[@class='submenu-items-list']//div[contains(text(), 'Outbound Reports') and @class='submenu-item-text']");
-    By lookupIcon = By.xpath("//ul[contains(@class, 'drawer-menu-list-items')]//span[text()='Lookup']");
-    By workQueueIcon = By.xpath("//ul[contains(@class, 'drawer-menu-list-items')]//span[text()='Work Queue']");
+    //By lookupIcon = By.xpath("//ul[contains(@class, 'drawer-menu-list-items')]//span[text()='Lookup']");
+    By lookupIcon = By.xpath("//span[normalize-space()='Lookup']");
+    //By workQueueIcon = By.xpath("//ul[contains(@class, 'drawer-menu-list-items')]//span[text()='Work Queue']");
+    By workQueueIcon = By.xpath("//span[normalize-space()='Work Queue']");
     By tasksIcon = By.xpath("//div[@class='submenu-items-list']//div[contains(text(), 'Tasks') and @class='submenu-item-text']");
     By assignWorkIcon = By.xpath("//div[@class='submenu-items-list']//div[contains(text(), 'Assign Work') and @class='submenu-item-text']");
     By userHistoryIcon = By.xpath("//div[@class='submenu-items-list']//div[contains(text(), 'User History') and @class='submenu-item-text']");
     By loggedInUsersIcon = By.xpath("//div[@class='submenu-items-list']//div[contains(text(), 'Logged-In Users') and @class='submenu-item-text']");
     By assignmentsIcon = By.xpath("//div[@class='submenu-items-list']//div[contains(text(), 'Assignments') and @class='submenu-item-text']");
-    By countingIcon = By.xpath("//ul[contains(@class, 'drawer-menu-list-items')]//span[text()='Counting']");
-    By setupIcon = By.xpath("//ul[contains(@class, 'drawer-menu-list-items')]//span[text()='Setup']");
+    //By countingIcon = By.xpath("//ul[contains(@class, 'drawer-menu-list-items')]//span[text()='Counting']");
+    //By countingIcon = By.xpath("//*[@id='menuWrapper_selected_AccessCPCountingCount']/li/span[1]");
+    By countingIcon = By.xpath("//span[normalize-space()='Counting']");
+//    By setupIcon = By.xpath("//ul[contains(@class, 'drawer-menu-list-items')]//span[text()='Setup']");
+    By setupIcon = By.xpath("//span[normalize-space()='Setup']");
     By setupProductIcon = By.xpath("//div[contains(@id, 'accesscpwmssettingssystem')]//div[contains(text(), 'Product')]");
-    By appointmentsIcon = By.xpath("//ul[contains(@class, 'drawer-menu-list-items')]//span[text()='Appointments']");
+    //By appointmentsIcon = By.xpath("//span[normalize-space()='Setup']");
+    By appointmentsIcon = By.xpath("//span[normalize-space()='Appointments']");
     By locationIcon = By.xpath("//div[@class='submenu-items-list']//div[contains(text(), 'Location') and @class='submenu-item-text']");
     By labelIcon = By.xpath("//div[@class='submenu-items-list']//div[contains(text(), 'Label') and @class='submenu-item-text']");
     By productIcon = By.xpath("//div[@class='submenu-items-list']//div[contains(text(), 'Product') and @class='submenu-item-text']");
     By dockManagementIcon = By.xpath("//div[@class='submenu-items-list']//div[contains(text(), 'Dock Management') and @class='submenu-item-text']");
     By lookupReportsIcon = By.xpath("//div[@class='submenu-items-list']//div[contains(text(), 'Lookup Reports') and @class='submenu-item-text']");
-    By countIcon = By.xpath("//div[@class='submenu-items-list']//div[contains(text(), 'Counting') and @class='submenu-item-text']");
+    //By countIcon = By.xpath("//div[@class='submenu-items-list']//div[contains(text(), 'Counting') and @class='submenu-item-text']");
+    //By countIcon = By.xpath("//*[@id='menuWrapper_selected_AccessCPCountingCount']/li/span[1]");
+    By countIcon = By.xpath("//body/div[@id='app']/div[@class='authorized-wrapper']/div[@class='page-container']/div[@class='drawer-menu-container']/div[@class='MuiDrawer-root MuiDrawer-docked']/div[@class='MuiPaper-root MuiDrawer-paper drawer-opened MuiDrawer-paperAnchorLeft MuiDrawer-paperAnchorDockedLeft MuiPaper-elevation0']/div[@class='drawer-menu-items-container-expanded hidden-scrollbar']/ul[@class='MuiList-root MuiList-padding']/div[@id='menuWrapper_selected_AccessCPCountingCount']/div[@class='submenu-items-list']/div[1]");
     By countingDashboardIcon = By.xpath("//div[@class='submenu-items-list']//div[contains(text(), 'Dashboard') and @class='submenu-item-text']");
     By countingSessionsIcon = By.xpath("//div[@class='submenu-items-list']//div[contains(text(), 'Sessions') and @class='submenu-item-text']");
     By exportIcon = By.xpath("//div[@class='submenu-items-list']//div[contains(text(), 'Export') and @class='submenu-item-text']");
@@ -129,11 +147,20 @@ public class DockManagementSummaryPage extends BasePage {
     By xdockPalTask = By.xpath("//div[contains(@class, 'i-card__card__body')][.//h4[text()='Assignments by Group']]//*[text()='XDOCK PAL']");
     By xrepNdFrzTask = By.xpath("//div[contains(@class, 'i-card__card__body')][.//h4[text()='Assignments by Group']]//*[text()='XREP ND FRZ']");
     By loader = By.cssSelector(".loader");
+    WebDriver driver;
 
-    public void waitForDockManagementSummaryPageToLoad() {
-        waitUntilInvisible(3, loader);
+    public void waitForDockManagementSummaryPageToLoad() throws InterruptedException {
+        //waitUntilInvisible(10, loader);
+        Thread.sleep(10000);
         Waiters.waitForElementToBeDisplay(getTopIcon());
-        waitUntilInvisible(3, loader);
+        clickOnElement(topIcon);
+
+
+        //waitUntilInvisible(10, loader);
+
+
+
+
     }
 
     public void refreshPage() {
@@ -141,416 +168,425 @@ public class DockManagementSummaryPage extends BasePage {
     }
 
     public void clickListBoxIcon() {
-        Waiters.waitABit(2000);
-        Waiters.waitForElementToBeClickable(getListBoxIcon());
+        //Waiters.waitABit(2000);
+        //Waiters.waitForElementToBeClickable(getListBoxIcon());
         clickOnElement(getListBoxIcon());
-        Waiters.waitTillLoadingPage(getDriver());
+        //Waiters.waitTillLoadingPage(getDriver());
     }
 
     public void clickUserProfileIcon() {
-        Waiters.waitTillLoadingPage(getDriver());
-        Waiters.waitForElementToBeClickable(userProfileIcon);
+        //Waiters.waitTillLoadingPage(getDriver());
+        //Waiters.waitForElementToBeClickable(userProfileIcon);
         clickOnElement(userProfileIcon);
-        Waiters.waitTillLoadingPage(getDriver());
+        //Waiters.waitTillLoadingPage(getDriver());
     }
 
     public void clickUserProfileLogoutIcon() {
         waitUntilInvisible(3, loader);
-        Waiters.waitTillLoadingPage(getDriver());
-        Waiters.waitForElementToBeClickable(userProfileLogoutIcon);
+        //Waiters.waitTillLoadingPage(getDriver());
+        //Waiters.waitForElementToBeClickable(userProfileLogoutIcon);
         clickOnElement(userProfileLogoutIcon);
-        Waiters.waitABit(2000);
+        //Waiters.waitABit(2000);
     }
 
     public void clickSearchIcon() {
-        Waiters.waitTillLoadingPage(getDriver());
-        Waiters.waitForElementToBeClickable(getSearchIcon());
+        //Waiters.waitTillLoadingPage(getDriver());
+        //Waiters.waitForElementToBeClickable(getSearchIcon());
         clickOnElement(getSearchIcon());
-        Waiters.waitTillLoadingPage(getDriver());
+        //Waiters.waitTillLoadingPage(getDriver());
     }
 
     public void clickDashboardIcon() {
-        Waiters.waitABit(8000);
-        Waiters.waitTillLoadingPage(getDriver());
-        Waiters.waitABit(8000);
+        //Waiters.waitABit(8000);
+        //Waiters.waitTillLoadingPage(getDriver());
+        //Waiters.waitABit(8000);
         clickOnElement(getDashboardIcon());
-        Waiters.waitABit(8000);
-        Waiters.waitTillLoadingPage(getDriver());
+        //Waiters.waitABit(8000);
+        //Waiters.waitTillLoadingPage(getDriver());
     }
 
     public void clickInboundIcon() {
-        Waiters.waitTillLoadingPage(getDriver());
-        Waiters.waitForElementToBeDisplay(getInboundIcon());
+        //Waiters.waitTillLoadingPage(getDriver());
+        //Waiters.waitForElementToBeDisplay(getInboundIcon());
         clickOnElement(getInboundIcon());
-        Waiters.waitTillLoadingPage(getDriver());
-        Waiters.waitABit(2000);
+        //Waiters.waitTillLoadingPage(getDriver());
+        //Waiters.waitABit(2000);
     }
 
     public void hoverInboundIcon() {
-        Waiters.waitTillLoadingPage(getDriver());
-        Waiters.waitForElementToBeDisplay(getInboundIcon());
+        //Waiters.waitTillLoadingPage(getDriver());
+        //Waiters.waitForElementToBeDisplay(getInboundIcon());
         hover(getInboundIcon());
-        Waiters.waitTillLoadingPage(getDriver());
+        //Waiters.waitTillLoadingPage(getDriver());
     }
 
     public void clickLoadsIcon() {
-        Waiters.waitTillLoadingPage(getDriver());
-        Waiters.waitForElementToBeDisplay(getLoadsSubmenuIcon());
+        //Waiters.waitTillLoadingPage(getDriver());
+        //Waiters.waitForElementToBeDisplay(getLoadsSubmenuIcon());
         clickOnElement(getLoadsSubmenuIcon());
-        Waiters.waitTillLoadingPage(getDriver());
-        Waiters.waitABit(15000);
+        //Waiters.waitTillLoadingPage(getDriver());
+        //Waiters.waitABit(15000);
     }
 
     public void clickInboundOrdersIcon() {
-        Waiters.waitTillLoadingPage(getDriver());
-        Waiters.waitForElementToBeDisplay(getInboundOrdersSubmenuIcon());
+        //Waiters.waitTillLoadingPage(getDriver());
+        //Waiters.waitForElementToBeDisplay(getInboundOrdersSubmenuIcon());
         clickOnElement(getInboundOrdersSubmenuIcon());
-        Waiters.waitTillLoadingPage(getDriver());
+        //Waiters.waitTillLoadingPage(getDriver());
     }
 
     public void clickReceivingIcon() {
-        Waiters.waitTillLoadingPage(getDriver());
-        Waiters.waitForElementToBeClickable(getReceivingSubmenuIcon());
+        //Waiters.waitTillLoadingPage(getDriver());
+        //Waiters.waitForElementToBeClickable(getReceivingSubmenuIcon());
         clickOnElement(getReceivingSubmenuIcon());
-        Waiters.waitTillLoadingPage(getDriver());
+        //Waiters.waitTillLoadingPage(getDriver());
     }
 
     public void clickInboundReportsIcon() {
-        Waiters.waitTillLoadingPage(getDriver());
-        Waiters.waitForElementToBeClickable(getInboundReportsSubmenuIcon());
+        //Waiters.waitTillLoadingPage(getDriver());
+        //Waiters.waitForElementToBeClickable(getInboundReportsSubmenuIcon());
         clickOnElement(getInboundReportsSubmenuIcon());
-        Waiters.waitTillLoadingPage(getDriver());
+        //Waiters.waitTillLoadingPage(getDriver());
     }
 
     public void clickOutboundIcon() {
-        Waiters.waitTillLoadingPage(getDriver());
-        Waiters.waitForElementToBeDisplay(getOutboundIcon());
-        clickOnElement(getOutboundIcon());
-        Waiters.waitTillLoadingPage(getDriver());
-    }
+        //WebElement WebEle=null;
+        //Waiters.waitTillLoadingPage(getDriver());
+        //Waiters.waitForElementToBeDisplay(getOutboundIcon());
+
+            clickOnElement(getOutboundIcon());
+
+        }
+        //Waiters.waitTillLoadingPage(getDriver());
+
+
 
     public void clickOutboundOrdersIcon() {
-        Waiters.waitTillLoadingPage(getDriver());
-        Waiters.waitForElementToBeDisplay(getOutboundOrdersIcon());
+        //Waiters.waitTillLoadingPage(getDriver());
+        //Waiters.waitForElementToBeDisplay(getOutboundOrdersIcon());
         clickOnElement(getOutboundOrdersIcon());
-        Waiters.waitTillLoadingPage(getDriver());
+        //Waiters.waitTillLoadingPage(getDriver());
     }
 
     public void clickTasksIcon() {
-        Waiters.waitTillLoadingPage(getDriver());
-        Waiters.waitForElementToBeDisplay(getTasksIcon());
+        //Waiters.waitTillLoadingPage(getDriver());
+        //Waiters.waitForElementToBeDisplay(getTasksIcon());
         clickOnElement(getTasksIcon());
-        Waiters.waitTillLoadingPage(getDriver());
+        //Waiters.waitTillLoadingPage(getDriver());
     }
 
     public void clickAssignWorkIcon() {
-        Waiters.waitTillLoadingPage(getDriver());
-        Waiters.waitForElementToBeDisplay(getAssignWorkIcon());
+        //Waiters.waitTillLoadingPage(getDriver());
+        //Waiters.waitForElementToBeDisplay(getAssignWorkIcon());
         clickOnElement(getAssignWorkIcon());
-        Waiters.waitTillLoadingPage(getDriver());
+        //Waiters.waitTillLoadingPage(getDriver());
     }
 
     public void clickUserHistoryIcon() {
-        Waiters.waitTillLoadingPage(getDriver());
-        Waiters.waitForElementToBeDisplay(getUserHistoryIcon());
+        //Waiters.waitTillLoadingPage(getDriver());
+        //Waiters.waitForElementToBeDisplay(getUserHistoryIcon());
         clickOnElement(getUserHistoryIcon());
-        Waiters.waitTillLoadingPage(getDriver());
+        //Waiters.waitTillLoadingPage(getDriver());
     }
 
     public void clickLoggedInUsersIcon() {
-        Waiters.waitTillLoadingPage(getDriver());
-        Waiters.waitForElementToBeDisplay(getLoggedInUsersIcon());
+        //Waiters.waitTillLoadingPage(getDriver());
+        //Waiters.waitForElementToBeDisplay(getLoggedInUsersIcon());
         clickOnElement(getLoggedInUsersIcon());
-        Waiters.waitTillLoadingPage(getDriver());
+        //Waiters.waitTillLoadingPage(getDriver());
     }
 
     public void clickAssignmentsIcon() {
-        Waiters.waitTillLoadingPage(getDriver());
-        Waiters.waitForElementToBeDisplay(getAssignmentsIcon());
+        //Waiters.waitTillLoadingPage(getDriver());
+        //Waiters.waitForElementToBeDisplay(getAssignmentsIcon());
         clickOnElement(getAssignmentsIcon());
-        Waiters.waitTillLoadingPage(getDriver());
+        //Waiters.waitTillLoadingPage(getDriver());
     }
 
     public void clickLocationIcon() {
-        Waiters.waitTillLoadingPage(getDriver());
-        Waiters.waitForElementToBeDisplay(getLocationIcon());
+        //Waiters.waitTillLoadingPage(getDriver());
+        //Waiters.waitForElementToBeDisplay(getLocationIcon());
         clickOnElement(getLocationIcon());
-        Waiters.waitTillLoadingPage(getDriver());
+        //Waiters.waitTillLoadingPage(getDriver());
     }
 
     public void clickLabelIcon() {
-        Waiters.waitTillLoadingPage(getDriver());
-        Waiters.waitForElementToBeDisplay(getLabelIcon());
+        //Waiters.waitTillLoadingPage(getDriver());
+        //Waiters.waitForElementToBeDisplay(getLabelIcon());
         clickOnElement(getLabelIcon());
-        Waiters.waitTillLoadingPage(getDriver());
+        //Waiters.waitTillLoadingPage(getDriver());
     }
 
     public void clickCountingIcon() {
-        Waiters.waitTillLoadingPage(getDriver());
-        Waiters.waitForElementToBeDisplay(getCountingIcon());
+        //Waiters.waitTillLoadingPage(getDriver());
+        //Waiters.waitForElementToBeDisplay(getCountingIcon());
         clickOnElement(getCountingIcon());
-        Waiters.waitTillLoadingPage(getDriver());
+        //Waiters.waitTillLoadingPage(getDriver());
     }
 
     public void clickProductIcon() {
-        Waiters.waitTillLoadingPage(getDriver());
-        Waiters.waitForElementToBeDisplay(getProductIcon());
+        //Waiters.waitTillLoadingPage(getDriver());
+        //Waiters.waitForElementToBeDisplay(getProductIcon());
         clickOnElement(getProductIcon());
-        Waiters.waitTillLoadingPage(getDriver());
+        //Waiters.waitTillLoadingPage(getDriver());
     }
 
     public void clickSetupProductIcon() {
         waitUntilInvisible(2, loader);
-        Waiters.waitTillLoadingPage(getDriver());
-        Waiters.waitForElementToBeDisplay(setupProductIcon);
+        //Waiters.waitTillLoadingPage(getDriver());
+        //Waiters.waitForElementToBeDisplay(setupProductIcon);
         waitUntilStalenessOf(2, getLoader());
         clickOnElement(setupProductIcon);
-        Waiters.waitTillLoadingPage(getDriver());
-        Waiters.waitABit(8000);
+        //Waiters.waitTillLoadingPage(getDriver());
+        //Waiters.waitABit(8000);
     }
 
     public void clickDockManagementIcon() {
-        Waiters.waitTillLoadingPage(getDriver());
-        Waiters.waitForElementToBeDisplay(getDockManagementIcon());
+        //Waiters.waitTillLoadingPage(getDriver());
+        //Waiters.waitForElementToBeDisplay(getDockManagementIcon());
         clickOnElement(getDockManagementIcon());
-        Waiters.waitTillLoadingPage(getDriver());
-        Waiters.waitABit(8000);
+        //Waiters.waitTillLoadingPage(getDriver());
+        //Waiters.waitABit(8000);
     }
 
     public void clickOutboundReportsIcon() {
-        Waiters.waitABit(2000);
-        Waiters.waitForElementToBeClickable(getOutboundReportsIcon());
+        //Waiters.waitABit(2000);
+        //Waiters.waitForElementToBeClickable(getOutboundReportsIcon());
         clickOnElement(getOutboundReportsIcon());
-        Waiters.waitTillLoadingPage(getDriver());
+        //Waiters.waitTillLoadingPage(getDriver());
     }
 
-    public void clickLoadPlanningIcon() {
-        Waiters.waitTillLoadingPage(getDriver());
+    public void clickLoadPlanningIcon() throws InterruptedException {
+        //Waiters.waitTillLoadingPage(getDriver());
         clickOnElement(getLoadPlanningIcon());
-        Waiters.waitTillLoadingPage(getDriver());
-        Waiters.waitABit(5000);
+        //Waiters.waitTillLoadingPage(getDriver());
+        //Waiters.waitABit(5000);
+
+
     }
+
+
 
     public void clickProcessingIcon() {
-        Waiters.waitTillLoadingPage(getDriver());
-        Waiters.waitForElementToBeClickable(getProcessingIcon());
+        //Waiters.waitTillLoadingPage(getDriver());
+        //Waiters.waitForElementToBeClickable(getProcessingIcon());
         clickOnElement(getProcessingIcon());
-        Waiters.waitTillLoadingPage(getDriver());
+        //Waiters.waitTillLoadingPage(getDriver());
     }
 
     public void clickRoutesIcon() {
-        Waiters.waitTillLoadingPage(getDriver());
-        Waiters.waitForElementToBeClickable(getRoutesIcon());
+        //Waiters.waitTillLoadingPage(getDriver());
+        //Waiters.waitForElementToBeClickable(getRoutesIcon());
         clickOnElement(getRoutesIcon());
-        Waiters.waitTillLoadingPage(getDriver());
+        //Waiters.waitTillLoadingPage(getDriver());
     }
 
     public void clickLookupIcon() {
-        Waiters.waitTillLoadingPage(getDriver());
-        Waiters.waitForElementToBeClickable(getLookupIcon());
+        //Waiters.waitTillLoadingPage(getDriver());
+        //Waiters.waitForElementToBeClickable(getLookupIcon());
         clickOnElement(getLookupIcon());
-        Waiters.waitTillLoadingPage(getDriver());
+        //Waiters.waitTillLoadingPage(getDriver());
     }
 
     public void clickWorkQueueIcon() {
-        Waiters.waitTillLoadingPage(getDriver());
-        Waiters.waitForElementToBeClickable(getWorkQueueIcon());
+        //Waiters.waitTillLoadingPage(getDriver());
+        //Waiters.waitForElementToBeClickable(getWorkQueueIcon());
         clickOnElement(getWorkQueueIcon());
-        Waiters.waitTillLoadingPage(getDriver());
+        //Waiters.waitTillLoadingPage(getDriver());
     }
 
     public void clickCountIcon() {
-        Waiters.waitForElementToBeClickable(getCountIcon());
+        //Waiters.waitForElementToBeClickable(getCountIcon());
         clickOnElement(getCountIcon());
-        Waiters.waitTillLoadingPage(getDriver());
+        //Waiters.waitTillLoadingPage(getDriver());
     }
 
     public void clickCountingDashboardIcon() {
-        Waiters.waitForElementToBeClickable(getCountingDashboardIcon());
+        //Waiters.waitForElementToBeClickable(getCountingDashboardIcon());
         clickOnElement(getCountingDashboardIcon());
-        Waiters.waitTillLoadingPage(getDriver());
+        //Waiters.waitTillLoadingPage(getDriver());
     }
 
     public void clickCountingSessionsIcon() {
-        Waiters.waitForElementToBeClickable(getCountingSessionsIcon());
+        //Waiters.waitForElementToBeClickable(getCountingSessionsIcon());
         clickOnElement(getCountingSessionsIcon());
-        Waiters.waitTillLoadingPage(getDriver());
+        //Waiters.waitTillLoadingPage(getDriver());
     }
 
     public void clickSetupIcon() {
-        Waiters.waitTillLoadingPage(getDriver());
-        Waiters.waitForElementToBeClickable(getSetupIcon());
+        //Waiters.waitTillLoadingPage(getDriver());
+        //Waiters.waitForElementToBeClickable(getSetupIcon());
         clickOnElement(getSetupIcon());
-        Waiters.waitTillLoadingPage(getDriver());
+        //Waiters.waitTillLoadingPage(getDriver());
     }
 
     public void clickSecurityIcon() {
-        Waiters.waitTillLoadingPage(getDriver());
-        Waiters.waitForElementToBeClickable(multiListItemButton);
+        //Waiters.waitTillLoadingPage(getDriver());
+        //Waiters.waitForElementToBeClickable(multiListItemButton);
         clickOnElement(multiListItemButton);
-        Waiters.waitABit(5000);
-        Waiters.waitForElementToBeClickable(getSecurityIcon());
+        //Waiters.waitABit(5000);
+        //Waiters.waitForElementToBeClickable(getSecurityIcon());
         clickOnElement(getSecurityIcon());
-        Waiters.waitTillLoadingPage(getDriver());
+        //Waiters.waitTillLoadingPage(getDriver());
     }
 
     public void clickPermissionsIcon() {
-        Waiters.waitTillLoadingPage(getDriver());
-        Waiters.waitForElementToBeClickable(getPermissionsIcon());
+        //Waiters.waitTillLoadingPage(getDriver());
+        //Waiters.waitForElementToBeClickable(getPermissionsIcon());
         clickOnElement(getPermissionsIcon());
-        Waiters.waitTillLoadingPage(getDriver());
+        //Waiters.waitTillLoadingPage(getDriver());
     }
 
     public void clickAppointmentIcon() {
-        Waiters.waitTillLoadingPage(getDriver());
-        Waiters.waitForElementToBeClickable(getAppointmentsIcon());
+        //Waiters.waitTillLoadingPage(getDriver());
+        //Waiters.waitForElementToBeClickable(getAppointmentsIcon());
         clickOnElement(getAppointmentsIcon());
-        Waiters.waitTillLoadingPage(getDriver());
+        //Waiters.waitTillLoadingPage(getDriver());
     }
 
     public void clickSystemIcon() {
-        Waiters.waitTillLoadingPage(getDriver());
-        Waiters.waitForElementToBeClickable(getSystemIcon());
+        //Waiters.waitTillLoadingPage(getDriver());
+        //Waiters.waitForElementToBeClickable(getSystemIcon());
         clickOnElement(getSystemIcon());
-        Waiters.waitTillLoadingPage(getDriver());
+        //Waiters.waitTillLoadingPage(getDriver());
     }
 
     public void clickApplicationIconContainer() {
-        Waiters.waitTillLoadingPage(getDriver());
-        Waiters.waitForElementToBeClickable(getApplicationIconContainer());
+        //Waiters.waitTillLoadingPage(getDriver());
+        //Waiters.waitForElementToBeClickable(getApplicationIconContainer());
         clickOnElement(getApplicationIconContainer());
-        Waiters.waitTillLoadingPage(getDriver());
+        //Waiters.waitTillLoadingPage(getDriver());
     }
 
     public void clickCycleCountGraphBar() {
-        Waiters.waitABit(10000);
-        Waiters.waitForElementToBeClickable(getCycleCountPath());
+        //Waiters.waitABit(10000);
+        //Waiters.waitForElementToBeClickable(getCycleCountPath());
         clickOnElement(getCycleCountPath());
-        Waiters.waitTillLoadingPage(getDriver());
+        //Waiters.waitTillLoadingPage(getDriver());
     }
 
     public void hoverOverCycleCountGraphBar() {
-        Waiters.waitABit(2000);
+        //Waiters.waitABit(2000);
         hover(cycleCountPath);
-        Waiters.waitABit(2000);
+        //Waiters.waitABit(2000);
     }
 
     public void hoverOverCountGraphBar() {
-        Waiters.waitABit(2000);
+        //Waiters.waitABit(2000);
         hover(countTaskPath);
     }
 
     public void clickLetDownGraphBar() {
-        Waiters.waitTillLoadingPage(getDriver());
-        Waiters.waitForElementToBeClickable(getLetdownPath());
+        //Waiters.waitTillLoadingPage(getDriver());
+        //Waiters.waitForElementToBeClickable(getLetdownPath());
         clickOnElement(getLetdownPath());
-        Waiters.waitTillLoadingPage(getDriver());
-        Waiters.waitABit(5_000);
+        //Waiters.waitTillLoadingPage(getDriver());
+        //Waiters.waitABit(5_000);
     }
 
     public void hoverOverLetDownGraphBar() {
-        Waiters.waitABit(2000);
+        //Waiters.waitABit(2000);
         hover(letdownPath);
     }
 
     public void clickLoadCountAuditGraphBar() {
-        Waiters.waitABit(10000);
-        Waiters.waitForElementToBeClickable(getLoadCountAuditPath());
+        //Waiters.waitABit(10000);
+        //Waiters.waitForElementToBeClickable(getLoadCountAuditPath());
         clickOnElement(getLoadCountAuditPath());
-        Waiters.waitTillLoadingPage(getDriver());
-        Waiters.waitABit(5_000);
+        //Waiters.waitTillLoadingPage(getDriver());
+        //Waiters.waitABit(5_000);
     }
 
     public void clickLoadingGraphBar() {
-        Waiters.waitABit(10000);
-        Waiters.waitForElementToBeClickable(getLoadingPath());
+        //Waiters.waitABit(10000);
+        //Waiters.waitForElementToBeClickable(getLoadingPath());
         clickOnElement(getLoadingPath());
-        Waiters.waitTillLoadingPage(getDriver());
-        Waiters.waitABit(5_000);
+        //Waiters.waitTillLoadingPage(getDriver());
+        //Waiters.waitABit(5_000);
     }
 
     public void clickCountGraphBar() {
-        Waiters.waitABit(10000);
-        Waiters.waitForElementToBeClickable(getCountTaskPath());
+        //Waiters.waitABit(10000);
+        //Waiters.waitForElementToBeClickable(getCountTaskPath());
         clickOnElement(getCountTaskPath());
-        Waiters.waitTillLoadingPage(getDriver());
-        Waiters.waitABit(5_000);
+        //Waiters.waitTillLoadingPage(getDriver());
+        //Waiters.waitABit(5_000);
     }
 
     public void clickDeeGraphBar() {
-        Waiters.waitABit(10000);
-        Waiters.waitForElementToBeClickable(getDeeTaskPath());
+        //Waiters.waitABit(10000);
+        //Waiters.waitForElementToBeClickable(getDeeTaskPath());
         clickOnElement(getDeeTaskPath());
-        Waiters.waitTillLoadingPage(getDriver());
-        Waiters.waitABit(5_000);
+        //Waiters.waitTillLoadingPage(getDriver());
+        //Waiters.waitABit(5_000);
     }
 
     public void clickDefaultGraphBar() {
-        Waiters.waitABit(10000);
-        Waiters.waitForElementToBeClickable(getDefaultTaskPath());
+        //Waiters.waitABit(10000);
+        //Waiters.waitForElementToBeClickable(getDefaultTaskPath());
         clickOnElement(getDefaultTaskPath());
-        Waiters.waitTillLoadingPage(getDriver());
-        Waiters.waitABit(5_000);
+        //Waiters.waitTillLoadingPage(getDriver());
+        //Waiters.waitABit(5_000);
     }
 
     public void clickLoadGraphBar() {
-        Waiters.waitABit(10000);
-        Waiters.waitForElementToBeClickable(getLoadTaskPath());
+        //Waiters.waitABit(10000);
+        //Waiters.waitForElementToBeClickable(getLoadTaskPath());
         clickOnElement(getLoadTaskPath());
-        Waiters.waitTillLoadingPage(getDriver());
-        Waiters.waitABit(5_000);
+        //Waiters.waitTillLoadingPage(getDriver());
+        //Waiters.waitABit(5_000);
     }
 
     public void clickPalDryGraphBar() {
-        Waiters.waitABit(10000);
-        Waiters.waitForElementToBeClickable(getPalDryTaskPath());
+        //Waiters.waitABit(10000);
+        //Waiters.waitForElementToBeClickable(getPalDryTaskPath());
         clickOnElement(getPalDryTaskPath());
-        Waiters.waitTillLoadingPage(getDriver());
-        Waiters.waitABit(5_000);
+        //Waiters.waitTillLoadingPage(getDriver());
+        //Waiters.waitABit(5_000);
     }
 
     public void clickOnBreakBar() {
-        Waiters.waitABit(10000);
-        Waiters.waitForElementToBeClickable(getOnBreakBarPath());
+        //Waiters.waitABit(10000);
+        //Waiters.waitForElementToBeClickable(getOnBreakBarPath());
         clickOnElement(getOnBreakBarPath());
-        Waiters.waitTillLoadingPage(getDriver());
-        Waiters.waitABit(5_000);
+        //Waiters.waitTillLoadingPage(getDriver());
+        //Waiters.waitABit(5_000);
     }
 
     public void hoverOverApplicationContainerIcon() {
-        Waiters.waitABit(2000);
-        Waiters.waitForElementToBeClickable(getAppointmentsIcon());
+        //Waiters.waitABit(2000);
+        //Waiters.waitForElementToBeClickable(getAppointmentsIcon());
         hover(getAppointmentsIcon());
-        Waiters.waitTillLoadingPage(getDriver());
+        //Waiters.waitTillLoadingPage(getDriver());
     }
 
     public boolean isListBoxIconVisible() {
-        Waiters.waitABit(2000);
+        //Waiters.waitABit(2000);
         return isElementDisplay(getListBoxIcon());
     }
 
     public boolean isTopHeaderRowVisible() {
-        Waiters.waitABit(2000);
+        //Waiters.waitABit(2000);
         return isElementDisplay(getTopHeaderRow());
     }
 
     public boolean isLocationIconVisible() {
-        Waiters.waitABit(1000);
+        //Waiters.waitABit(1000);
         return isElementDisplay(getLocationIcon());
     }
 
     public boolean isProductIconVisible() {
-        Waiters.waitABit(1000);
+        //Waiters.waitABit(1000);
         return isElementDisplay(getProductIcon());
     }
 
     public boolean isDockManagementIconVisible() {
-        Waiters.waitABit(1000);
+        //Waiters.waitABit(1000);
         return isElementDisplay(getDockManagementIcon());
     }
 
     public boolean isNumberOfTasksVisible() {
-        Waiters.waitABit(1000);
+        //Waiters.waitABit(1000);
         return isElementDisplay(findWebElement(By
             .xpath("//div[contains(@class, 'k-animation-container-shown')]//div[contains(@style, 'background-color')]")));
     }
@@ -722,6 +758,7 @@ public class DockManagementSummaryPage extends BasePage {
     public WebElement getOutboundOrdersIcon() { return findWebElement(outboundOrdersIcon); }
 
     public WebElement getLoadPlanningIcon() { return findWebElement(loadPlanningIcon); }
+
 
     public WebElement getOutboundReportsIcon() { return findWebElement(outboundReportsIcon); }
 

@@ -31,7 +31,7 @@ public class SetupLaborCodePage extends BasePage {
 
     SetupLaborCodePage setupLaborCodePage;
 
-    By setupIcon = By.xpath("//ul[contains(@class, 'drawer-menu-list-items')]//span[text()='Setup']");
+    By setupIcon = By.xpath("//span[normalize-space()='Setup']");
     By setupProductIcon = By.xpath("//div[contains(@id, 'accesscpwmssettingssystem')]//div[contains(text(), 'Labor')]");
 
 //    By searchBox=By.xpath("//div[@class='i-search-box']");

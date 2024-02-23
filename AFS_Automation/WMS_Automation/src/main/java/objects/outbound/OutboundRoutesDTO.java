@@ -26,4 +26,12 @@ public class OutboundRoutesDTO implements Serializable {
 	private String outboundRoute6;
 	@JsonProperty("outbound route 7")
 	private String outboundRoute7;
+
+	@JsonProperty("outbound route 8")
+	private String outboundRoute8;
+	@JsonProperty("outbound route 9")
+	private String outboundRoute9;
+
+	@JsonProperty("outbound route 10")
+	private String outboundRoute10;
 }

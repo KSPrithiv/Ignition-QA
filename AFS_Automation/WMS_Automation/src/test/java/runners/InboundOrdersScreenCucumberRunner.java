@@ -18,14 +18,15 @@ import java.io.IOException;
 
 import static common.setup.DriverManager.*;
 
-@CucumberOptions(features = {"src/test/resources/features/inbound/inboundorders/screen"},
+@CucumberOptions(features = {"src/test/resources/features/inbound/inboundorders/screen/InboundOrderSummaryScreen1.feature",
+"src/test/resources/features/inbound/inboundorders/screen/InboundOrderSummaryScreen2.feature","src/test/resources/features/inbound/inboundorders/screen/InboundOrderSummaryScreen3.feature"},
         glue = {"steps"},
         plugin = {"pretty",
                 "json:target/cucumber.json",
                 "html:Reports/Index.html",
                 "json:target/cucumber-reports/cucumber.json",
                 "rerun:target/failedrerun.txt"
-        }, monochrome = true, tags = "@Inbound")
+        }, monochrome = true)
 @Slf4j
 public class InboundOrdersScreenCucumberRunner extends AbstractTestNGCucumberTests {
     public static Environment environment;

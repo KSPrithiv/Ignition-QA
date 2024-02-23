@@ -3,7 +3,7 @@ Feature: Testing of Outbound Route Summary Route option
   Scenario: Checking Route Edit option functionality
     Given User signs in the application
     And Main page is loaded
-    And DockManagement Summary Page is validated
+    
     And Go to Outbound Route page
     And Waits for Outbound Route Summary page to load
     When Filling route start date by index 2 on Outbound Route Summary page
@@ -36,7 +36,7 @@ Feature: Testing of Outbound Route Summary Route option
   Scenario: Checking Route Assign functionality
     Given User signs in the application
     And Main page is loaded
-    And DockManagement Summary Page is validated
+    
     And Go to Outbound Route page
     And Waits for Outbound Route Summary page to load
     When Filling route start date by index 2 on Outbound Route Summary page
@@ -52,7 +52,7 @@ Feature: Testing of Outbound Route Summary Route option
   Scenario: Checking Route Door functionality
     Given User signs in the application
     And Main page is loaded
-    And DockManagement Summary Page is validated
+    
     And Go to Outbound Route page
     And Waits for Outbound Route Summary page to load
     When Filling route start date by index 2 on Outbound Route Summary page
@@ -82,7 +82,7 @@ Feature: Testing of Outbound Route Summary Route option
   Scenario: Checking Route Data functionality
     Given User signs in the application
     And Main page is loaded
-    And DockManagement Summary Page is validated
+    
     And Go to Outbound Route page
     And Waits for Outbound Route Summary page to load
     And Filling route start date by index 2 on Outbound Route Summary page
@@ -99,7 +99,7 @@ Feature: Testing of Outbound Route Summary Route option
   Scenario: Checking Route Source functionality
     Given User signs in the application
     And Main page is loaded
-    And DockManagement Summary Page is validated
+    
     And Go to Outbound Route page
     And Waits for Outbound Route Summary page to load
     When Filling route start date by index 2 on Outbound Route Summary page
@@ -117,7 +117,7 @@ Feature: Testing of Outbound Route Summary Route option
   Scenario: Checking Route Edit/Move task functionality
     Given User signs in the application
     And Main page is loaded
-    And DockManagement Summary Page is validated
+    
     And Go to Outbound Route page
     And Waits for Outbound Route Summary page to load
     And Filling route start date by index 2 on Outbound Route Summary page
@@ -146,7 +146,7 @@ Feature: Testing of Outbound Route Summary Route option
   Scenario: Checking Route Review functionality
     Given User signs in the application
     And Main page is loaded
-    And DockManagement Summary Page is validated
+    
     And Go to Outbound Route page
     And Waits for Outbound Route Summary page to load
     When Filling route start date by index 2 on Outbound Route Summary page
@@ -161,7 +161,7 @@ Feature: Testing of Outbound Route Summary Route option
   Scenario: Checking Route Tab/Move Assignment functionality
     Given User signs in the application
     And Main page is loaded
-    And DockManagement Summary Page is validated
+    
     And Go to Outbound Route page
     And Waits for Outbound Route Summary page to load
     When Filling route start date by index 2 on Outbound Route Summary page
@@ -183,7 +183,7 @@ Feature: Testing of Outbound Route Summary Route option
   Scenario: Checking route option Edit when click on the Route
     Given User signs in the application
     And Main page is loaded
-    And DockManagement Summary Page is validated
+    
     And Go to Outbound Route page
     And Waits for Outbound Route Summary page to load
     When Filling route start date by index 2 on Outbound Route Summary page
@@ -205,7 +205,7 @@ Feature: Testing of Outbound Route Summary Route option
   Scenario: Checking route option Data functionality
     Given User signs in the application
     And Main page is loaded
-    And DockManagement Summary Page is validated
+    
     And Go to Outbound Route page
     And Waits for Outbound Route Summary page to load
     When Filling route start date by index 2 on Outbound Route Summary page
@@ -220,7 +220,7 @@ Feature: Testing of Outbound Route Summary Route option
   Scenario: Checking Route Door option functionality
     Given User signs in the application
     And Main page is loaded
-    And DockManagement Summary Page is validated
+    
     And Go to Outbound Route page
     And Waits for Outbound Route Summary page to load
     When Filling route start date by index 2 on Outbound Route Summary page

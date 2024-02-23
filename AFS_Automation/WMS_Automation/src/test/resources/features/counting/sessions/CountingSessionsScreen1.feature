@@ -3,7 +3,6 @@ Feature: Testing of Counting Count functionality
   Scenario: Checking Navigate to Counting Sessions screen
     Given User signs in the application
     And Main page is loaded
-    And DockManagement Summary Page is validated
     When Go to Counting Sessions page
     Then Validates Counting Sessions page is displayed
     And Validates Edit and Delete buttons are disabled on Counting Sessions page
@@ -11,7 +10,6 @@ Feature: Testing of Counting Count functionality
   Scenario: Checking Existing Count Session on Counting Sessions screen
     Given User signs in the application
     And Main page is loaded
-    And DockManagement Summary Page is validated
     And Go to Counting Sessions page
     And Waits for Counting Sessions page to load
     Then User clicks session dropdown on Counting Sessions page
@@ -23,7 +21,6 @@ Feature: Testing of Counting Count functionality
   Scenario: Checking Create New Session Warnings on Counting Sessions screen
     Given User signs in the application
     And Main page is loaded
-    And DockManagement Summary Page is validated
     And Go to Counting Sessions page
     And Waits for Counting Sessions page to load
     When User clicks New Session button on Counting Sessions page
@@ -37,7 +34,6 @@ Feature: Testing of Counting Count functionality
   Scenario: Checking Create New Session on Counting Sessions screen
     Given User signs in the application
     And Main page is loaded
-    And DockManagement Summary Page is validated
     And Go to Counting Sessions page
     And Waits for Counting Sessions page to load
     And User clicks New Session button on Counting Sessions page
@@ -62,10 +58,10 @@ Feature: Testing of Counting Count functionality
     And User clicks Delete Session button on Counting Sessions page
     And User clicks Ok button on Counting Sessions page
 
+  @loader1
   Scenario: Checking add locations to the session on Counting Sessions screen
     Given User signs in the application
     And Main page is loaded
-    And DockManagement Summary Page is validated
     And Go to Counting Sessions page
     And Waits for Counting Sessions page to load
     And User clicks New Session button on Counting Sessions page
@@ -124,10 +120,10 @@ Feature: Testing of Counting Count functionality
     And User clicks Delete Session button on Counting Sessions page
     And User clicks Ok button on Counting Sessions page
 
+
   Scenario: Checking Sorting of the columns on Counting Sessions screen
     Given User signs in the application
     And Main page is loaded
-    And DockManagement Summary Page is validated
     And Go to Counting Sessions page
     And Waits for Counting Sessions page to load
     And User clicks session dropdown on Counting Sessions page
@@ -155,7 +151,6 @@ Feature: Testing of Counting Count functionality
   Scenario: Checking Location Navigation on Counting Sessions screen
     Given User signs in the application
     And Main page is loaded
-    And DockManagement Summary Page is validated
     And Go to Counting Sessions page
     And Waits for Counting Sessions page to load
     And User clicks session dropdown on Counting Sessions page
@@ -172,7 +167,6 @@ Feature: Testing of Counting Count functionality
   Scenario: Checking Locked location on Counting Sessions screen
     Given User signs in the application
     And Main page is loaded
-    And DockManagement Summary Page is validated
     And Go to Counting Sessions page
     And Waits for Counting Sessions page to load
     And User clicks session dropdown on Counting Sessions page
@@ -185,10 +179,10 @@ Feature: Testing of Counting Count functionality
     And Waits for Location Lookup page to load
     And Validates Inventory details of location on Location Lookup page are loaded
 
+  @scroll
   Scenario: Checking Select All checkbox on Counting Sessions screen
     Given User signs in the application
     And Main page is loaded
-    And DockManagement Summary Page is validated
     And Go to Counting Sessions page
     And Waits for Counting Sessions page to load
     And User clicks session dropdown on Counting Sessions page
@@ -205,7 +199,6 @@ Feature: Testing of Counting Count functionality
    Scenario: Checking Count Details on Counting Sessions screen
     Given User signs in the application
     And Main page is loaded
-    And DockManagement Summary Page is validated
     And Go to Counting Sessions page
     And Waits for Counting Sessions page to load
     When User clicks session dropdown on Counting Sessions page

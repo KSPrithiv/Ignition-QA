@@ -3,7 +3,7 @@ Feature: Testing of Work Queue LoggedIn User functionality
   Scenario: Checking Navigate of Work Queue LoggedIn User screen functionality
     Given User signs in the application
     And Main page is loaded
-    And DockManagement Summary Page is validated
+    
     When Go to Work Queue Logged-in users page
     And Waits for Work Queue Logged In Users page to load
     Then Validates User Logged In title is displayed on Work Queue Logged In Users page
@@ -12,7 +12,7 @@ Feature: Testing of Work Queue LoggedIn User functionality
   Scenario: Checking Summary Details of Work Queue LoggedIn User screen functionality
     Given User signs in the application
     And Main page is loaded
-    And DockManagement Summary Page is validated
+    
     And Go to Work Queue Logged-in users page
     And Waits for Work Queue Logged In Users page to load
     When User scrolls till end of grid table on Work Queue Logged In Users page
@@ -21,7 +21,7 @@ Feature: Testing of Work Queue LoggedIn User functionality
   Scenario: Checking Sorting Of All Columns of Work Queue LoggedIn User screen functionality
     Given User signs in the application
     And Main page is loaded
-    And DockManagement Summary Page is validated
+    
     And Go to Work Queue Logged-in users page
     And Waits for Work Queue Logged In Users page to load
     When User clicks on User Id Header on Work Queue Logged In Users page
@@ -60,7 +60,7 @@ Feature: Testing of Work Queue LoggedIn User functionality
   Scenario: Checking Search Control of Work Queue LoggedIn User screen functionality
     Given User signs in the application
     And Main page is loaded
-    And DockManagement Summary Page is validated
+    
     And Go to Work Queue Logged-in users page
     And Waits for Work Queue Logged In Users page to load
     When User searches for user by index 0 on Work Queue Logged In Users page
@@ -69,7 +69,7 @@ Feature: Testing of Work Queue LoggedIn User functionality
   Scenario: Checking Add Filter of Work Queue LoggedIn User screen functionality
     Given User signs in the application
     And Main page is loaded
-    And DockManagement Summary Page is validated
+    
     And Go to Work Queue Logged-in users page
     And Waits for Work Queue Logged In Users page to load
     And User clicks Add filter button on Work Queue Logged In Users page
@@ -99,7 +99,7 @@ Feature: Testing of Work Queue LoggedIn User functionality
   Scenario: Checking Logout User of Work Queue LoggedIn User screen functionality
     Given User signs in the application
     And Main page is loaded
-    And DockManagement Summary Page is validated
+    
     And Go to Work Queue Logged-in users page
     And Waits for Work Queue Logged In Users page to load
     When Selects Logout User by index 0 Dropdown on Work Queue Logged In Users page
@@ -118,7 +118,7 @@ Feature: Testing of Work Queue LoggedIn User functionality
   Scenario: Checking list of logged in users of Work Queue LoggedIn User screen functionality
     Given User signs in the application
     And Main page is loaded
-    And DockManagement Summary Page is validated
+    
     When Go to Work Queue Logged-in users page
     And Waits for Work Queue Logged In Users page to load
     Then Validates User Logged In title is displayed on Work Queue Logged In Users page
