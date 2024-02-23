@@ -478,11 +478,13 @@ public class HelpersMethod
     {
         WebElement WebEle=null;
         Actions act1= new Actions(driver);
-        new WebDriverWait(driver,Duration.ofMillis(2000)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class,'k-popup k-child-animation-container')]"))));
-
+        //KKN Feb-6//new WebDriverWait(driver,Duration.ofMillis(2000)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class,'k-popup k-child-animation-container')]"))));
+        new WebDriverWait(driver,Duration.ofMillis(2000)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.xpath("//input[@id='CSV-select-field']"))));
         // to fetch the web element of the modal container
-        WebElement menuContainer = HelpersMethod.FindByElement("xpath","//div[contains(@class,'k-popup k-child-animation-container')]");
-        List<WebElement> Options=menuContainer.findElements (By.xpath(".//ul/li"));
+        //KKN Feb-6//WebElement menuContainer = HelpersMethod.FindByElement("xpath","//div[contains(@class,'k-popup k-child-animation-container')]");
+        WebElement menuContainer = HelpersMethod.FindByElement("xpath","//input[@id='CSV-select-field']");
+        //KKN Feb-6//List<WebElement> Options=menuContainer.findElements(By.xpath(".//ul/li"));
+        List<WebElement> Options=menuContainer.findElements(By.xpath(".//optgroup/option"));
         for(int i=0;i<=Options.size()-1;i++)
         {
             WebEle=Options.get(i);

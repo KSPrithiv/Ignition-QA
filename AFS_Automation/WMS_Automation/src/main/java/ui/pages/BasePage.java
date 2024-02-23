@@ -13,6 +13,8 @@ import java.util.Optional;
 
 import static common.setup.DriverManager.getDriver;
 
+
+
 public class BasePage {
 
     public void deleteCookies() {

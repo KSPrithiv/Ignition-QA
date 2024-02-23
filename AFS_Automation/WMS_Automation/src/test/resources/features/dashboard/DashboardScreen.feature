@@ -152,35 +152,30 @@ Feature: Testing of Dashboard functionality
   Scenario: Verify Operators by Group
     Given User signs in the application
     When Main page is loaded
-    Then DockManagement Summary Page is validated
     And Validates Dashboard Icons and Spelling on Dashboard page
     And Validates Operators by Group graph is displayed on Dashboard page
 
   Scenario: Verify LABOR Graph display
     Given User signs in the application
     When Main page is loaded
-    Then DockManagement Summary Page is validated
     And Validates Dashboard Icons and Spelling on Dashboard page
     And Validates Active Operators Time Groups is displayed on Dashboard page
 
   Scenario: Verify Operators by Group - Graph displayed
     Given User signs in the application
     When Main page is loaded
-    Then DockManagement Summary Page is validated
     And Validates Dashboard Icons and Spelling on Dashboard page
     And Validates Operators by Group graph is displayed on Dashboard page
 
  Scenario: Verify INVENTORY - By Status
     Given User signs in the application
     When Main page is loaded
-    Then DockManagement Summary Page is validated
     And Validates Dashboard Icons and Spelling on Dashboard page
     And Validates By Status graph widget is displayed on Dashboard page
 
   Scenario: Verify WAREHOUSE CAPACITY - Graph display
     Given User signs in the application
     When Main page is loaded
-    Then DockManagement Summary Page is validated
     And Validates Dashboard Icons and Spelling on Dashboard page
     And Validates Warehouse Capacity graph is displayed on Dashboard page
 
@@ -188,14 +183,12 @@ Feature: Testing of Dashboard functionality
   Scenario: Verify WAREHOUSE CAPACITY - Empty Locations by Zone
     Given User signs in the application
     When Main page is loaded
-    Then DockManagement Summary Page is validated
     And Validates Dashboard Icons and Spelling on Dashboard page
     And Validates Empty Locations by Zone graph is displayed on Dashboard page
 
   Scenario: Verify WAREHOUSE CAPACITY - Warehouse Capacity
     Given User signs in the application
     When Main page is loaded
-    Then DockManagement Summary Page is validated
     And Validates Dashboard Icons and Spelling on Dashboard page
     And Validates Warehouse Capacity graph is displayed on Dashboard page
     And Validates Warehouse Capacity picture is displayed on Dashboard page
