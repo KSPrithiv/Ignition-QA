@@ -6,7 +6,7 @@ on:
     inputs:
       branch:
         description: 'Branch name'
-        default: 'karthik'
+        
   
 jobs:
   job1:
