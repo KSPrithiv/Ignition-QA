@@ -19,6 +19,8 @@ Feature: Order Guide1
     And User should select products from catalog popup
     Then User click on Save button
     And User should navigate back to OG page and verify OG "<OG>"  existence
+    And Clear filter to display both active and inactive OG
+    Then User enters OG Description "<OG>" in search box and Delete the OG verify same in OG grid
     Examples:
     |  OG   |
     |OGDis18|
@@ -44,6 +46,8 @@ Feature: Order Guide1
     And User verifies New OG page and clicks on import button
     Then User click on Save button
     And User should navigate back to OG page and verify OG "<OG>"  existence
+    And Clear filter to display both active and inactive OG
+    Then User enters OG Description "<OG>" in search box and Delete the OG verify same in OG grid
     Examples:
       |  OG   |
       |OGDis19|
@@ -71,9 +75,11 @@ Feature: Order Guide1
     Then User enters Description "<OG>" Start date 16 and End date 17 day from current date
     Then User clicks on Add product button and select Catalog from drop down
       |Catalog|
-    And User should select products from catalog popup to add muliple products
+    And User should select products from catalog popup to add multiple products
     Then User click on Save button
     And User should navigate back to OG page and verify OG "<OG>"  existence
+    And Clear filter to display both active and inactive OG
+    Then User enters OG Description "<OG>" in search box and Delete the OG verify same in OG grid
     Examples:
       |  OG   |
       |OGDis20|
@@ -90,6 +96,8 @@ Feature: Order Guide1
       |4|
     Then User click on Save button
     And User should navigate back to OG page and verify OG "<OG>"  existence
+    And Clear filter to display both active and inactive OG
+    Then User enters OG Description "<OG>" in search box and Delete the OG verify same in OG grid
     Examples:
       |  OG |
       |OGHist|
@@ -181,7 +189,7 @@ Feature: Order Guide1
     Then Then User enters Description "<OG>" and End date
     Then User clicks on Add product button and select Catalog from drop down
       |Catalog|
-    And User should select products from catalog popup
+    And User should select products from catalog popup for Local chain
     Then User click on Save button
     #And User should navigate back to OG page and navigate back to "<OGType>" and verify OG "<OG>"  existence
     And Clear filter to display both active and inactive OG

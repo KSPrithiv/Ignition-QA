@@ -374,7 +374,7 @@ public class AllOrdersPageStep
     {
         allOrder=new AllOrderPage(driver,scenario);
         allOrder.ValidateAllOrder();
-        allOrder.SelectOrderForCopying();
+        allOrder.SelectOrderForCopying(Ord_No);
         allOrder.ClickOnCopyButton();
         allOrder.validateSelectDeliveryDateForCopy();
         allOrder.SelectDeliverDateForCopy();
@@ -402,6 +402,7 @@ public class AllOrdersPageStep
         allOrder=new AllOrderPage(driver,scenario);
         allOrder.OrderStatusDropDown();
         allOrder.OrderOptionFromDropDown();
+        allOrder.ClickOnSearchButton();
     }
 
     @And("User enters product# in input box")
@@ -416,7 +417,7 @@ public class AllOrdersPageStep
     public void userSelectTheOrderAndClickOnPrintButton() throws InterruptedException, AWTException
     {
         allOrder=new AllOrderPage(driver,scenario);
-        allOrder.SelectOrderForCopying();
+        allOrder.selectOrderForPrint();
         allOrder.PrintAllOrder();
         orderpage=new OrderEntryPage(driver,scenario);
         orderpage.Refresh_Page(CurrentULR);

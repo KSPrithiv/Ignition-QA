@@ -33,6 +33,16 @@ Feature: Competitive Pricing
       | CustRef            |  CustRef1               |
       | Customer account # | All customer accounts # |
 
+  @LoadingExistingData
+  Scenario Outline: For loading competitor data
+    Given User must be on Client side and select Competitor pricing page
+    When User should confirm that he is in Competitor pricing page
+    And User selects Customer reference "<CustRef>" "<CustRef1>" and Select customer Account#
+    And User Click on Load existing data and select competitor in popup
+    Examples:
+      | CustRef            |CustRef1|
+      | Customer account # |  All customer accounts # |
+
   @SearchForProduct
   Scenario Outline: For Searching product in competitor pricing
     Given User must be on Client side and select Competitor pricing page
@@ -50,6 +60,17 @@ Feature: Competitive Pricing
     When User should confirm that he is in Competitor pricing page
     And User selects Customer reference "<CustRef>" "<CustRef1>" and Select customer Account#
     And User search for product using Search bar
+    Examples:
+      | CustRef            | CustRef1|
+      | Customer account # |  All customer accounts # |
+
+  @DuplicateProduct
+  Scenario Outline: Test scenario for verifying Duplicate products are not added in competitor pricing
+    Given User must be on Client side and select Competitor pricing page
+    When User should confirm that he is in Competitor pricing page
+    And User selects Customer reference "<CustRef>" "<CustRef1>" and Select customer Account#
+    Then User clicks on competitor drop down and select the competitor based on previously created competitor
+    And User search for product in catalog dialog box, to make sure that duplicate products are not added to competitive pricing
     Examples:
       | CustRef            | CustRef1|
       | Customer account # |  All customer accounts # |
@@ -75,25 +96,5 @@ Feature: Competitive Pricing
     Examples:
       | CustRef            | CustRef1 |
       | Customer account # |   All customer accounts # |
-
-  @LoadingExistingData
-  Scenario Outline: For loading competitor data
-    Given User must be on Client side and select Competitor pricing page
-    When User should confirm that he is in Competitor pricing page
-    And User selects Customer reference "<CustRef>" "<CustRef1>" and Select customer Account#
-    And User Click on Load existing data and select competitor in popup
-    Examples:
-      | CustRef            |CustRef1|
-      | Customer account # |  All customer accounts # |
-
-  @DuplicateProduct
-  Scenario Outline: Test scenario for verifying Duplicate products are not added in competitor pricing
-    Given User must be on Client side and select Competitor pricing page
-    When User should confirm that he is in Competitor pricing page
-    And User selects Customer reference "<CustRef>" "<CustRef1>" and Select customer Account#
-    And User search for product in catalog dialog box, to make sure that duplicate products are not added to competitive pricing
-    Examples:
-      | CustRef            | CustRef1|
-      | Customer account # |  All customer accounts # |
 
 

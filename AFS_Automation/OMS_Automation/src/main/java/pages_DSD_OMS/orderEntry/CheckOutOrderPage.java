@@ -175,6 +175,12 @@ public class CheckOutOrderPage
             WebElement WebEle=null;
             if(HelpersMethod.IsExists("//div[@id='checkoutCard']",driver))
             {
+                Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                        .withTimeout(Duration.ofSeconds(100))
+                        .pollingEvery(Duration.ofSeconds(2))
+                        .ignoring(NoSuchElementException.class);
+                wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
                 if (NextButton.isEnabled())
                 {
                     HelpersMethod.ScrollElement(driver, NextButton);
@@ -191,7 +197,7 @@ public class CheckOutOrderPage
                         HelpersMethod.waitTillLoadingPage(driver);
                     }
 
-                    Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                    wait = new FluentWait<WebDriver>(driver)
                             .withTimeout(Duration.ofSeconds(100))
                             .pollingEvery(Duration.ofSeconds(2))
                             .ignoring(NoSuchElementException.class);
@@ -592,66 +598,75 @@ public class CheckOutOrderPage
         Actions act1=new Actions(driver);
         try
         {
-            HelpersMethod.ClickBut(driver,Add_Payment,1000);
-            new WebDriverWait(driver,Duration.ofMillis(1000)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(text(),'New payment method')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]")));
-            if(HelpersMethod.IsExists("//div[contains(text(),'New payment method')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
+            if(Add_Payment.isDisplayed())
             {
-                if(PayType.isDisplayed() && PayType.isEnabled()) {
-                    //Click on Payment type drop down
-                    HelpersMethod.ClickBut(driver, PayType, 10000);
-                    //Select Bank account from Payment type drop down
-                    WebElement menuContainer = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-child-animation-container')]/descendant::ul");
-                    List<WebElement> Options = menuContainer.findElements(By.xpath(".//li"));
-                    for (int i = 0; i <= Options.size() - 1; i++) {
-                        WebElement WebEle = Options.get(i);
-                        act1.moveToElement(WebEle).build().perform();
-                        String Opt = WebEle.getText();
-                        if (Opt.equals(Paytype)) {
+                HelpersMethod.ScrollElement(driver,Add_Payment);
+                HelpersMethod.ClickBut(driver, Add_Payment, 10000);
+                new WebDriverWait(driver, Duration.ofMillis(1000)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(text(),'New payment method')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]")));
+                if (HelpersMethod.IsExists("//div[contains(text(),'New payment method')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]", driver)) {
+                    if (PayType.isDisplayed() && PayType.isEnabled())
+                    {
+                        //Click on Payment type drop down
+                        HelpersMethod.ClickBut(driver, PayType, 10000);
+                        //Select Bank account from Payment type drop down
+                        WebElement menuContainer = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-child-animation-container')]/descendant::ul");
+                        List<WebElement> Options = menuContainer.findElements(By.xpath(".//li"));
+                        for (int i = 0; i <= Options.size() - 1; i++)
+                        {
+                            WebElement WebEle = Options.get(i);
                             act1.moveToElement(WebEle).build().perform();
-                            act1.click(WebEle).build().perform();
-                            scenario.log("PAYMENT TYPE SELECTED IS " + Paytype);
-                            break;
+                            String Opt = WebEle.getText();
+                            if (Opt.equals(Paytype))
+                            {
+                                act1.moveToElement(WebEle).build().perform();
+                                act1.click(WebEle).build().perform();
+                                scenario.log("PAYMENT TYPE SELECTED IS " + Paytype);
+                                break;
+                            }
                         }
-                    }
 
-                    //enter first name
-                    HelpersMethod.EnterText(driver, Fname, 1000, fName);
-                    scenario.log("FIRST NAME ENTERED " + HelpersMethod.JSGetValueEle(driver, Fname, 1000));
-                    //Enter last name
-                    HelpersMethod.EnterText(driver, Lname, 1000, RandomValues.generateRandomString(2));
-                    scenario.log("LAST NAME ENTERED IS " + HelpersMethod.JSGetValueEle(driver, Lname, 1000));
-                    //Click on Account type drop down
-                    HelpersMethod.ClickBut(driver, AccType, 1000);
-                    //Account type selection
-                    WebElement menuContainer1 = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-child-animation-container')]/descendant::ul");
-                    List<WebElement> Options1 = menuContainer1.findElements(By.xpath(".//li"));
-                    for (int i = 0; i <= Options1.size() - 1; i++) {
-                        WebElement WebEle = Options1.get(i);
-                        act1.moveToElement(WebEle).build().perform();
-                        String Opt = WebEle.getText();
-                        if (Opt.equals(AccountType)) {
+                        //enter first name
+                        HelpersMethod.EnterText(driver, Fname, 1000, fName);
+                        scenario.log("FIRST NAME ENTERED " + HelpersMethod.JSGetValueEle(driver, Fname, 1000));
+                        //Enter last name
+                        HelpersMethod.EnterText(driver, Lname, 1000, RandomValues.generateRandomString(2));
+                        scenario.log("LAST NAME ENTERED IS " + HelpersMethod.JSGetValueEle(driver, Lname, 1000));
+                        //Click on Account type drop down
+                        HelpersMethod.ClickBut(driver, AccType, 1000);
+                        //Account type selection
+                        WebElement menuContainer1 = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-child-animation-container')]/descendant::ul");
+                        List<WebElement> Options1 = menuContainer1.findElements(By.xpath(".//li"));
+                        for (int i = 0; i <= Options1.size() - 1; i++) {
+                            WebElement WebEle = Options1.get(i);
                             act1.moveToElement(WebEle).build().perform();
-                            act1.click(WebEle).build().perform();
-                            scenario.log("ACCOUNT TYPE SELECTED IS " + Paytype);
-                            break;
+                            String Opt = WebEle.getText();
+                            if (Opt.equals(AccountType)) {
+                                act1.moveToElement(WebEle).build().perform();
+                                act1.click(WebEle).build().perform();
+                                scenario.log("ACCOUNT TYPE SELECTED IS " + Paytype);
+                                break;
+                            }
                         }
+                        //Enter Route#
+                        HelpersMethod.EnterText(driver, Route_No, 1000, RandomValues.generateRandomNumber(4));
+                        scenario.log("ROUTE ENTERED IS " + HelpersMethod.JSGetValueEle(driver, Route_No, 1000));
+                        //Enter Account no
+                        HelpersMethod.EnterText(driver, AccNo, 1000, RandomValues.generateRandomNumber(10));
+                        scenario.log("ACCOUNT NUMBER ENTERED IS " + HelpersMethod.JSGetValueEle(driver, AccNo, 1000));
+                        exists = true;
+                    } else {
+                        scenario.log("NOT BANK ACCOUNT DETAILS CAN BE ENTERED, ONLY CREDITCARD IS AVAILABLE");
                     }
-                    //Enter Route#
-                    HelpersMethod.EnterText(driver, Route_No, 1000, RandomValues.generateRandomNumber(4));
-                    scenario.log("ROUTE ENTERED IS " + HelpersMethod.JSGetValueEle(driver, Route_No, 1000));
-                    //Enter Account no
-                    HelpersMethod.EnterText(driver, AccNo, 1000, RandomValues.generateRandomNumber(10));
-                    scenario.log("ACCOUNT NUMBER ENTERED IS " + HelpersMethod.JSGetValueEle(driver, AccNo, 1000));
-                    exists=true;
+                    //Click on OK button
+                    HelpersMethod.ActClick(driver, OkPay, 10000);
                 }
-                else
-                {
-                    scenario.log("NOT BANK ACCOUNT DETAILS CAN BE ENTERED, ONLY CREDITCARD IS AVAILABLE");
-                }
-                //Click on OK button
-                HelpersMethod.ClickBut(driver,OkPay,1000);
-                Assert.assertEquals(exists,true);
             }
+            else
+            {
+                scenario.log("ADD NEW PAYMENT BUTTON DOESN'T EXISTS");
+                exists=false;
+            }
+            Assert.assertEquals(exists, true);
         }
         catch (Exception e){}
     }

@@ -107,7 +107,6 @@ public class OrderGuidePage {
                     Alert alert = driver.switchTo().alert();
                     alert.accept();
                 }
-
             }
 
             status = HelpersMethod.returnDocumentStatus(driver);

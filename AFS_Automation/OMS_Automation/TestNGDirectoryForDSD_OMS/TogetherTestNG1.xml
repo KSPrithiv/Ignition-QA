@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="All Test Suite" >
+    <test name="IgnitionTestAutomation1">
+        <parameter name="environment1" value="config_DSD_OMS\\config_OMS"/>
+        <classes>
+            <class name="testRunner_DSD_OMS.TestRunnSingleSceOMS">
+            </class>
+        </classes>
+    </test>
+</suite>

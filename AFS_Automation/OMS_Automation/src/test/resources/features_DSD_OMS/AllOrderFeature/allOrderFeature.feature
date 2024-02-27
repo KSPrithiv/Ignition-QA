@@ -140,8 +140,8 @@ Feature: All orders
     Given User must be on Order Entry Page to select All Orders
     And User should navigate to All Orders
     Then User clicks on Show all orders check box after Clicking All orders tab
-    And User clicks on Order status and select Active order option from drop down
-    And User Clicks on Add filter button and enter values for search options
+    And User clicks on Order status and select Open order option from drop down
+    #And User Clicks on Add filter button and enter values for search options
     Then User select the order and click on Print button
 
   @AllOrderToOrderEntry

@@ -290,7 +290,7 @@ public class LoginPageStep
         if (HelpersMethod.IsExists("//div[contains(text(),'Failed to connect to API')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]", driver))
         {
             WebElement WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(text(),'Failed to connect to API')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]/descendant::button[text()='Ok']");
-            HelpersMethod.ClickBut(driver, WebEle, 2000);
+            HelpersMethod.ClickBut(driver, WebEle, 10000);
         }
 
         wait = new FluentWait<WebDriver>(driver)

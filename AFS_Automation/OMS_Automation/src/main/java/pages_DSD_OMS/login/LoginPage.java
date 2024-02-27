@@ -76,7 +76,6 @@ public class LoginPage
     public boolean validateLoginPageTitle()
     {
         exists=false;
-        WebElement WebEle;
         try
         {
             Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
@@ -152,13 +151,11 @@ public class LoginPage
                     HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 800000);
                 }
                 status = HelpersMethod.returnDocumentStatus(driver);
-                if (status.equals("loading")) {
+                if (status.equals("loading"))
+                {
                     HelpersMethod.waitTillLoadingPage(driver);
                 }
-               /* if (HelpersMethod.IsExists("//div[@class='loader']", driver)) {
-                    WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 800000);
-                }*/
+
                 Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
                         .withTimeout(Duration.ofSeconds(120))
                         .pollingEvery(Duration.ofSeconds(5))
@@ -240,10 +237,11 @@ public class LoginPage
         {
             Thread.sleep(2000);
            // HelpersMethod.waitTillElementLocatedDisplayed(driver, "xpath", "//p[contains(text(),'product catalog')]", 400000);
-            if(HelpersMethod.IsExists("//p[contains(text(),'product catalog')]",driver))
+            if(HelpersMethod.IsExists("//a[@id='viewProductCatalogLink']/p",driver))
             {
                 HelpersMethod.ScrollElement(driver,ExternalCatalog);
-                HelpersMethod.ActClick(driver,ExternalCatalog,1000);
+                //HelpersMethod.ActClick(driver,ExternalCatalog,1000);
+                HelpersMethod.JScriptClick(driver,ExternalCatalog,10000);
                 exists=true;
                 String status = HelpersMethod.returnDocumentStatus(driver);
                 if (status.equals("loading"))

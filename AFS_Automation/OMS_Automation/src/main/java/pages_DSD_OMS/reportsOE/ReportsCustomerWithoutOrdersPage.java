@@ -444,7 +444,7 @@ public class ReportsCustomerWithoutOrdersPage
             }
             else
             {
-                scenario.log("**********NO CUSTOMER ACCOUNT NUMBER HAS BEEN SELECTED***********");
+                scenario.log("<span style='color:red'>NO CUSTOMER ACCOUNT NUMBER HAS BEEN SELECTED</span>");
             }
             Assert.assertEquals(exists,true);
         }
@@ -462,7 +462,7 @@ public class ReportsCustomerWithoutOrdersPage
                 Thread.sleep(5000);
                 if (HelpersMethod.IsExists("//div[contains(text(),'No data returned, report was not generated.')]/ancestor::div[@id='toast-container']", driver))
                 {
-                    scenario.log("**************NO DATA HAS BEEN FOUND TO GENERATE REPORTS************");
+                    scenario.log("<span style='color:red'>NO DATA HAS BEEN FOUND TO GENERATE REPORTS</span>");
                     new WebDriverWait(driver, Duration.ofMillis(10000)).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[contains(text(),'No data returned, report was not generated.')]/ancestor::div[@id='toast-container']")));
                     //exists=true;
                 }
@@ -474,7 +474,7 @@ public class ReportsCustomerWithoutOrdersPage
             }
             else
             {
-                scenario.log("******EXCEL BUTTON DISABLED**********");
+                scenario.log("<span style='color:red'>EXCEL BUTTON DISABLED</span>");
             }
             Assert.assertEquals(exists,true);
         }
@@ -499,7 +499,7 @@ public class ReportsCustomerWithoutOrdersPage
                 Thread.sleep(5000);
                 if (HelpersMethod.IsExists("//div[contains(text(),'No data returned, report was not generated.')]/ancestor::div[@id='toast-container']", driver))
                 {
-                    scenario.log("**************NO DATA HAS BEEN FOUND TO GENERATE REPORTS************");
+                    scenario.log("<span style='color:red'>NO DATA HAS BEEN FOUND TO GENERATE REPORTS</span>");
                     new WebDriverWait(driver, Duration.ofMillis(10000)).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[contains(text(),'No data returned, report was not generated.')]/ancestor::div[@id='toast-container']")));
                     //exists=true;
                 }
@@ -552,7 +552,7 @@ public class ReportsCustomerWithoutOrdersPage
                 else
                 {
                     HelpersMethod.ClickBut(driver, changeDate, 10000);
-                    scenario.log("***********TO DATE SELECTED, IT IS NOT EXPECTED BEHAVIOUR*********");
+                    scenario.log("<span style='color:red'>TO DATE SELECTED, IT IS NOT EXPECTED BEHAVIOUR</span>");
                 }
             }
             Assert.assertEquals(exists,true);
@@ -703,7 +703,7 @@ public class ReportsCustomerWithoutOrdersPage
             }
             else
             {
-                scenario.log("**********NO ROUTE NUMBER HAS BEEN SELECTED***********");
+                scenario.log("<span style='color:red'>NO ROUTE NUMBER HAS BEEN SELECTED</span>");
             }
             Assert.assertTrue(exists);
         }

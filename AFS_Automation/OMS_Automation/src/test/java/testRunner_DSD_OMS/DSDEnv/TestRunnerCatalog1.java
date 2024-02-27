@@ -5,6 +5,7 @@ import io.cucumber.testng.CucumberOptions;
 import org.testng.annotations.*;
 import util.MailSend;
 import util.TestBase;
+import util.readPropertiesFile;
 
 import javax.mail.MessagingException;
 import java.io.IOException;
@@ -31,10 +32,11 @@ public class TestRunnerCatalog1 extends AbstractTestNGCucumberTests
     /* Created by Divya.Ramadas@afs.com */
     @Parameters({"environment"})
     @BeforeClass
-    public static void beforeClass(@Optional String envi)
+    public static void beforeClass(@Optional("environment") String envi)
     {
         try
         {
+            //readPropertiesFile.InitializeProp(envi);
             TestBase.InitializeProp(envi);
             TestBase.SetDriver(TestBase.testEnvironment.get_browser());
         }

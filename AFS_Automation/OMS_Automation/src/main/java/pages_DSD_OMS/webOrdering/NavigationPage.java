@@ -137,10 +137,12 @@ public class NavigationPage
             labelNameText=HelpersMethod.JSGetValueEle(driver,labelInput,1000);
             if(!label.equals(labelNameText))
             {
+                scenario.log("NEW LABEL NAME GIVEN IS "+labelNameText);
                 exists=true;
             }
             else
             {
+                scenario.log("<span style='color:red'>STILL FINDING LABEL NAME AS "+label+"</span>");
                 exists=false;
             }
             Assert.assertEquals(exists,true);

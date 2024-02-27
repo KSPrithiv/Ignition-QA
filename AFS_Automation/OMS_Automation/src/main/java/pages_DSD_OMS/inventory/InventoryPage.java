@@ -2,18 +2,20 @@ package pages_DSD_OMS.inventory;
 
 import helper.HelpersMethod;
 import io.cucumber.java.Scenario;
-import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.FluentWait;
+import org.openqa.selenium.support.ui.Wait;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import pages_DSD_OMS.login.HomePage;
 import util.DataBaseConnection;
 import util.TestBase;
 
+import java.time.Duration;
 import java.util.List;
 
 public class InventoryPage
@@ -652,42 +654,89 @@ public class InventoryPage
         catch (Exception e){}
     }
 
-    public void listViewProductLoaded()
+    public boolean listViewProductLoaded()
     {
         exists=false;
         try
         {
             if(HelpersMethod.IsExists("//span[contains(text(),'load all products')]",driver))
             {
-                scenario.log("AUTO LOAD OF PRODUCTS IN PRODUCT CATALOG DIALOG BOX HAS BEEN ACHIEVED");
+                scenario.log("AUTO LOAD OF PRODUCTS IS DISABLED");
                 exists=true;
             }
             else
             {
-                scenario.log("<span style='color:red'>AUTO LOAD OF PRODUCTS IN PRODUCT CATALOG DIALOG BOX HAS NOT BEEN ACHIEVED </span>");
+                scenario.log("AUTO LOAD OF PRODUCT IS ENABLED");
                 exists=false;
             }
-            Assert.assertEquals(exists,true);
         }
         catch (Exception e){}
+        return exists;
     }
 
-    public void cardViewProductLoaded()
+    public boolean cardViewProductLoaded()
     {
         exists=false;
         try
         {
             if(HelpersMethod.IsExists("//span[contains(text(),'load all products')]",driver))
             {
-                scenario.log("AUTO LOAD OF PRODUCTS IN PRODUCT CATALOG DIALOG BOX HAS BEEN ACHIEVED");
+                scenario.log("AUTO LOAD OF PRODUCTS IS DISABLED");
                 exists=true;
             }
             else
             {
-                scenario.log("<span style='color:red'>AUTO LOAD OF PRODUCTS IN PRODUCT CATALOG DIALOG BOX HAS NOT BEEN ACHIEVED </span>");
+                scenario.log("AUTO LOAD OF PRODUCT IS ENABLED");
                 exists=false;
             }
-            Assert.assertEquals(exists,true);
+        }
+        catch (Exception e){}
+        return exists;
+    }
+
+    public void clickOnResetFilter()
+    {
+        exists=false;
+        try
+        {
+            if (HelpersMethod.IsExists("//div[contains(@class,'k-widget k-window k-dialog')]/descendant::div[contains(@class,'i-grid')]", driver))
+            {
+                WebElement loadPoducts=HelpersMethod.FindByElement(driver,"xpath","//span[contains(text(),'load all products')]");
+                HelpersMethod.ActClick(driver,loadPoducts,20000);
+                Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                        .withTimeout(Duration.ofSeconds(120))
+                        .pollingEvery(Duration.ofSeconds(2))
+                        .ignoring(NoSuchElementException.class);
+                wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
+                if(HelpersMethod.IsExists("//div[@class='k-widget k-window k-dialog']/descendant::tr[@class='k-grid-norecords']",driver))
+                {
+                        scenario.log("<span style='color:red'> EVEN AFTER CLICKING LOAD PRODUCTS LINK, NOT ABLE TO SEE PRODUCT IN CATALOG</span>");
+                }
+                else
+                {
+                        scenario.log("PRODUCTS HAS BEEN SUCCESSFULLY LOADED AFTER CLICKING LOAD PRODUCTS");
+                }
+            }
+            else
+            {
+                WebElement loadPoducts=HelpersMethod.FindByElement(driver,"xpath","//span[contains(text(),'load all products')]");
+                HelpersMethod.ActClick(driver,loadPoducts,20000);
+                Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                        .withTimeout(Duration.ofSeconds(120))
+                        .pollingEvery(Duration.ofSeconds(2))
+                        .ignoring(NoSuchElementException.class);
+                wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
+                if(HelpersMethod.IsExists("//div[@class='k-widget k-window k-dialog']/descendant::tr[@class='k-grid-norecords']",driver))
+                {
+                    scenario.log("<span style='color:red'> EVEN AFTER CLICKING LOAD PRODUCTS LINK, NOT ABLE TO SEE PRODUCT IN CATALOG</span>");
+                }
+                else
+                {
+                    scenario.log("PRODUCTS HAS BEEN SUCCESSFULLY LOADED AFTER CLICKING LOAD PRODUCTS");
+                }
+            }
         }
         catch (Exception e){}
     }

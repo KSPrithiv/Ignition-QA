@@ -246,7 +246,7 @@ public class CutOffManagementPickupOrderPage
             WebEle= HelpersMethod.FindByElement(driver,"xpath","//div[@id='cutoff-times']");
             HelpersMethod.ScrollElement(driver,WebEle);
             WebEle=HelpersMethod.FindByElement(driver,"xpath","//tr["+i+"]/descendant::span[contains(@class,'k-picker-wrap')]/descendant::span[@class='k-select']");
-            HelpersMethod.JScriptClick(driver,WebEle,1000);
+            HelpersMethod.JScriptClick(driver,WebEle,10000);
         }
         catch (Exception e){}
     }
@@ -318,8 +318,8 @@ public class CutOffManagementPickupOrderPage
         {
             WebEle=HelpersMethod.FindByElement(driver,"xpath","//button[text()='Set']");
             HelpersMethod.ScrollElement(driver,WebEle);
-            HelpersMethod.ActClick(driver,WebEle,1000);
-            new WebDriverWait(driver, Duration.ofMillis(100)).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[contains(@class,'k-popup k-child-animation-container')]/descendant::div[contains(@class,'k-timeselector k-reset')]")));
+            HelpersMethod.ActClick(driver,WebEle,10000);
+            new WebDriverWait(driver, Duration.ofMillis(80000)).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[contains(@class,'k-popup k-child-animation-container')]/descendant::div[contains(@class,'k-timeselector k-reset')]")));
             if(HelpersMethod.IsExists("//div[@class='loader']",driver))
             {
                 WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
@@ -338,7 +338,7 @@ public class CutOffManagementPickupOrderPage
             {
                 if(!HelpersMethod.IsExists("//span[@id='CPEnablePickupCutoffBranchMgmt' and @aria-checked='false']",driver))
                 {
-                    HelpersMethod.JScriptClick(driver, branchToggle, 1000);
+                    HelpersMethod.JScriptClick(driver, branchToggle, 10000);
                     scenario.log("BRANCH TOGGLE BUTTON SELECTED");
                     if (HelpersMethod.IsExists("//div[@class='loader']", driver))
                     {
@@ -366,7 +366,7 @@ public class CutOffManagementPickupOrderPage
             {
                 if(!HelpersMethod.IsExists("//span[@id='CPEnablePickupCutoffWarehouseMgmt' and @aria-checked='true']",driver))
                 {
-                    HelpersMethod.JScriptClick(driver, warehouseToggle, 1000);
+                    HelpersMethod.JScriptClick(driver, warehouseToggle, 10000);
                     scenario.log("WAREHOUSE TOGGLE BUTTON SELECTED");
                     if (HelpersMethod.IsExists("//div[@class='loader']", driver))
                     {
@@ -394,7 +394,7 @@ public class CutOffManagementPickupOrderPage
                 if(!HelpersMethod.IsExists("//div[@id='filter-by-warehouse']/descendant::div[@class='card-setting-area']/descendant::span[@class='k-switch-container' and @aria-checked='true']",driver))
                 {
                     HelpersMethod.ScrollElement(driver, filterWarehouseToggle);
-                    HelpersMethod.JScriptClick(driver, filterWarehouseToggle, 1000);
+                    HelpersMethod.JScriptClick(driver, filterWarehouseToggle, 10000);
                     scenario.log("FILTER WAREHOUSE TOGGLE BUTTON");
                     if (HelpersMethod.IsExists("//div[@class='loader']", driver))
                     {
@@ -420,7 +420,7 @@ public class CutOffManagementPickupOrderPage
             if(wareHouseDropDown.isDisplayed())
             {
                 HelpersMethod.ScrollElement(driver,wareHouseDropDown);
-                HelpersMethod.ClickBut(driver,wareHouseDropDown,1000);
+                HelpersMethod.ClickBut(driver,wareHouseDropDown,10000);
                 scenario.log("WAREHOUSE DROPDOWN BUTTON CLICKED");
                 exists=true;
             }
@@ -457,7 +457,7 @@ public class CutOffManagementPickupOrderPage
             {
                 if(!HelpersMethod.IsExists("//div[@id='filter-by-warehouse']/descendant::span[@id='filter-by-active-cutoff-times' and @aria-checked='true']",driver))
                 {
-                    HelpersMethod.JScriptClick(driver, wareHouseFilterCutoffTime, 1000);
+                    HelpersMethod.JScriptClick(driver, wareHouseFilterCutoffTime, 10000);
                     scenario.log("FILTER CUT OFF TIME TOGGLE BUTTON HAS BEEN CLICKED");
                     if (HelpersMethod.IsExists("//div[@class='loader']", driver))
                     {
@@ -484,7 +484,7 @@ public class CutOffManagementPickupOrderPage
             {
                 if(!HelpersMethod.IsExists("//span[@id='CPEnablePickupCutoffWarehouseMgmt' and @aria-checked='false']",driver))
                 {
-                    HelpersMethod.JScriptClick(driver, warehouseToggle, 1000);
+                    HelpersMethod.JScriptClick(driver, warehouseToggle, 10000);
                     scenario.log("WAREHOUSE TOGGLE BUTTON SELECTED");
                     if (HelpersMethod.IsExists("//div[@class='loader']", driver))
                     {

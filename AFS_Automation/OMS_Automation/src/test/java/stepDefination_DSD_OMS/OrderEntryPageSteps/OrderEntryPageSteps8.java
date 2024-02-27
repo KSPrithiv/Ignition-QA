@@ -109,7 +109,7 @@ public class OrderEntryPageSteps8
             /*newOE.cardCatelog();
             newOE.readProductInCard();
             newOE.catalogOK();*/
-            scenario.log("******************************THIS SCENARIO WORKS ONLY ON LIST VIEW****************************");
+            scenario.log("<span style='color:red'>THIS SCENARIO WORKS ONLY ON LIST VIEW</span>");
         }
     }
 

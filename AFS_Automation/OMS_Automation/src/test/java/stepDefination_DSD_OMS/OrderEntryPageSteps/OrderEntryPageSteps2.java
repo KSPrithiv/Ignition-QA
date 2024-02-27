@@ -63,22 +63,29 @@ public class OrderEntryPageSteps2
             String pro=String.valueOf(Prod_No.get(i));
             newOE.QuickProduct(pro);
             unitOfMeasure=newOE.readUnitOfMeasure();
-            if(unitOfMeasure.equals("Units"))
+            if(unitOfMeasure.equals("Units")||unitOfMeasure.equals("EA"))
             {
                 newOE.CheckForQuickUnitEnabled(Prod_details.get(i).get(1));
                 newOE.exceedsMaxQty();
                 newOE.toastCurrentlyUnavailable();
             }
-             else if(unitOfMeasure.equals("Cases"))
+             else if(unitOfMeasure.equals("Cases")||unitOfMeasure.equals("CS"))
             {
                 newOE.CheckForQuickCaseEnabled(Prod_details.get(i).get(0));
                 newOE.exceedsMaxQty();
                 newOE.toastCurrentlyUnavailable();
             }
-             else if(unitOfMeasure.equals("Cases, Units"))
+             else if(unitOfMeasure.equals("Cases, Units")||unitOfMeasure.equals("CS, EA"))
             {
                 newOE.CheckForQuickCaseEnabled(Prod_details.get(i).get(0));
                 newOE.CheckForQuickUnitEnabled(Prod_details.get(i).get(1));
+                newOE.exceedsMaxQty();
+                newOE.toastCurrentlyUnavailable();
+            }
+             else if(unitOfMeasure.equals("Units, Cases")||unitOfMeasure.equals("EA, CS"))
+            {
+                newOE.CheckForQuickUnitEnabled(Prod_details.get(i).get(1));
+                newOE.CheckForQuickCaseEnabled(Prod_details.get(i).get(0));
                 newOE.exceedsMaxQty();
                 newOE.toastCurrentlyUnavailable();
             }

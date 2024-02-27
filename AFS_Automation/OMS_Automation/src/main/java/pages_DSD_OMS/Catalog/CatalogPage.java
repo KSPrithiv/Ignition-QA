@@ -1918,4 +1918,24 @@ public class CatalogPage
         }
         catch (Exception e) {}
     }
+
+    public boolean verifyProductsInCatalog()
+    {
+        exists=false;
+        try
+        {
+            if(HelpersMethod.IsExists("//div[contains(text(),'Use the search bar to search for products.')]",driver))
+            {
+                scenario.log("PRODUCTS ARE NOT LOADED AUTOMATICALLY, WE NEED TO CLICK ON RESET FILTER");
+                exists=true;
+            }
+            else
+            {
+                scenario.log("<span style='color:red'>PRODUCTS ARE LOADED AUTOMATICALLY</span>");
+                exists=false;
+            }
+        }
+        catch (Exception e){}
+        return exists;
+    }
 }

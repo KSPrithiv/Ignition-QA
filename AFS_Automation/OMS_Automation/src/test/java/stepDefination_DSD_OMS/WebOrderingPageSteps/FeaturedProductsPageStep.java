@@ -88,7 +88,7 @@ public class FeaturedProductsPageStep
     public void userShouldListAllTheProductsInProductGridOfFeaturedProducts()
     {
         featuredProductsPage=new FeaturedProductsPage(driver,scenario);
-        //featuredProductsPage.ListFeaturedProduct(MaxProd);
+        featuredProductsPage.readFeaturedProduct();
     }
 
     @Then("User should increase max number of Featured products set")
@@ -113,7 +113,6 @@ public class FeaturedProductsPageStep
         featuredProductsPage.SelectProduct();
         featuredProductsPage.CatalogOkButton();
         featuredProductsPage.PopupAfterChanges();
-       // featuredProductsPage.ListFeaturedProduct(SetProd);
     }
 
     @And("User should be on Featured products list then User should click on Add Products button and Close Product index dialogbox")
@@ -145,17 +144,20 @@ public class FeaturedProductsPageStep
         featuredProductsPage.ListFeaturedProduct(MaxProd);
         featuredProductsPage.ClickOnDeleteProduct();
         featuredProductsPage.PopupAfterChanges();
-        //featuredProductsPage.ListFeaturedProduct(SetProd);
+        featuredProductsPage.readFeaturedProduct();
     }
 
     @And("User should be on Featured products list then User should click on Add Products button and filter product")
     public void userShouldBeOnFeaturedProductsListThenUserShouldClickOnAddProductsButtonAndFilterProduct()
     {
         featuredProductsPage=new FeaturedProductsPage(driver,scenario);
+        featuredProductsPage.readFeaturedProduct();
         featuredProductsPage.ClickAddProducts();
+        featuredProductsPage.clickOnLoadProducts();
         featuredProductsPage.CatalogFilter();
         featuredProductsPage.SelectProduct();
         featuredProductsPage.CatalogOkButton();
+        featuredProductsPage.readFeaturedProduct();
     }
 
     @Then("User changes max number of feature products and set it as {int}")
@@ -178,8 +180,9 @@ public class FeaturedProductsPageStep
     public void userShouldAddNewProductsAndDeleteFirstProduct(int MaxProd)
     {
         featuredProductsPage=new FeaturedProductsPage(driver,scenario);
-        featuredProductsPage.savePopup();
+        //featuredProductsPage.savePopup();
         featuredProductsPage.ClickAddProducts();
+        featuredProductsPage.clickOnLoadProducts();
         for(int i=0;i<=MaxProd-1;i++)
         {
             featuredProductsPage.selecting3Products();
@@ -190,6 +193,7 @@ public class FeaturedProductsPageStep
         featuredProductsPage.ListFeaturedProduct(MaxProd);
         featuredProductsPage.deleteFirstProduct();
         featuredProductsPage.savePopup();
+        featuredProductsPage.readFeaturedProduct();
     }
 
     @Then("User refreshes page Clicks on Permissions by drop down to select Customer Account# grid for WebOrder")

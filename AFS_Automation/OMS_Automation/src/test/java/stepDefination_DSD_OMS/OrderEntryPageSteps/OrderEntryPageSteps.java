@@ -8,7 +8,6 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import io.cucumber.java.sl.In;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
@@ -24,8 +23,6 @@ import java.awt.*;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.time.Duration;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 /**
@@ -133,7 +130,7 @@ public class OrderEntryPageSteps
     }
 
     @Then("Change the date {int} days after current date")
-    public void change_the_date_days_after_current_date(Integer int1) throws InterruptedException, AWTException
+    public void change_the_date_days_after_current_date(Integer int1) throws InterruptedException, AWTException, ParseException
     {
         if(HelpersMethod.IsExists("//div[@class='loader']",driver))
         {
@@ -142,6 +139,7 @@ public class OrderEntryPageSteps
         }
         //create object of OE Page
         orderpage = new OrderEntryPage(driver, scenario);
+        orderpage.Read_DeliveryDate();
         orderpage.ClickCalender();
         orderpage.SelectDate(int1);
         orderpage.cancelOGselection();
@@ -362,6 +360,15 @@ public class OrderEntryPageSteps
         exists=false;
         newOE = new NewOrderEntryPage(driver,scenario);
         newOE.readProductsInOrder();
+        //handling toast messages
+        for(int i=0;i<=2;i++)
+        {
+            //check for toast message for low on inventory
+            newOE.lowOnInventoryToast();
+            //check for toast message for product is currently unavailable
+            newOE.toastCurrentlyUnavailable();
+        }
+
         for(int i=0;i<=1;i++)
         {
             newOE.priceCannotBeBleowCost();
@@ -440,6 +447,7 @@ public class OrderEntryPageSteps
         {
             summary.additionalOrderPopup();
             summary.cutoffDialog();
+            summary.percentageOfAverageProd();
         }
         summary.SucessPopup();
     }
@@ -488,7 +496,7 @@ public class OrderEntryPageSteps
     public void enter_pro_in_quick_product_entry_area_for_price_override() throws InterruptedException, AWTException, SQLException, ClassNotFoundException, InstantiationException, IllegalAccessException
     {
         newOE = new NewOrderEntryPage(driver,scenario);
-        newOE.priceOverrideQuickProduct(TestBase.testEnvironment.priceRide());
+        newOE.priceOverrideQuickProduct(TestBase.testEnvironment.prodPriceRide());
     }
 
     @Then("Click on Cancel button")

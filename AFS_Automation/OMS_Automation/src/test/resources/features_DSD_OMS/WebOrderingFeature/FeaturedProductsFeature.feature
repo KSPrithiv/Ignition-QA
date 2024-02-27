@@ -85,7 +85,7 @@ Feature: Admin setting
       |Featured Products  |  Settings   | Featured products|
 
   @VerifyFeatureProducts
-  Scenario Outline: Test scenario to add new product to Featured products list
+  Scenario Outline: Test scenario to verify, if catalog has been opened and closed without adding any product there should not be change in number of products in feature products list
     Given User is on Home Page for Admin setting to select Admin option
     Then User refreshes page Clicks on Permissions by drop down to select Customer Account# grid for WebOrder
     And User should enter menu "<Option>" in search bar to navigate to Featured Products
