@@ -41,9 +41,10 @@ public class CountingCountPage extends BasePage {
     By clearAllButton = By.xpath("//button[text()='Clear all']");
     By table = By.cssSelector(".k-grid-table");
     By locationLabel = By.cssSelector(".menu-label");
+    //By locationLabel = By.cssSelector("tr[class='k-master-row k-alt'] span span");
     By locationCountQuantityRows = By.cssSelector("tr.k-master-row");
     By addProductButton = By.xpath("//button[contains(@id, 'btnAddProduct')]//*[contains(@class, 'i-icon')]");
-    By productsColumn = By.xpath("//span[@class='k-column-title' and contains(text(), 'Products')]");
+    By productsColumn = By.xpath("//span[@class='k-column-title' and contains(text(), 'Product')]");
     By factorColumn = By.xpath("//span[@class='k-column-title' and contains(text(), 'Factor')]");
     By onhandColumn = By.xpath("//span[@class='k-column-title' and contains(text(), 'On hand')]");
     By itemsFoundLabel = By.xpath("//span[contains(text(), 'Items found')]");

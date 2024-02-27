@@ -24,13 +24,14 @@ import static common.setup.DriverManager.*;
                 "html:Reports/Index.html",
                 "json:target/cucumber-reports/cucumber.json",
                 "rerun:target/failedrerun.txt"
-        }, monochrome = true, tags = "@Outbound")
+        }, monochrome = true)
+// ,tags = "@1 or @5 or @9 or @10"
 @Slf4j
 public class OutboundLoadPlanning1CucumberRunner extends AbstractTestNGCucumberTests {
     public static Environment environment;
 
     @Parameters({"environment","browser"})
-    @BeforeMethod
+    @BeforeClass
     public void startBrowserInstance(@Optional String env, @Optional String browser) {
         ConfigFactory.setProperty("path", FilePaths.PROPERTIES_PATH);
         environment = ConfigFactory.create(Environment.class);
@@ -40,7 +41,7 @@ public class OutboundLoadPlanning1CucumberRunner extends AbstractTestNGCucumberT
         new Waiters();
     }
 
-    @SneakyThrows
+    /*@SneakyThrows
     @AfterMethod
     public void closeBrowserInstance(ITestResult iTestResult){
         if (driverEnabled(getDriver())) {
@@ -61,8 +62,8 @@ public class OutboundLoadPlanning1CucumberRunner extends AbstractTestNGCucumberT
                    // } catch (IOException ex) {
                    //     System.out.println("Error force quitting the ChromeDriver process: " + ex.getMessage());
                    // }
-            */    }
-            }
+                }*/
+
     @AfterClass
     public static void afterClass() throws InterruptedException, MessagingException, IOException {
         // MailSend_WMS.sendMail();

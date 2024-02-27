@@ -3,7 +3,6 @@ Feature: Testing of Counting Count functionality
   Scenario: Checking Navigate to Counting Count screen
     Given User signs in the application
     And Main page is loaded
-    And DockManagement Summary Page is validated
     When Go to Counting Count page
     And Waits for Counting Count page to load
     And Validates Counting Count page is displayed
@@ -14,7 +13,6 @@ Feature: Testing of Counting Count functionality
   Scenario: Verify the Session belongs to the selected warehouse on Counting Count screen
     Given User signs in the application
     And Main page is loaded
-    And DockManagement Summary Page is validated
     And Go to Counting Count page
     And Waits for Counting Count page to load
     When Validates Add filter button on Counting Count page is displayed
@@ -27,7 +25,6 @@ Feature: Testing of Counting Count functionality
   Scenario: Verify the Sessions in the Session Dropdown on Counting Count screen
     Given User signs in the application
     And Main page is loaded
-    And DockManagement Summary Page is validated
     When Go to Counting Count page
     And Waits for Counting Count page to load
     Then User clicks Session dropdown on Counting Count page
@@ -36,7 +33,6 @@ Feature: Testing of Counting Count functionality
   Scenario: Verify Add Filter on Counting Count screen
     Given User signs in the application
     And Main page is loaded
-    And DockManagement Summary Page is validated
     And Go to Counting Count page
     And Waits for Counting Count page to load
     When User clicks Add Filter on Counting Count page
@@ -69,7 +65,6 @@ Feature: Testing of Counting Count functionality
   Scenario: Checking Count the Locations on Counting Count screen
     Given User signs in the application
     And Main page is loaded
-    And DockManagement Summary Page is validated
     And Go to Counting Count page
     And Waits for Counting Count page to load
     When User selects session by index 4 on Counting Count page
@@ -84,7 +79,6 @@ Feature: Testing of Counting Count functionality
   Scenario: Checking Count Pick Location on Counting Count screen
     Given User signs in the application
     And Main page is loaded
-    And DockManagement Summary Page is validated
     When Go to Counting Count page
     And Waits for Counting Count page to load
     Then Validates Add filter button on Counting Count page is displayed
@@ -94,7 +88,6 @@ Feature: Testing of Counting Count functionality
   Scenario: Checking Count Reserve Location on Counting Count screen
     Given User signs in the application
     And Main page is loaded
-    And DockManagement Summary Page is validated
     And Go to Counting Count page
     And Waits for Counting Count page to load
     When User selects session by index 4 on Counting Count page
@@ -108,7 +101,6 @@ Feature: Testing of Counting Count functionality
   Scenario: Checking Count Empty Location on Counting Count screen
     Given User signs in the application
     And Main page is loaded
-    And DockManagement Summary Page is validated
     And Go to Counting Count page
     And Waits for Counting Count page to load
     When User selects session by index 4 on Counting Count page
@@ -124,7 +116,6 @@ Feature: Testing of Counting Count functionality
   Scenario: Checking Add Product to the Empty or non Empty Location on Counting Count screen
     Given User signs in the application
     And Main page is loaded
-    And DockManagement Summary Page is validated
     And Go to Counting Count page
     And Waits for Counting Count page to load
     When User selects session by index 4 on Counting Count page
@@ -144,7 +135,6 @@ Feature: Testing of Counting Count functionality
   Scenario: Checking saving counted location on Counting Count screen
     Given User signs in the application
     And Main page is loaded
-    And DockManagement Summary Page is validated
     And Go to Counting Count page
     And Waits for Counting Count page to load
     When User selects session by index 4 on Counting Count page

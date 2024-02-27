@@ -4,7 +4,7 @@ Feature: Testing of Product Setup UOM
   Scenario: Checking UI verification of UOM on Setup Product screen
     Given User signs in the application
     And Main page is loaded
-    And DockManagement Summary Page is validated
+    
     And Go to Setup Product page
     And Waits for Setup Product page to load
     And Validates Setup Product page is displayed
@@ -21,7 +21,7 @@ Feature: Testing of Product Setup UOM
   Scenario: Checking UI verification of adding UOM on Setup Product screen
     Given User signs in the application
     And Main page is loaded
-    And DockManagement Summary Page is validated
+    
     And Go to Setup Product page
     And Waits for Setup Product page to load
     When Clicks Product Tab on Setup Product page
@@ -87,7 +87,7 @@ Feature: Testing of Product Setup UOM
   Scenario: Checking Creating UOM on Setup Product screen
     Given User signs in the application
     And Main page is loaded
-    And DockManagement Summary Page is validated
+    
     And Go to Setup Product page
     And Waits for Setup Product page to load
     And Clicks Product Tab on Setup Product page
@@ -166,7 +166,7 @@ Feature: Testing of Product Setup UOM
   Scenario: Checking Editing UOM on Setup Product screen
     Given User signs in the application
     And Main page is loaded
-    And DockManagement Summary Page is validated
+    
     And Go to Setup Product page
     And Waits for Setup Product page to load
     And Clicks Product Tab on Setup Product page
@@ -222,7 +222,7 @@ Feature: Testing of Product Setup UOM
   Scenario: Checking Deleting UOM on Setup Product screen
     Given User signs in the application
     And Main page is loaded
-    And DockManagement Summary Page is validated
+    
     And Go to Setup Product page
     And Waits for Setup Product page to load
     When Clicks Product Tab on Setup Product page

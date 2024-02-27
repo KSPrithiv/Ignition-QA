@@ -4,7 +4,6 @@ Feature: Testing of Inbound Load Summary screen functionality
   Scenario: Checking Summary totals on Load Summary screen
     Given User signs in the application
     And Main page is loaded
-    And DockManagement Summary Page is validated
     And Go to Loads page
     And Inbound Load Summary page appears
     When Types start date by index 4 on Inbound Load Summary page

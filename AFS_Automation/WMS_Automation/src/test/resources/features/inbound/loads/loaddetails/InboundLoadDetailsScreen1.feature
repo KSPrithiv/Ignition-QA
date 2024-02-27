@@ -3,7 +3,7 @@ Feature: Testing of Inbound Load Details screen functionality
   Scenario: Checking Navigate to Load details screen
     Given User signs in the application
     And Main page is loaded
-    And DockManagement Summary Page is validated
+    
     And Go to Loads page
     And Inbound Load Summary page appears
     And Inbound Load Summary page main elements are present
@@ -15,7 +15,7 @@ Feature: Testing of Inbound Load Details screen functionality
   Scenario: Checking the Load details
     Given User signs in the application
     And Main page is loaded
-    And DockManagement Summary Page is validated
+    
     And Go to Loads page
     And Inbound Load Summary page appears
     When Types start date by index 0 on Inbound Load Summary page
@@ -25,7 +25,7 @@ Feature: Testing of Inbound Load Details screen functionality
   Scenario: Checking Number of images on Load details screen
     Given User signs in the application
     And Main page is loaded
-    And DockManagement Summary Page is validated
+    
     And Go to Loads page
     And Inbound Load Summary page appears
     When Types start date by index 4 on Inbound Load Summary page
@@ -35,7 +35,7 @@ Feature: Testing of Inbound Load Details screen functionality
   Scenario: Checking Number of comments on Load details screen
     Given User signs in the application
     And Main page is loaded
-    And DockManagement Summary Page is validated
+    
     And Go to Loads page
     And Inbound Load Summary page appears
     When Types start date by index 4 on Inbound Load Summary page
@@ -45,7 +45,7 @@ Feature: Testing of Inbound Load Details screen functionality
   Scenario: Checking Progress bar colors on Load details screen
     Given User signs in the application
     And Main page is loaded
-    And DockManagement Summary Page is validated
+    
     And Go to Loads page
     And Inbound Load Summary page appears
     When Types start date by index 4 on Inbound Load Summary page
@@ -55,7 +55,7 @@ Feature: Testing of Inbound Load Details screen functionality
   Scenario: Checking Summary totals on Load details screen
     Given User signs in the application
     And Main page is loaded
-    And DockManagement Summary Page is validated
+    
     And Go to Loads page
     And Inbound Load Summary page appears
     When Types start date by index 4 on Inbound Load Summary page
@@ -65,7 +65,7 @@ Feature: Testing of Inbound Load Details screen functionality
   Scenario: Checking Status change from Received order to ReOpen
     Given User signs in the application
     And Main page is loaded
-    And DockManagement Summary Page is validated
+    
     And Go to Loads page
     And Inbound Load Summary page appears
     When Types start date by index 4 on Inbound Load Summary page
@@ -81,7 +81,7 @@ Feature: Testing of Inbound Load Details screen functionality
   Scenario: Checking Status change from Ready to Receive to Finish Receiving for Load
     Given User signs in the application
     And Main page is loaded
-    And DockManagement Summary Page is validated
+    
     And Go to Loads page
     And Inbound Load Summary page appears
     When Types start date by index 1 on Inbound Load Summary page
@@ -96,7 +96,7 @@ Feature: Testing of Inbound Load Details screen functionality
   Scenario: Checking Status change from Open to Ready to Receive
     Given User signs in the application
     And Main page is loaded
-    And DockManagement Summary Page is validated
+    
     And Go to Loads page
     And Inbound Load Summary page appears
     When Types start date by index 4 on Inbound Load Summary page
@@ -110,7 +110,7 @@ Feature: Testing of Inbound Load Details screen functionality
   Scenario: Checking Source option for Load on Load details screen
     Given User signs in the application
     And Main page is loaded
-    And DockManagement Summary Page is validated
+    
     And Go to Loads page
     And Inbound Load Summary page appears
     When Types start date by index 2 on Inbound Load Summary page

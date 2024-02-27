@@ -3,7 +3,7 @@ Feature: Testing of Lookup Dock Management screen functionality
   Scenario: Checking navigation functionality of Lookup Dock Management screen
     Given User signs in the application
     And Main page is loaded
-    And DockManagement Summary Page is validated
+    
     And Go to Lookup DockManagement page
     And Waits for Dock Management Lookup page to load
     And Validates DockManagement Lookup Page base elements are loaded on DockManagement Lookup page
@@ -59,7 +59,7 @@ Feature: Testing of Lookup Dock Management screen functionality
   Scenario: Checking Color Code of Lookup Dock Management screen
     Given User signs in the application
     And Main page is loaded
-    And DockManagement Summary Page is validated
+    
     And Go to Lookup DockManagement page
     And Waits for Dock Management Lookup page to load
     When User types date from input by index 1 on Dock Management page
@@ -70,7 +70,7 @@ Feature: Testing of Lookup Dock Management screen functionality
   Scenario: Checking Route/Load/Order of Lookup Dock Management screen
     Given User signs in the application
     And Main page is loaded
-    And DockManagement Summary Page is validated
+    
     And Go to Lookup DockManagement page
     And Waits for Dock Management Lookup page to load
     When User types date from input by index 1 on Dock Management page
@@ -87,7 +87,7 @@ Feature: Testing of Lookup Dock Management screen functionality
   Scenario: Checking Data Filtering of Lookup Dock Management screen
     Given User signs in the application
     And Main page is loaded
-    And DockManagement Summary Page is validated
+    
     And Go to Lookup DockManagement page
     And Waits for Dock Management Lookup page to load
     When User types date from input by index 1 on Dock Management page
@@ -127,7 +127,7 @@ Feature: Testing of Lookup Dock Management screen functionality
   Scenario: Checking Waiting inbound of Lookup Dock Management screen
     Given User signs in the application
     And Main page is loaded
-    And DockManagement Summary Page is validated
+    
     And Go to Lookup DockManagement page
     And Waits for Dock Management Lookup page to load
     When User types date from input by index 1 on Dock Management page
@@ -137,7 +137,7 @@ Feature: Testing of Lookup Dock Management screen functionality
   Scenario: Checking Update Schedule Time of Lookup Dock Management screen
     Given User signs in the application
     And Main page is loaded
-    And DockManagement Summary Page is validated
+    
     And Go to Lookup DockManagement page
     And Waits for Dock Management Lookup page to load
     When User types date from input by index 1 on Dock Management page
@@ -151,7 +151,7 @@ Feature: Testing of Lookup Dock Management screen functionality
   Scenario: Checking Trailer Change of Lookup Dock Management screen
     Given User signs in the application
     And Main page is loaded
-    And DockManagement Summary Page is validated
+    
     And Go to Lookup DockManagement page
     And Waits for Dock Management Lookup page to load
     When User types date from input by index 1 on Dock Management page
@@ -165,7 +165,7 @@ Feature: Testing of Lookup Dock Management screen functionality
   Scenario: Checking Navigate to Inbound/Outbound from DockManagement of Lookup Dock Management screen
     Given User signs in the application
     And Main page is loaded
-    And DockManagement Summary Page is validated
+    
     And Go to Lookup DockManagement page
     And Waits for Dock Management Lookup page to load
     When User types date from input by index 1 on Dock Management page
@@ -179,7 +179,7 @@ Feature: Testing of Lookup Dock Management screen functionality
   Scenario: Checking Data In Lookup Dock Management screen
     Given User signs in the application
     And Main page is loaded
-    And DockManagement Summary Page is validated
+    
     And Go to Lookup DockManagement page
     And Waits for Dock Management Lookup page to load
     When User types date from input by index 1 on Dock Management page
@@ -191,7 +191,7 @@ Feature: Testing of Lookup Dock Management screen functionality
   Scenario: Checking Navigate to DockManagement Summary of Lookup Dock Management screen
     Given User signs in the application
     And Main page is loaded
-    And DockManagement Summary Page is validated
+    
     And Go to Lookup DockManagement page
     And Waits for Dock Management Lookup page to load
     When User types date from input by index 1 on Dock Management page

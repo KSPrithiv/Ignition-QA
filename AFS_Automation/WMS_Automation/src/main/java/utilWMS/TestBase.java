@@ -1,7 +1,7 @@
 package utilWMS;
 
 
-import io.github.bonigarcia.wdm.WebDriverManager;
+//import io.github.bonigarcia.wdm.WebDriverManager;
 import org.aeonbits.owner.ConfigFactory;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -64,7 +64,7 @@ public class TestBase {
         boolean isHeadless = false;
         switch (browserName.toLowerCase()) {
             case "chrome": {
-                WebDriverManager.chromedriver().setup();
+                //WebDriverManager.chromedriver().setup();
                 ChromeOptions chromeOptions = new ChromeOptions();
 
 
@@ -85,7 +85,7 @@ public class TestBase {
 
 
             case "firefox": {
-                WebDriverManager.firefoxdriver().setup();
+                //WebDriverManager.firefoxdriver().setup();
                 FirefoxOptions firefoxOptions = new FirefoxOptions();
                 FirefoxProfile profile = new FirefoxProfile();
                 // firefoxOptions.setUnhandledPromptBehaviour(UnexpectedAlertBehaviour.IGNORE);
@@ -108,7 +108,7 @@ public class TestBase {
             }
             break;
             case "edge": {
-                WebDriverManager.edgedriver().setup();
+                //WebDriverManager.edgedriver().setup();
                 EdgeOptions edgeOptions = new EdgeOptions();
 
                 driver.set(new EdgeDriver());

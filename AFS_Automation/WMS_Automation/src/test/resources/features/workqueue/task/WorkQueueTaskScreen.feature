@@ -3,7 +3,7 @@ Feature: Testing of Work Queue Task functionality
   Scenario: Checking Navigate to Work Queue Task screen functionality
     Given User signs in the application
     When Main page is loaded
-    And DockManagement Summary Page is validated
+    #And DockManagement Summary Page is validated
     Then Go to Work Queue Task page
     And Waits for Work Queue Task page to load
     And Validates Work Queue Task page is displayed

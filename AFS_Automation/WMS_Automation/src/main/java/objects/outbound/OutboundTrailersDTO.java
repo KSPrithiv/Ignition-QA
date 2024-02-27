@@ -24,4 +24,7 @@ public class OutboundTrailersDTO implements Serializable {
 	private String outboundTrailer5;
 	@JsonProperty("outbound trailer 6")
 	private String outboundTrailer6;
+
+	@JsonProperty("outbound trailer 7")
+	private String outboundTrailer7;
 }

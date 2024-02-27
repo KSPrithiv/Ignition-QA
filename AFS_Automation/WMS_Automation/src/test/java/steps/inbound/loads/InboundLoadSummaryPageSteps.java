@@ -9,6 +9,7 @@ import io.qameta.allure.Step;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import objects.inbound.InboundOrderLoadsDTO;
+import org.openqa.selenium.WebElement;
 import ui.pages.inbound.loads.InboundLoadSummaryPage;
 import java.util.List;
 
@@ -161,8 +162,29 @@ public class InboundLoadSummaryPageSteps {
     }
 
     @Step
+    @When("card body is closed do expand")
+    public void card_body_is_closed_do_expand() throws InterruptedException {
+        log.info("When card body is closed do expand");
+        List<WebElement> ele=inboundLoadSummaryPage.getlayoutexpand();
+        if(ele.size()==1)
+             {
+
+            }
+            else
+            {
+                //Thread.sleep(3000);
+                inboundLoadSummaryPage.getlayoutcollapse().click();
+            }
+
+        }
+
+
+
+
+    @Step
     @Then("Selects {int} days ago from end date on Inbound Load Summary page")
-    public void selectLoadPastEndDate(int days) {
+    public void selectLoadPastEndDate(int days) throws InterruptedException {
+        Thread.sleep(3000);
         log.info("Selecting Load Past End Date");
         inboundLoadSummaryPage.typePastDateLoadEnd(days);
     }

@@ -26,7 +26,7 @@ import static common.setup.DriverManager.*;
                 "html:target/cucumber-reports/cucumber.html",
                 "html:Reports/Index.html",
                 "rerun:target/failedrerun.txt"
-        }, monochrome = true, tags = "@WorkQueue")
+        }, monochrome = true)
 @Slf4j
 public class msg_delay_wms extends AbstractTestNGCucumberTests {
     public static Environment environment;
@@ -53,29 +53,29 @@ public class msg_delay_wms extends AbstractTestNGCucumberTests {
         new Waiters();
     }
 
-    @SneakyThrows
-    @AfterMethod
-    public void closeBrowserInstance(ITestResult iTestResult) {
-
-        if (driverEnabled(getDriver())) {
-            try {
-                driverThreadLocal.get().close();
-                driverThreadLocal.get().quit();
-            } catch (Exception e) {
-                //   FileUtils.forceDelete(new File("C:/Users/Irina.Holovan/Desktop/chrome/" + DriverManager.COUNTER));
-                System.out.println("Error closing and quitting the web driver: " + e.getMessage());
-                if (getDriver() instanceof ChromeDriver) {
-                    try {
-                        //  FileUtils.forceDelete(new File("C:/Users/Irina.Holovan/Desktop/chrome/" + DriverManager.COUNTER));
-                        Runtime.getRuntime().exec("taskkill /F /IM chromedriver.exe");
-                    } catch (IOException ex) {
-                        System.out.println("Error force quitting the ChromeDriver process: " + ex.getMessage());
-                    }
-
-                }
-            }
-        }
-    }
+//    @SneakyThrows
+//    @AfterMethod
+//    public void closeBrowserInstance(ITestResult iTestResult) {
+//
+//        if (driverEnabled(getDriver())) {
+//            try {
+//                driverThreadLocal.get().close();
+//                driverThreadLocal.get().quit();
+//            } catch (Exception e) {
+//                //   FileUtils.forceDelete(new File("C:/Users/Irina.Holovan/Desktop/chrome/" + DriverManager.COUNTER));
+//                System.out.println("Error closing and quitting the web driver: " + e.getMessage());
+//                if (getDriver() instanceof ChromeDriver) {
+//                    try {
+//                        //  FileUtils.forceDelete(new File("C:/Users/Irina.Holovan/Desktop/chrome/" + DriverManager.COUNTER));
+//                        Runtime.getRuntime().exec("taskkill /F /IM chromedriver.exe");
+//                    } catch (IOException ex) {
+//                        System.out.println("Error force quitting the ChromeDriver process: " + ex.getMessage());
+//                    }
+//
+//                }
+//            }
+//        }
+//    }
     @SneakyThrows
     @AfterClass
     public static void afterClass() throws InterruptedException, MessagingException, IOException {

@@ -21,13 +21,16 @@
   },
   "outbound routes":
   {
-    "outbound route 1": "23R001",
-    "outbound route 2": "23R002",
+    "outbound route 1": "DEC001",
+    "outbound route 2": "DEC002",
     "outbound route 3": "28R001",
     "outbound route 4": "1115",
     "outbound route 5": "1198",
     "outbound route 6": "1203",
-    "outbound route 7": "1208"
+    "outbound route 7": "1208",
+    "outbound route 8": "23R001",
+    "outbound route 9": "23R002",
+    "outbound route 10": "Ignition"
   },
   "outbound route codes":
   {
@@ -110,7 +113,8 @@
     "outbound trailer 3": "",
     "outbound trailer 4": "",
     "outbound trailer 5": "",
-    "outbound trailer 6": ""
+    "outbound trailer 6": "",
+    "outbound trailer 7": "S02"
   },
   "outbound max stops":
   {

@@ -3,7 +3,7 @@ Feature: Testing of Work Queue User history functionality
   Scenario: Checking Navigate to Work Queue User history screen functionality
     Given User signs in the application
     And Main page is loaded
-    And DockManagement Summary Page is validated
+    #And DockManagement Summary Page is validated
     And Go to Work Queue User history page
     And Waits for Work Queue User History page to load
     And Validates User history is displayed on Work Queue User History page

@@ -3,7 +3,7 @@ Feature: Testing of Product Setup Date encoding
   Scenario: Checking Navigation to Date encoding on Setup Product screen
     Given User signs in the application
     And Main page is loaded
-    And DockManagement Summary Page is validated
+    
     When Go to Setup Product page
     And Waits for Setup Product page to load
     And Validates Setup Product page is displayed
@@ -13,7 +13,7 @@ Feature: Testing of Product Setup Date encoding
   Scenario: Checking UI verification of Date Encoding on Setup Product screen
     Given User signs in the application
     And Main page is loaded
-    And DockManagement Summary Page is validated
+    
     And Go to Setup Product page
     And Waits for Setup Product page to load
     When Clicks Date encoding Label on Setup Product page
@@ -25,7 +25,7 @@ Feature: Testing of Product Setup Date encoding
   Scenario: Checking filters of Date Encoding on Setup Product screen
     Given User signs in the application
     And Main page is loaded
-    And DockManagement Summary Page is validated
+    
     And Go to Setup Product page
     And Waits for Setup Product page to load
     And Clicks Date encoding Label on Setup Product page
@@ -77,7 +77,7 @@ Feature: Testing of Product Setup Date encoding
   Scenario: Checking search controls of Date Encoding on Setup Product screen
     Given User signs in the application
     And Main page is loaded
-    And DockManagement Summary Page is validated
+    
     And Go to Setup Product page
     And Waits for Setup Product page to load
     When Clicks Date encoding Label on Setup Product page
@@ -88,7 +88,7 @@ Feature: Testing of Product Setup Date encoding
   Scenario: Checking UI verification of encoding tab on Setup Product screen
     Given User signs in the application
     And Main page is loaded
-    And DockManagement Summary Page is validated
+    
     And Go to Setup Product page
     And Waits for Setup Product page to load
     When Clicks Date encoding Label on Setup Product page
@@ -110,7 +110,7 @@ Feature: Testing of Product Setup Date encoding
   Scenario: Checking UI verification of Used by tab on Setup Product screen
     Given User signs in the application
     And Main page is loaded
-    And DockManagement Summary Page is validated
+    
     And Go to Setup Product page
     And Waits for Setup Product page to load
     When Clicks Date encoding Label on Setup Product page
@@ -122,7 +122,7 @@ Feature: Testing of Product Setup Date encoding
   Scenario: Checking verification of Day mapping of encoding tab on Setup Product screen
     Given User signs in the application
     And Main page is loaded
-    And DockManagement Summary Page is validated
+    
     And Go to Setup Product page
     And Waits for Setup Product page to load
     When Clicks Date encoding Label on Setup Product page
@@ -177,7 +177,7 @@ Feature: Testing of Product Setup Date encoding
   Scenario: Checking verification of Month mapping of encoding tab on Setup Product screen
     Given User signs in the application
     And Main page is loaded
-    And DockManagement Summary Page is validated
+    
     And Go to Setup Product page
     And Waits for Setup Product page to load
     And Clicks Date encoding Label on Setup Product page
@@ -230,7 +230,7 @@ Feature: Testing of Product Setup Date encoding
   Scenario: Checking verification of Year mapping of encoding tab on Setup Product screen
     Given User signs in the application
     And Main page is loaded
-    And DockManagement Summary Page is validated
+    
     And Go to Setup Product page
     And Waits for Setup Product page to load
     And Clicks Date encoding Label on Setup Product page
@@ -289,7 +289,7 @@ Feature: Testing of Product Setup Date encoding
   Scenario: Checking verification of Week mapping of encoding tab on Setup Product screen
     Given User signs in the application
     And Main page is loaded
-    And DockManagement Summary Page is validated
+    
     And Go to Setup Product page
     And Waits for Setup Product page to load
     When Clicks Date encoding Label on Setup Product page
@@ -350,7 +350,7 @@ Feature: Testing of Product Setup Date encoding
   Scenario: Checking validations of encoding tab on Setup Product screen
     Given User signs in the application
     And Main page is loaded
-    And DockManagement Summary Page is validated
+    
     And Go to Setup Product page
     And Waits for Setup Product page to load
     When Clicks Date encoding Label on Setup Product page
@@ -381,7 +381,7 @@ Feature: Testing of Product Setup Date encoding
   Scenario: Checking creation with mandatory values on Date encoding popup on Setup Product screen
     Given User signs in the application
     And Main page is loaded
-    And DockManagement Summary Page is validated
+    
     And Go to Setup Product page
     And Waits for Setup Product page to load
     And Clicks Date encoding Label on Setup Product page
@@ -437,7 +437,7 @@ Feature: Testing of Product Setup Date encoding
   Scenario: Checking Editing date encoding on Setup Product screen
     Given User signs in the application
     And Main page is loaded
-    And DockManagement Summary Page is validated
+    
     And Go to Setup Product page
     And Waits for Setup Product page to load
     And Clicks Date encoding Label on Setup Product page

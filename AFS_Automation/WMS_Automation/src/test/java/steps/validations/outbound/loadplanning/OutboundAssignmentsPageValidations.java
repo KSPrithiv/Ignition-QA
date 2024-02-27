@@ -2,12 +2,18 @@ package steps.validations.outbound.loadplanning;
 
 import common.constants.Notifications;
 import common.utils.Waiters;
+import cucumber.api.Scenario;
 import io.cucumber.java.en.And;
+import org.openqa.selenium.WebDriver;
 import org.testng.asserts.SoftAssert;
 import ui.pages.outbound.loadplanning.OutboundAssignmentsPage;
 import ui.pages.outbound.loadplanning.OutboundTruckInfoPage;
 
+import java.awt.*;
+
 public class OutboundAssignmentsPageValidations {
+    WebDriver driver;
+    Scenario scenario;
     OutboundAssignmentsPage outboundAssignmentsPage = new OutboundAssignmentsPage();
 
     @And("Validates table with assignments exist")
@@ -27,7 +33,7 @@ public class OutboundAssignmentsPageValidations {
     }
 
     @And("Validates that assignments in truck and assignments in Work queue are matched")
-    public void validateAssignments() {
+    public void validateAssignments() throws InterruptedException, AWTException {
         OutboundTruckInfoPage outboundTruckInfoPage = new OutboundTruckInfoPage();
         SoftAssert softAssert = new SoftAssert();
         outboundAssignmentsPage.getAssignmentsNumbers().stream()

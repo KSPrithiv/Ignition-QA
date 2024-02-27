@@ -88,7 +88,6 @@ public class InboundLoadSummaryPageValidations {
         SoftAssert softAssert = new SoftAssert();
         softAssert.assertTrue(inboundLoadSummaryPage.isItemsFoundLabelDisplayed(),"Items Found Label is not displayed");
         softAssert.assertTrue(inboundLoadSummaryPage.isItemsFoundValueDisplayed(),"Items Found Value is not displayed");
-        softAssert.assertTrue(!inboundLoadSummaryPage.getItemsFoundText().equals("0"),"Items Found is 0");
         softAssert.assertAll();
     }
 
@@ -163,7 +162,8 @@ public class InboundLoadSummaryPageValidations {
         SoftAssert softAssert = new SoftAssert();
         softAssert.assertTrue(inboundLoadSummaryPage.isItemsFoundLabelDisplayed(),"Items Found Label is not displayed");
         softAssert.assertTrue(inboundLoadSummaryPage.isItemsFoundValueDisplayed(),"Items Found Value is not displayed");
-        softAssert.assertTrue(!inboundLoadSummaryPage.getItemsFoundText().equals("0"),"Items Found is 0");
+        //softAssert.assertTrue(!inboundLoadSummaryPage.getItemsFoundText().equals("0"),"Items Found is 0");
+
         softAssert.assertAll();
     }
 

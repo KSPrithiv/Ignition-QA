@@ -13,6 +13,8 @@ import java.util.Optional;
 
 import static common.setup.DriverManager.getDriver;
 
+
+
 public class BasePage {
 
     public void deleteCookies() {
@@ -90,6 +92,9 @@ public class BasePage {
 
     public void refresh() { getDriver().navigate().refresh(); }
 
+    public void refresh_navigation(String currentURL1)
+    { getDriver().navigate().to(currentURL1); }
+
     public void inputText(WebElement element, CharSequence... dataToSend) {
        element.sendKeys(dataToSend);
     }
@@ -138,7 +143,8 @@ public class BasePage {
 
     public void clickOnElement(WebElement element) {
         try {
-            Waiters.waitForElementToBeClickable(element);
+            getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+            //Waiters.waitForElementToBeClickable(element);
             element.click();
         } catch (StaleElementReferenceException e) {
             jsClick(element);
@@ -166,7 +172,8 @@ public class BasePage {
 
     public void scrollAndClick(WebElement element) {
         try {
-            ((JavascriptExecutor) getDriver()).executeScript("arguments[0].scrollIntoView({block: 'center'});", element);
+            //((JavascriptExecutor) getDriver()).executeScript("arguments[0].scrollIntoView({block: 'center'});", element);
+            ((JavascriptExecutor) getDriver()).executeScript("arguments[0].scrollIntoView();", element);
             element.click();
         } catch (WebDriverException e) {
             throw new IllegalStateException("WebDriver exception encountered: " + e.getMessage(), e);
