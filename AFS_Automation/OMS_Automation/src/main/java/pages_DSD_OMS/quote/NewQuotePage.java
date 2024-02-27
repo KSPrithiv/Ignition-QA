@@ -1032,10 +1032,23 @@ public class NewQuotePage
             WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
             HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000000);
         }
+
         try
         {
             if(HelpersMethod.IsExists("//div[text()='Catalog']/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
             {
+                //validate whether Catalog need to load products
+                if(HelpersMethod.IsExists("//span[contains(text(),'load all products')]",driver))
+                {
+                    WebElement webEle=HelpersMethod.FindByElement(driver,"xpath","//span[contains(text(),'load all products')]");
+                    HelpersMethod.ActClick(driver,WebEle,10000);
+                    Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                            .withTimeout(Duration.ofSeconds(120))
+                            .pollingEvery(Duration.ofSeconds(2))
+                            .ignoring(NoSuchElementException.class);
+                    wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+                }
+
                 WebElement catalogPopup=HelpersMethod.FindByElement(driver,"xpath","//div[text()='Catalog']/ancestor::div[contains(@class,'k-widget k-window k-dialog')]");
                // if(HelpersMethod.IsExists("//div[@class='card-view']",driver))
                 if (!HelpersMethod.IsExists("//div[@class='i-grid']", driver))

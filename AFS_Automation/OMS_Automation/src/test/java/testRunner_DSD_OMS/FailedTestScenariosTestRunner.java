@@ -5,6 +5,7 @@ import io.cucumber.testng.CucumberOptions;
 import org.testng.annotations.*;
 import util.MailSend;
 import util.TestBase;
+import util.readPropertiesFile;
 
 import javax.mail.MessagingException;
 import java.awt.*;
@@ -32,7 +33,8 @@ public class FailedTestScenariosTestRunner extends AbstractTestNGCucumberTests
     {
         try
         {
-            TestBase.InitializeProp(envi);
+            readPropertiesFile.InitializeProp(envi);
+            //TestBase.InitializeProp(envi);
             TestBase.SetDriver(TestBase.testEnvironment.get_browser());
         }
         catch (Exception e)

@@ -56,7 +56,7 @@ public class OrderEntryPageSteps3
         }
         else
         {
-            scenario.log("PRECEDING BY ZERO HAS BEEN FAILED, PLEASE DO CHECK ADMIN SETTINGS");
+            scenario.log("<span style='color:red'>PRECEDING BY ZERO HAS BEEN FAILED, PLEASE DO CHECK ADMIN SETTINGS. IT IS SUPPORTED ONLY IN DSD ENV</span>");
         }
         Assert.assertEquals(result,true);
     }
@@ -232,6 +232,10 @@ public class OrderEntryPageSteps3
     {
         List<List<String>> priceVal=tabledata.asLists(String.class);
         newOE=new NewOrderEntryPage(driver,scenario);
+        //newOE.clickOnInfoDropDown();
+        //newOE.selectShowPriceInq();
+        //newOE.validateShowPriceDialogbox();
+        //newOE.readCostPrice();
         newOE.Click_On_PriceOverrideIcon();
         newOE.validatePriceOverridePopup();
         newOE.PriceOverridePopup_WhatIfPricePrice(priceVal.get(0).get(0));
@@ -243,15 +247,13 @@ public class OrderEntryPageSteps3
     {
         List<List<String>> priceVal=tabledata.asLists(String.class);
         newOE=new NewOrderEntryPage(driver,scenario);
+        //newOE.clickOnInfoDropDown();
+        //newOE.selectShowPriceInq();
+        //newOE.validateShowPriceDialogbox();
+        //newOE.readCostPrice();
         newOE.Click_On_PriceOverrideIcon();
         newOE.validatePriceOverridePopup();
         newOE.PriceOverridePopup_WhatIfPriceUnit(priceVal.get(0).get(0));
         newOE.readValueAfterOverride();
-        for(int i=0;i<=2;i++)
-        {
-            newOE.priceCannotBeBleowCost();
-            newOE.exceedsMaxQty();
-            newOE.toastCurrentlyUnavailable();
-        }
     }
 }

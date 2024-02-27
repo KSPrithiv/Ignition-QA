@@ -8,6 +8,8 @@ import org.testng.annotations.Optional;
 import org.testng.annotations.Parameters;
 import util.MailSend;
 import util.TestBase;
+import util.readPropertiesFile;
+
 import java.io.IOException;
 import javax.mail.MessagingException;
 
@@ -37,7 +39,8 @@ public class TestRunnerReportSingleScenario extends AbstractTestNGCucumberTests
     {
         try
         {
-            TestBase.InitializeProp(envi);
+            readPropertiesFile.InitializeProp(envi);
+            //TestBase.InitializeProp(envi);
             TestBase.SetDriver(TestBase.testEnvironment.get_browser());
         }
         catch (Exception e)

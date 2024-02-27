@@ -167,9 +167,20 @@ public class PaymentInfoPage
 
     public void clickOnCustomerAccountIndex()
     {
+        exists=false;
         try
         {
-            HelpersMethod.ActClick(driver,CustAccIndex,1000);
+            if (HelpersMethod.IsExists("//div[@class='loader']", driver))
+            {
+                WebElement  WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100000);
+            }
+            if(CustAccIndex.isDisplayed() && CustAccIndex.isEnabled())
+            {
+                HelpersMethod.ActClick(driver, CustAccIndex, 1000);
+                exists=true;
+            }
+            Assert.assertEquals(exists,true);
         }
         catch (Exception e){}
     }
@@ -273,6 +284,11 @@ public class PaymentInfoPage
         exists=false;
         try
         {
+            if (HelpersMethod.IsExists("//div[@class='loader']", driver))
+            {
+                WebElement  WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100000);
+            }
             if(addPayment.isDisplayed() && addPayment.isEnabled())
             {
                 HelpersMethod.ClickBut(driver, addPayment, 1000);

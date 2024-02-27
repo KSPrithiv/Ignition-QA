@@ -1,9 +1,9 @@
-package testRunner_DSD_OMS.DSDEnv;
+package testRunner_DSD_OMS.OMSEnv;
 
 import io.cucumber.testng.AbstractTestNGCucumberTests;
 import io.cucumber.testng.CucumberOptions;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Optional;
 import org.testng.annotations.Parameters;
 import util.TestBase;
@@ -12,11 +12,12 @@ import javax.mail.MessagingException;
 import java.io.IOException;
 
 /**
- * @Project Divya.Ramadas@teluagcg.com
+ * @Project Divya.Ramadas@telusagcg.com
  * @Author Divya.Ramadas
  */
+
 @CucumberOptions
-        (features = "src/test/resources/features_DSD_OMS/AdminToClientNavigation",
+        (features = "src/test/resources/features_DSD_OMS/NavigationFeature",
                 glue = {"stepDefination_DSD_OMS"},
                 plugin = {"pretty",
                         "json:target/cucumber.json",
@@ -25,11 +26,11 @@ import java.io.IOException;
                         "rerun:target/failedrerun.txt"},
                 monochrome = true)
 
-public class TestRunnerAdminClientNavigationERP extends AbstractTestNGCucumberTests
+public class TestRunnerNavigationPanel extends AbstractTestNGCucumberTests
 {
     /* Created by Divya.Ramadas */
     @Parameters({"environment"})
-    @BeforeMethod
+    @BeforeClass
     public static void beforeClass(@Optional("environment") String envi)
     {
         try
@@ -40,12 +41,12 @@ public class TestRunnerAdminClientNavigationERP extends AbstractTestNGCucumberTe
         catch (Exception e) { }
     }
 
-    @AfterMethod
+    @AfterClass
     public static void afterclass() throws InterruptedException, MessagingException, IOException
     {
-        Thread.sleep(50000);
+        Thread.sleep(500);
+        //MailSend.sendMail();
         TestBase.CloseBrowser();
-
         if(TestBase.testEnvironment.get_browser().equalsIgnoreCase("Firefox"))
         {
             Runtime.getRuntime().exec("taskkill /F /IM geckodriver.exe");

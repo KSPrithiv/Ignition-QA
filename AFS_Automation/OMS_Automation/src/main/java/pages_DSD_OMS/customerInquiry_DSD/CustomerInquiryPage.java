@@ -401,8 +401,8 @@ public class CustomerInquiryPage
                 scenario.log("SAVE BUTTON HAS BEEN CLICKED");
                 exists=true;
                 Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
-                        .withTimeout(Duration.ofSeconds(120))
-                        .pollingEvery(Duration.ofSeconds(5))
+                        .withTimeout(Duration.ofSeconds(200))
+                        .pollingEvery(Duration.ofSeconds(2))
                         .ignoring(NoSuchElementException.class);
                 wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
             }
@@ -416,12 +416,12 @@ public class CustomerInquiryPage
         exists=false;
         try
         {
-            Thread.sleep(4000);
-            if(HelpersMethod.IsExists("//div[@class='loader']",driver))
-            {
-                WebElement WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000000);
-            }
+            Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(200))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+            //Thread.sleep(4000);
             if (HelpersMethod.IsExists("//div[contains(text(),'The information has been saved successfully.')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]", driver))
             {
                exists=true;
@@ -435,14 +435,21 @@ public class CustomerInquiryPage
     {
         try
         {
-                if (HelpersMethod.IsExists("//div[contains(text(),'The information has been saved successfully.')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]", driver))
+            Wait<WebDriver> wait = new FluentWait<>(driver)
+                    .withTimeout(Duration.ofSeconds(120))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
+            Thread.sleep(5000);
+            if (HelpersMethod.IsExists("//div[contains(text(),'The information has been saved successfully.')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]", driver))
                 {
                     WebElement confirmationPopup=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-widget k-window k-dialog')]");
                     WebElement okButton=confirmationPopup.findElement(By.xpath(".//button[text()='Ok']"));
-                    HelpersMethod.ActClick(driver,okButton,1000);
+                    HelpersMethod.ActClick(driver,okButton,10000);
                     exists=true;
 
-                    Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                   wait = new FluentWait<WebDriver>(driver)
                             .withTimeout(Duration.ofSeconds(120))
                             .pollingEvery(Duration.ofSeconds(2))
                             .ignoring(NoSuchElementException.class);
@@ -982,10 +989,10 @@ public class CustomerInquiryPage
                 WebElement custAccount=modalContainer.findElement(By.xpath(".//tr[contains(@class,'k-master-row')][1]"));
                 HelpersMethod.ActClick(driver,custAccount,1000);
                 //Click on cancel button to close dialog box
-                WebElement cancelButton=modalContainer.findElement(By.xpath(".//button[text()='Cancel']"));
-                HelpersMethod.ActClick(driver,cancelButton,1000);
+                //WebElement cancelButton=modalContainer.findElement(By.xpath(".//button[text()='Cancel']"));
+                //HelpersMethod.ActClick(driver,cancelButton,1000);
 
-                wait = new FluentWait<WebDriver>(driver)
+                wait = new FluentWait<>(driver)
                         .withTimeout(Duration.ofSeconds(120))
                         .pollingEvery(Duration.ofSeconds(2))
                         .ignoring(NoSuchElementException.class);
@@ -1135,7 +1142,7 @@ public class CustomerInquiryPage
                 WebElement notePopup = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-widget k-window k-dialog')]");
                 //code to click on 'Ok' button in OG popup
                 WebElement okButton = notePopup.findElement(By.xpath(".//button[text()='Ok']"));
-                HelpersMethod.ActClick(driver, okButton, 4000);
+                HelpersMethod.ActClick(driver, okButton, 10000);
                 status = HelpersMethod.returnDocumentStatus(driver);
                 if (status.equals("loading"))
                 {

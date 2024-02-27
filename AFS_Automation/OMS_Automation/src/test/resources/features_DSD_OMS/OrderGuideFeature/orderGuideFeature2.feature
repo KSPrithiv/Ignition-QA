@@ -60,7 +60,7 @@ Feature: Order Guide2
     And User should make sure that customer reference "<OGType>" is same as of selected in OG page
     Then User clicks on Add product button and select Catalog from drop down for Market segment OG
       |Catalog|
-    And User should select products from catalog popup
+    And User should select products from catalog popup for Market segment
     Then User click on Save button
     And User should navigate back to OG page and verify OG "<OG>"  existence
     #And User should navigate back to OG page and navigate back to "<OGType>" and verify OG "<OG>"  existence
@@ -141,7 +141,7 @@ Feature: Order Guide2
     And User should make sure that customer reference "<OGType>" is same as of selected in OG page
     Then User clicks on Add product button and select Catalog from drop down
       |Catalog|
-    And User should select products from catalog popup
+    And User should select products from catalog popup for National chain
     Then User click on Save button
     And User should navigate back to OG page and verify OG "<OG>"  existence
    # And User should navigate back to OG page and navigate back to "<OGType>" and verify OG "<OG>"  existence
@@ -166,6 +166,8 @@ Feature: Order Guide2
     Then User click on Save button
     And User should navigate back to OG page and verify OG "<OG>"  existence
     #And User should navigate back to OG page and navigate back to "<OGType>" and verify OG "<OG>"  existence
+    And Clear filter to display both active and inactive OG
+    Then User enters OG Description "<OG>" in search box and Delete the OG verify same in OG grid
     Examples:
       |  OG           |   OGType                 |
       | AllCustomer1  |  All customer accounts # |

@@ -2,7 +2,6 @@ package pages_DSD_OMS.orderEntry;
 
 import helper.HelpersMethod;
 import io.cucumber.java.Scenario;
-import org.joda.time.DateTime;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
@@ -20,7 +19,6 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.*;
 import java.time.format.DateTimeFormatter;
-import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 import java.util.Set;
@@ -38,6 +36,7 @@ public class OrderEntryPage
     static String ChangeDate = null;
     static String currentURL = null;
     static String dateCurrent=null;
+    static String deliveryDate=null;
     Scenario scenario;
     String ParentWindow;
     String pickUpDate;
@@ -1162,17 +1161,7 @@ public class OrderEntryPage
         WebElement CDate = null;
         try
         {
-            //Click on Today
-            WebEle=HelpersMethod.FindByElement(driver,"xpath","//span[text()='TODAY']");
-            HelpersMethod.ActClick(driver,WebEle,1000);
-            if (HelpersMethod.IsExists("//div[@class='loader']", driver))
-            {
-                WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 2000000);
-            }
-            //Click again on calender Icon
-            ClickCalender();
-
+            scenario.log("PREVIOUS DELIVERY DATE "+C_Date1);
             //click on date, When current date is differnt and delivery date is different, to set the date according to the date shown at the time of loading application
             new WebDriverWait(driver, Duration.ofMillis(20000)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class,'k-popup k-child-animation-container k-slide-down-enter k-slide-down-enter-active')]"))));
             if(HelpersMethod.IsExists("//table[@class='k-calendar-table']/descendant::td[contains(@style,'opacity:')]/span[contains(@title,'" + C_Date1 + "')]",driver))
@@ -1254,92 +1243,46 @@ public class OrderEntryPage
             scenario.log("DATE TO BE CHANGED TO "+formDate1);*/
 
             //read current date in OE page
-            String deliveryDate=HelpersMethod.FindByElement(driver,"id","delivery-date-web-order-header-calendar").getAttribute("value");
-            Date result =  new SimpleDateFormat("EE, MMM d,yyyy").parse(deliveryDate);
-            DateTime dtOrg = new DateTime(result);
-            DateTime pluseDates = dtOrg.plusDays(4);
-            formattedDate1=pluseDates.toString();
-            formDate1= String.valueOf(pluseDates.getDayOfMonth());
+            deliveryDate=HelpersMethod.FindByElement(driver,"id","delivery-date-web-order-header-calendar").getAttribute("value");
+
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("EEE, MMM d, yyyy", Locale.ENGLISH);
+            LocalDate dateTime = LocalDate.parse(deliveryDate, formatter);
+            LocalDate dateTime1=dateTime.plusDays(days);
+            DateTimeFormatter myFormatObj = DateTimeFormatter.ofPattern("EEEE, MMMM d, yyyy");
+            formattedDate1 = dateTime1.format(myFormatObj);
+            System.out.println(formattedDate1);
 
             //to check whether date is visible in displayed calender
-            if(HelpersMethod.IsExists("//td[contains(@style,'opacity:')]/span[contains(@title,'" + formDate1 +"')]",driver))
+            if(HelpersMethod.IsExists("//td[contains(@style,'opacity:')]/span[@class='k-link' and contains(@title,'" + formattedDate1 +"')]",driver))
             {
-                if (!HelpersMethod.IsExists("//td[contains(@style,'opacity:')]/span[@class='k-link-disabled' and contains(@title,'" + formDate1 + "')]", driver))
-                {
-                    ele1 = HelpersMethod.FindByElement(driver, "xpath", "//td[contains(@style,'opacity:')]/span[contains(@title,'" + formDate1 + "')]");
-                    HelpersMethod.waitTillElementDisplayed(driver, ele1, 10000);
+                    ele1 = HelpersMethod.FindByElement(driver, "xpath", "//td[contains(@style,'opacity:')]/span[@class='k-link' and contains(@title,'" + formattedDate1 + "')]");
+                    //HelpersMethod.waitTillElementDisplayed(driver, ele1, 10000);
+                    new WebDriverWait(driver,Duration.ofMillis(20000)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//td[contains(@style,'opacity:')]/span[@class='k-link' and contains(@title,'" + formattedDate1 + "')]")));
                     HelpersMethod.JSScroll(driver, ele1);
-                    HelpersMethod.ClickBut(driver, ele1, 1000);
+                    HelpersMethod.ClickBut(driver, ele1, 10000);
                     scenario.log("SKIP DATE IS "+formDate1);
                     exists=true;
-                }
-                else
-                {
-                    //list out all the dates in calender
-                    List<WebElement> displayedDates=HelpersMethod.FindByElements(driver,"xpath","//table[contains(@class,'k-calendar-table k-calendar-content k-content')]/descendant::td/span");
-                    for(int i=0;i<=displayedDates.size()-1;i++)
-                    {
-                        if(i>=Integer.parseInt(formDate1)) //compare whether i is greater then equal to date specified by user
-                        {
-                            WebEle = displayedDates.get(i);
-                            act.moveToElement(WebEle).build().perform();
-                            //check whether selected date is enabled or not. If not repeat the for loop or else get inside if condition
-                            if (HelpersMethod.IsExists("//table[contains(@class,'k-calendar-table k-calendar-content k-content')]/descendant::td[contains(@style,'background-color: rgb')]/span[text()='"+i+"']", driver))
-                            {
-                                WebElement dateSel = HelpersMethod.FindByElement(driver, "xpath", "//table[contains(@class,'k-calendar-table k-calendar-content k-content')]/descendant::td[contains(@style,'background-color: rgb')]/span[text()='"+i+"']");
-                                scenario.log("DATE SELECTED FOR SKIP " + dateSel.getText());
-                                act.moveToElement(dateSel).build().perform();
-                                act.click().build().perform();
-                                exists = true;
-                                break;
-                            }
-                        }
-                    }
-                }
             }
-      /*      else
+            else
             {
                 //if the date is not present in visible calender, click on arrow button to navigate to next month
-               if (HelpersMethod.IsExists("//button[contains(@class,'k-nav-next')]/span[contains(@class,'k-i-arrow-chevron-right')]", driver))
+                if (HelpersMethod.IsExists("//button[contains(@class,'k-nav-next')]/span[contains(@class,'k-i-arrow-chevron-right')]", driver))
                 {
                     //Click on Arrow in calender, when date has not been found in visible calender
                     WebElement arrow = HelpersMethod.FindByElement(driver, "xpath", "//button[contains(@class,'k-nav-next')]/span[contains(@class,'k-i-arrow-chevron-right')]");
                     HelpersMethod.ClickBut(driver, arrow, 1000);
-
-                    if (!HelpersMethod.IsExists("//td[contains(@style,'opacity:')]/span[@class='k-link-disabled' and contains(@title,'" + formattedDate1 + "')]", driver))
+                    if (HelpersMethod.IsExists("//td[contains(@style,'opacity:')]/span[@class='k-link' and contains(@title,'"+formDate1+"')]", driver))
                     {
-                        ele1 = HelpersMethod.FindByElement(driver, "xpath", "//td[contains(@style,'opacity:')]/span[contains(@title,'" + formattedDate1 + "')]");
+                        ele1 = HelpersMethod.FindByElement(driver, "xpath", "//td[contains(@style,'opacity:')]/span[contains(@title,'" + formDate1 + "')]");
                         HelpersMethod.waitTillElementDisplayed(driver, ele1, 10000);
                         HelpersMethod.JSScroll(driver, ele1);
                         HelpersMethod.ClickBut(driver, ele1, 1000);
+                        scenario.log("SKIP DATE IS "+formDate1);
                         exists=true;
-                        scenario.log("SKIP DATE IS "+formattedDate1);
                     }
-                    else
-                    {
-                        //list out all the dates in calender
-                        List<WebElement> displayedDates=HelpersMethod.FindByElements(driver,"xpath","//table[contains(@class,'k-calendar-table k-calendar-content k-content')]/descendant::td/span");
-                        for(int i=0;i<=displayedDates.size()-1;i++)
-                        {
-                            if(i>=Integer.parseInt(formDate1)) //compare whether i is greater then equal to date specified by user
-                            {
-                                WebEle = displayedDates.get(i);
-                                act.moveToElement(WebEle).build().perform();
-                                //check whether selected date is enabled or not. If not repeat the for loop or else get inside if condition
-                                if (HelpersMethod.IsExists("//table[contains(@class,'k-calendar-table k-calendar-content k-content')]/descendant::td[contains(@style,'background-color: rgb')]/span[text()='"+i+"']", driver))
-                                {
-                                    WebElement dateSel = HelpersMethod.FindByElement(driver, "xpath", "//table[contains(@class,'k-calendar-table k-calendar-content k-content')]/descendant::td[contains(@style,'background-color: rgb')]/span[text()='"+i+"']");
-                                    scenario.log("DATE SELECTED FOR SKIP " + dateSel.getText());
-                                    act.moveToElement(dateSel).build().perform();
-                                    act.click().build().perform();
-                                    exists = true;
-                                    break;
-                                }
-                            }
-                        }
-                    }
-               }
-            }*/
+                }
+            }
+
             Assert.assertEquals(exists,true);
 
             Thread.sleep(2000);
@@ -1585,11 +1528,12 @@ public class OrderEntryPage
                 HelpersMethod.ClickBut(driver, removeSkip, 1000);
                 scenario.log("REMOVESKIP POPUP HAS BEEN HANDLED");
                 exists = true;
-                if (HelpersMethod.IsExists("//div[@class='loader']", driver))
-                {
-                    WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000000);
-                }
+
+                Wait<WebDriver> wait = new FluentWait<>(driver)
+                        .withTimeout(Duration.ofSeconds(120))
+                        .pollingEvery(Duration.ofSeconds(2))
+                        .ignoring(NoSuchElementException.class);
+                wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
             }
             Assert.assertEquals(exists, true);
         } catch (Exception e) {
@@ -2143,7 +2087,7 @@ public class OrderEntryPage
         try
         {
             int i = 0;
-            WebElement WebEle = null;
+            WebElement WebEle;
             String status = HelpersMethod.returnDocumentStatus(driver);
             if (status.equals("loading"))
             {
@@ -3225,6 +3169,32 @@ public class OrderEntryPage
                 }
             }
             //Assert.assertEquals(exists,true);
+        }
+        catch (Exception e){}
+    }
+
+    public void validateExistingOrder()
+    {
+        exists=false;
+        Actions act=new Actions(driver);
+        try
+        {
+            List<WebElement> orders=HelpersMethod.FindByElements(driver,"xpath","//table[@class='k-grid-table']/descendant::td/button");
+            if(orders.size()>=1)
+            {
+                for(WebElement order:orders)
+                {
+                    act.moveToElement(order).build().perform();
+                    scenario.log("ORDER NUMBER FOUND IS "+order.getText());
+                }
+                exists=true;
+            }
+            else
+            {
+                scenario.log("<span style='color:red'>THERE ARE NO ORDER CREATED</span>");
+                exists=false;
+            }
+            Assert.assertEquals(exists,true);
         }
         catch (Exception e){}
     }

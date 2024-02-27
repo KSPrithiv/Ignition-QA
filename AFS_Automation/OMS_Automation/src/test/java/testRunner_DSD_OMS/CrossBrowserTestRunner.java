@@ -8,6 +8,7 @@ import org.testng.annotations.Optional;
 import org.testng.annotations.Parameters;
 import util.MailSend;
 import util.TestBase;
+import util.readPropertiesFile;
 
 import javax.mail.MessagingException;
 import java.awt.*;
@@ -33,7 +34,8 @@ public class CrossBrowserTestRunner extends AbstractTestNGCucumberTests
     @BeforeClass
     public static void beforeClass(@Optional String btype,String envi) throws InterruptedException, AWTException, SQLException, ClassNotFoundException, InstantiationException, IllegalAccessException
     {
-        TestBase.InitializeProp(envi);
+        readPropertiesFile.InitializeProp(envi);
+        //TestBase.InitializeProp(envi);
         TestBase.SetDriver(btype);
     }
 

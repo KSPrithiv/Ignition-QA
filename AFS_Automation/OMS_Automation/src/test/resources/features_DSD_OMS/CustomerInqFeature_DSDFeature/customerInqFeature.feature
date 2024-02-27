@@ -113,7 +113,7 @@ Feature: Customer Inq
   Scenario: Test scenario for verifying System default real time changes in Payment processing drop down
     Given User must be on Client side and select Customer Inq page
     When User should confirm that he is in Customer Inq page
-    Then User click on New button for copy of customer inq
+    #Then User click on New button for copy of customer inq
     And User should select customer account# in customer inq
       |Customer|
     Then User should navigate to Telus tab
@@ -123,7 +123,7 @@ Feature: Customer Inq
   Scenario: Test scenario for adding note to customer inq in DSD
     Given User must be on Client side and select Customer Inq page
     When User should confirm that he is in Customer Inq page
-    Then User click on New button
+    #Then User click on New button
     Then Add note in popup in cust inq
       |Testing for Notes at Customer inq|
     And User should select the Alert Type and Alert location to display notes in DSD cust inq

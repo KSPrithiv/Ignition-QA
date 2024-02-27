@@ -1,19 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="All Test Suite" parallel="tests" thread-count="2">
+<suite name="All Test Suite"  parallel="tests" thread-count="2">
     <test name="IgnitionTestAutomation">
-        <parameter name="environment" value="config_DSD_OMS\\config_DSD"/>
-        <classes>
-             <class name="testRunner_DSD_OMS.TestRunnSingleSce">
-                </class>
-        </classes>
-    </test>
-    <test name="IgnitionTestAutomation1">
-        <parameter name="environment" value="config_DSD_OMS\\config_OMS"/>
+       <parameter name="environment" value="config_DSD_OMS\\config_DSD"/>
         <classes>
             <class name="testRunner_DSD_OMS.TestRunnSingleSce">
             </class>
         </classes>
     </test>
+    <test name="IgnitionTestAutomation1">
+       <parameter name="environment" value="config_DSD_OMS\\config_OMS"/>
+        <classes>
+            <class name="testRunner_DSD_OMS.TestRunnSingleSceOMS">
+            </class>
+        </classes>
+    </test>
 </suite>
+
 

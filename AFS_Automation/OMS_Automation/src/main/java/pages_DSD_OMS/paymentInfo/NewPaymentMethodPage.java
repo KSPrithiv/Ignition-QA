@@ -158,8 +158,12 @@ public class NewPaymentMethodPage
         exists=false;
         try
         {
-            HelpersMethod.EnterText(driver,RouteNo,1000,RandomValues.generateRandomAlphaNumeric(5));
-            exists=true;
+            if(RouteNo.isDisplayed() && RouteNo.isEnabled())
+            {
+                String routeNo=RandomValues.generateRandomAlphaNumeric(5);
+                HelpersMethod.ActSendKey(driver, RouteNo, 10000,routeNo);
+                exists = true;
+            }
         }
         catch (Exception e){}
         Assert.assertEquals(exists,true);

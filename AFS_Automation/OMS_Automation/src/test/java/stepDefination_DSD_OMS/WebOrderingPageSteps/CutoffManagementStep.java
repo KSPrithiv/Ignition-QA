@@ -41,16 +41,12 @@ public class CutoffManagementStep
     @And("User should navigate to {string} tab for Cutoff management")
     public void userShouldNavigateToTabForCutoffManagement(String blacOut)
     {
-        if(flag==false)
-        {
             adminHomePage = new AdminHomePage(driver, scenario);
             adminHomePage.ClickOnHamburger();
             adminHomePage.EnterValueInSearchBox(blacOut);
             adminHomePage.CloseHamburger();
             blackoutAndCutoffPage = new BlackoutAndCutoffPage(driver, scenario);
             blackoutAndCutoffPage.validateBlackoutCutoff();
-            flag=true;
-        }
     }
 
     @Then("User should select {string} from horizontal menu to select Cutoff management")
@@ -63,9 +59,6 @@ public class CutoffManagementStep
     @And("User should click on Branch management toggle button select branch and set times for cutoff")
     public void userShouldClickOnBranchManagementToggleButtonSelectBranchAndSetTimesForCutoff() throws InterruptedException, AWTException
     {
-       //Check whether the environment in which scenarios are running supports this admin settings
-      // if(HelpersMethod.IsExists("//*[local-name()='g' and @id='dsd']|//*[local-name()='g' and @id='rams']",driver))
-      // {
            cutOffManagementPage = new CutOffManagementPage(driver, scenario);
            cutOffManagementPage.clickOnBranchManagementToggleButton();
            cutOffManagementPage.clickOnFilterBranchToggleButton();
@@ -87,11 +80,6 @@ public class CutoffManagementStep
            cutOffManagementPage.disableBranchToggleButton();
            adminHomePage = new AdminHomePage(driver, scenario);
            adminHomePage.Click_SaveButton();
-    /*   }
-       else
-       {
-           scenario.log("**********SELECTED ENVIRONMENT IS NOT SUPPORTING THIS FEATURE-ONLY DSD AND RAMS SUPPORTS THIS FEATURE*********");
-       }*/
     }
 
     @And("User should click on Warehouse management toggle button select branch and set times for cutoff")

@@ -71,6 +71,9 @@ public interface Environment extends Config
     @Key("Database")
     String getDBname();
 
+    @Key("DatabaseAdminSetting")
+    String getAdminSettingDBname();
+
     @Key("DB_User")
     String getDBUser();
 
@@ -164,10 +167,25 @@ public interface Environment extends Config
     @Key("AdditionalAccount")
     String additionalAccount();
 
-    @Key("PriceOverride")
-    String priceRide();
+    @Key("ProdPriceOverride")
+    String prodPriceRide();
 
     @Key("UserManageRegistration")
     String userManageRegistration();
+
+    @Key("DB_DBStatus")
+    String getStatusOfSetting();
+
+    @Key("DB_VerifySettingStatus")
+    String verifyStatus();
+
+    @Key("DB_ChangeSettingStatusEnabled")
+    String enbleAdminSetting();
+
+    @Key("DB_ChangeSettingStatusDisabled")
+    String disableAdminSetting();
+
+    @Key("DB_AdminSettingCompany")
+    String getAdminSettingCompany();
 }
 
