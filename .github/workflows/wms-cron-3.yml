@@ -6,7 +6,7 @@ on:
     inputs:
       branch:
         description: 'Branch name'
-        default: 'main'
+        default: 'maincommented'
 
 jobs:
   job1:
