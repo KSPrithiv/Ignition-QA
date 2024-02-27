@@ -66,8 +66,8 @@ public class DriverManager {
 
         //HEADLESS MODE CODE STARTS
 
-        //on Feb-3//options.addArguments("--headless=new");
-        //on Feb-3//options.addArguments("--remote-allow-origins=*");
+        options.addArguments("--headless=new");
+        options.addArguments("--remote-allow-origins=*");
         options.addArguments("--no-proxy-server");
         options.addArguments("--proxy-server='direct://'");
         options.addArguments("--proxy-bypass-list=*");
