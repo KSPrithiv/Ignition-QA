@@ -1,4 +1,4 @@
-name: OMS Regression
+name: OMS-DSD Regression
 on:
   schedule:
     - cron:  '30 13 2-30/2 * *'
