@@ -1,7 +1,7 @@
 name: WMS Regression
 on:
   schedule:
-    - cron:  '30 12 1-31/2 * *'
+    - cron:  '30 16 1-31/2 * *'
   workflow_dispatch:
     inputs:
       branch:
