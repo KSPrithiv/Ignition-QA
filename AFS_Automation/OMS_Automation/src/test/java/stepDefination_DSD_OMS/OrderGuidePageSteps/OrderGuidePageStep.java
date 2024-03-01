@@ -154,6 +154,7 @@ public class OrderGuidePageStep
         orderpage.HandleError_Page();
         orderGuidePage=new OrderGuidePage(driver,scenario);
         orderGuidePage.Refresh_Page(currentURL);
+        orderGuidePage.ValidateOG();
     }
 
     @Then("User clicks on Create new button and should navigate to New OG page")

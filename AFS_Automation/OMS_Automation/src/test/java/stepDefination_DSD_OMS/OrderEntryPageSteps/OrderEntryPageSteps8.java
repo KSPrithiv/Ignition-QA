@@ -52,13 +52,16 @@ public class OrderEntryPageSteps8
         if(HelpersMethod.IsExists("//button[contains(@class,'i-filter-tag__main')]/descendant::span[text()='Add filter']",driver))
         {
             newOE.listCatelog();
+            newOE.clickOnLoadAllProducts();
             newOE.readProductInList();
             newOE.catalogOK();
         }
         //else if(HelpersMethod.IsExists("//div[@class='product-catalog-container']",driver))
         else if(HelpersMethod.IsExists("//button[contains(text(),'Reset filter')]",driver))
         {
+
             newOE.cardCatelog();
+            newOE.clickOnLoadAllProducts();
             newOE.readProductInCard();
             newOE.catalogOK();
         }
@@ -100,6 +103,7 @@ public class OrderEntryPageSteps8
         newOE.validateCatalogdialog();
         if(HelpersMethod.IsExists("//div[@class='i-grid']",driver))
         {
+            newOE.clickOnLoadAllProducts();
             newOE.listCatelogQoH(QoHValue.get(0).get(0));
             newOE.readProductInList();
             newOE.catalogOK();
@@ -120,6 +124,7 @@ public class OrderEntryPageSteps8
         String Prod_No= DataBaseConnection.DataBaseConn(TestBase.testEnvironment.getSingle_OneMoreProd());
         newOE=new NewOrderEntryPage(driver,scenario);
         newOE.Validate_Catalog();
+        newOE.clickOnLoadAllProducts();
         newOE.ResetFilter_Catalog();
         String pro=String.valueOf(Prod_No);
         newOE.validateCatalogProducts();

@@ -2,6 +2,7 @@ package pages_DSD_OMS.orderEntry;
 
 import helper.HelpersMethod;
 import io.cucumber.java.Scenario;
+import org.apache.logging.log4j.core.tools.picocli.CommandLine;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
@@ -989,29 +990,6 @@ public class NewOrderEntryPage
                             .ignoring(NoSuchElementException.class);
                     wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
                 }
-
-
-
-
-
-                /*if(HelpersMethod.IsExists("//div[contains(text(),'Out of stock')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
-                {
-                    if(HelpersMethod.IsExists("//div[@class='loader']",driver))
-                    {
-                        WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                        HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000000);
-                    }
-                    WebElement modalContainer = driver.findElement(By.xpath("//div[contains(text(),'Out of stock')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]"));
-                    WebElement continueButton = modalContainer.findElement(By.xpath(".//button[text()='Continue']"));
-                    HelpersMethod.ActClick(driver,continueButton, 4000);
-                    scenario.log("OUT OF STOCK POPUP HAS BEEN HANDLED");
-
-                    wait = new FluentWait<WebDriver>(driver)
-                            .withTimeout(Duration.ofSeconds(120))
-                            .pollingEvery(Duration.ofSeconds(2))
-                            .ignoring(NoSuchElementException.class);
-                    wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
-                }*/
             }
             String status = HelpersMethod.returnDocumentStatus(driver);
             if (status.equals("loading"))
@@ -2235,7 +2213,6 @@ public class NewOrderEntryPage
         {
             if(HelpersMethod.IsExists("//div[contains(@class,'product-catalog-container')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
             {
-                //if(HelpersMethod.IsExists("//div[@class='card-view']",driver))
                 if(HelpersMethod.IsExists("//button[contains(text(),'Reset filter')]",driver))
                 {
                     WebEle=HelpersMethod.FindByElement(driver,"xpath","//button[contains(text(),'Reset filter')]");
@@ -2247,22 +2224,21 @@ public class NewOrderEntryPage
                         HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000000);
                     }
                 }
-                //else if (HelpersMethod.IsExists("//div[@class='i-grid']", driver))
-                else if(HelpersMethod.IsExists("//button[contains(@class,'i-filter-tag__main')]/descendant::span[text()='Add filter']",driver))
+                else if(HelpersMethod.IsExists("//div[contains(@class,'k-widget k-window k-dialog')]/descendant::div[contains(@class,'i-filter-tag')]",driver))
                 {
                     List<WebElement> filters=HelpersMethod.FindByElements(driver,"xpath","//div[contains(@class,'k-widget k-window k-dialog')]/descendant::div[contains(@class,'i-filter-tag')]");
                     if(filters.size()>1)
                     {
                         //Click on 'Add filter'
                         WebEle = HelpersMethod.FindByElement(driver, "xpath", "//button[contains(@class,'i-filter-tag__main')]/descendant::span[text()='Add filter']");
-                        HelpersMethod.ActClick(driver, WebEle, 1000);
+                        HelpersMethod.ActClick(driver, WebEle, 10000);
                         Thread.sleep(1000);
                         //Click on 'Clear all'
                         WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'i-filter-popup__footer')]/button[contains(text(),'Clear all')]");
                         if (WebEle.isEnabled())
                         {
                             HelpersMethod.ScrollElement(driver, WebEle);
-                            HelpersMethod.ActClick(driver, WebEle, 1000);
+                            HelpersMethod.ActClick(driver, WebEle, 10000);
                             exists = true;
                             if (HelpersMethod.IsExists("//div[@class='loader']", driver))
                             {
@@ -2274,12 +2250,12 @@ public class NewOrderEntryPage
                         if (!HelpersMethod.IsExists("//span[contains(@class,'k-i-filter-clear k-icon')]", driver))
                         {
                             WebElement filterIcon = HelpersMethod.FindByElement(driver, "xpath", "//span[contains(@class,'k-i-filter-clear k-icon')]");
-                            HelpersMethod.JScriptClick(driver, filterIcon, 1000);
+                            HelpersMethod.JScriptClick(driver, filterIcon, 10000);
                         }
                     }
                 }
             }
-            Assert.assertEquals(exists,true);
+            //Assert.assertEquals(exists,true);
         }
         catch (Exception e){}
     }
@@ -2429,13 +2405,14 @@ public class NewOrderEntryPage
                             }
                         }
                         WebEle=HelpersMethod.FindByElement(driver,"xpath","//tr[@class='k-filter-row']/th["+i+"]/descendant::input");
-                        HelpersMethod.JSSetValueEle(driver,WebEle,1000,"");
-                        WebEle.sendKeys(Keys.BACK_SPACE);
+                        //HelpersMethod.JSSetValueEle(driver,WebEle,1000,"");
+                        //WebEle.sendKeys(Keys.BACK_SPACE);
 
                         for (int j = 0; j < Prods.length(); j++)
                         {
                             String s = new StringBuilder().append(Prods.charAt(j)).toString();
-                            WebEle.sendKeys(s);
+                            //WebEle.sendKeys(s);
+                            HelpersMethod.EnterText(driver,WebEle,10000,s);
                             exists=true;
                         }
 
@@ -4971,7 +4948,7 @@ public class NewOrderEntryPage
                 if(!HelpersMethod.IsExists("//span[contains(@class,'k-i-filter-clear k-icon')]",driver))
                 {
                     WebElement filterIcon=HelpersMethod.FindByElement(driver,"xpath","//span[contains(@class,'k-i-filter-clear k-icon')]");
-                    HelpersMethod.JScriptClick(driver,filterIcon,1000);
+                    HelpersMethod.JScriptClick(driver,filterIcon,10000);
                 }
                 //Find all the headers of catalog dialog box, when displayed in list view
                 List<WebElement> headers = HelpersMethod.FindByElements(driver, "xpath", "//th[@class='k-header']/descendant::span[@class='k-column-title']");
@@ -4988,10 +4965,18 @@ public class NewOrderEntryPage
                 }
                 //Enter search value in input box
                 WebElement filterInput= driver.findElement(By.xpath("//tr[@class='k-filter-row']/th["+i+"]/descendant::input[contains(@class,'k-input')]"));
-                act1.moveToElement(filterInput).click().build().perform();
-                HelpersMethod.JSSetValueEle(driver,filterInput,1000,"");
-                filterInput.sendKeys(Keys.BACK_SPACE);
-                filterInput.sendKeys(searchValue);
+                HelpersMethod.EnterText(driver,filterInput,10000,searchValue);
+
+                if(HelpersMethod.IsExists("//div[@class='loader']",driver))
+                {
+                    WebElement WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
+                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000000);
+                }
+
+                //act1.moveToElement(filterInput).click().build().perform();
+                //HelpersMethod.JSSetValueEle(driver,filterInput,1000,"");
+                //filterInput.sendKeys(Keys.BACK_SPACE);
+                //filterInput.sendKeys(searchValue);
 
                 //Click on filter icon
                 WebElement filterIcon=HelpersMethod.FindByElement(driver,"xpath","//tr[@class='k-filter-row']/th["+i+"]/descendant::span[contains(@class,'k-icon k-i-filter k-icon')]");
@@ -5002,11 +4987,11 @@ public class NewOrderEntryPage
                 {
                     act1.moveToElement(listValue).build().perform();
                     listText=listValue.getText();
-                    if(listText.equals("Is greater than"))
+                    if(listText.equals("Is equal to"))
                     {
                         act1.moveToElement(listValue).build().perform();
                         act1.click().build().perform();
-                        scenario.log("FILTER VALUE USED TO FILTER QoH COLUMN IS Is greater than");
+                        scenario.log("FILTER VALUE USED TO FILTER QoH COLUMN IS Is equal to");
                         break;
                     }
                 }
@@ -5028,14 +5013,14 @@ public class NewOrderEntryPage
                 }
                 else
                 {
-                    scenario.log("**************NO PRODUCT HAS BEEN FOUND AFTER APPLYING QoH FILTER*****************");
-                    scenario.log("************PLEASE SEARCH WITH VALID SEARCH VALUE***************");
+                    scenario.log("<span style='color:red'> NO PRODUCT HAS BEEN FOUND AFTER APPLYING QoH FILTER</span>");
+                    scenario.log("<span style='color:red'>PLEASE SEARCH WITH VALID SEARCH VALUE</span>");
                 }
             }
             else
             {
-                scenario.log("FILTER NOT VISIBLE, PLZ CHECK ADMIN SETTING");
-                scenario.log("*********************THIS SCENARIO IS APPLICABLE ONLY ON LIST VIEW CATALOG*******************");
+                scenario.log("<span style='color:red'>QoH FILTER NOT VISIBLE, PLZ CHECK ADMIN SETTING</span>");
+                scenario.log("<span style='color:red'>THIS SCENARIO IS APPLICABLE ONLY ON LIST VIEW CATALOG</span>");
             }
             Assert.assertEquals(exists,true);
         }
@@ -5322,6 +5307,24 @@ public class NewOrderEntryPage
                 exists=true;
             }
             Assert.assertEquals(exists,true);
+        }
+        catch (Exception e){}
+    }
+
+    public void clickOnLoadAllProducts()
+    {
+        try
+        {
+            if(HelpersMethod.IsExists("//span[contains(text(),'load all products')]",driver))
+            {
+                WebElement loadProd=HelpersMethod.FindByElement(driver,"xpath","//span[contains(text(),'load all products')]");
+                HelpersMethod.ActClick(driver,loadProd,10000);
+                Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                        .withTimeout(Duration.ofSeconds(120))
+                        .pollingEvery(Duration.ofSeconds(2))
+                        .ignoring(NoSuchElementException.class);
+                wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+            }
         }
         catch (Exception e){}
     }

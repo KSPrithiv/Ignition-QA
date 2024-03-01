@@ -305,6 +305,7 @@ public class LoginPageStep
             pTitle = productPage.productTitle();
             flag1=true;
         }
+        Thread.sleep(4000);
     }
 
     //Code to add products to cart, when Card view is enabled
@@ -313,6 +314,7 @@ public class LoginPageStep
     {
         productPage = new ProductPage(driver, scenario);
         exists=productPage.ValidateProductPage();
+        productPage.clickOnAllProduct();
         productPage.Click_ResetFilter();
         exists=productPage.ValidateProductPage();
         productPage.CardView();
@@ -559,6 +561,7 @@ public class LoginPageStep
     {
         productPage = new ProductPage(driver, scenario);
         exists=productPage.ValidateProductPage();
+        productPage.clickOnAllProduct();
         productPage.Click_ResetFilter();
         exists=productPage.ValidateProductPage();
         productPage.GridView();

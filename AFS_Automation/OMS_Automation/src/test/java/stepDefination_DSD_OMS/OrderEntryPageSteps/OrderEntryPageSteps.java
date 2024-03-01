@@ -538,7 +538,7 @@ public class OrderEntryPageSteps
         orderpage = new OrderEntryPage(driver, scenario);
         orderpage.ValidateOE();
         orderpage.ClickRemoveSkip();
-        orderpage.RemoveSkipOK();
+        //orderpage.RemoveSkipOK();
         orderpage.ClickCalender();
         orderpage.ResetToCurrentDate();
     }
