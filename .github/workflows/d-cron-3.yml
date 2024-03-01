@@ -1,7 +1,7 @@
 name: OMS-D Regression
 on:
   schedule:
-    - cron:  '00 14 2-30/2 * *'
+    - cron:  '30 5 2-30/2 * *'
   workflow_dispatch:
     inputs:
       branch:
