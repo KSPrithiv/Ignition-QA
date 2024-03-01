@@ -3,6 +3,7 @@ package pages_DSD_OMS.competitivePricing;
 import helper.HelpersMethod;
 import io.cucumber.java.Scenario;
 import io.cucumber.java.bs.A;
+import org.apache.logging.log4j.core.tools.picocli.CommandLine;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
@@ -1208,6 +1209,24 @@ public class CompetitivePricingGeneralPage
             }
             exists=true;
             Assert.assertEquals(exists,true);
+        }
+        catch (Exception e){}
+    }
+
+    public void clickOnLoadAllProducts()
+    {
+        try
+        {
+           if(HelpersMethod.IsExists("//span[contains(text(),'load all products')]",driver))
+           {
+               WebElement loadProd=HelpersMethod.FindByElement(driver,"xpath","//span[contains(text(),'load all products')]");
+               HelpersMethod.ActClick(driver,loadProd,10000);
+               Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                       .withTimeout(Duration.ofSeconds(120))
+                       .pollingEvery(Duration.ofSeconds(2))
+                       .ignoring(NoSuchElementException.class);
+               wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+           }
         }
         catch (Exception e){}
     }

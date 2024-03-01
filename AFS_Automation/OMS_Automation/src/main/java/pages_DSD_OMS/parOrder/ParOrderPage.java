@@ -331,9 +331,11 @@ public class ParOrderPage
                 exists=false;
                 act.moveToElement(pList).build().perform();
                 String pList_text=pList.getText();
-                if(pList_text.equals(parList))
+                if(pList_text.equalsIgnoreCase(parList))
                 {
-                    act.moveToElement(pList).click().build().perform();
+                    act.moveToElement(pList).build().perform();
+                    //act.click().build().perform();
+                    HelpersMethod.JScriptClick(driver,pList,10000);
                     scenario.log(" PAR LIST FOUND IS "+pList_text);
                     exists=true;
                     break;

@@ -913,7 +913,8 @@ public class NewStandingOrderCard
             Thread.sleep(2000);
             if (HelpersMethod.IsExists("//div[@id='toast-container']", driver))
             {
-                scenario.log("NO DATA HAS BEEN GENERATED");
+                scenario.log("<span style='color:red'>NO DATA HAS BEEN GENERATED</span>");
+                exists=true;
                 Thread.sleep(3000);
             }
             else

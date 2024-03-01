@@ -56,6 +56,7 @@ public class OrderEntryPageSteps7
         String filterValue=null;
         newOE=new NewOrderEntryPage(driver,scenario);
         newOE.validateCatalogdialog();
+        newOE.clickOnLoadAllProducts();
         newOE.ResetFilter_Catalog();
         newOE.validateCardView();
         newOE.validateCatalogProducts();

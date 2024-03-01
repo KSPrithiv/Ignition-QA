@@ -129,6 +129,7 @@ public class CompetitorPricingPageStep
         competitivePricingGeneralPage=new CompetitivePricingGeneralPage(driver,scenario);
         competitivePricingGeneralPage.Click_Plus();
         competitivePricingGeneralPage.Validate_ProductIndex();
+        competitivePricingGeneralPage.clickOnLoadAllProducts();
         competitivePricingGeneralPage.selectProductsForCompetitorPricing();
     }
 

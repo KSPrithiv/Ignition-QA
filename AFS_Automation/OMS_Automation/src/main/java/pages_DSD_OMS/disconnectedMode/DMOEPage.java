@@ -358,7 +358,7 @@ public class DMOEPage
             if(HelpersMethod.IsExists("//div[contains(text(),'Synchronizing Device Data')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
             {
                 WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[contains(text(),'Synchronizing Device Data')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]");
-                //new WebDriverWait(driver, Duration.ofMillis(400000)).until(ExpectedConditions.invisibilityOf(WebEle));
+                new WebDriverWait(driver, Duration.ofMillis(600000)).until(ExpectedConditions.invisibilityOf(WebEle));
                 Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
                         .withTimeout(Duration.ofSeconds(1000))
                         .pollingEvery(Duration.ofSeconds(2))

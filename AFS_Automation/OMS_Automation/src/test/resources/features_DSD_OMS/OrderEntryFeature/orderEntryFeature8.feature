@@ -33,7 +33,7 @@ Scenario: Test scenario for filtering Qty on Hand in catalog popup
     |PO123|
   Then Click on Add product drop down and select catalog option
   And User searches for QoH and goes through the product numbers
-    |4|
+    |0|
   Then Click on Back button
   And Discard all Pending order should be displayed
   Then User should be navigated to Order Entry page

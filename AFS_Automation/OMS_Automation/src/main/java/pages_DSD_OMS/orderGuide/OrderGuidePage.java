@@ -124,7 +124,8 @@ public class OrderGuidePage {
             driver.navigate().to(currentURL);
             //}
             status = HelpersMethod.returnDocumentStatus(driver);
-            if (status.equals("loading")) {
+            if (status.equals("loading"))
+            {
                 HelpersMethod.waitTillLoadingPage(driver);
             }
 
@@ -135,7 +136,8 @@ public class OrderGuidePage {
             wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='orderGuides-container']")));
 
             status = HelpersMethod.returnDocumentStatus(driver);
-            if (status.equals("loading")) {
+            if (status.equals("loading"))
+            {
                 HelpersMethod.waitTillLoadingPage(driver);
             }
             wait = new FluentWait<WebDriver>(driver)
@@ -143,8 +145,8 @@ public class OrderGuidePage {
                     .pollingEvery(Duration.ofSeconds(2))
                     .ignoring(NoSuchElementException.class);
             wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='orderGuides-container']")));
-
-        } catch (Exception e) {}
+        }
+        catch (Exception e) {}
     }
 
     public boolean ValidateOG()
@@ -175,7 +177,7 @@ public class OrderGuidePage {
             new WebDriverWait(driver, Duration.ofMillis(100000)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath("//div[contains(@class,'i-card orderGuides-card')]"))));
             new WebDriverWait(driver,Duration.ofMillis(10000)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(@class,'i-card orderGuides-card')]")));
             //if(HelpersMethod.IsExists("//span[@class='spnmoduleNameHeader' and contains(text(),'Order guide list')]|//span[@class='spnmoduleNameHeader' and contains(text(),'Order guide detail')]",driver))
-            if (driver.getTitle().equals("Web Order Guides"))
+            if (driver.getTitle().equalsIgnoreCase("Web Order Guides"))
             {
                 scenario.log("NAVIGATED TO ORDER GUIDE");
                 exists = true;
@@ -430,31 +432,38 @@ public class OrderGuidePage {
     }
 
     //Code to click on Customer reference
-    public void CustomerRef() {
-        try {
-            if (HelpersMethod.IsExists("//div[@class='loader']", driver)) {
+    public void CustomerRef()
+    {
+        try
+        {
+            if (HelpersMethod.IsExists("//div[@class='loader']", driver))
+            {
                 WebElement WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
                 HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000000);
             }
             HelpersMethod.ActClick(driver, CustRef, 1000);
             //HelpersMethod.WaitElementPresent(driver,"xpath","//div[contains(@class,'k-animation-container k-animation-container-relative k-list-container k-reset i-common-dropdown i-common-dropdown__type-none')]",40000);
-        } catch (Exception e) {
         }
+        catch (Exception e) {}
     }
 
     //Code to select different type of OG from drop down
-    public void CustRefDropDown(String OGtype) {
+    public void CustRefDropDown(String OGtype)
+    {
         exists = false;
         WebElement WebEle = null;
         Actions act1 = new Actions(driver);
-        try {
+        try
+        {
             // to fetch the web element of the modal container
             List<WebElement> custRefs = HelpersMethod.FindByElements(driver, "xpath", "//div[contains(@class,'k-animation-container k-animation-container-relative k-list-container')]/descendant::ul/li");
-            for (int i = 0; i <= custRefs.size() - 1; i++) {
+            for (int i = 0; i <= custRefs.size() - 1; i++)
+            {
                 WebEle = custRefs.get(i);
                 act1.moveToElement(WebEle).build().perform();
                 String custRef = WebEle.getText();
-                if (custRef.equals(OGtype)) {
+                if (custRef.equals(OGtype))
+                {
                     act1.moveToElement(WebEle).build().perform();
                     act1.click().build().perform();
                     exists = true;
@@ -467,7 +476,8 @@ public class OrderGuidePage {
                 wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
 
                 String status = HelpersMethod.returnDocumentStatus(driver);
-                if (status.equals("loading")) {
+                if (status.equals("loading"))
+                {
                     HelpersMethod.waitTillLoadingPage(driver);
                 }
 
@@ -479,8 +489,8 @@ public class OrderGuidePage {
 
             }
             Assert.assertEquals(exists, true);
-        } catch (Exception e) {
         }
+        catch (Exception e) {}
     }
 
     //Code to check for popup and to select sub category in Customer reference
@@ -499,8 +509,8 @@ public class OrderGuidePage {
             //new WebDriverWait(driver,Duration.ofMillis(10000)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(@class,'k-widget k-window k-dialog')]")));
             if (HelpersMethod.IsExists("//div[contains(@class,'k-widget k-window k-dialog')]", driver))
             {
-                WebElement SubRef = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-widget k-window k-dialog')]/descendant::tr[contains(@class,'k-master-row')][2]");
-                HelpersMethod.ActClick(driver, SubRef, 4000);
+                WebElement SubRef = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-widget k-window k-dialog')]/descendant::tr[contains(@class,'k-master-row')][4]");
+                HelpersMethod.ActClick(driver, SubRef, 10000);
                 exists = true;
                 if (HelpersMethod.IsExists("//div[@class='loader']", driver))
                 {
@@ -509,8 +519,8 @@ public class OrderGuidePage {
                 }
             }
             Assert.assertEquals(exists, true);
-        } catch (Exception e) {
         }
+        catch (Exception e) {}
     }
 
     /*public void SubCustomerRefPriceBaseSchedule()

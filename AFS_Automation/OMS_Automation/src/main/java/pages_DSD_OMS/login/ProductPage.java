@@ -897,4 +897,22 @@ public class ProductPage
         }
         catch (Exception e){}
     }
+
+    public void clickOnAllProduct()
+    {
+        try
+        {
+            if(HelpersMethod.IsExists("//span[contains(text(),'load all products')]",driver))
+            {
+                WebElement loadProd=HelpersMethod.FindByElement(driver,"xpath","//span[contains(text(),'load all products')]");
+                HelpersMethod.ActClick(driver,loadProd,10000);
+                Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                        .withTimeout(Duration.ofSeconds(120))
+                        .pollingEvery(Duration.ofSeconds(2))
+                        .ignoring(NoSuchElementException.class);
+                wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+            }
+        }
+        catch (Exception e){}
+    }
 }
