@@ -263,10 +263,10 @@ public class HelpersMethod
         return Read_Val;
     }
 
-    public static String AttributeValue(WebElement ele,String Attribute)
+    public static String AttributeValue(WebElement ele,String attribute)
     {
         String Value;
-        Value=ele.getAttribute(Attribute);
+        Value=ele.getAttribute(attribute);
         return Value;
     }
 
@@ -411,7 +411,7 @@ public class HelpersMethod
         if(IsExists("//div[@class='loader']",driver))
         {
             WebElement WebEle=FindByElement(driver,"xpath","//div[@class='loader']");
-            waitTillLoadingWheelDisappears(driver, WebEle, 80000);
+            waitTillLoadingWheelDisappears(driver, WebEle, 100000);
         }
     }
 

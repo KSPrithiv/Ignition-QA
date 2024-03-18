@@ -34,7 +34,7 @@ Feature: Test case for Manage registration from client login
     Then User should click on Delete button next to Delete Secondary customer account
 
   @ManageRegistrationUpdate
-  Scenario: Test scenario for updating PO# in manage registation page
+  Scenario: Test scenario for updating PO# in manage registration page
     Given User must be on Client side and select User Management for Manage registration
     Then User should navigate to manage registration page
     And User should select User from the User dialog box and validate that details are loaded

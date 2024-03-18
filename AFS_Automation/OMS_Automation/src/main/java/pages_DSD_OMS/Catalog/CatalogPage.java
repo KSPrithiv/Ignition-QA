@@ -365,7 +365,7 @@ public class CatalogPage
                 HelpersMethod.waitTillLoadingPage(driver);
             }
             HelpersMethod.ScrollElement(driver,SearchClear);
-            HelpersMethod.ClickBut(driver,SearchClear,4000);
+            HelpersMethod.ClickBut(driver,SearchClear,10000);
             if(HelpersMethod.IsExists("//div[@class='loader']",driver))
             {
                 WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
@@ -374,7 +374,7 @@ public class CatalogPage
 
             //Enter product# in search bar
             WebEle=HelpersMethod.FindByElement(driver,"xpath","//input[contains(@class,'product-search-input')]");
-            HelpersMethod.EnterText(driver,WebEle,4000,Prod_no);
+            HelpersMethod.EnterText(driver,WebEle,10000,Prod_no);
             scenario.log("PRODUCT SEARCHED IS "+Prod_no);
             if(HelpersMethod.IsExists("//div[@class='loader']",driver))
             {
@@ -384,7 +384,7 @@ public class CatalogPage
 
             //Click on search Index button
             WebEle=HelpersMethod.FindByElement(driver,"xpath","//span[@datatestid='searchBarSearchBtn']");
-            HelpersMethod.ClickBut(driver,WebEle,2000);
+            HelpersMethod.ClickBut(driver,WebEle,10000);
             if(HelpersMethod.IsExists("//div[@class='loader']",driver))
             {
                 WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
@@ -1919,7 +1919,7 @@ public class CatalogPage
         catch (Exception e) {}
     }
 
-    public boolean verifyProductsInCatalog()
+    public boolean verifyProductsInCatalogEnabled()
     {
         exists=false;
         try
@@ -1938,4 +1938,26 @@ public class CatalogPage
         catch (Exception e){}
         return exists;
     }
+
+    public boolean verifyProductsInCatalogDisabled()
+    {
+        exists=false;
+        try
+        {
+            if(!HelpersMethod.IsExists("//div[contains(text(),'Use the search bar to search for products.')]",driver))
+            {
+                scenario.log("PRODUCTS ARE NOT LOADED AUTOMATICALLY, WE NEED TO CLICK ON RESET FILTER");
+                exists=false;
+            }
+            else
+            {
+                scenario.log("<span style='color:red'>PRODUCTS ARE LOADED AUTOMATICALLY</span>");
+                exists=true;
+            }
+        }
+        catch (Exception e){}
+        return exists;
+    }
+
+
 }

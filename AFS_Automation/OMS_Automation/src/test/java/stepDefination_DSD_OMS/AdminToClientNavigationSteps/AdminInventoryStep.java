@@ -53,12 +53,12 @@ public class AdminInventoryStep
         if (HelpersMethod.IsExists("//div[contains(@class,'k-widget k-window k-dialog')]/descendant::div[contains(@class,'i-grid')]", driver))
         {
             scenario.log("CATALOG IN THE FORM OF LIST VIEW HAS BEEN FOUND");
-            exists= inventoryPage.listViewProductLoaded();
+            exists= inventoryPage.listViewProductLoadedAutoloadEnabled();
         }
         else
         {
             scenario.log("CATALOG IN THE FORM OF CARD VIEW HAS BEEN FOUND");
-            exists= inventoryPage.cardViewProductLoaded();
+            exists= inventoryPage.cardViewProductLoadedAutoloadEnabled();
         }
         inventoryPage.clickOnResetFilter();
         inventoryPage.clickOnCatalogOkButton();
@@ -75,16 +75,16 @@ public class AdminInventoryStep
         if (HelpersMethod.IsExists("//div[contains(@class,'k-widget k-window k-dialog')]/descendant::div[contains(@class,'i-grid')]", driver))
         {
             scenario.log("CATALOG IN THE FORM OF LIST VIEW HAS BEEN FOUND");
-            exists= inventoryPage.listViewProductLoaded();
+            exists= inventoryPage.listViewProductLoadedAutoloadDisabled();
         }
         else
         {
             scenario.log("CATALOG IN THE FORM OF CARD VIEW HAS BEEN FOUND");
-            exists= inventoryPage.cardViewProductLoaded();
+            exists= inventoryPage.cardViewProductLoadedAutoloadDisabled();
         }
         inventoryPage.clickOnResetFilter();
         inventoryPage.clickOnCatalogOkButton();
-        Assert.assertEquals(exists,false);
+        Assert.assertEquals(exists,true);
     }
 
     @Then("User should select Order Entry tab for Inventory for admin setting")
@@ -100,6 +100,7 @@ public class AdminInventoryStep
         orderPage = new OrderEntryPage(driver, scenario);
         orderPage.ChangeAccount();
         orderPage.Read_DeliveryDate();
+        orderPage.PopUps_After_AccountChange();
     }
 
     @And("User should navigate to Inventory tab for admin setting")
@@ -115,7 +116,7 @@ public class AdminInventoryStep
         }
         else
         {
-            scenario.log("CATALOG TAB IS NOT VISIBLE");
+            scenario.log("INVENTORY TAB IS NOT VISIBLE");
         }
     }
 }

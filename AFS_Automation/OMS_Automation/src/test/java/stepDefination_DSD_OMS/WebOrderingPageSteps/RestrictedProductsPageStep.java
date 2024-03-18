@@ -91,8 +91,8 @@ public class RestrictedProductsPageStep
             adminHomePage.CloseHamburger();
     }
 
-    @Then("User should select {string} from horizantal menu to select Restricted product list")
-    public void userShouldSelectFromHorizantalMenuToSelectRestrictedProductList(String arg0)
+    @Then("User should select {string} from horizontal menu to select Restricted product list")
+    public void userShouldSelectFromHorizontalMenuToSelectRestrictedProductList(String arg0)
     {
             adminHomePage = new AdminHomePage(driver, scenario);
             adminHomePage.Horizantal_MenuBar(arg0);

@@ -78,16 +78,16 @@ public class CustomerInquiryPageERP
         {
             JavascriptExecutor js = ((JavascriptExecutor) driver);
             js.executeScript("window.location.reload()");
-            WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(1000));
-            if (wait.until(ExpectedConditions.alertIsPresent()) == null)
+            WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(10000));
+         /*   if (wait.until(ExpectedConditions.alertIsPresent()) == null)
             {
 
             }
             else
-            {
+            {*/
                 Alert alert = driver.switchTo().alert();
                 alert.accept();
-            }
+            //}
 
             Wait<WebDriver> wait1 = new FluentWait<WebDriver>(driver)
                     .withTimeout(Duration.ofSeconds(120))

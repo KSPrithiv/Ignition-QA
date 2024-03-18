@@ -242,7 +242,7 @@ public class ProductDescriptionPage
             }
             else
             {
-                scenario.log("******************FREQUENTLY BOUGHT TOGETHER PRODUCTS ARE NOT DISPLAYED, CHECK ADMIN SETTINGS*******************");
+                scenario.log("<span style='color:red'>FREQUENTLY BOUGHT TOGETHER PRODUCTS ARE NOT DISPLAYED, CHECK ADMIN SETTINGS</span>");
             }
             Assert.assertEquals(exists,true);
         }

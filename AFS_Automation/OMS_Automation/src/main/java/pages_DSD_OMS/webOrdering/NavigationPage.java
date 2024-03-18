@@ -2,14 +2,20 @@ package pages_DSD_OMS.webOrdering;
 
 import helper.HelpersMethod;
 import io.cucumber.java.Scenario;
+import io.cucumber.java.bs.A;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.Point;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Action;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
 
+import java.awt.*;
+import java.awt.event.InputEvent;
 import java.util.List;
 
 /**
@@ -67,15 +73,65 @@ public class NavigationPage
     public void FromAvailableAppToWebOrder()
     {
         exists=false;
-        WebElement WebEle;
+        Actions act=new Actions(driver);
+        WebElement fromElement;
+        WebElement toElement=HelpersMethod.FindByElement(driver,"xpath","//div[@id='ActiveItemsAdminCard']/descendant::div[@class='i-droppable-container']");
         int index;
         try
         {
+
             List<WebElement> MenuItems= HelpersMethod.FindByElements(driver,"xpath","//div[@id='AvailableItemsAdminCard']/descendant::div[@class='i-draggable-item']/div[contains(@class,'i-draggable-item__container')]");
-            index= MenuItems.size()-1;
-            WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@id='AvailableItemsAdminCard']/descendant::div[@class='i-draggable-item']["+index+"]/div[contains(@class,'i-draggable-item__container')]");
-            HelpersMethod.ActDragDrop(driver,WebEle,WebOrderMenu);
-            exists=true;
+            if(MenuItems.size()==1)
+            {
+                index=1;
+                fromElement = HelpersMethod.FindByElement(driver, "xpath", "//div[@id='AvailableItemsAdminCard']/descendant::div[@class='i-draggable-item'][" + index + "]/div[contains(@class,'i-draggable-item__container')]");
+                //HelpersMethod.ActDragDrop(driver, WebEle, WebOrderMenu);
+                //METHOD1
+                Actions builder = new Actions(driver);
+
+                Action dragAndDrop = builder.clickAndHold(fromElement)
+                        .moveToElement(toElement)
+                        .release(toElement)
+                        .build();
+                dragAndDrop.perform();
+                //METHOD2
+              //  act.dragAndDrop(fromElement, toElement).build().perform();
+
+                //METHOD3
+           /*     final String java_script =
+                        "var src=arguments[0],tgt=arguments[1];var dataTransfer={dropEffe" +
+                                "ct:'',effectAllowed:'all',files:[],items:{},types:[],setData:fun" +
+                                "ction(format,data){this.items[format]=data;this.types.append(for" +
+                                "mat);},getData:function(format){return this.items[format];},clea" +
+                                "rData:function(format){}};var emit=function(event,target){var ev" +
+                                "t=document.createEvent('Event');evt.initEvent(event,true,false);" +
+                                "evt.dataTransfer=dataTransfer;target.dispatchEvent(evt);};emit('" +
+                                "dragstart',src);emit('dragenter',tgt);emit('dragover',tgt);emit(" +
+                                "'drop',tgt);emit('dragend',src);";
+
+              //  ((JavascriptExecutor).getDriver()).executeScript(java_script, toElement, fromElement);
+                Thread.sleep(2000);
+
+
+                org.openqa.selenium.Point coordinates1 = toElement.getLocation();
+                Point coordinates2 = fromElement.getLocation();
+                Robot robot = new Robot();
+                robot.mouseMove(coordinates1.getX(), coordinates1.getY());
+                robot.mousePress(InputEvent.BUTTON1_MASK);
+                robot.mouseMove(coordinates2.getX(), coordinates2.getY());
+                robot.mouseRelease(InputEvent.BUTTON1_MASK);
+                Thread.sleep(2000);*/
+
+
+                exists = true;
+            }
+            else
+            {
+                index = MenuItems.size() - 1;
+                fromElement = HelpersMethod.FindByElement(driver, "xpath", "//div[@id='AvailableItemsAdminCard']/descendant::div[@class='i-draggable-item'][" + index + "]/div[contains(@class,'i-draggable-item__container')]");
+                HelpersMethod.ActDragDrop(driver, fromElement, toElement);
+                exists = true;
+            }
             Assert.assertEquals(exists,true);
         }
         catch (Exception e){}
@@ -117,7 +173,7 @@ public class NavigationPage
         {
             //check box click
             WebElement checkBox=HelpersMethod.FindByElement(driver,"xpath","//div[@class='i-draggable-item'][1]/descendant::input");
-            HelpersMethod.ClickBut(driver,checkBox,1000);
+            HelpersMethod.ClickBut(driver,checkBox,10000);
             //Read label value associated with check box
             label=HelpersMethod.FindByElement(driver,"xpath","//div[@class='i-draggable-item'][1]/descendant::div[@class='content active']").getText();
             scenario.log("LABEL SELECTED FOR CHANGING LABEL IS "+label);
@@ -132,9 +188,9 @@ public class NavigationPage
         {
             labelNameText=label+"_Test";
             HelpersMethod.ScrollElement(driver,labelInput);
-            HelpersMethod.EnterText(driver,labelInput,1000,labelNameText);
+            HelpersMethod.EnterText(driver,labelInput,10000,labelNameText);
             labelInput.sendKeys(Keys.ENTER);
-            labelNameText=HelpersMethod.JSGetValueEle(driver,labelInput,1000);
+            labelNameText=HelpersMethod.JSGetValueEle(driver,labelInput,10000);
             if(!label.equals(labelNameText))
             {
                 scenario.log("NEW LABEL NAME GIVEN IS "+labelNameText);

@@ -139,7 +139,7 @@ public class CheckOutSummaryPage
         {
             WebElement submitButton = HelpersMethod.FindByElement(driver, "xpath", "//button[@id='ConfirmSummaryButton']");
             HelpersMethod.ScrollUpScrollBar(driver);
-            HelpersMethod.ClickBut(driver, submitButton, 8000);
+            HelpersMethod.ClickBut(driver, submitButton, 20000);
             wait = new FluentWait<>(driver)
                     .withTimeout(Duration.ofSeconds(120))
                     .pollingEvery(Duration.ofSeconds(2))
@@ -996,6 +996,25 @@ public class CheckOutSummaryPage
                         .ignoring(NoSuchElementException.class);
                 wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
             }
+        }
+        catch (Exception e){}
+    }
+
+    public void ClickSubmitOE()
+    {
+        exists=false;
+        try
+        {
+            HelpersMethod.ScrollUpScrollBar(driver);
+            Thread.sleep(1000);
+            if(HelpersMethod.IsExists("//button[@id='ConfirmSummarySplitButton']",driver))
+            {
+                WebElement submitButton=HelpersMethod.FindByElement(driver,"id","ConfirmSummarySplitButton");
+                //HelpersMethod.ScrollElement(driver,submitButton);
+                HelpersMethod.ClickBut(driver,submitButton,20000);
+                exists=true;
+            }
+            Assert.assertEquals(exists,true);
         }
         catch (Exception e){}
     }

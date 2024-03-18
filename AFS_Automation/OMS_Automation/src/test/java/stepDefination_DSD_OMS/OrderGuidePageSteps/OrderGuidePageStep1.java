@@ -329,6 +329,7 @@ public class OrderGuidePageStep1
         createOGPage = new CreateOGPage(driver, scenario);
         createOGPage.ValidateCatalogDisplay();
         createOGPage.ResetFilter_Catalog();
+        createOGPage.validateProductInCatalog();
         createOGPage.AddFromCatalog(DataBaseConnection.DataConn1(TestBase.testEnvironment.getMultiple_Prod_Sql1()));
     }
 

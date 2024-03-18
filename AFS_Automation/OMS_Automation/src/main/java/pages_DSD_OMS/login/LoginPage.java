@@ -240,7 +240,6 @@ public class LoginPage
             if(HelpersMethod.IsExists("//a[@id='viewProductCatalogLink']/p",driver))
             {
                 HelpersMethod.ScrollElement(driver,ExternalCatalog);
-                //HelpersMethod.ActClick(driver,ExternalCatalog,1000);
                 HelpersMethod.JScriptClick(driver,ExternalCatalog,10000);
                 exists=true;
                 String status = HelpersMethod.returnDocumentStatus(driver);
@@ -256,6 +255,7 @@ public class LoginPage
                 }
                 HelpersMethod.WaitElementPresent(driver,"xpath","//div[contains(@class,'product-catalog-page')]",100000);
                 new WebDriverWait(driver,Duration.ofMillis(20000)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(@id,'ext-product-catalog-app')]")));
+                Thread.sleep(2000);
             }
             else
             {

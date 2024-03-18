@@ -45,8 +45,8 @@ public class FeaturedProductsPageStep
             featuredProdSettingsPage.validateFeatureProd();
     }
 
-    @Then("User should Check whether Max products to show in featured products Sheild is selected or not")
-    public void userShouldCheckWhetherMaxProductsToShowInFeaturedProductsSheildIsSelectedOrNot()
+    @Then("User should Check whether Max products to show in featured products Shield is selected or not")
+    public void userShouldCheckWhetherMaxProductsToShowInFeaturedProductsShieldIsSelectedOrNot()
     {
         featuredProdSettingsPage=new FeaturedProdSettingsPage(driver,scenario);
         featuredProdSettingsPage.validateFeatureProd();
@@ -62,15 +62,15 @@ public class FeaturedProductsPageStep
             scenario.log("MAXIMUM FEATURED PRODUCTS SET IS "+MaxProd);
     }
 
-    @Then("User should navigate to {string} from horizantal menu to select Featured products list")
-    public void userShouldNavigateToFromHorizantalMenuToSelectFeaturedProductsList(String arg0)
+    @Then("User should navigate to {string} from horizontal menu to select Featured products list")
+    public void userShouldNavigateToFromHorizontalMenuToSelectFeaturedProductsList(String arg0)
     {
         adminHomePage = new AdminHomePage(driver, scenario);
         adminHomePage.Horizantal_MenuBar(arg0);
     }
 
-    @Then("User should select {string} from horizantal menu to select Featured products list")
-    public void userShouldSelectFromHorizantalMenuToSelectFeaturedProductsList(String arg0) throws InterruptedException
+    @Then("User should select {string} from horizontal menu to select Featured products list")
+    public void userShouldSelectFromHorizontalMenuToSelectFeaturedProductsList(String arg0) throws InterruptedException
     {
             adminHomePage = new AdminHomePage(driver, scenario);
             adminHomePage.Horizantal_MenuBar(arg0);

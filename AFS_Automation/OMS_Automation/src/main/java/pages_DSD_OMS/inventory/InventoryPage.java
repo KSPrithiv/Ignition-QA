@@ -436,7 +436,7 @@ public class InventoryPage
             {
                 WebElement productPopup=HelpersMethod.FindByElement(driver,"xpath","//div[text()='Products']/ancestor::div[contains(@class,'k-widget k-window k-dialog')]");
                 WebElement okButton=productPopup.findElement(By.xpath(".//button[text()='Ok']"));
-                HelpersMethod.ClickBut(driver,okButton,10000);
+                HelpersMethod.ActClick(driver,okButton,10000);
                 exists=true;
             }
             Assert.assertEquals(exists,true);
@@ -654,12 +654,52 @@ public class InventoryPage
         catch (Exception e){}
     }
 
-    public boolean listViewProductLoaded()
+    public boolean listViewProductLoadedAutoloadDisabled()
+    {
+        exists=false;
+        try
+        {
+            if(!HelpersMethod.IsExists("//span[contains(text(),'load all products')]",driver))
+            {
+                scenario.log("DO NOT AUTOLOAD CATALOG, IS DISABLED");
+                exists=true;
+            }
+            else
+            {
+                scenario.log("AUTO LOAD OF PRODUCT IS ENABLED");
+                exists=false;
+            }
+        }
+        catch (Exception e){}
+        return exists;
+    }
+
+    public boolean listViewProductLoadedAutoloadEnabled()
     {
         exists=false;
         try
         {
             if(HelpersMethod.IsExists("//span[contains(text(),'load all products')]",driver))
+            {
+                scenario.log("DO NOT AUTOLOAD CATALOG, IS DISABLED");
+                exists=true;
+            }
+            else
+            {
+                scenario.log("AUTO LOAD OF PRODUCT IS ENABLED");
+                exists=false;
+            }
+        }
+        catch (Exception e){}
+        return exists;
+    }
+
+    public boolean cardViewProductLoadedAutoloadDisabled()
+    {
+        exists=false;
+        try
+        {
+            if(!HelpersMethod.IsExists("//span[contains(text(),'load all products')]",driver))
             {
                 scenario.log("AUTO LOAD OF PRODUCTS IS DISABLED");
                 exists=true;
@@ -674,7 +714,7 @@ public class InventoryPage
         return exists;
     }
 
-    public boolean cardViewProductLoaded()
+    public boolean cardViewProductLoadedAutoloadEnabled()
     {
         exists=false;
         try

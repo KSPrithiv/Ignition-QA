@@ -1,11 +1,8 @@
 package pages_DSD_OMS.standingOrder;
 
-import gherkin.lexer.He;
 import helper.HelpersMethod;
-import io.cucumber.datatable.DataTable;
 import io.cucumber.java.Scenario;
 
-import io.cucumber.java.bs.A;
 import org.apache.logging.log4j.core.tools.picocli.CommandLine;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
@@ -21,8 +18,6 @@ import util.DataBaseConnection;
 import util.TestBase;
 
 import java.time.Duration;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 /**
@@ -38,6 +33,8 @@ public class NewStandingOrderPage
     static boolean exists=false;
     static String Prod_No=null;
     static String Prod_Name=null;
+    static String Pro1=null;
+    static String ProNo=null;
 
     @FindBy (xpath="//div[@id='card1']/descendant::span[contains(@class,'k-icon k-i-arrow-chevron-down')]")
     private WebElement StandingOrderArrow;
@@ -307,8 +304,6 @@ public class NewStandingOrderPage
     {
         exists = false;
         WebElement WebEle=null;
-        WebElement selectButton;
-        WebElement clearButton;
         Actions act=new Actions(driver);
         Wait<WebDriver> wait;
         try
@@ -317,18 +312,6 @@ public class NewStandingOrderPage
             //Catalog displayed in list view
             if (HelpersMethod.IsExists("//div[contains(@class,'k-widget k-window k-dialog')]/descendant::div[contains(@class,'i-grid')]", driver))
             {
-                //to load all the products in catalog
-              /*  if(HelpersMethod.IsExists("//span[contains(text(),'load all products')]",driver))
-                {
-                    WebElement loadProducts=HelpersMethod.FindByElement(driver,"xapth","//span[contains(text(),'load all products')]");
-                    HelpersMethod.ActClick(driver,loadProducts,1000);
-                    Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
-                            .withTimeout(Duration.ofSeconds(120))
-                            .pollingEvery(Duration.ofSeconds(2))
-                            .ignoring(NoSuchElementException.class);
-                    wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
-                }*/
-
                 //Click on 'Add filter'
                 WebElement catalogPopup=HelpersMethod.FindByElement(driver,"xpath","//div[text()='Catalog']/ancestor::div[contains(@class,'k-widget k-window k-dialog')]");
                 if(HelpersMethod.IsExists("//span[text()='Add filter']",driver))
@@ -905,12 +888,6 @@ public class NewStandingOrderPage
             {
                 HelpersMethod.waitTillLoadingPage(driver);
             }
-           /* Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
-                    .withTimeout(Duration.ofSeconds(120))
-                    .pollingEvery(Duration.ofSeconds(2))
-                    .ignoring(NoSuchElementException.class);
-            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));*/
-
             Assert.assertEquals(exists, true);
         }
         catch (Exception e){}
@@ -1098,7 +1075,7 @@ public class NewStandingOrderPage
         try
         {
             exists = false;
-            if(TestBase.testEnvironment.get_browser().equals("chrome")||TestBase.testEnvironment.get_browser().equals("edge"))
+           /* if(TestBase.testEnvironment.get_browser().equals("chrome")||TestBase.testEnvironment.get_browser().equals("edge"))
             {
                 JavascriptExecutor js=(JavascriptExecutor)driver;
                 js.executeScript("document.body.style.zoom='67%'");
@@ -1107,7 +1084,7 @@ public class NewStandingOrderPage
             {
                 JavascriptExecutor js=(JavascriptExecutor)driver;
                 js.executeScript("document.body.style.MozTransform='67%'");
-            }
+            }*/
             scenario.log("PRODUCTS FOUND IN STANDING ORDER:");
             List<WebElement> ProductsLists = HelpersMethod.FindByElements(driver, "xpath", "//tr[contains(@class,'k-master-row')]/td[2]");
             for (WebElement Prod : ProductsLists)
@@ -1116,7 +1093,7 @@ public class NewStandingOrderPage
                 scenario.log(Prod_Text);
                 exists = true;
             }
-            if(TestBase.testEnvironment.get_browser().equals("chrome")||TestBase.testEnvironment.get_browser().equals("edge"))
+        /*    if(TestBase.testEnvironment.get_browser().equals("chrome")||TestBase.testEnvironment.get_browser().equals("edge"))
             {
                 JavascriptExecutor js=(JavascriptExecutor)driver;
                 js.executeScript("document.body.style.zoom='100%'");
@@ -1125,7 +1102,7 @@ public class NewStandingOrderPage
             {
                 JavascriptExecutor js=(JavascriptExecutor)driver;
                 js.executeScript("document.body.style.MozTransform='100%'");
-            }
+            }*/
             Assert.assertEquals(exists, true);
         }
         catch (Exception e){}
@@ -1174,13 +1151,11 @@ public class NewStandingOrderPage
                 {
                     HelpersMethod.waitTillLoadingPage(driver);
                 }
-
                 wait = new FluentWait<WebDriver>(driver)
                         .withTimeout(Duration.ofSeconds(120))
                         .pollingEvery(Duration.ofSeconds(2))
                         .ignoring(NoSuchElementException.class);
                 wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
-
             }
         }
         catch (Exception e){}
@@ -1365,7 +1340,8 @@ public class NewStandingOrderPage
             //Catalog displayed in list view
             if (HelpersMethod.IsExists("//div[contains(@class,'k-widget k-window k-dialog')]/descendant::div[contains(@class,'i-grid')]", driver))
             {
-                if(HelpersMethod.IsExists("//div[text()='Catalog']/ancestor::div[contains(@class,'k-widget k-window k-dialog')]/descendant::span[text()='Add filter']",driver)) {
+                if(HelpersMethod.IsExists("//div[text()='Catalog']/ancestor::div[contains(@class,'k-widget k-window k-dialog')]/descendant::span[text()='Add filter']",driver))
+                {
                     //Click on 'Add filter'
                     WebElement catalogPopup = HelpersMethod.FindByElement(driver, "xpath", "//div[text()='Catalog']/ancestor::div[contains(@class,'k-widget k-window k-dialog')]");
                     WebEle = catalogPopup.findElement(By.xpath("//button[contains(@class,'i-filter-tag__main')]/descendant::span[text()='Add filter']"));
@@ -1374,7 +1350,8 @@ public class NewStandingOrderPage
                     //Click on clear all
                     WebElement dropDown = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-child-animation-container')]");
                     WebElement clearAll = dropDown.findElement(By.xpath("//div[contains(@class,'k-child-animation-container')]/descendant::button[contains(text(),'Clear all')]"));
-                    if (clearAll.isDisplayed() && clearAll.isEnabled()) {
+                    if (clearAll.isDisplayed() && clearAll.isEnabled())
+                    {
                         HelpersMethod.ActClick(driver, clearAll, 2000);
                         //Click on Add filter again
                         HelpersMethod.clickOn(driver, WebEle, 2000);
@@ -1773,7 +1750,7 @@ public class NewStandingOrderPage
                 }
                 else //if (HelpersMethod.IsExists("//div[@class='i-grid']", driver))
                 {
-                    if(HelpersMethod.IsExists("//span[text()='Add filter']",driver))
+                    if(HelpersMethod.IsExists("//div[contains(@class,'k-widget k-window k-dialog')]/descendant::div[contains(@class,'i-filter-tag')]",driver))
                     {
                         List<WebElement> filters=HelpersMethod.FindByElements(driver,"xpath","//div[contains(@class,'k-widget k-window k-dialog')]/descendant::div[contains(@class,'i-filter-tag')]");
                        if(filters.size()>1)
@@ -1903,6 +1880,325 @@ public class NewStandingOrderPage
                         .ignoring(NoSuchElementException.class);
                 wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
             }
+        }
+        catch (Exception e){}
+    }
+
+    public void adminQuickProductEntry()
+    {
+        exists=false;
+        WebElement WebEle=null;
+        Actions act1=new Actions(driver);
+        try
+        {
+            WebEle=HelpersMethod.FindByElement(driver,"id","card2");
+            HelpersMethod.ScrollElement(driver,WebEle);
+            if(QuickProduct.isDisplayed() && QuickProduct.isEnabled())
+            {
+                //Enter Qty in quick inputbox
+                //String Pro = DataBaseConnection.DataBaseConn(TestBase.testEnvironment.getSingle_Prod_Sql());
+                String Pro=TestBase.testEnvironment.getPrecedingByZero();
+                int i = 0;
+                while (i < Pro.length() && Pro.charAt(i) == '0')
+                    i++;
+
+                // Converting string into StringBuffer object
+                // as strings are immutable
+                StringBuffer sb = new StringBuffer(Pro);
+
+                // The StringBuffer replace function removes
+                // i characters from given index (0 here)
+                sb.replace(0, i, "");
+
+                // Returning string after removing zeros
+                Pro1=sb.toString();
+
+                act1.moveToElement(QuickProduct).click().build().perform();
+                HelpersMethod.sendKeys(driver,QuickProduct,10000,Pro1);
+                QuickProduct.sendKeys(Keys.ENTER);
+                if(HelpersMethod.IsExists("//span[@id='quickEntryUMs']",driver))
+                {
+                    WebElement uomSO= HelpersMethod.FindByElement(driver,"id","quickEntryUMs");
+                    uomSO.sendKeys(Keys.TAB);
+                }
+                Thread.sleep(4000);
+                if(!Pro1.startsWith("0"))
+                {
+                    scenario.log("PRODUCT ENTERED IN QUICK ENTRY WITHOUT PRECEDING ZEROS " + Pro1);
+                    exists = true;
+                }
+            }
+            Assert.assertEquals(exists,true);
+        }
+        catch (Exception e){}
+    }
+
+    public void verifyProdNoInGridAdmin()
+    {
+        exists=false;
+        Actions act=new Actions(driver);
+        String headText;
+        int i=0;
+        try
+        {
+           List<WebElement> heads=HelpersMethod.FindByElements(driver,"xpath","//span[contains(@class,'k-column-title')]");
+           for(WebElement head:heads)
+           {
+               i++;
+               act.moveToElement(head).build().perform();
+               headText=head.getText();
+               if(headText.equalsIgnoreCase("Product number"))
+               {
+                   break;
+               }
+           }
+            //To zoom out browser by 67%
+            if(TestBase.testEnvironment.get_browser().equalsIgnoreCase("chrome")|TestBase.testEnvironment.get_browser().equalsIgnoreCase("edge"))
+            {
+                JavascriptExecutor js = (JavascriptExecutor) driver;
+                js.executeScript("document.body.style.zoom='67%'");
+            }
+            else if(TestBase.testEnvironment.get_browser().equalsIgnoreCase("firefox"))
+            {
+                JavascriptExecutor js=(JavascriptExecutor)driver;
+                js.executeScript("document.body.style.MozTransform='67%'");
+            }
+
+           WebElement prodEle=HelpersMethod.FindByElement(driver,"xpath","//tr[contains(@class,'k-master-row')]/td["+(i+1)+"]");
+           act.moveToElement(prodEle).build().perform();
+           String prod=prodEle.getText();
+           scenario.log("PRODUCT FOUND IN GRID IS "+prod);
+           if(prod.equals(Pro1))
+           {
+               scenario.log("PRODUCT NUMBER ENTERED IN QUICK ENTRY AND GRID ARE SAME AND WITHOUT PRECEDING ZERO");
+               exists=true;
+           }
+           Assert.assertEquals(exists,true);
+        }
+        catch (Exception e){}
+    }
+
+    public void ListViewAdmin()
+    {
+        exists=false;
+        Actions act=new Actions(driver);
+        String prodText;
+        try
+        {
+            List<WebElement> Products= HelpersMethod.FindByElements(driver,"xpath","//button[@class='i-link-button']");
+            for(WebElement prod:Products)
+            {
+                act.moveToElement(prod).build().perform();
+                prodText=prod.getText();
+                if(prodText.startsWith("0"))
+                {
+                    scenario.log("<span style='color:red'>PRODUCT NUMBER IS HAVING PRECEDING ZERO VALUES, ADMIN SETTING FAILS</span>");
+                    exists=true;
+                    break;
+                }
+            }
+            Assert.assertEquals(exists,false);
+        }
+        catch (Exception e){}
+    }
+
+    public void cardViewAdmin()
+    {
+        exists=false;
+        Actions act=new Actions(driver);
+        String prodText=null;
+        try
+        {
+            List<WebElement> products=HelpersMethod.FindByElements(driver,"xpath","//div[contains(@class,'k-widget k-window k-dialog')]/descendant::div[@class='product-number']/span");
+            for(WebElement prod:products)
+            {
+                act.moveToElement(prod).build().perform();
+                prodText=prod.getText();
+                prodText = prodText.startsWith("#") ? prodText.substring(1) : prodText;
+                if(prodText.startsWith("0"))
+                {
+                    scenario.log("PRODUCT NUMBER STARTS WITH ZERO, ADMIN SETTING FAILS");
+                    exists=true;
+                    break;
+                }
+            }
+            Assert.assertEquals(exists,false);
+        }
+        catch (Exception e){}
+    }
+
+    public void adminProductWithZeroQuickProductEntry()
+    {
+        exists=false;
+        WebElement WebEle=null;
+        Actions act1=new Actions(driver);
+        try
+        {
+            WebEle=HelpersMethod.FindByElement(driver,"id","card2");
+            HelpersMethod.ScrollElement(driver,WebEle);
+            if(QuickProduct.isDisplayed() && QuickProduct.isEnabled())
+            {
+                //Enter Qty in quick inputbox
+                //ProNo= DataBaseConnection.DataBaseConn(TestBase.testEnvironment.getSingle_Prod_Sql());
+                ProNo=TestBase.testEnvironment.getPrecedingByZero();
+                act1.moveToElement(QuickProduct).click().build().perform();
+                HelpersMethod.sendKeys(driver,QuickProduct,10000,ProNo);
+                QuickProduct.sendKeys(Keys.ENTER);
+                if(HelpersMethod.IsExists("//span[@id='quickEntryUMs']",driver))
+                {
+                    WebElement uomSO= HelpersMethod.FindByElement(driver,"id","quickEntryUMs");
+                    uomSO.sendKeys(Keys.TAB);
+                }
+                Thread.sleep(4000);
+                if(ProNo.startsWith("0"))
+                {
+                    scenario.log("PRODUCT ENTERED IN QUICK ENTRY WITH PRECEDING ZEROS " + ProNo);
+                    exists = true;
+                }
+            }
+            Assert.assertEquals(exists,true);
+        }
+        catch (Exception e){}
+    }
+
+    public void verifyProdNoWithZeroInGridAdmin()
+    {
+        exists=false;
+        Actions act=new Actions(driver);
+        String headText;
+        int i=0;
+        try
+        {
+            List<WebElement> heads=HelpersMethod.FindByElements(driver,"xpath","//span[contains(@class,'k-column-title')]");
+            for(WebElement head:heads)
+            {
+                i++;
+                act.moveToElement(head).build().perform();
+                headText=head.getText();
+                if(headText.equalsIgnoreCase("Product number"))
+                {
+                    break;
+                }
+            }
+            //To zoom out browser by 67%
+            if(TestBase.testEnvironment.get_browser().equalsIgnoreCase("chrome")|TestBase.testEnvironment.get_browser().equalsIgnoreCase("edge"))
+            {
+                JavascriptExecutor js = (JavascriptExecutor) driver;
+                js.executeScript("document.body.style.zoom='67%'");
+            }
+            else if(TestBase.testEnvironment.get_browser().equalsIgnoreCase("firefox"))
+            {
+                JavascriptExecutor js=(JavascriptExecutor)driver;
+                js.executeScript("document.body.style.MozTransform='67%'");
+            }
+
+            WebElement prodEle=HelpersMethod.FindByElement(driver,"xpath","//tr[contains(@class,'k-master-row')]/td["+(i+1)+"]");
+            act.moveToElement(prodEle).build().perform();
+            String prod=prodEle.getText();
+            scenario.log("PRODUCT FOUND IN GRID IS "+prod);
+            if(prod.equals(ProNo))
+            {
+                scenario.log("PRODUCT NUMBER ENTERED IN QUICK ENTRY AND GRID ARE SAME AND WITH PRECEDING ZERO");
+                exists=true;
+            }
+            Assert.assertEquals(exists,true);
+        }
+        catch (Exception e){}
+    }
+
+    public void ListViewAdminZeroPreceding()
+    {
+        exists=false;
+        Actions act=new Actions(driver);
+        String prodText;
+        try
+        {
+            List<WebElement> Products= HelpersMethod.FindByElements(driver,"xpath","//button[@class='i-link-button']");
+            for(WebElement prod:Products)
+            {
+                act.moveToElement(prod).build().perform();
+                prodText=prod.getText();
+                if(prodText.startsWith("0")|| prodText.length()==8)
+                {
+                    scenario.log("<span style='color:red'>PRODUCT NUMBER IS HAVING PRECEDING ZERO VALUES</span>");
+                    exists=true;
+                    break;
+                }
+            }
+            Assert.assertEquals(exists,true);
+        }
+        catch (Exception e){}
+    }
+
+    public void cardViewAdminZeroPreceding()
+    {
+        exists=false;
+        Actions act=new Actions(driver);
+        String prodText=null;
+        try
+        {
+            List<WebElement> products=HelpersMethod.FindByElements(driver,"xpath","//div[contains(@class,'k-widget k-window k-dialog')]/descendant::div[@class='product-number']/span");
+            for(WebElement prod:products)
+            {
+                act.moveToElement(prod).build().perform();
+                prodText=prod.getText();
+                prodText = prodText.startsWith("#") ? prodText.substring(1) : prodText;
+                if(prodText.startsWith("0")|| prodText.length()==8)
+                {
+                    scenario.log("<span style='color:red'>PRODUCT NUMBER IS HAVING PRECEDING ZERO VALUES</span>");
+                    exists=true;
+                    break;
+                }
+            }
+            Assert.assertEquals(exists,true);
+        }
+        catch (Exception e){}
+    }
+
+    public void ListViewAdminZeroPrecedingOMS()
+    {
+        exists=false;
+        Actions act=new Actions(driver);
+        String prodText;
+        try
+        {
+            List<WebElement> Products= HelpersMethod.FindByElements(driver,"xpath","//button[@class='i-link-button']");
+            for(WebElement prod:Products)
+            {
+                act.moveToElement(prod).build().perform();
+                prodText=prod.getText();
+                if(prodText.startsWith("0") || prodText.length()==5)
+                {
+                    scenario.log("<span style='color:red'>PRODUCT NUMBER IS HAVING PRECEDING ZERO VALUES</span>");
+                    exists=true;
+                    break;
+                }
+            }
+            Assert.assertEquals(exists,true);
+        }
+        catch (Exception e){}
+    }
+
+    public void cardViewAdminZeroPrecedingOMS()
+    {
+        exists=false;
+        Actions act=new Actions(driver);
+        String prodText;
+        try
+        {
+            List<WebElement> Products= HelpersMethod.FindByElements(driver,"xpath","//button[@class='i-link-button']");
+            for(WebElement prod:Products)
+            {
+                act.moveToElement(prod).build().perform();
+                prodText=prod.getText();
+                if(prodText.startsWith("0") || prodText.length()==5)
+                {
+                    scenario.log("<span style='color:red'>PRODUCT NUMBER IS HAVING PRECEDING ZERO VALUES</span>");
+                    exists=true;
+                    break;
+                }
+            }
+            Assert.assertEquals(exists,true);
         }
         catch (Exception e){}
     }

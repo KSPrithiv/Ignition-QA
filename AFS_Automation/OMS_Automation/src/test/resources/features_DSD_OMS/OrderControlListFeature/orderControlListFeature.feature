@@ -14,6 +14,7 @@ Feature: Order control list
     And User should navigate to OCL
     Then User should select Order taker from drop down
     And Change the delivery date 2 days after current date
+    Then User should filter values with valid Customer
     Then User Clicks on Untaken radio button and user clicks on Refresh button
     Then User clicks on Order icon in OCL grid
     Then User should select Note from popup and Order guide from popup for OG
@@ -66,6 +67,30 @@ Feature: Order control list
     And User Clicks on Back button in NewOE page and User must be in OCL page
     Then User Clicks on Taken radio button
     And User should verify Order number created in OCL grid and Order icon in OCL
+
+  @OrderCreatedBy
+  Scenario: Test scenario for verifying whether Created by column is a displayed and it contains created by user details
+    Given User must be on Order Entry Page to select OCL
+    And User should navigate to OCL
+    Then User should select Order taker from drop down
+    And Change the delivery date 2 days after current date
+    Then User Clicks on Untaken radio button and user clicks on Refresh button
+    Then User clicks on Order icon in OCL grid
+    Then User should select Note from popup and Order guide from popup
+    And User validate that he is in NewOE page
+    Then Enter PO# for New order
+      |PO123|
+    Then Enter Pro# in Quick Product Entry area
+    And Check for Case and Unit input box enabled or not based on that enter value
+      |100|100|
+    Then Click on Next button and select option Continue without payment option
+    And Click on Submit Order button and read Order_no for OCL
+    Then User should select Note from popup and Order guide from popup
+    Then User validate that he is in NewOE page
+    And User Clicks on Back button in NewOE page and User must be in OCL page
+    Then User Clicks on Taken radio button
+    And User should verify Order number created in OCL grid and Order icon in OCL
+    And User verify created by column value
 
   @VerifyOrderType
   Scenario: Test scenario for verifying Order Type in OCL once order is created via OCL. Here Regular order has been created,and same has been passed as parameter

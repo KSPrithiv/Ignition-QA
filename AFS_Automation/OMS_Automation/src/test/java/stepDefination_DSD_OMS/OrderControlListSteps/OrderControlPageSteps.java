@@ -188,9 +188,8 @@ public class OrderControlPageSteps
     public void userShouldSelectOrderTakerFromDropDown()
     {
         orderControlList=new OrderControlListPage(driver,scenario);
-        orderControlList.Validate_OCL();
-        orderControlList.Click_OrderTracker();
-        orderControlList.Select_OrderTracker();
+        orderControlList.Click_OrderTaker();
+        orderControlList.Select_OrderTaker();
     }
 
     @And("Change the delivery date {int} days after current date")
@@ -222,7 +221,8 @@ public class OrderControlPageSteps
     {
         newOE=new NewOrderEntryPage(driver,scenario);
         exists= newOE.ValidateNewOE();
-        //Assert.assertEquals(exists,true);
+        orderpage=new OrderEntryPage(driver,scenario);
+        orderpage.NoPendingOrderPopup();
     }
 
     @And("User Clicks on Back button in NewOE page and User must be in OCL page")
@@ -403,10 +403,26 @@ public class OrderControlPageSteps
     {
         orderControlList=new OrderControlListPage(driver,scenario);
         orderControlList.Refresh_Click();
-        orderControlList.Click_OrderTracker();
-        orderControlList.Select_OrderTracker();
+        orderControlList.Click_OrderTaker();
+        orderControlList.Select_OrderTaker();
         orderControlList.Call_Date_Click();
         orderControlList.Call_Date_Selection(i);
         orderControlList.Select_Taken();
+    }
+
+    @And("User verify created by column value")
+    public void userVerifyCreatedByColumnValue()
+    {
+        orderControlList = new OrderControlListPage(driver, scenario);
+        orderControlList.Validate_OCL();
+        orderControlList.validateCreatedByColumn();
+        orderControlList.displayOrderCreatedByName();
+    }
+
+    @Then("User should filter values with valid Customer")
+    public void userShouldFilterValuesWithValidCustomer()
+    {
+        orderControlList = new OrderControlListPage(driver, scenario);
+
     }
 }

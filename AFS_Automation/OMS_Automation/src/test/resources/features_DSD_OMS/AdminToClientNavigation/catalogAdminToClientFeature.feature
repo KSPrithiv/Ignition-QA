@@ -2,7 +2,7 @@ Feature: scenarios for admin credentials and client credentials
 
   Background: For login to application to verify admin settings in client side
 
-  @CatalogProductsAutomaticLoad
+  @CatalogProductsAutomaticLoadDisabled
   Scenario Outline: Test scenario for validating Catalog is loading automatically or not
     Given User should verify admin setting "<Setting>" is enabled by using "<Key>"
     Then User enters URL and is on login page and entered credentials for admin setting
@@ -15,7 +15,7 @@ Feature: scenarios for admin credentials and client credentials
     Then User sign out from client side for Admin setting changes
     And User should disable admin setting "<Setting>" using "<Key>"
     Then User enters URL and is on login page and entered credentials for admin setting
-    When User is on Home Page
+    When User is on Home Page for Admin setting for catalog
     Then User navigate to Client side
     Then User should select Order Entry tab for Catalog for admin setting
     Then User selects Account# for Catalog for admin setting

@@ -118,7 +118,24 @@ public class AdminOrderControlListStep
         }
         else
         {
-            scenario.log("CATALOG TAB IS NOT VISIBLE");
+            scenario.log("ORDER CONTROL LIST TAB IS NOT VISIBLE");
         }
+    }
+
+    @Then("User validates that Order taker drop down now displaying")
+    public void userValidatesThatOrderTakerDropDownNowDisplaying()
+    {
+        orderControlListPage=new OrderControlListPage(driver,scenario);
+        orderControlListPage.Validate_OCL();
+        orderControlPage = new OrderControlListPage(driver, scenario);
+        orderControlPage.validateOrderTakerDisplay();
+    }
+
+    @Then("User validates that Order taker drop down not displaying")
+    public void userValidatesThatOrderTakerDropDownNotDisplaying()
+    {
+        orderControlPage = new OrderControlListPage(driver, scenario);
+        orderControlPage.Validate_OCL();
+        orderControlPage.validateOrderTakerNonDisplay();
     }
 }

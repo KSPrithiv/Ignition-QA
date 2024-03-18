@@ -1,5 +1,6 @@
 package stepDefination_DSD_OMS.AdminGridsPageSteps;
 
+import freemarker.core.TextBlock;
 import helper.HelpersMethod;
 import io.cucumber.datatable.DataTable;
 import io.cucumber.java.Before;
@@ -8,10 +9,7 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
@@ -23,10 +21,12 @@ import pages_DSD_OMS.login.LoginPage;
 import pages_DSD_OMS.orderEntry.NewOrderEntryPage;
 import pages_DSD_OMS.orderEntry.OrderEntryPage;
 import pages_DSD_OMS.webOrdering.AdminHomePage;
+import util.DataBaseConnection;
 import util.TestBase;
 
 import java.awt.*;
 
+import java.sql.SQLException;
 import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
@@ -42,6 +42,7 @@ public class GridConfigurationPageStep
         static boolean exists=false;
         static String gType=null;
         static String columnName=null;
+        static String newLabel=null;
         static int size1;
         static int size2;
         WebDriver driver;
@@ -516,5 +517,132 @@ public class GridConfigurationPageStep
             gridConfigPage.clickOnGridOptionDropdown();
             gridConfigPage.selectOptionFromGridOptionDropDown(arg1);
         }
+    }
+
+    @Then("User changes label of first header available in grid")
+    public void userChangesLabelOfFirstHeaderAvailableInGrid()
+    {
+        gridConfigPage=new GridConfigurationPage(driver,scenario);
+        gridConfigPage.readGridHeaderLabel();
+        newLabel=gridConfigPage.enterNewLabel();
+        gridConfigPage.clickOnSaveButton();
+        gridConfigPage.clickOnOkButtonInSavePopup();
+    }
+
+    @Then("User navigates to Order entry page and in new order entry page enter PO and Quick entry product details")
+    public void userNavigatesToOrderEntryPageAndInNewOrderEntryPageEnterPOAndQuickEntryProductDetails(DataTable tabledata) throws InterruptedException, AWTException, SQLException, ClassNotFoundException, InstantiationException, IllegalAccessException
+    {
+        List<List<String>> PO_No = tabledata.asLists(String.class);
+        //to navigate to Client side
+        String title = driver.getTitle();
+        if(title.equalsIgnoreCase("Admin"))
+        {
+            homePage = new HomePage(driver, scenario);
+            homePage.verifyUserinfoContainer();
+            homePage.navigateToClientSide();
+        }
+
+        //to navigate to Order entry page and change the customer account number
+        orderPage = new OrderEntryPage(driver, scenario);
+        orderPage.NavigateToOrderEntry();
+        orderPage.ChangeAccount();
+        //orderPage.PopUps_After_AccountChange();
+
+        //newOE=new NewOrderEntryPage(driver,scenario);
+        //newOE.Click_Back_But();
+
+        //orderPage = new OrderEntryPage(driver, scenario);
+        //orderPage.ValidateOE();
+        //check for 'Start Order' button
+        //orderPage.Scroll_start();
+        //exists=orderPage.Start_Order();
+        //orderPage.NoPendingOrderPopup();
+        //Selecting no Order guide and no note popup
+        for(int i=0;i<=1;i++)
+        {
+            orderPage.NoPendingOrderPopup();
+            orderPage.OrderGuidePopup();
+            orderPage.NoNotePopHandling();
+        }
+        newOE=new NewOrderEntryPage(driver,scenario);
+        newOE.ValidateNewOE();
+        newOE.EnterPO_No(PO_No.get(0).get(0));
+        String prodNo= DataBaseConnection.DataBaseConn(TestBase.testEnvironment.getSingle_OneMoreProd());
+        newOE.QuickProduct(prodNo);
+
+        String Case=PO_No.get(0).get(1);
+        String Unit=PO_No.get(0).get(2);
+        String uomString=newOE.VerifyUOM();
+        if(uomString.equals("Units")||uomString.equals("EA"))
+        {
+            newOE.CheckForQuickUnitEnabled(Unit);
+            if(uomString.equals("Units"))
+            {
+                WebElement caseIn = HelpersMethod.FindByElement(driver, "id", "quickCases");
+                if (caseIn.equals(driver.switchTo().activeElement()))
+                {
+                    caseIn.sendKeys(Keys.TAB);
+                }
+            }
+            newOE.exceedsMaxQty();
+            newOE.toastCurrentlyUnavailable();
+        }
+        else if(uomString.equals("Cases")||uomString.equals("CS"))
+        {
+            newOE.CheckForQuickCaseEnabled(Case);
+            if(uomString.equals("Cases"))
+            {
+                WebElement unitIn = HelpersMethod.FindByElement(driver, "id", "quickUnits");
+                if (unitIn.equals(driver.switchTo().activeElement()))
+                {
+                    unitIn.sendKeys(Keys.TAB);
+                }
+            }
+            newOE.exceedsMaxQty();
+            newOE.toastCurrentlyUnavailable();
+        }
+        else if(uomString.equals("Cases, Units")||uomString.equals("Units, Cases")||uomString.equals("CS, EA")||uomString.equals("EA, CS"))
+        {
+            newOE.CheckForQuickCaseEnabled(Case);
+            newOE.CheckForQuickUnitEnabled(Unit);
+            newOE.exceedsMaxQty();
+            newOE.toastCurrentlyUnavailable();
+        }
+        Thread.sleep(2000);
+
+        //verify labels of product grid
+        newOE=new NewOrderEntryPage(driver,scenario);
+        newOE.verifyProductGridTitle(newLabel);
+
+        //after validating default grid in New OE page signout
+        homePage=new HomePage(driver,scenario);
+        homePage.Click_On_UserIcon();
+        homePage.Click_On_Signout();
+
+        //signin as admin again
+        loginpage = new LoginPage(driver, scenario);
+        loginpage.EnterUsername(TestBase.testEnvironment.getAdminUser());
+        loginpage.EnterPassword(TestBase.testEnvironment.getAdminPass());
+        loginpage.ClickSignin();
+        String status = HelpersMethod.returnDocumentStatus(driver);
+        if (status.equals("loading"))
+        {
+            HelpersMethod.waitTillLoadingPage(driver);
+        }
+
+        Wait<WebDriver> wait = new FluentWait<>(driver)
+                .withTimeout(Duration.ofSeconds(120))
+                .pollingEvery(Duration.ofSeconds(5))
+                .ignoring(NoSuchElementException.class);
+        wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+    }
+
+    @Then("User resets the label name to previous label, in grid setting")
+    public void userResetsTheLabelNameToPreviousLabelInGridSetting()
+    {
+        gridConfigPage=new GridConfigurationPage(driver,scenario);
+        gridConfigPage.resetLabelToOld();
+        gridConfigPage.clickOnSaveButton();
+        gridConfigPage.clickOnOkButtonInSavePopup();
     }
 }

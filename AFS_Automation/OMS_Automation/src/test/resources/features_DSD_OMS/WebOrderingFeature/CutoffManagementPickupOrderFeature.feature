@@ -11,7 +11,7 @@ Feature: Admin setting for Cutoff Management-pickup order
     Given User is on Home Page for Admin setting to select Admin option
     Then User refreshes page Clicks on Permissions by drop down to select Customer Account# grid for WebOrder
     And User should navigate to "<Option>" tab for Cutoff management
-    Then User should select "<MenuOption>" from horizantal menu to select Cutoff management_pickup order
+    Then User should select "<MenuOption>" from horizontal menu to select Cutoff management_pickup order
     And User should click on Branch management toggle button select branch and set times for cutoff, Cutoff management_pickup order
     Examples:
       | Option              |         MenuOption              |
@@ -22,7 +22,7 @@ Feature: Admin setting for Cutoff Management-pickup order
     Given User is on Home Page for Admin setting to select Admin option
     Then User refreshes page Clicks on Permissions by drop down to select Customer Account# grid for WebOrder
     And User should navigate to "<Option>" tab for Cutoff management
-    Then User should select "<MenuOption>" from horizantal menu to select Cutoff management_pickup order
+    Then User should select "<MenuOption>" from horizontal menu to select Cutoff management_pickup order
     And User should click on Warehouse management toggle button select branch and set times for cutoff, Cutoff management_pickup order
     Examples:
       | Option              |         MenuOption              |

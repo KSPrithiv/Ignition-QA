@@ -342,8 +342,8 @@ public class CustomerInqStep_ERP
             currentURL = driver.getCurrentUrl();
             flag2=true;
         }
-        ignitionPageERP=new IgnitionPageERP(driver,scenario);
-        ignitionPageERP.cancelPopup();
+        //ignitionPageERP=new IgnitionPageERP(driver,scenario);
+        //ignitionPageERP.cancelPopup();
     }
 
     @Then("User clicks on Create new button and standing PO popup appeared in ERP")

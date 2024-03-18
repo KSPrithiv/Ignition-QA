@@ -114,17 +114,48 @@ public class UserManagement_ClientSideStep
         userManagementpage.pONumber(role.get(0).get(1));
     }
 
-    @Then("User clicks on register buttton")
-    public void userClicksOnRegisterButtton()
+    @Then("User clicks on register button")
+    public void userClicksOnRegisterButton()
     {
         userManagementpage = new userManagementClientPage(driver, scenario);
         userManagementpage.clickOnRegristration();
     }
 
-    @Then("User clicks on Cancel buttton")
-    public void userClicksOnCancelButtton()
+    @Then("User clicks on Cancel button")
+    public void userClicksOnCancelButton()
     {
         userManagementpage = new userManagementClientPage(driver, scenario);
         userManagementpage.clickOnCancel();
+    }
+
+    @Then("User changes Register by option and should enter all the required fields in new user details card")
+    public void userChangesRegisterByOptionAndShouldEnterAllTheRequiredFieldsInNewUserDetailsCard()
+    {
+        userManagementpage=new userManagementClientPage(driver,scenario);
+        userManagementpage.clickOnRegisterBy();
+        userManagementpage.selectRegisterBy();
+        userManagementpage.firstName();
+        userManagementpage.lastName();
+        userManagementpage.userName();
+        userManagementpage.emailAddress();
+        userManagementpage.confirmEmailAddress();
+        userManagementpage.password();
+        userManagementpage.confirmPassword();
+    }
+
+    @Then("User should enter all the required fields in new user details card by selecting customer Account number")
+    public void userShouldEnterAllTheRequiredFieldsInNewUserDetailsCardBySelectingCustomerAccountNumber()
+    {
+        userManagementpage=new userManagementClientPage(driver,scenario);
+        userManagementpage.clickOnCustomerAccountIndex();
+        userManagementpage.validateCustomerAccountIndex();
+        userManagementpage.selectCustomerAccountNumber();
+        userManagementpage.firstName();
+        userManagementpage.lastName();
+        userManagementpage.userName();
+        userManagementpage.emailAddress();
+        userManagementpage.confirmEmailAddress();
+        userManagementpage.password();
+        userManagementpage.confirmPassword();
     }
 }
