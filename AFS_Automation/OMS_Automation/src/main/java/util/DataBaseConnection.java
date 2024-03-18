@@ -203,37 +203,18 @@ public class DataBaseConnection
     {
         //Make changes to admin setting
         String sql=null;
-        //String sql="select sv_Value From RAMS_SettingsValues where sv_CompanyID ="+TestBase.testEnvironment.getAdminSettingCompany()+" AND sv_Key='"+key+"' and sv_Description='"+description+"'";
-        //String sql="select sv_Value From RAMS_SettingsValues where sv_CompanyID ="+TestBase.testEnvironment.getAdminSettingCompany()+" AND sv_Key='"+key+"'";
-        //status= DataConnGetStatus(sql);
-        //if(status.equals("0"))
-        //{
+
             sql="UPDATE RAMS_SettingsValues SET sv_Value = '1' WHERE sv_Key='"+key+"' and sv_CompanyID ="+TestBase.testEnvironment.getAdminSettingCompany();
             DataBaseConnection.DataConnAdminSettingEnable(sql);
             scenario.log("ADMIN SETTING IS ENABLED");
-       /* }
-        else
-        {
-            scenario.log("FOR ADMIN SETTING "+description+" CHANGES");
-            scenario.log("ADMIN SETTING IS ALREADY ENABLED");
-        }*/
     }
 
     public static void adminSettingDisabling(String key,Scenario scenario) throws SQLException, ClassNotFoundException, InstantiationException, IllegalAccessException
     {
-        //Make changes to admin setting
-       // String sql="select sv_Value From RAMS_SettingsValues where sv_CompanyID ="+TestBase.testEnvironment.getAdminSettingCompany()+" AND sv_Key='"+key+"'";
-       // status= DataConnGetStatus(sql);
         String sql;
-        //if(status.equals("1"))
-       // {
+
             sql="UPDATE RAMS_SettingsValues SET sv_Value = '0' WHERE sv_Key='"+key+"' and sv_CompanyID ="+TestBase.testEnvironment.getAdminSettingCompany();
             DataBaseConnection.DataConnAdminSettingDisabled(sql);
             scenario.log("ADMIN SETTING IS DISABLED");
-        /*}
-        else
-        {
-            scenario.log("ADMIN SETTING IS ALREADY DISABLED");
-        }*/
     }
 }

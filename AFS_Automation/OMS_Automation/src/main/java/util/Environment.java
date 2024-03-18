@@ -187,5 +187,8 @@ public interface Environment extends Config
 
     @Key("DB_AdminSettingCompany")
     String getAdminSettingCompany();
+
+    @Key("PrecedingByZero")
+    String getPrecedingByZero();
 }
 

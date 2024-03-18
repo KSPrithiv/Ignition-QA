@@ -480,17 +480,18 @@ public class CatalogPageStep
             {
                 catalogpage = new CatalogPage(driver, scenario);
                 catalogpage.ClickImage();
-                if(HelpersMethod.IsExists("//div[@class='loader']",driver))
-                {
-                    WebElement WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 800000);
-                }
+                Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                        .withTimeout(Duration.ofSeconds(120))
+                        .pollingEvery(Duration.ofSeconds(2))
+                        .ignoring(NoSuchElementException.class);
+                wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
                 productdesctiptionpage = new ProductDescriptionPage(driver, scenario);
                 if(HelpersMethod.IsExists("//button[@id='delete-from-cart-button']",driver))
                 {
                     WebElement Del_But = HelpersMethod.FindByElement(driver, "id", "delete-from-cart-button");
                     HelpersMethod.ScrollElement(driver, Del_But);
-                    HelpersMethod.ClickBut(driver, Del_But, 2000);
+                    HelpersMethod.ClickBut(driver, Del_But, 10000);
                     productdesctiptionpage.Qty_Inputbox(Qty.get(i).get(0));
                     productdesctiptionpage.Add_to_cart();
                     if (i == 0)

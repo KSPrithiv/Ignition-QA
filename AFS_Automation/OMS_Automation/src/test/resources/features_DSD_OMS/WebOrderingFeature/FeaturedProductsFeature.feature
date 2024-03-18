@@ -7,10 +7,10 @@ Feature: Admin setting
     Then User Clicks on Permissions by drop down to select Customer Account#
 
   @SheildIcon
-  Scenario Outline: Test scenario to check Max Featured Products Sheild Icon
+  Scenario Outline: Test scenario to check Max Featured Products Shield Icon
     Given User is on Home Page for Admin setting to select Admin option
     And User should enter menu "<Option>" in search bar to navigate to Featured Products
-    Then User should Check whether Max products to show in featured products Sheild is selected or not
+    Then User should Check whether Max products to show in featured products Shield is selected or not
     Examples:
       | Option            |
       | Featured Products |
@@ -21,7 +21,7 @@ Feature: Admin setting
     Then User refreshes page Clicks on Permissions by drop down to select Customer Account# grid for WebOrder
     And User should enter menu "<Option>" in search bar to navigate to Featured Products
     Then User should check max number of Featured products set
-    Then User should select "<MenuOption2>" from horizantal menu to select Featured products list
+    Then User should select "<MenuOption2>" from horizontal menu to select Featured products list
     And User should be on Featured products list
     Then User should list all the products in Product grid of Featured products
     Examples:
@@ -33,9 +33,9 @@ Feature: Admin setting
     Given User is on Home Page for Admin setting to select Admin option
     Then User refreshes page Clicks on Permissions by drop down to select Customer Account# grid for WebOrder
     And User should enter menu "<Option>" in search bar to navigate to Featured Products
-    Then User should navigate to "<MenuOption1>" from horizantal menu to select Featured products list
+    Then User should navigate to "<MenuOption1>" from horizontal menu to select Featured products list
     #Then User should decrease max number of Featured products set
-    Then User should select "<MenuOption2>" from horizantal menu to select Featured products list
+    Then User should select "<MenuOption2>" from horizontal menu to select Featured products list
     And User should be on Featured products list then User should select product from grid and click on Delete button
     Then User should list all the products in Product grid of Featured products
     Examples:
@@ -47,9 +47,9 @@ Feature: Admin setting
     Given User is on Home Page for Admin setting to select Admin option
     Then User refreshes page Clicks on Permissions by drop down to select Customer Account# grid for WebOrder
     And User should enter menu "<Option>" in search bar to navigate to Featured Products
-    Then User should navigate to "<MenuOption1>" from horizantal menu to select Featured products list
+    Then User should navigate to "<MenuOption1>" from horizontal menu to select Featured products list
     #Then User should increase max number of Featured products set
-    Then User should select "<MenuOption2>" from horizantal menu to select Featured products list
+    Then User should select "<MenuOption2>" from horizontal menu to select Featured products list
     And User should be on Featured products list then User should click on Add Products button and add products to list
     Then User should list all the products in Product grid of Featured products
     Examples:
@@ -61,9 +61,9 @@ Feature: Admin setting
     Given User is on Home Page for Admin setting to select Admin option
     Then User refreshes page Clicks on Permissions by drop down to select Customer Account# grid for WebOrder
     And User should enter menu "<Option>" in search bar to navigate to Featured Products
-    Then User should navigate to "<MenuOption1>" from horizantal menu to select Featured products list
+    Then User should navigate to "<MenuOption1>" from horizontal menu to select Featured products list
     Then User changes max number of feature products and set it as 3
-    Then User should select "<MenuOption2>" from horizantal menu to select Featured products list
+    Then User should select "<MenuOption2>" from horizontal menu to select Featured products list
     And User should be on Featured products list
     And User should delete all the products in feature products list
     Then User should add new 3 products, and delete first product
@@ -77,8 +77,8 @@ Feature: Admin setting
     Given User is on Home Page for Admin setting to select Admin option
     Then User refreshes page Clicks on Permissions by drop down to select Customer Account# grid for WebOrder
     And User should enter menu "<Option>" in search bar to navigate to Featured Products
-    Then User should navigate to "<MenuOption1>" from horizantal menu to select Featured products list
-    Then User should select "<MenuOption2>" from horizantal menu to select Featured products list
+    Then User should navigate to "<MenuOption1>" from horizontal menu to select Featured products list
+    Then User should select "<MenuOption2>" from horizontal menu to select Featured products list
     And User should be on Featured products list then User should click on Add Products button and filter product
     Examples:
       |Option             | MenuOption1 | MenuOption2      |
@@ -89,8 +89,8 @@ Feature: Admin setting
     Given User is on Home Page for Admin setting to select Admin option
     Then User refreshes page Clicks on Permissions by drop down to select Customer Account# grid for WebOrder
     And User should enter menu "<Option>" in search bar to navigate to Featured Products
-    Then User should navigate to "<MenuOption1>" from horizantal menu to select Featured products list
-    Then User should select "<MenuOption2>" from horizantal menu to select Featured products list
+    Then User should navigate to "<MenuOption1>" from horizontal menu to select Featured products list
+    Then User should select "<MenuOption2>" from horizontal menu to select Featured products list
     And User should be on Featured products list then User should click on Add Products button and Close Product index dialogbox
     Then User should list all the products in Product grid of Featured products
     Examples:

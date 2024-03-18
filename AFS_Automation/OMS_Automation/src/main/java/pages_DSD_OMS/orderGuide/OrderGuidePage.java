@@ -442,7 +442,6 @@ public class OrderGuidePage {
                 HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000000);
             }
             HelpersMethod.ActClick(driver, CustRef, 1000);
-            //HelpersMethod.WaitElementPresent(driver,"xpath","//div[contains(@class,'k-animation-container k-animation-container-relative k-list-container k-reset i-common-dropdown i-common-dropdown__type-none')]",40000);
         }
         catch (Exception e) {}
     }
@@ -509,13 +508,20 @@ public class OrderGuidePage {
             //new WebDriverWait(driver,Duration.ofMillis(10000)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(@class,'k-widget k-window k-dialog')]")));
             if (HelpersMethod.IsExists("//div[contains(@class,'k-widget k-window k-dialog')]", driver))
             {
-                WebElement SubRef = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-widget k-window k-dialog')]/descendant::tr[contains(@class,'k-master-row')][4]");
-                HelpersMethod.ActClick(driver, SubRef, 10000);
-                exists = true;
-                if (HelpersMethod.IsExists("//div[@class='loader']", driver))
+                if(HelpersMethod.IsExists("//div[contains(@class,'i-no-data__message')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
                 {
-                    WebElement WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000000);
+                    scenario.log("<span style='color:red'>THERE ARE NO SUB REFERENCE FOUND IN DIALOG BOX</span>");
+                }
+                else
+                {
+                    WebElement SubRef = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-widget k-window k-dialog')]/descendant::tr[contains(@class,'k-master-row')][4]");
+                    HelpersMethod.ActClick(driver, SubRef, 10000);
+                    exists = true;
+                    if (HelpersMethod.IsExists("//div[@class='loader']", driver))
+                    {
+                        WebElement WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
+                        HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000000);
+                    }
                 }
             }
             Assert.assertEquals(exists, true);
@@ -554,22 +560,29 @@ public class OrderGuidePage {
 
 
     //Code to click on customer account# index icon
-    public void CustomerAcc() {
-        try {
+    public void CustomerAcc()
+    {
+        try
+        {
             HelpersMethod.ClickBut(driver, CustomerAccIndex, 1000);
-            if (HelpersMethod.IsExists("//div[@class='loader']", driver)) {
+            if (HelpersMethod.IsExists("//div[@class='loader']", driver))
+            {
                 WebElement WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
                 HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000000);
             }
-        } catch (Exception e) {
         }
+        catch (Exception e) {}
     }
 
     //Code for handling customer account# popup
-    public void AccountPopup() {
-        try {
-            if (HelpersMethod.IsExists("//div[contains(text(),'Select customer')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]", driver)) {
-                if (HelpersMethod.IsExists("//div[contains(@class,'k-widget k-window k-dialog')]/descendant::input[@id='SearchBox1']", driver)) {
+    public void AccountPopup()
+    {
+        try
+        {
+            if (HelpersMethod.IsExists("//div[contains(text(),'Select customer')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]", driver))
+            {
+                if (HelpersMethod.IsExists("//div[contains(@class,'k-widget k-window k-dialog')]/descendant::input[@id='SearchBox1']", driver))
+                {
                     WebElement SearchBox = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-widget k-window k-dialog')]/descendant::input[@id='SearchBox1']");
                     HelpersMethod.EnterText(driver, SearchBox, 1000, TestBase.testEnvironment.get_AnotherAcc());
                     scenario.log("ANOTHER ACCOUNT SELECTED FOR CREATING OG IS " + TestBase.testEnvironment.get_AnotherAcc());
@@ -579,41 +592,49 @@ public class OrderGuidePage {
                     //code to select Account#
                     WebElement SelectAcc = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-widget k-window k-dialog')] /descendant::tr[@class='k-master-row']");
                     HelpersMethod.ActClick(driver, SelectAcc, 1000);
-                    if (HelpersMethod.IsExists("//div[@class='loader']", driver)) {
+                    if (HelpersMethod.IsExists("//div[@class='loader']", driver))
+                    {
                         WebElement WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
                         HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 2000000);
                     }
-                } else {
+                }
+                else
+                {
                     scenario.log("SEARCH BOX IN CUSTOMER ACCOUNT# POPUP, DOESN'T EXISTS");
                 }
             }
-        } catch (Exception e) {
         }
+        catch (Exception e) {}
     }
 
     //Code to select first order guide from OG grid
-    public String SelectOG() {
+    public String SelectOG()
+    {
         String OGDis = null;
         WebElement WebEle;
-        try {
-            if (HelpersMethod.IsExists("//div[@class='loader']", driver)) {
+        try
+        {
+            if (HelpersMethod.IsExists("//div[@class='loader']", driver))
+            {
                 WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
                 HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000000);
             }
             WebElement DisOG = HelpersMethod.FindByElement(driver, "xpath", "//tr[@class='k-master-row'][1]/descendant::button");
             OGDis = DisOG.getText();
             HelpersMethod.ClickBut(driver, DisOG, 2000);
-            if (HelpersMethod.IsExists("//div[@class='loader']", driver)) {
+            if (HelpersMethod.IsExists("//div[@class='loader']", driver))
+            {
                 WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
                 HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000000);
             }
-        } catch (Exception e) {
         }
+        catch (Exception e) {}
         return OGDis;
     }
 
     //Click on Customer Account# to change Customer Account#
-    public void ClickCustomerAccount_No() {
+    public void ClickCustomerAccount_No()
+    {
         exists = false;
         WebElement WebEle;
         try
@@ -779,17 +800,24 @@ public class OrderGuidePage {
             //new WebDriverWait(driver,Duration.ofMillis(10000)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(@class,'k-widget k-window k-dialog')]")));
             if (HelpersMethod.IsExists("//div[contains(@class,'k-widget k-window k-dialog')]", driver))
             {
-                WebElement SubRef = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-widget k-window k-dialog')]/descendant::tr[contains(@class,'k-master-row')][1]");
-                HelpersMethod.ActClick(driver, SubRef, 4000);
-                exists = true;
-                if (HelpersMethod.IsExists("//div[@class='loader']", driver))
+                if(HelpersMethod.IsExists("//div[contains(@class,'i-no-data__message')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
                 {
-                    WebElement WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000000);
+                    scenario.log("<span style='color:red'>THERE ARE NO SUB REFERENCE HAS BEEN FOUND</span>");
+                }
+                else
+                {
+                    WebElement SubRef = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-widget k-window k-dialog')]/descendant::tr[contains(@class,'k-master-row')][1]");
+                    HelpersMethod.ActClick(driver, SubRef, 10000);
+                    exists = true;
+                    if (HelpersMethod.IsExists("//div[@class='loader']", driver))
+                    {
+                        WebElement WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
+                        HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000000);
+                    }
                 }
             }
-        } catch (Exception e) {
         }
+        catch (Exception e) {}
     }
 
     public void clearAddfilter()

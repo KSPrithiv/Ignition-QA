@@ -157,6 +157,7 @@ public class AdminSecurityPageStepERP
         adminSecurityPermissionPage.checkCheckbox("modifycpcustomermasterdata");
         adminHomePage=new AdminHomePage(driver,scenario);
         adminHomePage.Click_SaveButton();
+
         adminSecurityPermissionPage=new AdminSecurityPermissionPage(driver,scenario);
         adminSecurityPermissionPage.searchAdminSettingInSearchBarClear();
         adminSecurityPermissionPage.searchAdminSettingInSearchBar(control3);
@@ -164,6 +165,7 @@ public class AdminSecurityPageStepERP
         adminSecurityPermissionPage.checkCheckbox("createcpcustomermasterdata");
         adminHomePage=new AdminHomePage(driver,scenario);
         adminHomePage.Click_SaveButton();
+
         adminSecurityPermissionPage=new AdminSecurityPermissionPage(driver,scenario);
         adminSecurityPermissionPage.searchAdminSettingInSearchBarClear();
     }

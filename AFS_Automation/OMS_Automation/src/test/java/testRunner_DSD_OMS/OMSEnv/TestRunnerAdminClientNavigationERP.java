@@ -16,7 +16,18 @@ import java.io.IOException;
  * @Author Divya.Ramadas
  */
 @CucumberOptions
-        (features = {"src/test/resources/features_DSD_OMS/AdminToClientNavigation",},
+        (features =
+                {
+                 "src/test/resources/features_DSD_OMS/AdminToClientNavigation/adminSecurityERPFeature.feature",
+                 "src/test/resources/features_DSD_OMS/AdminToClientNavigation/catalogAdminToClientFeature.feature",
+                 "src/test/resources/features_DSD_OMS/AdminToClientNavigation/inventoryAdminToClientFeature.feature",
+                 "src/test/resources/features_DSD_OMS/AdminToClientNavigation/orderControlListAdminToClientFeature.feature",
+                 "src/test/resources/features_DSD_OMS/AdminToClientNavigation/orderEntryAdminToClientFeature.feature",
+                 "src/test/resources/features_DSD_OMS/AdminToClientNavigation/webOrderingAdminToClientFeature.feature",
+                 "src/test/resources/features_DSD_OMS/AdminToClientNavigation/standingOrderAdminToClientFeatureOMS.feature",
+                 "src/test/resources/features_DSD_OMS/AdminToClientNavigation/loginPageAdminToClientFeature.feature",
+                 "src/test/resources/features_DSD_OMS/AdminToClientNavigation/reportsAdminToClientFeature.feature",
+                },
                 glue = {"stepDefination_DSD_OMS"},
                 plugin = {"pretty",
                         "json:target/cucumber.json",

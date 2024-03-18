@@ -35,8 +35,8 @@ public class CutoffManagementPickupOrderStep
         driver= driver1.getDriver();
     }
 
-    @Then("User should select {string} from horizantal menu to select Cutoff management_pickup order")
-    public void userShouldSelectFromHorizantalMenuToSelectCutoffManagement_pickupOrder(String cutOff)
+    @Then("User should select {string} from horizontal menu to select Cutoff management_pickup order")
+    public void userShouldSelectFromHorizontalMenuToSelectCutoffManagement_pickupOrder(String cutOff)
     {
         adminHomePage = new AdminHomePage(driver, scenario);
         adminHomePage.Horizantal_MenuBar(cutOff);

@@ -1,18 +1,25 @@
 package stepDefination_DSD_OMS.AdminToClientNavigationSteps;
 
+import io.cucumber.datatable.DataTable;
 import io.cucumber.java.Before;
 import io.cucumber.java.Scenario;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
+import pages_DSD_OMS.adminCatalogSearch.catalogSearchPage;
 import pages_DSD_OMS.orderEntry.CheckOutSummaryPage;
 import pages_DSD_OMS.orderEntry.NewOrderEntryPage;
 import pages_DSD_OMS.orderEntry.OrderEntryPage;
+import pages_DSD_OMS.webOrdering.AdminHomePage;
+import pages_DSD_OMS.webOrdering.FeaturedProdSettingsPage;
+import util.DataBaseConnection;
 import util.TestBase;
 
 import java.awt.*;
+import java.sql.SQLException;
 import java.text.ParseException;
+import java.util.List;
 
 /**
  * @Project Divya.Ramadas@telusagcg.com
@@ -23,9 +30,13 @@ public class AdminOrderEntryStep
     /* Created by Divya.Ramadas */
     WebDriver driver;
     Scenario scenario;
+    static boolean exists=false;
     static OrderEntryPage orderpage;
     static CheckOutSummaryPage checkOutSummaryPage;
     static NewOrderEntryPage newOE;
+    static CheckOutSummaryPage summary;
+    static AdminHomePage adminHomePage;
+    static catalogSearchPage catSearchPage;
 
     @Before
     public void LaunchBrowser1(Scenario scenario) throws Exception
@@ -40,6 +51,7 @@ public class AdminOrderEntryStep
     {
         orderpage = new OrderEntryPage(driver, scenario);
         orderpage.ChangeAccount();
+        orderpage.PopUps_After_AccountChange();
         orderpage.Read_DeliveryDate();
     }
 
@@ -111,7 +123,7 @@ public class AdminOrderEntryStep
         checkOutSummaryPage=new CheckOutSummaryPage(driver,scenario);
         checkOutSummaryPage.validateSummaryPage();
         checkOutSummaryPage.ClickSubmit();
-        checkOutSummaryPage.validateExistingOrderCancel();
+        checkOutSummaryPage.validateExistingOrderNo();
         checkOutSummaryPage.validateSummaryPage();
         checkOutSummaryPage.Cancel_Button();
         checkOutSummaryPage.CancelPop();
@@ -131,7 +143,7 @@ public class AdminOrderEntryStep
         checkOutSummaryPage=new CheckOutSummaryPage(driver,scenario);
         checkOutSummaryPage.validateSummaryPage();
         checkOutSummaryPage.ClickSubmit();
-        exists=checkOutSummaryPage.validateExistingOrderNotDisplayed();
+        exists=checkOutSummaryPage.validateExistingOrderDisplayed();
         for(int i=0;i<=2;i++)
         {
             checkOutSummaryPage.additionalOrderPopup();
@@ -139,5 +151,114 @@ public class AdminOrderEntryStep
         }
         checkOutSummaryPage.SucessPopup();
         Assert.assertEquals(exists,true);
+    }
+
+    @And("Click on SubmitOrder button to verify error message on submitting")
+    public void clickOnSubmitOrderButtonToVerifyErrorMessageOnSubmitting() throws InterruptedException, AWTException
+    {
+        checkOutSummaryPage=new CheckOutSummaryPage(driver,scenario);
+        checkOutSummaryPage.validateSummaryPage();
+        checkOutSummaryPage.ClickSubmitOE();
+        summary = new CheckOutSummaryPage(driver,scenario);
+        for(int i=0;i<=2;i++)
+        {
+            summary.additionalOrderPopup();
+            summary.cutoffDialog();
+            summary.percentageOfAverageProd();
+        }
+    }
+
+    @Then("User should be navigated to Order Entry page and verify the error submitting message")
+    public void userShouldBeNavigatedToOrderEntryPageAndVerifyTheErrorSubmittingMessage() throws InterruptedException, AWTException
+    {
+        orderpage=new OrderEntryPage(driver,scenario);
+        orderpage.ValidateOE();
+        orderpage.validateSucessOrErrorSubmittingMessage();
+    }
+
+    @Then("Enter PO# for New order and Po mandatory message should display")
+    public void enterPOForNewOrderAndPoMandatoryMessageShouldDisplay(DataTable tabledata) throws InterruptedException, AWTException
+    {
+        newOE=new NewOrderEntryPage(driver,scenario);
+        exists=newOE.ValidateNewOE();
+        orderpage=new OrderEntryPage(driver,scenario);
+        orderpage.NO_NotePopup();
+        newOE=new NewOrderEntryPage(driver,scenario);
+        newOE.validatePOMandatoryMessage();
+        List<List<String>> PO_No = tabledata.asLists(String.class);
+        newOE.EnterPO_No(PO_No.get(0).get(0));
+    }
+
+    @Then("Enter PO# for New order and Po mandatory message should not display")
+    public void enterPOForNewOrderAndPoMandatoryMessageShouldNotDisplay(DataTable tabledata) throws InterruptedException, AWTException
+    {
+        newOE=new NewOrderEntryPage(driver,scenario);
+        exists=newOE.ValidateNewOE();
+        orderpage=new OrderEntryPage(driver,scenario);
+        orderpage.NO_NotePopup();
+        newOE=new NewOrderEntryPage(driver,scenario);
+        newOE.validatePONoMandatoryMessage();
+        List<List<String>> PO_No = tabledata.asLists(String.class);
+        newOE.EnterPO_No(PO_No.get(0).get(0));
+    }
+
+    @Then("User must click Start Order button should be disabled")
+    public void userMustClickStartOrderButtonShouldBeDisabled() throws InterruptedException, AWTException
+    {
+        orderpage = new OrderEntryPage(driver, scenario);
+        orderpage.ValidateOE();
+        //check for 'Start Order' button
+        orderpage.Scroll_start();
+        orderpage.Start_OrderDisabled();
+    }
+
+    @Then("User should check start order button enabled click Start Order button")
+    public void userShouldCheckStartOrderButtonEnabledClickStartOrderButton() throws InterruptedException, AWTException
+    {
+        exists=false;
+        orderpage = new OrderEntryPage(driver, scenario);
+        orderpage.ValidateOE();
+        //check for 'Start Order' button
+        orderpage.Scroll_start();
+        orderpage.ordersExistingInOE();
+        orderpage.Start_OrderMultipleOrderPerDay();
+    }
+
+    @Then("User should be navigated to Order Entry page and display all orders created")
+    public void userShouldBeNavigatedToOrderEntryPageAndDisplayAllOrdersCreated() throws InterruptedException, AWTException
+    {
+        orderpage = new OrderEntryPage(driver, scenario);
+        orderpage.Refresh_Page1();
+        //orderpage.Verify_OEPage();
+        orderpage.Verify_OE_Title();
+        orderpage.ordersExistingInOE();
+    }
+
+    @And("User should verify products are not auto loaded select Product from catalog and Enter Qty for the products")
+    public void userShouldVerifyProductsAreNotAutoLoadedSelectProductFromCatalogAndEnterQtyForTheProducts(DataTable tabledata) throws SQLException, ClassNotFoundException, InstantiationException, IllegalAccessException, InterruptedException, AWTException
+    {
+        newOE=new NewOrderEntryPage(driver,scenario);
+        List<List<String>> Prod_detail = tabledata.asLists(String.class);
+        String Prod_No= DataBaseConnection.DataBaseConn(TestBase.testEnvironment.getSingle_OneMoreProd());
+        newOE.Validate_Catalog();
+        newOE.validateNoAutoLoadProducts();
+        newOE.ResetFilter_Catalog();
+        String pro=String.valueOf(Prod_No);
+        newOE.validateCatalogProducts();
+        newOE.Search_Prod_in_Catalog(pro);
+        newOE.EnterQty(Prod_detail.get(0).get(0),Prod_detail.get(0).get(1));
+        scenario.log("PRODUCT # "+pro+" PRODUCT QTY "+Prod_detail.get(0).get(0)+" "+Prod_detail.get(0).get(1));
+    }
+
+    @And("User should enter menu {string} in search bar to navigate to catalog search")
+    public void userShouldEnterMenuInSearchBarToNavigateToCatalogSearch(String arg0)
+    {
+        adminHomePage = new AdminHomePage(driver, scenario);
+        adminHomePage.ClickOnHamburger();
+        adminHomePage.EnterValueInSearchBox(arg0);
+        adminHomePage.removeUnwantedDialogbox();
+        adminHomePage.CloseHamburger();
+        catSearchPage=new catalogSearchPage(driver,scenario);
+        catSearchPage.validateCatalogSearchPage();
     }
 }

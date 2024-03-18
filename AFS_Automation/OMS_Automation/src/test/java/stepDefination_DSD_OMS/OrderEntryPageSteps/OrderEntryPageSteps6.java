@@ -130,24 +130,6 @@ public class OrderEntryPageSteps6
     @Then("Click on Next button and select option Continue without payment option")
     public void clickOnNextButtonAndSelectOptionContinueWithoutPaymentOption() throws InterruptedException, AWTException
     {
-        /*exists=false;
-        newOE = new NewOrderEntryPage(driver,scenario);
-        newOE.readProductsInOrder();
-        exists=newOE.ClickNext();
-        newOE.OutOfStockPop_ERP();
-        checkorder=new CheckOutOrderPage(driver,scenario);
-        if(HelpersMethod.IsExists("//div[@id='paymentMethodCard']",driver))
-        {
-            Thread.sleep(4000);
-            checkorder.VerifyCheckOut();
-            checkorder.Select_PaymentMethod_ClickDownArrow();
-            if(checkorder.Verify_Existence_of_ContinuePayment())
-            {
-                checkorder.Click_On_Without_Providing_Payment();
-            }
-            checkorder.DeliveryAddressCard();
-            checkorder.NextButton_Click();
-        }*/
         exists=false;
         newOE = new NewOrderEntryPage(driver,scenario);
         newOE.readProductsInOrder();

@@ -39,3 +39,14 @@ Feature: Competitive Pricing
     Examples:
       |     Reportstab |  Groupby |
       |    Report       |  Group by |
+
+  @ReportPriceGroupDefaultSchedule
+  Scenario Outline: Test scenario for generating report with Price base in ERP env
+    Given User must be on Client side and select Competitor pricing page
+    When User should confirm that he is in Competitor pricing page
+    And User navigates to "<Reportstab>" under competitor pricing and select "<Groupby>" tab under Reports
+    Then User should select Group by in groupOne and even select customer
+      |Price group - default schedule|
+    Examples:
+      |     Reportstab |  Groupby |
+      |    Report       |  Group by |

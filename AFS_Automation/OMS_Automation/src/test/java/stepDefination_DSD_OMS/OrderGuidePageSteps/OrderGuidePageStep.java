@@ -385,7 +385,8 @@ public class OrderGuidePageStep
         createOGPage.SelectValueFromAddProduct(ProdOption.get(0).get(1));
         createOGPage.ValidateCatalogDisplay();
         //createOGPage.validateProductExists();
-        createOGPage.SelectProductCatalog();
+        createOGPage.ResetFilter_Catalog();
+        //createOGPage.SelectProductCatalog();
         if (HelpersMethod.IsExists("//div[contains(@class,'k-widget k-window k-dialog')]/descendant::div[contains(@class,'i-grid')]", driver))
         {
             createOGPage.ListView();

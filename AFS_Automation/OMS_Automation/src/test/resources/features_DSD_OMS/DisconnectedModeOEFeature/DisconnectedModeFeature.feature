@@ -38,7 +38,7 @@ Feature: Disconnected mode
     Then User enters Product# in Search box
     Then Check for Catalog popup
     Then Enter the Qty in the Product grid Case and Unit
-      | 20| 20 |
+      | 60| 60 |
     Then Click on Next button
     And Click on SubmitOrder button
     Then User should be navigated to Order Entry page
@@ -59,7 +59,7 @@ Feature: Disconnected mode
       |PO123|
     Then Enter Pro# in Quick Product Entry area
     And Check for Case and Unit input box enabled or not based on that enter value
-      |20|20|
+      |80|100|
     Then Click on Next button
     And Click on SubmitOrder button
     Then User should be navigated to Order Entry page
@@ -79,7 +79,7 @@ Feature: Disconnected mode
       |PO123|
     Then Enter Pro# in Quick Product Entry area
     And Check for Case and Unit input box enabled or not based on that enter value
-      |10|20|
+      |80|120|
     Then User should click on Comment icon in Order entry card
     And User should enter comment in comment popup
       |Comment at Order level|
@@ -125,7 +125,7 @@ Feature: Disconnected mode
       |PO123|
     Then Click on Add product drop down and select catalog option
     And User should select Product from catalog and Enter Qty for the products in disconnected mode
-      |50|40|
+      |50|120|
     Then Click on Next button
     And Click on SubmitOrder button
     Then User should be navigated to Order Entry page
@@ -167,7 +167,7 @@ Feature: Disconnected mode
       |PO123|
     Then Enter Pro# in Quick Product Entry area
     And Check for Case and Unit input box enabled or not based on that enter value
-      |20|20|
+      |80|80|
     Then Click on Next button
     And Click on SubmitOrder button
     Then User should be navigated to Order Entry page

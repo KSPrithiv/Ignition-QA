@@ -27,6 +27,5 @@ public class readPropertiesFile
         }
         return testEnvironment;
     }
-
     private readPropertiesFile(){}
 }

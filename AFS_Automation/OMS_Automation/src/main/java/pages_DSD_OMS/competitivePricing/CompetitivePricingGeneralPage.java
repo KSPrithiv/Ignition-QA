@@ -628,7 +628,6 @@ public class CompetitivePricingGeneralPage
             Assert.assertEquals(exists,true);
         }
         catch (Exception e){}
-
     }
 
     public void Click_SaveButton()
@@ -788,6 +787,7 @@ public class CompetitivePricingGeneralPage
         List <WebElement> Products=null;
         try
         {
+            Thread.sleep(4000);
             // List<String> Prods= DataBaseConnection.DataConn1(TestBase.testEnvironment.getMultiple_Prod_Sql());
             if(HelpersMethod.IsExists("//div[contains(text(),'Product index')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
             {

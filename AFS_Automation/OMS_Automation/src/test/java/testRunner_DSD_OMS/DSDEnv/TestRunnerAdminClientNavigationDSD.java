@@ -7,7 +7,6 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Optional;
 import org.testng.annotations.Parameters;
 import util.TestBase;
-import util.readPropertiesFile;
 
 import javax.mail.MessagingException;
 import java.io.IOException;
@@ -17,10 +16,16 @@ import java.io.IOException;
  * @Author Divya.Ramadas
  */
 @CucumberOptions
-        (features = {"src/test/resources/features_DSD_OMS/AdminToClientNavigation/catalogAdminToClientFeature.feature",
+        (features = {
+                "src/test/resources/features_DSD_OMS/AdminToClientNavigation/catalogAdminToClientFeature.feature",
                 "src/test/resources/features_DSD_OMS/AdminToClientNavigation/inventoryAdminToClientFeature.feature",
                 "src/test/resources/features_DSD_OMS/AdminToClientNavigation/orderControlListAdminToClientFeature.feature",
-                "src/test/resources/features_DSD_OMS/AdminToClientNavigation/orderEntryAdminToClientFeature.feature"
+                "src/test/resources/features_DSD_OMS/AdminToClientNavigation/orderEntryAdminToClientFeature.feature",
+                "src/test/resources/features_DSD_OMS/AdminToClientNavigation/webOrderingAdminToClientFeature.feature",
+                "src/test/resources/features_DSD_OMS/AdminToClientNavigation/standingOrderAdminToClientFeature.feature",
+                "src/test/resources/features_DSD_OMS/AdminToClientNavigation/quotesAdminToClientFeature.feature",
+                "src/test/resources/features_DSD_OMS/AdminToClientNavigation/loginPageAdminToClientFeature.feature",
+                "src/test/resources/features_DSD_OMS/AdminToClientNavigation/reportsAdminToClientFeature.feature",
         },
                 glue = {"stepDefination_DSD_OMS"},
                 plugin = {"pretty",
@@ -49,7 +54,7 @@ public class TestRunnerAdminClientNavigationDSD extends AbstractTestNGCucumberTe
     @AfterMethod
     public static void afterclass() throws InterruptedException, MessagingException, IOException
     {
-        Thread.sleep(50000);
+        Thread.sleep(500);
         TestBase.CloseBrowser();
 
         if(TestBase.testEnvironment.get_browser().equalsIgnoreCase("Firefox"))

@@ -299,12 +299,12 @@ public class LoginPageStep
                 .ignoring(NoSuchElementException.class);
         wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
         loginpage.ClickExternalCatalog();
-        if(flag1==false)
-        {
+        //if(flag1==false)
+        //{
             productPage = new ProductPage(driver, scenario);
             pTitle = productPage.productTitle();
-            flag1=true;
-        }
+          //  flag1=true;
+        //}
         Thread.sleep(4000);
     }
 

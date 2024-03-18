@@ -78,7 +78,7 @@ Feature: Order Entry6
       |PO123|
     Then Enter Pro# in Quick Product Entry area
     And Check for Case and Unit input box enabled or not based on that enter value
-      |50|60|
+      |100|120|
     Then Click on Next button
     And Click on SubmitOrder button
     Then User should be navigated to Order Entry page

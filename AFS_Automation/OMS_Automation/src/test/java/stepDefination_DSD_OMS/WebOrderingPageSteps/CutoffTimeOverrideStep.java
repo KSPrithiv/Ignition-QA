@@ -31,8 +31,8 @@ public class CutoffTimeOverrideStep
         driver= driver1.getDriver();
     }
 
-    @Then("User should select {string} from horizantal menu to select Cutoff Time Override")
-    public void userShouldSelectFromHorizantalMenuToSelectCutoffTimeOverride(String cutOff)
+    @Then("User should select {string} from horizontal menu to select Cutoff Time Override")
+    public void userShouldSelectFromHorizontalMenuToSelectCutoffTimeOverride(String cutOff)
     {
         adminHomePage = new AdminHomePage(driver, scenario);
         adminHomePage.Horizantal_MenuBar(cutOff);

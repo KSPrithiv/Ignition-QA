@@ -2,6 +2,7 @@ package pages_DSD_OMS.UserManagementClientSide;
 
 import helper.HelpersMethod;
 import io.cucumber.java.Scenario;
+import org.apache.logging.log4j.core.tools.picocli.CommandLine;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
@@ -14,6 +15,7 @@ import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.Wait;
 import org.testng.Assert;
 import util.RandomValues;
+import util.TestBase;
 
 import java.time.Duration;
 import java.util.List;
@@ -32,7 +34,13 @@ public class userManagementClientPage
     static String lName=RandomValues.generateRandomString(4);
     static String uName=fName+lName;
     static String eMail=RandomValues.generateEmail(30);
-    static String passWord=RandomValues.generateStringWithAllobedSplChars(7);
+    static String passWord=RandomValues.generateStringWithAllobedSplChars(8);
+
+    @FindBy(id="registerByType")
+    private WebElement registerBy;
+
+    @FindBy(xpath="//button[contains(@class,'i-indexfield-container__main__button')]")
+    private WebElement customerAccountIndex;
 
     @FindBy(id="FirstName")
     private WebElement firstName;
@@ -282,6 +290,7 @@ public class userManagementClientPage
         {
             HelpersMethod.ClearText(driver,passwordValue,2000);
             HelpersMethod.EnterText(driver,passwordValue,1000,passWord);
+            scenario.log("PASSWORD ENTERED IS "+passWord);
         }
         catch (Exception e){}
     }
@@ -481,6 +490,101 @@ public class userManagementClientPage
                     .pollingEvery(Duration.ofSeconds(2))
                     .ignoring(NoSuchElementException.class);
             wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+        }
+        catch (Exception e){}
+    }
+
+    public void clickOnRegisterBy()
+    {
+        exists=false;
+        try
+        {
+            if(registerBy.isDisplayed())
+            {
+                HelpersMethod.ClickBut(driver,registerBy,10000);
+                exists=true;
+            }
+            Assert.assertEquals(exists,true);
+        }
+        catch (Exception e){}
+    }
+
+    public void selectRegisterBy()
+    {
+        exists=false;
+        Actions act=new Actions(driver);
+        String registerByText;
+        try
+        {
+            List<WebElement> registerBys=HelpersMethod.FindByElements(driver,"xpath","//div[contains(@class,'k-list-container')]/descendant::ul/li");
+            int opt=RandomValues.RandomNumber(registerBys.size()-1,1);
+            for(int i=0;i<=registerBys.size()-1;i++)
+            {
+                act.moveToElement(registerBys.get(i)).build().perform();
+                if(i==opt)
+                {
+                    registerByText=registerBys.get(opt).getText();
+                    scenario.log("SELECTED REGISTER BY OPTION IS "+registerByText);
+                    act.moveToElement(registerBys.get(i)).build().perform();
+                    act.click().build().perform();
+                    exists=true;
+                    break;
+                }
+            }
+            Assert.assertEquals(exists,true);
+        }
+        catch (Exception e){}
+    }
+
+    public void clickOnCustomerAccountIndex()
+    {
+        exists=false;
+        try
+        {
+            if(HelpersMethod.IsExists("//button[contains(@class,'i-indexfield-container__main__button')]",driver))
+            {
+                HelpersMethod.ClickBut(driver,customerAccountIndex,10000);
+                exists=true;
+            }
+            Assert.assertEquals(exists,true);
+        }
+        catch (Exception e){}
+    }
+
+    public void validateCustomerAccountIndex()
+    {
+        exists=false;
+        try
+        {
+            if(HelpersMethod.IsExists("//div[contains(text(),'Customer account index')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
+            {
+                exists=true;
+            }
+            Assert.assertEquals(exists,true);
+        }
+        catch (Exception e){}
+    }
+
+    public void selectCustomerAccountNumber()
+    {
+        exists=false;
+        try
+        {
+            //Entering account# in search input box
+            WebElement modelContainer=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-widget k-window k-dialog')]");
+            WebElement searchBox=modelContainer.findElement(By.xpath(".//input[@class='i-search-box__input']"));
+            HelpersMethod.EnterText(driver,searchBox,10000, TestBase.testEnvironment.get_Account());
+            //click on search icon
+            WebElement searchIcon=modelContainer.findElement(By.xpath(".//*[local-name()='svg' and contains(@class,'i-search-box__search')]"));
+            HelpersMethod.ClickBut(driver,searchIcon,10000);
+            if(HelpersMethod.IsExists("//div[contains(@class,'k-widget k-window k-dialog')]/descendant::tr[@class='k-master-row']",driver))
+            {
+                //Select customer account# that has been searched
+                WebElement accountRow = modelContainer.findElement(By.xpath(".//tr[@class='k-master-row']"));
+                HelpersMethod.ActClick(driver, accountRow, 10000);
+                exists=true;
+            }
+            Assert.assertEquals(exists,true);
         }
         catch (Exception e){}
     }
