@@ -222,6 +222,7 @@ public class AllOrdersPageStep
         {
             summary.cutoffDialog();
             summary.additionalOrderPopup();
+            summary.percentageOfAverageProd();
         }
         Ord_No = summary.Get_Order_No();
         summary.SucessPopupForAllOrder();

@@ -64,6 +64,7 @@ public class PaymentInfoPage
             {
                 HelpersMethod.NavigateBack(driver);
                 URL = HelpersMethod.gettingURL(driver);
+                driver.navigate().to(currentURL);
             }
             if (HelpersMethod.gettingURL(driver).contains("CPAdmin"))
             {

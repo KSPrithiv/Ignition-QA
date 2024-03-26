@@ -16,6 +16,7 @@ import pages_DSD_OMS.orderEntry.OrderHistoryPage;
 import util.TestBase;
 
 import java.awt.*;
+import java.text.ParseException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
@@ -66,21 +67,30 @@ public class OrderEntryPageSteps5
     }
 
     @And("User should click on delivery date and select delivery date by increasing one day then user should handle the popup also")
-    public void userShouldClickOnDeliveryDateAndSelectDeliveryDateByIncreasingOneDayThenUserShouldHandleThePopupAlso() throws InterruptedException, AWTException
+    public void userShouldClickOnDeliveryDateAndSelectDeliveryDateByIncreasingOneDayThenUserShouldHandleThePopupAlso() throws InterruptedException, AWTException, ParseException
     {
         //create object of OE Page
         orderpage = new OrderEntryPage(driver, scenario);
         //get current date add some days to current date
-        LocalDate myDateObj = LocalDate.now().plusDays(1);
+        /*LocalDate myDateObj = LocalDate.now().plusDays(1);
         DateTimeFormatter myFormatObj = DateTimeFormatter.ofPattern("EEEE, MMMM d, yyyy");
         String formattedDate = myDateObj.format(myFormatObj);
         orderpage.ClickCalender();
 
         orderpage.SelectDatePendingOrder(formattedDate, 1);
+        orderpage.ChangedDeliveryDate();*/
+
+        //create object of OE Page
+        orderpage = new OrderEntryPage(driver, scenario);
+        orderpage.Read_DeliveryDate();
+        orderpage.ClickCalender();
+        orderpage.SelectDate(1);
+        orderpage.cancelOGselection();
         orderpage.ChangedDeliveryDate();
 
         //Handle Popup that appears after changing delivery date
         newOE=new NewOrderEntryPage(driver,scenario);
+        newOE.ValidateNewOE();
         newOE.ValidateChangeDeliveryDatePopup();
         newOE.SelectChangeDeliveryDatePopup();
     }

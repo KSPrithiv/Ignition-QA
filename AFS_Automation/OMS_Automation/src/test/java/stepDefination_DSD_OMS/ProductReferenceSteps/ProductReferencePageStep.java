@@ -144,6 +144,8 @@ public class ProductReferencePageStep
     @And("User should navigate to OG and select {string} from grid for Product reference")
     public void userShouldNavigateToOGAndSelectFromGridForProductReference(String OG) throws InterruptedException, AWTException
     {
+        orderpage=new OrderEntryPage(driver,scenario);
+        orderpage.HandleError_Page();
         parOrderPage = new ParOrderPage(driver, scenario);
         parOrderPage.Refresh_Page(currentURL);
         orderGuidePage=new OrderGuidePage(driver,scenario);

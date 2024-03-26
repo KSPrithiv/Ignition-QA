@@ -58,6 +58,15 @@ public class OrderEntryPageSteps6
     {
         newOE=new NewOrderEntryPage(driver,scenario);
         newOE.ValidateNewOE();
+        //find whether route is empty or not, if empty should select some route value
+       /* String routeNo=newOE.validateRouteValue();
+        if(routeNo==null||routeNo.equals(""))
+        {
+            newOE.clickRouteIndex();
+            newOE.validateRouteDialog();
+            newOE.Route_No(TestBase.testEnvironment.get_RouteFilt(), TestBase.testEnvironment.get_Route());
+            newOE.validateRouteSelected(TestBase.testEnvironment.get_Route());
+        }*/
         newOE.Validate_Pickup_Order();
     }
 
@@ -68,7 +77,12 @@ public class OrderEntryPageSteps6
         summary.ValidateSummaryOrderPage();
         summary.PickupOrderValidate();
         summary.ClickSubmit();
-        summary.cutoffDialog();
+        for(int i=0;i<=2;i++)
+        {
+            summary.additionalOrderPopup();
+            summary.cutoffDialog();
+            summary.percentageOfAverageProd();
+        }
         summary.SucessPopup();
     }
 
@@ -77,6 +91,15 @@ public class OrderEntryPageSteps6
     {
         newOE=new NewOrderEntryPage(driver,scenario);
         newOE.ValidateNewOE();
+        //find whether route is empty or not, if empty should select some route value
+       /* String routeNo=newOE.validateRouteValue();
+        if(routeNo.equals(""))
+        {
+            newOE.clickRouteIndex();
+            newOE.validateRouteDialog();
+            newOE.Route_No(TestBase.testEnvironment.get_RouteFilt(), TestBase.testEnvironment.get_Route());
+            newOE.validateRouteSelected(TestBase.testEnvironment.get_Route());
+        }*/
         newOE.ClickPickupCheckBox();
         newOE.validatePickupCheckBoxSelected();
     }
@@ -95,8 +118,11 @@ public class OrderEntryPageSteps6
     public void userRemovesRouteDetailsFromRouteFieldAndRouteIsEmpty() throws InterruptedException, AWTException
     {
         orderpage=new OrderEntryPage(driver,scenario);
-        orderpage.ValidateOE();
-        orderpage.RemoveRoute();
+        String routeNo=orderpage.validateRouteValue();
+        if(routeNo!=null||!routeNo.equals(""))
+        {
+            orderpage.RemoveRoute();
+        }
         orderpage.RouteIsEmpty();
     }
 
@@ -165,6 +191,7 @@ public class OrderEntryPageSteps6
         newOE=new NewOrderEntryPage(driver,scenario);
         newOE.Click_On_Add_Product();
         newOE.selectProfileProducts();
+        newOE.validateProfileProductsInGrid();
         newOE.readProductsInOrder();
     }
 

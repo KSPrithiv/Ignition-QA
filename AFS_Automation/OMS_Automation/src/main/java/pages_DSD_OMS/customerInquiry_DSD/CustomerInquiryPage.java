@@ -36,11 +36,11 @@ public class CustomerInquiryPage
     static String Desc="skjldfgs123";
     static String currentURL=null;
 
-    @FindBy(xpath="//button[text()='New']")
+    @FindBy(xpath="//button[@id='customerInquiryNewBtn']")
     private WebElement new_But;
 
-    @FindBy(id="save-button")
-    private WebElement save_But;
+   /* @FindBy(id="save-button")
+    private WebElement save_But;*/
 
     @FindBy(xpath="//input[contains(@id,'segmentInput_0')]")
     private WebElement bill_Input;
@@ -394,7 +394,7 @@ public class CustomerInquiryPage
                 WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
                 HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 2000000);
             }
-            WebElement save_Button=HelpersMethod.FindByElement(driver,"xpath","//button[text()='Save']");
+            WebElement save_Button=HelpersMethod.FindByElement(driver,"id","customerInquirySaveBtn");
             if(save_Button.isEnabled())
             {
                 HelpersMethod.ClickBut(driver, save_Button, 2000);
@@ -470,11 +470,11 @@ public class CustomerInquiryPage
                     .pollingEvery(Duration.ofSeconds(2))
                     .ignoring(NoSuchElementException.class);
             wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
-
-            if(HelpersMethod.IsExists("//button[text()='Note']",driver))
+            //Thread.sleep(2000);
+            if(HelpersMethod.IsExists("//button[@id='customerInquiryNoteBtn']",driver))
             {
-                WebElement noteButton = HelpersMethod.FindByElement(driver, "xpath", "//button[text()='Note']");
-                HelpersMethod.ActClick(driver, noteButton, 10000);
+                WebElement noteButton = HelpersMethod.FindByElement(driver, "id", "customerInquiryNoteBtn");
+                HelpersMethod.ClickBut(driver, noteButton, 10000);
                 exists=true;
                 if (HelpersMethod.IsExists("//div[@class='loader']", driver))
                 {
@@ -727,9 +727,9 @@ public class CustomerInquiryPage
                     .ignoring(NoSuchElementException.class);
             wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
 
-            if(HelpersMethod.IsExists("//button[text()='Copy']",driver))
+            if(HelpersMethod.IsExists("//button[@id='customerInquiryCopyBtn']",driver))
             {
-                WebEle=HelpersMethod.FindByElement(driver,"xpath","//button[text()='Copy']");
+                WebEle=HelpersMethod.FindByElement(driver,"id","customerInquiryCopyBtn");
                 HelpersMethod.ClickBut(driver,WebEle,2000);
                 wait = new FluentWait<WebDriver>(driver)
                         .withTimeout(Duration.ofSeconds(120))
@@ -1068,7 +1068,7 @@ public class CustomerInquiryPage
             if(HelpersMethod.IsExists("//span[@id='CmCCProc']",driver))
             {
                 WebElement payProcess=HelpersMethod.FindByElement(driver,"xpath","//span[@id='CmCCProc']");
-                HelpersMethod.ActClick(driver,payProcess,1000);
+                HelpersMethod.ActClick(driver,payProcess,10000);
                 scenario.log("PAYMENT PROCESS DROP DOWN FOUND");
                 exists=true;
             }
@@ -1084,17 +1084,22 @@ public class CustomerInquiryPage
         String payOptions=null;
         try
         {
-            List<WebElement> paymentProcess=HelpersMethod.FindByElements(driver,"xpath","//div[contains(@class,'k-list-container')]/descendant::ul/li");
-            for(WebElement payProcess:paymentProcess)
+            List<WebElement> paymentProcess = HelpersMethod.FindByElements(driver, "xpath", "//div[contains(@class,'k-list-container')]/descendant::ul/li");
+            for (WebElement payProcess : paymentProcess)
             {
                 act.moveToElement(payProcess).build().perform();
-                payOptions=payProcess.getText();
-                if(payOptions.equalsIgnoreCase("System default (Realtime charge)"))
+                payOptions = payProcess.getText();
+                if (payOptions.equalsIgnoreCase("System default (Realtime charge)"))
                 {
                     scenario.log("PAYMENT PROCESS System default (Realtime charge) HAS BEEN FOUND");
                     break;
                 }
             }
+            //to close drop down
+            WebElement dropArow = HelpersMethod.FindByElement(driver, "xpath", "//span[@id='CmCCProc']/descendant::span[contains(@class,'k-i-arrow-s')]");
+            HelpersMethod.ActClick(driver, dropArow, 10000);
+            //wait till drop down disappears
+            new WebDriverWait(driver, Duration.ofMillis(10000)).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[contains(@class,'k-list-container')]/descendant::ul/li")));
         }
         catch (Exception e){}
     }

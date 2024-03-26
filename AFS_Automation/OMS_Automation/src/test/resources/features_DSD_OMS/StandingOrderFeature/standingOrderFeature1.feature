@@ -37,21 +37,21 @@ Feature: Standing Order1
     Then User should validate Standing Order dialog box for SO already existing
 
   @StandingOrderRegisterExcel
-  Scenario: Test scenario for generating Excel sheet for standing order registeration
+  Scenario: Test scenario for generating Excel sheet for standing order registration
     Given User must be on Order Entry Page to select Standing Order and navigate to standing order
     And User should click on Standing Order Register button
     Then User should search for Customer and Route in Standing order register popup
     And User should click on Excel button, should download csv files
 
   @StandingOrderRegisterPdf
-  Scenario: Test scenario for generating Excel sheet for standing order registeration
+  Scenario: Test scenario for generating Excel sheet for standing order registration
     Given User must be on Order Entry Page to select Standing Order and navigate to standing order
     And User should click on Standing Order Register button
     Then User should search for Customer and Route in Standing order register popup
     And User should click on PDF button, should Open new browser
 
   @StandingOrderRegisterCancel
-  Scenario: Test scenario for generating Excel sheet for standing order registeration cancel option
+  Scenario: Test scenario for generating Excel sheet for standing order registration cancel option
     Given User must be on Order Entry Page to select Standing Order and navigate to standing order
     And User should click on Standing Order Register button
     Then User should search for Customer and Route in Standing order register popup

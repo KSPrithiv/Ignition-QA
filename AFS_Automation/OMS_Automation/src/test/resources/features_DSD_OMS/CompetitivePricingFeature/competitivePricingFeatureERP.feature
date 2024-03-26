@@ -11,7 +11,7 @@ Feature: Competitive Pricing
     Given User must be on Client side and select Competitor pricing page
     When User should confirm that he is in Competitor pricing page
     And User navigates to "<Reportstab>" under competitor pricing and select "<Groupby>" tab under Reports
-    Then User should select Group by in groupOne and even select customer
+    Then User should select Group by in groupOne and even select chain
       |Local chain|
     Examples:
       |     Reportstab |  Groupby |
@@ -22,7 +22,7 @@ Feature: Competitive Pricing
     Given User must be on Client side and select Competitor pricing page
     When User should confirm that he is in Competitor pricing page
     And User navigates to "<Reportstab>" under competitor pricing and select "<Groupby>" tab under Reports
-    Then User should select Group by in groupOne and even select customer
+    Then User should select Group by in groupOne and even select chain
       |National chain|
     Examples:
       |     Reportstab |  Groupby |
@@ -34,7 +34,7 @@ Feature: Competitive Pricing
     Given User must be on Client side and select Competitor pricing page
     When User should confirm that he is in Competitor pricing page
     And User navigates to "<Reportstab>" under competitor pricing and select "<Groupby>" tab under Reports
-    Then User should select Group by in groupOne and even select customer
+    Then User should select Group by in groupOne and even select chain
       |Market segment|
     Examples:
       |     Reportstab |  Groupby |
@@ -45,7 +45,7 @@ Feature: Competitive Pricing
     Given User must be on Client side and select Competitor pricing page
     When User should confirm that he is in Competitor pricing page
     And User navigates to "<Reportstab>" under competitor pricing and select "<Groupby>" tab under Reports
-    Then User should select Group by in groupOne and even select customer
+    Then User should select Group by in groupOne and even select chain
       |Price group - default schedule|
     Examples:
       |     Reportstab |  Groupby |

@@ -52,4 +52,17 @@ public class CompetitorPricingPageERPStep
         competitivePricingReportPage.selectCustomerAccountInDialogbox();
         competitivePricingReportPage.handlePrintButton();
     }
+
+    @Then("User should select Group by in groupOne and even select chain")
+    public void userShouldSelectGroupByInGroupOneAndEvenSelectChain(DataTable tableData)
+    {
+        List<List<String>> listValue=tableData.asLists(String.class);
+        competitivePricingReportPage=new CompetitivePricingReportPage(driver,scenario);
+        competitivePricingReportPage=new CompetitivePricingReportPage(driver,scenario);
+        competitivePricingReportPage.clickOnGroup1();
+        competitivePricingReportPage.selectCustomerAccountOptionDropdown(listValue.get(0).get(0));
+        competitivePricingReportPage.clickOnChainFromDropDown();
+        competitivePricingReportPage.selectChineFromDropDown();
+        competitivePricingReportPage.handlePrintButton();
+    }
 }

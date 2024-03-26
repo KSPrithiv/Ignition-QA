@@ -810,18 +810,24 @@ public class HelpersMethod
     {
         WebElement Search2=null;
         WebElement WebEle;
+        WebElement Clear;
 
-        //Click on Add filter button
+        //Click on Add filter, and Passing parameter to add filter drop downs
         WebDriverWait wait=new WebDriverWait(driver,Duration.ofMillis(8000));
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(@class,'k-widget k-window k-dialog')]/descendant::button/descendant::span[contains(text(),'Add filter')]")));
         driver.findElement(By.xpath("//div[contains(@class,'k-widget k-window k-dialog')]/descendant::button/descendant::span[contains(text(),'Add filter')]")).click();
         new WebDriverWait(driver,Duration.ofMillis(20000)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(@class,'k-animation-container k-animation-container-relative k-animation-container-shown')]")));
-        //Click on Clear all button
-        WebElement modalContainer1=FindByElement(driver,"xpath","//div[contains(@class,'k-animation-container k-animation-container-relative k-animation-container-shown')]");
-        WebElement Clear=modalContainer1.findElement(By.xpath(".//button[contains(text(),'Clear all')]"));
-        if(Clear.isEnabled())
+
+        WebElement modalContainer1 = FindByElement(driver, "xpath", "//div[contains(@class,'k-animation-container k-animation-container-relative k-animation-container-shown')]");
+        if(HelpersMethod.IsExists("//div[contains(@class,'k-widget k-window k-dialog')]/descendant::div[@class='i-filter-tag ']",driver))
         {
-            Clear.click();
+            //Click on Clear all button
+            Clear = modalContainer1.findElement(By.xpath(".//button[contains(text(),'Clear all')]"));
+            if (Clear.isEnabled())
+            {
+                Clear.click();
+            }
+            driver.findElement(By.xpath("//div[contains(@class,'k-widget k-window k-dialog')]/descendant::button/descendant::span[contains(text(),'Add filter')]")).click();
         }
 
         WebElement Search1=modalContainer1.findElement(By.xpath(".//input[contains(@class,'i-search-box__input')]"));
@@ -841,6 +847,7 @@ public class HelpersMethod
             EnterText(driver,Search2,1000,SearhBox2Value);
 
             //Click on Apply button
+            Clear = modalContainer1.findElement(By.xpath(".//button[contains(text(),'Clear all')]"));
             Clear =RadioPop.findElement(By.xpath(".//button[text()='Apply']"));
             ClickBut(driver,Clear,1000);
         }

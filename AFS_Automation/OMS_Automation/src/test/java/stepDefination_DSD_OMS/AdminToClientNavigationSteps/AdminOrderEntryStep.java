@@ -4,10 +4,13 @@ import io.cucumber.datatable.DataTable;
 import io.cucumber.java.Before;
 import io.cucumber.java.Scenario;
 import io.cucumber.java.en.And;
+import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import pages_DSD_OMS.adminCatalogSearch.catalogSearchPage;
+import pages_DSD_OMS.login.LoginPage;
 import pages_DSD_OMS.orderEntry.CheckOutSummaryPage;
 import pages_DSD_OMS.orderEntry.NewOrderEntryPage;
 import pages_DSD_OMS.orderEntry.OrderEntryPage;
@@ -37,6 +40,7 @@ public class AdminOrderEntryStep
     static CheckOutSummaryPage summary;
     static AdminHomePage adminHomePage;
     static catalogSearchPage catSearchPage;
+    static LoginPage loginPage;
 
     @Before
     public void LaunchBrowser1(Scenario scenario) throws Exception
@@ -46,12 +50,46 @@ public class AdminOrderEntryStep
         driver= driver1.getDriver();
     }
 
+    @Given("User enters URL and is on login page and entered credentials for Admin settings")
+    public void userEntersUrlAndIsOnLoginPageAndEnteredCredentialsForAdminSettings() throws InterruptedException, AWTException
+    {
+            loginPage = new LoginPage(driver, scenario);
+            loginPage.EnterUsername(TestBase.testEnvironment.getAdminUser());
+            loginPage.EnterPassword(TestBase.testEnvironment.getAdminPass());
+            loginPage.ClickSignin();
+    }
+
+    @When("User is on Home Page for Admin settings")
+    public void userIsOnHomePageForAdminSettings() throws InterruptedException
+    {
+            adminHomePage = new AdminHomePage(driver, scenario);
+            adminHomePage.ValidatingAdminHome();
+    }
+
+    @Then("User Clicks on Permissions by drop down to select Customer Account#s")
+    public void userClicksOnPermissionsByDropDownToSelectCustomerAccounts() throws InterruptedException
+    {
+            adminHomePage = new AdminHomePage(driver, scenario);
+            adminHomePage.ClickPermissionBy();
+            adminHomePage.SelectCompany();
+    }
+
     @Then("User selects Account# for Admin side setting")
     public void userSelectsAccountForAdminSideSetting() throws InterruptedException, AWTException, ParseException
     {
         orderpage = new OrderEntryPage(driver, scenario);
         orderpage.ChangeAccount();
-        orderpage.PopUps_After_AccountChange();
+        for(int i=0;i<=1;i++)
+        {
+            orderpage.OrderGuidePopup();
+            Thread.sleep(1000);
+            orderpage.NoNotePopHandling();
+            orderpage.NoPendingOrderPopup();
+            orderpage.blackoutDialogHandling();
+        }
+        newOE=new NewOrderEntryPage(driver,scenario);
+        newOE.Click_Back_But();
+        orderpage = new OrderEntryPage(driver, scenario);
         orderpage.Read_DeliveryDate();
     }
 
@@ -218,9 +256,9 @@ public class AdminOrderEntryStep
         exists=false;
         orderpage = new OrderEntryPage(driver, scenario);
         orderpage.ValidateOE();
+        orderpage.ordersExistingInOE();
         //check for 'Start Order' button
         orderpage.Scroll_start();
-        orderpage.ordersExistingInOE();
         orderpage.Start_OrderMultipleOrderPerDay();
     }
 
@@ -242,6 +280,23 @@ public class AdminOrderEntryStep
         String Prod_No= DataBaseConnection.DataBaseConn(TestBase.testEnvironment.getSingle_OneMoreProd());
         newOE.Validate_Catalog();
         newOE.validateNoAutoLoadProducts();
+        newOE.clickOnLoadAllProducts();
+        newOE.ResetFilter_Catalog();
+        String pro=String.valueOf(Prod_No);
+        newOE.validateCatalogProducts();
+        newOE.Search_Prod_in_Catalog(pro);
+        newOE.EnterQty(Prod_detail.get(0).get(0),Prod_detail.get(0).get(1));
+        scenario.log("PRODUCT # "+pro+" PRODUCT QTY "+Prod_detail.get(0).get(0)+" "+Prod_detail.get(0).get(1));
+    }
+
+    @And("User should verify products are auto loaded select Product from catalog and Enter Qty for the products")
+    public void userShouldVerifyProductsAreAutoLoadedSelectProductFromCatalogAndEnterQtyForTheProducts(DataTable tabledata) throws SQLException, ClassNotFoundException, InstantiationException, IllegalAccessException, InterruptedException, AWTException
+    {
+        newOE=new NewOrderEntryPage(driver,scenario);
+        List<List<String>> Prod_detail = tabledata.asLists(String.class);
+        String Prod_No= DataBaseConnection.DataBaseConn(TestBase.testEnvironment.getSingle_OneMoreProd());
+        newOE.Validate_Catalog();
+        newOE.validateAutoLoadProducts();
         newOE.ResetFilter_Catalog();
         String pro=String.valueOf(Prod_No);
         newOE.validateCatalogProducts();
@@ -260,5 +315,32 @@ public class AdminOrderEntryStep
         adminHomePage.CloseHamburger();
         catSearchPage=new catalogSearchPage(driver,scenario);
         catSearchPage.validateCatalogSearchPage();
+    }
+
+    @And("User should save all the details")
+    public void userShouldSaveAllTheDetails()
+    {
+        adminHomePage = new AdminHomePage(driver, scenario);
+        adminHomePage.Click_SaveButton();
+    }
+
+    @Then("User should select {string} in Catalog search layout and enable Do not load full catalog automatically")
+    public void userShouldSelectInCatalogSearchLayoutAndEnableDoNotLoadFullCatalogAutomatically(String arg0)
+    {
+        catSearchPage=new catalogSearchPage(driver,scenario);
+        catSearchPage.clickCatalogSearchLayout();
+        catSearchPage.selectCatalogSearchLayout(arg0);
+        catSearchPage.doNotLoadFullCatalogAutomaticallyEnable();
+        catSearchPage.enableDoNotLoadFullCatalogAutomatically();
+    }
+
+    @Then("User should select {string} in Catalog search layout and disable Do not load full catalog automatically")
+    public void userShouldSelectInCatalogSearchLayoutAndDisableDoNotLoadFullCatalogAutomatically(String arg0)
+    {
+        catSearchPage=new catalogSearchPage(driver,scenario);
+        catSearchPage.clickCatalogSearchLayout();
+        catSearchPage.selectCatalogSearchLayout(arg0);
+        catSearchPage.doNotLoadFullCatalogAutomaticallyDisable();
+        catSearchPage.disableDoNotLoadFullCatalogAutomatically();
     }
 }

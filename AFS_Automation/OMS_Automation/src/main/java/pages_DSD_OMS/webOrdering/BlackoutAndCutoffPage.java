@@ -62,10 +62,10 @@ public class BlackoutAndCutoffPage
                     .pollingEvery(Duration.ofSeconds(2))
                     .ignoring(NoSuchElementException.class);
             wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
-
-            if(HelpersMethod.IsExistsById("add-blackout-date",driver))
+            Thread.sleep(1000);
+            if(HelpersMethod.IsExists("//button[@id='add-blackout-date']",driver))
             {
-                HelpersMethod.ClickBut(driver,AddButton,10000);
+                HelpersMethod.ClickBut(driver,AddButton,20000);
                 scenario.log("ADD BUTTON HAS BEEN CLICKED");
                 exists=true;
             }
@@ -81,6 +81,7 @@ public class BlackoutAndCutoffPage
         {
             if(HelpersMethod.IsExists("//div[@class='new-blackout-date-container']/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
             {
+                scenario.log("BLACKOUT DIALOG HAS BEEN FOUND");
                 exists=true;
             }
             Assert.assertEquals(exists,true);

@@ -169,6 +169,7 @@ public class CheckOutOrderPage
 
     public void NextButton_Click()
     {
+        exists=false;
         try
         {
             Thread.sleep(2000);
@@ -185,7 +186,8 @@ public class CheckOutOrderPage
                 {
                     HelpersMethod.ScrollElement(driver, NextButton);
                     NextButton=HelpersMethod.FindByElement(driver,"id","SubmitCheckoutButton");
-                    HelpersMethod.ClickBut(driver, NextButton, 40000);
+                    HelpersMethod.ClickBut(driver, NextButton, 60000);
+                    exists=true;
                     wait = new FluentWait<WebDriver>(driver)
                             .withTimeout(Duration.ofSeconds(100))
                             .pollingEvery(Duration.ofSeconds(2))
@@ -209,6 +211,7 @@ public class CheckOutOrderPage
                     scenario.log("NEXT BUTTON IS DISABLED");
                 }
             }
+            Assert.assertEquals(exists,true);
         }
         catch (Exception e){}
     }

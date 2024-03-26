@@ -152,6 +152,15 @@ public class OrderEntryPageSteps
         exists=false;
         orderpage = new OrderEntryPage(driver, scenario);
         orderpage.ValidateOE();
+        //find whether route is empty or not, if empty should select some route value
+        String routeNo=orderpage.validateRouteValue();
+        if(routeNo==null||routeNo.equals(""))
+        {
+            orderpage.clickRouteIndex();
+            orderpage.validateRouteDialog();
+            orderpage.Route_No(TestBase.testEnvironment.get_RouteFilt(), TestBase.testEnvironment.get_Route());
+            orderpage.validateRouteSelected(TestBase.testEnvironment.get_Route());
+        }
         //check for 'Start Order' button
         orderpage.Scroll_start();
         exists=orderpage.Start_Order();
@@ -329,6 +338,17 @@ public class OrderEntryPageSteps
         newOE=new NewOrderEntryPage(driver,scenario);
         List<List<String>> PO_No = tabledata.asLists(String.class);
         newOE.EnterPO_No(PO_No.get(0).get(0));
+
+        //find whether route is empty or not, if empty should select some route value
+        Thread.sleep(1000);
+        String routeNo=newOE.validateRouteValue();
+        if(routeNo==null||routeNo.equals(""))
+        {
+            newOE.clickRouteIndex();
+            newOE.validateRouteDialog();
+            newOE.Route_No(TestBase.testEnvironment.get_RouteFilt(), TestBase.testEnvironment.get_Route());
+            newOE.validateRouteSelected(TestBase.testEnvironment.get_Route());
+        }
     }
 
     @Then("Enter PO# for New order for Quote to Order")
@@ -935,6 +955,7 @@ public class OrderEntryPageSteps
         String Prod_No= DataBaseConnection.DataBaseConn(TestBase.testEnvironment.getSingle_OneMoreProd());
         newOE=new NewOrderEntryPage(driver,scenario);
         newOE.Validate_Catalog();
+        newOE.clickOnLoadAllProducts();
         newOE.ResetFilter_CatalogDisconnectedMode();
         String pro=String.valueOf(Prod_No);
         newOE.validateCatalogProducts();
