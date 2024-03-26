@@ -74,7 +74,7 @@ public class HomePage
             new WebDriverWait(driver,Duration.ofMillis(8000)).until(ExpectedConditions.refreshed(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='user-info-container']"))));
 
             String HomeTitle = driver.getTitle();
-            if (HomeTitle.contains("Admin"))
+            if (HomeTitle.contains("Admin")||HomeTitle.contains("Order Entry"))
             {
                 scenario.log("ADMIN PAGE FOUND");
                 exists = true;

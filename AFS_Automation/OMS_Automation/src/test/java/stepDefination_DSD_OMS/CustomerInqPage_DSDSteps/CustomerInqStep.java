@@ -627,9 +627,9 @@ public class CustomerInqStep
            ignitionPage.selectPONoForDelete(i);
            ignitionPage.clickDelete();
            ignitionPage.confirmationPopUp();
-           //customerInquiryPage=new CustomerInquiryPage(driver,scenario);
-           //customerInquiryPage.validateSaveConfirmationPopup();
-           //customerInquiryPage.SaveButtonOK();
+           customerInquiryPage=new CustomerInquiryPage(driver,scenario);
+           customerInquiryPage.validateSaveConfirmationPopup();
+           customerInquiryPage.SaveButtonOK();
        }
     }
 }

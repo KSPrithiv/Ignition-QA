@@ -146,6 +146,12 @@ public class AllOrderPage
                 HelpersMethod.waitTillLoadingPage(driver);
             }
 
+            wait = new FluentWait<>(driver)
+                    .withTimeout(Duration.ofSeconds(150))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
             String title = HelpersMethod.gettingTitle(driver);
             if (title.contains("All Orders"))
             {
@@ -511,6 +517,12 @@ public class AllOrderPage
                 {
                     HelpersMethod.waitTillLoadingPage(driver);
                 }
+
+                wait = new FluentWait<>(driver)
+                        .withTimeout(Duration.ofSeconds(120))
+                        .pollingEvery(Duration.ofSeconds(2))
+                        .ignoring(NoSuchElementException.class);
+                wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
 
                 //validate Customer index popup
                 HelpersMethod.WaitElementPresent(driver, "xpath", "//div[contains(text(),'Customer account index')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]", 20000);
@@ -1153,6 +1165,12 @@ public class AllOrderPage
             {
                 HelpersMethod.waitTillLoadingPage(driver);
             }
+            wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(120))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
             Thread.sleep(1000);
             Assert.assertTrue(exists);
         }
@@ -2010,18 +2028,18 @@ public class AllOrderPage
         String status=null;
         Actions act1=new Actions(driver);
 
-        if (HelpersMethod.IsExists("//div[@class='loader']", driver))
-        {
-            WebElement   WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 2000000);
-        }
+        Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                .withTimeout(Duration.ofSeconds(120))
+                .pollingEvery(Duration.ofSeconds(2))
+                .ignoring(NoSuchElementException.class);
+        wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
         try
         {
             if(HelpersMethod.IsExists("//div[contains(@class,'k-widget k-window k-dialog')]",driver))
             {
                 JavascriptExecutor js = ((JavascriptExecutor) driver);
                 js.executeScript("window.location.reload()");
-                WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis( 400000));
+                wait = new WebDriverWait(driver, Duration.ofMillis( 400000));
                 if (wait.until(ExpectedConditions.alertIsPresent()) == null)
                 {
 
@@ -2035,7 +2053,7 @@ public class AllOrderPage
            /* else
             {*/
                 driver.navigate().refresh();
-                Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                wait = new FluentWait<WebDriver>(driver)
                         .withTimeout(Duration.ofSeconds(200))
                         .pollingEvery(Duration.ofSeconds(2))
                         .ignoring(NoSuchElementException.class);

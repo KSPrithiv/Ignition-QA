@@ -99,7 +99,7 @@ public class ReportsCustomersWithoutOrdersSteps
         {
             orderEntryPage = new OrderEntryPage(driver, scenario);
             orderEntryPage.ChangeAccount();
-            //orderEntryPage.PopUps_After_AccountChange();
+            orderEntryPage.PopUps_After_AccountChange();
             //orderEntryPage.Read_DeliveryDate();
             flag=true;
         }

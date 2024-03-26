@@ -690,7 +690,8 @@ public class LoginPageStep
     }
 
     @And("User closes the browser")
-    public void userClosesTheBrowser() {
+    public void userClosesTheBrowser()
+    {
         CurrentURL = driver.getCurrentUrl();
         driver.close();
     }

@@ -52,6 +52,9 @@ public class InventoryPage
     @FindBy(id="selectInventoryDay")
     private  WebElement selectInventory;
 
+    @FindBy(id="cancelStoreInventoryBtn")
+    private WebElement cancleButton;
+
     public InventoryPage(WebDriver driver, Scenario scenario)
     {
         this.driver=driver;
@@ -121,12 +124,12 @@ public class InventoryPage
     public boolean ValidateInventory()
     {
         exists=false;
-        WebElement WebEle=null;
-        if(HelpersMethod.IsExists("//div[@class='loader']",driver))
-        {
-            WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100000);
-        }
+        Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                .withTimeout(Duration.ofSeconds(120))
+                .pollingEvery(Duration.ofSeconds(2))
+                .ignoring(NoSuchElementException.class);
+        wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
         try
         {
             if(HelpersMethod.gettingURL(driver).contains("cpInventory"))
@@ -777,6 +780,62 @@ public class InventoryPage
                     scenario.log("PRODUCTS HAS BEEN SUCCESSFULLY LOADED AFTER CLICKING LOAD PRODUCTS");
                 }
             }
+        }
+        catch (Exception e){}
+    }
+
+    public void readProductsInInventory()
+    {
+        exists=false;
+        String proText;
+        Actions act=new Actions(driver);
+        try
+        {
+
+            if(HelpersMethod.IsExists("//button[@class='i-link-button']",driver))
+            {
+                List<WebElement> products = HelpersMethod.FindByElements(driver, "xpath", "//button[@class='i-link-button']");
+                for (WebElement prod : products)
+                {
+                    act.moveToElement(prod).build().perform();
+                    proText = prod.getText();
+                    exists=true;
+                    scenario.log("PRODUCTS FOUND UNDER INVENTORY " + proText);
+                }
+            }
+            Assert.assertEquals(exists,true);
+        }
+        catch (Exception e){}
+    }
+
+    public void clickOnCancel()
+    {
+        exists=false;
+        try
+        {
+            if(cancleButton.isDisplayed() && cancleButton.isEnabled())
+            {
+                HelpersMethod.ClickBut(driver,cancleButton,10000);
+                exists=true;
+            }
+            Assert.assertEquals(exists,true);
+        }
+        catch (Exception e){}
+    }
+
+    public void handleCancelPopup()
+    {
+        exists=false;
+        try
+        {
+            if(HelpersMethod.IsExists("//div[text()='Cancel']/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
+            {
+                WebElement modelContainer=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-widget k-window k-dialog')]");
+                WebElement yesButton=modelContainer.findElement(By.xpath(".//button[text()='Yes']"));
+                HelpersMethod.ActClick(driver,yesButton,10000);
+                exists=true;
+            }
+            Assert.assertEquals(exists,true);
         }
         catch (Exception e){}
     }

@@ -157,8 +157,8 @@ public class InventoryPageSteps
         inventory.navigateToStoreInventoryTab();
     }
 
-    @And("User should click on Add product button and select products from Product popup")
-    public void userShouldClickOnAddProductButtonAndSelectProductsFromProductPopup(DataTable tabledata) throws SQLException
+    @And("User should click on Add product button and select products from Product popup and save")
+    public void userShouldClickOnAddProductButtonAndSelectProductsFromProductPopupAndSave(DataTable tabledata) throws SQLException
     {
         List<List<String>> qtyValue=tabledata.asLists(String.class);
         inventory=new InventoryPage(driver,scenario);
@@ -180,6 +180,7 @@ public class InventoryPageSteps
         }
         inventory.clickOnCatalogOkButton();
         inventory.clickSaveButton();
+        inventory.readProductsInInventory();
     }
 
     @Then("User should change store inventory dropdown value")
@@ -202,6 +203,7 @@ public class InventoryPageSteps
         inventory.enterQuickCases(cases);
         inventory.enterQuickUnit(unit);
         inventory.enterSequenceNo(sequence);
+        inventory.readProductsInInventory();
     }
 
     @And("User should compare total units with Running total units")
@@ -212,5 +214,21 @@ public class InventoryPageSteps
         inventory.findTotalUnitsInColumn(tablehead.get(0).get(0));
         inventory.findRunningTotalUnits();
         inventory.compareTotalUnits();
+    }
+
+    @Then("User goes through products under inventory as the product added using quick entry has not been saved")
+    public void userGoesThroughProductsUnderInventoryAsTheProductAddedUsingQuickEntryHasNotBeenSaved()
+    {
+        InventoryPage inventory=new InventoryPage(driver,scenario);
+        inventory.readProductsInInventory();
+    }
+
+    @And("User cancel inventory details")
+    public void userCancelInventoryDetails()
+    {
+        InventoryPage inventory=new InventoryPage(driver,scenario);
+        inventory.clickOnCancel();
+        inventory.handleCancelPopup();
+        inventory.readProductsInInventory();
     }
 }

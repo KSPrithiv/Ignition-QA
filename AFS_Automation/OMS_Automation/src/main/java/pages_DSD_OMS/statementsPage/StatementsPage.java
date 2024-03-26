@@ -197,6 +197,7 @@ public class StatementsPage
                 URL = HelpersMethod.gettingURL(driver);
                 scenario.log("URL FOUND "+URL);
                 scenario.log("**************ERROR PAGE HAS BEEN FOUND****************");
+                driver.navigate().to(currentURL);
             }
             if (HelpersMethod.gettingURL(driver).contains("CPAdmin"))
             {
@@ -329,7 +330,8 @@ public class StatementsPage
             prMonth=HelpersMethod.FindByElement(driver,"xpath","//span[@id='ddlMonth']/span[contains(@class,'input')]").getText();
             scenario.log("MONTH BEFORE CHANGING: "+prMonth);
             HelpersMethod.ClickBut(driver,monthDropdown,10000);
-            new WebDriverWait(driver,Duration.ofMillis(10000)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(@class,'k-animation-container ')]/descendant::ul/li")));
+            Thread.sleep(1000);
+            new WebDriverWait(driver,Duration.ofMillis(20000)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(@class,'k-animation-container ')]/descendant::ul/li")));
             List<WebElement> Values=HelpersMethod.FindByElements(driver,"xpath","//div[contains(@class,'k-animation-container ')]/descendant::ul/li");
            /* for(int i=0;i<= Values.size()-1;i++)
             {
