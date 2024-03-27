@@ -847,7 +847,6 @@ public class HelpersMethod
             EnterText(driver,Search2,1000,SearhBox2Value);
 
             //Click on Apply button
-            Clear = modalContainer1.findElement(By.xpath(".//button[contains(text(),'Clear all')]"));
             Clear =RadioPop.findElement(By.xpath(".//button[text()='Apply']"));
             ClickBut(driver,Clear,1000);
         }

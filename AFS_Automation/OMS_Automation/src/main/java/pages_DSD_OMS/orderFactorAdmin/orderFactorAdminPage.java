@@ -37,7 +37,10 @@ public class orderFactorAdminPage
     static String qtyOrderFactor=null;
     static String uom=null;
 
-    @FindBy(xpath="//input[@id='orderFactorTypeDdl']/ancestor::span[@class='k-dropdown-wrap']")
+   // @FindBy(xpath="//input[@id='orderFactorTypeDdl']/ancestor::span[@class='k-dropdown-wrap']/descendant::input")
+   // private WebElement orderFactorIn;
+
+    @FindBy(xpath = "//input[@id='orderFactorTypeDdl']/ancestor::span[@class='k-dropdown-wrap']/descendant::span[contains(@class,'k-i-arrow-s')]")
     private WebElement orderFactorDropdown;
 
     @FindBy(id="orderFactorTypeDdl")
@@ -92,7 +95,7 @@ public class orderFactorAdminPage
 
     }
 
-    public void selectFactorLevel()
+    public void selectFactorLevel(String orderFactorLevel)
     {
         exists=false;
         Actions act=new Actions(driver);
@@ -106,7 +109,7 @@ public class orderFactorAdminPage
                 {
                     act.moveToElement(ordFactLevel).build().perform();
                     oFLevelText=ordFactLevel.getText();
-                    if(oFLevelText.equalsIgnoreCase("Order factor at product master level"))
+                    if(oFLevelText.equalsIgnoreCase(orderFactorLevel))
                     {
                         act.moveToElement(ordFactLevel).build().perform();
                         act.click(ordFactLevel).build().perform();
@@ -200,10 +203,21 @@ public class orderFactorAdminPage
         exists=false;
         try
         {
+            Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(120))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
             if(addProduct.isDisplayed())
             {
                 HelpersMethod.ClickBut(driver,addProduct,10000);
                 exists=true;
+                wait = new FluentWait<WebDriver>(driver)
+                        .withTimeout(Duration.ofSeconds(120))
+                        .pollingEvery(Duration.ofSeconds(2))
+                        .ignoring(NoSuchElementException.class);
+                wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
             }
             Assert.assertEquals(exists,true);
         }
@@ -224,7 +238,7 @@ public class orderFactorAdminPage
                 else
                 {
                     scenario.log("PRODUCT DIALOG BOX HAS BEEN FOUND");
-                    exists = true;
+                    exists=true;
                 }
             }
             Assert.assertEquals(exists,true);
@@ -240,31 +254,38 @@ public class orderFactorAdminPage
         String headText=null;
        try
        {
-           List<WebElement> heads = HelpersMethod.FindByElements(driver, "xpath", "//div[contains(@class,'k-widget k-window k-dialog')]/descendant::span[@class='k-column-title']");
-           for (WebElement head : heads)
+           if(HelpersMethod.IsExists("//div[contains(@class,'k-widget k-window k-dialog')]/descendant::div[@class='i-no-data__message']",driver))
            {
-               act.moveToElement(head).build().perform();
-               headText = head.getText();
-               if (headText.equalsIgnoreCase("Product #"))
-               {
-                   exists=true;
-                   i++;
-                   break;
-               }
+               scenario.log("<span style='color:red'>NO PRODUCT HAS BEEN FOUND</span>");
            }
-           Assert.assertEquals(exists,true);
-           exists=false;
-           if(HelpersMethod.IsExists("//div[contains(@class,'k-widget k-window k-dialog')]/descendant::tr[@class='k-filter-row']/th["+i+"]/descendant::input",driver))
+           else
            {
-               WebElement prodSearch = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-widget k-window k-dialog')]/descendant::tr[@class='k-filter-row']/th[" + i + "]/descendant::input");
-               HelpersMethod.JSSetValueEle(driver,prodSearch,10000,prodNo);
+               List<WebElement> heads = HelpersMethod.FindByElements(driver, "xpath", "//div[contains(@class,'k-widget k-window k-dialog')]/descendant::span[@class='k-column-title']");
+               for (WebElement head : heads)
+               {
+                   act.moveToElement(head).build().perform();
+                   headText = head.getText();
+                   if (headText.equalsIgnoreCase("Product #"))
+                   {
+                       exists = true;
+                       i++;
+                       break;
+                   }
+               }
+               Assert.assertEquals(exists, true);
+               exists = false;
+               if (HelpersMethod.IsExists("//div[contains(@class,'k-widget k-window k-dialog')]/descendant::tr[@class='k-filter-row']/th[" + i + "]/descendant::input", driver))
+               {
+                   WebElement prodSearch = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-widget k-window k-dialog')]/descendant::tr[@class='k-filter-row']/th[" + i + "]/descendant::input");
+                   HelpersMethod.JSSetValueEle(driver, prodSearch, 10000, prodNo);
 
-               Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
-                       .withTimeout(Duration.ofSeconds(120))
-                       .pollingEvery(Duration.ofSeconds(2))
-                       .ignoring(NoSuchElementException.class);
-               wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
-               exists=true;
+                   Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                           .withTimeout(Duration.ofSeconds(120))
+                           .pollingEvery(Duration.ofSeconds(2))
+                           .ignoring(NoSuchElementException.class);
+                   wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+                   exists = true;
+               }
            }
            Assert.assertEquals(exists,true);
        }
@@ -473,7 +494,7 @@ public class orderFactorAdminPage
                 i++;
                 act.moveToElement(head).build().perform();
                 headText=head.getText();
-                if(headText.equalsIgnoreCase("Product #"))
+                if(headText.equals("Product #"))
                 {
                     exists=true;
                     break;
@@ -485,6 +506,7 @@ public class orderFactorAdminPage
             {
                 WebElement inputBox=HelpersMethod.FindByElement(driver,"xpath","//div[@class='i-grid']/descendant::tr[@class='k-filter-row']/descendant::input["+i+"]");
                 HelpersMethod.JSSetValueEle(driver,inputBox,10000,prodNo);
+                exists=true;
                 Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
                         .withTimeout(Duration.ofSeconds(120))
                         .pollingEvery(Duration.ofSeconds(2))
@@ -492,11 +514,11 @@ public class orderFactorAdminPage
                 wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
             }
             Assert.assertEquals(exists,true);
-            exists=false;
+            //exists=false;
             if(!HelpersMethod.IsExists("//div[@class='i-grid']/descendant::div[@class='i-no-data__message']",driver))
             {
                 scenario.log("PRODUCT HAS BEEN FOUND");
-                exists=true;
+                //exists=true;
                 result=true;
             }
             else

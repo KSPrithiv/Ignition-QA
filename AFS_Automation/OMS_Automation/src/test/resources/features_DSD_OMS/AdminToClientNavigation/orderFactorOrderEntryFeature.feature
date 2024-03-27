@@ -7,7 +7,7 @@ Feature: scenarios for admin credentials and client credentials, for Order Facto
     Given User enters URL and is on login page and entered credentials for Admin settings
     When User is on Home Page for Admin settings
     Then User Clicks on Permissions by drop down to select Customer Account#s
-    And User should enter menu "<Option>" in search bar to navigate to catalog search
+    And User should enter menu "<Option>" in search bar to navigate to order entry search
     Then User should navigate to "<MenuOption>" from horizontal menu to select Order factor, select order factor level "<Order factor level>"
     And User should add product to order factor list and add "<Qty>"
     And User should save all the details
@@ -42,7 +42,7 @@ Feature: scenarios for admin credentials and client credentials, for Order Facto
     Given User enters URL and is on login page and entered credentials for Admin settings
     When User is on Home Page for Admin settings
     Then User Clicks on Permissions by drop down to select Customer Account#s
-    And User should enter menu "<Option>" in search bar to navigate to catalog search
+    And User should enter menu "<Option>" in search bar to navigate to order entry search
     Then User should navigate to "<MenuOption>" from horizontal menu to select Order factor, select order factor level "<Order factor level>"
     And User should delete product from order factor list
     And User should save all the details
@@ -56,7 +56,7 @@ Feature: scenarios for admin credentials and client credentials, for Order Facto
     Given User enters URL and is on login page and entered credentials for Admin settings
     When User is on Home Page for Admin settings
     Then User Clicks on Permissions by drop down to select Customer Account#s
-    And User should enter menu "<Option>" in search bar to navigate to catalog search
+    And User should enter menu "<Option>" in search bar to navigate to order entry search
     Then User should navigate to "<MenuOption>" from horizontal menu to select Order factor, select order factor level "<Order factor level>"
     And User should add product to order factor list and add "<Qty>"
     And User should save all the details
@@ -101,7 +101,7 @@ Feature: scenarios for admin credentials and client credentials, for Order Facto
     Given User enters URL and is on login page and entered credentials for Admin settings
     When User is on Home Page for Admin settings
     Then User Clicks on Permissions by drop down to select Customer Account#s
-    And User should enter menu "<Option>" in search bar to navigate to catalog search
+    And User should enter menu "<Option>" in search bar to navigate to order entry search
     Then User should navigate to "<MenuOption>" from horizontal menu to select Order factor, select order factor level "<Order factor level>"
     And User should delete product from order factor list
     And User should save all the details

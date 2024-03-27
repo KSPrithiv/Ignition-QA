@@ -183,6 +183,44 @@ public class NewOrderEntryPage
         return exists;
     }
 
+    public boolean verificationOfNewOE()
+    {
+        exists=false;
+        WebElement WebEle=null;
+        String status = HelpersMethod.returnDocumentStatus(driver);
+        if (status.equals("loading"))
+        {
+            HelpersMethod.waitTillLoadingPage(driver);
+        }
+
+        Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                .withTimeout(Duration.ofSeconds(120))
+                .pollingEvery(Duration.ofSeconds(2))
+                .ignoring(NoSuchElementException.class);
+        wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
+        status = HelpersMethod.returnDocumentStatus(driver);
+        if (status.equals("loading"))
+        {
+            HelpersMethod.waitTillLoadingPage(driver);
+        }
+        wait = new FluentWait<WebDriver>(driver)
+                .withTimeout(Duration.ofSeconds(120))
+                .pollingEvery(Duration.ofSeconds(2))
+                .ignoring(NoSuchElementException.class);
+        wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+        try
+        {
+            if(HelpersMethod.IsExists("//div[contains(@class,'order-entry-page')]",driver))
+            {
+                scenario.log("NEW ORDER ENTRY PAGE HAS BEEN FOUND");
+                exists=true;
+            }
+        }
+        catch (Exception e){}
+        return exists;
+    }
+
     public boolean ValidateNewOEAllOrder() throws InterruptedException
     {
         exists=false;
@@ -5425,7 +5463,7 @@ public class NewOrderEntryPage
         exists=false;
         try
         {
-            if(!HelpersMethod.IsExists("//div[@id='poNumberNotification']",driver))
+            if(AddProduct.isDisplayed() && AddProduct.isEnabled())
             {
                 scenario.log("PO# IS MANDATORY MESSAGE HAS NOT BEEN FOUND");
                 scenario.log("DO CHECK EVEN IN CUSTOMER INQ, ACCOUNT, PO# MANDATORY SETTING SHOULD BE SET TO NO");

@@ -54,7 +54,7 @@ public class OrderFactorAdminStep
         ordFacorPage=new orderFactorAdminPage(driver,scenario);
         ordFacorPage.validateOrderFactorPage();
         ordFacorPage.clickOnOrderFactorLevel();
-        ordFacorPage.selectFactorLevel();
+        ordFacorPage.selectFactorLevel(arg1);
         ordFacorPage.validateOrderFactorLevel(arg1);
     }
 
@@ -66,7 +66,7 @@ public class OrderFactorAdminStep
         ordFacorPage=new orderFactorAdminPage(driver,scenario);
         ordFacorPage.validateOrderFactorPage();
         ordFacorPage.clickOnOrderFactorLevel();
-        ordFacorPage.selectFactorLevel();
+        ordFacorPage.selectFactorLevel(arg1);
         ordFacorPage.validateOrderFactorLevel(arg1);
         prodNo=ordFacorPage.readFirstOrderFactorProduct();
         uom=ordFacorPage.readOrderFactorUom();

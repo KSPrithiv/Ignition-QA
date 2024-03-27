@@ -23,7 +23,8 @@ import java.util.concurrent.TimeUnit;
  * @Project DSD_OMS
  * @Author Divya.Ramadas@afsi.com
  */
-public class AdminHomePage {
+public class AdminHomePage
+{
     /* Created by Divya.Ramadas@afsi.com */
     WebDriver driver;
     Scenario scenario;

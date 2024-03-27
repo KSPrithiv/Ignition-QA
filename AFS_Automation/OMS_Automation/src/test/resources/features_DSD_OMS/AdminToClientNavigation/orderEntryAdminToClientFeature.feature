@@ -129,7 +129,7 @@ Feature: scenarios for admin credentials and client credentials
 
   @DisablePO
   Scenario Outline: Test scenario to verify functionality for disabled admin setting for PO#
-    Given User should verify admin setting "<Setting>" is enabled by using "<Key>"
+    Given User should verify admin setting "<Setting>" is disabled by using "<Key>"
     When User enters URL and is on login page and entered credentials for admin setting
     When User is on Home Page
     Then User navigate to Client side
@@ -204,8 +204,8 @@ Feature: scenarios for admin credentials and client credentials
     When User is on Home Page
     Then User navigate to Client side
     Then User should select Order Entry tab for admin
-    Then User selects Account# for Inventory for admin setting
-    Then User must click Start Order button
+    Then User selects Account# for Admin side setting
+    Then User must click Start Order button for Admin setting testing
     Then User should make selection between Pending order or Start New order
     Then User should select Note from popup and Order guide from popup
     Then Enter PO# for New order
@@ -232,8 +232,8 @@ Feature: scenarios for admin credentials and client credentials
     When User is on Home Page
     Then User navigate to Client side
     Then User should select Order Entry tab for admin
-    Then User selects Account# for Inventory for admin setting
-    Then User must click Start Order button
+    Then User selects Account# for Admin side setting
+    Then User must click Start Order button for Admin setting testing
     Then User should make selection between Pending order or Start New order
     Then User should select Note from popup and Order guide from popup
     Then Enter PO# for New order

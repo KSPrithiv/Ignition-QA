@@ -905,8 +905,10 @@ public class OrderEntryPage
         try
         {
             HelpersMethod.waitTillElementLocatedDisplayed(driver, "id", "order-search-card", 20000);
-            HelpersMethod.ScrollElement(driver, driver.findElement(By.id("order-search-card")));
-            HelpersMethod.waitClickableOfEle(driver, StartOrder, 4000);
+            //HelpersMethod.ScrollElement(driver, driver.findElement(By.id("order-search-card")));
+            HelpersMethod.ScrollElement(driver,StartOrder);
+            Thread.sleep(1000);
+            //HelpersMethod.waitClickableOfEle(driver, StartOrder, 10000);
         }
         catch (Exception e)
         {
@@ -1380,7 +1382,6 @@ public class OrderEntryPage
                     }
                 }
             }
-
             Assert.assertEquals(exists,true);
 
             Thread.sleep(2000);
@@ -2322,7 +2323,7 @@ public class OrderEntryPage
             if(HelpersMethod.IsExists("//div[@id='RouteIndexProvider']/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
             {
                 scenario.log("ROUTE HAS DIALOG BOX HAS BEEN FOUND");
-                exists = true;
+                exists=true;
             }
             Assert.assertEquals(exists,true);
         }
@@ -2384,7 +2385,8 @@ public class OrderEntryPage
                     HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle1, 1000000);
                 }
                 status = HelpersMethod.returnDocumentStatus(driver);
-                if (status.equals("loading")) {
+                if (status.equals("loading"))
+                {
                     HelpersMethod.waitTillLoadingPage(driver);
                 }
 
@@ -2394,11 +2396,13 @@ public class OrderEntryPage
                 //routeCha.sendKeys(Keys.TAB);
                 String routeChange = HelpersMethod.JSGetValueEle(driver, routeCha, 10000);
                 scenario.log("ROUTE FOUND IN INPUT BOX IS " + routeChange);
-                if (routeChange.equalsIgnoreCase(TestBase.testEnvironment.get_Route()) || routeChange.contains(TestBase.testEnvironment.get_Route())) {
+                if (routeChange.equalsIgnoreCase(TestBase.testEnvironment.get_Route()) || routeChange.contains(TestBase.testEnvironment.get_Route()))
+                {
                     scenario.log("ROUTE SELECTED IS " + routeChange);
                     exists = true;
                 }
-                if (HelpersMethod.IsExists("//div[@id='toast-container']", driver)) {
+                if (HelpersMethod.IsExists("//div[@id='toast-container']", driver))
+                {
                     new WebDriverWait(driver, Duration.ofMillis(100000)).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@id='toast-container']")));
                 }
                 Thread.sleep(4000);
@@ -3428,6 +3432,21 @@ public class OrderEntryPage
         catch (Exception e){}
     }
 
+    public void validateNoSucessOrErrorSubmittingMessage()
+    {
+        exists=false;
+        try
+        {
+            if(!HelpersMethod.IsExists("//div[contains(@class,'k-notification-error')]|//div[contains(@class,'k-notification-success')]",driver))
+            {
+                scenario.log("NO ERROR MESSAGE HAS BEEN FOUND IN ORDER ENTRY PAGE");
+                exists=true;
+            }
+            Assert.assertEquals(exists,true);
+        }
+        catch (Exception e){}
+    }
+
     public void validateNoSalesHelp()
     {
         exists=false;
@@ -3561,6 +3580,8 @@ public class OrderEntryPage
             if (HelpersMethod.IsExistsById("addButton", driver) && StartOrder.isEnabled())
             {
                 scenario.log("MULTIPLE ORDERS PER DELIVERY DAY, IS ENABLED. AND WORKING AS EXPECTED");
+                HelpersMethod.ScrollElement(driver, SearchOrder);
+                HelpersMethod.ClickBut(driver, StartOrder, 10000);
                 exists=true;
             }
             Assert.assertEquals(exists,true);

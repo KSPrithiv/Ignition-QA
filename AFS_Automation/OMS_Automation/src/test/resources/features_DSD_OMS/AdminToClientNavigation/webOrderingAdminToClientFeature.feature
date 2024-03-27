@@ -45,7 +45,7 @@ Feature: scenarios for admin credentials and client credentials
       |80|70|
     Then Click on Next button
     And Click on SubmitOrder button
-    Then User should be navigated to Order Entry page and verify the error submitting message
+    Then User should be navigated to Order Entry page and verify the error submitting message is not displayed
     Then User sign out from client side for Admin setting changes
     And User should set admin setting "<Setting>" "<Key>" as default before making changes
     Examples:

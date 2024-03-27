@@ -14,7 +14,7 @@ Feature: scenarios for admin credentials and client credentials
     When User is on Home Page
     Then User navigate to Client side
     Then User should select Order Entry tab for admin
-    Then User selects Account# for Inventory for admin setting
+    Then User selects Account# for Admin side setting
     Then User must click Start Order button
     Then User should make selection between Pending order or Start New order
     Then User should select Note from popup and Order guide from popup
@@ -42,7 +42,7 @@ Feature: scenarios for admin credentials and client credentials
     When User is on Home Page
     Then User navigate to Client side
     Then User should select Order Entry tab for admin
-    Then User selects Account# for Inventory for admin setting
+    Then User selects Account# for Admin side setting
     Then User must click Start Order button
     Then User should make selection between Pending order or Start New order
     Then User should select Note from popup and Order guide from popup
