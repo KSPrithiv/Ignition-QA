@@ -15,6 +15,7 @@ import pages_DSD_OMS.orderEntry.CheckOutSummaryPage;
 import pages_DSD_OMS.orderEntry.NewOrderEntryPage;
 import pages_DSD_OMS.orderEntry.OrderEntryPage;
 import pages_DSD_OMS.webOrdering.AdminHomePage;
+import pages_DSD_OMS.webOrdering.AdminOrderEntryPage;
 import pages_DSD_OMS.webOrdering.FeaturedProdSettingsPage;
 import util.DataBaseConnection;
 import util.TestBase;
@@ -41,6 +42,7 @@ public class AdminOrderEntryStep
     static AdminHomePage adminHomePage;
     static catalogSearchPage catSearchPage;
     static LoginPage loginPage;
+    static AdminOrderEntryPage adminOrderEntryPage;
 
     @Before
     public void LaunchBrowser1(Scenario scenario) throws Exception
@@ -88,8 +90,13 @@ public class AdminOrderEntryStep
             orderpage.blackoutDialogHandling();
         }
         newOE=new NewOrderEntryPage(driver,scenario);
-        newOE.Click_Back_But();
+        exists=newOE.verificationOfNewOE();
+        if(exists==true)
+        {
+            newOE.Click_Back_But();
+        }
         orderpage = new OrderEntryPage(driver, scenario);
+        orderpage.ValidateOE();
         orderpage.Read_DeliveryDate();
     }
 
@@ -212,6 +219,14 @@ public class AdminOrderEntryStep
         orderpage=new OrderEntryPage(driver,scenario);
         orderpage.ValidateOE();
         orderpage.validateSucessOrErrorSubmittingMessage();
+    }
+
+    @Then("User should be navigated to Order Entry page and verify the error submitting message is not displayed")
+    public void userShouldBeNavigatedToOrderEntryPageAndVerifyTheErrorSubmittingMessageIsNotDisplayed() throws InterruptedException, AWTException
+    {
+        orderpage=new OrderEntryPage(driver,scenario);
+        orderpage.ValidateOE();
+        orderpage.validateNoSucessOrErrorSubmittingMessage();
     }
 
     @Then("Enter PO# for New order and Po mandatory message should display")
@@ -342,5 +357,43 @@ public class AdminOrderEntryStep
         catSearchPage.selectCatalogSearchLayout(arg0);
         catSearchPage.doNotLoadFullCatalogAutomaticallyDisable();
         catSearchPage.disableDoNotLoadFullCatalogAutomatically();
+    }
+
+    @And("User should enter menu {string} in search bar to navigate to order entry search")
+    public void userShouldEnterMenuInSearchBarToNavigateToOrderEntrySearch(String arg0) throws InterruptedException
+    {
+        adminHomePage = new AdminHomePage(driver, scenario);
+        adminHomePage.ClickOnHamburger();
+        adminHomePage.EnterValueInSearchBox(arg0);
+        adminHomePage.removeUnwantedDialogbox();
+        adminHomePage.CloseHamburger();
+        adminOrderEntryPage=new AdminOrderEntryPage(driver,scenario);
+        adminOrderEntryPage.validatingAdminOrderEntryPage();
+    }
+
+    @Then("User must click Start Order button for Admin setting testing")
+    public void userMustClickStartOrderButtonForAdminSettingTesting() throws InterruptedException, AWTException
+    {
+        exists=false;
+        newOE=new NewOrderEntryPage(driver,scenario);
+        exists=newOE.verificationOfNewOE();
+        if(exists==true)
+        {
+            newOE.Click_Back_But();
+        }
+        orderpage = new OrderEntryPage(driver, scenario);
+        orderpage.ValidateOE();
+        //find whether route is empty or not, if empty should select some route value
+        String routeNo=orderpage.validateRouteValue();
+        if(routeNo==null||routeNo.equals(""))
+        {
+            orderpage.clickRouteIndex();
+            orderpage.validateRouteDialog();
+            orderpage.Route_No(TestBase.testEnvironment.get_RouteFilt(), TestBase.testEnvironment.get_Route());
+            orderpage.validateRouteSelected(TestBase.testEnvironment.get_Route());
+        }
+        //check for 'Start Order' button
+        orderpage.Scroll_start();
+        exists=orderpage.Start_Order();
     }
 }

@@ -35,7 +35,7 @@ Feature: scenarios for admin credentials and client credentials
       | Hide prices in offline mode     | CPHidePriceInOfflineMode    |
 
   @HidePriceDisable
-  Scenario Outline: Test scenario for enabling Hide prices in offline mode
+  Scenario Outline: Test scenario for disabling Hide prices in offline mode
     Given User should verify admin setting "<Setting>" is disabled by using "<Key>"
     When User enters URL and is on login page and entered credentials for admin setting
     When User is on Home Page for DM

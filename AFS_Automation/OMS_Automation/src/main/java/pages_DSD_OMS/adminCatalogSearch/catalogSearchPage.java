@@ -114,7 +114,12 @@ public class catalogSearchPage
                 HelpersMethod.ActClick(driver,doNotAutoLoad,10000);
                 Thread.sleep(1000);
             }
-           // Assert.assertEquals(exists,true);
+            if(HelpersMethod.IsExists("//span[@id='CPCatalogSearchDoNotAutoLoad' and @aria-checked='true']",driver))
+            {
+                scenario.log("DONOT AUTO LOAD PODUCT CATALOG ENABLED");
+                exists=true;
+            }
+            Assert.assertEquals(exists,true);
         }
         catch (Exception e){}
     }
@@ -129,7 +134,12 @@ public class catalogSearchPage
                 HelpersMethod.ActClick(driver,doNotAutoLoad,10000);
                 Thread.sleep(1000);
             }
-            // Assert.assertEquals(exists,true);
+            if(HelpersMethod.IsExists("//span[@id='CPCatalogSearchDoNotAutoLoad' and @aria-checked='false']",driver))
+            {
+                scenario.log("DONOT AUTO LOAD PODUCT CATALOG DISABLED");
+                exists=true;
+            }
+            Assert.assertEquals(exists,true);
         }
         catch (Exception e){}
     }
