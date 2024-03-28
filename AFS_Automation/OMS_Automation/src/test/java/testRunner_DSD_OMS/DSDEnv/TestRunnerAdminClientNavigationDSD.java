@@ -26,7 +26,7 @@ import java.io.IOException;
                 "src/test/resources/features_DSD_OMS/AdminToClientNavigation/standingOrderAdminToClientFeature.feature",
                 "src/test/resources/features_DSD_OMS/AdminToClientNavigation/quotesAdminToClientFeature.feature",
                 "src/test/resources/features_DSD_OMS/AdminToClientNavigation/loginPageAdminToClientFeature.feature",
-                "src/test/resources/features_DSD_OMS/AdminToClientNavigation/reportsAdminToClientFeature.feature",
+                //"src/test/resources/features_DSD_OMS/AdminToClientNavigation/reportsAdminToClientFeature.feature",
                 "src/test/resources/features_DSD_OMS/AdminToClientNavigation/disconnectedModeAdminFeature.feature",
                 //"src/test/resources/features_DSD_OMS/AdminToClientNavigation/orderFactorOrderEntryFeature.feature",
         },

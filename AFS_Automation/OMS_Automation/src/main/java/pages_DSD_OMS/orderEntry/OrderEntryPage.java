@@ -184,17 +184,14 @@ public class OrderEntryPage
         WebElement WebEle = null;
         String status = null;
         status = HelpersMethod.returnDocumentStatus(driver);
-      /*  if (status.equals("loading"))
-        {
-            HelpersMethod.waitTillLoadingPage(driver);
-        }
-        if (HelpersMethod.IsExists("//div[@class='loader']", driver))
-        {
-            WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000000);
-        }*/
         try
         {
+            Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(150))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
             Actions act = new Actions(driver);
             WebElement Search_Input = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='drawer-menu-search-container']/descendant::input");
             act.moveToElement(Search_Input).click().sendKeys("Order Entry").build().perform();
@@ -206,7 +203,7 @@ public class OrderEntryPage
                 HelpersMethod.waitTillLoadingPage(driver);
             }
 
-            Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+            wait = new FluentWait<WebDriver>(driver)
                     .withTimeout(Duration.ofSeconds(150))
                     .pollingEvery(Duration.ofSeconds(2))
                     .ignoring(NoSuchElementException.class);

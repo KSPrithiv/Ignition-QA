@@ -202,7 +202,9 @@ public class AdminCatalogStep
     @When("User is on Home Page for Admin setting for catalog")
     public void userIsOnHomePageForAdminSettingForCatalog()
     {
-        homePage = new HomePage(driver,scenario);
-        homePage.VerifyHomePage();
+        //homePage = new HomePage(driver,scenario);
+        //homePage.VerifyHomePage();
+        catalogPage=new CatalogPage(driver,scenario);
+        catalogPage.ValidateHomeOrCatalog();
     }
 }

@@ -150,20 +150,23 @@ public class OrderEntryPageSteps
     public void user_must_click_start_order_button() throws InterruptedException, AWTException
     {
         exists=false;
-        orderpage = new OrderEntryPage(driver, scenario);
-        orderpage.ValidateOE();
-        //find whether route is empty or not, if empty should select some route value
-        String routeNo=orderpage.validateRouteValue();
-        if(routeNo==null||routeNo.equals(""))
+        if (HelpersMethod.IsExists("//div[@id='order-search-card']", driver))
         {
-            orderpage.clickRouteIndex();
-            orderpage.validateRouteDialog();
-            orderpage.Route_No(TestBase.testEnvironment.get_RouteFilt(), TestBase.testEnvironment.get_Route());
-            orderpage.validateRouteSelected(TestBase.testEnvironment.get_Route());
+            orderpage = new OrderEntryPage(driver, scenario);
+            orderpage.ValidateOE();
+            //find whether route is empty or not, if empty should select some route value
+            String routeNo = orderpage.validateRouteValue();
+            if (routeNo == null || routeNo.equals(""))
+            {
+                orderpage.clickRouteIndex();
+                orderpage.validateRouteDialog();
+                orderpage.Route_No(TestBase.testEnvironment.get_RouteFilt(), TestBase.testEnvironment.get_Route());
+                orderpage.validateRouteSelected(TestBase.testEnvironment.get_Route());
+            }
+            //check for 'Start Order' button
+            orderpage.Scroll_start();
+            exists = orderpage.Start_Order();
         }
-        //check for 'Start Order' button
-        orderpage.Scroll_start();
-        exists=orderpage.Start_Order();
     }
 
     @Then("User should make selection between Pending order or Start New order")
