@@ -27,3 +27,4 @@ Feature: scenarios for admin credentials and client credentials
       |          Key                    |  Setting                                      |
       | CPCatalogDoNotAutoLoad          | Do not load full catalog search automatically |
 
+

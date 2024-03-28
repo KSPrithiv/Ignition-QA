@@ -132,6 +132,12 @@ public class CheckOutSummaryPage
         exists=false;
         Wait<WebDriver> wait;
 
+        wait = new FluentWait<>(driver)
+                .withTimeout(Duration.ofSeconds(120))
+                .pollingEvery(Duration.ofSeconds(2))
+                .ignoring(NoSuchElementException.class);
+        wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
         //HelpersMethod.ScrollUpScrollBar(driver);
         HelpersMethod.ScrollUpScrollBar(driver);
 

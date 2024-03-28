@@ -76,7 +76,7 @@ public class HomePage
             String HomeTitle = driver.getTitle();
             if (HomeTitle.contains("Admin")||HomeTitle.contains("Order Entry"))
             {
-                scenario.log("ADMIN PAGE FOUND");
+                scenario.log("ADMIN PAGE OR ORDER ENTRY PAGE HAS BEEN FOUND");
                 exists = true;
             }
             wait = new FluentWait<WebDriver>(driver)

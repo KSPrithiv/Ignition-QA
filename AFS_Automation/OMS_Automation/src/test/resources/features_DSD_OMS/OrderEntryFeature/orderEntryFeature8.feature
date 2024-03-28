@@ -63,7 +63,7 @@ Scenario: Test scenario for searching for product in catalog index dialog box
     |PO123|
   Then Click on Add product drop down and select catalog option
   And User should select Product from catalog Index popup search input box and Enter Qty for the products
-    |50|60|
+    |100|100|
   Then Click on Next button
   And Click on SubmitOrder button
   Then User should be navigated to Order Entry page

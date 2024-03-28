@@ -59,7 +59,7 @@ Background: For login to application to verify admin settings in client side
     And User should set admin setting "<Setting>" "<Key>" as default before making changes
     Examples:
       |  Setting            |  Key                      |
-      | Order taker field     | CPEnableOCLOrderTakerField|
+      | Order taker field   | CPEnableOCLOrderTakerField|
 
   @OrderTakerEnableVerifyRoute
   Scenario Outline: Test scenario for verifying order taker admin setting and verify route details in client side
@@ -97,4 +97,4 @@ Background: For login to application to verify admin settings in client side
     And User should set admin setting "<Setting>" "<Key>" as default before making changes
     Examples:
       |  Setting            |  Key                      |
-      | Order taker field     | CPEnableOCLOrderTakerField|
+      | Order taker field   | CPEnableOCLOrderTakerField|
