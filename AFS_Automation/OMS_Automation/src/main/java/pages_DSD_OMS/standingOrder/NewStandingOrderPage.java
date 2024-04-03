@@ -731,6 +731,7 @@ public class NewStandingOrderPage
     public void SelectDateToSkip()
     {
         exists=false;
+        int i=0;
         try
         {
             /**************check for all enabled dates in calender and if enabled dates size is 0 or null then should click on arrow button in the top of calender popup
@@ -744,14 +745,19 @@ public class NewStandingOrderPage
                 WebElement arrow=HelpersMethod.FindByElement(driver,"xpath","//span[contains(@class,'k-i-arrow-chevron-right')]");
                 HelpersMethod.JScriptClick(driver,arrow,1000);
                 enabledDates=HelpersMethod.FindByElements(driver,"xpath","//td[contains(@style,'opacity: 1')]/span");
-                for(int i=1;i<=enabledDates.size()-1;i++)
+                //for(int i=1;i<=enabledDates.size()-1;i++)
+                for(WebElement enableDate:enabledDates)
                 {
+                    i++;
                     if(i==1)
                     {
-                        tempEle=HelpersMethod.FindByElement(driver,"xpath","//td[contains(@style,'opacity: 1')]["+i+"]/span");
-                        HelpersMethod.ScrollElement(driver,tempEle);
-                        scenario.log("DATE SELECTED FOR SKIP IS "+tempEle.getText());
-                        HelpersMethod.JScriptClick(driver,tempEle,1000);
+                        //tempEle=HelpersMethod.FindByElement(driver,"xpath","//td[contains(@style,'opacity: 1')]["+i+"]/span");
+                        //HelpersMethod.ScrollElement(driver,tempEle);
+                        //scenario.log("DATE SELECTED FOR SKIP IS "+tempEle.getText());
+                        //HelpersMethod.JScriptClick(driver,tempEle,1000);
+                        HelpersMethod.ScrollElement(driver,enableDate);
+                        scenario.log("DATE SELECTED FOR SKIP IS "+enableDate.getText());
+                        HelpersMethod.JScriptClick(driver,enableDate,10000);
                         exists=true;
                         break;
                     }
@@ -759,14 +765,20 @@ public class NewStandingOrderPage
             }
             else
             {
-                for(int i=enabledDates.size()-1;i>=0;i--)
+                i=0;
+                //for(int i=enabledDates.size()-1;i>=0;i--)
+                for(WebElement enabledDate:enabledDates)
                 {
+                    i++;
                     if(i==length-3)
                     {
-                        tempEle=HelpersMethod.FindByElement(driver,"xpath","//td[contains(@style,'opacity: 1')]["+i+"]/span");
-                        HelpersMethod.ScrollElement(driver,tempEle);
-                        scenario.log("DATE SELECTED FOR SKIP IS "+tempEle.getText());
-                        HelpersMethod.JScriptClick(driver,tempEle,10000);
+                        //tempEle=HelpersMethod.FindByElement(driver,"xpath","//td[contains(@style,'opacity: 1')]["+i+"]/span");
+                        //HelpersMethod.ScrollElement(driver,tempEle);
+                        //scenario.log("DATE SELECTED FOR SKIP IS "+tempEle.getText());
+                        //HelpersMethod.JScriptClick(driver,tempEle,10000);
+                        HelpersMethod.ScrollElement(driver,enabledDate);
+                        scenario.log("DATE SELECTED FOR SKIP IS "+enabledDate.getText());
+                        HelpersMethod.JScriptClick(driver,enabledDate,10000);
                         exists=true;
                         break;
                     }
@@ -1136,13 +1148,14 @@ public class NewStandingOrderPage
 
     public void Refresh_Page(String currentURL)
     {
+        Wait<WebDriver> wait;
         try
         {
             if(HelpersMethod.IsExists("//div[contains(@class,'k-widget k-window k-dialog')]",driver))
             {
                 JavascriptExecutor js = ((JavascriptExecutor) driver);
                 js.executeScript("window.location.reload()");
-                WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(1000));
+                wait = new WebDriverWait(driver, Duration.ofMillis(1000));
                 if (wait.until(ExpectedConditions.alertIsPresent()) == null)
                 {
 
@@ -1152,6 +1165,11 @@ public class NewStandingOrderPage
                     Alert alert = driver.switchTo().alert();
                     alert.accept();
                 }
+                wait = new FluentWait<WebDriver>(driver)
+                        .withTimeout(Duration.ofSeconds(120))
+                        .pollingEvery(Duration.ofSeconds(2))
+                        .ignoring(NoSuchElementException.class);
+                wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
             }
                 //navigate to Standing order
                 driver.navigate().to(currentURL);
@@ -1162,7 +1180,7 @@ public class NewStandingOrderPage
                 HelpersMethod.waitTillLoadingPage(driver);
             }
 
-            Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+            wait = new FluentWait<WebDriver>(driver)
                     .withTimeout(Duration.ofSeconds(120))
                     .pollingEvery(Duration.ofSeconds(2))
                     .ignoring(NoSuchElementException.class);

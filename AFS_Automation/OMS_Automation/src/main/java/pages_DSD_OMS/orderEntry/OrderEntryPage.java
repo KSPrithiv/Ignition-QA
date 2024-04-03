@@ -183,11 +183,11 @@ public class OrderEntryPage
         exists=false;
         WebElement WebEle = null;
         String status = null;
-        status = HelpersMethod.returnDocumentStatus(driver);
+        //status = HelpersMethod.returnDocumentStatus(driver);
         try
         {
             Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
-                    .withTimeout(Duration.ofSeconds(150))
+                    .withTimeout(Duration.ofSeconds(200))
                     .pollingEvery(Duration.ofSeconds(2))
                     .ignoring(NoSuchElementException.class);
             wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
@@ -196,7 +196,7 @@ public class OrderEntryPage
             WebElement Search_Input = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='drawer-menu-search-container']/descendant::input");
             act.moveToElement(Search_Input).click().sendKeys("Order Entry").build().perform();
             WebElement OEMenu = HelpersMethod.FindByElement(driver, "xpath", "//ul[contains(@class,'MuiList-root ')]/descendant::span[contains(text(),'Order Entry')]");
-            HelpersMethod.ActClick(driver, OEMenu, 8000);
+            HelpersMethod.ActClick(driver, OEMenu, 10000);
             status = HelpersMethod.returnDocumentStatus(driver);
             if (status.equals("loading"))
             {
@@ -285,12 +285,18 @@ public class OrderEntryPage
         exists = false;
         WebElement WebEle = null;
         String Acc_No = null;
+        Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                .withTimeout(Duration.ofSeconds(120))
+                .pollingEvery(Duration.ofSeconds(2))
+                .ignoring(NoSuchElementException.class);
+        wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
         String status = HelpersMethod.returnDocumentStatus(driver);
         if (status.equals("loading"))
         {
             HelpersMethod.waitTillLoadingPage(driver);
         }
-        Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+        wait = new FluentWait<WebDriver>(driver)
                 .withTimeout(Duration.ofSeconds(120))
                 .pollingEvery(Duration.ofSeconds(2))
                 .ignoring(NoSuchElementException.class);
@@ -417,7 +423,7 @@ public class OrderEntryPage
                 WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
                 HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 2000000);
             }
-            for (int i = 0; i <= 4; i++)
+            for (int i = 0; i <= 3; i++)
             {
                 //Check for 'Upcoming blackout dates'
                 if (HelpersMethod.IsExists("//p[contains(text(),'Upcoming blackout dates')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]", driver))
@@ -567,13 +573,14 @@ public class OrderEntryPage
     {
         Actions act1=new Actions(driver);
         String status;
+        Wait<WebDriver> wait;
         try
         {
             if(HelpersMethod.IsExists("//div[contains(@class,'k-widget k-window k-dialog')]",driver))
             {
                 JavascriptExecutor js = ((JavascriptExecutor) driver);
                 js.executeScript("window.location.reload()");
-                WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(1000));
+                wait = new WebDriverWait(driver, Duration.ofMillis(1000));
                 if(wait.until(ExpectedConditions.alertIsPresent())==null)
                 {
 
@@ -583,6 +590,24 @@ public class OrderEntryPage
                     Alert alert = driver.switchTo().alert();
                     alert.accept();
                 }
+                wait = new FluentWait<WebDriver>(driver)
+                        .withTimeout(Duration.ofSeconds(120))
+                        .pollingEvery(Duration.ofSeconds(2))
+                        .ignoring(NoSuchElementException.class);
+                wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("productsCard")));
+
+                status = HelpersMethod.returnDocumentStatus(driver);
+                if (status.equals("loading"))
+                {
+                    HelpersMethod.waitTillLoadingPage(driver);
+                }
+
+                wait = new FluentWait<WebDriver>(driver)
+                        .withTimeout(Duration.ofSeconds(120))
+                        .pollingEvery(Duration.ofSeconds(2))
+                        .ignoring(NoSuchElementException.class);
+                wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("productsCard")));
+
                 driver.navigate().refresh();
                 Wait<WebDriver> wait1 = new FluentWait<WebDriver>(driver)
                         .withTimeout(Duration.ofSeconds(120))
@@ -619,7 +644,7 @@ public class OrderEntryPage
                 WebElement OEMenu = HelpersMethod.FindByElement(driver, "xpath", "//ul[contains(@class,'MuiList-root ')]/descendant::span[contains(text(),'Order Entry')]");
                 //HelpersMethod.JScriptClick(driver, OEMenu, 4000);
                 HelpersMethod.ActClick(driver,OEMenu,10000);
-                Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                wait = new FluentWait<WebDriver>(driver)
                     .withTimeout(Duration.ofSeconds(200))
                     .pollingEvery(Duration.ofSeconds(2))
                     .ignoring(NoSuchElementException.class);
@@ -876,7 +901,8 @@ public class OrderEntryPage
             wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
 
             status = HelpersMethod.returnDocumentStatus(driver);
-            if (status.equals("loading")) {
+            if (status.equals("loading"))
+            {
                 HelpersMethod.waitTillLoadingPage(driver);
             }
 
@@ -886,15 +912,16 @@ public class OrderEntryPage
                     .ignoring(NoSuchElementException.class);
             wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
 
-            String OETitle = HelpersMethod.gettingTitle(driver);
-            if(OETitle.contains("Order Entry"))
+            //String OETitle = HelpersMethod.gettingTitle(driver);
+            //if(OETitle.contains("Order Entry"))
+            if(HelpersMethod.IsExists("//div[@id='web-order-page-content']",driver))
             {
                 scenario.log("NAVIGATED TO ORDER ENTRY PAGE");
                 exists = true;
             }
             Assert.assertEquals(exists, true);
-        } catch (Exception e) {
         }
+        catch (Exception e) {}
     }
 
     public void Scroll_start() throws InterruptedException
@@ -1221,6 +1248,18 @@ public class OrderEntryPage
                 .ignoring(NoSuchElementException.class);
         wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
 
+        String status = HelpersMethod.returnDocumentStatus(driver);
+        if (status.equals("loading"))
+        {
+            HelpersMethod.waitTillLoadingPage(driver);
+        }
+
+        wait = new FluentWait<WebDriver>(driver)
+                .withTimeout(Duration.ofSeconds(120))
+                .pollingEvery(Duration.ofSeconds(2))
+                .ignoring(NoSuchElementException.class);
+        wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
         if (formattedDate == null)
         {
             formattedDate = driver.findElement(By.xpath("//input[contains(@id,'delivery-date-web-order-header-calendar')]")).getAttribute("value");
@@ -1423,7 +1462,18 @@ public class OrderEntryPage
         exists = false;
         WebElement WebEle = null;
         String status = null;
-        try {
+        try
+        {
+            if (HelpersMethod.IsExists("//div[@class='loader']", driver))
+            {
+                WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000000);
+            }
+            status = HelpersMethod.returnDocumentStatus(driver);
+            if (status.equals("loading"))
+            {
+                HelpersMethod.waitTillLoadingPage(driver);
+            }
             if (HelpersMethod.IsExists("//div[@class='loader']", driver))
             {
                 WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
@@ -1468,6 +1518,16 @@ public class OrderEntryPage
         String status = null;
         try
         {
+            if (HelpersMethod.IsExists("//div[@class='loader']", driver))
+            {
+                WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000000);
+            }
+            status = HelpersMethod.returnDocumentStatus(driver);
+            if (status.equals("loading"))
+            {
+                HelpersMethod.waitTillLoadingPage(driver);
+            }
             if (HelpersMethod.IsExists("//div[@class='loader']", driver))
             {
                 WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");

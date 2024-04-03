@@ -177,24 +177,29 @@ public class ProductDescriptionPage
         WebElement WebEle=null;
         try
         {
-            if(HelpersMethod.IsExists("//div[@class='loader']",driver))
-            {
-                WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100000);
-            }
+            Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(120))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
             String status = HelpersMethod.returnDocumentStatus(driver);
             if (status.equals("loading"))
             {
                 HelpersMethod.waitTillLoadingPage(driver);
             }
 
-            HelpersMethod.ClickBut(driver,PreviousPage,1000);
-            if(HelpersMethod.IsExists("//div[@class='loader']",driver))
+            if(PreviousPage.isDisplayed() && PreviousPage.isEnabled())
             {
-                WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100000);
+                HelpersMethod.ClickBut(driver, PreviousPage, 1000);
+                exists = true;
             }
-            exists=true;
+            wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(120))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
             Assert.assertEquals(exists,true);
         }
         catch (Exception e){}
@@ -207,14 +212,24 @@ public class ProductDescriptionPage
         WebElement WebEle=null;
         try
         {
-            HelpersMethod.ScrollElement(driver,Delete_cart);
-            HelpersMethod.ClickBut(driver,Delete_cart,1000);
-            if(HelpersMethod.IsExists("//div[@class='loader']",driver))
+            Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(120))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
+            if(Delete_cart.isDisplayed() && Delete_cart.isEnabled())
             {
-                WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 200000);
+                HelpersMethod.ScrollElement(driver, Delete_cart);
+                HelpersMethod.ClickBut(driver, Delete_cart, 1000);
+                exists = true;
             }
-            exists=true;
+            wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(120))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
             Assert.assertEquals(exists,true);
         }
         catch (Exception e){}
@@ -232,9 +247,11 @@ public class ProductDescriptionPage
                     .ignoring(NoSuchElementException.class);
             wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
 
-            if(HelpersMethod.IsExists("//span[contains(text(),'Frequently bought together')]",driver)) {
+            if(HelpersMethod.IsExists("//span[contains(text(),'Frequently bought together')]",driver))
+            {
                 List<WebElement> Product_Names = HelpersMethod.FindByElements(driver, "xpath", "//div[@id='products-may-like-card']/descendant::div[@class='product-description']/a");
-                for (WebElement Prod_Name : Product_Names) {
+                for (WebElement Prod_Name : Product_Names)
+                {
                     String Prod_Text = Prod_Name.getText();
                     scenario.log("PRODUCT FOUND IS: " + Prod_Text);
                 }
@@ -254,11 +271,12 @@ public class ProductDescriptionPage
         exists=false;
         try
         {
-            if(HelpersMethod.IsExists("//div[@class='loader']",driver))
-            {
-                WebElement WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 200000);
-            }
+            Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(120))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
             String head=HelpersMethod.FindByElement(driver,"xpath","//span[contains(@class,'spnmoduleNameHeader')]").getText();
             if(head.contains("Product detail"))
             {

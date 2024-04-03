@@ -193,14 +193,15 @@ public class CompetitivePricingGeneralPage
 
     public void Refresh_Page()
     {
-        Actions act1=new Actions(driver);
+        String status=null;
+        Wait<WebDriver> wait;
         try
         {
             if(HelpersMethod.IsExists("//div[contains(@class,'k-widget k-window k-dialog')]",driver))
             {
                 JavascriptExecutor js = ((JavascriptExecutor) driver);
                 js.executeScript("window.location.reload()");
-                WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(1000));
+                wait = new WebDriverWait(driver, Duration.ofMillis(1000));
                 if(wait.until(ExpectedConditions.alertIsPresent())==null)
                 {
 
@@ -210,17 +211,35 @@ public class CompetitivePricingGeneralPage
                     Alert alert = driver.switchTo().alert();
                     alert.accept();
                 }
+                wait = new FluentWait<WebDriver>(driver)
+                        .withTimeout(Duration.ofSeconds(120))
+                        .pollingEvery(Duration.ofSeconds(2))
+                        .ignoring(NoSuchElementException.class);
+                wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("productsCard")));
+
+                status = HelpersMethod.returnDocumentStatus(driver);
+                if (status.equals("loading"))
+                {
+                    HelpersMethod.waitTillLoadingPage(driver);
+                }
+
+                wait = new FluentWait<WebDriver>(driver)
+                        .withTimeout(Duration.ofSeconds(120))
+                        .pollingEvery(Duration.ofSeconds(2))
+                        .ignoring(NoSuchElementException.class);
+                wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("productsCard")));
             }
-           /* else
-            {*/
+
+
             driver.navigate().to(currentURL);
-            Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+
+            wait = new FluentWait<WebDriver>(driver)
                     .withTimeout(Duration.ofSeconds(120))
                     .pollingEvery(Duration.ofSeconds(2))
                     .ignoring(NoSuchElementException.class);
             wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
 
-            String status = HelpersMethod.returnDocumentStatus(driver);
+            status = HelpersMethod.returnDocumentStatus(driver);
             if (status.equals("loading"))
             {
                 HelpersMethod.waitTillLoadingPage(driver);
@@ -248,7 +267,6 @@ public class CompetitivePricingGeneralPage
                     .pollingEvery(Duration.ofSeconds(2))
                     .ignoring(NoSuchElementException.class);
             wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
-            //}
         }
         catch (Exception e){}
     }

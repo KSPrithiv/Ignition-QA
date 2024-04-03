@@ -244,7 +244,7 @@ public class ProductPage
                 HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000000);
             }
             HelpersMethod.ScrollElement(driver, SearchBar);
-            HelpersMethod.ActClick(driver,Clear,1000);
+            HelpersMethod.ActClick(driver,Clear,10000);
 
             if (HelpersMethod.IsExists("//div[@class='loader']", driver))
             {
@@ -252,7 +252,7 @@ public class ProductPage
                 HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000000);
             }
             //Enter product# in search input box
-            HelpersMethod.EnterText(driver, SearchBar, 1000, Prod_No);
+            HelpersMethod.EnterText(driver, SearchBar, 10000, Prod_No);
             String status = HelpersMethod.returnDocumentStatus(driver);
             if (status.equals("loading"))
             {
@@ -264,7 +264,7 @@ public class ProductPage
                 HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000000);
             }
             //Click on search index icon
-            HelpersMethod.ActClick(driver, SearchIndex, 2000);
+            HelpersMethod.ActClick(driver, SearchIndex, 10000);
             scenario.log("PRODUCT NUMBER ENTERED IN SEARCH BOX IS " + Prod_No);
 
             Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
@@ -304,8 +304,8 @@ public class ProductPage
                 HelpersMethod.ScrollElement(driver, productContainer);
                 if (productContainer.isDisplayed() && productContainer.isEnabled())
                 {
-                    HelpersMethod.clearText(driver,productContainer,1000);
-                    HelpersMethod.EnterText(driver, productContainer, 800, Qty_UnitCase);
+                    HelpersMethod.clearText(driver,productContainer,10000);
+                    HelpersMethod.EnterText(driver, productContainer, 10000, Qty_UnitCase);
                     productContainer.sendKeys(Keys.TAB);
                     scenario.log("QTY ENTERE IS " + Qty_UnitCase);
                     status = HelpersMethod.returnDocumentStatus(driver);
@@ -316,7 +316,7 @@ public class ProductPage
                     //Click on Add to cart button
                     WebElement addButton = HelpersMethod.FindByElement(driver, "xpath", "//button[contains(@id,'addCartBtn')]");
                     //HelpersMethod.ScrollElement(driver, addButton);
-                    HelpersMethod.ActClick(driver, addButton, 1000);
+                    HelpersMethod.ActClick(driver, addButton, 10000);
                     Thread.sleep(1000);
                     //"Product is currently unavailable" popup
                     if (HelpersMethod.IsExists("//div[contains(text(),'This product is currently unavailable.')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))

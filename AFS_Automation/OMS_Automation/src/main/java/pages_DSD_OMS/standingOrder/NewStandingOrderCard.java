@@ -1049,12 +1049,12 @@ public class NewStandingOrderCard
             {
                 List<WebElement> selectableDates = HelpersMethod.FindByElements(driver,"xpath","//td[contains(@class,'k-calendar-td') and contains(@style,'opacity: 1;')]");
                 int j=selectableDates.size()-1;
-                //for (int i = selectableDates.size() - 1; i >= 0; i--)
-               for(int i=0;i<=selectableDates.size()-1;i++)
+                for (int i = selectableDates.size() - 1; i >= 1; i--)
+               //for(int i=0;i<=selectableDates.size()-1;i++)
                {
                    act1.moveToElement(selectableDates.get(i)).build().perform();
-                   if (i == selectableDates.size() - 1)
-                   //if (i == 1)
+                   //if (i == selectableDates.size() - 1)
+                   if (i == 1)
                    {
                        String selectTo = selectableDates.get(i).getAttribute("title");
                        WebElement selTo = HelpersMethod.FindByElement(driver, "xpath", "//td[contains(@class,'k-calendar-td') and @title='" + selectTo + "']");

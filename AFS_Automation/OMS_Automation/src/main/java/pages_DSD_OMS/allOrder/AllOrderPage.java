@@ -287,7 +287,6 @@ public class AllOrderPage
         {
             OrderNo=ReadingOrderNo();
             HelpersMethod.ScrollElement(driver, AddFilter);
-            ///////////////////////HelpersMethod.AddFilterSearch(driver, "Order Number", OrderNo);
             if(HelpersMethod.IsExists("//div[@class='loader']",driver))
             {
                 WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
@@ -329,8 +328,9 @@ public class AllOrderPage
                     HelpersMethod.EnterText(driver,Search2,10000,OrderNo);
 
                     //Click on Apply button
-                    WebElement applyButton = Search2.findElement(By.xpath(".//button[text()='Apply']"));
-                    HelpersMethod.ClickBut(driver,applyButton,1000);
+                    //WebElement applyButton = Search2.findElement(By.xpath(".//button[text()='Apply']"));
+                    WebElement applyButton=HelpersMethod.FindByElement(driver,"xpath","//button[text()='Apply']");
+                    HelpersMethod.ActClick(driver,applyButton,10000);
                     //loading Icon
                     if (HelpersMethod.IsExists("//div[@class='loader']", driver))
                     {
@@ -361,7 +361,7 @@ public class AllOrderPage
                 scenario.log("ORDER HAS BEEN FOUND " + OrderNo);
                 exists = true;
             }
-            Assert.assertTrue(exists);
+            Assert.assertEquals(exists,true);
         }
         catch (Exception e) {}
     }
@@ -1454,14 +1454,14 @@ public class AllOrderPage
     {
         exists=false;
         WebElement WebEle;
-        new WebDriverWait(driver,Duration.ofMillis(10000)).until(ExpectedConditions.visibilityOf(SubmitedDropdown));
+        //new WebDriverWait(driver,Duration.ofMillis(10000)).until(ExpectedConditions.visibilityOf(SubmitedDropdown));
         try
         {
             if(SubmitedDropdown.isDisplayed())
             {
                 WebEle=HelpersMethod.FindByElement(driver,"id","openOrdersSearchCard");
                 HelpersMethod.ScrollElement(driver, WebEle);
-                HelpersMethod.ActClick(driver, SubmitedDropdown, 1000);
+                HelpersMethod.ActClick(driver, SubmitedDropdown, 20000);
                 exists = true;
             }
             else
@@ -2027,12 +2027,7 @@ public class AllOrderPage
     {
         String status=null;
         Actions act1=new Actions(driver);
-
-        Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
-                .withTimeout(Duration.ofSeconds(120))
-                .pollingEvery(Duration.ofSeconds(2))
-                .ignoring(NoSuchElementException.class);
-        wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+        Wait<WebDriver> wait;
         try
         {
             if(HelpersMethod.IsExists("//div[contains(@class,'k-widget k-window k-dialog')]",driver))
@@ -2049,10 +2044,27 @@ public class AllOrderPage
                     Alert alert = driver.switchTo().alert();
                     alert.accept();
                 }
+                wait = new FluentWait<WebDriver>(driver)
+                        .withTimeout(Duration.ofSeconds(120))
+                        .pollingEvery(Duration.ofSeconds(2))
+                        .ignoring(NoSuchElementException.class);
+                wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("productsCard")));
+
+                status = HelpersMethod.returnDocumentStatus(driver);
+                if (status.equals("loading"))
+                {
+                    HelpersMethod.waitTillLoadingPage(driver);
+                }
+
+                wait = new FluentWait<WebDriver>(driver)
+                        .withTimeout(Duration.ofSeconds(120))
+                        .pollingEvery(Duration.ofSeconds(2))
+                        .ignoring(NoSuchElementException.class);
+                wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("productsCard")));
             }
-           /* else
-            {*/
-                driver.navigate().refresh();
+
+            driver.navigate().refresh();
+
                 wait = new FluentWait<WebDriver>(driver)
                         .withTimeout(Duration.ofSeconds(200))
                         .pollingEvery(Duration.ofSeconds(2))
@@ -2074,7 +2086,6 @@ public class AllOrderPage
                 //navigate to Open order
                 driver.navigate().to(currentURL);
                 scenario.log("NAVIGATED TO "+currentURL);
-            //}
 
             wait = new FluentWait<WebDriver>(driver)
                     .withTimeout(Duration.ofSeconds(120))
