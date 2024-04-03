@@ -82,6 +82,7 @@ public class OrderGuidePage {
 
     public void Refresh_Page(String currentURL)
     {
+        Wait<WebDriver> wait;
         String status = HelpersMethod.returnDocumentStatus(driver);
         if (status.equals("loading"))
         {
@@ -97,7 +98,7 @@ public class OrderGuidePage {
             if (HelpersMethod.IsExists("//div[contains(@class,'k-widget k-window k-dialog')]", driver)) {
                 JavascriptExecutor js = ((JavascriptExecutor) driver);
                 js.executeScript("window.location.reload()");
-                WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(1000));
+                wait = new WebDriverWait(driver, Duration.ofMillis(1000));
                 if (wait.until(ExpectedConditions.alertIsPresent()) == null)
                 {
 
@@ -107,6 +108,11 @@ public class OrderGuidePage {
                     Alert alert = driver.switchTo().alert();
                     alert.accept();
                 }
+                wait = new FluentWait<WebDriver>(driver)
+                        .withTimeout(Duration.ofSeconds(150))
+                        .pollingEvery(Duration.ofSeconds(2))
+                        .ignoring(NoSuchElementException.class);
+                wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='orderGuides-container']")));
             }
 
             status = HelpersMethod.returnDocumentStatus(driver);
@@ -114,7 +120,7 @@ public class OrderGuidePage {
             {
                 HelpersMethod.waitTillLoadingPage(driver);
             }
-            Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+            wait = new FluentWait<WebDriver>(driver)
                     .withTimeout(Duration.ofSeconds(150))
                     .pollingEvery(Duration.ofSeconds(2))
                     .ignoring(NoSuchElementException.class);

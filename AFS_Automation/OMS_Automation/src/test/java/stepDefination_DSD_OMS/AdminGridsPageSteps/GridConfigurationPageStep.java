@@ -195,11 +195,11 @@ public class GridConfigurationPageStep
         {
             HelpersMethod.waitTillLoadingPage(driver);
         }
-        if(HelpersMethod.IsExists("//div[@class='loader']",driver))
-        {
-            WebElement WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 800000);
-        }
+        Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                .withTimeout(Duration.ofSeconds(200))
+                .pollingEvery(Duration.ofSeconds(2))
+                .ignoring(NoSuchElementException.class);
+        wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
     }
 
     @Then("User navigates to Order entry page and in new order entry page finds same grid as default grid {string}")
@@ -217,23 +217,33 @@ public class GridConfigurationPageStep
         orderPage = new OrderEntryPage(driver, scenario);
         orderPage.NavigateToOrderEntry();
         orderPage.ChangeAccount();
-        //orderpage.PopUps_After_AccountChange();
-        orderPage.ValidateOE();
-        //check for 'Start Order' button
-        orderPage.Scroll_start();
-        exists=orderPage.Start_Order();
-        orderPage.NoPendingOrderPopup();
-        //Selecting no Order guide and no note popup
-        for(int i=0;i<=1;i++)
-        {
-            orderPage.OrderGuidePopup();
-            orderPage.NoNotePopHandling();
-        }
+        orderPage.PopUps_After_AccountChange();
 
-        newOE=new NewOrderEntryPage(driver,scenario);
-        newOE.ValidateNewOE();
-        newOE.EnterPO_No(PO_No.get(0).get(0));
-        newOE.validateDefaultGrid(arg0);
+        if(HelpersMethod.IsExists("//div[@id='orderEntryCard']",driver))
+        {
+            newOE=new NewOrderEntryPage(driver,scenario);
+            newOE.ValidateNewOE();
+            newOE.EnterPO_No(PO_No.get(0).get(0));
+            newOE.validateDefaultGrid(arg0);
+
+        }
+        else
+        {
+            newOE = new NewOrderEntryPage(driver, scenario);
+            newOE.Click_Back_But();
+            orderPage = new OrderEntryPage(driver, scenario);
+            orderPage.ValidateOE();
+            //check for 'Start Order' button
+            orderPage.Scroll_start();
+            exists = orderPage.Start_Order();
+            orderPage.NoPendingOrderPopup();
+            //Selecting no Order guide and no note popup
+            for (int i = 0; i <= 1; i++)
+            {
+                orderPage.OrderGuidePopup();
+                orderPage.NoNotePopHandling();
+            }
+        }
 
         //after validating default grid in New OE page signout
         homePage=new HomePage(driver,scenario);
@@ -250,11 +260,7 @@ public class GridConfigurationPageStep
         {
             HelpersMethod.waitTillLoadingPage(driver);
         }
-        /*if(HelpersMethod.IsExists("//div[@class='loader']",driver))
-        {
-            WebElement WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 800000);
-        }*/
+
         Wait<WebDriver> wait = new FluentWait<>(driver)
                 .withTimeout(Duration.ofSeconds(120))
                 .pollingEvery(Duration.ofSeconds(5))

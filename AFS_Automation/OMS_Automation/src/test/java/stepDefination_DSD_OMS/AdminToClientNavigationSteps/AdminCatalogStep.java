@@ -44,8 +44,8 @@ public class AdminCatalogStep
     public void LaunchBrowser1(Scenario scenario) throws Exception
     {
         this.scenario=scenario;
-        TestBase driver1=TestBase.getInstanceOfDriver();
-        driver= driver1.getDriver();
+        //TestBase driver1=TestBase.getInstanceOfDriver();
+        driver= TestBase.getDriver();
     }
 
     @Then("User should navigate to {string} and validate it")
@@ -85,7 +85,7 @@ public class AdminCatalogStep
     {
         orderpage = new OrderEntryPage(driver, scenario);
         orderpage.ChangeAccount();
-        //orderpage.PopUps_After_AccountChange();
+        orderpage.PopUps_After_AccountChange();
         orderpage.Read_DeliveryDate();
     }
 

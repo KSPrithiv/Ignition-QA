@@ -9,7 +9,7 @@ Feature: Inventory
     Then User selects Account# for Inventory
 
   @AddingProductsToInventory
-  Scenario: Test scneario for adding products to inventory
+  Scenario: Test scenario for adding products to inventory
     Given User must be on Order Entry Page to select Inventory tab
     And User should navigate to Inventory tab
     Then User should be in Store inventory tab, in inventory page
@@ -20,7 +20,7 @@ Feature: Inventory
       |6 |10|
 
   @RunningTotal
-  Scenario: Test scneario for adding products to inventory
+  Scenario: Test scenario for finding running total unit in inventory
     Given User must be on Order Entry Page to select Inventory tab
     And User should navigate to Inventory tab
     Then User should be in Store inventory tab, in inventory page

@@ -132,12 +132,12 @@ http://maven.apache.org/xsd/maven-4.0.0.xsd">
             <artifactId>javax.mail</artifactId>
             <version>1.6.2</version>
         </dependency>
-        <!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java -->
-        <dependency>
-            <groupId>org.seleniumhq.selenium</groupId>
-            <artifactId>selenium-java</artifactId>
-            <version>4.16.1</version>
-        </dependency>
+       <!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java -->
+       <dependency>
+           <groupId>org.seleniumhq.selenium</groupId>
+           <artifactId>selenium-java</artifactId>
+           <version>4.19.1</version>
+       </dependency>
         <dependency>
             <groupId>org.aspectj</groupId>
             <artifactId>aspectjweaver</artifactId>
@@ -207,7 +207,7 @@ http://maven.apache.org/xsd/maven-4.0.0.xsd">
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-support</artifactId>
-            <version>4.11.0</version>
+            <version>4.19.1</version>
         </dependency>
         <dependency>
             <groupId>org.apache.logging.log4j</groupId>

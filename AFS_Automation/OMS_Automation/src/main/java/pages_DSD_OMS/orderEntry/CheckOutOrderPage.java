@@ -177,7 +177,19 @@ public class CheckOutOrderPage
             if(HelpersMethod.IsExists("//div[@id='checkoutCard']",driver))
             {
                 Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
-                        .withTimeout(Duration.ofSeconds(100))
+                        .withTimeout(Duration.ofSeconds(200))
+                        .pollingEvery(Duration.ofSeconds(2))
+                        .ignoring(NoSuchElementException.class);
+                wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
+                String status = HelpersMethod.returnDocumentStatus(driver);
+                if (status.equals("loading"))
+                {
+                    HelpersMethod.waitTillLoadingPage(driver);
+                }
+
+                wait = new FluentWait<WebDriver>(driver)
+                        .withTimeout(Duration.ofSeconds(200))
                         .pollingEvery(Duration.ofSeconds(2))
                         .ignoring(NoSuchElementException.class);
                 wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
@@ -189,18 +201,18 @@ public class CheckOutOrderPage
                     HelpersMethod.ClickBut(driver, NextButton, 60000);
                     exists=true;
                     wait = new FluentWait<WebDriver>(driver)
-                            .withTimeout(Duration.ofSeconds(100))
+                            .withTimeout(Duration.ofSeconds(200))
                             .pollingEvery(Duration.ofSeconds(2))
                             .ignoring(NoSuchElementException.class);
                     wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
-                    String status = HelpersMethod.returnDocumentStatus(driver);
+                    status = HelpersMethod.returnDocumentStatus(driver);
                     if (status.equals("loading"))
                     {
                         HelpersMethod.waitTillLoadingPage(driver);
                     }
 
                     wait = new FluentWait<WebDriver>(driver)
-                            .withTimeout(Duration.ofSeconds(100))
+                            .withTimeout(Duration.ofSeconds(200))
                             .pollingEvery(Duration.ofSeconds(2))
                             .ignoring(NoSuchElementException.class);
                     wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
@@ -552,7 +564,7 @@ public class CheckOutOrderPage
                 if(HelpersMethod.IsExists("//div[@id='paymentMethodCard']/descendant::span[contains(@class,'k-icon k-i-arrow-chevron-down')]",driver))
                 {
                     WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@id='paymentMethodCard']/descendant::span[contains(@class,'k-icon k-i-arrow-chevron-down')]");
-                    HelpersMethod.ClickBut(driver,WebEle,1000);
+                    HelpersMethod.ClickBut(driver,WebEle,10000);
                 }
             }
         }
@@ -711,13 +723,26 @@ public class CheckOutOrderPage
         exists=false;
         try
         {
-            WebElement withoutPayment=HelpersMethod.FindByElement(driver,"xpath","//button[@id='allowOrderWithoutPayment']");
-            if(withoutPayment.isDisplayed() && withoutPayment.isEnabled())
+            if(!HelpersMethod.IsExists("//div[@class='payment-method-container'/descendant::tbody/tr[@class='selected']",driver))
             {
-                exists=true;
-                HelpersMethod.ScrollElement(driver,withoutPayment);
-                HelpersMethod.ClickBut(driver, withoutPayment, 10000);
-                scenario.log("CONTINUE ORDER WITHOUT PAYMENT METHOD IS SELECTED");
+                if (HelpersMethod.IsExists("//button[@id='allowOrderWithoutPayment']", driver))
+                {
+                    WebElement withoutPayment = HelpersMethod.FindByElement(driver, "xpath", "//button[@id='allowOrderWithoutPayment']");
+                    if (withoutPayment.isEnabled())
+                    {
+                        HelpersMethod.ScrollElement(driver, withoutPayment);
+                        HelpersMethod.ClickBut(driver, withoutPayment, 10000);
+                        exists = true;
+                        scenario.log("CONTINUE ORDER WITHOUT PAYMENT METHOD IS SELECTED");
+                    }
+                    else
+                    {
+                        WebElement paymentMode=HelpersMethod.FindByElement(driver,"xpath","//div[@class='payment-method-container']/descendant::tbody/tr[1]");
+                        HelpersMethod.ActClick(driver,paymentMode,10000);
+                        exists=true;
+                        scenario.log("PAYMENT OPTION HAS BEEN SELECTED, NOT CONTINUE ORDER WITHOUT PAYMENT, MAY BE BECAUSE IT IS DISABLED");
+                    }
+                }
             }
             Assert.assertEquals(exists,true);
         }

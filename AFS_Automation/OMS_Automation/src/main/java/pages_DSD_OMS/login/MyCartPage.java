@@ -75,7 +75,7 @@ public class MyCartPage
         if(CheOutOrder.isDisplayed() && CheOutOrder.isEnabled())
         {
             HelpersMethod.ScrollElement(driver, CheOutOrder);
-            HelpersMethod.ClickBut(driver, CheOutOrder, 1000);
+            HelpersMethod.ClickBut(driver, CheOutOrder, 10000);
             exists = true;
 
             wait = new FluentWait<WebDriver>(driver)
@@ -94,9 +94,10 @@ public class MyCartPage
 
                 WebElement selectPopup = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-widget k-window k-dialog')]");
                 WebEle = selectPopup.findElement(By.xpath(".//div[contains(text(),'New order')]"));
-                HelpersMethod.ActClick(driver, WebEle, 1000);
+                HelpersMethod.ActClick(driver, WebEle, 10000);
                 WebEle = selectPopup.findElement(By.xpath("//div[contains(@class,'k-widget k-window k-dialog')]/descendant::button[text()='Ok']"));
-                HelpersMethod.ActClick(driver, WebEle, 1000);
+                HelpersMethod.ActClick(driver, WebEle, 10000);
+                Thread.sleep(1000);
 
                 wait = new FluentWait<WebDriver>(driver)
                         .withTimeout(Duration.ofSeconds(120))
@@ -104,7 +105,6 @@ public class MyCartPage
                         .ignoring(NoSuchElementException.class);
                 wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
             }
-
 
             //to handle pending order popup
             if (HelpersMethod.IsExists("//div[contains(text(),'Pending order will be overwritten')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]", driver))

@@ -275,7 +275,7 @@ public class DMOEPage
         {
             if(HelpersMethod.IsExists("//div[contains(@class,'k-widget k-window k-dialog')]",driver))
             {
-                WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-widget k-window k-dialog')]/descendant::button[2]");
+                WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-widget k-window k-dialog')]/descendant::button[3]");
                 HelpersMethod.ClickBut(driver,WebEle,2000);
                 //HelpersMethod.ActClick(driver, WebEle, 1000);
                 //HelpersMethod.JScriptClick(driver,WebEle,2000);

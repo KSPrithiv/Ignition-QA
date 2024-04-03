@@ -760,6 +760,7 @@ public class AdminHomePage
     public void refreshPage()
     {
         String status=null;
+        Wait<WebDriver> wait;
         status = HelpersMethod.returnDocumentStatus(driver);
         if (status.equals("loading"))
         {
@@ -770,32 +771,45 @@ public class AdminHomePage
             {
                 JavascriptExecutor js = ((JavascriptExecutor) driver);
                 js.executeScript("window.location.reload()");
-                WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(1000));
+                wait = new WebDriverWait(driver, Duration.ofMillis(1000));
                 if (wait.until(ExpectedConditions.alertIsPresent()) == null) {}
                 else
                 {
                     Alert alert = driver.switchTo().alert();
                     alert.accept();
                 }
+                wait = new FluentWait<WebDriver>(driver)
+                        .withTimeout(Duration.ofSeconds(150))
+                        .pollingEvery(Duration.ofSeconds(2))
+                        .ignoring(NoSuchElementException.class);
+                wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
             }
 
-                status = HelpersMethod.returnDocumentStatus(driver);
+            wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(150))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
+            status = HelpersMethod.returnDocumentStatus(driver);
                 if (status.equals("loading"))
                 {
                     HelpersMethod.waitTillLoadingPage(driver);
                 }
-                if (HelpersMethod.IsExists("//div[@class='loader']", driver))
-                {
-                    WebElement WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000000);
-                }
-                Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+
+            wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(150))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
+                wait = new FluentWait<WebDriver>(driver)
                     .withTimeout(Duration.ofSeconds(150))
                     .pollingEvery(Duration.ofSeconds(2))
                     .ignoring(NoSuchElementException.class);
                 wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
 
-            //Navigate to main page
+               //Navigate to main page
                 driver.navigate().refresh();
                 status = HelpersMethod.returnDocumentStatus(driver);
                 if (status.equals("loading"))

@@ -218,10 +218,10 @@ public class AllOrdersPageStep
         summary = new CheckOutSummaryPage(driver,scenario);
         summary.validateSummaryPage();
         summary.ClickSubmit();
+        summary.additionalOrderPopup();
         for(int i=0;i<=2;i++)
         {
             summary.cutoffDialog();
-            summary.additionalOrderPopup();
             summary.percentageOfAverageProd();
         }
         Ord_No = summary.Get_Order_No();

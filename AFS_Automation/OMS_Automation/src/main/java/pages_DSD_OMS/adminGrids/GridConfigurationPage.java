@@ -440,7 +440,7 @@ public class GridConfigurationPage
             if(HelpersMethod.IsExists("//span[@id='SelectGrid']",driver))
             {
                 WebEle=HelpersMethod.FindByElement(driver,"id","SelectGrid");
-                HelpersMethod.ActClick(driver,WebEle,1000);
+                HelpersMethod.ActClick(driver,WebEle,10000);
                 new WebDriverWait(driver,Duration.ofMillis(10000)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class,'k-popup k-child-animation-container')]"))));
                 exists=true;
             }

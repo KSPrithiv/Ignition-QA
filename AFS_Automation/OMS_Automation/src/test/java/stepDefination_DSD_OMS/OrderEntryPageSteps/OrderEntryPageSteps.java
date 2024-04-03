@@ -110,7 +110,7 @@ public class OrderEntryPageSteps
         {
             orderpage = new OrderEntryPage(driver, scenario);
             orderpage.ChangeAccount();
-            //orderpage.PopUps_After_AccountChange();
+            orderpage.PopUps_After_AccountChange();
             //orderpage.Read_DeliveryDate();
             flag1=true;
         }
@@ -144,6 +144,7 @@ public class OrderEntryPageSteps
         orderpage.SelectDate(int1);
         orderpage.cancelOGselection();
         orderpage.ChangedDeliveryDate();
+        orderpage.PopUps_After_AccountChange();
     }
 
     @Then("User must click Start Order button")
@@ -198,36 +199,37 @@ public class OrderEntryPageSteps
     @Then("User should select Note from popup and Order guide from popup")
     public void userShouldSelectNoteFromPopupAndOrderGuideFromPopup() throws InterruptedException, AWTException
     {
-        orderpage = new OrderEntryPage(driver, scenario);
-        for(int i=0;i<=1;i++)
-        {
-            orderpage.OrderGuidePopup();
-            Thread.sleep(1000);
-            orderpage.NoNotePopHandling();
-        }
-        String status = HelpersMethod.returnDocumentStatus(driver);
-        if (status.equals("loading"))
-        {
-            HelpersMethod.waitTillLoadingPage(driver);
-        }
+        Wait<WebDriver> wait;
+            orderpage = new OrderEntryPage(driver, scenario);
+            for (int i = 0; i <= 1; i++)
+            {
+                orderpage.OrderGuidePopup();
+                Thread.sleep(1000);
+                orderpage.NoNotePopHandling();
+            }
+            String status = HelpersMethod.returnDocumentStatus(driver);
+            if (status.equals("loading"))
+            {
+                HelpersMethod.waitTillLoadingPage(driver);
+            }
 
-        Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
-                .withTimeout(Duration.ofSeconds(120))
-                .pollingEvery(Duration.ofSeconds(2))
-                .ignoring(NoSuchElementException.class);
-        wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+            wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(120))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
 
-        status = HelpersMethod.returnDocumentStatus(driver);
-        if (status.equals("loading"))
-        {
-            HelpersMethod.waitTillLoadingPage(driver);
-        }
+            status = HelpersMethod.returnDocumentStatus(driver);
+            if (status.equals("loading"))
+            {
+                HelpersMethod.waitTillLoadingPage(driver);
+            }
 
-        wait = new FluentWait<WebDriver>(driver)
-                .withTimeout(Duration.ofSeconds(120))
-                .pollingEvery(Duration.ofSeconds(2))
-                .ignoring(NoSuchElementException.class);
-        wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+            wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(120))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
     }
 
     @Then("User should select Note from popup and Order guide from popup for OG")
@@ -400,6 +402,7 @@ public class OrderEntryPageSteps
         exists=newOE.ClickNext();
         newOE.OutOfStockPop_ERP();
         checkorder=new CheckOutOrderPage(driver,scenario);
+
         String status = HelpersMethod.returnDocumentStatus(driver);
         if (status.equals("loading"))
         {

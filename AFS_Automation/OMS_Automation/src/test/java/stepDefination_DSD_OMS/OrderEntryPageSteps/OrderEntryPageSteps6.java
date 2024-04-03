@@ -118,6 +118,7 @@ public class OrderEntryPageSteps6
     public void userRemovesRouteDetailsFromRouteFieldAndRouteIsEmpty() throws InterruptedException, AWTException
     {
         orderpage=new OrderEntryPage(driver,scenario);
+        orderpage.ValidateOE();
         String routeNo=orderpage.validateRouteValue();
         if(routeNo!=null||!routeNo.equals(""))
         {
@@ -199,6 +200,7 @@ public class OrderEntryPageSteps6
     public void userShouldClickOnSalesRepIndexIconAndSelectSalesRep() throws InterruptedException, AWTException
     {
         orderpage=new OrderEntryPage(driver, scenario);
+        orderpage.ValidateOE();
         changedSalesRep= orderpage.salesRep();
     }
 
@@ -208,6 +210,5 @@ public class OrderEntryPageSteps6
         newOE=new NewOrderEntryPage(driver,scenario);
         newOE.ValidateNewOE();
         newOE.validateSalesRep(changedSalesRep);
-
     }
 }

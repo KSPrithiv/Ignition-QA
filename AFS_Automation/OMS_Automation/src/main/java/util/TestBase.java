@@ -105,7 +105,8 @@ public class TestBase
                 chromeOptions.addArguments("--disk-cache-size=0");
                 chromeOptions.addArguments("--dns-prefetch-disable");
                 //chromeOptions.addArguments("--remote-allow-origins=*");
-                driver.set(ThreadGuard.protect(new ChromeDriver(chromeOptions)));
+                //driver.set(ThreadGuard.protect(new ChromeDriver(chromeOptions)));
+                driver.set(new ChromeDriver(chromeOptions));
             }
             break;
             case "firefox":
@@ -184,7 +185,8 @@ public class TestBase
                 chromeOptions.addArguments("--disable-offline-load-stale-cache");
                 chromeOptions.addArguments("--disk-cache-size=0");
                 chromeOptions.addArguments("--dns-prefetch-disable");
-                driver.set(ThreadGuard.protect(new ChromeDriver(chromeOptions)));
+                //driver.set(ThreadGuard.protect(new ChromeDriver(chromeOptions)));
+                driver.set(new ChromeDriver(chromeOptions));
             }
             break;
             default:

@@ -16,14 +16,14 @@ import java.io.IOException;
  * @Author Divya.Ramadas@afsi.com
  */
 @CucumberOptions
-        (features = "src/test/resources/features_DSD_OMS/WebOrderingFeature/NavigationFeature.feature",
+        (features = "src/test/resources/features_DSD_OMS/WebOrderingFeature",
                 glue = {"stepDefination_DSD_OMS"},
                 plugin = {"pretty",
                         "json:target/cucumber.json",
                         "html:target/cucumber-html-report.html",
                         "com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:Reports/spark/",
                         "rerun:target/failedrerun.txt"},
-                monochrome = true,tags = "@DragAndDropMenu")
+                monochrome = true)
 
 public class TestRunnerWebOrdering extends AbstractTestNGCucumberTests
 {

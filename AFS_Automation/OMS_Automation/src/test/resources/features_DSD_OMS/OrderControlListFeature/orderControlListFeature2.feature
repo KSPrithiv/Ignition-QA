@@ -13,6 +13,8 @@ Feature: Order control list
     And User should navigate to OCL
     Then User should select Order taker from drop down
     And Change the delivery date 2 days after current date
+    Then User should search for valid customers in OCL
+      |Milos|
     Then User Clicks on Untaken radio button and user clicks on Refresh button
     Then User should add customer note using Order control List
     Then User clicks on Order icon in OCL grid
@@ -25,8 +27,8 @@ Feature: Order control list
       |100|100|
     Then Click on Next button and select option Continue without payment option
     And Click on Submit Order button and read Order_no for OCL
-    Then User should select Note from popup and Order guide from popup
-    Then User validate that he is in NewOE page
+    Then User should select Note from popup and Order guide from popup for OCL
+    Then User validate that he is in NewOE page for OCL
     And User Clicks on Back button in NewOE page and User must be in OCL page
     Then User Clicks on Taken radio button
     And User should verify Order number created in OCL grid and Order icon in OCL

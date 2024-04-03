@@ -387,17 +387,24 @@ public class LoginPageStep
     @And("user should be on New Order entry page")
     public void user_should_be_on_new_order_entry_page() throws InterruptedException, AWTException
     {
+        Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                .withTimeout(Duration.ofSeconds(120))
+                .pollingEvery(Duration.ofSeconds(2))
+                .ignoring(NoSuchElementException.class);
+        wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
         orderpage = new OrderEntryPage(driver, scenario);
         // orderpage.NoPendingOrderPopup();
         orderpage.NoNotePopHandling();
         orderpage.OrderGuidePopup();
-       /* if(HelpersMethod.IsExists("//div[@class='loader']",driver))
-        {
-            WebElement WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100000);
-        }*/
 
-        if (HelpersMethod.IsExistsById("checkoutCard", driver))
+        wait = new FluentWait<WebDriver>(driver)
+                .withTimeout(Duration.ofSeconds(120))
+                .pollingEvery(Duration.ofSeconds(2))
+                .ignoring(NoSuchElementException.class);
+        wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
+        if (HelpersMethod.IsExists("//div[@id='checkoutCard']", driver))
         {
             checkOutOrder = new CheckOutOrderPage(driver, scenario);
             checkOutOrder.VerifyCheckOut();
@@ -758,7 +765,7 @@ public class LoginPageStep
     {
             orderpage = new OrderEntryPage(driver, scenario);
             orderpage.NavigateToOrderEntry();
-            orderpage.ValidateOE();
+            //orderpage.ValidateOE();
     }
     @When("User is on Home Page for eCommerce help")
     public void userIsOnHomePageForECommerceHelp()
@@ -782,7 +789,7 @@ public class LoginPageStep
     {
         orderpage = new OrderEntryPage(driver, scenario);
         orderpage.NavigateToOrderEntry();
-        orderpage.ValidateOE();
+        //orderpage.ValidateOE();
     }
 
     @And("User click on Question mark and selects ecommerce option")

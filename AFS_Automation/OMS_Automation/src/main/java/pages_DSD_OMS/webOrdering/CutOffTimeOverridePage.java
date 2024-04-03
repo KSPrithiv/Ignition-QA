@@ -4,12 +4,15 @@ import helper.HelpersMethod;
 import io.cucumber.java.Scenario;
 import org.apache.logging.log4j.core.tools.picocli.CommandLine;
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.FluentWait;
+import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
@@ -85,8 +88,13 @@ public class CutOffTimeOverridePage
         {
             if(addDeliveryDate.isDisplayed() && addDeliveryDate.isEnabled())
             {
-                HelpersMethod.ClickBut(driver,addDeliveryDate,1000);
+                HelpersMethod.ClickBut(driver,addDeliveryDate,10000);
                 exists=true;
+                Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                        .withTimeout(Duration.ofSeconds(120))
+                        .pollingEvery(Duration.ofSeconds(2))
+                        .ignoring(NoSuchElementException.class);
+                wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
             }
             Assert.assertEquals(exists,true);
         }
@@ -98,6 +106,12 @@ public class CutOffTimeOverridePage
         exists=false;
         try
         {
+            Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(120))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
             if (HelpersMethod.IsExists("//div[@id='delivery-date-notification']/ancestor::div[contains(@class,'k-widget k-window k-dialog')]", driver))
             {
                 exists = true;
@@ -112,8 +126,8 @@ public class CutOffTimeOverridePage
         exists=false;
         try
         {
-            WebElement calenderButton=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-widget k-window k-dialog')]/descendant::span[contains(@class,'k-icon k-i-calendar')]");
-            HelpersMethod.ClickBut(driver,calenderButton,1000);
+            WebElement calenderButton=HelpersMethod.FindByElement(driver,"xpath","//div[@id='delivery-date-notification']/ancestor::div[contains(@class,'k-widget k-window k-dialog')]/descendant::span[contains(@class,'k-icon k-i-calendar')]");
+            HelpersMethod.ClickBut(driver,calenderButton,10000);
             Thread.sleep(2000);
             if(HelpersMethod.IsExists("//div[contains(@class,'k-calendar-view k-vstack k-calendar-monthview')]",driver))
             {
@@ -124,8 +138,10 @@ public class CutOffTimeOverridePage
                 dateTime1=dateTime.plusDays(3);
                 DateTimeFormatter currentFormatObj = DateTimeFormatter.ofPattern("EEEE, MMMM d, yyyy");
                 String dateText = dateTime1.format(currentFormatObj);
+                //Click on date
                 WebElement changeDate=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-calendar-view k-vstack k-calendar-monthview')]/descendant::td[contains(@class,'k-calendar-td') and @title='"+dateText+"']");
-                HelpersMethod.ClickBut(driver,changeDate,10000);
+                HelpersMethod.ScrollElement(driver,changeDate);
+                HelpersMethod.ActClick(driver,changeDate,10000);
 
                 if (HelpersMethod.IsExists("//div[@class='loader']", driver))
                 {
@@ -151,10 +167,16 @@ public class CutOffTimeOverridePage
         exists=false;
         try
         {
+            if (HelpersMethod.IsExists("//div[@class='loader']", driver))
+            {
+                WebElement WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 200000);
+            }
+
             if(HelpersMethod.IsExists("//span[@class='k-icon k-i-clock']",driver))
             {
                 WebElement clockIcon = HelpersMethod.FindByElement(driver, "xpath", "//span[@class='k-icon k-i-clock']");
-                HelpersMethod.JScriptClick(driver, clockIcon, 1000);
+                HelpersMethod.JScriptClick(driver, clockIcon, 10000);
                 exists=true;
             }
             Assert.assertEquals(exists,true);
@@ -410,11 +432,11 @@ public class CutOffTimeOverridePage
                 {
                     HelpersMethod.JScriptClick(driver, customerToggle, 1000);
                     scenario.log("COMPANY TOGGLE BUTTON SELECTED UNDER CUTOFF TIME OVERRIDE");
-                    if (HelpersMethod.IsExists("//div[@class='loader']", driver))
-                    {
-                        WebElement WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                        HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 200000);
-                    }
+                    Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                            .withTimeout(Duration.ofSeconds(120))
+                            .pollingEvery(Duration.ofSeconds(2))
+                            .ignoring(NoSuchElementException.class);
+                    wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
                 }
                 if (HelpersMethod.IsExists("//div[@id='filter-by-customer']/descendant::span[contains(@class,'k-switch-container') and @aria-checked='true']", driver))
                 {
@@ -426,4 +448,37 @@ public class CutOffTimeOverridePage
         catch (Exception e){}
     }
 
+    public void saveConfirmationPopup()
+    {
+        exists=false;
+        try
+        {
+            if (HelpersMethod.IsExists("//div[@class='loader']", driver))
+            {
+                WebElement WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 200000);
+            }
+
+            if(HelpersMethod.IsExists("//div[@id='dialogTextContent']/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
+            {
+                if (HelpersMethod.IsExists("//div[@class='loader']", driver))
+                {
+                    WebElement WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
+                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 200000);
+                }
+
+                WebElement confirmationPopup= HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-widget k-window k-dialog')]");
+                WebElement okButton=confirmationPopup.findElement(By.xpath(".//button[text()='OK']"));
+                HelpersMethod.ActClick(driver,okButton,10000);
+                exists=true;
+                if (HelpersMethod.IsExists("//div[@class='loader']", driver))
+                {
+                    WebElement WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
+                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 200000);
+                }
+            }
+            Assert.assertEquals(exists,true);
+        }
+        catch (Exception e){}
+    }
 }

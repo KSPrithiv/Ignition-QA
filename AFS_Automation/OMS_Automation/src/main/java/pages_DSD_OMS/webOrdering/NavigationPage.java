@@ -51,6 +51,7 @@ public class NavigationPage
         this.scenario=scenario;
         PageFactory.initElements(driver,this);
     }
+
     public void FromWebOrderToAvailableApp()
     {
         exists=false;
@@ -62,7 +63,8 @@ public class NavigationPage
             List<WebElement> MenuItems= HelpersMethod.FindByElements(driver,"xpath","//div[@id='ActiveItemsAdminCard']/descendant::div[@class='i-draggable-item']/div[contains(@class,'i-draggable-item__container')]");
             index= MenuItems.size()-1;
             WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@id='ActiveItemsAdminCard']/descendant::div[@class='i-draggable-item']["+index+"]/div[contains(@class,'i-draggable-item__container')]");
-            //HelpersMethod.ActDragDrop(driver,WebEle,AvailableApp);
+            HelpersMethod.ActDragDrop(driver,WebEle,AvailableApp);
+            HelpersMethod.ScrollElement(driver,WebEle);
             act.clickAndHold(WebEle).moveToElement(AvailableApp).release().build().perform();
             exists=true;
             Assert.assertEquals(exists,true);

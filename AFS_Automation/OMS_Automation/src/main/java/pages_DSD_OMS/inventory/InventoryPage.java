@@ -617,8 +617,11 @@ public class InventoryPage
             {
                 act.moveToElement(totalunit).build().perform();
                 totalValue=totalunit.getText();
-                totalUitsValue=totalUitsValue+Integer.parseInt(totalValue);
-                exists=true;
+                if(!totalValue.equals(""))
+                {
+                    totalUitsValue = totalUitsValue + Integer.parseInt(totalValue);
+                    exists = true;
+                }
             }
             scenario.log("TOTAL OF TOTAL UNITS COLUMN "+totalUitsValue);
             Assert.assertEquals(exists,true);

@@ -37,29 +37,3 @@ Feature: Order Guide3
     #  |CustChange|
     #  |AllCustomer1 |
       | OGDis1 |
-
-
-
-
-
-   #   |OGDis1 |
-   #   |OGDis14|
-   #   |OGDis16|
-   #   |OGDis17|
-   #   |OGDis18|
-   #   |OGDis19|
-   #   |OGDis20|
-   #   |OGDis21|
-   #   |OGHist |
-     # |Par OGPar OG|
-     # |Push OGPush OG|
-     # |Push OG1Push OG1|
-     # |AllOrderAllOrder|
-      #   | AllCustomer1   |
-   #    | DayOfWeek      |
-  #    | LocalChain1    |
-  #    | NationalChain1 |
-  #    |MarketOG        |
-  #    |PriceBaseOG     |
-  #    |CustChange      |
-    #  | QToOG |
