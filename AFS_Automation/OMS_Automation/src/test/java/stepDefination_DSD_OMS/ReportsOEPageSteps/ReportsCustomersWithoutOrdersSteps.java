@@ -110,18 +110,10 @@ public class ReportsCustomersWithoutOrdersSteps
     {
         if(flag1==false)
         {
-            WebElement WebEle;
-            //WebEle = HelpersMethod.FindByElement(driver, "xpath", "//li[contains(@class,'k-item')]/span[@class='k-link' and contains(text(),'Reports')]");
+            reportsInOEPage=new ReportsCustomerWithoutOrdersPage(driver,scenario);
             if (HelpersMethod.IsExists("//li[contains(@class,'k-item')]/span[@class='k-link' and contains(text(),'Reports')]",driver))
             {
-                exists = false;
-                reportsInOEPage = new ReportsCustomerWithoutOrdersPage(driver, scenario);
-                HelpersMethod.navigate_Horizantal_Tab(driver, "Reports", "//li[contains(@class,'k-item')]/span[@class='k-link' and contains(text(),'Reports')]", "xpath", "//li[contains(@class,'k-item')]/span[@class='k-link']");
-                if (HelpersMethod.IsExists("//div[@class='loader']", driver))
-                {
-                    WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000000);
-                }
+                reportsInOEPage.navigateToReport();
                 reportsInOEPage.validateReportsPage();
                 currentURL=driver.getCurrentUrl();
             }
@@ -176,7 +168,7 @@ public class ReportsCustomersWithoutOrdersSteps
     }
 
     @Then("User should verify excel and pdf buttons are enabled")
-    public void userShouldVerifyExcelAndPdfButtonsAreEnabled()
+    public void userShouldVerifyExcelAndPdfButtonsAreEnabled() throws InterruptedException
     {
         reportsInOEPage=new ReportsCustomerWithoutOrdersPage(driver,scenario);
         reportsInOEPage.enabledExcel();
