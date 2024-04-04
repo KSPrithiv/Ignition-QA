@@ -2396,6 +2396,7 @@ public class OrderEntryPage
         WebElement Clear=null;
         try
         {
+                scenario.log("SEARCH SCENARIO FOR ROUTE"+SearchOpt+" AND "+SearchDetail);
                 // to fetch the web element of the modal container
                 WebElement modalContainer = driver.findElement(By.xpath("//div[contains(@class,'k-widget k-window k-dialog')]"));
 
@@ -2407,10 +2408,12 @@ public class OrderEntryPage
 
                 //Drop down after clicking add filter button
                 WebElement modalContainer1 = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-animation-container k-animation-container-relative k-animation-container-shown')]");
-                if (HelpersMethod.IsExists("//div[contains(@class,'k-widget k-window k-dialog')]/descendant::div[@class='i-filter-tag ']", driver)) {
+                if (HelpersMethod.IsExists("//div[contains(@class,'k-widget k-window k-dialog')]/descendant::div[@class='i-filter-tag ']", driver))
+                {
                     //Click on Clear all button
                     Clear = modalContainer1.findElement(By.xpath(".//button[contains(text(),'Clear all')]"));
-                    if (Clear.isEnabled()) {
+                    if (Clear.isEnabled())
+                    {
                         Clear.click();
                     }
                     driver.findElement(By.xpath("//div[contains(@class,'k-widget k-window k-dialog')]/descendant::button/descendant::span[contains(text(),'Add filter')]")).click();
@@ -2421,7 +2424,7 @@ public class OrderEntryPage
                 HelpersMethod.JSSetValueEle(driver, search1, 10000, SearchOpt);
                 Thread.sleep(1000);
                 //Click on check box
-                WebElement checkBox = driver.findElement(By.xpath(".//input[@id='description']"));
+                WebElement checkBox = driver.findElement(By.xpath(".//input[@id='code']"));
                 HelpersMethod.ActClick(driver, checkBox, 10000);
                 new WebDriverWait(driver, Duration.ofMillis(100000)).until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath("//div[contains(@class,'i-btn-radio filter-radio')]/ancestor::div[contains(@class,'k-child-animation-container')]")));
                 HelpersMethod.waitTillElementLocatedDisplayed(driver, "xpath", "//div[contains(@class,'k-child-animation-container')]/descendant::form[contains(@class,'i-filter-popup')]", 80000);
