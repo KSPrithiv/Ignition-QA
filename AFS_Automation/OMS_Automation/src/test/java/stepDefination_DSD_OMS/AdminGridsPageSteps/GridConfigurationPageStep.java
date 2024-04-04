@@ -552,28 +552,30 @@ public class GridConfigurationPageStep
         orderPage = new OrderEntryPage(driver, scenario);
         orderPage.NavigateToOrderEntry();
         orderPage.ChangeAccount();
-        //orderPage.PopUps_After_AccountChange();
+        orderPage.PopUps_After_AccountChange();
 
-        //newOE=new NewOrderEntryPage(driver,scenario);
-        //newOE.Click_Back_But();
+       /* newOE=new NewOrderEntryPage(driver,scenario);
+        newOE.Click_Back_But();*/
 
-        //orderPage = new OrderEntryPage(driver, scenario);
-        //orderPage.ValidateOE();
-        //check for 'Start Order' button
-        //orderPage.Scroll_start();
-        //exists=orderPage.Start_Order();
-        //orderPage.NoPendingOrderPopup();
-        //Selecting no Order guide and no note popup
-        for(int i=0;i<=1;i++)
+        if(!HelpersMethod.IsExists("//div[contains(@class,'order-entry-page')]",driver))
         {
-            orderPage.NoPendingOrderPopup();
-            orderPage.OrderGuidePopup();
-            orderPage.NoNotePopHandling();
+            orderPage = new OrderEntryPage(driver, scenario);
+            orderPage.ValidateOE();
+            //check for 'Start Order' button
+            orderPage.Scroll_start();
+            exists = orderPage.Start_Order();
+            //Selecting no Order guide and no note popup
+            for (int i = 0; i <= 1; i++)
+            {
+                orderPage.NoPendingOrderPopup();
+                orderPage.OrderGuidePopup();
+                orderPage.NoNotePopHandling();
+            }
         }
         newOE=new NewOrderEntryPage(driver,scenario);
         newOE.ValidateNewOE();
         newOE.EnterPO_No(PO_No.get(0).get(0));
-        String prodNo= DataBaseConnection.DataBaseConn(TestBase.testEnvironment.getSingle_OneMoreProd());
+        String prodNo= DataBaseConnection.DataBaseConn(TestBase.testEnvironment.getSingle_Prod_Sql());
         newOE.QuickProduct(prodNo);
 
         String Case=PO_No.get(0).get(1);

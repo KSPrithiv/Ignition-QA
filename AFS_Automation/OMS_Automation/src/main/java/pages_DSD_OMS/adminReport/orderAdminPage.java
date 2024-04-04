@@ -405,7 +405,7 @@ public class orderAdminPage
         {
             if(resetButton.isDisplayed()&&resetButton.isEnabled())
             {
-                HelpersMethod.ActClick(driver, resetButton, 1000);
+                HelpersMethod.ActClick(driver, resetButton, 10000);
                 if(HelpersMethod.IsExists("//div[@class='loader']",driver))
                 {
                     WebElement WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
@@ -422,13 +422,13 @@ public class orderAdminPage
     {
         exists=false;
         WebElement fDate=HelpersMethod.FindByElement(driver,"id","fromDate");
-        String fromValue=HelpersMethod.JSGetValueEle(driver,fDate,6000);
+        String fromValue=HelpersMethod.JSGetValueEle(driver,fDate,10000);
         WebElement tDate=HelpersMethod.FindByElement(driver,"id","toDate");
-        String toValue=HelpersMethod.JSGetValueEle(driver,tDate,6000);
+        String toValue=HelpersMethod.JSGetValueEle(driver,tDate,10000);
         try
         {
             WebElement accNumber=HelpersMethod.FindByElement(driver,"id","customerDropDown_AC");
-            String acc_Text=HelpersMethod.JSGetValueEle(driver,accNumber,6000);
+            String acc_Text=HelpersMethod.JSGetValueEle(driver,accNumber,10000);
             if(acc_Text.equals("") && fromValue.equals("MM/DD/YYYY") && toValue.equals("MM/DD/YYYY"))
             {
                 scenario.log("RESET BUTTON HAS BEEN CLICKED");

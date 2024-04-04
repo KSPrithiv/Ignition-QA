@@ -235,6 +235,12 @@ public class LoginPage
         WebElement WebEle=null;
         try
         {
+            Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(120))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
             Thread.sleep(2000);
            // HelpersMethod.waitTillElementLocatedDisplayed(driver, "xpath", "//p[contains(text(),'product catalog')]", 400000);
             if(HelpersMethod.IsExists("//a[@id='viewProductCatalogLink']/p",driver))
