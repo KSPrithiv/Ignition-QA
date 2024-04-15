@@ -21,8 +21,8 @@
   },
   "outbound routes":
   {
-    "outbound route 1": "DEC001",
-    "outbound route 2": "DEC002",
+    "outbound route 1": "1249",
+    "outbound route 2": "1250",
     "outbound route 3": "28R001",
     "outbound route 4": "1115",
     "outbound route 5": "1198",

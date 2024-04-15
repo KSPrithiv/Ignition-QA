@@ -78,6 +78,7 @@ Feature: Testing of Outbound Load Planning functionality
     And Clicks Reprocess button on Truck Info page
     And Clicks Yes button on Rebuilding Assignments popup
     And Clicks Ok button on Truck Info
+
     And Select first assignment on Truck Info page
     And Validates First Assignment popup is present
     And Clicks edit icon for first assignment on Assignments popup
