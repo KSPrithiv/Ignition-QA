@@ -28,7 +28,7 @@ Feature: scenarios for admin credentials and client credentials
       | Hide Order submitting message          |  CPHideOrderSubmittingMessage         |
 
   @DisableHideOrderSubmittingMessage
-  Scenario Outline: Test scenario for verifying functionality of Order submitting message enabling
+  Scenario Outline: Test scenario for verifying functionality of Order submitting message Disabling
     Given User should verify admin setting "<Setting>" is disabled by using "<Key>"
     When User enters URL and is on login page and entered credentials for admin setting
     When User is on Home Page

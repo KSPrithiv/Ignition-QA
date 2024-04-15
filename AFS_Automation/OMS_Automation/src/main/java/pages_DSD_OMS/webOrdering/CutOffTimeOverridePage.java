@@ -59,17 +59,23 @@ public class CutOffTimeOverridePage
         exists=false;
         try
         {
+            Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(200))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
             if(companyToggle.isDisplayed())
             {
                 if(!HelpersMethod.IsExists("//div[@id='filter-by-company']/descendant::span[contains(@class,'k-switch-container') and @aria-checked='true']",driver))
                 {
-                    HelpersMethod.JScriptClick(driver, companyToggle, 1000);
+                    HelpersMethod.JScriptClick(driver, companyToggle, 10000);
                     scenario.log("COMPANY TOGGLE BUTTON SELECTED UNDER CUTOFF TIME OVERRIDE");
-                    if (HelpersMethod.IsExists("//div[@class='loader']", driver))
-                    {
-                        WebElement WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                        HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 200000);
-                    }
+
+                    wait = new FluentWait<WebDriver>(driver)
+                            .withTimeout(Duration.ofSeconds(200))
+                            .pollingEvery(Duration.ofSeconds(2))
+                            .ignoring(NoSuchElementException.class);
+                    wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
                 }
                 if (HelpersMethod.IsExists("//div[@id='filter-by-company']/descendant::span[contains(@class,'k-switch-container') and @aria-checked='true']", driver))
                 {

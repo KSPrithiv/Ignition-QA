@@ -16,7 +16,7 @@ import java.io.IOException;
  * @Author Divya.Ramadas@afsi.com
  */
 @CucumberOptions
-        (features = "src/test/resources/features_DSD_OMS/OrderControlListFeature",
+        (features = "src/test/resources/features_DSD_OMS/OrderControlListFeature_OMS",
                 glue = {"stepDefination_DSD_OMS"},
                 plugin = {"pretty",
                         "json:target/cucumber.json",
@@ -41,7 +41,8 @@ public class TestRunnerOrderControlList extends AbstractTestNGCucumberTests
     }
 
     @AfterClass
-    public static void afterclass() throws InterruptedException, MessagingException, IOException {
+    public static void afterclass() throws InterruptedException, MessagingException, IOException
+    {
         Thread.sleep(500);
         //MailSend.sendMail();
         TestBase.CloseBrowser();

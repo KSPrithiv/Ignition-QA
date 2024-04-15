@@ -10,6 +10,7 @@ import io.cucumber.java.en.When;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import pages_DSD_OMS.adminCatalogSearch.catalogSearchPage;
+import pages_DSD_OMS.adminSecurity.AdminSecurityPermissionPage;
 import pages_DSD_OMS.login.LoginPage;
 import pages_DSD_OMS.orderEntry.CheckOutSummaryPage;
 import pages_DSD_OMS.orderEntry.NewOrderEntryPage;
@@ -43,6 +44,7 @@ public class AdminOrderEntryStep
     static catalogSearchPage catSearchPage;
     static LoginPage loginPage;
     static AdminOrderEntryPage adminOrderEntryPage;
+    static AdminSecurityPermissionPage adminSecurityPermissionPage;
 
     @Before
     public void LaunchBrowser1(Scenario scenario) throws Exception
@@ -395,5 +397,41 @@ public class AdminOrderEntryStep
         //check for 'Start Order' button
         orderpage.Scroll_start();
         exists=orderpage.Start_Order();
+    }
+
+    @And("User should disable admin settings {string} {string}")
+    public void userShouldDisableAdminSettings(String setting, String settingId)
+    {
+        adminSecurityPermissionPage=new AdminSecurityPermissionPage(driver,scenario);
+        adminSecurityPermissionPage.searchAdminSettingInSearchBarClear();
+        adminSecurityPermissionPage.searchAdminSettingInSearchBar(setting);
+        adminSecurityPermissionPage.validateAdminSettingSearchValue(setting);
+        adminSecurityPermissionPage.uncheckCheckbox(settingId);
+        adminHomePage=new AdminHomePage(driver,scenario);
+        adminHomePage.Click_SaveButton();
+    }
+
+    @And("User should enabled admin settings {string} {string}")
+    public void userShouldEnabledAdminSettings(String setting, String settingId)
+    {
+        adminSecurityPermissionPage=new AdminSecurityPermissionPage(driver,scenario);
+        adminSecurityPermissionPage.searchAdminSettingInSearchBarClear();
+        adminSecurityPermissionPage.searchAdminSettingInSearchBar(setting);
+        adminSecurityPermissionPage.validateAdminSettingSearchValue(setting);
+        adminSecurityPermissionPage.uncheckCheckbox(settingId);
+        adminHomePage=new AdminHomePage(driver,scenario);
+        adminHomePage.Click_SaveButton();
+    }
+
+    @Then("Click on Next button and validate that shipping address is not able to change")
+    public void clickOnNextButtonAndValidateThatShippingAddressIsNotAbleToChange()
+    {
+
+    }
+
+    @Then("Click on Next button and validate that shipping address can be changed")
+    public void clickOnNextButtonAndValidateThatShippingAddressCanBeChanged()
+    {
+
     }
 }

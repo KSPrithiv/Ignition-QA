@@ -1505,7 +1505,7 @@ public class CatalogPage
             }
 
                 //navigate to Catalog
-                driver.navigate().to(currentURL);
+                navigateToCatalog();
 
                 wait = new FluentWait<WebDriver>(driver)
                         .withTimeout(Duration.ofSeconds(120))
@@ -1883,7 +1883,7 @@ public class CatalogPage
         {
             exists = false;
             WebElement WebEle = HelpersMethod.FindByElement(driver, "xpath", "//li[contains(@class,'k-item')]/span[@class='k-link' and contains(text(),'Catalog')]");
-            if (HelpersMethod.EleDisplay(WebEle))
+            if (HelpersMethod.IsExists("//span[@class='k-link' and contains(text(),'Catalog')]",driver))
             {
                 String Menu_Text=null;
                 Actions act=new Actions(driver);
@@ -1896,6 +1896,7 @@ public class CatalogPage
                     {
                         WebElement menuItem=HelpersMethod.FindByElement(driver,"xpath","//li[contains(@class,'k-item')]/span[@class='k-link' and contains(text(),'Catalog')]");
                         HelpersMethod.JScriptClick(driver,menuItem,1000);
+                        exists=true;
                         break;
                     }
                 }
@@ -1915,6 +1916,7 @@ public class CatalogPage
                         .ignoring(NoSuchElementException.class);
                 wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[@data-test-id='productFilterResetBtn']")));
             }
+            Assert.assertEquals(exists,true);
         }
         catch (Exception e) {}
     }

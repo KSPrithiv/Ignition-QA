@@ -924,20 +924,26 @@ public class OrderEntryPageSteps
     }
 
     @Then("Click on Next button after editing order")
-    public void clickOnNextButtonAfterEditingOrder() throws InterruptedException, AWTException {
+    public void clickOnNextButtonAfterEditingOrder() throws InterruptedException, AWTException
+    {
         exists = false;
         newOE = new NewOrderEntryPage(driver, scenario);
         newOE.readProductsInOrder();
         exists = newOE.ClickNext();
         newOE.OutOfStockPop_ERP();
-        if (HelpersMethod.IsExists("//div[@class='page-content']/descendant::div[@id='checkoutCard']",driver)) {
+        if (HelpersMethod.IsExists("//div[@class='page-content']/descendant::div[@id='checkoutCard']",driver))
+        {
             checkorder = new CheckOutOrderPage(driver, scenario);
             checkorder.DeliveryAddressCard();
-            if (HelpersMethod.IsExists("//div[@id='paymentMethodCard']", driver)) {
+            if (HelpersMethod.IsExists("//div[@id='paymentMethodCard']", driver))
+            {
                 checkorder.Select_PaymentMethod_ClickDownArrow();
-                if (HelpersMethod.IsExists("//tr[1]/descendant::td[@class='payment-method-type-cell']", driver)) {
+                if (HelpersMethod.IsExists("//tr[1]/descendant::td[@class='payment-method-type-cell']", driver))
+                {
                     checkorder.SelectPaymentMethod();
-                } else {
+                }
+                else
+                {
                     checkorder.Click_On_Without_Providing_Payment();
                 }
             }

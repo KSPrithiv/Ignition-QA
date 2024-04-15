@@ -535,6 +535,176 @@ public class OrderGuidePage {
         catch (Exception e) {}
     }
 
+    public void SubCustomerRefLocalChain()
+    {
+        exists = false;
+        try
+        {
+            Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(200))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
+            if (HelpersMethod.IsExists("//div[contains(@class,'k-widget k-window k-dialog')]", driver))
+            {
+                if(HelpersMethod.IsExists("//div[contains(@class,'i-no-data__message')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
+                {
+                    scenario.log("<span style='color:red'>THERE ARE NO SUB REFERENCE FOUND IN DIALOG BOX</span>");
+                }
+                else
+                {
+                    WebElement SubRef = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-widget k-window k-dialog')]/descendant::tr[contains(@class,'k-master-row')][2]");
+                    HelpersMethod.ActClick(driver, SubRef, 10000);
+                    exists = true;
+                    if (HelpersMethod.IsExists("//div[@class='loader']", driver))
+                    {
+                        WebElement WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
+                        HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000000);
+                    }
+                }
+            }
+            Assert.assertEquals(exists, true);
+        }
+        catch (Exception e) {}
+    }
+
+    public void SubCustomerRefPriceGroupBaseSchedule()
+    {
+        exists = false;
+        try
+        {
+            Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(120))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
+            if (HelpersMethod.IsExists("//div[contains(@class,'k-widget k-window k-dialog')]", driver))
+            {
+                if(HelpersMethod.IsExists("//div[contains(@class,'i-no-data__message')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
+                {
+                    scenario.log("<span style='color:red'>THERE ARE NO SUB REFERENCE FOUND IN DIALOG BOX</span>");
+                }
+                else
+                {
+                    WebElement SubRef = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-widget k-window k-dialog')]/descendant::tr[contains(@class,'k-master-row')][2]");
+                    HelpersMethod.ActClick(driver, SubRef, 10000);
+                    exists = true;
+                    wait = new FluentWait<WebDriver>(driver)
+                            .withTimeout(Duration.ofSeconds(120))
+                            .pollingEvery(Duration.ofSeconds(2))
+                            .ignoring(NoSuchElementException.class);
+                    wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+                }
+            }
+            Assert.assertEquals(exists, true);
+        }
+        catch (Exception e) {}
+    }
+
+    public void SubCustomerRefPriceGroupDefaultSchedule()
+    {
+        exists = false;
+        try
+        {
+            Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(120))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
+            if (HelpersMethod.IsExists("//div[contains(@class,'k-widget k-window k-dialog')]", driver))
+            {
+                if(HelpersMethod.IsExists("//div[contains(@class,'i-no-data__message')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
+                {
+                    scenario.log("<span style='color:red'>THERE ARE NO SUB REFERENCE FOUND IN DIALOG BOX</span>");
+                }
+                else
+                {
+                    WebElement SubRef = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-widget k-window k-dialog')]/descendant::tr[contains(@class,'k-master-row')][1]");
+                    HelpersMethod.ActClick(driver, SubRef, 10000);
+                    exists = true;
+                    wait = new FluentWait<WebDriver>(driver)
+                            .withTimeout(Duration.ofSeconds(120))
+                            .pollingEvery(Duration.ofSeconds(2))
+                            .ignoring(NoSuchElementException.class);
+                    wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+                }
+            }
+            Assert.assertEquals(exists, true);
+        }
+        catch (Exception e) {}
+    }
+
+    public void SubCustomerRefStandardOrder()
+    {
+        exists = false;
+        try
+        {
+            Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(120))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
+            if (HelpersMethod.IsExists("//div[contains(@class,'k-widget k-window k-dialog')]", driver))
+            {
+                if(HelpersMethod.IsExists("//div[contains(@class,'i-no-data__message')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
+                {
+                    scenario.log("<span style='color:red'>THERE ARE NO SUB REFERENCE FOUND IN DIALOG BOX</span>");
+                }
+                else
+                {
+                    WebElement SubRef = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-widget k-window k-dialog')]/descendant::tr[contains(@class,'k-master-row')][1]");
+                    HelpersMethod.ActClick(driver, SubRef, 10000);
+                    exists = true;
+                    wait = new FluentWait<WebDriver>(driver)
+                            .withTimeout(Duration.ofSeconds(120))
+                            .pollingEvery(Duration.ofSeconds(2))
+                            .ignoring(NoSuchElementException.class);
+                    wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+                }
+            }
+            Assert.assertEquals(exists, true);
+        }
+        catch (Exception e) {}
+    }
+
+    public void SubCustomerRefPriceGroupDealGroup()
+    {
+        exists = false;
+        try
+        {
+            Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(120))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
+            if (HelpersMethod.IsExists("//div[contains(@class,'k-widget k-window k-dialog')]", driver))
+            {
+                if(HelpersMethod.IsExists("//div[contains(@class,'i-no-data__message')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
+                {
+                    scenario.log("<span style='color:red'>THERE ARE NO SUB REFERENCE FOUND IN DIALOG BOX</span>");
+                }
+                else
+                {
+                    WebElement SubRef = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-widget k-window k-dialog')]/descendant::tr[contains(@class,'k-master-row')][1]");
+                    HelpersMethod.ActClick(driver, SubRef, 10000);
+                    exists = true;
+                    wait = new FluentWait<WebDriver>(driver)
+                            .withTimeout(Duration.ofSeconds(120))
+                            .pollingEvery(Duration.ofSeconds(2))
+                            .ignoring(NoSuchElementException.class);
+                    wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+                }
+            }
+            Assert.assertEquals(exists, true);
+        }
+        catch (Exception e) {}
+    }
+
     /*public void SubCustomerRefPriceBaseSchedule()
     {
         exists = false;
@@ -570,12 +740,12 @@ public class OrderGuidePage {
     {
         try
         {
-            HelpersMethod.ClickBut(driver, CustomerAccIndex, 1000);
-            if (HelpersMethod.IsExists("//div[@class='loader']", driver))
-            {
-                WebElement WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000000);
-            }
+            HelpersMethod.ClickBut(driver, CustomerAccIndex, 10000);
+            Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(120))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
         }
         catch (Exception e) {}
     }

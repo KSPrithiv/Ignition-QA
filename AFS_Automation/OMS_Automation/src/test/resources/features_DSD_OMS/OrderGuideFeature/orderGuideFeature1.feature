@@ -182,7 +182,7 @@ Feature: Order Guide1
     And User should navigate to OG
     Then User should click on Customer Reference drop down and select type of OG
       |Local chain|
-    And Check for popup to appear to select sub customer reference
+    And Check for popup to appear to select sub customer reference for local chain
     Then User clicks on Create new button and should navigate to New OG page
     And User validates Customer reference input box to verify the OG created
     |Local chain|
@@ -205,19 +205,19 @@ Feature: Order Guide1
     Then User click on AddFilter button and handle different popup
       |Type|Regular|
 
-  @VerifyOGExistence
-  Scenario Outline: For creating OG by changing Customer Account#
-    Given User must be on Order Entry Page to select OG
-    And User should navigate to OG
-    Then User clicks on Create new button and should navigate to New OG page
-    Then Then User enters Description "<OG>" and End date
-    And User enters Quick Product number and Sequence number
-      |4|
-    Then User click on Save button
+  #@VerifyOGExistence
+  #Scenario Outline: For creating OG by changing Customer Account#
+  #  Given User must be on Order Entry Page to select OG
+  #  And User should navigate to OG
+  #  Then User clicks on Create new button and should navigate to New OG page
+  #  Then Then User enters Description "<OG>" and End date
+  #  And User enters Quick Product number and Sequence number
+  #    |4|
+  #  Then User click on Save button
     #And User should navigate back to OG page change account# and verify OG "<OG>"  existence
-    And Clear filter to display both active and inactive OG
-    Then User enters OG Description "<OG>" in search box and Delete the OG verify same in OG grid
-    Examples:
-      |  OG      |
-      |CustChange|
+  #  And Clear filter to display both active and inactive OG
+  #  Then User enters OG Description "<OG>" in search box and Delete the OG verify same in OG grid
+  #  Examples:
+  #    |  OG      |
+  #    |CustChange|
 

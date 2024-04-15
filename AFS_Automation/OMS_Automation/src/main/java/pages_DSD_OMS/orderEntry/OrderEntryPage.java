@@ -195,7 +195,8 @@ public class OrderEntryPage
             Actions act = new Actions(driver);
             WebElement Search_Input = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='drawer-menu-search-container']/descendant::input");
             act.moveToElement(Search_Input).click().sendKeys("Order Entry").build().perform();
-            WebElement OEMenu = HelpersMethod.FindByElement(driver, "xpath", "//ul[contains(@class,'MuiList-root ')]/descendant::span[contains(text(),'Order Entry')]");
+            //act.moveToElement(Search_Input).click().sendKeys("OE").build().perform();
+            WebElement OEMenu = HelpersMethod.FindByElement(driver, "xpath", "//ul[contains(@class,'MuiList-root ')]/descendant::span[contains(text(),'Order Entry')]|//ul[contains(@class,'MuiList-root ')]/descendant::span[contains(text(),'OE')]");
             HelpersMethod.ActClick(driver, OEMenu, 10000);
             status = HelpersMethod.returnDocumentStatus(driver);
             if (status.equals("loading"))

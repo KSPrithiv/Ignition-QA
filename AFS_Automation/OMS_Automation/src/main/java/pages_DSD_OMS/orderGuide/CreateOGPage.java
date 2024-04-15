@@ -311,8 +311,10 @@ public class CreateOGPage
                 HelpersMethod.waitTillLoadingPage(driver);
             }
 
-            HelpersMethod.ClearText(driver,Sequence,1000);
-            HelpersMethod.EnterText(driver, Sequence, 1000,ProSeq);
+            HelpersMethod.ActClearKey(driver,Sequence,10000);
+            HelpersMethod.ActSendKey(driver,Sequence,10000,ProSeq);
+            //HelpersMethod.ClearText(driver,Sequence,10000);
+            //HelpersMethod.EnterText(driver, Sequence, 10000,ProSeq);
             Sequence.sendKeys(Keys.TAB);
             if(HelpersMethod.IsExists("//div[@class='loader']",driver))
             {
@@ -338,7 +340,7 @@ public class CreateOGPage
             else
             {
                 WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-widget k-window k-dialog')]/descendant::button[contains(text(),'Ok')]");
-                HelpersMethod.ClickBut(driver,WebEle,1000);
+                HelpersMethod.ClickBut(driver,WebEle,10000);
                 scenario.log("NO MATCHING PRODUCTS HAS BEEN FOUND, CHECK FOR THE AVAILABILITY OF OG TYPE YOU SELECTED");
                 exists=false;
             }
@@ -635,12 +637,18 @@ public class CreateOGPage
         exists=false;
         try
         {
+            Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(200))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
             HelpersMethod.ScrollElement(driver, AddProd);
             if(AddProd.isDisplayed() && AddProd.isEnabled())
             {
                 HelpersMethod.ScrollElement(driver, AddProd);
                 Thread.sleep(1000);
-                HelpersMethod.ClickBut(driver, AddProd, 15000);
+                HelpersMethod.ClickBut(driver, AddProd, 20000);
                 exists=true;
             }
             Assert.assertEquals(exists,true);
@@ -673,21 +681,22 @@ public class CreateOGPage
                         break;
                     }
                 }
-                if(HelpersMethod.IsExists("//div[@class='loader']",driver))
-                {
-                    WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 2000000);
-                }
+                Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                        .withTimeout(Duration.ofSeconds(120))
+                        .pollingEvery(Duration.ofSeconds(2))
+                        .ignoring(NoSuchElementException.class);
+                wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
                 String status = HelpersMethod.returnDocumentStatus(driver);
                 if (status.equals("loading"))
                 {
                     HelpersMethod.waitTillLoadingPage(driver);
                 }
-                if(HelpersMethod.IsExists("//div[@class='loader']",driver))
-                {
-                    WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 2000000);
-                }
+                wait = new FluentWait<WebDriver>(driver)
+                        .withTimeout(Duration.ofSeconds(120))
+                        .pollingEvery(Duration.ofSeconds(2))
+                        .ignoring(NoSuchElementException.class);
+                wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
             }
             Assert.assertEquals(exists,true);
         }
@@ -2432,11 +2441,12 @@ public class CreateOGPage
         WebElement WebEle;
         try
         {
-            if(HelpersMethod.IsExists("//div[@class='loader']",driver))
-            {
-                WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 2000000);
-            }
+            Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(200))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
             if(HelpersMethod.IsExists("// div[contains(@class,'moduleNameHeader')]/descendant::span[contains(text(),'New order guide')]",driver))
             {
                 exists=true;

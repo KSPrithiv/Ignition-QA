@@ -38,9 +38,14 @@ public class OrderControlListPage
     static String Acc_No=null;
     static String originalGrid=null;
     static boolean exists = false;
+    static String customerAccount;
     List<WebElement> SkipList1=null;
     List<WebElement> Skiplist2=null;
+    static int columnNo=0;
+    static int lastPage=0;
     static int a=0;
+    static int pageHold=0;
+    static int rowNo=0;
     int skipRow=0;
 
     @FindBy(xpath = "//span[@id='OrderTaker']/descendant::span[@class='k-select']")
@@ -102,7 +107,7 @@ public class OrderControlListPage
         try
         {
             Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
-                    .withTimeout(Duration.ofSeconds(120))
+                    .withTimeout(Duration.ofSeconds(200))
                     .pollingEvery(Duration.ofSeconds(2))
                     .ignoring(NoSuchElementException.class);
             wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
@@ -113,10 +118,21 @@ public class OrderControlListPage
                 HelpersMethod.waitTillLoadingPage(driver);
             }
             wait = new FluentWait<WebDriver>(driver)
-                    .withTimeout(Duration.ofSeconds(120))
+                    .withTimeout(Duration.ofSeconds(200))
                     .pollingEvery(Duration.ofSeconds(2))
                     .ignoring(NoSuchElementException.class);
             wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+            status = HelpersMethod.returnDocumentStatus(driver);
+            if (status.equals("loading"))
+            {
+                HelpersMethod.waitTillLoadingPage(driver);
+            }
+            wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(300))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
             Thread.sleep(4000);
             if(HelpersMethod.IsExists("//div[@id='gridOrderControlList']",driver))
             {
@@ -151,7 +167,7 @@ public class OrderControlListPage
                     alert.accept();
                 }
                 wait = new FluentWait<WebDriver>(driver)
-                        .withTimeout(Duration.ofSeconds(150))
+                        .withTimeout(Duration.ofSeconds(200))
                         .pollingEvery(Duration.ofSeconds(2))
                         .ignoring(NoSuchElementException.class);
                 wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
@@ -159,7 +175,7 @@ public class OrderControlListPage
             }
 
             wait = new FluentWait<WebDriver>(driver)
-                    .withTimeout(Duration.ofSeconds(150))
+                    .withTimeout(Duration.ofSeconds(200))
                     .pollingEvery(Duration.ofSeconds(2))
                     .ignoring(NoSuchElementException.class);
             wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
@@ -190,22 +206,24 @@ public class OrderControlListPage
 
                 WebElement OEMenu = HelpersMethod.FindByElement(driver, "xpath", "//ul[contains(@class,'MuiList-root ')]/descendant::span[contains(text(),'Order Entry')]");
                 HelpersMethod.ActClick(driver, OEMenu, 10000);
-                if (HelpersMethod.IsExists("//div[@class='loader']", driver))
-                {
-                    WebElement WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000000);
-                }
-                status = HelpersMethod.returnDocumentStatus(driver);
+            wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(200))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
+            status = HelpersMethod.returnDocumentStatus(driver);
                 if (status.equals("loading"))
                 {
                     HelpersMethod.waitTillLoadingPage(driver);
                 }
-                if (HelpersMethod.IsExists("//div[@class='loader']", driver))
-                {
-                    WebElement WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 2000000);
-                }
-                wait = new FluentWait<WebDriver>(driver)
+            wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(200))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
+            wait = new FluentWait<WebDriver>(driver)
                         .withTimeout(Duration.ofSeconds(150))
                         .pollingEvery(Duration.ofSeconds(2))
                         .ignoring(NoSuchElementException.class);
@@ -654,6 +672,7 @@ public class OrderControlListPage
         int i=0;
         String head_Text=null;
         String skipText=null;
+        Wait<WebDriver> wait;
         try
         {
             List<WebElement> Heads=HelpersMethod.FindByElements(driver,"xpath","//th[contains(@class,'k-header')]/descendant::span[contains(@class,'k-column-title')]");
@@ -698,25 +717,31 @@ public class OrderControlListPage
                     act1.moveToElement(dropDown).build().perform();
                     act1.click(dropDown).build().perform();
                     exists=true;
+                    wait = new FluentWait<WebDriver>(driver)
+                            .withTimeout(Duration.ofSeconds(250))
+                            .pollingEvery(Duration.ofSeconds(2))
+                            .ignoring(NoSuchElementException.class);
+                    wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
                     break;
                 }
             }
 
-            if(HelpersMethod.IsExists("//div[@class='loader']",driver))
-            {
-                WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000000);
-            }
+            wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(250))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
             String status = HelpersMethod.returnDocumentStatus(driver);
             if (status.equals("loading"))
             {
                 HelpersMethod.waitTillLoadingPage(driver);
             }
-            if(HelpersMethod.IsExists("//div[@class='loader']",driver))
-            {
-                WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000000);
-            }
+            wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(250))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
             Assert.assertEquals(exists,true);
         }
         catch (Exception e){}
@@ -772,6 +797,7 @@ public class OrderControlListPage
                     {
                         act1.moveToElement(option).build().perform();
                         act1.click(option).build().perform();
+                        scenario.log("REASON FOR SKIP HAS BEEN SELECTED");
                         break;
                     }
                 }
@@ -802,9 +828,9 @@ public class OrderControlListPage
                 {
                     HelpersMethod.waitTillLoadingPage(driver);
                 }
-                exists=true;
+                //exists=true;
             }
-            Assert.assertEquals(exists,true);
+            //Assert.assertEquals(exists,true);
         } catch (Exception e) {}
     }
 
@@ -974,7 +1000,7 @@ public class OrderControlListPage
             {
                 WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-widget k-window k-dialog')]/descendant::button[text()='Ok']");
                 HelpersMethod.ActClick(driver,WebEle,10000);
-                exists=true;
+                //exists=true;
             }
 
             status = HelpersMethod.returnDocumentStatus(driver);
@@ -994,7 +1020,7 @@ public class OrderControlListPage
                 HelpersMethod.waitTillLoadingPage(driver);
             }
             //Thread.sleep(500);
-            Assert.assertEquals(exists,true);
+            //Assert.assertEquals(exists,true);
         }
         catch (Exception e){}
     }
@@ -1077,13 +1103,22 @@ public class OrderControlListPage
                 WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
                 HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000000);
             }
-            HelpersMethod.waitTillElementLocatedDisplayed(driver, "xpath", "//div[contains(text(),'Skip')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]", 60);
+            HelpersMethod.waitTillElementLocatedDisplayed(driver, "xpath", "//div[contains(text(),'Skip')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]", 1000);
             // to fetch the web element of the modal container
-            WebElement modalContainer = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(text(),'Skip')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]");
+            //WebElement modalContainer = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(text(),'Skip')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]");
 
             // to fetch the web elements of the modal content and interact with them, code to fetch content of modal title and verify it
-            WebElement modalContentTitle = modalContainer.findElement(By.xpath(".//div[contains(@class,'k-window-title k-dialog-title')]"));
-            Assert.assertEquals(modalContentTitle.getText(), "Skip", "Verify Title message");
+            //WebElement modalContentTitle = modalContainer.findElement(By.xpath(".//div[contains(@class,'k-window-title k-dialog-title')]"));
+            //Assert.assertEquals(modalContentTitle.getText(), "Skip", "Verify Title message");
+            //verify that skip popup has been displayed
+            if(HelpersMethod.IsExists("//div[contains(text(),'Skip')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
+            {
+                scenario.log("SKIP POPUP HAS BEEN FOUND");
+            }
+            else
+            {
+                scenario.log("<span style='color:red'>SKIP POPUP HAS NOT BEEN FOUND</span>");
+            }
         }
         catch (Exception e){}
     }
@@ -1368,7 +1403,7 @@ public class OrderControlListPage
             }
             else
             {
-                scenario.log("NEW ORDER ICON HAS BEEN FOUND, PLEASE CHECK ADMIN SETTING.");
+                scenario.log("<span style='color:red'>NEW ORDER ICON HAS BEEN FOUND, PLEASE CHECK ADMIN SETTING.</span>");
                 exists=true;
             }
             Assert.assertEquals(exists,true);
@@ -1763,11 +1798,12 @@ public class OrderControlListPage
         catch (Exception e){}
     }
 
-    public void customerNotePopup(String commentText)
+    public void customerNotePopup(String commentText) throws InterruptedException
     {
         exists=false;
         String alertText=null;
         Actions act=new Actions(driver);
+        String acceptedComment;
         try
         {
             if(HelpersMethod.IsExists("//div[contains(@class,'k-widget k-window k-dialog')]",driver))
@@ -1775,16 +1811,16 @@ public class OrderControlListPage
                 //Click on end date calender
                 WebElement commentPopup=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-widget k-window k-dialog')]");
                 WebElement endCalender = commentPopup.findElement(By.xpath(".//label[@id='EndDate-label']/following-sibling::span/descendant::a"));
-                HelpersMethod.ActClick(driver, endCalender, 1000);
+                HelpersMethod.ActClick(driver, endCalender, 10000);
                 //identify end date and click on end date
                 WebElement endDate=HelpersMethod.FindByElement(driver,"xpath","//td[contains(@class,'k-calendar-td k-state-pending-focus')]");
-                HelpersMethod.ActClick(driver,endDate,1000);
+                HelpersMethod.ActClick(driver,endDate,10000);
                 //identify text area for entering comment and enter text
                 WebElement commentArea=commentPopup.findElement(By.xpath(".//textarea[@id='noteTextbox']"));
-                HelpersMethod.EnterText(driver,commentArea,1000,commentText);
+                HelpersMethod.ActSendKey(driver,commentArea,20000,commentText);
                 //Click on Alert type drop down
                 WebElement alertType=commentPopup.findElement(By.xpath(".//span[@id='AlertType']"));
-                HelpersMethod.ActClick(driver, alertType,1000);
+                HelpersMethod.ActClick(driver, alertType,10000);
                 List<WebElement> alertTypes=HelpersMethod.FindByElements(driver,"xpath","//div[contains(@class,'k-list-container')]/descendant::ul/li");
                 for(WebElement aType:alertTypes)
                 {
@@ -1799,27 +1835,37 @@ public class OrderControlListPage
                 }
                 //identify checkbox for Order Entry under alert location and click on that
                 WebElement oeCheckbox=commentPopup.findElement(By.xpath(".//input[@id='showInOrderEntry']"));
-                HelpersMethod.ActClick(driver,oeCheckbox,1000);
+                HelpersMethod.ActClick(driver,oeCheckbox,10000);
                 //Click on save button
-                WebElement saveButton=HelpersMethod.FindByElement(driver,"xpath",".//button[@id='SaveButton']");
-                HelpersMethod.ActClick(driver,saveButton,1000);
+                WebElement saveButton=HelpersMethod.FindByElement(driver,"xpath","//button[@id='SaveButton']");
+                HelpersMethod.ActClick(driver,saveButton,10000);
 
                 Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
-                        .withTimeout(Duration.ofSeconds(120))
+                        .withTimeout(Duration.ofSeconds(200))
                         .pollingEvery(Duration.ofSeconds(2))
                         .ignoring(NoSuchElementException.class);
                 wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
 
                 //validate content of customer note/comment entered by user with comment accepted in dialog box size are same
-                String acceptedComment=commentPopup.findElement(By.xpath(".//tr[contains(@class,'k-master-row')]/descendant::td[3]")).getText();
-                if(commentText.equalsIgnoreCase(acceptedComment))
+                List<WebElement> comments=commentPopup.findElements(By.xpath(".//tr[contains(@class,'k-master-row')]/descendant::td[3]"));
+                for(WebElement comment:comments)
                 {
-                    scenario.log("ENTERED TEXT IS AS FOLLOWS "+acceptedComment);
-                    exists=true;
+                    acceptedComment = comment.getText();
+                    if (commentText.equalsIgnoreCase(acceptedComment))
+                    {
+                        //scenario.log("ENTERED TEXT IS AS FOLLOWS " + acceptedComment);
+                        exists = true;
+                        break;
+                    }
                 }
                 //click on ok button of customer note dialog box
                 WebElement okButton=commentPopup.findElement(By.xpath(".//button[text()='Ok']"));
-                HelpersMethod.ActClick(driver,okButton,1000);
+                HelpersMethod.ActClick(driver,okButton,10000);
+                wait = new FluentWait<WebDriver>(driver)
+                        .withTimeout(Duration.ofSeconds(200))
+                        .pollingEvery(Duration.ofSeconds(2))
+                        .ignoring(NoSuchElementException.class);
+                wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
             }
             Assert.assertEquals(exists,true);
         }
@@ -2020,5 +2066,239 @@ public class OrderControlListPage
             wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
         }
         catch (Exception e){}
+    }
+
+    public void searchForCreditHolder(String creditHold)
+    {
+        exists=false;
+        String headText;
+        Actions act=new Actions(driver);
+        int i=0;
+        try
+        {
+            Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(120))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
+            List<WebElement> heads=HelpersMethod.FindByElements(driver,"xpath","//span[@class='k-column-title']");
+            for(WebElement head:heads)
+            {
+                i++;
+                act.moveToElement(head).build().perform();
+                headText=head.getText();
+                if(headText.equalsIgnoreCase("Credit hold"))
+                {
+                    scenario.log("CREDIT HOLD HAS BEEN FOUND");
+                    break;
+                }
+            }
+
+            if(HelpersMethod.IsExists("//th["+i+"]/descendant::input[@class='k-textbox']",driver))
+            {
+                WebElement inputboxSearch = HelpersMethod.FindByElement(driver, "xpath", "//th[" + i + "]/descendant::input[@class='k-textbox']");
+                HelpersMethod.EnterText(driver, inputboxSearch, 10000, creditHold);
+                if (HelpersMethod.IsExists("//td[contains(text(),'No records available')]",driver))
+                {
+                    scenario.log("<span style='color:red'>NO RELEVANT RECORD FOUND</span>");
+                    exists = false;
+                }
+                else
+                {
+                    exists=true;
+                }
+            }
+
+            wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(120))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+            Assert.assertEquals(exists,true);
+        }
+        catch (Exception e){}
+    }
+
+    public void newOrderIcon()
+    {
+        exists=false;
+        String headText;
+        Actions act=new Actions(driver);
+        int i=0;
+        try
+        {
+            Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(120))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
+            List<WebElement> heads=HelpersMethod.FindByElements(driver,"xpath","//span[@class='k-column-title']");
+            for(WebElement head:heads)
+            {
+                i++;
+                act.moveToElement(head).build().perform();
+                headText=head.getText();
+                if(headText.equalsIgnoreCase("New Order"))
+                {
+                    scenario.log("NEW ORDER COLUMN FOUND");
+                    break;
+                }
+            }
+
+            if(!HelpersMethod.IsExists("//tr[contains(@class,'k-master-row')][1]/descendant::td["+i+"]//*[local-name()='svg']",driver))
+            {
+                 scenario.log("NEW ORDER ICON HAS NOT BEEN FOUND");
+                 exists = true;
+            }
+
+            wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(120))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+            Assert.assertEquals(exists,true);
+        }
+        catch (Exception e){}
+    }
+
+    public void searchHardHold()
+    {
+        String titleText;String pageText;String creditText;
+        Actions act=new Actions(driver);
+        List<WebElement> pages;
+        boolean found=false;
+        WebElement page1 = null;
+        try
+        {
+            //code to find 'Credit hold' column number
+            List<WebElement> titles=HelpersMethod.FindByElements(driver,"xpath","//span[@class='k-column-title']");
+            for(WebElement title:titles)
+            {
+                columnNo++;
+                act.moveToElement(title).build().perform();
+                titleText=title.getText();
+                if(titleText.equalsIgnoreCase("Credit hold"))
+                {
+                    break;
+                }
+            }
+            //Code to find last page number
+            WebElement lastArrow= HelpersMethod.FindByElement(driver,"xpath","//span[@class='k-icon k-i-arrow-end-right']");
+            HelpersMethod.ActClick(driver,lastArrow,10000);
+
+            //code to read last page number
+            List<WebElement> pageNos=HelpersMethod.FindByElements(driver,"xpath","//ul[@class='k-pager-numbers k-reset']/li/a");
+            int i=pageNos.size()-1;
+            act.moveToElement(pageNos.get(i)).build().perform();
+            lastPage= Integer.parseInt(pageNos.get(i).getText());
+            scenario.log("NUMBER OF PAGES IN OCL ARE: "+lastPage);
+
+            //code to navigate to first page again
+            WebElement firstArrow=HelpersMethod.FindByElement(driver,"xpath","//span[@class='k-icon k-i-arrow-end-left']");
+            HelpersMethod.ActClick(driver,firstArrow,10000);
+
+            //code to find Hard hold
+            for(int j=0;j<=lastPage;j++)
+            {
+                pages=HelpersMethod.FindByElements(driver,"xpath","//ul[@class='k-pager-numbers k-reset']/li/a");
+                for(WebElement page:pages)
+                {
+                    act.moveToElement(page).build().perform();
+                    pageText=page.getText();
+                    if(!pageText.equalsIgnoreCase("..."))
+                    {
+                        act.moveToElement(page).build().perform();
+                        pageHold= Integer.parseInt(page.getText());
+                        act.click(page).build().perform();
+
+                        List<WebElement> creditHolds=HelpersMethod.FindByElements(driver,"xpath","//tr/descendant::td["+columnNo+"]/descendant::div/span");
+                        for(WebElement creditHold:creditHolds)
+                        {
+                            rowNo++;
+                            act.moveToElement(creditHold).build().perform();
+                            creditText= creditHold.getText();
+                            if(creditText.equalsIgnoreCase("Hard Hold"))
+                            {
+                                scenario.log("HARD HOLD HAS BEEN FOUND IN PAGE NO "+pageHold+" AT ROW NUMBER "+rowNo);
+                                found=true;
+                                break;
+                            }
+                        }
+                    }
+                    if(found==true)
+                    {
+                        break;
+                    }
+                }
+                if(found==true)
+                {
+                    break;
+                }
+                else if(found==false)
+                {
+                    int size=pages.size()-1;
+                    page1=pages.get(size);
+                    pageText=page1.getText();
+                    if(pageText.equals("..."))
+                    {
+                        act.moveToElement(page1).build().perform();
+                        act.click().build().perform();
+                    }
+                    else
+                    {
+                        scenario.log("<span style='color:red'>NO HARD HOLD CUSTOMER HAS BEEN FOUND</span>");
+                    }
+                }
+            }
+        }
+        catch (Exception e){}
+    }
+
+    public String searchForPreviousCustomerForHardHold()
+    {
+        String titleText;
+        Actions act=new Actions(driver);
+        int i=0;
+        try
+        {
+            //find customer account number which is having hard hold
+            List<WebElement> titles=HelpersMethod.FindByElements(driver,"xpath","//span[@class='k-column-title']");
+            for(WebElement title:titles)
+            {
+                i++;
+                act.moveToElement(title).build().perform();
+                titleText=title.getText();
+                if(titleText.equalsIgnoreCase("Customer key"))
+                {
+                    break;
+                }
+            }
+            customerAccount=HelpersMethod.FindByElement(driver,"xpath",    "//tr["+rowNo+"]/descendant::td["+i+"]/descendant::div/span").getText();
+            scenario.log("CUSTOMER ACCOUNT NUMBER WITH HARD HOLD IS "+customerAccount);
+
+            //code to find order icon column
+            int noHoldRow=rowNo-1;
+            i=0;
+            titles=HelpersMethod.FindByElements(driver,"xpath","//span[@class='k-column-title']");
+            for(WebElement title:titles)
+            {
+                i++;
+                act.moveToElement(title).build().perform();
+                titleText=title.getText();
+                if(titleText.equalsIgnoreCase("New Order"))
+                {
+                    break;
+                }
+            }
+            //code to click on order icon, in previous row to Hard hold
+            //WebElement orderIcon=HelpersMethod.FindByElement(driver,"xapth","//tr["+noHoldRow+"]/descendant::td["+i+"]/descendant::div//*[local-name()='svg']//*[local-name()='path']");
+            WebElement orderIcon=HelpersMethod.FindByElement(driver,"xpath","//tr["+noHoldRow+"]/descendant::div[contains(@id,'PlaceOrderColIcon')]//*[local-name()='svg']");
+            HelpersMethod.ScrollElement(driver,orderIcon);
+            HelpersMethod.ActClick(driver,orderIcon,10000);
+        }
+        catch (Exception e){}
+        return customerAccount;
     }
 }

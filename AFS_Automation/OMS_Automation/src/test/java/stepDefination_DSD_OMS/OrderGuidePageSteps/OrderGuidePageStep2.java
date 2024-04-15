@@ -212,8 +212,29 @@ public class OrderGuidePageStep2
     public void checkForPopupToAppearToSelectSubCustomerReferenceForPriceGroupBaseSchedule() throws InterruptedException, AWTException
     {
         orderGuidePage = new OrderGuidePage(driver, scenario);
-        orderGuidePage.SubCustomerRef();
+        orderGuidePage.SubCustomerRefPriceGroupBaseSchedule();
     }
+
+    @And("Check for popup to appear to select sub customer reference for Price group default schedule")
+    public void checkForPopupToAppearToSelectSubCustomerReferenceForPriceGroupDefaultSchedule() throws InterruptedException, AWTException
+    {
+        orderGuidePage = new OrderGuidePage(driver, scenario);
+        orderGuidePage.SubCustomerRefPriceGroupDefaultSchedule();
+    }
+
+    @And ("Check for popup to appear to select sub customer reference for Standard order")
+    public void checkForPopupToAppearToSelectSubCustomerReferenceForStandardOrder() throws InterruptedException, AWTException
+    {
+       orderGuidePage = new OrderGuidePage(driver, scenario);
+       orderGuidePage.SubCustomerRefStandardOrder();
+   }
+
+   @And ("Check for popup to appear to select sub customer reference for Price group deal group")
+   public void checkForPopupToAppearToSelectSubCustomerReferenceForPriceGroupDealGroup() throws InterruptedException, AWTException
+   {
+       orderGuidePage = new OrderGuidePage(driver, scenario);
+       orderGuidePage.SubCustomerRefPriceGroupDealGroup();
+   }
 
     @And("User should select products from catalog popup for Market segment")
     public void userShouldSelectProductsFromCatalogPopupForMarketSegment()

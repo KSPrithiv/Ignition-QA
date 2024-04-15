@@ -1,8 +1,10 @@
 package stepDefination_DSD_OMS.OrderControlListSteps;
 
 import helper.HelpersMethod;
+import io.cucumber.datatable.DataTable;
 import io.cucumber.java.Before;
 import io.cucumber.java.Scenario;
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
@@ -18,6 +20,7 @@ import util.TestBase;
 
 import java.awt.*;
 import java.time.Duration;
+import java.util.List;
 
 /**
  * @Project Divya.Ramadas@telusagcg.com
@@ -29,6 +32,7 @@ public class OrderControlPageSteps2
     WebDriver driver;
     Scenario scenario;
     static String commentText=null;
+    static String customerAccount;
 
     static OrderControlListPage orderControlList;
     static NewOrderEntryPage newOE;
@@ -43,10 +47,10 @@ public class OrderControlPageSteps2
     }
 
     @Then("User should add customer note using Order control List")
-    public void userShouldAddCustomerNoteUsingOrderControlList()
+    public void userShouldAddCustomerNoteUsingOrderControlList() throws InterruptedException
     {
         orderControlList=new OrderControlListPage(driver,scenario);
-        commentText= RandomValues.generateRandomString(2000);
+        commentText= RandomValues.generateRandomString(200);
         orderControlList.clickOnCustomerNote();
         orderControlList.validateCustomerNotePopup();
         orderControlList.customerNotePopup(commentText);
@@ -57,7 +61,7 @@ public class OrderControlPageSteps2
     {
         orderpage = new OrderEntryPage(driver, scenario);
         Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
-                .withTimeout(Duration.ofSeconds(120))
+                .withTimeout(Duration.ofSeconds(200))
                 .pollingEvery(Duration.ofSeconds(2))
                 .ignoring(NoSuchElementException.class);
         wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
@@ -89,5 +93,34 @@ public class OrderControlPageSteps2
                 .pollingEvery(Duration.ofSeconds(2))
                 .ignoring(NoSuchElementException.class);
         wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+    }
+
+    @And("User verifies for New Order Icon which should not display")
+    public void userVerifiesForNewOrderIconWhichShouldNotDisplay()
+    {
+        orderControlList = new OrderControlListPage(driver, scenario);
+        orderControlList.newOrderIcon();
+    }
+
+    @And("User searches for Hard hold customer")
+    public void userSearchesForHardHoldCustomer() 
+    {
+        orderControlList = new OrderControlListPage(driver, scenario);
+        orderControlList.Validate_OCL();
+        orderControlList.searchHardHold();
+    }
+
+    @Then("User tries to create order for no hold customer which is preceding to hard hold")
+    public void userTriesToCreateOrderForNoHoldCustomerWhichIsPrecedingToHardHold()
+    {
+        orderControlList = new OrderControlListPage(driver, scenario);
+        customerAccount=orderControlList.searchForPreviousCustomerForHardHold();
+    }
+
+    @And("User should compare customer account number with hard hold with customer account number in newOE page")
+    public void userShouldCompareCustomerAccountNumberWithHardHoldWithCustomerAccountNumberInNewOEPage() throws InterruptedException, AWTException
+    {
+       newOE=new NewOrderEntryPage(driver,scenario);
+       newOE.compareCustomerAccountNo(customerAccount);
     }
 }

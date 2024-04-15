@@ -106,13 +106,13 @@ Feature: Order Guide2
       |   OG     |     OG1     |
       | Push OG1 | Push OG1Push OG1|
 
-  @ReferencePriceGroup
-  Scenario Outline: Test scenario for creating customer Reference Price group base Scheduled
+  @ReferencePriceGroupDefaultSchedule
+  Scenario Outline: Test scenario for creating customer Reference Price group default Scheduled
     Given User must be on Order Entry Page to select OG
     And User should navigate to OG
     Then User should click on Customer Reference drop down and select type of OG
-      |Price group - base schedule|
-    And Check for popup to appear to select sub customer reference for Price group base schedule
+      |Price group - default schedule|
+    And Check for popup to appear to select sub customer reference for Price group default schedule
     Then User clicks on Create new button and should navigate to New OG page
     Then Then User enters Description "<OG>" and End date
     And User should make sure that customer reference "<OGType>" is same as of selected in OG page
@@ -125,7 +125,7 @@ Feature: Order Guide2
     Then User enters OG Description "<OG>" in search box and Delete the OG verify same in OG grid
     Examples:
       |  OG        |  OGType                      |
-      |PriceBaseOG | Price group - base schedule  |
+      |PriceBaseDefaultOG | Price group - default schedule  |
 
   @OGNationalChain
   Scenario Outline: For creating OG using National chain

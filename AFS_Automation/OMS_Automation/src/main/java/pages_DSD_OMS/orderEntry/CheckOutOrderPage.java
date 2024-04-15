@@ -766,11 +766,32 @@ public class CheckOutOrderPage
         WebElement WebEle;
         try
         {
-            WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='payment-method-container']/descendant::tbody/tr[1]/descendant::input");
-            HelpersMethod.ClickBut(driver,WebEle,1000);
-            scenario.log("PAYMENT METHOD HAS BEEN SELECTED");
+            if(HelpersMethod.IsExists("//div[@class='payment-method-container']/descendant::tbody/tr[1]/descendant::input",driver))
+            {
+                WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='payment-method-container']/descendant::tbody/tr[1]/descendant::input");
+                HelpersMethod.ClickBut(driver, WebEle, 1000);
+                scenario.log("PAYMENT METHOD HAS BEEN SELECTED");
+            }
         }
         catch (Exception e){}
+    }
+
+    public String SelectPaymentMethodReadPaymentInfo()
+    {
+        WebElement WebEle;
+        String currenturl=null;
+        try
+        {
+            if(HelpersMethod.IsExists("//div[@class='payment-method-container']/descendant::tbody/tr[1]/descendant::input",driver))
+            {
+                WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='payment-method-container']/descendant::tbody/tr[1]/descendant::input");
+                HelpersMethod.ClickBut(driver, WebEle, 10000);
+                currenturl=HelpersMethod.FindByElement(driver,"xpath","//tr[1]/td/div[contains(@class,'payment-method-type')]").getText();
+                scenario.log("PAYMENT METHOD SELECTED IS: "+currenturl);
+            }
+        }
+        catch (Exception e){}
+        return currenturl;
     }
 
     public void validateCheckOrder()

@@ -469,7 +469,9 @@ public class InventoryPage
         {
             if(quickProduct.isDisplayed())
             {
-                HelpersMethod.EnterText(driver,quickProduct,1000,TestBase.testEnvironment.getSingle_Prod_Sql());
+                String prod=TestBase.testEnvironment.getSingle_Prod_Sql();
+                HelpersMethod.ClearText(driver,quickProduct,10000);
+                HelpersMethod.EnterText(driver,quickProduct,10000,prod);
                 exists=true;
             }
             Assert.assertEquals(exists,true);
