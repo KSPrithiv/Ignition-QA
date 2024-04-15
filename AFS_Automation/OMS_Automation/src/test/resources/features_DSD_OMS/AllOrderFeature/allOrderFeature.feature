@@ -64,16 +64,6 @@ Feature: All orders
     And User clicks on search button
     And User goes through all the order in Open order grid
 
-  @DisplayOrderWithProduct
-  Scenario: Test scenario for displaying only those orders having particular product
-    Given User must be on Order Entry Page to select All Orders
-    And User should navigate to All Orders
-    Then User clicks on Show all orders check box after Clicking All orders tab
-    And User enters product# in input box
-    And User clicks on search button
-    And User goes through all the order in Open order grid
-    #Then User clicks on any of the order and verifies products
-
   @VerifyCommentIcon
   Scenario: Test scenario for verifying Comment Icon
     Given User must be on Order Entry Page to select All Orders

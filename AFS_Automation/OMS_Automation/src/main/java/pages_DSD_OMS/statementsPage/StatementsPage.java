@@ -851,7 +851,11 @@ public class StatementsPage
         try
         {
             Collections.sort(customerName, String.CASE_INSENSITIVE_ORDER);
-            Assert.assertTrue(CollectionUtils.isEqualCollection(customerName, customerName1));
+           if(CollectionUtils.isEqualCollection(customerName, customerName1))
+           {
+               exists=true;
+           }
+           Assert.assertEquals(exists,true);
         }
         catch (Exception e){}
     }

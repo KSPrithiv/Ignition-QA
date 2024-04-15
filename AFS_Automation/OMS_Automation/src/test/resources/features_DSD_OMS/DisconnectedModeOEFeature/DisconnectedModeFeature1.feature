@@ -10,7 +10,7 @@ Feature: Disconnected mode
   @DMDeleteProductCard
   Scenario: Test scenario for deleting product from Product card
     Given User should be in Order entry page
-    When User Clicks on network symbol and click on taggle button to navigate to disconnected mode
+    When User Clicks on network symbol and click on toggle button to navigate to disconnected mode
     And Then User selects Go offline option in Disconnected mode popup
     Then User should get Customer account# popup
     And User should select Customer Account# from popup and select the delivery date from popup wait till synchronized
@@ -34,7 +34,7 @@ Feature: Disconnected mode
   @DMValidateShippingAddress
   Scenario: Test scenario to validate whether default shipping address is selected or not in payment page
     Given User should be in Order entry page
-    When User Clicks on network symbol and click on taggle button to navigate to disconnected mode
+    When User Clicks on network symbol and click on toggle button to navigate to disconnected mode
     And Then User selects Go offline option in Disconnected mode popup
     Then User should get Customer account# popup
     And User should select Customer Account# from popup and select the delivery date from popup wait till synchronized
@@ -54,7 +54,7 @@ Feature: Disconnected mode
   @DMQuickProduct
   Scenario: For adding comment to order
     Given User should be in Order entry page
-    When User Clicks on network symbol and click on taggle button to navigate to disconnected mode
+    When User Clicks on network symbol and click on toggle button to navigate to disconnected mode
     And Then User selects Go offline option in Disconnected mode popup
     Then User should get Customer account# popup
     And User should select Customer Account# from popup and select the delivery date from popup wait till synchronized
@@ -74,13 +74,13 @@ Feature: Disconnected mode
   @DMToConnected
   Scenario: for Disconnected mode to connected mode
     Given User should be in OE page in DM
-    When User clicks on network symbol and click on taggle button drop down should appear
-    And Then User should Click on taggle button to go online
+    When User clicks on network symbol and click on toggle button drop down should appear
+    And Then User should Click on toggle button to go online
 
   @DMTwoCustomerTwoDeliveryDate
   Scenario: Test scenario for selecting 2 customer accounts and 2 delivery date and navigate to connected mode
     Given User should be in Order entry page
-    When User Clicks on network symbol and click on taggle button to navigate to disconnected mode for two customer account selection
+    When User Clicks on network symbol and click on toggle button to navigate to disconnected mode for two customer account selection
     And Then User selects Go offline option in Disconnected mode popup for two customer account selection
     Then User should get Customer account# popup
     And User should select two Customer Account# from popup and select two delivery date from popup wait till synchronized
@@ -98,6 +98,6 @@ Feature: Disconnected mode
     Then Click on Next button
     And Click on SubmitOrder button
     Then User should be navigated to Order Entry page
-    Then User clicks on network symbol and click on taggle button drop down should appear
-    And Then User should Click on taggle button to go online
+    Then User clicks on network symbol and click on toggle button drop down should appear
+    And Then User should Click on toggle button to go online
 

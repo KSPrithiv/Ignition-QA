@@ -54,7 +54,6 @@ public class AdminHomePage
     {
         exists = false;
         String title = null;
-        WebElement WebEle;
         String status = null;
 
         status = HelpersMethod.returnDocumentStatus(driver);
@@ -507,6 +506,7 @@ public class AdminHomePage
 
             if (ClearSearch.isDisplayed())
             {
+                ClearSearch=HelpersMethod.FindByElement(driver,"xpath","//div[@class='searchbar-container']/descendant::i[@class='searchbar-container-close-icon']//*[local-name()='svg']");
                 HelpersMethod.ActClick(driver, ClearSearch, 1000);
                 WebElement Humburger = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='open-menu-hamburger-icon']//*[local-name()='svg']//*[local-name()='path' and contains(@d,'M3,18H21V16H3Zm0-5H21V11H3ZM3,6V8H21V6Z')]");
                 HelpersMethod.ActClick(driver, Humburger, 1000);

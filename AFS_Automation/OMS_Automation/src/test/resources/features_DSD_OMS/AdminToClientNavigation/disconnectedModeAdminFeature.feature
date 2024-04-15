@@ -58,8 +58,8 @@ Feature: scenarios for admin credentials and client credentials
     Then Click on Next button
     And Click on SubmitOrder button
     Then User should be navigated to Order Entry page
-    When User clicks on network symbol and click on taggle button drop down should appear
-    And Then User should Click on taggle button to go online
+    When User clicks on network symbol and click on toggle button drop down should appear
+    And Then User should Click on toggle button to go online
     Then User sign out from client side for Admin setting changes
     And User should set admin setting "<Setting>" "<Key>" as default before making changes
     Examples:

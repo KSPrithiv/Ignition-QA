@@ -121,12 +121,18 @@ public class OrderControlPageSteps
         if(flag1==false)
         {
             WebElement WebEle = null;
+            Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(120))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
             String status = HelpersMethod.returnDocumentStatus(driver);
             if (status.equals("loading"))
             {
                 HelpersMethod.waitTillLoadingPage(driver);
             }
-            Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+            wait = new FluentWait<WebDriver>(driver)
                     .withTimeout(Duration.ofSeconds(120))
                     .pollingEvery(Duration.ofSeconds(2))
                     .ignoring(NoSuchElementException.class);
@@ -143,7 +149,7 @@ public class OrderControlPageSteps
             {
                 HelpersMethod.waitTillLoadingPage(driver);
             }
-            if (HelpersMethod.EleDisplay(WebEle))
+            if (HelpersMethod.IsExists("//span[@class='k-link' and contains(text(),'Order control list')]",driver))
             {
                 HelpersMethod.navigate_Horizantal_Tab(driver, "Order control list", "//li[contains(@class,'k-item')]/span[@class='k-link' and contains(text(),'Order control list')]", "xpath", "//li[contains(@class,'k-item')]/span[@class='k-link']");
                 wait = new FluentWait<WebDriver>(driver)
@@ -430,11 +436,11 @@ public class OrderControlPageSteps
     {
         List<List<String>> custName = tabledata.asLists(String.class);
         orderControlList = new OrderControlListPage(driver, scenario);
-        String url=TestBase.testEnvironment.get_url();
-        if(url.contains("dsd"))
-        {
+        //String url=TestBase.testEnvironment.get_url();
+        //if(url.contains("dsd"))
+        //{
             orderControlList.searchForValidCustomer(custName.get(0).get(0));
-        }
+        //}
     }
 
     @Then("User should select Note from popup and Order guide from popup for OCL")
@@ -516,5 +522,13 @@ public class OrderControlPageSteps
             orderpage = new OrderEntryPage(driver, scenario);
             orderpage.NoPendingOrderPopup();
         }
+    }
+
+    @Then("User should search for credit holder in OCL")
+    public void userShouldSearchForCreditHolderInOCL(DataTable tabledata)
+    {
+        List<List<String>> creditHold = tabledata.asLists(String.class);
+        orderControlList = new OrderControlListPage(driver, scenario);
+        orderControlList.searchForCreditHolder(creditHold.get(0).get(0));
     }
 }

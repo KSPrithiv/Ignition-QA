@@ -543,7 +543,8 @@ public class LoginPage
                 BufferedReader reader = new BufferedReader(new InputStreamReader(entity.getContent()));
                 String line;
                 StringBuilder stringBuilder = new StringBuilder();
-                while ((line = reader.readLine()) != null) {
+                while ((line = reader.readLine()) != null)
+                {
                     stringBuilder.append(line);
                 }
 
@@ -552,6 +553,43 @@ public class LoginPage
                 scenario.log(jsonResponse);
             } else {scenario.log("No response entity received.");
             }
+        }
+        catch (Exception e){}
+    }
+
+    public void getURL()
+    {
+        String status = null;
+        String currenturl=null;
+
+        status = HelpersMethod.returnDocumentStatus(driver);
+        if (status.equals("loading")) {
+            HelpersMethod.waitTillLoadingPage(driver);
+        }
+        Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                .withTimeout(Duration.ofSeconds(120))
+                .pollingEvery(Duration.ofSeconds(2))
+                .ignoring(NoSuchElementException.class);
+        wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+        status = HelpersMethod.returnDocumentStatus(driver);
+        if (status.equals("loading")) {
+            HelpersMethod.waitTillLoadingPage(driver);
+        }
+        wait = new FluentWait<WebDriver>(driver)
+                .withTimeout(Duration.ofSeconds(120))
+                .pollingEvery(Duration.ofSeconds(2))
+                .ignoring(NoSuchElementException.class);
+        wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
+        wait = new FluentWait<WebDriver>(driver)
+                .withTimeout(Duration.ofSeconds(120))
+                .pollingEvery(Duration.ofSeconds(2))
+                .ignoring(NoSuchElementException.class);
+        wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+        try
+        {
+            currenturl=driver.getCurrentUrl();
+            scenario.log("CURRENT URL IS "+currenturl);
         }
         catch (Exception e){}
     }

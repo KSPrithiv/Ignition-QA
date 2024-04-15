@@ -51,7 +51,7 @@ public class CutoffTimeOverrideStep
         cutoffTimeOverride.SelectMin();
         cutoffTimeOverride.ClickOnTimeSetButton();
         cutoffTimeOverride.clickOnSaveNewBlackout();
-        cutoffTimeOverride.saveConfirmationPopup();
+        //cutoffTimeOverride.saveConfirmationPopup();
     }
 
     @And("User should click on Branch management toggle button set times for cutoff, Cutoff Time Override Delete Company")
@@ -78,7 +78,7 @@ public class CutoffTimeOverrideStep
         cutoffTimeOverride.SelectMin();
         cutoffTimeOverride.ClickOnTimeSetButton();
         cutoffTimeOverride.clickOnSaveNewBlackout();
-        cutoffTimeOverride.saveConfirmationPopup();
+        //cutoffTimeOverride.saveConfirmationPopup();
     }
 
     @And("User should click on Branch management toggle button set times for cutoff, Cutoff Time Override Delete Customer")

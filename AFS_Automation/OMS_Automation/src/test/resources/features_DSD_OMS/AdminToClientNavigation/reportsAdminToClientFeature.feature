@@ -15,8 +15,6 @@ Feature: scenarios for admin credentials and client credentials
     Then User should select Order Entry tab for admin
     Then User selects Account# for Admin side setting
 
-
-
     Examples:
       |Main menu    |Sub menu    |
       |Web ordering |Navigation  |

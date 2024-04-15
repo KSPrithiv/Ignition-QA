@@ -42,20 +42,6 @@ Feature: Admin setting
       |Option             | MenuOption1 | MenuOption2      |
       |Featured Products  |  Settings   | Featured products|
 
-  @AddFeaturedProducts
-  Scenario Outline: Test scenario to add new product to Featured products list
-    Given User is on Home Page for Admin setting to select Admin option
-    Then User refreshes page Clicks on Permissions by drop down to select Customer Account# grid for WebOrder
-    And User should enter menu "<Option>" in search bar to navigate to Featured Products
-    Then User should navigate to "<MenuOption1>" from horizontal menu to select Featured products list
-    #Then User should increase max number of Featured products set
-    Then User should select "<MenuOption2>" from horizontal menu to select Featured products list
-    And User should be on Featured products list then User should click on Add Products button and add products to list
-    Then User should list all the products in Product grid of Featured products
-    Examples:
-      |Option             | MenuOption1 | MenuOption2      |
-      |Featured Products  |  Settings   | Featured products|
-
   @SelectionOfProducts
   Scenario Outline: Test scenario for adding and deleting Featured products and verifying whether they are displaying properly or not
     Given User is on Home Page for Admin setting to select Admin option

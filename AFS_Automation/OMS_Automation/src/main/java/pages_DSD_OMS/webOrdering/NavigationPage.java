@@ -190,6 +190,7 @@ public class NavigationPage
         {
             labelNameText=label+"_Test";
             HelpersMethod.ScrollElement(driver,labelInput);
+            HelpersMethod.ClearText(driver,labelInput,10000);
             HelpersMethod.EnterText(driver,labelInput,10000,labelNameText);
             labelInput.sendKeys(Keys.ENTER);
             labelNameText=HelpersMethod.JSGetValueEle(driver,labelInput,10000);

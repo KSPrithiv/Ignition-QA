@@ -6,13 +6,20 @@ import io.cucumber.java.Before;
 import io.cucumber.java.Scenario;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
+import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.FluentWait;
+import org.openqa.selenium.support.ui.Wait;
+import org.testng.Assert;
 import pages_DSD_OMS.orderEntry.*;
 import util.DataBaseConnection;
 import util.TestBase;
 
 import java.awt.*;
 import java.sql.SQLException;
+import java.time.Duration;
 import java.util.List;
 
 /**
@@ -28,12 +35,13 @@ public class OrderEntryPageSteps8
     Scenario scenario;
 
     static boolean exists=false;
+    static String currenturl;
     //static OrderEntryPage orderEntryPage;
     static NewOrderEntryPage newOE;
-    //static CheckOutSummaryPage summary;
+    static CheckOutSummaryPage summary;
     //static OrderHistoryPage orderHistoryPage;
     static OrderEntryPage orderpage;
-    //static CheckOutOrderPage checkorder;
+    static CheckOutOrderPage checkorder;
 
     @Before
     public void LaunchBrowser1(Scenario scenario) throws Exception
@@ -131,5 +139,108 @@ public class OrderEntryPageSteps8
         newOE.Search_Prod_in_CatalogIndexDialogbox(pro);
         newOE.EnterQty(Prod_detail.get(0).get(0),Prod_detail.get(0).get(1));
         scenario.log("PRODUCT # "+pro+" PRODUCT QTY "+Prod_detail.get(0).get(0)+" "+Prod_detail.get(0).get(1));
+    }
+
+    @And("User should verify that Payment page is not getting displayed")
+    public void userShouldVerifyThatPaymentPageIsNotGettingDisplayed() throws InterruptedException, AWTException
+    {
+        exists = false;
+        newOE = new NewOrderEntryPage(driver, scenario);
+        newOE.readProductsInOrder();
+        exists = newOE.ClickNext();
+        newOE.OutOfStockPop_ERP();
+        if (HelpersMethod.IsExists("//div[@class='page-content']/descendant::div[@id='checkoutCard']",driver))
+        {
+            scenario.log("PAYMENT PAGE HAS BEEN FOUND");
+            exists=false;
+        }
+        else
+        {
+            scenario.log("PAYMENT PAGE HAS NOT BEEN FOUND");
+            exists=true;
+        }
+        Assert.assertEquals(exists,true);
+    }
+
+    @Then("Click on Next button and read payment methods")
+    public void clickOnNextButtonAndReadPaymentMethods() throws InterruptedException, AWTException
+    {
+        newOE = new NewOrderEntryPage(driver,scenario);
+        newOE.readProductsInOrder();
+        //handling toast messages
+        for(int i=0;i<=2;i++)
+        {
+            //check for toast message for low on inventory
+            newOE.lowOnInventoryToast();
+            //check for toast message for product is currently unavailable
+            newOE.toastCurrentlyUnavailable();
+        }
+
+        for(int i=0;i<=1;i++)
+        {
+            newOE.priceCannotBeBleowCost();
+            newOE.exceedsMaxQty();
+        }
+        exists=newOE.ClickNext();
+        newOE.OutOfStockPop_ERP();
+        checkorder=new CheckOutOrderPage(driver,scenario);
+
+        String status = HelpersMethod.returnDocumentStatus(driver);
+        if (status.equals("loading"))
+        {
+            HelpersMethod.waitTillLoadingPage(driver);
+        }
+
+        Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                .withTimeout(Duration.ofSeconds(120))
+                .pollingEvery(Duration.ofSeconds(2))
+                .ignoring(NoSuchElementException.class);
+        wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
+        status = HelpersMethod.returnDocumentStatus(driver);
+        if (status.equals("loading"))
+        {
+            HelpersMethod.waitTillLoadingPage(driver);
+        }
+
+        wait = new FluentWait<WebDriver>(driver)
+                .withTimeout(Duration.ofSeconds(120))
+                .pollingEvery(Duration.ofSeconds(2))
+                .ignoring(NoSuchElementException.class);
+        wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
+        if(HelpersMethod.IsExists("//div[@id='paymentMethodCard']",driver))
+        {
+            Thread.sleep(4000);
+            checkorder.Select_PaymentMethod_ClickDownArrow();
+            if(HelpersMethod.IsExists("//tr[1]/descendant::td[@class='payment-method-type-cell']",driver))
+            {
+                currenturl=checkorder.SelectPaymentMethodReadPaymentInfo();
+                scenario.log("FIRST PAYMENT OPTION HAS BEEN SELECTED");
+            }
+            else
+            {
+                checkorder.Click_On_Without_Providing_Payment();
+                scenario.log("WITHOUT PROVIDING PAYMENT OPTION HAS BEEN SELECTED");
+            }
+            checkorder.DeliveryAddressCard();
+            checkorder.NextButton_Click();
+        }
+    }
+
+    @And("Click on SubmitOrder button and compare payment info")
+    public void clickOnSubmitOrderButtonAndComparePaymentInfo() throws InterruptedException, AWTException
+    {
+        summary = new CheckOutSummaryPage(driver,scenario);
+        summary.validateSummaryPage();
+        summary.validatePaymentInSummary(currenturl);
+        summary.ClickSubmit();
+        for(int i=0;i<=2;i++)
+        {
+            summary.additionalOrderPopup();
+            summary.cutoffDialog();
+            summary.percentageOfAverageProd();
+        }
+        summary.SucessPopup();
     }
 }

@@ -9,7 +9,7 @@ Feature: Order Guide3
     Then User selects Account# for OG
 
   @OGDeleteCancel
-  Scenario Outline: Test scenario for cancel deleteing of OG
+  Scenario Outline: Test scenario for cancel deleting of OG
     Given User must be on Order Entry Page to select OG
     And User should navigate to OG
     Then User enters OG Description "<OG>" in search box and Delete cancel the OG verify same in OG grid
