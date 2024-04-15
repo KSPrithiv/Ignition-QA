@@ -146,6 +146,7 @@ public class OrderEntryPageSteps1
         String Prod_No= DataBaseConnection.DataBaseConn(TestBase.testEnvironment.getSingle_OneMoreProd());
         newOE=new NewOrderEntryPage(driver,scenario);
         newOE.Validate_Catalog();
+        newOE.clickOnLoadAllProducts();
         newOE.ResetFilter_Catalog();
         String pro=String.valueOf(Prod_No);
         newOE.validateCatalogProducts();

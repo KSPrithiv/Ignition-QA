@@ -323,11 +323,13 @@ public class OrderGuidePageStep1
         //createOGPage.ClickOnSave();
     }
 
-    @And("User should select products from catalog popup to add muliple products")
-    public void userShouldSelectProductsFromCatalogPopupToAddMulipleProducts() throws SQLException, InterruptedException
+    @And("User should select products from catalog popup to add multiple products")
+    public void userShouldSelectProductsFromCatalogPopupToAddMultipleProducts() throws SQLException, InterruptedException
     {
         createOGPage = new CreateOGPage(driver, scenario);
         createOGPage.ValidateCatalogDisplay();
+        createOGPage.ResetFilter_Catalog();
+        createOGPage.validateProductInCatalog();
         createOGPage.AddFromCatalog(DataBaseConnection.DataConn1(TestBase.testEnvironment.getMultiple_Prod_Sql1()));
     }
 
@@ -408,5 +410,23 @@ public class OrderGuidePageStep1
         createOGPage.validateOGTypeDropDown();
         createOGPage.SelectHistoricalFromDropDown(Type.get(0).get(0));
         createOGPage.validateOGType(Type.get(0).get(0));
+    }
+
+    @And("User should select products from catalog popup for Local chain")
+    public void userShouldSelectProductsFromCatalogPopupForLocalChain()
+    {
+        createOGPage=new CreateOGPage(driver,scenario);
+        createOGPage.ValidateCatalogDisplay();
+        createOGPage.ResetFilter_Catalog();
+        createOGPage.validateProductInCatalog();
+        if (HelpersMethod.IsExists("//div[contains(@class,'k-widget k-window k-dialog')]/descendant::div[contains(@class,'i-grid')]", driver))
+        {
+            createOGPage.ListViewPriceBase();
+        }
+        else
+        {
+            createOGPage.cardViewPriceBase();
+        }
+        createOGPage.CatalogPopupOk();
     }
 }

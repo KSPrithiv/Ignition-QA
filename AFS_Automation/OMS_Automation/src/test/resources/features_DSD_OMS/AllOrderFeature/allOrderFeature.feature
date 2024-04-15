@@ -36,15 +36,6 @@ Feature: All orders
     And User clicks on search button
     And User goes through all the order in Open order grid
 
-  @AllOpenOrderAllOrders
-  Scenario: Test scenario for displaying all Open order in all orders
-    Given User must be on Order Entry Page to select All Orders
-    And User should navigate to All Orders
-    Then User clicks on Show all orders check box after Clicking All orders tab
-    And User clicks on Order status and select Open order option from drop down
-    And User clicks on search button
-    And User goes through all the order in Open order grid
-
   @CreateOpenOrder
   Scenario: Test scenario for creating All Order
     Given User must be on Order Entry Page to select All Orders
@@ -57,12 +48,21 @@ Feature: All orders
       |PO123|
     Then Enter Pro# in Quick Product Entry area
     And Check for Case and Unit input box enabled or not based on that enter value
-      |60|20|
+      |60|100|
     Then Click on Next button
     And Click on Submit Order button and read Order_no created for All order
     Then User should be navigated back to All order page
     And User clicks on Show all orders check box after navigating back
     And User Clicks on Add filter button and Search for OrderNo
+
+  @AllOpenOrderAllOrders
+  Scenario: Test scenario for displaying all Open order in all orders
+    Given User must be on Order Entry Page to select All Orders
+    And User should navigate to All Orders
+    Then User clicks on Show all orders check box after Clicking All orders tab
+    And User clicks on Order status and select Open order option from drop down
+    And User clicks on search button
+    And User goes through all the order in Open order grid
 
   @DisplayOrderWithProduct
   Scenario: Test scenario for displaying only those orders having particular product
@@ -140,8 +140,8 @@ Feature: All orders
     Given User must be on Order Entry Page to select All Orders
     And User should navigate to All Orders
     Then User clicks on Show all orders check box after Clicking All orders tab
-    And User clicks on Order status and select Active order option from drop down
-    And User Clicks on Add filter button and enter values for search options
+    And User clicks on Order status and select Open order option from drop down
+    #And User Clicks on Add filter button and enter values for search options
     Then User select the order and click on Print button
 
   @AllOrderToOrderEntry

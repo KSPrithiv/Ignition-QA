@@ -209,6 +209,7 @@ public class StandingOrderPageSteps
     {
         standingOrder=new NewStandingOrderPage(driver,scenario);
         standingOrder.ValidateCatalogPopup();
+        standingOrder.clickOnLoadAllProducts();
         standingOrder.ResetFilter_Catalog();
         if (HelpersMethod.IsExists("//div[contains(@class,'k-widget k-window k-dialog')]/descendant::div[contains(@class,'i-grid')]", driver))
         {
@@ -249,8 +250,10 @@ public class StandingOrderPageSteps
     }
 
     @Then("Click on Skip specific day and select any enabled day from current date,select reason date for skip in skip popup and click on ok")
-    public void clickOnSkipSpecificDayAndSelectAnyEnabledDayFromCurrentDateSelectReasonDateForSkipInSkipPopupAndClickOnOk() throws InterruptedException
+    public void clickOnSkipSpecificDayAndSelectAnyEnabledDayFromCurrentDateSelectReasonDateForSkipInSkipPopupAndClickOnOk() throws InterruptedException, AWTException, ParseException
     {
+        orderpage=new OrderEntryPage(driver,scenario);
+        orderpage.Read_DeliveryDate();
         standingOrder=new NewStandingOrderPage(driver,scenario);
         standingOrder.ClickOnSkipSpecificDay();
         standingOrder.ValidateSkipPopup();
@@ -288,6 +291,7 @@ public class StandingOrderPageSteps
         standingOrder=new NewStandingOrderPage(driver,scenario);
         //standingOrder.ValidateCardView();
         standingOrder.ValidateCatalogPopup();
+        standingOrder.clickOnLoadAllProducts();
         standingOrder.ResetFilter_Catalog();
         standingOrder.clickCategory();
         standingOrder.selectCategory();
@@ -360,6 +364,7 @@ public class StandingOrderPageSteps
     {
         orderpage = new OrderEntryPage(driver, scenario);
         orderpage.CheckForRemoveSkip();
+        orderpage.ClickRemoveSkip();
         orderpage=new OrderEntryPage(driver,scenario);
         orderpage.ClickCalender();
         orderpage.ResetToCurrentDate();
@@ -390,6 +395,7 @@ public class StandingOrderPageSteps
     {
         standingOrder=new NewStandingOrderPage(driver,scenario);
         standingOrder.ValidateCatalogPopup();
+        standingOrder.clickOnLoadAllProducts();
         standingOrder.ResetFilter_Catalog();
         standingOrder.SearchProductDiscription();
         standingOrder.validateProductSelectedOrNot();

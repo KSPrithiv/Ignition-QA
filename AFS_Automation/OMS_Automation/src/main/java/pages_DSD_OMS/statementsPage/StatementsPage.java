@@ -6,6 +6,7 @@ import io.cucumber.java.bs.A;
 import io.cucumber.java.en_old.Ac;
 import org.apache.commons.collections4.CollectionUtils;
 import org.openqa.selenium.*;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -18,10 +19,7 @@ import pages_DSD_OMS.login.HomePage;
 import util.TestBase;
 
 import java.time.Duration;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 /**
  * @Project DSD_OMS
@@ -199,6 +197,7 @@ public class StatementsPage
                 URL = HelpersMethod.gettingURL(driver);
                 scenario.log("URL FOUND "+URL);
                 scenario.log("**************ERROR PAGE HAS BEEN FOUND****************");
+                driver.navigate().to(currentURL);
             }
             if (HelpersMethod.gettingURL(driver).contains("CPAdmin"))
             {
@@ -330,9 +329,11 @@ public class StatementsPage
         {
             prMonth=HelpersMethod.FindByElement(driver,"xpath","//span[@id='ddlMonth']/span[contains(@class,'input')]").getText();
             scenario.log("MONTH BEFORE CHANGING: "+prMonth);
-            HelpersMethod.ClickBut(driver,monthDropdown,1000);
+            HelpersMethod.ClickBut(driver,monthDropdown,10000);
+            Thread.sleep(1000);
+            new WebDriverWait(driver,Duration.ofMillis(20000)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(@class,'k-animation-container ')]/descendant::ul/li")));
             List<WebElement> Values=HelpersMethod.FindByElements(driver,"xpath","//div[contains(@class,'k-animation-container ')]/descendant::ul/li");
-            for(int i=0;i<= Values.size()-1;i++)
+           /* for(int i=0;i<= Values.size()-1;i++)
             {
                 monthFromDropDown = Values.get(i);
                 act.moveToElement(monthFromDropDown).build().perform();
@@ -347,7 +348,15 @@ public class StatementsPage
                     }
                     break;
                 }
-            }
+            }*/
+            // get the len of Month list
+            int maxMonth = Values.size();
+            // get random number
+            Random random = new Random();
+            int randomMonth = random.nextInt(maxMonth);
+            // Select the list item
+            Values.get(randomMonth).click();
+
             status = HelpersMethod.returnDocumentStatus(driver);
             if (status.equals("loading"))
             {

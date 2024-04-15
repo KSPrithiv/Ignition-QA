@@ -84,18 +84,7 @@ public class AdminReportPageStep
             flag=true;
         }
     }
-
-    /*  @And("User should enter menu {string} in search bar to navigate to Web Payments")
-      public void userShouldEnterMenuInSearchBarToNavigateToNavigateToWebPayments(String arg0)
-      {
-          if(flag1==false)
-            {
-              adminHomePage = new AdminHomePage(driver, scenario);
-              adminHomePage.ClickOnHumburger();
-              adminHomePage.EnterValueInSearchBox(arg0);
-              adminHomePage.CloseHumburger();
-            }
-      }*/
+    
     @And("User should enter menu {string} in search bar and select {string} for Reports, Web Payment")
     public void userShouldEnterMenuInSearchBarAndSelectForReportsWebPayment(String arg0, String arg1)
     {
@@ -147,18 +136,6 @@ public class AdminReportPageStep
             flag3=true;
         }
     }
-
-   /* @Given("User is on Home Page for Admin setting to select Admin option for Admin Permissions")
-    public void userIsOnHomePageForAdminSettingToSelectAdminOptionForAdminPermissions() throws InterruptedException
-    {
-        if(flag6==false)
-        {
-            adminHomePage = new AdminHomePage(driver, scenario);
-            adminHomePage.ValidatingAdminHome();
-            flag6=true;
-        }
-    }*/
-
 
     @And("User should enter menu {string} in search bar and select {string}, for user and accounts")
     public void userShouldEnterMenuInSearchBarAndSelectForUserAndAccounts(String arg0, String arg1)

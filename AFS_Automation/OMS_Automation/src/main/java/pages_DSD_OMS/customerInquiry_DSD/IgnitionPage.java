@@ -511,6 +511,13 @@ public class IgnitionPage
             WebElement modalContainer = driver.findElement(By.xpath("//div[contains(text(),'Edit standing po')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]"));
             WebEle=modalContainer.findElement(By.xpath(".//button[text()='Update']"));
             HelpersMethod.ActClick(driver,WebEle,10000);
+
+            Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(120))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
             if(HelpersMethod.IsExists("//div[contains(text(),'A Standing PO# already exists within the given date range')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
             {
                 WebElement popUp = driver.findElement(By.xpath("//div[contains(@class,'k-widget k-window k-dialog')]"));

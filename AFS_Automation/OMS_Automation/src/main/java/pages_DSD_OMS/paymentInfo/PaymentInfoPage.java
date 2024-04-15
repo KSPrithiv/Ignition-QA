@@ -3,12 +3,15 @@ package pages_DSD_OMS.paymentInfo;
 import helper.HelpersMethod;
 import io.cucumber.java.Scenario;
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.FluentWait;
+import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import pages_DSD_OMS.login.HomePage;
@@ -64,6 +67,7 @@ public class PaymentInfoPage
             {
                 HelpersMethod.NavigateBack(driver);
                 URL = HelpersMethod.gettingURL(driver);
+                driver.navigate().to(currentURL);
             }
             if (HelpersMethod.gettingURL(driver).contains("CPAdmin"))
             {
@@ -78,11 +82,11 @@ public class PaymentInfoPage
     public void Refresh_Page()
     {
         driver.navigate().to(currentURL);
-        if (HelpersMethod.IsExists("//div[@class='loader']", driver))
-        {
-            WebElement WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000000);
-        }
+        Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                .withTimeout(Duration.ofSeconds(120))
+                .pollingEvery(Duration.ofSeconds(2))
+                .ignoring(NoSuchElementException.class);
+        wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
     }
 
     public void NavigateToPaymentInfo()
@@ -167,9 +171,20 @@ public class PaymentInfoPage
 
     public void clickOnCustomerAccountIndex()
     {
+        exists=false;
         try
         {
-            HelpersMethod.ActClick(driver,CustAccIndex,1000);
+            if (HelpersMethod.IsExists("//div[@class='loader']", driver))
+            {
+                WebElement  WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100000);
+            }
+            if(CustAccIndex.isDisplayed() && CustAccIndex.isEnabled())
+            {
+                HelpersMethod.ActClick(driver, CustAccIndex, 1000);
+                exists=true;
+            }
+            Assert.assertEquals(exists,true);
         }
         catch (Exception e){}
     }
@@ -273,6 +288,11 @@ public class PaymentInfoPage
         exists=false;
         try
         {
+            if (HelpersMethod.IsExists("//div[@class='loader']", driver))
+            {
+                WebElement  WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100000);
+            }
             if(addPayment.isDisplayed() && addPayment.isEnabled())
             {
                 HelpersMethod.ClickBut(driver, addPayment, 1000);

@@ -8,6 +8,7 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import lombok.SneakyThrows;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
@@ -43,6 +44,7 @@ public class OrderControlPageSteps
     static CheckOutSummaryPage summary;
     static OrderControlListPage orderControlList;
 
+    static boolean cutOff=false;
     static boolean exists=false;
     static boolean flag=false;
     static boolean flag1=false;
@@ -124,11 +126,12 @@ public class OrderControlPageSteps
             {
                 HelpersMethod.waitTillLoadingPage(driver);
             }
-            if (HelpersMethod.IsExists("//div[@class='loader']", driver))
-            {
-                WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000000);
-            }
+            Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(120))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
             status = HelpersMethod.returnDocumentStatus(driver);
             if (status.equals("loading"))
             {
@@ -143,22 +146,18 @@ public class OrderControlPageSteps
             if (HelpersMethod.EleDisplay(WebEle))
             {
                 HelpersMethod.navigate_Horizantal_Tab(driver, "Order control list", "//li[contains(@class,'k-item')]/span[@class='k-link' and contains(text(),'Order control list')]", "xpath", "//li[contains(@class,'k-item')]/span[@class='k-link']");
-                if (HelpersMethod.IsExists("//div[@class='loader']", driver))
-                {
-                    WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000000);
-                }
+                wait = new FluentWait<WebDriver>(driver)
+                        .withTimeout(Duration.ofSeconds(120))
+                        .pollingEvery(Duration.ofSeconds(2))
+                        .ignoring(NoSuchElementException.class);
+                wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
                 status = HelpersMethod.returnDocumentStatus(driver);
                 if (status.equals("loading"))
                 {
                     HelpersMethod.waitTillLoadingPage(driver);
                 }
-                /*if (HelpersMethod.IsExists("//div[@class='loader']", driver))
-                {
-                    WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000000);
-                }*/
-                Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                wait = new FluentWait<WebDriver>(driver)
                         .withTimeout(Duration.ofSeconds(140))
                         .pollingEvery(Duration.ofSeconds(2))
                         .ignoring(NoSuchElementException.class);
@@ -191,9 +190,8 @@ public class OrderControlPageSteps
     public void userShouldSelectOrderTakerFromDropDown()
     {
         orderControlList=new OrderControlListPage(driver,scenario);
-        orderControlList.Validate_OCL();
-        orderControlList.Click_OrderTracker();
-        orderControlList.Select_OrderTracker();
+        orderControlList.Click_OrderTaker();
+        orderControlList.Select_OrderTaker();
     }
 
     @And("Change the delivery date {int} days after current date")
@@ -217,8 +215,7 @@ public class OrderControlPageSteps
     public void userClicksOnOrderIconInOCLGrid()
     {
         orderControlList=new OrderControlListPage(driver,scenario);
-        orderControlList.readCustomerAccountNo();
-        orderControlList.OrderIcon_Click();
+        orderControlList.checkForOrderIcon();
     }
 
     @And("User validate that he is in NewOE page")
@@ -226,20 +223,25 @@ public class OrderControlPageSteps
     {
         newOE=new NewOrderEntryPage(driver,scenario);
         exists= newOE.ValidateNewOE();
-        //Assert.assertEquals(exists,true);
+        orderpage=new OrderEntryPage(driver,scenario);
+        orderpage.NoPendingOrderPopup();
     }
 
     @And("User Clicks on Back button in NewOE page and User must be in OCL page")
     public void userClicksOnBackButtonInNewOEPageAndUserMustBeInOCLPage() throws InterruptedException, AWTException
     {
-        newOE=new NewOrderEntryPage(driver,scenario);
-        exists= newOE.ValidateNewOE();
-        if(exists==true)
+        if(cutOff==false)
         {
-            newOE.Click_Back_But();
+            newOE = new NewOrderEntryPage(driver, scenario);
+            exists = newOE.ValidateNewOE();
+            if (exists == true)
+            {
+                scenario.log("AUTOMATICALLY LOAD NEXT CUSTOMER IN ORDER CONTROL LIST");
+                newOE.Click_Back_But();
+            }
+            orderControlList = new OrderControlListPage(driver, scenario);
+            orderControlList.Validate_OCL();
         }
-        orderControlList=new OrderControlListPage(driver,scenario);
-        orderControlList.Validate_OCL();
     }
 
     @Then("User clicks on Add filter button and enter value for first search box and second search box")
@@ -407,10 +409,112 @@ public class OrderControlPageSteps
     {
         orderControlList=new OrderControlListPage(driver,scenario);
         orderControlList.Refresh_Click();
-        orderControlList.Click_OrderTracker();
-        orderControlList.Select_OrderTracker();
+        orderControlList.Click_OrderTaker();
+        orderControlList.Select_OrderTaker();
         orderControlList.Call_Date_Click();
         orderControlList.Call_Date_Selection(i);
         orderControlList.Select_Taken();
+    }
+
+    @And("User verify created by column value")
+    public void userVerifyCreatedByColumnValue()
+    {
+        orderControlList = new OrderControlListPage(driver, scenario);
+        orderControlList.Validate_OCL();
+        orderControlList.validateCreatedByColumn();
+        orderControlList.displayOrderCreatedByName();
+    }
+
+    @Then("User should search for valid customers in OCL")
+    public void userShouldSearchForValidCustomersInOCL(DataTable tabledata)
+    {
+        List<List<String>> custName = tabledata.asLists(String.class);
+        orderControlList = new OrderControlListPage(driver, scenario);
+        String url=TestBase.testEnvironment.get_url();
+        if(url.contains("dsd"))
+        {
+            orderControlList.searchForValidCustomer(custName.get(0).get(0));
+        }
+    }
+
+    @Then("User should select Note from popup and Order guide from popup for OCL")
+    public void userShouldSelectNoteFromPopupAndOrderGuideFromPopupForOCL() throws InterruptedException, AWTException
+    {
+        Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                .withTimeout(Duration.ofSeconds(120))
+                .pollingEvery(Duration.ofSeconds(2))
+                .ignoring(NoSuchElementException.class);
+        wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
+        if(HelpersMethod.IsExists("//div[contains(text(),'The cutoff time')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
+        {
+            scenario.log("<span style='color:red'>CUTOFF TIME HAS BEEN FOUND</span>");
+            WebElement modelContainer=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-widget k-window k-dialog')]");
+            WebElement okButton=modelContainer.findElement(By.xpath(".//button[text()='Ok']"));
+            HelpersMethod.ActClick(driver,okButton,10000);
+            cutOff=true;
+            wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(120))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
+            String status = HelpersMethod.returnDocumentStatus(driver);
+            if (status.equals("loading"))
+            {
+                HelpersMethod.waitTillLoadingPage(driver);
+            }
+
+            wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(120))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+        }
+        else
+        {
+            orderpage = new OrderEntryPage(driver, scenario);
+            for (int i = 0; i <= 1; i++)
+            {
+                orderpage.OrderGuidePopup();
+                Thread.sleep(1000);
+                orderpage.NoNotePopHandling();
+            }
+            String status = HelpersMethod.returnDocumentStatus(driver);
+            if (status.equals("loading"))
+            {
+                HelpersMethod.waitTillLoadingPage(driver);
+            }
+
+            wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(120))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
+            status = HelpersMethod.returnDocumentStatus(driver);
+            if (status.equals("loading"))
+            {
+                HelpersMethod.waitTillLoadingPage(driver);
+            }
+
+            wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(120))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+        }
+    }
+
+    @Then("User validate that he is in NewOE page for OCL")
+    public void userValidateThatHeIsInNewOEPageForOCL() throws InterruptedException, AWTException
+    {
+        if(cutOff==false)
+        {
+            newOE = new NewOrderEntryPage(driver, scenario);
+            exists = newOE.ValidateNewOE();
+            orderpage = new OrderEntryPage(driver, scenario);
+            orderpage.NoPendingOrderPopup();
+        }
     }
 }

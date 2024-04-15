@@ -28,7 +28,7 @@ Feature: Catalog2
     And User should navigate to Catalog tab
     And User should click on Reset filter button and all the products should displayed in List view in Catalog page
     Then User enters Product# in Search bar and enters Qty for single Product in list view
-         |50|
+         |80|
     Then User click on cart in catalog and click on Gotocart
     And user should be on New Order entry page
     Then Enter PO# for New order

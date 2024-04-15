@@ -1,17 +1,15 @@
 package testRunner_DSD_OMS;
 
 import io.cucumber.testng.AbstractTestNGCucumberTests;
+import org.testng.annotations.DataProvider;
+
 import io.cucumber.testng.CucumberOptions;
 import org.testng.annotations.*;
-import pages_DSD_OMS.login.LoginPage;
 import util.MailSend;
 import util.TestBase;
 
 import javax.mail.MessagingException;
-import java.awt.*;
 import java.io.IOException;
-import pages_DSD_OMS.login.LoginPage;
-
 
 /**
  * @Project OMS_DSD
@@ -74,21 +72,24 @@ import pages_DSD_OMS.login.LoginPage;
                         "rerun:target/failedrerun.txt"},
                 monochrome = true)
 
-public class TestRunnSingleSce extends AbstractTestNGCucumberTests {
+public class TestRunnSingleSce extends AbstractTestNGCucumberTests
+{
     /* Created by Divya.Ramadas@afsi.com */
-
     @Parameters({"environment" })
-    @BeforeClass
-    public static void beforeClass(@Optional("environment") String envi) {
-        try {
+    @BeforeClass(alwaysRun = true)
+    public static void beforeClass(String envi)
+    {
+        try
+        {
             TestBase.InitializeProp(envi);
+            //readPropertiesFile.InitializeProp(envi);
             TestBase.SetDriver(TestBase.testEnvironment.get_browser());
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    @AfterClass
+    @AfterClass(alwaysRun = true)
     public static void afterClass() throws InterruptedException, MessagingException, IOException {
         Thread.sleep(1000);
 

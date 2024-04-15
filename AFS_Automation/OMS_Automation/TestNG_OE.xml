@@ -2,9 +2,9 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="All Test Suite">
     <test name="IgnitionTestAutomation">
-        <parameter name="environment" value="config_DSD_OMS\\config_DSD"/>
-        <classes>
-            <class name="testRunner_DSD_OMS.DSDEnv.TestRunnerOE">
+     <parameter name="environment" value="config_DSD_OMS\\configIgnition\\config_DSD"/>
+                <classes>
+                 <class name="testRunner_DSD_OMS.DSDEnv.TestRunnerOE">
             </class>
         </classes>
     </test>

@@ -56,6 +56,7 @@ public class OrderEntryPageSteps7
         String filterValue=null;
         newOE=new NewOrderEntryPage(driver,scenario);
         newOE.validateCatalogdialog();
+        newOE.clickOnLoadAllProducts();
         newOE.ResetFilter_Catalog();
         newOE.validateCardView();
         newOE.validateCatalogProducts();
@@ -160,9 +161,9 @@ public class OrderEntryPageSteps7
     }
 
     @Then("User verifies Order history page and change grid types")
-    public void userVerifiesOrderHistoryPageAndChangeGridTypes(DataTable tabledata) throws InterruptedException, AWTException
+    public void userVerifiesOrderHistoryPageAndChangeGridTypes() throws InterruptedException, AWTException
     {
-        List<List<String>> gridtype=tabledata.asLists(String.class);
+        //List<List<String>> gridtype=tabledata.asLists(String.class);
         orderHistoryPage=new OrderHistoryPage(driver,scenario);
         orderHistoryPage.ValidateOrderHistory();
         orderHistoryPage.clickOnGridType();

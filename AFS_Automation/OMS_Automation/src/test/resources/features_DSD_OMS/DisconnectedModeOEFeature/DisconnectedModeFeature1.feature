@@ -66,7 +66,7 @@ Feature: Disconnected mode
       |PO123|
     Then Enter Pro# in Quick Product Entry area
     And Check for Case and Unit input box enabled or not based on that enter value
-      |10|20|
+      |40|150|
     Then Click on Next button
     And Click on SubmitOrder button
     Then User should be navigated to Order Entry page
@@ -94,7 +94,7 @@ Feature: Disconnected mode
       |PO123|
     Then Enter Pro# in Quick Product Entry area
     And Check for Case and Unit input box enabled or not based on that enter value
-      |10|20|
+      |80|40|
     Then Click on Next button
     And Click on SubmitOrder button
     Then User should be navigated to Order Entry page

@@ -5,6 +5,7 @@ import io.cucumber.testng.CucumberOptions;
 import org.testng.annotations.*;
 import util.MailSend;
 import util.TestBase;
+import util.readPropertiesFile;
 
 import javax.mail.MessagingException;
 import java.io.IOException;
@@ -28,22 +29,16 @@ public class ParallelExecutionEnvironment extends AbstractTestNGCucumberTests
     /* Created by Divya.Ramadas@afsi.com */
     @Parameters({"environment"})
     @BeforeClass
-    public static void beforeClass(@Optional("environment") String envi)
+    public static void beforeClass(String envi)
     {
         try
         {
+            //readPropertiesFile.InitializeProp(envi);
             TestBase.InitializeProp(envi);
             TestBase.SetDriver(TestBase.testEnvironment.get_browser());
         }
         catch (Exception e)
         { }
-    }
-
-    @Override
-    @DataProvider(parallel = true)
-    public Object[][] scenarios()
-    {
-        return super.scenarios();
     }
 
     @AfterClass

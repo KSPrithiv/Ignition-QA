@@ -57,9 +57,15 @@ public class BlackoutAndCutoffPage
         exists=false;
         try
         {
-            if(HelpersMethod.IsExistsById("add-blackout-date",driver))
+            Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(160))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+            Thread.sleep(1000);
+            if(HelpersMethod.IsExists("//button[@id='add-blackout-date']",driver))
             {
-                HelpersMethod.ClickBut(driver,AddButton,10000);
+                HelpersMethod.ClickBut(driver,AddButton,20000);
                 scenario.log("ADD BUTTON HAS BEEN CLICKED");
                 exists=true;
             }
@@ -75,6 +81,7 @@ public class BlackoutAndCutoffPage
         {
             if(HelpersMethod.IsExists("//div[@class='new-blackout-date-container']/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
             {
+                scenario.log("BLACKOUT DIALOG HAS BEEN FOUND");
                 exists=true;
             }
             Assert.assertEquals(exists,true);
@@ -89,13 +96,13 @@ public class BlackoutAndCutoffPage
         {
             WebElement modelContainer=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-widget k-window k-dialog')]");
             WebElement calenderButton=modelContainer.findElement(By.xpath(".//a[@class='k-select']"));
-            HelpersMethod.ActClick(driver,calenderButton,6000);
-            //HelpersMethod.ClickBut(driver,calenderButton,6000);
+            HelpersMethod.ActClick(driver,calenderButton,10000);
+
             //verify existence of calender and select date
             if(HelpersMethod.IsExists("//div[contains(@class,'k-widget k-calendar k-calendar-infinite')]",driver))
             {
                 WebElement blackOutDate= HelpersMethod.FindByElement(driver,"xpath","//td[contains(@class,'k-calendar-td k-state-pending-focus')]");
-                HelpersMethod.ClickBut(driver,blackOutDate,2000);
+                HelpersMethod.ClickBut(driver,blackOutDate,10000);
                 //read blackout date
                 WebElement readDate=HelpersMethod.FindByElement(driver,"id","new-blackout-date");
                 readBlackoutDate=HelpersMethod.AttributeValue(readDate,"value");
@@ -114,7 +121,7 @@ public class BlackoutAndCutoffPage
         {
             WebElement modelContainer=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-widget k-window k-dialog')]");
             WebElement daysWarning=modelContainer.findElement(By.xpath(".//input[@id='new-blackout-days-before-cutoff']"));
-            HelpersMethod.EnterText(driver,daysWarning,1000,"2");
+            HelpersMethod.EnterText(driver,daysWarning,10000,"2");
             //reading number of days warning
             WebElement warningDays=HelpersMethod.FindByElement(driver,"id","new-blackout-days-before-cutoff");
             String readDays=HelpersMethod.AttributeValue(warningDays,"value");
@@ -156,7 +163,7 @@ public class BlackoutAndCutoffPage
         {
             WebElement modelContainer=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-widget k-window k-dialog')]");
             WebElement saveButton=modelContainer.findElement(By.xpath(".//button[text()='Save']"));
-            HelpersMethod.ClickBut(driver,saveButton,1000);
+            HelpersMethod.ClickBut(driver,saveButton,10000);
             scenario.log("BLACKOUTS DATE HAS BEEN EDITED");
             if(HelpersMethod.IsExists("//div[@class='loader']",driver))
             {

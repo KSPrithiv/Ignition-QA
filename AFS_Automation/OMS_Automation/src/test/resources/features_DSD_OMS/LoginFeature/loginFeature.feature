@@ -14,28 +14,6 @@ Feature: Login
       | 12738172 | 723472423|
       | alskjflsd|aksjflssa |
 
-  @SalesHelp
-  Scenario: Test scenario for handling Sales help from drop down
-    Given User on login page
-    Then User entered username and password for sales help
-    When User is on Home Page for sales help
-    Then User navigate to Client side for sales help
-    Then User should select Order Entry tab for sales help
-    And User click on Question mark and selects Sales help option
-    Then Click on user Icon on Order Entry page
-    And Click on Logout on Order Entry page
-
-  @eCommerceHelp
-  Scenario: Test scenario for handling eCommerce drop down
-    Given User on login page
-    Then User entered username and password for sales help
-    When User is on Home Page for eCommerce help
-    Then User navigate to Client side for eCommerce help
-    Then User should select Order Entry tab for eCommerce help
-    And User click on Question mark and selects ecommerce option
-    Then Click on user Icon on Order Entry page
-    And Click on Logout on Order Entry page
-
   @ForgottenPassword
   Scenario: Send mail for Forgotten Password
     Given User on login page

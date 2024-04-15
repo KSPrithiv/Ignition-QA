@@ -6,6 +6,7 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import util.MailSend;
 import util.TestBase;
+import util.readPropertiesFile;
 
 import javax.mail.MessagingException;
 import java.awt.*;
@@ -31,7 +32,8 @@ public class OMSFeatureTestRunner extends AbstractTestNGCucumberTests
     @BeforeClass
     public static void beforeClass() throws InterruptedException, AWTException, SQLException, ClassNotFoundException, InstantiationException, IllegalAccessException
     {
-        TestBase.InitializeProp("config_DSD_OMS/config_OMS");
+
+        // TestBase.InitializeProp("config_DSD_OMS/config_OMS");
         TestBase.SetDriver(TestBase.testEnvironment.get_browser());
     }
 

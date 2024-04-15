@@ -8,7 +8,6 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import io.cucumber.java.sl.In;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
@@ -24,8 +23,6 @@ import java.awt.*;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.time.Duration;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 /**
@@ -113,7 +110,7 @@ public class OrderEntryPageSteps
         {
             orderpage = new OrderEntryPage(driver, scenario);
             orderpage.ChangeAccount();
-            //orderpage.PopUps_After_AccountChange();
+            orderpage.PopUps_After_AccountChange();
             //orderpage.Read_DeliveryDate();
             flag1=true;
         }
@@ -133,7 +130,7 @@ public class OrderEntryPageSteps
     }
 
     @Then("Change the date {int} days after current date")
-    public void change_the_date_days_after_current_date(Integer int1) throws InterruptedException, AWTException
+    public void change_the_date_days_after_current_date(Integer int1) throws InterruptedException, AWTException, ParseException
     {
         if(HelpersMethod.IsExists("//div[@class='loader']",driver))
         {
@@ -142,21 +139,35 @@ public class OrderEntryPageSteps
         }
         //create object of OE Page
         orderpage = new OrderEntryPage(driver, scenario);
+        orderpage.Read_DeliveryDate();
         orderpage.ClickCalender();
         orderpage.SelectDate(int1);
         orderpage.cancelOGselection();
         orderpage.ChangedDeliveryDate();
+        orderpage.PopUps_After_AccountChange();
     }
 
     @Then("User must click Start Order button")
     public void user_must_click_start_order_button() throws InterruptedException, AWTException
     {
         exists=false;
-        orderpage = new OrderEntryPage(driver, scenario);
-        orderpage.ValidateOE();
-        //check for 'Start Order' button
-        orderpage.Scroll_start();
-        exists=orderpage.Start_Order();
+        if (HelpersMethod.IsExists("//div[@id='order-search-card']", driver))
+        {
+            orderpage = new OrderEntryPage(driver, scenario);
+            orderpage.ValidateOE();
+            //find whether route is empty or not, if empty should select some route value
+            String routeNo = orderpage.validateRouteValue();
+            if (routeNo == null || routeNo.equals(""))
+            {
+                orderpage.clickRouteIndex();
+                orderpage.validateRouteDialog();
+                orderpage.Route_No(TestBase.testEnvironment.get_RouteFilt(), TestBase.testEnvironment.get_Route());
+                orderpage.validateRouteSelected(TestBase.testEnvironment.get_Route());
+            }
+            //check for 'Start Order' button
+            orderpage.Scroll_start();
+            exists = orderpage.Start_Order();
+        }
     }
 
     @Then("User should make selection between Pending order or Start New order")
@@ -188,36 +199,37 @@ public class OrderEntryPageSteps
     @Then("User should select Note from popup and Order guide from popup")
     public void userShouldSelectNoteFromPopupAndOrderGuideFromPopup() throws InterruptedException, AWTException
     {
-        orderpage = new OrderEntryPage(driver, scenario);
-        for(int i=0;i<=1;i++)
-        {
-            orderpage.OrderGuidePopup();
-            Thread.sleep(1000);
-            orderpage.NoNotePopHandling();
-        }
-        String status = HelpersMethod.returnDocumentStatus(driver);
-        if (status.equals("loading"))
-        {
-            HelpersMethod.waitTillLoadingPage(driver);
-        }
+        Wait<WebDriver> wait;
+            orderpage = new OrderEntryPage(driver, scenario);
+            for (int i = 0; i <= 1; i++)
+            {
+                orderpage.OrderGuidePopup();
+                Thread.sleep(1000);
+                orderpage.NoNotePopHandling();
+            }
+            String status = HelpersMethod.returnDocumentStatus(driver);
+            if (status.equals("loading"))
+            {
+                HelpersMethod.waitTillLoadingPage(driver);
+            }
 
-        Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
-                .withTimeout(Duration.ofSeconds(120))
-                .pollingEvery(Duration.ofSeconds(2))
-                .ignoring(NoSuchElementException.class);
-        wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+            wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(120))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
 
-        status = HelpersMethod.returnDocumentStatus(driver);
-        if (status.equals("loading"))
-        {
-            HelpersMethod.waitTillLoadingPage(driver);
-        }
+            status = HelpersMethod.returnDocumentStatus(driver);
+            if (status.equals("loading"))
+            {
+                HelpersMethod.waitTillLoadingPage(driver);
+            }
 
-        wait = new FluentWait<WebDriver>(driver)
-                .withTimeout(Duration.ofSeconds(120))
-                .pollingEvery(Duration.ofSeconds(2))
-                .ignoring(NoSuchElementException.class);
-        wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+            wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(120))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
     }
 
     @Then("User should select Note from popup and Order guide from popup for OG")
@@ -331,6 +343,17 @@ public class OrderEntryPageSteps
         newOE=new NewOrderEntryPage(driver,scenario);
         List<List<String>> PO_No = tabledata.asLists(String.class);
         newOE.EnterPO_No(PO_No.get(0).get(0));
+
+        //find whether route is empty or not, if empty should select some route value
+        Thread.sleep(1000);
+        String routeNo=newOE.validateRouteValue();
+        if(routeNo==null||routeNo.equals(""))
+        {
+            newOE.clickRouteIndex();
+            newOE.validateRouteDialog();
+            newOE.Route_No(TestBase.testEnvironment.get_RouteFilt(), TestBase.testEnvironment.get_Route());
+            newOE.validateRouteSelected(TestBase.testEnvironment.get_Route());
+        }
     }
 
     @Then("Enter PO# for New order for Quote to Order")
@@ -362,6 +385,15 @@ public class OrderEntryPageSteps
         exists=false;
         newOE = new NewOrderEntryPage(driver,scenario);
         newOE.readProductsInOrder();
+        //handling toast messages
+        for(int i=0;i<=2;i++)
+        {
+            //check for toast message for low on inventory
+            newOE.lowOnInventoryToast();
+            //check for toast message for product is currently unavailable
+            newOE.toastCurrentlyUnavailable();
+        }
+
         for(int i=0;i<=1;i++)
         {
             newOE.priceCannotBeBleowCost();
@@ -370,6 +402,7 @@ public class OrderEntryPageSteps
         exists=newOE.ClickNext();
         newOE.OutOfStockPop_ERP();
         checkorder=new CheckOutOrderPage(driver,scenario);
+
         String status = HelpersMethod.returnDocumentStatus(driver);
         if (status.equals("loading"))
         {
@@ -440,6 +473,7 @@ public class OrderEntryPageSteps
         {
             summary.additionalOrderPopup();
             summary.cutoffDialog();
+            summary.percentageOfAverageProd();
         }
         summary.SucessPopup();
     }
@@ -488,7 +522,7 @@ public class OrderEntryPageSteps
     public void enter_pro_in_quick_product_entry_area_for_price_override() throws InterruptedException, AWTException, SQLException, ClassNotFoundException, InstantiationException, IllegalAccessException
     {
         newOE = new NewOrderEntryPage(driver,scenario);
-        newOE.priceOverrideQuickProduct(TestBase.testEnvironment.priceRide());
+        newOE.priceOverrideQuickProduct(TestBase.testEnvironment.prodPriceRide());
     }
 
     @Then("Click on Cancel button")
@@ -530,7 +564,7 @@ public class OrderEntryPageSteps
         orderpage = new OrderEntryPage(driver, scenario);
         orderpage.ValidateOE();
         orderpage.ClickRemoveSkip();
-        orderpage.RemoveSkipOK();
+        //orderpage.RemoveSkipOK();
         orderpage.ClickCalender();
         orderpage.ResetToCurrentDate();
     }
@@ -927,6 +961,7 @@ public class OrderEntryPageSteps
         String Prod_No= DataBaseConnection.DataBaseConn(TestBase.testEnvironment.getSingle_OneMoreProd());
         newOE=new NewOrderEntryPage(driver,scenario);
         newOE.Validate_Catalog();
+        newOE.clickOnLoadAllProducts();
         newOE.ResetFilter_CatalogDisconnectedMode();
         String pro=String.valueOf(Prod_No);
         newOE.validateCatalogProducts();

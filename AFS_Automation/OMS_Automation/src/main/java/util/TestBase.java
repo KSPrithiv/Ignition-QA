@@ -17,6 +17,7 @@ import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.firefox.FirefoxProfile;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
+import org.openqa.selenium.support.ThreadGuard;
 
 import java.awt.*;
 import java.io.IOException;
@@ -32,15 +33,14 @@ import java.util.concurrent.TimeUnit;
 public class TestBase
 {
     public static Environment testEnvironment;
-   // public static MenuValues testMenuValues;
+   //// public static MenuValues testMenuValues;
     private static TestBase instanceOfDriver = null;
-    public static ThreadLocal<WebDriver> driver = new ThreadLocal<WebDriver>();
+    public static ThreadLocal<WebDriver> driver = new ThreadLocal<>();
     public static String url = null;
 
-
-    //Reading property file for Parallel execution of the feature files
-    public static void InitializeProp(String envi/*,String menu*/) throws InterruptedException
-    {
+    //Helps in reading property file for Parallel execution of the feature files
+   // public static void InitializeProp(String envi/*,String menu*/) throws InterruptedException
+  /*  {
         try
         {
             ConfigFactory.setProperty("env", envi);
@@ -52,14 +52,21 @@ public class TestBase
         {
             e.printStackTrace();
         }
+    }*/
+
+    public static synchronized void InitializeProp(String envi) throws InterruptedException
+    {
+        testEnvironment= readPropertiesFile.InitializeProp(envi);
     }
 
     //Constructor of TestBase
     private TestBase() {}
 
     //To create instance of Class
-    public static TestBase getInstanceOfDriver() throws InterruptedException, AWTException {
-        if (instanceOfDriver == null) {
+    public static TestBase getInstanceOfDriver() throws InterruptedException, AWTException
+    {
+        if (instanceOfDriver == null)
+        {
             instanceOfDriver = new TestBase();
         }
         return instanceOfDriver;
@@ -81,7 +88,6 @@ public class TestBase
             {
                 //WebDriverManager.chromedriver().setup();
                 ChromeOptions chromeOptions = new ChromeOptions();
-
                 //chromeOptions.addArguments("--safebrowsing-disable-download-protection");
                 //chromeOptions.addArguments("--disable-popup-blocking");
                 //chromeOptions.addArguments("disable-notifications");
@@ -99,6 +105,7 @@ public class TestBase
                 chromeOptions.addArguments("--disk-cache-size=0");
                 chromeOptions.addArguments("--dns-prefetch-disable");
                 //chromeOptions.addArguments("--remote-allow-origins=*");
+                //driver.set(ThreadGuard.protect(new ChromeDriver(chromeOptions)));
                 driver.set(new ChromeDriver(chromeOptions));
             }
             break;
@@ -123,7 +130,7 @@ public class TestBase
                 profile.setPreference("browser.download.manager.closeWhenDone", true);
 
                 firefoxOptions.setProfile(profile);
-                driver.set(new FirefoxDriver(firefoxOptions));
+                driver.set(ThreadGuard.protect(new FirefoxDriver(firefoxOptions)));
             }
             break;
             case "edge":
@@ -178,6 +185,7 @@ public class TestBase
                 chromeOptions.addArguments("--disable-offline-load-stale-cache");
                 chromeOptions.addArguments("--disk-cache-size=0");
                 chromeOptions.addArguments("--dns-prefetch-disable");
+                //driver.set(ThreadGuard.protect(new ChromeDriver(chromeOptions)));
                 driver.set(new ChromeDriver(chromeOptions));
             }
             break;
@@ -190,7 +198,6 @@ public class TestBase
         getDriver().manage().deleteAllCookies();
         getDriver().manage().timeouts().pageLoadTimeout(TestUtil.PAGE_LOAD_TIMEOUT, TimeUnit.SECONDS);
         //getDriver().manage().timeouts().implicitlyWait(TestUtil.IMPLICIT_WAIT, TimeUnit.SECONDS);
-        System.out.println(testEnvironment.get_url());
         getDriver().get(testEnvironment.get_url());
        // getDriver().manage().window().setSize(new Dimension(1920, 1080));
         Thread.sleep(6000);

@@ -13,7 +13,13 @@ import java.io.IOException;
  * @Project DSD_OMS
  * @Author Divya.Ramadas@afsi.com
  */
-@CucumberOptions(features = "src/test/resources/features_DSD_OMS/OrderGuideFeature",
+@CucumberOptions(features =
+        {"src/test/resources/features_DSD_OMS/OrderGuideFeature/orderGuideFeature.feature",
+        "src/test/resources/features_DSD_OMS/OrderGuideFeature/orderGuideFeature1.feature",
+        "src/test/resources/features_DSD_OMS/OrderGuideFeature/orderGuideFeature2.feature",
+        "src/test/resources/features_DSD_OMS/OrderGuideFeature/orderGuideFeature3.feature",
+        "src/test/resources/features_DSD_OMS/OrderGuideFeature/orderGuideFeatureDSD.feature",
+        },
         glue = {"stepDefination_DSD_OMS"},
         plugin = {"pretty",
                 "json:target/cucumber.json",
@@ -41,7 +47,7 @@ public class TestRunnerOrderGuide extends AbstractTestNGCucumberTests
     @AfterClass
     public static void afterclass() throws InterruptedException, MessagingException, IOException
     {
-        Thread.sleep(10000);
+        Thread.sleep(500);
         //MailSend.sendMail();
         TestBase.CloseBrowser();
         if(TestBase.testEnvironment.get_browser().equalsIgnoreCase("Firefox"))

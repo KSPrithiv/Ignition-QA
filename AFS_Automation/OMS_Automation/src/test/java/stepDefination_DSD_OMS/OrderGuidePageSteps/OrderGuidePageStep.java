@@ -154,6 +154,7 @@ public class OrderGuidePageStep
         orderpage.HandleError_Page();
         orderGuidePage=new OrderGuidePage(driver,scenario);
         orderGuidePage.Refresh_Page(currentURL);
+        orderGuidePage.ValidateOG();
     }
 
     @Then("User clicks on Create new button and should navigate to New OG page")
@@ -384,7 +385,8 @@ public class OrderGuidePageStep
         createOGPage.SelectValueFromAddProduct(ProdOption.get(0).get(1));
         createOGPage.ValidateCatalogDisplay();
         //createOGPage.validateProductExists();
-        createOGPage.SelectProductCatalog();
+        createOGPage.ResetFilter_Catalog();
+        //createOGPage.SelectProductCatalog();
         if (HelpersMethod.IsExists("//div[contains(@class,'k-widget k-window k-dialog')]/descendant::div[contains(@class,'i-grid')]", driver))
         {
             createOGPage.ListView();

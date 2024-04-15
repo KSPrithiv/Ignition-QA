@@ -1,11 +1,16 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="All Test Suite" parallel="classes" thread-count="6">
-    <test verbose="2" preserve-order="true" name="Parallel Test">
+<suite name="All Test Suite" parallel="true" thread-count="6">
+    <test name="Parallel Test">
+        <parameter name="environment" value="config_DSD_OMS\\config_DSD"/>
+        <classes>
+            <class name="testRunner_DSD_OMS.ParallelExecutionEnvironment">
+            </class>
+        </classes>
+    </test>
+    <test name="Parallel Test1">
         <parameter name="environment" value="config_DSD_OMS\\config_OMS"/>
         <classes>
-            <class name="testRunner_DSD_OMS">
-            </class>
-            <class name="testRunner_DSD_OMS">
+            <class name="testRunner_DSD_OMS.ParallelExecutionEnvironment">
             </class>
         </classes>
     </test>

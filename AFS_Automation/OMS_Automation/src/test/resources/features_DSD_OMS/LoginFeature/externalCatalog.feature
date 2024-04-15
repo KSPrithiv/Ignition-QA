@@ -3,6 +3,30 @@ Feature: external catalog
   Background: For login to application
     Given User enters URL and is on login page
 
+  @ProductsSeparatedByComma
+  Scenario: Search for multiple products separeated by comma, in external catalog
+    Given User on login page for external catalog
+    When User clicks on View product catalog and Product catalog should be displayed
+    And user should click on Reset filter button and all the products should displayed in card view
+    Then User enters multiple Product# in Search bar separated by comma and Read the product# available in catalog
+
+  @SortByBestMatch
+  Scenario: Sorting of items in ascending order
+    Given User on login page for external catalog
+    When User clicks on View product catalog and Product catalog should be displayed
+    And user should click on Reset filter button and all the products should displayed in List view
+    Then Click on sort by best match and select ascending order and verify the same
+      |Sort by price (ascending)|
+
+  @ResetFilter
+  Scenario: Testing of Reset Filter button functionality
+    Given User on login page for external catalog
+    When User clicks on View product catalog and Product catalog should be displayed
+    And user should click on Reset filter button and all the products should displayed in card view
+    Then User Clicks on Category drop down and selects the 1st category
+      |Juices/Juice Drinks/Water|
+    And user Should click on Reset Filer button and verifies that Category is set back to All category
+
    #Based on admin setting
   @ProductsCatalogCardView
   Scenario: Selecting Products to be ordered in login page, before loging in to application.Using Card view.
@@ -108,27 +132,3 @@ Feature: external catalog
     Then User should be navigated to Order Entry page
     Then Click on user Icon on Order Entry page
     And Click on Logout on Order Entry page
-
-  @ProductsSeparatedByComma
-  Scenario: Search for multiple products separeated by comma, in external catalog
-    Given User on login page for external catalog
-    When User clicks on View product catalog and Product catalog should be displayed
-    And user should click on Reset filter button and all the products should displayed in card view
-    Then User enters multiple Product# in Search bar separated by comma and Read the product# available in catalog
-
-  @SortByBestMatch
-  Scenario: Sorting of items in ascending order
-    Given User on login page for external catalog
-    When User clicks on View product catalog and Product catalog should be displayed
-    And user should click on Reset filter button and all the products should displayed in List view
-    Then Click on sort by best match and select ascending order and verify the same
-      |Sort by price (ascending)|
-
-  @ResetFilter
-  Scenario: Testing of Reset Filter button functionality
-    Given User on login page for external catalog
-    When User clicks on View product catalog and Product catalog should be displayed
-    And user should click on Reset filter button and all the products should displayed in card view
-    Then User Clicks on Category drop down and selects the 1st category
-      |Juices/Juice Drinks/Water|
-    And user Should click on Reset Filer button and verifies that Category is set back to All category

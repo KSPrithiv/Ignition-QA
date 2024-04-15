@@ -1,5 +1,6 @@
 package pages_DSD_OMS.competitivePricing;
 
+import gherkin.lexer.He;
 import helper.HelpersMethod;
 import io.cucumber.java.Scenario;
 import org.apache.logging.log4j.core.tools.picocli.CommandLine;
@@ -340,5 +341,51 @@ public class CompetitivePricingReportPage
             Assert.assertEquals(exists,true);
         }
         catch (Exception e){}
+    }
+
+    public void clickOnChainFromDropDown()
+    {
+        exists=false;
+        WebElement WebEle;
+        try
+        {
+            if(HelpersMethod.IsExists("//div[@class='loader']",driver))
+            {
+                WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100000);
+            }
+
+            if(HelpersMethod.IsExists("//span[contains(@class,'k-widget k-multiselect')]",driver))
+            {
+                WebElement chineOption = HelpersMethod.FindByElement(driver, "xpath", "//span[contains(@class,'k-widget k-multiselect')]");
+                HelpersMethod.ActClick(driver, chineOption, 10000);
+                exists=true;
+            }
+
+            if(HelpersMethod.IsExists("//div[@class='loader']",driver))
+            {
+                WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100000);
+            }
+            Assert.assertEquals(exists,true);
+        }
+        catch (Exception e){}
+    }
+
+    public void selectChineFromDropDown()
+    {
+        exists=false;
+        try
+        {
+            if(HelpersMethod.IsExists("//div[contains(@class,'k-popup k-child-animation-container k-slide')]",driver))
+            {
+                WebElement checkBox=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-popup k-child-animation-container k-slide')]/descendant::ul/li[1]/descendant::input");
+                HelpersMethod.ActClick(driver,checkBox,10000);
+                exists=true;
+            }
+            Assert.assertEquals(exists,true);
+        }
+        catch (Exception e){}
+
     }
 }

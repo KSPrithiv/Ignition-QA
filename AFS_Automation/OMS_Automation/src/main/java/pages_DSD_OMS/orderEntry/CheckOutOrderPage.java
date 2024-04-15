@@ -169,30 +169,50 @@ public class CheckOutOrderPage
 
     public void NextButton_Click()
     {
+        exists=false;
         try
         {
             Thread.sleep(2000);
-            WebElement WebEle=null;
             if(HelpersMethod.IsExists("//div[@id='checkoutCard']",driver))
             {
+                Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                        .withTimeout(Duration.ofSeconds(200))
+                        .pollingEvery(Duration.ofSeconds(2))
+                        .ignoring(NoSuchElementException.class);
+                wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
+                String status = HelpersMethod.returnDocumentStatus(driver);
+                if (status.equals("loading"))
+                {
+                    HelpersMethod.waitTillLoadingPage(driver);
+                }
+
+                wait = new FluentWait<WebDriver>(driver)
+                        .withTimeout(Duration.ofSeconds(200))
+                        .pollingEvery(Duration.ofSeconds(2))
+                        .ignoring(NoSuchElementException.class);
+                wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
                 if (NextButton.isEnabled())
                 {
                     HelpersMethod.ScrollElement(driver, NextButton);
+                    //HelpersMethod.ScrollUpScrollBar(driver);
                     NextButton=HelpersMethod.FindByElement(driver,"id","SubmitCheckoutButton");
-                    HelpersMethod.ClickBut(driver, NextButton, 40000);
-                    if(HelpersMethod.IsExists("//div[@class='loader']",driver))
-                    {
-                        WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                        HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 2000000);
-                    }
-                    String status = HelpersMethod.returnDocumentStatus(driver);
+                    HelpersMethod.ClickBut(driver, NextButton, 60000);
+                    exists=true;
+                    wait = new FluentWait<WebDriver>(driver)
+                            .withTimeout(Duration.ofSeconds(200))
+                            .pollingEvery(Duration.ofSeconds(2))
+                            .ignoring(NoSuchElementException.class);
+                    wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+                    status = HelpersMethod.returnDocumentStatus(driver);
                     if (status.equals("loading"))
                     {
                         HelpersMethod.waitTillLoadingPage(driver);
                     }
 
-                    Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
-                            .withTimeout(Duration.ofSeconds(100))
+                    wait = new FluentWait<WebDriver>(driver)
+                            .withTimeout(Duration.ofSeconds(200))
                             .pollingEvery(Duration.ofSeconds(2))
                             .ignoring(NoSuchElementException.class);
                     wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
@@ -203,6 +223,7 @@ public class CheckOutOrderPage
                     scenario.log("NEXT BUTTON IS DISABLED");
                 }
             }
+            Assert.assertEquals(exists,true);
         }
         catch (Exception e){}
     }
@@ -212,15 +233,18 @@ public class CheckOutOrderPage
     {
         try
         {
-            WebElement WebEle=null;
-            WebEle=HelpersMethod.FindByElement(driver,"id","addressCard");
-            HelpersMethod.ScrollElement(driver,WebEle);
-            //Check whether application is navigating to checkout card or navigating to order summary page
-            if (HelpersMethod.IsExists("//div[@class='page-content']/descendant::div[@id='checkoutCard']",driver))
+            if(!HelpersMethod.IsExists("//span[contains(@class,'i-summary-area__other__section__value')]",driver))
             {
-                WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@id='addressCard']/descendant::span[contains(@class,'k-icon k-i-arrow-chevron-down')]");
-                HelpersMethod.ScrollElement(driver,WebEle);
-                HelpersMethod.ClickBut(driver,WebEle,1000);
+                WebElement WebEle = null;
+                WebEle = HelpersMethod.FindByElement(driver, "id", "addressCard");
+                HelpersMethod.ScrollElement(driver, WebEle);
+                //Check whether application is navigating to checkout card or navigating to order summary page
+                if (HelpersMethod.IsExists("//div[@class='page-content']/descendant::div[@id='checkoutCard']", driver))
+                {
+                    WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@id='addressCard']/descendant::span[contains(@class,'k-icon k-i-arrow-chevron-down')]");
+                    HelpersMethod.ScrollElement(driver, WebEle);
+                    HelpersMethod.ClickBut(driver, WebEle, 10000);
+                }
             }
         }
         catch (Exception e){}
@@ -229,46 +253,46 @@ public class CheckOutOrderPage
     public void DeliveryAddressCard()
     {
         WebElement WebEle=null;
-        exists=false;
         try
         {
-            if(HelpersMethod.IsExists("//div[@class='loader']",driver))
+            if(!HelpersMethod.IsExists("//span[contains(@class,'i-summary-area__other__section__value')]",driver))
             {
-                WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 2000000);
-            }
-            //Check whether application is navigating to checkout card or navigating to order summary page
-            if (HelpersMethod.IsExists("//div[@class='page-content']/descendant::div[@id='checkoutCard']",driver))
-            {
-                //Check whether address is already selected or not. If not selected select address
-                if (!driver.findElement(By.id("SubmitCheckoutButton")).isEnabled())
+                if(HelpersMethod.IsExists("//div[@class='loader']",driver))
                 {
+                   WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
+                   HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 2000000);
+                }
+                //Check whether application is navigating to checkout card or navigating to order summary page
+                if (HelpersMethod.IsExists("//div[@class='page-content']/descendant::div[@id='checkoutCard']",driver))
+                {
+                  //Check whether address is already selected or not. If not selected select address
+                  if (!driver.findElement(By.id("SubmitCheckoutButton")).isEnabled())
+                  {
                   /*  WebEle=HelpersMethod.FindByElement(driver,"id","SubmitCheckoutButton");
                     HelpersMethod.ScrollElement(driver,WebEle);
                     HelpersMethod.ClickBut(driver,WebEle,1000);
                     scenario.log("NEXT BUTTON IN PAYMENT PAGE HAS BEEN CLICKED");
                     exists=true;
-                }
-                else
-                {*/
-                    if(HelpersMethod.IsExists("//div[@id='addressCard']/descendant::span[contains(@class,'i-summary-area__other__section__value')]",driver))
-                    {
-                        if(HelpersMethod.IsExists("//div[@id='addressCard']/descendant::span[contains(@class,'k-icon k-i-arrow-chevron-down')]",driver))
-                        {
-                            WebEle=HelpersMethod.FindByElement(driver, "xpath", "//div[@id='addressCard']/descendant::span[contains(@class,'k-icon k-i-arrow-chevron-down')]");
-                            HelpersMethod.ClickBut(driver,WebEle,1000);
-                        }
-                        WebEle=HelpersMethod.FindByElement(driver, "xpath", "//div[@class='address-container']/descendant::tbody/tr[1]/descendant::input");
-                        HelpersMethod.ClickBut(driver,WebEle,4000);
-                        exists=true;
+                   }
+                   else
+                   {*/
+                      if (HelpersMethod.IsExists("//div[@id='addressCard']/descendant::span[contains(@class,'i-summary-area__other__section__value')]", driver))
+                      {
+                          if (HelpersMethod.IsExists("//div[@id='addressCard']/descendant::span[contains(@class,'k-icon k-i-arrow-chevron-down')]", driver))
+                          {
+                              WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@id='addressCard']/descendant::span[contains(@class,'k-icon k-i-arrow-chevron-down')]");
+                              HelpersMethod.ClickBut(driver, WebEle, 1000);
+                          }
+                          WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='address-container']/descendant::tbody/tr[1]/descendant::input");
+                          HelpersMethod.ClickBut(driver, WebEle, 4000);
 
-                        //Check whether 'SubmitCheckoutButton' is enabled or not
-                        //WebEle=HelpersMethod.FindByElement(driver,"id","SubmitCheckoutButton");
-                        //exists=HelpersMethod.IsEnabledByele(WebEle);
-                    }
+                          //Check whether 'SubmitCheckoutButton' is enabled or not
+                          //WebEle=HelpersMethod.FindByElement(driver,"id","SubmitCheckoutButton");
+                          //exists=HelpersMethod.IsEnabledByele(WebEle);
+                      }
+                  }
                 }
             }
-            //Assert.assertEquals(exists,true);
         }
         catch (Exception e){}
     }
@@ -543,7 +567,7 @@ public class CheckOutOrderPage
                 if(HelpersMethod.IsExists("//div[@id='paymentMethodCard']/descendant::span[contains(@class,'k-icon k-i-arrow-chevron-down')]",driver))
                 {
                     WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@id='paymentMethodCard']/descendant::span[contains(@class,'k-icon k-i-arrow-chevron-down')]");
-                    HelpersMethod.ClickBut(driver,WebEle,1000);
+                    HelpersMethod.ClickBut(driver,WebEle,10000);
                 }
             }
         }
@@ -592,66 +616,83 @@ public class CheckOutOrderPage
         Actions act1=new Actions(driver);
         try
         {
-            HelpersMethod.ClickBut(driver,Add_Payment,1000);
-            new WebDriverWait(driver,Duration.ofMillis(1000)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(text(),'New payment method')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]")));
-            if(HelpersMethod.IsExists("//div[contains(text(),'New payment method')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
+            if(Add_Payment.isDisplayed())
             {
-                if(PayType.isDisplayed() && PayType.isEnabled()) {
-                    //Click on Payment type drop down
-                    HelpersMethod.ClickBut(driver, PayType, 10000);
-                    //Select Bank account from Payment type drop down
-                    WebElement menuContainer = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-child-animation-container')]/descendant::ul");
-                    List<WebElement> Options = menuContainer.findElements(By.xpath(".//li"));
-                    for (int i = 0; i <= Options.size() - 1; i++) {
-                        WebElement WebEle = Options.get(i);
-                        act1.moveToElement(WebEle).build().perform();
-                        String Opt = WebEle.getText();
-                        if (Opt.equals(Paytype)) {
-                            act1.moveToElement(WebEle).build().perform();
-                            act1.click(WebEle).build().perform();
-                            scenario.log("PAYMENT TYPE SELECTED IS " + Paytype);
-                            break;
-                        }
-                    }
-
-                    //enter first name
-                    HelpersMethod.EnterText(driver, Fname, 1000, fName);
-                    scenario.log("FIRST NAME ENTERED " + HelpersMethod.JSGetValueEle(driver, Fname, 1000));
-                    //Enter last name
-                    HelpersMethod.EnterText(driver, Lname, 1000, RandomValues.generateRandomString(2));
-                    scenario.log("LAST NAME ENTERED IS " + HelpersMethod.JSGetValueEle(driver, Lname, 1000));
-                    //Click on Account type drop down
-                    HelpersMethod.ClickBut(driver, AccType, 1000);
-                    //Account type selection
-                    WebElement menuContainer1 = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-child-animation-container')]/descendant::ul");
-                    List<WebElement> Options1 = menuContainer1.findElements(By.xpath(".//li"));
-                    for (int i = 0; i <= Options1.size() - 1; i++) {
-                        WebElement WebEle = Options1.get(i);
-                        act1.moveToElement(WebEle).build().perform();
-                        String Opt = WebEle.getText();
-                        if (Opt.equals(AccountType)) {
-                            act1.moveToElement(WebEle).build().perform();
-                            act1.click(WebEle).build().perform();
-                            scenario.log("ACCOUNT TYPE SELECTED IS " + Paytype);
-                            break;
-                        }
-                    }
-                    //Enter Route#
-                    HelpersMethod.EnterText(driver, Route_No, 1000, RandomValues.generateRandomNumber(4));
-                    scenario.log("ROUTE ENTERED IS " + HelpersMethod.JSGetValueEle(driver, Route_No, 1000));
-                    //Enter Account no
-                    HelpersMethod.EnterText(driver, AccNo, 1000, RandomValues.generateRandomNumber(10));
-                    scenario.log("ACCOUNT NUMBER ENTERED IS " + HelpersMethod.JSGetValueEle(driver, AccNo, 1000));
-                    exists=true;
-                }
-                else
+                HelpersMethod.ScrollElement(driver,Add_Payment);
+                HelpersMethod.ClickBut(driver, Add_Payment, 10000);
+                new WebDriverWait(driver, Duration.ofMillis(1000)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(text(),'New payment method')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]")));
+                if (HelpersMethod.IsExists("//div[contains(text(),'New payment method')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]", driver))
                 {
-                    scenario.log("NOT BANK ACCOUNT DETAILS CAN BE ENTERED, ONLY CREDITCARD IS AVAILABLE");
+                    if (PayType.isDisplayed() && PayType.isEnabled())
+                    {
+                        //Click on Payment type drop down
+                        HelpersMethod.ClickBut(driver, PayType, 10000);
+                        //Select Bank account from Payment type drop down
+                        WebElement menuContainer = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-child-animation-container')]/descendant::ul");
+                        List<WebElement> Options = menuContainer.findElements(By.xpath(".//li"));
+                        for (int i = 0; i <= Options.size() - 1; i++)
+                        {
+                            WebElement WebEle = Options.get(i);
+                            act1.moveToElement(WebEle).build().perform();
+                            String Opt = WebEle.getText();
+                            if (Opt.equals(Paytype))
+                            {
+                                act1.moveToElement(WebEle).build().perform();
+                                act1.click(WebEle).build().perform();
+                                scenario.log("PAYMENT TYPE SELECTED IS " + Paytype);
+                                break;
+                            }
+                        }
+
+                        //enter first name
+                        HelpersMethod.EnterText(driver, Fname, 1000, fName);
+                        scenario.log("FIRST NAME ENTERED " + HelpersMethod.JSGetValueEle(driver, Fname, 1000));
+                        //Enter last name
+                        HelpersMethod.EnterText(driver, Lname, 1000, RandomValues.generateRandomString(2));
+                        scenario.log("LAST NAME ENTERED IS " + HelpersMethod.JSGetValueEle(driver, Lname, 1000));
+                        //Click on Account type drop down
+                        HelpersMethod.ClickBut(driver, AccType, 1000);
+                        //Account type selection
+                        WebElement menuContainer1 = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-child-animation-container')]/descendant::ul");
+                        List<WebElement> Options1 = menuContainer1.findElements(By.xpath(".//li"));
+                        for (int i = 0; i <= Options1.size() - 1; i++) {
+                            WebElement WebEle = Options1.get(i);
+                            act1.moveToElement(WebEle).build().perform();
+                            String Opt = WebEle.getText();
+                            if (Opt.equals(AccountType)) {
+                                act1.moveToElement(WebEle).build().perform();
+                                act1.click(WebEle).build().perform();
+                                scenario.log("ACCOUNT TYPE SELECTED IS " + Paytype);
+                                break;
+                            }
+                        }
+                        //Enter Route#
+                        HelpersMethod.EnterText(driver, Route_No, 1000, RandomValues.generateRandomNumber(4));
+                        scenario.log("ROUTE ENTERED IS " + HelpersMethod.JSGetValueEle(driver, Route_No, 1000));
+                        //Enter Account no
+                        HelpersMethod.EnterText(driver, AccNo, 1000, RandomValues.generateRandomNumber(10));
+                        scenario.log("ACCOUNT NUMBER ENTERED IS " + HelpersMethod.JSGetValueEle(driver, AccNo, 1000));
+                        exists = true;
+                    }
+                    else
+                    {
+                        scenario.log("NO BANK ACCOUNT DETAILS CAN BE ENTERED, ONLY CREDIT CARD IS AVAILABLE");
+                    }
+                    //Click on OK button
+                    HelpersMethod.ActClick(driver, OkPay, 10000);
+                    Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                            .withTimeout(Duration.ofSeconds(120))
+                            .pollingEvery(Duration.ofSeconds(2))
+                            .ignoring(NoSuchElementException.class);
+                    wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
                 }
-                //Click on OK button
-                HelpersMethod.ClickBut(driver,OkPay,1000);
-                Assert.assertEquals(exists,true);
             }
+            else
+            {
+                scenario.log("ADD NEW PAYMENT BUTTON DOESN'T EXISTS");
+                exists=false;
+            }
+            Assert.assertEquals(exists, true);
         }
         catch (Exception e){}
     }
@@ -693,13 +734,26 @@ public class CheckOutOrderPage
         exists=false;
         try
         {
-            WebElement withoutPayment=HelpersMethod.FindByElement(driver,"xpath","//button[@id='allowOrderWithoutPayment']");
-            if(withoutPayment.isDisplayed() && withoutPayment.isEnabled())
+            if(!HelpersMethod.IsExists("//div[@class='payment-method-container'/descendant::tbody/tr[@class='selected']",driver))
             {
-                exists=true;
-                HelpersMethod.ScrollElement(driver,withoutPayment);
-                HelpersMethod.ClickBut(driver, withoutPayment, 10000);
-                scenario.log("CONTINUE ORDER WITHOUT PAYMENT METHOD IS SELECTED");
+                if (HelpersMethod.IsExists("//button[@id='allowOrderWithoutPayment']", driver))
+                {
+                    WebElement withoutPayment = HelpersMethod.FindByElement(driver, "xpath", "//button[@id='allowOrderWithoutPayment']");
+                    if (withoutPayment.isEnabled())
+                    {
+                        HelpersMethod.ScrollElement(driver, withoutPayment);
+                        HelpersMethod.ClickBut(driver, withoutPayment, 10000);
+                        exists = true;
+                        scenario.log("CONTINUE ORDER WITHOUT PAYMENT METHOD IS SELECTED");
+                    }
+                    else
+                    {
+                        WebElement paymentMode=HelpersMethod.FindByElement(driver,"xpath","//div[@class='payment-method-container']/descendant::tbody/tr[1]");
+                        HelpersMethod.ActClick(driver,paymentMode,10000);
+                        exists=true;
+                        scenario.log("PAYMENT OPTION HAS BEEN SELECTED, NOT CONTINUE ORDER WITHOUT PAYMENT, MAY BE BECAUSE IT IS DISABLED");
+                    }
+                }
             }
             Assert.assertEquals(exists,true);
         }

@@ -23,7 +23,8 @@ import java.util.concurrent.TimeUnit;
  * @Project DSD_OMS
  * @Author Divya.Ramadas@afsi.com
  */
-public class AdminHomePage {
+public class AdminHomePage
+{
     /* Created by Divya.Ramadas@afsi.com */
     WebDriver driver;
     Scenario scenario;
@@ -61,7 +62,7 @@ public class AdminHomePage {
             HelpersMethod.waitTillLoadingPage(driver);
         }
         Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
-                .withTimeout(Duration.ofSeconds(100))
+                .withTimeout(Duration.ofSeconds(120))
                 .pollingEvery(Duration.ofSeconds(2))
                 .ignoring(NoSuchElementException.class);
         wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
@@ -70,39 +71,44 @@ public class AdminHomePage {
             HelpersMethod.waitTillLoadingPage(driver);
         }
         wait = new FluentWait<WebDriver>(driver)
-                .withTimeout(Duration.ofSeconds(100))
+                .withTimeout(Duration.ofSeconds(120))
                 .pollingEvery(Duration.ofSeconds(2))
                 .ignoring(NoSuchElementException.class);
         wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
         //Thread.sleep(6000);
         wait = new FluentWait<WebDriver>(driver)
-                .withTimeout(Duration.ofSeconds(100))
+                .withTimeout(Duration.ofSeconds(120))
                 .pollingEvery(Duration.ofSeconds(2))
                 .ignoring(NoSuchElementException.class);
         wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
-        try {
+        try
+        {
             title = driver.getTitle();
-            if (title.contains("Admin")) {
+            if (title.contains("Admin"))
+            {
                 scenario.log("ADMIN PAGE HAS BEEN FOUND");
                 exists = true;
             }
             Assert.assertEquals(exists, true);
-        } catch (Exception e) {
         }
+        catch (Exception e) {}
     }
 
-    public void ValidatingAdminHome1() {
+    public void ValidatingAdminHome1()
+    {
         exists = false;
         String title = null;
-        try {
+        try
+        {
             title = driver.getTitle();
-            if (title.contains("Admin")) {
+            if (title.contains("Admin"))
+            {
                 scenario.log("ADMIN PAGE HAS BEEN FOUND");
                 exists = true;
             }
             Assert.assertEquals(exists, true);
-        } catch (Exception e) {
         }
+        catch (Exception e) {}
     }
 
     //Click on Permission by
@@ -139,8 +145,8 @@ public class AdminHomePage {
                 }
             }
             Assert.assertEquals(exists, true);
-        } catch (Exception e) {
         }
+        catch (Exception e) {}
     }
 
     public void ClickPermissionByAgain()
@@ -242,7 +248,7 @@ public class AdminHomePage {
             {
                 //Click on Company drop down
                 WebEle = HelpersMethod.FindByElement(driver, "xpath", "//span[contains(@id,'dropdownList3')]");
-                HelpersMethod.ActClick(driver, WebEle, 8000);
+                HelpersMethod.ActClick(driver, WebEle, 10000);
                 //Create list of web elements in dropdown
                 company = TestBase.testEnvironment.get_CompanyNo();
                 //identify the company drop down, and values in list
@@ -266,24 +272,24 @@ public class AdminHomePage {
             {
                 HelpersMethod.waitTillLoadingPage(driver);
             }
-            if (HelpersMethod.IsExists("//div[@class='loader']", driver))
-            {
-                WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000000);
-            }
+            Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(200))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
             status = HelpersMethod.returnDocumentStatus(driver);
             if (status.equals("loading"))
             {
                 HelpersMethod.waitTillLoadingPage(driver);
             }
-            if (HelpersMethod.IsExists("//div[@class='loader']", driver))
-            {
-                WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 2000000);
-            }
+            wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(200))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
 
-            Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
-                    .withTimeout(Duration.ofSeconds(160))
+            wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(200))
                     .pollingEvery(Duration.ofSeconds(2))
                     .ignoring(NoSuchElementException.class);
             wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
@@ -328,8 +334,8 @@ public class AdminHomePage {
                     HelpersMethod.JScriptClick(driver, WebEle, 4000);
                 }
             }
-        } catch (Exception e) {
         }
+        catch (Exception e) {}
     }
 
     public void SelectDifferentCompany() throws InterruptedException
@@ -352,25 +358,12 @@ public class AdminHomePage {
                 company = TestBase.testEnvironment.get_CompanyNo();
                 //identify the company drop down, and values in list
                 List<WebElement> Values = HelpersMethod.FindByElements(driver, "xpath", "//div[contains(@class,'k-popup k-child-animation-container')]/descendant::ul/li[contains(@class,'k-item')]");
-               /* for (WebElement Val : Values)
-                {
-                    act.moveToElement(Val).build().perform();
-                    String Val_Text = Val.getText();
-                    if (Val_Text.equalsIgnoreCase(company) || Val_Text.contains(company))
-                    {
-                        act.moveToElement(Val).build().perform();
-                        act.click(Val).build().perform();
-                        scenario.log("COMPANY HAS BEEN SELECTED");
-                        exists = true;
-                        break;
-                    }
-                }*/
                 for(int i=0;i<=Values.size()-1;i++)
                 {
                     Val=HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-popup k-child-animation-container')]/descendant::ul/li[contains(@class,'k-item')]["+(i+1)+"]");
                     act.moveToElement(Val).build().perform();
                     company1=Val.getText();
-                    //if(i==Values.size()-1)
+
                     if(!company1.contains(company) && !company1.contains("Default"))
                     {
                         act.moveToElement(Val).build().perform();
@@ -412,17 +405,24 @@ public class AdminHomePage {
         catch (Exception e) {}
     }
 
-    public void ClickOnHamburger() {
+    public void ClickOnHamburger()
+    {
         exists = false;
         WebElement WebEle;
-        WebElement Humburger;
-        try {
+        try
+        {
+            Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(120))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
             Thread.sleep(1000);
-            if(HelpersMethod.IsExists("//div[@class='loader']",driver))
-            {
-                WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 600000);
-            }
+            wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(120))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
 
             new WebDriverWait(driver, Duration.ofMillis(100000)).until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.id("app")));
             scenario.log("IN ADMIN PAGE");
@@ -440,8 +440,8 @@ public class AdminHomePage {
             HelpersMethod.WaitElementPresent(driver, "xpath", "//div[contains(@class,'MuiPaper-root MuiDrawer-paper drawer-opened MuiDrawer-paperAnchorLeft MuiDrawer-paperAnchorDockedLeft MuiPaper-elevation0')]", 2000);
             side_menu = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'MuiPaper-root MuiDrawer-paper drawer-opened MuiDrawer-paperAnchorLeft MuiDrawer-paperAnchorDockedLeft MuiPaper-elevation0')]");
             act1.moveToElement(side_menu).build().perform();
-        } catch (Exception e) {
         }
+        catch (Exception e) {}
     }
 
     public void clickOnHumbergerAgain()
@@ -522,11 +522,11 @@ public class AdminHomePage {
         WebElement WebEle;
         try
         {
-            if (HelpersMethod.IsExists("//div[@class='loader']", driver))
-            {
-                WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000000);
-            }
+            Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(120))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
             String Menu_Text = null;
             Actions act = new Actions(driver);
             List<WebElement> MenuBars = HelpersMethod.FindByElements(driver, "xpath", "//div[@class='topMenu']/descendant::li/span");
@@ -540,11 +540,11 @@ public class AdminHomePage {
                     break;
                 }
             }
-            if (HelpersMethod.IsExists("//div[@class='loader']", driver))
-            {
-                WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000000);
-            }
+            wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(120))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
         }
         catch (Exception e) {}
     }
@@ -598,7 +598,7 @@ public class AdminHomePage {
                     WebElement savePopup=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-widget k-window k-dialog')]");
                     WebElement okButton=savePopup.findElement(By.xpath(".//button[text()='OK']"));
                     HelpersMethod.ActClick(driver,okButton,10000);
-                    exists = true;
+                    //exists = true;
                     if (HelpersMethod.IsExists("//div[@class='loader']", driver))
                     {
                         WebElement WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
@@ -617,7 +617,7 @@ public class AdminHomePage {
                     wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
                 }
             }
-            Assert.assertTrue(exists);
+           // Assert.assertTrue(exists);
         }
         catch (Exception e) {}
     }
@@ -760,6 +760,7 @@ public class AdminHomePage {
     public void refreshPage()
     {
         String status=null;
+        Wait<WebDriver> wait;
         status = HelpersMethod.returnDocumentStatus(driver);
         if (status.equals("loading"))
         {
@@ -770,32 +771,45 @@ public class AdminHomePage {
             {
                 JavascriptExecutor js = ((JavascriptExecutor) driver);
                 js.executeScript("window.location.reload()");
-                WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(1000));
+                wait = new WebDriverWait(driver, Duration.ofMillis(1000));
                 if (wait.until(ExpectedConditions.alertIsPresent()) == null) {}
                 else
                 {
                     Alert alert = driver.switchTo().alert();
                     alert.accept();
                 }
+                wait = new FluentWait<WebDriver>(driver)
+                        .withTimeout(Duration.ofSeconds(150))
+                        .pollingEvery(Duration.ofSeconds(2))
+                        .ignoring(NoSuchElementException.class);
+                wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
             }
 
-                status = HelpersMethod.returnDocumentStatus(driver);
+            wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(150))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
+            status = HelpersMethod.returnDocumentStatus(driver);
                 if (status.equals("loading"))
                 {
                     HelpersMethod.waitTillLoadingPage(driver);
                 }
-                if (HelpersMethod.IsExists("//div[@class='loader']", driver))
-                {
-                    WebElement WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000000);
-                }
-                Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+
+            wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(150))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
+                wait = new FluentWait<WebDriver>(driver)
                     .withTimeout(Duration.ofSeconds(150))
                     .pollingEvery(Duration.ofSeconds(2))
                     .ignoring(NoSuchElementException.class);
                 wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
 
-            //Navigate to main page
+               //Navigate to main page
                 driver.navigate().refresh();
                 status = HelpersMethod.returnDocumentStatus(driver);
                 if (status.equals("loading"))

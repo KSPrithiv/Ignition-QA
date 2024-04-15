@@ -19,8 +19,18 @@ Feature: Customer Inq
     Then User clicks on Copy button and popup should display
     Then User clicks on Save button
 
+  @CreateCopyForExistingCustomer
+  Scenario: Test scenario for creating copy of customer inq for existing customer
+    Given User must be on Client side and select Customer Inq page
+    When User should confirm that he is in Customer Inq page
+    Then User click on New button for copy of customer inq
+    And User should select customer account# in customer inq
+      |Customer|
+    Then User clicks on Copy button and popup should display
+    And User should click on save button to save copy of customer inq
+
   @CustomerNameRequiredPopup
-  Scenario: Test scenario for canceling Customer inq creation
+  Scenario: Test scenario for Name required popup while saving customer inq details and not entering customer name
     Given User must be on Client side and select Customer Inq page
     When User should confirm that he is in Customer Inq page
     Then User click on New button to cancel creation of customer inq
@@ -35,13 +45,4 @@ Feature: Customer Inq
     And User navigate to Dex.Edi tab and User enteres the value for all web elements
     Then User clicks on Save button without entering customer name
 
-  @CreateCopyForExistingCustomer
-  Scenario: Test scenario for creating copy of customer inq for existing customer
-    Given User must be on Client side and select Customer Inq page
-    When User should confirm that he is in Customer Inq page
-    Then User click on New button for copy of customer inq
-    And User should select customer account# in customer inq
-      |Customer|
-    Then User clicks on Copy button and popup should display
-    And User should click on save button to save copy of customer inq
 

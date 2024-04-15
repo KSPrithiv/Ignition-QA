@@ -1,5 +1,6 @@
 package stepDefination_DSD_OMS.OrderGuidePageSteps;
 
+import helper.HelpersMethod;
 import io.cucumber.datatable.DataTable;
 import io.cucumber.java.Before;
 import io.cucumber.java.Scenario;
@@ -212,5 +213,41 @@ public class OrderGuidePageStep2
     {
         orderGuidePage = new OrderGuidePage(driver, scenario);
         orderGuidePage.SubCustomerRef();
+    }
+
+    @And("User should select products from catalog popup for Market segment")
+    public void userShouldSelectProductsFromCatalogPopupForMarketSegment()
+    {
+        createOGPage=new CreateOGPage(driver,scenario);
+        createOGPage.ValidateCatalogDisplay();
+        createOGPage.ResetFilter_Catalog();
+        createOGPage.validateProductInCatalog();
+        if (HelpersMethod.IsExists("//div[contains(@class,'k-widget k-window k-dialog')]/descendant::div[contains(@class,'i-grid')]", driver))
+        {
+            createOGPage.ListViewPriceBase();
+        }
+        else
+        {
+            createOGPage.cardViewPriceBase();
+        }
+        createOGPage.CatalogPopupOk();
+    }
+
+    @And("User should select products from catalog popup for National chain")
+    public void userShouldSelectProductsFromCatalogPopupForNationalChain()
+    {
+        createOGPage=new CreateOGPage(driver,scenario);
+        createOGPage.ValidateCatalogDisplay();
+        createOGPage.ResetFilter_Catalog();
+        createOGPage.validateProductInCatalog();
+        if (HelpersMethod.IsExists("//div[contains(@class,'k-widget k-window k-dialog')]/descendant::div[contains(@class,'i-grid')]", driver))
+        {
+            createOGPage.ListViewPriceBase();
+        }
+        else
+        {
+            createOGPage.cardViewPriceBase();
+        }
+        createOGPage.CatalogPopupOk();
     }
 }

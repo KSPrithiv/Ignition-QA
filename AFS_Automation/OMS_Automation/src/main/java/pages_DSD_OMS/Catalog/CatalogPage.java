@@ -365,7 +365,7 @@ public class CatalogPage
                 HelpersMethod.waitTillLoadingPage(driver);
             }
             HelpersMethod.ScrollElement(driver,SearchClear);
-            HelpersMethod.ClickBut(driver,SearchClear,4000);
+            HelpersMethod.ClickBut(driver,SearchClear,10000);
             if(HelpersMethod.IsExists("//div[@class='loader']",driver))
             {
                 WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
@@ -374,7 +374,7 @@ public class CatalogPage
 
             //Enter product# in search bar
             WebEle=HelpersMethod.FindByElement(driver,"xpath","//input[contains(@class,'product-search-input')]");
-            HelpersMethod.EnterText(driver,WebEle,4000,Prod_no);
+            HelpersMethod.EnterText(driver,WebEle,10000,Prod_no);
             scenario.log("PRODUCT SEARCHED IS "+Prod_no);
             if(HelpersMethod.IsExists("//div[@class='loader']",driver))
             {
@@ -384,7 +384,7 @@ public class CatalogPage
 
             //Click on search Index button
             WebEle=HelpersMethod.FindByElement(driver,"xpath","//span[@datatestid='searchBarSearchBtn']");
-            HelpersMethod.ClickBut(driver,WebEle,2000);
+            HelpersMethod.ClickBut(driver,WebEle,10000);
             if(HelpersMethod.IsExists("//div[@class='loader']",driver))
             {
                 WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
@@ -732,11 +732,11 @@ public class CatalogPage
         WebElement WebEle;
         try
         {
-            if(HelpersMethod.IsExists("//div[@class='loader']",driver))
-            {
-                WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 2000000);
-            }
+            Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(120))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
 
             new WebDriverWait(driver,Duration.ofMillis(40000)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("cartItemsCard"))));
             if(HelpersMethod.IsExists("//div[@id='cartItemsCard']",driver))
@@ -756,11 +756,12 @@ public class CatalogPage
         WebElement WebEle=null;
         try
         {
-            if(HelpersMethod.IsExists("//div[@class='loader']",driver))
-            {
-                WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 2000000);
-            }
+            Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(120))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
             new WebDriverWait(driver,Duration.ofMillis(10000)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("cartItemsCard"))));
             new WebDriverWait(driver,Duration.ofMillis(10000)).until(ExpectedConditions.visibilityOfElementLocated(By.id("cartItemsCard")));
             if(HelpersMethod.IsExists("//span[contains(text(),'Items in cart')]",driver))
@@ -777,6 +778,7 @@ public class CatalogPage
 
                     HelpersMethod.ScrollElement(driver, Checkout);
                     HelpersMethod.ActClick(driver,Checkout,2000);
+                    exists=true;
                     if (HelpersMethod.IsExists("//div[@class='loader']", driver))
                     {
                         WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
@@ -797,7 +799,6 @@ public class CatalogPage
                     }
                 }
             }
-            exists=true;
             Assert.assertEquals(exists,true);
         }
         catch (Exception e){}
@@ -1460,6 +1461,7 @@ public class CatalogPage
 
     public void Refresh_Page(String currentURL)
     {
+        Wait<WebDriver> wait;
         String status = HelpersMethod.returnDocumentStatus(driver);
         if (status.equals("loading"))
         {
@@ -1472,7 +1474,7 @@ public class CatalogPage
             {
                 JavascriptExecutor js = ((JavascriptExecutor) driver);
                 js.executeScript("window.location.reload()");
-                WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(1000));
+                wait = new WebDriverWait(driver, Duration.ofMillis(1000));
                 if (wait.until(ExpectedConditions.alertIsPresent()) == null)
                 {
 
@@ -1482,36 +1484,34 @@ public class CatalogPage
                     Alert alert = driver.switchTo().alert();
                     alert.accept();
                 }
-            }
-           /* else
-            {*/
-             /*   status = HelpersMethod.returnDocumentStatus(driver);
-                if (status.equals("loading"))
-                {
-                    HelpersMethod.waitTillLoadingPage(driver);
-                }
-
-                driver.navigate().refresh();
-                Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
-                    .withTimeout(Duration.ofSeconds(120))
-                    .pollingEvery(Duration.ofSeconds(2))
-                    .ignoring(NoSuchElementException.class);
-                wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("productsCard")));*/
+                wait = new FluentWait<WebDriver>(driver)
+                        .withTimeout(Duration.ofSeconds(120))
+                        .pollingEvery(Duration.ofSeconds(2))
+                        .ignoring(NoSuchElementException.class);
+                wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("productsCard")));
 
                 status = HelpersMethod.returnDocumentStatus(driver);
                 if (status.equals("loading"))
                 {
                     HelpersMethod.waitTillLoadingPage(driver);
                 }
-                //navigate to Catalog
-                driver.navigate().to(currentURL);
 
-            Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                wait = new FluentWait<WebDriver>(driver)
                         .withTimeout(Duration.ofSeconds(120))
                         .pollingEvery(Duration.ofSeconds(2))
                         .ignoring(NoSuchElementException.class);
                 wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("productsCard")));
-            //}
+
+            }
+
+                //navigate to Catalog
+                driver.navigate().to(currentURL);
+
+                wait = new FluentWait<WebDriver>(driver)
+                        .withTimeout(Duration.ofSeconds(120))
+                        .pollingEvery(Duration.ofSeconds(2))
+                        .ignoring(NoSuchElementException.class);
+                wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("productsCard")));
         }
         catch (Exception e){}
     }
@@ -1917,5 +1917,105 @@ public class CatalogPage
             }
         }
         catch (Exception e) {}
+    }
+
+    public boolean verifyProductsInCatalogEnabled()
+    {
+        exists=false;
+        try
+        {
+            if(HelpersMethod.IsExists("//div[contains(text(),'Use the search bar to search for products.')]",driver))
+            {
+                scenario.log("PRODUCTS ARE NOT LOADED AUTOMATICALLY, WE NEED TO CLICK ON RESET FILTER");
+                exists=true;
+            }
+            else
+            {
+                scenario.log("<span style='color:red'>PRODUCTS ARE LOADED AUTOMATICALLY</span>");
+                exists=false;
+            }
+        }
+        catch (Exception e){}
+        return exists;
+    }
+
+    public boolean verifyProductsInCatalogDisabled()
+    {
+        exists=false;
+        try
+        {
+            if(!HelpersMethod.IsExists("//div[contains(text(),'Use the search bar to search for products.')]",driver))
+            {
+                scenario.log("PRODUCTS ARE NOT LOADED AUTOMATICALLY, WE NEED TO CLICK ON RESET FILTER");
+                exists=false;
+            }
+            else
+            {
+                scenario.log("<span style='color:red'>PRODUCTS ARE LOADED AUTOMATICALLY</span>");
+                exists=true;
+            }
+        }
+        catch (Exception e){}
+        return exists;
+    }
+
+    public void ValidateHomeOrCatalog()
+    {
+        exists=false;
+        try
+        {
+            String status = HelpersMethod.returnDocumentStatus(driver);
+            if (status.equals("loading"))
+            {
+                HelpersMethod.waitTillLoadingPage(driver);
+            }
+
+            Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(120))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
+            status = HelpersMethod.returnDocumentStatus(driver);
+            if (status.equals("loading"))
+            {
+                HelpersMethod.waitTillLoadingPage(driver);
+            }
+            wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(120))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
+            new WebDriverWait(driver,Duration.ofMillis(8000)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class='user-info-container']"))));
+            new WebDriverWait(driver,Duration.ofMillis(8000)).until(ExpectedConditions.refreshed(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='user-info-container']"))));
+
+            String HomeTitle = driver.getTitle();
+            if (HomeTitle.contains("Admin")||HomeTitle.contains("Product Catalog"))
+            {
+                scenario.log("ADMIN PAGE OR PRODUCT CATALOG PAGE HAS BEEN FOUND");
+                exists = true;
+            }
+            wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(120))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
+            status = HelpersMethod.returnDocumentStatus(driver);
+            if (status.equals("loading"))
+            {
+                HelpersMethod.waitTillLoadingPage(driver);
+            }
+
+            wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(120))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
+            Assert.assertEquals(exists, true);
+        }
+        catch (Exception e){}
     }
 }

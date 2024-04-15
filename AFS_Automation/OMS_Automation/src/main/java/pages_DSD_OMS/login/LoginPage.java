@@ -76,7 +76,6 @@ public class LoginPage
     public boolean validateLoginPageTitle()
     {
         exists=false;
-        WebElement WebEle;
         try
         {
             Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
@@ -152,13 +151,11 @@ public class LoginPage
                     HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 800000);
                 }
                 status = HelpersMethod.returnDocumentStatus(driver);
-                if (status.equals("loading")) {
+                if (status.equals("loading"))
+                {
                     HelpersMethod.waitTillLoadingPage(driver);
                 }
-               /* if (HelpersMethod.IsExists("//div[@class='loader']", driver)) {
-                    WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 800000);
-                }*/
+
                 Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
                         .withTimeout(Duration.ofSeconds(120))
                         .pollingEvery(Duration.ofSeconds(5))
@@ -238,12 +235,18 @@ public class LoginPage
         WebElement WebEle=null;
         try
         {
+            Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(120))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
             Thread.sleep(2000);
            // HelpersMethod.waitTillElementLocatedDisplayed(driver, "xpath", "//p[contains(text(),'product catalog')]", 400000);
-            if(HelpersMethod.IsExists("//p[contains(text(),'product catalog')]",driver))
+            if(HelpersMethod.IsExists("//a[@id='viewProductCatalogLink']/p",driver))
             {
                 HelpersMethod.ScrollElement(driver,ExternalCatalog);
-                HelpersMethod.ActClick(driver,ExternalCatalog,1000);
+                HelpersMethod.JScriptClick(driver,ExternalCatalog,10000);
                 exists=true;
                 String status = HelpersMethod.returnDocumentStatus(driver);
                 if (status.equals("loading"))
@@ -258,6 +261,7 @@ public class LoginPage
                 }
                 HelpersMethod.WaitElementPresent(driver,"xpath","//div[contains(@class,'product-catalog-page')]",100000);
                 new WebDriverWait(driver,Duration.ofMillis(20000)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(@id,'ext-product-catalog-app')]")));
+                Thread.sleep(2000);
             }
             else
             {

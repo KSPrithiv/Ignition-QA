@@ -1,4 +1,4 @@
-package testRunner_DSD_OMS.DSDEnv;
+package testRunner_DSD_OMS.OMSEnv;
 
 import io.cucumber.testng.AbstractTestNGCucumberTests;
 import io.cucumber.testng.CucumberOptions;

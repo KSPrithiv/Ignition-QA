@@ -5,7 +5,10 @@ import io.cucumber.java.Before;
 import io.cucumber.java.Scenario;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
 import org.openqa.selenium.WebDriver;
+import org.testng.Assert;
+import pages_DSD_OMS.Catalog.CatalogPage;
 import pages_DSD_OMS.inventory.InventoryPage;
 import pages_DSD_OMS.login.HomePage;
 import pages_DSD_OMS.login.LoginPage;
@@ -16,6 +19,7 @@ import util.DataBaseConnection;
 import util.TestBase;
 
 import java.awt.*;
+import java.text.ParseException;
 import java.util.List;
 
 /**
@@ -27,12 +31,9 @@ public class AdminInventoryStep
     /* Created by Divya.Ramadas */
     WebDriver driver;
     Scenario scenario;
-    static AdminHomePage adminHomePage;
-    static OrderControlListPage orderControlListPage;
-    static HomePage homepage;
-    static LoginPage loginpage;
-    static OrderEntryPage orderpage;
+    static String currentURL=null;
     static InventoryPage inventoryPage;
+    static OrderEntryPage orderPage;
 
     @Before
     public void LaunchBrowser1(Scenario scenario) throws Exception
@@ -42,22 +43,80 @@ public class AdminInventoryStep
         driver= driver1.getDriver();
     }
 
-    @And("User should click on Add product button and validate automatic load of products in product dialog box")
-    public void userShouldClickOnAddProductButtonAndValidateAutomaticLoadOfProductsInProductDialogBox()
+    @And("User should click on Add product button and validate automatic load of products in product dialog box enabled")
+    public void userShouldClickOnAddProductButtonAndValidateAutomaticLoadOfProductsInProductDialogBoxEnabled()
     {
+        boolean exists;
         inventoryPage=new InventoryPage(driver,scenario);
         inventoryPage.clickOnAddProd();
         inventoryPage.validateCatalogPopup();
         if (HelpersMethod.IsExists("//div[contains(@class,'k-widget k-window k-dialog')]/descendant::div[contains(@class,'i-grid')]", driver))
         {
             scenario.log("CATALOG IN THE FORM OF LIST VIEW HAS BEEN FOUND");
-            inventoryPage.listViewProductLoaded();
+            exists= inventoryPage.listViewProductLoadedAutoloadEnabled();
         }
         else
         {
             scenario.log("CATALOG IN THE FORM OF CARD VIEW HAS BEEN FOUND");
-            inventoryPage.cardViewProductLoaded();
+            exists= inventoryPage.cardViewProductLoadedAutoloadEnabled();
         }
+        inventoryPage.clickOnResetFilter();
         inventoryPage.clickOnCatalogOkButton();
+        Assert.assertEquals(exists,true);
+    }
+
+    @And("User should click on Add product button and validate automatic load of products in product dialog box disabled")
+    public void userShouldClickOnAddProductButtonAndValidateAutomaticLoadOfProductsInProductDialogBoxDisabled()
+    {
+        boolean exists=false;
+        inventoryPage=new InventoryPage(driver,scenario);
+        inventoryPage.clickOnAddProd();
+        inventoryPage.validateCatalogPopup();
+        if (HelpersMethod.IsExists("//div[contains(@class,'k-widget k-window k-dialog')]/descendant::div[contains(@class,'i-grid')]", driver))
+        {
+            scenario.log("CATALOG IN THE FORM OF LIST VIEW HAS BEEN FOUND");
+            exists= inventoryPage.listViewProductLoadedAutoloadDisabled();
+        }
+        else
+        {
+            scenario.log("CATALOG IN THE FORM OF CARD VIEW HAS BEEN FOUND");
+            exists= inventoryPage.cardViewProductLoadedAutoloadDisabled();
+        }
+        inventoryPage.clickOnResetFilter();
+        inventoryPage.clickOnCatalogOkButton();
+        Assert.assertEquals(exists,true);
+    }
+
+    @Then("User should select Order Entry tab for Inventory for admin setting")
+    public void userShouldSelectOrderEntryTabForInventoryForAdminSetting() throws InterruptedException, AWTException
+    {
+        orderPage = new OrderEntryPage(driver, scenario);
+        orderPage.NavigateToOrderEntry();
+    }
+
+    @Then("User selects Account# for Inventory for admin setting")
+    public void userSelectsAccountForInventoryForAdminSetting() throws InterruptedException, AWTException, ParseException
+    {
+        orderPage = new OrderEntryPage(driver, scenario);
+        orderPage.ChangeAccount();
+        orderPage.Read_DeliveryDate();
+        orderPage.PopUps_After_AccountChange();
+    }
+
+    @And("User should navigate to Inventory tab for admin setting")
+    public void userShouldNavigateToInventoryTabForAdminSetting()
+    {
+        if (HelpersMethod.IsExists("//li[contains(@class,'k-item')]/span[@class='k-link' and contains(text(),'Catalog')]", driver))
+        {
+            HelpersMethod.navigate_Horizantal_Tab(driver, "Inventory", "//li[contains(@class,'k-item')]/span[@class='k-link' and contains(text(),'Inventory')]", "xpath", "//li[contains(@class,'k-item')]/span[@class='k-link']");
+            inventoryPage = new InventoryPage(driver, scenario);
+            boolean result = inventoryPage.ValidateInventory();
+            currentURL = driver.getCurrentUrl();
+            Assert.assertEquals(result, true);
+        }
+        else
+        {
+            scenario.log("INVENTORY TAB IS NOT VISIBLE");
+        }
     }
 }

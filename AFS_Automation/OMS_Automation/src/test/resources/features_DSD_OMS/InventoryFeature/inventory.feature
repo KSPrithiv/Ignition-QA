@@ -9,18 +9,18 @@ Feature: Inventory
     Then User selects Account# for Inventory
 
   @AddingProductsToInventory
-  Scenario: Test scneario for adding products to inventory
+  Scenario: Test scenario for adding products to inventory
     Given User must be on Order Entry Page to select Inventory tab
     And User should navigate to Inventory tab
     Then User should be in Store inventory tab, in inventory page
     Then User should change store inventory dropdown value
-    And User should click on Add product button and select products from Product popup
+    And User should click on Add product button and select products from Product popup and save
       |5 |10|
       |20|8 |
       |6 |10|
 
   @RunningTotal
-  Scenario: Test scneario for adding products to inventory
+  Scenario: Test scenario for finding running total unit in inventory
     Given User must be on Order Entry Page to select Inventory tab
     And User should navigate to Inventory tab
     Then User should be in Store inventory tab, in inventory page
@@ -45,4 +45,11 @@ Feature: Inventory
     Examples:
       |Case|Unit|Sequence|
       | 20 | 10 |  2     |
+
+  @CancelInventroyDetails
+  Scenario: Test scenario to cancel Inventory details
+    Given User must be on Order Entry Page to select Inventory tab
+    And User should navigate to Inventory tab
+    Then User goes through products under inventory as the product added using quick entry has not been saved
+    And User cancel inventory details
 

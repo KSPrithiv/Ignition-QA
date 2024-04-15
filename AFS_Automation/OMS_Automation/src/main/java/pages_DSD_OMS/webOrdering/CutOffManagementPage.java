@@ -2,13 +2,17 @@ package pages_DSD_OMS.webOrdering;
 
 import helper.HelpersMethod;
 import io.cucumber.java.Scenario;
+import io.cucumber.java.bs.A;
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.FluentWait;
+import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
@@ -97,7 +101,7 @@ public class CutOffManagementPage
             {
                 if(!HelpersMethod.IsExists("//span[@id='CPEnableCutoffBranchMgmt' and @aria-checked='true']",driver))
                 {
-                    HelpersMethod.JScriptClick(driver, branchToggle, 1000);
+                    HelpersMethod.JScriptClick(driver, branchToggle, 10000);
                     scenario.log("BRANCH TOGGLE BUTTON SELECTED");
                     if (HelpersMethod.IsExists("//div[@class='loader']", driver))
                     {
@@ -223,11 +227,11 @@ public class CutOffManagementPage
             options.get(list).click();
             String routeSelect=HelpersMethod.FindByElement(driver,"xpath","//div[@id='filter-by-route']/descendant::span[@id='cutoff-branches']/span").getText();
             scenario.log("ROUTE SELECTED IS: "+routeSelect);
-            if (HelpersMethod.IsExists("//div[@class='loader']", driver))
-            {
-                WebElement WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 200000);
-            }
+            Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(120))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
         }
         catch (Exception e){}
     }
@@ -331,6 +335,11 @@ public class CutOffManagementPage
         exists=false;
         try
         {
+            Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(120))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
             if(timeSettingToggle.isDisplayed())
             {
                 if(!HelpersMethod.IsExists("//span[@class='k-widget k-switch k-switch-off k-state-disabled']",driver))
@@ -339,11 +348,11 @@ public class CutOffManagementPage
                     if (!HelpersMethod.IsExists("//div[@id='cutoff-times']/descendant::span[@class='k-switch-container' and @aria-checked='true']", driver))
                     {
                         HelpersMethod.JScriptClick(driver, timeSettingToggle, 10000);
-                        if (HelpersMethod.IsExists("//div[@class='loader']", driver))
-                        {
-                            WebElement WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 400000);
-                        }
+                        wait = new FluentWait<WebDriver>(driver)
+                                .withTimeout(Duration.ofSeconds(120))
+                                .pollingEvery(Duration.ofSeconds(2))
+                                .ignoring(NoSuchElementException.class);
+                        wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
                     }
                     if (HelpersMethod.IsExists("//div[@id='cutoff-times']/descendant::span[@class='k-switch-container' and @aria-checked='true']", driver))
                     {
@@ -356,7 +365,7 @@ public class CutOffManagementPage
                     exists=true;
                 }
             }
-            Assert.assertTrue(exists);
+            Assert.assertEquals(exists,true);
         }
         catch (Exception e){}
     }
@@ -378,17 +387,22 @@ public class CutOffManagementPage
         WebElement WebEle;
         try
         {
-            WebEle= HelpersMethod.FindByElement(driver,"xpath","//div[@id='cutoff-times']");
-            HelpersMethod.ScrollElement(driver,WebEle);
-            WebEle=HelpersMethod.FindByElement(driver,"xpath","//tr["+i+"]/descendant::span[contains(@class,'k-picker-wrap')]/descendant::span[@class='k-select']");
-            HelpersMethod.JScriptClick(driver,WebEle,1000);
+            if(HelpersMethod.IsExists("//div[@id='cutoff-times']",driver))
+            {
+                WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@id='cutoff-times']");
+                HelpersMethod.ScrollElement(driver, WebEle);
+                WebEle = HelpersMethod.FindByElement(driver, "xpath", "//tr[" + i + "]/descendant::span[contains(@class,'k-picker-wrap')]/descendant::span[@class='k-select']");
+                HelpersMethod.JScriptClick(driver, WebEle, 10000);
+                exists=true;
+            }
+            Assert.assertEquals(exists,true);
         }
         catch (Exception e){}
     }
 
     public void SelectHoursForAllDays()
     {
-        exists=false;
+
         int hrSec;
         Actions act=new Actions(driver);
         String hr_text;
@@ -410,10 +424,12 @@ public class CutOffManagementPage
                     hr_No= Integer.parseInt(hr_text);
                     if(hr_No==hrSec)
                     {
+                        exists=true;
                         break;
                     }
                 }
             }
+            Assert.assertEquals(exists,true);
         }
         catch (Exception e){}
     }
@@ -438,9 +454,11 @@ public class CutOffManagementPage
                 min_No= Integer.parseInt(min_text);
                 if(min_No==hrSec)
                 {
+                    exists=true;
                     break;
                 }
             }
+            Assert.assertEquals(exists,true);
         }
         catch (Exception e){}
     }
@@ -453,13 +471,14 @@ public class CutOffManagementPage
         {
             WebEle=HelpersMethod.FindByElement(driver,"xpath","//button[text()='Set']");
             HelpersMethod.ScrollElement(driver,WebEle);
-            HelpersMethod.ActClick(driver,WebEle,1000);
-            new WebDriverWait(driver, Duration.ofMillis(100)).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[contains(@class,'k-popup k-child-animation-container')]/descendant::div[contains(@class,'k-timeselector k-reset')]")));
-            if(HelpersMethod.IsExists("//div[@class='loader']",driver))
-            {
-                WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 200000);
-            }
+            HelpersMethod.ActClick(driver,WebEle,10000);
+            new WebDriverWait(driver, Duration.ofMillis(40000)).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[contains(@class,'k-popup k-child-animation-container')]/descendant::div[contains(@class,'k-timeselector k-reset')]")));
+            Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(120))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+            Thread.sleep(500);
         }
         catch (Exception e){}
     }
@@ -473,13 +492,13 @@ public class CutOffManagementPage
             {
                 if(!HelpersMethod.IsExists("//span[@id='CPEnableCutoffBranchMgmt' and @aria-checked='false']",driver))
                 {
-                    HelpersMethod.JScriptClick(driver, branchToggle, 1000);
+                    HelpersMethod.JScriptClick(driver, branchToggle, 10000);
                     scenario.log("BRANCH TOGGLE BUTTON SELECTED");
-                    if (HelpersMethod.IsExists("//div[@class='loader']", driver))
-                    {
-                        WebElement WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                        HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 200000);
-                    }
+                    Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                            .withTimeout(Duration.ofSeconds(120))
+                            .pollingEvery(Duration.ofSeconds(2))
+                            .ignoring(NoSuchElementException.class);
+                    wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
                 }
                 if(HelpersMethod.IsExists("//span[@id='CPEnableCutoffBranchMgmt' and @aria-checked='false']",driver))
                 {
@@ -501,13 +520,13 @@ public class CutOffManagementPage
             {
                 if(!HelpersMethod.IsExists("//span[@id='CPEnableCutoffWarehouseMgmt' and @aria-checked='false']",driver))
                 {
-                    HelpersMethod.JScriptClick(driver, wareHouseToggle, 1000);
+                    HelpersMethod.JScriptClick(driver, wareHouseToggle, 10000);
                     scenario.log("WAREHOUSE TOGGLE BUTTON SELECTED");
-                    if (HelpersMethod.IsExists("//div[@class='loader']", driver))
-                    {
-                        WebElement WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                        HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 200000);
-                    }
+                    Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                            .withTimeout(Duration.ofSeconds(120))
+                            .pollingEvery(Duration.ofSeconds(2))
+                            .ignoring(NoSuchElementException.class);
+                    wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
                 }
                     if (HelpersMethod.IsExists("//span[@id='CPEnableCutoffWarehouseMgmt' and @aria-checked='false']", driver))
                     {
@@ -529,13 +548,13 @@ public class CutOffManagementPage
             {
                 if(!HelpersMethod.IsExists("//span[@id='CPEnableCutoffRouteMgmt' and @aria-checked='false']",driver))
                 {
-                    HelpersMethod.JScriptClick(driver, routeToggle, 1000);
+                    HelpersMethod.JScriptClick(driver, routeToggle, 10000);
                     scenario.log("ROUTE TOGGLE BUTTON SELECTED");
-                    if (HelpersMethod.IsExists("//div[@class='loader']", driver))
-                    {
-                        WebElement WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                        HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 200000);
-                    }
+                    Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                            .withTimeout(Duration.ofSeconds(120))
+                            .pollingEvery(Duration.ofSeconds(2))
+                            .ignoring(NoSuchElementException.class);
+                    wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
                 }
                 if(HelpersMethod.IsExists("//span[@id='CPEnableCutoffRouteMgmt' and @aria-checked='false']",driver))
                 {
@@ -557,13 +576,13 @@ public class CutOffManagementPage
             {
                 if(!HelpersMethod.IsExists("//span[@id='CPEnableCutoffCustomerMgmt' and @aria-checked='false']",driver))
                 {
-                    HelpersMethod.JScriptClick(driver, customerToggle, 1000);
+                    HelpersMethod.JScriptClick(driver, customerToggle, 10000);
                     scenario.log("CUSTOMER MANAGEMENT TOGGLE BUTTON SELECTED");
-                    if (HelpersMethod.IsExists("//div[@class='loader']", driver))
-                    {
-                        WebElement WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                        HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 200000);
-                    }
+                    Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                            .withTimeout(Duration.ofSeconds(120))
+                            .pollingEvery(Duration.ofSeconds(2))
+                            .ignoring(NoSuchElementException.class);
+                    wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
                 }
                 if(HelpersMethod.IsExists("//span[@id='CPEnableCutoffCustomerMgmt' and @aria-checked='false']",driver))
                 {
@@ -587,11 +606,11 @@ public class CutOffManagementPage
                 {
                     HelpersMethod.JScriptClick(driver, wareHouseToggle, 10000);
                     scenario.log("WAREHOUSE TOGGLE BUTTON SELECTED");
-                    if (HelpersMethod.IsExists("//div[@class='loader']", driver))
-                    {
-                        WebElement WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                        HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 200000);
-                    }
+                    Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                            .withTimeout(Duration.ofSeconds(120))
+                            .pollingEvery(Duration.ofSeconds(2))
+                            .ignoring(NoSuchElementException.class);
+                    wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
                 }
                     if (HelpersMethod.IsExists("//span[@id='CPEnableCutoffWarehouseMgmt' and @aria-checked='true']", driver))
                     {
@@ -614,11 +633,11 @@ public class CutOffManagementPage
                 {
                     HelpersMethod.JScriptClick(driver, routeToggle, 10000);
                     scenario.log("ROUTE TOGGLE BUTTON SELECTED");
-                    if (HelpersMethod.IsExists("//div[@class='loader']", driver))
-                    {
-                        WebElement WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                        HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 200000);
-                    }
+                    Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                            .withTimeout(Duration.ofSeconds(120))
+                            .pollingEvery(Duration.ofSeconds(2))
+                            .ignoring(NoSuchElementException.class);
+                    wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
                 }
                     if (HelpersMethod.IsExists("//span[@id='CPEnableCutoffRouteMgmt' and @aria-checked='true']", driver))
                     {
@@ -641,11 +660,11 @@ public class CutOffManagementPage
                 {
                     HelpersMethod.JScriptClick(driver,customerToggle, 10000);
                     scenario.log("CUSTOMER MANAGEMENT TOGGLE BUTTON SELECTED");
-                    if (HelpersMethod.IsExists("//div[@class='loader']", driver))
-                    {
-                        WebElement WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                        HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 200000);
-                    }
+                    Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                            .withTimeout(Duration.ofSeconds(120))
+                            .pollingEvery(Duration.ofSeconds(2))
+                            .ignoring(NoSuchElementException.class);
+                    wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
                 }
                     if (HelpersMethod.IsExists("//span[@id='CPEnableCutoffCustomerMgmt' and @aria-checked='true']", driver))
                     {
@@ -669,11 +688,11 @@ public class CutOffManagementPage
                     HelpersMethod.ScrollElement(driver, filterRouteToggle);
                     HelpersMethod.JScriptClick(driver, filterRouteToggle, 1000);
                     scenario.log("FILTER ROUTE TOGGLE BUTTON");
-                    if (HelpersMethod.IsExists("//div[@class='loader']", driver))
-                    {
-                        WebElement WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                        HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 200000);
-                    }
+                    Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                            .withTimeout(Duration.ofSeconds(120))
+                            .pollingEvery(Duration.ofSeconds(2))
+                            .ignoring(NoSuchElementException.class);
+                    wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
                 }
                 if(HelpersMethod.IsExists("//div[@id='filter-by-route']/descendant::div[@class='card-setting-area']/descendant::span[@class='k-switch-container' and @aria-checked='true']",driver))
                 {
@@ -697,11 +716,11 @@ public class CutOffManagementPage
                     HelpersMethod.ScrollElement(driver, filterCustomerMangementToggle);
                     HelpersMethod.JScriptClick(driver, filterCustomerMangementToggle, 1000);
                     scenario.log("FILTER CUSTOMER MANAGEMENT TOGGLE BUTTON");
-                    if (HelpersMethod.IsExists("//div[@class='loader']", driver))
-                    {
-                        WebElement WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                        HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 200000);
-                    }
+                    Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                            .withTimeout(Duration.ofSeconds(120))
+                            .pollingEvery(Duration.ofSeconds(2))
+                            .ignoring(NoSuchElementException.class);
+                    wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
                 }
                 if(HelpersMethod.IsExists("//div[@id='filter-by-customer']/descendant::div[@class='card-setting-area']/descendant::span[@class='k-switch-container' and @aria-checked='true']",driver))
                 {
@@ -725,11 +744,11 @@ public class CutOffManagementPage
                     HelpersMethod.ScrollElement(driver, filterWarehouseToggle);
                     HelpersMethod.JScriptClick(driver, filterWarehouseToggle, 1000);
                     scenario.log("FILTER WAREHOUSE TOGGLE BUTTON");
-                    if (HelpersMethod.IsExists("//div[@class='loader']", driver))
-                    {
-                        WebElement WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                        HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 200000);
-                    }
+                    Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                            .withTimeout(Duration.ofSeconds(120))
+                            .pollingEvery(Duration.ofSeconds(2))
+                            .ignoring(NoSuchElementException.class);
+                    wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
                 }
                     if (HelpersMethod.IsExists("//div[@id='filter-by-warehouse']/descendant::div[@class='card-setting-area']/descendant::span[@class='k-switch-container' and @aria-checked='true']", driver))
                     {
@@ -753,7 +772,7 @@ public class CutOffManagementPage
                 scenario.log("BRANCHES DROPDOWN BUTTON CLICKED");
                 exists=true;
             }
-            Assert.assertTrue(exists);
+            Assert.assertEquals(exists,true);
         }
         catch (Exception e){}
     }
@@ -774,11 +793,11 @@ public class CutOffManagementPage
                 options.get(list).click();
                 String branchSelect = HelpersMethod.FindByElement(driver, "xpath", "//div[@id='filter-by-branch']/descendant::span[@id='cutoff-branches']/span").getText();
                 scenario.log("BRANCH SELECTED IS: " + branchSelect);
-                if (HelpersMethod.IsExists("//div[@class='loader']", driver))
-                {
-                    WebElement WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 200000);
-                }
+                Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                        .withTimeout(Duration.ofSeconds(120))
+                        .pollingEvery(Duration.ofSeconds(2))
+                        .ignoring(NoSuchElementException.class);
+                wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
             }
         }
         catch (Exception e){}
@@ -795,11 +814,11 @@ public class CutOffManagementPage
                 {
                     HelpersMethod.JScriptClick(driver, branchFilterCutoffTime, 1000);
                     scenario.log("FILTER CUT OFF TIME TOGGLE BUTTON HAS BEEN CLICKED");
-                    if (HelpersMethod.IsExists("//div[@class='loader']", driver))
-                    {
-                        WebElement WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                        HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 200000);
-                    }
+                    Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                            .withTimeout(Duration.ofSeconds(120))
+                            .pollingEvery(Duration.ofSeconds(2))
+                            .ignoring(NoSuchElementException.class);
+                    wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
                 }
                     if (HelpersMethod.IsExists("//div[@id='filter-by-branch']/descendant::span[@id='filter-by-active-cutoff-times' and @aria-checked='true']", driver))
                     {

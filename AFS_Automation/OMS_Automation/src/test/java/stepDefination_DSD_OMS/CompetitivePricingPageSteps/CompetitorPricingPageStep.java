@@ -100,9 +100,9 @@ public class CompetitorPricingPageStep
     public void userSelectsCustomerReferenceAndSelectCustomerAccount(String CustRef,String CustRef1) throws InterruptedException
     {
             competitivePricingGeneralPage = new CompetitivePricingGeneralPage(driver, scenario);
-            competitivePricingGeneralPage.Click_CustomerReferenceDropDown();
+            ////competitivePricingGeneralPage.Click_CustomerReferenceDropDown();
             //competitivePricingGeneralPage.Select_CustomerReference(CustRef,CustRef1);
-            competitivePricingGeneralPage.Select_CustomerReference(CustRef);
+            ////competitivePricingGeneralPage.Select_CustomerReference(CustRef);
             competitivePricingGeneralPage.Click_CustomerAccountIndex();
             competitivePricingGeneralPage.ValidateCustomerAccountPopup();
             competitivePricingGeneralPage.SelectCustomerAccount();
@@ -129,6 +129,7 @@ public class CompetitorPricingPageStep
         competitivePricingGeneralPage=new CompetitivePricingGeneralPage(driver,scenario);
         competitivePricingGeneralPage.Click_Plus();
         competitivePricingGeneralPage.Validate_ProductIndex();
+        competitivePricingGeneralPage.clickOnLoadAllProducts();
         competitivePricingGeneralPage.selectProductsForCompetitorPricing();
     }
 

@@ -11,7 +11,7 @@ Feature: Admin setting
     Given User is on Home Page for Admin setting to select Admin option
     Then User refreshes page Clicks on Permissions by drop down to select Customer Account# grid
     And User should enter menu "<Option>" in search bar to navigate to Authorized Products
-    Then User should select "<MenuOption>" from horizantal menu to select Restricted product list
+    Then User should select "<MenuOption>" from horizontal menu to select Restricted product list
     And User should be on Restricted product list
     Then User should list all the products in Product grid
     And User Clicks on Add products button and user should make sure that Product popup has appeared
@@ -25,7 +25,7 @@ Feature: Admin setting
    Given User is on Home Page for Admin setting to select Admin option
    Then User refreshes page Clicks on Permissions by drop down to select Customer Account# grid for WebOrder
    And User should enter menu "<Option>" in search bar to navigate to Authorized Products
-   Then User should select "<MenuOption>" from horizantal menu to select Restricted product list
+   Then User should select "<MenuOption>" from horizontal menu to select Restricted product list
    And User should be on Restricted product list
    Then User should list all the products in Product grid
    And User should Select product from the Product grid and click on Delete button
@@ -38,7 +38,7 @@ Feature: Admin setting
    Given User is on Home Page for Admin setting to select Admin option
    Then User refreshes page Clicks on Permissions by drop down to select Customer Account# grid for WebOrder
    And User should enter menu "<Option>" in search bar to navigate to Authorized Products
-   Then User should select "<MenuOption>" from horizantal menu to select Restricted product list
+   Then User should select "<MenuOption>" from horizontal menu to select Restricted product list
    And User should be on Restricted product list
    Then User clicks on ProductGroup radio button and user should be navigated to Products restriction group
    And User clicks on Add Product group button and select category group from popup
@@ -51,7 +51,7 @@ Feature: Admin setting
    Given User is on Home Page for Admin setting to select Admin option
    Then User refreshes page Clicks on Permissions by drop down to select Customer Account# grid for WebOrder
    And User should enter menu "<Option>" in search bar to navigate to Authorized Products
-   Then User should select "<MenuOption>" from horizantal menu to select Restricted product list
+   Then User should select "<MenuOption>" from horizontal menu to select Restricted product list
    And User should be on Restricted product list
    Then User clicks on ProductGroup radio button and user should be navigated to Products restriction group
    And User clicks on Delete group button

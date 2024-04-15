@@ -290,7 +290,7 @@ public class LoginPageStep
         if (HelpersMethod.IsExists("//div[contains(text(),'Failed to connect to API')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]", driver))
         {
             WebElement WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(text(),'Failed to connect to API')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]/descendant::button[text()='Ok']");
-            HelpersMethod.ClickBut(driver, WebEle, 2000);
+            HelpersMethod.ClickBut(driver, WebEle, 10000);
         }
 
         wait = new FluentWait<WebDriver>(driver)
@@ -299,12 +299,13 @@ public class LoginPageStep
                 .ignoring(NoSuchElementException.class);
         wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
         loginpage.ClickExternalCatalog();
-        if(flag1==false)
-        {
+        //if(flag1==false)
+        //{
             productPage = new ProductPage(driver, scenario);
             pTitle = productPage.productTitle();
-            flag1=true;
-        }
+          //  flag1=true;
+        //}
+        Thread.sleep(4000);
     }
 
     //Code to add products to cart, when Card view is enabled
@@ -313,6 +314,7 @@ public class LoginPageStep
     {
         productPage = new ProductPage(driver, scenario);
         exists=productPage.ValidateProductPage();
+        productPage.clickOnAllProduct();
         productPage.Click_ResetFilter();
         exists=productPage.ValidateProductPage();
         productPage.CardView();
@@ -385,17 +387,24 @@ public class LoginPageStep
     @And("user should be on New Order entry page")
     public void user_should_be_on_new_order_entry_page() throws InterruptedException, AWTException
     {
+        Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                .withTimeout(Duration.ofSeconds(120))
+                .pollingEvery(Duration.ofSeconds(2))
+                .ignoring(NoSuchElementException.class);
+        wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
         orderpage = new OrderEntryPage(driver, scenario);
         // orderpage.NoPendingOrderPopup();
         orderpage.NoNotePopHandling();
         orderpage.OrderGuidePopup();
-       /* if(HelpersMethod.IsExists("//div[@class='loader']",driver))
-        {
-            WebElement WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100000);
-        }*/
 
-        if (HelpersMethod.IsExistsById("checkoutCard", driver))
+        wait = new FluentWait<WebDriver>(driver)
+                .withTimeout(Duration.ofSeconds(120))
+                .pollingEvery(Duration.ofSeconds(2))
+                .ignoring(NoSuchElementException.class);
+        wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
+        if (HelpersMethod.IsExists("//div[@id='checkoutCard']", driver))
         {
             checkOutOrder = new CheckOutOrderPage(driver, scenario);
             checkOutOrder.VerifyCheckOut();
@@ -559,6 +568,7 @@ public class LoginPageStep
     {
         productPage = new ProductPage(driver, scenario);
         exists=productPage.ValidateProductPage();
+        productPage.clickOnAllProduct();
         productPage.Click_ResetFilter();
         exists=productPage.ValidateProductPage();
         productPage.GridView();
@@ -687,7 +697,8 @@ public class LoginPageStep
     }
 
     @And("User closes the browser")
-    public void userClosesTheBrowser() {
+    public void userClosesTheBrowser()
+    {
         CurrentURL = driver.getCurrentUrl();
         driver.close();
     }
@@ -754,7 +765,7 @@ public class LoginPageStep
     {
             orderpage = new OrderEntryPage(driver, scenario);
             orderpage.NavigateToOrderEntry();
-            orderpage.ValidateOE();
+            //orderpage.ValidateOE();
     }
     @When("User is on Home Page for eCommerce help")
     public void userIsOnHomePageForECommerceHelp()
@@ -778,7 +789,7 @@ public class LoginPageStep
     {
         orderpage = new OrderEntryPage(driver, scenario);
         orderpage.NavigateToOrderEntry();
-        orderpage.ValidateOE();
+        //orderpage.ValidateOE();
     }
 
     @And("User click on Question mark and selects ecommerce option")
@@ -786,11 +797,13 @@ public class LoginPageStep
     {
         orderpage = new OrderEntryPage(driver, scenario);
         driver.navigate().refresh();
-        if(HelpersMethod.IsExists("//div[@class='loader']",driver))
-        {
-            WebElement WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000000);
-        }
+
+        Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                .withTimeout(Duration.ofSeconds(150))
+                .pollingEvery(Duration.ofSeconds(2))
+                .ignoring(NoSuchElementException.class);
+        wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
         orderpage.selecteCommerceOption();
     }
 

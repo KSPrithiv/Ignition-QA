@@ -8,6 +8,8 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.FluentWait;
+import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
@@ -64,13 +66,14 @@ public class ParOrderPage
     //Actions methods
     public void Refresh_Page(String currentURL)
     {
+        Wait<WebDriver> wait;
         try
         {
             if (HelpersMethod.IsExists("//div[contains(@class,'k-widget k-window k-dialog')]", driver))
             {
                 JavascriptExecutor js = ((JavascriptExecutor) driver);
                 js.executeScript("window.location.reload()");
-                WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(1000));
+                wait = new WebDriverWait(driver, Duration.ofMillis(1000));
                 if (wait.until(ExpectedConditions.alertIsPresent()) == null)
                 {
 
@@ -80,6 +83,11 @@ public class ParOrderPage
                     Alert alert = driver.switchTo().alert();
                     alert.accept();
                 }
+               wait = new FluentWait<WebDriver>(driver)
+                        .withTimeout(Duration.ofSeconds(120))
+                        .pollingEvery(Duration.ofSeconds(2))
+                        .ignoring(NoSuchElementException.class);
+                wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
             }
                 //navigating back to Current URL
                 driver.navigate().to(currentURL);
@@ -331,9 +339,11 @@ public class ParOrderPage
                 exists=false;
                 act.moveToElement(pList).build().perform();
                 String pList_text=pList.getText();
-                if(pList_text.equals(parList))
+                if(pList_text.equalsIgnoreCase(parList))
                 {
-                    act.moveToElement(pList).click().build().perform();
+                    act.moveToElement(pList).build().perform();
+                    //act.click().build().perform();
+                    HelpersMethod.JScriptClick(driver,pList,10000);
                     scenario.log(" PAR LIST FOUND IS "+pList_text);
                     exists=true;
                     break;

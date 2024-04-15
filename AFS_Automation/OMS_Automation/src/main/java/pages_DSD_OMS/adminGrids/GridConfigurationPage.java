@@ -2,6 +2,7 @@ package pages_DSD_OMS.adminGrids;
 
 import helper.HelpersMethod;
 import io.cucumber.java.Scenario;
+import org.apache.logging.log4j.core.tools.picocli.CommandLine;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Action;
 import org.openqa.selenium.interactions.Actions;
@@ -29,6 +30,8 @@ public class GridConfigurationPage
     static boolean exists=false;
     static String gridName=null;
     static String gridName1=null;
+    static String oldLabel=null;
+    static String newLabel=null;
 
     @FindBy(xpath="//div[contains(@class,'moduleNameHeader')]/span[contains(@class,'spnmoduleNameHeader')]")
     private WebElement pageHeader;
@@ -437,7 +440,7 @@ public class GridConfigurationPage
             if(HelpersMethod.IsExists("//span[@id='SelectGrid']",driver))
             {
                 WebEle=HelpersMethod.FindByElement(driver,"id","SelectGrid");
-                HelpersMethod.ActClick(driver,WebEle,1000);
+                HelpersMethod.ActClick(driver,WebEle,10000);
                 new WebDriverWait(driver,Duration.ofMillis(10000)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class,'k-popup k-child-animation-container')]"))));
                 exists=true;
             }
@@ -835,5 +838,81 @@ public class GridConfigurationPage
             Assert.assertTrue(exists);
         }
         catch(Exception e){}
+    }
+
+    public void readGridHeaderLabel()
+    {
+        exists=false;
+        try
+        {
+           if(HelpersMethod.IsExists("//tr[contains(@class,'k-grid-edit-row')][1]/descendant::input[@class='k-textbox']",driver))
+           {
+               WebElement scrollEle=HelpersMethod.FindByElement(driver,"id","GridConfigurationConfiguration");
+               HelpersMethod.ScrollElement(driver,scrollEle);
+               WebElement gridLabel=driver.findElement(By.xpath("//tr[contains(@class,'k-grid-edit-row')][1]/descendant::input[@class='k-textbox']"));
+
+               oldLabel = HelpersMethod.JSGetValueEle(driver, gridLabel, 10000);
+               scenario.log("OLD LABEL VALUE IS " + oldLabel);
+               exists = true;
+           }
+           Assert.assertEquals(exists,true);
+        }
+        catch (Exception e){}
+    }
+
+    public String enterNewLabel()
+    {
+        exists=false;
+        String newLabel1=null;
+        try
+        {
+            if(HelpersMethod.IsExists("//tr[contains(@class,'k-grid-edit-row')][1]/descendant::input[@class='k-textbox']",driver))
+            {
+                newLabel=oldLabel+"123";
+                WebElement gridLabel=driver.findElement(By.xpath("//tr[contains(@class,'k-grid-edit-row')][1]/descendant::input[@class='k-textbox']"));
+
+                HelpersMethod.JSSetValueEle(driver,gridLabel,10000,"");
+                driver.findElement(By.xpath("//tr[contains(@class,'k-grid-edit-row')][1]/descendant::input[@class='k-textbox']")).sendKeys(newLabel);
+
+                scenario.log("NEW LABEL VALUE IS " + newLabel);
+                newLabel1=HelpersMethod.JSGetValueEle(driver,gridLabel,10000);
+            }
+            if(newLabel.equalsIgnoreCase(newLabel1))
+            {
+                exists=true;
+            }
+            Assert.assertEquals(exists,true);
+            Thread.sleep(2000);
+        }
+        catch (Exception e){}
+        return newLabel;
+    }
+
+    public void resetLabelToOld()
+    {
+        exists=false;
+        String newLabel1=null;
+        try
+        {
+            if(HelpersMethod.IsExists("//tr[contains(@class,'k-grid-edit-row')][1]/descendant::input[@class='k-textbox']",driver))
+            {
+                WebElement gridLabel=driver.findElement(By.xpath("//tr[contains(@class,'k-grid-edit-row')][1]/descendant::input[@class='k-textbox']"));
+
+                driver.findElement(By.xpath("//tr[contains(@class,'k-grid-edit-row')][1]/descendant::input[@class='k-textbox']")).sendKeys("");
+                HelpersMethod.JSSetValueEle(driver,gridLabel,10000,"");
+                driver.findElement(By.xpath("//tr[contains(@class,'k-grid-edit-row')][1]/descendant::input[@class='k-textbox']")).sendKeys(oldLabel);
+                //gridLabel.sendKeys(Keys.TAB);
+                scenario.log("OLD LABEL VALUE IS " + oldLabel);
+                newLabel1=HelpersMethod.JSGetValueEle(driver,gridLabel,10000);
+            }
+
+            if(oldLabel.equalsIgnoreCase(newLabel1))
+            {
+                exists=true;
+            }
+            Thread.sleep(2000);
+            Assert.assertEquals(exists,true);
+        }
+        catch (Exception e){}
     }
 }

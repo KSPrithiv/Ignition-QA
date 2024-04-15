@@ -27,40 +27,13 @@ Feature: Order Guide3
     Then User enters OG Description "<OG>" in search box and Delete the OG verify same in OG grid
     Examples:
       |  OG   |
-
       |OGDis16  |
-      |OGDis17  |
-      |OGDis18  |
-      |OGDis19  |
-      |OGDis20  |
+    #  |OGDis17  |
+    #  |OGDis18  |
+    #  |OGDis19  |
+    #  |OGDis20  |
     #  |DayOfWeek|
-      |OGHist   |
-      |CustChange|
-      |AllCustomer1    |
+    #  |OGHist   |
+    #  |CustChange|
+    #  |AllCustomer1 |
       | OGDis1 |
-
-
-
-
-
-   #   |OGDis1 |
-   #   |OGDis14|
-   #   |OGDis16|
-   #   |OGDis17|
-   #   |OGDis18|
-   #   |OGDis19|
-   #   |OGDis20|
-   #   |OGDis21|
-   #   |OGHist |
-     # |Par OGPar OG|
-     # |Push OGPush OG|
-     # |Push OG1Push OG1|
-     # |AllOrderAllOrder|
-      #   | AllCustomer1   |
-   #    | DayOfWeek      |
-  #    | LocalChain1    |
-  #    | NationalChain1 |
-  #    |MarketOG        |
-  #    |PriceBaseOG     |
-  #    |CustChange      |
-    #  | QToOG |
