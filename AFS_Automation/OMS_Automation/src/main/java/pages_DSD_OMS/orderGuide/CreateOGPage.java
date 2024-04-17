@@ -285,16 +285,35 @@ public class CreateOGPage
         try
         {
             WebElement WebEle=null;
-            if(HelpersMethod.IsExists("//div[@class='loader']",driver))
-            {
-                WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000000);
-            }
-            HelpersMethod.ScrollElement(driver,QuickProd);
-            HelpersMethod.ClearText(driver,QuickProd,4000);
-            HelpersMethod.EnterText(driver, QuickProd,4000,Product);
-            QuickProd.sendKeys(Keys.TAB);
+            Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(200))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
             String status = HelpersMethod.returnDocumentStatus(driver);
+            if (status.equals("loading"))
+            {
+                HelpersMethod.waitTillLoadingPage(driver);
+            }
+
+            wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(200))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
+            status = HelpersMethod.returnDocumentStatus(driver);
+            if (status.equals("loading"))
+            {
+                HelpersMethod.waitTillLoadingPage(driver);
+            }
+
+            HelpersMethod.ScrollElement(driver,QuickProd);
+            HelpersMethod.ClearText(driver,QuickProd,20000);
+            HelpersMethod.EnterText(driver, QuickProd,10000,Product);
+            QuickProd.sendKeys(Keys.TAB);
+            status = HelpersMethod.returnDocumentStatus(driver);
             if (status.equals("loading"))
             {
                 HelpersMethod.waitTillLoadingPage(driver);
@@ -313,8 +332,6 @@ public class CreateOGPage
 
             HelpersMethod.ActClearKey(driver,Sequence,10000);
             HelpersMethod.ActSendKey(driver,Sequence,10000,ProSeq);
-            //HelpersMethod.ClearText(driver,Sequence,10000);
-            //HelpersMethod.EnterText(driver, Sequence, 10000,ProSeq);
             Sequence.sendKeys(Keys.TAB);
             if(HelpersMethod.IsExists("//div[@class='loader']",driver))
             {
@@ -330,7 +347,7 @@ public class CreateOGPage
             if(!HelpersMethod.IsExists("//div[contains(text(),'no matching products')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
             {
                 scenario.log("PRODUCT# ENTERED IS "+Product+" SEQUENCE# ENTERED IS "+ProSeq);
-                Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                wait = new FluentWait<WebDriver>(driver)
                         .withTimeout(Duration.ofSeconds(120))
                         .pollingEvery(Duration.ofSeconds(2))
                         .ignoring(NoSuchElementException.class);

@@ -4,7 +4,7 @@
     <test name="IgnitionTestAutomation">
         <parameter name="environment" value="config_DSD_OMS\\configIgnition\\config_OMS"/>
         <classes>
-            <class name="testRunner_DSD_OMS.OMSEnv.TestRunnerAdminClientNavigationERP">
+            <class name="testRunner_DSD_OMS.OMSEnv.TestRunnerAdminClientNavigationOMS">
             </class>
         </classes>
     </test>

@@ -272,13 +272,14 @@ public class OrderHistoryPage
         WebElement WebEle;
         try
         {
-            HelpersMethod.ClickBut(driver,OrderButton,1000);
+            HelpersMethod.ClickBut(driver,OrderButton,10000);
             exists=true;
-            if(HelpersMethod.IsExists("//div[@class='loader']",driver))
-            {
-                WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000000);
-            }
+            Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(200))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
             Assert.assertEquals(exists,true);
         }
         catch (Exception e){}
@@ -297,18 +298,20 @@ public class OrderHistoryPage
             HelpersMethod.ScrollElement(driver,WebEle);
             WebElement headTitle=HelpersMethod.FindByElement(driver,"xpath","//th[contains(@class,'k-header')]/descendant::span[@class='k-column-title' and contains(text(),'Delivery Date')]");
             act.moveToElement(headTitle).click().build().perform();
-            if(HelpersMethod.IsExists("//div[@class='loader']",driver))
-            {
-                WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000000);
-            }
+            Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(200))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
             act.moveToElement(headTitle).click().build().perform();
             exists=true;
-            if(HelpersMethod.IsExists("//div[@class='loader']",driver))
-            {
-                WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000000);
-            }
+            wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(200))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
             Assert.assertEquals(exists,true);
         }
         catch (Exception e){}
@@ -323,12 +326,23 @@ public class OrderHistoryPage
                 WebElement selectDeliveryDate = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(text(),'Select delivery date')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]");
                 WebElement newOrder = selectDeliveryDate.findElement(By.xpath(".//tr[contains(@class,'k-master-row')][1]"));
                 scenario.log("DELIVERY DATE SELECTED IS: " + selectDeliveryDate.findElement(By.xpath(".//span[@class='line2']")).getText());
-                HelpersMethod.ActClick(driver, newOrder, 1000);
-                if(HelpersMethod.IsExists("//div[@class='loader']",driver))
+                HelpersMethod.ActClick(driver, newOrder, 10000);
+
+                Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                        .withTimeout(Duration.ofSeconds(200))
+                        .pollingEvery(Duration.ofSeconds(2))
+                        .ignoring(NoSuchElementException.class);
+                wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+                String status = HelpersMethod.returnDocumentStatus(driver);
+                if (status.equals("loading"))
                 {
-                    WebElement WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000000);
+                    HelpersMethod.waitTillLoadingPage(driver);
                 }
+                wait = new FluentWait<WebDriver>(driver)
+                        .withTimeout(Duration.ofSeconds(200))
+                        .pollingEvery(Duration.ofSeconds(2))
+                        .ignoring(NoSuchElementException.class);
+                wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
             }
         }
         catch (Exception e){}
@@ -346,7 +360,7 @@ public class OrderHistoryPage
             }
 
             Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
-                    .withTimeout(Duration.ofSeconds(120))
+                    .withTimeout(Duration.ofSeconds(200))
                     .pollingEvery(Duration.ofSeconds(2))
                     .ignoring(NoSuchElementException.class);
             wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
@@ -358,7 +372,7 @@ public class OrderHistoryPage
             }
 
             wait = new FluentWait<WebDriver>(driver)
-                    .withTimeout(Duration.ofSeconds(120))
+                    .withTimeout(Duration.ofSeconds(200))
                     .pollingEvery(Duration.ofSeconds(2))
                     .ignoring(NoSuchElementException.class);
             wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
@@ -369,7 +383,7 @@ public class OrderHistoryPage
                 WebElement modalContainer = driver.findElement(By.xpath("//h4[contains(text(),'Select order')]/ancestor::div[contains(@class,'modal-content')]"));
 
                 WebEle=modalContainer.findElement(By.xpath(".//button[contains(text(),'New order')]"));
-                HelpersMethod.ActClick(driver,WebEle,1000);
+                HelpersMethod.ActClick(driver,WebEle,10000);
 
                 wait = new FluentWait<WebDriver>(driver)
                         .withTimeout(Duration.ofSeconds(120))
@@ -384,7 +398,7 @@ public class OrderHistoryPage
                 WebElement modalContainer = driver.findElement(By.xpath("//p[text()='Notes']/ancestor::div[contains(@class,'k-widget k-window k-dialog')]"));
 
                 WebEle= modalContainer.findElement(By.xpath(".//button"));
-                HelpersMethod.ClickBut(driver,WebEle,1000);
+                HelpersMethod.ClickBut(driver,WebEle,10000);
             }
         }
         catch (Exception e){}

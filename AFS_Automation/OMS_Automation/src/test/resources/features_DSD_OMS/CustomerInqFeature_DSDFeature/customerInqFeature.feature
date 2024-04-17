@@ -114,9 +114,10 @@ Feature: Customer Inq
     Given User must be on Client side and select Customer Inq page
     When User should confirm that he is in Customer Inq page
     #Then User click on New button for copy of customer inq
-    And User should select customer account# in customer inq
-      |Customer|
-    Then User should navigate to Telus tab
+    ##And User should select customer account# in customer inq
+    ##  |Customer|
+    ##Then User should navigate to Telus tab
+    And User navigate to Ignition tab
     And User click on Payment processing and verify visibility of System default Realtime charge option
 
   @AddNote

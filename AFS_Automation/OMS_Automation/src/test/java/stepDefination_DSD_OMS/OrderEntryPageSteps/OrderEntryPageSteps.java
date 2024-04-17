@@ -12,6 +12,7 @@ import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.Wait;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import pages_DSD_OMS.login.HomePage;
 import pages_DSD_OMS.login.LoginPage;
@@ -598,8 +599,15 @@ public class OrderEntryPageSteps
                     caseIn.sendKeys(Keys.TAB);
                 }
             }
+            new WebDriverWait(driver,Duration.ofMillis(10000)).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@id='pending-quick-entry-calls']")));
             newOE.exceedsMaxQty();
-            newOE.toastCurrentlyUnavailable();
+            for(int i=0;i<=1;i++)
+            {
+                //check for toast message for low on inventory
+                newOE.lowOnInventoryToast();
+                //check for toast message for product is currently unavailable
+                newOE.toastCurrentlyUnavailable();
+            }
         }
         else if(uomString.equals("Cases")||uomString.equals("CS"))
         {
@@ -612,17 +620,31 @@ public class OrderEntryPageSteps
                     unitIn.sendKeys(Keys.TAB);
                 }
             }
+            new WebDriverWait(driver,Duration.ofMillis(10000)).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@id='pending-quick-entry-calls']")));
             newOE.exceedsMaxQty();
-            newOE.toastCurrentlyUnavailable();
+            for(int i=0;i<=1;i++)
+            {
+                //check for toast message for low on inventory
+                newOE.lowOnInventoryToast();
+                //check for toast message for product is currently unavailable
+                newOE.toastCurrentlyUnavailable();
+            }
         }
         else if(uomString.equals("Cases, Units")||uomString.equals("Units, Cases")||uomString.equals("CS, EA")||uomString.equals("EA, CS"))
         {
             newOE.CheckForQuickCaseEnabled(Case);
             newOE.CheckForQuickUnitEnabled(Unit);
+            new WebDriverWait(driver,Duration.ofMillis(10000)).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@id='pending-quick-entry-calls']")));
             newOE.exceedsMaxQty();
-            newOE.toastCurrentlyUnavailable();
+            for(int i=0;i<=1;i++)
+            {
+                //check for toast message for low on inventory
+                newOE.lowOnInventoryToast();
+                //check for toast message for product is currently unavailable
+                newOE.toastCurrentlyUnavailable();
+            }
         }
-        Thread.sleep(2000);
+       // Thread.sleep(2000);
     }
 
     @Then("Click on Back button")

@@ -365,10 +365,10 @@ public class AdminOrderEntryStep
     public void userShouldEnterMenuInSearchBarToNavigateToOrderEntrySearch(String arg0) throws InterruptedException
     {
         adminHomePage = new AdminHomePage(driver, scenario);
+        adminHomePage.removeUnwantedDialogbox();
         adminHomePage.ClickOnHamburger();
         adminHomePage.EnterValueInSearchBox(arg0);
-        adminHomePage.removeUnwantedDialogbox();
-        adminHomePage.CloseHamburger();
+        //adminHomePage.CloseHamburger();
         adminOrderEntryPage=new AdminOrderEntryPage(driver,scenario);
         adminOrderEntryPage.validatingAdminOrderEntryPage();
     }

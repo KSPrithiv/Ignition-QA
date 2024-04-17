@@ -241,6 +241,14 @@ public class HelpersMethod
         element.sendKeys(Keys.TAB);
     }
 
+    public static void ActSendKeyEnter(WebDriver driver,WebElement element,int timeOut,String val) throws InterruptedException
+    {
+        new WebDriverWait(driver,Duration.ofMillis(timeOut)).until(ExpectedConditions.visibilityOf(element));
+        Actions act = new Actions(driver);
+        act.moveToElement(element).sendKeys(val).build().perform();
+        act.moveToElement(element).sendKeys(Keys.ENTER).build().perform();
+    }
+
     public static void ActClearKey(WebDriver driver,WebElement element,int timeOut)
     {
         new WebDriverWait(driver,Duration.ofMillis(timeOut)).until(ExpectedConditions.visibilityOf(element));
