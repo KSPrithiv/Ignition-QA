@@ -113,6 +113,7 @@ public class AdminCatalogStep
         loginPage.EnterUsername(TestBase.testEnvironment.username());
         loginPage.EnterPassword(TestBase.testEnvironment.password());
         loginPage.ClickSignin();
+        loginPage.getURL();
     }
 
     @Given("User should verify admin setting {string} is enabled by using {string}")

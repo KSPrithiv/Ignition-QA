@@ -67,8 +67,8 @@ public class DMOEPageStep1
         dmoePage.closeAccountIndex();
     }
 
-    @When("User Clicks on network symbol and click on taggle button to navigate to disconnected mode for two customer account selection")
-    public void userClicksOnNetworkSymbolAndClickOnTaggleButtonToNavigateToDisconnectedModeForTwoCustomerAccountSelection() throws InterruptedException
+    @When("User Clicks on network symbol and click on toggle button to navigate to disconnected mode for two customer account selection")
+    public void userClicksOnNetworkSymbolAndClickOnToggleButtonToNavigateToDisconnectedModeForTwoCustomerAccountSelection() throws InterruptedException
     {
         dmoePage = new DMOEPage(driver, scenario);
         dmoePage.NavigateToDM();

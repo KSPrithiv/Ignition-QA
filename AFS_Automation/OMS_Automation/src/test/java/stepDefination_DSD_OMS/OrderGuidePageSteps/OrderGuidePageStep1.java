@@ -152,6 +152,13 @@ public class OrderGuidePageStep1
         orderGuidePage.CustRefDropDown(CusRef.get(0).get(0));
     }
 
+    @And("Check for popup to appear to select sub customer reference for local chain")
+    public void checkForPopupToAppearToSelectSubCustomerReferenceForLocalChain() throws InterruptedException, AWTException
+    {
+        orderGuidePage = new OrderGuidePage(driver, scenario);
+        orderGuidePage.SubCustomerRefLocalChain();
+    }
+
     @And("Check for popup to appear to select sub customer reference")
     public void checkForPopupToAppearToSelectSubCustomerReference() throws InterruptedException, AWTException
     {

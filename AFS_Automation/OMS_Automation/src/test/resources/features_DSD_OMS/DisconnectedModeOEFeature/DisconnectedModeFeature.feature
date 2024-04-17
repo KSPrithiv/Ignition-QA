@@ -10,13 +10,13 @@ Feature: Disconnected mode
   @DMGoOfflineCancel
   Scenario: Test scenario for canceling navigating to disconnected mode
     Given User should be in Order entry page
-    When User Clicks on network symbol and click on taggle button to navigate to disconnected mode for cancel option
+    When User Clicks on network symbol and click on toggle button to navigate to disconnected mode for cancel option
     And Then User selects cancel option in Disconnected mode popup
 
   @DMGooffline
   Scenario: Go offline scenario
     Given User should be in Order entry page
-    When User Clicks on network symbol and click on taggle button to navigate to disconnected mode
+    When User Clicks on network symbol and click on toggle button to navigate to disconnected mode
     And Then User selects Go offline option in Disconnected mode popup
     Then User should get Customer account# popup
     And User should select Customer Account# from popup and select the delivery date from popup wait till synchronized
@@ -25,7 +25,7 @@ Feature: Disconnected mode
   @DMOrderEntry
   Scenario: Creating Order in disconnected mode using product# search box
     Given User should be in Order entry page
-    When User Clicks on network symbol and click on taggle button to navigate to disconnected mode
+    When User Clicks on network symbol and click on toggle button to navigate to disconnected mode
     And Then User selects Go offline option in Disconnected mode popup
     Then User should get Customer account# popup
     And User should select Customer Account# from popup and select the delivery date from popup wait till synchronized
@@ -46,7 +46,7 @@ Feature: Disconnected mode
   @DMParOrder
   Scenario:Creating order using par order
     Given User should be in Order entry page
-    When User Clicks on network symbol and click on taggle button to navigate to disconnected mode
+    When User Clicks on network symbol and click on toggle button to navigate to disconnected mode
     And Then User selects Go offline option in Disconnected mode popup
     Then User should get Customer account# popup
     And User should select Customer Account# from popup and select the delivery date from popup wait till synchronized
@@ -67,7 +67,7 @@ Feature: Disconnected mode
   @DMOrderComment
   Scenario: For adding comment to order
     Given User should be in Order entry page
-    When User Clicks on network symbol and click on taggle button to navigate to disconnected mode
+    When User Clicks on network symbol and click on toggle button to navigate to disconnected mode
     And Then User selects Go offline option in Disconnected mode popup
     Then User should get Customer account# popup
     And User should select Customer Account# from popup and select the delivery date from popup wait till synchronized
@@ -90,7 +90,7 @@ Feature: Disconnected mode
   @DMProductComment
   Scenario: For adding comment to product level
     Given User should be in Order entry page
-    When User Clicks on network symbol and click on taggle button to navigate to disconnected mode
+    When User Clicks on network symbol and click on toggle button to navigate to disconnected mode
     And Then User selects Go offline option in Disconnected mode popup
     Then User should get Customer account# popup
     And User should select Customer Account# from popup and select the delivery date from popup wait till synchronized
@@ -113,7 +113,7 @@ Feature: Disconnected mode
   @DMOrderCatalog
   Scenario: For creating order using catalog
     Given User should be in Order entry page
-    When User Clicks on network symbol and click on taggle button to navigate to disconnected mode
+    When User Clicks on network symbol and click on toggle button to navigate to disconnected mode
     And Then User selects Go offline option in Disconnected mode popup
     Then User should get Customer account# popup
     And User should select Customer Account# from popup and select the delivery date from popup wait till synchronized
@@ -133,7 +133,7 @@ Feature: Disconnected mode
   @DMOrderOG
   Scenario: For creating order using OG
     Given User should be in Order entry page
-    When User Clicks on network symbol and click on taggle button to navigate to disconnected mode
+    When User Clicks on network symbol and click on toggle button to navigate to disconnected mode
     And Then User selects Go offline option in Disconnected mode popup
     Then User should get Customer account# popup
     And User should select Customer Account# from popup and select the delivery date from popup wait till synchronized
@@ -155,7 +155,7 @@ Feature: Disconnected mode
   @DMQuickProduct
   Scenario: To create Order in disconnected mode using Quick product
     Given User should be in Order entry page
-    When User Clicks on network symbol and click on taggle button to navigate to disconnected mode
+    When User Clicks on network symbol and click on toggle button to navigate to disconnected mode
     And Then User selects Go offline option in Disconnected mode popup
     Then User should get Customer account# popup
     And User should select Customer Account# from popup and select the delivery date from popup wait till synchronized
@@ -175,7 +175,7 @@ Feature: Disconnected mode
   @DMDeleteProductFromCart
   Scenario: Test scenario for navigating to catalog tab, and delete product from cart
     Given User should be in Order entry page
-    When User Clicks on network symbol and click on taggle button to navigate to disconnected mode
+    When User Clicks on network symbol and click on toggle button to navigate to disconnected mode
     And Then User selects Go offline option in Disconnected mode popup
     Then User should get Customer account# popup
     And User should select Customer Account# from popup and select the delivery date from popup wait till synchronized

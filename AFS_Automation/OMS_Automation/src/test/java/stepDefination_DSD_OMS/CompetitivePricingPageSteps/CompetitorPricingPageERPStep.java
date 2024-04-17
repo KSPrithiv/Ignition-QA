@@ -58,7 +58,6 @@ public class CompetitorPricingPageERPStep
     {
         List<List<String>> listValue=tableData.asLists(String.class);
         competitivePricingReportPage=new CompetitivePricingReportPage(driver,scenario);
-        competitivePricingReportPage=new CompetitivePricingReportPage(driver,scenario);
         competitivePricingReportPage.clickOnGroup1();
         competitivePricingReportPage.selectCustomerAccountOptionDropdown(listValue.get(0).get(0));
         competitivePricingReportPage.clickOnChainFromDropDown();

@@ -1088,4 +1088,24 @@ public class CheckOutSummaryPage
         }
         catch (Exception e){}
     }
+
+    public void validatePaymentInSummary(String currenturl)
+    {
+        exists=false;
+        String currenturlInSummary;
+        try
+        {
+            if(HelpersMethod.IsExists("//div[contains(text(),'Payment info')]",driver))
+            {
+                currenturlInSummary=HelpersMethod.FindByElement(driver,"xpath","//div[contains(text(),'Payment info')]/following-sibling::span[1]").getText();
+                if(currenturl.equals(currenturlInSummary))
+                {
+                    scenario.log("PAYMENT METHOD FOUND IS: "+currenturlInSummary);
+                    exists=true;
+                }
+            }
+            Assert.assertEquals(exists,true);
+        }
+        catch (Exception e){}
+    }
 }

@@ -101,8 +101,8 @@ public class DMOEPageStep
         orderpage.Refresh_Page2();
     }
 
-    @When("User Clicks on network symbol and click on taggle button to navigate to disconnected mode")
-    public void userClicksOnNetworkSymbolAndClickOnTaggleButtonToNavigateToDisconnectedMode() throws InterruptedException, AWTException
+    @When("User Clicks on network symbol and click on toggle button to navigate to disconnected mode")
+    public void userClicksOnNetworkSymbolAndClickOnToggleButtonToNavigateToDisconnectedMode() throws InterruptedException, AWTException
     {
         if(flag1==false)
         {
@@ -185,15 +185,15 @@ public class DMOEPageStep
         dmoePage.ValidateDisconnectedMode();
     }
 
-    @When("User clicks on network symbol and click on taggle button drop down should appear")
-    public void userClicksOnNetworkSymbolAndClickOnTaggleButtonDropDownShouldAppear()
+    @When("User clicks on network symbol and click on toggle button drop down should appear")
+    public void userClicksOnNetworkSymbolAndClickOnToggleButtonDropDownShouldAppear()
     {
         dmoePage=new DMOEPage(driver,scenario);
         dmoePage.ClickOnNetworkSymbolInDM();
     }
 
-    @And("Then User should Click on taggle button to go online")
-    public void thenUserShouldClickOnTaggleButtonToGoOnline()
+    @And("Then User should Click on toggle button to go online")
+    public void thenUserShouldClickOnToggleButtonToGoOnline()
     {
         dmoePage=new DMOEPage(driver,scenario);
         dmoePage.ClickTaggleDM();

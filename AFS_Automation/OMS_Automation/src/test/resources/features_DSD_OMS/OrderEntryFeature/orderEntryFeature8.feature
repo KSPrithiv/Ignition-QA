@@ -67,3 +67,38 @@ Scenario: Test scenario for searching for product in catalog index dialog box
   Then Click on Next button
   And Click on SubmitOrder button
   Then User should be navigated to Order Entry page
+
+@PaymentPageNotDisplayed
+Scenario: Test scenario to verify that payment page is not getting displayed once order is submitted and reopen the order
+    Given User must be on Order Entry Page
+    Then User must click Start Order button
+    Then User should make selection between Pending order or Start New order
+    Then User should select Note from popup and Order guide from popup
+    Then Enter PO# for New order
+      |PO123|
+    Then Enter Pro# in Quick Product Entry area
+    And Check for Case and Unit input box enabled or not based on that enter value
+      |60|80|
+    Then Click on Next button
+    And Click on Submit Order button and read Order_no
+    Then User should be navigated to Order Entry page
+    And User should verify that Payment page is not getting displayed
+    #And User should be in Order summary page and click on back to Orderlist button
+    And Click on SubmitOrder button
+    Then User should be navigated to Order Entry page
+
+@CheckPaymentInfoInSummaryPage
+Scenario: Test scenario to verify payment info in summary page
+  Given User must be on Order Entry Page
+  Then User must click Start Order button
+  Then User should make selection between Pending order or Start New order
+  Then User should select Note from popup and Order guide from popup
+  Then Enter PO# for New order
+    |PO123|
+  Then Enter Pro# in Quick Product Entry area
+  And Check for Case and Unit input box enabled or not based on that enter value
+    |60|80|
+  Then Click on Next button and read payment methods
+  And Click on SubmitOrder button and compare payment info
+  Then User should be navigated to Order Entry page
+

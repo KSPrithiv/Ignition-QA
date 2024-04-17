@@ -159,15 +159,9 @@ public class LoginPageStep
                         .ignoring(NoSuchElementException.class);
                 wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
             }
-            else if (!tLogin.equals(titleLogin))
+            //else if (!tLogin.equals(titleLogin))
+            else if(!titleLogin.equals("Login"))
             {
-                productPage = new ProductPage(driver, scenario);
-                pageTitle = driver.getTitle();
-                orderPageTitle = driver.getTitle();
-                if (!pTitle.equals(pageTitle))
-                {
-                    String url = driver.getCurrentUrl();
-                    driver.navigate().to(url);
                     homepage = new HomePage(driver, scenario);
                     homepage.Click_On_UserIcon();
                     homepage.Click_On_Signout();
@@ -179,7 +173,8 @@ public class LoginPageStep
                     wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
 
                     status = HelpersMethod.returnDocumentStatus(driver);
-                    if (status.equals("loading")) {
+                    if (status.equals("loading"))
+                    {
                         HelpersMethod.waitTillLoadingPage(driver);
                     }
 
@@ -188,7 +183,9 @@ public class LoginPageStep
                             .pollingEvery(Duration.ofSeconds(2))
                             .ignoring(NoSuchElementException.class);
                     wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
-                }
+
+                    loginpage=new LoginPage(driver,scenario);
+                    loginpage.validateLoginPageTitle();
             }
     }
 
