@@ -26,6 +26,7 @@ Feature: Testing of Inbound Orders Line Item details screen
     And Validates Inbound Order Line Item Details page contains all web elements
     And Validates Product details and UPC on Inbound Order Line Items Details page
 
+
   Scenario: Checking Navigate to Lookup location on Inbound Order line item details page
     Given User signs in the application
     And Main page is loaded
@@ -55,6 +56,7 @@ Feature: Testing of Inbound Orders Line Item details screen
     And Clicks Route Back button on Inbound Order Line Items Details Screen page
     And Validates Inbound Order Details Page contains all web elements
 
+
   Scenario: Checking Data option on Inbound Order line item details page
     Given User signs in the application
     And Main page is loaded
@@ -69,6 +71,7 @@ Feature: Testing of Inbound Orders Line Item details screen
     And Clicks Order Line Data button on Inbound Order Line Items Details Screen page
     And Validates Inbound Order data screen on Inbound Order Line Items Details page
 
+
   Scenario: Checking Edit option on Inbound Order line item details page
     Given User signs in the application
     And Main page is loaded
@@ -82,6 +85,7 @@ Feature: Testing of Inbound Orders Line Item details screen
     And Validates Inbound Order Line Item Details page contains all web elements
     And Clicks Order Line Edit button on Inbound Order Line Items Details Screen page
     And Validates Edit order line popup on Inbound Order Line Items Details page
+
 
   Scenario: Checking Image option on Inbound Order line item details page
     Given User signs in the application
