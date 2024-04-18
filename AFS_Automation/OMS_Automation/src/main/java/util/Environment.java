@@ -110,6 +110,9 @@ public interface Environment extends Config
     @Key("FullAccount1")
     String FullAcc1();
 
+    @Key("FullAccount2")
+    String FullAcc2();
+
     @Key("DB_ProdDesc")
     String get_ProdDesc();
 
