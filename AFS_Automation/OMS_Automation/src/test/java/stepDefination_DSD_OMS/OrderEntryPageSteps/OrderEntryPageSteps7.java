@@ -25,13 +25,10 @@ public class OrderEntryPageSteps7
     WebDriver driver;
     Scenario scenario;
 
-    //static boolean exists=false;
-    //static OrderEntryPage orderEntryPage;
     static NewOrderEntryPage newOE;
     static CheckOutSummaryPage summary;
     static OrderHistoryPage orderHistoryPage;
     static OrderEntryPage orderpage;
-    static CheckOutOrderPage checkorder;
 
     @Before
     public void LaunchBrowser1(Scenario scenario) throws Exception
@@ -47,6 +44,13 @@ public class OrderEntryPageSteps7
         summary=new CheckOutSummaryPage(driver,scenario);
         summary.ValidateSummaryOrderPage();
         summary.clickOnBackToOrderList();
+        summary.handleOrderSubmissionDialog();
+        for(int i=0;i<=2;i++)
+        {
+            summary.additionalOrderPopup();
+            summary.cutoffDialog();
+            summary.percentageOfAverageProd();
+        }
     }
 
     @And("User should validate Catalog dialogbox and use filters in customer index dialogbox")
@@ -199,11 +203,5 @@ public class OrderEntryPageSteps7
         summary.validateCommentPopup();
         summary.readComments();
         summary.clickOnOKCommentPopup();
-    }
-
-    @Then("Click on Next button when editing")
-    public void clickOnNextButtonWhenEditing()
-    {
-
     }
 }

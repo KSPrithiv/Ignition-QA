@@ -26,8 +26,7 @@ public class ParOrderPage
     WebDriver driver;
     Scenario scenario;
     static boolean exists=false;
-    static String status=null;
-    static String ProdNo=null;
+    static String ProdNo;
 
     @FindBy(id = "plusAdditionalAccountButtonFlat")
     private WebElement NewPar;

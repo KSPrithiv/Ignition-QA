@@ -36,7 +36,7 @@ public class ProductPage
 
     //static WebElement WebEle=null;
     static boolean exists=false;
-    static String pageTitle=null;
+    static String pageTitle;
 
     @FindBy(xpath = "//button[@data-test-id='catalogPrintBtn']")
     private WebElement Print;

@@ -21,7 +21,7 @@ public class BillToPage
     WebDriver driver;
     Scenario scenario;
     static boolean exists=false;
-    static String InputValue=null;
+    static String InputValue;
 
     @FindBy(id="CmAltBillToAdd1")
     private WebElement Address1;

@@ -22,9 +22,8 @@ public class InventoryPage
 {
     WebDriver driver;
     Scenario scenario;
-    static String currentURL;
     static boolean exists=false;
-    static String runningTotalUnits=null;
+    static String runningTotalUnits;
     int totalUitsValue;
     int headIndex=0;
 

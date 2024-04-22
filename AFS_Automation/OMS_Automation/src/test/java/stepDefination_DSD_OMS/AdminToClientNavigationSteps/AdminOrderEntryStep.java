@@ -133,9 +133,10 @@ public class AdminOrderEntryStep
         checkOutSummaryPage=new CheckOutSummaryPage(driver,scenario);
         checkOutSummaryPage.validateSummaryPage();
         checkOutSummaryPage.ClickSubmit();
-        exists=checkOutSummaryPage.validateExistingOrderNotDisplayed();
+        //exists=checkOutSummaryPage.validateExistingOrderNotDisplayed();
         for(int i=0;i<=2;i++)
         {
+            exists=checkOutSummaryPage.validateExistingOrderNotDisplayed();
             checkOutSummaryPage.additionalOrderPopup();
             checkOutSummaryPage.cutoffDialog();
         }

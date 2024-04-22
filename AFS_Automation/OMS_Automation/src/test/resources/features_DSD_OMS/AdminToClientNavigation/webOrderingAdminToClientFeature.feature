@@ -24,8 +24,8 @@ Feature: scenarios for admin credentials and client credentials
     Then User sign out from client side for Admin setting changes
     And User should set admin setting "<Setting>" "<Key>" as default before making changes
     Examples:
-      |  Setting                               |           Key                         |
-      | Hide Order submitting message          |  CPHideOrderSubmittingMessage         |
+      |  Setting                                 |           Key                         |
+      | Hide \"Order submitting\" message          |  CPHideOrderSubmittingMessage         |
 
   @DisableHideOrderSubmittingMessage
   Scenario Outline: Test scenario for verifying functionality of Order submitting message Disabling
@@ -50,4 +50,4 @@ Feature: scenarios for admin credentials and client credentials
     And User should set admin setting "<Setting>" "<Key>" as default before making changes
     Examples:
       |  Setting                               |           Key                         |
-      | Hide Order submitting message          |  CPHideOrderSubmittingMessage         |
+      | Hide \"Order submitting\"  message          |  CPHideOrderSubmittingMessage         |

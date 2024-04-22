@@ -35,10 +35,10 @@ public class AdminCatalogStep
     static OrderEntryPage orderpage;
     static LoginPage loginPage;
     static HomePage homePage;
-    static String currentURL=null;
-    static String sql=null;
-    static String status=null;
-    static String status1=null;
+    static String currentURL;
+    static String sql;
+    static String status;
+    static String status1;
 
     @Before
     public void LaunchBrowser1(Scenario scenario) throws Exception

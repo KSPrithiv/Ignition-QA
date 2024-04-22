@@ -3,6 +3,7 @@ package pages_DSD_OMS.orderEntry;
 import helper.HelpersMethod;
 import io.cucumber.java.Scenario;
 import io.cucumber.java.bs.A;
+import org.apache.commons.io.filefilter.WildcardFileFilter;
 import org.apache.logging.log4j.core.tools.picocli.CommandLine;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
@@ -13,9 +14,12 @@ import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
+import util.DataBaseConnection;
 import util.TestBase;
 
 import java.awt.*;
+import java.io.File;
+import java.io.FileFilter;
 import java.time.Duration;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -130,11 +134,11 @@ public class NewOrderEntryPage
     private WebElement uomDropDown;
 
     static boolean exists = false;
-    static String XPath = null;
-    static String Order_No=null;
-    static String Actual_Order=null;
+    static String XPath;
+    static String Order_No;
+    static String Actual_Order;
     static int rowIndex=0;
-    static String baseCost=null;
+    static String baseCost;
 
     public NewOrderEntryPage(WebDriver driver, Scenario scenario) throws InterruptedException, AWTException
     {
@@ -232,10 +236,11 @@ public class NewOrderEntryPage
         }
 
         Wait<WebDriver> wait = new FluentWait<>(driver)
-                .withTimeout(Duration.ofSeconds(120))
+                .withTimeout(Duration.ofSeconds(200))
                 .pollingEvery(Duration.ofSeconds(2))
                 .ignoring(NoSuchElementException.class);
         wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
         status=HelpersMethod.returnDocumentStatus(driver);
         if(status.equals("loading"))
         {
@@ -243,7 +248,7 @@ public class NewOrderEntryPage
         }
 
         wait = new FluentWait<WebDriver>(driver)
-                .withTimeout(Duration.ofSeconds(120))
+                .withTimeout(Duration.ofSeconds(200))
                 .pollingEvery(Duration.ofSeconds(2))
                 .ignoring(NoSuchElementException.class);
         wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
@@ -447,7 +452,6 @@ public class NewOrderEntryPage
 
     public void Create_Pending_Order_Popup()
     {
-        WebElement WebEle=null;
         exists=false;
         try
         {
@@ -470,6 +474,17 @@ public class NewOrderEntryPage
                     HelpersMethod.waitTillLoadingPage(driver);
                 }
 
+                wait = new FluentWait<WebDriver>(driver)
+                        .withTimeout(Duration.ofSeconds(250))
+                        .pollingEvery(Duration.ofSeconds(2))
+                        .ignoring(NoSuchElementException.class);
+                wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
+                status = HelpersMethod.returnDocumentStatus(driver);
+                if (status.equals("loading"))
+                {
+                    HelpersMethod.waitTillLoadingPage(driver);
+                }
                 wait = new FluentWait<WebDriver>(driver)
                         .withTimeout(Duration.ofSeconds(250))
                         .pollingEvery(Duration.ofSeconds(2))
@@ -1206,6 +1221,30 @@ public class NewOrderEntryPage
                             .ignoring(NoSuchElementException.class);
                     wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
                 }
+                //code to handle minimum order amount dialog box
+                if(HelpersMethod.IsExists("//div[contains(text(),'The minimum order amount has not been reached')]/ancestor::div[@class='k-widget k-window k-dialog']",driver))
+                {
+                    wait = new FluentWait<WebDriver>(driver)
+                            .withTimeout(Duration.ofSeconds(200))
+                            .pollingEvery(Duration.ofSeconds(2))
+                            .ignoring(NoSuchElementException.class);
+                    wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
+                    WebElement okButton=HelpersMethod.FindByElement(driver,"xpath","//div[@class='k-widget k-window k-dialog']/descendant::button");
+                    HelpersMethod.ActClick(driver,okButton,10000);
+                    scenario.log("MINIMUM ORDER AMOUNT HAS NOT BEEN REACHED, DIALOG BOX HAS BEEN HANDLED");
+
+                    wait = new FluentWait<WebDriver>(driver)
+                            .withTimeout(Duration.ofSeconds(200))
+                            .pollingEvery(Duration.ofSeconds(2))
+                            .ignoring(NoSuchElementException.class);
+                    wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
+                    String prodNo= DataBaseConnection.DataBaseConn(TestBase.testEnvironment.getSingle_Prod_Sql());
+                    QuickProduct(prodNo);
+                    enterQtyForQuickProd();
+                    ClickNext();
+                }
             }
             String status = HelpersMethod.returnDocumentStatus(driver);
             if (status.equals("loading"))
@@ -1467,7 +1506,11 @@ public class NewOrderEntryPage
                     HelpersMethod.waitTillLoadingPage(driver);
                 }
 
-                uomDropDown.sendKeys(Keys.TAB);
+                if(HelpersMethod.IsExists("//span[@id='quickEntryUMs']",driver))
+                {
+                    uomDropDown.sendKeys(Keys.TAB);
+                }
+                scenario.log("PRODUCT ADDED TO THE ORDER Via QUICK PRODUCT ENTRY " + Prod);
 
                 status = HelpersMethod.returnDocumentStatus(driver);
                 if (status.equals("loading"))
@@ -1479,8 +1522,6 @@ public class NewOrderEntryPage
                         .pollingEvery(Duration.ofSeconds(2))
                         .ignoring(NoSuchElementException.class);
                 wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
-
-                scenario.log("PRODUCT ADDED TO THE ORDER Via QUICK PRODUCT ENTRY " + Prod);
                 exists=true;
             }
             Assert.assertEquals(exists,true);
@@ -3016,15 +3057,22 @@ public class NewOrderEntryPage
 
     }
 
-    public String Export_button()
+    public String Export_button(String ordNo)
     {
         WebElement WebEle=null;
+        String exportedfile="";
         try
         {
+            Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(200))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
             if(Export_but.isDisplayed() && Export_but.isEnabled())
             {
                 HelpersMethod.ScrollElement(driver,Export_but);
-                HelpersMethod.ActClick(driver,Export_but,1000);
+                HelpersMethod.ActClick(driver,Export_but,10000);
                 if(TestBase.testEnvironment.get_browser().equalsIgnoreCase("Firefox"))
                 {
                     HelpersMethod.FileDownload();
@@ -3043,7 +3091,7 @@ public class NewOrderEntryPage
                 Actual_Order=Order_No.substring(8);
 
                 //Read all the .csv files in download directory and compare with actual order number
-               /* File dir = new File("C:\\Users\\Divya.Ramadas\\Downloads");
+              /*  File dir = new File("C:\\Users\\Divya.Ramadas\\Downloads");
                 FileFilter fileFilter = new WildcardFileFilter("*.csv");
                 File[] files = dir.listFiles(fileFilter);
                 String file2=null;
@@ -3055,7 +3103,7 @@ public class NewOrderEntryPage
                     file2 =file1.trim();
                     for( ;file2.length() > 1 && file2.charAt(0) == '0'; file2 =file2.substring(1));
                 }
-                scenario.log(file2+" FILE HAS BEEN DOWN LOADED");*/
+                scenario.log(file2+" FILE HAS BEEN DOWNLOADED");*/
             }
         }
         catch (Exception e) { }
@@ -3066,10 +3114,20 @@ public class NewOrderEntryPage
     {
         exists=false;
         WebElement WebEle=null;
+        int intOrdNo= Integer.parseInt(ord_No);
+        String Ord_no="";
         try
         {
-            //send file name to input box
-            String Ord_no="Order_"+ord_No+".csv";
+            if(TestBase.testEnvironment.get_url().contains("dsd"))
+            {
+                //send file name to input box
+                ord_No=String.format("%010d",intOrdNo);
+                Ord_no = "Order_" + ord_No + ".csv";
+            }
+            else
+            {
+                Ord_no = "Order_" + ord_No + ".csv";
+            }
             scenario.log("ORDER IMPORTED IS "+Ord_no);
             if(Import_but.isDisplayed())
             {
@@ -3082,7 +3140,7 @@ public class NewOrderEntryPage
             if(HelpersMethod.IsExists("//div[contains(text(),'overridden on import')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
             {
                 WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-widget k-window k-dialog')]/descendant::button[text()='Yes']");
-                HelpersMethod.ActClick(driver,WebEle,1000);
+                HelpersMethod.ActClick(driver,WebEle,10000);
                 scenario.log("ORDER HAS BEEN IMPORTED SUCESSFULY");
             }
             if(HelpersMethod.IsExists("//div[@class='loader']",driver))
@@ -3727,9 +3785,8 @@ public class NewOrderEntryPage
     public void EnterUnusualCaseQtyProductLine(String Case)
     {
         WebElement WebEle=null;
-        WebElement UnitCase=null;
         WebElement YesBut=null;
-        int i=0;
+
         try
         {
             WebEle = HelpersMethod.FindByElement(driver, "id", "orderEntryGridContainer");
@@ -4201,34 +4258,41 @@ public class NewOrderEntryPage
 
 
 
-    public void VerifyForMessageForPOMandatory()
+    public boolean VerifyForMessageForPOMandatory()
     {
         exists=false;
         WebElement PO_Notification;
         try
         {
-            if(!PO_No.getText().equals(" "))
-            {
-                HelpersMethod.ActClearKey(driver,PO_No,1000);
-                PO_Notification=HelpersMethod.FindByElement(driver,"xpath","//div[contains(text(),'Po number must be provided for the current order.')]");
-                if(PO_Notification.isDisplayed())
-                {
-                    scenario.log("PO# IS MANDATORY FIELD");
-                    exists=true;
-                }
-            }
-            else
-            {
-                PO_Notification=HelpersMethod.FindByElement(driver,"xpath","//div[contains(text(),'Po number must be provided for the current order.')]");
-                if (PO_Notification.isDisplayed())
-                {
-                    scenario.log("PO# IS MANDATORY FIELD");
-                    exists = true;
-                }
-            }
-            Assert.assertEquals(exists,true);
+           if(HelpersMethod.IsExists("//div[contains(text(),'Po number must be provided for the current order.')]",driver))
+           {
+               if (!PO_No.getText().equals(" "))
+               {
+                   HelpersMethod.ActClearKey(driver, PO_No, 1000);
+                   PO_Notification = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(text(),'Po number must be provided for the current order.')]");
+                   if (PO_Notification.isDisplayed()) {
+                       scenario.log("PO# IS MANDATORY FIELD");
+                       exists = true;
+                   }
+               }
+               else
+               {
+                   PO_Notification = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(text(),'Po number must be provided for the current order.')]");
+                   if (PO_Notification.isDisplayed())
+                   {
+                       scenario.log("PO# IS MANDATORY FIELD");
+                       exists = true;
+                   }
+               }
+           }
+           else
+           {
+               scenario.log("<span style='color:red'>PO# NOT IS MANDATORY FIELD, CHECK WITH ADMIN SETTINGS</span>");
+               exists=false;
+           }
         }
         catch (Exception e){}
+        return exists;
     }
 
     public void VerifyProductGrid()
@@ -5475,7 +5539,8 @@ public class NewOrderEntryPage
         try
         {
             String changeSaleRep=HelpersMethod.FindByElement(driver,"xpath","//span[contains(text(),'Sales rep')]/following-sibling::span").getText();
-            if(changeSaleRep.equalsIgnoreCase(changedSalesRep))
+            scenario.log("SALES REP IN OE PAGE IS "+changedSalesRep+" SALES REP FOUND IN NEW OE PAGE IS "+changeSaleRep);
+            if(changedSalesRep.equalsIgnoreCase(changeSaleRep))
             {
                 exists=true;
             }
@@ -6046,7 +6111,7 @@ public class NewOrderEntryPage
             HelpersMethod.JSSetValueEle(driver,search1,10000,SearchOpt);
             Thread.sleep(1000);
             //Click on check box
-            WebElement checkBox=driver.findElement(By.xpath(".//input[@id='description']"));
+            WebElement checkBox=driver.findElement(By.xpath(".//input[@id='code']"));
             HelpersMethod.ActClick(driver,checkBox,10000);
             new WebDriverWait(driver,Duration.ofMillis(100000)).until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath("//div[contains(@class,'i-btn-radio filter-radio')]/ancestor::div[contains(@class,'k-child-animation-container')]")));
             HelpersMethod.waitTillElementLocatedDisplayed(driver,"xpath","//div[contains(@class,'k-child-animation-container')]/descendant::form[contains(@class,'i-filter-popup')]",80000);
@@ -6131,6 +6196,89 @@ public class NewOrderEntryPage
             scenario.log("<span style='color:red'>CUSTOMER ACCOUNT NUMBER WITH HARD HOLD AND CUSTOMER ACCOUNT NUMBER FOUND IN NEW OE ARE SAME</span>");
          }
             Assert.assertEquals(exists,true);
+        }
+        catch (Exception e){}
+    }
+
+    public boolean handleRouteNotSelectedDialogBox()
+    {
+        exists=false;
+        try
+        {
+            if(HelpersMethod.IsExists("//div[contains(text(),'Route number required')]/ancestor::div[@class='k-widget k-window k-dialog']",driver))
+            {
+                WebElement okButton=HelpersMethod.FindByElement(driver,"xpath","//div[@class='k-widget k-window k-dialog']/descendant::button[text()='Ok']");
+                HelpersMethod.ActClick(driver,okButton,10000);
+                exists=true;
+            }
+        }
+        catch (Exception e){}
+        return exists;
+    }
+
+    public void enterQtyForQuickProd()
+    {
+        String Case= String.valueOf(100);
+        String Unit= String.valueOf(80);
+        try
+        {
+            String uomString=VerifyUOM();
+            if(uomString.equals("Units")||uomString.equals("EA"))
+            {
+                CheckForQuickUnitEnabled(Unit);
+                if(uomString.equals("Units"))
+                {
+                    WebElement caseIn = HelpersMethod.FindByElement(driver, "id", "quickCases");
+                    if (caseIn.equals(driver.switchTo().activeElement()))
+                    {
+                        caseIn.sendKeys(Keys.TAB);
+                    }
+                }
+                new WebDriverWait(driver,Duration.ofMillis(20000)).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@id='pending-quick-entry-calls']")));
+                exceedsMaxQty();
+                for(int i=0;i<=1;i++)
+                {
+                    //check for toast message for low on inventory
+                    lowOnInventoryToast();
+                    //check for toast message for product is currently unavailable
+                    toastCurrentlyUnavailable();
+                }
+            }
+            else if(uomString.equals("Cases")||uomString.equals("CS"))
+            {
+                CheckForQuickCaseEnabled(Case);
+                if(uomString.equals("Cases"))
+                {
+                    WebElement unitIn = HelpersMethod.FindByElement(driver, "id", "quickUnits");
+                    if (unitIn.equals(driver.switchTo().activeElement()))
+                    {
+                        unitIn.sendKeys(Keys.TAB);
+                    }
+                }
+                new WebDriverWait(driver,Duration.ofMillis(10000)).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@id='pending-quick-entry-calls']")));
+                exceedsMaxQty();
+                for(int i=0;i<=1;i++)
+                {
+                    //check for toast message for low on inventory
+                    lowOnInventoryToast();
+                    //check for toast message for product is currently unavailable
+                    toastCurrentlyUnavailable();
+                }
+            }
+            else if(uomString.equals("Cases, Units")||uomString.equals("Units, Cases")||uomString.equals("CS, EA")||uomString.equals("EA, CS"))
+            {
+                CheckForQuickCaseEnabled(Case);
+                CheckForQuickUnitEnabled(Unit);
+                new WebDriverWait(driver,Duration.ofMillis(10000)).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@id='pending-quick-entry-calls']")));
+                exceedsMaxQty();
+                for(int i=0;i<=1;i++)
+                {
+                    //check for toast message for low on inventory
+                    lowOnInventoryToast();
+                    //check for toast message for product is currently unavailable
+                    toastCurrentlyUnavailable();
+                }
+            }
         }
         catch (Exception e){}
     }

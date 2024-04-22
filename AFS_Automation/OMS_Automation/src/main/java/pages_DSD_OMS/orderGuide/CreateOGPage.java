@@ -42,8 +42,8 @@ public class CreateOGPage
     WebDriver driver;
     Scenario scenario;
     static boolean exists = false;
-    static String DOfWeek=null;
-    static String ExportOG=null;
+    static String DOfWeek;
+    static String ExportOG;
     static ArrayList<String> sequence1=new ArrayList<String>();
     static ArrayList<String> sequence2=new ArrayList<>(sequence1);
 

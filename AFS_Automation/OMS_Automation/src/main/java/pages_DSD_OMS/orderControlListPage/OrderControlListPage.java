@@ -35,8 +35,8 @@ public class OrderControlListPage
     WebDriver driver;
     Scenario scenario;
 
-    static String Acc_No=null;
-    static String originalGrid=null;
+    static String Acc_No;
+    static String originalGrid;
     static boolean exists = false;
     static String customerAccount;
     List<WebElement> SkipList1=null;

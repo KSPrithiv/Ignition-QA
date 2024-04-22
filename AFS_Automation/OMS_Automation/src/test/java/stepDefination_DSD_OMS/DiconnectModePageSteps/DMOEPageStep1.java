@@ -22,9 +22,6 @@ public class DMOEPageStep1
     Scenario scenario;
 
     static DMOEPage dmoePage;
-    static LoginPage loginpage;
-    static HomePage homepage;
-    static OrderEntryPage orderpage;
 
     @Before
     public void LaunchBrowser1(Scenario scenario) throws Exception

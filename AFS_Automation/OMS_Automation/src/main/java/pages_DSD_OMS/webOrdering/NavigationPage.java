@@ -28,9 +28,9 @@ public class NavigationPage
     WebDriver driver;
     Scenario scenario;
     static boolean exists=false;
-    static String label=null;
-    static String label1=null;
-    static String labelNameText=null;
+    static String label;
+    static String label1;
+    static String labelNameText;
 
     @FindBy(xpath="//div[@id='AvailableItemsAdminCard']/descendant::div[contains(@class,'i-droppable-container')]")
     private WebElement AvailableApp;

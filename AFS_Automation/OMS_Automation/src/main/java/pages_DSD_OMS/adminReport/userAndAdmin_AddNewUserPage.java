@@ -23,12 +23,11 @@ public class userAndAdmin_AddNewUserPage
     WebDriver driver;
     Scenario scenario;
     static boolean exists=false;
-    static String uName=null;
-    static String fName=null;
-    static String lName=null;
-    static String pWord=null;
-    static String newEmail=null;
-    static String cEmail=null;
+    static String uName;
+    static String fName;
+    static String lName;
+    static String pWord;
+    static String newEmail;
 
     @FindBy(id = "formHorizontalNewUserAll")
     private WebElement allCustomerAccount;

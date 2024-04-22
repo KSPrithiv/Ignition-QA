@@ -25,14 +25,9 @@ public class AdminOrderEntryStep1
     WebDriver driver;
     Scenario scenario;
     static boolean exists=false;
-    static String primarySalesRep=null;
+    static String primarySalesRep;
     static OrderEntryPage orderpage;
-    static CheckOutSummaryPage checkOutSummaryPage;
     static NewOrderEntryPage newOE;
-    static CheckOutSummaryPage summary;
-    static AdminHomePage adminHomePage;
-    static catalogSearchPage catSearchPage;
-    static LoginPage loginPage;
 
     @Before
     public void LaunchBrowser1(Scenario scenario) throws Exception

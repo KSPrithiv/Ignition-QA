@@ -31,10 +31,10 @@ public class NewStandingOrderPage
     Scenario scenario;
     static String currentURL=null;
     static boolean exists=false;
-    static String Prod_No=null;
-    static String Prod_Name=null;
-    static String Pro1=null;
-    static String ProNo=null;
+    static String Prod_No;
+    static String Prod_Name;
+    static String Pro1;
+    static String ProNo;
 
     @FindBy (xpath="//div[@id='card1']/descendant::span[contains(@class,'k-icon k-i-arrow-chevron-down')]")
     private WebElement StandingOrderArrow;
@@ -213,7 +213,7 @@ public class NewStandingOrderPage
                 HelpersMethod.ScrollElement(driver,SaveButton);
                 HelpersMethod.ClickBut(driver,SaveButton,25000);
 
-            wait = new FluentWait<WebDriver>(driver)
+                wait = new FluentWait<WebDriver>(driver)
                         .withTimeout(Duration.ofSeconds(120))
                         .pollingEvery(Duration.ofSeconds(2))
                         .ignoring(NoSuchElementException.class);

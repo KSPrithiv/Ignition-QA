@@ -62,25 +62,11 @@ public class OrderFactorAdminStep
         adminHomePage.Horizantal_MenuBar(arg0);
         ordFacorPage=new orderFactorAdminPage(driver,scenario);
         ordFacorPage.validateOrderFactorPage();
+        ordFacorPage.orderFactorToggleButton();
         ordFacorPage.clickOnOrderFactorLevel();
         ordFacorPage.selectFactorLevel(arg1);
         ordFacorPage.validateOrderFactorLevel(arg1);
     }
-
-   /* @Then("User should navigate to {string} from horizontal menu to select Order factor, select order factor level {string} and get product#")
-    public void userShouldNavigateToFromHorizontalMenuToSelectOrderFactorSelectOrderFactorLevelAndGetProduct(String arg0, String arg1)
-    {
-        adminHomePage = new AdminHomePage(driver, scenario);
-        adminHomePage.Horizantal_MenuBar(arg0);
-        ordFacorPage=new orderFactorAdminPage(driver,scenario);
-        ordFacorPage.validateOrderFactorPage();
-        ordFacorPage.clickOnOrderFactorLevel();
-        ordFacorPage.selectFactorLevel(arg1);
-        ordFacorPage.validateOrderFactorLevel(arg1);
-        prodNo=ordFacorPage.readFirstOrderFactorProduct();
-        uom=ordFacorPage.readOrderFactorUom();
-        orderFactorQty=ordFacorPage.readOrderFactorQty();
-    }*/
 
     @And("User should add product to order factor list and add {string} for Order factor by customer and product")
     public void userShouldAddProductToOrderFactorListAndAddForOrderFactorByCustomerAndProduct(String qty) throws SQLException, ClassNotFoundException, InstantiationException, IllegalAccessException
@@ -123,15 +109,12 @@ public class OrderFactorAdminStep
     public void checkForCaseAndUnitInputBoxEnabledOrNotBasedOnThatEnterValueForQtyToVerifyOrderFactor(DataTable tabledata) throws InterruptedException, AWTException
     {
         newOE=new NewOrderEntryPage(driver,scenario);
-        //String uomString=uom;
         List<List<String>> PO_Qty = tabledata.asLists(String.class);
         String Case=PO_Qty.get(0).get(0);
         String Unit=PO_Qty.get(0).get(1);
         String uomString=newOE.VerifyUOM();
-        //String oFactQty=orderFactorQty;
         if(uomString.equalsIgnoreCase("Units")||uomString.equalsIgnoreCase("EA"))
         {
-            //newOE.CheckForQuickUnitEnabled(oFactQty);
             newOE.CheckForQuickUnitEnabled(Unit);
             if(uomString.equalsIgnoreCase("Units"))
             {
@@ -147,7 +130,6 @@ public class OrderFactorAdminStep
         }
         else if(uomString.equalsIgnoreCase("Cases")||uomString.equalsIgnoreCase("CS"))
         {
-            //newOE.CheckForQuickCaseEnabled(oFactQty);
             newOE.CheckForQuickCaseEnabled(Case);
             if(uomString.equalsIgnoreCase("Cases"))
             {
@@ -161,7 +143,7 @@ public class OrderFactorAdminStep
             newOE.lowOnInventoryToast();
             newOE.toastCurrentlyUnavailable();
         }
-        else if(uomString.equalsIgnoreCase("CASES AND UNITS")||uomString.equals("UNITS AND CASES")||uomString.equals("CS AND EA")||uomString.equals("EA AND CS"))
+        else if(uomString.equalsIgnoreCase("Cases, Units")||uomString.equalsIgnoreCase("Units, Cases")||uomString.equals("UNITS AND CASES")||uomString.equals("CS AND EA")||uomString.equals("EA AND CS")||uomString.equals("CS, EA")||uomString.equals("EA, CS"))
         {
             newOE.CheckForQuickCaseEnabled(Case);
             newOE.CheckForQuickUnitEnabled(Unit);
@@ -205,7 +187,6 @@ public class OrderFactorAdminStep
         newOE.popupAfterNext_OrderFactor();
         newOE.orderFactorPopup(orderFactorQty);
         newOE.popupAfterNext_OrderFactor();
-        checkorder=new CheckOutOrderPage(driver,scenario);
 
         String status = HelpersMethod.returnDocumentStatus(driver);
         if (status.equals("loading"))
@@ -234,6 +215,8 @@ public class OrderFactorAdminStep
         if(HelpersMethod.IsExists("//div[@id='paymentMethodCard']",driver))
         {
             //Thread.sleep(4000);
+            checkorder=new CheckOutOrderPage(driver,scenario);
+            Ord_No=checkorder.readOrderNumber();
             checkorder.Select_PaymentMethod_ClickDownArrow();
             if(HelpersMethod.IsExists("//tr[1]/descendant::td[@class='payment-method-type-cell']",driver))
             {
@@ -281,11 +264,15 @@ public class OrderFactorAdminStep
         summary.ClickSubmit();
         for(int i=0;i<=2;i++)
         {
-            summary.cutoffDialog();
             summary.additionalOrderPopup();
+            summary.cutoffDialog();
+            summary.percentageOfAverageProd();
         }
-        Ord_No = summary.Get_Order_No();
+        String sOrd_No = summary.Get_Order_No();
+        if(sOrd_No!=null)
+        {
+            Ord_No=sOrd_No;
+        }
         summary.SucessPopup();
     }
-
 }

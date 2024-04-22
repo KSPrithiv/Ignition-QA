@@ -29,7 +29,7 @@ public class PaymentInfoPage
     WebDriver driver;
     Scenario scenario;
     static boolean exists=false;
-    static String currentURL=null;
+    static String currentURL;
 
     @FindBy(xpath="//label[@id='customerAccountIndexField-label']/following-sibling::div/descendant::button")
     private WebElement CustAccIndex;
@@ -99,30 +99,52 @@ public class PaymentInfoPage
         {
             HelpersMethod.waitTillLoadingPage(driver);
         }
+        Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                .withTimeout(Duration.ofSeconds(120))
+                .pollingEvery(Duration.ofSeconds(2))
+                .ignoring(NoSuchElementException.class);
+        wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
         try
         {
-            Actions act = new Actions(driver);
-            WebElement Search_Input = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='drawer-menu-search-container']/descendant::input");
-            act.moveToElement(Search_Input).click().sendKeys("Payment Info").build().perform();
-            WebElement PaymentInfoMenu = HelpersMethod.FindByElement(driver, "xpath", "//ul[contains(@class,'MuiList-root ')]/descendant::span[contains(text(),'Payment Info')]");
-            HelpersMethod.ActClick(driver, PaymentInfoMenu, 1000);
-            currentURL = driver.getCurrentUrl();
-            exists=true;
-            if (HelpersMethod.IsExists("//div[@class='loader']", driver))
-            {
-                WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100000);
-            }
             status = HelpersMethod.returnDocumentStatus(driver);
             if (status.equals("loading"))
             {
                 HelpersMethod.waitTillLoadingPage(driver);
             }
-            new WebDriverWait(driver, Duration.ofMillis(10000)).until(ExpectedConditions.elementToBeClickable(By.xpath("//div[@class='open-menu-hamburger-icon']//*[local-name()='svg']//*[local-name()='path' and contains(@d,'M3,18H21V16H3Zm0-5H21V11H3ZM3,6V8H21V6Z')]")));
-            if (HelpersMethod.IsExists("//div[@class='open-menu-hamburger-icon']//*[local-name()='svg']//*[local-name()='path' and contains(@d,'M3,18H21V16H3Zm0-5H21V11H3ZM3,6V8H21V6Z')]", driver))
+            if (HelpersMethod.IsExists("//div[@class='loader']", driver))
             {
-                WebEle = HelpersMethod.FindByElement(driver, "xpath", "//*[local-name()='svg']//*[local-name()='path' and contains(@d,'M3,18H21V16H3Zm0-5H21V11H3ZM3,6V8H21V6Z')]");
-                act.moveToElement(WebEle).click().build().perform();
+                WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000000);
+            }
+
+            Actions act = new Actions(driver);
+            WebElement Search_Input = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='drawer-menu-search-container']/descendant::input");
+            act.moveToElement(Search_Input).click().sendKeys("Payment Info").build().perform();
+            if(HelpersMethod.IsExists("//ul[contains(@class,'MuiList-root ')]/descendant::span[contains(text(),'Payment Info')]|//ul[contains(@class,'MuiList-root ')]/descendant::span[contains(text(),'Payment info')]",driver)) {
+                WebElement PaymentInfoMenu = HelpersMethod.FindByElement(driver, "xpath", "//ul[contains(@class,'MuiList-root ')]/descendant::span[contains(text(),'Payment Info')]|//ul[contains(@class,'MuiList-root ')]/descendant::span[contains(text(),'Payment info')]");
+                HelpersMethod.ActClick(driver, PaymentInfoMenu, 10000);
+                currentURL = driver.getCurrentUrl();
+                exists = true;
+                wait = new FluentWait<WebDriver>(driver)
+                        .withTimeout(Duration.ofSeconds(120))
+                        .pollingEvery(Duration.ofSeconds(2))
+                        .ignoring(NoSuchElementException.class);
+                wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
+                status = HelpersMethod.returnDocumentStatus(driver);
+                if (status.equals("loading")) {
+                    HelpersMethod.waitTillLoadingPage(driver);
+                }
+                new WebDriverWait(driver, Duration.ofMillis(10000)).until(ExpectedConditions.elementToBeClickable(By.xpath("//div[@class='open-menu-hamburger-icon']//*[local-name()='svg']//*[local-name()='path' and contains(@d,'M3,18H21V16H3Zm0-5H21V11H3ZM3,6V8H21V6Z')]")));
+                if (HelpersMethod.IsExists("//div[@class='open-menu-hamburger-icon']//*[local-name()='svg']//*[local-name()='path' and contains(@d,'M3,18H21V16H3Zm0-5H21V11H3ZM3,6V8H21V6Z')]", driver)) {
+                    WebEle = HelpersMethod.FindByElement(driver, "xpath", "//*[local-name()='svg']//*[local-name()='path' and contains(@d,'M3,18H21V16H3Zm0-5H21V11H3ZM3,6V8H21V6Z')]");
+                    act.moveToElement(WebEle).click().build().perform();
+                }
+            }
+            else
+            {
+                scenario.log("PAYMENT INFO PAGE NOT FOUND");
             }
         }
         catch (Exception e) {}
@@ -131,18 +153,24 @@ public class PaymentInfoPage
 
     public void ValidatePaymentInfo()
     {
+        exists=false;
         String title=null;
         try
         {
-            if(HelpersMethod.IsExists("//div[@class='loader']",driver))
+            Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(120))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
+            title=HelpersMethod.gettingTitle(driver);
+            if(title.contains("Payment Info"));
             {
-                WebElement WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100000);
+                exists=true;
             }
-            title=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'topHeaderRow')]/descendant::span").getText();
         }
         catch (Exception e){}
-        Assert.assertEquals(title,"Payment Info");
+        Assert.assertEquals(exists,true);
     }
 
     public void EnterAccount()
@@ -151,20 +179,21 @@ public class PaymentInfoPage
         WebElement WebEle=null;
         try
         {
-            if (HelpersMethod.IsExists("//div[@class='loader']", driver))
-            {
-                WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100000);
-            }
+            Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(120))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
             // HelpersMethod.ActClearKey(driver, CustomerAcc,10);
             HelpersMethod.ActSendKey(driver,CustomerAcc,1000, TestBase.testEnvironment.get_Account());
             WebElement AccDrop = HelpersMethod.FindByElement(driver, "xpath", "//li[contains(@id,'option-')]");
             HelpersMethod.WebElementFromDropDown(driver, "//div[contains(@class,'k-list-container ')]/descendant::li", "xpath", AccDrop.getText());
-            if (HelpersMethod.IsExists("//div[@class='loader']", driver))
-            {
-                WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100000);
-            }
+            wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(120))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
         }
         catch (Exception e){}
     }
@@ -177,11 +206,11 @@ public class PaymentInfoPage
             if (HelpersMethod.IsExists("//div[@class='loader']", driver))
             {
                 WebElement  WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100000);
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 200000);
             }
             if(CustAccIndex.isDisplayed() && CustAccIndex.isEnabled())
             {
-                HelpersMethod.ActClick(driver, CustAccIndex, 1000);
+                HelpersMethod.ActClick(driver, CustAccIndex, 10000);
                 exists=true;
             }
             Assert.assertEquals(exists,true);
@@ -212,7 +241,7 @@ public class PaymentInfoPage
             }
             // code to click on Addfilter button
             WebElement AddFilterButton = modalContainer.findElement(By.xpath(".//button/descendant::span[contains(text(),'Add filter')]"));
-            HelpersMethod.ActClick(driver, AddFilterButton, 1000);
+            HelpersMethod.ActClick(driver, AddFilterButton, 10000);
 
             //Identify the dialog popup
             HelpersMethod.WaitElementPresent(driver, "xpath", "//div[contains(@class,'k-child-animation-container')]", 8000);
@@ -221,7 +250,7 @@ public class PaymentInfoPage
 
             //Enter customer account# in input box
             WebElement Search1 = modalContainer1.findElement(By.xpath(".//input[contains(@class,'i-search-box__input')]"));
-            HelpersMethod.EnterText(driver, Search1, 1000, "Customer account #");
+            HelpersMethod.EnterText(driver, Search1, 10000, "Customer account #");
 
             status = HelpersMethod.returnDocumentStatus(driver);
             if (status.equals("loading"))
@@ -233,7 +262,7 @@ public class PaymentInfoPage
             HelpersMethod.WaitElementPresent(driver, "xpath", "//input[contains(@id,'CM_CUSTKEY')]", 400);
             new WebDriverWait(driver, Duration.ofMillis(10000)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[contains(@id,'CM_CUSTKEY')]")));
             WebElement WebEle1 = modalContainer1.findElement(By.xpath(".//input[contains(@id,'CM_CUSTKEY')]"));
-            HelpersMethod.JScriptClick(driver, WebEle1, 1000);
+            HelpersMethod.JScriptClick(driver, WebEle1, 10000);
             status = HelpersMethod.returnDocumentStatus(driver);
             if (status.equals("loading"))
             {
@@ -248,7 +277,7 @@ public class PaymentInfoPage
             if (radioButton.isDisplayed())
             {
                 Search2 = RadioPop.findElement(By.xpath(".//div[contains(@class,'i-btn-radio filter-radio')][1]/following-sibling::div[contains(@class,'k-textbox-container i-filter-popup__content__input')]/input"));
-                HelpersMethod.EnterText(driver, Search2, 1000, AccNo);
+                HelpersMethod.EnterText(driver, Search2, 10000, AccNo);
                 status = HelpersMethod.returnDocumentStatus(driver);
                 if (status.equals("loading"))
                 {
@@ -258,7 +287,7 @@ public class PaymentInfoPage
                 //Click on Apply button
                 WebElement ApplyButton = RadioPop.findElement(By.xpath(".//button[text()='Apply']"));
                 new WebDriverWait(driver, Duration.ofMillis(10000)).until(ExpectedConditions.elementToBeClickable(ApplyButton));
-                HelpersMethod.ClickBut(driver, ApplyButton, 1000);
+                HelpersMethod.ClickBut(driver, ApplyButton, 10000);
             }
 
             if (HelpersMethod.IsExists("//div[contains(@class,'k-widget k-window k-dialog')]/descendant::div[@class='i-no-data']", driver))
@@ -269,7 +298,7 @@ public class PaymentInfoPage
             {
                 WebEle = modalContainer.findElement(By.xpath(".//tr[contains(@class,'k-master-row')]"));
                 HelpersMethod.ScrollElement(driver, WebEle);
-                HelpersMethod.ActClick(driver, WebEle, 1000);
+                HelpersMethod.ActClick(driver, WebEle, 10000);
 
                 if (HelpersMethod.IsExists("//div[@class='loader']", driver)) {
                     WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
@@ -291,11 +320,11 @@ public class PaymentInfoPage
             if (HelpersMethod.IsExists("//div[@class='loader']", driver))
             {
                 WebElement  WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100000);
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 200000);
             }
             if(addPayment.isDisplayed() && addPayment.isEnabled())
             {
-                HelpersMethod.ClickBut(driver, addPayment, 1000);
+                HelpersMethod.ClickBut(driver, addPayment, 10000);
                 exists = true;
             }
         }

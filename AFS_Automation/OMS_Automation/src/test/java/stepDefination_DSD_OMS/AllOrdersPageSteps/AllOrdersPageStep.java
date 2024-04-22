@@ -45,11 +45,11 @@ public class AllOrdersPageStep
     Scenario scenario;
 
     static boolean exists = false;
-    static String Ord_No=null;
-    static String OrderNo=null;
+    static String Ord_No;
+    static String OrderNo;
     static boolean flag=false;
     static boolean flag1=false;
-    static String CurrentULR=null;
+    static String CurrentULR;
 
     static LoginPage loginpage;
     static HomePage homepage;
@@ -212,6 +212,88 @@ public class AllOrdersPageStep
         allOrder.SelectOrder();
     }
 
+    @Then("Click on Next button for All order")
+    public void clickOnNextButtonForAllOrder() throws InterruptedException, AWTException
+    {
+        exists=false;
+        newOE = new NewOrderEntryPage(driver,scenario);
+        newOE.readProductsInOrder();
+        //handling toast messages
+        for(int i=0;i<=2;i++)
+        {
+            //check for toast message for low on inventory
+            newOE.lowOnInventoryToast();
+            //check for toast message for product is currently unavailable
+            newOE.toastCurrentlyUnavailable();
+        }
+
+        for(int i=0;i<=1;i++)
+        {
+            newOE.priceCannotBeBleowCost();
+            newOE.exceedsMaxQty();
+        }
+        exists=newOE.ClickNext();
+        exists=newOE.handleRouteNotSelectedDialogBox();
+        if(exists==true)
+        {
+            //find whether route is empty or not, if empty should select some route value
+            String routeNo = newOE.validateRouteValue();
+            if (routeNo == null || routeNo.equals(""))
+            {
+                newOE.clickRouteIndex();
+                newOE.validateRouteDialog();
+                newOE.Route_No(TestBase.testEnvironment.get_RouteFilt(), TestBase.testEnvironment.get_Route());
+                newOE.validateRouteSelected(TestBase.testEnvironment.get_Route());
+            }
+            exists=newOE.ClickNext();
+        }
+        newOE.OutOfStockPop_ERP();
+
+        String status = HelpersMethod.returnDocumentStatus(driver);
+        if (status.equals("loading"))
+        {
+            HelpersMethod.waitTillLoadingPage(driver);
+        }
+
+        Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                .withTimeout(Duration.ofSeconds(120))
+                .pollingEvery(Duration.ofSeconds(2))
+                .ignoring(NoSuchElementException.class);
+        wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
+        status = HelpersMethod.returnDocumentStatus(driver);
+        if (status.equals("loading"))
+        {
+            HelpersMethod.waitTillLoadingPage(driver);
+        }
+
+        wait = new FluentWait<WebDriver>(driver)
+                .withTimeout(Duration.ofSeconds(120))
+                .pollingEvery(Duration.ofSeconds(2))
+                .ignoring(NoSuchElementException.class);
+        wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
+        checkOutOrderPage=new CheckOutOrderPage(driver,scenario);
+        if(HelpersMethod.IsExists("//div[@id='paymentMethodCard']",driver))
+        {
+            Thread.sleep(4000);
+            Ord_No=checkOutOrderPage.readOrderNumber();
+            checkOutOrderPage.Select_PaymentMethod_ClickDownArrow();
+            if(HelpersMethod.IsExists("//tr[1]/descendant::td[@class='payment-method-type-cell']",driver))
+            {
+                checkOutOrderPage.SelectPaymentMethod();
+                scenario.log("FIRST PAYMENT OPTION HAS BEEN SELECTED");
+            }
+            else
+            {
+                checkOutOrderPage.Click_On_Without_Providing_Payment();
+                scenario.log("WITHOUT PROVIIDNG PAYMENT OPTION HAS BEEN SELECTED");
+            }
+            checkOutOrderPage.DeliveryAddressCard();
+            checkOutOrderPage.NextButton_Click();
+        }
+    }
+
     @And("Click on Submit Order button and read Order_no created for All order")
     public void clickOnSubmitOrderButtonAndReadOrder_noCreatedForAllOrder() throws InterruptedException, AWTException
     {
@@ -224,7 +306,11 @@ public class AllOrdersPageStep
             summary.cutoffDialog();
             summary.percentageOfAverageProd();
         }
-        Ord_No = summary.Get_Order_No();
+        String sOrd_No = summary.Get_Order_No();
+        if(sOrd_No!=null)
+        {
+            Ord_No=sOrd_No;
+        }
         summary.SucessPopupForAllOrder();
         scenario.log("ORDER CREATED FOR ALL ORDER "+Ord_No);
     }
@@ -550,7 +636,7 @@ public class AllOrdersPageStep
             orderpage.NoNotePopHandling();
         }
         newOE=new NewOrderEntryPage(driver,scenario);
-        exists=newOE.ValidateNewOEAllOrder();
+        exists=newOE.ValidateNewOE();
 
         List<List<String>> PO_No = tabledata.asLists(String.class);
         newOE.EnterPO_No(PO_No.get(0).get(0));
@@ -575,7 +661,7 @@ public class AllOrdersPageStep
         if(HelpersMethod.IsExists("//div[@id='paymentMethodCard']",driver))
         {
             Thread.sleep(4000);
-            //checkorder.validateCheckOrder();
+            Ord_No=checkOutOrderPage.readOrderNumber();
             checkOutOrderPage.Select_PaymentMethod_ClickDownArrow();
             if(HelpersMethod.IsExists("//tr[1]/descendant::td[@class='payment-method-type-cell']",driver))
             {
@@ -612,4 +698,6 @@ public class AllOrdersPageStep
         summary=new CheckOutSummaryPage(driver,scenario);
         summary.clickOnBackToOrderList();
     }
+
+
 }

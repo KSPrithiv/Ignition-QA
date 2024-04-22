@@ -21,8 +21,6 @@ public class AdminQuoteStep {
     /* Created by Divya.Ramadas */
     WebDriver driver;
     Scenario scenario;
-    static String currentURL = null;
-    static NewStandingOrderPage standingOrder;
     static NewQuotePage newQuotePage;
 
     @Before

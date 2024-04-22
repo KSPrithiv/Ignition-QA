@@ -31,7 +31,7 @@ public class OrderControlPageSteps2
     /* Created by Divya Ramadas */
     WebDriver driver;
     Scenario scenario;
-    static String commentText=null;
+    static String commentText;
     static String customerAccount;
 
     static OrderControlListPage orderControlList;

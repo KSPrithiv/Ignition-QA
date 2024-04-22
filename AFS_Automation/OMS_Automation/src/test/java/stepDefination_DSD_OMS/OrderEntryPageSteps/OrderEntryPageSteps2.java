@@ -36,11 +36,10 @@ public class OrderEntryPageSteps2
     static CheckOutSummaryPage summary;
     static CheckOutOrderPage checkorder;
 
-    static String Tot_Amt=null;
-    static String Tot_Amt1=null;
-    //static String Route=null;
-    static String Route1=null;
-    //static String Order_No=null;
+    static String Tot_Amt;
+    static String Tot_Amt1;
+    static String Route1;
+
 
     @Before
     public void LaunchBrowser1(Scenario scenario) throws Exception
@@ -128,6 +127,7 @@ public class OrderEntryPageSteps2
         {
             summary.additionalOrderPopup();
             summary.cutoffDialog();
+            summary.percentageOfAverageProd();
         }
         summary.SucessPopup();
         scenario.log("Product Total found in New OE page: "+Tot_Amt+" Product total found in summary page: "+Tot_Amt1);
@@ -185,6 +185,13 @@ public class OrderEntryPageSteps2
         //asserting totals
         Assert.assertEquals(tot,Tot_Amt1);
         summary.ClickSubmit();
+        for(int i=0;i<=2;i++)
+        {
+            summary.additionalOrderPopup();
+            summary.cutoffDialog();
+            summary.percentageOfAverageProd();
+        }
+        summary.SucessPopup();
     }
 
     //Code to change Account# to other Account#
@@ -273,10 +280,4 @@ public class OrderEntryPageSteps2
             checkorder.NextButton_Click();
         }
     }
-
-  /*  @And("Order type Popup should display there user should select Regular order by using Add filter button")
-    public void orderTypePopupShouldDisplayThereUserShouldSelectRegularOrderByUsingAddFilterButton()
-    {
-
-    }*/
 }

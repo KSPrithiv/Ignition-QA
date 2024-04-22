@@ -41,7 +41,6 @@ public class LoginPage
     WebDriver driver;
     Scenario scenario;
     static boolean exists=false;
-    //public static String url=null;
 
     @FindBy(xpath = "//label[text()='Login']/following-sibling::input")
     private WebElement Username;

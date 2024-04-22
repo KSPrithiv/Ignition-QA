@@ -20,8 +20,6 @@ public class PricingPage
     /* Created by Divya.Ramadas@afsi.com */
     WebDriver driver;
     Scenario scenario;
-    static boolean exists=false;
-    static String InputValue=null;
 
     @FindBy(id="CmPricingCustomer")
     private WebElement pricingCustomerDropDown;

@@ -31,7 +31,7 @@ public class StatementsPage
     WebDriver driver;
     Scenario scenario;
     static boolean exists=false;
-    static String currentURL=null;
+    static String currentURL;
     static ArrayList<String> customerAccNo=new ArrayList<>();
     static ArrayList<String> customerAccNo1=new ArrayList<>();
     static ArrayList<String> customerName=new ArrayList<>();

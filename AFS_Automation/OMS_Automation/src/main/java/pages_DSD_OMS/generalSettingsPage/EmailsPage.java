@@ -167,10 +167,6 @@ public class EmailsPage
         catch (Exception e) {}
     }
 
-
-
-
-
     //Click on Permission by
     public void ClickPermissionBy()
     {

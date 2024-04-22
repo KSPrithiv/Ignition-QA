@@ -32,7 +32,6 @@ public class CompetitorPricingPageStep
     static LoginPage loginpage;
     static HomePage homepage;
     static CompetitivePricingGeneralPage competitivePricingGeneralPage;
-    static CompetitivePricingReportPage competitivePricingReportPage;
 
     @Before
     public void LaunchBrowser1(Scenario scenario) throws Exception

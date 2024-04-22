@@ -47,8 +47,8 @@ public class CatalogPageStep
     static boolean exists = false;
     static boolean flag=false;
     static boolean flag1=false;
-    static String currentURL=null;
-    static String Ord_No=null;
+    static String currentURL;
+    static String Ord_No;
 
     static LoginPage loginpage;
     static HomePage homepage;
@@ -523,15 +523,16 @@ public class CatalogPageStep
     @Then("Click on SubmitOrder button for creating order from Catalog")
     public void clickOnSubmitOrderButtonForCreatingOrderFromCatalog() throws InterruptedException, AWTException
     {
+
         summary = new CheckOutSummaryPage(driver,scenario);
         summary.validateSummaryPage();
         summary.ClickSubmit();
         for(int i=0;i<=2;i++)
         {
-            summary.cutoffDialog();
             summary.additionalOrderPopup();
+            summary.cutoffDialog();
+            summary.percentageOfAverageProd();
         }
-        Ord_No = summary.Get_Order_No();
         summary.SucessPopup();
     }
 

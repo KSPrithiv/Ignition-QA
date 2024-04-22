@@ -55,7 +55,7 @@ Feature: Order Entry2
     And Check for Case and Unit input box enabled or not based on that enter value
       |  80  |  55  |
     And Drag and drop table header
-      |Brand|
+      |Category|
     Then Click on Next button
     And Click on SubmitOrder button
     Then User should be navigated to Order Entry page
@@ -147,8 +147,8 @@ Feature: Order Entry2
       |PO123|
     Then Enter Pro# in Quick Product Entry area
     And Check for Case and Unit input box enabled or not based on that enter value
-      |50|50|
-    Then Click on Next button
+      |50|60|
+    Then Click on Next button for cancel from order summary page
     And Click on Submit Order button and read Order_no
     Then Enter Order# in Search box in Order Entry page
     Then Click on Order number in Order Entry page
@@ -167,7 +167,7 @@ Feature: Order Entry2
       |PO123|
     Then Enter Pro# in Quick Product Entry area
     And Check for Case and Unit input box enabled or not based on that enter value
-      |50|50|
+      |50|80|
     Then Click on Next button
     And Click on Submit Order button and read Order_no
     Then User should be navigated to Order Entry page
@@ -186,9 +186,9 @@ Feature: Order Entry2
     Then Enter PO# for New order
       |PO123|
     Then Enter Prod_No in Quick Product Entry area
-      |  10  |  40  |
-      |  50  |  10  |
-      |  15  |  50  |
+      |  80  |  40  |
+      |  50  |  60  |
+      |  35  |  50  |
       |  50  |  50  |
   #here 0002, 0003 are out of stock products and they should not get displayed in Order summary
     Then Click on Next button

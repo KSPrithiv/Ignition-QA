@@ -27,12 +27,7 @@ public class orderFactorAdminPage
     static String prodNo;
     static String qtyOrderFactor;
     static String uom;
-    static int columnNo=0;
-    static int lastPage=0;
-    static int a=0;
-    static int pageNumber=0;
-    static int rowNo=0;
-    int skipRow=0;
+    static int pageNumber;
 
    // @FindBy(xpath="//input[@id='orderFactorTypeDdl']/ancestor::span[@class='k-dropdown-wrap']/descendant::input")
    // private WebElement orderFactorIn;
@@ -61,7 +56,7 @@ public class orderFactorAdminPage
         try
         {
             Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
-                    .withTimeout(Duration.ofSeconds(120))
+                    .withTimeout(Duration.ofSeconds(200))
                     .pollingEvery(Duration.ofSeconds(2))
                     .ignoring(NoSuchElementException.class);
             wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
@@ -75,6 +70,23 @@ public class orderFactorAdminPage
         }
         catch (Exception e){}
     }
+
+    public void orderFactorToggleButton()
+    {
+        exists=false;
+        try
+        {
+            if(!HelpersMethod.IsExists("//span[@id='CPEnableOrderFactor' and @aria-checked='true']",driver))
+            {
+                WebElement orderFactor=HelpersMethod.FindByElement(driver,"id","CPEnableOrderFactor");
+                HelpersMethod.ActClick(driver,orderFactor,10000);
+                scenario.log("ORDER FACTOR TOGGLE BUTTON HAS BEEN ENABLED");
+                Thread.sleep(500);
+            }
+        }
+        catch (Exception e){}
+    }
+
 
     public void clickOnOrderFactorLevel()
     {
@@ -802,44 +814,6 @@ public class orderFactorAdminPage
         catch (Exception e){}
         return result;
     }
-
-    /*public void selectCustomer(String customer)
-    {
-        exists=false;
-        Actions act=new Actions(driver);
-        String accText;
-        try
-        {
-            if(HelpersMethod.IsExists("//input[@id='orderFactorCustomerDdl']/parent::span[@class='k-searchbar']/following-sibling::span",driver))
-            {
-                //click on arrow for gettting drop down
-                WebElement arrowIcon=HelpersMethod.FindByElement(driver,"xpath","//input[@id='orderFactorCustomerDdl']/parent::span[@class='k-searchbar']/following-sibling::span");
-                HelpersMethod.ActClick(driver,arrowIcon,10000);
-                //Select customer account number from drop down
-                List<WebElement> accounts=HelpersMethod.FindByElements(driver,"xpath","//div[contains(@class,'k-animation-container-relative k-list-containe')]/descendant::ul/li");
-                for(WebElement account:accounts)
-                {
-                     act.moveToElement(account).build().perform();
-                     accText=account.getText();
-                     if(accText.contains(customer))
-                     {
-                         act.moveToElement(account).build().perform();
-                         act.click().build().perform();
-                         scenario.log(customer+" CUSTOMER ACCOUNT # HAS BEEN FOUND");
-                         Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
-                                 .withTimeout(Duration.ofSeconds(120))
-                                 .pollingEvery(Duration.ofSeconds(2))
-                                 .ignoring(NoSuchElementException.class);
-                         wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
-                         exists=true;
-                         break;
-                     }
-                }
-            }
-            Assert.assertEquals(exists,true);
-        }
-        catch (Exception e){}
-    }*/
 
     public void selectCustomer(String customer)
     {

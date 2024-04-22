@@ -26,8 +26,8 @@ public class AdminSecurityRolePage
     WebDriver driver;
     Scenario scenario;
     static boolean exists=false;
-    static String roleName=null;
-    static String description=null;
+    static String roleName;
+    static String description;
 
     @FindBy(id = "add-role")
     private WebElement plusSymbol;
