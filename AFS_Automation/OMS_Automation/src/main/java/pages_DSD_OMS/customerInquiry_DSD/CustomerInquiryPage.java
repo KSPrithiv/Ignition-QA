@@ -30,11 +30,11 @@ public class CustomerInquiryPage
     WebDriver driver;
     Scenario scenario;
     static boolean exists=false;
-    static String Bill=null;
-    static String Store=null;
-    static String Dept=null;
+    static String Bill;
+    static String Store;
+    static String Dept;
     static String Desc="skjldfgs123";
-    static String currentURL=null;
+    static String currentURL;
 
     @FindBy(xpath="//button[@id='customerInquiryNewBtn']")
     private WebElement new_But;

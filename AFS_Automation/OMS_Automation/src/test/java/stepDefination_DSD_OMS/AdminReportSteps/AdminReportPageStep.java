@@ -27,7 +27,7 @@ public class AdminReportPageStep
     static boolean flag3=false;
     static boolean flag4=false;
     static boolean flag5=false;
-    static boolean flag6=false;
+
     WebDriver driver;
     Scenario scenario;
     static LoginPage loginpage;

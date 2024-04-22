@@ -24,8 +24,8 @@ public class CustomerInquiryPageERP
     WebDriver driver;
     Scenario scenario;
     static boolean exists=false;
-    static String Bill=null;
-    static String Desc=null;
+    static String Bill;
+    static String Desc;
 
     @FindBy(xpath="//button[text()='New']")
     private WebElement new_But;

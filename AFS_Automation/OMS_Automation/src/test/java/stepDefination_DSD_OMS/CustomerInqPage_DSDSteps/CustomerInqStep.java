@@ -37,10 +37,10 @@ public class CustomerInqStep
     static boolean flag=false;
     static boolean flag1=false;
     static boolean flag2=false;
-    static String DelSeq=null;
-    static String Track=null;
-    static String Route=null;
-    static String currentURL=null;
+    static String DelSeq;
+    static String Track;
+    static String Route;
+    static String currentURL;
     WebElement WebEle;
 
     static LoginPage loginpage;
@@ -628,8 +628,8 @@ public class CustomerInqStep
            ignitionPage.clickDelete();
            ignitionPage.confirmationPopUp();
            customerInquiryPage=new CustomerInquiryPage(driver,scenario);
-           //customerInquiryPage.validateSaveConfirmationPopup();
-           //customerInquiryPage.SaveButtonOK();
+           customerInquiryPage.validateSaveConfirmationPopup();
+           customerInquiryPage.SaveButtonOK();
        }
     }
 }

@@ -30,9 +30,9 @@ public class NewQuotePage
     WebDriver driver;
     Scenario scenario;
     static boolean exists = false;
-    static String Product = null;
-    static String Product1=null;
-    static String bogoProduct=null;
+    static String Product;
+    static String Product1;
+    static String bogoProduct;
 
     @FindBy(id = "cancelQuoteButton")
     private WebElement CancelButton;

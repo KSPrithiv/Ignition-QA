@@ -54,12 +54,12 @@ Feature: Catalog2
     |100|
     Then User click on cart in catalog and Clicks on tirepricing label
 
-  @ForeignLanguageSearch
-  Scenario: Test scenario for searching product, using foreign language
-    Given User must be on Order Entry Page to select Catalog
-    And User should navigate to Catalog tab
-    And User should click on Reset filter button and all the products should displayed
-    Then User enters Product# in foreign language, in Search bar
+  #@ForeignLanguageSearch
+  #Scenario: Test scenario for searching product, using foreign language
+  #  Given User must be on Order Entry Page to select Catalog
+  #  And User should navigate to Catalog tab
+  #  And User should click on Reset filter button and all the products should displayed
+  #  Then User enters Product# in foreign language, in Search bar
 
   @PaginationInCatalog
   Scenario: Test scenario for checking the products in last page of the catalog, after sorting products

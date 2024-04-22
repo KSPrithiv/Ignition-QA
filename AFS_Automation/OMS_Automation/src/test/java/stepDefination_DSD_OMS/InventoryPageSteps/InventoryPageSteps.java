@@ -34,7 +34,7 @@ public class InventoryPageSteps
     static boolean exists=false;
     static boolean flag=false;
     static boolean flag1=false;
-    static String currentURL=null;
+    static String currentURL;
 
     static LoginPage loginpage;
     static HomePage homepage;

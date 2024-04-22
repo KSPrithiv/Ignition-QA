@@ -24,24 +24,8 @@ public class CustomerInqStep_ERP1
     /* Created by Divya.Ramadas */
     WebDriver driver;
     Scenario scenario;
-    static boolean flag=false;
-    static boolean flag1=false;
-    static boolean flag2=false;
-    static String currentURL=null;
-    WebElement WebEle;
-
-    static LoginPage loginpage;
-    static HomePage homepage;
     static CustomerInquiryPageERP customerInquiryPageERP;
-    static MainPage mainPage;
-    static ARRulesPage arRulesPage;
-    static CreditPage credit;
-    static BillingInfoPage billingInfo;
-    static MarketingPage marketingPage;
-    static PricingPage pricingPage;
-    static OrderEntryPage orderEntryPage;
     static IgnitionPageERP ignitionPageERP;
-    static ShippingPage shippingPage;
 
     @Before
     public void LaunchBrowser1(Scenario scenario) throws Exception

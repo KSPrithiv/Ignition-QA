@@ -21,7 +21,7 @@ public class DEX_EDIPage
     WebDriver driver;
     Scenario scenario;
     static boolean exists=false;
-    static String InputValue=null;
+    static String InputValue;
 
     @FindBy(id="CmDexCustFlag")
     private WebElement DEXCust;

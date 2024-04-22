@@ -28,9 +28,6 @@ public class CompetitivePricingReportPage
     WebDriver driver;
     Scenario scenario;
     static boolean exists=false;
-    static String code=null;
-    static String desc=null;
-    static String currentURL=null;
 
     @FindBy(xpath = "//label[contains(text(),'Group by 1')]/following-sibling::span")
     private WebElement group1;

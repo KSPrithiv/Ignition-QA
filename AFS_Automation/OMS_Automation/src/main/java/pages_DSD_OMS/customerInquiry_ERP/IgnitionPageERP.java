@@ -31,8 +31,8 @@ import java.util.concurrent.ThreadLocalRandom;
         WebDriver driver;
         Scenario scenario;
         static boolean exists=false;
-        static String InputValue=null;
-        static String PoNo=null;
+        static String InputValue;
+        static String PoNo;
 
         @FindBy(xpath="//button[@id='btnAddStandingPO']//*[local-name()='svg']")
         private WebElement NewButton;

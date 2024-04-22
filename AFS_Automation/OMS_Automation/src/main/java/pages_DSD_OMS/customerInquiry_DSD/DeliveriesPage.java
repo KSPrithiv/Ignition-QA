@@ -26,8 +26,7 @@ public class DeliveriesPage
     WebDriver driver;
     Scenario scenario;
     static boolean exists=false;
-    static String InputValue=null;
-    WebElement SampleEle=null;
+    static String InputValue;
 
     @FindBy(id="CmDelDefaultDelvContact")
     private WebElement ContactInput;

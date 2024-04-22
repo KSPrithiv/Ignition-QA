@@ -25,7 +25,6 @@ public class AdminOrderEntryPage
     Scenario scenario;
     static boolean exists = false;
 
-
     //Action
     public AdminOrderEntryPage(WebDriver driver, Scenario scenario)
     {

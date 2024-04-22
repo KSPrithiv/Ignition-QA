@@ -27,7 +27,7 @@ public class CatalogPageStep2
 {
     /* Created by Divya.Ramadas@afsi.com */
     WebDriver driver;
-    String descriptionProd=null;
+    String descriptionProd;
     static boolean exists = false;
     Scenario scenario;
 

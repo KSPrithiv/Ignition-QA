@@ -30,8 +30,8 @@ public class BlackoutAndCutoffPage
     WebDriver driver;
     Scenario scenario;
     static boolean exists=false;
-    static String readBlackoutDate=null;
-    static String readMessage=null;
+    static String readBlackoutDate;
+    static String readMessage;
 
     @FindBy(id="add-blackout-date")
     private WebElement AddButton;

@@ -28,10 +28,10 @@ public class GridConfigurationPage
     Scenario scenario;
     WebElement WebEle;
     static boolean exists=false;
-    static String gridName=null;
-    static String gridName1=null;
-    static String oldLabel=null;
-    static String newLabel=null;
+    static String gridName;
+    static String gridName1;
+    static String oldLabel;
+    static String newLabel;
 
     @FindBy(xpath="//div[contains(@class,'moduleNameHeader')]/span[contains(@class,'spnmoduleNameHeader')]")
     private WebElement pageHeader;

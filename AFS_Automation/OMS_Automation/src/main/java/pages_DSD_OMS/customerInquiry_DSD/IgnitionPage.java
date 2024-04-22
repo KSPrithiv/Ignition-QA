@@ -33,8 +33,8 @@ public class IgnitionPage
     WebDriver driver;
     Scenario scenario;
     static boolean exists=false;
-    static String InputValue=null;
-    static String PoNo=null;
+    static String InputValue;
+    static String PoNo;
 
     @FindBy(id="btnAddStandingPO")
     private WebElement NewButton;

@@ -32,9 +32,9 @@ public class CustomerInqStep_ERP
     static boolean flag=false;
     static boolean flag1=false;
     static boolean flag2=false;
-    static String currentURL=null;
-    static String fName=null;
-    static String lName=null;
+    static String currentURL;
+    static String fName;
+    static String lName;
 
     static LoginPage loginpage;
     static HomePage homepage;

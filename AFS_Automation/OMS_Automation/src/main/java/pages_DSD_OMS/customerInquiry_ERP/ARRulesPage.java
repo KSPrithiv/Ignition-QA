@@ -18,8 +18,6 @@ public class ARRulesPage
     /* Created by Divya.Ramadas@afsi.com */
     WebDriver driver;
     Scenario scenario;
-    static boolean exists=false;
-    static String InputValue=null;
 
     @FindBy(id="CmMktArea")
     private WebElement marketSegmentDropDown;

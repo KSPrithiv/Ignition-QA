@@ -23,7 +23,7 @@ public class MainPage
     WebDriver driver;
     Scenario scenario;
     static boolean exists=false;
-    static String InputValue=null;
+    static String InputValue;
 
     @FindBy(id="CmFirstName")
     private WebElement FName;

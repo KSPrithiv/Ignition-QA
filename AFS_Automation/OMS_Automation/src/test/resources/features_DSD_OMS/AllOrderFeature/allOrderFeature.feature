@@ -49,7 +49,7 @@ Feature: All orders
     Then Enter Pro# in Quick Product Entry area
     And Check for Case and Unit input box enabled or not based on that enter value
       |60|100|
-    Then Click on Next button
+    Then Click on Next button for All order
     And Click on Submit Order button and read Order_no created for All order
     Then User should be navigated back to All order page
     And User clicks on Show all orders check box after navigating back
@@ -80,7 +80,7 @@ Feature: All orders
     Then User should click on Comment icon in Order entry card
     And User should enter comment in comment popup
       |Comment for All order|Order notes|
-    Then Click on Next button
+    Then Click on Next button for All order
     And Click on Submit Order button and read Order_no created for All order
     Then User should be navigated back to All order page
     And User clicks on Show all orders check box after navigating back
@@ -100,7 +100,7 @@ Feature: All orders
     Then Enter Pro# in Quick Product Entry area
     And Check for Case and Unit input box enabled or not based on that enter value
       |100|100|
-    Then Click on Next button
+    Then Click on Next button for All order
     And Click on Submit Order button and read Order_no created for All order
     Then User should be navigated back to All order page
     And User clicks on Show all orders check box after navigating back
@@ -158,7 +158,7 @@ Feature: All orders
     Then Enter Pro# in Quick Product Entry area
     And Check for Case and Unit input box enabled or not based on that enter value
       |100|100|
-    Then Click on Next button
+    Then Click on Next button for All order
     And Click on Submit Order button and read Order_no created for All order
     Then User should be navigated back to All order page
     And User clicks on Show all orders check box
@@ -177,7 +177,7 @@ Feature: All orders
     Then Enter Pro# in Quick Product Entry area
     And Check for Case and Unit input box enabled or not based on that enter value
       |100|100|
-    Then Click on Next button
+    Then Click on Next button for All order
     And Click on Submit Order button and read Order_no created for All order
     Then User should be navigated back to All order page
     And User clicks on Show all orders check box after navigating back

@@ -25,12 +25,8 @@ public class AdminReportsStep
     /* Created by Divya.Ramadas */
     WebDriver driver;
     Scenario scenario;
-    static LoginPage loginpage;
-    static HomePage homepage;
     static AdminHomePage adminHomePage;
     static AdminSecurityPermissionPage adminSecurityPermissionPage;
-    static CustomerInquiryPageERP customerInquiryPageERP;
-    static MainPage mainPage;
 
     @Before
     public void LaunchBrowser1(Scenario scenario) throws Exception

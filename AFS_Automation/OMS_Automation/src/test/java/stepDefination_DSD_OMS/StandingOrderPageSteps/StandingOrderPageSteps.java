@@ -363,6 +363,7 @@ public class StandingOrderPageSteps
     public void userShouldVerifyForThatDateRemoveSkipHasBeenEnabledOrSkipHasBeenDisabled() throws InterruptedException, AWTException
     {
         orderpage = new OrderEntryPage(driver, scenario);
+        orderpage.ValidateOE();
         orderpage.CheckForRemoveSkip();
         orderpage.ClickRemoveSkip();
         orderpage=new OrderEntryPage(driver,scenario);

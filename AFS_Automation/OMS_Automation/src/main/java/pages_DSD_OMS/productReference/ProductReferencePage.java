@@ -27,7 +27,6 @@ public class ProductReferencePage
     WebDriver driver;
     Scenario scenario;
     static boolean exists=false;
-    static String status=null;
 
     @FindBy (xpath="//div[@class='i-search-box']/descendant::input")
     private WebElement searchBox;

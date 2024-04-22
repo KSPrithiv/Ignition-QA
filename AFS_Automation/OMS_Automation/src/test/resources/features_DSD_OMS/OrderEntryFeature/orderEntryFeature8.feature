@@ -68,8 +68,8 @@ Scenario: Test scenario for searching for product in catalog index dialog box
   And Click on SubmitOrder button
   Then User should be navigated to Order Entry page
 
-@PaymentPageNotDisplayed
-Scenario: Test scenario to verify that payment page is not getting displayed once order is submitted and reopen the order
+@PaymentOptionsDisabled
+Scenario: Test scenario to verify that payment page all payment options are disabled once order is submitted and reopen the order
     Given User must be on Order Entry Page
     Then User must click Start Order button
     Then User should make selection between Pending order or Start New order
@@ -79,11 +79,11 @@ Scenario: Test scenario to verify that payment page is not getting displayed onc
     Then Enter Pro# in Quick Product Entry area
     And Check for Case and Unit input box enabled or not based on that enter value
       |60|80|
-    Then Click on Next button
+    Then Click on Next button and select the very first payment option
     And Click on Submit Order button and read Order_no
     Then User should be navigated to Order Entry page
-    And User should verify that Payment page is not getting displayed
-    #And User should be in Order summary page and click on back to Orderlist button
+    Then Enter Order# in Search box in Order Entry page
+    And User should verify that payment options in Payment page are disabled
     And Click on SubmitOrder button
     Then User should be navigated to Order Entry page
 

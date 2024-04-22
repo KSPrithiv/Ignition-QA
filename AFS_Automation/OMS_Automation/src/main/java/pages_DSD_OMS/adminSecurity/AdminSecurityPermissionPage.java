@@ -31,10 +31,10 @@ public class AdminSecurityPermissionPage
     WebDriver driver;
     Scenario scenario;
     static boolean exists=false;
-    static String roleName=null;
-    static String description=null;
-    static String disabledRole=null;
-    static  String enabledRoles=null;
+    static String roleName;
+    static String description;
+    static String disabledRole;
+    static  String enabledRoles;
     static String company = TestBase.testEnvironment.get_CompanyNo();
     static ArrayList<String> adminGrid= new ArrayList<>();
     static ArrayList<String> adminGrid1=new ArrayList<>();

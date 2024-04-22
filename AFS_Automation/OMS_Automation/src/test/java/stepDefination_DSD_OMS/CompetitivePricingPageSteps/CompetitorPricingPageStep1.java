@@ -24,11 +24,6 @@ public class CompetitorPricingPageStep1
     /* Created by Divya.Ramadas */
     WebDriver driver;
     Scenario scenario;
-    static boolean flag=false;
-
-    static LoginPage loginpage;
-    static HomePage homepage;
-    static CompetitivePricingGeneralPage competitivePricingGeneralPage;
     static CompetitivePricingReportPage competitivePricingReportPage;
 
     @Before

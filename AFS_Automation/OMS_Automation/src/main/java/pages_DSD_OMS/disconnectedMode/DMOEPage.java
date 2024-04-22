@@ -33,10 +33,7 @@ public class DMOEPage
     /* Created by Divya.Ramadas@afsi.com */
     WebDriver driver;
     Scenario scenario;
-    static Environment testEnvironment;
     static boolean exists = false;
-    static String C_Date1 = null;
-    static String ChangeDate=null;
 
     public DMOEPage(WebDriver driver,Scenario scenario)
     {

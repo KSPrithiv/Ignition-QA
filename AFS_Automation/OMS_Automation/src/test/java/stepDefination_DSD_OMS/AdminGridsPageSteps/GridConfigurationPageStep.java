@@ -40,9 +40,9 @@ public class GridConfigurationPageStep
         /* Created by Divya.Ramadas@afsi.com */
         static boolean flag=false;
         static boolean exists=false;
-        static String gType=null;
-        static String columnName=null;
-        static String newLabel=null;
+        static String gType;
+        static String columnName;
+        static String newLabel;
         static int size1;
         static int size2;
         WebDriver driver;

@@ -48,8 +48,8 @@ public class OrderControlPageSteps
     static boolean exists=false;
     static boolean flag=false;
     static boolean flag1=false;
-    static String currentURL=null;
-    static String Ord_No=null;
+    static String currentURL;
+    static String Ord_No;
 
     @Before
     public void LaunchBrowser1(Scenario scenario) throws Exception
@@ -368,10 +368,15 @@ public class OrderControlPageSteps
         summary.ClickSubmit();
         for(int i=0;i<=2;i++)
         {
-            summary.cutoffDialog();
             summary.additionalOrderPopup();
+            summary.cutoffDialog();
+            summary.percentageOfAverageProd();
         }
-        Ord_No = summary.Get_Order_No();
+        String sOrd_No = summary.Get_Order_No();
+        if(sOrd_No!=null)
+        {
+            Ord_No=sOrd_No;
+        }
         summary.SucessPopup();
         Thread.sleep(4000);
     }

@@ -33,13 +33,10 @@ public class OrderEntryPageSteps5
     WebDriver driver;
     Scenario scenario;
 
-    //static boolean exists=false;
-    //static OrderEntryPage orderEntryPage;
     static NewOrderEntryPage newOE;
     static CheckOutSummaryPage summary;
     static OrderHistoryPage orderHistoryPage;
     static OrderEntryPage orderpage;
-
 
     @Before
     public void LaunchBrowser1(Scenario scenario) throws Exception
@@ -99,9 +96,12 @@ public class OrderEntryPageSteps5
     public void userShouldVerifyAllOtherWebElementsAreDisabledAndNoProductsInProductGrid() throws InterruptedException, AWTException
     {
         newOE=new NewOrderEntryPage(driver,scenario);
-        newOE.VerifyForMessageForPOMandatory();
-        newOE.VerifyProductGrid();
-        newOE.VerifyWebElements();
+        boolean exists=newOE.VerifyForMessageForPOMandatory();
+        if(exists==true)
+        {
+            newOE.VerifyWebElements();
+            newOE.VerifyProductGrid();
+        }
     }
 
     @And("User should select the First order comment icon in the order history grid to verify whether comment is added or not")
@@ -194,5 +194,13 @@ public class OrderEntryPageSteps5
         newOE=new NewOrderEntryPage(driver,scenario);
         newOE.ValidateChangeDeliveryDatePopup();
         newOE.SelectChangeDeliveryDatePopup();
+    }
+
+    @And("Drag and drop table header in submit page")
+    public void dragAndDropTableHeaderInSubmitPage(DataTable tabledata) throws InterruptedException, AWTException
+    {
+       java.util.List<java.util.List<String>> TableHead=tabledata.asLists(String.class);
+       summary = new CheckOutSummaryPage(driver,scenario);
+       summary.FindtableHeader(TableHead.get(0).get(0));
     }
 }

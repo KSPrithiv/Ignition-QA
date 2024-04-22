@@ -24,8 +24,8 @@ public class RestrictedProductListPage
     WebDriver driver;
     Scenario scenario;
     static boolean exists=false;
-    static String product=null;
-    static String selectCat=null;
+    static String product;
+    static String selectCat;
 
     @FindBy(xpath="//button[contains(text(),'Add product')]//*[local-name()='svg']")
     private WebElement AddProduct;

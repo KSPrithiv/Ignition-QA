@@ -23,7 +23,7 @@ public class MarketingPage
     WebDriver driver;
     Scenario scenario;
     static boolean exists=false;
-    static String InputValue=null;
+    static String InputValue;
 
     @FindBy(id="CmSalesman")
     private WebElement salesRepDropDown;

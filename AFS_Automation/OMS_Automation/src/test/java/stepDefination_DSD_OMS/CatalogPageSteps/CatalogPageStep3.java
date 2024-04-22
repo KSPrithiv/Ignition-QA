@@ -24,15 +24,10 @@ public class CatalogPageStep3
 {
     /* Created by Divya.Ramadas@afsi.com */
     WebDriver driver;
-    String descriptionProd=null;
-    static boolean exists = false;
     Scenario scenario;
 
     static CatalogPage catalogpage;
     static OrderEntryPage orderEntryPage;
-    static NewOrderEntryPage newOE;
-    static CheckOutOrderPage checkorder;
-    static ProductDescriptionPage productDescriptionPage;
 
     @Before
     public void LaunchBrowser1(Scenario scenario) throws Exception
