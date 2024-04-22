@@ -15,7 +15,7 @@ Feature: Catalog3
     Then User enters Tire pricing Product# in Search bar and verifying whether tire pricing dialog box appeared or not
 
   @PendingOrderAndCatalogProd
-  Scenario: Test scenario for creating pending order and then add prodcuts from catalog
+  Scenario: Test scenario for creating pending order and then add products from catalog
     Given User must be on Order Entry Page
     And User should navigate to Order Entry page from Catalog tab
     Then User must click Start Order button
