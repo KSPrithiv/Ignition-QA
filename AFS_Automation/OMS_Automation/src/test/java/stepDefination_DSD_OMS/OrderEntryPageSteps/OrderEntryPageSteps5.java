@@ -155,14 +155,6 @@ public class OrderEntryPageSteps5
         newOE.PrintNewOE();
     }
 
-    @Then("User enters foregin language discription of Product in Search box")
-    public void userEntersForeginLanguageDiscriptionOfProductInSearchBox() throws InterruptedException, AWTException
-    {
-        newOE = new NewOrderEntryPage(driver,scenario);
-        String ProdName= TestBase.testEnvironment.getForeignLangDesc();
-        newOE.EnterProdNo_InSearchBar(ProdName);
-    }
-
     @And("User should click on delivery date and select delivery date by increase day for pending order then user should handle the popup also")
     public void userShouldClickOnDeliveryDateAndSelectDeliveryDateByIncreaseDayForPendingOrderThenUserShouldHandleThePopupAlso() throws InterruptedException, AWTException
     {

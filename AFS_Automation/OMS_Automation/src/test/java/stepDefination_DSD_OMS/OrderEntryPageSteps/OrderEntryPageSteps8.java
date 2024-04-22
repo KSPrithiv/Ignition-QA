@@ -301,4 +301,12 @@ public class OrderEntryPageSteps8
             checkorder.NextButton_Click();
         }
     }
+
+    @Then("User enters foreign language description of Product in Search box")
+    public void userEntersForeignLanguageDescriptionOfProductInSearchBox() throws InterruptedException, AWTException
+    {
+            newOE = new NewOrderEntryPage(driver,scenario);
+            String ProdName= TestBase.testEnvironment.getForeignLangDesc();
+            newOE.EnterForignLanguage_InSearchBar(ProdName);
+    }
 }

@@ -545,6 +545,30 @@ public class NewOrderEntryPage
         catch (Exception e) {}
     }
 
+    public void EnterForignLanguage_InSearchBar(String Product)
+    {
+        exists=false;
+        try
+        {
+            if(SearchProd.isDisplayed()&&SearchProd.isEnabled())
+            {
+                HelpersMethod.ScrollElement(driver, SearchProd);
+                HelpersMethod.sendKeys(driver, SearchProd, 10000, Product);
+                HelpersMethod.ClickBut(driver, IndexSearch, 10000);
+                exists = true;
+                scenario.log("PRODUCT SEARCHED USING SEARCH BAR IS " + Product);
+
+                Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                        .withTimeout(Duration.ofSeconds(120))
+                        .pollingEvery(Duration.ofSeconds(2))
+                        .ignoring(NoSuchElementException.class);
+                wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+            }
+            Assert.assertEquals(exists,true);
+        }
+        catch (Exception e) {}
+    }
+
     public void CheckForCatalog()
     {
         Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)

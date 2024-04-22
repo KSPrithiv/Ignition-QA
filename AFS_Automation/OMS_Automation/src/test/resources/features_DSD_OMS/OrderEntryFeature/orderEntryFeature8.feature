@@ -102,3 +102,18 @@ Scenario: Test scenario to verify payment info in summary page
   And Click on SubmitOrder button and compare payment info
   Then User should be navigated to Order Entry page
 
+  @OESearchProdForeignLanguage
+  Scenario: Creating New order by entering Product# in Searchbar, New order entry page
+    Given User must be on Order Entry Page
+    Then User must click Start Order button
+    Then User should make selection between Pending order or Start New order
+    Then User should select Note from popup and Order guide from popup
+    Then Enter PO# for New order
+      |PO123|
+    Then User enters foreign language description of Product in Search box
+    Then Check for Catalog popup
+    Then Enter the Qty in the Product grid Case and Unit
+      | 100 | 100 |
+    Then Click on Next button
+    And Click on SubmitOrder button
+    Then User should be navigated to Order Entry page

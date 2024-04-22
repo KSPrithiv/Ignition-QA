@@ -147,7 +147,7 @@ Feature: Order Entry5
     And Click on SubmitOrder button
     Then User should be navigated to Order Entry page
 
-  @OEDragDrop
+  @OEDragDropInSubmitPage
   Scenario: Test scenario for drag and drop option in New OE page
     Given User must be on Order Entry Page
     Then User must click Start Order button
