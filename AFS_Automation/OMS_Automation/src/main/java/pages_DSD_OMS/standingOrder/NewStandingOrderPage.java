@@ -739,7 +739,7 @@ public class NewStandingOrderPage
             List<WebElement> enabledDates=HelpersMethod.FindByElements(driver,"xpath","//td[contains(@style,'opacity: 1')]/span");
             int length=enabledDates.size();
             WebElement tempEle;
-            if(length<=3)
+            if(length<=4)
             {
                 //Click on arrow
                 WebElement arrow=HelpersMethod.FindByElement(driver,"xpath","//span[contains(@class,'k-i-arrow-chevron-right')]");
@@ -749,7 +749,7 @@ public class NewStandingOrderPage
                 for(WebElement enableDate:enabledDates)
                 {
                     i++;
-                    if(i==1)
+                    if(i==4)
                     {
                         //tempEle=HelpersMethod.FindByElement(driver,"xpath","//td[contains(@style,'opacity: 1')]["+i+"]/span");
                         //HelpersMethod.ScrollElement(driver,tempEle);
@@ -770,7 +770,7 @@ public class NewStandingOrderPage
                 for(WebElement enabledDate:enabledDates)
                 {
                     i++;
-                    if(i==length-3)
+                    if(i==length-4)
                     {
                         //tempEle=HelpersMethod.FindByElement(driver,"xpath","//td[contains(@style,'opacity: 1')]["+i+"]/span");
                         //HelpersMethod.ScrollElement(driver,tempEle);

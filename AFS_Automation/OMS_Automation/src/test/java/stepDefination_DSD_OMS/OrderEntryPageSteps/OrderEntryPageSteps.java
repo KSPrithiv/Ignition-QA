@@ -141,8 +141,9 @@ public class OrderEntryPageSteps
         //create object of OE Page
         orderpage = new OrderEntryPage(driver, scenario);
         orderpage.Read_DeliveryDate();
+        orderpage.validateDeliveryDateIsSameAsWhenLoaded();
         orderpage.ClickCalender();
-        orderpage.SelectDate(int1);
+        orderpage.selectDateForSkipDate(int1);
         orderpage.cancelOGselection();
         orderpage.ChangedDeliveryDate();
         orderpage.PopUps_After_AccountChange();
@@ -605,9 +606,52 @@ public class OrderEntryPageSteps
     @Then("Click on Cancel button")
     public void click_on_cancel_button() throws InterruptedException, AWTException
     {
-        newOE = new NewOrderEntryPage(driver,scenario);
-        newOE.ValidateNewOE();
-        newOE.OECancel();
+        if(HelpersMethod.IsExists("//div[@id='orderEntryCard']",driver))
+        {
+            newOE = new NewOrderEntryPage(driver, scenario);
+            newOE.ValidateNewOE();
+            newOE.OECancel();
+        }
+        else if(HelpersMethod.IsExists("//div[@id='order-search-card']",driver))
+        {
+            Wait<WebDriver> wait;
+            orderpage=new OrderEntryPage(driver,scenario);
+            orderpage.Start_Order();
+            orderpage.NoPendingOrderPopup();
+            for (int i = 0; i <= 1; i++)
+            {
+                orderpage.OrderGuidePopup();
+                Thread.sleep(1000);
+                orderpage.NoNotePopHandling();
+            }
+            String status = HelpersMethod.returnDocumentStatus(driver);
+            if (status.equals("loading"))
+            {
+                HelpersMethod.waitTillLoadingPage(driver);
+            }
+
+            wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(200))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
+            status = HelpersMethod.returnDocumentStatus(driver);
+            if (status.equals("loading"))
+            {
+                HelpersMethod.waitTillLoadingPage(driver);
+            }
+
+            wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(200))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
+            newOE = new NewOrderEntryPage(driver, scenario);
+            newOE.ValidateNewOE();
+            newOE.OECancel();
+        }
     }
 
     @Then("Check for Warning popup")

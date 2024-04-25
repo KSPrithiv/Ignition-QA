@@ -103,7 +103,7 @@ Scenario: Test scenario to verify payment info in summary page
   Then User should be navigated to Order Entry page
 
   @OESearchProdForeignLanguage
-  Scenario: Creating New order by entering Product# in Searchbar, New order entry page
+  Scenario: Creating New order by entering foreign language product description  Product# in Searchbar, New order entry page
     Given User must be on Order Entry Page
     Then User must click Start Order button
     Then User should make selection between Pending order or Start New order

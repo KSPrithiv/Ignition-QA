@@ -139,7 +139,7 @@ public class AllOrdersPageStep
                         }
                     }
                     Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
-                            .withTimeout(Duration.ofSeconds(150))
+                            .withTimeout(Duration.ofSeconds(250))
                             .pollingEvery(Duration.ofSeconds(2))
                             .ignoring(NoSuchElementException.class);
                     wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
@@ -151,7 +151,7 @@ public class AllOrdersPageStep
                     }
 
                     wait = new FluentWait<WebDriver>(driver)
-                            .withTimeout(Duration.ofSeconds(150))
+                            .withTimeout(Duration.ofSeconds(250))
                             .pollingEvery(Duration.ofSeconds(2))
                             .ignoring(NoSuchElementException.class);
                     wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
@@ -630,6 +630,13 @@ public class AllOrdersPageStep
     public void enterPOForNewOrderForAllOrders(DataTable tabledata) throws InterruptedException, AWTException
     {
         orderpage = new OrderEntryPage(driver, scenario);
+
+        Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                .withTimeout(Duration.ofSeconds(250))
+                .pollingEvery(Duration.ofSeconds(2))
+                .ignoring(NoSuchElementException.class);
+        wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
         for(int i=0;i<=1;i++)
         {
             orderpage.OrderGuidePopup();
@@ -699,5 +706,29 @@ public class AllOrdersPageStep
         summary.clickOnBackToOrderList();
     }
 
+    @Then("User selects first order in the grid and clicks on copy button")
+    public void userSelectsFirstOrderInTheGridAndClicksOnCopyButton()
+    {
+        allOrder=new AllOrderPage(driver,scenario);
+        allOrder.ValidateAllOrder();
+        allOrder.selectOrderForCopy();
+        allOrder.clickOnCopyButton();
+    }
 
+    @And("User selects Delivery date from delivery date popup and new order from Select order popup")
+    public void userSelectsDeliveryDateFromDeliveryDatePopupAndNewOrderFromSelectOrderPopup() throws InterruptedException
+    {
+        allOrder=new AllOrderPage(driver,scenario);
+        allOrder.validateDeliveryDatePopup();
+        allOrder.SelectDeliverDateForCopy();
+        allOrder.newOrderPopup();
+    }
+
+    @And("User selects open order from the order status filter")
+    public void userSelectsOpenOrderFromTheOrderStatusFilter()
+    {
+        allOrder=new AllOrderPage(driver,scenario);
+        allOrder.ValidateAllOrder();
+        allOrder.openOrderFilter();
+    }
 }

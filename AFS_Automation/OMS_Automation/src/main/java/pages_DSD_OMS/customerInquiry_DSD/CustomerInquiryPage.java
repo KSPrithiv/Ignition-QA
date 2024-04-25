@@ -1169,5 +1169,160 @@ public class CustomerInquiryPage
         }
         catch (Exception e) {}
     }
+
+    public void getBillValueVariable()
+    {
+        exists=false;
+        try
+        {
+            WebElement billWeb=HelpersMethod.FindByElement(driver,"xpath","//label[text()='Customer account #']/following-sibling::div[contains(@class,'i-indexfield-container')]/descendant::input[@placeholder='Bill']");
+            String billValue=HelpersMethod.JSGetValueEle(driver,billWeb,10000);
+            if(billValue.equals("##########"))
+            {
+                scenario.log("########## VALUE HAS BEEN FOUND FOR BILL");
+                exists=true;
+            }
+            Assert.assertEquals(exists,true);
+        }
+        catch (Exception e){}
+    }
+
+    public void getStoreValueVariable()
+    {
+        exists=false;
+        try
+        {
+            WebElement billWeb=HelpersMethod.FindByElement(driver,"xpath","//label[text()='Customer account #']/following-sibling::div[contains(@class,'i-indexfield-container')]/descendant::input[@placeholder='Store']");
+            String billValue=HelpersMethod.JSGetValueEle(driver,billWeb,10000);
+            if(billValue.equals("189"))
+            {
+                scenario.log("189 VALUE HAS BEEN FOUND FOR PLACE");
+                exists=true;
+            }
+            Assert.assertEquals(exists,true);
+        }
+        catch (Exception e){}
+    }
+
+    public void getDepartmentValueVariable()
+    {
+        exists=false;
+        try
+        {
+            WebElement billWeb=HelpersMethod.FindByElement(driver,"xpath","//label[text()='Customer account #']/following-sibling::div[contains(@class,'i-indexfield-container')]/descendant::input[@placeholder='Dept']");
+            String billValue=HelpersMethod.JSGetValueEle(driver,billWeb,10000);
+            if(billValue.equals("189"))
+            {
+                scenario.log("189 VALUE HAS BEEN FOUND FOR PLACE");
+                exists=true;
+            }
+            Assert.assertEquals(exists,true);
+        }
+        catch (Exception e){}
+    }
+
+    public void getBillValueFixed()
+    {
+        exists=false;
+        try
+        {
+            WebElement billWeb=HelpersMethod.FindByElement(driver,"xpath","//label[text()='Customer account #']/following-sibling::div[contains(@class,'i-indexfield-container')]/descendant::input[@placeholder='Bill']");
+            String billValue=HelpersMethod.JSGetValueEle(driver,billWeb,10000);
+            if(billValue.equals("##########"))
+            {
+                scenario.log("########## VALUE HAS BEEN FOUND FOR BILL");
+                exists=true;
+            }
+            Assert.assertEquals(exists,true);
+        }
+        catch (Exception e){}
+    }
+
+    public void getStoreValueFixed()
+    {
+        exists=false;
+        try
+        {
+            WebElement billWeb=HelpersMethod.FindByElement(driver,"xpath","//label[text()='Customer account #']/following-sibling::div[contains(@class,'i-indexfield-container')]/descendant::input[@placeholder='Store']");
+            String billValue=HelpersMethod.JSGetValueEle(driver,billWeb,10000);
+            if(billValue.equals("88886"))
+            {
+                scenario.log("88886 VALUE HAS BEEN FOUND FOR PLACE");
+                exists=true;
+            }
+            Assert.assertEquals(exists,true);
+        }
+        catch (Exception e){}
+    }
+
+    public void getDepartmentValueFixed()
+    {
+        exists=false;
+        try
+        {
+            WebElement billWeb=HelpersMethod.FindByElement(driver,"xpath","//label[text()='Customer account #']/following-sibling::div[contains(@class,'i-indexfield-container')]/descendant::input[@placeholder='Dept']");
+            String billValue=HelpersMethod.JSGetValueEle(driver,billWeb,10000);
+            if(billValue.equals("9898i"))
+            {
+                scenario.log("9898i VALUE HAS BEEN FOUND FOR PLACE");
+                exists=true;
+            }
+            Assert.assertEquals(exists,true);
+        }
+        catch (Exception e){}
+    }
+
+    public void getBillValueManual()
+    {
+        exists=false;
+        try
+        {
+            WebElement billWeb=HelpersMethod.FindByElement(driver,"xpath","//label[text()='Customer account #']/following-sibling::div[contains(@class,'i-indexfield-container')]/descendant::input[@placeholder='Bill']");
+            String billValue=HelpersMethod.JSGetValueEle(driver,billWeb,10000);
+            if(billValue.equals(" "))
+            {
+                scenario.log("EMPTY VALUE HAS BEEN FOUND FOR BILL");
+                exists=true;
+            }
+            Assert.assertEquals(exists,true);
+        }
+        catch (Exception e){}
+    }
+
+    public void getStoreValueManual()
+    {
+        exists=false;
+        try
+        {
+            WebElement billWeb=HelpersMethod.FindByElement(driver,"xpath","//label[text()='Customer account #']/following-sibling::div[contains(@class,'i-indexfield-container')]/descendant::input[@placeholder='Store']");
+            String billValue=HelpersMethod.JSGetValueEle(driver,billWeb,10000);
+            if(billValue.equals(" "))
+            {
+                scenario.log("EMPTY VALUE HAS BEEN FOUND FOR PLACE");
+                exists=true;
+            }
+            Assert.assertEquals(exists,true);
+        }
+        catch (Exception e){}
+    }
+
+    public void getDepartmentValueManual()
+    {
+        exists=false;
+        try
+        {
+            WebElement billWeb=HelpersMethod.FindByElement(driver,"xpath","//label[text()='Customer account #']/following-sibling::div[contains(@class,'i-indexfield-container')]/descendant::input[@placeholder='Dept']");
+            String billValue=HelpersMethod.JSGetValueEle(driver,billWeb,10000);
+            if(billValue.equals(" "))
+            {
+                scenario.log("EMPTY VALUE HAS BEEN FOUND FOR PLACE");
+                exists=true;
+            }
+            Assert.assertEquals(exists,true);
+        }
+        catch (Exception e){}
+    }
+
+
 }
 

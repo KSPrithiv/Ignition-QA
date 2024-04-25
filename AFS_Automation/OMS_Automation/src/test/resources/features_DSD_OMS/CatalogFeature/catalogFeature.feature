@@ -16,6 +16,13 @@ Feature: Catalog
     And User should click on Reset filter button and all the products should displayed
     Then User enters Product# in Search bar
 
+  @SearchBarSearchAndClearSearch
+  Scenario: For verifying functionality of Search bar and clear search
+    Given User must be on Order Entry Page to select Catalog
+    And User should navigate to Catalog tab
+    And User should click on Reset filter button and all the products should displayed
+    Then User enters Product# in Search bar and clear search
+
   @SearchByDescription
   Scenario: Search for product using Description
     Given User must be on Order Entry Page to select Catalog

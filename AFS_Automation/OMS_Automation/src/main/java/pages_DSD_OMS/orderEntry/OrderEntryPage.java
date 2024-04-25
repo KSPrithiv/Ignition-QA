@@ -1323,6 +1323,21 @@ public class OrderEntryPage
         return deliveryDate;
     }
 
+    public void validateDeliveryDateIsSameAsWhenLoaded()
+    {
+        try
+        {
+            String currentDate=HelpersMethod.FindByElement(driver,"id","delivery-date-web-order-header-calendar").getAttribute("value");
+            if(!formattedDate.equals(currentDate))
+            {
+                ValidateOE();
+                ClickCalender();
+                ResetToCurrentDate();
+            }
+        }
+        catch (Exception e){}
+    }
+
     public void ChangedDeliveryDate()
     {
         exists = false;
@@ -1414,6 +1429,7 @@ public class OrderEntryPage
         String formattedDate1 = null;
         String formattedDate2=null;
         String formDate1=null;
+        WebElement date;
         try
         {
             Thread.sleep(1000);
@@ -1440,7 +1456,7 @@ public class OrderEntryPage
             System.out.println(formattedDate1);
 
             //to check whether date is visible in displayed calender
-            if(HelpersMethod.IsExists("//td[contains(@style,'opacity:')]/span[@class='k-link' and contains(@title,'" + formattedDate1 +"')]",driver))
+         /*   if(HelpersMethod.IsExists("//td[contains(@style,'opacity:')]/span[@class='k-link' and contains(@title,'" + formattedDate1 +"')]",driver))
             {
                     ele1 = HelpersMethod.FindByElement(driver, "xpath", "//td[contains(@style,'opacity:')]/span[@class='k-link' and contains(@title,'" + formattedDate1 + "')]");
                     //HelpersMethod.waitTillElementDisplayed(driver, ele1, 10000);
@@ -1468,11 +1484,36 @@ public class OrderEntryPage
                         exists=true;
                     }
                 }
+            }*/
+
+            //Code to check for next enabled date
+            List<WebElement> dates=HelpersMethod.FindByElements(driver,"xpath","//tr[@class='k-calendar-tr']/td[contains(@style,'background-color: rgb(151, 199, 119)')]");
+            if((dates.size())==1)
+            {
+                //code to click on month in displayed calendar
+                WebElement monthHead=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-calendar-header')]/button");
+                HelpersMethod.ActClick(driver,monthHead,10000);
+                //code to click on next month name
+                Thread.sleep(500);
+                WebElement nextMonth=HelpersMethod.FindByElement(driver,"xpath","//tr[@class='k-calendar-tr']/td[contains(@style,'background-color: rgb(151, 199, 119)')]");
+                HelpersMethod.ActClick(driver,nextMonth,10000);
+
+                //code to select first enabled date in the calendar of next month
+                dates=HelpersMethod.FindByElements(driver,"xpath","//tr[@class='k-calendar-tr']/td[contains(@style,'background-color: rgb(151, 199, 119)')]");
+                date=dates.get(0);
+                HelpersMethod.ActClick(driver,date,10000);
+                exists=true;
+            }
+            else
+            {
+                date=dates.get(1);
+                HelpersMethod.ActClick(driver,date,10000);
+                exists=true;
             }
             Assert.assertEquals(exists,true);
 
             Thread.sleep(2000);
-            for (int i = 0; i <= 3; i++)
+            for (int i = 0; i <= 2; i++)
             {
                 //Handling Warning Popup
                 if (HelpersMethod.IsExists("//div[contains(text(),'Changing the delivery date may require repricing the ticket details based on the new delivery date.')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]", driver))
@@ -1483,7 +1524,96 @@ public class OrderEntryPage
                     HelpersMethod.ClickBut(driver, WarningDD, 10000);
                 }
                 //Handling Change delivery date Popup
-                if (HelpersMethod.IsExists("//div[contains(text(),'Change delivery date')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]", driver)) {
+                if (HelpersMethod.IsExists("//div[contains(text(),'To change the delivery date for this pending order')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]", driver))
+                {
+                    WebElement changeDeliveryDate = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(text(),'Change delivery date')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]");
+
+                    WebElement ChangeDD = changeDeliveryDate.findElement(By.xpath(".//button[text()='Change delivery date']"));
+                    HelpersMethod.ClickBut(driver, ChangeDD, 10000);
+                }
+
+                //Warning popup for pending order or to start new order
+                if (HelpersMethod.IsExists("//div[contains(text(),'Pending order or start a new order')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]", driver)) {
+                    WebElement pendingPopup = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(text(),'Pending order or start a new order')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]");
+
+                    WebEle = pendingPopup.findElement(By.xpath(".//button[contains(text(),'Start new order')]"));
+                    HelpersMethod.ActClick(driver, WebEle, 10000);
+                }
+            }
+            if (HelpersMethod.IsExists("//div[@class='loader']", driver))
+            {
+                WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000000);
+            }
+        }
+        catch (Exception e) {}
+    }
+
+    public void selectDateForSkipDate(int days)
+    {
+        exists=false;
+        WebElement WebEle=null;
+        Actions act=new Actions(driver);
+        WebElement ele1;
+        String formattedDate1 = null;
+        String formattedDate2=null;
+        String formDate1=null;
+        WebElement date;
+        try
+        {
+            Thread.sleep(1000);
+
+            //read current date in OE page
+            deliveryDate=HelpersMethod.FindByElement(driver,"id","delivery-date-web-order-header-calendar").getAttribute("value");
+
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("EEE, MMM d, yyyy", Locale.ENGLISH);
+            LocalDate dateTime = LocalDate.parse(deliveryDate, formatter);
+            LocalDate dateTime1=dateTime.plusDays(days);
+            DateTimeFormatter myFormatObj = DateTimeFormatter.ofPattern("EEEE, MMMM d, yyyy");
+            formattedDate1 = dateTime1.format(myFormatObj);
+            System.out.println(formattedDate1);
+
+            //Code to check for next enabled date
+            List<WebElement> dates=HelpersMethod.FindByElements(driver,"xpath","//tr[@class='k-calendar-tr']/td[contains(@style,'background-color: rgb(151, 199, 119)')]");
+            if((dates.size())<=4)
+            {
+                //code to click on month in displayed calendar
+                WebElement monthHead=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-calendar-header')]/button");
+                HelpersMethod.ActClick(driver,monthHead,10000);
+                //code to click on next month name
+                Thread.sleep(500);
+                List<WebElement> nextMonths=HelpersMethod.FindByElements(driver,"xpath","//tr[@class='k-calendar-tr']/td[contains(@style,'background-color: rgb(151, 199, 119)')]");
+                WebElement nextMonth=nextMonths.get(1);
+                HelpersMethod.ActClick(driver,nextMonth,10000);
+
+                //code to select first enabled date in the calendar of next month
+                dates=HelpersMethod.FindByElements(driver,"xpath","//tr[@class='k-calendar-tr']/td[contains(@style,'background-color: rgb(151, 199, 119)')]");
+                date=dates.get(1);
+                HelpersMethod.ActClick(driver,date,10000);
+                exists=true;
+            }
+            else
+            {
+                date=dates.get(5);
+                HelpersMethod.ActClick(driver,date,10000);
+                exists=true;
+            }
+            Assert.assertEquals(exists,true);
+
+            Thread.sleep(2000);
+            for (int i = 0; i <= 2; i++)
+            {
+                //Handling Warning Popup
+                if (HelpersMethod.IsExists("//div[contains(text(),'Changing the delivery date may require repricing the ticket details based on the new delivery date.')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]", driver))
+                {
+                    WebElement warningPopup = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(text(),'Changing the delivery date may require repricing the ticket details based on the new delivery date.')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]");
+
+                    WebElement WarningDD = warningPopup.findElement(By.xpath(".//button[text()='Ok']"));
+                    HelpersMethod.ClickBut(driver, WarningDD, 10000);
+                }
+                //Handling Change delivery date Popup
+                if (HelpersMethod.IsExists("//div[contains(text(),'To change the delivery date for this pending order')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]", driver))
+                {
                     WebElement changeDeliveryDate = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(text(),'Change delivery date')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]");
 
                     WebElement ChangeDD = changeDeliveryDate.findElement(By.xpath(".//button[text()='Change delivery date']"));

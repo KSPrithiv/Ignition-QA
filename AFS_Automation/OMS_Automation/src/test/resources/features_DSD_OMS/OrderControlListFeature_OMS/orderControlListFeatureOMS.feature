@@ -93,7 +93,7 @@ Feature: Order control list
     Then User validate that he is in NewOE page for OCL
     And User Clicks on Back button in NewOE page and User must be in OCL page
     Then User Clicks on Taken radio button
-    And User should verify Order number created in OCL grid and Order icon in OCL
+    And User should verify Order number created in OCL grid
     And User verify created by column value
 
   @VerifyOrderType

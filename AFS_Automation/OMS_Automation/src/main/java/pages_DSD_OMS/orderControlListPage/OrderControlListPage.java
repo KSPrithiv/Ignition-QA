@@ -1416,7 +1416,7 @@ public class OrderControlListPage
         exists=false;
         try
         {
-            HelpersMethod.ActClick(driver,SearchClear,1000);
+            HelpersMethod.ActClick(driver,SearchClear,10000);
             exists=true;
         }
         catch (Exception e){}
@@ -2033,7 +2033,7 @@ public class OrderControlListPage
         {
             if(HelpersMethod.IsExists("//tr[contains(@class,'k-master-row')]/td["+a+"]/descendant::div[contains(@class,'CPKendoDataGrid-Text')]/span",driver))
             {
-                WebElement createdBy=HelpersMethod.FindByElement(driver,"xpath","//tr[contains(@class,'k-master-row')]/td[14]/descendant::div[contains(@class,'CPKendoDataGrid-Text')]/span");
+                WebElement createdBy=HelpersMethod.FindByElement(driver,"xpath","//tr[contains(@class,'k-master-row')]/td["+a+"]/descendant::div[contains(@class,'CPKendoDataGrid-Text')]/span");
                 String createdByName=createdBy.getText();
                 if(!createdByName.equals(""))
                 {

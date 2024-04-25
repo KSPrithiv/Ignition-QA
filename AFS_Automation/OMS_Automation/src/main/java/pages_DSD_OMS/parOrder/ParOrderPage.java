@@ -426,6 +426,17 @@ public class ParOrderPage
         catch (Exception e){}
     }
 
+    public void enterQtyForParQty1(String qty)
+    {
+        exists=false;
+        try
+        {
+            WebElement parQty=HelpersMethod.FindByElement(driver,"xpath","//tr["+1+"]/td/descendant::input[contains(@class,'k-formatted-value')]");
+            HelpersMethod.sendKeys(driver,parQty,10000,qty);
+        }
+        catch (Exception e){}
+    }
+
     public void clickOnAddFilter()
     {
         exists=false;

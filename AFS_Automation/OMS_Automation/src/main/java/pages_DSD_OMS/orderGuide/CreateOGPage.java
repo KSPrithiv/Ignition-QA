@@ -1113,14 +1113,15 @@ public class CreateOGPage
     {
         exists=false;
         WebElement WebEle;
-        String file1=null;
+        String file1="";
+        String OGno="";
         int i=0;
         try
         {
             if(OGImport.isDisplayed())
             {
                 //Read all the .csv files in download directory
-                File dir = new File("C:\\Users\\Divya.Ramadas\\Downloads");
+                /*File dir = new File("C:\\Users\\Divya.Ramadas\\Downloads");
                 FileFilter fileFilter = new WildcardFileFilter("*.csv");
                 File[] files = dir.listFiles(fileFilter);
                 for (File fileName:files)
@@ -1131,24 +1132,72 @@ public class CreateOGPage
                     {
                         break;
                     }
+                }*/
+
+                File dir = new File("C:\\Users\\Divya.Ramadas\\Downloads");
+                FileFilter fileFilter = new WildcardFileFilter("*.csv");
+                File[] files = dir.listFiles(fileFilter);
+                for (File fileName:files)
+                {
+                    i++;
+                    file1 = fileName.getName();
+                    if(file1.contains("OrderGuide"))
+                    {
+                        if(TestBase.testEnvironment.get_url().contains("dsd"))
+                        {
+                            if(TestBase.testEnvironment.get_url().contains("ignitionqadsd"))
+                            {
+                                OGno="OrderGuide_OG108.csv";
+                            }
+                            else if(TestBase.testEnvironment.get_url().contains("autodsd"))
+                            {
+                                OGno="OrderGuide_OG670.csv";
+                            }
+                        }
+                        else if(TestBase.testEnvironment.get_url().contains("erp")||TestBase.testEnvironment.get_url().contains("ERP"))
+                        {
+                            OGno="OrderGuide_NEW.csv";
+                        }
+                    }
+                }
+                scenario.log("ORDER IMPORTED IS "+OGno);
+                if(OGImport.isDisplayed())
+                {
+                    HelpersMethod.ScrollElement(driver,OGImport);
+                    driver.findElement(By.xpath("//input[@id='ImportProducts' and @type='file']")).sendKeys("C:\\Users\\Divya.Ramadas\\Downloads\\" +OGno);
+                    exists=true;
+                    if (HelpersMethod.IsExists("//div[@class='loader']", driver))
+                    {
+                        WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
+                        HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 2000000);
+                    }
+                    if(HelpersMethod.IsExists("//div[contains(text(),'The following columns are required')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
+                    {
+                        WebElement popUp=HelpersMethod.FindByElement(driver,"xpath","//div[contains(text(),'The following columns are required')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]");
+                        WebElement okButton=popUp.findElement(By.xpath(".//button[text()='Ok']"));
+                        HelpersMethod.ActClick(driver,okButton,10000);
+                        if (HelpersMethod.IsExists("//div[@class='loader']", driver))
+                        {
+                            WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
+                            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 2000000);
+                        }
+                    }
+
                 }
 
                 if(HelpersMethod.IsExists("//div[contains(text(),'Import failed')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
                 {
                     WebElement popUp=HelpersMethod.FindByElement(driver,"xpath","//div[contains(text(),'Import failed')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]");
                     WebElement okButton=popUp.findElement(By.xpath(".//button[text()='Ok']"));
-                    HelpersMethod.ActClick(driver,okButton,1000);
-                }
-                else
-                {
-                    driver.findElement(By.xpath("//input[@id='ImportProducts' and @type='file']")).sendKeys("C:\\Users\\Divya.Ramadas\\Downloads\\" + file1);
+                    HelpersMethod.ActClick(driver,okButton,10000);
                     if (HelpersMethod.IsExists("//div[@class='loader']", driver))
                     {
                         WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                        HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000000);
+                        HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 2000000);
                     }
                 }
             }
+            Assert.assertEquals(exists,true);
         }
         catch (Exception e){}
     }

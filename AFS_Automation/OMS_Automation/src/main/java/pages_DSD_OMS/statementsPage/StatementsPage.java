@@ -770,6 +770,10 @@ public class StatementsPage
         try
         {
             Collections.sort(customerAccNo);
+            for(int i=0;i<=customerAccNo1.size()-1;i++)
+            {
+                scenario.log("SORTED VALUE IN UI "+customerAccNo1.get(i)+" SORTED VALUE IN COLLECTION.SORT() "+customerAccNo.get(i));
+            }
             if(customerAccNo.equals(customerAccNo1))
             {
                 scenario.log("CUSTOMER ACCOUNT NUMBERS ARE IN ASCENDING ORDER");
@@ -851,6 +855,10 @@ public class StatementsPage
         try
         {
             Collections.sort(customerName, String.CASE_INSENSITIVE_ORDER);
+            for(int i=0;i<=customerName.size()-1;i++)
+            {
+                scenario.log("SORTED VALUE IN UI "+customerName1.get(i)+" SORTED VALUE IN COLLECTION.SORT() "+customerName.get(i));
+            }
            if(CollectionUtils.isEqualCollection(customerName, customerName1))
            {
                exists=true;

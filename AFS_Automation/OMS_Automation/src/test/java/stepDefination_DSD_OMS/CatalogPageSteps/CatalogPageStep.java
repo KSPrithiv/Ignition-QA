@@ -197,6 +197,18 @@ public class CatalogPageStep
         catalogpage.SearchProduct1(pro);
     }
 
+    @Then("User enters Product# in Search bar and clear search")
+    public void enterProductInSearchBarAndClearSearch() throws SQLException, ClassNotFoundException, InstantiationException, IllegalAccessException
+    {
+        catalogpage = new CatalogPage(driver, scenario);
+        String pro = DataBaseConnection.DataBaseConn(TestBase.testEnvironment.getSingle_Prod_Sql());
+        scenario.log("PRODUCT FOR SEARCH IN SEARCH BAR "+pro);
+        catalogpage.SearchProduct1(pro);
+        catalogpage.clearSearch();
+        catalogpage.readProductNumbers();
+    }
+
+
     //Code for searching of product using product description
     @Then("User enters Product description in Search bar")
     public void enter_product_description_in_search_bar() throws SQLException, ClassNotFoundException, InstantiationException, IllegalAccessException, InterruptedException
