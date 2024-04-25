@@ -65,4 +65,16 @@ public class AllOrderPageStep1
         allOrders.dragAndDrop(header);
         allOrders.displayGroupingValue();
     }
+
+    @Then("User should search in grid filter for created by and order type")
+    public void userShouldSearchInGridFilterForCreatedByAndOrderType()
+    {
+        allOrders=new AllOrderPage(driver,scenario);
+        allOrders.ValidateAllOrder();
+        allOrders.searchForCreatedBy();
+        allOrders.DisplayOrderNumbers();
+        allOrders.ValidateAllOrder();
+        allOrders.searchOrderType();
+        allOrders.DisplayOrderNumbers();
+    }
 }

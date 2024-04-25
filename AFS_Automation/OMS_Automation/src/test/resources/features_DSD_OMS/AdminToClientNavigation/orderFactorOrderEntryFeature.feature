@@ -17,7 +17,7 @@ Feature: scenarios for admin credentials and client credentials, for Order Facto
       |Order Entry        | Order factor/Order increments|Order factor by customer and product   |    5 |
 
   @OrderFactorCustomer
-  Scenario: Test scenario for verifying order factor at product master level
+  Scenario: Test scenario for verifying order factor at customer and product
     Given User enters URL and is on login page and entered credentials
     When User is on Home Page
     Then User navigate to Client side

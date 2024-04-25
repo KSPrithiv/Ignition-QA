@@ -152,13 +152,18 @@ public class NewOrderEntryPage
     {
         exists=false;
         WebElement WebEle=null;
+        Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                .withTimeout(Duration.ofSeconds(200))
+                .pollingEvery(Duration.ofSeconds(2))
+                .ignoring(NoSuchElementException.class);
+        wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
         String status = HelpersMethod.returnDocumentStatus(driver);
         if (status.equals("loading"))
         {
             HelpersMethod.waitTillLoadingPage(driver);
         }
 
-        Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+        wait = new FluentWait<WebDriver>(driver)
                 .withTimeout(Duration.ofSeconds(200))
                 .pollingEvery(Duration.ofSeconds(2))
                 .ignoring(NoSuchElementException.class);
@@ -176,7 +181,7 @@ public class NewOrderEntryPage
         wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
         try
         {
-           if(HelpersMethod.IsExists("//div[contains(@class,'order-entry-page')]",driver))
+           if(HelpersMethod.IsExists("//div[@id='orderEntryCard']",driver))
            {
                 scenario.log("NEW ORDER ENTRY PAGE HAS BEEN FOUND");
                 exists=true;
@@ -1987,6 +1992,10 @@ public class NewOrderEntryPage
                 scenario.log("SKIP BUTTON HAS BEEN FOUND IN NEW OE PAGE");
                 exists=true;
             }
+            else
+            {
+                scenario.log("<span style='color:red'>CHECK DELIVERY DATE HAS BEEN CHANGED OR NOT, SKIP BUTTON NOT FOUND</span>");
+            }
             Assert.assertEquals(exists,true);
         }
         catch (Exception e){}
@@ -2001,10 +2010,10 @@ public class NewOrderEntryPage
             if (exists == true)
             {
                 WebElement WebEle = HelpersMethod.FindByElement(driver, "xpath", "//span[@id='SkipReason']/descendant::span[contains(@class,'k-icon k-i-arrow-s')]");
-                HelpersMethod.JScriptClick(driver, WebEle, 1000);
+                HelpersMethod.JScriptClick(driver, WebEle, 10000);
                 HelpersMethod.DropDownMenu_LowerCase(driver,reason);
                 WebEle = HelpersMethod.FindByElement(driver, "xpath", "//button[text()='Ok']");
-                HelpersMethod.ClickBut(driver, WebEle, 1000);
+                HelpersMethod.ClickBut(driver, WebEle, 10000);
                 Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
                         .withTimeout(Duration.ofSeconds(200))
                         .pollingEvery(Duration.ofSeconds(2))
@@ -2029,7 +2038,7 @@ public class NewOrderEntryPage
             HelpersMethod.ScrollElement(driver, grid);
             if(UnitInput.isDisplayed() && UnitInput.isEnabled())
             {
-                HelpersMethod.ActSendKey(driver, UnitInput, 1000, unit);
+                HelpersMethod.ActSendKey(driver, UnitInput, 10000, unit);
                 scenario.log("UNIT ENTERED IN GRID IS " + unit);
                 for (int j = 0; j <= 3; j++)
                 {
@@ -2038,7 +2047,7 @@ public class NewOrderEntryPage
                     {
                         WebElement dialogCurrentUnavailable = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(text(),'This product is currently unavailable')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]");
                         WebElement okButton=dialogCurrentUnavailable.findElement(By.xpath(".//button[text()='Ok']"));
-                        HelpersMethod.ClickBut(driver, okButton, 1000);
+                        HelpersMethod.ClickBut(driver, okButton, 10000);
                     }
 
                    //Check for 'Qty exceeds maximum of' Popup
@@ -2046,13 +2055,13 @@ public class NewOrderEntryPage
                    {
                     WebElement dialogExceed = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(text(),'Quantity exceeds maximum of')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]");
                     WebElement yesButton=dialogExceed.findElement(By.xpath(".//button[text()='Yes']"));
-                    HelpersMethod.ClickBut(driver, yesButton, 1000);
+                    HelpersMethod.ClickBut(driver, yesButton, 10000);
                    }
                 }
             }
             if(CaseInput.isDisplayed() && CaseInput.isEnabled())
             {
-                HelpersMethod.ActSendKey(driver, CaseInput, 1000, cas);
+                HelpersMethod.ActSendKey(driver, CaseInput, 10000, cas);
                 scenario.log("CASE ENTERED IN GRID IS "+cas);
                 for (int j = 0; j <= 3; j++)
                 {
@@ -2061,7 +2070,7 @@ public class NewOrderEntryPage
                     {
                         WebElement dialogCurrentUnavailable = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(text(),'This product is currently unavailable')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]");
                         WebElement okButton=dialogCurrentUnavailable.findElement(By.xpath(".//button[text()='Ok']"));
-                        HelpersMethod.ClickBut(driver, okButton, 1000);
+                        HelpersMethod.ClickBut(driver, okButton, 10000);
                     }
 
                     //Check for 'Qty exceeds maximum of' Popup
@@ -2069,7 +2078,7 @@ public class NewOrderEntryPage
                     {
                         WebElement dialogExceed = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(text(),'Quantity exceeds maximum of')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]");
                         WebElement yesButton=dialogExceed.findElement(By.xpath(".//button[text()='Yes']"));
-                        HelpersMethod.ClickBut(driver, yesButton, 1000);
+                        HelpersMethod.ClickBut(driver, yesButton, 10000);
                     }
                 }
             }

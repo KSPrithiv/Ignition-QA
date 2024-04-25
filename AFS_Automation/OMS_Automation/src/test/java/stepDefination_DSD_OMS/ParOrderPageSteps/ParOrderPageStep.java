@@ -324,5 +324,12 @@ public class ParOrderPageStep
         parOrderPage.readParProducts();
         parOrderPage.clearFilterOption();
     }
+
+    @Then("User enters different par qty in parlist {string}")
+    public void userEntersDifferentParQtyInParlist(String qty)
+    {
+        parOrderPage=new ParOrderPage(driver,scenario);
+        parOrderPage.enterQtyForParQty1(qty);
+    }
 }
 

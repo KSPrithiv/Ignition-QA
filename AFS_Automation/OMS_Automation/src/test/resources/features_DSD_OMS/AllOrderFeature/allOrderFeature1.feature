@@ -51,3 +51,10 @@ Feature: All orders
       | Drag and Drop | Options |
       | Order Type   |  Sum    |
 
+  @FilterAtProductLine
+  Scenario: Test scenario for filtering created by and order type
+    Given User must be on Order Entry Page to select All Orders
+    And User should navigate to All Orders
+    Then User clicks on Show all orders check box after Clicking All orders tab
+    And User goes through all the order in Open order grid
+    Then User should search in grid filter for created by and order type

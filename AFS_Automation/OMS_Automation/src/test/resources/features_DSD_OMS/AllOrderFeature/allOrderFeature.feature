@@ -64,6 +64,48 @@ Feature: All orders
     And User clicks on search button
     And User goes through all the order in Open order grid
 
+  @CopyOfOpenOrder
+  Scenario: Test scenario for copying Open order in all orders
+    Given User must be on Order Entry Page to select All Orders
+    And User should navigate to All Orders
+    Then User clicks on Show all orders check box after Clicking All orders tab
+    And User selects open order from the order status filter
+    #And User clicks on search button
+    Then User selects first order in the grid and clicks on copy button
+    And User selects Delivery date from delivery date popup and new order from Select order popup
+    Then User should make selection between Pending order or Start New order
+    Then User should select Note from popup and Order guide from popup
+    Then Enter PO# for New order
+      |PO123|
+    Then Enter Pro# in Quick Product Entry area
+    And Check for Case and Unit input box enabled or not based on that enter value
+      |80|70|
+    Then Click on Next button
+    And Click on SubmitOrder button
+    Then User should be navigated to Order Entry page
+
+  @CreateOpenOrderWithComment
+  Scenario: Test scenario to create open order with comment
+    Given User must be on Order Entry Page to select All Orders
+    And User should navigate to All Orders
+    Then User clicks on Start order button and selects Add from drop down
+    Then User selects customer account# and delivery date from popup
+    Then User should make selection between Pending order or Start New order
+    Then User should select Note from popup and Order guide from popup
+    Then Enter PO# for New order for All orders
+      |PO123|
+    Then Enter Pro# in Quick Product Entry area
+    And Check for Case and Unit input box enabled or not based on that enter value
+      |60|80|
+    Then User should click on Comment icon in Order entry card
+    And User should enter comment in comment popup
+      |Comment for All order|Order notes|
+    Then Click on Next button for All order
+    And Click on Submit Order button and read Order_no created for All order
+    Then User should be navigated back to All order page
+    And User clicks on Show all orders check box after navigating back
+    And User Clicks on Add filter button and Search for OrderNo
+
   @VerifyCommentIcon
   Scenario: Test scenario for verifying Comment Icon
     Given User must be on Order Entry Page to select All Orders
@@ -130,7 +172,7 @@ Feature: All orders
     Given User must be on Order Entry Page to select All Orders
     And User should navigate to All Orders
     Then User clicks on Show all orders check box after Clicking All orders tab
-    And User clicks on Order status and select Open order option from drop down
+    And User selects open order from the order status filter
     #And User Clicks on Add filter button and enter values for search options
     Then User select the order and click on Print button
 

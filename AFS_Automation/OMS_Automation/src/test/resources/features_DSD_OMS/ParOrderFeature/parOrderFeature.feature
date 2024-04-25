@@ -39,6 +39,17 @@ Feature: Par Order
     |    OG    |  ParList |
     | SampleOG |  ParDes2 |
 
+  @EditParOrder
+  Scenario Outline: Test scenario for editing qty in par order
+    Given User should navigate to OG and select "<OG>" from grid
+    Then User clicks on ParList tab and Selects parlist "<ParList>" from drop down
+    And User enters product# in search box and validates same product details displayed in Product grid
+    Then User enters different par qty in parlist "<Qty>"
+    Then User clicks on save Par list
+    Examples:
+      |    OG    |  ParList | Qty|
+      | SampleOG |  ParDes2 | 80 |
+
   @SearchForParOrder
   Scenario Outline: Test scenario to search for parlist and display details
     Given User should navigate to OG and select "<OG>" from grid

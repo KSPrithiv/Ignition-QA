@@ -30,7 +30,7 @@ Feature: Order Entry7
     Then User should be navigated to Order Entry page
 
   @EditWithOutChanging
-  Scenario:Test scenario for creating Order and edit it without making any changes, or usage of back to order list in summary page
+  Scenario:Test scenario for creating Order and edit it without making any changes
     Given User must be on Order Entry Page
     Then User must click Start Order button
     Then User should make selection between Pending order or Start New order

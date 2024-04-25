@@ -22,7 +22,7 @@ Feature: Disconnected mode
     And User should select Customer Account# from popup and select the delivery date from popup wait till synchronized
     Then User must be on Order Entry Page in disconnected mode
 
-  @DMOrderEntry
+  @DMSearchBarOrder
   Scenario: Creating Order in disconnected mode using product# search box
     Given User should be in Order entry page
     When User Clicks on network symbol and click on toggle button to navigate to disconnected mode

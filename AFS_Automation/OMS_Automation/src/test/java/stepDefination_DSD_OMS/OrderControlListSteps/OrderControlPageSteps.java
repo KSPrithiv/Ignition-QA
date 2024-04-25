@@ -406,6 +406,14 @@ public class OrderControlPageSteps
         orderControlList.clearSearchBar();
     }
 
+    @And("User should verify Order number created in OCL grid")
+    public void userShouldVerifyOrderNumberCreatedInOCLGrid()
+    {
+        orderControlList = new OrderControlListPage(driver, scenario);
+        orderControlList.Validate_OCL();
+        orderControlList.verifyOrderInOCLgrid(Ord_No);
+    }
+
     @And("User should verify Order number created in OCL grid and Order type in OCL")
     public void userShouldVerifyOrderNumberCreatedInOCLGridAndOrderTypeInOCL()
     {
@@ -535,5 +543,14 @@ public class OrderControlPageSteps
         List<List<String>> creditHold = tabledata.asLists(String.class);
         orderControlList = new OrderControlListPage(driver, scenario);
         orderControlList.searchForCreditHolder(creditHold.get(0).get(0));
+    }
+
+    @And("User should verify Order number created in OCL grid for created by column in OCL")
+    public void userShouldVerifyOrderNumberCreatedInOCLGridForCreatedByColumnInOCL()
+    {
+        orderControlList = new OrderControlListPage(driver, scenario);
+        orderControlList.Validate_OCL();
+        orderControlList.verifyOrderInOCLgrid(Ord_No);
+        orderControlList.clearSearchBar();
     }
 }

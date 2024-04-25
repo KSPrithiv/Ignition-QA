@@ -19,6 +19,7 @@ Feature: Order entry End
       |Closed|
     Then User should be navigated to Order Entry page
     Then Check for Remove Skip button is visible and Click on Remove Skip button
+    And User should reset the delivery date to current date
 
   @CancelAndSkipEnabled
   Scenario: Test scenario for verifying Cancel and Skip button is enabled in new OE page
@@ -62,6 +63,7 @@ Feature: Order entry End
       |closed|
     Then User should be navigated to Order Entry page
     Then Check for Remove Skip button is visible and Click on Remove Skip button
+    And User should reset the delivery date to current date
 
   @CancelAndSkipDisabled
   Scenario: Test scenario for verifying Cancel and Skip button is disabled in new OE

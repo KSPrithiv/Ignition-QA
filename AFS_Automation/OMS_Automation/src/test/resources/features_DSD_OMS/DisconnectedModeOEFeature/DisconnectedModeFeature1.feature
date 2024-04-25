@@ -51,26 +51,6 @@ Feature: Disconnected mode
     And Click on SubmitOrder button
     Then User should be navigated to Order Entry page
 
-  @DMCatalogOrder
-  Scenario: Creating order using catalog in disconnected mode
-    Given User should be in Order entry page
-    When User Clicks on network symbol and click on toggle button to navigate to disconnected mode
-    And Then User selects Go offline option in Disconnected mode popup
-    Then User should get Customer account# popup
-    And User should select Customer Account# from popup and select the delivery date from popup wait till synchronized
-    Then User must be on Order Entry Page in disconnected mode
-    Then User must click Start Order button
-    Then User should make selection between Pending order or Start New order
-    Then User should select Note from popup and Order guide from popup
-    Then Enter PO# for New order
-      |PO123|
-    Then Click on Add product drop down and select catalog option
-    And User should select Product from catalog and Enter Qty for the products
-      |50|60|
-    Then Click on Next button
-    And Click on SubmitOrder button
-    Then User should be navigated to Order Entry page
-
   @DMCardViewOrder
   Scenario: creation of order using card view from catalog page and create new order in Disconnected mode
     Given User should be in Order entry page
@@ -123,91 +103,6 @@ Feature: Disconnected mode
     Then User should get Customer account# popup
     And User should select Customer Account# from popup and select the delivery date from popup wait till synchronized
     Then User must be on Order Entry Page in disconnected mode and navigate to Catalog tab
-    And User should navigate to Catalog tab
-    And User should click on Reset filter button and all the products should displayed in List view in Catalog page
-    Then User enters Product# in Search bar and enters Qty for single Product in list view
-      |80|
-    Then User click on cart in catalog and click on Gotocart
-    And user should be on New Order entry page
-    Then Enter PO# for New order
-      |PO123|
-    Then Click on Next button
-    Then Click on SubmitOrder button for creating order from Catalog
-    Then User should be navigated to Order Entry page
-
-  @DMCreateOrderUsingListView
-  Scenario: Test scenario for creating order using List view in Disconnected mode
-    Given User should be in Order entry page
-    When User Clicks on network symbol and click on toggle button to navigate to disconnected mode
-    And Then User selects Go offline option in Disconnected mode popup
-    Then User should get Customer account# popup
-    And User should select Customer Account# from popup and select the delivery date from popup wait till synchronized
-    Then User must be on Order Entry Page in disconnected mode and navigate to Catalog tab
-    And User should navigate to Catalog tab
-    And User should click on Reset filter button and all the products should displayed in List view in Catalog page
-    Then User enters Product# in Search bar and enters Qty for single Product in list view
-      |80|
-    Then User click on cart in catalog and click on Gotocart
-    And user should be on New Order entry page
-    Then Enter PO# for New order
-      |PO123|
-    Then Click on Next button
-    Then Click on SubmitOrder button for creating order from Catalog
-    Then User should be navigated to Order Entry page
-
-  @CardViewOrder
-  Scenario: creation of order using card view from catalog page and create new order
-    Given User must be on Order Entry Page to select Catalog
-    And User should navigate to Catalog tab
-    And User should click on Reset filter button and all the products should displayed in Card view in Catalog page
-    Then User enters Product# in Search bar and enters Qty
-      |50|
-      |40|
-      |40|
-    Then User click on cart in catalog and click on Gotocart
-    And user should be on New Order entry page
-    Then Enter PO# for New order
-      |PO123|
-    Then Click on Next button
-    Then Click on SubmitOrder button for creating order from Catalog
-    Then User should be navigated to Order Entry page after creating order from catalog
-
-  @DeleteCardView
-  Scenario: Delete the product after adding it to cart,card view delete product
-    Given User must be on Order Entry Page to select Catalog
-    And User should navigate to Catalog tab
-    And User should click on Reset filter button and all the products should displayed in Card view in Catalog page
-    Then User enters Product# in Search bar and enter Qty and click on Delete button
-      |50|
-      |40|
-      |40|
-    Then User click on cart in catalog and click on Gotocart
-    And user should be on New Order entry page
-    Then Enter PO# for New order
-      |PO123|
-    Then Click on Next button
-    Then Click on SubmitOrder button for creating order from Catalog
-    Then User should be navigated to Order Entry page after creating order from catalog
-
-  @CreateOrderUsingListView
-  Scenario: Test scenario for creating order using List view
-    Given User must be on Order Entry Page to select Catalog
-    And User should navigate to Catalog tab
-    And User should click on Reset filter button and all the products should displayed in List view in Catalog page
-    Then User enters Product# in Search bar and enters Qty for single Product in list view
-      |80|
-    Then User click on cart in catalog and click on Gotocart
-    And user should be on New Order entry page
-    Then Enter PO# for New order
-      |PO123|
-    Then Click on Next button
-    Then Click on SubmitOrder button for creating order from Catalog
-    Then User should be navigated to Order Entry page
-
-
-  @CreateOrderUsingListView
-  Scenario: Test scenario for creating order using List view
-    Given User must be on Order Entry Page to select Catalog
     And User should navigate to Catalog tab
     And User should click on Reset filter button and all the products should displayed in List view in Catalog page
     Then User enters Product# in Search bar and enters Qty for single Product in list view

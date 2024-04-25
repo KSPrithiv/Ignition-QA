@@ -6,9 +6,14 @@ import io.cucumber.java.Before;
 import io.cucumber.java.Scenario;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
+import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.FluentWait;
+import org.openqa.selenium.support.ui.Wait;
 import pages_DSD_OMS.orderEntry.CheckOutSummaryPage;
 import pages_DSD_OMS.orderEntry.NewOrderEntryPage;
 import pages_DSD_OMS.orderEntry.OrderEntryPage;
@@ -17,6 +22,7 @@ import util.TestBase;
 
 import java.awt.*;
 import java.text.ParseException;
+import java.time.Duration;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
@@ -124,9 +130,52 @@ public class OrderEntryPageSteps5
     @Then("User click on Cancel button and Popup should appear")
     public void userClickOnCancelButtonAndPopupShouldAppear() throws InterruptedException, AWTException
     {
-        newOE=new NewOrderEntryPage(driver,scenario);
-        newOE.ValidateNewOE();
-        newOE.OECancel();
+        if(HelpersMethod.IsExists("//div[@id='orderEntryCard']",driver))
+        {
+            newOE = new NewOrderEntryPage(driver, scenario);
+            newOE.ValidateNewOE();
+            newOE.OECancel();
+        }
+        else if(HelpersMethod.IsExists("//div[@id='order-search-card']",driver))
+        {
+            Wait<WebDriver> wait;
+            orderpage=new OrderEntryPage(driver,scenario);
+            orderpage.Start_Order();
+            orderpage.NoPendingOrderPopup();
+            for (int i = 0; i <= 1; i++)
+            {
+                orderpage.OrderGuidePopup();
+                Thread.sleep(1000);
+                orderpage.NoNotePopHandling();
+            }
+            String status = HelpersMethod.returnDocumentStatus(driver);
+            if (status.equals("loading"))
+            {
+                HelpersMethod.waitTillLoadingPage(driver);
+            }
+
+            wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(200))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
+            status = HelpersMethod.returnDocumentStatus(driver);
+            if (status.equals("loading"))
+            {
+                HelpersMethod.waitTillLoadingPage(driver);
+            }
+
+            wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(200))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
+            newOE = new NewOrderEntryPage(driver, scenario);
+            newOE.ValidateNewOE();
+            newOE.OECancel();
+        }
     }
 
     @And("User should click on Cancel and skip button by selecting reason")

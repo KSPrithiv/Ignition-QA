@@ -3,6 +3,7 @@ package pages_DSD_OMS.Catalog;
 import gherkin.lexer.Ca;
 import helper.HelpersMethod;
 import io.cucumber.java.Scenario;
+import org.apache.logging.log4j.core.tools.picocli.CommandLine;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
@@ -1323,19 +1324,30 @@ public class CatalogPage
             //Clear Search bar
             WebEle=HelpersMethod.FindByElement(driver,"xpath","//span[@id='searchBarClearBtn']//*[local-name()='svg']");
             HelpersMethod.ScrollElement(driver,WebEle);
-            HelpersMethod.ActClick(driver,WebEle,1000);
-            if(HelpersMethod.IsExists("//div[@class='loader']",driver))
-            {
-                WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 2000000);
-            }
+            HelpersMethod.ActClick(driver,WebEle,10000);
+
+            Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(200))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
+            //code to enter product# in search bar
             HelpersMethod.ActSendKey(driver,SearchBar,1000,pro);
+            wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(200))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
+            //code to click on search index
             HelpersMethod.ActClick(driver,SearchIndex,1000);
-            if(HelpersMethod.IsExists("//div[@class='loader']",driver))
-            {
-                WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 2000000);
-            }
+            wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(200))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
             scenario.log("PRODUCT SECTLECTED IS "+pro);
             exists=true;
             Assert.assertEquals(exists,true);
@@ -2022,6 +2034,62 @@ public class CatalogPage
             wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
 
             Assert.assertEquals(exists, true);
+        }
+        catch (Exception e){}
+    }
+
+    public void clearSearch()
+    {
+        exists=false;
+        try
+        {
+            if(HelpersMethod.IsExists("//span[@id='searchBarClearBtn']",driver))
+            {
+                WebElement clearSearch = HelpersMethod.FindByElement(driver, "id", "searchBarClearBtn");
+                HelpersMethod.ActClick(driver, clearSearch, 10000);
+                Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                        .withTimeout(Duration.ofSeconds(200))
+                        .pollingEvery(Duration.ofSeconds(2))
+                        .ignoring(NoSuchElementException.class);
+                wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
+                //code to find whether the search bar is clear or not
+                WebElement inputSearch=HelpersMethod.FindByElement(driver,"xpath","//div[@class='searchBarDropdown']/descendant::input");
+                String searchValue=HelpersMethod.JSGetValueEle(driver,inputSearch,10000);
+                if(searchValue.equals(""))
+                {
+                    exists = true;
+                }
+            }
+            Assert.assertEquals(exists,true);
+        }
+        catch (Exception e){}
+    }
+
+    public void readProductNumbers()
+    {
+        exists=false;
+        String prodText;
+        Actions act=new Actions(driver);
+        try
+        {
+            scenario.log("PRODUCT NUMBER FOUND IN CATALOG ");
+            List<WebElement> prodNos= HelpersMethod.FindByElements(driver,"xpath","//div[@class='product-number']/span");
+            if(prodNos.size()!=0)
+            {
+                for (WebElement prodNo : prodNos)
+                {
+                    act.moveToElement(prodNo).build().perform();
+                    prodText = prodNo.getText();
+                    scenario.log(prodText);
+                    exists=true;
+                }
+            }
+            else
+            {
+                scenario.log("<span style='color:red'> PRODUCTS ARE NOT FOUND IN CATALOG</span>");
+            }
+            Assert.assertEquals(exists,true);
         }
         catch (Exception e){}
     }
