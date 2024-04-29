@@ -504,7 +504,8 @@ public class AllOrdersPageStep
     public void userSelectTheOrderAndClickOnPrintButton() throws InterruptedException, AWTException
     {
         allOrder=new AllOrderPage(driver,scenario);
-        allOrder.selectOrderForPrint();
+        allOrder.ValidateAllOrder();
+        allOrder.selectOrderForCopy();
         allOrder.PrintAllOrder();
         orderpage=new OrderEntryPage(driver,scenario);
         orderpage.Refresh_Page(CurrentULR);

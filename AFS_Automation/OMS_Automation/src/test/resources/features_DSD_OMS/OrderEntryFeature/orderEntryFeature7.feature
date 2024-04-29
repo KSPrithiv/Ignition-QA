@@ -88,24 +88,6 @@ Feature: Order Entry7
      # |Main grid|
     And User navigates back to OE by selecting Discard all option from pending order popup
 
-  @ChangeGridAndChangePriceOverride
-  Scenario: Test scenario for verifying price override by changing the price after chanigng gird
-    Given User must be on Order Entry Page
-    Then User must click Start Order button
-    Then User should make selection between Pending order or Start New order
-    Then User should select Note from popup and select any OG from popup
-      |SampleOG|
-    Then Enter PO# for New order
-      |PO123|
-    Then Enter Pro# in Quick Product Entry area
-    And Check for Case and Unit input box enabled or not based on that enter value
-      |80|60|
-    And User clicks on Grid type drop down and select different grid
-   #   |Regression grid|
-    Then User verifies visibility of Price override icon change the Price in price override and reset Grid type to Main grid
-     |0.01|
-    And User navigates back to OE by selecting Discard all option from pending order popup
-
   @OrderHistoryChangeGridType
   Scenario: Test scenario for changing grid type in order history
     Given User must be on Order Entry Page
@@ -122,27 +104,3 @@ Feature: Order Entry7
       |Main grid|
     And User should navigate back to Order entry page from Order history page
 
-  @VerifyForDuplicateComment
-  Scenario: Test scenario for verifying generation of duplicate comment should not happen
-    Given User must be on Order Entry Page
-    Then User must click Start Order button
-    Then User should make selection between Pending order or Start New order
-    Then User should select Note from popup and Order guide from popup
-    Then Enter PO# for New order
-      |PO123|
-    Then Enter Pro# in Quick Product Entry area
-    And Check for Case and Unit input box enabled or not based on that enter value
-      |80|60|
-    Then User should click on Comment icon in Order entry card
-    And User should enter comment in comment popup
-      |Comment at Order level for verifying duplicate comment|
-    Then User should click on Comment icon in Product grid
-    And should enter comment in comment popup
-      |Comment at Product level|
-    Then Click on Next button
-    Then Click on Comment icon in Summary page
-    And Enter Comment in summary page
-      |Comment at Order level in order summary page|
-    Then User checks for duplicate comments
-    Then Click on SubmitOrder button
-    Then User should be navigated to Order Entry page

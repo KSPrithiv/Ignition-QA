@@ -104,6 +104,7 @@ public class TestBase
                 chromeOptions.addArguments("--disable-offline-load-stale-cache");
                 chromeOptions.addArguments("--disk-cache-size=0");
                 chromeOptions.addArguments("--dns-prefetch-disable");
+                chromeOptions.addArguments("--ignore-certificate-errors","--disable-extensions","--disable-dev-shm-usage");
                 //chromeOptions.addArguments("--remote-allow-origins=*");
                 //driver.set(ThreadGuard.protect(new ChromeDriver(chromeOptions)));
                 driver.set(new ChromeDriver(chromeOptions));

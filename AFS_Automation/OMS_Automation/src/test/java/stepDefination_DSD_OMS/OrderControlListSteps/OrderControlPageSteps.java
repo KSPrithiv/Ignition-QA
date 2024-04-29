@@ -420,7 +420,7 @@ public class OrderControlPageSteps
         orderControlList = new OrderControlListPage(driver, scenario);
         orderControlList.verifyOrderInOCLgrid(Ord_No);
         orderControlList.verifyOrderType();
-        orderControlList.clearSearchBar();
+        //orderControlList.clearSearchBar();
     }
 
     @Then("User refreshes page and Clicks on Taken radio button delivery date should be increased by {int}")

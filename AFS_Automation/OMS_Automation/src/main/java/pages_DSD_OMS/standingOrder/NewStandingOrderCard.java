@@ -1221,13 +1221,23 @@ public class NewStandingOrderCard
     public void selectExpiredSO()
     {
         exists=false;
-        Actions act=new Actions(driver);
         try
         {
+            Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(200))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+            if(HelpersMethod.IsExists("//span[@class='k-icon k-i-arrow-chevron-down']",driver))
+            {
+                WebElement arrowDown=HelpersMethod.FindByElement(driver,"xpath","//span[@class='k-icon k-i-arrow-chevron-down']");
+                HelpersMethod.ActClick(driver,arrowDown,10000);
+            }
+
             if(HelpersMethod.IsExists("//div[@class='standing-orders']/descendant::span[contains(@class,'standing-orders-status  expired ')][1]/ancestor::button",driver))
             {
                 WebElement expiredSO=HelpersMethod.FindByElement(driver,"xpath","//div[@class='standing-orders']/descendant::span[contains(@class,'standing-orders-status  expired ')][1]/ancestor::button");
-                HelpersMethod.ActClick(driver,expiredSO,10000);
+                HelpersMethod.ActClick(driver,expiredSO,50000);
                 exists=true;
             }
             else

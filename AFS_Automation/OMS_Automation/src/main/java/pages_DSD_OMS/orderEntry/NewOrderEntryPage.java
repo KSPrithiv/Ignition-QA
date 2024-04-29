@@ -410,14 +410,14 @@ public class NewOrderEntryPage
                 if(Back_But.isEnabled())
                 {
                     HelpersMethod.ScrollElement(driver,Back_But);
-                    HelpersMethod.ClickBut(driver, Back_But, 1000);
+                    HelpersMethod.ClickBut(driver, Back_But, 10000);
                     if(HelpersMethod.IsExists("//div[contains(text(),'Are you sure you want to leave this page?')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
                     {
                         WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-widget k-window k-dialog')]/descendant::button[contains(text(),'Discard all')]");
-                        HelpersMethod.ClickBut(driver,WebEle,1000);
+                        HelpersMethod.ClickBut(driver,WebEle,10000);
                     }
                     wait = new FluentWait<WebDriver>(driver)
-                            .withTimeout(Duration.ofSeconds(200))
+                            .withTimeout(Duration.ofSeconds(400))
                             .pollingEvery(Duration.ofSeconds(2))
                             .ignoring(NoSuchElementException.class);
                     wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
@@ -2326,7 +2326,7 @@ public class NewOrderEntryPage
         exists=false;
         try
         {
-            Thread.sleep(1000);
+            Thread.sleep(2000);
             if(Ord_Comments.isDisplayed() && Ord_Comments.isEnabled())
             {
                 HelpersMethod.ScrollElement(driver, Ord_Comments);
@@ -5372,6 +5372,14 @@ public class NewOrderEntryPage
                    WebElement toastCurrentlyUnavailable = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='toast-message' and contains(text(),'This product is currently low on inventory.')]/preceding-sibling::button[text()='×']");
                    HelpersMethod.ActClick(driver, toastCurrentlyUnavailable, 4000);
                    scenario.log("TOAST MESSAGE FOR: CURRENTLY UNAVAILABLE HAS BEEN HANDLED");
+                   Thread.sleep(500);
+               }
+               if(HelpersMethod.IsExists("//div[contains(text(),'There are no matching products: ')]/ancestor::div[@id='toast-container']",driver))
+               {
+                   Thread.sleep(500);
+                   WebElement toastNoMatchingProd=HelpersMethod.FindByElement(driver,"xpath","//div[@id='toast-container']/descendant::button");
+                   HelpersMethod.ActClick(driver,toastNoMatchingProd,4000);
+                   scenario.log("<span style='color:red'>TOAST MESSAGE FOR: THERE ARE NO MATCHING PRODUCTS HAS BEEN HANDLED</span>");
                    Thread.sleep(500);
                }
            }

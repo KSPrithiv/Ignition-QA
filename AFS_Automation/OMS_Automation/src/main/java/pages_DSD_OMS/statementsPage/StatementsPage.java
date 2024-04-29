@@ -772,6 +772,7 @@ public class StatementsPage
             Collections.sort(customerAccNo);
             for(int i=0;i<=customerAccNo1.size()-1;i++)
             {
+                scenario.log("\n\n ");
                 scenario.log("SORTED VALUE IN UI "+customerAccNo1.get(i)+" SORTED VALUE IN COLLECTION.SORT() "+customerAccNo.get(i));
             }
             if(customerAccNo.equals(customerAccNo1))

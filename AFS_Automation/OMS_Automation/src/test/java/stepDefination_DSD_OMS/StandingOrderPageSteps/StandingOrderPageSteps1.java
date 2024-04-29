@@ -155,8 +155,8 @@ public class StandingOrderPageSteps1
         standingOrderCard.selectExpiredSO();
     }
 
-    @And("User sucessfuly deletes expired standing order")
-    public void userSucessfulyDeletesExpiredStandingOrder() throws InterruptedException
+    @And("User successfully deletes expired standing order")
+    public void userSuccessfullyDeletesExpiredStandingOrder() throws InterruptedException
     {
         standingOrderCard=new NewStandingOrderCard(driver,scenario);
         standingOrderCard.deleteExpiredSO();

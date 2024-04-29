@@ -3,6 +3,7 @@ package pages_DSD_OMS.webOrdering;
 import helper.HelpersMethod;
 import io.cucumber.java.Scenario;
 import io.cucumber.java.bs.A;
+import io.cucumber.java8.Th;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.Point;
@@ -16,6 +17,7 @@ import org.testng.Assert;
 
 import java.awt.*;
 import java.awt.event.InputEvent;
+import java.time.Duration;
 import java.util.List;
 
 /**
@@ -62,10 +64,23 @@ public class NavigationPage
         {
             List<WebElement> MenuItems= HelpersMethod.FindByElements(driver,"xpath","//div[@id='ActiveItemsAdminCard']/descendant::div[@class='i-draggable-item']/div[contains(@class,'i-draggable-item__container')]");
             index= MenuItems.size()-1;
+            int offsetX = (AvailableApp.getLocation().x + (AvailableApp.getSize().width / 2));
+            int offsetY = (AvailableApp.getLocation().y + (AvailableApp.getSize().height / 2));
             WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@id='ActiveItemsAdminCard']/descendant::div[@class='i-draggable-item']["+index+"]/div[contains(@class,'i-draggable-item__container')]");
-            HelpersMethod.ActDragDrop(driver,WebEle,AvailableApp);
-            HelpersMethod.ScrollElement(driver,WebEle);
-            act.clickAndHold(WebEle).moveToElement(AvailableApp).release().build().perform();
+            //HelpersMethod.ActDragDrop(driver,WebEle,AvailableApp);
+            //HelpersMethod.ScrollElement(driver,WebEle);
+            //act.clickAndHold(WebEle).moveToElement(AvailableApp).release().build().perform();
+            new Actions(driver)
+                    .moveToElement(WebEle)
+                    .pause(Duration.ofSeconds(1))
+                    .clickAndHold(WebEle)
+                    .pause(Duration.ofSeconds(1))
+                    .moveByOffset(1, 0)
+                    .moveToElement(AvailableApp,offsetX,offsetY)
+                    //.moveByOffset(offsetX, offsetY)
+                    //.pause(Duration.ofSeconds(2))
+                    .release().pause(Duration.ofSeconds(2)).build().perform();
+            Thread.sleep(4000);
             exists=true;
             Assert.assertEquals(exists,true);
         }
@@ -76,55 +91,34 @@ public class NavigationPage
     {
         exists=false;
         Actions act=new Actions(driver);
+        String menuText="";
         WebElement fromElement;
         WebElement toElement=HelpersMethod.FindByElement(driver,"xpath","//div[@id='ActiveItemsAdminCard']/descendant::div[@class='i-droppable-container']");
         int index;
         try
         {
-
             List<WebElement> MenuItems= HelpersMethod.FindByElements(driver,"xpath","//div[@id='AvailableItemsAdminCard']/descendant::div[@class='i-draggable-item']/div[contains(@class,'i-draggable-item__container')]");
+            List<WebElement> Menus=HelpersMethod.FindByElements(driver,"xpath","//div[@id='AvailableItemsAdminCard']/descendant::div[@class='content']");
+            for(WebElement Menu:Menus)
+            {
+                act.moveToElement(Menu).build().perform();
+                menuText=Menu.getText();
+                scenario.log("MENU NAME "+menuText);
+            }
+
             if(MenuItems.size()==1)
             {
                 index=1;
                 fromElement = HelpersMethod.FindByElement(driver, "xpath", "//div[@id='AvailableItemsAdminCard']/descendant::div[@class='i-draggable-item'][" + index + "]/div[contains(@class,'i-draggable-item__container')]");
                 //HelpersMethod.ActDragDrop(driver, WebEle, WebOrderMenu);
-                //METHOD1
-                Actions builder = new Actions(driver);
 
+                Actions builder = new Actions(driver);
                 Action dragAndDrop = builder.clickAndHold(fromElement)
                         .moveToElement(toElement)
                         .release(toElement)
                         .build();
                 dragAndDrop.perform();
-                //METHOD2
-              //  act.dragAndDrop(fromElement, toElement).build().perform();
-
-                //METHOD3
-           /*     final String java_script =
-                        "var src=arguments[0],tgt=arguments[1];var dataTransfer={dropEffe" +
-                                "ct:'',effectAllowed:'all',files:[],items:{},types:[],setData:fun" +
-                                "ction(format,data){this.items[format]=data;this.types.append(for" +
-                                "mat);},getData:function(format){return this.items[format];},clea" +
-                                "rData:function(format){}};var emit=function(event,target){var ev" +
-                                "t=document.createEvent('Event');evt.initEvent(event,true,false);" +
-                                "evt.dataTransfer=dataTransfer;target.dispatchEvent(evt);};emit('" +
-                                "dragstart',src);emit('dragenter',tgt);emit('dragover',tgt);emit(" +
-                                "'drop',tgt);emit('dragend',src);";
-
-              //  ((JavascriptExecutor).getDriver()).executeScript(java_script, toElement, fromElement);
                 Thread.sleep(2000);
-
-
-                org.openqa.selenium.Point coordinates1 = toElement.getLocation();
-                Point coordinates2 = fromElement.getLocation();
-                Robot robot = new Robot();
-                robot.mouseMove(coordinates1.getX(), coordinates1.getY());
-                robot.mousePress(InputEvent.BUTTON1_MASK);
-                robot.mouseMove(coordinates2.getX(), coordinates2.getY());
-                robot.mouseRelease(InputEvent.BUTTON1_MASK);
-                Thread.sleep(2000);*/
-
-
                 exists = true;
             }
             else
@@ -154,6 +148,7 @@ public class NavigationPage
         }
         catch (Exception e){}
     }
+
 
     public void ValidateNavigation()
     {
@@ -245,6 +240,40 @@ public class NavigationPage
                 exists=false;
             }
             Assert.assertEquals(exists,true);
+        }
+        catch (Exception e){}
+    }
+
+    public void WebOrderMenuItems()
+    {
+        Actions act=new Actions(driver);
+        String menuText="";
+        try
+        {
+            List<WebElement> webMenuItems=HelpersMethod.FindByElements(driver,"xpath","//div[@id='ActiveItemsAdminCard']/descendant::div[@class='content']");
+            for(WebElement webMenu:webMenuItems)
+            {
+                act.moveToElement(webMenu).build().perform();
+                menuText=webMenu.getText();
+                scenario.log("MENU ITEM FOUND UNDER WEB ORDER MENU "+menuText);
+            }
+        }
+        catch (Exception e){}
+    }
+
+    public void WebOrderMenuItems1()
+    {
+        Actions act=new Actions(driver);
+        String menuText="";
+        try
+        {
+            List<WebElement> webMenuItems=HelpersMethod.FindByElements(driver,"xpath","//div[@id='AvailableItemsAdminCard']/descendant::div[@class='content']");
+            for(WebElement webMenu:webMenuItems)
+            {
+                act.moveToElement(webMenu).build().perform();
+                menuText=webMenu.getText();
+                scenario.log("MENU ITEM FOUND UNDER WEB ORDER MENU "+menuText);
+            }
         }
         catch (Exception e){}
     }

@@ -29,10 +29,16 @@ http://maven.apache.org/xsd/maven-4.0.0.xsd">
             <scope>test</scope>
         </dependency>
         <!-- https://mvnrepository.com/artifact/io.github.bonigarcia/webdrivermanager -->
-        <dependency>
+      <!--  <dependency>
             <groupId>io.github.bonigarcia</groupId>
             <artifactId>webdrivermanager</artifactId>
             <version>5.6.4</version>
+        </dependency>-->
+        <!-- https://mvnrepository.com/artifact/io.github.bonigarcia/webdrivermanager -->
+        <dependency>
+            <groupId>io.github.bonigarcia</groupId>
+            <artifactId>webdrivermanager</artifactId>
+            <version>5.8.0</version>
         </dependency>
         <dependency>
             <groupId>com.google.guava</groupId>
@@ -133,10 +139,16 @@ http://maven.apache.org/xsd/maven-4.0.0.xsd">
             <version>1.6.2</version>
         </dependency>
        <!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java -->
-       <dependency>
+       <!--<dependency>
            <groupId>org.seleniumhq.selenium</groupId>
            <artifactId>selenium-java</artifactId>
            <version>4.19.1</version>
+       </dependency>-->
+       <!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java -->
+       <dependency>
+           <groupId>org.seleniumhq.selenium</groupId>
+           <artifactId>selenium-java</artifactId>
+           <version>4.20.0</version>
        </dependency>
         <dependency>
             <groupId>org.aspectj</groupId>
@@ -204,10 +216,16 @@ http://maven.apache.org/xsd/maven-4.0.0.xsd">
             <version>1.27</version>
         </dependency>
         <!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-support -->
-        <dependency>
+        <!-- <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-support</artifactId>
             <version>4.19.1</version>
+        </dependency>-->
+        <!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-support -->
+        <dependency>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-support</artifactId>
+            <version>4.20.0</version>
         </dependency>
         <dependency>
             <groupId>org.apache.logging.log4j</groupId>

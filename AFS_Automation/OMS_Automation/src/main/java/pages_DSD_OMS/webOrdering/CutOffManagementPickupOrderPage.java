@@ -394,7 +394,7 @@ public class CutOffManagementPickupOrderPage
                 if(!HelpersMethod.IsExists("//div[@id='filter-by-warehouse']/descendant::div[@class='card-setting-area']/descendant::span[@class='k-switch-container' and @aria-checked='true']",driver))
                 {
                     HelpersMethod.ScrollElement(driver, filterWarehouseToggle);
-                    HelpersMethod.JScriptClick(driver, filterWarehouseToggle, 10000);
+                    HelpersMethod.ActClick(driver, filterWarehouseToggle, 10000);
                     scenario.log("FILTER WAREHOUSE TOGGLE BUTTON");
                     if (HelpersMethod.IsExists("//div[@class='loader']", driver))
                     {
@@ -417,10 +417,15 @@ public class CutOffManagementPickupOrderPage
         exists=false;
         try
         {
+            if (HelpersMethod.IsExists("//div[@class='loader']", driver))
+            {
+                WebElement WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 200000);
+            }
             if(wareHouseDropDown.isDisplayed())
             {
                 HelpersMethod.ScrollElement(driver,wareHouseDropDown);
-                HelpersMethod.ClickBut(driver,wareHouseDropDown,10000);
+                HelpersMethod.ClickBut(driver,wareHouseDropDown,40000);
                 scenario.log("WAREHOUSE DROPDOWN BUTTON CLICKED");
                 exists=true;
             }
