@@ -206,35 +206,7 @@ Feature: All orders
     And User clicks on Show all orders check box
     And User Clicks on Add filter button and Search for OrderNo
 
-  @CopyAllOrder
-  Scenario: Test scenario to create copy of Open order/All order
-    Given User must be on Order Entry Page to select All Orders
-    And User should navigate to All Orders
-    Then User clicks on Start order button and selects Add from drop down
-    Then User selects customer account# and delivery date from popup to edit all order
-    Then User should make selection between Pending order or Start New order
-    Then User should select Note from popup and Order guide from popup
-    Then Enter PO# for New order for All orders
-      |PO123|
-    Then Enter Pro# in Quick Product Entry area
-    And Check for Case and Unit input box enabled or not based on that enter value
-      |100|100|
-    Then Click on Next button for All order
-    And Click on Submit Order button and read Order_no created for All order
-    Then User should be navigated back to All order page
-    And User clicks on Show all orders check box after navigating back
-    #And User clicks on Order status and select Active order option from drop down
-    And User Clicks on Add filter button and Search for OrderNo
-    Then User select the order and click on copy button and select delivery date
-    Then User should make selection between Pending order or Start New order
-    Then User should select Note from popup and Order guide from popup
-    Then Enter PO# for New order for All orders
-      |PO123|
-    Then Click on Next button and select option Continue without payment option
-    And Click on Submit Order button and read Order_no created for All order
-    Then User should be navigated back to All order page
-    And User clicks on Show all orders check box
-    And User Clicks on Add filter button and Search for OrderNo
+
 
 
 

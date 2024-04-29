@@ -76,6 +76,26 @@ Feature: Order entry End
     Then User should be navigated to Order Entry page
     And User should reset the delivery date to current date
 
+  @ChangeGridAndChangePriceOverride
+  Scenario: Test scenario for verifying price override by changing the price after chanigng gird
+    Given User must be on Order Entry Page
+    Then User must click Start Order button
+    Then User should make selection between Pending order or Start New order
+    Then User should select Note from popup and select any OG from popup
+      |SampleOG|
+    Then Enter PO# for New order
+      |PO123|
+    Then Enter Pro# in Quick Product Entry area
+    And Check for Case and Unit input box enabled or not based on that enter value
+      |80|60|
+    And User clicks on Grid type drop down and select different grid
+   #   |Regression grid|
+    Then User verifies visibility of Price override icon change the Price in price override and reset Grid type to Main grid
+      |0.01|
+    And User navigates back to OE by selecting Discard all option from pending order popup
+
+
+
  #@LogoutOE
  # Scenario:Loging out from the application
  #   And Refresh the page if any dialog box is displayed

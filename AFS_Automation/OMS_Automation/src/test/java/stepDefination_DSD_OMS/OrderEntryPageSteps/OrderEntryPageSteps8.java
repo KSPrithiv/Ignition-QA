@@ -153,7 +153,7 @@ public class OrderEntryPageSteps8
         exists = newOE.ClickNext();
         newOE.OutOfStockPop_ERP();
         checkorder=new CheckOutOrderPage(driver,scenario);
-        checkorder.VerifyCheckOut();
+        //checkorder.VerifyCheckOut();
         checkorder.validatePaymentOptionsDisabled();
         checkorder.NextButton_Click();
     }

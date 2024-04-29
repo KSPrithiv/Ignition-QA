@@ -6,6 +6,7 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import org.openqa.selenium.WebDriver;
 import pages_DSD_OMS.adminCatalogSearch.catalogSearchPage;
+import pages_DSD_OMS.adminSecurity.AdminSecurityPermissionPage;
 import pages_DSD_OMS.login.LoginPage;
 import pages_DSD_OMS.orderEntry.CheckOutSummaryPage;
 import pages_DSD_OMS.orderEntry.NewOrderEntryPage;
@@ -26,8 +27,10 @@ public class AdminOrderEntryStep1
     Scenario scenario;
     static boolean exists=false;
     static String primarySalesRep;
+    static AdminHomePage adminHomePage;
     static OrderEntryPage orderpage;
     static NewOrderEntryPage newOE;
+    static AdminSecurityPermissionPage adminSecurityPermissionPage;
 
     @Before
     public void LaunchBrowser1(Scenario scenario) throws Exception
@@ -52,5 +55,30 @@ public class AdminOrderEntryStep1
     {
         newOE=new NewOrderEntryPage(driver,scenario);
         newOE.verifySalesRepValue(primarySalesRep);
+    }
+
+    @And("User should disable admin settings {string} {string}, for permission")
+    public void userShouldDisableAdminSettingsForPermission(String setting, String settingId)
+    {
+        adminSecurityPermissionPage=new AdminSecurityPermissionPage(driver,scenario);
+        adminSecurityPermissionPage.validateAdminPermissionPage();
+        adminSecurityPermissionPage.searchAdminSettingInSearchBarClear();
+        adminSecurityPermissionPage.searchAdminSettingInSearchBar(setting);
+        adminSecurityPermissionPage.validateAdminSettingSearchValue(setting);
+        adminSecurityPermissionPage.uncheckCheckbox(settingId);
+        adminHomePage=new AdminHomePage(driver,scenario);
+        adminHomePage.Click_SaveButton();
+    }
+
+    @And("User should enabled admin settings {string} {string}, for permission")
+    public void userShouldEnabledAdminSettingsForPermission(String setting, String settingId)
+    {
+            adminSecurityPermissionPage=new AdminSecurityPermissionPage(driver,scenario);
+            adminSecurityPermissionPage.searchAdminSettingInSearchBarClear();
+            adminSecurityPermissionPage.searchAdminSettingInSearchBar(setting);
+            adminSecurityPermissionPage.validateAdminSettingSearchValue(setting);
+            adminSecurityPermissionPage.uncheckCheckbox(settingId);
+            adminHomePage=new AdminHomePage(driver,scenario);
+            adminHomePage.Click_SaveButton();
     }
 }

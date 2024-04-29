@@ -43,7 +43,7 @@ public class TestRunnerAdmin_Grid extends AbstractTestNGCucumberTests
     @AfterClass
     public static void afterclass() throws InterruptedException, MessagingException, IOException
     {
-        Thread.sleep(500);
+        //Thread.sleep(500);
         TestBase.CloseBrowser();
 
         if(TestBase.testEnvironment.get_browser().equalsIgnoreCase("Firefox"))

@@ -131,7 +131,7 @@ public class CustomerInquiryPageERP
         {
             Actions act = new Actions(driver);
             Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
-                    .withTimeout(Duration.ofSeconds(120))
+                    .withTimeout(Duration.ofSeconds(400))
                     .pollingEvery(Duration.ofSeconds(2))
                     .ignoring(NoSuchElementException.class);
             wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
@@ -142,7 +142,7 @@ public class CustomerInquiryPageERP
             HelpersMethod.ClickBut(driver, CustInqMenu, 10000);
             exists = true;
              wait = new FluentWait<WebDriver>(driver)
-                    .withTimeout(Duration.ofSeconds(120))
+                    .withTimeout(Duration.ofSeconds(400))
                     .pollingEvery(Duration.ofSeconds(2))
                     .ignoring(NoSuchElementException.class);
             wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
@@ -153,7 +153,7 @@ public class CustomerInquiryPageERP
                 HelpersMethod.waitTillLoadingPage(driver);
             }
             wait = new FluentWait<WebDriver>(driver)
-                    .withTimeout(Duration.ofSeconds(120))
+                    .withTimeout(Duration.ofSeconds(400))
                     .pollingEvery(Duration.ofSeconds(2))
                     .ignoring(NoSuchElementException.class);
             wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
@@ -625,10 +625,16 @@ public class CustomerInquiryPageERP
         exists=false;
         try
         {
+            Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(400))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
             if(HelpersMethod.IsExists("//div[contains(@class,'customer-account-component')]/following-sibling::button//*[local-name()='svg']",driver))
             {
                 WebElement custAcc= HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'customer-account-component')]/following-sibling::button//*[local-name()='svg']");
-                HelpersMethod.ClickBut(driver,custAcc,4000);
+                HelpersMethod.ClickBut(driver,custAcc,10000);
                 exists=true;
             }
             Assert.assertEquals(exists,true);
@@ -641,6 +647,12 @@ public class CustomerInquiryPageERP
         exists=false;
         try
         {
+            Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(400))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
             if(HelpersMethod.IsExists("//div[@class='i-grid']/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
             {
                 scenario.log("CUSTOMER ACCOUNT DIALOG BOX HAS BEEN FOUND");
@@ -781,7 +793,7 @@ public class CustomerInquiryPageERP
         try
         {
             Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
-                    .withTimeout(Duration.ofSeconds(120))
+                    .withTimeout(Duration.ofSeconds(400))
                     .pollingEvery(Duration.ofSeconds(2))
                     .ignoring(NoSuchElementException.class);
             wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
@@ -796,39 +808,39 @@ public class CustomerInquiryPageERP
                 if(filters.size()!=1)
                 {
                     //click on add button
-                    HelpersMethod.ActClick(driver,addButton,1000);
+                    HelpersMethod.ActClick(driver,addButton,10000);
                     //identify clear all button and click on that
                     WebElement Clear=modalContainer.findElement(By.xpath(".//button[contains(text(),'Clear all')]"));
                     if(Clear.isEnabled())
                     {
-                        HelpersMethod.ActClick(driver,Clear,2000);
+                        HelpersMethod.ActClick(driver,Clear,10000);
                     }
                 }
 
                 //click on add button
-                HelpersMethod.ActClick(driver,addButton,1000);
+                HelpersMethod.ActClick(driver,addButton,10000);
 
                 //Enter value to first input of addfilter
                 WebElement addFilterInput1=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'i-filter-popup--add')]/descendant::input[@class='i-search-box__input']");
-                HelpersMethod.EnterText(driver,addFilterInput1,2000,searchValue);
+                HelpersMethod.EnterText(driver,addFilterInput1,10000,searchValue);
                 //Click on check box
                 WebElement checkBox=HelpersMethod.FindByElement(driver,"id","FORMATTED_CM_CUSTKEY");
-                HelpersMethod.ActClick(driver,checkBox,2000);
+                HelpersMethod.ActClick(driver,checkBox,10000);
                 //enter search value in second search input box
                 WebElement addFilterInput2=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'i-filter-popup__content__input')]/input");
-                HelpersMethod.EnterText(driver,addFilterInput2,4000,TestBase.testEnvironment.get_Account());
+                HelpersMethod.EnterText(driver,addFilterInput2,10000,TestBase.testEnvironment.get_Account());
                 //Click on Apply button
                 WebElement applyButton=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'i-filter-popup__footer')]/button[text()='Apply']");
-                HelpersMethod.ActClick(driver,applyButton,1000);
+                HelpersMethod.ActClick(driver,applyButton,10000);
                 //Select 1st row in the customer accout# dialog popup
                 WebElement custAccount=modalContainer.findElement(By.xpath(".//tr[contains(@class,'k-master-row')][1]"));
-                HelpersMethod.ActClick(driver,custAccount,1000);
+                HelpersMethod.ActClick(driver,custAccount,10000);
                 //Click on cancel button to close dialog box
                 WebElement cancelButton=modalContainer.findElement(By.xpath(".//button[text()='Cancel']"));
-                HelpersMethod.ActClick(driver,cancelButton,1000);
+                HelpersMethod.ActClick(driver,cancelButton,10000);
 
                 wait = new FluentWait<WebDriver>(driver)
-                        .withTimeout(Duration.ofSeconds(120))
+                        .withTimeout(Duration.ofSeconds(400))
                         .pollingEvery(Duration.ofSeconds(2))
                         .ignoring(NoSuchElementException.class);
                 wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));

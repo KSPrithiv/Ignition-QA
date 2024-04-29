@@ -711,12 +711,15 @@ public class AdminSecurityPermissionPage
         exists=false;
         try
         {
-            WebElement searchIndex=HelpersMethod.FindByElement(driver,"xpath","//input[contains(@id,'SearchBarPermissionsTree')]/ancestor::div[@class='i-search-box']//*[local-name()='svg' and contains(@class,'i-search-box__clear')]");
-            HelpersMethod.ActClick(driver,searchIndex,10000);
-            exists=true;
+            if(HelpersMethod.IsExists("//input[contains(@id,'SearchBarPermissionsTree')]/ancestor::div[@class='i-search-box']//*[local-name()='svg' and contains(@class,'i-search-box__clear')]",driver))
+            {
+                WebElement searchIndex = HelpersMethod.FindByElement(driver, "xpath", "//input[contains(@id,'SearchBarPermissionsTree')]/ancestor::div[@class='i-search-box']//*[local-name()='svg' and contains(@class,'i-search-box__clear')]");
+                HelpersMethod.ActClick(driver, searchIndex, 10000);
+                exists = true;
+            }
+            Assert.assertEquals(exists,true);
         }
         catch (Exception e){}
-        Assert.assertEquals(exists,true);
     }
 
     public void compareEnabledPermissions(String arg0)
@@ -1286,6 +1289,43 @@ public class AdminSecurityPermissionPage
             else
             {
                 scenario.log("CHECKBOX HAS NOT BEEN FOUND");
+            }
+            Assert.assertEquals(exists,true);
+        }
+        catch (Exception e){}
+    }
+
+    public void validateAdminPermissionPage()
+    {
+        exists=false;
+        String status = HelpersMethod.returnDocumentStatus(driver);
+        if (status.equals("loading"))
+        {
+            HelpersMethod.waitTillLoadingPage(driver);
+        }
+
+        Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                .withTimeout(Duration.ofSeconds(300))
+                .pollingEvery(Duration.ofSeconds(2))
+                .ignoring(NoSuchElementException.class);
+        wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+        status = HelpersMethod.returnDocumentStatus(driver);
+        if (status.equals("loading"))
+        {
+            HelpersMethod.waitTillLoadingPage(driver);
+        }
+        wait = new FluentWait<WebDriver>(driver)
+                .withTimeout(Duration.ofSeconds(300))
+                .pollingEvery(Duration.ofSeconds(2))
+                .ignoring(NoSuchElementException.class);
+        wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
+        try
+        {
+            if(HelpersMethod.IsExists("//div[@id='permissionsByRoleCard']",driver))
+            {
+                scenario.log("ADMIN PERMISSION PAGE HAS BEEN FOUND");
+                exists=true;
             }
             Assert.assertEquals(exists,true);
         }

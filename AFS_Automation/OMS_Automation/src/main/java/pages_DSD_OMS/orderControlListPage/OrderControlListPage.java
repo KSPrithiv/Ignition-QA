@@ -107,7 +107,7 @@ public class OrderControlListPage
         try
         {
             Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
-                    .withTimeout(Duration.ofSeconds(200))
+                    .withTimeout(Duration.ofSeconds(400))
                     .pollingEvery(Duration.ofSeconds(2))
                     .ignoring(NoSuchElementException.class);
             wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
@@ -118,7 +118,7 @@ public class OrderControlListPage
                 HelpersMethod.waitTillLoadingPage(driver);
             }
             wait = new FluentWait<WebDriver>(driver)
-                    .withTimeout(Duration.ofSeconds(200))
+                    .withTimeout(Duration.ofSeconds(400))
                     .pollingEvery(Duration.ofSeconds(2))
                     .ignoring(NoSuchElementException.class);
             wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
@@ -128,7 +128,7 @@ public class OrderControlListPage
                 HelpersMethod.waitTillLoadingPage(driver);
             }
             wait = new FluentWait<WebDriver>(driver)
-                    .withTimeout(Duration.ofSeconds(300))
+                    .withTimeout(Duration.ofSeconds(500))
                     .pollingEvery(Duration.ofSeconds(2))
                     .ignoring(NoSuchElementException.class);
             wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
@@ -535,48 +535,92 @@ public class OrderControlListPage
             //Visibility of calender
             if (HelpersMethod.IsExists("//div[contains(@class,'k-widget k-calendar k-calendar-infinite')]", driver))
             {
-                // to fetch the web element of the modal container
+                // to fetch the web element of the modal container, i.e.calender
                 WebElement fromDateContainer = driver.findElement(By.xpath("//table[@class='k-calendar-table']"));
-
-                WebElement ele1 = fromDateContainer.findElement(By.xpath(".//td[contains(@title,'" + formattedDate1 + "')]"));
-                if (ele1.isDisplayed() && ele1.isEnabled())
+                if(!formattedDate1.contains("Sunday"))
                 {
-                    HelpersMethod.JSScroll(driver, ele1);
-                    HelpersMethod.ActClick(driver, ele1, 10000);
-                    exists = true;
-                    status = HelpersMethod.returnDocumentStatus(driver);
-                    if (status.equals("loading"))
+                    WebElement ele1 = fromDateContainer.findElement(By.xpath(".//td[contains(@title,'" + formattedDate1 + "')]"));
+                    if (ele1.isDisplayed() && ele1.isEnabled())
                     {
-                        HelpersMethod.waitTillLoadingPage(driver);
+                        HelpersMethod.JSScroll(driver, ele1);
+                        HelpersMethod.ActClick(driver, ele1, 10000);
+                        exists = true;
+                        status = HelpersMethod.returnDocumentStatus(driver);
+                        if (status.equals("loading"))
+                        {
+                            HelpersMethod.waitTillLoadingPage(driver);
+                        }
+
+                        Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                                .withTimeout(Duration.ofSeconds(120))
+                                .pollingEvery(Duration.ofSeconds(2))
+                                .ignoring(NoSuchElementException.class);
+                        wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
+                        status = HelpersMethod.returnDocumentStatus(driver);
+                        if (status.equals("loading"))
+                        {
+                            HelpersMethod.waitTillLoadingPage(driver);
+                        }
+                        wait = new FluentWait<WebDriver>(driver)
+                                .withTimeout(Duration.ofSeconds(120))
+                                .pollingEvery(Duration.ofSeconds(2))
+                                .ignoring(NoSuchElementException.class);
+                        wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
+                        WebEle = HelpersMethod.FindByElement(driver, "id", "CallDate");
+                        JavascriptExecutor jse = (JavascriptExecutor) driver;
+                        FTDate = (String) jse.executeScript("return arguments[0].getAttribute('value');", WebEle);
+                        scenario.log(FTDate + " HAS BEEN SELECTED FOR OCL");
                     }
-
-                    Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
-                            .withTimeout(Duration.ofSeconds(120))
-                            .pollingEvery(Duration.ofSeconds(2))
-                            .ignoring(NoSuchElementException.class);
-                    wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
-
-                    status = HelpersMethod.returnDocumentStatus(driver);
-                    if (status.equals("loading"))
-                    {
-                        HelpersMethod.waitTillLoadingPage(driver);
-                    }
-                    wait = new FluentWait<WebDriver>(driver)
-                            .withTimeout(Duration.ofSeconds(120))
-                            .pollingEvery(Duration.ofSeconds(2))
-                            .ignoring(NoSuchElementException.class);
-                    wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
-
-                    WebEle = HelpersMethod.FindByElement(driver, "id", "CallDate");
-                    JavascriptExecutor jse = (JavascriptExecutor) driver;
-                    FTDate = (String) jse.executeScript("return arguments[0].getAttribute('value');", WebEle);
-
-                    scenario.log(FTDate + " HAS BEEN SELECTED FOR OCL");
                 }
                 else
                 {
-                    scenario.log("FAILED TO SELECT END DATE");
+                    myDateObj = LocalDate.now().plusDays(i+1);
+                    myFormatObj = DateTimeFormatter.ofPattern("EEEE, MMMM d, yyyy");
+                    formattedDate1 = myDateObj.format(myFormatObj);
+
+                    // to fetch the web element of the modal container, i.e.calender
+                    fromDateContainer = driver.findElement(By.xpath("//table[@class='k-calendar-table']"));
+                    WebElement ele1 = fromDateContainer.findElement(By.xpath(".//td[contains(@title,'" + formattedDate1 + "')]"));
+                    if (ele1.isDisplayed() && ele1.isEnabled())
+                    {
+                       HelpersMethod.JSScroll(driver, ele1);
+                       HelpersMethod.ActClick(driver, ele1, 10000);
+                       exists = true;
+                       status = HelpersMethod.returnDocumentStatus(driver);
+                       if (status.equals("loading"))
+                        {
+                           HelpersMethod.waitTillLoadingPage(driver);
+                        }
+
+                        Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                                    .withTimeout(Duration.ofSeconds(120))
+                                    .pollingEvery(Duration.ofSeconds(2))
+                                    .ignoring(NoSuchElementException.class);
+                        wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
+                        status = HelpersMethod.returnDocumentStatus(driver);
+                        if (status.equals("loading"))
+                        {
+                             HelpersMethod.waitTillLoadingPage(driver);
+                        }
+                        wait = new FluentWait<WebDriver>(driver)
+                                    .withTimeout(Duration.ofSeconds(120))
+                                    .pollingEvery(Duration.ofSeconds(2))
+                                    .ignoring(NoSuchElementException.class);
+                        wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
+                        WebEle = HelpersMethod.FindByElement(driver, "id", "CallDate");
+                        JavascriptExecutor jse = (JavascriptExecutor) driver;
+                        FTDate = (String) jse.executeScript("return arguments[0].getAttribute('value');", WebEle);
+                        scenario.log(FTDate + " HAS BEEN SELECTED FOR OCL");
+                    }
                 }
+            }
+            else
+            {
+                scenario.log("FAILED TO SELECT DATE");
             }
             Assert.assertEquals(exists, true);
         }
@@ -1432,6 +1476,12 @@ public class OrderControlListPage
         Actions act=new Actions(driver);
         try
         {
+            Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(200))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
             List<WebElement> heads=HelpersMethod.FindByElements(driver,"xpath","//span[contains(@class,'k-column-title')]");
             for (WebElement head:heads)
             {

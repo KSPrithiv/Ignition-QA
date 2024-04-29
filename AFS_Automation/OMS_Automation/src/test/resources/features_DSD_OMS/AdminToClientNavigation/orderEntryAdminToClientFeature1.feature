@@ -118,7 +118,7 @@ Feature: scenarios for admin credentials and client credentials
 #    When User should land on landing page and verify
 #    Then User Clicks on Permissions by drop down to select Customer Account# for admin security
 #    And User should enter menu "<Main menu>" in search bar and select "<Sub menu>"
-#    And User should disable admin settings "<AdminControl>" "<Id>"
+#    And User should disable admin settings "<AdminControl>" "<Id>", for permission
 #    And User logs out from Admin site, logs in to client credentials
 #    When User is on Home Page
 #    Then User navigate to Client side
@@ -147,7 +147,7 @@ Feature: scenarios for admin credentials and client credentials
 #    When User should land on landing page and verify
 #    Then User Clicks on Permissions by drop down to select Customer Account# for admin security
 #    And User should enter menu "<Main menu>" in search bar and select "<Sub menu>"
-#    And User should enabled admin settings "<AdminControl>" "<Id>"
+#    And User should enabled admin settings "<AdminControl>" "<Id>", for permission
 #    And User logs out from Admin site, logs in to client credentials
 #    When User is on Home Page
 #    Then User navigate to Client side

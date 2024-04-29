@@ -42,7 +42,7 @@ public class TestRunnerInventory extends AbstractTestNGCucumberTests
 
     @AfterClass
     public static void afterclass() throws InterruptedException, MessagingException, IOException {
-        Thread.sleep(10000);
+        //Thread.sleep(500);
         //MailSend.sendMail();
         TestBase.CloseBrowser();
 
