@@ -8,12 +8,16 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.FluentWait;
+import org.openqa.selenium.support.ui.Wait;
 import org.testng.Assert;
 import pages_DSD_OMS.login.HomePage;
 import pages_DSD_OMS.login.LoginPage;
-import pages_DSD_OMS.orderEntry.NewOrderEntryPage;
 import pages_DSD_OMS.orderEntry.OrderEntryPage;
 import pages_DSD_OMS.orderGuide.CreateOGPage;
 import pages_DSD_OMS.orderGuide.OrderGuidePage;
@@ -22,6 +26,7 @@ import util.TestBase;
 
 import java.awt.*;
 import java.sql.SQLException;
+import java.time.Duration;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
@@ -36,7 +41,6 @@ public class OrderGuidePageStep
     WebDriver driver;
     Scenario scenario;
 
-    String XPath = null;
     static boolean exists = false;
     static String Prod_No=null;
     static boolean flag=false;
@@ -46,7 +50,6 @@ public class OrderGuidePageStep
     static LoginPage loginpage;
     static HomePage homepage;
     static OrderEntryPage orderpage;
-    static NewOrderEntryPage newOE;
     static OrderGuidePage orderGuidePage;
     static CreateOGPage createOGPage;
 
@@ -124,17 +127,18 @@ public class OrderGuidePageStep
         if(flag1==false)
         {
             WebElement WebEle;
-            WebEle = HelpersMethod.FindByElement(driver, "xpath", "//li[contains(@class,'k-item')]/span[@class='k-link' and contains(text(),'Order Guides')]");
+            WebEle = HelpersMethod.FindByElement(driver, "xpath", "//li[contains(@class,'k-item')]/span[@class='k-link' and contains(text(),'Order Guides')]|//li[contains(@class,'k-item')]/span[@class='k-link' and contains(text(),'Order guides')]");
             if (HelpersMethod.EleDisplay(WebEle))
             {
                 exists = false;
                 orderGuidePage = new OrderGuidePage(driver, scenario);
-                HelpersMethod.navigate_Horizantal_Tab(driver, "Order Guides", "//li[contains(@class,'k-item')]/span[@class='k-link' and contains(text(),'Order Guides')]", "xpath", "//li[contains(@class,'k-item')]/span[@class='k-link']");
-                if (HelpersMethod.IsExists("//div[@class='loader']", driver))
-                {
-                    WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000000);
-                }
+                HelpersMethod.navigate_Horizantal_Tab(driver, "Order Guides", "//li[contains(@class,'k-item')]/span[@class='k-link' and contains(text(),'Order Guides')]|//li[contains(@class,'k-item')]/span[@class='k-link' and contains(text(),'Order guides')]", "xpath", "//li[contains(@class,'k-item')]/span[@class='k-link']");
+                Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                        .withTimeout(Duration.ofSeconds(120))
+                        .pollingEvery(Duration.ofSeconds(2))
+                        .ignoring(NoSuchElementException.class);
+                wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
                 exists = orderGuidePage.ValidateOG();
                 currentURL=driver.getCurrentUrl();
                 Assert.assertEquals(exists, true);
