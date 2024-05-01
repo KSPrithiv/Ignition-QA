@@ -143,11 +143,6 @@ public class CatalogPageStep
         {
             if (HelpersMethod.IsExists("//li[contains(@class,'k-item')]/span[@class='k-link' and contains(text(),'Catalog')]", driver))
             {
-                /*HelpersMethod.navigate_Horizantal_Tab(driver, "Catalog", "//li[contains(@class,'k-item')]/span[@class='k-link' and contains(text(),'Catalog')]", "xpath", "//li[contains(@class,'k-item')]/span[@class='k-link']");
-                catalogpage = new CatalogPage(driver, scenario);
-                catalogpage.ValidateCatalog();
-                currentURL = driver.getCurrentUrl();
-                scenario.log(currentURL);*/
                 catalogpage=new CatalogPage(driver,scenario);
                 catalogpage.navigateToCatalog();
                 catalogpage.ValidateCatalog();

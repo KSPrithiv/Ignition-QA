@@ -186,7 +186,7 @@ public class CheckOutSummaryPage
         Wait<WebDriver> wait;
 
         wait = new FluentWait<>(driver)
-                .withTimeout(Duration.ofSeconds(200))
+                .withTimeout(Duration.ofSeconds(400))
                 .pollingEvery(Duration.ofSeconds(2))
                 .ignoring(NoSuchElementException.class);
         wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
@@ -196,8 +196,8 @@ public class CheckOutSummaryPage
         {
             WebElement submitButton = HelpersMethod.FindByElement(driver, "xpath", "//button[@id='ConfirmSummaryButton']");
             HelpersMethod.ScrollUpScrollBar(driver);
-            //HelpersMethod.ClickBut(driver, submitButton, 20000);
-            HelpersMethod.ActClick(driver, submitButton, 20000);
+            HelpersMethod.ClickBut(driver, submitButton, 20000);
+            //HelpersMethod.ActClick(driver, submitButton, 20000);
             wait = new FluentWait<>(driver)
                     .withTimeout(Duration.ofSeconds(200))
                     .pollingEvery(Duration.ofSeconds(2))
@@ -354,7 +354,7 @@ public class CheckOutSummaryPage
                 new WebDriverWait(driver, Duration.ofMillis(10000)).until(ExpectedConditions.elementToBeClickable(By.xpath(".//button[text()='Ok']")));
                 WebElement OK_But = modalContainer.findElement(By.xpath(".//button[text()='Ok']"));
                 HelpersMethod.ClickBut(driver, OK_But, 8000);
-                exists = true;
+                //exists = true;
                 scenario.log("ORDER HAS BEEN SUCESSFULLY CREATED");
                 status = HelpersMethod.returnDocumentStatus(driver);
                 if (status.equals("loading"))

@@ -257,27 +257,33 @@ public class OrderEntryPageSteps2
     @Then("Click on Next button to naviagate to OE summary page to cancle order")
     public void clickOnNextButtonToNaviagateToOESummaryPageToCancleOrder() throws InterruptedException, AWTException
     {
-        exists=false;
-        newOE = new NewOrderEntryPage(driver,scenario);
-        newOE.readProductsInOrder();
-        exists=newOE.ClickNext();
-        newOE.OutOfStockPop_ERP();
-        if(HelpersMethod.IsExists("//div[@id='checkoutCard']",driver))
+        exists = false;
+        if (HelpersMethod.IsExists("//div[@id='orderEntryCard']", driver))
         {
-            checkorder = new CheckOutOrderPage(driver, scenario);
-            if (HelpersMethod.IsExists("//div[@id='paymentMethodCard']", driver))
+            newOE = new NewOrderEntryPage(driver, scenario);
+            newOE.readProductsInOrder();
+            exists = newOE.ClickNext();
+            newOE.OutOfStockPop_ERP();
+            if (HelpersMethod.IsExists("//div[@id='checkoutCard']", driver))
             {
-                checkorder.Select_PaymentMethod_ClickDownArrow();
-                if (HelpersMethod.IsExists("//tr[1]/descendant::td[@class='payment-method-type-cell']", driver)) {
-                    checkorder.SelectPaymentMethod();
-                    scenario.log("FIRST PAYMENT OPTION HAS BEEN SELECTED");
-                } else {
-                    checkorder.Click_On_Without_Providing_Payment();
-                    scenario.log("WITHOUT PROVIIDNG PAYMENT OPTION HAS BEEN SELECTED");
+                checkorder = new CheckOutOrderPage(driver, scenario);
+                if (HelpersMethod.IsExists("//div[@id='paymentMethodCard']", driver))
+                {
+                    checkorder.Select_PaymentMethod_ClickDownArrow();
+                    if (HelpersMethod.IsExists("//tr[1]/descendant::td[@class='payment-method-type-cell']", driver))
+                    {
+                        checkorder.SelectPaymentMethod();
+                        scenario.log("FIRST PAYMENT OPTION HAS BEEN SELECTED");
+                    }
+                    else
+                    {
+                        checkorder.Click_On_Without_Providing_Payment();
+                        scenario.log("WITHOUT PROVIIDNG PAYMENT OPTION HAS BEEN SELECTED");
+                    }
                 }
+                checkorder.DeliveryAddressCard();
+                checkorder.NextButton_Click();
             }
-            checkorder.DeliveryAddressCard();
-            checkorder.NextButton_Click();
         }
     }
 }

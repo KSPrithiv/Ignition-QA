@@ -581,7 +581,7 @@ public class HelpersMethod
         {
             act.moveToElement(Menu).build().perform();
             Menu_Text=Menu.getText();
-            if(Menu_Text.contains(MenuItem))
+            if(Menu_Text.equalsIgnoreCase(MenuItem))
             {
                 WebElement menuItem=FindByElement(driver,selector,MenuItemLocator);
                 JScriptClick(driver,menuItem,6000);

@@ -2102,7 +2102,7 @@ public class NewOrderEntryPage
             }
 
             HelpersMethod.ScrollElement(driver, CopyFrom);
-            HelpersMethod.ClickBut(driver,CopyFrom,1000);
+            HelpersMethod.ClickBut(driver,CopyFrom,10000);
             new WebDriverWait(driver,Duration.ofMillis(10000)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(@class,'k-animation-container k-animation-container-relative k-animation-container-shown')]/descendant::ul/li")));
 
             List<WebElement>copyFromDropDowns=HelpersMethod.FindByElements(driver,"xpath","//div[contains(@class,'k-animation-container k-animation-container-relative k-animation-container-shown')]/descendant::ul/li");
@@ -2110,7 +2110,7 @@ public class NewOrderEntryPage
             {
                 act.moveToElement(copyDrop).build().perform();
                 dropText=copyDrop.getText();
-                if(dropText.equals("Order history"))
+                if(dropText.equalsIgnoreCase("Order history"))
                 {
                     act.moveToElement(copyDrop).build().perform();
                     act.click(copyDrop).build().perform();

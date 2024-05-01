@@ -124,3 +124,20 @@ Feature: Order Entry4
     Then User checks for duplicate comments
     Then Click on SubmitOrder button
     Then User should be navigated to Order Entry page
+
+     # Admin setting for hiding zero's=>'Hide leading zeros', Scenario only for DSD
+  @HideZeros
+  Scenario: HideZeros that appears in Account# or product#
+    Given User must be on Order Entry Page
+    And User should verify the account_No
+    Then User must click Start Order button
+    Then User should make selection between Pending order or Start New order
+    Then User should select Note from popup and Order guide from popup
+    Then Enter PO# for New order
+      |PO123|
+    Then Enter Pro# in Quick Product Entry area
+    And Check for Case and Unit input box enabled or not based on that enter value
+      |70|60|
+    Then Click on Next button
+    And Click on SubmitOrder button
+    Then User should be navigated to Order Entry page
