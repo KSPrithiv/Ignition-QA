@@ -123,8 +123,7 @@ public class AdminOrderControlListStep
     }
 
     @Then("User validates that Order taker drop down now displaying")
-    public void userValidatesThatOrderTakerDropDownNowDisplaying()
-    {
+    public void userValidatesThatOrderTakerDropDownNowDisplaying() throws InterruptedException {
         orderControlListPage=new OrderControlListPage(driver,scenario);
         orderControlListPage.Validate_OCL();
         orderControlPage = new OrderControlListPage(driver, scenario);
@@ -132,8 +131,7 @@ public class AdminOrderControlListStep
     }
 
     @Then("User validates that Order taker drop down not displaying")
-    public void userValidatesThatOrderTakerDropDownNotDisplaying()
-    {
+    public void userValidatesThatOrderTakerDropDownNotDisplaying() throws InterruptedException {
         orderControlPage = new OrderControlListPage(driver, scenario);
         orderControlPage.Validate_OCL();
         orderControlPage.validateOrderTakerNonDisplay();

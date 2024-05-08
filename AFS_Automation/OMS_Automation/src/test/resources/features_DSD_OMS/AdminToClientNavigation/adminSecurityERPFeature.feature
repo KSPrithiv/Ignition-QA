@@ -13,11 +13,7 @@ Feature: scenarios for admin credentials and client credentials
     Then User navigate to Client side
     And User navigate to Customer Inq ERP env and Select Customer Account#
       |Customer #|
-    #Then User navigate to main tab and verify Primary contact has been non editable
-    #Then User should log out from client and login with admin credentials
-    #Then User Clicks on Permissions by drop down to select Customer Account# for admin security
-    #And User should enter menu "<Main menu>" in search bar and select "<Sub menu>"
-    #And User should enable all disabled admin settings "<AdminControl1>" "<AdminControl2>" "<AdminControl3>"
+    Then User navigate to main tab and verify Primary contact has been non editable
     Examples:
       |Main menu|Sub menu    | AdminControl1                                                    |  AdminControl2                           |   AdminControl3                               |
       |Security |Permissions | Allow user to only modify contact information in Customer Master.|Allow user to modify Customer Master data.| Allow user to create new Customer Master data.|

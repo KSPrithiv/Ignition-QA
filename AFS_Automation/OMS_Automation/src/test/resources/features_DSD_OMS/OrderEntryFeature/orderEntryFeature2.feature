@@ -107,7 +107,7 @@ Feature: Order Entry2
     And Get total amount from summary card and Order total on SubmitOrder button
     Then User should be navigated to Order Entry page
 
-    #Admin Setting should be enabled for this scenario->"Enable auto load order entry"
+    #Admin Setting should be enabled for this scenario->"Enable order auto load once the customer has been selected"
   # this script will work, when there are no orders for the changed account for given date
   @ChangeAccount
   Scenario: Change the account# to other account# and check whether it navigates to NewOE page or not

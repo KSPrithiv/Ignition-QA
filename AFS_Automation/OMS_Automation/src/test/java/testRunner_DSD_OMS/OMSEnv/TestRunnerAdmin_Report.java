@@ -16,7 +16,14 @@ import java.io.IOException;
  * @Author Divya.Ramadas@afsi.com
  */
 @CucumberOptions
-        (features = {"src/test/resources/features_DSD_OMS/AdminReportsFeature"},
+        (features = {
+                "src/test/resources/features_DSD_OMS/AdminReportsFeature/adminEventActivitiesFeature.feature",
+                "src/test/resources/features_DSD_OMS/AdminReportsFeature/administrationAdminFeature.feature",
+                "src/test/resources/features_DSD_OMS/AdminReportsFeature/adminReportsFeature.feature",
+                "src/test/resources/features_DSD_OMS/AdminReportsFeature/orderAdminFeature.feature",
+                "src/test/resources/features_DSD_OMS/AdminReportsFeature/userAndAccountsFeature.feature",
+                "src/test/resources/features_DSD_OMS/AdminReportsFeature/userAndAccountsFeature1.feature",
+        },
                 glue = {"stepDefination_DSD_OMS"},
                 plugin = {"pretty",
                         "json:target/cucumber.json",
@@ -44,7 +51,7 @@ public class TestRunnerAdmin_Report extends AbstractTestNGCucumberTests
     @AfterClass
     public static void afterclass() throws InterruptedException, MessagingException, IOException
     {
-        //Thread.sleep(500);
+        Thread.sleep(500);
         TestBase.CloseBrowser();
 
         if(TestBase.testEnvironment.get_browser().equalsIgnoreCase("Firefox"))

@@ -191,13 +191,33 @@ public class CheckOutSummaryPage
                 .ignoring(NoSuchElementException.class);
         wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
 
+        String status = HelpersMethod.returnDocumentStatus(driver);
+        if (status.equals("loading"))
+        {
+            HelpersMethod.waitTillLoadingPage(driver);
+        }
+
+        wait = new FluentWait<>(driver)
+                .withTimeout(Duration.ofSeconds(400))
+                .pollingEvery(Duration.ofSeconds(2))
+                .ignoring(NoSuchElementException.class);
+        wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
+        status = HelpersMethod.returnDocumentStatus(driver);
+        if (status.equals("loading"))
+        {
+            HelpersMethod.waitTillLoadingPage(driver);
+        }
+
         HelpersMethod.ScrollUpScrollBar(driver);
         if(HelpersMethod.IsExists("//button[@id='ConfirmSummaryButton']",driver))
         {
             WebElement submitButton = HelpersMethod.FindByElement(driver, "xpath", "//button[@id='ConfirmSummaryButton']");
             HelpersMethod.ScrollUpScrollBar(driver);
-            HelpersMethod.ClickBut(driver, submitButton, 20000);
-            //HelpersMethod.ActClick(driver, submitButton, 20000);
+            //HelpersMethod.ScrollElement(driver,submitButton);
+            HelpersMethod.ClickBut(driver, submitButton, 40000);
+            scenario.log("SUBMIT BUTTON IN ORDER SUMMARY PAGE HAS BEEN CLICKED");
+
             wait = new FluentWait<>(driver)
                     .withTimeout(Duration.ofSeconds(200))
                     .pollingEvery(Duration.ofSeconds(2))
@@ -215,6 +235,7 @@ public class CheckOutSummaryPage
             //Click on list that appears
             WebElement arrowCutoff=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-animation-container k-animation-container-relative k-animation-container-shown')]/descendant::ul/li");
             HelpersMethod.ActClick(driver,arrowCutoff,10000);
+            scenario.log("SUBMIT BUTTON IN ORDER SUMMARY PAGE HAS BEEN CLICKED");
             wait = new FluentWait<>(driver)
                     .withTimeout(Duration.ofSeconds(200))
                     .pollingEvery(Duration.ofSeconds(2))
@@ -222,7 +243,7 @@ public class CheckOutSummaryPage
             wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
             exists=true;
         }
-        scenario.log("SUBMIT BUTTON IN ORDER SUMMARY PAGE HAS BEEN CLICKED");
+
         Assert.assertEquals(exists,true);
     }
 

@@ -41,7 +41,7 @@ public class TestRunnerUserManagement extends AbstractTestNGCucumberTests
     @AfterClass
     public static void afterclass() throws InterruptedException, MessagingException, IOException
     {
-       // Thread.sleep(1000);
+        Thread.sleep(500);
         //MailSend.sendMail();
         TestBase.CloseBrowser();
 

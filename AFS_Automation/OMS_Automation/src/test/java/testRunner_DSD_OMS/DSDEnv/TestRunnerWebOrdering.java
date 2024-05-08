@@ -25,7 +25,7 @@ import java.io.IOException;
                         "html:target/cucumber-html-report.html",
                         "com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:Reports/spark/",
                         "rerun:target/failedrerun.txt"},
-                monochrome = true,tags="@DragAndDropMenu")
+                monochrome = true)
 
 public class TestRunnerWebOrdering extends AbstractTestNGCucumberTests
 {
@@ -45,7 +45,7 @@ public class TestRunnerWebOrdering extends AbstractTestNGCucumberTests
     @AfterClass
     public static void afterclass() throws InterruptedException, MessagingException, IOException
     {
-        // Thread.sleep(1000);
+         Thread.sleep(500);
         //MailSend.sendMail();
         TestBase.CloseBrowser();
 

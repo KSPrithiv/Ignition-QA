@@ -42,7 +42,7 @@ Feature: scenarios for admin credentials and client credentials
     When User is on Home Page for Admin settings
     Then User Clicks on Permissions by drop down to select Customer Account#s
     And User should enter menu "<Option>" in search bar to navigate to Customer inq
-    Then User should enable Auto populate next available customer number when creating new or copy customers
+    Then User should disable Auto populate next available customer number when creating new or copy customers
     And User should enable Use default Settings for Store Number and Dept Number, Manual radio button
     And User should save all the details
     And User logs out from Admin site, logs in to client credentials

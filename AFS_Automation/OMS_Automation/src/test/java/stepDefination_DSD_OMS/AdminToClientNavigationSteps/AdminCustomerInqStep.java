@@ -23,6 +23,8 @@ public class AdminCustomerInqStep
     static AdminHomePage adminHomePage;
     static customerInqAdminPage custInqPageAdmin;
     static CustomerInquiryPage customerInquiryPage;
+    static String storeNoValue;
+    static String deptNoValue;
 
     @Before
     public void LaunchBrowser1(Scenario scenario) throws Exception
@@ -50,6 +52,13 @@ public class AdminCustomerInqStep
         custInqPageAdmin.enableAutoPopulateNextTogglebutton();
     }
 
+    @Then("User should disable Auto populate next available customer number when creating new or copy customers")
+    public void userShouldDisableAutoPopulateNextAvailableCustomerNumberWhenCreatingNewOrCopyCustomers()
+    {
+        custInqPageAdmin=new customerInqAdminPage(driver,scenario);
+        custInqPageAdmin.disableAutoPopulateNextTogglebutton();
+    }
+
     @And("User should enable Use default Settings for Store Number, variable radio button")
     public void userShouldEnableUseDefaultSettingsForStoreNumberVariableRadioButton()
     {
@@ -63,9 +72,10 @@ public class AdminCustomerInqStep
     {
         customerInquiryPage= new CustomerInquiryPage(driver, scenario);
         customerInquiryPage.NavigateToCustomerInquiry();
+        customerInquiryPage.New_ButtonClick();
         customerInquiryPage.getBillValueVariable();
-        customerInquiryPage.getStoreValueVariable();
-        customerInquiryPage.getDepartmentValueVariable();
+        customerInquiryPage.storeNoValueVariable();
+        customerInquiryPage.deptNovalueVariable();
     }
 
     @And("User should enable Use default Settings for Store Number and Dept Number, Fixed radio button")
@@ -74,6 +84,8 @@ public class AdminCustomerInqStep
         custInqPageAdmin=new customerInqAdminPage(driver,scenario);
         custInqPageAdmin.useDefaultSettingsForStoreNumberFixed();
         custInqPageAdmin.useDefaultSettingsDepartmentNumberFixed();
+        storeNoValue= custInqPageAdmin.readStoreNoValue();
+        deptNoValue= custInqPageAdmin.readDeptNovalue();
     }
 
     @Then("User should select customer inq tab for admin for Fixed values, for store and dept")
@@ -81,9 +93,10 @@ public class AdminCustomerInqStep
     {
         customerInquiryPage= new CustomerInquiryPage(driver, scenario);
         customerInquiryPage.NavigateToCustomerInquiry();
-        //customerInquiryPage.getBillValueFixed();
-        customerInquiryPage.getStoreValueFixed();
-        customerInquiryPage.getDepartmentValueFixed();
+        customerInquiryPage.New_ButtonClick();
+        customerInquiryPage.getBillValueFixed();
+        customerInquiryPage.getStoreValueFixed(storeNoValue);
+        customerInquiryPage.getDepartmentValueFixed(deptNoValue);
     }
 
     @And("User should enable Use default Settings for Store Number and Dept Number, Manual radio button")
@@ -99,6 +112,7 @@ public class AdminCustomerInqStep
     {
         customerInquiryPage= new CustomerInquiryPage(driver, scenario);
         customerInquiryPage.NavigateToCustomerInquiry();
+        customerInquiryPage.New_ButtonClick();
         customerInquiryPage.getBillValueManual();
         customerInquiryPage.getStoreValueManual();
         customerInquiryPage.getDepartmentValueManual();

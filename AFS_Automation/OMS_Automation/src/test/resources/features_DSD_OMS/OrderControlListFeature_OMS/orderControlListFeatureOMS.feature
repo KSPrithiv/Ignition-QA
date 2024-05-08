@@ -44,32 +44,6 @@ Feature: Order control list
     And User enters OrderNo in search box to search for order
     Then User finds the comment for order in OCL
 
-  #Admin setting need to be disabled
-  @OrderIcon
-  Scenario: Test scenario for verifying Order icon in OCL once order is created via OCL
-    Given User must be on Order Entry Page to select OCL
-    And User should navigate to OCL
-    Then User should select Order taker from drop down
-    And Change the delivery date 2 days after current date
-    Then User Clicks on Untaken radio button and user clicks on Refresh button
-    Then User should search for credit holder in OCL
-      |No Hold|
-    Then User clicks on Order icon in OCL grid
-    Then User should select Note from popup and Order guide from popup
-    And User validate that he is in NewOE page
-    Then Enter PO# for New order
-      |PO123|
-    Then Click on Add product drop down and select catalog option
-    And User should select Product from catalog and Enter Qty for the products for OCL
-      |100|60|
-    Then Click on Next button and select option Continue without payment option
-    And Click on Submit Order button and read Order_no for OCL
-    Then User should select Note from popup and Order guide from popup for OCL
-    Then User validate that he is in NewOE page for OCL
-    And User Clicks on Back button in NewOE page and User must be in OCL page
-    Then User Clicks on Taken radio button
-    And User should verify Order number created in OCL grid and Order icon in OCL
-
   @OrderCreatedBy
   Scenario: Test scenario for verifying whether Created by column is a displayed and it contains created by user details
     Given User must be on Order Entry Page to select OCL

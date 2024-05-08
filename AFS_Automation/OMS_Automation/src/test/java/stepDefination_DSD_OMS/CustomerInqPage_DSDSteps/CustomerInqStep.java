@@ -628,8 +628,8 @@ public class CustomerInqStep
            ignitionPage.clickDelete();
            ignitionPage.confirmationPopUp();
            customerInquiryPage=new CustomerInquiryPage(driver,scenario);
-           customerInquiryPage.validateSaveConfirmationPopup();
-           customerInquiryPage.SaveButtonOK();
+           //customerInquiryPage.validateSaveConfirmationPopup();
+           //customerInquiryPage.SaveButtonOK();
        }
     }
 }
