@@ -412,7 +412,7 @@ public class OrderEntryPageSteps
         }
 
         Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
-                .withTimeout(Duration.ofSeconds(200))
+                .withTimeout(Duration.ofSeconds(400))
                 .pollingEvery(Duration.ofSeconds(2))
                 .ignoring(NoSuchElementException.class);
         wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
@@ -424,7 +424,7 @@ public class OrderEntryPageSteps
         }
 
         wait = new FluentWait<WebDriver>(driver)
-                .withTimeout(Duration.ofSeconds(200))
+                .withTimeout(Duration.ofSeconds(400))
                 .pollingEvery(Duration.ofSeconds(2))
                 .ignoring(NoSuchElementException.class);
         wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
@@ -598,6 +598,20 @@ public class OrderEntryPageSteps
         newOE.QuickProduct(DataBaseConnection.DataBaseConn(TestBase.testEnvironment.getSingle_OneMoreProd()));
     }
 
+    @Then("Enter Pro# in Quick Product Entry area for order type")
+    public void enter_pro_in_quick_product_entry_area_for_order_type() throws InterruptedException, AWTException, SQLException, ClassNotFoundException, InstantiationException, IllegalAccessException
+    {
+        newOE = new NewOrderEntryPage(driver,scenario);
+        newOE.QuickProduct(DataBaseConnection.DataBaseConn(TestBase.testEnvironment.getSingle_Prod_Sql()));
+    }
+
+    @Then("Enter Pro# in Quick Product Entry area for creating order with note")
+    public void enter_pro_in_quick_product_entry_area_for_creating_order_with_note() throws InterruptedException, AWTException, SQLException, ClassNotFoundException, InstantiationException, IllegalAccessException
+    {
+        newOE = new NewOrderEntryPage(driver,scenario);
+        newOE.QuickProduct(DataBaseConnection.DataBaseConn(TestBase.testEnvironment.getSingle_OneMoreProd()));
+    }
+
     @Then("Enter Pro# in Quick Product Entry area for price override")
     public void enter_pro_in_quick_product_entry_area_for_price_override() throws InterruptedException, AWTException, SQLException, ClassNotFoundException, InstantiationException, IllegalAccessException
     {
@@ -710,6 +724,7 @@ public class OrderEntryPageSteps
         String Case=PO_Qty.get(0).get(0);
         String Unit=PO_Qty.get(0).get(1);
         String uomString=newOE.VerifyUOM();
+        //Thread.sleep(2000);
         if(uomString.equals("Units")||uomString.equals("EA"))
         {
             newOE.CheckForQuickUnitEnabled(Unit);

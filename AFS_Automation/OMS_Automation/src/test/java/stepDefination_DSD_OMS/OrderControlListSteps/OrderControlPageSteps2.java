@@ -103,7 +103,7 @@ public class OrderControlPageSteps2
     }
 
     @And("User searches for Hard hold customer")
-    public void userSearchesForHardHoldCustomer() 
+    public void userSearchesForHardHoldCustomer() throws InterruptedException
     {
         orderControlList = new OrderControlListPage(driver, scenario);
         orderControlList.Validate_OCL();

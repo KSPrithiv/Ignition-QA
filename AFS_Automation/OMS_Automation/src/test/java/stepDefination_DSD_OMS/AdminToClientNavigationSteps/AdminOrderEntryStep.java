@@ -1,5 +1,6 @@
 package stepDefination_DSD_OMS.AdminToClientNavigationSteps;
 
+import helper.HelpersMethod;
 import io.cucumber.datatable.DataTable;
 import io.cucumber.java.Before;
 import io.cucumber.java.Scenario;
@@ -7,7 +8,12 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.FluentWait;
+import org.openqa.selenium.support.ui.Wait;
 import org.testng.Assert;
 import pages_DSD_OMS.adminCatalogSearch.catalogSearchPage;
 import pages_DSD_OMS.adminSecurity.AdminSecurityPermissionPage;
@@ -24,6 +30,7 @@ import util.TestBase;
 import java.awt.*;
 import java.sql.SQLException;
 import java.text.ParseException;
+import java.time.Duration;
 import java.util.List;
 
 /**

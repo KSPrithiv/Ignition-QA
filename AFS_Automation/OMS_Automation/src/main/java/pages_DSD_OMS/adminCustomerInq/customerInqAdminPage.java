@@ -12,6 +12,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.Wait;
 import org.testng.Assert;
+import util.TestBase;
 
 import java.time.Duration;
 
@@ -112,19 +113,38 @@ public class customerInqAdminPage
         catch (Exception e){}
     }
 
+    public void disableAutoPopulateNextTogglebutton()
+    {
+        exists=false;
+        try
+        {
+            if(HelpersMethod.IsExists("//span[@id='CPIncludeAutomaticallyPopulateCustomerNo']/input[@value='true']",driver))
+            {
+                WebElement autoPopulateNextRadioButton = HelpersMethod.FindByElement(driver, "xpath", "//span[@id='CPIncludeAutomaticallyPopulateCustomerNo']/input");
+                HelpersMethod.ActClick(driver, autoPopulateNextRadioButton, 10000);
+            }
+            if(HelpersMethod.IsExists("//span[@id='CPIncludeAutomaticallyPopulateCustomerNo']/input[@value='false']",driver))
+            {
+                exists=true;
+            }
+            Assert.assertEquals(exists,true);
+        }
+        catch (Exception e){}
+    }
+
     public void useDefaultSettingsForStoreNumberVariable()
     {
         exists=false;
         try
         {
             WebElement storeVariable=HelpersMethod.FindByElement(driver,"xpath","//div[text()='Use default Settings for Store Number']/parent::div/following-sibling::div/descendant::label[text()='Variable']/preceding-sibling::input");
-            String radioValue=HelpersMethod.JSGetValueEle(driver,storeVariable,10000);
-            if(radioValue.equals('1'))
+            //String radioValue=HelpersMethod.JSGetValueEle(driver,storeVariable,10000);
+            if(!storeVariable.isSelected())
             {
                 HelpersMethod.ActClick(driver, storeVariable, 10000);
             }
-            radioValue=HelpersMethod.JSGetValueEle(driver,storeVariable,10000);
-            if(radioValue.equals('0'))
+            //radioValue=HelpersMethod.JSGetValueEle(driver,storeVariable,10000);
+            if(storeVariable.isSelected())
             {
                 scenario.log("USE DEFAULT SETTINGS FOR STORE NUMBER, VARIABLE RADIO BUTTON ENABLED");
                 exists=true;
@@ -140,13 +160,11 @@ public class customerInqAdminPage
         try
         {
             WebElement departmentVariable=HelpersMethod.FindByElement(driver,"xpath","//div[text()='Use default Settings Department Number']/parent::div/following-sibling::div/descendant::label[text()='Variable']/preceding-sibling::input");
-            String radioValue=HelpersMethod.JSGetValueEle(driver,departmentVariable,10000);
-            if(radioValue.equals('1'))
+            if(!departmentVariable.isSelected())
             {
                 HelpersMethod.ActClick(driver, departmentVariable, 10000);
             }
-            radioValue=HelpersMethod.JSGetValueEle(driver,departmentVariable,10000);
-            if(radioValue.equals('0'))
+            if(departmentVariable.isSelected())
             {
                 scenario.log("USE DEFAULT SETTINGS FOR DEPARTMENT NUMBER, VARIABLE RADIO BUTTON ENABLED");
                 exists=true;
@@ -161,16 +179,14 @@ public class customerInqAdminPage
         exists=false;
         try
         {
-            WebElement storeVariable=HelpersMethod.FindByElement(driver,"xpath","//div[text()='Use default Settings for Store Number']/parent::div/following-sibling::div/descendant::label[text()='Fixed']/preceding-sibling::input");
-            String radioValue=HelpersMethod.JSGetValueEle(driver,storeVariable,10000);
-            if(radioValue.equals('1'))
+            WebElement storeFixed=HelpersMethod.FindByElement(driver,"xpath","//div[text()='Use default Settings for Store Number']/parent::div/following-sibling::div/descendant::label[text()='Fixed']/preceding-sibling::input");
+            if(!storeFixed.isSelected())
             {
-                HelpersMethod.ActClick(driver, storeVariable, 10000);
+                HelpersMethod.ActClick(driver, storeFixed, 10000);
             }
-            radioValue=HelpersMethod.JSGetValueEle(driver,storeVariable,10000);
-            if(radioValue.equals('0'))
+            if(storeFixed.isSelected())
             {
-                scenario.log("USE DEFAULT SETTINGS FOR STORE NUMBER, VARIABLE RADIO BUTTON ENABLED");
+                scenario.log("USE DEFAULT SETTINGS FOR STORE NUMBER, FIXED RADIO BUTTON ENABLED");
                 exists=true;
             }
             Assert.assertEquals(exists,true);
@@ -183,16 +199,14 @@ public class customerInqAdminPage
         exists=false;
         try
         {
-            WebElement departmentVariable=HelpersMethod.FindByElement(driver,"xpath","//div[text()='Use default Settings Department Number']/parent::div/following-sibling::div/descendant::label[text()='Fixed']/preceding-sibling::input");
-            String radioValue=HelpersMethod.JSGetValueEle(driver,departmentVariable,10000);
-            if(radioValue.equals('1'))
+            WebElement departmentFixed=HelpersMethod.FindByElement(driver,"xpath","//div[text()='Use default Settings Department Number']/parent::div/following-sibling::div/descendant::label[text()='Fixed']/preceding-sibling::input");
+            if(!departmentFixed.isSelected())
             {
-                HelpersMethod.ActClick(driver, departmentVariable, 10000);
+                HelpersMethod.ActClick(driver, departmentFixed, 10000);
             }
-            radioValue=HelpersMethod.JSGetValueEle(driver,departmentVariable,10000);
-            if(radioValue.equals('0'))
+            if(departmentFixed.isSelected())
             {
-                scenario.log("USE DEFAULT SETTINGS FOR DEPARTMENT NUMBER, VARIABLE RADIO BUTTON ENABLED");
+                scenario.log("USE DEFAULT SETTINGS FOR DEPARTMENT NUMBER, FIXED RADIO BUTTON ENABLED");
                 exists=true;
             }
             Assert.assertEquals(exists,true);
@@ -205,16 +219,14 @@ public class customerInqAdminPage
         exists=false;
         try
         {
-            WebElement storeVariable=HelpersMethod.FindByElement(driver,"xpath","//div[text()='Use default Settings for Store Number']/parent::div/following-sibling::div/descendant::label[text()='Manual']/preceding-sibling::input");
-            String radioValue=HelpersMethod.JSGetValueEle(driver,storeVariable,10000);
-            if(radioValue.equals('1'))
+            WebElement storeManual=HelpersMethod.FindByElement(driver,"xpath","//div[text()='Use default Settings for Store Number']/parent::div/following-sibling::div/descendant::label[text()='Manual']/preceding-sibling::input");
+            if(!storeManual.isSelected())
             {
-                HelpersMethod.ActClick(driver, storeVariable, 10000);
+                HelpersMethod.ActClick(driver, storeManual, 10000);
             }
-            radioValue=HelpersMethod.JSGetValueEle(driver,storeVariable,10000);
-            if(radioValue.equals('0'))
+            if(storeManual.isSelected())
             {
-                scenario.log("USE DEFAULT SETTINGS FOR STORE NUMBER, VARIABLE RADIO BUTTON ENABLED");
+                scenario.log("USE DEFAULT SETTINGS FOR STORE NUMBER, MANUAL RADIO BUTTON ENABLED");
                 exists=true;
             }
             Assert.assertEquals(exists,true);
@@ -227,20 +239,55 @@ public class customerInqAdminPage
         exists=false;
         try
         {
-            WebElement departmentVariable=HelpersMethod.FindByElement(driver,"xpath","//div[text()='Use default Settings Department Number']/parent::div/following-sibling::div/descendant::label[text()='Manual']/preceding-sibling::input");
-            String radioValue=HelpersMethod.JSGetValueEle(driver,departmentVariable,10000);
-            if(radioValue.equals('1'))
+            WebElement departmentManual=HelpersMethod.FindByElement(driver,"xpath","//div[text()='Use default Settings Department Number']/parent::div/following-sibling::div/descendant::label[text()='Manual']/preceding-sibling::input");
+            if(!departmentManual.isSelected())
             {
-                HelpersMethod.ActClick(driver, departmentVariable, 10000);
+                HelpersMethod.ActClick(driver, departmentManual, 10000);
             }
-            radioValue=HelpersMethod.JSGetValueEle(driver,departmentVariable,10000);
-            if(radioValue.equals('0'))
+            if(departmentManual.isSelected())
             {
-                scenario.log("USE DEFAULT SETTINGS FOR DEPARTMENT NUMBER, VARIABLE RADIO BUTTON ENABLED");
+                scenario.log("USE DEFAULT SETTINGS FOR DEPARTMENT NUMBER, MANUAL RADIO BUTTON ENABLED");
                 exists=true;
             }
             Assert.assertEquals(exists,true);
         }
         catch (Exception e){}
+    }
+
+    public String readStoreNoValue()
+    {
+        exists=false;
+        String storeNo="";
+        try
+        {
+            if(HelpersMethod.IsExists("//input[@id='CPIncludeStoreNumber']",driver))
+            {
+                WebElement store=HelpersMethod.FindByElement(driver,"id","CPIncludeStoreNumber");
+                storeNo=HelpersMethod.JSGetValueEle(driver,store,10000);
+                scenario.log("STORE VALUE FOUND "+storeNo);
+                exists=true;
+            }
+            Assert.assertEquals(exists,true);
+        }
+        catch (Exception e){}
+        return storeNo;
+    }
+
+    public String readDeptNovalue()
+    {
+        exists=false;
+        String deptNo="";
+        try
+        {
+            if(HelpersMethod.IsExists("//input[@id='CPIncludeDeptNumber']",driver))
+            {
+                WebElement dept=HelpersMethod.FindByElement(driver,"id","CPIncludeDeptNumber");
+                deptNo=HelpersMethod.JSGetValueEle(driver,dept,10000);
+                scenario.log("DEPARTMENT NO FOUND IS "+deptNo);
+                exists=true;
+            }
+        }
+        catch (Exception e){}
+        return deptNo;
     }
 }

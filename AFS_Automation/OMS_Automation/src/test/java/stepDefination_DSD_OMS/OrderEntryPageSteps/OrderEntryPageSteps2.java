@@ -225,6 +225,14 @@ public class OrderEntryPageSteps2
     @And ("user should change the Account# back to Previous Account#")
     public void user_should_change_the_account_no_back_to_previous_account_no() throws InterruptedException, AWTException
     {
+        orderpage = new OrderEntryPage(driver, scenario);
+        for (int i = 0; i <= 1; i++)
+        {
+            orderpage.OrderGuidePopup();
+            Thread.sleep(1000);
+            orderpage.NoNotePopHandling();
+        }
+
         newOE=new NewOrderEntryPage(driver,scenario);
         newOE.Click_Back_But();
 

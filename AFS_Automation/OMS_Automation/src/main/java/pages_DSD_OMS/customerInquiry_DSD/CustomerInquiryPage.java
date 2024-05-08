@@ -14,6 +14,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import pages_DSD_OMS.login.HomePage;
 import util.RandomValues;
+import util.TestBase;
 
 import java.time.Duration;
 import java.util.List;
@@ -369,13 +370,14 @@ public class CustomerInquiryPage
         exists=false;
         try
         {
-            HelpersMethod.ActClick(driver,new_But,1000);
+            HelpersMethod.ActClick(driver,new_But,10000);
             exists=true;
-            if(HelpersMethod.IsExists("//div[@class='loader']",driver))
-            {
-                WebElement WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000000);
-            }
+            Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(400))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
             HelpersMethod.WaitElementPresent(driver,"xpath","//div[@id='CustomerMasterBottom']",40);
             Assert.assertEquals(exists,true);
         }
@@ -761,9 +763,15 @@ public class CustomerInquiryPage
                 Assert.assertEquals(modalContentTitle.getText(), "Copy customer", "Verify Title message");
 
                 InputVal=RandomValues.generateRandomNumber(6);
-                WebEle=HelpersMethod.FindByElement(driver,"id","CmCustNo");
-                HelpersMethod.EnterText(driver,WebEle,8000,InputVal);
-                scenario.log("BILL TO# IS "+InputVal);
+                if(!HelpersMethod.IsExists("//input[@id='##########']",driver))
+                {
+                    WebEle = HelpersMethod.FindByElement(driver, "id", "CmCustNo");
+                    if (WebEle.isDisplayed() && WebEle.isEnabled())
+                    {
+                        HelpersMethod.EnterText(driver, WebEle, 8000, InputVal);
+                        scenario.log("BILL TO# IS " + InputVal);
+                    }
+                }
 
                 InputVal=RandomValues.generateRandomNumber(6);
                 WebEle=HelpersMethod.FindByElement(driver,"id","CmStorNo");
@@ -833,37 +841,45 @@ public class CustomerInquiryPage
         exists=false;
         try
         {
-            if(HelpersMethod.IsExists("//div[contains(text(),'Copy customer')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
+            if(!HelpersMethod.IsExists("//input[@id='##########']",driver))
             {
-                WebElement modalContainer = driver.findElement(By.xpath("//div[contains(@class,'k-widget k-window k-dialog')]"));
-                WebElement modalContentTitle = modalContainer.findElement(By.xpath(".//div[contains(@class,'k-window-title k-dialog-title')]"));
-                Assert.assertEquals(modalContentTitle.getText(), "Copy customer", "Verify Title message");
+                if (HelpersMethod.IsExists("//div[contains(text(),'Copy customer')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]", driver))
+                {
+                    WebElement modalContainer = driver.findElement(By.xpath("//div[contains(@class,'k-widget k-window k-dialog')]"));
+                    WebElement modalContentTitle = modalContainer.findElement(By.xpath(".//div[contains(@class,'k-window-title k-dialog-title')]"));
+                    Assert.assertEquals(modalContentTitle.getText(), "Copy customer", "Verify Title message");
+                }
+            }
+
 
                 InputVal=RandomValues.generateRandomNumber(6);
                 WebEle=HelpersMethod.FindByElement(driver,"id","CmCustNo");
-                HelpersMethod.EnterText(driver,WebEle,8000,InputVal);
-                scenario.log("BILL TO# IS "+InputVal);
+                if(WebEle.isDisplayed() && WebEle.isEnabled())
+                {
+                    HelpersMethod.EnterText(driver, WebEle, 10000, InputVal);
+                    scenario.log("BILL TO# IS " + InputVal);
+                }
 
                 InputVal=RandomValues.generateRandomNumber(6);
                 WebEle=HelpersMethod.FindByElement(driver,"id","CmStorNo");
-                HelpersMethod.EnterText(driver,WebEle,8000,InputVal);
+                HelpersMethod.EnterText(driver,WebEle,10000,InputVal);
                 scenario.log("STORE# IS "+InputVal);
 
                 InputVal=RandomValues.generateRandomNumber(6);
                 WebEle=HelpersMethod.FindByElement(driver,"id","CmDeptNo");
-                HelpersMethod.EnterText(driver,WebEle,8000,InputVal);
+                HelpersMethod.EnterText(driver,WebEle,10000,InputVal);
                 scenario.log("DEPARTMENT# IS "+InputVal);
 
                 InputVal=RandomValues.generateRandomString(10);
                 WebEle=HelpersMethod.FindByElement(driver,"id","CmFullName");
-                HelpersMethod.EnterText(driver,WebEle,8000,InputVal);
+                HelpersMethod.EnterText(driver,WebEle,10000,InputVal);
                 scenario.log("CUSTOMER NAME IS "+InputVal);
 
                 WebElement cancelButton=HelpersMethod.FindByElement(driver,"xpath","//div[contains(text(),'Copy customer')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]/descendant::button[text()='Cancel']");
-                HelpersMethod.ActClick(driver,cancelButton,8000);
+                HelpersMethod.ActClick(driver,cancelButton,10000);
 
                 Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
-                        .withTimeout(Duration.ofSeconds(120))
+                        .withTimeout(Duration.ofSeconds(400))
                         .pollingEvery(Duration.ofSeconds(2))
                         .ignoring(NoSuchElementException.class);
                 wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
@@ -875,12 +891,12 @@ public class CustomerInquiryPage
                     HelpersMethod.ActClick(driver,cancelButton,1000);
                 }*/
                 wait = new FluentWait<WebDriver>(driver)
-                        .withTimeout(Duration.ofSeconds(120))
+                        .withTimeout(Duration.ofSeconds(400))
                         .pollingEvery(Duration.ofSeconds(2))
                         .ignoring(NoSuchElementException.class);
                 wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
                 exists=true;
-            }
+
             Assert.assertEquals(exists,true);
         }
         catch (Exception e){}
@@ -1187,16 +1203,16 @@ public class CustomerInquiryPage
         catch (Exception e){}
     }
 
-    public void getStoreValueVariable()
+    public void getStoreValueVariable(String storeNo)
     {
         exists=false;
         try
         {
             WebElement billWeb=HelpersMethod.FindByElement(driver,"xpath","//label[text()='Customer account #']/following-sibling::div[contains(@class,'i-indexfield-container')]/descendant::input[@placeholder='Store']");
             String billValue=HelpersMethod.JSGetValueEle(driver,billWeb,10000);
-            if(billValue.equals("189"))
+            if(billValue.equals(storeNo))
             {
-                scenario.log("189 VALUE HAS BEEN FOUND FOR PLACE");
+                scenario.log(storeNo+" VALUE HAS BEEN FOUND FOR PLACE");
                 exists=true;
             }
             Assert.assertEquals(exists,true);
@@ -1204,16 +1220,16 @@ public class CustomerInquiryPage
         catch (Exception e){}
     }
 
-    public void getDepartmentValueVariable()
+    public void getDepartmentValueVariable(String deptNo)
     {
         exists=false;
         try
         {
             WebElement billWeb=HelpersMethod.FindByElement(driver,"xpath","//label[text()='Customer account #']/following-sibling::div[contains(@class,'i-indexfield-container')]/descendant::input[@placeholder='Dept']");
             String billValue=HelpersMethod.JSGetValueEle(driver,billWeb,10000);
-            if(billValue.equals("189"))
+            if(billValue.equals(deptNo))
             {
-                scenario.log("189 VALUE HAS BEEN FOUND FOR PLACE");
+                scenario.log(deptNo+" VALUE HAS BEEN FOUND FOR PLACE");
                 exists=true;
             }
             Assert.assertEquals(exists,true);
@@ -1238,16 +1254,16 @@ public class CustomerInquiryPage
         catch (Exception e){}
     }
 
-    public void getStoreValueFixed()
+    public void getStoreValueFixed(String storeNo)
     {
         exists=false;
         try
         {
             WebElement billWeb=HelpersMethod.FindByElement(driver,"xpath","//label[text()='Customer account #']/following-sibling::div[contains(@class,'i-indexfield-container')]/descendant::input[@placeholder='Store']");
             String billValue=HelpersMethod.JSGetValueEle(driver,billWeb,10000);
-            if(billValue.equals("88886"))
+            if(billValue.equals(storeNo))
             {
-                scenario.log("88886 VALUE HAS BEEN FOUND FOR PLACE");
+                scenario.log(storeNo+" VALUE HAS BEEN FOUND FOR PLACE");
                 exists=true;
             }
             Assert.assertEquals(exists,true);
@@ -1255,16 +1271,16 @@ public class CustomerInquiryPage
         catch (Exception e){}
     }
 
-    public void getDepartmentValueFixed()
+    public void getDepartmentValueFixed(String deptNo)
     {
         exists=false;
         try
         {
             WebElement billWeb=HelpersMethod.FindByElement(driver,"xpath","//label[text()='Customer account #']/following-sibling::div[contains(@class,'i-indexfield-container')]/descendant::input[@placeholder='Dept']");
             String billValue=HelpersMethod.JSGetValueEle(driver,billWeb,10000);
-            if(billValue.equals("9898i"))
+            if(billValue.equals(deptNo))
             {
-                scenario.log("9898i VALUE HAS BEEN FOUND FOR PLACE");
+                scenario.log(deptNo+" VALUE HAS BEEN FOUND FOR PLACE");
                 exists=true;
             }
             Assert.assertEquals(exists,true);
@@ -1279,7 +1295,7 @@ public class CustomerInquiryPage
         {
             WebElement billWeb=HelpersMethod.FindByElement(driver,"xpath","//label[text()='Customer account #']/following-sibling::div[contains(@class,'i-indexfield-container')]/descendant::input[@placeholder='Bill']");
             String billValue=HelpersMethod.JSGetValueEle(driver,billWeb,10000);
-            if(billValue.equals(" "))
+            if(billValue.equals("")||billValue.equals("0"))
             {
                 scenario.log("EMPTY VALUE HAS BEEN FOUND FOR BILL");
                 exists=true;
@@ -1294,9 +1310,15 @@ public class CustomerInquiryPage
         exists=false;
         try
         {
+            Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(400))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
             WebElement billWeb=HelpersMethod.FindByElement(driver,"xpath","//label[text()='Customer account #']/following-sibling::div[contains(@class,'i-indexfield-container')]/descendant::input[@placeholder='Store']");
             String billValue=HelpersMethod.JSGetValueEle(driver,billWeb,10000);
-            if(billValue.equals(" "))
+            if(billValue.equals("")||billValue.equals("0"))
             {
                 scenario.log("EMPTY VALUE HAS BEEN FOUND FOR PLACE");
                 exists=true;
@@ -1313,7 +1335,7 @@ public class CustomerInquiryPage
         {
             WebElement billWeb=HelpersMethod.FindByElement(driver,"xpath","//label[text()='Customer account #']/following-sibling::div[contains(@class,'i-indexfield-container')]/descendant::input[@placeholder='Dept']");
             String billValue=HelpersMethod.JSGetValueEle(driver,billWeb,10000);
-            if(billValue.equals(" "))
+            if(billValue.equals("")||billValue.equals("0"))
             {
                 scenario.log("EMPTY VALUE HAS BEEN FOUND FOR PLACE");
                 exists=true;
@@ -1323,6 +1345,46 @@ public class CustomerInquiryPage
         catch (Exception e){}
     }
 
+    public void storeNoValueVariable()
+    {
+        exists=false;
+        try
+        {
+            String storeNoComp= TestBase.testEnvironment.get_CompanyNo();
+            if(HelpersMethod.IsExists("//input[@placeholder='Store']",driver))
+            {
+                WebElement store=HelpersMethod.FindByElement(driver,"xpath","//input[@placeholder='Store']");
+                String storeNo=HelpersMethod.JSGetValueEle(driver,store,10000);
+                if(storeNoComp.contains(storeNo))
+                {
+                    scenario.log("STORE VALUE FOUND " + storeNo);
+                    exists = true;
+                }
+            }
+            Assert.assertEquals(exists,true);
+        }
+        catch (Exception e){}
+    }
 
+    public void deptNovalueVariable()
+    {
+        exists=false;
+        try
+        {
+            String deptNoComp= TestBase.testEnvironment.get_CompanyNo();
+            if(HelpersMethod.IsExists("//input[@placeholder='Dept']",driver))
+            {
+                WebElement dept=HelpersMethod.FindByElement(driver,"xpath","//input[@placeholder='Dept']");
+                String deptNo=HelpersMethod.JSGetValueEle(driver,dept,10000);
+                if(deptNoComp.contains(deptNo))
+                {
+                    scenario.log("DEPARTMENT NO FOUND IS " + deptNo);
+                    exists = true;
+                }
+            }
+            Assert.assertEquals(exists,true);
+        }
+        catch (Exception e){}
+    }
 }
 

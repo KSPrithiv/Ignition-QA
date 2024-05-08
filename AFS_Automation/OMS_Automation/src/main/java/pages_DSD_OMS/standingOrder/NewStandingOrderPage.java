@@ -2187,6 +2187,12 @@ public class NewStandingOrderPage
         String prodText;
         try
         {
+            Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(400))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
             List<WebElement> Products= HelpersMethod.FindByElements(driver,"xpath","//button[@class='i-link-button']");
             for(WebElement prod:Products)
             {
@@ -2211,6 +2217,12 @@ public class NewStandingOrderPage
         String prodText;
         try
         {
+            Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(400))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
             List<WebElement> Products= HelpersMethod.FindByElements(driver,"xpath","//button[@class='i-link-button']");
             for(WebElement prod:Products)
             {

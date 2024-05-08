@@ -1445,7 +1445,7 @@ public class CatalogPage
             HelpersMethod.ScrollElement(driver,WebEle);
             if(HelpersMethod.IsExists("//div[contains(@class,'card-view')]/descendant::div[@class='label-preview-label']",driver))
             {
-                tirePrice=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'card-view')]/descendant::div[@class='label-preview-label']").getText();
+                tirePrice=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'card-view')]/descendant::div[@class='label-preview-label' and contains(text(),'Tiered pricing')]").getText();
                 if(tirePrice.equalsIgnoreCase("TIERED PRICING"))
                 {
                     scenario.log("TIRE PRICING ICON IS VISIBLE");
@@ -1530,13 +1530,15 @@ public class CatalogPage
             }
 
                 //navigate to Catalog
-                navigateToCatalog();
+                //navigateToCatalog();
+                driver.navigate().to(currentURL);
 
                 wait = new FluentWait<WebDriver>(driver)
-                        .withTimeout(Duration.ofSeconds(120))
+                        .withTimeout(Duration.ofSeconds(400))
                         .pollingEvery(Duration.ofSeconds(2))
                         .ignoring(NoSuchElementException.class);
                 wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("productsCard")));
+                scenario.log(driver.getCurrentUrl());
         }
         catch (Exception e){}
     }

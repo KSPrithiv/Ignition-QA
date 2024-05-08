@@ -29,6 +29,8 @@ import java.io.IOException;
                 //"src/test/resources/features_DSD_OMS/AdminToClientNavigation/reportsAdminToClientFeature.feature",
                 //"src/test/resources/features_DSD_OMS/AdminToClientNavigation/disconnectedModeAdminFeature.feature",
                 "src/test/resources/features_DSD_OMS/AdminToClientNavigation/orderFactorOrderEntryFeature.feature",
+                "src/test/resources/features_DSD_OMS/AdminToClientNavigation/customerInqAdminClientFeatureDSD.feature",
+                "src/test/resources/features_DSD_OMS/AdminToClientNavigation/reportsAdminToClientFeature.feature",
         },
                 glue = {"stepDefination_DSD_OMS"},
                 plugin = {"pretty",
@@ -57,7 +59,7 @@ public class TestRunnerAdminClientNavigationDSD extends AbstractTestNGCucumberTe
     @AfterMethod
     public static void afterclass() throws InterruptedException, MessagingException, IOException
     {
-        //Thread.sleep(500);
+        Thread.sleep(500);
         TestBase.CloseBrowser();
 
         if(TestBase.testEnvironment.get_browser().equalsIgnoreCase("Firefox"))

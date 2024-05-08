@@ -22,7 +22,7 @@ Feature: Order control list
     And User validate that he is in NewOE page
     Then Enter PO# for New order
       |PO123|
-    Then Enter Pro# in Quick Product Entry area
+    Then Enter Pro# in Quick Product Entry area for creating order with note
     And Check for Case and Unit input box enabled or not based on that enter value
       |100|100|
     Then User should click on Comment icon in Order entry card
@@ -112,7 +112,7 @@ Feature: Order control list
     And User validate that he is in NewOE page
     Then Enter PO# for New order
       |PO123|
-    Then Enter Pro# in Quick Product Entry area
+    Then Enter Pro# in Quick Product Entry area for order type
     And Check for Case and Unit input box enabled or not based on that enter value
       |100|100|
     Then Click on Next button and select option Continue without payment option

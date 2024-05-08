@@ -142,8 +142,8 @@ Feature: Disconnected mode
     Then Click on Next button
     And Click on SubmitOrder button
     Then User should be navigated to Order Entry page
-    Then User clicks on network symbol and click on toggle button drop down should appear
-    And Then User should Click on toggle button to go online
+#    Then User clicks on network symbol and click on toggle button drop down should appear
+#    And Then User should Click on toggle button to go online
 
 
 

@@ -256,8 +256,8 @@ public class OrderEntryPage
     public void NavigateingToOrderEntry()
     {
         exists=false;
-        WebElement WebEle = null;
-        String status = null;
+        WebElement WebEle;
+        String status = "";
 
         try
         {
@@ -292,6 +292,29 @@ public class OrderEntryPage
 
             WebElement OEMenu = HelpersMethod.FindByElement(driver, "xpath", "//ul[contains(@class,'MuiList-root ')]/descendant::span[contains(text(),'Order Entry')]|//ul[contains(@class,'MuiList-root ')]/descendant::span[contains(text(),'OE')]");
             HelpersMethod.ActClick(driver, OEMenu, 10000);
+
+            if(HelpersMethod.IsExists("//div[contains(text(),'Your order has not been submitted')]/ancestor::div[@class='k-widget k-window k-dialog']",driver))
+            {
+              WebElement dialogBoxSubmit=HelpersMethod.FindByElement(driver,"xpath","//button[text()='Submit order']");
+              HelpersMethod.ActClick(driver,dialogBoxSubmit,10000);
+                wait = new FluentWait<WebDriver>(driver)
+                        .withTimeout(Duration.ofSeconds(200))
+                        .pollingEvery(Duration.ofSeconds(2))
+                        .ignoring(NoSuchElementException.class);
+                wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+            }
+
+            //Code to handle order already exists dialog box
+            if(HelpersMethod.IsExists("//div[contains(text(),'Existing orders found')]/ancestor::div[@class='k-widget k-window k-dialog']",driver))
+            {
+                WebElement yesButton=HelpersMethod.FindByElement(driver,"xpath","//button[text()='Yes']");
+                HelpersMethod.ActClick(driver,yesButton,10000);
+                wait = new FluentWait<WebDriver>(driver)
+                        .withTimeout(Duration.ofSeconds(200))
+                        .pollingEvery(Duration.ofSeconds(2))
+                        .ignoring(NoSuchElementException.class);
+                wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+            }
 
             status = HelpersMethod.returnDocumentStatus(driver);
             if (status.equals("loading"))
@@ -662,7 +685,6 @@ public class OrderEntryPage
 
     public void Refresh_Page2()
     {
-        Actions act1=new Actions(driver);
         String status;
         Wait<WebDriver> wait;
         try
@@ -802,7 +824,7 @@ public class OrderEntryPage
     public void Change_NewAccount(String Acc)
     {
         exists = false;
-        WebElement WebEle = null;
+        WebElement WebEle;
         try
         {
             scenario.log("ACCOUNT NUMBER WILL BE CHANGED TO "+Acc);
@@ -1167,7 +1189,6 @@ public class OrderEntryPage
 
     public void OrderGuidePopup()
     {
-        WebElement WebEle = null;
         String status = HelpersMethod.returnDocumentStatus(driver);
         if (status.equals("loading"))
         {
@@ -1370,7 +1391,7 @@ public class OrderEntryPage
     public void Read_DeliveryDate() throws InterruptedException, ParseException
     {
         Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
-                .withTimeout(Duration.ofSeconds(120))
+                .withTimeout(Duration.ofSeconds(200))
                 .pollingEvery(Duration.ofSeconds(2))
                 .ignoring(NoSuchElementException.class);
         wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
@@ -3098,10 +3119,10 @@ public class OrderEntryPage
                 //Select first par order from the popup
                 new WebDriverWait(driver, Duration.ofMillis(40000)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@id='par-list-grid']/ancestor::div[@class='k-widget k-window k-dialog']"))));
                 WebElement parList = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='k-widget k-window k-dialog']");
-                WebElement parSelect = parList.findElement(By.xpath(".//div[@id='par-list-grid']/descendant::tr[contains(@class,'k-master-row')][1]"));
+                //WebElement parSelect = parList.findElement(By.xpath(".//div[@id='par-list-grid']/descendant::tr[contains(@class,'k-master-row')][1]"));
                 WebElement parText = parList.findElement(By.xpath(".//div[@id='par-list-grid']/descendant::tr[contains(@class,'k-master-row')][1]/td"));
                 scenario.log("PAR LIST SELECTED IS: " + parText.getText());
-                HelpersMethod.ActClick(driver, parSelect, 10000);
+                //HelpersMethod.ActClick(driver, parSelect, 10000);
                 exists=true;
                 wait = new FluentWait<WebDriver>(driver)
                         .withTimeout(Duration.ofSeconds(250))

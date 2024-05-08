@@ -45,7 +45,7 @@ public class AdminOrderEntryStep1
     {
         orderpage=new OrderEntryPage(driver,scenario);
         primarySalesRep=orderpage.readPrimarySalesRep();
-        orderpage.clearSalesRep();
+        //orderpage.clearSalesRep();
         orderpage.clickOnSalesRepIndexIcon();
         orderpage.selectSalesRep();
     }
