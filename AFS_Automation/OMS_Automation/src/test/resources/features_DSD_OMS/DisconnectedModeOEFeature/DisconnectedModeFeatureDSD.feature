@@ -22,7 +22,7 @@ Feature: Disconnected mode
       |PO123|
     Then Enter Pro# in Quick Product Entry area
     And Check for Case and Unit input box enabled or not based on that enter value
-      |50|50|
+      |1|1|
     Then User should click on Comment icon in Product grid
     And should enter comment in comment popup
       |Comment at Product level|

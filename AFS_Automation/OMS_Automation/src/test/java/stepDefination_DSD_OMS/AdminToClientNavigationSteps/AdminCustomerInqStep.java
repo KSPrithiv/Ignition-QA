@@ -46,14 +46,14 @@ public class AdminCustomerInqStep
     }
 
     @Then("User should enable Auto populate next available customer number when creating new or copy customers")
-    public void userShouldEnableAutoPopulateNextAvailableCustomerNumberWhenCreatingNewOrCopyCustomers()
+    public void userShouldEnableAutoPopulateNextAvailableCustomerNumberWhenCreatingNewOrCopyCustomers() throws InterruptedException
     {
         custInqPageAdmin=new customerInqAdminPage(driver,scenario);
         custInqPageAdmin.enableAutoPopulateNextTogglebutton();
     }
 
     @Then("User should disable Auto populate next available customer number when creating new or copy customers")
-    public void userShouldDisableAutoPopulateNextAvailableCustomerNumberWhenCreatingNewOrCopyCustomers()
+    public void userShouldDisableAutoPopulateNextAvailableCustomerNumberWhenCreatingNewOrCopyCustomers() throws InterruptedException
     {
         custInqPageAdmin=new customerInqAdminPage(driver,scenario);
         custInqPageAdmin.disableAutoPopulateNextTogglebutton();

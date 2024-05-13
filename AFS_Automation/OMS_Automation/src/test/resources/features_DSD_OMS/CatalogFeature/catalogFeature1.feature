@@ -20,7 +20,7 @@ Scenario: To test + and - symbol orderation, that appears in my cart page
   And User should navigate to Catalog tab
   And User should click on Reset filter button and all the products should displayed in Card view in Catalog page
   Then User enters Product# in Search bar and enters Qty for increase and decrease Qty
-    |100|
+    |1|
   Then User click on cart in catalog and click on Gotocart, Press Plus and Minus buttons
   And user should be on New Order entry page
   Then Enter PO# for New order

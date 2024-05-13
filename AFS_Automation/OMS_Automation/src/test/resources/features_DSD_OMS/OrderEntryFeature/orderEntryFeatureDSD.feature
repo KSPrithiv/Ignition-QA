@@ -23,6 +23,20 @@ Feature: Order Entry4
     And Click on SubmitOrder button
     Then User should be navigated to Order Entry page
 
+  @UnUsualQtyUnitCase
+  Scenario: Test scenario for creating order with unusual Qty "Maximum Qty exceeds"
+    Given User must be on Order Entry Page
+    Then User must click Start Order button
+    Then User should make selection between Pending order or Start New order
+    Then User should select Note from popup and select OG from OG popup
+    Then Enter PO# for New order
+      |PO123|
+    And User should navigate to New OE page, and enter Qty to product in product grid more than Maximum limit
+      |100|100|
+    Then Click on Next button
+    And Click on SubmitOrder button
+    Then User should be navigated to Order Entry page
+
   @OESearchProdForeignLanguage
   Scenario: Creating New order by entering foreign language product description  Product# in Searchbar, New order entry page
     Given User must be on Order Entry Page
@@ -34,7 +48,7 @@ Feature: Order Entry4
     Then User enters foreign language description of Product in Search box
     Then Check for Catalog popup
     Then Enter the Qty in the Product grid Case and Unit
-      | 100 | 100 |
+      | 1 | 1 |
     Then Click on Next button
     And Click on SubmitOrder button
     Then User should be navigated to Order Entry page
@@ -49,7 +63,7 @@ Feature: Order Entry4
       |PO123|
     Then Enter Pro# in Quick Product Entry area
     And Check for Case and Unit input box enabled or not based on that enter value
-      |50|50|
+      |1|1|
     Then User should click on Comment icon in Product grid
     And should enter comment in comment popup
       |Comment at Product level|
@@ -67,7 +81,7 @@ Feature: Order Entry4
       |PO123|
     Then Enter Pro# in Quick Product Entry area
     And Check for Case and Unit input box enabled or not based on that enter value
-      |40|60|
+      |1|1|
     Then User should click on Comment icon in Product grid
     And should enter comment in comment popup
       |Comment at Product level|
@@ -86,7 +100,7 @@ Feature: Order Entry4
       |PO123|
     Then Enter Pro# in Quick Product Entry area
     And Check for Case and Unit input box enabled or not based on that enter value
-      |80|65|
+      |1|1|
     Then User should click on Comment icon in Product grid
    # And User should enter comment in comment popup at Product level
     And should enter comment in comment popup for updating
@@ -110,7 +124,7 @@ Feature: Order Entry4
       |PO123|
     Then Enter Pro# in Quick Product Entry area
     And Check for Case and Unit input box enabled or not based on that enter value
-      |80|60|
+      |1|1|
     Then User should click on Comment icon in Order entry card
     And User should enter comment in comment popup
       |Comment at Order level for verifying duplicate comment|
@@ -137,7 +151,7 @@ Feature: Order Entry4
       |PO123|
     Then Enter Pro# in Quick Product Entry area
     And Check for Case and Unit input box enabled or not based on that enter value
-      |70|60|
+      |1|1|
     Then Click on Next button
     And Click on SubmitOrder button
     Then User should be navigated to Order Entry page

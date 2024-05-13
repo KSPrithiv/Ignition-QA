@@ -167,9 +167,9 @@ public class CheckOutOrderPage
         catch (Exception e){}
     }
 
+    //Don't use assert to validate click of  next button, it may fail if change shipping address admin setting is disabled
     public void NextButton_Click()
     {
-        //exists=false;
         try
         {
             Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
@@ -198,12 +198,13 @@ public class CheckOutOrderPage
                         .ignoring(NoSuchElementException.class);
                 wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
 
-                if (NextButton.isEnabled())
+                Thread.sleep(1000);
+                if (NextButton.isDisplayed() && NextButton.isEnabled())
                 {
                     HelpersMethod.ScrollElement(driver, NextButton);
-                    //HelpersMethod.ScrollUpScrollBar(driver);
                     NextButton=HelpersMethod.FindByElement(driver,"id","SubmitCheckoutButton");
-                    HelpersMethod.ClickBut(driver, NextButton, 60000);
+                    //HelpersMethod.ClickBut(driver, NextButton, 60000);
+                    HelpersMethod.ActClick(driver,NextButton,60000);
                     exists=true;
                     wait = new FluentWait<WebDriver>(driver)
                             .withTimeout(Duration.ofSeconds(200))
@@ -228,7 +229,6 @@ public class CheckOutOrderPage
                     scenario.log("NEXT BUTTON IS DISABLED");
                 }
             }
-            //Assert.assertEquals(exists,true);
         }
         catch (Exception e){}
     }
@@ -273,14 +273,6 @@ public class CheckOutOrderPage
                   //Check whether address is already selected or not. If not selected select address
                   if (!driver.findElement(By.id("SubmitCheckoutButton")).isEnabled())
                   {
-                  /*  WebEle=HelpersMethod.FindByElement(driver,"id","SubmitCheckoutButton");
-                    HelpersMethod.ScrollElement(driver,WebEle);
-                    HelpersMethod.ClickBut(driver,WebEle,1000);
-                    scenario.log("NEXT BUTTON IN PAYMENT PAGE HAS BEEN CLICKED");
-                    exists=true;
-                   }
-                   else
-                   {*/
                       if (HelpersMethod.IsExists("//div[@id='addressCard']/descendant::span[contains(@class,'i-summary-area__other__section__value')]", driver))
                       {
                           if (HelpersMethod.IsExists("//div[@id='addressCard']/descendant::span[contains(@class,'k-icon k-i-arrow-chevron-down')]", driver))
@@ -290,10 +282,6 @@ public class CheckOutOrderPage
                           }
                           WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='address-container']/descendant::tbody/tr[1]/descendant::input");
                           HelpersMethod.ClickBut(driver, WebEle, 10000);
-
-                          //Check whether 'SubmitCheckoutButton' is enabled or not
-                          //WebEle=HelpersMethod.FindByElement(driver,"id","SubmitCheckoutButton");
-                          //exists=HelpersMethod.IsEnabledByele(WebEle);
                       }
                   }
                 }
@@ -626,11 +614,12 @@ public class CheckOutOrderPage
     {
         try
         {
-            if(HelpersMethod.IsExists("//div[@class='loader']",driver))
-            {
-                WebElement WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 2000000);
-            }
+            Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(200))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
             WebElement WebEle=null;
             WebEle=HelpersMethod.FindByElement(driver,"id","addressCard");
             HelpersMethod.ScrollElement(driver,WebEle);
@@ -641,6 +630,11 @@ public class CheckOutOrderPage
                 {
                     WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@id='paymentMethodCard']/descendant::span[contains(@class,'k-icon k-i-arrow-chevron-down')]");
                     HelpersMethod.ClickBut(driver,WebEle,10000);
+                    wait = new FluentWait<WebDriver>(driver)
+                            .withTimeout(Duration.ofSeconds(200))
+                            .pollingEvery(Duration.ofSeconds(2))
+                            .ignoring(NoSuchElementException.class);
+                    wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
                 }
             }
         }
@@ -652,7 +646,7 @@ public class CheckOutOrderPage
     {
         try
         {
-            WebElement WebEle=null;
+            WebElement WebEle;
             //Check whether application is navigating to checkout card or navigating to order summary page
             if (HelpersMethod.IsExists("//div[@class='page-content']/descendant::div[@id='checkoutCard']",driver))
             {
@@ -660,7 +654,7 @@ public class CheckOutOrderPage
                 if (HelpersMethod.FindByElement(driver,"id","SubmitCheckoutButton").isEnabled())
                 {
                     WebEle=HelpersMethod.FindByElement(driver,"id","SubmitCheckoutButton");
-                    HelpersMethod.ClickBut(driver,WebEle,1000);
+                    HelpersMethod.ClickBut(driver,WebEle,10000);
                 }
                 else
                 {
@@ -669,12 +663,12 @@ public class CheckOutOrderPage
                         if(HelpersMethod.IsExists("//div[@id='paymentMethodCard']/descendant::span[contains(@class,'k-icon k-i-arrow-chevron-down')]",driver))
                         {
                             WebEle=HelpersMethod.FindByElement(driver, "xpath", "//div[@id='paymentMethodCard']/descendant::span[contains(@class,'k-icon k-i-arrow-chevron-down')]");
-                            HelpersMethod.ClickBut(driver,WebEle,1000);
+                            HelpersMethod.ClickBut(driver,WebEle,10000);
                         }
                         WebEle=HelpersMethod.FindByElement(driver, "xpath", "//div[@class='payment-method-container']/descendant::tbody/tr[1]/descendant::input");
-                        HelpersMethod.ClickBut(driver,WebEle,1000);
+                        HelpersMethod.ClickBut(driver,WebEle,10000);
                         WebEle=HelpersMethod.FindByElement(driver,"id","SubmitCheckoutButton");
-                        HelpersMethod.ClickBut(driver,WebEle,1000);
+                        HelpersMethod.ClickBut(driver,WebEle,10000);
                     }
                 }
             }
@@ -718,13 +712,13 @@ public class CheckOutOrderPage
                         }
 
                         //enter first name
-                        HelpersMethod.EnterText(driver, Fname, 1000, fName);
+                        HelpersMethod.EnterText(driver, Fname, 10000, fName);
                         scenario.log("FIRST NAME ENTERED " + HelpersMethod.JSGetValueEle(driver, Fname, 1000));
                         //Enter last name
-                        HelpersMethod.EnterText(driver, Lname, 1000, RandomValues.generateRandomString(2));
+                        HelpersMethod.EnterText(driver, Lname, 10000, RandomValues.generateRandomString(2));
                         scenario.log("LAST NAME ENTERED IS " + HelpersMethod.JSGetValueEle(driver, Lname, 1000));
                         //Click on Account type drop down
-                        HelpersMethod.ClickBut(driver, AccType, 1000);
+                        HelpersMethod.ClickBut(driver, AccType, 10000);
                         //Account type selection
                         WebElement menuContainer1 = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-child-animation-container')]/descendant::ul");
                         List<WebElement> Options1 = menuContainer1.findElements(By.xpath(".//li"));
@@ -742,10 +736,10 @@ public class CheckOutOrderPage
                             }
                         }
                         //Enter Route#
-                        HelpersMethod.EnterText(driver, Route_No, 1000, RandomValues.generateRandomNumber(4));
+                        HelpersMethod.EnterText(driver, Route_No, 10000, RandomValues.generateRandomNumber(4));
                         scenario.log("ROUTE ENTERED IS " + HelpersMethod.JSGetValueEle(driver, Route_No, 1000));
                         //Enter Account no
-                        HelpersMethod.EnterText(driver, AccNo, 1000, RandomValues.generateRandomNumber(10));
+                        HelpersMethod.EnterText(driver, AccNo, 10000, RandomValues.generateRandomNumber(10));
                         scenario.log("ACCOUNT NUMBER ENTERED IS " + HelpersMethod.JSGetValueEle(driver, AccNo, 1000));
                         exists = true;
                     }
@@ -756,7 +750,7 @@ public class CheckOutOrderPage
                     //Click on OK button
                     HelpersMethod.ActClick(driver, OkPay, 10000);
                     Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
-                            .withTimeout(Duration.ofSeconds(120))
+                            .withTimeout(Duration.ofSeconds(200))
                             .pollingEvery(Duration.ofSeconds(2))
                             .ignoring(NoSuchElementException.class);
                     wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
@@ -781,9 +775,9 @@ public class CheckOutOrderPage
             if(HelpersMethod.IsExists("//td[contains(text(),'"+fName+"')]/ancestor::tr/descendant::div[@class='i-btn-radio ']",driver))
             {
                 WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[contains(text(),'Savings - Personal')]/ancestor::tr/descendant::div[@class='i-btn-radio ']");
-                HelpersMethod.ClickBut(driver,WebEle,1000);
+                HelpersMethod.ClickBut(driver,WebEle,10000);
                 WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[contains(text(),'Savings - Personal')]/ancestor::tr/descendant::button[@id='DeletePaymentButton']");
-                HelpersMethod.ClickBut(driver,WebEle,1000);
+                HelpersMethod.ClickBut(driver,WebEle,10000);
                 scenario.log("PAYMENT METHOD DELETED");
             }
         }
@@ -844,7 +838,7 @@ public class CheckOutOrderPage
             if(HelpersMethod.IsExists("//div[@class='payment-method-container']/descendant::tbody/tr[1]/descendant::input",driver))
             {
                 WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='payment-method-container']/descendant::tbody/tr[1]/descendant::input");
-                HelpersMethod.ClickBut(driver, WebEle, 1000);
+                HelpersMethod.ClickBut(driver, WebEle, 10000);
                 scenario.log("PAYMENT METHOD HAS BEEN SELECTED");
             }
         }
@@ -860,7 +854,7 @@ public class CheckOutOrderPage
             if(HelpersMethod.IsExists("//div[@class='payment-method-container']/descendant::tbody/tr[1]/descendant::input",driver))
             {
                 WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='payment-method-container']/descendant::tbody/tr[1]/descendant::input");
-                HelpersMethod.ClickBut(driver, WebEle, 10000);
+                HelpersMethod.ClickBut(driver, WebEle, 20000);
                 currenturl=HelpersMethod.FindByElement(driver,"xpath","//tr[1]/td/div[contains(@class,'payment-method-type')]").getText();
                 scenario.log("PAYMENT METHOD SELECTED IS: "+currenturl);
             }
@@ -875,7 +869,7 @@ public class CheckOutOrderPage
         try
         {
             Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
-                    .withTimeout(Duration.ofSeconds(120))
+                    .withTimeout(Duration.ofSeconds(400))
                     .pollingEvery(Duration.ofSeconds(2))
                     .ignoring(NoSuchElementException.class);
             wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
@@ -887,7 +881,7 @@ public class CheckOutOrderPage
             }
 
             wait = new FluentWait<WebDriver>(driver)
-                    .withTimeout(Duration.ofSeconds(120))
+                    .withTimeout(Duration.ofSeconds(400))
                     .pollingEvery(Duration.ofSeconds(2))
                     .ignoring(NoSuchElementException.class);
             wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));

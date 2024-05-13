@@ -169,8 +169,12 @@ public class AllOrdersPageStep
     public void userShouldNavigateToAllOrders() throws InterruptedException, AWTException
     {
         orderpage = new OrderEntryPage(driver, scenario);
-        orderpage.HandleError_Page();
+        exists= orderpage.HandleError_Page();
         allOrder=new AllOrderPage(driver,scenario);
+        if(exists==true)
+        {
+            allOrder.navigateToAllOrder();
+        }
         allOrder.Refresh_Page(CurrentULR);
         allOrder.ValidateAllOrder();
     }
@@ -506,6 +510,7 @@ public class AllOrdersPageStep
         allOrder=new AllOrderPage(driver,scenario);
         allOrder.ValidateAllOrder();
         allOrder.selectOrderForCopy();
+        allOrder.ValidateAllOrder();
         allOrder.PrintAllOrder();
         orderpage=new OrderEntryPage(driver,scenario);
         orderpage.Refresh_Page(CurrentULR);
@@ -632,8 +637,25 @@ public class AllOrdersPageStep
     {
         orderpage = new OrderEntryPage(driver, scenario);
 
+        String status = HelpersMethod.returnDocumentStatus(driver);
+        if (status.equals("loading"))
+        {
+            HelpersMethod.waitTillLoadingPage(driver);
+        }
+
         Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
-                .withTimeout(Duration.ofSeconds(250))
+                .withTimeout(Duration.ofSeconds(400))
+                .pollingEvery(Duration.ofSeconds(2))
+                .ignoring(NoSuchElementException.class);
+        wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
+        status = HelpersMethod.returnDocumentStatus(driver);
+        if (status.equals("loading"))
+        {
+            HelpersMethod.waitTillLoadingPage(driver);
+        }
+        wait = new FluentWait<WebDriver>(driver)
+                .withTimeout(Duration.ofSeconds(400))
                 .pollingEvery(Duration.ofSeconds(2))
                 .ignoring(NoSuchElementException.class);
         wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));

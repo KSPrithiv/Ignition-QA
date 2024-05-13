@@ -186,7 +186,13 @@ public class OrderControlPageSteps
     public void userShouldNavigateToOCL() throws InterruptedException, AWTException
     {
         orderpage = new OrderEntryPage(driver, scenario);
-        orderpage.HandleError_Page();
+        exists= orderpage.HandleError_Page();
+        orderControlList=new OrderControlListPage(driver,scenario);
+        if(exists==true)
+        {
+            orderControlList.navigateToOCL();
+        }
+
         orderControlList=new OrderControlListPage(driver,scenario);
         orderControlList.Refresh_Page(currentURL);
         orderControlList.Validate_OCL();
@@ -205,10 +211,12 @@ public class OrderControlPageSteps
         orderControlList.Validate_OCL();
         orderControlList.Call_Date_Click();
         orderControlList.Call_Date_Selection(days);
+        orderControlList.readCallDate();
     }
 
     @Then("User Clicks on Untaken radio button")
-    public void userClicksOnUntakenRadioButton() throws InterruptedException {
+    public void userClicksOnUntakenRadioButton() throws InterruptedException
+    {
         orderControlList=new OrderControlListPage(driver,scenario);
         orderControlList.Validate_OCL();
         orderControlList.Select_Untaken();
@@ -357,7 +365,12 @@ public class OrderControlPageSteps
     public void clickOnSubmitOrderButtonAndReadOrder_noForOCL() throws InterruptedException, AWTException
     {
         summary = new CheckOutSummaryPage(driver,scenario);
-        //summary.validateSummaryPage();
+        summary.validateSummaryPage();
+        String sOrd_No = summary.Get_Order_No();
+        if(sOrd_No!=null)
+        {
+            Ord_No=sOrd_No;
+        }
         summary.ClickSubmit();
         for(int i=0;i<=2;i++)
         {
@@ -365,11 +378,7 @@ public class OrderControlPageSteps
             summary.cutoffDialog();
             summary.percentageOfAverageProd();
         }
-        String sOrd_No = summary.Get_Order_No();
-        if(sOrd_No!=null)
-        {
-            Ord_No=sOrd_No;
-        }
+
         summary.SucessPopup();
         Thread.sleep(4000);
     }
@@ -390,7 +399,8 @@ public class OrderControlPageSteps
     }
 
     @And("User should verify Order number created in OCL grid and Order icon in OCL")
-    public void userShouldVerifyOrderNumberCreatedInOCLGridAndOrderIconInOCL() throws InterruptedException {
+    public void userShouldVerifyOrderNumberCreatedInOCLGridAndOrderIconInOCL() throws InterruptedException
+    {
         orderControlList = new OrderControlListPage(driver, scenario);
         orderControlList.Validate_OCL();
         orderControlList.verifyOrderInOCLgrid(Ord_No);
@@ -398,8 +408,19 @@ public class OrderControlPageSteps
         orderControlList.clearSearchBar();
     }
 
+    @And("User should verify Order number created in OCL grid in OMS")
+    public void userShouldVerifyOrderNumberCreatedInOCLGridInOMS() throws InterruptedException
+    {
+        orderControlList = new OrderControlListPage(driver, scenario);
+        orderControlList.Validate_OCL();
+        orderControlList.verifyOrderInOCLgrid(Ord_No);
+        //orderControlList.verifyNewOrderIconInOCLgrid();
+        orderControlList.clearSearchBar();
+    }
+
     @And("User should verify Order number created in OCL grid")
-    public void userShouldVerifyOrderNumberCreatedInOCLGrid() throws InterruptedException {
+    public void userShouldVerifyOrderNumberCreatedInOCLGrid() throws InterruptedException
+    {
         orderControlList = new OrderControlListPage(driver, scenario);
         orderControlList.Validate_OCL();
         orderControlList.verifyOrderInOCLgrid(Ord_No);
@@ -444,7 +465,7 @@ public class OrderControlPageSteps
     public void userShouldSelectNoteFromPopupAndOrderGuideFromPopupForOCL() throws InterruptedException, AWTException
     {
         Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
-                .withTimeout(Duration.ofSeconds(120))
+                .withTimeout(Duration.ofSeconds(200))
                 .pollingEvery(Duration.ofSeconds(2))
                 .ignoring(NoSuchElementException.class);
         wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
@@ -457,7 +478,7 @@ public class OrderControlPageSteps
             HelpersMethod.ActClick(driver,okButton,10000);
             cutOff=true;
             wait = new FluentWait<WebDriver>(driver)
-                    .withTimeout(Duration.ofSeconds(120))
+                    .withTimeout(Duration.ofSeconds(200))
                     .pollingEvery(Duration.ofSeconds(2))
                     .ignoring(NoSuchElementException.class);
             wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
@@ -469,7 +490,7 @@ public class OrderControlPageSteps
             }
 
             wait = new FluentWait<WebDriver>(driver)
-                    .withTimeout(Duration.ofSeconds(120))
+                    .withTimeout(Duration.ofSeconds(200))
                     .pollingEvery(Duration.ofSeconds(2))
                     .ignoring(NoSuchElementException.class);
             wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
@@ -490,7 +511,7 @@ public class OrderControlPageSteps
             }
 
             wait = new FluentWait<WebDriver>(driver)
-                    .withTimeout(Duration.ofSeconds(120))
+                    .withTimeout(Duration.ofSeconds(200))
                     .pollingEvery(Duration.ofSeconds(2))
                     .ignoring(NoSuchElementException.class);
             wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
@@ -502,7 +523,7 @@ public class OrderControlPageSteps
             }
 
             wait = new FluentWait<WebDriver>(driver)
-                    .withTimeout(Duration.ofSeconds(120))
+                    .withTimeout(Duration.ofSeconds(200))
                     .pollingEvery(Duration.ofSeconds(2))
                     .ignoring(NoSuchElementException.class);
             wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));

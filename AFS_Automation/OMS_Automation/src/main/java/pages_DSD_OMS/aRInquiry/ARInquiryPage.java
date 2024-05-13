@@ -34,8 +34,8 @@ public class ARInquiryPage
     WebDriver driver;
     Scenario scenario;
     static boolean exists=false;
-    String InvoiceNo=null;
-    String currentURL=null;
+    String InvoiceNo;
+    String currentURL;
 
     @FindBy(xpath="//button[contains(@class,'i-indexfield-container__main__button i-button--icon-only')]")
     private WebElement Cust_Accout;

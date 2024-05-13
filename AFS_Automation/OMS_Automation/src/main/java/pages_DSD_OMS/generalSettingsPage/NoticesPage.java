@@ -30,8 +30,8 @@ public class NoticesPage
     WebDriver driver;
     Scenario scenario;
     static boolean exists=false;
-    static String currentURL=null;
-    static String InputValue=null;
+    static String currentURL;
+    static String InputValue;
 
     @FindBy(xpath = "//div[@id='menuWrapper_selected_accesscpadmingeneralsettings']//div[@class='submenu-item-text']")
     private WebElement notices;

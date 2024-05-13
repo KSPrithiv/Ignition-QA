@@ -7,6 +7,13 @@ Feature: All orders
     Then User navigate to Client side for All order
     Then User should select Order Entry tab for All order
 
+  @ShowOrderQuotes
+  Scenario: Test scenario for displaying all order with quotes
+    Given User must be on Order Entry Page to select All Orders
+    And User should navigate to All Orders
+    Then User clicks on Show all Quotes check box
+    And User goes through all the order in Open order grid
+
   @DisplayOrderWithProduct
   Scenario: Test scenario for displaying only those orders having particular product
      Given User must be on Order Entry Page to select All Orders

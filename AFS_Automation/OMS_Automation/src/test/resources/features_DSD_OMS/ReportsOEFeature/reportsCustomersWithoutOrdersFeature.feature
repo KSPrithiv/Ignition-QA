@@ -9,7 +9,7 @@ Feature: Reports
     Then User selects Account# for Reports
 
   @ReportWithValidDate
-  Scenario: Test scenrio for generating report with valid from and to date
+  Scenario: Test scenario for generating report with valid from and to date
     Given User must be on Order Entry Page to select Reports
     And User should navigate to Reports
     Then User should select from and to date for Reports generation

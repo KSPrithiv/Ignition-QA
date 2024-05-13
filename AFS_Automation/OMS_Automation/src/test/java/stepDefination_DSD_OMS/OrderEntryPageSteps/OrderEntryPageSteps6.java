@@ -32,6 +32,7 @@ public class OrderEntryPageSteps6
     static OrderEntryPage orderpage;
     static CheckOutOrderPage checkorder;
     static String changedSalesRep;
+    static String orderNumber;
 
     @Before
     public void LaunchBrowser1(Scenario scenario) throws Exception
@@ -167,7 +168,6 @@ public class OrderEntryPageSteps6
         if(HelpersMethod.IsExists("//div[@id='paymentMethodCard']",driver))
         {
             Thread.sleep(4000);
-            //checkorder.validateCheckOrder();
             checkorder.Select_PaymentMethod_ClickDownArrow();
             if(HelpersMethod.IsExists("//button[@id='allowOrderWithoutPayment']",driver))
             {

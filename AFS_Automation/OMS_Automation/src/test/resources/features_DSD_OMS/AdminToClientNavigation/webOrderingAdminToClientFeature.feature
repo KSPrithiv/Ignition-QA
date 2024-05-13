@@ -17,7 +17,7 @@ Feature: scenarios for admin credentials and client credentials
       |PO123|
     Then Enter Pro# in Quick Product Entry area
     And Check for Case and Unit input box enabled or not based on that enter value
-      |80|70|
+      |1|1|
     Then Click on Next button
     And Click on SubmitOrder button to verify error message on submitting
     Then User should be navigated to Order Entry page and verify the error submitting message
@@ -42,7 +42,7 @@ Feature: scenarios for admin credentials and client credentials
       |PO123|
     Then Enter Pro# in Quick Product Entry area
     And Check for Case and Unit input box enabled or not based on that enter value
-      |80|70|
+      |1|1|
     Then Click on Next button
     And Click on SubmitOrder button
     Then User should be navigated to Order Entry page and verify the error submitting message is not displayed
@@ -50,4 +50,4 @@ Feature: scenarios for admin credentials and client credentials
     And User should set admin setting "<Setting>" "<Key>" as default before making changes
     Examples:
       |  Setting                               |           Key                         |
-      | Hide \"Order submitting\"  message          |  CPHideOrderSubmittingMessage         |
+      | Hide \"Order submitting\"  message     |  CPHideOrderSubmittingMessage         |

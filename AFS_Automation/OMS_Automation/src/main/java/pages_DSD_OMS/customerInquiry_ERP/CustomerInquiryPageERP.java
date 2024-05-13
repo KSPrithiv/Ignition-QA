@@ -435,16 +435,20 @@ public class CustomerInquiryPageERP
         try
         {
            WebElement popUp=HelpersMethod.FindByElement(driver,"xpath","//div[contains(text(),'Copy customer')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]");
-        //   WebElement store_No=popUp.findElement(By.xpath(".//input[@id='CmCustNo']"));
-       //    HelpersMethod.EnterText(driver,store_No,40,Bill);
+           WebElement store_No=popUp.findElement(By.xpath(".//input[@id='CmCustNo']"));
+           String billValue=HelpersMethod.JSGetValueEle(driver,store_No,10000);
+           if(billValue.equals("")||billValue.equals(null))
+           {
+               HelpersMethod.EnterText(driver, store_No, 10000, Bill);
+           }
 
-            String fname=RandomValues.generateRandomString(4);
+           String fname=RandomValues.generateRandomString(4);
            WebElement full_Name=popUp.findElement(By.xpath(".//input[@id='CmFullName']"));
-           HelpersMethod.EnterText(driver,full_Name,40,fname);
+           HelpersMethod.EnterText(driver,full_Name,10000,fname);
            scenario.log("CUSTOMER NAME ENTERED IS "+HelpersMethod.JSGetValueEle(driver,full_Name,40));
 
            WebElement copy_Button=popUp.findElement(By.xpath(".//button[text()='Copy']"));
-           HelpersMethod.ClickBut(driver,copy_Button,100);
+           HelpersMethod.ClickBut(driver,copy_Button,10000);
             if(HelpersMethod.IsExists("//div[@class='loader']",driver))
             {
                 WebElement WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");

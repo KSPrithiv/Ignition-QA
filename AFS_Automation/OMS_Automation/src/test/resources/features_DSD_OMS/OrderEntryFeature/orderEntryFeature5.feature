@@ -19,7 +19,7 @@ Feature: Order Entry5
       |PO123|
     Then Enter Pro# in Quick Product Entry area
     And Check for Case and Unit input box enabled or not based on that enter value
-      |45|80|
+      |1|1|
     Then Click on Next button
     Then User should be on Order Summary page  and click on Print button
     And Click on Submit Order button and read Order_no
@@ -34,7 +34,7 @@ Feature: Order Entry5
       |PO123|
     Then Enter Pro# in Quick Product Entry area
     And Check for Case and Unit input box enabled or not based on that enter value
-      |55|80|
+      |1|1|
     Then User should be in NewOE page and click on Print button
     Then Click on Next button
     And Click on Submit Order button and read Order_no
@@ -49,7 +49,7 @@ Feature: Order Entry5
       |PO123|
     Then Enter Pro# in Quick Product Entry area
     And Check for Case and Unit input box enabled or not based on that enter value
-      |150|100|
+      |1|1|
     Then Click on Next button
     And Click on Submit Order button and read Order_no
     Then User should be navigated to Order Entry page
@@ -89,7 +89,7 @@ Feature: Order Entry5
     Then Enter Pro# in Quick Product Entry area
     And User should verify UOM value for Quick unit and Quick Case value to be entered
     And Check for Case and Unit input box enabled or not based on that enter value
-      |80|70|
+      |2|1|
     Then Click on Next button
     And Click on SubmitOrder button
     Then User should be navigated to Order Entry page
@@ -104,7 +104,7 @@ Feature: Order Entry5
       |PO123|
     Then Enter Pro# in Quick Product Entry area
     And Check for Case and Unit input box enabled or not based on that enter value
-      |50|80|
+      |1|1|
     Then Click on Back button
     And Popup message for Pending order should be displayed
     Then User should be navigated to Order Entry page
@@ -116,7 +116,7 @@ Feature: Order Entry5
       |PO123|
     Then Enter Pro# in Quick Product Entry area
     And Check for Case and Unit input box enabled or not based on that enter value
-      |80|100|
+      |1|1|
     Then Click on Next button
     And Click on SubmitOrder button
     Then User should be navigated to Order Entry page
@@ -141,7 +141,7 @@ Feature: Order Entry5
       |PO123|
     Then Enter Pro# in Quick Product Entry area
     And Check for Case and Unit input box enabled or not based on that enter value
-      |80|50|
+      |1|1|
     And Find total amount from New oe page
     Then Click on Next button
     And Click on SubmitOrder button
@@ -157,7 +157,7 @@ Feature: Order Entry5
       |PO123|
     Then Enter Pro# in Quick Product Entry area
     And Check for Case and Unit input box enabled or not based on that enter value
-      |  80  |  55  |
+      |1|1|
     Then Click on Next button
     And Drag and drop table header in submit page
       |Category|

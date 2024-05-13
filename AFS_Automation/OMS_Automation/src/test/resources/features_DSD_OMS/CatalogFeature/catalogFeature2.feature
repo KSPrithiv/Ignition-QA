@@ -13,7 +13,7 @@ Feature: Catalog2
     And User should navigate to Catalog tab
     And User should click on Reset filter button and all the products should displayed in Card view in Catalog page
     Then User enters Product# in Search bar and enters Qty for single Product
-      |50|
+      |1|
     Then User click on cart in catalog and click on Gotocart
     And user should be on New Order entry page
     Then Enter PO# for New order
@@ -28,7 +28,7 @@ Feature: Catalog2
     And User should navigate to Catalog tab
     And User should click on Reset filter button and all the products should displayed in List view in Catalog page
     Then User enters Product# in Search bar and enters Qty for single Product in list view
-         |80|
+         |1|
     Then User click on cart in catalog and click on Gotocart
     And user should be on New Order entry page
     Then Enter PO# for New order
@@ -51,15 +51,8 @@ Feature: Catalog2
     And User should navigate to Catalog tab
     And User should click on Reset filter button and all the products should displayed in Card view in Catalog page
     Then User enters Product# with tire pricing in Search bar and enter some Qty
-    |100|
+    |1|
     Then User click on cart in catalog and Clicks on tirepricing label
-
-  #@ForeignLanguageSearch
-  #Scenario: Test scenario for searching product, using foreign language
-  #  Given User must be on Order Entry Page to select Catalog
-  #  And User should navigate to Catalog tab
-  #  And User should click on Reset filter button and all the products should displayed
-  #  Then User enters Product# in foreign language, in Search bar
 
   @PaginationInCatalog
   Scenario: Test scenario for checking the products in last page of the catalog, after sorting products

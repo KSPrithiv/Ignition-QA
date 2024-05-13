@@ -30,7 +30,7 @@ Feature: scenarios for admin credentials and client credentials, for Order Facto
       |PO123|
     Then Enter Pro# in Quick Product Entry area
     And Check for Case and Unit input box enabled or not based on that enter value
-      |80|70|
+      |1|1|
     Then Enter Pro# in Quick Product Entry area for Order factor
     And Check for Case and Unit input box enabled or not based on that enter value for qty to verify order factor
       |4|4|
@@ -80,7 +80,7 @@ Feature: scenarios for admin credentials and client credentials, for Order Facto
       |PO123|
     Then Enter Pro# in Quick Product Entry area
     And Check for Case and Unit input box enabled or not based on that enter value
-      |80|70|
+      |1|1|
     Then Enter Pro# in Quick Product Entry area for Order factor
     And Check for Case and Unit input box enabled or not based on that enter value for qty to verify order factor
          |4|4|

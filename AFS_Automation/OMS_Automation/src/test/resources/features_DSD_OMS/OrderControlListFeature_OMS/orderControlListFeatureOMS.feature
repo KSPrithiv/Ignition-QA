@@ -14,7 +14,7 @@ Feature: Order control list
     And User should navigate to OCL
     Then User should select Order taker from drop down
     And Change the delivery date 2 days after current date
-    Then User Clicks on Untaken radio button and user clicks on Refresh button
+    Then User Clicks on Untaken radio button
     Then User should search for credit holder in OCL
       |No Hold|
     Then User clicks on Order icon in OCL grid
@@ -24,7 +24,7 @@ Feature: Order control list
       |PO123|
     Then Click on Add product drop down and select catalog option
     And User should select Product from catalog and Enter Qty for the products for OCL
-      |100|60|
+      |1|1|
     Then User should click on Comment icon in Order entry card
     And User should enter comment in comment popup
       |Comment at Order level for OCL|Order notes|
@@ -50,7 +50,7 @@ Feature: Order control list
     And User should navigate to OCL
     Then User should select Order taker from drop down
     And Change the delivery date 2 days after current date
-    Then User Clicks on Untaken radio button and user clicks on Refresh button
+    Then User Clicks on Untaken radio button
     Then User should search for credit holder in OCL
       |No Hold|
     Then User clicks on Order icon in OCL grid
@@ -60,7 +60,7 @@ Feature: Order control list
       |PO123|
     Then Click on Add product drop down and select catalog option
     And User should select Product from catalog and Enter Qty for the products for OCL
-      |100|60|
+      |1|1|
     Then Click on Next button and select option Continue without payment option
     And Click on Submit Order button and read Order_no for OCL
     Then User should select Note from popup and Order guide from popup for OCL
@@ -76,7 +76,7 @@ Feature: Order control list
     And User should navigate to OCL
     Then User should select Order taker from drop down
     And Change the delivery date 2 days after current date
-    Then User Clicks on Untaken radio button and user clicks on Refresh button
+    Then User Clicks on Untaken radio button
     Then User should search for credit holder in OCL
       |No Hold|
     Then User clicks on Order icon in OCL grid
@@ -86,7 +86,7 @@ Feature: Order control list
       |PO123|
     Then Click on Add product drop down and select catalog option
     And User should select Product from catalog and Enter Qty for the products for OCL
-      |100|60|
+      |1|1|
     Then Click on Next button and select option Continue without payment option
     And Click on Submit Order button and read Order_no for OCL
     Then User should select Note from popup and Order guide from popup for OCL
@@ -169,7 +169,7 @@ Feature: Order control list
       |PO123|
     Then Click on Add product drop down and select catalog option
     And User should select Product from catalog and Enter Qty for the products for OCL
-      |100|60|
+      |1|1|
     Then Click on Back button to handle Pending order Popup
     And Popup message for Pending order should be displayed
     Then User should be navigated to Order control list page

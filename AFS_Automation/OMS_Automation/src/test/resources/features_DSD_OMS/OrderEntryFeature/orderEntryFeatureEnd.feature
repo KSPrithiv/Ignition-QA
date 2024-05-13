@@ -87,7 +87,7 @@ Feature: Order entry End
       |PO123|
     Then Enter Pro# in Quick Product Entry area
     And Check for Case and Unit input box enabled or not based on that enter value
-      |80|60|
+      |1|1|
     And User clicks on Grid type drop down and select different grid
    #   |Regression grid|
     Then User verifies visibility of Price override icon change the Price in price override and reset Grid type to Main grid

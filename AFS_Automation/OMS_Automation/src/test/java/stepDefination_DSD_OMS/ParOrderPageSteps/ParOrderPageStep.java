@@ -153,6 +153,13 @@ public class ParOrderPageStep
             Assert.assertEquals(exists,true);
             flag2=true;
         }
+        orderpage=new OrderEntryPage(driver,scenario);
+        exists= orderpage.HandleError_Page();
+        if(exists=true)
+        {
+            orderGuidePage=new OrderGuidePage(driver,scenario);
+            orderGuidePage.naviateToOG();
+        }
         parOrderPage = new ParOrderPage(driver, scenario);
         parOrderPage.Refresh_Page(currentURL);
         orderGuidePage=new OrderGuidePage(driver,scenario);
@@ -173,10 +180,6 @@ public class ParOrderPageStep
         parOrderPage = new ParOrderPage(driver, scenario);
         parOrderPage.ClickParTab();
         parOrderPage.ValidateParlistTab();
-
-       /* orderpage=new OrderEntryPage(driver,scenario);
-        //orderpage.HandleError_Page();
-        //orderpage.Refresh_Page(currentURL);*/
     }
 
     @And("User enters code and discription for Par list")
