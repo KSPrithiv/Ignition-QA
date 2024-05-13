@@ -114,7 +114,7 @@ public class userAndAdmin_PendingRegApprovalPage
         exists=false;
         try
         {
-            HelpersMethod.ClickBut(driver,denyButton,1000);
+            HelpersMethod.ClickBut(driver,denyButton,10000);
             if(HelpersMethod.IsExists("//div[contains(text(),'This will delete the user.')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
             {
                 WebElement modalContainer = driver.findElement(By.xpath("//div[contains(@class,'k-widget k-window k-dialog')]"));
@@ -123,14 +123,14 @@ public class userAndAdmin_PendingRegApprovalPage
                 WebElement modalContentTitle = modalContainer.findElement(By.xpath(".//div[contains(@class,'k-window-title k-dialog-title')]"));
                 Assert.assertEquals(modalContentTitle.getText(), "Pending Registration Approval", "Verify Title message");
                 WebElement yesButton = modalContainer.findElement(By.xpath(".//button[text()='Yes']"));
-                HelpersMethod.ActClick(driver, yesButton, 4000);
+                HelpersMethod.ActClick(driver, yesButton, 10000);
                 exists=true;
                 scenario.log("PENDING REGISTRATION APPROVAL DENEY");
-                if(HelpersMethod.IsExists("//div[@class='loader']",driver))
-                {
-                    WebElement WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 800000);
-                }
+                Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                        .withTimeout(Duration.ofSeconds(400))
+                        .pollingEvery(Duration.ofSeconds(2))
+                        .ignoring(NoSuchElementException.class);
+                wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
             }
             Assert.assertEquals(exists,true);
         }
@@ -142,14 +142,15 @@ public class userAndAdmin_PendingRegApprovalPage
         exists=false;
         try
         {
-            if(HelpersMethod.IsExists("//div[@class='loader']",driver))
-            {
-                WebElement WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 800000);
-            }
+            Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(250))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
             if(confirmButton.isDisplayed()&&confirmButton.isEnabled())
             {
-                HelpersMethod.ClickBut(driver, confirmButton, 1000);
+                HelpersMethod.ClickBut(driver, confirmButton, 10000);
                 if (HelpersMethod.IsExists("//div[contains(text(),'Pending Registration Approval')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]", driver))
                 {
                     WebElement modalContainer = driver.findElement(By.xpath("//div[contains(@class,'k-widget k-window k-dialog')]"));
@@ -159,11 +160,11 @@ public class userAndAdmin_PendingRegApprovalPage
                     //Assert.assertEquals(modalContentTitle.getText(), "Pending Registration Approval", "Verify Title message");
                     WebElement yesButton = modalContainer.findElement(By.xpath(".//button[text()='Yes']"));
                     HelpersMethod.ActClick(driver, yesButton, 10000);
-                    if(HelpersMethod.IsExists("//div[@class='loader']",driver))
-                    {
-                        WebElement WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                        HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000000);
-                    }
+                    wait = new FluentWait<WebDriver>(driver)
+                            .withTimeout(Duration.ofSeconds(250))
+                            .pollingEvery(Duration.ofSeconds(2))
+                            .ignoring(NoSuchElementException.class);
+                    wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
                     scenario.log("PENDING REGISTRATION APPROVAL");
                     exists = true;
                     Thread.sleep(4000);
@@ -179,11 +180,12 @@ public class userAndAdmin_PendingRegApprovalPage
         exists=false;
         try
         {
-            if(HelpersMethod.IsExists("//div[@class='loader']",driver))
-            {
-                WebElement WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 200000);
-            }
+            Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(400))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
             if(HelpersMethod.IsExists("//div[contains(text(),'Delete Account')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
             {
                 WebElement modalContainer = driver.findElement(By.xpath("//div[contains(@class,'k-widget k-window k-dialog')]"));
@@ -192,7 +194,7 @@ public class userAndAdmin_PendingRegApprovalPage
                 WebElement modalContentTitle = modalContainer.findElement(By.xpath(".//div[contains(@class,'k-window-title k-dialog-title')]"));
                 Assert.assertEquals(modalContentTitle.getText(), "Delete Account", "Verify Title message");
                 WebElement okButton=modalContainer.findElement(By.xpath(".//button[text()='OK']"));
-                HelpersMethod.ClickBut(driver,okButton,1000);
+                HelpersMethod.ActClick(driver,okButton,20000);
                 exists=true;
                 scenario.log("PENDING REGISTRATION DENYED AND ACCOUNT DELETED");
             }
@@ -206,11 +208,12 @@ public class userAndAdmin_PendingRegApprovalPage
         exists=false;
         try
         {
-            if(HelpersMethod.IsExists("//div[@class='loader']",driver))
-            {
-                WebElement WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 800000);
-            }
+            Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(250))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
             if(HelpersMethod.IsExists("//div[contains(text(),'Update User Info')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
             {
                 WebElement modalContainer = driver.findElement(By.xpath("//div[contains(@class,'k-widget k-window k-dialog')]"));
@@ -219,7 +222,7 @@ public class userAndAdmin_PendingRegApprovalPage
                 WebElement modalContentTitle = modalContainer.findElement(By.xpath(".//div[contains(@class,'k-window-title k-dialog-title')]"));
                 //Assert.assertEquals(modalContentTitle.getText(), "Update User Info", "Verify Title message");
                 WebElement okButton=modalContainer.findElement(By.xpath(".//button[text()='OK']"));
-                HelpersMethod.ActClick(driver,okButton,1000);
+                HelpersMethod.ActClick(driver,okButton,10000);
                 exists=true;
                 scenario.log("USER INFO HAS BEEN SUCESSFULLY UPDATEDss");
             }
@@ -235,7 +238,7 @@ public class userAndAdmin_PendingRegApprovalPage
         try
         {
             Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
-                    .withTimeout(Duration.ofSeconds(100))
+                    .withTimeout(Duration.ofSeconds(200))
                     .pollingEvery(Duration.ofSeconds(5))
                     .ignoring(NoSuchElementException.class);
             wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));

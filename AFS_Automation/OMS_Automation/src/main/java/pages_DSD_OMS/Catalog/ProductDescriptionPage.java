@@ -29,7 +29,7 @@ public class ProductDescriptionPage
     Scenario scenario;
     static boolean exists=false;
 
-    //Declaration of page Webelements
+    //Declaration of page Web elements
     @FindBy(id="product-quantity")
     private WebElement Qty_In;
 

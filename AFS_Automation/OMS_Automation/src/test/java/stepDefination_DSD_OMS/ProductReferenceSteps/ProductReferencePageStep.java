@@ -145,7 +145,12 @@ public class ProductReferencePageStep
     public void userShouldNavigateToOGAndSelectFromGridForProductReference(String OG) throws InterruptedException, AWTException
     {
         orderpage=new OrderEntryPage(driver,scenario);
-        orderpage.HandleError_Page();
+        exists= orderpage.HandleError_Page();
+        if(exists==true)
+        {
+            orderGuidePage=new OrderGuidePage(driver,scenario);
+            orderGuidePage.naviateToOG();
+        }
         parOrderPage = new ParOrderPage(driver, scenario);
         parOrderPage.Refresh_Page(currentURL);
         orderGuidePage=new OrderGuidePage(driver,scenario);

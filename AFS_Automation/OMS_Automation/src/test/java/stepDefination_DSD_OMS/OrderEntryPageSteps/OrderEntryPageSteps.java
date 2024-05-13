@@ -121,7 +121,11 @@ public class OrderEntryPageSteps
     public void user_must_be_on_order_entry_page() throws InterruptedException, AWTException, ParseException
     {
         orderpage = new OrderEntryPage(driver, scenario);
-        orderpage.HandleError_Page();
+        exists= orderpage.HandleError_Page();
+        if(exists==true)
+        {
+            orderpage.NavigateingToOrderEntry();
+        }
         orderpage.Refresh_Page2();
         orderpage.NavigateingToOrderEntry();
         orderpage.Read_DeliveryDate();
@@ -217,7 +221,7 @@ public class OrderEntryPageSteps
             }
 
             wait = new FluentWait<WebDriver>(driver)
-                    .withTimeout(Duration.ofSeconds(200))
+                    .withTimeout(Duration.ofSeconds(400))
                     .pollingEvery(Duration.ofSeconds(2))
                     .ignoring(NoSuchElementException.class);
             wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
@@ -229,7 +233,7 @@ public class OrderEntryPageSteps
             }
 
             wait = new FluentWait<WebDriver>(driver)
-                    .withTimeout(Duration.ofSeconds(200))
+                    .withTimeout(Duration.ofSeconds(400))
                     .pollingEvery(Duration.ofSeconds(2))
                     .ignoring(NoSuchElementException.class);
             wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
@@ -326,8 +330,15 @@ public class OrderEntryPageSteps
     public void user_enters_product_in_search_box() throws Throwable
     {
         newOE = new NewOrderEntryPage(driver,scenario);
-        String ProdNo= DataBaseConnection.DataBaseConn(TestBase.testEnvironment.getSingle_OneMoreProd());
-        newOE.EnterProdNo_InSearchBar(ProdNo);
+        String ProdNo= DataBaseConnection.DataBaseConn(TestBase.testEnvironment.getSingle_Prod_Sql());
+        if(!ProdNo.equals(null))
+        {
+            newOE.EnterProdNo_InSearchBar(ProdNo);
+        }
+        else
+        {
+            scenario.log("<span style='color:red'>NOT ABLE TO FETCH DATA FROM DATABASE</span>");
+        }
     }
 
     @Then("Check for Catalog popup")
@@ -595,7 +606,15 @@ public class OrderEntryPageSteps
     public void enter_pro_in_quick_product_entry_area() throws InterruptedException, AWTException, SQLException, ClassNotFoundException, InstantiationException, IllegalAccessException
     {
         newOE = new NewOrderEntryPage(driver,scenario);
-        newOE.QuickProduct(DataBaseConnection.DataBaseConn(TestBase.testEnvironment.getSingle_OneMoreProd()));
+        String prod=DataBaseConnection.DataBaseConn(TestBase.testEnvironment.getSingle_Prod_Sql());
+        if(!prod.equals(null))
+        {
+            newOE.QuickProduct(prod);
+        }
+        else
+        {
+            scenario.log("NOT ABLE TO FETCH PRODUCT# FROM DATABASE");
+        }
     }
 
     @Then("Enter Pro# in Quick Product Entry area for order type")
@@ -609,7 +628,15 @@ public class OrderEntryPageSteps
     public void enter_pro_in_quick_product_entry_area_for_creating_order_with_note() throws InterruptedException, AWTException, SQLException, ClassNotFoundException, InstantiationException, IllegalAccessException
     {
         newOE = new NewOrderEntryPage(driver,scenario);
-        newOE.QuickProduct(DataBaseConnection.DataBaseConn(TestBase.testEnvironment.getSingle_OneMoreProd()));
+        String prod=DataBaseConnection.DataBaseConn(TestBase.testEnvironment.getSingle_OneMoreProd());
+        if(!prod.equals(null))
+        {
+            newOE.QuickProduct(prod);
+        }
+        else
+        {
+            scenario.log("NOT ABLE TO FETCH PRODUCT# FROM DATABASE");
+        }
     }
 
     @Then("Enter Pro# in Quick Product Entry area for price override")
@@ -701,7 +728,6 @@ public class OrderEntryPageSteps
         orderpage = new OrderEntryPage(driver, scenario);
         orderpage.ValidateOE();
         orderpage.ClickRemoveSkip();
-        //orderpage.RemoveSkipOK();
         orderpage.ClickCalender();
         orderpage.ResetToCurrentDate();
     }
@@ -923,7 +949,7 @@ public class OrderEntryPageSteps
         List<List<String>> ProdDetails=table.asLists(String.class);
         newOE=new NewOrderEntryPage(driver,scenario);
         newOE.ValidateNewOE();
-        String Prod=DataBaseConnection.DataBaseConn(TestBase.testEnvironment.getSingle_Prod_Sql());
+        String Prod=DataBaseConnection.DataBaseConn(TestBase.testEnvironment.getSingle_OneMoreProd());
         newOE.QuickProduct(Prod);
         String uomValue=newOE.VerifyUOM();
         String Case=ProdDetails.get(0).get(0);

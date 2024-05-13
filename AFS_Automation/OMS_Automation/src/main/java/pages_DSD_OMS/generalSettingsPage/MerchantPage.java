@@ -30,11 +30,9 @@ public class MerchantPage
     WebDriver driver;
     Scenario scenario;
     static boolean exists=false;
-    static String currentURL=null;
-    static String InputValue=null;
-
-    static String MerchID=null;
-
+    static String currentURL;
+    static String InputValue;
+    static String MerchID;
 
     @FindBy(xpath = "//div[@id='menuWrapper_selected_accesscpadmingeneralsettings']//div[@class='submenu-item-text']")
     private WebElement notices;

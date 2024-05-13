@@ -129,7 +129,12 @@ public class ReportsCustomersWithoutOrdersSteps
     public void userShouldNavigateToReports() throws InterruptedException, AWTException
     {
         orderEntryPage = new OrderEntryPage(driver, scenario);
-        orderEntryPage.HandleError_Page();
+        exists=orderEntryPage.HandleError_Page();
+        if(exists==true)
+        {
+            reportsInOEPage=new ReportsCustomerWithoutOrdersPage(driver,scenario);
+            reportsInOEPage.navigateToReport();
+        }
         reportsInOEPage=new ReportsCustomerWithoutOrdersPage(driver,scenario);
         reportsInOEPage.Refresh_Page(currentURL);
         reportsInOEPage.validateReportsPage();

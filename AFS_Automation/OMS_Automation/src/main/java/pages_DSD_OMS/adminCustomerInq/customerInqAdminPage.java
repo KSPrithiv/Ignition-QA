@@ -25,12 +25,12 @@ public class customerInqAdminPage
     /* Created by Divya.Ramadas */
     WebDriver driver;
     Scenario scenario;
-    WebElement WebEle;
     static boolean exists=false;
-    static String gridName;
-    static String gridName1;
-    static String oldLabel;
-    static String newLabel;
+//    static String gridName;
+//    static String gridName1;
+//    static String oldLabel;
+//    static String newLabel;
+//    WebElement WebEle;
 
     @FindBy(xpath="//div[contains(@class,'moduleNameHeader')]/span[contains(@class,'spnmoduleNameHeader')]")
     private WebElement pageHeader;
@@ -94,42 +94,54 @@ public class customerInqAdminPage
         catch (Exception e) {}
     }
 
-    public void enableAutoPopulateNextTogglebutton()
+    public void enableAutoPopulateNextTogglebutton() throws InterruptedException
     {
         exists=false;
-        try
-        {
-            if(HelpersMethod.IsExists("//span[@id='CPIncludeAutomaticallyPopulateCustomerNo']/input[@value='false']",driver))
+//        try
+//        {
+            Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(200))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
+            if(HelpersMethod.IsExists("//span[@id='CPIncludeAutomaticallyPopulateCustomerNo' and @aria-checked='false']",driver))
             {
-                WebElement autoPopulateNextRadioButton = HelpersMethod.FindByElement(driver, "xpath", "//span[@id='CPIncludeAutomaticallyPopulateCustomerNo']/input");
+                WebElement autoPopulateNextRadioButton = HelpersMethod.FindByElement(driver, "xpath", "//span[@id='CPIncludeAutomaticallyPopulateCustomerNo']");
                 HelpersMethod.ActClick(driver, autoPopulateNextRadioButton, 10000);
             }
-            if(HelpersMethod.IsExists("//span[@id='CPIncludeAutomaticallyPopulateCustomerNo']/input[@value='true']",driver))
+            if(HelpersMethod.IsExists("//span[@id='CPIncludeAutomaticallyPopulateCustomerNo' and @aria-checked='true']",driver))
             {
                 exists=true;
             }
             Assert.assertEquals(exists,true);
-        }
-        catch (Exception e){}
+//        }
+//        catch (Exception e){}
     }
 
-    public void disableAutoPopulateNextTogglebutton()
+    public void disableAutoPopulateNextTogglebutton() throws InterruptedException
     {
         exists=false;
-        try
-        {
-            if(HelpersMethod.IsExists("//span[@id='CPIncludeAutomaticallyPopulateCustomerNo']/input[@value='true']",driver))
+//        try
+//        {
+            Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(200))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
+            if(HelpersMethod.IsExists("//span[@id='CPIncludeAutomaticallyPopulateCustomerNo' and @aria-checked='true']",driver))
             {
-                WebElement autoPopulateNextRadioButton = HelpersMethod.FindByElement(driver, "xpath", "//span[@id='CPIncludeAutomaticallyPopulateCustomerNo']/input");
+                WebElement autoPopulateNextRadioButton = HelpersMethod.FindByElement(driver, "xpath", "//span[@id='CPIncludeAutomaticallyPopulateCustomerNo']");
                 HelpersMethod.ActClick(driver, autoPopulateNextRadioButton, 10000);
             }
-            if(HelpersMethod.IsExists("//span[@id='CPIncludeAutomaticallyPopulateCustomerNo']/input[@value='false']",driver))
+            if(HelpersMethod.IsExists("//span[@id='CPIncludeAutomaticallyPopulateCustomerNo' and @aria-checked='false']",driver))
             {
                 exists=true;
             }
             Assert.assertEquals(exists,true);
-        }
-        catch (Exception e){}
+//        }
+//        catch (Exception e){}
     }
 
     public void useDefaultSettingsForStoreNumberVariable()

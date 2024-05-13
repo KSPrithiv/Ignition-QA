@@ -54,6 +54,7 @@ public class OrderControlPageSteps2
         orderControlList.clickOnCustomerNote();
         orderControlList.validateCustomerNotePopup();
         orderControlList.customerNotePopup(commentText);
+        orderControlList.Validate_OCL();
     }
 
     @Then("User should verify Note content from popup and select Order guide from popup")
@@ -122,5 +123,13 @@ public class OrderControlPageSteps2
     {
        newOE=new NewOrderEntryPage(driver,scenario);
        newOE.compareCustomerAccountNo(customerAccount);
+    }
+
+    @And("User searches customer account#")
+    public void userSearchesCustomerAccount() throws InterruptedException
+    {
+        orderControlList = new OrderControlListPage(driver, scenario);
+        orderControlList.Validate_OCL();
+        orderControlList.searchForAccountNo();
     }
 }

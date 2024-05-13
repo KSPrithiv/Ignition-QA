@@ -118,7 +118,7 @@ Feature: Order control list1
     Then User enters multiple Route# in Route search input box and count number of rows in OCL grid
 
   @RemoveRoutes
-  Scenario: Test scenario for verifying functionality of removeing of multiple routes
+  Scenario: Test scenario for verifying functionality of removing of multiple routes
     Given User must be on Order Entry Page to select OCL
     And User should navigate to OCL
     Then User should select Order taker from drop down

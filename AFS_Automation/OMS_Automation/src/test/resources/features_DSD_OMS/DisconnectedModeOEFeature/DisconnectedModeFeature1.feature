@@ -18,11 +18,11 @@ Feature: Disconnected mode
     And User should navigate to Catalog tab
     And User should click on Reset filter button and all the products should displayed in Card view in Catalog page
     Then User enters different Product# in Search bar and enter Qty by clicking image and click Delete product
-      |60|
-      |100|
-      |70|
-      |60|
-      |80|
+      |1|
+      |2|
+      |3|
+      |4|
+      |5|
     Then User click on cart in catalog and click on Gotocart and select existing order
     And user should be on New Order entry page
     Then Enter PO# for New order
@@ -46,7 +46,7 @@ Feature: Disconnected mode
       |PO123|
     Then Enter Pro# in Quick Product Entry area
     And Check for Case and Unit input box enabled or not based on that enter value
-      |80|80|
+      |1|1|
     Then Click on Next button and validate shipping address
     And Click on SubmitOrder button
     Then User should be navigated to Order Entry page
@@ -62,9 +62,9 @@ Feature: Disconnected mode
     And User should navigate to Catalog tab
     And User should click on Reset filter button and all the products should displayed in Card view in Catalog page
     Then User enters Product# in Search bar and enters Qty
-      |50|
-      |40|
-      |40|
+      |1|
+      |1|
+      |2|
     Then User click on cart in catalog and click on Gotocart
     And user should be on New Order entry page
     Then Enter PO# for New order
@@ -84,9 +84,9 @@ Feature: Disconnected mode
     And User should navigate to Catalog tab
     And User should click on Reset filter button and all the products should displayed in Card view in Catalog page
     Then User enters Product# in Search bar and enter Qty and click on Delete button
-      |50|
-      |40|
-      |40|
+      |1|
+      |1|
+      |2|
     Then User click on cart in catalog and click on Gotocart
     And user should be on New Order entry page
     Then Enter PO# for New order
@@ -106,7 +106,7 @@ Feature: Disconnected mode
     And User should navigate to Catalog tab
     And User should click on Reset filter button and all the products should displayed in List view in Catalog page
     Then User enters Product# in Search bar and enters Qty for single Product in list view
-      |80|
+      |1|
     Then User click on cart in catalog and click on Gotocart
     And user should be on New Order entry page
     Then Enter PO# for New order
@@ -138,7 +138,7 @@ Feature: Disconnected mode
       |PO123|
     Then Enter Pro# in Quick Product Entry area
     And Check for Case and Unit input box enabled or not based on that enter value
-      |80|40|
+      |1|1|
     Then Click on Next button
     And Click on SubmitOrder button
     Then User should be navigated to Order Entry page

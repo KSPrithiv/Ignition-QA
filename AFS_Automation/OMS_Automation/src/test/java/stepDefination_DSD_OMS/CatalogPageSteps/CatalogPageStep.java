@@ -156,8 +156,12 @@ public class CatalogPageStep
             flag1 = true;
         }
         orderpage=new OrderEntryPage(driver,scenario);
-        orderpage.HandleError_Page();
+        exists= orderpage.HandleError_Page();
         catalogpage = new CatalogPage(driver, scenario);
+        if(exists==true)
+        {
+            catalogpage.navigateToCatalog();
+        }
         catalogpage.Refresh_Page(currentURL);
         catalogpage.validateCatalog();
     }

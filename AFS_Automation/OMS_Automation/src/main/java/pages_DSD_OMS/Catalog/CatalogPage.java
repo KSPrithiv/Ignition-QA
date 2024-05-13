@@ -1787,7 +1787,8 @@ public class CatalogPage
             //copy content of web element, i.e. prices to list
             for (WebElement Price : Prices) {
                 String Price_Text = Price.getText();
-                if (!Price_Text.equals(" ")) {
+                if (!Price_Text.equals(" "))
+                {
                     Prices1.add(Double.valueOf(Price_Text));
                     Prices2.add(Double.valueOf(Price_Text));
                 }
@@ -1796,12 +1797,16 @@ public class CatalogPage
             Collections.sort(Prices1);
 
             //Comparing List of integers, to find whether array is in sorted order
-            for (int i = 0; i < Prices1.size(); i++) {
+            for (int i = 0; i < Prices1.size(); i++)
+            {
                 System.out.println("VALUES AFTER SELECTING PRICE SORT FROM DROP DOWN " + Prices1.get(i) + " VALUE AFTER PROGRAMMATICALLY SORTING " + Prices2.get(i));
-                if (Prices1.get(i).equals(Prices2.get(i))) {
+                if (Prices1.get(i).equals(Prices2.get(i)))
+                {
                     result = true;
                     scenario.log("EXPECTED VALUE: " + Prices1.get(i) + " FOUND VALUE: " + Prices2.get(i));
-                } else {
+                }
+                else
+                {
                     result = false;
                     scenario.log("EXPECTED VALUE: " + Prices1.get(i) + " FOUND VALUE: " + Prices2.get(i));
                     scenario.log("PRICES ARE NOT IN SORTED ORDER");
@@ -2097,6 +2102,36 @@ public class CatalogPage
             else
             {
                 scenario.log("<span style='color:red'> PRODUCTS ARE NOT FOUND IN CATALOG</span>");
+            }
+            Assert.assertEquals(exists,true);
+        }
+        catch (Exception e){}
+    }
+
+    public void validateNoPriceCard()
+    {
+        exists=false;
+        try
+        {
+            if(!HelpersMethod.IsExists("//div[@class='grid-item-box-item']/descendant::span[contains(@class,'price')]|//div[@class='grid-item-box-item']/descendant::span[contains(@class,'Price')]|//th/descendant::span[@class='k-column-title' and contains(text(),'Price')]|//th/descendant::span[@class='k-column-title' and contains(text(),'price')]",driver))
+            {
+                scenario.log("SUCCESSFULLY HIDDEN PRICE OF PRODUCT, UNDER CATALOG");
+                exists=true;
+            }
+            Assert.assertEquals(exists,true);
+        }
+        catch (Exception e){}
+    }
+
+    public void validatePriceCard()
+    {
+        exists=false;
+        try
+        {
+            if(HelpersMethod.IsExists("//div[@class='grid-item-box-item']/descendant::span[contains(@class,'price')]|//div[@class='grid-item-box-item']/descendant::span[contains(@class,'Price')]|//th/descendant::span[@class='k-column-title' and contains(text(),'Price')]|//th/descendant::span[@class='k-column-title' and contains(text(),'price')]",driver))
+            {
+                scenario.log("SUCCESSFULLY DISPLAYING PRICE OF PRODUCT, UNDER CATALOG");
+                exists=true;
             }
             Assert.assertEquals(exists,true);
         }

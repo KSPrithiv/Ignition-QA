@@ -44,9 +44,9 @@ Feature: Catalog
     And User should navigate to Catalog tab
     And User should click on Reset filter button and all the products should displayed in Card view in Catalog page
     Then User enters Product# in Search bar and enters Qty
-      |50|
-      |40|
-      |40|
+      |1|
+      |2|
+      |1|
     Then User click on cart in catalog and click on Gotocart
     And user should be on New Order entry page
     Then Enter PO# for New order
@@ -61,9 +61,9 @@ Feature: Catalog
     And User should navigate to Catalog tab
     And User should click on Reset filter button and all the products should displayed in Card view in Catalog page
     Then User enters Product# in Search bar and enter Qty and click on Delete button
-      |50|
-      |40|
-      |40|
+      |1|
+      |2|
+      |1|
     Then User click on cart in catalog and click on Gotocart
     And user should be on New Order entry page
     Then Enter PO# for New order
@@ -78,9 +78,9 @@ Feature: Catalog
     And User should navigate to Catalog tab
     And User should click on Reset filter button and all the products should displayed in Card view in Catalog page
     Then User enters Product# in Search bar and enters Qty
-      |50|
-      |40|
-      |40|
+      |1|
+      |2|
+      |1|
     Then User click on cart in catalog and click on Gotocart, before that Delete Product from popup
     And user should be on New Order entry page
     Then Enter PO# for New order
@@ -95,9 +95,9 @@ Feature: Catalog
     And User should navigate to Catalog tab
     And User should click on Reset filter button and all the products should displayed in Card view in Catalog page
     Then User enters Product# in Search bar and enters Qty
-      |50|
-      |40|
-      |40|
+      |1|
+      |2|
+      |1|
     Then User click on cart in catalog and click on Gotocart, Delete product from Mycart page
     And user should be on New Order entry page
     Then Enter PO# for New order
@@ -113,7 +113,7 @@ Feature: Catalog
     And User should navigate to Catalog tab
     And User should click on Reset filter button and all the products should displayed in Card view in Catalog page
     Then User enters Product# in Search bar and enters Qty for single Product
-      |50|
+      |1|
     Then User click on cart in catalog and click on Gotocart and select existing order
     #Then Click on Back button in Checkout Card page
     And user should be on New Order entry page
@@ -130,7 +130,7 @@ Feature: Catalog
     And User should click on Reset filter button and all the products should displayed in Card view in Catalog page
     Then User enters Product# in Search bar
     And User clicks on product image and enters Qty in Description page
-      |40|
+      |1|
     Then User click on cart in catalog and click on Gotocart and select existing order
     #Then Click on Back button in Checkout Card page
     And user should be on New Order entry page
@@ -146,9 +146,9 @@ Feature: Catalog
     And User should navigate to Catalog tab
     And User should click on Reset filter button and all the products should displayed in Card view in Catalog page
     Then User enters different Product# in Search bar and enter Qty by clicking image
-      |60|
-      |40|
-      |30|
+      |1|
+      |2|
+      |1|
     Then User click on cart in catalog and click on Gotocart and select existing order
     #Then Click on Back button in Checkout Card page
     And user should be on New Order entry page
@@ -164,9 +164,9 @@ Feature: Catalog
     And User should navigate to Catalog tab
     And User should click on Reset filter button and all the products should displayed in Card view in Catalog page
     Then User enters different Product# in Search bar and enter Qty by clicking image and click Delete product
-      |60|
-      |40|
-      |30|
+      |1|
+      |2|
+      |1|
     Then User click on cart in catalog and click on Gotocart and select existing order
     #Then Click on Back button in Checkout Card page
     And user should be on New Order entry page

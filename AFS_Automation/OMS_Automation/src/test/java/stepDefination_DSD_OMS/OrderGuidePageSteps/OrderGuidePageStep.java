@@ -155,8 +155,12 @@ public class OrderGuidePageStep
     public void user_should_navigate_to_og() throws InterruptedException, AWTException
     {
         orderpage = new OrderEntryPage(driver, scenario);
-        orderpage.HandleError_Page();
+        exists= orderpage.HandleError_Page();
         orderGuidePage=new OrderGuidePage(driver,scenario);
+        if(exists==true)
+        {
+            orderGuidePage.naviateToOG();
+        }
         orderGuidePage.Refresh_Page(currentURL);
         orderGuidePage.ValidateOG();
     }

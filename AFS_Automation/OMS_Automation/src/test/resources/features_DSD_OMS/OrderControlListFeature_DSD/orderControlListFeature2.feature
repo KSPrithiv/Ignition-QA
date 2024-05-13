@@ -24,7 +24,7 @@ Feature: Order control list
       |PO123|
     Then Enter Pro# in Quick Product Entry area
     And Check for Case and Unit input box enabled or not based on that enter value
-      |100|100|
+      |1|1|
     Then Click on Next button and select option Continue without payment option
     And Click on Submit Order button and read Order_no for OCL
     Then User should select Note from popup and Order guide from popup for OCL

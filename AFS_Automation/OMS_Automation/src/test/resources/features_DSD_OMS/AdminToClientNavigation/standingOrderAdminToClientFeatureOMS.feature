@@ -55,7 +55,7 @@ Feature: scenarios for admin credentials and client credentials
       | Hide leading zeros   |  CPGeneralHideLeadingZeros|
 
   @HideZeroInCatalogDisable
-  Scenario Outline: Test scenario for verifying hide zero in product number and verify it in catalog dialog box
+  Scenario Outline: Test scenario for verifying hide zero in product number disabled and verify it in catalog dialog box
     Given User should verify admin setting "<Setting>" is disabled by using "<Key>"
     Then User enters URL and is on login page and entered credentials for admin setting
     When User is on Home Page
