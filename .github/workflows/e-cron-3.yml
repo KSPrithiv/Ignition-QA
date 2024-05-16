@@ -13,7 +13,7 @@ on:
 jobs:
   job1:
     name : OMS Automation
-    runs-on: self-hosted ignition-qa-runners
+    runs-on: self-hosted
     
     
     steps:
