@@ -34,9 +34,9 @@ Feature: external catalog
     When User clicks on View product catalog and Product catalog should be displayed
     And user should click on Reset filter button and all the products should displayed in card view
     Then User enters Product# in Search bar in Catalog popup and enter Qty card view
-      |10|
-      |50|
-      |50|
+      |1|
+      |1|
+      |2|
     Then User click on cart and click on Checkout to order
     And Login to Application and Select customer account from popup
     Then User should navigate to My Cart and click on Chekout to order button
@@ -55,9 +55,9 @@ Feature: external catalog
     When User clicks on View product catalog and Product catalog should be displayed
     And user should click on Reset filter button and all the products should displayed in List view
     Then User enters Product# in Search bar in Catalog popup and enter Qty List view
-      |10|
-      |50|
-      |70|
+      |1|
+      |2|
+      |1|
     Then User click on cart and click on Checkout to order
     And Login to Application and Select customer account from popup
     Then User should navigate to My Cart and click on Chekout to order button
@@ -76,9 +76,9 @@ Feature: external catalog
     When User clicks on View product catalog and Product catalog should be displayed
     And user should click on Reset filter button and all the products should displayed in card view
     Then User enters Product# in Search bar in Catalog popup and enter Qty and delete the first product added
-      |50|
-      |40|
-      |60|
+      |1|
+      |1|
+      |2|
     Then User click on cart and click on Checkout to order
     And Login to Application and Select customer account from popup
     Then User should navigate to My Cart and click on Chekout to order button
@@ -97,9 +97,9 @@ Feature: external catalog
     When User clicks on View product catalog and Product catalog should be displayed
     And user should click on Reset filter button and all the products should displayed in card view
     Then User enters Product# in Search bar in Catalog popup and enter Qty card view
-      |50|
-      |40|
-      |60|
+      |1|
+      |2|
+      |1|
     Then User click on cart, Delete one product from cart and click on Checkout to order
     And Login to Application and Select customer account from popup
     Then User should navigate to My Cart and click on Chekout to order button
@@ -118,9 +118,9 @@ Feature: external catalog
     When User clicks on View product catalog and Product catalog should be displayed
     And user should click on Reset filter button and all the products should displayed in card view
     Then User enters Product# in Search bar in Catalog popup and enter Qty card view
-      |50|
-      |40|
-      |80|
+      |1|
+      |1|
+      |1|
     Then User click on cart and click on Checkout to order
     And Login to Application and Select customer account from popup
     Then User should navigate to My Cart, Delete one product and click on Chekout to order button

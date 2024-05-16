@@ -33,10 +33,10 @@ public class CompetitivePricingGeneralPage
     WebDriver driver;
     Scenario scenario;
     static boolean exists=false;
-    static String code=null;
-    static String desc=null;
-    static String currentURL=null;
-    static String Prod1=null;
+    static String code;
+    static String desc;
+    static String currentURL;
+    static String Prod1;
 
 
     @FindBy(xpath="//label[contains(text(),'Customer reference')]/following-sibling::span/span")
@@ -201,6 +201,12 @@ public class CompetitivePricingGeneralPage
             {
                 JavascriptExecutor js = ((JavascriptExecutor) driver);
                 js.executeScript("window.location.reload()");
+                wait = new FluentWait<WebDriver>(driver)
+                        .withTimeout(Duration.ofSeconds(120))
+                        .pollingEvery(Duration.ofSeconds(2))
+                        .ignoring(NoSuchElementException.class);
+                wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
                 wait = new WebDriverWait(driver, Duration.ofMillis(1000));
                 if(wait.until(ExpectedConditions.alertIsPresent())==null)
                 {
@@ -215,7 +221,8 @@ public class CompetitivePricingGeneralPage
                         .withTimeout(Duration.ofSeconds(120))
                         .pollingEvery(Duration.ofSeconds(2))
                         .ignoring(NoSuchElementException.class);
-                wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("productsCard")));
+                wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
 
                 status = HelpersMethod.returnDocumentStatus(driver);
                 if (status.equals("loading"))
@@ -227,7 +234,7 @@ public class CompetitivePricingGeneralPage
                         .withTimeout(Duration.ofSeconds(120))
                         .pollingEvery(Duration.ofSeconds(2))
                         .ignoring(NoSuchElementException.class);
-                wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("productsCard")));
+                wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
             }
 
 

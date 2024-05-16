@@ -22,7 +22,7 @@ Feature: Disconnected mode
     And User should select Customer Account# from popup and select the delivery date from popup wait till synchronized
     Then User must be on Order Entry Page in disconnected mode
 
-  @DMOrderEntry
+  @DMSearchBarOrder
   Scenario: Creating Order in disconnected mode using product# search box
     Given User should be in Order entry page
     When User Clicks on network symbol and click on toggle button to navigate to disconnected mode
@@ -38,7 +38,7 @@ Feature: Disconnected mode
     Then User enters Product# in Search box
     Then Check for Catalog popup
     Then Enter the Qty in the Product grid Case and Unit
-      | 60| 60 |
+      |1|1|
     Then Click on Next button
     And Click on SubmitOrder button
     Then User should be navigated to Order Entry page
@@ -57,9 +57,9 @@ Feature: Disconnected mode
     Then User should select Note from popup and Order guide from popup
     Then Enter PO# for New order
       |PO123|
-    Then Enter Pro# in Quick Product Entry area
-    And Check for Case and Unit input box enabled or not based on that enter value
-      |80|100|
+    And Enter Qty for the products in Product grid
+      |1|1|
+      |2|1|
     Then Click on Next button
     And Click on SubmitOrder button
     Then User should be navigated to Order Entry page
@@ -79,33 +79,10 @@ Feature: Disconnected mode
       |PO123|
     Then Enter Pro# in Quick Product Entry area
     And Check for Case and Unit input box enabled or not based on that enter value
-      |80|120|
+      |1|1|
     Then User should click on Comment icon in Order entry card
     And User should enter comment in comment popup
       |Comment at Order level|
-    Then Click on Next button
-    And Click on SubmitOrder button
-    Then User should be navigated to Order Entry page
-
-  @DMProductComment
-  Scenario: For adding comment to product level
-    Given User should be in Order entry page
-    When User Clicks on network symbol and click on toggle button to navigate to disconnected mode
-    And Then User selects Go offline option in Disconnected mode popup
-    Then User should get Customer account# popup
-    And User should select Customer Account# from popup and select the delivery date from popup wait till synchronized
-    Then User must be on Order Entry Page in disconnected mode
-    Then User must click Start Order button
-    Then User should make selection between Pending order or Start New order
-    Then User should select Note from popup and Order guide from popup
-    Then Enter PO# for New order
-      |PO123|
-    Then Enter Pro# in Quick Product Entry area
-    And Check for Case and Unit input box enabled or not based on that enter value
-      |50|50|
-    Then User should click on Comment icon in Product grid
-    And should enter comment in comment popup
-      |Comment at Product level|
     Then Click on Next button
     And Click on SubmitOrder button
     Then User should be navigated to Order Entry page
@@ -125,7 +102,7 @@ Feature: Disconnected mode
       |PO123|
     Then Click on Add product drop down and select catalog option
     And User should select Product from catalog and Enter Qty for the products in disconnected mode
-      |50|120|
+      |1|1|
     Then Click on Next button
     And Click on SubmitOrder button
     Then User should be navigated to Order Entry page
@@ -146,8 +123,8 @@ Feature: Disconnected mode
     Then Click on Add product drop down and select OrderGuide option
       |SampleOG|
     And Enter Qty for the products in Product grid
-      |50|50|
-      |40|60|
+      |1|1|
+      |2|1|
     Then Click on Next button
     And Click on SubmitOrder button
     Then User should be navigated to Order Entry page
@@ -167,7 +144,7 @@ Feature: Disconnected mode
       |PO123|
     Then Enter Pro# in Quick Product Entry area
     And Check for Case and Unit input box enabled or not based on that enter value
-      |80|80|
+      |1|1|
     Then Click on Next button
     And Click on SubmitOrder button
     Then User should be navigated to Order Entry page
@@ -183,9 +160,9 @@ Feature: Disconnected mode
     And User should navigate to Catalog tab
     And User should click on Reset filter button and all the products should displayed in Card view in Catalog page
     Then User enters Product# in Search bar and enters Qty
-      |70|100|
-      |80|70|
-      |80|90|
+      |1|1|
+      |2|1|
+      |2|2|
     Then User click on cart in catalog and click on Gotocart, before that Delete Product from popup
     And user should be on New Order entry page
     Then Enter PO# for New order

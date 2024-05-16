@@ -117,6 +117,7 @@ public class QuotePageSteps
         orderEntryPage = new OrderEntryPage(driver, scenario);
         orderEntryPage.HandleError_Page();
         orderEntryPage.Refresh_Page2();
+        orderEntryPage.NavigateingToOrderEntry();
         orderEntryPage.Read_DeliveryDate();
     }
 

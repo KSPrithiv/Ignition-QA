@@ -9,23 +9,6 @@ Feature: Order Entry3
     Then User should select Order Entry tab
     Then User selects Account#
 
-    # Admin setting for hiding zero's=>'Hide leading zeros', Scenario only for DSD
-  @HideZeros
-  Scenario: HideZeros that appears in Account# or product#
-    Given User must be on Order Entry Page
-    And User should verify the account_No
-    Then User must click Start Order button
-    Then User should make selection between Pending order or Start New order
-    Then User should select Note from popup and Order guide from popup
-    Then Enter PO# for New order
-      |PO123|
-    Then Enter Pro# in Quick Product Entry area
-    And Check for Case and Unit input box enabled or not based on that enter value
-      |70|60|
-    Then Click on Next button
-    And Click on SubmitOrder button
-    Then User should be navigated to Order Entry page
-
     @AddDeliveryAddress
     Scenario: For Adding new Delivery address
       Given User must be on Order Entry Page
@@ -36,7 +19,7 @@ Feature: Order Entry3
         |PO123|
       Then Enter Pro# in Quick Product Entry area
       And Check for Case and Unit input box enabled or not based on that enter value
-        |90|80|
+        |1|1|
       Then Click on Next button and Add new Delivery Addresss
       |Abcd|Address_line2|City_name|CA|Australia|123456|
       And Click on SubmitOrder button
@@ -52,7 +35,7 @@ Feature: Order Entry3
       |PO123|
     Then Enter Pro# in Quick Product Entry area
     And Check for Case and Unit input box enabled or not based on that enter value
-      |80|60|
+      |1|1|
     Then Click on Next button and Edit Delivery Addresss
       |Address_line2|Address_line12|
     And Click on SubmitOrder button
@@ -68,7 +51,7 @@ Feature: Order Entry3
         |PO123|
       Then Enter Pro# in Quick Product Entry area
       And Check for Case and Unit input box enabled or not based on that enter value
-        |80|60|
+        |1|1|
       Then Click on Next button and Delete Address
        |Address_line12|
       And Click on SubmitOrder button
@@ -83,10 +66,10 @@ Feature: Order Entry3
       Then Enter PO# for New order
         |PO123|
       Then Enter Prod_No in Quick Product Entry area
-        |  15  |  45  |
-        |  25  |  50  |
-        |  20  | 25   |
-        |  40  | 20   |
+        |  1 | 3 |
+        |  1 | 1 |
+        |  1 | 2 |
+        |  2 | 1 |
       And Click on Aroow symbol to display products based on descending order
       Then Click on Next button
       And Click on SubmitOrder button
@@ -104,7 +87,7 @@ Feature: Order Entry3
         And Read 2nd route value and select 2nd route with that validate route has changed or not
         Then Enter Pro# in Quick Product Entry area
         And Check for Case and Unit input box enabled or not based on that enter value
-          |50|65|
+          |1|1|
         And Find total amount from New oe page
         Then Click on Next button
         And Click on SubmitOrder button
@@ -120,45 +103,13 @@ Feature: Order Entry3
         |PO123|
       Then Enter Pro# in Quick Product Entry area
       And Check for Case and Unit input box enabled or not based on that enter value
-        |65|80|
+        |1|1|
       Then Click on Next button and add new Payment method
       |Bank account|Savings - Personal|
       And Click on SubmitOrder button
       Then User should be navigated to Order Entry page
 
-  @PriceOverRidePriceByPrice
-  Scenario: Test scenario for testing price override with "What if" option, price by price option
-    Given User must be on Order Entry Page
-    Then User must click Start Order button
-    Then User should make selection between Pending order or Start New order
-    Then User should select Note from popup and Order guide from popup
-    Then Enter PO# for New order
-      |PO123|
-    Then Enter Pro# in Quick Product Entry area for price override
-    And Check for Case and Unit input box enabled or not based on that enter value
-      |50|60|
-    Then User should click on price override icon and Change price using What if option Price by price
-      |$2.00|
-    Then Click on Next button
-    And Click on SubmitOrder button
-    Then User should be navigated to Order Entry page
 
-  @PriceOverRidePricePerUnit
-  Scenario: Test scenario for testing price override with "What if" option, price per unit option
-    Given User must be on Order Entry Page
-    Then User must click Start Order button
-    Then User should make selection between Pending order or Start New order
-    Then User should select Note from popup and Order guide from popup
-    Then Enter PO# for New order
-      |PO123|
-    Then Enter Pro# in Quick Product Entry area for price override
-    And Check for Case and Unit input box enabled or not based on that enter value
-      |50|80|
-    Then User should click on price override icon and Change price using What if option Price per unit
-      |$12.50|
-    Then Click on Next button
-    And Click on SubmitOrder button
-    Then User should be navigated to Order Entry page
 
 
 

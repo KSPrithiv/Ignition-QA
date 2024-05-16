@@ -20,7 +20,7 @@ public class AdminStandingOrderStep
     /* Created by Divya.Ramadas */
     WebDriver driver;
     Scenario scenario;
-    static String currentURL=null;
+    static String currentURL;
     static NewStandingOrderPage standingOrder;
 
     @Before

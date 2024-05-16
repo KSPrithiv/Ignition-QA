@@ -17,7 +17,7 @@ Feature: scenarios for admin credentials and client credentials
       |PO123|
     Then Enter Pro# in Quick Product Entry area
     And Check for Case and Unit input box enabled or not based on that enter value
-      |80|70|
+      |1|1|
     Then Click on Next button
     And Click on SubmitOrder button to verify Existing order dialog box
     Then User should be navigated to Order Entry page
@@ -35,14 +35,14 @@ Feature: scenarios for admin credentials and client credentials
       Then User navigate to Client side
       Then User should select Order Entry tab for admin
       Then User selects Account# for Admin side setting
-      Then User must click Start Order button
+      Then User must click Start Order button for Admin setting
       Then User should make selection between Pending order or Start New order
       Then User should select Note from popup and Order guide from popup
       Then Enter PO# for New order
         |PO123|
       Then Enter Pro# in Quick Product Entry area
       And Check for Case and Unit input box enabled or not based on that enter value
-        |80|70|
+        |1|1|
       Then Click on Next button
       And Click on SubmitOrder button to display of Existing order dialog box after enabling admin setting
       Then User should be navigated to Order Entry page
@@ -67,7 +67,7 @@ Feature: scenarios for admin credentials and client credentials
        |PO123|
      Then Enter Pro# in Quick Product Entry area
      And Check for Case and Unit input box enabled or not based on that enter value
-       |80|70|
+       |1|1|
      Then Click on Next button
      And Click on SubmitOrder button and click on cancel button when Order exists dialog box appears
      Then User should be navigated to Order Entry page
@@ -92,7 +92,7 @@ Feature: scenarios for admin credentials and client credentials
       |PO123|
     Then Enter Pro# in Quick Product Entry area
     And Check for Case and Unit input box enabled or not based on that enter value
-      |80|70|
+      |1|1|
     Then Click on Next button
     And Click on SubmitOrder button and click on No button when Order exists dialog box appears
     Then User should be navigated to Order Entry page
@@ -117,7 +117,7 @@ Feature: scenarios for admin credentials and client credentials
         |PO123|
       Then Enter Pro# in Quick Product Entry area
       And Check for Case and Unit input box enabled or not based on that enter value
-        |80|70|
+        |1|1|
       Then Click on Next button
       And Click on SubmitOrder button
       Then User should be navigated to Order Entry page
@@ -142,7 +142,7 @@ Feature: scenarios for admin credentials and client credentials
       |PO123|
     Then Enter Pro# in Quick Product Entry area
     And Check for Case and Unit input box enabled or not based on that enter value
-      |80|70|
+      |1|1|
     Then Click on Next button
     And Click on SubmitOrder button
     Then User should be navigated to Order Entry page
@@ -182,7 +182,7 @@ Feature: scenarios for admin credentials and client credentials
       |PO123|
     Then Enter Pro# in Quick Product Entry area
     And Check for Case and Unit input box enabled or not based on that enter value
-      |80|70|
+      |1|1|
     Then Click on Next button
     And Click on SubmitOrder button
     Then User should be navigated to Order Entry page and display all orders created
@@ -212,7 +212,7 @@ Feature: scenarios for admin credentials and client credentials
       |PO123|
     Then Click on Add product drop down and select catalog option
     And User should verify products are not auto loaded select Product from catalog and Enter Qty for the products
-      |50|60|
+      |1|1|
     Then Click on Next button
     And Click on SubmitOrder button
     Then User should be navigated to Order Entry page
@@ -240,7 +240,7 @@ Feature: scenarios for admin credentials and client credentials
       |PO123|
     Then Click on Add product drop down and select catalog option
     And User should verify products are auto loaded select Product from catalog and Enter Qty for the products
-      |50|60|
+      |1|1|
     Then Click on Next button
     And Click on SubmitOrder button
     Then User should be navigated to Order Entry page

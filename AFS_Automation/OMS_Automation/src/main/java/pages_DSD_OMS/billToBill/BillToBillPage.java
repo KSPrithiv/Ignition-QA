@@ -29,7 +29,7 @@ public class BillToBillPage
     WebDriver driver;
     Scenario scenario;
     static boolean exists=false;
-    static String currentURL=null;
+    static String currentURL;
 
     @FindBy(id="rbBillingPeriodWeekly")
     private  WebElement WeeklyRadio;

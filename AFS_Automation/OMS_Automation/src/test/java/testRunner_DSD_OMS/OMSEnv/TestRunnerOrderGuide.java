@@ -49,7 +49,7 @@ public class TestRunnerOrderGuide extends AbstractTestNGCucumberTests
     @AfterClass
     public static void afterclass() throws InterruptedException, MessagingException, IOException
     {
-        Thread.sleep(10000);
+        Thread.sleep(1000);
         //MailSend.sendMail();
         TestBase.CloseBrowser();
         if(TestBase.testEnvironment.get_browser().equalsIgnoreCase("Firefox"))
@@ -62,34 +62,4 @@ public class TestRunnerOrderGuide extends AbstractTestNGCucumberTests
             Runtime.getRuntime().exec("taskkill /F /IM chromedriver.exe");
         }
     }
-
-    /*@Parameters({"environment"})
-    @BeforeMethod
-    public static void beforeClass(@Optional("environment") String envi)
-    {
-        try
-        {
-            TestBase.InitializeProp(envi);
-            TestBase.SetDriver(TestBase.testEnvironment.get_browser());
-        }
-        catch (Exception e) { }
-    }
-
-    @AfterMethod
-    public static void afterclass() throws InterruptedException, MessagingException, IOException
-    {
-        Thread.sleep(1000);
-        MailSend.sendMail();
-        TestBase.CloseBrowser();
-
-        if(TestBase.testEnvironment.get_browser().equalsIgnoreCase("Firefox"))
-        {
-            Runtime.getRuntime().exec("taskkill /F /IM geckodriver.exe");
-        }
-        else
-        if(TestBase.testEnvironment.get_browser().equalsIgnoreCase("Chrome"))
-        {
-            Runtime.getRuntime().exec("taskkill /F /IM chromedriver.exe");
-        }
-    }*/
 }

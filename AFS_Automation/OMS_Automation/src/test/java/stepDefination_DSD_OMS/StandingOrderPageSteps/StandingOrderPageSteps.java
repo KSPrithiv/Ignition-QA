@@ -127,8 +127,12 @@ public class StandingOrderPageSteps
             flag2=true;
         }
         orderpage = new OrderEntryPage(driver, scenario);
-        orderpage.HandleError_Page();
+        exists=orderpage.HandleError_Page();
         standingOrder=new NewStandingOrderPage(driver,scenario);
+        if(exists==true)
+        {
+            standingOrder.navigateToStandingOrder();
+        }
         standingOrder.Refresh_Page(currentURL);
         standingOrder.validateStandingOrder();
     }
@@ -363,6 +367,7 @@ public class StandingOrderPageSteps
     public void userShouldVerifyForThatDateRemoveSkipHasBeenEnabledOrSkipHasBeenDisabled() throws InterruptedException, AWTException
     {
         orderpage = new OrderEntryPage(driver, scenario);
+        orderpage.ValidateOE();
         orderpage.CheckForRemoveSkip();
         orderpage.ClickRemoveSkip();
         orderpage=new OrderEntryPage(driver,scenario);

@@ -22,9 +22,8 @@ public class InventoryPage
 {
     WebDriver driver;
     Scenario scenario;
-    static String currentURL;
     static boolean exists=false;
-    static String runningTotalUnits=null;
+    static String runningTotalUnits;
     int totalUitsValue;
     int headIndex=0;
 
@@ -294,7 +293,7 @@ public class InventoryPage
                 HelpersMethod.clickOn(driver, WebEle, 1000);
             }
             //Enter value in 1st input
-            WebElement fistSearch=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-child-animation-container')]/descendant::input[contains(@class,'i-search-box__input')]");
+            WebElement fistSearch=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'i-filter-popup i-filter-popup--add')]/descendant::input[contains(@class,'i-search-box__input')]");
             HelpersMethod.EnterText(driver,fistSearch,1000,"Product #");
             //Click on check box
             WebElement checkBox=HelpersMethod.FindByElement(driver,"id","ProductNumber");
@@ -312,15 +311,15 @@ public class InventoryPage
             {
                 //click on filter option button
                 WebElement searchOption=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-widget k-window k-dialog')]/descendant::div[@class='i-filter-tag ']/button[contains(@class,'i-filter-tag__main')]");
-                HelpersMethod.ClickBut(driver,searchOption,1000);
+                HelpersMethod.ClickBut(driver,searchOption,10000);
 
                 prodValue= Prods.get(j);
                 WebElement secondSearch=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-child-animation-container')]/descendant::form/descendant::input[contains(@class,'k-textbox')]");
-                HelpersMethod.EnterText(driver,secondSearch,1000,prodValue);
+                HelpersMethod.EnterText(driver,secondSearch,10000,prodValue);
 
                 //Click on Apply button
                 applyButton=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-child-animation-container')]/descendant::button[text()='Apply']");
-                HelpersMethod.ClickBut(driver,applyButton,100);
+                HelpersMethod.ClickBut(driver,applyButton,10000);
                 if(HelpersMethod.IsExists("//div[@class='loader']",driver))
                 {
                     WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
@@ -454,7 +453,7 @@ public class InventoryPage
         {
             if(saveButton.isDisplayed() && saveButton.isEnabled())
             {
-                HelpersMethod.ClickBut(driver,saveButton,1000);
+                HelpersMethod.ClickBut(driver,saveButton,10000);
                 exists=true;
             }
             Assert.assertEquals(exists,true);

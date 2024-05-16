@@ -52,11 +52,11 @@ public class OrderEntryPageSteps3
         result=orderpage.Account_Zero();
         if(result==true)
         {
-            scenario.log("PRECEDING BY ZERO HAS BEEN EXECUTED SUCESSFULLY,PLEASE DO CHECK ADMIN SETTINGS");
+            scenario.log("PRECEDING BY ZERO HAS BEEN EXECUTED SUCESSFULLY.");
         }
         else
         {
-            scenario.log("<span style='color:red'>PRECEDING BY ZERO HAS BEEN FAILED, PLEASE DO CHECK ADMIN SETTINGS. IT IS SUPPORTED ONLY IN DSD ENV</span>");
+            scenario.log("<span style='color:red'>PRECEDING BY ZERO HAS BEEN FAILED, PLEASE DO CHECK ADMIN SETTINGS.</span>");
         }
         Assert.assertEquals(result,true);
     }

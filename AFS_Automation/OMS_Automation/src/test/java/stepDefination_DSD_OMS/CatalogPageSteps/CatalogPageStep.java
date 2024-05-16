@@ -47,8 +47,8 @@ public class CatalogPageStep
     static boolean exists = false;
     static boolean flag=false;
     static boolean flag1=false;
-    static String currentURL=null;
-    static String Ord_No=null;
+    static String currentURL;
+    static String Ord_No;
 
     static LoginPage loginpage;
     static HomePage homepage;
@@ -143,11 +143,6 @@ public class CatalogPageStep
         {
             if (HelpersMethod.IsExists("//li[contains(@class,'k-item')]/span[@class='k-link' and contains(text(),'Catalog')]", driver))
             {
-                /*HelpersMethod.navigate_Horizantal_Tab(driver, "Catalog", "//li[contains(@class,'k-item')]/span[@class='k-link' and contains(text(),'Catalog')]", "xpath", "//li[contains(@class,'k-item')]/span[@class='k-link']");
-                catalogpage = new CatalogPage(driver, scenario);
-                catalogpage.ValidateCatalog();
-                currentURL = driver.getCurrentUrl();
-                scenario.log(currentURL);*/
                 catalogpage=new CatalogPage(driver,scenario);
                 catalogpage.navigateToCatalog();
                 catalogpage.ValidateCatalog();
@@ -161,8 +156,12 @@ public class CatalogPageStep
             flag1 = true;
         }
         orderpage=new OrderEntryPage(driver,scenario);
-        orderpage.HandleError_Page();
+        exists= orderpage.HandleError_Page();
         catalogpage = new CatalogPage(driver, scenario);
+        if(exists==true)
+        {
+            catalogpage.navigateToCatalog();
+        }
         catalogpage.Refresh_Page(currentURL);
         catalogpage.validateCatalog();
     }
@@ -196,6 +195,18 @@ public class CatalogPageStep
         scenario.log("PRODUCT FOR SEARCH IN SEARCH BAR "+pro);
         catalogpage.SearchProduct1(pro);
     }
+
+    @Then("User enters Product# in Search bar and clear search")
+    public void enterProductInSearchBarAndClearSearch() throws SQLException, ClassNotFoundException, InstantiationException, IllegalAccessException
+    {
+        catalogpage = new CatalogPage(driver, scenario);
+        String pro = DataBaseConnection.DataBaseConn(TestBase.testEnvironment.getSingle_Prod_Sql());
+        scenario.log("PRODUCT FOR SEARCH IN SEARCH BAR "+pro);
+        catalogpage.SearchProduct1(pro);
+        catalogpage.clearSearch();
+        catalogpage.readProductNumbers();
+    }
+
 
     //Code for searching of product using product description
     @Then("User enters Product description in Search bar")
@@ -523,15 +534,16 @@ public class CatalogPageStep
     @Then("Click on SubmitOrder button for creating order from Catalog")
     public void clickOnSubmitOrderButtonForCreatingOrderFromCatalog() throws InterruptedException, AWTException
     {
+
         summary = new CheckOutSummaryPage(driver,scenario);
         summary.validateSummaryPage();
         summary.ClickSubmit();
         for(int i=0;i<=2;i++)
         {
-            summary.cutoffDialog();
             summary.additionalOrderPopup();
+            summary.cutoffDialog();
+            summary.percentageOfAverageProd();
         }
-        Ord_No = summary.Get_Order_No();
         summary.SucessPopup();
     }
 

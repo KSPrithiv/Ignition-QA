@@ -27,13 +27,12 @@ public class OrderEntryPageSteps6
     Scenario scenario;
 
     static boolean exists=false;
-    static OrderEntryPage orderEntryPage;
     static NewOrderEntryPage newOE;
     static CheckOutSummaryPage summary;
-    static OrderHistoryPage orderHistoryPage;
     static OrderEntryPage orderpage;
     static CheckOutOrderPage checkorder;
     static String changedSalesRep;
+    static String orderNumber;
 
     @Before
     public void LaunchBrowser1(Scenario scenario) throws Exception
@@ -45,12 +44,13 @@ public class OrderEntryPageSteps6
 
     //Method to create pickup order
     @And("Select Pickup Order from drop down options and select delivery date")
-    public void select_pickup_order_from_drop_down_options_and_select_delivery_date() throws InterruptedException, AWTException
+    public void select_pickup_order_from_drop_down_options_and_select_delivery_date() throws InterruptedException, AWTException, ParseException
     {
         //for selecting pickup order
         orderpage=new OrderEntryPage(driver, scenario);
+        String deliveryDate= orderpage.Read_DeliveryDate1();
         orderpage.Pickup_Order();
-        orderpage.SelectPickupOrderDeliveryDate();
+        orderpage.SelectPickupOrderDeliveryDate(deliveryDate);
     }
 
     @And("User validates Pickup order check box is selected")
@@ -109,9 +109,10 @@ public class OrderEntryPageSteps6
     {
         //for selecting pickup order
         orderpage=new OrderEntryPage(driver, scenario);
+        String deliveryDate= orderpage.Read_DeliveryDate1();
         orderpage.Pickup_Order();
         orderpage.ValidatingTodaysDate();
-        orderpage.SelectPickupOrderDeliveryDate();
+        orderpage.SelectPickupOrderDeliveryDate(deliveryDate);
     }
 
     @And("User removes route details from Route field and Route is empty")
@@ -119,6 +120,7 @@ public class OrderEntryPageSteps6
     {
         orderpage=new OrderEntryPage(driver,scenario);
         orderpage.ValidateOE();
+        Thread.sleep(1000);
         String routeNo=orderpage.validateRouteValue();
         if(routeNo!=null||!routeNo.equals(""))
         {
@@ -166,7 +168,6 @@ public class OrderEntryPageSteps6
         if(HelpersMethod.IsExists("//div[@id='paymentMethodCard']",driver))
         {
             Thread.sleep(4000);
-            //checkorder.validateCheckOrder();
             checkorder.Select_PaymentMethod_ClickDownArrow();
             if(HelpersMethod.IsExists("//button[@id='allowOrderWithoutPayment']",driver))
             {

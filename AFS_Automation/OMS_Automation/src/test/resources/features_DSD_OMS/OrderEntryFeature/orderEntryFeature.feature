@@ -20,7 +20,7 @@ Feature: Order Entry
     Then User enters Product# in Search box
     Then Check for Catalog popup
     Then Enter the Qty in the Product grid Case and Unit
-      | 70| 80 |
+      | 1| 1 |
     Then Click on Next button
     And Click on SubmitOrder button
     Then User should be navigated to Order Entry page
@@ -35,7 +35,7 @@ Feature: Order Entry
       |PO123|
     Then Enter Pro# in Quick Product Entry area
     And Check for Case and Unit input box enabled or not based on that enter value
-      |80|70|
+      |1|2|
     Then Click on Cancel button
     And Check for Warning popup
     Then User should be navigated to Order Entry page
@@ -50,7 +50,7 @@ Feature: Order Entry
       |PO123|
     Then Enter Pro# in Quick Product Entry area
     And Check for Case and Unit input box enabled or not based on that enter value
-      |80|70|
+      |2|1|
     Then Click on Next button
     And Click on SubmitOrder button
     Then User should be navigated to Order Entry page
@@ -65,7 +65,7 @@ Feature: Order Entry
       |PO123|
     Then Enter Pro# in Quick Product Entry area
     And Check for Case and Unit input box enabled or not based on that enter value
-      |70|50|
+      |2|1|
     Then Click on Back button to handle Pending order Popup
     And Popup message for Pending order should be displayed
     Then User should be navigated to Order Entry page
@@ -80,7 +80,7 @@ Feature: Order Entry
       |PO123|
     Then Enter Pro# in Quick Product Entry area
     And Check for Case and Unit input box enabled or not based on that enter value
-      |50|80|
+      |2|1|
     Then Click on Back button
     And Popup message for Pending order should be displayed
     Then User should be navigated to Order Entry page
@@ -91,7 +91,7 @@ Feature: Order Entry
       |PO123|
     Then Enter Pro# in Quick Product Entry area
     And Check for Case and Unit input box enabled or not based on that enter value
-      |80|70|
+      |1|1|
     Then Click on Next button
     And Click on SubmitOrder button
     Then User should be navigated to Order Entry page
@@ -106,7 +106,7 @@ Feature: Order Entry
       |PO123|
     Then Enter Pro# in Quick Product Entry area
     And Check for Case and Unit input box enabled or not based on that enter value
-      |80|60|
+      |2|1|
     Then Click on Back button
     And Discard all Pending order should be displayed
     Then User should be navigated to Order Entry page
@@ -124,7 +124,7 @@ Feature: Order Entry
     Then Enter PO# for New order
       |PO123|
     Then User should enter Units and Cases in product grid
-      |80|60|
+      |1|1|
     Then Click on Next button
     And Click on SubmitOrder button
     Then User should be navigated to Order Entry page
@@ -139,7 +139,7 @@ Feature: Order Entry
       |PO123|
     Then Enter Pro# in Quick Product Entry area
     And Check for Case and Unit input box enabled or not based on that enter value
-      |80|60|
+      |2|2|
     Then Click on Next button
     And Click on Submit Order button and read Order_no
     Then User should be navigated to Order Entry page
@@ -147,7 +147,7 @@ Feature: Order Entry
     Then Click on Order number in Order Entry page and check for New OE page for editing Order
 #    Then Navigate to Summary order entry page
     Then Enter new product# in the quick product entry with qty
-      |80|40|
+      |4|4|
     Then Click on Next button after editing order
     And Click on SubmitOrder button
     Then User should be navigated to Order Entry page
@@ -162,11 +162,11 @@ Feature: Order Entry
     Then Enter PO# for New order
       |PO123|
     And Enter Qty for the products in Product grid
-      |50|70|
-      |40|60|
+      |1|2|
+      |2|1|
     Then Enter Pro# in Quick Product Entry area
     And Check for Case and Unit input box enabled or not based on that enter value
-      |60|80|
+      |1|1|
     Then Click on Next button
     And Click on SubmitOrder button
     Then User should be navigated to Order Entry page
@@ -181,12 +181,12 @@ Feature: Order Entry
       |PO123|
     Then Enter Pro# in Quick Product Entry area
     And Check for Case and Unit input box enabled or not based on that enter value
-      |60|80|
+      |1|1|
     Then Click on Next button
     And Click on Edit button
     And Click on Back button in Checkout Card page
     Then Enter new product# in the quick product entry with qty
-      |80|60|
+      |1|1|
     Then Click on Next button
     And Click on Submit Order button and read Order_no
     Then User should be navigated to Order Entry page

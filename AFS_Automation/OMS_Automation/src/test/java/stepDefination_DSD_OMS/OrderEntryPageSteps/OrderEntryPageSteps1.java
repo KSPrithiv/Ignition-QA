@@ -32,15 +32,15 @@ public class OrderEntryPageSteps1
     WebDriver driver;
     Scenario scenario;
 
-    static OrderEntryPage orderpage;
-    static NewOrderEntryPage newOE;
-    static CheckOutSummaryPage summary;
-    static OrderHistoryPage orderhistory;
+    private static OrderEntryPage orderpage;
+    private static NewOrderEntryPage newOE;
+    private static CheckOutSummaryPage summary;
+    private static OrderHistoryPage orderhistory;
 
-    //static String XPath=null;
+
     static boolean exists=false;
-    //static String Ord_No=null;
-    //static String ProdNo=null;
+
+
 
     @Before
     public void LaunchBrowser1(Scenario scenario) throws Exception

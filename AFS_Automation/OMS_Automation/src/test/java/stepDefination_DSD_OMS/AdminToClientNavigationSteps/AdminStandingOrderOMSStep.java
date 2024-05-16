@@ -21,7 +21,6 @@ import util.TestBase;
 public class AdminStandingOrderOMSStep
 {
     /* Created by Divya.Ramadas */
-    /* Created by Divya.Ramadas */
     WebDriver driver;
     Scenario scenario;
     NewStandingOrderPage standingOrder;

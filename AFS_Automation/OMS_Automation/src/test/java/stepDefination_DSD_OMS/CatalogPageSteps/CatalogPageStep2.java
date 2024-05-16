@@ -27,7 +27,7 @@ public class CatalogPageStep2
 {
     /* Created by Divya.Ramadas@afsi.com */
     WebDriver driver;
-    String descriptionProd=null;
+    String descriptionProd;
     static boolean exists = false;
     Scenario scenario;
 
@@ -44,7 +44,8 @@ public class CatalogPageStep2
     }
 
     @Then("User enters Product# in Search bar and enters Qty for single Product in list view")
-    public void userEntersProductInSearchBarAndEntersQtyForSingleProductInListView(DataTable tabledata) throws SQLException, ClassNotFoundException, InstantiationException, IllegalAccessException, SQLException {
+    public void userEntersProductInSearchBarAndEntersQtyForSingleProductInListView(DataTable tabledata) throws SQLException, ClassNotFoundException, InstantiationException, IllegalAccessException, SQLException
+    {
         exists = true;
         List<List<String>> Prod_detail = tabledata.asLists(String.class);
         catalogpage = new CatalogPage(driver, scenario);

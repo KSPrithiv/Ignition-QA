@@ -28,8 +28,6 @@ public class FeaturedProductsPage
     WebDriver driver;
     Scenario scenario;
     static boolean exists=false;
-    static int No_product;
-    static String selectCat=null;
 
     @FindBy(xpath="//div[@class='grid-item-box'][1]/descendant::button[text()='Delete']")
     private WebElement Delete;

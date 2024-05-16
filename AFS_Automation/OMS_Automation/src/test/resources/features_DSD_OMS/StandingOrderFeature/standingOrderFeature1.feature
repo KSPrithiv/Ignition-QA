@@ -73,15 +73,19 @@ Feature: Standing Order1
   Scenario: Test scenario for deleting expired standing order
     Given User must be on Order Entry Page to select Standing Order and navigate to standing order
     Then User navigates to Standing order card and selects the first expired standing order
-    And User sucessfuly deletes expired standing order
+    And User successfully deletes expired standing order
 
   @ChangeAccountNumber
   Scenario: Test scenario for changing customer account# and createing standing order
     Given User must be on Order Entry Page to select Standing Order and navigate to standing order
     And User changes Customer account# for creating SO for some other customer
     And User click on Start standing order button and selects start and end date from popup
-    Then User enters Product# in Quick product entry inputbox
-    And User enters Qty in standing order product grid based on enabled days
+    Then User click on Add Product button in Standing order page and select catalog option
+    And User checks for catalog popup and searches for product in catalog
+    And User enters Qty in standing order product grid based on enabled days for multiple products
       |10|20|30|40|15|10|5|
+      |2 |4 |6 |8 |10|12|14|
+      |3 |5 |7 |9 |11|13|15|
+      |12|24|6 |32|16|12|8 |
+      |24|8 |14|22|12|10|8 |
     Then User clicks on Save button and handles popup
-    And User should change customer account# back to previous account

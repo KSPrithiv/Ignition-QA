@@ -23,7 +23,7 @@ public class MainPage
     WebDriver driver;
     Scenario scenario;
     static boolean exists=false;
-    static String InputValue=null;
+    static String InputValue;
 
     @FindBy(id="CmFirstName")
     private WebElement FName;
@@ -61,7 +61,8 @@ public class MainPage
     @FindBy(id="CmGenlFax")
     private WebElement faxNumber;
 
-    @FindBy(id="CmGenlEmail")
+    //@FindBy(id="CmGenlEmail")
+    @FindBy(id="CMPrimaryContactEmail")
     private WebElement emailId;
 
     @FindBy(id="CmGenlWebsite")
@@ -267,40 +268,41 @@ public class MainPage
 
     public void emailAddress()
     {
-        HelpersMethod.EnterText(driver,emailId,1000,RandomValues.generateEmail(10));
+        HelpersMethod.ScrollElement(driver,emailId);
+        HelpersMethod.EnterText(driver,emailId,10000,RandomValues.generateEmail(10));
         scenario.log("EMAIL ADDRESS ENTERED IS "+HelpersMethod.JSGetValueEle(driver,emailId,1000));
     }
 
     public void contactName()
     {
         InputValue=EnterText(primaryContactName,20);
-        HelpersMethod.EnterText(driver,primaryContactName,1000,InputValue);
+        HelpersMethod.EnterText(driver,primaryContactName,10000,InputValue);
         scenario.log("PRIMARY CONTACT NAME ENTERED IS "+HelpersMethod.JSGetValueEle(driver,primaryContactName,1000));
     }
 
     public void contactTitle()
     {
         InputValue=EnterText(primaryContactTitle,20);
-        HelpersMethod.EnterText(driver,primaryContactTitle,1000,InputValue);
+        HelpersMethod.EnterText(driver,primaryContactTitle,10000,InputValue);
         scenario.log("PRIMARY CONTACT TITLE ENTERED IS "+HelpersMethod.JSGetValueEle(driver,primaryContactTitle,1000));
     }
 
     public void contactPhone()
     {
         InputValue=EnterNumber(primaryPhone,20);
-        HelpersMethod.EnterText(driver,primaryPhone,1000,InputValue);
+        HelpersMethod.EnterText(driver,primaryPhone,10000,InputValue);
         scenario.log("PRIMARY CONTACT NAME ENTERED IS "+HelpersMethod.JSGetValueEle(driver,primaryPhone,1000));
     }
 
     public void primaryEmailAddress()
     {
-        HelpersMethod.EnterText(driver,primaryEmail,1000,RandomValues.generateEmail(10));
+        HelpersMethod.EnterText(driver,primaryEmail,10000,RandomValues.generateEmail(10));
         scenario.log("EMAIL ADDRESS ENTERED IS "+HelpersMethod.JSGetValueEle(driver,primaryEmail,1000));
     }
 
     public void websiteAddress()
     {
-        HelpersMethod.EnterText(driver,websiteId,1000,RandomValues.generateWebsite(20));
+        HelpersMethod.EnterText(driver,websiteId,10000,RandomValues.generateWebsite(20));
         scenario.log("WEB SITE NAME ENTERED IS "+HelpersMethod.JSGetValueEle(driver,websiteId,1000));
     }
 

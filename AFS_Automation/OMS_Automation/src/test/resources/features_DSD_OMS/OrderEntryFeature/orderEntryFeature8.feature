@@ -48,7 +48,7 @@ Scenario: Test scenario for creating order for the Last date in Pickup order dia
     |PO123|
   Then Enter Pro# in Quick Product Entry area
   And Check for Case and Unit input box enabled or not based on that enter value
-    |50|60|
+    |1|1|
   Then Click on Next button
   And Click on SubmitOrder button
   Then User should be navigated to Order Entry page and compare the dates
@@ -63,13 +63,13 @@ Scenario: Test scenario for searching for product in catalog index dialog box
     |PO123|
   Then Click on Add product drop down and select catalog option
   And User should select Product from catalog Index popup search input box and Enter Qty for the products
-    |100|100|
+    |1|1|
   Then Click on Next button
   And Click on SubmitOrder button
   Then User should be navigated to Order Entry page
 
-@PaymentPageNotDisplayed
-Scenario: Test scenario to verify that payment page is not getting displayed once order is submitted and reopen the order
+@PaymentOptionsDisabled
+Scenario: Test scenario to verify that payment page all payment options are disabled once order is submitted and reopen the order
     Given User must be on Order Entry Page
     Then User must click Start Order button
     Then User should make selection between Pending order or Start New order
@@ -78,12 +78,12 @@ Scenario: Test scenario to verify that payment page is not getting displayed onc
       |PO123|
     Then Enter Pro# in Quick Product Entry area
     And Check for Case and Unit input box enabled or not based on that enter value
-      |60|80|
-    Then Click on Next button
+      |1|1|
+    Then Click on Next button and select the very first payment option
     And Click on Submit Order button and read Order_no
     Then User should be navigated to Order Entry page
-    And User should verify that Payment page is not getting displayed
-    #And User should be in Order summary page and click on back to Orderlist button
+    Then Enter Order# in Search box in Order Entry page
+    And User should verify that payment options in Payment page are disabled
     And Click on SubmitOrder button
     Then User should be navigated to Order Entry page
 
@@ -97,7 +97,7 @@ Scenario: Test scenario to verify payment info in summary page
     |PO123|
   Then Enter Pro# in Quick Product Entry area
   And Check for Case and Unit input box enabled or not based on that enter value
-    |60|80|
+    |1|1|
   Then Click on Next button and read payment methods
   And Click on SubmitOrder button and compare payment info
   Then User should be navigated to Order Entry page

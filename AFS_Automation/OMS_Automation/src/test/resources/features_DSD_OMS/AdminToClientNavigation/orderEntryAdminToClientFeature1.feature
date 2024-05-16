@@ -22,7 +22,7 @@ Feature: scenarios for admin credentials and client credentials
       |PO123|
     Then Click on Add product drop down and select catalog option
     And User should verify products are not auto loaded select Product from catalog and Enter Qty for the products
-      |50|60|
+      |1|1|
     Then Click on Next button
     And Click on SubmitOrder button
     Then User should be navigated to Order Entry page
@@ -31,7 +31,7 @@ Feature: scenarios for admin credentials and client credentials
       |Catalog Search     |    Card layout        |
 
   @CatalogDonotAutoLoadDisableCardView
-  Scenario Outline: Test scenario for disable auto loading of products in catalog dialog box, in grid view
+  Scenario Outline: Test scenario for disable auto loading of products in catalog dialog box, in card view
     Given User enters URL and is on login page and entered credentials for Admin settings
     When User is on Home Page for Admin settings
     Then User Clicks on Permissions by drop down to select Customer Account#s
@@ -50,7 +50,7 @@ Feature: scenarios for admin credentials and client credentials
       |PO123|
     Then Click on Add product drop down and select catalog option
     And User should verify products are auto loaded select Product from catalog and Enter Qty for the products
-      |50|60|
+      |1|1|
     Then Click on Next button
     And Click on SubmitOrder button
     Then User should be navigated to Order Entry page
@@ -75,7 +75,7 @@ Feature: scenarios for admin credentials and client credentials
     And User should verify Sales rep value
     Then Enter Pro# in Quick Product Entry area
     And Check for Case and Unit input box enabled or not based on that enter value
-      |80|70|
+      |1|1|
     Then Click on Next button
     And Click on SubmitOrder button
     Then User should be navigated to Order Entry page
@@ -102,7 +102,7 @@ Feature: scenarios for admin credentials and client credentials
     And User should verify Sales rep value
     Then Enter Pro# in Quick Product Entry area
     And Check for Case and Unit input box enabled or not based on that enter value
-      |80|70|
+      |1|1|
     Then Click on Next button
     And Click on SubmitOrder button
     Then User should be navigated to Order Entry page
@@ -118,7 +118,7 @@ Feature: scenarios for admin credentials and client credentials
     When User should land on landing page and verify
     Then User Clicks on Permissions by drop down to select Customer Account# for admin security
     And User should enter menu "<Main menu>" in search bar and select "<Sub menu>"
-    And User should disable admin settings "<AdminControl>" "<Id>"
+    And User should disable admin settings "<AdminControl>" "<Id>", for permission
     And User logs out from Admin site, logs in to client credentials
     When User is on Home Page
     Then User navigate to Client side
@@ -134,7 +134,7 @@ Feature: scenarios for admin credentials and client credentials
     Then Enter Pro# in Quick Product Entry area
     And Check for Case and Unit input box enabled or not based on that enter value
       |4|4|
-    Then Click on Next button and validate that shipping address is not able to change
+    Then Click on Next button and validate that checkout order page not visible
     And Click on SubmitOrder button
     Then User should be navigated to Order Entry page
     Examples:
@@ -142,12 +142,12 @@ Feature: scenarios for admin credentials and client credentials
       |Security |Permissions | Allow user to change the shipping address of the order|accessorderentrychangeshippingaddress|
 
   @ShippingAddressEnabled
-  Scenario Outline: Test scenario for verifying shipping address should not be selected by default
+  Scenario Outline: Test scenario for verifying shipping address should be selected by default
     Given User enters URL and is on login page for admin and client Test scenarios
     When User should land on landing page and verify
     Then User Clicks on Permissions by drop down to select Customer Account# for admin security
     And User should enter menu "<Main menu>" in search bar and select "<Sub menu>"
-    And User should enabled admin settings "<AdminControl>" "<Id>"
+    And User should enabled admin settings "<AdminControl>" "<Id>", for permission
     And User logs out from Admin site, logs in to client credentials
     When User is on Home Page
     Then User navigate to Client side
@@ -163,7 +163,7 @@ Feature: scenarios for admin credentials and client credentials
     Then Enter Pro# in Quick Product Entry area
     And Check for Case and Unit input box enabled or not based on that enter value
       |4|4|
-    Then Click on Next button and validate that shipping address can be changed
+    Then Click on Next button and validate that checkout order page is visible
     And Click on SubmitOrder button
     Then User should be navigated to Order Entry page
     Examples:

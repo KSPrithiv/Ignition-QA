@@ -16,7 +16,7 @@ public class OrderEntryPageEnd
     Scenario scenario;
 
     static OrderEntryPage orderpage;
-    static String currentURL=null;
+    static String currentURL;
 
     @Before
     public void LaunchBrowser1(Scenario scenario) throws Exception

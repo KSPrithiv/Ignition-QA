@@ -15,7 +15,7 @@ Feature: scenarios for admin credentials and client credentials
     Then User enters Quote name "<QuoteName>" and Quote End date click on OK button
     Then User should select Note from popup and Order guide from popup for quote
     Then Enter Pro# in Quick Product Entry area in New Qutoe page and enter Qty for Case and Unit for Admin settings
-      |40|40|
+      |1|1|
     Then Click on create button in New Quote page
     And User click on Back to orderlist button from Quote summary page and Read order number
     Then Verify User is on Order Entry Page and verify Quote is existing
@@ -39,7 +39,7 @@ Feature: scenarios for admin credentials and client credentials
     Then User enters Quote name "<QuoteName>" and Quote End date click on OK button
     Then User should select Note from popup and Order guide from popup for quote
     Then Enter Pro# in Quick Product Entry area in New Qutoe page and enter Qty for Case and Unit for Admin disable settings
-      |40|40|
+      |1|1|
     Then Click on create button in New Quote page
     And User click on Back to orderlist button from Quote summary page and Read order number
     Then Verify User is on Order Entry Page and verify Quote is existing

@@ -15,9 +15,9 @@ Feature: Inventory
     Then User should be in Store inventory tab, in inventory page
     Then User should change store inventory dropdown value
     And User should click on Add product button and select products from Product popup and save
-      |5 |10|
-      |20|8 |
-      |6 |10|
+      |1 |1|
+      |2 |1|
+      |1 |2|
 
   @RunningTotal
   Scenario: Test scenario for finding running total unit in inventory
@@ -44,7 +44,7 @@ Feature: Inventory
     And User enters product#, "<Case>", "<Unit>", "<Sequence>" in quick product entry
     Examples:
       |Case|Unit|Sequence|
-      | 20 | 10 |  2     |
+      | 2  |  1 |  2     |
 
   @CancelInventroyDetails
   Scenario: Test scenario to cancel Inventory details

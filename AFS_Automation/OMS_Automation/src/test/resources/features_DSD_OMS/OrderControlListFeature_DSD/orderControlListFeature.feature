@@ -22,9 +22,9 @@ Feature: Order control list
     And User validate that he is in NewOE page
     Then Enter PO# for New order
       |PO123|
-    Then Enter Pro# in Quick Product Entry area
+    Then Enter Pro# in Quick Product Entry area for creating order with note
     And Check for Case and Unit input box enabled or not based on that enter value
-      |100|100|
+      |1|1|
     Then User should click on Comment icon in Order entry card
     And User should enter comment in comment popup
       |Comment at Order level for OCL|Order notes|
@@ -63,7 +63,7 @@ Feature: Order control list
       |PO123|
     Then Enter Pro# in Quick Product Entry area
     And Check for Case and Unit input box enabled or not based on that enter value
-      |100|100|
+      |1|1|
     Then Click on Next button and select option Continue without payment option
     And Click on Submit Order button and read Order_no for OCL
     Then User should select Note from popup and Order guide from popup for OCL
@@ -88,14 +88,14 @@ Feature: Order control list
       |PO123|
     Then Enter Pro# in Quick Product Entry area
     And Check for Case and Unit input box enabled or not based on that enter value
-      |100|100|
+      |1|1|
     Then Click on Next button and select option Continue without payment option
     And Click on Submit Order button and read Order_no for OCL
     Then User should select Note from popup and Order guide from popup for OCL
     Then User validate that he is in NewOE page for OCL
     And User Clicks on Back button in NewOE page and User must be in OCL page
     Then User Clicks on Taken radio button
-    And User should verify Order number created in OCL grid and Order icon in OCL
+    And User should verify Order number created in OCL grid for created by column in OCL
     And User verify created by column value
 
   @VerifyOrderType
@@ -112,9 +112,9 @@ Feature: Order control list
     And User validate that he is in NewOE page
     Then Enter PO# for New order
       |PO123|
-    Then Enter Pro# in Quick Product Entry area
+    Then Enter Pro# in Quick Product Entry area for order type
     And Check for Case and Unit input box enabled or not based on that enter value
-      |100|100|
+      |1|1|
     Then Click on Next button and select option Continue without payment option
     And Click on Submit Order button and read Order_no for OCL
     Then User should select Note from popup and Order guide from popup for OCL
@@ -197,7 +197,7 @@ Feature: Order control list
       |PO123|
     Then Enter Pro# in Quick Product Entry area
     And Check for Case and Unit input box enabled or not based on that enter value
-      |50|20|
+      |1|1|
     Then Click on Back button to handle Pending order Popup
     And Popup message for Pending order should be displayed
     Then User should be navigated to Order control list page

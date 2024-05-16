@@ -180,4 +180,10 @@ public class QuotePageSteps1
         orderpage.ClickCalender();
         orderpage.ResetToCurrentDate();
     }
+
+    @And("User should be navigated to Quote summary page and click on yes button")
+    public void userShouldBeNavigatedToQuoteSummaryPageAndClickOnYesButton()
+    {
+
+    }
 }

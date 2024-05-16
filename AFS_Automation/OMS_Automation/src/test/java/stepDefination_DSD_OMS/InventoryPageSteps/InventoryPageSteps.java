@@ -34,7 +34,7 @@ public class InventoryPageSteps
     static boolean exists=false;
     static boolean flag=false;
     static boolean flag1=false;
-    static String currentURL=null;
+    static String currentURL;
 
     static LoginPage loginpage;
     static HomePage homepage;
@@ -117,7 +117,7 @@ public class InventoryPageSteps
     }
 
     @And("User should navigate to Inventory tab")
-    public void userShouldNavigateToInventoryTab()
+    public void userShouldNavigateToInventoryTab() throws InterruptedException, AWTException
     {
         if(flag1==false)
         {
@@ -135,9 +135,15 @@ public class InventoryPageSteps
             }
             flag1 = true;
         }
-        orderpage.HandleError_Page();
+        orderpage = new OrderEntryPage(driver, scenario);
+        exists= orderpage.HandleError_Page();
         orderpage.Refresh_Page(currentURL);
         inventory=new InventoryPage(driver,scenario);
+        if(exists=true)
+        {
+            inventory.NavigateToInventory();
+            inventory.navigateToStoreInventoryTab();
+        }
         inventory.ValidateInventory();
     }
 

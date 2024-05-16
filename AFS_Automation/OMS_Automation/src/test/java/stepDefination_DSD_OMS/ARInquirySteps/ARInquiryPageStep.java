@@ -30,11 +30,10 @@ public class ARInquiryPageStep
     Scenario scenario;
     static boolean flag=false;
     static boolean flag1=false;
-    static String currentURL=null;
+    static String currentURL;
 
     static LoginPage loginpage;
     static HomePage homepage;
-    static OrderEntryPage orderpage;
     static ARInquiryPage arInquiryPage;
     static PostPaymentPage postPaymentPage;
 

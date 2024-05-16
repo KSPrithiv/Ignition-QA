@@ -14,16 +14,12 @@ import util.TestBase;
 
 import java.io.IOException;
 
-public class MyAccountPageStep {
-
+public class MyAccountPageStep
+{
         WebDriver driver;
         Scenario scenario;
         static boolean flag = false;
-        static String currentURL = null;
-
-        static LoginPage loginpage;
         static HomePage homepage;
-
         MyAccountPage myAccountPage;
 
         @Before
@@ -33,12 +29,10 @@ public class MyAccountPageStep {
             driver = driver1.getDriver();
         }
 
-
-
-
         @And("User is on My Account Frame")
-        public void user_is_on_my_account_frame() {
-            HelpersMethod.Implicitwait(driver,40);
+        public void user_is_on_my_account_frame()
+        {
+            //HelpersMethod.Implicitwait(driver,40);
             String status = HelpersMethod.returnDocumentStatus(driver);
         if (status.equals("loading"))
         {

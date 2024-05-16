@@ -29,7 +29,8 @@ public class NavigationPageStep
         navigationPage=new NavigationPage(driver,scenario);
         navigationPage.ValidateNavigation();
         navigationPage.FromWebOrderToAvailableApp();
-        navigationPage.DisplayMenuTabInWebOrderMenu();
+        //navigationPage.WebOrderMenuItems1();
+        //navigationPage.DisplayMenuTabInWebOrderMenu();
     }
 
     @And("User should Drag and drop Available apps item to Web order menu")
@@ -37,6 +38,7 @@ public class NavigationPageStep
     {
         navigationPage=new NavigationPage(driver,scenario);
         navigationPage.FromAvailableAppToWebOrder();
+        navigationPage.WebOrderMenuItems();
     }
 
     @Then("User selects menu under web order menu label")

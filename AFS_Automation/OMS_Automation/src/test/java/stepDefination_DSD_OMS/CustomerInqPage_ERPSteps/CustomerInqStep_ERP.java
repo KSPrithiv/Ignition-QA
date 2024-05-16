@@ -32,9 +32,9 @@ public class CustomerInqStep_ERP
     static boolean flag=false;
     static boolean flag1=false;
     static boolean flag2=false;
-    static String currentURL=null;
-    static String fName=null;
-    static String lName=null;
+    static String currentURL;
+    static String fName;
+    static String lName;
 
     static LoginPage loginpage;
     static HomePage homepage;
@@ -142,7 +142,7 @@ public class CustomerInqStep_ERP
         mainPage.stateDropDown();
         mainPage.phoneNumber();
         mainPage.faxNumber();
-        mainPage.emailAddress();
+        //mainPage.emailAddress();
         mainPage.websiteAddress();
         mainPage.languageDropDown();
         mainPage.vendorDropDown();
@@ -342,8 +342,6 @@ public class CustomerInqStep_ERP
             currentURL = driver.getCurrentUrl();
             flag2=true;
         }
-        //ignitionPageERP=new IgnitionPageERP(driver,scenario);
-        //ignitionPageERP.cancelPopup();
     }
 
     @Then("User clicks on Create new button and standing PO popup appeared in ERP")

@@ -28,13 +28,9 @@ public class CatalogPageStep1
 {
     /* Created by Divya.Ramadas@afsi.com */
     WebDriver driver;
-    String XPath=null;
-    static boolean exists=false;
     Scenario scenario;
 
-    static OrderEntryPage orderpage;
     static CatalogPage catalogpage;
-    static NewOrderEntryPage newOE;
     static CheckOutOrderPage checkorder;
     static ProductDescriptionPage productdesctiptionpage;
 

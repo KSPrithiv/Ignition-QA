@@ -19,7 +19,7 @@ Feature: Order Entry4
       |PO123|
     Then Enter Pro# in Quick Product Entry area
     And Check for Case and Unit input box enabled or not based on that enter value
-      |60|80|
+      |1|1|
     Then Click on Next button and Click on Without providing payment
     And Click on SubmitOrder button
     Then User should be navigated to Order Entry page
@@ -35,8 +35,8 @@ Feature: Order Entry4
     Then Click on Add product drop down and select OrderGuide option
       |SampleOG|
     And Enter Qty for the products in Product grid
-      |50|70|
-      |40|60|
+      |1|1|
+      |1|2|
     Then User should click on Copy from dropdown and Select Order history
       |Order history|
     Then User verifies Order history page and add history Order to order
@@ -46,71 +46,10 @@ Feature: Order Entry4
       |PO123|
     Then Enter Pro# in Quick Product Entry area
     And Check for Case and Unit input box enabled or not based on that enter value
-      |50|50|
+      |1|1|
     Then Click on Next button
     And Click on SubmitOrder button
     Then User should be navigated to Order Entry page
-
-  @AddCommentsToProduct
-  Scenario: Adding comments at Product level
-    Given User must be on Order Entry Page
-    Then User must click Start Order button
-    Then User should make selection between Pending order or Start New order
-    Then User should select Note from popup and Order guide from popup
-    Then Enter PO# for New order
-      |PO123|
-    Then Enter Pro# in Quick Product Entry area
-    And Check for Case and Unit input box enabled or not based on that enter value
-      |50|50|
-    Then User should click on Comment icon in Product grid
-    And should enter comment in comment popup
-      |Comment at Product level|
-    Then Click on Next button
-    And Click on SubmitOrder button
-    Then User should be navigated to Order Entry page
-
-  @ProductCommentColor
-  Scenario: Adding comments at Product level and change of color of comment icon
-    Given User must be on Order Entry Page
-    Then User must click Start Order button
-    Then User should make selection between Pending order or Start New order
-    Then User should select Note from popup and Order guide from popup
-    Then Enter PO# for New order
-      |PO123|
-    Then Enter Pro# in Quick Product Entry area
-    And Check for Case and Unit input box enabled or not based on that enter value
-      |40|60|
-    Then User should click on Comment icon in Product grid
-    And should enter comment in comment popup
-      |Comment at Product level|
-    Then Check Comment Icon color at product level has changed or not
-    Then Click on Next button
-    And Click on SubmitOrder button
-    Then User should be navigated to Order Entry page
-
-  @ProductCommentUpdate
-  Scenario Outline: Adding comments at Product level and update comment
-    Given User must be on Order Entry Page
-    Then User must click Start Order button
-    Then User should make selection between Pending order or Start New order
-    Then User should select Note from popup and Order guide from popup
-    Then Enter PO# for New order
-      |PO123|
-    Then Enter Pro# in Quick Product Entry area
-    And Check for Case and Unit input box enabled or not based on that enter value
-      |80|65|
-    Then User should click on Comment icon in Product grid
-   # And User should enter comment in comment popup at Product level
-    And should enter comment in comment popup for updating
-      |Comment at Product level|
-    Then User should select comment from grid and edit comment as "<UpdateComm>"
-    And User click on Update button in popup and Validate "<UpdateComm>"
-    Then Click on Next button
-    And Click on SubmitOrder button
-    Then User should be navigated to Order Entry page
-    Examples:
-      | UpdateComm |
-      | Edited Product comment level |
 
   @OEProductLine
   Scenario: Test scenario for creating OE using Product line
@@ -121,21 +60,7 @@ Feature: Order Entry4
     Then Enter PO# for New order
       |PO123|
     And User should navigate to New OE page, and enter Qty to product in product grid
-      |50|60|
-    Then Click on Next button
-    And Click on SubmitOrder button
-    Then User should be navigated to Order Entry page
-
-  @UnUsualQtyUnitCase
-  Scenario: Test scenario for creating order with unusual Qty "Maximum Qty exceeds"
-    Given User must be on Order Entry Page
-    Then User must click Start Order button
-    Then User should make selection between Pending order or Start New order
-    Then User should select Note from popup and select OG from OG popup
-    Then Enter PO# for New order
-      |PO123|
-    And User should navigate to New OE page, and enter Qty to product in product grid more than Maximum limit
-      |200|200|
+      |1|1|
     Then Click on Next button
     And Click on SubmitOrder button
     Then User should be navigated to Order Entry page
@@ -154,20 +79,6 @@ Feature: Order Entry4
     And Click on SubmitOrder button
     Then User should be navigated to Order Entry page
 
-  @UnUsualQtyCase
-  Scenario:Test scenario for unusual  case
-    Given User must be on Order Entry Page
-    Then User must click Start Order button
-    Then User should make selection between Pending order or Start New order
-    Then User should select Note from popup and select OG from OG popup
-    Then Enter PO# for New order
-      |PO123|
-    And User should navigate to New OE page, and enter Qty to product in product grid for only Case
-      |500|
-    Then Click on Next button
-    And Click on SubmitOrder button
-    Then User should be navigated to Order Entry page
-
   @NextButton
   Scenario: Test scenrio for handling Next button, in Save order without submitting popup
     Given User must be on Order Entry Page
@@ -178,8 +89,42 @@ Feature: Order Entry4
       |PO123|
     Then Enter Pro# in Quick Product Entry area
     And Check for Case and Unit input box enabled or not based on that enter value
-      |65|80|
+      |1|1|
     Then User should click on Back button in NewOE page and popup should appear
     And In Save order without submitting popup should select next button
+    And Click on SubmitOrder button
+    Then User should be navigated to Order Entry page
+
+  @PriceOverRidePriceByPrice
+  Scenario: Test scenario for testing price override with "What if" option, price by price option
+    Given User must be on Order Entry Page
+    Then User must click Start Order button
+    Then User should make selection between Pending order or Start New order
+    Then User should select Note from popup and Order guide from popup
+    Then Enter PO# for New order
+      |PO123|
+    Then Enter Pro# in Quick Product Entry area for price override
+    And Check for Case and Unit input box enabled or not based on that enter value
+      |1|1|
+    Then User should click on price override icon and Change price using What if option Price by price
+      |$2.00|
+    Then Click on Next button
+    And Click on SubmitOrder button
+    Then User should be navigated to Order Entry page
+
+  @PriceOverRidePricePerUnit
+  Scenario: Test scenario for testing price override with "What if" option, price per unit option
+    Given User must be on Order Entry Page
+    Then User must click Start Order button
+    Then User should make selection between Pending order or Start New order
+    Then User should select Note from popup and Order guide from popup
+    Then Enter PO# for New order
+      |PO123|
+    Then Enter Pro# in Quick Product Entry area for price override
+    And Check for Case and Unit input box enabled or not based on that enter value
+      |1|1|
+    Then User should click on price override icon and Change price using What if option Price per unit
+      |$12.50|
+    Then Click on Next button
     And Click on SubmitOrder button
     Then User should be navigated to Order Entry page

@@ -21,7 +21,7 @@ Feature: Order Entry1
       |PO123|
     Then Enter Pro# in Quick Product Entry area
     And Check for Case and Unit input box enabled or not based on that enter value
-      |50|80|
+      |1|1|
     Then Click on Next button
     And Click on Submit Order button and read Order_no
     Then User should be navigated to Order Entry page
@@ -36,7 +36,7 @@ Feature: Order Entry1
       |PO123|
     Then Enter Pro# in Quick Product Entry area
     And Check for Case and Unit input box enabled or not based on that enter value
-      |50|60|
+      |1|1|
     Then Click on Next button
     And Click on Submit Order button and read Order_no
     Then User should be navigated to Order Entry page
@@ -69,8 +69,8 @@ Feature: Order Entry1
     Then Click on Add product drop down and select OrderGuide option
     |SampleOG|
     And Enter Qty for the products in Product grid
-      |50|70|
-      |40|60|
+      |1|1|
+      |1|1|
     Then Click on Next button
     And Click on SubmitOrder button
     Then User should be navigated to Order Entry page
@@ -85,7 +85,7 @@ Feature: Order Entry1
       |PO123|
     Then Enter Pro# in Quick Product Entry area
     And Check for Case and Unit input box enabled or not based on that enter value
-      |80|60|
+      |1|1|
     Then User should click on Comment icon in Order entry card
     And User should enter comment in comment popup
       |Comment at Order level|
@@ -106,7 +106,7 @@ Feature: Order Entry1
     Then Enter PO# for New order
       |PO123|
     Then User should enter Units and Cases in product grid
-      |70|80|
+      |1|1|
     Then Click on Next button
     And Click on SubmitOrder button
     Then User should be navigated to Order Entry page
@@ -121,7 +121,7 @@ Feature: Order Entry1
       |PO123|
     Then Enter Pro# in Quick Product Entry area
     And Check for Case and Unit input box enabled or not based on that enter value
-      |50|80|
+      |1|1|
     Then Click on Next button
     Then Click on Comment icon in Summary page
     And Enter Comment in summary page
@@ -139,7 +139,7 @@ Feature: Order Entry1
       |PO123|
     Then Click on Add product drop down and select catalog option
     And User should select Product from catalog and Enter Qty for the products
-      |50|60|
+      |1|1|
     Then Click on Next button
     And Click on SubmitOrder button
     Then User should be navigated to Order Entry page

@@ -11,7 +11,10 @@ import util.TestBase;
 import javax.mail.MessagingException;
 import java.io.IOException;
 
-@CucumberOptions(features = { "src/test/resources/features_DSD_OMS/DisconnectedModeOEFeature"},
+@CucumberOptions(features = {
+        "src/test/resources/features_DSD_OMS/DisconnectedModeOEFeature/DisconnectedModeFeature.feature",
+        "src/test/resources/features_DSD_OMS/DisconnectedModeOEFeature/DisconnectedModeFeature1.feature",
+},
         glue = {"stepDefination_DSD_OMS"},
         plugin = {"pretty",
                 "json:target/cucumber.json",
@@ -42,7 +45,7 @@ public class TestRunnerDisconnect extends AbstractTestNGCucumberTests
 
     @AfterClass
     public static void afterclass() throws InterruptedException, MessagingException, IOException {
-        Thread.sleep(10000);
+        Thread.sleep(500);
         //MailSend.sendMail();
         TestBase.CloseBrowser();
         if (TestBase.testEnvironment.get_browser().equalsIgnoreCase("Firefox")) {

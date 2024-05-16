@@ -11,7 +11,11 @@ import util.TestBase;
 import javax.mail.MessagingException;
 import java.io.IOException;
 
-@CucumberOptions(features = { "src/test/resources/features_DSD_OMS/DisconnectedModeOEFeature"},
+@CucumberOptions(features = {
+        "src/test/resources/features_DSD_OMS/DisconnectedModeOEFeature/DisconnectedModeFeature.feature",
+        "src/test/resources/features_DSD_OMS/DisconnectedModeOEFeature/DisconnectedModeFeatureDSD.feature",
+        "src/test/resources/features_DSD_OMS/DisconnectedModeOEFeature/DisconnectedModeFeature1.feature",
+},
         glue = {"stepDefination_DSD_OMS"},
         plugin = {"pretty",
                 "json:target/cucumber.json",

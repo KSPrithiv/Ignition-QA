@@ -26,8 +26,7 @@ public class ParOrderPage
     WebDriver driver;
     Scenario scenario;
     static boolean exists=false;
-    static String status=null;
-    static String ProdNo=null;
+    static String ProdNo;
 
     @FindBy(id = "plusAdditionalAccountButtonFlat")
     private WebElement NewPar;
@@ -423,6 +422,17 @@ public class ParOrderPage
         {
             WebElement parQty=HelpersMethod.FindByElement(driver,"xpath","//tr["+(i+1)+"]/td/descendant::input[contains(@class,'k-formatted-value')]");
             HelpersMethod.sendKeys(driver,parQty,1000,s);
+        }
+        catch (Exception e){}
+    }
+
+    public void enterQtyForParQty1(String qty)
+    {
+        exists=false;
+        try
+        {
+            WebElement parQty=HelpersMethod.FindByElement(driver,"xpath","//tr["+1+"]/td/descendant::input[contains(@class,'k-formatted-value')]");
+            HelpersMethod.sendKeys(driver,parQty,10000,qty);
         }
         catch (Exception e){}
     }

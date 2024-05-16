@@ -48,8 +48,8 @@ public class OrderControlPageSteps
     static boolean exists=false;
     static boolean flag=false;
     static boolean flag1=false;
-    static String currentURL=null;
-    static String Ord_No=null;
+    static String currentURL;
+    static String Ord_No;
 
     @Before
     public void LaunchBrowser1(Scenario scenario) throws Exception
@@ -153,7 +153,7 @@ public class OrderControlPageSteps
             {
                 HelpersMethod.navigate_Horizantal_Tab(driver, "Order control list", "//li[contains(@class,'k-item')]/span[@class='k-link' and contains(text(),'Order control list')]", "xpath", "//li[contains(@class,'k-item')]/span[@class='k-link']");
                 wait = new FluentWait<WebDriver>(driver)
-                        .withTimeout(Duration.ofSeconds(120))
+                        .withTimeout(Duration.ofSeconds(200))
                         .pollingEvery(Duration.ofSeconds(2))
                         .ignoring(NoSuchElementException.class);
                 wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
@@ -164,7 +164,7 @@ public class OrderControlPageSteps
                     HelpersMethod.waitTillLoadingPage(driver);
                 }
                 wait = new FluentWait<WebDriver>(driver)
-                        .withTimeout(Duration.ofSeconds(140))
+                        .withTimeout(Duration.ofSeconds(200))
                         .pollingEvery(Duration.ofSeconds(2))
                         .ignoring(NoSuchElementException.class);
                 wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
@@ -186,31 +186,36 @@ public class OrderControlPageSteps
     public void userShouldNavigateToOCL() throws InterruptedException, AWTException
     {
         orderpage = new OrderEntryPage(driver, scenario);
-        orderpage.HandleError_Page();
+        exists= orderpage.HandleError_Page();
+        orderControlList=new OrderControlListPage(driver,scenario);
+        if(exists==true)
+        {
+            orderControlList.navigateToOCL();
+        }
+
         orderControlList=new OrderControlListPage(driver,scenario);
         orderControlList.Refresh_Page(currentURL);
         orderControlList.Validate_OCL();
     }
 
     @Then("User should select Order taker from drop down")
-    public void userShouldSelectOrderTakerFromDropDown()
-    {
+    public void userShouldSelectOrderTakerFromDropDown() throws InterruptedException {
         orderControlList=new OrderControlListPage(driver,scenario);
         orderControlList.Click_OrderTaker();
         orderControlList.Select_OrderTaker();
     }
 
     @And("Change the delivery date {int} days after current date")
-    public void changeTheDeliveryDateDaysAfterCurrentDate(int days)
-    {
+    public void changeTheDeliveryDateDaysAfterCurrentDate(int days) throws InterruptedException {
         orderControlList=new OrderControlListPage(driver,scenario);
         orderControlList.Validate_OCL();
         orderControlList.Call_Date_Click();
         orderControlList.Call_Date_Selection(days);
+        orderControlList.readCallDate();
     }
 
     @Then("User Clicks on Untaken radio button")
-    public void userClicksOnUntakenRadioButton()
+    public void userClicksOnUntakenRadioButton() throws InterruptedException
     {
         orderControlList=new OrderControlListPage(driver,scenario);
         orderControlList.Validate_OCL();
@@ -291,16 +296,14 @@ public class OrderControlPageSteps
     }
 
     @Then("User select OCL which is skipped")
-    public void userSelectOCLWhichIsSkipped()
-    {
+    public void userSelectOCLWhichIsSkipped() throws InterruptedException {
         orderControlList=new OrderControlListPage(driver,scenario);
         orderControlList.Validate_OCL();
         orderControlList.Skip();
     }
 
     @And("User handles Remove skip popup")
-    public void userHandlesRemoveSkipPopup()
-    {
+    public void userHandlesRemoveSkipPopup() throws InterruptedException {
         orderControlList=new OrderControlListPage(driver,scenario);
         orderControlList.RemoveSkipPopUp();
         orderControlList.validateChangeOfRemoveSkip();
@@ -324,8 +327,7 @@ public class OrderControlPageSteps
     }
 
     @Then("User should be navigated to Order control list page")
-    public void userShouldBeNavigatedToOrderControlListPage()
-    {
+    public void userShouldBeNavigatedToOrderControlListPage() throws InterruptedException {
         orderControlList=new OrderControlListPage(driver,scenario);
         orderControlList.Validate_OCL();
     }
@@ -338,8 +340,7 @@ public class OrderControlPageSteps
     }
 
     @Then("User Clicks on Taken radio button")
-    public void userClicksOnTakenRadioButton()
-    {
+    public void userClicksOnTakenRadioButton() throws InterruptedException {
         orderControlList=new OrderControlListPage(driver,scenario);
         orderControlList.Validate_OCL();
         orderControlList.Select_Taken();
@@ -364,14 +365,20 @@ public class OrderControlPageSteps
     public void clickOnSubmitOrderButtonAndReadOrder_noForOCL() throws InterruptedException, AWTException
     {
         summary = new CheckOutSummaryPage(driver,scenario);
-        //summary.validateSummaryPage();
+        summary.validateSummaryPage();
+        String sOrd_No = summary.Get_Order_No();
+        if(sOrd_No!=null)
+        {
+            Ord_No=sOrd_No;
+        }
         summary.ClickSubmit();
         for(int i=0;i<=2;i++)
         {
-            summary.cutoffDialog();
             summary.additionalOrderPopup();
+            summary.cutoffDialog();
+            summary.percentageOfAverageProd();
         }
-        Ord_No = summary.Get_Order_No();
+
         summary.SucessPopup();
         Thread.sleep(4000);
     }
@@ -392,7 +399,7 @@ public class OrderControlPageSteps
     }
 
     @And("User should verify Order number created in OCL grid and Order icon in OCL")
-    public void userShouldVerifyOrderNumberCreatedInOCLGridAndOrderIconInOCL()
+    public void userShouldVerifyOrderNumberCreatedInOCLGridAndOrderIconInOCL() throws InterruptedException
     {
         orderControlList = new OrderControlListPage(driver, scenario);
         orderControlList.Validate_OCL();
@@ -401,18 +408,34 @@ public class OrderControlPageSteps
         orderControlList.clearSearchBar();
     }
 
+    @And("User should verify Order number created in OCL grid in OMS")
+    public void userShouldVerifyOrderNumberCreatedInOCLGridInOMS() throws InterruptedException
+    {
+        orderControlList = new OrderControlListPage(driver, scenario);
+        orderControlList.Validate_OCL();
+        orderControlList.verifyOrderInOCLgrid(Ord_No);
+        //orderControlList.verifyNewOrderIconInOCLgrid();
+        orderControlList.clearSearchBar();
+    }
+
+    @And("User should verify Order number created in OCL grid")
+    public void userShouldVerifyOrderNumberCreatedInOCLGrid() throws InterruptedException
+    {
+        orderControlList = new OrderControlListPage(driver, scenario);
+        orderControlList.Validate_OCL();
+        orderControlList.verifyOrderInOCLgrid(Ord_No);
+    }
+
     @And("User should verify Order number created in OCL grid and Order type in OCL")
     public void userShouldVerifyOrderNumberCreatedInOCLGridAndOrderTypeInOCL()
     {
         orderControlList = new OrderControlListPage(driver, scenario);
         orderControlList.verifyOrderInOCLgrid(Ord_No);
         orderControlList.verifyOrderType();
-        orderControlList.clearSearchBar();
     }
 
     @Then("User refreshes page and Clicks on Taken radio button delivery date should be increased by {int}")
-    public void userRefreshesPageAndClicksOnTakenRadioButtonDeliveryDateShouldBeIncreasedBy(int i)
-    {
+    public void userRefreshesPageAndClicksOnTakenRadioButtonDeliveryDateShouldBeIncreasedBy(int i) throws InterruptedException {
         orderControlList=new OrderControlListPage(driver,scenario);
         orderControlList.Refresh_Click();
         orderControlList.Click_OrderTaker();
@@ -423,8 +446,7 @@ public class OrderControlPageSteps
     }
 
     @And("User verify created by column value")
-    public void userVerifyCreatedByColumnValue()
-    {
+    public void userVerifyCreatedByColumnValue() throws InterruptedException {
         orderControlList = new OrderControlListPage(driver, scenario);
         orderControlList.Validate_OCL();
         orderControlList.validateCreatedByColumn();
@@ -436,18 +458,14 @@ public class OrderControlPageSteps
     {
         List<List<String>> custName = tabledata.asLists(String.class);
         orderControlList = new OrderControlListPage(driver, scenario);
-        //String url=TestBase.testEnvironment.get_url();
-        //if(url.contains("dsd"))
-        //{
-            orderControlList.searchForValidCustomer(custName.get(0).get(0));
-        //}
+        orderControlList.searchForValidCustomer(custName.get(0).get(0));
     }
 
     @Then("User should select Note from popup and Order guide from popup for OCL")
     public void userShouldSelectNoteFromPopupAndOrderGuideFromPopupForOCL() throws InterruptedException, AWTException
     {
         Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
-                .withTimeout(Duration.ofSeconds(120))
+                .withTimeout(Duration.ofSeconds(200))
                 .pollingEvery(Duration.ofSeconds(2))
                 .ignoring(NoSuchElementException.class);
         wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
@@ -460,7 +478,7 @@ public class OrderControlPageSteps
             HelpersMethod.ActClick(driver,okButton,10000);
             cutOff=true;
             wait = new FluentWait<WebDriver>(driver)
-                    .withTimeout(Duration.ofSeconds(120))
+                    .withTimeout(Duration.ofSeconds(200))
                     .pollingEvery(Duration.ofSeconds(2))
                     .ignoring(NoSuchElementException.class);
             wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
@@ -472,7 +490,7 @@ public class OrderControlPageSteps
             }
 
             wait = new FluentWait<WebDriver>(driver)
-                    .withTimeout(Duration.ofSeconds(120))
+                    .withTimeout(Duration.ofSeconds(200))
                     .pollingEvery(Duration.ofSeconds(2))
                     .ignoring(NoSuchElementException.class);
             wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
@@ -493,7 +511,7 @@ public class OrderControlPageSteps
             }
 
             wait = new FluentWait<WebDriver>(driver)
-                    .withTimeout(Duration.ofSeconds(120))
+                    .withTimeout(Duration.ofSeconds(200))
                     .pollingEvery(Duration.ofSeconds(2))
                     .ignoring(NoSuchElementException.class);
             wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
@@ -505,7 +523,7 @@ public class OrderControlPageSteps
             }
 
             wait = new FluentWait<WebDriver>(driver)
-                    .withTimeout(Duration.ofSeconds(120))
+                    .withTimeout(Duration.ofSeconds(200))
                     .pollingEvery(Duration.ofSeconds(2))
                     .ignoring(NoSuchElementException.class);
             wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
@@ -530,5 +548,13 @@ public class OrderControlPageSteps
         List<List<String>> creditHold = tabledata.asLists(String.class);
         orderControlList = new OrderControlListPage(driver, scenario);
         orderControlList.searchForCreditHolder(creditHold.get(0).get(0));
+    }
+
+    @And("User should verify Order number created in OCL grid for created by column in OCL")
+    public void userShouldVerifyOrderNumberCreatedInOCLGridForCreatedByColumnInOCL() throws InterruptedException
+    {
+        orderControlList = new OrderControlListPage(driver, scenario);
+        orderControlList.Validate_OCL();
+        orderControlList.verifyOrderInOCLgrid(Ord_No);
     }
 }

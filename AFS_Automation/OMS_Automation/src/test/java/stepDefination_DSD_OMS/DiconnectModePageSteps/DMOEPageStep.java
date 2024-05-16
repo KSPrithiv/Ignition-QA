@@ -24,7 +24,6 @@ public class DMOEPageStep
     /* Created by Divya.Ramadas@afsi.com */
     private static boolean flag = false;
     private static boolean flag1=false;
-    static boolean exists=false;
     WebDriver driver;
     Scenario scenario;
 
@@ -112,8 +111,8 @@ public class DMOEPageStep
         }
     }
 
-    @When("User Clicks on network symbol and click on taggle button to navigate to disconnected mode for cancel option")
-    public void userClicksOnNetworkSymbolAndClickOnTaggleButtonToNavigateToDisconnectedModeForCancelOption() throws InterruptedException, AWTException
+    @When("User Clicks on network symbol and click on toggle button to navigate to disconnected mode for cancel option")
+    public void userClicksOnNetworkSymbolAndClickOnToggleButtonToNavigateToDisconnectedModeForCancelOption() throws InterruptedException, AWTException
     {
             dmoePage = new DMOEPage(driver, scenario);
             dmoePage.NavigateToDM();

@@ -15,7 +15,7 @@ Feature: Catalog3
     Then User enters Tire pricing Product# in Search bar and verifying whether tire pricing dialog box appeared or not
 
   @PendingOrderAndCatalogProd
-  Scenario: Test scenario for creating pending order and then add prodcuts from catalog
+  Scenario: Test scenario for creating pending order and then add products from catalog
     Given User must be on Order Entry Page
     And User should navigate to Order Entry page from Catalog tab
     Then User must click Start Order button
@@ -25,14 +25,14 @@ Feature: Catalog3
       |PO123|
     Then Enter Pro# in Quick Product Entry area
     And Check for Case and Unit input box enabled or not based on that enter value
-      |70|50|
+      |1|2|
     Then Click on Back button to handle Pending order Popup
     And Popup message for Pending order should be displayed
     Then User should be navigated to Order Entry page
     And Now User should navigate to Catalog tab
     And User should click on Reset filter button and all the products should displayed in Card view in Catalog page
     Then User adds product to cart
-      |50|
+      |1|
     Then User click on cart in catalog and click on Gotocart and select pending order
     And user should be on New Order entry page
     Then Enter PO# for New order

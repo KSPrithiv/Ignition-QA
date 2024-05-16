@@ -36,11 +36,10 @@ public class OrderEntryPageSteps2
     static CheckOutSummaryPage summary;
     static CheckOutOrderPage checkorder;
 
-    static String Tot_Amt=null;
-    static String Tot_Amt1=null;
-    //static String Route=null;
-    static String Route1=null;
-    //static String Order_No=null;
+    static String Tot_Amt;
+    static String Tot_Amt1;
+    static String Route1;
+
 
     @Before
     public void LaunchBrowser1(Scenario scenario) throws Exception
@@ -128,6 +127,7 @@ public class OrderEntryPageSteps2
         {
             summary.additionalOrderPopup();
             summary.cutoffDialog();
+            summary.percentageOfAverageProd();
         }
         summary.SucessPopup();
         scenario.log("Product Total found in New OE page: "+Tot_Amt+" Product total found in summary page: "+Tot_Amt1);
@@ -185,6 +185,13 @@ public class OrderEntryPageSteps2
         //asserting totals
         Assert.assertEquals(tot,Tot_Amt1);
         summary.ClickSubmit();
+        for(int i=0;i<=2;i++)
+        {
+            summary.additionalOrderPopup();
+            summary.cutoffDialog();
+            summary.percentageOfAverageProd();
+        }
+        summary.SucessPopup();
     }
 
     //Code to change Account# to other Account#
@@ -218,6 +225,14 @@ public class OrderEntryPageSteps2
     @And ("user should change the Account# back to Previous Account#")
     public void user_should_change_the_account_no_back_to_previous_account_no() throws InterruptedException, AWTException
     {
+        orderpage = new OrderEntryPage(driver, scenario);
+        for (int i = 0; i <= 1; i++)
+        {
+            orderpage.OrderGuidePopup();
+            Thread.sleep(1000);
+            orderpage.NoNotePopHandling();
+        }
+
         newOE=new NewOrderEntryPage(driver,scenario);
         newOE.Click_Back_But();
 
@@ -250,33 +265,33 @@ public class OrderEntryPageSteps2
     @Then("Click on Next button to naviagate to OE summary page to cancle order")
     public void clickOnNextButtonToNaviagateToOESummaryPageToCancleOrder() throws InterruptedException, AWTException
     {
-        exists=false;
-        newOE = new NewOrderEntryPage(driver,scenario);
-        newOE.readProductsInOrder();
-        exists=newOE.ClickNext();
-        newOE.OutOfStockPop_ERP();
-        if(HelpersMethod.IsExists("//div[@id='checkoutCard']",driver))
+        exists = false;
+        if (HelpersMethod.IsExists("//div[@id='orderEntryCard']", driver))
         {
-            checkorder = new CheckOutOrderPage(driver, scenario);
-            if (HelpersMethod.IsExists("//div[@id='paymentMethodCard']", driver))
+            newOE = new NewOrderEntryPage(driver, scenario);
+            newOE.readProductsInOrder();
+            exists = newOE.ClickNext();
+            newOE.OutOfStockPop_ERP();
+            if (HelpersMethod.IsExists("//div[@id='checkoutCard']", driver))
             {
-                checkorder.Select_PaymentMethod_ClickDownArrow();
-                if (HelpersMethod.IsExists("//tr[1]/descendant::td[@class='payment-method-type-cell']", driver)) {
-                    checkorder.SelectPaymentMethod();
-                    scenario.log("FIRST PAYMENT OPTION HAS BEEN SELECTED");
-                } else {
-                    checkorder.Click_On_Without_Providing_Payment();
-                    scenario.log("WITHOUT PROVIIDNG PAYMENT OPTION HAS BEEN SELECTED");
+                checkorder = new CheckOutOrderPage(driver, scenario);
+                if (HelpersMethod.IsExists("//div[@id='paymentMethodCard']", driver))
+                {
+                    checkorder.Select_PaymentMethod_ClickDownArrow();
+                    if (HelpersMethod.IsExists("//tr[1]/descendant::td[@class='payment-method-type-cell']", driver))
+                    {
+                        checkorder.SelectPaymentMethod();
+                        scenario.log("FIRST PAYMENT OPTION HAS BEEN SELECTED");
+                    }
+                    else
+                    {
+                        checkorder.Click_On_Without_Providing_Payment();
+                        scenario.log("WITHOUT PROVIIDNG PAYMENT OPTION HAS BEEN SELECTED");
+                    }
                 }
+                checkorder.DeliveryAddressCard();
+                checkorder.NextButton_Click();
             }
-            checkorder.DeliveryAddressCard();
-            checkorder.NextButton_Click();
         }
     }
-
-  /*  @And("Order type Popup should display there user should select Regular order by using Add filter button")
-    public void orderTypePopupShouldDisplayThereUserShouldSelectRegularOrderByUsingAddFilterButton()
-    {
-
-    }*/
 }

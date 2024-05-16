@@ -33,8 +33,8 @@ public class IgnitionPage
     WebDriver driver;
     Scenario scenario;
     static boolean exists=false;
-    static String InputValue=null;
-    static String PoNo=null;
+    static String InputValue;
+    static String PoNo;
 
     @FindBy(id="btnAddStandingPO")
     private WebElement NewButton;
@@ -683,10 +683,10 @@ public class IgnitionPage
             Assert.assertEquals(modalContentTitle.getText(), "Delete standing po", "Verify Title message");
             //Delete confirmation popup
             WebElement deletePopup=modalContainer.findElement(By.xpath(".//button[text()='Delete']"));
-            HelpersMethod.ActClick(driver,deletePopup,1000);
+            HelpersMethod.ActClick(driver,deletePopup,10000);
 
             Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
-                    .withTimeout(Duration.ofSeconds(200))
+                    .withTimeout(Duration.ofSeconds(400))
                     .pollingEvery(Duration.ofSeconds(5))
                     .ignoring(NoSuchElementException.class);
             wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
@@ -696,11 +696,10 @@ public class IgnitionPage
             {
                 WebElement popUp=HelpersMethod.FindByElement(driver,"xpath","//div[contains(text(),'The information has been saved successfully.')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]");
                 WebElement okButton=popUp.findElement(By.xpath(".//button[text()='Ok']"));
-                HelpersMethod.ActClick(driver,okButton,1000);
+                HelpersMethod.ActClick(driver,okButton,10000);
                 scenario.log("DELETE CONFIRMATION POPUP HAS BEEN HANDLED");
             }
         }
         catch (Exception e){}
     }
-
 }

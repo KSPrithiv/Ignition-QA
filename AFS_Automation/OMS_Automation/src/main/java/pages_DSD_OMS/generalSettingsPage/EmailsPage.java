@@ -30,8 +30,8 @@ public class EmailsPage
     WebDriver driver;
     Scenario scenario;
     static boolean exists=false;
-    static String currentURL=null;
-    static String InputValue=null;
+    static String currentURL;
+    static String InputValue;
 
     @FindBy(xpath = "//div[@id='menuWrapper_selected_accesscpadmingeneralsettings']//div[@class='submenu-item-text']")
     private WebElement notices;
@@ -166,10 +166,6 @@ public class EmailsPage
         }
         catch (Exception e) {}
     }
-
-
-
-
 
     //Click on Permission by
     public void ClickPermissionBy()

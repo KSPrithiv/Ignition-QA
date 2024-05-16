@@ -20,7 +20,7 @@ Feature: Order Entry6
       |PO123|
     Then Enter Pro# in Quick Product Entry area
     And Check for Case and Unit input box enabled or not based on that enter value
-      |50|60|
+      |1|1|
     Then Click on Next button
     And Click on SubmitOrder button
     Then User should be navigated to Order Entry page
@@ -36,7 +36,7 @@ Feature: Order Entry6
       |PO123|
     Then Enter Pro# in Quick Product Entry area
     And Check for Case and Unit input box enabled or not based on that enter value
-      |50|60|
+      |1|1|
     Then Click on Next button
     And Click on SubmitOrder button before that validate pickup order
     Then User should be navigated to Order Entry page
@@ -52,7 +52,7 @@ Feature: Order Entry6
       |PO123|
     Then Enter Pro# in Quick Product Entry area
     And Check for Case and Unit input box enabled or not based on that enter value
-      |80|70|
+      |1|1|
     Then Click on Next button
     And Click on SubmitOrder button before that validate pickup order
     Then User should be navigated to Order Entry page
@@ -78,7 +78,7 @@ Feature: Order Entry6
       |PO123|
     Then Enter Pro# in Quick Product Entry area
     And Check for Case and Unit input box enabled or not based on that enter value
-      |100|120|
+      |1|1|
     Then Click on Next button
     And Click on SubmitOrder button
     Then User should be navigated to Order Entry page
@@ -101,8 +101,8 @@ Feature: Order Entry6
     Then Click on Add product drop down and select OrderGuide option
       |SampleOG|
     And Enter Qty for the products in Product grid
-      |50|70|
-      |40|60|
+      |1|1|
+      |1|1|
     Then User should enter price for product in price input box
       |$0.50|
     Then Click on Next button
@@ -119,7 +119,7 @@ Feature: Order Entry6
       |PO123|
     Then Enter Pro# in Quick Product Entry area
     And Check for Case and Unit input box enabled or not based on that enter value
-      |80|70|
+      |1|1|
     Then Click on Next button and select option Continue without payment option
     And Click on SubmitOrder button
     Then User should be navigated to Order Entry page
@@ -135,8 +135,8 @@ Feature: Order Entry6
     Then Click on Add product drop down and select OrderGuide option
       |SampleOG|
     And Enter Qty for the products in Product grid
-      |50|70|
-      |40|60|
+      |1|1|
+      |1|1|
     And User clicks on filter by Qty drop down and selects "<Qty filter>"
     Then Click on Next button
     And Click on SubmitOrder button
@@ -155,8 +155,8 @@ Feature: Order Entry6
       |PO123|
     Then Click on Add product drop down and select profile products
     And Enter Qty for the products in Product grid
-      |50|70|
-      |40|60|
+      |1|1|
+      |1|1|
     Then Click on Next button
     And Click on SubmitOrder button
     Then User should be navigated to Order Entry page

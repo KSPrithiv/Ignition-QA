@@ -1,5 +1,7 @@
 package helper;
 
+import com.sun.activation.registries.LogSupport;
+import io.cucumber.java.Scenario;
 import org.openqa.selenium.*;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.interactions.Actions;
@@ -239,6 +241,14 @@ public class HelpersMethod
         element.sendKeys(val);
         act.moveToElement(element).build().perform();
         element.sendKeys(Keys.TAB);
+    }
+
+    public static void ActSendKeyEnter(WebDriver driver,WebElement element,int timeOut,String val) throws InterruptedException
+    {
+        new WebDriverWait(driver,Duration.ofMillis(timeOut)).until(ExpectedConditions.visibilityOf(element));
+        Actions act = new Actions(driver);
+        act.moveToElement(element).sendKeys(val).build().perform();
+        act.moveToElement(element).sendKeys(Keys.ENTER).build().perform();
     }
 
     public static void ActClearKey(WebDriver driver,WebElement element,int timeOut)
@@ -566,6 +576,8 @@ public class HelpersMethod
     //Code for navigating from tab to tab
     public static void navigate_Horizantal_Tab(WebDriver driver, String MenuItem,String MenuItemLocator,String selector,String MenuItems)
     {
+        Scenario scenario = null;
+        boolean found=false;
         String Menu_Text=null;
         Actions act=new Actions(driver);
         List<WebElement> MenuBar=FindByElements(driver,selector,MenuItems);
@@ -573,10 +585,11 @@ public class HelpersMethod
         {
             act.moveToElement(Menu).build().perform();
             Menu_Text=Menu.getText();
-            if(Menu_Text.contains(MenuItem))
+            if(Menu_Text.equalsIgnoreCase(MenuItem))
             {
                 WebElement menuItem=FindByElement(driver,selector,MenuItemLocator);
-                JScriptClick(driver,menuItem,6000);
+                JScriptClick(driver,menuItem,10000);
+                found=true;
                 break;
             }
         }
@@ -603,6 +616,11 @@ public class HelpersMethod
                 .pollingEvery(Duration.ofSeconds(2))
                 .ignoring(NoSuchElementException.class);
         wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
+        if(found==false)
+        {
+            scenario.log("<span style='color:red'>MENU TAB YOU ARE SEARCHING FOR HAS NOT BEEN FOUND</span>");
+        }
     }
 
     public static String gettingTitle(WebDriver driver)

@@ -36,10 +36,8 @@ public class OrderEntryPageSteps8
 
     static boolean exists=false;
     static String currenturl;
-    //static OrderEntryPage orderEntryPage;
     static NewOrderEntryPage newOE;
     static CheckOutSummaryPage summary;
-    //static OrderHistoryPage orderHistoryPage;
     static OrderEntryPage orderpage;
     static CheckOutOrderPage checkorder;
 
@@ -141,25 +139,23 @@ public class OrderEntryPageSteps8
         scenario.log("PRODUCT # "+pro+" PRODUCT QTY "+Prod_detail.get(0).get(0)+" "+Prod_detail.get(0).get(1));
     }
 
-    @And("User should verify that Payment page is not getting displayed")
-    public void userShouldVerifyThatPaymentPageIsNotGettingDisplayed() throws InterruptedException, AWTException
+    @And("User should verify that payment options in Payment page are disabled")
+    public void userShouldVerifyThatPaymentOptionsInPaymentPageAreDisbled() throws InterruptedException, AWTException
     {
         exists = false;
-        newOE = new NewOrderEntryPage(driver, scenario);
+        orderpage = new OrderEntryPage(driver, scenario);
+        orderpage.Select_Order_OrdersGrid();
+        //Check if user is on New OE page
+        newOE=new NewOrderEntryPage(driver,scenario);
+        exists=newOE.ValidateNewOE1();
+        Assert.assertEquals(exists,true);
         newOE.readProductsInOrder();
         exists = newOE.ClickNext();
         newOE.OutOfStockPop_ERP();
-        if (HelpersMethod.IsExists("//div[@class='page-content']/descendant::div[@id='checkoutCard']",driver))
-        {
-            scenario.log("PAYMENT PAGE HAS BEEN FOUND");
-            exists=false;
-        }
-        else
-        {
-            scenario.log("PAYMENT PAGE HAS NOT BEEN FOUND");
-            exists=true;
-        }
-        Assert.assertEquals(exists,true);
+        checkorder=new CheckOutOrderPage(driver,scenario);
+        //checkorder.VerifyCheckOut();
+        checkorder.validatePaymentOptionsDisabled();
+        checkorder.NextButton_Click();
     }
 
     @Then("Click on Next button and read payment methods")
@@ -183,7 +179,6 @@ public class OrderEntryPageSteps8
         }
         exists=newOE.ClickNext();
         newOE.OutOfStockPop_ERP();
-        checkorder=new CheckOutOrderPage(driver,scenario);
 
         String status = HelpersMethod.returnDocumentStatus(driver);
         if (status.equals("loading"))
@@ -209,6 +204,7 @@ public class OrderEntryPageSteps8
                 .ignoring(NoSuchElementException.class);
         wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
 
+        checkorder=new CheckOutOrderPage(driver,scenario);
         if(HelpersMethod.IsExists("//div[@id='paymentMethodCard']",driver))
         {
             Thread.sleep(4000);
@@ -242,5 +238,75 @@ public class OrderEntryPageSteps8
             summary.percentageOfAverageProd();
         }
         summary.SucessPopup();
+    }
+
+    @Then("Click on Next button and select the very first payment option")
+    public void clickOnNextButtonAndSelectTheVeryFirstPaymentOption() throws InterruptedException, AWTException
+    {
+        exists=false;
+        newOE = new NewOrderEntryPage(driver,scenario);
+        newOE.readProductsInOrder();
+        //handling toast messages
+        for(int i=0;i<=2;i++)
+        {
+            //check for toast message for low on inventory
+            newOE.lowOnInventoryToast();
+            //check for toast message for product is currently unavailable
+            newOE.toastCurrentlyUnavailable();
+        }
+
+        for(int i=0;i<=1;i++)
+        {
+            newOE.priceCannotBeBleowCost();
+            newOE.exceedsMaxQty();
+        }
+        exists=newOE.ClickNext();
+        newOE.OutOfStockPop_ERP();
+
+        checkorder=new CheckOutOrderPage(driver,scenario);
+        String status = HelpersMethod.returnDocumentStatus(driver);
+        if (status.equals("loading"))
+        {
+            HelpersMethod.waitTillLoadingPage(driver);
+        }
+
+        Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                .withTimeout(Duration.ofSeconds(120))
+                .pollingEvery(Duration.ofSeconds(2))
+                .ignoring(NoSuchElementException.class);
+        wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
+        status = HelpersMethod.returnDocumentStatus(driver);
+        if (status.equals("loading"))
+        {
+            HelpersMethod.waitTillLoadingPage(driver);
+        }
+
+        wait = new FluentWait<WebDriver>(driver)
+                .withTimeout(Duration.ofSeconds(120))
+                .pollingEvery(Duration.ofSeconds(2))
+                .ignoring(NoSuchElementException.class);
+        wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
+        if(HelpersMethod.IsExists("//div[@id='paymentMethodCard']",driver))
+        {
+            Thread.sleep(4000);
+            checkorder.Select_PaymentMethod_ClickDownArrow();
+            if(HelpersMethod.IsExists("//tr[1]/descendant::td[@class='payment-method-type-cell']",driver))
+            {
+                checkorder.SelectPaymentMethod();
+                scenario.log("FIRST PAYMENT OPTION HAS BEEN SELECTED");
+            }
+            checkorder.DeliveryAddressCard();
+            checkorder.NextButton_Click();
+        }
+    }
+
+    @Then("User enters foreign language description of Product in Search box")
+    public void userEntersForeignLanguageDescriptionOfProductInSearchBox() throws InterruptedException, AWTException
+    {
+            newOE = new NewOrderEntryPage(driver,scenario);
+            String ProdName= TestBase.testEnvironment.getForeignLangDesc();
+            newOE.EnterForignLanguage_InSearchBar(ProdName);
     }
 }

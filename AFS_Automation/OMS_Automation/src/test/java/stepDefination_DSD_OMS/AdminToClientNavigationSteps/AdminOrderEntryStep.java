@@ -1,5 +1,6 @@
 package stepDefination_DSD_OMS.AdminToClientNavigationSteps;
 
+import helper.HelpersMethod;
 import io.cucumber.datatable.DataTable;
 import io.cucumber.java.Before;
 import io.cucumber.java.Scenario;
@@ -7,11 +8,17 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.FluentWait;
+import org.openqa.selenium.support.ui.Wait;
 import org.testng.Assert;
 import pages_DSD_OMS.adminCatalogSearch.catalogSearchPage;
 import pages_DSD_OMS.adminSecurity.AdminSecurityPermissionPage;
 import pages_DSD_OMS.login.LoginPage;
+import pages_DSD_OMS.orderEntry.CheckOutOrderPage;
 import pages_DSD_OMS.orderEntry.CheckOutSummaryPage;
 import pages_DSD_OMS.orderEntry.NewOrderEntryPage;
 import pages_DSD_OMS.orderEntry.OrderEntryPage;
@@ -24,6 +31,7 @@ import util.TestBase;
 import java.awt.*;
 import java.sql.SQLException;
 import java.text.ParseException;
+import java.time.Duration;
 import java.util.List;
 
 /**
@@ -36,6 +44,7 @@ public class AdminOrderEntryStep
     WebDriver driver;
     Scenario scenario;
     static boolean exists=false;
+    static String Ord_No;
     static OrderEntryPage orderpage;
     static CheckOutSummaryPage checkOutSummaryPage;
     static NewOrderEntryPage newOE;
@@ -45,6 +54,7 @@ public class AdminOrderEntryStep
     static LoginPage loginPage;
     static AdminOrderEntryPage adminOrderEntryPage;
     static AdminSecurityPermissionPage adminSecurityPermissionPage;
+    static CheckOutOrderPage checkorder;
 
     @Before
     public void LaunchBrowser1(Scenario scenario) throws Exception
@@ -133,9 +143,10 @@ public class AdminOrderEntryStep
         checkOutSummaryPage=new CheckOutSummaryPage(driver,scenario);
         checkOutSummaryPage.validateSummaryPage();
         checkOutSummaryPage.ClickSubmit();
-        exists=checkOutSummaryPage.validateExistingOrderNotDisplayed();
+        //exists=checkOutSummaryPage.validateExistingOrderNotDisplayed();
         for(int i=0;i<=2;i++)
         {
+            exists=checkOutSummaryPage.validateExistingOrderNotDisplayed();
             checkOutSummaryPage.additionalOrderPopup();
             checkOutSummaryPage.cutoffDialog();
         }
@@ -365,10 +376,10 @@ public class AdminOrderEntryStep
     public void userShouldEnterMenuInSearchBarToNavigateToOrderEntrySearch(String arg0) throws InterruptedException
     {
         adminHomePage = new AdminHomePage(driver, scenario);
+        adminHomePage.removeUnwantedDialogbox();
         adminHomePage.ClickOnHamburger();
         adminHomePage.EnterValueInSearchBox(arg0);
-        adminHomePage.removeUnwantedDialogbox();
-        adminHomePage.CloseHamburger();
+        //adminHomePage.CloseHamburger();
         adminOrderEntryPage=new AdminOrderEntryPage(driver,scenario);
         adminOrderEntryPage.validatingAdminOrderEntryPage();
     }
@@ -423,15 +434,149 @@ public class AdminOrderEntryStep
         adminHomePage.Click_SaveButton();
     }
 
-    @Then("Click on Next button and validate that shipping address is not able to change")
-    public void clickOnNextButtonAndValidateThatShippingAddressIsNotAbleToChange()
+    @Then("Click on Next button and validate that checkout order page not visible")
+    public void clickOnNextButtonAndValidateThatCheckoutOrderPageNotVisible() throws InterruptedException, AWTException
     {
+        exists=false;
+        newOE = new NewOrderEntryPage(driver,scenario);
+        newOE.readProductsInOrder();
+        //handling toast messages
+        for(int i=0;i<=2;i++)
+        {
+            //check for toast message for low on inventory
+            newOE.lowOnInventoryToast();
+            //check for toast message for product is currently unavailable
+            newOE.toastCurrentlyUnavailable();
+        }
 
+        for(int i=0;i<=1;i++)
+        {
+            newOE.priceCannotBeBleowCost();
+            newOE.exceedsMaxQty();
+        }
+        exists=newOE.ClickNext();
+        newOE.OutOfStockPop_ERP();
+        String status = HelpersMethod.returnDocumentStatus(driver);
+        if (status.equals("loading"))
+        {
+            HelpersMethod.waitTillLoadingPage(driver);
+        }
+
+        Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                .withTimeout(Duration.ofSeconds(400))
+                .pollingEvery(Duration.ofSeconds(2))
+                .ignoring(NoSuchElementException.class);
+        wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
+        status = HelpersMethod.returnDocumentStatus(driver);
+        if (status.equals("loading"))
+        {
+            HelpersMethod.waitTillLoadingPage(driver);
+        }
+
+        wait = new FluentWait<WebDriver>(driver)
+                .withTimeout(Duration.ofSeconds(400))
+                .pollingEvery(Duration.ofSeconds(2))
+                .ignoring(NoSuchElementException.class);
+        wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
+        exists=false;
+        if(!HelpersMethod.IsExists("//div[@id='checkoutCard']",driver))
+        {
+            scenario.log("NO CHECKOUT ORDER PAGE FOUND, AND IT IS EXPECTED BEHAVIOUR");
+            exists=true;
+        }
+        Assert.assertEquals(exists,true);
     }
 
-    @Then("Click on Next button and validate that shipping address can be changed")
-    public void clickOnNextButtonAndValidateThatShippingAddressCanBeChanged()
+    @Then("Click on Next button and validate that checkout order page is visible")
+    public void clickOnNextButtonAndValidateThatCheckoutOrderPageIsVisible() throws InterruptedException, AWTException
     {
+        exists=false;
+        newOE = new NewOrderEntryPage(driver,scenario);
+        newOE.readProductsInOrder();
+        //handling toast messages
+        for(int i=0;i<=2;i++)
+        {
+            //check for toast message for low on inventory
+            newOE.lowOnInventoryToast();
+            //check for toast message for product is currently unavailable
+            newOE.toastCurrentlyUnavailable();
+        }
 
+        for(int i=0;i<=1;i++)
+        {
+            newOE.priceCannotBeBleowCost();
+            newOE.exceedsMaxQty();
+        }
+        exists=newOE.ClickNext();
+        newOE.OutOfStockPop_ERP();
+        String status = HelpersMethod.returnDocumentStatus(driver);
+        if (status.equals("loading"))
+        {
+            HelpersMethod.waitTillLoadingPage(driver);
+        }
+
+        Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                .withTimeout(Duration.ofSeconds(400))
+                .pollingEvery(Duration.ofSeconds(2))
+                .ignoring(NoSuchElementException.class);
+        wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
+        status = HelpersMethod.returnDocumentStatus(driver);
+        if (status.equals("loading"))
+        {
+            HelpersMethod.waitTillLoadingPage(driver);
+        }
+
+        wait = new FluentWait<WebDriver>(driver)
+                .withTimeout(Duration.ofSeconds(400))
+                .pollingEvery(Duration.ofSeconds(2))
+                .ignoring(NoSuchElementException.class);
+        wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
+        checkorder=new CheckOutOrderPage(driver,scenario);
+        if(HelpersMethod.IsExists("//div[@id='paymentMethodCard']",driver))
+        {
+            Thread.sleep(4000);
+            Ord_No=checkorder.readOrderNumber();
+            scenario.log("CHECKOUT TO ORDER PAGE HAS BEEN FOUND");
+            checkorder.Select_PaymentMethod_ClickDownArrow();
+            if(HelpersMethod.IsExists("//tr[1]/descendant::td[@class='payment-method-type-cell']",driver))
+            {
+                checkorder.SelectPaymentMethod();
+                scenario.log("FIRST PAYMENT OPTION HAS BEEN SELECTED");
+            }
+            else
+            {
+                checkorder.Click_On_Without_Providing_Payment();
+                scenario.log("WITHOUT PROVIIDNG PAYMENT OPTION HAS BEEN SELECTED");
+            }
+            checkorder.DeliveryAddressCard();
+            checkorder.NextButton_Click();
+        }
+    }
+
+    @Then("User must click Start Order button for Admin setting")
+    public void userMustClickStartOrderButtonForAdminSetting() throws InterruptedException, AWTException
+    {
+        exists=false;
+        if (HelpersMethod.IsExists("//div[@id='order-search-card']", driver))
+        {
+            orderpage = new OrderEntryPage(driver, scenario);
+            orderpage.ValidateOE();
+            //find whether route is empty or not, if empty should select some route value
+            String routeNo = orderpage.validateRouteValue();
+            if (routeNo == null || routeNo.equals(""))
+            {
+                orderpage.clickRouteIndex();
+                orderpage.validateRouteDialog();
+                orderpage.Route_No(TestBase.testEnvironment.get_RouteFilt(), TestBase.testEnvironment.get_Route());
+                orderpage.validateRouteSelected(TestBase.testEnvironment.get_Route());
+            }
+            //check for 'Start Order' button
+            orderpage.Scroll_start();
+            exists = orderpage.Start_OrderForAdmin();
+        }
     }
 }

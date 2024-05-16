@@ -8,8 +8,13 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.FluentWait;
+import org.openqa.selenium.support.ui.Wait;
 import org.testng.Assert;
 import pages_DSD_OMS.login.HomePage;
 import pages_DSD_OMS.login.LoginPage;
@@ -23,6 +28,7 @@ import util.TestBase;
 import java.awt.*;
 import java.sql.SQLException;
 import java.text.ParseException;
+import java.time.Duration;
 import java.util.List;
 
 /**
@@ -114,7 +120,7 @@ public class ParOrderPageStep
         {
             orderpage = new OrderEntryPage(driver, scenario);
             orderpage.ChangeAccount();
-            //orderpage.PopUps_After_AccountChange();
+            orderpage.PopUps_After_AccountChange();
             orderpage.Read_DeliveryDate();
             flag1=true;
         }
@@ -125,21 +131,34 @@ public class ParOrderPageStep
         if (flag2 == false)
         {
             exists = false;
-            WebElement WebEle;
-            if (HelpersMethod.IsExists("//li[contains(@class,'k-item')]/span[@class='k-link' and contains(text(),'Order Guides')]",driver))
+            Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(200))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
+            if (HelpersMethod.IsExists("//li[contains(@class,'k-item')]/span[@class='k-link' and contains(text(),'Order Guides')]|//li[contains(@class,'k-item')]/span[@class='k-link' and contains(text(),'Order guides')]",driver))
             {
                 //Code to navigate to Order guide
-                if (HelpersMethod.IsExists("//div[@class='loader']", driver))
-                {
-                    WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 400000);
-                }
-                HelpersMethod.navigate_Horizantal_Tab(driver, "Order Guides", "//li[contains(@class,'k-item')]/span[@class='k-link' and contains(text(),'Order Guides')]", "xpath", "//li[contains(@class,'k-item')]/span[@class='k-link']");
+                wait = new FluentWait<WebDriver>(driver)
+                        .withTimeout(Duration.ofSeconds(200))
+                        .pollingEvery(Duration.ofSeconds(2))
+                        .ignoring(NoSuchElementException.class);
+                wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
+                HelpersMethod.navigate_Horizantal_Tab(driver, "Order Guides", "//li[contains(@class,'k-item')]/span[@class='k-link' and contains(text(),'Order Guides')]|//li[contains(@class,'k-item')]/span[@class='k-link' and contains(text(),'Order guides')]", "xpath", "//li[contains(@class,'k-item')]/span[@class='k-link']");
                 currentURL = driver.getCurrentUrl();
                 exists=true;
             }
             Assert.assertEquals(exists,true);
             flag2=true;
+        }
+        orderpage=new OrderEntryPage(driver,scenario);
+        exists= orderpage.HandleError_Page();
+        if(exists=true)
+        {
+            orderGuidePage=new OrderGuidePage(driver,scenario);
+            orderGuidePage.naviateToOG();
         }
         parOrderPage = new ParOrderPage(driver, scenario);
         parOrderPage.Refresh_Page(currentURL);
@@ -161,10 +180,6 @@ public class ParOrderPageStep
         parOrderPage = new ParOrderPage(driver, scenario);
         parOrderPage.ClickParTab();
         parOrderPage.ValidateParlistTab();
-
-       /* orderpage=new OrderEntryPage(driver,scenario);
-        //orderpage.HandleError_Page();
-        //orderpage.Refresh_Page(currentURL);*/
     }
 
     @And("User enters code and discription for Par list")
@@ -323,6 +338,13 @@ public class ParOrderPageStep
         parOrderPage.enterValueForFilter(values.get(0).get(0),values.get(0).get(1));
         parOrderPage.readParProducts();
         parOrderPage.clearFilterOption();
+    }
+
+    @Then("User enters different par qty in parlist {string}")
+    public void userEntersDifferentParQtyInParlist(String qty)
+    {
+        parOrderPage=new ParOrderPage(driver,scenario);
+        parOrderPage.enterQtyForParQty1(qty);
     }
 }
 

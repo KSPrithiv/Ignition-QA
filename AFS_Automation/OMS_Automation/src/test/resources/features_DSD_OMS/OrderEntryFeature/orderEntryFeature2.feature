@@ -19,7 +19,7 @@ Feature: Order Entry2
       |PO123|
     Then Enter Pro# in Quick Product Entry area
     And Check for Case and Unit input box enabled or not based on that enter value
-      |50|20|
+      |1|1|
     Then Click on Next button
     Then Click on Cancel button in OE summary page and handle warning popup
     Then User should be navigated to Order Entry page
@@ -36,7 +36,7 @@ Feature: Order Entry2
       |PO123|
     Then Enter Pro# in Quick Product Entry area
     And Check for Case and Unit input box enabled or not based on that enter value
-      |80|50|
+      |1|1|
     And Find total amount from New oe page
     Then Click on Next button
     And Click on SubmitOrder button
@@ -53,9 +53,9 @@ Feature: Order Entry2
       |PO123|
     Then Enter Pro# in Quick Product Entry area
     And Check for Case and Unit input box enabled or not based on that enter value
-      |  80  |  55  |
+      |1|1|
     And Drag and drop table header
-      |Brand|
+      |Category|
     Then Click on Next button
     And Click on SubmitOrder button
     Then User should be navigated to Order Entry page
@@ -71,7 +71,7 @@ Feature: Order Entry2
     Then User enters ProdDes in Search box
     Then Check for Catalog popup
     Then Enter the Qty in the Product grid Case and Unit
-      | 100 | 100 |
+      |1|1|
     Then Click on Next button
     And Click on SubmitOrder button
     Then User should be navigated to Order Entry page
@@ -86,7 +86,7 @@ Feature: Order Entry2
       |PO123|
     Then Enter Pro# in Quick Product Entry area
     And Check for Case and Unit input box enabled or not based on that enter value
-      |100|100|
+      |1|1|
     And Find total amount from New oe page
     Then Click on Next button
     And Get total amount from summary page and Click on SubmitOrder button
@@ -102,12 +102,12 @@ Feature: Order Entry2
       |PO123|
     Then Enter Pro# in Quick Product Entry area
     And Check for Case and Unit input box enabled or not based on that enter value
-      |100|150|
+      |1|1|
     Then Click on Next button
     And Get total amount from summary card and Order total on SubmitOrder button
     Then User should be navigated to Order Entry page
 
-    #Admin Setting should be enabled for this scenario->"Enable auto load order entry"
+    #Admin Setting should be enabled for this scenario->"Enable order auto load once the customer has been selected"
   # this script will work, when there are no orders for the changed account for given date
   @ChangeAccount
   Scenario: Change the account# to other account# and check whether it navigates to NewOE page or not
@@ -126,10 +126,10 @@ Feature: Order Entry2
     Then Enter PO# for New order
       |PO123|
     Then Enter Prod_No in Quick Product Entry area
-      |  40  |  30  |
-      |  50  |  80  |
-      |  55  |  50  |
-      |  80  |  50  |
+      |  4 | 3 |
+      |  1 | 1 |
+      |  1 | 2 |
+      |  2 | 1 |
   #here 0002, 0003 are out of stock products and they should not get displayed in Order summary
     Then Click on Next button
     Then In Order Summary page check whether Low inventory products are removed or not
@@ -147,8 +147,8 @@ Feature: Order Entry2
       |PO123|
     Then Enter Pro# in Quick Product Entry area
     And Check for Case and Unit input box enabled or not based on that enter value
-      |50|50|
-    Then Click on Next button
+      |1|1|
+    Then Click on Next button for cancel from order summary page
     And Click on Submit Order button and read Order_no
     Then Enter Order# in Search box in Order Entry page
     Then Click on Order number in Order Entry page
@@ -167,7 +167,7 @@ Feature: Order Entry2
       |PO123|
     Then Enter Pro# in Quick Product Entry area
     And Check for Case and Unit input box enabled or not based on that enter value
-      |50|50|
+      |1|1|
     Then Click on Next button
     And Click on Submit Order button and read Order_no
     Then User should be navigated to Order Entry page
@@ -186,10 +186,10 @@ Feature: Order Entry2
     Then Enter PO# for New order
       |PO123|
     Then Enter Prod_No in Quick Product Entry area
-      |  10  |  40  |
-      |  50  |  10  |
-      |  15  |  50  |
-      |  50  |  50  |
+      |  1 | 3 |
+      |  1 | 1 |
+      |  1 | 2 |
+      |  2 | 1 |
   #here 0002, 0003 are out of stock products and they should not get displayed in Order summary
     Then Click on Next button
     Then In Order Summary page click on up arrow for sorting product in descending order of product number

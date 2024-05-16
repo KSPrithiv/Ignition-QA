@@ -3,6 +3,7 @@ package stepDefination_DSD_OMS.DiconnectModePageSteps;
 import io.cucumber.java.Before;
 import io.cucumber.java.Scenario;
 import io.cucumber.java.en.And;
+import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.openqa.selenium.WebDriver;
 import pages_DSD_OMS.disconnectedMode.DMOEPage;
@@ -10,6 +11,8 @@ import pages_DSD_OMS.login.HomePage;
 import pages_DSD_OMS.login.LoginPage;
 import pages_DSD_OMS.orderEntry.OrderEntryPage;
 import util.TestBase;
+
+import java.awt.*;
 
 /**
  * @Project Divya.Ramadas@telusagcg.com
@@ -22,8 +25,6 @@ public class DMOEPageStep1
     Scenario scenario;
 
     static DMOEPage dmoePage;
-    static LoginPage loginpage;
-    static HomePage homepage;
     static OrderEntryPage orderpage;
 
     @Before
@@ -81,5 +82,16 @@ public class DMOEPageStep1
         dmoePage = new DMOEPage(driver, scenario);
         dmoePage.DisconnectModePopup();
         dmoePage.ClickGoToOffline();
+    }
+
+    @Then("User must be on Order Entry Page in disconnected mode and navigate to Catalog tab")
+    public void userMustBeOnOrderEntryPageInDisconnectedModeAndNavigateToCatalogTab() throws InterruptedException, AWTException
+    {
+        orderpage=new OrderEntryPage(driver,scenario);
+        orderpage.HandleError_Page();
+        orderpage.Refresh_Page2();
+        //HelpersMethod.Refresh(driver);
+        dmoePage=new DMOEPage(driver,scenario);
+        dmoePage.ValidateDisconnectedMode();
     }
 }

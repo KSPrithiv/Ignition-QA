@@ -28,7 +28,7 @@ public class AdminSecurityPermission_ByUserPage
     WebDriver driver;
     Scenario scenario;
     static boolean exists=false;
-    static String roleNameText=null;
+    static String roleNameText;
 
     @FindBy(id = "AddBtn")
     private WebElement plusSymbol;

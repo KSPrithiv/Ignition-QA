@@ -31,8 +31,8 @@ import java.util.concurrent.ThreadLocalRandom;
         WebDriver driver;
         Scenario scenario;
         static boolean exists=false;
-        static String InputValue=null;
-        static String PoNo=null;
+        static String InputValue;
+        static String PoNo;
 
         @FindBy(xpath="//button[@id='btnAddStandingPO']//*[local-name()='svg']")
         private WebElement NewButton;
@@ -452,8 +452,8 @@ import java.util.concurrent.ThreadLocalRandom;
             exists=false;
             try
             {
-                HelpersMethod.EnterText(driver,SearchBar,40,PoNo);
-                HelpersMethod.ClickBut(driver,SearchIndex,20);
+                HelpersMethod.EnterText(driver,SearchBar,1000,PoNo);
+                HelpersMethod.ClickBut(driver,SearchIndex,1000);
                 if(!HelpersMethod.IsExists("//div[@class='i-no-data']",driver))
                 {
                     exists=true;
@@ -472,7 +472,7 @@ import java.util.concurrent.ThreadLocalRandom;
             {
                 WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-widget k-grid')]/descendant::tr[contains(@class,'k-master-row')][1]");
                 HelpersMethod.ScrollElement(driver,WebEle);
-                HelpersMethod.ActClick(driver,WebEle,20);
+                HelpersMethod.ActClick(driver,WebEle,1000);
                 exists=true;
                 Assert.assertEquals(exists,true);
             }
@@ -487,7 +487,7 @@ import java.util.concurrent.ThreadLocalRandom;
                 HelpersMethod.ScrollElement(driver,EditButton);
                 if(EditButton.isEnabled())
                 {
-                    HelpersMethod.ClickBut(driver, EditButton, 40);
+                    HelpersMethod.ClickBut(driver, EditButton, 1000);
                     if (HelpersMethod.IsExists("//div[contains(text(),'Edit standing po')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]", driver))
                     {
                         exists = true;
@@ -509,10 +509,10 @@ import java.util.concurrent.ThreadLocalRandom;
                     WebElement editStandingPO=HelpersMethod.FindByElement(driver,"xpath","//div[contains(text(),'Edit standing po')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]");
                     WebEle= editStandingPO.findElement(By.xpath(".//input[contains(@id,'textBox0')]"));
                     scenario.log("PO NUMBER ENTERE BEFORE "+HelpersMethod.JSGetValueEle(driver,WebEle,100));
-                    HelpersMethod.JSSetValueEle(driver,WebEle,40, RandomValues.generateRandomAlphaNumeric(8));
+                    HelpersMethod.JSSetValueEle(driver,WebEle,1000, RandomValues.generateRandomAlphaNumeric(8));
                     scenario.log("PO NUMBER EDITED AS "+HelpersMethod.JSGetValueEle(driver,WebEle,20));
                     WebEle=editStandingPO.findElement(By.xpath(".//button[text()='Update']"));
-                    HelpersMethod.ClickBut(driver,WebEle,40);
+                    HelpersMethod.ClickBut(driver,WebEle,1000);
                     exists=true;
                 }
                 Assert.assertEquals(exists,true);
@@ -526,7 +526,7 @@ import java.util.concurrent.ThreadLocalRandom;
             try
             {
                 WebElement WebEle=HelpersMethod.FindByElement(driver,"xpath","//*[local-name()='svg' and contains(@class,'i-search-box__clear')]");
-                HelpersMethod.ClickBut(driver,WebEle,100);
+                HelpersMethod.ClickBut(driver,WebEle,10000);
                 exists=true;
                 Assert.assertEquals(exists,true);
             }
@@ -553,8 +553,13 @@ import java.util.concurrent.ThreadLocalRandom;
             {
                 if(deleteButton.isDisplayed() && deleteButton.isEnabled())
                 {
-                    HelpersMethod.ClickBut(driver,deleteButton,80);
+                    HelpersMethod.ClickBut(driver,deleteButton,10000);
                     scenario.log("CLICK ON DELETE BUTTON");
+                    Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                            .withTimeout(Duration.ofSeconds(400))
+                            .pollingEvery(Duration.ofSeconds(2))
+                            .ignoring(NoSuchElementException.class);
+                    wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
                 }
             }
             catch (Exception e){}
@@ -569,19 +574,24 @@ import java.util.concurrent.ThreadLocalRandom;
                 Assert.assertEquals(modalContentTitle.getText(), "Delete standing po", "Verify Title message");
                 //Delete confirmation popup
                 WebElement deletePopup=modalContainer.findElement(By.xpath(".//button[text()='Delete']"));
-                HelpersMethod.ActClick(driver,deletePopup,1000);
-                if(HelpersMethod.IsExists("//div[@class='loader']",driver))
-                {
-                    WebElement WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 800000);
-                }
+                HelpersMethod.ActClick(driver,deletePopup,10000);
+                Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                        .withTimeout(Duration.ofSeconds(200))
+                        .pollingEvery(Duration.ofSeconds(2))
+                        .ignoring(NoSuchElementException.class);
+                wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
 
                 //Delete success popup
                 if(HelpersMethod.IsExists("//div[contains(text(),'The information has been saved successfully.')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
                 {
                     WebElement popUp=HelpersMethod.FindByElement(driver,"xpath","//div[contains(text(),'The information has been saved successfully.')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]");
                     WebElement okButton=popUp.findElement(By.xpath(".//button[text()='Ok']"));
-                    HelpersMethod.ActClick(driver,okButton,1000);
+                    HelpersMethod.ActClick(driver,okButton,10000);
+                    wait = new FluentWait<WebDriver>(driver)
+                            .withTimeout(Duration.ofSeconds(200))
+                            .pollingEvery(Duration.ofSeconds(2))
+                            .ignoring(NoSuchElementException.class);
+                    wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
                 }
             }
             catch (Exception e){}
@@ -595,7 +605,7 @@ import java.util.concurrent.ThreadLocalRandom;
                 {
                     WebElement modalContainer = driver.findElement(By.xpath("//div[contains(@class,'k-widget k-window k-dialog')]"));
                     WebElement WebEle=modalContainer.findElement(By.xpath(".//button[text()='Cancel']"));
-                    HelpersMethod.ClickBut(driver,WebEle,80);
+                    HelpersMethod.ClickBut(driver,WebEle,10000);
                 }
             }
             catch (Exception e){}
