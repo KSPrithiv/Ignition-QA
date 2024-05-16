@@ -48,6 +48,7 @@ Feature: Testing of Outbound Load Planning functionality
     And Clicks Yes button on Warning Message
 
 
+
   @4
   Scenario: Checking Release functionality when click on Exit button
     #Given User is on Truck Info Page

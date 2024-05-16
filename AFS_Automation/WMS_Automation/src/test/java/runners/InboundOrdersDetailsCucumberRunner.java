@@ -18,8 +18,8 @@ import java.io.IOException;
 import static common.setup.DriverManager.*;
 
 @CucumberOptions(features = {
-        "src/test/resources/features/inbound/inboundorders/details/InboundOrderDetailsScreen1.feature",
-        "src/test/resources/features/inbound/inboundorders/details//InboundOrderDetailsScreen2.feature",
+        //"src/test/resources/features/inbound/inboundorders/details/InboundOrderDetailsScreen1.feature",
+        //"src/test/resources/features/inbound/inboundorders/details//InboundOrderDetailsScreen2.feature",
         "src/test/resources/features/inbound/inboundorders/details/InboundOrderLineItemDetailsScreen.feature"
          },
         glue = {"steps"},

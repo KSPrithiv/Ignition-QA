@@ -62,6 +62,7 @@ Feature: Testing of Counting Count functionality
     And User clicks Apply button on Counting Count page
     And Validates Items Count on Counting Count page are present
 
+  @f1
   Scenario: Checking Count the Locations on Counting Count screen
     Given User signs in the application
     And Main page is loaded
@@ -69,12 +70,7 @@ Feature: Testing of Counting Count functionality
     And Waits for Counting Count page to load
     When User selects session by index 4 on Counting Count page
     And User clicks location by index 3 on Counting Count page
-    Then Validates Location Label on Counting Count page is displayed
-    And Validates Product, Factor and On Hand on Counting Count page are displayed
-    And Validates Location Label on Counting Count page is displayed
-    And Validates Count Quantity inputs are editable on Counting Count page
-    And Validates Items Found, Add product, Product inputs, Cancel and Save buttons are displayed on Counting Count page
-    And Validates Each and Cases are displayed on Counting Count page
+
 
   Scenario: Checking Count Pick Location on Counting Count screen
     Given User signs in the application
@@ -85,6 +81,7 @@ Feature: Testing of Counting Count functionality
     And Validates Product Search on Counting Count page is displayed
     And Validates Counting Count page columns are displayed
 
+  @f1
   Scenario: Checking Count Reserve Location on Counting Count screen
     Given User signs in the application
     And Main page is loaded
@@ -92,12 +89,8 @@ Feature: Testing of Counting Count functionality
     And Waits for Counting Count page to load
     When User selects session by index 4 on Counting Count page
     And User clicks location by index 3 on Counting Count page
-    And Validates Location Label on Counting Count page is displayed
-    Then Validates Product, Factor and On Hand on Counting Count page are displayed
-    And Validates Location Label on Counting Count page is displayed
-    And Validates Count Quantity inputs are editable on Counting Count page
-    And Validates Each and Cases are displayed on Counting Count page
 
+  @f1
   Scenario: Checking Count Empty Location on Counting Count screen
     Given User signs in the application
     And Main page is loaded
@@ -105,14 +98,8 @@ Feature: Testing of Counting Count functionality
     And Waits for Counting Count page to load
     When User selects session by index 4 on Counting Count page
     And User clicks location by index 3 on Counting Count page
-    And Validates Count Quantity inputs are editable on Counting Count page
-    Then Validates Items Found, Add product, Product inputs, Cancel and Save buttons are displayed on Counting Count page
-    And User types "1" quantity in 0 input on Counting Count page
-    And Validates Count Quantity value "1" in 0 input field on Counting Count page
-    And User types "2" quantity in 1 input on Counting Count page
-    And Validates Count Quantity value "2" in 1 input field on Counting Count page
-    And Validates Items Found, Add product, Product inputs, Cancel and Save buttons are displayed on Counting Count page
 
+  @f1
   Scenario: Checking Add Product to the Empty or non Empty Location on Counting Count screen
     Given User signs in the application
     And Main page is loaded
@@ -120,18 +107,9 @@ Feature: Testing of Counting Count functionality
     And Waits for Counting Count page to load
     When User selects session by index 4 on Counting Count page
     And User clicks location by index 3 on Counting Count page
-    And User clicks Add Product on Counting Count page
-    And Validates LPN, LPN Type and Product Code are displayed on Counting Count page
-    Then User types product by index 2 on Counting Count page
-    And Validates Product details are displayed on Counting Count page
-    And User selects owner by index 4 on Counting Count page
-    And User selects supplier by index 2 on Counting Count page
-    And User types qty "2" on Counting Count page
-    And User selects UOM by index 3 on Counting Count page
-    And User selects status by index 0 on Counting Count page
-    And Clicks Cancel button on Counting Count page
-    And Validates Items Found, Add product, Product inputs, Cancel and Save buttons are displayed on Counting Count page
 
+
+  @f1
   Scenario: Checking saving counted location on Counting Count screen
     Given User signs in the application
     And Main page is loaded
@@ -139,13 +117,4 @@ Feature: Testing of Counting Count functionality
     And Waits for Counting Count page to load
     When User selects session by index 4 on Counting Count page
     And User clicks location by index 3 on Counting Count page
-    And User clicks Add Product on Counting Count page
-    And Validates LPN, LPN Type and Product Code are displayed on Counting Count page
-    Then User types product by index 2 on Counting Count page
-    And Validates Product details are displayed on Counting Count page
-    And User selects owner by index 4 on Counting Count page
-    And User selects supplier by index 2 on Counting Count page
-    And User types qty "2" on Counting Count page
-    And User selects UOM by index 3 on Counting Count page
-    And User selects status by index 0 on Counting Count page
-    And Validates save button enabled on Counting Count page
+

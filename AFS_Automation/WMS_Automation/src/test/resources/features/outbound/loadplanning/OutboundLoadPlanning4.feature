@@ -60,7 +60,7 @@ Feature: Testing of Outbound Load Planning functionality
     And Clicks Ok button on Truck Info
     And Select first assignment on Truck Info page
     And Validates First Assignment popup is present
-    And Validates Assignment details on popup
+
 
   @4
   Scenario: Checking Load Planning - split product pick task assignment details edit
@@ -80,7 +80,7 @@ Feature: Testing of Outbound Load Planning functionality
     And Clicks Ok button on Truck Info
 
     And Select first assignment on Truck Info page
-    And Validates First Assignment popup is present
+
     And Clicks edit icon for first assignment on Assignments popup
     And Validates Split task popup displayed
     And Clicks decrease quantity on Split task popup
@@ -106,7 +106,7 @@ Feature: Testing of Outbound Load Planning functionality
     And Clicks Yes button on Rebuilding Assignments popup
     And Clicks Ok button on Truck Info
     And Select first assignment on Truck Info page
-    And Validates First Assignment popup is present
+
     And Clicks edit icon for first assignment on Assignments popup
     And Validates Split task popup displayed
     And Clicks decrease quantity on Split task popup

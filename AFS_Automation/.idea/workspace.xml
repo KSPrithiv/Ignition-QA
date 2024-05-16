@@ -6,15 +6,20 @@
   <component name="ChangeListManager">
     <list default="true" id="509c80e0-2f2e-4497-bee7-a6c4d904e2a0" name="Changes" comment="pushing">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WMS_Automation/OutboundLoadPlanning1TestNGRunner.xml" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/OutboundLoadPlanning1TestNGRunner.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/WMS_Automation/Reports/Index.html" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/Reports/Index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/WMS_Automation/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WMS_Automation/src/main/java/ui/pages/inbound/inboundorders/InboundOrderDetailsPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/src/main/java/ui/pages/inbound/inboundorders/InboundOrderDetailsPage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WMS_Automation/src/main/java/common/setup/DriverManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/src/main/java/common/setup/DriverManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WMS_Automation/src/test/java/runners/CountingCounterCucumberRunner.java" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/src/test/java/runners/CountingCounterCucumberRunner.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/WMS_Automation/src/test/java/runners/InboundOrdersDetailsCucumberRunner.java" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/src/test/java/runners/InboundOrdersDetailsCucumberRunner.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WMS_Automation/src/test/java/steps/inbound/inboundorders/InboundOrderDetailsPageSteps.java" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/src/test/java/steps/inbound/inboundorders/InboundOrderDetailsPageSteps.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WMS_Automation/src/test/java/steps/validations/inbound/inboundorders/InboundOrderLineItemsDetailsScreenPageValidations.java" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/src/test/java/steps/validations/inbound/inboundorders/InboundOrderLineItemsDetailsScreenPageValidations.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WMS_Automation/src/test/java/testdata/json/OutboundOrderLoadsBatchesData.json" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/src/test/java/testdata/json/OutboundOrderLoadsBatchesData.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WMS_Automation/src/test/resources/features/counting/counting/CountingCountScreen1.feature" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/src/test/resources/features/counting/counting/CountingCountScreen1.feature" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/WMS_Automation/src/test/resources/features/inbound/inboundorders/details/InboundOrderDetailsScreen1.feature" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/src/test/resources/features/inbound/inboundorders/details/InboundOrderDetailsScreen1.feature" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/WMS_Automation/src/test/resources/features/inbound/inboundorders/details/InboundOrderLineItemDetailsScreen.feature" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/src/test/resources/features/inbound/inboundorders/details/InboundOrderLineItemDetailsScreen.feature" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WMS_Automation/target/classes/ui/pages/inbound/inboundorders/InboundOrderDetailsPage.class" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/target/classes/ui/pages/inbound/inboundorders/InboundOrderDetailsPage.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WMS_Automation/src/test/resources/features/inbound/loads/orderdetails/InboundLoadOrderLineItemScreen.feature" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/src/test/resources/features/inbound/loads/orderdetails/InboundLoadOrderLineItemScreen.feature" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WMS_Automation/src/test/resources/features/outbound/loadplanning/OutboundLoadPlanning1.feature" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/src/test/resources/features/outbound/loadplanning/OutboundLoadPlanning1.feature" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WMS_Automation/src/test/resources/features/outbound/loadplanning/OutboundLoadPlanning4.feature" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/src/test/resources/features/outbound/loadplanning/OutboundLoadPlanning4.feature" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WMS_Automation/target/classes/common/setup/DriverManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/target/classes/common/setup/DriverManager.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -57,6 +62,7 @@
   </component>
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
+    &quot;JavaVariableFindUsagesOptions.isSearchInOverridingMethods&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;last_opened_file_path&quot;: &quot;C:/Users/karthikeyan.Armugam/Documents/Git_Repositories/ignition-qa/AFS_Automation/WMS_Automation&quot;,
@@ -72,7 +78,7 @@
       <recent name="runners" />
     </key>
   </component>
-  <component name="RunManager" selected="TestNG.C:/Users/karthikeyan.Armugam/Documents/Git_Repositories/ignition-qa/AFS_Automation/WMS_Automation/InboundOrdersDetailsCucumberTestNGRunner.xml">
+  <component name="RunManager" selected="TestNG.C:/Users/karthikeyan.Armugam/Documents/Git_Repositories/ignition-qa/AFS_Automation/WMS_Automation/OutboundLoadPlanning1TestNGRunner.xml">
     <configuration default="true" type="JetRunConfigurationType">
       <module name="WMS_Automation" />
       <method v="2">
@@ -86,9 +92,19 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="C:/Users/karthikeyan.Armugam/Documents/Git_Repositories/ignition-qa/AFS_Automation/WMS_Automation/InboundLoadsSummary1CucumberTestNGRunner.xml" type="TestNG" temporary="true" nameIsGenerated="true">
+    <configuration name="C:/Users/karthikeyan.Armugam/Documents/Git_Repositories/ignition-qa/AFS_Automation/WMS_Automation/CountingCountingTestNGRunner.xml" type="TestNG" temporary="true" nameIsGenerated="true">
       <module name="WMS_Automation" />
-      <option name="SUITE_NAME" value="$PROJECT_DIR$/WMS_Automation/InboundLoadsSummary1CucumberTestNGRunner.xml" />
+      <option name="SUITE_NAME" value="$PROJECT_DIR$/WMS_Automation/CountingCountingTestNGRunner.xml" />
+      <option name="TEST_OBJECT" value="SUITE" />
+      <properties />
+      <listeners />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="C:/Users/karthikeyan.Armugam/Documents/Git_Repositories/ignition-qa/AFS_Automation/WMS_Automation/InboundLoadsOrderDetailsCucumberTestNGRunner.xml" type="TestNG" temporary="true" nameIsGenerated="true">
+      <module name="WMS_Automation" />
+      <option name="SUITE_NAME" value="$PROJECT_DIR$/WMS_Automation/InboundLoadsOrderDetailsCucumberTestNGRunner.xml" />
       <option name="TEST_OBJECT" value="SUITE" />
       <properties />
       <listeners />
@@ -116,36 +132,10 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="InboundOrdersDetailsCucumberRunner.runScenario" type="TestNG" temporary="true" nameIsGenerated="true">
+    <configuration name="C:/Users/karthikeyan.Armugam/Documents/Git_Repositories/ignition-qa/AFS_Automation/WMS_Automation/OutboundLoadPlanning4TestNGRunner.xml" type="TestNG" temporary="true" nameIsGenerated="true">
       <module name="WMS_Automation" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="runners.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="SUITE_NAME" value="$PROJECT_DIR$/WMS_Automation/InboundOrdersDetailsCucumberTestNGRunner.xml" />
-      <option name="PACKAGE_NAME" value="runners" />
-      <option name="MAIN_CLASS_NAME" value="runners.InboundOrdersDetailsCucumberRunner" />
-      <option name="METHOD_NAME" value="runScenario" />
-      <option name="TEST_OBJECT" value="METHOD" />
-      <properties />
-      <listeners />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="OutboundLoadPlanning1CucumberRunner" type="TestNG" temporary="true" nameIsGenerated="true">
-      <module name="WMS_Automation" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="runners.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="runners" />
-      <option name="MAIN_CLASS_NAME" value="runners.OutboundLoadPlanning1CucumberRunner" />
-      <option name="TEST_OBJECT" value="CLASS" />
+      <option name="SUITE_NAME" value="$PROJECT_DIR$/WMS_Automation/OutboundLoadPlanning4TestNGRunner.xml" />
+      <option name="TEST_OBJECT" value="SUITE" />
       <properties />
       <listeners />
       <method v="2">
@@ -153,19 +143,19 @@
       </method>
     </configuration>
     <list>
-      <item itemvalue="TestNG.InboundOrdersDetailsCucumberRunner.runScenario" />
-      <item itemvalue="TestNG.C:/Users/karthikeyan.Armugam/Documents/Git_Repositories/ignition-qa/AFS_Automation/WMS_Automation/InboundOrdersDetailsCucumberTestNGRunner.xml" />
       <item itemvalue="TestNG.C:/Users/karthikeyan.Armugam/Documents/Git_Repositories/ignition-qa/AFS_Automation/WMS_Automation/OutboundLoadPlanning1TestNGRunner.xml" />
-      <item itemvalue="TestNG.OutboundLoadPlanning1CucumberRunner" />
-      <item itemvalue="TestNG.C:/Users/karthikeyan.Armugam/Documents/Git_Repositories/ignition-qa/AFS_Automation/WMS_Automation/InboundLoadsSummary1CucumberTestNGRunner.xml" />
+      <item itemvalue="TestNG.C:/Users/karthikeyan.Armugam/Documents/Git_Repositories/ignition-qa/AFS_Automation/WMS_Automation/InboundLoadsOrderDetailsCucumberTestNGRunner.xml" />
+      <item itemvalue="TestNG.C:/Users/karthikeyan.Armugam/Documents/Git_Repositories/ignition-qa/AFS_Automation/WMS_Automation/InboundOrdersDetailsCucumberTestNGRunner.xml" />
+      <item itemvalue="TestNG.C:/Users/karthikeyan.Armugam/Documents/Git_Repositories/ignition-qa/AFS_Automation/WMS_Automation/CountingCountingTestNGRunner.xml" />
+      <item itemvalue="TestNG.C:/Users/karthikeyan.Armugam/Documents/Git_Repositories/ignition-qa/AFS_Automation/WMS_Automation/OutboundLoadPlanning4TestNGRunner.xml" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="TestNG.C:/Users/karthikeyan.Armugam/Documents/Git_Repositories/ignition-qa/AFS_Automation/WMS_Automation/InboundOrdersDetailsCucumberTestNGRunner.xml" />
-        <item itemvalue="TestNG.InboundOrdersDetailsCucumberRunner.runScenario" />
-        <item itemvalue="TestNG.OutboundLoadPlanning1CucumberRunner" />
         <item itemvalue="TestNG.C:/Users/karthikeyan.Armugam/Documents/Git_Repositories/ignition-qa/AFS_Automation/WMS_Automation/OutboundLoadPlanning1TestNGRunner.xml" />
-        <item itemvalue="TestNG.C:/Users/karthikeyan.Armugam/Documents/Git_Repositories/ignition-qa/AFS_Automation/WMS_Automation/InboundLoadsSummary1CucumberTestNGRunner.xml" />
+        <item itemvalue="TestNG.C:/Users/karthikeyan.Armugam/Documents/Git_Repositories/ignition-qa/AFS_Automation/WMS_Automation/CountingCountingTestNGRunner.xml" />
+        <item itemvalue="TestNG.C:/Users/karthikeyan.Armugam/Documents/Git_Repositories/ignition-qa/AFS_Automation/WMS_Automation/InboundOrdersDetailsCucumberTestNGRunner.xml" />
+        <item itemvalue="TestNG.C:/Users/karthikeyan.Armugam/Documents/Git_Repositories/ignition-qa/AFS_Automation/WMS_Automation/InboundLoadsOrderDetailsCucumberTestNGRunner.xml" />
+        <item itemvalue="TestNG.C:/Users/karthikeyan.Armugam/Documents/Git_Repositories/ignition-qa/AFS_Automation/WMS_Automation/OutboundLoadPlanning4TestNGRunner.xml" />
       </list>
     </recent_temporary>
   </component>
@@ -179,6 +169,17 @@
       <updated>1698666020052</updated>
     </task>
     <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

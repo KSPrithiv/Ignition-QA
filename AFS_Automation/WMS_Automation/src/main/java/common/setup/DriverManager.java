@@ -66,8 +66,8 @@ public class DriverManager {
 
         //HEADLESS MODE CODE STARTS
 
-        options.addArguments("--headless=new");
-        options.addArguments("--remote-allow-origins=*");
+        //options.addArguments("--headless=new");
+        //options.addArguments("--remote-allow-origins=*");
         options.addArguments("--no-proxy-server");
         options.addArguments("--proxy-server='direct://'");
         options.addArguments("--proxy-bypass-list=*");
@@ -173,7 +173,7 @@ public class DriverManager {
     public static void openPage(String url) {
         getDriver().manage().window().maximize();
         getDriver().navigate().to(url);
-        getDriver().manage().deleteAllCookies();
+        //getDriver().manage().deleteAllCookies();
         getDriver().manage().timeouts().implicitlyWait(150, TimeUnit.SECONDS);
     }
 
