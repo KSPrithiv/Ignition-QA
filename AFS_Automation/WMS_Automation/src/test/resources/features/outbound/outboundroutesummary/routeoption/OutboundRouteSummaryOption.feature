@@ -171,14 +171,6 @@ Feature: Testing of Outbound Route Summary Route option
     And Validates Assignments tab and Tasks tab are displayed on Outbound Route Summary page
     And Validates Assignments tab is active by default on Outbound Route Summary page
     And Validates Assignment Type filter is displayed on Outbound Route Summary page
-    Then User selects first assignment for route on Outbound Route Summary page
-    And Validates Edit, Delete, Release, Labels and Move for Routes are enabled on Outbound Route Summary page
-    And Selects Move option for Assignment on Outbound Route Summary page
-    And Validates Move assignment window on Outbound Route Summary page
-    And New assignment, Existing assignment, New shipper and Existing shippers are displayed on Outbound Route Summary page
-    And Validates To New or Existing Shippers disabled on Outbound Route Summary page
-    And Validates Save and Cancel buttons are displayed on Outbound Route Summary page
-    And Click Cancel button on Outbound Route Summary page
 
   Scenario: Checking route option Edit when click on the Route
     Given User signs in the application

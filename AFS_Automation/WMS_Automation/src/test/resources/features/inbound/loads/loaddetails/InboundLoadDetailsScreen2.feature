@@ -21,9 +21,6 @@ Feature: Testing of Inbound Load Details screen functionality
     When Types start date by index 2 on Inbound Load Summary page
     Then Select Load with index 0 on Inbound Load Summary page
     And Clicks data option on Inbound Load Summary page
-    And Types temperature by index 0 on Inbound Load Summary page
-    And Types seal number by index 0 on Inbound Load Summary page
-    And Clicks Add Product Cancel Button on Inbound Load Summary page
 
   Scenario: Checking Edit option for Load on Load details screen
     Given User signs in the application

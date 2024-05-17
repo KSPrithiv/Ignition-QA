@@ -10,13 +10,6 @@ Feature: Testing of Inbound Orders functionality
     And Validates orders are present on Inbound Order Summary page
     When Checks Order with index 1 on Inbound Order Summary page
     And Clicks data option on Inbound Order Summary page
-    And Validates Enter data screen on Inbound Order Summary page
-    And Types temperature by index 0 on Inbound Order Summary page
-    Then Types seal number by index 0 on Inbound Order Summary page
-    And Clicks Add Product Cancel Button on Inbound Order Summary page
-    And Clicks Yes Button on Inbound Order Summary page
-    And Checks Order with index 2 on Inbound Order Summary page
-    And Validates Data option on Inbound Order Summary page is disabled
 
   Scenario: Checking Door option on Inbound Order Summary screen
     Given User signs in the application

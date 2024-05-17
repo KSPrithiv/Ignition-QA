@@ -172,7 +172,7 @@ public class InboundOrderDetailsPageSteps {
 
     @Step
     @And("Select Order Line Item with index {int} on Inbound Order Details page")
-    public void selectInboundOrderLineItemByNumber(int num) {
+    public void selectInboundOrderLineItemByNumber(int num) throws InterruptedException {
         LOG.info("Select Order Line Item by number " + num);
         inboundOrderDetailsPage.clickOrderLineItemByNumber(num);
     }

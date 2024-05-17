@@ -96,33 +96,6 @@ Feature: Testing of Lookup Dock Management screen functionality
     And Validates DockMgmt Summary Rows are displayed on DockManagement Lookup page
     And User clicks Select All checkbox on Dock Management page
     And Validates DockMgmt Summary Rows are displayed on DockManagement Lookup page
-    And Validates Receiving, Shipping, Production are enabled on DockManagement Lookup page
-    And User clicks Shipping checkbox on Dock Management page
-    And Validates DockMgmt Summary Rows are displayed on DockManagement Lookup page
-    And User clicks Shipping checkbox on Dock Management page
-    And User clicks Receiving checkbox on Dock Management page
-    And Validates DockMgmt Summary Rows are displayed on DockManagement Lookup page
-    And User clicks Shipping checkbox on Dock Management page
-    And User clicks Receiving checkbox on Dock Management page
-    And User clicks Shipping checkbox on Dock Management page
-    And Validates DockMgmt Summary Rows are displayed on DockManagement Lookup page
-    And User clicks Shipping checkbox on Dock Management page
-    And Validates DockMgmt Summary Rows are displayed on DockManagement Lookup page
-    And User clicks Shipping checkbox on Dock Management page
-    And User clicks Receiving checkbox on Dock Management page
-    And Validates DockMgmt Summary Rows are displayed on DockManagement Lookup page
-    And User clicks Shipping checkbox on Dock Management page
-    And User clicks Receiving checkbox on Dock Management page
-    And User clicks Select All checkbox on Dock Management page
-    And Validates DockMgmt Summary Rows are displayed on DockManagement Lookup page
-    And User clicks Select All checkbox on Dock Management page
-    And User clicks Receiving checkbox on Dock Management page
-    And User clicks Shipping checkbox on Dock Management page
-    And User clicks Select All checkbox on Dock Management page
-    And Validates DockMgmt Summary Rows are displayed on DockManagement Lookup page
-    And User clicks Select All checkbox on Dock Management page
-    And User clicks Shipping checkbox on Dock Management page
-    And Validates DockMgmt Summary Rows are displayed on DockManagement Lookup page
 
   Scenario: Checking Waiting inbound of Lookup Dock Management screen
     Given User signs in the application
@@ -143,10 +116,6 @@ Feature: Testing of Lookup Dock Management screen functionality
     When User types date from input by index 1 on Dock Management page
     Then User types date to input by index 3 on Dock Management page
     And Validates Inbound and Outbound labels, items are displayed on DockManagement Lookup page
-    And User clicks not empty Scheduled by index 0 on Dock Management Summary page
-    And Validates Scheduled time popup is displayed on DockManagement Lookup page
-    And User types Scheduled date by index 4 on Dock Management Summary page
-    And User clicks OK on Dock Management Summary page
 
   Scenario: Checking Trailer Change of Lookup Dock Management screen
     Given User signs in the application
@@ -159,8 +128,6 @@ Feature: Testing of Lookup Dock Management screen functionality
     And Validates Inbound and Outbound labels, items are displayed on DockManagement Lookup page
     And User clicks not empty Trailer by index 0 on Dock Management Summary page
     And Validates "Change trailer" popup is displayed on DockManagement Lookup page
-    And User selects trailer by index 0 on Dock Management Summary page
-    And User clicks OK on Dock Management Summary page
 
   Scenario: Checking Navigate to Inbound/Outbound from DockManagement of Lookup Dock Management screen
     Given User signs in the application

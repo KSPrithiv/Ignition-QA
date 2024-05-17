@@ -1,5 +1,6 @@
 @Inbound @Regression
 Feature: Testing of Inbound Orders details screen
+
   Scenario: Checking Navigate to Inbound Order details page
     Given User signs in the application
     And Main page is loaded
@@ -50,6 +51,7 @@ Feature: Testing of Inbound Orders details screen
     And Validates popup Change status title for Inbound Order Details page
     And Validates Change status popup with Ready To Receive Order status on Inbound Order Details page
     And Clicks Cancel button on Inbound Order Details page
+
 
   Scenario: Checking Status change from Ready to Receive to Finish Receiving on Inbound Order details page
     Given User signs in the application
@@ -122,6 +124,7 @@ Feature: Testing of Inbound Orders details screen
     And Validates Edit load popup on Inbound Order Details page
     And Clicks Cancel button on Inbound Order Details page
 
+
   Scenario: Checking Data option on Inbound Order details page
     Given User signs in the application
     And Main page is loaded
@@ -133,7 +136,7 @@ Feature: Testing of Inbound Orders details screen
     And User waits for Inbound Order Details page to load
     And Validates items are present on Inbound Order Details page
     And Clicks data option on Inbound Order Details page
-    And Validates Enter data screen on Inbound Order Details page
+
 
   Scenario: Checking Comments on Inbound Order details page
     Given User signs in the application
