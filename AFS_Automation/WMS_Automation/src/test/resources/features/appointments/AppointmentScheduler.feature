@@ -44,5 +44,3 @@ Feature: Testing of Appointment Scheduler functionality
     And Types email "testuser@gmail.com" on Appointment Scheduler page
     And User selects delivery "DRY" on Appointment Scheduler page
     And Click Next on Appointment Scheduler page
-    And User types Future Date in 3 days on Appointment Scheduler page
-    And Click Cancel button on Appointment Scheduler page

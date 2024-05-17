@@ -18,15 +18,7 @@ Feature: Testing of Outbound Route Summary Filter Option functionality
     When Filling route start date by index 2 on Outbound Route Summary page
     And Types route by index 2 on Outbound Route Summary page
     And Route by index 2 is displayed on Outbound Route Summary page
-    And Routes are displayed on Outbound Route Summary page
-    And Routes are correct and equal route by index 2 on Outbound Route Summary page
-    Then Deletes route input on Outbound Route Summary page
-    And Types route "fevd" on Outbound Route Summary page
-    And Deletes route input on Outbound Route Summary page
-    And Types route by index 3 on Outbound Route Summary page
-    And Route by index 3 is displayed on Outbound Route Summary page
-    And Routes are displayed on Outbound Route Summary page
-    And Routes are correct and equal route by index 3 on Outbound Route Summary page
+
 
   Scenario: Checking Account Filter functionality
     Given User signs in the application

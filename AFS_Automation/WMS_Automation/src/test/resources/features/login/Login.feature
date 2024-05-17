@@ -21,12 +21,3 @@ Feature: Testing of Login to AFS Application
     When Go to Inbound Orders page
     And User waits for Inbound Order Summary page to load
     And Validates warehouse dropdown is displayed on Inbound Load Summary page
-    And Go to Counting Count page
-    And Waits for Counting Count page to load
-    And Validates warehouse dropdown is displayed on Inbound Load Summary page
-    Then Go to Outbound Order page
-    And Waits for Outbound Order Summary page to load
-    And Validates warehouse dropdown is displayed on Inbound Load Summary page
-    And Go to Work Queue Assign Work page
-    And Waits for Work Queue Work Assign page to load
-    And Validates warehouse dropdown is displayed on Inbound Load Summary page

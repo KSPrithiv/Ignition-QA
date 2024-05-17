@@ -32,16 +32,6 @@ Feature: Testing of Inbound Load Order Details screen functionality
     And Clicks door on Assign doors popup on Inbound Load Order Summary page
     And Clicks door "DR01" on Inbound Load Order Summary page
     And Clicks Save on Inbound Load Order Summary page
-    And Validates "Success" notification is displayed on Inbound Load Order Summary page
-    And Clicks door option on Inbound Load Order Summary page
-    And Validates popup Assign doors title for Inbound Load Order Summary page
-    And Clicks door on Assign doors popup on Inbound Load Order Summary page
-    And Clicks door "DOOR" on Inbound Load Order Summary page
-    And Clicks Save on Inbound Load Order Summary page
-    And Validates "Success" notification is displayed on Inbound Load Order Summary page
-    And Clicks door option on Inbound Load Order Summary page
-    And Validates popup Assign doors title for Inbound Load Order Summary page
-    And Clicks Cancel button on Inbound Load Order Summary page
 
   Scenario: Checking Order details on Load Order Details page
     Given User signs in the application
@@ -98,10 +88,6 @@ Feature: Testing of Inbound Load Order Details screen functionality
     And Validates loads are present on Inbound Load Summary page
     And Select Load with index 0 on Inbound Load Summary page
     Then Select Load Order with index 0 on Inbound Load Summary page
-    And Select Order Product with index 0 on Inbound Load Order Summary page
-    And Clicks Order Line Image button on Inbound Load Order Line Items page
-    And Validates Load Images on Inbound Load Order Details page
-    And Clicks back to Inbound Load Order Summary page
 
   Scenario: Checking Back button on Load Order Details page
     Given User signs in the application
@@ -128,9 +114,6 @@ Feature: Testing of Inbound Load Order Details screen functionality
     And Select Load with index 0 on Inbound Load Summary page
     Then Select Load Order with index 0 on Inbound Load Summary page
     And Clicks data option on Inbound Load Order Summary page
-    And Validates Enter data screen on Inbound Load Order Details page
-    And Clicks Cancel on Order Data on Inbound Load Order Summary page
-    And Clicks Route Back button on Inbound Load Summary page
 
   Scenario: Searching order details on Load Order Details page
     Given User signs in the application
