@@ -11,10 +11,10 @@ public class InboundOrderLocationLookupPage extends BasePage {
     By topIcon = By.xpath("//span[contains(text(), 'Location lookup')]");
     By locationSearchACField = By.id("locationSearchACField-label");
     By locationInput = By.cssSelector("input[placeholder='Enter location']");
-    By locationButton = By.xpath("//div[@id='locationGrid']//button[contains(@class, 'i-indexfield-container')]");
+    By locationButton = By.xpath("//div[@id='locationGrid']//button/span[contains(@class, 'i-indexfield-container')]");
     By addLocProdButton = By.id("addLocProdButton");
-    By editButton = By.xpath("//button[contains(text(), 'Edit')]");
-    By deleteButton = By.xpath("//button[contains(text(), 'Delete')]");
+    By editButton = By.xpath("//button/span[contains(text(), 'Edit')]");
+    By deleteButton = By.xpath("//button/span[contains(text(), 'Delete')]");
     By transferButton = By.xpath("//button[contains(text(), 'Move')]");
     By statusButton = By.xpath("//button[contains(text(), 'Status')]");
     By labelsButton = By.xpath("//button[contains(text(), 'Labels')]");

@@ -40,7 +40,7 @@ public class AdminStandingOrderOMSStep
         standingOrder.ValidateCatalogPopup();
         standingOrder.clickOnLoadAllProducts();
         standingOrder.ResetFilter_Catalog();
-        if (HelpersMethod.IsExists("//div[contains(@class,'k-widget k-window k-dialog')]/descendant::div[contains(@class,'i-grid')]", driver))
+        if (HelpersMethod.IsExists("//div[contains(@class,'k-window k-dialog')]/descendant::div[contains(@class,'i-grid')]", driver))
         {
             standingOrder.ListViewAdminZeroPrecedingOMS();
         }

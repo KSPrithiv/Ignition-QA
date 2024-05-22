@@ -124,7 +124,7 @@ public class ProductLookupPage extends BasePage {
     By weightFilter = By.cssSelector(".i-btn-checkbox  #Weight");
     By stagedFilter = By.cssSelector(".i-btn-checkbox  #Staged");
     By inputContains = By.xpath("//input[@placeholder='Contains']");
-    By applyButton = By.xpath("//button[text()='Apply']");
+    By applyButton = By.xpath("//button/span[text()='Apply']");
     By inputSearch = By.xpath("//input[@placeholder='Search']");
     By palletsIndicator= By.xpath("//span[contains(text(), 'Pallets:')]");
     By palletsIndicatorValue = By.xpath("//span[contains(text(), 'Pallets')]//following-sibling::span[@class='i-summary-area__main__value']");

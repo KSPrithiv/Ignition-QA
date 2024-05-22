@@ -42,7 +42,7 @@ public class WorkQueueLoggedInUsersPage extends BasePage {
     By addFilterButton = By.xpath("//span[contains(text(), 'Add filter')]");
     By clearAllButton = By.xpath("//button[text()='Clear all']");
     By inputContains = By.xpath("//input[@placeholder='Contains']");
-    By applyButton = By.xpath("//button[text()='Apply']");
+    By applyButton = By.xpath("//button/span[text()='Apply']");
     By btnRemove = By.id("btnRemove");
     By logOutUserPopUpTitle = By.cssSelector("div.k-dialog-title");
     By logoutUserDropdown = By.xpath("//div[contains(@class, 'k-window-content')]//span[contains(@class, 'k-dropdown-wrap')]");

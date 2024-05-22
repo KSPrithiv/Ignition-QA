@@ -170,6 +170,16 @@ public class AllOrdersPageStep
     {
         orderpage = new OrderEntryPage(driver, scenario);
         exists= orderpage.HandleError_Page();
+        orderpage.yourOrderNotSubmitted();
+        summary=new CheckOutSummaryPage(driver,scenario);
+        exists= summary.validateExistingOrderDisplayed();
+        for(int i=0;i<=2;i++)
+        {
+            summary.additionalOrderPopup();
+            summary.cutoffDialog();
+            summary.percentageOfAverageProd();
+        }
+        summary.SucessPopup();
         allOrder=new AllOrderPage(driver,scenario);
         if(exists==true)
         {

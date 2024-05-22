@@ -206,7 +206,7 @@ public class orderFactorAdminPage
                             .ignoring(NoSuchElementException.class);
                     wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
                 }
-                if(HelpersMethod.IsExists("//*[local-name()='svg']/ancestor::tr[@class='k-master-row']/descendant::button|//*[local-name()='svg']/ancestor::tr[@class='k-master-row k-alt']/descendant::button|//*[local-name()='svg']/ancestor::tr[@class='k-master-row k-state-selected']/descendant::button",driver))
+                if(HelpersMethod.IsExists("//*[local-name()='svg']/ancestor::tr[contains(@class,'k-master-row')]/descendant::button|//*[local-name()='svg']/ancestor::tr[@class='k-master-row k-alt']/descendant::button|//*[local-name()='svg']/ancestor::tr[@class='k-master-row k-state-selected']/descendant::button",driver))
                 {
                     //Code to find last page number
                     WebElement lastArrow= HelpersMethod.FindByElement(driver,"xpath","//div[@class='k-widget k-window k-dialog']/descendant::span[@class='k-icon k-i-arrow-end-right']");
@@ -252,9 +252,9 @@ public class orderFactorAdminPage
                                         .ignoring(NoSuchElementException.class);
                                 wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
 
-                                if (HelpersMethod.IsExists("//*[local-name()='svg' and @fill='#FF9800']/ancestor::tr[@class='k-master-row']/descendant::button|//*[local-name()='svg' and @fill='#FF9800']/ancestor::tr[@class='k-master-row k-alt']/descendant::button", driver))
+                                if (HelpersMethod.IsExists("//*[local-name()='svg' and @fill='#FF9800']/ancestor::tr[contains(@class,'k-master-row')]/descendant::button|//*[local-name()='svg' and @fill='#FF9800']/ancestor::tr[@class='k-master-row k-alt']/descendant::button", driver))
                                 {
-                                    List<WebElement> products = HelpersMethod.FindByElements(driver, "xpath", "//*[local-name()='svg' and @fill='#FF9800']/ancestor::tr[@class='k-master-row']/descendant::button|//*[local-name()='svg' and @fill='#FF9800']/ancestor::tr[@class='k-master-row k-alt']/descendant::button");
+                                    List<WebElement> products = HelpersMethod.FindByElements(driver, "xpath", "//*[local-name()='svg' and @fill='#FF9800']/ancestor::tr[contains(@class,'k-master-row')]/descendant::button|//*[local-name()='svg' and @fill='#FF9800']/ancestor::tr[@class='k-master-row k-alt']/descendant::button");
                                     for (int l = 0; l <= products.size() - 1; l++)
                                     {
                                         if (l == 0)
@@ -347,9 +347,9 @@ public class orderFactorAdminPage
                                 wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
 
                                 //Code to find unselected product for order factor
-                                if(HelpersMethod.IsExists("//div[@class='k-widget k-window k-dialog']/descendant::tr[@class='k-master-row k-alt']/descendant::button|//div[@class='k-widget k-window k-dialog']/descendant::tr[@class='k-master-row']/descendant::button",driver))
+                                if(HelpersMethod.IsExists("//div[@class='k-widget k-window k-dialog']/descendant::tr[@class='k-master-row k-alt']/descendant::button|//div[@class='k-widget k-window k-dialog']/descendant::tr[contains(@class,'k-master-row')]/descendant::button",driver))
                                 {
-                                    List<WebElement> products = HelpersMethod.FindByElements(driver, "xpath", "//div[@class='k-widget k-window k-dialog']/descendant::tr[@class='k-master-row k-alt']/descendant::button|//div[@class='k-widget k-window k-dialog']/descendant::tr[@class='k-master-row']/descendant::button");
+                                    List<WebElement> products = HelpersMethod.FindByElements(driver, "xpath", "//div[@class='k-widget k-window k-dialog']/descendant::tr[@class='k-master-row k-alt']/descendant::button|//div[@class='k-widget k-window k-dialog']/descendant::tr[contains(@class,'k-master-row')]/descendant::button");
                                     for (int p = 0; p <= products.size() - 1; p++)
                                     {
                                         if (p == 0)
@@ -468,9 +468,9 @@ public class orderFactorAdminPage
         exists=false;
         try
         {
-            if(HelpersMethod.IsExists("//div[@class='i-grid']/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
+            if(HelpersMethod.IsExists("//div[@class='i-grid']/ancestor::div[contains(@class,'k-window k-dialog')]",driver))
             {
-                if(HelpersMethod.IsExists("//div[contains(@class,'k-widget k-window k-dialog')]/descendant::div[@class='i-no-data__message']",driver))
+                if(HelpersMethod.IsExists("//div[contains(@class,'k-window k-dialog')]/descendant::div[@class='i-no-data__message']",driver))
                 {
                     scenario.log("NO PRODUCT HAS BEEN FOUND IN PRODUCT DIALOG BOX");
                 }
@@ -493,13 +493,13 @@ public class orderFactorAdminPage
         String headText=null;
        try
        {
-           if(HelpersMethod.IsExists("//div[contains(@class,'k-widget k-window k-dialog')]/descendant::div[@class='i-no-data__message']",driver))
+           if(HelpersMethod.IsExists("//div[contains(@class,'k-window k-dialog')]/descendant::div[@class='i-no-data__message']",driver))
            {
                scenario.log("<span style='color:red'>NO PRODUCT HAS BEEN FOUND</span>");
            }
            else
            {
-               List<WebElement> heads = HelpersMethod.FindByElements(driver, "xpath", "//div[contains(@class,'k-widget k-window k-dialog')]/descendant::span[@class='k-column-title']");
+               List<WebElement> heads = HelpersMethod.FindByElements(driver, "xpath", "//div[contains(@class,'k-window k-dialog')]/descendant::span[@class='k-column-title']");
                for (WebElement head : heads)
                {
                    act.moveToElement(head).build().perform();
@@ -513,9 +513,9 @@ public class orderFactorAdminPage
                }
                Assert.assertEquals(exists, true);
                exists = false;
-               if (HelpersMethod.IsExists("//div[contains(@class,'k-widget k-window k-dialog')]/descendant::tr[@class='k-filter-row']/th[" + i + "]/descendant::input", driver))
+               if (HelpersMethod.IsExists("//div[contains(@class,'k-window k-dialog')]/descendant::tr[@class='k-filter-row']/th[" + i + "]/descendant::input", driver))
                {
-                   WebElement prodSearch = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-widget k-window k-dialog')]/descendant::tr[@class='k-filter-row']/th[" + i + "]/descendant::input");
+                   WebElement prodSearch = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-window k-dialog')]/descendant::tr[@class='k-filter-row']/th[" + i + "]/descendant::input");
                    HelpersMethod.JSSetValueEle(driver, prodSearch, 10000, prodNo);
                    scenario.log("ORDER FACTOR HAS BEEN CREATED FOR PRODUCT "+prodNo);
                    Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
@@ -536,9 +536,9 @@ public class orderFactorAdminPage
         exists=false;
         try
         {
-            if(!HelpersMethod.IsExists("//div[contains(@class,'k-widget k-window k-dialog')]/descendant::div[@class='i-no-data__message']",driver))
+            if(!HelpersMethod.IsExists("//div[contains(@class,'k-window k-dialog')]/descendant::div[@class='i-no-data__message']",driver))
             {
-                WebElement prodRow=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-widget k-window k-dialog')]/descendant::tr[contains(@class,'k-master-row')][1]");
+                WebElement prodRow=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-window k-dialog')]/descendant::tr[contains(@class,'k-master-row')][1]");
                 HelpersMethod.ActClick(driver,prodRow,10000);
                 scenario.log("PRODUCT FOUND");
                 exists=true;
@@ -557,9 +557,9 @@ public class orderFactorAdminPage
         exists=false;
         try
         {
-            if(HelpersMethod.IsExists("//div[contains(@class,'k-widget k-window k-dialog')]/descendant::button[text()='OK']",driver))
+            if(HelpersMethod.IsExists("//div[contains(@class,'k-window k-dialog')]/descendant::button/span[text()='Ok']",driver))
             {
-                WebElement okButton = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-widget k-window k-dialog')]/descendant::button[text()='OK']");
+                WebElement okButton = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-window k-dialog')]/descendant::button/span[text()='Ok']");
                 HelpersMethod.ActClick(driver, okButton, 10000);
                 exists = true;
                 Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
@@ -689,9 +689,9 @@ public class orderFactorAdminPage
         exists=false;
         try
         {
-            if(HelpersMethod.IsExists("//button[text()='Delete']",driver))
+            if(HelpersMethod.IsExists("//button/span[text()='Delete']",driver))
             {
-                WebElement deleteButton=HelpersMethod.FindByElement(driver,"xpath","//button[text()='Delete']");
+                WebElement deleteButton=HelpersMethod.FindByElement(driver,"xpath","//button/span[text()='Delete']");
                 if(deleteButton.isEnabled())
                 {
                     HelpersMethod.ClickBut(driver, deleteButton, 10000);
@@ -710,7 +710,7 @@ public class orderFactorAdminPage
         {
             if(HelpersMethod.IsExists("//div[contains(text(),'Are you sure you want to delete this record?')]/ancestor::div[@class='k-widget k-window k-dialog']",driver))
             {
-                WebElement deleteOKButton=HelpersMethod.FindByElement(driver,"xpath","//div[@class='k-widget k-window k-dialog']/descendant::button[text()='OK']");
+                WebElement deleteOKButton=HelpersMethod.FindByElement(driver,"xpath","//div[@class='k-widget k-window k-dialog']/descendant::button/span[text()='Ok']");
                 if(deleteOKButton.isEnabled())
                 {
                     HelpersMethod.ActClick(driver, deleteOKButton, 10000);

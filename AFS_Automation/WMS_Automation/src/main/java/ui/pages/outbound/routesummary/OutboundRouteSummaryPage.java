@@ -641,7 +641,7 @@ public class OutboundRouteSummaryPage extends BasePage {
     public void clickOnProductFromGridByIndex(int index) {
         Waiters.waitTillLoadingPage(getDriver());
         Waiters.waitForElementToBeDisplay(getProductSearchIndex());
-        clickOnElement(getProductSearchIndex().findElements(By.xpath(".//tr[@class='k-master-row']")).get(index));
+        clickOnElement(getProductSearchIndex().findElements(By.xpath(".//tr[contains(@class,'k-master-row')]")).get(index));
     }
 
     public void selectOption(String status) {

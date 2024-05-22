@@ -16,7 +16,7 @@ public class LocationLookupPage extends BasePage {
     By locationSearchInput = By.xpath("//input[@placeholder='Enter location']");
     By searchInput = By.xpath("//input[@placeholder='Search']");
     By locationSearchButton = By.cssSelector(".i-indexfield-container__main .k-button");
-    By deleteButton = By.xpath("//button[text()='Delete']");
+    By deleteButton = By.xpath("//button/span[text()='Delete']");
     By addLocProdButton = By.id("addLocProdButton");
     By editLocProdButton = By.id("editLocProdButton");
     By lookupProductShowPalletCheck = By.id("lookupProductShowPalletCheck");

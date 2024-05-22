@@ -109,8 +109,8 @@ public class NewStandingOrderCard
                     {
                         HelpersMethod.waitTillLoadingPage(driver);
                     }
-                    new WebDriverWait(driver, Duration.ofMillis(40000)).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(text(),'Add standing order')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]")));
-                    HelpersMethod.waitTillElementLocatedDisplayed(driver, "xpath", "//div[contains(text(),'Add standing order')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]", 80000);
+                    new WebDriverWait(driver, Duration.ofMillis(40000)).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(text(),'Add standing order')]/ancestor::div[contains(@class,'k-window k-dialog')]")));
+                    HelpersMethod.waitTillElementLocatedDisplayed(driver, "xpath", "//div[contains(text(),'Add standing order')]/ancestor::div[contains(@class,'k-window k-dialog')]", 80000);
                     exists = true;
                 }
             }
@@ -127,8 +127,8 @@ public class NewStandingOrderCard
         String FTDate=null;
         try {
             //Create WebElement for popup
-            HelpersMethod.waitTillElementLocatedDisplayed(driver, "xpath", "//div[contains(@class,'k-widget k-window k-dialog')]", 6000);
-            WebElement modalContainer = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-widget k-window k-dialog')]");
+            HelpersMethod.waitTillElementLocatedDisplayed(driver, "xpath", "//div[contains(@class,'k-window k-dialog')]", 6000);
+            WebElement modalContainer = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-window k-dialog')]");
 
             //Click on From Calender icon
             WebElement startDateIcon = modalContainer.findElement(By.xpath(".//label[contains(@id,'addFromDate-label')]/following-sibling::span/descendant::span[contains(@class,'k-icon k-i-calendar')]"));
@@ -203,7 +203,7 @@ public class NewStandingOrderCard
                 }
             }
             //Click on ADD button
-            WebEle = modalContainer.findElement(By.xpath(".//button[text()='Add']"));
+            WebEle = modalContainer.findElement(By.xpath(".//button/span[text()='Add']"));
             HelpersMethod.ActClick(driver, WebEle, 10000);
             if (HelpersMethod.IsExists("//div[@class='loader']", driver))
             {
@@ -218,10 +218,10 @@ public class NewStandingOrderCard
     {
         exists=false;
         try {
-            HelpersMethod.waitTillElementLocatedDisplayed(driver, "xpath", "//div[contains(@class,'k-widget k-window k-dialog')]", 1000);
+            HelpersMethod.waitTillElementLocatedDisplayed(driver, "xpath", "//div[contains(@class,'k-window k-dialog')]", 1000);
             // to fetch the web element of the modal container
-            WebElement modalContainer = driver.findElement(By.xpath("//div[contains(@class,'k-widget k-window k-dialog')]"));
-            if (HelpersMethod.IsExists("//div[contains(text(),'Add standing order')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]", driver))
+            WebElement modalContainer = driver.findElement(By.xpath("//div[contains(@class,'k-window k-dialog')]"));
+            if (HelpersMethod.IsExists("//div[contains(text(),'Add standing order')]/ancestor::div[contains(@class,'k-window k-dialog')]", driver))
             {
                 exists = true;
             }
@@ -235,10 +235,10 @@ public class NewStandingOrderCard
         exists=false;
         try
         {
-            HelpersMethod.waitTillElementLocatedDisplayed(driver, "xpath", "//div[contains(@class,'k-widget k-window k-dialog')]", 400);
+            HelpersMethod.waitTillElementLocatedDisplayed(driver, "xpath", "//div[contains(@class,'k-window k-dialog')]", 400);
 
             // to fetch the web element of the modal container
-            WebElement modalContainer = driver.findElement(By.xpath("//div[contains(@class,'k-widget k-window k-dialog')]"));
+            WebElement modalContainer = driver.findElement(By.xpath("//div[contains(@class,'k-window k-dialog')]"));
             WebElement startDateIcon = modalContainer.findElement(By.xpath(".//label[contains(@id,'addFromDate-label')]/following-sibling::span/descendant::span[contains(@class,'k-icon k-i-calendar')]"));
             new WebDriverWait(driver, Duration.ofMillis(10000)).until(ExpectedConditions.elementToBeClickable(startDateIcon));
             HelpersMethod.JScriptClick(driver, startDateIcon, 1000);
@@ -260,9 +260,9 @@ public class NewStandingOrderCard
     {
         try
         {
-            HelpersMethod.waitTillElementLocatedDisplayed(driver, "xpath", "//div[contains(@class,'k-widget k-window k-dialog')]", 100);
+            HelpersMethod.waitTillElementLocatedDisplayed(driver, "xpath", "//div[contains(@class,'k-window k-dialog')]", 100);
             // to fetch the web element of the modal container
-            WebElement modalContainer = driver.findElement(By.xpath("//div[contains(@class,'k-widget k-window k-dialog')]"));
+            WebElement modalContainer = driver.findElement(By.xpath("//div[contains(@class,'k-window k-dialog')]"));
             WebElement toDateIcon = modalContainer.findElement(By.xpath(".//label[contains(@id,'addToDate-label')]/following-sibling::span/descendant::span[contains(@class,'k-icon k-i-calendar')]"));
             HelpersMethod.JScriptClick(driver, toDateIcon, 1000);
             HelpersMethod.WaitElementPresent(driver, "xpath", "//div[contains(@class,'k-popup k-child-animation-container k-slide-down-enter k-slide-down-enter-active')]", 10000);
@@ -383,14 +383,14 @@ public class NewStandingOrderCard
         try
         {
             //Click on Add button
-            HelpersMethod.waitTillElementLocatedDisplayed(driver, "xpath", "//div[contains(@class,'k-widget k-window k-dialog')]", 10000);
-            WebElement modalContainer = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-widget k-window k-dialog')]");
+            HelpersMethod.waitTillElementLocatedDisplayed(driver, "xpath", "//div[contains(@class,'k-window k-dialog')]", 10000);
+            WebElement modalContainer = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-window k-dialog')]");
 
             // Verify the title of Add standin order popup
-            WebElement modalContentTitle = modalContainer.findElement(By.xpath(".//div[contains(@class,'k-window-title k-dialog-title')]"));
+            WebElement modalContentTitle = modalContainer.findElement(By.xpath(".//span[contains(@class,'k-window-title k-dialog-title')]"));
             Assert.assertEquals(modalContentTitle.getText(), "Add standing order", "Verify Title message");
 
-            WebEle = modalContainer.findElement(By.xpath(".//button[text()='Add']"));
+            WebEle = modalContainer.findElement(By.xpath(".//button/span[text()='Add']"));
             HelpersMethod.ActClick(driver, WebEle, 10000);
             exists = true;
             Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
@@ -434,15 +434,15 @@ public class NewStandingOrderCard
                 //Click on down arrow in standing order card
                 ClickOnNewStandingOrderArrow();
                 HelpersMethod.ClickBut(driver, DeleteStandingOrder, 10000);
-                if (HelpersMethod.IsExists("//div[contains(text(),'Delete standing order?')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]", driver))
+                if (HelpersMethod.IsExists("//div[contains(text(),'Delete standing order?')]/ancestor::div[contains(@class,'k-window k-dialog')]", driver))
                 {
-                    WebElement modalContainer = driver.findElement(By.xpath("//div[contains(@class,'k-widget k-window k-dialog')]"));
+                    WebElement modalContainer = driver.findElement(By.xpath("//div[contains(@class,'k-window k-dialog')]"));
 
                     // to fetch the web elements of the modal content and interact with them, code to fetch content of modal title and verify it
-                    WebElement modalContentTitle = modalContainer.findElement(By.xpath("//div[contains(@class,'k-window-title k-dialog-title')]"));
+                    WebElement modalContentTitle = modalContainer.findElement(By.xpath("//span[contains(@class,'k-window-title k-dialog-title')]"));
                     Assert.assertEquals(modalContentTitle.getText(), "Delete standing order?", "Verify Title message");
 
-                    WebEle = modalContainer.findElement(By.xpath(".//button[text()='Yes']"));
+                    WebEle = modalContainer.findElement(By.xpath(".//button/span[text()='Yes']"));
                     HelpersMethod.ActClick(driver, WebEle, 10000);
 
                     wait = new FluentWait<WebDriver>(driver)
@@ -476,15 +476,15 @@ public class NewStandingOrderCard
         {
             ClickOnNewStandingOrderArrow();
             HelpersMethod.ClickBut(driver,DeleteStandingOrder,10000);
-            if(HelpersMethod.IsExists("//div[contains(text(),'Delete standing order?')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
+            if(HelpersMethod.IsExists("//div[contains(text(),'Delete standing order?')]/ancestor::div[contains(@class,'k-window k-dialog')]",driver))
             {
-                WebElement modalContainer = driver.findElement(By.xpath("//div[contains(@class,'k-widget k-window k-dialog')]"));
+                WebElement modalContainer = driver.findElement(By.xpath("//div[contains(@class,'k-window k-dialog')]"));
 
                 // to fetch the web elements of the modal content and interact with them, code to fetch content of modal title and verify it
-                WebElement modalContentTitle = modalContainer.findElement(By.xpath(".//div[contains(@class,'k-window-title k-dialog-title')]"));
+                WebElement modalContentTitle = modalContainer.findElement(By.xpath(".//span[contains(@class,'k-window-title k-dialog-title')]"));
                 Assert.assertEquals(modalContentTitle.getText(), "Delete standing order?", "Verify Title message");
 
-                WebEle = modalContainer.findElement(By.xpath(".//button[text()='Yes']"));
+                WebEle = modalContainer.findElement(By.xpath(".//button/span[text()='Yes']"));
                 HelpersMethod.ActClick(driver, WebEle, 10000);
                 scenario.log("EXPIRED STANDING ORDER DELETED");
                 exists = true;
@@ -504,8 +504,8 @@ public class NewStandingOrderCard
                 HelpersMethod.ClickBut(driver, CopyStandingOrder, 10000);
                 scenario.log("COPY STANDING ORDER HAS BEEN CLICKED");
                 exists = true;
-                HelpersMethod.WaitElementPresent(driver, "xpath", "//div[contains(text(),'Copy standing order')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]", 10000);
-                new WebDriverWait(driver, Duration.ofMillis(10000)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(text(),'Copy standing order')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]")));
+                HelpersMethod.WaitElementPresent(driver, "xpath", "//div[contains(text(),'Copy standing order')]/ancestor::div[contains(@class,'k-window k-dialog')]", 10000);
+                new WebDriverWait(driver, Duration.ofMillis(10000)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(text(),'Copy standing order')]/ancestor::div[contains(@class,'k-window k-dialog')]")));
             }
             Assert.assertEquals(exists, true);
         }
@@ -515,13 +515,13 @@ public class NewStandingOrderCard
     public void validateVisiblilityOfCopyStandingOrderDiaglog()
     {
         exists = false;
-        HelpersMethod.WaitElementPresent(driver, "xpath", "//div[contains(text(),'Copy standing order')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]", 400);
-        HelpersMethod.waitTillElementLocatedDisplayed(driver, "xpath", "//div[contains(@class,'k-widget k-window k-dialog')]", 400);
+        HelpersMethod.WaitElementPresent(driver, "xpath", "//div[contains(text(),'Copy standing order')]/ancestor::div[contains(@class,'k-window k-dialog')]", 400);
+        HelpersMethod.waitTillElementLocatedDisplayed(driver, "xpath", "//div[contains(@class,'k-window k-dialog')]", 400);
         // to fetch the web element of the modal container
-        WebElement modalContainer = driver.findElement(By.xpath("//div[contains(@class,'k-widget k-window k-dialog')]"));
+        WebElement modalContainer = driver.findElement(By.xpath("//div[contains(@class,'k-window k-dialog')]"));
 
         // to fetch the web elements of the modal content and interact with them, code to fetch content of modal title and verify it
-        WebElement modalContentTitle = modalContainer.findElement(By.xpath(".//div[contains(@class,'k-window-title k-dialog-title')]"));
+        WebElement modalContentTitle = modalContainer.findElement(By.xpath(".//span[contains(@class,'k-window-title k-dialog-title')]"));
         Assert.assertEquals(modalContentTitle.getText(), "Copy standing order", "Verify Title message");
     }
 
@@ -532,9 +532,9 @@ public class NewStandingOrderCard
         String FTDate = null;
         exists = false;
 
-        HelpersMethod.waitTillElementLocatedDisplayed(driver, "xpath", "//div[contains(@class,'k-widget k-window k-dialog')]", 30);
+        HelpersMethod.waitTillElementLocatedDisplayed(driver, "xpath", "//div[contains(@class,'k-window k-dialog')]", 30);
         // to fetch the web element of the modal container
-        WebElement modalContainer = driver.findElement(By.xpath("//div[contains(@class,'k-widget k-window k-dialog')]"));
+        WebElement modalContainer = driver.findElement(By.xpath("//div[contains(@class,'k-window k-dialog')]"));
         WebElement startDateIcon = modalContainer.findElement(By.xpath(".//label[contains(@id,'copyFromDate-label')]/following-sibling::span/descendant::span[contains(@class,'k-icon k-i-calendar')]"));
         HelpersMethod.ActClick(driver, startDateIcon, 10000);
         new WebDriverWait(driver, Duration.ofMillis(10000)).until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath("//div[contains(@class,'k-widget k-calendar k-calendar-infinite')]")));
@@ -581,9 +581,9 @@ public class NewStandingOrderCard
             HelpersMethod.waitTillLoadingPage(driver);
         }
 
-        HelpersMethod.waitTillElementLocatedDisplayed(driver, "xpath", "//div[contains(@class,'k-widget k-window k-dialog')]", 10000);
+        HelpersMethod.waitTillElementLocatedDisplayed(driver, "xpath", "//div[contains(@class,'k-window k-dialog')]", 10000);
         // to fetch the web element of the modal container
-        WebElement modalContainer = driver.findElement(By.xpath("//div[contains(@class,'k-widget k-window k-dialog')]"));
+        WebElement modalContainer = driver.findElement(By.xpath("//div[contains(@class,'k-window k-dialog')]"));
         WebElement endDateIcon = modalContainer.findElement(By.xpath(".//label[contains(@id,'copyToDate-label')]/following-sibling::span/descendant::span[contains(@class,'k-icon k-i-calendar')]"));
         HelpersMethod.ActClick(driver, endDateIcon, 10000);
         new WebDriverWait(driver, Duration.ofMillis(10000)).until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath("//div[contains(@class,'k-widget k-calendar k-calendar-infinite')]")));
@@ -620,16 +620,16 @@ public class NewStandingOrderCard
     public void copyButtonInCopyStandingOrderDiaglog()
     {
         exists = false;
-        HelpersMethod.waitTillElementLocatedDisplayed(driver, "xpath", "//div[contains(@class,'k-widget k-window k-dialog')]", 10000);
+        HelpersMethod.waitTillElementLocatedDisplayed(driver, "xpath", "//div[contains(@class,'k-window k-dialog')]", 10000);
         // to fetch the web element of the modal container
-        WebElement modalContainer = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-widget k-window k-dialog')]");
+        WebElement modalContainer = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-window k-dialog')]");
 
         //Click on Copy Button
-        WebElement copyButton = modalContainer.findElement(By.xpath("//button[text()='Copy']"));
+        WebElement copyButton = modalContainer.findElement(By.xpath("//button/span[text()='Copy']"));
         if (copyButton.isEnabled())
         {
             HelpersMethod.ClickBut(driver, copyButton, 10000);
-            HelpersMethod.WaitElementPresent(driver,"xpath","//div[text()='Success']/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",10000);
+            HelpersMethod.WaitElementPresent(driver,"xpath","//div[text()='Success']/ancestor::div[contains(@class,'k-window k-dialog')]",10000);
             exists = true;
         }
         Assert.assertEquals(exists, true);
@@ -646,16 +646,16 @@ public class NewStandingOrderCard
                     .ignoring(NoSuchElementException.class);
             wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
 
-            HelpersMethod.WaitElementPresent(driver, "xpath", "//div[text()='Success']/ancestor::div[contains(@class,'k-widget k-window k-dialog')]", 2000);
-            HelpersMethod.waitTillElementLocatedDisplayed(driver, "xpath", "//div[text()='Success']/ancestor::div[contains(@class,'k-widget k-window k-dialog')]", 4000);
+            HelpersMethod.WaitElementPresent(driver, "xpath", "//div[text()='Success']/ancestor::div[contains(@class,'k-window k-dialog')]", 2000);
+            HelpersMethod.waitTillElementLocatedDisplayed(driver, "xpath", "//div[text()='Success']/ancestor::div[contains(@class,'k-window k-dialog')]", 4000);
             // to fetch the web element of the modal container
-            WebElement copySuccessContainer = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-widget k-window k-dialog')]");
+            WebElement copySuccessContainer = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-window k-dialog')]");
             // to fetch the web elements of the modal content and interact with them, code to fetch content of modal title and verify it
-            WebElement successContentTitle = copySuccessContainer.findElement(By.xpath(".//div[contains(@class,'k-window-title k-dialog-title')]"));
+            WebElement successContentTitle = copySuccessContainer.findElement(By.xpath(".//span[contains(@class,'k-window-title k-dialog-title')]"));
             Assert.assertEquals(successContentTitle.getText(), "Success", "Verify Title message");
 
             //Click on Ok Button
-            WebElement OkButton = copySuccessContainer.findElement(By.xpath(".//button[text()='OK']"));
+            WebElement OkButton = copySuccessContainer.findElement(By.xpath(".//button/span[text()='Ok']"));
             HelpersMethod.ClickBut(driver, OkButton, 10000);
             exists = true;
             scenario.log("STANDING ORDER HAS BEEN COPIED SUCESSFULLY");
@@ -676,8 +676,8 @@ public class NewStandingOrderCard
             }
             HelpersMethod.ClickBut(driver, ShowStandingOrder, 10000);
             exists = true;
-            new WebDriverWait(driver, Duration.ofMillis(10000)).until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath("//div[contains(@class,'k-widget k-window k-dialog')]")));
-            HelpersMethod.waitTillElementLocatedDisplayed(driver, "xpath", "//div[contains(@class,'k-widget k-window k-dialog')]", 10000);
+            new WebDriverWait(driver, Duration.ofMillis(10000)).until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath("//div[contains(@class,'k-window k-dialog')]")));
+            HelpersMethod.waitTillElementLocatedDisplayed(driver, "xpath", "//div[contains(@class,'k-window k-dialog')]", 10000);
             status = HelpersMethod.returnDocumentStatus(driver);
             if (status.equals("loading"))
             {
@@ -698,12 +698,12 @@ public class NewStandingOrderCard
                 HelpersMethod.waitTillLoadingPage(driver);
             }
 
-            HelpersMethod.waitTillElementLocatedDisplayed(driver, "xpath", "//div[contains(@class,'k-widget k-window k-dialog')]", 200);
+            HelpersMethod.waitTillElementLocatedDisplayed(driver, "xpath", "//div[contains(@class,'k-window k-dialog')]", 200);
             // to fetch the web element of the modal container
-            WebElement modalContainer = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-widget k-window k-dialog')]");
+            WebElement modalContainer = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-window k-dialog')]");
 
             // to fetch the web elements of the modal content and interact with them, code to fetch content of modal title and verify it
-            WebElement modalContentTitle = modalContainer.findElement(By.xpath(".//div[contains(@class,'k-window-title k-dialog-title')]"));
+            WebElement modalContentTitle = modalContainer.findElement(By.xpath(".//span[contains(@class,'k-window-title k-dialog-title')]"));
             Assert.assertEquals(modalContentTitle.getText(), "Standing order register", "Verify Title message");
         }
         catch (Exception e){}
@@ -718,7 +718,7 @@ public class NewStandingOrderCard
             {
                 new WebDriverWait(driver, Duration.ofMillis(100000)).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//span[contains(@class,'k-icon k-i-loading')]")));
             }
-            WebElement modalContainer = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-widget k-window k-dialog')]");
+            WebElement modalContainer = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-window k-dialog')]");
             WebElement custFilterInput = modalContainer.findElement(By.xpath(".//th[2]/div[@class='k-filtercell'][1]/descendant::input"));
             String Acc_No = TestBase.testEnvironment.get_Account();
             HelpersMethod.EnterText(driver, custFilterInput, 10000, Acc_No);
@@ -738,7 +738,7 @@ public class NewStandingOrderCard
         exists=false;
         try
         {
-            WebElement modalContainer = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-widget k-window k-dialog')]");
+            WebElement modalContainer = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-window k-dialog')]");
             WebElement checkBoxCustomerAcc = modalContainer.findElement(By.xpath(".//tr[contains(@class,'k-master-row')]/descendant::input"));
             HelpersMethod.ActClick(driver, checkBoxCustomerAcc, 10000);
             exists = true;
@@ -752,7 +752,7 @@ public class NewStandingOrderCard
         exists=false;
         try
         {
-            WebElement modalContainer = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-widget k-window k-dialog')]");
+            WebElement modalContainer = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-window k-dialog')]");
             WebElement custFilterButton = modalContainer.findElement(By.xpath(".//th[2]/div[@class='k-filtercell'][1]/descendant::button[@title='Clear']"));
             HelpersMethod.ActClick(driver, custFilterButton, 10000);
             exists = true;
@@ -771,9 +771,9 @@ public class NewStandingOrderCard
                 .ignoring(NoSuchElementException.class);
         wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
 
-        if(HelpersMethod.IsExists("//div[@id='standingOrderRegisterDialog']/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
+        if(HelpersMethod.IsExists("//div[@id='standingOrderRegisterDialog']/ancestor::div[contains(@class,'k-window k-dialog')]",driver))
         {
-            WebElement custFilterButton = HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-widget k-window k-dialog')]/descendant::span[@id='selectedCustomersSwitch']");
+            WebElement custFilterButton = HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-window k-dialog')]/descendant::span[@id='selectedCustomersSwitch']");
             HelpersMethod.ActClick(driver, custFilterButton, 10000);
             exists = true;
         }
@@ -785,7 +785,7 @@ public class NewStandingOrderCard
         exists=false;
         try {
             Actions act1 = new Actions(driver);
-            WebElement modalContainer = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-widget k-window k-dialog')]");
+            WebElement modalContainer = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-window k-dialog')]");
             List<WebElement> menus = modalContainer.findElements(By.xpath(".//div[contains(@class,'k-window-content k-dialog-content')]/descendant::ul/li/span"));
             for (WebElement menu : menus) {
                 act1.moveToElement(menu).build().perform();
@@ -805,7 +805,7 @@ public class NewStandingOrderCard
         exists = false;
         try
         {
-            WebElement modalContainer = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-widget k-window k-dialog')]");
+            WebElement modalContainer = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-window k-dialog')]");
             WebElement custFilterInput = modalContainer.findElement(By.xpath(".//div[@class='k-animation-container k-animation-container-relative'][2]/descendant::table[1]/descendant::tr[@class='k-filter-row']/th[2]/div[@class='k-filtercell'][1]/descendant::input"));
             String route = TestBase.testEnvironment.get_Route1();
             HelpersMethod.EnterText(driver, custFilterInput, 10000, route);
@@ -825,7 +825,7 @@ public class NewStandingOrderCard
         exists = false;
         try
         {
-            WebElement modalContainer = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-widget k-window k-dialog')]");
+            WebElement modalContainer = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-window k-dialog')]");
             WebElement checkBoxRoute = modalContainer.findElement(By.xpath(".//div[@class='k-animation-container k-animation-container-relative'][2]/descendant::tr[contains(@class,'k-master-row')]/descendant::input"));
             HelpersMethod.ActClick(driver, checkBoxRoute, 10000);
             exists = true;
@@ -839,7 +839,7 @@ public class NewStandingOrderCard
         exists=false;
         try
         {
-            WebElement modalContainer = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-widget k-window k-dialog')]");
+            WebElement modalContainer = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-window k-dialog')]");
             WebElement custFilterButton = modalContainer.findElement(By.xpath(".//div[@class='k-animation-container k-animation-container-relative'][2]/descendant::tr[@class='k-filter-row']/descendant::th[2]/div[@class='k-filtercell'][1]/descendant::button[@title='Clear']"));
             HelpersMethod.ActClick(driver, custFilterButton, 10000);
             exists = true;
@@ -853,7 +853,7 @@ public class NewStandingOrderCard
         exists = false;
         try
         {
-            WebElement modalContainer = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-widget k-window k-dialog')]");
+            WebElement modalContainer = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-window k-dialog')]");
             WebElement custFilterButton = modalContainer.findElement(By.xpath(".//span[@id='selectedRoutesSwitch']"));
             HelpersMethod.ActClick(driver, custFilterButton, 10000);
             exists = true;
@@ -867,7 +867,7 @@ public class NewStandingOrderCard
         exists = false;
         try
         {
-            WebElement modalContainer = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-widget k-window k-dialog')]");
+            WebElement modalContainer = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-window k-dialog')]");
             WebElement excelButton = modalContainer.findElement(By.xpath(".//button[@id='standingOrderRegisterDialogExcelButton']"));
             HelpersMethod.ActClick(driver, excelButton, 10000);
             exists = true;
@@ -899,7 +899,7 @@ public class NewStandingOrderCard
         {
             exists = false;
             String ParentWindow = driver.getWindowHandle();
-            WebElement modalContainer = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-widget k-window k-dialog')]");
+            WebElement modalContainer = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-window k-dialog')]");
             WebElement pdfButton = modalContainer.findElement(By.xpath(".//button[@id='standingOrderRegisterDialogPDFButton']"));
             HelpersMethod.ActClick(driver, pdfButton, 10000);
             String status = HelpersMethod.returnDocumentStatus(driver);
@@ -977,7 +977,7 @@ public class NewStandingOrderCard
         exists=false;
         try
         {
-            if(HelpersMethod.IsExists("//div[contains(text(),'Generate standing order')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
+            if(HelpersMethod.IsExists("//div[contains(text(),'Generate standing order')]/ancestor::div[contains(@class,'k-window k-dialog')]",driver))
             {
                 exists=true;
             }
@@ -991,7 +991,7 @@ public class NewStandingOrderCard
         try
         {
             // to fetch the web element of the modal container
-            WebElement modalContainer = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-widget k-window k-dialog')]");
+            WebElement modalContainer = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-window k-dialog')]");
             //Identify From calender and click
             WebElement fromCalender = modalContainer.findElement(By.xpath(".//label[contains(text(),'From date')]/following-sibling::span/descendant::a/span"));
             HelpersMethod.JScriptClick(driver, fromCalender, 10000);
@@ -1007,7 +1007,7 @@ public class NewStandingOrderCard
         try
         {
             Actions act1 = new Actions(driver);
-            if(HelpersMethod.IsExists("//div[contains(text(),'Generate standing order')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
+            if(HelpersMethod.IsExists("//div[contains(text(),'Generate standing order')]/ancestor::div[contains(@class,'k-window k-dialog')]",driver))
             {
                 WebElement selectableDate = HelpersMethod.FindByElement(driver, "xpath", "//td[contains(@class,'k-calendar-td k-range-end k-range-start k-state-pending-focus k-state-selected')]/span");
                 HelpersMethod.ScrollDownScrollBar(driver);
@@ -1026,9 +1026,9 @@ public class NewStandingOrderCard
         exists=false;
         try
         {
-            if(HelpersMethod.IsExists("//div[contains(text(),'Generate standing order')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver)) {
+            if(HelpersMethod.IsExists("//div[contains(text(),'Generate standing order')]/ancestor::div[contains(@class,'k-window k-dialog')]",driver)) {
                 // to fetch the web element of the modal container
-                WebElement modalContainer = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-widget k-window k-dialog')]");
+                WebElement modalContainer = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-window k-dialog')]");
                 //Identify From calender and click
                 WebElement toCalender = modalContainer.findElement(By.xpath(".//label[contains(text(),'To date')]/following-sibling::span/descendant::a/span"));
                 HelpersMethod.JScriptClick(driver, toCalender, 10000);
@@ -1047,7 +1047,7 @@ public class NewStandingOrderCard
         {
             exists=false;
             Actions act1 = new Actions(driver);
-            if(HelpersMethod.IsExists("//div[contains(text(),'Generate standing order')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
+            if(HelpersMethod.IsExists("//div[contains(text(),'Generate standing order')]/ancestor::div[contains(@class,'k-window k-dialog')]",driver))
             {
                 List<WebElement> selectableDates = HelpersMethod.FindByElements(driver,"xpath","//td[contains(@class,'k-calendar-td') and contains(@style,'opacity: 1;')]");
                 int j=selectableDates.size()-1;
@@ -1077,12 +1077,12 @@ public class NewStandingOrderCard
         exists=false;
         try
         {
-            new WebDriverWait(driver,Duration.ofMillis(2000)).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(text(),'Generate standing order')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]")));
-            new WebDriverWait(driver,Duration.ofMillis(2000)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(text(),'Generate standing order')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]")));
-            if(HelpersMethod.IsExists("//div[contains(text(),'Generate standing order')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
+            new WebDriverWait(driver,Duration.ofMillis(2000)).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(text(),'Generate standing order')]/ancestor::div[contains(@class,'k-window k-dialog')]")));
+            new WebDriverWait(driver,Duration.ofMillis(2000)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(text(),'Generate standing order')]/ancestor::div[contains(@class,'k-window k-dialog')]")));
+            if(HelpersMethod.IsExists("//div[contains(text(),'Generate standing order')]/ancestor::div[contains(@class,'k-window k-dialog')]",driver))
             {
-                WebElement modalContainer = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(text(),'Generate standing order')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]");
-                WebElement OkCalender = modalContainer.findElement(By.xpath(".//button[text()='Ok']"));
+                WebElement modalContainer = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(text(),'Generate standing order')]/ancestor::div[contains(@class,'k-window k-dialog')]");
+                WebElement OkCalender = modalContainer.findElement(By.xpath(".//button/span[text()='Ok']"));
                 HelpersMethod.ActClick(driver, OkCalender, 20000);
                 exists=true;
             }
@@ -1093,12 +1093,12 @@ public class NewStandingOrderCard
 
     public void validateGeneratingStandingOrdersForCustomersPopup()
     {
-        if(HelpersMethod.IsExists("//div[contains(text(),'Getting list of standing order customers.')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
+        if(HelpersMethod.IsExists("//div[contains(text(),'Getting list of standing order customers.')]/ancestor::div[contains(@class,'k-window k-dialog')]",driver))
         {
-            WebElement modalContainer = driver.findElement(By.xpath("//div[contains(@class,'k-widget k-window k-dialog')]"));
+            WebElement modalContainer = driver.findElement(By.xpath("//div[contains(@class,'k-window k-dialog')]"));
 
             // to fetch the web elements of the modal content and interact with them, code to fetch content of modal title and verify it
-            WebElement modalContentTitle = modalContainer.findElement(By.xpath(".//div[contains(@class,'k-window-title k-dialog-title')]"));
+            WebElement modalContentTitle = modalContainer.findElement(By.xpath(".//span[contains(@class,'k-window-title k-dialog-title')]"));
             Assert.assertEquals(modalContentTitle.getText(), "Generate standing order(s)", "Verify Title message");
         }
     }
@@ -1108,9 +1108,9 @@ public class NewStandingOrderCard
         exists=false;
         try
         {
-            if (HelpersMethod.IsExists("//div[contains(text(),'Getting list of standing order customers.')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]", driver))
+            if (HelpersMethod.IsExists("//div[contains(text(),'Getting list of standing order customers.')]/ancestor::div[contains(@class,'k-window k-dialog')]", driver))
             {
-                new WebDriverWait(driver, Duration.ofMillis(100000)).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[contains(text(),'Getting list of standing order customers.')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]")));
+                new WebDriverWait(driver, Duration.ofMillis(100000)).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[contains(text(),'Getting list of standing order customers.')]/ancestor::div[contains(@class,'k-window k-dialog')]")));
                 exists=true;
             }
             Assert.assertEquals(exists,true);
@@ -1122,11 +1122,11 @@ public class NewStandingOrderCard
     {
         try
         {
-            if (HelpersMethod.IsExists("//div[contains(text(),'All tasks completed. Error count:')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]", driver)) {
-                WebElement modalContainer = driver.findElement(By.xpath("//div[contains(@class,'k-widget k-window k-dialog')]"));
+            if (HelpersMethod.IsExists("//div[contains(text(),'All tasks completed. Error count:')]/ancestor::div[contains(@class,'k-window k-dialog')]", driver)) {
+                WebElement modalContainer = driver.findElement(By.xpath("//div[contains(@class,'k-window k-dialog')]"));
 
                 // to fetch the web elements of the modal content and interact with them, code to fetch content of modal title and verify it
-                WebElement modalContentTitle = modalContainer.findElement(By.xpath(".//div[contains(@class,'k-window-title k-dialog-title')]"));
+                WebElement modalContentTitle = modalContainer.findElement(By.xpath(".//span[contains(@class,'k-window-title k-dialog-title')]"));
                 Assert.assertEquals(modalContentTitle.getText(), "Generate standing order(s)", "Verify Title message");
             }
         }
@@ -1137,7 +1137,7 @@ public class NewStandingOrderCard
     {
         try
         {
-            WebElement modalContainer = driver.findElement(By.xpath("//div[contains(@class,'k-widget k-window k-dialog')]"));
+            WebElement modalContainer = driver.findElement(By.xpath("//div[contains(@class,'k-window k-dialog')]"));
             //creating webelement for view details button
             WebElement viewDetailsButton = modalContainer.findElement(By.xpath(".//button[contains(text(),'View details')]"));
             if (viewDetailsButton.isEnabled())
@@ -1157,11 +1157,11 @@ public class NewStandingOrderCard
         exists=false;
         try
         {
-            if(HelpersMethod.IsExists("//div[contains(@class,'k-widget k-window k-dialog')]/descendant::button[text()='Ok']",driver))
+            if(HelpersMethod.IsExists("//div[contains(@class,'k-window k-dialog')]/descendant::button/span[text()='Ok']",driver))
             {
-                WebElement modalContainer = driver.findElement(By.xpath("//div[contains(@class,'k-widget k-window k-dialog')]"));
+                WebElement modalContainer = driver.findElement(By.xpath("//div[contains(@class,'k-window k-dialog')]"));
                 //creating webelement for view details button
-                WebElement okButton = modalContainer.findElement(By.xpath(".//button[contains(text(),'Ok')]"));
+                WebElement okButton = modalContainer.findElement(By.xpath(".//button/span[text()='Ok']"));
                 HelpersMethod.ClickBut(driver, okButton, 10000);
             }
         }
@@ -1172,11 +1172,11 @@ public class NewStandingOrderCard
     {
         try
         {
-            if(HelpersMethod.IsExists("//div[contains(text(),'Generate standing order(s)')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
+            if(HelpersMethod.IsExists("//div[contains(text(),'Generate standing order(s)')]/ancestor::div[contains(@class,'k-window k-dialog')]",driver))
             {
-                WebElement modalContainer = driver.findElement(By.xpath("//div[contains(@class,'k-widget k-window k-dialog')]"));
+                WebElement modalContainer = driver.findElement(By.xpath("//div[contains(@class,'k-window k-dialog')]"));
                 //creating webelement for view details button
-                WebElement okButton = modalContainer.findElement(By.xpath(".//button[contains(text(),'Ok')]"));
+                WebElement okButton = modalContainer.findElement(By.xpath(".//button/span[text()='Ok']"));
                 HelpersMethod.ClickBut(driver, okButton, 10000);
             }
         }
@@ -1284,10 +1284,10 @@ public class NewStandingOrderCard
         exists=false;
         try
         {
-            if(HelpersMethod.IsExists("//div[contains(text(),'Standing order exist for the selected date.')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
+            if(HelpersMethod.IsExists("//div[contains(text(),'Standing order exist for the selected date.')]/ancestor::div[contains(@class,'k-window k-dialog')]",driver))
             {
-                WebElement modelContainer=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-widget k-window k-dialog')]");
-                WebElement okButton=modelContainer.findElement(By.xpath(".//button[text()='OK']"));
+                WebElement modelContainer=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-window k-dialog')]");
+                WebElement okButton=modelContainer.findElement(By.xpath(".//button/span[text()='Ok']"));
                 HelpersMethod.ActClick(driver,okButton,10000);
                 exists=true;
             }
@@ -1301,10 +1301,10 @@ public class NewStandingOrderCard
         exists=false;
         try
         {
-            if(HelpersMethod.IsExists("//div[contains(text(),'Add standing order')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
+            if(HelpersMethod.IsExists("//div[contains(text(),'Add standing order')]/ancestor::div[contains(@class,'k-window k-dialog')]",driver))
             {
-                WebElement modelContainer=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-widget k-window k-dialog')]");
-                WebElement cancelButton=modelContainer.findElement(By.xpath(".//button[text()='Cancel']"));
+                WebElement modelContainer=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-window k-dialog')]");
+                WebElement cancelButton=modelContainer.findElement(By.xpath(".//button/span[text()='Cancel']"));
                 HelpersMethod.ActClick(driver,cancelButton,10000);
                 exists=true;
             }

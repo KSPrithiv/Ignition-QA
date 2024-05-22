@@ -139,7 +139,7 @@ public class IgnitionPage
             HelpersMethod.ScrollElement(driver,NewButton);
             HelpersMethod.ActClick(driver,NewButton,10000);
             exists=true;
-            new WebDriverWait(driver,Duration.ofMillis(80000)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath("//div[contains(text(),'Add standing po')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]"))));
+            new WebDriverWait(driver,Duration.ofMillis(80000)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath("//div[contains(text(),'Add standing po')]/ancestor::div[contains(@class,'k-window k-dialog')]"))));
             Assert.assertEquals(exists,true);
         }
         catch (Exception e){}
@@ -150,10 +150,10 @@ public class IgnitionPage
         exists=false;
         try
         {
-            if(HelpersMethod.IsExists("//div[contains(text(),'Add standing po')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
+            if(HelpersMethod.IsExists("//div[contains(text(),'Add standing po')]/ancestor::div[contains(@class,'k-window k-dialog')]",driver))
             {
-                WebElement modalContainer = driver.findElement(By.xpath("//div[contains(@class,'k-widget k-window k-dialog')]"));
-                WebElement modalContentTitle = modalContainer.findElement(By.xpath(".//div[contains(@class,'k-window-title k-dialog-title')]"));
+                WebElement modalContainer = driver.findElement(By.xpath("//div[contains(@class,'k-window k-dialog')]"));
+                WebElement modalContentTitle = modalContainer.findElement(By.xpath(".//span[contains(@class,'k-window-title k-dialog-title')]"));
                 Assert.assertEquals(modalContentTitle.getText(), "Add standing po", "Verify Title message");
             }
         }
@@ -185,8 +185,8 @@ public class IgnitionPage
         exists=false;
         try
         {
-            new WebDriverWait(driver,Duration.ofMillis(20000)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(text(),'Add standing po')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]"))));
-            new WebDriverWait(driver,Duration.ofMillis(20000)).until(ExpectedConditions.refreshed(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(text(),'Add standing po')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]"))));
+            new WebDriverWait(driver,Duration.ofMillis(20000)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(text(),'Add standing po')]/ancestor::div[contains(@class,'k-window k-dialog')]"))));
+            new WebDriverWait(driver,Duration.ofMillis(20000)).until(ExpectedConditions.refreshed(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(text(),'Add standing po')]/ancestor::div[contains(@class,'k-window k-dialog')]"))));
             if(HelpersMethod.IsExists("//label[contains(@id,'toDate-label')]/following-sibling::span/descendant::span[contains(@class,'k-icon k-i-calendar')]",driver))
             {
                 WebElement toEle=HelpersMethod.FindByElement(driver,"xpath","//label[contains(@id,'toDate-label')]/following-sibling::span/descendant::a/span");
@@ -211,7 +211,7 @@ public class IgnitionPage
             HelpersMethod.waitTillElementLocatedDisplayed(driver,"xpath","//div[contains(@class,'k-calendar-monthview')]",800000);
             new WebDriverWait(driver,Duration.ofMillis(800000)).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class,'k-calendar-monthview')]")));
             Thread.sleep(1000);
-            if(HelpersMethod.IsExists("//div[contains(text(),'Add standing po')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver)) {
+            if(HelpersMethod.IsExists("//div[contains(text(),'Add standing po')]/ancestor::div[contains(@class,'k-window k-dialog')]",driver)) {
                 //finding element/date in calendar drop down is enabled or not. if not enabled increase the date by 6 days
                 if (HelpersMethod.IsExists("//div[contains(@class,'k-calendar-monthview')]", driver))
                 {
@@ -255,7 +255,7 @@ public class IgnitionPage
             String formattedDate1 = null;
             HelpersMethod.waitTillElementLocatedDisplayed(driver,"xpath","//div[contains(@class,'k-calendar-monthview')]",100000);
             new WebDriverWait(driver,Duration.ofMillis(100000)).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class,'k-calendar-monthview')]")));
-            if(HelpersMethod.IsExists("//div[contains(text(),'Add standing po')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
+            if(HelpersMethod.IsExists("//div[contains(text(),'Add standing po')]/ancestor::div[contains(@class,'k-window k-dialog')]",driver))
             {
                 //finding element/date in calendar drop down is enabled or not. if not enabled increase the date by 6 days
                 if (HelpersMethod.IsExists("//div[contains(@class,'k-calendar-monthview')]", driver))
@@ -292,7 +292,7 @@ public class IgnitionPage
         WebElement WebEle;
         try
         {
-            WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-widget k-window k-dialog')]/descendant::input[contains(@placeholder,'Enter PO#...')]");
+            WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-window k-dialog')]/descendant::input[contains(@placeholder,'Enter PO#...')]");
             InputValue=RandomValues.generateRandomAlphaNumeric(4);
             HelpersMethod.EnterText(driver,WebEle,1000,InputValue);
             PoNo=InputValue;
@@ -313,7 +313,7 @@ public class IgnitionPage
         WebElement WebEle;
         try
         {
-            WebEle= HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-widget k-window k-dialog')]/descendant::button[text()='Add']");
+            WebEle= HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-window k-dialog')]/descendant::button/span[text()='Add']");
             if(WebEle.isEnabled())
             {
                 HelpersMethod.ActClick(driver, WebEle, 1000);
@@ -492,10 +492,10 @@ public class IgnitionPage
             if(EditButton.isEnabled())
             {
                 HelpersMethod.ClickBut(driver, EditButton, 4000);
-                if (HelpersMethod.IsExists("//div[contains(text(),'Edit standing po')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]", driver))
+                if (HelpersMethod.IsExists("//div[contains(text(),'Edit standing po')]/ancestor::div[contains(@class,'k-window k-dialog')]", driver))
                 {
-                    WebElement modalContainer = driver.findElement(By.xpath("//div[contains(@class,'k-widget k-window k-dialog')]"));
-                    WebElement modalContentTitle = modalContainer.findElement(By.xpath(".//div[contains(@class,'k-window-title k-dialog-title')]"));
+                    WebElement modalContainer = driver.findElement(By.xpath("//div[contains(@class,'k-window k-dialog')]"));
+                    WebElement modalContentTitle = modalContainer.findElement(By.xpath(".//span[contains(@class,'k-window-title k-dialog-title')]"));
                     Assert.assertEquals(modalContentTitle.getText(), "Edit standing po", "Verify Title message");
                 }
             }
@@ -508,7 +508,7 @@ public class IgnitionPage
         WebElement WebEle;
         try
         {
-            WebElement modalContainer = driver.findElement(By.xpath("//div[contains(text(),'Edit standing po')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]"));
+            WebElement modalContainer = driver.findElement(By.xpath("//div[contains(text(),'Edit standing po')]/ancestor::div[contains(@class,'k-window k-dialog')]"));
             WebEle=modalContainer.findElement(By.xpath(".//button[text()='Update']"));
             HelpersMethod.ActClick(driver,WebEle,10000);
 
@@ -518,10 +518,10 @@ public class IgnitionPage
                     .ignoring(NoSuchElementException.class);
             wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
 
-            if(HelpersMethod.IsExists("//div[contains(text(),'A Standing PO# already exists within the given date range')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
+            if(HelpersMethod.IsExists("//div[contains(text(),'A Standing PO# already exists within the given date range')]/ancestor::div[contains(@class,'k-window k-dialog')]",driver))
             {
-                WebElement popUp = driver.findElement(By.xpath("//div[contains(@class,'k-widget k-window k-dialog')]"));
-                WebEle=popUp.findElement(By.xpath(".//button[text()='Ok']"));
+                WebElement popUp = driver.findElement(By.xpath("//div[contains(@class,'k-window k-dialog')]"));
+                WebEle=popUp.findElement(By.xpath(".//button/span[text()='Ok']"));
                 HelpersMethod.ClickBut(driver,WebEle,4000);
             }
         }
@@ -532,10 +532,10 @@ public class IgnitionPage
     {
         try
         {
-            if(HelpersMethod.IsExists("//div[contains(@class,'k-widget k-window k-dialog')]",driver))
+            if(HelpersMethod.IsExists("//div[contains(@class,'k-window k-dialog')]",driver))
             {
-                WebElement modalContainer = driver.findElement(By.xpath("//div[contains(@class,'k-widget k-window k-dialog')]"));
-                WebElement WebEle=modalContainer.findElement(By.xpath(".//button[text()='Cancel']"));
+                WebElement modalContainer = driver.findElement(By.xpath("//div[contains(@class,'k-window k-dialog')]"));
+                WebElement WebEle=modalContainer.findElement(By.xpath(".//button/span[text()='Cancel']"));
                 HelpersMethod.ClickBut(driver,WebEle,1000);
             }
         }
@@ -565,10 +565,10 @@ public class IgnitionPage
         exists=false;
         try
         {
-            if(HelpersMethod.IsExists("//div[contains(text(),'Edit standing po')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
+            if(HelpersMethod.IsExists("//div[contains(text(),'Edit standing po')]/ancestor::div[contains(@class,'k-window k-dialog')]",driver))
             {
-                WebElement modalContainer = driver.findElement(By.xpath("//div[contains(@class,'k-widget k-window k-dialog')]"));
-                WebElement modalContentTitle = modalContainer.findElement(By.xpath(".//div[contains(@class,'k-window-title k-dialog-title')]"));
+                WebElement modalContainer = driver.findElement(By.xpath("//div[contains(@class,'k-window k-dialog')]"));
+                WebElement modalContentTitle = modalContainer.findElement(By.xpath(".//span[contains(@class,'k-window-title k-dialog-title')]"));
                 Assert.assertEquals(modalContentTitle.getText(), "Edit standing po", "Verify Title message");
             }
         }
@@ -582,7 +582,7 @@ public class IgnitionPage
         try
         {
             //identify the popup
-            WebElement modalContainer = HelpersMethod.FindByElement(driver, "xpath","//div[contains(@class,'k-widget k-window k-dialog')]");
+            WebElement modalContainer = HelpersMethod.FindByElement(driver, "xpath","//div[contains(@class,'k-window k-dialog')]");
             //Click on end date icon
             WebEle= modalContainer.findElement(By.xpath(".//label[contains(@id,'toDate-label')]/following-sibling::span/descendant::span[contains(@class,'k-icon k-i-calendar')]"));
             HelpersMethod.ActClick(driver,WebEle,2000);
@@ -678,11 +678,11 @@ public class IgnitionPage
     {
         try
         {
-            WebElement modalContainer = driver.findElement(By.xpath("//div[contains(text(),'Delete standing po')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]"));
-            WebElement modalContentTitle = modalContainer.findElement(By.xpath(".//div[contains(@class,'k-window-title k-dialog-title')]"));
+            WebElement modalContainer = driver.findElement(By.xpath("//div[contains(text(),'Delete standing po')]/ancestor::div[contains(@class,'k-window k-dialog')]"));
+            WebElement modalContentTitle = modalContainer.findElement(By.xpath(".//span[contains(@class,'k-window-title k-dialog-title')]"));
             Assert.assertEquals(modalContentTitle.getText(), "Delete standing po", "Verify Title message");
             //Delete confirmation popup
-            WebElement deletePopup=modalContainer.findElement(By.xpath(".//button[text()='Delete']"));
+            WebElement deletePopup=modalContainer.findElement(By.xpath(".//button/span[text()='Delete']"));
             HelpersMethod.ActClick(driver,deletePopup,10000);
 
             Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
@@ -692,10 +692,10 @@ public class IgnitionPage
             wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
 
             //Delete success popup
-            if(HelpersMethod.IsExists("//div[contains(text(),'The information has been saved successfully.')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
+            if(HelpersMethod.IsExists("//div[contains(text(),'The information has been saved successfully.')]/ancestor::div[contains(@class,'k-window k-dialog')]",driver))
             {
-                WebElement popUp=HelpersMethod.FindByElement(driver,"xpath","//div[contains(text(),'The information has been saved successfully.')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]");
-                WebElement okButton=popUp.findElement(By.xpath(".//button[text()='Ok']"));
+                WebElement popUp=HelpersMethod.FindByElement(driver,"xpath","//div[contains(text(),'The information has been saved successfully.')]/ancestor::div[contains(@class,'k-window k-dialog')]");
+                WebElement okButton=popUp.findElement(By.xpath(".//button/span[text()='Ok']"));
                 HelpersMethod.ActClick(driver,okButton,10000);
                 scenario.log("DELETE CONFIRMATION POPUP HAS BEEN HANDLED");
             }

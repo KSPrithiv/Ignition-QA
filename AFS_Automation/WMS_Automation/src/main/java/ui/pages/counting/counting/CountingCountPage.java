@@ -35,7 +35,7 @@ public class CountingCountPage extends BasePage {
     By uomFilter = By.cssSelector(".i-btn-checkbox  #UOM");
   //  By inputContains = By.xpath("//input[@placeholder='Contains']");
     By inputContains = By.xpath("//input[@placeholder='Is empty']");
-    By applyButton = By.xpath("//button[text()='Apply']");
+    By applyButton = By.xpath("//button/span[text()='Apply']");
     By inputSearch = By.xpath("//input[@placeholder='Search']");
     By clearButton = By.xpath("//button[text()='Clear']");
     By clearAllButton = By.xpath("//button[text()='Clear all']");
@@ -94,7 +94,7 @@ public class CountingCountPage extends BasePage {
     }
 
     public WebElement getLocationRowByText(String text){
-        return findWebElement(By.xpath("//tr[@class='k-master-row'][.//td[contains(text(), '" + text + "')]]"));
+        return findWebElement(By.xpath("//tr[contains(@class,'k-master-row')][.//td[contains(text(), '" + text + "')]]"));
     }
 
     public WebElement getProductInputByRow(String text){
@@ -329,7 +329,7 @@ public class CountingCountPage extends BasePage {
 
     public List<WebElement> getCountQuantityInput() {
         Waiters.waitForElementsToBeDisplay(getTable().findElements(By.cssSelector("tr.k-master-row")));
-        return getTable().findElements(By.xpath("//tr[@class='k-master-row']//input[contains(@id, 'enterCountData')]"));
+        return getTable().findElements(By.xpath("//tr[contains(@class,'k-master-row')]//input[contains(@id, 'enterCountData')]"));
     }
 
     public boolean isSaveButtonEnabled() { return getElementAttribute(getBtnSave(), "class").contains("i-secondary"); }

@@ -35,7 +35,7 @@ public class MyCartPage
     @FindBy(xpath = "//div[@class='delete-button-container']")
     private WebElement DeleteIcon;
 
-    @FindBy(xpath = "//button[contains(@class,'buttonMinus')]")
+    @FindBy(xpath = "//button/span[contains(@class,'buttonMinus')]")
     private WebElement MinusButton;
 
     @FindBy(xpath = "//button[contains(@class,'buttonPlus')]")
@@ -84,7 +84,7 @@ public class MyCartPage
                     .ignoring(NoSuchElementException.class);
             wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
 
-            if (HelpersMethod.IsExists("//div[contains(text(),'Select order')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]", driver))
+            if (HelpersMethod.IsExists("//span[contains(text(),'Select order')]/ancestor::div[contains(@class,'k-window k-dialog')]", driver))
             {
                 wait = new FluentWait<WebDriver>(driver)
                         .withTimeout(Duration.ofSeconds(200))
@@ -92,10 +92,10 @@ public class MyCartPage
                         .ignoring(NoSuchElementException.class);
                 wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
 
-                WebElement selectPopup = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-widget k-window k-dialog')]");
+                WebElement selectPopup = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-window k-dialog')]");
                 WebEle = selectPopup.findElement(By.xpath(".//div[contains(text(),'New order')]"));
                 HelpersMethod.ActClick(driver, WebEle, 10000);
-                WebEle = selectPopup.findElement(By.xpath("//div[contains(@class,'k-widget k-window k-dialog')]/descendant::button[text()='Ok']"));
+                WebEle = selectPopup.findElement(By.xpath("//div[contains(@class,'k-window k-dialog')]/descendant::.//button/span[text()='Continue']"));
                 HelpersMethod.ActClick(driver, WebEle, 10000);
                 Thread.sleep(1000);
 
@@ -107,10 +107,10 @@ public class MyCartPage
             }
 
             //to handle pending order popup
-            if (HelpersMethod.IsExists("//div[contains(text(),'Pending order will be overwritten')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]", driver))
+            if (HelpersMethod.IsExists("//div[contains(text(),'Pending order will be overwritten')]/ancestor::div[contains(@class,'k-window k-dialog')]", driver))
             {
-                WebElement pendingPopup = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-widget k-window k-dialog')]");
-                WebElement startButton = pendingPopup.findElement(By.xpath(".//button[contains(text(),'Start new order')]"));
+                WebElement pendingPopup = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-window k-dialog')]");
+                WebElement startButton = pendingPopup.findElement(By.xpath(".//button/span[contains(text(),'Start new order')]"));
                 HelpersMethod.ActClick(driver, startButton, 10000);
 
                 wait = new FluentWait<WebDriver>(driver)

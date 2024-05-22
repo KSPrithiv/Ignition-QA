@@ -62,7 +62,7 @@ public class userAndAdmin_AddNewUserPage
     @FindBy(xpath="//button[text()='Register']")
     private WebElement registerButton;
 
-    @FindBy(xpath="//button[text()='Cancel']")
+    @FindBy(xpath="//button/span[text()='Cancel']")
     private WebElement cancelButton;
 
     public userAndAdmin_AddNewUserPage(WebDriver driver, Scenario scenario)
@@ -78,10 +78,10 @@ public class userAndAdmin_AddNewUserPage
         try
         {
             HelpersMethod.ClickBut(driver,allCustomerAccount,1000);
-            if(HelpersMethod.IsExists("//div[contains(text(),'This will add all customer accounts to this login')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
+            if(HelpersMethod.IsExists("//div[contains(text(),'This will add all customer accounts to this login')]/ancestor::div[contains(@class,'k-window k-dialog')]",driver))
             {
-                WebElement allCustomerAccountPopup=HelpersMethod.FindByElement(driver,"xpath","//div[contains(text(),'This will add all customer accounts to this login')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]");
-                WebElement yesButton=allCustomerAccountPopup.findElement(By.xpath(".//button[text()='Yes']"));
+                WebElement allCustomerAccountPopup=HelpersMethod.FindByElement(driver,"xpath","//div[contains(text(),'This will add all customer accounts to this login')]/ancestor::div[contains(@class,'k-window k-dialog')]");
+                WebElement yesButton=allCustomerAccountPopup.findElement(By.xpath(".//button/span[text()='Yes']"));
                 HelpersMethod.ActClick(driver,yesButton,1000);
             }
         }
@@ -123,8 +123,8 @@ public class userAndAdmin_AddNewUserPage
         exists=false;
         try
         {
-            WebElement confirmationPopup= HelpersMethod.FindByElement(driver,"xpath","//div[contains(text(),'This will add all customer accounts to this login.')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]");
-            WebElement yesButton=confirmationPopup.findElement(By.xpath(".//button[text()='Yes']"));
+            WebElement confirmationPopup= HelpersMethod.FindByElement(driver,"xpath","//div[contains(text(),'This will add all customer accounts to this login.')]/ancestor::div[contains(@class,'k-window k-dialog')]");
+            WebElement yesButton=confirmationPopup.findElement(By.xpath(".//button/span[text()='Yes']"));
             HelpersMethod.ClickBut(driver,yesButton,1000);
             exists=true;
             Assert.assertEquals(exists,true);
@@ -253,12 +253,12 @@ public class userAndAdmin_AddNewUserPage
         WebElement Search2;
         try
         {
-            if(HelpersMethod.IsExists("//div[contains(text(),'Select role')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
+            if(HelpersMethod.IsExists("//div[contains(text(),'Select role')]/ancestor::div[contains(@class,'k-window k-dialog')]",driver))
             {
-                WebElement modalContainer = HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-widget k-window k-dialog')]");
+                WebElement modalContainer = HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-window k-dialog')]");
 
                 // to fetch the web elements of the modal content and interact with them, code to fetch content of modal title and verify it
-                WebElement modalContentTitle = modalContainer.findElement(By.xpath(".//div[contains(@class,'k-window-title k-dialog-title')]"));
+                WebElement modalContentTitle = modalContainer.findElement(By.xpath(".//span[contains(@class,'k-window-title k-dialog-title')]"));
                 Assert.assertEquals(modalContentTitle.getText(), "Select role", "Verify Title message");
                 //Select customer account # by clicking Add filter button in customer account # popup
                 WebElement AddFilterButton = modalContainer.findElement(By.xpath(".//button/descendant::span[contains(text(),'Add filter')]"));
@@ -280,11 +280,11 @@ public class userAndAdmin_AddNewUserPage
                 HelpersMethod.ActSendKey(driver, Search2, 1000, filterDesc);
 
                 //Click on Apply button
-                WebElement ApplyButton = RadioPop.findElement(By.xpath(".//button[text()='Apply']"));
+                WebElement ApplyButton = RadioPop.findElement(By.xpath(".//button/span[text()='Apply']"));
                 HelpersMethod.ClickBut(driver, ApplyButton, 1000);
 
 
-                WebElement rowInPopup=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-widget k-window k-dialog')]/descendant::tr[contains(@class,'k-master-row')]");
+                WebElement rowInPopup=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-window k-dialog')]/descendant::tr[contains(@class,'k-master-row')]");
                 HelpersMethod.ActClick(driver,rowInPopup,1000);
             }
         }

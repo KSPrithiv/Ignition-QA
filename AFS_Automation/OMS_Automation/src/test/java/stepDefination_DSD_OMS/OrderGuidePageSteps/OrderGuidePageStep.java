@@ -238,7 +238,7 @@ public class OrderGuidePageStep
         Assert.assertEquals(exists,true);
     }
 
-    //Code to search for OG using search box//////////////////////////////////////////////
+    //Code to search for OG using search box
     @Then("User enters OG Description in search box")
     public void user_enters_og_description_in_search_box(DataTable tabledata) throws InterruptedException, AWTException
     {
@@ -395,7 +395,7 @@ public class OrderGuidePageStep
         //createOGPage.validateProductExists();
         createOGPage.ResetFilter_Catalog();
         //createOGPage.SelectProductCatalog();
-        if (HelpersMethod.IsExists("//div[contains(@class,'k-widget k-window k-dialog')]/descendant::div[contains(@class,'i-grid')]", driver))
+        if (HelpersMethod.IsExists("//div[contains(@class,'k-window k-dialog')]/descendant::div[contains(@class,'i-grid')]", driver))
         {
             createOGPage.ListView();
         }
@@ -525,5 +525,11 @@ public class OrderGuidePageStep
         createOGPage.clickonArrowOfSeqeuence();
         createOGPage.displaySequenceValueForSecondTime();
         createOGPage.compareSequenceNosFound();
+    }
+
+    @Then("User enters Description {string}")
+    public void userEntersDescription(String arg0)
+    {
+
     }
 }

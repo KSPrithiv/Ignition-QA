@@ -29,8 +29,8 @@ public class JobTypePage extends BasePage {
         this.driver = driver;
         PageFactory.initElements(driver, this);
     }
-//    By rowCode=By.xpath("//table[@class='k-grid-table']//tr[@class='k-master-row']");
-    By rowCode=By.xpath("//table[@class='k-grid-table']//tr[@class='k-master-row'][1]");
+//    By rowCode=By.xpath("//table[@class='k-grid-table']//tr[contains(@class,'k-master-row')]");
+    By rowCode=By.xpath("//table[@class='k-grid-table']//tr[contains(@class,'k-master-row')][1]");
     By deleteBtn=By.xpath("//button[@id='deleteSettingsButton']");
     By messageHeader=By.xpath("//h4[@class='modal-title']");
     By message=By.xpath("//div[@class='modal-body']");
@@ -98,8 +98,8 @@ public class JobTypePage extends BasePage {
         Waiters.waitForElementToBeDisplay(deleteOKBtn);
         clickOnElement(deleteOKBtn);
         Waiters.waitABit(8000);
-//        WebElement deletedCode=findWebElement(By.xpath("//table[@class='k-grid-table']//tr[@class='k-master-row']"));
-//        WebElement deletedCode= driver.findElement(By.xpath("//table[@class='k-grid-table']//tr[@class='k-master-row']"));
+//        WebElement deletedCode=findWebElement(By.xpath("//table[@class='k-grid-table']//tr[contains(@class,'k-master-row')]"));
+//        WebElement deletedCode= driver.findElement(By.xpath("//table[@class='k-grid-table']//tr[contains(@class,'k-master-row')]"));
         List<WebElement> rows = getTable().findElements(By.tagName("tr"));
         int rowCount = rows.size();
         System.out.println("NUMBER OF ROWS AFTER CLICK ON DELETE: "+rowCount);

@@ -1009,10 +1009,10 @@ public class BadgeBuilderPage {
 //               if (HelpersMethod.IsExists("//div[@class='loader']", driver)) {
 //                   WebElement WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
 //                   HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100);
-            if (HelpersMethod.IsExists("//div[contains(@class,'k-widget k-window k-dialog')]/descendant::div[contains(@class,'i-grid')]", driver)) {
-                if (HelpersMethod.IsExists("//div[text()='Catalog']/ancestor::div[contains(@class,'k-widget k-window k-dialog')]", driver)) {
-                    HelpersMethod.waitTillElementLocatedDisplayed(driver, "xpath", "//div[contains(@class,'k-widget k-window k-dialog')]", 100);
-                    WebElement catlogPopup = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-widget k-window k-dialog')]");
+            if (HelpersMethod.IsExists("//div[contains(@class,'k-window k-dialog')]/descendant::div[contains(@class,'i-grid')]", driver)) {
+                if (HelpersMethod.IsExists("//span[text()='Catalog']/ancestor::div[contains(@class,'k-window k-dialog')]", driver)) {
+                    HelpersMethod.waitTillElementLocatedDisplayed(driver, "xpath", "//div[contains(@class,'k-window k-dialog')]", 100);
+                    WebElement catlogPopup = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-window k-dialog')]");
                     //WebElement modalContentTitle = catlogPopup.findElement(By.xpath(".//div[contains(@class,'label-preview-background')]"));
                     //WebElement modalContentTitle1 = catlogPopup.findElement(By.cssSelector(".admin-badge-text-container > div > div>div"));
                     WebElement modalContentTitle1 = catlogPopup.findElement(By.cssSelector("div:nth-of-type(7) > .admin-badge-icon-container > div > div>div"));
@@ -1048,9 +1048,9 @@ public class BadgeBuilderPage {
             }
             if (HelpersMethod.IsExists("//div[contains(@class,'card-view')]", driver))
             {
-                if (HelpersMethod.IsExists("//div[text()='Catalog']/ancestor::div[contains(@class,'k-widget k-window k-dialog')]", driver)) {
-                    HelpersMethod.waitTillElementLocatedDisplayed(driver, "xpath", "//div[contains(@class,'k-widget k-window k-dialog')]", 100);
-                    WebElement catlogPopup = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-widget k-window k-dialog')]");
+                if (HelpersMethod.IsExists("//span[text()='Catalog']/ancestor::div[contains(@class,'k-window k-dialog')]", driver)) {
+                    HelpersMethod.waitTillElementLocatedDisplayed(driver, "xpath", "//div[contains(@class,'k-window k-dialog')]", 100);
+                    WebElement catlogPopup = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-window k-dialog')]");
                     //WebElement modalContentTitle = catlogPopup.findElement(By.xpath(".//div[contains(@class,'label-preview-background')]"));
                     //WebElement modalContentTitle1 = catlogPopup.findElement(By.cssSelector("div:nth-of-type(7) > .admin-badge-icon-container > div > div"));
 
@@ -1170,15 +1170,15 @@ public class BadgeBuilderPage {
 
     public void PopupOKBtn() {
 
-        if(HelpersMethod.IsExists("//div[contains(@class,'k-widget k-window k-dialog')]",driver)) {
+        if(HelpersMethod.IsExists("//div[contains(@class,'k-window k-dialog')]",driver)) {
     try {
-        HelpersMethod.waitTillElementLocatedDisplayed(driver, "xpath", "//div[contains(@class,'k-widget k-window k-dialog')]", 100);
-        WebElement Popup1 = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-widget k-window k-dialog')]");
+        HelpersMethod.waitTillElementLocatedDisplayed(driver, "xpath", "//div[contains(@class,'k-window k-dialog')]", 100);
+        WebElement Popup1 = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-window k-dialog')]");
         //WebElement PopOk = Popup1.findElement(By.xpath("//body/div[2]/div[@role='dialog']/div[2]/div/button[.='Ok']"));
         //PopOk.click();
         //HelpersMethod.JScriptClick(driver, PopOk, 20);
         //HelpersMethod.ActClick(driver, PopOk, 400);
-        WebElement okButton = Popup1.findElement(By.xpath(".//button[text()='Ok']"));
+        WebElement okButton = Popup1.findElement(By.xpath(".//button/span[text()='Ok']"));
         HelpersMethod.ClickBut(driver, okButton, 80);
     } catch (Exception e) {}
      }
@@ -1364,7 +1364,7 @@ public class BadgeBuilderPage {
 //            if (HelpersMethod.IsExists("/html//div[@id='productsCard']/div[@class='i-card__card__body i-card__card__body--expanded']/div//div[@class='grid-item-box']//div[@class='product-catalog-image-container']/a[@href='#']/img[@alt='product thumb']", driver)) {
 //                HelpersMethod.waitTillElementLocatedDisplayed(driver, "xpath", "/html//div[@id='productsCard']/div[@class='i-card__card__body i-card__card__body--expanded']/div//div[@class='grid-item-box']//div[@class='product-catalog-image-container']/a[@href='#']/img[@alt='product thumb']", 100);
 
-                //WebElement CatchWtIcon = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-widget k-window k-dialog')]");
+                //WebElement CatchWtIcon = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-window k-dialog')]");
                 //WebElement modalContentTitle = catlogPopup.findElement(By.xpath(".//div[contains(@class,'label-preview-background')]"));
                 //WebElement modalContentTitle1 = catlogPopup.findElement(By.cssSelector(".admin-badge-text-container > div > div>div"));
 //                HelpersMethod.waitTillElementLocatedDisplayed(driver,"xpath","/html//div[@id='productsCard']//div[@class='list-view']/div[@role='presentation']/div[@role='grid']/div[2]/div[@role='presentation']/div[1]/table[@role='presentation']/tbody[@role='presentation']/tr[@role='row']//div[@class='label-preview-background']/div/div",100);
@@ -1412,25 +1412,25 @@ public class BadgeBuilderPage {
 
         try {
             if (HelpersMethod.IsExists("//div[contains(@class,'card-view')]", driver)) {
-                HelpersMethod.waitTillElementLocatedDisplayed(driver, "xpath", "//div[contains(@class,'k-widget k-window k-dialog')]", 100);
-                WebElement Popup1 = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-widget k-window k-dialog')]");
+                HelpersMethod.waitTillElementLocatedDisplayed(driver, "xpath", "//div[contains(@class,'k-window k-dialog')]", 100);
+                WebElement Popup1 = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-window k-dialog')]");
                 WebElement AddButton = Popup1.findElement(By.cssSelector(".i-button--icon-only.i-numeric-box-int__buttonPlus.k-button.k-button-icontext.k-primary"));
 //            WebElement AddButton = Popup1.findElement(By.cssSelector("tbody[role='presentation'] > tr[role='row'] .k-i-arrow-n.k-icon"));
                 HelpersMethod.ScrollElement(driver, AddButton);
                 HelpersMethod.ClickBut(driver, AddButton, 80);
 //                Thread.sleep(2000);
-                WebElement okButton1 = Popup1.findElement(By.xpath(".//button[text()='Ok']"));
+                WebElement okButton1 = Popup1.findElement(By.xpath(".//button/span[text()='Ok']"));
                 HelpersMethod.ClickBut(driver, okButton1, 80);
             }
-            if (HelpersMethod.IsExists("//div[contains(@class,'k-widget k-window k-dialog')]/descendant::div[contains(@class,'i-grid')]", driver)) {
-                HelpersMethod.waitTillElementLocatedDisplayed(driver, "xpath", "//div[contains(@class,'k-widget k-window k-dialog')]", 100);
-                WebElement Popup1 = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-widget k-window k-dialog')]");
+            if (HelpersMethod.IsExists("//div[contains(@class,'k-window k-dialog')]/descendant::div[contains(@class,'i-grid')]", driver)) {
+                HelpersMethod.waitTillElementLocatedDisplayed(driver, "xpath", "//div[contains(@class,'k-window k-dialog')]", 100);
+                WebElement Popup1 = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-window k-dialog')]");
 //                WebElement AddButton = Popup1.findElement(By.cssSelector(".i-button--icon-only.i-numeric-box-int__buttonPlus.k-button.k-button-icontext.k-primary"));
                 WebElement AddButton = Popup1.findElement(By.cssSelector("tbody[role='presentation'] > tr[role='row'] .k-i-arrow-n.k-icon"));
                 HelpersMethod.ScrollElement(driver, AddButton);
                 HelpersMethod.ClickBut(driver, AddButton, 80);
 //                Thread.sleep(2000);
-                WebElement okButton1 = Popup1.findElement(By.xpath(".//button[text()='Ok']"));
+                WebElement okButton1 = Popup1.findElement(By.xpath(".//button/span[text()='Ok']"));
                 HelpersMethod.ClickBut(driver, okButton1, 80);
             }
 
@@ -1630,11 +1630,11 @@ public class BadgeBuilderPage {
 
     public void PopupDiscardAll() {
         // WebDriverWait wt = new WebDriverWait(driver,10);
-//        if(HelpersMethod.IsExists("//div[contains(text(),'Your order has not been submitted.')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]/descendant::button[contains(text(),'without submitting')]",driver))
+//        if(HelpersMethod.IsExists("//div[contains(text(),'Your order has not been submitted.')]/ancestor::div[contains(@class,'k-window k-dialog')]/descendant::button[contains(text(),'without submitting')]",driver))
         if(HelpersMethod.IsExists("//div[contains(text(),'Your order has not been submitted.')]",driver))
             try {
-            HelpersMethod.waitTillElementLocatedDisplayed(driver, "xpath", "//div[contains(@class,'k-widget k-window k-dialog')]", 100);
-            WebElement Popup1 = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-widget k-window k-dialog')]");
+            HelpersMethod.waitTillElementLocatedDisplayed(driver, "xpath", "//div[contains(@class,'k-window k-dialog')]", 100);
+            WebElement Popup1 = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-window k-dialog')]");
             WebElement okButton = Popup1.findElement(By.xpath(".//button[text()='Discard all']"));
             HelpersMethod.ClickBut(driver, okButton, 80);
         } catch (Exception e) {
@@ -1647,9 +1647,9 @@ public class BadgeBuilderPage {
         WebElement WebEle;
         try
         {
-            if(HelpersMethod.IsExists("//div[contains(text(),'Route number required')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
+            if(HelpersMethod.IsExists("//div[contains(text(),'Route number required')]/ancestor::div[contains(@class,'k-window k-dialog')]",driver))
             {
-                WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-widget k-window k-dialog')]/descendant::button[text()='Ok']");
+                WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-window k-dialog')]/descendant::.//button/span[text()='Continue']");
                 HelpersMethod.ClickBut(driver,WebEle,10);
                 scenario.log("ROUTE NUMBER REQUIRED POPUP HAS BEEN HANDLED");
                 exists=true;
@@ -1759,7 +1759,7 @@ public class BadgeBuilderPage {
         exists = false;
         try {
 
-            WebElement AccountPopup = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-widget k-window k-dialog')]");
+            WebElement AccountPopup = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-window k-dialog')]");
 
             WebElement SearchAccount = AccountPopup.findElement(By.xpath("//div[contains(@class,'i-search-box')]/descendant::input[@placeholder='Search']"));
             //HelpersMethod.ScrollElement(driver, SearchProd);
@@ -1786,7 +1786,7 @@ public class BadgeBuilderPage {
 
     public void SelectDeliveryDate() {
         //LocalDate currentDate=LocalDate.now();
-        HelpersMethod.waitTillElementLocatedDisplayed(driver, "xpath", "//div[contains(@class,'k-widget k-window k-dialog')]", 80);
+        HelpersMethod.waitTillElementLocatedDisplayed(driver, "xpath", "//div[contains(@class,'k-window k-dialog')]", 80);
 
 
         List<WebElement> dateElements = driver.findElements(By.xpath("//table[@class='k-calendar-table k-calendar-content k-content']//.//span[@class='k-link']"));
@@ -1880,11 +1880,11 @@ public class BadgeBuilderPage {
         WebElement WebEle;
         String FTDate=null;
         //Create WebElement for popup
-        HelpersMethod.waitTillElementLocatedDisplayed(driver,"xpath","//div[contains(@class,'k-widget k-window k-dialog')]",30);
-        WebElement modalContainer = HelpersMethod.FindByElement(driver,"xpath",  "//div[contains(@class,'k-widget k-window k-dialog')]");
+        HelpersMethod.waitTillElementLocatedDisplayed(driver,"xpath","//div[contains(@class,'k-window k-dialog')]",30);
+        WebElement modalContainer = HelpersMethod.FindByElement(driver,"xpath",  "//div[contains(@class,'k-window k-dialog')]");
 
         // Verify the title of Add standing order popup
-        WebElement modalContentTitle = modalContainer.findElement(By.xpath(".//div[contains(@class,'k-window-title k-dialog-title')]"));
+        WebElement modalContentTitle = modalContainer.findElement(By.xpath(".//span[contains(@class,'k-window-title k-dialog-title')]"));
         Assert.assertEquals(modalContentTitle.getText(), "Add standing order", "Verify Title message");
 
         //Click on From Calender icon
@@ -1961,7 +1961,7 @@ public class BadgeBuilderPage {
             }
         }
         //Click on ADD button
-        WebEle=modalContainer.findElement(By.xpath(".//button[text()='Add']"));
+        WebEle=modalContainer.findElement(By.xpath(".//button/span[text()='Add']"));
         HelpersMethod.ActClick(driver,WebEle,20);
         if(HelpersMethod.IsExists("//div[@class='loader']",driver))
         {
@@ -2022,8 +2022,8 @@ public class BadgeBuilderPage {
                 {
                     HelpersMethod.waitTillLoadingPage(driver);
                 }
-                new WebDriverWait(driver, Duration.ofMillis(6000)).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(text(),'Add standing order')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]")));
-                HelpersMethod.waitTillElementLocatedDisplayed(driver, "xpath", "//div[contains(text(),'Add standing order')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]", 200);
+                new WebDriverWait(driver, Duration.ofMillis(6000)).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(text(),'Add standing order')]/ancestor::div[contains(@class,'k-window k-dialog')]")));
+                HelpersMethod.waitTillElementLocatedDisplayed(driver, "xpath", "//div[contains(text(),'Add standing order')]/ancestor::div[contains(@class,'k-window k-dialog')]", 200);
                 exists = true;
             }
             Assert.assertEquals(exists, true);
@@ -2078,9 +2078,9 @@ public class BadgeBuilderPage {
         WebElement WebEle=null;
         try
         {
-            if(HelpersMethod.IsExists("//div[text()='Catalog']/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
+            if(HelpersMethod.IsExists("//span[text()='Catalog']/ancestor::div[contains(@class,'k-window k-dialog')]",driver))
             {
-                WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-widget k-window k-dialog')]/descendant::button[contains(text(),'Ok')]");
+                WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-window k-dialog')]/descendant::button[contains(text(),'Ok')]");
                 HelpersMethod.ActClick(driver,WebEle,8);
                 exists=true;
             }
@@ -2108,7 +2108,7 @@ public class BadgeBuilderPage {
         exists = false;
         try {
 
-            WebElement CatalogPopup = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-widget k-window k-dialog')]");
+            WebElement CatalogPopup = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-window k-dialog')]");
 
             WebElement SearchProduct = CatalogPopup.findElement(By.xpath("/html/body[@class='dialog']/div[2]/div[@role='dialog']//div[@role='combobox']/input"));
 //            WebElement SearchProduct = CatalogPopup.findElement(By.xpath("//div[@role='dialog']//div[@class='core-grid-admin-top-wrapper']/div[@role='presentation']/div[@role='grid']/div[1]/div[@role='presentation']/table[@role='presentation']/thead[@role='presentation']/tr[2]/th[8]/div[@class='k-filtercell']/div[@class='k-filtercell-wrapper']/input"));
@@ -2164,7 +2164,7 @@ public class BadgeBuilderPage {
             //HelpersMethod.JScriptClick(driver, SearchIcon2, 20);
 //            Thread.sleep(2000);
 
-            WebElement AccountPopup = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-widget k-window k-dialog')]");
+            WebElement AccountPopup = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-window k-dialog')]");
 
             WebElement SearchAccount = AccountPopup.findElement(By.xpath("/html/body[@class='dialog']/div[2]/div[@role='dialog']/div[2]//form/input"));
             //HelpersMethod.ScrollElement(driver, SearchProd);
@@ -2206,15 +2206,15 @@ public class BadgeBuilderPage {
         WebElement WebEle = null;
         try
         {
-            if (HelpersMethod.IsExists("//div[contains(text(),'You already have an open order that is pending submission.')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]", driver))
+            if (HelpersMethod.IsExists("//div[contains(text(),'You already have an open order that is pending submission.')]/ancestor::div[contains(@class,'k-window k-dialog')]", driver))
             {
-                HelpersMethod.waitTillElementLocatedDisplayed(driver,"xpath","//div[contains(@class,'k-widget k-window k-dialog')]",30);
-                WebElement noPendingOrderPopup =HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-widget k-window k-dialog')]");
+                HelpersMethod.waitTillElementLocatedDisplayed(driver,"xpath","//div[contains(@class,'k-window k-dialog')]",30);
+                WebElement noPendingOrderPopup =HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-window k-dialog')]");
 
                // WebElement noPendingOrderContent = noPendingOrderPopup.findElement(By.xpath(".//div[contains(@class,'k-window-content k-dialog-content')]"));
                 //Assert.assertEquals(noPendingOrderContent.getText(), "You already have an open order that is pending submission. Would you like to switch to that Pending order or start a new order? If you start a new order, the Pending order will be overwritten.", "Verify Title message");
 
-                WebElement startOrder=noPendingOrderPopup.findElement(By.xpath(".//button[contains(text(),'Start new order')]"));
+                WebElement startOrder=noPendingOrderPopup.findElement(By.xpath(".//button/span[contains(text(),'Start new order')]"));
                 HelpersMethod.ClickBut(driver,startOrder,80);
                 if (HelpersMethod.IsExists("//div[@class='loader']", driver))
                 {
@@ -2286,7 +2286,7 @@ public class BadgeBuilderPage {
     {
         exists = false;
         WebElement WebEle;
-        String status=null;
+        String status="";
         if(HelpersMethod.IsExists("//div[@class='loader']",driver))
         {
             WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");

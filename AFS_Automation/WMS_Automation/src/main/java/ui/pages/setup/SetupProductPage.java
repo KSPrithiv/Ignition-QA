@@ -87,8 +87,8 @@ public class SetupProductPage extends BasePage {
     By active = By.id("ddlActive");
     By okBtn = By.xpath("//button[@content='OK']");
     By cnlBtn = By.xpath("//button[@content='Cancel']");
-    By okButton = By.xpath("//button[text()='OK']");
-    By cnlButton = By.xpath("//button[text()='Cancel']");
+    By okButton = By.xpath("//button/span[text()='Ok']");
+    By cnlButton = By.xpath("//button/span[text()='Cancel']");
     By receivingUOMLabel = By.id("ddlReceivingUOM-label");
     By receivingUOM = By.id("ddlReceivingUOM");
     By movementUOMLabel = By.id("ddlMovementUOM-label");
@@ -160,7 +160,7 @@ public class SetupProductPage extends BasePage {
     By searchBox = By.cssSelector(".i-search-box");
     By isEmptyRadioButton = By.id("textRadioButton2");
     By inputContains = By.xpath("//input[@placeholder='Contains']");
-    By applyButton = By.xpath("//button[text()='Apply']");
+    By applyButton = By.xpath("//button/span[text()='Apply']");
     By clearAllButton = By.xpath("//button[text()='Clear all']");
     By codeFilter = By.cssSelector(".i-btn-checkbox  #LOTENCODING_CODE");
     By descFilter = By.cssSelector(".i-btn-checkbox  #LOTENCODING_DESC");
@@ -276,7 +276,7 @@ public class SetupProductPage extends BasePage {
     By weekMapping9 = By.id("WEEK_MAPPING_9");
     By addDateEncodingBtn = By.cssSelector("#MONTH_MAPPING_CustomGrid .i-button--icon-only");
     By editDateEncodingBtn = By.xpath("//div[@id='MONTH_MAPPING_CustomGrid']//button[text()='Edit']");
-    By deleteDateEncodingBtn = By.xpath("///div[@id='MONTH_MAPPING_CustomGrid']//button[text()='Delete']");
+    By deleteDateEncodingBtn = By.xpath("///div[@id='MONTH_MAPPING_CustomGrid']//button/span[text()='Delete']");
     By characterInput = By.cssSelector("input[placeholder='Character']");
     By valueInput = By.cssSelector("input[id='Value']");
     By notificationMsg = By.cssSelector(".toast-message");

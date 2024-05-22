@@ -301,8 +301,8 @@ public class ReceivingPage extends BasePage {
         Waiters.waitForElementToBeDisplay(getTxtAddProductLPN());
         clearText(getTxtAddProductLPN());
         Waiters.waitABit(2000);
-        if(isVisible(By.xpath("//button[text()='Yes']"))) {
-            clickOnElement(findWebElement(By.xpath("//button[text()='Yes']")));
+        if(isVisible(By.xpath("//button/span[text()='Yes']"))) {
+            clickOnElement(findWebElement(By.xpath("//button/span[text()='Yes']")));
         }
         Waiters.waitABit(2000);
         inputText(getTxtAddProductLPN(), lpn);

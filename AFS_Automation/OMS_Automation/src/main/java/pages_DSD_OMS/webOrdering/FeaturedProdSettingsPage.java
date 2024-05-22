@@ -40,7 +40,7 @@ public class FeaturedProdSettingsPage
         exists=false;
         String title=null;
         WebElement WebEle;
-        String status=null;
+        String status="";
 
         status=HelpersMethod.returnDocumentStatus(driver);
         if (status.equals("loading"))

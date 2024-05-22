@@ -92,10 +92,10 @@ public class ProductDescriptionPage
                 HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 600000);
             }
             Thread.sleep(2000);
-            if (HelpersMethod.IsExists("//div[contains(text(),'This product is currently unavailable')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]", driver))
+            if (HelpersMethod.IsExists("//div[contains(text(),'This product is currently unavailable')]/ancestor::div[contains(@class,'k-window k-dialog')]", driver))
             {
-                WebElement unavailablePopup=HelpersMethod.FindByElement(driver,"xpath","//div[contains(text(),'This product is currently unavailable')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]");
-                WebElement yesButton = unavailablePopup.findElement(By.xpath(".//button[text()='Ok']"));
+                WebElement unavailablePopup=HelpersMethod.FindByElement(driver,"xpath","//div[contains(text(),'This product is currently unavailable')]/ancestor::div[contains(@class,'k-window k-dialog')]");
+                WebElement yesButton = unavailablePopup.findElement(By.xpath(".//button/span[text()='Ok']"));
                 HelpersMethod.ActClick(driver, yesButton, 1000);
                 if(HelpersMethod.IsExists("//div[@class='loader']",driver))
                 {
@@ -127,10 +127,10 @@ public class ProductDescriptionPage
                     HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100000);
                 }
                 Thread.sleep(1000);
-                if (HelpersMethod.IsExists("//div[contains(text(),'This product is currently unavailable')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]", driver))
+                if (HelpersMethod.IsExists("//div[contains(text(),'This product is currently unavailable')]/ancestor::div[contains(@class,'k-window k-dialog')]", driver))
                 {
-                    WebElement unavailablePopup=HelpersMethod.FindByElement(driver,"xpath","//div[contains(text(),'This product is currently unavailable')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]");
-                    WebElement yesButton = unavailablePopup.findElement(By.xpath(".//button[text()='Ok']"));
+                    WebElement unavailablePopup=HelpersMethod.FindByElement(driver,"xpath","//div[contains(text(),'This product is currently unavailable')]/ancestor::div[contains(@class,'k-window k-dialog')]");
+                    WebElement yesButton = unavailablePopup.findElement(By.xpath(".//button/span[text()='Ok']"));
                     HelpersMethod.ActClick(driver, yesButton, 1000);
                     if(HelpersMethod.IsExists("//div[@class='loader']",driver))
                     {
@@ -151,10 +151,10 @@ public class ProductDescriptionPage
                     HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100000);
                 }
                 Thread.sleep(1000);
-                if (HelpersMethod.IsExists("//div[contains(text(),'This product is currently unavailable')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]", driver))
+                if (HelpersMethod.IsExists("//div[contains(text(),'This product is currently unavailable')]/ancestor::div[contains(@class,'k-window k-dialog')]", driver))
                 {
-                    WebElement unavailablePopup=HelpersMethod.FindByElement(driver,"xpath","//div[contains(text(),'This product is currently unavailable')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]");
-                    WebElement yesButton = unavailablePopup.findElement(By.xpath(".//button[text()='Ok']"));
+                    WebElement unavailablePopup=HelpersMethod.FindByElement(driver,"xpath","//div[contains(text(),'This product is currently unavailable')]/ancestor::div[contains(@class,'k-window k-dialog')]");
+                    WebElement yesButton = unavailablePopup.findElement(By.xpath(".//button/span[text()='Ok']"));
                     HelpersMethod.ActClick(driver, yesButton, 1000);
                     if(HelpersMethod.IsExists("//div[@class='loader']",driver))
                     {

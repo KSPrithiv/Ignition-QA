@@ -182,8 +182,8 @@ public class ParOrderPageStep
         parOrderPage.ValidateParlistTab();
     }
 
-    @And("User enters code and discription for Par list")
-    public void userEntersCodeAndDiscriptionForParList(DataTable tabledata)
+    @And("User enters code and description for Par list")
+    public void userEntersCodeAndDescriptionForParList(DataTable tabledata)
     {
         List<List<String>> ParDetails=tabledata.asLists(String.class);
         parOrderPage=new ParOrderPage(driver,scenario);

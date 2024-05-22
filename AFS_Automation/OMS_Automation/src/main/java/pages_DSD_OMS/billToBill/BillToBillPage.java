@@ -262,13 +262,13 @@ public class BillToBillPage
     public void ClickBillGroup()
     {
         exists=false;
-        WebElement WebEle=null;
+        WebElement WebEle;
         try
         {
-            WebEle=HelpersMethod.FindByElement(driver,"xpath","//table[@class='k-grid-table']/descendant::tr[1]/descendant::td/input");
+            WebEle=HelpersMethod.FindByElement(driver,"xpath","//table[contains(@class,'k-grid-table')]/descendant::tr[1]/td/descendant::input");
             if(WebEle.isDisplayed())
             {
-                HelpersMethod.ClickBut(driver,WebEle,10);
+                HelpersMethod.ClickBut(driver,WebEle,10000);
                 exists=true;
             }
             else

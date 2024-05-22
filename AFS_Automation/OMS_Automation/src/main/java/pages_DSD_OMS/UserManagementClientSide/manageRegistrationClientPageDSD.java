@@ -67,7 +67,7 @@ public class manageRegistrationClientPageDSD
         exists=false;
         try
         {
-            if(HelpersMethod.IsExists("//div[@id='gridUtil_undefined']/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
+            if(HelpersMethod.IsExists("//div[@id='gridUtil_undefined']/ancestor::div[contains(@class,'k-window k-dialog')]",driver))
             {
                 exists=true;
             }
@@ -81,9 +81,9 @@ public class manageRegistrationClientPageDSD
         exists=false;
         try
         {
-            if(HelpersMethod.IsExists("//div[contains(@class,'k-widget k-window k-dialog')]/descendant::input[@id='gridUtilSearch_undefined']",driver))
+            if(HelpersMethod.IsExists("//div[contains(@class,'k-window k-dialog')]/descendant::input[@id='gridUtilSearch_undefined']",driver))
             {
-                WebElement modelContainer = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-widget k-window k-dialog')]");
+                WebElement modelContainer = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-window k-dialog')]");
                 WebElement searchBox = modelContainer.findElement(By.xpath(".//input[@id='gridUtilSearch_undefined']"));
                 HelpersMethod.EnterText(driver, searchBox, 1000, TestBase.testEnvironment.userManageRegistration());
                 WebElement searchIndex=modelContainer.findElement(By.xpath(".//*[local-name()='svg' and @class='i-icon   i-search-box__search']"));
@@ -100,10 +100,10 @@ public class manageRegistrationClientPageDSD
         exists=true;
         try
         {
-            if(HelpersMethod.IsExists("//div[contains(@class,'k-widget k-window k-dialog')]/descendant::tr[@class='k-master-row']",driver))
+            if(HelpersMethod.IsExists("//div[contains(@class,'k-window k-dialog')]/descendant::tr[contains(@class,'k-master-row')]",driver))
             {
-                WebElement modelContainer = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-widget k-window k-dialog')]");
-                WebElement userDetails=modelContainer.findElement(By.xpath(".//tr[@class='k-master-row']"));
+                WebElement modelContainer = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-window k-dialog')]");
+                WebElement userDetails=modelContainer.findElement(By.xpath(".//tr[contains(@class,'k-master-row')]"));
                 HelpersMethod.ActClick(driver,userDetails,1000);
                 exists=true;
                 if (HelpersMethod.IsExists("//div[@class='loader']", driver))
@@ -182,10 +182,10 @@ public class manageRegistrationClientPageDSD
         exists=false;
         try
         {
-            if(HelpersMethod.IsExists("//div[contains(text(),'Remove primary account')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
+            if(HelpersMethod.IsExists("//div[contains(text(),'Remove primary account')]/ancestor::div[contains(@class,'k-window k-dialog')]",driver))
             {
-               WebElement modelContainer=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-widget k-window k-dialog')]");
-               WebElement yesButton=modelContainer.findElement(By.xpath(".//button[text()='Yes']"));
+               WebElement modelContainer=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-window k-dialog')]");
+               WebElement yesButton=modelContainer.findElement(By.xpath(".//button/span[text()='Yes']"));
                HelpersMethod.ActClick(driver,yesButton,1000);
                 if (HelpersMethod.IsExists("//div[@class='loader']", driver))
                 {

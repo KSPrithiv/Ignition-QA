@@ -29,7 +29,7 @@ public class FeaturedProductsPage
     Scenario scenario;
     static boolean exists=false;
 
-    @FindBy(xpath="//div[@class='grid-item-box'][1]/descendant::button[text()='Delete']")
+    @FindBy(xpath="//div[@class='grid-item-box'][1]/descendant::button/span[text()='Delete']")
     private WebElement Delete;
 
     @FindBy(id="add-product")
@@ -116,8 +116,10 @@ public class FeaturedProductsPage
                         .ignoring(NoSuchElementException.class);
                 wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
 
-                if (HelpersMethod.IsExists("//div[text()='Catalog']/ancestor::div[contains(@class,'k-widget k-window k-dialog')]", driver)) {
-                    if (HelpersMethod.IsExists("//div[@id='no-products-found']", driver)) {
+                if (HelpersMethod.IsExists("//span[text()='Catalog']/ancestor::div[contains(@class,'k-window k-dialog')]", driver))
+                {
+                    if (HelpersMethod.IsExists("//div[@id='no-products-found']", driver))
+                    {
                         scenario.log("NO PRODUCTS HAS BEEN FOUND IN CATALOG");
                     } else {
                         //Click on reset filter button
@@ -144,14 +146,14 @@ public class FeaturedProductsPage
         String ProdNo=null;
         try
         {
-            if(HelpersMethod.IsExists("//div[text()='Catalog']/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
+            if(HelpersMethod.IsExists("//span[text()='Catalog']/ancestor::div[contains(@class,'k-window k-dialog')]",driver))
             {
                 //Identify the product which is not yet selected and find its product number
-                WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-widget k-window k-dialog')]/descendant::button[text()='Select'][1]/ancestor::div[contains(@class,'grid-item-box-item')]/ancestor::div[@class='grid-item-box']/descendant::div[@class='product-number']");
+                WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-window k-dialog')]/descendant::button/span[text()='Select'][1]/ancestor::div[contains(@class,'grid-item-box-item')]/ancestor::div[@class='grid-item-box']/descendant::div[@class='product-number']");
                 ProdNo = WebEle.getText();
                 ProdNo=ProdNo.substring(1);
                 //search input box and enter product number to it
-                WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-widget k-window k-dialog')]/descendant::input[contains(@placeholder,'Search Products')]");
+                WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-window k-dialog')]/descendant::input[contains(@placeholder,'Search Products')]");
                 HelpersMethod.EnterText(driver,WebEle,1000,ProdNo);
                 if(HelpersMethod.IsExists("//div[@class='loader']",driver))
                 {
@@ -167,10 +169,10 @@ public class FeaturedProductsPage
                     HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100000);
                 }
                 //Click on Select button
-                WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-widget k-window k-dialog')]/descendant::button[text()='Select']");
+                WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-window k-dialog')]/descendant::button/span[text()='Select']");
                 HelpersMethod.ScrollElement(driver,WebEle);
                 HelpersMethod.ClickBut(driver,WebEle,1000);
-                if (HelpersMethod.IsExists("//div[contains(@class,'k-widget k-window k-dialog')]/descendant::span[@class='item-value'] /descendant::button//*[local-name()='svg']",driver))
+                if (HelpersMethod.IsExists("//div[contains(@class,'k-window k-dialog')]/descendant::span[@class='item-value'] /descendant::button//*[local-name()='svg']",driver))
                 {
                     exists=true;
                 }
@@ -191,12 +193,12 @@ public class FeaturedProductsPage
         WebElement WebEle;
         try
         {
-            if(HelpersMethod.IsExists("//div[text()='Catalog']/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
+            if(HelpersMethod.IsExists("//span[text()='Catalog']/ancestor::div[contains(@class,'k-window k-dialog')]",driver))
             {
-                if(HelpersMethod.IsExists("//div[contains(text(),'Cannnot select more than')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
+                if(HelpersMethod.IsExists("//div[contains(text(),'Cannnot select more than')]/ancestor::div[contains(@class,'k-window k-dialog')]",driver))
                 {
-                    WebElement modelContainer=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-widget k-window k-dialog')]");
-                    WebElement okButton=modelContainer.findElement(By.xpath(".//button[text()='OK']"));
+                    WebElement modelContainer=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-window k-dialog')]");
+                    WebElement okButton=modelContainer.findElement(By.xpath(".//button/span[text()='Ok']"));
                     HelpersMethod.ActClick(driver,okButton,10000);
                 }
 
@@ -206,7 +208,7 @@ public class FeaturedProductsPage
                         .ignoring(NoSuchElementException.class);
                 wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
 
-                WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-widget k-window k-dialog')]/descendant::button[text()='OK']");
+                WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-window k-dialog')]/descendant::button/span[text()='Ok']");
                 HelpersMethod.ClickBut(driver,WebEle,10000);
 
                 wait = new FluentWait<WebDriver>(driver)
@@ -232,10 +234,10 @@ public class FeaturedProductsPage
                     .ignoring(NoSuchElementException.class);
             wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
 
-            if(HelpersMethod.IsExists("//div[contains(text(),'Cannnot select more than')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
+            if(HelpersMethod.IsExists("//div[contains(text(),'Cannnot select more than')]/ancestor::div[contains(@class,'k-window k-dialog')]",driver))
             {
-                WebElement modelContainer=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-widget k-window k-dialog')]");
-                WebElement okButton=modelContainer.findElement(By.xpath(".//button[text()='OK']"));
+                WebElement modelContainer=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-window k-dialog')]");
+                WebElement okButton=modelContainer.findElement(By.xpath(".//button/span[text()='Ok']"));
                 HelpersMethod.ActClick(driver,okButton,10000);
             }
         }
@@ -248,19 +250,19 @@ public class FeaturedProductsPage
         WebElement WebEle;
         try
         {
-            if(HelpersMethod.IsExists("//div[@class='grid-item-box'][1]/descendant::button[text()='Delete']",driver))
+            if(HelpersMethod.IsExists("//div[@class='grid-item-box'][1]/descendant::button/span[text()='Delete']",driver))
             {
-                WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='grid-item-box'][1]/descendant::button[text()='Delete']");
+                WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='grid-item-box'][1]/descendant::button/span[text()='Delete']");
                 HelpersMethod.ClickBut(driver, WebEle, 10000);
                 if(HelpersMethod.IsExists("//div[@class='loader']",driver))
                 {
                     WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
                     HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100000);
                 }
-                if(HelpersMethod.IsExists("//div[contains(@class,'k-widget k-window k-dialog')]",driver))
+                if(HelpersMethod.IsExists("//div[contains(@class,'k-window k-dialog')]",driver))
                 {
-                    WebElement modalContainer = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-widget k-window k-dialog')]");
-                    WebElement buttonOk=modalContainer.findElement(By.xpath(".//button[text()='Ok']"));
+                    WebElement modalContainer = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-window k-dialog')]");
+                    WebElement buttonOk=modalContainer.findElement(By.xpath(".//button/span[text()='Ok']"));
                     HelpersMethod.ClickBut(driver,buttonOk,10000);
                 }
                 exists = true;
@@ -286,12 +288,12 @@ public class FeaturedProductsPage
                     .ignoring(NoSuchElementException.class);
             wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
 
-            if(HelpersMethod.IsExists("//div[text()='Catalog']/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
+            if(HelpersMethod.IsExists("//span[text()='Catalog']/ancestor::div[contains(@class,'k-window k-dialog')]",driver))
             {
                 WebElement CategoryDrop=HelpersMethod.FindByElement(driver,"id","CPcategories");
                 WebElement SubCateDrop=HelpersMethod.FindByElement(driver,"id","CPbrands");
                 WebElement BrandDrop=HelpersMethod.FindByElement(driver,"id","CPsizes");
-                WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-widget k-window k-dialog')]/descendant::button[text()='Select'][1]/ancestor::div[contains(@class,'grid-item-box-item')]/ancestor::div[@class='grid-item-box']/descendant::span[text()='Category']/following-sibling::span");
+                WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-window k-dialog')]/descendant::button/span[text()='Select'][1]/ancestor::div[contains(@class,'grid-item-box-item')]/ancestor::div[@class='grid-item-box']/descendant::span[text()='Category']/following-sibling::span");
                 category = WebEle.getText();
                 //Click on Category drop down
                 HelpersMethod.ClickBut(driver,CategoryDrop,10000);
@@ -357,17 +359,17 @@ public class FeaturedProductsPage
                             .ignoring(NoSuchElementException.class);
                     wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
 
-                    if (HelpersMethod.IsExists("//div[contains(text(),'saved successfully.')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]", driver))
+                    if (HelpersMethod.IsExists("//div[contains(text(),'saved successfully.')]/ancestor::div[contains(@class,'k-window k-dialog')]", driver))
                     {
                         if (HelpersMethod.IsExists("//div[@class='loader']", driver))
                         {
                             WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
                             HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100000);
                         }
-                        WebElement modalContainer = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-widget k-window k-dialog')]");
-                        WebElement buttonOk = modalContainer.findElement(By.xpath(".//button[text()='OK']"));
+                        WebElement modalContainer = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-window k-dialog')]");
+                        WebElement buttonOk = modalContainer.findElement(By.xpath(".//button/span[text()='Ok']"));
                         HelpersMethod.ActClick(driver, buttonOk, 10000);
-                        new WebDriverWait(driver, Duration.ofMillis(10000)).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[contains(text(),'saved successfully.')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]")));
+                        new WebDriverWait(driver, Duration.ofMillis(10000)).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[contains(text(),'saved successfully.')]/ancestor::div[contains(@class,'k-window k-dialog')]")));
                     }
                     deleteProds = HelpersMethod.FindByElements(driver, "id", "edit-role");
                 }
@@ -387,9 +389,9 @@ public class FeaturedProductsPage
                 WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
                 HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100000);
             }
-            if (HelpersMethod.IsExists("//div[text()='Catalog']/ancestor::div[contains(@class,'k-widget k-window k-dialog')]", driver))
+            if (HelpersMethod.IsExists("//span[text()='Catalog']/ancestor::div[contains(@class,'k-window k-dialog')]", driver))
             {
-                WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'card-view')]/descendant::button[text()='Select'][1]");
+                WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'card-view')]/descendant::button/span[text()='Select'][1]");
                 HelpersMethod.ActClick(driver,WebEle,10000);
             }
             if (HelpersMethod.IsExists("//div[@class='loader']", driver))
@@ -413,10 +415,10 @@ public class FeaturedProductsPage
                 WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
                 HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100000);
             }
-            if (HelpersMethod.IsExists("//div[contains(@class,'k-widget k-window k-dialog')]", driver))
+            if (HelpersMethod.IsExists("//div[contains(@class,'k-window k-dialog')]", driver))
             {
-                WebElement modalContainer = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-widget k-window k-dialog')]");
-                WebElement buttonOk = modalContainer.findElement(By.xpath(".//button[text()='OK']"));
+                WebElement modalContainer = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-window k-dialog')]");
+                WebElement buttonOk = modalContainer.findElement(By.xpath(".//button/span[text()='Ok']"));
                 HelpersMethod.ActClick(driver, buttonOk, 10000);
             }
         }
@@ -435,10 +437,10 @@ public class FeaturedProductsPage
                     .ignoring(NoSuchElementException.class);
             wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
 
-            if(HelpersMethod.IsExists("//div[contains(text(),'saved successfully')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
+            if(HelpersMethod.IsExists("//div[contains(text(),'saved successfully')]/ancestor::div[contains(@class,'k-window k-dialog')]",driver))
             {
-                WebElement modelContainer=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-widget k-window k-dialog')]");
-                WebElement okButton=modelContainer.findElement(By.xpath(".//button[text()='OK']"));
+                WebElement modelContainer=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-window k-dialog')]");
+                WebElement okButton=modelContainer.findElement(By.xpath(".//button/span[text()='Ok']"));
                 HelpersMethod.ActClick(driver,okButton,10000);
             }
             wait = new FluentWait<WebDriver>(driver)
@@ -488,7 +490,6 @@ public class FeaturedProductsPage
                     act.moveToElement(prod).build().perform();
                     prodText = prod.getText();
                     scenario.log("PRODUCT IN FEATURE PRODUCT LIST " + prodText);
-
                 }
                 exists=true;
             }
