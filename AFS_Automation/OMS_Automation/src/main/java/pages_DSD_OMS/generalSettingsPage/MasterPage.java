@@ -91,7 +91,7 @@ public class MasterPage
     private WebElement StartDate;
 
     //@FindBy(xpath="//span[@class='k-widget k-multiselect']//input[@class='k-input']")
-    @FindBy(xpath = "//button[contains(text(),'Print')]")
+    @FindBy(xpath = "//button/span[text()='Print']")
     private WebElement PrintBut;
 
 

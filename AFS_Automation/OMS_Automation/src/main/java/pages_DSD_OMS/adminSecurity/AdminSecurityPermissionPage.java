@@ -92,7 +92,7 @@ public class AdminSecurityPermissionPage
         exists=false;
         try
         {
-            if(HelpersMethod.IsExists("//div[contains(text(),'Add new role')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver));
+            if(HelpersMethod.IsExists("//div[contains(text(),'Add new role')]/ancestor::div[contains(@class,'k-window k-dialog')]",driver));
             {
                 exists=true;
             }
@@ -139,9 +139,9 @@ public class AdminSecurityPermissionPage
             WebElement manageRole=HelpersMethod.FindByElement(driver,"id","manageable-roles");
             HelpersMethod.ActClick(driver,manageRole,10000);
 
-            if(HelpersMethod.IsExists("//div[contains(@class,'k-popup k-child-animation-container')]/descendant::ul/li",driver))
+            if(HelpersMethod.IsExists("//ul[@id='manageable-roleslist']/li",driver))
             {
-                List<WebElement> roles=HelpersMethod.FindByElements(driver,"xpath","//div[contains(@class,'k-popup k-child-animation-container')]/descendant::ul/li");
+                List<WebElement> roles=HelpersMethod.FindByElements(driver,"xpath","//ul[@id='manageable-roleslist']/li/span");
                 for (WebElement rol:roles)
                 {
                     act.moveToElement(rol).build().perform();
@@ -156,7 +156,7 @@ public class AdminSecurityPermissionPage
                 }
             }
             HelpersMethod.ActClick(driver,manageRole,10000);
-            WebElement rName=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-widget k-window k-dialog')]/descendant::li/span[1]");
+            WebElement rName=HelpersMethod.FindByElement(driver,"xpath","//div[@id='tagslist-manageable-roles']/descendant::span[@class='k-chip-label']");
             scenario.log("MANAGEABLE ROLE SELECTED IS "+rName.getText());
             Assert.assertEquals(exists,true);
         }
@@ -174,7 +174,7 @@ public class AdminSecurityPermissionPage
                     .ignoring(NoSuchElementException.class);
             wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
 
-            WebElement OkButton=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-widget k-window k-dialog')]/descendant::button[text()='OK']");
+            WebElement OkButton=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-window k-dialog')]/descendant::button/span[text()='OK']");
             if(OkButton.isDisplayed() && OkButton.isEnabled())
             {
                 HelpersMethod.ActClick(driver,OkButton,10000);
@@ -230,11 +230,11 @@ public class AdminSecurityPermissionPage
                     .ignoring(NoSuchElementException.class);
             wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
 
-            if(HelpersMethod.IsExists("//div[contains(text(),'saved successfully')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
+            if(HelpersMethod.IsExists("//div[contains(text(),'saved successfully')]/ancestor::div[contains(@class,'k-window k-dialog')]",driver))
             {
-                WebElement savePopup= HelpersMethod.FindByElement(driver,"xpath","//div[contains(text(),'saved successfully')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]");
-                WebElement okButton=savePopup.findElement(By.xpath(".//button[text()='OK']"));
-                HelpersMethod.ClickBut(driver,okButton,10000);
+                WebElement savePopup= HelpersMethod.FindByElement(driver,"xpath","//div[contains(text(),'saved successfully')]/ancestor::div[contains(@class,'k-window k-dialog')]");
+                WebElement okButton=savePopup.findElement(By.xpath(".//button/span[text()='OK']"));
+                HelpersMethod.ActClick(driver,okButton,10000);
                 exists=true;
             }
             Assert.assertEquals(exists,true);
@@ -253,9 +253,9 @@ public class AdminSecurityPermissionPage
                     .ignoring(NoSuchElementException.class);
             wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
 
-            if(HelpersMethod.IsExists("//div[contains(text(),'saved successfully')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
+            if(HelpersMethod.IsExists("//div[@id='dialogTextContent']/ancestor::div[@class='k-window k-dialog']",driver))
             {
-                WebElement dialogPopup=HelpersMethod.FindByElement(driver,"xpath","//div[contains(text(),'saved successfully')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]");
+                WebElement dialogPopup=HelpersMethod.FindByElement(driver,"xpath","//div[@id='dialogTextContent']/ancestor::div[@class='k-window k-dialog']");
                 WebElement okPopUp=dialogPopup.findElement(By.xpath(".//button[contains(@id,'QuestionModalButton')]"));
                 HelpersMethod.JScriptClick(driver,okPopUp,40000);
 
@@ -290,7 +290,7 @@ public class AdminSecurityPermissionPage
         exists=false;
         try
         {
-            if(HelpersMethod.IsExists("//div[contains(text(),'Edit role')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver));
+            if(HelpersMethod.IsExists("//span[contains(text(),'Edit role')]/ancestor::div[contains(@class,'k-window k-dialog')]",driver));
             {
                 exists=true;
             }
@@ -304,8 +304,12 @@ public class AdminSecurityPermissionPage
         exists=false;
         try
         {
-            WebElement dropDownRoleEdit=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-widget k-window k-dialog')]/descendant::span[contains(@class,'k-icon k-i-arrow-s')]");
-            HelpersMethod.ActClick(driver,dropDownRoleEdit,10000);
+           if(HelpersMethod.IsExists("//input[@id='comboBoxEditRole']/following-sibling::button//*[local-name()='svg']",driver))
+           {
+               HelpersMethod.FindByElement(driver, "xpath", "//input[@id='comboBoxEditRole']/following-sibling::button//*[local-name()='svg']").click();
+               exists=true;
+           }
+           Assert.assertEquals(exists,true);
         }
         catch (Exception e){}
     }
@@ -316,18 +320,21 @@ public class AdminSecurityPermissionPage
         Actions act=new Actions(driver);
         try
         {
-            List<WebElement> roles=HelpersMethod.FindByElements(driver,"xpath","//div[contains(@class,'k-popup k-child-animation-container')]/descendant::ul/li");
-            for (WebElement role:roles)
+            if(HelpersMethod.IsExists("//ul[@id='comboBoxEditRolelist']/li/span",driver))
             {
-                act.moveToElement(role).build().perform();
-                String roleText=role.getText();
-                if(roleText.equals(roleName))
+                List<WebElement> roles = HelpersMethod.FindByElements(driver, "xpath", "//ul[@id='comboBoxEditRolelist']/li/span");
+                for (WebElement role : roles)
                 {
                     act.moveToElement(role).build().perform();
-                    act.click(role).build().perform();
-                    exists=true;
-                    scenario.log("ROLE SELECTED FOR EDITING IS "+roleText);
-                    break;
+                    String roleText = role.getText();
+                    if (roleText.equals(roleName))
+                    {
+                        act.moveToElement(role).build().perform();
+                        act.click(role).build().perform();
+                        exists = true;
+                        scenario.log("ROLE SELECTED FOR EDITING IS " + roleText);
+                        break;
+                    }
                 }
             }
             Assert.assertEquals(exists,true);
@@ -340,7 +347,7 @@ public class AdminSecurityPermissionPage
         exists=false;
         try
         {
-            WebElement OkButton=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-widget k-window k-dialog')]/descendant::button[@id='buttonOk']");
+            WebElement OkButton=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-window k-dialog')]/descendant::button[@id='buttonOk']");
             if(OkButton.isDisplayed() && OkButton.isEnabled())
             {
                 HelpersMethod.ActClick(driver,OkButton,10000);
@@ -361,7 +368,7 @@ public class AdminSecurityPermissionPage
         exists=false;
         try
         {
-            if(HelpersMethod.IsExists("//div[contains(text(),'Edit role')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver));
+            if(HelpersMethod.IsExists("//div[contains(text(),'Edit role')]/ancestor::div[contains(@class,'k-window k-dialog')]",driver));
             {
                 exists=true;
             }
@@ -393,7 +400,7 @@ public class AdminSecurityPermissionPage
         exists=false;
         try
         {
-            WebElement OkButton=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-widget k-window k-dialog')]/descendant::button[text()='OK']");
+            WebElement OkButton=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-window k-dialog')]/descendant::button/span[text()='OK']");
             if(OkButton.isDisplayed() && OkButton.isEnabled())
             {
                 HelpersMethod.ActClick(driver,OkButton,10000);
@@ -441,11 +448,11 @@ public class AdminSecurityPermissionPage
                     .ignoring(NoSuchElementException.class);
             wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
 
-            new WebDriverWait(driver, Duration.ofMillis(40000)).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(text(),'Copy permissions')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]")));
-            new WebDriverWait(driver,Duration.ofMillis(40000)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(text(),'Copy permissions')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]")));
-            if(HelpersMethod.IsExists("//div[contains(text(),'Copy permissions')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
+            new WebDriverWait(driver, Duration.ofMillis(40000)).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//span[contains(text(),'Copy permissions')]/ancestor::div[contains(@class,'k-window k-dialog')]")));
+            new WebDriverWait(driver,Duration.ofMillis(40000)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[contains(text(),'Copy permissions')]/ancestor::div[contains(@class,'k-window k-dialog')]")));
+            if(HelpersMethod.IsExists("//span[contains(text(),'Copy permissions')]/ancestor::div[contains(@class,'k-window k-dialog')]",driver))
             {
-                WebElement copyPermission=HelpersMethod.FindByElement(driver,"xpath","//div[contains(text(),'Copy permissions')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]");
+                WebElement copyPermission=HelpersMethod.FindByElement(driver,"xpath","//span[contains(text(),'Copy permissions')]/ancestor::div[contains(@class,'k-window k-dialog')]");
                 WebElement copyPerButton=copyPermission.findElement(By.xpath(".//button[@id='CopyPermsBtn']"));
                 HelpersMethod.ClickBut(driver,copyPerButton,10000);
                 exists=true;
@@ -459,7 +466,7 @@ public class AdminSecurityPermissionPage
     {
         try
         {
-            WebElement fromComp=HelpersMethod.FindByElement(driver,"xpath","//label[@id='RoleCompaniesFrom-label']/following-sibling::span/descendant::span[@class='k-icon k-i-arrow-s']");
+            WebElement fromComp=HelpersMethod.FindByElement(driver,"xpath","//input[@id='RoleCompaniesFrom']/following-sibling::button//*[local-name()='svg']");
             HelpersMethod.ActClick(driver,fromComp,10000);
         }
         catch (Exception e){}
@@ -469,21 +476,21 @@ public class AdminSecurityPermissionPage
     {
         exists=false;
         Actions act=new Actions(driver);
-        WebElement WebEle = null;
-        WebElement WebEle1=null;
-        String Val_Text=null;
+        WebElement WebEle;
+        WebElement WebEle1;
+        String Val_Text="";
         int i=0;
         try
         {
             //identify the company drop down, and values in list
-            List<WebElement> Values = HelpersMethod.FindByElements(driver, "xpath", "//div[contains(@class,'k-popup k-child-animation-container')]/descendant::ul/li");
+            List<WebElement> Values = HelpersMethod.FindByElements(driver, "xpath", "//ul[@id='RoleCompaniesFromlist']/li/span");
             for (WebElement Val : Values)
             {
                 act.moveToElement(Val).build().perform();
                 Val_Text = Val.getText();
                 if (Val_Text.equalsIgnoreCase(company))
                 {
-                    WebEle1 = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-popup k-child-animation-container')]/descendant::ul/li[contains(text(),'" + company + "')]");
+                    WebEle1 = HelpersMethod.FindByElement(driver, "xpath", "//ul[@id='RoleCompaniesFromlist']/li/span[contains(text(),'" + company + "')]");
                     ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", Val);
                     act.moveToElement(WebEle1).build().perform();
                     act.moveToElement(WebEle1).click(WebEle1).build().perform();
@@ -497,7 +504,7 @@ public class AdminSecurityPermissionPage
                 }
             }
             WebEle=HelpersMethod.FindByElement(driver,"id","RoleCompaniesFrom");
-            scenario.log("COMPANY ACCOUNT# SELECTED FOR 'FROM COMPANY' IS "+HelpersMethod.JSGetValueEle(driver,WebEle,100));
+            scenario.log("COMPANY ACCOUNT# SELECTED FOR 'FROM COMPANY' IS "+HelpersMethod.JSGetValueEle(driver,WebEle,10000));
             Assert.assertEquals(exists,true);
         }
         catch (Exception e){}
@@ -507,7 +514,7 @@ public class AdminSecurityPermissionPage
     {
         try
         {
-            WebElement fromComp=HelpersMethod.FindByElement(driver,"xpath","//label[@id='RoleRolesFrom-label']/following-sibling::span/descendant::span[@class='k-icon k-i-arrow-s']");
+            WebElement fromComp=HelpersMethod.FindByElement(driver,"xpath","//input[@id='RoleRolesFrom']/following-sibling::button//*[local-name()='svg']");
             HelpersMethod.ActClick(driver,fromComp,10000);
         }
         catch (Exception e){}
@@ -519,18 +526,21 @@ public class AdminSecurityPermissionPage
         Actions act=new Actions(driver);
         try
         {
-            List<WebElement> Values = HelpersMethod.FindByElements(driver, "xpath", "//div[contains(@class,'k-popup k-child-animation-container')]/descendant::ul/li[contains(@class,'k-item')]");
-            for (WebElement Val : Values)
+            if(HelpersMethod.IsExists("//ul[@id='RoleRolesFromlist']/li/span",driver))
             {
-                act.moveToElement(Val).build().perform();
-                String Val_Text = Val.getText();
-                if(Val_Text.equals(arg0))
-                {
-                    act.moveToElement(Val).build().perform();
-                    act.click(Val).build().perform();
-                    exists=true;
-                    break;
-                }
+               List<WebElement> Values = HelpersMethod.FindByElements(driver, "xpath", "//ul[@id='RoleRolesFromlist']/li/span");
+               for (WebElement Val : Values)
+               {
+                   act.moveToElement(Val).build().perform();
+                   String Val_Text = Val.getText();
+                   if (Val_Text.equals(arg0))
+                   {
+                       act.moveToElement(Val).build().perform();
+                       act.click(Val).build().perform();
+                       exists = true;
+                       break;
+                   }
+               }
             }
             WebElement WebEle=HelpersMethod.FindByElement(driver,"id","RoleRolesFrom");
             scenario.log("'FROM' ROLE SELECTED IS "+HelpersMethod.JSGetValueEle(driver,WebEle,100));
@@ -541,10 +551,16 @@ public class AdminSecurityPermissionPage
 
     public void clickOnToCompany()
     {
+        exists=false;
         try
         {
-            WebElement fromComp=HelpersMethod.FindByElement(driver,"xpath","//label[@id='RoleCompaniesTo-label']/following-sibling::span/descendant::span[@class='k-icon k-i-arrow-s']");
-            HelpersMethod.ActClick(driver,fromComp,10000);
+           if(HelpersMethod.IsExists("//input[@id='RoleCompaniesTo']/following-sibling::button//*[local-name()='svg']",driver))
+           {
+               WebElement fromComp = HelpersMethod.FindByElement(driver, "xpath", "//input[@id='RoleCompaniesTo']/following-sibling::button//*[local-name()='svg']");
+               HelpersMethod.ActClick(driver, fromComp, 10000);
+               exists=true;
+           }
+           Assert.assertEquals(exists,true);
         }
         catch (Exception e){}
     }
@@ -558,28 +574,28 @@ public class AdminSecurityPermissionPage
         String Val_Text;
         try
         {
-            List<WebElement> Values = HelpersMethod.FindByElements(driver, "xpath", "//div[contains(@class,'k-popup k-child-animation-container')]/descendant::ul/li");
-            for (WebElement Val : Values)
-            {
-                act.moveToElement(Val).build().perform();
-                Val_Text = Val.getText();
-                if (Val_Text.equalsIgnoreCase(company))
-                {
-                    WebEle1 = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-popup k-child-animation-container')]/descendant::ul/li[contains(text(),'" + company + "')]");
-                    ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", Val);
-                    act.moveToElement(WebEle1).build().perform();
-                    act.moveToElement(WebEle1).click(WebEle1).build().perform();
-                    if (HelpersMethod.IsExists("//div[@class='loader']", driver))
-                    {
-                        WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                        HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100000);
-                    }
-                    exists = true;
-                    break;
-                }
+              List<WebElement> Values = HelpersMethod.FindByElements(driver, "xpath", "//ul[@id='RoleCompaniesTolist']/li/span");
+              for (WebElement Val : Values)
+              {
+                  act.moveToElement(Val).build().perform();
+                  Val_Text = Val.getText();
+                  if (Val_Text.equalsIgnoreCase(company))
+                  {
+                      WebEle1 = HelpersMethod.FindByElement(driver, "xpath", "//ul[@id='RoleCompaniesTolist']/li/span[contains(text(),'" + company + "')]");
+                      ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", Val);
+                      act.moveToElement(WebEle1).build().perform();
+                      act.moveToElement(WebEle1).click(WebEle1).build().perform();
+                      if (HelpersMethod.IsExists("//div[@class='loader']", driver))
+                      {
+                          WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
+                          HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100000);
+                      }
+                      exists = true;
+                      break;
+                  }
             }
 
-            WebEle=HelpersMethod.FindByElement(driver,"id","RoleCompaniesFrom");
+            WebEle=HelpersMethod.FindByElement(driver,"id","RoleCompaniesTo");
             scenario.log("COMPANY ACCOUNT# SELECTED FOR 'FROM COMPANY' IS "+HelpersMethod.JSGetValueEle(driver,WebEle,100));
             Assert.assertEquals(exists,true);
         }
@@ -588,10 +604,16 @@ public class AdminSecurityPermissionPage
 
     public void clickOnToRole()
     {
+        exists=false;
         try
         {
-            WebElement fromComp=HelpersMethod.FindByElement(driver,"xpath","//label[@id='RoleRolesTo-label']/following-sibling::span/descendant::span[@class='k-icon k-i-arrow-s']");
-            HelpersMethod.ActClick(driver,fromComp,10000);
+            if(HelpersMethod.IsExists("//input[@id='RoleRolesTo']/following-sibling::button//*[local-name()='svg']",driver))
+            {
+                WebElement fromComp = HelpersMethod.FindByElement(driver, "xpath", "//input[@id='RoleRolesTo']/following-sibling::button//*[local-name()='svg']");
+                HelpersMethod.ActClick(driver, fromComp, 10000);
+                exists=true;
+            }
+            Assert.assertEquals(exists,true);
         }
         catch (Exception e){}
     }
@@ -602,18 +624,21 @@ public class AdminSecurityPermissionPage
         Actions act=new Actions(driver);
         try
         {
-            List<WebElement> Values = HelpersMethod.FindByElements(driver, "xpath", "//div[contains(@class,'k-popup k-child-animation-container')]/descendant::ul/li[contains(@class,'k-item')]");
-            for (WebElement Val : Values)
+            if(HelpersMethod.IsExists("//ul[@id='RoleRolesTolist']/li/span",driver))
             {
-                act.moveToElement(Val).build().perform();
-                String Val_Text = Val.getText();
-                if(Val_Text.equals(roleName))
-                {
-                    act.moveToElement(Val).build().perform();
-                    act.click(Val).build().perform();
-                    exists=true;
-                    break;
-                }
+               List<WebElement> Values = HelpersMethod.FindByElements(driver, "xpath", "//ul[@id='RoleRolesTolist']/li/span");
+               for (WebElement Val : Values)
+               {
+                   act.moveToElement(Val).build().perform();
+                   String Val_Text = Val.getText();
+                   if (Val_Text.equals(roleName))
+                   {
+                       act.moveToElement(Val).build().perform();
+                       act.click(Val).build().perform();
+                       exists = true;
+                       break;
+                   }
+               }
             }
             WebElement WebEle=HelpersMethod.FindByElement(driver,"id","RoleRolesTo");
             scenario.log("'TO' ROLE SELECTED IS "+HelpersMethod.JSGetValueEle(driver,WebEle,100));
@@ -648,10 +673,10 @@ public class AdminSecurityPermissionPage
         exists=false;
         try
         {
-            //new WebDriverWait(driver,8000).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(text(),'Copy permissions to')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]"))));
-            if(HelpersMethod.IsExists("//div[contains(text(),'Copy permissions to')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
+            //new WebDriverWait(driver,8000).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(text(),'Copy permissions to')]/ancestor::div[contains(@class,'k-window k-dialog')]"))));
+            if(HelpersMethod.IsExists("//span[contains(text(),'Copy permissions to')]/ancestor::div[contains(@class,'k-window k-dialog')]",driver))
             {
-                WebElement copyPopup=HelpersMethod.FindByElement(driver,"xpath","//div[contains(text(),'Copy permissions to')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]");
+                WebElement copyPopup=HelpersMethod.FindByElement(driver,"xpath","//span[contains(text(),'Copy permissions to')]/ancestor::div[contains(@class,'k-window k-dialog')]");
                 WebElement yesButton=copyPopup.findElement(By.xpath(".//button[@id='CopyPermsYesBtn']"));
                 HelpersMethod.ActClick(driver,yesButton,10000);
                 exists=true;
@@ -678,15 +703,18 @@ public class AdminSecurityPermissionPage
                     .ignoring(NoSuchElementException.class);
             wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
 
-            WebElement searchBox= HelpersMethod.FindByElement(driver,"id","SearchBarPermissionsTree");
-            HelpersMethod.sendKeys(driver,searchBox,10000,searchValue);
-            scenario.log("ADMIN SETTING ENTERED FOR SEARCH IS "+ HelpersMethod.JSGetValueEle(driver,searchBox,200));
-            WebElement searchIndex=HelpersMethod.FindByElement(driver,"xpath","//input[contains(@id,'SearchBarPermissionsTree')]/ancestor::div[@class='i-search-box']//*[local-name()='svg' and contains(@class,'i-search-box__search')]");
-            HelpersMethod.ActClick(driver,searchIndex,10000);
-            exists=true;
+            if(HelpersMethod.IsExists("//input[@id='SearchBarPermissionsTree']/ancestor::div[@class='i-search-box']",driver))
+            {
+                WebElement searchBox = HelpersMethod.FindByElement(driver, "id", "SearchBarPermissionsTree");
+                HelpersMethod.sendKeys(driver, searchBox, 10000, searchValue);
+                scenario.log("ADMIN SETTING ENTERED FOR SEARCH IS " + HelpersMethod.JSGetValueEle(driver, searchBox, 10000));
+                WebElement searchIndex = HelpersMethod.FindByElement(driver, "xpath", "//input[contains(@id,'SearchBarPermissionsTree')]/ancestor::div[@class='i-search-box']//*[local-name()='svg' and contains(@class,'i-search-box__search')]");
+                HelpersMethod.ActClick(driver, searchIndex, 10000);
+                exists = true;
+            }
+            Assert.assertTrue(exists);
         }
         catch (Exception e){}
-        Assert.assertTrue(exists);
     }
 
     public void validateAdminSettingSearchValue(String searchValue)
@@ -794,11 +822,11 @@ public class AdminSecurityPermissionPage
     {
         try
         {
-            if(HelpersMethod.IsExists("//div[contains(text(),'Are you sure you wish to copy')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
+            if(HelpersMethod.IsExists("//div[contains(text(),'Are you sure you wish to copy')]/ancestor::div[contains(@class,'k-window k-dialog')]",driver))
             {
                 exists=false;
-                WebElement dialogPopup=HelpersMethod.FindByElement(driver,"xpath","//div[contains(text(),'Are you sure you wish to copy')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]");
-                WebElement yesButton=dialogPopup.findElement(By.xpath(".//button[text()='Yes']"));
+                WebElement dialogPopup=HelpersMethod.FindByElement(driver,"xpath","//div[contains(text(),'Are you sure you wish to copy')]/ancestor::div[contains(@class,'k-window k-dialog')]");
+                WebElement yesButton=dialogPopup.findElement(By.xpath(".//button/span[text()='Yes']"));
                 HelpersMethod.ActClick(driver,yesButton,10000);
                 exists=true;
                 Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
@@ -913,7 +941,7 @@ public class AdminSecurityPermissionPage
                 {
                     if(i== checkBoxList.size()-1)
                     {
-                          disabledRole=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-list-container')]/descendant::ul/li["+(i+1)+"]/descendant::input[@checked]/following-sibling::label").getText();
+                          disabledRole=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-list-container')]/descendant::ul/li["+(i+1)+"]/descendant::input[@checked]/following-sibling::label/span").getText();
                           scenario.log("ROLE THAT HAS BEEN DISABLED IS "+disabledRole);
                           disRole=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-list-container')]/descendant::ul/li["+(i+1)+"]/descendant::input");
                           HelpersMethod.ActClick(driver,disRole,10000);
@@ -930,7 +958,7 @@ public class AdminSecurityPermissionPage
     {
         exists=true;
         Actions act=new Actions(driver);
-        String headText=null;
+        String headText;
         try
         {
             List<WebElement> tableHeads=HelpersMethod.FindByElements(driver,"xpath","//span[@class='k-column-title']");
@@ -953,12 +981,20 @@ public class AdminSecurityPermissionPage
         exists=false;
         try
         {
-            if(HelpersMethod.IsExists("//div[contains(@class,'k-list-container')]/descendant::ul/li[@class='k-item'][1]/descendant::input",driver))
+            if(HelpersMethod.IsExists("//div[contains(@class,'k-list-container')]/descendant::ul/li/descendant::input",driver))
             {
-                enabledRoles=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-list-container')]/descendant::ul/li[@class='k-item'][1]/descendant::input[@checked]/following-sibling::label").getText();
-                scenario.log("ROLE THAT HAS BEEN ENABLED IS "+enabledRoles);
-                WebElement enableEle = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-list-container')]/descendant::ul/li[@class='k-item'][1]/descendant::input");
-                HelpersMethod.ActClick(driver, enableEle, 10000);
+                List<WebElement> checkBoxList=HelpersMethod.FindByElements(driver,"xpath","//div[contains(@class,'k-list-container')]/descendant::ul/li/descendant::input");
+                for(int i=0;i<=checkBoxList.size()-1;i++)
+                {
+                    if(i== checkBoxList.size()-1)
+                    {
+                        enabledRoles=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-list-container')]/descendant::ul/li["+(i+1)+"]/descendant::input[@checked]/following-sibling::label/span").getText();
+                        scenario.log("ROLE THAT HAS BEEN DISABLED IS "+disabledRole);
+                        WebElement enRole=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-list-container')]/descendant::ul/li["+(i+1)+"]/descendant::input");
+                        HelpersMethod.ActClick(driver,enRole,10000);
+                        exists=true;
+                    }
+                }
             }
         }
         catch (Exception e){}
@@ -968,7 +1004,7 @@ public class AdminSecurityPermissionPage
     {
         exists=false;
         Actions act=new Actions(driver);
-        String headText=null;
+        String headText="";
         try
         {
             List<WebElement> tableHeads=HelpersMethod.FindByElements(driver,"xpath","//span[@class='k-column-title']");
@@ -981,7 +1017,7 @@ public class AdminSecurityPermissionPage
                     exists=true;
                 }
             }
-            Assert.assertTrue(exists);
+            Assert.assertTrue(exists);Assert.assertEquals(exists,true);
         }
         catch (Exception e){}
     }
@@ -1000,7 +1036,7 @@ public class AdminSecurityPermissionPage
                 {
                     if(HelpersMethod.IsExists("//div[contains(@class,'k-list-container')]/descendant::ul/li["+(i+1)+"]/descendant::input[@checked]",driver))
                     {
-                        checkBoxText=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-list-container')]/descendant::ul/li["+(i+1)+"]/descendant::input[@checked]/following-sibling::label").getText();
+                        checkBoxText=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-list-container')]/descendant::ul/li["+(i+1)+"]/descendant::input[@checked]/following-sibling::label/span").getText();
                         if(module.equalsIgnoreCase(checkBoxText))
                         {
                             WebElement checkBox=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-list-container')]/descendant::ul/li["+(i+1)+"]/descendant::input[@checked]");
@@ -1030,7 +1066,7 @@ public class AdminSecurityPermissionPage
                 {
                     if(HelpersMethod.IsExists("//div[contains(@class,'k-list-container')]/descendant::ul/li["+(i+1)+"]/descendant::input",driver))
                     {
-                        checkBoxText=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-list-container')]/descendant::ul/li["+(i+1)+"]/descendant::input/following-sibling::label").getText();
+                        checkBoxText=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-list-container')]/descendant::ul/li["+(i+1)+"]/descendant::input/following-sibling::label/span").getText();
                         if(module.equalsIgnoreCase(checkBoxText))
                         {
                             WebElement checkBox=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-list-container')]/descendant::ul/li["+(i+1)+"]/descendant::input");
@@ -1050,7 +1086,7 @@ public class AdminSecurityPermissionPage
     {
         exists=false;
         Actions act=new Actions(driver);
-        String adminText=null;
+        String adminText="";
         try
         {
             if(HelpersMethod.IsExists("//span[@class='k-icon k-i-collapse']/following-sibling::div[contains(@class,'admin-control-table')]/descendant::div[@class='label-containerX']",driver))

@@ -3,6 +3,7 @@ package pages_DSD_OMS.adminGrids;
 import helper.HelpersMethod;
 import io.cucumber.java.Scenario;
 import org.apache.logging.log4j.core.tools.picocli.CommandLine;
+import org.apache.poi.ss.formula.functions.T;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Action;
 import org.openqa.selenium.interactions.Actions;
@@ -56,7 +57,7 @@ public class GridConfigurationPage
     {
         try
         {
-            if(HelpersMethod.IsExists("//div[contains(@class,'k-widget k-window k-dialog')]",driver))
+            if(HelpersMethod.IsExists("//div[contains(@class,'k-window k-dialog')]",driver))
             {
 
                 JavascriptExecutor js = ((JavascriptExecutor) driver);
@@ -374,7 +375,7 @@ public class GridConfigurationPage
             if(columnChooser.isDisplayed() && columnChooser.isEnabled())
             {
                 HelpersMethod.ClickBut(driver, columnChooser, 1000);
-                new WebDriverWait(driver,Duration.ofMillis(10000)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class,'k-widget k-window k-dialog')]"))));
+                new WebDriverWait(driver,Duration.ofMillis(10000)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class,'k-window k-dialog')]"))));
                 exists=true;
             }
             Assert.assertTrue(exists);
@@ -386,8 +387,8 @@ public class GridConfigurationPage
     {
         try
         {
-            WebElement modalContainer = driver.findElement(By.xpath("//div[contains(@class,'k-widget k-window k-dialog')]"));
-            WebElement modalContentTitle = modalContainer.findElement(By.xpath(".//div[contains(@class,'k-window-title k-dialog-title')]"));
+            WebElement modalContainer = driver.findElement(By.xpath("//div[contains(@class,'k-window k-dialog')]"));
+            WebElement modalContentTitle = modalContainer.findElement(By.xpath(".//span[contains(@class,'k-window-title k-dialog-title')]"));
             Assert.assertEquals(modalContentTitle.getText(), "Column chooser", "Verify Title message");
         }
         catch (Exception e){}
@@ -614,9 +615,9 @@ public class GridConfigurationPage
         WebElement WebEle;
         try
         {
-            WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='switch-control card']/descendant::span[@class='k-switch-container' and  @aria-checked='true']");
-            HelpersMethod.ActClick(driver,WebEle,1000);
-            if(HelpersMethod.IsExists("//div[@class='switch-control card']/descendant::span[@class='k-switch-container' and  @aria-checked='false']",driver))
+            WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='switch-control card']/descendant::span[@class='k-switch k-switch-sm k-rounded-full k-switch-on' and  @aria-checked='true']");
+            HelpersMethod.ActClick(driver,WebEle,10000);
+            if(HelpersMethod.IsExists("//div[@class='switch-control card']/descendant::span[contains(@class,'k-switch-off') and  @aria-checked='false']",driver))
             {
                 scenario.log("SELECTED GRID HAS BEEN DISABLED IN AVAILABLE GRID");
                 exists=true;
@@ -632,14 +633,15 @@ public class GridConfigurationPage
         WebElement WebEle;
         try
         {
-            WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='switch-control card']/descendant::span[@class='k-switch-container' and  @aria-checked='false']");
-            HelpersMethod.ActClick(driver,WebEle,1000);
-            if(HelpersMethod.IsExists("//div[@class='switch-control card']/descendant::span[@class='k-switch-container' and  @aria-checked='true']",driver))
+            WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='switch-control card']/descendant::span[contains(@class,'k-switch-off') and  @aria-checked='false']");
+            HelpersMethod.ActClick(driver,WebEle,10000);
+            Thread.sleep(1000);
+            if(HelpersMethod.IsExists("//div[@class='switch-control card']/descendant::span[@class='k-switch k-switch-sm k-rounded-full k-switch-on' and  @aria-checked='true']",driver))
             {
                 scenario.log("SELECTED GRID HAS BEEN ENABLED IN AVAILABLE GRID");
                 exists=true;
             }
-            Assert.assertTrue(exists);
+            Assert.assertEquals(exists,true);
         }
         catch (Exception e){}
     }
@@ -708,7 +710,7 @@ public class GridConfigurationPage
         try
         {
             WebElement WebEle= HelpersMethod.FindByElement(driver,"xpath","//tr[1]/descendant::div[@class='grid-name']");
-            HelpersMethod.ActClick(driver,WebEle,1000);
+            HelpersMethod.ActClick(driver,WebEle,10000);
         }
         catch (Exception e){}
     }
@@ -802,13 +804,13 @@ public class GridConfigurationPage
         exists=false;
         try
         {
-            //new WebDriverWait(driver,Duration.ofMillis(2000)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(text(),'saved successfully.')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]")));
+            //new WebDriverWait(driver,Duration.ofMillis(2000)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(text(),'saved successfully.')]/ancestor::div[contains(@class,'k-window k-dialog')]")));
             if(HelpersMethod.IsExists("//div[@class='loader']",driver))
             {
                 WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
                 HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000000);
             }
-            if(HelpersMethod.IsExists("//div[contains(text(),'saved successfully.')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
+            if(HelpersMethod.IsExists("//div[contains(text(),'saved successfully.')]/ancestor::div[contains(@class,'k-window k-dialog')]",driver))
             {
                 scenario.log("ADMIN SIDE CHANGES SAVE POPUP HAS APPEARED");
                 exists=true;
@@ -823,9 +825,9 @@ public class GridConfigurationPage
         exists=false;
         try
         {
-            if(HelpersMethod.IsExists("//div[contains(text(),'saved successfully')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
+            if(HelpersMethod.IsExists("//div[contains(text(),'saved successfully')]/ancestor::div[contains(@class,'k-window k-dialog')]",driver))
             {
-                WebElement saveConfirmationPopup=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-widget k-window k-dialog')]");
+                WebElement saveConfirmationPopup=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-window k-dialog')]");
                 WebElement okButton=saveConfirmationPopup.findElement(By.xpath(".//button[contains(@id,'QuestionModalButton')]"));
                 HelpersMethod.ActClick(driver,okButton,6000);
                 if(HelpersMethod.IsExists("//div[@class='loader']",driver))

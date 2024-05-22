@@ -118,7 +118,7 @@ public class CutOffTimeOverridePage
                     .ignoring(NoSuchElementException.class);
             wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
 
-            if (HelpersMethod.IsExists("//div[@id='delivery-date-notification']/ancestor::div[contains(@class,'k-widget k-window k-dialog')]", driver))
+            if (HelpersMethod.IsExists("//div[@id='delivery-date-notification']/ancestor::div[contains(@class,'k-window k-dialog')]", driver))
             {
                 exists = true;
             }
@@ -132,7 +132,7 @@ public class CutOffTimeOverridePage
         exists=false;
         try
         {
-            WebElement calenderButton=HelpersMethod.FindByElement(driver,"xpath","//div[@id='delivery-date-notification']/ancestor::div[contains(@class,'k-widget k-window k-dialog')]/descendant::span[contains(@class,'k-icon k-i-calendar')]");
+            WebElement calenderButton=HelpersMethod.FindByElement(driver,"xpath","//div[@id='delivery-date-notification']/ancestor::div[contains(@class,'k-window k-dialog')]/descendant::span[contains(@class,'k-icon k-i-calendar')]");
             HelpersMethod.ClickBut(driver,calenderButton,10000);
             Thread.sleep(2000);
             if(HelpersMethod.IsExists("//div[contains(@class,'k-calendar-view k-vstack k-calendar-monthview')]",driver))
@@ -285,10 +285,10 @@ public class CutOffTimeOverridePage
         try
         {
             //to click on save button in new blackout date
-            if (HelpersMethod.IsExists("//div[contains(@class,'k-widget k-window k-dialog')]", driver))
+            if (HelpersMethod.IsExists("//div[contains(@class,'k-window k-dialog')]", driver))
             {
-                WebElement modelContrainer = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-widget k-window k-dialog')]");
-                WebElement saveButton = modelContrainer.findElement(By.xpath(".//button[text()='Save']"));
+                WebElement modelContrainer = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-window k-dialog')]");
+                WebElement saveButton = modelContrainer.findElement(By.xpath(".//button/span[text()='Save']"));
                 HelpersMethod.ActClick(driver, saveButton, 1000);
                 exists=true;
                 if (HelpersMethod.IsExists("//div[@class='loader']", driver))
@@ -297,15 +297,15 @@ public class CutOffTimeOverridePage
                     HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 200000);
                 }
                 //handle confirmation popup
-                if (HelpersMethod.IsExists("//div[@id='dialogTextContent']/ancestor::div[contains(@class,'k-widget k-window k-dialog')]", driver))
+                if (HelpersMethod.IsExists("//div[@id='dialogTextContent']/ancestor::div[contains(@class,'k-window k-dialog')]", driver))
                 {
                     if (HelpersMethod.IsExists("//div[@class='loader']", driver))
                     {
                         WebElement WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
                         HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 200000);
                     }
-                    WebElement modelContrainer1 = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-widget k-window k-dialog')]");
-                    WebElement okButton = modelContrainer1.findElement(By.xpath(".//button[text()='OK']"));
+                    WebElement modelContrainer1 = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-window k-dialog')]");
+                    WebElement okButton = modelContrainer1.findElement(By.xpath(".//button/span[text()='Ok']"));
                     HelpersMethod.ActClick(driver, okButton, 1000);
                     if (HelpersMethod.IsExists("//div[@class='loader']", driver))
                     {
@@ -383,10 +383,10 @@ public class CutOffTimeOverridePage
                 WebElement WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
                 HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 200000);
             }
-            if(HelpersMethod.IsExists("//div[contains(@class,'k-window-content k-dialog-content')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
+            if(HelpersMethod.IsExists("//div[contains(@class,'k-window-content k-dialog-content')]/ancestor::div[contains(@class,'k-window k-dialog')]",driver))
             {
-               WebElement confirmationPopup= HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-widget k-window k-dialog')]");
-               WebElement okButton=confirmationPopup.findElement(By.xpath(".//button[text()='OK']"));
+               WebElement confirmationPopup= HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-window k-dialog')]");
+               WebElement okButton=confirmationPopup.findElement(By.xpath(".//button/span[text()='Ok']"));
                HelpersMethod.ActClick(driver,okButton,1000);
                exists=true;
                 if (HelpersMethod.IsExists("//div[@class='loader']", driver))
@@ -465,7 +465,7 @@ public class CutOffTimeOverridePage
                 HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 200000);
             }
 
-            if(HelpersMethod.IsExists("//div[@id='dialogTextContent']/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
+            if(HelpersMethod.IsExists("//div[@id='dialogTextContent']/ancestor::div[contains(@class,'k-window k-dialog')]",driver))
             {
                 if (HelpersMethod.IsExists("//div[@class='loader']", driver))
                 {
@@ -473,8 +473,8 @@ public class CutOffTimeOverridePage
                     HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 200000);
                 }
 
-                WebElement confirmationPopup= HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-widget k-window k-dialog')]");
-                WebElement okButton=confirmationPopup.findElement(By.xpath(".//button[text()='OK']"));
+                WebElement confirmationPopup= HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-window k-dialog')]");
+                WebElement okButton=confirmationPopup.findElement(By.xpath(".//button/span[text()='Ok']"));
                 HelpersMethod.ActClick(driver,okButton,10000);
                 exists=true;
                 if (HelpersMethod.IsExists("//div[@class='loader']", driver))

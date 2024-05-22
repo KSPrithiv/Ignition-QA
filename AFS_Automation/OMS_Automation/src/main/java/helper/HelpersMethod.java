@@ -501,8 +501,8 @@ public class HelpersMethod
         new WebDriverWait(driver,Duration.ofMillis(2000)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class,'k-popup k-child-animation-container')]"))));
 
         // to fetch the web element of the modal container
-        WebElement menuContainer = HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-popup k-child-animation-container')]");
-        List<WebElement> Options=menuContainer.findElements (By.xpath(".//ul/li"));
+        WebElement menuContainer = HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-child-animation-container')]");
+        List<WebElement> Options=menuContainer.findElements (By.xpath(".//ul/li/span"));
         for(int i=0;i<=Options.size()-1;i++)
         {
             WebEle=Options.get(i);
@@ -533,7 +533,7 @@ public class HelpersMethod
         HelpersMethod.waitTillElementLocatedDisplayed(driver,"xpath","//div[contains(@class,'k-child-animation-container')]",40);
         // to fetch the web element of the modal container
         WebElement menuContainer = HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-child-animation-container')]");
-        List<WebElement> Options=menuContainer.findElements (By.xpath(".//ul/li"));
+        List<WebElement> Options=menuContainer.findElements (By.xpath(".//ul/li/span"));
         for(int i=0;i<=Options.size()-1;i++)
         {
             WebEle = Options.get(i);
@@ -558,7 +558,7 @@ public class HelpersMethod
         Opt1= value.toLowerCase();
         // to fetch the web element of the modal container
         WebElement menuContainer = HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-popup k-child-animation-container')]");
-        List<WebElement> Options=menuContainer.findElements (By.xpath(".//ul/li"));
+        List<WebElement> Options=menuContainer.findElements (By.xpath(".//ul/li/span"));
         for(WebElement option: Options)
         {
             act1.moveToElement(option).build().perform();
@@ -616,11 +616,6 @@ public class HelpersMethod
                 .pollingEvery(Duration.ofSeconds(2))
                 .ignoring(NoSuchElementException.class);
         wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
-
-        if(found==false)
-        {
-            scenario.log("<span style='color:red'>MENU TAB YOU ARE SEARCHING FOR HAS NOT BEEN FOUND</span>");
-        }
     }
 
     public static String gettingTitle(WebDriver driver)
@@ -756,8 +751,8 @@ public class HelpersMethod
     //Code for AddFilterSearch for DSD and OMS applications
     public static void AddFilterSearch(WebDriver driver,String SearchBoxValue,String SearhBox2Value) throws InterruptedException
     {
-        WebElement Search2=null;
-        WebElement WebEle=null;
+        WebElement Search2;
+        WebElement WebEle;
         if(HelpersMethod.IsExists("//div[@class='loader']",driver))
         {
             WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
@@ -776,7 +771,7 @@ public class HelpersMethod
         WebElement modalContainer1=FindByElement(driver,"xpath","//div[contains(@class,'k-animation-container k-animation-container-relative k-animation-container-shown')]");
 
         //Click on Clear all button
-        WebElement Clear=modalContainer1.findElement(By.xpath(".//button[contains(text(),'Clear all')]"));
+        WebElement Clear=modalContainer1.findElement(By.xpath(".//button/span[contains(text(),'Clear all')]"));
         if(Clear.isEnabled())
         {
             Clear.click();
@@ -799,7 +794,7 @@ public class HelpersMethod
             EnterText(driver,Search2,10000,SearhBox2Value);
 
             //Click on Apply button
-            Clear =RadioPop.findElement(By.xpath(".//button[text()='Apply']"));
+            Clear =RadioPop.findElement(By.xpath(".//button/span[text()='Apply']"));
             ClickBut(driver,Clear,1000);
         }
         else
@@ -811,7 +806,7 @@ public class HelpersMethod
                 EnterText(driver, Search2, 1000, SearhBox2Value);
 
                 //Click on Apply button
-                Clear = Search2.findElement(By.xpath(".//button[text()='Apply']"));
+                Clear = Search2.findElement(By.xpath(".//button/span[text()='Apply']"));
                 ClickBut(driver,Clear,1000);
                 //loading Icon
                 if (IsExists("//div[@class='loader']", driver))
@@ -826,34 +821,34 @@ public class HelpersMethod
     //This part of code can be used when Add filter button need to be used and it is part of any popup
     public static void AddFilterSearch_Popup(WebDriver driver,String SearchBoxValue,String SearhBox2Value) throws InterruptedException
     {
-        WebElement Search2=null;
+        WebElement Search2;
         WebElement WebEle;
         WebElement Clear;
 
         //Click on Add filter, and Passing parameter to add filter drop downs
         WebDriverWait wait=new WebDriverWait(driver,Duration.ofMillis(8000));
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(@class,'k-widget k-window k-dialog')]/descendant::button/descendant::span[contains(text(),'Add filter')]")));
-        driver.findElement(By.xpath("//div[contains(@class,'k-widget k-window k-dialog')]/descendant::button/descendant::span[contains(text(),'Add filter')]")).click();
-        new WebDriverWait(driver,Duration.ofMillis(20000)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(@class,'k-animation-container k-animation-container-relative k-animation-container-shown')]")));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(@class,'k-window k-dialog')]/descendant::button/span[contains(text(),'Add filter')]")));
+        driver.findElement(By.xpath("//div[contains(@class,'k-window k-dialog')]/descendant::button/span[contains(text(),'Add filter')]")).click();
+        new WebDriverWait(driver,Duration.ofMillis(20000)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='k-animation-container k-animation-container-shown']")));
 
-        WebElement modalContainer1 = FindByElement(driver, "xpath", "//div[contains(@class,'k-animation-container k-animation-container-relative k-animation-container-shown')]");
-        if(HelpersMethod.IsExists("//div[contains(@class,'k-widget k-window k-dialog')]/descendant::div[@class='i-filter-tag ']",driver))
+        WebElement modalContainer1 = FindByElement(driver, "xpath", "//div[@class='k-animation-container k-animation-container-shown']");
+        if(HelpersMethod.IsExists("//div[@class='k-child-animation-container']/descendant::div[@class='i-filter-popup i-filter-popup--add']",driver))
         {
             //Click on Clear all button
-            Clear = modalContainer1.findElement(By.xpath(".//button[contains(text(),'Clear all')]"));
-            if (Clear.isEnabled())
+            if (!IsExists("//div[@class='k-animation-container k-animation-container-shown']/descendant::button/span[contains(@class,'k-button k-button-md k-button-flat k-button-flat-primary k-rounded-md k-disabled i-filter-popup__footer__button i-primary')]/span[contains(text(),'Clear all')]",driver))
             {
+                Clear = driver.findElement(By.xpath("//div[@class='k-animation-container k-animation-container-shown']/descendant::button/span[contains(text(),'Clear all')]"));
                 Clear.click();
+                driver.findElement(By.xpath("//div[contains(@class,'k-window k-dialog')]/descendant::button/span[contains(text(),'Add filter')]")).click();
             }
-            driver.findElement(By.xpath("//div[contains(@class,'k-widget k-window k-dialog')]/descendant::button/descendant::span[contains(text(),'Add filter')]")).click();
         }
 
         WebElement Search1=modalContainer1.findElement(By.xpath(".//input[contains(@class,'i-search-box__input')]"));
-        ActSendKey(driver,Search1,1000,SearchBoxValue);
+        ActSendKey(driver,Search1,10000,SearchBoxValue);
         //Click on Check box
         new WebDriverWait(driver,Duration.ofMillis(40000)).until(ExpectedConditions.elementToBeClickable(By.xpath(".//input[contains(@class,'k-checkbox')]")));
         WebElement WebEle1=modalContainer1.findElement(By.xpath(".//input[contains(@class,'k-checkbox')]"));
-        ClickBut(driver,WebEle1,1000);
+        ClickBut(driver,WebEle1,10000);
 
         //Identify radio button and click on Radio button
         new WebDriverWait(driver,Duration.ofMillis(100000)).until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath("//div[contains(@class,'i-btn-radio filter-radio')]/ancestor::div[contains(@class,'k-child-animation-container')]")));
@@ -862,11 +857,11 @@ public class HelpersMethod
         {
             WebElement RadioPop=FindByElement(driver,"xpath","//div[contains(@class,'k-child-animation-container')]/descendant::form[contains(@class,'i-filter-popup')]");
             Search2=RadioPop.findElement(By.xpath(".//div[contains(@class,'i-btn-radio filter-radio')][1]/following-sibling::div[contains(@class,'k-textbox-container i-filter-popup__content__input')]/input"));
-            EnterText(driver,Search2,1000,SearhBox2Value);
+            EnterText(driver,Search2,10000,SearhBox2Value);
 
             //Click on Apply button
-            Clear =RadioPop.findElement(By.xpath(".//button[text()='Apply']"));
-            ClickBut(driver,Clear,1000);
+            Clear =RadioPop.findElement(By.xpath(".//button/span[text()='Apply']"));
+            ClickBut(driver,Clear,10000);
         }
         else
         {
@@ -874,11 +869,11 @@ public class HelpersMethod
             {
                 WebElement modalContainer=driver.findElement(By.xpath("//div[contains(@class,'k-animation-container')]"));
                 Search2=modalContainer.findElement(By.xpath(".//input[contains(@class,'k-textbox')]"));
-                EnterText(driver, Search2, 1000, SearhBox2Value);
+                EnterText(driver, Search2, 10000, SearhBox2Value);
 
                 //Click on Apply button
-                Clear = Search2.findElement(By.xpath(".//button[text()='Apply']"));
-                ClickBut(driver,Clear,1000);
+                Clear = Search2.findElement(By.xpath(".//button/span[text()='Apply']"));
+                ClickBut(driver,Clear,10000);
                 //loading Icon
                 if (IsExists("//div[@class='loader']", driver))
                 {
@@ -898,7 +893,7 @@ public class HelpersMethod
         HelpersMethod.AddFilterSearch_Popup(driver,Search1_Value,Search2_Value);
 
         //click on the table row after filter
-        HelpersMethod.ActClick(driver,driver.findElement(By.xpath("//div[contains(@class,'k-widget k-window k-dialog')]/descendant::tr[@class='k-master-row']")),100);
+        HelpersMethod.JScriptClick(driver,driver.findElement(By.xpath("//div[contains(@class,'k-window k-dialog')]/descendant::tr[contains(@class,'k-master-row')]")),10000);
         Thread.sleep(4000);
     }
 }

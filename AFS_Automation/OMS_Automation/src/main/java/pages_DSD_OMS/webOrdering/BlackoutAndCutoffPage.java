@@ -79,7 +79,7 @@ public class BlackoutAndCutoffPage
         exists=false;
         try
         {
-            if(HelpersMethod.IsExists("//div[@class='new-blackout-date-container']/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
+            if(HelpersMethod.IsExists("//div[@class='new-blackout-date-container']/ancestor::div[contains(@class,'k-window k-dialog')]",driver))
             {
                 scenario.log("BLACKOUT DIALOG HAS BEEN FOUND");
                 exists=true;
@@ -94,7 +94,7 @@ public class BlackoutAndCutoffPage
         exists=false;
         try
         {
-            WebElement modelContainer=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-widget k-window k-dialog')]");
+            WebElement modelContainer=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-window k-dialog')]");
             WebElement calenderButton=modelContainer.findElement(By.xpath(".//a[@class='k-select']"));
             HelpersMethod.ActClick(driver,calenderButton,10000);
 
@@ -119,7 +119,7 @@ public class BlackoutAndCutoffPage
         exists=false;
         try
         {
-            WebElement modelContainer=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-widget k-window k-dialog')]");
+            WebElement modelContainer=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-window k-dialog')]");
             WebElement daysWarning=modelContainer.findElement(By.xpath(".//input[@id='new-blackout-days-before-cutoff']"));
             HelpersMethod.EnterText(driver,daysWarning,10000,"2");
             //reading number of days warning
@@ -140,7 +140,7 @@ public class BlackoutAndCutoffPage
         exists=false;
         try
         {
-            WebElement modelContainer= HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-widget k-window k-dialog')]");
+            WebElement modelContainer= HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-window k-dialog')]");
             WebElement messageBlackout=modelContainer.findElement(By.xpath(".//textarea[@id='new-blackout-message']"));
             String mesageForBlackout= RandomValues.generateRandomString(100);
             HelpersMethod.EnterText(driver,messageBlackout,10000,mesageForBlackout);
@@ -161,8 +161,8 @@ public class BlackoutAndCutoffPage
     {
         try
         {
-            WebElement modelContainer=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-widget k-window k-dialog')]");
-            WebElement saveButton=modelContainer.findElement(By.xpath(".//button[text()='Save']"));
+            WebElement modelContainer=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-window k-dialog')]");
+            WebElement saveButton=modelContainer.findElement(By.xpath(".//button/span[text()='Save']"));
             HelpersMethod.ClickBut(driver,saveButton,10000);
             scenario.log("BLACKOUTS DATE HAS BEEN EDITED");
             if(HelpersMethod.IsExists("//div[@class='loader']",driver))
@@ -199,9 +199,9 @@ public class BlackoutAndCutoffPage
                 WebElement WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
                 HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 2000000);
             }
-            if(HelpersMethod.IsExists("//div[@id='dialogTextContent']/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
+            if(HelpersMethod.IsExists("//div[@id='dialogTextContent']/ancestor::div[contains(@class,'k-window k-dialog')]",driver))
             {
-                WebElement modelcontainer=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-widget k-window k-dialog')]");
+                WebElement modelcontainer=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-window k-dialog')]");
                 WebElement okButton=modelcontainer.findElement(By.xpath(".//button[contains(@id,'QuestionModalButton')]"));
                 HelpersMethod.ClickBut(driver,okButton,6000);
                 scenario.log("BLACKOUTS AND CUTOFFS HAS BEEN SAVED");
@@ -268,7 +268,7 @@ public class BlackoutAndCutoffPage
         exists=false;
         try
         {
-            if(HelpersMethod.IsExists("//div[@class='new-blackout-date-container']/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
+            if(HelpersMethod.IsExists("//div[@class='new-blackout-date-container']/ancestor::div[contains(@class,'k-window k-dialog')]",driver))
             {
                 exists=true;
             }
@@ -282,7 +282,7 @@ public class BlackoutAndCutoffPage
         exists=false;
         try
         {
-            WebElement modelContainer= HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-widget k-window k-dialog')]");
+            WebElement modelContainer= HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-window k-dialog')]");
             WebElement messageBlackout=modelContainer.findElement(By.xpath(".//textarea[@id='new-blackout-message']"));
             String mesageForBlackout= RandomValues.generateRandomString(100);
             HelpersMethod.clearText(driver,messageBlackout,1000);
@@ -320,7 +320,7 @@ public class BlackoutAndCutoffPage
         exists=false;
         try
         {
-            if(HelpersMethod.IsExists("//div[contains(text(),'Confirm delete')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
+            if(HelpersMethod.IsExists("//div[contains(text(),'Confirm delete')]/ancestor::div[contains(@class,'k-window k-dialog')]",driver))
             {
                 exists=true;
             }
@@ -334,9 +334,9 @@ public class BlackoutAndCutoffPage
         exists=false;
         try
         {
-            if(HelpersMethod.IsExists("//div[contains(text(),'Confirm delete')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
+            if(HelpersMethod.IsExists("//div[contains(text(),'Confirm delete')]/ancestor::div[contains(@class,'k-window k-dialog')]",driver))
             {
-                WebElement okButton=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-widget k-window k-dialog')]/descendant::button[text()='OK']");
+                WebElement okButton=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-window k-dialog')]/descendant::button/span[text()='Ok']");
                 HelpersMethod.ClickBut(driver,okButton,1000);
                 scenario.log("BLACKOUTS DATE HAS BEEN DELETED");
                 if(HelpersMethod.IsExists("//div[@class='loader']",driver))
@@ -356,9 +356,9 @@ public class BlackoutAndCutoffPage
         exists=false;
         try
         {
-            if(HelpersMethod.IsExists("//div[contains(text(),'The information has been saved successfully.')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
+            if(HelpersMethod.IsExists("//div[contains(text(),'The information has been saved successfully.')]/ancestor::div[contains(@class,'k-window k-dialog')]",driver))
             {
-                WebElement okButton=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-widget k-window k-dialog')]/descendant::button[text()='OK']");
+                WebElement okButton=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-window k-dialog')]/descendant::button/span[text()='Ok']");
                 HelpersMethod.ClickBut(driver,okButton,1000);
                 exists=true;
             }
@@ -422,7 +422,7 @@ public class BlackoutAndCutoffPage
     {
         exists=false;
         String compText=null;
-        String status=null;
+        String status="";
         WebElement WebEle;
         Actions act=new Actions(driver);
         try

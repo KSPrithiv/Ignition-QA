@@ -43,7 +43,7 @@ public class WorkQueueAssignmentsPage extends BasePage {
     By clearAllButton = By.xpath("//button[text()='Clear all']");
     By inputContains = By.xpath("//input[@placeholder='Contains']");
    // By inputContains = By.xpath("//input[@placeholder='Contains']");
-    By applyButton = By.xpath("//button[text()='Apply']");
+    By applyButton = By.xpath("//button/span[text()='Apply']");
     By inputSearch = By.xpath("//input[@placeholder='Search']");
     By notStartedStatus = By.id("Not Started");
     By inProgressStatus = By.id("In Progress");

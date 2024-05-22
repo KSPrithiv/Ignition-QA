@@ -95,8 +95,8 @@ public class OrderAdminPageStep
         orderadminPage.clickOnExportCSV();
     }
 
-    @And("User selects User name and {string} to genrate report")
-    public void userSelectsUserNameAndToGenrateReport(String event) throws InterruptedException
+    @And("User selects User name and {string} to generate report")
+    public void userSelectsUserNameAndToGenerateReport(String event) throws InterruptedException
     {
         orderadminPage=new orderAdminPage(driver,scenario);
         orderadminPage.clickUserName();

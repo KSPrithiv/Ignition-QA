@@ -80,7 +80,7 @@ public class AdminSecurityRolePage
         exists=false;
         try
         {
-            if(HelpersMethod.IsExists("//div[contains(text(),'Add new role')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver));
+            if(HelpersMethod.IsExists("//div[contains(text(),'Add new role')]/ancestor::div[contains(@class,'k-window k-dialog')]",driver));
             {
                 exists=true;
             }
@@ -125,11 +125,11 @@ public class AdminSecurityRolePage
         try
         {
             WebElement manageRole=HelpersMethod.FindByElement(driver,"id","manageable-roles");
-            HelpersMethod.ActClick(driver,manageRole,1000);
+            HelpersMethod.ActClick(driver,manageRole,10000);
 
-            if(HelpersMethod.IsExists("//div[contains(@class,'k-popup k-child-animation-container')]/descendant::ul/li",driver))
+            if(HelpersMethod.IsExists("//ul[@id='manageable-roleslist']/li/span",driver))
             {
-                List<WebElement> roles=HelpersMethod.FindByElements(driver,"xpath","//div[contains(@class,'k-popup k-child-animation-container')]/descendant::ul/li");
+                List<WebElement> roles=HelpersMethod.FindByElements(driver,"xpath","//ul[@id='manageable-roleslist']/li/span");
                 for (WebElement rol:roles)
                 {
                     act.moveToElement(rol).build().perform();
@@ -143,10 +143,12 @@ public class AdminSecurityRolePage
                     }
                 }
             }
-            HelpersMethod.ActClick(driver,manageRole,1000);
-            WebElement rName=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-widget k-window k-dialog')]/descendant::li/span[1]");
+            HelpersMethod.FindByElement(driver,"id","manageable-roles").click();
+
+
+            WebElement rName=HelpersMethod.FindByElement(driver,"xpath","//div[@class='k-window k-dialog']/descendant::span[@class='k-chip-label']");
             scenario.log("MANAGEABLE ROLE SELECTED IS "+rName.getText());
-            popUpOK();
+            //popUpOK();
             Assert.assertEquals(exists,true);
         }
         catch (Exception e){}
@@ -157,7 +159,7 @@ public class AdminSecurityRolePage
         exists=false;
         try
         {
-            WebElement OkButton=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-widget k-window k-dialog')]/descendant::button[text()='OK']");
+            WebElement OkButton=HelpersMethod.FindByElement(driver,"xpath","//button/span[text()='OK']");
             if(OkButton.isDisplayed() && OkButton.isEnabled())
             {
                 HelpersMethod.JScriptClick(driver,OkButton,1000);
@@ -212,10 +214,10 @@ public class AdminSecurityRolePage
                 WebElement WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
                 HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100000);
             }
-            if(HelpersMethod.IsExists("//div[contains(text(),'saved successfully')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
+            if(HelpersMethod.IsExists("//div[contains(text(),'saved successfully')]/ancestor::div[contains(@class,'k-window k-dialog')]",driver))
             {
-                WebElement modalContainer = HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-widget k-window k-dialog')]");
-                WebElement okPopUp=modalContainer.findElement(By.xpath(".//button[text()='OK']"));
+                WebElement modalContainer = HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-window k-dialog')]");
+                WebElement okPopUp=modalContainer.findElement(By.xpath(".//button/span[text()='Ok']"));
                 HelpersMethod.ClickBut(driver,okPopUp,1000);
             }
         }
@@ -238,7 +240,7 @@ public class AdminSecurityRolePage
                 if(RName_Text.equals(roleName))
                 {
                     WebElement WebEle=HelpersMethod.FindByElement(driver,"xpath","//tr["+i+"]");
-                    HelpersMethod.ActClick(driver,WebEle,1000);
+                    HelpersMethod.ActClick(driver,WebEle,10000);
                     exists=true;
                     break;
                 }
@@ -262,7 +264,7 @@ public class AdminSecurityRolePage
         {
             if(editSymbol.isDisplayed() && editSymbol.isEnabled())
             {
-                HelpersMethod.ClickBut(driver,editSymbol,1000);
+                HelpersMethod.ClickBut(driver,editSymbol,10000);
                 exists=true;
                 scenario.log("EDIT BUTTON HAS BEEN CLICKED");
             }
@@ -276,7 +278,7 @@ public class AdminSecurityRolePage
         exists=false;
         try
         {
-            if(HelpersMethod.IsExists("//div[contains(text(),'Edit role')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver));
+            if(HelpersMethod.IsExists("//div[contains(text(),'Edit role')]/ancestor::div[contains(@class,'k-window k-dialog')]",driver));
             {
                 exists=true;
             }
@@ -307,7 +309,7 @@ public class AdminSecurityRolePage
         exists=false;
         try
         {
-            WebElement OkButton=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-widget k-window k-dialog')]/descendant::button[text()='OK']");
+            WebElement OkButton=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-window k-dialog')]/descendant::.//button/span[text()='Continue']");
             if(OkButton.isDisplayed() && OkButton.isEnabled())
             {
                 HelpersMethod.ActClick(driver,OkButton,1000);
@@ -333,7 +335,7 @@ public class AdminSecurityRolePage
                 WebElement WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
                 HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100000);
             }
-            if(HelpersMethod.IsExists("//div[contains(text(),'saved successfully')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
+            if(HelpersMethod.IsExists("//div[contains(text(),'saved successfully')]/ancestor::div[contains(@class,'k-window k-dialog')]",driver))
             {
                 exists=true;
             }
@@ -347,7 +349,7 @@ public class AdminSecurityRolePage
         exists=false;
         try
         {
-            WebElement modalContainer = HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-widget k-window k-dialog')]");
+            WebElement modalContainer = HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-window k-dialog')]");
             modalContainer.findElement(By.xpath(".//input[@id='role-status']")).click();
         }
         catch (Exception e){}

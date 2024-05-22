@@ -138,51 +138,31 @@ Feature: Order Guide
       |  OG  |
       |OGDis1|
 
-  @MultipleProdOG
-  Scenario Outline: Creating OG using multiple products, from Quick product and Catalog
+  @ActiveToExpired
+  Scenario Outline: Test scenario to convert active OG to expired OG
     Given User must be on Order Entry Page to select OG
     And User should navigate to OG
-    Then User clicks on Create new button and should navigate to New OG page
-    Then User enters Description "<OG>" Start date 1 and End date 2 day from current date
-    And User enters multiple Product# Quick Product entry and catalog and Sequence number
-      |12|Catalog|
-    Then User click on Save button
-    And User should navigate back to OG page and verify OG "<OG>"  existence
+    Then User enters OG "<OG>" Description in search box
+    And User selects end date as past date
+    Then User should navigate back to OG page and verify OG "<OG>" by selecting status as expired
+   # And Clear filter to display both active and inactive OG
+   # Then User enters OG Description "<OG>" in search box and Delete the OG verify same in OG grid
     Examples:
-      |   OG   |
-      |OGDis14 |
+      |  OG        |
+      | OGDis1     |
 
-  @OGFromOG
-  Scenario Outline: Creating OG using OG
+  @DragAndDropInOGPage
+  Scenario Outline: Test scenario to test drag and drop functionality in OG page
     Given User must be on Order Entry Page to select OG
     And User should navigate to OG
-    Then User clicks on Create new button and should navigate to New OG page
-    Then User enters Description "<OG>" Start date 3 and End date 4 day from current date
-    Then User clicks on Add product button and select OG from drop down
-      | Order guides |
-    And User should select "<OrderGuide>" from popup
-    Then User click on Save button
-    And User should navigate back to OG page and verify OG "<OG>"  existence
-    Examples:
-      | OG      | OrderGuide |
-      | OGDis16 |SampleOG    |
-
-  @OGFromOrder
-  Scenario Outline: Creating OG using Order
-    Given User must be on Order Entry Page to select OG
-    And User should navigate to OG
-    Then User clicks on Create new button and should navigate to New OG page
-    Then User enters Description "<OG>" Start date 5 and End date 6 day from current date
-    Then User clicks on Add product button and select Order from drop down
-      |Orders|
-    And User should select Order# from Order popup
-    Then User click on Save button
-    And User should navigate back to OG page and verify OG "<OG>"  existence
+    Then User should select header in OG grid for "<Drag Drop>" functionality
     And Clear filter to display both active and inactive OG
     Then User enters OG Description "<OG>" in search box and Delete the OG verify same in OG grid
     Examples:
-      | OG    |
-      |OGDis17|
+      |Drag Drop| OG      |
+      | Status  | OGDis1  |
+
+
 
 
 

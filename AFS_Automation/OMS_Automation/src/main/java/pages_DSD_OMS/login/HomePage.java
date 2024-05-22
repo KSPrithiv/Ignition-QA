@@ -219,14 +219,14 @@ public class HomePage
             Wait<WebDriver> wait;
             //new WebDriverWait(driver,10000).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class,'k-popup k-child-animation-container')]"))));
             new WebDriverWait(driver,Duration.ofMillis(10000)).until(ExpectedConditions.elementToBeClickable(By.xpath("//div[contains(@class,'k-popup k-child-animation-container')]/div[@class='popup-content']/descendant::div[contains(@class,'user-info-line user-info-line-signout')]")));
-            WebElement dropDown = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-popup k-child-animation-container')]/div[@class='popup-content']");
+            WebElement dropDown = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-child-animation-container')]/descendant::div[@class='popup-content']");
             WebElement signOut = dropDown.findElement(By.xpath(".//div[contains(@class,'user-info-line user-info-line-signout')]"));
             HelpersMethod.ActClick(driver, signOut, 10000);
 
             //If any pending order popup appears to handle that
-            if(HelpersMethod.IsExists("//div[contains(text(),'Your order has not been submitted.')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
+            if(HelpersMethod.IsExists("//div[contains(text(),'Your order has not been submitted.')]/ancestor::div[contains(@class,'k-window k-dialog')]",driver))
             {
-                WebElement popUp=HelpersMethod.FindByElement(driver,"xpath","//div[contains(text(),'Your order has not been submitted.')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]");
+                WebElement popUp=HelpersMethod.FindByElement(driver,"xpath","//div[contains(text(),'Your order has not been submitted.')]/ancestor::div[contains(@class,'k-window k-dialog')]");
                 WebElement discardAll=popUp.findElement(By.xpath(".//button[contains(text(),'Discard all')]"));
                 HelpersMethod.ActClick(driver,discardAll,10000);
                 wait = new FluentWait<WebDriver>(driver)
@@ -401,7 +401,7 @@ public class HomePage
     {
         try
         {
-            if(HelpersMethod.IsExists("//div[contains(@class,'k-widget k-window k-dialog')]",driver))
+            if(HelpersMethod.IsExists("//div[contains(@class,'k-window k-dialog')]",driver))
             {
                 JavascriptExecutor js = ((JavascriptExecutor) driver);
                 js.executeScript("window.location.reload()");

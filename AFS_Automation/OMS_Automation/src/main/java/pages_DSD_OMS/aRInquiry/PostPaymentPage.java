@@ -87,9 +87,9 @@ public class PostPaymentPage
                 WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
                 HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100000);
             }
-            if(HelpersMethod.IsExists("//div[contains(text(),'Thank you')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
+            if(HelpersMethod.IsExists("//div[contains(text(),'Thank you')]/ancestor::div[contains(@class,'k-window k-dialog')]",driver))
             {
-                WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-widget k-window k-dialog')]/descendant::button");
+                WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-window k-dialog')]/descendant::button");
                 HelpersMethod.ClickBut(driver,WebEle,1000);
             }
             exists=true;
@@ -113,14 +113,14 @@ public class PostPaymentPage
     {
         try
         {
-            if(HelpersMethod.IsExists("//div[contains(@class,'k-widget k-window k-dialog')]",driver))
+            if(HelpersMethod.IsExists("//div[contains(@class,'k-window k-dialog')]",driver))
             {
-                WebElement modalContainer = HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-widget k-window k-dialog')]");
+                WebElement modalContainer = HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-window k-dialog')]");
 
-                WebElement modalContentTitle = modalContainer.findElement(By.xpath(".//div[contains(@class,'k-window-title k-dialog-title')]"));
+                WebElement modalContentTitle = modalContainer.findElement(By.xpath(".//span[contains(@class,'k-window-title k-dialog-title')]"));
                 Assert.assertEquals(modalContentTitle.getText(), "Discard payment", "Verify Title message");
 
-                WebElement button=modalContainer.findElement(By.xpath(".//button[text()='Yes']"));
+                WebElement button=modalContainer.findElement(By.xpath(".//button/span[text()='Yes']"));
                 HelpersMethod.ClickBut(driver,button,1000);
             }
         }
@@ -144,7 +144,7 @@ public class PostPaymentPage
         exists=false;
         try
         {
-            if(HelpersMethod.IsExists("//div[contains(text(),'New payment method')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
+            if(HelpersMethod.IsExists("//div[contains(text(),'New payment method')]/ancestor::div[contains(@class,'k-window k-dialog')]",driver))
             {
                 exists=true;
             }
@@ -281,7 +281,7 @@ public class PostPaymentPage
     public void NewPaymentOkBut()
     {
         exists=false;
-        WebElement WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-widget k-window k-dialog')]/descendant::button[text()='Ok']");
+        WebElement WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-window k-dialog')]/descendant::.//button/span[text()='Continue']");
         try
         {
             HelpersMethod.ClickBut(driver,WebEle,1000);

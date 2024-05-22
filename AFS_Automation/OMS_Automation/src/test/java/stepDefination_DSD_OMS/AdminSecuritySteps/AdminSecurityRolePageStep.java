@@ -91,6 +91,7 @@ public class AdminSecurityRolePageStep
         adminSecurityRolePage.addRoleName();
         adminSecurityRolePage.addDescription();
         adminSecurityRolePage.manageableRole(arg0);
+        adminSecurityRolePage.popUpOK();
         adminSecurityRolePage.validateConfirmPopup();
         adminSecurityRolePage.confirmationPopup();
     }

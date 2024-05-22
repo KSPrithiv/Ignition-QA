@@ -47,7 +47,7 @@ public class orderAdminPage
                 HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 800000);
             }
 
-            String Menu_Text=null;
+            String Menu_Text="";
             Actions act=new Actions(driver);
             List<WebElement> MenuBar=HelpersMethod.FindByElements(driver,"xpath","//li[contains(@class,'k-item')]/span[@class='k-link']");
             for(WebElement Menu:MenuBar)
@@ -109,7 +109,7 @@ public class orderAdminPage
     public void validateTabNavigatedTo(String tabOption)
     {
         exists=false;
-        String tabValue=null;
+        String tabValue="";
         try
         {
             String status = HelpersMethod.returnDocumentStatus(driver);
@@ -136,9 +136,9 @@ public class orderAdminPage
                     .ignoring(NoSuchElementException.class);
             wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
 
-            if(HelpersMethod.IsExists("//li[contains(@class,'k-state-active')]/span[@class='k-link']",driver))
+            if(HelpersMethod.IsExists("//li[contains(@class,'active')]/span[@class='k-link']",driver))
             {
-                tabValue=HelpersMethod.FindByElement(driver,"xpath","//li[contains(@class,'k-state-active')]/span[@class='k-link']").getText();
+                tabValue=HelpersMethod.FindByElement(driver,"xpath","//li[contains(@class,'active')]/span[@class='k-link']").getText();
                 if(tabValue.equals(tabOption))
                 {
                     scenario.log("NAVIGATED TO "+tabValue);
@@ -173,21 +173,21 @@ public class orderAdminPage
         {
             HelpersMethod.ClickBut(driver,WebEle1,10000);
             //validate Customer account # popup
-            WebElement modalContainer = HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-widget k-window k-dialog')]");
+            WebElement modalContainer = HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-window k-dialog')]");
 
             // to fetch the web elements of the modal content and interact with them, code to fetch content of modal title and verify it
-            WebElement modalContentTitle = modalContainer.findElement(By.xpath(".//div[contains(@class,'k-window-title k-dialog-title')]"));
+            WebElement modalContentTitle = modalContainer.findElement(By.xpath(".//span[contains(@class,'k-window-title k-dialog-title')]"));
             Assert.assertEquals(modalContentTitle.getText(), "Customer account #", "Verify Title message");
             //Select customer account # by clicking Add filter button in customer account # popup
             WebElement AddFilterButton = modalContainer.findElement(By.xpath(".//button/descendant::span[contains(text(),'Add filter')]"));
             HelpersMethod.ActClick(driver, AddFilterButton, 10000);
 
             //Identify the dialog popup
-            HelpersMethod.WaitElementPresent(driver, "xpath", "//div[contains(@class,'k-popup k-child-animation-container k-slide-down-enter k-slide-down-enter-active')]", 6000);
-            WebElement modalContainer1 =HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-popup k-child-animation-container')]");
+            HelpersMethod.WaitElementPresent(driver, "xpath", "//div[contains(@class,'k-animation-container k-animation-container-shown')]", 10000);
+            WebElement modalContainer1 =HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-child-animation-container')]");
 
             //Enter customer account# in input box
-            WebElement Search1 = driver.findElement(By.xpath("//div[contains(@class,'k-popup k-child-animation-container')]/descendant::input[contains(@class,'i-search-box__input')]"));
+            WebElement Search1 = driver.findElement(By.xpath("//div[contains(@class,'k-child-animation-container')]/descendant::input[contains(@class,'i-search-box__input')]"));
             HelpersMethod.EnterText(driver, Search1, 10000, arg0);
 
             //Click on Check box
@@ -202,11 +202,11 @@ public class orderAdminPage
             HelpersMethod.ActSendKey(driver, Search2, 10000, AccNo);
 
             //Click on Apply button
-            WebElement ApplyButton = RadioPop.findElement(By.xpath(".//button[text()='Apply']"));
+            WebElement ApplyButton = RadioPop.findElement(By.xpath(".//button/span[text()='Apply']"));
             HelpersMethod.ClickBut(driver, ApplyButton, 10000);
             HelpersMethod.WaitElementPresent(driver, "xpath", "//div[contains(@class,'k-grid-container')]", 40000);
 
-            if (HelpersMethod.IsExists("//div[contains(@class,'k-widget k-window k-dialog')]/descendant::div[@class='i-no-data']", driver))
+            if (HelpersMethod.IsExists("//div[contains(@class,'k-window k-dialog')]/descendant::div[@class='i-no-data']", driver))
             {
                 scenario.log("CUSTOMER ACCOUNT NUMBER DOESN'T EXISTS");
             }
@@ -233,12 +233,12 @@ public class orderAdminPage
     public  void clickOnFromDate()
     {
         exists=false;
-        WebElement startDate=HelpersMethod.FindByElement(driver,"xpath","//label[@id='fromDate-label']/following-sibling::span/descendant::span[contains(@class,'k-icon k-i-calendar')]");
+        WebElement startDate=HelpersMethod.FindByElement(driver,"xpath","//label[@id='fromDate-label']/following-sibling::span/descendant::button//*[local-name()='svg']");
         try
         {
             HelpersMethod.ActClick(driver,startDate,10000);
             exists=true;
-            new WebDriverWait(driver, Duration.ofMillis(40000)).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class,'k-popup k-child-animation-container')]")));
+            new WebDriverWait(driver, Duration.ofMillis(40000)).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class,'k-child-animation-container')]")));
             Assert.assertTrue(exists);
         }
         catch(Exception e){}
@@ -247,12 +247,12 @@ public class orderAdminPage
     public void clickOnEndDate()
     {
         exists=false;
-        WebElement toDate=HelpersMethod.FindByElement(driver,"xpath","//label[@id='toDate-label']/following-sibling::span/descendant::span[contains(@class,'k-icon k-i-calendar')]");
+        WebElement toDate=HelpersMethod.FindByElement(driver,"xpath","//label[@id='toDate-label']/following-sibling::span/descendant::button//*[local-name()='svg']");
         try
         {
             HelpersMethod.ActClick(driver,toDate,10000);
             exists=true;
-            new WebDriverWait(driver,Duration.ofMillis(40000)).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class,'k-popup k-child-animation-container')]")));
+            new WebDriverWait(driver,Duration.ofMillis(40000)).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class,'k-child-animation-container')]")));
             Assert.assertTrue(exists);
         }
         catch(Exception e){}
@@ -265,9 +265,8 @@ public class orderAdminPage
         new WebDriverWait(driver,Duration.ofMillis(40000)).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class,'k-calendar-monthview')]")));
         try
         {
-            String formattedDate1 = null;
-            WebElement WebEle=null;
-            String FTDate=null;
+            WebElement WebEle;
+            String FTDate="";
             exists=false;
             //finding element/date in calendar drop down is enabled or not. if not enabled increase the date by 6 days
             if (HelpersMethod.IsExists("//div[contains(@class,'k-calendar-monthview')]",driver))
@@ -296,7 +295,7 @@ public class orderAdminPage
     {
         exists=false;
         WebElement WebEle;
-        String FTDate=null;
+        String FTDate="";
         try
         {
             if (HelpersMethod.IsExists("//div[contains(@class,'k-calendar-monthview')]",driver))
@@ -324,7 +323,7 @@ public class orderAdminPage
     public void clickOnExportCSV()
     {
         exists=false;
-        WebElement exportCSV=HelpersMethod.FindByElement(driver,"xpath","//button[text()='Export']");
+        WebElement exportCSV=HelpersMethod.FindByElement(driver,"xpath","//button/span[text()='Export']");
         try
         {
             HelpersMethod.ScrollElement(driver,exportCSV);
@@ -335,17 +334,17 @@ public class orderAdminPage
                 WebElement WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
                 HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 2000000);
             }
-            if(HelpersMethod.IsExists("//div[contains(text(),'The report returned no data. Choose other parameters.')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
+            if(HelpersMethod.IsExists("//div[contains(text(),'The report returned no data. Choose other parameters.')]/ancestor::div[contains(@class,'k-window k-dialog')]",driver))
             {
-                WebElement dialogPopup=HelpersMethod.FindByElement(driver,"xpath","//div[contains(text(),'The report returned no data. Choose other parameters.')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]");
+                WebElement dialogPopup=HelpersMethod.FindByElement(driver,"xpath","//div[contains(text(),'The report returned no data. Choose other parameters.')]/ancestor::div[contains(@class,'k-window k-dialog')]");
                 WebElement okButton=dialogPopup.findElement(By.xpath(".//button"));
                 HelpersMethod.ActClick(driver,okButton,10000);
                 scenario.log("THE REPORT IS NOT RETURNING ANY DATA");
             }
-            if(HelpersMethod.IsExists("//div[contains(text(),'Please select one or more events for the report.')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
+            if(HelpersMethod.IsExists("//div[contains(text(),'Please select one or more events for the report.')]/ancestor::div[contains(@class,'k-window k-dialog')]",driver))
             {
-                WebElement dialogPopup=HelpersMethod.FindByElement(driver,"xpath","//div[contains(text(),'Please select one or more events for the report.')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]");
-                WebElement okButton=dialogPopup.findElement(By.xpath(".//button[text()='Ok']"));
+                WebElement dialogPopup=HelpersMethod.FindByElement(driver,"xpath","//div[contains(text(),'Please select one or more events for the report.')]/ancestor::div[contains(@class,'k-window k-dialog')]");
+                WebElement okButton=dialogPopup.findElement(By.xpath(".//button/span[text()='Ok']"));
                 HelpersMethod.ActClick(driver,okButton,10000);
                 scenario.log("<span style='color:red'> MAY BE THE EVENT IS NOT PART OF THIS APPLICATION </span>");
                 exists=true;
@@ -358,7 +357,7 @@ public class orderAdminPage
     public void clickOnDownloadPDF()
     {
         exists=false;
-        WebElement downloadPdf=HelpersMethod.FindByElement(driver,"xpath","//button[text()='Download']");
+        WebElement downloadPdf=HelpersMethod.FindByElement(driver,"xpath","//button/span[text()='Download']");
         try
         {
             String ParentWindow = driver.getWindowHandle();
@@ -370,9 +369,9 @@ public class orderAdminPage
                     .ignoring(NoSuchElementException.class);
             wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
 
-            if(HelpersMethod.IsExists("//div[contains(text(),'The report returned no data. Choose other parameters.')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
+            if(HelpersMethod.IsExists("//div[contains(text(),'The report returned no data. Choose other parameters.')]/ancestor::div[contains(@class,'k-window k-dialog')]",driver))
             {
-                WebElement dialogPopup=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-widget k-window k-dialog')]");
+                WebElement dialogPopup=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-window k-dialog')]");
                 WebElement okButton=dialogPopup.findElement(By.xpath(".//button"));
                 HelpersMethod.ClickBut(driver,okButton,10000);
             }
@@ -507,31 +506,45 @@ public class orderAdminPage
 
     public void clickOnEvent() throws InterruptedException
     {
-        WebElement eventDropdown=HelpersMethod.FindByElement(driver,"xpath","//span[contains(@class,'k-widget k-multiselect')]");
+        WebElement eventDropdown=HelpersMethod.FindByElement(driver,"id","events");
         HelpersMethod.ActClick(driver,eventDropdown,10000);
     }
 
     public void selectEventFromDropDown(String event)
     {
-        HelpersMethod.DropDownMenu(driver,event);
+        Actions act=new Actions(driver);
+        String eventText="";
+        exists=false;
+        List<WebElement> eventLists=HelpersMethod.FindByElements(driver,"xpath","//ul[@id='eventslist']/li/span");
+        for(WebElement eventList:eventLists)
+        {
+            act.moveToElement(eventList).build().perform();
+            eventText=eventList.getText();
+            if(eventText.equalsIgnoreCase(event))
+            {
+                act.moveToElement(eventList).build().perform();
+                act.click(eventList).build().perform();
+                exists=true;
+                break;
+            }
+        }
+        Assert.assertEquals(exists,true);
     }
 
     public void clickUserName() throws InterruptedException
     {
-        WebElement userNameDropdown=HelpersMethod.FindByElement(driver,"xpath","//input[@id='UserName']/ancestor::span[@class='k-dropdown-wrap']/descendant::span[@class='k-select']");
+        WebElement userNameDropdown= HelpersMethod.FindByElement(driver,"xpath","//input[@id='UserName']/following-sibling::button//*[local-name()='svg']");
         HelpersMethod.ScrollElement(driver,userNameDropdown);
-        HelpersMethod.JScriptClick(driver,userNameDropdown,10000);
+        HelpersMethod.FindByElement(driver,"xpath","//input[@id='UserName']/following-sibling::button//*[local-name()='svg']").click();
     }
 
     public void userNameSelection()
     {
         String userName=TestBase.testEnvironment.username();
-        WebElement WebEle=null;
+        WebElement WebEle;
         Actions act1= new Actions(driver);
-        HelpersMethod.waitTillElementLocatedDisplayed(driver,"xpath","//div[contains(@class,'k-popup k-child-animation-container')]",10000);
-        // to fetch the web element of the modal container
-        WebElement menuContainer = HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-popup k-child-animation-container')]");
-        List<WebElement> Options=menuContainer.findElements (By.xpath(".//ul/li"));
+
+        List<WebElement> Options=HelpersMethod.FindByElements(driver,"xpath","//ul[@id='UserNamelist']/li/span");
         for(int i=0;i<=Options.size()-1;i++)
         {
             WebEle=Options.get(i);

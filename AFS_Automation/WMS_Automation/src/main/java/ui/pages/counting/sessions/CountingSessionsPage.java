@@ -116,7 +116,7 @@ public class CountingSessionsPage extends BasePage {
     By clearAllButton = By.xpath("//button[text()='Clear all']");
    // By inputContains = By.xpath("//input[@placeholder='Contains']");
     By inputContains = By.xpath("//input[@placeholder='Is empty']");
-    By applyButton = By.xpath("//button[text()='Apply']");
+    By applyButton = By.xpath("//button/span[text()='Apply']");
     By btnProductAdd = By.id("btnCSProductAdd");
     By productLabel = By.id("txtProduct-label");
     By txtProductInput = By.id("txtProduct");

@@ -33,11 +33,17 @@ public class ReportsCustomerWithoutOrdersPage
     Scenario scenario;
     static boolean exists = false;
 
-    @FindBy(xpath="//label[contains(text(),'From date')]/following-sibling::span/descendant::span[contains(@class,'k-icon k-i-calendar')]")
+    @FindBy(xpath="//label[text()='From date']/following-sibling::span/descendant::button//*[local-name()='svg']")
     private WebElement fromCal;
 
-    @FindBy(xpath="//label[contains(text(),'To date')]/following-sibling::span/descendant::span[contains(@class,'k-icon k-i-calendar')]")
+    @FindBy(xpath="//label[text()='To date']/following-sibling::span/descendant::button//*[local-name()='svg']")
     private WebElement toCal;
+
+    @FindBy(xpath="//label[text()='From date']/following-sibling::span/descendant::input")
+    private WebElement fromDate;
+
+    @FindBy(xpath="//label[text()='To date']/following-sibling::span/descendant::input")
+    private WebElement toDate;
 
     @FindBy(id="selectedCustomersSwitch")
     private WebElement showSelectedCustomerToggle;
@@ -89,9 +95,9 @@ public class ReportsCustomerWithoutOrdersPage
     {
         Wait<WebDriver> wait;
         Actions act1=new Actions(driver);
-        String status=null;
+        String status="";
         try {
-            if (HelpersMethod.IsExists("//div[contains(@class,'k-widget k-window k-dialog')]", driver)) {
+            if (HelpersMethod.IsExists("//div[contains(@class,'k-window k-dialog')]", driver)) {
                 JavascriptExecutor js = ((JavascriptExecutor) driver);
                 js.executeScript("window.location.reload()");
                 wait = new WebDriverWait(driver, Duration.ofMillis(10000));
@@ -153,8 +159,8 @@ public class ReportsCustomerWithoutOrdersPage
                 HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 2000000);
             }
 
-            if (HelpersMethod.IsExists("//div[contains(text(),'Your order has not been submitted')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]", driver)) {
-                WebElement pendingPopup = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(text(),'Your order has not been submitted')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]");
+            if (HelpersMethod.IsExists("//div[contains(text(),'Your order has not been submitted')]/ancestor::div[contains(@class,'k-window k-dialog')]", driver)) {
+                WebElement pendingPopup = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(text(),'Your order has not been submitted')]/ancestor::div[contains(@class,'k-window k-dialog')]");
                 WebElement dismissAll = pendingPopup.findElement(By.xpath("//button[contains(@id,'QuestionModalButton')"));
                 HelpersMethod.ActClick(driver, dismissAll, 1000);
             }
@@ -204,9 +210,9 @@ public class ReportsCustomerWithoutOrdersPage
                     .ignoring(NoSuchElementException.class);
             wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
 
-            if (HelpersMethod.IsExists("//div[contains(text(),'Your order has not been submitted')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]", driver))
+            if (HelpersMethod.IsExists("//div[contains(text(),'Your order has not been submitted')]/ancestor::div[contains(@class,'k-window k-dialog')]", driver))
             {
-                WebElement pendingPopup = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(text(),'Your order has not been submitted')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]");
+                WebElement pendingPopup = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(text(),'Your order has not been submitted')]/ancestor::div[contains(@class,'k-window k-dialog')]");
                 WebElement dismissAll = pendingPopup.findElement(By.xpath("//button[contains(@id,'QuestionModalButton')"));
                 HelpersMethod.ActClick(driver, dismissAll, 10000);
             }
@@ -302,49 +308,38 @@ public class ReportsCustomerWithoutOrdersPage
     public void clickOnFromDate()
     {
         exists=false;
-        try
-        {
             if(fromCal.isDisplayed() && fromCal.isEnabled())
             {
                 HelpersMethod.ClickBut(driver,fromCal,10000);
                 exists=true;
             }
             Assert.assertEquals(exists,true);
-        }
-        catch (Exception e){}
     }
 
-    public void selectFromDate()
+    public void selectFromDate() throws InterruptedException
     {
         exists=false;
-        try
-        {
             Thread.sleep(1000);
-            WebElement fromDate=HelpersMethod.FindByElement(driver,"xpath","//td[contains(@class,'k-calendar-td k-state-pending-focus k-today')]");
+            WebElement fromDate=HelpersMethod.FindByElement(driver,"xpath","//td[contains(@class,'k-today')]");
             if(fromDate.isDisplayed())
             {
-                HelpersMethod.ClickBut(driver,fromDate,20000);
+                HelpersMethod.ActClick(driver,fromDate,20000);
                 scenario.log("FROM DATE HAS BEEN SELECTED");
                 exists=true;
             }
             Assert.assertEquals(exists,true);
-        }
-        catch (Exception e){}
     }
 
-    public void clickOnToDate()
+    public void clickOnToDate() throws InterruptedException
     {
         exists=false;
-        try
-        {
+        Thread.sleep(1000);
             if(toCal.isDisplayed() && toCal.isEnabled())
             {
-                HelpersMethod.ClickBut(driver,toCal,10000);
+                HelpersMethod.ActClick(driver,toCal,10000);
                 exists=true;
             }
             Assert.assertEquals(exists,true);
-        }
-        catch (Exception e){}
     }
 
     public void selectToDate()
@@ -353,7 +348,7 @@ public class ReportsCustomerWithoutOrdersPage
         try
         {
             Thread.sleep(1000);
-            WebElement toDate=HelpersMethod.FindByElement(driver,"xpath","//td[contains(@class,'k-calendar-td k-range-start k-state-pending-focus k-state-selected k-today')]");
+            WebElement toDate=HelpersMethod.FindByElement(driver,"xpath","//td[contains(@class,'k-today')]");
             if(toDate.isDisplayed())
             {
                 String todateText = HelpersMethod.AttributeValue(toDate, "title");
@@ -362,11 +357,11 @@ public class ReportsCustomerWithoutOrdersPage
                 LocalDate dateTime1=dateTime.plusDays(2);
                 DateTimeFormatter currentFormatObj = DateTimeFormatter.ofPattern("EEEE, MMMM d, yyyy");
                 String dateText = dateTime1.format(currentFormatObj);
-                WebElement changeDate=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-calendar-view')]/descendant::td[contains(@class,'k-calendar-td') and @title='"+dateText+"']");
-                HelpersMethod.ClickBut(driver,changeDate,10000);
+                WebElement changeDate=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-calendar-view')]/descendant::td[@class='k-calendar-td' and @title='"+dateText+"']");
+                HelpersMethod.ActClick(driver,changeDate,10000);
                 scenario.log("TO DATE SELECTED");
                 Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
-                        .withTimeout(Duration.ofSeconds(120))
+                        .withTimeout(Duration.ofSeconds(200))
                         .pollingEvery(Duration.ofSeconds(2))
                         .ignoring(NoSuchElementException.class);
                 wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
@@ -383,14 +378,14 @@ public class ReportsCustomerWithoutOrdersPage
         try
         {
             Thread.sleep(1000);
-            List<WebElement> checkBoxs=HelpersMethod.FindByElements(driver,"xpath","//div[@id='customersWithoutOrdersInfoNotification']/parent::div/descendant::div[contains(@class,'k-animation-container-relative')][1]/descendant::tr[@class='k-master-row']/descendant::input");
+            List<WebElement> checkBoxs=HelpersMethod.FindByElements(driver,"xpath","//div[@id='customersWithoutOrdersInfoNotification']/parent::div/descendant::div[contains(@class,'k-animation-container-relative')][1]/descendant::tr[contains(@class,'k-master-row')]/descendant::input");
             for (int i = 1; i <=checkBoxs.size()-1; i++)
             {
                 if(i==1||i==2)
                 {
-                    if (HelpersMethod.IsExists("//div[@id='customersWithoutOrdersInfoNotification']/parent::div/descendant::div[contains(@class,'k-animation-container-relative')][1]/descendant::tr[@class='k-master-row'][" + i + "]/descendant::input", driver))
+                    if (HelpersMethod.IsExists("//div[@id='customersWithoutOrdersInfoNotification']/parent::div/descendant::div[contains(@class,'k-animation-container-relative')][1]/descendant::tr[contains(@class,'k-master-row')][" + i + "]/descendant::input", driver))
                     {
-                        WebElement accountCheckBox = HelpersMethod.FindByElement(driver, "xpath", "//div[@id='customersWithoutOrdersInfoNotification']/parent::div/descendant::div[contains(@class,'k-animation-container-relative')][1]/descendant::tr[@class='k-master-row'][" + i + "]/descendant::input");
+                        WebElement accountCheckBox = HelpersMethod.FindByElement(driver, "xpath", "//div[@id='customersWithoutOrdersInfoNotification']/parent::div/descendant::div[contains(@class,'k-animation-container-relative')][1]/descendant::tr[contains(@class,'k-master-row')][" + i + "]/descendant::input");
                         HelpersMethod.JScriptClick(driver, accountCheckBox, 10000);
                         scenario.log("SELECTED SOME RANDOM ACCOUNTS");
                         exists = true;
@@ -408,7 +403,7 @@ public class ReportsCustomerWithoutOrdersPage
         try
         {
             Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
-                    .withTimeout(Duration.ofSeconds(120))
+                    .withTimeout(Duration.ofSeconds(400))
                     .pollingEvery(Duration.ofSeconds(2))
                     .ignoring(NoSuchElementException.class);
             wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
@@ -439,9 +434,9 @@ public class ReportsCustomerWithoutOrdersPage
                     .ignoring(NoSuchElementException.class);
             wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
             Thread.sleep(1000);
-            if (HelpersMethod.IsExists("//div[@id='customersWithoutOrdersInfoNotification']/parent::div/descendant::div[contains(@class,'k-animation-container-relative')][1]/descendant::tr[@class='k-master-row']/descendant::input", driver))
+            if (HelpersMethod.IsExists("//div[@id='customersWithoutOrdersInfoNotification']/parent::div/descendant::div[contains(@class,'k-animation-container-relative')][1]/descendant::tr[contains(@class,'k-master-row')]/descendant::input", driver))
             {
-                WebElement accountCheckBox = HelpersMethod.FindByElement(driver, "xpath", "//div[@id='customersWithoutOrdersInfoNotification']/parent::div/descendant::div[contains(@class,'k-animation-container-relative')][1]/descendant::tr[@class='k-master-row']/descendant::input");
+                WebElement accountCheckBox = HelpersMethod.FindByElement(driver, "xpath", "//div[@id='customersWithoutOrdersInfoNotification']/parent::div/descendant::div[contains(@class,'k-animation-container-relative')][1]/descendant::tr[contains(@class,'k-master-row')]/descendant::input");
                 HelpersMethod.ScrollElement(driver,accountCheckBox);
                 HelpersMethod.ActClick(driver, accountCheckBox, 30000);
                 scenario.log("SELECTED CUSTOMER ACCOUNT CHECKBOX");
@@ -602,7 +597,7 @@ public class ReportsCustomerWithoutOrdersPage
         try
         {
             Thread.sleep(500);
-            WebElement toDate=HelpersMethod.FindByElement(driver,"xpath","//td[contains(@class,'k-calendar-td k-range-start k-state-pending-focus k-state-selected k-today')]");
+            WebElement toDate=HelpersMethod.FindByElement(driver,"xpath","//td[contains(@class,'k-today')]");
             if(toDate.isDisplayed())
             {
                 String todateText = HelpersMethod.AttributeValue(toDate, "title");
@@ -611,15 +606,16 @@ public class ReportsCustomerWithoutOrdersPage
                 LocalDate dateTime1=dateTime.minusDays(2);
                 DateTimeFormatter currentFormatObj = DateTimeFormatter.ofPattern("EEEE, MMMM d, yyyy");
                 String dateText = dateTime1.format(currentFormatObj);
-                WebElement changeDate=HelpersMethod.FindByElement(driver,"xpath","//td[contains(@class,'k-calendar-td ') and @title='"+dateText+"']");
-                if(!changeDate.isEnabled())
+                WebElement changeDate=HelpersMethod.FindByElement(driver,"xpath","//td[contains(@class,'k-disabled') and @title='"+dateText+"']");
+                if(HelpersMethod.IsExists("//td[contains(@class,'k-disabled') and @title='"+dateText+"']",driver))
                 {
                     scenario.log("SELECTION OF INVALID TO DATE IS NOT POSSIBLE");
                     exists=true;
                 }
                 else
                 {
-                    HelpersMethod.ClickBut(driver, changeDate, 10000);
+                    HelpersMethod.ActClick(driver, changeDate, 10000);
+                    exists=false;
                     scenario.log("<span style='color:red'>TO DATE SELECTED, IT IS NOT EXPECTED BEHAVIOUR</span>");
                 }
             }
@@ -637,7 +633,7 @@ public class ReportsCustomerWithoutOrdersPage
                 .ignoring(NoSuchElementException.class);
         wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
         HelpersMethod.ScrollElement(driver,excelButton);
-        Thread.sleep(1000);
+        Thread.sleep(1500);
         if(excelButton.isDisplayed() && excelButton.isEnabled())
         {
             scenario.log("EXCEL BUTTON IS ENABLED");
@@ -653,7 +649,7 @@ public class ReportsCustomerWithoutOrdersPage
     public void enabledPdf() throws InterruptedException
     {
         exists=false;
-        Thread.sleep(1000);
+        Thread.sleep(1500);
         if(pdfButton.isDisplayed() && pdfButton.isEnabled())
         {
             scenario.log("PDF BUTTON IS ENABLED");
@@ -678,19 +674,19 @@ public class ReportsCustomerWithoutOrdersPage
         try
         {
             Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
-                    .withTimeout(Duration.ofSeconds(120))
+                    .withTimeout(Duration.ofSeconds(200))
                     .pollingEvery(Duration.ofSeconds(2))
                     .ignoring(NoSuchElementException.class);
             wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
             Thread.sleep(500);
-            List<WebElement> checkBoxs=HelpersMethod.FindByElements(driver,"xpath","//div[@id='customersWithoutOrdersInfoNotification']/parent::div/descendant::div[contains(@class,'k-animation-container-relative')][2]/descendant::tr[@class='k-master-row']/descendant::input");
+            List<WebElement> checkBoxs=HelpersMethod.FindByElements(driver,"xpath","//div[@id='customersWithoutOrdersInfoNotification']/parent::div/descendant::div[contains(@class,'k-animation-container-relative')][2]/descendant::tr[contains(@class,'k-master-row')]/descendant::input");
             for (int i = 1; i <=checkBoxs.size()-1; i++)
             {
                 if(i==1||i==2)
                 {
-                    if (HelpersMethod.IsExists("//div[@id='customersWithoutOrdersInfoNotification']/parent::div/descendant::div[contains(@class,'k-animation-container-relative')][2]/descendant::tr[@class='k-master-row'][" + i + "]/descendant::input", driver))
+                    if (HelpersMethod.IsExists("//div[@id='customersWithoutOrdersInfoNotification']/parent::div/descendant::div[contains(@class,'k-animation-container-relative')][2]/descendant::tr[contains(@class,'k-master-row')][" + i + "]/descendant::input", driver))
                     {
-                        WebElement accountCheckBox = HelpersMethod.FindByElement(driver, "xpath", "//div[@id='customersWithoutOrdersInfoNotification']/parent::div/descendant::div[contains(@class,'k-animation-container-relative')][2]/descendant::tr[@class='k-master-row'][" + i + "]/descendant::input");
+                        WebElement accountCheckBox = HelpersMethod.FindByElement(driver, "xpath", "//div[@id='customersWithoutOrdersInfoNotification']/parent::div/descendant::div[contains(@class,'k-animation-container-relative')][2]/descendant::tr[contains(@class,'k-master-row')][" + i + "]/descendant::input");
                         HelpersMethod.JScriptClick(driver, accountCheckBox, 10000);
                         scenario.log("SELECTED SOME RANDOM ROUTES");
                         exists = true;
@@ -729,9 +725,9 @@ public class ReportsCustomerWithoutOrdersPage
         exists=false;
         try
         {
-            if (HelpersMethod.IsExists("//div[@id='customersWithoutOrdersInfoNotification']/parent::div/descendant::div[contains(@class,'k-animation-container-relative')][2]/descendant::tr[@class='k-master-row']/descendant::input", driver))
+            if (HelpersMethod.IsExists("//div[@id='customersWithoutOrdersInfoNotification']/parent::div/descendant::div[contains(@class,'k-animation-container-relative')][2]/descendant::tr[contains(@class,'k-master-row')]/descendant::input", driver))
             {
-                WebElement accountCheckBox = HelpersMethod.FindByElement(driver, "xpath", "//div[@id='customersWithoutOrdersInfoNotification']/parent::div/descendant::div[contains(@class,'k-animation-container-relative')][2]/descendant::tr[@class='k-master-row']/descendant::input");
+                WebElement accountCheckBox = HelpersMethod.FindByElement(driver, "xpath", "//div[@id='customersWithoutOrdersInfoNotification']/parent::div/descendant::div[contains(@class,'k-animation-container-relative')][2]/descendant::tr[contains(@class,'k-master-row')]/descendant::input");
                 HelpersMethod.JScriptClick(driver, accountCheckBox, 10000);
                 scenario.log("SELECTED ROUTE CHECKBOX");
                 exists=true;
@@ -809,6 +805,32 @@ public class ReportsCustomerWithoutOrdersPage
         try
         {
             new WebDriverWait(driver,Duration.ofMillis(10000)).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//span[contains(@class,'k-icon k-i-loading')]")));
+        }
+        catch (Exception e){}
+    }
+
+    public void readFromDate()
+    {
+        try
+        {
+            String fromDateText=HelpersMethod.JSGetValueEle(driver,fromDate,10000);
+            if(fromDateText.equals("")||fromDateText.equals(null))
+            {
+                scenario.log("FROM DATE SELECTED IS "+fromDateText);
+            }
+        }
+        catch (Exception e){}
+    }
+
+    public void readToDate()
+    {
+        try
+        {
+            String toDateText=HelpersMethod.JSGetValueEle(driver,toDate,10000);
+            if(toDateText.equals("")||toDateText.equals(null))
+            {
+                scenario.log("TO DATE SELECTED IS "+toDateText);
+            }
         }
         catch (Exception e){}
     }

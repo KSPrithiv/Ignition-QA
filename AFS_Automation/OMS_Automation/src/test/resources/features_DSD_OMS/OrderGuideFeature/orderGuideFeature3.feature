@@ -12,28 +12,24 @@ Feature: Order Guide3
   Scenario Outline: Test scenario for cancel deleting of OG
     Given User must be on Order Entry Page to select OG
     And User should navigate to OG
+    Then User clicks on Create new button and should navigate to New OG page
+    #Then User enters Description "<OG>" Start date 1 and End date 2 day from current date
+    Then Then User enters Description "<OG>"
+    And User selects Day of week from drop down
+    And User enters Quick Product number and Sequence number
+      |4|
+    Then User click on Save button
     Then User enters OG Description "<OG>" in search box and Delete cancel the OG verify same in OG grid
     Examples:
       |  OG   |
-      |OGDis16 |
+      |OGDeleteCancel |
 
   @OGDelete
   Scenario Outline: Deleting Order guide and verifying it in OG grid
     Given User must be on Order Entry Page to select OG
     And User should navigate to OG
- #   Then User should click on Customer Reference drop down and select type of OG
- #     |All customer accounts #|
     And Clear filter to display both active and inactive OG
     Then User enters OG Description "<OG>" in search box and Delete the OG verify same in OG grid
     Examples:
-      |  OG   |
-      |OGDis16  |
-    #  |OGDis17  |
-    #  |OGDis18  |
-    #  |OGDis19  |
-    #  |OGDis20  |
-    #  |DayOfWeek|
-    #  |OGHist   |
-    #  |CustChange|
-    #  |AllCustomer1 |
-      | OGDis1 |
+      |  OG            |
+      | OGDeleteCancel |

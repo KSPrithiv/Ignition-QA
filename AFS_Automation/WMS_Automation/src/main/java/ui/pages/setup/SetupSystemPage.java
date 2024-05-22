@@ -21,7 +21,7 @@ public class SetupSystemPage extends BasePage {
     By addSettingsButton = By.id("addSettingsButton");
     By addFilterButton = By.className("i-filter-tag__main__text--add");
     By inputContains = By.xpath("//input[@placeholder='Contains']");
-    By applyButton = By.xpath("//button[text()='Apply']");
+    By applyButton = By.xpath("//button/span[text()='Apply']");
     By inputSearch = By.xpath("//input[@placeholder='Search']");
     By labelTypeColumn = By.xpath("//span[contains(text(), 'Label type')]");
     By descriptionColumn = By.xpath("//span[contains(text(), 'Description')]");

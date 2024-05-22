@@ -9,10 +9,10 @@ Feature: scenarios for admin security and submenu roles, for creating role, edit
     Given User is on Home Page for Admin setting to select Admin option for admin security
     Then User Clicks on Permissions by drop down to select Customer Account# for admin security
     And User should enter menu "<Main menu>" in search bar and select "<Sub menu>"
-    Then User clicks on plus symbol to create new role, popup will appear enter all required fields, "<Managable Role>" and save
+    Then User clicks on plus symbol to create new role, popup will appear enter all required fields, "<Manageable Role>" and save
     And User confirm that newly added role is displayed in grid
     Examples:
-      |Main menu|Sub menu|Managable Role |
+      |Main menu|Sub menu|Manageable Role |
       |Security |Roles   |CompanyAdmin   |
 
   @EditRole

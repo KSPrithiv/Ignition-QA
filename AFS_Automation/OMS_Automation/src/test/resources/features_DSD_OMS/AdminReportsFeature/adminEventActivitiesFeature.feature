@@ -11,7 +11,7 @@ Feature: Test scenarios for Admin, for genterating reports in events/activies ta
     And User should enter menu "<Main menu>" in search bar and select "<Sub menu>" for Reports, Admin Options for event and activities
     Then User selects "<Admin Options>" in Orders page in admin login and validate user is in selected Tab
     Then User selects Customer Accoun# "<Add filter>", From and End dates for Creating reports
-    And User selects User name and "<Event>" to genrate report
+    And User selects User name and "<Event>" to generate report
     And User click on clicks on export .csv
     Then User click on Download .pdf to download document
     Then User click on reset button in Administration tab and all the webelement should be clear
@@ -26,7 +26,7 @@ Feature: Test scenarios for Admin, for genterating reports in events/activies ta
     And User should enter menu "<Main menu>" in search bar and select "<Sub menu>" for Reports, Admin Options for event and activities
     Then User selects "<Admin Options>" in Orders page in admin login and validate user is in selected Tab
     Then User selects Customer Accoun# "<Add filter>", From and End dates for Creating reports
-    And User selects User name and "<Event>" to genrate report
+    And User selects User name and "<Event>" to generate report
     And User click on clicks on export .csv
     Then User click on Download .pdf to download document
     Then User click on reset button in Administration tab and all the webelement should be clear
@@ -41,7 +41,7 @@ Feature: Test scenarios for Admin, for genterating reports in events/activies ta
     And User should enter menu "<Main menu>" in search bar and select "<Sub menu>" for Reports, Admin Options for event and activities
     Then User selects "<Admin Options>" in Orders page in admin login and validate user is in selected Tab
     Then User selects Customer Accoun# "<Add filter>", From and End dates for Creating reports
-    And User selects User name and "<Event>" to genrate report
+    And User selects User name and "<Event>" to generate report
     And User click on clicks on export .csv
     Then User click on Download .pdf to download document
     Then User click on reset button in Administration tab and all the webelement should be clear
@@ -56,7 +56,7 @@ Feature: Test scenarios for Admin, for genterating reports in events/activies ta
     And User should enter menu "<Main menu>" in search bar and select "<Sub menu>" for Reports, Admin Options for event and activities
     Then User selects "<Admin Options>" in Orders page in admin login and validate user is in selected Tab
     Then User selects Customer Accoun# "<Add filter>", From and End dates for Creating reports
-    And User selects User name and "<Event>" to genrate report
+    And User selects User name and "<Event>" to generate report
     And User click on clicks on export .csv
     Then User click on Download .pdf to download document
     Then User click on reset button in Administration tab and all the webelement should be clear
@@ -71,7 +71,7 @@ Feature: Test scenarios for Admin, for genterating reports in events/activies ta
     And User should enter menu "<Main menu>" in search bar and select "<Sub menu>" for Reports, Admin Options for event and activities
     Then User selects "<Admin Options>" in Orders page in admin login and validate user is in selected Tab
     Then User selects Customer Accoun# "<Add filter>", From and End dates for Creating reports
-    And User selects User name and "<Event>" to genrate report
+    And User selects User name and "<Event>" to generate report
     And User click on clicks on export .csv
     Then User click on Download .pdf to download document
     Then User click on reset button in Administration tab and all the webelement should be clear
@@ -86,7 +86,7 @@ Feature: Test scenarios for Admin, for genterating reports in events/activies ta
     And User should enter menu "<Main menu>" in search bar and select "<Sub menu>" for Reports, Admin Options for event and activities
     Then User selects "<Admin Options>" in Orders page in admin login and validate user is in selected Tab
     Then User selects Customer Accoun# "<Add filter>", From and End dates for Creating reports
-    And User selects User name and "<Event>" to genrate report
+    And User selects User name and "<Event>" to generate report
     And User click on clicks on export .csv
     Then User click on Download .pdf to download document
     Then User click on reset button in Administration tab and all the webelement should be clear
@@ -101,7 +101,7 @@ Feature: Test scenarios for Admin, for genterating reports in events/activies ta
     And User should enter menu "<Main menu>" in search bar and select "<Sub menu>" for Reports, Admin Options for event and activities
     Then User selects "<Admin Options>" in Orders page in admin login and validate user is in selected Tab
     Then User selects Customer Accoun# "<Add filter>", From and End dates for Creating reports
-    And User selects User name and "<Event>" to genrate report
+    And User selects User name and "<Event>" to generate report
     And User click on clicks on export .csv
     Then User click on Download .pdf to download document
     Then User click on reset button in Administration tab and all the webelement should be clear
@@ -116,7 +116,7 @@ Feature: Test scenarios for Admin, for genterating reports in events/activies ta
     And User should enter menu "<Main menu>" in search bar and select "<Sub menu>" for Reports, Admin Options for event and activities
     Then User selects "<Admin Options>" in Orders page in admin login and validate user is in selected Tab
     Then User selects Customer Accoun# "<Add filter>", From and End dates for Creating reports
-    And User selects User name and "<Event>" to genrate report
+    And User selects User name and "<Event>" to generate report
     And User click on clicks on export .csv
     Then User click on Download .pdf to download document
     Then User click on reset button in Administration tab and all the webelement should be clear
@@ -132,7 +132,7 @@ Feature: Test scenarios for Admin, for genterating reports in events/activies ta
     And User should enter menu "<Main menu>" in search bar and select "<Sub menu>" for Reports, Admin Options for event and activities
     Then User selects "<Admin Options>" in Orders page in admin login and validate user is in selected Tab
     Then User selects Customer Accoun# "<Add filter>", From and End dates for Creating reports
-    And User selects User name and "<Event>" to genrate report
+    And User selects User name and "<Event>" to generate report
     And User click on clicks on export .csv
     Then User click on Download .pdf to download document
     Then User click on reset button in Administration tab and all the webelement should be clear
@@ -147,7 +147,7 @@ Feature: Test scenarios for Admin, for genterating reports in events/activies ta
     And User should enter menu "<Main menu>" in search bar and select "<Sub menu>" for Reports, Admin Options for event and activities
     Then User selects "<Admin Options>" in Orders page in admin login and validate user is in selected Tab
     Then User selects Customer Accoun# "<Add filter>", From and End dates for Creating reports
-    And User selects User name and "<Event>" to genrate report
+    And User selects User name and "<Event>" to generate report
     And User click on clicks on export .csv
     Then User click on Download .pdf to download document
     Then User click on reset button in Administration tab and all the webelement should be clear
@@ -162,7 +162,7 @@ Feature: Test scenarios for Admin, for genterating reports in events/activies ta
     And User should enter menu "<Main menu>" in search bar and select "<Sub menu>" for Reports, Admin Options for event and activities
     Then User selects "<Admin Options>" in Orders page in admin login and validate user is in selected Tab
     Then User selects Customer Accoun# "<Add filter>", From and End dates for Creating reports
-    And User selects User name and "<Event>" to genrate report
+    And User selects User name and "<Event>" to generate report
     And User click on clicks on export .csv
     Then User click on Download .pdf to download document
     Then User click on reset button in Administration tab and all the webelement should be clear
@@ -177,7 +177,7 @@ Feature: Test scenarios for Admin, for genterating reports in events/activies ta
     And User should enter menu "<Main menu>" in search bar and select "<Sub menu>" for Reports, Admin Options for event and activities
     Then User selects "<Admin Options>" in Orders page in admin login and validate user is in selected Tab
     Then User selects Customer Accoun# "<Add filter>", From and End dates for Creating reports
-    And User selects User name and "<Event>" to genrate report
+    And User selects User name and "<Event>" to generate report
     And User click on clicks on export .csv
     Then User click on Download .pdf to download document
     Then User click on reset button in Administration tab and all the webelement should be clear
@@ -192,7 +192,7 @@ Feature: Test scenarios for Admin, for genterating reports in events/activies ta
     And User should enter menu "<Main menu>" in search bar and select "<Sub menu>" for Reports, Admin Options for event and activities
     Then User selects "<Admin Options>" in Orders page in admin login and validate user is in selected Tab
     Then User selects Customer Accoun# "<Add filter>", From and End dates for Creating reports
-    And User selects User name and "<Event>" to genrate report
+    And User selects User name and "<Event>" to generate report
     And User click on clicks on export .csv
     Then User click on Download .pdf to download document
     Then User click on reset button in Administration tab and all the webelement should be clear

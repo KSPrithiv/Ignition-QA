@@ -50,7 +50,7 @@ public class AdminInventoryStep
         inventoryPage=new InventoryPage(driver,scenario);
         inventoryPage.clickOnAddProd();
         inventoryPage.validateCatalogPopup();
-        if (HelpersMethod.IsExists("//div[contains(@class,'k-widget k-window k-dialog')]/descendant::div[contains(@class,'i-grid')]", driver))
+        if (HelpersMethod.IsExists("//div[contains(@class,'k-window k-dialog')]/descendant::div[contains(@class,'i-grid')]", driver))
         {
             scenario.log("CATALOG IN THE FORM OF LIST VIEW HAS BEEN FOUND");
             exists= inventoryPage.listViewProductLoadedAutoloadEnabled();
@@ -72,7 +72,7 @@ public class AdminInventoryStep
         inventoryPage=new InventoryPage(driver,scenario);
         inventoryPage.clickOnAddProd();
         inventoryPage.validateCatalogPopup();
-        if (HelpersMethod.IsExists("//div[contains(@class,'k-widget k-window k-dialog')]/descendant::div[contains(@class,'i-grid')]", driver))
+        if (HelpersMethod.IsExists("//div[contains(@class,'k-window k-dialog')]/descendant::div[contains(@class,'i-grid')]", driver))
         {
             scenario.log("CATALOG IN THE FORM OF LIST VIEW HAS BEEN FOUND");
             exists= inventoryPage.listViewProductLoadedAutoloadDisabled();

@@ -52,7 +52,7 @@ public class ARInquiryPage
     @FindBy(xpath="//button[contains(text(),'Post')]")
     private  WebElement PostBut;
 
-    @FindBy(xpath = "//button[contains(text(),'Print')]")
+    @FindBy(xpath = "//button/span[text()='Print']")
     private WebElement PrintBut;
 
     public ARInquiryPage(WebDriver driver,Scenario scenario)
@@ -99,7 +99,7 @@ public class ARInquiryPage
     {
         try
         {
-            if(HelpersMethod.IsExists("//div[contains(@class,'k-widget k-window k-dialog')]",driver))
+            if(HelpersMethod.IsExists("//div[contains(@class,'k-window k-dialog')]",driver))
             {
                 JavascriptExecutor js = ((JavascriptExecutor) driver);
                 js.executeScript("window.location.reload()");
@@ -201,16 +201,16 @@ public class ARInquiryPage
         try
         {
             HelpersMethod.ClickBut(driver,Cust_Accout,1000);
-            if(HelpersMethod.IsExists("//div[contains(text(),'Customer account')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
+            if(HelpersMethod.IsExists("//div[contains(text(),'Customer account')]/ancestor::div[contains(@class,'k-window k-dialog')]",driver))
             {
                 //Entering customer account# in search box
-                WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-widget k-window k-dialog')]/descendant::input[contains(@class,'i-search-box__input')]");
+                WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-window k-dialog')]/descendant::input[contains(@class,'i-search-box__input')]");
                 HelpersMethod.EnterText(driver,WebEle,1000, TestBase.testEnvironment.get_Account());
                 //Click on search index
-                WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-widget k-window k-dialog')]//*[local-name()='svg' and contains(@class,'i-icon   i-search-box__search')]");
+                WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-window k-dialog')]//*[local-name()='svg' and contains(@class,'i-icon   i-search-box__search')]");
                 HelpersMethod.ClickBut(driver,WebEle,1000);
                 //Click on Account no. filtered
-                WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-widget k-window k-dialog')]/descendant::tr[contains(@class,'k-master-row')]");
+                WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-window k-dialog')]/descendant::tr[contains(@class,'k-master-row')]");
                 HelpersMethod.ActClick(driver,WebEle,1000);
                 exists=true;
             }

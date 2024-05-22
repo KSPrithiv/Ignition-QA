@@ -470,11 +470,11 @@ public class OrderControlPageSteps
                 .ignoring(NoSuchElementException.class);
         wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
 
-        if(HelpersMethod.IsExists("//div[contains(text(),'The cutoff time')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
+        if(HelpersMethod.IsExists("//div[contains(text(),'The cutoff time')]/ancestor::div[contains(@class,'k-window k-dialog')]",driver))
         {
             scenario.log("<span style='color:red'>CUTOFF TIME HAS BEEN FOUND</span>");
-            WebElement modelContainer=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-widget k-window k-dialog')]");
-            WebElement okButton=modelContainer.findElement(By.xpath(".//button[text()='Ok']"));
+            WebElement modelContainer=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-window k-dialog')]");
+            WebElement okButton=modelContainer.findElement(By.xpath(".//button/span[text()='Ok']"));
             HelpersMethod.ActClick(driver,okButton,10000);
             cutOff=true;
             wait = new FluentWait<WebDriver>(driver)

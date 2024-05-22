@@ -214,7 +214,7 @@ public class CreditPage
 
     public void reviewDateSelection()
     {
-        HelpersMethod.ClickBut(driver,creditReviewDate,1000);
+        HelpersMethod.ClickBut(driver,creditReviewDate,10000);
     }
     public void selectReviewDate()
     {

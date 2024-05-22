@@ -27,10 +27,10 @@ public class adminReportPage
     Scenario scenario;
     static boolean exists=false;
 
-    @FindBy(xpath="//label[@id='StartDate-label']/following-sibling::span/descendant::span[contains(@class,'k-icon k-i-calendar')]")
+    @FindBy(xpath="//label[@id='StartDate-label']/following-sibling::span/descendant::button//*[local-name='svg']")
     private WebElement fromDate;
 
-    @FindBy(xpath="//label[@id='EndDate-label']/following-sibling::span/descendant::span[contains(@class,'k-icon k-i-calendar')]")
+    @FindBy(xpath="//label[@id='EndDate-label']/following-sibling::span/descendant::button//*[local-name='svg']")
     private WebElement toDate;
 
     @FindBy(id="StartDate")
@@ -173,10 +173,10 @@ public class adminReportPage
             }
             scenario.log("TO GENERATE THE FILE IN .csv FORMATE BUTTON HAS BEEN CLICKED");
             exists=true;
-            if(HelpersMethod.IsExists("//div[contains(text(),'The report returned no data. Choose other parameters.')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
+            if(HelpersMethod.IsExists("//div[contains(text(),'The report returned no data. Choose other parameters.')]/ancestor::div[contains(@class,'k-window k-dialog')]",driver))
             {
-                WebElement dialogPopup=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-widget k-window k-dialog')]");
-                WebElement okButton=dialogPopup.findElement(By.xpath(".//button[text()='Ok']"));
+                WebElement dialogPopup=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-window k-dialog')]");
+                WebElement okButton=dialogPopup.findElement(By.xpath(".//button/span[text()='Ok']"));
                 HelpersMethod.ClickBut(driver,okButton,4000);
             }
             Assert.assertTrue(exists);

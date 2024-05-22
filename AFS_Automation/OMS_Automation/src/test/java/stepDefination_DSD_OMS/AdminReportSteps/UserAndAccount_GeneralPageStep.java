@@ -96,8 +96,8 @@ public class UserAndAccount_GeneralPageStep
 
         loginpage.validateLoginPageTitle();
         loginpage.RegisterHere();
-        //HelpersMethod.waitTillElementLocatedDisplayed(driver, "xpath", "//div[contains(text(),'Customer Registration')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]", 200);
-        if (HelpersMethod.IsExists("//div[contains(text(),'Customer Registration')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]", driver))
+        //HelpersMethod.waitTillElementLocatedDisplayed(driver, "xpath", "//div[contains(text(),'Customer Registration')]/ancestor::div[contains(@class,'k-window k-dialog')]", 200);
+        if (HelpersMethod.IsExists("//div[contains(text(),'Customer Registration')]/ancestor::div[contains(@class,'k-window k-dialog')]", driver))
         {
             Result = true;
         }

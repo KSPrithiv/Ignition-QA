@@ -128,14 +128,14 @@ public class QuoteSummaryPage
             if(ConvertOG.isDisplayed())
             {
                 HelpersMethod.ScrollElement(driver,ConvertOG);
-                HelpersMethod.ClickBut(driver,ConvertOG,6000);
+                HelpersMethod.ClickBut(driver,ConvertOG,10000);
                 scenario.log("CONVERT QUOTE AS ORDER GUIDE");
                 exists=true;
-                if(HelpersMethod.IsExists("//div[@class='loader']",driver))
-                {
-                    WebElement WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 2000000);
-                }
+                Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                        .withTimeout(Duration.ofSeconds(250))
+                        .pollingEvery(Duration.ofSeconds(2))
+                        .ignoring(NoSuchElementException.class);
+                wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
             }
             Assert.assertEquals(exists,true);
         }
@@ -145,7 +145,7 @@ public class QuoteSummaryPage
     public void ClickOnConvertOrder()
     {
         exists=true;
-        WebElement WebEle=null;
+        WebElement WebEle;
         try
         {
             Thread.sleep(1000);
@@ -163,7 +163,7 @@ public class QuoteSummaryPage
             if(ConvertOrder.isDisplayed())
             {
                 HelpersMethod.ScrollUpScrollBar(driver);
-                HelpersMethod.ClickBut(driver,ConvertOrder,1000);
+                HelpersMethod.ClickBut(driver,ConvertOrder,10000);
                 scenario.log("QUOTE CONVERT TO ORDER BUTTON CLICKED");
                 exists=true;
                 if(HelpersMethod.IsExists("//div[@class='loader']",driver))
@@ -174,17 +174,17 @@ public class QuoteSummaryPage
             }
             Assert.assertEquals(exists,true);
             exists=false;
-            if(HelpersMethod.IsExists("//div[contains(text(),'Convert quote to order')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
+            if(HelpersMethod.IsExists("//span[contains(text(),'Convert quote to order')]/ancestor::div[contains(@class,'k-window k-dialog')]",driver))
             {
-                WebElement confirmDialog=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-widget k-window k-dialog')]");
-                WebElement yesButton=confirmDialog.findElement(By.xpath(".//button[text()='Yes']"));
-                HelpersMethod.ClickBut(driver,yesButton,6000);
+                WebElement confirmDialog=HelpersMethod.FindByElement(driver,"xpath","//span[contains(text(),'Convert quote to order')]/ancestor::div[contains(@class,'k-window k-dialog')]");
+                WebElement yesButton=confirmDialog.findElement(By.xpath(".//button/span[text()='Yes']"));
+                HelpersMethod.ActClick(driver,yesButton,20000);
                 exists=true;
-                if(HelpersMethod.IsExists("//div[@class='loader']",driver))
-                {
-                    WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 2000000);
-                }
+                Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                        .withTimeout(Duration.ofSeconds(400))
+                        .pollingEvery(Duration.ofSeconds(2))
+                        .ignoring(NoSuchElementException.class);
+                wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
             }
             Assert.assertEquals(exists,true);
             Thread.sleep(500);
@@ -200,16 +200,16 @@ public class QuoteSummaryPage
         {
             if(ConvertOrder.isDisplayed())
             {
-                HelpersMethod.ClickBut(driver,CancelButton,1000);
+                HelpersMethod.ClickBut(driver,CancelButton,10000);
                 scenario.log("CANCEL BUTTON TO CANCEL QUOTE");
                 exists=true;
             }
             Assert.assertEquals(exists,true);
             exists=false;
-            if(HelpersMethod.IsExists("//div[contains(text(),'Cancel quote')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
+            if(HelpersMethod.IsExists("//span[contains(text(),'Cancel quote')]/ancestor::div[contains(@class,'k-window k-dialog')]",driver))
             {
-                WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-widget k-window k-dialog')]/descendant::button[text()='Yes']");
-                HelpersMethod.ClickBut(driver,WebEle,1000);
+                WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-window k-dialog')]/descendant::button/span[text()='Yes']");
+                HelpersMethod.ClickBut(driver,WebEle,10000);
                 exists=true;
                 if(HelpersMethod.IsExists("//div[@class='loader']",driver))
                 {

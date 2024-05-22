@@ -201,7 +201,7 @@ public class TestBase
         //getDriver().manage().timeouts().implicitlyWait(TestUtil.IMPLICIT_WAIT, TimeUnit.SECONDS);
         getDriver().get(testEnvironment.get_url());
        // getDriver().manage().window().setSize(new Dimension(1920, 1080));
-        Thread.sleep(6000);
+        Thread.sleep(4000);
     }
 
     public static void unload() throws IOException

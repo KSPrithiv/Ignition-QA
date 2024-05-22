@@ -123,13 +123,13 @@ public class LoginPageStep
         }
         Thread.sleep(4000);
         String titleLogin=driver.getTitle();
-        if(HelpersMethod.IsExists("//div[contains(@class,'k-widget k-window k-dialog')]",driver))
+        if(HelpersMethod.IsExists("//div[contains(@class,'k-window k-dialog')]",driver))
         {
             JavascriptExecutor js = ((JavascriptExecutor) driver);
             js.executeScript("window.location.reload()");
 
             Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
-                    .withTimeout(Duration.ofSeconds(120))
+                    .withTimeout(Duration.ofSeconds(400))
                     .pollingEvery(Duration.ofSeconds(2))
                     .ignoring(NoSuchElementException.class);
             wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
@@ -138,27 +138,34 @@ public class LoginPageStep
                 alert.accept();
 
             wait = new FluentWait<WebDriver>(driver)
-                    .withTimeout(Duration.ofSeconds(120))
+                    .withTimeout(Duration.ofSeconds(400))
                     .pollingEvery(Duration.ofSeconds(2))
                     .ignoring(NoSuchElementException.class);
             wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
         }
-            //if(titleLogin.equals("Order Cart") || titleLogin.equals("Product Catalog"))
-            if (titleLogin.equals("Product Catalog"))
-            {
-                driver.navigate().to(TestBase.testEnvironment.get_url());
-                status = HelpersMethod.returnDocumentStatus(driver);
-                if (status.equals("loading"))
-                {
-                    HelpersMethod.waitTillLoadingPage(driver);
-                }
+        if(!titleLogin.equals("Login") && titleLogin.equals("Product Catalog"))
+        {
+            WebElement returnToLogin=HelpersMethod.FindByElement(driver,"xpath","//button[contains(text(),'Return to Login')]");
+            HelpersMethod.ClickBut(driver,returnToLogin,10000);
+            Thread.sleep(2000);
+        }
 
-                Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
-                        .withTimeout(Duration.ofSeconds(120))
-                        .pollingEvery(Duration.ofSeconds(2))
-                        .ignoring(NoSuchElementException.class);
-                wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
-            }
+            //if(titleLogin.equals("Order Cart") || titleLogin.equals("Product Catalog"))
+//            if (titleLogin.equals("Product Catalog"))
+//            {
+//                driver.navigate().to(TestBase.testEnvironment.get_url());
+//                status = HelpersMethod.returnDocumentStatus(driver);
+//                if (status.equals("loading"))
+//                {
+//                    HelpersMethod.waitTillLoadingPage(driver);
+//                }
+//
+//                Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+//                        .withTimeout(Duration.ofSeconds(120))
+//                        .pollingEvery(Duration.ofSeconds(2))
+//                        .ignoring(NoSuchElementException.class);
+//                wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+//            }
             //else if (!tLogin.equals(titleLogin))
             else if(!titleLogin.equals("Login"))
             {
@@ -284,9 +291,9 @@ public class LoginPageStep
         wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
 
         loginpage = new LoginPage(driver, scenario);
-        if (HelpersMethod.IsExists("//div[contains(text(),'Failed to connect to API')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]", driver))
+        if (HelpersMethod.IsExists("//div[contains(text(),'Failed to connect to API')]/ancestor::div[contains(@class,'k-window k-dialog')]", driver))
         {
-            WebElement WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(text(),'Failed to connect to API')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]/descendant::button[text()='Ok']");
+            WebElement WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(text(),'Failed to connect to API')]/ancestor::div[contains(@class,'k-window k-dialog')]/descendant::button/span[text()='Ok']");
             HelpersMethod.ClickBut(driver, WebEle, 10000);
         }
 
@@ -347,7 +354,8 @@ public class LoginPageStep
         loginpage = new LoginPage(driver, scenario);
         loginpage.EnterUsername(TestBase.testEnvironment.username());
         loginpage.EnterPassword(TestBase.testEnvironment.password());
-        loginpage.ClickSigninForExternalOrder();
+        //loginpage.ClickSigninForExternalOrder();
+        loginpage.ClickSignin();
         loginpage.ValidateCustomerIndexPopup();
         loginpage.CustomerIndexPopup();
     }
@@ -479,9 +487,9 @@ public class LoginPageStep
         wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
 
         loginpage = new LoginPage(driver, scenario);
-        if (HelpersMethod.IsExists("//div[contains(text(),'Failed to connect to API')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]", driver))
+        if (HelpersMethod.IsExists("//div[contains(text(),'Failed to connect to API')]/ancestor::div[contains(@class,'k-window k-dialog')]", driver))
         {
-            WebElement WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(text(),'Failed to connect to API')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]/descendant::button[text()='Ok']");
+            WebElement WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(text(),'Failed to connect to API')]/ancestor::div[contains(@class,'k-window k-dialog')]/descendant::button/span[text()='Ok']");
             HelpersMethod.ClickBut(driver, WebEle, 2000);
         }
 
@@ -505,8 +513,8 @@ public class LoginPageStep
             HelpersMethod.waitTillLoadingPage(driver);
         }
         Thread.sleep(2000);
-       // HelpersMethod.waitTillElementLocatedDisplayed(driver, "xpath", "//div[contains(text(),'Customer Registration')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]", 20000);
-        if (HelpersMethod.IsExists("//div[contains(text(),'Customer Registration')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]", driver))
+       // HelpersMethod.waitTillElementLocatedDisplayed(driver, "xpath", "//div[contains(text(),'Customer Registration')]/ancestor::div[contains(@class,'k-window k-dialog')]", 20000);
+        if (HelpersMethod.IsExists("//div[contains(text(),'Customer Registration')]/ancestor::div[contains(@class,'k-window k-dialog')]", driver))
         {
             scenario.log("CUSTOMER REGISTRATION PAGE HAS BEEN FOUND");
             Result = true;

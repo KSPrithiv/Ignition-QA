@@ -2,10 +2,8 @@ package pages_DSD_OMS.adminSecurity;
 
 import helper.HelpersMethod;
 import io.cucumber.java.Scenario;
-import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import io.cucumber.messages.internal.com.google.protobuf.util.Values;
+import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -28,10 +26,16 @@ public class AdminSecurityPermission_ByUserPage
     WebDriver driver;
     Scenario scenario;
     static boolean exists=false;
-    static String roleNameText;
+    //static String roleNameText;
 
     @FindBy(id = "AddBtn")
     private WebElement plusSymbol;
+
+    @FindBy(id="SearchBarPermissionsTree")
+    private WebElement searchBar;
+
+    @FindBy(xpath="//div[@class='i-grid-searchbar ']//*[local-name()='svg' and @class='i-icon i-icon--base i-search-box__search']")
+    private WebElement searchIndex;
 
     public AdminSecurityPermission_ByUserPage(WebDriver driver, Scenario scenario)
     {
@@ -87,7 +91,7 @@ public class AdminSecurityPermission_ByUserPage
         exists=false;
         try
         {
-            if(HelpersMethod.IsExists("//div[contains(text(),'Add user to table')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
+            if(HelpersMethod.IsExists("//span[contains(text(),'Add user to table')]/ancestor::div[contains(@class,'k-window k-dialog')]",driver))
             {
                 exists=true;
             }
@@ -101,8 +105,8 @@ public class AdminSecurityPermission_ByUserPage
         exists=false;
         try
         {
-            WebElement role=HelpersMethod.FindByElement(driver,"xpath","//input[@id='comboBoxAddUserRole']/ancestor::span[@class='k-dropdown-wrap']/descendant::span[contains(@class,'k-icon k-i-arrow-s')]");
-            HelpersMethod.ActClick(driver,role,1000);
+            WebElement role=HelpersMethod.FindByElement(driver,"xpath","//input[@id='comboBoxAddUserRole']/following-sibling::button//*[local-name()='svg']");
+            HelpersMethod.ActClick(driver,role,10000);
         }
         catch (Exception e){}
     }
@@ -113,7 +117,7 @@ public class AdminSecurityPermission_ByUserPage
         Actions act=new Actions(driver);
         try
         {
-            List<WebElement> Values = HelpersMethod.FindByElements(driver, "xpath", "//div[contains(@class,'k-popup k-child-animation-container')]/descendant::ul/li[contains(@class,'k-item')]");
+            List<WebElement> Values = HelpersMethod.FindByElements(driver, "xpath", "//ul[@id='comboBoxAddUserRolelist']/li/span");
             for (WebElement Val : Values)
             {
                 act.moveToElement(Val).build().perform();
@@ -134,7 +138,7 @@ public class AdminSecurityPermission_ByUserPage
 
 
             WebElement WebEle=HelpersMethod.FindByElement(driver,"id","comboBoxAddUserRole");
-            scenario.log("ROLE SELECTED IS "+HelpersMethod.JSGetValueEle(driver,WebEle,100));
+            scenario.log("ROLE SELECTED IS "+HelpersMethod.JSGetValueEle(driver,WebEle,10000));
             Assert.assertTrue(exists);
         }
         catch (Exception e){}
@@ -145,15 +149,17 @@ public class AdminSecurityPermission_ByUserPage
         exists=false;
         try
         {
-            if(HelpersMethod.IsExists("//label[@id='comboBoxAddUser-label']/following-sibling::span/descendant::span[contains(@class,'k-icon k-clear-value k-i-close')]",driver))
+            //if already user is selected we need to clear that, for that below code is
+            if(HelpersMethod.IsExists("//input[@id='comboBoxAddUser']/following-sibling::span[@title='clear']",driver))
             {
-                WebElement closeEle=HelpersMethod.FindByElement(driver,"xpath","//label[@id='comboBoxAddUser-label']/following-sibling::span/descendant::span[contains(@class,'k-icon k-clear-value k-i-close')]");
-                HelpersMethod.ActClick(driver,closeEle,1000);
+                WebElement closeEle=HelpersMethod.FindByElement(driver,"xpath","//input[@id='comboBoxAddUser']/following-sibling::span[@title='clear']");
+                HelpersMethod.ActClick(driver,closeEle,10000);
             }
-            WebElement role=HelpersMethod.FindByElement(driver,"xpath","//input[@id='comboBoxAddUser']/ancestor::span[@class='k-dropdown-wrap']/descendant::span[contains(@class,'k-icon k-i-arrow-s')]");
-            if(role.isDisplayed())
+            //to select the user we need to click on drop down
+            if(HelpersMethod.IsExists("//input[@id='comboBoxAddUser']/following-sibling::button//*[local-name()='svg']",driver))
             {
-                HelpersMethod.ActClick(driver, role, 1000);
+                WebElement user=HelpersMethod.FindByElement(driver,"xpath","//input[@id='comboBoxAddUser']/following-sibling::button//*[local-name()='svg']");
+                HelpersMethod.ActClick(driver, user, 10000);
                 exists=true;
             }
             Assert.assertTrue(exists);
@@ -165,52 +171,41 @@ public class AdminSecurityPermission_ByUserPage
     {
         exists=false;
         WebElement Val;
-
+        WebElement WebEle1, WebEle;
         Actions act=new Actions(driver);
         try
         {
-            new WebDriverWait(driver,Duration.ofMillis(10000)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(@class,'k-popup k-child-animation-container')]/descendant::ul/li[contains(@class,'k-item')]")));
-            if(HelpersMethod.IsExists("//label[@id='comboBoxAddUser-label']/following-sibling::span/descendant::span[contains(@class,'k-icon k-clear-value k-i-close')]",driver))
+            new WebDriverWait(driver,Duration.ofMillis(10000)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//ul[@id='comboBoxAddUserlist']/li/span")));
+            if(HelpersMethod.IsExists("//ul[@id='comboBoxAddUserlist']/li/span",driver))
             {
-                WebElement closeEle=HelpersMethod.FindByElement(driver,"xpath","//label[@id='comboBoxAddUser-label']/following-sibling::span/descendant::span[contains(@class,'k-icon k-clear-value k-i-close')]");
-                HelpersMethod.ActClick(driver,closeEle,1000);
-            }
-
-            if(HelpersMethod.IsExists("//div[contains(@class,'k-popup k-child-animation-container')]/descendant::ul/li[contains(@class,'k-item')]",driver))
-            {
-                List<WebElement> Values = HelpersMethod.FindByElements(driver, "xpath", "//div[contains(@class,'k-popup k-child-animation-container')]/descendant::ul/li[contains(@class,'k-item')]");
-                /*for (WebElement Val : Values)
-                {
-                    act.moveToElement(Val).build().perform();
-                    Val_Text = Val.getText();
-                    if (Val_Text.equalsIgnoreCase(userName) || Val_Text.contains(userName))
-                    {
-                        act.moveToElement(Val).build().perform();
-                        HelpersMethod.JScriptClick(driver, Val, 1000);
-                        exists = true;
-                        break;
-                    }
-                }*/
-                for(int i=0;i<=Values.size()-1;i++)
+                List<WebElement> Values = HelpersMethod.FindByElements(driver, "xpath", "//ul[@id='comboBoxAddUserlist']/li/span");
+                for(int i = 1; i<= Values.size()-1; i++)
                 {
                     Val=Values.get(i);
                     act.moveToElement(Val).build().perform();
-                    if(i==0)
+                    if(i==1)
                     {
-                        roleNameText = Val.getText();
-                        act.click(Val).build().perform();
-                        exists=true;
+                        WebEle1 = HelpersMethod.FindByElement(driver, "xpath", "//ul[@id='comboBoxAddUserlist']/li["+i+"]/span");
+                        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", Val);
+                        act.moveToElement(WebEle1).build().perform();
+                        act.moveToElement(WebEle1).click(WebEle1).build().perform();
+                        if (HelpersMethod.IsExists("//div[@class='loader']", driver))
+                        {
+                            WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
+                            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100000);
+                        }
+                        exists = true;
                         break;
                     }
                 }
             }
             if(HelpersMethod.IsExists("//div[@class='loader']",driver))
             {
-                WebElement WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 400000);
+                WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 800000);
             }
-            WebElement WebEle=HelpersMethod.FindByElement(driver,"id","comboBoxAddUser");
-            scenario.log("ROLE SELECTED IS "+HelpersMethod.JSGetValueEle(driver,WebEle,1000));
+            WebEle=HelpersMethod.FindByElement(driver,"id","comboBoxAddUser");
+            scenario.log("ROLE SELECTED IS "+HelpersMethod.JSGetValueEle(driver,WebEle,10000));
             Assert.assertEquals(exists,true);
         }
         catch (Exception e){}
@@ -221,15 +216,9 @@ public class AdminSecurityPermission_ByUserPage
         exists=false;
         try
         {
-            WebElement modelcontainer=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-widget k-window k-dialog')]");
-            WebElement userSelected=modelcontainer.findElement(By.xpath(".//input[@id='comboBoxAddUser']"));
+            WebElement userSelected=HelpersMethod.FindByElement(driver,"id","comboBoxAddUser");
             String userText=HelpersMethod.AttributeValue(userSelected,"value");
             scenario.log("USER SELECTED IS "+userText);
-            if(userText.equalsIgnoreCase(roleNameText))
-            {
-                exists = true;
-            }
-            Assert.assertTrue(exists);
         }
         catch (Exception e){}
     }

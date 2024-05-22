@@ -377,11 +377,12 @@ public class OrderEntryPageSteps
         newOE=new NewOrderEntryPage(driver,scenario);
         exists=newOE.ValidateNewOE();
         orderpage=new OrderEntryPage(driver,scenario);
-        orderpage.NO_NotePopup();
+        orderpage.NoNotePopHandling();
         newOE=new NewOrderEntryPage(driver,scenario);
         List<List<String>> PO_No = tabledata.asLists(String.class);
         newOE.EnterPO_No(PO_No.get(0).get(0));
-        newOE.unavailableProduct();
+        newOE.readProductsInOrder();
+        //newOE.unavailableProduct();
     }
 
     //For entering Qty in catalog, based on catalog display. i.e. card catalog/list catalog
@@ -441,10 +442,11 @@ public class OrderEntryPageSteps
         wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
 
         checkorder=new CheckOutOrderPage(driver,scenario);
+        Thread.sleep(4000);
         Ord_No=checkorder.readOrderNumber();
         if(HelpersMethod.IsExists("//div[@id='paymentMethodCard']",driver))
         {
-            Thread.sleep(4000);
+            //Thread.sleep(4000);
             checkorder.Select_PaymentMethod_ClickDownArrow();
             if(HelpersMethod.IsExists("//tr[1]/descendant::td[@class='payment-method-type-cell']",driver))
             {

@@ -141,14 +141,16 @@ public class ReportsCustomersWithoutOrdersSteps
     }
 
     @Then("User should select from and to date for Reports generation")
-    public void userShouldSelectFromAndToDateForReportsGeneration()
+    public void userShouldSelectFromAndToDateForReportsGeneration() throws InterruptedException
     {
         reportsInOEPage=new ReportsCustomerWithoutOrdersPage(driver,scenario);
         reportsInOEPage.invisiblityOfLoading();
         reportsInOEPage.clickOnFromDate();
         reportsInOEPage.selectFromDate();
+        reportsInOEPage.readFromDate();
         reportsInOEPage.clickOnToDate();
         reportsInOEPage.selectToDate();
+        reportsInOEPage.readToDate();
     }
 
     @And("User should select Customer Account# to generate report")
@@ -157,7 +159,7 @@ public class ReportsCustomersWithoutOrdersSteps
         reportsInOEPage=new ReportsCustomerWithoutOrdersPage(driver,scenario);
         reportsInOEPage.enterAccountNoInFilter();
         reportsInOEPage.selectFilteredAccountNo();
-        reportsInOEPage.clearFilter();
+        //reportsInOEPage.clearFilter();
     }
 
     @And("User should select Customer Account#, show selected customer toggle button")
@@ -203,7 +205,7 @@ public class ReportsCustomersWithoutOrdersSteps
     }
 
     @Then("User should select from and to date for Reports generation for invalid to date")
-    public void userShouldSelectFromAndToDateForReportsGenerationForInvalidToDate()
+    public void userShouldSelectFromAndToDateForReportsGenerationForInvalidToDate() throws InterruptedException
     {
         reportsInOEPage=new ReportsCustomerWithoutOrdersPage(driver,scenario);
         reportsInOEPage.clickOnFromDate();
@@ -220,7 +222,7 @@ public class ReportsCustomersWithoutOrdersSteps
     }
 
     @Then("User should select from and to date for Reports generation Routes tab")
-    public void userShouldSelectFromAndToDateForReportsGenerationRoutesTab()
+    public void userShouldSelectFromAndToDateForReportsGenerationRoutesTab() throws InterruptedException
     {
         reportsInOEPage=new ReportsCustomerWithoutOrdersPage(driver,scenario);
         reportsInOEPage.clickOnFromDate();

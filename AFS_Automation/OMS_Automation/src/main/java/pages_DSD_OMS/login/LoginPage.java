@@ -49,10 +49,9 @@ public class LoginPage
     private WebElement Password;
 
     @FindBy(id = "signInBtn")
-    //@FindBy(xpath="//button[contains(@class,'k-button k-primary k-button-icontext')]")
     private WebElement SignIn;
 
-    @FindBy(xpath = "//button[text()='Forgot password']")
+    @FindBy(xpath = "//button/span[text()='Forgot password']")
     private WebElement Forgotten;
 
     @FindBy(id = "viewProductCatalogLink")
@@ -83,7 +82,7 @@ public class LoginPage
                     .ignoring(NoSuchElementException.class);
             wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
 
-            HelpersMethod.waitTillTitleContains(driver,"Login",2000);
+            HelpersMethod.waitTillTitleContains(driver,"Login",6000);
             String title= driver.getTitle();
             if(title.contains("Login"))
             {
@@ -100,9 +99,15 @@ public class LoginPage
         exists=false;
         try
         {
-            Thread.sleep(8000);
-            HelpersMethod.clearText(driver,Username,8000);
-            HelpersMethod.sendKeys(driver,Username,1000,un);
+            Thread.sleep(4000);
+            Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(250))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
+            HelpersMethod.clearText(driver,Username,2000);
+            HelpersMethod.sendKeys(driver,Username,50000,un);
             exists=true;
             Assert.assertEquals(exists,true);
         }
@@ -114,7 +119,7 @@ public class LoginPage
         try
         {
             HelpersMethod.clearText(driver,Password,1000);
-            HelpersMethod.sendKeys(driver,Password,1000,pwd);
+            HelpersMethod.sendKeys(driver,Password,10000,pwd);
             exists=true;
             Assert.assertEquals(exists,true);
         }
@@ -125,8 +130,7 @@ public class LoginPage
         try
         {
             exists = false;
-            WebElement WebEle;
-            String status=null;
+            String status="";
             if(SignIn.isEnabled())
             {
                 status = HelpersMethod.returnDocumentStatus(driver);
@@ -134,8 +138,16 @@ public class LoginPage
                 {
                     HelpersMethod.waitTillLoadingPage(driver);
                 }
+
+                status = HelpersMethod.returnDocumentStatus(driver);
+                if (status.equals("loading"))
+                {
+                    HelpersMethod.waitTillLoadingPage(driver);
+                }
+
+                Thread.sleep(1000);
                 HelpersMethod.ScrollElement(driver, SignIn);
-                HelpersMethod.ActClick(driver, SignIn, 10000);
+                HelpersMethod.ClickBut(driver, SignIn, 40000);
                 HelpersMethod.waitTillPageLoaded(driver, 800000);
                 Thread.sleep(5000);
                 exists = true;
@@ -157,7 +169,7 @@ public class LoginPage
                 }
 
                 wait = new FluentWait<WebDriver>(driver)
-                        .withTimeout(Duration.ofSeconds(200))
+                        .withTimeout(Duration.ofSeconds(400))
                         .pollingEvery(Duration.ofSeconds(2))
                         .ignoring(NoSuchElementException.class);
                 wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
@@ -207,18 +219,18 @@ public class LoginPage
         exists=false;
         try
         {
-            HelpersMethod.waitTillElementLocatedDisplayed(driver, "xpath", "//div[contains(@class,'password-assistance-dialog ')]/descendant::div[contains(@class,'k-widget k-window k-dialog')]", 100);
-            WebElement ForgottenPass = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'password-assistance-dialog ')]/descendant::div[contains(@class,'k-widget k-window k-dialog')]");
+            HelpersMethod.waitTillElementLocatedDisplayed(driver, "xpath", "//div[contains(@class,'password-assistance-dialog ')]/descendant::div[contains(@class,'k-window k-dialog')]", 100);
+            WebElement ForgottenPass = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'password-assistance-dialog ')]/descendant::div[contains(@class,'k-window k-dialog')]");
             if (ForgottenPass.isDisplayed())
             {
                 //Enter user name in input box, in popup
-                WebElement UserInput = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(text(),'Password')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]/descendant::input");
+                WebElement UserInput = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(text(),'Password')]/ancestor::div[contains(@class,'k-window k-dialog')]/descendant::input");
                 HelpersMethod.clearText(driver, UserInput, 10000);
                 HelpersMethod.sendKeys(driver, UserInput, 10000,username);
                 String emailUserName=HelpersMethod.JSGetValueEle(driver,UserInput,10000);
                 scenario.log("USER NAME ENTERED FOR PASSWORD ASSISTANCE "+emailUserName);
                 //Click on Send button
-                WebElement SendBut = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-widget k-window k-dialog')]/descendant::button[text()='Send']");
+                WebElement SendBut = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-window k-dialog')]/descendant::button/span[text()='Send']");
                 HelpersMethod.clickOn(driver, SendBut, 10000);
                 scenario.log("FORGOTTEN PASSWORD BUTTON HAS BEEN HANDLED");
                 exists=true;
@@ -347,12 +359,12 @@ public class LoginPage
                 WebElement WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
                 HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000000);
             }
-            HelpersMethod.waitTillElementLocatedDisplayed(driver, "xpath", "//div[contains(text(),'Customer account index')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]", 20000);
+            HelpersMethod.waitTillElementLocatedDisplayed(driver, "xpath", "//div[contains(text(),'Customer account index')]/ancestor::div[contains(@class,'k-window k-dialog')]", 20000);
             // to fetch the web element of the modal container
-            WebElement modalContainer = driver.findElement(By.xpath("//div[contains(text(),'Customer account index')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]"));
+            WebElement modalContainer = driver.findElement(By.xpath("//div[contains(text(),'Customer account index')]/ancestor::div[contains(@class,'k-window k-dialog')]"));
 
             // to fetch the web elements of the modal content and interact with them, code to fetch content of modal title and verify it
-            WebElement modalContentTitle = modalContainer.findElement(By.xpath(".//div[contains(@class,'k-window-title k-dialog-title')]"));
+            WebElement modalContentTitle = modalContainer.findElement(By.xpath(".//span[contains(@class,'k-window-title k-dialog-title')]"));
             Assert.assertEquals(modalContentTitle.getText(), "Customer account index", "Verify Title message");
         }
         catch (Exception e){}
@@ -368,8 +380,8 @@ public class LoginPage
         try
         {
             Thread.sleep(4000);
-            //new WebDriverWait(driver, 2000).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(text(),'Customer account index')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]")));
-            WebElement modalContainer = driver.findElement(By.xpath("//div[contains(text(),'Customer account index')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]"));
+            //new WebDriverWait(driver, 2000).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(text(),'Customer account index')]/ancestor::div[contains(@class,'k-window k-dialog')]")));
+            WebElement modalContainer = driver.findElement(By.xpath("//div[contains(text(),'Customer account index')]/ancestor::div[contains(@class,'k-window k-dialog')]"));
             status = HelpersMethod.returnDocumentStatus(driver);
             if (status.equals("loading"))
             {
@@ -403,7 +415,7 @@ public class LoginPage
             HelpersMethod.ActSendKey(driver, Search2, 10000, AccNo);
 
             //Click on Apply button
-            WebElement ApplyButton = RadioPop.findElement(By.xpath(".//button[text()='Apply']"));
+            WebElement ApplyButton = RadioPop.findElement(By.xpath(".//button/span[text()='Apply']"));
             HelpersMethod.ClickBut(driver, ApplyButton, 10000);
             HelpersMethod.WaitElementPresent(driver, "xpath", "//div[contains(@class,'k-grid-container')]", 1000);
             if (HelpersMethod.IsExists("//div[@class='loader']", driver))
@@ -411,7 +423,7 @@ public class LoginPage
                 WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
                 HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000000);
             }
-            if (HelpersMethod.IsExists("//div[contains(@class,'k-widget k-window k-dialog')]/descendant::div[@class='i-no-data']", driver))
+            if (HelpersMethod.IsExists("//div[contains(@class,'k-window k-dialog')]/descendant::div[@class='i-no-data']", driver))
             {
                 scenario.log("CUSTOMER ACCOUNT NUMBER DOESN'T EXISTS");
             }
@@ -443,7 +455,8 @@ public class LoginPage
         {
             exists = false;
             String status;
-            if (SignIn.isEnabled()) {
+            if (SignIn.isEnabled())
+            {
                 status = HelpersMethod.returnDocumentStatus(driver);
                 if (status.equals("loading"))
                 {

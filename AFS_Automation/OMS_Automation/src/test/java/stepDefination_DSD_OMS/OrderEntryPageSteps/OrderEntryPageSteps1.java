@@ -39,9 +39,6 @@ public class OrderEntryPageSteps1
 
 
     static boolean exists=false;
-
-
-
     @Before
     public void LaunchBrowser1(Scenario scenario) throws Exception
     {
@@ -50,13 +47,12 @@ public class OrderEntryPageSteps1
         driver= driver1.getDriver();
     }
 
-    /* Created By Divya.Ramadas@afsi.com*/
     @Then("Click on Dropdown next to Ordertype input box Order type Popup should display")
     public void click_on_dropdown_next_to_ordertype_input_box_order_type_popup_should_display(DataTable tabledata) throws InterruptedException, AWTException
     {
         orderpage=new OrderEntryPage(driver, scenario);
         List<List<String>> OrderType=tabledata.asLists(String.class);
-        orderpage.orderTypeClick();
+        //orderpage.orderTypeClick();
         orderpage.selectRegularOrder(OrderType.get(0).get(0),OrderType.get(0).get(1));
     }
 
@@ -209,7 +205,7 @@ public class OrderEntryPageSteps1
     {
         orderpage=new OrderEntryPage(driver, scenario);
         List<List<String>> Cust_Note = tabledata.asLists(String.class);
-        if(HelpersMethod.IsExists("//div[@class='customer-notes-header']/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
+        if(HelpersMethod.IsExists("//div[@class='customer-notes-header']/ancestor::div[contains(@class,'k-window k-dialog')]",driver))
         {
             orderpage.Select_Customer_Note(Cust_Note.get(0).get(0));
         }
@@ -236,7 +232,7 @@ public class OrderEntryPageSteps1
         orderpage=new OrderEntryPage(driver, scenario);
         List<List<String>> Cust_Note = tabledata.asLists(String.class);
         //Check for existence of customer note grid
-        if(HelpersMethod.IsExists("//div[@class='customer-notes-header']/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
+        if(HelpersMethod.IsExists("//div[@class='customer-notes-header']/ancestor::div[contains(@class,'k-window k-dialog')]",driver))
         {
             orderpage.Select_Customer_Note_Del(Cust_Note.get(0).get(0));
         }

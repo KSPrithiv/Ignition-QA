@@ -56,7 +56,7 @@ public class WorkQueueTaskPage extends BasePage {
     By descriptionFilter = By.cssSelector(".i-btn-checkbox  #Description");
     By clearAllButton = By.xpath("//button[text()='Clear all']");
     By inputContains = By.xpath("//input[@placeholder='Contains']");
-    By applyButton = By.xpath("//button[text()='Apply']");
+    By applyButton = By.xpath("//button/span[text()='Apply']");
     By inputCheckIn = By.xpath("//input[contains(@id, 'Check In')]");
     By inputCycleCount = By.xpath("//input[contains(@id, 'Cycle Count')]");
     By inputLetdown = By.xpath("//input[contains(@id, 'Letdown')]");
