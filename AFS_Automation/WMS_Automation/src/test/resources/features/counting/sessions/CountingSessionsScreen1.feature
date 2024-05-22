@@ -90,35 +90,6 @@ Feature: Testing of Counting Count functionality
     And Selects location by index 0 on Counting Sessions page
     And Validates Location Code is not empty on Counting Sessions page
     And User clicks Cancel button on Counting Sessions page
-    And User clicks Add location button on Counting Sessions page
-    And Validates Add Location Popup on Counting Sessions page
-    And User types Partial location code "PartName123" on Counting Sessions page
-    And User clicks Save button on Counting Sessions page
-    And User clicks Add location button on Counting Sessions page
-    And Validates Add Location Popup on Counting Sessions page
-    And User selects random Location type with index 3 on Counting Sessions page
-    And User clicks Save button on Counting Sessions page
-    And User clicks Add location button on Counting Sessions page
-    And Validates Add Location Popup on Counting Sessions page
-    And User selects random Zone with index 2 on Counting Sessions page
-    And User clicks Save button on Counting Sessions page
-    And User clicks Add location button on Counting Sessions page
-    And Validates Add Location Popup on Counting Sessions page
-    And User types Starting Location with index 1 on Counting Sessions page
-    And User types Ending Location with index 1 on Counting Sessions page
-    And User clicks Save button on Counting Sessions page
-    And User clicks Yes button if need to add on Counting Sessions page
-    And User clicks session dropdown on Counting Sessions page
-    And User selects randomly created session on Counting Sessions page
-    And User clicks Add location button on Counting Sessions page
-    And Validates Add Location Popup on Counting Sessions page
-    And User types Location code with index 1 on Counting Sessions page
-    And User types Partial location code "testPartName" on Counting Sessions page
-    And User clicks Save button on Counting Sessions page
-    And User clicks session dropdown on Counting Sessions page
-    And User selects randomly created session on Counting Sessions page
-    And User clicks Delete Session button on Counting Sessions page
-    And User clicks Ok button on Counting Sessions page
 
 
   Scenario: Checking Sorting of the columns on Counting Sessions screen

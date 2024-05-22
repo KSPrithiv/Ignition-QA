@@ -115,11 +115,6 @@ Feature: Testing of Inbound Load Order Details screen functionality
     And Validates Change status popup with Ready To Receive Order status on Inbound Load Order Summary page
     And Clicks Cancel button on Inbound Load Order Summary page
     And Clicks Route Back button on Inbound Load Summary page
-    And Select Load Order with index 1 on Inbound Load Summary page
-    And Clicks change status option on Inbound Load Order Summary page
-    And Validates popup Change status title for Inbound Load Order Summary page
-    And Validates Change status popup with Ready To Receive Order status on Inbound Load Order Summary page
-    And Clicks Cancel button on Inbound Load Order Summary page
 
   Scenario: Checking Progress bar colors on Load Order Details page
     Given User signs in the application

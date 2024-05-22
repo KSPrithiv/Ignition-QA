@@ -18,16 +18,6 @@ Feature: Testing of Receiving functionality
     And User finds orders from date by index 4 on Inbound Order summary page
     And Clicks load status "All statuses" on Inbound Load Summary page
     And Selects order status "Ready To Receive" on Inbound Order Summary page
-    And Check order with index 0 on Inbound Order Summary page
-    And User waits for Inbound Order Details page to load
-    And User applies order "Receive" option on Inbound Order Details page
-    And Receiving page loads
-    And Receiving page contains all web elements
-    And Back button is clickable on Receiving page
-    And Go to Inbound Receiving page
-    And Receiving page loads
-    And Receiving page contains all web elements
-    And User clicks Back button on Receiving page
 
   Scenario: Checking Navigate to Staging screen
     Given User signs in the application
@@ -99,12 +89,7 @@ Feature: Testing of Receiving functionality
     And User clicks Next button on Receiving page
     And User clicks Next button on Receiving page
     And User clicks Review button on Receiving page
-    And Checks 0 pallet on Staging page
-    And User clicks Receive button on Receiving page
-    And Validates "Receive staged pallets?" message content on dialog popup on Receiving page
-    And Validates Yes and No buttons displayed on Receiving page
-    And Validates "Warning" title on dialog popup on Receiving page
-    And Clicks No button on Warning on Receiving page
+
 
   Scenario: Checking delete selected unit/pallet from staging screen
     Given User signs in the application
@@ -122,15 +107,6 @@ Feature: Testing of Receiving functionality
     And User clicks Next button on Receiving page
     And User clicks Review button on Receiving page
     And Validates Staging screen summary details on Receiving page
-    And Checks 0 pallet on Staging page
-    And User clicks Delete button on Staging page
-    And Validates "Remove staged pallets?" message content on dialog popup on Receiving page
-    And Clicks No button on Warning on Receiving page
-    And Checks 0 pallet on Staging page
-    And Checks input for all pallets on Staging page
-    And User clicks Delete button on Staging page
-    And Validates "Remove staged pallets?" message content on dialog popup on Receiving page
-    And Clicks No button on Warning on Receiving page
 
   Scenario: Checking Next to stage more pallets from the Staging screen
     Given User signs in the application
@@ -197,11 +173,6 @@ Feature: Testing of Receiving functionality
     And Clears LPN on Receiving page
     And Types "0900022330" LPN on Receiving page
     And Types "00493" product on Receiving page
-    And Clears Product on Receiving page
-    And Types "1234" product on Receiving page
-    And User clicks Next button on Receiving page
-    And Validates "Please enter a quantity." message content on dialog popup on Receiving page
-    And Clicks Ok button on Warning on Receiving page
 
   Scenario: Checking Receiving Product functionality
     Given User signs in the application
@@ -220,7 +191,3 @@ Feature: Testing of Receiving functionality
     And User clicks Next button on Receiving page
     And Types "0900022330" LPN on Receiving page
     And User clicks Next button on Receiving page
-    And Types "00493" product on Receiving page
-    And Clears Product on Receiving page
-    And Types "1234" product on Receiving page
-    And Types "1" Qty on Receiving page

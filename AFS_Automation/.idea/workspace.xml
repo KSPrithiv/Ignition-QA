@@ -5,14 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="509c80e0-2f2e-4497-bee7-a6c4d904e2a0" name="Changes" comment="pushing">
-      <change afterPath="$PROJECT_DIR$/../.github/workflows/OB_IB_not_executed.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../.github/workflows/Reg-Jan30-WMS.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../.github/workflows/Reg-WMS-Feb-13.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../.github/workflows/Reg-WMS-Feb-20.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../.github/workflows/WMS-failed-Jan31.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.github/workflows/WMS-failed.yml" beforeDir="false" afterPath="$PROJECT_DIR$/../.github/workflows/WMS-failed.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WMS_Automation/src/test/java/testdata/json/OutboundOrderLoadsBatchesData.json" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/src/test/java/testdata/json/OutboundOrderLoadsBatchesData.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WMS_Automation/src/test/resources/properties/config_test.properties" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/src/test/resources/properties/config_test.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WMS_Automation/src/main/java/common/setup/DriverManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/WMS_Automation/src/main/java/common/setup/DriverManager.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -55,6 +48,7 @@
   </component>
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
+    &quot;JavaVariableFindUsagesOptions.isSearchInOverridingMethods&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;last_opened_file_path&quot;: &quot;C:/Users/karthikeyan.Armugam/Documents/Git_Repositories/ignition-qa/AFS_Automation/WMS_Automation&quot;,
@@ -70,27 +64,7 @@
       <recent name="runners" />
     </key>
   </component>
-  <component name="RunManager" selected="TestNG.C:/Users/karthikeyan.Armugam/Documents/Git_Repositories/ignition-qa/AFS_Automation/WMS_Automation/InboundLoadsSummary1CucumberTestNGRunner.xml">
-    <configuration name="Scenario: Checking Navigate to Work Queue Assign Work screen functionality" type="CucumberJavaRunConfigurationType" factoryName="Cucumber java" temporary="true" nameIsGenerated="true">
-      <option name="CUCUMBER_CORE_VERSION" value="5" />
-      <option name="FILE_PATH" value="$PROJECT_DIR$/WMS_Automation/src/test/resources/features/workqueue/assignwork/msg_delay_wms.feature" />
-      <option name="GLUE" value="stepDefination_DSD_OMS steps" />
-      <option name="MAIN_CLASS_NAME" value="io.cucumber.core.cli.Main" />
-      <module name="WMS_Automation" />
-      <option name="NAME_FILTER" value="^Checking Navigate to Work Queue Assign Work screen functionality$" />
-      <option name="PROGRAM_PARAMETERS" value=" --plugin org.jetbrains.plugins.cucumber.java.run.CucumberJvm5SMFormatter --name &quot;^Checking Navigate to Work Queue Assign Work screen functionality$&quot;" />
-      <option name="SUGGESTED_NAME" value="Scenario: Checking Navigate to Work Queue Assign Work screen functionality" />
-      <option name="WORKING_DIRECTORY" value="$MODULE_WORKING_DIR$" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="io.cucumber.core.cli.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
+  <component name="RunManager" selected="TestNG.C:/Users/karthikeyan.Armugam/Documents/Git_Repositories/ignition-qa/AFS_Automation/WMS_Automation/OutboundLoadPlanning1TestNGRunner.xml">
     <configuration default="true" type="JetRunConfigurationType">
       <module name="WMS_Automation" />
       <method v="2">
@@ -114,9 +88,9 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="C:/Users/karthikeyan.Armugam/Documents/Git_Repositories/ignition-qa/AFS_Automation/WMS_Automation/CountingSessionsTestNGRunner.xml" type="TestNG" temporary="true" nameIsGenerated="true">
+    <configuration name="C:/Users/karthikeyan.Armugam/Documents/Git_Repositories/ignition-qa/AFS_Automation/WMS_Automation/InboundLoadsOrderDetailsCucumberTestNGRunner.xml" type="TestNG" temporary="true" nameIsGenerated="true">
       <module name="WMS_Automation" />
-      <option name="SUITE_NAME" value="$PROJECT_DIR$/WMS_Automation/CountingSessionsTestNGRunner.xml" />
+      <option name="SUITE_NAME" value="$PROJECT_DIR$/WMS_Automation/InboundLoadsOrderDetailsCucumberTestNGRunner.xml" />
       <option name="TEST_OBJECT" value="SUITE" />
       <properties />
       <listeners />
@@ -124,9 +98,9 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="C:/Users/karthikeyan.Armugam/Documents/Git_Repositories/ignition-qa/AFS_Automation/WMS_Automation/InboundLoadsSummary1CucumberTestNGRunner.xml" type="TestNG" temporary="true" nameIsGenerated="true">
+    <configuration name="C:/Users/karthikeyan.Armugam/Documents/Git_Repositories/ignition-qa/AFS_Automation/WMS_Automation/InboundOrdersDetailsCucumberTestNGRunner.xml" type="TestNG" temporary="true" nameIsGenerated="true">
       <module name="WMS_Automation" />
-      <option name="SUITE_NAME" value="$PROJECT_DIR$/WMS_Automation/InboundLoadsSummary1CucumberTestNGRunner.xml" />
+      <option name="SUITE_NAME" value="$PROJECT_DIR$/WMS_Automation/InboundOrdersDetailsCucumberTestNGRunner.xml" />
       <option name="TEST_OBJECT" value="SUITE" />
       <properties />
       <listeners />
@@ -134,9 +108,19 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="C:/Users/karthikeyan.Armugam/Documents/Git_Repositories/ignition-qa/AFS_Automation/WMS_Automation/msg_delay_wms.xml" type="TestNG" temporary="true" nameIsGenerated="true">
+    <configuration name="C:/Users/karthikeyan.Armugam/Documents/Git_Repositories/ignition-qa/AFS_Automation/WMS_Automation/OutboundLoadPlanning1TestNGRunner.xml" type="TestNG" temporary="true" nameIsGenerated="true">
       <module name="WMS_Automation" />
-      <option name="SUITE_NAME" value="$PROJECT_DIR$/WMS_Automation/msg_delay_wms.xml" />
+      <option name="SUITE_NAME" value="$PROJECT_DIR$/WMS_Automation/OutboundLoadPlanning1TestNGRunner.xml" />
+      <option name="TEST_OBJECT" value="SUITE" />
+      <properties />
+      <listeners />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="C:/Users/karthikeyan.Armugam/Documents/Git_Repositories/ignition-qa/AFS_Automation/WMS_Automation/OutboundLoadPlanning4TestNGRunner.xml" type="TestNG" temporary="true" nameIsGenerated="true">
+      <module name="WMS_Automation" />
+      <option name="SUITE_NAME" value="$PROJECT_DIR$/WMS_Automation/OutboundLoadPlanning4TestNGRunner.xml" />
       <option name="TEST_OBJECT" value="SUITE" />
       <properties />
       <listeners />
@@ -145,19 +129,19 @@
       </method>
     </configuration>
     <list>
-      <item itemvalue="Cucumber Java.Scenario: Checking Navigate to Work Queue Assign Work screen functionality" />
-      <item itemvalue="TestNG.C:/Users/karthikeyan.Armugam/Documents/Git_Repositories/ignition-qa/AFS_Automation/WMS_Automation/InboundLoadsSummary1CucumberTestNGRunner.xml" />
-      <item itemvalue="TestNG.C:/Users/karthikeyan.Armugam/Documents/Git_Repositories/ignition-qa/AFS_Automation/WMS_Automation/msg_delay_wms.xml" />
-      <item itemvalue="TestNG.C:/Users/karthikeyan.Armugam/Documents/Git_Repositories/ignition-qa/AFS_Automation/WMS_Automation/CountingSessionsTestNGRunner.xml" />
+      <item itemvalue="TestNG.C:/Users/karthikeyan.Armugam/Documents/Git_Repositories/ignition-qa/AFS_Automation/WMS_Automation/OutboundLoadPlanning1TestNGRunner.xml" />
+      <item itemvalue="TestNG.C:/Users/karthikeyan.Armugam/Documents/Git_Repositories/ignition-qa/AFS_Automation/WMS_Automation/InboundLoadsOrderDetailsCucumberTestNGRunner.xml" />
+      <item itemvalue="TestNG.C:/Users/karthikeyan.Armugam/Documents/Git_Repositories/ignition-qa/AFS_Automation/WMS_Automation/InboundOrdersDetailsCucumberTestNGRunner.xml" />
       <item itemvalue="TestNG.C:/Users/karthikeyan.Armugam/Documents/Git_Repositories/ignition-qa/AFS_Automation/WMS_Automation/CountingCountingTestNGRunner.xml" />
+      <item itemvalue="TestNG.C:/Users/karthikeyan.Armugam/Documents/Git_Repositories/ignition-qa/AFS_Automation/WMS_Automation/OutboundLoadPlanning4TestNGRunner.xml" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="TestNG.C:/Users/karthikeyan.Armugam/Documents/Git_Repositories/ignition-qa/AFS_Automation/WMS_Automation/InboundLoadsSummary1CucumberTestNGRunner.xml" />
-        <item itemvalue="TestNG.C:/Users/karthikeyan.Armugam/Documents/Git_Repositories/ignition-qa/AFS_Automation/WMS_Automation/msg_delay_wms.xml" />
-        <item itemvalue="Cucumber Java.Scenario: Checking Navigate to Work Queue Assign Work screen functionality" />
-        <item itemvalue="TestNG.C:/Users/karthikeyan.Armugam/Documents/Git_Repositories/ignition-qa/AFS_Automation/WMS_Automation/CountingSessionsTestNGRunner.xml" />
+        <item itemvalue="TestNG.C:/Users/karthikeyan.Armugam/Documents/Git_Repositories/ignition-qa/AFS_Automation/WMS_Automation/OutboundLoadPlanning1TestNGRunner.xml" />
         <item itemvalue="TestNG.C:/Users/karthikeyan.Armugam/Documents/Git_Repositories/ignition-qa/AFS_Automation/WMS_Automation/CountingCountingTestNGRunner.xml" />
+        <item itemvalue="TestNG.C:/Users/karthikeyan.Armugam/Documents/Git_Repositories/ignition-qa/AFS_Automation/WMS_Automation/InboundOrdersDetailsCucumberTestNGRunner.xml" />
+        <item itemvalue="TestNG.C:/Users/karthikeyan.Armugam/Documents/Git_Repositories/ignition-qa/AFS_Automation/WMS_Automation/InboundLoadsOrderDetailsCucumberTestNGRunner.xml" />
+        <item itemvalue="TestNG.C:/Users/karthikeyan.Armugam/Documents/Git_Repositories/ignition-qa/AFS_Automation/WMS_Automation/OutboundLoadPlanning4TestNGRunner.xml" />
       </list>
     </recent_temporary>
   </component>
@@ -171,6 +155,17 @@
       <updated>1698666020052</updated>
     </task>
     <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

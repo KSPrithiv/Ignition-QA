@@ -42,6 +42,11 @@ Feature: Testing of Outbound Load Planning functionality
   Scenario: Checking Exit information
     #Given User is on Truck Info Page
     And Clicks Exit button on Truck Info page
+    #added Mar-13 2024
+    And Validates Yes and No buttons are present
+    And Validates Yes button is active
+    And Clicks Yes button on Warning Message
+
 
 
   @4

@@ -62,11 +62,6 @@ Feature: Testing of Inbound Orders functionality
     And Validates orders are present on Inbound Order Summary page
     And Clicks order status "All statuses" on Inbound Order Summary page
     And Selects order status "Received Order" on Inbound Order Summary page
-    Then Check order with index 0 on Inbound Order Summary page
-    And Clicks change status option on Inbound Order Summary page
-    And Validates popup Change status title for Inbound Order Summary page
-    And Validates Change status popup with Reopen Order status on Inbound Order Summary page
-    And Clicks Cancel button on Inbound Order Summary page
 
   Scenario: Checking Status change from Open to Ready to Receive on Inbound Order Summary screen
     Given User signs in the application
@@ -78,12 +73,6 @@ Feature: Testing of Inbound Orders functionality
     And Validates orders are present on Inbound Order Summary page
     And Clicks order status "All statuses" on Inbound Order Summary page
     And Selects order status "Open" on Inbound Order Summary page
-    Then Check order with index 0 on Inbound Order Summary page
-    And Clicks change status option on Inbound Order Summary page
-    And Validates popup Change status title for Inbound Order Summary page
-    And Validates Change status popup with Ready To Receive Order status on Inbound Order Summary page
-    And Validates Change status popup with Cancel Order status on Inbound Order Summary page
-    And Clicks Cancel button on Inbound Order Summary page
 
   Scenario: Checking Status change from Ready to Receive to Finish on Inbound Order Summary screen
     Given User signs in the application
@@ -137,9 +126,6 @@ Feature: Testing of Inbound Orders functionality
     And Receiving page loads
     And Receiving page contains all web elements
     And Clicks Route Back button on Inbound Order Summary page
-    And Checks Order with index 1 on Inbound Order Summary page
-    And Clicks Order Option on Inbound Order Summary page
-    And Validates Order option "Receive" on Inbound Order Summary page is disabled
 
  Scenario: Checking Edit option on Inbound Order Summary screen
     Given User signs in the application

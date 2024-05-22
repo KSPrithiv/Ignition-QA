@@ -92,7 +92,9 @@ public class InboundOrderDetailsPage extends BasePage {
     By moveLoad = By.id("OrderSummaryMove__loadrouteTxtBox-label");
     By moveLoadInput = By.id("OrderSummaryMove__loadrouteTxtBox");
     By orderProducts = By.xpath("//div[contains(@class, 'BarsContainer')]//span[contains(@id, 'spnOrder_')]");
-    By orderLineItems = By.xpath("//div[contains(@class, 'BarsBlock')]//span[contains(@id, 'spnOrderSource')]");
+    //By orderLineItems = By.xpath("//div[contains(@class, 'BarsBlock')]//span[contains(@id, 'spnOrderSource')]");
+    By orderLineItems = By.xpath("//div[contains(@class, 'BarsBlock')]//span[contains(@id, 'spnOrder_')]");
+
     By btnProductData = By.id("btnProductData");
     By btnProductEdit = By.id("btnProductEdit");
     By btnOrderLineFieldsImage = By.id("btnOrderLineFieldsImage");
@@ -343,10 +345,13 @@ public class InboundOrderDetailsPage extends BasePage {
         Waiters.waitTillLoadingPage(getDriver());
     }
 
-    public void clickOrderLineItemByNumber(int num) {
+    public void clickOrderLineItemByNumber(int num) throws InterruptedException {
         waitUntilInvisible(2, loader);
         Waiters.waitTillLoadingPage(getDriver());
+        //Thread.sleep(3000);
         WebElement item = getOrderLineItems().get(num);
+        //WebElement item = getOrderLineItems();
+        //List<WebElement> item = getOrderLineItems();
         clickOnElement(item);
         Waiters.waitTillLoadingPage(getDriver());
         waitUntilInvisible(5, loader);
@@ -748,6 +753,7 @@ public class InboundOrderDetailsPage extends BasePage {
 
     public List<WebElement> getOrderProducts() { return findWebElements(orderProducts); }
 
+    //public List<WebElement> getOrderLineItems() { return findWebElements(orderLineItems); }
     public List<WebElement> getOrderLineItems() { return findWebElements(orderLineItems); }
 
     public WebElement getBtnProductData() { return findWebElement(btnProductData); }

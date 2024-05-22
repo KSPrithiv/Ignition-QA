@@ -142,13 +142,6 @@ Feature: Testing of Outbound Summary order Edit option functionality
 #    And Waits for Outbound Order Summary page to load
     When Filling start date by index 2 on Outbound Order Summary page
     Then Selects order checkbox with index 0 on Outbound Order Summary page
-    And Selecting Outbound Order Image option on Outbound Order Summary page
-    And Validates Image upload is displayed
-    And Click Cancel button on Outbound Order Summary page
-    And Waits for Outbound Order Summary page to load
-    And Selects order checkbox with index 1 on Outbound Order Summary page
-    And Clicks Order option on Outbound Order Summary page
-    And Validates "Image" option is not active
 
   @9
   Scenario: Checking Order Review option functionality

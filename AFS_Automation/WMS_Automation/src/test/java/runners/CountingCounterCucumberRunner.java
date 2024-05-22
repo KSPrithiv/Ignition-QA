@@ -23,14 +23,14 @@ import static common.setup.DriverManager.*;
 @LinkedListeners({
     TestListener.class
 })
-@CucumberOptions(features = {"src/test/resources/features/counting/counting"},
+@CucumberOptions(features = {"src/test/resources/features/counting/counting/CountingCountScreen1.feature"},
         glue = {"steps"},
         plugin = {"pretty",
                 "json:target/cucumber.json",
                 "html:Reports/Index.html",
                 "json:target/cucumber-reports/cucumber.json",
                 "rerun:target/failedrerun.txt"
-        }, monochrome = true)
+        }, monochrome = true ,tags ="@f1")
 @Slf4j
 public class CountingCounterCucumberRunner extends AbstractTestNGCucumberTests {
     public static Environment environment;

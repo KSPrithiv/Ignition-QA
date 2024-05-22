@@ -1,0 +1,67 @@
+name: WMS Regression
+on:
+ push:
+   branches:
+     - karthikcommented
+ workflow_dispatch:
+  
+jobs:
+  job1:
+    name : WMS Automation
+    runs-on: self-hosted
+    
+    
+    steps:
+      - name: Checkout source code
+        uses: actions/checkout@v3
+      - uses: actions/checkout@v3
+      - uses: actions/setup-java@v3
+        with:
+           distribution: temurin
+           java-version: '16'
+           cache: maven
+           -name: Build with Maven
+           run: mvn -B package --file pom.xml
+      
+      
+      
+      
+      - name: WMS Automation module-1
+        run: |
+         mvn install test -DsuiteXmlFile='InboundLoadsSummary1CucumberTestNGRunner.xml'
+        working-directory: AFS_Automation/WMS_Automation 
+        
+       
+        
+      
+      
+        
+# ##########################################################################        
+  job2:  
+    needs: job1
+    name : job2 name
+    if: success() || failure()
+    runs-on: self-hosted
+    steps:
+      - name: Checkout source code
+        uses: actions/checkout@v3
+      - uses: actions/checkout@v3
+      - uses: actions/setup-java@v3
+        with:
+           distribution: temurin
+           java-version: '16'
+           cache: maven
+           -name: Build with Maven
+           run: mvn -B package --file pom.xml
+     
+      - name: WMS Automation module-2
+        run: |
+         mvn install test -DsuiteXmlFile='InboundLoadsSummary2CucumberTestNGRunner.xml'
+        working-directory: AFS_Automation/WMS_Automation 
+        
+       
+        
+      
+     
+        
+# ###########################################################################  

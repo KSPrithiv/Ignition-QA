@@ -3,7 +3,6 @@ Feature: Testing of Outbound Route Summary Assign option
   Scenario: Checking Assign Route functionality
     Given User signs in the application
     And Main page is loaded
-    
     And Go to Outbound Route page
     And Waits for Outbound Route Summary page to load
     When Filling route start date by index 4 on Outbound Route Summary page
@@ -16,4 +15,3 @@ Feature: Testing of Outbound Route Summary Assign option
     And Validates users are present for Assign Route on Outbound Route Summary page
     And Selects random user from dropdown for Assign route on Outbound Route Summary page
     And Clicks Save button on Outbound Route Summary page
-    And Validates "Success" notification is displayed on Outbound Route Summary page

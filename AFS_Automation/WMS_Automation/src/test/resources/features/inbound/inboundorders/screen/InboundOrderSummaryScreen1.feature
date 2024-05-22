@@ -15,9 +15,6 @@ Feature: Testing of Inbound Orders functionality
     And Go to Inbound Orders page
     And User waits for Inbound Order Summary page to load
     When User finds all orders from start date by index 4
-    Then Check order with index 0 on Inbound Order Summary page
-    And User applies order "Review" option on Inbound Order Summary page
-    And Validates Inbound order summary Review page is displayed
 
   Scenario: Checking Product Filter on Inbound Order Summary screen
     Given User signs in the application

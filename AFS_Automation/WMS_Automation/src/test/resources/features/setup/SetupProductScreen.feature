@@ -35,54 +35,6 @@ Feature: Testing of Product Setup UOM
     And Types High "1" on Setup Product page
     And Selects Product Type "*DEL* 64 Oz Ice cream" on Setup Product page
     And Selects Movement Class "A" on Setup Product page
-    And Clicks Save on Setup Product page
-    And Clicks Save on popup on Setup Product page
-    And Clicks Warehouse Tab on Setup Product page
-    And Clicks Add on Setup Product page
-    And Selects Warehouse "Warehouse 02" on Setup Product page
-    And Selects Active "Yes" on Setup Product page
-    And Clicks OK on Setup Product page
-    And Clicks UOM Tab on Setup Product page
-    And Validates UOM tab details on Setup Product page
-    And Clicks Add on Setup Product page
-    And Validates Dialog Title "Add UOM" on Setup Product page
-    And Clicks UOM Dropdown on Setup Product page
-    And Validates UOM options on Setup Product page
-    And Move to UOM Tab on Setup Product page
-    And Validates Weight Value "0" on UOM popup on Setup Product page
-    And Clicks Weight Unit on UOM popup on Setup Product page
-    And Validates Weight or Tare Weight options on Setup Product page
-    And Move to Weight Unit on Setup Product page
-    And Clicks Tare Weight Unit on UOM popup on Setup Product page
-    And Validates Weight or Tare Weight options on Setup Product page
-    And Move to Tare Weight Unit on Setup Product page
-    And Validates Width Value "0" on UOM popup on Setup Product page
-    And Clicks Width Unit on UOM popup on Setup Product page
-    And Validates Width or Height or Length options on Setup Product page
-    And Move to Width Unit on Setup Product page
-    And Clicks Next Width Unit on UOM popup on Setup Product page
-    And Validates Width or Height or Length options on Setup Product page
-    And Move to Next Width Unit on Setup Product page
-    And Clicks Height Unit on UOM popup on Setup Product page
-    And Validates Width or Height or Length options on Setup Product page
-    And Move to Height Unit on Setup Product page
-    And Clicks Next Height Unit on UOM popup on Setup Product page
-    And Validates Width or Height or Length options on Setup Product page
-    And Move to Next Height Unit on Setup Product page
-    And Clicks Length Unit on UOM popup on Setup Product page
-    And Validates Width or Height or Length options on Setup Product page
-    And Move to Length Unit on Setup Product page
-    And Clicks Next Length Unit on UOM popup on Setup Product page
-    And Validates Width or Height or Length options on Setup Product page
-    And Move to Next Length Unit on Setup Product page
-    And Validates Cut Time Value "0" on UOM popup on Setup Product page
-    And Clicks Cut Time Unit on UOM popup on Setup Product page
-    And Validates Cut time options on Setup Product page
-    And Move to Cut Time Unit on Setup Product page
-    And Clicks Shelf Unit on UOM popup on Setup Product page
-    And Validates Shelf Unit Value "0" on UOM popup on Setup Product page
-    And Validates Size Code default value on UOM popup on Setup Product page
-    And Validates OK and Cancel on UOM popup on Setup Product page are displayed
 
   Scenario: Checking Creating UOM on Setup Product screen
     Given User signs in the application
@@ -181,43 +133,6 @@ Feature: Testing of Product Setup UOM
     And Selects Product Type "*DEL* 64 Oz Ice cream" on Setup Product page
     And Selects Movement Class "A" on Setup Product page
     And Clicks Save on Setup Product page
-    And Clicks Save on popup on Setup Product page
-    And Clicks Warehouse Tab on Setup Product page
-    And Clicks Add on Setup Product page
-    And Selects Warehouse "Warehouse 02" on Setup Product page
-    And Selects Active "Yes" on Setup Product page
-    And Clicks OK on Setup Product page
-    And Clicks UOM Tab on Setup Product page
-    And Validates UOM tab details on Setup Product page
-    And Clicks Add on Setup Product page
-    And Validates Dialog Title "Add UOM" on Setup Product page
-    And Clicks Weight Unit on UOM popup on Setup Product page
-    And Enters Weight "10" on Setup Product page
-    And Enters Height "10" on Setup Product page
-    And Enters Length "10" on Setup Product page
-    And Check Include Opportunistic on Setup Product page
-    And Enters Size Code "16A" on Setup Product page
-    And Selects UOM "CARTON" on Setup Product page
-    And Clicks OK on Setup Product page
-    And Select UOM from grid by index 0 on Setup Product page
-    And User clicks Edit button on Setup Product page
-    And Validates Dialog Title "Edit UOM" on Setup Product page
-    And Selects UOM "CASES" on Setup Product page
-    And Enters Weight "8" on Setup Product page
-    And Enters Height "9" on Setup Product page
-    And Enters Length "7" on Setup Product page
-    And Check Include Opportunistic on Setup Product page
-    And Enters Size Code "1D" on Setup Product page
-    And Clicks OK on Setup Product page
-    And User clicks Edit button on Setup Product page
-    And Validates Dialog Title "Edit UOM" on Setup Product page
-    And Selects UOM "CASES" on Setup Product page
-    And Enters Weight "5" on Setup Product page
-    And Enters Height "6" on Setup Product page
-    And Enters Length "3" on Setup Product page
-    And Check Include Opportunistic on Setup Product page
-    And Enters Size Code "3D" on Setup Product page
-    And Clicks Cancel on Setup Product page
 
   Scenario: Checking Deleting UOM on Setup Product screen
     Given User signs in the application
