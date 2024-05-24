@@ -130,8 +130,6 @@ public class QuotePageSteps
         quotePage.ClickOnCalender();
         quotePage.SelectEndDate();
         quotePage.ClickOnOKButton();
-        //newQuotePage=new NewQuotePage(driver,scenario);
-        //newQuotePage.validateNewQuote();
     }
 
     @Then("Enter Pro# in Quick Product Entry area in New Qutoe page and enter Qty for Case and Unit")
@@ -202,6 +200,7 @@ public class QuotePageSteps
         quoteSummaryPage.ClickOnConvertOrder();
         newOE=new NewOrderEntryPage(driver,scenario);
         newOE.ValidateNewOE();
+        newOE.unavailableProduct();
     }
 
     @And("User should be navigated to Quote summary page and click on cancel button")

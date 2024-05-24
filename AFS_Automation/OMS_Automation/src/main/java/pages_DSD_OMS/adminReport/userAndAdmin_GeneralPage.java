@@ -141,10 +141,10 @@ public class userAndAdmin_GeneralPage
                         .ignoring(NoSuchElementException.class);
                 wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
 
-                if (HelpersMethod.IsExists("//div[contains(text(),'The information has been')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]", driver))
+                if (HelpersMethod.IsExists("//div[contains(text(),'The information has been')]/ancestor::div[contains(@class,'k-window k-dialog')]", driver))
                 {
-                    WebElement confirmationPopup = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-widget k-window k-dialog')]");
-                    WebElement okButton = confirmationPopup.findElement(By.xpath(".//button[text()='OK']"));
+                    WebElement confirmationPopup = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-window k-dialog')]");
+                    WebElement okButton = confirmationPopup.findElement(By.xpath(".//button/span[text()='Ok']"));
                     HelpersMethod.ActClick(driver, okButton, 20000);
                     exists = true;
                 }

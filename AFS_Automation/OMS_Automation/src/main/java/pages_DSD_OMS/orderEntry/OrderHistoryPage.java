@@ -36,19 +36,19 @@ public class OrderHistoryPage
     @FindBy(xpath="//*[local-name()='svg' and contains(@class,'i-search-box__search')]")
     private WebElement SearchIndex;
 
-    @FindBy(xpath="//button[text()='Copy']")
+    @FindBy(xpath="//button/span[text()='Copy']")
     private WebElement CopyButton;
 
-    @FindBy(xpath="//button[text()='Print']")
+    @FindBy(xpath="////button/span[text()='Print']")
     private WebElement PrintButton;
 
-    @FindBy(xpath="//button[@class='i-filter-tag__main']")
+    @FindBy(xpath="//button/span[@class='i-filter-tag__main']")
     private WebElement Addfilter;
 
     @FindBy(id="order-history-card")
     private WebElement HistoryGrid;
 
-    @FindBy(xpath="//button[text()='Orders']")
+    @FindBy(xpath="//button/span[text()='Orders']")
     private WebElement OrderButton;
 
     @FindBy(id="grid-selection-dropdown")
@@ -88,8 +88,8 @@ public class OrderHistoryPage
     {
         try
         {
-            HelpersMethod.EnterText(driver,SearchBox, 1000,Ord_No);
-            HelpersMethod.ClickBut(driver,SearchIndex,1000);
+            HelpersMethod.EnterText(driver,SearchBox, 10000,Ord_No);
+            HelpersMethod.ClickBut(driver,SearchIndex,10000);
             scenario.log("ORDER NUMBER ENTERED FOR SEARCHING IN ORDER HISTORY PAGE IS "+Ord_No);
         }
         catch (Exception e){}
@@ -97,7 +97,7 @@ public class OrderHistoryPage
 
     public void Check_Box()
     {
-        WebElement WebEle=null;
+        WebElement WebEle;
         try
         {
             if(HelpersMethod.IsExists("//div[@class='loader']",driver))
@@ -118,7 +118,7 @@ public class OrderHistoryPage
         {
             new WebDriverWait(driver, Duration.ofMillis(10000)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfAllElementsLocatedBy(By.id("order-history-card"))));
             HelpersMethod.ScrollElement(driver, CopyButton);
-            HelpersMethod.ClickBut(driver,CopyButton,1000);
+            HelpersMethod.ClickBut(driver,CopyButton,40000);
             scenario.log("COPY BUTTON HAS BEEN CLICKED, TO COPY ORDER HISTORY");
             if(HelpersMethod.IsExists("//div[@class='loader']",driver))
             {
@@ -132,15 +132,15 @@ public class OrderHistoryPage
     public void Click_OrderNo()
     {
         exists=false;
-        WebElement WebEle=null;
-        String Ord=null;
+        WebElement WebEle;
+        String Ord;
         try
         {
-            WebEle=HelpersMethod.FindByElement(driver,"xpath","//tr[contains(@class,'k-master-row')][1]/descendant::button[@class='i-link-button']");
+            WebEle=HelpersMethod.FindByElement(driver,"xpath","//tr[contains(@class,'k-master-row')][1]/descendant::button/span[@class='i-link-button']");
             Ord=WebEle.getText();
             scenario.log("ORDER NUMBER SELECTED IN ORDER HISTORY PAGE IS "+Ord);
             HelpersMethod.ScrollElement(driver,WebEle);
-            HelpersMethod.ClickBut(driver,WebEle,1000);
+            HelpersMethod.ClickBut(driver,WebEle,10000);
             exists=true;
             Assert.assertEquals(exists,true);
         }
@@ -178,7 +178,7 @@ public class OrderHistoryPage
             {
                 //code to select first order in order history
                 WebElement OrderHist = HelpersMethod.FindByElement(driver, "xpath", "//tr[contains(@class,'k-master-row')][1]/descendant::input[contains(@class,'k-checkbox')]");
-                HelpersMethod.ActClick(driver, OrderHist, 1000);
+                HelpersMethod.ActClick(driver, OrderHist, 10000);
             }
             else
             {
@@ -235,7 +235,7 @@ public class OrderHistoryPage
         exists=false;
         WebElement WebEle;
         Actions act= new Actions(driver);
-        String Comm_Text=null;
+        String Comm_Text;
         try
         {
             if(HelpersMethod.IsExists("//tr[contains(@class,'k-master-row')]//*[local-name()='svg']//*[local-name()='path' and contains(@d,'17 L 4 5 z')] | //tr[contains(@class,'k-master-row')]//*[local-name()='svg']//*[local-name()='path' and contains(@d,'17 L 4 3 z')]",driver))
@@ -247,9 +247,9 @@ public class OrderHistoryPage
                 else
                 {
                     WebEle=HelpersMethod.FindByElement(driver,"xpath","//tr[contains(@class,'k-master-row')]//*[local-name()='svg']//*[local-name()='path' and contains(@d,'17 L 4 3 z')]");
-                    HelpersMethod.ClickBut(driver,WebEle,1000);
+                    HelpersMethod.ClickBut(driver,WebEle,10000);
                     scenario.log("COMMENTS FOUND ARE:");
-                    List<WebElement> Comments = HelpersMethod.FindByElements(driver, "xpath", "//div[contains(@class,'k-widget k-window k-dialog')]/descendant::tr[contains(@class,'k-master-row')]/td[2]");
+                    List<WebElement> Comments = HelpersMethod.FindByElements(driver, "xpath", "//div[contains(@class,'k-window k-dialog')]/descendant::tr[contains(@class,'k-master-row')]/td[2]");
                     for (WebElement Comment : Comments)
                     {
                         act.moveToElement(Comment).build().perform();
@@ -321,9 +321,9 @@ public class OrderHistoryPage
     {
         try
         {
-            if (HelpersMethod.IsExists("//div[contains(text(),'Select delivery date')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]", driver))
+            if (HelpersMethod.IsExists("//div/span[contains(text(),'Select delivery date')]/ancestor::div[contains(@class,'k-window k-dialog')]", driver))
             {
-                WebElement selectDeliveryDate = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(text(),'Select delivery date')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]");
+                WebElement selectDeliveryDate = HelpersMethod.FindByElement(driver, "xpath", "//div/span[contains(text(),'Select delivery date')]/ancestor::div[contains(@class,'k-window k-dialog')]");
                 WebElement newOrder = selectDeliveryDate.findElement(By.xpath(".//tr[contains(@class,'k-master-row')][1]"));
                 scenario.log("DELIVERY DATE SELECTED IS: " + selectDeliveryDate.findElement(By.xpath(".//span[@class='line2']")).getText());
                 HelpersMethod.ActClick(driver, newOrder, 10000);
@@ -378,11 +378,11 @@ public class OrderHistoryPage
             wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
 
             //handling Select order no. popup
-            if(HelpersMethod.IsExists("//h4[contains(text(),'Select order')]/ancestor::div[contains(@class,'modal-content')]",driver))
+            if(HelpersMethod.IsExists("//span[contains(text(),'Select order')]/ancestor::div[contains(@class,'modal-content')]",driver))
             {
-                WebElement modalContainer = driver.findElement(By.xpath("//h4[contains(text(),'Select order')]/ancestor::div[contains(@class,'modal-content')]"));
+                WebElement modalContainer = driver.findElement(By.xpath("//span[contains(text(),'Select order')]/ancestor::div[contains(@class,'modal-content')]"));
 
-                WebEle=modalContainer.findElement(By.xpath(".//button[contains(text(),'New order')]"));
+                WebEle=modalContainer.findElement(By.xpath(".//div[@class='list-group']/div[text()='New order']"));
                 HelpersMethod.ActClick(driver,WebEle,10000);
 
                 wait = new FluentWait<WebDriver>(driver)
@@ -393,11 +393,11 @@ public class OrderHistoryPage
             }
 
             //handling note popup
-            if(HelpersMethod.IsExists("//p[text()='Notes']/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
+            if(HelpersMethod.IsExists("//div[@id='customerNotesDialog']/ancestor::div[contains(@class,'k-window k-dialog')]",driver))
             {
-                WebElement modalContainer = driver.findElement(By.xpath("//p[text()='Notes']/ancestor::div[contains(@class,'k-widget k-window k-dialog')]"));
+                WebElement modalContainer = driver.findElement(By.xpath("//div[@id='customerNotesDialog']/ancestor::div[contains(@class,'k-window k-dialog')]"));
 
-                WebEle= modalContainer.findElement(By.xpath(".//button"));
+                WebEle= modalContainer.findElement(By.xpath(".//button/span[text()='Ok']"));
                 HelpersMethod.ClickBut(driver,WebEle,10000);
             }
         }
@@ -409,9 +409,9 @@ public class OrderHistoryPage
         exists=false;
         try
         {
-            if(HelpersMethod.IsExists("//span[@id='grid-selection-dropdown']",driver))
+            if(HelpersMethod.IsExists("//button[@data-test-id='grid-selection']",driver))
             {
-                HelpersMethod.JScriptClick(driver,gridType,6000);
+                HelpersMethod.JScriptClick(driver,gridType,10000);
                 exists=true;
             }
             Assert.assertEquals(exists,true);
@@ -454,7 +454,7 @@ public class OrderHistoryPage
             exists=false;
             try
             {
-                String gridValue=HelpersMethod.FindByElement(driver,"xpath","//span[@id='grid-selection-dropdown']/span[@class='k-input']").getText();
+                String gridValue=HelpersMethod.FindByElement(driver,"xpath","//button[@data-test-id='grid-selection']/span[@class='k-input']").getText();
                 if(!gridValue.equals(""))
                 {
                     scenario.log("GRID TYPE SELECTED IS "+gridValue);
@@ -473,8 +473,8 @@ public class OrderHistoryPage
         String optText;
         try
         {
-            new WebDriverWait(driver,Duration.ofMillis(2000)).until(ExpectedConditions.refreshed(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(@class,'k-animation-container k-animation-container-relative k-animation-container-shown')]/descendant::ul/li"))));
-            List<WebElement> Options=HelpersMethod.FindByElements(driver,"xpath","//div[contains(@class,'k-animation-container k-animation-container-relative k-animation-container-shown')]/descendant::ul/li");
+            new WebDriverWait(driver,Duration.ofMillis(2000)).until(ExpectedConditions.refreshed(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='k-child-animation-container']/descendant::ul/li"))));
+            List<WebElement> Options=HelpersMethod.FindByElements(driver,"xpath","//div[@class='k-child-animation-container']/descendant::ul/li");
             //for (int i=0;i<=Options.size()-1;i++)
             for(WebElement opt:Options)
             {
@@ -505,7 +505,7 @@ public class OrderHistoryPage
         exists=false;
         try
         {
-            String gridValue=HelpersMethod.FindByElement(driver,"xpath","//span[@id='grid-selection-dropdown']/span[@class='k-input']").getText();
+            String gridValue=HelpersMethod.FindByElement(driver,"xpath","//button[@data-test-id='grid-selection']/span[@class='k-input']").getText();
             if(!gridValue.equals(""))
             {
                 scenario.log("GRID TYPE SELECTED IS "+gridValue);
@@ -523,7 +523,7 @@ public class OrderHistoryPage
         {
             if(OrderButton.isDisplayed() && OrderButton.isEnabled())
             {
-                HelpersMethod.ClickBut(driver,OrderButton,1000);
+                HelpersMethod.ClickBut(driver,OrderButton,10000);
                 exists=true;
                 if(HelpersMethod.IsExists("//div[@class='loader']",driver))
                 {
@@ -545,7 +545,7 @@ public class OrderHistoryPage
             WebElement OrderNo=HelpersMethod.FindByElement(driver,"xpath","//tr[contains(@class,'k-master-row')][1]/descendant::button");
             scenario.log("ORDER NUMBER SELECTED FROM ORDER HISTORY PAGE FOR CREATING COPY IS: "+OrderNo.getText());
 
-            HelpersMethod.ClickBut(driver,OrderNo,1000);
+            HelpersMethod.ClickBut(driver,OrderNo,10000);
             if(HelpersMethod.IsExists("//div[@class='loader']",driver))
             {
                 WebElement WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");

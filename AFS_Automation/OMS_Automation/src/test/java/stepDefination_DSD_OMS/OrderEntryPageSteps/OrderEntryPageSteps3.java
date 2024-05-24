@@ -212,7 +212,7 @@ public class OrderEntryPageSteps3
         checkorder.Delete_PaymentMethod();
         if(HelpersMethod.IsExists("//div[contains(text(),'Confirm delete')]/ancestor::div[@class='k-widget k-window k-dialog']",driver))
         {
-            HelpersMethod.ClickBut(driver,HelpersMethod.FindByElement(driver,"xpath","//div[@class='k-widget k-window k-dialog']/descendant::button[text()='Yes']"),1);
+            HelpersMethod.ClickBut(driver,HelpersMethod.FindByElement(driver,"xpath","//div[@class='k-widget k-window k-dialog']/descendant::button/span[text()='Yes']"),1);
         }
         checkorder.Click_On_Without_Providing_Payment();
         checkorder.Delivery_Address_ClickDownArrow();

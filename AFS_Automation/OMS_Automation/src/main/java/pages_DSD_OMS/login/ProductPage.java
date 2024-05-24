@@ -319,11 +319,11 @@ public class ProductPage
                     HelpersMethod.ActClick(driver, addButton, 10000);
                     Thread.sleep(1000);
                     //"Product is currently unavailable" popup
-                    if (HelpersMethod.IsExists("//div[contains(text(),'This product is currently unavailable.')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
+                    if (HelpersMethod.IsExists("//div[contains(text(),'This product is currently unavailable.')]/ancestor::div[contains(@class,'k-window k-dialog')]",driver))
                     {
-                        WebElement modalContainer =HelpersMethod.FindByElement (driver, "xpath","//div[contains(text(),'This product is currently unavailable.')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]");
+                        WebElement modalContainer =HelpersMethod.FindByElement (driver, "xpath","//div[contains(text(),'This product is currently unavailable.')]/ancestor::div[contains(@class,'k-window k-dialog')]");
 
-                        WebElement okButton=modalContainer.findElement(By.xpath(".//button[text()='Ok']"));
+                        WebElement okButton=modalContainer.findElement(By.xpath(".//button/span[text()='Ok']"));
                         HelpersMethod.ActClick(driver,okButton, 10000);
 
                     }
@@ -372,10 +372,10 @@ public class ProductPage
                     HelpersMethod.ClickBut(driver, WebEle, 10000);
                     Thread.sleep(500);
                     //"Product is currently unavailable" popup
-                    if (HelpersMethod.IsExists("//div[contains(text(),'This product is currently unavailable.')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
+                    if (HelpersMethod.IsExists("//div[contains(text(),'This product is currently unavailable.')]/ancestor::div[contains(@class,'k-window k-dialog')]",driver))
                     {
-                        WebElement modalContainer =HelpersMethod.FindByElement (driver, "xpath","//div[contains(text(),'This product is currently unavailable.')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]");
-                        WebElement okButton=modalContainer.findElement(By.xpath(".//button[text()='Ok']"));
+                        WebElement modalContainer =HelpersMethod.FindByElement (driver, "xpath","//div[contains(text(),'This product is currently unavailable.')]/ancestor::div[contains(@class,'k-window k-dialog')]");
+                        WebElement okButton=modalContainer.findElement(By.xpath(".//button/span[text()='Ok']"));
                         HelpersMethod.ActClick(driver,okButton, 10000);
                     }
 
@@ -518,10 +518,10 @@ public class ProductPage
                 qtyEntered=HelpersMethod.JSGetValueEle(driver,unit_Qty,10000);
                 scenario.log("QTY ENTERED IS "+qtyEntered);
                 //"Product is currently unavailable" popup
-                if (HelpersMethod.IsExists("//div[contains(text(),'This product is currently unavailable.')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
+                if (HelpersMethod.IsExists("//div[contains(text(),'This product is currently unavailable.')]/ancestor::div[contains(@class,'k-window k-dialog')]",driver))
                 {
-                    WebElement modalContainer =HelpersMethod.FindByElement (driver, "xpath","//div[contains(text(),'This product is currently unavailable.')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]");
-                    WebElement okButton=modalContainer.findElement(By.xpath(".//button[text()='Ok']"));
+                    WebElement modalContainer =HelpersMethod.FindByElement (driver, "xpath","//div[contains(text(),'This product is currently unavailable.')]/ancestor::div[contains(@class,'k-window k-dialog')]");
+                    WebElement okButton=modalContainer.findElement(By.xpath(".//button/span[text()='Ok']"));
                     HelpersMethod.ActClick(driver,okButton, 10000);
 
                     wait = new FluentWait<WebDriver>(driver)
@@ -545,10 +545,10 @@ public class ProductPage
                 wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
 
                 //"Product is currently unavailable" popup
-                if (HelpersMethod.IsExists("//div[contains(text(),'This product is currently unavailable.')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
+                if (HelpersMethod.IsExists("//div[contains(text(),'This product is currently unavailable.')]/ancestor::div[contains(@class,'k-window k-dialog')]",driver))
                 {
-                    WebElement modalContainer =HelpersMethod.FindByElement (driver, "xpath","//div[contains(text(),'This product is currently unavailable.')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]");
-                    WebElement okButton=modalContainer.findElement(By.xpath(".//button[text()='Ok']"));
+                    WebElement modalContainer =HelpersMethod.FindByElement (driver, "xpath","//div[contains(text(),'This product is currently unavailable.')]/ancestor::div[contains(@class,'k-window k-dialog')]");
+                    WebElement okButton=modalContainer.findElement(By.xpath(".//button/span[text()='Ok']"));
                     HelpersMethod.ActClick(driver,okButton, 10000);
                     wait = new FluentWait<WebDriver>(driver)
                             .withTimeout(Duration.ofSeconds(200))
@@ -768,7 +768,7 @@ public class ProductPage
                     new WebDriverWait(driver,Duration.ofMillis(10000)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class,'k-popup k-child-animation-container k-slide-down-enter k-slide-down-enter-active')]"))));
                     HelpersMethod.WaitElementPresent(driver, "xpath", "//div[contains(@class,'k-popup k-child-animation-container k-slide-down-enter k-slide-down-enter-active')]", 200);
                     WebElement modalContainer1 = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-popup k-child-animation-container k-slide-down-enter k-slide-down-enter-active')]");
-                    List<WebElement> subCats = modalContainer1.findElements(By.xpath(".//ul/li"));
+                    List<WebElement> subCats = modalContainer1.findElements(By.xpath(".//ul/li/span"));
                     for (WebElement subCat : subCats)
                     {
                         i++;
@@ -808,7 +808,7 @@ public class ProductPage
                         new WebDriverWait(driver,Duration.ofMillis(10000)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class,'k-popup k-child-animation-container k-slide-down-enter k-slide-down-enter-active')]"))));
                         HelpersMethod.WaitElementPresent(driver, "xpath", "//div[contains(@class,'k-popup k-child-animation-container k-slide-down-enter k-slide-down-enter-active')]", 200);
                         WebElement modalContainer2 = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-popup k-child-animation-container k-slide-down-enter k-slide-down-enter-active')]");
-                        List<WebElement> brands = modalContainer2.findElements(By.xpath(".//ul/li"));
+                        List<WebElement> brands = modalContainer2.findElements(By.xpath(".//ul/li/span"));
                         for (WebElement bran : brands)
                         {
                             j++;

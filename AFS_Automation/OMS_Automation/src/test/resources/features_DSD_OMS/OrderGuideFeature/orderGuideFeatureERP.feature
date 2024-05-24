@@ -15,6 +15,7 @@ Feature: Order GuideERP
     Then User should click on Customer Reference drop down and select type of OG
       |Standard Order|
     And Check for popup to appear to select sub customer reference for Standard order
+    |null|
     Then User clicks on Create new button and should navigate to New OG page
     Then Then User enters Description "<OG>" and End date
     And User should make sure that customer reference "<OGType>" is same as of selected in OG page
@@ -36,6 +37,7 @@ Feature: Order GuideERP
     Then User should click on Customer Reference drop down and select type of OG
       |Price group - deal group|
     And Check for popup to appear to select sub customer reference for Price group deal group
+    |null|
     Then User clicks on Create new button and should navigate to New OG page
     Then Then User enters Description "<OG>" and End date
     And User should make sure that customer reference "<OGType>" is same as of selected in OG page

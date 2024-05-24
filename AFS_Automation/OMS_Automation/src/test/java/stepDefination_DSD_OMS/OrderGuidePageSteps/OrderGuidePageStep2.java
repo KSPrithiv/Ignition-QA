@@ -110,17 +110,19 @@ public class OrderGuidePageStep2
     }
 
     @And("Check for popup to appear to select sub customer reference for market segment")
-    public void checkForPopupToAppearToSelectSubCustomerReferenceForMarketSegment() throws InterruptedException, AWTException
+    public void checkForPopupToAppearToSelectSubCustomerReferenceForMarketSegment(DataTable dataTable) throws InterruptedException, AWTException
     {
+        List<List<String>> subCustRef=dataTable.asLists(String.class);
         orderGuidePage=new OrderGuidePage(driver,scenario);
-        orderGuidePage.selectSubMarketRef();
+        orderGuidePage.selectSubMarketRef(subCustRef);
     }
 
     @And("Check for popup to appear to select sub customer reference for National chain")
-    public void checkForPopupToAppearToSelectSubCustomerReferenceForNationalChain() throws InterruptedException, AWTException
+    public void checkForPopupToAppearToSelectSubCustomerReferenceForNationalChain(DataTable dataTable) throws InterruptedException, AWTException
     {
+        List<List<String>> subCustRef=dataTable.asLists(String.class);
         orderGuidePage=new OrderGuidePage(driver,scenario);
-        orderGuidePage.selectSubMarketRef();
+        orderGuidePage.selectSubMarketRef(subCustRef);
     }
 
     @And("Clear filter to display both active and inactive OG")
@@ -209,31 +211,35 @@ public class OrderGuidePageStep2
     }
 
     @And("Check for popup to appear to select sub customer reference for Price group base schedule")
-    public void checkForPopupToAppearToSelectSubCustomerReferenceForPriceGroupBaseSchedule() throws InterruptedException, AWTException
+    public void checkForPopupToAppearToSelectSubCustomerReferenceForPriceGroupBaseSchedule(DataTable dataTable) throws InterruptedException, AWTException
     {
+        List<List<String>> priceGroup=dataTable.asLists(String.class);
         orderGuidePage = new OrderGuidePage(driver, scenario);
-        orderGuidePage.SubCustomerRefPriceGroupBaseSchedule();
+        orderGuidePage.SubCustomerRefPriceGroupBaseSchedule(priceGroup);
     }
 
     @And("Check for popup to appear to select sub customer reference for Price group default schedule")
-    public void checkForPopupToAppearToSelectSubCustomerReferenceForPriceGroupDefaultSchedule() throws InterruptedException, AWTException
+    public void checkForPopupToAppearToSelectSubCustomerReferenceForPriceGroupDefaultSchedule(DataTable dataTable) throws InterruptedException, AWTException
     {
+        List<List<String>> priceGroup=dataTable.asLists(String.class);
         orderGuidePage = new OrderGuidePage(driver, scenario);
-        orderGuidePage.SubCustomerRefPriceGroupDefaultSchedule();
+        orderGuidePage.SubCustomerRefPriceGroupDefaultSchedule(priceGroup);
     }
 
     @And ("Check for popup to appear to select sub customer reference for Standard order")
-    public void checkForPopupToAppearToSelectSubCustomerReferenceForStandardOrder() throws InterruptedException, AWTException
+    public void checkForPopupToAppearToSelectSubCustomerReferenceForStandardOrder(DataTable dataTable) throws InterruptedException, AWTException
     {
+       List<List<String>> subCustRef=dataTable.asLists(String.class);
        orderGuidePage = new OrderGuidePage(driver, scenario);
-       orderGuidePage.SubCustomerRefStandardOrder();
+       orderGuidePage.SubCustomerRefStandardOrder(subCustRef);
    }
 
    @And ("Check for popup to appear to select sub customer reference for Price group deal group")
-   public void checkForPopupToAppearToSelectSubCustomerReferenceForPriceGroupDealGroup() throws InterruptedException, AWTException
+   public void checkForPopupToAppearToSelectSubCustomerReferenceForPriceGroupDealGroup(DataTable dataTable) throws InterruptedException, AWTException
    {
+       List<List<String>> subCustRef=dataTable.asLists(String.class);
        orderGuidePage = new OrderGuidePage(driver, scenario);
-       orderGuidePage.SubCustomerRefPriceGroupDealGroup();
+       orderGuidePage.SubCustomerRefPriceGroupDealGroup(subCustRef);
    }
 
     @And("User should select products from catalog popup for Market segment")
@@ -243,7 +249,7 @@ public class OrderGuidePageStep2
         createOGPage.ValidateCatalogDisplay();
         createOGPage.ResetFilter_Catalog();
         createOGPage.validateProductInCatalog();
-        if (HelpersMethod.IsExists("//div[contains(@class,'k-widget k-window k-dialog')]/descendant::div[contains(@class,'i-grid')]", driver))
+        if (HelpersMethod.IsExists("//div[contains(@class,'k-window k-dialog')]/descendant::div[contains(@class,'i-grid')]", driver))
         {
             createOGPage.ListViewPriceBase();
         }
@@ -261,7 +267,7 @@ public class OrderGuidePageStep2
         createOGPage.ValidateCatalogDisplay();
         createOGPage.ResetFilter_Catalog();
         createOGPage.validateProductInCatalog();
-        if (HelpersMethod.IsExists("//div[contains(@class,'k-widget k-window k-dialog')]/descendant::div[contains(@class,'i-grid')]", driver))
+        if (HelpersMethod.IsExists("//div[contains(@class,'k-window k-dialog')]/descendant::div[contains(@class,'i-grid')]", driver))
         {
             createOGPage.ListViewPriceBase();
         }

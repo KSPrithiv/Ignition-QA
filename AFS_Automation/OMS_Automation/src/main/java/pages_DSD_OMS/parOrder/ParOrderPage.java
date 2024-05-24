@@ -34,7 +34,7 @@ public class ParOrderPage
     @FindBy(id="deleteAdditionalAccountButton")
     private WebElement DelPar;
 
-    @FindBy(xpath ="//label[contains(text(),'Par list')]/following-sibling::span/span[@id='dropDownNoneType']")
+    @FindBy(xpath ="//label[contains(text(),'Par list')]/following-sibling::span/descendant::button//*[local-name()='svg']")
     private WebElement ParlistDropdown;
 
     @FindBy(xpath="//div[@class='parList-container']/descendant::label[contains(text(),'Description')]/following-sibling::input")
@@ -43,7 +43,7 @@ public class ParOrderPage
     @FindBy(xpath = "//div[@class='parList-container']/descendant::input[@id='SearchBox1']")
     private WebElement ParSearchBox;
 
-    @FindBy(xpath="//button[contains(text(),'Save par')]")
+    @FindBy(id="save")
     private WebElement ParSave;
 
     @FindBy(id="OGSaveButton")
@@ -68,7 +68,7 @@ public class ParOrderPage
         Wait<WebDriver> wait;
         try
         {
-            if (HelpersMethod.IsExists("//div[contains(@class,'k-widget k-window k-dialog')]", driver))
+            if (HelpersMethod.IsExists("//div[contains(@class,'k-window k-dialog')]", driver))
             {
                 JavascriptExecutor js = ((JavascriptExecutor) driver);
                 js.executeScript("window.location.reload()");
@@ -209,10 +209,10 @@ public class ParOrderPage
             {
 
                 HelpersMethod.ClickBut(driver, DelPar, 1000);
-                if (HelpersMethod.IsExists("//div[contains(text(),'Delete')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]", driver))
+                if (HelpersMethod.IsExists("//div[contains(text(),'Delete')]/ancestor::div[contains(@class,'k-window k-dialog')]", driver))
                 {
-                    WebElement deletePopup=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-widget k-window k-dialog')]");
-                    WebElement Ok_But = deletePopup.findElement(By.xpath(".//button[text()='OK']"));
+                    WebElement deletePopup=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-window k-dialog')]");
+                    WebElement Ok_But = deletePopup.findElement(By.xpath(".//button/span[text()='Ok']"));
                     HelpersMethod.ActClick(driver, Ok_But, 1000);
                     exists = true;
                     if (HelpersMethod.IsExists("//div[@class='loader']", driver))
@@ -253,10 +253,10 @@ public class ParOrderPage
                     WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
                     HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 400000);
                 }
-                if(HelpersMethod.IsExists("//div[text()='Par list']/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
+                if(HelpersMethod.IsExists("//div[text()='Par list']/ancestor::div[contains(@class,'k-window k-dialog')]",driver))
                 {
-                    WebElement savePopup=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-widget k-window k-dialog')]");
-                    WebElement Ok_But=savePopup.findElement(By.xpath(".//descendant::button[text()='OK']"));
+                    WebElement savePopup=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-window k-dialog')]");
+                    WebElement Ok_But=savePopup.findElement(By.xpath(".//descendant::button/span[text()='OK']"));
                     HelpersMethod.ActClick(driver,Ok_But,400000);
                     exists=true;
                 }
@@ -455,12 +455,12 @@ public class ParOrderPage
         exists=false;
         try
         {
-            WebElement popupContainer = HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-popup k-child-animation-container')]");
-            WebElement popupSearch1=popupContainer.findElement(By.xpath(".//div[@class='i-search-box']/descendant::input"));
-            HelpersMethod.sendKeys(driver,popupSearch1,1000,"Par quantity");
+            //WebElement popupContainer = HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-child-animation-container')]");
+            WebElement popupSearch1=HelpersMethod.FindByElement(driver,"xpath","//div[@class='k-child-animation-container']/descendant::div[@class='i-search-box']/descendant::input");
+            HelpersMethod.sendKeys(driver,popupSearch1,10000,"Par quantity");
             WebElement popupCheckbox=HelpersMethod.FindByElement(driver,"xpath","//input[@id='ParQuantity']");
-            HelpersMethod.ClickBut(driver,popupCheckbox,1000);
-            new WebDriverWait(driver,Duration.ofMillis(100000)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class,'k-popup k-child-animation-container')]"))));
+            HelpersMethod.ClickBut(driver,popupCheckbox,10000);
+            new WebDriverWait(driver,Duration.ofMillis(100000)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class,'k-child-animation-container')]"))));
         }
         catch (Exception e){}
     }
@@ -470,13 +470,13 @@ public class ParOrderPage
         exists=false;
         try
         {
-            WebElement popupContainer1 = HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-popup k-child-animation-container')]");
+            WebElement popupContainer1 = HelpersMethod.FindByElement(driver,"xpath","//div[@class='k-animation-container k-animation-container-shown']");
             WebElement searchInput1=popupContainer1.findElement(By.xpath(".//span[contains(@class,'k-textbox-container i-filter-popup__content__input')][1]/descendant::input"));
-            HelpersMethod.ActSendKey(driver,searchInput1,1000,searchVal1);
+            HelpersMethod.ActSendKey(driver,searchInput1,10000,searchVal1);
             WebElement searchInput2=popupContainer1.findElement(By.xpath(".//span[contains(@class,'k-textbox-container i-filter-popup__content__input')][2]/descendant::input"));
-            HelpersMethod.ActSendKey(driver,searchInput2,1000,searchVal2);
-            WebElement applyButton=popupContainer1.findElement(By.xpath(".//button[text()='Apply']"));
-            HelpersMethod.ClickBut(driver,applyButton,1000);
+            HelpersMethod.ActSendKey(driver,searchInput2,10000,searchVal2);
+            WebElement applyButton=popupContainer1.findElement(By.xpath(".//button/span[text()='Apply']"));
+            HelpersMethod.ActClick(driver,applyButton,10000);
         }
         catch (Exception e){}
     }
@@ -489,7 +489,7 @@ public class ParOrderPage
             if(HelpersMethod.IsExists("//button[@class='i-filter-tag__clear']",driver))
             {
                 WebElement WebEle = HelpersMethod.FindByElement(driver, "xpath", "//button[@class='i-filter-tag__clear']");
-                HelpersMethod.ClickBut(driver,WebEle,1000);
+                HelpersMethod.ClickBut(driver,WebEle,10000);
                 exists=true;
             }
             Assert.assertEquals(exists,true);
@@ -531,10 +531,10 @@ public class ParOrderPage
                 //click on Delete button
                 HelpersMethod.ClickBut(driver,DelPar,1000);
 
-                if(HelpersMethod.IsExists("//div[contains(text(),'Are you sure you want to delete par list')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
+                if(HelpersMethod.IsExists("//div[contains(text(),'Are you sure you want to delete par list')]/ancestor::div[contains(@class,'k-window k-dialog')]",driver))
                 {
-                    WebElement deleteConfirm= HelpersMethod.FindByElement(driver,"xpath","//div[contains(text(),'Are you sure you want to delete par list')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]");
-                    WebElement deleOkButton=deleteConfirm.findElement(By.xpath(".//button[text()='OK']"));
+                    WebElement deleteConfirm= HelpersMethod.FindByElement(driver,"xpath","//div[contains(text(),'Are you sure you want to delete par list')]/ancestor::div[contains(@class,'k-window k-dialog')]");
+                    WebElement deleOkButton=deleteConfirm.findElement(By.xpath(".//button/span[text()='Ok']"));
                     HelpersMethod.ClickBut(driver,deleOkButton,1000);
                     if (HelpersMethod.IsExists("//div[@class='loader']", driver))
                     {

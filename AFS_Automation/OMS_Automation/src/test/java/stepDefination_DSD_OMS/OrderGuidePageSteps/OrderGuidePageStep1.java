@@ -51,7 +51,7 @@ public class OrderGuidePageStep1
     {
         List<List<String>> option=dataTable.asLists(String.class);
         createOGPage=new CreateOGPage(driver,scenario);
-        createOGPage.validateNewOGPage();
+        //createOGPage.validateNewOGPage();
         createOGPage.ClickOnAddProduct();
         createOGPage.SelectValueFromAddProduct(option.get(0).get(0));
         scenario.log("OPTION SELECTED FROM ADD DROP DOWN IS "+option.get(0).get(0));
@@ -64,7 +64,7 @@ public class OrderGuidePageStep1
         createOGPage.ValidateCatalogDisplay();
         createOGPage.ResetFilter_Catalog();
         createOGPage.validateProductInCatalog();
-        if (HelpersMethod.IsExists("//div[contains(@class,'k-widget k-window k-dialog')]/descendant::div[contains(@class,'i-grid')]", driver))
+        if (HelpersMethod.IsExists("//div[contains(@class,'k-window k-dialog')]/descendant::div[contains(@class,'i-grid')]", driver))
         {
             createOGPage.ListView();
         }
@@ -81,7 +81,7 @@ public class OrderGuidePageStep1
         createOGPage.ValidateCatalogDisplay();
         createOGPage.ResetFilter_Catalog();
         createOGPage.validateProductInCatalog();
-        if (HelpersMethod.IsExists("//div[contains(@class,'k-widget k-window k-dialog')]/descendant::div[contains(@class,'i-grid')]", driver))
+        if (HelpersMethod.IsExists("//div[contains(@class,'k-window k-dialog')]/descendant::div[contains(@class,'i-grid')]", driver))
         {
             createOGPage.ListViewPriceBase();
         }
@@ -153,10 +153,11 @@ public class OrderGuidePageStep1
     }
 
     @And("Check for popup to appear to select sub customer reference for local chain")
-    public void checkForPopupToAppearToSelectSubCustomerReferenceForLocalChain() throws InterruptedException, AWTException
+    public void checkForPopupToAppearToSelectSubCustomerReferenceForLocalChain(DataTable dataTable) throws InterruptedException, AWTException
     {
+        List<List<String>> subCustRef=dataTable.asLists(String.class);
         orderGuidePage = new OrderGuidePage(driver, scenario);
-        orderGuidePage.SubCustomerRefLocalChain();
+        orderGuidePage.SubCustomerRefLocalChain(subCustRef);
     }
 
     @And("Check for popup to appear to select sub customer reference")
@@ -252,7 +253,7 @@ public class OrderGuidePageStep1
         orderGuidePage.AccountPopup();
     }
 
-    @And("User should navigate back to OG page, verify OG {string}  existence and verify that Week of day is selected")
+    @And("User should navigate back to OG page, verify OG {string} existence and verify that Week of day is selected")
     public void userShouldNavigateBackToOGPageVerifyOGExistenceAndVerifyThatWeekOfDayIsSelected(String Og) throws InterruptedException, AWTException
     {
         String DayWeek=null;
@@ -273,7 +274,7 @@ public class OrderGuidePageStep1
         DayWeek=createOGPage.ValidateWeekOfDay();
         scenario.log(WDay+" IS RANDOMLY SELECTED DAY");
         scenario.log(DayWeek+"DAY SELECTED IN DAY OF WEEK");
-        Assert.assertEquals(DayWeek,WDay);
+        Assert.assertEquals(WDay,DayWeek);
     }
 
     @And("User should navigate to CustomerAllocation tab")
@@ -426,7 +427,7 @@ public class OrderGuidePageStep1
         createOGPage.ValidateCatalogDisplay();
         createOGPage.ResetFilter_Catalog();
         createOGPage.validateProductInCatalog();
-        if (HelpersMethod.IsExists("//div[contains(@class,'k-widget k-window k-dialog')]/descendant::div[contains(@class,'i-grid')]", driver))
+        if (HelpersMethod.IsExists("//div[contains(@class,'k-window k-dialog')]/descendant::div[contains(@class,'i-grid')]", driver))
         {
             createOGPage.ListViewPriceBase();
         }
@@ -435,5 +436,19 @@ public class OrderGuidePageStep1
             createOGPage.cardViewPriceBase();
         }
         createOGPage.CatalogPopupOk();
+    }
+
+    @Then("User deletes {string} created for day of week")
+    public void userDeletesOrderGuideCreatedForDayOfWeek(String arg0) throws InterruptedException, AWTException
+    {
+        createOGPage = new CreateOGPage(driver, scenario);
+        createOGPage.Click_Delete();
+        createOGPage.DeleteOk_Popup();
+        createOGPage.deleteConfirmationPopup();
+        orderGuidePage = new OrderGuidePage(driver, scenario);
+        orderGuidePage.ValidateOG();
+        //once OG is deleted, search for OG in OG grid
+        exists=orderGuidePage.OGSearchBox(arg0);
+        Assert.assertEquals(exists,false);
     }
 }

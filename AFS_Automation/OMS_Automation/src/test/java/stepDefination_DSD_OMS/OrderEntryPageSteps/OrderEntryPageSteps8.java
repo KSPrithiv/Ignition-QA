@@ -63,7 +63,7 @@ public class OrderEntryPageSteps8
             newOE.catalogOK();
         }
         //else if(HelpersMethod.IsExists("//div[@class='product-catalog-container']",driver))
-        else if(HelpersMethod.IsExists("//button[contains(text(),'Reset filter')]",driver))
+        else if(HelpersMethod.IsExists("//button/span[contains(text(),'Reset filter')]",driver))
         {
 
             newOE.cardCatelog();

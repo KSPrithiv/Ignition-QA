@@ -100,9 +100,11 @@ Feature: Quotes
     And User should be navigated to Quote summary page and click on Convert Order button
     Then Enter PO# for New order
       |PO123|
-    Then Enter Pro# in Quick Product Entry area
-    And Check for Case and Unit input box enabled or not based on that enter value
-      |1|1|
+#    Then Enter Pro# in Quick Product Entry area
+#    And Check for Case and Unit input box enabled or not based on that enter value
+#      |1|1|
+    And Enter Qty for the products in Product grid
+      |1|2|
     Then Click on Next button
     And Click on SubmitOrder button
     Then User should be navigated to Order Entry page

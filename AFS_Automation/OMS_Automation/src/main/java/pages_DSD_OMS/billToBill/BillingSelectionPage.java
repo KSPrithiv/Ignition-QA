@@ -80,12 +80,12 @@ public class BillingSelectionPage
     {
         exists=false;
         WebElement WebEle=null;
-        String status=null;
+        String status="";
         try
         {
-            if(HelpersMethod.IsExists("//div[contains(@class,'k-widget k-grid')]/descendant::table[@class='k-grid-table']/descendant::tr[contains(@class,'k-master-row')][1]/descendant::td/input[@type='checkbox']",driver))
+            if(HelpersMethod.IsExists("//table[contains(@class,'k-grid-table')]/descendant::tr[1]/descendant::input",driver))
             {
-                WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-widget k-grid')]/descendant::table[@class='k-grid-table']/descendant::tr[contains(@class,'k-master-row')][1]/descendant::td/input[@type='checkbox']");
+                WebEle=HelpersMethod.FindByElement(driver,"xpath","//table[contains(@class,'k-grid-table')]/descendant::tr[1]/descendant::input");
                 HelpersMethod.ActClick(driver,WebEle,1000);
                 exists = true;
                 scenario.log("CHECK BOX CLICKED IN SELECTION GRID");
@@ -106,7 +106,7 @@ public class BillingSelectionPage
         {
             if(PrintButton.isDisplayed())
             {
-                HelpersMethod.ClickBut(driver, PrintButton, 1000);
+                HelpersMethod.ClickBut(driver, PrintButton, 10000);
                 scenario.log("PRINT BUTTON HAS BEEN CLICKED");
                 exists = true;
             }
@@ -120,7 +120,7 @@ public class BillingSelectionPage
         exists=false;
         try
         {
-            if (HelpersMethod.IsExists("//div[contains(text(),'Print customer billing')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]", driver))
+            if (HelpersMethod.IsExists("//span[contains(text(),'Print customer billing')]/ancestor::div[contains(@class,'k-window k-dialog')]", driver))
             {
                 exists = true;
             }
@@ -135,7 +135,7 @@ public class BillingSelectionPage
         WebElement WebEle;
         try
         {
-            WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-widget k-window k-dialog')]/descendant::button[@id='PrintButton']");
+            WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-window k-dialog')]/descendant::button[@id='PrintButton']");
             String ParentWindow = driver.getWindowHandle();
             if(WebEle.isDisplayed() && WebEle.isEnabled())
             {
@@ -176,7 +176,7 @@ public class BillingSelectionPage
         WebElement WebEle=null;
         try
         {
-            WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-widget k-window k-dialog')]/descendant::button[@id='CancelButton']");
+            WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-window k-dialog')]/descendant::button[@id='CancelButton']");
             String ParentWindow = driver.getWindowHandle();
             if (WebEle.isDisplayed() && WebEle.isEnabled())
             {
@@ -226,9 +226,9 @@ public class BillingSelectionPage
         WebElement WebEle=null;
         try
         {
-            if(HelpersMethod.IsExists("//div[contains(text(),'Undo billing')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
+            if(HelpersMethod.IsExists("//div[contains(text(),'Undo billing')]/ancestor::div[contains(@class,'k-window k-dialog')]",driver))
             {
-                WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-widget k-window k-dialog')]/descendant::button[text()='Yes']");
+                WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-window k-dialog')]/descendant::button/span[text()='Yes']");
                 HelpersMethod.ClickBut(driver,WebEle,1000);
                 exists = true;
                 scenario.log("UNDO BILLING POPUP HANDLED");

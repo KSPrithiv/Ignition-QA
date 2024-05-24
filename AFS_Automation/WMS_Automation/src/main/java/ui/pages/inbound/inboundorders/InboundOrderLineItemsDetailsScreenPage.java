@@ -39,8 +39,8 @@ public class InboundOrderLineItemsDetailsScreenPage extends BasePage {
     By itemsFoundLabel = By.xpath("//span[contains(text(), 'Items found:')]");
     By itemsFoundValue = By.xpath("//span[contains(text(), 'Items found:')]//following-sibling::span[@class='i-summary-area__main__value']");
     By productLabel = By.xpath("//div[@id='bottomDataContainer']//span[contains(text(), 'Product:')]");
-    By imagesButton = By.xpath("//button[@id='btnImageNo' and contains(text(), 'Images')]");
-    By commentsButton = By.xpath("//button[@id='btnImageNo' and contains(text(), 'Comments')]");
+    By imagesButton = By.xpath("//button/span[@id='btnImageNo' and contains(text(), 'Images')]");
+    By commentsButton = By.xpath("//button/span[@id='btnImageNo' and contains(text(), 'Comments')]");
     By routeBackButton = By.id("RouteBackButton");
     By orderLabelOnData = By.xpath("//span[contains(text(), 'Order')]");
     By temperatureLabel = By.xpath("//label[text()='Temperature']");
@@ -73,8 +73,8 @@ public class InboundOrderLineItemsDetailsScreenPage extends BasePage {
     By rejectedStatuses = By.xpath(" //label[contains(text(), 'Rejected status')]//following-sibling::ul");
     By refusalReasonLabel = By.xpath("//label[contains(text(), 'Refusal reason')]");
     By refusalReasonInput = By.xpath("//label[contains(text(), 'Refusal reason')]//following-sibling::span");
-    By saveButton = By.xpath("//button[contains(text(), 'Save')]");
-    By cancelButton = By.xpath("//button[contains(text(), 'Cancel')]");
+    By saveButton = By.xpath("//button/span[contains(text(), 'Save')]");
+    By cancelButton = By.xpath("//button/span[contains(text(), 'Cancel')]");
     By saveEditButton = By.id("saveEditButton");
     By inboundImageCaptureButton = By.cssSelector(".inboundImageCaptureOpButtonDiv button");
     By selectFilesBtn = By.xpath("//div[@aria-label='Select files']");

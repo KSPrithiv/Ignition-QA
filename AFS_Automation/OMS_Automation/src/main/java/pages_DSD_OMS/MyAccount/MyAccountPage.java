@@ -63,7 +63,7 @@ public class MyAccountPage {
     @FindBy(xpath = "//button[@id='deleteEmailAddressButton']")
     private WebElement delete_button;
 
-    @FindBy(xpath = "//button[text()='Yes']")
+    @FindBy(xpath = "//button/span[text()='Yes']")
     private WebElement confirm_delete_yes;
 
     @FindBy(xpath = "//span[text()='Additional customer accounts']")
@@ -121,7 +121,7 @@ public class MyAccountPage {
     @FindBy(xpath = "//label[@id='Country-label']/following-sibling::span/span")
     private WebElement Country_dropdown;
 
-    @FindBy(xpath = "//button[text()='Save']")
+    @FindBy(xpath = "//button/span[text()='Save']")
     private WebElement address_save;
 
     @FindBy(xpath = "//button[@id='editAddressButton']")
@@ -148,7 +148,7 @@ public class MyAccountPage {
     @FindBy(xpath = "//input[@id='CCCVC']")
     private WebElement ccv;
 
-    @FindBy(xpath = "//button[text()='Cancel']")
+    @FindBy(xpath = "//button/span[text()='Cancel']")
     private WebElement cancel_Payment;
 
     @FindBy(xpath = "//button[@id='deletePaymentMethodButton']")

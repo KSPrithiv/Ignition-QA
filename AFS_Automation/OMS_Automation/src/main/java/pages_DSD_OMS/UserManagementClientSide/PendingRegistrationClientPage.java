@@ -67,7 +67,7 @@ public class PendingRegistrationClientPage
             //WebElement selectUserDrop=HelpersMethod.FindByElement(driver,"id","userPendingRegistrationsField");
             if(selectUserDrop.isDisplayed() && selectUserDrop.isEnabled())
             {
-                HelpersMethod.ClickBut(driver,selectUserDrop,1000);
+                HelpersMethod.ClickBut(driver,selectUserDrop,10000);
                 exists=true;
                 new WebDriverWait(driver,Duration.ofMillis(10000)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(@class,'k-list-container')]/descendant::ul/li")));
             }
@@ -115,7 +115,7 @@ public class PendingRegistrationClientPage
         {
             if(denyButton.isDisplayed() && denyButton.isEnabled())
             {
-                HelpersMethod.ClickBut(driver,denyButton,1000);
+                HelpersMethod.ClickBut(driver,denyButton,10000);
                 exists=true;
             }
             Assert.assertEquals(exists,true);
@@ -128,11 +128,11 @@ public class PendingRegistrationClientPage
         exists=false;
         try
         {
-            if(HelpersMethod.IsExists("//div[contains(text(),'Pending registration approval')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
+            if(HelpersMethod.IsExists("//div[contains(text(),'Pending registration approval')]/ancestor::div[contains(@class,'k-window k-dialog')]",driver))
             {
-                WebElement modelContainer=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-widget k-window k-dialog')]");
-                WebElement yesButton=modelContainer.findElement(By.xpath(".//button[text()='Yes']"));
-                HelpersMethod.ActClick(driver,yesButton,1000);
+                WebElement modelContainer=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-window k-dialog')]");
+                WebElement yesButton=modelContainer.findElement(By.xpath(".//button/span[text()='Yes']"));
+                HelpersMethod.ActClick(driver,yesButton,10000);
                 Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
                         .withTimeout(Duration.ofSeconds(120))
                         .pollingEvery(Duration.ofSeconds(2))
@@ -150,7 +150,7 @@ public class PendingRegistrationClientPage
         {
             if(confirmButton.isDisplayed() && confirmButton.isEnabled())
             {
-                HelpersMethod.ClickBut(driver,confirmButton,1000);
+                HelpersMethod.ClickBut(driver,confirmButton,10000);
                 exists=true;
             }
             Assert.assertEquals(exists,true);
@@ -163,10 +163,10 @@ public class PendingRegistrationClientPage
         exists=false;
         try
         {
-            if(HelpersMethod.IsExists("//div[contains(text(),'Pending registration approval')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
+            if(HelpersMethod.IsExists("//div[contains(text(),'Pending registration approval')]/ancestor::div[contains(@class,'k-window k-dialog')]",driver))
             {
-                WebElement modelContainer=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-widget k-window k-dialog')]");
-                WebElement yesButton=modelContainer.findElement(By.xpath(".//button[text()='Yes']"));
+                WebElement modelContainer=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-window k-dialog')]");
+                WebElement yesButton=modelContainer.findElement(By.xpath(".//button/span[text()='Yes']"));
                 HelpersMethod.ActClick(driver,yesButton,1000);
                 Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
                         .withTimeout(Duration.ofSeconds(120))

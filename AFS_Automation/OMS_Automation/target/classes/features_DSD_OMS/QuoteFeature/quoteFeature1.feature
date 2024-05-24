@@ -181,7 +181,7 @@ Feature: Quotes1
     Then User enters Quote name "<QuoteName>" and Quote End date click on OK button
     Then User should select Note from popup and Order guide from popup for quote
     Then Enter BOGO Pro# in Quick Product Entry area in New Qutoe page and enter Qty for Case and Unit
-      |40|40|
+      |2|1|
     And User verifies the products added to Quote
     Then Click on create button in New Quote page
     And User click on Back to orderlist button from Quote summary page and Read order number

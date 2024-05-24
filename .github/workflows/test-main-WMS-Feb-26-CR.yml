@@ -1,11 +1,9 @@
 name: WMS Regression
 on:
-  schedule:
-    - cron:  '0 0 * * *'
+  
+    
   workflow_dispatch:
-    inputs:
-      branch:
-        description: 'Branch name'
+   
         
   
 jobs:

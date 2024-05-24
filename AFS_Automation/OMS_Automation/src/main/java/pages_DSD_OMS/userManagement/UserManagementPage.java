@@ -90,7 +90,7 @@ public class UserManagementPage {
     @FindBy(id="ConfirmPassword")
     private WebElement ConfirmPass;
 
-    @FindBy(xpath="//button[text()='Cancel']")
+    @FindBy(xpath="//button/span[text()='Cancel']")
     private WebElement RegCancel;
 
     @FindBy(xpath = "//button[text()='Register']")
@@ -430,10 +430,10 @@ public class UserManagementPage {
                     HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 400);
                 }
             }
-//            if(HelpersMethod.IsExists("//div[contains(text(),'pending approval')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
+//            if(HelpersMethod.IsExists("//div[contains(text(),'pending approval')]/ancestor::div[contains(@class,'k-window k-dialog')]",driver))
 //            {
-//                WebElement pendingApprovalPopup = HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-widget k-window k-dialog')]");
-//                WebElement popupTitle = pendingApprovalPopup.findElement(By.xpath(".//div[contains(@class,'k-window-title k-dialog-title')]"));
+//                WebElement pendingApprovalPopup = HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-window k-dialog')]");
+//                WebElement popupTitle = pendingApprovalPopup.findElement(By.xpath(".//span[contains(@class,'k-window-title k-dialog-title')]"));
 //                Assert.assertEquals(popupTitle.getText(), "Registration pending approval", "Verify Title message");
 //                WebElement oKButton=pendingApprovalPopup.findElement(By.xpath(".//button"));
 //                HelpersMethod.ClickBut(driver,oKButton,40);

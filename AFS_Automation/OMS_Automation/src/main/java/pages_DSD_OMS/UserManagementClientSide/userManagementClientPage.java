@@ -556,7 +556,7 @@ public class userManagementClientPage
         exists=false;
         try
         {
-            if(HelpersMethod.IsExists("//div[contains(text(),'Customer account index')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
+            if(HelpersMethod.IsExists("//div[contains(text(),'Customer account index')]/ancestor::div[contains(@class,'k-window k-dialog')]",driver))
             {
                 exists=true;
             }
@@ -571,16 +571,16 @@ public class userManagementClientPage
         try
         {
             //Entering account# in search input box
-            WebElement modelContainer=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-widget k-window k-dialog')]");
+            WebElement modelContainer=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-window k-dialog')]");
             WebElement searchBox=modelContainer.findElement(By.xpath(".//input[@class='i-search-box__input']"));
             HelpersMethod.EnterText(driver,searchBox,10000, TestBase.testEnvironment.get_Account());
             //click on search icon
             WebElement searchIcon=modelContainer.findElement(By.xpath(".//*[local-name()='svg' and contains(@class,'i-search-box__search')]"));
             HelpersMethod.ClickBut(driver,searchIcon,10000);
-            if(HelpersMethod.IsExists("//div[contains(@class,'k-widget k-window k-dialog')]/descendant::tr[@class='k-master-row']",driver))
+            if(HelpersMethod.IsExists("//div[contains(@class,'k-window k-dialog')]/descendant::tr[contains(@class,'k-master-row')]",driver))
             {
                 //Select customer account# that has been searched
-                WebElement accountRow = modelContainer.findElement(By.xpath(".//tr[@class='k-master-row']"));
+                WebElement accountRow = modelContainer.findElement(By.xpath(".//tr[contains(@class,'k-master-row')]"));
                 HelpersMethod.ActClick(driver, accountRow, 10000);
                 exists=true;
             }

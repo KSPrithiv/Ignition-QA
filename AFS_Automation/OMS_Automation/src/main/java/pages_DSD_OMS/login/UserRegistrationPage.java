@@ -54,7 +54,7 @@ public class UserRegistrationPage
     @FindBy(id="ConfirmPassword")
     private WebElement ConfirmPass;
 
-    @FindBy(xpath="//button[text()='Cancel']")
+    @FindBy(xpath="//button/span[text()='Cancel']")
     private WebElement RegCancel;
 
     @FindBy(xpath = "//button[text()='Register']")
@@ -267,10 +267,10 @@ public class UserRegistrationPage
                     HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100000);
                 }
             }
-            if(HelpersMethod.IsExists("//div[contains(text(),'pending approval')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
+            if(HelpersMethod.IsExists("//div[contains(text(),'pending approval')]/ancestor::div[contains(@class,'k-window k-dialog')]",driver))
             {
-                WebElement pendingApprovalPopup = HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-widget k-window k-dialog')]");
-                WebElement popupTitle = pendingApprovalPopup.findElement(By.xpath(".//div[contains(@class,'k-window-title k-dialog-title')]"));
+                WebElement pendingApprovalPopup = HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-window k-dialog')]");
+                WebElement popupTitle = pendingApprovalPopup.findElement(By.xpath(".//span[contains(@class,'k-window-title k-dialog-title')]"));
                 Assert.assertEquals(popupTitle.getText(), "Registration pending approval", "Verify Title message");
                 WebElement oKButton=pendingApprovalPopup.findElement(By.xpath(".//button"));
                 HelpersMethod.ClickBut(driver,oKButton,10000);
@@ -290,9 +290,9 @@ public class UserRegistrationPage
                 HelpersMethod.ScrollElement(driver,RegCancel);
                 HelpersMethod.ClickBut(driver,RegCancel,10000);
             }
-            if(HelpersMethod.IsExists("//div[contains(@class,'k-widget k-window k-dialog')]",driver))
+            if(HelpersMethod.IsExists("//div[contains(@class,'k-window k-dialog')]",driver))
             {
-                HelpersMethod.ClickBut(driver,HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-widget k-window k-dialog')]/descendant::button"),1000);
+                HelpersMethod.ClickBut(driver,HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-window k-dialog')]/descendant::button"),1000);
             }
         }
         catch (Exception e) {}

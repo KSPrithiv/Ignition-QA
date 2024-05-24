@@ -85,7 +85,7 @@ import java.util.concurrent.ThreadLocalRandom;
             exists=false;
             try
             {
-                HelpersMethod.ActClick(driver,WebEle,10);
+                HelpersMethod.ActClick(driver,WebEle,10000);
                 List<WebElement> Options= HelpersMethod.FindByElements(driver,"xpath","//div[contains(@class,'k-child-animation-container')]/descendant::li");
                 // Getting size of options available
                 int size = Options.size();
@@ -94,7 +94,7 @@ import java.util.concurrent.ThreadLocalRandom;
                 int randnMumber = ThreadLocalRandom.current().nextInt(1, size);
 
                 // Selecting random value
-                HelpersMethod.ActClick(driver, Options.get(randnMumber), 20);
+                HelpersMethod.ActClick(driver, Options.get(randnMumber), 10000);
                 InputValue=HelpersMethod.FindByElement(driver,"xpath","//span[@id='"+xpathValue+"']/span[@class='k-input']").getText();
             }
             catch (Exception e){}
@@ -107,8 +107,8 @@ import java.util.concurrent.ThreadLocalRandom;
             exists=false;
             try
             {
-                HelpersMethod.EnterText(driver,WebEle,10, RandomValues.generateRandomString(length));
-                InputValue=HelpersMethod.JSGetValueEle(driver,WebEle,10);
+                HelpersMethod.EnterText(driver,WebEle,10000, RandomValues.generateRandomString(length));
+                InputValue=HelpersMethod.JSGetValueEle(driver,WebEle,10000);
 
                 if(InputValue!=null)
                 {exists=true;}
@@ -123,8 +123,8 @@ import java.util.concurrent.ThreadLocalRandom;
             exists=false;
             try
             {
-                HelpersMethod.EnterText(driver,WebEle,10,RandomValues.generateRandomNumber(length));
-                InputValue=HelpersMethod.JSGetValueEle(driver,WebEle,10);
+                HelpersMethod.EnterText(driver,WebEle,10000,RandomValues.generateRandomNumber(length));
+                InputValue=HelpersMethod.JSGetValueEle(driver,WebEle,10000);
 
                 if(InputValue!=null)
                 {exists=true;}
@@ -140,9 +140,9 @@ import java.util.concurrent.ThreadLocalRandom;
             exists=false;
             try
             {
-                HelpersMethod.ActClick(driver,NewButton,500);
+                HelpersMethod.ActClick(driver,NewButton,10000);
                 exists=true;
-                new WebDriverWait(driver,Duration.ofMillis(60000)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath("//div[contains(text(),'Add standing po')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]"))));
+                new WebDriverWait(driver,Duration.ofMillis(60000)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath("//div[contains(text(),'Add standing po')]/ancestor::div[contains(@class,'k-window k-dialog')]"))));
                 Assert.assertEquals(exists,true);
             }
             catch (Exception e){}
@@ -153,10 +153,10 @@ import java.util.concurrent.ThreadLocalRandom;
         exists=false;
         try
         {
-            if(HelpersMethod.IsExists("//div[contains(text(),'Add standing po')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
+            if(HelpersMethod.IsExists("//div[contains(text(),'Add standing po')]/ancestor::div[contains(@class,'k-window k-dialog')]",driver))
             {
-                WebElement modalContainer = driver.findElement(By.xpath("//div[contains(@class,'k-widget k-window k-dialog')]"));
-                WebElement modalContentTitle = modalContainer.findElement(By.xpath(".//div[contains(@class,'k-window-title k-dialog-title')]"));
+                WebElement modalContainer = driver.findElement(By.xpath("//div[contains(@class,'k-window k-dialog')]"));
+                WebElement modalContentTitle = modalContainer.findElement(By.xpath(".//span[contains(@class,'k-window-title k-dialog-title')]"));
                 Assert.assertEquals(modalContentTitle.getText(), "Add standing po", "Verify Title message");
                 exists=true;
             }
@@ -170,11 +170,11 @@ import java.util.concurrent.ThreadLocalRandom;
         {
             exists=false;
             WebElement WebEle=null;
-            //new WebDriverWait(driver,60000).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(text(),'Add standing po')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]"))));
+            //new WebDriverWait(driver,60000).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(text(),'Add standing po')]/ancestor::div[contains(@class,'k-window k-dialog')]"))));
             try
             {
                 //identify the popup
-                WebElement modalContainer = HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-widget k-window k-dialog')]");
+                WebElement modalContainer = HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-window k-dialog')]");
                 //Click on start date icon
                 WebEle= modalContainer.findElement(By.xpath(".//label[contains(@id,'fromDate-label')]/following-sibling::span/descendant::span[contains(@class,'k-icon k-i-calendar')]"));
                 HelpersMethod.ActClick(driver,WebEle,20000);
@@ -190,10 +190,10 @@ import java.util.concurrent.ThreadLocalRandom;
             try
             {
                 //identify the popup
-                WebElement modalContainer = driver.findElement(By.xpath("//div[contains(@class,'k-widget k-window k-dialog')]"));
+                WebElement modalContainer = driver.findElement(By.xpath("//div[contains(@class,'k-window k-dialog')]"));
                 //Click on end date icon
                 WebEle= modalContainer.findElement(By.xpath(".//label[contains(@id,'toDate-label')]/following-sibling::span/descendant::span[contains(@class,'k-icon k-i-calendar')]"));
-                HelpersMethod.ActClick(driver,WebEle,2000);
+                HelpersMethod.ActClick(driver,WebEle,10000);
                 new WebDriverWait(driver,Duration.ofMillis(40000)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class,'k-calendar-monthview')]"))));
             }
             catch (Exception e){}
@@ -225,7 +225,7 @@ import java.util.concurrent.ThreadLocalRandom;
                         HelpersMethod.ActClick(driver, ele1, 40000);
                         scenario.log(formattedDate1 + " HAS BEEN SELECTED AS START DATE FOR STANDING ORDER");
                         WebEle=HelpersMethod.FindByElement(driver,"id","addFromDate");
-                        FTDate=HelpersMethod.JSGetValueEle(driver,WebEle,200);
+                        FTDate=HelpersMethod.JSGetValueEle(driver,WebEle,10000);
                         if(!FTDate.equals(null) && !FTDate.equals("MM/DD/YYYY"))
                         {
                             exists=true;
@@ -265,10 +265,10 @@ import java.util.concurrent.ThreadLocalRandom;
                     if(ele1.isDisplayed() && ele1.isEnabled())
                     {
                         HelpersMethod.JSScroll(driver, ele1);
-                        HelpersMethod.ActClick(driver, ele1, 200);
+                        HelpersMethod.ActClick(driver, ele1, 10000);
                         scenario.log(formattedDate1 + " HAS BEEN SELECTED AS END DATE FOR STANDING ORDER");
                         WebEle=HelpersMethod.FindByElement(driver,"id","addToDate");
-                        FTDate=HelpersMethod.JSGetValueEle(driver,WebEle,10);
+                        FTDate=HelpersMethod.JSGetValueEle(driver,WebEle,10000);
                         if(!FTDate.equals(null) && !FTDate.equals("MM/DD/YYYY"))
                         {
                             exists=true;
@@ -289,14 +289,14 @@ import java.util.concurrent.ThreadLocalRandom;
             WebElement WebEle;
             try
             {
-                WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-widget k-window k-dialog')]/descendant::input[contains(@placeholder,'Enter PO#...')]");
+                WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-window k-dialog')]/descendant::input[contains(@placeholder,'Enter PO#...')]");
                 InputValue=RandomValues.generateRandomAlphaNumeric(4);
-                HelpersMethod.EnterText(driver,WebEle,10,InputValue);
+                HelpersMethod.EnterText(driver,WebEle,10000,InputValue);
                 PoNo=InputValue;
                 if(HelpersMethod.IsExists("//div[@class='loader']",driver))
                 {
                     WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 400);
+                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100000);
                 }
                 exists=true;
                 Assert.assertEquals(exists,true);
@@ -310,14 +310,14 @@ import java.util.concurrent.ThreadLocalRandom;
             WebElement WebEle;
             try
             {
-                WebEle= HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-widget k-window k-dialog')]/descendant::button[text()='Add']");
+                WebEle= HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-window k-dialog')]/descendant::button/span[text()='Add']");
                 if(WebEle.isEnabled())
                 {
-                    HelpersMethod.ClickBut(driver, WebEle, 80);
+                    HelpersMethod.ClickBut(driver, WebEle, 10000);
                     if(HelpersMethod.IsExists("//div[@class='loader']",driver))
                     {
                         WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                        HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 400);
+                        HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100000);
                     }
                     exists=true;
                 }
@@ -452,8 +452,8 @@ import java.util.concurrent.ThreadLocalRandom;
             exists=false;
             try
             {
-                HelpersMethod.EnterText(driver,SearchBar,1000,PoNo);
-                HelpersMethod.ClickBut(driver,SearchIndex,1000);
+                HelpersMethod.EnterText(driver,SearchBar,10000,PoNo);
+                HelpersMethod.ClickBut(driver,SearchIndex,10000);
                 if(!HelpersMethod.IsExists("//div[@class='i-no-data']",driver))
                 {
                     exists=true;
@@ -472,7 +472,7 @@ import java.util.concurrent.ThreadLocalRandom;
             {
                 WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-widget k-grid')]/descendant::tr[contains(@class,'k-master-row')][1]");
                 HelpersMethod.ScrollElement(driver,WebEle);
-                HelpersMethod.ActClick(driver,WebEle,1000);
+                HelpersMethod.ActClick(driver,WebEle,10000);
                 exists=true;
                 Assert.assertEquals(exists,true);
             }
@@ -487,8 +487,8 @@ import java.util.concurrent.ThreadLocalRandom;
                 HelpersMethod.ScrollElement(driver,EditButton);
                 if(EditButton.isEnabled())
                 {
-                    HelpersMethod.ClickBut(driver, EditButton, 1000);
-                    if (HelpersMethod.IsExists("//div[contains(text(),'Edit standing po')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]", driver))
+                    HelpersMethod.ClickBut(driver, EditButton, 10000);
+                    if (HelpersMethod.IsExists("//div[contains(text(),'Edit standing po')]/ancestor::div[contains(@class,'k-window k-dialog')]", driver))
                     {
                         exists = true;
                     }
@@ -504,15 +504,15 @@ import java.util.concurrent.ThreadLocalRandom;
             WebElement WebEle;
             try
             {
-                if(HelpersMethod.IsExists("//div[contains(text(),'Edit standing po')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
+                if(HelpersMethod.IsExists("//div[contains(text(),'Edit standing po')]/ancestor::div[contains(@class,'k-window k-dialog')]",driver))
                 {
-                    WebElement editStandingPO=HelpersMethod.FindByElement(driver,"xpath","//div[contains(text(),'Edit standing po')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]");
+                    WebElement editStandingPO=HelpersMethod.FindByElement(driver,"xpath","//div[contains(text(),'Edit standing po')]/ancestor::div[contains(@class,'k-window k-dialog')]");
                     WebEle= editStandingPO.findElement(By.xpath(".//input[contains(@id,'textBox0')]"));
-                    scenario.log("PO NUMBER ENTERE BEFORE "+HelpersMethod.JSGetValueEle(driver,WebEle,100));
-                    HelpersMethod.JSSetValueEle(driver,WebEle,1000, RandomValues.generateRandomAlphaNumeric(8));
-                    scenario.log("PO NUMBER EDITED AS "+HelpersMethod.JSGetValueEle(driver,WebEle,20));
+                    scenario.log("PO NUMBER ENTERE BEFORE "+HelpersMethod.JSGetValueEle(driver,WebEle,10000));
+                    HelpersMethod.JSSetValueEle(driver,WebEle,10000, RandomValues.generateRandomAlphaNumeric(8));
+                    scenario.log("PO NUMBER EDITED AS "+HelpersMethod.JSGetValueEle(driver,WebEle,10000));
                     WebEle=editStandingPO.findElement(By.xpath(".//button[text()='Update']"));
-                    HelpersMethod.ClickBut(driver,WebEle,1000);
+                    HelpersMethod.ClickBut(driver,WebEle,10000);
                     exists=true;
                 }
                 Assert.assertEquals(exists,true);
@@ -569,11 +569,11 @@ import java.util.concurrent.ThreadLocalRandom;
         {
             try
             {
-                WebElement modalContainer = driver.findElement(By.xpath("//div[contains(text(),'Delete standing po')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]"));
-                WebElement modalContentTitle = modalContainer.findElement(By.xpath(".//div[contains(@class,'k-window-title k-dialog-title')]"));
+                WebElement modalContainer = driver.findElement(By.xpath("//div[contains(text(),'Delete standing po')]/ancestor::div[contains(@class,'k-window k-dialog')]"));
+                WebElement modalContentTitle = modalContainer.findElement(By.xpath(".//span[contains(@class,'k-window-title k-dialog-title')]"));
                 Assert.assertEquals(modalContentTitle.getText(), "Delete standing po", "Verify Title message");
                 //Delete confirmation popup
-                WebElement deletePopup=modalContainer.findElement(By.xpath(".//button[text()='Delete']"));
+                WebElement deletePopup=modalContainer.findElement(By.xpath(".//button/span[text()='Delete']"));
                 HelpersMethod.ActClick(driver,deletePopup,10000);
                 Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
                         .withTimeout(Duration.ofSeconds(200))
@@ -582,10 +582,10 @@ import java.util.concurrent.ThreadLocalRandom;
                 wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
 
                 //Delete success popup
-                if(HelpersMethod.IsExists("//div[contains(text(),'The information has been saved successfully.')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
+                if(HelpersMethod.IsExists("//div[contains(text(),'The information has been saved successfully.')]/ancestor::div[contains(@class,'k-window k-dialog')]",driver))
                 {
-                    WebElement popUp=HelpersMethod.FindByElement(driver,"xpath","//div[contains(text(),'The information has been saved successfully.')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]");
-                    WebElement okButton=popUp.findElement(By.xpath(".//button[text()='Ok']"));
+                    WebElement popUp=HelpersMethod.FindByElement(driver,"xpath","//div[contains(text(),'The information has been saved successfully.')]/ancestor::div[contains(@class,'k-window k-dialog')]");
+                    WebElement okButton=popUp.findElement(By.xpath(".//button/span[text()='Ok']"));
                     HelpersMethod.ActClick(driver,okButton,10000);
                     wait = new FluentWait<WebDriver>(driver)
                             .withTimeout(Duration.ofSeconds(200))
@@ -601,10 +601,10 @@ import java.util.concurrent.ThreadLocalRandom;
         {
             try
             {
-                if(HelpersMethod.IsExists("//div[contains(text(),'standing po')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
+                if(HelpersMethod.IsExists("//div[contains(text(),'standing po')]/ancestor::div[contains(@class,'k-window k-dialog')]",driver))
                 {
-                    WebElement modalContainer = driver.findElement(By.xpath("//div[contains(@class,'k-widget k-window k-dialog')]"));
-                    WebElement WebEle=modalContainer.findElement(By.xpath(".//button[text()='Cancel']"));
+                    WebElement modalContainer = driver.findElement(By.xpath("//div[contains(@class,'k-window k-dialog')]"));
+                    WebElement WebEle=modalContainer.findElement(By.xpath(".//button/span[text()='Cancel']"));
                     HelpersMethod.ClickBut(driver,WebEle,10000);
                 }
             }

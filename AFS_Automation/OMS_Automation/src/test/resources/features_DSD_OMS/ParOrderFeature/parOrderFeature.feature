@@ -12,7 +12,7 @@ Feature: Par Order
   Scenario Outline: Creating new par order
     Given User should navigate to OG and select "<OG>" from grid
     Then User clicks on ParList tab and Click on New Par list button
-    And User enters code and discription for Par list
+    And User enters code and description for Par list
     | ParDes1 |
     Then User clicks on save Par list
     Examples:

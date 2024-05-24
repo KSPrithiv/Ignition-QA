@@ -742,7 +742,7 @@ public class HelpersMethod
         WebElement modalContainer1=FindByElement("xpath","//div[contains(@class,'k-animation-container k-animation-container-relative k-animation-container-shown')]");
 
         //Click on Clear all button
-        WebElement Clear=modalContainer1.findElement(By.xpath(".//button[contains(text(),'Clear all')]"));
+        WebElement Clear=modalContainer1.findElement(By.xpath(".//button/span[contains(text(),'Clear all')]"));
         if(Clear.isEnabled())
         {
             Clear.click();
@@ -765,7 +765,7 @@ public class HelpersMethod
             EnterText(driver,Search2,10000,SearhBox2Value);
 
             //Click on Apply button
-            Clear =RadioPop.findElement(By.xpath(".//button[text()='Apply']"));
+            Clear =RadioPop.findElement(By.xpath(".//button/span[text()='Apply']"));
             ClickBut(driver,Clear,1000);
         }
         else
@@ -777,7 +777,7 @@ public class HelpersMethod
                 EnterText(driver, Search2, 1000, SearhBox2Value);
 
                 //Click on Apply button
-                Clear = Search2.findElement(By.xpath(".//button[text()='Apply']"));
+                Clear = Search2.findElement(By.xpath(".//button/span[text()='Apply']"));
                 ClickBut(driver,Clear,1000);
                 //loading Icon
                 if (IsExists("//div[@class='loader']", driver))
@@ -797,12 +797,12 @@ public class HelpersMethod
 
         //Click on Add filter button
         WebDriverWait wait=new WebDriverWait(driver,Duration.ofMillis(8000));
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(@class,'k-widget k-window k-dialog')]/descendant::button/descendant::span[contains(text(),'Add filter')]")));
-        driver.findElement(By.xpath("//div[contains(@class,'k-widget k-window k-dialog')]/descendant::button/descendant::span[contains(text(),'Add filter')]")).click();
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(@class,'k-window k-dialog')]/descendant::button/span[contains(text(),'Add filter')]")));
+        driver.findElement(By.xpath("//div[contains(@class,'k-window k-dialog')]/descendant::button/span[contains(text(),'Add filter')]")).click();
         new WebDriverWait(driver,Duration.ofMillis(20000)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(@class,'k-animation-container k-animation-container-relative k-animation-container-shown')]")));
         //Click on Clear all button
         WebElement modalContainer1=FindByElement("xpath","//div[contains(@class,'k-animation-container k-animation-container-relative k-animation-container-shown')]");
-        WebElement Clear=modalContainer1.findElement(By.xpath(".//button[contains(text(),'Clear all')]"));
+        WebElement Clear=modalContainer1.findElement(By.xpath(".//button/span[contains(text(),'Clear all')]"));
         if(Clear.isEnabled())
         {
             Clear.click();
@@ -825,7 +825,7 @@ public class HelpersMethod
             EnterText(driver,Search2,1000,SearhBox2Value);
 
             //Click on Apply button
-            Clear =RadioPop.findElement(By.xpath(".//button[text()='Apply']"));
+            Clear =RadioPop.findElement(By.xpath(".//button/span[text()='Apply']"));
             ClickBut(driver,Clear,1000);
         }
         else
@@ -837,7 +837,7 @@ public class HelpersMethod
                 EnterText(driver, Search2, 1000, SearhBox2Value);
 
                 //Click on Apply button
-                Clear = Search2.findElement(By.xpath(".//button[text()='Apply']"));
+                Clear = Search2.findElement(By.xpath(".//button/span[text()='Apply']"));
                 ClickBut(driver,Clear,1000);
                 //loading Icon
                 if (IsExists("//div[@class='loader']", driver))
@@ -858,7 +858,7 @@ public class HelpersMethod
         HelpersMethod.AddFilterSearch_Popup(driver,Search1_Value,Search2_Value);
 
         //click on the table row after filter
-        HelpersMethod.ActClick(driver,driver.findElement(By.xpath("//div[contains(@class,'k-widget k-window k-dialog')]/descendant::tr[@class='k-master-row']")),100);
+        HelpersMethod.ActClick(driver,driver.findElement(By.xpath("//div[contains(@class,'k-window k-dialog')]/descendant::tr[contains(@class,'k-master-row')]")),100);
         Thread.sleep(4000);
     }
 }

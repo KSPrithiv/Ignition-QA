@@ -63,6 +63,7 @@ public class OrderGuidePageStep3
         createOGPage = new CreateOGPage(driver, scenario);
         createOGPage.Click_Delete();
         createOGPage.DeleteOk_Popup();
+        createOGPage.deleteConfirmationPopup();
         orderGuidePage = new OrderGuidePage(driver, scenario);
         orderGuidePage.ValidateOG();
         //once OG is deleted, search for OG in OG grid

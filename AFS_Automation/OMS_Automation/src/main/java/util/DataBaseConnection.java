@@ -12,7 +12,7 @@ import io.cucumber.java.Scenario;
 public class DataBaseConnection
 {
     /* Created by Divya.Ramadas@afsi.com */
-    static String status=null;
+    static String status="";
 
     public static String DataBaseConn(String sql) throws ClassNotFoundException, InstantiationException, IllegalAccessException, SQLException
     {

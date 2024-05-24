@@ -32,7 +32,7 @@ public class CompetitivePricingReportPage
     @FindBy(xpath = "//label[contains(text(),'Group by 1')]/following-sibling::span")
     private WebElement group1;
 
-    @FindBy(xpath = "//button[text()='Print']")
+    @FindBy(xpath = "////button/span[text()='Print']")
     private WebElement printButton;
 
 
@@ -180,7 +180,7 @@ public class CompetitivePricingReportPage
          exists=false;
          try
          {
-            if(HelpersMethod.IsExists("//div[contains(@class,'k-widget k-window k-dialog')]",driver))
+            if(HelpersMethod.IsExists("//div[contains(@class,'k-window k-dialog')]",driver))
             {
                 scenario.log("CUSTOMER ACCOUNT INDEX DIALOG BOX HAS BEEN FOUND");
                 exists=true;
@@ -238,12 +238,12 @@ public class CompetitivePricingReportPage
                  WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
                  HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 200000);
              }
-            if(HelpersMethod.IsExists("//div[contains(@class,'k-widget k-window k-dialog')]/descendant::tr[@class='k-master-row'][1]/descendant::input",driver))
+            if(HelpersMethod.IsExists("//div[contains(@class,'k-window k-dialog')]/descendant::tr[contains(@class,'k-master-row')][1]/descendant::input",driver))
             {
-                WebElement webEle=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-widget k-window k-dialog')]/descendant::tr[@class='k-master-row'][1]/descendant::input");
+                WebElement webEle=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-window k-dialog')]/descendant::tr[contains(@class,'k-master-row')][1]/descendant::input");
                 HelpersMethod.ActClick(driver,webEle,10000);
 
-                WebElement okButton=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-widget k-window k-dialog')]/descendant::button[text()='OK']");
+                WebElement okButton=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-window k-dialog')]/descendant::.//button/span[text()='Continue']");
                 HelpersMethod.ActClick(driver,okButton,10000);
             }
              if(HelpersMethod.IsExists("//div[@class='loader']",driver))

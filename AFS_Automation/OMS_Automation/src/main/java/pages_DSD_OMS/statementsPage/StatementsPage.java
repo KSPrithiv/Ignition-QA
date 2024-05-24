@@ -162,7 +162,7 @@ public class StatementsPage
     {
         String PTitle=null;
         WebElement WebEle;
-        String status=null;
+        String status="";
         try
         {
             status = HelpersMethod.returnDocumentStatus(driver);
@@ -272,7 +272,7 @@ public class StatementsPage
         Actions act=new Actions(driver);
         String prYear=null;
         String pYear=null;
-        String status=null;
+        String status="";
         WebElement YearFromDropDown;
         try
         {
@@ -323,7 +323,7 @@ public class StatementsPage
         Actions act=new Actions(driver);
         String prMonth=null;
         String pMonth=null;
-        String status=null;
+        String status="";
         WebElement monthFromDropDown;
         try
         {
@@ -383,7 +383,7 @@ public class StatementsPage
         exists=false;
         String prDate=null;
         String pDate=null;
-        String status=null;
+        String status="";
         Actions act=new Actions(driver);
         WebElement dateFromDropDown;
         try
@@ -431,7 +431,7 @@ public class StatementsPage
     public void SearchBar()
     {
         exists=false;
-        String status=null;
+        String status="";
         try
         {
             if(searchBar.isDisplayed())
@@ -459,7 +459,7 @@ public class StatementsPage
     {
         exists=false;
         WebElement WebEle=null;
-        String status=null;
+        String status="";
         try
         {
             Thread.sleep(2000);
@@ -496,7 +496,7 @@ public class StatementsPage
     {
         exists=false;
         WebElement WebEle=null;
-        String status=null;
+        String status="";
         try
         {
             String ParentWindow = driver.getWindowHandle();
@@ -518,10 +518,10 @@ public class StatementsPage
                 }
             }
             Thread.sleep(4000);
-            if(HelpersMethod.IsExists("//div[contains(text(),'There is no data to display for your defined date range')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
+            if(HelpersMethod.IsExists("//div[contains(text(),'There is no data to display for your defined date range')]/ancestor::div[contains(@class,'k-window k-dialog')]",driver))
             {
-                WebElement dialogPopup=HelpersMethod.FindByElement(driver,"xpath","//div[contains(text(),'There is no data to display for your defined date range')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]");
-                WebElement okButton=dialogPopup.findElement(By.xpath(".//button[text()='Ok']"));
+                WebElement dialogPopup=HelpersMethod.FindByElement(driver,"xpath","//div[contains(text(),'There is no data to display for your defined date range')]/ancestor::div[contains(@class,'k-window k-dialog')]");
+                WebElement okButton=dialogPopup.findElement(By.xpath(".//button/span[text()='Ok']"));
                 HelpersMethod.ActClick(driver,okButton,8000);
                 scenario.log("***************THERE IS NO DATA TO DISPLAY IN THE SELECTED RANGE OF DATE**************");
                 exists=true;
@@ -567,7 +567,7 @@ public class StatementsPage
     {
         exists=false;
         WebElement WebEle=null;
-        String status=null;
+        String status="";
         try
         {
             String ParentWindow = driver.getWindowHandle();
@@ -589,10 +589,10 @@ public class StatementsPage
                 }
             }
             Thread.sleep(4000);
-            if(HelpersMethod.IsExists("//div[contains(text(),'There is no data to display for your defined date range')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]",driver))
+            if(HelpersMethod.IsExists("//div[contains(text(),'There is no data to display for your defined date range')]/ancestor::div[contains(@class,'k-window k-dialog')]",driver))
             {
-                WebElement dialogPopup=HelpersMethod.FindByElement(driver,"xpath","//div[contains(text(),'There is no data to display for your defined date range')]/ancestor::div[contains(@class,'k-widget k-window k-dialog')]");
-                WebElement okButton=dialogPopup.findElement(By.xpath(".//button[text()='Ok']"));
+                WebElement dialogPopup=HelpersMethod.FindByElement(driver,"xpath","//div[contains(text(),'There is no data to display for your defined date range')]/ancestor::div[contains(@class,'k-window k-dialog')]");
+                WebElement okButton=dialogPopup.findElement(By.xpath(".//button/span[text()='Ok']"));
                 HelpersMethod.ActClick(driver,okButton,8000);
                 scenario.log("***************THERE IS NO DATA TO DISPLAY IN THE SELECTED RANGE OF DATE**************");
                 exists=true;

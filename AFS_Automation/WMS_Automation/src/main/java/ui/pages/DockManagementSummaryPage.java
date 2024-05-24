@@ -91,7 +91,7 @@ public class DockManagementSummaryPage extends BasePage {
     By routesIcon = By.xpath("//div[@class='submenu-items-list']//div[contains(text(), 'Routes') and @class='submenu-item-text']");
     By outboundOrdersIcon = By.xpath("//div[@class='submenu-items-list']//div[contains(text(), 'Outbound Orders')]");
     By loadPlanningIcon = By.xpath("//div[@class='submenu-items-list']//div[contains(text(), 'Load Planning') and @class='submenu-item-text']");
-    By LoadPlanningWarningMessage  = By.xpath("//div[@id='button_focus_loop_container_14']/button[text()='Ok']");
+    By LoadPlanningWarningMessage  = By.xpath("//div[@id='button_focus_loop_container_14']/button/span[text()='Ok']");
     By outboundReportsIcon = By.xpath("//div[@class='submenu-items-list']//div[contains(text(), 'Outbound Reports') and @class='submenu-item-text']");
     //By lookupIcon = By.xpath("//ul[contains(@class, 'drawer-menu-list-items')]//span[text()='Lookup']");
     By lookupIcon = By.xpath("//span[normalize-space()='Lookup']");
