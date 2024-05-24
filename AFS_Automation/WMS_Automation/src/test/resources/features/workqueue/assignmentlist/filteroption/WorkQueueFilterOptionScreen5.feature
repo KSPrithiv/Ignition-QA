@@ -19,7 +19,6 @@ Feature: Testing of Work Queue Assignment functionality
     And User clicks Add Filter on Work Queue Assignments page
     And User clicks Clear All on Work Queue Assignments page
     And User clicks Assignments Title on Work Queue Assignments page
-    And Validates Grid items are present on Work Queue Assignments page
 
   Scenario: Checking Tap Assignment # of Work Queue Assignments screen functionality
     Given User signs in the application

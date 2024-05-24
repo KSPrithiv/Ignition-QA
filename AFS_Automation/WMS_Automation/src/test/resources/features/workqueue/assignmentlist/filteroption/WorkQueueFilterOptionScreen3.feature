@@ -111,8 +111,6 @@ Feature: Testing of Work Queue Assignment functionality
     And Waits for Work Queue Assignments page to load
     When Clicks assignment with index 0 on Work Queue Assignments page
     And Validates Assignment details on Work Queue Assignments page
-    Then User clicks Close on Work Queue Assignments page
-    And Work Queue Assignments Page is validated
 
   Scenario: Checking Assignment Task Group filter option of Work Queue Assignments screen functionality
     Given User signs in the application

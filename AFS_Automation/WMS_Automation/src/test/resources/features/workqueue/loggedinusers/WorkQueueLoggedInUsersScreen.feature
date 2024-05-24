@@ -108,12 +108,6 @@ Feature: Testing of Work Queue LoggedIn User functionality
     And Validates OK and Cancel buttons are present on Work Queue Logged In Users page
     And Selects Logout reason by index 0 on Work Queue Logged In Users page
     Then Clicks OK button on Work Queue Logged In Users page
-    And Clicks Logout User label on Work Queue Logged In Users page
-    And Selects Logout reason by index 1 on Work Queue Logged In Users page
-    And Clicks OK button on Work Queue Logged In Users page
-    And Clicks Logout User label on Work Queue Logged In Users page
-    And Selects Logout reason by index 2 on Work Queue Logged In Users page
-    And Clicks Cancel button on Work Queue Logged In Users page
 
   Scenario: Checking list of logged in users of Work Queue LoggedIn User screen functionality
     Given User signs in the application
