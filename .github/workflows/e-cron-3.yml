@@ -1,7 +1,7 @@
 name: OMS-E Regression
 on:
   schedule:
-    - cron:  '30 5 * * 4'
+    - cron:  '00 10 * * 5'
   workflow_dispatch:
     inputs:
       branch:
