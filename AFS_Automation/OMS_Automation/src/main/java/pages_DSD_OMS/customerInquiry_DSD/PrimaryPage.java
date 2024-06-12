@@ -151,7 +151,7 @@ public class PrimaryPage
         {
             if(HelpersMethod.IsExistsById("CustomerMasterBottomCard",driver))
             {
-                if(HelpersMethod.IsExists("//li[contains(@class,'k-state-active')]/span[text()='Primary']",driver))
+                if(HelpersMethod.IsExists("//li[contains(@class,'k-active')]/span[text()='Primary']",driver))
                 {
                     exists=true;
                 }
@@ -195,7 +195,7 @@ public class PrimaryPage
     public void selectDropDownValue()
     {
         //WebElement dropDownOption=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-popup k-child-animation-container')]");
-        List<WebElement> Options= HelpersMethod.FindByElements(driver,"xpath","//div[contains(@class,'k-popup k-child-animation-container')]/descendant::ul/li");
+        List<WebElement> Options= HelpersMethod.FindByElements(driver,"xpath","//div[@class='k-list-content']/ul/li");
         try
         {
            if(Options.size()==1)
@@ -409,8 +409,9 @@ public class PrimaryPage
     public void StatusDropDown() throws InterruptedException
     {
         HelpersMethod.ScrollElement(driver,status);
-        HelpersMethod.JScriptClick(driver,status,100);
-        List<WebElement> Options= HelpersMethod.FindByElements(driver,"xpath","//div[contains(@class,'k-popup k-child-animation-container')]/descendant::ul/li");        String optText=null;
+        HelpersMethod.JScriptClick(driver,status,10000);
+        List<WebElement> Options= HelpersMethod.FindByElements(driver,"xpath","//div[@class='k-list-content']/ul/li");
+        String optText="";
         Actions act=new Actions(driver);
         for(WebElement opt:Options)
         {

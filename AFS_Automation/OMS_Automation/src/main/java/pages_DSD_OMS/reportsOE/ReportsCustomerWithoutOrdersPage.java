@@ -48,6 +48,9 @@ public class ReportsCustomerWithoutOrdersPage
     @FindBy(id="selectedCustomersSwitch")
     private WebElement showSelectedCustomerToggle;
 
+    @FindBy(xpath="//tr[@class='k-table-row k-filter-row']/th[@class='k-table-th'][2]/descendant::input")
+    private WebElement gridAccountFilter;
+
     @FindBy(xpath="//div[@id='customersWithoutOrdersInfoNotification']/parent::div/descendant::div[contains(@class,'k-animation-container-relative')][1]/descendant::tr[@class='k-filter-row']/descendant::input[1]")
     private WebElement filterForAccount;
 
@@ -348,7 +351,7 @@ public class ReportsCustomerWithoutOrdersPage
         try
         {
             Thread.sleep(1000);
-            WebElement toDate=HelpersMethod.FindByElement(driver,"xpath","//td[contains(@class,'k-today')]");
+            WebElement toDate=HelpersMethod.FindByElement(driver,"xpath","//tr[@class='k-calendar-tr']/td[contains(@class,'k-today')]");
             if(toDate.isDisplayed())
             {
                 String todateText = HelpersMethod.AttributeValue(toDate, "title");
@@ -357,7 +360,7 @@ public class ReportsCustomerWithoutOrdersPage
                 LocalDate dateTime1=dateTime.plusDays(2);
                 DateTimeFormatter currentFormatObj = DateTimeFormatter.ofPattern("EEEE, MMMM d, yyyy");
                 String dateText = dateTime1.format(currentFormatObj);
-                WebElement changeDate=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-calendar-view')]/descendant::td[@class='k-calendar-td' and @title='"+dateText+"']");
+                WebElement changeDate=HelpersMethod.FindByElement(driver,"xpath","//tr[@class='k-calendar-tr']/td[@title='"+dateText+"']");
                 HelpersMethod.ActClick(driver,changeDate,10000);
                 scenario.log("TO DATE SELECTED");
                 Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
@@ -422,6 +425,33 @@ public class ReportsCustomerWithoutOrdersPage
         }
         catch (Exception e){}
     }
+
+    public void gridAccountFilterForAccount()
+    {
+        exists=false;
+        try
+        {
+            Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(400))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+            if(gridAccountFilter.isDisplayed())
+            {
+                HelpersMethod.EnterText(driver,gridAccountFilter,20000, TestBase.testEnvironment.get_Account());
+                scenario.log("ENTERED CUSTOMER ACCOUNT NUMBER IN FILTER");
+                exists=true;
+                wait = new FluentWait<WebDriver>(driver)
+                        .withTimeout(Duration.ofSeconds(200))
+                        .pollingEvery(Duration.ofSeconds(2))
+                        .ignoring(NoSuchElementException.class);
+                wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+            }
+            Assert.assertEquals(exists,true);
+        }
+        catch (Exception e){}
+    }
+
 
     public void selectFilteredAccountNo()
     {

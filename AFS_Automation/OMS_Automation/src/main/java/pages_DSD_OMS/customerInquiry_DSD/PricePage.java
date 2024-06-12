@@ -158,7 +158,7 @@ public class PricePage
         String TextDropDown=null;
         try
         {
-            HelpersMethod.ActClick(driver,WebEle,10);
+            HelpersMethod.ActClick(driver,WebEle,10000);
             TextDropDown=DropDownInCustomerInq();
             WebEle=HelpersMethod.FindByElement(driver,"xpath","//span[@id='"+WebId+"']/span[contains(@class,'k-input')]");
             InputValue=WebEle.getText();
@@ -171,7 +171,7 @@ public class PricePage
     public String DropDownInCustomerInq()
     {
         String ValueSele=null;
-        List<WebElement> Options= HelpersMethod.FindByElements(driver,"xpath","//div[contains(@class,'k-popup k-child-animation-container')]/descendant::ul/li");
+        List<WebElement> Options= HelpersMethod.FindByElements(driver,"xpath","//div[@class='k-list-content']/descendant::ul/li");
         try
         {
             if(Options.size()==1)

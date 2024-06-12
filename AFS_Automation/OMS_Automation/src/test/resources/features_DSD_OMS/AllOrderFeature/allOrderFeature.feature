@@ -53,8 +53,8 @@ Feature: All orders
     Given User must be on Order Entry Page to select All Orders
     And User should navigate to All Orders
     Then User clicks on Show all orders check box after Clicking All orders tab
-    And User selects open order from the order status filter
-    #And User Clicks on Add filter button and enter values for search options
+    #And User selects open order from the order status filter
+    And User Clicks on Add filter button and enter values for search options
     Then User select the order and click on Print button
 
   @AllOrderToOrderEntry
@@ -79,7 +79,7 @@ Feature: All orders
       |PO123|
     Then Enter Pro# in Quick Product Entry area
     And Check for Case and Unit input box enabled or not based on that enter value
-      |60|100|
+      |1|1|
     Then Click on Next button for All order
     And Click on Submit Order button and read Order_no created for All order
     Then User should be navigated back to All order page
@@ -98,9 +98,9 @@ Feature: All orders
     Then User should select Note from popup and Order guide from popup
     Then Enter PO# for New order
       |PO123|
-    Then Enter Pro# in Quick Product Entry area
-    And Check for Case and Unit input box enabled or not based on that enter value
-      |80|70|
+    And User Clicks on Add products button and user should make sure Catalog dialog box appears
+    Then User should select product and enter Qty for the products
+    |1|2|
     Then Click on Next button
     And Click on SubmitOrder button
     Then User should be navigated to Order Entry page

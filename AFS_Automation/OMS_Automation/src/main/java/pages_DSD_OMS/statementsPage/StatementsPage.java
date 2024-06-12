@@ -657,11 +657,49 @@ public class StatementsPage
     public void AddFilterSearch()
     {
         exists=false;
-        String search2=TestBase.testEnvironment.get_Account();
+        WebElement Search2;
+        WebElement Clear;
+        String SearhBox2Value=TestBase.testEnvironment.get_Account();
         try
         {
-            HelpersMethod.AddFilterSearch(driver,"Customer account #",search2);
-            exists=true;
+            //Click on Add filter button
+            new WebDriverWait(driver,Duration.ofMillis(10000)).until(ExpectedConditions.elementToBeClickable(By.xpath("//button/descendant::span[contains(text(),'Add filter')]")));
+            driver.findElement(By.xpath("//button/descendant::span[contains(text(),'Add filter')]")).click();
+
+            HelpersMethod.waitTillElementLocatedDisplayed(driver,"xpath","//div[contains(@class,'k-animation-container k-animation-container-shown')]",80000);
+            WebElement modalContainer1=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-animation-container k-animation-container-shown')]");
+
+            //Click on Clear all button
+            if(HelpersMethod.IsExists("//button[contains(@class,'k-button k-button-md k-button-flat k-button-flat-primary k-rounded-md i-filter-popup__footer__button i-primary')]/span[contains(text(),'Clear all')]",driver))
+            {
+                Clear = modalContainer1.findElement(By.xpath(".//button[contains(@class,'k-button k-button-md k-button-flat k-button-flat-primary k-rounded-md i-filter-popup__footer__button i-primary')]/span[contains(text(),'Clear all')]"));
+                if (Clear.isEnabled())
+                {
+                    Clear.click();
+                }
+            }
+
+            WebElement Search1=modalContainer1.findElement(By.xpath(".//input[contains(@class,'i-search-box__input')]"));
+            HelpersMethod.ActSendKey(driver,Search1,10000,"Customer account #");
+            //Click on Check box
+            new WebDriverWait(driver,Duration.ofMillis(10000)).until(ExpectedConditions.elementToBeClickable(By.xpath(".//input[contains(@class,'k-checkbox')]")));
+            WebElement WebEle1=modalContainer1.findElement(By.xpath(".//input[contains(@class,'k-checkbox')]"));
+            HelpersMethod.ClickBut(driver,WebEle1,10000);
+
+            //Identify radio button and click on Radio button
+            new WebDriverWait(driver,Duration.ofMillis(80000)).until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath("//div[contains(@class,'i-btn-radio filter-radio')]/ancestor::div[contains(@class,'k-child-animation-container')]")));
+            new WebDriverWait(driver,Duration.ofMillis(80000)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(@class,'i-btn-radio filter-radio')]/ancestor::div[contains(@class,'k-child-animation-container')]")));
+            if(HelpersMethod.IsExists("//div[contains(@class,'i-btn-radio filter-radio')]/ancestor::div[contains(@class,'k-child-animation-container')]",driver))
+            {
+                WebElement RadioPop=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-child-animation-container')]/descendant::form[contains(@class,'i-filter-popup')]");
+                Search2=RadioPop.findElement(By.xpath(".//div[contains(@class,'i-btn-radio filter-radio')][1]/following-sibling::div[contains(@class,'k-textbox-container i-filter-popup__content__input')]/input"));
+                HelpersMethod.EnterText(driver,Search2,10000,SearhBox2Value);
+
+                //Click on Apply button
+                Clear =RadioPop.findElement(By.xpath(".//button/span[text()='Apply']"));
+                HelpersMethod.ClickBut(driver,Clear,10000);
+                exists=true;
+            }
             Assert.assertEquals(exists,true);
         }
         catch (Exception e){}

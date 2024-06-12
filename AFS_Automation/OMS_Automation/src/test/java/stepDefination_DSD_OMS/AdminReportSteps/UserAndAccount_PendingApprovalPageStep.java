@@ -37,17 +37,23 @@ public class UserAndAccount_PendingApprovalPageStep
         userAndAdminPendingRegApprovalPage.clickOnPendingRegDropDown();
         userAndAdminPendingRegApprovalPage.selectUserPendingReg();
         userAndAdminPendingRegApprovalPage.clickOnDeny();
+        userAndAdminPendingRegApprovalPage.pendingReg();
         userAndAdminPendingRegApprovalPage.confirmDelete();
+        userAndAdminPendingRegApprovalPage.clickOnPendingRegDropDown();
+        userAndAdminPendingRegApprovalPage.findNotExistanceOfPendingRegistration();
     }
 
     @And("User selects user name from Pending registration drop down and click on Approve button")
-    public void userSelectsUserNameFromPendingRegistrationDropDownAndClickOnApproveButton()
+    public void userSelectsUserNameFromPendingRegistrationDropDownAndClickOnApproveButton() throws InterruptedException
     {
         userAndAdminPendingRegApprovalPage=new userAndAdmin_PendingRegApprovalPage(driver,scenario);
         userAndAdminPendingRegApprovalPage.clickOnPendingRegDropDown();
         userAndAdminPendingRegApprovalPage.selectUserPendingReg();
         userAndAdminPendingRegApprovalPage.clickOnConfirm();
+        userAndAdminPendingRegApprovalPage.pendingReg();
         userAndAdminPendingRegApprovalPage.updateUserInfo();
+        userAndAdminPendingRegApprovalPage.clickOnPendingRegDropDown();
+        userAndAdminPendingRegApprovalPage.findNotExistanceOfPendingRegistration();
     }
 
     @Then("User selects {string} in Orders page in admin login and validate user is in selected Tab for pending registration")

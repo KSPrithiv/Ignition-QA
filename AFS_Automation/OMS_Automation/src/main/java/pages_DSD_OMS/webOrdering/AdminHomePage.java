@@ -53,11 +53,12 @@ public class AdminHomePage
     public void ValidatingAdminHome() throws InterruptedException
     {
         exists = false;
-        String title = null;
-        String status = null;
+        String title = "";
+        String status = "";
 
         status = HelpersMethod.returnDocumentStatus(driver);
-        if (status.equals("loading")) {
+        if (status.equals("loading"))
+        {
             HelpersMethod.waitTillLoadingPage(driver);
         }
         Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
@@ -74,7 +75,7 @@ public class AdminHomePage
                 .pollingEvery(Duration.ofSeconds(2))
                 .ignoring(NoSuchElementException.class);
         wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
-        //Thread.sleep(6000);
+
         wait = new FluentWait<WebDriver>(driver)
                 .withTimeout(Duration.ofSeconds(120))
                 .pollingEvery(Duration.ofSeconds(2))
@@ -96,7 +97,7 @@ public class AdminHomePage
     public void ValidatingAdminHome1()
     {
         exists = false;
-        String title = null;
+        String title ="";
         try
         {
             title = driver.getTitle();
@@ -156,7 +157,7 @@ public class AdminHomePage
         exists = false;
         try
         {
-            Thread.sleep(6000);
+            Thread.sleep(2000);
             String status = HelpersMethod.returnDocumentStatus(driver);
             if (status.equals("loading"))
             {
@@ -255,7 +256,8 @@ public class AdminHomePage
                 //Create list of web elements in dropdown
                 company = TestBase.testEnvironment.get_CompanyNo();
                 //identify the company drop down, and values in list
-
+                new WebDriverWait(driver,Duration.ofMillis(10000)).until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath("//ul[@id='dropdownList3-listbox-id']/li/span")));
+                new WebDriverWait(driver,Duration.ofMillis(10000)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//ul[@id='dropdownList3-listbox-id']/li/span")));
                 List<WebElement> Values = HelpersMethod.FindByElements(driver, "xpath", "//ul[@id='dropdownList3-listbox-id']/li/span");
                 for (WebElement Val : Values)
                 {
@@ -277,7 +279,7 @@ public class AdminHomePage
                 HelpersMethod.waitTillLoadingPage(driver);
             }
             Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
-                    .withTimeout(Duration.ofSeconds(200))
+                    .withTimeout(Duration.ofSeconds(400))
                     .pollingEvery(Duration.ofSeconds(2))
                     .ignoring(NoSuchElementException.class);
             wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
@@ -287,13 +289,13 @@ public class AdminHomePage
                 HelpersMethod.waitTillLoadingPage(driver);
             }
             wait = new FluentWait<WebDriver>(driver)
-                    .withTimeout(Duration.ofSeconds(200))
+                    .withTimeout(Duration.ofSeconds(400))
                     .pollingEvery(Duration.ofSeconds(2))
                     .ignoring(NoSuchElementException.class);
             wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
 
             wait = new FluentWait<WebDriver>(driver)
-                    .withTimeout(Duration.ofSeconds(200))
+                    .withTimeout(Duration.ofSeconds(400))
                     .pollingEvery(Duration.ofSeconds(2))
                     .ignoring(NoSuchElementException.class);
             wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
@@ -416,18 +418,22 @@ public class AdminHomePage
         try
         {
             Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
-                    .withTimeout(Duration.ofSeconds(120))
+                    .withTimeout(Duration.ofSeconds(200))
                     .pollingEvery(Duration.ofSeconds(2))
                     .ignoring(NoSuchElementException.class);
             wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+            String status = HelpersMethod.returnDocumentStatus(driver);
+            if (status.equals("loading"))
+            {
+                HelpersMethod.waitTillLoadingPage(driver);
+            }
 
-            Thread.sleep(1000);
             wait = new FluentWait<WebDriver>(driver)
-                    .withTimeout(Duration.ofSeconds(120))
+                    .withTimeout(Duration.ofSeconds(200))
                     .pollingEvery(Duration.ofSeconds(2))
                     .ignoring(NoSuchElementException.class);
             wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
-
+            Thread.sleep(2000);
             new WebDriverWait(driver, Duration.ofMillis(100000)).until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.id("app")));
             scenario.log("IN ADMIN PAGE");
             WebElement side_menu = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'MuiPaper-root MuiDrawer-paper drawer')]");
@@ -441,7 +447,7 @@ public class AdminHomePage
             act1.moveToElement(WebEle).click().build().perform();
 
             //find whether side menu bar has expanded, if it has been expanded closde it
-            HelpersMethod.WaitElementPresent(driver, "xpath", "//div[contains(@class,'MuiPaper-root MuiDrawer-paper drawer-opened MuiDrawer-paperAnchorLeft MuiDrawer-paperAnchorDockedLeft MuiPaper-elevation0')]", 2000);
+            HelpersMethod.WaitElementPresent(driver, "xpath", "//div[contains(@class,'MuiPaper-root MuiDrawer-paper drawer-opened MuiDrawer-paperAnchorLeft MuiDrawer-paperAnchorDockedLeft MuiPaper-elevation0')]", 10000);
             side_menu = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'MuiPaper-root MuiDrawer-paper drawer-opened MuiDrawer-paperAnchorLeft MuiDrawer-paperAnchorDockedLeft MuiPaper-elevation0')]");
             act1.moveToElement(side_menu).build().perform();
         }
@@ -506,8 +512,8 @@ public class AdminHomePage
             {
                 HelpersMethod.ActClick(driver, ClearSearch, 10000);
             }
-            WebElement Search_Input = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='drawer-menu-search-container']/descendant::input");
-            act.moveToElement(Search_Input).sendKeys(Menu_Value).build().perform();
+            WebElement Search_Input = HelpersMethod.FindByElement(driver, "id", "navigationMenuSearchBar");
+            act.moveToElement(Search_Input).click().sendKeys(Menu_Value).build().perform();
             WebElement Menu = HelpersMethod.FindByElement(driver, "xpath", "//ul[contains(@class,'MuiList-root ')]/descendant::span[contains(text(),'" + Menu_Value + "')]");
             HelpersMethod.ActClick(driver, Menu, 10000);
 
@@ -576,7 +582,7 @@ public class AdminHomePage
                     .pollingEvery(Duration.ofSeconds(2))
                     .ignoring(NoSuchElementException.class);
             wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
-            String Menu_Text = null;
+            String Menu_Text = "";
             Actions act = new Actions(driver);
             List<WebElement> MenuBars = HelpersMethod.FindByElements(driver, "xpath", "//div[@class='topMenu']/descendant::li/span");
             for (WebElement Menu : MenuBars)
@@ -666,7 +672,6 @@ public class AdminHomePage
                     wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
                 }
             }
-           //Assert.assertTrue(exists);
         }
         catch (Exception e) {}
     }
@@ -687,7 +692,6 @@ public class AdminHomePage
                 HelpersMethod.ActClick(driver, ClearSearch, 10000);
             }
             //Enter main menu in search bar of the humburger
-            //WebElement Search_Input = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='drawer-menu-search-container']/descendant::input");
             WebElement Search_Input=HelpersMethod.FindByElement(driver,"id","navigationMenuSearchBar");
             act.moveToElement(Search_Input).click().sendKeys(Menu_Value).build().perform();
             //identify the main menu item, and click on that

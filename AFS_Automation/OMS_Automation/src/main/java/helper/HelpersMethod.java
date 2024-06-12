@@ -260,7 +260,7 @@ public class HelpersMethod
 
     public static String ReadValue(WebElement ele)
     {
-        String Read_Val=null;
+        String Read_Val="";
         if (ele.isDisplayed())
         {
             Read_Val = ele.getText();
@@ -496,7 +496,7 @@ public class HelpersMethod
     //code to handle drop down feature
     public static void DropDownMenu(WebDriver driver,String value)
     {
-        WebElement WebEle=null;
+        WebElement WebEle;
         Actions act1= new Actions(driver);
         new WebDriverWait(driver,Duration.ofMillis(2000)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class,'k-popup k-child-animation-container')]"))));
 

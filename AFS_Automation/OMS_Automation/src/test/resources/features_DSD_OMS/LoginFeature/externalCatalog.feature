@@ -4,19 +4,11 @@ Feature: external catalog
     Given User enters URL and is on login page
 
   @ProductsSeparatedByComma
-  Scenario: Search for multiple products separeated by comma, in external catalog
+  Scenario: Search for multiple products separated by comma, in external catalog
     Given User on login page for external catalog
     When User clicks on View product catalog and Product catalog should be displayed
     And user should click on Reset filter button and all the products should displayed in card view
     Then User enters multiple Product# in Search bar separated by comma and Read the product# available in catalog
-
-  @SortByBestMatch
-  Scenario: Sorting of items in ascending order
-    Given User on login page for external catalog
-    When User clicks on View product catalog and Product catalog should be displayed
-    And user should click on Reset filter button and all the products should displayed in List view
-    Then Click on sort by best match and select ascending order and verify the same
-      |Sort by price (ascending)|
 
   @ResetFilter
   Scenario: Testing of Reset Filter button functionality
@@ -90,6 +82,14 @@ Feature: external catalog
     Then User should be navigated to Order Entry page
     Then Click on user Icon on Order Entry page
     And Click on Logout on Order Entry page
+
+  @SortByBestMatch
+  Scenario: Sorting of items in ascending order
+    Given User on login page for external catalog
+    When User clicks on View product catalog and Product catalog should be displayed
+    And user should click on Reset filter button and all the products should displayed in List view
+    Then Click on sort by best match and select ascending order and verify the same
+      |Sort by price (ascending)|
 
   @DeleteItemsInCart
   Scenario: Add product to cart from external catalog and delete one of the product from Items in Cart page

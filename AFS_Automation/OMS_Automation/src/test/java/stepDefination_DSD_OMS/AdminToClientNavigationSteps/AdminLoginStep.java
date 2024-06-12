@@ -5,6 +5,7 @@ import io.cucumber.java.Scenario;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import org.openqa.selenium.WebDriver;
+import pages_DSD_OMS.login.LoginPage;
 import pages_DSD_OMS.orderEntry.CheckOutSummaryPage;
 import pages_DSD_OMS.orderEntry.NewOrderEntryPage;
 import pages_DSD_OMS.orderEntry.OrderEntryPage;
@@ -23,6 +24,7 @@ public class AdminLoginStep
     WebDriver driver;
     Scenario scenario;
     static OrderEntryPage orderpage;
+    static LoginPage loginpage;
 
     @Before
     public void LaunchBrowser1(Scenario scenario) throws Exception
@@ -46,5 +48,21 @@ public class AdminLoginStep
         orderpage = new OrderEntryPage(driver, scenario);
         orderpage.clickQuestionMark();
         orderpage.validateNoeCommerceHelp();
+    }
+
+    @And("Verify Register here link is visible in login page")
+    public void verifyRegisterHereLinkIsVisibleInLoginPage() throws InterruptedException, AWTException
+    {
+        loginpage = new LoginPage(driver, scenario);
+        loginpage.validateLoginPageTitle();
+        loginpage.validateRegisterHere();
+    }
+
+    @And("Verify Register here link is non visible in login page")
+    public void verifyRegisterHereLinkIsNonVisibleInLoginPage() throws InterruptedException, AWTException
+    {
+        loginpage = new LoginPage(driver, scenario);
+        loginpage.validateLoginPageTitle();
+        loginpage.validateNonRegisterHere();
     }
 }

@@ -752,7 +752,7 @@ public class OrderEntryPageSteps
         String Case=PO_Qty.get(0).get(0);
         String Unit=PO_Qty.get(0).get(1);
         String uomString=newOE.VerifyUOM();
-        //Thread.sleep(2000);
+
         if(uomString.equals("Units")||uomString.equals("EA"))
         {
             newOE.CheckForQuickUnitEnabled(Unit);

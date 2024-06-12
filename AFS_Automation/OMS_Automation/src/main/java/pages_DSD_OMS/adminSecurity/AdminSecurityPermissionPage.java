@@ -1285,11 +1285,11 @@ public class AdminSecurityPermissionPage
 
     public void uncheckCheckbox(String id)
     {
-        exists=true;
+        exists=false;
         Actions act=new Actions(driver);
         try
         {
-            if(HelpersMethod.IsExists("//input[@id='"+id+"' and @data-checked='checked']|//input[@id='"+id+"' and @data-checked='indeterminate']",driver))
+            if(HelpersMethod.IsExists("//input[@id='"+id+"']|//input[@id='"+id+"']",driver))
             {
                 WebElement checkBox=HelpersMethod.FindByElement(driver,"xpath","//input[@id='"+id+"' and @data-checked='checked']|//input[@id='"+id+"' and @data-checked='indeterminate']");
                 //HelpersMethod.ActClick(driver,checkBox,10000);

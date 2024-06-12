@@ -186,6 +186,7 @@ public class AllOrdersPageStep
             allOrder.navigateToAllOrder();
         }
         allOrder.Refresh_Page(CurrentULR);
+        allOrder.navigateToAllOrder1();
         allOrder.ValidateAllOrder();
     }
 
@@ -370,9 +371,9 @@ public class AllOrdersPageStep
     public void userClicksOnAddFilterButtonAndSearchForOrderNo()
     {
         allOrder=new AllOrderPage(driver,scenario);
-
         allOrder.ClickShowAllOrderCheckbox();
-        allOrder.SearchNewlyCreatedOrder(Ord_No);
+        //allOrder.SearchNewlyCreatedOrder(Ord_No);
+        allOrder.AddFilterClick(Ord_No);
     }
 
     @Then("User clicks on Show all orders check box after Clicking All orders tab")

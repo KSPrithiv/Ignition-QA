@@ -157,7 +157,8 @@ public class ReportsCustomersWithoutOrdersSteps
     public void userShouldSelectCustomerAccountToGenerateReport()
     {
         reportsInOEPage=new ReportsCustomerWithoutOrdersPage(driver,scenario);
-        reportsInOEPage.enterAccountNoInFilter();
+        reportsInOEPage.gridAccountFilterForAccount();
+        //reportsInOEPage.enterAccountNoInFilter();
         reportsInOEPage.selectFilteredAccountNo();
         //reportsInOEPage.clearFilter();
     }

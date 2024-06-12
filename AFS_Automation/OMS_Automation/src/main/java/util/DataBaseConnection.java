@@ -202,7 +202,7 @@ public class DataBaseConnection
     public static void adminSettingEnabling(String key,Scenario scenario) throws SQLException, ClassNotFoundException, InstantiationException, IllegalAccessException
     {
         //Make changes to admin setting
-        String sql=null;
+        String sql;
 
             sql="UPDATE RAMS_SettingsValues SET sv_Value = '1' WHERE sv_Key='"+key+"' and sv_CompanyID ="+TestBase.testEnvironment.getAdminSettingCompany();
             DataBaseConnection.DataConnAdminSettingEnable(sql);
