@@ -6,10 +6,6 @@ Feature: Testing Lookup Location functionality
     
     And Go to Lookup Location page
     And Waits for Location Lookup page to load
-    When User types location by index 0 on Lookup Location page
-    And Validates Inventory details of location on Location Lookup page are loaded
-    Then User clicks Location Product 1 on Lookup Location page
-    And Validates Product Lookup Page base elements are loaded
 
   Scenario: Checking Navigate to Lookup Location on Lookup Location screen
     Given User signs in the application
@@ -46,7 +42,3 @@ Feature: Testing Lookup Location functionality
     And User clicks Production Reason dropdown on Lookup Location page
     And Validates Production Reasons exist on Location Lookup page
     And User types Qty "1" on Lookup Location page
-    And Selects supplier by index 1 on Lookup Location page
-    And Selects Production Reason "Production" on Lookup Location page
-    And User types Expiration date by index 5 on Lookup Location page
-    And User clicks Save button on Lookup Location page

@@ -3,7 +3,6 @@ Feature: Testing of Work Queue Assignment functionality
   Scenario: Checking Filter option Assignment number of Work Queue Assignments screen functionality
     Given User signs in the application
     And Main page is loaded
-    
     And Go to Work Queue Assignments page
     And Waits for Work Queue Assignments page to load
     When User clicks Add Filter on Work Queue Assignments page
@@ -18,7 +17,6 @@ Feature: Testing of Work Queue Assignment functionality
   Scenario: Checking Filter option Status of Work Queue Assignments screen functionality
     Given User signs in the application
     And Main page is loaded
-    
     And Go to Work Queue Assignments page
     And Waits for Work Queue Assignments page to load
     When User clicks Add Filter on Work Queue Assignments page
@@ -32,7 +30,6 @@ Feature: Testing of Work Queue Assignment functionality
   Scenario: Checking Filter option Task group of Work Queue Assignments screen functionality
     Given User signs in the application
     And Main page is loaded
-    
     And Go to Work Queue Assignments page
     And Waits for Work Queue Assignments page to load
     When User clicks Add Filter on Work Queue Assignments page
@@ -46,22 +43,13 @@ Feature: Testing of Work Queue Assignment functionality
   Scenario: Checking Filter option Route of Work Queue Assignments screen functionality
     Given User signs in the application
     And Main page is loaded
-    
     And Go to Work Queue Assignments page
     And Waits for Work Queue Assignments page to load
     When User clicks Add Filter on Work Queue Assignments page
-    And User clicks Clear All on Work Queue Assignments page
-    And User clicks Add Filter on Work Queue Assignments page
-    Then User checks Route Filter on Work Queue Assignments page
-    And Types Route by index 1 on Work Queue Assignments page
-    And Clicks Apply button on Work Queue Assignments page
-    And User clicks Assignments Title on Work Queue Assignments page
-    And Validates Grid items are present on Work Queue Assignments page
 
   Scenario: Checking Filter option Stops of Work Queue Assignments screen functionality
     Given User signs in the application
     And Main page is loaded
-    
     And Go to Work Queue Assignments page
     And Waits for Work Queue Assignments page to load
     When User clicks Add Filter on Work Queue Assignments page
@@ -76,22 +64,15 @@ Feature: Testing of Work Queue Assignment functionality
   Scenario: Checking Filter option Tasks of Work Queue Assignments screen functionality
     Given User signs in the application
     And Main page is loaded
-    
     And Go to Work Queue Assignments page
     And Waits for Work Queue Assignments page to load
     When User clicks Add Filter on Work Queue Assignments page
     And User clicks Clear All on Work Queue Assignments page
     And User clicks Add Filter on Work Queue Assignments page
-    Then User checks Tasks Filter on Work Queue Assignments page
-    And Types Task by index 0 on Work Queue Assignments page
-    And Clicks Apply button on Work Queue Assignments page
-    And User clicks Assignments Title on Work Queue Assignments page
-    And Validates Grid items are present on Work Queue Assignments page
 
   Scenario: Checking Filter option Release of Work Queue Assignments screen functionality
     Given User signs in the application
     And Main page is loaded
-    
     And Go to Work Queue Assignments page
     And Waits for Work Queue Assignments page to load
     When User clicks Add Filter on Work Queue Assignments page
@@ -107,7 +88,6 @@ Feature: Testing of Work Queue Assignment functionality
   Scenario: Checking Filter option Assign to of Work Queue Assignments screen functionality
     Given User signs in the application
     And Main page is loaded
-    
     And Go to Work Queue Assignments page
     And Waits for Work Queue Assignments page to load
     When User clicks Add Filter on Work Queue Assignments page

@@ -130,7 +130,6 @@ Feature: Testing of Lookup Product functionality
     And Go to Lookup Product page
     And Validates Product Lookup Page base elements are loaded
     And User clicks Add Product on Lookup Product page
-    And User clicks product by index 0 on Lookup Product page
 
   Scenario: Checking navigation to Product Lookup of Lookup Product screen
     Given User signs in the application

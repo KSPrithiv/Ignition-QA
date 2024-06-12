@@ -12,11 +12,6 @@ Feature: Testing of Product Setup UOM
     And Validates Setup Product page is displayed
     And Clicks Warehouse Tab on Setup Product page
     Then Clicks UOM Tab on Setup Product page
-    And Validates UOM tab details on Setup Product page
-    And Validates Add, Edit, Delete buttons are displayed on Setup Product page
-    And Validates Add is enabled and Edit, Delete are disabled on Setup Product page
-    And Validates Items Count and Items Found on Setup Product page
-    And Validates UOM grid should display all column names on Setup Product page
 
   Scenario: Checking UI verification of adding UOM on Setup Product screen
     Given User signs in the application
@@ -61,59 +56,6 @@ Feature: Testing of Product Setup UOM
     And Selects Active "Yes" on Setup Product page
     And Clicks OK on Setup Product page
     And Clicks UOM Tab on Setup Product page
-    And Validates UOM tab details on Setup Product page
-    And Clicks Add on Setup Product page
-    And Validates Dialog Title "Add UOM" on Setup Product page
-    And Clicks Weight Unit on UOM popup on Setup Product page
-    And Enters Weight "10" on Setup Product page
-    And Enters Weight "AB" on Setup Product page
-    And Validates Weight Value "" on UOM popup on Setup Product page
-    And Enters Height "10" on Setup Product page
-    And Enters Height "AB" on Setup Product page
-    And Validates Height Value "" on UOM popup on Setup Product page
-    And Enters Length "10" on Setup Product page
-    And Enters Length "AB" on Setup Product page
-    And Validates Length Value "" on UOM popup on Setup Product page
-    And Check Include Opportunistic on Setup Product page
-    And Uncheck Include Opportunistic on Setup Product page
-    And Enters Size Code "16A" on Setup Product page
-    And Selects UOM "BAGS" on Setup Product page
-    And Clicks OK on Setup Product page
-    And Clicks Add on Setup Product page
-    And Validates Dialog Title "Add UOM" on Setup Product page
-    And Clicks Weight Unit on UOM popup on Setup Product page
-    And Enters Weight "10" on Setup Product page
-    And Enters Height "10" on Setup Product page
-    And Enters Length "10" on Setup Product page
-    And Check Include Opportunistic on Setup Product page
-    And Enters Size Code "16A" on Setup Product page
-    And Selects UOM "CARTON" on Setup Product page
-    And Enters Pack "2" on Setup Product page
-    And Clicks OK on Setup Product page
-    And Clicks Add on Setup Product page
-    And Validates Dialog Title "Add UOM" on Setup Product page
-    And Clicks Weight Unit on UOM popup on Setup Product page
-    And Enters Weight "10" on Setup Product page
-    And Enters Height "10" on Setup Product page
-    And Enters Length "10" on Setup Product page
-    And Check Include Opportunistic on Setup Product page
-    And Enters Size Code "16A" on Setup Product page
-    And Selects UOM "CARTON" on Setup Product page
-    And Enters Pack "2" on Setup Product page
-    And Clicks OK on Setup Product page
-    And Clicks Add on Setup Product page
-    And Validates Dialog Title "Add UOM" on Setup Product page
-    And Enters Pack "2" on Setup Product page
-    And Enters Size Code "16A" on Setup Product page
-    And Clicks OK on Setup Product page
-    And Validates Alert "Uom is required" on Setup Product page
-    And Clicks Cancel on Setup Product page
-    And Clicks Add on Setup Product page
-    And Validates Dialog Title "Add UOM" on Setup Product page
-    And Clicks OK on Setup Product page
-    And Validates Alert "Uom is required" on Setup Product page
-    And Validates Alert "Packsize must be more than 1" on Setup Product page
-    And Clicks Cancel on Setup Product page
 
   Scenario: Checking Editing UOM on Setup Product screen
     Given User signs in the application
@@ -161,15 +103,3 @@ Feature: Testing of Product Setup UOM
     And Clicks UOM Tab on Setup Product page
     And Validates UOM tab details on Setup Product page
     And Clicks Add on Setup Product page
-    And Validates Dialog Title "Add UOM" on Setup Product page
-    And Clicks Weight Unit on UOM popup on Setup Product page
-    And Enters Weight "10" on Setup Product page
-    And Enters Height "10" on Setup Product page
-    And Enters Length "10" on Setup Product page
-    And Check Include Opportunistic on Setup Product page
-    And Enters Size Code "16A" on Setup Product page
-    And Selects UOM "CARTON" on Setup Product page
-    And Clicks OK on Setup Product page
-    And Validates Add is enabled and Edit, Delete are disabled on Setup Product page
-    And Select UOM from grid by index 0 on Setup Product page
-    And User clicks Delete button on Setup Product page

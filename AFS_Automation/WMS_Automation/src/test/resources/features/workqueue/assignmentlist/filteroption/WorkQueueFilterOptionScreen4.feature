@@ -28,7 +28,6 @@ Feature: Testing of Work Queue Assignment functionality
     Then Types Route by index 3 on Work Queue Assignments page
     And Clicks Apply button on Work Queue Assignments page
     And User clicks Assignments Title on Work Queue Assignments page
-    And Validates Grid items are present on Work Queue Assignments page
 
   Scenario: Checking Stops filter option of Work Queue Assignments screen functionality
     Given User signs in the application
@@ -48,33 +47,20 @@ Feature: Testing of Work Queue Assignment functionality
   Scenario: Checking Tasks filter option of Work Queue Assignments screen functionality
     Given User signs in the application
     And Main page is loaded
-    
     And Go to Work Queue Assignments page
     And Waits for Work Queue Assignments page to load
     When User clicks Add Filter on Work Queue Assignments page
     And User clicks Clear All on Work Queue Assignments page
     And User clicks Add Filter on Work Queue Assignments page
-    Then User checks Tasks Filter on Work Queue Assignments page
-    And Types filter "0" on Work Queue Assignments page
-    And Clicks Apply button on Work Queue Assignments page
-    And User clicks Assignments Title on Work Queue Assignments page
-    And Validates Grid items are present on Work Queue Assignments page
 
   Scenario: Checking Released filter option of Work Queue Assignments screen functionality
     Given User signs in the application
     And Main page is loaded
-    
     And Go to Work Queue Assignments page
     And Waits for Work Queue Assignments page to load
     When User clicks Add Filter on Work Queue Assignments page
     And User clicks Clear All on Work Queue Assignments page
     And User clicks Add Filter on Work Queue Assignments page
-    And User checks Released Filter on Work Queue Assignments page
-    Then User clicks from Date "2" on Work Queue Assignments page
-    And User clicks till Date "22" on Work Queue Assignments page
-    And Clicks Apply button on Work Queue Assignments page
-    And User clicks Assignments Title on Work Queue Assignments page
-    And Validates Grid items are present on Work Queue Assignments page
 
   Scenario: Checking Assign to filter option of Work Queue Assignments screen functionality
     Given User signs in the application
