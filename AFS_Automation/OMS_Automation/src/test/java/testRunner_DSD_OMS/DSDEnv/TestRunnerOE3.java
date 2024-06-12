@@ -14,8 +14,8 @@ import java.io.IOException;
  * @Author Divya.Ramadas@afsi.com
  */
 @CucumberOptions(features = {
-//                              "src/test/resources/features_DSD_OMS/OrderEntryFeature/orderEntryFeature7.feature",
-//                              "src/test/resources/features_DSD_OMS/OrderEntryFeature/orderEntryFeature8.feature",
+                              "src/test/resources/features_DSD_OMS/OrderEntryFeature/orderEntryFeature7.feature",
+                              "src/test/resources/features_DSD_OMS/OrderEntryFeature/orderEntryFeature8.feature",
                               "src/test/resources/features_DSD_OMS/OrderEntryFeature/orderEntryFeatureEnd.feature",
                             },
         glue = {"stepDefination_DSD_OMS"},

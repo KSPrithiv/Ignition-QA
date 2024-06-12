@@ -3,10 +3,7 @@ package testRunner_DSD_OMS.DSDEnv;
 import io.cucumber.testng.AbstractTestNGCucumberTests;
 import io.cucumber.testng.CucumberOptions;
 import org.testng.annotations.*;
-import util.MailSend;
 import util.TestBase;
-import util.readPropertiesFile;
-
 import javax.mail.MessagingException;
 import java.io.IOException;
 

@@ -620,7 +620,7 @@ public class CheckOutOrderPage
                     .ignoring(NoSuchElementException.class);
             wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
 
-            WebElement WebEle=null;
+            WebElement WebEle;
             WebEle=HelpersMethod.FindByElement(driver,"id","addressCard");
             HelpersMethod.ScrollElement(driver,WebEle);
             //Check whether application is navigating to checkout card or navigating to order summary page
@@ -803,7 +803,7 @@ public class CheckOutOrderPage
         exists=false;
         try
         {
-            if(!HelpersMethod.IsExists("//div[@class='payment-method-container'/descendant::tbody/tr[@class='selected']",driver))
+            if(!HelpersMethod.IsExists("//div[@class='payment-method-container']/descendant::tbody/tr[@class='selected']",driver))
             {
                 if (HelpersMethod.IsExists("//button[@id='allowOrderWithoutPayment']", driver))
                 {
@@ -811,7 +811,7 @@ public class CheckOutOrderPage
                     if (withoutPayment.isEnabled())
                     {
                         HelpersMethod.ScrollElement(driver, withoutPayment);
-                        HelpersMethod.ClickBut(driver, withoutPayment, 10000);
+                        HelpersMethod.ActClick(driver, withoutPayment, 20000);
                         exists = true;
                         scenario.log("CONTINUE ORDER WITHOUT PAYMENT METHOD IS SELECTED");
                     }
@@ -838,7 +838,7 @@ public class CheckOutOrderPage
             if(HelpersMethod.IsExists("//div[@class='payment-method-container']/descendant::tbody/tr[1]/descendant::input",driver))
             {
                 WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='payment-method-container']/descendant::tbody/tr[1]/descendant::input");
-                HelpersMethod.ClickBut(driver, WebEle, 10000);
+                HelpersMethod.ActClick(driver, WebEle, 20000);
                 scenario.log("PAYMENT METHOD HAS BEEN SELECTED");
             }
         }

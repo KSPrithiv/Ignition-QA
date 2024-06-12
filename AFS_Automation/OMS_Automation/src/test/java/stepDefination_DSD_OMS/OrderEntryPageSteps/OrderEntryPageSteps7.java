@@ -11,6 +11,7 @@ import pages_DSD_OMS.orderEntry.*;
 import util.TestBase;
 
 import java.awt.*;
+import java.lang.reflect.Type;
 import java.util.List;
 
 /**
@@ -203,5 +204,24 @@ public class OrderEntryPageSteps7
         summary.validateCommentPopup();
         summary.readComments();
         summary.clickOnOKCommentPopup();
+    }
+
+    @And("User Clicks on Add products button and user should make sure Catalog dialog box appears")
+    public void userClicksOnAddProductsButtonAndUserShouldMakeSureCatalogDialogBoxAppears() throws InterruptedException, AWTException
+    {
+        newOE=new NewOrderEntryPage(driver,scenario);
+        newOE.Click_On_Add_Product();
+        newOE.SelectCatalogFromDropdown();
+        newOE.Validate_Catalog();
+        newOE.ResetFilter_Catalog();
+    }
+
+    @Then("User should select product and enter Qty for the products")
+    public void userShouldSelectProductAndEnterQtyForTheProducts(DataTable tabledata) throws InterruptedException, AWTException
+    {
+        List<List<String>> qty=tabledata.asLists(String.class);
+        newOE=new NewOrderEntryPage(driver,scenario);
+        newOE.selectProductFromCatalog(qty);
+        newOE.Catalog_OK();
     }
 }

@@ -42,9 +42,9 @@ Feature: scenarios for User and Accounts admin feature, for Grid related setting
     Then User should validate that it is Grid Configuration page, then click on Grid type Drop Down
     And User should select Grid type "<Grid type>" from the drop down
     And User clicks on save button to save Grid configuration
-    Then User validates availablity of disabled column in grid "<Grid type>"
+    Then User validates availability of disabled column in grid "<Grid type>"
     And User again enables column availability in Available grid
-   # Then User should navigate back to Grid configuration and click on Save button
+    Then User should navigate back to Grid configuration "<Grid type>" and check for enabled column click on Save button
     Examples:
       |Main menu|Sub menu       |Grid type  |
       |Grids    |Configuration  |Order Entry|

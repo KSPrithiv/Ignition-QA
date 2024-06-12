@@ -57,3 +57,23 @@ Feature: scenarios for admin credentials and client credentials
     Examples:
       | Setting                      | Key                       |
       | For disabling eCommerce help | CPMasterNotificationsHelp |
+
+  @RegisterHereEnabled
+  Scenario Outline: Test scenario for verifying Register here enabled or not
+    Given User should verify admin setting "<Setting>" is enabled by using "<Key>"
+    When User enters URL and is on login page
+    And Verify Register here link is visible in login page
+    And User should set admin setting "<Setting>" "<Key>" as default before making changes
+    Examples:
+      | Setting               | Key                       |
+      | Registration message  | CPEnableUserRegistration  |
+
+  @RegisterHereDisable
+  Scenario Outline: Test scenario for verifying Register here enabled or not
+    Given User should verify admin setting "<Setting>" is disabled by using "<Key>"
+    When User enters URL and is on login page
+    And Verify Register here link is non visible in login page
+    And User should set admin setting "<Setting>" "<Key>" as default before making changes
+    Examples:
+      | Setting               | Key                       |
+      | Registration message  | CPEnableUserRegistration  |

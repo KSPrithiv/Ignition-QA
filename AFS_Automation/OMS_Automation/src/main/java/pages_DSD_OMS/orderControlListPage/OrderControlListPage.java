@@ -53,7 +53,7 @@ public class OrderControlListPage
     static int rowNo=0;
     int skipRow=0;
 
-    @FindBy(xpath = "//span[@id='OrderTaker']/descendant::span[@class='k-select']")
+    @FindBy(id = "OrderTaker")
     private WebElement OrderTaker;
 
     @FindBy(id="CallDesk")
@@ -380,7 +380,7 @@ public class OrderControlListPage
         try
         {
             int i = 0;
-            List<WebElement> Options = HelpersMethod.FindByElements(driver, "xpath", "//div[contains(@class,'k-reset i-common-dropdown')]/descendant::ul/li");
+            List<WebElement> Options = HelpersMethod.FindByElements(driver, "xpath", "//ul[@id='OrderTaker-listbox-id']/li/span");
             for (WebElement Opt : Options)
             {
                 i++;
@@ -460,7 +460,6 @@ public class OrderControlListPage
 
     public void Select_All()
     {
-        exists=false;
         try
         {
             Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
@@ -473,9 +472,7 @@ public class OrderControlListPage
                 HelpersMethod.ClickBut(driver, AllRadio, 10000);
                 scenario.log("ALL RADIO BUTTON HAS BEEN SELECTED");
                 Thread.sleep(500);
-                //exists=true;
             }
-            //Assert.assertEquals(exists,true);
         }
         catch (Exception e) {}
     }
@@ -483,7 +480,6 @@ public class OrderControlListPage
     public void Refresh_Click()
     {
         exists = false;
-        //WebElement WebEle = null;
         try
         {
             String status = HelpersMethod.returnDocumentStatus(driver);
@@ -584,14 +580,14 @@ public class OrderControlListPage
             DateTimeFormatter myFormatObj = DateTimeFormatter.ofPattern("EEEE, MMMM d, yyyy");
             formattedDate1 = myDateObj.format(myFormatObj);
 
-            HelpersMethod.waitTillElementLocatedDisplayed(driver, "xpath", "//div[contains(@class,'k-widget k-calendar k-calendar-infinite')]", 200);
+            HelpersMethod.waitTillElementLocatedDisplayed(driver, "xpath", "//div[contains(@class,'k-animation-container k-animation-container-shown')]", 10000);
             String status = HelpersMethod.returnDocumentStatus(driver);
             if (status.equals("loading"))
             {
                 HelpersMethod.waitTillLoadingPage(driver);
             }
             //Visibility of calender
-            if (HelpersMethod.IsExists("//div[contains(@class,'k-widget k-calendar k-calendar-infinite')]", driver))
+            if (HelpersMethod.IsExists("//div[contains(@class,'k-animation-container k-animation-container-shown')]", driver))
             {
                 // to fetch the web element of the modal container, i.e.calender
                 WebElement fromDateContainer = driver.findElement(By.xpath("//table[@class='k-calendar-table']"));

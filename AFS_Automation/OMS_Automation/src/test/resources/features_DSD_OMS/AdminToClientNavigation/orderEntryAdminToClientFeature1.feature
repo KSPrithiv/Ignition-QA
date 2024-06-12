@@ -129,11 +129,14 @@ Feature: scenarios for admin credentials and client credentials
     Then User should select Note from popup and Order guide from popup
     Then Enter PO# for New order
       |PO123|
-    Then Enter Pro# in Quick Product Entry area for Order factor
-    And Check for Case and Unit input box enabled or not based on that enter value for qty to verify order factor
     Then Enter Pro# in Quick Product Entry area
     And Check for Case and Unit input box enabled or not based on that enter value
-      |4|4|
+      |1|1|
+    Then Click on Next button
+    And Click on SubmitOrder button
+    Then User should be navigated to Order Entry page
+    Then Enter Order# in Search box in Order Entry page
+    Then Click on Order number in Order Entry page and check for New OE page for payment page visible
     Then Click on Next button and validate that checkout order page not visible
     And Click on SubmitOrder button
     Then User should be navigated to Order Entry page
@@ -158,11 +161,14 @@ Feature: scenarios for admin credentials and client credentials
     Then User should select Note from popup and Order guide from popup
     Then Enter PO# for New order
       |PO123|
-    Then Enter Pro# in Quick Product Entry area for Order factor
-    And Check for Case and Unit input box enabled or not based on that enter value for qty to verify order factor
     Then Enter Pro# in Quick Product Entry area
     And Check for Case and Unit input box enabled or not based on that enter value
-      |4|4|
+      |1|1|
+    Then Click on Next button
+    And Click on SubmitOrder button
+    Then User should be navigated to Order Entry page
+    Then Enter Order# in Search box in Order Entry page
+    Then Click on Order number in Order Entry page and check for New OE page for payment page visible
     Then Click on Next button and validate that checkout order page is visible
     And Click on SubmitOrder button
     Then User should be navigated to Order Entry page

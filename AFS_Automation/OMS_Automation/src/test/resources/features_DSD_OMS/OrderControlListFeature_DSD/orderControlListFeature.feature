@@ -41,8 +41,8 @@ Feature: Order control list
     Then User should select Order taker from drop down
     And Change the delivery date 2 days after current date
     Then User Clicks on Taken radio button
-    #Then User should search for valid customers in OCL
-    #  |Milos|
+    Then User should search for valid customers in OCL
+      |Milos|
     And User enters OrderNo in search box to search for order
     Then User finds the comment for order in OCL
 

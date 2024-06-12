@@ -23,7 +23,9 @@ import java.awt.*;
 import java.sql.SQLException;
 import java.time.Duration;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 
 
 /**
@@ -121,12 +123,30 @@ public class LoginPageStep
         {
             HelpersMethod.waitTillLoadingPage(driver);
         }
-        Thread.sleep(4000);
-        String titleLogin=driver.getTitle();
+        Thread.sleep(2000);
+
         if(HelpersMethod.IsExists("//div[contains(@class,'k-window k-dialog')]",driver))
         {
-            JavascriptExecutor js = ((JavascriptExecutor) driver);
-            js.executeScript("window.location.reload()");
+            String mainWindow = driver.getWindowHandle();
+            Set<String> windowsId = driver.getWindowHandles();
+
+            for (String handle : windowsId)
+            {
+                if (!handle.equals(mainWindow))
+                {
+                    driver.switchTo().window(handle);
+                    break;
+                }
+            }
+            try
+            {
+                driver.close();
+            }
+            catch (Exception e)
+            {
+                ((JavascriptExecutor) driver).executeScript("window.close();");
+            }
+
 
             Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
                     .withTimeout(Duration.ofSeconds(400))
@@ -134,66 +154,55 @@ public class LoginPageStep
                     .ignoring(NoSuchElementException.class);
             wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
 
+            wait = new WebDriverWait(driver, Duration.ofMillis(1000));
+            if(wait.until(ExpectedConditions.alertIsPresent())!=null)
+            {
                 Alert alert = driver.switchTo().alert();
                 alert.accept();
-
+            }
             wait = new FluentWait<WebDriver>(driver)
                     .withTimeout(Duration.ofSeconds(400))
                     .pollingEvery(Duration.ofSeconds(2))
                     .ignoring(NoSuchElementException.class);
             wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
         }
-        if(!titleLogin.equals("Login") && titleLogin.equals("Product Catalog"))
+        String currentUrl=driver.getCurrentUrl();
+        scenario.log(currentUrl);
+        if((!currentUrl.contains("cpLogin") || !currentUrl.contains("cplogin")) && (currentUrl.contains("cpExtOrderCart")||currentUrl.contains("cpExtProductCatalog")))
         {
-            WebElement returnToLogin=HelpersMethod.FindByElement(driver,"xpath","//button[contains(text(),'Return to Login')]");
-            HelpersMethod.ClickBut(driver,returnToLogin,10000);
-            Thread.sleep(2000);
+                WebElement returnToLogin = HelpersMethod.FindByElement(driver, "xpath", "//button[contains(text(),'Return to Login')]");
+                HelpersMethod.JScriptClick(driver, returnToLogin, 20000);
+                Thread.sleep(2000);
         }
-
-            //if(titleLogin.equals("Order Cart") || titleLogin.equals("Product Catalog"))
-//            if (titleLogin.equals("Product Catalog"))
-//            {
-//                driver.navigate().to(TestBase.testEnvironment.get_url());
-//                status = HelpersMethod.returnDocumentStatus(driver);
-//                if (status.equals("loading"))
-//                {
-//                    HelpersMethod.waitTillLoadingPage(driver);
-//                }
-//
-//                Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
-//                        .withTimeout(Duration.ofSeconds(120))
-//                        .pollingEvery(Duration.ofSeconds(2))
-//                        .ignoring(NoSuchElementException.class);
-//                wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
-//            }
-            //else if (!tLogin.equals(titleLogin))
-            else if(!titleLogin.equals("Login"))
+        else
+        {
+            if (!currentUrl.contains("cpExtOrderCart")||!currentUrl.contains("cpExtProductCatalog")||!currentUrl.contains("cpLogin") || !currentUrl.contains("cplogin"))
             {
-                    homepage = new HomePage(driver, scenario);
-                    homepage.Click_On_UserIcon();
-                    homepage.Click_On_Signout();
+                homepage = new HomePage(driver, scenario);
+                homepage.Click_On_UserIcon();
+                homepage.Click_On_Signout();
 
-                    Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
-                            .withTimeout(Duration.ofSeconds(120))
-                            .pollingEvery(Duration.ofSeconds(2))
-                            .ignoring(NoSuchElementException.class);
-                    wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+                Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                        .withTimeout(Duration.ofSeconds(200))
+                        .pollingEvery(Duration.ofSeconds(2))
+                        .ignoring(NoSuchElementException.class);
+                wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
 
-                    status = HelpersMethod.returnDocumentStatus(driver);
-                    if (status.equals("loading"))
-                    {
-                        HelpersMethod.waitTillLoadingPage(driver);
-                    }
+                status = HelpersMethod.returnDocumentStatus(driver);
+                if (status.equals("loading")) {
+                    HelpersMethod.waitTillLoadingPage(driver);
+                }
 
-                    wait = new FluentWait<WebDriver>(driver)
-                            .withTimeout(Duration.ofSeconds(120))
-                            .pollingEvery(Duration.ofSeconds(2))
-                            .ignoring(NoSuchElementException.class);
-                    wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+                wait = new FluentWait<WebDriver>(driver)
+                        .withTimeout(Duration.ofSeconds(200))
+                        .pollingEvery(Duration.ofSeconds(2))
+                        .ignoring(NoSuchElementException.class);
+                wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
 
-                    loginpage=new LoginPage(driver,scenario);
-                    loginpage.validateLoginPageTitle();
+                loginpage = new LoginPage(driver, scenario);
+                loginpage.validateLoginPageTitle();
             }
+        }
     }
 
     @Then("User entered Invalid {string} and {string}")
@@ -303,12 +312,8 @@ public class LoginPageStep
                 .ignoring(NoSuchElementException.class);
         wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
         loginpage.ClickExternalCatalog();
-        //if(flag1==false)
-        //{
             productPage = new ProductPage(driver, scenario);
             pTitle = productPage.productTitle();
-          //  flag1=true;
-        //}
         Thread.sleep(4000);
     }
 
@@ -434,7 +439,7 @@ public class LoginPageStep
             exists = HelpersMethod.IsExists("//div[contains(text(),'Sorry, no products matched')]", driver);
             if (exists == true)
             {
-                HelpersMethod.ClickBut(driver, HelpersMethod.FindByElement(driver, "xpath", "//span[contains(@class,'search-button')]/*[local-name()='svg']/*[local-name()='path' and contains(@d,'M17')]"), 1000);
+                HelpersMethod.ClickBut(driver, HelpersMethod.FindByElement(driver, "xpath", "//span[contains(@class,'search-button')]/*[local-name()='svg']/*[local-name()='path' and contains(@d,'M17')]"), 10000);
             }
             else if (exists == false)
             {
@@ -514,7 +519,7 @@ public class LoginPageStep
         }
         Thread.sleep(2000);
        // HelpersMethod.waitTillElementLocatedDisplayed(driver, "xpath", "//div[contains(text(),'Customer Registration')]/ancestor::div[contains(@class,'k-window k-dialog')]", 20000);
-        if (HelpersMethod.IsExists("//div[contains(text(),'Customer Registration')]/ancestor::div[contains(@class,'k-window k-dialog')]", driver))
+        if (HelpersMethod.IsExists("//span[contains(text(),'Customer Registration')]/ancestor::div[contains(@class,'k-window k-dialog')]", driver))
         {
             scenario.log("CUSTOMER REGISTRATION PAGE HAS BEEN FOUND");
             Result = true;

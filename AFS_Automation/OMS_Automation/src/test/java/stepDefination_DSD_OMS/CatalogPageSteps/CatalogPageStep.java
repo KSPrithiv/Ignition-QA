@@ -480,6 +480,12 @@ public class CatalogPageStep
     @Then("User enters different Product# in Search bar and enter Qty by clicking image and click Delete product")
     public void user_enters_different_product_in_search_bar_and_enter_qty_by_clicking_image_and_click_delete_product(DataTable tabledata) throws SQLException, InterruptedException
     {
+        Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                .withTimeout(Duration.ofSeconds(120))
+                .pollingEvery(Duration.ofSeconds(2))
+                .ignoring(NoSuchElementException.class);
+        wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
         ArrayList<String> Prod_No = (ArrayList<String>) DataBaseConnection.DataConn1(TestBase.testEnvironment.getMultiple_Prod_Sql1());
         List<List<String>> Qty = tabledata.asLists(String.class);
         catalogpage = new CatalogPage(driver, scenario);
@@ -496,7 +502,7 @@ public class CatalogPageStep
             {
                 catalogpage = new CatalogPage(driver, scenario);
                 catalogpage.ClickImage();
-                Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                wait = new FluentWait<WebDriver>(driver)
                         .withTimeout(Duration.ofSeconds(120))
                         .pollingEvery(Duration.ofSeconds(2))
                         .ignoring(NoSuchElementException.class);
@@ -534,7 +540,6 @@ public class CatalogPageStep
     @Then("Click on SubmitOrder button for creating order from Catalog")
     public void clickOnSubmitOrderButtonForCreatingOrderFromCatalog() throws InterruptedException, AWTException
     {
-
         summary = new CheckOutSummaryPage(driver,scenario);
         summary.validateSummaryPage();
         summary.ClickSubmit();

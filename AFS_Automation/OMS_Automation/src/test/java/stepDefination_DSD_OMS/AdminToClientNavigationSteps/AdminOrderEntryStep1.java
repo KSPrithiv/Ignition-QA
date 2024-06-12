@@ -4,7 +4,9 @@ import io.cucumber.java.Before;
 import io.cucumber.java.Scenario;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
 import org.openqa.selenium.WebDriver;
+import org.testng.Assert;
 import pages_DSD_OMS.adminCatalogSearch.catalogSearchPage;
 import pages_DSD_OMS.adminSecurity.AdminSecurityPermissionPage;
 import pages_DSD_OMS.login.LoginPage;
@@ -80,5 +82,16 @@ public class AdminOrderEntryStep1
             adminSecurityPermissionPage.uncheckCheckbox(settingId);
             adminHomePage=new AdminHomePage(driver,scenario);
             adminHomePage.Click_SaveButton();
+    }
+
+    @Then("Click on Order number in Order Entry page and check for New OE page for payment page visible")
+    public void clickOnOrderNumberInOrderEntryPageAndCheckForNewOEPageForPaymentPageVisible() throws InterruptedException, AWTException
+    {
+        orderpage = new OrderEntryPage(driver, scenario);
+        orderpage.Select_Order_OrdersGrid();
+        //Check if user is on New OE page
+        newOE=new NewOrderEntryPage(driver,scenario);
+        exists=newOE.ValidateNewOE1();
+        Assert.assertEquals(exists,true);
     }
 }

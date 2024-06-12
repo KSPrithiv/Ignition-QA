@@ -193,6 +193,7 @@ public class AdminReportPageStep
         adminreportPage=new adminReportPage(driver,scenario);
         adminreportPage.clickOnToDateLastLogiUser();
         adminreportPage.toDateLastLoginUser();
+        adminreportPage.excludeDates();
     }
 
     @Then("User Clicks on Permissions by drop down to select different Customer Account# for admin security")

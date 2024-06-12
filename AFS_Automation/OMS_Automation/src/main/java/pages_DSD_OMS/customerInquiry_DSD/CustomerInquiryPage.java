@@ -378,7 +378,7 @@ public class CustomerInquiryPage
                     .ignoring(NoSuchElementException.class);
             wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
 
-            HelpersMethod.WaitElementPresent(driver,"xpath","//div[@id='CustomerMasterBottom']",40);
+            HelpersMethod.WaitElementPresent(driver,"xpath","//button[@id='customerInquiryNewBtn']",10000);
             Assert.assertEquals(exists,true);
         }
         catch (Exception e){}
@@ -388,7 +388,7 @@ public class CustomerInquiryPage
     {
         Thread.sleep(8000);
         exists=false;
-        WebElement WebEle=null;
+
         try
         {
             Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
@@ -401,6 +401,7 @@ public class CustomerInquiryPage
             WebElement save_Button=HelpersMethod.FindByElement(driver,"id","customerInquirySaveBtn");
             if(save_Button.isEnabled())
             {
+                HelpersMethod.ScrollUpScrollBar(driver);
                 HelpersMethod.ClickBut(driver, save_Button, 20000);
                 scenario.log("SAVE BUTTON HAS BEEN CLICKED");
                 exists=true;
@@ -470,7 +471,7 @@ public class CustomerInquiryPage
         try
         {
             Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
-                    .withTimeout(Duration.ofSeconds(120))
+                    .withTimeout(Duration.ofSeconds(200))
                     .pollingEvery(Duration.ofSeconds(2))
                     .ignoring(NoSuchElementException.class);
             wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
@@ -756,7 +757,7 @@ public class CustomerInquiryPage
         exists=false;
         try
         {
-            if(HelpersMethod.IsExists("//div[contains(text(),'Copy customer')]/ancestor::div[contains(@class,'k-window k-dialog')]",driver))
+            if(HelpersMethod.IsExists("//span[contains(text(),'Copy customer')]/ancestor::div[contains(@class,'k-window k-dialog')]",driver))
             {
                 WebElement modalContainer = driver.findElement(By.xpath("//div[contains(@class,'k-window k-dialog')]"));
                 WebElement modalContentTitle = modalContainer.findElement(By.xpath(".//span[contains(@class,'k-window-title k-dialog-title')]"));

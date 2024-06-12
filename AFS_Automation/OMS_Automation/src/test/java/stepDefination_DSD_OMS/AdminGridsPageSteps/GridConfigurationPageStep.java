@@ -225,7 +225,6 @@ public class GridConfigurationPageStep
             newOE.ValidateNewOE();
             newOE.EnterPO_No(PO_No.get(0).get(0));
             newOE.validateDefaultGrid(arg0);
-
         }
         else
         {
@@ -372,12 +371,12 @@ public class GridConfigurationPageStep
         gridConfigPage.validateAvailableGrid();
         gridConfigPage.selectAnyGridInAvailableGrid();
         gridConfigPage.readGridNameDisabledInAvailableGrid();
-        columnName=gridConfigPage.readColumnNameDisabled();
-        gridConfigPage.disableAnyColumnNameInAvailableGrid();
+        columnName=gridConfigPage.readColumnNameToBeDisabled();
+        gridConfigPage.disableAnyColumnNameInAvailableGrid(columnName);
     }
 
-    @Then("User validates availablity of disabled column in grid {string}")
-    public void userValidatesAvailablityOfDisabledColumnInGrid(String arg0)
+    @Then("User validates availability of disabled column in grid {string}")
+    public void userValidatesAvailabilityOfDisabledColumnInGrid(String arg0)
     {
         gridConfigPage=new GridConfigurationPage(driver,scenario);
         gridConfigPage.selectGridConfiguration();
@@ -395,8 +394,8 @@ public class GridConfigurationPageStep
         gridConfigPage.validateAvailableGrid();
         gridConfigPage.selectAnyGridInAvailableGrid();
         gridConfigPage.readGridNameDisabledInAvailableGrid();
-        columnName=gridConfigPage.readColumnNameDisabled();
-        gridConfigPage.enableAnyColumnNameInAvailableGrid();
+        columnName=gridConfigPage.readColumnNameToBeDisabled();
+        gridConfigPage.enableAnyColumnNameInAvailableGrid(columnName);
         //gridConfigPage.clickSaveButtonInAvailablegrid();
         gridConfigPage=new GridConfigurationPage(driver,scenario);
         gridConfigPage.clickOnSaveButton();
@@ -502,7 +501,7 @@ public class GridConfigurationPageStep
         //to expand the dropdown
         gridConfigPage.clickGridDropDown();
         //to read all the values in dropdown
-        List<WebElement> gridNames=HelpersMethod.FindByElements(driver,"xpath","//div[contains(@class,'k-list-container')]/descendant::ul/li[contains(text(),'"+arg0+"')]");
+        List<WebElement> gridNames=HelpersMethod.FindByElements(driver,"xpath","//div[contains(@class,'k-list-container')]/descendant::ul/li/span[contains(text(),'"+arg0+"')]");
         ArrayList<String> gridText= new ArrayList<>();
         for(int i=0;i<=gridNames.size()-1;i++)
         {
@@ -652,5 +651,16 @@ public class GridConfigurationPageStep
         gridConfigPage.resetLabelToOld();
         gridConfigPage.clickOnSaveButton();
         gridConfigPage.clickOnOkButtonInSavePopup();
+    }
+
+    @Then("User should navigate back to Grid configuration {string} and check for enabled column click on Save button")
+    public void userShouldNavigateBackToGridConfigurationAndCheckForEnabledColumnClickOnSaveButton(String arg0)
+    {
+        gridConfigPage=new GridConfigurationPage(driver,scenario);
+        gridConfigPage.selectGridConfiguration();
+        gridConfigPage.validateGridConfigurationPage();
+        gridConfigPage.clickOnGridTypeDropDown();
+        gridConfigPage.selectGridTypeDropDown(arg0);
+        gridConfigPage.validateColumnNamesInExistenceSelectedGrid(columnName);
     }
 }

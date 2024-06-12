@@ -204,7 +204,7 @@ public class AccountPage
     public String DropDownInCustomerInq()
     {
         String ValueSele=null;
-        List<WebElement> Options= HelpersMethod.FindByElements(driver,"xpath","//div[contains(@class,'k-popup k-child-animation-container')]/descendant::ul/li");
+        List<WebElement> Options= HelpersMethod.FindByElements(driver,"xpath","//div[@class='k-list-content']/ul/li");
         try
         {
             if(Options.size()==1)

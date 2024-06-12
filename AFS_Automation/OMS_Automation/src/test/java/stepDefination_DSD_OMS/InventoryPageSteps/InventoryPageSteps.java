@@ -121,9 +121,9 @@ public class InventoryPageSteps
     {
         if(flag1==false)
         {
-            if (HelpersMethod.IsExists("//li[contains(@class,'k-item')]/span[@class='k-link' and contains(text(),'Inventory')]", driver))
+            if (HelpersMethod.IsExists("//ul[@class='k-tabstrip-items k-reset']/li/span[@class='k-link' and text()='Inventory']", driver))
             {
-                HelpersMethod.navigate_Horizantal_Tab(driver, "Inventory", "//li[contains(@class,'k-item')]/span[@class='k-link' and contains(text(),'Inventory')]", "xpath", "//li[contains(@class,'k-item')]/span[@class='k-link']");
+                HelpersMethod.navigate_Horizantal_Tab(driver, "Inventory", "//ul[@class='k-tabstrip-items k-reset']/li/span[@class='k-link' and text()='Inventory']", "xpath", "//ul[@class='k-tabstrip-items k-reset']/li/span[@class='k-link']");
                 inventory = new InventoryPage(driver, scenario);
                 boolean result = inventory.ValidateInventory();
                 currentURL = driver.getCurrentUrl();

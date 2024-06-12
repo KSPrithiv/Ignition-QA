@@ -54,13 +54,20 @@ public class MyCartPage
     {
         exists=false;
         WebElement WebEle;
+
+        Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                .withTimeout(Duration.ofSeconds(200))
+                .pollingEvery(Duration.ofSeconds(2))
+                .ignoring(NoSuchElementException.class);
+        wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
         String status = HelpersMethod.returnDocumentStatus(driver);
         if (status.equals("loading"))
         {
             HelpersMethod.waitTillLoadingPage(driver);
         }
 
-        Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+        wait = new FluentWait<WebDriver>(driver)
                 .withTimeout(Duration.ofSeconds(200))
                 .pollingEvery(Duration.ofSeconds(2))
                 .ignoring(NoSuchElementException.class);
@@ -71,11 +78,10 @@ public class MyCartPage
         {
             HelpersMethod.waitTillLoadingPage(driver);
         }
-
         if(CheOutOrder.isDisplayed() && CheOutOrder.isEnabled())
         {
             HelpersMethod.ScrollElement(driver, CheOutOrder);
-            HelpersMethod.ClickBut(driver, CheOutOrder, 10000);
+            HelpersMethod.ActClick(driver, CheOutOrder, 20000);
             exists = true;
 
             wait = new FluentWait<WebDriver>(driver)
@@ -95,7 +101,7 @@ public class MyCartPage
                 WebElement selectPopup = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-window k-dialog')]");
                 WebEle = selectPopup.findElement(By.xpath(".//div[contains(text(),'New order')]"));
                 HelpersMethod.ActClick(driver, WebEle, 10000);
-                WebEle = selectPopup.findElement(By.xpath("//div[contains(@class,'k-window k-dialog')]/descendant::.//button/span[text()='Continue']"));
+                WebEle = selectPopup.findElement(By.xpath(".//button/span[text()='Ok']"));
                 HelpersMethod.ActClick(driver, WebEle, 10000);
                 Thread.sleep(1000);
 
@@ -161,12 +167,29 @@ public class MyCartPage
     {
         try
         {
-            Thread.sleep(8000);
+            Thread.sleep(1000);
             Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
                     .withTimeout(Duration.ofSeconds(200))
                     .pollingEvery(Duration.ofSeconds(2))
                     .ignoring(NoSuchElementException.class);
             wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
+            String status = HelpersMethod.returnDocumentStatus(driver);
+            if (status.equals("loading"))
+            {
+                HelpersMethod.waitTillLoadingPage(driver);
+            }
+
+            wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(200))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+            status = HelpersMethod.returnDocumentStatus(driver);
+            if (status.equals("loading"))
+            {
+                HelpersMethod.waitTillLoadingPage(driver);
+            }
 
             String PageTitle = HelpersMethod.gettingTitle(driver);
             Assert.assertEquals(PageTitle, "Order Cart");

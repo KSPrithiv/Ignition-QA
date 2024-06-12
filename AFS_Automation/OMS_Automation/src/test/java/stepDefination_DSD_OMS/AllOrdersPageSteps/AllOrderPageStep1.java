@@ -37,7 +37,7 @@ public class AllOrderPageStep1
         allOrders.compareSelectedOpt(opt);
         allOrders.displayQtyGroupValue();
         allOrders.clickOnUnitGrouping();
-        allOrders.selectValueGroupDropDown(opt);
+        allOrders.selectValueTotalGroupDropDown(opt);
         allOrders.compareSelectedOpt(opt);
         allOrders.displayTotalGroupValue();
     }
@@ -59,7 +59,7 @@ public class AllOrderPageStep1
     }
 
     @And("User drag and drops {string} header")
-    public void userDragAndDropsHeader(String header)////////////
+    public void userDragAndDropsHeader(String header)
     {
         allOrders=new AllOrderPage(driver,scenario);
         allOrders.dragAndDrop(header);

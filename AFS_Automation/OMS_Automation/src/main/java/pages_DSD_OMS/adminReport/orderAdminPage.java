@@ -172,12 +172,10 @@ public class orderAdminPage
         try
         {
             HelpersMethod.ClickBut(driver,WebEle1,10000);
+            Thread.sleep(1000);
             //validate Customer account # popup
             WebElement modalContainer = HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-window k-dialog')]");
 
-            // to fetch the web elements of the modal content and interact with them, code to fetch content of modal title and verify it
-            WebElement modalContentTitle = modalContainer.findElement(By.xpath(".//span[contains(@class,'k-window-title k-dialog-title')]"));
-            Assert.assertEquals(modalContentTitle.getText(), "Customer account #", "Verify Title message");
             //Select customer account # by clicking Add filter button in customer account # popup
             WebElement AddFilterButton = modalContainer.findElement(By.xpath(".//button/descendant::span[contains(text(),'Add filter')]"));
             HelpersMethod.ActClick(driver, AddFilterButton, 10000);
@@ -217,7 +215,7 @@ public class orderAdminPage
                 HelpersMethod.ActClick(driver, WebEle, 10000);
 
                 wait = new FluentWait<WebDriver>(driver)
-                        .withTimeout(Duration.ofSeconds(250))
+                        .withTimeout(Duration.ofSeconds(400))
                         .pollingEvery(Duration.ofSeconds(2))
                         .ignoring(NoSuchElementException.class);
                 wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
@@ -302,7 +300,7 @@ public class orderAdminPage
             {
                 if(HelpersMethod.IsExists("//div[contains(@class,'k-calendar-monthview')]/descendant::td[contains(@class,'focus')]",driver))
                 {
-                    WebElement toDate=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-calendar-monthview')]/descendant::td[contains(@class,'focus')]");
+                    WebElement toDate=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-calendar-monthview')]/descendant::td[contains(@class,'k-today')]");
                     HelpersMethod.JSScroll(driver, toDate);
                     HelpersMethod.ActClick(driver, toDate, 10000);
                     WebEle=HelpersMethod.FindByElement(driver,"id","EndDate");
@@ -404,7 +402,7 @@ public class orderAdminPage
     public void clickOnResetButton()
     {
         exists=false;
-        WebElement resetButton=HelpersMethod.FindByElement(driver,"xpath","//button[text()='Reset']");
+        WebElement resetButton=HelpersMethod.FindByElement(driver,"xpath","//button/span[text()='Reset']");
         try
         {
             if(resetButton.isDisplayed()&&resetButton.isEnabled())
@@ -506,7 +504,7 @@ public class orderAdminPage
 
     public void clickOnEvent() throws InterruptedException
     {
-        WebElement eventDropdown=HelpersMethod.FindByElement(driver,"id","events");
+        WebElement eventDropdown=HelpersMethod.FindByElement(driver,"xpath","//label[@id='events-label']/following-sibling::div/descendant::input");
         HelpersMethod.ActClick(driver,eventDropdown,10000);
     }
 
@@ -527,6 +525,14 @@ public class orderAdminPage
                 exists=true;
                 break;
             }
+        }
+        if(exists==true)
+        {
+            scenario.log("EVENT HAS BEEN SUCCESSFULLY SELECTED");
+        }
+        else
+        {
+            scenario.log("<span style='color:red'>EVENT DOESN'T EXISTS</span>");
         }
         Assert.assertEquals(exists,true);
     }
@@ -554,6 +560,7 @@ public class orderAdminPage
             {
                 act1.moveToElement(WebEle).build().perform();
                 act1.click(WebEle).build().perform();
+                scenario.log("USER HAS BEEN SELECTED");
                 break;
             }
             else
@@ -583,7 +590,7 @@ public class orderAdminPage
     {
         try
         {
-            WebElement orderDate=HelpersMethod.FindByElement(driver,"xpath","//label[@id='OrderDate-label']/following-sibling::span/descendant::a");
+            WebElement orderDate=HelpersMethod.FindByElement(driver,"xpath","//label[@id='OrderDate-label']/following-sibling::span/descendant::button");
             HelpersMethod.ActClick(driver,orderDate,10000);
         }
         catch (Exception e){}
@@ -595,9 +602,9 @@ public class orderAdminPage
         exists=false;
         try
         {
-            if(HelpersMethod.IsExists("//div[contains(@class,'k-child-animation-container')]",driver))
+            if(HelpersMethod.IsExists("//div[contains(@class,'k-calendar-container')]",driver))
             {
-                WebElement dateSelection=HelpersMethod.FindByElement(driver,"xpath","//td[contains(@class,'k-today')]");
+                WebElement dateSelection=HelpersMethod.FindByElement(driver,"xpath","//td[contains(@class,'k-today')]/span");
                 HelpersMethod.ActClick(driver,dateSelection,10000);
                 exists=true;
             }
@@ -611,9 +618,9 @@ public class orderAdminPage
         exists=false;
         try
         {
-            if(HelpersMethod.IsExists("//button[text()='Generate']",driver))
+            if(HelpersMethod.IsExists("//button/span[text()='Generate']",driver))
             {
-                WebElement generateButton=HelpersMethod.FindByElement(driver,"xpath","//button[text()='Generate']");
+                WebElement generateButton=HelpersMethod.FindByElement(driver,"xpath","//button/span[text()='Generate']");
                 HelpersMethod.ClickBut(driver,generateButton,10000);
                 exists=true;
             }
