@@ -293,7 +293,7 @@ public class CheckOutOrderPage
     //Click on Add new Delivery address button
     public void Add_Delivery_Address(String Add1,String Add2,String city,String state,String cunt,String zipNo)
     {
-        WebElement WebEle=null;
+        WebElement WebEle;
         Actions act1=new Actions(driver);
         Wait<WebDriver> wait;
         try
@@ -306,9 +306,9 @@ public class CheckOutOrderPage
                 WebEle=HelpersMethod.FindByElement(driver,"id","addAddressButton");
                 HelpersMethod.ClickBut(driver,WebEle,10000);
 
-                if(HelpersMethod.IsExists("//div[contains(text(),'New address')]/ancestor::div[contains(@class,'k-window k-dialog')]",driver))
+                if(HelpersMethod.IsExists("//span[contains(text(),'New address')]/ancestor::div[contains(@class,'k-window k-dialog')]",driver))
                 {
-                    WebElement newAddressPopup=HelpersMethod.FindByElement(driver,"xpath","//div[contains(text(),'New address')]/ancestor::div[contains(@class,'k-window k-dialog')]");
+                    WebElement newAddressPopup=HelpersMethod.FindByElement(driver,"xpath","//span[contains(text(),'New address')]/ancestor::div[contains(@class,'k-window k-dialog')]");
                     WebEle=newAddressPopup.findElement(By.xpath(".//input[@id='Address']"));
                     HelpersMethod.ActSendKey(driver,WebEle,10000,Add1);
                     scenario.log("ADDRESS ENTERED IN FIRST ADDRESS INPUT BOX "+Add1);
@@ -320,11 +320,11 @@ public class CheckOutOrderPage
                     scenario.log("CITY NAME ENTERED IN INPUT BOX "+city);
                     WebEle=newAddressPopup.findElement(By.xpath(".//span[@id='State']"));
                     HelpersMethod.ClickBut(driver,WebEle,10000);
-                    new WebDriverWait(driver, Duration.ofMillis(10000)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class,'k-animation-container k-animation-container-relative k-list-container k-reset i-common-dropdown i-common-dropdown__type-none')]"))));
+                    new WebDriverWait(driver, Duration.ofMillis(10000)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class,'k-animation-container i-common-dropdown i-common-dropdown__type-none k-animation-container-shown')]"))));
 
                     // to fetch the web element of the modal container
-                    WebElement menuContainer = HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-animation-container k-animation-container-relative k-list-container k-reset i-common-dropdown i-common-dropdown__type-none')]");
-                    java.util.List<WebElement> Options=menuContainer.findElements (By.xpath(".//ul/li"));
+                    WebElement menuContainer = HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-animation-container i-common-dropdown i-common-dropdown__type-none k-animation-container-shown')]");
+                    java.util.List<WebElement> Options=menuContainer.findElements (By.xpath(".//ul[@id='State-listbox-id']/li/span"));
                     for(int i=0;i<=Options.size()-1;i++)
                     {
                         WebEle=Options.get(i);
@@ -356,10 +356,10 @@ public class CheckOutOrderPage
                     scenario.log("ZIP VALUE ENTERED IS "+zipNo);
                     WebEle=newAddressPopup.findElement(By.xpath(".//span[@id='Country']"));
                     HelpersMethod.ClickBut(driver,WebEle,10000);
-                    HelpersMethod.waitTillElementLocatedDisplayed(driver,"xpath","//div[contains(@class,'k-animation-container k-animation-container-relative k-list-container k-reset i-common-dropdown i-common-dropdown__type-none k-animation-container-shown')]",4000);
+                    HelpersMethod.waitTillElementLocatedDisplayed(driver,"xpath","//div[contains(@class,'k-animation-container i-common-dropdown i-common-dropdown__type-none k-animation-container-shown')]",10000);
                     // to fetch the web element of the modal container
-                    WebElement menuContainer1 = HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-animation-container k-animation-container-relative k-list-container k-reset i-common-dropdown i-common-dropdown__type-none k-animation-container-shown')]");
-                    List<WebElement> Options1=menuContainer1.findElements (By.xpath(".//ul/li"));
+                    WebElement menuContainer1 = HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-animation-container i-common-dropdown i-common-dropdown__type-none k-animation-container-shown')]");
+                    List<WebElement> Options1=menuContainer1.findElements (By.xpath(".//ul[@id='Country-listbox-id']/li/span"));
                     for(int i=0;i<=Options1.size()-1;i++)
                     {
                         WebEle=Options1.get(i);
@@ -439,10 +439,10 @@ public class CheckOutOrderPage
                             wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
 
                             //Check for Address popup
-                            if (HelpersMethod.IsExists("//div[contains(text(),'Edit address')]/ancestor::div[contains(@class,'k-window k-dialog')]", driver))
+                            if (HelpersMethod.IsExists("//span[contains(text(),'Edit address')]/ancestor::div[contains(@class,'k-window k-dialog')]", driver))
                             {
                                 //Edit the address 2 input box
-                                WebElement editAddressPopup = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(text(),'Edit address')]/ancestor::div[contains(@class,'k-window k-dialog')]");
+                                WebElement editAddressPopup = HelpersMethod.FindByElement(driver, "xpath", "//span[contains(text(),'Edit address')]/ancestor::div[contains(@class,'k-window k-dialog')]");
                                 WebEle = editAddressPopup.findElement(By.xpath(".//input[@id='Address2']"));
                                 HelpersMethod.WebElementClearInput(WebEle);
                                 HelpersMethod.ActSendKey(driver, WebEle, 10000, Change_Add2);
@@ -472,15 +472,15 @@ public class CheckOutOrderPage
                             WebEle = driver.findElement(By.xpath("//td[contains(text(),'" + Add2 + "')]/ancestor::tr/descendant::button[@id='EditAddressButton']"));
                             HelpersMethod.ActClick(driver, WebEle, 1000);
                             //Check for Address popup
-                            if (HelpersMethod.IsExists("//div[contains(text(),'Edit address')]/ancestor::div[contains(@class,'k-window k-dialog')]", driver)) {
+                            if (HelpersMethod.IsExists("//span[contains(text(),'Edit address')]/ancestor::div[contains(@class,'k-window k-dialog')]", driver)) {
                                 //Edit the address 2 input box
-                                WebElement editAddressPopup = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(text(),'Edit address')]/ancestor::div[contains(@class,'k-window k-dialog')]");
+                                WebElement editAddressPopup = HelpersMethod.FindByElement(driver, "xpath", "//span[contains(text(),'Edit address')]/ancestor::div[contains(@class,'k-window k-dialog')]");
                                 WebEle = editAddressPopup.findElement(By.xpath(".//input[@id='Address2']"));
                                 HelpersMethod.WebElementClearInput(WebEle);
                                 HelpersMethod.ActSendKey(driver, WebEle, 1000, Change_Add2);
                                 scenario.log("SECOND ADDRESS HAS BEEN CHANGED TO " + Change_Add2);
                                 WebEle = editAddressPopup.findElement(By.xpath(".//button[@id='ConfirmAddressButton']"));
-                                HelpersMethod.ClickBut(driver, WebEle, 1000);
+                                HelpersMethod.ClickBut(driver, WebEle, 10000);
                                 found = true;
                             }
                         }
@@ -531,9 +531,9 @@ public class CheckOutOrderPage
                             wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
 
                             //handling confirmation popup
-                            if (HelpersMethod.IsExists("//div[contains(text(),'Confirm delete')]/ancestor::div[contains(@class,'k-window k-dialog')]", driver))
+                            if (HelpersMethod.IsExists("//span[contains(text(),'Confirm delete')]/ancestor::div[contains(@class,'k-window k-dialog')]", driver))
                             {
-                                WebElement deleteConfirm = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(text(),'Confirm delete')]/ancestor::div[contains(@class,'k-window k-dialog')]");
+                                WebElement deleteConfirm = HelpersMethod.FindByElement(driver, "xpath", "//span[contains(text(),'Confirm delete')]/ancestor::div[contains(@class,'k-window k-dialog')]");
                                 WebEle = deleteConfirm.findElement(By.xpath(".//button/span[text()='Yes']"));
                                 HelpersMethod.ActClick(driver, WebEle, 10000);
                                 scenario.log("DELIVERY ADDRESS HAS BEEN DELETED");
@@ -570,9 +570,9 @@ public class CheckOutOrderPage
                             wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
 
                             //handling confirmation popup
-                            if (HelpersMethod.IsExists("//div[contains(text(),'Confirm delete')]/ancestor::div[contains(@class,'k-window k-dialog')]", driver))
+                            if (HelpersMethod.IsExists("//span[contains(text(),'Confirm delete')]/ancestor::div[contains(@class,'k-window k-dialog')]", driver))
                             {
-                                WebElement deleteConfirm = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(text(),'Confirm delete')]/ancestor::div[contains(@class,'k-window k-dialog')]");
+                                WebElement deleteConfirm = HelpersMethod.FindByElement(driver, "xpath", "//span[contains(text(),'Confirm delete')]/ancestor::div[contains(@class,'k-window k-dialog')]");
                                 WebEle = deleteConfirm.findElement(By.xpath(".//button/span[text()='Yes']"));
                                 HelpersMethod.ActClick(driver, WebEle, 10000);
                                 scenario.log("DELIVERY ADDRESS HAS BEEN DELETED");
@@ -687,8 +687,8 @@ public class CheckOutOrderPage
             {
                 HelpersMethod.ScrollElement(driver,Add_Payment);
                 HelpersMethod.ClickBut(driver, Add_Payment, 10000);
-                new WebDriverWait(driver, Duration.ofMillis(1000)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(text(),'New payment method')]/ancestor::div[contains(@class,'k-window k-dialog')]")));
-                if (HelpersMethod.IsExists("//div[contains(text(),'New payment method')]/ancestor::div[contains(@class,'k-window k-dialog')]", driver))
+                new WebDriverWait(driver, Duration.ofMillis(1000)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[contains(text(),'New payment method')]/ancestor::div[contains(@class,'k-window k-dialog')]")));
+                if (HelpersMethod.IsExists("//span[contains(text(),'New payment method')]/ancestor::div[contains(@class,'k-window k-dialog')]", driver))
                 {
                     if (PayType.isDisplayed() && PayType.isEnabled())
                     {

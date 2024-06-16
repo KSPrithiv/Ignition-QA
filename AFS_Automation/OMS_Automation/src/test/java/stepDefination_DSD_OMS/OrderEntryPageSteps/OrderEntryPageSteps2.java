@@ -141,7 +141,6 @@ public class OrderEntryPageSteps2
     {
         orderpage=new OrderEntryPage(driver, scenario);
         orderpage.clickRouteIndex();
-        //orderpage.validateRouteDialog();
         //Select Route number using Add Filter
         orderpage.Route_No(TestBase.testEnvironment.get_RouteFilt(),TestBase.testEnvironment.get_Route());
         orderpage.validateRouteSelected(TestBase.testEnvironment.get_Route());
@@ -216,7 +215,7 @@ public class OrderEntryPageSteps2
         }
         else
         {
-            scenario.log("CHECK WITH ADMIN SETTING IS ENABLED OR NOT, SO THAT ONCE CUSTOMER ACC# IS CHANGED SHOULD NAVIGATE TO NEW OE PAGE");
+            scenario.log("<span style='color:red'>CHECK WITH ADMIN SETTING IS ENABLED OR NOT, SO THAT ONCE CUSTOMER ACC# IS CHANGED SHOULD NAVIGATE TO NEW OE PAGE</span>");
             exists=true;
         }
         Assert.assertEquals(exists,true);
@@ -234,7 +233,7 @@ public class OrderEntryPageSteps2
         }
 
         newOE=new NewOrderEntryPage(driver,scenario);
-        newOE.Click_Back_But();
+        newOE.clickBackButtonAccountChange();
 
         orderpage=new OrderEntryPage(driver, scenario);
         orderpage.ValidateOE();

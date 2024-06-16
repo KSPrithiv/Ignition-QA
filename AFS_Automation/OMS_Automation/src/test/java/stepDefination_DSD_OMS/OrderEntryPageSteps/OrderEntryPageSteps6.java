@@ -8,6 +8,7 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.testng.Assert;
 import pages_DSD_OMS.orderEntry.*;
 import util.TestBase;
 
@@ -168,11 +169,19 @@ public class OrderEntryPageSteps6
         if(HelpersMethod.IsExists("//div[@id='paymentMethodCard']",driver))
         {
             Thread.sleep(4000);
-            checkorder.Select_PaymentMethod_ClickDownArrow();
-            if(HelpersMethod.IsExists("//button[@id='allowOrderWithoutPayment']",driver))
+            if(!HelpersMethod.IsExists("//span[contains(text(),'Select payment method')]/following-sibling::div/descendant::span[contains(text(),'without providing payment')]",driver))
             {
-                checkorder.Click_On_Without_Providing_Payment();
+                checkorder.Select_PaymentMethod_ClickDownArrow();
+                if (HelpersMethod.IsExists("//button[@id='allowOrderWithoutPayment']", driver))
+                {
+                    checkorder.Click_On_Without_Providing_Payment();
+                }
             }
+            if(HelpersMethod.IsExists("//span[contains(text(),'Select payment method')]/following-sibling::div/descendant::span[contains(text(),'without providing payment')]",driver))
+            {
+                exists=true;
+            }
+            Assert.assertEquals(exists,true);
             checkorder.DeliveryAddressCard();
             checkorder.NextButton_Click();
         }

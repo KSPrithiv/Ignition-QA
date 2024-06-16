@@ -123,7 +123,6 @@ public class OrderEntryPageSteps1
     {
         List<List<String>> Comment=tabledata.asLists(String.class);
         summary=new CheckOutSummaryPage(driver,scenario);
-        //summary.validateSummaryPage();
         summary.Comment_Popup(Comment.get(0).get(0));
     }
 

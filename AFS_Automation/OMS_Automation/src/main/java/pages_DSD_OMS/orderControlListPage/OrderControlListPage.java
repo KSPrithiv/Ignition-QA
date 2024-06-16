@@ -705,6 +705,7 @@ public class OrderControlListPage
     {
         exists=false;
         WebElement WebEle;
+        WebElement Clear;
         WebDriverWait wait=null;
         try
         {
@@ -712,49 +713,50 @@ public class OrderControlListPage
             {
                 WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='i-filter-toolbar']/descendant::button/descendant::span[contains(text(),'Add filter')]");
                 HelpersMethod.ClickBut(driver, WebEle, 10000);
-            }
 
-            //Click on Clear all button
-            WebElement Clear=driver.findElement(By.xpath("//div[contains(@class,'k-animation-container')]/descendant::button/span[contains(text(),'Clear all')]"));
-            if(Clear.isEnabled()==true)
-            {
-                wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//div[contains(@class,'k-animation-container')]/descendant::button/span[contains(text(),'Clear all')]")));
-                driver.findElement(By.xpath("//div[contains(@class,'k-animation-container')]/descendant::button/span[contains(text(),'Clear all')]")).click();
-                //loading Icon
-                if(HelpersMethod.IsExists("//div[@class='loader']",driver))
+                //Click on Clear all button
+                if (HelpersMethod.IsExists("//button[@class='k-button k-button-md k-button-flat k-button-flat-primary k-rounded-md i-filter-popup__footer__button i-primary']",driver))
                 {
-                    WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000000);
+                    wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//div[contains(@class,'k-animation-container')]/descendant::button/span[contains(text(),'Clear all')]")));
+                    driver.findElement(By.xpath("//div[contains(@class,'k-animation-container')]/descendant::button/span[contains(text(),'Clear all')]")).click();
+                    //loading Icon
+                    if (HelpersMethod.IsExists("//div[@class='loader']", driver))
+                    {
+                        WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
+                        HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000000);
+                    }
+
+                    WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='i-filter-toolbar']/descendant::button/descendant::span[contains(text(),'Add filter')]");
+                    HelpersMethod.ClickBut(driver, WebEle, 10000);
                 }
-            }
 
-            //Enter value in first searchbox in popup
-            WebElement Search1=driver.findElement(By.xpath("//div[contains(@class,'k-animation-container')]/descendant::input[contains(@class,'i-search-box__input')]"));
-            HelpersMethod.EnterText(driver,Search1,10000,SearchValue1);
+                //Enter value in first searchbox in popup
+                WebElement Search1 = driver.findElement(By.xpath("//div[contains(@class,'k-animation-container')]/descendant::input[contains(@class,'i-search-box__input')]"));
+                HelpersMethod.EnterText(driver, Search1, 10000, SearchValue1);
 
-            //Click on checkbox
-            WebElement checkBox=driver.findElement(By.id("DisplayCustomerKey"));
-            HelpersMethod.ActClick(driver,checkBox,10000);
+                //Click on checkbox
+                WebElement checkBox = driver.findElement(By.id("DisplayCustomerKey"));
+                HelpersMethod.ActClick(driver, checkBox, 10000);
 
-            //Enter Value in Search box in 2nd popup
-            new WebDriverWait(driver,Duration.ofMillis(10000)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(@class,'k-animation-container')]/descendant::input[@class='k-textbox']")));
-            if(HelpersMethod.IsExists("//div[contains(@class,'k-animation-container')]/descendant::input[@class='k-textbox']",driver))
-            {
-                WebElement modalContainer=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-animation-container')]");
-                WebElement Search2=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-animation-container')]/descendant::input[contains(@class,'k-textbox')]");
-                HelpersMethod.EnterText(driver, Search2, 10000, SearchBoxValue2);
-
-                //Click on Apply button
-                Clear = HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-animation-container')]/descendant::button/span[text()='Apply']");
-                HelpersMethod.ClickBut(driver,Clear,10000);
-
-                //loading Icon
-                if(HelpersMethod.IsExists("//div[@class='loader']",driver))
+                //Enter Value in Search box in 2nd popup
+                new WebDriverWait(driver, Duration.ofMillis(10000)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='k-animation-container k-animation-container-shown']/descendant::div[contains(@class,'k-textbox')]/input")));
+                if (HelpersMethod.IsExists("//div[@class='k-animation-container k-animation-container-shown']/descendant::div[contains(@class,'k-textbox')]/input", driver))
                 {
-                    WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 2000000);
+                    WebElement Search2 = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='k-animation-container k-animation-container-shown']/descendant::div[contains(@class,'k-textbox')]/input");
+                    HelpersMethod.EnterText(driver, Search2, 10000, SearchBoxValue2);
+
+                    //Click on Apply button
+                    Clear = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='k-animation-container k-animation-container-shown']/descendant::button/span[text()='Apply']");
+                    HelpersMethod.ClickBut(driver, Clear, 10000);
+
+                    //loading Icon
+                    if (HelpersMethod.IsExists("//div[@class='loader']", driver))
+                    {
+                        WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
+                        HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 2000000);
+                    }
+                    scenario.log("ADDFILTER OERATION SUCESSFULL, BY USING ACCOUNT NUMBER");
                 }
-                scenario.log("ADDFILTER OERATION SUCESSFULL, BY USING ACCOUNT NUMBER");
             }
             exists=true;
         }
@@ -768,8 +770,8 @@ public class OrderControlListPage
         WebElement WebEle;
         Actions act1=new Actions(driver);
         int i=0;
-        String head_Text="";
-        String skipText="";
+        String head_Text;
+        String skipText;
         Wait<WebDriver> wait;
         try
         {

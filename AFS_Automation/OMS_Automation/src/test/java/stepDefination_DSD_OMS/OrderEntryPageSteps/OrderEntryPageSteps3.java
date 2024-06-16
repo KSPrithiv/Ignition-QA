@@ -148,7 +148,7 @@ public class OrderEntryPageSteps3
     }
 
     //Code for sorting the products based on Qty entered for 'Units', in products grid of New OE page
-    @And("Click on Aroow symbol to display products based on descending order")
+    @And("Click on Arrow symbol to display products based on descending order")
     public void click_on_arrow_symbol_to_display_products_based_on_descending_order() throws InterruptedException, AWTException
     {
         newOE=new NewOrderEntryPage(driver,scenario);

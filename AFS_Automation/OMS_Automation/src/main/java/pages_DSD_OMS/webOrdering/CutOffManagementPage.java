@@ -43,16 +43,16 @@ public class CutOffManagementPage
     @FindBy(id="CPEnableCutoffCustomerMgmt")
     private WebElement customerToggle;
 
-    @FindBy(xpath="//div[@id='filter-by-branch']/descendant::div[@class='card-setting-area']/descendant::span[@class='k-switch-container']")
+    @FindBy(xpath="//div[@id='filter-by-branch']/descendant::div[@class='card-setting-area']/descendant::span[contains(@class,'k-switch-off')]")
     private WebElement filterBranchToggle;
 
-    @FindBy(xpath="//div[@id='filter-by-warehouse']/descendant::div[@class='card-setting-area']/descendant::span[@class='k-switch-container']")
+    @FindBy(xpath="//div[@id='filter-by-warehouse']/descendant::div[@class='card-setting-area']/descendant::span[contains(@class,'k-switch-off')]")
     private WebElement filterWarehouseToggle;
 
-    @FindBy(xpath="//div[@id='filter-by-route']/descendant::div[@class='card-setting-area']/descendant::span[@class='k-switch-container']")
+    @FindBy(xpath="//div[@id='filter-by-route']/descendant::div[@class='card-setting-area']/descendant::span[contains(@class,'k-switch-off')]")
     private WebElement filterRouteToggle;
 
-    @FindBy(xpath = "//div[@id='filter-by-customer']/descendant::div[@class='card-setting-area']/descendant::span[@class='k-switch-container']")
+    @FindBy(xpath = "//div[@id='filter-by-customer']/descendant::div[@class='card-setting-area']/descendant::span[contains(@class,'k-switch-off')]")
     private WebElement filterCustomerMangementToggle;
 
     @FindBy(xpath="//div[@id='filter-by-branch']/descendant::span[@id='filter-by-active-cutoff-times']")
@@ -67,7 +67,7 @@ public class CutOffManagementPage
     @FindBy(xpath="//div[@id='filter-by-customer']/descendant::span[@id='filter-by-active-cutoff-times']")
     private WebElement customerManagementFilterCutoffTime;
 
-    @FindBy(xpath="//div[@id='filter-by-branch']/descendant::span[@id='cutoff-branches']")
+    @FindBy(xpath="//span[@id='cutoff-branches']/descendant::button")
     private WebElement branchDropdown;
 
     @FindBy(xpath="//div[@id='filter-by-warehouse']/descendant::span[@id='cutoff-branches']")
@@ -124,23 +124,34 @@ public class CutOffManagementPage
         exists=false;
         try
         {
+            Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(400))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
             if(filterBranchToggle.isDisplayed())
             {
                 HelpersMethod.ScrollElement(driver, filterBranchToggle);
-                if(!HelpersMethod.IsExists("//div[@id='filter-by-branch']/descendant::div[@class='card-setting-area']/descendant::span[@class='k-switch-container' and @aria-checked='true']",driver))
+                if(!HelpersMethod.IsExists("//div[@id='filter-by-branch']/descendant::div[@class='card-setting-area']/descendant::span[contains(@class,'k-switch-on')]",driver))
                 {
-                    HelpersMethod.JScriptClick(driver, filterBranchToggle, 1000);
+                    HelpersMethod.JScriptClick(driver, filterBranchToggle, 10000);
                     scenario.log("FILTER BRANCH TOGGLE BUTTON");
-                    if (HelpersMethod.IsExists("//div[@class='loader']", driver))
-                    {
-                        WebElement WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                        HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 200000);
-                    }
+                    wait = new FluentWait<WebDriver>(driver)
+                            .withTimeout(Duration.ofSeconds(400))
+                            .pollingEvery(Duration.ofSeconds(2))
+                            .ignoring(NoSuchElementException.class);
+                    wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
                 }
-                    if (HelpersMethod.IsExists("//div[@id='filter-by-branch']/descendant::div[@class='card-setting-area']/descendant::span[@class='k-switch-container' and @aria-checked='true']", driver))
+                    if (HelpersMethod.IsExists("//div[@id='filter-by-branch']/descendant::div[@class='card-setting-area']/descendant::span[contains(@class,'k-switch-on')]", driver))
                     {
                         exists = true;
                     }
+                wait = new FluentWait<WebDriver>(driver)
+                        .withTimeout(Duration.ofSeconds(400))
+                        .pollingEvery(Duration.ofSeconds(2))
+                        .ignoring(NoSuchElementException.class);
+                wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
             }
             Assert.assertTrue(exists);
         }
@@ -683,7 +694,7 @@ public class CutOffManagementPage
         {
             if(filterRouteToggle.isDisplayed())
             {
-                if(!HelpersMethod.IsExists("//div[@id='filter-by-route']/descendant::div[@class='card-setting-area']/descendant::span[@class='k-switch-container' and @aria-checked='true']",driver))
+                if(!HelpersMethod.IsExists("//div[@id='filter-by-route']/descendant::div[@class='card-setting-area']/descendant::span[contains(@class,'k-switch-on')]",driver))
                 {
                     HelpersMethod.ScrollElement(driver, filterRouteToggle);
                     HelpersMethod.JScriptClick(driver, filterRouteToggle, 1000);
@@ -694,7 +705,7 @@ public class CutOffManagementPage
                             .ignoring(NoSuchElementException.class);
                     wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
                 }
-                if(HelpersMethod.IsExists("//div[@id='filter-by-route']/descendant::div[@class='card-setting-area']/descendant::span[@class='k-switch-container' and @aria-checked='true']",driver))
+                if(HelpersMethod.IsExists("//div[@id='filter-by-route']/descendant::div[@class='card-setting-area']/descendant::span[contains(@class,'k-switch-on')]",driver))
                 {
                     exists=true;
                 }
@@ -711,7 +722,7 @@ public class CutOffManagementPage
         {
             if(filterCustomerMangementToggle.isDisplayed())
             {
-                if(!HelpersMethod.IsExists("//div[@id='filter-by-customer']/descendant::div[@class='card-setting-area']/descendant::span[@class='k-switch-container' and @aria-checked='true']",driver))
+                if(!HelpersMethod.IsExists("//div[@id='filter-by-customer']/descendant::div[@class='card-setting-area']/descendant::span[contains(@class,'k-switch-on')]",driver))
                 {
                     HelpersMethod.ScrollElement(driver, filterCustomerMangementToggle);
                     HelpersMethod.JScriptClick(driver, filterCustomerMangementToggle, 1000);
@@ -722,7 +733,7 @@ public class CutOffManagementPage
                             .ignoring(NoSuchElementException.class);
                     wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
                 }
-                if(HelpersMethod.IsExists("//div[@id='filter-by-customer']/descendant::div[@class='card-setting-area']/descendant::span[@class='k-switch-container' and @aria-checked='true']",driver))
+                if(HelpersMethod.IsExists("//div[@id='filter-by-customer']/descendant::div[@class='card-setting-area']/descendant::span[contains(@class,'k-switch-on')]",driver))
                 {
                     exists=true;
                 }
@@ -739,7 +750,7 @@ public class CutOffManagementPage
         {
             if(filterWarehouseToggle.isDisplayed())
             {
-                if(!HelpersMethod.IsExists("//div[@id='filter-by-warehouse']/descendant::div[@class='card-setting-area']/descendant::span[@class='k-switch-container' and @aria-checked='true']",driver))
+                if(!HelpersMethod.IsExists("//div[@id='filter-by-warehouse']/descendant::div[@class='card-setting-area']/descendant::span[contains(@class,'k-switch-on')]",driver))
                 {
                     HelpersMethod.ScrollElement(driver, filterWarehouseToggle);
                     HelpersMethod.JScriptClick(driver, filterWarehouseToggle, 1000);
@@ -750,7 +761,7 @@ public class CutOffManagementPage
                             .ignoring(NoSuchElementException.class);
                     wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
                 }
-                    if (HelpersMethod.IsExists("//div[@id='filter-by-warehouse']/descendant::div[@class='card-setting-area']/descendant::span[@class='k-switch-container' and @aria-checked='true']", driver))
+                    if (HelpersMethod.IsExists("//div[@id='filter-by-warehouse']/descendant::div[@class='card-setting-area']/descendant::span[contains(@class,'k-switch-on')]", driver))
                     {
                         exists = true;
                     }

@@ -128,6 +128,7 @@ public class OrderEntryPageSteps
         }
         orderpage.Refresh_Page2();
         orderpage.NavigateingToOrderEntry();
+        orderpage.startDisabledChangeDeliveryDate();
         orderpage.Read_DeliveryDate();
         newOE=new NewOrderEntryPage(driver,scenario);
         newOE.Discard_All_Pending_Order();
@@ -162,6 +163,7 @@ public class OrderEntryPageSteps
         {
             orderpage = new OrderEntryPage(driver, scenario);
             orderpage.ValidateOE();
+
             //find whether route is empty or not, if empty should select some route value
             String routeNo = orderpage.validateRouteValue();
             if (routeNo == null || routeNo.equals(""))
@@ -592,6 +594,7 @@ public class OrderEntryPageSteps
     {
         orderpage=new OrderEntryPage(driver, scenario);
         exists=orderpage.Verify_OE_Title();
+        orderpage.AddfilterSearch("Order #",Ord_No);
         HelpersMethod.AddFilterSearch(driver,"Order #",Ord_No);
     }
 

@@ -33,7 +33,7 @@ public class CutOffManagementPickupOrderPage
     @FindBy(id="CPEnablePickupCutoffWarehouseMgmt")
     private WebElement warehouseToggle;
 
-    @FindBy(xpath="//div[@id='filter-by-branch']/descendant::div[@class='card-setting-area']/descendant::span[@class='k-switch-container']")
+    @FindBy(xpath="//div[@id='filter-by-branch']/descendant::div[@class='card-setting-area']/descendant::span[contains(@class,'k-switch-sm')]")
     private WebElement filterBranchToggle;
 
     @FindBy(xpath="//div[@id='filter-by-branch']/descendant::span[@id='filter-by-active-cutoff-times']")
@@ -48,7 +48,7 @@ public class CutOffManagementPickupOrderPage
     @FindBy(id="CPEnablePickupCutoffWarehouseMgmt")
     private WebElement wareHouseToggle;
 
-    @FindBy(xpath="//div[@id='filter-by-warehouse']/descendant::div[@class='card-setting-area']/descendant::span[@class='k-switch-container']")
+    @FindBy(xpath="//div[@id='filter-by-warehouse']/descendant::div[@class='card-setting-area']/descendant::span[contains(@class,'k-switch-sm')]")
     private WebElement filterWarehouseToggle;
 
     @FindBy(xpath="//div[@id='filter-by-warehouse']/descendant::span[@id='filter-by-active-cutoff-times']")
@@ -76,7 +76,7 @@ public class CutOffManagementPickupOrderPage
             {
                 if(!HelpersMethod.IsExists("//span[@id='CPEnablePickupCutoffBranchMgmt' and @aria-checked='true']",driver))
                 {
-                    HelpersMethod.JScriptClick(driver, branchToggle, 2000);
+                    HelpersMethod.JScriptClick(driver, branchToggle, 10000);
                     scenario.log("BRANCH TOGGLE BUTTON SELECTED");
                     if (HelpersMethod.IsExists("//div[@class='loader']", driver))
                     {
@@ -101,7 +101,7 @@ public class CutOffManagementPickupOrderPage
         {
             if(filterBranchToggle.isDisplayed())
             {
-                if(!HelpersMethod.IsExists("//div[@id='filter-by-branch']/descendant::div[@class='card-setting-area']/descendant::span[@class='k-switch-container' and @aria-checked='true']",driver))
+                if(!HelpersMethod.IsExists("//div[@id='filter-by-branch']/descendant::div[@class='card-setting-area']/descendant::span[contains(@class,'k-switch-on')]",driver))
                 {
                     HelpersMethod.ScrollElement(driver, filterBranchToggle);
                     HelpersMethod.JScriptClick(driver, filterBranchToggle, 1000);
@@ -112,7 +112,7 @@ public class CutOffManagementPickupOrderPage
                         HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 200000);
                     }
                 }
-                if (HelpersMethod.IsExists("//div[@id='filter-by-branch']/descendant::div[@class='card-setting-area']/descendant::span[@class='k-switch-container' and @aria-checked='true']", driver))
+                if (HelpersMethod.IsExists("//div[@id='filter-by-branch']/descendant::div[@class='card-setting-area']/descendant::span[contains(@class,'k-switch-on')]", driver))
                 {
                     exists = true;
                 }
@@ -379,7 +379,7 @@ public class CutOffManagementPickupOrderPage
                     exists = true;
                 }
             }
-            Assert.assertTrue(exists);
+            Assert.assertEquals(exists,true);
         }
         catch (Exception e){}
     }
@@ -391,7 +391,7 @@ public class CutOffManagementPickupOrderPage
         {
             if(filterWarehouseToggle.isDisplayed())
             {
-                if(!HelpersMethod.IsExists("//div[@id='filter-by-warehouse']/descendant::div[@class='card-setting-area']/descendant::span[@class='k-switch-container' and @aria-checked='true']",driver))
+                if(!HelpersMethod.IsExists("//div[@id='filter-by-warehouse']/descendant::div[@class='card-setting-area']/descendant::span[contains(@class,'k-switch-on')]",driver))
                 {
                     HelpersMethod.ScrollElement(driver, filterWarehouseToggle);
                     HelpersMethod.ActClick(driver, filterWarehouseToggle, 10000);
@@ -402,7 +402,7 @@ public class CutOffManagementPickupOrderPage
                         HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 200000);
                     }
                 }
-                if (HelpersMethod.IsExists("//div[@id='filter-by-warehouse']/descendant::div[@class='card-setting-area']/descendant::span[@class='k-switch-container' and @aria-checked='true']", driver))
+                if (HelpersMethod.IsExists("//div[@id='filter-by-warehouse']/descendant::div[@class='card-setting-area']/descendant::span[contains(@class,'k-switch-on')]", driver))
                 {
                     exists = true;
                 }
