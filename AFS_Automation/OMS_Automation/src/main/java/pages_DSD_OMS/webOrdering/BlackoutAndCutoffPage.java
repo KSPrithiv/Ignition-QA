@@ -12,6 +12,7 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.Wait;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import util.RandomValues;
 import util.TestBase;
@@ -95,14 +96,22 @@ public class BlackoutAndCutoffPage
         try
         {
             WebElement modelContainer=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-window k-dialog')]");
-            WebElement calenderButton=modelContainer.findElement(By.xpath(".//a[@class='k-select']"));
+            WebElement calenderButton=modelContainer.findElement(By.xpath(".//label[@id='new-blackout-date-label']/following-sibling::span/descendant::button//*[local-name()='svg']"));
             HelpersMethod.ActClick(driver,calenderButton,10000);
 
+            new WebDriverWait(driver,Duration.ofMillis(10000)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(@class,'k-animation-container k-animation-container-shown')]")));
+            String status = HelpersMethod.returnDocumentStatus(driver);
+            if (status.equals("loading"))
+            {
+                HelpersMethod.waitTillLoadingPage(driver);
+            }
+            new WebDriverWait(driver,Duration.ofMillis(10000)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(@class,'k-animation-container k-animation-container-shown')]")));
+
             //verify existence of calender and select date
-            if(HelpersMethod.IsExists("//div[contains(@class,'k-widget k-calendar k-calendar-infinite')]",driver))
+            if(HelpersMethod.IsExists("//div[contains(@class,'k-animation-container k-animation-container-shown')]",driver))
             {
                 WebElement blackOutDate= HelpersMethod.FindByElement(driver,"xpath","//td[contains(@class,'k-calendar-td k-state-pending-focus')]");
-                HelpersMethod.ClickBut(driver,blackOutDate,10000);
+                HelpersMethod.ActClick(driver,blackOutDate,10000);
                 //read blackout date
                 WebElement readDate=HelpersMethod.FindByElement(driver,"id","new-blackout-date");
                 readBlackoutDate=HelpersMethod.AttributeValue(readDate,"value");
@@ -320,7 +329,7 @@ public class BlackoutAndCutoffPage
         exists=false;
         try
         {
-            if(HelpersMethod.IsExists("//div[contains(text(),'Confirm delete')]/ancestor::div[contains(@class,'k-window k-dialog')]",driver))
+            if(HelpersMethod.IsExists("//span[contains(text(),'Confirm delete')]/ancestor::div[contains(@class,'k-window k-dialog')]",driver))
             {
                 exists=true;
             }
@@ -334,9 +343,9 @@ public class BlackoutAndCutoffPage
         exists=false;
         try
         {
-            if(HelpersMethod.IsExists("//div[contains(text(),'Confirm delete')]/ancestor::div[contains(@class,'k-window k-dialog')]",driver))
+            if(HelpersMethod.IsExists("//span[contains(text(),'Confirm delete')]/ancestor::div[contains(@class,'k-window k-dialog')]",driver))
             {
-                WebElement okButton=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-window k-dialog')]/descendant::button/span[text()='Ok']");
+                WebElement okButton=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-window k-dialog')]/descendant::button/span[text()='OK']");
                 HelpersMethod.ClickBut(driver,okButton,1000);
                 scenario.log("BLACKOUTS DATE HAS BEEN DELETED");
                 if(HelpersMethod.IsExists("//div[@class='loader']",driver))
@@ -358,8 +367,8 @@ public class BlackoutAndCutoffPage
         {
             if(HelpersMethod.IsExists("//div[contains(text(),'The information has been saved successfully.')]/ancestor::div[contains(@class,'k-window k-dialog')]",driver))
             {
-                WebElement okButton=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-window k-dialog')]/descendant::button/span[text()='Ok']");
-                HelpersMethod.ClickBut(driver,okButton,1000);
+                WebElement okButton=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-window k-dialog')]/descendant::button/span[text()='OK']");
+                HelpersMethod.ClickBut(driver,okButton,10000);
                 exists=true;
             }
         }

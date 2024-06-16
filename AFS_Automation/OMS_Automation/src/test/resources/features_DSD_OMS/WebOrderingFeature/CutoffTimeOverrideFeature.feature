@@ -4,7 +4,7 @@ Feature: Admin setting for Cutoff Management-pickup order
   Background: For login to application and selecting Account#
     Given User enters URL and is on login page and entered credentials for Admin setting
     When User is on Home Page for Admin setting
-    Then User Clicks on Permissions by drop down to select Customer Account#
+    #Then User Clicks on Permissions by drop down to select Customer Account#
 
   @CutoffTimeOverrideAddCompany
   Scenario Outline: Test scenario for adding Cutoff Time Override

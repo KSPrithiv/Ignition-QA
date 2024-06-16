@@ -279,7 +279,7 @@ public class StatementsPage
             prYear=HelpersMethod.FindByElement(driver,"xpath","//span[@id='ddlYear']/span[contains(@class,'input')]").getText();
             scenario.log("YEAR BEFORE CHAINGING: "+prYear);
             HelpersMethod.ClickBut(driver,yearlyDropdown,1000);
-            List<WebElement> Values=HelpersMethod.FindByElements(driver,"xpath","//div[contains(@class,'k-animation-container ')]/descendant::ul/li");
+            List<WebElement> Values=HelpersMethod.FindByElements(driver,"xpath","//ul[@id='ddlYear-listbox-id']/li/span");
             for(int i=0;i<= Values.size()-1;i++)
             {
                 YearFromDropDown = Values.get(i);
@@ -320,10 +320,9 @@ public class StatementsPage
     public void MonthDropdown()
     {
         exists=false;
-        Actions act=new Actions(driver);
-        String prMonth=null;
-        String pMonth=null;
-        String status="";
+        String prMonth;
+        String pMonth;
+        String status;
         WebElement monthFromDropDown;
         try
         {
@@ -331,24 +330,9 @@ public class StatementsPage
             scenario.log("MONTH BEFORE CHANGING: "+prMonth);
             HelpersMethod.ClickBut(driver,monthDropdown,10000);
             Thread.sleep(1000);
-            new WebDriverWait(driver,Duration.ofMillis(20000)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(@class,'k-animation-container ')]/descendant::ul/li")));
-            List<WebElement> Values=HelpersMethod.FindByElements(driver,"xpath","//div[contains(@class,'k-animation-container ')]/descendant::ul/li");
-           /* for(int i=0;i<= Values.size()-1;i++)
-            {
-                monthFromDropDown = Values.get(i);
-                act.moveToElement(monthFromDropDown).build().perform();
-                if(i==2)
-                {
-                    act.moveToElement(monthFromDropDown).build().perform();
-                    act.click(monthFromDropDown).build().perform();
-                    status = HelpersMethod.returnDocumentStatus(driver);
-                    if (status.equals("loading"))
-                    {
-                        HelpersMethod.waitTillLoadingPage(driver);
-                    }
-                    break;
-                }
-            }*/
+            new WebDriverWait(driver,Duration.ofMillis(20000)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//ul[@id='ddlMonth-listbox-id']/li/span")));
+            List<WebElement> Values=HelpersMethod.FindByElements(driver,"xpath","//ul[@id='ddlMonth-listbox-id']/li/span");
+
             // get the len of Month list
             int maxMonth = Values.size();
             // get random number

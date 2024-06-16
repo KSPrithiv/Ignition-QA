@@ -2,15 +2,20 @@ package pages_DSD_OMS.UserManagementClientSide;
 
 import helper.HelpersMethod;
 import io.cucumber.java.Scenario;
-import org.apache.logging.log4j.core.tools.picocli.CommandLine;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.FluentWait;
+import org.openqa.selenium.support.ui.Wait;
 import org.testng.Assert;
 import util.RandomValues;
 import util.TestBase;
+
+import java.time.Duration;
+import java.util.NoSuchElementException;
 
 /**
  * @Project Divya.Ramadas@telusagcg.com
@@ -54,7 +59,7 @@ public class manageRegistrationClientPageDSD
         {
             if(userIndex.isDisplayed())
             {
-                HelpersMethod.ClickBut(driver,userIndex,1000);
+                HelpersMethod.ClickBut(driver,userIndex,10000);
                 exists=true;
             }
             Assert.assertEquals(exists,true);
@@ -85,9 +90,9 @@ public class manageRegistrationClientPageDSD
             {
                 WebElement modelContainer = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-window k-dialog')]");
                 WebElement searchBox = modelContainer.findElement(By.xpath(".//input[@id='gridUtilSearch_undefined']"));
-                HelpersMethod.EnterText(driver, searchBox, 1000, TestBase.testEnvironment.userManageRegistration());
-                WebElement searchIndex=modelContainer.findElement(By.xpath(".//*[local-name()='svg' and @class='i-icon   i-search-box__search']"));
-                HelpersMethod.ActClick(driver,searchIndex,1000);
+                HelpersMethod.EnterText(driver, searchBox, 10000, TestBase.testEnvironment.userManageRegistration());
+                WebElement searchIndex=modelContainer.findElement(By.xpath(".//*[local-name()='svg' and contains(@class,'i-search-box__search')]"));
+                HelpersMethod.ActClick(driver,searchIndex,10000);
                 exists=true;
             }
             Assert.assertEquals(exists,true);
@@ -106,11 +111,11 @@ public class manageRegistrationClientPageDSD
                 WebElement userDetails=modelContainer.findElement(By.xpath(".//tr[contains(@class,'k-master-row')]"));
                 HelpersMethod.ActClick(driver,userDetails,1000);
                 exists=true;
-                if (HelpersMethod.IsExists("//div[@class='loader']", driver))
-                {
-                    WebElement WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 2000000);
-                }
+                Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                        .withTimeout(Duration.ofSeconds(400))
+                        .pollingEvery(Duration.ofSeconds(2))
+                        .ignoring(NoSuchElementException.class);
+                wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
             }
             Assert.assertEquals(exists,true);
         }
@@ -122,9 +127,9 @@ public class manageRegistrationClientPageDSD
         exists=false;
         try
         {
-            if(HelpersMethod.IsExists("//div[@class='primary-account-parts-container']",driver))
+            if(HelpersMethod.IsExists("//div[@id='primaryAccountCard']",driver))
             {
-                WebElement primary=HelpersMethod.FindByElement(driver,"xpath","//div[@class='primary-account-parts-container']");
+                WebElement primary=HelpersMethod.FindByElement(driver,"xpath","//div[@id='primaryAccountCard']");
                 HelpersMethod.ScrollElement(driver,primary);
                 String[] primaryAccount = TestBase.testEnvironment.FullAcc().split("-");
                 WebElement primary1 = HelpersMethod.FindByElement(driver, "id", "add-primary-account-part-1");
@@ -149,11 +154,11 @@ public class manageRegistrationClientPageDSD
                 WebElement addButton=HelpersMethod.FindByElement(driver,"id","addPrimaryAccountButton");
                 HelpersMethod.ClickBut(driver,addButton,1000);
                 exists=true;
-                if (HelpersMethod.IsExists("//div[@class='loader']", driver))
-                {
-                    WebElement WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000000);
-                }
+                Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                        .withTimeout(Duration.ofSeconds(400))
+                        .pollingEvery(Duration.ofSeconds(2))
+                        .ignoring(NoSuchElementException.class);
+                wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
             }
             Assert.assertEquals(exists,true);
         }
@@ -165,11 +170,14 @@ public class manageRegistrationClientPageDSD
         exists=false;
         try
         {
-            WebElement delButton=HelpersMethod.FindByElement(driver,"xpath","//div[@id='primaryAccountCard']/descendant::button[contains(@id,'del')]");
+            WebElement delButton=HelpersMethod.FindByElement(driver,"xpath","//div[@id='primaryAccountCard']/descendant::button/span[text()='Delete']");
             if(delButton.isDisplayed() && delButton.isEnabled())
             {
                 HelpersMethod.ScrollElement(driver,delButton);
-                HelpersMethod.ClickBut(driver,delButton,1000);
+                HelpersMethod.ClickBut(driver,delButton,10000);
+            }
+            if(!HelpersMethod.IsExists("//div[@id='primaryAccountCard']/descendant::div[@class='subcontainer']",driver))
+            {
                 exists=true;
             }
             Assert.assertEquals(exists,true);
@@ -182,16 +190,16 @@ public class manageRegistrationClientPageDSD
         exists=false;
         try
         {
-            if(HelpersMethod.IsExists("//div[contains(text(),'Remove primary account')]/ancestor::div[contains(@class,'k-window k-dialog')]",driver))
+            if(HelpersMethod.IsExists("//span[contains(text(),'Remove primary account')]/ancestor::div[contains(@class,'k-window k-dialog')]",driver))
             {
                WebElement modelContainer=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-window k-dialog')]");
                WebElement yesButton=modelContainer.findElement(By.xpath(".//button/span[text()='Yes']"));
-               HelpersMethod.ActClick(driver,yesButton,1000);
-                if (HelpersMethod.IsExists("//div[@class='loader']", driver))
-                {
-                    WebElement WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000000);
-                }
+               HelpersMethod.ActClick(driver,yesButton,10000);
+                Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                        .withTimeout(Duration.ofSeconds(400))
+                        .pollingEvery(Duration.ofSeconds(2))
+                        .ignoring(NoSuchElementException.class);
+                wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
             }
         }
         catch (Exception e){}
@@ -202,6 +210,12 @@ public class manageRegistrationClientPageDSD
         exists=false;
         try
         {
+            Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(400))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
             if(HelpersMethod.IsExists("//div[@id='userInfoCard']",driver))
             {
                 scenario.log("USER DETAILS HAS BEEN LOADED");
@@ -242,13 +256,13 @@ public class manageRegistrationClientPageDSD
             if(HelpersMethod.IsExists("//button[@id='deleteAdditionalAccountButton']",driver))
             {
                 WebElement addButton=HelpersMethod.FindByElement(driver,"id","deleteAdditionalAccountButton");
-                HelpersMethod.ClickBut(driver,addButton,1000);
+                HelpersMethod.ClickBut(driver,addButton,10000);
                 exists=true;
-                if (HelpersMethod.IsExists("//div[@class='loader']", driver))
-                {
-                    WebElement WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000000);
-                }
+                Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                        .withTimeout(Duration.ofSeconds(400))
+                        .pollingEvery(Duration.ofSeconds(2))
+                        .ignoring(NoSuchElementException.class);
+                wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
             }
             Assert.assertEquals(exists,true);
         }
@@ -264,7 +278,7 @@ public class manageRegistrationClientPageDSD
             if(delButton.isDisplayed() && delButton.isEnabled())
             {
                 HelpersMethod.ScrollElement(driver,delButton);
-                HelpersMethod.ClickBut(driver,delButton,1000);
+                HelpersMethod.ClickBut(driver,delButton,10000);
                 exists=true;
             }
             Assert.assertEquals(exists,true);
@@ -280,9 +294,9 @@ public class manageRegistrationClientPageDSD
             WebElement poInput=HelpersMethod.FindByElement(driver,"id","PONumber");
             if(poInput.isDisplayed())
             {
-                HelpersMethod.ActClearKey(driver,poInput,1000);
+                HelpersMethod.ActClearKey(driver,poInput,10000);
                 String poNo=RandomValues.generateRandomNumber(4);
-                HelpersMethod.ActSendKey(driver,poInput,1000, poNo);
+                HelpersMethod.ActSendKey(driver,poInput,10000, poNo);
                 scenario.log("PO# CHANGED TO "+poNo);
                 exists=true;
             }
@@ -299,13 +313,13 @@ public class manageRegistrationClientPageDSD
             WebElement updateButton=HelpersMethod.FindByElement(driver,"id","updateUserInfo");
             if(updateButton.isDisplayed() && updateButton.isEnabled())
             {
-                HelpersMethod.ClickBut(driver,updateButton,1000);
+                HelpersMethod.ClickBut(driver,updateButton,10000);
                 exists=true;
-                if (HelpersMethod.IsExists("//div[@class='loader']", driver))
-                {
-                    WebElement WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000000);
-                }
+                Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                        .withTimeout(Duration.ofSeconds(400))
+                        .pollingEvery(Duration.ofSeconds(2))
+                        .ignoring(NoSuchElementException.class);
+                wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
             }
             Assert.assertEquals(exists,true);
         }

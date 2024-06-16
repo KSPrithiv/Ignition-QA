@@ -42,8 +42,8 @@ Feature: Order control list1
     Then User should select Order taker from drop down
     And Change the delivery date 2 days after current date
     And User clicks on All radio button
-    #Then User should search for valid customers in OCL
-    #  |Milos|
+    Then User should search for valid customers in OCL
+      |Milos|
     Then User should find the customer to whom comment has to be added and click on Comment icon
     And Read all the Notes in Customer note grid and select one note
       |Testing for Notes at customer level_OCL|
@@ -57,8 +57,8 @@ Feature: Order control list1
     Then User should select Order taker from drop down
     And Change the delivery date 2 days after current date
     And User clicks on All radio button
-    #Then User should search for valid customers in OCL
-    #  |Milos|
+    Then User should search for valid customers in OCL
+      |Milos|
     Then User should find the customer to whom comment has to be added and click on Comment icon
     And Read all the Notes in Customer note grid and select one note for Deleting
       |Testing for Notes at customer level_OCL|

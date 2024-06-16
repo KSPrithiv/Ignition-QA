@@ -51,7 +51,7 @@ public class OrderHistoryPage
     @FindBy(xpath="//button/span[text()='Orders']")
     private WebElement OrderButton;
 
-    @FindBy(id="grid-selection-dropdown")
+    @FindBy(xpath="//span[@id='grid-selection-dropdown']/descendant::button")
     private WebElement gridType;
 
     //Actions
@@ -193,8 +193,7 @@ public class OrderHistoryPage
     public void Click_On_RowIn_OrderHistoryGrid()
     {
         Actions act1=new Actions(driver);
-        WebElement statu;
-        String statusText=null;
+        String statusText;
         exists=false;
         int i=0;
         try
@@ -321,7 +320,7 @@ public class OrderHistoryPage
     {
         try
         {
-            if (HelpersMethod.IsExists("//div/span[contains(text(),'Select delivery date')]/ancestor::div[contains(@class,'k-window k-dialog')]", driver))
+            if (HelpersMethod.IsExists("//span[contains(text(),'Select delivery date')]/ancestor::div[contains(@class,'k-window k-dialog')]", driver))
             {
                 WebElement selectDeliveryDate = HelpersMethod.FindByElement(driver, "xpath", "//div/span[contains(text(),'Select delivery date')]/ancestor::div[contains(@class,'k-window k-dialog')]");
                 WebElement newOrder = selectDeliveryDate.findElement(By.xpath(".//tr[contains(@class,'k-master-row')][1]"));
@@ -378,9 +377,9 @@ public class OrderHistoryPage
             wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
 
             //handling Select order no. popup
-            if(HelpersMethod.IsExists("//span[contains(text(),'Select order')]/ancestor::div[contains(@class,'modal-content')]",driver))
+            if(HelpersMethod.IsExists("//div[contains(text(),'Select order')]/ancestor::div[contains(@class,'modal-content')]",driver))
             {
-                WebElement modalContainer = driver.findElement(By.xpath("//span[contains(text(),'Select order')]/ancestor::div[contains(@class,'modal-content')]"));
+                WebElement modalContainer = driver.findElement(By.xpath("//div[contains(@class,'modal-content')]"));
 
                 WebEle=modalContainer.findElement(By.xpath(".//div[@class='list-group']/div[text()='New order']"));
                 HelpersMethod.ActClick(driver,WebEle,10000);
@@ -409,7 +408,7 @@ public class OrderHistoryPage
         exists=false;
         try
         {
-            if(HelpersMethod.IsExists("//button[@data-test-id='grid-selection']",driver))
+            if(HelpersMethod.IsExists("//span[@id='grid-selection-dropdown']/descendant::button",driver))
             {
                 HelpersMethod.JScriptClick(driver,gridType,10000);
                 exists=true;
@@ -423,27 +422,27 @@ public class OrderHistoryPage
     {
         exists=false;
         Actions act1=new Actions(driver);
-        WebElement opt;
+        String optText;
         try
         {
-            List<WebElement> Options=HelpersMethod.FindByElements(driver,"xpath","//div[contains(@class,'k-animation-container k-animation-container-relative k-list-container')]/descendant::ul/li");
-            for (int i=0;i<=Options.size()-1;i++)
+            List<WebElement> Options=HelpersMethod.FindByElements(driver,"xpath","//ul[@id='grid-selection-dropdown-listbox-id']/li/span");
+            for(WebElement opt:Options)
             {
-                opt=Options.get(i);
-                if(i==1)
+                act1.moveToElement(opt).build().perform();
+                optText=opt.getText();
+                if (optText.equals(gType))
                 {
                     act1.moveToElement(opt).build().perform();
-                        act1.moveToElement(opt).build().perform();
-                        act1.click(opt).build().perform();
-                        exists = true;
-                        if (HelpersMethod.IsExists("//div[@class='loader']", driver))
-                        {
-                            WebElement WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000000);
-                        }
-                        break;
+                    act1.click(opt).build().perform();
+                    exists=true;
+                    break;
                 }
             }
+            Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(400))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
             Assert.assertEquals(exists,true);
         }
         catch (Exception e){}
@@ -454,8 +453,8 @@ public class OrderHistoryPage
             exists=false;
             try
             {
-                String gridValue=HelpersMethod.FindByElement(driver,"xpath","//button[@data-test-id='grid-selection']/span[@class='k-input']").getText();
-                if(!gridValue.equals(""))
+                String gridValue=HelpersMethod.FindByElement(driver,"xpath","//span[@id='grid-selection-dropdown']/descendant::span[@class='k-input-value-text']").getText();
+                if(gridValue.equals(gType))
                 {
                     scenario.log("GRID TYPE SELECTED IS "+gridValue);
                     exists=true;
@@ -469,18 +468,17 @@ public class OrderHistoryPage
     {
         exists=false;
         Actions act1=new Actions(driver);
-        //WebElement opt;
         String optText;
         try
         {
-            new WebDriverWait(driver,Duration.ofMillis(2000)).until(ExpectedConditions.refreshed(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='k-child-animation-container']/descendant::ul/li"))));
-            List<WebElement> Options=HelpersMethod.FindByElements(driver,"xpath","//div[@class='k-child-animation-container']/descendant::ul/li");
+            new WebDriverWait(driver,Duration.ofMillis(2000)).until(ExpectedConditions.refreshed(ExpectedConditions.visibilityOfElementLocated(By.xpath("//ul[@id='grid-selection-dropdown-listbox-id']/li/span"))));
+            List<WebElement> Options=HelpersMethod.FindByElements(driver,"xpath","//ul[@id='grid-selection-dropdown-listbox-id']/li/span");
             //for (int i=0;i<=Options.size()-1;i++)
             for(WebElement opt:Options)
             {
                 act1.moveToElement(opt).build().perform();
                 optText=opt.getText();
-                if (optText.equals("Main grid"))
+                if (!optText.equals("Main grid"))
                 {
                     act1.moveToElement(opt).build().perform();
                     act1.click(opt).build().perform();
@@ -505,8 +503,8 @@ public class OrderHistoryPage
         exists=false;
         try
         {
-            String gridValue=HelpersMethod.FindByElement(driver,"xpath","//button[@data-test-id='grid-selection']/span[@class='k-input']").getText();
-            if(!gridValue.equals(""))
+            String gridValue=HelpersMethod.FindByElement(driver,"xpath","//span[@id='grid-selection-dropdown']/descendant::span[@class='k-input-value-text']").getText();
+            if(!gridValue.equals("Main grid"))
             {
                 scenario.log("GRID TYPE SELECTED IS "+gridValue);
                 exists=true;

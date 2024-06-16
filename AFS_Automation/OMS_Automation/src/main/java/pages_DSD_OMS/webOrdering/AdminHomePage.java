@@ -651,7 +651,7 @@ public class AdminHomePage
                 if(HelpersMethod.IsExists("//div[contains(text(),'saved successfully')]/ancestor::div[contains(@class,'k-window k-dialog')]",driver))
                 {
                     WebElement savePopup=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-window k-dialog')]");
-                    WebElement okButton=savePopup.findElement(By.xpath(".//button/span[text()='Ok']"));
+                    WebElement okButton=savePopup.findElement(By.xpath(".//button/span[text()='OK']"));
                     HelpersMethod.ActClick(driver,okButton,10000);
                     //exists = true;
                     if (HelpersMethod.IsExists("//div[@class='loader']", driver))

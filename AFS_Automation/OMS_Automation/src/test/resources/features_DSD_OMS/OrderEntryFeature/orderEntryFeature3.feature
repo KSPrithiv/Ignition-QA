@@ -70,7 +70,7 @@ Feature: Order Entry3
         |  1 | 1 |
         |  1 | 2 |
         |  2 | 1 |
-      And Click on Aroow symbol to display products based on descending order
+      And Click on Arrow symbol to display products based on descending order
       Then Click on Next button
       And Click on SubmitOrder button
       Then User should be navigated to Order Entry page

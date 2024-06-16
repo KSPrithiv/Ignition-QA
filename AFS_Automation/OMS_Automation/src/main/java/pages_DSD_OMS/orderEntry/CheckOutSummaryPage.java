@@ -581,7 +581,7 @@ public class CheckOutSummaryPage
         WebElement WebEle;
         try
         {
-            if(HelpersMethod.IsExists("//div[text()='Comments']/ancestor::div[contains(@class,'k-window k-dialog')]",driver))
+            if(HelpersMethod.IsExists("//span[text()='Comments']/ancestor::div[contains(@class,'k-window k-dialog')]",driver))
             {
                 driver.findElement(By.id("textAreaA")).sendKeys(Comment);
                 scenario.log("COMMENT ENTERED IS "+Comment);
@@ -701,7 +701,6 @@ public class CheckOutSummaryPage
             HelpersMethod.JScriptClick(driver,ProdNo,10000);
 
             WebElement Sort=HelpersMethod.FindByElement(driver,"xpath","//span[text()='Product #']/following-sibling::span[contains(@class,'sort')]");
-            //HelpersMethod.ActClick(driver,Sort,1000);
             act.moveToElement(Sort).doubleClick(Sort).build().perform();
             //find the column number for Product #
             List<WebElement> theads=HelpersMethod.FindByElements(driver,"xpath","//th[contains(@class,'k-header')]/descendant::span[@class='k-column-title']");

@@ -63,7 +63,7 @@ public class userManagementClientPage
     @FindBy(id="ConfirmPassword")
     private WebElement confirmPasswordValue;
 
-    @FindBy(xpath="//label[text()='Role']/following-sibling::span/descendant::input")
+    @FindBy(xpath="//label[text()='Role']/following-sibling::div/descendant::input")
     private WebElement roleName;
 
     @FindBy(id="poNumber")
@@ -344,7 +344,7 @@ public class userManagementClientPage
         Actions act=new Actions(driver);
         try
         {
-            List<WebElement> Values = HelpersMethod.FindByElements(driver, "xpath", "//div[contains(@class,'k-list-container')]/descendant::ul/li");
+            List<WebElement> Values = HelpersMethod.FindByElements(driver, "xpath", "//div[contains(@class,'k-list-container')]/descendant::ul/li/span");
             for (WebElement Val : Values)
             {
                 act.moveToElement(Val).build().perform();
@@ -516,7 +516,7 @@ public class userManagementClientPage
         String registerByText;
         try
         {
-            List<WebElement> registerBys=HelpersMethod.FindByElements(driver,"xpath","//div[contains(@class,'k-list-container')]/descendant::ul/li");
+            List<WebElement> registerBys=HelpersMethod.FindByElements(driver,"xpath","//div[contains(@class,'k-list-container')]/descendant::ul/li/span");
             int opt=RandomValues.RandomNumber(registerBys.size()-1,1);
             for(int i=0;i<=registerBys.size()-1;i++)
             {
@@ -556,7 +556,7 @@ public class userManagementClientPage
         exists=false;
         try
         {
-            if(HelpersMethod.IsExists("//div[contains(text(),'Customer account index')]/ancestor::div[contains(@class,'k-window k-dialog')]",driver))
+            if(HelpersMethod.IsExists("//span[contains(text(),'Customer account index')]/ancestor::div[contains(@class,'k-window k-dialog')]",driver))
             {
                 exists=true;
             }

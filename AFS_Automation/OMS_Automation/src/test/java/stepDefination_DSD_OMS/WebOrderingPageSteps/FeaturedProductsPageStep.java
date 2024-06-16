@@ -177,7 +177,7 @@ public class FeaturedProductsPageStep
     }
 
     @Then("User should add new {int} products, and delete first product")
-    public void userShouldAddNewProductsAndDeleteFirstProduct(int MaxProd)
+    public void userShouldAddNewProductsAndDeleteFirstProduct(int MaxProd) throws InterruptedException
     {
         featuredProductsPage=new FeaturedProductsPage(driver,scenario);
         //featuredProductsPage.savePopup();
@@ -188,6 +188,8 @@ public class FeaturedProductsPageStep
             featuredProductsPage.selecting3Products();
             featuredProductsPage.PopupAfterChanges();
         }
+        Thread.sleep(1000);
+        featuredProductsPage.PopupAfterChanges();
         featuredProductsPage.CatalogOkButton();
         featuredProductsPage.savePopup();
         featuredProductsPage.ListFeaturedProduct(MaxProd);

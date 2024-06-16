@@ -21,10 +21,10 @@ public class FeaturedProdSettingsPage
     static int IncreaseProd;
     static int DecreaseProd;
 
-    @FindBy(xpath="//span[@id='CPFPMaxProductsToShow']/span[@class='k-input']")
+    @FindBy(xpath="//span[@id='CPFPMaxProductsToShow-accessibility-id']/span")
     private WebElement MaxProducts;
 
-    @FindBy(xpath="//span[@id='CPFPMaxProductsToShow']/descendant::span[contains(@class,'k-icon k-i-arrow-s')]")
+    @FindBy(xpath="//span[@id='CPFPMaxProductsToShow']//*[local-name()='svg']")
     private WebElement DropDown;
 
     //Action
@@ -96,12 +96,12 @@ public class FeaturedProdSettingsPage
     public void SelectValueFromDropDown(int MaxVal)
     {
         exists=false;
-        String ArrayText=null;
+        String ArrayText;
         int length;
         Actions act=new Actions(driver);
         try
         {
-            List<WebElement> ArrayValues=HelpersMethod.FindByElements(driver,"xpath","//div[contains(@class,'k-child-animation-container')]/descendant::li");
+            List<WebElement> ArrayValues=HelpersMethod.FindByElements(driver,"xpath","//ul[@id='CPFPMaxProductsToShow-listbox-id']/li/span");
             length=ArrayValues.size();
             if(!(MaxVal==length))
             {
