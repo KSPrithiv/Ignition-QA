@@ -62,7 +62,7 @@ Feature: scenarios for User and Accounts admin feature, for user and accounts
   @PermissionDeny
   Scenario Outline: Test scenario for Denying user account creation
     Given User is on Home Page for Admin setting to select Admin option for Admin reports
-#    Then User Clicks on Permissions by drop down to select Customer Account# for Admin reports
+    Then User refreshes page for user and account
     And User should enter menu "<Main menu>" in search bar and select "<Sub menu>", for user and accounts
     Then User selects "<User Accounts>" in Orders page in admin login and validate user is in selected Tab for pending registration
     And User selects user name from Pending registration drop down and click on Deny button
@@ -73,7 +73,7 @@ Feature: scenarios for User and Accounts admin feature, for user and accounts
   @PermissionApprove
   Scenario Outline: Test scenario for approval of user account creation
     Given User is on Home Page for Admin setting to select Admin option for Admin reports
-    #Then User Clicks on Permissions by drop down to select Customer Account# for Admin reports
+    Then User refreshes page for user and account
     And User should enter menu "<Main menu>" in search bar and select "<Sub menu>", for user and accounts
     Then User selects "<User Accounts>" in Orders page in admin login and validate user is in selected Tab for pending registration
     And User selects user name from Pending registration drop down and click on Approve button

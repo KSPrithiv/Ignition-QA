@@ -1736,14 +1736,15 @@ public class OrderEntryPage
                 //Handling Change delivery date Popup
                 if (HelpersMethod.IsExists("//div[contains(text(),'To change the delivery date for this pending order')]/ancestor::div[contains(@class,'k-window k-dialog')]", driver))
                 {
-                    WebElement changeDeliveryDate = HelpersMethod.FindByElement(driver, "xpath", "//span[text()='Change delivery date' and contains(@class,'k-dialog-title')]/ancestor::div[contains(@class,'k-window k-dialog')]");
+                    WebElement changeDeliveryDate = HelpersMethod.FindByElement(driver, "xpath", "//span[text()='Change delivery date']/ancestor::div[contains(@class,'k-window k-dialog')]");
 
-                    WebElement ChangeDD = changeDeliveryDate.findElement(By.xpath(".//button[text()='Change delivery date']"));
+                    WebElement ChangeDD = changeDeliveryDate.findElement(By.xpath(".//button/span[text()='Change delivery date']"));
                     HelpersMethod.ClickBut(driver, ChangeDD, 10000);
                 }
 
                 //Warning popup for pending order or to start new order
-                if (HelpersMethod.IsExists("//div[contains(text(),'Pending order or start a new order')]/ancestor::div[contains(@class,'k-window k-dialog')]", driver)) {
+                if (HelpersMethod.IsExists("//div[contains(text(),'Pending order or start a new order')]/ancestor::div[contains(@class,'k-window k-dialog')]", driver))
+                {
                     WebElement pendingPopup = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(text(),'Pending order or start a new order')]/ancestor::div[contains(@class,'k-window k-dialog')]");
 
                     WebEle = pendingPopup.findElement(By.xpath(".//button/span[contains(text(),'Start new order')]"));
@@ -2140,7 +2141,7 @@ public class OrderEntryPage
                     .pollingEvery(Duration.ofSeconds(2))
                     .ignoring(NoSuchElementException.class);
             wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
-            if(HelpersMethod.IsExists("//span[contains(text(),'Remove Skip for this date?')]/ancestor::div[contains(@class,'k-window k-dialog')]",driver))
+            if(HelpersMethod.IsExists("//div[contains(text(),'Remove Skip for this date?')]/ancestor::div[contains(@class,'k-window k-dialog')]",driver))
             {
                 WebElement modelContainer=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-window k-dialog')]");
                 WebElement okButton=modelContainer.findElement(By.xpath(".//button/span[text()='Ok']"));

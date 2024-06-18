@@ -191,7 +191,7 @@ public class AdminReportPageStep
     public void userSelectsToDatesForCreatingReportsOnLastUserLoginDates()
     {
         adminreportPage=new adminReportPage(driver,scenario);
-        adminreportPage.clickOnToDateLastLogiUser();
+        adminreportPage.clickOnToDateLastLoginUser();
         adminreportPage.toDateLastLoginUser();
         adminreportPage.excludeDates();
     }

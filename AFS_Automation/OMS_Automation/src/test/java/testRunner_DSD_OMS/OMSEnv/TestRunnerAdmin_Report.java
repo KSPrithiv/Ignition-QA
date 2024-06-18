@@ -22,7 +22,6 @@ import java.io.IOException;
                 "src/test/resources/features_DSD_OMS/AdminReportsFeature/adminReportsFeature.feature",
                 "src/test/resources/features_DSD_OMS/AdminReportsFeature/orderAdminFeature.feature",
                 "src/test/resources/features_DSD_OMS/AdminReportsFeature/userAndAccountsFeature.feature",
-                "src/test/resources/features_DSD_OMS/AdminReportsFeature/userAndAccountsFeature1.feature",
         },
                 glue = {"stepDefination_DSD_OMS"},
                 plugin = {"pretty",

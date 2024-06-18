@@ -313,6 +313,19 @@ public class UserRegistrationPage
         catch (Exception e){}
     }
 
+    public void validateDoNotHaveAccountIsNotVisible()
+    {
+        exists=false;
+        try
+        {
+            if(!NoAccCheckbox.isDisplayed())
+            {
+                exists=true;
+            }
+            Assert.assertEquals(exists,true);
+        }
+        catch (Exception e){}
+    }
 
     //Click on 'Do't have account' check box
     public void DoNotHaveAccount()

@@ -123,10 +123,10 @@ Feature: scenarios for User and Accounts admin feature, for Grid related setting
     Then User should validate that it is Grid Configuration page, then click on Grid type Drop Down
     And User should select Grid type "<Grid type>" from the drop down
     And User should Click and select "<Grid name>" from grids dropdown
-    Then User changes label of first header available in grid
+    Then User changes label of header available in grid
     Then User logout from Admin page and log in with client credentials
     Then User navigates to Order entry page and in new order entry page enter PO and Quick entry product details
-      |PO123|80|40|
+      |PO123|1|2|
     Then User Clicks on Permissions by drop down to select Customer Account# for grids
     And User should navigate back to "<Main menu>" via search bar and select "<Sub menu>"
     Then User should validate that it is Grid Configuration page, then click on Grid type Drop Down

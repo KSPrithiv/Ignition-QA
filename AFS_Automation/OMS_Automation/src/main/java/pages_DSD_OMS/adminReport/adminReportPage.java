@@ -255,7 +255,7 @@ public class adminReportPage
         catch(Exception e){}
     }
 
-    public void clickOnToDateLastLogiUser()
+    public void clickOnToDateLastLoginUser()
     {
         exists=false;
         try
@@ -292,7 +292,7 @@ public class adminReportPage
         exists=false;
         try
         {
-            if(HelpersMethod.IsExists("//span[@class='k-switch k-switch-sm k-rounded-full k-switch-off']",driver))
+            if(HelpersMethod.IsExists("//label[contains(text(),'Exclude')]/parent::div/preceding-sibling::span",driver))
             {
                 WebElement excludeDateToggle = HelpersMethod.FindByElement(driver, "xpath", "//label[contains(text(),'Exclude')]/parent::div/preceding-sibling::span");
                 HelpersMethod.ActClick(driver, excludeDateToggle, 10000);
