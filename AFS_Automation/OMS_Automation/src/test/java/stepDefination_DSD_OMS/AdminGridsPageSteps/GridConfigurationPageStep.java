@@ -524,8 +524,8 @@ public class GridConfigurationPageStep
         }
     }
 
-    @Then("User changes label of first header available in grid")
-    public void userChangesLabelOfFirstHeaderAvailableInGrid()
+    @Then("User changes label of header available in grid")
+    public void userChangesLabelOfHeaderAvailableInGrid()
     {
         gridConfigPage=new GridConfigurationPage(driver,scenario);
         gridConfigPage.readGridHeaderLabel();
@@ -615,10 +615,10 @@ public class GridConfigurationPageStep
             newOE.exceedsMaxQty();
             newOE.toastCurrentlyUnavailable();
         }
-        Thread.sleep(2000);
 
         //verify labels of product grid
         newOE=new NewOrderEntryPage(driver,scenario);
+        exists=newOE.ValidateNewOE();
         newOE.verifyProductGridTitle(newLabel);
 
         //after validating default grid in New OE page signout

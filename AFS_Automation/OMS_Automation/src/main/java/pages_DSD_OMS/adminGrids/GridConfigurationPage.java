@@ -33,6 +33,7 @@ public class GridConfigurationPage
     static String gridName1;
     static String oldLabel;
     static String newLabel;
+    static int pos=0;
 
     @FindBy(xpath="//div[contains(@class,'moduleNameHeader')]/span[contains(@class,'spnmoduleNameHeader')]")
     private WebElement pageHeader;
@@ -212,10 +213,10 @@ public class GridConfigurationPage
         try
         {
             Thread.sleep(500);
-            new WebDriverWait(driver, Duration.ofMillis(4000)).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class,'k-list-container')]/descendant::ul/li")));
-            if(HelpersMethod.IsExists("//div[contains(@class,'k-list-container')]/descendant::ul/li",driver))
+            new WebDriverWait(driver, Duration.ofMillis(4000)).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//ul[@id='SelectGridType-listbox-id']/li/span")));
+            if(HelpersMethod.IsExists("//ul[@id='SelectGridType-listbox-id']/li/span",driver))
             {
-                List<WebElement> options=driver.findElements(By.xpath("//div[contains(@class,'k-list-container')]/descendant::ul/li"));
+                List<WebElement> options=driver.findElements(By.xpath("//ul[@id='SelectGridType-listbox-id']/li/span"));
                 for (WebElement opt:options)
                 {
                     act1.moveToElement(opt).build().perform();
@@ -223,14 +224,14 @@ public class GridConfigurationPage
                     if(gridTypeSelect.equals(opt_text))
                     {
                         act1.click(opt).build().perform();
-                        gridName=HelpersMethod.FindByElement(driver,"xpath","//span[@id='SelectGridType']/span[@class='k-input']").getText();
+                        gridName=HelpersMethod.FindByElement(driver,"xpath","//span[@id='SelectGridType']/descendant::span[@class='k-input-value-text']").getText();
                         scenario.log("GRID TYPE SELECTED IS "+gridName);
                         break;
                     }
                 }
             }
-            new WebDriverWait(driver, Duration.ofMillis(4000)).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[contains(@class,'k-list-container')]/descendant::ul/li")));
-            String gType=HelpersMethod.FindByElement(driver,"xpath","//span[@id='SelectGridType']/span[@class='k-input']").getText();
+            new WebDriverWait(driver, Duration.ofMillis(4000)).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//ul[@id='SelectGridType-listbox-id']/li/span")));
+            String gType=HelpersMethod.FindByElement(driver,"xpath","//span[@id='SelectGridType']/descendant::span[@class='k-input-value-text']").getText();
             if(gType.equals(gridTypeSelect))
             {
                 scenario.log("GRID TYPE SELECTED IS "+gType);
@@ -604,9 +605,9 @@ public class GridConfigurationPage
         WebElement WebEle;
         try
         {
-            WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='switch-control card']/descendant::span[@class='k-switch k-switch-sm k-rounded-full k-switch-on' and  @aria-checked='true']");
+            WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='switch-control card']/descendant::span[contains(@class,'k-switch-on') and  @aria-checked='true']");
             HelpersMethod.ActClick(driver,WebEle,10000);
-            if(HelpersMethod.IsExists("//div[@class='switch-control card']/descendant::span[contains(@class,'k-switch k-switch-sm k-rounded-full k-switch-off k-focus') and  @aria-checked='false']",driver))
+            if(HelpersMethod.IsExists("//div[@class='switch-control card']/descendant::span[contains(@class,'k-switch-off') and  @aria-checked='false']",driver))
             {
                 scenario.log("SELECTED GRID HAS BEEN DISABLED IN AVAILABLE GRID");
                 exists=true;
@@ -625,7 +626,7 @@ public class GridConfigurationPage
             WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='switch-control card']/descendant::span[contains(@class,'k-switch-off') and  @aria-checked='false']");
             HelpersMethod.ActClick(driver,WebEle,10000);
             //Thread.sleep(1000);
-            if(HelpersMethod.IsExists("//div[@class='switch-control card']/descendant::span[@class='k-switch k-switch-sm k-rounded-full k-switch-on k-focus' and  @aria-checked='true']",driver))
+            if(HelpersMethod.IsExists("//div[@class='switch-control card']/descendant::span[contains(@class,'k-switch-on') and  @aria-checked='true']",driver))
             {
                 scenario.log("SELECTED GRID HAS BEEN ENABLED IN AVAILABLE GRID");
                 exists=true;
@@ -709,9 +710,9 @@ public class GridConfigurationPage
         exists=false;
         try
         {
-            if(HelpersMethod.IsExists("//label[contains(text(),'"+columnName+"')]/parent::div/preceding-sibling::span[@class='k-switch k-switch-sm k-rounded-full k-switch-on']",driver))
+            if(HelpersMethod.IsExists("//label[contains(text(),'"+columnName+"')]/parent::div/preceding-sibling::span[contains(@class,'k-switch-on')]",driver))
             {
-                WebElement WebEle=HelpersMethod.FindByElement(driver,"xpath","//label[contains(text(),'"+columnName+"')]/parent::div/preceding-sibling::span[@class='k-switch k-switch-sm k-rounded-full k-switch-on']");
+                WebElement WebEle=HelpersMethod.FindByElement(driver,"xpath","//label[contains(text(),'"+columnName+"')]/parent::div/preceding-sibling::span[contains(@class,'k-switch-on')]");
                 HelpersMethod.ActClick(driver,WebEle,10000);
                 exists=true;
             }
@@ -726,9 +727,9 @@ public class GridConfigurationPage
         String columnname=null;
         try
         {
-            if(HelpersMethod.IsExists(" //div[@class='i-card__card__body i-card__card__body--expanded']/div[@class='available-templates-container']/descendant::div[@class='i-switch '][1]/descendant::label",driver))
+            if(HelpersMethod.IsExists("//div[@class='i-card__card__body i-card__card__body--expanded']/div[@class='available-templates-container']/descendant::div[@class='i-switch '][1]/descendant::label",driver))
             {
-                columnname=HelpersMethod.FindByElement(driver,"xpath"," //div[@class='i-card__card__body i-card__card__body--expanded']/div[@class='available-templates-container']/descendant::div[@class='i-switch '][1]/descendant::label").getText();
+                columnname=HelpersMethod.FindByElement(driver,"xpath","//div[@class='i-card__card__body i-card__card__body--expanded']/div[@class='available-templates-container']/descendant::div[@class='i-switch '][1]/descendant::label").getText();
                 exists=true;
             }
         }
@@ -815,9 +816,9 @@ public class GridConfigurationPage
         exists=false;
         try
         {
-            if(HelpersMethod.IsExists("//label[contains(text(),'"+columnName+"')]/parent::div/preceding-sibling::span[@class='k-switch k-switch-sm k-rounded-full k-switch-off']",driver))
+            if(HelpersMethod.IsExists("//label[contains(text(),'"+columnName+"')]/parent::div/preceding-sibling::span[contains(@class,'k-switch-off')]",driver))
             {
-                WebElement WebEle=HelpersMethod.FindByElement(driver,"xpath","//label[contains(text(),'"+columnName+"')]/parent::div/preceding-sibling::span[@class='k-switch k-switch-sm k-rounded-full k-switch-off']");
+                WebElement WebEle=HelpersMethod.FindByElement(driver,"xpath","//label[contains(text(),'"+columnName+"')]/parent::div/preceding-sibling::span[contains(@class,'k-switch-off')]");
                 HelpersMethod.ActClick(driver,WebEle,10000);
                 exists=true;
             }
@@ -872,18 +873,28 @@ public class GridConfigurationPage
     public void readGridHeaderLabel()
     {
         exists=false;
+        Actions act=new Actions(driver);
+        String headerText;
         try
         {
-           if(HelpersMethod.IsExists("//tr[contains(@class,'k-grid-edit-row')][1]/descendant::input[@class='k-textbox']",driver))
-           {
                WebElement scrollEle=HelpersMethod.FindByElement(driver,"id","GridConfigurationConfiguration");
                HelpersMethod.ScrollElement(driver,scrollEle);
-               WebElement gridLabel=driver.findElement(By.xpath("//tr[contains(@class,'k-grid-edit-row')][1]/descendant::input[@class='k-textbox']"));
+               List<WebElement> headers=HelpersMethod.FindByElements(driver,"xpath","//tr[contains(@class,'k-grid-edit-row')]/descendant::input[@class='k-textbox']");
+               for(WebElement header:headers)
+               {
+                   pos ++;
+                   act.moveToElement(header).build().perform();
+                   headerText=HelpersMethod.JSGetValueEle(driver,header,10000);
+                   if(headerText.equalsIgnoreCase("Sequence"))
+                   {
+                       WebElement gridLabel=driver.findElement(By.xpath("//tr[contains(@class,'k-grid-edit-row')]["+pos+"]/descendant::input[@class='k-textbox']"));
 
-               oldLabel = HelpersMethod.JSGetValueEle(driver, gridLabel, 10000);
-               scenario.log("OLD LABEL VALUE IS " + oldLabel);
-               exists = true;
-           }
+                       oldLabel = HelpersMethod.JSGetValueEle(driver, gridLabel, 10000);
+                       scenario.log("OLD LABEL VALUE IS " + oldLabel);
+                       exists = true;
+                       break;
+                   }
+               }
            Assert.assertEquals(exists,true);
         }
         catch (Exception e){}
@@ -895,14 +906,13 @@ public class GridConfigurationPage
         String newLabel1=null;
         try
         {
-            if(HelpersMethod.IsExists("//tr[contains(@class,'k-grid-edit-row')][1]/descendant::input[@class='k-textbox']",driver))
+            if(HelpersMethod.IsExists("//tr[contains(@class,'k-grid-edit-row')]["+pos+"]/descendant::input[@class='k-textbox']",driver))
             {
                 newLabel=oldLabel+"123";
-                WebElement gridLabel=driver.findElement(By.xpath("//tr[contains(@class,'k-grid-edit-row')][1]/descendant::input[@class='k-textbox']"));
-
+                WebElement gridLabel=driver.findElement(By.xpath("//tr[contains(@class,'k-grid-edit-row')]["+pos+"]/descendant::input[@class='k-textbox']"));
                 HelpersMethod.JSSetValueEle(driver,gridLabel,10000,"");
-                driver.findElement(By.xpath("//tr[contains(@class,'k-grid-edit-row')][1]/descendant::input[@class='k-textbox']")).sendKeys(newLabel);
-
+                WebElement newHead= driver.findElement(By.xpath("//tr[contains(@class,'k-grid-edit-row')]["+pos+"]/descendant::input[@class='k-textbox']"));
+                HelpersMethod.ActSendKey(driver,newHead,10000,newLabel);
                 scenario.log("NEW LABEL VALUE IS " + newLabel);
                 newLabel1=HelpersMethod.JSGetValueEle(driver,gridLabel,10000);
             }
@@ -923,14 +933,15 @@ public class GridConfigurationPage
         String newLabel1=null;
         try
         {
-            if(HelpersMethod.IsExists("//tr[contains(@class,'k-grid-edit-row')][1]/descendant::input[@class='k-textbox']",driver))
+            Thread.sleep(1000);
+            if(HelpersMethod.IsExists("//tr[contains(@class,'k-grid-edit-row')]["+pos+"]/descendant::input[@class='k-textbox']",driver))
             {
-                WebElement gridLabel=driver.findElement(By.xpath("//tr[contains(@class,'k-grid-edit-row')][1]/descendant::input[@class='k-textbox']"));
+                WebElement gridLabel=driver.findElement(By.xpath("//tr[contains(@class,'k-grid-edit-row')]["+pos+"]/descendant::input[@class='k-textbox']"));
 
-                driver.findElement(By.xpath("//tr[contains(@class,'k-grid-edit-row')][1]/descendant::input[@class='k-textbox']")).sendKeys("");
+                driver.findElement(By.xpath("//tr[contains(@class,'k-grid-edit-row')]["+pos+"]/descendant::input[@class='k-textbox']")).sendKeys("");
                 HelpersMethod.JSSetValueEle(driver,gridLabel,10000,"");
-                driver.findElement(By.xpath("//tr[contains(@class,'k-grid-edit-row')][1]/descendant::input[@class='k-textbox']")).sendKeys(oldLabel);
-                //gridLabel.sendKeys(Keys.TAB);
+                WebElement oldValue= driver.findElement(By.xpath("//tr[contains(@class,'k-grid-edit-row')]["+pos+"]/descendant::input[@class='k-textbox']"));
+                HelpersMethod.ActSendKey(driver,oldValue,10000,oldLabel);
                 scenario.log("OLD LABEL VALUE IS " + oldLabel);
                 newLabel1=HelpersMethod.JSGetValueEle(driver,gridLabel,10000);
             }

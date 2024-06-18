@@ -101,7 +101,7 @@ public class NewOrderEntryPage
     @FindBy(xpath = "//button/span[text()='Export']")
     private WebElement Export_but;
 
-    @FindBy(xpath = "//label[text()='Import']//*[local-name()='svg' and contains(@class,'i-icon   import-icon')]")
+    @FindBy(xpath = "//label[text()='Import']//*[local-name()='svg' and contains(@class,'import-icon')]")
     private  WebElement Import_but;
 
     @FindBy(xpath = "//input[@id='ImportOrder']")
@@ -3296,7 +3296,7 @@ public class NewOrderEntryPage
     public void Import_button(String ord_No)
     {
         exists=false;
-        WebElement WebEle=null;
+        WebElement WebEle;
         int intOrdNo= Integer.parseInt(ord_No);
         String Ord_no="";
         try
@@ -3472,6 +3472,12 @@ public class NewOrderEntryPage
         int i=0;
         try
         {
+            if(HelpersMethod.IsExists("//input[@id='sortByKeyed' and @data-checked='checked']",driver))
+            {
+                WebElement sortCheckBox = HelpersMethod.FindByElement(driver, "xpath", "//input[@id='sortByKeyed' and @data-checked='unchecked']");
+                HelpersMethod.ActClick(driver,sortCheckBox,10000);
+            }
+
             //To zoom out browser by 50%
             if(TestBase.testEnvironment.get_browser().equalsIgnoreCase("chrome")|TestBase.testEnvironment.get_browser().equalsIgnoreCase("edge"))
             {
@@ -4116,7 +4122,7 @@ public class NewOrderEntryPage
             WebElement priceOverIcon=HelpersMethod.FindByElement(driver,"xpath","//tr[contains(@class,'k-master-row')]["+rowIndex+"]/descendant::input[contains(@id,'FinalPrice')]/preceding-sibling::div//*[local-name()='svg']");
             HelpersMethod.ActClick(driver,priceOverIcon,10000);
 
-            Thread.sleep(1000);
+            Thread.sleep(2000);
             //validate price override popup
             if(HelpersMethod.IsExists("//div[contains(@class,'selectPriceOverrideDialog ')]",driver))
             {
@@ -4235,8 +4241,8 @@ public class NewOrderEntryPage
             if(HelpersMethod.IsExists("//div[@class='selectPriceOverride']/ancestor::div[contains(@class,'k-window k-dialog')]",driver))
             {
                 //What if button, finding webelement
-                WebElement whatIf =HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-window k-dialog')]/descendant::button[contains(text(),'What if (alt-w)')]");
-                HelpersMethod.ClickBut(driver,whatIf,1000);
+                WebElement whatIf =HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-window k-dialog')]/descendant::span[contains(text(),'What if (alt-w)')]");
+                HelpersMethod.ClickBut(driver,whatIf,10000);
                 if(HelpersMethod.IsExists("//div[contains(@class,'priceOverride-table-container')]/ancestor::div[contains(@class,'k-window k-dialog')]",driver))
                 {
                     WebElement pricePerUnit = HelpersMethod.FindByElement(driver, "id", "overridePricePerUnit");
@@ -4252,7 +4258,7 @@ public class NewOrderEntryPage
                     scenario.log("PRICE OVERRIDED BY " + priceOverride);
                     //Click on Ok button in popup
                     WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'priceOverride-table-container')]/ancestor::div[contains(@class,'k-window k-dialog')]/descendant::button/span[text()='Ok']");
-                    HelpersMethod.ClickBut(driver, WebEle, 1000);
+                    HelpersMethod.ClickBut(driver, WebEle, 10000);
                     Thread.sleep(2000);
                 }
                 for(int i=0;i<=1;i++)
@@ -4260,7 +4266,7 @@ public class NewOrderEntryPage
                     if (HelpersMethod.IsExists("//li[contains(text(),'price was set to the original price.')]/ancestor::div[contains(@class,'k-widget k-notification k-notification-error')]", driver))
                     {
                         WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-notification-error')]//*[local-name()='svg' and contains(@class,'close-error')]//*[local-name()='path']");
-                        HelpersMethod.ActClick(driver, WebEle, 4000);
+                        HelpersMethod.ActClick(driver, WebEle, 10000);
                         scenario.log("BASE PRICE SET BACK TO ORIGINAL PRICE");
                         if(HelpersMethod.IsExists("//div[@class='loader']",driver))
                         {
@@ -6038,7 +6044,19 @@ public class NewOrderEntryPage
         Actions act=new Actions(driver);
         try
         {
+
+            WebElement dragDropHeader=HelpersMethod.FindByElement(driver,"xpath","//div[@class='k-grouping-header']");
+            HelpersMethod.ScrollTillElementVisible(driver,dragDropHeader);
+
             List<WebElement> titles=HelpersMethod.FindByElements(driver,"xpath","//span[@class='k-column-title']");
+            for(WebElement title:titles)
+            {
+                act.moveToElement(title).build().perform();
+                titleText=title.getText();
+                scenario.log("TITLE FOUND IN PRODUCT GRID "+titleText);
+            }
+
+
             for(WebElement title:titles)
             {
                 act.moveToElement(title).build().perform();
@@ -6050,6 +6068,8 @@ public class NewOrderEntryPage
                     break;
                 }
             }
+            Thread.sleep(1000);
+
             if(exists==false)
             {
                 scenario.log("<span style='color:red'>CHANGES TO TITLE HAS NOT BEEN REFLECTED</span>");

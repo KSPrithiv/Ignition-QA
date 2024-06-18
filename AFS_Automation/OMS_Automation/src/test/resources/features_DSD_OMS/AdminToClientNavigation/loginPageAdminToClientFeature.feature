@@ -77,3 +77,23 @@ Feature: scenarios for admin credentials and client credentials
     Examples:
       | Setting               | Key                       |
       | Registration message  | CPEnableUserRegistration  |
+
+  @EnableNewcustomerRegistration
+  Scenario Outline: Test scenario for verifying functioning of "Enable new customer registration from login page" taggle button
+    Given User should verify admin setting "<Setting>" is enabled by using "<Key>"
+    When User enters URL and is on login page
+    Then User click on Register here button, and verify check box
+    And User should set admin setting "<Setting>" "<Key>" as default before making changes
+    Examples:
+      | Setting                                         | Key                          |
+      | Enable new customer registration from login page|CPEnableCustomerRegistration  |
+
+  @DisableNewcustomerRegistration
+  Scenario Outline: Test scenario for verifying functioning of "Enable new customer registration from login page" taggle button
+    Given User should verify admin setting "<Setting>" is disabled by using "<Key>"
+    When User enters URL and is on login page
+    Then User click on Register here button, and verify check box is not displayed
+    And User should set admin setting "<Setting>" "<Key>" as default before making changes
+    Examples:
+      | Setting                                         | Key                          |
+      | Enable new customer registration from login page|CPEnableCustomerRegistration  |

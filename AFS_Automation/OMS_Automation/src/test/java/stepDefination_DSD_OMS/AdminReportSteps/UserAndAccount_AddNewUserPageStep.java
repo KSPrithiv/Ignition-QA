@@ -76,5 +76,6 @@ public class UserAndAccount_AddNewUserPageStep
         userandAdminPage.passwordConfirmationInputBox();
         userandAdminPage.rolesButtonClick();
         userandAdminPage.rolesIndexPopup(filter,filterDesc);
+        userandAdminPage.clickOnRegistration();
     }
 }

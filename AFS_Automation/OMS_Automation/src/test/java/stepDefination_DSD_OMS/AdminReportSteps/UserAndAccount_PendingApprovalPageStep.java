@@ -7,6 +7,7 @@ import io.cucumber.java.en.Then;
 import org.openqa.selenium.WebDriver;
 import pages_DSD_OMS.adminReport.orderAdminPage;
 import pages_DSD_OMS.adminReport.userAndAdmin_PendingRegApprovalPage;
+import pages_DSD_OMS.webOrdering.AdminHomePage;
 import util.TestBase;
 
 /**
@@ -21,6 +22,7 @@ public class UserAndAccount_PendingApprovalPageStep
         Scenario scenario;
         static userAndAdmin_PendingRegApprovalPage  userAndAdminPendingRegApprovalPage;
         static orderAdminPage orderadminPage;
+        static AdminHomePage adminHomePage;
 
         @Before
         public void LaunchBrowser1(Scenario scenario) throws Exception
@@ -63,5 +65,13 @@ public class UserAndAccount_PendingApprovalPageStep
         orderadminPage.navigateToDifferentTabsInOrder(navigateTab);
         userAndAdminPendingRegApprovalPage=new userAndAdmin_PendingRegApprovalPage(driver,scenario);
         userAndAdminPendingRegApprovalPage.validateTabNavigatedTo(navigateTab);
+    }
+
+    @Then("User refreshes page for user and account")
+    public void userRefreshesPageForUserAndAccount()
+    {
+        adminHomePage = new AdminHomePage(driver, scenario);
+        adminHomePage.handleError_Page();
+        adminHomePage.refreshPage();
     }
 }

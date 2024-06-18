@@ -130,7 +130,7 @@ public class LoginPage
         try
         {
             exists = false;
-            String status="";
+            String status;
             if(SignIn.isEnabled())
             {
                 status = HelpersMethod.returnDocumentStatus(driver);
@@ -150,7 +150,7 @@ public class LoginPage
                     HelpersMethod.waitTillLoadingPage(driver);
                 }
 
-                Thread.sleep(1000);
+                Thread.sleep(2000);
                 HelpersMethod.ScrollElement(driver, SignIn);
                 HelpersMethod.JScriptClick(driver, SignIn, 60000);
                 HelpersMethod.waitTillPageLoaded(driver, 800000);
@@ -178,6 +178,19 @@ public class LoginPage
                         .pollingEvery(Duration.ofSeconds(2))
                         .ignoring(NoSuchElementException.class);
                 wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
+                status = HelpersMethod.returnDocumentStatus(driver);
+                if (status.equals("loading"))
+                {
+                    HelpersMethod.waitTillLoadingPage(driver);
+                }
+
+                wait = new FluentWait<WebDriver>(driver)
+                        .withTimeout(Duration.ofSeconds(400))
+                        .pollingEvery(Duration.ofSeconds(2))
+                        .ignoring(NoSuchElementException.class);
+                wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
                 scenario.log("SIGNIN BUTTON CLICKED");
             }
         }

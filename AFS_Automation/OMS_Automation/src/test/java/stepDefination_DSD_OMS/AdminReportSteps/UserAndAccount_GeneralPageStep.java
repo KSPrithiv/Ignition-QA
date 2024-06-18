@@ -97,13 +97,75 @@ public class UserAndAccount_GeneralPageStep
         loginpage.validateLoginPageTitle();
         loginpage.RegisterHere();
         //HelpersMethod.waitTillElementLocatedDisplayed(driver, "xpath", "//div[contains(text(),'Customer Registration')]/ancestor::div[contains(@class,'k-window k-dialog')]", 200);
-        if (HelpersMethod.IsExists("//div[contains(text(),'Customer Registration')]/ancestor::div[contains(@class,'k-window k-dialog')]", driver))
+        if (HelpersMethod.IsExists("//span[contains(text(),'Customer Registration')]/ancestor::div[contains(@class,'k-window k-dialog')]", driver))
         {
             Result = true;
         }
         Assert.assertEquals(true, Result);
         userRegistrationPage=new UserRegistrationPage(driver,scenario);
         userRegistrationPage.validateDoNotHaveAccount();
+        userRegistrationPage.CancelRegistration();
+    }
+
+    @Then("User click on Register here button, and verify check box")
+    public void userClickOnRegisterHereButtonAndVerifyCheckBox() throws InterruptedException, AWTException
+    {
+        boolean Result=false;
+
+        loginpage = new LoginPage(driver, scenario);
+        String status = HelpersMethod.returnDocumentStatus(driver);
+        if (status.equals("loading"))
+        {
+            HelpersMethod.waitTillLoadingPage(driver);
+        }
+
+        Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                .withTimeout(Duration.ofSeconds(120))
+                .pollingEvery(Duration.ofSeconds(2))
+                .ignoring(NoSuchElementException.class);
+        wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
+        loginpage.validateLoginPageTitle();
+        loginpage.RegisterHere();
+
+        if (HelpersMethod.IsExists("//span[contains(text(),'Customer Registration')]/ancestor::div[contains(@class,'k-window k-dialog')]", driver))
+        {
+            Result = true;
+        }
+        Assert.assertEquals(true, Result);
+        userRegistrationPage=new UserRegistrationPage(driver,scenario);
+        userRegistrationPage.validateDoNotHaveAccount();
+        userRegistrationPage.CancelRegistration();
+    }
+
+    @Then("User click on Register here button, and verify check box is not displayed")
+    public void userClickOnRegisterHereButtonAndVerifyCheckBoxIsNotDisplayed() throws InterruptedException, AWTException
+    {
+        boolean Result=false;
+
+        loginpage = new LoginPage(driver, scenario);
+        String status = HelpersMethod.returnDocumentStatus(driver);
+        if (status.equals("loading"))
+        {
+            HelpersMethod.waitTillLoadingPage(driver);
+        }
+
+        Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                .withTimeout(Duration.ofSeconds(120))
+                .pollingEvery(Duration.ofSeconds(2))
+                .ignoring(NoSuchElementException.class);
+        wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
+        loginpage.validateLoginPageTitle();
+        loginpage.RegisterHere();
+
+        if (HelpersMethod.IsExists("//span[contains(text(),'Customer Registration')]/ancestor::div[contains(@class,'k-window k-dialog')]", driver))
+        {
+            Result = true;
+        }
+        Assert.assertEquals(true, Result);
+        userRegistrationPage=new UserRegistrationPage(driver,scenario);
+        userRegistrationPage.validateDoNotHaveAccountIsNotVisible();
         userRegistrationPage.CancelRegistration();
     }
 

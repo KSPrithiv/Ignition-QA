@@ -234,9 +234,12 @@ public class orderAdminPage
         WebElement startDate=HelpersMethod.FindByElement(driver,"xpath","//label[@id='fromDate-label']/following-sibling::span/descendant::button//*[local-name()='svg']");
         try
         {
-            HelpersMethod.ActClick(driver,startDate,10000);
-            exists=true;
-            new WebDriverWait(driver, Duration.ofMillis(40000)).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class,'k-child-animation-container')]")));
+            if(startDate.isDisplayed())
+            {
+                HelpersMethod.ActClick(driver, startDate, 10000);
+                exists = true;
+                new WebDriverWait(driver, Duration.ofMillis(40000)).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@id='fromDate-popup-id']")));
+            }
             Assert.assertTrue(exists);
         }
         catch(Exception e){}
@@ -248,9 +251,12 @@ public class orderAdminPage
         WebElement toDate=HelpersMethod.FindByElement(driver,"xpath","//label[@id='toDate-label']/following-sibling::span/descendant::button//*[local-name()='svg']");
         try
         {
-            HelpersMethod.ActClick(driver,toDate,10000);
-            exists=true;
-            new WebDriverWait(driver,Duration.ofMillis(40000)).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class,'k-child-animation-container')]")));
+            if(toDate.isDisplayed())
+            {
+                HelpersMethod.ActClick(driver, toDate, 10000);
+                exists = true;
+                new WebDriverWait(driver, Duration.ofMillis(40000)).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@id='toDate-popup-id']")));
+            }
             Assert.assertTrue(exists);
         }
         catch(Exception e){}
@@ -504,44 +510,68 @@ public class orderAdminPage
 
     public void clickOnEvent() throws InterruptedException
     {
-        WebElement eventDropdown=HelpersMethod.FindByElement(driver,"xpath","//label[@id='events-label']/following-sibling::div/descendant::input");
-        HelpersMethod.ActClick(driver,eventDropdown,10000);
+        exists=false;
+        try
+        {
+            WebElement eventDropdown = HelpersMethod.FindByElement(driver, "xpath", "//label[@id='events-label']/following-sibling::div/descendant::input");
+            if(eventDropdown.isDisplayed())
+            {
+                HelpersMethod.ActClick(driver, eventDropdown, 10000);
+                exists = true;
+            }
+            Assert.assertEquals(exists,true);
+        }
+        catch (Exception e){}
     }
 
     public void selectEventFromDropDown(String event)
     {
-        Actions act=new Actions(driver);
-        String eventText="";
-        exists=false;
-        List<WebElement> eventLists=HelpersMethod.FindByElements(driver,"xpath","//ul[@id='eventslist']/li/span");
-        for(WebElement eventList:eventLists)
+        try
         {
-            act.moveToElement(eventList).build().perform();
-            eventText=eventList.getText();
-            if(eventText.equalsIgnoreCase(event))
+            Actions act = new Actions(driver);
+            String eventText;
+            exists = false;
+            List<WebElement> eventLists = HelpersMethod.FindByElements(driver, "xpath", "//ul[@id='eventslist']/li/span");
+            for (WebElement eventList : eventLists)
             {
                 act.moveToElement(eventList).build().perform();
-                act.click(eventList).build().perform();
-                exists=true;
-                break;
+                eventText = eventList.getText();
+                if (eventText.equalsIgnoreCase(event))
+                {
+                    act.moveToElement(eventList).build().perform();
+                    act.click(eventList).build().perform();
+                    exists = true;
+                    break;
+                }
             }
+            if (exists == true)
+            {
+                scenario.log("EVENT HAS BEEN SUCCESSFULLY SELECTED");
+            }
+            else
+            {
+                scenario.log("<span style='color:red'>EVENT DOESN'T EXISTS</span>");
+            }
+            Assert.assertEquals(exists, true);
         }
-        if(exists==true)
-        {
-            scenario.log("EVENT HAS BEEN SUCCESSFULLY SELECTED");
-        }
-        else
-        {
-            scenario.log("<span style='color:red'>EVENT DOESN'T EXISTS</span>");
-        }
-        Assert.assertEquals(exists,true);
+        catch (Exception e){}
     }
 
     public void clickUserName() throws InterruptedException
     {
-        WebElement userNameDropdown= HelpersMethod.FindByElement(driver,"xpath","//input[@id='UserName']/following-sibling::button//*[local-name()='svg']");
-        HelpersMethod.ScrollElement(driver,userNameDropdown);
-        HelpersMethod.FindByElement(driver,"xpath","//input[@id='UserName']/following-sibling::button//*[local-name()='svg']").click();
+        exists=false;
+        try
+        {
+            WebElement userNameDropdown = HelpersMethod.FindByElement(driver, "xpath", "//input[@id='UserName']/following-sibling::button//*[local-name()='svg']");
+            if (userNameDropdown.isDisplayed())
+            {
+                HelpersMethod.ScrollElement(driver, userNameDropdown);
+                HelpersMethod.FindByElement(driver, "xpath", "//input[@id='UserName']/following-sibling::button//*[local-name()='svg']").click();
+                exists=false;
+            }
+            Assert.assertEquals(exists,true);
+        }
+        catch (Exception e) {}
     }
 
     public void userNameSelection()
@@ -549,25 +579,33 @@ public class orderAdminPage
         String userName=TestBase.testEnvironment.username();
         WebElement WebEle;
         Actions act1= new Actions(driver);
-
-        List<WebElement> Options=HelpersMethod.FindByElements(driver,"xpath","//ul[@id='UserNamelist']/li/span");
-        for(int i=0;i<=Options.size()-1;i++)
+        try
         {
-            WebEle=Options.get(i);
-            act1.moveToElement(WebEle).build().perform();
-            String Opt=WebEle.getText();
-            if(Opt.equals(userName))
-            {
-                act1.moveToElement(WebEle).build().perform();
-                act1.click(WebEle).build().perform();
-                scenario.log("USER HAS BEEN SELECTED");
-                break;
-            }
-            else
-            {
-                act1.moveToElement(WebEle).sendKeys(Keys.ARROW_DOWN).build().perform();
-            }
+           if(HelpersMethod.IsExists("//ul[@id='UserNamelist']/li/span",driver))
+           {
+               List<WebElement> Options = HelpersMethod.FindByElements(driver, "xpath", "//ul[@id='UserNamelist']/li/span");
+               for (int i = 0; i <= Options.size() - 1; i++)
+               {
+                   WebEle = Options.get(i);
+                   act1.moveToElement(WebEle).build().perform();
+                   String Opt = WebEle.getText();
+                   if (Opt.equals(userName))
+                   {
+                       act1.moveToElement(WebEle).build().perform();
+                       act1.click(WebEle).build().perform();
+                       scenario.log("USER HAS BEEN SELECTED");
+                       exists=true;
+                       break;
+                   }
+                   else
+                   {
+                       act1.moveToElement(WebEle).sendKeys(Keys.ARROW_DOWN).build().perform();
+                   }
+               }
+           }
+            Assert.assertEquals(exists,true);
         }
+        catch (Exception e){}
     }
 
     public void enterCustomerAccountNo()
@@ -588,10 +626,16 @@ public class orderAdminPage
 
     public void orderDateCalenderClick()
     {
+        exists=false;
         try
         {
             WebElement orderDate=HelpersMethod.FindByElement(driver,"xpath","//label[@id='OrderDate-label']/following-sibling::span/descendant::button");
-            HelpersMethod.ActClick(driver,orderDate,10000);
+            if(orderDate.isDisplayed())
+            {
+                HelpersMethod.ActClick(driver, orderDate, 10000);
+                exists=true;
+            }
+            Assert.assertEquals(exists,true);
         }
         catch (Exception e){}
     }
@@ -602,7 +646,8 @@ public class orderAdminPage
         exists=false;
         try
         {
-            if(HelpersMethod.IsExists("//div[contains(@class,'k-calendar-container')]",driver))
+            new WebDriverWait(driver,Duration.ofMillis(10000)).until(ExpectedConditions.visibilityOfElementLocated(By.id("OrderDate-popup-id")));
+            if(HelpersMethod.IsExists("//div[@id='OrderDate-popup-id']",driver))
             {
                 WebElement dateSelection=HelpersMethod.FindByElement(driver,"xpath","//td[contains(@class,'k-today')]/span");
                 HelpersMethod.ActClick(driver,dateSelection,10000);
