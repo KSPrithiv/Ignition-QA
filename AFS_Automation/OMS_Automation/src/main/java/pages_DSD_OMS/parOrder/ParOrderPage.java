@@ -120,7 +120,7 @@ public class ParOrderPage
     public void ClickParTab()
     {
         exists=false;
-        WebElement WebEle=null;
+        WebElement WebEle;
         try
         {
             if(HelpersMethod.IsExists("//span[contains(text(),'Par list')]",driver))
@@ -143,7 +143,7 @@ public class ParOrderPage
     public void ClickProductTab()
     {
         exists=false;
-        WebElement WebEle=null;
+        WebElement WebEle;
         try
         {
             WebElement ParList=HelpersMethod.FindByElement(driver,"xpath","//span[contains(text(),'Products')]");
@@ -178,7 +178,7 @@ public class ParOrderPage
 
     public void ClickNewPar()
     {
-        WebElement WebEle=null;
+        WebElement WebEle;
         exists=false;
         try
         {
@@ -201,7 +201,7 @@ public class ParOrderPage
 
     public void DeletePar()
     {
-        WebElement WebEle=null;
+        WebElement WebEle;
         exists=false;
         try
         {
@@ -242,7 +242,7 @@ public class ParOrderPage
     public void SavePar()
     {
         exists=false;
-        WebElement WebEle=null;
+        WebElement WebEle;
         try
         {
             if(ParSave.isEnabled())
@@ -277,7 +277,7 @@ public class ParOrderPage
     {
         try
         {
-            WebElement WebEle=null;
+            WebElement WebEle;
             WebEle=HelpersMethod.FindByElement(driver,"xpath","//tr[contains(@class,'k-master-row')][1]/descendant::button");
             ProdNo=WebEle.getText();
         }
@@ -301,7 +301,7 @@ public class ParOrderPage
 
     public void ClickParDropDown()
     {
-        WebElement WebEle=null;
+        WebElement WebEle;
         exists=false;
         try
         {
@@ -328,7 +328,7 @@ public class ParOrderPage
     public void SelectParlistFromDropdown(String parList)
     {
         exists=false;
-        WebElement WebEle=null;
+        WebElement WebEle;
         Actions act=new Actions(driver);
         try
         {
@@ -360,7 +360,7 @@ public class ParOrderPage
 
     public void EnterProductNoInSearchBox()
     {
-        WebElement WebEle=null;
+        WebElement WebEle;
         exists=false;
         try
         {

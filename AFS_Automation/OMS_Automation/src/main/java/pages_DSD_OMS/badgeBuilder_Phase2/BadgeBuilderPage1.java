@@ -379,7 +379,7 @@ public class BadgeBuilderPage1 {
         String str = "11X";
 
         WebElement POTextBox;
-//        WebElement WebEle=null;
+//        WebElement WebEle;
         try {
             if (HelpersMethod.IsExists("/html//input[@id='poNumber']", driver)) {
                 POTextBox = HelpersMethod.FindByElement(driver, "xpath", "/html//input[@id='poNumber']");
@@ -636,7 +636,7 @@ public class BadgeBuilderPage1 {
         WebElement WebEleColour;
         WebElement WebEleColour2;
 
-//        WebElement WebEle=null;
+//        WebElement WebEle;
         try {
             if (HelpersMethod.IsExists("/html//div[@id='badgeColorCard']//div[@class='colorsRow']/div[3]/div[@class='color-circle']", driver)) {
                 WebEleColour = HelpersMethod.FindByElement(driver, "xpath", "/html//div[@id='badgeColorCard']//div[@class='colorsRow']/div[3]/div[@class='color-circle']");
@@ -658,7 +658,7 @@ public class BadgeBuilderPage1 {
     public void AddToGallery() {
 
         WebElement Submit;
-//        WebElement WebEle=null;
+//        WebElement WebEle;
         try {
             if (HelpersMethod.IsExists("/html//button[@id='plusButton']", driver)) {
                 Submit = HelpersMethod.FindByElement(driver, "xpath", "/html//button[@id='plusButton']");
@@ -673,7 +673,7 @@ public class BadgeBuilderPage1 {
 
     public void Click_Back() {
         WebElement ClickBack;
-//        WebElement WebEle=null;
+//        WebElement WebEle;
         try {
             if (HelpersMethod.IsExists("/html//button[@id='backButton']", driver)) {
 
@@ -796,7 +796,7 @@ public class BadgeBuilderPage1 {
         String str = "22X";
 
         WebElement POTextBox;
-//        WebElement WebEle=null;
+//        WebElement WebEle;
         try {
             if (HelpersMethod.IsExists("/html//input[@id='poNumber']", driver)) {
                 POTextBox = HelpersMethod.FindByElement(driver, "xpath", "/html//input[@id='poNumber']");

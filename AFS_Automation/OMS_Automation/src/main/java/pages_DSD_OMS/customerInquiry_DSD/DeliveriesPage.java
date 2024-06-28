@@ -441,7 +441,7 @@ public class DeliveriesPage
         try
         {
             String formattedDate1 = null;
-            WebElement WebEle=null;
+            WebElement WebEle;
             exists=false;
             //finding element/date in calendar drop down is enabled or not.
             if (HelpersMethod.IsExists("//div[contains(@class,'k-calendar-monthview')]",driver))
@@ -483,7 +483,7 @@ public class DeliveriesPage
         try
         {
             String formattedDate1 = null;
-            WebElement WebEle=null;
+            WebElement WebEle;
             exists=false;
             //finding element/date in calendar drop down is enabled or not. if not enabled increase the date by 6 days
             if (HelpersMethod.IsExists("//div[contains(@class,'k-calendar-monthview')]",driver))

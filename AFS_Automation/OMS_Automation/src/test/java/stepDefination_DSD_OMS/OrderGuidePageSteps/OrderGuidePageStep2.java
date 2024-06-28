@@ -7,6 +7,7 @@ import io.cucumber.java.Scenario;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import org.openqa.selenium.WebDriver;
+import org.testng.Assert;
 import pages_DSD_OMS.orderGuide.CreateOGPage;
 import pages_DSD_OMS.orderGuide.OrderGuidePage;
 import util.TestBase;
@@ -276,5 +277,17 @@ public class OrderGuidePageStep2
             createOGPage.cardViewPriceBase();
         }
         createOGPage.CatalogPopupOk();
+    }
+
+    @And("User should navigate back to OG page and navigate back to {string} and verify OG {string}  existence")
+    public void userShouldNavigateBackToOGPageAndNavigateBackToAndVerifyOGExistence(String ogType, String ogName) throws InterruptedException, AWTException
+    {
+        orderGuidePage = new OrderGuidePage(driver, scenario);
+        orderGuidePage.ValidateOG();
+        orderGuidePage.CustomerRef();
+        orderGuidePage.CustRefDropDown(ogType);
+        orderGuidePage.clearAddfilter();
+        exists=orderGuidePage.OGSearchBox(ogName);
+        Assert.assertEquals(exists,true);
     }
 }

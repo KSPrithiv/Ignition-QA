@@ -219,7 +219,14 @@ public class NewStandingOrderCard
     public void validateStartAddStandingOrderPopup()
     {
         exists=false;
-        try {
+        try
+        {
+            Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(200))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
             HelpersMethod.waitTillElementLocatedDisplayed(driver, "xpath", "//div[contains(@class,'k-window k-dialog')]", 10000);
             if (HelpersMethod.IsExists("//span[contains(text(),'Add standing order')]/ancestor::div[contains(@class,'k-window k-dialog')]", driver))
             {
@@ -235,8 +242,9 @@ public class NewStandingOrderCard
         exists=false;
         try
         {
-            HelpersMethod.waitTillElementLocatedDisplayed(driver, "xpath", "//div[contains(@class,'k-window k-dialog')]", 10000);
-
+            //HelpersMethod.waitTillElementLocatedDisplayed(driver, "xpath", "//div[contains(@class,'k-window k-dialog')]", 10000);
+            new WebDriverWait(driver,Duration.ofMillis(20000)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(@class,'k-window k-dialog')]")));
+            new WebDriverWait(driver,Duration.ofMillis(20000)).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class,'k-window k-dialog')]")));
             // to fetch the web element of the modal container
             WebElement modalContainer = driver.findElement(By.xpath("//div[contains(@class,'k-window k-dialog')]"));
             WebElement startDateIcon = modalContainer.findElement(By.xpath(".//input[@id='addFromDate']/parent::span/following-sibling::button"));
@@ -1227,7 +1235,7 @@ public class NewStandingOrderCard
     public List<WebElement> readDatesOfStandingOrder()
     {
         exists=false;
-        WebElement WebEle=null;
+        WebElement WebEle;
         Actions act=new Actions(driver);
         List<WebElement> soDate = null;
         String status;

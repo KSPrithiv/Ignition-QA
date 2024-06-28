@@ -431,7 +431,7 @@ public class MasterPage
         try
         {
             String formattedDate1 = null;
-            WebElement WebEle=null;
+            WebElement WebEle;
             String FTDate=null;
             exists=false;
             //finding element/date in calendar drop down is enabled or not. if not enabled increase the date by 6 days
@@ -465,7 +465,7 @@ public class MasterPage
     {
         HelpersMethod.waitTillElementLocatedDisplayed(driver,"xpath","//div[contains(@class,'k-calendar-monthview')]",600);
         new WebDriverWait(driver, Duration.ofMillis(8000)).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class,'k-calendar-monthview')]")));
-        WebElement WebEle=null;
+        WebElement WebEle;
         String FTDate=null;
         exists=false;
         try

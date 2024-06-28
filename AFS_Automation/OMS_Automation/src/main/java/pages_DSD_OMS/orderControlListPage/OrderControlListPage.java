@@ -83,7 +83,7 @@ public class OrderControlListPage
     @FindBy(xpath = "//div[contains(@class,'i-search-box')]//*[local-name()='svg' and contains(@class,'i-search-box__search')]")
     private WebElement SearchIndex;
 
-    @FindBy(xpath="//div[contains(@class,'i-search-box')]//*[local-name()='svg' and contains(@class,'i-icon   i-search-box__clear')]")
+    @FindBy(xpath="//div[contains(@class,'i-search-box')]//*[local-name()='svg' and contains(@class,'i-search-box__clear')]")
     private WebElement SearchClear;
 
     @FindBy(xpath = "//tr[1]/descendant::div[contains(@id,'PlaceOrderColIcon')]//*[local-name()='svg']")
@@ -1527,8 +1527,17 @@ public class OrderControlListPage
         exists=false;
         try
         {
-            HelpersMethod.ActClick(driver,SearchClear,10000);
-            exists=true;
+            Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(200))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
+            if(SearchClear.isDisplayed())
+            {
+                HelpersMethod.ActClick(driver, SearchClear, 20000);
+                exists = true;
+            }
         }
         catch (Exception e){}
         Assert.assertEquals(exists,true);
@@ -1744,7 +1753,7 @@ public class OrderControlListPage
                     break;
                 }
             }
-            if(HelpersMethod.IsExists("//tr[@class='k-filter-row']/descendant::th[contains(@aria-label,'Filter') and contains(@aria-colindex,'"+i+"')]/div[@class='cp-grid-hide-filter']",driver))
+            if(HelpersMethod.IsExists("//tr[contains(@class,'k-filter-row')]/descendant::th[contains(@aria-label,'Filter') and @aria-colindex='"+i+"']/div[@class='cp-grid-hide-filter']",driver))
             {
                 scenario.log("FILTER FOR CALL TIME HAS BEEN DISABLED");
                 exists=true;
@@ -1778,7 +1787,7 @@ public class OrderControlListPage
                     break;
                 }
             }
-            if(HelpersMethod.IsExists("//tr[@class='k-filter-row']/descendant::th[contains(@aria-label,'Filter') and contains(@aria-colindex,'"+i+"')]/div[@class='cp-grid-hide-filter']",driver))
+            if(HelpersMethod.IsExists("//tr[contains(@class,'k-filter-row')]/descendant::th[contains(@aria-label,'Filter') and @aria-colindex='"+i+"']/div[@class='cp-grid-hide-filter']",driver))
             {
                 scenario.log("FILTER FOR CALL BACK TIME HAS BEEN DISABLED");
                 exists=true;
@@ -2219,9 +2228,9 @@ public class OrderControlListPage
                 }
             }
 
-            if(HelpersMethod.IsExists("//th["+i+"]/descendant::input[@class='k-textbox']",driver))
+            if(HelpersMethod.IsExists("//tr[contains(@class,'k-filter-row')]/th["+i+"]/descendant::input",driver))
             {
-                WebElement inputboxSearch = HelpersMethod.FindByElement(driver, "xpath", "//th[" + i + "]/descendant::input[@class='k-textbox']");
+                WebElement inputboxSearch = HelpersMethod.FindByElement(driver, "xpath", "//tr[contains(@class,'k-filter-row')]/th["+i+"]/descendant::input");
                 HelpersMethod.EnterText(driver, inputboxSearch, 10000, creditHold);
                 if (HelpersMethod.IsExists("//td[contains(text(),'No records available')]",driver))
                 {

@@ -107,7 +107,7 @@ public class ProductReferencePage
     public void ValidateProductReference()
     {
         exists=false;
-        WebElement webEle=null;
+        WebElement WebEle;
         try
         {
             new WebDriverWait(driver, Duration.ofMillis(10000)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfAllElementsLocatedBy(By.id("customerProdutRefCard"))));
@@ -123,7 +123,7 @@ public class ProductReferencePage
     public void EnterCustomerAccount()
     {
         exists=false;
-        WebElement WebEle=null;
+        WebElement WebEle;
         String headText=null;
         String Acc_NO= TestBase.testEnvironment.get_Account();
         int i=0;

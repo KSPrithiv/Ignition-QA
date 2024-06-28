@@ -282,7 +282,7 @@ public class CreateOGPage
         exists=false;
         try
         {
-            WebElement WebEle=null;
+            WebElement WebEle;
             Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
                     .withTimeout(Duration.ofSeconds(200))
                     .pollingEvery(Duration.ofSeconds(2))
@@ -551,10 +551,11 @@ public class CreateOGPage
         exists=false;
         try
         {
+            Thread.sleep(2000);
             if(HelpersMethod.EleDisplay(More))
             {
                 HelpersMethod.ScrollElement(driver,More);
-                HelpersMethod.ActClick(driver,More,6000);
+                HelpersMethod.ActClick(driver,More,10000);
                 scenario.log("MORE BUTTON HAS BEEN CLICKED");
                 exists=true;
             }
@@ -628,11 +629,11 @@ public class CreateOGPage
     }
 
     //Code to Edit sequence number in Product grid of OG
-    public boolean EditSequence(String SeqNo)
+    public boolean EditSequence(String SeqNo) throws InterruptedException
     {
         exists=false;
-        Actions act=new Actions(driver);
-        String headText;
+        Thread.sleep(2000);
+
         try
         {
             String status = HelpersMethod.returnDocumentStatus(driver);
@@ -768,7 +769,7 @@ public class CreateOGPage
     public void SelectProductCatalog()
     {
         exists=false;
-        WebElement WebEle=null;
+        WebElement WebEle;
         try
         {
             String status = HelpersMethod.returnDocumentStatus(driver);
@@ -816,7 +817,7 @@ public class CreateOGPage
     public void CatalogPopupOk()
     {
         exists=false;
-        WebElement WebEle=null;
+        WebElement WebEle;
         try
         {
             if(HelpersMethod.IsExists("//div[contains(@class,'k-window k-dialog')]/descendant::button/span[text()='Ok']",driver))
@@ -1105,7 +1106,7 @@ public class CreateOGPage
     public void Click_Export()
     {
         exists=false;
-        WebElement WebEle=null;
+        WebElement WebEle;
         if(HelpersMethod.IsExists("//div[@class='loader']",driver))
         {
             WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
@@ -1441,7 +1442,7 @@ public class CreateOGPage
     //Code to handle confirmation popup for deleting customer allocation
     public void CustomerAllocationDeletePopup()
     {
-        WebElement WebEle=null;
+        WebElement WebEle;
         exists=true;
         try
         {
@@ -1831,7 +1832,7 @@ public class CreateOGPage
     public void PrintOG()
     {
         exists=false;
-        WebElement WebEle=null;
+        WebElement WebEle;
         if(PrintBut.isDisplayed() && PrintBut.isEnabled())
         {
             HelpersMethod.ScrollElement(driver, PrintBut);
@@ -2360,7 +2361,7 @@ public class CreateOGPage
     public void ListViewPriceBase()
     {
         exists = false;
-        WebElement WebEle=null;
+        WebElement WebEle;
         Actions act=new Actions(driver);
         try
         {

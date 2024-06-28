@@ -101,6 +101,7 @@ public class OrderFactorAdminStep
     @Then("Enter Pro# in Quick Product Entry area for Order factor")
     public void enterProInQuickProductEntryAreaForOrderFactor() throws InterruptedException, AWTException
     {
+        Thread.sleep(2000);
         newOE = new NewOrderEntryPage(driver,scenario);
         newOE.QuickProduct(prodNo);
     }
@@ -108,15 +109,63 @@ public class OrderFactorAdminStep
     @And("Check for Case and Unit input box enabled or not based on that enter value for qty to verify order factor")
     public void checkForCaseAndUnitInputBoxEnabledOrNotBasedOnThatEnterValueForQtyToVerifyOrderFactor(DataTable tabledata) throws InterruptedException, AWTException
     {
+//        newOE=new NewOrderEntryPage(driver,scenario);
+//        List<List<String>> PO_Qty = tabledata.asLists(String.class);
+//        String Case=PO_Qty.get(0).get(0);
+//        String Unit=PO_Qty.get(0).get(1);
+//        String uomString=newOE.VerifyUOM();
+//        if(uomString.equalsIgnoreCase("Units")||uomString.equalsIgnoreCase("EA"))
+//        {
+//            newOE.CheckForQuickUnitEnabled(Unit);
+//            if(uomString.equalsIgnoreCase("Units"))
+//            {
+//                WebElement caseIn = HelpersMethod.FindByElement(driver, "id", "quickCases");
+//                if (caseIn.equals(driver.switchTo().activeElement()))
+//                {
+//                    caseIn.sendKeys(Keys.TAB);
+//                }
+//            }
+//            newOE.exceedsMaxQty();
+//            newOE.lowOnInventoryToast();
+//            newOE.toastCurrentlyUnavailable();
+//        }
+//        else if(uomString.equalsIgnoreCase("Cases")||uomString.equalsIgnoreCase("CS"))
+//        {
+//            newOE.CheckForQuickCaseEnabled(Case);
+//            if(uomString.equalsIgnoreCase("Cases"))
+//            {
+//                WebElement unitIn = HelpersMethod.FindByElement(driver, "id", "quickUnits");
+//                if (unitIn.equals(driver.switchTo().activeElement()))
+//                {
+//                    unitIn.sendKeys(Keys.TAB);
+//                }
+//            }
+//            newOE.exceedsMaxQty();
+//            newOE.lowOnInventoryToast();
+//            newOE.toastCurrentlyUnavailable();
+//        }
+//        else if(uomString.equalsIgnoreCase("Cases, Units")||uomString.equalsIgnoreCase("Units, Cases")||uomString.equals("UNITS AND CASES")||uomString.equals("CS AND EA")||uomString.equals("EA AND CS")||uomString.equals("CS, EA")||uomString.equals("EA, CS"))
+//        {
+//            newOE.CheckForQuickCaseEnabled(Case);
+//            newOE.CheckForQuickUnitEnabled(Unit);
+//            newOE.exceedsMaxQty();
+//            newOE.lowOnInventoryToast();
+//            newOE.toastCurrentlyUnavailable();
+//        }
+//        new WebDriverWait(driver,Duration.ofMillis(10000)).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@id='pending-quick-entry-calls']")));
+//        Thread.sleep(2000);
+
+
         newOE=new NewOrderEntryPage(driver,scenario);
         List<List<String>> PO_Qty = tabledata.asLists(String.class);
         String Case=PO_Qty.get(0).get(0);
         String Unit=PO_Qty.get(0).get(1);
         String uomString=newOE.VerifyUOM();
-        if(uomString.equalsIgnoreCase("Units")||uomString.equalsIgnoreCase("EA"))
+
+        if(uomString.equals("Units")||uomString.equals("EA"))
         {
             newOE.CheckForQuickUnitEnabled(Unit);
-            if(uomString.equalsIgnoreCase("Units"))
+            if(uomString.equals("Units"))
             {
                 WebElement caseIn = HelpersMethod.FindByElement(driver, "id", "quickCases");
                 if (caseIn.equals(driver.switchTo().activeElement()))
@@ -124,14 +173,20 @@ public class OrderFactorAdminStep
                     caseIn.sendKeys(Keys.TAB);
                 }
             }
+            new WebDriverWait(driver,Duration.ofMillis(20000)).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@id='pending-quick-entry-calls']")));
             newOE.exceedsMaxQty();
-            newOE.lowOnInventoryToast();
-            newOE.toastCurrentlyUnavailable();
+            for(int i=0;i<=1;i++)
+            {
+                //check for toast message for low on inventory
+                newOE.lowOnInventoryToast();
+                //check for toast message for product is currently unavailable
+                newOE.toastCurrentlyUnavailable();
+            }
         }
-        else if(uomString.equalsIgnoreCase("Cases")||uomString.equalsIgnoreCase("CS"))
+        else if(uomString.equals("Cases")||uomString.equals("CS"))
         {
             newOE.CheckForQuickCaseEnabled(Case);
-            if(uomString.equalsIgnoreCase("Cases"))
+            if(uomString.equals("Cases"))
             {
                 WebElement unitIn = HelpersMethod.FindByElement(driver, "id", "quickUnits");
                 if (unitIn.equals(driver.switchTo().activeElement()))
@@ -139,19 +194,47 @@ public class OrderFactorAdminStep
                     unitIn.sendKeys(Keys.TAB);
                 }
             }
+            new WebDriverWait(driver,Duration.ofMillis(40000)).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@id='pending-quick-entry-calls']")));
             newOE.exceedsMaxQty();
-            newOE.lowOnInventoryToast();
-            newOE.toastCurrentlyUnavailable();
+            for(int i=0;i<=1;i++)
+            {
+                //check for toast message for low on inventory
+                newOE.lowOnInventoryToast();
+                //check for toast message for product is currently unavailable
+                newOE.toastCurrentlyUnavailable();
+            }
         }
-        else if(uomString.equalsIgnoreCase("Cases, Units")||uomString.equalsIgnoreCase("Units, Cases")||uomString.equals("UNITS AND CASES")||uomString.equals("CS AND EA")||uomString.equals("EA AND CS")||uomString.equals("CS, EA")||uomString.equals("EA, CS"))
+        else if(uomString.equals("Cases, Units")||uomString.equals("Units, Cases")||uomString.equals("CS, EA")||uomString.equals("EA, CS"))
         {
             newOE.CheckForQuickCaseEnabled(Case);
             newOE.CheckForQuickUnitEnabled(Unit);
+            //new WebDriverWait(driver,Duration.ofMillis(10000)).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@id='pending-quick-entry-calls']")));
             newOE.exceedsMaxQty();
-            newOE.lowOnInventoryToast();
-            newOE.toastCurrentlyUnavailable();
+            for(int i=0;i<=1;i++)
+            {
+                //check for toast message for low on inventory
+                newOE.lowOnInventoryToast();
+                //check for toast message for product is currently unavailable
+                newOE.toastCurrentlyUnavailable();
+            }
         }
-        new WebDriverWait(driver,Duration.ofMillis(10000)).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@id='pending-quick-entry-calls']")));
+        Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                .withTimeout(Duration.ofSeconds(400))
+                .pollingEvery(Duration.ofSeconds(2))
+                .ignoring(NoSuchElementException.class);
+        wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
+        String status = HelpersMethod.returnDocumentStatus(driver);
+        if (status.equals("loading"))
+        {
+            HelpersMethod.waitTillLoadingPage(driver);
+        }
+
+        wait = new FluentWait<WebDriver>(driver)
+                .withTimeout(Duration.ofSeconds(400))
+                .pollingEvery(Duration.ofSeconds(2))
+                .ignoring(NoSuchElementException.class);
+        wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
         Thread.sleep(2000);
     }
 

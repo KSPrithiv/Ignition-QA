@@ -44,7 +44,7 @@ public class PostPaymentPage
     public void ValidatePostPayment()
     {
         exists=false;
-        WebElement WebEle=null;
+        WebElement WebEle;
         String PageTitle=null;
         try
         {
@@ -78,7 +78,7 @@ public class PostPaymentPage
     public void Click_PostBut()
     {
         exists=false;
-        WebElement WebEle=null;
+        WebElement WebEle;
         try
         {
             HelpersMethod.ClickBut(driver,PostBut,1000);

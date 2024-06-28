@@ -528,7 +528,7 @@ public class HelpersMethod
 
     public static void DropDownMenu_withOutScrollbar(WebDriver driver,String value)
     {
-        WebElement WebEle=null;
+        WebElement WebEle;
         Actions act1= new Actions(driver);
         HelpersMethod.waitTillElementLocatedDisplayed(driver,"xpath","//div[contains(@class,'k-child-animation-container')]",40);
         // to fetch the web element of the modal container
@@ -550,7 +550,7 @@ public class HelpersMethod
 
     public static void DropDownMenu_LowerCase(WebDriver driver,String value) throws InterruptedException
     {
-        WebElement WebEle=null;
+        WebElement WebEle;
         Actions act1= new Actions(driver);
         String Opt=null;
         String Opt1=null;

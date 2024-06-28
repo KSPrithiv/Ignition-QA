@@ -20,6 +20,7 @@ public class PricingPage
     /* Created by Divya.Ramadas@afsi.com */
     WebDriver driver;
     Scenario scenario;
+    boolean exists=false;
 
     @FindBy(id="CmPricingCustomer")
     private WebElement pricingCustomerDropDown;
@@ -30,7 +31,7 @@ public class PricingPage
     @FindBy(id="CmPricingLevel")
     private WebElement pricingLevelDropDown;
 
-    @FindBy(xpath="//label[@id='CmPricingLastNotification-label']/following-sibling::span/descendant::a")
+    @FindBy(xpath="//input[@id='CmPricingLastNotification']/parent::span/following-sibling::button")
     private WebElement lastNotificationCalender;
 
     @FindBy(id="CmAIMPricing")
@@ -112,7 +113,10 @@ public class PricingPage
     }
     public void lastNotificationCalender()
     {
-        HelpersMethod.ClickBut(driver,lastNotificationCalender,1000);
+        if(lastNotificationCalender.isDisplayed())
+        {
+            HelpersMethod.ClickBut(driver, lastNotificationCalender, 10000);
+        }
     }
     public void selectReviewDate()
     {

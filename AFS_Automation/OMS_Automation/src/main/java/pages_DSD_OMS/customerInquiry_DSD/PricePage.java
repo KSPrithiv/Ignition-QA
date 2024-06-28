@@ -30,7 +30,7 @@ public class PricePage
     @FindBy(id="CmSchHighList")
     private WebElement DefaultList;
 
-    @FindBy(id="CmSchBasePrc")
+    @FindBy(xpath="//span[@id='CmSchBasePrc']/button")
     private WebElement BasePrice;
 
     @FindBy(id="CmSchRetail")
@@ -170,7 +170,7 @@ public class PricePage
 
     public String DropDownInCustomerInq()
     {
-        String ValueSele=null;
+        String ValueSele="";
         List<WebElement> Options= HelpersMethod.FindByElements(driver,"xpath","//div[@class='k-list-content']/descendant::ul/li");
         try
         {
@@ -186,7 +186,7 @@ public class PricePage
                     {
                         if (i == 1)
                         {
-                            HelpersMethod.ActClick(driver, Options.get(1), 20);
+                            HelpersMethod.ActClick(driver, Options.get(1), 10000);
                             ValueSele=Options.get(1).getText();
                             break;
                         }
@@ -304,10 +304,24 @@ public class PricePage
         scenario.log("DEFAULT LIST DROP DOWN VALUE "+InputValue);
     }
 
-    public void BasePriceDropDown()
+    public void BasePriceDropDown() throws InterruptedException
     {
         HelpersMethod.ScrollElement(driver,BasePrice);
-        InputValue=ClickOnDropDown(BasePrice,"CmSchBasePrc");
+        //InputValue=ClickOnDropDown(BasePrice,"CmSchBasePrc");
+        WebElement basePrice=HelpersMethod.FindByElement(driver,"xpath","//span[@id='CmSchBasePrc']/button");
+        HelpersMethod.ClickBut(driver,basePrice,10000);
+
+        //Select some value from base price drop down
+        List<WebElement> basePrices=HelpersMethod.FindByElements(driver,"xpath","//ul[@id='CmSchBasePrc-listbox-id']/descendant::span");
+        for(int i=0;i<=basePrices.size()-1;i++)
+        {
+            if(i==1)
+            {
+                WebElement bPrice= basePrices.get(i);
+                HelpersMethod.ActClick(driver,bPrice,10000);
+            }
+        }
+
         scenario.log("BEST PRICE DROP DOWN VALUE "+InputValue);
     }
 

@@ -68,7 +68,7 @@ public class NewQuotePage
     //Actions methods
     public void QtyInGrid(String unit,String cases)
     {
-        WebElement WebEle=null;
+        WebElement WebEle;
         try
         {
             Thread.sleep(2000);
@@ -223,7 +223,7 @@ public class NewQuotePage
     public void ClickOnCreateButton()
     {
         exists=false;
-        WebElement WebEle=null;
+        WebElement WebEle;
         try
         {
             Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
@@ -256,7 +256,7 @@ public class NewQuotePage
     public void ClickOnCancelButton()
     {
         exists=false;
-        WebElement WebEle=null;
+        WebElement WebEle;
         if(HelpersMethod.IsExists("//div[@class='loader']",driver))
         {
             WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
@@ -495,7 +495,7 @@ public class NewQuotePage
 
 
     public void EnterProductQtyCatalog(String unit,String cases) throws InterruptedException {
-        WebElement WebEle=null;
+        WebElement WebEle;
         int j=0;
         try
         {
@@ -642,7 +642,7 @@ public class NewQuotePage
     public void SelectOGFromPopup()
     {
         exists=false;
-        WebElement WebEle=null;
+        WebElement WebEle;
         try
         {
             if(HelpersMethod.IsExists("//div[@class='loader']",driver))
@@ -740,7 +740,7 @@ public class NewQuotePage
 
     public void QtyInGridMultipleProduct(String unit,String cases,int count)
     {
-        WebElement WebEle=null;
+        WebElement WebEle;
         WebEle=HelpersMethod.FindByElement(driver,"id","quoteEntryGridContainer");
         try
         {
@@ -796,7 +796,7 @@ public class NewQuotePage
     public void SelectProductInProductGrid()
     {
         exists=false;
-        WebElement WebEle=null;
+        WebElement WebEle;
         try
         {
             WebEle=HelpersMethod.FindByElement(driver,"id","quoteEntryGridContainer");
@@ -871,7 +871,7 @@ public class NewQuotePage
 
     public void QuoteCommentPopup(String comment)
     {
-        WebElement WebEle=null;
+        WebElement WebEle;
         String CommentPop=null;
         try
         {
@@ -1028,7 +1028,7 @@ public class NewQuotePage
     public void ResetFilter_Catalog()
     {
         exists=false;
-        WebElement WebEle=null;
+        WebElement WebEle;
         if(HelpersMethod.IsExists("//div[@class='loader']",driver))
         {
             WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");

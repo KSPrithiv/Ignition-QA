@@ -13,6 +13,8 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
+import pages_DSD_OMS.webOrdering.AdminHomePage;
+import util.TestBase;
 
 import java.time.Duration;
 import java.util.List;
@@ -116,7 +118,7 @@ public class CompetitivePricingReportPage
     {
        exists=false;
        Actions act=new Actions(driver);
-       String listText=null;
+       String listText;
        WebElement WebEle;
        try
        {
@@ -125,8 +127,8 @@ public class CompetitivePricingReportPage
                WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100000);
            }
-           new WebDriverWait(driver,Duration.ofMillis(1000)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(@class,'k-list-container')]/descendant::ul/li")));
-           List<WebElement> listElements=HelpersMethod.FindByElements(driver,"xpath","//div[contains(@class,'k-list-container')]/descendant::ul/li");
+           new WebDriverWait(driver,Duration.ofMillis(1000)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(@class,'k-list-container')]/descendant::ul/li/span")));
+           List<WebElement> listElements=HelpersMethod.FindByElements(driver,"xpath","//div[contains(@class,'k-list-container')]/descendant::ul/li/span");
            for (WebElement listEle:listElements)
            {
               act.moveToElement(listEle).build().perform();
@@ -159,9 +161,9 @@ public class CompetitivePricingReportPage
                  HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100000);
              }
 
-             if(HelpersMethod.IsExists("//div[@class='report-group-by--component'][1]/descendant::button[contains(@class,'i-indexfield-container__main__button i-button--icon-only')]",driver))
+             if(HelpersMethod.IsExists("//div[@class='dialog-grid']/descendant::button",driver))
              {
-                 WebElement custIndexIcon=HelpersMethod.FindByElement(driver,"xpath","//div[@class='report-group-by--component'][1]/descendant::button[contains(@class,'i-indexfield-container__main__button i-button--icon-only')]");
+                 WebElement custIndexIcon=HelpersMethod.FindByElement(driver,"xpath","//div[@class='dialog-grid']/descendant::button");
                  HelpersMethod.ClickBut(driver,custIndexIcon,10000);
                  exists=true;
              }
@@ -384,5 +386,52 @@ public class CompetitivePricingReportPage
         }
         catch (Exception e){}
 
+    }
+
+    public void enterSearchValueInInputbox()
+    {
+        try
+        {
+            WebElement groupInputBox= HelpersMethod.FindByElement(driver,"xpath","//div[@class='dialog-grid']/descendant::input");
+            HelpersMethod.ActClick(driver,groupInputBox,10000);
+            HelpersMethod.ActSendKeyEnter(driver,groupInputBox,10000, TestBase.testEnvironment.getCustomerName());
+        }
+        catch (Exception e){}
+    }
+
+    public void selectCustomerAccountOptionDropdownForReport()
+    {
+        try
+        {
+            List<WebElement> customerNames= HelpersMethod.FindByElements(driver,"xpath","//ul[@class='k-list-ul']/li/descendant::input");
+            for(int i=0;i<=customerNames.size()-1;i++)
+            {
+                if(i==1)
+                {
+                    WebElement customername=HelpersMethod.FindByElement(driver,"xpath","//ul[@class='k-list-ul']/li["+i+"]/descendant::input");
+                    HelpersMethod.ActClick(driver,customername,10000);
+                    break;
+                }
+            }
+        }
+        catch (Exception e){}
+    }
+
+    public void selectCustomerAccountOptionDropdownForReportToSelectSecondCustomer()
+    {
+        try
+        {
+            List<WebElement> customerNames= HelpersMethod.FindByElements(driver,"xpath","//ul[@class='k-list-ul']/li/descendant::input");
+            for(int i=0;i<=customerNames.size()-1;i++)
+            {
+                if(i==2)
+                {
+                    WebElement customername=HelpersMethod.FindByElement(driver,"xpath","//ul[@class='k-list-ul']/li["+i+"]/descendant::input");
+                    HelpersMethod.ActClick(driver,customername,10000);
+                    break;
+                }
+            }
+        }
+        catch (Exception e){}
     }
 }

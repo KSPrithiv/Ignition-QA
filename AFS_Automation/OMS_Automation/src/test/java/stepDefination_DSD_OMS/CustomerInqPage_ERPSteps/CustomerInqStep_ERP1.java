@@ -71,8 +71,7 @@ public class CustomerInqStep_ERP1
     }
 
     @Then("User clicks on Save button without entering customer name in ERP env")
-    public void userClicksOnSaveButtonWithoutEnteringCustomerNameInERPEnv()
-    {
+    public void userClicksOnSaveButtonWithoutEnteringCustomerNameInERPEnv() throws InterruptedException {
         customerInquiryPageERP=new CustomerInquiryPageERP(driver,scenario);
         customerInquiryPageERP.BillNo();
         //customerInquiryPageERP.DescrVal();
@@ -89,7 +88,7 @@ public class CustomerInqStep_ERP1
     }
 
     @And("User should click on save button to save copy of customer inq in ERP")
-    public void userShouldClickOnSaveButtonToSaveCopyOfCustomerInqInERP()
+    public void userShouldClickOnSaveButtonToSaveCopyOfCustomerInqInERP() throws InterruptedException
     {
         customerInquiryPageERP=new CustomerInquiryPageERP(driver,scenario);
         customerInquiryPageERP.Save_ButtonClick();

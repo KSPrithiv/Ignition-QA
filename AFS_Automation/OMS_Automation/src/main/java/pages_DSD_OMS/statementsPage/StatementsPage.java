@@ -442,7 +442,7 @@ public class StatementsPage
     public void SelectCustomerNo()
     {
         exists=false;
-        WebElement WebEle=null;
+        WebElement WebEle;
         String status="";
         try
         {
@@ -479,7 +479,7 @@ public class StatementsPage
     public void GenerateButtonWeekly()
     {
         exists=false;
-        WebElement WebEle=null;
+        WebElement WebEle;
         String status="";
         try
         {
@@ -550,7 +550,7 @@ public class StatementsPage
     public void GenerateButton()
     {
         exists=false;
-        WebElement WebEle=null;
+        WebElement WebEle;
         String status="";
         try
         {
@@ -691,7 +691,7 @@ public class StatementsPage
 
     public void FromDate()
     {
-        WebElement WebEle=null;
+        WebElement WebEle;
         try
         {
             WebEle= HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-textbox-container')][1]/descendant::a[contains(@class,'k-select k-select')]");
@@ -707,7 +707,7 @@ public class StatementsPage
 
     public void ToDate()
     {
-        WebElement WebEle=null;
+        WebElement WebEle;
         try
         {
             WebEle= HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-textbox-container')][2]/descendant::a[contains(@class,'k-select k-select')]");

@@ -22,8 +22,11 @@ Feature: Order control list
     And User validate that he is in NewOE page
     Then Enter PO# for New order
       |PO123|
-    Then Enter Pro# in Quick Product Entry area
-    And Check for Case and Unit input box enabled or not based on that enter value
+#    Then Enter Pro# in Quick Product Entry area
+#    And Check for Case and Unit input box enabled or not based on that enter value
+#      |1|1|
+    Then Click on Add product drop down and select catalog option
+    And User should select Product from catalog and Enter Qty for the products for OCL
       |1|1|
     Then Click on Next button and select option Continue without payment option
     And Click on Submit Order button and read Order_no for OCL

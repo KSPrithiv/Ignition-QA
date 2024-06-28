@@ -142,20 +142,21 @@ public class CutOffTimeOverridePage
             Thread.sleep(2000);
             new WebDriverWait(driver,Duration.ofMillis(10000)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(@class,'k-animation-container k-animation-container-shown')]")));
             new WebDriverWait(driver,Duration.ofMillis(10000)).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class,'k-animation-container k-animation-container-shown')]")));
-
+            Thread.sleep(1000);
             if(HelpersMethod.IsExists("//div[contains(@class,'k-animation-container k-animation-container-shown')]",driver))
             {
                 WebElement currentDate=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-calendar-view k-vstack k-calendar-monthview')]/descendant::td[contains(@class,'k-calendar-td k-state-pending-focus')]");
                 String currentDateString=HelpersMethod.AttributeValue(currentDate,"title");
                 DateTimeFormatter formatter = DateTimeFormatter.ofPattern("EEEE, MMMM d, yyyy", Locale.ENGLISH);
                 LocalDate dateTime = LocalDate.parse(currentDateString, formatter);
-                dateTime1=dateTime.plusDays(3);
+                dateTime1=dateTime.plusDays(4);
                 DateTimeFormatter currentFormatObj = DateTimeFormatter.ofPattern("EEEE, MMMM d, yyyy");
                 String dateText = dateTime1.format(currentFormatObj);
                 //Click on date
                 WebElement changeDate=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-calendar-view k-vstack k-calendar-monthview')]/descendant::td[contains(@class,'k-calendar-td') and @title='"+dateText+"']");
                 HelpersMethod.ScrollElement(driver,changeDate);
-                HelpersMethod.ActClick(driver,changeDate,40000);
+                //HelpersMethod.ActClick(driver,changeDate,80000);
+                HelpersMethod.JScriptClick(driver,changeDate,60000);
 
                 if (HelpersMethod.IsExists("//div[@class='loader']", driver))
                 {

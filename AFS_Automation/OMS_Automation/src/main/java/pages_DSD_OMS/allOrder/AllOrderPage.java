@@ -237,8 +237,7 @@ public class AllOrderPage
 
     public void ClickShowAllOrderCheckboxAgain()
     {
-        WebElement WebEle = null;
-        String status="";
+        String status;
         exists = false;
         try
         {
@@ -280,7 +279,7 @@ public class AllOrderPage
     public void AddFilterClick()
     {
         exists = false;
-        WebElement WebEle=null;
+        WebElement WebEle;
         try
         {
             OrderNo=ReadingOrderNo();
@@ -454,7 +453,7 @@ public class AllOrderPage
     public void ClickOnStartOrder() throws InterruptedException
     {
         exists = false;
-        String status = "";
+        String status;
         WebElement WebEle;
         try
         {
@@ -469,15 +468,23 @@ public class AllOrderPage
             {
                 HelpersMethod.waitTillLoadingPage(driver);
             }
+
             wait = new FluentWait<>(driver)
                     .withTimeout(Duration.ofSeconds(200))
                     .pollingEvery(Duration.ofSeconds(2))
                     .ignoring(NoSuchElementException.class);
             wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
 
+            status = HelpersMethod.returnDocumentStatus(driver);
+            if (status.equals("loading"))
+            {
+                HelpersMethod.waitTillLoadingPage(driver);
+            }
+
             WebEle = HelpersMethod.FindByElement(driver, "id", "openOrdersCard");
             HelpersMethod.ScrollElement(driver, WebEle);
-            new WebDriverWait(driver,Duration.ofMillis( 100000)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("openOrdersCard"))));
+            new WebDriverWait(driver,Duration.ofMillis(20000)).until(ExpectedConditions.refreshed(ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[@data-test-id='startOrderBtn']"))));
+            new WebDriverWait(driver,Duration.ofMillis( 20000)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.xpath("//button[@data-test-id='startOrderBtn']"))));
             status = HelpersMethod.returnDocumentStatus(driver);
             if (status.equals("loading"))
             {
@@ -816,7 +823,7 @@ public class AllOrderPage
     {
         try
         {
-            WebElement WebEle=null;
+            WebElement WebEle;
             WebElement Wheel=null;
             String formattedDate1=null;
 
@@ -889,7 +896,7 @@ public class AllOrderPage
 
     public void SearchNewlyCreatedOrder(String Ord_No)
     {
-        WebElement WebEle=null;
+        WebElement WebEle;
         String status="";
         if(HelpersMethod.IsExists("//div[@class='loader']",driver))
         {
@@ -1079,9 +1086,9 @@ public class AllOrderPage
                     HelpersMethod.ClickBut(driver,ChangeDD,10000);
                 }
                 //Handling Warning Popup
-                if (HelpersMethod.IsExists("//div[contains(text(),'Warning')]/ancestor::div[contains(@class,'k-window k-dialog')]",driver))
+                if (HelpersMethod.IsExists("//span[contains(text(),'Warning')]/ancestor::div[contains(@class,'k-window k-dialog')]",driver))
                 {
-                    WebElement WarningDD=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-window k-dialog')]/descendant::.//button/span[text()='Continue']");
+                    WebElement WarningDD=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-window k-dialog')]/descendant::.//button/span[text()='Ok']");
                     HelpersMethod.ClickBut(driver,WarningDD,10000);
                 }
             }
@@ -1188,7 +1195,7 @@ public class AllOrderPage
     public void ValidateCommentIcon()
     {
         exists=false;
-        WebElement WebEle=null;
+        WebElement WebEle;
         if(HelpersMethod.IsExists("//div[@class='loader']",driver))
         {
             WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
@@ -1209,7 +1216,7 @@ public class AllOrderPage
     public void ClickOnOrderInAllOrderGrid()
     {
         exists=false;
-        WebElement WebEle=null;
+        WebElement WebEle;
         try
         {
             Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
@@ -1255,7 +1262,7 @@ public class AllOrderPage
     public void NavigateToOrderSummaryPage()
     {
         exists=false;
-        WebElement WebEle=null;
+        WebElement WebEle;
         try
         {
             Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
@@ -1662,7 +1669,7 @@ public class AllOrderPage
     public void PrintAllOrder()
     {
         exists=false;
-        WebElement WebEle=null;
+        WebElement WebEle;
         try
         {
             Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
@@ -1913,7 +1920,7 @@ public class AllOrderPage
     public void ActiveOrderOptionFromDropDown()
     {
         exists=false;
-        WebElement WebEle=null;
+        WebElement WebEle;
         Actions act1= new Actions(driver);
         try
         {
@@ -1992,7 +1999,7 @@ public class AllOrderPage
     public void ClickOnCommentIcon()
     {
         exists=false;
-        WebElement WebEle=null;
+        WebElement WebEle;
         if(HelpersMethod.IsExists("//div[@class='loader']",driver))
         {
             WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");

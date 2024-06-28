@@ -60,10 +60,10 @@ public class CreditPage
     @FindBy(id="CmMemoLimit")
     private WebElement memoLimit;
 
-    @FindBy(xpath="//input[@id='CmCreditReviewDate']/ancestor::span[contains(@class,'k-widget k-dateinput')]/following-sibling::a")
+    @FindBy(xpath="//input[@id='CmCreditReviewDate']/parent::span/following-sibling::button")
     private WebElement creditReviewDate;
 
-    @FindBy(xpath="//input[@id='CmNextCreditReviewDate']/ancestor::span[contains(@class,'k-widget k-dateinput')]/following-sibling::a")
+    @FindBy(xpath="//input[@id='CmNextCreditReviewDate']/parent::span/following-sibling::button")
     private WebElement nextCreditReviewDate;
 
     public CreditPage(WebDriver driver, Scenario scenario)
@@ -214,8 +214,15 @@ public class CreditPage
 
     public void reviewDateSelection()
     {
-        HelpersMethod.ClickBut(driver,creditReviewDate,10000);
+        exists=false;
+        if(creditReviewDate.isDisplayed())
+        {
+            HelpersMethod.ClickBut(driver, creditReviewDate, 10000);
+            exists=true;
+        }
+        Assert.assertEquals(exists,true);
     }
+
     public void selectReviewDate()
     {
         try

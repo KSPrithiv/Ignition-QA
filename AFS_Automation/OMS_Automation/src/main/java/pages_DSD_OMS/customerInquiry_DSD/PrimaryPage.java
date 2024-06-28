@@ -14,6 +14,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import util.RandomValues;
 
+import java.time.Duration;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
@@ -194,14 +195,15 @@ public class PrimaryPage
 
     public void selectDropDownValue()
     {
-        //WebElement dropDownOption=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-popup k-child-animation-container')]");
-        List<WebElement> Options= HelpersMethod.FindByElements(driver,"xpath","//div[@class='k-list-content']/ul/li");
+        //WebElement dropDownOption=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-child-animation-container')]");
+        new WebDriverWait(driver, Duration.ofMillis(10000)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='k-list-content']/ul/li/span")));
+        List<WebElement> Options= HelpersMethod.FindByElements(driver,"xpath","//div[@class='k-list-content']/ul/li/span");
         try
         {
            if(Options.size()==1)
             {
                 scenario.log("THERE ARE NO OPTIONS OTHER THAN 'None'");
-                HelpersMethod.ActClick(driver, Options.get(0), 1000);
+                HelpersMethod.ActClick(driver, Options.get(0), 10000);
             }
             else
             {
@@ -211,7 +213,7 @@ public class PrimaryPage
                     {
                         if (i == 1)
                         {
-                            HelpersMethod.ActClick(driver, Options.get(1), 1000);
+                            HelpersMethod.ActClick(driver, Options.get(1), 10000);
                             break;
                         }
                     }
@@ -343,7 +345,7 @@ public class PrimaryPage
         exists=false;
         try
         {
-            HelpersMethod.ActClick(driver,equpmentCharges,10);
+            HelpersMethod.ActClick(driver,equpmentCharges,10000);
             if(equpmentCharges.isSelected())
             {
                 exists=true;
@@ -358,7 +360,7 @@ public class PrimaryPage
         exists=false;
         try
         {
-            HelpersMethod.ActClick(driver,fuelCharge,10);
+            HelpersMethod.ActClick(driver,fuelCharge,10000);
             if(fuelCharge.isSelected())
             {
                 exists=true;
@@ -370,7 +372,7 @@ public class PrimaryPage
 
     public void CountryDropDown() throws InterruptedException
     {
-        HelpersMethod.ActClick(driver,country,100);
+        HelpersMethod.ActClick(driver,country,10000);
         selectDropDownValue();
         scenario.log("COUNTRY DROP DOWN IS "+country.getText());
     }
@@ -378,7 +380,7 @@ public class PrimaryPage
     public void StreetDropDown() throws InterruptedException
     {
         HelpersMethod.ScrollElement(driver,street);
-        HelpersMethod.ActClick(driver,street,40);
+        HelpersMethod.ActClick(driver,street,10000);
         selectDropDownValue();
         scenario.log("STREET DROP DOWN IS "+street.getText());
     }
@@ -386,7 +388,7 @@ public class PrimaryPage
     public void CustomerTypeDropDown() throws InterruptedException
     {
         HelpersMethod.ScrollElement(driver,custType);
-        HelpersMethod.ActClick(driver,custType,40);
+        HelpersMethod.ActClick(driver,custType,10000);
         selectDropDownValue();
         scenario.log("CUSTOMER TYPE DROP DOWN IS "+custType.getText());
     }
@@ -394,14 +396,14 @@ public class PrimaryPage
     public void DistrbutorDropDown() throws InterruptedException
     {
         HelpersMethod.ScrollElement(driver,distriNo);
-        HelpersMethod.ActClick(driver,distriNo,40);
+        HelpersMethod.ActClick(driver,distriNo,10000);
         selectDropDownValue();
         scenario.log("DISTRIBUTOR DROP DOWN IS "+distriNo.getText());
     }
 
     public void SoldByRemittance() throws InterruptedException
     {
-        HelpersMethod.ActClick(driver,soldBy,40);
+        HelpersMethod.ActClick(driver,soldBy,10000);
         selectDropDownValue();
         scenario.log("SOLD BY DROP DOWN IS "+soldBy.getText());
     }
@@ -410,8 +412,9 @@ public class PrimaryPage
     {
         HelpersMethod.ScrollElement(driver,status);
         HelpersMethod.JScriptClick(driver,status,10000);
+        new WebDriverWait(driver,Duration.ofMillis(10000)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='k-list-content']/ul/li")));
         List<WebElement> Options= HelpersMethod.FindByElements(driver,"xpath","//div[@class='k-list-content']/ul/li");
-        String optText="";
+        String optText;
         Actions act=new Actions(driver);
         for(WebElement opt:Options)
         {
@@ -430,7 +433,7 @@ public class PrimaryPage
     public void FuelProductDropDown() throws InterruptedException
     {
         HelpersMethod.ScrollElement(driver,fuelProd);
-        HelpersMethod.ActClick(driver,fuelProd,40);
+        HelpersMethod.ActClick(driver,fuelProd,10000);
         selectDropDownValue();
         scenario.log("FUEL PRODUCT DROP DOWN IS "+fuelProd.getText());
     }
@@ -438,7 +441,7 @@ public class PrimaryPage
     public void DeliveryZoneDropDown() throws InterruptedException
     {
         HelpersMethod.ScrollElement(driver,delivZoneDrop);
-        HelpersMethod.ActClick(driver,delivZoneDrop,40);
+        HelpersMethod.ActClick(driver,delivZoneDrop,10000);
         selectDropDownValue();
         scenario.log("DELIVERY ZONE DROP DOWN IS "+delivZoneDrop.getText());
     }
@@ -446,7 +449,7 @@ public class PrimaryPage
     public void DeliveryBranchDropDown() throws InterruptedException
     {
         HelpersMethod.ScrollElement(driver,branchDrop);
-        HelpersMethod.ActClick(driver,branchDrop,1000);
+        HelpersMethod.ActClick(driver,branchDrop,10000);
         selectDropDownValue();
         scenario.log("BRANCH DROP DOWN IS "+branchDrop.getText());
     }
@@ -454,63 +457,63 @@ public class PrimaryPage
     public void SellZoneDropDown() throws InterruptedException
     {
         HelpersMethod.ScrollElement(driver,sellZoneDrop);
-        HelpersMethod.ActClick(driver,sellZoneDrop,40);
+        HelpersMethod.ActClick(driver,sellZoneDrop,10000);
         selectDropDownValue();
         scenario.log("SELL ZONE DROP DOWN IS "+sellZoneDrop.getText());
     }
 
     public void SalesRepDropDown()
     {
-        HelpersMethod.ClickBut(driver,salesmanDrop,40);
+        HelpersMethod.ClickBut(driver,salesmanDrop,10000);
         selectDropDownValue();
         scenario.log("SALES MAN DROP DOWN IS "+salesmanDrop.getText());
     }
 
     public void SalesBranchDropDown()
     {
-        HelpersMethod.ClickBut(driver,salesBranchDrop,40);
+        HelpersMethod.ClickBut(driver,salesBranchDrop,10000);
         selectDropDownValue();
         scenario.log("SALES BRANCH DROP DOWN IS "+salesBranchDrop.getText());
     }
 
     public void ChainIdDropDown()
     {
-        HelpersMethod.ClickBut(driver,chainId,40);
+        HelpersMethod.ClickBut(driver,chainId,10000);
         selectDropDownValue();
         scenario.log("CHAIN ID DROP DOWN IS "+chainId.getText());
     }
 
     public void BrokerDropDown()
     {
-        HelpersMethod.ClickBut(driver,BrokerDrop,40);
+        HelpersMethod.ClickBut(driver,BrokerDrop,10000);
         selectDropDownValue();
         scenario.log("BROKER DROP DOWN IS "+BrokerDrop.getText());
     }
 
     public void MarketAreaDropDown()
     {
-        HelpersMethod.ClickBut(driver,mktAreaDrop,40);
+        HelpersMethod.ClickBut(driver,mktAreaDrop,10000);
         selectDropDownValue();
         scenario.log("MARKET AREA DROP DOWN IS "+mktAreaDrop.getText());
     }
 
     public void GroupDropDown()
     {
-        HelpersMethod.ClickBut(driver,groupDrop,40);
+        HelpersMethod.ClickBut(driver,groupDrop,10000);
         selectDropDownValue();
         scenario.log("GROUP DROP DOWN IS "+groupDrop.getText());
     }
 
     public void CategoryDropDown()
     {
-        HelpersMethod.ClickBut(driver,categoryDrop,40);
+        HelpersMethod.ClickBut(driver,categoryDrop,10000);
         selectDropDownValue();
         scenario.log("CATEGORY DROP DOWN IS "+categoryDrop.getText());
     }
 
     public void StoreTypeDropDown()
     {
-        HelpersMethod.ClickBut(driver,storeTypeDrop,40);
+        HelpersMethod.ClickBut(driver,storeTypeDrop,10000);
         selectDropDownValue();
         scenario.log("STORE TYPE DROP DOWN IS "+storeTypeDrop.getText());
     }
@@ -518,7 +521,7 @@ public class PrimaryPage
     public void SuspensionReason()
     {
         InputValue=EnterText(commentSuspend,10);
-        HelpersMethod.EnterText(driver,commentSuspend,10,InputValue);
+        HelpersMethod.EnterText(driver,commentSuspend,10000,InputValue);
         scenario.log("COMMENT SUSPEND ENTERED IS "+HelpersMethod.JSGetValueEle(driver,commentSuspend,10));
     }
 
@@ -527,7 +530,7 @@ public class PrimaryPage
         exists=false;
         try
         {
-            HelpersMethod.ActClick(driver,activeCal,10);
+            HelpersMethod.ActClick(driver,activeCal,10000);
             exists=true;
             Assert.assertEquals(exists,true);
         }
@@ -539,7 +542,7 @@ public class PrimaryPage
         exists=false;
         try
         {
-            HelpersMethod.ActClick(driver,suspendCal,10);
+            HelpersMethod.ActClick(driver,suspendCal,10000);
             exists=true;
             Assert.assertEquals(exists,true);
         }

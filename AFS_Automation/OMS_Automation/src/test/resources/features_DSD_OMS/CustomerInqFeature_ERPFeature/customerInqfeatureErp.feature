@@ -35,14 +35,14 @@ Feature: Customer Inq in ERP
     And User navigate to Billing Info tab and User enters value to all the input box in Billing Info page
 
   @Marketing
-  Scenario: Test scenario for entering values for Billing info, in Customer inq
+  Scenario: Test scenario for entering values for Marketing, in Customer inq
     Given User must be on Client side and select Customer Inq in ERP
     When User should confirm that he is in Customer Inq in ERP
     Then User click on New button in ERP Customer Inq
     And User navigate to Marketing tab and User enters value to all the input box in Marketing page
 
   @Pricing
-  Scenario: Test scenario for entering values for Billing info, in Customer inq
+  Scenario: Test scenario for entering values for Pricing, in Customer inq
     Given User must be on Client side and select Customer Inq in ERP
     When User should confirm that he is in Customer Inq in ERP
     Then User click on New button in ERP Customer Inq

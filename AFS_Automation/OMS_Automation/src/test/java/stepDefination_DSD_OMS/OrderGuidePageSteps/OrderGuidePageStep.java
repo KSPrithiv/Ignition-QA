@@ -311,7 +311,7 @@ public class OrderGuidePageStep
 
     //Code to edit sequence number in Order guide, Product grid
     @And("User changes sequence number in product grid of OG")
-    public void user_changes_sequence_number_in_product_grid_of_og(DataTable tabledata)
+    public void user_changes_sequence_number_in_product_grid_of_og(DataTable tabledata) throws InterruptedException
     {
         List<List<String>> SeqNo=tabledata.asLists(String.class);
         createOGPage=new CreateOGPage(driver,scenario);
