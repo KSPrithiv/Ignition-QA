@@ -154,16 +154,12 @@ public class OrderEntryPageSteps1
     public void userShouldSelectProductFromCatalogAndEnterQtyForTheProductsForOCL(DataTable tabledata) throws InterruptedException, AWTException, SQLException, ClassNotFoundException, InstantiationException, IllegalAccessException
     {
         List<List<String>> Prod_detail = tabledata.asLists(String.class);
-        String Prod_No= DataBaseConnection.DataBaseConn(TestBase.testEnvironment.getSingle_OneMoreProd());
         newOE=new NewOrderEntryPage(driver,scenario);
         newOE.Validate_Catalog();
         newOE.clickOnLoadAllProducts();
         newOE.ResetFilter_Catalog();
         newOE.validateCatalogProducts();
-        //newOE.searchProdCatalogForOCL();
         newOE.enterQtyOCL(Prod_detail.get(0).get(0),Prod_detail.get(0).get(1));
-
-        //scenario.log("PRODUCT # "+pro+" PRODUCT QTY "+Prod_detail.get(0).get(0)+" "+Prod_detail.get(0).get(1));
     }
 
     //Code to add notes at coustomer level

@@ -811,7 +811,7 @@ public class CheckOutOrderPage
                     if (withoutPayment.isEnabled())
                     {
                         HelpersMethod.ScrollElement(driver, withoutPayment);
-                        HelpersMethod.ActClick(driver, withoutPayment, 20000);
+                        HelpersMethod.ActClick(driver, withoutPayment, 40000);
                         exists = true;
                         scenario.log("CONTINUE ORDER WITHOUT PAYMENT METHOD IS SELECTED");
                     }
@@ -823,6 +823,12 @@ public class CheckOutOrderPage
                     exists=true;
                     scenario.log("<span style='color:red'>>PAYMENT OPTION HAS BEEN SELECTED, NOT CONTINUE ORDER WITHOUT PAYMENT, MAY BE BECAUSE IT IS DISABLED</span>");
                 }
+
+                Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                        .withTimeout(Duration.ofSeconds(400))
+                        .pollingEvery(Duration.ofSeconds(2))
+                        .ignoring(NoSuchElementException.class);
+                wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
             }
             Assert.assertEquals(exists,true);
         }

@@ -34,7 +34,7 @@ Feature: Customer Inq
     Given User must be on Client side and select Customer Inq page
     When User should confirm that he is in Customer Inq page
     Then User click on New button to cancel creation of customer inq
-    And User enters value to all the input box in primary page
+    And User enters value to all the input box in primary page for all web elements
     And User navigate to BillTo tab and User enteres the value for all web elements
     And User navigate to Orders tab and User enteres the value for all web elements
       |10.25|500.10|

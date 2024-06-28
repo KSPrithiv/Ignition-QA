@@ -52,9 +52,8 @@ public class CompetitorPricingPageStep1
         competitivePricingReportPage.clickOnGroup1();
         competitivePricingReportPage.selectCustomerAccountOptionDropdown(listValue.get(0).get(0));
         competitivePricingReportPage.clickCustomerAccountIndex();
-        competitivePricingReportPage.validateCustomerAccountDialogBox();
-        competitivePricingReportPage.clickOnAddfilterToSelectCustomer(listValue.get(0).get(0),TestBase.testEnvironment.get_Account());
-        competitivePricingReportPage.selectCustomerAccountInDialogbox();
+        competitivePricingReportPage.enterSearchValueInInputbox();
+        competitivePricingReportPage.selectCustomerAccountOptionDropdownForReport();
         competitivePricingReportPage.handlePrintButton();
     }
 
@@ -65,16 +64,16 @@ public class CompetitorPricingPageStep1
         competitivePricingReportPage=new CompetitivePricingReportPage(driver,scenario);
         competitivePricingReportPage.clickOnGroup1();
         competitivePricingReportPage.selectCustomerAccountOptionDropdown(listValue.get(0).get(0));
+
         //to select 1st customer account number
         competitivePricingReportPage.clickCustomerAccountIndex();
-        competitivePricingReportPage.validateCustomerAccountDialogBox();
-        competitivePricingReportPage.clickOnAddfilterToSelectCustomer(listValue.get(0).get(0),TestBase.testEnvironment.get_Account());
-        competitivePricingReportPage.selectCustomerAccountInDialogbox();
+        competitivePricingReportPage.enterSearchValueInInputbox();
+        competitivePricingReportPage.selectCustomerAccountOptionDropdownForReport();
+
         //to select 2nd customer account number
         competitivePricingReportPage.clickCustomerAccountIndex();
-        competitivePricingReportPage.validateCustomerAccountDialogBox();
-        competitivePricingReportPage.clickOnAddfilterToSelectCustomer(listValue.get(0).get(0),TestBase.testEnvironment.get_AnotherAcc());
-        competitivePricingReportPage.selectCustomerAccountInDialogbox();
+        competitivePricingReportPage.enterSearchValueInInputbox();
+        competitivePricingReportPage.selectCustomerAccountOptionDropdownForReportToSelectSecondCustomer();
         competitivePricingReportPage.handlePrintButton();
     }
 
@@ -87,9 +86,12 @@ public class CompetitorPricingPageStep1
         competitivePricingReportPage.selectCustomerAccountOptionDropdown(listValue.get(0).get(0));
         competitivePricingReportPage.clickAscendingRadioButton();
         competitivePricingReportPage.clickCustomerAccountIndex();
-        competitivePricingReportPage.validateCustomerAccountDialogBox();
-        competitivePricingReportPage.clickOnAddfilterToSelectCustomer(listValue.get(0).get(0),TestBase.testEnvironment.get_Account());
-        competitivePricingReportPage.selectCustomerAccountInDialogbox();
+        competitivePricingReportPage.enterSearchValueInInputbox();
+        competitivePricingReportPage.selectCustomerAccountOptionDropdownForReport();
+//        competitivePricingReportPage.clickCustomerAccountIndex();
+//        competitivePricingReportPage.validateCustomerAccountDialogBox();
+//        competitivePricingReportPage.clickOnAddfilterToSelectCustomer(listValue.get(0).get(0),TestBase.testEnvironment.get_Account());
+//        competitivePricingReportPage.selectCustomerAccountInDialogbox();
         competitivePricingReportPage.handlePrintButton();
     }
 
@@ -102,9 +104,12 @@ public class CompetitorPricingPageStep1
         competitivePricingReportPage.selectCustomerAccountOptionDropdown(listValue.get(0).get(0));
         competitivePricingReportPage.clickDescendingRadioButton();
         competitivePricingReportPage.clickCustomerAccountIndex();
-        competitivePricingReportPage.validateCustomerAccountDialogBox();
-        competitivePricingReportPage.clickOnAddfilterToSelectCustomer(listValue.get(0).get(0),TestBase.testEnvironment.get_Account());
-        competitivePricingReportPage.selectCustomerAccountInDialogbox();
+        competitivePricingReportPage.enterSearchValueInInputbox();
+        competitivePricingReportPage.selectCustomerAccountOptionDropdownForReport();
+//        competitivePricingReportPage.clickCustomerAccountIndex();
+//        competitivePricingReportPage.validateCustomerAccountDialogBox();
+//        competitivePricingReportPage.clickOnAddfilterToSelectCustomer(listValue.get(0).get(0),TestBase.testEnvironment.get_Account());
+//        competitivePricingReportPage.selectCustomerAccountInDialogbox();
         competitivePricingReportPage.handlePrintButton();
     }
 }

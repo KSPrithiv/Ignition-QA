@@ -118,6 +118,7 @@ public class LoginPageStep
     @Given("User on login page for external catalog")
     public void user_on_login_page_for_external_catalog() throws InterruptedException, AWTException
     {
+        Wait<WebDriver> wait;
         String status = HelpersMethod.returnDocumentStatus(driver);
         if (status.equals("loading"))
         {
@@ -125,47 +126,61 @@ public class LoginPageStep
         }
         Thread.sleep(2000);
 
-        if(HelpersMethod.IsExists("//div[contains(@class,'k-window k-dialog')]",driver))
+        if (HelpersMethod.IsExists("//div[contains(@class,'k-dialog-wrapper')]|//div[@class='modal-sm modal-dialog']|//div[contains(@class,'modal-content')]|//div[contains(@class,'k-dialog-wrapper order-selection ')]|//div[@class='k-dialog-wrapper priceOverrideDialog ']|//div[@class='k-dialog-wrapper OrderCommentDialog ']", driver))
         {
-            String mainWindow = driver.getWindowHandle();
-            Set<String> windowsId = driver.getWindowHandles();
+            WebElement dialogBox = driver.findElement(By.xpath("//div[contains(@class,'k-dialog-wrapper')]|//div[contains(@class,'modal-dialog')]|//div[contains(@class,'k-dialog-wrapper order-selection ')]|//div[contains(@class,'modal-content')]|//div[@class='k-dialog-wrapper priceOverrideDialog ']|//div[@class='k-dialog-wrapper OrderCommentDialog ']"));
+            ((JavascriptExecutor) driver).executeScript("arguments[0].style.display = 'none';", dialogBox);
 
-            for (String handle : windowsId)
-            {
-                if (!handle.equals(mainWindow))
-                {
-                    driver.switchTo().window(handle);
-                    break;
-                }
-            }
-            try
-            {
-                driver.close();
-            }
-            catch (Exception e)
-            {
-                ((JavascriptExecutor) driver).executeScript("window.close();");
-            }
+            driver.navigate().refresh();
 
-
-            Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
-                    .withTimeout(Duration.ofSeconds(400))
-                    .pollingEvery(Duration.ofSeconds(2))
-                    .ignoring(NoSuchElementException.class);
-            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
-
-            wait = new WebDriverWait(driver, Duration.ofMillis(1000));
-            if(wait.until(ExpectedConditions.alertIsPresent())!=null)
-            {
-                Alert alert = driver.switchTo().alert();
-                alert.accept();
-            }
             wait = new FluentWait<WebDriver>(driver)
                     .withTimeout(Duration.ofSeconds(400))
                     .pollingEvery(Duration.ofSeconds(2))
                     .ignoring(NoSuchElementException.class);
             wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
         }
+
+//        if(HelpersMethod.IsExists("//div[contains(@class,'k-window k-dialog')]",driver))
+//        {
+//            String mainWindow = driver.getWindowHandle();
+//            Set<String> windowsId = driver.getWindowHandles();
+//
+//            for (String handle : windowsId)
+//            {
+//                if (!handle.equals(mainWindow))
+//                {
+//                    driver.switchTo().window(handle);
+//                    break;
+//                }
+//            }
+//            try
+//            {
+//                driver.close();
+//            }
+//            catch (Exception e)
+//            {
+//                ((JavascriptExecutor) driver).executeScript("window.close();");
+//            }
+//
+//
+//            Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+//                    .withTimeout(Duration.ofSeconds(400))
+//                    .pollingEvery(Duration.ofSeconds(2))
+//                    .ignoring(NoSuchElementException.class);
+//            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+//
+//            wait = new WebDriverWait(driver, Duration.ofMillis(1000));
+//            if(wait.until(ExpectedConditions.alertIsPresent())!=null)
+//            {
+//                Alert alert = driver.switchTo().alert();
+//                alert.accept();
+//            }
+//            wait = new FluentWait<WebDriver>(driver)
+//                    .withTimeout(Duration.ofSeconds(400))
+//                    .pollingEvery(Duration.ofSeconds(2))
+//                    .ignoring(NoSuchElementException.class);
+//            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+//        }
         String currentUrl=driver.getCurrentUrl();
         scenario.log(currentUrl);
         if((!currentUrl.contains("cpLogin") || !currentUrl.contains("cplogin")) && (currentUrl.contains("cpExtOrderCart")||currentUrl.contains("cpExtProductCatalog")))
@@ -182,14 +197,15 @@ public class LoginPageStep
                 homepage.Click_On_UserIcon();
                 homepage.Click_On_Signout();
 
-                Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+               wait = new FluentWait<WebDriver>(driver)
                         .withTimeout(Duration.ofSeconds(200))
                         .pollingEvery(Duration.ofSeconds(2))
                         .ignoring(NoSuchElementException.class);
                 wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
 
                 status = HelpersMethod.returnDocumentStatus(driver);
-                if (status.equals("loading")) {
+                if (status.equals("loading"))
+                {
                     HelpersMethod.waitTillLoadingPage(driver);
                 }
 

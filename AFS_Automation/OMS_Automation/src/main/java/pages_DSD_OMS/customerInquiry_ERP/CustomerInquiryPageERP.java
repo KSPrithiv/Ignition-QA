@@ -75,27 +75,38 @@ public class CustomerInquiryPageERP
 
     public void removeDialogBoxIfAny()
     {
-        if(HelpersMethod.IsExists("//div[contains(@class,'k-window k-dialog')]",driver))
+        if (HelpersMethod.IsExists("//div[contains(@class,'k-dialog-wrapper')]|//div[@class='modal-sm modal-dialog']|//div[contains(@class,'modal-content')]|//div[contains(@class,'k-dialog-wrapper order-selection ')]|//div[@class='k-dialog-wrapper priceOverrideDialog ']|//div[@class='k-dialog-wrapper OrderCommentDialog ']", driver))
         {
-            JavascriptExecutor js = ((JavascriptExecutor) driver);
-            js.executeScript("window.location.reload()");
-            WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(10000));
-         /*   if (wait.until(ExpectedConditions.alertIsPresent()) == null)
-            {
+            WebElement dialogBox = driver.findElement(By.xpath("//div[contains(@class,'k-dialog-wrapper')]|//div[contains(@class,'modal-dialog')]|//div[contains(@class,'k-dialog-wrapper order-selection ')]|//div[contains(@class,'modal-content')]|//div[@class='k-dialog-wrapper priceOverrideDialog ']|//div[@class='k-dialog-wrapper OrderCommentDialog ']"));
+            ((JavascriptExecutor) driver).executeScript("arguments[0].style.display = 'none';", dialogBox);
 
-            }
-            else
-            {*/
-                Alert alert = driver.switchTo().alert();
-                alert.accept();
-            //}
+            driver.navigate().refresh();
+
+            Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(400))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+        }
 
             Wait<WebDriver> wait1 = new FluentWait<WebDriver>(driver)
                     .withTimeout(Duration.ofSeconds(400))
                     .pollingEvery(Duration.ofSeconds(2))
                     .ignoring(NoSuchElementException.class);
             wait1.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
-        }
+
+            String status = HelpersMethod.returnDocumentStatus(driver);
+            if (status.equals("loading"))
+            {
+                HelpersMethod.waitTillLoadingPage(driver);
+            }
+
+            wait1 = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(400))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait1.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
     }
 
     public void Refresh_Page()
@@ -246,7 +257,7 @@ public class CustomerInquiryPageERP
         exists=false;
         WebElement WebEle;
         Actions act=new Actions(driver);
-        String billNumber=null;
+        String billNumber;
         try
         {
             WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='customer-account-component']");
@@ -273,7 +284,7 @@ public class CustomerInquiryPageERP
     public void DescrVal(String desc)
     {
         exists=false;
-        String DescVal=null;
+        String DescVal;
         Actions act=new Actions(driver);
         try
         {
@@ -313,19 +324,30 @@ public class CustomerInquiryPageERP
         catch (Exception e){}
     }
 
-    public void Save_ButtonClick()
+    public void Save_ButtonClick() throws InterruptedException
     {
+        Thread.sleep(8000);
         exists=false;
-        WebElement WebEle=null;
+
         try
         {
-            WebElement save_Button=HelpersMethod.FindByElement(driver,"xpath","//button/span[text()='Save']");
+            Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(400))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
+            new WebDriverWait(driver,Duration.ofMillis(10000)).until(ExpectedConditions.refreshed(ExpectedConditions.elementToBeClickable(By.id("customerInquirySaveBtn"))));
+            WebElement save_Button=HelpersMethod.FindByElement(driver,"id","customerInquirySaveBtn");
             if(save_Button.isEnabled())
             {
-                HelpersMethod.ClickBut(driver, save_Button, 20000);
+                HelpersMethod.ScrollUpScrollBar(driver);
+                HelpersMethod.ScrollTillElementVisible(driver,save_Button);
+                HelpersMethod.JScriptClick(driver, save_Button, 20000);
+                scenario.log("SAVE BUTTON HAS BEEN CLICKED");
                 exists=true;
-                Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
-                        .withTimeout(Duration.ofSeconds(120))
+                wait = new FluentWait<WebDriver>(driver)
+                        .withTimeout(Duration.ofSeconds(400))
                         .pollingEvery(Duration.ofSeconds(2))
                         .ignoring(NoSuchElementException.class);
                 wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
@@ -372,7 +394,7 @@ public class CustomerInquiryPageERP
             {
                 WebElement confirmationPopup=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-window k-dialog')]");
                 WebElement okButton=confirmationPopup.findElement(By.xpath(".//button/span[text()='Ok']"));
-                HelpersMethod.ClickBut(driver,okButton,6000);
+                HelpersMethod.ClickBut(driver,okButton,10000);
                 exists=true;
                 //new WebDriverWait(driver,2000).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class='cards']"))));
                 if(HelpersMethod.IsExists("//div[@class='loader']",driver))
@@ -510,10 +532,16 @@ public class CustomerInquiryPageERP
         exists=false;
         try
         {
+            Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(400))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
             if(HelpersMethod.IsExists("//button[text()='Note']",driver))
             {
                 WebElement noteButton = HelpersMethod.FindByElement(driver, "xpath", "//button[text()='Note']");
-                HelpersMethod.ActClick(driver, noteButton, 100);
+                HelpersMethod.ActClick(driver, noteButton, 10000);
                 exists=true;
             }
             Assert.assertEquals(exists,true);
@@ -565,7 +593,7 @@ public class CustomerInquiryPageERP
                 //code to select alert type
                 WebElement vallidateNotePopup = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'customer-notes-header')]/ancestor::div[contains(@class,'k-window k-dialog')]");
                 WebEle = vallidateNotePopup.findElement(By.xpath(".//span[@id='AlertType']"));
-                HelpersMethod.ClickBut(driver, WebEle, 1000);
+                HelpersMethod.ClickBut(driver, WebEle, 10000);
                 //new WebDriverWait(driver, 100).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class,'k-popup k-child-animation-container k-slide-down-enter k-slide-down-enter-active')]"))));
                 HelpersMethod.DropDownMenu(driver, AltertType);
                 scenario.log("ALERT TYPE SELECTED IS: "+AltertType);

@@ -188,6 +188,48 @@ public class CustomerInqStep
         primaryPage.StoreTypeDropDown();
     }
 
+    @And("User enters value to all the input box in primary page for all web elements")
+    public void userEntersValueToAllTheInputBoxInPrimaryPageForAllWebElements() throws InterruptedException
+    {
+        primaryPage=new PrimaryPage(driver,scenario);
+        primaryPage.ValidatePrimaryPage();
+        primaryPage.Address1();
+        primaryPage.Address2();
+        primaryPage.cityValue();
+        primaryPage.CountryDropDown();
+        primaryPage.StateValue();
+        primaryPage.ZipValue();
+        primaryPage.CountryValue();
+        primaryPage.PhoneValue();
+        primaryPage.FaxValue();
+        primaryPage.SchoolLocationValue();
+        primaryPage.StreetDropDown();
+        primaryPage.CustomerTypeDropDown();
+        primaryPage.DistrbutorDropDown();
+        primaryPage.VendorNo();
+        primaryPage.SoldBy();
+        //primaryPage.SoldByRemittance();
+        primaryPage.HeadAccNo();
+        primaryPage.StatusDropDown();
+        primaryPage.SuspendOnDate();
+        // primaryPage.SuspendDateSelection();
+        primaryPage.ActiveOnDate();
+        primaryPage.SuspensionReason();
+        //primaryPage.FuelChargeCheckbox();
+        //primaryPage.FuelProductDropDown();
+        primaryPage.DeliveryZoneDropDown();
+        primaryPage.DeliveryBranchDropDown();
+        primaryPage.SellZoneDropDown();
+        primaryPage.SalesRepDropDown();
+        primaryPage.SalesBranchDropDown();
+        primaryPage.ChainIdDropDown();
+        primaryPage.BrokerDropDown();
+        primaryPage.MarketAreaDropDown();
+        primaryPage.GroupDropDown();
+        primaryPage.CategoryDropDown();
+        primaryPage.StoreTypeDropDown();
+    }
+
     @Then("User clicks on Save button in Customer inq and handles popup")
     public void userClicksOnSaveButtonInCustomerInqAndHandlesPopup() throws InterruptedException {
         customerInquiryPage=new CustomerInquiryPage(driver,scenario);
@@ -353,7 +395,7 @@ public class CustomerInqStep
     }
 
     @And("User navigate to Price tab and User enteres the value for all web elements")
-    public void userNavigateToPriceTabAndUserEnteresTheValueForAllWebElements()
+    public void userNavigateToPriceTabAndUserEnteresTheValueForAllWebElements() throws InterruptedException
     {
         customerInquiryPage=new CustomerInquiryPage(driver,scenario);
         customerInquiryPage.NavigateDifferentTabs("Price");
@@ -530,7 +572,8 @@ public class CustomerInqStep
     }
 
     @Then("User clicks on Save button")
-    public void userClicksOnSaveButton() throws InterruptedException {
+    public void userClicksOnSaveButton() throws InterruptedException
+    {
         customerInquiryPage=new CustomerInquiryPage(driver,scenario);
         customerInquiryPage.Save_ButtonClick();
         customerInquiryPage.validateSaveConfirmationPopup();

@@ -85,7 +85,7 @@ Feature: scenarios for admin credentials and client credentials
       |  Setting                                               |          Key                         |
       | Use of primary sales rep when submitting orders        | CPUsePrimarySalesRepForNewOrder      |
 
-  @PrimarySalesRepSubmittingOrdersDisabled
+  @PrimarySalesRepSubmittingOrdersEnabled
   Scenario Outline: Test scenario for Use of primary sales rep when submitting orders Enabled
     Given User should verify admin setting "<Setting>" is enabled by using "<Key>"
     When User enters URL and is on login page and entered credentials for admin setting

@@ -142,7 +142,7 @@ import java.util.concurrent.ThreadLocalRandom;
             {
                 HelpersMethod.ActClick(driver,NewButton,10000);
                 exists=true;
-                new WebDriverWait(driver,Duration.ofMillis(60000)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath("//div[contains(text(),'Add standing po')]/ancestor::div[contains(@class,'k-window k-dialog')]"))));
+                new WebDriverWait(driver,Duration.ofMillis(60000)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath("//div[contains(text(),'Add Standing PO')]/ancestor::div[contains(@class,'k-window k-dialog')]"))));
                 Assert.assertEquals(exists,true);
             }
             catch (Exception e){}
@@ -153,11 +153,11 @@ import java.util.concurrent.ThreadLocalRandom;
         exists=false;
         try
         {
-            if(HelpersMethod.IsExists("//div[contains(text(),'Add standing po')]/ancestor::div[contains(@class,'k-window k-dialog')]",driver))
+            if(HelpersMethod.IsExists("//div[contains(text(),'Add Standing PO')]/ancestor::div[contains(@class,'k-window k-dialog')]",driver))
             {
                 WebElement modalContainer = driver.findElement(By.xpath("//div[contains(@class,'k-window k-dialog')]"));
                 WebElement modalContentTitle = modalContainer.findElement(By.xpath(".//span[contains(@class,'k-window-title k-dialog-title')]"));
-                Assert.assertEquals(modalContentTitle.getText(), "Add standing po", "Verify Title message");
+                Assert.assertEquals(modalContentTitle.getText(), "Add Standing PO", "Verify Title message");
                 exists=true;
             }
             Assert.assertEquals(exists,true);
@@ -170,7 +170,7 @@ import java.util.concurrent.ThreadLocalRandom;
         {
             exists=false;
             WebElement WebEle=null;
-            //new WebDriverWait(driver,60000).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(text(),'Add standing po')]/ancestor::div[contains(@class,'k-window k-dialog')]"))));
+            //new WebDriverWait(driver,60000).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(text(),'Add Standing PO')]/ancestor::div[contains(@class,'k-window k-dialog')]"))));
             try
             {
                 //identify the popup

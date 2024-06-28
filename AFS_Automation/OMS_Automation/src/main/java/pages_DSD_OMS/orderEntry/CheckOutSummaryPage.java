@@ -579,12 +579,24 @@ public class CheckOutSummaryPage
     {
         exists=false;
         WebElement WebEle;
+        WebElement flag;
         try
         {
             if(HelpersMethod.IsExists("//span[text()='Comments']/ancestor::div[contains(@class,'k-window k-dialog')]",driver))
             {
                 driver.findElement(By.id("textAreaA")).sendKeys(Comment);
                 scenario.log("COMMENT ENTERED IS "+Comment);
+
+                List<WebElement> printFlags=HelpersMethod.FindByElements(driver,"xpath","//ul[@id='printFlagDropDown-listbox-id']/descendant::span");
+                for(int i=0;i<=printFlags.size()-1;i++)
+                {
+                    if(i==1)
+                    {
+                        flag=printFlags.get(i);
+                        HelpersMethod.ActClick(driver,flag,10000);
+                        break;
+                    }
+                }
 
                 //Click on Add button in the popup
                 WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-window k-dialog')]/descendant::button/span[text()='Add']");
@@ -908,7 +920,7 @@ public class CheckOutSummaryPage
         exists=false;
         try
         {
-            if(HelpersMethod.IsExists("//div[contains(text(),'Comments')]/ancestor::div[contains(@class,'k-window k-dialog')]",driver))
+            if(HelpersMethod.IsExists("//span[contains(text(),'Comments')]/ancestor::div[contains(@class,'k-window k-dialog')]",driver))
             {
                 scenario.log("COMMENT POPUP HAS BEEN FOUND");
                exists=true;
@@ -953,9 +965,9 @@ public class CheckOutSummaryPage
         exists=false;
         try
         {
-            if(HelpersMethod.IsExists("//div[contains(text(),'Comments')]/ancestor::div[contains(@class,'k-window k-dialog')]/descendant::button/span[text()='Ok']",driver))
+            if(HelpersMethod.IsExists("//span[contains(text(),'Comments')]/ancestor::div[contains(@class,'k-window k-dialog')]/descendant::button/span[text()='Ok']",driver))
             {
-                WebElement okButton=HelpersMethod.FindByElement(driver,"xpath","//div[contains(text(),'Comments')]/ancestor::div[contains(@class,'k-window k-dialog')]/descendant::button/span[text()='Ok']");
+                WebElement okButton=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-window k-dialog')]/descendant::button/span[text()='Ok']");
                 HelpersMethod.ClickBut(driver,okButton,10000);
                 exists=true;
             }
@@ -1022,7 +1034,7 @@ public class CheckOutSummaryPage
         exists=false;
         try
         {
-            if(HelpersMethod.IsExists("//div[contains(text(),'Existing orders found')]/ancestor::div[contains(@class,'k-window k-dialog')]",driver))
+            if(HelpersMethod.IsExists("//span[contains(text(),'Existing orders found')]/ancestor::div[contains(@class,'k-window k-dialog')]",driver))
             {
                 WebElement modelContainer=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-window k-dialog')]");
                 WebElement yesButton=modelContainer.findElement(By.xpath(".//button/span[text()='Yes']"));

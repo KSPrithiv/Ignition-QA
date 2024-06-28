@@ -26,7 +26,7 @@ Feature: external catalog
     When User clicks on View product catalog and Product catalog should be displayed
     And user should click on Reset filter button and all the products should displayed in card view
     Then User enters Product# in Search bar in Catalog popup and enter Qty card view
-      |1|
+      |10|
       |1|
       |2|
     Then User click on cart and click on Checkout to order

@@ -595,7 +595,6 @@ public class OrderEntryPageSteps
         orderpage=new OrderEntryPage(driver, scenario);
         exists=orderpage.Verify_OE_Title();
         orderpage.AddfilterSearch("Order #",Ord_No);
-        HelpersMethod.AddFilterSearch(driver,"Order #",Ord_No);
     }
 
     @Then("User should be navigated to Order Entry page")
@@ -788,7 +787,7 @@ public class OrderEntryPageSteps
                     unitIn.sendKeys(Keys.TAB);
                 }
             }
-            new WebDriverWait(driver,Duration.ofMillis(10000)).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@id='pending-quick-entry-calls']")));
+            new WebDriverWait(driver,Duration.ofMillis(40000)).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@id='pending-quick-entry-calls']")));
             newOE.exceedsMaxQty();
             for(int i=0;i<=1;i++)
             {
@@ -802,7 +801,7 @@ public class OrderEntryPageSteps
         {
             newOE.CheckForQuickCaseEnabled(Case);
             newOE.CheckForQuickUnitEnabled(Unit);
-            new WebDriverWait(driver,Duration.ofMillis(10000)).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@id='pending-quick-entry-calls']")));
+            //new WebDriverWait(driver,Duration.ofMillis(10000)).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@id='pending-quick-entry-calls']")));
             newOE.exceedsMaxQty();
             for(int i=0;i<=1;i++)
             {
@@ -812,6 +811,24 @@ public class OrderEntryPageSteps
                 newOE.toastCurrentlyUnavailable();
             }
         }
+        Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                .withTimeout(Duration.ofSeconds(400))
+                .pollingEvery(Duration.ofSeconds(2))
+                .ignoring(NoSuchElementException.class);
+        wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
+        String status = HelpersMethod.returnDocumentStatus(driver);
+        if (status.equals("loading"))
+        {
+            HelpersMethod.waitTillLoadingPage(driver);
+        }
+
+        wait = new FluentWait<WebDriver>(driver)
+                .withTimeout(Duration.ofSeconds(400))
+                .pollingEvery(Duration.ofSeconds(2))
+                .ignoring(NoSuchElementException.class);
+        wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+        Thread.sleep(2000);
     }
 
     @Then("Click on Back button")

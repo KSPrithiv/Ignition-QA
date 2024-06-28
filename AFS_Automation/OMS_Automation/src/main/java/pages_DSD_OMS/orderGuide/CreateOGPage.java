@@ -551,10 +551,11 @@ public class CreateOGPage
         exists=false;
         try
         {
+            Thread.sleep(2000);
             if(HelpersMethod.EleDisplay(More))
             {
                 HelpersMethod.ScrollElement(driver,More);
-                HelpersMethod.ActClick(driver,More,6000);
+                HelpersMethod.ActClick(driver,More,10000);
                 scenario.log("MORE BUTTON HAS BEEN CLICKED");
                 exists=true;
             }
@@ -628,11 +629,11 @@ public class CreateOGPage
     }
 
     //Code to Edit sequence number in Product grid of OG
-    public boolean EditSequence(String SeqNo)
+    public boolean EditSequence(String SeqNo) throws InterruptedException
     {
         exists=false;
-        Actions act=new Actions(driver);
-        String headText;
+        Thread.sleep(2000);
+
         try
         {
             String status = HelpersMethod.returnDocumentStatus(driver);

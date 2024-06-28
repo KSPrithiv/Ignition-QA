@@ -193,5 +193,8 @@ public interface Environment extends Config
 
     @Key("PrecedingByZero")
     String getPrecedingByZero();
+
+    @Key("CustomerName")
+    String getCustomerName();
 }
 

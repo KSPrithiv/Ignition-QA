@@ -13,6 +13,7 @@ import org.openqa.selenium.WebElement;
 import pages_DSD_OMS.customerInquiry_ERP.*;
 import pages_DSD_OMS.login.HomePage;
 import pages_DSD_OMS.login.LoginPage;
+import util.RandomValues;
 import util.TestBase;
 
 import java.awt.*;
@@ -317,11 +318,11 @@ public class CustomerInqStep_ERP
     }
 
     @Then("User clicks on Save button before adding values to ignition")
-    public void userClicksOnSaveButtonBeforeAddingValuesToIgnition()
+    public void userClicksOnSaveButtonBeforeAddingValuesToIgnition() throws InterruptedException
     {
         customerInquiryPageERP=new CustomerInquiryPageERP(driver,scenario);
         customerInquiryPageERP.BillNo();
-        String Des=fName+" "+lName;
+        String Des= RandomValues.generateRandomString(8);
         customerInquiryPageERP.DescrVal(Des);
         customerInquiryPageERP.Save_ButtonClick();
         customerInquiryPageERP.validateSaveConfirmationPopup();
@@ -390,8 +391,7 @@ public class CustomerInqStep_ERP
     }
 
     @Then("User clicks on Save button in ERP")
-    public void userClicksOnSaveButtonInERP()
-    {
+    public void userClicksOnSaveButtonInERP() throws InterruptedException {
         customerInquiryPageERP=new CustomerInquiryPageERP(driver,scenario);
         customerInquiryPageERP.Save_ButtonClick();
         customerInquiryPageERP.validateSaveConfirmationPopup();

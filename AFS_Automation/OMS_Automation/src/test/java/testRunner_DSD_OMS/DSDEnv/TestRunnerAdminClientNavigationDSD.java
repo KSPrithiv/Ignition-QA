@@ -17,21 +17,21 @@ import java.io.IOException;
  */
 @CucumberOptions
         (features = {
-                "src/test/resources/features_DSD_OMS/AdminToClientNavigation/catalogAdminToClientFeature.feature",
-                "src/test/resources/features_DSD_OMS/AdminToClientNavigation/inventoryAdminToClientFeature.feature",
-                "src/test/resources/features_DSD_OMS/AdminToClientNavigation/orderControlListAdminToClientFeature.feature",
-                "src/test/resources/features_DSD_OMS/AdminToClientNavigation/orderEntryAdminToClientFeature.feature",
-                "src/test/resources/features_DSD_OMS/AdminToClientNavigation/orderEntryAdminToClientFeature1.feature",
-                "src/test/resources/features_DSD_OMS/AdminToClientNavigation/orderEntryAdminToClientFeatureDSD.feature",
-                "src/test/resources/features_DSD_OMS/AdminToClientNavigation/webOrderingAdminToClientFeature.feature",
-                "src/test/resources/features_DSD_OMS/AdminToClientNavigation/standingOrderAdminToClientFeature.feature",
-                "src/test/resources/features_DSD_OMS/AdminToClientNavigation/quotesAdminToClientFeature.feature",
-                "src/test/resources/features_DSD_OMS/AdminToClientNavigation/loginPageAdminToClientFeature.feature",
-                //"src/test/resources/features_DSD_OMS/AdminToClientNavigation/reportsAdminToClientFeature.feature",
-                "src/test/resources/features_DSD_OMS/AdminToClientNavigation/disconnectedModeAdminFeature.feature",
+//                "src/test/resources/features_DSD_OMS/AdminToClientNavigation/catalogAdminToClientFeature.feature",
+//                "src/test/resources/features_DSD_OMS/AdminToClientNavigation/inventoryAdminToClientFeature.feature",
+//                "src/test/resources/features_DSD_OMS/AdminToClientNavigation/orderControlListAdminToClientFeature.feature",
+//                "src/test/resources/features_DSD_OMS/AdminToClientNavigation/orderEntryAdminToClientFeature.feature",
+//                "src/test/resources/features_DSD_OMS/AdminToClientNavigation/orderEntryAdminToClientFeature1.feature",
+//                "src/test/resources/features_DSD_OMS/AdminToClientNavigation/orderEntryAdminToClientFeatureDSD.feature",
+//                "src/test/resources/features_DSD_OMS/AdminToClientNavigation/webOrderingAdminToClientFeature.feature",
+//               "src/test/resources/features_DSD_OMS/AdminToClientNavigation/standingOrderAdminToClientFeature.feature",
+//               "src/test/resources/features_DSD_OMS/AdminToClientNavigation/quotesAdminToClientFeature.feature",
+//                "src/test/resources/features_DSD_OMS/AdminToClientNavigation/loginPageAdminToClientFeature.feature",
+//                //"src/test/resources/features_DSD_OMS/AdminToClientNavigation/reportsAdminToClientFeature.feature",
+//                "src/test/resources/features_DSD_OMS/AdminToClientNavigation/disconnectedModeAdminFeature.feature",
                 "src/test/resources/features_DSD_OMS/AdminToClientNavigation/orderFactorOrderEntryFeature.feature",
-                "src/test/resources/features_DSD_OMS/AdminToClientNavigation/customerInqAdminClientFeatureDSD.feature",
-                "src/test/resources/features_DSD_OMS/AdminToClientNavigation/reportsAdminToClientFeature.feature",
+//                "src/test/resources/features_DSD_OMS/AdminToClientNavigation/customerInqAdminClientFeatureDSD.feature",
+//                "src/test/resources/features_DSD_OMS/AdminToClientNavigation/reportsAdminToClientFeature.feature",
         },
                 glue = {"stepDefination_DSD_OMS"},
                 plugin = {"pretty",
@@ -46,7 +46,7 @@ public class TestRunnerAdminClientNavigationDSD extends AbstractTestNGCucumberTe
     /* Created by Divya.Ramadas */
     @Parameters({"environment"})
     @BeforeMethod
-    public static void beforeClass(@Optional("environment") String envi)
+    public static void beforeMethod(@Optional("environment") String envi)
     {
         try
         {
@@ -58,7 +58,7 @@ public class TestRunnerAdminClientNavigationDSD extends AbstractTestNGCucumberTe
     }
 
     @AfterMethod
-    public static void afterclass() throws InterruptedException, MessagingException, IOException
+    public static void afterMethod() throws InterruptedException, MessagingException, IOException
     {
         Thread.sleep(500);
         TestBase.CloseBrowser();

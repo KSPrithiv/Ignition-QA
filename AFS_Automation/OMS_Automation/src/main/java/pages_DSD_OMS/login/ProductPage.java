@@ -149,7 +149,7 @@ public class ProductPage
         try
         {
             exists = false;
-            WebElement WebEle = null;
+            WebElement WebEle;
             HelpersMethod.ClickBut(driver, ReSetFilter, 10000);
             scenario.log("RESET BUTTON HAS BEEN CLICKED TO DISPLAY ALL THE PRODUCTS IN EXTERNAL CATALOG");
             exists = true;
@@ -180,11 +180,12 @@ public class ProductPage
                 WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
                 HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100000);
             }
-            if (!HelpersMethod.IsExists("//button[@data-test-id='catalogGridViewBtn' and contains(@class,'k-primary')]//*[local-name()='svg']", driver))
+            if (!HelpersMethod.IsExists("//button[@data-test-id='catalogGridViewBtn']", driver))
             {
-                WebElement cardview = HelpersMethod.FindByElement(driver, "xpath", "//button[@data-test-id='catalogGridViewBtn']//*[local-name()='svg']//*[local-name()='path']");
-                act1.moveToElement(cardview).build().perform();
-                HelpersMethod.ActClick(driver,cardview,10000);
+                WebElement cardview = HelpersMethod.FindByElement(driver, "xpath", "//button[@data-test-id='catalogGridViewBtn']");
+//                act1.moveToElement(cardview).build().perform();
+//                HelpersMethod.ActClick(driver,cardview,10000);
+                HelpersMethod.ClickBut(driver,cardview,10000);
 
                 String status = HelpersMethod.returnDocumentStatus(driver);
                 if (status.equals("loading"))
@@ -205,12 +206,14 @@ public class ProductPage
         try
         {
             Thread.sleep(8000);
+            //new WebDriverWait(driver,Duration.ofMillis(80000)).until(ExpectedConditions.refreshed(ExpectedConditions.invisibilityOfElementLocated(By.id("productsCard"))));
+            //new WebDriverWait(driver,Duration.ofMillis(80000)).until(ExpectedConditions.presenceOfElementLocated(By.id("productsCard")));
+
             if(HelpersMethod.IsExists("//button[@data-test-id='catalogListViewBtn']", driver))
             {
-                WebElement gridview = HelpersMethod.FindByElement(driver, "xpath", "//button[@data-test-id='catalogListViewBtn']//*[local-name()='svg']//*[local-name()='path']");
+                WebElement gridview = HelpersMethod.FindByElement(driver, "xpath", "//button[@data-test-id='catalogListViewBtn']");
                 HelpersMethod.ScrollElement(driver,gridview);
-                act1.moveToElement(gridview).build().perform();
-                act1.click().build().perform();
+                HelpersMethod.ClickBut(driver,gridview,20000);
                 exists = true;
                 String status = HelpersMethod.returnDocumentStatus(driver);
                 if (status.equals("loading"))
@@ -237,7 +240,7 @@ public class ProductPage
         try
         {
             WebElement WebEle;
-            String SearchContent = "";
+
             if (HelpersMethod.IsExists("//div[@class='loader']", driver))
             {
                 WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
@@ -491,7 +494,7 @@ public class ProductPage
     public void ProductExistsList(String QtyUnitCase) throws InterruptedException
     {
         exists=false;
-        WebElement WebEle;
+
         Wait<WebDriver> wait;
         String qtyEntered="";
         try

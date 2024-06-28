@@ -340,7 +340,8 @@ public class OrderControlPageSteps
     }
 
     @Then("User Clicks on Taken radio button")
-    public void userClicksOnTakenRadioButton() throws InterruptedException {
+    public void userClicksOnTakenRadioButton() throws InterruptedException
+    {
         orderControlList=new OrderControlListPage(driver,scenario);
         orderControlList.Validate_OCL();
         orderControlList.Select_Taken();

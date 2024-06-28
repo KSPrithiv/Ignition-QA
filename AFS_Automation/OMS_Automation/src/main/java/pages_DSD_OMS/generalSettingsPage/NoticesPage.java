@@ -878,7 +878,7 @@ public class NoticesPage
        exists=false;
         WebElement WebEle1=null;
         WebDriverWait wait=new WebDriverWait(driver,Duration.ofMillis(8000));
-        //wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(text(),'Add standing po')]/ancestor::div[contains(@class,'k-window k-dialog')]")));
+        //wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(text(),'Add Standing PO')]/ancestor::div[contains(@class,'k-window k-dialog')]")));
         HelpersMethod.waitTillElementLocatedDisplayed(driver,"xpath","//div[@class='CPMessageCenter']/descendant::span[contains(text(),'Create notice')]",80);
         HelpersMethod.Implicitwait(driver,200);
         try
@@ -901,7 +901,7 @@ public class NoticesPage
         exists=false;
         WebElement WebEle1=null;
         WebDriverWait wait=new WebDriverWait(driver,Duration.ofMillis(8000));
-        //wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(text(),'Add standing po')]/ancestor::div[contains(@class,'k-window k-dialog')]")));
+        //wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(text(),'Add Standing PO')]/ancestor::div[contains(@class,'k-window k-dialog')]")));
         //HelpersMethod.waitTillElementLocatedDisplayed(driver,"xpath","(//span[@class='k-icon k-i-calendar'])[1]",80);
         //HelpersMethod.Implicitwait(driver,80);
         try
@@ -924,7 +924,7 @@ public class NoticesPage
         exists=false;
         WebElement WebEle1=null;
         WebDriverWait wait=new WebDriverWait(driver,Duration.ofMillis(8000));
-        //wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(text(),'Add standing po')]/ancestor::div[contains(@class,'k-window k-dialog')]")));
+        //wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(text(),'Add Standing PO')]/ancestor::div[contains(@class,'k-window k-dialog')]")));
         //HelpersMethod.waitTillElementLocatedDisplayed(driver,"xpath","(//span[@class='k-icon k-i-calendar'])[1]",80);
         //HelpersMethod.Implicitwait(driver,80);
         try
@@ -947,7 +947,7 @@ public class NoticesPage
         exists=false;
         WebElement WebEle=null;
         WebDriverWait wait=new WebDriverWait(driver,Duration.ofMillis(8000));
-        //wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(text(),'Add standing po')]/ancestor::div[contains(@class,'k-window k-dialog')]")));
+        //wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(text(),'Add Standing PO')]/ancestor::div[contains(@class,'k-window k-dialog')]")));
         HelpersMethod.waitTillElementLocatedDisplayed(driver,"xpath","//div[@class='CPMessageCenter']/descendant::span[contains(text(),'Create notice')]",60);
         HelpersMethod.Implicitwait(driver,90);
         try
