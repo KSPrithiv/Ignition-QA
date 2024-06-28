@@ -128,7 +128,7 @@ public class CheckOutOrderPage
     public void BackButton_Click()
     {
         exists=false;
-        WebElement WebEle=null;
+        WebElement WebEle;
         try
         {
             if(HelpersMethod.IsExists("//div[@class='loader']",driver))
@@ -257,7 +257,7 @@ public class CheckOutOrderPage
 
     public void DeliveryAddressCard()
     {
-        WebElement WebEle=null;
+        WebElement WebEle;
         try
         {
             if(!HelpersMethod.IsExists("//span[contains(@class,'i-summary-area__other__section__value')]",driver))
@@ -402,7 +402,7 @@ public class CheckOutOrderPage
     //Code to Edit Delivery Address
     public boolean Edit_DeliveryAddress(String Add2,String Change_Add2)
     {
-        WebElement WebEle=null;
+        WebElement WebEle;
         Wait<WebDriver> wait;
         boolean found=false;
         try
@@ -496,7 +496,7 @@ public class CheckOutOrderPage
     public boolean Delete_DeliveryAddress(String Add2)
     {
         boolean found=false;
-        WebElement WebEle=null;
+        WebElement WebEle;
         Wait<WebDriver> wait;
         try
         {
@@ -771,7 +771,7 @@ public class CheckOutOrderPage
     {
         try
         {
-            WebElement WebEle=null;
+            WebElement WebEle;
             if(HelpersMethod.IsExists("//td[contains(text(),'"+fName+"')]/ancestor::tr/descendant::div[@class='i-btn-radio ']",driver))
             {
                 WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[contains(text(),'Savings - Personal')]/ancestor::tr/descendant::div[@class='i-btn-radio ']");

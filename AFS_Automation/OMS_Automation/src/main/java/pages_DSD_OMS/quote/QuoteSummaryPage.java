@@ -89,7 +89,7 @@ public class QuoteSummaryPage
     public void ClickOnBackToOrder()
     {
         exists=false;
-        WebElement WebEle=null;
+        WebElement WebEle;
         try
         {
             if(BackToOrderList.isDisplayed())
@@ -195,7 +195,7 @@ public class QuoteSummaryPage
     public void ClickOnCancel()
     {
         exists=true;
-        WebElement WebEle=null;
+        WebElement WebEle;
         try
         {
             if(ConvertOrder.isDisplayed())
@@ -230,7 +230,7 @@ public class QuoteSummaryPage
     public void ClickOnCopy()
     {
         exists=false;
-        WebElement WebEle=null;
+        WebElement WebEle;
         try
         {
             Thread.sleep(1000);
@@ -280,7 +280,7 @@ public class QuoteSummaryPage
     public void NavgiateBackToOE()
     {
         exists=false;
-        WebElement WebEle=null;
+        WebElement WebEle;
         try
         {
             HelpersMethod.navigate_Horizantal_Tab(driver, "Orders", "//li[contains(@class,'k-item')]/span[@class='k-link' and contains(text(),'Orders')]", "xpath", "//li[contains(@class,'k-item')]/span[@class='k-link']");

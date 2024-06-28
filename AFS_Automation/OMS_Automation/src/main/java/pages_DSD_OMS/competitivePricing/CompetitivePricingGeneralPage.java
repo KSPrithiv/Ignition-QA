@@ -281,7 +281,7 @@ public class CompetitivePricingGeneralPage
     public void ValidateCompetitorGeneral()
     {
         exists=false;
-        WebElement WebEle=null;
+        WebElement WebEle;
         try
         {
             Wait<WebDriver> wait = new FluentWait<>(driver)
@@ -555,7 +555,7 @@ public class CompetitivePricingGeneralPage
     public void ValidateNewCompetitorPopup()
     {
         exists=false;
-        WebElement WebEle=null;
+        WebElement WebEle;
         try
         {
             if(HelpersMethod.IsExists("//span[contains(text(),'Add new competitor')]/ancestor::div[contains(@class,'k-window k-dialog')]",driver))
@@ -925,7 +925,7 @@ public class CompetitivePricingGeneralPage
     public void EnteringCompetitorPricingComment(List<List<String>> prod_detail)
     {
         exists=false;
-        WebElement WebEle=null;
+        WebElement WebEle;
         try
         {
             for(int i=0;i<=4;i++)
@@ -980,7 +980,7 @@ public class CompetitivePricingGeneralPage
     public void Click_DeleteCompetitorRecord()
     {
         exists=false;
-        WebElement WebEle=null;
+        WebElement WebEle;
         try
         {
            if(DeleteCompetitorData.isDisplayed() && DeleteCompetitorData.isEnabled())
@@ -1212,7 +1212,7 @@ public class CompetitivePricingGeneralPage
     public void DetailsOfProducts()
     {
         exists=false;
-        WebElement WebEle=null;
+        WebElement WebEle;
         try
         {
             WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='k-widget k-grid']");

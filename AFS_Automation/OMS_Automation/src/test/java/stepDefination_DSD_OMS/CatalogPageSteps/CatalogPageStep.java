@@ -296,7 +296,7 @@ public class CatalogPageStep
     @Then("User enters Product# in Search bar and enter Qty and click on Delete button")
     public void user_enters_product_in_search_bar_and_enter_qty_and_click_on_delete_button(DataTable tabledata) throws SQLException, InterruptedException
     {
-        WebElement WebEle=null;
+        WebElement WebEle;
         List<List<String>> Prod_detail = tabledata.asLists(String.class);
         ArrayList<String> Prod_No = (ArrayList<String>) DataBaseConnection.DataConn1(TestBase.testEnvironment.getMultiple_Prod_Sql1());
         catalogpage = new CatalogPage(driver, scenario);

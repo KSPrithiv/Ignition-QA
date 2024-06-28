@@ -176,7 +176,7 @@ public class PaymentInfoPage
     public void EnterAccount()
     {
         exists=false;
-        WebElement WebEle=null;
+        WebElement WebEle;
         try
         {
             Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)

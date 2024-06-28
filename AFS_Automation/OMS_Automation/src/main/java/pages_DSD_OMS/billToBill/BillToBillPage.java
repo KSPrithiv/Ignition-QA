@@ -283,7 +283,7 @@ public class BillToBillPage
     public void ClickLoadButton()
     {
         exists=false;
-        WebElement WebEle=null;
+        WebElement WebEle;
         try
         {
             if(LoadButton.isDisplayed() && LoadButton.isEnabled())

@@ -125,7 +125,7 @@ public class NewStandingOrderPage
     public void ValidateSO()
     {
         exists=false;
-        WebElement WebEle=null;
+        WebElement WebEle;
         try
         {
             exists=HelpersMethod.IsExists("//div[contains(@class,'topHeaderRow')]/descendant::span[contains(text(),'Standing Orders')]|//div[contains(@class,'topHeaderRow')]/descendant::span[contains(text(),'Standing orders')]",driver);
@@ -267,7 +267,7 @@ public class NewStandingOrderPage
     public void ClickOnAddProductButton()
     {
         exists=false;
-        WebElement WebEle=null;
+        WebElement WebEle;
         new WebDriverWait(driver, Duration.ofMillis(20000)).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//button/span[contains(text(),'Add product')]")));
         try
         {
@@ -332,7 +332,7 @@ public class NewStandingOrderPage
     public void ListView()
     {
         exists = false;
-        WebElement WebEle=null;
+        WebElement WebEle;
         Actions act=new Actions(driver);
         Wait<WebDriver> wait;
         try
@@ -1238,7 +1238,7 @@ public class NewStandingOrderPage
     public void SearchProductSingleProd()
     {
         exists = false;
-        WebElement WebEle=null;
+        WebElement WebEle;
         Actions act1=new Actions(driver);
         try
         {
@@ -1712,7 +1712,7 @@ public class NewStandingOrderPage
     public void ResetFilter_Catalog()
     {
         exists=false;
-        WebElement WebEle=null;
+        WebElement WebEle;
         if(HelpersMethod.IsExists("//div[@class='loader']",driver))
         {
             WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
@@ -1873,7 +1873,7 @@ public class NewStandingOrderPage
     public void adminQuickProductEntry()
     {
         exists=false;
-        WebElement WebEle=null;
+        WebElement WebEle;
         String headText="";
         int i=0;
         Actions act1=new Actions(driver);
@@ -2053,7 +2053,7 @@ public class NewStandingOrderPage
     public void adminProductWithZeroQuickProductEntry()
     {
         exists=false;
-        WebElement WebEle=null;
+        WebElement WebEle;
         Actions act1=new Actions(driver);
         try
         {

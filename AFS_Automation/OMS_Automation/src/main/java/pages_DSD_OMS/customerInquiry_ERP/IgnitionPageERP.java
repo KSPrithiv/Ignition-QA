@@ -169,7 +169,7 @@ import java.util.concurrent.ThreadLocalRandom;
         public void ClickOnStartDateCalender()
         {
             exists=false;
-            WebElement WebEle=null;
+            WebElement WebEle;
             //new WebDriverWait(driver,60000).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(text(),'Add Standing PO')]/ancestor::div[contains(@class,'k-window k-dialog')]"))));
             try
             {
@@ -186,7 +186,7 @@ import java.util.concurrent.ThreadLocalRandom;
         public void ClickOnEndDateCalender()
         {
             exists=false;
-            WebElement WebEle=null;
+            WebElement WebEle;
             try
             {
                 //identify the popup
@@ -204,7 +204,7 @@ import java.util.concurrent.ThreadLocalRandom;
         {
             HelpersMethod.waitTillElementLocatedDisplayed(driver,"xpath","//div[contains(@class,'k-calendar-monthview')]",100000);
             new WebDriverWait(driver,Duration.ofMillis(100000)).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class,'k-calendar-monthview')]")));
-            WebElement WebEle=null;
+            WebElement WebEle;
             String FTDate=null;
             exists=false;
             try
@@ -245,7 +245,7 @@ import java.util.concurrent.ThreadLocalRandom;
         {
             HelpersMethod.waitTillElementLocatedDisplayed(driver,"xpath","//div[contains(@class,'k-calendar-monthview')]",10000);
             new WebDriverWait(driver,Duration.ofMillis(40000)).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class,'k-calendar-monthview')]")));
-            WebElement WebEle=null;
+            WebElement WebEle;
             String FTDate=null;
             exists=false;
             try

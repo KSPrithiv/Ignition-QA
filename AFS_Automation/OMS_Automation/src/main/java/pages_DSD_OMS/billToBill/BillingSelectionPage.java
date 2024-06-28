@@ -79,7 +79,7 @@ public class BillingSelectionPage
     public void SelectBillingSelect() throws InterruptedException
     {
         exists=false;
-        WebElement WebEle=null;
+        WebElement WebEle;
         String status="";
         try
         {
@@ -173,7 +173,7 @@ public class BillingSelectionPage
     public void CancelInPrintPopup()
     {
         exists=false;
-        WebElement WebEle=null;
+        WebElement WebEle;
         try
         {
             WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-window k-dialog')]/descendant::button[@id='CancelButton']");
@@ -223,7 +223,7 @@ public class BillingSelectionPage
     public void UndoBillingPopup()
     {
         exists=false;
-        WebElement WebEle=null;
+        WebElement WebEle;
         try
         {
             if(HelpersMethod.IsExists("//div[contains(text(),'Undo billing')]/ancestor::div[contains(@class,'k-window k-dialog')]",driver))

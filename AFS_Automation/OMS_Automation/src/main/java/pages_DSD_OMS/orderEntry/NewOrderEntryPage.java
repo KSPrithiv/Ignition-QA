@@ -287,7 +287,7 @@ public class NewOrderEntryPage
     {
 
         exists=false;
-        String status="";
+        String status;
 
         status=HelpersMethod.returnDocumentStatus(driver);
         if(status.equals("loading"))
@@ -1462,7 +1462,7 @@ public class NewOrderEntryPage
 
     public void popupAfterNext_OrderFactor() throws InterruptedException
     {
-        WebElement WebEle=null;
+        WebElement WebEle;
         try
         {
             Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
@@ -3631,7 +3631,7 @@ public class NewOrderEntryPage
     public String SelectRoute()
     {
         String RouteVal=null;
-        WebElement WebEle=null;
+        WebElement WebEle;
         try
         {
             if(HelpersMethod.IsExists("//span[contains(text(),'Route #')]/ancestor::div[contains(@class,'k-window k-dialog')]",driver))
@@ -5816,7 +5816,7 @@ public class NewOrderEntryPage
     public void ResetFilter_CatalogDisconnectedMode()
     {
         exists=false;
-        WebElement WebEle=null;
+        WebElement WebEle;
         if(HelpersMethod.IsExists("//div[@class='loader']",driver))
         {
             WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");

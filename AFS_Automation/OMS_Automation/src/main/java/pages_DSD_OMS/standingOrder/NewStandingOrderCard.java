@@ -1235,7 +1235,7 @@ public class NewStandingOrderCard
     public List<WebElement> readDatesOfStandingOrder()
     {
         exists=false;
-        WebElement WebEle=null;
+        WebElement WebEle;
         Actions act=new Actions(driver);
         List<WebElement> soDate = null;
         String status;

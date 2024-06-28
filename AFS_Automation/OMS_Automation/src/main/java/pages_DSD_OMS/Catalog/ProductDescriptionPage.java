@@ -79,7 +79,7 @@ public class ProductDescriptionPage
     public void Add_to_cart()
     {
         exists=false;
-        WebElement WebEle=null;
+        WebElement WebEle;
         try
         {
             //code to click on Add to cart button
@@ -113,7 +113,7 @@ public class ProductDescriptionPage
     public void Increase_Descrease()
     {
         exists=false;
-        WebElement WebEle=null;
+        WebElement WebEle;
         try
         {
             for(int i=0;i<=2;i++)
@@ -174,7 +174,7 @@ public class ProductDescriptionPage
     public void Back_to_Catalog()
     {
         exists=false;
-        WebElement WebEle=null;
+        WebElement WebEle;
         try
         {
             Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
@@ -209,7 +209,7 @@ public class ProductDescriptionPage
     public void Delete_Icon()
     {
         exists=false;
-        WebElement WebEle=null;
+        WebElement WebEle;
         try
         {
             Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)

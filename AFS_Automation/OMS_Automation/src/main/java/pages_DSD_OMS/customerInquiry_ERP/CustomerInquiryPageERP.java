@@ -197,7 +197,7 @@ public class CustomerInquiryPageERP
 
     public void ValidateCustomInq()
     {
-        WebElement WebEle=null;
+        WebElement WebEle;
         String title;
         try
         {

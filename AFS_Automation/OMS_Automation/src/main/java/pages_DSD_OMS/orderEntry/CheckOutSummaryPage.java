@@ -474,7 +474,7 @@ public class CheckOutSummaryPage
    public String Get_Order_No()
     {
         WebElement WebEle;
-        String status="";
+        String status;
         try
         {
             Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
@@ -668,7 +668,7 @@ public class CheckOutSummaryPage
     public void CancelPop()
     {
         exists=false;
-        WebElement WebEle=null;
+        WebElement WebEle;
         try
         {
             //Check for the Cancel Order warning popup
@@ -766,7 +766,7 @@ public class CheckOutSummaryPage
     {
         exists=false;
         WebElement WebEle;
-        String status="";
+        String status;
         if(HelpersMethod.IsExists("//div[@class='loader']",driver))
         {
             WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
@@ -809,7 +809,7 @@ public class CheckOutSummaryPage
     public void PrintOE()
     {
         exists=false;
-        WebElement WebEle=null;
+        WebElement WebEle;
         try
         {
             if(PrintBut.isDisplayed() && PrintBut.isEnabled())
@@ -849,7 +849,7 @@ public class CheckOutSummaryPage
     public void BackToOrderList()
     {
         exists=false;
-        WebElement WebEle=null;
+        WebElement WebEle;
         try
         {
             HelpersMethod.ClickBut(driver,BackOrder,10000);

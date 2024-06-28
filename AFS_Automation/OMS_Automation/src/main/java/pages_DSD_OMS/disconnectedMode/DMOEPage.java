@@ -127,7 +127,7 @@ public class DMOEPage
     public void ValidateCustomerAccountPopup()
     {
         exists=false;
-        WebElement WebEle=null;
+        WebElement WebEle;
         try
         {
             if(HelpersMethod.IsExists("//div[@class='loader']",driver))
@@ -324,7 +324,7 @@ public class DMOEPage
     public void SelectAccountCheckBox()
     {
         exists=false;
-        WebElement WebEle=null;
+        WebElement WebEle;
         try
         {
             if(HelpersMethod.IsExists("//div[@class='k-window k-dialog']/descendant::table[contains(@class,'k-grid-table')]/descendant::input[@type='checkbox']",driver))
@@ -376,7 +376,7 @@ public class DMOEPage
     public void ValidateSelectDeliveryDate()
     {
         exists=false;
-        WebElement WebEle=null;
+        WebElement WebEle;
         try
         {
             if(HelpersMethod.IsExists("//div[contains(@class,'k-window k-dialog')]",driver))
@@ -428,7 +428,7 @@ public class DMOEPage
     public void selectThirdDeliveryDate()
     {
         exists=false;
-        WebElement WebEle=null;
+        WebElement WebEle;
         try
         {
             if(HelpersMethod.IsExists("//div[contains(@class,'k-window k-dialog')]",driver))
@@ -446,7 +446,7 @@ public class DMOEPage
     public void selectFourthDeliveryDate()
     {
         exists=false;
-        WebElement WebEle=null;
+        WebElement WebEle;
         try
         {
             if(HelpersMethod.IsExists("//div[contains(@class,'k-window k-dialog')]",driver))
@@ -477,7 +477,7 @@ public class DMOEPage
 
     public void SynchronizationPopup()
     {
-        WebElement WebEle=null;
+        WebElement WebEle;
         try
         {
             if(HelpersMethod.IsExists("//span[contains(text(),'Synchronizing Device Data')]/ancestor::div[contains(@class,'k-window k-dialog')]",driver))
@@ -553,7 +553,7 @@ public class DMOEPage
     public void ClickTaggleDM()
     {
         exists=false;
-        WebElement WebEle=null;
+        WebElement WebEle;
         try
         {
             if(HelpersMethod.IsExists("//div[contains(@class,'i-switch connection-mode-switch')]/descendant::span[contains(@class,'k-switch-off')]",driver))
@@ -570,7 +570,7 @@ public class DMOEPage
     public void GoOnlinePopup()
     {
         exists=false;
-        WebElement WebEle=null;
+        WebElement WebEle;
         try
         {
             if(HelpersMethod.IsExists("//span[contains(text(),'Connected mode')]/ancestor::div[contains(@class,'k-window k-dialog')]",driver))

@@ -506,7 +506,7 @@ public class NoticesPage
     public void RouteFirstCheckBox()
     {
         exists=false;
-        WebElement WebEle=null;
+        WebElement WebEle;
         HelpersMethod.Implicitwait(driver,20);
         try
         {
@@ -519,7 +519,7 @@ public class NoticesPage
     public void RouteAddButton()
     {
         exists=false;
-        WebElement WebEle=null;
+        WebElement WebEle;
         HelpersMethod.Implicitwait(driver,20);
         try
         {
@@ -532,7 +532,7 @@ public class NoticesPage
     public void CreateNoticeButton()
     {
         exists=false;
-        WebElement WebEle=null;
+        WebElement WebEle;
         HelpersMethod.Implicitwait(driver,20);
         try
         {
@@ -545,7 +545,7 @@ public class NoticesPage
     public void ClickOkPopUp()
     {
         exists=false;
-        WebElement WebEle=null;
+        WebElement WebEle;
         HelpersMethod.Implicitwait(driver,20);
         try
         {
@@ -945,7 +945,7 @@ public class NoticesPage
     public void ClickOnEndDateCalender()
     {
         exists=false;
-        WebElement WebEle=null;
+        WebElement WebEle;
         WebDriverWait wait=new WebDriverWait(driver,Duration.ofMillis(8000));
         //wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(text(),'Add Standing PO')]/ancestor::div[contains(@class,'k-window k-dialog')]")));
         HelpersMethod.waitTillElementLocatedDisplayed(driver,"xpath","//div[@class='CPMessageCenter']/descendant::span[contains(text(),'Create notice')]",60);
@@ -973,7 +973,7 @@ public class NoticesPage
         try
         {
             String formattedDate1 = null;
-            WebElement WebEle=null;
+            WebElement WebEle;
             String FTDate=null;
             exists=false;
             //finding element/date in calendar drop down is enabled or not. if not enabled increase the date by 6 days
@@ -1007,7 +1007,7 @@ public class NoticesPage
     {
         HelpersMethod.waitTillElementLocatedDisplayed(driver,"xpath","//div[contains(@class,'k-calendar-monthview')]",600);
         new WebDriverWait(driver,Duration.ofMillis(10000)).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class,'k-calendar-monthview')]")));
-        WebElement WebEle=null;
+        WebElement WebEle;
         String FTDate=null;
         exists=false;
         try

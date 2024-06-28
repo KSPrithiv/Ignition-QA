@@ -202,7 +202,7 @@ public class ParOrderPageStep
     @And("User enters code and discription to create multiple Par list and save all par lists")
     public void userEntersCodeAndDiscriptionToCreateMultipleParListAndSaveAllParLists(DataTable tabledata)
     {
-        WebElement WebEle=null;
+        WebElement WebEle;
         List<List<String>> ParDetails=tabledata.asLists(String.class);
         parOrderPage=new ParOrderPage(driver,scenario);
         for(int i=0;i<=ParDetails.size()-1;i++)
@@ -298,7 +298,7 @@ public class ParOrderPageStep
     public void userClicksOnParListTabAndSelectsParlistFromDropDownAndUserClicksOnDeletePar(DataTable tabledata)
     {
         exists=false;
-        WebElement WebEle=null;
+        WebElement WebEle;
         List<List<String>> ParDetails=tabledata.asLists(String.class);
         parOrderPage=new ParOrderPage(driver,scenario);
         Prod_No=parOrderPage.ReadProductValueFromOG();

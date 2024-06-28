@@ -1536,7 +1536,7 @@ public class CRMPage {
         catch (Exception e){}
 
         /*exists=false;
-        WebElement WebEle=null;
+        WebElement WebEle;
         if(HelpersMethod.IsExists("//div[@class='loader']",driver))
         {
             WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");

@@ -34,7 +34,7 @@ public class ProductPage
     WebDriver driver;
     Scenario scenario;
 
-    //static WebElement WebEle=null;
+    //static WebElement WebEle;
     static boolean exists=false;
     static String pageTitle;
 
@@ -282,7 +282,7 @@ public class ProductPage
     //Validate whether product details are displayed or not,card view
     public void ProductExistsCard(String Qty_UnitCase) throws InterruptedException
     {
-        WebElement WebEle=null;
+        WebElement WebEle;
         exists=false;
         String status;
         try
@@ -880,7 +880,7 @@ public class ProductPage
     //Code to verify whether category has been reset to All category or not after clicking reset button
     public void VerifyCategory()
     {
-        WebElement WebEle=null;
+        WebElement WebEle;
         exists=false;
         try
         {

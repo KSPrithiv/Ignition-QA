@@ -594,7 +594,7 @@ public class IgnitionPage
     {
         HelpersMethod.waitTillElementLocatedDisplayed(driver,"xpath","//div[contains(@class,'k-calendar-monthview')]",80000);
         new WebDriverWait(driver,Duration.ofMillis(80000)).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class,'k-calendar-monthview')]")));
-        WebElement WebEle=null;
+        WebElement WebEle;
         String FTDate=null;
         exists=false;
         try

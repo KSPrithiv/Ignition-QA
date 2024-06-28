@@ -180,7 +180,7 @@ public class ARInquiryPage
     public void Validate_ARInquiry()
     {
         String title=null;
-        WebElement WebEle=null;
+        WebElement WebEle;
         if (HelpersMethod.IsExists("//div[@class='loader']", driver))
         {
             WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
@@ -197,7 +197,7 @@ public class ARInquiryPage
     public void Click_CustomerAccount()
     {
         exists=false;
-        WebElement WebEle=null;
+        WebElement WebEle;
         try
         {
             HelpersMethod.ClickBut(driver,Cust_Accout,1000);
@@ -222,7 +222,7 @@ public class ARInquiryPage
     public void Click_CheckBox()
     {
         exists=false;
-        WebElement WebEle=null;
+        WebElement WebEle;
         if(HelpersMethod.IsExists("//div[@class='loader']",driver))
         {
             WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
@@ -273,7 +273,7 @@ public class ARInquiryPage
     public void Click_Print()
     {
         exists=false;
-        WebElement WebEle=null;
+        WebElement WebEle;
         try
         {
             if(PrintBut.isDisplayed() && PrintBut.isEnabled())
@@ -312,7 +312,7 @@ public class ARInquiryPage
 
     public void AddFilterClick()
     {
-        WebElement WebEle=null;
+        WebElement WebEle;
         exists=false;
         try
         {
@@ -354,7 +354,7 @@ public class ARInquiryPage
     public void ReadingInvoice()
     {
         exists=false;
-        WebElement WebEle=null;
+        WebElement WebEle;
         try
         {
             WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'grid-container')]/descendant::tr[contains(@class,'k-master-row')][1]/descendant::td[2]");

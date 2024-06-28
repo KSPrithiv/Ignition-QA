@@ -184,7 +184,7 @@ public class BadgeBuilderPage {
     public void ClickOnBadgeBuilderIcon() {
 
         WebElement BadgeBuildericon;
-//        WebElement WebEle=null;
+//        WebElement WebEle;
         try {
             if (HelpersMethod.IsExists("/html//div[@id='badgeIconCard']//div[@class='badge-icon-content']/div[3]", driver)) {
                 BadgeBuildericon = HelpersMethod.FindByElement(driver, "xpath", "/html//div[@id='badgeIconCard']//div[@class='badge-icon-content']/div[3]");
@@ -242,7 +242,7 @@ public class BadgeBuilderPage {
         //new WebDriverWait(driver,20).until(ExpectedConditions.textToBePresentInElementLocated(By.id("EditButton"),"Edit"));
 
         WebElement BadgeGalleryBadge;
-//        WebElement WebEle=null;
+//        WebElement WebEle;
         try {
             if (HelpersMethod.IsExists("/html//div[@id='badgeGalleryCard']//div[@class='badge-gallery-container']/div[6]/div[@class='badge-gallery-code']", driver)) {
                 BadgeGalleryBadge = HelpersMethod.FindByElement(driver, "xpath", "/html//div[@id='badgeGalleryCard']//div[@class='badge-gallery-container']/div[6]/div[@class='badge-gallery-code']");
@@ -291,7 +291,7 @@ public class BadgeBuilderPage {
         String str = "LABEL20";
 
         WebElement TextBox;
-//        WebElement WebEle=null;
+//        WebElement WebEle;
         try {
             if (HelpersMethod.IsExists("/html//input[@id='nameTextbox']", driver)) {
                 TextBox = HelpersMethod.FindByElement(driver, "xpath", "/html//input[@id='nameTextbox']");
@@ -312,7 +312,7 @@ public class BadgeBuilderPage {
     public void AddToGallery() {
 
         WebElement Submit;
-//        WebElement WebEle=null;
+//        WebElement WebEle;
         try {
             if (HelpersMethod.IsExists("/html//button[@id='plusButton']", driver)) {
                 Submit = HelpersMethod.FindByElement(driver, "xpath", "/html//button[@id='plusButton']");
@@ -379,7 +379,7 @@ public class BadgeBuilderPage {
         String str = "LABEL25";
 
         WebElement TextBox1;
-//        WebElement WebEle=null;
+//        WebElement WebEle;
         try {
             if (HelpersMethod.IsExists("/html//input[@id='nameTextbox']", driver)) {
                 TextBox1 = HelpersMethod.FindByElement(driver, "xpath", "/html//input[@id='nameTextbox']");
@@ -398,7 +398,7 @@ public class BadgeBuilderPage {
 
 
         WebElement WebEleColour;
-//        WebElement WebEle=null;
+//        WebElement WebEle;
         try {
             if (HelpersMethod.IsExists("/html//div[@id='badgeColorCard']//div[@class='colorsRow']/div[8]/div[@class='color-circle']", driver)) {
                 WebEleColour = HelpersMethod.FindByElement(driver, "xpath", "/html//div[@id='badgeColorCard']//div[@class='colorsRow']/div[8]/div[@class='color-circle']");
@@ -454,7 +454,7 @@ public class BadgeBuilderPage {
         WebElement PreviewIcon2;
         WebElement Preview;
         WebElement PreviewIcon3;
-//        WebElement WebEle=null;
+//        WebElement WebEle;
         try {
             if (HelpersMethod.IsExists("/html//div[@id='badgeTypeCard']/div[@class='i-card__card__body i-card__card__body--expanded']/div[@class='badge-type-container']/div[1]/div/input", driver)) {
                 RadioBt1 = HelpersMethod.FindByElement(driver, "xpath", "/html//div[@id='badgeTypeCard']/div[@class='i-card__card__body i-card__card__body--expanded']/div[@class='badge-type-container']/div[1]/div/input");
@@ -565,7 +565,7 @@ public class BadgeBuilderPage {
 
 
         WebElement WebEleColour;
-//        WebElement WebEle=null;
+//        WebElement WebEle;
         try {
             if (HelpersMethod.IsExists("/html//div[@id='badgeColorCard']//div[@class='colorsRow']/div[3]/div[@class='color-circle']", driver)) {
                 WebEleColour = HelpersMethod.FindByElement(driver, "xpath", "/html//div[@id='badgeColorCard']//div[@class='colorsRow']/div[3]/div[@class='color-circle']");
@@ -686,7 +686,7 @@ public class BadgeBuilderPage {
         WebElement WebEleColour;
         WebElement WebEleColour2;
 
-//        WebElement WebEle=null;
+//        WebElement WebEle;
         try {
             if (HelpersMethod.IsExists("/html//div[@id='badgeColorCard']//div[@class='colorsRow']/div[3]/div[@class='color-circle']", driver)) {
                 WebEleColour = HelpersMethod.FindByElement(driver, "xpath", "/html//div[@id='badgeColorCard']//div[@class='colorsRow']/div[3]/div[@class='color-circle']");
@@ -880,7 +880,7 @@ public class BadgeBuilderPage {
 //        String str = "11X";
 //
 //        WebElement POTextBox;
-////        WebElement WebEle=null;
+////        WebElement WebEle;
 //        try {
 //            if (HelpersMethod.IsExists("/html//input[@id='poNumber']", driver)) {
 //                POTextBox = HelpersMethod.FindByElement(driver, "xpath", "/html//input[@id='poNumber']");
@@ -2033,7 +2033,7 @@ public class BadgeBuilderPage {
     public void ClickOnAddProductButton()
     {
 //        exists=false;
-        WebElement WebEle=null;
+        WebElement WebEle;
         HelpersMethod.Implicitwait(driver,40);
         //new WebDriverWait(driver,40).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//button[contains(text(),'Add product')]")));
         try
@@ -2050,7 +2050,7 @@ public class BadgeBuilderPage {
     public void ClickOnAddProductButton1()
     {
         exists=false;
-        WebElement WebEle=null;
+        WebElement WebEle;
         HelpersMethod.Implicitwait(driver,40);
         new WebDriverWait(driver,Duration.ofMillis(6000)).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//button[contains(text(),'Add product')]")));
         try
@@ -2075,7 +2075,7 @@ public class BadgeBuilderPage {
     public void CatalogOKButton()
     {
         exists=false;
-        WebElement WebEle=null;
+        WebElement WebEle;
         try
         {
             if(HelpersMethod.IsExists("//span[text()='Catalog']/ancestor::div[contains(@class,'k-window k-dialog')]",driver))

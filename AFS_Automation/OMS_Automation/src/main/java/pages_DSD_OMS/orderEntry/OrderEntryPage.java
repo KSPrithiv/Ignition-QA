@@ -2455,7 +2455,7 @@ public class OrderEntryPage
     public void click_On_CustomerNotes()
     {
         exists = false;
-        String status="";
+        String status;
         WebElement WebEle;
         try
         {

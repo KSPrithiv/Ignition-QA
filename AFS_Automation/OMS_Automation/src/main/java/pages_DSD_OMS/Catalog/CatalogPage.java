@@ -100,7 +100,7 @@ public class CatalogPage
     public void Click_ResetFilterButton()
     {
         exists=false;
-        WebElement WebEle=null;
+        WebElement WebEle;
         String status = HelpersMethod.returnDocumentStatus(driver);
         if (status.equals("loading"))
         {
@@ -135,7 +135,7 @@ public class CatalogPage
     //Code to click on Card view
     public void Click_CardView()
     {
-        WebElement WebEle=null;
+        WebElement WebEle;
         Actions act=new Actions(driver);
         if (HelpersMethod.IsExists("//div[@class='loader']", driver))
         {
@@ -196,7 +196,7 @@ public class CatalogPage
     public void Best_MatchDropDown(String DropSelect)
     {
         exists=false;
-        WebElement WebEle=null;
+        WebElement WebEle;
         Actions act1=new Actions(driver);
         if(HelpersMethod.IsExists("//div[@class='loader']",driver))
         {
@@ -353,7 +353,7 @@ public class CatalogPage
     public void SearchProduct(String Prod_no)
     {
         exists=false;
-        WebElement WebEle=null;
+        WebElement WebEle;
         String status="";
         try
         {
@@ -522,7 +522,7 @@ public class CatalogPage
     public void IncrementCard_button()
     {
         exists=false;
-        WebElement WebEle=null;
+        WebElement WebEle;
         WebElement UpdateBut=null;
         Wait<WebDriver> wait;
         String Qty=null;
@@ -555,7 +555,7 @@ public class CatalogPage
     public void DecrementCard_button()
     {
         exists=false;
-        WebElement WebEle=null;
+        WebElement WebEle;
         WebElement UpdateBut=null;
         Wait<WebDriver> wait;
         String Qty=null;
@@ -634,7 +634,7 @@ public class CatalogPage
     public void GotoCartClick()
     {
         exists=false;
-        WebElement WebEle=null;
+        WebElement WebEle;
         try
         {
             Actions act = new Actions(driver);
@@ -671,7 +671,7 @@ public class CatalogPage
     public void DeleteProd_GotoCartClick()
     {
         exists=false;
-        WebElement WebEle=null;
+        WebElement WebEle;
         try
         {
             Actions act = new Actions(driver);
@@ -705,7 +705,7 @@ public class CatalogPage
     public void ClickGotoCart1()
     {
         exists=false;
-        WebElement WebEle=null;
+        WebElement WebEle;
         try
         {
             Actions act = new Actions(driver);
@@ -1308,7 +1308,7 @@ public class CatalogPage
     public void ValidateProductsYouMayLike()
     {
         exists=false;
-        WebElement WebEle=null;
+        WebElement WebEle;
         String ProdNo=null;
         try
         {

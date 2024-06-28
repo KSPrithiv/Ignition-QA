@@ -262,7 +262,7 @@ public class LoginPage
     public void ClickExternalCatalog()
     {
         exists=false;
-        WebElement WebEle=null;
+        WebElement WebEle;
         try
         {
             Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)

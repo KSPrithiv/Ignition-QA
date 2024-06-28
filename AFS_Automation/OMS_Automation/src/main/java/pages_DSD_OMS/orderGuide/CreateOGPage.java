@@ -282,7 +282,7 @@ public class CreateOGPage
         exists=false;
         try
         {
-            WebElement WebEle=null;
+            WebElement WebEle;
             Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
                     .withTimeout(Duration.ofSeconds(200))
                     .pollingEvery(Duration.ofSeconds(2))
@@ -769,7 +769,7 @@ public class CreateOGPage
     public void SelectProductCatalog()
     {
         exists=false;
-        WebElement WebEle=null;
+        WebElement WebEle;
         try
         {
             String status = HelpersMethod.returnDocumentStatus(driver);
@@ -817,7 +817,7 @@ public class CreateOGPage
     public void CatalogPopupOk()
     {
         exists=false;
-        WebElement WebEle=null;
+        WebElement WebEle;
         try
         {
             if(HelpersMethod.IsExists("//div[contains(@class,'k-window k-dialog')]/descendant::button/span[text()='Ok']",driver))
@@ -1106,7 +1106,7 @@ public class CreateOGPage
     public void Click_Export()
     {
         exists=false;
-        WebElement WebEle=null;
+        WebElement WebEle;
         if(HelpersMethod.IsExists("//div[@class='loader']",driver))
         {
             WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
@@ -1442,7 +1442,7 @@ public class CreateOGPage
     //Code to handle confirmation popup for deleting customer allocation
     public void CustomerAllocationDeletePopup()
     {
-        WebElement WebEle=null;
+        WebElement WebEle;
         exists=true;
         try
         {
@@ -1832,7 +1832,7 @@ public class CreateOGPage
     public void PrintOG()
     {
         exists=false;
-        WebElement WebEle=null;
+        WebElement WebEle;
         if(PrintBut.isDisplayed() && PrintBut.isEnabled())
         {
             HelpersMethod.ScrollElement(driver, PrintBut);
@@ -2361,7 +2361,7 @@ public class CreateOGPage
     public void ListViewPriceBase()
     {
         exists = false;
-        WebElement WebEle=null;
+        WebElement WebEle;
         Actions act=new Actions(driver);
         try
         {

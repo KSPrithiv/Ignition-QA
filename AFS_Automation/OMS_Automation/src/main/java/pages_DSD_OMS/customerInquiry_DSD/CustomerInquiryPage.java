@@ -217,7 +217,7 @@ public class CustomerInquiryPage
 
     public void ValidateCustomInq()
     {
-        WebElement WebEle=null;
+        WebElement WebEle;
         String title;
         try
         {
@@ -611,7 +611,7 @@ public class CustomerInquiryPage
     //Creating list of customer note in customer note grid and select one of the note
     public void Select_Note(String cust_Note)
     {
-        WebElement WebEle=null;
+        WebElement WebEle;
         exists=false;
         try
         {
