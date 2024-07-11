@@ -126,15 +126,21 @@ public class NewStandingOrderCard
         String FTDate;
         try
         {
+            String status = HelpersMethod.returnDocumentStatus(driver);
+            if (status.equals("loading"))
+            {
+                HelpersMethod.waitTillLoadingPage(driver);
+            }
+            //Thread.sleep(2000);
             //Create WebElement for popup
-            HelpersMethod.waitTillElementLocatedDisplayed(driver, "xpath", "//div[contains(@class,'k-window k-dialog')]", 10000);
             WebElement modalContainer = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-window k-dialog')]");
 
             //Click on From Calender icon
             WebElement startDateIcon = modalContainer.findElement(By.xpath(".//input[@id='addFromDate']/parent::span/following-sibling::button"));
-            HelpersMethod.ActClick(driver, startDateIcon, 10000);
-            new WebDriverWait(driver, Duration.ofMillis(10000)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='k-calendar-view k-vstack k-calendar-monthview']")));
-            String status = HelpersMethod.returnDocumentStatus(driver);
+            HelpersMethod.ClickBut(driver, startDateIcon, 10000);
+            //new WebDriverWait(driver, Duration.ofMillis(10000)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='k-calendar-view k-vstack k-calendar-monthview']")));
+
+             status = HelpersMethod.returnDocumentStatus(driver);
             if (status.equals("loading"))
             {
                 HelpersMethod.waitTillLoadingPage(driver);
@@ -142,11 +148,12 @@ public class NewStandingOrderCard
             new WebDriverWait(driver, Duration.ofMillis(10000)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='k-calendar-view k-vstack k-calendar-monthview']")));
             new WebDriverWait(driver,Duration.ofMillis(10000)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class='k-calendar-view k-vstack k-calendar-monthview']"))));
 
+            Thread.sleep(1000);
             //Select 'From' date from Start date calender
             if (HelpersMethod.IsExists("//div[@id='addFromDate-popup-id']", driver))
             {
                 // to fetch the web element of the modal container
-                WebElement ele1 = HelpersMethod.FindByElement(driver,"xpath","//table[@class='k-calendar-table']/descendant::td[contains(@class,'k-calendar-td k-state-pending-focus k-today k-focus')]/span");
+                WebElement ele1 = HelpersMethod.FindByElement(driver,"xpath","//table[@class='k-calendar-table']/descendant::td[contains(@class,'k-focus')]/span");
                 if (ele1.isDisplayed() && ele1.isEnabled())
                 {
                     HelpersMethod.JSScroll(driver, ele1);
@@ -169,22 +176,23 @@ public class NewStandingOrderCard
 
             //Click on To calender icon
             WebElement toDateIcon = modalContainer.findElement(By.xpath(".//input[@id='addToDate']/parent::span/following-sibling::button"));
-            HelpersMethod.ActClick(driver, toDateIcon, 10000);
+            HelpersMethod.ClickBut(driver, toDateIcon, 10000);
 
-            new WebDriverWait(driver, Duration.ofMillis(10000)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='k-calendar-view k-vstack k-calendar-monthview']")));
+            //new WebDriverWait(driver, Duration.ofMillis(10000)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@id='addToDate-popup-id']")));
             status = HelpersMethod.returnDocumentStatus(driver);
             if (status.equals("loading"))
             {
                 HelpersMethod.waitTillLoadingPage(driver);
             }
-            new WebDriverWait(driver, Duration.ofMillis(10000)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='k-calendar-view k-vstack k-calendar-monthview']")));
-            new WebDriverWait(driver,Duration.ofMillis(10000)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class='k-calendar-view k-vstack k-calendar-monthview']"))));
+            new WebDriverWait(driver,Duration.ofMillis(10000)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@id='addToDate-popup-id']"))));
+            new WebDriverWait(driver, Duration.ofMillis(10000)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@id='addToDate-popup-id']")));
 
+            Thread.sleep(500);
             //Select 'To' date from End date calender
             if (HelpersMethod.IsExists("//div[@id='addToDate-popup-id']", driver))
             {
                 // to fetch the web element of the modal container
-                WebElement ele1 = HelpersMethod.FindByElement(driver,"xpath","//table[@class='k-calendar-table']/descendant::td[contains(@class,'k-calendar-td k-state-pending-focus k-today k-focus')]/span");
+                WebElement ele1 = HelpersMethod.FindByElement(driver,"xpath","//table[@class='k-calendar-table']/descendant::td[contains(@class,'k-focus')]/span");
                 if (ele1.isDisplayed() && ele1.isEnabled())
                 {
                     HelpersMethod.JSScroll(driver, ele1);
@@ -227,9 +235,10 @@ public class NewStandingOrderCard
                     .ignoring(NoSuchElementException.class);
             wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
 
-            HelpersMethod.waitTillElementLocatedDisplayed(driver, "xpath", "//div[contains(@class,'k-window k-dialog')]", 10000);
+            HelpersMethod.waitTillElementLocatedDisplayed(driver, "xpath", "//span[contains(text(),'Add standing order')]/ancestor::div[contains(@class,'k-window k-dialog')]", 10000);
             if (HelpersMethod.IsExists("//span[contains(text(),'Add standing order')]/ancestor::div[contains(@class,'k-window k-dialog')]", driver))
             {
+                scenario.log("ADD STANDING ORDER DIALOG BOX FOUND");
                 exists = true;
             }
             Assert.assertEquals(exists,true);
@@ -242,17 +251,16 @@ public class NewStandingOrderCard
         exists=false;
         try
         {
-            //HelpersMethod.waitTillElementLocatedDisplayed(driver, "xpath", "//div[contains(@class,'k-window k-dialog')]", 10000);
             new WebDriverWait(driver,Duration.ofMillis(20000)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(@class,'k-window k-dialog')]")));
             new WebDriverWait(driver,Duration.ofMillis(20000)).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class,'k-window k-dialog')]")));
             // to fetch the web element of the modal container
-            WebElement modalContainer = driver.findElement(By.xpath("//div[contains(@class,'k-window k-dialog')]"));
+            WebElement modalContainer = driver.findElement(By.xpath("//span[contains(text(),'Add standing order')]/ancestor::div[contains(@class,'k-window k-dialog')]"));
             WebElement startDateIcon = modalContainer.findElement(By.xpath(".//input[@id='addFromDate']/parent::span/following-sibling::button"));
             new WebDriverWait(driver, Duration.ofMillis(10000)).until(ExpectedConditions.elementToBeClickable(startDateIcon));
             HelpersMethod.ActClick(driver, startDateIcon, 10000);
             exists = true;
-            HelpersMethod.WaitElementPresent(driver, "xpath", "//div[@class='k-calendar-view k-vstack k-calendar-monthview']", 10000);
             new WebDriverWait(driver, Duration.ofMillis(10000)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='k-calendar-view k-vstack k-calendar-monthview']")));
+            HelpersMethod.WaitElementPresent(driver, "xpath", "//div[@id='addFromDate-popup-id']", 10000);
 
             String status = HelpersMethod.returnDocumentStatus(driver);
             if (status.equals("loading"))

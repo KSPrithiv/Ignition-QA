@@ -315,6 +315,7 @@ public class AdminOrderEntryStep
         newOE.Search_Prod_in_Catalog(pro);
         newOE.EnterQty(Prod_detail.get(0).get(0),Prod_detail.get(0).get(1));
         scenario.log("PRODUCT # "+pro+" PRODUCT QTY "+Prod_detail.get(0).get(0)+" "+Prod_detail.get(0).get(1));
+        newOE.Catalog_OK();
     }
 
     @And("User should verify products are auto loaded select Product from catalog and Enter Qty for the products")
@@ -331,6 +332,7 @@ public class AdminOrderEntryStep
         newOE.Search_Prod_in_Catalog(pro);
         newOE.EnterQty(Prod_detail.get(0).get(0),Prod_detail.get(0).get(1));
         scenario.log("PRODUCT # "+pro+" PRODUCT QTY "+Prod_detail.get(0).get(0)+" "+Prod_detail.get(0).get(1));
+        newOE.Catalog_OK();
     }
 
     @And("User should enter menu {string} in search bar to navigate to catalog search")
@@ -578,5 +580,13 @@ public class AdminOrderEntryStep
             orderpage.Scroll_start();
             exists = orderpage.Start_OrderForAdmin();
         }
+    }
+
+    @And("User click on Question mark and selects Sales help option and check for non existance")
+    public void userClickOnQuestionMarkAndSelectsSalesHelpOptionAndCheckForNonExistance() throws InterruptedException, AWTException
+    {
+        orderpage = new OrderEntryPage(driver, scenario);
+        orderpage.selectSaleshelp();
+        orderpage.selectSaleshelpDisable();
     }
 }

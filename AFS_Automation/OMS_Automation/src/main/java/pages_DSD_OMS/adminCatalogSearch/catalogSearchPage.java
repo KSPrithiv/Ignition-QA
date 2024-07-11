@@ -79,10 +79,10 @@ public class catalogSearchPage
         String searchText;
         try
         {
-            new WebDriverWait(driver,Duration.ofMillis(2000)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(@class,'k-child-animation-container')]/descendant::ul/li")));
-            if(HelpersMethod.IsExists("//div[contains(@class,'k-child-animation-container')]/descendant::ul/li",driver))
+            new WebDriverWait(driver,Duration.ofMillis(2000)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//ul[@id='CPCatalogSearchLayOut-listbox-id']/descendant::span")));
+            if(HelpersMethod.IsExists("//ul[@id='CPCatalogSearchLayOut-listbox-id']/descendant::span",driver))
             {
-                List<WebElement> searchLayouts=HelpersMethod.FindByElements(driver,"xpath","//div[contains(@class,'k-child-animation-container')]/descendant::ul/li");
+                List<WebElement> searchLayouts=HelpersMethod.FindByElements(driver,"xpath","//ul[@id='CPCatalogSearchLayOut-listbox-id']/descendant::span");
                 for(WebElement searchLayout:searchLayouts)
                 {
                     act.moveToElement(searchLayout).build().perform();

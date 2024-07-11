@@ -42,7 +42,7 @@ public class NewStandingOrderPage
     @FindBy (xpath="//button[@data-test-id='saveStandingOrderBtn']")
     private WebElement SaveButton;
 
-    @FindBy(xpath="//button/span[text()='Add product']")
+    @FindBy(xpath="//button[@data-test-id='openCatalogStandingOrderBtn']")
     private WebElement AddProduct;
 
     @FindBy(xpath="//button[@data-test-id='skipDeliveryDaysStandingOrderBtn']")
@@ -267,12 +267,22 @@ public class NewStandingOrderPage
     public void ClickOnAddProductButton()
     {
         exists=false;
-        WebElement WebEle;
+
         new WebDriverWait(driver, Duration.ofMillis(20000)).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//button/span[contains(text(),'Add product')]")));
         try
         {
             Wait<WebDriver>  wait = new FluentWait<WebDriver>(driver)
-                    .withTimeout(Duration.ofSeconds(120))
+                    .withTimeout(Duration.ofSeconds(200))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+            String status = HelpersMethod.returnDocumentStatus(driver);
+            if (status.equals("loading"))
+            {
+                HelpersMethod.waitTillLoadingPage(driver);
+            }
+            wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(400))
                     .pollingEvery(Duration.ofSeconds(2))
                     .ignoring(NoSuchElementException.class);
             wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
@@ -280,10 +290,10 @@ public class NewStandingOrderPage
             if(AddProduct.isDisplayed() && AddProduct.isEnabled())
             {
                 HelpersMethod.ScrollElement(driver,AddProduct);
-                HelpersMethod.ActClick(driver,AddProduct,10000);
+                HelpersMethod.ClickBut(driver,AddProduct,20000);
                 exists=true;
                 wait = new FluentWait<WebDriver>(driver)
-                        .withTimeout(Duration.ofSeconds(120))
+                        .withTimeout(Duration.ofSeconds(200))
                         .pollingEvery(Duration.ofSeconds(2))
                         .ignoring(NoSuchElementException.class);
                 wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
@@ -365,7 +375,7 @@ public class NewStandingOrderPage
                                 .ignoring(NoSuchElementException.class);
                         wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));*/
                         //Click on Add filter again
-                        WebEle = catalogPopup.findElement(By.xpath(".//button/span[contains(@class,'i-filter-tag__main')]/descendant::span[text()='Add filter']"));
+                        WebEle = catalogPopup.findElement(By.xpath(".//span[text()='Add filter']/parent::button"));
                         HelpersMethod.ClickBut(driver, WebEle, 10000);
                         wait = new FluentWait<WebDriver>(driver)
                                 .withTimeout(Duration.ofSeconds(120))
@@ -395,11 +405,11 @@ public class NewStandingOrderPage
                         WebElement searchOption = HelpersMethod.FindByElement(driver, "xpath", "//button/span[contains(@class,'i-filter-tag__main')]");
                         HelpersMethod.ClickBut(driver, searchOption, 1000);
                         //dropDown1=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-child-animation-container')]");
-                        WebElement secondSearch = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-child-animation-container')]/descendant::input[contains(@class,'k-textbox')]");
-                        HelpersMethod.EnterText(driver, secondSearch, 1000, Prods.get(j));
+                        WebElement secondSearch = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-child-animation-container')]/descendant::input[contains(@class,'k-input')]");
+                        HelpersMethod.EnterText(driver, secondSearch, 10000, Prods.get(j));
                         //Click on Apply button
                         applyButton = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-child-animation-container')]/descendant::button/span[text()='Apply']");
-                        HelpersMethod.ClickBut(driver, applyButton, 100);
+                        HelpersMethod.ClickBut(driver, applyButton, 10000);
                         if (HelpersMethod.IsExists("//div[@class='loader']", driver))
                         {
                             WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
@@ -407,7 +417,7 @@ public class NewStandingOrderPage
                         }
                         //Select the product from catalog
                         WebElement prod = HelpersMethod.FindByElement(driver, "xpath", "//tr[contains(@class,'k-master-row')]");
-                        HelpersMethod.ActClick(driver, prod, 1000);
+                        HelpersMethod.ActClick(driver, prod, 10000);
                         scenario.log("PRODUCT FOUND IN CATALOG IS " + Prods.get(j));
                     }
                 }
@@ -456,7 +466,7 @@ public class NewStandingOrderPage
 
     public void cardView(String prod)
     {
-        WebElement WebEle;
+
         Actions act=new Actions(driver);
         try
         {
@@ -1338,7 +1348,7 @@ public class NewStandingOrderPage
                 {
                     //Click on 'Add filter'
                     WebElement catalogPopup = HelpersMethod.FindByElement(driver, "xpath", "//span[text()='Catalog']/ancestor::div[contains(@class,'k-window k-dialog')]");
-                    WebEle = catalogPopup.findElement(By.xpath("//button/span[contains(@class,'i-filter-tag__main')]/descendant::span[text()='Add filter']"));
+                    WebEle = catalogPopup.findElement(By.xpath("//button/descendant::span[text()='Add filter']"));
                     HelpersMethod.clickOn(driver, WebEle, 10000);
 
                     //Enter value in 1st input
@@ -1608,7 +1618,7 @@ public class NewStandingOrderPage
                     }
                     //Enter search value in input box
                     String searchValue = TestBase.testEnvironment.get_Category();
-                    WebElement catalogFilter = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-window k-dialog')]/descendant::tr[@class='k-filter-row']/th[" + i + "]/descendant::input");
+                    WebElement catalogFilter = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-window k-dialog')]/descendant::tr[contains(@class,'k-filter-row')]/th[" + i + "]/descendant::input");
                     HelpersMethod.EnterText(driver,catalogFilter,10000,searchValue);
                     //WebElement filterInput = driver.findElement(By.xpath("//div[contains(@class,'k-window k-dialog')]/descendant::tr[@class='k-filter-row']/th[" + i + "]/descendant::input"));
                     //act1.moveToElement(filterInput).click().build().perform();
@@ -1742,13 +1752,13 @@ public class NewStandingOrderPage
                        if(filters.size()>1)
                        {
                            //Click on 'Add filter'
-                           WebEle = HelpersMethod.FindByElement(driver, "xpath", "//button/span[contains(@class,'i-filter-tag__main')]/descendant::span[text()='Add filter']");
-                           HelpersMethod.ActClick(driver, WebEle, 10000);
+                           WebEle = HelpersMethod.FindByElement(driver, "xpath", "//span[text()='Add filter']/parent::button");
+                           HelpersMethod.ClickBut(driver, WebEle, 10000);
 
                            //Click on 'Clear all'
-                           WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'i-filter-popup__footer')]/button/span[contains(text(),'Clear all')]");
-                           if (WebEle.isEnabled())
+                           if (HelpersMethod.IsExists("//div[contains(@class,'i-filter-popup__footer')]/button[contains(@class,'primary')]/span[contains(text(),'Clear all')]",driver))
                            {
+                               WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'i-filter-popup__footer')]/button[contains(@class,'primary')]/span[contains(text(),'Clear all')]");
                                HelpersMethod.ScrollTillElementVisible(driver, WebEle);
                                HelpersMethod.JScriptClick(driver, WebEle, 10000);
                                Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
@@ -2062,7 +2072,6 @@ public class NewStandingOrderPage
             if(QuickProduct.isDisplayed() && QuickProduct.isEnabled())
             {
                 //Enter Qty in quick inputbox
-                //ProNo= DataBaseConnection.DataBaseConn(TestBase.testEnvironment.getSingle_Prod_Sql());
                 ProNo=TestBase.testEnvironment.getPrecedingByZero();
                 act1.moveToElement(QuickProduct).click().build().perform();
                 HelpersMethod.sendKeys(driver,QuickProduct,10000,ProNo);
@@ -2092,17 +2101,6 @@ public class NewStandingOrderPage
         int i=0;
         try
         {
-            List<WebElement> heads=HelpersMethod.FindByElements(driver,"xpath","//span[contains(@class,'k-column-title')]");
-            for(WebElement head:heads)
-            {
-                i++;
-                act.moveToElement(head).build().perform();
-                headText=head.getText();
-                if(headText.equalsIgnoreCase("Product number"))
-                {
-                    break;
-                }
-            }
             //To zoom out browser by 67%
             if(TestBase.testEnvironment.get_browser().equalsIgnoreCase("chrome")|TestBase.testEnvironment.get_browser().equalsIgnoreCase("edge"))
             {
@@ -2113,6 +2111,18 @@ public class NewStandingOrderPage
             {
                 JavascriptExecutor js=(JavascriptExecutor)driver;
                 js.executeScript("document.body.style.MozTransform='67%'");
+            }
+
+            List<WebElement> heads=HelpersMethod.FindByElements(driver,"xpath","//span[contains(@class,'k-column-title')]");
+            for(WebElement head:heads)
+            {
+                i++;
+                act.moveToElement(head).build().perform();
+                headText=head.getText();
+                if(headText.equalsIgnoreCase("Product number") || headText.equalsIgnoreCase("Product Number"))
+                {
+                    break;
+                }
             }
 
             WebElement prodEle=HelpersMethod.FindByElement(driver,"xpath","//tr[contains(@class,'k-master-row')]/td["+(i+1)+"]");

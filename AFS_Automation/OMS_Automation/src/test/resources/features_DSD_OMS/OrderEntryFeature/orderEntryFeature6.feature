@@ -16,7 +16,7 @@ Feature: Order Entry6
     And Select Pickup Order from drop down options and select delivery date
     Then User should select Note from popup and Order guide from popup
     And User validates Pickup order check box is selected
-    Then Enter PO# for New order
+    Then Enter PO# for New order for Pickup order
       |PO123|
     Then Enter Pro# in Quick Product Entry area
     And Check for Case and Unit input box enabled or not based on that enter value
@@ -32,7 +32,7 @@ Feature: Order Entry6
     And Select Pickup Order from drop down options and select delivery date
     Then User should select Note from popup and Order guide from popup
     And User validates Pickup order check box is selected
-    Then Enter PO# for New order
+    Then Enter PO# for New order for Pickup order
       |PO123|
     Then Enter Pro# in Quick Product Entry area
     And Check for Case and Unit input box enabled or not based on that enter value
@@ -48,7 +48,7 @@ Feature: Order Entry6
     Then User should make selection between Pending order or Start New order
     Then User should select Note from popup and Order guide from popup
     And User navigated to New OE page and clicks on Pickup check box
-    Then Enter PO# for New order
+    Then Enter PO# for New order for Pickup order
       |PO123|
     Then Enter Pro# in Quick Product Entry area
     And Check for Case and Unit input box enabled or not based on that enter value
@@ -74,7 +74,7 @@ Feature: Order Entry6
     When User clicks on drop down next to Start order button
     And Select Pickup Order from drop down options and select delivery date by verifying existence of todays date
     Then User should select Note from popup and Order guide from popup
-    Then Enter PO# for New order
+    Then Enter PO# for New order for Pickup order
       |PO123|
     Then Enter Pro# in Quick Product Entry area
     And Check for Case and Unit input box enabled or not based on that enter value

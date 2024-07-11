@@ -114,17 +114,23 @@ public class OrderHistoryPage
     }
     public void Copy_Button()
     {
+        exists=false;
         try
         {
             new WebDriverWait(driver, Duration.ofMillis(10000)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfAllElementsLocatedBy(By.id("order-history-card"))));
-            HelpersMethod.ScrollElement(driver, CopyButton);
-            HelpersMethod.ClickBut(driver,CopyButton,40000);
-            scenario.log("COPY BUTTON HAS BEEN CLICKED, TO COPY ORDER HISTORY");
-            if(HelpersMethod.IsExists("//div[@class='loader']",driver))
+            if(!HelpersMethod.IsExists("//button[@id='copy-button' and contains(@class,'k-disabled')]",driver))
             {
-                WebElement WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000000);
+                HelpersMethod.ScrollElement(driver, CopyButton);
+                HelpersMethod.ClickBut(driver, CopyButton, 40000);
+                scenario.log("COPY BUTTON HAS BEEN CLICKED, TO COPY ORDER HISTORY");
+                exists=true;
+                if (HelpersMethod.IsExists("//div[@class='loader']", driver))
+                {
+                    WebElement WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
+                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000000);
+                }
             }
+            Assert.assertEquals(exists,true);
         }
         catch (Exception e){}
     }
@@ -198,8 +204,26 @@ public class OrderHistoryPage
         int i=0;
         try
         {
-          //creating list of 'status' column value to find active order and to neglect skip and cancel orders
-          List<WebElement> status=HelpersMethod.FindByElements(driver,"xpath","//tr[contains(@class,'k-master-row')]/descendant::span[contains(@class,'status-cell')]");
+            Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(200))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
+            String status1 = HelpersMethod.returnDocumentStatus(driver);
+            if (status1.equals("loading"))
+            {
+                HelpersMethod.waitTillLoadingPage(driver);
+            }
+
+            wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(200))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
+            //creating list of 'status' column value to find active order and to neglect skip and cancel orders
+            List<WebElement> status=HelpersMethod.FindByElements(driver,"xpath","//tr[contains(@class,'k-master-row')]/descendant::span[contains(@class,'status-cell')]");
             for(WebElement sta:status)
             {
               i++;
@@ -212,18 +236,34 @@ public class OrderHistoryPage
                   scenario.log("ORDER NUMBER SELECTED FROM ORDER HISTORY PAGE FOR CREATING COPY IS: "+OrderNo.getText());
 
                   //code to select first order in order history
-                  WebElement OrderHist = HelpersMethod.FindByElement(driver, "xpath", "//table[contains(@class,'k-grid-table')]/descendant::tr[contains(@class,'k-master-row')]["+i+"]");
-                  act1.moveToElement(OrderHist).build().perform();
-                  act1.click().build().perform();
+                  WebElement OrderHist = HelpersMethod.FindByElement(driver, "xpath", "//tr[contains(@class,'k-master-row')]["+i+"]");
+                  //act1.moveToElement(OrderHist).click().build().perform();
+                  HelpersMethod.clickOn(driver,OrderHist,10000);
                   exists=true;
                   break;
               }
           }
-            if(HelpersMethod.IsExists("//div[@class='loader']",driver))
+            wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(200))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
+            status1 = HelpersMethod.returnDocumentStatus(driver);
+            if (status1.equals("loading"))
             {
-                WebElement  WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000000);
+                HelpersMethod.waitTillLoadingPage(driver);
             }
+
+            wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(200))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
+            new WebDriverWait(driver, Duration.ofMillis(10000)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfAllElementsLocatedBy(By.id("order-history-card"))));
+            new WebDriverWait(driver,Duration.ofMillis(10000)).until(ExpectedConditions.visibilityOfElementLocated(By.id("order-history-card")));
+            Thread.sleep(4000);
             Assert.assertEquals(exists,true);
         }
         catch (Exception e){}
@@ -291,7 +331,6 @@ public class OrderHistoryPage
         exists=false;
         try
         {
-            int i=0;
             Actions act=new Actions(driver);
             WebEle= HelpersMethod.FindByElement(driver,"xpath","//div[@class='i-grid']");
             HelpersMethod.ScrollElement(driver,WebEle);
@@ -303,7 +342,8 @@ public class OrderHistoryPage
                     .ignoring(NoSuchElementException.class);
             wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
 
-            act.moveToElement(headTitle).click().build().perform();
+            //act.moveToElement(headTitle).click().build().perform();
+            act.moveToElement(headTitle).doubleClick().build().perform();
             exists=true;
             wait = new FluentWait<WebDriver>(driver)
                     .withTimeout(Duration.ofSeconds(200))
@@ -311,6 +351,21 @@ public class OrderHistoryPage
                     .ignoring(NoSuchElementException.class);
             wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
 
+            String status = HelpersMethod.returnDocumentStatus(driver);
+            if (status.equals("loading"))
+            {
+                HelpersMethod.waitTillLoadingPage(driver);
+            }
+            wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(200))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
+            new WebDriverWait(driver,Duration.ofMillis(10000)).until(ExpectedConditions.refreshed(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='k-grid k-grid-md']"))));
+            new WebDriverWait(driver,Duration.ofMillis(10000)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='k-grid k-grid-md']")));
+
+            Thread.sleep(1000);
             Assert.assertEquals(exists,true);
         }
         catch (Exception e){}
@@ -332,6 +387,7 @@ public class OrderHistoryPage
                         .pollingEvery(Duration.ofSeconds(2))
                         .ignoring(NoSuchElementException.class);
                 wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
                 String status = HelpersMethod.returnDocumentStatus(driver);
                 if (status.equals("loading"))
                 {

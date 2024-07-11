@@ -3,11 +3,12 @@ Feature: scenarios for User and Accounts admin feature, for Grid related setting
   Background: For login to application and selecting Account# for Grid admission control
     Given User enters URL and is on login page and entered credentials for Admin setting for grid
     When User is on Home Page for Admin setting for grid
-    Then User Clicks on Permissions by drop down to select Customer Account# grid
+#    Then User Clicks on Permissions by drop down to select Customer Account# grid
 
   @AvailableGrid
   Scenario Outline: Test scenario to verifing avaiablity of grid from Available grid to Grid configuration
     Given User is on Home Page for Admin setting to select Admin option for grid
+    Then User Clicks on Permissions by drop down to select Customer Account# grid
     And User should enter menu "<Main menu>" in search bar and select "<Sub menu>"
     Then User navigates to Available Grid and selects one of the grid type
     And User navigates to "<ConfigTab1>" and the selected grid type should be loaded

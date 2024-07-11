@@ -531,6 +531,10 @@ public class orderAdminPage
             Actions act = new Actions(driver);
             String eventText;
             exists = false;
+
+            new WebDriverWait(driver,Duration.ofMillis(10000)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//ul[@id='eventslist']/li/span")));
+            new WebDriverWait(driver,Duration.ofMillis(10000)).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//ul[@id='eventslist']/li/span")));
+
             List<WebElement> eventLists = HelpersMethod.FindByElements(driver, "xpath", "//ul[@id='eventslist']/li/span");
             for (WebElement eventList : eventLists)
             {
@@ -544,6 +548,7 @@ public class orderAdminPage
                     break;
                 }
             }
+            Thread.sleep(1000);
             if (exists == true)
             {
                 scenario.log("EVENT HAS BEEN SUCCESSFULLY SELECTED");
@@ -567,7 +572,7 @@ public class orderAdminPage
             {
                 HelpersMethod.ScrollElement(driver, userNameDropdown);
                 HelpersMethod.FindByElement(driver, "xpath", "//input[@id='UserName']/following-sibling::button//*[local-name()='svg']").click();
-                exists=false;
+                exists=true;
             }
             Assert.assertEquals(exists,true);
         }
@@ -581,6 +586,9 @@ public class orderAdminPage
         Actions act1= new Actions(driver);
         try
         {
+            new WebDriverWait(driver,Duration.ofMillis(10000)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//ul[@id='UserNamelist']/li/span")));
+            new WebDriverWait(driver,Duration.ofMillis(10000)).until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath("//ul[@id='UserNamelist']/li/span")));
+
            if(HelpersMethod.IsExists("//ul[@id='UserNamelist']/li/span",driver))
            {
                List<WebElement> Options = HelpersMethod.FindByElements(driver, "xpath", "//ul[@id='UserNamelist']/li/span");

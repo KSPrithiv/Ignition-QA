@@ -148,6 +148,7 @@ public class OrderEntryPageSteps1
         newOE.Search_Prod_in_Catalog(pro);
         newOE.EnterQty(Prod_detail.get(0).get(0),Prod_detail.get(0).get(1));
         scenario.log("PRODUCT # "+pro+" PRODUCT QTY "+Prod_detail.get(0).get(0)+" "+Prod_detail.get(0).get(1));
+        newOE.Catalog_OK();
     }
 
     @And("User should select Product from catalog and Enter Qty for the products for OCL")
@@ -160,6 +161,7 @@ public class OrderEntryPageSteps1
         newOE.ResetFilter_Catalog();
         newOE.validateCatalogProducts();
         newOE.enterQtyOCL(Prod_detail.get(0).get(0),Prod_detail.get(0).get(1));
+        newOE.Catalog_OK();
     }
 
     //Code to add notes at coustomer level

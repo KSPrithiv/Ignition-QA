@@ -180,7 +180,7 @@ public class userAndAdmin_AddNewUserPage
         try
         {
             Thread.sleep(1000);
-            if(HelpersMethod.IsExists("//span[@id='formHorizontalNewUserAll' and contains(@class,'k-switch-off')]",driver))
+            if(HelpersMethod.IsExists("//span[@id='useCompanyDefaultEmail' and contains(@class,'k-switch-off')]",driver))
             {
                 HelpersMethod.ClickBut(driver, defaultEmailToggle, 10000);
                 exists=true;

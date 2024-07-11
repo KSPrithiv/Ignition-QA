@@ -25,7 +25,7 @@ public class TestRunnerAdmin_Grid extends AbstractTestNGCucumberTests
 {
     /* Created by Divya.Ramadas@afsi.com */
     @Parameters({"environment"})
-    @BeforeClass
+    @BeforeMethod
     public static void beforeClass(@Optional("environment") String envi)
     {
         try
@@ -37,7 +37,7 @@ public class TestRunnerAdmin_Grid extends AbstractTestNGCucumberTests
         catch (Exception e) { }
     }
 
-    @AfterClass
+    @AfterMethod
     public static void afterclass() throws InterruptedException, MessagingException, IOException
     {
         Thread.sleep(500);

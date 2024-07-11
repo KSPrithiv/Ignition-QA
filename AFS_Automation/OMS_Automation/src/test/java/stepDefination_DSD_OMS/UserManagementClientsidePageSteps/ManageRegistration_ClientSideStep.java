@@ -85,8 +85,9 @@ public class ManageRegistration_ClientSideStep
     public void userShouldClickOnDeleteButtonNextToDeleteSecondaryCustomerAccount()
     {
         manageregistrationClientPage=new manageRegistrationClientPageDSD(driver,scenario);
+        manageregistrationClientPage.selectSecondaryCustomer();
         manageregistrationClientPage.clickOnSecondaryDeleteButton();
-        manageregistrationClientPage.handleConfirmationDialogbox();
+        manageregistrationClientPage.handleSecondaryConfirmationDialogbox();
     }
 
     @Then("User should change PO# and click on update button")

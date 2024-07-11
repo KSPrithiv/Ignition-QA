@@ -65,45 +65,45 @@ public class GridConfigurationPageStep
     @Given("User enters URL and is on login page and entered credentials for Admin setting for grid")
     public void userEntersURLAndIsOnLoginPageAndEnteredCredentialsForAdminSettingForGrid() throws InterruptedException, AWTException
     {
-        if(!flag)
-        {
+//       // if(!flag)
+//        {
             loginpage = new LoginPage(driver, scenario);
             loginpage.EnterUsername(TestBase.testEnvironment.getAdminUser());
             loginpage.EnterPassword(TestBase.testEnvironment.getAdminPass());
             loginpage.ClickSignin();
-        }
+   //     }
     }
 
     @Given("User is on Home Page for Admin setting to select Admin option for grid")
     public void userIsOnHomePageForAdminSettingToSelectAdminOptionForGrid() throws InterruptedException
     {
-        if(!flag)
-        {
+        //if(!flag)
+      //  {
             adminHomePage = new AdminHomePage(driver, scenario);
             adminHomePage.ValidatingAdminHome();
             flag=true;
-        }
+     //   }
     }
 
     @When("User is on Home Page for Admin setting for grid")
     public void userIsOnHomePageForAdminSettingForGrid() throws InterruptedException
     {
-        if(!flag)
-        {
+        //if(!flag)
+     //   {
             adminHomePage = new AdminHomePage(driver, scenario);
             adminHomePage.ValidatingAdminHome();
-        }
+    //    }
     }
 
     @Then("User Clicks on Permissions by drop down to select Customer Account# grid")
     public void userClicksOnPermissionsByDropDownToSelectCustomerAccountGrid() throws InterruptedException
     {
-        if(!flag)
-        {
+        //if(!flag)
+    //    {
             adminHomePage = new AdminHomePage(driver, scenario);
             adminHomePage.ClickPermissionBy();
             adminHomePage.SelectCompany();
-        }
+    //    }
     }
 
     @Then("User navigates to Available Grid and selects one of the grid type")
@@ -203,7 +203,7 @@ public class GridConfigurationPageStep
     }
 
     @Then("User navigates to Order entry page and in new order entry page finds same grid as default grid {string}")
-    public void userNavigatesToOrderEntryPageAndInNewOrderEntryPageFindsSameGridAsDefaultGrid(String arg0,DataTable tabledata) throws InterruptedException, AWTException
+    public void userNavigatesToOrderEntryPageAndInNewOrderEntryPageFindsSameGridAsDefaultGrid(String selectGrid,DataTable tabledata) throws InterruptedException, AWTException
     {
         List<List<String>> PO_No = tabledata.asLists(String.class);
         //to navigate to Client side
@@ -219,12 +219,20 @@ public class GridConfigurationPageStep
         orderPage.ChangeAccount();
         orderPage.PopUps_After_AccountChange();
 
-        if(HelpersMethod.IsExists("//div[@id='orderEntryCard']",driver))
+        if(HelpersMethod.IsExists("//div[@id='order-search-card']",driver))
         {
-            newOE=new NewOrderEntryPage(driver,scenario);
-            newOE.ValidateNewOE();
-            newOE.EnterPO_No(PO_No.get(0).get(0));
-            newOE.validateDefaultGrid(arg0);
+            orderPage = new OrderEntryPage(driver, scenario);
+            orderPage.ValidateOE();
+            //check for 'Start Order' button
+            orderPage.Scroll_start();
+            exists = orderPage.Start_Order();
+            orderPage.NoPendingOrderPopup();
+            //Selecting no Order guide and no note popup
+            for (int i = 0; i <= 1; i++)
+            {
+                orderPage.OrderGuidePopup();
+                orderPage.NoNotePopHandling();
+            }
         }
         else
         {
@@ -243,6 +251,10 @@ public class GridConfigurationPageStep
                 orderPage.NoNotePopHandling();
             }
         }
+
+        //Validate grid name in New OE page
+        newOE=new NewOrderEntryPage(driver,scenario);
+        newOE.validateGridSelected(selectGrid);
 
         //after validating default grid in New OE page signout
         homePage=new HomePage(driver,scenario);

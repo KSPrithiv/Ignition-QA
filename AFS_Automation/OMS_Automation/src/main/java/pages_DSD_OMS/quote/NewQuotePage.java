@@ -46,7 +46,7 @@ public class NewQuotePage
     @FindBy(xpath = "//button[text()='Comments']")
     private WebElement CommentButton;
 
-    @FindBy(xpath = "//button[@data-test-id='addOrderButton']")
+    @FindBy(id = "addOrderButton")
     private WebElement AddProdcutButton;
 
     @FindBy(id = "deleteProductButton")

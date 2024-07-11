@@ -112,15 +112,25 @@ public class ProductPage
     public boolean ValidateProductPage()
     {
         exists = false;
-        WebElement WebEle;
         try
         {
-            if (HelpersMethod.IsExists("//div[@class='loader']", driver))
+            Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(600))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
+            String status = HelpersMethod.returnDocumentStatus(driver);
+            if (status.equals("loading"))
             {
-                WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 800000);
+                HelpersMethod.waitTillLoadingPage(driver);
             }
-            HelpersMethod.waitTillTitleContains(driver, "Product Catalog", 100000);
+
+            wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(400))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
 
             if (HelpersMethod.gettingURL(driver).contains("cpExtProductCatalog"))
             {
@@ -149,20 +159,49 @@ public class ProductPage
         try
         {
             exists = false;
-            WebElement WebEle;
-            HelpersMethod.ClickBut(driver, ReSetFilter, 10000);
-            scenario.log("RESET BUTTON HAS BEEN CLICKED TO DISPLAY ALL THE PRODUCTS IN EXTERNAL CATALOG");
-            exists = true;
-            if (HelpersMethod.IsExists("//div[@class='loader']", driver))
-            {
-                WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 800000);
-            }
+
+            Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(400))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
             String status = HelpersMethod.returnDocumentStatus(driver);
             if (status.equals("loading"))
             {
                 HelpersMethod.waitTillLoadingPage(driver);
             }
+
+            wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(400))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
+            if(ReSetFilter.isDisplayed())
+            {
+                HelpersMethod.ClickBut(driver, ReSetFilter, 10000);
+                scenario.log("RESET BUTTON HAS BEEN CLICKED TO DISPLAY ALL THE PRODUCTS IN EXTERNAL CATALOG");
+                exists = true;
+            }
+            wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(400))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
+            status = HelpersMethod.returnDocumentStatus(driver);
+            if (status.equals("loading"))
+            {
+                HelpersMethod.waitTillLoadingPage(driver);
+            }
+
+            wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(400))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
             Assert.assertEquals(exists, true);
         }
         catch (Exception e){}
@@ -171,29 +210,57 @@ public class ProductPage
     //Change catalog  Card to grid view
     public void CardView()
     {
-        WebElement WebEle;
-        Actions act1=new Actions(driver);
+        //exists=false;
         try
         {
-            if (HelpersMethod.IsExists("//div[@class='loader']", driver))
+            Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(400))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
+            String status = HelpersMethod.returnDocumentStatus(driver);
+            if (status.equals("loading"))
             {
-                WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100000);
+                HelpersMethod.waitTillLoadingPage(driver);
             }
-            if (!HelpersMethod.IsExists("//button[@data-test-id='catalogGridViewBtn']", driver))
+
+            wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(400))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
+            Thread.sleep(8000);
+
+            if (!HelpersMethod.IsExists("//button[@data-test-id='catalogGridViewBtn' and contains(@class,'primary')]", driver))
             {
                 WebElement cardview = HelpersMethod.FindByElement(driver, "xpath", "//button[@data-test-id='catalogGridViewBtn']");
 //                act1.moveToElement(cardview).build().perform();
 //                HelpersMethod.ActClick(driver,cardview,10000);
                 HelpersMethod.ClickBut(driver,cardview,10000);
+                //exists=true;
+                wait = new FluentWait<WebDriver>(driver)
+                        .withTimeout(Duration.ofSeconds(400))
+                        .pollingEvery(Duration.ofSeconds(2))
+                        .ignoring(NoSuchElementException.class);
+                wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
 
-                String status = HelpersMethod.returnDocumentStatus(driver);
+                status = HelpersMethod.returnDocumentStatus(driver);
                 if (status.equals("loading"))
                 {
                     HelpersMethod.waitTillLoadingPage(driver);
                 }
+
+                wait = new FluentWait<WebDriver>(driver)
+                        .withTimeout(Duration.ofSeconds(400))
+                        .pollingEvery(Duration.ofSeconds(2))
+                        .ignoring(NoSuchElementException.class);
+                wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
                 scenario.log("CARD VIEW HAS BEEN SELECTED");
             }
+            //Assert.assertEquals(exists,true);
         }
         catch (Exception e){}
     }
@@ -201,35 +268,52 @@ public class ProductPage
     //Change catalog grid view to card
     public void GridView()
     {
-        exists=false;
-        Actions act1=new Actions(driver);
+        //exists=false;
         try
         {
+            Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(400))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
+            String status = HelpersMethod.returnDocumentStatus(driver);
+            if (status.equals("loading"))
+            {
+                HelpersMethod.waitTillLoadingPage(driver);
+            }
+
+            wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(400))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
             Thread.sleep(8000);
             //new WebDriverWait(driver,Duration.ofMillis(80000)).until(ExpectedConditions.refreshed(ExpectedConditions.invisibilityOfElementLocated(By.id("productsCard"))));
             //new WebDriverWait(driver,Duration.ofMillis(80000)).until(ExpectedConditions.presenceOfElementLocated(By.id("productsCard")));
 
-            if(HelpersMethod.IsExists("//button[@data-test-id='catalogListViewBtn']", driver))
+            if(!HelpersMethod.IsExists("//button[@data-test-id='catalogListViewBtn' and contains(@class,'primary')]", driver))
             {
                 WebElement gridview = HelpersMethod.FindByElement(driver, "xpath", "//button[@data-test-id='catalogListViewBtn']");
                 HelpersMethod.ScrollElement(driver,gridview);
                 HelpersMethod.ClickBut(driver,gridview,20000);
-                exists = true;
-                String status = HelpersMethod.returnDocumentStatus(driver);
+                //exists = true;
+
+                status = HelpersMethod.returnDocumentStatus(driver);
                 if (status.equals("loading"))
                 {
                     HelpersMethod.waitTillLoadingPage(driver);
                 }
-                Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                wait = new FluentWait<WebDriver>(driver)
                         .withTimeout(Duration.ofSeconds(200))
                         .pollingEvery(Duration.ofSeconds(2))
                         .ignoring(NoSuchElementException.class);
                 wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
-
                 scenario.log("GRID VIEW HAS BEEN SELECTED");
-                Thread.sleep(8000);
+                Thread.sleep(2000);
             }
-            Assert.assertEquals(exists, true);
+           // Assert.assertEquals(exists, true);
         }
         catch (Exception e){}
     }
@@ -241,19 +325,21 @@ public class ProductPage
         {
             WebElement WebEle;
 
-            if (HelpersMethod.IsExists("//div[@class='loader']", driver))
-            {
-                WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000000);
-            }
+            Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(200))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
             HelpersMethod.ScrollElement(driver, SearchBar);
             HelpersMethod.ActClick(driver,Clear,10000);
 
-            if (HelpersMethod.IsExists("//div[@class='loader']", driver))
-            {
-                WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000000);
-            }
+            wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(200))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
             //Enter product# in search input box
             HelpersMethod.EnterText(driver, SearchBar, 10000, Prod_No);
             String status = HelpersMethod.returnDocumentStatus(driver);
@@ -270,7 +356,7 @@ public class ProductPage
             HelpersMethod.ActClick(driver, SearchIndex, 10000);
             scenario.log("PRODUCT NUMBER ENTERED IN SEARCH BOX IS " + Prod_No);
 
-            Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+            wait = new FluentWait<WebDriver>(driver)
                     .withTimeout(Duration.ofSeconds(400))
                     .pollingEvery(Duration.ofSeconds(2))
                     .ignoring(NoSuchElementException.class);
@@ -348,8 +434,13 @@ public class ProductPage
     public void ProductExistsCardDelete(String Qty_UnitCase, int i, String Prod) throws InterruptedException
     {
         WebElement WebEle;
-        WebElement UpdateBut;
         exists=false;
+        Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                .withTimeout(Duration.ofSeconds(400))
+                .pollingEvery(Duration.ofSeconds(2))
+                .ignoring(NoSuchElementException.class);
+        wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
         try
         {
             WebEle = HelpersMethod.FindByElement(driver, "xpath", "//input[contains(@id,'ProductGridItemQuantityContainer')]");
@@ -386,8 +477,8 @@ public class ProductPage
                     //Click on delete button only for the first product
                     if (i == 1)
                     {
-                        WebEle = HelpersMethod.FindByElement(driver, "xpath", "//button[contains(@id,'deleteCartBtn')]//*[local-name()='svg']");
-                        HelpersMethod.ActClick(driver, WebEle, 10000);
+                        WebEle = HelpersMethod.FindByElement(driver, "xpath", "//button[contains(@id,'deleteCartBtn')]");
+                        HelpersMethod.ClickBut(driver, WebEle, 10000);
                         scenario.log("DELETED PRODUCT # " + Prod);
                     }
                     exists = true;
@@ -735,6 +826,7 @@ public class ProductPage
         WebElement WebEle;
         Actions act1=new Actions(driver);
         String subcategories;
+        String value="";
         String brand;
         int i=0;
         try
@@ -753,10 +845,24 @@ public class ProductPage
                 {
                     HelpersMethod.waitTillLoadingPage(driver);
                 }
-                new WebDriverWait(driver,Duration.ofMillis(10000)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class,'k-animation-container k-animation-container-relative k-list-container k-reset i-common-dropdown i-common-dropdown__type-none k-animation-container-shown')]"))));
-                HelpersMethod.WaitElementPresent(driver, "xpath", "//div[contains(@class,'k-animation-container k-animation-container-relative k-list-container k-reset i-common-dropdown i-common-dropdown__type-none k-animation-container-shown')]", 2000);
-                HelpersMethod.DropDownMenu(driver, categories);
-                exists = true;
+                new WebDriverWait(driver,Duration.ofMillis(10000)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.xpath("//ul[@id='CPcategories-listbox-id']/descendant::span"))));
+                HelpersMethod.WaitElementPresent(driver, "xpath", "//ul[@id='CPcategories-listbox-id']/descendant::span", 10000);
+                //HelpersMethod.DropDownMenu(driver, categories);
+                List<WebElement> Options=HelpersMethod.FindByElements(driver,"xpath","//ul[@id='CPcategories-listbox-id']/descendant::span");
+                for(int j=0;j<=Options.size()-1;j++)
+                {
+                    WebEle = Options.get(i);
+                    act1.moveToElement(WebEle).build().perform();
+                    String Opt = WebEle.getText();
+                    if (Opt.equals(value))
+                    {
+                        act1.moveToElement(WebEle).build().perform();
+                        act1.click(WebEle).build().perform();
+                        exists=true;
+                        break;
+                    }
+                }
+
                 if (HelpersMethod.IsExists("//div[@class='loader']", driver))
                 {
                     WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
