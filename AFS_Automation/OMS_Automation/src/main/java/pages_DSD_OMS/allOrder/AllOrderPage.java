@@ -1795,64 +1795,8 @@ public class AllOrderPage
 
     public void ClickOnStartOrderToSelectPickupOrder() throws InterruptedException
     {
-//        exists = false;
-//        String status = null;
-//        WebElement WebEle = null;
-//        try
-//        {
-//            Wait<WebDriver> wait = new FluentWait<>(driver)
-//                    .withTimeout(Duration.ofSeconds(200))
-//                    .pollingEvery(Duration.ofSeconds(2))
-//                    .ignoring(NoSuchElementException.class);
-//            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
-//
-//            status = HelpersMethod.returnDocumentStatus(driver);
-//            if (status.equals("loading"))
-//            {
-//                HelpersMethod.waitTillLoadingPage(driver);
-//            }
-//
-//            WebEle = HelpersMethod.FindByElement(driver, "id", "openOrdersCard");
-//            HelpersMethod.ScrollElement(driver, WebEle);
-//            new WebDriverWait(driver,Duration.ofMillis( 20000)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("openOrdersCard"))));
-//            status = HelpersMethod.returnDocumentStatus(driver);
-//            if (status.equals("loading"))
-//            {
-//                HelpersMethod.waitTillLoadingPage(driver);
-//            }
-//            if(HelpersMethod.IsExists("//button[@data-test-id='startOrderBtn']",driver))
-//            {
-//                WebElement starOrderBut = HelpersMethod.FindByElement(driver, "xpath", "//button[@data-test-id='startOrderBtn']");
-//                //Click on Start Order button
-//                HelpersMethod.JScriptClick(driver, starOrderBut, 10000);
-//
-//                status = HelpersMethod.returnDocumentStatus(driver);
-//                if (status.equals("loading"))
-//                {
-//                    HelpersMethod.waitTillLoadingPage(driver);
-//                }
-//
-//                new WebDriverWait(driver, Duration.ofMillis(20000)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class,'k-animation-container k-animation-container-relative k-animation-container-shown')]"))));
-//                // to fetch the web element of the modal container
-//                WebElement menuContainer = driver.findElement(By.xpath("//div[contains(@class,'k-animation-container k-animation-container-relative k-animation-container-shown')]"));
-//
-//                WebElement optionToClick = menuContainer.findElement(By.xpath(".//ul/li[contains(text(),'Pick up')]"));
-//                // click the option
-//                HelpersMethod.ActClick(driver, optionToClick, 10000);
-//
-//                exists = true;
-//                status = HelpersMethod.returnDocumentStatus(driver);
-//                if (status.equals("loading"))
-//                {
-//                    HelpersMethod.waitTillLoadingPage(driver);
-//                }
-//
-//                //validate Customer index popup
-//                HelpersMethod.WaitElementPresent(driver, "xpath", "//div[contains(text(),'Customer account index')]/ancestor::div[contains(@class,'k-window k-dialog')]", 20000);
-//                new WebDriverWait(driver, Duration.ofMillis(20000)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(text(),'Customer account index')]/ancestor::div[contains(@class,'k-window k-dialog')]")));
-
         exists = false;
-        String status ="";
+        String status;
         WebElement WebEle;
         try
         {
@@ -1868,9 +1812,22 @@ public class AllOrderPage
                 HelpersMethod.waitTillLoadingPage(driver);
             }
 
+            wait = new FluentWait<>(driver)
+                    .withTimeout(Duration.ofSeconds(200))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
+            status = HelpersMethod.returnDocumentStatus(driver);
+            if (status.equals("loading"))
+            {
+                HelpersMethod.waitTillLoadingPage(driver);
+            }
+
             WebEle = HelpersMethod.FindByElement(driver, "id", "openOrdersCard");
             HelpersMethod.ScrollElement(driver, WebEle);
-            new WebDriverWait(driver,Duration.ofMillis( 100000)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("openOrdersCard"))));
+            new WebDriverWait(driver,Duration.ofMillis(20000)).until(ExpectedConditions.refreshed(ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[@data-test-id='startOrderBtn']"))));
+            new WebDriverWait(driver,Duration.ofMillis( 20000)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.xpath("//button[@data-test-id='startOrderBtn']"))));
             status = HelpersMethod.returnDocumentStatus(driver);
             if (status.equals("loading"))
             {
@@ -1881,7 +1838,7 @@ public class AllOrderPage
                 //new WebDriverWait(driver,Duration.ofMillis(100000)).until(ExpectedConditions.refreshed(ExpectedConditions.elementToBeClickable(By.id("startOrderBtn"))));
                 WebElement starOrderBut = HelpersMethod.FindByElement(driver, "xpath", "//button[@data-test-id='startOrderBtn']");
                 //Click on Start Order button
-                HelpersMethod.JScriptClick(driver, starOrderBut, 20000);
+                HelpersMethod.ClickBut(driver, starOrderBut, 20000);
 
                 status = HelpersMethod.returnDocumentStatus(driver);
                 if (status.equals("loading"))
@@ -1889,7 +1846,7 @@ public class AllOrderPage
                     HelpersMethod.waitTillLoadingPage(driver);
                 }
 
-                new WebDriverWait(driver, Duration.ofMillis(20000)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class,'k-animation-container k-animation-container-shown')]"))));
+                new WebDriverWait(driver, Duration.ofMillis(20000)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.xpath("//ul[contains(@class,'k-menu-group')]/li/descendant::span[text()='Pick up order']"))));
 
                 WebElement optionToClick =HelpersMethod.FindByElement(driver,"xpath","//ul[contains(@class,'k-menu-group')]/li/descendant::span[text()='Pick up order']");
                 // click the option

@@ -209,6 +209,16 @@ public class DataBaseConnection
             scenario.log("ADMIN SETTING IS ENABLED");
     }
 
+    public static void adminSettingEnablingWithoutCompany(String key,Scenario scenario) throws SQLException, ClassNotFoundException, InstantiationException, IllegalAccessException
+    {
+        //Make changes to admin setting
+        String sql;
+
+        sql="UPDATE RAMS_SettingsValues SET sv_Value = '1' WHERE sv_Key='"+key;
+        DataBaseConnection.DataConnAdminSettingEnable(sql);
+        scenario.log("ADMIN SETTING IS ENABLED");
+    }
+
     public static void adminSettingDisabling(String key,Scenario scenario) throws SQLException, ClassNotFoundException, InstantiationException, IllegalAccessException
     {
         String sql;
@@ -216,5 +226,14 @@ public class DataBaseConnection
             sql="UPDATE RAMS_SettingsValues SET sv_Value = '0' WHERE sv_Key='"+key+"' and sv_CompanyID ="+TestBase.testEnvironment.getAdminSettingCompany();
             DataBaseConnection.DataConnAdminSettingDisabled(sql);
             scenario.log("ADMIN SETTING IS DISABLED");
+    }
+
+    public static void adminSettingDisablingWithoutCompany(String key,Scenario scenario) throws SQLException, ClassNotFoundException, InstantiationException, IllegalAccessException
+    {
+        String sql;
+
+        sql="UPDATE RAMS_SettingsValues SET sv_Value = '0' WHERE sv_Key='"+key;
+        DataBaseConnection.DataConnAdminSettingDisabled(sql);
+        scenario.log("ADMIN SETTING IS DISABLED");
     }
 }

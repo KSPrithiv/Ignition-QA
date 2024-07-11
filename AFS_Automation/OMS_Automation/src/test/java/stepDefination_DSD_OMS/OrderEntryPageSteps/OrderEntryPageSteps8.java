@@ -137,6 +137,7 @@ public class OrderEntryPageSteps8
         newOE.Search_Prod_in_CatalogIndexDialogbox(pro);
         newOE.EnterQty(Prod_detail.get(0).get(0),Prod_detail.get(0).get(1));
         scenario.log("PRODUCT # "+pro+" PRODUCT QTY "+Prod_detail.get(0).get(0)+" "+Prod_detail.get(0).get(1));
+        newOE.Catalog_OK();
     }
 
     @And("User should verify that payment options in Payment page are disabled")

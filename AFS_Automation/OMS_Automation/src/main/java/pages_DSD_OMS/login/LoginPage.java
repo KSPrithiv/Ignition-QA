@@ -60,7 +60,7 @@ public class LoginPage
     @FindBy(id="rememberMe")
     private WebElement RememberMe;
 
-    @FindBy(xpath = "//a[@id='registerHereLink']")
+    @FindBy(id= "registerHereLink")
     private WebElement Register;
 
     public LoginPage(WebDriver driver,Scenario scenario) throws InterruptedException, AWTException
@@ -118,7 +118,7 @@ public class LoginPage
         exists=false;
         try
         {
-            HelpersMethod.clearText(driver,Password,1000);
+            HelpersMethod.clearText(driver,Password,10000);
             HelpersMethod.sendKeys(driver,Password,10000,pwd);
             exists=true;
             Assert.assertEquals(exists,true);
@@ -314,9 +314,9 @@ public class LoginPage
             {
                 HelpersMethod.waitTillLoadingPage(driver);
             }
+            HelpersMethod.ScrollDownScrollBar(driver);
             if(HelpersMethod.IsExists("//a[@id='registerHereLink']",driver))
             {
-                HelpersMethod.ScrollDownScrollBar(driver);
                 HelpersMethod.ActClick(driver,Register,10000);
                 scenario.log("REGISTER HERE BUTTON IS CLICKED");
                 exists=true;

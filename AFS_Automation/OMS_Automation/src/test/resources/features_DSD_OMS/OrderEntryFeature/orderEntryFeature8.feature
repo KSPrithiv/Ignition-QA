@@ -44,7 +44,7 @@ Scenario: Test scenario for creating order for the Last date in Pickup order dia
   When User clicks on drop down next to Start order button
   And Select Pickup Order from drop down options and select last delivery date
   Then User should select Note from popup and Order guide from popup
-  Then Enter PO# for New order
+  Then Enter PO# for New order for Pickup order
     |PO123|
   Then Enter Pro# in Quick Product Entry area
   And Check for Case and Unit input box enabled or not based on that enter value

@@ -2105,6 +2105,8 @@ public class CatalogPage
         exists=false;
         try
         {
+            WebElement tableHead=HelpersMethod.FindByElement(driver,"xpath","//thead[@class='k-table-thead']");
+            HelpersMethod.ScrollElement(driver,tableHead);
             if(!HelpersMethod.IsExists("//div[@class='grid-item-box-item']/descendant::span[contains(@class,'price')]|//div[@class='grid-item-box-item']/descendant::span[contains(@class,'Price')]|//th/descendant::span[@class='k-column-title' and contains(text(),'Price')]|//th/descendant::span[@class='k-column-title' and contains(text(),'price')]",driver))
             {
                 scenario.log("SUCCESSFULLY HIDDEN PRICE OF PRODUCT, UNDER CATALOG");

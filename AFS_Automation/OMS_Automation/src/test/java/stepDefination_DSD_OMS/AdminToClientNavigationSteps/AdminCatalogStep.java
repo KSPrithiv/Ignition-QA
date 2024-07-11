@@ -37,8 +37,11 @@ public class AdminCatalogStep
     static HomePage homePage;
     static String currentURL;
     static String sql;
+    static String sql1;
     static String status;
+    static String status3;
     static String status1;
+    static String status2;
 
     @Before
     public void LaunchBrowser1(Scenario scenario) throws Exception
@@ -135,6 +138,92 @@ public class AdminCatalogStep
         }
     }
 
+    @Given("User should verify admin setting {string} is enabled by using {string} without company selected")
+    public void userShouldVerifyAdminSettingIsEnabledByUsingWithoutCompanySelected(String setting,String key) throws SQLException, ClassNotFoundException, InstantiationException, IllegalAccessException
+    {
+        sql="select sv_Value From RAMS_SettingsValues where sv_Key='"+key+"'";
+        status=DataBaseConnection.DataConnGetStatus(sql);
+        scenario.log("<span style='color:red'>ADMIN SETTING FOUND IS</span>"+status);
+        if(status.equals("0"))
+        {
+            DataBaseConnection.adminSettingEnabling(key, scenario);
+            scenario.log("FOR ADMIN SETTING "+setting+" CHANGES");
+            scenario.log("ADMIN SETTING IS ENABLED");
+        }
+        else
+        {
+            scenario.log("FOR ADMIN SETTING "+setting+" CHANGES");
+            scenario.log("ADMIN SETTING IS ALREADY ENABLED");
+        }
+    }
+
+    @Given("User should verify admin setting {string} is enabled by using {string} in common and company")
+    public void userShouldVerifyAdminSettingIsEnabledByUsingInCommonAndCompany(String setting,String key) throws SQLException, ClassNotFoundException, InstantiationException, IllegalAccessException
+    {
+        sql="select sv_Value From RAMS_SettingsValues where sv_CompanyID ="+TestBase.testEnvironment.getAdminSettingCompany()+" AND sv_Key='"+key+"'";
+        sql1="select sv_Value From RAMS_SettingsValues where sv_Key='"+key+"'";
+        status=DataBaseConnection.DataConnGetStatus(sql);
+        status1=DataBaseConnection.DataConnGetStatus(sql1);
+        scenario.log("<span style='color:red'>ADMIN SETTING FOUND IS</span>"+status);
+        if(status.equals("0"))
+        {
+            DataBaseConnection.adminSettingEnabling(key, scenario);
+            scenario.log("FOR ADMIN SETTING "+setting+" CHANGES");
+            scenario.log("ADMIN SETTING IS ENABLED");
+        }
+        else
+        {
+            scenario.log("FOR ADMIN SETTING "+setting+" CHANGES");
+            scenario.log("ADMIN SETTING IS ALREADY ENABLED");
+        }
+        if(status1.equals("0"))
+        {
+            DataBaseConnection.adminSettingEnablingWithoutCompany(key, scenario);
+            scenario.log("FOR ADMIN SETTING "+setting+" CHANGES");
+            scenario.log("ADMIN SETTING IS ENABLED");
+        }
+        else
+        {
+            scenario.log("FOR ADMIN SETTING "+setting+" CHANGES");
+            scenario.log("ADMIN SETTING IS ALREADY ENABLED");
+        }
+    }
+
+    @Given("User should verify admin setting {string} is enabled by using {string} in common and company for cutomer reg")
+    public void userShouldVerifyAdminSettingIsEnabledByUsingInCommonAndCompanyForCustomerReg(String setting,String key) throws SQLException, ClassNotFoundException, InstantiationException, IllegalAccessException
+    {
+        sql="select sv_Value From RAMS_SettingsValues where sv_CompanyID ="+TestBase.testEnvironment.getAdminSettingCompany()+" AND sv_Key='"+key+"'";
+        sql1="select sv_Value From RAMS_SettingsValues where sv_Key='"+key+"'";
+        status=DataBaseConnection.DataConnGetStatus(sql);
+        status1=DataBaseConnection.DataConnGetStatus(sql1);
+        scenario.log("<span style='color:red'>ADMIN SETTING FOUND IS</span>"+status);
+        if(status.equals("0"))
+        {
+            DataBaseConnection.adminSettingEnabling(key, scenario);
+            scenario.log("FOR ADMIN SETTING "+setting+" CHANGES");
+            scenario.log("ADMIN SETTING IS ENABLED");
+        }
+        else
+        {
+            scenario.log("FOR ADMIN SETTING "+setting+" CHANGES");
+            scenario.log("ADMIN SETTING IS ALREADY ENABLED");
+        }
+        if(status1.equals("0"))
+        {
+            DataBaseConnection.adminSettingEnablingWithoutCompany(key, scenario);
+            scenario.log("FOR ADMIN SETTING "+setting+" CHANGES");
+            scenario.log("ADMIN SETTING IS ENABLED");
+        }
+        else
+        {
+            scenario.log("FOR ADMIN SETTING "+setting+" CHANGES");
+            scenario.log("ADMIN SETTING IS ALREADY ENABLED");
+        }
+    }
+
+
+
+
     @Given("User should verify admin setting {string} is disabled by using {string}")
     public void userShouldVerifyAdminSettingIsDisabledByUsing(String setting, String key) throws SQLException, ClassNotFoundException, InstantiationException, IllegalAccessException
     {
@@ -143,6 +232,55 @@ public class AdminCatalogStep
         if(status.equals("1"))
         {
             DataBaseConnection.adminSettingDisabling(key, scenario);
+            scenario.log("FOR ADMIN SETTING "+setting+" CHANGES");
+            scenario.log("ADMIN SETTING IS DISABLED");
+        }
+        else
+        {
+            scenario.log("FOR ADMIN SETTING "+setting+" CHANGES");
+            scenario.log("ADMIN SETTING IS ALREADY DISABLED");
+        }
+    }
+
+    @Given("User should verify admin setting {string} is disabled by using {string} without company selected")
+    public void userShouldVerifyAdminSettingIsDisabledByUsingWithoutCompanySelected(String setting, String key) throws SQLException, ClassNotFoundException, InstantiationException, IllegalAccessException
+    {
+        sql="select sv_Value From RAMS_SettingsValues where sv_Key='"+key+"'";
+        status=DataBaseConnection.DataConnGetStatus(sql);
+        if(status.equals("1"))
+        {
+            DataBaseConnection.adminSettingDisabling(key, scenario);
+            scenario.log("FOR ADMIN SETTING "+setting+" CHANGES");
+            scenario.log("ADMIN SETTING IS DISABLED");
+        }
+        else
+        {
+            scenario.log("FOR ADMIN SETTING "+setting+" CHANGES");
+            scenario.log("ADMIN SETTING IS ALREADY DISABLED");
+        }
+    }
+
+    @Given("User should verify admin setting {string} is disabled by using {string} in common and company")
+    public void userShouldVerifyAdminSettingIsDisabledByUsingInCommonAndCompany(String setting, String key) throws SQLException, ClassNotFoundException, InstantiationException, IllegalAccessException
+    {
+        sql="select sv_Value From RAMS_SettingsValues where sv_CompanyID ="+TestBase.testEnvironment.getAdminSettingCompany()+" AND sv_Key='"+key+"'";
+        sql1="select sv_Value From RAMS_SettingsValues where sv_Key='"+key+"'";
+        status=DataBaseConnection.DataConnGetStatus(sql);
+        status1=DataBaseConnection.DataConnGetStatus(sql1);
+        if(status.equals("1"))
+        {
+            DataBaseConnection.adminSettingDisabling(key, scenario);
+            scenario.log("FOR ADMIN SETTING "+setting+" CHANGES");
+            scenario.log("ADMIN SETTING IS DISABLED");
+        }
+        else
+        {
+            scenario.log("FOR ADMIN SETTING "+setting+" CHANGES");
+            scenario.log("ADMIN SETTING IS ALREADY DISABLED");
+        }
+        if(status1.equals("1"))
+        {
+            DataBaseConnection.adminSettingDisablingWithoutCompany(key, scenario);
             scenario.log("FOR ADMIN SETTING "+setting+" CHANGES");
             scenario.log("ADMIN SETTING IS DISABLED");
         }
@@ -198,6 +336,61 @@ public class AdminCatalogStep
                 scenario.log("FOR ADMIN SETTING " + setting + " CHANGES");
                 scenario.log("ADMIN SETTING IS ENABLED");
             }
+    }
+
+    @And("User should set admin setting {string} {string} as default before making changes without company selected")
+    public void userShouldSetAdminSettingAsDefaultBeforeMakingChangesWithoutCompanySelected(String setting,String key) throws SQLException, ClassNotFoundException, InstantiationException, IllegalAccessException
+    {
+        sql="select sv_Value From RAMS_SettingsValues where sv_Key='"+key+"'";
+        status1=DataBaseConnection.DataConnGetStatus(sql);
+        scenario.log(status+"<span style='color:red'> WHAT WAS THE PREVIOUS VALUE FOR ADMIN SETTING, AND CURRENT STATUS IS </span>"+status1);
+        if (!status.equals(status1) && status1.equals("0"))
+        {
+            DataBaseConnection.adminSettingEnabling(key, scenario);
+            scenario.log("FOR ADMIN SETTING " + setting + " CHANGES");
+            scenario.log("ADMIN SETTING IS DISABLED");
+        }
+        else if (!status.equals(status1) && status1.equals("1"))
+        {
+            DataBaseConnection.adminSettingDisabling(key, scenario);
+            scenario.log("FOR ADMIN SETTING " + setting + " CHANGES");
+            scenario.log("ADMIN SETTING IS ENABLED");
+        }
+    }
+
+    @And("User should set admin setting {string} {string} as default before making changes in common and company")
+    public void userShouldSetAdminSettingAsDefaultBeforeMakingChangesInCommonAndCompany(String setting,String key) throws SQLException, ClassNotFoundException, InstantiationException, IllegalAccessException
+    {
+        sql="select sv_Value From RAMS_SettingsValues where sv_CompanyID ="+TestBase.testEnvironment.getAdminSettingCompany()+" AND sv_Key='"+key+"'";
+        sql1="select sv_Value From RAMS_SettingsValues where sv_Key='"+key+"'";
+        status2=DataBaseConnection.DataConnGetStatus(sql);
+        status3=DataBaseConnection.DataConnGetStatus(sql1);
+        scenario.log(status+"<span style='color:red'> WHAT WAS THE PREVIOUS VALUE FOR ADMIN SETTING, AND CURRENT STATUS IS </span>"+status1);
+        if (!status.equals(status2) && status1.equals("0"))
+        {
+            DataBaseConnection.adminSettingEnabling(key, scenario);
+            scenario.log("FOR ADMIN SETTING " + setting + " CHANGES");
+            scenario.log("ADMIN SETTING IS DISABLED");
+        }
+        else if (!status.equals(status2) && status1.equals("1"))
+        {
+            DataBaseConnection.adminSettingDisabling(key, scenario);
+            scenario.log("FOR ADMIN SETTING " + setting + " CHANGES");
+            scenario.log("ADMIN SETTING IS ENABLED");
+        }
+
+        if (!status1.equals(status3) && status3.equals("0"))
+        {
+            DataBaseConnection.adminSettingEnablingWithoutCompany(key, scenario);
+            scenario.log("FOR ADMIN SETTING " + setting + " CHANGES");
+            scenario.log("ADMIN SETTING IS DISABLED");
+        }
+        else if (!status.equals(status3) && status3.equals("1"))
+        {
+            DataBaseConnection.adminSettingDisablingWithoutCompany(key, scenario);
+            scenario.log("FOR ADMIN SETTING " + setting + " CHANGES");
+            scenario.log("ADMIN SETTING IS ENABLED");
+        }
     }
 
     @When("User is on Home Page for Admin setting for catalog")

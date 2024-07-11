@@ -20,6 +20,7 @@ import pages_DSD_OMS.orderEntry.*;
 import util.DataBaseConnection;
 import util.TestBase;
 
+import javax.enterprise.inject.New;
 import java.awt.*;
 import java.sql.SQLException;
 import java.text.ParseException;
@@ -146,6 +147,7 @@ public class OrderEntryPageSteps
         }
         //create object of OE Page
         orderpage = new OrderEntryPage(driver, scenario);
+        orderpage.ValidateOE();
         orderpage.Read_DeliveryDate();
         orderpage.validateDeliveryDateIsSameAsWhenLoaded();
         orderpage.ClickCalender();
@@ -373,6 +375,29 @@ public class OrderEntryPageSteps
         }
     }
 
+    @Then("Enter PO# for New order for Pickup order")
+    public void enter_po_for_new_orderForPickupOrder(DataTable tabledata) throws InterruptedException, AWTException
+    {
+        newOE=new NewOrderEntryPage(driver,scenario);
+        exists=newOE.ValidateNewOE();
+        orderpage=new OrderEntryPage(driver,scenario);
+        orderpage.NO_NotePopup();
+        newOE=new NewOrderEntryPage(driver,scenario);
+        List<List<String>> PO_No = tabledata.asLists(String.class);
+        newOE.EnterPO_No(PO_No.get(0).get(0));
+
+        //find whether route is empty or not, if empty should select some route value
+//        Thread.sleep(1000);
+//        String routeNo=newOE.validateRouteValue();
+//        if(routeNo==null||routeNo.equals(""))
+//        {
+//            newOE.clickRouteIndex();
+//            newOE.validateRouteDialog();
+//            newOE.Route_No(TestBase.testEnvironment.get_RouteFilt(), TestBase.testEnvironment.get_Route());
+//            newOE.validateRouteSelected(TestBase.testEnvironment.get_Route());
+//        }
+    }
+
     @Then("Enter PO# for New order for Quote to Order")
     public void enter_po_for_new_order_for_quote_to_order(DataTable tabledata) throws InterruptedException, AWTException
     {
@@ -395,6 +420,7 @@ public class OrderEntryPageSteps
         List<List<String>> ProQty = tabledata.asLists(String.class);
         newOE.validateCatalogProducts();
         newOE.EnterQty(ProQty.get(0).get(0), ProQty.get(0).get(1));
+        newOE.Catalog_OK();
     }
 
     @Then("Click on Next button")
@@ -403,6 +429,7 @@ public class OrderEntryPageSteps
         exists=false;
         newOE = new NewOrderEntryPage(driver,scenario);
         newOE.readProductsInOrder();
+        Thread.sleep(1000);
         //handling toast messages
         for(int i=0;i<=2;i++)
         {
@@ -1180,6 +1207,7 @@ public class OrderEntryPageSteps
         newOE.Search_Prod_in_Catalog(pro);
         newOE.EnterQty(Prod_detail.get(0).get(0),Prod_detail.get(0).get(1));
         scenario.log("PRODUCT # "+pro+" PRODUCT QTY "+Prod_detail.get(0).get(0)+" "+Prod_detail.get(0).get(1));
+        newOE.Catalog_OK();
     }
 
     @Then("Click on Next button and validate shipping address")

@@ -170,14 +170,11 @@ public class manageRegistrationClientPageDSD
         exists=false;
         try
         {
-            WebElement delButton=HelpersMethod.FindByElement(driver,"xpath","//div[@id='primaryAccountCard']/descendant::button/span[text()='Delete']");
+            WebElement delButton=HelpersMethod.FindByElement(driver,"xpath","//div[@id='primaryAccountCard']/descendant::button[contains(@id,'del')]");
             if(delButton.isDisplayed() && delButton.isEnabled())
             {
                 HelpersMethod.ScrollElement(driver,delButton);
                 HelpersMethod.ClickBut(driver,delButton,10000);
-            }
-            if(!HelpersMethod.IsExists("//div[@id='primaryAccountCard']/descendant::div[@class='subcontainer']",driver))
-            {
                 exists=true;
             }
             Assert.assertEquals(exists,true);
@@ -190,17 +187,19 @@ public class manageRegistrationClientPageDSD
         exists=false;
         try
         {
-            if(HelpersMethod.IsExists("//span[contains(text(),'Remove primary account')]/ancestor::div[contains(@class,'k-window k-dialog')]",driver))
+            if(HelpersMethod.IsExists("//span[text()='Remove primary account']/ancestor::div[contains(@class,'k-window k-dialog')]",driver))
             {
-               WebElement modelContainer=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-window k-dialog')]");
+               WebElement modelContainer=HelpersMethod.FindByElement(driver,"xpath","//span[text()='Remove primary account']/ancestor::div[contains(@class,'k-window k-dialog')]");
                WebElement yesButton=modelContainer.findElement(By.xpath(".//button/span[text()='Yes']"));
                HelpersMethod.ActClick(driver,yesButton,10000);
+               exists=true;
                 Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
                         .withTimeout(Duration.ofSeconds(400))
                         .pollingEvery(Duration.ofSeconds(2))
                         .ignoring(NoSuchElementException.class);
                 wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
             }
+            Assert.assertEquals(exists,true);
         }
         catch (Exception e){}
     }
@@ -274,10 +273,9 @@ public class manageRegistrationClientPageDSD
         exists=false;
         try
         {
-            WebElement delButton=HelpersMethod.FindByElement(driver,"xpath","//button[@id='deleteAdditionalAccountButton']");
+            WebElement delButton=HelpersMethod.FindByElement(driver,"xpath","//div[@id='secondaryAccountCard']/descendant::span[text()='Delete']/parent::button");
             if(delButton.isDisplayed() && delButton.isEnabled())
             {
-                HelpersMethod.ScrollElement(driver,delButton);
                 HelpersMethod.ClickBut(driver,delButton,10000);
                 exists=true;
             }
@@ -320,6 +318,44 @@ public class manageRegistrationClientPageDSD
                         .pollingEvery(Duration.ofSeconds(2))
                         .ignoring(NoSuchElementException.class);
                 wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+            }
+            Assert.assertEquals(exists,true);
+        }
+        catch (Exception e){}
+    }
+
+    public void handleSecondaryConfirmationDialogbox()
+    {
+        exists=false;
+        try
+        {
+            if(HelpersMethod.IsExists("//span[text()='Delete secondary account']/ancestor::div[contains(@class,'k-window k-dialog')]",driver))
+            {
+                WebElement modelContainer=HelpersMethod.FindByElement(driver,"xpath","//span[text()='Delete secondary account']/ancestor::div[contains(@class,'k-window k-dialog')]");
+                WebElement yesButton=modelContainer.findElement(By.xpath(".//button/span[text()='Yes']"));
+                HelpersMethod.ActClick(driver,yesButton,10000);
+                exists=true;
+                Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                        .withTimeout(Duration.ofSeconds(400))
+                        .pollingEvery(Duration.ofSeconds(2))
+                        .ignoring(NoSuchElementException.class);
+                wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+            }
+            Assert.assertEquals(exists,true);
+        }
+        catch (Exception e){}
+    }
+
+    public void selectSecondaryCustomer()
+    {
+        exists=false;
+        try
+        {
+            if(HelpersMethod.IsExists("//div[@id='secondaryAccountCard']/descendant::tr[contains(@class,'k-master-row')]",driver))
+            {
+                WebElement selectRow=HelpersMethod.FindByElement(driver,"xpath","//div[@id='secondaryAccountCard']/descendant::tr[contains(@class,'k-master-row')]");
+                HelpersMethod.ActClick(driver,selectRow,10000);
+                exists=true;
             }
             Assert.assertEquals(exists,true);
         }

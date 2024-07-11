@@ -326,8 +326,8 @@ public class userManagementClientPage
         exists=false;
         try
         {
-            WebElement roleName1=HelpersMethod.FindByElement(driver,"xpath","//label[text()='Role']/following-sibling::span/descendant::input");
-            HelpersMethod.ActClick(driver,roleName,1000);
+            WebElement roleName1=HelpersMethod.FindByElement(driver,"xpath","//label[text()='Role']/following-sibling::div/descendant::input");
+            HelpersMethod.ActClick(driver,roleName1,10000);
             Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
                     .withTimeout(Duration.ofSeconds(120))
                     .pollingEvery(Duration.ofSeconds(2))

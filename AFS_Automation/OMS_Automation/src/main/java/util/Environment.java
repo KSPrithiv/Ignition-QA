@@ -31,14 +31,16 @@ public interface Environment extends Config
     @Key("Route1")
     String get_Route1();
 
+    @Key("username")
     String username();
 
+    @Key("password")
     String password();
 
-    @Key("Dummyuser")
+    @Key("Dummiesuser")
     String DummyUser();
 
-    @Key("Dummypass")
+    @Key("Dummiespass")
     String DummyPassword();
 
     @Key("AdminUser")

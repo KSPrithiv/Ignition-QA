@@ -132,8 +132,14 @@ public class CustomerInquiryPageERP
     public void NavigateToCustomerInquiry()
     {
         exists = false;
-        WebElement WebEle = null;
-        String status = null;
+        WebElement WebEle;
+        String status;
+        Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                .withTimeout(Duration.ofSeconds(400))
+                .pollingEvery(Duration.ofSeconds(2))
+                .ignoring(NoSuchElementException.class);
+        wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
         status = HelpersMethod.returnDocumentStatus(driver);
         if (status.equals("loading"))
         {
@@ -142,7 +148,7 @@ public class CustomerInquiryPageERP
         try
         {
             Actions act = new Actions(driver);
-            Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+            wait = new FluentWait<WebDriver>(driver)
                     .withTimeout(Duration.ofSeconds(400))
                     .pollingEvery(Duration.ofSeconds(2))
                     .ignoring(NoSuchElementException.class);
@@ -328,7 +334,6 @@ public class CustomerInquiryPageERP
     {
         Thread.sleep(8000);
         exists=false;
-
         try
         {
             Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
@@ -410,10 +415,16 @@ public class CustomerInquiryPageERP
 
     public void clickOnCustomerAccIndex()
     {
+        exists=false;
         try
         {
-            HelpersMethod.ClickBut(driver,customerAccountIndex,2000);
-            //new WebDriverWait(driver,100).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(text(),'Customer account index')]/ancestor::div[contains(@class,'k-window k-dialog')]"))));
+            if(customerAccountIndex.isDisplayed())
+            {
+                HelpersMethod.ClickBut(driver, customerAccountIndex, 10000);
+                //new WebDriverWait(driver,100).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(text(),'Customer account index')]/ancestor::div[contains(@class,'k-window k-dialog')]"))));
+                exists=true;
+            }
+            Assert.assertEquals(exists,true);
         }
         catch (Exception e){}
     }
@@ -669,10 +680,22 @@ public class CustomerInquiryPageERP
                     .ignoring(NoSuchElementException.class);
             wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
 
+            String status = HelpersMethod.returnDocumentStatus(driver);
+            if (status.equals("loading"))
+            {
+                HelpersMethod.waitTillLoadingPage(driver);
+            }
+
+            wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(400))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
             if(HelpersMethod.IsExists("//div[contains(@class,'customer-account-component')]/following-sibling::button//*[local-name()='svg']",driver))
             {
                 WebElement custAcc= HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'customer-account-component')]/following-sibling::button//*[local-name()='svg']");
-                HelpersMethod.ClickBut(driver,custAcc,10000);
+                HelpersMethod.ActClick(driver,custAcc,20000);
                 exists=true;
                 wait = new FluentWait<WebDriver>(driver)
                         .withTimeout(Duration.ofSeconds(400))

@@ -47,38 +47,54 @@ Feature: Login
     And Click on Logout
 
   @RegistrationCancel
-  Scenario: Enter all the details in Registration input boxes and cancel button
+  Scenario Outline: Enter all the details in Registration input boxes and cancel button
+    Given User should verify admin setting "<Setting>" is enabled by using "<Key>" in common and company
     Given User on login page
     And Click on Register here link
     Then Customer Registration page should get displayed
     And Enter values in input boxes
     Then click on Cancel button
+    Examples:
+      | Setting              | Key                      |
+      | Registration message | CPEnableUserRegistration |
 
 #This is based on admin setting
   @RegistrationAccount
-  Scenario: Registration of user using  Customer account#
+  Scenario Outline: Registration of user using  Customer account#
+    Given User should verify admin setting "<Setting>" is enabled by using "<Key>" in common and company
     Given User on login page
     And Click on Register here link
     Then Customer Registration page should get displayed
     And Enter values in input boxes
     Then click on Register button
     Then If user is navigated to OE page Logout from application
+    Examples:
+      | Setting              | Key                      |
+      | Registration message | CPEnableUserRegistration |
 
   @DonotHaveAccount
-  Scenario: Allowing new customer to register when not having an account
+  Scenario Outline: Allowing new customer to register when not having an account
+    Given User should verify admin setting "<Setting>" is enabled by using "<Key>" in common and company
     Given User on login page
     And Click on Register here link
     Then Customer Registration page should get displayed
     And Click on Donot have account check box, Then Enter values in input boxes
     Then click on Register button
+    Examples:
+      | Setting              | Key                      |
+      | Registration message | CPEnableUserRegistration |
 
   @DonotHaveAccountCancel
-  Scenario: Allowing new customer to register when not having an account,cancel option
+  Scenario Outline: Allowing new customer to register when not having an account,cancel option
+    Given User should verify admin setting "<Setting>" is enabled by using "<Key>" in common and company
     Given User on login page
     And Click on Register here link
     Then Customer Registration page should get displayed
     And Click on Donot have account check box, Then Enter values in input boxes
     Then click on Cancel button
+    Examples:
+      | Setting              | Key                      |
+      | Registration message | CPEnableUserRegistration |
 
   @ForeignLanguage
   Scenario: Check for display of details in foreign language
