@@ -759,8 +759,8 @@ public class OrderEntryPageSteps
         orderpage = new OrderEntryPage(driver, scenario);
         orderpage.ValidateOE();
         orderpage.ClickRemoveSkip();
-        orderpage.ClickCalender();
-        orderpage.ResetToCurrentDate();
+
+
     }
 
     @Then("Check for visibility of Skip button")

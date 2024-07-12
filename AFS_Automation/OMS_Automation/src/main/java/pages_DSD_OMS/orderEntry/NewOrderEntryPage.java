@@ -1009,8 +1009,8 @@ public class NewOrderEntryPage
                         exists=true;
                     }
                 }
-                WebEle = HelpersMethod.FindByElement(driver, "xpath", "//button/span[text()='Ok']");
-                HelpersMethod.ActClick(driver, WebEle, 10000);
+//                WebEle = HelpersMethod.FindByElement(driver, "xpath", "//button/span[text()='Ok']");
+//                HelpersMethod.ActClick(driver, WebEle, 10000);
                 wait = new FluentWait<WebDriver>(driver)
                         .withTimeout(Duration.ofSeconds(200))
                         .pollingEvery(Duration.ofSeconds(2))
@@ -2156,6 +2156,8 @@ public class NewOrderEntryPage
 
     public void New_OE_Select_SkipReason(String reason) throws InterruptedException
     {
+        String reasonText;
+        Actions act=new Actions(driver);
         try
         {
             WebElement Skip_Pop = HelpersMethod.FindByElement(driver, "xpath", "//span[text()='Skip']/ancestor::div[contains(@class,'k-window k-dialog')]");
@@ -2164,7 +2166,19 @@ public class NewOrderEntryPage
             {
                 WebElement WebEle = HelpersMethod.FindByElement(driver, "xpath", "//span[@id='SkipReason']/descendant::button");
                 HelpersMethod.JScriptClick(driver, WebEle, 10000);
-                HelpersMethod.DropDownMenu_LowerCase(driver,reason);
+                List <WebElement> reasons=HelpersMethod.FindByElements(driver,"xpath","//ul[@id='SkipReason-listbox-id']/descendant::span");
+                for(WebElement reas:reasons)
+                {
+                    act.moveToElement(reas).build().perform();
+                    reasonText=reas.getText();
+                    if(reasonText.equals(reason))
+                    {
+                        act.moveToElement(reas).build().perform();
+                        act.click(reas).build().perform();
+                        break;
+                    }
+                }
+
                 WebEle = HelpersMethod.FindByElement(driver, "xpath", "//button/span[text()='Ok']");
                 HelpersMethod.ClickBut(driver, WebEle, 10000);
                 scenario.log("SKIP REASON HAS BEEN SELECTED");
@@ -3298,6 +3312,21 @@ public class NewOrderEntryPage
                 WebEle = HelpersMethod.FindByElement(driver, "xpath", "//span[text()='Catalog']/ancestor::div[contains(@class,'k-window k-dialog')]/descendant::button/span[text()='Ok']");
                 HelpersMethod.ActClick(driver, WebEle, 10000);
                 exists = true;
+                Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                        .withTimeout(Duration.ofSeconds(200))
+                        .pollingEvery(Duration.ofSeconds(2))
+                        .ignoring(NoSuchElementException.class);
+                wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+                String status = HelpersMethod.returnDocumentStatus(driver);
+                if (status.equals("loading"))
+                {
+                    HelpersMethod.waitTillLoadingPage(driver);
+                }
+                wait = new FluentWait<WebDriver>(driver)
+                        .withTimeout(Duration.ofSeconds(200))
+                        .pollingEvery(Duration.ofSeconds(2))
+                        .ignoring(NoSuchElementException.class);
+                wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
             }
             Assert.assertEquals(exists,true);
         }
@@ -4578,8 +4607,21 @@ public class NewOrderEntryPage
         exists=false;
         try
         {
+            Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(200))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
+            String status = HelpersMethod.returnDocumentStatus(driver);
+            if (status.equals("loading"))
+            {
+                HelpersMethod.waitTillLoadingPage(driver);
+            }
+
             if(PickupOrder.isDisplayed() && HelpersMethod.IsExists("//input[@data-checked='unchecked' and @id='pickupOrder']",driver))
             {
+                HelpersMethod.ScrollElement(driver,PickupOrder);
                 HelpersMethod.ActClick(driver,PickupOrder,10000);
                 scenario.log("PICKUP ORDER CHECK BOX IS CLICKED");
                 exists=true;

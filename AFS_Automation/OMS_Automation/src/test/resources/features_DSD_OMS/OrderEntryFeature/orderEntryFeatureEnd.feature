@@ -93,10 +93,3 @@ Feature: Order entry End
       |0.01|
     And User navigates back to OE by selecting Discard all option from pending order popup
 
-
-
- #@LogoutOE
- # Scenario:Loging out from the application
- #   And Refresh the page if any dialog box is displayed
- #   Then Click on user Icon on Order Entry page
- #   And Click on Logout on Order Entry page
