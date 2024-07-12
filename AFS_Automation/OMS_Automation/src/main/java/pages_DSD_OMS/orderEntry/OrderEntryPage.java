@@ -677,7 +677,7 @@ public class OrderEntryPage
     {
         try
         {
-          //  WebElement WebEle = null;
+
             String status = HelpersMethod.returnDocumentStatus(driver);
             if (status.equals("loading"))
             {
@@ -690,12 +690,15 @@ public class OrderEntryPage
             wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
 
             driver.navigate().to(currentURL);
+
             wait = new FluentWait<WebDriver>(driver)
                     .withTimeout(Duration.ofSeconds(400))
                     .pollingEvery(Duration.ofSeconds(2))
                     .ignoring(NoSuchElementException.class);
             wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
             driver.navigate().refresh();
+
             wait = new FluentWait<WebDriver>(driver)
                     .withTimeout(Duration.ofSeconds(400))
                     .pollingEvery(Duration.ofSeconds(2))
@@ -1422,7 +1425,7 @@ public class OrderEntryPage
         if(HelpersMethod.IsExists("//div[@class='CPDeliveryDates']/descendant::button/span",driver))
         {
             WebElement deliveryCalender = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='CPDeliveryDates']/descendant::button");
-            HelpersMethod.ClickBut(driver, deliveryCalender, 20000);
+            HelpersMethod.JScriptClick(driver, deliveryCalender, 20000);
             new WebDriverWait(driver, Duration.ofMillis(40000)).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class,'k-datepicker-popup')]")));
             new WebDriverWait(driver,Duration.ofMillis(40000)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(@class,'k-datepicker-popup')]")));
             exists = true;
@@ -1532,9 +1535,12 @@ public class OrderEntryPage
         WebElement CDate;
         try
         {
-            scenario.log("PREVIOUS DELIVERY DATE "+C_Date1);
             //click on date, When current date is differnt and delivery date is different, to set the date according to the date shown at the time of loading application
-            new WebDriverWait(driver, Duration.ofMillis(20000)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@id,'delivery-date')]"))));
+            new WebDriverWait(driver, Duration.ofMillis(40000)).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class,'k-datepicker-popup')]")));
+            new WebDriverWait(driver,Duration.ofMillis(40000)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(@class,'k-datepicker-popup')]")));
+            scenario.log("PREVIOUS DELIVERY DATE "+C_Date1);
+            Thread.sleep(1000);
+
             //cod to click on month, if date is not visible in expanded calender
             if(!HelpersMethod.IsExists("//table[@class='k-calendar-table']/descendant::td/span[contains(@title,'" + C_Date1 + "')]",driver))
             {
@@ -1544,9 +1550,11 @@ public class OrderEntryPage
                 WebElement toBeSelectMonth=HelpersMethod.FindByElement(driver,"xpath","//table[@class='k-calendar-table']/descendant::span[contains(@title,'"+monthToSelect+"')]");
                 HelpersMethod.ClickBut(driver,toBeSelectMonth,10000);
             }
+
                 CDate = HelpersMethod.FindByElement(driver, "xpath", "//table[@class='k-calendar-table']/descendant::td[contains(@style,'opacity:')]/span[contains(@title,'" + C_Date1 + "')]");
                 HelpersMethod.ScrollElement(driver, CDate);
-                HelpersMethod.ActClick(driver, CDate, 20000);
+                //HelpersMethod.ActClick(driver, CDate, 20000);
+                HelpersMethod.JScriptClick(driver,CDate,20000);
 
                 for (int i = 0; i <= 3; i++)
                 {
@@ -1629,14 +1637,14 @@ public class OrderEntryPage
             scenario.log("DATE TO BE CHANGED TO "+formDate1);*/
 
             //read current date in OE page
-            deliveryDate=HelpersMethod.FindByElement(driver,"id","delivery-date-web-order-header-calendar").getAttribute("value");
-
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("EEE, MMM d, yyyy", Locale.ENGLISH);
-            LocalDate dateTime = LocalDate.parse(deliveryDate, formatter);
-            LocalDate dateTime1=dateTime.plusDays(days);
-            DateTimeFormatter myFormatObj = DateTimeFormatter.ofPattern("EEEE, MMMM d, yyyy");
-            formattedDate1 = dateTime1.format(myFormatObj);
-            System.out.println(formattedDate1);
+//            deliveryDate=HelpersMethod.FindByElement(driver,"id","delivery-date-web-order-header-calendar").getAttribute("value");
+//
+//            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("EEE, MMM d, yyyy", Locale.ENGLISH);
+//            LocalDate dateTime = LocalDate.parse(deliveryDate, formatter);
+//            LocalDate dateTime1=dateTime.plusDays(days);
+//            DateTimeFormatter myFormatObj = DateTimeFormatter.ofPattern("EEEE, MMMM d, yyyy");
+//            formattedDate1 = dateTime1.format(myFormatObj);
+//            System.out.println(formattedDate1);
 
             //to check whether date is visible in displayed calender
          /*   if(HelpersMethod.IsExists("//td[contains(@style,'opacity:')]/span[@class='k-link' and contains(@title,'" + formattedDate1 +"')]",driver))
@@ -1695,13 +1703,25 @@ public class OrderEntryPage
             }
             else
             {
-                date=dates.get(1);
-                HelpersMethod.ActClick(driver,date,10000);
+//                date=dates.get(1);
+//                HelpersMethod.ActClick(driver,date,10000);
+
+                //Change date in calender
+                scenario.log(formattedDate);
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("EEE, MMM d, yyyy", Locale.ENGLISH);
+                LocalDate dateTime = LocalDate.parse(formattedDate, formatter);
+                DateTimeFormatter myFormatObj = DateTimeFormatter.ofPattern("EEEE, MMMM d, yyyy");
+                formattedDate1 = dateTime.format(myFormatObj);
+                System.out.println(formattedDate1);
+
+                WebElement deliveryDate=HelpersMethod.FindByElement(driver,"xpath","//tr[@class='k-calendar-tr']/descendant::span[@title='"+formattedDate1+"']");
+                HelpersMethod.ActClick(driver,deliveryDate,10000);
+
                 exists1=CheckForRemoveSkip();
                 if(exists1==true)
                 {
                     ClickRemoveSkip();
-                    RemoveSkipOK();
+                    //RemoveSkipOK();
                 }
                 exists=true;
             }
@@ -1969,9 +1989,6 @@ public class OrderEntryPage
         catch (Exception e) {}
         return exists;
     }
-
-
-
 
     public boolean Start_OrderAgain()
     {
@@ -3117,9 +3134,6 @@ public class OrderEntryPage
         catch (Exception e) {}
         return saleRepChange;
     }
-
-
-
 
     //Code to select OG from popup
     public void SelectOrderGuidePopup()
