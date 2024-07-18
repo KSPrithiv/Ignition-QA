@@ -97,4 +97,20 @@ public class ManageRegistration_ClientSideStep
         manageregistrationClientPage.updatePONumber();
         manageregistrationClientPage.clickOnUpdateButton();
     }
+
+    @Then("User should enter account number for primary customer account number for OMS")
+    public void userShouldEnterAccountNumberForPrimaryCustomerAccountNumberForOMS()
+    {
+        manageregistrationClientPage=new manageRegistrationClientPageDSD(driver,scenario);
+        manageregistrationClientPage.enterPrimaryCustomerAccountOMS();
+        manageregistrationClientPage.clickOnAddButton();
+    }
+
+    @Then("User should enter account number for Secondary customer account for OMS")
+    public void userShouldEnterAccountNumberForSecondaryCustomerAccountForOMS()
+    {
+        manageregistrationClientPage=new manageRegistrationClientPageDSD(driver,scenario);
+        manageregistrationClientPage.enterSecondaryCustomerAccountOMS();
+        manageregistrationClientPage.clickOnSecondaryAddButton();
+    }
 }

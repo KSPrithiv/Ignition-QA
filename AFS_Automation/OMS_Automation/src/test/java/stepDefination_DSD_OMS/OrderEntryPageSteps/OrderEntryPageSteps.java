@@ -638,6 +638,7 @@ public class OrderEntryPageSteps
     {
         newOE = new NewOrderEntryPage(driver,scenario);
         String prod=DataBaseConnection.DataBaseConn(TestBase.testEnvironment.getSingle_Prod_Sql());
+        Thread.sleep(500);
         if(!prod.equals(null))
         {
             newOE.QuickProduct(prod);

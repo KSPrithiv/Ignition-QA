@@ -654,40 +654,28 @@ public class CompetitivePricingGeneralPage
         WebElement WebEle;
         try
         {
-            Wait<WebDriver> wait = new FluentWait<>(driver)
-                    .withTimeout(Duration.ofSeconds(120))
-                    .pollingEvery(Duration.ofSeconds(2))
-                    .ignoring(NoSuchElementException.class);
-            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
-
             if(SaveBut.isDisplayed() && SaveBut.isEnabled())
             {
+                HelpersMethod.ScrollUpScrollBar(driver);
+                HelpersMethod.ScrollUpScrollBar(driver);
                 HelpersMethod.ClickBut(driver, SaveBut, 10000);
 
-                wait = new FluentWait<>(driver)
+                Wait<WebDriver> wait = new FluentWait<>(driver)
                         .withTimeout(Duration.ofSeconds(120))
                         .pollingEvery(Duration.ofSeconds(2))
                         .ignoring(NoSuchElementException.class);
                 wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
 
-                wait = new FluentWait<>(driver)
-                        .withTimeout(Duration.ofSeconds(120))
-                        .pollingEvery(Duration.ofSeconds(2))
-                        .ignoring(NoSuchElementException.class);
-                wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
-
-
-                new WebDriverWait(driver,Duration.ofMillis(10000)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[contains(@class,'k-popup k-child-animation-container')]/descendant::form[contains(@class,'i-filter-popup')]")));
                 Thread.sleep(1000);
-                if (HelpersMethod.IsExists("//span[contains(@class,'k-popup k-child-animation-container')]/descendant::form[contains(@class,'i-filter-popup')]", driver))
+                if (HelpersMethod.IsExists("//span[contains(text(),'Save competitive')]/ancestor::div[@class='k-window k-dialog']", driver))
                 {
                    wait = new FluentWait<>(driver)
-                            .withTimeout(Duration.ofSeconds(120))
+                            .withTimeout(Duration.ofSeconds(200))
                             .pollingEvery(Duration.ofSeconds(2))
                             .ignoring(NoSuchElementException.class);
                     wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
 
-                    WebElement moduleContainer1=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-window k-dialog')]");
+                    WebElement moduleContainer1=HelpersMethod.FindByElement(driver,"xpath","//span[contains(text(),'Save competitive')]/ancestor::div[@class='k-window k-dialog']");
                     WebEle = moduleContainer1.findElement(By.xpath(".//button/span[text()='Ok']"));
                     HelpersMethod.ActClick(driver, WebEle, 20000);
                     exists = true;
@@ -746,7 +734,17 @@ public class CompetitivePricingGeneralPage
                 }
             }
             wait = new FluentWait<>(driver)
-                    .withTimeout(Duration.ofSeconds(120))
+                    .withTimeout(Duration.ofSeconds(200))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+            String status = HelpersMethod.returnDocumentStatus(driver);
+            if (status.equals("loading"))
+            {
+                HelpersMethod.waitTillLoadingPage(driver);
+            }
+            wait = new FluentWait<>(driver)
+                    .withTimeout(Duration.ofSeconds(200))
                     .pollingEvery(Duration.ofSeconds(2))
                     .ignoring(NoSuchElementException.class);
             wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
@@ -894,29 +892,32 @@ public class CompetitivePricingGeneralPage
     public void Selecting_SoldByUOM_Selecting_BaseUOM()
     {
         exists = false;
-        WebElement WebEle = null;
-        List<WebElement> UOMValues = null;
+        WebElement WebEle;
+        List<WebElement> UOMValues;
         try
         {
-            WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='k-widget k-grid']");
+            WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='grid-container']");
             HelpersMethod.ScrollElement(driver,WebEle);
             //Selecting value for Sold by UOM
-            for (int i = 0; i <= 4; i++)
+            for (int i = 1; i <= 5; i++)
             {
-                WebEle = HelpersMethod.FindByElement(driver, "xpath", "//tr[contains(@class,'k-master-row')][" + (i + 1) + "]/descendant::td[contains(@class,'preferred-cell')][1]");
-                HelpersMethod.ActClick(driver, WebEle, 1000);
+                WebEle = HelpersMethod.FindByElement(driver, "xpath", "//tr[contains(@class,'k-master-row')]["+i+"]/descendant::td[contains(@class,'preferred-cell')][1]");
+                HelpersMethod.ActClick(driver, WebEle, 10000);
                 UOMValues = HelpersMethod.FindByElements(driver, "xpath", "//div[contains(@class,'k-child-animation-container')]/descendant::ul/li");
-                HelpersMethod.ActClick(driver, UOMValues.get(0), 1000);
+                HelpersMethod.ActClick(driver, UOMValues.get(0), 10000);
+                exists=true;
             }
+            Assert.assertEquals(exists,true);
             //Selecting value for Base UOM
-            for(int i=0;i<=4;i++)
+            exists=false;
+            for(int i=1;i<=5;i++)
             {
-                WebEle=HelpersMethod.FindByElement(driver,"xpath","//tr[contains(@class,'k-master-row')]["+(i+1)+"]/descendant::td[contains(@class,'preferred-cell')][2]");
-                HelpersMethod.ActClick(driver,WebEle,1000);
+                WebEle=HelpersMethod.FindByElement(driver,"xpath","//tr[contains(@class,'k-master-row')]["+i+"]/descendant::td[contains(@class,'preferred-cell')][2]");
+                HelpersMethod.ActClick(driver,WebEle,10000);
                 UOMValues=HelpersMethod.FindByElements(driver,"xpath","//div[contains(@class,'k-child-animation-container')]/descendant::ul/li");
-                HelpersMethod.ActClick(driver,UOMValues.get(0),1000);
+                HelpersMethod.ActClick(driver,UOMValues.get(0),10000);
+                exists=true;
             }
-            exists=true;
             Assert.assertEquals(exists,true);
         }
         catch (Exception e) {}
@@ -928,17 +929,17 @@ public class CompetitivePricingGeneralPage
         WebElement WebEle;
         try
         {
-            for(int i=0;i<=4;i++)
+            for(int i=1;i<=5;i++)
             {
                 //Code for entering competitor pricing
-                WebEle=HelpersMethod.FindByElement(driver,"xpath","//tr[contains(@class,'k-master-row')]["+(i+1)+"]/descendant::td/descendant::input[contains(@class,'k-input k-formatted-value')]");
-                HelpersMethod.ActClearKey(driver,WebEle,1000);
-                HelpersMethod.ActSendKey(driver,WebEle,1000, prod_detail.get(i).get(0));
+                WebEle=HelpersMethod.FindByElement(driver,"xpath","//tr[contains(@class,'k-master-row')]["+i+"]/descendant::td/descendant::input[@class='k-textbox']");
+                HelpersMethod.ActClearKey(driver,WebEle,10000);
+                HelpersMethod.ActSendKey(driver,WebEle,10000, prod_detail.get(i).get(0));
                 //Code for entering Comment in Competitor pricing
-                WebEle=HelpersMethod.FindByElement(driver,"xpath","//tr[contains(@class,'k-master-row')]["+(i+1)+"]/descendant::td/descendant::input[contains(@class,'k-textbox')]");
-                HelpersMethod.EnterText(driver,WebEle,1000,prod_detail.get(i).get(1));
+                WebEle=HelpersMethod.FindByElement(driver,"xpath","//tr[contains(@class,'k-master-row')]["+i+"]/descendant::td/descendant::input[@class='k-textbox']");
+                HelpersMethod.EnterText(driver,WebEle,10000,prod_detail.get(i).get(1));
+                exists=true;
             }
-            exists=true;
             Assert.assertEquals(exists,true);
         }
         catch (Exception e){}
@@ -950,8 +951,20 @@ public class CompetitivePricingGeneralPage
         WebElement WebEle;
         try
         {
+            Wait<WebDriver> wait = new FluentWait<>(driver)
+                    .withTimeout(Duration.ofSeconds(200))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+            String status = HelpersMethod.returnDocumentStatus(driver);
+            if (status.equals("loading"))
+            {
+                HelpersMethod.waitTillLoadingPage(driver);
+            }
+            Thread.sleep(1000);
             WebEle= HelpersMethod.FindByElement(driver,"xpath","//tr[contains(@class,'k-master-row')][1]/descendant::input[contains(@class,'k-checkbox')]");
-            HelpersMethod.ClickBut(driver,WebEle,10000);
+            HelpersMethod.ScrollElement(driver,WebEle);
+            HelpersMethod.ActClick(driver,WebEle,10000);
         }
         catch (Exception e){}
     }
@@ -992,17 +1005,18 @@ public class CompetitivePricingGeneralPage
                        .ignoring(NoSuchElementException.class);
                wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
 
-               if (HelpersMethod.IsExists("//div[contains(text(),'Delete competitor data')]/ancestor::div[contains(@class,'k-window k-dialog')]", driver))
+               if (HelpersMethod.IsExists("//span[contains(text(),'Delete competitor data')]/ancestor::div[contains(@class,'k-window k-dialog')]", driver))
                {
-                   WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-window k-dialog')]/descendant::button/span[text()='Delete']");
-                   HelpersMethod.ActClick(driver, WebEle, 10000);
+                   WebEle = HelpersMethod.FindByElement(driver, "xpath", "//span[contains(text(),'Delete competitor data')]/ancestor::div[contains(@class,'k-window k-dialog')]");
+                   WebElement deleteButton=WebEle.findElement(By.xpath(".//button/span[text()='Delete']"));
+                   HelpersMethod.ActClick(driver, deleteButton, 10000);
                    wait = new FluentWait<>(driver)
                            .withTimeout(Duration.ofSeconds(120))
                            .pollingEvery(Duration.ofSeconds(2))
                            .ignoring(NoSuchElementException.class);
                    wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
                }
-               if (HelpersMethod.IsExists("//div[contains(text(),'Delete competitor data')]/ancestor::div[contains(@class,'k-window k-dialog')]", driver))
+               if (HelpersMethod.IsExists("//span[contains(text(),'Delete competitor data')]/ancestor::div[contains(@class,'k-window k-dialog')]", driver))
                {
                    WebElement modelContainer=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-window k-dialog')]");
                    WebEle = modelContainer.findElement(By.xpath(".//button/span[text()='Ok']"));
@@ -1039,7 +1053,35 @@ public class CompetitivePricingGeneralPage
                     break;
                 }
             }
-            HelpersMethod.AddFilterSearch(driver,"Product #",Prod);
+            //Click on Add filter button
+            WebElement addFilter=HelpersMethod.FindByElement(driver,"xpath","//button/descendant::span[contains(text(),'Add filter')]");
+            HelpersMethod.ClickBut(driver,addFilter,10000);
+
+            HelpersMethod.waitTillElementLocatedDisplayed(driver,"xpath","//div[contains(@class,'k-animation-container k-animation-container-shown')]",80000);
+            WebElement modalContainer1=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-animation-container k-animation-container-shown')]");
+
+            WebElement Search1=modalContainer1.findElement(By.xpath(".//input[contains(@class,'i-search-box__input')]"));
+            HelpersMethod.ActSendKey(driver,Search1,10000,"Product #");
+            //Click on Check box
+            //new WebDriverWait(driver,Duration.ofMillis(10000)).until(ExpectedConditions.elementToBeClickable(By.xpath(".//input[contains(@class,'k-checkbox')]")));
+            WebElement WebEle1=modalContainer1.findElement(By.xpath(".//input[contains(@class,'k-checkbox')]"));
+            HelpersMethod.ClickBut(driver,WebEle1,10000);
+
+            //Identify radio button and click on Radio button
+            new WebDriverWait(driver,Duration.ofMillis(80000)).until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath("//div[contains(@class,'i-btn-radio filter-radio')]/ancestor::div[contains(@class,'k-child-animation-container')]")));
+            new WebDriverWait(driver,Duration.ofMillis(80000)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(@class,'i-btn-radio filter-radio')]/ancestor::div[contains(@class,'k-child-animation-container')]")));
+            if(HelpersMethod.IsExists("//div[contains(@class,'i-btn-radio filter-radio')]/ancestor::div[contains(@class,'k-child-animation-container')]",driver))
+            {
+                WebElement RadioPop=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-child-animation-container')]/descendant::form[contains(@class,'i-filter-popup')]");
+                WebElement Search2=RadioPop.findElement(By.xpath(".//div[contains(@class,'i-btn-radio filter-radio')][1]/following-sibling::div[contains(@class,'k-textbox-container i-filter-popup__content__input')]/input"));
+                HelpersMethod.EnterText(driver,Search2,10000,Prod);
+
+                //Click on Apply button
+                WebElement Clear =RadioPop.findElement(By.xpath(".//button/span[text()='Apply']"));
+                HelpersMethod.ClickBut(driver,Clear,10000);
+            }
+
+
             if(HelpersMethod.IsExists("//div[@class='i-no-data']",driver))
             {
                 scenario.log("NO PRODUCT HAS BEEN FOUND");
@@ -1107,7 +1149,7 @@ public class CompetitivePricingGeneralPage
                 String headText = tablehead.getText();
                 if (headText.equals("Product #"))
                 {
-                    Prod1 = HelpersMethod.FindByElement(driver, "xpath", "//tr[contains(@class,'k-master-row')][1]/descendant::td[" + (i + 1) + "]").getText();
+                    Prod1 = HelpersMethod.FindByElement(driver, "xpath", "//tr[contains(@class,'k-master-row')][1]/descendant::td["+i+"]").getText();
                     break;
                 }
             }

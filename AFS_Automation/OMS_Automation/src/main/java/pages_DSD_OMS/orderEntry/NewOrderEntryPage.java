@@ -6364,44 +6364,32 @@ public class NewOrderEntryPage
     {
         exists=false;
         String status;
-        WebElement Clear;
+
         try
         {
-            // to fetch the web element of the modal container
-            WebElement modalContainer = driver.findElement(By.xpath("//div[contains(@class,'k-window k-dialog')]"));
-
             //Click on Add filter
-            WebElement addFilter=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-window k-dialog')]/descendant::span[contains(text(),'Add filter')]");
+            WebElement addFilter=HelpersMethod.FindByElement(driver,"xpath","//span[text()='Route #']/ancestor::div[contains(@class,'k-window k-dialog')]/descendant::span[contains(text(),'Add filter')]");
             HelpersMethod.ActClick(driver,addFilter,10000);
-            new WebDriverWait(driver,Duration.ofMillis(20000)).until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath("//div[contains(@class,'k-animation-container k-animation-container-relative k-animation-container-shown')]")));
-            HelpersMethod.waitTillElementLocatedDisplayed(driver,"xpath","//div[contains(@class,'k-animation-container k-animation-container-relative k-animation-container-shown')]",10000);
+            new WebDriverWait(driver,Duration.ofMillis(20000)).until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath("//div[contains(@class,'k-animation-container k-animation-container-shown')]")));
+            HelpersMethod.waitTillElementLocatedDisplayed(driver,"xpath","//div[contains(@class,'k-animation-container k-animation-container-shown')]",10000);
 
-            //Drop down after clicking add filter button
-            WebElement modalContainer1 =HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-animation-container k-animation-container-relative k-animation-container-shown')]");
-            if(HelpersMethod.IsExists("//div[@class='k-child-animation-container']/descendant::div[@class='i-filter-popup i-filter-popup--add']",driver))
-            {
-                    //Click on Clear all button
-                    Clear = modalContainer1.findElement(By.xpath(".//button/span[contains(text(),'Clear all')]"));
-                    if (Clear.isEnabled())
-                    {
-                        Clear.click();
-                    }
-                    driver.findElement(By.xpath("//div[contains(@class,'k-window k-dialog')]/descendant::button/span[contains(text(),'Add filter')]")).click();
-            }
             //Enter filter values in drop down
-            modalContainer1 =HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-animation-container k-animation-container-relative k-animation-container-shown')]");
+            new WebDriverWait(driver,Duration.ofMillis(10000)).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class,'k-animation-container k-animation-container-shown')]")));
+            new WebDriverWait(driver,Duration.ofMillis(10000)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(@class,'k-animation-container k-animation-container-shown')]")));
+
+            WebElement modalContainer1 =HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-animation-container k-animation-container-shown')]");
             WebElement search1=modalContainer1.findElement(By.xpath(".//input[@class='i-search-box__input']"));
             HelpersMethod.JSSetValueEle(driver,search1,10000,SearchOpt);
             Thread.sleep(1000);
             //Click on check box
-            WebElement checkBox=driver.findElement(By.xpath(".//input[@id='code']"));
+            WebElement checkBox=driver.findElement(By.xpath("//input[@id='code']"));
             HelpersMethod.ActClick(driver,checkBox,10000);
-            new WebDriverWait(driver,Duration.ofMillis(100000)).until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath("//div[contains(@class,'i-btn-radio filter-radio')]/ancestor::div[contains(@class,'k-child-animation-container')]")));
-            HelpersMethod.waitTillElementLocatedDisplayed(driver,"xpath","//div[contains(@class,'k-child-animation-container')]/descendant::form[contains(@class,'i-filter-popup')]",80000);
+            new WebDriverWait(driver,Duration.ofMillis(100000)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath("//div[contains(@class,'k-animation-container k-animation-container-shown')]"))));
+            HelpersMethod.waitTillElementLocatedDisplayed(driver,"xpath","//div[contains(@class,'k-animation-container k-animation-container-shown')]",80000);
             Thread.sleep(1000);
             //Enter 2nd search value
-            modalContainer1 =HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-animation-container k-animation-container-relative k-animation-container-shown')]");
-            WebElement search2=modalContainer1.findElement(By.xpath(".//input[@class='k-textbox']"));
+            modalContainer1 =HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-animation-container k-animation-container-shown')]");
+            WebElement search2=modalContainer1.findElement(By.xpath(".//input[contains(@class,'k-input')]"));
             HelpersMethod.EnterText(driver,search2,10000,SearchDetail);
             //click on apply button
             WebElement apply=modalContainer1.findElement(By.xpath(".//button/span[text()='Apply']"));
@@ -6447,8 +6435,8 @@ public class NewOrderEntryPage
         exists=false;
         try
         {
-            Thread.sleep(2000);
-            String routeFound=HelpersMethod.JSGetValueEle(driver,RouteInput,2000);
+            //Thread.sleep(2000);
+            String routeFound=HelpersMethod.JSGetValueEle(driver,RouteInput,20000);
             if(routeFound.contains(route))
             {
                 scenario.log("SUCCESSFULY SET THE ROUTE VALUE");
@@ -6676,6 +6664,20 @@ public class NewOrderEntryPage
                 exists=true;
             }
             Assert.assertEquals(exists,true);
+        }
+        catch (Exception e){}
+    }
+
+    public void orderModifyDialogBox()
+    {
+        try
+        {
+            if(HelpersMethod.IsExists("//div[contains(text(),'The order is being modified')]/ancestor::div[contains(@class,'k-window k-dialog')]",driver))
+            {
+                WebElement modifiedDialogBox=HelpersMethod.FindByElement(driver,"xpath"   ,"//div[contains(text(),'The order is being modified')]/ancestor::div[contains(@class,'k-window k-dialog')]");
+                WebElement okButton=modifiedDialogBox.findElement(By.xpath(".//button/span[text()='Ok']"));
+                HelpersMethod.ActClick(driver,okButton,10000);
+            }
         }
         catch (Exception e){}
     }

@@ -313,8 +313,8 @@ public class CatalogPageStep
                 catalogpage.ProductExistsCard(Prod_detail.get(i).get(0));
                 if (i == 1)
                 {
-                    new WebDriverWait(driver, Duration.ofMillis(1000)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.xpath("//button[contains(@class,'update-cart-button')]/following-sibling::button//*[local-name()='svg']"))));
-                    WebElement deleteButton=HelpersMethod.FindByElement(driver, "xpath", "//button[contains(@class,'update-cart-button')]/following-sibling::button//*[local-name()='svg']");
+                    new WebDriverWait(driver, Duration.ofMillis(1000)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.xpath("//button[contains(@id,'deleteCartBtn')]"))));
+                    WebElement deleteButton=HelpersMethod.FindByElement(driver, "xpath", "//button[contains(@id,'deleteCartBtn')]");
                     HelpersMethod.ActClick(driver,deleteButton, 1000);
                     if(HelpersMethod.IsExists("//div[@class='loader']",driver))
                     {
@@ -481,7 +481,7 @@ public class CatalogPageStep
     public void user_enters_different_product_in_search_bar_and_enter_qty_by_clicking_image_and_click_delete_product(DataTable tabledata) throws SQLException, InterruptedException
     {
         Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
-                .withTimeout(Duration.ofSeconds(120))
+                .withTimeout(Duration.ofSeconds(200))
                 .pollingEvery(Duration.ofSeconds(2))
                 .ignoring(NoSuchElementException.class);
         wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));

@@ -16,7 +16,8 @@ import java.io.IOException;
  * @Author Divya.Ramadas@afsi.com
  */
 @CucumberOptions
-        (features = {"src/test/resources/features_DSD_OMS/CompetitivePricingFeature/competitivePricingFeature.feature",
+        (features = {
+                     "src/test/resources/features_DSD_OMS/CompetitivePricingFeature/competitivePricingFeature.feature",
                      "src/test/resources/features_DSD_OMS/CompetitivePricingFeature/competitivePricingFeature1.feature",
                      "src/test/resources/features_DSD_OMS/CompetitivePricingFeature/competitivePricingFeatureERP.feature"
                   },

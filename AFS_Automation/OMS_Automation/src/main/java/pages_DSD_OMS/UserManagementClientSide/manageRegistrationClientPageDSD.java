@@ -361,4 +361,38 @@ public class manageRegistrationClientPageDSD
         }
         catch (Exception e){}
     }
+
+    public void enterPrimaryCustomerAccountOMS()
+    {
+        exists=false;
+        try
+        {
+            if(HelpersMethod.IsExists("//div[@id='primaryAccountCard']",driver))
+            {
+                WebElement primary=HelpersMethod.FindByElement(driver,"xpath","//div[@id='primaryAccountCard']");
+                HelpersMethod.ScrollElement(driver,primary);
+                String primaryAccount = TestBase.testEnvironment.FullAcc();
+                WebElement primary1 = HelpersMethod.FindByElement(driver, "id", "add-primary-account-part-1");
+                HelpersMethod.EnterText(driver,primary1,1000,primaryAccount);
+            }
+        }
+        catch (Exception e){}
+    }
+
+    public void enterSecondaryCustomerAccountOMS()
+    {
+            exists=false;
+            try
+            {
+                if(HelpersMethod.IsExists("//div[@class='primary-account-parts-container']",driver))
+                {
+                    WebElement second=HelpersMethod.FindByElement(driver,"xpath","//div[@id='secondaryAccountCard']");
+                    HelpersMethod.ScrollElement(driver,second);
+                    String secondAccount = TestBase.testEnvironment.FullAcc1();
+                    WebElement second1 = HelpersMethod.FindByElement(driver, "id", "add-sec-account-part-1");
+                    HelpersMethod.EnterText(driver,second1,1000,secondAccount);
+                }
+            }
+            catch (Exception e){}
+    }
 }

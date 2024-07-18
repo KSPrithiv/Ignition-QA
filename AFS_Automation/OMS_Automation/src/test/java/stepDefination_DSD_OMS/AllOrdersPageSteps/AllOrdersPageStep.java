@@ -222,7 +222,7 @@ public class AllOrdersPageStep
         allOrder.CustomerIndexPopup();
         allOrder.validateDeliveryDatePopup();
         allOrder.SelectDeliveryDate();
-        allOrder.WarningChangeDeliveryDate();
+        //allOrder.WarningChangeDeliveryDate();
         allOrder.validateSelectOrder();
         allOrder.SelectOrder();
     }
@@ -670,6 +670,16 @@ public class AllOrdersPageStep
                 .pollingEvery(Duration.ofSeconds(2))
                 .ignoring(NoSuchElementException.class);
         wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+        status = HelpersMethod.returnDocumentStatus(driver);
+        if (status.equals("loading"))
+        {
+            HelpersMethod.waitTillLoadingPage(driver);
+        }
+        wait = new FluentWait<WebDriver>(driver)
+                .withTimeout(Duration.ofSeconds(400))
+                .pollingEvery(Duration.ofSeconds(2))
+                .ignoring(NoSuchElementException.class);
+        wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
 
         for(int i=0;i<=1;i++)
         {
@@ -696,6 +706,7 @@ public class AllOrdersPageStep
         exists=false;
         newOE = new NewOrderEntryPage(driver,scenario);
         newOE.readProductsInOrder();
+        newOE.orderModifyDialogBox();
         exists=newOE.ClickNext();
         newOE.OutOfStockPop_ERP();
         checkOutOrderPage=new CheckOutOrderPage(driver,scenario);

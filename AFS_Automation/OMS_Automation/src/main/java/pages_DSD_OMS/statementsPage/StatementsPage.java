@@ -324,23 +324,31 @@ public class StatementsPage
         String pMonth;
         String status;
         WebElement monthFromDropDown;
+        Actions act=new Actions(driver);
         try
         {
-            prMonth=HelpersMethod.FindByElement(driver,"xpath","//span[@id='ddlMonth']/span[contains(@class,'input')]").getText();
-            scenario.log("MONTH BEFORE CHANGING: "+prMonth);
-            HelpersMethod.ClickBut(driver,monthDropdown,10000);
+            prMonth = HelpersMethod.FindByElement(driver, "xpath", "//span[@id='ddlMonth']/span[contains(@class,'input')]").getText();
+            scenario.log("MONTH BEFORE CHANGING: " + prMonth);
+            HelpersMethod.ClickBut(driver, monthDropdown, 10000);
             Thread.sleep(1000);
-            new WebDriverWait(driver,Duration.ofMillis(20000)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//ul[@id='ddlMonth-listbox-id']/li/span")));
-            List<WebElement> Values=HelpersMethod.FindByElements(driver,"xpath","//ul[@id='ddlMonth-listbox-id']/li/span");
+            new WebDriverWait(driver, Duration.ofMillis(20000)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//ul[@id='ddlMonth-listbox-id']/li/span")));
+            List<WebElement> Values = HelpersMethod.FindByElements(driver, "xpath", "//ul[@id='ddlMonth-listbox-id']/li/span");
 
             // get the len of Month list
             int maxMonth = Values.size();
             // get random number
             Random random = new Random();
             int randomMonth = random.nextInt(maxMonth);
-            // Select the list item
-            Values.get(randomMonth).click();
-
+            for (int i = 0; i <= maxMonth; i++)
+            {
+                act.moveToElement(Values.get(i)).build().perform();
+                if(i==randomMonth)
+                {
+                    act.moveToElement(Values.get(i)).build().perform();
+                    act.click().build().perform();
+                    break;
+                }
+            }
             status = HelpersMethod.returnDocumentStatus(driver);
             if (status.equals("loading"))
             {
@@ -365,9 +373,9 @@ public class StatementsPage
     public void DateDropdown()
     {
         exists=false;
-        String prDate=null;
-        String pDate=null;
-        String status="";
+        String prDate;
+        String pDate;
+        String status;
         Actions act=new Actions(driver);
         WebElement dateFromDropDown;
         try

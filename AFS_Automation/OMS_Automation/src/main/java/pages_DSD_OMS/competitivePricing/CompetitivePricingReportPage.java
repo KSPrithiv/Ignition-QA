@@ -136,7 +136,8 @@ public class CompetitivePricingReportPage
               if(custAcc.equalsIgnoreCase(listText))
               {
                   act.moveToElement(listEle).build().perform();
-                  HelpersMethod.JScriptClick(driver,listEle,10000);
+                  act.click().build().perform();
+                  //HelpersMethod.JScriptClick(driver,listEle,10000);
                   break;
               }
            }
@@ -204,7 +205,7 @@ public class CompetitivePricingReportPage
                  if(HelpersMethod.IsExists("//div[@class='i-filter-tag ']/descendant::button[contains(@class,'i-filter-tag__clear')]",driver))
                  {
                      WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='i-filter-tag ']/descendant::button[contains(@class,'i-filter-tag__clear')]");
-                     HelpersMethod.ClickBut(driver, WebEle, 1000);
+                     HelpersMethod.ClickBut(driver, WebEle, 10000);
                  }
                  if(HelpersMethod.IsExists("//div[@class='loader']",driver))
                  {
@@ -354,9 +355,9 @@ public class CompetitivePricingReportPage
                 HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100000);
             }
 
-            if(HelpersMethod.IsExists("//span[contains(@class,'k-widget k-multiselect')]",driver))
+            if(HelpersMethod.IsExists("//div[@class='report-group-by--component'][1]/descendant::span[contains(@class,'i-multiselect')]/descendant::input[@id='dropdown']",driver))
             {
-                WebElement chineOption = HelpersMethod.FindByElement(driver, "xpath", "//span[contains(@class,'k-widget k-multiselect')]");
+                WebElement chineOption = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='report-group-by--component'][1]/descendant::span[contains(@class,'i-multiselect')]/descendant::input[@id='dropdown']");
                 HelpersMethod.ActClick(driver, chineOption, 10000);
                 exists=true;
             }
@@ -376,9 +377,9 @@ public class CompetitivePricingReportPage
         exists=false;
         try
         {
-            if(HelpersMethod.IsExists("//div[contains(@class,'k-popup k-child-animation-container k-slide')]",driver))
+            if(HelpersMethod.IsExists("//div[@class='k-child-animation-container']",driver))
             {
-                WebElement checkBox=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-popup k-child-animation-container k-slide')]/descendant::ul/li[1]/descendant::input");
+                WebElement checkBox=HelpersMethod.FindByElement(driver,"xpath","//ul[@id='dropdownlist']/li[1]/descendant::input");
                 HelpersMethod.ActClick(driver,checkBox,10000);
                 exists=true;
             }

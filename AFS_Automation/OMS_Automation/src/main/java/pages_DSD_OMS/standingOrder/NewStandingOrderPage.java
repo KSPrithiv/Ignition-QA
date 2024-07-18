@@ -800,7 +800,7 @@ public class NewStandingOrderPage
                 for(WebElement enabledDate:enabledDates)
                 {
                     i++;
-                    if(i==length-4)
+                    if(i==length-2)
                     {
                         //tempEle=HelpersMethod.FindByElement(driver,"xpath","//td[contains(@style,'opacity: 1')]["+i+"]/span");
                         //HelpersMethod.ScrollElement(driver,tempEle);

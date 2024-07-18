@@ -236,9 +236,9 @@ public class OrderHistoryPage
                   scenario.log("ORDER NUMBER SELECTED FROM ORDER HISTORY PAGE FOR CREATING COPY IS: "+OrderNo.getText());
 
                   //code to select first order in order history
-                  WebElement OrderHist = HelpersMethod.FindByElement(driver, "xpath", "//tr[contains(@class,'k-master-row')]["+i+"]");
-                  //act1.moveToElement(OrderHist).click().build().perform();
-                  HelpersMethod.clickOn(driver,OrderHist,10000);
+                  WebElement OrderHist = HelpersMethod.FindByElement(driver, "xpath", "//tr[contains(@class,'k-master-row')]["+i+"]/td[2]");
+                  act1.moveToElement(OrderHist).build().perform();
+                  act1.click().build().perform();
                   exists=true;
                   break;
               }

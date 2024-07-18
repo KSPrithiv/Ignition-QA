@@ -9,6 +9,7 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.Wait;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import java.sql.SQLException;
 import java.time.Duration;
@@ -111,7 +112,7 @@ public class orderFactorAdminPage
     {
         exists=false;
         Actions act=new Actions(driver);
-        String oFLevelText=null;
+        String oFLevelText;
         try
         {
             Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
@@ -119,6 +120,9 @@ public class orderFactorAdminPage
                     .pollingEvery(Duration.ofSeconds(2))
                     .ignoring(NoSuchElementException.class);
             wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
+            new WebDriverWait(driver,Duration.ofMillis(10000)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.xpath("//ul[@id='orderFactorTypeDdllist']/li/span"))));
+            new WebDriverWait(driver,Duration.ofMillis(10000)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//ul[@id='orderFactorTypeDdllist']/li/span")));
 
             if(HelpersMethod.IsExists("//ul[@id='orderFactorTypeDdllist']/li/span",driver))
             {
@@ -165,6 +169,12 @@ public class orderFactorAdminPage
         String LevelText;
         try
         {
+            Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(200))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
             LevelText=HelpersMethod.JSGetValueEle(driver,orderFactorInput,10000);
             if(LevelText.equalsIgnoreCase(qtyOrderFactorlevel))
             {
@@ -648,20 +658,39 @@ public class orderFactorAdminPage
         catch (Exception e){}
     }
 
-    public void selectProductOfOrderFactor()
+    public void selectProductOfOrderFactor(String prodNo)
     {
         exists=false;
+        Actions act=new Actions(driver);
+        int i=0;
+        String headText;
         try
         {
             if(HelpersMethod.IsExists("//div[@class='i-no-data__message']",driver))
             {
                 scenario.log("<span style='color:red'>PRODUCT HAS NOT BEEN FOUND TO DELETE PRODUCT FROM ORDER FACTOR</span>");
             }
-            else
-            {
-               WebElement delEle=HelpersMethod.FindByElement(driver,"xpath","//tr[contains(@class,'k-master-row')]");
-               HelpersMethod.ActClick(driver,delEle,10000);
-               scenario.log("PRODUCT HAS BEEN SELECTED FOR DELETING IN ORDER FACTOR");
+            else {
+                List<WebElement> heads = HelpersMethod.FindByElements(driver, "xpath", "//div[@class='i-grid']/descendant::span[@class='k-column-title']");
+                for (WebElement head : heads) {
+                    i++;
+                    act.moveToElement(head).build().perform();
+                    headText = head.getText();
+                    if (headText.equalsIgnoreCase("Product #")) {
+                        exists = true;
+                        break;
+                    }
+                }
+                Assert.assertEquals(exists, true);
+                exists = false;
+                if (HelpersMethod.IsExists("//td["+i+"][text()="+prodNo+"]/ancestor::tr", driver))
+                {
+                    WebElement delEle = HelpersMethod.FindByElement(driver, "xpath", "//td[" + i + "][text()=" + prodNo + "]/ancestor::tr");
+                    HelpersMethod.ActClick(driver, delEle, 10000);
+                    exists=true;
+                    scenario.log("PRODUCT HAS BEEN SELECTED FOR DELETING IN ORDER FACTOR");
+                }
+                Assert.assertEquals(exists,true);
             }
         }
         catch (Exception e){}
@@ -676,7 +705,7 @@ public class orderFactorAdminPage
         try
         {
             Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
-                    .withTimeout(Duration.ofSeconds(120))
+                    .withTimeout(Duration.ofSeconds(200))
                     .pollingEvery(Duration.ofSeconds(2))
                     .ignoring(NoSuchElementException.class);
             wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
@@ -773,12 +802,15 @@ public class orderFactorAdminPage
         {
             if(HelpersMethod.IsExists("//div[contains(text(),'Are you sure you want to delete this record?')]/ancestor::div[@class='k-window k-dialog']",driver))
             {
-                WebElement deleteOKButton=HelpersMethod.FindByElement(driver,"xpath","//div[@class='k-window k-dialog']/descendant::button/span[text()='OK']");
-                if(deleteOKButton.isEnabled())
-                {
-                    HelpersMethod.ActClick(driver, deleteOKButton, 10000);
-                    exists = true;
-                }
+                WebElement deleteDialogBox=HelpersMethod.FindByElement(driver,"xpath","//div[contains(text(),'Are you sure you want to delete this record?')]/ancestor::div[@class='k-window k-dialog']");
+                WebElement deleteOKButton=deleteDialogBox.findElement(By.xpath(".//button/span[text()='OK']"));
+                HelpersMethod.ActClick(driver, deleteOKButton, 10000);
+                exists = true;
+                Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                        .withTimeout(Duration.ofSeconds(200))
+                        .pollingEvery(Duration.ofSeconds(2))
+                        .ignoring(NoSuchElementException.class);
+                wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
             }
             Assert.assertEquals(exists,true);
         }
@@ -793,6 +825,12 @@ public class orderFactorAdminPage
         String headText;
         try
         {
+            Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(200))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
             List<WebElement> heads=HelpersMethod.FindByElements(driver,"xpath","//div[@class='i-grid']/descendant::span[@class='k-column-title']");
             for(WebElement head:heads)
             {
@@ -807,12 +845,12 @@ public class orderFactorAdminPage
             }
             Assert.assertEquals(exists,true);
             exists=false;
-            if(HelpersMethod.IsExists("//tr[contains(@class,'k-filter-row')]/descendant::input["+i+"]",driver))
+            if(HelpersMethod.IsExists("//tr[contains(@class,'k-filter-row')]/td["+i+"][text()='Product']",driver))
             {
                 WebElement inputBox=HelpersMethod.FindByElement(driver,"xpath","//tr[contains(@class,'k-filter-row')]/descendant::input["+i+"]");
                 HelpersMethod.ClearText(driver,inputBox,10000);
                 HelpersMethod.EnterText(driver,inputBox,10000,prodNo);
-                Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                wait = new FluentWait<WebDriver>(driver)
                         .withTimeout(Duration.ofSeconds(250))
                         .pollingEvery(Duration.ofSeconds(2))
                         .ignoring(NoSuchElementException.class);
@@ -887,7 +925,7 @@ public class orderFactorAdminPage
     public void selectCustomer(String customer)
     {
         exists=false;
-        Actions act=new Actions(driver);
+       // Actions act=new Actions(driver);
         try
         {
             Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
