@@ -200,6 +200,12 @@ public class OrderEntryPage
             WebElement OEMenu = HelpersMethod.FindByElement(driver, "xpath", "//ul[contains(@class,'MuiList-root ')]/descendant::span[contains(text(),'Order Entry')]|//ul[contains(@class,'MuiList-root ')]/descendant::span[contains(text(),'OE')]");
             HelpersMethod.ActClick(driver, OEMenu, 20000);
 
+            wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(400))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
             status = HelpersMethod.returnDocumentStatus(driver);
             if (status.equals("loading"))
             {
@@ -1249,6 +1255,11 @@ public class OrderEntryPage
                 WebElement okButton = ogPopup.findElement(By.xpath(".//button/span[text()='Ok']"));
                 HelpersMethod.ActClick(driver, okButton, 10000);
                 scenario.log("ORDER GUIDE POPUP HAS BEEN FOUND");
+                wait = new FluentWait<WebDriver>(driver)
+                        .withTimeout(Duration.ofSeconds(200))
+                        .pollingEvery(Duration.ofSeconds(2))
+                        .ignoring(NoSuchElementException.class);
+                wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
 
                 status = HelpersMethod.returnDocumentStatus(driver);
                 if (status.equals("loading"))
@@ -1367,6 +1378,11 @@ public class OrderEntryPage
                         .pollingEvery(Duration.ofSeconds(2))
                         .ignoring(NoSuchElementException.class);
                 wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+                status = HelpersMethod.returnDocumentStatus(driver);
+                if (status.equals("loading"))
+                {
+                    HelpersMethod.waitTillLoadingPage(driver);
+                }
             }
         } catch (Exception e) {}
     }

@@ -14,7 +14,10 @@ import java.io.IOException;
  * @Author Divya.Ramadas@afsi.com
  */
 @CucumberOptions
-        (features =  "src/test/resources/features_DSD_OMS/UserManagementClientSideFeature",
+        (features = { "src/test/resources/features_DSD_OMS/UserManagementClientSideFeature/manageRegistrationClientSideFeatureDSD.feature",
+                "src/test/resources/features_DSD_OMS/UserManagementClientSideFeature/userAndAccountsClientSideLoginFeature.feature",
+                "src/test/resources/features_DSD_OMS/UserManagementClientSideFeature/userPendingRegistrationClientSideFeature.feature",
+                },
                 glue = {"stepDefination_DSD_OMS"},
                 plugin = {"pretty",
                         "json:target/cucumber.json",

@@ -57,6 +57,7 @@ public class CompetitorPricingPageERPStep
         competitivePricingReportPage.selectCustomerAccountOptionDropdown(listValue.get(0).get(0));
         competitivePricingReportPage.clickOnChainFromDropDown();
         competitivePricingReportPage.selectChineFromDropDown();
+        competitivePricingReportPage.clickOnChainFromDropDown();
         competitivePricingReportPage.handlePrintButton();
     }
 }
