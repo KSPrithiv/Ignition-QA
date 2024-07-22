@@ -332,7 +332,9 @@ public class ParOrderPage
         Actions act=new Actions(driver);
         try
         {
-            List<WebElement> parListItems=driver.findElements(By.xpath("//div[contains(@class,'k-slide-down-enter')]/descendant::ul/li"));
+            new WebDriverWait(driver,Duration.ofMillis(10000)).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//ul[@id='dropDownNoneType-listbox-id']/descendant::span")));
+            new WebDriverWait(driver,Duration.ofMillis(10000)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//ul[@id='dropDownNoneType-listbox-id']/descendant::span")));
+            List<WebElement> parListItems=driver.findElements(By.xpath("//ul[@id='dropDownNoneType-listbox-id']/descendant::span"));
             for (WebElement pList:parListItems)
             {
                 exists=false;
@@ -341,8 +343,8 @@ public class ParOrderPage
                 if(pList_text.equalsIgnoreCase(parList))
                 {
                     act.moveToElement(pList).build().perform();
-                    //act.click().build().perform();
-                    HelpersMethod.JScriptClick(driver,pList,10000);
+                    act.click().build().perform();
+                    //HelpersMethod.JScriptClick(driver,pList,10000);
                     scenario.log(" PAR LIST FOUND IS "+pList_text);
                     exists=true;
                     break;

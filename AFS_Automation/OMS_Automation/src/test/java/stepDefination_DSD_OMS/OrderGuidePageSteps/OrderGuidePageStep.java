@@ -527,9 +527,9 @@ public class OrderGuidePageStep
         createOGPage.compareSequenceNosFound();
     }
 
-    @Then("User enters Description {string}")
-    public void userEntersDescription(String arg0)
-    {
-
-    }
+//    @Then("User enters Description {string}")
+//    public void userEntersDescription(String arg0)
+//    {
+//
+//    }
 }
