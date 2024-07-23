@@ -33,7 +33,6 @@ public class NewStandingOrderPage
     static boolean exists=false;
     static String Prod_No;
     static String Prod_Name;
-    static String Pro1;
     static String ProNo;
 
     @FindBy (xpath="//div[@id='card1']/descendant::span[contains(@class,'k-icon k-i-arrow-chevron-down')]")
@@ -1341,6 +1340,23 @@ public class NewStandingOrderPage
         Actions act=new Actions(driver);
         try
         {
+            Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(400))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
+            String status = HelpersMethod.returnDocumentStatus(driver);
+            if (status.equals("loading"))
+            {
+                HelpersMethod.waitTillLoadingPage(driver);
+            }
+            wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(400))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
             //Catalog displayed in list view
             if (HelpersMethod.IsExists("//div[contains(@class,'k-window k-dialog')]/descendant::div[contains(@class,'i-grid')]", driver))
             {
@@ -1364,7 +1380,7 @@ public class NewStandingOrderPage
                     WebElement applyButton = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-child-animation-container')]/descendant::button/span[text()='Apply']");
                     HelpersMethod.ClickBut(driver, applyButton, 10000);
 
-                    Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                    wait = new FluentWait<WebDriver>(driver)
                             .withTimeout(Duration.ofSeconds(400))
                             .pollingEvery(Duration.ofSeconds(2))
                             .ignoring(NoSuchElementException.class);
@@ -1389,7 +1405,7 @@ public class NewStandingOrderPage
                                 {
                                     WebElement clearBut=HelpersMethod.FindByElement(driver,"xpath","//div[@class='k-widget k-window k-dialog']/descendant::th[@aria-label='Filter']["+i+"]/descendant::button/span[contains(@class,'k-clear-button-visible')]");
                                     HelpersMethod.ClickBut(driver,clearBut,10000);
-                                    Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                                    wait = new FluentWait<WebDriver>(driver)
                                             .withTimeout(Duration.ofSeconds(400))
                                             .pollingEvery(Duration.ofSeconds(2))
                                             .ignoring(NoSuchElementException.class);
@@ -1398,7 +1414,7 @@ public class NewStandingOrderPage
                                 WebElement inputBox = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='k-widget k-window k-dialog']/descendant::th[@aria-label='Filter'][" + i + "]/descendant::input");
                                 HelpersMethod.EnterText(driver, inputBox, 10000,Prod_Name);
                                 exists=true;
-                                Wait<WebDriver>  wait = new FluentWait<WebDriver>(driver)
+                                wait = new FluentWait<WebDriver>(driver)
                                         .withTimeout(Duration.ofSeconds(400))
                                         .pollingEvery(Duration.ofSeconds(2))
                                         .ignoring(NoSuchElementException.class);
@@ -1806,7 +1822,7 @@ public class NewStandingOrderPage
                 i++;
                 act.moveToElement(head).build().perform();
                 head_text=head.getText();
-                if(head_text.equals("Description"))
+                if(head_text.equals("Product Number"))
                 {
                     Prod_Name=HelpersMethod.FindByElement(driver,"xpath","//tr[contains(@class,'k-master-row')][1]/descendant::td["+i+"]").getText();
                     exists=true;
@@ -1817,7 +1833,7 @@ public class NewStandingOrderPage
             {
                 scenario.log("PRODUCT DESCRIPTION HEADER IS NOT FOUND");
             }
-            scenario.log("PRODUCT DESCRIPTION FOUND IN GRID IS : "+Prod_Name);
+            scenario.log("PRODUCT NUMBER FOUND IN GRID IS : "+Prod_Name);
             //To zoom in browser back to 100%
             if(TestBase.testEnvironment.get_browser().equalsIgnoreCase("chrome")|TestBase.testEnvironment.get_browser().equalsIgnoreCase("edge"))
             {

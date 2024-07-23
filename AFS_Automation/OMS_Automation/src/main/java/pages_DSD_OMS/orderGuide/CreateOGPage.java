@@ -647,6 +647,18 @@ public class CreateOGPage
                 HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000000);
             }
 
+            //To zoom out browser by 67%
+            if(TestBase.testEnvironment.get_browser().equalsIgnoreCase("chrome")|TestBase.testEnvironment.get_browser().equalsIgnoreCase("edge"))
+            {
+                JavascriptExecutor js = (JavascriptExecutor) driver;
+                js.executeScript("document.body.style.zoom='67%'");
+            }
+            else if(TestBase.testEnvironment.get_browser().equalsIgnoreCase("firefox"))
+            {
+                JavascriptExecutor js=(JavascriptExecutor)driver;
+                js.executeScript("document.body.style.MozTransform='67%'");
+            }
+
             WebElement WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='bottomDetailCard']");
             HelpersMethod.ScrollElement(driver,WebEle);
             String Seqno;
@@ -2910,6 +2922,18 @@ public class CreateOGPage
         Actions act=new Actions(driver);
         try
         {
+            //To zoom out browser by 67%
+            if(TestBase.testEnvironment.get_browser().equalsIgnoreCase("chrome")|TestBase.testEnvironment.get_browser().equalsIgnoreCase("edge"))
+            {
+                JavascriptExecutor js = (JavascriptExecutor) driver;
+                js.executeScript("document.body.style.zoom='67%'");
+            }
+            else if(TestBase.testEnvironment.get_browser().equalsIgnoreCase("firefox"))
+            {
+                JavascriptExecutor js=(JavascriptExecutor)driver;
+                js.executeScript("document.body.style.MozTransform='67%'");
+            }
+
             List<WebElement> gridHeaders=HelpersMethod.FindByElements(driver,"xpath","//span[contains(@class,'k-column-title')]");
             for (WebElement gridHeader:gridHeaders)
             {
@@ -2982,6 +3006,17 @@ public class CreateOGPage
                 {
                     scenario.log("SEQUNCE FOUND BEFORE "+sequence1+" "+"SEQUNCE FOUND AFTER CLICKING ARROW "+sequence2);
                     exists=true;
+                }
+                //To zoom out browser by 100%
+                if(TestBase.testEnvironment.get_browser().equalsIgnoreCase("chrome")|TestBase.testEnvironment.get_browser().equalsIgnoreCase("edge"))
+                {
+                    JavascriptExecutor js = (JavascriptExecutor) driver;
+                    js.executeScript("document.body.style.zoom='100%'");
+                }
+                else if(TestBase.testEnvironment.get_browser().equalsIgnoreCase("firefox"))
+                {
+                    JavascriptExecutor js=(JavascriptExecutor)driver;
+                    js.executeScript("document.body.style.MozTransform='100%'");
                 }
             }
             else

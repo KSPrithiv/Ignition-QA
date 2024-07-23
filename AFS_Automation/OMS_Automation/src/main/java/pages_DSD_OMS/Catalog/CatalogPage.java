@@ -18,6 +18,7 @@ import util.TestBase;
 
 import java.time.Duration;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -46,7 +47,7 @@ public class CatalogPage
     @FindBy(xpath = "//span[@id='searchBarClearBtn']//*[local-name()='svg']")
     private WebElement SearchClear;
 
-    @FindBy(id="sort-by-dropdown-accessibility-id")
+    @FindBy(xpath="//span[@id='sort-by-dropdown']/descendant::button")
     private WebElement SortByDropDown;
 
     @FindBy(xpath = "//div[contains(@class,'shopping-cart-container')]//*[local-name()='svg']")
@@ -230,7 +231,7 @@ public class CatalogPage
     public void Best_MatchDropDown(String DropSelect)
     {
         exists=false;
-        WebElement WebEle;
+
         Actions act1=new Actions(driver);
         Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
                 .withTimeout(Duration.ofSeconds(400))
@@ -240,7 +241,7 @@ public class CatalogPage
 
         try
         {
-            if(SortByDropDown.isDisplayed())
+            if(HelpersMethod.IsExists("//span[@id='sort-by-dropdown']/descendant::button",driver))
             {
                 HelpersMethod.ScrollElement(driver,SortByDropDown);
                 HelpersMethod.ActClick(driver,SortByDropDown,10000);
@@ -1080,9 +1081,9 @@ public class CatalogPage
         {
             HelpersMethod.ScrollElement(driver,Categories);
             HelpersMethod.ClickBut(driver,Categories,10000);
-            new WebDriverWait(driver,Duration.ofMillis(10000)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class,'k-animation-container k-animation-container-relative k-list-container k-reset i-common-dropdown i-common-dropdown__type-none k-animation-container-shown')]"))));
+            new WebDriverWait(driver,Duration.ofMillis(10000)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.xpath("//ul[@id='CPcategories-listbox-id']/descendant::span"))));
 
-            List<WebElement> Options=HelpersMethod.FindByElements(driver,"xpath","//ul[contains(@id,'dropDownNoneType-listbox-id')]/li");
+            List<WebElement> Options=HelpersMethod.FindByElements(driver,"xpath","//ul[@id='CPcategories-listbox-id']/descendant::span");
             for(WebElement opt: Options)
             {
                 act1.moveToElement(opt).build().perform();
@@ -1158,10 +1159,10 @@ public class CatalogPage
         try
         {
             HelpersMethod.ClickBut(driver,SubCat,10000);
-            new WebDriverWait(driver,Duration.ofMillis(10000)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class,'k-animation-container k-animation-container-relative k-list-container k-reset i-common-dropdown i-common-dropdown__type-none k-animation-container-shown')]"))));
+            new WebDriverWait(driver,Duration.ofMillis(10000)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.xpath("//ul[@id='CPbrands-listbox-id']/descendant::span"))));
 
             //WebElement menuContainer = HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-animation-container k-animation-container-relative k-list-container')]");
-            List<WebElement> Options=HelpersMethod.FindByElements(driver,"xpath","//div[contains(@class,'k-animation-container k-animation-container-relative k-list-container')]/descendant::ul/li");
+            List<WebElement> Options=HelpersMethod.FindByElements(driver,"xpath","//ul[@id='CPbrands-listbox-id']/descendant::span");
             for(WebElement opt: Options)
             {
                 act1.moveToElement(opt).build().perform();
@@ -1204,10 +1205,10 @@ public class CatalogPage
         try
         {
             HelpersMethod.ClickBut(driver,Brand,10000);
-            new WebDriverWait(driver,Duration.ofMillis(80000)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class,'k-animation-container k-animation-container-relative k-list-container')]"))));
+            new WebDriverWait(driver,Duration.ofMillis(80000)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.xpath("//ul[@id='CPsizes-listbox-id']/descendant::span"))));
 
-            WebElement menuContainer = HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-animation-container k-animation-container-relative k-list-container')]");
-            List<WebElement> Options=menuContainer.findElements (By.xpath(".//ul/li"));
+            //WebElement menuContainer = HelpersMethod.FindByElement(driver,"xpath","//ul[@id='CPsizes-listbox-id']/descendant::span");
+            List<WebElement> Options=HelpersMethod.FindByElements (driver,"xpath", "//ul[@id='CPsizes-listbox-id']/descendant::span");
             for(WebElement opt: Options)
             {
                 act1.moveToElement(opt).build().perform();
@@ -1255,11 +1256,11 @@ public class CatalogPage
             {
                 HelpersMethod.ScrollElement(driver,OGDrop);
                 HelpersMethod.ClickBut(driver, OGDrop, 10000);
-                new WebDriverWait(driver,Duration.ofMillis(80000)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class,'k-animation-container k-animation-container-relative k-list-container')]"))));
+                new WebDriverWait(driver,Duration.ofMillis(80000)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.xpath("//ul[@id='CPorderGuies-listbox-id']/descendant::span"))));
 
                 //check for drop down for OG
                 //WebElement dropDownMenu=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-animation-container k-animation-container-relative k-list-container')]");
-                List<WebElement> dropOptions=HelpersMethod.FindByElements(driver,"xpath","//div[contains(@class,'k-animation-container k-animation-container-relative k-list-container')]/descendant::ul/li");
+                List<WebElement> dropOptions=HelpersMethod.FindByElements(driver,"xpath","//ul[@id='CPorderGuies-listbox-id']/descendant::span");
                 for (WebElement dropOpt:dropOptions)
                 {
                     i++;
@@ -1827,12 +1828,13 @@ public class CatalogPage
             Thread.sleep(1500);
             WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='list-view']");
             HelpersMethod.ScrollElement(driver, WebEle);
-            List<WebElement> Prices = HelpersMethod.FindByElements(driver, "xpath", "//span[@class='product-price']");
+            List<WebElement> Prices = HelpersMethod.FindByElements(driver, "xpath", "//tr/descendant::span[@class='product-price']");
             ArrayList<Double> Prices1 = new ArrayList<Double>();
             ArrayList<Double> Prices2 = new ArrayList<Double>();
 
             //copy content of web element, i.e. prices to list
-            for (WebElement Price : Prices) {
+            for (WebElement Price : Prices)
+            {
                 String Price_Text = Price.getText();
                 if (!Price_Text.equals(" "))
                 {
@@ -1841,13 +1843,15 @@ public class CatalogPage
                 }
             }
             //Sort the values in ascending order
-            Collections.sort(Prices1);
+            //Collections.sort(Prices1);
+            Double[] prices1=Prices1.toArray(new Double[Prices1.size()]);
+            Arrays.sort(prices1);
 
             //Comparing List of integers, to find whether array is in sorted order
-            for (int i = 0; i < Prices1.size(); i++)
+            for (int i = 0; i < Prices2.size(); i++)
             {
-                System.out.println("VALUES AFTER SELECTING PRICE SORT FROM DROP DOWN " + Prices1.get(i) + " VALUE AFTER PROGRAMMATICALLY SORTING " + Prices2.get(i));
-                if (Prices1.get(i).equals(Prices2.get(i)))
+                System.out.println("VALUES AFTER SELECTING PRICE SORT FROM DROP DOWN " + prices1[1] + " VALUE AFTER PROGRAMMATICALLY SORTING " + Prices2.get(i));
+                if (prices1[i].equals(Prices2.get(i)))
                 {
                     result = true;
                     scenario.log("EXPECTED VALUE: " + Prices1.get(i) + " FOUND VALUE: " + Prices2.get(i));
