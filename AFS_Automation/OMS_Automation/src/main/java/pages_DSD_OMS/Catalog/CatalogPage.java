@@ -138,71 +138,10 @@ public class CatalogPage
                     .pollingEvery(Duration.ofSeconds(2))
                     .ignoring(NoSuchElementException.class);
             wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
-
-            showAllProducts();
             Assert.assertEquals(exists,true);
         }
         catch (Exception e){}
     }
-
-    public void showAllProducts()
-    {
-        Actions act=new Actions(driver);
-        String dropText;
-        try
-        {
-            Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
-                    .withTimeout(Duration.ofSeconds(400))
-                    .pollingEvery(Duration.ofSeconds(2))
-                    .ignoring(NoSuchElementException.class);
-            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
-            String status = HelpersMethod.returnDocumentStatus(driver);
-            if (status.equals("loading"))
-            {
-                HelpersMethod.waitTillLoadingPage(driver);
-            }
-            wait = new FluentWait<WebDriver>(driver)
-                    .withTimeout(Duration.ofSeconds(400))
-                    .pollingEvery(Duration.ofSeconds(2))
-                    .ignoring(NoSuchElementException.class);
-            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
-
-            if(HelpersMethod.IsExists("//span[@id='CPQoh-accessibility-id']/span[@class='k-input-value-text']",driver))
-            {
-                WebElement dropDown=HelpersMethod.FindByElement(driver,"xpath","//span[@id='CPQoh-accessibility-id']/following-sibling::button");
-                HelpersMethod.ClickBut(driver,dropDown,10000);
-                List<WebElement> dropLists=HelpersMethod.FindByElements(driver,"xpath","//ul[@id='CPQoh-listbox-id']/descendant::span[@class='k-list-item-text']");
-                for(WebElement dropList:dropLists)
-                {
-                   act.moveToElement(dropList).build().perform();
-                   dropText=dropList.getText();
-                   if(dropText.equalsIgnoreCase("Show all products"))
-                   {
-                       act.moveToElement(dropList).build().perform();
-                       act.click(dropList).build().perform();
-                       break;
-                   }
-                }
-                wait = new FluentWait<WebDriver>(driver)
-                        .withTimeout(Duration.ofSeconds(400))
-                        .pollingEvery(Duration.ofSeconds(2))
-                        .ignoring(NoSuchElementException.class);
-                wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
-                status = HelpersMethod.returnDocumentStatus(driver);
-                if (status.equals("loading"))
-                {
-                    HelpersMethod.waitTillLoadingPage(driver);
-                }
-                wait = new FluentWait<WebDriver>(driver)
-                        .withTimeout(Duration.ofSeconds(400))
-                        .pollingEvery(Duration.ofSeconds(2))
-                        .ignoring(NoSuchElementException.class);
-                wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
-            }
-        }
-        catch (Exception e){}
-    }
-
 
     //Code to click on Card view
     public void Click_CardView()
@@ -476,11 +415,12 @@ public class CatalogPage
                     .ignoring(NoSuchElementException.class);
             wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
 
+
             //Click on search Index button
             WebEle=HelpersMethod.FindByElement(driver,"xpath","//span[@datatestid='searchBarSearchBtn']");
             HelpersMethod.ClickBut(driver,WebEle,10000);
             wait = new FluentWait<WebDriver>(driver)
-                    .withTimeout(Duration.ofSeconds(400))
+                    .withTimeout(Duration.ofSeconds(120))
                     .pollingEvery(Duration.ofSeconds(2))
                     .ignoring(NoSuchElementException.class);
             wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
@@ -490,12 +430,6 @@ public class CatalogPage
             {
                 HelpersMethod.waitTillLoadingPage(driver);
             }
-            wait = new FluentWait<WebDriver>(driver)
-                    .withTimeout(Duration.ofSeconds(400))
-                    .pollingEvery(Duration.ofSeconds(2))
-                    .ignoring(NoSuchElementException.class);
-            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
-
             exists=true;
             Assert.assertEquals(exists,true);
         }
@@ -518,6 +452,7 @@ public class CatalogPage
             .pollingEvery(Duration.ofSeconds(2))
             .ignoring(NoSuchElementException.class);
         wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
 
         try
         {

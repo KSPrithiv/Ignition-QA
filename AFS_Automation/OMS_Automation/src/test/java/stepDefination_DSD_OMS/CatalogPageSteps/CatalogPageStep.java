@@ -308,7 +308,7 @@ public class CatalogPageStep
                 WebEle=HelpersMethod.FindByElement(driver, "xpath", "//span[contains(@class,'search-button')]/*[local-name()='svg']/*[local-name()='path' and contains(@d,'M17')]");
                 HelpersMethod.ClickBut(driver,WebEle,1000000);
             }
-            else
+            else if (exists == false)
             {
                 catalogpage.ProductExistsCard(Prod_detail.get(i).get(0));
                 if (i == 1)
