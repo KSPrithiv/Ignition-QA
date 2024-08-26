@@ -236,7 +236,7 @@ public class userAndAdmin_PendingRegApprovalPage
     public void validateTabNavigatedTo(String navigateTab)
     {
         exists=false;
-        String tabValue="";
+        String tabValue;
         try
         {
             Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
@@ -262,7 +262,7 @@ public class userAndAdmin_PendingRegApprovalPage
     {
         try
         {
-            String optText="";
+            String optText;
             Actions act1= new Actions(driver);
             HelpersMethod.waitTillElementLocatedDisplayed(driver,"xpath","//div[contains(@class,'k-child-animation-container')]",10000);
 

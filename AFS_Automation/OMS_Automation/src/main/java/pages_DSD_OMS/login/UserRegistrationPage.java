@@ -2,7 +2,10 @@ package pages_DSD_OMS.login;
 
 import helper.HelpersMethod;
 import io.cucumber.java.Scenario;
+import net.bytebuddy.asm.Advice;
+import org.apache.logging.log4j.core.tools.picocli.CommandLine;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -95,23 +98,29 @@ public class UserRegistrationPage
     public void EnterAccount_No()
     {
         String Account_No;
+        exists=false;
         try
         {
-            if(HelpersMethod.EleDisplay(Acc3))
+            if(HelpersMethod.EleDisplay(Acc1))
             {
-                Account_No= TestBase.testEnvironment.FullAcc();
-                String[] accArray = Account_No.split("-");
-
-                //Enter the Customer Account#
-                HelpersMethod.EnterText(driver,Acc1,1,accArray[0]);
-                HelpersMethod.EnterText(driver,Acc2,1,accArray[1]);
-                HelpersMethod.EnterText(driver,Acc3,1,accArray[2]);
+                Account_No = TestBase.testEnvironment.FullAcc();
+                if (Account_No.contains("-"))
+                {
+                    String[] accArray = Account_No.split("-");
+                    //Enter the Customer Account#
+                    HelpersMethod.EnterText(driver, Acc1, 10000, accArray[0]);
+                    HelpersMethod.EnterText(driver, Acc2, 10000, accArray[1]);
+                    HelpersMethod.EnterText(driver, Acc3, 10000, accArray[2]);
+                    exists=true;
+                }
+                else
+                {
+                    HelpersMethod.EnterText(driver, Acc1, 10000, Account_No);
+                    exists=true;
+                }
+                scenario.log("ACCOUNT NUMBER ENTERED IS "+Account_No);
             }
-            else if(HelpersMethod.EleDisplay(Acc1))
-            {
-                HelpersMethod.EnterText(driver,Acc1,1,TestBase.testEnvironment.get_Account());
-                scenario.log(TestBase.testEnvironment.get_Account());
-            }
+            Assert.assertEquals(exists,true);
         }
         catch (Exception e) {}
     }
@@ -422,5 +431,29 @@ public class UserRegistrationPage
             }
         }
         catch (Exception e) {}
+    }
+
+    public void displayFindAcc()
+    {
+        exists=false;
+        try
+        {
+            if(HelpersMethod.IsExists("//span[text()='Find account']/ancestor::button",driver))
+            {
+                WebElement findButton=HelpersMethod.FindByElement(driver,"xpath","//span[text()='Find account']/ancestor::button");
+                HelpersMethod.ClickBut(driver,findButton,10000);
+                Thread.sleep(2000);
+                if(HelpersMethod.IsExists("//div[contains(text(),'Customer account name')]",driver))
+                {
+                    exists = true;
+                }
+                else if(HelpersMethod.IsExists("//div[text()='The account number does not exist.']",driver))
+                {
+                    exists=false;
+                }
+            }
+            Assert.assertEquals(exists,true);
+        }
+        catch (Exception e){}
     }
 }

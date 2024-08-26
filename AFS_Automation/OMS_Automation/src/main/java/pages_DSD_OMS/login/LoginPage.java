@@ -342,6 +342,7 @@ public class LoginPage
             {
                 HelpersMethod.waitTillLoadingPage(driver);
             }
+            HelpersMethod.ScrollElement(driver,SignIn);
             if(HelpersMethod.IsExists("//a[@id='registerHereLink']",driver))
             {
                 scenario.log("REGISTER HERE BUTTON IS VISIBLE ON LOGIN PAGE");
@@ -430,11 +431,22 @@ public class LoginPage
                 HelpersMethod.waitTillLoadingPage(driver);
             }
 
-            if (HelpersMethod.IsExists("//div[@class='loader']", driver))
+            Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(400))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
+            status = HelpersMethod.returnDocumentStatus(driver);
+            if (status.equals("loading"))
             {
-                WebElement WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000000);
+                HelpersMethod.waitTillLoadingPage(driver);
             }
+            wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(400))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
 
             status = HelpersMethod.returnDocumentStatus(driver);
             if (status.equals("loading"))
@@ -449,6 +461,7 @@ public class LoginPage
             // to fetch the web elements of the modal content and interact with them, code to fetch content of modal title and verify it
             WebElement modalContentTitle = modalContainer.findElement(By.xpath(".//span[contains(@class,'k-window-titlebar')]"));
             Assert.assertEquals(modalContentTitle.getText(), "Customer account index", "Verify Title message");
+            scenario.log("CUSTOMER ACCOUNT INDEX DIALOG BOX HAS BEEN FOUND");
         }
         catch (Exception e){}
     }
@@ -462,7 +475,7 @@ public class LoginPage
         String status;
         try
         {
-            Thread.sleep(4000);
+            Thread.sleep(6000);
             //new WebDriverWait(driver, 2000).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(text(),'Customer account index')]/ancestor::div[contains(@class,'k-window k-dialog')]")));
             WebElement modalContainer = driver.findElement(By.xpath("//div[@id='customerAccountIndexDialog']/ancestor::div[contains(@class,'k-window k-dialog')]"));
             status = HelpersMethod.returnDocumentStatus(driver);

@@ -2,7 +2,6 @@ package pages_DSD_OMS.customerInquiry_DSD;
 
 import helper.HelpersMethod;
 import io.cucumber.java.Scenario;
-import org.apache.logging.log4j.core.tools.picocli.CommandLine;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
@@ -79,7 +78,7 @@ public class IgnitionPage
     public String ClickOnDropDownSelectRandom(WebElement WebEle,String xpathValue)
     {
         exists=false;
-        String TextDropDown=null;
+
         try
         {
             HelpersMethod.ActClick(driver,WebEle,1000);

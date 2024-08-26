@@ -144,6 +144,7 @@ Feature: scenarios for admin credentials and client credentials
       |Main menu|Sub menu    | AdminControl                                          |Id                                   |
       |Security |Permissions | Allow user to change the shipping address of the order|accessorderentrychangeshippingaddress|
 
+
   @ShippingAddressEnabled
   Scenario Outline: Test scenario for verifying shipping address should be selected by default
     Given User enters URL and is on login page for admin and client Test scenarios

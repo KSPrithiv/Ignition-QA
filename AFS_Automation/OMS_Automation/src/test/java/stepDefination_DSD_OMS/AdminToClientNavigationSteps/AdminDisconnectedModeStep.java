@@ -9,10 +9,8 @@ import org.openqa.selenium.WebDriver;
 import pages_DSD_OMS.Catalog.CatalogPage;
 import pages_DSD_OMS.disconnectedMode.DMOEPage;
 import pages_DSD_OMS.login.HomePage;
-import pages_DSD_OMS.login.LoginPage;
 import pages_DSD_OMS.orderEntry.NewOrderEntryPage;
 import pages_DSD_OMS.orderEntry.OrderEntryPage;
-import pages_DSD_OMS.webOrdering.AdminHomePage;
 import util.TestBase;
 
 import java.awt.*;
@@ -41,7 +39,7 @@ public class AdminDisconnectedModeStep
     }
 
     @When("User is on Home Page for DM for admin setting")
-    public void user_is_on_home_pageForDMForAdminSetting() throws InterruptedException, AWTException
+    public void user_is_on_home_pageForDMForAdminSetting()
     {
             //verify the home page
             homepage = new HomePage(driver,scenario);
@@ -49,7 +47,7 @@ public class AdminDisconnectedModeStep
     }
 
     @Then("User navigate to Client side for DM for admin setting")
-    public void user_navigate_to_client_sideForDMForAdminSetting() throws InterruptedException, AWTException
+    public void user_navigate_to_client_sideForDMForAdminSetting()
     {
             homepage = new HomePage(driver,scenario);
             homepage.verifyUserinfoContainer();
@@ -64,7 +62,7 @@ public class AdminDisconnectedModeStep
     }
 
     @When("User Clicks on network symbol and click on toggle button to navigate to disconnected mode for admin setting")
-    public void userClicksOnNetworkSymbolAndClickOnToggleButtonToNavigateToDisconnectedModeForAdminSetting() throws InterruptedException, AWTException
+    public void userClicksOnNetworkSymbolAndClickOnToggleButtonToNavigateToDisconnectedModeForAdminSetting() throws InterruptedException
     {
             dmoePage = new DMOEPage(driver, scenario);
             dmoePage.NavigateToDM();
@@ -118,7 +116,7 @@ public class AdminDisconnectedModeStep
     }
 
     @Then("User should verify for price of product detail not existence")
-    public void userShouldVerifyForPriceOfProductDetailNotExistence() throws InterruptedException, AWTException
+    public void userShouldVerifyForPriceOfProductDetailNotExistence()
     {
         catalogPage=new CatalogPage(driver,scenario);
         catalogPage.validateCatalog();
@@ -126,7 +124,7 @@ public class AdminDisconnectedModeStep
     }
 
     @Then("User should verify for price of product detail existence")
-    public void userShouldVerifyForPriceOfProductDetailExistence() throws InterruptedException, AWTException
+    public void userShouldVerifyForPriceOfProductDetailExistence()
     {
         catalogPage=new CatalogPage(driver,scenario);
         catalogPage.validateCatalog();

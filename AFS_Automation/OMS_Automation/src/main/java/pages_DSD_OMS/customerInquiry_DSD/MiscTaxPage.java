@@ -102,10 +102,10 @@ public class MiscTaxPage
     public String ClickOnDropDown(WebElement WebEle, String WebId)
     {
         exists=false;
-        String TextDropDown=null;
+        String TextDropDown;
         try
         {
-            HelpersMethod.ActClick(driver,WebEle,10);
+            HelpersMethod.ActClick(driver,WebEle,10000);
             TextDropDown=DropDownInCustomerInq();
             WebEle=HelpersMethod.FindByElement(driver,"xpath","//span[@id='"+WebId+"']/span[contains(@class,'k-input')]");
             InputValue=WebEle.getText();
@@ -132,7 +132,7 @@ public class MiscTaxPage
                     {
                         if (i == 1)
                         {
-                            HelpersMethod.ActClick(driver, Options.get(1), 20);
+                            HelpersMethod.ActClick(driver, Options.get(1), 10000);
                             ValueSele=Options.get(1).getText();
                             break;
                         }
@@ -144,7 +144,7 @@ public class MiscTaxPage
                     {
                         if (i == 2)
                         {
-                            HelpersMethod.ActClick(driver, Options.get(2), 20);
+                            HelpersMethod.ActClick(driver, Options.get(2), 10000);
                             ValueSele=Options.get(2).getText();
                             break;
                         }
@@ -164,7 +164,7 @@ public class MiscTaxPage
         {
             if(!WebEle.isSelected())
             {
-                HelpersMethod.ActClick(driver, WebEle, 10);
+                HelpersMethod.ActClick(driver, WebEle, 10000);
             }
             if(WebEle.isSelected())
             {
@@ -183,7 +183,7 @@ public class MiscTaxPage
         try
         {
             HelpersMethod.EnterText(driver,WebEle,10, RandomValues.generateRandomString(length));
-            InputValue=HelpersMethod.JSGetValueEle(driver,WebEle,10);
+            InputValue=HelpersMethod.JSGetValueEle(driver,WebEle,10000);
 
             if(InputValue!=null)
             {exists=true;}
@@ -202,8 +202,8 @@ public class MiscTaxPage
         try
         {
             randomFloat=RandomFloat(minInclusive,maxInclusive,precision);
-            HelpersMethod.JSSetValueEle(driver,WebEle,10, String.valueOf(randomFloat));
-            InputValue=HelpersMethod.JSGetValueEle(driver,WebEle,10);
+            HelpersMethod.JSSetValueEle(driver,WebEle,10000, String.valueOf(randomFloat));
+            InputValue=HelpersMethod.JSGetValueEle(driver,WebEle,10000);
 
             if(InputValue!=null)
             {exists=true;}
@@ -233,8 +233,8 @@ public class MiscTaxPage
         exists=false;
         try
         {
-            HelpersMethod.EnterText(driver,WebEle,10,RandomValues.generateRandomNumber(length));
-            InputValue=HelpersMethod.JSGetValueEle(driver,WebEle,10);
+            HelpersMethod.EnterText(driver,WebEle,10000,RandomValues.generateRandomNumber(length));
+            InputValue=HelpersMethod.JSGetValueEle(driver,WebEle,10000);
 
             if(InputValue!=null)
             {exists=true;}
@@ -251,7 +251,7 @@ public class MiscTaxPage
             List<WebElement> CheckBoxes = HelpersMethod.FindByElements(driver, "xpath", "//input[contains(@id,'InvReq')]");
             for (WebElement CheckBox : CheckBoxes)
             {
-                HelpersMethod.ClickBut(driver, CheckBox, 10);
+                HelpersMethod.ClickBut(driver, CheckBox, 10000);
             }
         }
         catch (Exception e){}

@@ -1,10 +1,7 @@
 package pages_DSD_OMS.Catalog;
 
-import gherkin.lexer.Ca;
 import helper.HelpersMethod;
 import io.cucumber.java.Scenario;
-import io.cucumber.java.eo.Se;
-import org.apache.logging.log4j.core.tools.picocli.CommandLine;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
@@ -14,7 +11,6 @@ import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
-import util.TestBase;
 
 import java.time.Duration;
 import java.util.ArrayList;
@@ -79,7 +75,7 @@ public class CatalogPage
     public void ValidateCatalog()
     {
         exists=false;
-        String currentTitle=null;
+        String currentTitle;
         try
         {
             if(HelpersMethod.IsExists("//div[@class='loader']",driver))
@@ -142,10 +138,71 @@ public class CatalogPage
                     .pollingEvery(Duration.ofSeconds(2))
                     .ignoring(NoSuchElementException.class);
             wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
+            showAllProducts();
             Assert.assertEquals(exists,true);
         }
         catch (Exception e){}
     }
+
+    public void showAllProducts()
+    {
+        Actions act=new Actions(driver);
+        String dropText;
+        try
+        {
+            Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(400))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+            String status = HelpersMethod.returnDocumentStatus(driver);
+            if (status.equals("loading"))
+            {
+                HelpersMethod.waitTillLoadingPage(driver);
+            }
+            wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(400))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
+            if(HelpersMethod.IsExists("//span[@id='CPQoh-accessibility-id']/span[@class='k-input-value-text']",driver))
+            {
+                WebElement dropDown=HelpersMethod.FindByElement(driver,"xpath","//span[@id='CPQoh-accessibility-id']/following-sibling::button");
+                HelpersMethod.ClickBut(driver,dropDown,10000);
+                List<WebElement> dropLists=HelpersMethod.FindByElements(driver,"xpath","//ul[@id='CPQoh-listbox-id']/descendant::span[@class='k-list-item-text']");
+                for(WebElement dropList:dropLists)
+                {
+                   act.moveToElement(dropList).build().perform();
+                   dropText=dropList.getText();
+                   if(dropText.equalsIgnoreCase("Show all products"))
+                   {
+                       act.moveToElement(dropList).build().perform();
+                       act.click(dropList).build().perform();
+                       break;
+                   }
+                }
+                wait = new FluentWait<WebDriver>(driver)
+                        .withTimeout(Duration.ofSeconds(400))
+                        .pollingEvery(Duration.ofSeconds(2))
+                        .ignoring(NoSuchElementException.class);
+                wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+                status = HelpersMethod.returnDocumentStatus(driver);
+                if (status.equals("loading"))
+                {
+                    HelpersMethod.waitTillLoadingPage(driver);
+                }
+                wait = new FluentWait<WebDriver>(driver)
+                        .withTimeout(Duration.ofSeconds(400))
+                        .pollingEvery(Duration.ofSeconds(2))
+                        .ignoring(NoSuchElementException.class);
+                wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+            }
+        }
+        catch (Exception e){}
+    }
+
 
     //Code to click on Card view
     public void Click_CardView()
@@ -419,12 +476,11 @@ public class CatalogPage
                     .ignoring(NoSuchElementException.class);
             wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
 
-
             //Click on search Index button
             WebEle=HelpersMethod.FindByElement(driver,"xpath","//span[@datatestid='searchBarSearchBtn']");
             HelpersMethod.ClickBut(driver,WebEle,10000);
             wait = new FluentWait<WebDriver>(driver)
-                    .withTimeout(Duration.ofSeconds(120))
+                    .withTimeout(Duration.ofSeconds(400))
                     .pollingEvery(Duration.ofSeconds(2))
                     .ignoring(NoSuchElementException.class);
             wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
@@ -434,6 +490,12 @@ public class CatalogPage
             {
                 HelpersMethod.waitTillLoadingPage(driver);
             }
+            wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(400))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
             exists=true;
             Assert.assertEquals(exists,true);
         }
@@ -456,7 +518,6 @@ public class CatalogPage
             .pollingEvery(Duration.ofSeconds(2))
             .ignoring(NoSuchElementException.class);
         wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
-
 
         try
         {
@@ -560,9 +621,9 @@ public class CatalogPage
     {
         exists=false;
         WebElement WebEle;
-        WebElement UpdateBut=null;
+        WebElement UpdateBut;
         Wait<WebDriver> wait;
-        String Qty=null;
+        String Qty;
         try
         {
             //Increment the qty
@@ -593,9 +654,9 @@ public class CatalogPage
     {
         exists=false;
         WebElement WebEle;
-        WebElement UpdateBut=null;
+        WebElement UpdateBut;
         Wait<WebDriver> wait;
-        String Qty=null;
+        String Qty;
         new WebDriverWait(driver,Duration.ofMillis(40000)).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//button[contains(@class,'buttonMinus')]")));
         new WebDriverWait(driver,Duration.ofMillis(40000)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[contains(@class,'buttonMinus')]")));
         try
@@ -1346,7 +1407,7 @@ public class CatalogPage
     {
         exists=false;
         WebElement WebEle;
-        String ProdNo=null;
+        String ProdNo;
         try
         {
             WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='paging-container']");
@@ -1792,6 +1853,7 @@ public class CatalogPage
             if(HelpersMethod.IsExists("//div[@class='card-view']",driver))
             {
                 WebElement Element =HelpersMethod.FindByElement(driver,"xpath","//div[@class='card-view']/descendant::div[@class='product-catalog-image-and-number-and-price-container'][1]");
+                HelpersMethod.ScrollElement(driver,Element);
                 HelpersMethod.ClickBut(driver,Element,10000);
                 exists=true;
                 if(HelpersMethod.IsExists("//div[@class='loader']",driver))
@@ -1805,13 +1867,14 @@ public class CatalogPage
                 if(HelpersMethod.IsExists("//div[@class='list-view']",driver))
                 {
                     WebElement Element =HelpersMethod.FindByElement(driver,"xpath","//div[@class='list-view']/descendant::tr[contains(@class,'k-master-row')][1]/descendant::a/ancestor::td");
+                    HelpersMethod.ScrollElement(driver,Element);
                     HelpersMethod.ClickBut(driver,Element,10000);
                     exists =true;
-                    if(HelpersMethod.IsExists("//div[@class='loader']",driver))
-                    {
-                        WebElement WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                        HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 2000000);
-                    }
+                    Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                            .withTimeout(Duration.ofSeconds(200))
+                            .pollingEvery(Duration.ofSeconds(2))
+                            .ignoring(NoSuchElementException.class);
+                    wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
                 }
                 Assert.assertEquals(exists,true);
             }
@@ -1933,6 +1996,17 @@ public class CatalogPage
                     .ignoring(NoSuchElementException.class);
             wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
 
+            String status = HelpersMethod.returnDocumentStatus(driver);
+            if (status.equals("loading"))
+            {
+                HelpersMethod.waitTillLoadingPage(driver);
+            }
+            wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(400))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
             if(HelpersMethod.IsExists("//div[@class='card-view']",driver))
             {
                 scenario.log("CARD VIEW IN CATALOG HAS BEEN SELECTED");
@@ -1975,7 +2049,7 @@ public class CatalogPage
             exists = false;
             if (HelpersMethod.IsExists("//span[@class='k-link' and contains(text(),'Catalog')]",driver))
             {
-                String Menu_Text=null;
+                String Menu_Text;
                 Actions act=new Actions(driver);
                 List<WebElement> MenuBar=HelpersMethod.FindByElements(driver,"xpath","//li[contains(@class,'k-item')]/span[@class='k-link']");
                 for(WebElement Menu:MenuBar)
@@ -2172,8 +2246,6 @@ public class CatalogPage
         exists=false;
         try
         {
-            WebElement tableHead=HelpersMethod.FindByElement(driver,"xpath","//thead[@class='k-table-thead']");
-            HelpersMethod.ScrollElement(driver,tableHead);
             if(!HelpersMethod.IsExists("//div[@class='grid-item-box-item']/descendant::span[contains(@class,'price')]|//div[@class='grid-item-box-item']/descendant::span[contains(@class,'Price')]|//th/descendant::span[@class='k-column-title' and contains(text(),'Price')]|//th/descendant::span[@class='k-column-title' and contains(text(),'price')]",driver))
             {
                 scenario.log("SUCCESSFULLY HIDDEN PRICE OF PRODUCT, UNDER CATALOG");

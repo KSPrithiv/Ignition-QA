@@ -16,7 +16,6 @@ import pages_DSD_OMS.orderEntry.CheckOutOrderPage;
 import pages_DSD_OMS.orderEntry.CheckOutSummaryPage;
 import pages_DSD_OMS.orderEntry.NewOrderEntryPage;
 import pages_DSD_OMS.orderFactorAdmin.orderFactorAdminPage;
-import pages_DSD_OMS.standingOrder.NewStandingOrderPage;
 import pages_DSD_OMS.webOrdering.AdminHomePage;
 import util.DataBaseConnection;
 import util.TestBase;
@@ -69,7 +68,7 @@ public class OrderFactorAdminStep
     }
 
     @And("User should add product to order factor list and add {string} for Order factor by customer and product")
-    public void userShouldAddProductToOrderFactorListAndAddForOrderFactorByCustomerAndProduct(String qty) throws SQLException, ClassNotFoundException, InstantiationException, IllegalAccessException
+    public void userShouldAddProductToOrderFactorListAndAddForOrderFactorByCustomerAndProduct(String qty) throws SQLException, ClassNotFoundException, InstantiationException, IllegalAccessException, InterruptedException
     {
         customer=TestBase.testEnvironment.FullAcc2();
         ordFacorPage=new orderFactorAdminPage(driver,scenario);
@@ -84,10 +83,9 @@ public class OrderFactorAdminStep
     }
 
     @And("User should add product to order factor list and add {string} for Order factor at product master level")
-    public void userShouldAddProductToOrderFactorListAndAddForOrderFactorAtProductMasterLevel(String qty) throws SQLException, ClassNotFoundException, InstantiationException, IllegalAccessException
+    public void userShouldAddProductToOrderFactorListAndAddForOrderFactorAtProductMasterLevel(String qty) throws SQLException, ClassNotFoundException, InstantiationException, IllegalAccessException, InterruptedException
     {
         prodNo = DataBaseConnection.DataBaseConn(TestBase.testEnvironment.getSingle_Prod_Sql());
-        customer=TestBase.testEnvironment.FullAcc2();
         ordFacorPage=new orderFactorAdminPage(driver,scenario);
         ordFacorPage.clickOnAddProducts();
         ordFacorPage.validateProductDialogbox();
@@ -252,8 +250,9 @@ public class OrderFactorAdminStep
         exists=false;
         newOE = new NewOrderEntryPage(driver,scenario);
         newOE.readProductsInOrder();
+        Thread.sleep(1000);
         //handling toast messages
-        for(int i=0;i<=1;i++)
+        for(int i=0;i<=2;i++)
         {
             //check for toast message for low on inventory
             newOE.lowOnInventoryToast();
@@ -278,7 +277,7 @@ public class OrderFactorAdminStep
         }
 
         Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
-                .withTimeout(Duration.ofSeconds(120))
+                .withTimeout(Duration.ofSeconds(400))
                 .pollingEvery(Duration.ofSeconds(2))
                 .ignoring(NoSuchElementException.class);
         wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
@@ -290,16 +289,17 @@ public class OrderFactorAdminStep
         }
 
         wait = new FluentWait<WebDriver>(driver)
-                .withTimeout(Duration.ofSeconds(200))
+                .withTimeout(Duration.ofSeconds(400))
                 .pollingEvery(Duration.ofSeconds(2))
                 .ignoring(NoSuchElementException.class);
         wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
 
+        checkorder=new CheckOutOrderPage(driver,scenario);
+        Thread.sleep(4000);
+        Ord_No=checkorder.readOrderNumber();
         if(HelpersMethod.IsExists("//div[@id='paymentMethodCard']",driver))
         {
             //Thread.sleep(4000);
-            checkorder=new CheckOutOrderPage(driver,scenario);
-            Ord_No=checkorder.readOrderNumber();
             checkorder.Select_PaymentMethod_ClickDownArrow();
             if(HelpersMethod.IsExists("//tr[1]/descendant::td[@class='payment-method-type-cell']",driver))
             {
@@ -357,5 +357,178 @@ public class OrderFactorAdminStep
             Ord_No=sOrd_No;
         }
         summary.SucessPopup();
+    }
+
+    @Then("Enter pro# in quick product entry using order factor product")
+    public void enterProInQuickProductEntryUsingOrderFactorProduct() throws InterruptedException, AWTException, SQLException, ClassNotFoundException, InstantiationException, IllegalAccessException
+    {
+        newOE = new NewOrderEntryPage(driver,scenario);
+        Thread.sleep(500);
+        if(!prodNo.equals(null))
+        {
+            newOE.QuickProduct(prodNo);
+        }
+        else
+        {
+            scenario.log("NOT ABLE TO FETCH PRODUCT# FROM DATABASE");
+        }
+    }
+
+    @And("Check for Case and Unit input box enabled or not based on product number entered in Quick product entry for order factor")
+    public void checkForCaseAndUnitInputBoxEnabledOrNotBasedOnProductNumberEnteredInQuickProductEntryForOrderFactor(DataTable tabledata) throws InterruptedException, AWTException
+    {
+        newOE=new NewOrderEntryPage(driver,scenario);
+        List<List<String>> PO_Qty = tabledata.asLists(String.class);
+        String Case=PO_Qty.get(0).get(0);
+        String Unit=PO_Qty.get(0).get(1);
+        String uomString=newOE.VerifyUOM();
+
+        if(uomString.equals("Units")||uomString.equals("EA"))
+        {
+            newOE.CheckForQuickUnitEnabled(Unit);
+            if(uomString.equals("Units"))
+            {
+                WebElement caseIn = HelpersMethod.FindByElement(driver, "id", "quickCases");
+                if (caseIn.equals(driver.switchTo().activeElement()))
+                {
+                    caseIn.sendKeys(Keys.TAB);
+                }
+            }
+            new WebDriverWait(driver,Duration.ofMillis(20000)).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@id='pending-quick-entry-calls']")));
+            newOE.exceedsMaxQty();
+            for(int i=0;i<=1;i++)
+            {
+                //check for toast message for low on inventory
+                newOE.lowOnInventoryToast();
+                //check for toast message for product is currently unavailable
+                newOE.toastCurrentlyUnavailable();
+            }
+        }
+        else if(uomString.equals("Cases")||uomString.equals("CS"))
+        {
+            newOE.CheckForQuickCaseEnabled(Case);
+            if(uomString.equals("Cases"))
+            {
+                WebElement unitIn = HelpersMethod.FindByElement(driver, "id", "quickUnits");
+                if (unitIn.equals(driver.switchTo().activeElement()))
+                {
+                    unitIn.sendKeys(Keys.TAB);
+                }
+            }
+            new WebDriverWait(driver,Duration.ofMillis(40000)).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@id='pending-quick-entry-calls']")));
+            newOE.exceedsMaxQty();
+            for(int i=0;i<=1;i++)
+            {
+                //check for toast message for low on inventory
+                newOE.lowOnInventoryToast();
+                //check for toast message for product is currently unavailable
+                newOE.toastCurrentlyUnavailable();
+            }
+        }
+        else if(uomString.equals("Cases, Units")||uomString.equals("Units, Cases")||uomString.equals("CS, EA")||uomString.equals("EA, CS"))
+        {
+            newOE.CheckForQuickCaseEnabled(Case);
+            newOE.CheckForQuickUnitEnabled(Unit);
+            //new WebDriverWait(driver,Duration.ofMillis(10000)).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@id='pending-quick-entry-calls']")));
+            newOE.exceedsMaxQty();
+            for(int i=0;i<=1;i++)
+            {
+                //check for toast message for low on inventory
+                newOE.lowOnInventoryToast();
+                //check for toast message for product is currently unavailable
+                newOE.toastCurrentlyUnavailable();
+            }
+        }
+        Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                .withTimeout(Duration.ofSeconds(400))
+                .pollingEvery(Duration.ofSeconds(2))
+                .ignoring(NoSuchElementException.class);
+        wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
+        String status = HelpersMethod.returnDocumentStatus(driver);
+        if (status.equals("loading"))
+        {
+            HelpersMethod.waitTillLoadingPage(driver);
+        }
+
+        wait = new FluentWait<WebDriver>(driver)
+                .withTimeout(Duration.ofSeconds(400))
+                .pollingEvery(Duration.ofSeconds(2))
+                .ignoring(NoSuchElementException.class);
+        wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+        Thread.sleep(2000);
+    }
+
+    @Then("Click on Next button for validating order factor dialog box")
+    public void clickOnNextButtonForValidatingOrderFactorDialogBox() throws InterruptedException, AWTException
+    {
+        exists=false;
+        newOE = new NewOrderEntryPage(driver,scenario);
+        newOE.readProductsInOrder();
+        Thread.sleep(1000);
+        //handling toast messages
+        for(int i=0;i<=2;i++)
+        {
+            //check for toast message for low on inventory
+            newOE.lowOnInventoryToast();
+            //check for toast message for product is currently unavailable
+            newOE.toastCurrentlyUnavailable();
+        }
+
+        for(int i=0;i<=1;i++)
+        {
+            newOE.priceCannotBeBleowCost();
+            newOE.exceedsMaxQty();
+        }
+        exists=newOE.ClickNext();
+        newOE.popupAfterNext_OrderFactor();
+        //newOE.orderFactorPopup("5");
+        newOE.orderFactorPopup(orderFactorQty);
+        newOE.popupAfterNext_OrderFactor();
+
+        String status = HelpersMethod.returnDocumentStatus(driver);
+        if (status.equals("loading"))
+        {
+            HelpersMethod.waitTillLoadingPage(driver);
+        }
+
+        Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                .withTimeout(Duration.ofSeconds(400))
+                .pollingEvery(Duration.ofSeconds(2))
+                .ignoring(NoSuchElementException.class);
+        wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
+        status = HelpersMethod.returnDocumentStatus(driver);
+        if (status.equals("loading"))
+        {
+            HelpersMethod.waitTillLoadingPage(driver);
+        }
+
+        wait = new FluentWait<WebDriver>(driver)
+                .withTimeout(Duration.ofSeconds(400))
+                .pollingEvery(Duration.ofSeconds(2))
+                .ignoring(NoSuchElementException.class);
+        wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
+        checkorder=new CheckOutOrderPage(driver,scenario);
+        Thread.sleep(4000);
+        Ord_No=checkorder.readOrderNumber();
+        if(HelpersMethod.IsExists("//div[@id='paymentMethodCard']",driver))
+        {
+            //Thread.sleep(4000);
+            checkorder.Select_PaymentMethod_ClickDownArrow();
+            if(HelpersMethod.IsExists("//tr[1]/descendant::td[@class='payment-method-type-cell']",driver))
+            {
+                checkorder.SelectPaymentMethod();
+                scenario.log("FIRST PAYMENT OPTION HAS BEEN SELECTED");
+            }
+            else
+            {
+                checkorder.Click_On_Without_Providing_Payment();
+                scenario.log("WITHOUT PROVIIDNG PAYMENT OPTION HAS BEEN SELECTED");
+            }
+            checkorder.DeliveryAddressCard();
+            checkorder.NextButton_Click();
+        }
     }
 }

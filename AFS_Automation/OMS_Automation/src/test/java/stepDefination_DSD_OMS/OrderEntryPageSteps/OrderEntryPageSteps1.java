@@ -8,8 +8,6 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
-import pages_DSD_OMS.login.HomePage;
-import pages_DSD_OMS.login.LoginPage;
 import pages_DSD_OMS.orderEntry.CheckOutSummaryPage;
 import pages_DSD_OMS.orderEntry.NewOrderEntryPage;
 import pages_DSD_OMS.orderEntry.OrderEntryPage;
@@ -28,7 +26,7 @@ import java.util.List;
 public class OrderEntryPageSteps1
 {
     /* Created by Divya.Ramadas@afsi.com */
-    private static boolean flag = false;
+
     WebDriver driver;
     Scenario scenario;
 
@@ -152,7 +150,7 @@ public class OrderEntryPageSteps1
     }
 
     @And("User should select Product from catalog and Enter Qty for the products for OCL")
-    public void userShouldSelectProductFromCatalogAndEnterQtyForTheProductsForOCL(DataTable tabledata) throws InterruptedException, AWTException, SQLException, ClassNotFoundException, InstantiationException, IllegalAccessException
+    public void userShouldSelectProductFromCatalogAndEnterQtyForTheProductsForOCL(DataTable tabledata) throws InterruptedException, AWTException
     {
         List<List<String>> Prod_detail = tabledata.asLists(String.class);
         newOE=new NewOrderEntryPage(driver,scenario);

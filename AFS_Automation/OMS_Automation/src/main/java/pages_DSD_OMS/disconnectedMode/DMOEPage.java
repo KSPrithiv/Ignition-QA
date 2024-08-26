@@ -407,7 +407,7 @@ public class DMOEPage
         catch (Exception e){}
     }
 
-    public void selectSeconDeliveryDate()
+    public void selectSecondDeliveryDate()
     {
         exists=false;
         WebElement WebEle;

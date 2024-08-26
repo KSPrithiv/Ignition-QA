@@ -2,8 +2,6 @@ package pages_DSD_OMS.adminReport;
 
 import helper.HelpersMethod;
 import io.cucumber.java.Scenario;
-import io.cucumber.java.bs.A;
-import org.apache.logging.log4j.core.tools.picocli.CommandLine;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -88,7 +86,7 @@ public class adminReportPage
         try
         {
             WebElement WebEle;
-            String FTDate="";
+            String FTDate;
             exists=false;
             //finding element/date in calendar drop down is enabled or not. if not enabled increase the date by 6 days
             if (HelpersMethod.IsExists("//div[contains(@class,'k-datepicker-popup')]",driver))
@@ -116,7 +114,7 @@ public class adminReportPage
     {
         exists=false;
         WebElement WebEle;
-        String FTDate="";
+        String FTDate;
         try
         {
             if (HelpersMethod.IsExists("//div[contains(@class,'k-datepicker-popup')]",driver))

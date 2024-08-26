@@ -1,15 +1,10 @@
 package pages_DSD_OMS.orderGuide;
 
-import com.github.dockerjava.core.dockerfile.DockerfileStatement;
 import helper.HelpersMethod;
 import io.cucumber.java.Scenario;
 
-import io.cucumber.java.bs.A;
-import io.cucumber.java8.Th;
 import org.apache.commons.io.filefilter.WildcardFileFilter;
-import org.apache.logging.log4j.core.tools.picocli.CommandLine;
 import org.openqa.selenium.*;
-import org.openqa.selenium.interactions.Action;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -632,8 +627,6 @@ public class CreateOGPage
     public boolean EditSequence(String SeqNo) throws InterruptedException
     {
         exists=false;
-        Thread.sleep(2000);
-
         try
         {
             String status = HelpersMethod.returnDocumentStatus(driver);
@@ -658,6 +651,8 @@ public class CreateOGPage
                 JavascriptExecutor js=(JavascriptExecutor)driver;
                 js.executeScript("document.body.style.MozTransform='67%'");
             }
+
+            Thread.sleep(2000);
 
             WebElement WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='bottomDetailCard']");
             HelpersMethod.ScrollElement(driver,WebEle);
@@ -1169,7 +1164,7 @@ public class CreateOGPage
     public void ImportClick()
     {
         exists=false;
-        String file1="";
+        String file1;
         String OGno="";
         Wait<WebDriver> wait;
         int i=0;
@@ -1191,6 +1186,8 @@ public class CreateOGPage
                     }
                 }*/
 
+              if(HelpersMethod.IsExists("//input[@id='ImportProducts']",driver))
+              {
                 File dir = new File("C:\\Users\\Divya.Ramadas\\Downloads");
                 FileFilter fileFilter = new WildcardFileFilter("*.csv");
                 File[] files = dir.listFiles(fileFilter);
@@ -1253,7 +1250,7 @@ public class CreateOGPage
                             .ignoring(NoSuchElementException.class);
                     wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
                 }
-            //}
+              }
             Assert.assertEquals(exists,true);
         }
         catch (Exception e){}

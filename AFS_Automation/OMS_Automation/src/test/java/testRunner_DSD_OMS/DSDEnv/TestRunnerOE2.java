@@ -17,14 +17,13 @@ import java.io.IOException;
                              "src/test/resources/features_DSD_OMS/OrderEntryFeature/orderEntryFeature5.feature",
                              "src/test/resources/features_DSD_OMS/OrderEntryFeature/orderEntryFeature6.feature",
 },
-        glue = {"stepDefination_DSD_OMS"},
-        plugin = {"pretty",
-                "json:target/cucumber.json",
-                "html:target/cucumber-html-report.html",
-                "com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:Reports/spark/",
-                "rerun:target/failedrerun.txt"
-        },
-        monochrome = true,tags="@PickupOrderCheckBox")
+glue = {"stepDefination_DSD_OMS"},
+plugin = {"pretty",
+        "json:target/cucumber.json",
+        "html:target/cucumber-html-report.html",
+        "com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:Reports/spark/",
+        "rerun:target/failedrerun.txt"},
+monochrome = true)
 
 public class TestRunnerOE2 extends AbstractTestNGCucumberTests
 {

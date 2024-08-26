@@ -2,7 +2,6 @@ package pages_DSD_OMS.webOrdering;
 
 import helper.HelpersMethod;
 import io.cucumber.java.Scenario;
-import org.apache.logging.log4j.core.tools.picocli.CommandLine;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
@@ -12,12 +11,10 @@ import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
-import pages_DSD_OMS.login.HomePage;
 import util.TestBase;
 
 import java.time.Duration;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
 /**
  * @Project DSD_OMS
@@ -53,8 +50,8 @@ public class AdminHomePage
     public void ValidatingAdminHome() throws InterruptedException
     {
         exists = false;
-        String title = "";
-        String status = "";
+        String title;
+        String status;
 
         status = HelpersMethod.returnDocumentStatus(driver);
         if (status.equals("loading"))
@@ -62,22 +59,27 @@ public class AdminHomePage
             HelpersMethod.waitTillLoadingPage(driver);
         }
         Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
-                .withTimeout(Duration.ofSeconds(120))
+                .withTimeout(Duration.ofSeconds(400))
                 .pollingEvery(Duration.ofSeconds(2))
                 .ignoring(NoSuchElementException.class);
         wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
         status = HelpersMethod.returnDocumentStatus(driver);
-        if (status.equals("loading")) {
+        if (status.equals("loading"))
+        {
             HelpersMethod.waitTillLoadingPage(driver);
         }
         wait = new FluentWait<WebDriver>(driver)
-                .withTimeout(Duration.ofSeconds(120))
+                .withTimeout(Duration.ofSeconds(400))
                 .pollingEvery(Duration.ofSeconds(2))
                 .ignoring(NoSuchElementException.class);
         wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
-
+        status = HelpersMethod.returnDocumentStatus(driver);
+        if (status.equals("loading"))
+        {
+            HelpersMethod.waitTillLoadingPage(driver);
+        }
         wait = new FluentWait<WebDriver>(driver)
-                .withTimeout(Duration.ofSeconds(120))
+                .withTimeout(Duration.ofSeconds(400))
                 .pollingEvery(Duration.ofSeconds(2))
                 .ignoring(NoSuchElementException.class);
         wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
@@ -97,7 +99,7 @@ public class AdminHomePage
     public void ValidatingAdminHome1()
     {
         exists = false;
-        String title ="";
+        String title;
         try
         {
             title = driver.getTitle();
@@ -118,7 +120,7 @@ public class AdminHomePage
         try
         {
             Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
-                    .withTimeout(Duration.ofSeconds(250))
+                    .withTimeout(Duration.ofSeconds(400))
                     .pollingEvery(Duration.ofSeconds(2))
                     .ignoring(NoSuchElementException.class);
             wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
@@ -130,7 +132,7 @@ public class AdminHomePage
             }
 
             wait = new FluentWait<WebDriver>(driver)
-                    .withTimeout(Duration.ofSeconds(250))
+                    .withTimeout(Duration.ofSeconds(400))
                     .pollingEvery(Duration.ofSeconds(2))
                     .ignoring(NoSuchElementException.class);
             wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
@@ -245,8 +247,8 @@ public class AdminHomePage
         exists = false;
 
         Actions act = new Actions(driver);
-        String company = "";
-        String status="";
+        String company;
+        String status;
         try
         {
             if (HelpersMethod.IsExists("//div[contains(@class,'permissions-dropdown permission-background permissions-dropdown__flex')]", driver))
@@ -354,9 +356,9 @@ public class AdminHomePage
         exists = false;
         WebElement WebEle;
         Actions act = new Actions(driver);
-        String company = "";
-        String company1="";
-        String status="";
+        String company;
+        String company1;
+        String status;
         WebElement Val;
         try
         {
@@ -586,7 +588,7 @@ public class AdminHomePage
                     .pollingEvery(Duration.ofSeconds(2))
                     .ignoring(NoSuchElementException.class);
             wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
-            String Menu_Text = "";
+            String Menu_Text;
             Actions act = new Actions(driver);
             List<WebElement> MenuBars = HelpersMethod.FindByElements(driver, "xpath", "//div[@class='topMenu']/descendant::li/span");
             for (WebElement Menu : MenuBars)
@@ -614,20 +616,20 @@ public class AdminHomePage
         exists = false;
         try
         {
-            if (HelpersMethod.IsExists("//div[@class='loader']", driver))
-            {
-                WebElement WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000000);
-            }
+            Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(400))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
 
             if (SaveButton.isEnabled())
             {
                 HelpersMethod.ClickBut(driver, SaveButton, 10000);
-                if (HelpersMethod.IsExists("//div[@class='loader']", driver))
-                {
-                    WebElement WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000000);
-                }
+                wait = new FluentWait<WebDriver>(driver)
+                        .withTimeout(Duration.ofSeconds(400))
+                        .pollingEvery(Duration.ofSeconds(2))
+                        .ignoring(NoSuchElementException.class);
+                wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
 
                 String status = HelpersMethod.returnDocumentStatus(driver);
                 if (status.equals("loading"))
@@ -635,22 +637,22 @@ public class AdminHomePage
                     HelpersMethod.waitTillLoadingPage(driver);
                 }
 
-                if (HelpersMethod.IsExists("//div[@class='loader']", driver))
-                {
-                    WebElement WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000000);
-                }
+                wait = new FluentWait<WebDriver>(driver)
+                        .withTimeout(Duration.ofSeconds(400))
+                        .pollingEvery(Duration.ofSeconds(2))
+                        .ignoring(NoSuchElementException.class);
+                wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
 
                 status = HelpersMethod.returnDocumentStatus(driver);
                 if (status.equals("loading"))
                 {
                     HelpersMethod.waitTillLoadingPage(driver);
                 }
-                if (HelpersMethod.IsExists("//div[@class='loader']", driver))
-                {
-                    WebElement WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000000);
-                }
+                wait = new FluentWait<WebDriver>(driver)
+                        .withTimeout(Duration.ofSeconds(400))
+                        .pollingEvery(Duration.ofSeconds(2))
+                        .ignoring(NoSuchElementException.class);
+                wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
 
                 if(HelpersMethod.IsExists("//div[contains(text(),'saved successfully')]/ancestor::div[contains(@class,'k-window k-dialog')]",driver))
                 {
@@ -658,19 +660,20 @@ public class AdminHomePage
                     WebElement okButton=savePopup.findElement(By.xpath(".//button/span[text()='OK']"));
                     HelpersMethod.ActClick(driver,okButton,10000);
                     //exists = true;
-                    if (HelpersMethod.IsExists("//div[@class='loader']", driver))
-                    {
-                        WebElement WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                        HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 2000000);
-                    }
+                    wait = new FluentWait<WebDriver>(driver)
+                            .withTimeout(Duration.ofSeconds(400))
+                            .pollingEvery(Duration.ofSeconds(2))
+                            .ignoring(NoSuchElementException.class);
+                    wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
                     status = HelpersMethod.returnDocumentStatus(driver);
                     if (status.equals("loading"))
                     {
                         HelpersMethod.waitTillLoadingPage(driver);
                     }
 
-                    Wait<WebDriver> wait = new FluentWait<>(driver)
-                            .withTimeout(Duration.ofSeconds(120))
+                    wait = new FluentWait<WebDriver>(driver)
+                            .withTimeout(Duration.ofSeconds(400))
                             .pollingEvery(Duration.ofSeconds(2))
                             .ignoring(NoSuchElementException.class);
                     wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
@@ -817,7 +820,7 @@ public class AdminHomePage
 
     public void refreshPage()
     {
-        String status="";
+        String status;
         Wait<WebDriver> wait;
         status = HelpersMethod.returnDocumentStatus(driver);
         if (status.equals("loading"))

@@ -4,7 +4,6 @@ import helper.HelpersMethod;
 import io.cucumber.java.Before;
 import io.cucumber.java.Scenario;
 import io.cucumber.java.en.And;
-import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
@@ -12,15 +11,11 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.Wait;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import pages_DSD_OMS.login.LoginPage;
-import pages_DSD_OMS.orderEntry.CheckOutSummaryPage;
-import pages_DSD_OMS.orderEntry.NewOrderEntryPage;
 import pages_DSD_OMS.orderEntry.OrderEntryPage;
 import util.TestBase;
 
 import java.awt.*;
-import java.text.ParseException;
 import java.time.Duration;
 
 /**
@@ -34,8 +29,8 @@ public class AdminLoginStep
     Scenario scenario;
     static OrderEntryPage orderpage;
     static LoginPage loginpage;
-    static String CurrentURL = null;
-    static String tLogin=null;
+    static String CurrentURL;
+    static String tLogin;
 
     @Before
     public void LaunchBrowser1(Scenario scenario) throws Exception

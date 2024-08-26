@@ -209,7 +209,7 @@ public class StandingOrderPageSteps
     }
 
     @And("User checks for catalog popup and searches for product in catalog")
-    public void userChecksForCatalogPopupAndSearchesForProductInCatalog() throws SQLException
+    public void userChecksForCatalogPopupAndSearchesForProductInCatalog() throws SQLException, InterruptedException
     {
         standingOrder=new NewStandingOrderPage(driver,scenario);
         standingOrder.ValidateCatalogPopup();

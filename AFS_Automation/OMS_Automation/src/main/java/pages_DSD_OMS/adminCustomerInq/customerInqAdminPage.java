@@ -26,11 +26,6 @@ public class customerInqAdminPage
     WebDriver driver;
     Scenario scenario;
     static boolean exists=false;
-//    static String gridName;
-//    static String gridName1;
-//    static String oldLabel;
-//    static String newLabel;
-//    WebElement WebEle;
 
     @FindBy(xpath="//div[contains(@class,'moduleNameHeader')]/span[contains(@class,'spnmoduleNameHeader')]")
     private WebElement pageHeader;
@@ -54,12 +49,13 @@ public class customerInqAdminPage
     public void validatingAdminCustomerInqPage()
     {
         exists = false;
-        String title = null;
+        String title;
         WebElement WebEle;
-        String status = null;
+        String status;
 
         status = HelpersMethod.returnDocumentStatus(driver);
-        if (status.equals("loading")) {
+        if (status.equals("loading"))
+        {
             HelpersMethod.waitTillLoadingPage(driver);
         }
         Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
@@ -68,7 +64,8 @@ public class customerInqAdminPage
                 .ignoring(NoSuchElementException.class);
         wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
         status = HelpersMethod.returnDocumentStatus(driver);
-        if (status.equals("loading")) {
+        if (status.equals("loading"))
+        {
             HelpersMethod.waitTillLoadingPage(driver);
         }
         wait = new FluentWait<WebDriver>(driver)

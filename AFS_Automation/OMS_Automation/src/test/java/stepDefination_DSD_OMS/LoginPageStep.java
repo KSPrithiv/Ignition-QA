@@ -548,6 +548,7 @@ public class LoginPageStep
     public void enter_values_in_input_boxes() throws InterruptedException, AWTException {
         UserReg = new UserRegistrationPage(driver, scenario);
         UserReg.EnterAccount_No();
+        UserReg.displayFindAcc();
         UserReg.EnterFirstName();
         UserReg.EnterLastName();
         UserReg.EnterUserName();

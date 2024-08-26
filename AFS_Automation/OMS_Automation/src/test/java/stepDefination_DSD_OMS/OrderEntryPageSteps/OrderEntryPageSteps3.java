@@ -61,6 +61,24 @@ public class OrderEntryPageSteps3
         Assert.assertEquals(result,true);
     }
 
+    //code for checking preceding by zero, this works only in DSD env
+    @And("User should verify the account_No should have zeros")
+    public void user_should_verify_the_account_no_should_should_have_zeros() throws InterruptedException, AWTException
+    {
+        result=false;
+        orderpage = new OrderEntryPage(driver,scenario);
+        result=orderpage.Account_Zero();
+        if(result==false)
+        {
+            scenario.log("PRECEDING ZEROS ARE VISIBLE ");
+        }
+        else
+        {
+            scenario.log("<span style='color:red'>PRECEDING BY ZERO HAS BEEN FAILED, PLEASE DO CHECK ADMIN SETTINGS.</span>");
+        }
+        Assert.assertEquals(result,false);
+    }
+
     //Code for Adding new Address for Delivery Address
     @Then("Click on Next button and Add new Delivery Addresss")
     public void click_on_next_button_and_add_new_delivery_address(DataTable tabledata) throws InterruptedException, AWTException

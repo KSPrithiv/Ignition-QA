@@ -27,7 +27,7 @@ public class PostPaymentPage
     @FindBy(id="newPayment")
     private WebElement AddPayment;
 
-    @FindBy(xpath="//button[text()='Post']")
+    @FindBy(xpath="//button/span[text()='Post']")
     private WebElement PostBut;
 
     @FindBy(id="cancelBtn")
@@ -45,7 +45,7 @@ public class PostPaymentPage
     {
         exists=false;
         WebElement WebEle;
-        String PageTitle=null;
+        String PageTitle;
         try
         {
             WebEle=HelpersMethod.FindByElement(driver,"xpath","//span[@class='spnmoduleNameHeader']");
@@ -58,7 +58,7 @@ public class PostPaymentPage
     public void SelectPayment()
     {
         exists = false;
-        WebElement WebEle = null;
+        WebElement WebEle;
         try {
             if (HelpersMethod.IsExists("//div[contains(@class,'payment-method-container')]/descendant::tbody/tr[2]/descendant::input", driver))
             {

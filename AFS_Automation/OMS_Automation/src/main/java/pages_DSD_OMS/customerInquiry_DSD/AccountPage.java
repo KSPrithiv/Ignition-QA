@@ -434,9 +434,9 @@ public class AccountPage
 
     public void CreditCardExpinput()
     {
-        String ExpMonth=null;
-        String ExpYear=null;
-        String CrExp=null;
+        String ExpMonth;
+        String ExpYear;
+        String CrExp;
         int i;
         i=RandomNumber(1,12);
         if(i>=1 && i<=9)

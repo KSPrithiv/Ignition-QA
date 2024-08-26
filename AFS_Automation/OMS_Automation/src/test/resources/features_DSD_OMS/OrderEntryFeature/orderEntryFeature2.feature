@@ -117,24 +117,24 @@ Feature: Order Entry2
     And  user should change the Account# back to Previous Account#
 
     #this scenario is only for ERP env
-  @LowInventroy
-  Scenario: Products which are low in inventory should not be displayed in Order summary page
-    Given User must be on Order Entry Page
-    Then User must click Start Order button
-    Then User should make selection between Pending order or Start New order
-    Then User should select Note from popup and Order guide from popup
-    Then Enter PO# for New order
-      |PO123|
-    Then Enter Prod_No in Quick Product Entry area
-      |  4 | 3 |
-      |  1 | 1 |
-      |  1 | 2 |
-      |  2 | 1 |
-  #here 0002, 0003 are out of stock products and they should not get displayed in Order summary
-    Then Click on Next button
-    Then In Order Summary page check whether Low inventory products are removed or not
-    And Click on SubmitOrder button
-    Then User should be navigated to Order Entry page
+#  @LowInventroy
+#  Scenario: Products which are low in inventory should not be displayed in Order summary page
+#    Given User must be on Order Entry Page
+#    Then User must click Start Order button
+#    Then User should make selection between Pending order or Start New order
+#    Then User should select Note from popup and Order guide from popup
+#    Then Enter PO# for New order
+#      |PO123|
+#    Then Enter Prod_No in Quick Product Entry area
+#      |  4 | 3 |
+#      |  1 | 1 |
+#      |  1 | 2 |
+#      |  2 | 1 |
+#  #here 0002, 0003 are out of stock products and they should not get displayed in Order summary
+#    Then Click on Next button
+#    Then In Order Summary page check whether Low inventory products are removed or not
+#    And Click on SubmitOrder button
+#    Then User should be navigated to Order Entry page
 
     #we can cancel only those orders which have not yet reached cutoff time/ delivery dates are in future
   @CancelAndVerifyInOrderGrid

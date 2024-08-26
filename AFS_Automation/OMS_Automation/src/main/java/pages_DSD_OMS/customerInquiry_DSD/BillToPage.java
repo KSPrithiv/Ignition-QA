@@ -2,7 +2,6 @@ package pages_DSD_OMS.customerInquiry_DSD;
 
 import helper.HelpersMethod;
 import io.cucumber.java.Scenario;
-import org.apache.logging.log4j.core.tools.picocli.CommandLine;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;

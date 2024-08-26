@@ -9,8 +9,6 @@ import org.openqa.selenium.WebDriver;
 import pages_DSD_OMS.standingOrder.NewStandingOrderPage;
 import util.TestBase;
 
-import java.sql.SQLException;
-
 /**
  * @Project Divya.Ramadas@telusagcg.com
  * @Author Divya.Ramadas
@@ -56,7 +54,7 @@ public class AdminStandingOrderStep
     }
 
     @And("User checks for catalog popup and searches for product in catalog for admin setting")
-    public void userChecksForCatalogPopupAndSearchesForProductInCatalogForAdminSetting() throws SQLException
+    public void userChecksForCatalogPopupAndSearchesForProductInCatalogForAdminSetting()
     {
         standingOrder=new NewStandingOrderPage(driver,scenario);
         standingOrder.ValidateCatalogPopup();

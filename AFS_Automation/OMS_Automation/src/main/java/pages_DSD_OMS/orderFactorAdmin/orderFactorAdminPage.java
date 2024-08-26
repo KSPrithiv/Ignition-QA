@@ -2,6 +2,7 @@ package pages_DSD_OMS.orderFactorAdmin;
 
 import helper.HelpersMethod;
 import io.cucumber.java.Scenario;
+import io.cucumber.java.bs.A;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
@@ -11,6 +12,9 @@ import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
+import util.DataBaseConnection;
+import util.TestBase;
+
 import java.sql.SQLException;
 import java.time.Duration;
 import java.util.List;
@@ -203,17 +207,23 @@ public class orderFactorAdminPage
         return prodNo;
     }
 
-    public String readFirstProductInProductDialogBox()
+    public String readFirstProductInProductDialogBox() throws SQLException, ClassNotFoundException, InstantiationException, IllegalAccessException, InterruptedException
     {
         exists=false;
-        WebElement prod;
-        String pageText;
+//        WebElement prod;
+//        String pageText;
         Actions act=new Actions(driver);
         Wait<WebDriver> wait;
-        List<WebElement> pages;
-        boolean found=false;
-        WebElement page1;
-        int lastPage;
+//        List<WebElement> pages;
+//        boolean found=false;
+//        WebElement page1;
+//        int lastPage;
+        wait = new FluentWait<WebDriver>(driver)
+                .withTimeout(Duration.ofSeconds(400))
+                .pollingEvery(Duration.ofSeconds(2))
+                .ignoring(NoSuchElementException.class);
+        wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
         try
         {
             if(HelpersMethod.IsExists("//div[@class='k-widget k-window k-dialog']/descendant::tr[@class='k-grid-norecords']",driver))
@@ -224,204 +234,261 @@ public class orderFactorAdminPage
             {
                 if (HelpersMethod.IsExists("//span[contains(text(),'load all products')]", driver))
                 {
-                    WebElement loadProd=HelpersMethod.FindByElement(driver,"xapth","//span[contains(text(),'load all products')]");
-                    HelpersMethod.ActClick(driver,loadProd,10000);
+                    WebElement loadProd = HelpersMethod.FindByElement(driver, "xapth", "//span[contains(text(),'load all products')]");
+                    HelpersMethod.ActClick(driver, loadProd, 10000);
                     wait = new FluentWait<WebDriver>(driver)
-                            .withTimeout(Duration.ofSeconds(200))
+                            .withTimeout(Duration.ofSeconds(400))
                             .pollingEvery(Duration.ofSeconds(2))
                             .ignoring(NoSuchElementException.class);
                     wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
                 }
-                if(HelpersMethod.IsExists("//*[local-name()='svg']/ancestor::tr[contains(@class,'k-master-row')]/descendant::button|//*[local-name()='svg']/ancestor::tr[@class='k-master-row k-alt']/descendant::button|//*[local-name()='svg']/ancestor::tr[@class='k-master-row k-state-selected']/descendant::button",driver))
+//                if(HelpersMethod.IsExists("//*[local-name()='svg']/ancestor::tr[contains(@class,'k-master-row')]/descendant::button|//*[local-name()='svg']/ancestor::tr[@class='k-master-row k-alt']/descendant::button|//*[local-name()='svg']/ancestor::tr[@class='k-master-row k-state-selected']/descendant::button",driver))
+//                {
+//                    //Code to find last page number
+//                    WebElement lastArrow= HelpersMethod.FindByElement(driver,"xpath","//div[@class='k-window k-dialog']/descendant::button[@title='Go to the last page']");
+//                    HelpersMethod.ActClick(driver,lastArrow,10000);
+//                    wait = new FluentWait<WebDriver>(driver)
+//                            .withTimeout(Duration.ofSeconds(200))
+//                            .pollingEvery(Duration.ofSeconds(2))
+//                            .ignoring(NoSuchElementException.class);
+//                    wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+//
+//                    //code to read last page number
+//                    List<WebElement> pageNos=HelpersMethod.FindByElements(driver,"xpath","//div[@class='k-window k-dialog']/descendant::div[@class='k-pager-numbers']/button");
+//                    int i=pageNos.size()-1;
+//                    act.moveToElement(pageNos.get(i)).build().perform();
+//                    lastPage= Integer.parseInt(pageNos.get(i).getText());
+//                    scenario.log("NUMBER OF PAGES IN PRODUCT DIALOG BOX ARE: "+lastPage);
+//
+//                    //code to navigate to first page again
+//                    WebElement firstArrow=HelpersMethod.FindByElement(driver,"xpath","//div[@class='k-window k-dialog']/descendant::button[@title='Go to the first page']");
+//                    HelpersMethod.ActClick(driver,firstArrow,10000);
+//                    wait = new FluentWait<WebDriver>(driver)
+//                            .withTimeout(Duration.ofSeconds(200))
+//                            .pollingEvery(Duration.ofSeconds(2))
+//                            .ignoring(NoSuchElementException.class);
+//                    wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+//
+//                    //code to loop through the page numbers
+//                    for(int j=0;j<=lastPage;j++)
+//                    {
+//                        pages = HelpersMethod.FindByElements(driver, "xpath", "//div[@class='k-window k-dialog']/descendant::div[@class='k-pager-numbers']/button");
+//                        for (WebElement page : pages)
+//                        {
+//                            act.moveToElement(page).build().perform();
+//                            pageText = page.getText();
+//                            if (!pageText.equalsIgnoreCase("..."))
+//                            {
+//                                act.moveToElement(page).build().perform();
+//                                pageNumber = Integer.parseInt(page.getText());
+//                                act.click(page).build().perform();
+//                                wait = new FluentWait<WebDriver>(driver)
+//                                        .withTimeout(Duration.ofSeconds(200))
+//                                        .pollingEvery(Duration.ofSeconds(2))
+//                                        .ignoring(NoSuchElementException.class);
+//                                wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+//
+//                                //Code to select product which is not selected already
+//                                if (HelpersMethod.IsExists("//div[@class='k-window k-dialog']/descendant::tr[@class='k-table-row k-master-row']/descendant::button|//div[@class='k-window k-dialog']/descendant::tr[@class='k-table-row k-master-row k-table-alt-row k-alt']/descendant::button", driver))
+//                                {
+//                                    List<WebElement> products = HelpersMethod.FindByElements(driver, "xpath", "//div[@class='k-window k-dialog']/descendant::tr[@class='k-table-row k-master-row']/descendant::button|//div[@class='k-window k-dialog']/descendant::tr[@class='k-table-row k-master-row k-table-alt-row k-alt']/descendant::button");
+//                                    for (int l = 0; l <= products.size() - 1; l++)
+//                                    {
+//                                        if (l == 0)
+//                                        {
+//                                            prod = products.get(l);
+//                                            prodNo = prod.getText();
+//                                            scenario.log("PRODUCT NUMBER SELECTED FOR ORDER FACTOR IS " + prodNo);
+//                                            HelpersMethod.ActClick(driver, prod, 10000);
+//                                            found=true;
+//                                            break;
+//                                        }
+//                                    }
+//                                }
+//                            }
+//                            if(found==true)
+//                            {
+//                                break;
+//                            }
+//                        }
+//                        if(found==true)
+//                        {
+//                            break;
+//                        }
+//                        else if(found==false)
+//                        {
+//                            int size = pages.size() - 1;
+//                            page1 = pages.get(size);
+//                            pageText = page1.getText();
+//                            if (pageText.equals("..."))
+//                            {
+//                                act.moveToElement(page1).build().perform();
+//                                act.click().build().perform();
+//                                wait = new FluentWait<WebDriver>(driver)
+//                                        .withTimeout(Duration.ofSeconds(200))
+//                                        .pollingEvery(Duration.ofSeconds(2))
+//                                        .ignoring(NoSuchElementException.class);
+//                                wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+//                            }
+//                            else
+//                            {
+//                                scenario.log("<span style='color:red'>ALL PRODUCTS ARE PART OF ORDER FACTOR</span>");
+//                            }
+//                        }
+//                    }
+//                }
+//                else
+//                {
+//                    //Code to find last page number
+//                    WebElement lastArrow= HelpersMethod.FindByElement(driver,"xpath","//div[@class='k-window k-dialog']/descendant::span[@class='k-icon k-i-arrow-end-right']");
+//                    HelpersMethod.ScrollElement(driver,lastArrow);
+//                    HelpersMethod.ActClick(driver,lastArrow,10000);
+//                    wait = new FluentWait<WebDriver>(driver)
+//                            .withTimeout(Duration.ofSeconds(200))
+//                            .pollingEvery(Duration.ofSeconds(2))
+//                            .ignoring(NoSuchElementException.class);
+//                    wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+//
+//                    //code to read last page number
+//                    List<WebElement> pageNos=HelpersMethod.FindByElements(driver,"xpath","//div[@class='k-window k-dialog']/descendant::div[@class='k-pager-numbers']/button");
+//                    int i=pageNos.size()-1;
+//                    act.moveToElement(pageNos.get(i)).build().perform();
+//                    lastPage= Integer.parseInt(pageNos.get(i).getText());
+//                    scenario.log("NUMBER OF PAGES IN PRODUCT DIALOG BOX ARE: "+lastPage);
+//
+//                    //code to navigate to first page again
+//                    WebElement firstArrow=HelpersMethod.FindByElement(driver,"xpath","//div[@class='k-window k-dialog']/descendant::span[@class='k-icon k-i-arrow-end-left']");
+//                    HelpersMethod.ActClick(driver,firstArrow,10000);
+//                    wait = new FluentWait<WebDriver>(driver)
+//                            .withTimeout(Duration.ofSeconds(200))
+//                            .pollingEvery(Duration.ofSeconds(2))
+//                            .ignoring(NoSuchElementException.class);
+//                    wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+//
+//                    //code to loop through the page numbers
+//                    for(int j=0;j<=lastPage;j++)
+//                    {
+//                        pages = HelpersMethod.FindByElements(driver, "xpath", "//div[@class='k-window k-dialog']/descendant::div[@class='k-pager-numbers']/button");
+//                        for (WebElement page : pages)
+//                        {
+//                            act.moveToElement(page).build().perform();
+//                            pageText = page.getText();
+//                            if (!pageText.equalsIgnoreCase("..."))
+//                            {
+//                                act.moveToElement(page).build().perform();
+//                                pageNumber = Integer.parseInt(page.getText());
+//                                act.click(page).build().perform();
+//                                wait = new FluentWait<WebDriver>(driver)
+//                                        .withTimeout(Duration.ofSeconds(200))
+//                                        .pollingEvery(Duration.ofSeconds(2))
+//                                        .ignoring(NoSuchElementException.class);
+//                                wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+//
+//                                //Code to find unselected product for order factor
+//                                if(HelpersMethod.IsExists("//div[@class='k-window k-dialog']/descendant::tr[@class='k-table-row k-master-row']/descendant::button|//div[@class='k-window k-dialog']/descendant::tr[@class='k-table-row k-master-row k-table-alt-row k-alt']/descendant::button",driver))
+//                                {
+//                                    List<WebElement> products = HelpersMethod.FindByElements(driver, "xpath", "//div[@class='k-window k-dialog']/descendant::tr[@class='k-table-row k-master-row']/descendant::button|//div[@class='k-window k-dialog']/descendant::tr[@class='k-table-row k-master-row k-table-alt-row k-alt']/descendant::button");
+//                                    for (int p = 0; p <= products.size() - 1; p++)
+//                                    {
+//                                        if (p == 0)
+//                                        {
+//                                            prod = products.get(p);
+//                                            prodNo = prod.getText();
+//                                            scenario.log("PRODUCT NUMBER SELECTED FOR ORDER FACTOR IS " + prodNo);
+//                                            HelpersMethod.ActClick(driver, prod, 10000);
+//                                            found=true;
+//                                            break;
+//                                        }
+//                                    }
+//                                }
+//                            }
+//                            if(found==true)
+//                            {
+//                                break;
+//                            }
+//                        }
+//                        if(found==true)
+//                        {
+//                            break;
+//                        }
+//                        else if(found==false)
+//                        {
+//                            int size = pages.size() - 1;
+//                            page1 = pages.get(size);
+//                            pageText = page1.getText();
+//                            if (pageText.equals("..."))
+//                            {
+//                                act.moveToElement(page1).build().perform();
+//                                act.click().build().perform();
+//                                wait = new FluentWait<WebDriver>(driver)
+//                                        .withTimeout(Duration.ofSeconds(200))
+//                                        .pollingEvery(Duration.ofSeconds(2))
+//                                        .ignoring(NoSuchElementException.class);
+//                                wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+//                            }
+//                            else
+//                            {
+//                                scenario.log("<span style='color:red'>ALL PRODUCTS ARE PART OF ORDER FACTOR</span>");
+//                            }
+//                        }
+//                    }
+//                }
+
+                //To find title of product grid in product dialog box
+                int i = 0;
+                String headText;
+                prodNo = DataBaseConnection.DataBaseConn(TestBase.testEnvironment.getSingle_Prod_Sql());
+                scenario.log("PRODUCT TO BE SEARCHED IS "+prodNo);
+                List<WebElement> heads = HelpersMethod.FindByElements(driver, "xpath", "//div[@class='k-window k-dialog']/descendant::span[@class='k-column-title']");
+                for (WebElement head : heads)
                 {
-                    //Code to find last page number
-                    WebElement lastArrow= HelpersMethod.FindByElement(driver,"xpath","//div[@class='k-window k-dialog']/descendant::button[@title='Go to the last page']");
-                    HelpersMethod.ActClick(driver,lastArrow,10000);
-                    wait = new FluentWait<WebDriver>(driver)
-                            .withTimeout(Duration.ofSeconds(200))
-                            .pollingEvery(Duration.ofSeconds(2))
-                            .ignoring(NoSuchElementException.class);
-                    wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
-
-                    //code to read last page number
-                    List<WebElement> pageNos=HelpersMethod.FindByElements(driver,"xpath","//div[@class='k-window k-dialog']/descendant::div[@class='k-pager-numbers']/button");
-                    int i=pageNos.size()-1;
-                    act.moveToElement(pageNos.get(i)).build().perform();
-                    lastPage= Integer.parseInt(pageNos.get(i).getText());
-                    scenario.log("NUMBER OF PAGES IN PRODUCT DIALOG BOX ARE: "+lastPage);
-
-                    //code to navigate to first page again
-                    WebElement firstArrow=HelpersMethod.FindByElement(driver,"xpath","//div[@class='k-window k-dialog']/descendant::button[@title='Go to the first page']");
-                    HelpersMethod.ActClick(driver,firstArrow,10000);
-                    wait = new FluentWait<WebDriver>(driver)
-                            .withTimeout(Duration.ofSeconds(200))
-                            .pollingEvery(Duration.ofSeconds(2))
-                            .ignoring(NoSuchElementException.class);
-                    wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
-
-                    //code to loop through the page numbers
-                    for(int j=0;j<=lastPage;j++)
+                    i++;
+                    act.moveToElement(head).build().perform();
+                    headText = head.getText();
+                    if (headText.equalsIgnoreCase("Product #"))
                     {
-                        pages = HelpersMethod.FindByElements(driver, "xpath", "//div[@class='k-window k-dialog']/descendant::div[@class='k-pager-numbers']/button");
-                        for (WebElement page : pages)
-                        {
-                            act.moveToElement(page).build().perform();
-                            pageText = page.getText();
-                            if (!pageText.equalsIgnoreCase("..."))
-                            {
-                                act.moveToElement(page).build().perform();
-                                pageNumber = Integer.parseInt(page.getText());
-                                act.click(page).build().perform();
-                                wait = new FluentWait<WebDriver>(driver)
-                                        .withTimeout(Duration.ofSeconds(200))
-                                        .pollingEvery(Duration.ofSeconds(2))
-                                        .ignoring(NoSuchElementException.class);
-                                wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
-
-                                //Code to select product which is not selected already
-                                if (HelpersMethod.IsExists("//div[@class='k-window k-dialog']/descendant::tr[@class='k-table-row k-master-row']/descendant::button|//div[@class='k-window k-dialog']/descendant::tr[@class='k-table-row k-master-row k-table-alt-row k-alt']/descendant::button", driver))
-                                {
-                                    List<WebElement> products = HelpersMethod.FindByElements(driver, "xpath", "//div[@class='k-window k-dialog']/descendant::tr[@class='k-table-row k-master-row']/descendant::button|//div[@class='k-window k-dialog']/descendant::tr[@class='k-table-row k-master-row k-table-alt-row k-alt']/descendant::button");
-                                    for (int l = 0; l <= products.size() - 1; l++)
-                                    {
-                                        if (l == 0)
-                                        {
-                                            prod = products.get(l);
-                                            prodNo = prod.getText();
-                                            scenario.log("PRODUCT NUMBER SELECTED FOR ORDER FACTOR IS " + prodNo);
-                                            HelpersMethod.ActClick(driver, prod, 10000);
-                                            found=true;
-                                            break;
-                                        }
-                                    }
-                                }
-                            }
-                            if(found==true)
-                            {
-                                break;
-                            }
-                        }
-                        if(found==true)
-                        {
-                            break;
-                        }
-                        else if(found==false)
-                        {
-                            int size = pages.size() - 1;
-                            page1 = pages.get(size);
-                            pageText = page1.getText();
-                            if (pageText.equals("..."))
-                            {
-                                act.moveToElement(page1).build().perform();
-                                act.click().build().perform();
-                                wait = new FluentWait<WebDriver>(driver)
-                                        .withTimeout(Duration.ofSeconds(200))
-                                        .pollingEvery(Duration.ofSeconds(2))
-                                        .ignoring(NoSuchElementException.class);
-                                wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
-                            }
-                            else
-                            {
-                                scenario.log("<span style='color:red'>ALL PRODUCTS ARE PART OF ORDER FACTOR</span>");
-                            }
-                        }
+                        break;
                     }
+                }
+                //Code to search for product in product dialog box
+                WebElement filterProd=HelpersMethod.FindByElement(driver,"xpath","//div[@class='k-window k-dialog']/descendant::input[@class='k-input-inner']["+i+"]");
+                HelpersMethod.EnterText(driver,filterProd,10000,prodNo);
+                wait = new FluentWait<WebDriver>(driver)
+                           .withTimeout(Duration.ofSeconds(400))
+                           .pollingEvery(Duration.ofSeconds(2))
+                           .ignoring(NoSuchElementException.class);
+                wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
+                String status = HelpersMethod.returnDocumentStatus(driver);
+                if (status.equals("loading"))
+                {
+                    HelpersMethod.waitTillLoadingPage(driver);
+                }
+
+                wait = new FluentWait<WebDriver>(driver)
+                        .withTimeout(Duration.ofSeconds(400))
+                        .pollingEvery(Duration.ofSeconds(2))
+                        .ignoring(NoSuchElementException.class);
+                wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
+                if(!HelpersMethod.IsExists("//div[@class='k-window k-dialog']/descendant::div[@class='i-no-data__message']",driver))
+                {
+                    if (!HelpersMethod.IsExists("//div[@class='k-window k-dialog']/descendant::tr[contains(@class,'k-selected')]", driver))
+                    {
+                        WebElement prodRow = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='k-window k-dialog']/descendant::tr[contains(@class,'k-master-row')]/td[1]");
+                        HelpersMethod.JScriptClick(driver, prodRow, 10000);
+                        wait = new FluentWait<WebDriver>(driver)
+                                .withTimeout(Duration.ofSeconds(200))
+                                .pollingEvery(Duration.ofSeconds(2))
+                                .ignoring(NoSuchElementException.class);
+                        wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+                    }
+                    String proNumber=HelpersMethod.FindByElement(driver,"xpath","//div[@class='k-window k-dialog']/descendant::button[@class='i-link-button']").getText();
+                    scenario.log("PRODUCT "+proNumber+" HAS BEEN FOUND IN PRODUCT GRID");
                 }
                 else
                 {
-                    //Code to find last page number
-                    WebElement lastArrow= HelpersMethod.FindByElement(driver,"xpath","//div[@class='k-window k-dialog']/descendant::span[@class='k-icon k-i-arrow-end-right']");
-                    HelpersMethod.ScrollElement(driver,lastArrow);
-                    HelpersMethod.ActClick(driver,lastArrow,10000);
-                    wait = new FluentWait<WebDriver>(driver)
-                            .withTimeout(Duration.ofSeconds(200))
-                            .pollingEvery(Duration.ofSeconds(2))
-                            .ignoring(NoSuchElementException.class);
-                    wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
-
-                    //code to read last page number
-                    List<WebElement> pageNos=HelpersMethod.FindByElements(driver,"xpath","//div[@class='k-window k-dialog']/descendant::div[@class='k-pager-numbers']/button");
-                    int i=pageNos.size()-1;
-                    act.moveToElement(pageNos.get(i)).build().perform();
-                    lastPage= Integer.parseInt(pageNos.get(i).getText());
-                    scenario.log("NUMBER OF PAGES IN PRODUCT DIALOG BOX ARE: "+lastPage);
-
-                    //code to navigate to first page again
-                    WebElement firstArrow=HelpersMethod.FindByElement(driver,"xpath","//div[@class='k-window k-dialog']/descendant::span[@class='k-icon k-i-arrow-end-left']");
-                    HelpersMethod.ActClick(driver,firstArrow,10000);
-                    wait = new FluentWait<WebDriver>(driver)
-                            .withTimeout(Duration.ofSeconds(200))
-                            .pollingEvery(Duration.ofSeconds(2))
-                            .ignoring(NoSuchElementException.class);
-                    wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
-
-                    //code to loop through the page numbers
-                    for(int j=0;j<=lastPage;j++)
-                    {
-                        pages = HelpersMethod.FindByElements(driver, "xpath", "//div[@class='k-window k-dialog']/descendant::div[@class='k-pager-numbers']/button");
-                        for (WebElement page : pages)
-                        {
-                            act.moveToElement(page).build().perform();
-                            pageText = page.getText();
-                            if (!pageText.equalsIgnoreCase("..."))
-                            {
-                                act.moveToElement(page).build().perform();
-                                pageNumber = Integer.parseInt(page.getText());
-                                act.click(page).build().perform();
-                                wait = new FluentWait<WebDriver>(driver)
-                                        .withTimeout(Duration.ofSeconds(200))
-                                        .pollingEvery(Duration.ofSeconds(2))
-                                        .ignoring(NoSuchElementException.class);
-                                wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
-
-                                //Code to find unselected product for order factor
-                                if(HelpersMethod.IsExists("//div[@class='k-window k-dialog']/descendant::tr[@class='k-table-row k-master-row']/descendant::button|//div[@class='k-window k-dialog']/descendant::tr[@class='k-table-row k-master-row k-table-alt-row k-alt']/descendant::button",driver))
-                                {
-                                    List<WebElement> products = HelpersMethod.FindByElements(driver, "xpath", "//div[@class='k-window k-dialog']/descendant::tr[@class='k-table-row k-master-row']/descendant::button|//div[@class='k-window k-dialog']/descendant::tr[@class='k-table-row k-master-row k-table-alt-row k-alt']/descendant::button");
-                                    for (int p = 0; p <= products.size() - 1; p++)
-                                    {
-                                        if (p == 0)
-                                        {
-                                            prod = products.get(p);
-                                            prodNo = prod.getText();
-                                            scenario.log("PRODUCT NUMBER SELECTED FOR ORDER FACTOR IS " + prodNo);
-                                            HelpersMethod.ActClick(driver, prod, 10000);
-                                            found=true;
-                                            break;
-                                        }
-                                    }
-                                }
-                            }
-                            if(found==true)
-                            {
-                                break;
-                            }
-                        }
-                        if(found==true)
-                        {
-                            break;
-                        }
-                        else if(found==false)
-                        {
-                            int size = pages.size() - 1;
-                            page1 = pages.get(size);
-                            pageText = page1.getText();
-                            if (pageText.equals("..."))
-                            {
-                                act.moveToElement(page1).build().perform();
-                                act.click().build().perform();
-                                wait = new FluentWait<WebDriver>(driver)
-                                        .withTimeout(Duration.ofSeconds(200))
-                                        .pollingEvery(Duration.ofSeconds(2))
-                                        .ignoring(NoSuchElementException.class);
-                                wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
-                            }
-                            else
-                            {
-                                scenario.log("<span style='color:red'>ALL PRODUCTS ARE PART OF ORDER FACTOR</span>");
-                            }
-                        }
-                    }
+                    scenario.log("PRODUCT HAS NOT BEEN FOUND");
                 }
             }
         }
@@ -670,13 +737,16 @@ public class orderFactorAdminPage
             {
                 scenario.log("<span style='color:red'>PRODUCT HAS NOT BEEN FOUND TO DELETE PRODUCT FROM ORDER FACTOR</span>");
             }
-            else {
+            else
+            {
                 List<WebElement> heads = HelpersMethod.FindByElements(driver, "xpath", "//div[@class='i-grid']/descendant::span[@class='k-column-title']");
-                for (WebElement head : heads) {
+                for (WebElement head : heads)
+                {
                     i++;
                     act.moveToElement(head).build().perform();
                     headText = head.getText();
-                    if (headText.equalsIgnoreCase("Product #")) {
+                    if (headText.equalsIgnoreCase("Product #"))
+                    {
                         exists = true;
                         break;
                     }

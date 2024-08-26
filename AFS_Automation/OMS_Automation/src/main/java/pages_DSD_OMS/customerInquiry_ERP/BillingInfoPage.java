@@ -2,7 +2,6 @@ package pages_DSD_OMS.customerInquiry_ERP;
 
 import helper.HelpersMethod;
 import io.cucumber.java.Scenario;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -88,8 +87,8 @@ public class BillingInfoPage
         exists=false;
         try
         {
-            HelpersMethod.EnterText(driver,WebEle,1000, RandomValues.generateRandomNumber(length));
-            InputValue=HelpersMethod.JSGetValueEle(driver,WebEle,1000);
+            HelpersMethod.EnterText(driver,WebEle,10000, RandomValues.generateRandomNumber(length));
+            InputValue=HelpersMethod.JSGetValueEle(driver,WebEle,10000);
 
             if(InputValue!=null)
             {exists=true;}
@@ -104,8 +103,8 @@ public class BillingInfoPage
         exists=false;
         try
         {
-            HelpersMethod.EnterText(driver,WebEle,1000, RandomValues.generateRandomString(length));
-            InputValue=HelpersMethod.JSGetValueEle(driver,WebEle,1000);
+            HelpersMethod.EnterText(driver,WebEle,10000, RandomValues.generateRandomString(length));
+            InputValue=HelpersMethod.JSGetValueEle(driver,WebEle,10000);
 
             if(InputValue!=null)
             {exists=true;}
@@ -124,7 +123,7 @@ public class BillingInfoPage
             if(Options.size()==1)
             {
                 scenario.log("THERE ARE NO OPTIONS OTHER THAN 'None'");
-                HelpersMethod.ActClick(driver, Options.get(0), 2000);
+                HelpersMethod.ActClick(driver, Options.get(0), 10000);
             }
             else
             {
@@ -134,7 +133,7 @@ public class BillingInfoPage
                     {
                         if (i == 1)
                         {
-                            HelpersMethod.ActClick(driver, Options.get(1), 2000);
+                            HelpersMethod.ActClick(driver, Options.get(1), 10000);
                             break;
                         }
                     }
@@ -145,7 +144,7 @@ public class BillingInfoPage
                     {
                         if (i == 2)
                         {
-                            HelpersMethod.ActClick(driver, Options.get(2), 2000);
+                            HelpersMethod.ActClick(driver, Options.get(2), 10000);
                             break;
                         }
                     }
@@ -158,13 +157,13 @@ public class BillingInfoPage
     public void InvoiceCopy()
     {
         InputValue=EnterNumber(invoiceCopy,5);
-        HelpersMethod.EnterText(driver,billToZip,1000,InputValue);
+        HelpersMethod.EnterText(driver,billToZip,10000,InputValue);
         scenario.log("INVOICE COPY ENTERED IS "+HelpersMethod.JSGetValueEle(driver,billToZip,1000));
     }
 
     public void salesTaxCodeDropDown()
     {
-        HelpersMethod.ClickBut(driver,salesTaxCodeDropDown,4000);
+        HelpersMethod.ClickBut(driver,salesTaxCodeDropDown,10000);
         selectDropDownValue();
         scenario.log("VALUE SELECTED FROM SALES TAX DROP DOWN IS "+salesTaxCodeDropDown.getText());
     }
@@ -172,82 +171,82 @@ public class BillingInfoPage
     public void legalName()
     {
         InputValue=EnterText(legalName,10);
-        HelpersMethod.EnterText(driver,legalName,1000,InputValue);
+        HelpersMethod.EnterText(driver,legalName,10000,InputValue);
         scenario.log("LEGAL NAME ENTERED IS "+HelpersMethod.JSGetValueEle(driver,legalName,1000));
     }
 
     public void DBAName()
     {
         InputValue=EnterText(dBName,10);
-        HelpersMethod.EnterText(driver,dBName,1000,InputValue);
+        HelpersMethod.EnterText(driver,dBName,10000,InputValue);
         scenario.log("DB NAME ENTERED IS "+HelpersMethod.JSGetValueEle(driver,dBName,1000));
     }
     public void DunAndBrandStreet()
     {
         InputValue=EnterText(dunBrand,10);
-        HelpersMethod.EnterText(driver,dunBrand,1000,InputValue);
+        HelpersMethod.EnterText(driver,dunBrand,10000,InputValue);
         scenario.log("DUN AND BRAND STREET ENTERED IS "+HelpersMethod.JSGetValueEle(driver,dunBrand,1000));
     }
 
     public void DAndBRating()
     {
     InputValue=EnterNumber(dBRating,1);
-    HelpersMethod.EnterText(driver,dBRating,1000,InputValue);
+    HelpersMethod.EnterText(driver,dBRating,10000,InputValue);
     scenario.log("DB RATING ENTERED IS "+HelpersMethod.JSGetValueEle(driver,dBRating,1000));
     }
 
     public void address1()
     {
         InputValue=EnterText(address1,20);
-        HelpersMethod.EnterText(driver,address1,1000,InputValue);
+        HelpersMethod.EnterText(driver,address1,10000,InputValue);
         scenario.log("ADDRESS1 ENTERED IS "+HelpersMethod.JSGetValueEle(driver,address1,1000));
     }
     public void address2()
     {
         InputValue=EnterText(address2,20);
-        HelpersMethod.EnterText(driver,address2,1000,InputValue);
+        HelpersMethod.EnterText(driver,address2,10000,InputValue);
         scenario.log("ADDRESS2 ENTERED IS "+HelpersMethod.JSGetValueEle(driver,address2,1000));
     }
     public void address3()
     {
         InputValue=EnterText(address3,20);
-        HelpersMethod.EnterText(driver,address3,1000,InputValue);
+        HelpersMethod.EnterText(driver,address3,10000,InputValue);
         scenario.log("ADDRESS3 ENTERED IS "+HelpersMethod.JSGetValueEle(driver,address3,1000));
     }
     public void address4()
     {
         InputValue=EnterText(address4,20);
-        HelpersMethod.EnterText(driver,address4,1000,InputValue);
+        HelpersMethod.EnterText(driver,address4,10000,InputValue);
         scenario.log("ADDRESS4 ENTERED IS "+HelpersMethod.JSGetValueEle(driver,address4,1000));
     }
     public void billingCompany()
     {
         InputValue=EnterText(billToName,10);
-        HelpersMethod.EnterText(driver,billToName,1000,InputValue);
+        HelpersMethod.EnterText(driver,billToName,10000,InputValue);
         scenario.log("ADDRESS2 ENTERED IS "+HelpersMethod.JSGetValueEle(driver,billToName,1000));
     }
     public void billingCity()
     {
         InputValue=EnterText(billToCity,20);
-        HelpersMethod.EnterText(driver,billToCity,1000,InputValue);
+        HelpersMethod.EnterText(driver,billToCity,10000,InputValue);
         scenario.log("ADDRESS2 ENTERED IS "+HelpersMethod.JSGetValueEle(driver,billToCity,1000));
     }
 
     public void billToCountryDropDown()
     {
-        HelpersMethod.ClickBut(driver,billToCountryDropDown,4000);
+        HelpersMethod.ClickBut(driver,billToCountryDropDown,10000);
         selectDropDownValue();
         scenario.log("VALUE SELECTED FROM BILL TO COUNTRY DROP DOWN IS "+billToCountryDropDown.getText());
     }
     public void zipCode()
     {
-        HelpersMethod.clearText(driver,billToZip,1000);
-        HelpersMethod.EnterText(driver,billToZip,1000,RandomValues.generateRandomNumber(12));
-        scenario.log("ZIP NUMBER ENTERED IS "+HelpersMethod.JSGetValueEle(driver,billToZip,1000));
+        HelpersMethod.clearText(driver,billToZip,10000);
+        HelpersMethod.EnterText(driver,billToZip,10000,RandomValues.generateRandomNumber(12));
+        scenario.log("ZIP NUMBER ENTERED IS "+HelpersMethod.JSGetValueEle(driver,billToZip,10000));
     }
     public void billToStateDropDown()
     {
-        HelpersMethod.ClickBut(driver,billToStateDropDown,4000);
+        HelpersMethod.ClickBut(driver,billToStateDropDown,10000);
         selectDropDownValue();
         scenario.log("VALUE SELECTED FROM SALES TAX DROP DOWN IS "+billToStateDropDown.getText());
     }
@@ -255,13 +254,13 @@ public class BillingInfoPage
     public void phoneNumber()
     {
         InputValue=EnterNumber(billToTele,10);
-        HelpersMethod.EnterText(driver,billToTele,1000,InputValue);
-        scenario.log("TELEPHONE NUMBER ENTERED IS "+HelpersMethod.JSGetValueEle(driver,billToTele,1000));
+        HelpersMethod.EnterText(driver,billToTele,10000,InputValue);
+        scenario.log("TELEPHONE NUMBER ENTERED IS "+HelpersMethod.JSGetValueEle(driver,billToTele,10000));
     }
     public void faxNumber()
     {
         InputValue=EnterNumber(billToFax,10);
-        HelpersMethod.EnterText(driver,billToFax,1000,InputValue);
-        scenario.log("FAX NUMBER ENTERED IS "+HelpersMethod.JSGetValueEle(driver,billToFax,1000));
+        HelpersMethod.EnterText(driver,billToFax,10000,InputValue);
+        scenario.log("FAX NUMBER ENTERED IS "+HelpersMethod.JSGetValueEle(driver,billToFax,10000));
     }
 }

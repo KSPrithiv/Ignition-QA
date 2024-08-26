@@ -175,6 +175,8 @@ public class DMOEPageStep
         //HelpersMethod.Refresh(driver);
         dmoePage=new DMOEPage(driver,scenario);
         dmoePage.ValidateDisconnectedMode();
+        orderpage=new OrderEntryPage(driver,scenario);
+        orderpage.deliveryDateSelectedIs();
     }
 
     @Given("User should be in OE page in DM")
