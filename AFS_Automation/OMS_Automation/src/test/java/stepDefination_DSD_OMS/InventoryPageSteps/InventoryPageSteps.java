@@ -170,10 +170,11 @@ public class InventoryPageSteps
         inventory=new InventoryPage(driver,scenario);
         inventory.clickOnAddProd();
         inventory.validateCatalogPopup();
+        inventory.loadProducts();
         if (HelpersMethod.IsExists("//div[contains(@class,'k-window k-dialog')]/descendant::div[contains(@class,'i-grid')]", driver))
         {
             scenario.log("CATALOG IN THE FORM OF LIST VIEW HAS BEEN FOUND");
-            inventory.ListView(qtyValue);
+            inventory.ListView();
         }
         else
         {
@@ -185,6 +186,7 @@ public class InventoryPageSteps
             }
         }
         inventory.clickOnCatalogOkButton();
+        inventory.enterQty(qtyValue);
         inventory.clickSaveButton();
         inventory.readProductsInInventory();
     }

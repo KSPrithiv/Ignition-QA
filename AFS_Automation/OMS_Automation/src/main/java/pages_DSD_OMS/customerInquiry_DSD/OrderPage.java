@@ -2,13 +2,10 @@ package pages_DSD_OMS.customerInquiry_DSD;
 
 import helper.HelpersMethod;
 import io.cucumber.java.Scenario;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import util.RandomValues;
 import java.util.List;
@@ -80,8 +77,8 @@ public class OrderPage
   exists=false;
   try
   {
-   HelpersMethod.EnterText(driver,WebEle,10,RandomValues.generateRandomNumber(length));
-   InputValue=HelpersMethod.JSGetValueEle(driver,WebEle,10);
+   HelpersMethod.EnterText(driver,WebEle,10000,RandomValues.generateRandomNumber(length));
+   InputValue=HelpersMethod.JSGetValueEle(driver,WebEle,10000);
 
    if(InputValue!=null)
    {exists=true;}
@@ -96,8 +93,8 @@ public class OrderPage
   exists=false;
   try
   {
-   HelpersMethod.EnterText(driver,WebEle,10, RandomValues.generateRandomString(length));
-   InputValue=HelpersMethod.JSGetValueEle(driver,WebEle,10);
+   HelpersMethod.EnterText(driver,WebEle,10000, RandomValues.generateRandomString(length));
+   InputValue=HelpersMethod.JSGetValueEle(driver,WebEle,10000);
 
    if(InputValue!=null)
    {exists=true;}
@@ -116,7 +113,7 @@ public class OrderPage
    if(Options.size()==1)
    {
     scenario.log("THERE ARE NO OPTIONS OTHER THAN 'None'");
-    HelpersMethod.ActClick(driver, Options.get(0), 20);
+    HelpersMethod.ActClick(driver, Options.get(0), 10000);
    }
    else
    {
@@ -126,7 +123,7 @@ public class OrderPage
      {
       if (i == 1)
       {
-       HelpersMethod.ActClick(driver, Options.get(1), 20);
+       HelpersMethod.ActClick(driver, Options.get(1), 10000);
        break;
       }
      }
@@ -137,7 +134,7 @@ public class OrderPage
      {
       if (i == 2)
       {
-       HelpersMethod.ActClick(driver, Options.get(2), 20);
+       HelpersMethod.ActClick(driver, Options.get(2), 10000);
        break;
       }
      }
@@ -167,69 +164,69 @@ public class OrderPage
  public void ContactInput()
  {
   InputValue=EnterText(Contact,10);
-  HelpersMethod.EnterText(driver,Contact,10,InputValue);
+  HelpersMethod.EnterText(driver,Contact,10000,InputValue);
   scenario.log("CONTACT VALUE ENTERED IS "+HelpersMethod.JSGetValueEle(driver,Contact,10));
  }
 
  public void PhoneInput()
  {
   InputValue=EnterNumber(Telphone,10);
-  HelpersMethod.EnterText(driver,Telphone,10,InputValue);
+  HelpersMethod.EnterText(driver,Telphone,10000,InputValue);
   scenario.log("TELEPHONE VALUE ENTERED IS "+HelpersMethod.JSGetValueEle(driver,Telphone,10));
  }
 
  public void FaxInput()
  {
   InputValue=EnterNumber(Fax,10);
-  HelpersMethod.EnterText(driver,Fax,10,InputValue);
+  HelpersMethod.EnterText(driver,Fax,10000,InputValue);
   scenario.log("FAX VALUE ENTERED IS "+HelpersMethod.JSGetValueEle(driver,Fax,10));
  }
 
  public void HolidayRuleInput()
  {
    InputValue=EnterText(Holiday,10);
-   HelpersMethod.EnterText(driver,Holiday,10,InputValue);
+   HelpersMethod.EnterText(driver,Holiday,10000,InputValue);
    scenario.log("HOLIDAY RULE ENTERED IS "+HelpersMethod.JSGetValueEle(driver,Holiday,10));
  }
 
  public void DefaultGiverInput()
  {
   InputValue=EnterText(DefaultGiver,10);
-  HelpersMethod.EnterText(driver,DefaultGiver,10,InputValue);
+  HelpersMethod.EnterText(driver,DefaultGiver,10000,InputValue);
   scenario.log("DEFAULT GIVER VALUE ENTERED IS "+HelpersMethod.JSGetValueEle(driver,DefaultGiver,10));
  }
 
  public void DefaultTakerInput()
  {
   InputValue=EnterText(DefaultTaker,10);
-  HelpersMethod.EnterText(driver,DefaultTaker,10,InputValue);
+  HelpersMethod.EnterText(driver,DefaultTaker,10000,InputValue);
   scenario.log("DEFAULT TAKER VALUE ENTERED IS "+HelpersMethod.JSGetValueEle(driver,DefaultTaker,10));
  }
 
  public void CustomerOrderDropDown()
  {
-  HelpersMethod.ClickBut(driver,CustType,40);
+  HelpersMethod.ClickBut(driver,CustType,10000);
   selectDropDownValue();
   scenario.log("CUSTOMER TYPE FROM DROP DOWN IS "+CustType.getText());
  }
 
  public void ShowVoidedOrdersDropDown()
  {
-  HelpersMethod.ClickBut(driver,ShowOrders,40);
+  HelpersMethod.ClickBut(driver,ShowOrders,10000);
   selectDropDownValue();
   scenario.log("SHOW ORDER SELECTED FROM DROP DOWN IS "+ShowOrders.getText());
  }
 
  public void ShowVoidedSalesDropDown()
  {
-  HelpersMethod.ClickBut(driver,ShowSales,40);
+  HelpersMethod.ClickBut(driver,ShowSales,10000);
   selectDropDownValue();
   scenario.log("SHOW SALES SELECTED FROM DROP DOWN IS "+ShowSales.getText());
  }
 
  public void AuthorizedProdDropDown()
  {
-  HelpersMethod.ClickBut(driver,AuthProduct,40);
+  HelpersMethod.ClickBut(driver,AuthProduct,10000);
   selectDropDownValue();
   scenario.log("AUTHORISED PRODUCT SELECTED FROM DROP DOWN IS "+AuthProduct.getText());
  }
@@ -239,8 +236,8 @@ public class OrderPage
   exists=false;
   try
   {
-   HelpersMethod.JSSetValueEle(driver,MinOrder,40, String.valueOf(minAmount));
-   InputValue=HelpersMethod.JSGetValueEle(driver,MinOrder,40);
+   HelpersMethod.JSSetValueEle(driver,MinOrder,10000, String.valueOf(minAmount));
+   InputValue=HelpersMethod.JSGetValueEle(driver,MinOrder,10000);
    scenario.log("MIN ORDER AMOUNT IS "+InputValue);
    if(InputValue!=null)
    {exists=true;}
@@ -254,8 +251,8 @@ public class OrderPage
   exists=false;
   try
   {
-   HelpersMethod.JSSetValueEle(driver,MaxOrder,20, String.valueOf(maxAmount));
-   InputValue=HelpersMethod.JSGetValueEle(driver,MaxOrder,40);
+   HelpersMethod.JSSetValueEle(driver,MaxOrder,10000, String.valueOf(maxAmount));
+   InputValue=HelpersMethod.JSGetValueEle(driver,MaxOrder,10000);
    scenario.log("MAX ORDER AMOUNT IS "+InputValue);
    if(InputValue!=null)
    {exists=true;}
@@ -269,7 +266,7 @@ public class OrderPage
   exists=false;
   try
   {
-   HelpersMethod.ActClick(driver,StartForecastDate,20);
+   HelpersMethod.ActClick(driver,StartForecastDate,10000);
    if (HelpersMethod.IsExists("//div[contains(@class,'k-calendar-monthview')]",driver))
    {
      exists=true;
@@ -355,7 +352,7 @@ public class OrderPage
   {
    if(HelpersMethod.IsExistsById("CmCustForecastFlag",driver))
    {
-    HelpersMethod.ActClick(driver,UseForecast,10);
+    HelpersMethod.ActClick(driver,UseForecast,10000);
    }
    if(UseForecast.isSelected())
    {

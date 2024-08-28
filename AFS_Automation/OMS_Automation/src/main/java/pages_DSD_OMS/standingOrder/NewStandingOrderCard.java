@@ -313,8 +313,8 @@ public class NewStandingOrderCard
             {
                 HelpersMethod.waitTillLoadingPage(driver);
             }
-            new WebDriverWait(driver, Duration.ofMillis(10000)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='k-calendar-view k-vstack k-calendar-monthview']")));
             new WebDriverWait(driver,Duration.ofMillis(10000)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class='k-calendar-view k-vstack k-calendar-monthview']"))));
+            new WebDriverWait(driver, Duration.ofMillis(10000)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='k-calendar-view k-vstack k-calendar-monthview']")));
 
             //Visibility of Start calender
             if (HelpersMethod.IsExists("//div[@id='addFromDate-popup-id']", driver))

@@ -375,7 +375,7 @@ public class GridConfigurationPage
         {
             if(columnChooser.isDisplayed() && columnChooser.isEnabled())
             {
-                HelpersMethod.ClickBut(driver, columnChooser, 1000);
+                HelpersMethod.ClickBut(driver, columnChooser, 10000);
                 new WebDriverWait(driver,Duration.ofMillis(10000)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class,'k-window k-dialog')]"))));
                 exists=true;
             }
@@ -488,7 +488,7 @@ public class GridConfigurationPage
         catch (Exception e){}
     }
 
-    public void gridMainDropdownSelection(String arg0)
+    public void gridMainDropdownSelection()
     {
         exists=false;
         try

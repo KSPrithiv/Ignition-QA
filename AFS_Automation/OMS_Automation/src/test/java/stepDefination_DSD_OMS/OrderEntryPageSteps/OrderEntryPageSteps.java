@@ -9,6 +9,7 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.openqa.selenium.*;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.Wait;
@@ -176,6 +177,7 @@ public class OrderEntryPageSteps
                 orderpage.validateRouteSelected(TestBase.testEnvironment.get_Route());
             }
             //check for 'Start Order' button
+            Thread.sleep(1000);
             orderpage.Scroll_start();
             exists = orderpage.Start_Order();
         }
@@ -218,7 +220,13 @@ public class OrderEntryPageSteps
                 Thread.sleep(1000);
                 orderpage.NoNotePopHandling();
             }
-            String status = HelpersMethod.returnDocumentStatus(driver);
+        wait = new FluentWait<WebDriver>(driver)
+                .withTimeout(Duration.ofSeconds(400))
+                .pollingEvery(Duration.ofSeconds(2))
+                .ignoring(NoSuchElementException.class);
+        wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
+        String status = HelpersMethod.returnDocumentStatus(driver);
             if (status.equals("loading"))
             {
                 HelpersMethod.waitTillLoadingPage(driver);
@@ -355,6 +363,7 @@ public class OrderEntryPageSteps
     @Then("Enter PO# for New order")
     public void enter_po_for_new_order(DataTable tabledata) throws InterruptedException, AWTException
     {
+        Thread.sleep(1000);
         newOE=new NewOrderEntryPage(driver,scenario);
         exists=newOE.ValidateNewOE();
         orderpage=new OrderEntryPage(driver,scenario);
@@ -364,7 +373,7 @@ public class OrderEntryPageSteps
         newOE.EnterPO_No(PO_No.get(0).get(0));
 
         //find whether route is empty or not, if empty should select some route value
-        Thread.sleep(1000);
+        Thread.sleep(2000);
         String routeNo=newOE.validateRouteValue();
         if(routeNo==null||routeNo.equals(""))
         {
@@ -373,6 +382,9 @@ public class OrderEntryPageSteps
             newOE.Route_No(TestBase.testEnvironment.get_RouteFilt(), TestBase.testEnvironment.get_Route());
             newOE.validateRouteSelected(TestBase.testEnvironment.get_Route());
         }
+
+        //To find main grid has been selected or else select main grid
+        newOE.selectMainGrid();
     }
 
     @Then("Enter PO# for New order for Pickup order")
@@ -385,17 +397,6 @@ public class OrderEntryPageSteps
         newOE=new NewOrderEntryPage(driver,scenario);
         List<List<String>> PO_No = tabledata.asLists(String.class);
         newOE.EnterPO_No(PO_No.get(0).get(0));
-
-        //find whether route is empty or not, if empty should select some route value
-//        Thread.sleep(1000);
-//        String routeNo=newOE.validateRouteValue();
-//        if(routeNo==null||routeNo.equals(""))
-//        {
-//            newOE.clickRouteIndex();
-//            newOE.validateRouteDialog();
-//            newOE.Route_No(TestBase.testEnvironment.get_RouteFilt(), TestBase.testEnvironment.get_Route());
-//            newOE.validateRouteSelected(TestBase.testEnvironment.get_Route());
-//        }
     }
 
     @Then("Enter PO# for New order for Quote to Order")

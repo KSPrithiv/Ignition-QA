@@ -14,7 +14,6 @@ import util.RandomValues;
 
 import java.time.Duration;
 import java.util.List;
-import java.util.concurrent.ThreadLocalRandom;
 
 /**
  * @Project DSD_OMS
@@ -440,7 +439,7 @@ public class DeliveriesPage
         new WebDriverWait(driver, Duration.ofMillis(100)).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class,'k-calendar-monthview')]")));
         try
         {
-            String formattedDate1 = null;
+            String formattedDate1;
             WebElement WebEle;
             exists=false;
             //finding element/date in calendar drop down is enabled or not.
@@ -482,7 +481,7 @@ public class DeliveriesPage
         new WebDriverWait(driver,Duration.ofMillis(100)).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class,'k-calendar-monthview')]")));
         try
         {
-            String formattedDate1 = null;
+            String formattedDate1;
             WebElement WebEle;
             exists=false;
             //finding element/date in calendar drop down is enabled or not. if not enabled increase the date by 6 days

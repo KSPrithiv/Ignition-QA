@@ -8,7 +8,6 @@ import org.testng.annotations.Optional;
 import org.testng.annotations.Parameters;
 import util.TestBase;
 
-import javax.mail.MessagingException;
 import java.io.IOException;
 
 /**
@@ -24,8 +23,8 @@ import java.io.IOException;
                 "src/test/resources/features_DSD_OMS/AdminToClientNavigation/orderEntryAdminToClientFeature1.feature",
                 "src/test/resources/features_DSD_OMS/AdminToClientNavigation/orderEntryAdminToClientFeatureDSD.feature",
                 "src/test/resources/features_DSD_OMS/AdminToClientNavigation/webOrderingAdminToClientFeature.feature",
-               "src/test/resources/features_DSD_OMS/AdminToClientNavigation/standingOrderAdminToClientFeature.feature",
-               "src/test/resources/features_DSD_OMS/AdminToClientNavigation/quotesAdminToClientFeature.feature",
+                "src/test/resources/features_DSD_OMS/AdminToClientNavigation/standingOrderAdminToClientFeature.feature",
+                "src/test/resources/features_DSD_OMS/AdminToClientNavigation/quotesAdminToClientFeature.feature",
                 "src/test/resources/features_DSD_OMS/AdminToClientNavigation/loginPageAdminToClientFeature.feature",
                 //"src/test/resources/features_DSD_OMS/AdminToClientNavigation/reportsAdminToClientFeature.feature",
                 "src/test/resources/features_DSD_OMS/AdminToClientNavigation/disconnectedModeAdminFeature.feature",
@@ -58,7 +57,7 @@ public class TestRunnerAdminClientNavigationDSD extends AbstractTestNGCucumberTe
     }
 
     @AfterMethod
-    public static void afterMethod() throws InterruptedException, MessagingException, IOException
+    public static void afterMethod() throws InterruptedException, IOException
     {
         Thread.sleep(500);
         TestBase.CloseBrowser();

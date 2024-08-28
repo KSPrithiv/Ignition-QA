@@ -209,12 +209,13 @@ public class StandingOrderPageSteps
     }
 
     @And("User checks for catalog popup and searches for product in catalog")
-    public void userChecksForCatalogPopupAndSearchesForProductInCatalog() throws SQLException
+    public void userChecksForCatalogPopupAndSearchesForProductInCatalog() throws SQLException, InterruptedException
     {
         standingOrder=new NewStandingOrderPage(driver,scenario);
         standingOrder.ValidateCatalogPopup();
         standingOrder.clickOnLoadAllProducts();
         standingOrder.ResetFilter_Catalog();
+        standingOrder.selectAllProduct();
         if (HelpersMethod.IsExists("//div[contains(@class,'k-window k-dialog')]/descendant::div[contains(@class,'i-grid')]", driver))
         {
             standingOrder.ListView();
@@ -242,6 +243,7 @@ public class StandingOrderPageSteps
     public void readTheFirstProductFromTheProductGridAndClickOnCheckBox()
     {
         standingOrder=new NewStandingOrderPage(driver,scenario);
+        standingOrder.validateStandingOrder();
         standingOrder.ReadProductNoInGrid();
         standingOrder.ClickOnCheckboxOfProductNo();
     }
@@ -259,6 +261,7 @@ public class StandingOrderPageSteps
         orderpage=new OrderEntryPage(driver,scenario);
         orderpage.Read_DeliveryDate();
         standingOrder=new NewStandingOrderPage(driver,scenario);
+        standingOrder.validateStandingOrder();
         standingOrder.ClickOnSkipSpecificDay();
         standingOrder.ValidateSkipPopup();
         standingOrder.ClickOnSkipReason();

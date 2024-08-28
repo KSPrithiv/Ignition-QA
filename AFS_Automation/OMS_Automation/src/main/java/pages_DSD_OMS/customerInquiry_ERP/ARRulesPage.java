@@ -2,7 +2,6 @@ package pages_DSD_OMS.customerInquiry_ERP;
 
 import helper.HelpersMethod;
 import io.cucumber.java.Scenario;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -69,7 +68,7 @@ public class ARRulesPage
             if(Options.size()==1)
             {
                 scenario.log("THERE ARE NO OPTIONS OTHER THAN 'None'");
-                HelpersMethod.ActClick(driver, Options.get(0), 2000);
+                HelpersMethod.ActClick(driver, Options.get(0), 10000);
             }
             else
             {
@@ -79,7 +78,7 @@ public class ARRulesPage
                     {
                         if (i == 1)
                         {
-                            HelpersMethod.ActClick(driver, Options.get(1), 2000);
+                            HelpersMethod.ActClick(driver, Options.get(1), 10000);
                             break;
                         }
                     }
@@ -90,7 +89,7 @@ public class ARRulesPage
                     {
                         if (i == 2)
                         {
-                            HelpersMethod.ActClick(driver, Options.get(2), 2000);
+                            HelpersMethod.ActClick(driver, Options.get(2), 10000);
                             break;
                         }
                     }
@@ -102,67 +101,67 @@ public class ARRulesPage
 
     public void marketSegmentDropDown()
     {
-        HelpersMethod.ClickBut(driver,marketSegmentDropDown,4000);
+        HelpersMethod.ClickBut(driver,marketSegmentDropDown,10000);
         selectDropDownValue();
         scenario.log("VALUE SELECTED FROM MARKET SEGMENT DROP DOWN IS "+marketSegmentDropDown.getText());
     }
     public void currencyCode()
     {
-        HelpersMethod.ClickBut(driver,currencyCodeDropDown,4000);
+        HelpersMethod.ClickBut(driver,currencyCodeDropDown,10000);
         selectDropDownValue();
         scenario.log("VALUE SELECTED FROM CURRENCY CODE DROP DOWN IS "+currencyCodeDropDown.getText());
     }
     public void exchangeRateSourceDropDown()
     {
-        HelpersMethod.ClickBut(driver,exchangeRateDropDown,4000);
+        HelpersMethod.ClickBut(driver,exchangeRateDropDown,10000);
         selectDropDownValue();
         scenario.log("VALUE SELECTED FROM EXCHANGE RATE DROP DOWN IS "+exchangeRateDropDown.getText());
     }
     public void billToCustomerDropDown()
     {
-        HelpersMethod.ClickBut(driver,billToCustomerDropDown,4000);
+        HelpersMethod.ClickBut(driver,billToCustomerDropDown,10000);
         selectDropDownValue();
         scenario.log("VALUE SELECTED FROM BILL TO CUSTOMER DROP DOWN IS "+billToCustomerDropDown.getText());
     }
     public void remitToCodeDropDown()
     {
-        HelpersMethod.ClickBut(driver,remitToCode,4000);
+        HelpersMethod.ClickBut(driver,remitToCode,10000);
         selectDropDownValue();
         scenario.log("VALUE SELECTED FROM REMIT TO CODE DROP DOWN IS "+remitToCode.getText());
     }
     public void cashGroupCodeDropDown()
     {
-        HelpersMethod.ClickBut(driver,cashGroupCode,4000);
+        HelpersMethod.ClickBut(driver,cashGroupCode,10000);
         selectDropDownValue();
         scenario.log("VALUE SELECTED FROM CASH GROUP CODE DROP DOWN IS "+cashGroupCode.getText());
     }
     public void applicationMethodDropDown()
     {
-        HelpersMethod.ClickBut(driver,appMethod,4000);
+        HelpersMethod.ClickBut(driver,appMethod,10000);
         selectDropDownValue();
         scenario.log("VALUE SELECTED FROM APPLICATION METHOD DROP DOWN IS "+appMethod.getText());
     }
     public void statementToDropDown()
     {
-        HelpersMethod.ClickBut(driver,statementTo,4000);
+        HelpersMethod.ClickBut(driver,statementTo,10000);
         selectDropDownValue();
         scenario.log("VALUE SELECTED FROM STATEMENT TO DROP DOWN IS "+statementTo.getText());
     }
     public void statementFreqDropDown()
     {
-        HelpersMethod.ClickBut(driver,statementFreq,4000);
+        HelpersMethod.ClickBut(driver,statementFreq,10000);
         selectDropDownValue();
         scenario.log("VALUE SELECTED FROM STATEMENT TO DROP DOWN IS "+statementFreq.getText());
     }
     public void statementDOWDropDown()
     {
-        HelpersMethod.ClickBut(driver,statementDOW,4000);
+        HelpersMethod.ClickBut(driver,statementDOW,10000);
         selectDropDownValue();
         scenario.log("VALUE SELECTED FROM STATEMENT TO DROP DOWN IS "+statementDOW.getText());
     }
     public void statementTypeDropDown()
     {
-        HelpersMethod.ClickBut(driver,statementType,4000);
+        HelpersMethod.ClickBut(driver,statementType,10000);
         selectDropDownValue();
         scenario.log("VALUE SELECTED FROM STATEMENT TO DROP DOWN IS "+statementType.getText());
     }

@@ -172,6 +172,7 @@ public class CatalogPageStep
     {
         catalogpage = new CatalogPage(driver, scenario);
         catalogpage.Click_ResetFilterButton();
+        catalogpage.selectAllProduct();
         catalogpage.Click_ListView();
         catalogpage.validateListView();
     }
@@ -256,6 +257,7 @@ public class CatalogPageStep
     {
         catalogpage = new CatalogPage(driver, scenario);
         catalogpage.Click_ResetFilterButton();
+        catalogpage.selectAllProduct();
         catalogpage.Click_CardView();
         catalogpage.validateCardView();
     }

@@ -1,10 +1,7 @@
 package pages_DSD_OMS.aRInquiry;
 
-import gherkin.lexer.He;
 import helper.HelpersMethod;
 import io.cucumber.java.Scenario;
-import io.cucumber.java.an.E;
-import io.cucumber.java.bs.A;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -19,7 +16,6 @@ import org.testng.Assert;
 import pages_DSD_OMS.login.HomePage;
 import util.TestBase;
 
-import java.awt.font.TextLayout;
 import java.time.Duration;
 import java.util.Set;
 
@@ -133,8 +129,8 @@ public class ARInquiryPage
         exists=false;
         try
         {
-            WebElement WebEle = null;
-            String status = null;
+            WebElement WebEle;
+            String status;
             status = HelpersMethod.returnDocumentStatus(driver);
             if (status.equals("loading"))
             {
@@ -179,7 +175,7 @@ public class ARInquiryPage
 
     public void Validate_ARInquiry()
     {
-        String title=null;
+        String title;
         WebElement WebEle;
         if (HelpersMethod.IsExists("//div[@class='loader']", driver))
         {
@@ -312,7 +308,7 @@ public class ARInquiryPage
 
     public void AddFilterClick()
     {
-        WebElement WebEle;
+
         exists=false;
         try
         {

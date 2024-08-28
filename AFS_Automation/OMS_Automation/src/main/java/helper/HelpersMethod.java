@@ -216,7 +216,7 @@ public class HelpersMethod
     public static void ClearText(WebDriver driver,WebElement element,int timeOut)
     {
         new WebDriverWait(driver,Duration.ofMillis(timeOut)).until(ExpectedConditions.visibilityOf(element));
-        if (element.isDisplayed() && element.isEnabled() == true)
+        if (element.isDisplayed() && element.isEnabled())
         {
             element.clear();
         }

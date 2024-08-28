@@ -3,14 +3,10 @@ package stepDefination_DSD_OMS.AdminToClientNavigationSteps;
 import io.cucumber.java.Before;
 import io.cucumber.java.Scenario;
 import io.cucumber.java.en.And;
-import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
-import pages_DSD_OMS.adminCatalogSearch.catalogSearchPage;
 import pages_DSD_OMS.adminSecurity.AdminSecurityPermissionPage;
-import pages_DSD_OMS.login.LoginPage;
-import pages_DSD_OMS.orderEntry.CheckOutSummaryPage;
 import pages_DSD_OMS.orderEntry.NewOrderEntryPage;
 import pages_DSD_OMS.orderEntry.OrderEntryPage;
 import pages_DSD_OMS.webOrdering.AdminHomePage;
@@ -79,7 +75,7 @@ public class AdminOrderEntryStep1
             adminSecurityPermissionPage.searchAdminSettingInSearchBarClear();
             adminSecurityPermissionPage.searchAdminSettingInSearchBar(setting);
             adminSecurityPermissionPage.validateAdminSettingSearchValue(setting);
-            adminSecurityPermissionPage.uncheckCheckbox(settingId);
+            adminSecurityPermissionPage.checkCheckbox(settingId);
             adminHomePage=new AdminHomePage(driver,scenario);
             adminHomePage.Click_SaveButton();
     }

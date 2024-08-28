@@ -28,13 +28,10 @@ Feature: scenarios for admin credentials and client credentials, for Order Facto
     Then User should select Note from popup and Order guide from popup
     Then Enter PO# for New order
       |PO123|
-    Then Enter Pro# in Quick Product Entry area
-    And Check for Case and Unit input box enabled or not based on that enter value
-      |1|1|
-    Then Enter Pro# in Quick Product Entry area for Order factor
-    And Check for Case and Unit input box enabled or not based on that enter value for qty to verify order factor
-      |4|4|
-    Then Click on Next button and validate order factor dialog box
+    Then Enter pro# in quick product entry using order factor product
+    And Check for Case and Unit input box enabled or not based on product number entered in Quick product entry for order factor
+    |4|4|
+    Then Click on Next button for validating order factor dialog box
     And Click on Submit Order button and read Order_no
     Then User should be navigated to Order Entry page
 
@@ -78,14 +75,11 @@ Feature: scenarios for admin credentials and client credentials, for Order Facto
     Then User should select Note from popup and Order guide from popup
     Then Enter PO# for New order
       |PO123|
-    Then Enter Pro# in Quick Product Entry area
-    And Check for Case and Unit input box enabled or not based on that enter value
-      |1|1|
-    Then Enter Pro# in Quick Product Entry area for Order factor
-    And Check for Case and Unit input box enabled or not based on that enter value for qty to verify order factor
-         |4|4|
-    Then Click on Next button and validate order factor dialog box
-    And Click on SubmitOrder button
+    Then Enter pro# in quick product entry using order factor product
+    And Check for Case and Unit input box enabled or not based on product number entered in Quick product entry for order factor
+      |4|4|
+    Then Click on Next button for validating order factor dialog box
+    And Click on Submit Order button and read Order_no
     Then User should be navigated to Order Entry page
 
   @DeleteOrderFactorProductMaster

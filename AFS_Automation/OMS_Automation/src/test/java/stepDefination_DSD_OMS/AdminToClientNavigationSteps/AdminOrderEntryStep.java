@@ -24,7 +24,6 @@ import pages_DSD_OMS.orderEntry.NewOrderEntryPage;
 import pages_DSD_OMS.orderEntry.OrderEntryPage;
 import pages_DSD_OMS.webOrdering.AdminHomePage;
 import pages_DSD_OMS.webOrdering.AdminOrderEntryPage;
-import pages_DSD_OMS.webOrdering.FeaturedProdSettingsPage;
 import util.DataBaseConnection;
 import util.TestBase;
 
@@ -96,7 +95,7 @@ public class AdminOrderEntryStep
         for(int i=0;i<=1;i++)
         {
             orderpage.OrderGuidePopup();
-            Thread.sleep(1000);
+            Thread.sleep(2000);
             orderpage.NoNotePopHandling();
             orderpage.NoPendingOrderPopup();
             orderpage.blackoutDialogHandling();
@@ -313,8 +312,10 @@ public class AdminOrderEntryStep
         String pro=String.valueOf(Prod_No);
         newOE.validateCatalogProducts();
         newOE.Search_Prod_in_Catalog(pro);
+
+        //newOE.selectFirstProductFromCatalog();
         newOE.EnterQty(Prod_detail.get(0).get(0),Prod_detail.get(0).get(1));
-        scenario.log("PRODUCT # "+pro+" PRODUCT QTY "+Prod_detail.get(0).get(0)+" "+Prod_detail.get(0).get(1));
+        //scenario.log("PRODUCT # "+pro+" PRODUCT QTY "+Prod_detail.get(0).get(0)+" "+Prod_detail.get(0).get(1));
         newOE.Catalog_OK();
     }
 
@@ -327,11 +328,11 @@ public class AdminOrderEntryStep
         newOE.Validate_Catalog();
         newOE.validateAutoLoadProducts();
         newOE.ResetFilter_Catalog();
-        String pro=String.valueOf(Prod_No);
+        //String pro=Prod_No;
         newOE.validateCatalogProducts();
-        newOE.Search_Prod_in_Catalog(pro);
+        newOE.Search_Prod_in_Catalog(Prod_No);
         newOE.EnterQty(Prod_detail.get(0).get(0),Prod_detail.get(0).get(1));
-        scenario.log("PRODUCT # "+pro+" PRODUCT QTY "+Prod_detail.get(0).get(0)+" "+Prod_detail.get(0).get(1));
+        scenario.log("PRODUCT # "+Prod_No+" PRODUCT QTY "+Prod_detail.get(0).get(0)+" "+Prod_detail.get(0).get(1));
         newOE.Catalog_OK();
     }
 
@@ -488,6 +489,11 @@ public class AdminOrderEntryStep
             scenario.log("NO CHECKOUT ORDER PAGE FOUND, AND IT IS EXPECTED BEHAVIOUR");
             exists=true;
         }
+        else if(HelpersMethod.IsExists("//div[@id='checkoutCard']",driver))
+        {
+            scenario.log("CHECKOUT ORDER PAGE FOUND, AND IT IS NOT EXPECTED BEHAVIOUR");
+            exists=false;
+        }
         Assert.assertEquals(exists,true);
     }
 
@@ -537,26 +543,31 @@ public class AdminOrderEntryStep
                 .ignoring(NoSuchElementException.class);
         wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
 
-        checkorder=new CheckOutOrderPage(driver,scenario);
-        if(HelpersMethod.IsExists("//div[@id='paymentMethodCard']",driver))
+        if(HelpersMethod.IsExists("//div[@id='checkoutCard']",driver))
         {
-            Thread.sleep(4000);
-            Ord_No=checkorder.readOrderNumber();
-            scenario.log("CHECKOUT TO ORDER PAGE HAS BEEN FOUND");
-            checkorder.Select_PaymentMethod_ClickDownArrow();
-            if(HelpersMethod.IsExists("//tr[1]/descendant::td[@class='payment-method-type-cell']",driver))
-            {
-                checkorder.SelectPaymentMethod();
-                scenario.log("FIRST PAYMENT OPTION HAS BEEN SELECTED");
-            }
-            else
-            {
-                checkorder.Click_On_Without_Providing_Payment();
-                scenario.log("WITHOUT PROVIIDNG PAYMENT OPTION HAS BEEN SELECTED");
-            }
-            checkorder.DeliveryAddressCard();
-            checkorder.NextButton_Click();
+          scenario.log("CHECKOUT ORDER PAGE FOUND, AND IT IS EXPECTED BEHAVIOUR");
+          exists=true;
+          checkorder=new CheckOutOrderPage(driver,scenario);
+          if(HelpersMethod.IsExists("//div[@id='paymentMethodCard']",driver))
+          {
+              Thread.sleep(4000);
+              Ord_No = checkorder.readOrderNumber();
+              scenario.log("CHECKOUT TO ORDER PAGE HAS BEEN FOUND");
+              checkorder.Select_PaymentMethod_ClickDownArrow();
+              if (HelpersMethod.IsExists("//tr[1]/descendant::td[@class='payment-method-type-cell']", driver))
+              {
+                  checkorder.SelectPaymentMethod();
+                  scenario.log("FIRST PAYMENT OPTION HAS BEEN SELECTED");
+              } else
+              {
+                  checkorder.Click_On_Without_Providing_Payment();
+                  scenario.log("WITHOUT PROVIIDNG PAYMENT OPTION HAS BEEN SELECTED");
+              }
+              checkorder.DeliveryAddressCard();
+              checkorder.NextButton_Click();
+          }
         }
+        Assert.assertEquals(exists,true);
     }
 
     @Then("User must click Start Order button for Admin setting")

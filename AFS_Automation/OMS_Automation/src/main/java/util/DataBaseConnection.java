@@ -4,6 +4,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import io.cucumber.java.Scenario;
+import lombok.val;
 
 /**
  * @Project DSD_OMS
@@ -12,7 +13,7 @@ import io.cucumber.java.Scenario;
 public class DataBaseConnection
 {
     /* Created by Divya.Ramadas@afsi.com */
-    static String status="";
+    static String status;
 
     public static String DataBaseConn(String sql) throws ClassNotFoundException, InstantiationException, IllegalAccessException, SQLException
     {
@@ -20,9 +21,9 @@ public class DataBaseConnection
         String DB_URL = "jdbc:sqlserver://"+TestBase.testEnvironment.getIP_Add()+";database="+TestBase.testEnvironment.getDBname()+";instance=SQLSERVER;encrypt=true;TrustServerCertificate=true;";
 
         Connection conn=null;
-        List allRows=null;
-        ResultSet rs=null;
-        String[] currentRow=null;
+        List allRows;
+        ResultSet rs;
+        String[] currentRow;
         String valu=null;
         try
         {
@@ -65,8 +66,8 @@ public class DataBaseConnection
 
         Connection conn=null;
         List allRows = new ArrayList<>();
-        ResultSet rs=null;
-        String[] currentRow=null;
+        ResultSet rs;
+        String[] currentRow;
         ArrayList<String> Pro_No=new ArrayList<>();
 
         try
@@ -104,15 +105,16 @@ public class DataBaseConnection
         return Pro_No;
     }
 
+    //code to get the status of particular admin setting in database
     public static String DataConnGetStatus(String sql) throws ClassNotFoundException, InstantiationException, IllegalAccessException, SQLException
     {
         // Constant for Database URL
         String DB_URL = "jdbc:sqlserver://"+TestBase.testEnvironment.getIP_Add()+";database="+TestBase.testEnvironment.getAdminSettingDBname()+";instance=SQLSERVER;encrypt=true;TrustServerCertificate=true;";
 
         Connection conn=null;
-        List allRows = new ArrayList<>();
-        ResultSet rs=null;
-        String[] currentRow=null;
+        List allRows= new ArrayList<>();
+        ResultSet rs;
+        String[] currentRow;
         String val=null;
         try
         {
@@ -214,7 +216,7 @@ public class DataBaseConnection
         //Make changes to admin setting
         String sql;
 
-        sql="UPDATE RAMS_SettingsValues SET sv_Value = '1' WHERE sv_Key='"+key;
+        sql="UPDATE RAMS_SettingsValues SET sv_Value = '1' WHERE sv_Key='"+key+"'";
         DataBaseConnection.DataConnAdminSettingEnable(sql);
         scenario.log("ADMIN SETTING IS ENABLED");
     }
@@ -232,7 +234,7 @@ public class DataBaseConnection
     {
         String sql;
 
-        sql="UPDATE RAMS_SettingsValues SET sv_Value = '0' WHERE sv_Key='"+key;
+        sql="UPDATE RAMS_SettingsValues SET sv_Value = '0' WHERE sv_Key='"+key+"'";
         DataBaseConnection.DataConnAdminSettingDisabled(sql);
         scenario.log("ADMIN SETTING IS DISABLED");
     }

@@ -5,13 +5,7 @@ import io.cucumber.java.Before;
 import io.cucumber.java.Scenario;
 import io.cucumber.java.en.And;
 import org.openqa.selenium.WebDriver;
-import pages_DSD_OMS.adminSecurity.AdminSecurityPermissionPage;
-import pages_DSD_OMS.customerInquiry_ERP.CustomerInquiryPageERP;
-import pages_DSD_OMS.customerInquiry_ERP.MainPage;
-import pages_DSD_OMS.login.HomePage;
-import pages_DSD_OMS.login.LoginPage;
 import pages_DSD_OMS.standingOrder.NewStandingOrderPage;
-import pages_DSD_OMS.webOrdering.AdminHomePage;
 import util.TestBase;
 
 /**

@@ -2,8 +2,6 @@ package pages_DSD_OMS.Catalog;
 
 import helper.HelpersMethod;
 import io.cucumber.java.Scenario;
-import io.cucumber.java8.Th;
-import org.apache.logging.log4j.core.tools.picocli.CommandLine;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
@@ -174,7 +172,7 @@ public class ProductDescriptionPage
     public void Back_to_Catalog()
     {
         exists=false;
-        WebElement WebEle;
+
         try
         {
             Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
@@ -242,13 +240,15 @@ public class ProductDescriptionPage
         try
         {
             Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
-                    .withTimeout(Duration.ofSeconds(30))
-                    .pollingEvery(Duration.ofSeconds(5))
+                    .withTimeout(Duration.ofSeconds(200))
+                    .pollingEvery(Duration.ofSeconds(2))
                     .ignoring(NoSuchElementException.class);
             wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
 
             if(HelpersMethod.IsExists("//span[contains(text(),'Frequently bought together')]",driver))
             {
+                WebElement freqItems=HelpersMethod.FindByElement(driver,"xpath","//span[contains(text(),'Frequently bought together')]");
+                HelpersMethod.ScrollElement(driver,freqItems);
                 List<WebElement> Product_Names = HelpersMethod.FindByElements(driver, "xpath", "//div[@id='products-may-like-card']/descendant::div[@class='product-description']/a");
                 for (WebElement Prod_Name : Product_Names)
                 {

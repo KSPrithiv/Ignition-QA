@@ -1,6 +1,5 @@
 package stepDefination_DSD_OMS.AdminGridsPageSteps;
 
-import freemarker.core.TextBlock;
 import helper.HelpersMethod;
 import io.cucumber.datatable.DataTable;
 import io.cucumber.java.Before;
@@ -284,7 +283,7 @@ public class GridConfigurationPageStep
     {
         gridConfigPage=new GridConfigurationPage(driver,scenario);
         gridConfigPage.clickGridDropDown();
-        gridConfigPage.gridMainDropdownSelection(arg0);
+        gridConfigPage.gridMainDropdownSelection();
         gridConfigPage.toggleDefaultGrid();
         gridConfigPage.clickOnSaveButton();
         gridConfigPage.validateSavedailogbox();

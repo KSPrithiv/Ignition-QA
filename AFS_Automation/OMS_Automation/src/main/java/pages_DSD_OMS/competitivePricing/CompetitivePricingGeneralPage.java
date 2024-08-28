@@ -2,8 +2,6 @@ package pages_DSD_OMS.competitivePricing;
 
 import helper.HelpersMethod;
 import io.cucumber.java.Scenario;
-import io.cucumber.java.bs.A;
-import org.apache.logging.log4j.core.tools.picocli.CommandLine;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
@@ -14,12 +12,10 @@ import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import pages_DSD_OMS.login.HomePage;
-import util.DataBaseConnection;
 import util.RandomValues;
 import util.TestBase;
 
 import java.time.Duration;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -92,8 +88,8 @@ public class CompetitivePricingGeneralPage
     public void NavigateToCompetitorPricing()
     {
         exists = false;
-        WebElement WebEle = null;
-        String status = null;
+        WebElement WebEle;
+        String status;
         status = HelpersMethod.returnDocumentStatus(driver);
         if (status.equals("loading"))
         {
@@ -106,7 +102,7 @@ public class CompetitivePricingGeneralPage
 
             act.moveToElement(Search_Input).click().sendKeys("Competitive Pricing").build().perform();
             WebElement CompetitorMenu = HelpersMethod.FindByElement(driver, "xpath", "//ul[contains(@class,'MuiList-root ')]/descendant::span[contains(text(),'Competitive Pricing')]");
-            HelpersMethod.ClickBut(driver, CompetitorMenu, 1000);
+            HelpersMethod.ClickBut(driver, CompetitorMenu, 10000);
             exists = true;
             status = HelpersMethod.returnDocumentStatus(driver);
             if (status.equals("loading"))
@@ -193,7 +189,7 @@ public class CompetitivePricingGeneralPage
 
     public void Refresh_Page()
     {
-        String status="";
+        String status;
         Wait<WebDriver> wait;
         try
         {
@@ -281,7 +277,7 @@ public class CompetitivePricingGeneralPage
     public void ValidateCompetitorGeneral()
     {
         exists=false;
-        WebElement WebEle;
+
         try
         {
             Wait<WebDriver> wait = new FluentWait<>(driver)
@@ -339,7 +335,7 @@ public class CompetitivePricingGeneralPage
         WebElement Search2=null;
         try
         {
-            WebElement WebEle = null;
+            WebElement WebEle;
             Actions act1 = new Actions(driver);
             HelpersMethod.waitTillElementLocatedDisplayed(driver, "xpath", "//div[contains(@class,'k-popup k-child-animation-container')]", 40000);
             // to fetch the web element of the modal container
@@ -1234,6 +1230,8 @@ public class CompetitivePricingGeneralPage
             {
                 WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-window k-dialog')]/descendant::tr[contains(@class,'k-master-row')][1]");
                 HelpersMethod.ActClick(driver,WebEle,10000);
+                exists=true;
+
                 if(HelpersMethod.IsExists("//div[@class='loader']",driver))
                 {
                     WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
@@ -1245,7 +1243,6 @@ public class CompetitivePricingGeneralPage
                 scenario.log("<span style='color:red'>NO DATA HAS BEEN FOUND</span>");
                 exists=false;
             }
-            exists=true;
             Assert.assertEquals(exists,true);
         }
         catch (Exception e){}

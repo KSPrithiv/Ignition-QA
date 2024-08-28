@@ -5,6 +5,7 @@ import com.mongodb.DBRef;
 import gherkin.lexer.He;
 import helper.HelpersMethod;
 import io.cucumber.java.Scenario;
+import io.cucumber.java.bs.A;
 import io.cucumber.java.en.Then;
 import org.apache.logging.log4j.core.tools.picocli.CommandLine;
 import org.openqa.selenium.*;
@@ -201,8 +202,35 @@ public class ProductPage
                     .pollingEvery(Duration.ofSeconds(2))
                     .ignoring(NoSuchElementException.class);
             wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
-
+            showAllProduct();
             Assert.assertEquals(exists, true);
+        }
+        catch (Exception e){}
+    }
+
+    public void showAllProduct()
+    {
+        Actions act=new Actions(driver);
+        String dropText;
+        try
+        {
+            if (HelpersMethod.IsExists("//span[@id='CPQoh-accessibility-id']/span[text()='Show only products with available inventory']", driver))
+            {
+                WebElement dropDownMenu = HelpersMethod.FindByElement(driver, "xpath", "//span[@id='CPQoh-accessibility-id']/following-sibling::button");
+                HelpersMethod.ClickBut(driver, dropDownMenu, 10000);
+                List<WebElement> dropDowns = HelpersMethod.FindByElements(driver, "xpath", "//ul[@id='CPQoh-listbox-id']/descendant::span[@class='k-list-item-text']");
+                for (WebElement dropDown : dropDowns)
+                {
+                    act.moveToElement(dropDown).build().perform();
+                    dropText = dropDown.getText();
+                    if (dropText.equalsIgnoreCase("Show all products"))
+                    {
+                       act.moveToElement(dropDown).build().perform();
+                       act.click(dropDown).build().perform();
+                       break;
+                    }
+                }
+            }
         }
         catch (Exception e){}
     }
@@ -324,7 +352,6 @@ public class ProductPage
         try
         {
             WebElement WebEle;
-
             Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
                     .withTimeout(Duration.ofSeconds(200))
                     .pollingEvery(Duration.ofSeconds(2))
@@ -347,11 +374,12 @@ public class ProductPage
             {
                 HelpersMethod.waitTillLoadingPage(driver);
             }
-            if (HelpersMethod.IsExists("//div[@class='loader']", driver))
-            {
-                WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000000);
-            }
+            wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(200))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
             //Click on search index icon
             HelpersMethod.ActClick(driver, SearchIndex, 10000);
             scenario.log("PRODUCT NUMBER ENTERED IN SEARCH BOX IS " + Prod_No);

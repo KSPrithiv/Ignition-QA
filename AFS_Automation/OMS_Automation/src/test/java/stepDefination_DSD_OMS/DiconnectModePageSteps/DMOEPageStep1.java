@@ -48,7 +48,7 @@ public class DMOEPageStep1
         dmoePage.SynchronizationPopup();
         dmoePage.ValidateSelectDeliveryDate();
         dmoePage.SelectDeliveryDate();
-        dmoePage.selectSeconDeliveryDate();
+        dmoePage.selectSecondDeliveryDate();
         dmoePage.SelectDeliveryDateOk();
         dmoePage.SynchronizationPopup();
         dmoePage.ValidateSelectDeliveryDate();

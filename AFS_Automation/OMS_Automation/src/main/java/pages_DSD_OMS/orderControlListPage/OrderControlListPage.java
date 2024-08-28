@@ -181,19 +181,19 @@ public class OrderControlListPage
         Wait<WebDriver> wait;
         try
         {
-            if (HelpersMethod.IsExists("//div[contains(@class,'k-window k-dialog')]", driver))
+            if (HelpersMethod.IsExists("//div[contains(@class,'k-dialog-wrapper')]|//div[@class='modal-sm modal-dialog']|//div[contains(@class,'modal-content')]|//div[contains(@class,'k-dialog-wrapper order-selection ')]|//div[@class='k-dialog-wrapper priceOverrideDialog ']|//div[@class='k-dialog-wrapper OrderCommentDialog ']", driver))
             {
-                JavascriptExecutor js = ((JavascriptExecutor) driver);
-                js.executeScript("window.location.reload()");
-                wait = new WebDriverWait(driver, Duration.ofMillis(10000));
-                if (wait.until(ExpectedConditions.alertIsPresent()) == null)
                 {
+                    WebElement dialogBox = driver.findElement(By.xpath("//div[contains(@class,'k-dialog-wrapper')]|//div[contains(@class,'modal-dialog')]|//div[contains(@class,'k-dialog-wrapper order-selection ')]|//div[contains(@class,'modal-content')]|//div[@class='k-dialog-wrapper priceOverrideDialog ']|//div[@class='k-dialog-wrapper OrderCommentDialog ']"));
+                    ((JavascriptExecutor) driver).executeScript("arguments[0].style.display = 'none';", dialogBox);
 
-                }
-                else
-                {
-                    Alert alert = driver.switchTo().alert();
-                    alert.accept();
+                    driver.navigate().refresh();
+
+                    wait = new FluentWait<WebDriver>(driver)
+                            .withTimeout(Duration.ofSeconds(400))
+                            .pollingEvery(Duration.ofSeconds(2))
+                            .ignoring(NoSuchElementException.class);
+                    wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
                 }
                 wait = new FluentWait<WebDriver>(driver)
                         .withTimeout(Duration.ofSeconds(200))
@@ -238,7 +238,7 @@ public class OrderControlListPage
             //if fails to submit the order in previous TC, user should try to navigate to OCL, during that time submit order dialog box may come, to handle that below code
             if(HelpersMethod.IsExists("//div[contains(text(),'Your order has not been submitted')]/ancestor::div[contains(@class,'k-window k-dialog')]",driver))
             {
-                WebElement dialogBoxSubmit=HelpersMethod.FindByElement(driver,"xpath","//button[text()='Submit order']");
+                WebElement dialogBoxSubmit=HelpersMethod.FindByElement(driver,"xpath","//button/span[text()='Discard all']");
                 HelpersMethod.ActClick(driver,dialogBoxSubmit,10000);
                 wait = new FluentWait<WebDriver>(driver)
                         .withTimeout(Duration.ofSeconds(200))

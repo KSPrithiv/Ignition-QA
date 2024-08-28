@@ -2,10 +2,6 @@ package pages_DSD_OMS.adminSecurity;
 
 import helper.HelpersMethod;
 import io.cucumber.java.Scenario;
-import io.cucumber.java.bs.A;
-import io.cucumber.java.en_old.Ac;
-import org.apache.logging.log4j.core.tools.picocli.CommandLine;
-import org.apache.poi.hssf.record.SCLRecord;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
@@ -478,8 +474,8 @@ public class AdminSecurityPermissionPage
         Actions act=new Actions(driver);
         WebElement WebEle;
         WebElement WebEle1;
-        String Val_Text="";
-        int i=0;
+        String Val_Text;
+
         try
         {
             //identify the company drop down, and values in list
@@ -1004,7 +1000,7 @@ public class AdminSecurityPermissionPage
     {
         exists=false;
         Actions act=new Actions(driver);
-        String headText="";
+        String headText;
         try
         {
             List<WebElement> tableHeads=HelpersMethod.FindByElements(driver,"xpath","//span[@class='k-column-title']");
@@ -1086,7 +1082,7 @@ public class AdminSecurityPermissionPage
     {
         exists=false;
         Actions act=new Actions(driver);
-        String adminText="";
+        String adminText;
         try
         {
             if(HelpersMethod.IsExists("//span[@class='k-icon k-i-collapse']/following-sibling::div[contains(@class,'admin-control-table')]/descendant::div[@class='label-containerX']",driver))
@@ -1111,7 +1107,7 @@ public class AdminSecurityPermissionPage
     {
         exists=false;
         Actions act=new Actions(driver);
-        String adminText=null;
+        String adminText;
         try
         {
             if(HelpersMethod.IsExists("//span[@class='k-icon k-i-collapse']/following-sibling::div[contains(@class,'admin-control-table')]/descendant::div[@class='label-containerX']",driver))
@@ -1156,7 +1152,7 @@ public class AdminSecurityPermissionPage
     {
         exists=false;
         Actions act=new Actions(driver);
-        String adminText=null;
+        String adminText;
         try
         {
             if(HelpersMethod.IsExists("//span[@class='k-icon k-i-collapse']/following-sibling::div[contains(@class,'admin-control-table')]/descendant::div[@class='label-containerX']",driver))
@@ -1201,7 +1197,7 @@ public class AdminSecurityPermissionPage
     {
         exists=false;
         Actions act=new Actions(driver);
-        String adminText=null;
+        String adminText;
         try
         {
             if(HelpersMethod.IsExists("//tr[@aria-expanded='true']/descendant::span[@class='k-icon k-i-collapse']/following-sibling::div[contains(@class,'admin-control-table')]/descendant::div[@class='label-containerX']|//tr[@aria-expanded='false']/descendant::span[@class='k-icon k-i-expand']/following-sibling::div[contains(@class,'admin-control-table')]/descendant::div[@class='label-containerX']",driver))
@@ -1245,7 +1241,7 @@ public class AdminSecurityPermissionPage
     {
         exists=false;
         Actions act=new Actions(driver);
-        String adminText=null;
+        String adminText;
         int i=0;
         try
         {
@@ -1289,19 +1285,43 @@ public class AdminSecurityPermissionPage
         Actions act=new Actions(driver);
         try
         {
-            if(HelpersMethod.IsExists("//input[@id='"+id+"']|//input[@id='"+id+"']",driver))
+            Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(400))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
+            String status = HelpersMethod.returnDocumentStatus(driver);
+            if (status.equals("loading"))
             {
-                WebElement checkBox=HelpersMethod.FindByElement(driver,"xpath","//input[@id='"+id+"' and @data-checked='checked']|//input[@id='"+id+"' and @data-checked='indeterminate']");
-                //HelpersMethod.ActClick(driver,checkBox,10000);
-                act.moveToElement(checkBox).build().perform();
-                act.click(checkBox).build().perform();
-                scenario.log("CHECKBOX HAS BEEN UNCHECKED");
-                exists=true;
-                Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
-                        .withTimeout(Duration.ofSeconds(400))
-                        .pollingEvery(Duration.ofSeconds(2))
-                        .ignoring(NoSuchElementException.class);
-                wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+                HelpersMethod.waitTillLoadingPage(driver);
+            }
+
+            if(HelpersMethod.IsExists("//input[@id='"+id+"']",driver))
+            {
+                if (HelpersMethod.IsExists("//input[@id='" + id + "' and @data-checked='checked']", driver))
+                {
+                    WebElement checkBox = HelpersMethod.FindByElement(driver, "xpath", "//input[@id='" + id + "' and @data-checked='checked']|//input[@id='" + id + "' and @data-checked='indeterminate']");
+
+                    act.moveToElement(checkBox).build().perform();
+                    act.click(checkBox).build().perform();
+
+                    wait = new FluentWait<WebDriver>(driver)
+                            .withTimeout(Duration.ofSeconds(400))
+                            .pollingEvery(Duration.ofSeconds(2))
+                            .ignoring(NoSuchElementException.class);
+                    wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+                    wait = new FluentWait<WebDriver>(driver)
+                            .withTimeout(Duration.ofSeconds(400))
+                            .pollingEvery(Duration.ofSeconds(2))
+                            .ignoring(NoSuchElementException.class);
+                    wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+                }
+                if(HelpersMethod.IsExists("//input[@id='" + id + "' and @data-checked='unchecked']", driver))
+                {
+                    scenario.log("CHECKBOX HAS BEEN UNCHECKED");
+                    exists=true;
+                }
             }
             else
             {
@@ -1318,19 +1338,27 @@ public class AdminSecurityPermissionPage
         Actions act=new Actions(driver);
         try
         {
-            if(HelpersMethod.IsExists("//input[@id='"+id+"' and @data-checked='unchecked']",driver))
+
+            if(HelpersMethod.IsExists("//input[@id='"+id+"']",driver))
             {
-                WebElement checkBox=HelpersMethod.FindByElement(driver,"xpath","//input[@id='"+id+"' and @data-checked='unchecked']");
-                //HelpersMethod.ClickBut(driver,checkBox,10000);
-                act.moveToElement(checkBox).build().perform();
-                act.click(checkBox).build().perform();
-                scenario.log("CHECKBOX HAS BEEN CHECKED");
-                exists=true;
-                Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
-                        .withTimeout(Duration.ofSeconds(400))
-                        .pollingEvery(Duration.ofSeconds(2))
-                        .ignoring(NoSuchElementException.class);
-                wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+                if (HelpersMethod.IsExists("//input[@id='" + id + "' and @data-checked='unchecked']", driver))
+                {
+                    WebElement checkBox = HelpersMethod.FindByElement(driver, "xpath", "//input[@id='" + id + "' and @data-checked='unchecked']");
+                    //HelpersMethod.ClickBut(driver,checkBox,10000);
+                    act.moveToElement(checkBox).build().perform();
+                    act.click(checkBox).build().perform();
+                    //scenario.log("CHECKBOX HAS BEEN CHECKED");
+                    Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                            .withTimeout(Duration.ofSeconds(400))
+                            .pollingEvery(Duration.ofSeconds(2))
+                            .ignoring(NoSuchElementException.class);
+                    wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+                }
+                if (HelpersMethod.IsExists("//input[@id='" + id + "' and @data-checked='checked']", driver))
+                {
+                    scenario.log("CHECKBOX HAS BEEN CHECKED");
+                    exists=true;
+                }
             }
             else
             {

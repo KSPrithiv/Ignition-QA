@@ -16,7 +16,7 @@ Feature: scenarios for admin credentials and client credentials
       |  Setting                      |          Key                         |
       | For disabling Sales help      | CPMasterNotificationsSalesHelp       |
 
-  @DisablingeCommerceHelp
+  @DisablingCommerceHelp
   Scenario Outline: Test scenario for verifying functionality of Non Presence of eCommerce
     Given User should verify admin setting "<Setting>" is disabled by using "<Key>"
     When User enters URL and is on login page and entered credentials for admin setting
@@ -91,12 +91,12 @@ Feature: scenarios for admin credentials and client credentials
     Given User should verify admin setting "<Setting>" is enabled by using "<Key>" in common and company
     When User enters URL and is on login page for admin setting
     And Verify Register here link is visible in login page
-#    And User should set admin setting "<Setting>" "<Key>" as default before making changes in common and company
+    #And User should set admin setting "<Setting>" "<Key>" as default before making changes in common and company
     Examples:
       | Setting               | Key                       |
       | Registration message  | CPEnableUserRegistration  |
 
-  @EnableNewcustomerRegistration
+  @EnableCustomerRegistration
   Scenario Outline: Test scenario for verifying functioning of "Enable new customer registration from login page" taggle button is enabled
     Given User should verify admin setting "<Setting>" is enabled by using "<Key>" in common and company
     When User enters URL and is on login page for admin setting
@@ -106,7 +106,7 @@ Feature: scenarios for admin credentials and client credentials
       | Setting                                         | Key                          |
       | Enable new customer registration from login page|CPEnableCustomerRegistration  |
 
-  @DisableNewcustomerRegistration
+  @DisableCustomerRegistration
   Scenario Outline: Test scenario for verifying functioning of "Enable new customer registration from login page" taggle button is disabled
     Given User should verify admin setting "<Setting>" is disabled by using "<Key>" in common and company
     When User enters URL and is on login page for admin setting
@@ -124,5 +124,5 @@ Feature: scenarios for admin credentials and client credentials
     And User should set admin setting "<Setting>" "<Key>" as default before making changes in common and company
     Examples:
       | Setting               | Key                       |
-      | Registration message  | CPEnableUserRegistration  |
+      | Registration message  |  CPEnableUserRegistration |
 

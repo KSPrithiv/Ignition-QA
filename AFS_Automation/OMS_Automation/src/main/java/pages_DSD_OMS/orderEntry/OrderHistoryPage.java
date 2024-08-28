@@ -36,10 +36,10 @@ public class OrderHistoryPage
     @FindBy(xpath="//*[local-name()='svg' and contains(@class,'i-search-box__search')]")
     private WebElement SearchIndex;
 
-    @FindBy(xpath="//button/span[text()='Copy']")
+    @FindBy(xpath="//button[@id='copy-button']")
     private WebElement CopyButton;
 
-    @FindBy(xpath="////button/span[text()='Print']")
+    @FindBy(xpath="//button[@id='print-button']")
     private WebElement PrintButton;
 
     @FindBy(xpath="//button/span[@class='i-filter-tag__main']")
@@ -48,7 +48,7 @@ public class OrderHistoryPage
     @FindBy(id="order-history-card")
     private WebElement HistoryGrid;
 
-    @FindBy(xpath="//button/span[text()='Orders']")
+    @FindBy(xpath="//button[@id='view-orders-button']")
     private WebElement OrderButton;
 
     @FindBy(xpath="//span[@id='grid-selection-dropdown']/descendant::button")
@@ -335,14 +335,13 @@ public class OrderHistoryPage
             WebEle= HelpersMethod.FindByElement(driver,"xpath","//div[@class='i-grid']");
             HelpersMethod.ScrollElement(driver,WebEle);
             WebElement headTitle=HelpersMethod.FindByElement(driver,"xpath","//th[contains(@class,'k-header')]/descendant::span[@class='k-column-title' and contains(text(),'Delivery Date')]");
-            act.moveToElement(headTitle).click().build().perform();
+
             Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
                     .withTimeout(Duration.ofSeconds(200))
                     .pollingEvery(Duration.ofSeconds(2))
                     .ignoring(NoSuchElementException.class);
             wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
 
-            //act.moveToElement(headTitle).click().build().perform();
             act.moveToElement(headTitle).doubleClick().build().perform();
             exists=true;
             wait = new FluentWait<WebDriver>(driver)

@@ -66,7 +66,7 @@ public class BillingSelectionPage
     //Action
     public void ValidateBillingSelection()
     {
-        String Header=null;
+        String Header;
         try
         {
             Header= HelpersMethod.FindByElement(driver,"xpath","//div[@class='topHeaderRow row']/descendant::span").getText();
@@ -76,11 +76,11 @@ public class BillingSelectionPage
         catch (Exception e){}
     }
 
-    public void SelectBillingSelect() throws InterruptedException
+    public void SelectBillingSelect()
     {
         exists=false;
         WebElement WebEle;
-        String status="";
+
         try
         {
             if(HelpersMethod.IsExists("//table[contains(@class,'k-grid-table')]/descendant::tr[1]/descendant::input",driver))

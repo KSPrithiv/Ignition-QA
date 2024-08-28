@@ -2,7 +2,6 @@ package pages_DSD_OMS.adminReport;
 
 import helper.HelpersMethod;
 import io.cucumber.java.Scenario;
-import org.apache.logging.log4j.core.tools.picocli.CommandLine;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.PageFactory;
@@ -47,7 +46,7 @@ public class orderAdminPage
                 HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 800000);
             }
 
-            String Menu_Text="";
+            String Menu_Text;
             Actions act=new Actions(driver);
             List<WebElement> MenuBar=HelpersMethod.FindByElements(driver,"xpath","//li[contains(@class,'k-item')]/span[@class='k-link']");
             for(WebElement Menu:MenuBar)
@@ -109,7 +108,7 @@ public class orderAdminPage
     public void validateTabNavigatedTo(String tabOption)
     {
         exists=false;
-        String tabValue="";
+        String tabValue;
         try
         {
             String status = HelpersMethod.returnDocumentStatus(driver);
@@ -220,6 +219,18 @@ public class orderAdminPage
                         .ignoring(NoSuchElementException.class);
                 wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
 
+                String status = HelpersMethod.returnDocumentStatus(driver);
+                if (status.equals("loading"))
+                {
+                    HelpersMethod.waitTillLoadingPage(driver);
+                }
+
+                wait = new FluentWait<WebDriver>(driver)
+                        .withTimeout(Duration.ofSeconds(400))
+                        .pollingEvery(Duration.ofSeconds(2))
+                        .ignoring(NoSuchElementException.class);
+                wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
                 exists = true;
                 String Acc = TestBase.testEnvironment.get_Account();
                 scenario.log("CUSTOMER ACCOUNT NUMBER HAS BEEN SELECTED: " + Acc);
@@ -239,15 +250,17 @@ public class orderAdminPage
                 HelpersMethod.ActClick(driver, startDate, 10000);
                 exists = true;
                 new WebDriverWait(driver, Duration.ofMillis(40000)).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@id='fromDate-popup-id']")));
+                new WebDriverWait(driver, Duration.ofMillis(40000)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@id='fromDate-popup-id']")));
             }
             Assert.assertTrue(exists);
         }
         catch(Exception e){}
     }
 
-    public void clickOnEndDate()
+    public void clickOnEndDate() throws InterruptedException
     {
         exists=false;
+        Thread.sleep(200);
         WebElement toDate=HelpersMethod.FindByElement(driver,"xpath","//label[@id='toDate-label']/following-sibling::span/descendant::button//*[local-name()='svg']");
         try
         {
@@ -256,6 +269,7 @@ public class orderAdminPage
                 HelpersMethod.ActClick(driver, toDate, 10000);
                 exists = true;
                 new WebDriverWait(driver, Duration.ofMillis(40000)).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@id='toDate-popup-id']")));
+                new WebDriverWait(driver, Duration.ofMillis(40000)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@id='toDate-popup-id']")));
             }
             Assert.assertTrue(exists);
         }
@@ -264,13 +278,13 @@ public class orderAdminPage
 
     public void selectFromDate() throws InterruptedException
     {
-        Thread.sleep(400);
+        Thread.sleep(1000);
         //HelpersMethod.waitTillElementLocatedDisplayed(driver,"xpath","//div[contains(@class,'k-calendar-monthview')]",40000);
         new WebDriverWait(driver,Duration.ofMillis(40000)).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class,'k-calendar-monthview')]")));
         try
         {
             WebElement WebEle;
-            String FTDate="";
+            String FTDate;
             exists=false;
             //finding element/date in calendar drop down is enabled or not. if not enabled increase the date by 6 days
             if (HelpersMethod.IsExists("//div[contains(@class,'k-calendar-monthview')]",driver))
@@ -280,14 +294,17 @@ public class orderAdminPage
                 {
                     HelpersMethod.JSScroll(driver, ele1);
                     HelpersMethod.ActClick(driver, ele1, 10000);
-                    WebEle=HelpersMethod.FindByElement(driver,"id","StartDate");
-                    FTDate=HelpersMethod.JSGetValueEle(driver,WebEle,10000);
-                    scenario.log(FTDate+" HAS BEEN SELECTED AS START DATE FOR STANDING ORDER");
-                    exists=true;
                 }
                 else
                 {
                     scenario.log("NOT ABLE TO SELECT THE DATE");
+                }
+                WebEle=HelpersMethod.FindByElement(driver,"id","fromDate");
+                FTDate=HelpersMethod.JSGetValueEle(driver,WebEle,10000);
+                if(!FTDate.equals("MM/DD/YYYY"))
+                {
+                    scenario.log(FTDate + " HAS BEEN SELECTED AS START DATE FOR STANDING ORDER");
+                    exists = true;
                 }
                 Assert.assertTrue(exists);
             }
@@ -299,24 +316,30 @@ public class orderAdminPage
     {
         exists=false;
         WebElement WebEle;
-        String FTDate="";
+        String FTDate;
         try
         {
+            Thread.sleep(1000);
+//            new WebDriverWait(driver,Duration.ofMillis(10000)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class,'k-calendar-monthview')]"))));
+//            new WebDriverWait(driver,Duration.ofMillis(10000)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(@class,'k-calendar-monthview')]")));
             if (HelpersMethod.IsExists("//div[contains(@class,'k-calendar-monthview')]",driver))
             {
-                if(HelpersMethod.IsExists("//div[contains(@class,'k-calendar-monthview')]/descendant::td[contains(@class,'focus')]",driver))
+                 if(HelpersMethod.IsExists("//div[contains(@class,'k-calendar-monthview')]/descendant::td[contains(@class,'focus')]",driver))
                 {
                     WebElement toDate=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-calendar-monthview')]/descendant::td[contains(@class,'k-today')]");
                     HelpersMethod.JSScroll(driver, toDate);
-                    HelpersMethod.ActClick(driver, toDate, 10000);
-                    WebEle=HelpersMethod.FindByElement(driver,"id","EndDate");
-                    FTDate=HelpersMethod.JSGetValueEle(driver,WebEle,10000);
-                    scenario.log(FTDate+" HAS BEEN SELECTED AS START DATE FOR STANDING ORDER");
-                    exists=true;
+                    HelpersMethod.JScriptClick(driver, toDate, 10000);
                 }
                 else
                 {
                     scenario.log("THERE IS NO FOCUSSED DATE");
+                }
+                WebEle=HelpersMethod.FindByElement(driver,"id","toDate");
+                FTDate=HelpersMethod.JSGetValueEle(driver,WebEle,10000);
+                if(!FTDate.equals("MM/DD/YYYY"))
+                {
+                    scenario.log(FTDate + " HAS BEEN SELECTED AS START DATE FOR STANDING ORDER");
+                    exists = true;
                 }
                 Assert.assertTrue(exists);
             }
@@ -430,7 +453,7 @@ public class orderAdminPage
     {
         exists=false;
         Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
-                .withTimeout(Duration.ofSeconds(250))
+                .withTimeout(Duration.ofSeconds(400))
                 .pollingEvery(Duration.ofSeconds(2))
                 .ignoring(NoSuchElementException.class);
         wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
@@ -453,7 +476,7 @@ public class orderAdminPage
                 scenario.log("RESET BUTTON IS NOT WORKING");
                 exists=false;
             }
-            Assert.assertTrue(exists);
+            Assert.assertEquals(exists,true);
         }
         catch(Exception e){}
     }
@@ -513,10 +536,11 @@ public class orderAdminPage
         exists=false;
         try
         {
+            Thread.sleep(500);
             WebElement eventDropdown = HelpersMethod.FindByElement(driver, "xpath", "//label[@id='events-label']/following-sibling::div/descendant::input");
             if(eventDropdown.isDisplayed())
             {
-                HelpersMethod.ActClick(driver, eventDropdown, 10000);
+                HelpersMethod.ActClick(driver, eventDropdown, 20000);
                 exists = true;
             }
             Assert.assertEquals(exists,true);
@@ -532,8 +556,8 @@ public class orderAdminPage
             String eventText;
             exists = false;
 
-            new WebDriverWait(driver,Duration.ofMillis(10000)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//ul[@id='eventslist']/li/span")));
             new WebDriverWait(driver,Duration.ofMillis(10000)).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//ul[@id='eventslist']/li/span")));
+            new WebDriverWait(driver,Duration.ofMillis(10000)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//ul[@id='eventslist']/li/span")));
 
             List<WebElement> eventLists = HelpersMethod.FindByElements(driver, "xpath", "//ul[@id='eventslist']/li/span");
             for (WebElement eventList : eventLists)
@@ -586,8 +610,8 @@ public class orderAdminPage
         Actions act1= new Actions(driver);
         try
         {
-            new WebDriverWait(driver,Duration.ofMillis(10000)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//ul[@id='UserNamelist']/li/span")));
-            new WebDriverWait(driver,Duration.ofMillis(10000)).until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath("//ul[@id='UserNamelist']/li/span")));
+           // new WebDriverWait(driver,Duration.ofMillis(10000)).until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath("//ul[@id='UserNamelist']/li/span")));
+           // new WebDriverWait(driver,Duration.ofMillis(10000)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//ul[@id='UserNamelist']/li/span")));
 
            if(HelpersMethod.IsExists("//ul[@id='UserNamelist']/li/span",driver))
            {

@@ -198,7 +198,7 @@ public class PricePage
                     {
                         if (i == 2)
                         {
-                            HelpersMethod.ActClick(driver, Options.get(2), 20);
+                            HelpersMethod.ActClick(driver, Options.get(2), 10000);
                             ValueSele=Options.get(2).getText();
                             break;
                         }
@@ -218,7 +218,7 @@ public class PricePage
         {
             if(!WebEle.isSelected())
             {
-                HelpersMethod.ClickBut(driver, WebEle, 10);
+                HelpersMethod.ClickBut(driver, WebEle, 10000);
             }
             if(WebEle.isSelected())
             {
@@ -236,8 +236,8 @@ public class PricePage
         exists=false;
         try
         {
-            HelpersMethod.EnterText(driver,WebEle,10, RandomValues.generateRandomString(length));
-            InputValue=HelpersMethod.JSGetValueEle(driver,WebEle,10);
+            HelpersMethod.EnterText(driver,WebEle,10000, RandomValues.generateRandomString(length));
+            InputValue=HelpersMethod.JSGetValueEle(driver,WebEle,10000);
 
             if(InputValue!=null)
             {exists=true;}
@@ -256,8 +256,8 @@ public class PricePage
         try
         {
             randomFloat=RandomFloat(minInclusive,maxInclusive,precision);
-            HelpersMethod.JSSetValueEle(driver,WebEle,10, String.valueOf(randomFloat));
-            InputValue=HelpersMethod.JSGetValueEle(driver,WebEle,10);
+            HelpersMethod.JSSetValueEle(driver,WebEle,10000, String.valueOf(randomFloat));
+            InputValue=HelpersMethod.JSGetValueEle(driver,WebEle,10000);
 
             if(InputValue!=null)
             {exists=true;}
@@ -287,8 +287,8 @@ public class PricePage
         exists=false;
         try
         {
-            HelpersMethod.EnterText(driver,WebEle,10,RandomValues.generateRandomNumber(length));
-            InputValue=HelpersMethod.JSGetValueEle(driver,WebEle,10);
+            HelpersMethod.EnterText(driver,WebEle,10000,RandomValues.generateRandomNumber(length));
+            InputValue=HelpersMethod.JSGetValueEle(driver,WebEle,10000);
 
             if(InputValue!=null)
             {exists=true;}
