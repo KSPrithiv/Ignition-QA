@@ -138,7 +138,71 @@ public class CatalogPage
                     .pollingEvery(Duration.ofSeconds(2))
                     .ignoring(NoSuchElementException.class);
             wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+            status = HelpersMethod.returnDocumentStatus(driver);
+            if (status.equals("loading"))
+            {
+                HelpersMethod.waitTillLoadingPage(driver);
+            }
             Assert.assertEquals(exists,true);
+        }
+        catch (Exception e){}
+    }
+
+    public void selectAllProduct()
+    {
+        Actions act=new Actions(driver);
+        String dropText;
+        try
+        {
+            String status = HelpersMethod.returnDocumentStatus(driver);
+            if (status.equals("loading"))
+            {
+                HelpersMethod.waitTillLoadingPage(driver);
+            }
+            Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(400))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
+            Thread.sleep(1000);
+            if(!HelpersMethod.IsExists("//span[@id='CPQoh-accessibility-id']/span[text()='Show all products']",driver))
+            {
+                WebElement dropDown=HelpersMethod.FindByElement(driver,"xpath","//span[@id='CPQoh-accessibility-id']/following-sibling::button");
+                HelpersMethod.ClickBut(driver,dropDown,10000);
+                new WebDriverWait(driver,Duration.ofMillis(10000)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.xpath("//ul[@id='CPQoh-listbox-id']/descendant::span[@class='k-list-item-text']"))));
+                new WebDriverWait(driver,Duration.ofMillis(10000)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//ul[@id='CPQoh-listbox-id']/descendant::span[@class='k-list-item-text']")));
+                List<WebElement> dropDowns=HelpersMethod.FindByElements(driver,"xpath","//ul[@id='CPQoh-listbox-id']/descendant::span[@class='k-list-item-text']");
+                for(WebElement dropDow:dropDowns)
+                {
+                    act.moveToElement(dropDown).build().perform();
+                    dropText=dropDow.getText();
+                    if(dropText.equalsIgnoreCase("Show all products"))
+                    {
+                        act.moveToElement(dropDow).build().perform();
+                        act.click(dropDow).build().perform();
+                        break;
+                    }
+                }
+                wait = new FluentWait<WebDriver>(driver)
+                        .withTimeout(Duration.ofSeconds(400))
+                        .pollingEvery(Duration.ofSeconds(2))
+                        .ignoring(NoSuchElementException.class);
+                wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
+                status = HelpersMethod.returnDocumentStatus(driver);
+                if (status.equals("loading"))
+                {
+                    HelpersMethod.waitTillLoadingPage(driver);
+                }
+
+                wait = new FluentWait<WebDriver>(driver)
+                        .withTimeout(Duration.ofSeconds(400))
+                        .pollingEvery(Duration.ofSeconds(2))
+                        .ignoring(NoSuchElementException.class);
+                wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+                Thread.sleep(1000);
+            }
         }
         catch (Exception e){}
     }
@@ -147,12 +211,18 @@ public class CatalogPage
     public void Click_CardView()
     {
         Actions act=new Actions(driver);
+
+        String status = HelpersMethod.returnDocumentStatus(driver);
+        if (status.equals("loading"))
+        {
+            HelpersMethod.waitTillLoadingPage(driver);
+        }
         Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
                 .withTimeout(Duration.ofSeconds(400))
                 .pollingEvery(Duration.ofSeconds(2))
                 .ignoring(NoSuchElementException.class);
         wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
-        String status = HelpersMethod.returnDocumentStatus(driver);
+        status = HelpersMethod.returnDocumentStatus(driver);
         if (status.equals("loading"))
         {
             HelpersMethod.waitTillLoadingPage(driver);
@@ -610,7 +680,6 @@ public class CatalogPage
                 .ignoring(NoSuchElementException.class);
             wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
 
-
             //Read the Qty updated
             WebEle=HelpersMethod.FindByElement(driver,"xpath","//input[contains(@id,'ProductGridItemQuantityContainer')]");
             Qty=HelpersMethod.JSGetValueEle(driver,WebEle,10000);
@@ -655,7 +724,6 @@ public class CatalogPage
                 {
                     HelpersMethod.waitTillLoadingPage(driver);
                 }
-
                 new WebDriverWait(driver,Duration.ofMillis(100000)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(@class,'k-popup k-child-animation-container k-slide-down-enter k-slide-down-enter-active')]")));
             }
             Assert.assertEquals(exists,true);
