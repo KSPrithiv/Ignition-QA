@@ -12,13 +12,13 @@ http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <artifactId>OMS_Automation</artifactId>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-
         <cucumber.version>6.9.0</cucumber.version>
         <maven.source.version>1.8</maven.source.version>
         <maven.compiler.version>1.8</maven.compiler.version>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
-        <maven.surefire.version>2.22.2</maven.surefire.version>
+        <!--<maven.surefire.version>2.22.2</maven.surefire.version>-->
+        <maven.surefire.version>3.5.0</maven.surefire.version>
         <aspectj.version>1.8.10</aspectj.version>
     </properties>
     <dependencies>
@@ -35,16 +35,29 @@ http://maven.apache.org/xsd/maven-4.0.0.xsd">
             <version>5.6.4</version>
         </dependency>-->
         <!-- https://mvnrepository.com/artifact/io.github.bonigarcia/webdrivermanager -->
-        <dependency>
+        <!--<dependency>
             <groupId>io.github.bonigarcia</groupId>
             <artifactId>webdrivermanager</artifactId>
             <version>5.8.0</version>
+        </dependency>-->
+        <!-- https://mvnrepository.com/artifact/io.github.bonigarcia/webdrivermanager -->
+        <dependency>
+            <groupId>io.github.bonigarcia</groupId>
+            <artifactId>webdrivermanager</artifactId>
+            <version>5.9.2</version>
         </dependency>
+        <!-- <dependency>
+             <groupId>com.google.guava</groupId>
+             <artifactId>guava</artifactId>
+             <version>31.0.1-jre</version>
+         </dependency>-->
+        <!-- https://mvnrepository.com/artifact/com.google.guava/guava -->
         <dependency>
             <groupId>com.google.guava</groupId>
             <artifactId>guava</artifactId>
-            <version>31.0.1-jre</version>
+            <version>33.0.0-jre</version>
         </dependency>
+
         <!-- https://mvnrepository.com/artifact/io.cucumber/cucumber-junit -->
         <dependency>
             <groupId>io.cucumber</groupId>
@@ -99,7 +112,7 @@ http://maven.apache.org/xsd/maven-4.0.0.xsd">
         <dependency>
             <groupId>net.masterthought</groupId>
             <artifactId>cucumber-reporting</artifactId>
-            <version>5.6.0</version>
+            <version>5.7.5</version>
         </dependency>
         <!-- https://mvnrepository.com/artifact/net.masterthought/maven-cucumber-reporting-->
         <dependency>
@@ -148,12 +161,14 @@ http://maven.apache.org/xsd/maven-4.0.0.xsd">
        <dependency>
            <groupId>org.seleniumhq.selenium</groupId>
            <artifactId>selenium-java</artifactId>
-           <version>4.20.0</version>
+           <!--<version>4.20.0</version>-->
+           <version>4.24.0</version>
        </dependency>
         <dependency>
             <groupId>org.aspectj</groupId>
             <artifactId>aspectjweaver</artifactId>
-            <version>1.9.6</version>
+            <!--<version>1.9.6</version>-->
+            <version>1.9.22.1</version>
         </dependency>
 
         <dependency>
@@ -198,11 +213,17 @@ http://maven.apache.org/xsd/maven-4.0.0.xsd">
             <version>3.1.1</version>
             <scope>test</scope>
         </dependency>
-        <dependency>
+       <!-- <dependency>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-jar-plugin</artifactId>
             <version>2.4</version>
             <type>maven-plugin</type>
+        </dependency>-->
+        <!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-jar-plugin -->
+        <dependency>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-jar-plugin</artifactId>
+            <version>3.4.2</version>
         </dependency>
         <dependency>
             <groupId>org.projectlombok</groupId>
@@ -213,7 +234,7 @@ http://maven.apache.org/xsd/maven-4.0.0.xsd">
         <dependency>
             <groupId>com.beust</groupId>
             <artifactId>jcommander</artifactId>
-            <version>1.27</version>
+            <version>1.78</version>
         </dependency>
         <!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-support -->
         <!-- <dependency>
@@ -240,7 +261,7 @@ http://maven.apache.org/xsd/maven-4.0.0.xsd">
         <dependency>
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
-            <version>7.0.0</version>
+            <version>7.7.0</version>
         </dependency>
     </dependencies>
     <build>

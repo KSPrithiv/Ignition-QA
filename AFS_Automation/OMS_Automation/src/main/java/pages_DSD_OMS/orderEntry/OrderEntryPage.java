@@ -3384,7 +3384,7 @@ public class OrderEntryPage
 
         try
         {
-            if (HelpersMethod.IsExists("//div[@id='order-guide-grid']/ancestor::div[@class='k-widget k-window k-dialog']", driver))
+            if (HelpersMethod.IsExists("//div[@id='order-guide-grid']/ancestor::div[@class='k-window k-dialog']", driver))
             {
                 WebElement orderGudides = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-window k-dialog')]");
                 //Select 1st OG from the popup, automatically it will selet 1st par order in the popup
@@ -3392,12 +3392,12 @@ public class OrderEntryPage
                 HelpersMethod.ActClick(driver, WebEle, 10000);
 
                 //Select first par order from the popup
-                new WebDriverWait(driver, Duration.ofMillis(40000)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@id='par-list-grid']/ancestor::div[@class='k-widget k-window k-dialog']"))));
-                WebElement parList = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='k-widget k-window k-dialog']");
-                //WebElement parSelect = parList.findElement(By.xpath(".//div[@id='par-list-grid']/descendant::tr[contains(@class,'k-master-row')][1]"));
+                new WebDriverWait(driver, Duration.ofMillis(40000)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@id='par-list-grid']/ancestor::div[@class='k-window k-dialog']"))));
+                WebElement parList = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='k-window k-dialog']");
+                WebElement parSelect = parList.findElement(By.xpath(".//div[@id='par-list-grid']/descendant::tr[contains(@class,'k-master-row')][1]"));
                 WebElement parText = parList.findElement(By.xpath(".//div[@id='par-list-grid']/descendant::tr[contains(@class,'k-master-row')][1]/td"));
                 scenario.log("PAR LIST SELECTED IS: " + parText.getText());
-                //HelpersMethod.ActClick(driver, parSelect, 10000);
+                HelpersMethod.ActClick(driver, parSelect, 10000);
                 exists=true;
                 wait = new FluentWait<WebDriver>(driver)
                         .withTimeout(Duration.ofSeconds(250))

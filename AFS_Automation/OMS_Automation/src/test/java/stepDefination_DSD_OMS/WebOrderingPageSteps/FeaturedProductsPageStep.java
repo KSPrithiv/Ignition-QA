@@ -82,6 +82,7 @@ public class FeaturedProductsPageStep
     {
         featuredProductsPage=new FeaturedProductsPage(driver,scenario);
         featuredProductsPage.ValidateFeautedProduct();
+        featuredProductsPage.readFeaturedProduct();
     }
 
     @Then("User should list all the products in Product grid of Featured products")
@@ -144,7 +145,7 @@ public class FeaturedProductsPageStep
         featuredProductsPage.ListFeaturedProduct(MaxProd);
         featuredProductsPage.ClickOnDeleteProduct();
         featuredProductsPage.PopupAfterChanges();
-        featuredProductsPage.readFeaturedProduct();
+        //featuredProductsPage.readFeaturedProduct();
     }
 
     @And("User should be on Featured products list then User should click on Add Products button and filter product")
@@ -173,7 +174,7 @@ public class FeaturedProductsPageStep
     {
         featuredProductsPage=new FeaturedProductsPage(driver,scenario);
         featuredProductsPage.deleteAllFeatureProduct();
-        featuredProductsPage.savePopup();
+        featuredProductsPage.savePopup1();
     }
 
     @Then("User should add new {int} products, and delete first product")
@@ -191,7 +192,8 @@ public class FeaturedProductsPageStep
         Thread.sleep(1000);
         featuredProductsPage.PopupAfterChanges();
         featuredProductsPage.CatalogOkButton();
-        featuredProductsPage.savePopup();
+        featuredProductsPage.readFeaturedProduct();
+        featuredProductsPage.savePopup1();
         featuredProductsPage.ListFeaturedProduct(MaxProd);
         featuredProductsPage.deleteFirstProduct();
         featuredProductsPage.savePopup();
