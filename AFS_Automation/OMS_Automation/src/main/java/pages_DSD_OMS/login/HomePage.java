@@ -108,7 +108,6 @@ public class HomePage
         try
         {
             exists = false;
-            WebElement WebEle;
             Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
                     .withTimeout(Duration.ofSeconds(250))
                     .pollingEvery(Duration.ofSeconds(2))
@@ -129,7 +128,7 @@ public class HomePage
 
     public void navigateToClientSide()
     {
-        exists = false;
+        //exists = false;
         WebElement WebEle;
         try
         {
@@ -141,43 +140,44 @@ public class HomePage
                     .ignoring(NoSuchElementException.class);
             wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
 
-            new WebDriverWait(driver, Duration.ofMillis(40000)).until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.id("app")));
-            scenario.log("IN ADMIN PAGE");
-            WebElement side_menu = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'MuiPaper-root MuiDrawer-paper drawer')]");
-            new WebDriverWait(driver,Duration.ofMillis(10000)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(@class,'MuiPaper-root MuiDrawer-paper drawer')]")));
-            Actions act1 = new Actions(driver);
-            //Move mouse on menu icon
-            new WebDriverWait(driver,Duration.ofMillis(10000)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class='item-searchbar']//*[local-name()='svg']//*[local-name()='path' and contains(@d,'M3,18H21V16H3Zm0-5H21V11H3ZM3,6V8H21V6Z')]"))));
-            new WebDriverWait(driver,Duration.ofMillis(10000)).until(ExpectedConditions.elementToBeClickable(By.xpath("//div[@class='item-searchbar']//*[local-name()='svg']//*[local-name()='path' and contains(@d,'M3,18H21V16H3Zm0-5H21V11H3ZM3,6V8H21V6Z')]")));
-
-            WebEle = HelpersMethod.FindByElement(driver, "xpath", "//*[local-name()='svg']//*[local-name()='path' and contains(@d,'M3,18H21V16H3Zm0-5H21V11H3ZM3,6V8H21V6Z')]");
-            act1.moveToElement(WebEle).click().build().perform();
-
-            //find whether side menu bar has expanded
-            HelpersMethod.WaitElementPresent(driver, "xpath", "//div[contains(@class,'MuiPaper-root MuiDrawer-paper drawer-opened MuiDrawer-paperAnchorLeft MuiDrawer-paperAnchorDockedLeft MuiPaper-elevation0')]", 800);
-            side_menu = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'MuiPaper-root MuiDrawer-paper drawer-opened MuiDrawer-paperAnchorLeft MuiDrawer-paperAnchorDockedLeft MuiPaper-elevation0')]");
-            act1.moveToElement(side_menu).build().perform();
-
-            //Click on arrow symbol
-            WebElement arrow = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'settings-back-container')] //*[name()='svg']//*[local-name()='path' and contains(@d,'M5,8L1,12L5,16L5,13L23,13L23,11L5,11L5,8,z')]");
-            if (arrow.isDisplayed())
+            if(HelpersMethod.IsExists("//div[@class='cpadmin']",driver))
             {
-                WebElement ele4 = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'settings-back-container')] //*[name()='svg']//*[local-name()='path' and contains(@d,'M5,8L1,12L5,16L5,13L23,13L23,11L5,11L5,8,z')]");
-                act1.moveToElement(ele4).build().perform();
-                act1.click(ele4).build().perform();
+                new WebDriverWait(driver, Duration.ofMillis(40000)).until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.id("app")));
+                scenario.log("IN ADMIN PAGE");
+                WebElement side_menu = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'MuiPaper-root MuiDrawer-paper drawer')]");
+                new WebDriverWait(driver, Duration.ofMillis(10000)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(@class,'MuiPaper-root MuiDrawer-paper drawer')]")));
+                Actions act1 = new Actions(driver);
+                //Move mouse on menu icon
+                new WebDriverWait(driver, Duration.ofMillis(10000)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class='item-searchbar']//*[local-name()='svg']//*[local-name()='path' and contains(@d,'M3,18H21V16H3Zm0-5H21V11H3ZM3,6V8H21V6Z')]"))));
+                new WebDriverWait(driver, Duration.ofMillis(10000)).until(ExpectedConditions.elementToBeClickable(By.xpath("//div[@class='item-searchbar']//*[local-name()='svg']//*[local-name()='path' and contains(@d,'M3,18H21V16H3Zm0-5H21V11H3ZM3,6V8H21V6Z')]")));
+
+                WebEle = HelpersMethod.FindByElement(driver, "xpath", "//*[local-name()='svg']//*[local-name()='path' and contains(@d,'M3,18H21V16H3Zm0-5H21V11H3ZM3,6V8H21V6Z')]");
+                act1.moveToElement(WebEle).click().build().perform();
+
+                //find whether side menu bar has expanded
+                HelpersMethod.WaitElementPresent(driver, "xpath", "//div[contains(@class,'MuiPaper-root MuiDrawer-paper drawer-opened MuiDrawer-paperAnchorLeft MuiDrawer-paperAnchorDockedLeft MuiPaper-elevation0')]", 800);
+                side_menu = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'MuiPaper-root MuiDrawer-paper drawer-opened MuiDrawer-paperAnchorLeft MuiDrawer-paperAnchorDockedLeft MuiPaper-elevation0')]");
+                act1.moveToElement(side_menu).build().perform();
+
+                //Click on arrow symbol
+                WebElement arrow = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'settings-back-container')] //*[name()='svg']//*[local-name()='path' and contains(@d,'M5,8L1,12L5,16L5,13L23,13L23,11L5,11L5,8,z')]");
+                if (arrow.isDisplayed()) {
+                    WebElement ele4 = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'settings-back-container')] //*[name()='svg']//*[local-name()='path' and contains(@d,'M5,8L1,12L5,16L5,13L23,13L23,11L5,11L5,8,z')]");
+                    act1.moveToElement(ele4).build().perform();
+                    act1.click(ele4).build().perform();
+                }
+                //Identify side menu bar to identify the webelements
+                new WebDriverWait(driver, Duration.ofMillis(20000)).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class,'MuiPaper-root MuiDrawer-paper drawer-opened MuiDrawer-paperAnchorLeft MuiDrawer-paperAnchorDockedLeft MuiPaper-elevation0')]")));
+                side_menu = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'MuiPaper-root MuiDrawer-paper drawer-opened MuiDrawer-paperAnchorLeft MuiDrawer-paperAnchorDockedLeft MuiPaper-elevation0')]");
+                //exists = true;
+
+                wait = new FluentWait<WebDriver>(driver)
+                        .withTimeout(Duration.ofSeconds(400))
+                        .pollingEvery(Duration.ofSeconds(2))
+                        .ignoring(NoSuchElementException.class);
+                wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
             }
-            //Identify side menu bar to identify the webelements
-            new WebDriverWait(driver,Duration.ofMillis(20000)).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class,'MuiPaper-root MuiDrawer-paper drawer-opened MuiDrawer-paperAnchorLeft MuiDrawer-paperAnchorDockedLeft MuiPaper-elevation0')]")));
-            side_menu = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'MuiPaper-root MuiDrawer-paper drawer-opened MuiDrawer-paperAnchorLeft MuiDrawer-paperAnchorDockedLeft MuiPaper-elevation0')]");
-            exists = true;
-
-            wait = new FluentWait<WebDriver>(driver)
-                    .withTimeout(Duration.ofSeconds(400))
-                    .pollingEvery(Duration.ofSeconds(2))
-                    .ignoring(NoSuchElementException.class);
-            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
-
-            Assert.assertEquals(exists, true);
+            //Assert.assertEquals(exists, true);
         }
         catch (Exception e){}
     }

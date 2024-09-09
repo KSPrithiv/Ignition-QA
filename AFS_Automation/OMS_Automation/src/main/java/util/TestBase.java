@@ -1,28 +1,28 @@
 package util;
 
 
-import helper.HelpersMethod;
-import io.cucumber.java.Scenario;
-import io.github.bonigarcia.wdm.WebDriverManager;
-import org.aeonbits.owner.ConfigFactory;
-import org.apache.http.ExceptionLogger;
+
+
+
+
+
 import org.openqa.selenium.*;
-import org.openqa.selenium.Dimension;
+
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.edge.EdgeDriver;
-import org.openqa.selenium.edge.EdgeOptions;
+
+
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.firefox.FirefoxProfile;
-import org.openqa.selenium.remote.DesiredCapabilities;
-import org.openqa.selenium.remote.RemoteWebDriver;
+
+
 import org.openqa.selenium.support.ThreadGuard;
 
 import java.awt.*;
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.concurrent.Future;
+
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -78,9 +78,9 @@ public class TestBase
         return driver.get();
     }
 
-    public static final void SetDriver(String browser) throws InterruptedException, AWTException, SQLException, ClassNotFoundException, InstantiationException, IllegalAccessException
+    public static final void SetDriver(String browserName) throws InterruptedException, AWTException, SQLException, ClassNotFoundException, InstantiationException, IllegalAccessException
     {
-        String browserName = browser;
+        //String browserName = browser;
         //boolean isHeadless = false;
         switch (browserName.toLowerCase())
         {
