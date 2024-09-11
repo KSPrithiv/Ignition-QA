@@ -205,6 +205,20 @@ public class OrderEntryPage
             wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
 
             Actions act = new Actions(driver);
+            if (HelpersMethod.IsExists("//div[@class='item-searchbar']//*[local-name()='svg']", driver))
+            {
+                WebElement humburger = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='item-searchbar']//*[local-name()='svg']");
+                HelpersMethod.ActClick(driver, humburger, 10000);
+                new WebDriverWait(driver, Duration.ofMillis(10000)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class='drawer-menu-search-container']/descendant::input"))));
+                new WebDriverWait(driver, Duration.ofMillis(10000)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='drawer-menu-search-container']/descendant::input")));
+            }
+            if(HelpersMethod.IsExists("//div[@class='settings-back-container']",driver))
+            {
+                WebElement arrow=HelpersMethod.FindByElement(driver,"xpath","//div[@class='settings-back-container']");
+                HelpersMethod.ActClick(driver,arrow,10000);
+                Thread.sleep(500);
+            }
+
             //Code to enter search value in hamburger input box and click on it
             WebElement Search_Input = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='drawer-menu-search-container']/descendant::input");
             act.moveToElement(Search_Input).click().sendKeys("Order Entry").build().perform();
@@ -299,6 +313,20 @@ public class OrderEntryPage
             }
 
             Actions act = new Actions(driver);
+            if (HelpersMethod.IsExists("//div[@class='item-searchbar']//*[local-name()='svg']", driver))
+            {
+                WebElement humburger = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='item-searchbar']//*[local-name()='svg']");
+                HelpersMethod.ActClick(driver, humburger, 10000);
+                new WebDriverWait(driver, Duration.ofMillis(10000)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class='drawer-menu-search-container']/descendant::input"))));
+                new WebDriverWait(driver, Duration.ofMillis(10000)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='drawer-menu-search-container']/descendant::input")));
+            }
+            if(HelpersMethod.IsExists("//div[@class='settings-back-container']",driver))
+            {
+                WebElement arrow=HelpersMethod.FindByElement(driver,"xpath","//div[@class='settings-back-container']");
+                HelpersMethod.ActClick(driver,arrow,10000);
+                Thread.sleep(500);
+            }
+
             //code to click on hamburger to expand
             WebElement humBurger=HelpersMethod.FindByElement(driver,"xpath","//*[local-name()='svg']//*[local-name()='path' and contains(@d,'M3,18H21V16H3Zm0-5H21V11H3ZM3,6V8H21V6Z')]");
             act.moveToElement(humBurger).build().perform();

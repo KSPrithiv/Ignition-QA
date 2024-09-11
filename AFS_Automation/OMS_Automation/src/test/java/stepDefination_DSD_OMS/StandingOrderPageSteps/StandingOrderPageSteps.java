@@ -214,8 +214,9 @@ public class StandingOrderPageSteps
         standingOrder=new NewStandingOrderPage(driver,scenario);
         standingOrder.ValidateCatalogPopup();
         standingOrder.clickOnLoadAllProducts();
-        standingOrder.ResetFilter_Catalog();
         standingOrder.selectAllProduct();
+        standingOrder.ResetFilter_Catalog();
+
         if (HelpersMethod.IsExists("//div[contains(@class,'k-window k-dialog')]/descendant::div[contains(@class,'i-grid')]", driver))
         {
             standingOrder.ListView();

@@ -119,32 +119,56 @@ public class PaymentInfoPage
             }
 
             Actions act = new Actions(driver);
-            WebElement Search_Input = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='drawer-menu-search-container']/descendant::input");
-            act.moveToElement(Search_Input).click().sendKeys("Payment Info").build().perform();
-            if(HelpersMethod.IsExists("//ul[contains(@class,'MuiList-root ')]/descendant::span[contains(text(),'Payment Info')]|//ul[contains(@class,'MuiList-root ')]/descendant::span[contains(text(),'Payment info')]",driver)) {
-                WebElement PaymentInfoMenu = HelpersMethod.FindByElement(driver, "xpath", "//ul[contains(@class,'MuiList-root ')]/descendant::span[contains(text(),'Payment Info')]|//ul[contains(@class,'MuiList-root ')]/descendant::span[contains(text(),'Payment info')]");
-                HelpersMethod.ActClick(driver, PaymentInfoMenu, 10000);
-                currentURL = driver.getCurrentUrl();
-                exists = true;
-                wait = new FluentWait<WebDriver>(driver)
-                        .withTimeout(Duration.ofSeconds(120))
-                        .pollingEvery(Duration.ofSeconds(2))
-                        .ignoring(NoSuchElementException.class);
-                wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+            if (HelpersMethod.IsExists("//div[@class='item-searchbar']//*[local-name()='svg']", driver))
+            {
+                WebElement humburger = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='item-searchbar']//*[local-name()='svg']");
+                HelpersMethod.ActClick(driver, humburger, 10000);
+                new WebDriverWait(driver, Duration.ofMillis(10000)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class='drawer-menu-search-container']/descendant::input"))));
+                new WebDriverWait(driver, Duration.ofMillis(10000)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='drawer-menu-search-container']/descendant::input")));
+            }
+            if(HelpersMethod.IsExists("//div[@class='settings-back-container']",driver))
+            {
+                WebElement arrow=HelpersMethod.FindByElement(driver,"xpath","//div[@class='settings-back-container']");
+                HelpersMethod.ActClick(driver,arrow,10000);
+                Thread.sleep(500);
+            }
 
-                status = HelpersMethod.returnDocumentStatus(driver);
-                if (status.equals("loading")) {
-                    HelpersMethod.waitTillLoadingPage(driver);
-                }
-                new WebDriverWait(driver, Duration.ofMillis(10000)).until(ExpectedConditions.elementToBeClickable(By.xpath("//div[@class='open-menu-hamburger-icon']//*[local-name()='svg']//*[local-name()='path' and contains(@d,'M3,18H21V16H3Zm0-5H21V11H3ZM3,6V8H21V6Z')]")));
-                if (HelpersMethod.IsExists("//div[@class='open-menu-hamburger-icon']//*[local-name()='svg']//*[local-name()='path' and contains(@d,'M3,18H21V16H3Zm0-5H21V11H3ZM3,6V8H21V6Z')]", driver)) {
-                    WebEle = HelpersMethod.FindByElement(driver, "xpath", "//*[local-name()='svg']//*[local-name()='path' and contains(@d,'M3,18H21V16H3Zm0-5H21V11H3ZM3,6V8H21V6Z')]");
-                    act.moveToElement(WebEle).click().build().perform();
-                }
+                    WebElement Search_Input = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='drawer-menu-search-container']/descendant::input");
+                    act.moveToElement(Search_Input).click().sendKeys("Payment Info").build().perform();
+                    if (HelpersMethod.IsExists("//ul[contains(@class,'MuiList-root ')]/descendant::span[contains(text(),'Payment Info')]|//ul[contains(@class,'MuiList-root ')]/descendant::span[contains(text(),'Payment info')]", driver))
+                    {
+                        WebElement PaymentInfoMenu = HelpersMethod.FindByElement(driver, "xpath", "//ul[contains(@class,'MuiList-root ')]/descendant::span[contains(text(),'Payment Info')]|//ul[contains(@class,'MuiList-root ')]/descendant::span[contains(text(),'Payment info')]");
+                        HelpersMethod.ActClick(driver, PaymentInfoMenu, 10000);
+                        currentURL = driver.getCurrentUrl();
+                        exists = true;
+                        wait = new FluentWait<WebDriver>(driver)
+                                .withTimeout(Duration.ofSeconds(120))
+                                .pollingEvery(Duration.ofSeconds(2))
+                                .ignoring(NoSuchElementException.class);
+                        wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
+                        status = HelpersMethod.returnDocumentStatus(driver);
+                        if (status.equals("loading"))
+                        {
+                            HelpersMethod.waitTillLoadingPage(driver);
+                        }
+                        new WebDriverWait(driver, Duration.ofMillis(10000)).until(ExpectedConditions.elementToBeClickable(By.xpath("//div[@class='open-menu-hamburger-icon']//*[local-name()='svg']//*[local-name()='path' and contains(@d,'M3,18H21V16H3Zm0-5H21V11H3ZM3,6V8H21V6Z')]")));
+                        if (HelpersMethod.IsExists("//div[@class='open-menu-hamburger-icon']//*[local-name()='svg']//*[local-name()='path' and contains(@d,'M3,18H21V16H3Zm0-5H21V11H3ZM3,6V8H21V6Z')]", driver))
+                        {
+                            WebEle = HelpersMethod.FindByElement(driver, "xpath", "//*[local-name()='svg']//*[local-name()='path' and contains(@d,'M3,18H21V16H3Zm0-5H21V11H3ZM3,6V8H21V6Z')]");
+                            act.moveToElement(WebEle).click().build().perform();
+                        }
+                    }
+
+            if(HelpersMethod.IsExists("//div[@id='paymentInfoCard']",driver))
+            {
+                scenario.log("FOUND PAYMENT INFO CARD");
+                exists=true;
             }
             else
             {
                 scenario.log("PAYMENT INFO PAGE NOT FOUND");
+                exists=false;
             }
         }
         catch (Exception e) {}

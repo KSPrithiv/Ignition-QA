@@ -11,6 +11,7 @@ import org.openqa.selenium.WebElement;
 import pages_DSD_OMS.customerInquiry_ERP.*;
 import pages_DSD_OMS.login.HomePage;
 import pages_DSD_OMS.login.LoginPage;
+import util.RandomValues;
 import util.TestBase;
 
 import java.util.List;
@@ -71,9 +72,11 @@ public class CustomerInqStep_ERP1
     }
 
     @Then("User clicks on Save button without entering customer name in ERP env")
-    public void userClicksOnSaveButtonWithoutEnteringCustomerNameInERPEnv() throws InterruptedException {
+    public void userClicksOnSaveButtonWithoutEnteringCustomerNameInERPEnv() throws InterruptedException
+    {
         customerInquiryPageERP=new CustomerInquiryPageERP(driver,scenario);
-        customerInquiryPageERP.BillNo();
+        String billNo= RandomValues.generateRandomNumber(10);
+        customerInquiryPageERP.BillNo(billNo);
         //customerInquiryPageERP.DescrVal();
         customerInquiryPageERP.Save_ButtonClick();
         customerInquiryPageERP.popUpForCustomerNameRequired();

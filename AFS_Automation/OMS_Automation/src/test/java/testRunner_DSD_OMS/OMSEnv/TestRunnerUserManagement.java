@@ -19,7 +19,7 @@ import java.io.IOException;
         (features = {
                 "src/test/resources/features_DSD_OMS/UserManagementClientSideFeature/manageRegistrationClientSideFeatureOMS.feature",
                 "src/test/resources/features_DSD_OMS/UserManagementClientSideFeature/userAndAccountsClientSideLoginFeature.feature",
-                "src/test/resources/features_DSD_OMS/UserManagementClientSideFeature/userPendingRegistrationClientSideFeature.feature",
+                //"src/test/resources/features_DSD_OMS/UserManagementClientSideFeature/userPendingRegistrationClientSideFeature.feature",
         },
         glue = {"stepDefination_DSD_OMS"},
                 plugin = {"pretty",

@@ -1826,7 +1826,7 @@ public class NewStandingOrderPage
                 {
                     act.moveToElement(dropDown).build().perform();
                     dropText=dropDow.getText();
-                    if(dropText.equalsIgnoreCase("Show all products"))
+                    if(dropText.equalsIgnoreCase("Show all products") || dropText.equalsIgnoreCase("All Products"))
                     {
                         act.moveToElement(dropDow).build().perform();
                         act.click(dropDow).build().perform();
@@ -1851,6 +1851,16 @@ public class NewStandingOrderPage
                         .ignoring(NoSuchElementException.class);
                 wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
                 Thread.sleep(1000);
+
+                if(HelpersMethod.IsExists("//span[@id='CPQoh-accessibility-id']/span[text()='Show all products']|//span[@id='CPQoh-accessibility-id']/span[text()='All Products']",driver))
+                {
+                    exists=true;
+                }
+                else
+                {
+                    exists=false;
+                }
+                Assert.assertEquals(exists,true);
             }
         }
         catch (Exception e){}

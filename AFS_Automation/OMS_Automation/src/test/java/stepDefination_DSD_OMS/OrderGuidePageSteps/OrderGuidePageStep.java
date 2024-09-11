@@ -401,6 +401,7 @@ public class OrderGuidePageStep
         }
         else
         {
+            createOGPage.selectAllProducts();
             createOGPage.cardView();
         }
         createOGPage.CatalogPopupOk();

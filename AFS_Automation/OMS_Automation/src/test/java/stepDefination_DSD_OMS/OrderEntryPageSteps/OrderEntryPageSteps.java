@@ -8,6 +8,7 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import io.cucumber.java.zh_cn.假如;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -397,6 +398,21 @@ public class OrderEntryPageSteps
         newOE=new NewOrderEntryPage(driver,scenario);
         List<List<String>> PO_No = tabledata.asLists(String.class);
         newOE.EnterPO_No(PO_No.get(0).get(0));
+
+
+        //find whether route is empty or not, if empty should select some route value
+        Thread.sleep(2000);
+        String routeNo=newOE.validateRouteValue();
+        if(routeNo==null||routeNo.equals(""))
+        {
+            newOE.clickRouteIndex();
+            newOE.validateRouteDialog();
+            newOE.Route_No(TestBase.testEnvironment.get_RouteFilt(), TestBase.testEnvironment.get_Route());
+            newOE.validateRouteSelected(TestBase.testEnvironment.get_Route());
+        }
+
+        //To find main grid has been selected or else select main grid
+        newOE.selectMainGrid();
     }
 
     @Then("Enter PO# for New order for Quote to Order")
@@ -409,6 +425,21 @@ public class OrderEntryPageSteps
         newOE=new NewOrderEntryPage(driver,scenario);
         List<List<String>> PO_No = tabledata.asLists(String.class);
         newOE.EnterPO_No(PO_No.get(0).get(0));
+
+        //find whether route is empty or not, if empty should select some route value
+        Thread.sleep(2000);
+        String routeNo=newOE.validateRouteValue();
+        if(routeNo==null||routeNo.equals(""))
+        {
+            newOE.clickRouteIndex();
+            newOE.validateRouteDialog();
+            newOE.Route_No(TestBase.testEnvironment.get_RouteFilt(), TestBase.testEnvironment.get_Route());
+            newOE.validateRouteSelected(TestBase.testEnvironment.get_Route());
+        }
+
+        //To find main grid has been selected or else select main grid
+        newOE.selectMainGrid();
+
         newOE.readProductsInOrder();
         //newOE.unavailableProduct();
     }
@@ -425,7 +456,7 @@ public class OrderEntryPageSteps
     }
 
     @Then("Click on Next button")
-    public void click_on_next_button() throws InterruptedException, AWTException
+    public void click_on_next_button() throws InterruptedException, AWTException, ParseException
     {
         exists=false;
         newOE = new NewOrderEntryPage(driver,scenario);
@@ -761,8 +792,6 @@ public class OrderEntryPageSteps
         orderpage = new OrderEntryPage(driver, scenario);
         orderpage.ValidateOE();
         orderpage.ClickRemoveSkip();
-
-
     }
 
     @Then("Check for visibility of Skip button")
