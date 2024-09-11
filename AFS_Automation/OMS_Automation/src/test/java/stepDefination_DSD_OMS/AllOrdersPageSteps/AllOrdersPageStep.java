@@ -691,6 +691,20 @@ public class AllOrdersPageStep
 
         List<List<String>> PO_No = tabledata.asLists(String.class);
         newOE.EnterPO_No(PO_No.get(0).get(0));
+
+        //find whether route is empty or not, if empty should select some route value
+        Thread.sleep(2000);
+        String routeNo=newOE.validateRouteValue();
+        if(routeNo==null||routeNo.equals(""))
+        {
+            newOE.clickRouteIndex();
+            newOE.validateRouteDialog();
+            newOE.Route_No(TestBase.testEnvironment.get_RouteFilt(), TestBase.testEnvironment.get_Route());
+            newOE.validateRouteSelected(TestBase.testEnvironment.get_Route());
+        }
+
+        //To find main grid has been selected or else select main grid
+        newOE.selectMainGrid();
     }
 
     @And("User clicks on Show all orders check box after navigating back")

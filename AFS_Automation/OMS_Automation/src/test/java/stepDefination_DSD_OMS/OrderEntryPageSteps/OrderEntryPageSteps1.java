@@ -157,6 +157,7 @@ public class OrderEntryPageSteps1
         newOE.Validate_Catalog();
         newOE.clickOnLoadAllProducts();
         newOE.ResetFilter_Catalog();
+        newOE.selectAllProductsCatalogDialogbox();
         newOE.validateCatalogProducts();
         newOE.enterQtyOCL(Prod_detail.get(0).get(0),Prod_detail.get(0).get(1));
         newOE.Catalog_OK();

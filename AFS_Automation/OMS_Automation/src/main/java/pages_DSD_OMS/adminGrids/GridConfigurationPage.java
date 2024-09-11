@@ -213,7 +213,9 @@ public class GridConfigurationPage
         try
         {
             Thread.sleep(500);
-            new WebDriverWait(driver, Duration.ofMillis(4000)).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//ul[@id='SelectGridType-listbox-id']/li/span")));
+            new WebDriverWait(driver, Duration.ofMillis(4000)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.xpath("//ul[@id='SelectGridType-listbox-id']/li/span"))));
+            new WebDriverWait(driver,Duration.ofMillis(4000)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//ul[@id='SelectGridType-listbox-id']/li/span")));
+
             if(HelpersMethod.IsExists("//ul[@id='SelectGridType-listbox-id']/li/span",driver))
             {
                 List<WebElement> options=driver.findElements(By.xpath("//ul[@id='SelectGridType-listbox-id']/li/span"));
@@ -881,6 +883,12 @@ public class GridConfigurationPage
         String headerText;
         try
         {
+            if(HelpersMethod.IsExists("//div[@class='loader']",driver))
+            {
+                WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000000);
+            }
+
                WebElement scrollEle=HelpersMethod.FindByElement(driver,"id","GridConfigurationConfiguration");
                HelpersMethod.ScrollElement(driver,scrollEle);
                List<WebElement> headers=HelpersMethod.FindByElements(driver,"xpath","//tr[contains(@class,'k-grid-edit-row')]/descendant::input[@class='k-textbox']");

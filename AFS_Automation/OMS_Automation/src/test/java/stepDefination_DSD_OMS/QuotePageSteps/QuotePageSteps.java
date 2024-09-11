@@ -235,6 +235,7 @@ public class QuotePageSteps
         newQuotePage=new NewQuotePage(driver,scenario);
         newQuotePage.validateCatalog();
         newQuotePage.ResetFilter_Catalog();
+        newQuotePage.selectAllProducts();
         newQuotePage.SelectProductFromCatalog();
         newOE=new NewOrderEntryPage(driver,scenario);
         newOE.EnterQty(Qty.get(0).get(0), Qty.get(0).get(1));

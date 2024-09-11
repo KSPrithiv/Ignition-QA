@@ -318,12 +318,25 @@ public class IgnitionPage
             if(WebEle.isEnabled())
             {
                 HelpersMethod.ActClick(driver, WebEle, 10000);
-                if(HelpersMethod.IsExists("//div[@class='loader']",driver))
-                {
-                    WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100000);
-                }
+                Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                        .withTimeout(Duration.ofSeconds(400))
+                        .pollingEvery(Duration.ofSeconds(2))
+                        .ignoring(NoSuchElementException.class);
+                wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
                 exists=true;
+                if(HelpersMethod.IsExists("//div[text()='The information has been saved successfully.']/ancestor::div[@class='k-window k-dialog']",driver))
+                {
+                    WebElement popup=HelpersMethod.FindByElement(driver,"xpath","div[@class='k-window k-dialog']");
+                    WebElement okButton=popup.findElement(By.xpath(".//button/span[text()='Ok']"));
+                    HelpersMethod.ActClick(driver,okButton,10000);
+                    wait = new FluentWait<WebDriver>(driver)
+                            .withTimeout(Duration.ofSeconds(400))
+                            .pollingEvery(Duration.ofSeconds(2))
+                            .ignoring(NoSuchElementException.class);
+                    wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+                }
+
             }
             Assert.assertEquals(exists,true);
         }

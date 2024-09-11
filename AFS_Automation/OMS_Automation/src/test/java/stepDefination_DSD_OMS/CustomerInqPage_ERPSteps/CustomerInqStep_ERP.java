@@ -321,7 +321,8 @@ public class CustomerInqStep_ERP
     public void userClicksOnSaveButtonBeforeAddingValuesToIgnition() throws InterruptedException
     {
         customerInquiryPageERP=new CustomerInquiryPageERP(driver,scenario);
-        customerInquiryPageERP.BillNo();
+        String billNo= RandomValues.generateRandomNumber(10);
+        customerInquiryPageERP.BillNo(billNo);
         String Des= RandomValues.generateRandomString(8);
         customerInquiryPageERP.DescrVal(Des);
         customerInquiryPageERP.Save_ButtonClick();
@@ -429,13 +430,14 @@ public class CustomerInqStep_ERP
     }
 
     @Then("User selects Standing PO# from the grid and click Delete in ERP")
-    public void userSelectsStandingPOFromTheGridAndClickDeleteInERP()
+    public void userSelectsStandingPOFromTheGridAndClickDeleteInERP() throws InterruptedException
     {
         List<WebElement> Pos=HelpersMethod.FindByElements(driver,"xpath","//tr[contains(@class,'k-master-row')]");
         for(int i=0;i<= Pos.size()-1;i++)
+        //while(!Pos.isEmpty())
         {
             ignitionPageERP = new IgnitionPageERP(driver, scenario);
-            ignitionPageERP.selectPONoForDelete(i);
+            ignitionPageERP.selectPONoForDelete(i);//ignitionPageERP.selectPONoForDelete(0);
             ignitionPageERP.clickDelete();
             ignitionPageERP.confirmationPopUp();
         }
@@ -467,9 +469,10 @@ public class CustomerInqStep_ERP
     }
 
     @Then("PO has been saved in ERP")
-    public void poHasBeenSavedInERP()
+    public void poHasBeenSavedInERP() throws InterruptedException
     {
         customerInquiryPageERP=new CustomerInquiryPageERP(driver,scenario);
+        customerInquiryPageERP.Save_ButtonClick();
         customerInquiryPageERP.validateSaveConfirmationPopup();
         customerInquiryPageERP.SaveButtonOK();
     }

@@ -93,7 +93,7 @@ public class TestBase
                 //chromeOptions.addArguments("disable-notifications");
                 //chromeOptions.addArguments("disable-infobars");
                 chromeOptions.addArguments("--start-maximized");
-                //chromeOptions.addArguments("window-size=1920,1080");
+                chromeOptions.addArguments("window-size=1920,1080");
                 //chromeOptions.addArguments("window-size=1280,720");
                 chromeOptions.addArguments("PageLoadStrategy.NORMAL");
                 //chromeOptions.addArguments("test-type");
@@ -152,6 +152,7 @@ public class TestBase
                 //WebDriverManager.chromedriver().setup();
                 ChromeOptions chromeOptions = new ChromeOptions();
                 chromeOptions.addArguments("--headless=new");
+
                 //chromeOptions.addArguments("window-size=1920,1080");
                 //chromeOptions.addArguments("window-size=");
                 chromeOptions.addArguments("--remote-allow-origins=*");
@@ -201,7 +202,7 @@ public class TestBase
         ////getDriver().manage().timeouts().implicitlyWait(TestUtil.IMPLICIT_WAIT, TimeUnit.SECONDS);
         getDriver().get(testEnvironment.get_url());
        //// getDriver().manage().window().setSize(new Dimension(1920, 1080));
-        Thread.sleep(4000);
+        Thread.sleep(5000);
     }
 
     public static void unload() throws IOException
