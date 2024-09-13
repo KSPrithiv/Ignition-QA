@@ -18,11 +18,15 @@ import org.openqa.selenium.firefox.FirefoxProfile;
 
 
 import org.openqa.selenium.support.ThreadGuard;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.FluentWait;
+import org.openqa.selenium.support.ui.Wait;
 
 import java.awt.*;
 import java.io.IOException;
 import java.sql.SQLException;
 
+import java.time.Duration;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -202,7 +206,11 @@ public class TestBase
         ////getDriver().manage().timeouts().implicitlyWait(TestUtil.IMPLICIT_WAIT, TimeUnit.SECONDS);
         getDriver().get(testEnvironment.get_url());
        //// getDriver().manage().window().setSize(new Dimension(1920, 1080));
-        Thread.sleep(5000);
+        Wait<WebDriver> wait = new FluentWait<WebDriver>(getDriver())
+                .withTimeout(Duration.ofSeconds(1000))
+                .pollingEvery(Duration.ofSeconds(2))
+                .ignoring(NoSuchElementException.class);
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@id='unauthorized-content']")));
     }
 
     public static void unload() throws IOException
