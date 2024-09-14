@@ -266,6 +266,7 @@ public class OrderGuidePageStep2
     {
         createOGPage=new CreateOGPage(driver,scenario);
         createOGPage.ValidateCatalogDisplay();
+        createOGPage.selectAllProducts();
         createOGPage.ResetFilter_Catalog();
         createOGPage.validateProductInCatalog();
         if (HelpersMethod.IsExists("//div[contains(@class,'k-window k-dialog')]/descendant::div[contains(@class,'i-grid')]", driver))

@@ -578,7 +578,7 @@ public class HelpersMethod
     {
         Scenario scenario = null;
         boolean found=false;
-        String Menu_Text=null;
+        String Menu_Text;
         Actions act=new Actions(driver);
         List<WebElement> MenuBar=FindByElements(driver,selector,MenuItems);
         for(WebElement Menu:MenuBar)
@@ -627,7 +627,7 @@ public class HelpersMethod
 
     public static String gettingURL(WebDriver driver)
     {
-        String url=null;
+        String url;
         url=driver.getCurrentUrl();
         return url;
     }

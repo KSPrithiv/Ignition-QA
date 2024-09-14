@@ -121,7 +121,7 @@ public class OrderEntryPage
             if (URL.contains("cpError"))
             {
                 Thread.sleep(10000);
-                scenario.log("************** ERROR PAGE HAS BEEN FOUND *************");
+                scenario.log("<span color='red'>************** ERROR PAGE HAS BEEN FOUND *************</span>");
                 exists=true;
                 HelpersMethod.NavigateBack(driver);
                 String status = HelpersMethod.returnDocumentStatus(driver);

@@ -10,6 +10,7 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import pages_DSD_OMS.customerInquiry_DSD.CustomerInquiryPage;
 import pages_DSD_OMS.customerInquiry_ERP.*;
 import pages_DSD_OMS.login.HomePage;
 import pages_DSD_OMS.login.LoginPage;
@@ -123,6 +124,14 @@ public class CustomerInqStep_ERP
             customerInquiryPageERP.New_ButtonClick();
             flag1=true;
         }
+    }
+
+    @Then("User click on New button to cancel creation of customer inq in ERP")
+    public void userClickOnNewButtonToCancelCreationOfCustomerInqInErp()
+    {
+        customerInquiryPageERP = new CustomerInquiryPageERP(driver, scenario);
+        customerInquiryPageERP.ValidateCustomInq();
+        customerInquiryPageERP.New_ButtonClick();
     }
 
     @And("User enters value to all the input box in Main page")
@@ -304,7 +313,7 @@ public class CustomerInqStep_ERP
         customerInquiryPageERP=new CustomerInquiryPageERP(driver,scenario);
         //customerInquiryPageERP.clickOnCustomerAccIndex();
         //customerInquiryPageERP.selectCustomerAccNoPopup();
-        customerInquiryPageERP.clickOnCopyButton();
+        customerInquiryPageERP.ClickCopy();
     }
 
     @And("User should enter required details in ERP Copy popup")
@@ -437,7 +446,7 @@ public class CustomerInqStep_ERP
         //while(!Pos.isEmpty())
         {
             ignitionPageERP = new IgnitionPageERP(driver, scenario);
-            ignitionPageERP.selectPONoForDelete(i);//ignitionPageERP.selectPONoForDelete(0);
+            ignitionPageERP.selectPONoForDelete(0);//ignitionPageERP.selectPONoForDelete(0);
             ignitionPageERP.clickDelete();
             ignitionPageERP.confirmationPopUp();
         }

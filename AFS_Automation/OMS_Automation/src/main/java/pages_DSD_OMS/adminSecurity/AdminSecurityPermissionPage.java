@@ -1299,7 +1299,7 @@ public class AdminSecurityPermissionPage
 
             if(HelpersMethod.IsExists("//input[@id='"+id+"']",driver))
             {
-                if (HelpersMethod.IsExists("//input[@id='" + id + "' and @data-checked='checked']", driver))
+                if (HelpersMethod.IsExists("//input[@id='" + id + "' and @data-checked='checked']|//input[@id='" + id + "' and @data-checked='indeterminate']", driver))
                 {
                     WebElement checkBox = HelpersMethod.FindByElement(driver, "xpath", "//input[@id='" + id + "' and @data-checked='checked']|//input[@id='" + id + "' and @data-checked='indeterminate']");
 

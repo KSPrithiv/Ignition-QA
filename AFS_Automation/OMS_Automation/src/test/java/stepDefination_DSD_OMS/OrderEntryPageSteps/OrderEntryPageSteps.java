@@ -375,15 +375,7 @@ public class OrderEntryPageSteps
 
         //find whether route is empty or not, if empty should select some route value
         Thread.sleep(2000);
-        String routeNo=newOE.validateRouteValue();
-        if(routeNo==null||routeNo.equals(""))
-        {
-            newOE.clickRouteIndex();
-            newOE.validateRouteDialog();
-            newOE.Route_No(TestBase.testEnvironment.get_RouteFilt(), TestBase.testEnvironment.get_Route());
-            newOE.validateRouteSelected(TestBase.testEnvironment.get_Route());
-        }
-
+        newOE.validateRouteValue();
         //To find main grid has been selected or else select main grid
         newOE.selectMainGrid();
     }
@@ -402,15 +394,7 @@ public class OrderEntryPageSteps
 
         //find whether route is empty or not, if empty should select some route value
         Thread.sleep(2000);
-        String routeNo=newOE.validateRouteValue();
-        if(routeNo==null||routeNo.equals(""))
-        {
-            newOE.clickRouteIndex();
-            newOE.validateRouteDialog();
-            newOE.Route_No(TestBase.testEnvironment.get_RouteFilt(), TestBase.testEnvironment.get_Route());
-            newOE.validateRouteSelected(TestBase.testEnvironment.get_Route());
-        }
-
+        newOE.validateRouteValue();
         //To find main grid has been selected or else select main grid
         newOE.selectMainGrid();
     }
@@ -428,14 +412,7 @@ public class OrderEntryPageSteps
 
         //find whether route is empty or not, if empty should select some route value
         Thread.sleep(2000);
-        String routeNo=newOE.validateRouteValue();
-        if(routeNo==null||routeNo.equals(""))
-        {
-            newOE.clickRouteIndex();
-            newOE.validateRouteDialog();
-            newOE.Route_No(TestBase.testEnvironment.get_RouteFilt(), TestBase.testEnvironment.get_Route());
-            newOE.validateRouteSelected(TestBase.testEnvironment.get_Route());
-        }
+        newOE.validateRouteValue();
 
         //To find main grid has been selected or else select main grid
         newOE.selectMainGrid();
@@ -1232,6 +1209,7 @@ public class OrderEntryPageSteps
         newOE=new NewOrderEntryPage(driver,scenario);
         newOE.Validate_Catalog();
         newOE.clickOnLoadAllProducts();
+        newOE.selectAllProductsCatalogDialogbox();
         newOE.ResetFilter_CatalogDisconnectedMode();
         String pro=String.valueOf(Prod_No);
         newOE.validateCatalogProducts();

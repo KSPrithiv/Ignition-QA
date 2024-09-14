@@ -105,20 +105,37 @@ Feature: Customer Inq in ERP
     And User navigate to Ignition tab in ERP
     Then User selects Standing PO# from the grid and click Delete in ERP
 
-  @CopyCustomerInq
-  Scenario: Test scenario for creating copy of customer inq
+  @SystemDefaultRealTimeChanges
+  Scenario: Test scenario for verifying System default real time changes in Payment processing drop down
     Given User must be on Client side and select Customer Inq in ERP
     When User should confirm that he is in Customer Inq in ERP
-    Then User clicks on Copy button and popup should display in ERP
-    And User should enter required details in ERP Copy popup
+#    Then User click on New button for copy of customer inq in ERP
+#    And User should select customer account# in customer inq in ERP
+#      |Customer|
+    Then User should navigate to Telus tab in ERP
+    And User click on Payment processing and verify visibility of System default Realtime charge option in ERP
 
   @AddNote
-  Scenario: Test scenario for adding note to customer inq (ERP)
+  Scenario: Test scenario for adding note to customer inq in OMS/ERP env
     Given User must be on Client side and select Customer Inq in ERP
     When User should confirm that he is in Customer Inq in ERP
-    Then User click on New button in ERP Customer Inq
+    #Then User click on New button in ERP Customer Inq
     Then Add note in popup in ERP cust inq
       |Testing for Notes at Customer inq|
     And User should select the Alert Type and Alert location to display notes in ERP cust inq
       |Both|Customer master|Order entry|
     Then Click on Save button in ERP cust inq
+    Then User refreshes customer inq page in ERP
+    And User should select customer account# in customer inq in ERP
+      |Customer|
+    Then User should click on customer note icon in customer inq in ERP page and validate that note added is existing in popup
+      |Testing for Notes at Customer inq|
+
+
+
+
+
+
+
+
+

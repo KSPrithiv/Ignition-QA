@@ -83,9 +83,9 @@ Feature: Order Entry7
     And Check for Case and Unit input box enabled or not based on that enter value
       |1|1|
     And User clicks on Grid type drop down and select different grid
-    #  |Regression grid|
+      |Regression grid|
     Then User verifies visibility of Price override icon and reset Grid type to Main grid
-     # |Main grid|
+      |Main grid|
     And User navigates back to OE by selecting Discard all option from pending order popup
 
   @OrderHistoryChangeGridType
