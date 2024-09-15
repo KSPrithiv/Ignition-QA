@@ -181,7 +181,7 @@ public class DMOEPage
                 WebElement Search1=modalContainer1.findElement(By.xpath(".//input[contains(@class,'i-search-box__input')]"));
                 HelpersMethod.ActSendKey(driver,Search1,10000,"Customer #");
                 //Click on Check box
-                new WebDriverWait(driver,Duration.ofMillis(40000)).until(ExpectedConditions.elementToBeClickable(By.xpath(".//input[contains(@class,'k-checkbox')]")));
+                new WebDriverWait(driver,Duration.ofMillis(40000)).until(ExpectedConditions.elementToBeClickable(By.xpath("//input[contains(@class,'k-checkbox')]")));
                 WebElement WebEle1=modalContainer1.findElement(By.xpath(".//input[contains(@class,'k-checkbox')]"));
                 HelpersMethod.ActClick(driver,WebEle1,10000);
 

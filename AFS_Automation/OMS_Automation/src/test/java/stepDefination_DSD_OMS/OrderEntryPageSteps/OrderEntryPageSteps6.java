@@ -108,11 +108,7 @@ public class OrderEntryPageSteps6
         orderpage=new OrderEntryPage(driver,scenario);
         orderpage.ValidateOE();
         Thread.sleep(1000);
-        String routeNo=orderpage.validateRouteValue();
-        if(routeNo!=null||!routeNo.equals(""))
-        {
-            orderpage.RemoveRoute();
-        }
+        orderpage.validateRouteValueRemove();
         orderpage.RouteIsEmpty();
     }
 
