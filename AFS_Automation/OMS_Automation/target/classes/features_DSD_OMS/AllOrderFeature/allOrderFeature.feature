@@ -56,7 +56,7 @@ Feature: All orders
     And User clicks on Order status and select Open order option from drop down
     And User Clicks on Add filter button and enter values for search options for searching in OE
     Then User clicks on OrderNo in All Order grid and User should be navigated Ordersummary page click on Back to order list
-    #And User enters orderNo That he has selected from order grid and validates it exists in order also
+    And User enters orderNo That he has selected from order grid and validates it exists in order also
 
   @CreateOpenOrder
   Scenario: Test scenario for creating All Order
