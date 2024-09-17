@@ -62,8 +62,8 @@ public class OrderGuidePageStep1
     {
         createOGPage=new CreateOGPage(driver,scenario);
         createOGPage.ValidateCatalogDisplay();
-        createOGPage.selectAllProducts();
         createOGPage.ResetFilter_Catalog();
+
         createOGPage.validateProductInCatalog();
         if (HelpersMethod.IsExists("//div[contains(@class,'k-window k-dialog')]/descendant::div[contains(@class,'i-grid')]", driver))
         {
@@ -71,6 +71,7 @@ public class OrderGuidePageStep1
         }
         else
         {
+            createOGPage.selectAllProducts();
             createOGPage.cardView();
         }
         createOGPage.CatalogPopupOk();
@@ -80,8 +81,8 @@ public class OrderGuidePageStep1
     public void user_should_select_products_from_catalog_popupForPriceBase() throws InterruptedException {
         createOGPage=new CreateOGPage(driver,scenario);
         createOGPage.ValidateCatalogDisplay();
-        createOGPage.selectAllProducts();
         createOGPage.ResetFilter_Catalog();
+        createOGPage.selectAllProducts();
         createOGPage.validateProductInCatalog();
         if (HelpersMethod.IsExists("//div[contains(@class,'k-window k-dialog')]/descendant::div[contains(@class,'i-grid')]", driver))
         {

@@ -140,8 +140,8 @@ public class OrderEntryPageSteps1
         newOE=new NewOrderEntryPage(driver,scenario);
         newOE.Validate_Catalog();
         newOE.clickOnLoadAllProducts();
-        newOE.selectAllProductsCatalogDialogbox();
         newOE.ResetFilter_Catalog();
+        newOE.selectAllProductsCatalogDialogbox();
         String pro=String.valueOf(Prod_No);
         newOE.validateCatalogProducts();
         newOE.Search_Prod_in_Catalog(pro);

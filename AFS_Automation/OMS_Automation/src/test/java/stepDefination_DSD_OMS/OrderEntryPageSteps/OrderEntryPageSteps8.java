@@ -59,8 +59,8 @@ public class OrderEntryPageSteps8
         {
             newOE.listCatelog();
             newOE.clickOnLoadAllProducts();
-            newOE.selectAllProductsCatalogDialogbox();
             newOE.ResetFilter_Catalog();
+            newOE.selectAllProductsCatalogDialogbox();
             newOE.readProductInList();
             newOE.catalogOK();
         }
@@ -112,8 +112,8 @@ public class OrderEntryPageSteps8
         if(HelpersMethod.IsExists("//div[@class='i-grid']",driver))
         {
             newOE.clickOnLoadAllProducts();
-            newOE.selectAllProductsCatalogDialogbox();
             newOE.ResetFilter_Catalog();
+            newOE.selectAllProductsCatalogDialogbox();
             newOE.listCatelogQoH(QoHValue.get(0).get(0));
             newOE.readProductInList();
             newOE.catalogOK();

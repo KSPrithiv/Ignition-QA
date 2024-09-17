@@ -25,6 +25,6 @@ Feature: scenarios for admin credentials and client credentials
     And User should set admin setting "<Setting>" "<Key>" as default before making changes
     Examples:
       |          Key                    |  Setting                                      |
-      | CPCatalogDoNotAutoLoad          | Do not load full catalog search automatically |
+      | CPCatalogDoNotAutoLoad          | Do not load full catalog automatically        |
 
 

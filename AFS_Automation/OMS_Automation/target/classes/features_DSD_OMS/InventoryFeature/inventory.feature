@@ -50,6 +50,8 @@ Feature: Inventory
   Scenario: Test scenario to cancel Inventory details
     Given User must be on Order Entry Page to select Inventory tab
     And User should navigate to Inventory tab
+    Then User should be in Store inventory tab, in inventory page
+    Then User should change store inventory dropdown value
     Then User goes through products under inventory as the product added using quick entry has not been saved
     And User cancel inventory details
 

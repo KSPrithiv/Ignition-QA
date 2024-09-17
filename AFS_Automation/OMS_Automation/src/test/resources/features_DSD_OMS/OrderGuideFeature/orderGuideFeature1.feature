@@ -135,8 +135,8 @@ Feature: Order Guide1
       | OG      |
       |DayOfWeek|
 
-  @ChangeCustomerAllocationNationalChain
-  Scenario Outline: Test scenario for deleting customer allocation to National chain
+  @ChangeCustomerAllocationLocalChain
+  Scenario Outline: Test scenario for deleting customer allocation to Local chain
     Given User must be on Order Entry Page to select OG
     And User should navigate to OG
     Then User clicks on Create new button and should navigate to New OG page
@@ -161,7 +161,7 @@ Feature: Order Guide1
     Then User enters OG Description "<OG>" in search box and Delete the OG verify same in OG grid
     Examples:
       |  OG              |   option      |
-      | ChangeNational   | National chain|
+      | ChangeNational   | Local chain|
 
   @OGHistorical
   Scenario Outline: Test scenario for creating Historical order guide

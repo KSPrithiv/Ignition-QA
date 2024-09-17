@@ -2,6 +2,7 @@ package pages_DSD_OMS.adminSecurity;
 
 import helper.HelpersMethod;
 import io.cucumber.java.Scenario;
+import org.apache.velocity.util.introspection.VelPropertySet;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
@@ -1283,6 +1284,7 @@ public class AdminSecurityPermissionPage
     {
         exists=false;
         Actions act=new Actions(driver);
+        WebElement checkBox;
         try
         {
             Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
@@ -1301,11 +1303,22 @@ public class AdminSecurityPermissionPage
             {
                 if (HelpersMethod.IsExists("//input[@id='" + id + "' and @data-checked='checked']|//input[@id='" + id + "' and @data-checked='indeterminate']", driver))
                 {
-                    WebElement checkBox = HelpersMethod.FindByElement(driver, "xpath", "//input[@id='" + id + "' and @data-checked='checked']|//input[@id='" + id + "' and @data-checked='indeterminate']");
+                    if(HelpersMethod.IsExists("//input[@id='" + id + "' and @data-checked='checked']",driver))
+                    {
+                        checkBox = HelpersMethod.FindByElement(driver, "xpath", "//input[@id='" + id + "' and @data-checked='checked']");
+                        act.moveToElement(checkBox).build().perform();
+                        act.click(checkBox).build().perform();
+                    }
+                    else if(HelpersMethod.IsExists("//input[@id='" + id + "' and @data-checked='indeterminate']",driver))
+                    {
+                        checkBox = HelpersMethod.FindByElement(driver, "xpath", "//input[@id='" + id + "'; and @data-checked='indeterminate']");
+                        act.moveToElement(checkBox).build().perform();
+                        act.click(checkBox).build().perform();
 
-                    act.moveToElement(checkBox).build().perform();
-                    act.click(checkBox).build().perform();
-
+                        checkBox = HelpersMethod.FindByElement(driver, "xpath", "//input[@id='" + id + "' and @data-checked='checked']");
+                        act.moveToElement(checkBox).build().perform();
+                        act.click(checkBox).build().perform();
+                    }
                     wait = new FluentWait<WebDriver>(driver)
                             .withTimeout(Duration.ofSeconds(400))
                             .pollingEvery(Duration.ofSeconds(2))
