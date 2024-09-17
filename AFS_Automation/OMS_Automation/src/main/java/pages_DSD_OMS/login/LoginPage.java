@@ -2,7 +2,7 @@ package pages_DSD_OMS.login;
 
 import helper.HelpersMethod;
 import io.cucumber.java.Scenario;
-import io.cucumber.java8.Th;
+import org.apache.logging.log4j.core.tools.picocli.CommandLine;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
@@ -14,8 +14,6 @@ import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
-import org.testng.annotations.BeforeClass;
-import util.TestBase;
 import java.awt.*;
 
 import com.google.gson.Gson;
@@ -26,9 +24,13 @@ import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.ContentType;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.HttpClients;
+import util.TestBase;
+
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.time.Duration;
+
+import static util.TestBase.getDriver;
 
 
 /**
@@ -152,23 +154,37 @@ public class LoginPage
 
                 Thread.sleep(2000);
                 HelpersMethod.ScrollElement(driver, SignIn);
-                HelpersMethod.JScriptClick(driver, SignIn, 60000);
-                HelpersMethod.waitTillPageLoaded(driver, 800000);
-                Thread.sleep(5000);
-                exists = true;
+                //HelpersMethod.JScriptClick(driver, SignIn, 60000);
+                HelpersMethod.ClickBut(driver,SignIn,60000);
+                Thread.sleep(10000);
+
+                status = HelpersMethod.returnDocumentStatus(driver);
+                if(status.equals("loading"))
+                {
+                    HelpersMethod.waitTillLoadingPage(driver);
+                }
 
                 Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
-                        .withTimeout(Duration.ofSeconds(400))
+                        .withTimeout(Duration.ofSeconds(800))
+                        .pollingEvery(Duration.ofSeconds(2))
+                        .ignoring(NoSuchElementException.class);
+                wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@id='app']")));
+
+                exists = true;
+
+                wait = new FluentWait<WebDriver>(driver)
+                        .withTimeout(Duration.ofSeconds(800))
                         .pollingEvery(Duration.ofSeconds(2))
                         .ignoring(NoSuchElementException.class);
                 wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
                 status = HelpersMethod.returnDocumentStatus(driver);
                 if (status.equals("loading"))
                 {
                     HelpersMethod.waitTillLoadingPage(driver);
                 }
                 wait = new FluentWait<WebDriver>(driver)
-                        .withTimeout(Duration.ofSeconds(400))
+                        .withTimeout(Duration.ofSeconds(800))
                         .pollingEvery(Duration.ofSeconds(2))
                         .ignoring(NoSuchElementException.class);
                 wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));

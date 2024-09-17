@@ -174,7 +174,7 @@ public class InventoryPageSteps
         if (HelpersMethod.IsExists("//div[contains(@class,'k-window k-dialog')]/descendant::div[contains(@class,'i-grid')]", driver))
         {
             scenario.log("CATALOG IN THE FORM OF LIST VIEW HAS BEEN FOUND");
-            inventory.ListView();
+            inventory.ListView(qtyValue);
         }
         else
         {
@@ -186,7 +186,7 @@ public class InventoryPageSteps
             }
         }
         inventory.clickOnCatalogOkButton();
-        inventory.enterQty(qtyValue);
+
         inventory.clickSaveButton();
         inventory.readProductsInInventory();
     }

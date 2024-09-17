@@ -20,7 +20,7 @@ Feature: Standing Order
       |2|1|1|1|1|1|1|
       |1|2|1|1|1|1|1|
       |1|1|2|1|1|1|1|
-    Then User clicks on Save button and handles popup
+    Then User clicks on Save button and handle success popup
 
   @VerifyingDisableSelectButton
    Scenario: Test scenario for verifying whether select button is disabled or not in catalog popup
@@ -59,7 +59,7 @@ Feature: Standing Order
     Then User enters Product# in Quick product entry inputbox
     And User enters Qty in standing order product grid based on enabled days
       |1|2|1|1|1|1|1|
-    Then User clicks on Save button and handles popup
+    Then User clicks on Save button and handle success popup
 
   @MultipleStandingOrder
   Scenario: Test scenario for creating multiple standing orders
@@ -78,7 +78,7 @@ Feature: Standing Order
     Then User enters Product# in Quick product entry inputbox
     And User enters Qty in standing order product grid based on enabled days
       |1|2|1|1|1|1|1|
-    Then User clicks on Save button and handles popup
+    Then User clicks on Save button and handle success popup
 
   @CatalogCard
   Scenario: Test scenario for creating standing order using catalog standing order, by selecting category value
@@ -89,7 +89,7 @@ Feature: Standing Order
     Then Select products from Catalog popup
     And User enters Qty in standing order product grid based on enabled days
       |2|1|1|1|1|1|1|
-    Then User clicks on Save button and handles popup
+    Then User clicks on Save button and handle success popup
 
   @DatesRangeValidation
   Scenario: Test scenario for creating Standing orders with new standing order if the date range mentioned fall into the range of another active SO
@@ -98,13 +98,13 @@ Feature: Standing Order
     Then User enters Product# in Quick product entry inputbox
     And User enters Qty in standing order product grid based on enabled days
       |1|1|1|1|1|1|2|
-    Then User clicks on Save button and handles popup
+    Then User clicks on Save button and handle success popup
     And User should go through dates of standing order and count number of standing orders
     And User click on Start standing order button and selects Start date 18 and End date 22 day from current date
     Then User enters Product# in Quick product entry inputbox
     And User enters Qty in standing order product grid based on enabled days
       |1|1|1|1|1|2|1|
-    Then User clicks on Save button and handles popup
+    Then User clicks on Save button and handle success popup
     And User should go through dates of standing order and count number of standing orders after overlapping dates
 
 

@@ -2181,6 +2181,7 @@ public class OrderControlListPage
 
     public void searchForValidCustomer(String custName)
     {
+        exists=false;
         try
         {
             Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
@@ -2193,10 +2194,21 @@ public class OrderControlListPage
             HelpersMethod.ActClick(driver,SearchIndex,10000);
 
             wait = new FluentWait<WebDriver>(driver)
-                    .withTimeout(Duration.ofSeconds(200))
+                    .withTimeout(Duration.ofSeconds(400))
                     .pollingEvery(Duration.ofSeconds(2))
                     .ignoring(NoSuchElementException.class);
             wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
+            if(HelpersMethod.IsExists("//div[text()='No records available']",driver))
+            {
+                scenario.log("<span style='color:red'>NO VALID CUSTOMERS HAVE BEEN FOUND</span>");
+                exists=false;
+            }
+            else
+            {
+                exists=true;
+            }
+            Assert.assertEquals(exists,true);
         }
         catch (Exception e){}
     }
@@ -2223,7 +2235,7 @@ public class OrderControlListPage
                 headText=head.getText();
                 if(headText.equalsIgnoreCase("Credit hold"))
                 {
-                    scenario.log("CREDIT HOLD HAS BEEN FOUND");
+                    scenario.log("CREDIT HOLD COLUMN HAS BEEN FOUND");
                     break;
                 }
             }
@@ -2282,7 +2294,7 @@ public class OrderControlListPage
 
             if(!HelpersMethod.IsExists("//tr[contains(@class,'k-master-row')][1]/descendant::td["+i+"]//*[local-name()='svg']",driver))
             {
-                 scenario.log("NEW ORDER ICON HAS NOT BEEN FOUND");
+                 scenario.log("NEW ORDER ICON HAS BEEN FOUND");
                  exists = true;
             }
 

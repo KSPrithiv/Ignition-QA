@@ -211,21 +211,22 @@ public class InventoryPage
         exists=false;
         try
         {
-            if(HelpersMethod.IsExists("//div[@class='loader']",driver))
-            {
-                WebElement WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 200000);
-            }
+            Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(400))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
             if(addProdBtn.isDisplayed())
             {
                 HelpersMethod.ScrollElement(driver,addProdBtn);
                 HelpersMethod.ClickBut(driver, addProdBtn, 10000);
                 exists=true;
-                if(HelpersMethod.IsExists("//div[@class='loader']",driver))
-                {
-                    WebElement WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 500000);
-                }
+                wait = new FluentWait<WebDriver>(driver)
+                        .withTimeout(Duration.ofSeconds(400))
+                        .pollingEvery(Duration.ofSeconds(2))
+                        .ignoring(NoSuchElementException.class);
+                wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
             }
             Assert.assertEquals(exists,true);
         }
@@ -238,21 +239,23 @@ public class InventoryPage
         String status;
         try
         {
-            if(HelpersMethod.IsExists("//div[@class='loader']",driver))
-            {
-                WebElement WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 500000);
-            }
+            Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(400))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
             status = HelpersMethod.returnDocumentStatus(driver);
             if (status.equals("loading"))
             {
                 HelpersMethod.waitTillLoadingPage(driver);
             }
-            if(HelpersMethod.IsExists("//div[@class='loader']",driver))
-            {
-                WebElement WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 500000);
-            }
+            wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(400))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
             if(HelpersMethod.IsExists("//span[text()='Products']/ancestor::div[contains(@class,'k-window k-dialog')]",driver))
             {
                 scenario.log("PRODUCT DIALOG HAS BEEN FOUND");
@@ -303,7 +306,7 @@ public class InventoryPage
         }
     }
 
-    public void ListView()
+    public void ListView(List<List<String>> qtyValue)
     {
         exists = false;
         WebElement WebEle;
@@ -409,7 +412,7 @@ public class InventoryPage
                         HelpersMethod.waitTillLoadingPage(driver);
                     }
 
-                 // enterQtyForProducts(qtyValue,j);
+                  enterQtyForProducts(qtyValue.get(j).get(0),qtyValue.get(j).get(1));
                   scenario.log("PRODUCT FOUND IN CATALOG IS "+Prods.get(j));
             }
         }
@@ -473,7 +476,7 @@ public class InventoryPage
         catch (Exception e){}
     }
 
-    public void enterQtyForProducts(List<List<String>> qtyValue,int j)
+    public void enterQtyForProducts(String unit,String cases)
     {
         Actions act=new Actions(driver);
         String headTitle;
@@ -492,7 +495,7 @@ public class InventoryPage
                     if(HelpersMethod.IsExists("//div[contains(@class,'k-window k-dialog')]/descendant::tr[contains(@class,'k-master-row')]/descendant::td["+i+"]/descendant::input",driver))
                     {
                         qtyInput = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-window k-dialog')]/descendant::tr[contains(@class,'k-master-row')]/descendant::td[" + i + "]/descendant::input");
-                        HelpersMethod.EnterText(driver, qtyInput, 1000, qtyValue.get(j).get(0));
+                        HelpersMethod.EnterText(driver, qtyInput, 10000, unit);
                         qtyInput.sendKeys(Keys.TAB);
                     }
                     break;
@@ -509,7 +512,7 @@ public class InventoryPage
                     if(HelpersMethod.IsExists("//div[contains(@class,'k-window k-dialog')]/descendant::tr[contains(@class,'k-master-row')]/descendant::td["+i+"]/descendant::input",driver))
                     {
                         qtyInput = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-window k-dialog')]/descendant::tr[contains(@class,'k-master-row')]/descendant::td[" + i + "]/descendant::input");
-                        HelpersMethod.EnterText(driver, qtyInput, 1000, qtyValue.get(j).get(1));
+                        HelpersMethod.EnterText(driver, qtyInput, 10000,cases);
                         qtyInput.sendKeys(Keys.TAB);
                     }
                     break;
@@ -662,7 +665,7 @@ public class InventoryPage
         {
             if(quickUnit.isDisplayed() && quickUnit.isEnabled())
             {
-                HelpersMethod.EnterText(driver,quickUnit,1000,unit);
+                HelpersMethod.EnterText(driver,quickUnit,10000,unit);
                 exists=true;
             }
             Assert.assertEquals(exists,true);
@@ -725,7 +728,7 @@ public class InventoryPage
                 if(sListText.equalsIgnoreCase("Today"))
                 {
                     act.moveToElement(sList).build().perform();
-                    act.click().build().perform();
+                    act.click(sList).build().perform();
                     break;
                 }
             }
@@ -764,7 +767,7 @@ public class InventoryPage
         exists=false;
         try
         {
-            List<WebElement> heads=HelpersMethod.FindByElements(driver,"xpath","//th[@class='k-header']/descendant::span[@class='k-column-title']");
+            List<WebElement> heads=HelpersMethod.FindByElements(driver,"xpath","//span[@class='k-column-title']");
             for (WebElement head:heads)
             {
                 headIndex++;

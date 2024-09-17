@@ -795,7 +795,7 @@ public class HelpersMethod
 
             //Click on Apply button
             Clear =RadioPop.findElement(By.xpath(".//button/span[text()='Apply']"));
-            ClickBut(driver,Clear,1000);
+            ClickBut(driver,Clear,10000);
         }
         else
         {

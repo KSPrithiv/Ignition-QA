@@ -22,9 +22,6 @@ Feature: Order control list
     And User validate that he is in NewOE page
     Then Enter PO# for New order
       |PO123|
-#    Then Enter Pro# in Quick Product Entry area for creating order with note
-#    And Check for Case and Unit input box enabled or not based on that enter value
-#      |1|1|
     Then Click on Add product drop down and select catalog option
     And User should select Product from catalog and Enter Qty for the products for OCL
       |1|1|
@@ -64,9 +61,6 @@ Feature: Order control list
     And User validate that he is in NewOE page
     Then Enter PO# for New order
       |PO123|
-#    Then Enter Pro# in Quick Product Entry area
-#    And Check for Case and Unit input box enabled or not based on that enter value
-#      |1|1|
     Then Click on Add product drop down and select catalog option
     And User should select Product from catalog and Enter Qty for the products for OCL
       |1|1|
@@ -92,9 +86,6 @@ Feature: Order control list
     And User validate that he is in NewOE page
     Then Enter PO# for New order
       |PO123|
-#    Then Enter Pro# in Quick Product Entry area
-#    And Check for Case and Unit input box enabled or not based on that enter value
-#      |1|1|
     Then Click on Add product drop down and select catalog option
     And User should select Product from catalog and Enter Qty for the products for OCL
       |1|1|
@@ -121,9 +112,6 @@ Feature: Order control list
     And User validate that he is in NewOE page
     Then Enter PO# for New order
       |PO123|
-#    Then Enter Pro# in Quick Product Entry area for order type
-#    And Check for Case and Unit input box enabled or not based on that enter value
-#      |1|1|
     Then Click on Add product drop down and select catalog option
     And User should select Product from catalog and Enter Qty for the products for OCL
       |1|1|

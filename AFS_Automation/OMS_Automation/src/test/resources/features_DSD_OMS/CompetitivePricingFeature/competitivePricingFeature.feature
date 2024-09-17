@@ -76,7 +76,7 @@ Feature: Competitive Pricing
       | Customer account # |  All customer accounts # |
 
   @DeleteProduct
-  Scenario Outline: For Deleting Product to competitor
+  Scenario Outline: For Deleting Product in competitor
     Given User must be on Client side and select Competitor pricing page
     When User should confirm that he is in Competitor pricing page
     And User selects Customer reference "<CustRef>" "<CustRef1>" and Select customer Account#
@@ -87,7 +87,7 @@ Feature: Competitive Pricing
       | Customer account # |  All customer accounts # |
 
   @DeleteCompetitorData
-  Scenario Outline: For Deleting competitor record
+  Scenario Outline: For Deleting competitor record it self
     Given User must be on Client side and select Competitor pricing page
     When User should confirm that he is in Competitor pricing page
     And User selects Customer reference "<CustRef>" "<CustRef1>" and Select customer Account#

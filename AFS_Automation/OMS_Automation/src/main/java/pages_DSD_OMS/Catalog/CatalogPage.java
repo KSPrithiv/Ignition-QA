@@ -78,11 +78,12 @@ public class CatalogPage
         String currentTitle;
         try
         {
-            if(HelpersMethod.IsExists("//div[@class='loader']",driver))
-            {
-                WebElement WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 800000);
-            }
+            Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(600))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
             currentTitle=driver.getTitle();
             if(currentTitle.contains("Product Catalog"))
             {
@@ -166,7 +167,7 @@ public class CatalogPage
             wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
 
             Thread.sleep(1000);
-            if(!HelpersMethod.IsExists("//span[@id='CPQoh-accessibility-id']/span[text()='Show all products']",driver))
+            if(!HelpersMethod.IsExists("//span[@id='CPQoh-accessibility-id']/span[text()='Show all products']|//span[@id='CPQoh-accessibility-id']/span[text()='All Products']",driver))
             {
                 WebElement dropDown=HelpersMethod.FindByElement(driver,"xpath","//span[@id='CPQoh-accessibility-id']/following-sibling::button");
                 HelpersMethod.ClickBut(driver,dropDown,10000);
@@ -1916,16 +1917,16 @@ public class CatalogPage
             //Comparing List of integers, to find whether array is in sorted order
             for (int i = 0; i < Prices2.size(); i++)
             {
-                System.out.println("VALUES AFTER SELECTING PRICE SORT FROM DROP DOWN " + prices1[1] + " VALUE AFTER PROGRAMMATICALLY SORTING " + Prices2.get(i));
+                //System.out.println("VALUES AFTER SELECTING PRICE SORT FROM DROP DOWN " + prices1[1] + " VALUE AFTER PROGRAMMATICALLY SORTING " + Prices2.get(i));
                 if (prices1[i].equals(Prices2.get(i)))
                 {
                     result = true;
-                    scenario.log("EXPECTED VALUE: " + Prices1.get(i) + " FOUND VALUE: " + Prices2.get(i));
+                   scenario.log("EXPECTED VALUE: " + prices1[i] + " FOUND VALUE: " + Prices2.get(i));
                 }
                 else
                 {
                     result = false;
-                    scenario.log("EXPECTED VALUE: " + Prices1.get(i) + " FOUND VALUE: " + Prices2.get(i));
+                    scenario.log("EXPECTED VALUE: " + prices1[i] + " FOUND VALUE: " + Prices2.get(i));
                     scenario.log("PRICES ARE NOT IN SORTED ORDER");
                     break;
                 }

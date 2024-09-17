@@ -61,8 +61,8 @@ public class OrderEntryPageSteps7
         String filterValue=null;
         newOE=new NewOrderEntryPage(driver,scenario);
         newOE.validateCatalogdialog();
-        newOE.selectAllProductsCatalogDialogbox();
         newOE.ResetFilter_Catalog();
+        newOE.selectAllProductsCatalogDialogbox();
         newOE.validateCardView();
         newOE.validateCatalogProducts();
         if(HelpersMethod.IsExists("//div[@class='card-view']",driver))

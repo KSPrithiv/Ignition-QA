@@ -27,7 +27,7 @@ Feature: Standing Order1
     Then User enters Product# in Quick product entry inputbox
     And User enters Qty in standing order product grid based on enabled days
       |10|20|30|40|15|10|5|
-    Then User clicks on Save button and handles popup
+    Then User clicks on Save button and handle success popup
     And User should validate that there is no end date assigned to standing order
 
   @OverlappedStandingOrder
@@ -88,4 +88,4 @@ Feature: Standing Order1
       |3 |5 |7 |9 |11|13|15|
       |12|24|6 |32|16|12|8 |
       |24|8 |14|22|12|10|8 |
-    Then User clicks on Save button and handles popup
+    Then User clicks on Save button and handle success popup

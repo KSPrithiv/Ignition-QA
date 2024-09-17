@@ -658,13 +658,13 @@ public class CreateOGPage
             HelpersMethod.ScrollElement(driver,WebEle);
             String Seqno;
 
-            if(HelpersMethod.IsExists("//span[@class='k-column-title' and text()='Sequence']",driver))
-            {
-                WebElement Arrow = HelpersMethod.FindByElement(driver, "xpath", "//span[contains(@class,'k-svg-i-sort')]");
-                HelpersMethod.ActClick(driver, Arrow, 10000);
-                Arrow = HelpersMethod.FindByElement(driver, "xpath", "//span[contains(@class,'k-svg-i-sort')]");
-                HelpersMethod.ActClick(driver, Arrow, 10000);
-            }
+//            if(HelpersMethod.IsExists("//span[@class='k-column-title' and text()='Sequence']",driver))
+//            {
+//                WebElement Arrow = HelpersMethod.FindByElement(driver, "xpath", "//span[@class='k-column-title' and text()='Sequence']/ancestor::span[@class='k-link']");
+//                HelpersMethod.ActClick(driver, Arrow, 10000);
+//                Arrow = HelpersMethod.FindByElement(driver, "xpath", "//span[contains(@class,'k-svg-i-sort')]");
+//                HelpersMethod.ActClick(driver, Arrow, 10000);
+//            }
 
             WebElement SeqInput= HelpersMethod.FindByElement(driver,"xpath","//tr[1]/descendant::span[contains(@class,'k-numerictextbox')]/input");
             Seqno=HelpersMethod.AttributeValue(SeqInput,"value");
@@ -3039,46 +3039,49 @@ public class CreateOGPage
             Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
                     .withTimeout(Duration.ofSeconds(400))
                     .pollingEvery(Duration.ofSeconds(2))
-                    .ignoring(NoSuchElementException.class);
+                    .ignoring(org.openqa.selenium.NoSuchElementException.class);
             wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
 
             Thread.sleep(1000);
-            if(!HelpersMethod.IsExists("//span[@id='CPQoh-accessibility-id']/span[text()='Show all products']",driver))
+            if(HelpersMethod.IsExists("//span[@id='CPQoh-accessibility-id']",driver))
             {
-                WebElement dropDown=HelpersMethod.FindByElement(driver,"xpath","//span[@id='CPQoh-accessibility-id']/following-sibling::button");
-                HelpersMethod.ClickBut(driver,dropDown,10000);
-                new WebDriverWait(driver,Duration.ofMillis(10000)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.xpath("//ul[@id='CPQoh-listbox-id']/descendant::span[@class='k-list-item-text']"))));
-                new WebDriverWait(driver,Duration.ofMillis(10000)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//ul[@id='CPQoh-listbox-id']/descendant::span[@class='k-list-item-text']")));
-                List<WebElement> dropDowns=HelpersMethod.FindByElements(driver,"xpath","//ul[@id='CPQoh-listbox-id']/descendant::span[@class='k-list-item-text']");
-                for(WebElement dropDow:dropDowns)
+                if(!HelpersMethod.IsExists("//span[@id='CPQoh-accessibility-id']/span[text()='Show all products']|//span[@id='CPQoh-accessibility-id']/span[text()='All Products']",driver))
                 {
-                    act.moveToElement(dropDown).build().perform();
-                    dropText=dropDow.getText();
-                    if(dropText.equalsIgnoreCase("Show all products") || dropText.equalsIgnoreCase("All Products"))
+                    WebElement dropDown = HelpersMethod.FindByElement(driver, "xpath", "//span[@id='CPQoh-accessibility-id']/following-sibling::button");
+                    HelpersMethod.ClickBut(driver, dropDown, 10000);
+                    new WebDriverWait(driver, Duration.ofMillis(10000)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.xpath("//ul[@id='CPQoh-listbox-id']/descendant::span[@class='k-list-item-text']"))));
+                    new WebDriverWait(driver, Duration.ofMillis(10000)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//ul[@id='CPQoh-listbox-id']/descendant::span[@class='k-list-item-text']")));
+                    List<WebElement> dropDowns = HelpersMethod.FindByElements(driver, "xpath", "//ul[@id='CPQoh-listbox-id']/descendant::span[@class='k-list-item-text']");
+                    for (WebElement dropDow : dropDowns)
                     {
-                        act.moveToElement(dropDow).build().perform();
-                        act.click(dropDow).build().perform();
-                        break;
+                        act.moveToElement(dropDown).build().perform();
+                        dropText = dropDow.getText();
+                        if (dropText.equalsIgnoreCase("Show all products") || dropText.equalsIgnoreCase("All Products"))
+                        {
+                            act.moveToElement(dropDow).build().perform();
+                            act.click(dropDow).build().perform();
+                            break;
+                        }
                     }
-                }
-                wait = new FluentWait<WebDriver>(driver)
-                        .withTimeout(Duration.ofSeconds(400))
-                        .pollingEvery(Duration.ofSeconds(2))
-                        .ignoring(NoSuchElementException.class);
-                wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+                    wait = new FluentWait<WebDriver>(driver)
+                            .withTimeout(Duration.ofSeconds(400))
+                            .pollingEvery(Duration.ofSeconds(2))
+                            .ignoring(org.openqa.selenium.NoSuchElementException.class);
+                    wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
 
-                status = HelpersMethod.returnDocumentStatus(driver);
-                if (status.equals("loading"))
-                {
-                    HelpersMethod.waitTillLoadingPage(driver);
-                }
+                    status = HelpersMethod.returnDocumentStatus(driver);
+                    if (status.equals("loading"))
+                    {
+                        HelpersMethod.waitTillLoadingPage(driver);
+                    }
 
-                wait = new FluentWait<WebDriver>(driver)
-                        .withTimeout(Duration.ofSeconds(400))
-                        .pollingEvery(Duration.ofSeconds(2))
-                        .ignoring(NoSuchElementException.class);
-                wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
-                Thread.sleep(1000);
+                    wait = new FluentWait<WebDriver>(driver)
+                            .withTimeout(Duration.ofSeconds(400))
+                            .pollingEvery(Duration.ofSeconds(2))
+                            .ignoring(org.openqa.selenium.NoSuchElementException.class);
+                    wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+                    Thread.sleep(1000);
+                }
 
                 if(HelpersMethod.IsExists("//span[@id='CPQoh-accessibility-id']/span[text()='Show all products']|//span[@id='CPQoh-accessibility-id']/span[text()='All Products']",driver))
                 {
