@@ -59,6 +59,8 @@ public class OrderEntryPageSteps8
         {
             newOE.listCatelog();
             newOE.clickOnLoadAllProducts();
+            newOE.selectAllProductsCatalogDialogbox();
+            newOE.ResetFilter_Catalog();
             newOE.readProductInList();
             newOE.catalogOK();
         }
@@ -110,6 +112,8 @@ public class OrderEntryPageSteps8
         if(HelpersMethod.IsExists("//div[@class='i-grid']",driver))
         {
             newOE.clickOnLoadAllProducts();
+            newOE.selectAllProductsCatalogDialogbox();
+            newOE.ResetFilter_Catalog();
             newOE.listCatelogQoH(QoHValue.get(0).get(0));
             newOE.readProductInList();
             newOE.catalogOK();
@@ -131,6 +135,7 @@ public class OrderEntryPageSteps8
         newOE=new NewOrderEntryPage(driver,scenario);
         newOE.Validate_Catalog();
         newOE.clickOnLoadAllProducts();
+        newOE.selectAllProductsCatalogDialogbox();
         newOE.ResetFilter_Catalog();
         String pro=String.valueOf(Prod_No);
         newOE.validateCatalogProducts();

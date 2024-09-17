@@ -60,14 +60,7 @@ public class OrderEntryPageSteps6
         newOE=new NewOrderEntryPage(driver,scenario);
         newOE.ValidateNewOE();
         //find whether route is empty or not, if empty should select some route value
-       /* String routeNo=newOE.validateRouteValue();
-        if(routeNo==null||routeNo.equals(""))
-        {
-            newOE.clickRouteIndex();
-            newOE.validateRouteDialog();
-            newOE.Route_No(TestBase.testEnvironment.get_RouteFilt(), TestBase.testEnvironment.get_Route());
-            newOE.validateRouteSelected(TestBase.testEnvironment.get_Route());
-        }*/
+        newOE.validateRouteValue();
         newOE.Validate_Pickup_Order();
     }
 
@@ -93,14 +86,7 @@ public class OrderEntryPageSteps6
         newOE=new NewOrderEntryPage(driver,scenario);
         newOE.ValidateNewOE();
         //find whether route is empty or not, if empty should select some route value
-       /* String routeNo=newOE.validateRouteValue();
-        if(routeNo.equals(""))
-        {
-            newOE.clickRouteIndex();
-            newOE.validateRouteDialog();
-            newOE.Route_No(TestBase.testEnvironment.get_RouteFilt(), TestBase.testEnvironment.get_Route());
-            newOE.validateRouteSelected(TestBase.testEnvironment.get_Route());
-        }*/
+        newOE.validateRouteValue();
         newOE.ClickPickupCheckBox();
         newOE.validatePickupCheckBoxSelected();
     }
@@ -122,11 +108,7 @@ public class OrderEntryPageSteps6
         orderpage=new OrderEntryPage(driver,scenario);
         orderpage.ValidateOE();
         Thread.sleep(1000);
-        String routeNo=orderpage.validateRouteValue();
-        if(routeNo!=null||!routeNo.equals(""))
-        {
-            orderpage.RemoveRoute();
-        }
+        orderpage.validateRouteValueRemove();
         orderpage.RouteIsEmpty();
     }
 

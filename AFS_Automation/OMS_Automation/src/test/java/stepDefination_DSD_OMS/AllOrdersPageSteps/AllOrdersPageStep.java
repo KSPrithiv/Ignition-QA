@@ -252,14 +252,7 @@ public class AllOrdersPageStep
         if(exists==true)
         {
             //find whether route is empty or not, if empty should select some route value
-            String routeNo = newOE.validateRouteValue();
-            if (routeNo == null || routeNo.equals(""))
-            {
-                newOE.clickRouteIndex();
-                newOE.validateRouteDialog();
-                newOE.Route_No(TestBase.testEnvironment.get_RouteFilt(), TestBase.testEnvironment.get_Route());
-                newOE.validateRouteSelected(TestBase.testEnvironment.get_Route());
-            }
+            newOE.validateRouteValue();
             exists=newOE.ClickNext();
         }
         newOE.OutOfStockPop_ERP();
@@ -437,7 +430,7 @@ public class AllOrdersPageStep
         {
             exists = false;
             Actions act = new Actions(driver);
-            WebElement WebEle = HelpersMethod.FindByElement(driver, "xpath", "//li[contains(@class,'k-item')]/span[@class='k-link' and contains(text(),'All Orders')]");
+            WebElement WebEle = HelpersMethod.FindByElement(driver, "xpath", "//li[contains(@class,'k-item')]/span[@class='k-link' and contains(text(),'All Orders')]|//li[contains(@class,'k-item')]/span[@class='k-link' and contains(text(),'Open Orders')]");
             if (HelpersMethod.EleDisplay(WebEle))
             {
                 HelpersMethod.navigate_Horizantal_Tab(driver, "All Orders", "//li[contains(@class,'k-item')]/span[@class='k-link' and contains(text(),'All Orders')]", "xpath", "//li[contains(@class,'k-item')]/span[@class='k-link']");
@@ -694,15 +687,7 @@ public class AllOrdersPageStep
 
         //find whether route is empty or not, if empty should select some route value
         Thread.sleep(2000);
-        String routeNo=newOE.validateRouteValue();
-        if(routeNo==null||routeNo.equals(""))
-        {
-            newOE.clickRouteIndex();
-            newOE.validateRouteDialog();
-            newOE.Route_No(TestBase.testEnvironment.get_RouteFilt(), TestBase.testEnvironment.get_Route());
-            newOE.validateRouteSelected(TestBase.testEnvironment.get_Route());
-        }
-
+       newOE.validateRouteValue();
         //To find main grid has been selected or else select main grid
         newOE.selectMainGrid();
     }

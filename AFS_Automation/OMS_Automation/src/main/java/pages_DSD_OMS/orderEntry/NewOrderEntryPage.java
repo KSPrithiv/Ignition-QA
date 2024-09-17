@@ -21,13 +21,6 @@ import java.util.Collections;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Set;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.time.*;
-import java.time.format.DateTimeFormatter;
-import java.util.*;
-import java.util.List;
 
 /**
  * @Project DSD_OMS
@@ -4444,7 +4437,7 @@ public class NewOrderEntryPage
         try
         {
             boolean result1=HelpersMethod.IsExists("//div[contains(@class,'inline-form-group')]/span[contains(text(),'Date')]",driver);
-            String result=PickupOrder.getAttribute("disabled");
+            //String result=PickupOrder.getAttribute("disabled");
             //if(result.equals("")||result1==true)
             if(HelpersMethod.IsExists("//input[@id='pickupOrder' and @data-checked='checked']",driver) || result1==true)
             {
@@ -5304,16 +5297,14 @@ public class NewOrderEntryPage
     {
         exists=false;
         Actions act1=new Actions(driver);
-        //WebElement opt;
+
         String optText;
         try
         {
-            new WebDriverWait(driver,Duration.ofMillis(2000)).until(ExpectedConditions.refreshed(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='k-child-animation-container']/descendant::ul/li"))));
-            List<WebElement> Options=HelpersMethod.FindByElements(driver,"xpath","//div[@class='k-child-animation-container']/descendant::ul/li");
-            //for (int i=0;i<=Options.size()-1;i++)
+            new WebDriverWait(driver,Duration.ofMillis(2000)).until(ExpectedConditions.refreshed(ExpectedConditions.visibilityOfElementLocated(By.xpath("//ul[@id='grid-selection-accessibility-id']/descendant::span[@class='k-menu-link-text']"))));
+            List<WebElement> Options=HelpersMethod.FindByElements(driver,"xpath","//ul[@id='grid-selection-accessibility-id']/descendant::span[@class='k-menu-link-text']");
             for(WebElement opt:Options)
             {
-                //opt=Options.get(i);
                 act1.moveToElement(opt).build().perform();
                 optText=opt.getText();
                 if (!optText.equals("Main grid"))
@@ -5340,13 +5331,11 @@ public class NewOrderEntryPage
     {
         exists=false;
         Actions act1=new Actions(driver);
-        //WebElement opt;
         String optText;
         try
         {
-            new WebDriverWait(driver,Duration.ofMillis(2000)).until(ExpectedConditions.refreshed(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='k-child-animation-container']/descendant::ul/li"))));
-            List<WebElement> Options=HelpersMethod.FindByElements(driver,"xpath","//div[@class='k-child-animation-container']/descendant::ul/li");
-            //for (int i=0;i<=Options.size()-1;i++)
+            new WebDriverWait(driver,Duration.ofMillis(2000)).until(ExpectedConditions.refreshed(ExpectedConditions.visibilityOfElementLocated(By.xpath("//ul[@id='grid-selection-accessibility-id']/descendant::span[@class='k-menu-link-text']"))));
+            List<WebElement> Options=HelpersMethod.FindByElements(driver,"xpath","//ul[@id='grid-selection-accessibility-id']/descendant::span[@class='k-menu-link-text']");
             for(WebElement opt:Options)
             {
                 act1.moveToElement(opt).build().perform();
@@ -6367,17 +6356,27 @@ public class NewOrderEntryPage
         catch (Exception e){}
     }
 
-    public String validateRouteValue()
+    public void validateRouteValue()
     {
-        String rNo="";
+        String rNo;
         try
         {
-            WebElement routeEle=HelpersMethod.FindByElement(driver,"id","RouteIndex");
-            HelpersMethod.ScrollElement(driver,routeEle);
-            rNo=HelpersMethod.JSGetValueEle(driver,routeEle,10000);
+            if(HelpersMethod.IsExists("//input[@id='RouteIndex']",driver))
+            {
+                WebElement routeEle = HelpersMethod.FindByElement(driver, "id", "RouteIndex");
+                HelpersMethod.ScrollElement(driver, routeEle);
+                rNo = HelpersMethod.JSGetValueEle(driver, routeEle, 10000);
+
+                if(rNo==null||rNo.equals(""))
+                {
+                    clickRouteIndex();
+                    validateRouteDialog();
+                    Route_No(TestBase.testEnvironment.get_RouteFilt(), TestBase.testEnvironment.get_Route());
+                    validateRouteSelected(TestBase.testEnvironment.get_Route());
+                }
+            }
         }
         catch (Exception e){}
-        return rNo;
     }
 
     //click on route index button
@@ -6392,10 +6391,10 @@ public class NewOrderEntryPage
         }
         try
         {
-            //Click on Index icon next to Route#
-            WebElement route_No = HelpersMethod.FindByElement(driver, "xpath", "//div[@data-test-id='RouteIndex']/descendant::button[contains(@class,'i-indexfield')]");
-            if(route_No.isDisplayed())
+            if(HelpersMethod.IsExists("//div[@data-test-id='RouteIndex']/descendant::button[contains(@class,'i-indexfield')]",driver))
             {
+                 //Click on Index icon next to Route#
+                 WebElement route_No = HelpersMethod.FindByElement(driver, "xpath", "//div[@data-test-id='RouteIndex']/descendant::button[contains(@class,'i-indexfield')]");
                 //HelpersMethod.ClickBut(driver, route_No, 10000);
                 HelpersMethod.ActClick(driver,route_No,10000);
                 exists=true;

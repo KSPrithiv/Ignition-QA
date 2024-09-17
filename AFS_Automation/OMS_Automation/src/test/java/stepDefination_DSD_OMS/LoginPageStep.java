@@ -545,7 +545,8 @@ public class LoginPageStep
 
     //Enter Value to all the input box, when register with Customer Account# is selected
     @And("Enter values in input boxes")
-    public void enter_values_in_input_boxes() throws InterruptedException, AWTException {
+    public void enter_values_in_input_boxes() throws InterruptedException, AWTException
+    {
         UserReg = new UserRegistrationPage(driver, scenario);
         UserReg.EnterAccount_No();
         UserReg.displayFindAcc();

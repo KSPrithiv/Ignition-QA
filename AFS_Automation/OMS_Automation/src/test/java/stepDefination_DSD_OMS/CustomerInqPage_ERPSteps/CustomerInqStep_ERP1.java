@@ -27,6 +27,7 @@ public class CustomerInqStep_ERP1
     Scenario scenario;
     static CustomerInquiryPageERP customerInquiryPageERP;
     static IgnitionPageERP ignitionPageERP;
+    static boolean flag2=false;
 
     @Before
     public void LaunchBrowser1(Scenario scenario) throws Exception
@@ -108,12 +109,16 @@ public class CustomerInqStep_ERP1
     @Then("User should navigate to Telus tab in ERP")
     public void userShouldNavigateToTelusTabInERP()
     {
-        customerInquiryPageERP = new CustomerInquiryPageERP(driver, scenario);
-        customerInquiryPageERP.NavigateDifferentTabs("TELUS OMS");
-        if (HelpersMethod.IsExists("//div[@class='loader']", driver))
+        if(flag2==false)
         {
-            WebElement WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000000);
+            customerInquiryPageERP = new CustomerInquiryPageERP(driver, scenario);
+            customerInquiryPageERP.NavigateDifferentTabs("TELUS OMS");
+            if (HelpersMethod.IsExists("//div[@class='loader']", driver))
+            {
+                WebElement WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000000);
+            }
+            flag2 = true;
         }
         ignitionPageERP = new IgnitionPageERP(driver, scenario);
         ignitionPageERP.ValidateIgnition();

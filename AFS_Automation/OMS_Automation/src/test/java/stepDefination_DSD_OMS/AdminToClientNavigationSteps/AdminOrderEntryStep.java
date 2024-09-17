@@ -400,14 +400,7 @@ public class AdminOrderEntryStep
         orderpage = new OrderEntryPage(driver, scenario);
         orderpage.ValidateOE();
         //find whether route is empty or not, if empty should select some route value
-        String routeNo=orderpage.validateRouteValue();
-        if(routeNo==null||routeNo.equals(""))
-        {
-            orderpage.clickRouteIndex();
-            orderpage.validateRouteDialog();
-            orderpage.Route_No(TestBase.testEnvironment.get_RouteFilt(), TestBase.testEnvironment.get_Route());
-            orderpage.validateRouteSelected(TestBase.testEnvironment.get_Route());
-        }
+        orderpage.validateRouteValue();
         //check for 'Start Order' button
         orderpage.Scroll_start();
         exists=orderpage.Start_Order();
@@ -579,14 +572,7 @@ public class AdminOrderEntryStep
             orderpage = new OrderEntryPage(driver, scenario);
             orderpage.ValidateOE();
             //find whether route is empty or not, if empty should select some route value
-            String routeNo = orderpage.validateRouteValue();
-            if (routeNo == null || routeNo.equals(""))
-            {
-                orderpage.clickRouteIndex();
-                orderpage.validateRouteDialog();
-                orderpage.Route_No(TestBase.testEnvironment.get_RouteFilt(), TestBase.testEnvironment.get_Route());
-                orderpage.validateRouteSelected(TestBase.testEnvironment.get_Route());
-            }
+            orderpage.validateRouteValue();
             //check for 'Start Order' button
             orderpage.Scroll_start();
             exists = orderpage.Start_OrderForAdmin();

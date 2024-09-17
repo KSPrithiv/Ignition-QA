@@ -121,7 +121,7 @@ public class OrderEntryPage
             if (URL.contains("cpError"))
             {
                 Thread.sleep(10000);
-                scenario.log("************** ERROR PAGE HAS BEEN FOUND *************");
+                scenario.log("<span style='color:red'>************** ERROR PAGE HAS BEEN FOUND *************</span>");
                 exists=true;
                 HelpersMethod.NavigateBack(driver);
                 String status = HelpersMethod.returnDocumentStatus(driver);
@@ -2981,16 +2981,37 @@ public class OrderEntryPage
         catch (Exception e) {}
     }
 
-    public String validateRouteValue()
+    public void validateRouteValue()
     {
         String rNo="";
         try
         {
             WebElement routeEle=HelpersMethod.FindByElement(driver,"id","RouteIndex");
             rNo=HelpersMethod.JSGetValueEle(driver,routeEle,10000);
+            if (rNo == null || rNo.equals(""))
+            {
+                clickRouteIndex();
+                validateRouteDialog();
+                Route_No(TestBase.testEnvironment.get_RouteFilt(), TestBase.testEnvironment.get_Route());
+                validateRouteSelected(TestBase.testEnvironment.get_Route());
+            }
         }
         catch (Exception e){}
-        return rNo;
+    }
+
+    public void validateRouteValueRemove()
+    {
+        String rNo="";
+        try
+        {
+            WebElement routeEle=HelpersMethod.FindByElement(driver,"id","RouteIndex");
+            rNo=HelpersMethod.JSGetValueEle(driver,routeEle,10000);
+            if(rNo!=null||!rNo.equals(""))
+            {
+                RemoveRoute();
+            }
+        }
+        catch (Exception e){}
     }
 
     //click on route index button
