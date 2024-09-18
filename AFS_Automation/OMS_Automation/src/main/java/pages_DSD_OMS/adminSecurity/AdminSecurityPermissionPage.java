@@ -1311,7 +1311,7 @@ public class AdminSecurityPermissionPage
                     }
                     else if(HelpersMethod.IsExists("//input[@id='" + id + "' and @data-checked='indeterminate']",driver))
                     {
-                        checkBox = HelpersMethod.FindByElement(driver, "xpath", "//input[@id='" + id + "'; and @data-checked='indeterminate']");
+                        checkBox = HelpersMethod.FindByElement(driver, "xpath", "//input[@id='" + id + "' and @data-checked='indeterminate']");
                         act.moveToElement(checkBox).build().perform();
                         act.click(checkBox).build().perform();
 

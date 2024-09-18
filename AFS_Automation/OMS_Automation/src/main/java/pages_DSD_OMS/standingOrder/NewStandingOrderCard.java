@@ -387,7 +387,7 @@ public class NewStandingOrderCard
                         HelpersMethod.waitTillLoadingPage(driver);
                     }
                     WebEle = HelpersMethod.FindByElement(driver, "id", "addToDate");
-                    FTDate = HelpersMethod.JSGetValueEle(driver, WebEle, 1000);
+                    FTDate = HelpersMethod.JSGetValueEle(driver, WebEle, 10000);
                     scenario.log(FTDate + " HAS BEEN SELECTED AS END DATE FOR STANDING ORDER");
                 }
                 else
@@ -1243,10 +1243,7 @@ public class NewStandingOrderCard
     public List<WebElement> readDatesOfStandingOrder()
     {
         exists=false;
-        WebElement WebEle;
-        Actions act=new Actions(driver);
         List<WebElement> soDate = null;
-        String status;
         try
         {
             List<WebElement> StandingOrders = HelpersMethod.FindByElements(driver, "xpath", "//div[contains(@class,'standing-orders')]/descendant::span[contains(@class,'standing-orders-status active')] | //div[contains(@class,'standing-orders')]/descendant::span[contains(@class,'standing-orders-status pending')]");

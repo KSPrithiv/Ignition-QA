@@ -509,30 +509,28 @@ public class GridConfigurationPageStep
         WebElement dummy;
         Actions act=new Actions(driver);
         gridConfigPage=new GridConfigurationPage(driver,scenario);
-        //to expand the dropdown
-        gridConfigPage.clickGridDropDown();
+
+
         //to read all the values in dropdown
-        List<WebElement> gridNames=HelpersMethod.FindByElements(driver,"xpath","//div[contains(@class,'k-list-container')]/descendant::ul/li/span[contains(text(),'"+arg0+"')]");
-        ArrayList<String> gridText= new ArrayList<>();
-        for(int i=0;i<=gridNames.size()-1;i++)
-        {
-            act.moveToElement(gridNames.get(i)).build().perform();
-            dummy=gridNames.get(i);
-            gridName1=dummy.getText();
-            gridText.add(gridName1);
-        }
+//        List<WebElement> gridNames=HelpersMethod.FindByElements(driver,"xpath","//ul[@id='SelectGrid-listbox-id']/descendant::span[@class='k-list-item-text']");
+//        ArrayList<String> gridText= new ArrayList<>();
+//        for(int i=0;i<=gridNames.size()-1;i++)
+//        {
+//            act.moveToElement(gridNames.get(i)).build().perform();
+//            dummy=gridNames.get(i);
+//            gridName1=dummy.getText();
+//            gridText.add(gridName1);
+//        }
 
         //to close dropdown
         gridConfigPage.clickGridDropDown();
-        for(int i=0;i<=gridText.size()-1;i++)
-        {
-            gridConfigPage.clickGridDropDown();
-            gridName=gridText.get(i);
-            gridConfigPage.gridDropdownSelection(gridName);
-            //Select delete from drop down
-            gridConfigPage.clickOnGridOptionDropdown();
-            gridConfigPage.selectOptionFromGridOptionDropDown(arg1);
-        }
+        gridConfigPage.gridDropdownSelection(arg0);
+        //Select delete from drop down
+        gridConfigPage.clickOnGridOptionDropdown();
+        gridConfigPage.selectOptionFromGridOptionDropDown(arg1);
+        //verify the grids are deleted
+        gridConfigPage.clickGridDropDown();
+        gridConfigPage.checkDeletedGridName(arg0);
     }
 
     @Then("User changes label of header available in grid")
@@ -630,6 +628,7 @@ public class GridConfigurationPageStep
         //verify labels of product grid
         newOE=new NewOrderEntryPage(driver,scenario);
         exists=newOE.ValidateNewOE();
+
         newOE.verifyProductGridTitle(newLabel);
 
         //after validating default grid in New OE page signout

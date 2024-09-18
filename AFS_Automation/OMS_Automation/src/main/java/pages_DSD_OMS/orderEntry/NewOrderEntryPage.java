@@ -6196,18 +6196,16 @@ public class NewOrderEntryPage
         Actions act=new Actions(driver);
         try
         {
-
             WebElement dragDropHeader=HelpersMethod.FindByElement(driver,"xpath","//div[@class='k-grouping-header']");
             HelpersMethod.ScrollTillElementVisible(driver,dragDropHeader);
 
-            List<WebElement> titles=HelpersMethod.FindByElements(driver,"xpath","//span[@class='k-column-title']");
+            List<WebElement> titles=HelpersMethod.FindByElements(driver,"xpath","//th[contains(@class,'k-table-th k-header')]/descendant::span[@class='k-column-title']");
             for(WebElement title:titles)
             {
                 act.moveToElement(title).build().perform();
                 titleText=title.getText();
                 scenario.log("TITLE FOUND IN PRODUCT GRID "+titleText);
             }
-
 
             for(WebElement title:titles)
             {

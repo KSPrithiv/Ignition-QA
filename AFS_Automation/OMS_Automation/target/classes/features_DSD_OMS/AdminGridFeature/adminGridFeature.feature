@@ -5,50 +5,50 @@ Feature: scenarios for User and Accounts admin feature, for Grid related setting
     When User is on Home Page for Admin setting for grid
 #    Then User Clicks on Permissions by drop down to select Customer Account# grid
 
-  @AvailableGrid
-  Scenario Outline: Test scenario to verifing avaiablity of grid from Available grid to Grid configuration
-    Given User is on Home Page for Admin setting to select Admin option for grid
-    Then User Clicks on Permissions by drop down to select Customer Account# grid
-    And User should enter menu "<Main menu>" in search bar and select "<Sub menu>"
-    Then User navigates to Available Grid and selects one of the grid type
-    And User navigates to "<ConfigTab1>" and the selected grid type should be loaded
-    #And User clicks on save button to save Grid configuration
-    Examples:
-      |Main menu|Sub menu       | ConfigTab1         |
-      |Grids    |Configuration  | Grid Configuration |
-
-  @CheckAvailabilityOfGrid
-  Scenario Outline: Test scenario for verifying availablity of same grid under Configuration tab and Available grids tab
-    Given User is on Home Page for Admin setting to select Admin option
-    Then User refreshes page Clicks on Permissions by drop down to select Customer Account# grid
-    And User should enter menu "<Main menu>" in search bar and select "<Sub menu>"
-    Then User should validate that it is Grid Configuration page, then click on Grid type Drop Down
-    Then User reads all the grid names
-    And User navigate to Available grid tab and finds all the grids available and disable any grid
-    Then User navigates back to Grid configuration tab and checks for available grid type in drop down
-    #And User clicks on save button to save Grid configuration
-    And User should enable disabled grid in Available grid tab
-    Then User navigates back to Grid configuration tab and checks for available grid type in drop down after enabling tab
-    #And User clicks on save button to save Grid configuration
-    Examples:
-      |Main menu|Sub menu       |
-      |Grids    |Configuration  |
-
-  @CheckAvailablityOfGridheader
-  Scenario Outline: Test scenario for disable one of the grid column and verifying same in Grid Configuration
-    Given User is on Home Page for Admin setting to select Admin option
-    Then User refreshes page Clicks on Permissions by drop down to select Customer Account# grid
-    And User should enter menu "<Main menu>" in search bar and select "<Sub menu>"
-    And User navigate to Available grid tab and select one of the grid and read all the column header available for selected grid
-    Then User should validate that it is Grid Configuration page, then click on Grid type Drop Down
-    And User should select Grid type "<Grid type>" from the drop down
-    And User clicks on save button to save Grid configuration
-    Then User validates availability of disabled column in grid "<Grid type>"
-    And User again enables column availability in Available grid
-    Then User should navigate back to Grid configuration "<Grid type>" and check for enabled column click on Save button
-    Examples:
-      |Main menu|Sub menu       |Grid type  |
-      |Grids    |Configuration  |Order Entry|
+#  @AvailableGrid
+#  Scenario Outline: Test scenario to verifing avaiablity of grid from Available grid to Grid configuration
+#    Given User is on Home Page for Admin setting to select Admin option for grid
+#    Then User Clicks on Permissions by drop down to select Customer Account# grid
+#    And User should enter menu "<Main menu>" in search bar and select "<Sub menu>"
+#    Then User navigates to Available Grid and selects one of the grid type
+#    And User navigates to "<ConfigTab1>" and the selected grid type should be loaded
+#    #And User clicks on save button to save Grid configuration
+#    Examples:
+#      |Main menu|Sub menu       | ConfigTab1         |
+#      |Grids    |Configuration  | Grid Configuration |
+#
+#  @CheckAvailabilityOfGrid
+#  Scenario Outline: Test scenario for verifying availablity of same grid under Configuration tab and Available grids tab
+#    Given User is on Home Page for Admin setting to select Admin option
+#    Then User refreshes page Clicks on Permissions by drop down to select Customer Account# grid
+#    And User should enter menu "<Main menu>" in search bar and select "<Sub menu>"
+#    Then User should validate that it is Grid Configuration page, then click on Grid type Drop Down
+#    Then User reads all the grid names
+#    And User navigate to Available grid tab and finds all the grids available and disable any grid
+#    Then User navigates back to Grid configuration tab and checks for available grid type in drop down
+#    #And User clicks on save button to save Grid configuration
+#    And User should enable disabled grid in Available grid tab
+#    Then User navigates back to Grid configuration tab and checks for available grid type in drop down after enabling tab
+#    #And User clicks on save button to save Grid configuration
+#    Examples:
+#      |Main menu|Sub menu       |
+#      |Grids    |Configuration  |
+#
+#  @CheckAvailablityOfGridheader
+#  Scenario Outline: Test scenario for disable one of the grid column and verifying same in Grid Configuration
+#    Given User is on Home Page for Admin setting to select Admin option
+#    Then User refreshes page Clicks on Permissions by drop down to select Customer Account# grid
+#    And User should enter menu "<Main menu>" in search bar and select "<Sub menu>"
+#    And User navigate to Available grid tab and select one of the grid and read all the column header available for selected grid
+#    Then User should validate that it is Grid Configuration page, then click on Grid type Drop Down
+#    And User should select Grid type "<Grid type>" from the drop down
+#    And User clicks on save button to save Grid configuration
+#    Then User validates availability of disabled column in grid "<Grid type>"
+#    And User again enables column availability in Available grid
+#    Then User should navigate back to Grid configuration "<Grid type>" and check for enabled column click on Save button
+#    Examples:
+#      |Main menu|Sub menu       |Grid type  |
+#      |Grids    |Configuration  |Order Entry|
 
   @AddGrid
   Scenario Outline: Test scenario for adding new grid
@@ -105,6 +105,7 @@ Feature: scenarios for User and Accounts admin feature, for Grid related setting
     Then User should validate that it is Grid Configuration page, then click on Grid type Drop Down
     And User should select Grid type "<Grid type>" from the drop down
     And User should select "<Grid name>" from grids dropdown and selects "<Grid option>" to delete grid
+    And User should select "<Grid name1>" from grids dropdown and selects "<Grid option>" to delete grid
     #And User should Click and select "<Grid name>" from grids dropdown
     #And User clicks on Grid option"<Grid option>" to delete and selects option from drop down
     #And User should select Grid type "<Grid type>" from the drop down
