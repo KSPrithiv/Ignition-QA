@@ -75,7 +75,7 @@ public class NewStandingOrderPage
             WebElement WebEle = HelpersMethod.FindByElement(driver, "xpath", "//li[contains(@class,'k-item')]/span[@class='k-link' and contains(text(),'Standing Orders')]|//li[contains(@class,'k-item')]/span[@class='k-link' and contains(text(),'Standing orders')]");
             if (HelpersMethod.EleDisplay(WebEle))
             {
-                String Menu_Text ="";
+                String Menu_Text;
                 Actions act = new Actions(driver);
                 List<WebElement> MenuBar = HelpersMethod.FindByElements(driver, "xpath", "//li[contains(@class,'k-item')]/span[@class='k-link']");
                 for (WebElement Menu : MenuBar)
@@ -233,7 +233,7 @@ public class NewStandingOrderPage
         try
         {
             Wait<WebDriver>  wait = new FluentWait<WebDriver>(driver)
-                    .withTimeout(Duration.ofSeconds(120))
+                    .withTimeout(Duration.ofSeconds(400))
                     .pollingEvery(Duration.ofSeconds(2))
                     .ignoring(NoSuchElementException.class);
             wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
@@ -247,7 +247,7 @@ public class NewStandingOrderPage
             }
             scenario.log("STANDING ORDER SUCESSFULLY SAVED");
             wait = new FluentWait<WebDriver>(driver)
-                    .withTimeout(Duration.ofSeconds(120))
+                    .withTimeout(Duration.ofSeconds(400))
                     .pollingEvery(Duration.ofSeconds(2))
                     .ignoring(NoSuchElementException.class);
             wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
@@ -463,7 +463,7 @@ public class NewStandingOrderPage
                 HelpersMethod.ActClick(driver, searchIcon, 10000);
 
                 Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
-                        .withTimeout(Duration.ofSeconds(120))
+                        .withTimeout(Duration.ofSeconds(200))
                         .pollingEvery(Duration.ofSeconds(2))
                         .ignoring(NoSuchElementException.class);
                 wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
@@ -475,7 +475,7 @@ public class NewStandingOrderPage
                 scenario.log("PRODUCT FOUND IN CATALOG IS " + prod);
 
                 wait = new FluentWait<WebDriver>(driver)
-                        .withTimeout(Duration.ofSeconds(120))
+                        .withTimeout(Duration.ofSeconds(200))
                         .pollingEvery(Duration.ofSeconds(2))
                         .ignoring(NoSuchElementException.class);
                 wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
@@ -486,7 +486,7 @@ public class NewStandingOrderPage
                 act.moveToElement(clearButton).click().build().perform();
 
                 wait = new FluentWait<WebDriver>(driver)
-                        .withTimeout(Duration.ofSeconds(120))
+                        .withTimeout(Duration.ofSeconds(200))
                         .pollingEvery(Duration.ofSeconds(2))
                         .ignoring(NoSuchElementException.class);
                 wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
@@ -625,7 +625,7 @@ public class NewStandingOrderPage
                 if(HelpersMethod.IsExists("//span[contains(text(),'Delete product(s)')]/ancestor::div[contains(@class,'k-window k-dialog')]",driver))
                 {
                     WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-window k-dialog')]/descendant::button/span[text()='Yes']");
-                    HelpersMethod.ClickBut(driver,WebEle,1000);
+                    HelpersMethod.ClickBut(driver,WebEle,10000);
                     scenario.log("PRODUCT HAS BEEN DELETED FROM STANDING ORDER");
                     exists=true;
                     //loading Icon

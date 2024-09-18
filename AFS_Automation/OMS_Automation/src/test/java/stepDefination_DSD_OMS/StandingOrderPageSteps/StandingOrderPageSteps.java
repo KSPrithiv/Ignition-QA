@@ -215,6 +215,7 @@ public class StandingOrderPageSteps
         standingOrder.ValidateCatalogPopup();
         standingOrder.clickOnLoadAllProducts();
         standingOrder.ResetFilter_Catalog();
+        standingOrder.selectAllProduct();
 
         if (HelpersMethod.IsExists("//div[contains(@class,'k-window k-dialog')]/descendant::div[contains(@class,'i-grid')]", driver))
         {
@@ -223,7 +224,6 @@ public class StandingOrderPageSteps
         else
         {
             List<String> Prods= DataBaseConnection.DataConn1(TestBase.testEnvironment.getMultiple_Prod_Sql());
-            standingOrder.selectAllProduct();
             for(int i=0;i<=Prods.size()-1;i++)
             {
                 standingOrder.cardView(Prods.get(i));

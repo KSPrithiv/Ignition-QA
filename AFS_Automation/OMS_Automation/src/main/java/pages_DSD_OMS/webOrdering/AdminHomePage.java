@@ -53,6 +53,7 @@ public class AdminHomePage
         String title;
         String status;
 
+        Thread.sleep(4000);
         Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
                 .withTimeout(Duration.ofSeconds(800))
                 .pollingEvery(Duration.ofSeconds(2))

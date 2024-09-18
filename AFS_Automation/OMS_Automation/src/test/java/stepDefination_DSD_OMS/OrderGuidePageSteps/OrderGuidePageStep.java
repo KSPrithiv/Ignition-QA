@@ -394,6 +394,7 @@ public class OrderGuidePageStep
         createOGPage.ValidateCatalogDisplay();
         //createOGPage.validateProductExists();
         createOGPage.ResetFilter_Catalog();
+        createOGPage.selectAllProducts();
         //createOGPage.SelectProductCatalog();
         if (HelpersMethod.IsExists("//div[contains(@class,'k-window k-dialog')]/descendant::div[contains(@class,'i-grid')]", driver))
         {
@@ -401,7 +402,6 @@ public class OrderGuidePageStep
         }
         else
         {
-            createOGPage.selectAllProducts();
             createOGPage.cardView();
         }
         createOGPage.CatalogPopupOk();

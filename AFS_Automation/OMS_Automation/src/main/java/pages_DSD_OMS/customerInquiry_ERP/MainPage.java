@@ -315,17 +315,8 @@ public class MainPage
             WebElement primaryContact=HelpersMethod.FindByElement(driver,"xpath","//p[contains(text(),'Primary contact')]");
             HelpersMethod.ScrollElement(driver,primaryContact);
 
-            WebElement contactName=HelpersMethod.FindByElement(driver,"id","CMPrimaryContactName");
-            WebElement contactTitle=HelpersMethod.FindByElement(driver,"id","CMPrimaryContactTitle");
-            WebElement contactPhone=HelpersMethod.FindByElement(driver,"id","CMPrimaryContactPhone");
-            WebElement contactEmail=HelpersMethod.FindByElement(driver,"id","CMPrimaryContactEmail");
-            String cName=HelpersMethod.JSGetValueEle(driver,contactName,10000);
-            String cTitle=HelpersMethod.JSGetValueEle(driver,contactTitle,10000);
-            String cPhone=HelpersMethod.JSGetValueEle(driver,contactPhone,10000);
-            String cEmail=HelpersMethod.JSGetValueEle(driver,contactEmail,10000);
-
             //verify all web elements that comes under primary contact are disabled
-            if(!cName.equals("")&&!cTitle.equals(""))
+            if(HelpersMethod.IsExists("//input[@id='CMPrimaryContactName' and @disabled]",driver)&&HelpersMethod.IsExists("//input[@id='CMPrimaryContactTitle' and @disabled]",driver) && HelpersMethod.IsExists("//input[@id='CMPrimaryContactPhone' and @disabled]",driver) && HelpersMethod.IsExists("//input[@id='CMPrimaryContactEmail' and @disabled]",driver) )
             {
                 scenario.log("ALL PRIMARY CONTACT DETAILS ARE DISABLED");
                 exists=true;

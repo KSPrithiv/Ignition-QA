@@ -63,7 +63,7 @@ public class OrderGuidePageStep1
         createOGPage=new CreateOGPage(driver,scenario);
         createOGPage.ValidateCatalogDisplay();
         createOGPage.ResetFilter_Catalog();
-
+        createOGPage.selectAllProducts();
         createOGPage.validateProductInCatalog();
         if (HelpersMethod.IsExists("//div[contains(@class,'k-window k-dialog')]/descendant::div[contains(@class,'i-grid')]", driver))
         {
@@ -71,7 +71,6 @@ public class OrderGuidePageStep1
         }
         else
         {
-            createOGPage.selectAllProducts();
             createOGPage.cardView();
         }
         createOGPage.CatalogPopupOk();

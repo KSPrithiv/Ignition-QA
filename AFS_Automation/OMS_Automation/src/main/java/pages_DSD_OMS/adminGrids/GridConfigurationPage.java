@@ -249,17 +249,18 @@ public class GridConfigurationPage
         exists=false;
         try
         {
-            new WebDriverWait(driver,Duration.ofMillis(10000)).until(ExpectedConditions.refreshed(ExpectedConditions.visibilityOfElementLocated(By.xpath("//button/span[text()='Grid options']"))));
-            new WebDriverWait(driver,Duration.ofMillis(10000)).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//button/span[text()='Grid options']")));
+            new WebDriverWait(driver,Duration.ofMillis(10000)).until(ExpectedConditions.refreshed(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[text()='Grid options']/ancestor::button"))));
+            new WebDriverWait(driver,Duration.ofMillis(10000)).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//span[text()='Grid options']/ancestor::button")));
 
-            gridOptionDropdown=HelpersMethod.FindByElement(driver,"xpath","//button/span[text()='Grid options']");
+            gridOptionDropdown=HelpersMethod.FindByElement(driver,"xpath","//span[text()='Grid options']/ancestor::button");
             if(gridOptionDropdown.isDisplayed() && gridOptionDropdown.isEnabled())
             {
                 HelpersMethod.ClickBut(driver, gridOptionDropdown, 10000);
                 scenario.log("GRID OPTION DROPDOWN CLICKED");
                 exists=true;
                 new WebDriverWait(driver,Duration.ofMillis(40000)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.xpath("//ul[@id='SelectGrid-listbox-id']/li/span"))));
-                Thread.sleep(1000);
+                new WebDriverWait(driver,Duration.ofMillis(40000)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//ul[@id='SelectGrid-listbox-id']/li/span")));
+                //Thread.sleep(1000);
             }
             Assert.assertTrue(exists);
         }
@@ -340,7 +341,8 @@ public class GridConfigurationPage
                     if(optText.equalsIgnoreCase(gridOpt))
                     {
                         act.moveToElement(opt).click().build().perform();
-                        HelpersMethod.JScriptClick(driver,opt,10000);
+                        act.click(opt).build().perform();
+                        //HelpersMethod.JScriptClick(driver,opt,10000);
                         scenario.log("SELECTED OPTION "+optText);
                         exists=true;
                         break;
@@ -458,8 +460,8 @@ public class GridConfigurationPage
         Actions act1=new Actions(driver);
         try
         {
-            new WebDriverWait(driver,Duration.ofMillis(20000)).until(ExpectedConditions.refreshed(ExpectedConditions.visibilityOfElementLocated(By.xpath("//ul[@id='SelectGrid-listbox-id']/li/span[@class='k-list-item-text']"))));
             new WebDriverWait(driver,Duration.ofMillis(20000)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.xpath("//ul[@id='SelectGrid-listbox-id']/li/span[@class='k-list-item-text']"))));
+            new WebDriverWait(driver,Duration.ofMillis(20000)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//ul[@id='SelectGrid-listbox-id']/li/span[@class='k-list-item-text']")));
             if(HelpersMethod.IsExists("//ul[@id='SelectGrid-listbox-id']/li/span[@class='k-list-item-text']",driver))
             {
                 List<WebElement> options=HelpersMethod.FindByElements(driver,"xpath","//ul[@id='SelectGrid-listbox-id']/li/span[@class='k-list-item-text']");
@@ -471,7 +473,8 @@ public class GridConfigurationPage
                     {
                         act1.moveToElement(opt).build().perform();
                         act1.click(opt).build().perform();
-                        gridName=HelpersMethod.FindByElement(driver,"xpath","//span[@id='SelectGrid']/span[@class='k-input']").getText();
+//                        gridName=HelpersMethod.FindByElement(driver,"xpath","//span[@id='SelectGrid']/span[@class='k-input']").getText();
+//                        scenario.log("GRID DELETED IS "+gridName);
                         exists=true;
                         break;
                     }
@@ -963,6 +966,30 @@ public class GridConfigurationPage
                 exists=true;
             }
             Thread.sleep(2000);
+            Assert.assertEquals(exists,true);
+        }
+        catch (Exception e){}
+    }
+
+    public void checkDeletedGridName(String arg0)
+    {
+        exists=true;
+        Actions act=new Actions(driver);
+        String gridNameText;
+        try
+        {
+            List<WebElement> gridNames=HelpersMethod.FindByElements(driver,"xpath","//ul[@id='SelectGrid-listbox-id']/descendant::span[@class='k-list-item-text']");
+            for(WebElement gridName:gridNames)
+            {
+                act.moveToElement(gridName).build().perform();
+                gridNameText=gridName.getText();
+                if(gridNameText.equals(arg0))
+                {
+                    scenario.log("GRID HAS NOT BEEN DELETED");
+                    exists=false;
+                    break;
+                }
+            }
             Assert.assertEquals(exists,true);
         }
         catch (Exception e){}

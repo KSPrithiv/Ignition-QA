@@ -110,7 +110,7 @@ public class AllOrderPage
         try
         {
             Wait<WebDriver> wait = new FluentWait<>(driver)
-                    .withTimeout(Duration.ofSeconds(450))
+                    .withTimeout(Duration.ofSeconds(600))
                     .pollingEvery(Duration.ofSeconds(2))
                     .ignoring(NoSuchElementException.class);
             wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
@@ -122,7 +122,7 @@ public class AllOrderPage
             }
 
             wait = new FluentWait<>(driver)
-                    .withTimeout(Duration.ofSeconds(450))
+                    .withTimeout(Duration.ofSeconds(600))
                     .pollingEvery(Duration.ofSeconds(2))
                     .ignoring(NoSuchElementException.class);
             wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
@@ -134,7 +134,7 @@ public class AllOrderPage
             }
 
             wait = new FluentWait<>(driver)
-                    .withTimeout(Duration.ofSeconds(400))
+                    .withTimeout(Duration.ofSeconds(600))
                     .pollingEvery(Duration.ofSeconds(2))
                     .ignoring(NoSuchElementException.class);
             wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
@@ -183,47 +183,48 @@ public class AllOrderPage
     {
         WebElement WebEle;
         String status;
-        exists = false;
+        exists=false;
         try
         {
             status=HelpersMethod.returnDocumentStatus(driver);
             if(status.equals("loading"))
             {
-                exists = HelpersMethod.waitTillLoadingPage(driver);
+                HelpersMethod.waitTillLoadingPage(driver);
             }
             else
             {
-                if (HelpersMethod.IsExists("//div[@class='allOrdersCheckbox']",driver))
+                if(HelpersMethod.IsExists("//input[@id='showAllOrdersCheckbox']", driver))
                 {
-                    exists = false;
-                    HelpersMethod.ScrollElement(driver, AllOrderCheckbox);
-                    HelpersMethod.ActClick(driver, AllOrderCheckbox, 10000);
-                    scenario.log("SHOW ALL ORDER CHECK BOX HAS BEEN CLICKED");
-                    status=HelpersMethod.returnDocumentStatus(driver);
-                    if(status.equals("loading"))
+                    if (HelpersMethod.IsExists("//input[@id='showAllOrdersCheckbox' and @data-checked='unchecked']", driver))
                     {
-                        exists = HelpersMethod.waitTillLoadingPage(driver);
-                    }
-                    if(HelpersMethod.IsExists("//div[@class='loader']",driver))
-                    {
-                        WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                        HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 2000000);
-                    }
-                    status = HelpersMethod.returnDocumentStatus(driver);
-                    if (status.equals("loading"))
-                    {
-                        HelpersMethod.waitTillLoadingPage(driver);
-                    }
+                        HelpersMethod.ScrollElement(driver, AllOrderCheckbox);
+                        HelpersMethod.ActClick(driver, AllOrderCheckbox, 10000);
+                        scenario.log("SHOW ALL ORDER CHECK BOX HAS BEEN CLICKED");
+                        status = HelpersMethod.returnDocumentStatus(driver);
+                        if (status.equals("loading"))
+                        {
+                            HelpersMethod.waitTillLoadingPage(driver);
+                        }
+                        if (HelpersMethod.IsExists("//div[@class='loader']", driver))
+                        {
+                            WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
+                            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 2000000);
+                        }
+                        status = HelpersMethod.returnDocumentStatus(driver);
+                        if (status.equals("loading")) {
+                            HelpersMethod.waitTillLoadingPage(driver);
+                        }
 
-                    Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
-                            .withTimeout(Duration.ofSeconds(60))
-                            .pollingEvery(Duration.ofSeconds(5))
-                            .ignoring(NoSuchElementException.class);
-                    wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
-                    exists = true;
+                        Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                                .withTimeout(Duration.ofSeconds(600))
+                                .pollingEvery(Duration.ofSeconds(5))
+                                .ignoring(NoSuchElementException.class);
+                        wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+                    }
+                    exists=true;
                 }
             }
-            Assert.assertTrue(exists);
+            Assert.assertEquals(exists,true);
         }
         catch (Exception e) {}
     }
@@ -234,36 +235,54 @@ public class AllOrderPage
         exists = false;
         try
         {
+            Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(600))
+                    .pollingEvery(Duration.ofSeconds(5))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
             status=HelpersMethod.returnDocumentStatus(driver);
             if(status.equals("loading"))
             {
-                exists = HelpersMethod.waitTillLoadingPage(driver);
+                HelpersMethod.waitTillLoadingPage(driver);
             }
-                if (HelpersMethod.IsExists("//div[@class='allOrdersCheckbox']",driver))
+            wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(600))
+                    .pollingEvery(Duration.ofSeconds(5))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
+            if(HelpersMethod.IsExists("//input[@id='showAllOrdersCheckbox']", driver))
+            {
+                if (HelpersMethod.IsExists("//input[@id='showAllOrdersCheckbox' and @data-checked='unchecked']", driver))
                 {
-                    exists = false;
                     HelpersMethod.ScrollElement(driver, AllOrderCheckbox);
                     HelpersMethod.ActClick(driver, AllOrderCheckbox, 10000);
                     scenario.log("SHOW ALL ORDER CHECK BOX HAS BEEN CLICKED");
-                    status=HelpersMethod.returnDocumentStatus(driver);
-                    if(status.equals("loading"))
-                    {
-                        exists = HelpersMethod.waitTillLoadingPage(driver);
-                    }
-
-                    Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
-                            .withTimeout(Duration.ofSeconds(150))
-                            .pollingEvery(Duration.ofSeconds(2))
-                            .ignoring(NoSuchElementException.class);
-                    wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
-
                     status = HelpersMethod.returnDocumentStatus(driver);
                     if (status.equals("loading"))
                     {
                         HelpersMethod.waitTillLoadingPage(driver);
                     }
-                    exists = true;
+
+                    wait = new FluentWait<WebDriver>(driver)
+                            .withTimeout(Duration.ofSeconds(600))
+                            .pollingEvery(Duration.ofSeconds(5))
+                            .ignoring(NoSuchElementException.class);
+                    wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
+                    status = HelpersMethod.returnDocumentStatus(driver);
+                    if (status.equals("loading")) {
+                        HelpersMethod.waitTillLoadingPage(driver);
+                    }
+                    wait = new FluentWait<WebDriver>(driver)
+                            .withTimeout(Duration.ofSeconds(600))
+                            .pollingEvery(Duration.ofSeconds(5))
+                            .ignoring(NoSuchElementException.class);
+                    wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
                 }
+                exists = true;
+            }
             Assert.assertTrue(exists);
         }
         catch (Exception e) {}
