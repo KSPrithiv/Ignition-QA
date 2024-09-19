@@ -313,7 +313,8 @@ http://maven.apache.org/xsd/maven-4.0.0.xsd">
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
-                <version>2.18.1 </version>
+                <!--<version>2.18.1 </version>-->
+                <version>2.22.2</version>
                 <configuration>
                     <suiteXmlFiles>
                         <!--suppress UnresolvedMavenProperty -->
@@ -380,6 +381,31 @@ http://maven.apache.org/xsd/maven-4.0.0.xsd">
                     </dependency>
                 </dependencies>
             </plugin>
+
+
+
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-clean-plugin</artifactId>
+                <version>3.2.0</version>
+                <executions>
+                    <execution>
+                        <id>auto-clean-before-install</id>
+                        <goals>
+                            <goal>clean</goal>
+                        </goals>
+                        <phase>validate</phase> <!-- Runs clean before the validate phase -->
+                    </execution>
+                </executions>
+            </plugin>
+
+
+
+
+
+
+
         </plugins>
         <testOutputDirectory>target/classes</testOutputDirectory>
     </build>

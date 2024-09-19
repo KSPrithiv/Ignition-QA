@@ -393,6 +393,7 @@ public class OrderGuidePageStep
         createOGPage.SelectValueFromAddProduct(ProdOption.get(0).get(1));
         createOGPage.ValidateCatalogDisplay();
         //createOGPage.validateProductExists();
+        createOGPage.clickLoadAllProducts();
         createOGPage.ResetFilter_Catalog();
         createOGPage.selectAllProducts();
         //createOGPage.SelectProductCatalog();

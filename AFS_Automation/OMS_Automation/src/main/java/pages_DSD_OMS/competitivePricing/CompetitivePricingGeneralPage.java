@@ -396,7 +396,7 @@ public class CompetitivePricingGeneralPage
         try
         {
             Wait<WebDriver> wait = new FluentWait<>(driver)
-                    .withTimeout(Duration.ofSeconds(120))
+                    .withTimeout(Duration.ofSeconds(400))
                     .pollingEvery(Duration.ofSeconds(2))
                     .ignoring(NoSuchElementException.class);
             wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
@@ -405,10 +405,13 @@ public class CompetitivePricingGeneralPage
                 HelpersMethod.ClickBut(driver, CustomerAccIndex, 10000);
                 exists = true;
                 wait = new FluentWait<>(driver)
-                        .withTimeout(Duration.ofSeconds(120))
+                        .withTimeout(Duration.ofSeconds(400))
                         .pollingEvery(Duration.ofSeconds(2))
                         .ignoring(NoSuchElementException.class);
                 wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
+                new WebDriverWait(driver,Duration.ofMillis(20000)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class,'k-window k-dialog')]"))));
+                new WebDriverWait(driver, Duration.ofMillis(20000)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(@class,'k-window k-dialog')]")));
             }
             Assert.assertTrue(exists);
         }
@@ -418,7 +421,7 @@ public class CompetitivePricingGeneralPage
     public void ValidateCustomerAccountPopup()
     {
         Wait<WebDriver> wait = new FluentWait<>(driver)
-                .withTimeout(Duration.ofSeconds(120))
+                .withTimeout(Duration.ofSeconds(400))
                 .pollingEvery(Duration.ofSeconds(2))
                 .ignoring(NoSuchElementException.class);
         wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
@@ -435,12 +438,11 @@ public class CompetitivePricingGeneralPage
     {
         exists = false;
         WebElement WebEle;
-        WebElement Search2;
         String AccNo = TestBase.testEnvironment.get_Account();
         try
         {
             Wait<WebDriver> wait = new FluentWait<>(driver)
-                    .withTimeout(Duration.ofSeconds(120))
+                    .withTimeout(Duration.ofSeconds(400))
                     .pollingEvery(Duration.ofSeconds(2))
                     .ignoring(NoSuchElementException.class);
             wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
@@ -450,8 +452,7 @@ public class CompetitivePricingGeneralPage
                 HelpersMethod.waitTillLoadingPage(driver);
             }
 
-            new WebDriverWait(driver, Duration.ofMillis(20000)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(@class,'k-window k-dialog')]")));
-            WebElement modalContainer = driver.findElement(By.xpath("//div[contains(@class,'k-window k-dialog')]"));
+            WebElement modalContainer = HelpersMethod.FindByElement(driver,"xpath",    "//div[contains(@class,'k-window k-dialog')]");
             status = HelpersMethod.returnDocumentStatus(driver);
             if (status.equals("loading"))
             {
@@ -459,15 +460,16 @@ public class CompetitivePricingGeneralPage
             }
             // code to click on Addfilter button
             WebElement AddFilterButton = modalContainer.findElement(By.xpath(".//button/descendant::span[contains(text(),'Add filter')]"));
-            HelpersMethod.ActClick(driver, AddFilterButton, 10000);
+            HelpersMethod.ActClick(driver, AddFilterButton, 40000);
             Thread.sleep(1000);
 
             //Identify the dialog popup
-            new WebDriverWait(driver,Duration.ofMillis(10000)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(@class,'k-animation-container k-animation-container-shown')]")));
             new WebDriverWait(driver, Duration.ofMillis(10000)).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class,'k-animation-container k-animation-container-shown')]")));
+            new WebDriverWait(driver,Duration.ofMillis(10000)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(@class,'k-animation-container k-animation-container-shown')]")));
 
             //Enter customer account# in input box
-            WebElement Search1 =driver.findElement(By.xpath("//div[contains(@class,'k-child-animation-container')]/descendant::input[contains(@class,'i-search-box__input')]"));
+            WebElement modelContainer1=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-animation-container k-animation-container-shown')]");
+            WebElement Search1 =modelContainer1.findElement(By.xpath(".//div[contains(@class,'k-child-animation-container')]/descendant::input[contains(@class,'i-search-box__input')]"));
             HelpersMethod.ActSendKey(driver, Search1, 10000, "Customer account #");
 
             status = HelpersMethod.returnDocumentStatus(driver);
@@ -477,7 +479,7 @@ public class CompetitivePricingGeneralPage
             }
 
             //Click on Check box
-             WebElement WebEle1 = driver.findElement(By.xpath("//div[contains(@class,'k-child-animation-container')]/descendant::input[@id='value']"));
+             WebElement WebEle1 = modelContainer1.findElement(By.xpath("//input[@id='formattedValue']"));
             HelpersMethod.JScriptClick(driver, WebEle1, 10000);
             status = HelpersMethod.returnDocumentStatus(driver);
             if (status.equals("loading"))
@@ -487,12 +489,10 @@ public class CompetitivePricingGeneralPage
 
             //Identify radio button and click on Radio button
             Thread.sleep(1000);
-            WebElement RadioPop = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-child-animation-container')]/descendant::form[contains(@class,'i-filter-popup')]");
-            WebElement radioButton = RadioPop.findElement(By.xpath(".//div[contains(@class,'i-btn-radio filter-radio')][1]/following-sibling::div[contains(@class,'k-textbox-container i-filter-popup__content__input')]/input"));
-            if (radioButton.isDisplayed())
-            {
-                Search2 = RadioPop.findElement(By.xpath(".//div[contains(@class,'i-btn-radio filter-radio')][1]/following-sibling::div[contains(@class,'k-textbox-container i-filter-popup__content__input')]/input"));
-                HelpersMethod.EnterText(driver, Search2, 10000, AccNo);
+            WebElement RadioPop = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-child-animation-container')]/div[@class='k-popup']");
+            WebElement searchBox1= RadioPop.findElement(By.xpath(".//input[contains(@class,'k-input-solid')]"));
+            HelpersMethod.EnterText(driver,searchBox1,20000,AccNo);
+
                 status = HelpersMethod.returnDocumentStatus(driver);
                 if (status.equals("loading"))
                 {
@@ -508,7 +508,6 @@ public class CompetitivePricingGeneralPage
                         .pollingEvery(Duration.ofSeconds(2))
                         .ignoring(NoSuchElementException.class);
                 wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
-            }
 
             if (HelpersMethod.IsExists("//div[contains(@class,'k-window k-dialog')]/descendant::div[@class='i-no-data']", driver))
             {
@@ -521,7 +520,7 @@ public class CompetitivePricingGeneralPage
                 HelpersMethod.ActClick(driver, WebEle, 10000);
 
                 wait = new FluentWait<>(driver)
-                        .withTimeout(Duration.ofSeconds(120))
+                        .withTimeout(Duration.ofSeconds(400))
                         .pollingEvery(Duration.ofSeconds(2))
                         .ignoring(NoSuchElementException.class);
                 wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
@@ -531,7 +530,7 @@ public class CompetitivePricingGeneralPage
                 scenario.log("CUSTOMER ACCOUNT NUMBER HAS BEEN SELECTED: " + AccNo);
             }
             wait = new FluentWait<>(driver)
-                    .withTimeout(Duration.ofSeconds(120))
+                    .withTimeout(Duration.ofSeconds(400))
                     .pollingEvery(Duration.ofSeconds(2))
                     .ignoring(NoSuchElementException.class);
             wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
@@ -546,7 +545,7 @@ public class CompetitivePricingGeneralPage
         try
         {
             Wait<WebDriver> wait = new FluentWait<>(driver)
-                    .withTimeout(Duration.ofSeconds(120))
+                    .withTimeout(Duration.ofSeconds(400))
                     .pollingEvery(Duration.ofSeconds(2))
                     .ignoring(NoSuchElementException.class);
             wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
@@ -592,7 +591,7 @@ public class CompetitivePricingGeneralPage
                 wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
 
                 wait = new FluentWait<>(driver)
-                        .withTimeout(Duration.ofSeconds(120))
+                        .withTimeout(Duration.ofSeconds(400))
                         .pollingEvery(Duration.ofSeconds(2))
                         .ignoring(NoSuchElementException.class);
                 wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
@@ -1291,7 +1290,7 @@ public class CompetitivePricingGeneralPage
                WebElement loadProd=HelpersMethod.FindByElement(driver,"xpath","//span[contains(text(),'load all products')]");
                HelpersMethod.ActClick(driver,loadProd,10000);
                Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
-                       .withTimeout(Duration.ofSeconds(120))
+                       .withTimeout(Duration.ofSeconds(400))
                        .pollingEvery(Duration.ofSeconds(2))
                        .ignoring(NoSuchElementException.class);
                wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));

@@ -62,6 +62,7 @@ public class OrderGuidePageStep1
     {
         createOGPage=new CreateOGPage(driver,scenario);
         createOGPage.ValidateCatalogDisplay();
+        createOGPage.clickLoadAllProducts();
         createOGPage.ResetFilter_Catalog();
         createOGPage.selectAllProducts();
         createOGPage.validateProductInCatalog();
@@ -80,6 +81,7 @@ public class OrderGuidePageStep1
     public void user_should_select_products_from_catalog_popupForPriceBase() throws InterruptedException {
         createOGPage=new CreateOGPage(driver,scenario);
         createOGPage.ValidateCatalogDisplay();
+        createOGPage.clickLoadAllProducts();
         createOGPage.ResetFilter_Catalog();
         createOGPage.selectAllProducts();
         createOGPage.validateProductInCatalog();
@@ -338,7 +340,9 @@ public class OrderGuidePageStep1
     {
         createOGPage = new CreateOGPage(driver, scenario);
         createOGPage.ValidateCatalogDisplay();
+        createOGPage.clickLoadAllProducts();
         createOGPage.ResetFilter_Catalog();
+        createOGPage.selectAllProducts();
         createOGPage.validateProductInCatalog();
         createOGPage.AddFromCatalog(DataBaseConnection.DataConn1(TestBase.testEnvironment.getMultiple_Prod_Sql1()));
     }
@@ -427,7 +431,9 @@ public class OrderGuidePageStep1
     {
         createOGPage=new CreateOGPage(driver,scenario);
         createOGPage.ValidateCatalogDisplay();
+        createOGPage.clickLoadAllProducts();
         createOGPage.ResetFilter_Catalog();
+        createOGPage.selectAllProducts();
         createOGPage.validateProductInCatalog();
         if (HelpersMethod.IsExists("//div[contains(@class,'k-window k-dialog')]/descendant::div[contains(@class,'i-grid')]", driver))
         {

@@ -171,6 +171,7 @@ public class InventoryPageSteps
         inventory.clickOnAddProd();
         inventory.validateCatalogPopup();
         inventory.loadProducts();
+        inventory.selectShowAllProducts();
         if (HelpersMethod.IsExists("//div[contains(@class,'k-window k-dialog')]/descendant::div[contains(@class,'i-grid')]", driver))
         {
             scenario.log("CATALOG IN THE FORM OF LIST VIEW HAS BEEN FOUND");
@@ -186,7 +187,6 @@ public class InventoryPageSteps
             }
         }
         inventory.clickOnCatalogOkButton();
-
         inventory.clickSaveButton();
         inventory.readProductsInInventory();
     }

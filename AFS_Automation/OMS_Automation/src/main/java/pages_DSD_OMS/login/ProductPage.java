@@ -214,23 +214,26 @@ public class ProductPage
         String dropText;
         try
         {
-            if (HelpersMethod.IsExists("//span[@id='CPQoh-accessibility-id']/span[text()='Show only products with available inventory']", driver))
-            {
-                WebElement dropDownMenu = HelpersMethod.FindByElement(driver, "xpath", "//span[@id='CPQoh-accessibility-id']/following-sibling::button");
-                HelpersMethod.ClickBut(driver, dropDownMenu, 10000);
-                List<WebElement> dropDowns = HelpersMethod.FindByElements(driver, "xpath", "//ul[@id='CPQoh-listbox-id']/descendant::span[@class='k-list-item-text']");
-                for (WebElement dropDown : dropDowns)
-                {
-                    act.moveToElement(dropDown).build().perform();
-                    dropText = dropDown.getText();
-                    if (dropText.equalsIgnoreCase("Show all products"))
-                    {
+           if(HelpersMethod.IsExists("//span[@id='CPQoh-accessibility-id']", driver))
+           {
+               if (HelpersMethod.IsExists("//span[@id='CPQoh-accessibility-id']/span[text()='Show only products with available inventory']", driver))
+               {
+                   WebElement dropDownMenu = HelpersMethod.FindByElement(driver, "xpath", "//span[@id='CPQoh-accessibility-id']/following-sibling::button");
+                   HelpersMethod.ClickBut(driver, dropDownMenu, 10000);
+                   List<WebElement> dropDowns = HelpersMethod.FindByElements(driver, "xpath", "//ul[@id='CPQoh-listbox-id']/descendant::span[@class='k-list-item-text']");
+                   for (WebElement dropDown : dropDowns)
+                   {
                        act.moveToElement(dropDown).build().perform();
-                       act.click(dropDown).build().perform();
-                       break;
-                    }
-                }
-            }
+                       dropText = dropDown.getText();
+                       if (dropText.equalsIgnoreCase("Show all products"))
+                       {
+                           act.moveToElement(dropDown).build().perform();
+                           act.click(dropDown).build().perform();
+                           break;
+                       }
+                   }
+               }
+           }
         }
         catch (Exception e){}
     }

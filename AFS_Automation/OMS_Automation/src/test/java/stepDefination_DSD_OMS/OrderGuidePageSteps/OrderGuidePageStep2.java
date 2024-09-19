@@ -248,7 +248,9 @@ public class OrderGuidePageStep2
     {
         createOGPage=new CreateOGPage(driver,scenario);
         createOGPage.ValidateCatalogDisplay();
+        createOGPage.clickLoadAllProducts();
         createOGPage.ResetFilter_Catalog();
+        createOGPage.selectAllProducts();
         createOGPage.validateProductInCatalog();
         if (HelpersMethod.IsExists("//div[contains(@class,'k-window k-dialog')]/descendant::div[contains(@class,'i-grid')]", driver))
         {
@@ -266,6 +268,7 @@ public class OrderGuidePageStep2
     {
         createOGPage=new CreateOGPage(driver,scenario);
         createOGPage.ValidateCatalogDisplay();
+        createOGPage.clickLoadAllProducts();
         createOGPage.ResetFilter_Catalog();
         createOGPage.selectAllProducts();
         createOGPage.validateProductInCatalog();
