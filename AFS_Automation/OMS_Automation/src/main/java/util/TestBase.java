@@ -96,6 +96,7 @@ public class TestBase
                 //chromeOptions.addArguments("--disable-popup-blocking");
                 //chromeOptions.addArguments("disable-notifications");
                 //chromeOptions.addArguments("disable-infobars");
+                chromeOptions.addArguments("--no-sandbox");
                 chromeOptions.addArguments("--start-maximized");
                 chromeOptions.addArguments("window-size=1920,1080");
                 //chromeOptions.addArguments("window-size=1280,720");
@@ -156,9 +157,7 @@ public class TestBase
                 //WebDriverManager.chromedriver().setup();
                 ChromeOptions chromeOptions = new ChromeOptions();
                 chromeOptions.addArguments("--headless=new");
-
-                //chromeOptions.addArguments("window-size=1920,1080");
-                //chromeOptions.addArguments("window-size=");
+                chromeOptions.addArguments("--no-sandbox");
                 chromeOptions.addArguments("--remote-allow-origins=*");
                 chromeOptions.setPageLoadStrategy(PageLoadStrategy.NORMAL);
                 chromeOptions.addArguments("--no-proxy-server");
@@ -169,7 +168,6 @@ public class TestBase
                 chromeOptions.addArguments("--disable-browser-side-navigation");
                 chromeOptions.addArguments("--disable-gpu");
                 chromeOptions.addArguments("--force-device-scale-factor=1");
-                chromeOptions.addArguments("--no-sandbox");
                 chromeOptions.addArguments("--disable-dev-shm-usage");
                 chromeOptions.addArguments("--aggressive-cache-discard");
                 chromeOptions.addArguments("--disable-cache");
