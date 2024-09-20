@@ -669,7 +669,7 @@ public class NewOrderEntryPage
             if (HelpersMethod.IsExists("//span[text()='Catalog']/ancestor::div[contains(@class,'k-window k-dialog')]", driver))
             {
                     //When "Card view" of catlog is enabled
-                    if (HelpersMethod.IsExists("//div[@class='card-view']/ancestor::div[contains(@class,'k-window k-dialog')]", driver))
+                    if (HelpersMethod.IsExists("//div[@class='product-catalog-container']/ancestor::div[contains(@class,'k-window k-dialog')]", driver))
                     {
                         //Enter Unit value in input box of catalog
                         if (HelpersMethod.IsExists("//div[contains(@class,'k-window k-dialog')]/descendant::div[contains(text(),'Unit')]/descendant::input", driver))
@@ -2921,12 +2921,12 @@ public class NewOrderEntryPage
                     .ignoring(NoSuchElementException.class);
             wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
 
-            if(HelpersMethod.IsExists("//div[@class='card-view']/ancestor::div[contains(@class,'k-window k-dialog')]",driver))
+            if(HelpersMethod.IsExists("//div[@class='product-catalog-container']/ancestor::div[contains(@class,'k-window k-dialog')]",driver))
             {
-                if (HelpersMethod.IsExists("//button/span[contains(text(),'Reset filter')]", driver))
+                if (HelpersMethod.IsExists("//button[@data-test-id='productFilterResetBtn']", driver))
                 {
-                    WebEle = HelpersMethod.FindByElement(driver, "xpath", "//button/span[contains(text(),'Reset filter')]");
-                    HelpersMethod.ActClick(driver, WebEle, 10000);
+                    WebEle = HelpersMethod.FindByElement(driver, "xpath", "//button[@data-test-id='productFilterResetBtn']");
+                    HelpersMethod.ClickBut(driver, WebEle, 10000);
                     exists = true;
                     wait = new FluentWait<WebDriver>(driver)
                             .withTimeout(Duration.ofSeconds(400))
@@ -2935,7 +2935,7 @@ public class NewOrderEntryPage
                     wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
                 }
             }
-            else if(HelpersMethod.IsExists("//div[@class='i-grid']",driver))
+            else if(HelpersMethod.IsExists("product-catalog-container",driver))
             {
                     List<WebElement> filters=HelpersMethod.FindByElements(driver,"xpath","//div[contains(@class,'k-window k-dialog')]/descendant::div[contains(@class,'i-filter-tag')]");
                     if(filters.size()>1)
@@ -2980,7 +2980,7 @@ public class NewOrderEntryPage
             if(HelpersMethod.IsExists("//span[text()='Catalog']/ancestor::div[contains(@class,'k-window k-dialog')]",driver))
             {
                 WebElement catalogPopup=HelpersMethod.FindByElement(driver,"xpath","//span[text()='Catalog']/ancestor::div[contains(@class,'k-window k-dialog')]");
-                if(HelpersMethod.IsExists("//div[@class='card-view']/ancestor::div[contains(@class,'k-window k-dialog')]",driver))
+                if(HelpersMethod.IsExists("//div[@class='product-catalog-container']/ancestor::div[contains(@class,'k-window k-dialog')]",driver))
                 {
                     //Click on clear button in search bar
                     if(HelpersMethod.IsExists("//div[contains(@class,'k-window k-dialog')]/descendant::span[contains(@class,'right-button')]",driver))
@@ -3158,7 +3158,7 @@ public class NewOrderEntryPage
                 WebElement catalogPopup = HelpersMethod.FindByElement(driver, "xpath", "//span[text()='Catalog']/ancestor::div[contains(@class,'k-window k-dialog')]");
 
                     //When "Card view" of catlog is enabled
-                    if (HelpersMethod.IsExists("//div[@class='card-view']/ancestor::div[contains(@class,'k-window k-dialog')]", driver))
+                    if (HelpersMethod.IsExists("//div[@class='product-catalog-container']/ancestor::div[contains(@class,'k-window k-dialog')]", driver))
                     {
                         //Enter Unit value in input box of catalog
                         if (HelpersMethod.IsExists("//input[contains(@id,'catalog-quantity-input')]", driver))
@@ -5927,7 +5927,7 @@ public class NewOrderEntryPage
                 WebElement catalogPopup=HelpersMethod.FindByElement(driver,"xpath","//span[text()='Catalog']/ancestor::div[contains(@class,'k-window k-dialog')]");
                 if(HelpersMethod.IsExists("//div[@class='card-view']",driver))
                 {
-                    WebEle=HelpersMethod.FindByElement(driver,"xpath","//button/span[contains(text(),'Reset filter')]");
+                    WebEle=HelpersMethod.FindByElement(driver,"xpath","//button[@data-test-id='productFilterResetBtn']");
                     HelpersMethod.ActClick(driver,WebEle,10000);
                     exists=true;
                     if(HelpersMethod.IsExists("//div[@class='loader']",driver))
@@ -6359,11 +6359,11 @@ public class NewOrderEntryPage
         String rNo;
         try
         {
-            if(HelpersMethod.IsExists("//input[@id='RouteIndex']",driver))
+            if(HelpersMethod.IsExists("//input[@id='RouteIndex']",driver) && HelpersMethod.IsExists("//input[@id='RouteIndex']",driver))
             {
-                WebElement routeEle = HelpersMethod.FindByElement(driver, "id", "RouteIndex");
+                WebElement routeEle = HelpersMethod.FindByElement(driver, "xpath", "//input[@id='RouteIndex']");
                 HelpersMethod.ScrollElement(driver, routeEle);
-                rNo = HelpersMethod.JSGetValueEle(driver, routeEle, 10000);
+                rNo=routeEle.getAttribute("value");
 
                 if(rNo==null||rNo.equals(""))
                 {

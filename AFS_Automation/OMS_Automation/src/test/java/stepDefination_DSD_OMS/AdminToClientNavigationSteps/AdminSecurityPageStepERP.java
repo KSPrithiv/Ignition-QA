@@ -106,11 +106,12 @@ public class AdminSecurityPageStepERP
     }
 
     @And("User navigate to Customer Inq ERP env and Select Customer Account#")
-    public void userNavigateToCustomerInqERPEnvAndSelectCustomerAccount(DataTable dataTable)
+    public void userNavigateToCustomerInqERPEnvAndSelectCustomerAccount(DataTable dataTable) throws InterruptedException
     {
         List<List<String>> firstFilterValue = dataTable.asLists(String.class);
         customerInquiryPageERP=new CustomerInquiryPageERP(driver,scenario);
         customerInquiryPageERP.NavigateToCustomerInquiry();
+        Thread.sleep(1000);
         customerInquiryPageERP.clickOnCustomerAccountIndex();
         customerInquiryPageERP.validateCustomerAccountIndex();
         customerInquiryPageERP.selectCustomerAccountUsingCustomerAccount(firstFilterValue.get(0).get(0));

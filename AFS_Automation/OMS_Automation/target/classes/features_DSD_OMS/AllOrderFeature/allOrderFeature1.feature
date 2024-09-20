@@ -7,6 +7,18 @@ Feature: All orders
     Then User navigate to Client side for All order
     Then User should select Order Entry tab for All order
 
+
+  @GroupLevelAvgCalculation
+  Scenario Outline: Test scenario for finding Avg of the column for Qty and total
+    Given User must be on Order Entry Page to select All Orders
+    And User should navigate to All Orders
+    Then User clicks on Show all orders check box after Clicking All orders tab
+    Then User clicks on dropdown in All order for group level calculation for Qty,Total and select "<Options>"
+    And User validates the Avg amount in Qty and Total
+    Examples:
+      | Options |
+      | Avg     |
+
   @CreatePickupOrder
   Scenario: Test scenario for creating Pickup order
     Given User must be on Order Entry Page to select All Orders
@@ -26,17 +38,6 @@ Feature: All orders
     Then User should be navigated back to All order page
     And User clicks on Show all orders check box
     And User Clicks on Add filter button and Search for OrderNo
-
-  @GroupLevelAvgCalculation
-    Scenario Outline: Test scenario for finding Avg of the column for Qty and total
-    Given User must be on Order Entry Page to select All Orders
-    And User should navigate to All Orders
-    Then User clicks on Show all orders check box after Clicking All orders tab
-    Then User clicks on dropdown in All order for group level calculation for Qty,Total and select "<Options>"
-    And User validates the Avg amount in Qty and Total
-    Examples:
-      | Options |
-      | Avg     |
 
   @VerifyCommentIcon
   Scenario: Test scenario for verifying Comment Icon

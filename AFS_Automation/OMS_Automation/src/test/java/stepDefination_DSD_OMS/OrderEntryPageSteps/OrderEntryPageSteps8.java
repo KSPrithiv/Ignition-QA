@@ -57,19 +57,20 @@ public class OrderEntryPageSteps8
         //if(HelpersMethod.IsExists("//div[@class='i-grid']",driver))
         if(HelpersMethod.IsExists("//button[contains(@class,'i-filter-tag__main')]/descendant::span[text()='Add filter']",driver))
         {
-            newOE.listCatelog();
             newOE.clickOnLoadAllProducts();
             newOE.ResetFilter_Catalog();
             newOE.selectAllProductsCatalogDialogbox();
+            newOE.listCatelog();
             newOE.readProductInList();
             newOE.catalogOK();
         }
         //else if(HelpersMethod.IsExists("//div[@class='product-catalog-container']",driver))
-        else if(HelpersMethod.IsExists("//button/span[contains(text(),'Reset filter')]",driver))
+        else if(HelpersMethod.IsExists("//button[@data-test-id='productFilterResetBtn']",driver))
         {
-
-            newOE.cardCatelog();
             newOE.clickOnLoadAllProducts();
+            newOE.ResetFilter_Catalog();
+            newOE.selectAllProductsCatalogDialogbox();
+            newOE.cardCatelog();
             newOE.readProductInCard();
             newOE.catalogOK();
         }

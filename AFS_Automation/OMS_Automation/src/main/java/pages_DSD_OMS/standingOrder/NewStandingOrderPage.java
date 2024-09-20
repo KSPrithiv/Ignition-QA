@@ -1358,26 +1358,6 @@ public class NewStandingOrderPage
             {
                 if(HelpersMethod.IsExists("//span[text()='Catalog']/ancestor::div[contains(@class,'k-window k-dialog')]/descendant::span[text()='Add filter']",driver))
                 {
-//                    //Click on 'Add filter'
-//                    WebElement catalogPopup = HelpersMethod.FindByElement(driver, "xpath", "//span[text()='Catalog']/ancestor::div[contains(@class,'k-window k-dialog')]");
-//                    WebEle = catalogPopup.findElement(By.xpath("//button/descendant::span[text()='Add filter']"));
-//                    HelpersMethod.clickOn(driver, WebEle, 10000);
-
-//                    //Enter value in 1st input
-//                    WebElement fistSearch = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-child-animation-container')]/descendant::input[contains(@class,'i-search-box__input')]");
-//                    HelpersMethod.EnterText(driver, fistSearch, 10000, "Description");
-//                    //Click on check box
-//                    WebElement checkBox = HelpersMethod.FindByElement(driver, "id", "Name");
-//                    HelpersMethod.ActClick(driver, checkBox, 10000);
-//                    Thread.sleep(400);
-//                    //entering product name/description in second search box
-//                    WebElement secondSearch = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-animation-container-shown')]/descendant::input[contains(@class,'k-input')]");
-//                    HelpersMethod.EnterText(driver, secondSearch, 20000, Prod_Name);
-//                    //Click on Apply button
-//                    WebElement applyButton = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-animation-container-shown')]/descendant::button/span[text()='Apply']");
-//                    HelpersMethod.ClickBut(driver, applyButton, 10000);
-
-
                     //Search for Description in the catalog dialog box
                     String headText;
                     int i=0;
@@ -1501,7 +1481,6 @@ public class NewStandingOrderPage
             }
             else if(HelpersMethod.IsExists("//div[contains(@class,'k-window k-dialog')]/descendant::div[contains(@class,'card-view')]",driver))
             {
-
                 //search for exact product in catalog for product by comparing description
                 List<WebElement> descriptionItem=HelpersMethod.FindByElements(driver,"xpath","//div[contains(@id,'gridItem')]/descendant::span[contains(@class,'product-name')]");
                 for(WebElement desItem:descriptionItem)
@@ -1622,7 +1601,7 @@ public class NewStandingOrderPage
                     .ignoring(NoSuchElementException.class);
             wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
 
-            if (HelpersMethod.IsExists("//div[@class='card-view']/ancestor::div[contains(@class,'k-window k-dialog')]", driver))
+            if (HelpersMethod.IsExists("//div[@class='product-catalog-container']/ancestor::div[contains(@class,'k-window k-dialog')]", driver))
             {
                 if (HelpersMethod.IsExists("//span[@id='CPcategories']", driver))
                 {
@@ -1696,7 +1675,6 @@ public class NewStandingOrderPage
         String cat=TestBase.testEnvironment.get_Category();
         try
         {
-            //WebElement dropDown=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-popup k-child-animation-container')]");
             List<WebElement> allProds=HelpersMethod.FindByElements(driver,"xpath","//div[contains(@class,'k-animation-container-relative k-list-container')]/descendant::ul/li");
             for(WebElement prod:allProds)
             {
@@ -1758,7 +1736,7 @@ public class NewStandingOrderPage
                 new WebDriverWait(driver,Duration.ofMillis(10000)).until(ExpectedConditions.refreshed(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(@class,'k-window k-dialog')]"))));
                 if (HelpersMethod.IsExists("//div[@class='card-view']", driver))
                 {
-                    WebEle=HelpersMethod.FindByElement(driver,"xpath","//button/span[contains(text(),'Reset filter')]");
+                    WebEle=HelpersMethod.FindByElement(driver,"xpath","//button[@data-test-id='productFilterResetBtn']");
                     HelpersMethod.ClickBut(driver,WebEle,10000);
                     Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
                             .withTimeout(Duration.ofSeconds(400))
@@ -1990,18 +1968,6 @@ public class NewStandingOrderPage
             {
                 //Enter Qty in quick inputbox
                 String Pro=TestBase.testEnvironment.getPrecedingByZero();
-                //int i = 0;
-                //while (i < Pro.length() && Pro.charAt(i) == '0')
-                //    i++;
-
-                // Converting string into StringBuffer object, as strings are immutable
-                //StringBuffer sb = new StringBuffer(Pro);
-
-                // The StringBuffer replace function removes,i characters from given index (0 here)
-                //sb.replace(0, i, "");
-
-                // Returning string after removing zeros
-                //Pro1=sb.toString();
 
                 //Finding whether the quick product is having leading zero
                 act1.moveToElement(QuickProduct).click().build().perform();
@@ -2242,18 +2208,6 @@ public class NewStandingOrderPage
         int i=0;
         try
         {
-           /* List<WebElement> Products= HelpersMethod.FindByElements(driver,"xpath","//button[@class='i-link-button']");
-            for(WebElement prod:Products)
-            {
-                act.moveToElement(prod).build().perform();
-                prodText=prod.getText();
-                if(prodText.startsWith("0")|| prodText.length()==8)
-                {
-                    scenario.log("<span style='color:red'>PRODUCT NUMBER IS HAVING PRECEDING ZERO VALUES</span>");
-                    exists=true;
-                    break;
-                }
-            }*/
             //Code to search for product in search filter
             String prodNo=TestBase.testEnvironment.getPrecedingByZero();
             List<WebElement> heads=HelpersMethod.FindByElements(driver,"xpath","//div[@class='k-widget k-window k-dialog']/descendant::th[@class='k-header']/descendant::span[@class='k-column-title']");
@@ -2291,7 +2245,7 @@ public class NewStandingOrderPage
     public void cardViewAdminZeroPreceding()
     {
         exists=false;
-        String prodText="";
+        String prodText;
         try
         {
             //code to enter value in search bar of catalog dialog box

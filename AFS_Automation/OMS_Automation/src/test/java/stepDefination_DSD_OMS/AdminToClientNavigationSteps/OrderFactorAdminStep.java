@@ -75,6 +75,9 @@ public class OrderFactorAdminStep
         ordFacorPage.selectCustomer(customer);
         ordFacorPage.clickOnAddProducts();
         ordFacorPage.validateProductDialogbox();
+        ordFacorPage.clickLoadAllProducts();
+        ordFacorPage.ResetFilter_Catalog();
+        ordFacorPage.selectAllProducts();
         prodNo=ordFacorPage.readFirstProductInProductDialogBox();
         ordFacorPage.productDialogBoxOkButton();
         ordFacorPage.validateAddingOfProductInOrderFactorGrid(prodNo);
@@ -89,6 +92,9 @@ public class OrderFactorAdminStep
         ordFacorPage=new orderFactorAdminPage(driver,scenario);
         ordFacorPage.clickOnAddProducts();
         ordFacorPage.validateProductDialogbox();
+        ordFacorPage.clickLoadAllProducts();
+        ordFacorPage.ResetFilter_Catalog();
+        ordFacorPage.selectAllProducts();
         prodNo=ordFacorPage.readFirstProductInProductDialogBox();
         ordFacorPage.productDialogBoxOkButton();
         ordFacorPage.validateAddingOfProductInOrderFactorGrid(prodNo);

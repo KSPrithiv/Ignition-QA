@@ -85,8 +85,6 @@ public class OrderEntryPageSteps6
     {
         newOE=new NewOrderEntryPage(driver,scenario);
         newOE.ValidateNewOE();
-        //find whether route is empty or not, if empty should select some route value
-        newOE.validateRouteValue();
         newOE.ClickPickupCheckBox();
         newOE.validatePickupCheckBoxSelected();
     }

@@ -503,7 +503,7 @@ public class OrderEntryPage
         }
         try
         {
-            //new WebDriverWait(driver,Duration.ofMillis(1000)).until(ExpectedConditions.visibilityOfElementLocated(By.id("customerAccountNumberComboBox")));
+
             Actions act = new Actions(driver);
             Acc_No = TestBase.testEnvironment.get_Account();
             WebEle = HelpersMethod.FindByElement(driver, "id", "customerAccountNumberComboBox");
@@ -1153,7 +1153,7 @@ public class OrderEntryPage
         try
         {
             HelpersMethod.waitTillElementLocatedDisplayed(driver, "id", "order-search-card", 20000);
-            //HelpersMethod.ScrollElement(driver, driver.findElement(By.id("order-search-card")));
+
             HelpersMethod.ScrollElement(driver,StartOrder);
             Thread.sleep(10000);
         }
@@ -1674,7 +1674,7 @@ public class OrderEntryPage
                 SimpleDateFormat fromUser1 = new SimpleDateFormat("EEE, MMM d, yyyy");
                 SimpleDateFormat fromUser = new SimpleDateFormat("EEEE, MMMM d, yyyy");
                 String resetDateFormatted = fromUser.format(fromUser1.parse(resetDate));
-                //Assert.assertEquals(C_Date1,resetDateFormatted);
+
                 if(C_Date1.equals(resetDateFormatted))
                 {
                     exists=true;
@@ -1688,11 +1688,11 @@ public class OrderEntryPage
     {
         exists=false;
         WebElement WebEle;
-//        Actions act=new Actions(driver);
-//        WebElement ele1;
+
+
         String formattedDate1;
-//        String formattedDate2=null;
-//        String formDate1=null;
+
+
         WebElement date;
         boolean exists1;
 
@@ -2831,7 +2831,7 @@ public class OrderEntryPage
                 }
             }
             Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
-                    .withTimeout(Duration.ofSeconds(120))
+                    .withTimeout(Duration.ofSeconds(200))
                     .pollingEvery(Duration.ofSeconds(2))
                     .ignoring(NoSuchElementException.class);
             wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));

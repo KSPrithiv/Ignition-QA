@@ -568,6 +568,7 @@ public class AllOrderPage
 
     public void ValidateCustomerIndexPopup()
     {
+        exists=false;
         String  status = HelpersMethod.returnDocumentStatus(driver);
         if (status.equals("loading"))
         {
@@ -594,7 +595,16 @@ public class AllOrderPage
 
         // to fetch the web elements of the modal content and interact with them, code to fetch content of modal title and verify it
         WebElement modalContentTitle = modalContainer.findElement(By.xpath(".//span[contains(@class,'k-window-title k-dialog-title')]"));
-        Assert.assertEquals(modalContentTitle.getText(), "Customer account index", "Verify Title message");
+        //Assert.assertEquals(modalContentTitle.getText(), "Customer account index", "Verify Title message");
+        if(modalContentTitle.getText().equals("Customer account index"))
+        {
+            exists=true;
+        }
+        else
+        {
+            exists=false;
+        }
+        Assert.assertEquals(exists,true);
     }
 
     public void CustomerIndexPopup() throws InterruptedException
@@ -1022,8 +1032,8 @@ public class AllOrderPage
         try
         {
             WebElement WebEle;
-            WebElement Wheel=null;
-            String formattedDate1=null;
+            WebElement Wheel;
+            String formattedDate1;
 
             LocalDate myDateObj = LocalDate.now().plusDays(1);
             DateTimeFormatter myFormatObj = DateTimeFormatter.ofPattern("EEEE, MMMM d, yyyy");
@@ -2074,6 +2084,7 @@ public class AllOrderPage
                     {
                         act.moveToElement(optionOO).build().perform();
                         act.click().build().perform();
+                        scenario.log("PICKUP ORDER HAS BEEN SELECTED");
                         exists=true;
                         break;
                     }

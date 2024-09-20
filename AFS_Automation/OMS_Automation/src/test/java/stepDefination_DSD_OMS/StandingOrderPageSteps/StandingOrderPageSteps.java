@@ -407,6 +407,7 @@ public class StandingOrderPageSteps
         standingOrder.ValidateCatalogPopup();
         standingOrder.clickOnLoadAllProducts();
         standingOrder.ResetFilter_Catalog();
+        standingOrder.selectAllProduct();
         standingOrder.SearchProductDiscription();
         standingOrder.validateProductSelectedOrNot();
         standingOrder.CatalogOKButton();
