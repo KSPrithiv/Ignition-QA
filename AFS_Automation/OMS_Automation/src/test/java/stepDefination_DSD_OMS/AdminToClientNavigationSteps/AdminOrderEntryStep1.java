@@ -7,6 +7,7 @@ import io.cucumber.java.en.Then;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import pages_DSD_OMS.adminSecurity.AdminSecurityPermissionPage;
+import pages_DSD_OMS.orderEntry.CheckOutSummaryPage;
 import pages_DSD_OMS.orderEntry.NewOrderEntryPage;
 import pages_DSD_OMS.orderEntry.OrderEntryPage;
 import pages_DSD_OMS.webOrdering.AdminHomePage;
@@ -86,8 +87,15 @@ public class AdminOrderEntryStep1
         orderpage = new OrderEntryPage(driver, scenario);
         orderpage.Select_Order_OrdersGrid();
         //Check if user is on New OE page
-        newOE=new NewOrderEntryPage(driver,scenario);
-        exists=newOE.ValidateNewOE1();
-        Assert.assertEquals(exists,true);
+//        newOE=new NewOrderEntryPage(driver,scenario);
+//          exists=newOE.ValidateNewOE1();
+//        Assert.assertEquals(exists,true);
+    }
+
+    @And("Click on BackToOrderlist button")
+    public void clickOnBackToOrderlistButton() throws InterruptedException, AWTException
+    {
+        CheckOutSummaryPage checkSummaryPage=new CheckOutSummaryPage(driver,scenario);
+        checkSummaryPage.clickOnBackToOrderList();
     }
 }

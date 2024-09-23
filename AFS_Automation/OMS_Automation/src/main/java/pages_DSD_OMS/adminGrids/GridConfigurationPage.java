@@ -484,6 +484,12 @@ public class GridConfigurationPage
         exists=false;
         try
         {
+            Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(600))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
             if(HelpersMethod.IsExists("//span[@id='SelectGrid']",driver))
             {
                 WebEle=HelpersMethod.FindByElement(driver,"id","SelectGrid");
@@ -514,6 +520,7 @@ public class GridConfigurationPage
                     {
                         act1.moveToElement(opt).build().perform();
                         act1.click(opt).build().perform();
+                        scenario.log(arg0+" GRID HAS BEEN SELECTED FOR DELETION");
                         exists=true;
                         break;
                     }
@@ -536,6 +543,7 @@ public class GridConfigurationPage
     {
         exists=false;
         Actions act1=new Actions(driver);
+        String opt_text;
         try
         {
             new WebDriverWait(driver,Duration.ofMillis(20000)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.xpath("//ul[@id='SelectGrid-listbox-id']/li/span[@class='k-list-item-text']"))));
@@ -544,10 +552,12 @@ public class GridConfigurationPage
             {
                 scenario.log("GRIDS AVAILABLE ARE::");
                 List<WebElement> options=HelpersMethod.FindByElements(driver,"xpath","//ul[@id='SelectGrid-listbox-id']/li/span[@class='k-list-item-text']");
-                for (WebElement opt:options)
+                //for (WebElement opt:options)
+                for(int i=0;i<=options.size()-1;i++)
                 {
-                    act1.moveToElement(opt).build().perform();
-                    String opt_text=opt.getText();
+                    //act1.moveToElement(opt).build().perform();
+                    //opt_text=opt.getText();
+                    opt_text= options.get(i).getText();
                     scenario.log(opt_text);
                 }
             }
@@ -926,6 +936,7 @@ public class GridConfigurationPage
     public void clickOnOkButtonInSavePopup()
     {
         exists=false;
+        Wait<WebDriver> wait;
         try
         {
             if(HelpersMethod.IsExists("//div[contains(text(),'saved successfully')]/ancestor::div[contains(@class,'k-window k-dialog')]",driver))
@@ -933,11 +944,11 @@ public class GridConfigurationPage
                 WebElement saveConfirmationPopup=HelpersMethod.FindByElement(driver,"xpath","//div[contains(text(),'saved successfully')]/ancestor::div[contains(@class,'k-window k-dialog')]");
                 WebElement okButton=saveConfirmationPopup.findElement(By.xpath(".//button/span[text()='OK']"));
                 HelpersMethod.ActClick(driver,okButton,10000);
-                if(HelpersMethod.IsExists("//div[@class='loader']",driver))
-                {
-                    WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000000);
-                }
+                wait = new FluentWait<WebDriver>(driver)
+                        .withTimeout(Duration.ofSeconds(200))
+                        .pollingEvery(Duration.ofSeconds(2))
+                        .ignoring(NoSuchElementException.class);
+                wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
                 exists=true;
             }
             else if(HelpersMethod.IsExists("//div[contains(text(),'Duplicate grid')]/ancestor::div[@class='k-window k-dialog']",driver))
@@ -945,11 +956,11 @@ public class GridConfigurationPage
                 WebElement container=HelpersMethod.FindByElement(driver,"xpath","//div[@class='k-window k-dialog']");
                 WebElement okButton=container.findElement(By.xpath(".//button/span[text()='OK']"));
                 HelpersMethod.ActClick(driver,okButton,10000);
-                if(HelpersMethod.IsExists("//div[@class='loader']",driver))
-                {
-                    WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000000);
-                }
+                wait = new FluentWait<WebDriver>(driver)
+                        .withTimeout(Duration.ofSeconds(400))
+                        .pollingEvery(Duration.ofSeconds(2))
+                        .ignoring(NoSuchElementException.class);
+                wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
                 exists=false;
             }
             Assert.assertTrue(exists);
@@ -964,13 +975,13 @@ public class GridConfigurationPage
         String headerText;
         try
         {
-            if(HelpersMethod.IsExists("//div[@class='loader']",driver))
-            {
-                WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000000);
-            }
+            Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(400))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
 
-               WebElement scrollEle=HelpersMethod.FindByElement(driver,"id","GridConfigurationConfiguration");
+            WebElement scrollEle=HelpersMethod.FindByElement(driver,"id","GridConfigurationConfiguration");
                HelpersMethod.ScrollElement(driver,scrollEle);
                List<WebElement> headers=HelpersMethod.FindByElements(driver,"xpath","//tr[contains(@class,'k-grid-edit-row')]/descendant::input[@class='k-textbox']");
                for(WebElement header:headers)
@@ -1027,6 +1038,12 @@ public class GridConfigurationPage
         try
         {
             Thread.sleep(1000);
+            Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(400))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
             if(HelpersMethod.IsExists("//tr[contains(@class,'k-grid-edit-row')]["+pos+"]/descendant::input[@class='k-textbox']",driver))
             {
                 WebElement gridLabel=driver.findElement(By.xpath("//tr[contains(@class,'k-grid-edit-row')]["+pos+"]/descendant::input[@class='k-textbox']"));

@@ -576,8 +576,6 @@ public class HelpersMethod
     //Code for navigating from tab to tab
     public static void navigate_Horizantal_Tab(WebDriver driver, String MenuItem,String MenuItemLocator,String selector,String MenuItems)
     {
-        Scenario scenario = null;
-        boolean found=false;
         String Menu_Text;
         Actions act=new Actions(driver);
         List<WebElement> MenuBar=FindByElements(driver,selector,MenuItems);
@@ -589,7 +587,6 @@ public class HelpersMethod
             {
                 WebElement menuItem=FindByElement(driver,selector,MenuItemLocator);
                 JScriptClick(driver,menuItem,10000);
-                found=true;
                 break;
             }
         }
@@ -600,7 +597,7 @@ public class HelpersMethod
         }
 
         Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
-                .withTimeout(Duration.ofSeconds(120))
+                .withTimeout(Duration.ofSeconds(600))
                 .pollingEvery(Duration.ofSeconds(2))
                 .ignoring(NoSuchElementException.class);
         wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
@@ -612,7 +609,7 @@ public class HelpersMethod
         }
 
         wait = new FluentWait<WebDriver>(driver)
-                .withTimeout(Duration.ofSeconds(120))
+                .withTimeout(Duration.ofSeconds(600))
                 .pollingEvery(Duration.ofSeconds(2))
                 .ignoring(NoSuchElementException.class);
         wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));

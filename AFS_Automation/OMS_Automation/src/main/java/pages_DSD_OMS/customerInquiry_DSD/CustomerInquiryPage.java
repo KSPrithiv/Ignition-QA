@@ -1041,7 +1041,7 @@ public class CustomerInquiryPage
     public void validateNoteInPopup(String custNote)
     {
         exists=false;
-        String commentText=null;
+        String commentText;
         Actions act=new Actions(driver);
         try
         {

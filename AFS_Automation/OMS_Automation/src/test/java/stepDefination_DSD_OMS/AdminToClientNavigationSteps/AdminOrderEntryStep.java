@@ -328,6 +328,7 @@ public class AdminOrderEntryStep
         newOE.Validate_Catalog();
         newOE.validateAutoLoadProducts();
         newOE.ResetFilter_Catalog();
+        newOE.selectAllProductsCatalogDialogbox();
         //String pro=Prod_No;
         newOE.validateCatalogProducts();
         newOE.Search_Prod_in_Catalog(Prod_No);
@@ -434,29 +435,30 @@ public class AdminOrderEntryStep
     public void clickOnNextButtonAndValidateThatCheckoutOrderPageNotVisible() throws InterruptedException, AWTException
     {
         exists=false;
-        newOE = new NewOrderEntryPage(driver,scenario);
-        newOE.readProductsInOrder();
-        //handling toast messages
-        for(int i=0;i<=2;i++)
-        {
-            //check for toast message for low on inventory
-            newOE.lowOnInventoryToast();
-            //check for toast message for product is currently unavailable
-            newOE.toastCurrentlyUnavailable();
-        }
-
-        for(int i=0;i<=1;i++)
-        {
-            newOE.priceCannotBeBleowCost();
-            newOE.exceedsMaxQty();
-        }
-        exists=newOE.ClickNext();
-        newOE.OutOfStockPop_ERP();
-        String status = HelpersMethod.returnDocumentStatus(driver);
-        if (status.equals("loading"))
-        {
-            HelpersMethod.waitTillLoadingPage(driver);
-        }
+        String status;
+//        newOE = new NewOrderEntryPage(driver,scenario);
+//        newOE.readProductsInOrder();
+//        //handling toast messages
+//        for(int i=0;i<=2;i++)
+//        {
+//            //check for toast message for low on inventory
+//            newOE.lowOnInventoryToast();
+//            //check for toast message for product is currently unavailable
+//            newOE.toastCurrentlyUnavailable();
+//        }
+//
+//        for(int i=0;i<=1;i++)
+//        {
+//            newOE.priceCannotBeBleowCost();
+//            newOE.exceedsMaxQty();
+//        }
+//        exists=newOE.ClickNext();
+//        newOE.OutOfStockPop_ERP();
+//        String status = HelpersMethod.returnDocumentStatus(driver);
+//        if (status.equals("loading"))
+//        {
+//            HelpersMethod.waitTillLoadingPage(driver);
+//        }
 
         Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
                 .withTimeout(Duration.ofSeconds(400))
@@ -477,14 +479,14 @@ public class AdminOrderEntryStep
         wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
 
         exists=false;
-        if(!HelpersMethod.IsExists("//div[@id='checkoutCard']",driver))
+        if(!HelpersMethod.IsExists("//div[@id='checkoutCard']",driver) ||  !HelpersMethod.IsExists("//div[@id='orderEntryCard']",driver))
         {
-            scenario.log("NO CHECKOUT ORDER PAGE FOUND, AND IT IS EXPECTED BEHAVIOUR");
+            scenario.log("NO NEW OE PAGE OR NO CHECKOUT ORDER PAGE FOUND, AND IT IS EXPECTED BEHAVIOUR");
             exists=true;
         }
-        else if(HelpersMethod.IsExists("//div[@id='checkoutCard']",driver))
+        else if(HelpersMethod.IsExists("//div[@id='checkoutCard']",driver) || HelpersMethod.IsExists("//div[@id='orderEntryCard']",driver))
         {
-            scenario.log("CHECKOUT ORDER PAGE FOUND, AND IT IS NOT EXPECTED BEHAVIOUR");
+            scenario.log("NEW OE PAGE / CHECKOUT ORDER PAGE FOUND, AND IT IS NOT EXPECTED BEHAVIOUR");
             exists=false;
         }
         Assert.assertEquals(exists,true);

@@ -124,7 +124,7 @@ public class AllOrdersPageStep
                 WebElement WebEle = HelpersMethod.FindByElement(driver, "xpath", "//li[contains(@class,'k-item')]/span[@class='k-link' and contains(text(),'All orders')]|//li[contains(@class,'k-item')]/span[@class='k-link' and contains(text(),'All Orders')]|//li[contains(@class,'k-item')]/span[@class='k-link' and contains(text(),'Open orders')]|//li[contains(@class,'k-item')]/span[@class='k-link' and contains(text(),'Open Orders')]");
                 if (HelpersMethod.EleDisplay(WebEle))
                 {
-                    String Menu_Text=null;
+                    String Menu_Text;
                     Actions act=new Actions(driver);
                     List<WebElement> MenuBar=HelpersMethod.FindByElements(driver,"xpath","//li[contains(@class,'k-item')]/span[@class='k-link']");
                     for(WebElement Menu:MenuBar)

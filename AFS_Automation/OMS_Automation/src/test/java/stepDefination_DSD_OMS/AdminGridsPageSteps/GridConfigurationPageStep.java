@@ -520,6 +520,7 @@ public class GridConfigurationPageStep
         gridConfigPage.clickGridDropDown();
         gridConfigPage.readGridNamesDropdown();
         gridConfigPage.checkDeletedGridName(arg0);
+        gridConfigPage.clickGridDropDown();
     }
 
     @Then("User changes label of header available in grid")

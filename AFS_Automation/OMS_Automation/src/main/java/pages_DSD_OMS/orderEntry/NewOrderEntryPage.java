@@ -284,7 +284,6 @@ public class NewOrderEntryPage
 
     public boolean ValidateNewOE1()
     {
-
         exists=false;
         String status;
 

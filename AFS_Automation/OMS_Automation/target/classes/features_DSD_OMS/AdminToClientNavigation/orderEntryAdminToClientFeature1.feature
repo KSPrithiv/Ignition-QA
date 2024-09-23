@@ -138,12 +138,11 @@ Feature: scenarios for admin credentials and client credentials
     Then Enter Order# in Search box in Order Entry page
     Then Click on Order number in Order Entry page and check for New OE page for payment page visible
     Then Click on Next button and validate that checkout order page not visible
-    And Click on SubmitOrder button
+    And Click on BackToOrderlist button
     Then User should be navigated to Order Entry page
     Examples:
       |Main menu|Sub menu    | AdminControl                                          |Id                                   |
       |Security |Permissions | Allow user to change the shipping address of the order|accessorderentrychangeshippingaddress|
-
 
   @ShippingAddressEnabled
   Scenario Outline: Test scenario for verifying shipping address should be selected by default
