@@ -257,6 +257,7 @@ public class CustomerInquiryPageERP
             {
                 scenario.log("CUSTOMER INQ MAY NOT BE ENABLED FOR THE APPLICATION, CHECK WITH ADMIN SETTINGS");
             }
+
             Assert.assertEquals(exists, true);
         }
         catch (Exception e) {}

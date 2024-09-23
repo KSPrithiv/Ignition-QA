@@ -63,12 +63,12 @@ public class NewStandingOrderCard
     {
         exists = false;
         WebElement WebEle = null;
-        if (HelpersMethod.IsExists("//div[@class='loader']", driver))
-        {
-            WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 200000);
-        }
-        new WebDriverWait(driver,Duration.ofMillis(60000)).until(ExpectedConditions.presenceOfElementLocated(By.id("card1")));
+        Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                .withTimeout(Duration.ofSeconds(200))
+                .pollingEvery(Duration.ofSeconds(2))
+                .ignoring(NoSuchElementException.class);
+        wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
         //Click on arrow if Start standing order card is not visible
         if (HelpersMethod.IsExists("//div[contains(@class,'StandingOrder-expandable-card')]/descendant::span[contains(@class,'k-icon k-i-arrow-chevron-down')]", driver))
         {
@@ -88,21 +88,21 @@ public class NewStandingOrderCard
     public void ClickOnStartStandingOrder() throws InterruptedException
     {
         exists = false;
-        WebElement WebEle;
+
         try
         {
-            if (HelpersMethod.IsExists("//div[@class='loader']", driver))
-            {
-                WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 200000);
-            }
+            Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(400))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
 
             if (HelpersMethod.IsExists("//span[contains(@class,'k-icon k-i-arrow-chevron-up')]", driver))
             {
                 if (StartStandingOrder.isDisplayed() && StartStandingOrder.isEnabled())
                 {
                     HelpersMethod.ScrollElement(driver, StartStandingOrder);
-                    HelpersMethod.JScriptClick(driver, StartStandingOrder, 10000);
+                    HelpersMethod.ClickBut(driver, StartStandingOrder, 10000);
                     scenario.log("START STANDING ORDER BUTTON CLICKED");
                     String status = HelpersMethod.returnDocumentStatus(driver);
                     if (status.equals("loading"))
@@ -131,14 +131,14 @@ public class NewStandingOrderCard
             {
                 HelpersMethod.waitTillLoadingPage(driver);
             }
-            //Thread.sleep(2000);
+
             //Create WebElement for popup
             WebElement modalContainer = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-window k-dialog')]");
 
             //Click on From Calender icon
             WebElement startDateIcon = modalContainer.findElement(By.xpath(".//input[@id='addFromDate']/parent::span/following-sibling::button"));
             HelpersMethod.ClickBut(driver, startDateIcon, 10000);
-            //new WebDriverWait(driver, Duration.ofMillis(10000)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='k-calendar-view k-vstack k-calendar-monthview']")));
+
 
              status = HelpersMethod.returnDocumentStatus(driver);
             if (status.equals("loading"))
@@ -413,17 +413,22 @@ public class NewStandingOrderCard
 
             // Verify the title of Add standin order popup
             WebElement modalContentTitle = modalContainer.findElement(By.xpath(".//span[contains(@class,'k-window-title k-dialog-title')]"));
-            Assert.assertEquals(modalContentTitle.getText(), "Add standing order", "Verify Title message");
-
-            WebEle = modalContainer.findElement(By.xpath(".//button/span[text()='Add']"));
-            HelpersMethod.ActClick(driver, WebEle, 10000);
-            exists = true;
-            Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
-                    .withTimeout(Duration.ofSeconds(200))
-                    .pollingEvery(Duration.ofSeconds(2))
-                    .ignoring(NoSuchElementException.class);
-            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
-
+            //Assert.assertEquals(modalContentTitle.getText(), "Add standing order", "Verify Title message");
+            if(modalContentTitle.getText().equals("Add standing order"))
+            {
+                WebEle = modalContainer.findElement(By.xpath(".//button/span[text()='Add']"));
+                HelpersMethod.ActClick(driver, WebEle, 10000);
+                exists = true;
+                Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                        .withTimeout(Duration.ofSeconds(200))
+                        .pollingEvery(Duration.ofSeconds(2))
+                        .ignoring(NoSuchElementException.class);
+                wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+            }
+            else
+            {
+                exists=false;
+            }
             Assert.assertEquals(exists, true);
         }
         catch (Exception e){}
@@ -1043,9 +1048,6 @@ public class NewStandingOrderCard
             if(HelpersMethod.IsExists("//div[@class='k-animation-container k-animation-container-shown']",driver))
             {
                 WebElement selectableDate = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='k-animation-container k-animation-container-shown']/descendant::td[@class='k-calendar-td k-state-pending-focus k-today']/span");
-//                HelpersMethod.ScrollDownScrollBar(driver);
-//                HelpersMethod.ScrollTillElementVisible(driver, selectableDate);
-//                act1.moveToElement(selectableDate).build().perform();
                 HelpersMethod.JScriptClick(driver,selectableDate,10000);
                 exists = true;
             }
@@ -1080,26 +1082,7 @@ public class NewStandingOrderCard
         {
             exists=false;
             Actions act1 = new Actions(driver);
-//            if(HelpersMethod.IsExists("//span[contains(text(),'Generate standing order')]/ancestor::div[contains(@class,'k-window k-dialog')]",driver))
-//            {
-//                List<WebElement> selectableDates = HelpersMethod.FindByElements(driver,"xpath","//td[contains(@class,'k-calendar-td') and contains(@style,'opacity: 1;')]");
-//                int j=selectableDates.size()-1;
-//                for (int i = selectableDates.size() - 1; i >= 1; i--)
-//               //for(int i=0;i<=selectableDates.size()-1;i++)
-//               {
-//                   act1.moveToElement(selectableDates.get(i)).build().perform();
-//                   //if (i == selectableDates.size() - 1)
-//                   if (i == 1)
-//                   {
-//                       String selectTo = selectableDates.get(i).getAttribute("title");
-//                       WebElement selTo = HelpersMethod.FindByElement(driver, "xpath", "//td[contains(@class,'k-calendar-td') and @title='" + selectTo + "']");
-//                       act1.moveToElement(selTo).build().perform();
-//                       HelpersMethod.JScriptClick(driver, selTo, 10000);
-//                       exists=true;
-//                       break;
-//                   }
-//               }
-        //}
+
             if(HelpersMethod.IsExists("//div[@class='k-animation-container k-animation-container-shown']",driver))
             {
                 WebElement toDate = HelpersMethod.FindByElement(driver, "xpath", "//td[contains(@class,'k-calendar-td k-range-start k-range-end k-state-pending-focus k-selected') and contains(@style,'opacity: 1;')]");

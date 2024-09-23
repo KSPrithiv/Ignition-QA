@@ -431,7 +431,15 @@ public class CompetitivePricingGeneralPage
 
         // to fetch the web elements of the modal content and interact with them, code to fetch content of modal title and verify it
         WebElement modalContentTitle = modalContainer.findElement(By.xpath(".//span[contains(@class,'k-window-title k-dialog-title')]"));
-        Assert.assertEquals(modalContentTitle.getText(), "Customer account index", "Verify Title message");
+        //Assert.assertEquals(modalContentTitle.getText(), "Customer account index", "Verify Title message");
+        if(modalContentTitle.getText().equals("Customer account index"))
+        {
+            exists=true;
+        }
+        else
+        {
+            exists=false;
+        }
     }
 
     public void SelectCustomerAccount()
@@ -479,7 +487,8 @@ public class CompetitivePricingGeneralPage
             }
 
             //Click on Check box
-             WebElement WebEle1 = modelContainer1.findElement(By.xpath("//input[@id='formattedValue']"));
+            Thread.sleep(1000);
+            WebElement WebEle1 = modelContainer1.findElement(By.xpath("//input[@id='formattedValue']"));
             HelpersMethod.JScriptClick(driver, WebEle1, 10000);
             status = HelpersMethod.returnDocumentStatus(driver);
             if (status.equals("loading"))

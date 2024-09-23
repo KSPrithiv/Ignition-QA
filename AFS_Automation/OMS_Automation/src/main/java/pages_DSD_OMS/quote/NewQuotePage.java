@@ -1056,7 +1056,7 @@ public class NewQuotePage
                 if(HelpersMethod.IsExists("//div[@class='card-view']",driver))
                 //if (!HelpersMethod.IsExists("//div[@class='i-grid']", driver))
                 {
-                    WebEle=HelpersMethod.FindByElement(driver,"xpath","//button/span[contains(text(),'Reset filter')]");
+                    WebEle=HelpersMethod.FindByElement(driver,"xpath","//button[@data-test-id='productFilterResetBtn']");
                     HelpersMethod.ActClick(driver,WebEle,10000);
                     exists=true;
                     if(HelpersMethod.IsExists("//div[@class='loader']",driver))

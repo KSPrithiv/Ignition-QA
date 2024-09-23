@@ -480,7 +480,7 @@ public class OrderHistoryPage
         String optText;
         try
         {
-            List<WebElement> Options=HelpersMethod.FindByElements(driver,"xpath","//ul[@id='grid-selection-dropdown-listbox-id']/li/span");
+            List<WebElement> Options=HelpersMethod.FindByElements(driver,"xpath","//ul[@id='grid-selection-dropdown-listbox-id']/descendant::span[@class='k-list-item-text']");
             for(WebElement opt:Options)
             {
                 act1.moveToElement(opt).build().perform();
@@ -519,7 +519,7 @@ public class OrderHistoryPage
             catch (Exception e){}
     }
 
-    public void selectGridType()
+    public void selectGridTypeNotMain()
     {
         exists=false;
         Actions act1=new Actions(driver);
@@ -546,14 +546,14 @@ public class OrderHistoryPage
                 WebElement WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
                 HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000000);
             }
-            String gridName=HelpersMethod.FindByElement(driver,"xpath","//button[@data-test-id='grid-selection']").getText();
+            String gridName=HelpersMethod.FindByElement(driver,"xpath","//span[@id='grid-selection-dropdown']/descendant::span[@class='k-input-value-text']").getText();
             scenario.log("GRID SELECTED IS "+gridName);
             Assert.assertEquals(exists,true);
         }
         catch (Exception e){}
     }
 
-    public void validateGridType()
+    public void validateGridTypeNotMain()
     {
         exists=false;
         try

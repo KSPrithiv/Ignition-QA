@@ -174,8 +174,8 @@ public class OrderEntryPageSteps7
         orderHistoryPage.clickOnGridType();
         //orderHistoryPage.selectGridType(gridtype.get(0).get(0));
         //orderHistoryPage.validateGridType(gridtype.get(0).get(0));
-        orderHistoryPage.selectGridType();
-        orderHistoryPage.validateGridType();
+        orderHistoryPage.selectGridTypeNotMain();
+        orderHistoryPage.validateGridTypeNotMain();
     }
 
     @Then("User verifies visibility of Price override icon and reset Grid type to Main grid in Order history page")

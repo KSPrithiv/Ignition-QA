@@ -1019,4 +1019,222 @@ public class orderFactorAdminPage
         }
         catch (Exception e){}
     }
+
+    public void clickLoadAllProducts()
+    {
+        try
+        {
+            if(HelpersMethod.IsExists("//span[contains(text(),'load all products')]",driver))
+            {
+                WebElement loadProd=HelpersMethod.FindByElement(driver,"xpath","//span[contains(text(),'load all products')]");
+                HelpersMethod.ActClick(driver,loadProd,10000);
+                Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                        .withTimeout(Duration.ofSeconds(400))
+                        .pollingEvery(Duration.ofSeconds(2))
+                        .ignoring(NoSuchElementException.class);
+                wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+            }
+        }
+        catch (Exception e){}
+    }
+
+    public void ResetFilter_Catalog()
+    {
+        exists=false;
+        WebElement WebEle;
+
+        String status = HelpersMethod.returnDocumentStatus(driver);
+        if (status.equals("loading"))
+        {
+            HelpersMethod.waitTillLoadingPage(driver);
+        }
+
+        Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                .withTimeout(Duration.ofSeconds(120))
+                .pollingEvery(Duration.ofSeconds(2))
+                .ignoring(NoSuchElementException.class);
+        wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
+        try
+        {
+            status = HelpersMethod.returnDocumentStatus(driver);
+            if (status.equals("loading"))
+            {
+                HelpersMethod.waitTillLoadingPage(driver);
+            }
+            new WebDriverWait(driver, Duration.ofMillis(10000)).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//span[text()='Catalog']/ancestor::div[contains(@class,'k-window k-dialog')]")));
+            new WebDriverWait(driver,Duration.ofMillis(10000)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[text()='Catalog']/ancestor::div[contains(@class,'k-window k-dialog')]")));
+
+            if(HelpersMethod.IsExists("//span[text()='Catalog']/ancestor::div[contains(@class,'k-window k-dialog')]",driver))
+            {
+                if(HelpersMethod.IsExists("//div[@class='product-catalog-container']/ancestor::div[contains(@class,'k-window k-dialog')]", driver))
+                {
+                    WebEle = HelpersMethod.FindByElement(driver, "xpath", "//button[@data-test-id='productFilterResetBtn']");
+                    HelpersMethod.ClickBut(driver, WebEle, 10000);
+                    exists = true;
+                    status = HelpersMethod.returnDocumentStatus(driver);
+                    if (status.equals("loading"))
+                    {
+                        HelpersMethod.waitTillLoadingPage(driver);
+                    }
+
+                    wait = new FluentWait<WebDriver>(driver)
+                            .withTimeout(Duration.ofSeconds(400))
+                            .pollingEvery(Duration.ofSeconds(2))
+                            .ignoring(NoSuchElementException.class);
+                    wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
+                    status = HelpersMethod.returnDocumentStatus(driver);
+                    if (status.equals("loading"))
+                    {
+                        HelpersMethod.waitTillLoadingPage(driver);
+                    }
+
+                    wait = new FluentWait<WebDriver>(driver)
+                            .withTimeout(Duration.ofSeconds(400))
+                            .pollingEvery(Duration.ofSeconds(2))
+                            .ignoring(NoSuchElementException.class);
+                    wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+                }
+                else if (HelpersMethod.IsExists("//div[contains(@class,'product-catalog-container catalog-search-grid-view')]/ancestor::div[contains(@class,'k-window k-dialog')]", driver))
+                {
+                    wait = new FluentWait<WebDriver>(driver)
+                            .withTimeout(Duration.ofSeconds(400))
+                            .pollingEvery(Duration.ofSeconds(2))
+                            .ignoring(NoSuchElementException.class);
+                    wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
+                    if (HelpersMethod.IsExists("//div[contains(@class,'k-window k-dialog')]/descendant::div[contains(@class,'i-filter-tag')]", driver))
+                    {
+                        List<WebElement> filters = HelpersMethod.FindByElements(driver, "xpath", "//div[contains(@class,'k-window k-dialog')]/descendant::div[contains(@class,'i-filter-tag')]");
+                        if (filters.size() > 1)
+                        {
+                            //Click on 'Add filter'
+                            WebElement catalogPopup = HelpersMethod.FindByElement(driver, "xpath", "//span[text()='Catalog']/ancestor::div[contains(@class,'k-window k-dialog')]");
+                            WebEle = catalogPopup.findElement(By.xpath(".//span[text()='Add filter']/ancestor::button[contains(@class,'i-filter-tag__main')]"));
+                            HelpersMethod.JScriptClick(driver, WebEle, 100000);
+
+                            status = HelpersMethod.returnDocumentStatus(driver);
+                            if (status.equals("loading"))
+                            {
+                                HelpersMethod.waitTillLoadingPage(driver);
+                            }
+
+                            //Click on clear all
+                            if (HelpersMethod.IsExists("//button/span[contains(text(),'Clear all')]", driver))
+                            {
+                                status = HelpersMethod.returnDocumentStatus(driver);
+                                if (status.equals("loading"))
+                                {
+                                    HelpersMethod.waitTillLoadingPage(driver);
+                                }
+                                //Click on Clear all button
+                                WebElement clearAll = driver.findElement(By.xpath("//button/span[contains(text(),'Clear all')]"));
+                                HelpersMethod.JScriptClick(driver, clearAll, 100000);
+                                exists = true;
+                                status = HelpersMethod.returnDocumentStatus(driver);
+                                if (status.equals("loading"))
+                                {
+                                    HelpersMethod.waitTillLoadingPage(driver);
+                                }
+                                wait = new FluentWait<WebDriver>(driver)
+                                        .withTimeout(Duration.ofSeconds(200))
+                                        .pollingEvery(Duration.ofSeconds(2))
+                                        .ignoring(NoSuchElementException.class);
+                                wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
+                                status = HelpersMethod.returnDocumentStatus(driver);
+                                if (status.equals("loading"))
+                                {
+                                    HelpersMethod.waitTillLoadingPage(driver);
+                                }
+                                new WebDriverWait(driver, Duration.ofMillis(10000)).until(ExpectedConditions.refreshed(ExpectedConditions.elementToBeClickable(By.xpath("//span[text()='Add filter']/ancestor::button[contains(@class,'i-filter-tag__main')]"))));
+                            }
+                        }
+                    }
+                }
+            }
+            status = HelpersMethod.returnDocumentStatus(driver);
+            if (status.equals("loading"))
+            {
+                HelpersMethod.waitTillLoadingPage(driver);
+            }
+            Thread.sleep(2000);
+            Assert.assertEquals(exists,true);
+        }
+        catch (Exception e){}
+    }
+
+    public void selectAllProducts()
+    {
+        Actions act=new Actions(driver);
+        String dropText;
+        try
+        {
+            String status = HelpersMethod.returnDocumentStatus(driver);
+            if (status.equals("loading"))
+            {
+                HelpersMethod.waitTillLoadingPage(driver);
+            }
+            Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(400))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(org.openqa.selenium.NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
+            Thread.sleep(1000);
+            if(HelpersMethod.IsExists("//span[@id='CPQoh-accessibility-id']",driver))
+            {
+                if(!HelpersMethod.IsExists("//span[@id='CPQoh-accessibility-id']/span[text()='Show all products']|//span[@id='CPQoh-accessibility-id']/span[text()='All Products']",driver))
+                {
+                    WebElement dropDown = HelpersMethod.FindByElement(driver, "xpath", "//span[@id='CPQoh-accessibility-id']/following-sibling::button");
+                    HelpersMethod.ClickBut(driver, dropDown, 10000);
+                    new WebDriverWait(driver, Duration.ofMillis(10000)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.xpath("//ul[@id='CPQoh-listbox-id']/descendant::span[@class='k-list-item-text']"))));
+                    new WebDriverWait(driver, Duration.ofMillis(10000)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//ul[@id='CPQoh-listbox-id']/descendant::span[@class='k-list-item-text']")));
+                    List<WebElement> dropDowns = HelpersMethod.FindByElements(driver, "xpath", "//ul[@id='CPQoh-listbox-id']/descendant::span[@class='k-list-item-text']");
+                    for (WebElement dropDow : dropDowns)
+                    {
+                        act.moveToElement(dropDown).build().perform();
+                        dropText = dropDow.getText();
+                        if (dropText.equalsIgnoreCase("Show all products") || dropText.equalsIgnoreCase("All Products"))
+                        {
+                            act.moveToElement(dropDow).build().perform();
+                            act.click(dropDow).build().perform();
+                            break;
+                        }
+                    }
+                    wait = new FluentWait<WebDriver>(driver)
+                            .withTimeout(Duration.ofSeconds(400))
+                            .pollingEvery(Duration.ofSeconds(2))
+                            .ignoring(org.openqa.selenium.NoSuchElementException.class);
+                    wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
+                    status = HelpersMethod.returnDocumentStatus(driver);
+                    if (status.equals("loading"))
+                    {
+                        HelpersMethod.waitTillLoadingPage(driver);
+                    }
+
+                    wait = new FluentWait<WebDriver>(driver)
+                            .withTimeout(Duration.ofSeconds(400))
+                            .pollingEvery(Duration.ofSeconds(2))
+                            .ignoring(org.openqa.selenium.NoSuchElementException.class);
+                    wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+                    Thread.sleep(1000);
+                }
+
+                if(HelpersMethod.IsExists("//span[@id='CPQoh-accessibility-id']/span[text()='Show all products']|//span[@id='CPQoh-accessibility-id']/span[text()='All Products']",driver))
+                {
+                    exists=true;
+                }
+                else
+                {
+                    exists=false;
+                }
+                Assert.assertEquals(exists,true);
+            }
+        }
+        catch (Exception e){}
+    }
+
 }

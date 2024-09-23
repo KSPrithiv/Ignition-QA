@@ -504,32 +504,21 @@ public class GridConfigurationPageStep
     @And("User should select {string} from grids dropdown and selects {string} to delete grid")
     public void userShouldSelectFromGridsDropdownAndSelectsToDeleteGrid(String arg0, String arg1)
     {
-        String gridName;
-        String gridName1;
-        WebElement dummy;
-        Actions act=new Actions(driver);
         gridConfigPage=new GridConfigurationPage(driver,scenario);
-
-
-        //to read all the values in dropdown
-//        List<WebElement> gridNames=HelpersMethod.FindByElements(driver,"xpath","//ul[@id='SelectGrid-listbox-id']/descendant::span[@class='k-list-item-text']");
-//        ArrayList<String> gridText= new ArrayList<>();
-//        for(int i=0;i<=gridNames.size()-1;i++)
-//        {
-//            act.moveToElement(gridNames.get(i)).build().perform();
-//            dummy=gridNames.get(i);
-//            gridName1=dummy.getText();
-//            gridText.add(gridName1);
-//        }
-
         //to close dropdown
         gridConfigPage.clickGridDropDown();
+        gridConfigPage.readGridNamesDropdown();
         gridConfigPage.gridDropdownSelection(arg0);
         //Select delete from drop down
         gridConfigPage.clickOnGridOptionDropdown();
-        gridConfigPage.selectOptionFromGridOptionDropDown(arg1);
+        gridConfigPage.selectDeleteOptionFromGridOptionDropDown(arg1);
+        //save the changes
+        gridConfigPage.clickOnSaveButton();
+        gridConfigPage.validateSavedailogbox();
+        gridConfigPage.clickOnOkButtonInSavePopup();
         //verify the grids are deleted
         gridConfigPage.clickGridDropDown();
+        gridConfigPage.readGridNamesDropdown();
         gridConfigPage.checkDeletedGridName(arg0);
     }
 
