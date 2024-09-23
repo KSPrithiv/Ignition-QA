@@ -104,6 +104,9 @@ public class AdminDisconnectedModeStep
     {
         newOE = new NewOrderEntryPage(driver,scenario);
         newOE.CheckForCatalog();
+        newOE.clickOnLoadAllProducts();
+        newOE.ResetFilter_Catalog();
+        newOE.selectAllProductsCatalogDialogbox();
         newOE.verifyNoPriceColumn();
     }
 
@@ -112,6 +115,9 @@ public class AdminDisconnectedModeStep
     {
         newOE = new NewOrderEntryPage(driver,scenario);
         newOE.CheckForCatalog();
+        newOE.clickOnLoadAllProducts();
+        newOE.ResetFilter_Catalog();
+        newOE.selectAllProductsCatalogDialogbox();
         newOE.verifyPriceColumn();
     }
 
@@ -120,6 +126,7 @@ public class AdminDisconnectedModeStep
     {
         catalogPage=new CatalogPage(driver,scenario);
         catalogPage.validateCatalog();
+
         catalogPage.validateNoPriceCard();
     }
 

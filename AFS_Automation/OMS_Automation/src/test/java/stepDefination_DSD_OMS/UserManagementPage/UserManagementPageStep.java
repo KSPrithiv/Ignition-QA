@@ -29,8 +29,6 @@ public class UserManagementPageStep
     WebDriver driver;
     Scenario scenario;
     static boolean flag = false;
-    static String currentURL = null;
-
 
     static LoginPage loginpage;
     static HomePage homepage;
@@ -56,8 +54,6 @@ public class UserManagementPageStep
             homepage.navigateToClientSide();
             userManagementPage = new UserManagementPage(driver, scenario);
             userManagementPage.navigateToUserManagement();
-
-
         }
     }
 

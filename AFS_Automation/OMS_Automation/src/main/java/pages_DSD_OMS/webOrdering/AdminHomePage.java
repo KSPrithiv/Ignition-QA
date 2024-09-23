@@ -144,7 +144,7 @@ public class AdminHomePage
                     .ignoring(NoSuchElementException.class);
             wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
 
-            Thread.sleep(2000);
+            //Thread.sleep(2000);
             if (HelpersMethod.IsExists("//span[contains(@class,'k-icon k-i-arrow-chevron-down i-header-toolbar-expandable-button__icon')]", driver))
             {
                 PermissionBy = HelpersMethod.FindByElement(driver, "xpath", "//button[contains(@class,'i-header-toolbar-expandable-button')]");
@@ -620,7 +620,6 @@ public class AdminHomePage
     //Click on Save button
     public void Click_SaveButton()
     {
-        exists = false;
         try
         {
             Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
@@ -666,7 +665,7 @@ public class AdminHomePage
                     WebElement savePopup=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-window k-dialog')]");
                     WebElement okButton=savePopup.findElement(By.xpath(".//button/span[text()='OK']"));
                     HelpersMethod.ActClick(driver,okButton,10000);
-                    //exists = true;
+
                     wait = new FluentWait<WebDriver>(driver)
                             .withTimeout(Duration.ofSeconds(400))
                             .pollingEvery(Duration.ofSeconds(2))

@@ -2094,7 +2094,10 @@ public class CatalogPage
         exists=false;
         try
         {
-            if(HelpersMethod.IsExists("//div[contains(text(),'Use the search bar to search for products.')]",driver))
+            WebElement productCard=HelpersMethod.FindByElement(driver,"id","productsCard");
+            HelpersMethod.ScrollElement(driver,productCard);
+
+            if(!HelpersMethod.IsExists("//div[@class='search-results-container']",driver))
             {
                 scenario.log("PRODUCTS ARE NOT LOADED AUTOMATICALLY, WE NEED TO CLICK ON RESET FILTER");
                 exists=true;

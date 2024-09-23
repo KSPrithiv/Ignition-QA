@@ -230,12 +230,15 @@ public class NewStandingOrderCard
         try
         {
             Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
-                    .withTimeout(Duration.ofSeconds(200))
+                    .withTimeout(Duration.ofSeconds(400))
                     .pollingEvery(Duration.ofSeconds(2))
                     .ignoring(NoSuchElementException.class);
             wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
 
-            HelpersMethod.waitTillElementLocatedDisplayed(driver, "xpath", "//span[contains(text(),'Add standing order')]/ancestor::div[contains(@class,'k-window k-dialog')]", 10000);
+            new WebDriverWait(driver,Duration.ofMillis(40000)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.xpath("//span[contains(text(),'Add standing order')]/ancestor::div[contains(@class,'k-window k-dialog')]"))));
+            new WebDriverWait(driver,Duration.ofMillis(40000)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[contains(text(),'Add standing order')]/ancestor::div[contains(@class,'k-window k-dialog')]")));
+
+            //HelpersMethod.waitTillElementLocatedDisplayed(driver, "xpath", "//span[contains(text(),'Add standing order')]/ancestor::div[contains(@class,'k-window k-dialog')]", 10000);
             if (HelpersMethod.IsExists("//span[contains(text(),'Add standing order')]/ancestor::div[contains(@class,'k-window k-dialog')]", driver))
             {
                 scenario.log("ADD STANDING ORDER DIALOG BOX FOUND");

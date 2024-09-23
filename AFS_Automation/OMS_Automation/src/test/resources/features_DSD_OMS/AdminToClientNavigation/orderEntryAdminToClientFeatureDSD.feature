@@ -65,7 +65,7 @@ Feature: scenarios for admin credentials and client credentials
 #    Examples:
 #      |Main menu|Sub menu    | AdminControl                                          |Id                                   |
 #      |Security |Permissions | Allow user to change the shipping address of the order|accessorderentrychangeshippingaddress|
-
+#
 
   # Admin setting for hiding zero's=>'Hide leading zeros', Scenario only for DSD
   @HideZerosEnabled

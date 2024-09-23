@@ -2,7 +2,7 @@ Feature: scenarios for User and Accounts admin feature, for Grid related setting
 
   Background: For login to application and selecting Account# for Grid admission control
     Given User enters URL and is on login page and entered credentials for Admin setting for grid
-    When User is on Home Page for Admin setting for grid
+  #  When User is on Home Page for Admin setting for grid
 #    Then User Clicks on Permissions by drop down to select Customer Account# grid
 
   @AvailableGrid
@@ -106,13 +106,6 @@ Feature: scenarios for User and Accounts admin feature, for Grid related setting
     And User should select Grid type "<Grid type>" from the drop down
     And User should select "<Grid name>" from grids dropdown and selects "<Grid option>" to delete grid
     And User should select "<Grid name1>" from grids dropdown and selects "<Grid option>" to delete grid
-    #And User should Click and select "<Grid name>" from grids dropdown
-    #And User clicks on Grid option"<Grid option>" to delete and selects option from drop down
-    #And User should select Grid type "<Grid type>" from the drop down
-    #And User should Click and select "<Grid name1>" from grids dropdown
-    #And User clicks on Grid option"<Grid option>" to delete and selects option from drop down
-    #And User should Click and select "<Grid name>" from grids dropdown
-    And User clicks on save button to save Grid configuration
     Examples:
       |Main menu|Sub menu       |Grid type  |Grid name  |Grid name1        |Grid option |
       |Grids    |Configuration  |Order Entry|New        |New - Copy        |Delete      |

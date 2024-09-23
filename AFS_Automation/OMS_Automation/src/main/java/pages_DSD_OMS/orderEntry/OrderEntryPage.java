@@ -2440,7 +2440,7 @@ public class OrderEntryPage
             {
                 WebEle = HelpersMethod.FindByElement(driver, "xpath", "//tr[contains(@class,'k-master-row')]/descendant::td/button");
                 HelpersMethod.ClickBut(driver, WebEle, 10000);
-                scenario.log("ORDER GUIDE OPTION HAS BEEN SELECTED");
+                scenario.log("ORDER HAS BEEN SELECTED FROM THE GRID");
                 exists=true;
             }
             wait = new FluentWait<WebDriver>(driver)

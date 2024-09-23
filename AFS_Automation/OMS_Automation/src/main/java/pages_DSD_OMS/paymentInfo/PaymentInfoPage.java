@@ -92,8 +92,8 @@ public class PaymentInfoPage
     public void NavigateToPaymentInfo()
     {
         exists = false;
-        WebElement WebEle = null;
-        String status = null;
+        WebElement WebEle;
+        String status;
         status = HelpersMethod.returnDocumentStatus(driver);
         if (status.equals("loading"))
         {
@@ -178,7 +178,7 @@ public class PaymentInfoPage
     public void ValidatePaymentInfo()
     {
         exists=false;
-        String title=null;
+        String title;
         try
         {
             Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)

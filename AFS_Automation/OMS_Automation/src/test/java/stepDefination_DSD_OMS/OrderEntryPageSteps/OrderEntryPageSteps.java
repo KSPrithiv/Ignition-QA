@@ -595,8 +595,6 @@ public class OrderEntryPageSteps
         summary.SucessPopup();
     }
 
-
-
     @Then("Click on Submit Order button and read Order_no")
     public void click_on_submit_order_button_and_read_order_no() throws InterruptedException, AWTException
     {
