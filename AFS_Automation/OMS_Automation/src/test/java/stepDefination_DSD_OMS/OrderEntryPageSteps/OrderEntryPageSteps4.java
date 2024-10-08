@@ -12,9 +12,11 @@ import pages_DSD_OMS.orderEntry.CheckOutOrderPage;
 import pages_DSD_OMS.orderEntry.CheckOutSummaryPage;
 import pages_DSD_OMS.orderEntry.NewOrderEntryPage;
 import pages_DSD_OMS.orderEntry.OrderEntryPage;
+import util.DataBaseConnection;
 import util.TestBase;
 
 import java.awt.*;
+import java.sql.SQLException;
 import java.util.List;
 
 /**
@@ -213,5 +215,21 @@ public class OrderEntryPageSteps4
     {
         List<List<String>> Comment=tabledata.asLists(String.class);
         newOE.Comment_PopupProdUpdate(Comment.get(0).get(0));
+    }
+
+    @Then("Enter Pro# in Quick Product Entry area for unusual qty verification")
+    public void enterProInQuickProductEntryAreaForUnusualQtyVerification() throws InterruptedException, AWTException, SQLException, ClassNotFoundException, InstantiationException, IllegalAccessException
+    {
+            newOE = new NewOrderEntryPage(driver,scenario);
+            String prod= DataBaseConnection.DataBaseConn(TestBase.testEnvironment.getSingle_Prod_Sql());
+            Thread.sleep(500);
+            if(!prod.equals(null))
+            {
+                newOE.QuickProduct(prod);
+            }
+            else
+            {
+                scenario.log("NOT ABLE TO FETCH PRODUCT# FROM DATABASE");
+            }
     }
 }

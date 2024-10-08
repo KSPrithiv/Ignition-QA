@@ -953,7 +953,7 @@ public class OrderGuidePage {
         }
         try {
             if (HelpersMethod.IsExists("//div[contains(@class,'k-grouping-header')]/descendant::div[contains(@class,'k-grouping-drop-container')]", driver)) {
-                List<WebElement> TableHeads = driver.findElements(By.xpath("//thead/tr[1]/th"));
+                List<WebElement> TableHeads = driver.findElements(By.xpath("//thead/tr[1]/th/descendant::span[@class='k-column-title']"));
                 for (WebElement THead : TableHeads) {
                     String Head = THead.getText();
                     if (Head.contains(tableHead)) {

@@ -29,6 +29,8 @@ import java.sql.SQLException;
 import java.time.Duration;
 import java.util.concurrent.TimeUnit;
 
+import static org.testng.Assert.assertNotNull;
+
 /**
  * @Project DSD_OMS
  * @Author Divya.Ramadas@afsi.com
@@ -200,10 +202,18 @@ public class TestBase
 
         getDriver().manage().window().maximize();
         getDriver().manage().deleteAllCookies();
+
+        //to verify browser is lauched
+        String currHandle=getDriver().getWindowHandle();
+        assertNotNull(currHandle);
+
+        //wait until the page is completely loaded
         getDriver().manage().timeouts().pageLoadTimeout(TestUtil.PAGE_LOAD_TIMEOUT, TimeUnit.SECONDS);
         ////getDriver().manage().timeouts().implicitlyWait(TestUtil.IMPLICIT_WAIT, TimeUnit.SECONDS);
+
+        //to enter the url
         getDriver().get(testEnvironment.get_url());
-       //// getDriver().manage().window().setSize(new Dimension(1920, 1080));
+
         Wait<WebDriver> wait = new FluentWait<WebDriver>(getDriver())
                 .withTimeout(Duration.ofSeconds(1000))
                 .pollingEvery(Duration.ofSeconds(2))

@@ -317,9 +317,9 @@ public class AdminSecurityPermissionPage
         Actions act=new Actions(driver);
         try
         {
-            if(HelpersMethod.IsExists("//ul[@id='comboBoxEditRolelist']/li/span",driver))
+            if(HelpersMethod.IsExists("//ul[@id='comboBoxEditRolelist']/descendant::span[@class='k-list-item-text']",driver))
             {
-                List<WebElement> roles = HelpersMethod.FindByElements(driver, "xpath", "//ul[@id='comboBoxEditRolelist']/li/span");
+                List<WebElement> roles = HelpersMethod.FindByElements(driver, "xpath", "//ul[@id='comboBoxEditRolelist']/descendant::span[@class='k-list-item-text']");
                 for (WebElement role : roles)
                 {
                     act.moveToElement(role).build().perform();
@@ -892,7 +892,7 @@ public class AdminSecurityPermissionPage
             {
                 WebElement rolesInput=HelpersMethod.FindByElement(driver,"xpath","//span[contains(text(),'In roles')]/following-sibling::*[1]/descendant::input");
                 HelpersMethod.ActClick(driver,rolesInput,10000);
-                new WebDriverWait(driver,Duration.ofMillis(40000)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(@class,'k-list-container')]/descendant::ul/li")));
+                new WebDriverWait(driver,Duration.ofMillis(40000)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='k-list-content']/descendant::span[@class='k-list-item-text']")));
                 exists=true;
             }
             Assert.assertEquals(exists,true);

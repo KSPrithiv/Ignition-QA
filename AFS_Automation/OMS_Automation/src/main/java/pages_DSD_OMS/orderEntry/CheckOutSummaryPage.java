@@ -140,7 +140,7 @@ public class CheckOutSummaryPage
             HelpersMethod.ScrollElement(driver,OEProdGrid);
             if(HelpersMethod.IsExists("//div[contains(@class,'k-grouping-header')]/descendant::div[contains(@class,'k-grouping-drop-container')]",driver))
             {
-                List<WebElement> TableHeads=driver.findElements(By.xpath("//thead/tr[1]/th"));
+                List<WebElement> TableHeads=driver.findElements(By.xpath("//thead/tr[1]/th/descendant::span[@class='k-column-title']"));
                 for(WebElement THead:TableHeads)
                 {
                     String Head=THead.getText();
@@ -674,9 +674,9 @@ public class CheckOutSummaryPage
             //Check for the Cancel Order warning popup
             if (HelpersMethod.IsExists("//span[contains(text(),'Cancel order')]/ancestor::div[contains(@class,'k-window k-dialog')]",driver))
             {
-                WebElement cancelPopup = driver.findElement(By.xpath("//span[contains(text(),'Cancel order')]/ancestor::div[contains(@class,'k-window k-dialog')]"));
+                WebElement cancelPopup = driver.findElement(By.xpath("//div[contains(@class,'k-window k-dialog')]"));
                 WebEle=cancelPopup.findElement(By.xpath(".//button/span[text()='Yes']"));
-                HelpersMethod.ClickBut(driver,WebEle,10000);
+                HelpersMethod.ActClick(driver,WebEle,10000);
                 exists=true;
                 scenario.log("CANCEL ORDER POPUP HAS BEEN HANDLED");
             }

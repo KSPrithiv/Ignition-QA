@@ -130,6 +130,8 @@ public class OrderEntryPageSteps1
     {
         newOE=new NewOrderEntryPage(driver,scenario);
         newOE.Add_Product_From_Catalog();
+        newOE.ResetFilter_Catalog();
+        newOE.selectAllProductsCatalogDialogbox();
     }
 
     @And("User should select Product from catalog and Enter Qty for the products")

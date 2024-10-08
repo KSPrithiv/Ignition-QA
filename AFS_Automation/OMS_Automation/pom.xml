@@ -381,10 +381,6 @@ http://maven.apache.org/xsd/maven-4.0.0.xsd">
                     </dependency>
                 </dependencies>
             </plugin>
-
-
-
-
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-clean-plugin</artifactId>
@@ -399,13 +395,6 @@ http://maven.apache.org/xsd/maven-4.0.0.xsd">
                     </execution>
                 </executions>
             </plugin>
-
-
-
-
-
-
-
         </plugins>
         <testOutputDirectory>target/classes</testOutputDirectory>
     </build>

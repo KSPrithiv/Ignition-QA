@@ -25,7 +25,7 @@ Feature: Order Entry4
     Then User should be navigated to Order Entry page
 
   @OEOrdHistoryWithProd
-  Scenario: Create order by adding product then adding order to OE
+  Scenario: Create order by adding product from OG then adding order to OE from order history
     Given User must be on Order Entry Page
     Then User must click Start Order button
     Then User should make selection between Pending order or Start New order
@@ -73,6 +73,9 @@ Feature: Order Entry4
     Then User should select Note from popup and select OG from OG popup
     Then Enter PO# for New order
       |PO123|
+    Then Enter Pro# in Quick Product Entry area for unusual qty verification
+    And Check for Case and Unit input box enabled or not based on that enter value
+      |1|1|
     And User should navigate to New OE page, and enter Qty to product in product grid for only Unit
       |200|
     Then Click on Next button

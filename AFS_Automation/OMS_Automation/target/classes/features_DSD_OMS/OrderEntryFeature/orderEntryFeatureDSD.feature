@@ -17,6 +17,9 @@ Feature: Order Entry4
      Then User should select Note from popup and select OG from OG popup
      Then Enter PO# for New order
        |PO123|
+    Then Enter Pro# in Quick Product Entry area for unusual qty verification
+    And Check for Case and Unit input box enabled or not based on that enter value
+      |1|1|
      And User should navigate to New OE page, and enter Qty to product in product grid for only Case
         |500|
      Then Click on Next button
@@ -31,6 +34,9 @@ Feature: Order Entry4
     Then User should select Note from popup and select OG from OG popup
     Then Enter PO# for New order
       |PO123|
+    Then Enter Pro# in Quick Product Entry area for unusual qty verification
+    And Check for Case and Unit input box enabled or not based on that enter value
+      |1|1|
     And User should navigate to New OE page, and enter Qty to product in product grid more than Maximum limit
       |100|100|
     Then Click on Next button
@@ -138,4 +144,6 @@ Feature: Order Entry4
     Then User checks for duplicate comments
     Then Click on SubmitOrder button
     Then User should be navigated to Order Entry page
+
+
 

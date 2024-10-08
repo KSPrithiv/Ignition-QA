@@ -44,7 +44,7 @@ public class GridConfigurationPage
     @FindBy(xpath="//button/span[text()='Grid options']")
     private WebElement gridOptionDropdown;
 
-    @FindBy(xpath="//button/span[contains(text(),'Column chooser')]")
+    @FindBy(xpath="//span[text()='Column chooser']/parent::button")
     private WebElement columnChooser;
 
     public GridConfigurationPage(WebDriver driver, Scenario scenario)
@@ -475,6 +475,69 @@ public class GridConfigurationPage
                     .release(toWebElement)
                     .build();
             dragAndDrop.perform();
+        }
+        catch (Exception e){}
+    }
+
+
+    public void dragAndDropColumnHeader()
+    {
+        try
+        {
+//            JavascriptExecutor js = (JavascriptExecutor) driver;
+//            String script = "var src=arguments[0],tgt=arguments[1];" +
+//                    "var dataTransfer = new DataTransfer();" +
+//                    "src.dispatchEvent(new DragEvent('dragstart', {dataTransfer: dataTransfer}));" +
+//                    "tgt.dispatchEvent(new DragEvent('drop', {dataTransfer: dataTransfer}));" +
+//                    "src.dispatchEvent(new DragEvent('dragend', {dataTransfer: dataTransfer}));";
+
+            WebElement dragElement=HelpersMethod.FindByElement(driver,"xpath","//div[@id='AvailableItemsAdminCard']/descendant::div[@class='i-draggable-item'][1]/div[@class='i-draggable-item__container']");
+            WebElement droppableElement=HelpersMethod.FindByElement(driver,"xpath","//div[@id='ActiveItemsAdminCard']/descendant::div[@class='i-droppable-container']");
+
+           // js.executeScript(script,dragElement,droppableElement);
+
+//            Point location = droppableElement.getLocation();
+//            int xOffset = location.getX();
+//            int yOffset = location.getY();
+//            System.out.println("X offset: " + xOffset);
+//            System.out.println("Y offset: " + yOffset);
+//            Actions actions = new Actions(driver);
+//            actions.clickAndHold(dragElement)
+//                    .moveByOffset(xOffset, yOffset)  // Specify offset in X, Y coordinates from the source element
+//                    .release()
+//                    .build()
+//                    .perform();
+
+//            Actions actions = new Actions(driver);
+//            actions.clickAndHold(dragElement)
+//                    //.keyDown(Keys.CONTROL)
+//                    .moveToElement(droppableElement)
+//                    //.keyUp(Keys.CONTROL)
+//                    .release()
+//                    .build()
+//                    .perform();
+
+            // Get the offset of source element
+            Point sourceLocation = dragElement.getLocation();
+            int sourceXOffset = sourceLocation.getX();
+            int sourceYOffset = sourceLocation.getY();
+
+// Get the offset of target element
+            Point targetLocation = droppableElement.getLocation();
+            int targetXOffset = targetLocation.getX();
+            int targetYOffset = targetLocation.getY();
+
+// Calculate the offset difference
+            int xOffset = targetXOffset - sourceXOffset;
+            int yOffset = targetYOffset - sourceYOffset;
+
+// Perform the drag and drop operation using the offsets
+            Actions actions = new Actions(driver);
+            actions.clickAndHold(dragElement)
+                    .moveByOffset(xOffset,yOffset)
+                    .release()
+                    .build()
+                    .perform();
         }
         catch (Exception e){}
     }

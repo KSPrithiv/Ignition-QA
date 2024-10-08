@@ -10,7 +10,7 @@ Feature: Order Entry
     Then User selects Account#
 
   @OESearchBar
-  Scenario: Creating New order by entering Product# in Searchbar, New order entry page
+  Scenario: Creating New order by entering Product# in Searchbar, New order entry page, using search index icon
     Given User must be on Order Entry Page
     Then User must click Start Order button
     Then User should make selection between Pending order or Start New order
@@ -20,6 +20,40 @@ Feature: Order Entry
     Then User enters Product# in Search box
     Then Check for Catalog popup
     Then Enter the Qty in the Product grid Case and Unit
+      | 1| 1 |
+    Then Click on Next button
+    And Click on SubmitOrder button
+    Then User should be navigated to Order Entry page
+
+  @OESearchBarAutoSearch
+  Scenario: Creating New order by entering Product# in Searchbar, New order entry page, using auto search drop down
+    Given User must be on Order Entry Page
+    Then User must click Start Order button
+    Then User should make selection between Pending order or Start New order
+    Then User should select Note from popup and Order guide from popup
+    Then Enter PO# for New order
+      |PO123|
+    Then User enters Product# in Search box and select product from auto search dropdown
+#    Then Check for Catalog popup
+#    Then Enter the Qty in the Product grid Case and Unit
+#      | 1| 1 |
+    And Enter Qty for the products in Product grid
+      |1|2|
+    Then Click on Next button
+    And Click on SubmitOrder button
+    Then User should be navigated to Order Entry page
+
+  @OESearchBarDescription
+  Scenario: Creating New order by entering Product description in Searchbar, New order entry page, using search index icon
+    Given User must be on Order Entry Page
+    Then User must click Start Order button
+    Then User should make selection between Pending order or Start New order
+    Then User should select Note from popup and Order guide from popup
+    Then Enter PO# for New order
+      |PO123|
+    Then User enters Product description in Search bar
+    Then Check for Catalog popup
+    Then Enter the Qty in the Product grid, compare product description, enter Case and Unit
       | 1| 1 |
     Then Click on Next button
     And Click on SubmitOrder button

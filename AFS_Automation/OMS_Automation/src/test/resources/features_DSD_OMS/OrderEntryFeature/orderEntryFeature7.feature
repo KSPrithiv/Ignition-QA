@@ -99,7 +99,6 @@ Feature: Order Entry7
     Then User should click on Copy from dropdown and Select Order history
       |Order history|
     Then User verifies Order history page and change grid types
-    Then User verifies visibility of Price override icon and reset Grid type to Main grid in Order history page
-      |Main grid|
+    Then User changes grid to verify and reset Grid type to Main grid in order history page
     And User should navigate back to Order entry page from Order history page
 

@@ -1527,8 +1527,8 @@ public class OrderEntryPage
                 .ignoring(NoSuchElementException.class);
         wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
 
-        new WebDriverWait(driver,Duration.ofMillis(10000)).until(ExpectedConditions.refreshed(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[contains(@id,'delivery-date-web-order-header-calendar')]"))));
-        new WebDriverWait(driver,Duration.ofMillis(10000)).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//input[contains(@id,'delivery-date-web-order-header-calendar')]")));
+        //new WebDriverWait(driver,Duration.ofMillis(10000)).until(ExpectedConditions.refreshed(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[contains(@id,'delivery-date-web-order-header-calendar')]"))));
+        //new WebDriverWait(driver,Duration.ofMillis(10000)).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//input[contains(@id,'delivery-date-web-order-header-calendar')]")));
 
         if (formattedDate == null ||formattedDate.equals(""))
         {
@@ -1538,8 +1538,8 @@ public class OrderEntryPage
             SimpleDateFormat fromUser = new SimpleDateFormat("EEEE, MMMM d, yyyy");
             C_Date1 = fromUser.format(fromUser1.parse(formattedDate));
             dateCurrent=fromUser.format(fromUser1.parse(formattedDate));
-            scenario.log("<span style='color:red'>DELIBERY DATE FOUND, AFTER LOGGING IN TO APPLICATION  " + C_Date1+"</span>");
         }
+        scenario.log("<span style='color:red'>DELIBERY DATE FOUND, AFTER LOGGING IN TO APPLICATION  " + C_Date1+"</span>");
     }
 
     public String Read_DeliveryDate1() throws InterruptedException, ParseException
@@ -3962,7 +3962,7 @@ public class OrderEntryPage
                         pickUpDate=lastdateText.getText();
                         HelpersMethod.ScrollElement(driver,lastdate);
                         HelpersMethod.ClickBut(driver,lastdate,10000);
-                        scenario.log("LAST DATE FOUND IN PICKUP DATE DIALOG BOX "+pickUpDate);
+                        scenario.log("<span style='color:red'>LAST DATE FOUND IN PICKUP DATE DIALOG BOX "+pickUpDate+"</span>");
                         exists=true;
                         break;
                     }
