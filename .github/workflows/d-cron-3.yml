@@ -701,7 +701,7 @@ jobs:
      
       - name: OMS Automation module-28
         run: |
-         mvn clean install test -DsuiteXmlFile='TestNG_AdminClientNavigationERP.xml'
+         mvn clean install test -DsuiteXmlFile='TestNG_AdminClientNavigation.xml'
         working-directory: AFS_Automation/OMS_Automation
 
           # ########################################################################## 
