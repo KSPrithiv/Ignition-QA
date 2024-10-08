@@ -4537,9 +4537,9 @@ public class NewOrderEntryPage
         try
         {
             boolean result1=HelpersMethod.IsExists("//div[contains(@class,'inline-form-group')]/span[contains(text(),'Date')]",driver);
-            //String result=PickupOrder.getAttribute("disabled");
-            //if(result.equals("")||result1==true)
-            if(HelpersMethod.IsExists("//input[@id='pickupOrder' and @data-checked='checked']",driver) || result1==true)
+
+
+            if(HelpersMethod.IsExists("//input[@id='pickupOrder' and @data-checked='checked']",driver)||HelpersMethod.IsExists("//span[text()='Order type']/following-sibling::span[text()='Pickup Order']",driver) || result1==true)
             {
                 scenario.log("PICKUP ORDER HAS BEEN SELECTED");
                 exists=true;
@@ -4551,7 +4551,7 @@ public class NewOrderEntryPage
             }
             else
             {
-                scenario.log("PICKUP ORDER CHECKBOX IS NOT SELECTED");
+                scenario.log("PICKUP ORDER OPTION MAY NOT BE SELECTED");
                 exists=false;
             }
             Assert.assertEquals(exists,true);
