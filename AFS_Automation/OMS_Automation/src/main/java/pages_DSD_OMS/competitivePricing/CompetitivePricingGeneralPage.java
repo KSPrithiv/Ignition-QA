@@ -486,9 +486,13 @@ public class CompetitivePricingGeneralPage
                 HelpersMethod.waitTillLoadingPage(driver);
             }
 
-            //Click on Check box
-            Thread.sleep(1000);
-            WebElement WebEle1 = modelContainer1.findElement(By.xpath("//input[@id='formattedValue']"));
+//            //Click on Check box
+//            Thread.sleep(1000);
+            //Identify the dialog popup
+            new WebDriverWait(driver, Duration.ofMillis(10000)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class,'k-animation-container k-animation-container-shown')]"))));
+            new WebDriverWait(driver,Duration.ofMillis(10000)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(@class,'k-animation-container k-animation-container-shown')]")));
+
+            WebElement WebEle1 = modelContainer1.findElement(By.xpath(".//input[@id='formattedValue']"));
             HelpersMethod.JScriptClick(driver, WebEle1, 10000);
             status = HelpersMethod.returnDocumentStatus(driver);
             if (status.equals("loading"))
@@ -497,8 +501,12 @@ public class CompetitivePricingGeneralPage
             }
 
             //Identify radio button and click on Radio button
-            Thread.sleep(1000);
-            WebElement RadioPop = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-child-animation-container')]/div[@class='k-popup']");
+            //Thread.sleep(1000);
+            //Identify the dialog popup
+            new WebDriverWait(driver, Duration.ofMillis(10000)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class,'k-animation-container k-animation-container-shown')]"))));
+            new WebDriverWait(driver,Duration.ofMillis(10000)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(@class,'k-animation-container k-animation-container-shown')]")));
+
+            WebElement RadioPop = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='k-child-animation-container']/div[@class='k-popup']");
             WebElement searchBox1= RadioPop.findElement(By.xpath(".//input[contains(@class,'k-input-solid')]"));
             HelpersMethod.EnterText(driver,searchBox1,20000,AccNo);
 
@@ -513,7 +521,7 @@ public class CompetitivePricingGeneralPage
                 HelpersMethod.ActClick(driver, ApplyButton, 20000);
 
                 wait = new FluentWait<>(driver)
-                        .withTimeout(Duration.ofSeconds(120))
+                        .withTimeout(Duration.ofSeconds(400))
                         .pollingEvery(Duration.ofSeconds(2))
                         .ignoring(NoSuchElementException.class);
                 wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));

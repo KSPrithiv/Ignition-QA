@@ -88,7 +88,7 @@ public class FeaturedProdSettingsPage
         exists=false;
         try
         {
-            HelpersMethod.ClickBut(driver,DropDown,1000);
+            HelpersMethod.ClickBut(driver,DropDown,10000);
         }
         catch (Exception e){}
     }

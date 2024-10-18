@@ -577,11 +577,11 @@ public class DMOEPage
             {
                 WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-window k-dialog')]/descendant::button/span[contains(text(),'Go online')]");
                 HelpersMethod.ActClick(driver,WebEle,10000);
-                if(HelpersMethod.IsExists("//div[@class='loader']",driver))
-                {
-                    WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100000);
-                }
+                Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                        .withTimeout(Duration.ofSeconds(200))
+                        .pollingEvery(Duration.ofSeconds(2))
+                        .ignoring(NoSuchElementException.class);
+                wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
                 exists=true;
             }
         }
@@ -653,12 +653,19 @@ public class DMOEPage
                 scenario.log(accText);
                 accNumber.add(accText.substring(accText.length()-4));
             }
+//            for(int j=0;j<=accNumber.size()-1;j++)
+//            {
+//               if(TestBase.testEnvironment.get_Account().equals(accNumber.get(j))||TestBase.testEnvironment.get_AnotherAcc().equals(accNumber.get(j)))
+//               {
+//                   exists=true;
+//               }
+//            }
             for(int j=0;j<=accNumber.size()-1;j++)
             {
-               if(TestBase.testEnvironment.get_Account().equals(accNumber.get(j))||TestBase.testEnvironment.get_AnotherAcc().equals(accNumber.get(j)))
-               {
-                   exists=true;
-               }
+                if (TestBase.testEnvironment.get_Account().endsWith(String.valueOf(accNumber.get(j))) || TestBase.testEnvironment.get_AnotherAcc().endsWith(String.valueOf(accNumber.get(j))))
+                {
+                    exists = true;
+                }
             }
             Assert.assertEquals(exists,true);
         }

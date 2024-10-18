@@ -34,9 +34,6 @@ Feature: Order Entry
     Then Enter PO# for New order
       |PO123|
     Then User enters Product# in Search box and select product from auto search dropdown
-#    Then Check for Catalog popup
-#    Then Enter the Qty in the Product grid Case and Unit
-#      | 1| 1 |
     And Enter Qty for the products in Product grid
       |1|2|
     Then Click on Next button
@@ -197,10 +194,6 @@ Feature: Order Entry
       |PO123|
     And Enter Qty for the products in Product grid
       |1|2|
-#      |2|1|
-#    Then Enter Pro# in Quick Product Entry area
-#    And Check for Case and Unit input box enabled or not based on that enter value
-#      |1|1|
     Then Click on Next button
     And Click on SubmitOrder button
     Then User should be navigated to Order Entry page

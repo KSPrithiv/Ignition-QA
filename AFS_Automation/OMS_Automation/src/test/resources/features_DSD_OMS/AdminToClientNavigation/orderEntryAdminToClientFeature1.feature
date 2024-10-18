@@ -20,7 +20,7 @@ Feature: scenarios for admin credentials and client credentials
     Then User should select Note from popup and Order guide from popup
     Then Enter PO# for New order
       |PO123|
-    Then Click on Add product drop down and select catalog option
+    Then Click on Add product drop down and select catalog option for admin setting
     And User should verify products are not auto loaded select Product from catalog and Enter Qty for the products
       |1|1|
     Then Click on Next button
@@ -48,7 +48,7 @@ Feature: scenarios for admin credentials and client credentials
     Then User should select Note from popup and Order guide from popup
     Then Enter PO# for New order
       |PO123|
-    Then Click on Add product drop down and select catalog option
+    Then Click on Add product drop down and select catalog option for admin setting
     And User should verify products are auto loaded select Product from catalog and Enter Qty for the products
       |1|1|
     Then Click on Next button

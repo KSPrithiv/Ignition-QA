@@ -388,7 +388,8 @@ public class OrderControlPageSteps
     public void userEntersOrderNoInSearchBoxToSearchForOrder()
     {
         orderControlList=new OrderControlListPage(driver,scenario);
-        orderControlList.searchOrderInOCL(Ord_No);
+        //orderControlList.searchOrderInOCL(Ord_No);
+        orderControlList.searchOrderInOCLGrid(Ord_No);
         orderControlList.readOrderComment();
     }
 
@@ -556,6 +557,6 @@ public class OrderControlPageSteps
     {
         orderControlList = new OrderControlListPage(driver, scenario);
         orderControlList.Validate_OCL();
-        orderControlList.verifyOrderInOCLgrid(Ord_No);
+        orderControlList.searchOrderInOCLGrid(Ord_No);
     }
 }

@@ -22,27 +22,6 @@ Feature: Disconnected mode
     And User should select Customer Account# from popup and select the delivery date from popup wait till synchronized
     Then User must be on Order Entry Page in disconnected mode
 
-  @DMSearchBarOrder
-  Scenario: Creating Order in disconnected mode using product# search box
-    Given User should be in Order entry page
-    When User Clicks on network symbol and click on toggle button to navigate to disconnected mode
-    And Then User selects Go offline option in Disconnected mode popup
-    Then User should get Customer account# popup
-    And User should select Customer Account# from popup and select the delivery date from popup wait till synchronized
-    Then User must be on Order Entry Page in disconnected mode
-    Then User must click Start Order button
-    Then User should make selection between Pending order or Start New order
-    Then User should select Note from popup and Order guide from popup
-    Then Enter PO# for New order
-      |PO123|
-    Then User enters Product# in Search box
-    Then Check for Catalog popup
-    Then Enter the Qty in the Product grid Case and Unit
-      |1|1|
-    Then Click on Next button
-    And Click on SubmitOrder button
-    Then User should be navigated to Order Entry page
-
   @DMParOrder
   Scenario:Creating order using par order
     Given User should be in Order entry page
@@ -60,6 +39,49 @@ Feature: Disconnected mode
     And Enter Qty for the products in Product grid
       |1|1|
       |2|1|
+    Then Click on Next button
+    And Click on SubmitOrder button
+    Then User should be navigated to Order Entry page
+
+    @DMOrderOG
+  Scenario: For creating order using OG
+    Given User should be in Order entry page
+    When User Clicks on network symbol and click on toggle button to navigate to disconnected mode
+    And Then User selects Go offline option in Disconnected mode popup
+    Then User should get Customer account# popup
+    And User should select Customer Account# from popup and select the delivery date from popup wait till synchronized
+    Then User must be on Order Entry Page in disconnected mode
+    Then User must click Start Order button
+    Then User should make selection between Pending order or Start New order
+    Then User should select Note from popup and Order guide from popup
+    Then Enter PO# for New order
+      |PO123|
+    Then Click on Add product drop down and select OrderGuide option
+      |SampleOG|
+    And Enter Qty for the products in Product grid
+      |1|1|
+      |2|1|
+    Then Click on Next button
+    And Click on SubmitOrder button
+    Then User should be navigated to Order Entry page
+
+  @DMSearchBarOrder
+  Scenario: Creating Order in disconnected mode using product# search box
+    Given User should be in Order entry page
+    When User Clicks on network symbol and click on toggle button to navigate to disconnected mode
+    And Then User selects Go offline option in Disconnected mode popup
+    Then User should get Customer account# popup
+    And User should select Customer Account# from popup and select the delivery date from popup wait till synchronized
+    Then User must be on Order Entry Page in disconnected mode
+    Then User must click Start Order button
+    Then User should make selection between Pending order or Start New order
+    Then User should select Note from popup and Order guide from popup
+    Then Enter PO# for New order
+      |PO123|
+    Then User enters Product# in Search box
+    Then Check for Catalog popup
+    Then Enter the Qty in the Product grid Case and Unit
+      |1|1|
     Then Click on Next button
     And Click on SubmitOrder button
     Then User should be navigated to Order Entry page
@@ -103,28 +125,6 @@ Feature: Disconnected mode
     Then Click on Add product drop down and select catalog option
     And User should select Product from catalog and Enter Qty for the products in disconnected mode
       |1|1|
-    Then Click on Next button
-    And Click on SubmitOrder button
-    Then User should be navigated to Order Entry page
-
-  @DMOrderOG
-  Scenario: For creating order using OG
-    Given User should be in Order entry page
-    When User Clicks on network symbol and click on toggle button to navigate to disconnected mode
-    And Then User selects Go offline option in Disconnected mode popup
-    Then User should get Customer account# popup
-    And User should select Customer Account# from popup and select the delivery date from popup wait till synchronized
-    Then User must be on Order Entry Page in disconnected mode
-    Then User must click Start Order button
-    Then User should make selection between Pending order or Start New order
-    Then User should select Note from popup and Order guide from popup
-    Then Enter PO# for New order
-      |PO123|
-    Then Click on Add product drop down and select OrderGuide option
-      |SampleOG|
-    And Enter Qty for the products in Product grid
-      |1|1|
-      |2|1|
     Then Click on Next button
     And Click on SubmitOrder button
     Then User should be navigated to Order Entry page

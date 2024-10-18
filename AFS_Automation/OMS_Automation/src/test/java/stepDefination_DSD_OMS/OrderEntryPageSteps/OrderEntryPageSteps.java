@@ -380,12 +380,13 @@ public class OrderEntryPageSteps
         newOE=new NewOrderEntryPage(driver,scenario);
         List<List<String>> PO_No = tabledata.asLists(String.class);
         newOE.EnterPO_No(PO_No.get(0).get(0));
-
         //find whether route is empty or not, if empty should select some route value
         Thread.sleep(2000);
         newOE.validateRouteValue();
         //To find main grid has been selected or else select main grid
         newOE.selectMainGrid();
+        //validate that filterByQuantities-accessibility-id is having show all products
+        newOE.selectAllProducts();
     }
 
     @Then("Enter PO# for New order for Pickup order")
@@ -1230,7 +1231,7 @@ public class OrderEntryPageSteps
         newOE.selectAllProductsCatalogDialogbox();
         newOE.ResetFilter_CatalogDisconnectedMode();
         String pro=String.valueOf(Prod_No);
-        newOE.validateCatalogProducts();
+        newOE.validateDisplayCatalogProducts();
         newOE.Search_Prod_in_Catalog(pro);
         newOE.EnterQty(Prod_detail.get(0).get(0),Prod_detail.get(0).get(1));
         scenario.log("PRODUCT # "+pro+" PRODUCT QTY "+Prod_detail.get(0).get(0)+" "+Prod_detail.get(0).get(1));

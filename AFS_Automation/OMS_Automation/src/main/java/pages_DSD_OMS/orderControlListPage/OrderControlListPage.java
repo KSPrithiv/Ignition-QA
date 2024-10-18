@@ -2517,4 +2517,41 @@ public class OrderControlListPage
         }
         catch (Exception e){}
     }
+
+    public void searchOrderInOCLGrid(String ordNo)
+    {
+        exists=false;
+        Actions act=new Actions(driver);
+        String headText;
+        int i=0;
+        try
+        {
+            //finding position of "Order" heading
+            List<WebElement> heads=HelpersMethod.FindByElements(driver,"xpath","//span[@class='k-column-title']");
+            for(WebElement head:heads)
+            {
+                i++;
+                act.moveToElement(head).build().perform();
+                headText=head.getText();
+                if(headText.equalsIgnoreCase("Order"))
+                {
+                    break;
+                }
+            }
+
+            WebElement inputBox=HelpersMethod.FindByElement(driver,"xpath","//tr[contains(@class,'k-table-row k-filter-row')]/th["+i+"]/descendant::input");
+            HelpersMethod.EnterText(driver,inputBox,10000,ordNo);
+
+            if(HelpersMethod.IsExists("//div[text()='No records available']",driver))
+            {
+                exists=false;
+            }
+            else
+            {
+                exists=true;
+            }
+            Assert.assertEquals(exists,true);
+        }
+        catch (Exception e){}
+    }
 }

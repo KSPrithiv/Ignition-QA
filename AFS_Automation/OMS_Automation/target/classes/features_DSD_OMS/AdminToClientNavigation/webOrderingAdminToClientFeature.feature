@@ -19,13 +19,13 @@ Feature: scenarios for admin credentials and client credentials
     And Check for Case and Unit input box enabled or not based on that enter value
       |1|1|
     Then Click on Next button
-    And Click on SubmitOrder button to verify error message on submitting
-    Then User should be navigated to Order Entry page and verify the error submitting message
+#    And Click on SubmitOrder button and verify the sucess or error submitting message
+    Then User should be navigated to Order Entry page and verify the success or error submitting message
     Then User sign out from client side for Admin setting changes
     And User should set admin setting "<Setting>" "<Key>" as default before making changes
     Examples:
       |  Setting                                 |           Key                         |
-      | Hide \"Order submitting\" message        |  CPHideOrderSubmittingMessage         |
+      | Hide Order submitting message        |  CPHideOrderSubmittingMessage         |
 
   @DisableHideOrderSubmittingMessage
   Scenario Outline: Test scenario for verifying functionality of Order submitting message Disabling
@@ -45,9 +45,9 @@ Feature: scenarios for admin credentials and client credentials
       |1|1|
     Then Click on Next button
     And Click on SubmitOrder button
-    Then User should be navigated to Order Entry page and verify the error submitting message is not displayed
+    Then User should be navigated to Order Entry page and verify the success error submitting message is not displayed
     Then User sign out from client side for Admin setting changes
     And User should set admin setting "<Setting>" "<Key>" as default before making changes
     Examples:
       |  Setting                               |           Key                         |
-      | Hide \"Order submitting\"  message     |  CPHideOrderSubmittingMessage         |
+      | Hide Order submitting message          |  CPHideOrderSubmittingMessage         |
