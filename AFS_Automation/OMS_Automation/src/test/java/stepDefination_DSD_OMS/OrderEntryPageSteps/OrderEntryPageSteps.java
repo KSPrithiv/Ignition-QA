@@ -115,7 +115,7 @@ public class OrderEntryPageSteps
             orderpage = new OrderEntryPage(driver, scenario);
             orderpage.ChangeAccount();
             orderpage.PopUps_After_AccountChange();
-            //orderpage.Read_DeliveryDate();
+            orderpage.Read_DeliveryDate();
             flag1=true;
         }
     }
@@ -336,10 +336,25 @@ public class OrderEntryPageSteps
     public void user_enters_product_in_search_box() throws Throwable
     {
         newOE = new NewOrderEntryPage(driver,scenario);
-        String ProdNo= DataBaseConnection.DataBaseConn(TestBase.testEnvironment.getSingle_Prod_Sql());
+        String ProdNo=DataBaseConnection.DataBaseConn(TestBase.testEnvironment.getSingle_Prod_Sql());
         if(!ProdNo.equals(null))
         {
             newOE.EnterProdNo_InSearchBar(ProdNo);
+        }
+        else
+        {
+            scenario.log("<span style='color:red'>NOT ABLE TO FETCH DATA FROM DATABASE</span>");
+        }
+    }
+
+    @Then("User enters Product# in Search box and select product from auto search dropdown")
+    public void userEntersProductInSearchBoxAndSelectProductFromAutoSearchDropdown() throws InterruptedException, AWTException, SQLException, ClassNotFoundException, InstantiationException, IllegalAccessException
+    {
+        newOE = new NewOrderEntryPage(driver,scenario);
+        String ProdNo=DataBaseConnection.DataBaseConn(TestBase.testEnvironment.getSingle_Prod_Sql());
+        if(!ProdNo.equals(null))
+        {
+            newOE.EnterProdNo_InSearchBarAutoSearch(ProdNo);
         }
         else
         {
@@ -365,12 +380,13 @@ public class OrderEntryPageSteps
         newOE=new NewOrderEntryPage(driver,scenario);
         List<List<String>> PO_No = tabledata.asLists(String.class);
         newOE.EnterPO_No(PO_No.get(0).get(0));
-
         //find whether route is empty or not, if empty should select some route value
         Thread.sleep(2000);
         newOE.validateRouteValue();
         //To find main grid has been selected or else select main grid
         newOE.selectMainGrid();
+        //validate that filterByQuantities-accessibility-id is having show all products
+        newOE.selectAllProducts();
     }
 
     @Then("Enter PO# for New order for Pickup order")
@@ -420,10 +436,22 @@ public class OrderEntryPageSteps
     {
         newOE = new NewOrderEntryPage(driver,scenario);
         List<List<String>> ProQty = tabledata.asLists(String.class);
+        //newOE.validateCatalogProducts();
+        newOE.validateCatalogProdNo();
+        newOE.EnterQty(ProQty.get(0).get(0), ProQty.get(0).get(1));
+        newOE.Catalog_OK();
+    }
+
+    @Then("Enter the Qty in the Product grid, compare product description, enter Case and Unit")
+    public void enterTheQtyInTheProductGridCompareProductDescriptionEnterCaseAndUnit(DataTable tabledata) throws InterruptedException, AWTException
+    {
+        newOE = new NewOrderEntryPage(driver,scenario);
+        List<List<String>> ProQty = tabledata.asLists(String.class);
         newOE.validateCatalogProducts();
         newOE.EnterQty(ProQty.get(0).get(0), ProQty.get(0).get(1));
         newOE.Catalog_OK();
     }
+
 
     @Then("Click on Next button")
     public void click_on_next_button() throws InterruptedException, AWTException, ParseException
@@ -1203,7 +1231,7 @@ public class OrderEntryPageSteps
         newOE.selectAllProductsCatalogDialogbox();
         newOE.ResetFilter_CatalogDisconnectedMode();
         String pro=String.valueOf(Prod_No);
-        newOE.validateCatalogProducts();
+        newOE.validateDisplayCatalogProducts();
         newOE.Search_Prod_in_Catalog(pro);
         newOE.EnterQty(Prod_detail.get(0).get(0),Prod_detail.get(0).get(1));
         scenario.log("PRODUCT # "+pro+" PRODUCT QTY "+Prod_detail.get(0).get(0)+" "+Prod_detail.get(0).get(1));
@@ -1237,4 +1265,6 @@ public class OrderEntryPageSteps
             checkorder.NextButton_Click();
         }
     }
+
+
 }

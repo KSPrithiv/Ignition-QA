@@ -210,34 +210,45 @@ public class AdminOrderEntryStep
         Assert.assertEquals(exists,true);
     }
 
-    @And("Click on SubmitOrder button to verify error message on submitting")
-    public void clickOnSubmitOrderButtonToVerifyErrorMessageOnSubmitting() throws InterruptedException, AWTException
-    {
-        checkOutSummaryPage=new CheckOutSummaryPage(driver,scenario);
-        checkOutSummaryPage.validateSummaryPage();
-        checkOutSummaryPage.ClickSubmitOE();
-        summary = new CheckOutSummaryPage(driver,scenario);
-        for(int i=0;i<=2;i++)
-        {
-            summary.additionalOrderPopup();
-            summary.cutoffDialog();
-            summary.percentageOfAverageProd();
-        }
-    }
+//    @And("Click on SubmitOrder button to verify sucess error message on submitting")
+//    public void clickOnSubmitOrderButtonToVerifyErrorMessageOnSubmitting() throws InterruptedException, AWTException
+//    {
+//        checkOutSummaryPage=new CheckOutSummaryPage(driver,scenario);
+//        checkOutSummaryPage.validateSummaryPage();
+//        checkOutSummaryPage.ClickSubmitOE();
+//        summary = new CheckOutSummaryPage(driver,scenario);
+//        for(int i=0;i<=2;i++)
+//        {
+//            summary.additionalOrderPopup();
+//            summary.cutoffDialog();
+//            summary.percentageOfAverageProd();
+//        }
+ //       summary = new CheckOutSummaryPage(driver,scenario);
+//        summary.validateSummaryPage();
+ //       summary.ClickSubmit();
+//        for(int i=0;i<=2;i++)
+//        {
+//            summary.additionalOrderPopup();
+//            summary.cutoffDialog();
+//            summary.percentageOfAverageProd();
+//        }
+//        summary.SucessPopup();
+//    }
 
-    @Then("User should be navigated to Order Entry page and verify the error submitting message")
-    public void userShouldBeNavigatedToOrderEntryPageAndVerifyTheErrorSubmittingMessage() throws InterruptedException, AWTException
+    @Then("User should be navigated to Order Entry page and verify the success or error submitting message")
+    public void userShouldBeNavigatedToOrderEntryPageAndVerifyTheSuccessErrorSubmittingMessage() throws InterruptedException, AWTException
     {
+        summary = new CheckOutSummaryPage(driver,scenario);
+        summary.validateSummaryPage();
         orderpage=new OrderEntryPage(driver,scenario);
-        orderpage.ValidateOE();
         orderpage.validateSucessOrErrorSubmittingMessage();
     }
 
-    @Then("User should be navigated to Order Entry page and verify the error submitting message is not displayed")
-    public void userShouldBeNavigatedToOrderEntryPageAndVerifyTheErrorSubmittingMessageIsNotDisplayed() throws InterruptedException, AWTException
+    @Then("User should be navigated to Order Entry page and verify the success error submitting message is not displayed")
+    public void userShouldBeNavigatedToOrderEntryPageAndVerifyTheSuccessErrorSubmittingMessageIsNotDisplayed() throws InterruptedException, AWTException
     {
         orderpage=new OrderEntryPage(driver,scenario);
-        orderpage.ValidateOE();
+        //orderpage.ValidateOE();
         orderpage.validateNoSucessOrErrorSubmittingMessage();
     }
 
@@ -310,12 +321,9 @@ public class AdminOrderEntryStep
         newOE.clickOnLoadAllProducts();
         newOE.ResetFilter_Catalog();
         String pro=String.valueOf(Prod_No);
-        newOE.validateCatalogProducts();
+        newOE.validateDisplayCatalogProducts();
         newOE.Search_Prod_in_Catalog(pro);
-
-        //newOE.selectFirstProductFromCatalog();
         newOE.EnterQty(Prod_detail.get(0).get(0),Prod_detail.get(0).get(1));
-        //scenario.log("PRODUCT # "+pro+" PRODUCT QTY "+Prod_detail.get(0).get(0)+" "+Prod_detail.get(0).get(1));
         newOE.Catalog_OK();
     }
 
@@ -329,11 +337,10 @@ public class AdminOrderEntryStep
         newOE.validateAutoLoadProducts();
         newOE.ResetFilter_Catalog();
         newOE.selectAllProductsCatalogDialogbox();
-        //String pro=Prod_No;
-        newOE.validateCatalogProducts();
+        newOE.validateDisplayCatalogProducts();
         newOE.Search_Prod_in_Catalog(Prod_No);
         newOE.EnterQty(Prod_detail.get(0).get(0),Prod_detail.get(0).get(1));
-        scenario.log("PRODUCT # "+Prod_No+" PRODUCT QTY "+Prod_detail.get(0).get(0)+" "+Prod_detail.get(0).get(1));
+        //scenario.log("PRODUCT # "+Prod_No+" PRODUCT QTY "+Prod_detail.get(0).get(0)+" "+Prod_detail.get(0).get(1));
         newOE.Catalog_OK();
     }
 

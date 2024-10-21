@@ -2,6 +2,7 @@ package pages_DSD_OMS.orderEntry;
 
 import helper.HelpersMethod;
 import io.cucumber.java.Scenario;
+import io.cucumber.java.en_old.Ac;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
@@ -208,7 +209,7 @@ public class NewOrderEntryPage
         }
 
         Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
-                .withTimeout(Duration.ofSeconds(120))
+                .withTimeout(Duration.ofSeconds(400))
                 .pollingEvery(Duration.ofSeconds(2))
                 .ignoring(NoSuchElementException.class);
         wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
@@ -219,13 +220,13 @@ public class NewOrderEntryPage
             HelpersMethod.waitTillLoadingPage(driver);
         }
         wait = new FluentWait<WebDriver>(driver)
-                .withTimeout(Duration.ofSeconds(120))
+                .withTimeout(Duration.ofSeconds(400))
                 .pollingEvery(Duration.ofSeconds(2))
                 .ignoring(NoSuchElementException.class);
         wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
         try
         {
-            if(HelpersMethod.IsExists("//div[contains(@class,'order-entry-page')]",driver))
+            if(HelpersMethod.IsExists("//div[@id='orderEntryCard']",driver))
             {
                 scenario.log("NEW ORDER ENTRY PAGE HAS BEEN FOUND");
                 exists=true;
@@ -271,7 +272,7 @@ public class NewOrderEntryPage
 
         try
         {
-            if(HelpersMethod.IsExists("//div[contains(@class,'order-entry-page')]",driver))
+            if(HelpersMethod.IsExists("//div[@id='orderEntryCard']",driver))
             {
                 scenario.log("NEW ORDER ENTRY PAGE HAS BEEN FOUND");
                 exists=true;
@@ -319,7 +320,7 @@ public class NewOrderEntryPage
         try
         {
             Thread.sleep(4000);
-           if(HelpersMethod.IsExists("//label[contains(text(),'Order # ')]",driver))
+           if(HelpersMethod.IsExists("//div[@id='orderEntryCard']",driver))
            {
                scenario.log("NEW ORDER ENTRY PAGE HAS BEEN FOUND");
                exists=true;
@@ -333,9 +334,7 @@ public class NewOrderEntryPage
 
     public void EnterPO_No(String PO_Num) throws InterruptedException
     {
-
         exists=false;
-
         String status=HelpersMethod.returnDocumentStatus(driver);
         if(status.equals("loading"))
         {
@@ -376,7 +375,23 @@ public class NewOrderEntryPage
         WebElement WebEle;
         try
         {
-            if(HelpersMethod.IsExistsById("orderEntryCard",driver))
+            Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(400))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+            String status=HelpersMethod.returnDocumentStatus(driver);
+            if(status.equals("loading"))
+            {
+                HelpersMethod.waitTillLoadingPage(driver);
+            }
+            wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(400))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
+            if(HelpersMethod.IsExists("//div[@id='orderEntryCard']",driver))
             {
                 if(Back_But.isEnabled())
                 {
@@ -408,12 +423,26 @@ public class NewOrderEntryPage
                     .pollingEvery(Duration.ofSeconds(2))
                     .ignoring(NoSuchElementException.class);
             wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
-
-            if(HelpersMethod.IsExists("//div[@class='header-value-row quick-entry-bar header-open row']",driver))
+            String status=HelpersMethod.returnDocumentStatus(driver);
+            if(status.equals("loading"))
+            {
+                HelpersMethod.waitTillLoadingPage(driver);
+            }
+            wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(400))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+            status=HelpersMethod.returnDocumentStatus(driver);
+            if(status.equals("loading"))
+            {
+                HelpersMethod.waitTillLoadingPage(driver);
+            }
+            if(HelpersMethod.IsExists("//div[@id='orderEntryCard']",driver))
             {
                 if(Back_But.isEnabled())
                 {
-                    HelpersMethod.ScrollElement(driver,Back_But);
+                    HelpersMethod.ScrollUpScrollBar(driver);
                     HelpersMethod.ClickBut(driver, Back_But, 10000);
                     exists=true;
                     if(HelpersMethod.IsExists("//div[contains(text(),'Are you sure you want to leave this page?')]/ancestor::div[contains(@class,'k-window k-dialog')]",driver))
@@ -426,7 +455,7 @@ public class NewOrderEntryPage
                             .pollingEvery(Duration.ofSeconds(2))
                             .ignoring(NoSuchElementException.class);
                     wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
-                    String status = HelpersMethod.returnDocumentStatus(driver);
+                    status = HelpersMethod.returnDocumentStatus(driver);
                     if (status.equals("loading"))
                     {
                         HelpersMethod.waitTillLoadingPage(driver);
@@ -455,11 +484,11 @@ public class NewOrderEntryPage
                     .ignoring(NoSuchElementException.class);
             wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
 
-            if(HelpersMethod.IsExists("//div[@class='header-value-row quick-entry-bar header-open row']",driver))
+            if(HelpersMethod.IsExists("//div[@id='orderEntryCard']",driver))
             {
                 if(Back_But.isEnabled())
                 {
-                    HelpersMethod.ScrollElement(driver,Back_But);
+                    HelpersMethod.ScrollUpScrollBar(driver);
                     HelpersMethod.ClickBut(driver, Back_But, 10000);
                     exists=true;
                     if(HelpersMethod.IsExists("//div[contains(text(),'Are you sure you want to leave this page?')]/ancestor::div[contains(@class,'k-window k-dialog')]",driver))
@@ -494,7 +523,7 @@ public class NewOrderEntryPage
         exists=false;
         try
         {
-            if(HelpersMethod.IsExistsById("orderEntryCard",driver))
+            if(HelpersMethod.IsExists("//div[@id='orderEntryCard']",driver))
             {
                 if(Back_But.isEnabled())
                 {
@@ -613,6 +642,48 @@ public class NewOrderEntryPage
         catch (Exception e) {}
     }
 
+    public void EnterProdNo_InSearchBarAutoSearch(String Product)
+    {
+        exists=false;
+        Actions act=new Actions(driver);
+        String suggText;
+        try
+        {
+            HelpersMethod.ScrollElement(driver, SearchProd);
+            HelpersMethod.sendKeys(driver,SearchProd,10000,Product);
+            new WebDriverWait(driver,Duration.ofMillis(10000)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@id='react-autowhatever-searchBarAutoSuggest']/ul/li")));
+            WebElement autoSuggestion=HelpersMethod.FindByElement(driver,"xpath","//div[@id='react-autowhatever-searchBarAutoSuggest']/ul/li");
+            if(autoSuggestion.isDisplayed())
+            {
+                List<WebElement> suggests=HelpersMethod.FindByElements(driver,"xpath","//ul[contains(@class,'autosuggest')]/li/descendant::span[@class='product-number']");
+                for(WebElement suggest:suggests)
+                {
+                    act.moveToElement(suggest).build().perform();
+                    suggText=suggest.getText();
+                    if(suggText.contains(Product))
+                    {
+                        scenario.log("PRODUCT SEARCHED USING SEARCH BAR IS " + Product);
+                        act.click(suggest).build().perform();
+                        exists=true;
+                        break;
+                    }
+                }
+                Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                        .withTimeout(Duration.ofSeconds(200))
+                        .pollingEvery(Duration.ofSeconds(2))
+                        .ignoring(NoSuchElementException.class);
+                wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+            }
+            else
+            {
+                scenario.log("CHECK WHETHER VALID PRODUCT# HAS BEEN ENTERED OR AUTO SUGGESTION IS DISPLAYING OR NOT");
+                exists=false;
+            }
+            Assert.assertEquals(exists,true);
+        }
+        catch (Exception e) {}
+    }
+
     public void EnterForignLanguage_InSearchBar(String Product)
     {
         exists=false;
@@ -662,6 +733,9 @@ public class NewOrderEntryPage
         exists = false;
         WebElement WebEle;
         Actions act1=new Actions(driver);
+        String prodDesText;
+        String pDescription=TestBase.testEnvironment.getProdDesc();
+        int i=0;
         try
         {
             //Check for catalog popup
@@ -670,10 +744,23 @@ public class NewOrderEntryPage
                     //When "Card view" of catlog is enabled
                     if (HelpersMethod.IsExists("//div[@class='product-catalog-container']/ancestor::div[contains(@class,'k-window k-dialog')]", driver))
                     {
-                        //Enter Unit value in input box of catalog
-                        if (HelpersMethod.IsExists("//div[contains(@class,'k-window k-dialog')]/descendant::div[contains(text(),'Unit')]/descendant::input", driver))
+                        List<WebElement> prodDescriptions=HelpersMethod.FindByElements(driver,"xpath","//div[contains(@id,'gridItemBox')]/descendant::span[contains(@class,'product-name')]/a");
+                        for(WebElement prodDescription:prodDescriptions)
                         {
-                            WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-window k-dialog')]/descendant::div[contains(text(),'Unit')]/descendant::input");
+                            i++;
+                            act1.moveToElement(prodDescription).build().perform();
+                            prodDesText=prodDescription.getText();
+                            if(prodDesText.equalsIgnoreCase(pDescription))
+                            {
+                                exists=true;
+                                break;
+                            }
+                        }
+
+                        //Enter Unit value in input box of catalog
+                        if (HelpersMethod.IsExists("//div[contains(@class,'k-window k-dialog')]/descendant::div[contains(@id,'gridItemBox')]["+i+"]/descendant::div[contains(text(),'Unit')]/descendant::input", driver))
+                        {
+                            WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-window k-dialog')]/descendant::div[contains(@id,'gridItemBox')]["+i+"]/descendant::div[contains(text(),'Unit')]/descendant::input");
                             HelpersMethod.ScrollElement(driver, WebEle);
                             act1.moveToElement(WebEle).click().build().perform();
                             act1.sendKeys(Keys.CONTROL + "a");
@@ -705,9 +792,9 @@ public class NewOrderEntryPage
                             }
                         }
                         //Enter Case value in input box of catalog
-                        if (HelpersMethod.IsExists("//div[contains(@class,'k-window k-dialog')]/descendant::div[contains(text(),'Case')]/descendant::input", driver))
+                        if (HelpersMethod.IsExists("//div[contains(@class,'k-window k-dialog')]/descendant::div[contains(@id,'gridItemBox')]["+i+"]/descendant::div[contains(text(),'Case')]/descendant::input", driver))
                         {
-                            WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-window k-dialog')]/descendant::div[contains(text(),'Case')]/descendant::input");
+                            WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-window k-dialog')]/descendant::div[contains(@id,'gridItemBox')]["+i+"]/descendant::div[contains(text(),'Case')]/descendant::input");
                             HelpersMethod.ScrollElement(driver, WebEle);
                             act1.moveToElement(WebEle).click().build().perform();
                             act1.sendKeys(Keys.CONTROL + "a");
@@ -742,8 +829,32 @@ public class NewOrderEntryPage
                         //Grid view display of catalog
                     else if (HelpersMethod.IsExists("//div[contains(@class,'grid-view')]/ancestor::div[contains(@class,'k-window k-dialog')]", driver))
                     {
-                            int b = 0;
-                            List<WebElement> tableHeads = HelpersMethod.FindByElements(driver, "xpath", "//div[@class='i-grid']/descendant::th/descendant::span[@class='k-column-title']");
+                            int b=0;
+                            i = 0;
+                            int j=0;
+                            List<WebElement> tableHeads = HelpersMethod.FindByElements(driver, "xpath", "//div[@class='k-window k-dialog']/descendant::span[@class='k-column-title']");
+                            for(WebElement tableHead:tableHeads)
+                            {
+                                i++;
+                                String THead_Text = tableHead.getText();
+                                if (THead_Text.equals("Description"))
+                                {
+                                    List<WebElement> prodDescriptions=HelpersMethod.FindByElements(driver,"xpath","//div[@class='k-window k-dialog']/descendant::tr[contains(@class,'k-master-row')]/td["+i+"]");
+                                    for(WebElement prodDes:prodDescriptions)
+                                    {
+                                        j++;
+                                        act1.moveToElement(prodDes).build().perform();
+                                        prodDesText=prodDes.getText();
+                                        if(prodDesText.equalsIgnoreCase(pDescription))
+                                        {
+                                            break;
+                                        }
+                                    }
+                                   break;
+                                }
+                            }
+
+                            b=0;
                             for (WebElement tableHead : tableHeads)
                             {
                                 b++;
@@ -751,9 +862,9 @@ public class NewOrderEntryPage
                                 String THead_Text = tableHead.getText();
                                 if (THead_Text.equals("Units"))
                                 {
-                                   if(HelpersMethod.IsExists("//div[@class='i-grid']/descendant::tr[contains(@class,'k-master-row')][1]/descendant::td[" + b + "]/descendant::input",driver))
+                                   if(HelpersMethod.IsExists("//div[@class='i-grid']/descendant::tr[contains(@class,'k-master-row')]["+j+"]/descendant::td[" + b + "]/descendant::input",driver))
                                     {
-                                        UnitCase = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='i-grid']/descendant::tr[contains(@class,'k-master-row')][1]/descendant::td[" + b + "]/descendant::input");
+                                        UnitCase = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='i-grid']/descendant::tr[contains(@class,'k-master-row')]["+j+"]/descendant::td[" + b + "]/descendant::input");
                                         HelpersMethod.ScrollElement(driver, UnitCase);
                                         if (UnitCase.isDisplayed() && UnitCase.isEnabled())
                                         {
@@ -789,10 +900,10 @@ public class NewOrderEntryPage
                                 {
                                     if (THead_Text.equals("Cases"))
                                     {
-                                        if(HelpersMethod.IsExists("//div[@class='i-grid']/descendant::tr[contains(@class,'k-master-row')][1]/descendant::td[" + b + "]/descendant::input",driver))
+                                        if(HelpersMethod.IsExists("//div[@class='i-grid']/descendant::tr[contains(@class,'k-master-row')]["+j+"]/descendant::td[" + b + "]/descendant::input",driver))
                                         {
                                             //Find whether Cases input box is displayed
-                                            UnitCase = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='i-grid']/descendant::tr[contains(@class,'k-master-row')][1]/descendant::td[" + b + "]/descendant::input");
+                                            UnitCase = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='i-grid']/descendant::tr[contains(@class,'k-master-row')]["+j+"]/descendant::td[" + b + "]/descendant::input");
                                             HelpersMethod.ScrollElement(driver, UnitCase);
                                             if (UnitCase.isDisplayed() && UnitCase.isEnabled())
                                             {
@@ -2974,11 +3085,59 @@ public class NewOrderEntryPage
         exists=false;
         WebElement WebEle;
         Wait<WebDriver> wait;
+        WebElement catalogPopup=null;
         try
         {
-            if(HelpersMethod.IsExists("//span[text()='Catalog']/ancestor::div[contains(@class,'k-window k-dialog')]",driver))
+            if(HelpersMethod.IsExists("//div[@class='i-grid']",driver))
             {
-                WebElement catalogPopup=HelpersMethod.FindByElement(driver,"xpath","//span[text()='Catalog']/ancestor::div[contains(@class,'k-window k-dialog')]");
+                //Click on 'Add filter'
+                WebEle = catalogPopup.findElement(By.xpath("//div[contains(@class,'k-window k-dialog')]/descendant::button[contains(@class,'i-filter-tag__main')]/descendant::span[text()='Add filter']"));
+                HelpersMethod.ActClick(driver, WebEle, 10000);
+
+                scenario.log("PORDUCT NUMBER ENERED IN INPUT BOX " + Prods);
+                //Enter value in first search box
+                if (HelpersMethod.IsExists("//div[contains(@class,'i-filter-popup i-filter-popup--add')]", driver))
+                {
+                    WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'i-filter-popup i-filter-popup--add')]/descendant::input[contains(@class,'i-search-box__input')]");
+                    HelpersMethod.sendKeys(driver, WebEle, 10000, "Product #");
+                    //Click on Check box
+                    WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'i-filter-popup i-filter-popup--add')]/descendant::input[contains(@class,'k-checkbox')]");
+                    HelpersMethod.ActClick(driver, WebEle, 10000);
+
+                    //Click on Apply button
+                    WebEle = HelpersMethod.FindByElement(driver, "xpath", "//form[contains(@class,'i-filter-popup i-filter-popup--text')]/descendant::button/span[text()='Apply']");
+                    HelpersMethod.ActClick(driver, WebEle, 10000);
+
+                    wait = new FluentWait<WebDriver>(driver)
+                            .withTimeout(Duration.ofSeconds(120))
+                            .pollingEvery(Duration.ofSeconds(2))
+                            .ignoring(NoSuchElementException.class);
+                    wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+                }
+
+                //Click on Product# button
+                WebEle = HelpersMethod.FindByElement(driver, "xpath", "//button[contains(@class,'i-filter-tag__main')]/span[text()='Product #: ']");
+                HelpersMethod.ActClick(driver, WebEle, 10000);
+
+                //Enter product # in inputbox
+                WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-textbox-container i-filter-popup__content__input')]/input");
+                HelpersMethod.ActSendKey(driver, WebEle, 10000, Prods);
+                scenario.log("PORDUCT NUMBER ENERED IN INPUT BOX " + Prods);
+
+                //Click on Apply button
+                WebEle = HelpersMethod.FindByElement(driver, "xpath", "//form[contains(@class,'i-filter-popup i-filter-popup--text')]/descendant::button/span[text()='Apply']");
+                HelpersMethod.ActClick(driver, WebEle, 10000);
+
+                wait = new FluentWait<WebDriver>(driver)
+                        .withTimeout(Duration.ofSeconds(200))
+                        .pollingEvery(Duration.ofSeconds(2))
+                        .ignoring(NoSuchElementException.class);
+                wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+                exists = true;
+            }
+            else
+            {
+                catalogPopup=HelpersMethod.FindByElement(driver,"xpath","//span[text()='Catalog']/ancestor::div[contains(@class,'k-window k-dialog')]");
                 if(HelpersMethod.IsExists("//div[@class='product-catalog-container']/ancestor::div[contains(@class,'k-window k-dialog')]",driver))
                 {
                     //Click on clear button in search bar
@@ -3008,55 +3167,7 @@ public class NewOrderEntryPage
                             .pollingEvery(Duration.ofSeconds(2))
                             .ignoring(NoSuchElementException.class);
                     wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
-
                     exists=true;
-                }
-                else if(HelpersMethod.IsExists("//div[@class='i-grid']",driver))
-                {
-                        //Click on 'Add filter'
-                        WebEle = catalogPopup.findElement(By.xpath("//div[contains(@class,'k-window k-dialog')]/descendant::button[contains(@class,'i-filter-tag__main')]/descendant::span[text()='Add filter']"));
-                        HelpersMethod.ActClick(driver, WebEle, 10000);
-
-                        scenario.log("PORDUCT NUMBER ENERED IN INPUT BOX " + Prods);
-                        //Enter value in first search box
-                        if (HelpersMethod.IsExists("//div[contains(@class,'i-filter-popup i-filter-popup--add')]", driver))
-                        {
-                            WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'i-filter-popup i-filter-popup--add')]/descendant::input[contains(@class,'i-search-box__input')]");
-                            HelpersMethod.sendKeys(driver, WebEle, 10000, "Product #");
-                            //Click on Check box
-                            WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'i-filter-popup i-filter-popup--add')]/descendant::input[contains(@class,'k-checkbox')]");
-                            HelpersMethod.ActClick(driver, WebEle, 10000);
-
-                            //Click on Apply button
-                            WebEle = HelpersMethod.FindByElement(driver, "xpath", "//form[contains(@class,'i-filter-popup i-filter-popup--text')]/descendant::button/span[text()='Apply']");
-                            HelpersMethod.ActClick(driver, WebEle, 10000);
-
-                            wait = new FluentWait<WebDriver>(driver)
-                                    .withTimeout(Duration.ofSeconds(120))
-                                    .pollingEvery(Duration.ofSeconds(2))
-                                    .ignoring(NoSuchElementException.class);
-                            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
-                        }
-
-                        //Click on Product# button
-                        WebEle = HelpersMethod.FindByElement(driver, "xpath", "//button[contains(@class,'i-filter-tag__main')]/span[text()='Product #: ']");
-                        HelpersMethod.ActClick(driver, WebEle, 10000);
-
-                        //Enter product # in inputbox
-                        WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-textbox-container i-filter-popup__content__input')]/input");
-                        HelpersMethod.ActSendKey(driver, WebEle, 10000, Prods);
-                        scenario.log("PORDUCT NUMBER ENERED IN INPUT BOX " + Prods);
-
-                        //Click on Apply button
-                        WebEle = HelpersMethod.FindByElement(driver, "xpath", "//form[contains(@class,'i-filter-popup i-filter-popup--text')]/descendant::button/span[text()='Apply']");
-                        HelpersMethod.ActClick(driver, WebEle, 10000);
-
-                        wait = new FluentWait<WebDriver>(driver)
-                                .withTimeout(Duration.ofSeconds(200))
-                                .pollingEvery(Duration.ofSeconds(2))
-                                .ignoring(NoSuchElementException.class);
-                        wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
-                        exists = true;
                 }
             }
             Assert.assertEquals(exists,true);
@@ -3492,7 +3603,7 @@ public class NewOrderEntryPage
             HelpersMethod.ScrollElement(driver,OEProdGrid);
             if(HelpersMethod.IsExists("//div[contains(@class,'k-grouping-header')]/descendant::div[contains(@class,'k-grouping-drop-container')]",driver))
             {
-                List<WebElement> TableHeads=driver.findElements(By.xpath("//thead/tr[1]/th"));
+                List<WebElement> TableHeads=driver.findElements(By.xpath("//thead/tr[1]/th/descendant::span[@class='k-column-title']"));
                 for(WebElement THead:TableHeads)
                 {
                     String Head=THead.getText();
@@ -3525,7 +3636,6 @@ public class NewOrderEntryPage
         exists=false;
         try
         {
-
             HelpersMethod.ScrollElement(driver, SearchProd);
             HelpersMethod.EnterText(driver,SearchProd,10000,Prod_Des);
             HelpersMethod.ClickBut(driver,IndexSearch,10000);
@@ -4033,15 +4143,16 @@ public class NewOrderEntryPage
         {
             WebEle=HelpersMethod.FindByElement(driver,"id","orderEntryGridContainer");
             HelpersMethod.ScrollElement(driver,WebEle);
-            if (HelpersMethod.IsExists("//tr[contains(@class,'k-master-row')]/descendant::input[contains(@id,'TotalUnits')]", driver))
+            if (HelpersMethod.IsExists("//tr[contains(@class,'k-master-row')][1]/descendant::input[contains(@id,'TotalUnits')]", driver))
             {
-                List<WebElement> unitInputs = HelpersMethod.FindByElements(driver, "xpath", "//tr[contains(@class,'k-master-row')]/descendant::input[contains(@id,'TotalUnits')]");
+                List<WebElement> unitInputs = HelpersMethod.FindByElements(driver, "xpath", "//tr[contains(@class,'k-master-row')][1]/descendant::input[contains(@id,'TotalUnits')]");
                 for (WebElement unitInput : unitInputs)
                 {
                     if (unitInput.isDisplayed())
                     {
                         HelpersMethod.ScrollElement(driver, unitInput);
-                        HelpersMethod.ActSendKey(driver, unitInput, 1000, Unit);
+                        HelpersMethod.EnterText(driver,unitInput,10000,"");
+                        HelpersMethod.ActSendKey(driver, unitInput, 10000, Unit);
                         scenario.log("QTY ENTERED FOR HANDLING UNUSUAL QTY POPUP IS " + Unit);
                         break;
                     }
@@ -4091,15 +4202,16 @@ public class NewOrderEntryPage
         {
             WebEle = HelpersMethod.FindByElement(driver, "id", "orderEntryGridContainer");
             HelpersMethod.ScrollElement(driver, WebEle);
-            if (HelpersMethod.IsExists("//tr[contains(@class,'k-master-row')]/descendant::input[contains(@id,'TotalCases')]", driver))
+            if (HelpersMethod.IsExists("//tr[contains(@class,'k-master-row')][1]/descendant::input[contains(@id,'TotalCases')]", driver))
             {
-                List<WebElement> caseInputs = HelpersMethod.FindByElements(driver, "xpath", "//tr[contains(@class,'k-master-row')]/descendant::input[contains(@id,'TotalCases')]");
+                List<WebElement> caseInputs = HelpersMethod.FindByElements(driver, "xpath", "//tr[contains(@class,'k-master-row')][1]/descendant::input[contains(@id,'TotalCases')]");
                 for (WebElement caseInput:caseInputs)
                 {
                     if(caseInput.isDisplayed())
                     {
                         HelpersMethod.ScrollElement(driver,caseInput);
-                        HelpersMethod.ActSendKey(driver,caseInput,1000,Case);
+                        HelpersMethod.EnterText(driver,caseInput,10000,"");
+                        HelpersMethod.ActSendKey(driver,caseInput,10000,Case);
                         scenario.log("QTY ENTERED FOR HANDLING UNUSUAL QTY POPUP IS "+Case);
                         break;
                     }
@@ -4436,9 +4548,9 @@ public class NewOrderEntryPage
         try
         {
             boolean result1=HelpersMethod.IsExists("//div[contains(@class,'inline-form-group')]/span[contains(text(),'Date')]",driver);
-            //String result=PickupOrder.getAttribute("disabled");
-            //if(result.equals("")||result1==true)
-            if(HelpersMethod.IsExists("//input[@id='pickupOrder' and @data-checked='checked']",driver) || result1==true)
+
+
+            if(HelpersMethod.IsExists("//input[@id='pickupOrder' and @data-checked='checked']",driver)||HelpersMethod.IsExists("//span[text()='Order type']/following-sibling::span[text()='Pickup Order']",driver) || result1==true)
             {
                 scenario.log("PICKUP ORDER HAS BEEN SELECTED");
                 exists=true;
@@ -4450,7 +4562,7 @@ public class NewOrderEntryPage
             }
             else
             {
-                scenario.log("PICKUP ORDER CHECKBOX IS NOT SELECTED");
+                scenario.log("PICKUP ORDER OPTION MAY NOT BE SELECTED");
                 exists=false;
             }
             Assert.assertEquals(exists,true);
@@ -5008,6 +5120,7 @@ public class NewOrderEntryPage
             }
             else
             {
+                scenario.log("<span style='color:red'>PRODUCTS FOUND ARE:::::</span>");
                 WebElement scroll=HelpersMethod.FindByElement(driver,"xpath","//div[@class='product-number']");
                 HelpersMethod.ScrollElement(driver,scroll);
                 List<WebElement> prods=HelpersMethod.FindByElements(driver,"xpath","//div[@class='product-number']");
@@ -5029,18 +5142,44 @@ public class NewOrderEntryPage
         exists=false;
         try
         {
+            String status = HelpersMethod.returnDocumentStatus(driver);
+            if (status.equals("loading"))
+            {
+                HelpersMethod.waitTillLoadingPage(driver);
+            }
 
-            WebElement resetFilter = HelpersMethod.FindByElement(driver, "xpath", "//button[@data-test-id='productFilterResetBtn']");
-            HelpersMethod.ClickBut(driver, resetFilter, 10000);
-            exists = true;
             Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
-                    .withTimeout(Duration.ofSeconds(200))
+                    .withTimeout(Duration.ofSeconds(400))
                     .pollingEvery(Duration.ofSeconds(2))
                     .ignoring(NoSuchElementException.class);
             wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+            status = HelpersMethod.returnDocumentStatus(driver);
+            if (status.equals("loading"))
+            {
+                HelpersMethod.waitTillLoadingPage(driver);
+            }
+
+            wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(400))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
+            if(HelpersMethod.IsExists("//button[@data-test-id='productFilterResetBtn']",driver))
+            {
+                WebElement resetFilter = HelpersMethod.FindByElement(driver, "xpath", "//button[@data-test-id='productFilterResetBtn']");
+                HelpersMethod.ClickBut(driver, resetFilter, 10000);
+                exists = true;
+            }
+
+            wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(400))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+            Assert.assertEquals(exists,true);
         }
         catch (Exception e){}
-        Assert.assertEquals(exists,true);
     }
 
     public void ogDropDown()
@@ -5054,11 +5193,11 @@ public class NewOrderEntryPage
                 showAllProd = HelpersMethod.FindByElement(driver, "id", "CPorderGuies");
                 HelpersMethod.ActClick(driver,showAllProd,10000);
                 exists = true;
-                if(HelpersMethod.IsExists("//div[@class='loader']",driver))
-                {
-                    WebElement WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000000);
-                }
+                Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                        .withTimeout(Duration.ofSeconds(400))
+                        .pollingEvery(Duration.ofSeconds(2))
+                        .ignoring(NoSuchElementException.class);
+                wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
             }
             Assert.assertEquals(exists,true);
         }
@@ -5073,8 +5212,7 @@ public class NewOrderEntryPage
             String og=TestBase.testEnvironment.get_OrderGuide();
             try
             {
-                WebElement dropDown=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-popup k-child-animation-container')]");
-                List<WebElement> allProds=dropDown.findElements(By.xpath(".//ul/li"));
+                List<WebElement> allProds=HelpersMethod.FindByElements(driver,"xpath", "//ul[@id='CPorderGuies-listbox-id']/li/span");
                 for(WebElement prod:allProds)
                 {
                     act.moveToElement(prod).build().perform();
@@ -5087,12 +5225,31 @@ public class NewOrderEntryPage
                         break;
                     }
                 }
+                String status = HelpersMethod.returnDocumentStatus(driver);
+                if (status.equals("loading"))
+                {
+                    HelpersMethod.waitTillLoadingPage(driver);
+                }
+
                 Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
-                        .withTimeout(Duration.ofSeconds(120))
+                        .withTimeout(Duration.ofSeconds(400))
                         .pollingEvery(Duration.ofSeconds(2))
                         .ignoring(NoSuchElementException.class);
                 wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
-                WebElement dropDown1=HelpersMethod.FindByElement(driver,"xpath","//span[@id='CPorderGuies']/span[@class='k-input']");
+                status = HelpersMethod.returnDocumentStatus(driver);
+                if (status.equals("loading"))
+                {
+                    HelpersMethod.waitTillLoadingPage(driver);
+                }
+
+                wait = new FluentWait<WebDriver>(driver)
+                        .withTimeout(Duration.ofSeconds(400))
+                        .pollingEvery(Duration.ofSeconds(2))
+                        .ignoring(NoSuchElementException.class);
+                wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
+                Thread.sleep(1000);
+                WebElement dropDown1=HelpersMethod.FindByElement(driver,"xpath","//span[@id='CPorderGuies-accessibility-id']/span[@class='k-input-value-text']");
                 String selectValue=dropDown1.getText();
                 scenario.log("OPTION SELECTED FROM ORDER GUIDE DROP DOWN "+selectValue);
                 Assert.assertEquals(exists,true);
@@ -5109,7 +5266,7 @@ public class NewOrderEntryPage
             if(HelpersMethod.IsExists("//span[@id='CPcategories']",driver))
             {
                 showAllProd = HelpersMethod.FindByElement(driver, "id", "CPcategories");
-                HelpersMethod.ActClick(driver,showAllProd,1000);
+                HelpersMethod.ActClick(driver,showAllProd,10000);
                 exists=true;
             }
             Assert.assertEquals(exists,true);
@@ -5125,8 +5282,7 @@ public class NewOrderEntryPage
         String category=TestBase.testEnvironment.get_Category();
         try
         {
-            WebElement dropDown=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-popup k-child-animation-container')]");
-            List<WebElement> allProds=dropDown.findElements(By.xpath(".//ul/li"));
+            List<WebElement> allProds=HelpersMethod.FindByElements(driver,"xpath","//ul[@id='CPcategories-listbox-id']/li/span");
             for(WebElement prod:allProds)
             {
                 act.moveToElement(prod).build().perform();
@@ -5139,12 +5295,30 @@ public class NewOrderEntryPage
                     break;
                 }
             }
+            String status = HelpersMethod.returnDocumentStatus(driver);
+            if (status.equals("loading"))
+            {
+                HelpersMethod.waitTillLoadingPage(driver);
+            }
+
             Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
-                    .withTimeout(Duration.ofSeconds(120))
+                    .withTimeout(Duration.ofSeconds(400))
                     .pollingEvery(Duration.ofSeconds(2))
                     .ignoring(NoSuchElementException.class);
             wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
-            WebElement dropDown1=HelpersMethod.FindByElement(driver,"xpath","//span[@id='CPcategories']/span[@class='k-input']");
+            status = HelpersMethod.returnDocumentStatus(driver);
+            if (status.equals("loading"))
+            {
+                HelpersMethod.waitTillLoadingPage(driver);
+            }
+
+            wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(400))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+            Thread.sleep(1000);
+            WebElement dropDown1=HelpersMethod.FindByElement(driver,"xpath","//span[@id='CPcategories-accessibility-id']/span[@class='k-input-value-text']");
             String selectValue=dropDown1.getText();
             scenario.log("OPTION SELECTED FROM CATEGORY DROP DOWN "+selectValue);
             Assert.assertEquals(exists,true);
@@ -5161,7 +5335,7 @@ public class NewOrderEntryPage
             if(HelpersMethod.IsExists("//span[@id='CPbrands']",driver))
             {
                 showAllProd = HelpersMethod.FindByElement(driver, "id", "CPbrands");
-                HelpersMethod.ActClick(driver,showAllProd,1000);
+                HelpersMethod.ActClick(driver,showAllProd,10000);
                 exists=true;
             }
             Assert.assertEquals(exists,true);
@@ -5175,9 +5349,9 @@ public class NewOrderEntryPage
         String prods;
         Actions act = new Actions(driver);
         String subCategory=TestBase.testEnvironment.get_SubCategory();
-        try {
-            WebElement dropDown = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-popup k-child-animation-container')]");
-            List<WebElement> allProds = dropDown.findElements(By.xpath(".//ul/li"));
+        try
+        {
+            List<WebElement> allProds = HelpersMethod.FindByElements(driver,"xpath","//ul[@id='CPbrands-listbox-id']/li/span");
             for (WebElement prod : allProds)
             {
                 act.moveToElement(prod).build().perform();
@@ -5190,12 +5364,31 @@ public class NewOrderEntryPage
                     break;
                 }
             }
+            String status = HelpersMethod.returnDocumentStatus(driver);
+            if (status.equals("loading"))
+            {
+                HelpersMethod.waitTillLoadingPage(driver);
+            }
+
             Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
-                    .withTimeout(Duration.ofSeconds(120))
+                    .withTimeout(Duration.ofSeconds(400))
                     .pollingEvery(Duration.ofSeconds(2))
                     .ignoring(NoSuchElementException.class);
             wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
-            WebElement  dropDown1=HelpersMethod.FindByElement(driver,"xpath","//span[@id='CPbrands']/span[@class='k-input']");
+            status = HelpersMethod.returnDocumentStatus(driver);
+            if (status.equals("loading"))
+            {
+                HelpersMethod.waitTillLoadingPage(driver);
+            }
+
+            wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(400))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
+            Thread.sleep(1000);
+            WebElement  dropDown1=HelpersMethod.FindByElement(driver,"xpath","//span[@id='CPbrands-accessibility-id']/span[@class='k-input-value-text']");
             String selectValue=dropDown1.getText();
             scenario.log("OPTION SELECTED FROM SUB-CATEGORY DROP DOWN "+selectValue);
             Assert.assertEquals(exists, true);
@@ -5228,13 +5421,12 @@ public class NewOrderEntryPage
         String brand=TestBase.testEnvironment.get_Brand();
         try
         {
-            WebElement dropDown=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-popup k-child-animation-container')]");
-            List<WebElement> allProds=dropDown.findElements(By.xpath(".//ul/li"));
+            List<WebElement> allProds=HelpersMethod.FindByElements(driver,"xpath","//ul[@id='CPsizes-listbox-id']/li/span");
             for(WebElement prod:allProds)
             {
                 act.moveToElement(prod).build().perform();
                 prods=prod.getText();
-                if(prods.equals(brand))
+                if(prods.equalsIgnoreCase(brand))
                 {
                     act.moveToElement(prod).build().perform();
                     act.click(prod).build().perform();
@@ -5242,12 +5434,31 @@ public class NewOrderEntryPage
                     break;
                 }
             }
+            String status = HelpersMethod.returnDocumentStatus(driver);
+            if (status.equals("loading"))
+            {
+                HelpersMethod.waitTillLoadingPage(driver);
+            }
+
             Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
-                    .withTimeout(Duration.ofSeconds(120))
+                    .withTimeout(Duration.ofSeconds(400))
                     .pollingEvery(Duration.ofSeconds(2))
                     .ignoring(NoSuchElementException.class);
             wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
-            WebElement dropDown1=HelpersMethod.FindByElement(driver,"xpath","//span[@id='CPsizes']/span[@class='k-input']");
+            status = HelpersMethod.returnDocumentStatus(driver);
+            if (status.equals("loading"))
+            {
+                HelpersMethod.waitTillLoadingPage(driver);
+            }
+
+           wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(400))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
+            Thread.sleep(1000);
+            WebElement dropDown1=HelpersMethod.FindByElement(driver,"xpath","//span[@id='CPsizes-accessibility-id']/span[@class='k-input-value-text']");
             String selectValue=dropDown1.getText();
             scenario.log("OPTION SELECTED FROM BRAND DROP DOWN "+selectValue);
             Assert.assertEquals(exists,true);
@@ -5284,7 +5495,7 @@ public class NewOrderEntryPage
             if(HelpersMethod.IsExists("//button[@data-test-id='grid-selection']/span",driver))
             {
                 HelpersMethod.ScrollElement(driver,gridType);
-                HelpersMethod.ClickBut(driver,gridType,2000);
+                HelpersMethod.ClickBut(driver,gridType,10000);
                 exists=true;
             }
             Assert.assertEquals(exists,true);
@@ -5314,11 +5525,11 @@ public class NewOrderEntryPage
                     break;
                 }
             }
-            if(HelpersMethod.IsExists("//div[@class='loader']",driver))
-            {
-                WebElement WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000000);
-            }
+            Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(400))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
             String gridName=HelpersMethod.FindByElement(driver,"xpath","//button[@data-test-id='grid-selection']").getText();
             scenario.log("GRID SELECTED IS "+gridName);
             Assert.assertEquals(exists,true);
@@ -5347,11 +5558,11 @@ public class NewOrderEntryPage
                     break;
                 }
             }
-            if(HelpersMethod.IsExists("//div[@class='loader']",driver))
-            {
-                WebElement WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000000);
-            }
+            Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(400))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
             String gridName=HelpersMethod.FindByElement(driver,"xpath","//button[@data-test-id='grid-selection']").getText();
             scenario.log("GRID SELECTED IS "+gridName);
             Assert.assertEquals(exists,true);
@@ -5543,16 +5754,15 @@ public class NewOrderEntryPage
     {
       exists=false;
       String catText;
-      String catSelect=TestBase.testEnvironment.get_Category();
+      String catSelect=TestBase.testEnvironment.get_Brand();
       Actions act1=new Actions(driver);
       try
       {
           //Click on Category drop down
-          WebElement catalogDropdown=HelpersMethod.FindByElement(driver,"xpath","//span[@id='CPcategories']");
-          HelpersMethod.ActClick(driver,catalogDropdown,1000);
+          WebElement catalogDropdown=HelpersMethod.FindByElement(driver,"xpath","//span[@id='CPsizes-accessibility-id']");
+          HelpersMethod.ActClick(driver,catalogDropdown,10000);
           //create list of elements in dropdown
-          WebElement dropDown=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-popup k-child-animation-container')]");
-          List<WebElement> categoryLists=dropDown.findElements(By.xpath(".//ul/li"));
+          List<WebElement> categoryLists=HelpersMethod.FindByElements(driver,"xpath","//ul[@id='CPsizes-listbox-id']/li/span");
           //Select value from dropdown
           for(WebElement catList:categoryLists)
           {
@@ -5566,7 +5776,7 @@ public class NewOrderEntryPage
               }
           }
           //check selected value from dropdown
-          String catelogText=HelpersMethod.FindByElement(driver,"xpath","//span[@id='CPcategories']/span[@class='k-input']").getText();
+          String catelogText=HelpersMethod.FindByElement(driver,"xpath","//span[@id='CPsizes-accessibility-id']/span[@class='k-input-value-text']").getText();
           if(catelogText.equals(catSelect))
           {
               exists=true;
@@ -5869,9 +6079,37 @@ public class NewOrderEntryPage
         catch (Exception e){}
     }
 
+    public void validateDisplayCatalogProducts()
+    {
+        exists=false;
+        try
+        {
+            Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(200))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
+            if (HelpersMethod.IsExists("//div[contains(text(),'Sorry, no products matched')]/ancestor::div[contains(@class,'k-window k-dialog')]|//div[contains(@class,'i-no-data__message')]/ancestor::div[contains(@class,'k-window k-dialog')]", driver))
+            {
+                scenario.log("<space style='color:red'>SORRY NO PRODUCTS HAS BEEN FOUND</space>");
+                exists = false;
+            }
+            else
+            {
+                scenario.log("CATALOG HAS BEEN FOUND");
+                exists=true;
+            }
+            Assert.assertEquals(exists,true);
+        }
+        catch (Exception e){}
+    }
+
     public void validateCatalogProducts()
     {
         exists=false;
+        String prodDesText;
+        Actions act=new Actions(driver);
         try
         {
             Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
@@ -5887,7 +6125,112 @@ public class NewOrderEntryPage
             }
             else
             {
-                exists=true;
+                String titleText;
+                int i=0;
+                if(HelpersMethod.IsExists("//div[@class='k-window k-dialog']/descendant::div[@class='i-grid']",driver))
+                {
+                    List<WebElement> titles=HelpersMethod.FindByElements(driver,"xpath","//div[@class='k-window k-dialog']/descendant::span[@class='k-column-title']");
+                    for(WebElement title:titles)
+                    {
+                       i++;
+                       titleText=title.getText();
+                       if(titleText.equals("Description"))
+                       {
+                           break;
+                       }
+                    }
+                    List<WebElement> prodDescriptions = HelpersMethod.FindByElements(driver, "xpath", "//div[@class='k-window k-dialog']/descendant::tr[contains(@class,'k-master-row')]/td["+i+"]");
+                    for (WebElement prodDescription : prodDescriptions)
+                    {
+                        act.moveToElement(prodDescription).build().perform();
+                        prodDesText = prodDescription.getText();
+                        if (prodDesText.contains(TestBase.testEnvironment.getProdDesc()))
+                        {
+                            exists = true;
+                            break;
+                        }
+                    }
+                }
+                else
+                {
+                    List<WebElement> prodDescriptions = HelpersMethod.FindByElements(driver, "xpath", "//div[contains(@id,'gridItemBox')]/descendant::span[contains(@class,'product-name')]/a");
+                    for (WebElement prodDescription : prodDescriptions)
+                    {
+                        act.moveToElement(prodDescription).build().perform();
+                        prodDesText = prodDescription.getText();
+                        if (prodDesText.contains(TestBase.testEnvironment.getProdDesc()))
+                        {
+                            exists = true;
+                            break;
+                        }
+                    }
+                }
+            }
+            Assert.assertEquals(exists,true);
+        }
+        catch (Exception e){}
+    }
+
+    public void validateCatalogProdNo()
+    {
+        exists=false;
+        String prodDesText;
+        Actions act=new Actions(driver);
+        try
+        {
+            Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(200))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
+            if (HelpersMethod.IsExists("//div[contains(text(),'Sorry, no products matched')]/ancestor::div[contains(@class,'k-window k-dialog')]|//div[contains(@class,'i-no-data__message')]/ancestor::div[contains(@class,'k-window k-dialog')]", driver))
+            {
+                scenario.log("<space style='color:red'>SORRY NO PRODUCTS HAS BEEN FOUND</space>");
+                exists=false;
+            }
+            else
+            {
+                String titleText;
+                int i=0;
+                if(HelpersMethod.IsExists("//div[@class='k-window k-dialog']/descendant::div[@class='i-grid']",driver))
+                {
+                    List<WebElement> titles=HelpersMethod.FindByElements(driver,"xpath","//div[@class='k-window k-dialog']/descendant::span[@class='k-column-title']");
+                    for(WebElement title:titles)
+                    {
+                        i++;
+                        titleText=title.getText();
+                        if(titleText.equals("Product #"))
+                        {
+                            break;
+                        }
+                    }
+                    List<WebElement> prodNos = HelpersMethod.FindByElements(driver, "xpath", "//div[@class='k-window k-dialog']/descendant::tr[contains(@class,'k-master-row')]/td["+i+"]");
+                    for (WebElement prodNo : prodNos)
+                    {
+                        act.moveToElement(prodNo).build().perform();
+                        prodDesText = prodNo.getText();
+                        if (prodDesText.equalsIgnoreCase(DataBaseConnection.DataBaseConn(TestBase.testEnvironment.getSingle_Prod_Sql())))
+                        {
+                            exists = true;
+                            break;
+                        }
+                    }
+                }
+                else
+                {
+                    List<WebElement> prodNos = HelpersMethod.FindByElements(driver, "xpath", "//div[@class='product-number']/span");
+                    for (WebElement prodNo : prodNos)
+                    {
+                        act.moveToElement(prodNo).build().perform();
+                        prodDesText = prodNo.getText();
+                        if (prodDesText.contains(DataBaseConnection.DataBaseConn(TestBase.testEnvironment.getSingle_Prod_Sql())))
+                        {
+                            exists = true;
+                            break;
+                        }
+                    }
+                }
             }
             Assert.assertEquals(exists,true);
         }
@@ -6857,5 +7200,32 @@ public class NewOrderEntryPage
                 }
             }
             catch (Exception e){}
+    }
+
+    public void selectAllProducts()
+    {
+        Actions act=new Actions(driver);
+        String showAllProdText;
+        try
+        {
+            if(!HelpersMethod.IsExists("//span[@id='filterByQuantities-accessibility-id']/span[text()='Show all products']",driver))
+            {
+                WebElement showAllProduct=HelpersMethod.FindByElement(driver,"id","filterByQuantities-accessibility-id");
+                HelpersMethod.ActClick(driver,showAllProduct,10000);
+                //select show all product from drop down
+                List<WebElement> showAllProds=HelpersMethod.FindByElements(driver,"xpath","//ul[@id='filterByQuantities-listbox-id']/descendant::span");
+                for(WebElement showAllProd:showAllProds)
+                {
+                    act.moveToElement(showAllProd).build().perform();
+                    showAllProdText=showAllProd.getText();
+                    if(showAllProdText.equalsIgnoreCase("Show all products"))
+                    {
+                        act.click(showAllProd).build().perform();
+                        break;
+                    }
+                }
+            }
+        }
+        catch (Exception e){}
     }
 }

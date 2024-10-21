@@ -98,4 +98,11 @@ public class AdminOrderEntryStep1
         CheckOutSummaryPage checkSummaryPage=new CheckOutSummaryPage(driver,scenario);
         checkSummaryPage.clickOnBackToOrderList();
     }
+
+    @Then("Click on Add product drop down and select catalog option for admin setting")
+    public void clickOnAddProductDropDownAndSelectCatalogOptionForAdminSetting() throws InterruptedException, AWTException
+    {
+        newOE=new NewOrderEntryPage(driver,scenario);
+        newOE.Add_Product_From_Catalog();
+    }
 }

@@ -6,6 +6,7 @@ package util;
 
 
 
+import helper.HelpersMethod;
 import org.openqa.selenium.*;
 
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -21,6 +22,7 @@ import org.openqa.selenium.support.ThreadGuard;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.Wait;
+import org.testng.Assert;
 
 import java.awt.*;
 import java.io.IOException;
@@ -28,6 +30,8 @@ import java.sql.SQLException;
 
 import java.time.Duration;
 import java.util.concurrent.TimeUnit;
+
+import static org.testng.Assert.assertNotNull;
 
 /**
  * @Project DSD_OMS
@@ -84,8 +88,6 @@ public class TestBase
 
     public static final void SetDriver(String browserName) throws InterruptedException, AWTException, SQLException, ClassNotFoundException, InstantiationException, IllegalAccessException
     {
-        //String browserName = browser;
-        //boolean isHeadless = false;
         switch (browserName.toLowerCase())
         {
             case "chrome":
@@ -200,12 +202,20 @@ public class TestBase
 
         getDriver().manage().window().maximize();
         getDriver().manage().deleteAllCookies();
+
+        //to verify browser is lauched
+        String currHandle=getDriver().getWindowHandle();
+        assertNotNull(currHandle);
+
+        //wait until the page is completely loaded
         getDriver().manage().timeouts().pageLoadTimeout(TestUtil.PAGE_LOAD_TIMEOUT, TimeUnit.SECONDS);
         ////getDriver().manage().timeouts().implicitlyWait(TestUtil.IMPLICIT_WAIT, TimeUnit.SECONDS);
+
+        //to enter the url
         getDriver().get(testEnvironment.get_url());
-       //// getDriver().manage().window().setSize(new Dimension(1920, 1080));
+
         Wait<WebDriver> wait = new FluentWait<WebDriver>(getDriver())
-                .withTimeout(Duration.ofSeconds(1000))
+                .withTimeout(Duration.ofSeconds(200))
                 .pollingEvery(Duration.ofSeconds(2))
                 .ignoring(NoSuchElementException.class);
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@id='unauthorized-content']")));

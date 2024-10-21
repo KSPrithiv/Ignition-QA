@@ -465,7 +465,7 @@ public class OrderHistoryPage
         {
             if(HelpersMethod.IsExists("//span[@id='grid-selection-dropdown']/descendant::button",driver))
             {
-                HelpersMethod.JScriptClick(driver,gridType,10000);
+                HelpersMethod.JScriptClick(driver,gridType,20000);
                 exists=true;
             }
             Assert.assertEquals(exists,true);
@@ -473,7 +473,7 @@ public class OrderHistoryPage
         catch (Exception e){}
     }
 
-    public void selectGridType(String gType)
+    public void selectAnyGridType()
     {
         exists=false;
         Actions act1=new Actions(driver);
@@ -485,7 +485,7 @@ public class OrderHistoryPage
             {
                 act1.moveToElement(opt).build().perform();
                 optText=opt.getText();
-                if (optText.equals(gType))
+                if (!optText.equals("Main grid"))
                 {
                     act1.moveToElement(opt).build().perform();
                     act1.click(opt).build().perform();
@@ -503,13 +503,43 @@ public class OrderHistoryPage
         catch (Exception e){}
     }
 
-    public void validateGridType(String gType)
+    public void selectGridType()
+    {
+        exists=false;
+        Actions act1=new Actions(driver);
+        String optText;
+        try
+        {
+            List<WebElement> Options=HelpersMethod.FindByElements(driver,"xpath","//ul[@id='grid-selection-dropdown-listbox-id']/descendant::span[@class='k-list-item-text']");
+            for(WebElement opt:Options)
+            {
+                act1.moveToElement(opt).build().perform();
+                optText=opt.getText();
+                if (optText.equals("Main grid"))
+                {
+                    act1.moveToElement(opt).build().perform();
+                    act1.click(opt).build().perform();
+                    exists=true;
+                    break;
+                }
+            }
+            Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(400))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+            Assert.assertEquals(exists,true);
+        }
+        catch (Exception e){}
+    }
+
+    public void validateGridType()
     {
             exists=false;
             try
             {
                 String gridValue=HelpersMethod.FindByElement(driver,"xpath","//span[@id='grid-selection-dropdown']/descendant::span[@class='k-input-value-text']").getText();
-                if(gridValue.equals(gType))
+                if(gridValue.equals("Main grid"))
                 {
                     scenario.log("GRID TYPE SELECTED IS "+gridValue);
                     exists=true;

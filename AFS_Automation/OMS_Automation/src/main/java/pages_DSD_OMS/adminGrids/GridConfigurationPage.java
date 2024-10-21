@@ -44,7 +44,7 @@ public class GridConfigurationPage
     @FindBy(xpath="//button/span[text()='Grid options']")
     private WebElement gridOptionDropdown;
 
-    @FindBy(xpath="//button/span[contains(text(),'Column chooser')]")
+    @FindBy(xpath="//span[text()='Column chooser']/parent::button")
     private WebElement columnChooser;
 
     public GridConfigurationPage(WebDriver driver, Scenario scenario)
@@ -475,6 +475,40 @@ public class GridConfigurationPage
                     .release(toWebElement)
                     .build();
             dragAndDrop.perform();
+        }
+        catch (Exception e){}
+    }
+
+
+    public void dragAndDropColumnHeader()
+    {
+        Actions act=new Actions(driver);
+        try
+        {
+            WebElement dragElement=HelpersMethod.FindByElement(driver,"xpath","//div[@id='AvailableItemsAdminCard']/descendant::div[@class='i-draggable-item'][1]/div[@class='i-draggable-item__container']");
+            WebElement dropableElement=HelpersMethod.FindByElement(driver,"xpath","//div[@id='ActiveItemsAdminCard']/descendant::div[@class='i-droppable-container']");
+
+            Point sourceLocation = dragElement.getLocation();
+            int sourceXOffset = sourceLocation.getX();
+            int sourceYOffset = sourceLocation.getY();
+
+// Get the offset of target element
+            Point targetLocation = dropableElement.getLocation();
+            int targetXOffset = targetLocation.getX();
+            int targetYOffset = targetLocation.getY();
+
+// Calculate the offset difference
+            int xOffset = targetXOffset - sourceXOffset;
+            int yOffset = targetYOffset - sourceYOffset;
+
+            Actions actions = new Actions(driver);
+            actions.clickAndHold(dragElement).build().perform();
+                //actions.moveToElement(dropableElement,targetXOffset,targetYOffset).build().perform();
+               //actions.moveToElement(dropableElement).build().perform();
+                actions.moveByOffset(xOffset,yOffset).build().perform();
+                actions.release(dragElement)
+                    .build()
+                    .perform();
         }
         catch (Exception e){}
     }

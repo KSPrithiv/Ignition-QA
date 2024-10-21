@@ -88,9 +88,9 @@ public class NewStandingOrderCard
     public void ClickOnStartStandingOrder() throws InterruptedException
     {
         exists = false;
-
         try
         {
+            Thread.sleep(4000);
             Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
                     .withTimeout(Duration.ofSeconds(400))
                     .pollingEvery(Duration.ofSeconds(2))

@@ -83,7 +83,7 @@ Feature: scenarios for admin security and submenu permission, for creating role,
       |Security |Permissions   | By user     |custadmin|Divya_dsd|Allow user to access Administration - General - Punchout.|
 
   @CheckForEnabledRoles
-  Scenario Outline: Test scenario for verifying roles that appears under roles
+  Scenario Outline: Test scenario for verifying roles that appears under roles, via In roles drop down
     Given User is on Home Page for Admin setting to select Admin option for admin security
     Then User Clicks on Permissions by drop down to select Customer Account# for admin security
     And User should enter menu "<Main menu>" in search bar and select "<Sub menu>"
@@ -93,7 +93,7 @@ Feature: scenarios for admin security and submenu permission, for creating role,
       |Security |Permissions |
 
   @EnableOrDisableRoles
-  Scenario Outline: Test scenario for verifying roles that appears under roles
+  Scenario Outline: Test scenario for verifying roles that appears under roles, via In roles drop down
     Given User is on Home Page for Admin setting to select Admin option for admin security
     Then User Clicks on Permissions by drop down to select Customer Account# for admin security
     And User should enter menu "<Main menu>" in search bar and select "<Sub menu>"

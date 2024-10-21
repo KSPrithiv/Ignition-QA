@@ -1144,7 +1144,7 @@ public class OrderControlListPage
             HelpersMethod.ScrollElement(driver,OCLProdGrid);
             if(HelpersMethod.IsExists("//div[contains(@class,'k-grouping-header')]/descendant::div[contains(@class,'k-grouping-drop-container')]",driver))
             {
-                List<WebElement> TableHeads=driver.findElements(By.xpath("//thead/tr[1]/th"));
+                List<WebElement> TableHeads=driver.findElements(By.xpath("//thead/tr[1]/th/descendant::span[@class='k-column-title']"));
                 for(WebElement THead:TableHeads)
                 {
                     String Head=THead.getText();
@@ -2513,6 +2513,43 @@ public class OrderControlListPage
                     .pollingEvery(Duration.ofSeconds(2))
                     .ignoring(NoSuchElementException.class);
             wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+            Assert.assertEquals(exists,true);
+        }
+        catch (Exception e){}
+    }
+
+    public void searchOrderInOCLGrid(String ordNo)
+    {
+        exists=false;
+        Actions act=new Actions(driver);
+        String headText;
+        int i=0;
+        try
+        {
+            //finding position of "Order" heading
+            List<WebElement> heads=HelpersMethod.FindByElements(driver,"xpath","//span[@class='k-column-title']");
+            for(WebElement head:heads)
+            {
+                i++;
+                act.moveToElement(head).build().perform();
+                headText=head.getText();
+                if(headText.equalsIgnoreCase("Order"))
+                {
+                    break;
+                }
+            }
+
+            WebElement inputBox=HelpersMethod.FindByElement(driver,"xpath","//tr[contains(@class,'k-table-row k-filter-row')]/th["+i+"]/descendant::input");
+            HelpersMethod.EnterText(driver,inputBox,10000,ordNo);
+
+            if(HelpersMethod.IsExists("//div[text()='No records available']",driver))
+            {
+                exists=false;
+            }
+            else
+            {
+                exists=true;
+            }
             Assert.assertEquals(exists,true);
         }
         catch (Exception e){}

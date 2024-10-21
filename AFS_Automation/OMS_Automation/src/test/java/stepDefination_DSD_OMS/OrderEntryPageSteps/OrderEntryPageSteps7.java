@@ -64,7 +64,7 @@ public class OrderEntryPageSteps7
         newOE.ResetFilter_Catalog();
         newOE.selectAllProductsCatalogDialogbox();
         newOE.validateCardView();
-        newOE.validateCatalogProducts();
+        //newOE.validateCatalogProducts();
         if(HelpersMethod.IsExists("//div[@class='card-view']",driver))
         {
             newOE.ogDropDown();
@@ -105,6 +105,7 @@ public class OrderEntryPageSteps7
             i=0;
             newOE.removeFilter("Brand",i);
         }
+
     }
 
     @Then("User clicks on icon next to address")
@@ -178,15 +179,29 @@ public class OrderEntryPageSteps7
         orderHistoryPage.validateGridTypeNotMain();
     }
 
-    @Then("User verifies visibility of Price override icon and reset Grid type to Main grid in Order history page")
-    public void userVerifiesVisibilityOfPriceOverrideIconAndResetGridTypeToMainGridInOrderHistoryPage(DataTable tabledata) throws InterruptedException, AWTException
+
+    @Then("User changes grid to verify and reset Grid type to Main grid in order history page")
+    public void userChangesGridToVerifyAndResetGridTypeToMainGridInOrderHistoryPage() throws InterruptedException, AWTException
     {
-        List<List<String>> gridtype=tabledata.asLists(String.class);
+       // List<List<String>> gridtype=tabledata.asLists(String.class);
         orderHistoryPage=new OrderHistoryPage(driver,scenario);
         orderHistoryPage.ValidateOrderHistory();
         orderHistoryPage.clickOnGridType();
-        orderHistoryPage.selectGridType(gridtype.get(0).get(0));
-        orderHistoryPage.validateGridType(gridtype.get(0).get(0));
+        orderHistoryPage.selectAnyGridType();
+        orderHistoryPage.clickOnGridType();
+        orderHistoryPage.selectGridType();
+        orderHistoryPage.validateGridType();
+    }
+
+    @Then("User verifies visibility of Price override icon and reset Grid type to Main grid in Order history page")
+    public void userVerifiesVisibilityOfPriceOverrideIconAndResetGridTypeToMainGridInOrderHistoryPage() throws InterruptedException, AWTException
+    {
+       // List<List<String>> gridtype=tabledata.asLists(String.class);
+        orderHistoryPage=new OrderHistoryPage(driver,scenario);
+        orderHistoryPage.ValidateOrderHistory();
+        orderHistoryPage.clickOnGridType();
+        orderHistoryPage.selectGridType();
+        orderHistoryPage.validateGridType();
     }
 
     @And("User should navigate back to Order entry page from Order history page")

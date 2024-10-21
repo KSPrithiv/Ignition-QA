@@ -212,7 +212,7 @@ public class FeaturedProductsPage
                 wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
 
                 WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-window k-dialog')]/descendant::button/span[text()='OK']");
-                HelpersMethod.ClickBut(driver,WebEle,10000);
+                HelpersMethod.ActClick(driver,WebEle,10000);
 
                 wait = new FluentWait<WebDriver>(driver)
                         .withTimeout(Duration.ofSeconds(200))
@@ -253,11 +253,16 @@ public class FeaturedProductsPage
         WebElement WebEle;
         try
         {
-            if(HelpersMethod.IsExists("//div[@class='grid-item-box'][1]/descendant::button/span[text()='Delete']",driver))
+            if(HelpersMethod.IsExists("//div[@class='grid-item-box'][1]/descendant::button[@id='edit-role']",driver))
             {
-                WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='grid-item-box'][1]/descendant::button/span[text()='Delete']");
+                WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='grid-item-box'][1]/descendant::button[@id='edit-role']");
                 HelpersMethod.ClickBut(driver, WebEle, 10000);
                 Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                        .withTimeout(Duration.ofSeconds(400))
+                        .pollingEvery(Duration.ofSeconds(2))
+                        .ignoring(NoSuchElementException.class);
+                wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+                wait = new FluentWait<WebDriver>(driver)
                         .withTimeout(Duration.ofSeconds(400))
                         .pollingEvery(Duration.ofSeconds(2))
                         .ignoring(NoSuchElementException.class);
@@ -267,9 +272,11 @@ public class FeaturedProductsPage
                 {
                     WebElement modalContainer = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-window k-dialog')]");
                     WebElement buttonOk=modalContainer.findElement(By.xpath(".//button/span[text()='OK']"));
-                    HelpersMethod.ClickBut(driver,buttonOk,10000);
+                    HelpersMethod.ActClick(driver,buttonOk,10000);
+                    new WebDriverWait(driver,Duration.ofMillis(10000)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("featured-product-list"))));
+                    new WebDriverWait(driver,Duration.ofMillis(10000)).until(ExpectedConditions.visibilityOfElementLocated(By.id("featured-product-list")));
+                    exists = true;
                 }
-                exists = true;
             }
             Assert.assertEquals(exists,true);
         }
@@ -350,8 +357,6 @@ public class FeaturedProductsPage
                     .ignoring(NoSuchElementException.class);
             wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
 
-            if(HelpersMethod.IsExists("//div[@class='card-view']",driver))
-            {
                 List<WebElement> deleteProds = HelpersMethod.FindByElements(driver, "xpath", "//span[text()='Delete']/ancestor::button[@id='edit-role']");
                 while (!deleteProds.isEmpty())
                 //for(int i=0;i<=deleteProds.size()-1;i++)
@@ -376,12 +381,13 @@ public class FeaturedProductsPage
 
                         WebElement modalContainer = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-window k-dialog')]");
                         WebElement buttonOk = modalContainer.findElement(By.xpath(".//button/span[text()='Ok']"));
-                        HelpersMethod.ActClick(driver, buttonOk, 10000);
+                        HelpersMethod.JScriptClick(driver, buttonOk, 10000);
                         new WebDriverWait(driver, Duration.ofMillis(10000)).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[contains(text(),'saved successfully.')]/ancestor::div[contains(@class,'k-window k-dialog')]")));
                     }
+                    new WebDriverWait(driver,Duration.ofMillis(10000)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("featured-product-list"))));
+                    new WebDriverWait(driver,Duration.ofMillis(10000)).until(ExpectedConditions.visibilityOfElementLocated(By.id("featured-product-list")));
                     deleteProds = HelpersMethod.FindByElements(driver, "xpath", "//span[text()='Delete']/ancestor::button[@id='edit-role']");
                 }
-            }
         }
         catch (Exception e){}
     }

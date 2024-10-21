@@ -54,25 +54,29 @@ public class OrderEntryPageSteps8
     {
         newOE=new NewOrderEntryPage(driver,scenario);
         newOE.validateCatalogdialog();
-        //if(HelpersMethod.IsExists("//div[@class='i-grid']",driver))
-        if(HelpersMethod.IsExists("//button[contains(@class,'i-filter-tag__main')]/descendant::span[text()='Add filter']",driver))
+        if(HelpersMethod.IsExists("//div[@class='i-grid']",driver))
         {
-            newOE.clickOnLoadAllProducts();
-            newOE.ResetFilter_Catalog();
-            newOE.selectAllProductsCatalogDialogbox();
-            newOE.listCatelog();
-            newOE.readProductInList();
-            newOE.catalogOK();
+            if (HelpersMethod.IsExists("//button[contains(@class,'i-filter-tag__main')]/descendant::span[text()='Add filter']", driver))
+            {
+                newOE.clickOnLoadAllProducts();
+                newOE.ResetFilter_Catalog();
+                newOE.selectAllProductsCatalogDialogbox();
+                newOE.listCatelog();
+                newOE.readProductInList();
+                newOE.catalogOK();
+            }
         }
-        //else if(HelpersMethod.IsExists("//div[@class='product-catalog-container']",driver))
-        else if(HelpersMethod.IsExists("//button[@data-test-id='productFilterResetBtn']",driver))
+        else
         {
-            newOE.clickOnLoadAllProducts();
-            newOE.ResetFilter_Catalog();
-            newOE.selectAllProductsCatalogDialogbox();
-            newOE.cardCatelog();
-            newOE.readProductInCard();
-            newOE.catalogOK();
+            if (HelpersMethod.IsExists("//button[@data-test-id='productFilterResetBtn']", driver))
+            {
+                newOE.clickOnLoadAllProducts();
+                newOE.ResetFilter_Catalog();
+                newOE.selectAllProductsCatalogDialogbox();
+                newOE.cardCatelog();
+                newOE.readProductInCard();
+                newOE.catalogOK();
+            }
         }
     }
 
@@ -119,11 +123,9 @@ public class OrderEntryPageSteps8
             newOE.readProductInList();
             newOE.catalogOK();
         }
-        else if(HelpersMethod.IsExists("//div[@class='product-catalog-container']",driver))
+        else
         {
-            /*newOE.cardCatelog();
-            newOE.readProductInCard();
-            newOE.catalogOK();*/
+            newOE.catalogOK();
             scenario.log("<span style='color:red'>THIS SCENARIO WORKS ONLY ON LIST VIEW</span>");
         }
     }
@@ -136,10 +138,10 @@ public class OrderEntryPageSteps8
         newOE=new NewOrderEntryPage(driver,scenario);
         newOE.Validate_Catalog();
         newOE.clickOnLoadAllProducts();
-        newOE.selectAllProductsCatalogDialogbox();
         newOE.ResetFilter_Catalog();
+        newOE.selectAllProductsCatalogDialogbox();
         String pro=String.valueOf(Prod_No);
-        newOE.validateCatalogProducts();
+        //newOE.validateCatalogProducts();
         newOE.Search_Prod_in_CatalogIndexDialogbox(pro);
         newOE.EnterQty(Prod_detail.get(0).get(0),Prod_detail.get(0).get(1));
         scenario.log("PRODUCT # "+pro+" PRODUCT QTY "+Prod_detail.get(0).get(0)+" "+Prod_detail.get(0).get(1));

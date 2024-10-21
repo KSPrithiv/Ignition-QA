@@ -201,5 +201,6 @@ public class DMOEPageStep
         dmoePage=new DMOEPage(driver,scenario);
         dmoePage.ClickTaggleDM();
         dmoePage.GoOnlinePopup();
+        dmoePage.SynchronizationPopup();
     }
 }

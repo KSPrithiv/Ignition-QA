@@ -485,6 +485,8 @@ public class GridConfigurationPageStep
     {
         gridConfigPage=new GridConfigurationPage(driver,scenario);
         gridConfigPage.enterGridName(gridName);
+        gridConfigPage.clickOnColumnChooser();
+        gridConfigPage.dragAndDropColumnHeader();
         gridConfigPage.clickOnSaveButton();
         gridConfigPage.validateSavedailogbox();
         gridConfigPage.clickOnOkButtonInSavePopup();
