@@ -39,5 +39,15 @@ Feature: Product reference
       | OG        |
       | SampleOG  |
 
+  @SearchFromSearchBar
+  Scenario Outline: Test scenario for for searching of product in search bar
+    Given User must be on Order Entry Page to select OG for Product reference
+    And User should navigate to OG and select "<OG>" from grid for Product reference
+    Then User clicks on Product reference tab
+    And User search for product using search bar in Product reference
+    Examples:
+      | OG        |
+      | SampleOG  |
+
 
 

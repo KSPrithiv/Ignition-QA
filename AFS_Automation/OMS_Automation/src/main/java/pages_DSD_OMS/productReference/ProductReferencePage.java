@@ -267,4 +267,16 @@ public class ProductReferencePage
         }
         catch (Exception e){}
     }
+
+    public void searchBarSearch(String prodNo)
+    {
+        try
+        {
+            WebElement inputBox=HelpersMethod.FindByElement(driver,"xpath","//input[@class='i-search-box__input']");
+            HelpersMethod.EnterText(driver,inputBox,10000,prodNo);
+            WebElement searchIndex=HelpersMethod.FindByElement(driver,"xpath","//input[@class='i-search-box__input']/parent::form//*[local-name()='svg' and contains(@class,'i-search-box__search')]");
+            HelpersMethod.ActClick(driver,searchIndex,10000);
+        }
+        catch (Exception e){}
+    }
 }

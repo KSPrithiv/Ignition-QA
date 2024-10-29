@@ -1334,6 +1334,8 @@ public class NewStandingOrderPage
         WebElement WebEle;
         WebElement WebEle1;
         Actions act=new Actions(driver);
+        String headText;
+        int i=0;
         try
         {
             Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
@@ -1354,93 +1356,41 @@ public class NewStandingOrderPage
             wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
 
             //Catalog displayed in list view
-            if (HelpersMethod.IsExists("//div[contains(@class,'k-window k-dialog')]/descendant::div[contains(@class,'i-grid')]", driver))
+            if (HelpersMethod.IsExists("//div[contains(@class,'k-window k-dialog')]/descendant::span[text()='Catalog']", driver))
             {
-                if(HelpersMethod.IsExists("//span[text()='Catalog']/ancestor::div[contains(@class,'k-window k-dialog')]/descendant::span[text()='Add filter']",driver))
+                if(HelpersMethod.IsExists("//div[@class='k-window k-dialog']/descendant::div[@class='i-grid']",driver))
                 {
-                    //Search for Description in the catalog dialog box
-                    String headText;
-                    int i=0;
                     List<WebElement> heads=HelpersMethod.FindByElements(driver,"xpath","//div[@class='k-window k-dialog']/descendant::span[@class='k-column-title']");
                     for(WebElement head:heads)
                     {
                         i++;
                         act.moveToElement(head).build().perform();
                         headText=head.getText();
-                        if(headText.equalsIgnoreCase("Description"))
+                        if(headText.equalsIgnoreCase("Product #"))
                         {
-                            break;
+                            WebElement inputBox=HelpersMethod.FindByElement(driver,"xpath","//div[@class='k-window k-dialog']/descendant::tr[@class='k-table-row k-filter-row']/th["+i+"]/descendant::input");
+                            HelpersMethod.EnterText(driver,inputBox,10000,Prod_Name);
+
+                            wait = new FluentWait<WebDriver>(driver)
+                                    .withTimeout(Duration.ofSeconds(400))
+                                    .pollingEvery(Duration.ofSeconds(2))
+                                    .ignoring(NoSuchElementException.class);
+                            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
                         }
                     }
-
-                    WebElement productInputBox=HelpersMethod.FindByElement(driver,"xpath","//div[@class='k-window k-dialog']/descendant::tr[@class='k-table-row k-filter-row']/descendant::th["+i+"]/descendant::input");
-                    HelpersMethod.EnterText(driver,productInputBox,10000,Prod_Name);
-
-                    wait = new FluentWait<WebDriver>(driver)
-                            .withTimeout(Duration.ofSeconds(400))
-                            .pollingEvery(Duration.ofSeconds(2))
-                            .ignoring(NoSuchElementException.class);
-                    wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
-
-                    scenario.log("PRODUCT FOUND IN CATALOG IS " + Prod_Name);
-                    exists = true;
                 }
                 else
                 {
-                    String headText;
-                    int i=0;
-                    List<WebElement> heads=HelpersMethod.FindByElements(driver,"xpath","//div[@class='k-window k-dialog']/descendant::span[@class='k-column-title']");
-                    for(WebElement head:heads)
-                    {
-                        i++;
-                        act.moveToElement(head).build().perform();
-                        headText=head.getText();
-                        if(headText.equalsIgnoreCase("Description"))
-                        {
-                                if(HelpersMethod.IsExists("//div[@class='k-window k-dialog']/descendant::th[@aria-label='Filter']["+i+"]/descendant::button/span[contains(@class,'k-clear-button-visible')]",driver))
-                                {
-                                    WebElement clearBut=HelpersMethod.FindByElement(driver,"xpath","//div[@class='k-window k-dialog']/descendant::th[@aria-label='Filter']["+i+"]/descendant::button/span[contains(@class,'k-clear-button-visible')]");
-                                    HelpersMethod.ClickBut(driver,clearBut,10000);
-                                    wait = new FluentWait<WebDriver>(driver)
-                                            .withTimeout(Duration.ofSeconds(400))
-                                            .pollingEvery(Duration.ofSeconds(2))
-                                            .ignoring(NoSuchElementException.class);
-                                    wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
-                                }
-                                WebElement inputBox = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='k-window k-dialog']/descendant::th[@aria-label='Filter'][" + i + "]/descendant::input");
-                                HelpersMethod.EnterText(driver, inputBox, 10000,Prod_Name);
-                                exists=true;
-                                wait = new FluentWait<WebDriver>(driver)
-                                        .withTimeout(Duration.ofSeconds(400))
-                                        .pollingEvery(Duration.ofSeconds(2))
-                                        .ignoring(NoSuchElementException.class);
-                                wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
-                                WebElement prod=HelpersMethod.FindByElement(driver,"xpath","//div[@class='k-window k-dialog']/descendant::tr[contains(@class,'k-master-row')]");
-                                HelpersMethod.ActClick(driver,prod,20000);
-                            break;
-                        }
-                    }
-                }
-            }
-            else
-            {
-                //enter product number in input box
-                WebEle = HelpersMethod.FindByElement(driver, "xpath", "//input[contains(@class,' product-search-input rounded-corners-left')]");
-                HelpersMethod.EnterText(driver, WebEle, 10000, Prod_Name);
-                scenario.log(WebEle.getText()+"PRODUCT DESCRIPTION ENTERED FOR SEARCH");
+                    WebElement inputBox=HelpersMethod.FindByElement(driver,"xpath","//div[@class='k-window k-dialog']/descendant::input");
+                    HelpersMethod.EnterText(driver,inputBox,10000,Prod_Name);
+                    inputBox.sendKeys(Keys.ENTER);
 
-                new WebDriverWait(driver,Duration.ofMillis(10000)).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//ul[contains(@class,'suggestions-list')]/li")));
-                new WebDriverWait(driver,Duration.ofMillis(10000)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//ul[contains(@class,'suggestions-list')]/li")));
-
-                //This is to select product from autosuggestion list
-                WebEle1=HelpersMethod.FindByElement(driver,"xpath","//ul[contains(@class,'suggestions-list')]/li[1]");
-                HelpersMethod.ActClick(driver,WebEle1,10000);
-
-                wait = new FluentWait<WebDriver>(driver)
+                    wait = new FluentWait<WebDriver>(driver)
                         .withTimeout(Duration.ofSeconds(400))
                         .pollingEvery(Duration.ofSeconds(2))
                         .ignoring(NoSuchElementException.class);
-                wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+                    wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+                }
 
                 if(!HelpersMethod.IsExists("//div[contains(text(),'Sorry, no products matched')]",driver))
                 {
@@ -1452,9 +1402,8 @@ public class NewStandingOrderPage
                     scenario.log("NO PRODUCTS FOUND");
                     exists=false;
                 }
-                scenario.log("PRODUCT FOUND IN CATALOG IS "+Prod_Name);
             }
-            Assert.assertTrue(exists);
+           Assert.assertEquals(exists,true);
         }
         catch (Exception e){}
     }
@@ -1478,25 +1427,34 @@ public class NewStandingOrderPage
                     scenario.log("PRODUCT IS ALREADY SELECTED, IN GRID VIEW");
                     exists=true;
                 }
+                else
+                {
+                    scenario.log("PRODUCT IS NOT SELECTED, IN GRID VIEW");
+                    exists=false;
+                }
             }
             else if(HelpersMethod.IsExists("//div[contains(@class,'k-window k-dialog')]/descendant::div[contains(@class,'card-view')]",driver))
             {
                 //search for exact product in catalog for product by comparing description
-                List<WebElement> descriptionItem=HelpersMethod.FindByElements(driver,"xpath","//div[contains(@id,'gridItem')]/descendant::span[contains(@class,'product-name')]");
+                List<WebElement> descriptionItem=HelpersMethod.FindByElements(driver,"xpath","//div[contains(@id,'gridItem')]/descendant::div[contains(@class,'product-number')]/span");
                 for(WebElement desItem:descriptionItem)
                 {
                     i++;
                     desText=desItem.getText();
-                    if(desText.equalsIgnoreCase("Prod_Name"))
+                    if(desText.equalsIgnoreCase(Prod_Name))
                     {
                         break;
                     }
                 }
 
-                if(HelpersMethod.IsExists("//div[contains(@id,'gridItem')]["+i+"]/descendant::button[contains(@class,'k-disabled')][1]/span[text()='Select']",driver))
+                if(HelpersMethod.IsExists("//div[@class='k-window k-dialog']/descendant::div[contains(@id,'gridItemBox')]["+i+"]/descendant::button[contains(@class,'i-button--icon-only')]|//div[@class='k-window k-dialog']/descendant::div[contains(@id,'gridItemBox')]["+i+"]/descendant::button[contains(@class,'disabled')]",driver))
                 {
                     scenario.log("PRODUCT IS ALREADY SELECTED, IN CARD VIEW. AND SELECT BUTTON IS DISABLED");
                     exists=true;
+                }
+                else
+                {
+                    scenario.log("PRODUCT IS NOT SELECTED, IN CARD VIEW. AND SELECT BUTTON IS VISIBLE");
                 }
             }
             Assert.assertEquals(exists,true);
@@ -1878,8 +1836,8 @@ public class NewStandingOrderPage
                 i++;
                 act.moveToElement(head).build().perform();
                 head_text=head.getText();
-                //if(head_text.equals("Product Number"))
-                if(head_text.equals("Description"))
+                if(head_text.equals("Product Number"))
+                //if(head_text.equals("Description"))
                 {
                     Prod_Name=HelpersMethod.FindByElement(driver,"xpath","//tr[contains(@class,'k-master-row')][1]/descendant::td["+i+"]").getText();
                     exists=true;
@@ -1888,7 +1846,7 @@ public class NewStandingOrderPage
             }
             if(exists==false)
             {
-                scenario.log("PRODUCT DESCRIPTION HEADER IS NOT FOUND");
+                scenario.log("PRODUCT NUMBER HEADER IS NOT FOUND");
             }
             scenario.log("PRODUCT NUMBER FOUND IN GRID IS : "+Prod_Name);
             //To zoom in browser back to 100%

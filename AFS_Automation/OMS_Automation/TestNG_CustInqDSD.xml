@@ -4,9 +4,9 @@
     <test name="IgnitionTestAutomation">
         <!--<parameter name="environment" value="config_DSD_OMS\\configIgnition\\config_DSD"/>-->
         <parameter name="environment" value="config_DSD_OMS\\configAuto\\config_DSD"/>
-        <classes>
-            <class name="testRunner_DSD_OMS.DSDEnv.TestRunnerCustInq_DSD">
-            </class>
-        </classes>
-    </test>
-</suite>
+                <classes>
+                    <class name="testRunner_DSD_OMS.DSDEnv.TestRunnerCustInq_DSD">
+                    </class>
+                </classes>
+            </test>
+        </suite>

@@ -197,4 +197,12 @@ public class ProductReferencePageStep
         String prodNo=productReferencePage.readProductNo();
         productReferencePage.AddfilterProductReference("Product #",prodNo);
     }
+
+    @And("User search for product using search bar in Product reference")
+    public void userSearchForProductUsingSearchBarInProductReference()
+    {
+        productReferencePage=new ProductReferencePage(driver,scenario);
+        String prodNo=productReferencePage.readProductNo();
+        productReferencePage.searchBarSearch(prodNo);
+    }
 }
