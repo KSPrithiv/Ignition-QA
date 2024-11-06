@@ -1,7 +1,6 @@
 name: OMS-D Regression
 
 on:
- 
   workflow_dispatch:
     inputs:
       branch:
@@ -10,9 +9,6 @@ on:
 
 jobs:
   build:
-    runs-on: windows-latest
-  
-  job1:
     name: OMS Automation
     runs-on: self-hosted
 
@@ -34,7 +30,6 @@ jobs:
           java-version: '16'
           cache: maven
 
-      # Ensure Maven is installed and accessible
       - name: Check Maven version
         run: mvn -v
 
@@ -46,32 +41,26 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-maven
 
-      # List files to verify the working directory
       - name: List files in current directory
-        run: dir  # Use 'ls' for Linux or 'dir' for Windows based on your runner
+        run: dir  # Use 'dir' for Windows
 
-      # Build with Maven
       - name: Build with Maven
         run: mvn -B package --file pom.xml
 
-      # Add this step to create the cucumber-reports directory if it doesn't exist
       - name: Create cucumber-reports directory
         run: mkdir -p AFS_Automation/OMS_Automation/target/cucumber-reports  
 
-      # Run OMS Automation module-1 in headless mode
       - name: OMS Automation module-1
         run: |
           mvn clean install test -DsuiteXmlFile='TestNG_Admin_Grid.xml' -Dheadless=true
         working-directory: AFS_Automation/OMS_Automation
 
-      # Upload test results
       - name: Upload test results
-        if: success() || failure()  # Ensure that results are uploaded even if tests fail
+        if: success() || failure()
         uses: actions/upload-artifact@v3
         with:
           name: test-results
-          path: results/
+          path: AFS_Automation/OMS_Automation/target/cucumber-reports
 
-      # For cleaning all temp files in server	
       - name: Clean up after job
         run: rm -rf /path/to/temp/folder/*
