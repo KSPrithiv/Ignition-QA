@@ -255,6 +255,10 @@ public class AllOrdersPageStep
             newOE.validateRouteValue();
             exists=newOE.ClickNext();
         }
+        else
+        {
+            newOE.readRoute();
+        }
         newOE.OutOfStockPop_ERP();
 
         String status = HelpersMethod.returnDocumentStatus(driver);
@@ -300,6 +304,10 @@ public class AllOrdersPageStep
             checkOutOrderPage.DeliveryAddressCard();
             checkOutOrderPage.NextButton_Click();
         }
+        else
+        {
+            scenario.log("<span 'color:red'>NO PAYMENT PAGE HAS BEEN FOUND</SPAN>");
+        }
     }
 
     @And("Click on Submit Order button and read Order_no created for All order")
@@ -318,6 +326,10 @@ public class AllOrdersPageStep
         if(sOrd_No!=null)
         {
             Ord_No=sOrd_No;
+        }
+        else
+        {
+            scenario.log("NOT ABLE TO READ ORDER NUMBER IN SUMMARY PAGE");
         }
         summary.SucessPopupForAllOrder();
         scenario.log("ORDER CREATED FOR ALL ORDER "+Ord_No);

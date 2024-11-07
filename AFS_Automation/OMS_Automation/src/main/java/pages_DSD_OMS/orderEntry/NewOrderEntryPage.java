@@ -3157,7 +3157,7 @@ public class NewOrderEntryPage
                     }
 
                     //Enter product number in search bar
-                    WebEle = catalogPopup.findElement(By.xpath("//div[contains(@class,'k-window k-dialog')]/descendant::input[contains(@class,' product-search-input ')]"));
+                    WebEle = catalogPopup.findElement(By.xpath("//div[contains(@class,'k-window k-dialog')]/descendant::input[contains(@class,'product-search-input')]"));
                     HelpersMethod.sendKeys(driver, WebEle, 10000,Prods);
                     scenario.log("PRODUCT NUMBER ENTERED IN SEARCH BAR "+Prods);
 
@@ -5117,7 +5117,7 @@ public class NewOrderEntryPage
         {
             if(HelpersMethod.IsExists("//div[contains(text(),'Sorry, no products found.')]",driver))
             {
-                scenario.log("NO PRODUCTS HAS BEEN FOUND");
+                scenario.log("<span style='color:red'>NO PRODUCTS HAS BEEN FOUND</span>");
                 exists=true;
             }
             else
@@ -5170,6 +5170,7 @@ public class NewOrderEntryPage
             if(HelpersMethod.IsExists("//button[@data-test-id='productFilterResetBtn']",driver))
             {
                 WebElement resetFilter = HelpersMethod.FindByElement(driver, "xpath", "//button[@data-test-id='productFilterResetBtn']");
+                HelpersMethod.ScrollElement(driver,resetFilter);
                 HelpersMethod.ClickBut(driver, resetFilter, 10000);
                 exists = true;
             }
@@ -5179,6 +5180,18 @@ public class NewOrderEntryPage
                     .pollingEvery(Duration.ofSeconds(2))
                     .ignoring(NoSuchElementException.class);
             wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+            status = HelpersMethod.returnDocumentStatus(driver);
+            if (status.equals("loading"))
+            {
+                HelpersMethod.waitTillLoadingPage(driver);
+            }
+
+            wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(400))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
             Assert.assertEquals(exists,true);
         }
         catch (Exception e){}
@@ -5265,10 +5278,34 @@ public class NewOrderEntryPage
         WebElement showAllProd;
         try
         {
+            String status = HelpersMethod.returnDocumentStatus(driver);
+            if (status.equals("loading"))
+            {
+                HelpersMethod.waitTillLoadingPage(driver);
+            }
+
+            Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(400))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+            status = HelpersMethod.returnDocumentStatus(driver);
+            if (status.equals("loading"))
+            {
+                HelpersMethod.waitTillLoadingPage(driver);
+            }
+
+            wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(400))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
             if(HelpersMethod.IsExists("//span[@id='CPcategories']",driver))
             {
-                showAllProd = HelpersMethod.FindByElement(driver, "id", "CPcategories");
-                HelpersMethod.ActClick(driver,showAllProd,10000);
+                //showAllProd = HelpersMethod.FindByElement(driver, "id", "CPcategories");
+                showAllProd=HelpersMethod.FindByElement(driver,"xpath","//span[@id='CPcategories']/descendant::button");
+                HelpersMethod.ClickBut(driver,showAllProd,10000);
                 exists=true;
             }
             Assert.assertEquals(exists,true);
@@ -5284,6 +5321,9 @@ public class NewOrderEntryPage
         String category=TestBase.testEnvironment.get_Category();
         try
         {
+            scenario.log("CATEGORY SELECTED FROM DROP DOWN IS "+category);
+            new WebDriverWait(driver,Duration.ofMillis(20000)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.xpath("//ul[@id='CPcategories-listbox-id']/li/span"))));
+            new WebDriverWait(driver,Duration.ofMillis(20000)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//ul[@id='CPcategories-listbox-id']/li/span")));
             List<WebElement> allProds=HelpersMethod.FindByElements(driver,"xpath","//ul[@id='CPcategories-listbox-id']/li/span");
             for(WebElement prod:allProds)
             {
@@ -5293,10 +5333,58 @@ public class NewOrderEntryPage
                 {
                     act.moveToElement(prod).build().perform();
                     act.click(prod).build().perform();
-                    exists = true;
                     break;
                 }
             }
+            String status = HelpersMethod.returnDocumentStatus(driver);
+            if (status.equals("loading"))
+            {
+                HelpersMethod.waitTillLoadingPage(driver);
+            }
+
+            Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(800))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+            status = HelpersMethod.returnDocumentStatus(driver);
+            if (status.equals("loading"))
+            {
+                HelpersMethod.waitTillLoadingPage(driver);
+            }
+
+            wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(800))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
+            new WebDriverWait(driver,Duration.ofMillis(20000)).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//ul[@id='CPcategories-listbox-id']/li/span")));
+            Thread.sleep(1000);
+            WebElement dropDown1=HelpersMethod.FindByElement(driver,"xpath","//span[@id='CPcategories-accessibility-id']/span[@class='k-input-value-text']");
+            String selectValue=dropDown1.getText();
+            if(selectValue.equalsIgnoreCase(category))
+            {
+                scenario.log("OPTION SELECTED FROM CATEGORY DROP DOWN "+selectValue);
+                exists=true;
+            }
+            wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(800))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
+            Assert.assertEquals(exists,true);
+        }
+        catch (Exception e){}
+    }
+
+    public void subCategoryDropDown()
+    {
+        exists=false;
+        WebElement showAllProd;
+        try
+        {
             String status = HelpersMethod.returnDocumentStatus(driver);
             if (status.equals("loading"))
             {
@@ -5319,25 +5407,11 @@ public class NewOrderEntryPage
                     .pollingEvery(Duration.ofSeconds(2))
                     .ignoring(NoSuchElementException.class);
             wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
-            Thread.sleep(1000);
-            WebElement dropDown1=HelpersMethod.FindByElement(driver,"xpath","//span[@id='CPcategories-accessibility-id']/span[@class='k-input-value-text']");
-            String selectValue=dropDown1.getText();
-            scenario.log("OPTION SELECTED FROM CATEGORY DROP DOWN "+selectValue);
-            Assert.assertEquals(exists,true);
-        }
-        catch (Exception e){}
-    }
 
-    public void subCategoryDropDown()
-    {
-        exists=false;
-        WebElement showAllProd;
-        try
-        {
             if(HelpersMethod.IsExists("//span[@id='CPbrands']",driver))
             {
-                showAllProd = HelpersMethod.FindByElement(driver, "id", "CPbrands");
-                HelpersMethod.ActClick(driver,showAllProd,10000);
+                showAllProd = HelpersMethod.FindByElement(driver, "xpath", "//span[@id='CPbrands']/descendant::button");
+                HelpersMethod.ClickBut(driver,showAllProd,10000);
                 exists=true;
             }
             Assert.assertEquals(exists,true);
@@ -5353,6 +5427,9 @@ public class NewOrderEntryPage
         String subCategory=TestBase.testEnvironment.get_SubCategory();
         try
         {
+            scenario.log("SUBCATEGORY TO BE SELECTED IS "+subCategory);
+            new WebDriverWait(driver,Duration.ofMillis(10000)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.xpath("//ul[@id='CPbrands-listbox-id']/li/span"))));
+            new WebDriverWait(driver,Duration.ofMillis(10000)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//ul[@id='CPbrands-listbox-id']/li/span")));
             List<WebElement> allProds = HelpersMethod.FindByElements(driver,"xpath","//ul[@id='CPbrands-listbox-id']/li/span");
             for (WebElement prod : allProds)
             {
@@ -5362,7 +5439,6 @@ public class NewOrderEntryPage
                 {
                     act.moveToElement(prod).build().perform();
                     act.click(prod).build().perform();
-                    exists = true;
                     break;
                 }
             }
@@ -5389,13 +5465,18 @@ public class NewOrderEntryPage
                     .ignoring(NoSuchElementException.class);
             wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
 
-            Thread.sleep(1000);
+            //Thread.sleep(1000);
+            new WebDriverWait(driver,Duration.ofMillis(20000)).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//ul[@id='CPbrands-listbox-id']/li/span")));
             WebElement  dropDown1=HelpersMethod.FindByElement(driver,"xpath","//span[@id='CPbrands-accessibility-id']/span[@class='k-input-value-text']");
             String selectValue=dropDown1.getText();
-            scenario.log("OPTION SELECTED FROM SUB-CATEGORY DROP DOWN "+selectValue);
+            if(selectValue.equalsIgnoreCase(subCategory))
+            {
+                exists = true;
+                scenario.log("OPTION SELECTED FROM SUB-CATEGORY DROP DOWN " + selectValue);
+            }
             Assert.assertEquals(exists, true);
-        } catch (Exception e) {
         }
+        catch (Exception e) {}
     }
 
     public void brandDropDown()
@@ -5404,9 +5485,32 @@ public class NewOrderEntryPage
         WebElement showAllProd;
         try
         {
+            String status = HelpersMethod.returnDocumentStatus(driver);
+            if (status.equals("loading"))
+            {
+                HelpersMethod.waitTillLoadingPage(driver);
+            }
+
+            Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(400))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+            status = HelpersMethod.returnDocumentStatus(driver);
+            if (status.equals("loading"))
+            {
+                HelpersMethod.waitTillLoadingPage(driver);
+            }
+
+            wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(400))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
             if(HelpersMethod.IsExists("//span[@id='CPsizes']",driver))
             {
-                showAllProd = HelpersMethod.FindByElement(driver, "id", "CPsizes");
+                showAllProd = HelpersMethod.FindByElement(driver, "xpath", "//span[@id='CPsizes']/descendant::button");
                 HelpersMethod.ActClick(driver,showAllProd,1000);
                 exists=true;
             }
@@ -5423,6 +5527,9 @@ public class NewOrderEntryPage
         String brand=TestBase.testEnvironment.get_Brand();
         try
         {
+            scenario.log("BRAND SELECTED FROM DROP DOWN IS "+brand);
+            new WebDriverWait(driver,Duration.ofMillis(10000)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.xpath("//ul[@id='CPsizes-listbox-id']/li/span"))));
+            new WebDriverWait(driver,Duration.ofMillis(10000)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//ul[@id='CPsizes-listbox-id']/li/span")));
             List<WebElement> allProds=HelpersMethod.FindByElements(driver,"xpath","//ul[@id='CPsizes-listbox-id']/li/span");
             for(WebElement prod:allProds)
             {
@@ -5432,7 +5539,6 @@ public class NewOrderEntryPage
                 {
                     act.moveToElement(prod).build().perform();
                     act.click(prod).build().perform();
-                    exists = true;
                     break;
                 }
             }
@@ -5459,10 +5565,15 @@ public class NewOrderEntryPage
                     .ignoring(NoSuchElementException.class);
             wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
 
-            Thread.sleep(1000);
+            //Thread.sleep(1000);
+            new WebDriverWait(driver,Duration.ofMillis(20000)).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//ul[@id='CPsizes-listbox-id']/li/span")));
             WebElement dropDown1=HelpersMethod.FindByElement(driver,"xpath","//span[@id='CPsizes-accessibility-id']/span[@class='k-input-value-text']");
             String selectValue=dropDown1.getText();
-            scenario.log("OPTION SELECTED FROM BRAND DROP DOWN "+selectValue);
+            if(selectValue.equalsIgnoreCase(brand))
+            {
+                scenario.log("OPTION SELECTED FROM BRAND DROP DOWN "+selectValue);
+                exists=true;
+            }
             Assert.assertEquals(exists,true);
         }
         catch (Exception e){}
@@ -5509,7 +5620,6 @@ public class NewOrderEntryPage
     {
         exists=false;
         Actions act1=new Actions(driver);
-
         String optText;
         try
         {
@@ -6150,20 +6260,6 @@ public class NewOrderEntryPage
                             .pollingEvery(Duration.ofSeconds(2))
                             .ignoring(NoSuchElementException.class);
                     wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
-                    
-
-
-//                    List<WebElement> prodDescriptions = HelpersMethod.FindByElements(driver, "xpath", "//div[@class='k-window k-dialog']/descendant::tr[contains(@class,'k-master-row')]/td["+i+"]");
-//                    for (WebElement prodDes : prodDescriptions)
-//                    {
-//                        act.moveToElement(prodDes).build().perform();
-//                        prodDesText = prodDes.getText();
-//                        if (prodDesText.contains(prodDescription))
-//                        {
-//                            exists = true;
-//                            break;
-//                        }
-//                    }
                 }
                 else
                 {
@@ -7248,5 +7344,11 @@ public class NewOrderEntryPage
             }
         }
         catch (Exception e){}
+    }
+
+    public void readRoute()
+    {
+        String routeValue=driver.findElement(By.xpath("//input[@id='RouteIndex']")).getAttribute("value");
+        scenario.log("ROUTE VALUE FOUND IN NEW ORDER ENTRY PAGE IS "+routeValue);
     }
 }

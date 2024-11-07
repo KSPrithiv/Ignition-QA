@@ -145,7 +145,6 @@ public class OrderEntryPageSteps1
         newOE.ResetFilter_Catalog();
         newOE.selectAllProductsCatalogDialogbox();
         String pro=String.valueOf(Prod_No);
-        newOE.validateCatalogProducts();
         newOE.Search_Prod_in_Catalog(pro);
         newOE.EnterQty(Prod_detail.get(0).get(0),Prod_detail.get(0).get(1));
         scenario.log("PRODUCT # "+pro+" PRODUCT QTY "+Prod_detail.get(0).get(0)+" "+Prod_detail.get(0).get(1));

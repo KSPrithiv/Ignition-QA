@@ -1,0 +1,2 @@
+file:src/test/resources/features_DSD_OMS/CompetitivePricingFeature/competitivePricingFeature.feature:17:34:44:55:65:76:87:98
+file:src/test/resources/features_DSD_OMS/CompetitivePricingFeature/competitivePricingFeature1.feature:18:29:40:51

@@ -262,6 +262,11 @@ public class FeaturedProductsPage
                         .pollingEvery(Duration.ofSeconds(2))
                         .ignoring(NoSuchElementException.class);
                 wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+                String status = HelpersMethod.returnDocumentStatus(driver);
+                if (status.equals("loading"))
+                {
+                    HelpersMethod.waitTillLoadingPage(driver);
+                }
                 wait = new FluentWait<WebDriver>(driver)
                         .withTimeout(Duration.ofSeconds(400))
                         .pollingEvery(Duration.ofSeconds(2))
@@ -270,7 +275,13 @@ public class FeaturedProductsPage
 
                 if(HelpersMethod.IsExists("//div[contains(@class,'k-window k-dialog')]",driver))
                 {
-                    WebElement modalContainer = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-window k-dialog')]");
+                    wait = new FluentWait<WebDriver>(driver)
+                            .withTimeout(Duration.ofSeconds(400))
+                            .pollingEvery(Duration.ofSeconds(2))
+                            .ignoring(NoSuchElementException.class);
+                    wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
+                    WebElement modalContainer = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(text(),'saved')]/ancestor::div[contains(@class,'k-window k-dialog')]");
                     WebElement buttonOk=modalContainer.findElement(By.xpath(".//button/span[text()='OK']"));
                     HelpersMethod.ActClick(driver,buttonOk,10000);
                     new WebDriverWait(driver,Duration.ofMillis(10000)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("featured-product-list"))));
@@ -288,7 +299,7 @@ public class FeaturedProductsPage
         exists=false;
         WebElement WebEle;
         List<WebElement> Lists;
-        String category=null;
+        String category;
         String subCategory=null;
         String brand=null;
         try
@@ -483,17 +494,21 @@ public class FeaturedProductsPage
 
             if(HelpersMethod.IsExists("//div[contains(text(),'saved successfully')]/ancestor::div[contains(@class,'k-window k-dialog')]",driver))
             {
+                wait = new FluentWait<WebDriver>(driver)
+                        .withTimeout(Duration.ofSeconds(400))
+                        .pollingEvery(Duration.ofSeconds(2))
+                        .ignoring(NoSuchElementException.class);
+                wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
                 WebElement modelContainer=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-window k-dialog')]");
                 WebElement okButton=modelContainer.findElement(By.xpath(".//button/span[text()='OK']"));
                 HelpersMethod.ActClick(driver,okButton,10000);
-               // exists=true;
             }
             wait = new FluentWait<WebDriver>(driver)
                     .withTimeout(Duration.ofSeconds(400))
                     .pollingEvery(Duration.ofSeconds(2))
                     .ignoring(NoSuchElementException.class);
             wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
-            //Assert.assertEquals(exists,true);
         }
         catch (Exception e){}
     }
@@ -542,5 +557,25 @@ public class FeaturedProductsPage
         }
         catch (Exception e){}
         Assert.assertEquals(exists,true);
+    }
+
+    public void validateNoProductsExists()
+    {
+        exists=false;
+        try
+        {
+            if(HelpersMethod.IsExists("//div[@class='no-featured-products-selected']",driver))
+            {
+                scenario.log("NO PRODUCT HAS BEEN FOUND UNDER FEATURED PRODUCTS");
+                exists=true;
+            }
+            else
+            {
+                scenario.log("STILL CAN FIND FEATURED PRODUCTS");
+                exists=false;
+            }
+            Assert.assertEquals(exists,true);
+        }
+        catch (Exception e){}
     }
 }

@@ -128,7 +128,7 @@ public class QuotePageSteps
     }
 
     @Then("User enters Quote name {string} and Quote End date click on OK button")
-    public void userEntersQuoteNameAndQuoteEndDateClickOnOKButton(String Quote)
+    public void userEntersQuoteNameAndQuoteEndDateClickOnOKButton(String Quote) throws ParseException, InterruptedException, AWTException
     {
         quotePage=new QuotePage(driver,scenario);
         quotePage.validateQuote();
@@ -268,7 +268,7 @@ public class QuotePageSteps
     }
 
     @Then("User click on Copy button in summary page and enter Quote name {string} and Click on Create button")
-    public void userClickOnCopyButtonInSummaryPageAndEnterQuoteNameAndClickOnCreateButton(String Quote1) throws InterruptedException, AWTException
+    public void userClickOnCopyButtonInSummaryPageAndEnterQuoteNameAndClickOnCreateButton(String Quote1) throws InterruptedException, AWTException, ParseException
     {
         quoteSummaryPage=new QuoteSummaryPage(driver,scenario);
         quoteSummaryPage.ValidateQuoteSummary();

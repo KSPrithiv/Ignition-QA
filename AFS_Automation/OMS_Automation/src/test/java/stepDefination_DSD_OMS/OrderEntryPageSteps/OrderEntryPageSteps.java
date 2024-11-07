@@ -1228,10 +1228,11 @@ public class OrderEntryPageSteps
         newOE=new NewOrderEntryPage(driver,scenario);
         newOE.Validate_Catalog();
         newOE.clickOnLoadAllProducts();
+        newOE.ResetFilter_Catalog();
         newOE.selectAllProductsCatalogDialogbox();
-        newOE.ResetFilter_CatalogDisconnectedMode();
         String pro=String.valueOf(Prod_No);
         newOE.validateDisplayCatalogProducts();
+        newOE.validateCatalogProducts();
         newOE.Search_Prod_in_Catalog(pro);
         newOE.EnterQty(Prod_detail.get(0).get(0),Prod_detail.get(0).get(1));
         scenario.log("PRODUCT # "+pro+" PRODUCT QTY "+Prod_detail.get(0).get(0)+" "+Prod_detail.get(0).get(1));
