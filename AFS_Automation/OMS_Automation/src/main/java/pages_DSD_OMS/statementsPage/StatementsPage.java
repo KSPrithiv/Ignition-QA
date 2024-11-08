@@ -334,7 +334,7 @@ public class StatementsPage
             Thread.sleep(1000);
             new WebDriverWait(driver,Duration.ofMillis(200000)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.xpath("//ul[@id='ddlMonth-listbox-id']/li/span"))));
             new WebDriverWait(driver, Duration.ofMillis(20000)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//ul[@id='ddlMonth-listbox-id']/li/span")));
-            Thread.sleep(2000);
+            Thread.sleep(1000);
             List<WebElement> Values = HelpersMethod.FindByElements(driver, "xpath", "//ul[@id='ddlMonth-listbox-id']/li/span");
             // get the len of Month list
             int maxMonth = Values.size();
@@ -347,6 +347,7 @@ public class StatementsPage
                 if(i==randomMonth)
                 {
                     act.moveToElement(Values.get(i)).build().perform();
+                    Thread.sleep(500);
                     act.click().build().perform();
                     break;
                 }
@@ -425,7 +426,7 @@ public class StatementsPage
     public void SearchBar()
     {
         exists=false;
-        String status="";
+        String status;
         try
         {
             if(searchBar.isDisplayed())
@@ -761,9 +762,9 @@ public class StatementsPage
         exists=false;
         try
         {
-            WebElement custAccColumn=HelpersMethod.FindByElement(driver,"xpath","//th[contains(@class,'k-filterable k-header')][1]");
+            WebElement custAccColumn=HelpersMethod.FindByElement(driver,"xpath","//th[contains(@class,'k-filterable k-table-th k-header')][1]");
             act.moveToElement(custAccColumn).click().build().perform();
-            if(HelpersMethod.IsExists("//th[contains(@class,'k-filterable k-header')][1]/descendant::span[contains(@class,'k-icon k-i-sort-asc-sm')]",driver))
+            if(HelpersMethod.IsExists("//th[contains(@class,'k-filterable k-table-th k-header')][1]/descendant::span[contains(@class,'sort-asc-small')]",driver))
             {
                 scenario.log("CUSTOMER ACCOUNT# SHOULD BE ARRANGED IN ACENDING ORDER NOW");
                 exists=true;
@@ -805,46 +806,68 @@ public class StatementsPage
             {
                 customerAccoNoString = customerAccNo.toArray(new String[i]);
             }
-            Arrays.sort(customerAccoNoString, new Comparator<String>()
+            if(customerAccNo.get(1).contains("-"))
             {
-                @Override
-                public int compare(String s1, String s2)
+                Arrays.sort(customerAccoNoString, new Comparator<String>()
                 {
-                    String[] parts1 = s1.split("-");
-                    String[] parts2 = s2.split("-");
+                    @Override
+                    public int compare(String s1, String s2) {
+                        String[] parts1 = s1.split("-");
+                        String[] parts2 = s2.split("-");
 
-                    for (int i = 0; i < Math.min(parts1.length, parts2.length); i++)
-                    {
-                        int cmp;
-                        if (parts1[i].matches("\\d+") && parts2[i].matches("\\d+"))
-                        {
-                            cmp = Integer.compare(Integer.parseInt(parts1[i]), Integer.parseInt(parts2[i]));
+                        for (int i = 0; i < Math.min(parts1.length, parts2.length); i++) {
+                            int cmp;
+                            if (parts1[i].matches("\\d+") && parts2[i].matches("\\d+")) {
+                                cmp = Integer.compare(Integer.parseInt(parts1[i]), Integer.parseInt(parts2[i]));
+                            } else {
+                                cmp = parts1[i].compareTo(parts2[i]);
+                            }
+                            if (cmp != 0) return cmp;
                         }
-                        else
-                        {
-                            cmp = parts1[i].compareTo(parts2[i]);
-                        }
-                        if (cmp != 0) return cmp;
+                        return Integer.compare(parts1.length, parts2.length);
                     }
-                    return Integer.compare(parts1.length, parts2.length);
+                });
+
+                for (int i = 0; i <= customerAccNo1.size() - 1; i++)
+                {
+                    scenario.log("\n ");
+                    scenario.log("SORTED VALUE IN UI " + customerAccNo1.get(i) + " SORTED VALUE IN COLLECTION.SORT() " + customerAccoNoString[i]);
+                    customerAccNo.add(customerAccoNoString[i]);
                 }
-            });
 
-
-            //Collections.sort(customerAccNo);
-            for(int i=0;i<=customerAccNo1.size()-1;i++)
-            {
-                scenario.log("\n ");
-                scenario.log("SORTED VALUE IN UI "+customerAccNo1.get(i)+" SORTED VALUE IN COLLECTION.SORT() "+customerAccoNoString[i]);
-
-                //scenario.log("SORTED VALUE IN UI "+customerAccNo1.get(i)+" SORTED VALUE IN COLLECTION.SORT() "+customerAccNo.get(i));
+                for (int i = 0; i <= customerAccNo1.size() - 1; i++)
+                {
+                    if (customerAccNo1.get(i).equals(customerAccoNoString[i]))
+                    {
+                        exists = true;
+                    }
+                    else
+                    {
+                        scenario.log("<span 'color:red'>ACCOUNT NUMBER MAY NOT BE SORTED</span>");
+                        exists = false;
+                    }
+                }
             }
-//            if(customerAccNo.equals(customerAccNo1))
-//            {
-//                scenario.log("CUSTOMER ACCOUNT NUMBERS ARE IN ASCENDING ORDER");
-//                exists=true;
-//            }
-//            Assert.assertEquals(exists,true);
+            else
+            {
+                Collections.sort(customerAccNo);
+                for(int i=0;i<=customerAccNo1.size()-1;i++)
+                {
+                    scenario.log("\n\n ");
+                    scenario.log("SORTED VALUE IN UI "+customerAccNo1.get(i)+" SORTED VALUE IN COLLECTION.SORT() "+customerAccNo.get(i));
+                }
+                if(customerAccNo.equals(customerAccNo1))
+                {
+                    scenario.log("CUSTOMER ACCOUNT NUMBERS ARE IN ASCENDING ORDER");
+                    exists=true;
+                }
+                else
+                {
+                    scenario.log("<span 'color:red'>ACCOUNT NUMBER MAY NOT BE SORTED</span>");
+                    exists = false;
+                }
+            }
+            Assert.assertEquals(exists,true);
         }
         catch (Exception e){}
     }
@@ -879,9 +902,9 @@ public class StatementsPage
         exists=false;
         try
         {
-            WebElement custNameColumn=HelpersMethod.FindByElement(driver,"xpath","//th[contains(@class,'k-filterable k-header')][2]");
+            WebElement custNameColumn=HelpersMethod.FindByElement(driver,"xpath","//th[contains(@class,'k-filterable k-table-th k-header')][2]");
             act.moveToElement(custNameColumn).click().build().perform();
-            if(HelpersMethod.IsExists("//th[contains(@class,'k-filterable k-header')][2]/descendant::span[contains(@class,'k-icon k-i-sort-asc-sm')]",driver))
+            if(HelpersMethod.IsExists("//th[contains(@class,'k-filterable k-table-th k-header')][2]/descendant::span[contains(@class,'sort-asc-small')]",driver))
             {
                 scenario.log("CUSTOMER NAME SHOULD BE ARRANGED IN ACENDING ORDER NOW");
                 exists=true;
