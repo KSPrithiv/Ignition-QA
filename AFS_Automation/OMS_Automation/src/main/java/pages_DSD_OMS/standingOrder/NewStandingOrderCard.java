@@ -215,11 +215,11 @@ public class NewStandingOrderCard
             //Click on ADD button
             WebEle = modalContainer.findElement(By.xpath(".//button/span[text()='Add']"));
             HelpersMethod.ActClick(driver, WebEle, 10000);
-            if (HelpersMethod.IsExists("//div[@class='loader']", driver))
-            {
-                WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000000);
-            }
+            Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(600))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
         }
         catch (Exception e){}
     }
@@ -230,13 +230,14 @@ public class NewStandingOrderCard
         try
         {
             Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
-                    .withTimeout(Duration.ofSeconds(400))
+                    .withTimeout(Duration.ofSeconds(600))
                     .pollingEvery(Duration.ofSeconds(2))
                     .ignoring(NoSuchElementException.class);
             wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
 
             new WebDriverWait(driver,Duration.ofMillis(40000)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.xpath("//span[contains(text(),'Add standing order')]/ancestor::div[contains(@class,'k-window k-dialog')]"))));
             new WebDriverWait(driver,Duration.ofMillis(40000)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[contains(text(),'Add standing order')]/ancestor::div[contains(@class,'k-window k-dialog')]")));
+            Thread.sleep(4000);
 
             //HelpersMethod.waitTillElementLocatedDisplayed(driver, "xpath", "//span[contains(text(),'Add standing order')]/ancestor::div[contains(@class,'k-window k-dialog')]", 10000);
             if (HelpersMethod.IsExists("//span[contains(text(),'Add standing order')]/ancestor::div[contains(@class,'k-window k-dialog')]", driver))
@@ -258,9 +259,9 @@ public class NewStandingOrderCard
             new WebDriverWait(driver,Duration.ofMillis(20000)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[contains(text(),'Add standing order')]/ancestor::div[contains(@class,'k-window k-dialog')]")));
             Thread.sleep(2000);
             // to fetch the web element of the modal container
-            WebElement modalContainer = driver.findElement(By.xpath("//span[contains(text(),'Add standing order')]/ancestor::div[contains(@class,'k-window k-dialog')]"));
+            WebElement modalContainer = driver.findElement(By.xpath("//div[contains(@class,'k-window k-dialog')]"));
             WebElement startDateIcon = modalContainer.findElement(By.xpath(".//input[@id='addFromDate']/parent::span/following-sibling::button"));
-            new WebDriverWait(driver, Duration.ofMillis(10000)).until(ExpectedConditions.elementToBeClickable(startDateIcon));
+            new WebDriverWait(driver, Duration.ofMillis(20000)).until(ExpectedConditions.elementToBeClickable(startDateIcon));
             HelpersMethod.ActClick(driver, startDateIcon, 10000);
             exists = true;
             new WebDriverWait(driver, Duration.ofMillis(10000)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='k-calendar-view k-vstack k-calendar-monthview']")));
