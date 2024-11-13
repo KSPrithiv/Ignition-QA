@@ -442,6 +442,16 @@ public class OrderEntryPageSteps
         newOE.Catalog_OK();
     }
 
+    @Then ("Enter the Qty in the Product grid Case and Unit when product searched using product description")
+    public void enter_the_qty_in_the_product_grid_Case_and_Unit_when_product_searched_using_product_description(DataTable tabledata) throws Throwable
+    {
+        newOE = new NewOrderEntryPage(driver,scenario);
+        List<List<String>> ProQty = tabledata.asLists(String.class);
+        newOE.validateCatalogProdDescription();
+        newOE.EnterQtyForDescSearch(ProQty.get(0).get(0), ProQty.get(0).get(1));
+        newOE.Catalog_OK();
+    }
+
     @Then("Enter the Qty in the Product grid, compare product description, enter Case and Unit")
     public void enterTheQtyInTheProductGridCompareProductDescriptionEnterCaseAndUnit(DataTable tabledata) throws InterruptedException, AWTException
     {
@@ -1228,10 +1238,11 @@ public class OrderEntryPageSteps
         newOE=new NewOrderEntryPage(driver,scenario);
         newOE.Validate_Catalog();
         newOE.clickOnLoadAllProducts();
+        newOE.ResetFilter_Catalog();
         newOE.selectAllProductsCatalogDialogbox();
-        newOE.ResetFilter_CatalogDisconnectedMode();
         String pro=String.valueOf(Prod_No);
         newOE.validateDisplayCatalogProducts();
+        newOE.validateCatalogProducts();
         newOE.Search_Prod_in_Catalog(pro);
         newOE.EnterQty(Prod_detail.get(0).get(0),Prod_detail.get(0).get(1));
         scenario.log("PRODUCT # "+pro+" PRODUCT QTY "+Prod_detail.get(0).get(0)+" "+Prod_detail.get(0).get(1));

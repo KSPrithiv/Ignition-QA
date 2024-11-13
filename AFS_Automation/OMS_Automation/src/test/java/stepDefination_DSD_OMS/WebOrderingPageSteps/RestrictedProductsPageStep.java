@@ -78,7 +78,7 @@ public class RestrictedProductsPageStep
     {
             adminHomePage = new AdminHomePage(driver, scenario);
             adminHomePage.handleError_Page();
-            adminHomePage.refreshPage();
+            //adminHomePage.refreshPage();
             adminHomePage.ValidatingAdminHome();
     }
 

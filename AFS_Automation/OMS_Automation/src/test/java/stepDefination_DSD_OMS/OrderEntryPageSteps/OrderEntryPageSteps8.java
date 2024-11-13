@@ -93,7 +93,7 @@ public class OrderEntryPageSteps8
     {
         orderpage = new OrderEntryPage(driver, scenario);
         orderpage.comparePickUpDates();
-        orderpage.Refresh_Page1();
+        //orderpage.Refresh_Page1();
         //orderpage.Verify_OEPage();
         orderpage.Verify_OE_Title();
     }

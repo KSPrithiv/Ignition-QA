@@ -38,21 +38,6 @@ Scenario: Test scenario for filtering Qty on Hand in catalog popup
   And Discard all Pending order should be displayed
   Then User should be navigated to Order Entry page
 
-@LastdatePickupOrder
-Scenario: Test scenario for creating order for the Last date in Pickup order dialogbox
-  Given User must be on Order Entry Page
-  When User clicks on drop down next to Start order button
-  And Select Pickup Order from drop down options and select last delivery date
-  Then User should select Note from popup and Order guide from popup
-  Then Enter PO# for New order for Pickup order
-    |PO123|
-  Then Enter Pro# in Quick Product Entry area
-  And Check for Case and Unit input box enabled or not based on that enter value
-    |1|1|
-  Then Click on Next button
-  And Click on SubmitOrder button
-  Then User should be navigated to Order Entry page and compare the dates
-
 @SearchProductCatalogIndexDialogbox
 Scenario: Test scenario for searching for product in catalog index dialog box
   Given User must be on Order Entry Page

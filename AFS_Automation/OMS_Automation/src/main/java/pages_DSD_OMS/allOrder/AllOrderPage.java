@@ -2074,6 +2074,7 @@ public class AllOrderPage
                 }
 
                 new WebDriverWait(driver, Duration.ofMillis(20000)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.xpath("//ul[contains(@class,'k-menu-group')]/li/descendant::span[text()='Pick up order']"))));
+                new WebDriverWait(driver, Duration.ofMillis(20000)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//ul[contains(@class,'k-menu-group')]/li/descendant::span[text()='Pick up order']")));
 
                 List<WebElement> optionOpenOrders=HelpersMethod.FindByElements(driver,"xpath","//ul[contains(@class,'k-menu-group')]/li/descendant::span[text()='Pick up order']");
                 for(WebElement optionOO:optionOpenOrders)

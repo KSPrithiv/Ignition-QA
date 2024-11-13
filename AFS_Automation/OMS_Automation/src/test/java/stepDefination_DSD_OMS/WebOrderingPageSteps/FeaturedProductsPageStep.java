@@ -175,6 +175,7 @@ public class FeaturedProductsPageStep
         featuredProductsPage=new FeaturedProductsPage(driver,scenario);
         featuredProductsPage.deleteAllFeatureProduct();
         featuredProductsPage.savePopup1();
+        featuredProductsPage.validateNoProductsExists();
     }
 
     @Then("User should add new {int} products, and delete first product")

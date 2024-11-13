@@ -1,11 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="All Test Suite">
-    <test name="IgnitionTestAutomation">
-        <parameter name="environment" value="config_DSD_OMS\\shared_config_DSD"/>
+<suite name="ParallelSuite" parallel="tests" thread-count="4">
+    <test name="Test1">
+        <parameter name="environment" value="config_DSD_OMS\\configAuto\\config_DSD"/>
         <classes>
-            <class name="testRunner_DSD_OMS.TestRunnSingleSce">
-            </class>
+            <class name="testRunner_DSD_OMS.ParallelExecutionEnvironment"></class>
+        </classes>
+    </test>
+    <test name="Test2">
+        <parameter name="environment" value="config_DSD_OMS\\configAuto\\config_DSD"/>
+        <classes>
+            <class name="testRunner_DSD_OMS.ParallelExecutionEnvironment1"></class>
         </classes>
     </test>
 </suite>

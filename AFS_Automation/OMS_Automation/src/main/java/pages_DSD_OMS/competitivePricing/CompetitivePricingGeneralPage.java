@@ -987,9 +987,20 @@ public class CompetitivePricingGeneralPage
                 HelpersMethod.waitTillLoadingPage(driver);
             }
             Thread.sleep(1000);
-            WebEle= HelpersMethod.FindByElement(driver,"xpath","//tr[contains(@class,'k-master-row')][1]/descendant::input[contains(@class,'k-checkbox')]");
-            HelpersMethod.ScrollElement(driver,WebEle);
-            HelpersMethod.ActClick(driver,WebEle,10000);
+            new WebDriverWait(driver,Duration.ofMillis(20000)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.xpath("//tr[contains(@class,'k-master-row')][1]/descendant::input[contains(@class,'k-checkbox')]"))));
+            new WebDriverWait(driver,Duration.ofMillis(10000)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//tr[contains(@class,'k-master-row')][1]/descendant::input[contains(@class,'k-checkbox')]")));
+            if(HelpersMethod.IsExists("//tr[contains(@class,'k-master-row')][1]/descendant::input[contains(@class,'k-checkbox')]",driver))
+            {
+                WebEle = HelpersMethod.FindByElement(driver, "xpath", "//tr[contains(@class,'k-master-row')][1]/descendant::input[contains(@class,'k-checkbox')]");
+                HelpersMethod.ScrollElement(driver, WebEle);
+                HelpersMethod.ActClick(driver, WebEle, 10000);
+                exists=true;
+            }
+            else
+            {
+                exists=false;
+            }
+            Assert.assertEquals(exists,true);
         }
         catch (Exception e){}
     }

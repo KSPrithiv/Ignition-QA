@@ -1579,6 +1579,33 @@ public class OrderEntryPage
         return deliveryDate;
     }
 
+    public String Read_DeliveryDate2() throws InterruptedException, ParseException
+    {
+        Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                .withTimeout(Duration.ofSeconds(120))
+                .pollingEvery(Duration.ofSeconds(2))
+                .ignoring(NoSuchElementException.class);
+        wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
+        String status = HelpersMethod.returnDocumentStatus(driver);
+        if (status.equals("loading"))
+        {
+            HelpersMethod.waitTillLoadingPage(driver);
+        }
+
+        wait = new FluentWait<WebDriver>(driver)
+                .withTimeout(Duration.ofSeconds(120))
+                .pollingEvery(Duration.ofSeconds(2))
+                .ignoring(NoSuchElementException.class);
+        wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
+        if (formattedDate != null)
+        {
+            formattedDate = driver.findElement(By.xpath("//input[contains(@id,'delivery-date-web-order-header-calendar')]")).getAttribute("value");
+        }
+        return formattedDate;
+    }
+
     public void validateDeliveryDateIsSameAsWhenLoaded()
     {
         try
@@ -3991,11 +4018,14 @@ public class OrderEntryPage
         exists=false;
         try
         {
-            WebElement deliveryDate=HelpersMethod.FindByElement(driver,"","delivery-date-web-order-header-calendar");
-            String deliverDateText=HelpersMethod.JSGetValueEle(driver,deliveryDate,10000);
-            if(deliverDateText.contains(pickUpDate))
+
+            if(HelpersMethod.IsExists("//input[@id='delivery-date-web-order-header-calendar']",driver))
             {
-                exists=true;
+                String deliverDateText = driver.findElement(By.xpath("//input[contains(@id,'delivery-date-web-order-header-calendar')]")).getAttribute("value");
+                if (deliverDateText.contains(pickUpDate))
+                {
+                    exists = true;
+                }
             }
             Assert.assertEquals(exists,true);
         }

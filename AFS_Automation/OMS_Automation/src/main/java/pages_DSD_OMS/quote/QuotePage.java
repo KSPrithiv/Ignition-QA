@@ -1,20 +1,24 @@
 package pages_DSD_OMS.quote;
 
-import gherkin.lexer.He;
 import helper.HelpersMethod;
 import io.cucumber.java.Scenario;
+//import org.joda.time.LocalDate;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.Wait;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
+import pages_DSD_OMS.orderEntry.OrderEntryPage;
 
+import java.awt.*;
+import java.text.ParseException;
 import java.time.Duration;
+import java.time.format.DateTimeFormatter;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 
 /**
  * @Project DSD_ERP
@@ -81,23 +85,39 @@ public class QuotePage
         catch (Exception e) {}
     }
 
-    public void SelectEndDate()
+    public void SelectEndDate() throws ParseException, InterruptedException, AWTException
     {
         exists = false;
-        String formattedDate1 = null;
-        try
-        {
-            LocalDate myDateObj = LocalDate.now().plusDays(2);
-            DateTimeFormatter myFormatObj = DateTimeFormatter.ofPattern("EEEE, MMMM d, yyyy");
-            formattedDate1 = myDateObj.format(myFormatObj);
-            WebElement ele1 = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-calendar-monthview')]/descendant::td[contains(@title,'" + formattedDate1 + "')]");
-            HelpersMethod.waitTillElementDisplayed(driver, ele1, 1000000);
-            HelpersMethod.JSScroll(driver, ele1);
-            HelpersMethod.ClickBut(driver, ele1, 10000);
-            scenario.log("END DATE FOR QUOTE IS : " + formattedDate1);
-            exists = true;
-            Assert.assertEquals(exists, true);
-        } catch (Exception e) {}
+
+
+//            LocalDate myDateObj = LocalDate.now().plusDays(2);
+//            DateTimeFormatter myFormatObj = DateTimeFormatter.ofPattern("EEEE, MMMM d, yyyy");
+//            formattedDate1 = myDateObj.format(myFormatObj);
+//            WebElement ele1 = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-calendar-monthview')]/descendant::td[contains(@title,'" + formattedDate1 + "')]");
+//            HelpersMethod.waitTillElementDisplayed(driver, ele1, 1000000);
+//            HelpersMethod.JSScroll(driver, ele1);
+//            HelpersMethod.ClickBut(driver, ele1, 10000);
+//            scenario.log("END DATE FOR QUOTE IS : " + formattedDate1);
+//            exists = true;
+//            Assert.assertEquals(exists, true);
+
+            OrderEntryPage oepa=new OrderEntryPage(driver,scenario);
+            String deliverydate=oepa.Read_DeliveryDate2();
+            DateTimeFormatter inputFormat = DateTimeFormatter.ofPattern("EEE, MMM d, yyyy");
+            DateTimeFormatter outputFormat = DateTimeFormatter.ofPattern("EEEE, MMMM d, yyyy");
+
+            try
+            {
+                LocalDate myDateObj = LocalDate.parse(deliverydate,inputFormat);
+                String formattedDate1 = myDateObj.format(outputFormat);
+
+                WebElement ele1 = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-calendar-monthview')]/descendant::td[contains(@title,'" + formattedDate1 + "')]");
+                HelpersMethod.waitTillElementDisplayed(driver, ele1, 1000000);
+                HelpersMethod.JSScroll(driver, ele1);
+                HelpersMethod.ClickBut(driver, ele1, 10000);
+                scenario.log("END DATE FOR QUOTE IS : " + formattedDate1);
+            }
+            catch (Exception e) {}
     }
 
     public void ClickOnOKButton()
