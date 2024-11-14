@@ -20,7 +20,6 @@ import java.io.IOException;
                 {
                  "src/test/resources/features_DSD_OMS/AdminToClientNavigation/adminSecurityERPFeature.feature",
                  "src/test/resources/features_DSD_OMS/AdminToClientNavigation/catalogAdminToClientFeature.feature",
-                 //"src/test/resources/features_DSD_OMS/AdminToClientNavigation/inventoryAdminToClientFeature.feature",
                  "src/test/resources/features_DSD_OMS/AdminToClientNavigation/orderControlListAdminToClientFeature.feature",
                  "src/test/resources/features_DSD_OMS/AdminToClientNavigation/orderEntryAdminToClientFeature.feature",
                  "src/test/resources/features_DSD_OMS/AdminToClientNavigation/orderEntryAdminToClientFeature1.feature",

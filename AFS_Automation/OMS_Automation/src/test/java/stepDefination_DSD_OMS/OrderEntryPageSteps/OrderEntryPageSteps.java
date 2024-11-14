@@ -132,7 +132,7 @@ public class OrderEntryPageSteps
         orderpage.Refresh_Page2();
         orderpage.NavigateingToOrderEntry();
         orderpage.startDisabledChangeDeliveryDate();
-        orderpage.Read_DeliveryDate();
+        //orderpage.Read_DeliveryDate();
         newOE=new NewOrderEntryPage(driver,scenario);
         newOE.Discard_All_Pending_Order();
         orderpage=new OrderEntryPage(driver,scenario);
@@ -369,6 +369,13 @@ public class OrderEntryPageSteps
         newOE.CheckForCatalog();
     }
 
+    @Then("Check for Catalog popup for searching product by description")
+    public void check_for_catalog_popup_for_searching_product_by_description() throws InterruptedException, AWTException
+    {
+        newOE = new NewOrderEntryPage(driver,scenario);
+        newOE.CheckForCatalog();
+    }
+
     @Then("Enter PO# for New order")
     public void enter_po_for_new_order(DataTable tabledata) throws InterruptedException, AWTException
     {
@@ -436,7 +443,6 @@ public class OrderEntryPageSteps
     {
         newOE = new NewOrderEntryPage(driver,scenario);
         List<List<String>> ProQty = tabledata.asLists(String.class);
-        //newOE.validateCatalogProducts();
         newOE.validateCatalogProdNo();
         newOE.EnterQty(ProQty.get(0).get(0), ProQty.get(0).get(1));
         newOE.Catalog_OK();

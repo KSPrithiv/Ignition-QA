@@ -15,7 +15,7 @@ import java.io.IOException;
  */
 @CucumberOptions
         (features = { "src/test/resources/features_DSD_OMS/UserManagementClientSideFeature/manageRegistrationClientSideFeatureDSD.feature",
-                "src/test/resources/features_DSD_OMS/UserManagementClientSideFeature/userAndAccountsClientSideLoginFeature.feature",
+                      "src/test/resources/features_DSD_OMS/UserManagementClientSideFeature/userAndAccountsClientSideLoginFeature.feature",
                 //"src/test/resources/features_DSD_OMS/UserManagementClientSideFeature/userPendingRegistrationClientSideFeature.feature",
                 },
                 glue = {"stepDefination_DSD_OMS"},

@@ -69,8 +69,8 @@ Feature: Order Entry2
     Then Enter PO# for New order
       |PO123|
     Then User enters ProdDes in Search box
-    Then Check for Catalog popup
-    Then Enter the Qty in the Product grid Case and Unit
+    Then Check for Catalog popup for searching product by description
+    Then Enter the Qty in the Product grid Case and Unit when product searched using product description
       |1|1|
     Then Click on Next button
     And Click on SubmitOrder button

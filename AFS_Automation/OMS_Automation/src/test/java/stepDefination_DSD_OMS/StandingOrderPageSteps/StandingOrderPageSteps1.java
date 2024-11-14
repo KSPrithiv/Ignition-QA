@@ -27,6 +27,7 @@ public class StandingOrderPageSteps1
     static NewStandingOrderCard standingOrderCard;
     static OrderEntryPage orderpage;
     static NewStandingOrderPage standingOrder;
+    static String generateFromDate;
 
     @Before
     public void LaunchBrowser1(Scenario scenario) throws Exception
@@ -90,9 +91,11 @@ public class StandingOrderPageSteps1
         standingOrderCard.clickOnStartStandingOrderCalender();
         standingOrderCard.validateFromStandingOrderCalender();
         standingOrderCard.selectFromDateForGenerateSO();
+        generateFromDate=standingOrderCard.readFromDateForGenerateSO();
         standingOrderCard.clickToDateForGenerateSO();
         standingOrderCard.validateToStandingOrderCalender();
         standingOrderCard.selectToDateForGenerateSO();
+        standingOrderCard.readToDateForGenerateSO();
         standingOrderCard.clickOnOkButtonInGenerateSO();
     }
 
@@ -176,5 +179,12 @@ public class StandingOrderPageSteps1
         standingOrder=new NewStandingOrderPage(driver,scenario);
         //standingOrder.validateStandingOrder();
         standingOrder.validateDeliveryScheduleDate();
+    }
+
+    @Then("User should navigate back to OE page verify for the order")
+    public void userShouldNavigateBackToOEPageVerifyForTheOrder() throws InterruptedException, AWTException
+    {
+        orderpage=new OrderEntryPage(driver,scenario);
+        orderpage.navigateToOrderEntry1();
     }
 }

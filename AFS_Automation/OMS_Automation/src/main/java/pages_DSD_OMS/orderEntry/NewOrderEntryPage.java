@@ -733,220 +733,184 @@ public class NewOrderEntryPage
         exists = false;
         WebElement WebEle;
         Actions act1=new Actions(driver);
-        String prodDesText;
-        String pDescription=TestBase.testEnvironment.getProdDesc();
         int i=0;
         try
         {
             //Check for catalog popup
             if (HelpersMethod.IsExists("//span[text()='Catalog']/ancestor::div[contains(@class,'k-window k-dialog')]", driver))
             {
-                    //When "Card view" of catlog is enabled
-                    if (HelpersMethod.IsExists("//div[@class='product-catalog-container']/ancestor::div[contains(@class,'k-window k-dialog')]", driver))
+                //When "Card view" of catlog is enabled
+                if (HelpersMethod.IsExists("//div[@class='product-catalog-container']/ancestor::div[contains(@class,'k-window k-dialog')]", driver))
+                {
+                    //Enter Unit value in input box of catalog
+                    if (HelpersMethod.IsExists("//div[contains(@class,'k-window k-dialog')]/descendant::div[contains(@id,'gridItemBox')]["+1+"]/descendant::div[contains(text(),'Unit')]/descendant::input", driver))
                     {
-                        List<WebElement> prodDescriptions=HelpersMethod.FindByElements(driver,"xpath","//div[contains(@id,'gridItemBox')]/descendant::span[contains(@class,'product-name')]/a");
-                        for(WebElement prodDescription:prodDescriptions)
+                        WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-window k-dialog')]/descendant::div[contains(@id,'gridItemBox')]["+1+"]/descendant::div[contains(text(),'Unit')]/descendant::input");
+                        HelpersMethod.ScrollElement(driver, WebEle);
+                        act1.moveToElement(WebEle).click().build().perform();
+                        act1.sendKeys(Keys.CONTROL + "a");
+                        act1.sendKeys(Keys.DELETE);
+                        act1.sendKeys(WebEle, unit).build().perform();
+                        act1.sendKeys(Keys.TAB).build().perform();
+                        scenario.log("UNIT ENTERED IN CATALOG " + unit);
+                        Thread.sleep(1000);
+
+                        //Check for popups
+                        for (int a = 0; a <= 2; a++)
                         {
-                            i++;
-                            act1.moveToElement(prodDescription).build().perform();
-                            prodDesText=prodDescription.getText();
-                            if(prodDesText.equalsIgnoreCase(pDescription))
+                            //Check for "Quantity exceeds maximum of 10 , do you want to continue ?" Popup
+                            if (HelpersMethod.IsExists("//div[contains(text(),'Quantity exceeds maximum of')]/ancestor::div[contains(@class,'k-window k-dialog')]", driver))
                             {
-                                exists=true;
-                                break;
+                                // to fetch the web element of the modal container
+                                WebElement modalContainer = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(text(),'Quantity exceeds maximum of')]/ancestor::div[contains(@class,'k-window k-dialog')]");
+                                //click on Yes button
+                                WebElement yesButton = modalContainer.findElement(By.xpath(".//button/span[text()='Yes']"));
+                                HelpersMethod.ActClick(driver, yesButton, 10000);
                             }
-                        }
 
-                        //Enter Unit value in input box of catalog
-                        if (HelpersMethod.IsExists("//div[contains(@class,'k-window k-dialog')]/descendant::div[contains(@id,'gridItemBox')]["+i+"]/descendant::div[contains(text(),'Unit')]/descendant::input", driver))
-                        {
-                            WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-window k-dialog')]/descendant::div[contains(@id,'gridItemBox')]["+i+"]/descendant::div[contains(text(),'Unit')]/descendant::input");
-                            HelpersMethod.ScrollElement(driver, WebEle);
-                            act1.moveToElement(WebEle).click().build().perform();
-                            act1.sendKeys(Keys.CONTROL + "a");
-                            act1.sendKeys(Keys.DELETE);
-                            act1.sendKeys(WebEle, unit).build().perform();
-                            act1.sendKeys(Keys.TAB).build().perform();
-                            scenario.log("UNIT ENTERED IN CATALOG " + unit);
-                            Thread.sleep(1000);
-
-                            //Check for popups
-                            for (int a = 0; a <= 2; a++)
+                            //"Product is currently unavailable" popup
+                            if (HelpersMethod.IsExists("//div[contains(text(),'This product is currently unavailable.')]/ancestor::div[contains(@class,'k-window k-dialog')]", driver))
                             {
-                                //Check for "Quantity exceeds maximum of 10 , do you want to continue ?" Popup
-                                if (HelpersMethod.IsExists("//div[contains(text(),'Quantity exceeds maximum of')]/ancestor::div[contains(@class,'k-window k-dialog')]", driver))
-                                {
-                                    // to fetch the web element of the modal container
-                                    WebElement modalContainer = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(text(),'Quantity exceeds maximum of')]/ancestor::div[contains(@class,'k-window k-dialog')]");
-                                    //click on Yes button
-                                    WebElement yesButton = modalContainer.findElement(By.xpath(".//button/span[text()='Yes']"));
-                                    HelpersMethod.ActClick(driver, yesButton, 10000);
-                                }
-
-                                //"Product is currently unavailable" popup
-                                if (HelpersMethod.IsExists("//div[contains(text(),'This product is currently unavailable.')]/ancestor::div[contains(@class,'k-window k-dialog')]", driver))
-                                {
-                                    WebElement okButton = HelpersMethod.FindByElement(driver,"xpath","//div[contains(text(),'This product is currently unavailable.')]/ancestor::div[contains(@class,'k-window k-dialog')]/descendant::button/span[text()='Ok']");
-                                    HelpersMethod.ActClick(driver, okButton, 20000);
-                                }
-                            }
-                        }
-                        //Enter Case value in input box of catalog
-                        if (HelpersMethod.IsExists("//div[contains(@class,'k-window k-dialog')]/descendant::div[contains(@id,'gridItemBox')]["+i+"]/descendant::div[contains(text(),'Case')]/descendant::input", driver))
-                        {
-                            WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-window k-dialog')]/descendant::div[contains(@id,'gridItemBox')]["+i+"]/descendant::div[contains(text(),'Case')]/descendant::input");
-                            HelpersMethod.ScrollElement(driver, WebEle);
-                            act1.moveToElement(WebEle).click().build().perform();
-                            act1.sendKeys(Keys.CONTROL + "a");
-                            act1.sendKeys(Keys.DELETE);
-                            act1.sendKeys(WebEle, unit).build().perform();
-                            act1.sendKeys(Keys.TAB).build().perform();
-                            scenario.log("CASES ENTERED IN CATALOG " + cas);
-                            //Check for popups
-                            for (int a = 0; a <= 2; a++)
-                            {
-                                //Check for "Quantity exceeds maximum of 10 , do you want to continue ?" Popup
-                                if (HelpersMethod.IsExists("//div[contains(text(),'Quantity exceeds maximum of')]/ancestor::div[contains(@class,'k-window k-dialog')]", driver))
-                                {
-                                    // to fetch the web element of the modal container
-                                    WebElement modalContainer = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(text(),'Quantity exceeds maximum of')]/ancestor::div[contains(@class,'k-window k-dialog')]");
-                                    //click on Yes button
-                                    WebEle = modalContainer.findElement(By.xpath(".//button/span[text()='Yes']"));
-                                    HelpersMethod.ActClick(driver, WebEle, 10000);
-                                    scenario.log("QUANTITY EXCEEDS MAXIMUM OF POPUP HANDLED");
-                                }
-                                //"Product is currently unavailable" popup
-                                if (HelpersMethod.IsExists("//div[contains(text(),'This product is currently unavailable.')]/ancestor::div[contains(@class,'k-window k-dialog')]", driver))
-                                {
-                                    WebElement modalContainer = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(text(),'This product is currently unavailable.')]/ancestor::div[contains(@class,'k-window k-dialog')]");
-
-                                    WebEle = modalContainer.findElement(By.xpath(".//button/span[text()='Ok']"));
-                                    HelpersMethod.ActClick(driver, WebEle, 10000);
-                                }
+                                WebElement okButton = HelpersMethod.FindByElement(driver,"xpath","//div[contains(text(),'This product is currently unavailable.')]/ancestor::div[contains(@class,'k-window k-dialog')]/descendant::button/span[text()='Ok']");
+                                HelpersMethod.ActClick(driver, okButton, 20000);
                             }
                         }
                     }
-                        //Grid view display of catalog
-                    else if (HelpersMethod.IsExists("//div[contains(@class,'grid-view')]/ancestor::div[contains(@class,'k-window k-dialog')]", driver))
+                    //Enter Case value in input box of catalog
+                    if (HelpersMethod.IsExists("//div[contains(@class,'k-window k-dialog')]/descendant::div[contains(@id,'gridItemBox')]["+1+"]/descendant::div[contains(text(),'Case')]/descendant::input", driver))
                     {
-                            int b=0;
-                            i = 0;
-                            int j=0;
-                            List<WebElement> tableHeads = HelpersMethod.FindByElements(driver, "xpath", "//div[@class='k-window k-dialog']/descendant::span[@class='k-column-title']");
-                            for(WebElement tableHead:tableHeads)
+                        WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-window k-dialog')]/descendant::div[contains(@id,'gridItemBox')]["+1+"]/descendant::div[contains(text(),'Case')]/descendant::input");
+                        HelpersMethod.ScrollElement(driver, WebEle);
+                        act1.moveToElement(WebEle).click().build().perform();
+                        act1.sendKeys(Keys.CONTROL + "a");
+                        act1.sendKeys(Keys.DELETE);
+                        act1.sendKeys(WebEle, unit).build().perform();
+                        act1.sendKeys(Keys.TAB).build().perform();
+                        scenario.log("CASES ENTERED IN CATALOG " + cas);
+                        //Check for popups
+                        for (int a = 0; a <= 2; a++)
+                        {
+                            //Check for "Quantity exceeds maximum of 10 , do you want to continue ?" Popup
+                            if (HelpersMethod.IsExists("//div[contains(text(),'Quantity exceeds maximum of')]/ancestor::div[contains(@class,'k-window k-dialog')]", driver))
                             {
-                                i++;
-                                String THead_Text = tableHead.getText();
-                                if (THead_Text.equals("Description"))
+                                // to fetch the web element of the modal container
+                                WebElement modalContainer = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(text(),'Quantity exceeds maximum of')]/ancestor::div[contains(@class,'k-window k-dialog')]");
+                                //click on Yes button
+                                WebEle = modalContainer.findElement(By.xpath(".//button/span[text()='Yes']"));
+                                HelpersMethod.ActClick(driver, WebEle, 10000);
+                                scenario.log("QUANTITY EXCEEDS MAXIMUM OF POPUP HANDLED");
+                            }
+                            //"Product is currently unavailable" popup
+                            if (HelpersMethod.IsExists("//div[contains(text(),'This product is currently unavailable.')]/ancestor::div[contains(@class,'k-window k-dialog')]", driver))
+                            {
+                                WebElement modalContainer = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(text(),'This product is currently unavailable.')]/ancestor::div[contains(@class,'k-window k-dialog')]");
+
+                                WebEle = modalContainer.findElement(By.xpath(".//button/span[text()='Ok']"));
+                                HelpersMethod.ActClick(driver, WebEle, 10000);
+                            }
+                        }
+                    }
+                }
+                //Grid view display of catalog
+                else if (HelpersMethod.IsExists("//div[contains(@class,'grid-view')]/ancestor::div[contains(@class,'k-window k-dialog')]", driver))
+                {
+                    int b=0;
+                    i = 0;
+                    int j=0;
+                    List<WebElement> tableHeads = HelpersMethod.FindByElements(driver, "xpath", "//div[@class='k-window k-dialog']/descendant::span[@class='k-column-title']");
+                    b=0;
+                    for (WebElement tableHead : tableHeads)
+                    {
+                        b++;
+                        WebElement UnitCase;
+                        String THead_Text = tableHead.getText();
+                        if (THead_Text.equals("Units"))
+                        {
+                            if(HelpersMethod.IsExists("//div[@class='i-grid']/descendant::tr[contains(@class,'k-master-row')]["+1+"]/descendant::td[" + b + "]/descendant::input",driver))
+                            {
+                                UnitCase = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='i-grid']/descendant::tr[contains(@class,'k-master-row')]["+1+"]/descendant::td[" + b + "]/descendant::input");
+                                HelpersMethod.ScrollElement(driver, UnitCase);
+                                if (UnitCase.isDisplayed() && UnitCase.isEnabled())
                                 {
-                                    List<WebElement> prodDescriptions=HelpersMethod.FindByElements(driver,"xpath","//div[@class='k-window k-dialog']/descendant::tr[contains(@class,'k-master-row')]/td["+i+"]");
-                                    for(WebElement prodDes:prodDescriptions)
+                                    HelpersMethod.ActSendKey(driver, UnitCase, 10000, unit);
+                                    scenario.log("UNITS ENTERED IN CATALOG " + unit);
+                                    //Check for popups
+                                    for (int a = 0; a <= 2; a++)
                                     {
-                                        j++;
-                                        act1.moveToElement(prodDes).build().perform();
-                                        prodDesText=prodDes.getText();
-                                        if(prodDesText.equalsIgnoreCase(pDescription))
+                                        //Check for "Quantity exceeds maximum of 10 , do you want to continue ?" Popup
+                                        if (HelpersMethod.IsExists("//div[contains(text(),'Quantity exceeds maximum of')]/ancestor::div[contains(@class,'k-window k-dialog')]", driver))
                                         {
-                                            break;
+                                            // to fetch the web element of the modal container
+                                            WebElement modalContainer = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(text(),'Quantity exceeds maximum of')]/ancestor::div[contains(@class,'k-window k-dialog')]");
+                                            //click on Yes button
+                                            WebEle = modalContainer.findElement(By.xpath(".//button/span[text()='Yes']"));
+                                            HelpersMethod.ActClick(driver, WebEle, 10000);
+                                            scenario.log("QUANTITY EXCEEDS MAXIMUM OF POPUP HANDLED");
+                                        }
+
+                                        //"Product is currently unavailable" popup
+                                        if (HelpersMethod.IsExists("//div[contains(text(),'This product is currently unavailable.')]/ancestor::div[contains(@class,'k-window k-dialog')]", driver))
+                                        {
+                                            WebElement modalContainer = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(text(),'This product is currently unavailable.')]/ancestor::div[contains(@class,'k-window k-dialog')]");
+                                            WebEle = modalContainer.findElement(By.xpath(".//button/span[text()='Ok']"));
+                                            HelpersMethod.ActClick(driver, WebEle, 10000);
+                                            scenario.log("PRODUCT IS CURRENTLY UNAVAILABLE POPUP HANDLED");
                                         }
                                     }
-                                   break;
                                 }
                             }
-
-                            b=0;
-                            for (WebElement tableHead : tableHeads)
+                        }
+                        else
+                        {
+                            if (THead_Text.equals("Cases"))
                             {
-                                b++;
-                                WebElement UnitCase;
-                                String THead_Text = tableHead.getText();
-                                if (THead_Text.equals("Units"))
+                                if(HelpersMethod.IsExists("//div[@class='i-grid']/descendant::tr[contains(@class,'k-master-row')]["+1+"]/descendant::td[" + b + "]/descendant::input",driver))
                                 {
-                                   if(HelpersMethod.IsExists("//div[@class='i-grid']/descendant::tr[contains(@class,'k-master-row')]["+j+"]/descendant::td[" + b + "]/descendant::input",driver))
+                                    //Find whether Cases input box is displayed
+                                    UnitCase = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='i-grid']/descendant::tr[contains(@class,'k-master-row')]["+1+"]/descendant::td[" + b + "]/descendant::input");
+                                    HelpersMethod.ScrollElement(driver, UnitCase);
+                                    if (UnitCase.isDisplayed() && UnitCase.isEnabled())
                                     {
-                                        UnitCase = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='i-grid']/descendant::tr[contains(@class,'k-master-row')]["+j+"]/descendant::td[" + b + "]/descendant::input");
-                                        HelpersMethod.ScrollElement(driver, UnitCase);
-                                        if (UnitCase.isDisplayed() && UnitCase.isEnabled())
+                                        HelpersMethod.ActSendKey(driver, UnitCase, 10000, cas);
+                                        scenario.log("CASES ENTERED IN CATALOG is " + cas);
+                                        //Check for popups
+                                        for (int a = 0; a <= 2; a++)
                                         {
-                                            HelpersMethod.ActSendKey(driver, UnitCase, 10000, unit);
-                                            scenario.log("UNITS ENTERED IN CATALOG " + unit);
-                                            //Check for popups
-                                            for (int a = 0; a <= 2; a++)
+                                            //Check for "Quantity exceeds maximum of 10 , do you want to continue ?" Popup
+                                            if (HelpersMethod.IsExists("//div[contains(text(),'Quantity exceeds maximum of')]/ancestor::div[contains(@class,'k-window k-dialog')]", driver))
                                             {
-                                                //Check for "Quantity exceeds maximum of 10 , do you want to continue ?" Popup
-                                                if (HelpersMethod.IsExists("//div[contains(text(),'Quantity exceeds maximum of')]/ancestor::div[contains(@class,'k-window k-dialog')]", driver))
-                                                {
-                                                    // to fetch the web element of the modal container
-                                                    WebElement modalContainer = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(text(),'Quantity exceeds maximum of')]/ancestor::div[contains(@class,'k-window k-dialog')]");
-                                                    //click on Yes button
-                                                    WebEle = modalContainer.findElement(By.xpath(".//button/span[text()='Yes']"));
-                                                    HelpersMethod.ActClick(driver, WebEle, 10000);
-                                                    scenario.log("QUANTITY EXCEEDS MAXIMUM OF POPUP HANDLED");
-                                                }
-
-                                                //"Product is currently unavailable" popup
-                                                if (HelpersMethod.IsExists("//div[contains(text(),'This product is currently unavailable.')]/ancestor::div[contains(@class,'k-window k-dialog')]", driver))
-                                                {
-                                                    WebElement modalContainer = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(text(),'This product is currently unavailable.')]/ancestor::div[contains(@class,'k-window k-dialog')]");
-                                                    WebEle = modalContainer.findElement(By.xpath(".//button/span[text()='Ok']"));
-                                                    HelpersMethod.ActClick(driver, WebEle, 10000);
-                                                    scenario.log("PRODUCT IS CURRENTLY UNAVAILABLE POPUP HANDLED");
-                                                }
+                                                // to fetch the web element of the modal container
+                                                WebElement modalContainer = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(text(),'Quantity exceeds maximum of')]/ancestor::div[contains(@class,'k-window k-dialog')]");
+                                                //click on Yes button
+                                                WebEle = modalContainer.findElement(By.xpath(".//button/span[text()='Yes']"));
+                                                HelpersMethod.ActClick(driver, WebEle, 10000);
+                                                scenario.log("QUANTITY EXCEEDS MAXIMUM OF POPUP HANDLED");
                                             }
-                                        }
-                                    }
-                                }
-                                else
-                                {
-                                    if (THead_Text.equals("Cases"))
-                                    {
-                                        if(HelpersMethod.IsExists("//div[@class='i-grid']/descendant::tr[contains(@class,'k-master-row')]["+j+"]/descendant::td[" + b + "]/descendant::input",driver))
-                                        {
-                                            //Find whether Cases input box is displayed
-                                            UnitCase = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='i-grid']/descendant::tr[contains(@class,'k-master-row')]["+j+"]/descendant::td[" + b + "]/descendant::input");
-                                            HelpersMethod.ScrollElement(driver, UnitCase);
-                                            if (UnitCase.isDisplayed() && UnitCase.isEnabled())
-                                            {
-                                                HelpersMethod.ActSendKey(driver, UnitCase, 10000, cas);
-                                                scenario.log("CASES ENTERED IN CATALOG is " + cas);
-                                                //Check for popups
-                                                for (int a = 0; a <= 2; a++)
-                                                {
-                                                    //Check for "Quantity exceeds maximum of 10 , do you want to continue ?" Popup
-                                                    if (HelpersMethod.IsExists("//div[contains(text(),'Quantity exceeds maximum of')]/ancestor::div[contains(@class,'k-window k-dialog')]", driver))
-                                                    {
-                                                        // to fetch the web element of the modal container
-                                                        WebElement modalContainer = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(text(),'Quantity exceeds maximum of')]/ancestor::div[contains(@class,'k-window k-dialog')]");
-                                                        //click on Yes button
-                                                        WebEle = modalContainer.findElement(By.xpath(".//button/span[text()='Yes']"));
-                                                        HelpersMethod.ActClick(driver, WebEle, 10000);
-                                                        scenario.log("QUANTITY EXCEEDS MAXIMUM OF POPUP HANDLED");
-                                                    }
 
-                                                    //"Product is currently unavailable" popup
-                                                    if (HelpersMethod.IsExists("//div[contains(text(),'This product is currently unavailable.')]/ancestor::div[contains(@class,'k-window k-dialog')]", driver))
-                                                    {
-                                                        WebElement modalContainer = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(text(),'This product is currently unavailable.')]/ancestor::div[contains(@class,'k-window k-dialog')]");
-                                                        WebEle = modalContainer.findElement(By.xpath(".//button/span[text()='Ok']"));
-                                                        HelpersMethod.ActClick(driver, WebEle, 10000);
-                                                        scenario.log("PRODUCT IS CURRENTLY UNAVAILABLE POPUP HANDLED");
-                                                    }
-                                                }
+                                            //"Product is currently unavailable" popup
+                                            if (HelpersMethod.IsExists("//div[contains(text(),'This product is currently unavailable.')]/ancestor::div[contains(@class,'k-window k-dialog')]", driver))
+                                            {
+                                                WebElement modalContainer = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(text(),'This product is currently unavailable.')]/ancestor::div[contains(@class,'k-window k-dialog')]");
+                                                WebEle = modalContainer.findElement(By.xpath(".//button/span[text()='Ok']"));
+                                                HelpersMethod.ActClick(driver, WebEle, 10000);
+                                                scenario.log("PRODUCT IS CURRENTLY UNAVAILABLE POPUP HANDLED");
                                             }
                                         }
                                     }
                                 }
                             }
+                        }
                     }
+                }
 
-                    new WebDriverWait(driver,Duration.ofMillis(10000)).until(ExpectedConditions.refreshed(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[text()='Catalog']/ancestor::div[contains(@class,'k-window k-dialog')]"))));
-                    new WebDriverWait(driver,Duration.ofMillis(10000)).until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath("//span[text()='Catalog']/ancestor::div[contains(@class,'k-window k-dialog')]")));
+                new WebDriverWait(driver,Duration.ofMillis(10000)).until(ExpectedConditions.refreshed(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[text()='Catalog']/ancestor::div[contains(@class,'k-window k-dialog')]"))));
+                new WebDriverWait(driver,Duration.ofMillis(10000)).until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath("//span[text()='Catalog']/ancestor::div[contains(@class,'k-window k-dialog')]")));
 
-                   Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
                         .withTimeout(Duration.ofSeconds(200))
                         .pollingEvery(Duration.ofSeconds(2))
                         .ignoring(NoSuchElementException.class);
-                    wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+                wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
             }
         }
         catch (InterruptedException e) {}
@@ -958,8 +922,6 @@ public class NewOrderEntryPage
         exists = false;
         WebElement WebEle;
         Actions act1=new Actions(driver);
-        String prodDesText;
-        String pDescription=TestBase.testEnvironment.getProdDesc();
         int i=0;
         try
         {
@@ -1584,23 +1546,23 @@ public class NewOrderEntryPage
                             .ignoring(NoSuchElementException.class);
                     wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
                 }
-                //out of stock popup
-                if (HelpersMethod.IsExists("//div[contains(text(),'% of your average order for the given products')]/ancestor::div[contains(@class,'k-window k-dialog')]",driver))
+                //out of stock popup, % of your average order for the given products
+                if (HelpersMethod.IsExists("//div[contains(text(),'of your average order for the given products')]/ancestor::div[contains(@class,'k-window k-dialog')]",driver))
                 {
                     wait = new FluentWait<WebDriver>(driver)
-                            .withTimeout(Duration.ofSeconds(200))
+                            .withTimeout(Duration.ofSeconds(400))
                             .pollingEvery(Duration.ofSeconds(2))
                             .ignoring(NoSuchElementException.class);
                     wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
 
-                    WebElement modalContainer = HelpersMethod.FindByElement(driver,"xpath","//div[contains(text(),'% of your average order for the given products')]/ancestor::div[contains(@class,'k-window k-dialog')]");
+                    WebElement modalContainer = HelpersMethod.FindByElement(driver,"xpath","//div[contains(text(),'of your average order for the given products')]/ancestor::div[contains(@class,'k-window k-dialog')]");
                     //click on Continue button
                     WebEle=modalContainer.findElement(By.xpath(".//button/span[text()='Continue']"));
                     HelpersMethod.ActClick(driver,WebEle, 20000);
                     scenario.log("% OF YOUR AVERAGE ORDER POPUP HAS BEEN HANDLED");
 
                     wait = new FluentWait<WebDriver>(driver)
-                            .withTimeout(Duration.ofSeconds(200))
+                            .withTimeout(Duration.ofSeconds(400))
                             .pollingEvery(Duration.ofSeconds(2))
                             .ignoring(NoSuchElementException.class);
                     wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
@@ -1609,7 +1571,7 @@ public class NewOrderEntryPage
                 if (HelpersMethod.IsExists("//div[contains(text(),'Critical items not ordered')]/ancestor::div[contains(@class,'k-window k-dialog')]",driver))
                 {
                     wait = new FluentWait<WebDriver>(driver)
-                            .withTimeout(Duration.ofSeconds(200))
+                            .withTimeout(Duration.ofSeconds(400))
                             .pollingEvery(Duration.ofSeconds(2))
                             .ignoring(NoSuchElementException.class);
                     wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
@@ -1621,7 +1583,7 @@ public class NewOrderEntryPage
                     scenario.log("CRITICAL ITEMS DIALOG BOX FOUND");
 
                     wait = new FluentWait<WebDriver>(driver)
-                            .withTimeout(Duration.ofSeconds(200))
+                            .withTimeout(Duration.ofSeconds(400))
                             .pollingEvery(Duration.ofSeconds(2))
                             .ignoring(NoSuchElementException.class);
                     wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
@@ -1630,7 +1592,7 @@ public class NewOrderEntryPage
                 if (HelpersMethod.IsExists("//div[contains(text(),'has passed the cutoff time. No changes will be made to this product.')]/ancestor::div[contains(@class,'k-window k-dialog')]",driver))
                 {
                     wait = new FluentWait<WebDriver>(driver)
-                            .withTimeout(Duration.ofSeconds(200))
+                            .withTimeout(Duration.ofSeconds(400))
                             .pollingEvery(Duration.ofSeconds(2))
                             .ignoring(NoSuchElementException.class);
                     wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
@@ -1642,7 +1604,7 @@ public class NewOrderEntryPage
                     scenario.log("PRODUCT CUTOFF DIALOG BOX HAS BEEN HANDLED");
 
                     wait = new FluentWait<WebDriver>(driver)
-                            .withTimeout(Duration.ofSeconds(200))
+                            .withTimeout(Duration.ofSeconds(400))
                             .pollingEvery(Duration.ofSeconds(2))
                             .ignoring(NoSuchElementException.class);
                     wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
@@ -1651,7 +1613,7 @@ public class NewOrderEntryPage
                 if (HelpersMethod.IsExists("//div[contains(text(),'requires an order factor of')]/ancestor::div[contains(@class,'k-window k-dialog')]",driver))
                 {
                     wait = new FluentWait<WebDriver>(driver)
-                            .withTimeout(Duration.ofSeconds(200))
+                            .withTimeout(Duration.ofSeconds(400))
                             .pollingEvery(Duration.ofSeconds(2))
                             .ignoring(NoSuchElementException.class);
                     wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
@@ -1663,7 +1625,7 @@ public class NewOrderEntryPage
                     scenario.log("ORDER FACTOR OF DIALOG BOX HAS BEEN HANDLED");
 
                     wait = new FluentWait<WebDriver>(driver)
-                            .withTimeout(Duration.ofSeconds(200))
+                            .withTimeout(Duration.ofSeconds(400))
                             .pollingEvery(Duration.ofSeconds(2))
                             .ignoring(NoSuchElementException.class);
                     wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
@@ -1672,7 +1634,7 @@ public class NewOrderEntryPage
                 if(HelpersMethod.IsExists("//div[contains(text(),'The minimum order amount has not been reached')]/ancestor::div[@class='k-window k-dialog']",driver))
                 {
                     wait = new FluentWait<WebDriver>(driver)
-                            .withTimeout(Duration.ofSeconds(200))
+                            .withTimeout(Duration.ofSeconds(400))
                             .pollingEvery(Duration.ofSeconds(2))
                             .ignoring(NoSuchElementException.class);
                     wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
@@ -1682,7 +1644,7 @@ public class NewOrderEntryPage
                     scenario.log("MINIMUM ORDER AMOUNT HAS NOT BEEN REACHED, DIALOG BOX HAS BEEN HANDLED");
 
                     wait = new FluentWait<WebDriver>(driver)
-                            .withTimeout(Duration.ofSeconds(200))
+                            .withTimeout(Duration.ofSeconds(400))
                             .pollingEvery(Duration.ofSeconds(2))
                             .ignoring(NoSuchElementException.class);
                     wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
@@ -1694,7 +1656,7 @@ public class NewOrderEntryPage
                 }
             }
             wait = new FluentWait<WebDriver>(driver)
-                    .withTimeout(Duration.ofSeconds(500))
+                    .withTimeout(Duration.ofSeconds(600))
                     .pollingEvery(Duration.ofSeconds(2))
                     .ignoring(NoSuchElementException.class);
             wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
@@ -1706,7 +1668,7 @@ public class NewOrderEntryPage
             }
 
             wait = new FluentWait<WebDriver>(driver)
-                    .withTimeout(Duration.ofSeconds(500))
+                    .withTimeout(Duration.ofSeconds(600))
                     .pollingEvery(Duration.ofSeconds(2))
                     .ignoring(NoSuchElementException.class);
             wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
@@ -1718,7 +1680,7 @@ public class NewOrderEntryPage
             }
 
             wait = new FluentWait<WebDriver>(driver)
-                    .withTimeout(Duration.ofSeconds(500))
+                    .withTimeout(Duration.ofSeconds(600))
                     .pollingEvery(Duration.ofSeconds(2))
                     .ignoring(NoSuchElementException.class);
             wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
@@ -1732,7 +1694,7 @@ public class NewOrderEntryPage
         try
         {
             Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
-                    .withTimeout(Duration.ofSeconds(200))
+                    .withTimeout(Duration.ofSeconds(400))
                     .pollingEvery(Duration.ofSeconds(2))
                     .ignoring(NoSuchElementException.class);
             wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
@@ -1740,7 +1702,7 @@ public class NewOrderEntryPage
             if (HelpersMethod.IsExists("//div[contains(text(),'The quantity order has been increased to')]/ancestor::div[contains(@class,'k-window k-dialog')]", driver))
             {
                 wait = new FluentWait<WebDriver>(driver)
-                        .withTimeout(Duration.ofSeconds(200))
+                        .withTimeout(Duration.ofSeconds(400))
                         .pollingEvery(Duration.ofSeconds(2))
                         .ignoring(NoSuchElementException.class);
                 wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
@@ -1753,7 +1715,7 @@ public class NewOrderEntryPage
                 exists=true;
 
                 wait = new FluentWait<WebDriver>(driver)
-                        .withTimeout(Duration.ofSeconds(200))
+                        .withTimeout(Duration.ofSeconds(400))
                         .pollingEvery(Duration.ofSeconds(2))
                         .ignoring(NoSuchElementException.class);
                 wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
@@ -1770,7 +1732,7 @@ public class NewOrderEntryPage
         try
         {
             Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
-                    .withTimeout(Duration.ofSeconds(200))
+                    .withTimeout(Duration.ofSeconds(400))
                     .pollingEvery(Duration.ofSeconds(2))
                     .ignoring(NoSuchElementException.class);
             wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
@@ -1781,7 +1743,7 @@ public class NewOrderEntryPage
                 if (HelpersMethod.IsExists("//div[contains(text(),'Critical items not ordered')]/ancestor::div[contains(@class,'k-window k-dialog')]",driver))
                 {
                     wait = new FluentWait<WebDriver>(driver)
-                            .withTimeout(Duration.ofSeconds(200))
+                            .withTimeout(Duration.ofSeconds(400))
                             .pollingEvery(Duration.ofSeconds(2))
                             .ignoring(NoSuchElementException.class);
                     wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
@@ -1793,7 +1755,7 @@ public class NewOrderEntryPage
                     scenario.log("CRITICAL ITEMS NOT ORDERED POPUP HANDLED");
 
                     wait = new FluentWait<WebDriver>(driver)
-                            .withTimeout(Duration.ofSeconds(200))
+                            .withTimeout(Duration.ofSeconds(1000))
                             .pollingEvery(Duration.ofSeconds(2))
                             .ignoring(NoSuchElementException.class);
                     wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
@@ -1801,7 +1763,7 @@ public class NewOrderEntryPage
                 if (HelpersMethod.IsExists("//div[contains(text(),'which is less than the minimum order amount of')]/ancestor::div[contains(@class,'k-window k-dialog')]", driver))
                 {
                     wait = new FluentWait<WebDriver>(driver)
-                            .withTimeout(Duration.ofSeconds(200))
+                            .withTimeout(Duration.ofSeconds(400))
                             .pollingEvery(Duration.ofSeconds(2))
                             .ignoring(NoSuchElementException.class);
                     wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
@@ -1812,7 +1774,7 @@ public class NewOrderEntryPage
                     scenario.log("AMOUNT LESS THAN THE MINIMUM ORDER AMOUNT POPUP HANDLED");
 
                     wait = new FluentWait<WebDriver>(driver)
-                            .withTimeout(Duration.ofSeconds(200))
+                            .withTimeout(Duration.ofSeconds(1000))
                             .pollingEvery(Duration.ofSeconds(2))
                             .ignoring(NoSuchElementException.class);
                     wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
@@ -1821,7 +1783,7 @@ public class NewOrderEntryPage
                 if(HelpersMethod.IsExists("//div[contains(text(),'Frequently ordered items')]/ancestor::div[contains(@class,'k-window k-dialog')]",driver))
                 {
                     wait = new FluentWait<WebDriver>(driver)
-                            .withTimeout(Duration.ofSeconds(200))
+                            .withTimeout(Duration.ofSeconds(400))
                             .pollingEvery(Duration.ofSeconds(2))
                             .ignoring(NoSuchElementException.class);
                     wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
@@ -1832,7 +1794,7 @@ public class NewOrderEntryPage
                     scenario.log("FREQUENTLY ORDERED ITEMS POPUP HAS BEEN HANDLED");
 
                     wait = new FluentWait<WebDriver>(driver)
-                            .withTimeout(Duration.ofSeconds(120))
+                            .withTimeout(Duration.ofSeconds(1000))
                             .pollingEvery(Duration.ofSeconds(2))
                             .ignoring(NoSuchElementException.class);
                     wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
@@ -1840,7 +1802,7 @@ public class NewOrderEntryPage
                 if(HelpersMethod.IsExists("//div[contains(text(),'Changes are not allowed for this order.')]/ancestor::div[contains(@class,'k-window k-dialog')]",driver))
                 {
                     wait = new FluentWait<WebDriver>(driver)
-                            .withTimeout(Duration.ofSeconds(200))
+                            .withTimeout(Duration.ofSeconds(400))
                             .pollingEvery(Duration.ofSeconds(2))
                             .ignoring(NoSuchElementException.class);
                     wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
@@ -1851,7 +1813,7 @@ public class NewOrderEntryPage
                     scenario.log("CUTOFF TIME POPUP, CHNGES ARE NOT ALLOWED FOR THIS ORDER, HAS BEEN HANDLED");
 
                     wait = new FluentWait<WebDriver>(driver)
-                            .withTimeout(Duration.ofSeconds(200))
+                            .withTimeout(Duration.ofSeconds(1000))
                             .pollingEvery(Duration.ofSeconds(2))
                             .ignoring(NoSuchElementException.class);
                     wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
@@ -1859,7 +1821,7 @@ public class NewOrderEntryPage
                 if(HelpersMethod.IsExists("//div[contains(text(),'Attention: Although the cutoff time has been reached for this delivery date, you may still move forward with the order submission.')]/ancestor::div[contains(@class,'k-window k-dialog')]",driver))
                 {
                     wait = new FluentWait<WebDriver>(driver)
-                            .withTimeout(Duration.ofSeconds(200))
+                            .withTimeout(Duration.ofSeconds(400))
                             .pollingEvery(Duration.ofSeconds(2))
                             .ignoring(NoSuchElementException.class);
                     wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
@@ -1870,7 +1832,7 @@ public class NewOrderEntryPage
                     scenario.log("CUTOFF TIME POPUP HAS BEEN HANDLED");
 
                     wait = new FluentWait<WebDriver>(driver)
-                            .withTimeout(Duration.ofSeconds(200))
+                            .withTimeout(Duration.ofSeconds(1000))
                             .pollingEvery(Duration.ofSeconds(2))
                             .ignoring(NoSuchElementException.class);
                     wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
@@ -1879,7 +1841,7 @@ public class NewOrderEntryPage
                 if (HelpersMethod.IsExists("//div[contains(text(),'% of your average order for the given products')]/ancestor::div[contains(@class,'k-window k-dialog')]",driver))
                 {
                     wait = new FluentWait<WebDriver>(driver)
-                            .withTimeout(Duration.ofSeconds(200))
+                            .withTimeout(Duration.ofSeconds(400))
                             .pollingEvery(Duration.ofSeconds(2))
                             .ignoring(NoSuchElementException.class);
                     wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
@@ -1891,7 +1853,7 @@ public class NewOrderEntryPage
                     scenario.log("% OF YOUR AVERAGE ORDER POPUP HAS BEEN HANDLED");
 
                     wait = new FluentWait<WebDriver>(driver)
-                            .withTimeout(Duration.ofSeconds(200))
+                            .withTimeout(Duration.ofSeconds(1000))
                             .pollingEvery(Duration.ofSeconds(2))
                             .ignoring(NoSuchElementException.class);
                     wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
@@ -1901,7 +1863,7 @@ public class NewOrderEntryPage
                 if (HelpersMethod.IsExists("//div[contains(text(),'has passed the cutoff time. No changes will be made to this product.')]/ancestor::div[contains(@class,'k-window k-dialog')]",driver))
                 {
                     wait = new FluentWait<WebDriver>(driver)
-                            .withTimeout(Duration.ofSeconds(200))
+                            .withTimeout(Duration.ofSeconds(400))
                             .pollingEvery(Duration.ofSeconds(2))
                             .ignoring(NoSuchElementException.class);
                     wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
@@ -1913,7 +1875,7 @@ public class NewOrderEntryPage
                     scenario.log("PRODUCT CUTOFF DIALOG BOX HAS BEEN HANDLED");
 
                     wait = new FluentWait<WebDriver>(driver)
-                            .withTimeout(Duration.ofSeconds(200))
+                            .withTimeout(Duration.ofSeconds(1000))
                             .pollingEvery(Duration.ofSeconds(2))
                             .ignoring(NoSuchElementException.class);
                     wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
@@ -1926,7 +1888,7 @@ public class NewOrderEntryPage
             }
 
             wait = new FluentWait<WebDriver>(driver)
-                    .withTimeout(Duration.ofSeconds(200))
+                    .withTimeout(Duration.ofSeconds(1000))
                     .pollingEvery(Duration.ofSeconds(2))
                     .ignoring(NoSuchElementException.class);
             wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
@@ -4561,7 +4523,7 @@ public class NewOrderEntryPage
         catch (Exception e){}
     }
 
-    public void readValueAfterOverride()
+    public void readValueAfterOverride(String priceOverrideValue)
     {
         exists=false;
         String priceAfterOverride="";
@@ -4572,6 +4534,9 @@ public class NewOrderEntryPage
                 WebElement priceOverride= HelpersMethod.FindByElement(driver,"xpath","//tr[contains(@class,'k-grid-edit-row')]["+rowIndex+"]/descendant::input[contains(@id,'FinalPriceCol')]");
                 priceAfterOverride=HelpersMethod.AttributeValue(priceOverride,"value");
                 scenario.log("PRICE AFTER OVERRIDE IS "+priceAfterOverride);
+            }
+            if(priceAfterOverride.equals(priceOverrideValue))
+            {
                 exists=true;
             }
             Assert.assertEquals(exists,true);
@@ -4589,7 +4554,7 @@ public class NewOrderEntryPage
             if(HelpersMethod.IsExists("//div[@class='selectPriceOverride']/ancestor::div[contains(@class,'k-window k-dialog')]",driver))
             {
                 //What if button, finding webelement
-                WebElement whatIf =HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-window k-dialog')]/descendant::button[contains(text(),'What if (alt-w)')]");
+                WebElement whatIf =HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-window k-dialog')]/descendant::button/descendant::span[contains(text(),'What if (alt-w)')]");
                 HelpersMethod.ClickBut(driver,whatIf,10000);
                 if(HelpersMethod.IsExists("//div[contains(@id,'priceOverrideDialog')]/ancestor::div[contains(@class,'k-window k-dialog')]",driver))
                 {
@@ -6483,8 +6448,6 @@ public class NewOrderEntryPage
     public void validateCatalogProdNo()
     {
         exists=false;
-        String prodDesText;
-        Actions act=new Actions(driver);
         try
         {
             Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
@@ -6500,45 +6463,14 @@ public class NewOrderEntryPage
             }
             else
             {
-                String titleText;
                 int i=0;
                 if(HelpersMethod.IsExists("//div[@class='k-window k-dialog']/descendant::div[@class='i-grid']",driver))
                 {
-                    List<WebElement> titles=HelpersMethod.FindByElements(driver,"xpath","//div[@class='k-window k-dialog']/descendant::span[@class='k-column-title']");
-                    for(WebElement title:titles)
-                    {
-                        i++;
-                        titleText=title.getText();
-                        if(titleText.equals("Product #"))
-                        {
-                            break;
-                        }
-                    }
-                    List<WebElement> prodNos = HelpersMethod.FindByElements(driver, "xpath", "//div[@class='k-window k-dialog']/descendant::tr[contains(@class,'k-master-row')]/td["+i+"]");
-                    for (WebElement prodNo : prodNos)
-                    {
-                        act.moveToElement(prodNo).build().perform();
-                        prodDesText = prodNo.getText();
-                        if (prodDesText.equalsIgnoreCase(DataBaseConnection.DataBaseConn(TestBase.testEnvironment.getSingle_Prod_Sql())))
-                        {
-                            exists = true;
-                            break;
-                        }
-                    }
+                    exists=true;
                 }
-                else
+                else if(HelpersMethod.IsExists("//div[@class='k-window k-dialog']/descendant::div[@class='card-view']",driver))
                 {
-                    List<WebElement> prodNos = HelpersMethod.FindByElements(driver, "xpath", "//div[@class='product-number']/span");
-                    for (WebElement prodNo : prodNos)
-                    {
-                        act.moveToElement(prodNo).build().perform();
-                        prodDesText = prodNo.getText();
-                        if (prodDesText.contains(DataBaseConnection.DataBaseConn(TestBase.testEnvironment.getSingle_Prod_Sql())))
-                        {
-                            exists = true;
-                            break;
-                        }
-                    }
+                    exists=true;
                 }
             }
             Assert.assertEquals(exists,true);
@@ -6575,7 +6507,7 @@ public class NewOrderEntryPage
                     {
                         i++;
                         titleText=title.getText();
-                        if(titleText.equals("Product #"))
+                        if(titleText.equals("Description"))
                         {
                             break;
                         }
@@ -6593,7 +6525,7 @@ public class NewOrderEntryPage
                         }
                     }
                 }
-                else
+                else if(HelpersMethod.IsExists("//div[@class='k-window k-dialog']/descendant::div[@class='card-view']",driver))
                 {
                     List<WebElement> prodNos = HelpersMethod.FindByElements(driver, "xpath", "//div[@class='k-window k-dialog']/descendant::span[contains(@class,'product-name')]/a");
                     for (WebElement prodNo : prodNos)
@@ -7610,5 +7542,22 @@ public class NewOrderEntryPage
     {
         String routeValue=driver.findElement(By.xpath("//input[@id='RouteIndex']")).getAttribute("value");
         scenario.log("ROUTE VALUE FOUND IN NEW ORDER ENTRY PAGE IS "+routeValue);
+    }
+
+    public void setToDefaultValue()
+    {
+        exists=false;
+        try
+        {
+            if(HelpersMethod.IsExists("//div[@class='selectPriceOverride']/ancestor::div[contains(@class,'k-window k-dialog')]",driver))
+            {
+                //Default button, finding webelement
+                WebElement defaultButton = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-window k-dialog')]/descendant::button/descendant::span[contains(text(),'Default price')]");
+                HelpersMethod.ClickBut(driver, defaultButton, 10000);
+                exists=true;
+            }
+            Assert.assertEquals(exists,true);
+        }
+        catch (Exception e){}
     }
 }

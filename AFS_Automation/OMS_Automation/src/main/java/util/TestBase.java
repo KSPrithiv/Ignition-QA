@@ -1,11 +1,5 @@
 package util;
 
-
-
-
-
-
-
 import helper.HelpersMethod;
 import org.openqa.selenium.*;
 
@@ -41,13 +35,13 @@ import static org.testng.Assert.assertNotNull;
 public class TestBase
 {
     public static Environment testEnvironment;
-   //// public static MenuValues testMenuValues;
+    //// public static MenuValues testMenuValues;
     private static TestBase instanceOfDriver = null;
     public static ThreadLocal<WebDriver> driver = new ThreadLocal<>();
     public static String url = null;
 
     //Helps in reading property file for Parallel execution of the feature files
-   // public static void InitializeProp(String envi/*,String menu*/) throws InterruptedException
+    // public static void InitializeProp(String envi/*,String menu*/) throws InterruptedException
   /*  {
         try
         {

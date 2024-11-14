@@ -98,8 +98,8 @@ Feature: Order Entry4
     And Click on SubmitOrder button
     Then User should be navigated to Order Entry page
 
-  @PriceOverRidePriceByPrice
-  Scenario: Test scenario for testing price override with "What if" option, price by price option
+  @PriceOverRideWhatIfPriceByPriceLowPrice
+  Scenario: Test scenario for testing price override with "What if" option, price by price option. Price should be set to lower then the actual price
     Given User must be on Order Entry Page
     Then User must click Start Order button
     Then User should make selection between Pending order or Start New order
@@ -110,12 +110,12 @@ Feature: Order Entry4
     And Check for Case and Unit input box enabled or not based on that enter value
       |1|1|
     Then User should click on price override icon and Change price using What if option Price by price
-      |$2.00|
+      |$0.20|
     Then Click on Next button
     And Click on SubmitOrder button
     Then User should be navigated to Order Entry page
 
-  @PriceOverRidePricePerUnit
+  @PriceOverRideWhatIfPricePerUnitLowPrice
   Scenario: Test scenario for testing price override with "What if" option, price per unit option
     Given User must be on Order Entry Page
     Then User must click Start Order button
@@ -127,7 +127,7 @@ Feature: Order Entry4
     And Check for Case and Unit input box enabled or not based on that enter value
       |1|1|
     Then User should click on price override icon and Change price using What if option Price per unit
-      |$12.50|
+      |$0.20|
     Then Click on Next button
     And Click on SubmitOrder button
     Then User should be navigated to Order Entry page

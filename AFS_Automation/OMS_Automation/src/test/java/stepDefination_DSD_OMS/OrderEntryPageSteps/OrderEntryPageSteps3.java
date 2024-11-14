@@ -257,7 +257,10 @@ public class OrderEntryPageSteps3
         newOE.Click_On_PriceOverrideIcon();
         newOE.validatePriceOverridePopup();
         newOE.PriceOverridePopup_WhatIfPricePrice(priceVal.get(0).get(0));
-        newOE.readValueAfterOverride();
+        newOE.readValueAfterOverride(priceVal.get(0).get(0));
+        newOE.Click_On_PriceOverrideIcon();
+        newOE.validatePriceOverrideIcon();
+        newOE.setToDefaultValue();
     }
 
     @Then("User should click on price override icon and Change price using What if option Price per unit")
@@ -272,6 +275,9 @@ public class OrderEntryPageSteps3
         newOE.Click_On_PriceOverrideIcon();
         newOE.validatePriceOverridePopup();
         newOE.PriceOverridePopup_WhatIfPriceUnit(priceVal.get(0).get(0));
-        newOE.readValueAfterOverride();
+        newOE.readValueAfterOverride(priceVal.get(0).get(0));
+        newOE.Click_On_PriceOverrideIcon();
+        newOE.validatePriceOverrideIcon();
+        newOE.setToDefaultValue();
     }
 }

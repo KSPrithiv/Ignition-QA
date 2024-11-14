@@ -576,7 +576,7 @@ public class orderFactorAdminPage
                         .pollingEvery(Duration.ofSeconds(2))
                         .ignoring(NoSuchElementException.class);
                 wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
-                if(HelpersMethod.IsExists("//div[contains(@class,'k-window k-dialog')]/descendant::div[@class='i-no-data__message']",driver))
+                if(HelpersMethod.IsExists("//div[contains(@class,'k-window k-dialog')]/descendant::div[@class='i-no-data__message']",driver) && !HelpersMethod.IsExists("//span[contains(text(),'load all products')]",driver))
                 {
                     scenario.log("NO PRODUCT HAS BEEN FOUND IN PRODUCT DIALOG BOX");
                 }
@@ -831,7 +831,8 @@ public class orderFactorAdminPage
             if(HelpersMethod.IsExists("//tr[contains(@class,'k-master-row')]["+k+"]/descendant::td["+l+"]/descendant::input",driver))
             {
                 WebElement inputBox=HelpersMethod.FindByElement(driver,"xpath","//tr[contains(@class,'k-master-row')]["+k+"]/descendant::td["+l+"]/descendant::input");
-                HelpersMethod.clearText(driver,inputBox,10000);
+                //HelpersMethod.ClearText(driver,inputBox,10000);
+                inputBox.sendKeys(Keys.CONTROL+"a");
                 HelpersMethod.EnterText(driver,inputBox,10000,qty);
                 scenario.log("QTY ENTERED FOR ORDER FACTOR IS "+qty);
                 exists=true;
@@ -1171,6 +1172,7 @@ public class orderFactorAdminPage
         catch (Exception e){}
     }
 
+    //Method to make sure that "Show all product" is selected in the dropdown, if not select the same
     public void selectAllProducts()
     {
         Actions act=new Actions(driver);
