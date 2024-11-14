@@ -14,7 +14,7 @@ Feature: scenarios for admin credentials and client credentials, for Order Facto
     And User logs out from Admin site
     Examples:
       |Option             | MenuOption                   |Order factor level                     |   Qty|
-      |Order Entry        | Order factor/Order increments|Order factor by customer and product   |    5 |
+      |Order Entry        | Order factor/Order increments|Order factor by customer and product   |    7 |
 
   @OrderFactorCustomer
   Scenario: Test scenario for verifying order factor at customer and product
@@ -30,7 +30,7 @@ Feature: scenarios for admin credentials and client credentials, for Order Facto
       |PO123|
     Then Enter pro# in quick product entry using order factor product
     And Check for Case and Unit input box enabled or not based on product number entered in Quick product entry for order factor
-    |4|4|
+    |8|8|
     Then Click on Next button for validating order factor dialog box
     And Click on Submit Order button and read Order_no
     Then User should be navigated to Order Entry page
@@ -61,7 +61,7 @@ Feature: scenarios for admin credentials and client credentials, for Order Facto
     And User logs out from Admin site
     Examples:
       |Option             | MenuOption                   |Order factor level                     |   Qty|
-      |Order Entry        | Order factor/Order increments|Order factor at product master level   |    5 |
+      |Order Entry        | Order factor/Order increments|Order factor at product master level   |    7 |
 
   @OrderFactorProductMasterLevel
   Scenario: Test scenario for verifying order factor at product master level
@@ -77,7 +77,7 @@ Feature: scenarios for admin credentials and client credentials, for Order Facto
       |PO123|
     Then Enter pro# in quick product entry using order factor product
     And Check for Case and Unit input box enabled or not based on product number entered in Quick product entry for order factor
-      |4|4|
+      |8|8|
     Then Click on Next button for validating order factor dialog box
     And Click on Submit Order button and read Order_no
     Then User should be navigated to Order Entry page

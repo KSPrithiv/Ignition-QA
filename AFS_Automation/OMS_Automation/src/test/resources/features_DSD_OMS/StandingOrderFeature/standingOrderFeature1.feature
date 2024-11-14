@@ -63,6 +63,9 @@ Feature: Standing Order1
     And User should click on Generate Standing order  button
     Then User should select From and To date in Generate standing order(s) popup, Click on Ok
     And User should click on ok, in All task completed popup
+    Then User should navigate back to OE page verify for the order
+
+
 
   @DeleteStandingOrder
   Scenario: Test scenario for deleting all the standing orders which are active and pending

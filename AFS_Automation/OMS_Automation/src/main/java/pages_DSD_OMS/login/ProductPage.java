@@ -160,7 +160,6 @@ public class ProductPage
         try
         {
             exists = false;
-
             Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
                     .withTimeout(Duration.ofSeconds(400))
                     .pollingEvery(Duration.ofSeconds(2))

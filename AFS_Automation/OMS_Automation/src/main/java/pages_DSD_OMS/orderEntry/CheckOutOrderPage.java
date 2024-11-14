@@ -282,10 +282,100 @@ public class CheckOutOrderPage
                           }
                           WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='address-container']/descendant::tbody/tr[1]/descendant::input");
                           HelpersMethod.ClickBut(driver, WebEle, 10000);
+                          scenario.log("SELECTED DELIVERY ADDRESS FROM PAYMENT AND ADDRESS CARD");
                       }
                   }
                 }
             }
+        }
+        catch (Exception e){}
+    }
+
+    public void DeliveryAddressCard1()
+    {
+        WebElement WebEle;
+        exists=false;
+        try
+        {
+            if(HelpersMethod.IsExists("//div[@class='loader']",driver))
+                {
+                    WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
+                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 2000000);
+                }
+                //Check whether application is navigating to checkout card or navigating to order summary page
+                if (HelpersMethod.IsExists("//div[@class='page-content']/descendant::div[@id='checkoutCard']",driver))
+                {
+                    //Check whether address is already selected or not. If not selected select address
+                    if (driver.findElement(By.id("SubmitCheckoutButton")).isEnabled())
+                    {
+                        if (HelpersMethod.IsExists("//div[@id='addressCard']/descendant::span[contains(@class,'i-summary-area__other__section__value')]", driver))
+                        {
+                            if (HelpersMethod.IsExists("//div[@id='addressCard']/descendant::span[contains(@class,'k-icon k-i-arrow-chevron-down')]", driver))
+                            {
+                                WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@id='addressCard']/descendant::span[contains(@class,'k-icon k-i-arrow-chevron-down')]");
+                                HelpersMethod.ClickBut(driver, WebEle, 10000);
+                            }
+                            if(HelpersMethod.IsExists("//div[@class='address-container']/descendant::input[@name='a_group']",driver))
+                            {
+                                List<WebElement> addressRadioButton=HelpersMethod.FindByElements(driver,"xpath","//div[@class='address-container']/descendant::input[@name='a_group']");
+                                if(addressRadioButton.size()>1)
+                                {
+                                    WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='address-container']/descendant::tbody/tr[2]/descendant::input");
+                                    HelpersMethod.ClickBut(driver, WebEle, 10000);
+                                    scenario.log("CHANGED THE DELIVERY ADDRESS");
+                                }
+                                exists=true;
+                                scenario.log("SELECTED DELIVERY ADDRESS FROM PAYMENT AND ADDRESS CARD");
+                            }
+
+                        }
+                    }
+                }
+            Assert.assertEquals(exists,true);
+        }
+        catch (Exception e){}
+    }
+
+    public void DeliveryAddressCardNotEditable()
+    {
+        WebElement WebEle;
+        exists=true;
+        try
+        {
+            if(!HelpersMethod.IsExists("//span[contains(@class,'i-summary-area__other__section__value')]",driver))
+            {
+                if(HelpersMethod.IsExists("//div[@class='loader']",driver))
+                {
+                    WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
+                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 2000000);
+                }
+                //Check whether application is navigating to checkout card or navigating to order summary page
+                if (HelpersMethod.IsExists("//div[@class='page-content']/descendant::div[@id='checkoutCard']",driver))
+                {
+                    //Check whether address is already selected or not. If not selected select address
+                    if (driver.findElement(By.id("SubmitCheckoutButton")).isEnabled())
+                    {
+                        if (HelpersMethod.IsExists("//div[@id='addressCard']/descendant::span[contains(@class,'i-summary-area__other__section__value')]", driver))
+                        {
+                            if (HelpersMethod.IsExists("//div[@id='addressCard']/descendant::span[contains(@class,'k-icon k-i-arrow-chevron-down')]", driver))
+                            {
+                                WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@id='addressCard']/descendant::span[contains(@class,'k-icon k-i-arrow-chevron-down')]");
+                                HelpersMethod.ClickBut(driver, WebEle, 10000);
+                            }
+                            if(!HelpersMethod.IsExists("//div[@class='address-container']/descendant::input[@name='a_group']",driver))
+                              {
+                                  exists=true;
+                                  scenario.log("NOT ABLETO CHANGE DELIVERY ADDRESS!!!");
+                              }
+                        }
+                    }
+                }
+                else
+                {
+                     scenario.log("NOT IN PAYMENT PAGE!!!!!!!");
+                }
+            }
+            exists=true;
         }
         catch (Exception e){}
     }

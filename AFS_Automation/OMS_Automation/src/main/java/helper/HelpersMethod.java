@@ -357,6 +357,14 @@ public class HelpersMethod
         return value;
     }
 
+    public static String getAttributeValue(WebDriver driver,WebElement element,int timeOut)
+    {
+        new WebDriverWait(driver,Duration.ofMillis(timeOut)).until(ExpectedConditions.visibilityOf(element));
+        String value=element.getAttribute("value");
+        return value;
+    }
+
+
     public static String returnStatus(WebDriver driver,WebElement element,int timeOut)
     {
         String value=null;

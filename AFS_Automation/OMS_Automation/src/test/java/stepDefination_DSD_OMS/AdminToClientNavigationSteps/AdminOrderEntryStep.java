@@ -442,30 +442,29 @@ public class AdminOrderEntryStep
     public void clickOnNextButtonAndValidateThatCheckoutOrderPageNotVisible() throws InterruptedException, AWTException
     {
         exists=false;
-        String status;
-//        newOE = new NewOrderEntryPage(driver,scenario);
-//        newOE.readProductsInOrder();
-//        //handling toast messages
-//        for(int i=0;i<=2;i++)
-//        {
-//            //check for toast message for low on inventory
-//            newOE.lowOnInventoryToast();
-//            //check for toast message for product is currently unavailable
-//            newOE.toastCurrentlyUnavailable();
-//        }
-//
-//        for(int i=0;i<=1;i++)
-//        {
-//            newOE.priceCannotBeBleowCost();
-//            newOE.exceedsMaxQty();
-//        }
-//        exists=newOE.ClickNext();
-//        newOE.OutOfStockPop_ERP();
-//        String status = HelpersMethod.returnDocumentStatus(driver);
-//        if (status.equals("loading"))
-//        {
-//            HelpersMethod.waitTillLoadingPage(driver);
-//        }
+        newOE = new NewOrderEntryPage(driver,scenario);
+        newOE.readProductsInOrder();
+        //handling toast messages
+        for(int i=0;i<=2;i++)
+        {
+            //check for toast message for low on inventory
+            newOE.lowOnInventoryToast();
+            //check for toast message for product is currently unavailable
+            newOE.toastCurrentlyUnavailable();
+        }
+
+        for(int i=0;i<=1;i++)
+        {
+            newOE.priceCannotBeBleowCost();
+            newOE.exceedsMaxQty();
+        }
+        exists=newOE.ClickNext();
+        newOE.OutOfStockPop_ERP();
+        String status = HelpersMethod.returnDocumentStatus(driver);
+        if (status.equals("loading"))
+        {
+            HelpersMethod.waitTillLoadingPage(driver);
+        }
 
         Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
                 .withTimeout(Duration.ofSeconds(400))
@@ -485,16 +484,27 @@ public class AdminOrderEntryStep
                 .ignoring(NoSuchElementException.class);
         wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
 
-        exists=false;
-        if(!HelpersMethod.IsExists("//div[@id='checkoutCard']",driver) ||  !HelpersMethod.IsExists("//div[@id='orderEntryCard']",driver))
+        if(HelpersMethod.IsExists("//div[@id='checkoutCard']",driver))
         {
-            scenario.log("NO NEW OE PAGE OR NO CHECKOUT ORDER PAGE FOUND, AND IT IS EXPECTED BEHAVIOUR");
             exists=true;
-        }
-        else if(HelpersMethod.IsExists("//div[@id='checkoutCard']",driver) || HelpersMethod.IsExists("//div[@id='orderEntryCard']",driver))
-        {
-            scenario.log("NEW OE PAGE / CHECKOUT ORDER PAGE FOUND, AND IT IS NOT EXPECTED BEHAVIOUR");
-            exists=false;
+            checkorder=new CheckOutOrderPage(driver,scenario);
+            if(HelpersMethod.IsExists("//div[@id='paymentMethodCard']",driver))
+            {
+                Thread.sleep(4000);
+                Ord_No = checkorder.readOrderNumber();
+                checkorder.Select_PaymentMethod_ClickDownArrow();
+                if (HelpersMethod.IsExists("//tr[1]/descendant::td[@class='payment-method-type-cell']", driver))
+                {
+                    checkorder.SelectPaymentMethod();
+                    scenario.log("FIRST PAYMENT OPTION HAS BEEN SELECTED");
+                } else
+                {
+                    checkorder.Click_On_Without_Providing_Payment();
+                    scenario.log("WITHOUT PROVIIDNG PAYMENT OPTION HAS BEEN SELECTED");
+                }
+                checkorder.DeliveryAddressCardNotEditable();
+                checkorder.NextButton_Click();
+            }
         }
         Assert.assertEquals(exists,true);
     }
@@ -547,14 +557,12 @@ public class AdminOrderEntryStep
 
         if(HelpersMethod.IsExists("//div[@id='checkoutCard']",driver))
         {
-          scenario.log("CHECKOUT ORDER PAGE FOUND, AND IT IS EXPECTED BEHAVIOUR");
           exists=true;
           checkorder=new CheckOutOrderPage(driver,scenario);
           if(HelpersMethod.IsExists("//div[@id='paymentMethodCard']",driver))
           {
               Thread.sleep(4000);
               Ord_No = checkorder.readOrderNumber();
-              scenario.log("CHECKOUT TO ORDER PAGE HAS BEEN FOUND");
               checkorder.Select_PaymentMethod_ClickDownArrow();
               if (HelpersMethod.IsExists("//tr[1]/descendant::td[@class='payment-method-type-cell']", driver))
               {
@@ -565,7 +573,7 @@ public class AdminOrderEntryStep
                   checkorder.Click_On_Without_Providing_Payment();
                   scenario.log("WITHOUT PROVIIDNG PAYMENT OPTION HAS BEEN SELECTED");
               }
-              checkorder.DeliveryAddressCard();
+              checkorder.DeliveryAddressCard1();
               checkorder.NextButton_Click();
           }
         }

@@ -2,6 +2,7 @@ package pages_DSD_OMS.standingOrder;
 
 import helper.HelpersMethod;
 import io.cucumber.java.Scenario;
+import io.cucumber.java.bs.A;
 import lombok.val;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -35,6 +36,9 @@ public class NewStandingOrderCard
     WebDriver driver;
     Scenario scenario;
     static boolean exists=false;
+    static String fromGenerateDate;
+    static String toGenerateDate;
+    static ArrayList<String> daysText = new ArrayList<String>();
 
     @FindBy(id="addStandingOrder")
     private WebElement StartStandingOrder;
@@ -1049,11 +1053,11 @@ public class NewStandingOrderCard
         exists=false;
         try
         {
-            Actions act1 = new Actions(driver);
             if(HelpersMethod.IsExists("//div[@class='k-animation-container k-animation-container-shown']",driver))
             {
-                WebElement selectableDate = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='k-animation-container k-animation-container-shown']/descendant::td[@class='k-calendar-td k-state-pending-focus k-today']/span");
-                HelpersMethod.JScriptClick(driver,selectableDate,10000);
+                WebElement selectableDate = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='k-calendar k-calendar-range k-calendar-md']/descendant::table[1]/descendant::td[@class='k-calendar-td k-range-end k-selected']/span");
+                HelpersMethod.ActClick(driver,selectableDate,10000);
+                new WebDriverWait(driver,Duration.ofMillis(10000)).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='k-animation-container k-animation-container-shown']")));
                 exists = true;
             }
             Assert.assertEquals(exists,true);
@@ -1064,12 +1068,18 @@ public class NewStandingOrderCard
     public void clickToDateForGenerateSO()
     {
         exists=false;
+        Actions act1 = new Actions(driver);
         try
         {
-            if(HelpersMethod.IsExists("//span[contains(text(),'Generate standing order')]/ancestor::div[contains(@class,'k-window k-dialog')]",driver)) {
+            if(HelpersMethod.IsExists("//span[contains(text(),'Generate standing order')]/ancestor::div[contains(@class,'k-window k-dialog')]",driver))
+            {
                 // to fetch the web element of the modal container
                 WebElement modalContainer = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-window k-dialog')]");
-                //Identify From calender and click
+                //First click on input box of ToDate in dialog box
+                WebElement toDateInput=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-window k-dialog')]/descendant::input[2]");
+
+                act1.moveToElement(toDateInput).click().build().perform();
+                //Identify To calender and click
                 WebElement toCalender = modalContainer.findElement(By.xpath(".//label[contains(text(),'To date')]/following-sibling::span/descendant::button"));
                 HelpersMethod.JScriptClick(driver, toCalender, 10000);
                 exists=true;
@@ -1086,18 +1096,64 @@ public class NewStandingOrderCard
         try
         {
             exists=false;
-            Actions act1 = new Actions(driver);
-
+            Actions act=new Actions(driver);
+            String toDateText;
             if(HelpersMethod.IsExists("//div[@class='k-animation-container k-animation-container-shown']",driver))
             {
-                WebElement toDate = HelpersMethod.FindByElement(driver, "xpath", "//td[contains(@class,'k-calendar-td k-range-start k-range-end k-state-pending-focus k-selected') and contains(@style,'opacity: 1;')]");
-                act1.moveToElement(toDate).build().perform();
-                HelpersMethod.JScriptClick(driver, toDate, 10000);
+//                WebElement toDate = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='k-calendar k-calendar-range k-calendar-md']/descendant::td[contains(@class,'k-selected')]/span");
+//                HelpersMethod.ActClick(driver,toDate,10000);
+                List<WebElement> toDates=HelpersMethod.FindByElements(driver,"xpath","//div[@class='k-calendar k-calendar-range k-calendar-md']/descendant::td[contains(@style,'opacity: 1')]");
+                for(WebElement toDate:toDates)
+                {
+                   act.moveToElement(toDate).build().perform();
+                   toDateText= HelpersMethod.AttributeValue(toDate,"title");
+                       if(toDateText.contains(daysText.get(0)))
+                       {
+                           WebElement toDateToSelect=HelpersMethod.FindByElement(driver,"xpath","//div[@class='k-calendar k-calendar-range k-calendar-md']/descendant::td[contains(@style,'opacity: 1') and contains(@title,'"+toDateText+"')]/span");
+                           act.moveToElement(toDateToSelect).click().build().perform();
+                           break;
+                       }
+                }
                 exists = true;
             }
             Assert.assertEquals(exists,true);
         }
         catch(Exception e){}
+    }
+
+    public String readFromDateForGenerateSO()
+    {
+        exists=true;
+        try
+        {
+            WebElement modalContainer = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-window k-dialog')]");
+            WebElement fromDateInput=modalContainer.findElement(By.xpath(".//input[1]"));
+            fromGenerateDate= HelpersMethod.getAttributeValue(driver,fromDateInput,10000);
+            scenario.log("FROM DATE FOR GENERATE REPORT "+fromGenerateDate);
+            if(!fromGenerateDate.equals("")||fromGenerateDate==null)
+            {
+                exists=true;
+            }
+            Assert.assertEquals(exists,true);
+        }
+        catch (Exception e){}
+        return fromGenerateDate;
+    }
+    public void readToDateForGenerateSO()
+    {
+        exists=true;
+        try
+        {
+            WebElement toDateInput=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-window k-dialog')]/descendant::input[2]");
+            toGenerateDate= HelpersMethod.getAttributeValue(driver,toDateInput,10000);
+            scenario.log("TO DATE FOR GENERATE REPORT "+toGenerateDate);
+            if(!toGenerateDate.equals("")||toGenerateDate==null)
+            {
+                exists=true;
+            }
+            Assert.assertEquals(exists,true);
+        }
+        catch (Exception e){}
     }
 
     public void clickOnOkButtonInGenerateSO() throws InterruptedException
@@ -1293,7 +1349,8 @@ public class NewStandingOrderCard
         exists=false;
         try
         {
-            Thread.sleep(500);
+            new WebDriverWait(driver,Duration.ofMillis(10000)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class,'k-animation-container k-animation-container-shown')]"))));
+            new WebDriverWait(driver,Duration.ofMillis(10000)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(@class,'k-animation-container k-animation-container-shown')]")));
             if(HelpersMethod.IsExists("//div[contains(@class,'k-animation-container k-animation-container-shown')]",driver))
             {
                 exists=true;
@@ -1333,6 +1390,23 @@ public class NewStandingOrderCard
                 exists=true;
             }
             Assert.assertEquals(exists,true);
+        }
+        catch (Exception e){}
+    }
+
+    public void readEnabledDaysInGrid()
+    {
+        Actions act=new Actions(driver);
+        String dayEnableText;
+        try
+        {
+           List<WebElement> daysEnabled=HelpersMethod.FindByElements(driver,"xpath","//div[@class='grid-container']/descendant::a[@id='k-link-editable']");
+           for(WebElement dayElement:daysEnabled)
+           {
+              act.moveToElement(dayElement).build().perform();
+              dayEnableText=dayElement.getText();
+              daysText.add(dayEnableText);
+           }
         }
         catch (Exception e){}
     }

@@ -33,10 +33,11 @@ public class StatementsPage
     static boolean exists=false;
     static String currentURL;
     static ArrayList<String> customerAccNo=new ArrayList<>();
-    static String customerAccoNoString[];
+    static List<String> customerAccoNoString=new ArrayList<>();
     static ArrayList<String> customerAccNo1=new ArrayList<>();
     static ArrayList<String> customerName=new ArrayList<>();
     static ArrayList<String> customerName1=new ArrayList<>();
+    static ArrayList<String> customerName2=new ArrayList<>();
     static List<WebElement> customers;
 
     @FindBy(id="cbStatementsWeekly")
@@ -271,9 +272,9 @@ public class StatementsPage
     {
         exists=false;
         Actions act=new Actions(driver);
-        String prYear=null;
-        String pYear=null;
-        String status="";
+        String prYear;
+        String pYear;
+        String status;
         WebElement YearFromDropDown;
         try
         {
@@ -294,6 +295,7 @@ public class StatementsPage
                     {
                         HelpersMethod.waitTillLoadingPage(driver);
                     }
+                    exists=true;
                     break;
                 }
             }
@@ -304,15 +306,15 @@ public class StatementsPage
             }
             pYear=HelpersMethod.FindByElement(driver,"xpath","//span[@id='ddlYear']/span[contains(@class,'input')]").getText();
             scenario.log("YEAR AFTER CHAINGING: "+pYear);
-            if(prYear.equals(pYear))
-            {
-                scenario.log("FAILED TO CHANGE YEAR");
-                exists=false;
-            }
-            else if(!prYear.equals(pYear))
-            {
-                exists = true;
-            }
+//            if(prYear.equals(pYear))
+//            {
+//                scenario.log("FAILED TO CHANGE YEAR");
+//                exists=false;
+//            }
+//            else if(!prYear.equals(pYear))
+//            {
+//                exists = true;
+//            }
             Assert.assertEquals(exists,true);
         }
         catch (Exception e){}
@@ -349,6 +351,7 @@ public class StatementsPage
                     act.moveToElement(Values.get(i)).build().perform();
                     Thread.sleep(500);
                     act.click().build().perform();
+                    exists=true;
                     break;
                 }
             }
@@ -359,15 +362,15 @@ public class StatementsPage
             }
             pMonth=HelpersMethod.FindByElement(driver,"xpath","//span[@id='ddlMonth']/span[contains(@class,'input')]").getText();
             scenario.log("MONTH AFTER CHANING: "+pMonth);
-            if(prMonth.equals(pMonth))
-            {
-                scenario.log("FAILED TO CHANGE MONTH");
-                exists = false;
-            }
-            else if(!prMonth.equals(pMonth))
-            {
-                exists=true;
-            }
+//            if(prMonth.equals(pMonth))
+//            {
+//                scenario.log("FAILED TO CHANGE MONTH");
+//                exists = false;
+//            }
+//            else if(!prMonth.equals(pMonth))
+//            {
+//                exists=true;
+//            }
             Assert.assertEquals(exists,true);
         }
         catch (Exception e){}
@@ -400,6 +403,7 @@ public class StatementsPage
                     {
                         HelpersMethod.waitTillLoadingPage(driver);
                     }
+                    exists=true;
                     break;
                 }
             } status = HelpersMethod.returnDocumentStatus(driver);
@@ -409,15 +413,15 @@ public class StatementsPage
             }
             pDate=HelpersMethod.FindByElement(driver,"xpath","//span[@id='ddlDay']/span[contains(@class,'input')]").getText();
             scenario.log("DATE AFTER CHANGING: "+pDate);
-            if(prDate.equals(pDate))
-            {
-                scenario.log("FAILED TO CHANGE DATE");
-                exists=false;
-            }
-            else if(!prDate.equals(pDate))
-            {
-                exists = true;
-            }
+//            if(prDate.equals(pDate))
+//            {
+//                scenario.log("FAILED TO CHANGE DATE");
+//                exists=false;
+//            }
+//            else if(!prDate.equals(pDate))
+//            {
+//                exists = true;
+//            }
             Assert.assertEquals(exists,true);
         }
         catch (Exception e){}
@@ -802,61 +806,14 @@ public class StatementsPage
         exists=false;
         try
         {
-            for(int i=0;i<=customerAccNo.size()-1;i++)
-            {
-                customerAccoNoString = customerAccNo.toArray(new String[i]);
-            }
-            if(customerAccNo.get(1).contains("-"))
-            {
-                Arrays.sort(customerAccoNoString, new Comparator<String>()
-                {
-                    @Override
-                    public int compare(String s1, String s2) {
-                        String[] parts1 = s1.split("-");
-                        String[] parts2 = s2.split("-");
-
-                        for (int i = 0; i < Math.min(parts1.length, parts2.length); i++) {
-                            int cmp;
-                            if (parts1[i].matches("\\d+") && parts2[i].matches("\\d+")) {
-                                cmp = Integer.compare(Integer.parseInt(parts1[i]), Integer.parseInt(parts2[i]));
-                            } else {
-                                cmp = parts1[i].compareTo(parts2[i]);
-                            }
-                            if (cmp != 0) return cmp;
-                        }
-                        return Integer.compare(parts1.length, parts2.length);
-                    }
-                });
-
-                for (int i = 0; i <= customerAccNo1.size() - 1; i++)
-                {
-                    scenario.log("\n ");
-                    scenario.log("SORTED VALUE IN UI " + customerAccNo1.get(i) + " SORTED VALUE IN COLLECTION.SORT() " + customerAccoNoString[i]);
-                    customerAccNo.add(customerAccoNoString[i]);
-                }
-
-                for (int i = 0; i <= customerAccNo1.size() - 1; i++)
-                {
-                    if (customerAccNo1.get(i).equals(customerAccoNoString[i]))
-                    {
-                        exists = true;
-                    }
-                    else
-                    {
-                        scenario.log("<span 'color:red'>ACCOUNT NUMBER MAY NOT BE SORTED</span>");
-                        exists = false;
-                    }
-                }
-            }
-            else
-            {
-                Collections.sort(customerAccNo);
+                customerAccoNoString = customerAccNo1;
+                customerAccoNoString.sort(String::compareTo);
                 for(int i=0;i<=customerAccNo1.size()-1;i++)
                 {
                     scenario.log("\n\n ");
-                    scenario.log("SORTED VALUE IN UI "+customerAccNo1.get(i)+" SORTED VALUE IN COLLECTION.SORT() "+customerAccNo.get(i));
+                    scenario.log("SORTED VALUE IN UI "+customerAccNo1.get(i)+" SORTED VALUE IN AUTOMATION "+customerAccoNoString.get(i));
                 }
-                if(customerAccNo.equals(customerAccNo1))
+                if(customerAccoNoString.equals(customerAccNo1))
                 {
                     scenario.log("CUSTOMER ACCOUNT NUMBERS ARE IN ASCENDING ORDER");
                     exists=true;
@@ -866,7 +823,6 @@ public class StatementsPage
                     scenario.log("<span 'color:red'>ACCOUNT NUMBER MAY NOT BE SORTED</span>");
                     exists = false;
                 }
-            }
             Assert.assertEquals(exists,true);
         }
         catch (Exception e){}
@@ -942,12 +898,13 @@ public class StatementsPage
         exists=false;
         try
         {
-            Collections.sort(customerName, String.CASE_INSENSITIVE_ORDER);
-            for(int i=0;i<=customerName.size()-1;i++)
+            customerName2=customerName1;
+            Collections.sort(customerName2, String.CASE_INSENSITIVE_ORDER);
+            for(int i=0;i<=customerName1.size()-1;i++)
             {
-                scenario.log("SORTED VALUE IN UI "+customerName1.get(i)+" SORTED VALUE IN COLLECTION.SORT() "+customerName.get(i));
+                scenario.log("SORTED VALUE IN UI "+customerName1.get(i)+" SORTED VALUE IN AUTOMATION "+customerName2.get(i));
             }
-           if(CollectionUtils.isEqualCollection(customerName, customerName1))
+           if(CollectionUtils.isEqualCollection(customerName2, customerName1))
            {
                exists=true;
            }

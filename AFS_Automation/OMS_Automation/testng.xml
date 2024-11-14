@@ -4,13 +4,25 @@
     <test name="Test1">
         <parameter name="environment" value="config_DSD_OMS\\configAuto\\config_DSD"/>
         <classes>
-            <class name="testRunner_DSD_OMS.ParallelExecutionEnvironment"></class>
+            <class name="testRunner_DSD_OMS.DSDEnv.TestRunnerOE"></class>
         </classes>
     </test>
     <test name="Test2">
         <parameter name="environment" value="config_DSD_OMS\\configAuto\\config_DSD"/>
         <classes>
-            <class name="testRunner_DSD_OMS.ParallelExecutionEnvironment1"></class>
+            <class name="testRunner_DSD_OMS.DSDEnv.TestRunnerOE1"></class>
+        </classes>
+    </test>
+    <test name="Test3">
+        <parameter name="environment" value="config_DSD_OMS\\configAuto\\config_DSD"/>
+        <classes>
+            <class name="testRunner_DSD_OMS.DSDEnv.TestRunnerOE2"></class>
+        </classes>
+    </test>
+    <test name="Test4">
+        <parameter name="environment" value="config_DSD_OMS\\configAuto\\config_DSD"/>
+        <classes>
+            <class name="testRunner_DSD_OMS.DSDEnv.TestRunnerOE3"></class>
         </classes>
     </test>
 </suite>

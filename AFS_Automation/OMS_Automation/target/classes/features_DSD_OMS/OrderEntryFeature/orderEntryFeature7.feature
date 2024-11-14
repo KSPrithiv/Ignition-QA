@@ -20,27 +20,7 @@ Feature: Order Entry7
     Then Click on Add product drop down and select catalog option
     And User should validate Catalog dialogbox and use filters in customer index dialogbox
 
-  @LastdatePickupOrder
-  Scenario: Test scenario for creating order for the Last date in Pickup order dialogbox
-    Given User must be on Order Entry Page
-    When User clicks on drop down next to Start order button
-    And Select Pickup Order from drop down options and select last delivery date
-    Then User should select Note from popup and Order guide from popup
-    Then Enter PO# for New order for Pickup order
-      |PO123|
-    Then Enter Pro# in Quick Product Entry area
-    And Check for Case and Unit input box enabled or not based on that enter value
-      |1|1|
-    Then Click on Next button
-   # And Click on SubmitOrder button
-   # Then User should be navigated to Order Entry page and compare the dates
-    And Click on Submit Order button and read Order_no
-    Then User should be navigated to Order Entry page and compare the dates
-    Then Enter Order# in Search box in Order Entry page
-    Then Click on Order number in Order Entry page
-    Then Click on Cancel button
-    And Check for Warning popup
-    Then User should be navigated to Order Entry page
+
 
   @EditWithOutChangingBackToOrderList
   Scenario:Test scenario for creating Order and edit it without making any changes, or usage of back to order list in summary page

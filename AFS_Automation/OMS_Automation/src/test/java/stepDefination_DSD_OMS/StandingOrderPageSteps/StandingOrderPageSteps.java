@@ -135,6 +135,8 @@ public class StandingOrderPageSteps
         }
         standingOrder.Refresh_Page(currentURL);
         standingOrder.validateStandingOrder();
+        standingOrderCard=new NewStandingOrderCard(driver,scenario);
+        standingOrderCard.readEnabledDaysInGrid();
     }
 
     @And("User click on Start standing order button and selects start and end date from popup")
