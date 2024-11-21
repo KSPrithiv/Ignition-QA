@@ -12,11 +12,11 @@ Feature: Order GuideDSD
   Scenario Outline: Test scenario for creating customer Reference Price group base Scheduled
     Given User must be on Order Entry Page to select OG
     And User should navigate to OG
-    Then User should click on Customer Reference drop down and select type of OG
-    |Price group - base schedule|
+    Then User should click on Customer Reference drop down and select type of OG "<OGType>"
     And Check for popup to appear to select sub customer reference for Price group base schedule
-      |Zone Price02|
+      |000017, Florida Food Service|
     Then User clicks on Create new button and should navigate to New OG page
+    And User validates Customer reference "<OGType>" to verify the OG created and select pricing customer value from dropdown "<Pricing Customer>"
     Then Then User enters Description "<OG>" and End date
     And User should make sure that customer reference "<OGType>" is same as of selected in OG page
     Then User clicks on Add product button and select Catalog from drop down for price Base OG
@@ -27,18 +27,18 @@ Feature: Order GuideDSD
     And Clear filter to display both active and inactive OG
     Then User enters OG Description "<OG>" in search box and Delete the OG verify same in OG grid
     Examples:
-        |  OG        |  OGType                      |
-        |PriceBaseOG | Price group - base schedule  |
+        |  OG        |  OGType                      | Pricing Customer  |
+        |PriceBaseOG | Price group - base schedule  |  MILOS #452       |
 
   @ReferencePriceGroup-PromoGroup
   Scenario Outline: Test scenario for creating customer Reference Price group-promo group Scheduled
     Given User must be on Order Entry Page to select OG
     And User should navigate to OG
-    Then User should click on Customer Reference drop down and select type of OG
-      |Price group - promo group/schedule|
+    Then User should click on Customer Reference drop down and select type of OG "<OGType>"
     And Check for popup to appear to select sub customer reference for Price group base schedule
     |Promotion 1|
     Then User clicks on Create new button and should navigate to New OG page
+    And User validates Customer reference "<OGType>" to verify the OG created and select pricing customer value from dropdown "<Pricing Customer>"
     Then Then User enters Description "<OG>" and End date
     And User should make sure that customer reference "<OGType>" is same as of selected in OG page
     Then User clicks on Add product button and select Catalog from drop down for price Base OG
@@ -49,5 +49,27 @@ Feature: Order GuideDSD
     And Clear filter to display both active and inactive OG
     Then User enters OG Description "<OG>" in search box and Delete the OG verify same in OG grid
     Examples:
-      |  OG        |  OGType                              |
-      |PricePromoOG | Price group - promo group/schedule  |
+      |  OG        |  OGType                              | Pricing Customer  |
+      |PricePromoOG | Price group - promo group/schedule  |  MILOS #452       |
+
+  @ReferencePriceGroup-DealGroup
+  Scenario Outline: Test scenario for creating customer Reference Price group-promo group Scheduled
+    Given User must be on Order Entry Page to select OG
+    And User should navigate to OG
+    Then User should click on Customer Reference drop down and select type of OG "<OGType>"
+    And Check for popup to appear to select sub customer reference for Price group base schedule
+      |Promotion 1|
+    Then User clicks on Create new button and should navigate to New OG page
+    And User validates Customer reference "<OGType>" to verify the OG created and select pricing customer value from dropdown "<Pricing Customer>"
+    Then Then User enters Description "<OG>" and End date
+    And User should make sure that customer reference "<OGType>" is same as of selected in OG page
+    Then User clicks on Add product button and select Catalog from drop down for price Base OG
+      |Catalog|
+    And User should select products from catalog popup for Price base
+    Then User click on Save button
+    And User should navigate back to OG page and verify OG "<OG>"  existence
+    And Clear filter to display both active and inactive OG
+    Then User enters OG Description "<OG>" in search box and Delete the OG verify same in OG grid
+    Examples:
+      |  OG        |  OGType                   | Pricing Customer  |
+      |PriceDealOG | Price group - deal group  |  MILOS #452       |

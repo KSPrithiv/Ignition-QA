@@ -89,6 +89,15 @@ Feature: Customer Inq
     Then PO has been saved
     #Then User clicks on Save button
 
+  @SearchPO
+  Scenario: Test scenario to search PO details in Ignition tab
+    Given User must be on Client side and select Customer Inq page
+    When User should confirm that he is in Customer Inq page
+    Then User enters Description of customer and load already saved details
+    And User navigate to Ignition tab
+    Then User enters PO in search box and user should make sure that PO details displayed in grid
+    And User clears search value in search box
+
   @EditPO
   Scenario: Test scenario to edit PO details in Ignition tab
     Given User must be on Client side and select Customer Inq page
@@ -124,7 +133,6 @@ Feature: Customer Inq
   Scenario: Test scenario for adding note to customer inq in DSD
     Given User must be on Client side and select Customer Inq page
     When User should confirm that he is in Customer Inq page
-    #Then User click on New button
     Then Add note in popup in cust inq
       |Testing for Notes at Customer inq|
     And User should select the Alert Type and Alert location to display notes in DSD cust inq

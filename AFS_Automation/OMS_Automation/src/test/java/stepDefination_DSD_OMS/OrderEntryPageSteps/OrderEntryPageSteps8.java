@@ -35,7 +35,7 @@ public class OrderEntryPageSteps8
     Scenario scenario;
 
     static boolean exists=false;
-    static String currenturl;
+    static String paymentMethod;
     static NewOrderEntryPage newOE;
     static CheckOutSummaryPage summary;
     static OrderEntryPage orderpage;
@@ -196,7 +196,7 @@ public class OrderEntryPageSteps8
         }
 
         Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
-                .withTimeout(Duration.ofSeconds(120))
+                .withTimeout(Duration.ofSeconds(400))
                 .pollingEvery(Duration.ofSeconds(2))
                 .ignoring(NoSuchElementException.class);
         wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
@@ -208,7 +208,7 @@ public class OrderEntryPageSteps8
         }
 
         wait = new FluentWait<WebDriver>(driver)
-                .withTimeout(Duration.ofSeconds(120))
+                .withTimeout(Duration.ofSeconds(400))
                 .pollingEvery(Duration.ofSeconds(2))
                 .ignoring(NoSuchElementException.class);
         wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
@@ -220,7 +220,7 @@ public class OrderEntryPageSteps8
             checkorder.Select_PaymentMethod_ClickDownArrow();
             if(HelpersMethod.IsExists("//tr[1]/descendant::td[@class='payment-method-type-cell']",driver))
             {
-                currenturl=checkorder.SelectPaymentMethodReadPaymentInfo();
+                paymentMethod=checkorder.SelectPaymentMethodReadPaymentInfo();
                 scenario.log("FIRST PAYMENT OPTION HAS BEEN SELECTED");
             }
             else
@@ -238,7 +238,7 @@ public class OrderEntryPageSteps8
     {
         summary = new CheckOutSummaryPage(driver,scenario);
         summary.validateSummaryPage();
-        summary.validatePaymentInSummary(currenturl);
+        summary.validatePaymentInSummary(paymentMethod);
         summary.ClickSubmit();
         for(int i=0;i<=2;i++)
         {

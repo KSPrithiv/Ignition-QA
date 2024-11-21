@@ -105,4 +105,24 @@ public class AdminOrderEntryStep1
         newOE=new NewOrderEntryPage(driver,scenario);
         newOE.Add_Product_From_Catalog();
     }
+
+    @Then("User clicks on customer account index icon and verify the customer account index dialog box")
+    public void userClicksOnCustomerAccountIndexIconAndVerifyTheCustomerAccountIndexDialogBox() throws InterruptedException, AWTException
+    {
+        orderpage=new OrderEntryPage(driver,scenario);
+        orderpage.clickOnCustomerAccountIndex();
+        orderpage.validateCustomerAccountInex();
+        orderpage.validateChangeInLookAndFeelOfCustomerAccountIndex();
+        orderpage.clickOnCancelButtonInCustomerAccountDialogBox();
+    }
+
+    @Then("User clicks on customer account index icon and verify the customer account index dialog box displaying addfilter and filter headers")
+    public void userClicksOnCustomerAccountIndexIconAndVerifyTheCustomerAccountIndexDialogBoxDisplayingAddfilterAndFilterHeaders() throws InterruptedException, AWTException
+    {
+        orderpage=new OrderEntryPage(driver,scenario);
+        orderpage.clickOnCustomerAccountIndex();
+        orderpage.validateCustomerAccountInex();
+        orderpage.validateChangeInLookAndFeelOfCustomerAccountIndexContainsAddFilter();
+        orderpage.clickOnCancelButtonInCustomerAccountDialogBox();
+    }
 }

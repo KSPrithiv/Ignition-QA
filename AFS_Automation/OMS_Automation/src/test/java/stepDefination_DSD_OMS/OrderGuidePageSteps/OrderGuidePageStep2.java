@@ -294,4 +294,5 @@ public class OrderGuidePageStep2
         exists=orderGuidePage.OGSearchBox(ogName);
         Assert.assertEquals(exists,true);
     }
+
 }

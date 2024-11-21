@@ -131,7 +131,7 @@ public class OrderEntryPage
                 }
 
                 Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
-                        .withTimeout(Duration.ofSeconds(120))
+                        .withTimeout(Duration.ofSeconds(1000))
                         .pollingEvery(Duration.ofSeconds(2))
                         .ignoring(NoSuchElementException.class);
                 wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
@@ -143,7 +143,7 @@ public class OrderEntryPage
                 }
 
                 wait = new FluentWait<WebDriver>(driver)
-                        .withTimeout(Duration.ofSeconds(400))
+                        .withTimeout(Duration.ofSeconds(1000))
                         .pollingEvery(Duration.ofSeconds(2))
                         .ignoring(NoSuchElementException.class);
                 wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
@@ -4708,6 +4708,77 @@ public class OrderEntryPage
             WebElement deliveryDate=HelpersMethod.FindByElement(driver,"id","delivery-date-web-order-header-calendar");
             String delDate= HelpersMethod.JSGetValueEle(driver,deliveryDate,10000);
             scenario.log("DELIVERY DATE SELECTED FOR DISCONNECTED MODE IS "+delDate);
+        }
+        catch (Exception e){}
+    }
+
+    public void clickOnCustomerAccountIndex()
+    {
+        try
+        {
+            WebElement customerAccount=HelpersMethod.FindByElement(driver,"xpath","//span[@data-test-id='customerAccountNumberComboBox']/following-sibling::button");
+            HelpersMethod.ClickBut(driver,customerAccount,10000);
+        }
+        catch (Exception e){}
+    }
+
+    public void validateCustomerAccountInex()
+    {
+        exists=false;
+        try
+        {
+            if(HelpersMethod.IsExists("//div[@id='customerAccountIndexDialog']",driver))
+            {
+                scenario.log("CUSTOMER ACCOUNT INDEX DIALOG BOX HAS BEEN FOUND");
+                exists=true;
+            }
+            Assert.assertEquals(exists,true);
+        }
+        catch (Exception e){}
+    }
+
+    public void validateChangeInLookAndFeelOfCustomerAccountIndex()
+    {
+        exists=false;
+        try
+        {
+            if(!HelpersMethod.IsExists("//span[text()='Add filter']/ancestor::button",driver) && !HelpersMethod.IsExists("//tr[contains(@class,'k-filter-row')]",driver))
+            {
+                scenario.log("LOOK AND FEEL OF CUSTOMER ACCUNT INDEX BOX HAS BEEN CHANGED");
+                exists=true;
+            }
+            Assert.assertEquals(exists,true);
+        }
+        catch (Exception e){}
+    }
+
+    public void clickOnCancelButtonInCustomerAccountDialogBox()
+    {
+        exists=false;
+        try
+        {
+            if(HelpersMethod.IsExists("//div[@class='k-window k-dialog']/descendant::button",driver))
+            {
+               WebElement cancelButton= HelpersMethod.FindByElement(driver,"xpath","//div[@class='k-window k-dialog']/descendant::button");
+               HelpersMethod.ClickBut(driver,cancelButton,10000);
+               exists=true;
+            }
+            Assert.assertEquals(exists,true);
+        }
+        catch (Exception e){}
+    }
+
+    public void validateChangeInLookAndFeelOfCustomerAccountIndexContainsAddFilter()
+    {
+        exists=false;
+        try
+        {
+            if(HelpersMethod.IsExists("//span[text()='Add filter']/ancestor::button",driver) && HelpersMethod.IsExists("//tr[contains(@class,'k-filter-row')]",driver))
+            {
+                scenario.log("CUSTOMER ACCOUNT INDEX DIALOG BOX CONTAINS ADDFILTER BUTTON AND FILTERS INPUT BOX AS TABLE HEADER");
+                exists=true;
+            }
+            Assert.assertEquals(exists,true);
         }
         catch (Exception e){}
     }

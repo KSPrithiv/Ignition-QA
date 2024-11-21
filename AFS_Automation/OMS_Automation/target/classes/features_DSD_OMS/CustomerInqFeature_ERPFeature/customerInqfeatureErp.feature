@@ -88,6 +88,14 @@ Feature: Customer Inq in ERP
     And User selects 5 day from current date and 6 day from end date and Select Payment processing
     Then PO has been saved in ERP
 
+  @SearchPO
+  Scenario: Test scenario to search PO details in Ignition tab
+    Given User must be on Client side and select Customer Inq in ERP
+    When User should confirm that he is in Customer Inq in ERP
+    And User navigate to Ignition tab in ERP
+    Then User enters PO in search box and user should make sure that PO details displayed in grid
+    And User clears search value in search box
+
   @EditStandingPO
   Scenario: Test scenario for editing Standing PO
     Given User must be on Client side and select Customer Inq in ERP

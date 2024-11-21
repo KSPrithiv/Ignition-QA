@@ -650,7 +650,7 @@ public class IgnitionPage
             if(HelpersMethod.IsExists("//*[local-name()='svg' and contains(@class,'i-search-box__clear')]",driver))
             {
                 WebElement clearSearch=HelpersMethod.FindByElement(driver,"xpath","//*[local-name()='svg' and contains(@class,'i-search-box__clear')]");
-                HelpersMethod.ActClick(driver,clearSearch,1000);
+                HelpersMethod.ActClick(driver,clearSearch,10000);
                 exists=true;
             }
             Assert.assertEquals(exists,true);

@@ -14,11 +14,11 @@ import java.io.IOException;
  * @Author Divya.Ramadas@afsi.com
  */
 @CucumberOptions(features =
-        {"src/test/resources/features_DSD_OMS/OrderGuideFeature/orderGuideFeature.feature",
-        "src/test/resources/features_DSD_OMS/OrderGuideFeature/orderGuideFeature1.feature",
-        "src/test/resources/features_DSD_OMS/OrderGuideFeature/orderGuideFeature2.feature",
-        "src/test/resources/features_DSD_OMS/OrderGuideFeature/orderGuideFeature3.feature",
-        "src/test/resources/features_DSD_OMS/OrderGuideFeature/orderGuideFeatureDSD.feature",
+        {"src/test/resources/features_DSD_OMS/OrderGuideFeature_DSD/orderGuideFeature.feature",
+        "src/test/resources/features_DSD_OMS/OrderGuideFeature_DSD/orderGuideFeature1.feature",
+        "src/test/resources/features_DSD_OMS/OrderGuideFeature_DSD/orderGuideFeature2.feature",
+        "src/test/resources/features_DSD_OMS/OrderGuideFeature_DSD/orderGuideFeature3.feature",
+        "src/test/resources/features_DSD_OMS/OrderGuideFeature_DSD/orderGuideFeatureDSD.feature",
         },
         glue = {"stepDefination_DSD_OMS"},
         plugin = {"pretty",

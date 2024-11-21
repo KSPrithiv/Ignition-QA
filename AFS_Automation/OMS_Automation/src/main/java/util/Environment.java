@@ -198,5 +198,8 @@ public interface Environment extends Config
 
     @Key("CustomerName")
     String getCustomerName();
+
+    @Key("PricingForOG")
+    String getPricingOG();
 }
 

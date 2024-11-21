@@ -436,13 +436,13 @@ public class PricePage
 
     public void PrimaryEmailInput()
     {
-        InputValue=RandomValues.generateEmail(10);
+        InputValue=RandomValues.generateEmail(20);
         scenario.log("PRIMARY EMAIL ENTERED IS "+InputValue);
     }
 
     public void SecondaryEmailInput()
     {
-        InputValue=RandomValues.generateEmail(10);
+        InputValue=RandomValues.generateEmail(20);
         scenario.log("SECONDARY EMAIL ENTERED IS "+InputValue);
     }
 

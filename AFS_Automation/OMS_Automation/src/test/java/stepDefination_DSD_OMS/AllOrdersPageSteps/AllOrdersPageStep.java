@@ -253,11 +253,8 @@ public class AllOrdersPageStep
         {
             //find whether route is empty or not, if empty should select some route value
             newOE.validateRouteValue();
-            exists=newOE.ClickNext();
-        }
-        else
-        {
             newOE.readRoute();
+            exists=newOE.ClickNext();
         }
         newOE.OutOfStockPop_ERP();
 

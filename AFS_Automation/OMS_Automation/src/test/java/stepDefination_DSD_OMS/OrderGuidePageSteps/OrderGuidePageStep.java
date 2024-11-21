@@ -528,10 +528,4 @@ public class OrderGuidePageStep
         createOGPage.displaySequenceValueForSecondTime();
         createOGPage.compareSequenceNosFound();
     }
-
-//    @Then("User enters Description {string}")
-//    public void userEntersDescription(String arg0)
-//    {
-//
-//    }
 }

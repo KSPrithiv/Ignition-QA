@@ -188,7 +188,7 @@ public class HomePage
         try
         {
             exists = false;
-            Thread.sleep(6000);
+            Thread.sleep(4000);
             String status = HelpersMethod.returnDocumentStatus(driver);
             if (status.equals("loading"))
             {

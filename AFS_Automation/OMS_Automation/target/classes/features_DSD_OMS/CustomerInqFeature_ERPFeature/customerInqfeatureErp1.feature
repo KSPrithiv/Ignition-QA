@@ -45,4 +45,12 @@ Feature: Customer Inq in ERP
     And User navigate to Shipping tab and User enters value to all the input box in Shipping page
     Then User clicks on Save button without entering customer name in ERP env
 
+  @LoadCustomerDetails
+  Scenario: Test scenario for loading details of particular customer in cusomter inq
+    Given User must be on Client side and select Customer Inq in ERP
+    When User should confirm that he is in Customer Inq in ERP
+    And User should select customer account# in customer inq to load customer details in ERP
+      |Customer #|
+    And User should verify that values relevant to the customer has been loaded
+
 

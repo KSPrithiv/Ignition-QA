@@ -571,6 +571,8 @@ public class AdminSecurityPermissionPage
         String Val_Text;
         try
         {
+            new WebDriverWait(driver,Duration.ofMillis(10000)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.xpath("//ul[@id='RoleCompaniesTolist']/li/span"))));
+            new WebDriverWait(driver,Duration.ofMillis(10000)).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//ul[@id='RoleCompaniesTolist']/li/span")));
               List<WebElement> Values = HelpersMethod.FindByElements(driver, "xpath", "//ul[@id='RoleCompaniesTolist']/li/span");
               for (WebElement Val : Values)
               {
@@ -593,7 +595,7 @@ public class AdminSecurityPermissionPage
             }
 
             WebEle=HelpersMethod.FindByElement(driver,"id","RoleCompaniesTo");
-            scenario.log("COMPANY ACCOUNT# SELECTED FOR 'FROM COMPANY' IS "+HelpersMethod.JSGetValueEle(driver,WebEle,100));
+            scenario.log("COMPANY ACCOUNT# SELECTED FOR 'FROM COMPANY' IS "+HelpersMethod.JSGetValueEle(driver,WebEle,1000));
             Assert.assertEquals(exists,true);
         }
         catch (Exception e){}

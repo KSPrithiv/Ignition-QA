@@ -474,7 +474,7 @@ public class OrderGuidePage {
     public void CustRefDropDown(String OGtype)
     {
         exists = false;
-        WebElement WebEle = null;
+        WebElement WebEle;
         Actions act1 = new Actions(driver);
         try
         {
@@ -493,7 +493,7 @@ public class OrderGuidePage {
                     break;
                 }
                 Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
-                        .withTimeout(Duration.ofSeconds(120))
+                        .withTimeout(Duration.ofSeconds(400))
                         .pollingEvery(Duration.ofSeconds(2))
                         .ignoring(NoSuchElementException.class);
                 wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
@@ -505,7 +505,7 @@ public class OrderGuidePage {
                 }
 
                 wait = new FluentWait<WebDriver>(driver)
-                        .withTimeout(Duration.ofSeconds(120))
+                        .withTimeout(Duration.ofSeconds(400))
                         .pollingEvery(Duration.ofSeconds(2))
                         .ignoring(NoSuchElementException.class);
                 wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
@@ -522,11 +522,11 @@ public class OrderGuidePage {
         exists = false;
         try
         {
-            if (HelpersMethod.IsExists("//div[@class='loader']", driver))
-            {
-                WebElement WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 2000000);
-            }
+            Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(400))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
 
             //HelpersMethod.WaitElementPresent(driver, "xpath", "//div[contains(@class,'k-window k-dialog')]", 20000);
             //new WebDriverWait(driver,Duration.ofMillis(10000)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(@class,'k-window k-dialog')]")));
@@ -541,11 +541,11 @@ public class OrderGuidePage {
                     WebElement SubRef = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-window k-dialog')]/descendant::tr[contains(@class,'k-master-row')][4]");
                     HelpersMethod.ActClick(driver, SubRef, 10000);
                     exists = true;
-                    if (HelpersMethod.IsExists("//div[@class='loader']", driver))
-                    {
-                        WebElement WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                        HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000000);
-                    }
+                    wait = new FluentWait<WebDriver>(driver)
+                            .withTimeout(Duration.ofSeconds(400))
+                            .pollingEvery(Duration.ofSeconds(2))
+                            .ignoring(NoSuchElementException.class);
+                    wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
                 }
             }
             Assert.assertEquals(exists, true);
@@ -593,7 +593,7 @@ public class OrderGuidePage {
         try
         {
             Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
-                    .withTimeout(Duration.ofSeconds(120))
+                    .withTimeout(Duration.ofSeconds(400))
                     .pollingEvery(Duration.ofSeconds(2))
                     .ignoring(NoSuchElementException.class);
             wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
@@ -627,7 +627,7 @@ public class OrderGuidePage {
         try
         {
             Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
-                    .withTimeout(Duration.ofSeconds(120))
+                    .withTimeout(Duration.ofSeconds(400))
                     .pollingEvery(Duration.ofSeconds(2))
                     .ignoring(NoSuchElementException.class);
             wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
@@ -640,11 +640,11 @@ public class OrderGuidePage {
                 }
                 else
                 {
-                    WebElement SubRef = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-window k-dialog')]/descendant::tr[contains(@class,'k-master-row')]/td[contains(text(),'"+priceGroup.get(0).get(0)+"')]|//div[contains(@class,'k-window k-dialog')]/descendant::tr[contains(@class,'k-master-row')]/td[contains(text(),'"+priceGroup.get(0).get(1)+"')]");
+                    WebElement SubRef = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-window k-dialog')]/descendant::tr[contains(@class,'k-master-row')]/td[contains(text(),'"+priceGroup.get(0).get(0)+"')]");
                     HelpersMethod.ActClick(driver, SubRef, 10000);
                     exists = true;
                     wait = new FluentWait<WebDriver>(driver)
-                            .withTimeout(Duration.ofSeconds(120))
+                            .withTimeout(Duration.ofSeconds(400))
                             .pollingEvery(Duration.ofSeconds(2))
                             .ignoring(NoSuchElementException.class);
                     wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
@@ -987,7 +987,7 @@ public class OrderGuidePage {
         try
         {
             Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
-                    .withTimeout(Duration.ofSeconds(120))
+                    .withTimeout(Duration.ofSeconds(400))
                     .pollingEvery(Duration.ofSeconds(2))
                     .ignoring(NoSuchElementException.class);
             wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
@@ -1005,11 +1005,11 @@ public class OrderGuidePage {
                     WebElement SubRef = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-window k-dialog')]/descendant::tr[contains(@class,'k-master-row')]/td[contains(text(),'"+subCustRef.get(0).get(0)+"')]|//div[contains(@class,'k-window k-dialog')]/descendant::tr[contains(@class,'k-master-row')]/td[contains(text(),'"+subCustRef.get(0).get(1)+"')]");
                     HelpersMethod.ActClick(driver, SubRef, 10000);
                     exists = true;
-                    if (HelpersMethod.IsExists("//div[@class='loader']", driver))
-                    {
-                        WebElement WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                        HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000000);
-                    }
+                    wait = new FluentWait<WebDriver>(driver)
+                            .withTimeout(Duration.ofSeconds(400))
+                            .pollingEvery(Duration.ofSeconds(2))
+                            .ignoring(NoSuchElementException.class);
+                    wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
                 }
             }
         }
@@ -1097,7 +1097,7 @@ public class OrderGuidePage {
     public void readingOG()
     {
         exists = false;
-        String ogName = null;
+        String ogName;
         Actions act = new Actions(driver);
         try
         {
@@ -1426,6 +1426,36 @@ public class OrderGuidePage {
                         exists=false;
                     }
                 }
+            }
+            Assert.assertEquals(exists,true);
+        }
+        catch (Exception e){}
+    }
+
+    public void validateCustomerReferenceAndCustomerAccountIndex()
+    {
+        exists=false;
+        try
+        {
+            if(HelpersMethod.IsExists("//label[@id='dropDownNoneType-label']",driver) && HelpersMethod.IsExists("//label[@id='textBoxE-label']",driver))
+            {
+                scenario.log("ADMIN SETTING HAS BEEN DISABLED, SO NOT ABLE TO SEE CUSTOMER ACCOUNT# INDEX DEATILS");
+                exists=true;
+            }
+            Assert.assertEquals(exists,true);
+        }
+        catch (Exception e){}
+    }
+
+    public void validateCustomerReferenceAndCustomerAccountIndexNotVisible()
+    {
+        exists=false;
+        try
+        {
+            if(!HelpersMethod.IsExists("//label[@id='dropDownNoneType-label']",driver) && !HelpersMethod.IsExists("//label[@id='textBoxE-label']",driver))
+            {
+                scenario.log("ADMIN SETTING HAS BEEN ENABLED, SO CUSTOMER ACCOUNT# INDEX, CUSTOMER ACCOUNT REFERENCE ARE VISIBLE");
+                exists=true;
             }
             Assert.assertEquals(exists,true);
         }

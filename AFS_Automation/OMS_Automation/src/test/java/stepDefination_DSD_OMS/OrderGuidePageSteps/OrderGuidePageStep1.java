@@ -156,6 +156,32 @@ public class OrderGuidePageStep1
         orderGuidePage.CustRefDropDown(CusRef.get(0).get(0));
     }
 
+
+    @Then("User should click on Customer Reference drop down and select type of OG {string}")
+    public void userShouldClickOnCustomerReferenceDropDownAndSelectTypeOfOG(String orderType) throws InterruptedException, AWTException
+    {
+        orderGuidePage = new OrderGuidePage(driver, scenario);
+        orderGuidePage.ValidateOG();
+        orderGuidePage.CustomerRef();
+        orderGuidePage.CustRefDropDown(orderType);
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     @And("Check for popup to appear to select sub customer reference for local chain")
     public void checkForPopupToAppearToSelectSubCustomerReferenceForLocalChain(DataTable dataTable) throws InterruptedException, AWTException
     {
@@ -458,5 +484,16 @@ public class OrderGuidePageStep1
         //once OG is deleted, search for OG in OG grid
         exists=orderGuidePage.OGSearchBox(arg0);
         Assert.assertEquals(exists,false);
+    }
+
+    @And("User validates Customer reference {string} to verify the OG created and select pricing customer value from dropdown {string}")
+    public void userValidatesCustomerReferenceToVerifyTheOGCreatedAndSelectPricingCustomerValueFromDropdown(String ogType,String priceCust)
+    {
+        createOGPage=new CreateOGPage(driver,scenario);
+        createOGPage.validateCustomerReference(ogType);
+        createOGPage.clickPriceingCustomer();
+        createOGPage.selectPricingCustomer(priceCust);
+        createOGPage.handleChangePricingCustomer();
+        createOGPage.validatePricingCustomer(priceCust);
     }
 }

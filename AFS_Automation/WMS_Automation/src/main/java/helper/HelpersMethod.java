@@ -21,7 +21,6 @@ import java.util.concurrent.TimeUnit;
 public class HelpersMethod
 {
     /* Created by DivyaRamadas@afsi.com */
-    WebDriver driver;
 
     public static WebElement FindByElement(String selector, String value)
     {
@@ -476,14 +475,11 @@ public class HelpersMethod
     //code to handle drop down feature
     public static void DropDownMenu(WebDriver driver,String value)
     {
-        WebElement WebEle=null;
+        WebElement WebEle;
         Actions act1= new Actions(driver);
-        //KKN Feb-6//new WebDriverWait(driver,Duration.ofMillis(2000)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class,'k-popup k-child-animation-container')]"))));
         new WebDriverWait(driver,Duration.ofMillis(2000)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.xpath("//input[@id='CSV-select-field']"))));
         // to fetch the web element of the modal container
-        //KKN Feb-6//WebElement menuContainer = HelpersMethod.FindByElement("xpath","//div[contains(@class,'k-popup k-child-animation-container')]");
         WebElement menuContainer = HelpersMethod.FindByElement("xpath","//input[@id='CSV-select-field']");
-        //KKN Feb-6//List<WebElement> Options=menuContainer.findElements(By.xpath(".//ul/li"));
         List<WebElement> Options=menuContainer.findElements(By.xpath(".//optgroup/option"));
         for(int i=0;i<=Options.size()-1;i++)
         {
@@ -510,7 +506,7 @@ public class HelpersMethod
 
     public static void DropDownMenu_withOutScrollbar(WebDriver driver,String value)
     {
-        WebElement WebEle=null;
+        WebElement WebEle;
         Actions act1= new Actions(driver);
         HelpersMethod.waitTillElementLocatedDisplayed(driver,"xpath","//div[contains(@class,'k-child-animation-container')]",40);
         // to fetch the web element of the modal container
@@ -532,11 +528,11 @@ public class HelpersMethod
 
     public static void DropDownMenu_LowerCase(WebDriver driver,String value) throws InterruptedException
     {
-        WebElement WebEle=null;
+
         Actions act1= new Actions(driver);
-        String Opt=null;
-        String Opt1=null;
-        String Opt2=null;
+        String Opt;
+        String Opt1;
+        String Opt2;
         Opt1= value.toLowerCase();
         // to fetch the web element of the modal container
         WebElement menuContainer = HelpersMethod.FindByElement("xpath","//div[contains(@class,'k-popup k-child-animation-container')]");
@@ -722,8 +718,8 @@ public class HelpersMethod
     //Code for AddFilterSearch for DSD and OMS applications
     public static void AddFilterSearch(WebDriver driver,String SearchBoxValue,String SearhBox2Value) throws InterruptedException
     {
-        WebElement Search2=null;
-        WebElement WebEle=null;
+        WebElement Search2;
+        WebElement WebEle;
         if(HelpersMethod.IsExists("//div[@class='loader']",driver))
         {
             WebEle=HelpersMethod.FindByElement("xpath","//div[@class='loader']");

@@ -14,10 +14,7 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.Wait;
-import pages_DSD_OMS.orderEntry.CheckOutSummaryPage;
-import pages_DSD_OMS.orderEntry.NewOrderEntryPage;
-import pages_DSD_OMS.orderEntry.OrderEntryPage;
-import pages_DSD_OMS.orderEntry.OrderHistoryPage;
+import pages_DSD_OMS.orderEntry.*;
 import util.TestBase;
 
 import java.awt.*;
@@ -43,6 +40,11 @@ public class OrderEntryPageSteps5
     static CheckOutSummaryPage summary;
     static OrderHistoryPage orderHistoryPage;
     static OrderEntryPage orderpage;
+    static CheckOutOrderPage checkorder;
+    static String paymentMethod;
+    static boolean exists=false;
+    static String Ord_No;
+
 
     @Before
     public void LaunchBrowser1(Scenario scenario) throws Exception
@@ -208,7 +210,6 @@ public class OrderEntryPageSteps5
     public void userShouldClickOnDeliveryDateAndSelectDeliveryDateByIncreaseDayForPendingOrderThenUserShouldHandleThePopupAlso() throws InterruptedException, AWTException
     {
         orderpage = new OrderEntryPage(driver, scenario);
-        WebElement date;
         Actions act=new Actions(driver);
         orderpage.ClickCalender();
         List<WebElement> dates= HelpersMethod.FindByElements(driver,"xapth","//div[contains(@class,'k-widget k-calendar k-calendar-infinite')]/descendant::tr[@role='row']/td[contains(@style,'background-color: rgb')]");
@@ -243,5 +244,85 @@ public class OrderEntryPageSteps5
        java.util.List<java.util.List<String>> TableHead=tabledata.asLists(String.class);
        summary = new CheckOutSummaryPage(driver,scenario);
        summary.FindtableHeader(TableHead.get(0).get(0));
+    }
+
+    @Then("User should select the product in product grid in NewOE page")
+    public void userShouldSelectTheProductInProductGridInNewOEPage() throws InterruptedException, AWTException
+    {
+        newOE=new NewOrderEntryPage(driver,scenario);
+        newOE.selectFirstRowInGrid();
+    }
+
+    @And("User should click on info dropdown, to select price inq option and validate the price inq dialog box display")
+    public void userShouldClickOnInfoDropdownToSelectPriceInqOptionAndValidateThePriceInqDialogBoxDisplay() throws InterruptedException, AWTException
+    {
+        newOE=new NewOrderEntryPage(driver,scenario);
+        newOE.clickOnInfoDropDown();
+        newOE.selectShowPriceInq();
+        newOE.validatePriceInqDialogBox();
+        newOE.readValuesInPriceInqDialogBox();
+        newOE.clickOkbuttonOfPriceInqDialogBox();
+    }
+
+    @Then("Click on Next button and validate that in order entry page payment options are disabled")
+    public void clickOnNextButtonAndValidateThatInOrderEntryPagePaymentOptionsAreDisabled() throws InterruptedException, AWTException
+    {
+        exists=false;
+        newOE = new NewOrderEntryPage(driver,scenario);
+        newOE.readProductsInOrder();
+        Thread.sleep(1000);
+        //handling toast messages
+        for(int i=0;i<=2;i++)
+        {
+            //check for toast message for low on inventory
+            newOE.lowOnInventoryToast();
+            //check for toast message for product is currently unavailable
+            newOE.toastCurrentlyUnavailable();
+        }
+
+        for(int i=0;i<=1;i++)
+        {
+            newOE.priceCannotBeBleowCost();
+            newOE.exceedsMaxQty();
+        }
+        exists=newOE.ClickNext();
+        newOE.OutOfStockPop_ERP();
+        String status = HelpersMethod.returnDocumentStatus(driver);
+        if (status.equals("loading"))
+        {
+            HelpersMethod.waitTillLoadingPage(driver);
+        }
+
+        Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                .withTimeout(Duration.ofSeconds(400))
+                .pollingEvery(Duration.ofSeconds(2))
+                .ignoring(NoSuchElementException.class);
+        wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
+        status = HelpersMethod.returnDocumentStatus(driver);
+        if (status.equals("loading"))
+        {
+            HelpersMethod.waitTillLoadingPage(driver);
+        }
+
+        wait = new FluentWait<WebDriver>(driver)
+                .withTimeout(Duration.ofSeconds(400))
+                .pollingEvery(Duration.ofSeconds(2))
+                .ignoring(NoSuchElementException.class);
+        wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
+        checkorder=new CheckOutOrderPage(driver,scenario);
+        Thread.sleep(4000);
+        Ord_No=checkorder.readOrderNumber();
+        if(HelpersMethod.IsExists("//div[@id='paymentMethodCard']",driver))
+        {
+            checkorder.Select_PaymentMethod_ClickDownArrow();
+            if(HelpersMethod.IsExists("//tr/descendant::td[@class='payment-method-type-cell']/descendant::input[@checked]",driver) && HelpersMethod.IsExists("//button[@id='allowOrderWithoutPayment' and @disabled]",driver))
+            {
+                scenario.log("PAYMENT OPTION HAS BEEN SELECTED AT THE TIME OF CREATION OF ORDER");
+            }
+            checkorder.DeliveryAddressCard();
+            checkorder.NextButton_Click();
+        }
     }
 }

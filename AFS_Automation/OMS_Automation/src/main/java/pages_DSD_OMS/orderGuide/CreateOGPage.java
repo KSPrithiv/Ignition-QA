@@ -3,7 +3,11 @@ package pages_DSD_OMS.orderGuide;
 import helper.HelpersMethod;
 import io.cucumber.java.Scenario;
 
+import io.cucumber.java.bs.A;
+import io.cucumber.java.en_old.Ac;
+import io.cucumber.java.zh_cn.假如;
 import org.apache.commons.io.filefilter.WildcardFileFilter;
+import org.apache.logging.log4j.core.tools.picocli.CommandLine;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
@@ -13,6 +17,7 @@ import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
+import org.vandeseer.easytable.drawing.DrawingUtil;
 import util.DataBaseConnection;
 import util.TestBase;
 
@@ -63,7 +68,7 @@ public class CreateOGPage
     @FindBy(id = "Export")
     private WebElement OGExport;
 
-    @FindBy(id = "ImportProducts")
+    @FindBy(xpath = "//label[text()='Import']")
     private WebElement OGImport;
 
     @FindBy(xpath = "//div[@class='i-search-box']/descendant::input")
@@ -1206,6 +1211,7 @@ public class CreateOGPage
                             else if(TestBase.testEnvironment.get_url().contains("autodsd"))
                             {
                                 OGno="OrderGuide_OG670.csv";
+                                break;
                             }
                         }
                         else if(TestBase.testEnvironment.get_url().contains("erp")||TestBase.testEnvironment.get_url().contains("ERP"))
@@ -1220,6 +1226,7 @@ public class CreateOGPage
                     HelpersMethod.ScrollElement(driver,OGImport);
                     driver.findElement(By.xpath("//input[@id='ImportProducts' and @type='file']")).sendKeys("C:\\Users\\Divya.Ramadas\\Downloads\\" +OGno);
                     exists=true;
+                    scenario.log("ORDER IMPORTED IS "+OGno);
                     wait = new FluentWait<WebDriver>(driver)
                             .withTimeout(Duration.ofSeconds(400))
                             .pollingEvery(Duration.ofSeconds(2))
@@ -3111,6 +3118,99 @@ public class CreateOGPage
                         .ignoring(NoSuchElementException.class);
                 wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
             }
+        }
+        catch (Exception e){}
+    }
+
+    public void clickPriceingCustomer()
+    {
+        exists=false;
+        try
+        {
+            if(HelpersMethod.IsExists("//label[text()='Pricing customer']/following-sibling::span/button",driver))
+            {
+                WebElement pricingCustomer=HelpersMethod.FindByElement(driver,"xpath","//label[text()='Pricing customer']/following-sibling::span/button");
+                HelpersMethod.ClickBut(driver,pricingCustomer,10000);
+                exists=true;
+            }
+            Assert.assertEquals(exists,true);
+        }
+        catch (Exception e){}
+    }
+
+    public void selectPricingCustomer(String priceCust)
+    {
+        exists=false;
+        Actions act=new Actions(driver);
+        String custPringText;
+        try
+        {
+            new WebDriverWait(driver,Duration.ofMillis(10000)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.xpath("//ul[contains(@id,'dropDownNoneType')]/descendant::span[contains(@class,'list-item-text')]"))));
+            new WebDriverWait(driver,Duration.ofMillis(10000)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//ul[contains(@id,'dropDownNoneType')]/descendant::span[contains(@class,'list-item-text')]")));
+            List<WebElement>  custPrings=HelpersMethod.FindByElements(driver,"xpath","//ul[contains(@id,'dropDownNoneType')]/descendant::span[contains(@class,'list-item-text')]");
+            for(WebElement custPricing:custPrings)
+            {
+                act.moveToElement(custPricing).build().perform();
+                custPringText=custPricing.getText();
+                if(custPringText.contains(priceCust))
+                {
+                    act.moveToElement(custPricing).build().perform();
+                    act.click(custPricing).build().perform();
+                    exists=true;
+                   break;
+                }
+            }
+            Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(400))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+            Assert.assertEquals(exists,true);
+        }
+        catch (Exception e){}
+    }
+
+    public void handleChangePricingCustomer()
+    {
+        try
+        {
+            Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(400))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+            if(HelpersMethod.IsExists("//span[contains(text(),'Change pricing customer')]/ancestor::div[@class='k-window k-dialog']",driver))
+            {
+                WebElement modelContainer=HelpersMethod.FindByElement(driver,"xpath","//div[@class='k-window k-dialog']");
+                WebElement yesButton=modelContainer.findElement(By.xpath(".//button/span[text()='Yes']"));
+                HelpersMethod.ActClick(driver,yesButton,10000);
+                wait = new FluentWait<WebDriver>(driver)
+                        .withTimeout(Duration.ofSeconds(400))
+                        .pollingEvery(Duration.ofSeconds(2))
+                        .ignoring(NoSuchElementException.class);
+                wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+            }
+        }
+        catch (Exception e){}
+    }
+
+    public void validatePricingCustomer(String priceCust)
+    {
+        exists=false;
+        try
+        {
+            Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(400))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
+            String TextCustPricing=HelpersMethod.FindByElement(driver,"xpath","//label[text()='Pricing customer']/following-sibling::span/descendant::span[@class='k-input-value-text']").getText();
+            if(TextCustPricing.contains(priceCust))
+            {
+               exists=true;
+            }
+            Assert.assertEquals(exists,true);
         }
         catch (Exception e){}
     }
