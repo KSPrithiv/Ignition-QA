@@ -944,19 +944,22 @@ public class CheckOutOrderPage
     public String SelectPaymentMethodReadPaymentInfo()
     {
         WebElement WebEle;
-        String currenturl=null;
+        String paymentMethod=null;
         try
         {
             if(HelpersMethod.IsExists("//div[@class='payment-method-container']/descendant::tbody/tr[1]/descendant::input",driver))
             {
                 WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='payment-method-container']/descendant::tbody/tr[1]/descendant::input");
                 HelpersMethod.ClickBut(driver, WebEle, 20000);
-                currenturl=HelpersMethod.FindByElement(driver,"xpath","//tr[1]/td/div[contains(@class,'payment-method-type')]").getText();
-                scenario.log("PAYMENT METHOD SELECTED IS: "+currenturl);
+                if(HelpersMethod.IsExists("//div[@class='payment-method-container']/descendant::tr[@class='selected']/descendant::div[contains(@class,'payment-method-type')]",driver))
+                {
+                    paymentMethod=HelpersMethod.FindByElement(driver,"xpath","//div[@class='payment-method-container']/descendant::tr[@class='selected']/descendant::div[contains(@class,'payment-method-type')]").getText();
+                    scenario.log("PAYMENT METHOD SELECTED IS "+paymentMethod);
+                }
             }
         }
         catch (Exception e){}
-        return currenturl;
+        return paymentMethod;
     }
 
     public void validateCheckOrder()
@@ -1049,4 +1052,6 @@ public class CheckOutOrderPage
         }
         catch (Exception e){}
     }
+
+
 }

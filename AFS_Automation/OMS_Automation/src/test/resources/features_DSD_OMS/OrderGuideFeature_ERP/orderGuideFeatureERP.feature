@@ -12,11 +12,11 @@ Feature: Order GuideERP
   Scenario Outline: Test scenario for creating OG using Standard order
     Given User must be on Order Entry Page to select OG
     And User should navigate to OG
-    Then User should click on Customer Reference drop down and select type of OG
-      |Standard Order|
+    Then User should click on Customer Reference drop down and select type of OG "<OGType>"
     And Check for popup to appear to select sub customer reference for Standard order
     |null|
     Then User clicks on Create new button and should navigate to New OG page
+    And User validates Customer reference "<OGType>" to verify the OG created and select pricing customer value from dropdown "<Pricing Customer>"
     Then Then User enters Description "<OG>" and End date
     And User should make sure that customer reference "<OGType>" is same as of selected in OG page
     Then User clicks on Add product button and select Catalog from drop down for price Base OG
@@ -27,18 +27,18 @@ Feature: Order GuideERP
     And Clear filter to display both active and inactive OG
     Then User enters OG Description "<OG>" in search box and Delete the OG verify same in OG grid
     Examples:
-      |  OG        |  OGType                      |
-      |StandardOG  | Standard Order               |
+      |  OG        |  OGType                      | Pricing Customer    |
+      |StandardOG  | Standard Order               |                     |
 
   @ReferencePriceGroupDealGroup
   Scenario Outline: Test scenario for creating customer Reference Price group Deal group
     Given User must be on Order Entry Page to select OG
     And User should navigate to OG
-    Then User should click on Customer Reference drop down and select type of OG
-      |Price group - deal group|
+    Then User should click on Customer Reference drop down and select type of OG "<OGType>"
     And Check for popup to appear to select sub customer reference for Price group deal group
     |null|
     Then User clicks on Create new button and should navigate to New OG page
+    And User validates Customer reference "<OGType>" to verify the OG created and select pricing customer value from dropdown "<Pricing Customer>"
     Then Then User enters Description "<OG>" and End date
     And User should make sure that customer reference "<OGType>" is same as of selected in OG page
     Then User clicks on Add product button and select Catalog from drop down for price Base OG
@@ -49,5 +49,5 @@ Feature: Order GuideERP
     And Clear filter to display both active and inactive OG
     Then User enters OG Description "<OG>" in search box and Delete the OG verify same in OG grid
     Examples:
-      |  OG            |  OGType                   |
-      |PricedealOG  | Price group - deal group  |
+      |  OG         |  OGType                |  Pricing Customer   |
+      |PricedealOG  | Price group - deal group  |                     |

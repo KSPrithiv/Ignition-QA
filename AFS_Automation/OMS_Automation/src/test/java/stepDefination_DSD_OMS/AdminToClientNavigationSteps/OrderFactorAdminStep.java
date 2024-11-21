@@ -11,10 +11,13 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
+import pages_DSD_OMS.Catalog.CatalogPage;
 import pages_DSD_OMS.login.HomePage;
 import pages_DSD_OMS.orderEntry.CheckOutOrderPage;
 import pages_DSD_OMS.orderEntry.CheckOutSummaryPage;
 import pages_DSD_OMS.orderEntry.NewOrderEntryPage;
+import pages_DSD_OMS.orderEntry.OrderEntryPage;
 import pages_DSD_OMS.orderFactorAdmin.orderFactorAdminPage;
 import pages_DSD_OMS.webOrdering.AdminHomePage;
 import util.DataBaseConnection;
@@ -45,6 +48,8 @@ public class OrderFactorAdminStep
     static HomePage homepage;
     static CheckOutOrderPage checkorder;
     static CheckOutSummaryPage summary;
+    static OrderEntryPage orderpage;
+    static CatalogPage catalogpage;
 
     @Before
     public void LaunchBrowser1(Scenario scenario) throws Exception
@@ -535,6 +540,48 @@ public class OrderFactorAdminStep
             }
             checkorder.DeliveryAddressCard();
             checkorder.NextButton_Click();
+        }
+    }
+
+    @And("User search for order factor product in product grid Enter Qty for the products in Product grid")
+    public void userSearchForOrderFactorProductInProductGridEnterQtyForTheProductsInProductGrid(DataTable tabledata) throws InterruptedException, AWTException
+    {
+        List<List<String>> PO_Qty = tabledata.asLists(String.class);
+        newOE=new NewOrderEntryPage(driver,scenario);
+        newOE.ValidateNewOE();
+        newOE.readProductsInOrder();
+        newOE.searchForOrderFactorProduct(prodNo);
+        newOE.EnterCaseQtyProductLine(PO_Qty.get(0).get(0));
+        newOE.EnterUnitQtyProductLine(PO_Qty.get(0).get(1));
+    }
+
+    @Then("Click on Order number in Order Entry page and check for New OE page for editing Order for OrderFactor")
+    public void clickOnOrderNumberInOrderEntryPageAndCheckForNewOEPageForEditingOrderForOrderFactor() throws InterruptedException, AWTException
+    {
+            orderpage = new OrderEntryPage(driver, scenario);
+            orderpage.Select_Order_OrdersGrid();
+            //Check if user is on New OE page
+            newOE=new NewOrderEntryPage(driver,scenario);
+            exists=newOE.ValidateNewOE1();
+            Assert.assertEquals(exists,true);
+            newOE.readProductsInOrder();
+
+    }
+
+    @Then("User enters Product# in Search bar and enters Qty for single Product for order factor")
+    public void userEntersProductInSearchBarAndEntersQtyForSingleProductForOrderFactor(DataTable tabledata) throws InterruptedException
+    {
+        List<List<String>> prodQty = tabledata.asLists(String.class);
+        catalogpage = new CatalogPage(driver, scenario);
+        catalogpage.SearchProduct(prodNo);
+        exists = HelpersMethod.IsExists("//div[contains(text(),'Sorry, no products matched')]", driver);
+        if (exists == true)
+        {
+            HelpersMethod.ClickBut(driver,HelpersMethod.FindByElement(driver, "xpath", "//span[contains(@class,'search-button')]/*[local-name()='svg']/*[local-name()='path' and contains(@d,'M17')]"),10000);
+        }
+        else if (exists == false)
+        {
+            catalogpage.ProductExistsCard(prodQty.get(0).get(0));
         }
     }
 }

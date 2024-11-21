@@ -59,6 +59,7 @@ public class CustomerInqStep_ERP1
         customerInquiryPageERP.clickOnCustomerAccountIndex();
         customerInquiryPageERP.validateCustomerAccountIndex();
         customerInquiryPageERP.selectCustomerAccount(firstFilterValue.get(0).get(0));
+        customerInquiryPageERP.NoNotePopHandling();
     }
 
     @Then("User should click on customer note icon in customer inq in ERP page and validate that note added is existing in popup")
@@ -130,5 +131,29 @@ public class CustomerInqStep_ERP1
         customerInquiryPageERP=new CustomerInquiryPageERP(driver,scenario);
         customerInquiryPageERP.clickOnPaymentProcessing();
         customerInquiryPageERP.verifySystemDefaultRealTime();
+    }
+
+    @And("User should select customer account# in customer inq in ERP to load customer inq")
+    public void userShouldSelectCustomerAccountInCustomerInqInERPToLoadCustomerInq()
+    {
+
+    }
+
+    @And("User should verify that values relevant to the customer has been loaded in ERP")
+    public void userShouldVerifyThatValuesRelevantToTheCustomerHasBeenLoadedInERP()
+    {
+        customerInquiryPageERP=new CustomerInquiryPageERP(driver,scenario);
+        customerInquiryPageERP.readDetailsInMainPage();
+    }
+
+    @And("User should select customer account# in customer inq to load customer details in ERP")
+    public void userShouldSelectCustomerAccountInCustomerInqToLoadCustomerDetailsInERP(DataTable dataTable)
+    {
+        List<List<String>> firstFilterValue = dataTable.asLists(String.class);
+        customerInquiryPageERP=new CustomerInquiryPageERP(driver,scenario);
+        customerInquiryPageERP.clickOnCustomerAccountIndex();
+        customerInquiryPageERP.validateCustomerAccountIndex();
+        customerInquiryPageERP.selectCustomerAccountNo(firstFilterValue.get(0).get(0));
+        customerInquiryPageERP.NoNotePopHandling();
     }
 }

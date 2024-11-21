@@ -45,4 +45,10 @@ Feature: Customer Inq
     And User navigate to Dex.Edi tab and User enteres the value for all web elements
     Then User clicks on Save button without entering customer name
 
-
+  @LoadCustomerDetails
+  Scenario: Test scenario for loading details of particular customer in cusomter inq
+    Given User must be on Client side and select Customer Inq page
+    When User should confirm that he is in Customer Inq page
+    And User should select customer account# in customer inq to load customer details
+      |Customer #|
+    And User should verify that values relevant to the customer has been loaded

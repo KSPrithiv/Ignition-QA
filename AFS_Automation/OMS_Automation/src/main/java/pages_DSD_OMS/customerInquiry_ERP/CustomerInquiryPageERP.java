@@ -914,6 +914,75 @@ public class CustomerInquiryPageERP
         catch (Exception e){}
     }
 
+    public void selectCustomerAccountNo(String searchValue)
+    {
+        exists=false;
+        try
+        {
+            Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(200))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
+            if(HelpersMethod.IsExists("//div[contains(@class,'k-window k-dialog')]/descendant::span[contains(text(),'Add filter')]/ancestor::button",driver))
+            {
+                //Create webelement for account dialog box
+                WebElement modalContainer=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-window k-dialog')]");
+                WebElement addButton=modalContainer.findElement(By.xpath(".//span[contains(text(),'Add filter')]/ancestor::button"));
+                //find whether any filters are already enabled, if yes clear all the filters
+                List<WebElement> filters=modalContainer.findElements(By.xpath(".//div[contains(@class,'i-filter-tag')]"));
+                if(filters.size()!=1)
+                {
+                    //click on add button
+                    HelpersMethod.ActClick(driver,addButton,10000);
+                    //identify clear all button and click on that
+                    WebElement Clear=modalContainer.findElement(By.xpath(".//button/span[contains(text(),'Clear all')]"));
+                    if(Clear.isEnabled())
+                    {
+                        HelpersMethod.ActClick(driver,Clear,10000);
+                    }
+                }
+
+                //click on add button
+                HelpersMethod.ActClick(driver,addButton,10000);
+
+                //Enter value to first input of addfilter
+                WebElement addFilterInput1=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'i-filter-popup--add')]/descendant::input[@class='i-search-box__input']");
+                HelpersMethod.EnterText(driver,addFilterInput1,10000,searchValue);
+                //Click on check box
+                WebElement checkBox=HelpersMethod.FindByElement(driver,"id","FORMATTED_CM_CUSTKEY");
+                HelpersMethod.ActClick(driver,checkBox,10000);
+                //enter search value in second search input box
+                WebElement addFilterInput2=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'i-filter-popup__content__input')]/input");
+                HelpersMethod.EnterText(driver,addFilterInput2,10000,TestBase.testEnvironment.get_Account());
+                //Click on Apply button
+                WebElement applyButton=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'i-filter-popup__footer')]/button/span[text()='Apply']");
+                HelpersMethod.ActClick(driver,applyButton,10000);
+                //Select 1st row in the customer accout# dialog popup
+                WebElement custAccount=modalContainer.findElement(By.xpath(".//tr[contains(@class,'k-master-row')][1]"));
+                HelpersMethod.ActClick(driver,custAccount,10000);
+                //Click on cancel button to close dialog box
+                WebElement cancelButton=modalContainer.findElement(By.xpath(".//button/span[text()='Cancel']"));
+                HelpersMethod.ActClick(driver,cancelButton,10000);
+
+                wait = new FluentWait<WebDriver>(driver)
+                        .withTimeout(Duration.ofSeconds(400))
+                        .pollingEvery(Duration.ofSeconds(2))
+                        .ignoring(NoSuchElementException.class);
+                wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
+                wait = new FluentWait<WebDriver>(driver)
+                        .withTimeout(Duration.ofSeconds(400))
+                        .pollingEvery(Duration.ofSeconds(2))
+                        .ignoring(NoSuchElementException.class);
+                wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
+            }
+        }
+        catch (Exception e){}
+    }
+
     public void selectCustomerAccountForAdminSetting(String searchValue)
     {
         exists=false;
@@ -1227,6 +1296,85 @@ public class CustomerInquiryPageERP
                 }
             }
             Assert.assertEquals(exists,true);
+        }
+        catch (Exception e){}
+    }
+
+    public void NoNotePopHandling()
+    {
+        WebElement WebEle;
+        try
+        {
+            if (HelpersMethod.IsExists("//div[@class='loader']", driver))
+            {
+                WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000000);
+            }
+            String status = HelpersMethod.returnDocumentStatus(driver);
+            if (status.equals("loading"))
+            {
+                HelpersMethod.waitTillLoadingPage(driver);
+            }
+            if (HelpersMethod.IsExists("//div[@class='loader']", driver))
+            {
+                WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000000);
+            }
+            status = HelpersMethod.returnDocumentStatus(driver);
+            if (status.equals("loading"))
+            {
+                HelpersMethod.waitTillLoadingPage(driver);
+            }
+            if (HelpersMethod.IsExists("//div[@class='loader']", driver))
+            {
+                WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000000);
+            }
+            status = HelpersMethod.returnDocumentStatus(driver);
+            if (status.equals("loading"))
+            {
+                HelpersMethod.waitTillLoadingPage(driver);
+            }
+            //Check for Note popup
+            if(HelpersMethod.IsExists("//div[@id='customerCommentGrid']/ancestor::div[contains(@class,'k-window k-dialog')]",driver))
+            {
+                // to fetch the web element
+                WebElement notePopup = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-window k-dialog')]");
+                //code to click on 'Ok' button in OG popup
+                WebElement okButton = notePopup.findElement(By.xpath(".//button/span[text()='Ok']"));
+                HelpersMethod.ActClick(driver, okButton, 10000);
+                status = HelpersMethod.returnDocumentStatus(driver);
+                if (status.equals("loading"))
+                {
+                    HelpersMethod.waitTillLoadingPage(driver);
+                }
+                if (HelpersMethod.IsExists("//div[@class='loader']", driver))
+                {
+                    WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
+                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000000);
+                }
+                status = HelpersMethod.returnDocumentStatus(driver);
+                if (status.equals("loading"))
+                {
+                    HelpersMethod.waitTillLoadingPage(driver);
+                }
+            }
+        }
+        catch (Exception e) {}
+    }
+
+    public void readDetailsInMainPage()
+    {
+        exists=false;
+        String primaryValues;
+        try
+        {
+            primaryValues=HelpersMethod.FindByElement(driver,"id","CmAdd1").getAttribute("value");
+            scenario.log("ADDRESS FOUND IN PRIMARY TAB IS::: "+primaryValues);
+            primaryValues=HelpersMethod.FindByElement(driver,"id","CmCity").getAttribute("value");
+            scenario.log("CITY DEATAILS FOUND::: "+primaryValues);
+            primaryValues=HelpersMethod.FindByElement(driver,"xpath","//span[@id='CmState-accessibility-id']/span").getText();
+            scenario.log("STATE DEATAILS FOUND::: "+primaryValues);
         }
         catch (Exception e){}
     }

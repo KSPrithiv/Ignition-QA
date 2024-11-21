@@ -146,4 +146,40 @@ public class CustomerInqStep1
         customerInquiryPage.clickOnPaymentProcessing();
         customerInquiryPage.verifySystemDefaultRealTime();
     }
+
+    @And("User should select customer account# in customer inq to load existing customer details")
+    public void userShouldSelectCustomerAccountInCustomerInqToLoadExistingCustomerDetails(DataTable dataTable)
+    {
+        List<List<String>> firstFilterValue = dataTable.asLists(String.class);
+        customerInquiryPage=new CustomerInquiryPage(driver,scenario);
+        customerInquiryPage.clickOnCustomerAccountIndex();
+        customerInquiryPage.validateCustomerAccountIndex();
+        customerInquiryPage.selectCustomerAccount(firstFilterValue.get(0).get(0));
+        customerInquiryPage.NoNotePopHandling();
+    }
+
+    @And("User should verify that values relevant to the customer has been loaded")
+    public void userShouldVerifyThatValuesRelevantToTheCustomerHasBeenLoaded()
+    {
+        customerInquiryPage=new CustomerInquiryPage(driver,scenario);
+        customerInquiryPage.readDetailsInPrimaryPage();
+    }
+
+    @And("User clears search value in search box")
+    public void userClearsSearchValueInSearchBox()
+    {
+        ignitionPage = new IgnitionPage(driver, scenario);
+        ignitionPage.clearSearchbar();
+    }
+
+    @And("User should select customer account# in customer inq to load customer details")
+    public void userShouldSelectCustomerAccountInCustomerInqToLoadCustomerDetails(DataTable dataTable)
+    {
+        List<List<String>> firstFilterValue = dataTable.asLists(String.class);
+        customerInquiryPage=new CustomerInquiryPage(driver,scenario);
+        customerInquiryPage.clickOnCustomerAccountIndex();
+        customerInquiryPage.validateCustomerAccountIndex();
+        customerInquiryPage.selectCustomerAccountNo(firstFilterValue.get(0).get(0));
+        customerInquiryPage.NoNotePopHandling();
+    }
 }

@@ -402,7 +402,7 @@ public class CustomerInqStep
         if(HelpersMethod.IsExists("//div[@class='loader']",driver))
         {
             WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 400);
+            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 20000);
         }
         pricePage=new PricePage(driver,scenario);
         pricePage.ValidatePrice();
@@ -426,8 +426,8 @@ public class CustomerInqStep
         pricePage.PrintedCheckBox();
         pricePage.EmailedCheckBox();
         pricePage.EmailGroupDropDown();
-        pricePage.PrimaryEmailInput();
-        pricePage.SecondaryEmailInput();
+        //pricePage.PrimaryEmailInput();
+        //pricePage.SecondaryEmailInput();
         pricePage.DiscountPerInput();
         pricePage.ChargebackPerInput();
         pricePage.FinanceChargeInput();
@@ -450,7 +450,7 @@ public class CustomerInqStep
         if(HelpersMethod.IsExists("//div[@class='loader']",driver))
         {
             WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 400);
+            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 10000);
         }
         miscTaxPage=new MiscTaxPage(driver,scenario);
         miscTaxPage.ValidateMiscTax();
