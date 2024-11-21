@@ -1,0 +1,66 @@
+name: OMS-D Regression
+
+on:
+  workflow_dispatch:
+    inputs:
+      branch:
+        description: 'Branch name'
+        default: 'main'
+
+jobs:
+  build:
+    name: OMS Automation
+    runs-on: self-hosted
+
+    steps:
+      - name: Clean up unused images and space
+        run: |
+          sudo rm -rf /usr/share/dotnet/
+          sudo rm -rf /usr/local/lib/android/
+          sudo apt-get clean
+          df -h
+
+      - name: Checkout source code
+        uses: actions/checkout@v3
+
+      - name: Set up Java
+        uses: actions/setup-java@v3
+        with:
+          distribution: temurin
+          java-version: '16'
+          cache: maven
+
+      - name: Check Maven version
+        run: mvn -v
+
+      - name: Cache Maven dependencies
+        uses: actions/cache@v3
+        with:
+          path: ~/.m2/repository
+          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+          restore-keys: |
+            ${{ runner.os }}-maven
+
+      - name: List files in current directory
+        run: dir  # Use 'dir' for Windows
+
+      - name: Build with Maven
+        run: mvn -B package --file pom.xml
+
+      - name: Create cucumber-reports directory
+        run: mkdir -p AFS_Automation/OMS_Automation/target/cucumber-reports  
+
+      - name: OMS Automation module-1
+        run: |
+          mvn clean install test -DsuiteXmlFile='TestNG_Admin_Grid.xml' -Dheadless=true
+        working-directory: AFS_Automation/OMS_Automation
+
+      - name: Upload test results
+        if: success() || failure()
+        uses: actions/upload-artifact@v3
+        with:
+          name: test-results
+          path: AFS_Automation/OMS_Automation/target/cucumber-reports
+
+      - name: Clean up after job
+        run: rm -rf /path/to/temp/folder/*
