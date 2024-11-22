@@ -24,6 +24,7 @@ import util.TestBase;
 
 import javax.enterprise.inject.New;
 import java.awt.*;
+import java.io.File;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.time.Duration;
@@ -51,6 +52,7 @@ public class OrderEntryPageSteps
 
     static boolean exists=false;
     private static String Ord_No;
+    private static String exportFilePath;
     //static String currentDate=null;
 
     @Before
@@ -1112,7 +1114,9 @@ public class OrderEntryPageSteps
     public void navigate_to_newoe_page_and_click_on_export_button() throws InterruptedException, AWTException
     {
         newOE=new NewOrderEntryPage(driver,scenario);
-        Ord_No=newOE.Export_button(Ord_No);
+        /*Ord_No=newOE.Export_button(Ord_No);*/
+        exportFilePath= newOE.Export_button(Ord_No);
+        scenario.log(exportFilePath +"FILE FOR IMPORTING WITH PATH");
     }
 
     //Click on Edit button in Order summary page
@@ -1135,7 +1139,7 @@ public class OrderEntryPageSteps
     public void click_on_import_button() throws InterruptedException, AWTException
     {
         newOE=new NewOrderEntryPage(driver,scenario);
-        newOE.Import_button(Ord_No);
+        newOE.Import_button(exportFilePath);
         newOE.ValidateNewOE();
     }
 

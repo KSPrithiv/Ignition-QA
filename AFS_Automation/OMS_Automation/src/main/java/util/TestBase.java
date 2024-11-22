@@ -23,6 +23,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 
 import java.time.Duration;
+import java.util.HashMap;
 import java.util.concurrent.TimeUnit;
 
 import static org.testng.Assert.assertNotNull;
@@ -92,6 +93,10 @@ public class TestBase
                 //chromeOptions.addArguments("--disable-popup-blocking");
                 //chromeOptions.addArguments("disable-notifications");
                 //chromeOptions.addArguments("disable-infobars");
+                HashMap<String, Object> chromePref = new HashMap<>();
+                chromePref.put("download.default_directory", System.getProperty("java.io.tmpdir"));
+                chromeOptions.setExperimentalOption("prefs", chromePref);
+
                 chromeOptions.addArguments("--no-sandbox");
                 chromeOptions.addArguments("--start-maximized");
                 chromeOptions.addArguments("window-size=1920,1080");
@@ -152,6 +157,10 @@ public class TestBase
             {
                 //WebDriverManager.chromedriver().setup();
                 ChromeOptions chromeOptions = new ChromeOptions();
+                HashMap<String, Object> chromePref = new HashMap<>();
+                chromePref.put("download.default_directory", System.getProperty("java.io.tmpdir"));
+                chromeOptions.setExperimentalOption("prefs", chromePref);
+
                 chromeOptions.addArguments("--headless=new");
                 chromeOptions.addArguments("--no-sandbox");
                 chromeOptions.addArguments("--remote-allow-origins=*");

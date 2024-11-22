@@ -265,11 +265,6 @@ public class HelpersMethod
         {
             Read_Val = ele.getText();
         }
-        else
-        {
-            //ElementNotVisibleException EleVis = new ElementNotVisibleException("Element not Visible");
-            //throw EleVis;
-        }
         return Read_Val;
     }
 
