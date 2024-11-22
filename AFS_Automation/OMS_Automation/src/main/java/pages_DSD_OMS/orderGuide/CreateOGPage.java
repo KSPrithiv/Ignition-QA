@@ -23,6 +23,7 @@ import util.TestBase;
 
 import java.io.File;
 import java.io.FileFilter;
+import java.time.DayOfWeek;
 import java.time.Duration;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -45,6 +46,7 @@ public class CreateOGPage
     static String ExportOG;
     static ArrayList<String> sequence1=new ArrayList<String>();
     static ArrayList<String> sequence2=new ArrayList<>(sequence1);
+    //static String importFilePath;
 
     @FindBy(xpath = "//label[text()='Description']/following-sibling::input")
     private WebElement OG_Des;
@@ -1115,10 +1117,14 @@ public class CreateOGPage
     }
 
     //code for clicking Export button
-    public void Click_Export()
+    public String Click_Export()
     {
         exists=false;
         WebElement WebEle;
+        String tmpFolderPath = "";
+        String expectedFileName ;
+        File file;
+
         if(HelpersMethod.IsExists("//div[@class='loader']",driver))
         {
             WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
@@ -1144,8 +1150,11 @@ public class CreateOGPage
                 exists=true;
                 scenario.log("OG FILE HAS BEEN DOWN LOADED");
 
+                //to find path of exported file so that same file can be used for importing
+                tmpFolderPath = System.getProperty("java.io.tmpdir");
+
                 //Read all the .csv files in download directory and compare with actual order number
-                File dir = new File("C:\\Users\\Divya.Ramadas\\Downloads");
+                File dir = new File(tmpFolderPath);
                 FileFilter fileFilter = new WildcardFileFilter("*.csv");
                 File[] files = dir.listFiles(fileFilter);
 
@@ -1154,25 +1163,28 @@ public class CreateOGPage
                     String file1 = Exportfile.getName();
                     if(file1.contains("OrderGuide"))
                     {
-                        ExportOG=file1;
+                        expectedFileName = file1;
+                        file = new File(tmpFolderPath + expectedFileName);
+                        scenario.log(file+" IS EXPORTED ORDER GUIDE");
+                        //mportFilePath= String.valueOf(file);
+                        //ExportOG=file1;
                         break;
                     }
                 }
-                scenario.log("ORDER GUIDE EXPORTED IS "+ ExportOG);
             }
             Assert.assertEquals(exists,true);
         }
         catch (Exception e) { }
+        return tmpFolderPath;
     }
 
     //Code for clicking Import button
-    public void ImportClick()
+    public void ImportClick(String importFilePath)
     {
         exists=false;
         String file1;
         String OGno="";
         Wait<WebDriver> wait;
-        int i=0;
         try
         {
 //            if(OGImport.isDisplayed())
@@ -1193,12 +1205,12 @@ public class CreateOGPage
 
               if(HelpersMethod.IsExists("//input[@id='ImportProducts']",driver))
               {
-                File dir = new File("C:\\Users\\Divya.Ramadas\\Downloads");
+                scenario.log("ORDER GUIDE .CSV FILE CAN BE FOUND IN PATH "+importFilePath);
+                File dir = new File(importFilePath);
                 FileFilter fileFilter = new WildcardFileFilter("*.csv");
                 File[] files = dir.listFiles(fileFilter);
                 for (File fileName:files)
                 {
-                    i++;
                     file1 = fileName.getName();
                     if(file1.contains("OrderGuide"))
                     {
@@ -1243,7 +1255,6 @@ public class CreateOGPage
                                 .ignoring(NoSuchElementException.class);
                         wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
                     }
-
                 }
 
                 if(HelpersMethod.IsExists("//span[contains(text(),'Import failed')]/ancestor::div[contains(@class,'k-window k-dialog')]",driver))
@@ -3046,7 +3057,7 @@ public class CreateOGPage
             Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
                     .withTimeout(Duration.ofSeconds(400))
                     .pollingEvery(Duration.ofSeconds(2))
-                    .ignoring(org.openqa.selenium.NoSuchElementException.class);
+                    .ignoring(NoSuchElementException.class);
             wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
 
             Thread.sleep(1000);
@@ -3073,7 +3084,7 @@ public class CreateOGPage
                     wait = new FluentWait<WebDriver>(driver)
                             .withTimeout(Duration.ofSeconds(400))
                             .pollingEvery(Duration.ofSeconds(2))
-                            .ignoring(org.openqa.selenium.NoSuchElementException.class);
+                            .ignoring(NoSuchElementException.class);
                     wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
 
                     status = HelpersMethod.returnDocumentStatus(driver);
@@ -3085,7 +3096,7 @@ public class CreateOGPage
                     wait = new FluentWait<WebDriver>(driver)
                             .withTimeout(Duration.ofSeconds(400))
                             .pollingEvery(Duration.ofSeconds(2))
-                            .ignoring(org.openqa.selenium.NoSuchElementException.class);
+                            .ignoring(NoSuchElementException.class);
                     wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
                     Thread.sleep(1000);
                 }

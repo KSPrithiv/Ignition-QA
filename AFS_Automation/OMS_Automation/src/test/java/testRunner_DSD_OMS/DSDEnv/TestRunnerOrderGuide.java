@@ -13,8 +13,8 @@ import java.io.IOException;
  * @Project DSD_OMS
  * @Author Divya.Ramadas@afsi.com
  */
-@CucumberOptions(features =
-        {"src/test/resources/features_DSD_OMS/OrderGuideFeature_DSD/orderGuideFeature.feature",
+@CucumberOptions(features = {
+        "src/test/resources/features_DSD_OMS/OrderGuideFeature_DSD/orderGuideFeature.feature",
         "src/test/resources/features_DSD_OMS/OrderGuideFeature_DSD/orderGuideFeature1.feature",
         "src/test/resources/features_DSD_OMS/OrderGuideFeature_DSD/orderGuideFeature2.feature",
         "src/test/resources/features_DSD_OMS/OrderGuideFeature_DSD/orderGuideFeature3.feature",

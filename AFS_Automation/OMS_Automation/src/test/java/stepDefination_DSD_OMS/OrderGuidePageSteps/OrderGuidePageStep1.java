@@ -28,14 +28,14 @@ public class OrderGuidePageStep1
     /* Created by Divya.Ramadas@afsi.com */
     WebDriver driver;
     Scenario scenario;
+    static OrderGuidePage orderGuidePage;
+    static CreateOGPage createOGPage;
 
     static boolean exists = false;
     static String Prod_No=null;
     static String OGDis=null;
     static String WDay=null;
-
-    static OrderGuidePage orderGuidePage;
-    static CreateOGPage createOGPage;
+    static String importFilePath;
 
     @Before
     public void LaunchBrowser1(Scenario scenario) throws Exception
@@ -130,7 +130,7 @@ public class OrderGuidePageStep1
     {
         createOGPage = new CreateOGPage(driver, scenario);
         createOGPage.ValidateNewOG();
-        createOGPage.ImportClick();
+        createOGPage.ImportClick(importFilePath);
         createOGPage.ListProductsImported();
     }
 
@@ -165,22 +165,6 @@ public class OrderGuidePageStep1
         orderGuidePage.CustomerRef();
         orderGuidePage.CustRefDropDown(orderType);
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     @And("Check for popup to appear to select sub customer reference for local chain")
     public void checkForPopupToAppearToSelectSubCustomerReferenceForLocalChain(DataTable dataTable) throws InterruptedException, AWTException
@@ -378,7 +362,7 @@ public class OrderGuidePageStep1
     {
         createOGPage = new CreateOGPage(driver, scenario);
         createOGPage.ValidateNewOG();
-        createOGPage.Click_Export();
+        importFilePath=createOGPage.Click_Export();
     }
 
     @Then("User Clicks on Customer Account_No button and select other Customer Account_No")

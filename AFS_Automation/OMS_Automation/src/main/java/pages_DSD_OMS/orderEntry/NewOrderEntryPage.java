@@ -2,7 +2,6 @@ package pages_DSD_OMS.orderEntry;
 
 import helper.HelpersMethod;
 import io.cucumber.java.Scenario;
-import org.apache.logging.log4j.core.tools.picocli.CommandLine;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
@@ -16,6 +15,7 @@ import util.DataBaseConnection;
 import util.TestBase;
 
 import java.awt.*;
+import java.io.File;
 import java.time.Duration;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -137,6 +137,7 @@ public class NewOrderEntryPage
     static int rowIndex=0;
     static String baseCost;
     static int counter=0;
+    static File file;
 
     public NewOrderEntryPage(WebDriver driver, Scenario scenario) throws InterruptedException, AWTException
     {
@@ -3632,6 +3633,7 @@ public class NewOrderEntryPage
     public String Export_button(String ordNo)
     {
         WebElement WebEle;
+        String importFilePath=null;
 
         try
         {
@@ -3662,6 +3664,13 @@ public class NewOrderEntryPage
                 scenario.log("EXPORTED ORDER IS "+ Order_No);
                 Actual_Order=Order_No.substring(8);
 
+                //to find path of exported file so that same file can be used for importing
+                String tmpFolderPath = System.getProperty("java.io.tmpdir");
+                String expectedFileName = "Order_"+Actual_Order+".csv";
+                File file = new File(tmpFolderPath + expectedFileName);
+                scenario.log(file+" FILE PATH IS");
+                importFilePath= String.valueOf(file);
+
                 //Read all the .csv files in download directory and compare with actual order number
               /*  File dir = new File("C:\\Users\\Divya.Ramadas\\Downloads");
                 FileFilter fileFilter = new WildcardFileFilter("*.csv");
@@ -3679,32 +3688,34 @@ public class NewOrderEntryPage
             }
         }
         catch (Exception e) { }
-        return Actual_Order;
+        //return Actual_Order;
+        return importFilePath;
     }
 
-    public void Import_button(String ord_No)
+    public void Import_button(String filePathForImport)
     {
         exists=false;
         WebElement WebEle;
-        int intOrdNo= Integer.parseInt(ord_No);
-        String Ord_no="";
-        try
-        {
-            if(TestBase.testEnvironment.get_url().contains("dsd"))
-            {
-                //send file name to input box
-                ord_No=String.format("%010d",intOrdNo);
-                Ord_no = "Order_" + ord_No + ".csv";
-            }
-            else
-            {
-                Ord_no = "Order_" + ord_No + ".csv";
-            }
-            scenario.log("ORDER IMPORTED IS "+Ord_no);
+//        int intOrdNo= Integer.parseInt(ord_No);
+//        String Ord_no="";
+       try
+      {
+//            if(TestBase.testEnvironment.get_url().contains("dsd"))
+//            {
+//                //send file name to input box
+//                ord_No=String.format("%010d",intOrdNo);
+//                Ord_no = "Order_" + ord_No + ".csv";
+//            }
+//            else
+//            {
+//                Ord_no = "Order_" + ord_No + ".csv";
+//            }
+//            scenario.log("ORDER IMPORTED IS "+Ord_no);
             if(Import_but.isDisplayed())
             {
                 HelpersMethod.ScrollElement(driver,Import_but);
-                driver.findElement(By.xpath("//input[@id='ImportOrder' and @type='file']")).sendKeys("C:\\Users\\Divya.Ramadas\\Downloads\\"+Ord_no);
+                //driver.findElement(By.xpath("//input[@id='ImportOrder' and @type='file']")).sendKeys("C:\\Users\\Divya.Ramadas\\Downloads\\"+Ord_no);
+                driver.findElement(By.xpath("//input[@id='ImportOrder' and @type='file']")).sendKeys(filePathForImport);
                 exists=true;
             }
 
