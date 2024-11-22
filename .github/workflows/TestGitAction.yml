@@ -12,12 +12,14 @@ jobs:
     name: OMS Automation
     runs-on: self-hosted
 
+  clean-up:
+    runs-on: ubuntu-latest
     steps:
       - name: Clean up unused images and space
         run: |
-          sudo rm -rf /usr/share/dotnet/
-          sudo rm -rf /usr/local/lib/android/
-          sudo apt-get clean
+          rm -rf /usr/share/dotnet/
+          rm -rf /usr/local/lib/android/
+          apt-get clean
           df -h
 
       - name: Checkout source code
