@@ -59,10 +59,13 @@ jobs:
   clean-up:
     runs-on: windows-latest
     steps:
-      - name: Clean up unused images and space
+      - name: Clean up temporary files
         shell: cmd
         run: |
           echo Deleting all files in %TEMP%
           del /s /q "%TEMP%\*"
           echo Removing all empty folders in %TEMP%
           for /d %%D in ("%TEMP%\*") do rd /s /q "%%D"
+
+      - name: Run tests
+        run: mvn clean test
