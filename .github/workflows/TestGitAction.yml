@@ -22,6 +22,10 @@ jobs:
           java-version: '16'
           cache: maven
 
+      - name: Install Maven
+        run: choco install maven -y
+        shell: cmd     
+
       - name: Check Maven version
         run: mvn -v
 
