@@ -57,5 +57,7 @@ jobs:
     steps:
       - name: Clean up unused images and space
         run: |
-          del /s /q %TEMP%\
-          del /s /q C:\Users\%USERNAME%\AppData\Local\Temp\
+          echo Deleting all files in %TEMP%
+          del /s /q "%TEMP%\*"
+          echo Removing all empty folders in %TEMP%
+          for /d %%D in ("%TEMP%\*") do rd /s /q "%%D"
