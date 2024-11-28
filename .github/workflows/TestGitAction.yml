@@ -56,6 +56,7 @@ jobs:
     runs-on: windows-latest
     steps:
       - name: Clean up unused images and space
+        shell: cmd
         run: |
           echo Deleting all files in %TEMP%
           del /s /q "%TEMP%\*"
