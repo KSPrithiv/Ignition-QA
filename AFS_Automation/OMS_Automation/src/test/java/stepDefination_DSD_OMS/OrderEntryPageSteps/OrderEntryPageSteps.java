@@ -646,6 +646,7 @@ public class OrderEntryPageSteps
     {
         summary = new CheckOutSummaryPage(driver,scenario);
         summary.validateSummaryPage();
+        summary.readProductsFromOrderSummaryPage();
         summary.ClickSubmit();
         for(int i=0;i<=2;i++)
         {

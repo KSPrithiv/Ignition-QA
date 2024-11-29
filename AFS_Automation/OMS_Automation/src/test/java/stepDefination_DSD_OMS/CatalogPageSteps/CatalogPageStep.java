@@ -399,8 +399,8 @@ public class CatalogPageStep
         catalogpage.ClickImage();
         productdesctiptionpage = new ProductDescriptionPage(driver, scenario);
         Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
-                .withTimeout(Duration.ofSeconds(30))
-                .pollingEvery(Duration.ofSeconds(5))
+                .withTimeout(Duration.ofSeconds(400))
+                .pollingEvery(Duration.ofSeconds(2))
                 .ignoring(NoSuchElementException.class);
         wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
         if(HelpersMethod.IsExistsById("delete-from-cart-button",driver))

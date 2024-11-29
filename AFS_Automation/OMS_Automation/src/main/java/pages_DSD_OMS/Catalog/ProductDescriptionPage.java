@@ -67,7 +67,7 @@ public class ProductDescriptionPage
             //HelpersMethod.WaitElementPresent(driver,"classname","product-detail-container",100000);
             HelpersMethod.ScrollElement(driver,Qty_In);
             //Code to enter Qty in Input box
-            HelpersMethod.EnterText(driver, Qty_In, 4000, Qty);
+            HelpersMethod.EnterText(driver, Qty_In, 10000, Qty);
             exists = true;
         }
         catch (Exception e) {}

@@ -1164,7 +1164,7 @@ public class CreateOGPage
                     if(file1.contains("OrderGuide"))
                     {
                         expectedFileName = file1;
-                        file = new File(tmpFolderPath + expectedFileName);
+                        file = new File(tmpFolderPath+"\\" + expectedFileName);
                         scenario.log(file+" IS EXPORTED ORDER GUIDE");
                         //mportFilePath= String.valueOf(file);
                         //ExportOG=file1;

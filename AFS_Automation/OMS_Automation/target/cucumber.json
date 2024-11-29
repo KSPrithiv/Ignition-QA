@@ -14,7 +14,7 @@
               "SIGNIN BUTTON CLICKED"
             ],
             "result": {
-              "duration": 21327020600,
+              "duration": 21337644500,
               "status": "passed"
             },
             "line": 5,
@@ -29,7 +29,7 @@
               "ADMIN PAGE OR ORDER ENTRY PAGE HAS BEEN FOUND"
             ],
             "result": {
-              "duration": 216459900,
+              "duration": 242666000,
               "status": "passed"
             },
             "line": 6,
@@ -45,7 +45,7 @@
               "IN ADMIN PAGE"
             ],
             "result": {
-              "duration": 3191396100,
+              "duration": 3154434500,
               "status": "passed"
             },
             "line": 7,
@@ -61,7 +61,7 @@
               "NAVIGATED TO ORDER ENTRY PAGE"
             ],
             "result": {
-              "duration": 5564431600,
+              "duration": 5743235000,
               "status": "passed"
             },
             "line": 8,
@@ -73,7 +73,7 @@
           },
           {
             "result": {
-              "duration": 11056235700,
+              "duration": 6833082500,
               "status": "passed"
             },
             "line": 9,
@@ -86,11 +86,11 @@
         ]
       },
       {
-        "start_timestamp": "2024-11-22T11:23:39.929Z",
+        "start_timestamp": "2024-11-28T16:03:53.829Z",
         "before": [
           {
             "result": {
-              "duration": 2510400,
+              "duration": 5389100,
               "status": "passed"
             },
             "match": {
@@ -99,6 +99,7 @@
           },
           {
             "result": {
+              "duration": 1536000,
               "status": "passed"
             },
             "match": {
@@ -163,7 +164,6 @@
           },
           {
             "result": {
-              "duration": 2511100,
               "status": "passed"
             },
             "match": {
@@ -188,7 +188,6 @@
           },
           {
             "result": {
-              "duration": 2510900,
               "status": "passed"
             },
             "match": {
@@ -205,6 +204,7 @@
           },
           {
             "result": {
+              "duration": 6841600,
               "status": "passed"
             },
             "match": {
@@ -213,7 +213,6 @@
           },
           {
             "result": {
-              "duration": 5043600,
               "status": "passed"
             },
             "match": {
@@ -222,6 +221,7 @@
           },
           {
             "result": {
+              "duration": 3010400,
               "status": "passed"
             },
             "match": {
@@ -246,7 +246,6 @@
           },
           {
             "result": {
-              "duration": 2514400,
               "status": "passed"
             },
             "match": {
@@ -287,7 +286,6 @@
           },
           {
             "result": {
-              "duration": 2516700,
               "status": "passed"
             },
             "match": {
@@ -336,6 +334,7 @@
           },
           {
             "result": {
+              "duration": 9968000,
               "status": "passed"
             },
             "match": {
@@ -344,7 +343,6 @@
           },
           {
             "result": {
-              "duration": 5049300,
               "status": "passed"
             },
             "match": {
@@ -369,7 +367,6 @@
           },
           {
             "result": {
-              "duration": 2009300,
               "status": "passed"
             },
             "match": {
@@ -394,6 +391,7 @@
           },
           {
             "result": {
+              "duration": 7011800,
               "status": "passed"
             },
             "match": {
@@ -474,7 +472,6 @@
           },
           {
             "result": {
-              "duration": 5038100,
               "status": "passed"
             },
             "match": {
@@ -491,6 +488,7 @@
           },
           {
             "result": {
+              "duration": 1068000,
               "status": "passed"
             },
             "match": {
@@ -547,7 +545,6 @@
           },
           {
             "result": {
-              "duration": 2011500,
               "status": "passed"
             },
             "match": {
@@ -604,7 +601,7 @@
           },
           {
             "result": {
-              "duration": 5039100,
+              "duration": 9691500,
               "status": "passed"
             },
             "match": {
@@ -637,6 +634,7 @@
           },
           {
             "result": {
+              "duration": 5009200,
               "status": "passed"
             },
             "match": {
@@ -773,7 +771,7 @@
           },
           {
             "result": {
-              "duration": 3011300,
+              "duration": 7459100,
               "status": "passed"
             },
             "match": {
@@ -811,7 +809,7 @@
               "NAVIGATED TO ORDER GUIDE"
             ],
             "result": {
-              "duration": 4641552300,
+              "duration": 4739924700,
               "status": "passed"
             },
             "line": 97,
@@ -826,7 +824,7 @@
               "NAVIGATED TO ORDER GUIDE"
             ],
             "result": {
-              "duration": 2471901000,
+              "duration": 2469752500,
               "status": "passed"
             },
             "line": 98,
@@ -860,7 +858,7 @@
               "PRODUCT FOUND IN OG 00000008"
             ],
             "result": {
-              "duration": 6344271400,
+              "duration": 6350238000,
               "status": "passed"
             },
             "line": 99,
@@ -878,10 +876,11 @@
           },
           {
             "output": [
-              "OG FILE HAS BEEN DOWN LOADED"
+              "OG FILE HAS BEEN DOWN LOADED",
+              "C:\\Users\\DIVYA~1.RAM\\AppData\\Local\\Temp\\OrderGuide_OG670.csv IS EXPORTED ORDER GUIDE"
             ],
             "result": {
-              "duration": 684016000,
+              "duration": 762079000,
               "status": "passed"
             },
             "line": 100,
@@ -914,7 +913,7 @@
               "OG HAS BEEN SAVED"
             ],
             "result": {
-              "duration": 9518760200,
+              "duration": 9687650000,
               "status": "passed"
             },
             "line": 101,
@@ -931,7 +930,7 @@
               "ORDER GUIDE ENTERED IN SEARCH BOX IS SampleOG"
             ],
             "result": {
-              "duration": 1659179400,
+              "duration": 1679439500,
               "status": "passed"
             },
             "line": 102,
@@ -974,7 +973,6 @@
           },
           {
             "result": {
-              "duration": 4010100,
               "status": "passed"
             },
             "line": 6,
@@ -1020,7 +1018,7 @@
         ]
       },
       {
-        "start_timestamp": "2024-11-22T11:24:46.977Z",
+        "start_timestamp": "2024-11-28T16:04:57.209Z",
         "before": [
           {
             "result": {
@@ -1048,6 +1046,7 @@
           },
           {
             "result": {
+              "duration": 9959300,
               "status": "passed"
             },
             "match": {
@@ -1304,7 +1303,6 @@
           },
           {
             "result": {
-              "duration": 4009300,
               "status": "passed"
             },
             "match": {
@@ -1321,6 +1319,7 @@
           },
           {
             "result": {
+              "duration": 5542000,
               "status": "passed"
             },
             "match": {
@@ -1369,6 +1368,7 @@
           },
           {
             "result": {
+              "duration": 1078400,
               "status": "passed"
             },
             "match": {
@@ -1577,6 +1577,7 @@
           },
           {
             "result": {
+              "duration": 3511300,
               "status": "passed"
             },
             "match": {
@@ -1745,7 +1746,7 @@
               "NAVIGATED TO ORDER GUIDE"
             ],
             "result": {
-              "duration": 3391170500,
+              "duration": 3110042800,
               "status": "passed"
             },
             "line": 110,
@@ -1760,7 +1761,7 @@
               "NAVIGATED TO ORDER GUIDE"
             ],
             "result": {
-              "duration": 1018849700,
+              "duration": 1186162400,
               "status": "passed"
             },
             "line": 111,
@@ -1772,11 +1773,11 @@
           },
           {
             "output": [
-              "Monday, December 2, 2024 HAS BEEN SELECTED AS START DATE FOR OG",
-              "Tuesday, December 3, 2024 HAS BEEN SELECTED AS END DATE FOR OG"
+              "Sunday, December 8, 2024 HAS BEEN SELECTED AS START DATE FOR OG",
+              "Monday, December 9, 2024 HAS BEEN SELECTED AS END DATE FOR OG"
             ],
             "result": {
-              "duration": 3910479100,
+              "duration": 3923881100,
               "status": "passed"
             },
             "line": 112,
@@ -1802,11 +1803,12 @@
           },
           {
             "output": [
+              "ORDER GUIDE .CSV FILE CAN BE FOUND IN PATH C:\\Users\\DIVYA~1.RAM\\AppData\\Local\\Temp\\",
               "ORDER IMPORTED IS OrderGuide_OG670.csv",
               "ORDER IMPORTED IS OrderGuide_OG670.csv"
             ],
             "result": {
-              "duration": 2505647700,
+              "duration": 2492570200,
               "status": "passed"
             },
             "line": 113,
@@ -1836,7 +1838,7 @@
               "OG HAS BEEN SAVED"
             ],
             "result": {
-              "duration": 7999910200,
+              "duration": 7787498400,
               "status": "passed"
             },
             "line": 114,
@@ -1853,7 +1855,7 @@
               "ORDER GUIDE ENTERED IN SEARCH BOX IS OGDis19"
             ],
             "result": {
-              "duration": 1790130800,
+              "duration": 1644572500,
               "status": "passed"
             },
             "line": 115,
@@ -1874,7 +1876,7 @@
               "NAVIGATED TO ORDER GUIDE"
             ],
             "result": {
-              "duration": 5160598400,
+              "duration": 5125385800,
               "status": "passed"
             },
             "line": 116,
@@ -1894,7 +1896,7 @@
               "ORDER GUIDE DOESNOT EXISTS"
             ],
             "result": {
-              "duration": 11109256600,
+              "duration": 10129350400,
               "status": "passed"
             },
             "line": 117,

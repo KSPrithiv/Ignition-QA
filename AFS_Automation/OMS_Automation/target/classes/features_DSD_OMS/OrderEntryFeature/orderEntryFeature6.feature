@@ -145,3 +145,30 @@ Feature: Order Entry6
       |Qty filter                                 |
       |Show only products with available inventory|
 
+  @ImportBogoItemOrder
+  Scenario: Create an order Open that order and export the order with BOGO item and import that order
+    Given User must be on Order Entry Page
+    Then User must click Start Order button
+    Then User should make selection between Pending order or Start New order
+    Then User should select Note from popup and Order guide from popup
+    Then Enter PO# for New order
+      |PO123|
+    Then Enter Pro# in Quick Product Entry area for BOGO item
+    And Check for Case and Unit input box enabled or not based on that enter value
+      |1|1|
+    Then Click on Next button
+    And Click on Submit Order button and read Order_no
+    Then User should be navigated to Order Entry page
+    Then Enter Order# in Search box in Order Entry page
+    Then Click on Order number in Order Entry page
+    Then navigate to newOE page and Click on Export button
+    And User navigate back to order entry page
+    Then User must click Start Order button
+    Then User should make selection between Pending order or Start New order
+    Then User should select Note from popup and Order guide from popup
+    Then Enter PO# for New order
+      |PO123|
+    And Click on Import button
+    Then Click on Next button
+    And Click on Submit Order button and read Order_no
+    Then User should be navigated to Order Entry page

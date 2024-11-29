@@ -1225,4 +1225,37 @@ public class CheckOutSummaryPage
         }
         catch (Exception e){}
     }
+
+    public void readProductsFromOrderSummaryPage()
+    {
+        exists=false;
+        String headText;
+        Actions act=new Actions(driver);
+        int i=0;
+        try
+        {
+            if(HelpersMethod.IsExists("//span[@class='k-column-title']",driver))
+            {
+                List<WebElement> heads=HelpersMethod.FindByElements(driver,"xpath","//span[@class='k-column-title']");
+                for(WebElement head:heads)
+                {
+                    act.moveToElement(head).build().perform();
+                    headText=head.getText();
+                    if(headText.equals("Product #"))
+                    {
+                        i++;
+                        break;
+                    }
+                }
+            }
+            List<WebElement> prods=HelpersMethod.FindByElements(driver,"xpath","//tr[contains(@class,'k-master-row')]/td["+i+"]/descendant::span[contains(@class,'CPKendoDataGrid')]");
+            for(WebElement prod:prods)
+            {
+                act.moveToElement(prod).build().perform();
+                headText=prod.getText();
+                scenario.log("PRODUCT# FOUND IN SUMMARY PAGE "+headText);
+            }
+        }
+        catch (Exception e){}
+    }
 }

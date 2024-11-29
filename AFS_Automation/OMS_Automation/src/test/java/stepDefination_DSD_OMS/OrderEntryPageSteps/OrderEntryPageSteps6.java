@@ -10,9 +10,11 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import pages_DSD_OMS.orderEntry.*;
+import util.DataBaseConnection;
 import util.TestBase;
 
 import java.awt.*;
+import java.sql.SQLException;
 import java.text.ParseException;
 import java.util.List;
 
@@ -201,4 +203,30 @@ public class OrderEntryPageSteps6
         newOE.ValidateNewOE();
         newOE.validateSalesRep(changedSalesRep);
     }
+
+    @Then("Enter Pro# in Quick Product Entry area for BOGO item")
+    public void enterProInQuickProductEntryAreaForBOGOItem() throws InterruptedException, AWTException, SQLException, ClassNotFoundException, InstantiationException, IllegalAccessException
+    {
+        newOE = new NewOrderEntryPage(driver,scenario);
+        String prod= TestBase.testEnvironment.get_BOGO();
+        Thread.sleep(500);
+        if(!prod.equals(null))
+        {
+            newOE.QuickProduct(prod);
+        }
+        else
+        {
+            scenario.log("NOT ABLE TO FETCH PRODUCT# FROM DATABASE");
+        }
+    }
+
+    @And("User navigate back to order entry page")
+    public void userNavigateBackToOrderEntryPage() throws InterruptedException, AWTException
+    {
+        newOE=new NewOrderEntryPage(driver,scenario);
+        newOE.Click_Back_But();
+        orderpage=new OrderEntryPage(driver,scenario);
+        orderpage.ValidateOE();
+    }
+
 }

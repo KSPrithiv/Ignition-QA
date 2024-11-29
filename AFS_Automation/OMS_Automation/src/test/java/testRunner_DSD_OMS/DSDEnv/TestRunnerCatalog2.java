@@ -15,7 +15,9 @@ import java.io.IOException;
  * @Author Divya.Ramadas@afs.com
  */
 @CucumberOptions(features = {"src/test/resources/features_DSD_OMS/CatalogFeature/catalogFeature2.feature",
-                             "src/test/resources/features_DSD_OMS/CatalogFeature/catalogFeature3.feature",},
+                             "src/test/resources/features_DSD_OMS/CatalogFeature/catalogFeature3.feature",
+                             "src/test/resources/features_DSD_OMS/CatalogFeature/catalogFeatureDSD.feature",
+},
         glue = {"stepDefination_DSD_OMS"},
         plugin = {"pretty",
                 "json:target/cucumber.json",

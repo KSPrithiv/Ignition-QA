@@ -479,6 +479,8 @@ public class AdminSecurityPermissionPage
 
         try
         {
+            new WebDriverWait(driver,Duration.ofMillis(1000)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.xpath("//ul[@id='RoleCompaniesFromlist']/li/span"))));
+            new WebDriverWait(driver,Duration.ofMillis(1000)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//ul[@id='RoleCompaniesFromlist']/li/span")));
             //identify the company drop down, and values in list
             List<WebElement> Values = HelpersMethod.FindByElements(driver, "xpath", "//ul[@id='RoleCompaniesFromlist']/li/span");
             for (WebElement Val : Values)
@@ -534,13 +536,18 @@ public class AdminSecurityPermissionPage
                    {
                        act.moveToElement(Val).build().perform();
                        act.click(Val).build().perform();
+                       if (HelpersMethod.IsExists("//div[@class='loader']", driver))
+                       {
+                           WebElement WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
+                           HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100000);
+                       }
                        exists = true;
                        break;
                    }
                }
             }
             WebElement WebEle=HelpersMethod.FindByElement(driver,"id","RoleRolesFrom");
-            scenario.log("'FROM' ROLE SELECTED IS "+HelpersMethod.JSGetValueEle(driver,WebEle,100));
+            scenario.log("'FROM' ROLE SELECTED IS "+HelpersMethod.JSGetValueEle(driver,WebEle,10000));
             Assert.assertEquals(exists,true);
         }
         catch (Exception e){}

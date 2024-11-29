@@ -313,11 +313,6 @@ public class HelpersMethod
             JavascriptExecutor executor = (JavascriptExecutor) driver;
             executor.executeScript("arguments[0].click();", element);
         }
-        else
-        {
-            //ElementNotVisibleException EleVis= new ElementNotVisibleException("Element not Visible");
-            //throw EleVis;
-        }
     }
 
     public static void JSSetValueEle(WebDriver driver,WebElement element,int timeOut,String val)
@@ -327,11 +322,6 @@ public class HelpersMethod
         {
             JavascriptExecutor js = (JavascriptExecutor) driver;
             js.executeScript("arguments[0].value='"+val+"';", element);
-        }
-        else
-        {
-            //ElementNotVisibleException EleVis= new ElementNotVisibleException("Element not Visible");
-            //throw EleVis;
         }
     }
 
@@ -343,11 +333,6 @@ public class HelpersMethod
         {
             JavascriptExecutor js=(JavascriptExecutor) driver;
             value= js.executeScript("return arguments[0].value", element).toString();
-        }
-        else
-        {
-            //ElementNotVisibleException EleVis= new ElementNotVisibleException("Element not Visible");
-            //throw EleVis;
         }
         return value;
     }
@@ -477,7 +462,6 @@ public class HelpersMethod
         robot.delay(5000);
 
         robot.keyPress(KeyEvent.VK_DOWN); // press keyboard arrow key to select Save radio button
-
         robot.keyPress(KeyEvent.VK_ENTER);
     }
 

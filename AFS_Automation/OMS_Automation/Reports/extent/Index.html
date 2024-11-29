@@ -49,7 +49,7 @@
 		<!-- nav-right -->
 		<ul id='nav-mobile' class='right hide-on-med-and-down nav-right'>
 			<a href='#!'>
-			<span class='label blue darken-3 suite-start-time'>Nov 22, 2024 04:53:28 PM</span>
+			<span class='label blue darken-3 suite-start-time'>Nov 28, 2024 09:16:53 PM</span>
 			</a>
 		</ul>
 	</div>
@@ -76,8 +76,8 @@
 				<i class='material-icons'>local_offer</i> Category
 				</a>
 				<ul id='category-toggle' class='dropdown-content'>
-					<li><a href='#'>@OGExport</a></li>
-					<li><a href='#'>@OGImport</a></li>
+					<li><a href='#'>@ImportOrder</a></li>
+					<li><a href='#'>@ExportOrder</a></li>
 					<li class='divider'></li>
 					<li class='clear'><a href='#!' clear='true'>Clear Filters</a></li>
 				</ul>
@@ -158,7 +158,7 @@
                 </div>
                 <div class='block text-small'>
                     <span class='tooltipped' data-position='top' data-tooltip='100%'>
-                    <span class='strong'>25</span> steps passed</span>
+                    <span class='strong'>32</span> steps passed</span>
                 </div>
                 <div class='block text-small'>
                     <span class='strong tooltipped' data-position='top' data-tooltip='0%'>
@@ -187,8 +187,8 @@
 			<ul id='test-collection' class='test-collection'>
 				<li class='test displayed active has-leaf pass' status='pass' bdd='true' test-id='1'>
 					<div class='test-heading'>
-						<span class='test-name'>Order Guide1</span>
-						<span class='test-time'>Nov 22, 2024 04:53:40 PM</span>
+						<span class='test-name'>Order Entry5</span>
+						<span class='test-time'>Nov 28, 2024 09:17:35 PM</span>
 						<span class='test-status right pass'>Pass</span>
 					</div>
 					<div class='test-content hide'>
@@ -198,234 +198,282 @@
 	<a class="btn-floating waves-effect waves-light skip blue" title="skip"><i class='material-icons'>redo</i></a>
 	<a class="btn-floating waves-effect waves-light clear grey" title="clear"><i class='material-icons'>clear</i></a>
 </div>
-	<div class='test-desc'>  Used for creation of New OG in different ways, Deleting, Editing etc</div>
+	<div class='test-desc'>  Used for cration of New order in different ways
+  Used for canceling order, editing of order, skipping of order</div>
 
-<div class='scenario outline node' test-id='2' status='pass'>
+<div class='scenario node' test-id='2' status='pass'>
 
-	<span class='duration right label'>00 01 06.786</span>
+	<span class='duration right label'>00 03 53.395</span>
 	<div class="bdd-test">
-		<div class="scenario-name"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span> Scenario Outline: Export OG</div>
+		<div class="scenario-name"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span> Scenario: Create an order Open that order and export the order</div>
 	</div>
 	
-		<div class='node-desc'><br><br><table class='markup-table table '><tr><td>OG</td></tr><tr><td>SampleOG</td></tr></table></div>
 	
+		<div class='category-list'>
+				<span class='category label'>@ExportOrder</span>
+		</div>
 	
 	<ul class='steps'>
-		<li test-id='3' class='node scenario Pass' status='Pass'>
-			<div class="step-name" title="()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Export OG</div>
+		<li test-id='89' class='node given Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.user_enters_url_and_is_on_login_page_and_entered_credentials())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Given User enters URL and is on login page and entered credentials</div>
 
-				<div class='category-list'>
-						<span class='category label'>@OGExport</span>
-				</div>
 
-			<ul class='gc steps'>
-				<li test-id='90' class='gc given Pass' status='Pass'>
-					<h6 class="step-name" title="stepDefination_DSD_OMS.OrderGuidePageSteps.OrderGuidePageStep.user_enters_url_and_is_on_login_page_and_entered_credentialsForOG()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Given User enters URL and is on login page and entered credentials for OG</h6>
+					<div class="node-step">SIGNIN BUTTON CLICKED</div>
+		</li>
+		<li test-id='90' class='node when Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.user_is_on_home_page())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>When User is on Home Page</div>
 
-							<div class="node-step">SIGNIN BUTTON CLICKED</div>
-				</li>
-				<li test-id='91' class='gc when Pass' status='Pass'>
-					<h6 class="step-name" title="stepDefination_DSD_OMS.OrderGuidePageSteps.OrderGuidePageStep.user_is_on_home_pageForOG()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>When User is on Home Page for OG</h6>
 
-							<div class="node-step">ADMIN PAGE OR ORDER ENTRY PAGE HAS BEEN FOUND</div>
-				</li>
-				<li test-id='92' class='gc then Pass' status='Pass'>
-					<h6 class="step-name" title="stepDefination_DSD_OMS.OrderGuidePageSteps.OrderGuidePageStep.user_navigate_to_client_sideForOG()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User navigate to Client side for OG</h6>
+					<div class="node-step">ADMIN PAGE OR ORDER ENTRY PAGE HAS BEEN FOUND</div>
+		</li>
+		<li test-id='91' class='node then Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.user_navigate_to_client_side())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User navigate to Client side</div>
 
-							<div class="node-step">USER ICON FOUND</div>
-							<div class="node-step">IN ADMIN PAGE</div>
-				</li>
-				<li test-id='93' class='gc then Pass' status='Pass'>
-					<h6 class="step-name" title="stepDefination_DSD_OMS.OrderGuidePageSteps.OrderGuidePageStep.user_should_select_order_entry_tabForOG()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User should select Order Entry tab for OG</h6>
 
-							<div class="node-step">https://autodsd.afsi.com/ClientPortal/Apps/cpOrderEntry.html?p=Km530c8XSlYiXYABAQY6Y6JAChTfYaSYca92kMk0eI9TOeNnC6%2bd9w%3d%3d</div>
-							<div class="node-step">NAVIGATED TO ORDER ENTRY PAGE</div>
-				</li>
-				<li test-id='94' class='gc then Pass' status='Pass'>
-					<h6 class="step-name" title="stepDefination_DSD_OMS.OrderGuidePageSteps.OrderGuidePageStep.user_selects_accountForOG()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User selects Account# for OG</h6>
+					<div class="node-step">USER ICON FOUND</div>
+					<div class="node-step">IN ADMIN PAGE</div>
+		</li>
+		<li test-id='92' class='node then Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.user_should_select_order_entry_tab())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User should select Order Entry tab</div>
 
-				</li>
-				<li test-id='95' class='gc given Pass' status='Pass'>
-					<h6 class="step-name" title="stepDefination_DSD_OMS.OrderGuidePageSteps.OrderGuidePageStep.user_must_be_on_order_entry_page_to_select_og()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Given User must be on Order Entry Page to select OG</h6>
 
-							<div class="node-step">NAVIGATED TO ORDER GUIDE</div>
-				</li>
-				<li test-id='96' class='gc and Pass' status='Pass'>
-					<h6 class="step-name" title="stepDefination_DSD_OMS.OrderGuidePageSteps.OrderGuidePageStep.user_should_navigate_to_og()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>And User should navigate to OG</h6>
+					<div class="node-step">https://autodsd.afsi.com/ClientPortal/Apps/cpOrderEntry.html?p=Km530c8XSlYiXYABAQY6Y6JAChTfYaSYca92kMk0eI9TOeNnC6%2bd9w%3d%3d</div>
+					<div class="node-step">NAVIGATED TO ORDER ENTRY PAGE</div>
+		</li>
+		<li test-id='93' class='node then Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.user_selects_account())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User selects Account#</div>
 
-							<div class="node-step">NAVIGATED TO ORDER GUIDE</div>
-				</li>
-				<li test-id='97' class='gc then Pass' status='Pass'>
-					<h6 class="step-name" title="stepDefination_DSD_OMS.OrderGuidePageSteps.OrderGuidePageStep.userEntersOGDescriptionInSearchBox(java.lang.String)"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User enters OG "SampleOG" Description in search box</h6>
 
-							<div class="node-step">ORDER GUIDE ENTERED IN SEARCH BOX IS SampleOG</div>
-							<div class="node-step">NAVIGATED TO OG DETAILS PAGE</div>
-							<div class="node-step">PRODUCT FOUND IN OG </div>
-							<div class="node-step">PRODUCT FOUND IN OG </div>
-							<div class="node-step">PRODUCT FOUND IN OG 00000001</div>
-							<div class="node-step">PRODUCT FOUND IN OG </div>
-							<div class="node-step">PRODUCT FOUND IN OG </div>
-							<div class="node-step">PRODUCT FOUND IN OG 00000002</div>
-							<div class="node-step">PRODUCT FOUND IN OG </div>
-							<div class="node-step">PRODUCT FOUND IN OG </div>
-							<div class="node-step">PRODUCT FOUND IN OG 00000003</div>
-							<div class="node-step">PRODUCT FOUND IN OG </div>
-							<div class="node-step">PRODUCT FOUND IN OG </div>
-							<div class="node-step">PRODUCT FOUND IN OG 00000004</div>
-							<div class="node-step">PRODUCT FOUND IN OG </div>
-							<div class="node-step">PRODUCT FOUND IN OG </div>
-							<div class="node-step">PRODUCT FOUND IN OG 00000005</div>
-							<div class="node-step">PRODUCT FOUND IN OG </div>
-							<div class="node-step">PRODUCT FOUND IN OG </div>
-							<div class="node-step">PRODUCT FOUND IN OG 00000008</div>
-				</li>
-				<li test-id='98' class='gc and Pass' status='Pass'>
-					<h6 class="step-name" title="stepDefination_DSD_OMS.OrderGuidePageSteps.OrderGuidePageStep1.userVerifiesNewOGPageAndClicksOnExportButton()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>And User verifies New OG page and clicks on export button</h6>
+					<div class="node-step"><span style='color:red'>DELIBERY DATE FOUND, AFTER LOGGING IN TO APPLICATION  Saturday, November 30, 2024</span></div>
+		</li>
+		<li test-id='94' class='node given Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.user_must_be_on_order_entry_page())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Given User must be on Order Entry Page</div>
 
-							<div class="node-step">OG FILE HAS BEEN DOWN LOADED</div>
-				</li>
-				<li test-id='99' class='gc then Pass' status='Pass'>
-					<h6 class="step-name" title="stepDefination_DSD_OMS.OrderGuidePageSteps.OrderGuidePageStep.user_click_on_save_button()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User click on Save button</h6>
 
-							<div class="node-step">PRODUCT FOUND IN OG </div>
-							<div class="node-step">PRODUCT FOUND IN OG </div>
-							<div class="node-step">PRODUCT FOUND IN OG 00000001</div>
-							<div class="node-step">PRODUCT FOUND IN OG </div>
-							<div class="node-step">PRODUCT FOUND IN OG </div>
-							<div class="node-step">PRODUCT FOUND IN OG 00000002</div>
-							<div class="node-step">PRODUCT FOUND IN OG </div>
-							<div class="node-step">PRODUCT FOUND IN OG </div>
-							<div class="node-step">PRODUCT FOUND IN OG 00000003</div>
-							<div class="node-step">PRODUCT FOUND IN OG </div>
-							<div class="node-step">PRODUCT FOUND IN OG </div>
-							<div class="node-step">PRODUCT FOUND IN OG 00000004</div>
-							<div class="node-step">PRODUCT FOUND IN OG </div>
-							<div class="node-step">PRODUCT FOUND IN OG </div>
-							<div class="node-step">PRODUCT FOUND IN OG 00000005</div>
-							<div class="node-step">PRODUCT FOUND IN OG </div>
-							<div class="node-step">PRODUCT FOUND IN OG </div>
-							<div class="node-step">PRODUCT FOUND IN OG 00000008</div>
-							<div class="node-step">OG HAS BEEN SAVED</div>
-				</li>
-				<li test-id='100' class='gc and Pass' status='Pass'>
-					<h6 class="step-name" title="stepDefination_DSD_OMS.OrderGuidePageSteps.OrderGuidePageStep.user_should_navigate_back_to_og_page(java.lang.String)"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>And User should navigate back to OG page and verify OG "SampleOG"  existence</h6>
+		</li>
+		<li test-id='95' class='node then Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.user_must_click_start_order_button())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User must click Start Order button</div>
 
-							<div class="node-step">NAVIGATED TO ORDER GUIDE</div>
-							<div class="node-step">USER IS ON ORDER GUIDE PAGE</div>
-							<div class="node-step">ORDER GUIDE ENTERED IN SEARCH BOX IS SampleOG</div>
-				</li>
-			</ul>
+
+					<div class="node-step">NAVIGATED TO ORDER ENTRY PAGE</div>
+					<div class="node-step">START BUTTON HAS BEEN CLICKED</div>
+		</li>
+		<li test-id='96' class='node then Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.user_should_make_selection_between_pending_order_or_start_new_order())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User should make selection between Pending order or Start New order</div>
+
+
+		</li>
+		<li test-id='97' class='node then Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.userShouldSelectNoteFromPopupAndOrderGuideFromPopup())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User should select Note from popup and Order guide from popup</div>
+
+
+		</li>
+		<li test-id='98' class='node then Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.enter_po_for_new_order(io.cucumber.datatable.DataTable))"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then Enter PO# for New order</div>
+
+
+					<div class="node-step"><table class='markup-table table '><tr><td>PO123</td></tr></table></div>
+					<div class="node-step">NEW ORDER ENTRY PAGE HAS BEEN FOUND</div>
+					<div class="node-step">PO# ENTERED IS PO123</div>
+		</li>
+		<li test-id='99' class='node then Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.enter_pro_in_quick_product_entry_area())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then Enter Pro# in Quick Product Entry area</div>
+
+
+					<div class="node-step">PRODUCT ADDED TO THE ORDER Via QUICK PRODUCT ENTRY 00000008</div>
+		</li>
+		<li test-id='100' class='node and Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.check_for_case_and_unit_input_box_enabled_or_not_based_on_that_enter_value(io.cucumber.datatable.DataTable))"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>And Check for Case and Unit input box enabled or not based on that enter value</div>
+
+
+					<div class="node-step"><table class='markup-table table '><tr><td>1</td><td>1</td></tr></table></div>
+					<div class="node-step">UOM IS ENABLED AND IT CONTAINS Cases, Units VALUE IN IT</div>
+					<div class="node-step">CASE ENTERED FOR QUICK PRODUCT IS 1</div>
+					<div class="node-step">UNIT ENTERED FOR QUICK PRODUCT IS 1</div>
+					<div class="node-step">TOAST MESSAGE FOR: CURRENTLY UNAVAILABLE HAS BEEN HANDLED</div>
+		</li>
+		<li test-id='101' class='node then Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.click_on_next_button())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then Click on Next button</div>
+
+
+					<div class="node-step">PRODUCT FOUND IN ORDER ARE </div>
+					<div class="node-step">00000008</div>
+					<div class="node-step">00000005</div>
+					<div class="node-step">00000006</div>
+					<div class="node-step">59626700</div>
+					<div class="node-step">00000001</div>
+					<div class="node-step">00000002</div>
+					<div class="node-step">00000003</div>
+					<div class="node-step">00000004</div>
+					<div class="node-step">10025300</div>
+					<div class="node-step">00112882</div>
+					<div class="node-step">00135444</div>
+					<div class="node-step">00137682</div>
+					<div class="node-step">00445006</div>
+					<div class="node-step">10002900</div>
+					<div class="node-step">10010800</div>
+					<div class="node-step">10024590</div>
+					<div class="node-step">NEXT BUTTON CLICKED</div>
+					<div class="node-step">FREQUENTLY ORDERED ITEMS POPUP HAS BEEN HANDLED</div>
+					<div class="node-step">ORDER NUMBER CREATED IS 0003715768</div>
+					<div class="node-step">PAYMENT METHOD HAS BEEN SELECTED</div>
+					<div class="node-step">FIRST PAYMENT OPTION HAS BEEN SELECTED</div>
+					<div class="node-step">CLICKED ON NEXT BUTTON</div>
+		</li>
+		<li test-id='102' class='node and Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.click_on_submit_order_button_and_read_order_no())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>And Click on Submit Order button and read Order_no</div>
+
+
+					<div class="node-step">ORDER ENTRY SUMMARY PAGE HAS BEEN FOUND</div>
+					<div class="node-step">SUBMIT BUTTON IN ORDER SUMMARY PAGE HAS BEEN CLICKED</div>
+					<div class="node-step">ORDER CRATED, ORDER # IS 0003715768</div>
+					<div class="node-step">ORDER HAS BEEN SUCESSFULLY CREATED</div>
+		</li>
+		<li test-id='103' class='node then Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.user_should_be_navigated_to_order_entry_page())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User should be navigated to Order Entry page</div>
+
+
+					<div class="node-step">ORDER ENTRY PAGE HAS BEEN FOUND</div>
+		</li>
+		<li test-id='104' class='node then Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.enter_order_in_search_box_in_order_entry_page())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then Enter Order# in Search box in Order Entry page</div>
+
+
+					<div class="node-step">ORDER NUMBER I AM SEARCHING FOR IS 0003715768</div>
+		</li>
+		<li test-id='105' class='node then Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.click_on_order_number_in_order_entry_page())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then Click on Order number in Order Entry page</div>
+
+
+					<div class="node-step">ORDER HAS BEEN SELECTED FROM THE GRID</div>
+		</li>
+		<li test-id='106' class='node then Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.navigate_to_newoe_page_and_click_on_export_button())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then navigate to newOE page and Click on Export button</div>
+
+
+					<div class="node-step">EXPORTED ORDER IS Order # 0003715768</div>
+					<div class="node-step">C:\Users\DIVYA~1.RAM\AppData\Local\Temp\Order_0003715768.csv FILE PATH IS</div>
+					<div class="node-step">C:\Users\DIVYA~1.RAM\AppData\Local\Temp\Order_0003715768.csvFILE FOR IMPORTING WITH PATH</div>
 		</li>
 	</ul>
 </div>
-<div class='scenario outline node' test-id='102' status='pass'>
+<div class='scenario node' test-id='108' status='pass'>
 
-	<span class='duration right label'>00 00 36.902</span>
+	<span class='duration right label'>00 06 46.597</span>
 	<div class="bdd-test">
-		<div class="scenario-name"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span> Scenario Outline: Importing OG</div>
+		<div class="scenario-name"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span> Scenario: Create an order by importing .csv files</div>
 	</div>
 	
-		<div class='node-desc'><br><br><table class='markup-table table '><tr><td>OG</td></tr><tr><td>OGDis19</td></tr></table></div>
 	
+		<div class='category-list'>
+				<span class='category label'>@ImportOrder</span>
+		</div>
 	
 	<ul class='steps'>
-		<li test-id='103' class='node scenario Pass' status='Pass'>
-			<div class="step-name" title="()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Importing OG</div>
+		<li test-id='195' class='node given Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.user_enters_url_and_is_on_login_page_and_entered_credentials())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Given User enters URL and is on login page and entered credentials</div>
 
-				<div class='category-list'>
-						<span class='category label'>@OGImport</span>
-				</div>
 
-			<ul class='gc steps'>
-				<li test-id='190' class='gc given Pass' status='Pass'>
-					<h6 class="step-name" title="stepDefination_DSD_OMS.OrderGuidePageSteps.OrderGuidePageStep.user_enters_url_and_is_on_login_page_and_entered_credentialsForOG()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Given User enters URL and is on login page and entered credentials for OG</h6>
+		</li>
+		<li test-id='196' class='node when Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.user_is_on_home_page())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>When User is on Home Page</div>
 
-				</li>
-				<li test-id='191' class='gc when Pass' status='Pass'>
-					<h6 class="step-name" title="stepDefination_DSD_OMS.OrderGuidePageSteps.OrderGuidePageStep.user_is_on_home_pageForOG()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>When User is on Home Page for OG</h6>
 
-				</li>
-				<li test-id='192' class='gc then Pass' status='Pass'>
-					<h6 class="step-name" title="stepDefination_DSD_OMS.OrderGuidePageSteps.OrderGuidePageStep.user_navigate_to_client_sideForOG()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User navigate to Client side for OG</h6>
+		</li>
+		<li test-id='197' class='node then Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.user_navigate_to_client_side())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User navigate to Client side</div>
 
-				</li>
-				<li test-id='193' class='gc then Pass' status='Pass'>
-					<h6 class="step-name" title="stepDefination_DSD_OMS.OrderGuidePageSteps.OrderGuidePageStep.user_should_select_order_entry_tabForOG()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User should select Order Entry tab for OG</h6>
 
-				</li>
-				<li test-id='194' class='gc then Pass' status='Pass'>
-					<h6 class="step-name" title="stepDefination_DSD_OMS.OrderGuidePageSteps.OrderGuidePageStep.user_selects_accountForOG()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User selects Account# for OG</h6>
+		</li>
+		<li test-id='198' class='node then Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.user_should_select_order_entry_tab())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User should select Order Entry tab</div>
 
-				</li>
-				<li test-id='195' class='gc given Pass' status='Pass'>
-					<h6 class="step-name" title="stepDefination_DSD_OMS.OrderGuidePageSteps.OrderGuidePageStep.user_must_be_on_order_entry_page_to_select_og()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Given User must be on Order Entry Page to select OG</h6>
 
-				</li>
-				<li test-id='196' class='gc and Pass' status='Pass'>
-					<h6 class="step-name" title="stepDefination_DSD_OMS.OrderGuidePageSteps.OrderGuidePageStep.user_should_navigate_to_og()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>And User should navigate to OG</h6>
+		</li>
+		<li test-id='199' class='node then Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.user_selects_account())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User selects Account#</div>
 
-							<div class="node-step">NAVIGATED TO ORDER GUIDE</div>
-				</li>
-				<li test-id='197' class='gc then Pass' status='Pass'>
-					<h6 class="step-name" title="stepDefination_DSD_OMS.OrderGuidePageSteps.OrderGuidePageStep.user_clicks_on_create_new_button_and_should_navigate_to_new_og_page()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User clicks on Create new button and should navigate to New OG page</h6>
 
-							<div class="node-step">NAVIGATED TO ORDER GUIDE</div>
-				</li>
-				<li test-id='198' class='gc then Pass' status='Pass'>
-					<h6 class="step-name" title="stepDefination_DSD_OMS.OrderGuidePageSteps.OrderGuidePageStep.userEntersDescriptionStartDateSdateAndEndDateEdateDayFromCurrentDate(java.lang.String,int,int)"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User enters Description "OGDis19" Start date 10 and End date 11 day from current date</h6>
+		</li>
+		<li test-id='200' class='node given Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.user_must_be_on_order_entry_page())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Given User must be on Order Entry Page</div>
 
-							<div class="node-step">Monday, December 2, 2024 HAS BEEN SELECTED AS START DATE FOR OG</div>
-							<div class="node-step">Tuesday, December 3, 2024 HAS BEEN SELECTED AS END DATE FOR OG</div>
-				</li>
-				<li test-id='199' class='gc and Pass' status='Pass'>
-					<h6 class="step-name" title="stepDefination_DSD_OMS.OrderGuidePageSteps.OrderGuidePageStep1.userVerifiesNewOGPageAndClicksOnImportButton()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>And User verifies New OG page and clicks on import button</h6>
 
-							<div class="node-step">ORDER IMPORTED IS OrderGuide_OG670.csv</div>
-							<div class="node-step">ORDER IMPORTED IS OrderGuide_OG670.csv</div>
-				</li>
-				<li test-id='200' class='gc then Pass' status='Pass'>
-					<h6 class="step-name" title="stepDefination_DSD_OMS.OrderGuidePageSteps.OrderGuidePageStep.user_click_on_save_button()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User click on Save button</h6>
+		</li>
+		<li test-id='201' class='node then Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.user_must_click_start_order_button())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User must click Start Order button</div>
 
-							<div class="node-step">PRODUCT FOUND IN OG </div>
-							<div class="node-step">PRODUCT FOUND IN OG </div>
-							<div class="node-step">PRODUCT FOUND IN OG 00000005</div>
-							<div class="node-step">PRODUCT FOUND IN OG </div>
-							<div class="node-step">PRODUCT FOUND IN OG </div>
-							<div class="node-step">PRODUCT FOUND IN OG 00000004</div>
-							<div class="node-step">PRODUCT FOUND IN OG </div>
-							<div class="node-step">PRODUCT FOUND IN OG </div>
-							<div class="node-step">PRODUCT FOUND IN OG 00000003</div>
-							<div class="node-step">PRODUCT FOUND IN OG </div>
-							<div class="node-step">PRODUCT FOUND IN OG </div>
-							<div class="node-step">PRODUCT FOUND IN OG 00000002</div>
-							<div class="node-step">PRODUCT FOUND IN OG </div>
-							<div class="node-step">PRODUCT FOUND IN OG </div>
-							<div class="node-step">PRODUCT FOUND IN OG 00000001</div>
-							<div class="node-step">OG HAS BEEN SAVED</div>
-				</li>
-				<li test-id='201' class='gc and Pass' status='Pass'>
-					<h6 class="step-name" title="stepDefination_DSD_OMS.OrderGuidePageSteps.OrderGuidePageStep.user_should_navigate_back_to_og_page(java.lang.String)"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>And User should navigate back to OG page and verify OG "OGDis19"  existence</h6>
 
-							<div class="node-step">NAVIGATED TO ORDER GUIDE</div>
-							<div class="node-step">USER IS ON ORDER GUIDE PAGE</div>
-							<div class="node-step">ORDER GUIDE ENTERED IN SEARCH BOX IS OGDis19</div>
-				</li>
-				<li test-id='202' class='gc and Pass' status='Pass'>
-					<h6 class="step-name" title="stepDefination_DSD_OMS.OrderGuidePageSteps.OrderGuidePageStep2.clearFilterToDisplayBothActiveAndInactiveOG()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>And Clear filter to display both active and inactive OG</h6>
+					<div class="node-step">NAVIGATED TO ORDER ENTRY PAGE</div>
+					<div class="node-step">START BUTTON HAS BEEN CLICKED</div>
+		</li>
+		<li test-id='202' class='node then Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.user_should_make_selection_between_pending_order_or_start_new_order())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User should make selection between Pending order or Start New order</div>
 
-							<div class="node-step">NAVIGATED TO ORDER GUIDE</div>
-				</li>
-				<li test-id='203' class='gc then Pass' status='Pass'>
-					<h6 class="step-name" title="stepDefination_DSD_OMS.OrderGuidePageSteps.OrderGuidePageStep3.userEntersOGDescriptionInSearchBoxAndDeleteTheOGVerifySameInOGGrid(java.lang.String)"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User enters OG Description "OGDis19" in search box and Delete the OG verify same in OG grid</h6>
 
-							<div class="node-step">NAVIGATED TO ORDER GUIDE</div>
-							<div class="node-step">ORDER GUIDE ENTERED IN SEARCH BOX IS OGDis19</div>
-							<div class="node-step">OG DELETE BUTTON HAS BEEN CLICKED</div>
-							<div class="node-step">OG DELETE HAS BEEN CLEARED</div>
-							<div class="node-step">NAVIGATED TO ORDER GUIDE</div>
-							<div class="node-step">ORDER GUIDE DOESNOT EXISTS</div>
-				</li>
-			</ul>
+		</li>
+		<li test-id='203' class='node then Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.userShouldSelectNoteFromPopupAndOrderGuideFromPopup())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User should select Note from popup and Order guide from popup</div>
+
+
+		</li>
+		<li test-id='204' class='node then Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.enter_po_for_new_order(io.cucumber.datatable.DataTable))"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then Enter PO# for New order</div>
+
+
+					<div class="node-step"><table class='markup-table table '><tr><td>PO123</td></tr></table></div>
+					<div class="node-step">NEW ORDER ENTRY PAGE HAS BEEN FOUND</div>
+					<div class="node-step">PO# ENTERED IS PO123</div>
+		</li>
+		<li test-id='205' class='node and Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.click_on_import_button())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>And Click on Import button</div>
+
+
+					<div class="node-step">ORDER HAS BEEN IMPORTED SUCESSFULY</div>
+					<div class="node-step">NEW ORDER ENTRY PAGE HAS BEEN FOUND</div>
+		</li>
+		<li test-id='206' class='node then Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.click_on_next_button())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then Click on Next button</div>
+
+
+					<div class="node-step">PRODUCT FOUND IN ORDER ARE </div>
+					<div class="node-step">8</div>
+					<div class="node-step">5</div>
+					<div class="node-step">6</div>
+					<div class="node-step">59626700</div>
+					<div class="node-step">1</div>
+					<div class="node-step">2</div>
+					<div class="node-step">3</div>
+					<div class="node-step">4</div>
+					<div class="node-step">10025300</div>
+					<div class="node-step">112882</div>
+					<div class="node-step">135444</div>
+					<div class="node-step">137682</div>
+					<div class="node-step">445006</div>
+					<div class="node-step">10002900</div>
+					<div class="node-step">10010800</div>
+					<div class="node-step">10024590</div>
+					<div class="node-step">NEXT BUTTON CLICKED</div>
+					<div class="node-step">FREQUENTLY ORDERED ITEMS POPUP HAS BEEN HANDLED</div>
+					<div class="node-step">ORDER NUMBER CREATED IS 3715771</div>
+					<div class="node-step">PAYMENT METHOD HAS BEEN SELECTED</div>
+					<div class="node-step">FIRST PAYMENT OPTION HAS BEEN SELECTED</div>
+					<div class="node-step">CLICKED ON NEXT BUTTON</div>
+		</li>
+		<li test-id='207' class='node and Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.click_on_submit_order_button_and_read_order_no())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>And Click on Submit Order button and read Order_no</div>
+
+
+					<div class="node-step">ORDER ENTRY SUMMARY PAGE HAS BEEN FOUND</div>
+					<div class="node-step">SUBMIT BUTTON IN ORDER SUMMARY PAGE HAS BEEN CLICKED</div>
+					<div class="node-step">ORDER CRATED, ORDER # IS 3715771</div>
+					<div class="node-step">ORDER HAS BEEN SUCESSFULLY CREATED</div>
+		</li>
+		<li test-id='208' class='node then Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.user_should_be_navigated_to_order_entry_page())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User should be navigated to Order Entry page</div>
+
+
+					<div class="node-step">ORDER ENTRY PAGE HAS BEEN FOUND</div>
 		</li>
 	</ul>
 </div>
@@ -473,7 +521,7 @@
 			<ul id='category-collection' class='category-collection'>
 				<li class='category displayed active'>
 					<div class='category-heading'>
-						<span class='category-name'>@OGExport</span>
+						<span class='category-name'>@ImportOrder</span>
 						<span class='category-status right'>
 						<span class='label pass'>1</span>
 						</span>
@@ -495,8 +543,8 @@
 								</thead>
 								<tbody>
 									<tr>
-										<td>Nov 22, 2024 04:53:40 PM</td>
-										<td class='linked' test-id='3'>Export OG</td>
+										<td>Nov 28, 2024 09:21:54 PM</td>
+										<td class='linked' test-id='108'>Create an order by importing .csv files</td>
 										<td><span class='test-status Pass'>Pass</span></td>
 									</tr>
 								</tbody>
@@ -506,7 +554,7 @@
 				</li>
 				<li class='category displayed active'>
 					<div class='category-heading'>
-						<span class='category-name'>@OGImport</span>
+						<span class='category-name'>@ExportOrder</span>
 						<span class='category-status right'>
 						<span class='label pass'>1</span>
 						</span>
@@ -528,8 +576,8 @@
 								</thead>
 								<tbody>
 									<tr>
-										<td>Nov 22, 2024 04:54:46 PM</td>
-										<td class='linked' test-id='103'>Importing OG</td>
+										<td>Nov 28, 2024 09:17:36 PM</td>
+										<td class='linked' test-id='2'>Create an order Open that order and export the order</td>
 										<td><span class='test-status Pass'>Pass</span></td>
 									</tr>
 								</tbody>
@@ -566,25 +614,25 @@
 			<div class='col s2'>
 				<div class='card-panel r'>
 					Steps
-					<div class='panel-lead'>25</div>
+					<div class='panel-lead'>32</div>
 				</div>
 			</div>
 			<div class='col s2'>
 				<div class='card-panel r'>
 					Start
-					<div class='panel-lead'>Nov 22, 2024 04:53:28 PM</div>
+					<div class='panel-lead'>Nov 28, 2024 09:16:53 PM</div>
 				</div>
 			</div>
 			<div class='col s2'>
 				<div class='card-panel r'>
 			 		End
-			 		<div class='panel-lead'>Nov 22, 2024 04:55:24 PM</div>
+			 		<div class='panel-lead'>Nov 28, 2024 09:28:42 PM</div>
 				</div>
 			</div>
 			<div class='col s2'>
 				<div class='card-panel r'>
 					Time Taken
-					<div class='panel-lead'>00 01 56.183</div>
+					<div class='panel-lead'>00 11 49.595</div>
 				</div>
 			</div>
 			<div class='col s4'>
@@ -624,7 +672,7 @@
 							<th>Passed %</th>
 						</tr>
 						<tr>
-							<td>@OGExport</td>
+							<td>@ImportOrder</td>
 							<td>1</td>
 							<td>0</td>
 							<td>0</td>
@@ -633,7 +681,7 @@
 							</td>
 						</tr>
 						<tr>
-							<td>@OGImport</td>
+							<td>@ExportOrder</td>
 							<td>1</td>
 							<td>0</td>
 							<td>0</td>
@@ -667,8 +715,8 @@
 				warningChild: 0,
 				skipChild: 0,
 				infoChild: 0,
-				grandChildCount: 25,
-				passGrandChild: 25,
+				grandChildCount: 32,
+				passGrandChild: 32,
 				failGrandChild: 0,
 				fatalGrandChild: 0,
 				errorGrandChild: 0,
@@ -680,7 +728,7 @@
 		
 		<script>
 			var timeline = {
-			        "Order Guide1":103.804
+			        "Order Entry5":665.071
 			};
 		</script>
 		
