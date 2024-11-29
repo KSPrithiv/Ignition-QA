@@ -40,6 +40,7 @@ public class TestBase
     private static TestBase instanceOfDriver = null;
     public static ThreadLocal<WebDriver> driver = new ThreadLocal<>();
     public static String url = null;
+    static String download_dir = "downloads";
 
     //Helps in reading property file for Parallel execution of the feature files
     // public static void InitializeProp(String envi/*,String menu*/) throws InterruptedException

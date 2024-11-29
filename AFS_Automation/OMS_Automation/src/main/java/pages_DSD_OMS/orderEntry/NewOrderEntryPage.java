@@ -3666,8 +3666,9 @@ public class NewOrderEntryPage
 
                 //to find path of exported file so that same file can be used for importing
                 String tmpFolderPath = System.getProperty("java.io.tmpdir");
+                //String tmpFolderPath=System.getProperty("user.dir");
                 String expectedFileName = "Order_"+Actual_Order+".csv";
-                File file = new File(tmpFolderPath + expectedFileName);
+                File file = new File(tmpFolderPath+"\\"+expectedFileName);
                 scenario.log(file+" FILE PATH IS");
                 importFilePath= String.valueOf(file);
 
@@ -3716,7 +3717,6 @@ public class NewOrderEntryPage
                 HelpersMethod.ScrollElement(driver,Import_but);
                 //driver.findElement(By.xpath("//input[@id='ImportOrder' and @type='file']")).sendKeys("C:\\Users\\Divya.Ramadas\\Downloads\\"+Ord_no);
                 driver.findElement(By.xpath("//input[@id='ImportOrder' and @type='file']")).sendKeys(filePathForImport);
-                exists=true;
             }
 
             //Handling import confirmation popup
@@ -3724,6 +3724,7 @@ public class NewOrderEntryPage
             {
                 WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-window k-dialog')]/descendant::button/span[text()='Yes']");
                 HelpersMethod.ActClick(driver,WebEle,10000);
+                exists=true;
                 scenario.log("ORDER HAS BEEN IMPORTED SUCESSFULY");
             }
             if(HelpersMethod.IsExists("//div[@class='loader']",driver))

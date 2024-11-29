@@ -524,7 +524,6 @@ public class CatalogPage
             .ignoring(NoSuchElementException.class);
         wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
 
-
         try
         {
             Thread.sleep(1000);
