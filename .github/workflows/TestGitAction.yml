@@ -22,9 +22,16 @@ jobs:
           java-version: '16'
           cache: maven
 
-      - name: Check Maven version
-        run: mvn -v
+      - name: Install Maven
+        run: choco install maven -y
+        shell: cmd     
 
+      - name: Check Maven version
+        run: mvn --v
+
+      - name: Build with Maven
+        run: mvn -B package --file pom.xml
+ 
       - name: Cache Maven dependencies
         uses: actions/cache@v3
         with:
@@ -55,7 +62,14 @@ jobs:
   clean-up:
     runs-on: windows-latest
     steps:
-      - name: Clean up unused images and space
+      - name: Clean up temporary files
         run: |
-          del /s /q %TEMP%\
-          del /s /q C:\Users\%USERNAME%\AppData\Local\Temp\
+           Write-Host "Deleting all files in $env:TEMP"
+           Get-ChildItem -Path "$env:TEMP" -Recurse -Force -File | Remove-Item -Force
+           Write-Host "Removing all empty folders in $env:TEMP"
+           Get-ChildItem -Path "$env:TEMP" -Recurse -Force -Directory |
+           Where-Object { $_.GetFiles().Count -eq 0 -and $_.GetDirectories().Count -eq 0 } |
+           Remove-Item -Force -Recurse
+
+      - name: Run tests
+        run: mvn clean test
