@@ -10,7 +10,7 @@ name: OMS-D Regression
 jobs:
   build:
     name: OMS Automation
-    runs-on: self-hosted
+    runs-on: [self-hosted, windows]
     steps:
       - name: Checkout source code
         uses: actions/checkout@v3
