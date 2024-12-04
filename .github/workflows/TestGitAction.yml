@@ -63,6 +63,7 @@ jobs:
     runs-on: windows-latest
     steps:
       - name: Clean up temporary files
+        shell: pwsh
         run: |
            Write-Host "Deleting all files in $env:TEMP"
            Get-ChildItem -Path "$env:TEMP" -Recurse -Force -File | Remove-Item -Force
