@@ -159,6 +159,7 @@ public class FeaturedProductsPageStep
         featuredProductsPage.SelectProduct();
         featuredProductsPage.CatalogOkButton();
         featuredProductsPage.readFeaturedProduct();
+        featuredProductsPage.savePopup();
     }
 
     @Then("User changes max number of feature products and set it as {int}")

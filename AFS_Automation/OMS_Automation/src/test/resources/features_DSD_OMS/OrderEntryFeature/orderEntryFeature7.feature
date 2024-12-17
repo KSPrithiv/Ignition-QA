@@ -20,8 +20,6 @@ Feature: Order Entry7
     Then Click on Add product drop down and select catalog option
     And User should validate Catalog dialogbox and use filters in customer index dialogbox
 
-
-
   @EditWithOutChangingBackToOrderList
   Scenario:Test scenario for creating Order and edit it without making any changes, or usage of back to order list in summary page
     Given User must be on Order Entry Page

@@ -127,7 +127,6 @@ Feature: Customer Inq in ERP
   Scenario: Test scenario for adding note to customer inq in OMS/ERP env
     Given User must be on Client side and select Customer Inq in ERP
     When User should confirm that he is in Customer Inq in ERP
-    #Then User click on New button in ERP Customer Inq
     Then Add note in popup in ERP cust inq
       |Testing for Notes at Customer inq|
     And User should select the Alert Type and Alert location to display notes in ERP cust inq

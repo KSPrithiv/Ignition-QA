@@ -1463,7 +1463,7 @@ public class AllOrderPage
             {
                 scenario.log("NO ORDER HAS BEEN FOUND");
             }
-            Assert.assertTrue(exists);
+            Assert.assertEquals(exists,true);
         }
         catch (Exception e) {}
     }
@@ -1802,30 +1802,31 @@ public class AllOrderPage
         WebElement WebEle;
         try
         {
-            if(HelpersMethod.IsExists("//div[@class='loader']",driver))
-            {
-                WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 2000000);
-            }
+            Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(600))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
             if(OrderStatus.isDisplayed())
             {
                 WebEle=HelpersMethod.FindByElement(driver,"id","openOrdersSearchCard");
                 HelpersMethod.ScrollElement(driver, WebEle);
-                HelpersMethod.ActClick(driver, OrderStatus, 2000);
-                HelpersMethod.WaitElementPresent(driver,"xpath","//div[contains(@class,'k-animation-container k-animation-container-relative k-list-container')]",800);
+                HelpersMethod.ActClick(driver, OrderStatus, 10000);
+                HelpersMethod.WaitElementPresent(driver,"xpath","//div[contains(@class,'k-animation-container k-animation-container-relative k-list-container')]",10000);
                 exists=true;
-                if(HelpersMethod.IsExists("//div[@class='loader']",driver))
-                {
-                    WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 2000000);
-                }
+                wait = new FluentWait<WebDriver>(driver)
+                        .withTimeout(Duration.ofSeconds(600))
+                        .pollingEvery(Duration.ofSeconds(2))
+                        .ignoring(NoSuchElementException.class);
+                wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
             }
-            Assert.assertTrue(exists);
+           Assert.assertEquals(exists,true);
         }
         catch (Exception e) {}
     }
 
-    public void OrderOptionFromDropDown()
+    public void OrderOptionFromDropDown(String orderSta)
     {
         exists=false;
         String orderStatusText;
@@ -1839,7 +1840,7 @@ public class AllOrderPage
             {
                 act1.moveToElement(oStatus).build().perform();
                 orderStatusText=oStatus.getText();
-                if(orderStatusText.equalsIgnoreCase("Open Order")||orderStatusText.contains("Open Order"))
+                if(orderStatusText.equalsIgnoreCase(orderSta)||orderStatusText.contains(orderSta))
                 {
                   act1.moveToElement(oStatus).build().perform();
                   act1.click(oStatus).build().perform();
@@ -3209,7 +3210,7 @@ public class AllOrderPage
             catch (Exception e){}
     }
 
-    public void openOrderFilter()
+    public void openOrderFilter(String orderStatus)
     {
         exists=false;
         Actions act=new Actions(driver);
@@ -3238,7 +3239,7 @@ public class AllOrderPage
             Assert.assertEquals(exists,true);
             exists=false;
             WebElement filterInput= HelpersMethod.FindByElement(driver,"xpath","//tr[contains(@class,'k-filter-row')]/th["+i+"]/descendant::input");
-            HelpersMethod.EnterText(driver,filterInput,10000, "Open order");
+            HelpersMethod.EnterText(driver,filterInput,10000, orderStatus);
             String status = HelpersMethod.returnDocumentStatus(driver);
             if (status.equals("loading"))
             {

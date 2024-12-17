@@ -2077,7 +2077,7 @@ public class OrderControlListPage
                 scenario.log("<span style='color:red'>CALL DESK INPUT BOX IS DISPLAYED</span>");
                 exists=false;
             }
-            Assert.assertTrue(exists);
+            Assert.assertEquals(exists,true);
         }
         catch (Exception e){}
     }
