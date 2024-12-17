@@ -10,7 +10,7 @@ name: OMS-D Regression
 jobs:
   build:
     name: OMS Automation
-    runs-on: self-hosted
+    runs-on: [self-hosted, windows]
     steps:
       - name: Checkout source code
         uses: actions/checkout@v3
@@ -21,6 +21,10 @@ jobs:
           distribution: temurin
           java-version: '16'
           cache: maven
+
+      - name: Install Chocolatey
+        run: |
+          powershell -Command "Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))"
 
       - name: Install Maven
         run: choco install maven -y
@@ -63,6 +67,7 @@ jobs:
     runs-on: windows-latest
     steps:
       - name: Clean up temporary files
+        shell: pwsh
         run: |
            Write-Host "Deleting all files in $env:TEMP"
            Get-ChildItem -Path "$env:TEMP" -Recurse -Force -File | Remove-Item -Force
@@ -70,6 +75,6 @@ jobs:
            Get-ChildItem -Path "$env:TEMP" -Recurse -Force -Directory |
            Where-Object { $_.GetFiles().Count -eq 0 -and $_.GetDirectories().Count -eq 0 } |
            Remove-Item -Force -Recurse
-
+           
       - name: Run tests
         run: mvn clean test
