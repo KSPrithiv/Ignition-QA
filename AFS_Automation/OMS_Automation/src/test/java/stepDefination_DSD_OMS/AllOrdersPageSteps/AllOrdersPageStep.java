@@ -501,11 +501,12 @@ public class AllOrdersPageStep
     }
 
     @And("User clicks on Order status and select Open order option from drop down")
-    public void userClicksOnOrderStatusAndSelectOpenOrderOptionFromDropDown() throws InterruptedException
+    public void userClicksOnOrderStatusAndSelectOpenOrderOptionFromDropDown(DataTable tabledata) throws InterruptedException
     {
+        List<List<String>> orderStatus=tabledata.asLists(String.class);
         allOrder=new AllOrderPage(driver,scenario);
         allOrder.OrderStatusDropDown();
-        allOrder.OrderOptionFromDropDown();
+        allOrder.OrderOptionFromDropDown(orderStatus.get(0).get(0));
         allOrder.ClickOnSearchButton();
     }
 
@@ -778,10 +779,11 @@ public class AllOrdersPageStep
     }
 
     @And("User selects open order from the order status filter")
-    public void userSelectsOpenOrderFromTheOrderStatusFilter()
+    public void userSelectsOpenOrderFromTheOrderStatusFilter(DataTable tabledata)
     {
+        List<List<String>> orderStatus=tabledata.asLists(String.class);
         allOrder=new AllOrderPage(driver,scenario);
         allOrder.ValidateAllOrder();
-        allOrder.openOrderFilter();
+        allOrder.openOrderFilter(orderStatus.get(0).get(0));
     }
 }

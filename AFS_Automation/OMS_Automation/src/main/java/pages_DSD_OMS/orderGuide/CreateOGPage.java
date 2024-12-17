@@ -1152,25 +1152,26 @@ public class CreateOGPage
 
                 //to find path of exported file so that same file can be used for importing
                 tmpFolderPath = System.getProperty("java.io.tmpdir");
+                scenario.log("OG HAS BEEN DOWNLOADED IN PATH "+tmpFolderPath);
 
                 //Read all the .csv files in download directory and compare with actual order number
-                File dir = new File(tmpFolderPath);
-                FileFilter fileFilter = new WildcardFileFilter("*.csv");
-                File[] files = dir.listFiles(fileFilter);
-
-                for (File Exportfile:files)
-                {
-                    String file1 = Exportfile.getName();
-                    if(file1.contains("OrderGuide"))
-                    {
-                        expectedFileName = file1;
-                        file = new File(tmpFolderPath+"\\" + expectedFileName);
-                        scenario.log(file+" IS EXPORTED ORDER GUIDE");
-                        //mportFilePath= String.valueOf(file);
-                        //ExportOG=file1;
-                        break;
-                    }
-                }
+//                File dir = new File(tmpFolderPath);
+//                FileFilter fileFilter = new WildcardFileFilter("*.csv");
+//                File[] files = dir.listFiles(fileFilter);
+//
+//                for (File Exportfile:files)
+//                {
+//                    String file1 = Exportfile.getName();
+//                    if(file1.contains("OrderGuide"))
+//                    {
+//                        expectedFileName = file1;
+//                        file = new File(tmpFolderPath+"\\" + expectedFileName);
+//                        scenario.log(file+" IS EXPORTED ORDER GUIDE");
+//                        //mportFilePath= String.valueOf(file);
+//                        //ExportOG=file1;
+//                        break;
+//                    }
+//                }
             }
             Assert.assertEquals(exists,true);
         }
@@ -1187,22 +1188,6 @@ public class CreateOGPage
         Wait<WebDriver> wait;
         try
         {
-//            if(OGImport.isDisplayed())
-//            {
-                //Read all the .csv files in download directory
-                /*File dir = new File("C:\\Users\\Divya.Ramadas\\Downloads");
-                FileFilter fileFilter = new WildcardFileFilter("*.csv");
-                File[] files = dir.listFiles(fileFilter);
-                for (File fileName:files)
-                {
-                    i++;
-                    file1 = fileName.getName();
-                    if(file1.contains("OrderGuide"))
-                    {
-                        break;
-                    }
-                }*/
-
               if(HelpersMethod.IsExists("//input[@id='ImportProducts']",driver))
               {
                 scenario.log("ORDER GUIDE .CSV FILE CAN BE FOUND IN PATH "+importFilePath);
@@ -1232,11 +1217,12 @@ public class CreateOGPage
                         }
                     }
                 }
-                scenario.log("ORDER IMPORTED IS "+OGno);
+
                 if(OGImport.isDisplayed())
                 {
                     HelpersMethod.ScrollElement(driver,OGImport);
-                    driver.findElement(By.xpath("//input[@id='ImportProducts' and @type='file']")).sendKeys("C:\\Users\\Divya.Ramadas\\Downloads\\" +OGno);
+                    scenario.log("OG IMPORTED FROM PATH "+importFilePath+OGno);
+                    driver.findElement(By.xpath("//input[@id='ImportProducts' and @type='file']")).sendKeys(importFilePath+OGno);
                     exists=true;
                     scenario.log("ORDER IMPORTED IS "+OGno);
                     wait = new FluentWait<WebDriver>(driver)

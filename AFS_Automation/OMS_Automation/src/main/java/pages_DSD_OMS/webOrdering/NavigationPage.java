@@ -91,7 +91,7 @@ public class NavigationPage
     {
         exists=false;
         Actions act=new Actions(driver);
-        String menuText="";
+        String menuText;
         WebElement fromElement;
         WebElement toElement=HelpersMethod.FindByElement(driver,"xpath","//div[@id='ActiveItemsAdminCard']/descendant::div[@class='i-droppable-container']");
         int index;
@@ -168,6 +168,12 @@ public class NavigationPage
     {
         try
         {
+            if (HelpersMethod.IsExists("//div[@class='loader']", driver))
+            {
+                WebElement WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
+                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100000);
+            }
+
             //check box click
             WebElement checkBox=HelpersMethod.FindByElement(driver,"xpath","//div[@class='i-draggable-item'][1]/descendant::input");
             HelpersMethod.ClickBut(driver,checkBox,10000);
