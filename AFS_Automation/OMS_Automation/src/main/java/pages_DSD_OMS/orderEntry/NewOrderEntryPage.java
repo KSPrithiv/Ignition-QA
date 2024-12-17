@@ -699,7 +699,8 @@ public class NewOrderEntryPage
             if(SearchProd.isDisplayed()&&SearchProd.isEnabled())
             {
                 HelpersMethod.ScrollElement(driver, SearchProd);
-                HelpersMethod.EnterText(driver,SearchProd,10000,Product);
+                //HelpersMethod.EnterText(driver,SearchProd,10000,Product);
+                HelpersMethod.sendKeys(driver,SearchProd,10000,Product);
                 IndexSearch=HelpersMethod.FindByElement(driver,"xpath","//span[@datatestid='searchBarSearchBtn']//*[local-name()='svg']");
                 HelpersMethod.ActClick(driver, IndexSearch, 10000);
                 exists = true;

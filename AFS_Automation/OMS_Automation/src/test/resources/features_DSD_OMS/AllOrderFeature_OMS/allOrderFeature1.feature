@@ -7,7 +7,6 @@ Feature: All orders
     Then User navigate to Client side for All order
     Then User should select Order Entry tab for All order
 
-
   @GroupLevelAvgCalculation
   Scenario Outline: Test scenario for finding Avg of the column for Qty and total
     Given User must be on Order Entry Page to select All Orders
