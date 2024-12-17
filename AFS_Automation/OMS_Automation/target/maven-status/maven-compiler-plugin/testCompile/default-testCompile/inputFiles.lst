@@ -2,6 +2,7 @@ C:\Users\Divya.Ramadas\IdeaProjects\ignition-qa\AFS_Automation\OMS_Automation\sr
 C:\Users\Divya.Ramadas\IdeaProjects\ignition-qa\AFS_Automation\OMS_Automation\src\test\java\stepDefination_DSD_OMS\AdminReportSteps\OrderAdminPageStep.java
 C:\Users\Divya.Ramadas\IdeaProjects\ignition-qa\AFS_Automation\OMS_Automation\src\test\java\testRunner_DSD_OMS\OMSEnv\TestRunnerStatements.java
 C:\Users\Divya.Ramadas\IdeaProjects\ignition-qa\AFS_Automation\OMS_Automation\src\test\java\stepDefination_DSD_OMS\InventoryPageSteps\InventoryPageSteps.java
+C:\Users\Divya.Ramadas\IdeaProjects\ignition-qa\AFS_Automation\OMS_Automation\src\test\java\testRunner_DSD_OMS\ParallelExecutionEnvironment1.java
 C:\Users\Divya.Ramadas\IdeaProjects\ignition-qa\AFS_Automation\OMS_Automation\src\test\java\testRunner_DSD_OMS\DSDEnv\TestRunnerBillToBill.java
 C:\Users\Divya.Ramadas\IdeaProjects\ignition-qa\AFS_Automation\OMS_Automation\src\test\java\testRunner_DSD_OMS\DSDEnv\TestRunnerCompetitivePrice.java
 C:\Users\Divya.Ramadas\IdeaProjects\ignition-qa\AFS_Automation\OMS_Automation\src\test\java\stepDefination_DSD_OMS\AdminToClientNavigationSteps\AdminStandingOrderOMSStep.java
@@ -108,6 +109,7 @@ C:\Users\Divya.Ramadas\IdeaProjects\ignition-qa\AFS_Automation\OMS_Automation\sr
 C:\Users\Divya.Ramadas\IdeaProjects\ignition-qa\AFS_Automation\OMS_Automation\src\test\java\stepDefination_DSD_OMS\MyAccountStep\MyAccountPageStep.java
 C:\Users\Divya.Ramadas\IdeaProjects\ignition-qa\AFS_Automation\OMS_Automation\src\test\java\testRunner_DSD_OMS\OMSEnv\TestRunnerReportsOE.java
 C:\Users\Divya.Ramadas\IdeaProjects\ignition-qa\AFS_Automation\OMS_Automation\src\test\java\testRunner_DSD_OMS\TestRunnerSingleSce1.java
+C:\Users\Divya.Ramadas\IdeaProjects\ignition-qa\AFS_Automation\OMS_Automation\src\test\java\stepDefination_DSD_OMS\AdminToClientNavigationSteps\AdminOrderGuideStep.java
 C:\Users\Divya.Ramadas\IdeaProjects\ignition-qa\AFS_Automation\OMS_Automation\src\test\java\stepDefination_DSD_OMS\CRMStepDef\CRMStepDef.java
 C:\Users\Divya.Ramadas\IdeaProjects\ignition-qa\AFS_Automation\OMS_Automation\src\test\java\stepDefination_DSD_OMS\OrderEntryPageSteps\OrderEntryPageSteps7.java
 C:\Users\Divya.Ramadas\IdeaProjects\ignition-qa\AFS_Automation\OMS_Automation\src\test\java\testRunner_DSD_OMS\OMSEnv\TestRunnerOE2.java
