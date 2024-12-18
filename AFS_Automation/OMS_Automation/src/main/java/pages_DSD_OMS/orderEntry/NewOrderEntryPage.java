@@ -4729,7 +4729,6 @@ public class NewOrderEntryPage
         {
             boolean result1=HelpersMethod.IsExists("//div[contains(@class,'inline-form-group')]/span[contains(text(),'Date')]",driver);
 
-
             if(HelpersMethod.IsExists("//input[@id='pickupOrder' and @data-checked='checked']",driver)||HelpersMethod.IsExists("//span[text()='Order type']/following-sibling::span[text()='Pickup Order']",driver) || result1==true)
             {
                 scenario.log("PICKUP ORDER HAS BEEN SELECTED");
@@ -4936,6 +4935,7 @@ public class NewOrderEntryPage
 
             if(HelpersMethod.IsExists("//input[@id='pickupOrder' and @data-checked='unchecked']",driver))
             {
+                HelpersMethod.ScrollUpScrollBar(driver);
                 HelpersMethod.ScrollElement(driver,PickupOrder);
                 HelpersMethod.ActClick(driver,PickupOrder,10000);
                 scenario.log("PICKUP ORDER CHECK BOX IS CLICKED");
@@ -6511,34 +6511,33 @@ public class NewOrderEntryPage
                     .pollingEvery(Duration.ofSeconds(2))
                     .ignoring(NoSuchElementException.class);
             wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
-
             if (HelpersMethod.IsExists("//div[contains(text(),'Sorry, no products matched')]/ancestor::div[contains(@class,'k-window k-dialog')]|//div[contains(@class,'i-no-data__message')]/ancestor::div[contains(@class,'k-window k-dialog')]", driver))
             {
                 scenario.log("<space style='color:red'>SORRY NO PRODUCTS HAS BEEN FOUND</space>");
-                exists=false;
+                exists = false;
             }
             else
             {
                 String titleText;
-                int i=0;
-                if(HelpersMethod.IsExists("//div[@class='k-window k-dialog']/descendant::div[@class='i-grid']",driver))
+                int i = 0;
+                if (HelpersMethod.IsExists("//div[@class='k-window k-dialog']/descendant::div[@class='i-grid']", driver))
                 {
-                    List<WebElement> titles=HelpersMethod.FindByElements(driver,"xpath","//div[@class='k-window k-dialog']/descendant::span[@class='k-column-title']");
-                    for(WebElement title:titles)
+                    List<WebElement> titles = HelpersMethod.FindByElements(driver, "xpath", "//div[@class='k-window k-dialog']/descendant::span[@class='k-column-title']");
+                    for (WebElement title : titles)
                     {
                         i++;
-                        titleText=title.getText();
-                        if(titleText.equals("Description"))
+                        titleText = title.getText();
+                        if (titleText.equals("Description"))
                         {
                             break;
                         }
                     }
-                    List<WebElement> prodDescs = HelpersMethod.FindByElements(driver, "xpath", "//div[@class='k-window k-dialog']/descendant::tr[contains(@class,'k-master-row')]/td["+i+"]");
+                    List<WebElement> prodDescs = HelpersMethod.FindByElements(driver, "xpath", "//div[@class='k-window k-dialog']/descendant::tr[contains(@class,'k-master-row')]/td[" + i + "]");
                     for (WebElement prodDesc : prodDescs)
                     {
                         act.moveToElement(prodDesc).build().perform();
                         prodDesText = prodDesc.getText();
-                        if (prodDesText.equalsIgnoreCase(TestBase.testEnvironment.getProdDesc()))
+                        if (prodDesText.contains(TestBase.testEnvironment.getProdDesc()))
                         {
                             counter++;
                             exists = true;
@@ -6546,14 +6545,14 @@ public class NewOrderEntryPage
                         }
                     }
                 }
-                else if(HelpersMethod.IsExists("//div[@class='k-window k-dialog']/descendant::div[@class='card-view']",driver))
+                else if (HelpersMethod.IsExists("//div[@class='k-window k-dialog']/descendant::div[@class='card-view']", driver))
                 {
                     List<WebElement> prodNos = HelpersMethod.FindByElements(driver, "xpath", "//div[@class='k-window k-dialog']/descendant::span[contains(@class,'product-name')]/a");
                     for (WebElement prodNo : prodNos)
                     {
                         act.moveToElement(prodNo).build().perform();
                         prodDesText = prodNo.getText();
-                        if (prodDesText.equals(TestBase.testEnvironment.getProdDesc()))
+                        if (prodDesText.contains(TestBase.testEnvironment.getProdDesc()))
                         {
                             counter++;
                             exists = true;

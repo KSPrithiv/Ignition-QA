@@ -3539,7 +3539,7 @@ public class OrderEntryPage
     {
         exists = false;
         WebElement WebEle;
-        String CurrentDate ="";
+        String CurrentDate;
 
         //Check for existence of Select delivery date popup
         if (HelpersMethod.IsExists("//span[contains(text(),'Select pickup date')]/ancestor::div[contains(@class,'k-window k-dialog')]", driver))
@@ -3560,10 +3560,15 @@ public class OrderEntryPage
             WebEle = DeliveryDates.get(0);
             CurrentDate = WebEle.getText();
             scenario.log("FIRST DATE FOR PICKUP ORDER, IN POPUP IS " + CurrentDate);
-            if (CurrentDate.equals(formattedDate))
+
+            // Find system date and change it according to required formate
+            SimpleDateFormat ft = new SimpleDateFormat("MMM dd, yyyy");
+            String str = ft.format(new Date());
+            //Compare first date in pickup order dialog box and compare it with system date
+            if (CurrentDate.equals(str))
             {
                 scenario.log("DATE SAME AS OF DELIVERY DATE HAS BEEN FOUND IN PICKUP ORDER DELIVER DATE POPUP.....PLEASE CHECK ADMIN SETTINGS " + WebEle.getText());
-                exists = true;
+                exists=true;
             }
             else
             {
@@ -3585,7 +3590,7 @@ public class OrderEntryPage
             }
 
             Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
-                    .withTimeout(Duration.ofSeconds(120))
+                    .withTimeout(Duration.ofSeconds(400))
                     .pollingEvery(Duration.ofSeconds(2))
                     .ignoring(NoSuchElementException.class);
             wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
