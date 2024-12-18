@@ -34,7 +34,7 @@ public interface Environment extends Config
     @Key("username")
     String username();
 
-    @Key("password")
+    @Key("pword")
     String password();
 
     @Key("Dummiesuser")
@@ -46,7 +46,7 @@ public interface Environment extends Config
     @Key("AdminUser")
     String getAdminUser();
 
-    @Key("AdminPass")
+    @Key("AdminP")
     String getAdminPass();
 
     @Key("ForeignLangDesc")
@@ -79,7 +79,7 @@ public interface Environment extends Config
     @Key("DB_User")
     String getDBUser();
 
-    @Key("DB_Password")
+    @Key("DB_P")
     String getDBPassword();
 
     @Key("DB_ProdSql")

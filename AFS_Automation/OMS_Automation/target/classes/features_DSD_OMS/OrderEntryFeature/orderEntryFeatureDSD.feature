@@ -1,4 +1,4 @@
-Feature: Order Entry4
+Feature: Order Entry Test cases only for DSD env
   Used for cration of New order in different ways
   Used for canceling order, editing of order, skipping of order
 

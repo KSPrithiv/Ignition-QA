@@ -80,7 +80,7 @@ Feature: All orders
     And User should navigate to All Orders
     Then User clicks on Show all orders check box after Clicking All orders tab
     And User selects open order from the order status filter
-      |Open order|
+      |Open Order|
     Then User selects first order in the grid and clicks on copy button
     And User selects Delivery date from delivery date popup and new order from Select order popup
     Then User should make selection between Pending order or Start New order

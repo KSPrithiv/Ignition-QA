@@ -229,7 +229,7 @@ public class OrderHistoryPage
               i++;
               act1.moveToElement(sta).build().perform();
               statusText=sta.getText();
-              if(statusText.equalsIgnoreCase("ACTIVE")||statusText.equalsIgnoreCase("OPEN ORDER"))
+              if(statusText.equalsIgnoreCase("ACTIVE")||statusText.equalsIgnoreCase("OPEN ORDER")||statusText.equalsIgnoreCase("DELIVERED"))
               {
                   //Read the Order number
                   WebElement OrderNo=HelpersMethod.FindByElement(driver,"xpath","//tr[contains(@class,'k-master-row')]["+i+"]/descendant::button");
@@ -308,7 +308,6 @@ public class OrderHistoryPage
     public void OrderButtonClick()
     {
         exists=false;
-        WebElement WebEle;
         try
         {
             HelpersMethod.ClickBut(driver,OrderButton,10000);
