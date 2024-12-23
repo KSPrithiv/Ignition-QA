@@ -24,7 +24,7 @@ Background: For login to application to verify admin settings in client side
      |  Setting                 |  Key                  |
      | Require skip reason code | CPOCLRequireSkipReason|
 
-  @CallDesk
+  @CallDeskNotDisplay
   Scenario Outline: Test scenario for verifying call desk existance
     Given User should verify admin setting "<Setting>" is disabled by using "<Key>"
     Then User enters URL and is on login page and entered credentials for admin setting
@@ -41,6 +41,24 @@ Background: For login to application to verify admin settings in client side
      Examples:
         |  Setting            |  Key                    |
         | Call desk field     | CPEnableOCLCallDeskField|
+
+  @CallDeskDisplay
+  Scenario Outline: Test scenario for verifying call desk input box does existes
+    Given User should verify admin setting "<Setting>" is enabled by using "<Key>"
+    Then User enters URL and is on login page and entered credentials for admin setting
+    When User is on Home Page
+    Then User navigate to Client side
+    Then User should select Order Entry tab for admin
+    #Then User selects Account# for Admin side setting
+    And User should navigate to OCL tab for admin setting
+    Then User should select Order taker from drop down
+    And Change the delivery date 2 days after current date
+    Then User validates existence of call desk input box is displaying
+    Then User sign out from client side for Admin setting changes
+    And User should set admin setting "<Setting>" "<Key>" as default before making changes
+    Examples:
+      |  Setting            |  Key                    |
+      | Call desk field     | CPEnableOCLCallDeskField|
 
   @OrderTakerDisableAndPrintButtonVerification
   Scenario Outline: Test scenario for verifying order taker admin setting

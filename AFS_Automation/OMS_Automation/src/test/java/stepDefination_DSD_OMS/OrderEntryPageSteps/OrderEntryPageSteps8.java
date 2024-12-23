@@ -102,7 +102,6 @@ public class OrderEntryPageSteps8
     public void cancelPopupShouldAppearAndVerifyButtonCancelAndSkipButtonForCurrentDate() throws InterruptedException, AWTException
     {
         newOE=new NewOrderEntryPage(driver,scenario);
-        //newOE.OECancel();
         newOE.VerifyCancelPopUp();
         newOE.CancelAndSkipPopupDisabled();
         newOE.CancelPop();

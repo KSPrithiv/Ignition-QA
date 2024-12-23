@@ -555,7 +555,8 @@ public class OrderHistoryPage
         String optText;
         try
         {
-            new WebDriverWait(driver,Duration.ofMillis(2000)).until(ExpectedConditions.refreshed(ExpectedConditions.visibilityOfElementLocated(By.xpath("//ul[@id='grid-selection-dropdown-listbox-id']/li/span"))));
+            new WebDriverWait(driver,Duration.ofMillis(10000)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.xpath("//ul[@id='grid-selection-dropdown-listbox-id']/li/span"))));
+            new WebDriverWait(driver,Duration.ofMillis(10000)).until(ExpectedConditions.refreshed(ExpectedConditions.visibilityOfElementLocated(By.xpath("//ul[@id='grid-selection-dropdown-listbox-id']/li/span"))));
             List<WebElement> Options=HelpersMethod.FindByElements(driver,"xpath","//ul[@id='grid-selection-dropdown-listbox-id']/li/span");
             //for (int i=0;i<=Options.size()-1;i++)
             for(WebElement opt:Options)
@@ -570,11 +571,12 @@ public class OrderHistoryPage
                     break;
                 }
             }
-            if(HelpersMethod.IsExists("//div[@class='loader']",driver))
-            {
-                WebElement WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000000);
-            }
+            Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(400))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
             String gridName=HelpersMethod.FindByElement(driver,"xpath","//span[@id='grid-selection-dropdown']/descendant::span[@class='k-input-value-text']").getText();
             scenario.log("GRID SELECTED IS "+gridName);
             Assert.assertEquals(exists,true);

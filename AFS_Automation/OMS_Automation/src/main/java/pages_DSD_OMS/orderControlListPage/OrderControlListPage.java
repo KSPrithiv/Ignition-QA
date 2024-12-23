@@ -2062,7 +2062,7 @@ public class OrderControlListPage
         catch (Exception e){}
     }
 
-    public void validateCallDeskDisplayed()
+    public void validateCallDeskNotDisplayed()
     {
         exists=false;
         try
@@ -2075,6 +2075,26 @@ public class OrderControlListPage
             else
             {
                 scenario.log("<span style='color:red'>CALL DESK INPUT BOX IS DISPLAYED</span>");
+                exists=false;
+            }
+            Assert.assertEquals(exists,true);
+        }
+        catch (Exception e){}
+    }
+
+    public void validateCallDeskDisplayed()
+    {
+        exists=false;
+        try
+        {
+            if(callDesk.isDisplayed())
+            {
+                scenario.log("CALL DESK INPUT BOX IS DISPLAYED");
+                exists=true;
+            }
+            else
+            {
+                scenario.log("<span style='color:red'>CALL DESK INPUT BOX IS NOT DISPLAYED</span>");
                 exists=false;
             }
             Assert.assertEquals(exists,true);
@@ -2476,7 +2496,17 @@ public class OrderControlListPage
         try
         {
             Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
-                    .withTimeout(Duration.ofSeconds(200))
+                    .withTimeout(Duration.ofSeconds(400))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+            String status = HelpersMethod.returnDocumentStatus(driver);
+            if (status.equals("loading"))
+            {
+                HelpersMethod.waitTillLoadingPage(driver);
+            }
+            wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(400))
                     .pollingEvery(Duration.ofSeconds(2))
                     .ignoring(NoSuchElementException.class);
             wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));

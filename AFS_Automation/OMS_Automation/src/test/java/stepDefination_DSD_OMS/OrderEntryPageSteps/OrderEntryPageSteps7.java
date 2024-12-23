@@ -173,8 +173,6 @@ public class OrderEntryPageSteps7
         orderHistoryPage=new OrderHistoryPage(driver,scenario);
         orderHistoryPage.ValidateOrderHistory();
         orderHistoryPage.clickOnGridType();
-        //orderHistoryPage.selectGridType(gridtype.get(0).get(0));
-        //orderHistoryPage.validateGridType(gridtype.get(0).get(0));
         orderHistoryPage.selectGridTypeNotMain();
         orderHistoryPage.validateGridTypeNotMain();
     }
