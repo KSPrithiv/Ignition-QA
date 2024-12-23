@@ -1110,6 +1110,8 @@ public class OrderEntryPageSteps
         orderpage = new OrderEntryPage(driver, scenario);
         orderpage.ValidateOE();
         orderpage.Scroll_start();
+        //find whether route is empty or not, if empty should select some route value
+        orderpage.validateRouteValue();
         orderpage.Click_DropDown();
     }
 

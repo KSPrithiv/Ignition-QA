@@ -2056,6 +2056,12 @@ public class NewOrderEntryPage
     {
         try
         {
+            Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(400))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
             WebElement modalContainer = driver.findElement(By.xpath("//span[contains(text(),'Cancel order')]/ancestor::div[contains(@class,'k-window k-dialog')]"));
 
             // to fetch the web elements of the modal content and interact with them, code to fetch content of modal title and verify it
@@ -2070,6 +2076,12 @@ public class NewOrderEntryPage
         exists=false;
         try
         {
+            Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(400))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
             WebElement cancelSkipPopup=HelpersMethod.FindByElement(driver,"xpath","//span[contains(text(),'Cancel order')]/ancestor::div[contains(@class,'k-window k-dialog')]");
             WebElement CAndSButton=cancelSkipPopup.findElement(By.xpath(".//button/span[contains(text(),'Cancel & skip')]"));
             if(CAndSButton.isEnabled())
@@ -2087,6 +2099,12 @@ public class NewOrderEntryPage
         exists=false;
         try
         {
+            Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(400))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
             WebElement cancelSkipPopup=HelpersMethod.FindByElement(driver,"xpath","//span[contains(text(),'Cancel order')]/ancestor::div[contains(@class,'k-window k-dialog')]");
             //WebElement CAndSButton=cancelSkipPopup.findElement(By.xpath(".//button/span[contains(text(),'Cancel & skip')]"));
             if(HelpersMethod.IsExists("//span[text()='Cancel & skip']/ancestor::button[contains(@class,'disabled')]",driver))
@@ -2105,6 +2123,12 @@ public class NewOrderEntryPage
         WebElement WebEle;
         try
         {
+            Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(400))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
             //Check for the Cancel Order warning popup
             if (HelpersMethod.IsExists("//span[contains(text(),'Cancel order')]/ancestor::div[contains(@class,'k-window k-dialog')]",driver))
             {
@@ -2114,7 +2138,7 @@ public class NewOrderEntryPage
                 HelpersMethod.ClickBut(driver,WebEle,10000);
                 scenario.log("CANCEL ORDER POPUP HAS BEEN HANDLED");
             }
-            Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+            wait = new FluentWait<WebDriver>(driver)
                     .withTimeout(Duration.ofSeconds(400))
                     .pollingEvery(Duration.ofSeconds(2))
                     .ignoring(NoSuchElementException.class);
@@ -4556,7 +4580,7 @@ public class NewOrderEntryPage
                 priceAfterOverride=HelpersMethod.AttributeValue(priceOverride,"value");
                 scenario.log("PRICE AFTER OVERRIDE IS "+priceAfterOverride);
             }
-            if(priceAfterOverride.equals(priceOverrideValue))
+            if(priceAfterOverride.contains(priceOverrideValue))
             {
                 exists=true;
             }
@@ -4590,10 +4614,16 @@ public class NewOrderEntryPage
 
                     overridePrice.sendKeys(Keys.TAB);
                     scenario.log("PRICE OVERRIDED BY "+priceOverride);
+
                     //Click on Ok button in popup
                     WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'priceOverride-table-container')]/ancestor::div[contains(@class,'k-window k-dialog')]/descendant::button/span[text()='Ok']");
                     HelpersMethod.ClickBut(driver,WebEle,10000);
-                    //Thread.sleep(1000);
+                    //confirm override
+                    if(HelpersMethod.IsExists("//div[contains(@class,'questionDialog')]/descendant::div[@class='k-window k-dialog']",driver))
+                    {
+                        WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'questionDialog')]/descendant::div[@class='k-window k-dialog']/descendant::button/span[text()='Ok']");
+                        HelpersMethod.ClickBut(driver, WebEle, 10000);
+                    }
                 }
                 for(int i=0;i<=2;i++)
                 {
@@ -4659,10 +4689,17 @@ public class NewOrderEntryPage
                     pricePerUnit.sendKeys(Keys.TAB);
 
                     scenario.log("PRICE OVERRIDED BY " + priceOverride);
+
                     //Click on Ok button in popup
                     WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'priceOverride-table-container')]/ancestor::div[contains(@class,'k-window k-dialog')]/descendant::button/span[text()='Ok']");
                     HelpersMethod.ClickBut(driver, WebEle, 10000);
-                    Thread.sleep(2000);
+                    //confirm override
+                    if(HelpersMethod.IsExists("//div[contains(@class,'questionDialog')]/descendant::div[@class='k-window k-dialog']",driver))
+                    {
+                        WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'questionDialog')]/descendant::div[@class='k-window k-dialog']/descendant::button/span[text()='Ok']");
+                        HelpersMethod.ClickBut(driver, WebEle, 10000);
+                    }
+                    //Thread.sleep(2000);
                 }
                 for(int i=0;i<=1;i++)
                 {

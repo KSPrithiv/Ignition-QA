@@ -118,6 +118,7 @@ public class CatalogPageStep1
     public void user_reads_all_the_products_listed_under_featured_products()
     {
         catalogpage=new CatalogPage(driver,scenario);
+        catalogpage.Click_ResetFilterButton();
         catalogpage.FeaturedReadProduct();
     }
 

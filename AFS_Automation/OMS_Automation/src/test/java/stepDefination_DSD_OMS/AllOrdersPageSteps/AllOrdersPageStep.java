@@ -745,7 +745,7 @@ public class AllOrdersPageStep
         allOrder=new AllOrderPage(driver,scenario);
         //allOrder.SubmittedStatusDropDown();
         //allOrder.SelectSubmitedOptionFromDropDown();
-        allOrder.ClickOnSearchButton();
+        //allOrder.ClickOnSearchButton();
         String oNo=allOrder.readOrderNoForSearch();
         allOrder.AddFilterClick(oNo);
     }

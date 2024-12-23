@@ -412,7 +412,6 @@ public class OrderGuidePageStep
     public void userEntersDescriptionStartDateSdateAndEndDateEdateDayFromCurrentDate(String arg0,int Sdate,int Edate)
     {
         createOGPage=new CreateOGPage(driver,scenario);
-
         createOGPage.DescriptionOG(arg0);
 
         //selecting start date

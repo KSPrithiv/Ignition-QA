@@ -94,7 +94,7 @@ public class AdminOrderControlListStep
     public void userValidatesExistenceOfCallDeskInputBoxForNotDisplaying()
     {
         orderControlListPage=new OrderControlListPage(driver,scenario);
-        orderControlListPage.validateCallDeskDisplayed();
+        orderControlListPage.validateCallDeskNotDisplayed();
     }
 
     @Then("User selects Account# for OCL for admin setting")
@@ -136,5 +136,12 @@ public class AdminOrderControlListStep
         orderControlPage = new OrderControlListPage(driver, scenario);
         orderControlPage.Validate_OCL();
         orderControlPage.validateOrderTakerNonDisplay();
+    }
+
+    @Then("User validates existence of call desk input box is displaying")
+    public void userValidatesExistenceOfCallDeskInputBoxIsDisplaying()
+    {
+        orderControlListPage=new OrderControlListPage(driver,scenario);
+        orderControlListPage.validateCallDeskDisplayed();
     }
 }

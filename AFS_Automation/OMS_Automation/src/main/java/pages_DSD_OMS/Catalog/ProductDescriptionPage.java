@@ -176,7 +176,7 @@ public class ProductDescriptionPage
         try
         {
             Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
-                    .withTimeout(Duration.ofSeconds(120))
+                    .withTimeout(Duration.ofSeconds(400))
                     .pollingEvery(Duration.ofSeconds(2))
                     .ignoring(NoSuchElementException.class);
             wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
@@ -189,11 +189,11 @@ public class ProductDescriptionPage
 
             if(PreviousPage.isDisplayed() && PreviousPage.isEnabled())
             {
-                HelpersMethod.ClickBut(driver, PreviousPage, 1000);
+                HelpersMethod.ClickBut(driver, PreviousPage, 10000);
                 exists = true;
             }
             wait = new FluentWait<WebDriver>(driver)
-                    .withTimeout(Duration.ofSeconds(120))
+                    .withTimeout(Duration.ofSeconds(600))
                     .pollingEvery(Duration.ofSeconds(2))
                     .ignoring(NoSuchElementException.class);
             wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));

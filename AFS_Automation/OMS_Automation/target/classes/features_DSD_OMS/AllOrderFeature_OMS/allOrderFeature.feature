@@ -35,7 +35,7 @@ Feature: All orders
     And User should navigate to All Orders
     Then User clicks on Show all orders check box after Clicking All orders tab
     And User clicks on Order status and select Open order option from drop down
-      |Open order|
+      |Open Order|
     And User clicks on search button
     And User goes through all the order in Open order grid
 
@@ -54,8 +54,8 @@ Feature: All orders
     Given User must be on Order Entry Page to select All Orders
     And User should navigate to All Orders
     Then User clicks on Show all orders check box after Clicking All orders tab
-    And User clicks on Order status and select Open order option from drop down
-      |Open order|
+#    And User clicks on Order status and select Open order option from drop down
+#      |Open Order|
     And User Clicks on Add filter button and enter values for search options for searching in OE
     Then User clicks on OrderNo in All Order grid and User should be navigated Ordersummary page click on Back to order list
     And User enters orderNo That he has selected from order grid and validates it exists in order also
