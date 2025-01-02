@@ -25,6 +25,13 @@ jobs:
       - name: Install Chocolatey
         run: |
           powershell -Command "Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))"
+          choco --version
+
+      - name: Add Chocolatey to PATH
+        run: |
+          setx PATH "%PATH%;C:\ProgramData\chocolatey\bin"
+          choco --version
+        shell: cmd
 
       - name: Install Maven
         run: choco install maven -y
@@ -35,7 +42,7 @@ jobs:
 
       - name: Build with Maven
         run: mvn -B package --file pom.xml
- 
+
       - name: Cache Maven dependencies
         uses: actions/cache@v3
         with:
@@ -69,12 +76,12 @@ jobs:
       - name: Clean up temporary files
         shell: pwsh
         run: |
-           Write-Host "Deleting all files in $env:TEMP"
-           Get-ChildItem -Path "$env:TEMP" -Recurse -Force -File | Remove-Item -Force
-           Write-Host "Removing all empty folders in $env:TEMP"
-           Get-ChildItem -Path "$env:TEMP" -Recurse -Force -Directory |
-           Where-Object { $_.GetFiles().Count -eq 0 -and $_.GetDirectories().Count -eq 0 } |
-           Remove-Item -Force -Recurse
+          Write-Host "Deleting all files in $env:TEMP"
+          Get-ChildItem -Path "$env:TEMP" -Recurse -Force -File | Remove-Item -Force
+          Write-Host "Removing all empty folders in $env:TEMP"
+          Get-ChildItem -Path "$env:TEMP" -Recurse -Force -Directory |
+          Where-Object { $_.GetFiles().Count -eq 0 -and $_.GetDirectories().Count -eq 0 } |
+          Remove-Item -Force -Recurse
            
       - name: Run tests
         run: mvn clean test
