@@ -1,6 +1,6 @@
 name: OMS-D Regression
 
-'on':
+on:
   workflow_dispatch:
     inputs:
       branch:
@@ -24,21 +24,21 @@ jobs:
 
       - name: Install Chocolatey
         run: |
+          if (Test-Path "C:\ProgramData\chocolatey") {
+              Write-Output "Removing existing Chocolatey installation..."
+              Remove-Item -Recurse -Force "C:\ProgramData\chocolatey"
+          }
           powershell -Command "Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))"
+          $env:PATH += ";C:\ProgramData\chocolatey\bin"
           choco --version
-
-      - name: Add Chocolatey to PATH
-        run: |
-          setx PATH "%PATH%;C:\ProgramData\chocolatey\bin"
-          choco --version
-        shell: cmd
 
       - name: Install Maven
         run: choco install maven -y
-        shell: cmd     
+        shell: pwsh
 
-      - name: Check Maven version
-        run: mvn --v
+      - name: Verify Maven Installation
+        run: mvn -version
+        shell: pwsh
 
       - name: Build with Maven
         run: mvn -B package --file pom.xml
@@ -76,12 +76,13 @@ jobs:
       - name: Clean up temporary files
         shell: pwsh
         run: |
+          if (-not ([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)) {
+            Write-Error "Administrator privileges are required for cleanup."
+            exit 1
+          }
           Write-Host "Deleting all files in $env:TEMP"
           Get-ChildItem -Path "$env:TEMP" -Recurse -Force -File | Remove-Item -Force
           Write-Host "Removing all empty folders in $env:TEMP"
           Get-ChildItem -Path "$env:TEMP" -Recurse -Force -Directory |
           Where-Object { $_.GetFiles().Count -eq 0 -and $_.GetDirectories().Count -eq 0 } |
           Remove-Item -Force -Recurse
-           
-      - name: Run tests
-        run: mvn clean test
