@@ -40,10 +40,7 @@ jobs:
       - name: Add Chocolatey to PATH
         run: |
           $env:PATH += ";C:\ProgramData\chocolatey\bin"
-
-      - name: Verify Chocolatey Installation
-        run: choco --version
-        shell: pwsh
+          Write-Output "PATH: $env:PATH"
 
       - name: Verify Maven Installation
         run: mvn -version
@@ -70,6 +67,7 @@ jobs:
         run: >
           mvn clean install test -DsuiteXmlFile='TestNG_Admin_Grid.xml'
           -Dheadless=true
+          -DargLine="-Xmx512m -Xms256m"
         working-directory: AFS_Automation/OMS_Automation
 
       - name: Upload test results
