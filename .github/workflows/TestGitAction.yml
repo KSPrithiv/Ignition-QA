@@ -43,6 +43,7 @@ jobs:
 
       - name: Verify Chocolatey Installation
         run: choco --version
+        shell: pwsh
 
       - name: Verify Maven Installation
         run: mvn -version
