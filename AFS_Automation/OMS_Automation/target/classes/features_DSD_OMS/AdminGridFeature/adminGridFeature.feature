@@ -62,7 +62,7 @@ Feature: scenarios for User and Accounts admin feature, for Grid related setting
 #    Examples:
 #      |Main menu|Sub menu       |Grid type  | Grid name |Grid option |
 #      |Grids    |Configuration  |Order Entry| New       |Add         |
-#
+
 #  @CopyGrid
 #  Scenario Outline: Test scneario for crating copy of the grid
 #    Given User is on Home Page for Admin setting to select Admin option

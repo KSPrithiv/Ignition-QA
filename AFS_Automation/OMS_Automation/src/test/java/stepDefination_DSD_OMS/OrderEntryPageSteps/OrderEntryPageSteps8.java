@@ -317,4 +317,83 @@ public class OrderEntryPageSteps8
             String ProdName= TestBase.testEnvironment.getForeignLangDesc();
             newOE.EnterForignLanguage_InSearchBar(ProdName);
     }
+
+    @Then("User should click on price override icon and Change price using What if option Price per unit and change length value to Permanent")
+    public void userShouldClickOnPriceOverrideIconAndChangePriceUsingWhatIfOptionPricePerUnitAndChangeLengthValueToPermanent(DataTable tabledata) throws InterruptedException, AWTException
+    {
+        List<List<String>> priceVal=tabledata.asLists(String.class);
+        newOE=new NewOrderEntryPage(driver,scenario);
+        //newOE.clickOnInfoDropDown();
+        //newOE.selectShowPriceInq();
+        //newOE.validateShowPriceDialogbox();
+        //newOE.readCostPrice();
+        newOE.Click_On_PriceOverrideIcon();
+        newOE.validatePriceOverridePopup();
+        newOE.selectLengthOfOverridePermanent();
+        newOE.PriceOverridePopup_WhatIfPriceUnit(priceVal.get(0).get(0));
+        newOE.readValueAfterOverride(priceVal.get(0).get(0));
+        newOE.handleNotificationForLessCost();
+        newOE.Click_On_PriceOverrideIcon();
+        newOE.validatePriceOverrideIcon();
+        newOE.setToDefaultValue();
+    }
+
+    @Then("Click on Order number in Order Entry page and check for New OE page for editing Order by changing shipping address")
+    public void clickOnOrderNumberInOrderEntryPageAndCheckForNewOEPageForEditingOrderByChangingShippingAddress() throws InterruptedException, AWTException
+    {
+        orderpage = new OrderEntryPage(driver, scenario);
+        orderpage.Select_Order_OrdersGrid();
+        //Check if user is on New OE page
+        newOE=new NewOrderEntryPage(driver,scenario);
+        exists=newOE.ValidateNewOE1();
+        Assert.assertEquals(exists,true);
+    }
+
+    @Then("Click on Next button and change shipping address")
+    public void clickOnNextButtonAndChangeShippingAddress() throws InterruptedException, AWTException
+    {
+        exists = false;
+        newOE = new NewOrderEntryPage(driver, scenario);
+        newOE.readProductsInOrder();
+        exists = newOE.ClickNext();
+        newOE.OutOfStockPop_ERP();
+        if (HelpersMethod.IsExists("//div[@class='page-content']/descendant::div[@id='checkoutCard']",driver))
+        {
+            checkorder = new CheckOutOrderPage(driver, scenario);
+            checkorder.changeDeliveryAddressCard();
+            if (HelpersMethod.IsExists("//div[@id='paymentMethodCard']", driver))
+            {
+                checkorder.Select_PaymentMethod_ClickDownArrow();
+                if (HelpersMethod.IsExists("//tr[1]/descendant::td[@class='payment-method-type-cell']", driver))
+                {
+                    checkorder.SelectPaymentMethod();
+                }
+                else
+                {
+                    checkorder.Click_On_Without_Providing_Payment();
+                }
+            }
+            checkorder.NextButton_Click();
+        }
+    }
+
+    @Then("User should click on price override icon and Change price using What if option Price per unit and change length value to Same day")
+    public void userShouldClickOnPriceOverrideIconAndChangePriceUsingWhatIfOptionPricePerUnitAndChangeLengthValueToSameDay(DataTable tabledata) throws InterruptedException, AWTException
+    {
+        List<List<String>> priceVal=tabledata.asLists(String.class);
+        newOE=new NewOrderEntryPage(driver,scenario);
+        //newOE.clickOnInfoDropDown();
+        //newOE.selectShowPriceInq();
+        //newOE.validateShowPriceDialogbox();
+        //newOE.readCostPrice();
+        newOE.Click_On_PriceOverrideIcon();
+        newOE.validatePriceOverridePopup();
+        newOE.selectLengthOfOverrideSameDay();
+        newOE.PriceOverridePopup_WhatIfPriceUnit(priceVal.get(0).get(0));
+        newOE.readValueAfterOverride(priceVal.get(0).get(0));
+        newOE.handleNotificationForLessCost();
+        newOE.Click_On_PriceOverrideIcon();
+        newOE.validatePriceOverrideIcon();
+        newOE.setToDefaultValue();
+    }
 }

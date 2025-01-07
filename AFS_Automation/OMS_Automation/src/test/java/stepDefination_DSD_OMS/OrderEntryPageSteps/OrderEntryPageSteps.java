@@ -162,7 +162,7 @@ public class OrderEntryPageSteps
     }
 
     @Then("User must click Start Order button")
-    public void user_must_click_start_order_button() throws InterruptedException, AWTException
+    public void user_must_click_start_order_button() throws InterruptedException, AWTException, ParseException
     {
         exists=false;
         if (HelpersMethod.IsExists("//div[@id='order-search-card']", driver))
@@ -172,6 +172,7 @@ public class OrderEntryPageSteps
 
             //find whether route is empty or not, if empty should select some route value
             orderpage.validateRouteValue();
+            orderpage.Read_DeliveryDate();
             //check for 'Start Order' button
             Thread.sleep(1000);
             orderpage.Scroll_start();

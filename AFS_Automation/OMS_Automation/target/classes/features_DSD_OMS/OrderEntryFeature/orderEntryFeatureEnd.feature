@@ -28,6 +28,7 @@ Feature: Order entry End
     Then Click on Cancel button
     And Check for Warning popup
     Then User should be navigated to Order Entry page
+    And User should reset the delivery date to current date
 
   @CancelAndSkip
   Scenario: Test scenario for Skip using cancel button in new order entry page

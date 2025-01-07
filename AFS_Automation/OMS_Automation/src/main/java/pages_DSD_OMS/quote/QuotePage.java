@@ -9,6 +9,7 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.Wait;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import pages_DSD_OMS.orderEntry.OrderEntryPage;
 
@@ -101,7 +102,10 @@ public class QuotePage
 //            exists = true;
 //            Assert.assertEquals(exists, true);
 
-            OrderEntryPage oepa=new OrderEntryPage(driver,scenario);
+        new WebDriverWait(driver,Duration.ofMillis(10000)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("quoteEndDate-popup-id"))));
+        new WebDriverWait(driver,Duration.ofMillis(10000)).until(ExpectedConditions.visibilityOfElementLocated(By.id("quoteEndDate-popup-id")));
+
+        OrderEntryPage oepa=new OrderEntryPage(driver,scenario);
             String deliverydate=oepa.Read_DeliveryDate2();
             DateTimeFormatter inputFormat = DateTimeFormatter.ofPattern("EEE, MMM d, yyyy");
             DateTimeFormatter outputFormat = DateTimeFormatter.ofPattern("EEEE, MMMM d, yyyy");

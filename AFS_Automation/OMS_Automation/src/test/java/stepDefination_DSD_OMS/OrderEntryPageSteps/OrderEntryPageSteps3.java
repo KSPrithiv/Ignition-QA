@@ -98,7 +98,7 @@ public class OrderEntryPageSteps3
     @Then("Click on Next button and Edit Delivery Addresss")
     public void click_on_next_button_and_edit_delivery_address(DataTable tabledata) throws InterruptedException, AWTException
     {
-        boolean result=false;
+        boolean result;
         List<List<String>> Change_Add=tabledata.asLists(String.class);
         newOE=new NewOrderEntryPage(driver,scenario);
         newOE.ClickNext();
@@ -115,7 +115,7 @@ public class OrderEntryPageSteps3
     @Then("Click on Next button and Delete Address")
     public void click_on_next_button_and_delete_address(DataTable tabledata) throws InterruptedException, AWTException
     {
-        boolean result=false;
+        boolean result;
         List<List<String>> DelAdd=tabledata.asLists(String.class);
         newOE=new NewOrderEntryPage(driver,scenario);
         newOE.ClickNext();

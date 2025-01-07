@@ -35,6 +35,25 @@ Feature: scenarios for admin credentials and client credentials, for Order Facto
     And Click on Submit Order button and read Order_no
     Then User should be navigated to Order Entry page
 
+  @OrderFactorByAddCatalog
+  Scenario: Test scenario for verifying order factor at customer and product by using catalog dialog box
+    Given User enters URL and is on login page and entered credentials
+    When User is on Home Page
+    Then User navigate to Client side
+    Then User should select Order Entry tab for admin
+    Then User selects Account# for Inventory for admin setting
+    Then User must click Start Order button
+    Then User should make selection between Pending order or Start New order
+    Then User should select Note from popup and Order guide from popup
+    Then Enter PO# for New order
+      |PO123|
+    Then Click on Add product drop down and select catalog option
+    And User should select Product from catalog and Enter Qty for the order factor product
+      |8|8|
+    Then Click on Next button for validating order factor dialog box
+    And Click on Submit Order button and read Order_no
+    Then User should be navigated to Order Entry page
+
   @ImportOrderFactorOrder
   Scenario: Create an order Open that order and export the order with Order Factor item and import that order
     Given User enters URL and is on login page and entered credentials
@@ -88,7 +107,7 @@ Feature: scenarios for admin credentials and client credentials, for Order Facto
      Then User should be navigated to Order Entry page
 
   @OrderFactorEditingOrder
-  Scenario: Test scenario for verifying order factor at customer and product level, by Adding OG which contains order factor product to order
+  Scenario: Test scenario for verifying order factor at customer and product level, And then edit the order
     Given User enters URL and is on login page and entered credentials
     When User is on Home Page
     Then User navigate to Client side
@@ -179,6 +198,25 @@ Feature: scenarios for admin credentials and client credentials, for Order Facto
     And Click on Submit Order button and read Order_no
     Then User should be navigated to Order Entry page
 
+  @OrderFactorByAddCatalogProductMasterLevel
+  Scenario: Test scenario for verifying order factor at customer and product by using catalog dialog box
+    Given User enters URL and is on login page and entered credentials
+    When User is on Home Page
+    Then User navigate to Client side
+    Then User should select Order Entry tab for admin
+    Then User selects Account# for Inventory for admin setting
+    Then User must click Start Order button
+    Then User should make selection between Pending order or Start New order
+    Then User should select Note from popup and Order guide from popup
+    Then Enter PO# for New order
+      |PO123|
+    Then Click on Add product drop down and select catalog option
+    And User should select Product from catalog and Enter Qty for the order factor product
+      |8|8|
+    Then Click on Next button for validating order factor dialog box
+    And Click on Submit Order button and read Order_no
+    Then User should be navigated to Order Entry page
+
   @ImportOrderFactorProductMasterLevelImport
   Scenario: Create an order Open that order and export the order with Master level Order Factor item and import that order
     Given User enters URL and is on login page and entered credentials
@@ -232,7 +270,7 @@ Feature: scenarios for admin credentials and client credentials, for Order Facto
     Then User should be navigated to Order Entry page
 
   @OrderFactorMasterLevelEditingOrder
-  Scenario: Test scenario for verifying order factor at Master level, by Adding OG which contains order factor product to order
+  Scenario: Test scenario for verifying order factor at Master level, and editing the order containing order factor
     Given User enters URL and is on login page and entered credentials
     When User is on Home Page
     Then User navigate to Client side

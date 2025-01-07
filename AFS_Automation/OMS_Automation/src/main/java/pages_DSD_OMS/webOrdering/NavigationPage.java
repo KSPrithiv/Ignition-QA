@@ -2,21 +2,16 @@ package pages_DSD_OMS.webOrdering;
 
 import helper.HelpersMethod;
 import io.cucumber.java.Scenario;
-import io.cucumber.java.bs.A;
-import io.cucumber.java8.Th;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.Point;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Action;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.FluentWait;
+import org.openqa.selenium.support.ui.Wait;
 import org.testng.Assert;
 
-import java.awt.*;
-import java.awt.event.InputEvent;
 import java.time.Duration;
 import java.util.List;
 
@@ -57,7 +52,7 @@ public class NavigationPage
     public void FromWebOrderToAvailableApp()
     {
         exists=false;
-        Actions act=new Actions(driver);
+        //Actions act=new Actions(driver);
         WebElement WebEle;
         int index;
         try
@@ -79,7 +74,7 @@ public class NavigationPage
                     .moveToElement(AvailableApp,offsetX,offsetY)
                     //.moveByOffset(offsetX, offsetY)
                     //.pause(Duration.ofSeconds(2))
-                    .release().pause(Duration.ofSeconds(2)).build().perform();
+                    .release().pause(Duration.ofSeconds(4)).build().perform();
             Thread.sleep(4000);
             exists=true;
             Assert.assertEquals(exists,true);
@@ -168,11 +163,11 @@ public class NavigationPage
     {
         try
         {
-            if (HelpersMethod.IsExists("//div[@class='loader']", driver))
-            {
-                WebElement WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100000);
-            }
+            Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(400))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
 
             //check box click
             WebElement checkBox=HelpersMethod.FindByElement(driver,"xpath","//div[@class='i-draggable-item'][1]/descendant::input");

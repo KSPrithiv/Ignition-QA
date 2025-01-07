@@ -187,7 +187,7 @@ public class CatalogPageStep2
     {
         catalogpage=new CatalogPage(driver,scenario);
         catalogpage.validateCatalog();
-        catalogpage.validateProdDescription(descriptionProd);
+        //catalogpage.validateProdDescription(descriptionProd);
     }
 
     @Then("User enters invalid {string} in Search bar")

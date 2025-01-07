@@ -912,4 +912,71 @@ public class StatementsPage
         }
         catch (Exception e){}
     }
+
+    public void AddFilterClear()
+    {
+        exists=false;
+        WebElement Clear;
+        try
+        {
+            //Click on Add filter button
+            new WebDriverWait(driver,Duration.ofMillis(10000)).until(ExpectedConditions.elementToBeClickable(By.xpath("//button/descendant::span[contains(text(),'Add filter')]")));
+            driver.findElement(By.xpath("//button/descendant::span[contains(text(),'Add filter')]")).click();
+
+            HelpersMethod.waitTillElementLocatedDisplayed(driver,"xpath","//div[contains(@class,'k-animation-container k-animation-container-shown')]",80000);
+            WebElement modalContainer1=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-animation-container k-animation-container-shown')]");
+
+            //Click on Clear all button
+            if(HelpersMethod.IsExists("//button[contains(@class,'k-button k-button-md k-button-flat k-button-flat-primary k-rounded-md i-filter-popup__footer__button i-primary')]/span[contains(text(),'Clear all')]",driver))
+            {
+                Clear = modalContainer1.findElement(By.xpath(".//button[contains(@class,'k-button k-button-md k-button-flat k-button-flat-primary k-rounded-md i-filter-popup__footer__button i-primary')]/span[contains(text(),'Clear all')]"));
+                if (Clear.isEnabled())
+                {
+                    Clear.click();
+                    scenario.log("ADD FILTER CLEAR ALL BUTTON CLICKED");
+                    exists=true;
+                }
+            }
+            Assert.assertEquals(exists,true);
+        }
+        catch (Exception e){}
+    }
+
+    public void readTotalCustomerDisplayedValueAfterClearAll()
+    {
+        exists=false;
+        String totalCustomer;
+        int totalCustomerInt;
+        try
+        {
+            totalCustomer=HelpersMethod.FindByElement(driver,"xpath","//span[contains(text(),'Items found')]/following-sibling::span").getText();
+            totalCustomerInt=Integer.parseInt(totalCustomer);
+            if(totalCustomerInt>1)
+            {
+                scenario.log("TOTAL NUMBER OF CUSTOMER DISPLAYED AFTER FILTER: " + totalCustomer);
+                exists=true;
+            }
+            Assert.assertEquals(exists,true);
+        }
+        catch (Exception e){}
+    }
+
+    public void readTotalCustomerDisplayedValueAfterFilter()
+    {
+        exists=false;
+        String totalCustomer;
+        int totalCustomerInt;
+        try
+        {
+            totalCustomer=HelpersMethod.FindByElement(driver,"xpath","//span[contains(text(),'Items found')]/following-sibling::span").getText();
+            totalCustomerInt=Integer.parseInt(totalCustomer);
+            if(totalCustomerInt==1)
+            {
+                scenario.log("TOTAL NUMBER OF CUSTOMER DISPLAYED AFTER FILTER: " + totalCustomer);
+                exists=true;
+            }
+            Assert.assertEquals(exists,true);
+        }
+        catch (Exception e){}
+    }
 }

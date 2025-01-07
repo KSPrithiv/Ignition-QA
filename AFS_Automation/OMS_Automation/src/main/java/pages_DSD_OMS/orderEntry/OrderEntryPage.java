@@ -1545,8 +1545,9 @@ public class OrderEntryPage
             SimpleDateFormat fromUser1 = new SimpleDateFormat("EEE, MMM d, yyyy");
             SimpleDateFormat fromUser = new SimpleDateFormat("EEEE, MMMM d, yyyy");
             C_Date1 = fromUser.format(fromUser1.parse(formattedDate));
-            dateCurrent=fromUser.format(fromUser1.parse(formattedDate));
+            dateCurrent=fromUser1.format(fromUser1.parse(formattedDate));
         }
+        //scenario.log("delivery date"+dateCurrent);
         scenario.log("<span style='color:red'>DELIBERY DATE FOUND, AFTER LOGGING IN TO APPLICATION  " + C_Date1+"</span>");
     }
 
@@ -1554,7 +1555,7 @@ public class OrderEntryPage
     {
         String deliveryDate="";
         Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
-                .withTimeout(Duration.ofSeconds(120))
+                .withTimeout(Duration.ofSeconds(400))
                 .pollingEvery(Duration.ofSeconds(2))
                 .ignoring(NoSuchElementException.class);
         wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
@@ -1655,9 +1656,11 @@ public class OrderEntryPage
             {
                 String monthToSelect=formattedDate.substring(5,8);
                 WebElement monthInCalender=HelpersMethod.FindByElement(driver,"xpath","//button[contains(@class,'k-calendar-title')]");
-                HelpersMethod.ClickBut(driver,monthInCalender,10000);
+                HelpersMethod.ClickBut(driver,monthInCalender,40000);
+
                 WebElement toBeSelectMonth=HelpersMethod.FindByElement(driver,"xpath","//table[@class='k-calendar-table']/descendant::span[contains(@title,'"+monthToSelect+"')]");
-                HelpersMethod.ClickBut(driver,toBeSelectMonth,10000);
+                HelpersMethod.ScrollElement(driver,toBeSelectMonth);
+                HelpersMethod.ClickBut(driver,toBeSelectMonth,40000);
             }
 
                 CDate = HelpersMethod.FindByElement(driver, "xpath", "//table[@class='k-calendar-table']/descendant::td[contains(@style,'opacity:')]/span[contains(@title,'" + C_Date1 + "')]");
@@ -2454,7 +2457,7 @@ public class OrderEntryPage
         try
         {
             Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
-                    .withTimeout(Duration.ofSeconds(250))
+                    .withTimeout(Duration.ofSeconds(400))
                     .pollingEvery(Duration.ofSeconds(2))
                     .ignoring(NoSuchElementException.class);
             wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
@@ -2466,7 +2469,7 @@ public class OrderEntryPage
             }
 
             wait = new FluentWait<WebDriver>(driver)
-                    .withTimeout(Duration.ofSeconds(250))
+                    .withTimeout(Duration.ofSeconds(400))
                     .pollingEvery(Duration.ofSeconds(2))
                     .ignoring(NoSuchElementException.class);
             wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));

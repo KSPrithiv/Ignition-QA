@@ -505,8 +505,8 @@ public class GridConfigurationPage
             actions.clickAndHold(dragElement).build().perform();
                 //actions.moveToElement(dropableElement,targetXOffset,targetYOffset).build().perform();
                //actions.moveToElement(dropableElement).build().perform();
-                actions.moveByOffset(xOffset,yOffset).build().perform();
-                actions.release(dragElement)
+            actions.moveByOffset(xOffset,yOffset).build().perform();
+            actions.release(dragElement)
                     .build()
                     .perform();
         }
