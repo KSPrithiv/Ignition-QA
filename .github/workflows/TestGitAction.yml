@@ -1,6 +1,6 @@
 name: OMS-D Regression
 
-'on':
+on:
   workflow_dispatch:
     inputs:
       branch:
@@ -21,21 +21,29 @@ jobs:
           distribution: temurin
           java-version: '16'
           cache: maven
-
-      - name: Install Chocolatey
-        run: |
-          powershell -Command "Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))"
-
-      - name: Install Maven
-        run: choco install maven -y
-        shell: cmd     
-
-      - name: Check Maven version
-        run: mvn --v
-
       - name: Build with Maven
         run: mvn -B package --file pom.xml
- 
+
+      - name: Install Chocolatey if Missing
+        run: |
+          if (-not (Get-Command choco -ErrorAction SilentlyContinue)) 
+          {
+              Write-Output "Installing Chocolatey..."
+              Set-ExecutionPolicy Bypass -Scope Process -Force
+              [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072
+              iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
+              $env:PATH += ";C:\ProgramData\chocolatey\bin"
+          } 
+          else 
+          {
+              Write-Output "Chocolatey already installed."
+          }
+
+      - name: Add Chocolatey to PATH
+        run: |
+          $env:PATH += ";C:\ProgramData\chocolatey\bin"
+          Write-Output "PATH: $env:PATH"
+
       - name: Cache Maven dependencies
         uses: actions/cache@v3
         with:
@@ -54,6 +62,7 @@ jobs:
         run: >
           mvn clean install test -DsuiteXmlFile='TestNG_Admin_Grid.xml'
           -Dheadless=true
+          -DargLine="-Xmx512m -Xms256m"
         working-directory: AFS_Automation/OMS_Automation
 
       - name: Upload test results
@@ -69,12 +78,13 @@ jobs:
       - name: Clean up temporary files
         shell: pwsh
         run: |
-           Write-Host "Deleting all files in $env:TEMP"
-           Get-ChildItem -Path "$env:TEMP" -Recurse -Force -File | Remove-Item -Force
-           Write-Host "Removing all empty folders in $env:TEMP"
-           Get-ChildItem -Path "$env:TEMP" -Recurse -Force -Directory |
-           Where-Object { $_.GetFiles().Count -eq 0 -and $_.GetDirectories().Count -eq 0 } |
-           Remove-Item -Force -Recurse
-           
-      - name: Run tests
-        run: mvn clean test
+          if (-not ([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)) {
+            Write-Error "Administrator privileges are required for cleanup."
+            exit 1
+          }
+          Write-Host "Deleting all files in $env:TEMP"
+          Get-ChildItem -Path "$env:TEMP" -Recurse -Force -File | Remove-Item -Force
+          Write-Host "Removing all empty folders in $env:TEMP"
+          Get-ChildItem -Path "$env:TEMP" -Recurse -Force -Directory |
+          Where-Object { $_.GetFiles().Count -eq 0 -and $_.GetDirectories().Count -eq 0 } |
+          Remove-Item -Force -Recurse         
