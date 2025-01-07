@@ -40,7 +40,6 @@
 		<ul id='slide-out' class='side-nav fixed hide-on-med-and-down'>
 			<li class='waves-effect active'><a href='#!' view='test-view' onclick="configureView(0);chartsView('test');"><i class='material-icons'>dashboard</i></a></li>
 			<li class='waves-effect'><a href='#!' view='category-view' onclick="configureView(1)"><i class='material-icons'>label_outline</i></a></li>
-			<li class='waves-effect'><a href='#!' view='exception-view' onclick="configureView(2)"><i class='material-icons'>bug_report</i></a></li>
 			<li class='waves-effect'><a href='#!' onclick="configureView(-1);chartsView('dashboard');" view='dashboard-view'><i class='material-icons'>track_changes</i></a></li>
 		</ul>
 		<!-- report name -->
@@ -50,7 +49,7 @@
 		<!-- nav-right -->
 		<ul id='nav-mobile' class='right hide-on-med-and-down nav-right'>
 			<a href='#!'>
-			<span class='label blue darken-3 suite-start-time'>Dec 23, 2024 07:14:14 PM</span>
+			<span class='label blue darken-3 suite-start-time'>Jan 6, 2025 02:05:27 PM</span>
 			</a>
 		</ul>
 	</div>
@@ -65,7 +64,7 @@
 				<i class='material-icons'>warning</i> Status
 				</a>
 				<ul id='tests-toggle' class='dropdown-content'>
-										<li status='fail'><a href='#!'>Fail <i class='material-icons red-text'>cancel</i></a></li>
+										<li status='pass'><a href='#!'>Pass <i class='material-icons green-text'>check_circle</i></a></li>
 					<li class='divider'></li>
 					<li status='clear' clear='true'><a href='#!'>Clear Filters <i class='material-icons'>clear</i></a></li>
 				</ul>
@@ -77,8 +76,7 @@
 				<i class='material-icons'>local_offer</i> Category
 				</a>
 				<ul id='category-toggle' class='dropdown-content'>
-					<li><a href='#'>@DisableHideOrderSubmittingMessage</a></li>
-					<li><a href='#'>@EnableHideOrderSubmittingMessage</a></li>
+					<li><a href='#'>@ChangeShippingAddress</a></li>
 					<li class='divider'></li>
 					<li class='clear'><a href='#!' clear='true'>Clear Filters</a></li>
 				</ul>
@@ -120,12 +118,12 @@
                     <canvas id='parent-analysis' width='90' height='70'></canvas>
                 </div>
                 <div class='block text-small'>
-                    <span class='tooltipped' data-position='top' data-tooltip='$0%'>
-                    <span class='strong'>0</span> features passed</span>
+                    <span class='tooltipped' data-position='top' data-tooltip='$100%'>
+                    <span class='strong'>1</span> features passed</span>
                 </div>
                 <div class='block text-small'>
-                    <span class='strong tooltipped' data-position='top' data-tooltip='100%'>
-                    1</span> features failed, 
+                    <span class='strong tooltipped' data-position='top' data-tooltip='0%'>
+                    0</span> features failed, 
                     <span class='strong tooltipped' data-position='top' data-tooltip='0%'>
                     0</span> skipped
                 </div>
@@ -138,12 +136,12 @@
                     <canvas id='child-analysis' width='90' height='70'></canvas>
                 </div>
                 <div class='block text-small'>
-                    <span class='tooltipped' data-position='top' data-tooltip='0%'>
-                    <span class='strong'>0</span> scenarios passed</span>
+                    <span class='tooltipped' data-position='top' data-tooltip='100%'>
+                    <span class='strong'>1</span> scenarios passed</span>
                 </div>
                 <div class='block text-small'>
-                    <span class='strong tooltipped' data-position='top' data-tooltip='100%'>
-                    2</span> scenarios failed, 
+                    <span class='strong tooltipped' data-position='top' data-tooltip='0%'>
+                    0</span> scenarios failed, 
                     <span class='strong tooltipped' data-position='top' data-tooltip='0%'>
                     0</span> skipped, 
                     <span class='strong tooltipped' data-position='top' data-tooltip='0%'>
@@ -158,14 +156,14 @@
                     <canvas id='grandchild-analysis' width='90' height='70'></canvas>
                 </div>
                 <div class='block text-small'>
-                    <span class='tooltipped' data-position='top' data-tooltip='20%'>
-                    <span class='strong'>7</span> steps passed</span>
+                    <span class='tooltipped' data-position='top' data-tooltip='100%'>
+                    <span class='strong'>20</span> steps passed</span>
                 </div>
                 <div class='block text-small'>
-                    <span class='strong tooltipped' data-position='top' data-tooltip='8%'>
-                    3</span> steps failed, 
-                    <span class='strong tooltipped' data-position='top' data-tooltip='71%'>
-                    25</span> skipped, 
+                    <span class='strong tooltipped' data-position='top' data-tooltip='0%'>
+                    0</span> steps failed, 
+                    <span class='strong tooltipped' data-position='top' data-tooltip='0%'>
+                    0</span> skipped, 
                     <span class='strong tooltipped' data-position='top' data-tooltip='0%'>
                     0</span> others
                 </div>
@@ -186,11 +184,11 @@
 	<div class='subview-left left'>
 		<div class='view-summary'>
 			<ul id='test-collection' class='test-collection'>
-				<li class='test displayed active has-leaf fail' status='fail' bdd='true' test-id='1'>
+				<li class='test displayed active has-leaf pass' status='pass' bdd='true' test-id='1'>
 					<div class='test-heading'>
-						<span class='test-name'>scenarios for admin credentials and client credentials</span>
-						<span class='test-time'>Dec 23, 2024 07:14:59 PM</span>
-						<span class='test-status right fail'>Fail</span>
+						<span class='test-name'>Order Entry8</span>
+						<span class='test-time'>Jan 6, 2025 02:05:40 PM</span>
+						<span class='test-status right pass'>Pass</span>
 					</div>
 					<div class='test-content hide'>
 <div class="sr-filters bdd-filters">
@@ -199,291 +197,180 @@
 	<a class="btn-floating waves-effect waves-light skip blue" title="skip"><i class='material-icons'>redo</i></a>
 	<a class="btn-floating waves-effect waves-light clear grey" title="clear"><i class='material-icons'>clear</i></a>
 </div>
+	<div class='test-desc'>  Used for cration of New order in different ways
+  Used for canceling order, editing of order, skipping of order</div>
 
-<div class='scenario outline node' test-id='2' status='fail'>
+<div class='scenario node' test-id='2' status='pass'>
 
-	<span class='duration right label'>00 00 48.542</span>
+	<span class='duration right label'>00 05 07.864</span>
 	<div class="bdd-test">
-		<div class="scenario-name"><span class='status fail' title='Fail'><i class='material-icons'>cancel</i></span> Scenario Outline: Test scenario for verifying functionality of Order submitting message enabling</div>
+		<div class="scenario-name"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span> Scenario: Test scenario for changing shipping address</div>
 	</div>
 	
-		<div class='node-desc'><br><br><table class='markup-table table '><tr><td>Setting</td><td>Key</td></tr><tr><td>Hide Order submitting message</td><td>CPHideOrderSubmittingMessage</td></tr></table></div>
 	
+		<div class='category-list'>
+				<span class='category label'>@ChangeShippingAddress</span>
+		</div>
 	
 	<ul class='steps'>
-		<li test-id='3' class='node scenario Fail' status='Fail'>
-			<div class="step-name" title="()"><span class='status fail' title='Fail'><i class='material-icons'>cancel</i></span>Test scenario for verifying functionality of Order submitting message enabling</div>
+		<li test-id='89' class='node given Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.user_enters_url_and_is_on_login_page_and_entered_credentials())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Given User enters URL and is on login page and entered credentials</div>
 
-				<div class='category-list'>
-						<span class='category label'>@EnableHideOrderSubmittingMessage</span>
-				</div>
 
-			<ul class='gc steps'>
-				<li test-id='90' class='gc given Pass' status='Pass'>
-					<h6 class="step-name" title="stepDefination_DSD_OMS.AdminToClientNavigationSteps.AdminCatalogStep.userShouldVerifyAdminSettingIsEnabledByUsing(java.lang.String,java.lang.String)"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Given User should verify admin setting "Hide Order submitting message" is enabled by using "CPHideOrderSubmittingMessage"</h6>
-
-							<div class="node-step"><span style='color:red'>ADMIN SETTING FOUND IS</span>0</div>
-							<div class="node-step">ADMIN SETTING IS ENABLED</div>
-							<div class="node-step">FOR ADMIN SETTING Hide Order submitting message CHANGES</div>
-							<div class="node-step">ADMIN SETTING IS ENABLED</div>
-				</li>
-				<li test-id='91' class='gc when Pass' status='Pass'>
-					<h6 class="step-name" title="stepDefination_DSD_OMS.AdminToClientNavigationSteps.AdminCatalogStep.userEntersURLAndIsOnLoginPageAndEnteredCredentialsForAdminSetting()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>When User enters URL and is on login page and entered credentials for admin setting</h6>
-
-							<div class="node-step">CURRENT URL IS data:,</div>
-				</li>
-				<li test-id='92' class='gc when Pass' status='Pass'>
-					<h6 class="step-name" title="stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.user_is_on_home_page()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>When User is on Home Page</h6>
-
-				</li>
-				<li test-id='93' class='gc then Pass' status='Pass'>
-					<h6 class="step-name" title="stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.user_navigate_to_client_side()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User navigate to Client side</h6>
-
-				</li>
-				<li test-id='94' class='gc then Pass' status='Pass'>
-					<h6 class="step-name" title="stepDefination_DSD_OMS.AdminToClientNavigationSteps.AdminOrderEntryStep.userShouldSelectOrderEntryTabForAdmin()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User should select Order Entry tab for admin</h6>
-
-				</li>
-				<li test-id='95' class='gc then Fail' status='Fail'>
-					<h6 class="step-name" title="stepDefination_DSD_OMS.AdminToClientNavigationSteps.AdminOrderEntryStep.userSelectsAccountForAdminSideSetting()"><span class='status fail' title='Fail'><i class='material-icons'>cancel</i></span>Then User selects Account# for Admin side setting</h6>
-
-							<textarea disabled class="code-block">java.lang.AssertionError: expected [true] but found [false]
-	at org.testng.Assert.fail(Assert.java:110)
-	at org.testng.Assert.failNotEquals(Assert.java:1413)
-	at org.testng.Assert.assertEqualsImpl(Assert.java:149)
-	at org.testng.Assert.assertEquals(Assert.java:131)
-	at org.testng.Assert.assertEquals(Assert.java:976)
-	at org.testng.Assert.assertEquals(Assert.java:1010)
-	at pages_DSD_OMS.orderEntry.OrderEntryPage.ValidateOE(OrderEntryPage.java:1154)
-	at stepDefination_DSD_OMS.AdminToClientNavigationSteps.AdminOrderEntryStep.userSelectsAccountForAdminSideSetting(AdminOrderEntryStep.java:110)
-	at ✽.User selects Account# for Admin side setting(file:///C:/Users/Divya.Ramadas/IdeaProjects/ignition-qa/AFS_Automation/OMS_Automation/src/test/resources/features_DSD_OMS/AdminToClientNavigation/webOrderingAdminToClientFeature.feature:12)
-</textarea>
-				</li>
-				<li test-id='96' class='gc then Skip' status='Skip'>
-					<h6 class="step-name" title="stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.user_must_click_start_order_button()"><span class='status skip' title='Skip'><i class='material-icons'>redo</i></span>Then User must click Start Order button</h6>
-
-							<div class="node-step">Step skipped</div>
-				</li>
-				<li test-id='97' class='gc then Skip' status='Skip'>
-					<h6 class="step-name" title="stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.user_should_make_selection_between_pending_order_or_start_new_order()"><span class='status skip' title='Skip'><i class='material-icons'>redo</i></span>Then User should make selection between Pending order or Start New order</h6>
-
-							<div class="node-step">Step skipped</div>
-				</li>
-				<li test-id='98' class='gc then Skip' status='Skip'>
-					<h6 class="step-name" title="stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.userShouldSelectNoteFromPopupAndOrderGuideFromPopup()"><span class='status skip' title='Skip'><i class='material-icons'>redo</i></span>Then User should select Note from popup and Order guide from popup</h6>
-
-							<div class="node-step">Step skipped</div>
-				</li>
-				<li test-id='99' class='gc then Skip' status='Skip'>
-					<h6 class="step-name" title="stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.enter_po_for_new_order(io.cucumber.datatable.DataTable)"><span class='status skip' title='Skip'><i class='material-icons'>redo</i></span>Then Enter PO# for New order</h6>
-
-							<div class="node-step"><table class='markup-table table '><tr><td>PO123</td></tr></table></div>
-							<div class="node-step">Step skipped</div>
-				</li>
-				<li test-id='100' class='gc then Skip' status='Skip'>
-					<h6 class="step-name" title="stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.enter_pro_in_quick_product_entry_area()"><span class='status skip' title='Skip'><i class='material-icons'>redo</i></span>Then Enter Pro# in Quick Product Entry area</h6>
-
-							<div class="node-step">Step skipped</div>
-				</li>
-				<li test-id='101' class='gc and Skip' status='Skip'>
-					<h6 class="step-name" title="stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.check_for_case_and_unit_input_box_enabled_or_not_based_on_that_enter_value(io.cucumber.datatable.DataTable)"><span class='status skip' title='Skip'><i class='material-icons'>redo</i></span>And Check for Case and Unit input box enabled or not based on that enter value</h6>
-
-							<div class="node-step"><table class='markup-table table '><tr><td>1</td><td>1</td></tr></table></div>
-							<div class="node-step">Step skipped</div>
-				</li>
-				<li test-id='102' class='gc then Skip' status='Skip'>
-					<h6 class="step-name" title="stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.click_on_next_button()"><span class='status skip' title='Skip'><i class='material-icons'>redo</i></span>Then Click on Next button</h6>
-
-							<div class="node-step">Step skipped</div>
-				</li>
-				<li test-id='103' class='gc then Skip' status='Skip'>
-					<h6 class="step-name" title="stepDefination_DSD_OMS.AdminToClientNavigationSteps.AdminOrderEntryStep.userShouldBeNavigatedToOrderEntryPageAndVerifyTheSuccessErrorSubmittingMessage()"><span class='status skip' title='Skip'><i class='material-icons'>redo</i></span>Then User should be navigated to Order Entry page and verify the success or error submitting message</h6>
-
-							<div class="node-step">Step skipped</div>
-				</li>
-				<li test-id='104' class='gc then Skip' status='Skip'>
-					<h6 class="step-name" title="stepDefination_DSD_OMS.AdminToClientNavigationSteps.AdminCatalogStep.userSignOutFromClientSideForAdminSettingChanges()"><span class='status skip' title='Skip'><i class='material-icons'>redo</i></span>Then User sign out from client side for Admin setting changes</h6>
-
-							<div class="node-step">Step skipped</div>
-				</li>
-				<li test-id='105' class='gc and Skip' status='Skip'>
-					<h6 class="step-name" title="stepDefination_DSD_OMS.AdminToClientNavigationSteps.AdminCatalogStep.userShouldSetAdminSettingAsDefaultBeforeMakingChanges(java.lang.String,java.lang.String)"><span class='status skip' title='Skip'><i class='material-icons'>redo</i></span>And User should set admin setting "Hide Order submitting message" "CPHideOrderSubmittingMessage" as default before making changes</h6>
-
-							<div class="node-step">Step skipped</div>
-				</li>
-				<li test-id='106' class='gc * Pass' status='Pass'>
-					<h6 class="step-name" title="AFTER"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>stepDefination_DSD_OMS.LoginPageStep.afterScenario1(io.cucumber.java.Scenario)</h6>
-
-							<div class="node-step">Test scenario for verifying functionality of Order submitting message enabling</div>
-							<div class='screenshots'>
-								<a href='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAB4AAAAPHCAIAAABG0sNWAAAAAXNSR0IArs4c6QAAHc5JREFUeJzs2MENwCAQwLDS/Xc+liBCQvYEeWfNzAcAAAAAAKf9twMAAAAAAHiTAQ0AAAAAQMKABgAAAAAgYUADAAAAAJAwoAEAAAAASBjQAAAAAAAkDGgAAAAAABIGNAAAAAAACQMaAAAAAICEAQ0AAAAAQMKABgAAAAAgYUADAAAAAJAwoAEAAAAASBjQAAAAAAAkDGgAAAAAABIGNAAAAAAACQMaAAAAAICEAQ0AAAAAQMKABgAAAAAgYUADAAAAAJAwoAEAAAAASBjQAAAAAAAkDGgAAAAAABIGNAAAAAAACQMaAAAAAICEAQ0AAAAAQMKABgAAAAAgYUADAAAAAJAwoAEAAAAASBjQAAAAAAAkDGgAAAAAABIGNAAAAAAACQMaAAAAAICEAQ0AAAAAQMKABgAAAAAgYUADAAAAAJAwoAEAAAAASBjQAAAAAAAkDGgAAAAAABIGNAAAAAAACQMaAAAAAICEAQ0AAAAAQMKABgAAAAAgYUADAAAAAJAwoAEAAAAASBjQAAAAAAAkDGgAAAAAABIGNAAAAAAACQMaAAAAAICEAQ0AAAAAQMKABgAAAAAgYUADAAAAAJAwoAEAAAAASBjQAAAAAAAkDGgAAAAAABIGNAAAAAAACQMaAAAAAICEAQ0AAAAAQMKABgAAAAAgYUADAAAAAJAwoAEAAAAASBjQAAAAAAAkDGgAAAAAABIGNAAAAAAACQMaAAAAAICEAQ0AAAAAQMKABgAAAAAgYUADAAAAAJAwoAEAAAAASBjQAAAAAAAkDGgAAAAAABIGNAAAAAAACQMaAAAAAICEAQ0AAAAAQMKABgAAAAAgYUADAAAAAJAwoAEAAAAASBjQAAAAAAAkDGgAAAAAABIGNAAAAAAACQMaAAAAAICEAQ0AAAAAQMKABgAAAAAgYUADAAAAAJAwoAEAAAAASBjQAAAAAAAkDGgAAAAAABIGNAAAAAAACQMaAAAAAICEAQ0AAAAAQMKABgAAAAAgYUADAAAAAJAwoAEAAAAASBjQAAAAAAAkDGgAAAAAABIGNAAAAAAACQMaAAAAAICEAQ0AAAAAQMKABgAAAAAgYUADAAAAAJAwoAEAAAAASBjQAAAAAAAkDGgAAAAAABIGNAAAAAAACQMaAAAAAICEAQ0AAAAAQMKABgAAAAAgYUADAAAAAJAwoAEAAAAASBjQAAAAAAAkDGgAAAAAABIGNAAAAAAACQMaAAAAAICEAQ0AAAAAQMKABgAAAAAgYUADAAAAAJAwoAEAAAAASBjQAAAAAAAkDGgAAAAAABIGNAAAAAAACQMaAAAAAICEAQ0AAAAAQMKABgAAAAAgYUADAAAAAJAwoAEAAAAASBjQAAAAAAAkDGgAAAAAABIGNAAAAAAACQMaAAAAAICEAQ0AAAAAQMKABgAAAAAgYUADAAAAAJAwoAEAAAAASBjQAAAAAAAkDGgAAAAAABIGNAAAAAAACQMaAAAAAICEAQ0AAAAAQMKABgAAAAAgYUADAAAAAJAwoAEAAAAASBjQAAAAAAAkDGgAAAAAABIGNAAAAAAACQMaAAAAAICEAQ0AAAAAQMKABgAAAAAgYUADAAAAAJAwoAEAAAAASBjQAAAAAAAkDGgAAAAAABIGNAAAAAAACQMaAAAAAICEAQ0AAAAAQMKABgAAAAAgYUADAAAAAJAwoAEAAAAASBjQAAAAAAAkDGgAAAAAABIGNAAAAAAACQMaAAAAAICEAQ0AAAAAQMKABgAAAAAgYUADAAAAAJAwoAEAAAAASBjQAAAAAAAkDGgAAAAAABIGNAAAAAAACQMaAAAAAICEAQ0AAAAAQMKABgAAAAAgYUADAAAAAJAwoAEAAAAASBjQAAAAAAAkDGgAAAAAABIGNAAAAAAACQMaAAAAAICEAQ0AAAAAQMKABgAAAAAgYUADAAAAAJAwoAEAAAAASBjQAAAAAAAkDGgAAAAAABIGNAAAAAAACQMaAAAAAICEAQ0AAAAAQMKABgAAAAAgYUADAAAAAJAwoAEAAAAASBjQAAAAAAAkDGgAAAAAABIGNAAAAAAACQMaAAAAAICEAQ0AAAAAQMKABgAAAAAgYUADAAAAAJAwoAEAAAAASBjQAAAAAAAkDGgAAAAAABIGNAAAAAAACQMaAAAAAICEAQ0AAAAAQMKABgAAAAAgYUADAAAAAJAwoAEAAAAASBjQAAAAAAAkDGgAAAAAABIGNAAAAAAACQMaAAAAAICEAQ0AAAAAQMKABgAAAAAgYUADAAAAAJAwoAEAAAAASBjQAAAAAAAkDGgAAAAAABIGNAAAAAAACQMaAAAAAICEAQ0AAAAAQMKABgAAAAAgYUADAAAAAJAwoAEAAAAASBjQAAAAAAAkDGgAAAAAABIGNAAAAAAACQMaAAAAAICEAQ0AAAAAQMKABgAAAAAgYUADAAAAAJAwoAEAAAAASBjQAAAAAAAkDGgAAAAAABIGNAAAAAAACQMaAAAAAICEAQ0AAAAAQMKABgAAAAAgYUADAAAAAJAwoAEAAAAASBjQAAAAAAAkDGgAAAAAABIGNAAAAAAACQMaAAAAAICEAQ0AAAAAQMKABgAAAAAgYUADAAAAAJAwoAEAAAAASBjQAAAAAAAkDGgAAAAAABIGNAAAAAAACQMaAAAAAICEAQ0AAAAAQMKABgAAAAAgYUADAAAAAJAwoAEAAAAASBjQAAAAAAAkDGgAAAAAABIGNAAAAAAACQMaAAAAAICEAQ0AAAAAQMKABgAAAAAgYUADAAAAAJAwoAEAAAAASBjQAAAAAAAkDGgAAAAAABIGNAAAAAAACQMaAAAAAICEAQ0AAAAAQMKABgAAAAAgYUADAAAAAJAwoAEAAAAASBjQAAAAAAAkDGgAAAAAABIGNAAAAAAACQMaAAAAAICEAQ0AAAAAQMKABgAAAAAgYUADAAAAAJAwoAEAAAAASBjQAAAAAAAkDGgAAAAAABIGNAAAAAAACQMaAAAAAICEAQ0AAAAAQMKABgAAAAAgYUADAAAAAJAwoAEAAAAASBjQAAAAAAAkDGgAAAAAABIGNAAAAAAACQMaAAAAAICEAQ0AAAAAQMKABgAAAAAgYUADAAAAAJAwoAEAAAAASBjQAAAAAAAkDGgAAAAAABIGNAAAAAAACQMaAAAAAICEAQ0AAAAAQMKABgAAAAAgYUADAAAAAJAwoAEAAAAASBjQAAAAAAAkDGgAAAAAABIGNAAAAAAACQMaAAAAAICEAQ0AAAAAQMKABgAAAAAgYUADAAAAAJAwoAEAAAAASBjQAAAAAAAkDGgAAAAAABIGNAAAAAAACQMaAAAAAICEAQ0AAAAAQMKABgAAAAAgYUADAAAAAJAwoAEAAAAASBjQAAAAAAAkDGgAAAAAABIGNAAAAAAACQMaAAAAAICEAQ0AAAAAQMKABgAAAAAgYUADAAAAAJAwoAEAAAAASBjQAAAAAAAkDGgAAAAAABIGNAAAAAAACQMaAAAAAICEAQ0AAAAAQMKABgAAAAAgYUADAAAAAJAwoAEAAAAASBjQAAAAAAAkDGgAAAAAABIGNAAAAAAACQMaAAAAAICEAQ0AAAAAQMKABgAAAAAgYUADAAAAAJAwoAEAAAAASBjQAAAAAAAkDGgAAAAAABIGNAAAAAAACQMaAAAAAICEAQ0AAAAAQMKABgAAAAAgYUADAAAAAJAwoAEAAAAASBjQAAAAAAAkDGgAAAAAABIGNAAAAAAACQMaAAAAAICEAQ0AAAAAQMKABgAAAAAgYUADAAAAAJAwoAEAAAAASBjQAAAAAAAkDGgAAAAAABIGNAAAAAAACQMaAAAAAICEAQ0AAAAAQMKABgAAAAAgYUADAAAAAJAwoAEAAAAASBjQAAAAAAAkDGgAAAAAABIGNAAAAAAACQMaAAAAAICEAQ0AAAAAQMKABgAAAAAgYUADAAAAAJAwoAEAAAAASBjQAAAAAAAkDGgAAAAAABIGNAAAAAAACQMaAAAAAICEAQ0AAAAAQMKABgAAAAAgYUADAAAAAJAwoAEAAAAASBjQAAAAAAAkDGgAAAAAABIGNAAAAAAACQMaAAAAAICEAQ0AAAAAQMKABgAAAAAgYUADAAAAAJAwoAEAAAAASBjQAAAAAAAkDGgAAAAAABIGNAAAAAAACQMaAAAAAICEAQ0AAAAAQMKABgAAAAAgYUADAAAAAJAwoAEAAAAASBjQAAAAAAAkDGgAAAAAABIGNAAAAAAACQMaAAAAAICEAQ0AAAAAQMKABgAAAAAgYUADAAAAAJAwoAEAAAAASBjQAAAAAAAkDGgAAAAAABIGNAAAAAAACQMaAAAAAICEAQ0AAAAAQMKABgAAAAAgYUADAAAAAJAwoAEAAAAASBjQAAAAAAAkDGgAAAAAABIGNAAAAAAACQMaAAAAAICEAQ0AAAAAQMKABgAAAAAgYUADAAAAAJAwoAEAAAAASBjQAAAAAAAkDGgAAAAAABIGNAAAAAAACQMaAAAAAICEAQ0AAAAAQMKABgAAAAAgYUADAAAAAJAwoAEAAAAASBjQAAAAAAAkDGgAAAAAABIGNAAAAAAACQMaAAAAAICEAQ0AAAAAQMKABgAAAAAgYUADAAAAAJAwoAEAAAAASBjQAAAAAAAkDGgAAAAAABIGNAAAAAAACQMaAAAAAICEAQ0AAAAAQMKABgAAAAAgYUADAAAAAJAwoAEAAAAASBjQAAAAAAAkDGgAAAAAABIGNAAAAAAACQMaAAAAAICEAQ0AAAAAQMKABgAAAAAgYUADAAAAAJAwoAEAAAAASBjQAAAAAAAkDGgAAAAAABIGNAAAAAAACQMaAAAAAICEAQ0AAAAAQMKABgAAAAAgYUADAAAAAJAwoAEAAAAASBjQAAAAAAAkDGgAAAAAABIGNAAAAAAACQMaAAAAAICEAQ0AAAAAQMKABgAAAAAgYUADAAAAAJAwoAEAAAAASBjQAAAAAAAkDGgAAAAAABIGNAAAAAAACQMaAAAAAICEAQ0AAAAAQMKABgAAAAAgYUADAAAAAJAwoAEAAAAASBjQAAAAAAAkDGgAAAAAABIGNAAAAAAACQMaAAAAAICEAQ0AAAAAQMKABgAAAAAgYUADAAAAAJAwoAEAAAAASBjQAAAAAAAkDGgAAAAAABIGNAAAAAAACQMaAAAAAICEAQ0AAAAAQMKABgAAAAAgYUADAAAAAJAwoAEAAAAASBjQAAAAAAAkDGgAAAAAABIGNAAAAAAACQMaAAAAAICEAQ0AAAAAQMKABgAAAAAgYUADAAAAAJAwoAEAAAAASBjQAAAAAAAkDGgAAAAAABIGNAAAAAAACQMaAAAAAICEAQ0AAAAAQMKABgAAAAAgYUADAAAAAJAwoAEAAAAASBjQAAAAAAAkDGgAAAAAABIGNAAAAAAACQMaAAAAAICEAQ0AAAAAQMKABgAAAAAgYUADAAAAAJAwoAEAAAAASBjQAAAAAAAkDGgAAAAAABIGNAAAAAAACQMaAAAAAICEAQ0AAAAAQMKABgAAAAAgYUADAAAAAJAwoAEAAAAASBjQAAAAAAAkDGgAAAAAABIGNAAAAAAACQMaAAAAAICEAQ0AAAAAQMKABgAAAAAgYUADAAAAAJAwoAEAAAAASBjQAAAAAAAkDGgAAAAAABIGNAAAAAAACQMaAAAAAICEAQ0AAAAAQMKABgAAAAAgYUADAAAAAJAwoAEAAAAASBjQAAAAAAAkDGgAAAAAABIGNAAAAAAACQMaAAAAAICEAQ0AAAAAQMKABgAAAAAgYUADAAAAAJAwoAEAAAAASBjQAAAAAAAkDGgAAAAAABIGNAAAAAAACQMaAAAAAICEAQ0AAAAAQMKABgAAAAAgYUADAAAAAJAwoAEAAAAASBjQAAAAAAAkDGgAAAAAABIGNAAAAAAACQMaAAAAAICEAQ0AAAAAQMKABgAAAAAgYUADAAAAAJAwoAEAAAAASBjQAAAAAAAkDGgAAAAAABIGNAAAAAAACQMaAAAAAICEAQ0AAAAAQMKABgAAAAAgYUADAAAAAJAwoAEAAAAASBjQAAAAAAAkDGgAAAAAABIGNAAAAAAACQMaAAAAAICEAQ0AAAAAQMKABgAAAAAgYUADAAAAAJAwoAEAAAAASBjQAAAAAAAkDGgAAAAAABIGNAAAAAAACQMaAAAAAICEAQ0AAAAAQMKABgAAAAAgYUADAAAAAJAwoAEAAAAASBjQAAAAAAAkDGgAAAAAABIGNAAAAAAACQMaAAAAAICEAQ0AAAAAQMKABgAAAAAgYUADAAAAAJAwoAEAAAAASBjQAAAAAAAkDGgAAAAAABIGNAAAAAAACQMaAAAAAICEAQ0AAAAAQMKABgAAAAAgYUADAAAAAJAwoAEAAAAASBjQAAAAAAAkDGgAAAAAABIGNAAAAAAACQMaAAAAAICEAQ0AAAAAQMKABgAAAAAgYUADAAAAAJAwoAEAAAAASBjQAAAAAAAkDGgAAAAAABIGNAAAAAAACQMaAAAAAICEAQ0AAAAAQMKABgAAAAAgYUADAAAAAJAwoAEAAAAASBjQAAAAAAAkDGgAAAAAABIGNAAAAAAACQMaAAAAAICEAQ0AAAAAQMKABgAAAAAgYUADAAAAAJAwoAEAAAAASBjQAAAAAAAkDGgAAAAAABIGNAAAAAAACQMaAAAAAICEAQ0AAAAAQMKABgAAAAAgYUADAAAAAJAwoAEAAAAASBjQAAAAAAAkDGgAAAAAABIGNAAAAAAACQMaAAAAAICEAQ0AAAAAQMKABgAAAAAgYUADAAAAAJAwoAEAAAAASBjQAAAAAAAkDGgAAAAAABIGNAAAAAAACQMaAAAAAICEAQ0AAAAAQMKABgAAAAAgYUADAAAAAJAwoAEAAAAASBjQAAAAAAAkDGgAAAAAABIGNAAAAAAACQMaAAAAAICEAQ0AAAAAQMKABgAAAAAgYUADAAAAAJAwoAEAAAAASBjQAAAAAAAkDGgAAAAAABIGNAAAAAAACQMaAAAAAICEAQ0AAAAAQMKABgAAAAAgYUADAAAAAJAwoAEAAAAASBjQAAAAAAAkDGgAAAAAABIGNAAAAAAACQMaAAAAAICEAQ0AAAAAQMKABgAAAAAgYUADAAAAAJAwoAEAAAAASBjQAAAAAAAkDGgAAAAAABIGNAAAAAAACQMaAAAAAICEAQ0AAAAAQMKABgAAAAAgYUADAAAAAJAwoAEAAAAASBjQAAAAAAAkDGgAAAAAABIGNAAAAAAACQMaAAAAAICEAQ0AAAAAQMKABgAAAAAgYUADAAAAAJAwoAEAAAAASBjQAAAAAAAkDGgAAAAAABIGNAAAAAAACQMaAAAAAICEAQ0AAAAAQMKABgAAAAAgYUADAAAAAJAwoAEAAAAASBjQAAAAAAAkDGgAAAAAABIGNAAAAAAACQMaAAAAAICEAQ0AAAAAQMKABgAAAAAgYUADAAAAAJAwoAEAAAAASBjQAAAAAAAkDGgAAAAAABIG9G7HjgUAAAAABvlbj2JfYQQAAAAAwEJAAwAAAACwENAAAAAAACwENAAAAAAACwENAAAAAMBCQAMAAAAAsBDQAAAAAAAsBDQAAAAAAAsBDQAAAADAQkADAAAAALAQ0AAAAAAALAQ0AAAAAAALAQ0AAAAAwEJAAwAAAACwENAAAAAAACwENAAAAAAACwENAAAAAMBCQAMAAAAAsBDQAAAAAAAsBDQAAAAAAAsBDQAAAADAQkADAAAAALAQ0AAAAAAALAQ0AAAAAAALAQ0AAAAAwEJAAwAAAACwENAAAAAAACwENAAAAAAACwENAAAAAMBCQAMAAAAAsBDQAAAAAAAsBDQAAAAAAAsBDQAAAADAQkADAAAAALAQ0AAAAAAALAQ0AAAAAAALAQ0AAAAAwEJAAwAAAACwENAAAAAAACwENAAAAAAACwENAAAAAMBCQAMAAAAAsBDQAAAAAAAsBDQAAAAAAAsBDQAAAADAQkADAAAAALAQ0AAAAAAALAQ0AAAAAAALAQ0AAAAAwEJAAwAAAACwENAAAAAAACwENAAAAAAACwENAAAAAMBCQAMAAAAAsBDQAAAAAAAsBDQAAAAAAAsBDQAAAADAQkADAAAAALAQ0AAAAAAALAQ0AAAAAAALAQ0AAAAAwEJAAwAAAACwENAAAAAAACwENAAAAAAACwENAAAAAMBCQAMAAAAAsBDQAAAAAAAsBDQAAAAAAAsBDQAAAADAQkADAAAAALAQ0AAAAAAALAQ0AAAAAAALAQ0AAAAAwEJAAwAAAACwENAAAAAAACwENAAAAAAACwENAAAAAMBCQAMAAAAAsBDQAAAAAAAsBDQAAAAAAAsBDQAAAADAQkADAAAAALAQ0AAAAAAALAQ0AAAAAAALAQ0AAAAAwEJAAwAAAACwENAAAAAAACwENAAAAAAACwENAAAAAMBCQAMAAAAAsBDQAAAAAAAsBDQAAAAAAAsBDQAAAADAQkADAAAAALAQ0AAAAAAALAQ0AAAAAAALAQ0AAAAAwEJAAwAAAACwENAAAAAAACwENAAAAAAACwENAAAAAMBCQAMAAAAAsBDQAAAAAAAsBDQAAAAAAAsBDQAAAADAQkADAAAAALAQ0AAAAAAALAQ0AAAAAAALAQ0AAAAAwEJAAwAAAACwENAAAAAAACwENAAAAAAACwENAAAAAMBCQAMAAAAAsBDQAAAAAAAsBDQAAAAAAAsBDQAAAADAQkADAAAAALAQ0AAAAAAALAQ0AAAAAAALAQ0AAAAAwEJAAwAAAACwENAAAAAAACwENAAAAAAACwENAAAAAMBCQAMAAAAAsBDQAAAAAAAsBDQAAAAAAAsBDQAAAADAQkADAAAAALAQ0AAAAAAALAQ0AAAAAAALAQ0AAAAAwEJAAwAAAACwENAAAAAAACwENAAAAAAACwENAAAAAMBCQAMAAAAAsBDQAAAAAAAsBDQAAAAAAAsBDQAAAADAQkADAAAAALAQ0AAAAAAALAQ0AAAAAAALAQ0AAAAAwEJAAwAAAACwENAAAAAAACwENAAAAAAACwENAAAAAMBCQAMAAAAAsBDQAAAAAAAsBDQAAAAAAAsBDQAAAADAQkADAAAAALAQ0AAAAAAALAQ0AAAAAAALAQ0AAAAAwEJAAwAAAACwENAAAAAAACwENAAAAAAACwENAAAAAMBCQAMAAAAAsBDQAAAAAAAsBDQAAAAAAAsBDQAAAADAQkADAAAAALAQ0AAAAAAALAQ0AAAAAAALAQ0AAAAAwEJAAwAAAACwENAAAAAAACwENAAAAAAACwENAAAAAMBCQAMAAAAAsBDQAAAAAAAsBDQAAAAAAAsBDQAAAADAQkADAAAAALAQ0AAAAAAALAQ0AAAAAAALAQ0AAAAAwEJAAwAAAACwENAAAAAAACwENAAAAAAACwENAAAAAMBCQAMAAAAAsBDQAAAAAAAsBDQAAAAAAAsBDQAAAADAQkADAAAAALAQ0AAAAAAALAQ0AAAAAAALAQ0AAAAAwEJAAwAAAACwENAAAAAAACwENAAAAAAACwENAAAAAMBCQAMAAAAAsBDQAAAAAAAsBDQAAAAAAAsBDQAAAADAQkADAAAAALAQ0AAAAAAALAQ0AAAAAAALAQ0AAAAAwEJAAwAAAACwENAAAAAAACwENAAAAAAACwENAAAAAMBCQAMAAAAAsBDQAAAAAAAsBDQAAAAAAAsBDQAAAADAQkADAAAAALAQ0AAAAAAALAQ0AAAAAAALAQ0AAAAAwEJAAwAAAACwENAAAAAAACwENAAAAAAACwENAAAAAMBCQAMAAAAAsBDQAAAAAAAsBDQAAAAAAAsBDQAAAADAQkADAAAAALAQ0AAAAAAALAQ0AAAAAAALAQ0AAAAAwEJAAwAAAACwENAAAAAAACwENAAAAAAACwENAAAAAMBCQAMAAAAAsBDQAAAAAAAsBDQAAAAAAAsBDQAAAADAQkADAAAAALAQ0AAAAAAALAQ0AAAAAAALAQ0AAAAAwEJAAwAAAACwENAAAAAAACwENAAAAAAACwENAAAAAMBCQAMAAAAAsBDQAAAAAAAsBDQAAAAAAAsBDQAAAADAQkADAAAAALAQ0AAAAAAALAQ0AAAAAAALAQ0AAAAAwEJAAwAAAACwENAAAAAAACwCWUYKi08dKUgAAAAASUVORK5CYII=' data-featherlight='image'><span class='label grey badge white-text text-white'>base64-img</span></a>
-							</div>
-				</li>
-			</ul>
+					<div class="node-step">SIGNIN BUTTON CLICKED</div>
 		</li>
-	</ul>
-</div>
-<div class='scenario outline node' test-id='107' status='fail'>
+		<li test-id='90' class='node when Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.user_is_on_home_page())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>When User is on Home Page</div>
 
-	<span class='duration right label'>00 00 19.565</span>
-	<div class="bdd-test">
-		<div class="scenario-name"><span class='status fail' title='Fail'><i class='material-icons'>cancel</i></span> Scenario Outline: Test scenario for verifying functionality of Order submitting message Disabling</div>
-	</div>
-	
-		<div class='node-desc'><br><br><table class='markup-table table '><tr><td>Setting</td><td>Key</td></tr><tr><td>Hide Order submitting message</td><td>CPHideOrderSubmittingMessage</td></tr></table></div>
-	
-	
-	<ul class='steps'>
-		<li test-id='108' class='node scenario Fail' status='Fail'>
-			<div class="step-name" title="()"><span class='status fail' title='Fail'><i class='material-icons'>cancel</i></span>Test scenario for verifying functionality of Order submitting message Disabling</div>
 
-				<div class='category-list'>
-						<span class='category label'>@DisableHideOrderSubmittingMessage</span>
-				</div>
+					<div class="node-step">ADMIN PAGE OR ORDER ENTRY PAGE HAS BEEN FOUND</div>
+		</li>
+		<li test-id='91' class='node then Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.user_navigate_to_client_side())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User navigate to Client side</div>
 
-			<ul class='gc steps'>
-				<li test-id='195' class='gc given Pass' status='Pass'>
-					<h6 class="step-name" title="stepDefination_DSD_OMS.AdminToClientNavigationSteps.AdminCatalogStep.userShouldVerifyAdminSettingIsDisabledByUsing(java.lang.String,java.lang.String)"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Given User should verify admin setting "Hide Order submitting message" is disabled by using "CPHideOrderSubmittingMessage"</h6>
 
-							<div class="node-step">ADMIN SETTING IS DISABLED</div>
-							<div class="node-step">FOR ADMIN SETTING Hide Order submitting message CHANGES</div>
-							<div class="node-step">ADMIN SETTING IS DISABLED</div>
-				</li>
-				<li test-id='196' class='gc when Fail' status='Fail'>
-					<h6 class="step-name" title="stepDefination_DSD_OMS.AdminToClientNavigationSteps.AdminCatalogStep.userEntersURLAndIsOnLoginPageAndEnteredCredentialsForAdminSetting()"><span class='status fail' title='Fail'><i class='material-icons'>cancel</i></span>When User enters URL and is on login page and entered credentials for admin setting</h6>
+					<div class="node-step">USER ICON FOUND</div>
+					<div class="node-step">IN ADMIN PAGE</div>
+		</li>
+		<li test-id='92' class='node then Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.user_should_select_order_entry_tab())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User should select Order Entry tab</div>
 
-							<textarea disabled class="code-block">org.openqa.selenium.NoSuchWindowException: no such window: target window already closed
-from unknown error: web view not found
-  (Session info: chrome=131.0.6778.205)
-Build info: version: '4.27.0', revision: 'd6e718d134'
-System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '22.0.2'
-Driver info: org.openqa.selenium.chrome.ChromeDriver
-Command: [89901542e0bb3ca3ccc1db94a6db3e7d, executeScript {script=return document.readyState, args=[]}]
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 131.0.6778.205, chrome: {chromedriverVersion: 131.0.6778.204 (52183f9e99a..., userDataDir: C:\Users\DIVYA~1.RAM\AppDat...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:56914}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:56914/devtoo..., se:cdpVersion: 131.0.6778.205, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
-Session ID: 89901542e0bb3ca3ccc1db94a6db3e7d
-	at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:62)
-	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:502)
-	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:486)
-	at org.openqa.selenium.remote.ErrorCodec.decode(ErrorCodec.java:167)
-	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:138)
-	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:50)
-	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:190)
-	at org.openqa.selenium.remote.service.DriverCommandExecutor.invokeExecute(DriverCommandExecutor.java:216)
-	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:174)
-	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:545)
-	at org.openqa.selenium.remote.RemoteWebDriver.executeScript(RemoteWebDriver.java:476)
-	at helper.HelpersMethod.returnDocumentStatus(HelpersMethod.java:731)
-	at pages_DSD_OMS.login.LoginPage.getURL(LoginPage.java:714)
-	at stepDefination_DSD_OMS.AdminToClientNavigationSteps.AdminCatalogStep.userEntersURLAndIsOnLoginPageAndEnteredCredentialsForAdminSetting(AdminCatalogStep.java:119)
-	at ✽.User enters URL and is on login page and entered credentials for admin setting(file:///C:/Users/Divya.Ramadas/IdeaProjects/ignition-qa/AFS_Automation/OMS_Automation/src/test/resources/features_DSD_OMS/AdminToClientNavigation/webOrderingAdminToClientFeature.feature:33)
-</textarea>
-				</li>
-				<li test-id='197' class='gc when Skip' status='Skip'>
-					<h6 class="step-name" title="stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.user_is_on_home_page()"><span class='status skip' title='Skip'><i class='material-icons'>redo</i></span>When User is on Home Page</h6>
 
-							<div class="node-step">Step skipped</div>
-				</li>
-				<li test-id='198' class='gc then Skip' status='Skip'>
-					<h6 class="step-name" title="stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.user_navigate_to_client_side()"><span class='status skip' title='Skip'><i class='material-icons'>redo</i></span>Then User navigate to Client side</h6>
+					<div class="node-step">https://autodsd.afsi.com/ClientPortal/Apps/cpOrderEntry.html?p=Km530c8XSlYiXYABAQY6Y6JAChTfYaSYca92kMk0eI9TOeNnC6%2bd9w%3d%3d</div>
+					<div class="node-step">NAVIGATED TO ORDER ENTRY PAGE</div>
+		</li>
+		<li test-id='93' class='node then Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.user_selects_account())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User selects Account#</div>
 
-							<div class="node-step">Step skipped</div>
-				</li>
-				<li test-id='199' class='gc then Skip' status='Skip'>
-					<h6 class="step-name" title="stepDefination_DSD_OMS.AdminToClientNavigationSteps.AdminOrderEntryStep.userShouldSelectOrderEntryTabForAdmin()"><span class='status skip' title='Skip'><i class='material-icons'>redo</i></span>Then User should select Order Entry tab for admin</h6>
 
-							<div class="node-step">Step skipped</div>
-				</li>
-				<li test-id='200' class='gc then Skip' status='Skip'>
-					<h6 class="step-name" title="stepDefination_DSD_OMS.AdminToClientNavigationSteps.AdminOrderEntryStep.userSelectsAccountForAdminSideSetting()"><span class='status skip' title='Skip'><i class='material-icons'>redo</i></span>Then User selects Account# for Admin side setting</h6>
+					<div class="node-step"><span style='color:red'>DELIBERY DATE FOUND, AFTER LOGGING IN TO APPLICATION  Thursday, January 9, 2025</span></div>
+		</li>
+		<li test-id='94' class='node given Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.user_must_be_on_order_entry_page())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Given User must be on Order Entry Page</div>
 
-							<div class="node-step">Step skipped</div>
-				</li>
-				<li test-id='201' class='gc then Skip' status='Skip'>
-					<h6 class="step-name" title="stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.user_must_click_start_order_button()"><span class='status skip' title='Skip'><i class='material-icons'>redo</i></span>Then User must click Start Order button</h6>
 
-							<div class="node-step">Step skipped</div>
-				</li>
-				<li test-id='202' class='gc then Skip' status='Skip'>
-					<h6 class="step-name" title="stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.user_should_make_selection_between_pending_order_or_start_new_order()"><span class='status skip' title='Skip'><i class='material-icons'>redo</i></span>Then User should make selection between Pending order or Start New order</h6>
+		</li>
+		<li test-id='95' class='node then Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.user_must_click_start_order_button())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User must click Start Order button</div>
 
-							<div class="node-step">Step skipped</div>
-				</li>
-				<li test-id='203' class='gc then Skip' status='Skip'>
-					<h6 class="step-name" title="stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.userShouldSelectNoteFromPopupAndOrderGuideFromPopup()"><span class='status skip' title='Skip'><i class='material-icons'>redo</i></span>Then User should select Note from popup and Order guide from popup</h6>
 
-							<div class="node-step">Step skipped</div>
-				</li>
-				<li test-id='204' class='gc then Skip' status='Skip'>
-					<h6 class="step-name" title="stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.enter_po_for_new_order(io.cucumber.datatable.DataTable)"><span class='status skip' title='Skip'><i class='material-icons'>redo</i></span>Then Enter PO# for New order</h6>
+					<div class="node-step">NAVIGATED TO ORDER ENTRY PAGE</div>
+					<div class="node-step"><span style='color:red'>DELIBERY DATE FOUND, AFTER LOGGING IN TO APPLICATION  Thursday, January 9, 2025</span></div>
+					<div class="node-step">START BUTTON HAS BEEN CLICKED</div>
+		</li>
+		<li test-id='96' class='node then Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.user_should_make_selection_between_pending_order_or_start_new_order())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User should make selection between Pending order or Start New order</div>
 
-							<div class="node-step"><table class='markup-table table '><tr><td>PO123</td></tr></table></div>
-							<div class="node-step">Step skipped</div>
-				</li>
-				<li test-id='205' class='gc then Skip' status='Skip'>
-					<h6 class="step-name" title="stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.enter_pro_in_quick_product_entry_area()"><span class='status skip' title='Skip'><i class='material-icons'>redo</i></span>Then Enter Pro# in Quick Product Entry area</h6>
 
-							<div class="node-step">Step skipped</div>
-				</li>
-				<li test-id='206' class='gc and Skip' status='Skip'>
-					<h6 class="step-name" title="stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.check_for_case_and_unit_input_box_enabled_or_not_based_on_that_enter_value(io.cucumber.datatable.DataTable)"><span class='status skip' title='Skip'><i class='material-icons'>redo</i></span>And Check for Case and Unit input box enabled or not based on that enter value</h6>
+		</li>
+		<li test-id='97' class='node then Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.userShouldSelectNoteFromPopupAndOrderGuideFromPopup())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User should select Note from popup and Order guide from popup</div>
 
-							<div class="node-step"><table class='markup-table table '><tr><td>1</td><td>1</td></tr></table></div>
-							<div class="node-step">Step skipped</div>
-				</li>
-				<li test-id='207' class='gc then Skip' status='Skip'>
-					<h6 class="step-name" title="stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.click_on_next_button()"><span class='status skip' title='Skip'><i class='material-icons'>redo</i></span>Then Click on Next button</h6>
 
-							<div class="node-step">Step skipped</div>
-				</li>
-				<li test-id='208' class='gc and Skip' status='Skip'>
-					<h6 class="step-name" title="stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.click_on_submit_order_button()"><span class='status skip' title='Skip'><i class='material-icons'>redo</i></span>And Click on SubmitOrder button</h6>
+		</li>
+		<li test-id='98' class='node then Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.enter_po_for_new_order(io.cucumber.datatable.DataTable))"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then Enter PO# for New order</div>
 
-							<div class="node-step">Step skipped</div>
-				</li>
-				<li test-id='209' class='gc then Skip' status='Skip'>
-					<h6 class="step-name" title="stepDefination_DSD_OMS.AdminToClientNavigationSteps.AdminOrderEntryStep.userShouldBeNavigatedToOrderEntryPageAndVerifyTheSuccessErrorSubmittingMessageIsNotDisplayed()"><span class='status skip' title='Skip'><i class='material-icons'>redo</i></span>Then User should be navigated to Order Entry page and verify the success error submitting message is not displayed</h6>
 
-							<div class="node-step">Step skipped</div>
-				</li>
-				<li test-id='210' class='gc then Skip' status='Skip'>
-					<h6 class="step-name" title="stepDefination_DSD_OMS.AdminToClientNavigationSteps.AdminCatalogStep.userSignOutFromClientSideForAdminSettingChanges()"><span class='status skip' title='Skip'><i class='material-icons'>redo</i></span>Then User sign out from client side for Admin setting changes</h6>
+					<div class="node-step"><table class='markup-table table '><tr><td>PO123</td></tr></table></div>
+					<div class="node-step">NEW ORDER ENTRY PAGE HAS BEEN FOUND</div>
+					<div class="node-step">PO# ENTERED IS PO123</div>
+		</li>
+		<li test-id='99' class='node then Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.enter_pro_in_quick_product_entry_area())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then Enter Pro# in Quick Product Entry area</div>
 
-							<div class="node-step">Step skipped</div>
-				</li>
-				<li test-id='211' class='gc and Skip' status='Skip'>
-					<h6 class="step-name" title="stepDefination_DSD_OMS.AdminToClientNavigationSteps.AdminCatalogStep.userShouldSetAdminSettingAsDefaultBeforeMakingChanges(java.lang.String,java.lang.String)"><span class='status skip' title='Skip'><i class='material-icons'>redo</i></span>And User should set admin setting "Hide Order submitting message" "CPHideOrderSubmittingMessage" as default before making changes</h6>
 
-							<div class="node-step">Step skipped</div>
-				</li>
-				<li test-id='212' class='gc * Fail' status='Fail'>
-					<h6 class="step-name" title="AFTER"><span class='status fail' title='Fail'><i class='material-icons'>cancel</i></span>stepDefination_DSD_OMS.LoginPageStep.afterScenario1(io.cucumber.java.Scenario)</h6>
+					<div class="node-step">PRODUCT ADDED TO THE ORDER Via QUICK PRODUCT ENTRY 00000008</div>
+		</li>
+		<li test-id='100' class='node and Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.check_for_case_and_unit_input_box_enabled_or_not_based_on_that_enter_value(io.cucumber.datatable.DataTable))"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>And Check for Case and Unit input box enabled or not based on that enter value</div>
 
-							<textarea disabled class="code-block">org.openqa.selenium.NoSuchWindowException: no such window: target window already closed
-from unknown error: web view not found
-  (Session info: chrome=131.0.6778.205)
-Build info: version: '4.27.0', revision: 'd6e718d134'
-System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '22.0.2'
-Driver info: org.openqa.selenium.chrome.ChromeDriver
-Command: [89901542e0bb3ca3ccc1db94a6db3e7d, screenshot {}]
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 131.0.6778.205, chrome: {chromedriverVersion: 131.0.6778.204 (52183f9e99a..., userDataDir: C:\Users\DIVYA~1.RAM\AppDat...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:56914}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:56914/devtoo..., se:cdpVersion: 131.0.6778.205, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
-Session ID: 89901542e0bb3ca3ccc1db94a6db3e7d
-	at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:62)
-	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:502)
-	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:486)
-	at org.openqa.selenium.remote.ErrorCodec.decode(ErrorCodec.java:167)
-	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:138)
-	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:50)
-	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:190)
-	at org.openqa.selenium.remote.service.DriverCommandExecutor.invokeExecute(DriverCommandExecutor.java:216)
-	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:174)
-	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:545)
-	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:618)
-	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:622)
-	at org.openqa.selenium.remote.RemoteWebDriver.getScreenshotAs(RemoteWebDriver.java:334)
-	at stepDefination_DSD_OMS.LoginPageStep.afterScenario1(LoginPageStep.java:77)
-</textarea>
-				</li>
-			</ul>
+
+					<div class="node-step"><table class='markup-table table '><tr><td>2</td><td>2</td></tr></table></div>
+					<div class="node-step">UOM IS ENABLED AND IT CONTAINS Cases, Units VALUE IN IT</div>
+					<div class="node-step">CASE ENTERED FOR QUICK PRODUCT IS 2</div>
+					<div class="node-step">UNIT ENTERED FOR QUICK PRODUCT IS 2</div>
+					<div class="node-step">TOAST MESSAGE FOR: CURRENTLY UNAVAILABLE HAS BEEN HANDLED</div>
+		</li>
+		<li test-id='101' class='node then Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.click_on_next_button())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then Click on Next button</div>
+
+
+					<div class="node-step">PRODUCT FOUND IN ORDER ARE </div>
+					<div class="node-step">00000008</div>
+					<div class="node-step">00000005</div>
+					<div class="node-step">00000006</div>
+					<div class="node-step">10025300</div>
+					<div class="node-step">59626700</div>
+					<div class="node-step">00000001</div>
+					<div class="node-step">00000002</div>
+					<div class="node-step">00000003</div>
+					<div class="node-step">00000004</div>
+					<div class="node-step">00112882</div>
+					<div class="node-step">00135444</div>
+					<div class="node-step">00137682</div>
+					<div class="node-step">00445006</div>
+					<div class="node-step">10002900</div>
+					<div class="node-step">10010800</div>
+					<div class="node-step">10024590</div>
+					<div class="node-step">NEXT BUTTON CLICKED</div>
+					<div class="node-step">BCZ OF ORDER FACTOR QTY HAS BEEN INCREASED, POPUP HAS BEEN HANDLED</div>
+					<div class="node-step">ORDER NUMBER CREATED IS 0003716455</div>
+					<div class="node-step">PAYMENT METHOD HAS BEEN SELECTED</div>
+					<div class="node-step">FIRST PAYMENT OPTION HAS BEEN SELECTED</div>
+					<div class="node-step">CLICKED ON NEXT BUTTON</div>
+		</li>
+		<li test-id='102' class='node and Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.click_on_submit_order_button_and_read_order_no())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>And Click on Submit Order button and read Order_no</div>
+
+
+					<div class="node-step">ORDER ENTRY SUMMARY PAGE HAS BEEN FOUND</div>
+					<div class="node-step">SUBMIT BUTTON IN ORDER SUMMARY PAGE HAS BEEN CLICKED</div>
+					<div class="node-step">ORDER CRATED, ORDER # IS 0003716455</div>
+					<div class="node-step">ORDER HAS BEEN SUCESSFULLY CREATED</div>
+		</li>
+		<li test-id='103' class='node then Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.user_should_be_navigated_to_order_entry_page())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User should be navigated to Order Entry page</div>
+
+
+					<div class="node-step">ORDER ENTRY PAGE HAS BEEN FOUND</div>
+		</li>
+		<li test-id='104' class='node then Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.enter_order_in_search_box_in_order_entry_page())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then Enter Order# in Search box in Order Entry page</div>
+
+
+					<div class="node-step">ORDER NUMBER I AM SEARCHING FOR IS 0003716455</div>
+		</li>
+		<li test-id='105' class='node then Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps8.clickOnOrderNumberInOrderEntryPageAndCheckForNewOEPageForEditingOrderByChangingShippingAddress())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then Click on Order number in Order Entry page and check for New OE page for editing Order by changing shipping address</div>
+
+
+					<div class="node-step">ORDER HAS BEEN SELECTED FROM THE GRID</div>
+					<div class="node-step">NEW ORDER ENTRY PAGE HAS BEEN FOUND</div>
+		</li>
+		<li test-id='106' class='node then Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps8.clickOnNextButtonAndChangeShippingAddress())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then Click on Next button and change shipping address</div>
+
+
+					<div class="node-step">PRODUCT FOUND IN ORDER ARE </div>
+					<div class="node-step">00000008</div>
+					<div class="node-step">NEXT BUTTON CLICKED</div>
+					<div class="node-step">CRITICAL ITEMS NOT ORDERED POPUP HANDLED</div>
+					<div class="node-step">CLICKED ON NEXT BUTTON</div>
+		</li>
+		<li test-id='107' class='node and Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.click_on_submit_order_button())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>And Click on SubmitOrder button</div>
+
+
+					<div class="node-step">ORDER ENTRY SUMMARY PAGE HAS BEEN FOUND</div>
+					<div class="node-step">SUBMIT BUTTON IN ORDER SUMMARY PAGE HAS BEEN CLICKED</div>
+					<div class="node-step">ORDER HAS BEEN SUCESSFULLY CREATED</div>
+		</li>
+		<li test-id='108' class='node then Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.user_should_be_navigated_to_order_entry_page())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User should be navigated to Order Entry page</div>
+
+
+					<div class="node-step">ORDER ENTRY PAGE HAS BEEN FOUND</div>
 		</li>
 	</ul>
 </div>
@@ -531,15 +418,15 @@ Session ID: 89901542e0bb3ca3ccc1db94a6db3e7d
 			<ul id='category-collection' class='category-collection'>
 				<li class='category displayed active'>
 					<div class='category-heading'>
-						<span class='category-name'>@DisableHideOrderSubmittingMessage</span>
+						<span class='category-name'>@ChangeShippingAddress</span>
 						<span class='category-status right'>
-						<span class='label fail'>1</span>
+						<span class='label pass'>1</span>
 						</span>
 					</div>
 					<div class='category-content hide'>
 						<div class='category-status-counts'>
+							<span status="pass" class='label green accent-4 white-text'>Passed: 1</span>
 							
-							<span status="fail" class='label red lighten-1 white-text'>Failed: 1</span>
 							
 						</div>
 						<div class='category-tests'>
@@ -553,42 +440,9 @@ Session ID: 89901542e0bb3ca3ccc1db94a6db3e7d
 								</thead>
 								<tbody>
 									<tr>
-										<td>Dec 23, 2024 07:16:29 PM</td>
-										<td class='linked' test-id='108'>Test scenario for verifying functionality of Order submitting message Disabling</td>
-										<td><span class='test-status Fail'>Fail</span></td>
-									</tr>
-								</tbody>
-							</table>
-						</div>
-					</div>
-				</li>
-				<li class='category displayed active'>
-					<div class='category-heading'>
-						<span class='category-name'>@EnableHideOrderSubmittingMessage</span>
-						<span class='category-status right'>
-						<span class='label fail'>1</span>
-						</span>
-					</div>
-					<div class='category-content hide'>
-						<div class='category-status-counts'>
-							
-							<span status="fail" class='label red lighten-1 white-text'>Failed: 1</span>
-							
-						</div>
-						<div class='category-tests'>
-							<table class='bordered table-results'>
-								<thead>
-									<tr>
-										<th>Timestamp</th>
-										<th>TestName</th>
-										<th>Status</th>
-									</tr>
-								</thead>
-								<tbody>
-									<tr>
-										<td>Dec 23, 2024 07:14:59 PM</td>
-										<td class='linked' test-id='3'>Test scenario for verifying functionality of Order submitting message enabling</td>
-										<td><span class='test-status Fail'>Fail</span></td>
+										<td>Jan 6, 2025 02:05:40 PM</td>
+										<td class='linked' test-id='2'>Test scenario for changing shipping address</td>
+										<td><span class='test-status Pass'>Pass</span></td>
 									</tr>
 								</tbody>
 							</table>
@@ -604,155 +458,7 @@ Session ID: 89901542e0bb3ca3ccc1db94a6db3e7d
 		</div>
 	</div>
 </div>
-<!-- category view --><div id='exception-view' class='view hide'>
-	<section id='controls'>
-		<div class='controls grey lighten-4'>
-			<!-- search -->
-			<div class='chip transparent' alt='Search Tests' title='Search Tests'>
-				<a href="#" class='search-div'>
-				<i class='material-icons'>search</i> Search
-				</a>
-				<div class='input-field left hide'>
-					<input id='search-tests' type='text' class='validate browser-default' placeholder='Search Tests...'>
-				</div>
-			</div>
-			<!-- search -->
-		</div>
-	</section>
-	<div class='subview-left left'>
-		<div class='view-summary'>
-			<ul id='exception-collection' class='exception-collection'>
-				<li class='exception displayed active'>
-					<div class='exception-heading'>
-						<span class='exception-name'>org.openqa.selenium.NoSuchWindowException</span>
-						<span class='exception-count right'><span class='label red lighten-1 white-text'>2</span></span>
-					</div>
-					<div class='exception-content hide'>
-						<div class='exception-tests'>
-							<table class='bordered table-results'>
-								<thead>
-									<tr>
-										<th>Timestamp</th>
-										<th>TestName</th>
-										<th>StackTrace</th>
-									</tr>
-								</thead>
-								<tbody>
-									<tr>
-										<td>Dec 23, 2024 07:16:33 PM</td>
-										<td class='linked' test-id='196'>When User enters URL and is on login page and entered credentials for admin setting</td>
-										<td>
-											<textarea disabled class="code-block">org.openqa.selenium.NoSuchWindowException: no such window: target window already closed
-from unknown error: web view not found
-  (Session info: chrome=131.0.6778.205)
-Build info: version: '4.27.0', revision: 'd6e718d134'
-System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '22.0.2'
-Driver info: org.openqa.selenium.chrome.ChromeDriver
-Command: [89901542e0bb3ca3ccc1db94a6db3e7d, executeScript {script=return document.readyState, args=[]}]
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 131.0.6778.205, chrome: {chromedriverVersion: 131.0.6778.204 (52183f9e99a..., userDataDir: C:\Users\DIVYA~1.RAM\AppDat...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:56914}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:56914/devtoo..., se:cdpVersion: 131.0.6778.205, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
-Session ID: 89901542e0bb3ca3ccc1db94a6db3e7d
-	at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:62)
-	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:502)
-	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:486)
-	at org.openqa.selenium.remote.ErrorCodec.decode(ErrorCodec.java:167)
-	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:138)
-	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:50)
-	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:190)
-	at org.openqa.selenium.remote.service.DriverCommandExecutor.invokeExecute(DriverCommandExecutor.java:216)
-	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:174)
-	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:545)
-	at org.openqa.selenium.remote.RemoteWebDriver.executeScript(RemoteWebDriver.java:476)
-	at helper.HelpersMethod.returnDocumentStatus(HelpersMethod.java:731)
-	at pages_DSD_OMS.login.LoginPage.getURL(LoginPage.java:714)
-	at stepDefination_DSD_OMS.AdminToClientNavigationSteps.AdminCatalogStep.userEntersURLAndIsOnLoginPageAndEnteredCredentialsForAdminSetting(AdminCatalogStep.java:119)
-	at ✽.User enters URL and is on login page and entered credentials for admin setting(file:///C:/Users/Divya.Ramadas/IdeaProjects/ignition-qa/AFS_Automation/OMS_Automation/src/test/resources/features_DSD_OMS/AdminToClientNavigation/webOrderingAdminToClientFeature.feature:33)
-</textarea>
-										</td>
-									</tr>
-									<tr>
-										<td>Dec 23, 2024 07:16:49 PM</td>
-										<td class='linked' test-id='212'>stepDefination_DSD_OMS.LoginPageStep.afterScenario1(io.cucumber.java.Scenario)</td>
-										<td>
-											<textarea disabled class="code-block">org.openqa.selenium.NoSuchWindowException: no such window: target window already closed
-from unknown error: web view not found
-  (Session info: chrome=131.0.6778.205)
-Build info: version: '4.27.0', revision: 'd6e718d134'
-System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '22.0.2'
-Driver info: org.openqa.selenium.chrome.ChromeDriver
-Command: [89901542e0bb3ca3ccc1db94a6db3e7d, executeScript {script=return document.readyState, args=[]}]
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 131.0.6778.205, chrome: {chromedriverVersion: 131.0.6778.204 (52183f9e99a..., userDataDir: C:\Users\DIVYA~1.RAM\AppDat...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:56914}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:56914/devtoo..., se:cdpVersion: 131.0.6778.205, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
-Session ID: 89901542e0bb3ca3ccc1db94a6db3e7d
-	at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:62)
-	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:502)
-	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:486)
-	at org.openqa.selenium.remote.ErrorCodec.decode(ErrorCodec.java:167)
-	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:138)
-	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:50)
-	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:190)
-	at org.openqa.selenium.remote.service.DriverCommandExecutor.invokeExecute(DriverCommandExecutor.java:216)
-	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:174)
-	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:545)
-	at org.openqa.selenium.remote.RemoteWebDriver.executeScript(RemoteWebDriver.java:476)
-	at helper.HelpersMethod.returnDocumentStatus(HelpersMethod.java:731)
-	at pages_DSD_OMS.login.LoginPage.getURL(LoginPage.java:714)
-	at stepDefination_DSD_OMS.AdminToClientNavigationSteps.AdminCatalogStep.userEntersURLAndIsOnLoginPageAndEnteredCredentialsForAdminSetting(AdminCatalogStep.java:119)
-	at ✽.User enters URL and is on login page and entered credentials for admin setting(file:///C:/Users/Divya.Ramadas/IdeaProjects/ignition-qa/AFS_Automation/OMS_Automation/src/test/resources/features_DSD_OMS/AdminToClientNavigation/webOrderingAdminToClientFeature.feature:33)
-</textarea>
-										</td>
-									</tr>
-								</tbody>
-							</table>
-						</div>
-					</div>
-				</li>
-				<li class='exception displayed active'>
-					<div class='exception-heading'>
-						<span class='exception-name'>java.lang.AssertionError</span>
-						<span class='exception-count right'><span class='label red lighten-1 white-text'>1</span></span>
-					</div>
-					<div class='exception-content hide'>
-						<div class='exception-tests'>
-							<table class='bordered table-results'>
-								<thead>
-									<tr>
-										<th>Timestamp</th>
-										<th>TestName</th>
-										<th>StackTrace</th>
-									</tr>
-								</thead>
-								<tbody>
-									<tr>
-										<td>Dec 23, 2024 07:15:42 PM</td>
-										<td class='linked' test-id='95'>Then User selects Account# for Admin side setting</td>
-										<td>
-											<textarea disabled class="code-block">java.lang.AssertionError: expected [true] but found [false]
-	at org.testng.Assert.fail(Assert.java:110)
-	at org.testng.Assert.failNotEquals(Assert.java:1413)
-	at org.testng.Assert.assertEqualsImpl(Assert.java:149)
-	at org.testng.Assert.assertEquals(Assert.java:131)
-	at org.testng.Assert.assertEquals(Assert.java:976)
-	at org.testng.Assert.assertEquals(Assert.java:1010)
-	at pages_DSD_OMS.orderEntry.OrderEntryPage.ValidateOE(OrderEntryPage.java:1154)
-	at stepDefination_DSD_OMS.AdminToClientNavigationSteps.AdminOrderEntryStep.userSelectsAccountForAdminSideSetting(AdminOrderEntryStep.java:110)
-	at ✽.User selects Account# for Admin side setting(file:///C:/Users/Divya.Ramadas/IdeaProjects/ignition-qa/AFS_Automation/OMS_Automation/src/test/resources/features_DSD_OMS/AdminToClientNavigation/webOrderingAdminToClientFeature.feature:12)
-</textarea>
-										</td>
-									</tr>
-								</tbody>
-							</table>
-						</div>
-					</div>
-				</li>
-			</ul>
-		</div>
-	</div>
-	<div class='subview-right left'>
-		<div class='view-summary'>
-			<h5 class='exception-name'></h5>
-		</div>
-	</div>
-</div>
-<!-- exception view --><div id='dashboard-view' class='view hide'>
+<!-- category view --><div id='dashboard-view' class='view hide'>
 	<div class='card-panel transparent np-v'>
 		<h5>Dashboard</h5>
 
@@ -766,31 +472,31 @@ Session ID: 89901542e0bb3ca3ccc1db94a6db3e7d
 			<div class='col s2'>
 				<div class='card-panel r'>
 					Scenarios
-					<div class='panel-lead'>2</div>
+					<div class='panel-lead'>1</div>
 				</div>
 			</div>
 			<div class='col s2'>
 				<div class='card-panel r'>
 					Steps
-					<div class='panel-lead'>35</div>
+					<div class='panel-lead'>20</div>
 				</div>
 			</div>
 			<div class='col s2'>
 				<div class='card-panel r'>
 					Start
-					<div class='panel-lead'>Dec 23, 2024 07:14:14 PM</div>
+					<div class='panel-lead'>Jan 6, 2025 02:05:27 PM</div>
 				</div>
 			</div>
 			<div class='col s2'>
 				<div class='card-panel r'>
 			 		End
-			 		<div class='panel-lead'>Dec 23, 2024 07:16:50 PM</div>
+			 		<div class='panel-lead'>Jan 6, 2025 02:10:49 PM</div>
 				</div>
 			</div>
 			<div class='col s2'>
 				<div class='card-panel r'>
 					Time Taken
-					<div class='panel-lead'>00 02 35.760</div>
+					<div class='panel-lead'>00 05 21.300</div>
 				</div>
 			</div>
 			<div class='col s4'>
@@ -830,21 +536,12 @@ Session ID: 89901542e0bb3ca3ccc1db94a6db3e7d
 							<th>Passed %</th>
 						</tr>
 						<tr>
-							<td>@DisableHideOrderSubmittingMessage</td>
-							<td>0</td>
+							<td>@ChangeShippingAddress</td>
 							<td>1</td>
 							<td>0</td>
-							<td>
-									0%
-							</td>
-						</tr>
-						<tr>
-							<td>@EnableHideOrderSubmittingMessage</td>
-							<td>0</td>
-							<td>1</td>
 							<td>0</td>
 							<td>
-									0%
+									100%
 							</td>
 						</tr>
 					</table>
@@ -859,34 +556,34 @@ Session ID: 89901542e0bb3ca3ccc1db94a6db3e7d
 		<script>
 			var statusGroup = {
                 parentCount: 1,
-				passParent: 0,
-				failParent: 1,
+				passParent: 1,
+				failParent: 0,
 				fatalParent: 0,
 				errorParent: 0,
 				warningParent: 0,
 				skipParent: 0,
-				childCount: 2,
-				passChild: 0,
-				failChild: 2,
+				childCount: 1,
+				passChild: 1,
+				failChild: 0,
 				fatalChild: 0,
 				errorChild: 0,
 				warningChild: 0,
 				skipChild: 0,
 				infoChild: 0,
-				grandChildCount: 35,
-				passGrandChild: 7,
-				failGrandChild: 3,
+				grandChildCount: 20,
+				passGrandChild: 20,
+				failGrandChild: 0,
 				fatalGrandChild: 0,
 				errorGrandChild: 0,
 				warningGrandChild: 0,
-				skipGrandChild: 25,
+				skipGrandChild: 0,
 				infoGrandChild: 0,
 			};
 			</script>
 		
 		<script>
 			var timeline = {
-			        "scenarios for admin credentials and client credentials":110.299
+			        "Order Entry8":307.869
 			};
 		</script>
 		

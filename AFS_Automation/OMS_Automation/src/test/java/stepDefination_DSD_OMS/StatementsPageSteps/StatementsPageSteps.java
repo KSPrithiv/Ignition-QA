@@ -161,6 +161,7 @@ public class StatementsPageSteps
     {
         statementsPage=new StatementsPage(driver,scenario);
         statementsPage.AddFilterSearch();
+        statementsPage.readTotalCustomerDisplayedValueAfterFilter();
     }
 
     @And("User selects Customer Account# and Clicks on Generate button and verify for pdf for weekly")
@@ -190,5 +191,13 @@ public class StatementsPageSteps
         statementsPage.moveToCustomerNameColumn();
         statementsPage.readAllCustomerNameAfterSorting();
         statementsPage.validatingCustomerNameSorting();
+    }
+
+    @Then("User clears Add filter value")
+    public void userClearsAddFilterValue()
+    {
+        statementsPage=new StatementsPage(driver,scenario);
+        statementsPage.AddFilterClear();
+        statementsPage.readTotalCustomerDisplayedValueAfterClearAll();
     }
 }

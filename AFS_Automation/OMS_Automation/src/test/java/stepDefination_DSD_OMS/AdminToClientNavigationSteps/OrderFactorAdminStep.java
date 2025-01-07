@@ -584,4 +584,20 @@ public class OrderFactorAdminStep
             catalogpage.ProductExistsCard(prodQty.get(0).get(0));
         }
     }
+
+    @And("User should select Product from catalog and Enter Qty for the order factor product")
+    public void userShouldSelectProductFromCatalogAndEnterQtyForTheOrderFactorProduct(DataTable tabledata) throws SQLException, ClassNotFoundException, InstantiationException, IllegalAccessException, InterruptedException, AWTException
+    {
+        List<List<String>> Prod_detail = tabledata.asLists(String.class);
+        String Prod_No= DataBaseConnection.DataBaseConn(TestBase.testEnvironment.getSingle_OneMoreProd());
+        newOE=new NewOrderEntryPage(driver,scenario);
+        newOE.Validate_Catalog();
+        newOE.clickOnLoadAllProducts();
+        newOE.ResetFilter_Catalog();
+        newOE.selectAllProductsCatalogDialogbox();
+        newOE.Search_Prod_in_Catalog(prodNo);
+        newOE.EnterQty(Prod_detail.get(0).get(0),Prod_detail.get(0).get(1));
+        scenario.log("PRODUCT # "+prodNo+" PRODUCT QTY "+Prod_detail.get(0).get(0)+" "+Prod_detail.get(0).get(1));
+        newOE.Catalog_OK();
+    }
 }

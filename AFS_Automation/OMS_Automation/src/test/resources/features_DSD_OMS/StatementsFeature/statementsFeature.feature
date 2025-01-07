@@ -18,6 +18,13 @@ Feature: Statements
     Then User should confirm that he is in Statements page
     And User searches for customer account# using Add filter
 
+  @ClearSearchCustAddFilter
+    Scenario: Search for customer account# using add filter and clear the filter value, verify total customer account# displayed
+    Given User must be on Client side and select Statements
+    Then User should confirm that he is in Statements page
+    And User searches for customer account# using Add filter
+    Then User clears Add filter value
+
   @WeeklyStatement
   Scenario: To genereate weekly statements
     Given User must be on Client side and select Statements

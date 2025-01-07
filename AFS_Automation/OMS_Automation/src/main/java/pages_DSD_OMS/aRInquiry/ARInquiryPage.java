@@ -208,7 +208,10 @@ public class ARInquiryPage
                 //Click on Account no. filtered
                 WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-window k-dialog')]/descendant::tr[contains(@class,'k-master-row')]");
                 HelpersMethod.ActClick(driver,WebEle,1000);
-                exists=true;
+                if(HelpersMethod.IsExists("//div[@class='i-no-data__message']",driver))
+                {
+                    exists = false;
+                }
             }
             Assert.assertEquals(exists,true);
         }

@@ -7717,4 +7717,77 @@ public class NewOrderEntryPage
         }
         catch (Exception e){}
     }
+
+    public void selectLengthOfOverridePermanent()
+    {
+        String overrideText;
+        Actions act=new Actions(driver);
+        try
+        {
+            if(HelpersMethod.IsExists("//span[@id='OverrideDuration-accessibility-id']/following-sibling::button",driver))
+            {
+                WebElement button=HelpersMethod.FindByElement(driver,"xpath","//span[@id='OverrideDuration-accessibility-id']/following-sibling::button");
+                HelpersMethod.ClickBut(driver,button,10000);
+
+                new WebDriverWait(driver,Duration.ofMillis(10000)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.xpath("//ul[@id='OverrideDuration-listbox-id']/li/span"))));
+                new WebDriverWait(driver,Duration.ofMillis(10000)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//ul[@id='OverrideDuration-listbox-id']/li/span")));
+
+                List<WebElement> lengthOfOverrides=HelpersMethod.FindByElements(driver,"xpath","//ul[@id='OverrideDuration-listbox-id']/li/span");
+                for(WebElement lengthOfOverride:lengthOfOverrides)
+                {
+                    overrideText=lengthOfOverride.getText();
+                    if(overrideText.equals("Permanent Override"))
+                    {
+                        act.moveToElement(lengthOfOverride).build().perform();
+                        act.click(lengthOfOverride).build().perform();
+                        break;
+                    }
+                }
+            }
+        }
+        catch (Exception e){}
+    }
+
+    public void handleNotificationForLessCost()
+    {
+        try
+        {
+            if(HelpersMethod.IsExists("//div[contains(@class,'k-notification-warning')]",driver))
+            {
+                WebElement closeButton= HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-notification-warning')]/descendant::button[contains(@class,'close')]");
+                HelpersMethod.ClickBut(driver,closeButton,10000);
+            }
+        }
+        catch (Exception e){}
+    }
+
+    public void selectLengthOfOverrideSameDay()
+    {
+        String overrideText;
+        Actions act=new Actions(driver);
+        try
+        {
+            if(HelpersMethod.IsExists("//span[@id='OverrideDuration-accessibility-id']/following-sibling::button",driver))
+            {
+                WebElement button=HelpersMethod.FindByElement(driver,"xpath","//span[@id='OverrideDuration-accessibility-id']/following-sibling::button");
+                HelpersMethod.ClickBut(driver,button,10000);
+
+                new WebDriverWait(driver,Duration.ofMillis(10000)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.xpath("//ul[@id='OverrideDuration-listbox-id']/li/span"))));
+                new WebDriverWait(driver,Duration.ofMillis(10000)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//ul[@id='OverrideDuration-listbox-id']/li/span")));
+
+                List<WebElement> lengthOfOverrides=HelpersMethod.FindByElements(driver,"xpath","//ul[@id='OverrideDuration-listbox-id']/li/span");
+                for(WebElement lengthOfOverride:lengthOfOverrides)
+                {
+                    overrideText=lengthOfOverride.getText();
+                    if(overrideText.equals("Same Day"))
+                    {
+                        act.moveToElement(lengthOfOverride).build().perform();
+                        act.click(lengthOfOverride).build().perform();
+                        break;
+                    }
+                }
+            }
+        }
+        catch (Exception e){}
+    }
 }

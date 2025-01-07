@@ -51,7 +51,6 @@ public class OrderGuidePageStep1
     {
         List<List<String>> option=dataTable.asLists(String.class);
         createOGPage=new CreateOGPage(driver,scenario);
-        //createOGPage.validateNewOGPage();
         createOGPage.ClickOnAddProduct();
         createOGPage.SelectValueFromAddProduct(option.get(0).get(0));
         scenario.log("OPTION SELECTED FROM ADD DROP DOWN IS "+option.get(0).get(0));
