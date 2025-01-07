@@ -15,14 +15,25 @@ jobs:
       - name: Checkout source code
         uses: actions/checkout@v3
 
+      - name: Find pom.xml Path
+        id: find-pom
+        run: |
+          $pomPath = Get-ChildItem -Path . -Recurse -Filter pom.xml | Select-Object -First 1 -ExpandProperty FullName
+          if (-not $pomPath) { throw "pom.xml not found in the repository" }
+          Write-Output "Found pom.xml at: $pomPath"
+          echo "::set-output name=pom_path::$pomPath"
+        shell: pwsh
+
+      - name: Show pom.xml Path
+        run: |
+          echo "pom.xml path: ${{ steps.find-pom.outputs.pom_path }}"
+
       - name: Set up Java
         uses: actions/setup-java@v3
         with:
           distribution: temurin
           java-version: '16'
           cache: maven
-      - name: Build with Maven
-        run: mvn -B package --file pom.xml
 
       - name: Install Chocolatey if Missing
         run: |
@@ -44,7 +55,7 @@ jobs:
           $env:PATH += ";C:\ProgramData\chocolatey\bin"
           Write-Output "PATH: $env:PATH"
 
-      - name: Cache Maven dependencies
+      - name: Cache Maven Dependencies
         uses: actions/cache@v3
         with:
           path: ~/.m2/repository
@@ -52,20 +63,21 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-maven
 
-      - name: List files in current directory
+      - name: List Files in Current Directory
         run: dir
 
-      - name: Create cucumber-reports directory
+      - name: Create Cucumber Reports Directory
         run: mkdir AFS_Automation/OMS_Automation/target/cucumber-reports
 
-      - name: OMS Automation module-1
+      - name: Run OMS Automation Module
         run: >
           mvn clean install test -DsuiteXmlFile='TestNG_Admin_Grid.xml'
           -Dheadless=true
           -DargLine="-Xmx512m -Xms256m"
+          --file "${{ steps.find-pom.outputs.pom_path }}"
         working-directory: AFS_Automation/OMS_Automation
 
-      - name: Upload test results
+      - name: Upload Test Results
         if: success() || failure()
         uses: actions/upload-artifact@v3
         with:
@@ -75,7 +87,7 @@ jobs:
   clean-up:
     runs-on: windows-latest
     steps:
-      - name: Clean up temporary files
+      - name: Clean Up Temporary Files
         shell: pwsh
         run: |
           if (-not ([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)) {
@@ -87,4 +99,4 @@ jobs:
           Write-Host "Removing all empty folders in $env:TEMP"
           Get-ChildItem -Path "$env:TEMP" -Recurse -Force -Directory |
           Where-Object { $_.GetFiles().Count -eq 0 -and $_.GetDirectories().Count -eq 0 } |
-          Remove-Item -Force -Recurse         
+          Remove-Item -Force -Recurse
