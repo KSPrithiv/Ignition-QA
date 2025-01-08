@@ -557,7 +557,7 @@ public class AdminOrderEntryStep
 
         if(HelpersMethod.IsExists("//div[@id='checkoutCard']",driver))
         {
-          exists=true;
+          exists=false;
           checkorder=new CheckOutOrderPage(driver,scenario);
           if(HelpersMethod.IsExists("//div[@id='paymentMethodCard']",driver))
           {
@@ -575,6 +575,7 @@ public class AdminOrderEntryStep
               }
               checkorder.DeliveryAddressCard1();
               checkorder.NextButton_Click();
+              exists=true;
           }
         }
         Assert.assertEquals(exists,true);
@@ -603,6 +604,4 @@ public class AdminOrderEntryStep
         orderpage.selectSaleshelp();
         orderpage.selectSaleshelpDisable();
     }
-
-
 }

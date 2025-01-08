@@ -124,11 +124,11 @@ public class OrderHistoryPage
                 HelpersMethod.ClickBut(driver, CopyButton, 40000);
                 scenario.log("COPY BUTTON HAS BEEN CLICKED, TO COPY ORDER HISTORY");
                 exists=true;
-                if (HelpersMethod.IsExists("//div[@class='loader']", driver))
-                {
-                    WebElement WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000000);
-                }
+                Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                        .withTimeout(Duration.ofSeconds(600))
+                        .pollingEvery(Duration.ofSeconds(2))
+                        .ignoring(NoSuchElementException.class);
+                wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
             }
             Assert.assertEquals(exists,true);
         }
@@ -509,6 +509,8 @@ public class OrderHistoryPage
         String optText;
         try
         {
+            new WebDriverWait(driver,Duration.ofMillis(10000)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.xpath("//ul[@id='grid-selection-dropdown-listbox-id']/descendant::span[@class='k-list-item-text']"))));
+            new WebDriverWait(driver,Duration.ofMillis(10000)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//ul[@id='grid-selection-dropdown-listbox-id']/descendant::span[@class='k-list-item-text']")));
             List<WebElement> Options=HelpersMethod.FindByElements(driver,"xpath","//ul[@id='grid-selection-dropdown-listbox-id']/descendant::span[@class='k-list-item-text']");
             for(WebElement opt:Options)
             {
