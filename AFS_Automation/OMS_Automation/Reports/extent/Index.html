@@ -49,7 +49,7 @@
 		<!-- nav-right -->
 		<ul id='nav-mobile' class='right hide-on-med-and-down nav-right'>
 			<a href='#!'>
-			<span class='label blue darken-3 suite-start-time'>Jan 6, 2025 02:05:27 PM</span>
+			<span class='label blue darken-3 suite-start-time'>Jan 9, 2025 10:49:00 AM</span>
 			</a>
 		</ul>
 	</div>
@@ -76,7 +76,7 @@
 				<i class='material-icons'>local_offer</i> Category
 				</a>
 				<ul id='category-toggle' class='dropdown-content'>
-					<li><a href='#'>@ChangeShippingAddress</a></li>
+					<li><a href='#'>@PickupOrderTodaysDate</a></li>
 					<li class='divider'></li>
 					<li class='clear'><a href='#!' clear='true'>Clear Filters</a></li>
 				</ul>
@@ -157,7 +157,7 @@
                 </div>
                 <div class='block text-small'>
                     <span class='tooltipped' data-position='top' data-tooltip='100%'>
-                    <span class='strong'>20</span> steps passed</span>
+                    <span class='strong'>15</span> steps passed</span>
                 </div>
                 <div class='block text-small'>
                     <span class='strong tooltipped' data-position='top' data-tooltip='0%'>
@@ -186,8 +186,8 @@
 			<ul id='test-collection' class='test-collection'>
 				<li class='test displayed active has-leaf pass' status='pass' bdd='true' test-id='1'>
 					<div class='test-heading'>
-						<span class='test-name'>Order Entry8</span>
-						<span class='test-time'>Jan 6, 2025 02:05:40 PM</span>
+						<span class='test-name'>Order Entry6</span>
+						<span class='test-time'>Jan 9, 2025 10:49:13 AM</span>
 						<span class='test-status right pass'>Pass</span>
 					</div>
 					<div class='test-content hide'>
@@ -202,14 +202,14 @@
 
 <div class='scenario node' test-id='2' status='pass'>
 
-	<span class='duration right label'>00 05 07.864</span>
+	<span class='duration right label'>00 03 34.739</span>
 	<div class="bdd-test">
-		<div class="scenario-name"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span> Scenario: Test scenario for changing shipping address</div>
+		<div class="scenario-name"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span> Scenario: Test scenario for verifying Pickup order, Select date popup contains todays date</div>
 	</div>
 	
 	
 		<div class='category-list'>
-				<span class='category label'>@ChangeShippingAddress</span>
+				<span class='category label'>@PickupOrderTodaysDate</span>
 		</div>
 	
 	<ul class='steps'>
@@ -243,25 +243,39 @@
 			<div class="step-name" title="(stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.user_selects_account())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User selects Account#</div>
 
 
-					<div class="node-step"><span style='color:red'>DELIBERY DATE FOUND, AFTER LOGGING IN TO APPLICATION  Thursday, January 9, 2025</span></div>
+					<div class="node-step"><span style='color:red'>DELIBERY DATE FOUND, AFTER LOGGING IN TO APPLICATION  Saturday, January 11, 2025</span></div>
 		</li>
 		<li test-id='94' class='node given Pass' status='Pass'>
 			<div class="step-name" title="(stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.user_must_be_on_order_entry_page())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Given User must be on Order Entry Page</div>
 
 
 		</li>
-		<li test-id='95' class='node then Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.user_must_click_start_order_button())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User must click Start Order button</div>
+		<li test-id='95' class='node when Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.user_clicks_on_drop_down_next_to_start_order_button())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>When User clicks on drop down next to Start order button</div>
 
 
 					<div class="node-step">NAVIGATED TO ORDER ENTRY PAGE</div>
-					<div class="node-step"><span style='color:red'>DELIBERY DATE FOUND, AFTER LOGGING IN TO APPLICATION  Thursday, January 9, 2025</span></div>
-					<div class="node-step">START BUTTON HAS BEEN CLICKED</div>
 		</li>
-		<li test-id='96' class='node then Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.user_should_make_selection_between_pending_order_or_start_new_order())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User should make selection between Pending order or Start New order</div>
+		<li test-id='96' class='node and Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps6.selectPickupOrderFromDropDownOptionsAndSelectDeliveryDateByVerifyingExistenceOfTodaysDate())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>And Select Pickup Order from drop down options and select delivery date by verifying existence of todays date</div>
 
 
+					<div class="node-step">PICKUP ORDER OPTION HAS BEEN SELECTED</div>
+					<div class="node-step">DELIVERY DATES DISPLAYED IN POPUP Jan 9, 2025</div>
+					<div class="node-step">DELIVERY DATES DISPLAYED IN POPUP Jan 10, 2025</div>
+					<div class="node-step">DELIVERY DATES DISPLAYED IN POPUP Jan 11, 2025</div>
+					<div class="node-step">DELIVERY DATES DISPLAYED IN POPUP Jan 12, 2025</div>
+					<div class="node-step">DELIVERY DATES DISPLAYED IN POPUP Jan 13, 2025</div>
+					<div class="node-step">DELIVERY DATES DISPLAYED IN POPUP Jan 14, 2025</div>
+					<div class="node-step">DELIVERY DATES DISPLAYED IN POPUP Jan 15, 2025</div>
+					<div class="node-step">DELIVERY DATES DISPLAYED IN POPUP Jan 16, 2025</div>
+					<div class="node-step">DELIVERY DATES DISPLAYED IN POPUP Jan 17, 2025</div>
+					<div class="node-step">DELIVERY DATES DISPLAYED IN POPUP Jan 18, 2025</div>
+					<div class="node-step">DELIVERY DATES DISPLAYED IN POPUP Jan 19, 2025</div>
+					<div class="node-step">TODAYS DATE Jan 9, 2025</div>
+					<div class="node-step">Current date is Jan 9, 2025</div>
+					<div class="node-step">DATE SAME AS OF DELIVERY DATE HAS BEEN FOUND IN PICKUP ORDER DELIVER DATE POPUP.....PLEASE CHECK ADMIN SETTINGS </div>
+					<div class="node-step">DATE SELECTED FOR PICK UP ORDER IS Jan 11, 2025</div>
 		</li>
 		<li test-id='97' class='node then Pass' status='Pass'>
 			<div class="step-name" title="(stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.userShouldSelectNoteFromPopupAndOrderGuideFromPopup())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User should select Note from popup and Order guide from popup</div>
@@ -269,7 +283,7 @@
 
 		</li>
 		<li test-id='98' class='node then Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.enter_po_for_new_order(io.cucumber.datatable.DataTable))"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then Enter PO# for New order</div>
+			<div class="step-name" title="(stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.enter_po_for_new_orderForPickupOrder(io.cucumber.datatable.DataTable))"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then Enter PO# for New order for Pickup order</div>
 
 
 					<div class="node-step"><table class='markup-table table '><tr><td>PO123</td></tr></table></div>
@@ -286,10 +300,10 @@
 			<div class="step-name" title="(stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.check_for_case_and_unit_input_box_enabled_or_not_based_on_that_enter_value(io.cucumber.datatable.DataTable))"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>And Check for Case and Unit input box enabled or not based on that enter value</div>
 
 
-					<div class="node-step"><table class='markup-table table '><tr><td>2</td><td>2</td></tr></table></div>
+					<div class="node-step"><table class='markup-table table '><tr><td>1</td><td>1</td></tr></table></div>
 					<div class="node-step">UOM IS ENABLED AND IT CONTAINS Cases, Units VALUE IN IT</div>
-					<div class="node-step">CASE ENTERED FOR QUICK PRODUCT IS 2</div>
-					<div class="node-step">UNIT ENTERED FOR QUICK PRODUCT IS 2</div>
+					<div class="node-step">CASE ENTERED FOR QUICK PRODUCT IS 1</div>
+					<div class="node-step">UNIT ENTERED FOR QUICK PRODUCT IS 1</div>
 					<div class="node-step">TOAST MESSAGE FOR: CURRENTLY UNAVAILABLE HAS BEEN HANDLED</div>
 		</li>
 		<li test-id='101' class='node then Pass' status='Pass'>
@@ -315,50 +329,12 @@
 					<div class="node-step">10024590</div>
 					<div class="node-step">NEXT BUTTON CLICKED</div>
 					<div class="node-step">BCZ OF ORDER FACTOR QTY HAS BEEN INCREASED, POPUP HAS BEEN HANDLED</div>
-					<div class="node-step">ORDER NUMBER CREATED IS 0003716455</div>
+					<div class="node-step">ORDER NUMBER CREATED IS 0003716469</div>
 					<div class="node-step">PAYMENT METHOD HAS BEEN SELECTED</div>
 					<div class="node-step">FIRST PAYMENT OPTION HAS BEEN SELECTED</div>
 					<div class="node-step">CLICKED ON NEXT BUTTON</div>
 		</li>
 		<li test-id='102' class='node and Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.click_on_submit_order_button_and_read_order_no())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>And Click on Submit Order button and read Order_no</div>
-
-
-					<div class="node-step">ORDER ENTRY SUMMARY PAGE HAS BEEN FOUND</div>
-					<div class="node-step">SUBMIT BUTTON IN ORDER SUMMARY PAGE HAS BEEN CLICKED</div>
-					<div class="node-step">ORDER CRATED, ORDER # IS 0003716455</div>
-					<div class="node-step">ORDER HAS BEEN SUCESSFULLY CREATED</div>
-		</li>
-		<li test-id='103' class='node then Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.user_should_be_navigated_to_order_entry_page())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User should be navigated to Order Entry page</div>
-
-
-					<div class="node-step">ORDER ENTRY PAGE HAS BEEN FOUND</div>
-		</li>
-		<li test-id='104' class='node then Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.enter_order_in_search_box_in_order_entry_page())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then Enter Order# in Search box in Order Entry page</div>
-
-
-					<div class="node-step">ORDER NUMBER I AM SEARCHING FOR IS 0003716455</div>
-		</li>
-		<li test-id='105' class='node then Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps8.clickOnOrderNumberInOrderEntryPageAndCheckForNewOEPageForEditingOrderByChangingShippingAddress())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then Click on Order number in Order Entry page and check for New OE page for editing Order by changing shipping address</div>
-
-
-					<div class="node-step">ORDER HAS BEEN SELECTED FROM THE GRID</div>
-					<div class="node-step">NEW ORDER ENTRY PAGE HAS BEEN FOUND</div>
-		</li>
-		<li test-id='106' class='node then Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps8.clickOnNextButtonAndChangeShippingAddress())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then Click on Next button and change shipping address</div>
-
-
-					<div class="node-step">PRODUCT FOUND IN ORDER ARE </div>
-					<div class="node-step">00000008</div>
-					<div class="node-step">NEXT BUTTON CLICKED</div>
-					<div class="node-step">CRITICAL ITEMS NOT ORDERED POPUP HANDLED</div>
-					<div class="node-step">CLICKED ON NEXT BUTTON</div>
-		</li>
-		<li test-id='107' class='node and Pass' status='Pass'>
 			<div class="step-name" title="(stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.click_on_submit_order_button())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>And Click on SubmitOrder button</div>
 
 
@@ -366,7 +342,7 @@
 					<div class="node-step">SUBMIT BUTTON IN ORDER SUMMARY PAGE HAS BEEN CLICKED</div>
 					<div class="node-step">ORDER HAS BEEN SUCESSFULLY CREATED</div>
 		</li>
-		<li test-id='108' class='node then Pass' status='Pass'>
+		<li test-id='103' class='node then Pass' status='Pass'>
 			<div class="step-name" title="(stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.user_should_be_navigated_to_order_entry_page())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User should be navigated to Order Entry page</div>
 
 
@@ -418,7 +394,7 @@
 			<ul id='category-collection' class='category-collection'>
 				<li class='category displayed active'>
 					<div class='category-heading'>
-						<span class='category-name'>@ChangeShippingAddress</span>
+						<span class='category-name'>@PickupOrderTodaysDate</span>
 						<span class='category-status right'>
 						<span class='label pass'>1</span>
 						</span>
@@ -440,8 +416,8 @@
 								</thead>
 								<tbody>
 									<tr>
-										<td>Jan 6, 2025 02:05:40 PM</td>
-										<td class='linked' test-id='2'>Test scenario for changing shipping address</td>
+										<td>Jan 9, 2025 10:49:13 AM</td>
+										<td class='linked' test-id='2'>Test scenario for verifying Pickup order, Select date popup contains todays date</td>
 										<td><span class='test-status Pass'>Pass</span></td>
 									</tr>
 								</tbody>
@@ -478,25 +454,25 @@
 			<div class='col s2'>
 				<div class='card-panel r'>
 					Steps
-					<div class='panel-lead'>20</div>
+					<div class='panel-lead'>15</div>
 				</div>
 			</div>
 			<div class='col s2'>
 				<div class='card-panel r'>
 					Start
-					<div class='panel-lead'>Jan 6, 2025 02:05:27 PM</div>
+					<div class='panel-lead'>Jan 9, 2025 10:49:00 AM</div>
 				</div>
 			</div>
 			<div class='col s2'>
 				<div class='card-panel r'>
 			 		End
-			 		<div class='panel-lead'>Jan 6, 2025 02:10:49 PM</div>
+			 		<div class='panel-lead'>Jan 9, 2025 10:52:49 AM</div>
 				</div>
 			</div>
 			<div class='col s2'>
 				<div class='card-panel r'>
 					Time Taken
-					<div class='panel-lead'>00 05 21.300</div>
+					<div class='panel-lead'>00 03 48.560</div>
 				</div>
 			</div>
 			<div class='col s4'>
@@ -536,7 +512,7 @@
 							<th>Passed %</th>
 						</tr>
 						<tr>
-							<td>@ChangeShippingAddress</td>
+							<td>@PickupOrderTodaysDate</td>
 							<td>1</td>
 							<td>0</td>
 							<td>0</td>
@@ -570,8 +546,8 @@
 				warningChild: 0,
 				skipChild: 0,
 				infoChild: 0,
-				grandChildCount: 20,
-				passGrandChild: 20,
+				grandChildCount: 15,
+				passGrandChild: 15,
 				failGrandChild: 0,
 				fatalGrandChild: 0,
 				errorGrandChild: 0,
@@ -583,7 +559,7 @@
 		
 		<script>
 			var timeline = {
-			        "Order Entry8":307.869
+			        "Order Entry6":214.739
 			};
 		</script>
 		

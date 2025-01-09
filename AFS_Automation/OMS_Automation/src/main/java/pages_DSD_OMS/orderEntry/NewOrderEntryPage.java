@@ -4491,6 +4491,7 @@ public class NewOrderEntryPage
     public void Click_On_PriceOverrideIcon()
     {
         exists=false;
+        int i=0;
         Actions act=new Actions(driver);
         try
         {
@@ -4503,7 +4504,7 @@ public class NewOrderEntryPage
                 WebEle=titles.get(i);
                 act.moveToElement(WebEle).build().perform();
                 titleText=WebEle.getText();
-                if(titleText.equals("Price"))
+                if(titleText.equals("Price per unit"))
                 {
                     priceLoc=i;
                     scenario.log(String.valueOf(priceLoc));
@@ -4525,7 +4526,7 @@ public class NewOrderEntryPage
                     break;
                 }
             }*/
-            int i=0;
+            i=0;
             //check for visisblility of price override icon
             List<WebElement> priceInput=HelpersMethod.FindByElements(driver,"xpath","//tr[contains(@class,'k-master-row')]/descendant::input[contains(@id,'FinalPrice')]/preceding-sibling::div//*[local-name()='svg' and contains(@fill,'#000000')]");
             for(WebElement priceIn:priceInput)
@@ -7720,6 +7721,7 @@ public class NewOrderEntryPage
 
     public void selectLengthOfOverridePermanent()
     {
+        exists=false;
         String overrideText;
         Actions act=new Actions(driver);
         try
@@ -7743,6 +7745,12 @@ public class NewOrderEntryPage
                         break;
                     }
                 }
+                String lengthOfOverrideText=HelpersMethod.FindByElement(driver,"xpath","//span[@id='OverrideDuration']/descendant::span[@class='k-input-value-text']").getText();
+                if(lengthOfOverrideText.equalsIgnoreCase("Permanent Override"))
+                {
+                    exists=true;
+                }
+                Assert.assertEquals(exists,true);
             }
         }
         catch (Exception e){}

@@ -663,7 +663,7 @@ public class CustomerInquiryPageERP
             {
                 WebElement noteButton = HelpersMethod.FindByElement(driver, "id", "customerInquiryNoteBtn");
                 //HelpersMethod.ScrollUpScrollBar(driver);
-                HelpersMethod.ActClick(driver, noteButton, 10000);
+                HelpersMethod.ClickBut(driver, noteButton, 10000);
                 exists=true;
                 if (HelpersMethod.IsExists("//div[@class='loader']", driver))
                 {

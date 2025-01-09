@@ -104,6 +104,23 @@ Scenario: Test scenario to verify payment info in summary page
     And Click on SubmitOrder button
     Then User should be navigated to Order Entry page
 
+  @PriceOverRideWhatIfSameDay
+  Scenario: Test scenario for testing price override with "What if" option, Permanent price overrdie
+    Given User must be on Order Entry Page
+    Then User must click Start Order button
+    Then User should make selection between Pending order or Start New order
+    Then User should select Note from popup and Order guide from popup
+    Then Enter PO# for New order
+      |PO123|
+    Then Enter Pro# in Quick Product Entry area for price override
+    And Check for Case and Unit input box enabled or not based on that enter value
+      |1|1|
+    Then User should click on price override icon and Change price using What if option Price per unit and change length value to Same day
+      |$0.20|
+    Then Click on Next button
+    And Click on SubmitOrder button
+    Then User should be navigated to Order Entry page
+
   @ChangeShippingAddress
   Scenario: Test scenario for changing shipping address
     Given User must be on Order Entry Page

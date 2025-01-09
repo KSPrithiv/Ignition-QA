@@ -14,7 +14,7 @@
               "SIGNIN BUTTON CLICKED"
             ],
             "result": {
-              "duration": 21190222800,
+              "duration": 29383239200,
               "status": "passed"
             },
             "line": 6,
@@ -29,7 +29,7 @@
               "ADMIN PAGE OR ORDER ENTRY PAGE HAS BEEN FOUND"
             ],
             "result": {
-              "duration": 179777700,
+              "duration": 197258700,
               "status": "passed"
             },
             "line": 7,
@@ -45,7 +45,7 @@
               "IN ADMIN PAGE"
             ],
             "result": {
-              "duration": 3150357600,
+              "duration": 3095392300,
               "status": "passed"
             },
             "line": 8,
@@ -61,7 +61,7 @@
               "NAVIGATED TO ORDER ENTRY PAGE"
             ],
             "result": {
-              "duration": 5439172600,
+              "duration": 5462487600,
               "status": "passed"
             },
             "line": 9,
@@ -73,10 +73,10 @@
           },
           {
             "output": [
-              "\u003cspan style\u003d\u0027color:red\u0027\u003eDELIBERY DATE FOUND, AFTER LOGGING IN TO APPLICATION  Thursday, January 9, 2025\u003c/span\u003e"
+              "\u003cspan style\u003d\u0027color:red\u0027\u003eDELIBERY DATE FOUND, AFTER LOGGING IN TO APPLICATION  Saturday, January 11, 2025\u003c/span\u003e"
             ],
             "result": {
-              "duration": 7655627600,
+              "duration": 9820601100,
               "status": "passed"
             },
             "line": 10,
@@ -89,11 +89,11 @@
         ]
       },
       {
-        "start_timestamp": "2025-01-06T08:35:40.380Z",
+        "start_timestamp": "2025-01-09T05:19:13.647Z",
         "before": [
           {
             "result": {
-              "duration": 10290700,
+              "duration": 7561300,
               "status": "passed"
             },
             "match": {
@@ -102,7 +102,6 @@
           },
           {
             "result": {
-              "duration": 5130900,
               "status": "passed"
             },
             "match": {
@@ -183,7 +182,6 @@
           },
           {
             "result": {
-              "duration": 9934100,
               "status": "passed"
             },
             "match": {
@@ -216,7 +214,6 @@
           },
           {
             "result": {
-              "duration": 10102800,
               "status": "passed"
             },
             "match": {
@@ -265,6 +262,7 @@
           },
           {
             "result": {
+              "duration": 15729500,
               "status": "passed"
             },
             "match": {
@@ -329,7 +327,6 @@
           },
           {
             "result": {
-              "duration": 4622000,
               "status": "passed"
             },
             "match": {
@@ -418,7 +415,6 @@
           },
           {
             "result": {
-              "duration": 9659800,
               "status": "passed"
             },
             "match": {
@@ -483,7 +479,6 @@
           },
           {
             "result": {
-              "duration": 10184200,
               "status": "passed"
             },
             "match": {
@@ -540,7 +535,6 @@
           },
           {
             "result": {
-              "duration": 9779600,
               "status": "passed"
             },
             "match": {
@@ -549,7 +543,6 @@
           },
           {
             "result": {
-              "duration": 2803500,
               "status": "passed"
             },
             "match": {
@@ -590,6 +583,7 @@
           },
           {
             "result": {
+              "duration": 15617900,
               "status": "passed"
             },
             "match": {
@@ -606,7 +600,6 @@
           },
           {
             "result": {
-              "duration": 7365300,
               "status": "passed"
             },
             "match": {
@@ -655,7 +648,6 @@
           },
           {
             "result": {
-              "duration": 10062900,
               "status": "passed"
             },
             "match": {
@@ -744,7 +736,6 @@
           },
           {
             "result": {
-              "duration": 180600,
               "status": "passed"
             },
             "match": {
@@ -792,14 +783,13 @@
             }
           }
         ],
-        "line": 108,
-        "name": "Test scenario for changing shipping address",
+        "line": 72,
+        "name": "Test scenario for verifying Pickup order, Select date popup contains todays date",
         "description": "",
-        "id": "order-entry8;test-scenario-for-changing-shipping-address",
+        "id": "order-entry6;test-scenario-for-verifying-pickup-order--select-date-popup-contains-todays-date",
         "after": [
           {
             "result": {
-              "duration": 6724400,
               "status": "passed"
             },
             "match": {
@@ -812,10 +802,10 @@
         "steps": [
           {
             "result": {
-              "duration": 48095581200,
+              "duration": 47959396200,
               "status": "passed"
             },
-            "line": 109,
+            "line": 73,
             "name": "User must be on Order Entry Page",
             "match": {
               "location": "stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.user_must_be_on_order_entry_page()"
@@ -824,39 +814,55 @@
           },
           {
             "output": [
-              "NAVIGATED TO ORDER ENTRY PAGE",
-              "\u003cspan style\u003d\u0027color:red\u0027\u003eDELIBERY DATE FOUND, AFTER LOGGING IN TO APPLICATION  Thursday, January 9, 2025\u003c/span\u003e",
-              "START BUTTON HAS BEEN CLICKED"
+              "NAVIGATED TO ORDER ENTRY PAGE"
             ],
             "result": {
-              "duration": 12028996900,
+              "duration": 11087754800,
               "status": "passed"
             },
-            "line": 110,
-            "name": "User must click Start Order button",
+            "line": 74,
+            "name": "User clicks on drop down next to Start order button",
             "match": {
-              "location": "stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.user_must_click_start_order_button()"
+              "location": "stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.user_clicks_on_drop_down_next_to_start_order_button()"
             },
-            "keyword": "Then "
+            "keyword": "When "
+          },
+          {
+            "output": [
+              "PICKUP ORDER OPTION HAS BEEN SELECTED",
+              "DELIVERY DATES DISPLAYED IN POPUP Jan 9, 2025",
+              "DELIVERY DATES DISPLAYED IN POPUP Jan 10, 2025",
+              "DELIVERY DATES DISPLAYED IN POPUP Jan 11, 2025",
+              "DELIVERY DATES DISPLAYED IN POPUP Jan 12, 2025",
+              "DELIVERY DATES DISPLAYED IN POPUP Jan 13, 2025",
+              "DELIVERY DATES DISPLAYED IN POPUP Jan 14, 2025",
+              "DELIVERY DATES DISPLAYED IN POPUP Jan 15, 2025",
+              "DELIVERY DATES DISPLAYED IN POPUP Jan 16, 2025",
+              "DELIVERY DATES DISPLAYED IN POPUP Jan 17, 2025",
+              "DELIVERY DATES DISPLAYED IN POPUP Jan 18, 2025",
+              "DELIVERY DATES DISPLAYED IN POPUP Jan 19, 2025",
+              "TODAYS DATE Jan 9, 2025",
+              "Current date is Jan 9, 2025",
+              "DATE SAME AS OF DELIVERY DATE HAS BEEN FOUND IN PICKUP ORDER DELIVER DATE POPUP.....PLEASE CHECK ADMIN SETTINGS ",
+              "DATE SELECTED FOR PICK UP ORDER IS Jan 11, 2025"
+            ],
+            "result": {
+              "duration": 10042587100,
+              "status": "passed"
+            },
+            "line": 75,
+            "name": "Select Pickup Order from drop down options and select delivery date by verifying existence of todays date",
+            "match": {
+              "location": "stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps6.selectPickupOrderFromDropDownOptionsAndSelectDeliveryDateByVerifyingExistenceOfTodaysDate()"
+            },
+            "keyword": "And "
           },
           {
             "result": {
-              "duration": 587122200,
+              "duration": 2850084800,
               "status": "passed"
             },
-            "line": 111,
-            "name": "User should make selection between Pending order or Start New order",
-            "match": {
-              "location": "stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.user_should_make_selection_between_pending_order_or_start_new_order()"
-            },
-            "keyword": "Then "
-          },
-          {
-            "result": {
-              "duration": 9305126600,
-              "status": "passed"
-            },
-            "line": 112,
+            "line": 76,
             "name": "User should select Note from popup and Order guide from popup",
             "match": {
               "location": "stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.userShouldSelectNoteFromPopupAndOrderGuideFromPopup()"
@@ -869,13 +875,13 @@
               "PO# ENTERED IS PO123"
             ],
             "result": {
-              "duration": 6922783000,
+              "duration": 3999213500,
               "status": "passed"
             },
-            "line": 113,
-            "name": "Enter PO# for New order",
+            "line": 77,
+            "name": "Enter PO# for New order for Pickup order",
             "match": {
-              "location": "stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.enter_po_for_new_order(io.cucumber.datatable.DataTable)"
+              "location": "stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.enter_po_for_new_orderForPickupOrder(io.cucumber.datatable.DataTable)"
             },
             "rows": [
               {
@@ -891,10 +897,10 @@
               "PRODUCT ADDED TO THE ORDER Via QUICK PRODUCT ENTRY 00000008"
             ],
             "result": {
-              "duration": 6143332600,
+              "duration": 5236420500,
               "status": "passed"
             },
-            "line": 115,
+            "line": 79,
             "name": "Enter Pro# in Quick Product Entry area",
             "match": {
               "location": "stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.enter_pro_in_quick_product_entry_area()"
@@ -904,15 +910,15 @@
           {
             "output": [
               "UOM IS ENABLED AND IT CONTAINS Cases, Units VALUE IN IT",
-              "CASE ENTERED FOR QUICK PRODUCT IS 2",
-              "UNIT ENTERED FOR QUICK PRODUCT IS 2",
+              "CASE ENTERED FOR QUICK PRODUCT IS 1",
+              "UNIT ENTERED FOR QUICK PRODUCT IS 1",
               "TOAST MESSAGE FOR: CURRENTLY UNAVAILABLE HAS BEEN HANDLED"
             ],
             "result": {
-              "duration": 13374670600,
+              "duration": 11934618500,
               "status": "passed"
             },
-            "line": 116,
+            "line": 80,
             "name": "Check for Case and Unit input box enabled or not based on that enter value",
             "match": {
               "location": "stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.check_for_case_and_unit_input_box_enabled_or_not_based_on_that_enter_value(io.cucumber.datatable.DataTable)"
@@ -920,8 +926,8 @@
             "rows": [
               {
                 "cells": [
-                  "2",
-                  "2"
+                  "1",
+                  "1"
                 ]
               }
             ],
@@ -948,16 +954,16 @@
               "10024590",
               "NEXT BUTTON CLICKED",
               "BCZ OF ORDER FACTOR QTY HAS BEEN INCREASED, POPUP HAS BEEN HANDLED",
-              "ORDER NUMBER CREATED IS 0003716455",
+              "ORDER NUMBER CREATED IS 0003716469",
               "PAYMENT METHOD HAS BEEN SELECTED",
               "FIRST PAYMENT OPTION HAS BEEN SELECTED",
               "CLICKED ON NEXT BUTTON"
             ],
             "result": {
-              "duration": 52384084700,
+              "duration": 47872132000,
               "status": "passed"
             },
-            "line": 118,
+            "line": 82,
             "name": "Click on Next button",
             "match": {
               "location": "stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.click_on_next_button()"
@@ -968,96 +974,13 @@
             "output": [
               "ORDER ENTRY SUMMARY PAGE HAS BEEN FOUND",
               "SUBMIT BUTTON IN ORDER SUMMARY PAGE HAS BEEN CLICKED",
-              "ORDER CRATED, ORDER # IS 0003716455",
               "ORDER HAS BEEN SUCESSFULLY CREATED"
             ],
             "result": {
-              "duration": 18799919500,
+              "duration": 19099517300,
               "status": "passed"
             },
-            "line": 119,
-            "name": "Click on Submit Order button and read Order_no",
-            "match": {
-              "location": "stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.click_on_submit_order_button_and_read_order_no()"
-            },
-            "keyword": "And "
-          },
-          {
-            "output": [
-              "ORDER ENTRY PAGE HAS BEEN FOUND"
-            ],
-            "result": {
-              "duration": 11313892300,
-              "status": "passed"
-            },
-            "line": 120,
-            "name": "User should be navigated to Order Entry page",
-            "match": {
-              "location": "stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.user_should_be_navigated_to_order_entry_page()"
-            },
-            "keyword": "Then "
-          },
-          {
-            "output": [
-              "ORDER NUMBER I AM SEARCHING FOR IS 0003716455"
-            ],
-            "result": {
-              "duration": 738010000,
-              "status": "passed"
-            },
-            "line": 121,
-            "name": "Enter Order# in Search box in Order Entry page",
-            "match": {
-              "location": "stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.enter_order_in_search_box_in_order_entry_page()"
-            },
-            "keyword": "Then "
-          },
-          {
-            "output": [
-              "ORDER HAS BEEN SELECTED FROM THE GRID",
-              "NEW ORDER ENTRY PAGE HAS BEEN FOUND"
-            ],
-            "result": {
-              "duration": 13192219300,
-              "status": "passed"
-            },
-            "line": 122,
-            "name": "Click on Order number in Order Entry page and check for New OE page for editing Order by changing shipping address",
-            "match": {
-              "location": "stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps8.clickOnOrderNumberInOrderEntryPageAndCheckForNewOEPageForEditingOrderByChangingShippingAddress()"
-            },
-            "keyword": "Then "
-          },
-          {
-            "output": [
-              "PRODUCT FOUND IN ORDER ARE ",
-              "00000008",
-              "NEXT BUTTON CLICKED",
-              "CRITICAL ITEMS NOT ORDERED POPUP HANDLED",
-              "CLICKED ON NEXT BUTTON"
-            ],
-            "result": {
-              "duration": 45971577300,
-              "status": "passed"
-            },
-            "line": 123,
-            "name": "Click on Next button and change shipping address",
-            "match": {
-              "location": "stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps8.clickOnNextButtonAndChangeShippingAddress()"
-            },
-            "keyword": "Then "
-          },
-          {
-            "output": [
-              "ORDER ENTRY SUMMARY PAGE HAS BEEN FOUND",
-              "SUBMIT BUTTON IN ORDER SUMMARY PAGE HAS BEEN CLICKED",
-              "ORDER HAS BEEN SUCESSFULLY CREATED"
-            ],
-            "result": {
-              "duration": 19986182800,
-              "status": "passed"
-            },
-            "line": 124,
+            "line": 83,
             "name": "Click on SubmitOrder button",
             "match": {
               "location": "stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.click_on_submit_order_button()"
@@ -1069,10 +992,10 @@
               "ORDER ENTRY PAGE HAS BEEN FOUND"
             ],
             "result": {
-              "duration": 11237024200,
+              "duration": 6516138800,
               "status": "passed"
             },
-            "line": 125,
+            "line": 84,
             "name": "User should be navigated to Order Entry page",
             "match": {
               "location": "stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.user_should_be_navigated_to_order_entry_page()"
@@ -1082,16 +1005,16 @@
         ],
         "tags": [
           {
-            "name": "@ChangeShippingAddress"
+            "name": "@PickupOrderTodaysDate"
           }
         ]
       }
     ],
-    "name": "Order Entry8",
+    "name": "Order Entry6",
     "description": "  Used for cration of New order in different ways\n  Used for canceling order, editing of order, skipping of order",
-    "id": "order-entry8",
+    "id": "order-entry6",
     "keyword": "Feature",
-    "uri": "file:src/test/resources/features_DSD_OMS/OrderEntryFeature/orderEntryFeature8.feature",
+    "uri": "file:src/test/resources/features_DSD_OMS/OrderEntryFeature/orderEntryFeature6.feature",
     "tags": []
   }
 ]

@@ -687,6 +687,12 @@ public class OrderEntryPageSteps
         newOE = new NewOrderEntryPage(driver,scenario);
         String prod=DataBaseConnection.DataBaseConn(TestBase.testEnvironment.getSingle_Prod_Sql());
         Thread.sleep(500);
+        Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                .withTimeout(Duration.ofSeconds(400))
+                .pollingEvery(Duration.ofSeconds(2))
+                .ignoring(NoSuchElementException.class);
+        wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
         if(!prod.equals(null))
         {
             newOE.QuickProduct(prod);

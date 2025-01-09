@@ -124,6 +124,27 @@ public class CheckOutOrderPage
         return Result;
     }
 
+    public void notValidateCheckOrder()
+    {
+        exists=false;
+        try
+        {
+            Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(200))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
+            if(!HelpersMethod.EleDisplay(CheOutOrderPage))
+            {
+                scenario.log("CHECKOUT SUMMARY PAGE HAS NOT BEEN FOUND");
+                exists=true;
+            }
+            Assert.assertEquals(exists,true);
+        }
+        catch (Exception e){}
+    }
+
     //Code to click on Back button
     public void BackButton_Click()
     {
@@ -1039,7 +1060,7 @@ public class CheckOutOrderPage
             {
                 exists=true;
             }
-            Assert.assertEquals(exists,driver);
+            Assert.assertEquals(exists,true);
         }
         catch (Exception e){}
     }
@@ -1095,6 +1116,4 @@ public class CheckOutOrderPage
         }
         catch (Exception e){}
     }
-
-
 }

@@ -1,12 +1,19 @@
 package stepDefination_DSD_OMS.AdminToClientNavigationSteps;
 
+import helper.HelpersMethod;
 import io.cucumber.java.Before;
 import io.cucumber.java.Scenario;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
+import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
-import org.testng.Assert;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.FluentWait;
+import org.openqa.selenium.support.ui.Wait;
+import pages_DSD_OMS.adminOrderEntry.adminOrderEntryPage;
 import pages_DSD_OMS.adminSecurity.AdminSecurityPermissionPage;
+import pages_DSD_OMS.orderEntry.CheckOutOrderPage;
 import pages_DSD_OMS.orderEntry.CheckOutSummaryPage;
 import pages_DSD_OMS.orderEntry.NewOrderEntryPage;
 import pages_DSD_OMS.orderEntry.OrderEntryPage;
@@ -14,6 +21,7 @@ import pages_DSD_OMS.webOrdering.AdminHomePage;
 import util.TestBase;
 
 import java.awt.*;
+import java.time.Duration;
 
 /**
  * @Project Divya.Ramadas@telusagcg.com
@@ -30,6 +38,8 @@ public class AdminOrderEntryStep1
     static OrderEntryPage orderpage;
     static NewOrderEntryPage newOE;
     static AdminSecurityPermissionPage adminSecurityPermissionPage;
+    static adminOrderEntryPage adminOrder;
+    static CheckOutOrderPage checkorder;
 
     @Before
     public void LaunchBrowser1(Scenario scenario) throws Exception
@@ -124,5 +134,144 @@ public class AdminOrderEntryStep1
         orderpage.validateCustomerAccountInex();
         orderpage.validateChangeInLookAndFeelOfCustomerAccountIndexContainsAddFilter();
         orderpage.clickOnCancelButtonInCustomerAccountDialogBox();
+    }
+
+    @Then("User changes the value of Default workflow method to none")
+    public void userChangesTheValueOfDefaultWorkflowMethodToNone()
+    {
+        adminOrder=new adminOrderEntryPage(driver,scenario);
+        adminOrder.clickOnDefaultWorkFlow();
+        adminOrder.selectFromDefaultWorkFlow();
+    }
+
+    @Then("User searches for {string} {string} and disable admin setting")
+    public void userSearchesForAndDisableAdminSetting(String adminControl, String adminControlId)
+    {
+        adminSecurityPermissionPage=new AdminSecurityPermissionPage(driver,scenario);
+        adminSecurityPermissionPage.searchAdminSettingInSearchBar(adminControl);
+        adminSecurityPermissionPage.validateAdminSettingSearchValue(adminControl);
+        adminSecurityPermissionPage.uncheckCheckbox(adminControlId);
+        adminHomePage=new AdminHomePage(driver,scenario);
+        adminHomePage.Click_SaveButton();
+    }
+
+    @Then("User searches for {string} {string} and enable admin setting")
+    public void userSearchesForAndEnableAdminSetting(String adminControl, String adminControlId)
+    {
+        adminSecurityPermissionPage=new AdminSecurityPermissionPage(driver,scenario);
+        adminSecurityPermissionPage.searchAdminSettingInSearchBar(adminControl);
+        adminSecurityPermissionPage.validateAdminSettingSearchValue(adminControl);
+        adminSecurityPermissionPage.checkCheckbox(adminControlId);
+        adminHomePage=new AdminHomePage(driver,scenario);
+        adminHomePage.Click_SaveButton();
+    }
+
+    @Then("Click on Order number in Order Entry page and check for New OE page payment page is not visible")
+    public void clickOnOrderNumberInOrderEntryPageAndCheckForNewOEPagePaymentPageIsNotVisible() throws InterruptedException, AWTException
+    {
+        orderpage = new OrderEntryPage(driver, scenario);
+        orderpage.Select_Order_OrdersGrid();
+
+        newOE = new NewOrderEntryPage(driver,scenario);
+        newOE.readProductsInOrder();
+        Thread.sleep(1000);
+        //handling toast messages
+        for(int i=0;i<=2;i++)
+        {
+            //check for toast message for low on inventory
+            newOE.lowOnInventoryToast();
+            //check for toast message for product is currently unavailable
+            newOE.toastCurrentlyUnavailable();
+        }
+
+        for(int i=0;i<=1;i++)
+        {
+            newOE.priceCannotBeBleowCost();
+            newOE.exceedsMaxQty();
+        }
+        exists=newOE.ClickNext();
+        newOE.OutOfStockPop_ERP();
+        String status = HelpersMethod.returnDocumentStatus(driver);
+        if (status.equals("loading"))
+        {
+            HelpersMethod.waitTillLoadingPage(driver);
+        }
+
+        Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                .withTimeout(Duration.ofSeconds(400))
+                .pollingEvery(Duration.ofSeconds(2))
+                .ignoring(NoSuchElementException.class);
+        wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
+        status = HelpersMethod.returnDocumentStatus(driver);
+        if (status.equals("loading"))
+        {
+            HelpersMethod.waitTillLoadingPage(driver);
+        }
+
+        wait = new FluentWait<WebDriver>(driver)
+                .withTimeout(Duration.ofSeconds(400))
+                .pollingEvery(Duration.ofSeconds(2))
+                .ignoring(NoSuchElementException.class);
+        wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
+        checkorder=new CheckOutOrderPage(driver,scenario);
+        Thread.sleep(4000);
+        checkorder.notValidateCheckOrder();
+    }
+
+    @Then("Click on Order number in Order Entry page and check for New OE page payment page visible")
+    public void clickOnOrderNumberInOrderEntryPageAndCheckForNewOEPagePaymentPageVisible() throws InterruptedException, AWTException
+    {
+        orderpage = new OrderEntryPage(driver, scenario);
+        orderpage.Select_Order_OrdersGrid();
+
+        newOE = new NewOrderEntryPage(driver,scenario);
+        newOE.readProductsInOrder();
+        Thread.sleep(1000);
+        //handling toast messages
+        for(int i=0;i<=2;i++)
+        {
+            //check for toast message for low on inventory
+            newOE.lowOnInventoryToast();
+            //check for toast message for product is currently unavailable
+            newOE.toastCurrentlyUnavailable();
+        }
+
+        for(int i=0;i<=1;i++)
+        {
+            newOE.priceCannotBeBleowCost();
+            newOE.exceedsMaxQty();
+        }
+        exists=newOE.ClickNext();
+        newOE.OutOfStockPop_ERP();
+        String status = HelpersMethod.returnDocumentStatus(driver);
+        if (status.equals("loading"))
+        {
+            HelpersMethod.waitTillLoadingPage(driver);
+        }
+
+        Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                .withTimeout(Duration.ofSeconds(400))
+                .pollingEvery(Duration.ofSeconds(2))
+                .ignoring(NoSuchElementException.class);
+        wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
+        status = HelpersMethod.returnDocumentStatus(driver);
+        if (status.equals("loading"))
+        {
+            HelpersMethod.waitTillLoadingPage(driver);
+        }
+
+        wait = new FluentWait<WebDriver>(driver)
+                .withTimeout(Duration.ofSeconds(400))
+                .pollingEvery(Duration.ofSeconds(2))
+                .ignoring(NoSuchElementException.class);
+        wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
+        checkorder=new CheckOutOrderPage(driver,scenario);
+        Thread.sleep(4000);
+        checkorder.validateCheckOrder();
+        checkorder.NextButton_Click();
     }
 }

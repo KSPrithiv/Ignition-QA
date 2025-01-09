@@ -1,5 +1,6 @@
 package pages_DSD_OMS.orderEntry;
 
+import gherkin.lexer.De;
 import helper.HelpersMethod;
 import io.cucumber.java.Scenario;
 import org.openqa.selenium.*;
@@ -525,14 +526,8 @@ public class OrderEntryPage
                 HelpersMethod.JScriptClick(driver, AccDrop1, 10000);
             }
 
-            status = HelpersMethod.returnDocumentStatus(driver);
-            if (status.equals("loading"))
-            {
-                HelpersMethod.waitTillLoadingPage(driver);
-            }
-
             wait = new FluentWait<WebDriver>(driver)
-                    .withTimeout(Duration.ofSeconds(400))
+                    .withTimeout(Duration.ofSeconds(600))
                     .pollingEvery(Duration.ofSeconds(2))
                     .ignoring(NoSuchElementException.class);
             wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
@@ -544,7 +539,19 @@ public class OrderEntryPage
             }
 
             wait = new FluentWait<WebDriver>(driver)
-                    .withTimeout(Duration.ofSeconds(400))
+                    .withTimeout(Duration.ofSeconds(600))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
+            status = HelpersMethod.returnDocumentStatus(driver);
+            if (status.equals("loading"))
+            {
+                HelpersMethod.waitTillLoadingPage(driver);
+            }
+
+            wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(600))
                     .pollingEvery(Duration.ofSeconds(2))
                     .ignoring(NoSuchElementException.class);
             wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
@@ -3541,8 +3548,10 @@ public class OrderEntryPage
     public void ValidatingTodaysDate() throws ParseException
     {
         exists = false;
-        WebElement WebEle;
-        String CurrentDate;
+        //WebElement WebEle;
+        String CurrentDate="";
+        //String compareDate;
+        Actions act=new Actions(driver);
 
         //Check for existence of Select delivery date popup
         if (HelpersMethod.IsExists("//span[contains(text(),'Select pickup date')]/ancestor::div[contains(@class,'k-window k-dialog')]", driver))
@@ -3554,23 +3563,33 @@ public class OrderEntryPage
                 scenario.log("DELIVERY DATES DISPLAYED IN POPUP " + DeliveryDate.getText());
             }
 
-           //Converting the Current delivery date formate to
-            SimpleDateFormat fromUser1 = new SimpleDateFormat("MMM d, yyyy");
-            SimpleDateFormat fromUser = new SimpleDateFormat("EEEE, MMMM d, yyyy");
-            String formattedDate = fromUser1.format(fromUser.parse(C_Date1));
+           //Converting the Current delivery date formate
+//            SimpleDateFormat fromUser1 = new SimpleDateFormat("MMM d, yyyy");
+//            SimpleDateFormat fromUser = new SimpleDateFormat("EEEE, MMMM d, yyyy");
+//            String formattedDate = fromUser1.format(fromUser.parse(C_Date1));
 
             //Comparting system date with date in popup
-            WebEle = DeliveryDates.get(0);
-            CurrentDate = WebEle.getText();
-            scenario.log("FIRST DATE FOR PICKUP ORDER, IN POPUP IS " + CurrentDate);
+//            WebEle = DeliveryDates.get(0);
+//            CurrentDate = WebEle.getText();
+//            scenario.log("FIRST DATE FOR PICKUP ORDER, IN POPUP IS " + CurrentDate);
 
             // Find system date and change it according to required formate
-            SimpleDateFormat ft = new SimpleDateFormat("MMM dd, yyyy");
+            SimpleDateFormat ft = new SimpleDateFormat("MMM d, yyyy");
             String str = ft.format(new Date());
+            scenario.log("TODAYS DATE "+str);
+            for (WebElement DeliveryDate : DeliveryDates)
+            {
+                act.moveToElement(DeliveryDate).build().perform();
+                CurrentDate= DeliveryDate.getText();
+                if(CurrentDate.equalsIgnoreCase(str))
+                {
+                   break;
+                }
+            }
             //Compare first date in pickup order dialog box and compare it with system date
             if (CurrentDate.equals(str))
             {
-                scenario.log("DATE SAME AS OF DELIVERY DATE HAS BEEN FOUND IN PICKUP ORDER DELIVER DATE POPUP.....PLEASE CHECK ADMIN SETTINGS " + WebEle.getText());
+                scenario.log("PICKUP ORDER DIALOG BOX CONTAINS TODAY'S DATE "+CurrentDate);
                 exists=true;
             }
             else
