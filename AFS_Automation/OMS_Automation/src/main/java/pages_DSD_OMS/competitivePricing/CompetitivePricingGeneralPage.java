@@ -758,12 +758,19 @@ public class CompetitivePricingGeneralPage
                     break;
                 }
             }
+            String status = HelpersMethod.returnDocumentStatus(driver);
+            if (status.equals("loading"))
+            {
+                HelpersMethod.waitTillLoadingPage(driver);
+            }
+
             wait = new FluentWait<>(driver)
                     .withTimeout(Duration.ofSeconds(400))
                     .pollingEvery(Duration.ofSeconds(2))
                     .ignoring(NoSuchElementException.class);
             wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
-            String status = HelpersMethod.returnDocumentStatus(driver);
+
+            status = HelpersMethod.returnDocumentStatus(driver);
             if (status.equals("loading"))
             {
                 HelpersMethod.waitTillLoadingPage(driver);
@@ -965,6 +972,7 @@ public class CompetitivePricingGeneralPage
                 HelpersMethod.EnterText(driver,WebEle,10000,prod_detail.get(i).get(1));
                 exists=true;
             }
+            Thread.sleep(1000);
             Assert.assertEquals(exists,true);
         }
         catch (Exception e){}
@@ -986,7 +994,19 @@ public class CompetitivePricingGeneralPage
             {
                 HelpersMethod.waitTillLoadingPage(driver);
             }
-            Thread.sleep(1000);
+
+            wait = new FluentWait<>(driver)
+                    .withTimeout(Duration.ofSeconds(600))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
+            status = HelpersMethod.returnDocumentStatus(driver);
+            if (status.equals("loading"))
+            {
+                HelpersMethod.waitTillLoadingPage(driver);
+            }
+            Thread.sleep(2000);
             new WebDriverWait(driver,Duration.ofMillis(20000)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.xpath("//tr[contains(@class,'k-master-row')][1]/descendant::input[contains(@class,'k-checkbox')]"))));
             new WebDriverWait(driver,Duration.ofMillis(10000)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//tr[contains(@class,'k-master-row')][1]/descendant::input[contains(@class,'k-checkbox')]")));
             if(HelpersMethod.IsExists("//tr[contains(@class,'k-master-row')][1]/descendant::input[contains(@class,'k-checkbox')]",driver))
@@ -1116,6 +1136,7 @@ public class CompetitivePricingGeneralPage
                 WebElement RadioPop=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-child-animation-container')]/descendant::form[contains(@class,'i-filter-popup')]");
                 WebElement Search2=RadioPop.findElement(By.xpath(".//div[contains(@class,'i-btn-radio filter-radio')][1]/following-sibling::div[contains(@class,'k-textbox-container i-filter-popup__content__input')]/input"));
                 HelpersMethod.EnterText(driver,Search2,10000,Prod);
+                scenario.log("PRODUCT SEARCHED FOR IN CATALOG IS "+Prod);
 
                 //Click on Apply button
                 WebElement Clear =RadioPop.findElement(By.xpath(".//button/span[text()='Apply']"));
@@ -1146,6 +1167,12 @@ public class CompetitivePricingGeneralPage
         int i=0;
         try
         {
+            Wait<WebDriver> wait = new FluentWait<>(driver)
+                    .withTimeout(Duration.ofSeconds(400))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
             List<WebElement> tableHeads=HelpersMethod.FindByElements(driver,"xpath","//th[contains(@class,'k-header')]/descendant::span[@class='k-column-title']");
             for (WebElement tablehead:tableHeads)
             {
@@ -1273,6 +1300,12 @@ public class CompetitivePricingGeneralPage
         {
             if(!HelpersMethod.IsExists("//div[contains(@class,'k-window k-dialog')]/descendant::div[@class='i-no-data__icon']",driver))
             {
+//                WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-window k-dialog')]/descendant::tr[contains(@class,'k-master-row')][1]");
+//                HelpersMethod.ActClick(driver,WebEle,10000);
+                WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='k-window k-dialog']/descendant::input[@id='SearchBox1']");
+                HelpersMethod.sendKeys(driver,WebEle,10000,code);
+                WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='k-window k-dialog']//*[local-name()='svg' and contains(@class,'i-search-box__search')]");
+                HelpersMethod.ActClick(driver,WebEle,10000);
                 WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-window k-dialog')]/descendant::tr[contains(@class,'k-master-row')][1]");
                 HelpersMethod.ActClick(driver,WebEle,10000);
                 exists=true;

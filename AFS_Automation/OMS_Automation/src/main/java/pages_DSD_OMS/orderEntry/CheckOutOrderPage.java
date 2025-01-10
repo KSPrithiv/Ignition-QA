@@ -1116,4 +1116,16 @@ public class CheckOutOrderPage
         }
         catch (Exception e){}
     }
+
+    public String readTotalAmount()
+    {
+        String tot_amt=null;
+        try
+        {
+            tot_amt=HelpersMethod.FindByElement(driver,"xpath","//div[text()='Product total']/following-sibling::div").getText();
+            scenario.log("TOTAL AMOUNT FOUND IN PAYMENT PAGE IS  "+tot_amt);
+        }
+        catch (Exception e){}
+        return tot_amt;
+    }
 }

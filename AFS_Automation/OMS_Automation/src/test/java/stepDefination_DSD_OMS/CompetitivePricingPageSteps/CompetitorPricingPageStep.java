@@ -185,7 +185,7 @@ public class CompetitorPricingPageStep
         competitivePricingGeneralPage=new CompetitivePricingGeneralPage(driver,scenario);
         competitivePricingGeneralPage.Click_LoadExistingData();
         competitivePricingGeneralPage.Validate_LoadExistingDataPopUp();
-        competitivePricingGeneralPage.SearchCustomerDetails();
+        //competitivePricingGeneralPage.SearchCustomerDetails();
         competitivePricingGeneralPage.SelectCompetitorDetails();
         competitivePricingGeneralPage.DetailsOfProducts();
     }
