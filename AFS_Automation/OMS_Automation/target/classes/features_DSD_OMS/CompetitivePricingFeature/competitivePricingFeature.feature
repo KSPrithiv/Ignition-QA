@@ -59,6 +59,7 @@ Feature: Competitive Pricing
     Given User must be on Client side and select Competitor pricing page
     When User should confirm that he is in Competitor pricing page
     And User selects Customer reference "<CustRef>" "<CustRef1>" and Select customer Account#
+    Then User clicks on competitor drop down and select the competitor based on previously created competitor
     And User search for product using Search bar
     Examples:
       | CustRef            | CustRef1|

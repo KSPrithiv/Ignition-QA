@@ -50,7 +50,7 @@ public class OrderControlListPage
     static int lastPage=0;
     static int a=0;
     static int pageHold=0;
-    static int rowNo=0;
+    static int rowNo;
     int skipRow=0;
 
     @FindBy(id = "OrderTaker")
@@ -2383,26 +2383,39 @@ public class OrderControlListPage
                 }
             }
             //Code to find last page number
-            WebElement lastArrow= HelpersMethod.FindByElement(driver,"xpath","//span[@class='k-icon k-i-arrow-end-right']");
-            HelpersMethod.ActClick(driver,lastArrow,10000);
+            WebElement scrollDown=HelpersMethod.FindByElement(driver,"xpath","//div[@class='k-pager-numbers-wrap']");
+            HelpersMethod.ScrollElement(driver,scrollDown);
+            WebElement lastArrow= HelpersMethod.FindByElement(driver,"xpath","//button[@title='Go to the last page']");
+            HelpersMethod.ClickBut(driver,lastArrow,10000);
+
+            Thread.sleep(1000);
+            String status = HelpersMethod.returnDocumentStatus(driver);
+            if (status.equals("loading"))
+            {
+                HelpersMethod.waitTillLoadingPage(driver);
+            }
 
             //code to read last page number
-            List<WebElement> pageNos=HelpersMethod.FindByElements(driver,"xpath","//ul[@class='k-pager-numbers k-reset']/li/a");
+            List<WebElement> pageNos=HelpersMethod.FindByElements(driver,"xpath","//div[@class='k-pager-numbers']/button/span");
             int i=pageNos.size()-1;
             act.moveToElement(pageNos.get(i)).build().perform();
             lastPage= Integer.parseInt(pageNos.get(i).getText());
             scenario.log("NUMBER OF PAGES IN OCL ARE: "+lastPage);
 
             //code to navigate to first page again
-            WebElement firstArrow=HelpersMethod.FindByElement(driver,"xpath","//span[@class='k-icon k-i-arrow-end-left']");
-            HelpersMethod.ActClick(driver,firstArrow,10000);
+            WebElement firstArrow=HelpersMethod.FindByElement(driver,"xpath","//button[@title='Go to the first page']");
+            if(firstArrow.isEnabled())
+            {
+                HelpersMethod.ClickBut(driver, firstArrow, 10000);
+            }
 
             //code to find Hard hold
             for(int j=0;j<=lastPage;j++)
             {
-                pages=HelpersMethod.FindByElements(driver,"xpath","//ul[@class='k-pager-numbers k-reset']/li/a");
+                pages=HelpersMethod.FindByElements(driver,"xpath","//div[@class='k-pager-numbers']/button/span");
                 for(WebElement page:pages)
                 {
+                    rowNo=0;
                     act.moveToElement(page).build().perform();
                     pageText=page.getText();
                     if(!pageText.equalsIgnoreCase("..."))
@@ -2495,6 +2508,22 @@ public class OrderControlListPage
             WebElement orderIcon=HelpersMethod.FindByElement(driver,"xpath","//tr["+noHoldRow+"]/descendant::div[contains(@id,'PlaceOrderColIcon')]//*[local-name()='svg']");
             HelpersMethod.ScrollElement(driver,orderIcon);
             HelpersMethod.ActClick(driver,orderIcon,10000);
+            Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(400))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+            String status = HelpersMethod.returnDocumentStatus(driver);
+            if (status.equals("loading"))
+            {
+                HelpersMethod.waitTillLoadingPage(driver);
+            }
+            wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(400))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
         }
         catch (Exception e){}
         return customerAccount;

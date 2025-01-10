@@ -7,7 +7,11 @@ import io.cucumber.java.Scenario;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.FluentWait;
+import org.openqa.selenium.support.ui.Wait;
 import org.testng.Assert;
 import pages_DSD_OMS.orderEntry.CheckOutOrderPage;
 import pages_DSD_OMS.orderEntry.CheckOutSummaryPage;
@@ -18,6 +22,7 @@ import util.TestBase;
 
 import java.awt.*;
 import java.sql.SQLException;
+import java.time.Duration;
 import java.util.ArrayList;
 
 /**
@@ -39,6 +44,7 @@ public class OrderEntryPageSteps2
     static String Tot_Amt;
     static String Tot_Amt1;
     static String Route1;
+    static String Ord_No;
 
 
     @Before
@@ -291,6 +297,76 @@ public class OrderEntryPageSteps2
                 checkorder.DeliveryAddressCard();
                 checkorder.NextButton_Click();
             }
+        }
+    }
+
+    @Then("Click on Next button and get total order amount")
+    public void clickOnNextButtonAndGetTotalOrderAmount() throws InterruptedException, AWTException
+    {
+        exists=false;
+        newOE = new NewOrderEntryPage(driver,scenario);
+        newOE.readProductsInOrder();
+        Thread.sleep(1000);
+        //handling toast messages
+        for(int i=0;i<=2;i++)
+        {
+            //check for toast message for low on inventory
+            newOE.lowOnInventoryToast();
+            //check for toast message for product is currently unavailable
+            newOE.toastCurrentlyUnavailable();
+        }
+
+        for(int i=0;i<=1;i++)
+        {
+            newOE.priceCannotBeBleowCost();
+            newOE.exceedsMaxQty();
+        }
+        exists=newOE.ClickNext();
+        newOE.OutOfStockPop_ERP();
+        String status = HelpersMethod.returnDocumentStatus(driver);
+        if (status.equals("loading"))
+        {
+            HelpersMethod.waitTillLoadingPage(driver);
+        }
+
+        Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                .withTimeout(Duration.ofSeconds(400))
+                .pollingEvery(Duration.ofSeconds(2))
+                .ignoring(NoSuchElementException.class);
+        wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
+        status = HelpersMethod.returnDocumentStatus(driver);
+        if (status.equals("loading"))
+        {
+            HelpersMethod.waitTillLoadingPage(driver);
+        }
+
+        wait = new FluentWait<WebDriver>(driver)
+                .withTimeout(Duration.ofSeconds(400))
+                .pollingEvery(Duration.ofSeconds(2))
+                .ignoring(NoSuchElementException.class);
+        wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
+        checkorder=new CheckOutOrderPage(driver,scenario);
+        Thread.sleep(4000);
+        Tot_Amt=checkorder.readTotalAmount();
+        Ord_No=checkorder.readOrderNumber();
+        if(HelpersMethod.IsExists("//div[@id='paymentMethodCard']",driver))
+        {
+            //Thread.sleep(4000);
+            checkorder.Select_PaymentMethod_ClickDownArrow();
+            if(HelpersMethod.IsExists("//tr[1]/descendant::td[@class='payment-method-type-cell']",driver))
+            {
+                checkorder.SelectPaymentMethod();
+                scenario.log("FIRST PAYMENT OPTION HAS BEEN SELECTED");
+            }
+            else
+            {
+                checkorder.Click_On_Without_Providing_Payment();
+                scenario.log("WITHOUT PROVIIDNG PAYMENT OPTION HAS BEEN SELECTED");
+            }
+            checkorder.DeliveryAddressCard();
+            checkorder.NextButton_Click();
         }
     }
 }

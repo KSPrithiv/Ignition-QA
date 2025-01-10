@@ -87,8 +87,8 @@ Feature: Order Entry2
     Then Enter Pro# in Quick Product Entry area
     And Check for Case and Unit input box enabled or not based on that enter value
       |1|1|
-    And Find total amount from New oe page
-    Then Click on Next button
+#    And Find total amount from New oe page
+    Then Click on Next button and get total order amount
     And Get total amount from summary page and Click on SubmitOrder button
     Then User should be navigated to Order Entry page
 

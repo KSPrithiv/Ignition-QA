@@ -54,6 +54,7 @@ public class OrderEntryPageSteps
     private static String Ord_No;
     private static String exportFilePath;
     //static String currentDate=null;
+    private static String tot_amt=null;
 
     @Before
     public void LaunchBrowser1(Scenario scenario) throws Exception

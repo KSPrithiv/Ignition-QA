@@ -180,24 +180,3 @@ Feature: Order Entry5
     Then Click on Next button
     And Click on SubmitOrder button
     Then User should be navigated to Order Entry page
-
-#  @PaymentOptionDisabled
-#  Scenario: Test scenario to verify whether payment option is disabled in submitted order
-#    Given User must be on Order Entry Page
-#    Then User must click Start Order button
-#    Then User should make selection between Pending order or Start New order
-#    Then User should select Note from popup and Order guide from popup
-#    Then Enter PO# for New order
-#      |PO123|
-#    Then Enter Pro# in Quick Product Entry area
-#    And Check for Case and Unit input box enabled or not based on that enter value
-#      |2|1|
-#    Then Click on Next button
-#    And Click on Submit Order button and read Order_no
-#    Then User should be navigated to Order Entry page
-#    Then Enter Order# in Search box in Order Entry page
-#    Then Click on Order number in Order Entry page and check for New OE page for editing Order
-#    Then Click on Next button and validate that in order entry page payment options are disabled
-#    And Click on SubmitOrder button
-#    Then User should be navigated to Order Entry page
-
