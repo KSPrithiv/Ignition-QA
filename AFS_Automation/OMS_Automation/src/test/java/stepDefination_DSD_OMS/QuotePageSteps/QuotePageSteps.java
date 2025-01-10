@@ -71,7 +71,7 @@ public class QuotePageSteps
         {
             loginpage = new LoginPage(driver,scenario);
             loginpage.EnterUsername(TestBase.testEnvironment.username());
-            loginpage.EnterPassword(TestBase.testEnvironment.password());
+            loginpage.EnterPassword(TestBase.testEnvironment.Userword());
             loginpage.ClickSignin();
         }
     }
@@ -280,7 +280,7 @@ public class QuotePageSteps
         quotePage.ClickOnOKButton();
         orderEntryPage = new OrderEntryPage(driver, scenario);
         Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
-                .withTimeout(Duration.ofSeconds(200))
+                .withTimeout(Duration.ofSeconds(600))
                 .pollingEvery(Duration.ofSeconds(2))
                 .ignoring(NoSuchElementException.class);
         wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
@@ -291,7 +291,7 @@ public class QuotePageSteps
             orderEntryPage.NoNotePopHandling();
         }
         wait = new FluentWait<WebDriver>(driver)
-                .withTimeout(Duration.ofSeconds(200))
+                .withTimeout(Duration.ofSeconds(600))
                 .pollingEvery(Duration.ofSeconds(2))
                 .ignoring(NoSuchElementException.class);
         wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));

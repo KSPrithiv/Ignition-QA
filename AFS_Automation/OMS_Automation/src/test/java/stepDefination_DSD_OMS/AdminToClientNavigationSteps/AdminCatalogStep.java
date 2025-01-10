@@ -114,7 +114,7 @@ public class AdminCatalogStep
     {
         loginPage = new LoginPage(driver,scenario);
         loginPage.EnterUsername(TestBase.testEnvironment.username());
-        loginPage.EnterPassword(TestBase.testEnvironment.password());
+        loginPage.EnterPassword(TestBase.testEnvironment.Userword());
         loginPage.ClickSignin();
         loginPage.getURL();
     }

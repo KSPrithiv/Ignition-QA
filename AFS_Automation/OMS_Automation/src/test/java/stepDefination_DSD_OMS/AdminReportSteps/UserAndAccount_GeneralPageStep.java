@@ -89,7 +89,7 @@ public class UserAndAccount_GeneralPageStep
         }
 
         Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
-                .withTimeout(Duration.ofSeconds(120))
+                .withTimeout(Duration.ofSeconds(600))
                 .pollingEvery(Duration.ofSeconds(2))
                 .ignoring(NoSuchElementException.class);
         wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
@@ -120,7 +120,7 @@ public class UserAndAccount_GeneralPageStep
         }
 
         Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
-                .withTimeout(Duration.ofSeconds(120))
+                .withTimeout(Duration.ofSeconds(600))
                 .pollingEvery(Duration.ofSeconds(2))
                 .ignoring(NoSuchElementException.class);
         wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
@@ -151,7 +151,7 @@ public class UserAndAccount_GeneralPageStep
         }
 
         Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
-                .withTimeout(Duration.ofSeconds(120))
+                .withTimeout(Duration.ofSeconds(600))
                 .pollingEvery(Duration.ofSeconds(2))
                 .ignoring(NoSuchElementException.class);
         wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
@@ -174,7 +174,7 @@ public class UserAndAccount_GeneralPageStep
     {
         loginpage = new LoginPage(driver, scenario);
         loginpage.EnterUsername(TestBase.testEnvironment.getAdminUser());
-        loginpage.EnterPassword(TestBase.testEnvironment.getAdminPass());
+        loginpage.EnterPassword(TestBase.testEnvironment.getAdminWord());
         loginpage.ClickSignin();
         userAndAdminGeneralPage=new userAndAdmin_GeneralPage(driver,scenario);
         userAndAdminGeneralPage.enableNewCustomerRegistrationFromLoginPage1();

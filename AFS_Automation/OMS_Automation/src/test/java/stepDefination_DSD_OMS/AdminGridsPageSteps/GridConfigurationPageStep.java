@@ -68,7 +68,7 @@ public class GridConfigurationPageStep
 //        {
             loginpage = new LoginPage(driver, scenario);
             loginpage.EnterUsername(TestBase.testEnvironment.getAdminUser());
-            loginpage.EnterPassword(TestBase.testEnvironment.getAdminPass());
+            loginpage.EnterPassword(TestBase.testEnvironment.getAdminWord());
             loginpage.ClickSignin();
    //     }
     }
@@ -187,7 +187,7 @@ public class GridConfigurationPageStep
         homePage.Click_On_Signout();
         loginpage = new LoginPage(driver, scenario);
         loginpage.EnterUsername(TestBase.testEnvironment.username());
-        loginpage.EnterPassword(TestBase.testEnvironment.password());
+        loginpage.EnterPassword(TestBase.testEnvironment.Userword());
         loginpage.ClickSignin();
         String status = HelpersMethod.returnDocumentStatus(driver);
         if (status.equals("loading"))
@@ -195,7 +195,7 @@ public class GridConfigurationPageStep
             HelpersMethod.waitTillLoadingPage(driver);
         }
         Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
-                .withTimeout(Duration.ofSeconds(200))
+                .withTimeout(Duration.ofSeconds(600))
                 .pollingEvery(Duration.ofSeconds(2))
                 .ignoring(NoSuchElementException.class);
         wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
@@ -263,7 +263,7 @@ public class GridConfigurationPageStep
         //signin as admin again
         loginpage = new LoginPage(driver, scenario);
         loginpage.EnterUsername(TestBase.testEnvironment.getAdminUser());
-        loginpage.EnterPassword(TestBase.testEnvironment.getAdminPass());
+        loginpage.EnterPassword(TestBase.testEnvironment.getAdminWord());
         loginpage.ClickSignin();
         String status = HelpersMethod.returnDocumentStatus(driver);
         if (status.equals("loading"))
@@ -272,7 +272,7 @@ public class GridConfigurationPageStep
         }
 
         Wait<WebDriver> wait = new FluentWait<>(driver)
-                .withTimeout(Duration.ofSeconds(120))
+                .withTimeout(Duration.ofSeconds(600))
                 .pollingEvery(Duration.ofSeconds(5))
                 .ignoring(NoSuchElementException.class);
         wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
@@ -629,7 +629,7 @@ public class GridConfigurationPageStep
         homePage.Click_On_Signout();
 
         Wait<WebDriver> wait = new FluentWait<>(driver)
-                .withTimeout(Duration.ofSeconds(400))
+                .withTimeout(Duration.ofSeconds(600))
                 .pollingEvery(Duration.ofSeconds(5))
                 .ignoring(NoSuchElementException.class);
         wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
@@ -641,7 +641,7 @@ public class GridConfigurationPageStep
         }
 
         wait = new FluentWait<>(driver)
-                .withTimeout(Duration.ofSeconds(400))
+                .withTimeout(Duration.ofSeconds(600))
                 .pollingEvery(Duration.ofSeconds(5))
                 .ignoring(NoSuchElementException.class);
         wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
@@ -649,7 +649,7 @@ public class GridConfigurationPageStep
         //signin as admin again
         loginpage = new LoginPage(driver, scenario);
         loginpage.EnterUsername(TestBase.testEnvironment.getAdminUser());
-        loginpage.EnterPassword(TestBase.testEnvironment.getAdminPass());
+        loginpage.EnterPassword(TestBase.testEnvironment.getAdminWord());
         loginpage.ClickSignin();
         status = HelpersMethod.returnDocumentStatus(driver);
         if (status.equals("loading"))
@@ -658,7 +658,7 @@ public class GridConfigurationPageStep
         }
 
         wait = new FluentWait<>(driver)
-                .withTimeout(Duration.ofSeconds(400))
+                .withTimeout(Duration.ofSeconds(600))
                 .pollingEvery(Duration.ofSeconds(5))
                 .ignoring(NoSuchElementException.class);
         wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));

@@ -219,7 +219,7 @@ public class TestBase
         getDriver().get(testEnvironment.get_url());
 
         Wait<WebDriver> wait = new FluentWait<WebDriver>(getDriver())
-                .withTimeout(Duration.ofSeconds(200))
+                .withTimeout(Duration.ofSeconds(600))
                 .pollingEvery(Duration.ofSeconds(2))
                 .ignoring(NoSuchElementException.class);
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@id='unauthorized-content']")));

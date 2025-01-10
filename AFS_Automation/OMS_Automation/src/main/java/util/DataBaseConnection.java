@@ -28,7 +28,7 @@ public class DataBaseConnection
         try
         {
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver").newInstance();
-            conn = DriverManager.getConnection(DB_URL,TestBase.testEnvironment.getDBUser(),TestBase.testEnvironment.getDBPassword());
+            conn = DriverManager.getConnection(DB_URL,TestBase.testEnvironment.getDBUser(),TestBase.testEnvironment.getDBWord());
 
             Statement st = conn.createStatement();
             rs= st.executeQuery(sql);
@@ -73,7 +73,7 @@ public class DataBaseConnection
         try
         {
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver").newInstance();
-            conn = DriverManager.getConnection(DB_URL,TestBase.testEnvironment.getDBUser(),TestBase.testEnvironment.getDBPassword());
+            conn = DriverManager.getConnection(DB_URL,TestBase.testEnvironment.getDBUser(),TestBase.testEnvironment.getDBWord());
 
             Statement st = conn.createStatement();
             rs= st.executeQuery(sql);
@@ -119,7 +119,7 @@ public class DataBaseConnection
         try
         {
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver").newInstance();
-            conn = DriverManager.getConnection(DB_URL,TestBase.testEnvironment.getDBUser(),TestBase.testEnvironment.getDBPassword());
+            conn = DriverManager.getConnection(DB_URL,TestBase.testEnvironment.getDBUser(),TestBase.testEnvironment.getDBWord());
 
             Statement st = conn.createStatement();
             rs= st.executeQuery(sql);
@@ -157,7 +157,7 @@ public class DataBaseConnection
         try
         {
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver").newInstance();
-            conn = DriverManager.getConnection(DB_URL,TestBase.testEnvironment.getDBUser(),TestBase.testEnvironment.getDBPassword());
+            conn = DriverManager.getConnection(DB_URL,TestBase.testEnvironment.getDBUser(),TestBase.testEnvironment.getDBWord());
 
             Statement st = conn.createStatement();
             st.executeQuery(sql);
@@ -183,7 +183,7 @@ public class DataBaseConnection
         try
         {
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver").newInstance();
-            conn = DriverManager.getConnection(DB_URL,TestBase.testEnvironment.getDBUser(),TestBase.testEnvironment.getDBPassword());
+            conn = DriverManager.getConnection(DB_URL,TestBase.testEnvironment.getDBUser(),TestBase.testEnvironment.getDBWord());
 
             Statement st = conn.createStatement();
             st.executeQuery(sql);

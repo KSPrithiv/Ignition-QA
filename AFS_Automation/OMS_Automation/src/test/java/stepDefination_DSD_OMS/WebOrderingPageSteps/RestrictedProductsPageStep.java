@@ -46,7 +46,7 @@ public class RestrictedProductsPageStep
         {
             loginPage = new LoginPage(driver, scenario);
             loginPage.EnterUsername(TestBase.testEnvironment.getAdminUser());
-            loginPage.EnterPassword(TestBase.testEnvironment.getAdminPass());
+            loginPage.EnterPassword(TestBase.testEnvironment.getAdminWord());
             loginPage.ClickSignin();
         }
     }

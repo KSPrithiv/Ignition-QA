@@ -161,4 +161,17 @@ Feature: Order Entry Test cases only for DSD env
     And Click on SubmitOrder button
     Then User should be navigated to Order Entry page
 
-
+  @DuplicateProductsInNewOE
+  Scenario: Test scenario for verifying whether Duplicate products are found in new OE page
+    Given User must be on Order Entry Page
+    Then User must click Start Order button
+    Then User should make selection between Pending order or Start New order
+    Then User should select Note from popup and Order guide from popup
+    Then Enter PO# for New order
+      |PO123|
+    Then Enter Pro# in Quick Product Entry area
+    And Check for Case and Unit input box enabled or not based on that enter value
+      |2|1|
+    Then Click on Next button and verify for duplicate product
+    And Click on SubmitOrder button
+    Then User should be navigated to Order Entry page

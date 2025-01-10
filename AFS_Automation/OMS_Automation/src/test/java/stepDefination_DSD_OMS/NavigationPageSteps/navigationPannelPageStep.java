@@ -117,7 +117,7 @@ public class navigationPannelPageStep
     {
         loginpage = new LoginPage(driver,scenario);
         loginpage.EnterUsername(TestBase.testEnvironment.username());
-        loginpage.EnterPassword(TestBase.testEnvironment.password());
+        loginpage.EnterPassword(TestBase.testEnvironment.Userword());
         loginpage.ClickSignin();
     }
 

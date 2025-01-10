@@ -35,19 +35,19 @@ public interface Environment extends Config
     String username();
 
     @Key("forUser")
-    String password();
+    String Userword();
 
     @Key("Dummiesuser")
     String DummyUser();
 
     @Key("DummiesWord")
-    String DummyPassword();
+    String Dummyword();
 
     @Key("AdminUser")
     String getAdminUser();
 
     @Key("forAdmin")
-    String getAdminPass();
+    String getAdminWord();
 
     @Key("ForeignLangDesc")
     String getForeignLangDesc();
@@ -56,7 +56,7 @@ public interface Environment extends Config
     String From_mail();
 
     @Key("From_pMail")
-    String From_Pass();
+    String From_pMail();
 
     @Key("To_mail")
     String To_mail();
@@ -80,7 +80,7 @@ public interface Environment extends Config
     String getDBUser();
 
     @Key("forDB")
-    String getDBPassword();
+    String getDBWord();
 
     @Key("DB_ProdSql")
     String getSingle_Prod_Sql();

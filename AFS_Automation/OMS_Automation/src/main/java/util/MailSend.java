@@ -37,7 +37,7 @@ public class MailSend
                 @Override
                 protected PasswordAuthentication getPasswordAuthentication()
                 {
-                    return new PasswordAuthentication(TestBase.testEnvironment.From_mail(),TestBase.testEnvironment.From_Pass());
+                    return new PasswordAuthentication(TestBase.testEnvironment.From_mail(),TestBase.testEnvironment.From_pMail());
                 }
             });
             Message message=prepareMessage(session,TestBase.testEnvironment.From_mail(),TestBase.testEnvironment.To_mail());

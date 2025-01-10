@@ -68,7 +68,7 @@ public class AdminOrderControlListStep
         //sign in to admin
         loginpage = new LoginPage(driver, scenario);
         loginpage.EnterUsername(TestBase.testEnvironment.getAdminUser());
-        loginpage.EnterPassword(TestBase.testEnvironment.getAdminPass());
+        loginpage.EnterPassword(TestBase.testEnvironment.getAdminWord());
         loginpage.ClickSignin();
     }
 

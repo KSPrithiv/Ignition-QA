@@ -48,7 +48,7 @@ public class AdminSecurityPageStepERP
     {
         loginpage = new LoginPage(driver, scenario);
         loginpage.EnterUsername(TestBase.testEnvironment.getAdminUser());
-        loginpage.EnterPassword(TestBase.testEnvironment.getAdminPass());
+        loginpage.EnterPassword(TestBase.testEnvironment.getAdminWord());
         loginpage.ClickSignin();
     }
 
@@ -96,7 +96,7 @@ public class AdminSecurityPageStepERP
 
         loginpage = new LoginPage(driver,scenario);
         loginpage.EnterUsername(TestBase.testEnvironment.username());
-        loginpage.EnterPassword(TestBase.testEnvironment.password());
+        loginpage.EnterPassword(TestBase.testEnvironment.Userword());
         loginpage.ClickSignin();
 
         homepage = new HomePage(driver,scenario);
@@ -135,7 +135,7 @@ public class AdminSecurityPageStepERP
 
         loginpage = new LoginPage(driver, scenario);
         loginpage.EnterUsername(TestBase.testEnvironment.getAdminUser());
-        loginpage.EnterPassword(TestBase.testEnvironment.getAdminPass());
+        loginpage.EnterPassword(TestBase.testEnvironment.getAdminWord());
         loginpage.ClickSignin();
     }
 
