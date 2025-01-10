@@ -2129,6 +2129,9 @@ public class CreateOGPage
                 HelpersMethod.waitTillLoadingPage(driver);
             }
 
+            new WebDriverWait(driver,Duration.ofMillis(20000)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("card1"))));
+            new WebDriverWait(driver,Duration.ofMillis(20000)).until(ExpectedConditions.visibilityOfElementLocated(By.id("card1")));
+
             WebElement WebEle=HelpersMethod.FindByElement(driver,"xpath","//label[text()='Customer reference']/following-sibling::input");
             String cRef=HelpersMethod.JSGetValueEle(driver,WebEle,10000);
             if(cRef.equals(custRef))
