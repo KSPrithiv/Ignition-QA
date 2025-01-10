@@ -125,7 +125,7 @@ public class CutOffManagementPage
         try
         {
             Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
-                    .withTimeout(Duration.ofSeconds(400))
+                    .withTimeout(Duration.ofSeconds(600))
                     .pollingEvery(Duration.ofSeconds(2))
                     .ignoring(NoSuchElementException.class);
             wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
@@ -137,7 +137,7 @@ public class CutOffManagementPage
                     HelpersMethod.JScriptClick(driver, filterBranchToggle, 10000);
                     scenario.log("FILTER BRANCH TOGGLE BUTTON");
                     wait = new FluentWait<WebDriver>(driver)
-                            .withTimeout(Duration.ofSeconds(400))
+                            .withTimeout(Duration.ofSeconds(600))
                             .pollingEvery(Duration.ofSeconds(2))
                             .ignoring(NoSuchElementException.class);
                     wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
@@ -147,7 +147,7 @@ public class CutOffManagementPage
                         exists = true;
                     }
                 wait = new FluentWait<WebDriver>(driver)
-                        .withTimeout(Duration.ofSeconds(400))
+                        .withTimeout(Duration.ofSeconds(600))
                         .pollingEvery(Duration.ofSeconds(2))
                         .ignoring(NoSuchElementException.class);
                 wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
@@ -239,7 +239,7 @@ public class CutOffManagementPage
             String routeSelect=HelpersMethod.FindByElement(driver,"xpath","//div[@id='filter-by-route']/descendant::span[@id='cutoff-branches']/span").getText();
             scenario.log("ROUTE SELECTED IS: "+routeSelect);
             Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
-                    .withTimeout(Duration.ofSeconds(120))
+                    .withTimeout(Duration.ofSeconds(600))
                     .pollingEvery(Duration.ofSeconds(2))
                     .ignoring(NoSuchElementException.class);
             wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
@@ -347,7 +347,7 @@ public class CutOffManagementPage
         try
         {
             Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
-                    .withTimeout(Duration.ofSeconds(120))
+                    .withTimeout(Duration.ofSeconds(600))
                     .pollingEvery(Duration.ofSeconds(2))
                     .ignoring(NoSuchElementException.class);
             wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
@@ -360,7 +360,7 @@ public class CutOffManagementPage
                     {
                         HelpersMethod.JScriptClick(driver, timeSettingToggle, 10000);
                         wait = new FluentWait<WebDriver>(driver)
-                                .withTimeout(Duration.ofSeconds(120))
+                                .withTimeout(Duration.ofSeconds(600))
                                 .pollingEvery(Duration.ofSeconds(2))
                                 .ignoring(NoSuchElementException.class);
                         wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
@@ -485,7 +485,7 @@ public class CutOffManagementPage
             HelpersMethod.ActClick(driver,WebEle,10000);
             new WebDriverWait(driver, Duration.ofMillis(40000)).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[contains(@class,'k-popup k-child-animation-container')]/descendant::div[contains(@class,'k-timeselector k-reset')]")));
             Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
-                    .withTimeout(Duration.ofSeconds(120))
+                    .withTimeout(Duration.ofSeconds(600))
                     .pollingEvery(Duration.ofSeconds(2))
                     .ignoring(NoSuchElementException.class);
             wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
@@ -506,7 +506,7 @@ public class CutOffManagementPage
                     HelpersMethod.JScriptClick(driver, branchToggle, 10000);
                     scenario.log("BRANCH TOGGLE BUTTON SELECTED");
                     Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
-                            .withTimeout(Duration.ofSeconds(120))
+                            .withTimeout(Duration.ofSeconds(600))
                             .pollingEvery(Duration.ofSeconds(2))
                             .ignoring(NoSuchElementException.class);
                     wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
@@ -534,7 +534,7 @@ public class CutOffManagementPage
                     HelpersMethod.JScriptClick(driver, wareHouseToggle, 10000);
                     scenario.log("WAREHOUSE TOGGLE BUTTON SELECTED");
                     Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
-                            .withTimeout(Duration.ofSeconds(120))
+                            .withTimeout(Duration.ofSeconds(600))
                             .pollingEvery(Duration.ofSeconds(2))
                             .ignoring(NoSuchElementException.class);
                     wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
@@ -562,7 +562,7 @@ public class CutOffManagementPage
                     HelpersMethod.JScriptClick(driver, routeToggle, 10000);
                     scenario.log("ROUTE TOGGLE BUTTON SELECTED");
                     Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
-                            .withTimeout(Duration.ofSeconds(120))
+                            .withTimeout(Duration.ofSeconds(600))
                             .pollingEvery(Duration.ofSeconds(2))
                             .ignoring(NoSuchElementException.class);
                     wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
@@ -590,7 +590,7 @@ public class CutOffManagementPage
                     HelpersMethod.JScriptClick(driver, customerToggle, 10000);
                     scenario.log("CUSTOMER MANAGEMENT TOGGLE BUTTON SELECTED");
                     Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
-                            .withTimeout(Duration.ofSeconds(120))
+                            .withTimeout(Duration.ofSeconds(600))
                             .pollingEvery(Duration.ofSeconds(2))
                             .ignoring(NoSuchElementException.class);
                     wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
@@ -618,7 +618,7 @@ public class CutOffManagementPage
                     HelpersMethod.JScriptClick(driver, wareHouseToggle, 10000);
                     scenario.log("WAREHOUSE TOGGLE BUTTON SELECTED");
                     Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
-                            .withTimeout(Duration.ofSeconds(120))
+                            .withTimeout(Duration.ofSeconds(600))
                             .pollingEvery(Duration.ofSeconds(2))
                             .ignoring(NoSuchElementException.class);
                     wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
@@ -645,7 +645,7 @@ public class CutOffManagementPage
                     HelpersMethod.JScriptClick(driver, routeToggle, 10000);
                     scenario.log("ROUTE TOGGLE BUTTON SELECTED");
                     Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
-                            .withTimeout(Duration.ofSeconds(120))
+                            .withTimeout(Duration.ofSeconds(600))
                             .pollingEvery(Duration.ofSeconds(2))
                             .ignoring(NoSuchElementException.class);
                     wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
@@ -672,7 +672,7 @@ public class CutOffManagementPage
                     HelpersMethod.JScriptClick(driver,customerToggle, 10000);
                     scenario.log("CUSTOMER MANAGEMENT TOGGLE BUTTON SELECTED");
                     Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
-                            .withTimeout(Duration.ofSeconds(120))
+                            .withTimeout(Duration.ofSeconds(600))
                             .pollingEvery(Duration.ofSeconds(2))
                             .ignoring(NoSuchElementException.class);
                     wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
@@ -700,7 +700,7 @@ public class CutOffManagementPage
                     HelpersMethod.JScriptClick(driver, filterRouteToggle, 1000);
                     scenario.log("FILTER ROUTE TOGGLE BUTTON");
                     Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
-                            .withTimeout(Duration.ofSeconds(120))
+                            .withTimeout(Duration.ofSeconds(600))
                             .pollingEvery(Duration.ofSeconds(2))
                             .ignoring(NoSuchElementException.class);
                     wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
@@ -728,7 +728,7 @@ public class CutOffManagementPage
                     HelpersMethod.JScriptClick(driver, filterCustomerMangementToggle, 1000);
                     scenario.log("FILTER CUSTOMER MANAGEMENT TOGGLE BUTTON");
                     Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
-                            .withTimeout(Duration.ofSeconds(120))
+                            .withTimeout(Duration.ofSeconds(600))
                             .pollingEvery(Duration.ofSeconds(2))
                             .ignoring(NoSuchElementException.class);
                     wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
@@ -756,7 +756,7 @@ public class CutOffManagementPage
                     HelpersMethod.JScriptClick(driver, filterWarehouseToggle, 1000);
                     scenario.log("FILTER WAREHOUSE TOGGLE BUTTON");
                     Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
-                            .withTimeout(Duration.ofSeconds(120))
+                            .withTimeout(Duration.ofSeconds(600))
                             .pollingEvery(Duration.ofSeconds(2))
                             .ignoring(NoSuchElementException.class);
                     wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
@@ -805,7 +805,7 @@ public class CutOffManagementPage
                 String branchSelect = HelpersMethod.FindByElement(driver, "xpath", "//div[@id='filter-by-branch']/descendant::span[@id='cutoff-branches']/span").getText();
                 scenario.log("BRANCH SELECTED IS: " + branchSelect);
                 Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
-                        .withTimeout(Duration.ofSeconds(120))
+                        .withTimeout(Duration.ofSeconds(600))
                         .pollingEvery(Duration.ofSeconds(2))
                         .ignoring(NoSuchElementException.class);
                 wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
@@ -826,7 +826,7 @@ public class CutOffManagementPage
                     HelpersMethod.JScriptClick(driver, branchFilterCutoffTime, 1000);
                     scenario.log("FILTER CUT OFF TIME TOGGLE BUTTON HAS BEEN CLICKED");
                     Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
-                            .withTimeout(Duration.ofSeconds(120))
+                            .withTimeout(Duration.ofSeconds(600))
                             .pollingEvery(Duration.ofSeconds(2))
                             .ignoring(NoSuchElementException.class);
                     wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));

@@ -69,7 +69,7 @@ public class IconsSelectionPageStep {
         loginpage = new LoginPage(driver, scenario);
         badgeBuilderPage = new BadgeBuilderPage(driver, scenario);
         loginpage.EnterUsername(TestBase.testEnvironment.getAdminUser());
-        loginpage.EnterPassword(TestBase.testEnvironment.getAdminPass());
+        loginpage.EnterPassword(TestBase.testEnvironment.getAdminWord());
         //loginpage.ClickSignin();
         badgeBuilderPage.ClickSignin1();
 

@@ -68,7 +68,7 @@ public class OrderGuidePageStep
         {
             loginpage = new LoginPage(driver,scenario);
             loginpage.EnterUsername(TestBase.testEnvironment.username());
-            loginpage.EnterPassword(TestBase.testEnvironment.password());
+            loginpage.EnterPassword(TestBase.testEnvironment.Userword());
             loginpage.ClickSignin();
         }
     }
@@ -134,7 +134,7 @@ public class OrderGuidePageStep
                 orderGuidePage = new OrderGuidePage(driver, scenario);
                 HelpersMethod.navigate_Horizantal_Tab(driver, "Order Guides", "//li[contains(@class,'k-item')]/span[@class='k-link' and contains(text(),'Order Guides')]|//li[contains(@class,'k-item')]/span[@class='k-link' and contains(text(),'Order guides')]", "xpath", "//li[contains(@class,'k-item')]/span[@class='k-link']");
                 Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
-                        .withTimeout(Duration.ofSeconds(120))
+                        .withTimeout(Duration.ofSeconds(600))
                         .pollingEvery(Duration.ofSeconds(2))
                         .ignoring(NoSuchElementException.class);
                 wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));

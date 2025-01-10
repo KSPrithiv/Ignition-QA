@@ -156,11 +156,18 @@ public class OrderEntryPageSteps7
     @Then("User verifies visibility of Price override icon change the Price in price override and reset Grid type to Main grid")
     public void userVerifiesVisibilityOfPriceOverrideIconChangeThePriceInPriceOverrideAndResetGridTypeToMainGrid(DataTable tabledata) throws InterruptedException, AWTException
     {
-        List<List<String>> gridtype=tabledata.asLists(String.class);
+        List<List<String>> priceVal=tabledata.asLists(String.class);
         newOE=new NewOrderEntryPage(driver,scenario);
         newOE.validatePriceOverrideIcon();
         newOE.Click_On_PriceOverrideIcon();
-        newOE.PriceOverridePopup_WhatIfPriceUnit(gridtype.get(0).get(0));
+        newOE.PriceOverridePopup_WhatIfPriceUnit(priceVal.get(0).get(0));
+
+        newOE.readValueAfterOverride(priceVal.get(0).get(0));
+        newOE.handleNotificationForLessCost();
+        newOE.Click_On_PriceOverrideIcon();
+        newOE.validatePriceOverrideIcon();
+        newOE.setToDefaultValue();
+
         newOE.clickOnGridTypeDropdown();
         newOE.selectMainGridTypeDropDown();
         newOE.validateMainGridType();

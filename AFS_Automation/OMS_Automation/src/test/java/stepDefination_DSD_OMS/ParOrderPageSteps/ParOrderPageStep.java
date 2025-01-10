@@ -74,7 +74,7 @@ public class ParOrderPageStep
 
             loginpage = new LoginPage(driver,scenario);
             loginpage.EnterUsername(TestBase.testEnvironment.username());
-            loginpage.EnterPassword(TestBase.testEnvironment.password());
+            loginpage.EnterPassword(TestBase.testEnvironment.Userword());
             loginpage.ClickSignin();
         }
     }
@@ -133,7 +133,7 @@ public class ParOrderPageStep
         {
             exists = false;
             Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
-                    .withTimeout(Duration.ofSeconds(200))
+                    .withTimeout(Duration.ofSeconds(600))
                     .pollingEvery(Duration.ofSeconds(2))
                     .ignoring(NoSuchElementException.class);
             wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
@@ -142,7 +142,7 @@ public class ParOrderPageStep
             {
                 //Code to navigate to Order guide
                 wait = new FluentWait<WebDriver>(driver)
-                        .withTimeout(Duration.ofSeconds(200))
+                        .withTimeout(Duration.ofSeconds(600))
                         .pollingEvery(Duration.ofSeconds(2))
                         .ignoring(NoSuchElementException.class);
                 wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));

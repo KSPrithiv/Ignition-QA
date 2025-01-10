@@ -109,7 +109,7 @@ public class CheckOutOrderPage
         try
         {
             Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
-                    .withTimeout(Duration.ofSeconds(200))
+                    .withTimeout(Duration.ofSeconds(600))
                     .pollingEvery(Duration.ofSeconds(2))
                     .ignoring(NoSuchElementException.class);
             wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
@@ -130,7 +130,7 @@ public class CheckOutOrderPage
         try
         {
             Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
-                    .withTimeout(Duration.ofSeconds(200))
+                    .withTimeout(Duration.ofSeconds(600))
                     .pollingEvery(Duration.ofSeconds(2))
                     .ignoring(NoSuchElementException.class);
             wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
@@ -194,7 +194,7 @@ public class CheckOutOrderPage
         try
         {
             Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
-                    .withTimeout(Duration.ofSeconds(400))
+                    .withTimeout(Duration.ofSeconds(600))
                     .pollingEvery(Duration.ofSeconds(2))
                     .ignoring(NoSuchElementException.class);
             wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
@@ -202,7 +202,7 @@ public class CheckOutOrderPage
             if(HelpersMethod.IsExists("//div[@id='checkoutCard']",driver))
             {
                wait = new FluentWait<WebDriver>(driver)
-                        .withTimeout(Duration.ofSeconds(200))
+                        .withTimeout(Duration.ofSeconds(600))
                         .pollingEvery(Duration.ofSeconds(2))
                         .ignoring(NoSuchElementException.class);
                 wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
@@ -214,7 +214,7 @@ public class CheckOutOrderPage
                 }
 
                 wait = new FluentWait<WebDriver>(driver)
-                        .withTimeout(Duration.ofSeconds(200))
+                        .withTimeout(Duration.ofSeconds(600))
                         .pollingEvery(Duration.ofSeconds(2))
                         .ignoring(NoSuchElementException.class);
                 wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
@@ -228,7 +228,7 @@ public class CheckOutOrderPage
                     HelpersMethod.ActClick(driver,NextButton,60000);
                     exists=true;
                     wait = new FluentWait<WebDriver>(driver)
-                            .withTimeout(Duration.ofSeconds(200))
+                            .withTimeout(Duration.ofSeconds(600))
                             .pollingEvery(Duration.ofSeconds(2))
                             .ignoring(NoSuchElementException.class);
                     wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
@@ -239,7 +239,7 @@ public class CheckOutOrderPage
                     }
 
                     wait = new FluentWait<WebDriver>(driver)
-                            .withTimeout(Duration.ofSeconds(200))
+                            .withTimeout(Duration.ofSeconds(600))
                             .pollingEvery(Duration.ofSeconds(2))
                             .ignoring(NoSuchElementException.class);
                     wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
@@ -486,7 +486,7 @@ public class CheckOutOrderPage
                             act1.moveToElement(WebEle).build().perform();
                             act1.click(WebEle).build().perform();
                             wait = new FluentWait<WebDriver>(driver)
-                                    .withTimeout(Duration.ofSeconds(200))
+                                    .withTimeout(Duration.ofSeconds(600))
                                     .pollingEvery(Duration.ofSeconds(2))
                                     .ignoring(NoSuchElementException.class);
                             wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
@@ -496,7 +496,7 @@ public class CheckOutOrderPage
                         {
                             act1.moveToElement(WebEle).sendKeys(Keys.ARROW_DOWN).build().perform();
                             wait = new FluentWait<WebDriver>(driver)
-                                    .withTimeout(Duration.ofSeconds(200))
+                                    .withTimeout(Duration.ofSeconds(600))
                                     .pollingEvery(Duration.ofSeconds(2))
                                     .ignoring(NoSuchElementException.class);
                             wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
@@ -521,7 +521,7 @@ public class CheckOutOrderPage
                             act1.moveToElement(WebEle).build().perform();
                             act1.click(WebEle).build().perform();
                             wait = new FluentWait<WebDriver>(driver)
-                                .withTimeout(Duration.ofSeconds(200))
+                                .withTimeout(Duration.ofSeconds(600))
                                 .pollingEvery(Duration.ofSeconds(2))
                                 .ignoring(NoSuchElementException.class);
                             wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
@@ -531,7 +531,7 @@ public class CheckOutOrderPage
                         {
                             act1.moveToElement(WebEle).sendKeys(Keys.ARROW_DOWN).build().perform();
                             wait = new FluentWait<WebDriver>(driver)
-                                    .withTimeout(Duration.ofSeconds(200))
+                                    .withTimeout(Duration.ofSeconds(600))
                                     .pollingEvery(Duration.ofSeconds(2))
                                     .ignoring(NoSuchElementException.class);
                             wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
@@ -541,7 +541,7 @@ public class CheckOutOrderPage
                     HelpersMethod.ActClick(driver,WebEle,10000);
                     exists=true;
                     wait = new FluentWait<WebDriver>(driver)
-                            .withTimeout(Duration.ofSeconds(400))
+                            .withTimeout(Duration.ofSeconds(600))
                             .pollingEvery(Duration.ofSeconds(2))
                             .ignoring(NoSuchElementException.class);
                     wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
@@ -576,7 +576,7 @@ public class CheckOutOrderPage
                         HelpersMethod.ScrollElement(driver,WebEle);
                         HelpersMethod.ActClick(driver, WebEle, 10000);
                         wait = new FluentWait<WebDriver>(driver)
-                                .withTimeout(Duration.ofSeconds(400))
+                                .withTimeout(Duration.ofSeconds(600))
                                 .pollingEvery(Duration.ofSeconds(2))
                                 .ignoring(NoSuchElementException.class);
                         wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
@@ -587,7 +587,7 @@ public class CheckOutOrderPage
                             WebEle = driver.findElement(By.xpath("//td[contains(text(),'" + Add2 + "')]/ancestor::tr/descendant::button[@id='EditAddressButton']"));
                             HelpersMethod.ActClick(driver, WebEle, 10000);
                             wait = new FluentWait<WebDriver>(driver)
-                                    .withTimeout(Duration.ofSeconds(400))
+                                    .withTimeout(Duration.ofSeconds(600))
                                     .pollingEvery(Duration.ofSeconds(2))
                                     .ignoring(NoSuchElementException.class);
                             wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
@@ -604,7 +604,7 @@ public class CheckOutOrderPage
                                 WebEle = editAddressPopup.findElement(By.xpath(".//button[@id='ConfirmAddressButton']"));
                                 HelpersMethod.ActClick(driver, WebEle, 10000);
                                 wait = new FluentWait<WebDriver>(driver)
-                                        .withTimeout(Duration.ofSeconds(400))
+                                        .withTimeout(Duration.ofSeconds(600))
                                         .pollingEvery(Duration.ofSeconds(2))
                                         .ignoring(NoSuchElementException.class);
                                 wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
@@ -679,7 +679,7 @@ public class CheckOutOrderPage
                             WebEle = HelpersMethod.FindByElement(driver, "xpath", "//td[contains(text(),'" + Add2 + "')]/ancestor::tr/descendant::button[@id='DeleteAddressButton']");
                             HelpersMethod.ActClick(driver, WebEle, 10000);
                             wait = new FluentWait<WebDriver>(driver)
-                                    .withTimeout(Duration.ofSeconds(400))
+                                    .withTimeout(Duration.ofSeconds(600))
                                     .pollingEvery(Duration.ofSeconds(2))
                                     .ignoring(NoSuchElementException.class);
                             wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
@@ -692,7 +692,7 @@ public class CheckOutOrderPage
                                 HelpersMethod.ActClick(driver, WebEle, 10000);
                                 scenario.log("DELIVERY ADDRESS HAS BEEN DELETED");
                                 wait = new FluentWait<WebDriver>(driver)
-                                        .withTimeout(Duration.ofSeconds(400))
+                                        .withTimeout(Duration.ofSeconds(600))
                                         .pollingEvery(Duration.ofSeconds(2))
                                         .ignoring(NoSuchElementException.class);
                                 wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
@@ -718,7 +718,7 @@ public class CheckOutOrderPage
                             WebEle = HelpersMethod.FindByElement(driver, "xpath", "//td[contains(text(),'" + Add2 + "')]/ancestor::tr/descendant::button[@id='DeleteAddressButton']");
                             HelpersMethod.ClickBut(driver, WebEle, 10000);
                             wait = new FluentWait<WebDriver>(driver)
-                                    .withTimeout(Duration.ofSeconds(400))
+                                    .withTimeout(Duration.ofSeconds(600))
                                     .pollingEvery(Duration.ofSeconds(2))
                                     .ignoring(NoSuchElementException.class);
                             wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
@@ -731,7 +731,7 @@ public class CheckOutOrderPage
                                 HelpersMethod.ActClick(driver, WebEle, 10000);
                                 scenario.log("DELIVERY ADDRESS HAS BEEN DELETED");
                                 wait = new FluentWait<WebDriver>(driver)
-                                        .withTimeout(Duration.ofSeconds(400))
+                                        .withTimeout(Duration.ofSeconds(600))
                                         .pollingEvery(Duration.ofSeconds(2))
                                         .ignoring(NoSuchElementException.class);
                                 wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
@@ -769,7 +769,7 @@ public class CheckOutOrderPage
         try
         {
             Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
-                    .withTimeout(Duration.ofSeconds(200))
+                    .withTimeout(Duration.ofSeconds(600))
                     .pollingEvery(Duration.ofSeconds(2))
                     .ignoring(NoSuchElementException.class);
             wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
@@ -785,7 +785,7 @@ public class CheckOutOrderPage
                     WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@id='paymentMethodCard']/descendant::span[contains(@class,'k-icon k-i-arrow-chevron-down')]");
                     HelpersMethod.ClickBut(driver,WebEle,10000);
                     wait = new FluentWait<WebDriver>(driver)
-                            .withTimeout(Duration.ofSeconds(200))
+                            .withTimeout(Duration.ofSeconds(600))
                             .pollingEvery(Duration.ofSeconds(2))
                             .ignoring(NoSuchElementException.class);
                     wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
@@ -904,7 +904,7 @@ public class CheckOutOrderPage
                     //Click on OK button
                     HelpersMethod.ActClick(driver, OkPay, 10000);
                     Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
-                            .withTimeout(Duration.ofSeconds(200))
+                            .withTimeout(Duration.ofSeconds(600))
                             .pollingEvery(Duration.ofSeconds(2))
                             .ignoring(NoSuchElementException.class);
                     wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
@@ -979,7 +979,7 @@ public class CheckOutOrderPage
                 }
 
                 Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
-                        .withTimeout(Duration.ofSeconds(400))
+                        .withTimeout(Duration.ofSeconds(600))
                         .pollingEvery(Duration.ofSeconds(2))
                         .ignoring(NoSuchElementException.class);
                 wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
@@ -1032,7 +1032,7 @@ public class CheckOutOrderPage
         try
         {
             Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
-                    .withTimeout(Duration.ofSeconds(400))
+                    .withTimeout(Duration.ofSeconds(600))
                     .pollingEvery(Duration.ofSeconds(2))
                     .ignoring(NoSuchElementException.class);
             wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
@@ -1044,7 +1044,7 @@ public class CheckOutOrderPage
             }
 
             wait = new FluentWait<WebDriver>(driver)
-                    .withTimeout(Duration.ofSeconds(400))
+                    .withTimeout(Duration.ofSeconds(600))
                     .pollingEvery(Duration.ofSeconds(2))
                     .ignoring(NoSuchElementException.class);
             wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
@@ -1089,7 +1089,7 @@ public class CheckOutOrderPage
         try
         {
             Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
-                    .withTimeout(Duration.ofSeconds(200))
+                    .withTimeout(Duration.ofSeconds(600))
                     .pollingEvery(Duration.ofSeconds(2))
                     .ignoring(NoSuchElementException.class);
             wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));

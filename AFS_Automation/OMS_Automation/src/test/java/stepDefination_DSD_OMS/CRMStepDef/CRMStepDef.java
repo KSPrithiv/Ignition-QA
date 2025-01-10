@@ -64,7 +64,7 @@ public class CRMStepDef {
     public void userEnteredCorrectAdminUsernameAndPasswordOnThePage() throws InterruptedException, AWTException {
         loginpage = new LoginPage(driver,scenario);
         loginpage.EnterUsername(TestBase.testEnvironment.getAdminUser());
-        loginpage.EnterPassword(TestBase.testEnvironment.getAdminPass());
+        loginpage.EnterPassword(TestBase.testEnvironment.getAdminWord());
         loginpage.ClickSignin();
         //HelpersMethod.waitTillPageLoaded(driver, 6000);
     }
@@ -526,7 +526,7 @@ public class CRMStepDef {
     public void enterClientLoginCredentialsAndClickOnLoginButton() throws InterruptedException, AWTException {
         loginpage = new LoginPage(driver,scenario);
         loginpage.EnterUsername(TestBase.testEnvironment.username());
-        loginpage.EnterPassword(TestBase.testEnvironment.password());
+        loginpage.EnterPassword(TestBase.testEnvironment.Userword());
         loginpage.ClickSignin();
     }
 
@@ -618,7 +618,7 @@ public class CRMStepDef {
     public void userLoggedInAsAnAdmin() throws InterruptedException, AWTException {
         loginpage = new LoginPage(driver,scenario);
         loginpage.EnterUsername(TestBase.testEnvironment.getAdminUser());
-        loginpage.EnterPassword(TestBase.testEnvironment.getAdminPass());
+        loginpage.EnterPassword(TestBase.testEnvironment.getAdminWord());
         loginpage.ClickSignin();
         //Thread.sleep(5000);
     }
@@ -655,7 +655,7 @@ public class CRMStepDef {
     public void userLoggedInAsAClient() throws InterruptedException, AWTException {
         loginpage = new LoginPage(driver,scenario);
         loginpage.EnterUsername(TestBase.testEnvironment.username());
-        loginpage.EnterPassword(TestBase.testEnvironment.password());
+        loginpage.EnterPassword(TestBase.testEnvironment.Userword());
         loginpage.ClickSignin();
         //Thread.sleep(5000);
     }
@@ -686,7 +686,7 @@ public class CRMStepDef {
 
         loginpage = new LoginPage(driver,scenario);
         loginpage.EnterUsername(TestBase.testEnvironment.username());
-        loginpage.EnterPassword(TestBase.testEnvironment.password());
+        loginpage.EnterPassword(TestBase.testEnvironment.Userword());
         loginpage.ClickSignin();
         //Thread.sleep(5000);
         crmPage=new CRMPage(driver,scenario);
@@ -734,7 +734,7 @@ public class CRMStepDef {
 
         loginpage = new LoginPage(driver,scenario);
         loginpage.EnterUsername(TestBase.testEnvironment.username());
-        loginpage.EnterPassword(TestBase.testEnvironment.password());
+        loginpage.EnterPassword(TestBase.testEnvironment.Userword());
         loginpage.ClickSignin();
         //Thread.sleep(5000);
         crmPage=new CRMPage(driver,scenario);
@@ -784,7 +784,7 @@ public class CRMStepDef {
 
         loginpage = new LoginPage(driver,scenario);
         loginpage.EnterUsername(TestBase.testEnvironment.username());
-        loginpage.EnterPassword(TestBase.testEnvironment.password());
+        loginpage.EnterPassword(TestBase.testEnvironment.Userword());
         loginpage.ClickSignin();
         //Thread.sleep(5000);
         crmPage=new CRMPage(driver,scenario);
@@ -831,7 +831,7 @@ public class CRMStepDef {
 
         loginpage = new LoginPage(driver,scenario);
         loginpage.EnterUsername(TestBase.testEnvironment.username());
-        loginpage.EnterPassword(TestBase.testEnvironment.password());
+        loginpage.EnterPassword(TestBase.testEnvironment.Userword());
         loginpage.ClickSignin();
         //Thread.sleep(5000);
         crmPage=new CRMPage(driver,scenario);
@@ -879,7 +879,7 @@ public class CRMStepDef {
 
         loginpage = new LoginPage(driver,scenario);
         loginpage.EnterUsername(TestBase.testEnvironment.username());
-        loginpage.EnterPassword(TestBase.testEnvironment.password());
+        loginpage.EnterPassword(TestBase.testEnvironment.Userword());
         loginpage.ClickSignin();
         //Thread.sleep(5000);
         crmPage=new CRMPage(driver,scenario);
@@ -926,7 +926,7 @@ public class CRMStepDef {
 
         loginpage = new LoginPage(driver,scenario);
         loginpage.EnterUsername(TestBase.testEnvironment.username());
-        loginpage.EnterPassword(TestBase.testEnvironment.password());
+        loginpage.EnterPassword(TestBase.testEnvironment.Userword());
         loginpage.ClickSignin();
         //Thread.sleep(8000);
         crmPage=new CRMPage(driver,scenario);
@@ -972,7 +972,7 @@ public class CRMStepDef {
 
         loginpage = new LoginPage(driver,scenario);
         loginpage.EnterUsername(TestBase.testEnvironment.username());
-        loginpage.EnterPassword(TestBase.testEnvironment.password());
+        loginpage.EnterPassword(TestBase.testEnvironment.Userword());
         loginpage.ClickSignin();
         //Thread.sleep(5000);
         crmPage=new CRMPage(driver,scenario);
@@ -1017,7 +1017,7 @@ public class CRMStepDef {
 
         loginpage = new LoginPage(driver,scenario);
         loginpage.EnterUsername(TestBase.testEnvironment.username());
-        loginpage.EnterPassword(TestBase.testEnvironment.password());
+        loginpage.EnterPassword(TestBase.testEnvironment.Userword());
         loginpage.ClickSignin();
         //Thread.sleep(5000);
         crmPage=new CRMPage(driver,scenario);

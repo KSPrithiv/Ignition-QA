@@ -473,6 +473,7 @@ public class OrderGuidePageStep1
     public void userValidatesCustomerReferenceToVerifyTheOGCreatedAndSelectPricingCustomerValueFromDropdown(String ogType,String priceCust)
     {
         createOGPage=new CreateOGPage(driver,scenario);
+        createOGPage.ValidateNewOG();
         createOGPage.validateCustomerReference(ogType);
         createOGPage.clickPriceingCustomer();
         createOGPage.selectPricingCustomer(priceCust);

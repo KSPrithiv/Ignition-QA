@@ -87,8 +87,6 @@ public class UserManagementPageStep
         userManagementPage.EnterConfirmPass();
         userManagementPage.enter_User_Role();
         userManagementPage.ClickOnRegistration();
-
-
     }
 
     @Then("CompanyAdmin cancels the newly created User details")

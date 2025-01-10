@@ -96,7 +96,7 @@ public class LoginPageStep
     public void user_on_login_page() throws InterruptedException, AWTException
     {
         Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
-                .withTimeout(Duration.ofSeconds(200))
+                .withTimeout(Duration.ofSeconds(600))
                 .pollingEvery(Duration.ofSeconds(2))
                 .ignoring(NoSuchElementException.class);
         wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
@@ -108,7 +108,7 @@ public class LoginPageStep
             HelpersMethod.waitTillLoadingPage(driver);
         }
        wait = new FluentWait<WebDriver>(driver)
-                .withTimeout(Duration.ofSeconds(120))
+                .withTimeout(Duration.ofSeconds(600))
                 .pollingEvery(Duration.ofSeconds(2))
                 .ignoring(NoSuchElementException.class);
         wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
@@ -134,7 +134,7 @@ public class LoginPageStep
             driver.navigate().refresh();
 
             wait = new FluentWait<WebDriver>(driver)
-                    .withTimeout(Duration.ofSeconds(400))
+                    .withTimeout(Duration.ofSeconds(600))
                     .pollingEvery(Duration.ofSeconds(2))
                     .ignoring(NoSuchElementException.class);
             wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
@@ -164,7 +164,7 @@ public class LoginPageStep
 //
 //
 //            Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
-//                    .withTimeout(Duration.ofSeconds(400))
+//                    .withTimeout(Duration.ofSeconds(600))
 //                    .pollingEvery(Duration.ofSeconds(2))
 //                    .ignoring(NoSuchElementException.class);
 //            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
@@ -176,7 +176,7 @@ public class LoginPageStep
 //                alert.accept();
 //            }
 //            wait = new FluentWait<WebDriver>(driver)
-//                    .withTimeout(Duration.ofSeconds(400))
+//                    .withTimeout(Duration.ofSeconds(600))
 //                    .pollingEvery(Duration.ofSeconds(2))
 //                    .ignoring(NoSuchElementException.class);
 //            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
@@ -198,7 +198,7 @@ public class LoginPageStep
                 homepage.Click_On_Signout();
 
                wait = new FluentWait<WebDriver>(driver)
-                        .withTimeout(Duration.ofSeconds(200))
+                        .withTimeout(Duration.ofSeconds(600))
                         .pollingEvery(Duration.ofSeconds(2))
                         .ignoring(NoSuchElementException.class);
                 wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
@@ -210,7 +210,7 @@ public class LoginPageStep
                 }
 
                 wait = new FluentWait<WebDriver>(driver)
-                        .withTimeout(Duration.ofSeconds(200))
+                        .withTimeout(Duration.ofSeconds(600))
                         .pollingEvery(Duration.ofSeconds(2))
                         .ignoring(NoSuchElementException.class);
                 wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
@@ -238,7 +238,7 @@ public class LoginPageStep
     {
         loginpage = new LoginPage(driver, scenario);
         loginpage.EnterUsername(TestBase.testEnvironment.DummyUser());
-        loginpage.EnterPassword(TestBase.testEnvironment.DummyPassword());
+        loginpage.EnterPassword(TestBase.testEnvironment.Dummyword());
         loginpage.ClickSignin();
         scenario.log("VALID USERNAME AND PASSWORD HAS BEEN ENTERED");
     }
@@ -310,7 +310,7 @@ public class LoginPageStep
     public void user_clicks_on_view_product_catalog_and_product_catalog_should_be_displayed() throws InterruptedException, AWTException
     {
         Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
-                .withTimeout(Duration.ofSeconds(400))
+                .withTimeout(Duration.ofSeconds(600))
                 .pollingEvery(Duration.ofSeconds(2))
                 .ignoring(NoSuchElementException.class);
         wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
@@ -323,7 +323,7 @@ public class LoginPageStep
         }
 
         wait = new FluentWait<WebDriver>(driver)
-                .withTimeout(Duration.ofSeconds(400))
+                .withTimeout(Duration.ofSeconds(600))
                 .pollingEvery(Duration.ofSeconds(2))
                 .ignoring(NoSuchElementException.class);
         wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
@@ -374,7 +374,7 @@ public class LoginPageStep
     {
         loginpage = new LoginPage(driver, scenario);
         loginpage.EnterUsername(TestBase.testEnvironment.username());
-        loginpage.EnterPassword(TestBase.testEnvironment.password());
+        loginpage.EnterPassword(TestBase.testEnvironment.Userword());
         //loginpage.ClickSigninForExternalOrder();
         loginpage.ClickSignin();
         loginpage.ValidateCustomerIndexPopup();
@@ -414,7 +414,7 @@ public class LoginPageStep
     public void user_should_be_on_new_order_entry_page() throws InterruptedException, AWTException
     {
         Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
-                .withTimeout(Duration.ofSeconds(120))
+                .withTimeout(Duration.ofSeconds(600))
                 .pollingEvery(Duration.ofSeconds(2))
                 .ignoring(NoSuchElementException.class);
         wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
@@ -425,7 +425,7 @@ public class LoginPageStep
         orderpage.OrderGuidePopup();
 
         wait = new FluentWait<WebDriver>(driver)
-                .withTimeout(Duration.ofSeconds(120))
+                .withTimeout(Duration.ofSeconds(600))
                 .pollingEvery(Duration.ofSeconds(2))
                 .ignoring(NoSuchElementException.class);
         wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
@@ -471,7 +471,7 @@ public class LoginPageStep
     {
         loginpage = new LoginPage(driver, scenario);
         loginpage.EnterUsername(TestBase.testEnvironment.username());
-        loginpage.EnterPassword(TestBase.testEnvironment.password());
+        loginpage.EnterPassword(TestBase.testEnvironment.Userword());
         loginpage.ClickSignin();
         HelpersMethod.waitTillPageLoaded(driver, 200000);
     }
@@ -481,7 +481,7 @@ public class LoginPageStep
     {
         loginpage = new LoginPage(driver, scenario);
         loginpage.EnterUsername(TestBase.testEnvironment.getAdminUser());
-        loginpage.EnterPassword(TestBase.testEnvironment.getAdminPass());
+        loginpage.EnterPassword(TestBase.testEnvironment.getAdminWord());
         loginpage.ClickSignin();
     }
 
@@ -502,7 +502,7 @@ public class LoginPageStep
     public void click_on_register_here_link() throws InterruptedException, AWTException
     {
         Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
-            .withTimeout(Duration.ofSeconds(120))
+            .withTimeout(Duration.ofSeconds(600))
             .pollingEvery(Duration.ofSeconds(2))
             .ignoring(NoSuchElementException.class);
         wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
@@ -515,7 +515,7 @@ public class LoginPageStep
         }
 
         wait = new FluentWait<WebDriver>(driver)
-                .withTimeout(Duration.ofSeconds(120))
+                .withTimeout(Duration.ofSeconds(600))
                 .pollingEvery(Duration.ofSeconds(2))
                 .ignoring(NoSuchElementException.class);
         wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
@@ -827,7 +827,7 @@ public class LoginPageStep
         driver.navigate().refresh();
 
         Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
-                .withTimeout(Duration.ofSeconds(200))
+                .withTimeout(Duration.ofSeconds(600))
                 .pollingEvery(Duration.ofSeconds(2))
                 .ignoring(NoSuchElementException.class);
         wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
@@ -847,7 +847,7 @@ public class LoginPageStep
     {
         loginpage = new LoginPage(driver, scenario);
         loginpage.EnterUsername(TestBase.testEnvironment.DummyUser());
-        loginpage.EnterPassword(TestBase.testEnvironment.DummyPassword());
+        loginpage.EnterPassword(TestBase.testEnvironment.Dummyword());
         loginpage.ClickSigninForSalesHelp();
         scenario.log("VALID USERNAME AND PASSWORD HAS BEEN ENTERED");
     }

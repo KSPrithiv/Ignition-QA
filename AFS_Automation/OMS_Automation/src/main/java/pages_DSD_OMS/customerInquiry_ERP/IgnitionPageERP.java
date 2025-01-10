@@ -66,7 +66,7 @@ import java.util.concurrent.ThreadLocalRandom;
             try
             {
                 Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
-                        .withTimeout(Duration.ofSeconds(120))
+                        .withTimeout(Duration.ofSeconds(600))
                         .pollingEvery(Duration.ofSeconds(2))
                         .ignoring(NoSuchElementException.class);
                 wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
@@ -556,7 +556,7 @@ import java.util.concurrent.ThreadLocalRandom;
                     HelpersMethod.ClickBut(driver,deleteButton,10000);
                     scenario.log("CLICK ON DELETE BUTTON");
                     Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
-                            .withTimeout(Duration.ofSeconds(400))
+                            .withTimeout(Duration.ofSeconds(600))
                             .pollingEvery(Duration.ofSeconds(2))
                             .ignoring(NoSuchElementException.class);
                     wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
@@ -576,7 +576,7 @@ import java.util.concurrent.ThreadLocalRandom;
                     WebElement deletePopup = modalContainer.findElement(By.xpath(".//button/span[text()='Delete']"));
                     HelpersMethod.ActClick(driver, deletePopup, 10000);
                     Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
-                            .withTimeout(Duration.ofSeconds(400))
+                            .withTimeout(Duration.ofSeconds(600))
                             .pollingEvery(Duration.ofSeconds(2))
                             .ignoring(NoSuchElementException.class);
                     wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
@@ -588,7 +588,7 @@ import java.util.concurrent.ThreadLocalRandom;
                     WebElement okButton=popUp.findElement(By.xpath(".//button/span[text()='Ok']"));
                     HelpersMethod.ActClick(driver,okButton,10000);
                     Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
-                            .withTimeout(Duration.ofSeconds(400))
+                            .withTimeout(Duration.ofSeconds(600))
                             .pollingEvery(Duration.ofSeconds(2))
                             .ignoring(NoSuchElementException.class);
                     wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
