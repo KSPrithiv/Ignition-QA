@@ -348,11 +348,11 @@ public class BlackoutAndCutoffPage
                 WebElement okButton=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-window k-dialog')]/descendant::button/span[text()='OK']");
                 HelpersMethod.ClickBut(driver,okButton,1000);
                 scenario.log("BLACKOUTS DATE HAS BEEN DELETED");
-                if(HelpersMethod.IsExists("//div[@class='loader']",driver))
-                {
-                    WebElement WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 2000000);
-                }
+                Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                        .withTimeout(Duration.ofSeconds(600))
+                        .pollingEvery(Duration.ofSeconds(2))
+                        .ignoring(NoSuchElementException.class);
+                wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
                 exists=true;
             }
             Assert.assertEquals(exists,true);
@@ -365,10 +365,21 @@ public class BlackoutAndCutoffPage
         exists=false;
         try
         {
+            Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(600))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
             if(HelpersMethod.IsExists("//div[contains(text(),'The information has been saved successfully.')]/ancestor::div[contains(@class,'k-window k-dialog')]",driver))
             {
                 WebElement okButton=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-window k-dialog')]/descendant::button/span[text()='OK']");
                 HelpersMethod.ClickBut(driver,okButton,10000);
+                wait = new FluentWait<WebDriver>(driver)
+                        .withTimeout(Duration.ofSeconds(600))
+                        .pollingEvery(Duration.ofSeconds(2))
+                        .ignoring(NoSuchElementException.class);
+                wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
                 exists=true;
             }
         }
@@ -381,11 +392,12 @@ public class BlackoutAndCutoffPage
         String messageText=null;
         Actions act=new Actions(driver);
         int i=0;
-        if(HelpersMethod.IsExists("//div[@class='loader']",driver))
-        {
-            WebElement WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 2000000);
-        }
+        Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                .withTimeout(Duration.ofSeconds(600))
+                .pollingEvery(Duration.ofSeconds(2))
+                .ignoring(NoSuchElementException.class);
+        wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
         try
         {
             List<WebElement> messages=HelpersMethod.FindByElements(driver,"xpath","//tr[contains(@class,'k-master-row')]/td[2]");
@@ -399,6 +411,11 @@ public class BlackoutAndCutoffPage
                     WebElement rowBlackout=HelpersMethod.FindByElement(driver,"xpath","//tr[contains(@class,'k-master-row')]["+i+"]");
                     act.moveToElement(rowBlackout).build().perform();
                     act.click().build().perform();
+                    wait = new FluentWait<WebDriver>(driver)
+                            .withTimeout(Duration.ofSeconds(600))
+                            .pollingEvery(Duration.ofSeconds(2))
+                            .ignoring(NoSuchElementException.class);
+                    wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
                     break;
                 }
             }
@@ -409,11 +426,11 @@ public class BlackoutAndCutoffPage
     public void clickOnCustomerSelectionDropDown()
     {
         exists=false;
-        if(HelpersMethod.IsExists("//div[@class='loader']",driver))
-        {
-            WebElement WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 2000000);
-        }
+        Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                .withTimeout(Duration.ofSeconds(600))
+                .pollingEvery(Duration.ofSeconds(2))
+                .ignoring(NoSuchElementException.class);
+        wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
         try
         {
             if(cutomerDropDown.isDisplayed() && cutomerDropDown.isEnabled())
@@ -430,8 +447,8 @@ public class BlackoutAndCutoffPage
     public void selectCustomerFromDropDown()
     {
         exists=false;
-        String compText=null;
-        String status="";
+        String compText;
+        String status;
         WebElement WebEle;
         Actions act=new Actions(driver);
         try
@@ -456,11 +473,12 @@ public class BlackoutAndCutoffPage
             {
                 HelpersMethod.waitTillLoadingPage(driver);
             }
-            if (HelpersMethod.IsExists("//div[@class='loader']", driver))
-            {
-                WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000000);
-            }
+            Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(600))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
             status = HelpersMethod.returnDocumentStatus(driver);
             if (status.equals("loading"))
             {
@@ -471,8 +489,8 @@ public class BlackoutAndCutoffPage
                 WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
                 HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000000);
             }
-            Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
-                    .withTimeout(Duration.ofSeconds(160))
+            wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(600))
                     .pollingEvery(Duration.ofSeconds(5))
                     .ignoring(NoSuchElementException.class);
             wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
@@ -484,14 +502,15 @@ public class BlackoutAndCutoffPage
     public void selectBlackOutDateForDeleteFromGridForCustomer()
     {
         exists=false;
-        String messageText=null;
+        String messageText;
         Actions act=new Actions(driver);
         int i=0;
-        if(HelpersMethod.IsExists("//div[@class='loader']",driver))
-        {
-            WebElement WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 2000000);
-        }
+        Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                .withTimeout(Duration.ofSeconds(600))
+                .pollingEvery(Duration.ofSeconds(2))
+                .ignoring(NoSuchElementException.class);
+        wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
         try
         {
             List<WebElement> messages=HelpersMethod.FindByElements(driver,"xpath","//tr[contains(@class,'k-master-row')]/td[2]");

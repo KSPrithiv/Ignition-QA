@@ -45,6 +45,7 @@ public class NavigationPageStep
     public void userSelectsMenuUnderWebOrderMenuLabel()
     {
         navigationPage=new NavigationPage(driver,scenario);
+        navigationPage.ValidateNavigation();
         navigationPage.selectLabelName();
     }
 

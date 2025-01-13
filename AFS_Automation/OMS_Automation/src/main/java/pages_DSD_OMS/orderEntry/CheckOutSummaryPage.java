@@ -383,11 +383,12 @@ public class CheckOutSummaryPage
         String status;
         try
         {
-            if(HelpersMethod.IsExists("//div[@class='loader']",driver))
-            {
-                WebElement WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 2000000);
-            }
+            Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(600))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
             if (HelpersMethod.IsExists("//div[contains(text(),'Order submitted successfully.')]/ancestor::div[contains(@class,'k-window k-dialog')]", driver))
             {
                 // to fetch the web element of the modal container
@@ -404,7 +405,7 @@ public class CheckOutSummaryPage
                 {
                     HelpersMethod.waitTillLoadingPage(driver);
                 }
-                Wait<WebDriver> wait = new FluentWait<>(driver)
+                wait = new FluentWait<>(driver)
                         .withTimeout(Duration.ofSeconds(600))
                         .pollingEvery(Duration.ofSeconds(2))
                         .ignoring(NoSuchElementException.class);
@@ -1081,7 +1082,7 @@ public class CheckOutSummaryPage
                         .ignoring(NoSuchElementException.class);
                 wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
 
-                scenario.log(" ADMIN SETTING FOR EXISTING ORDER HAS BEEN ENABLED, ABLE TO SEE ORDER EXISTS DIALOG BOX </span>");
+                scenario.log(" ADMIN SETTING FOR EXISTING ORDER HAS BEEN ENABLED, ABLE TO SEE ORDER EXISTS DIALOG BOX");
                 exists=true;
             }
             else
