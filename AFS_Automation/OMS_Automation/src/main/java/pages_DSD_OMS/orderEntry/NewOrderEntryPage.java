@@ -3363,8 +3363,18 @@ public class NewOrderEntryPage
                     scenario.log("PRODUCT NUMBER ENTERED IN SEARCH BAR "+Prods);
 
                     //Enter search index
-                    WebEle=catalogPopup.findElement(By.xpath("////div[contains(@class,'k-window k-dialog')]/descendant::div[@class='searchBarDropdown']/descendant::span[contains(@class,' search-button ')]"));
+                    WebEle=catalogPopup.findElement(By.xpath("//div[contains(@class,'k-window k-dialog')]/descendant::div[@class='searchBarDropdown']/descendant::span[contains(@class,' search-button ')]"));
                     HelpersMethod.clickOn(driver, WebEle, 10000);
+                    wait = new FluentWait<WebDriver>(driver)
+                            .withTimeout(Duration.ofSeconds(600))
+                            .pollingEvery(Duration.ofSeconds(2))
+                            .ignoring(NoSuchElementException.class);
+                    wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+                    String status = HelpersMethod.returnDocumentStatus(driver);
+                    if (status.equals("loading"))
+                    {
+                        HelpersMethod.waitTillLoadingPage(driver);
+                    }
                     wait = new FluentWait<WebDriver>(driver)
                             .withTimeout(Duration.ofSeconds(600))
                             .pollingEvery(Duration.ofSeconds(2))

@@ -10,6 +10,7 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.Wait;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
 import java.time.Duration;
@@ -52,7 +53,6 @@ public class NavigationPage
     public void FromWebOrderToAvailableApp()
     {
         exists=false;
-        //Actions act=new Actions(driver);
         WebElement WebEle;
         int index;
         try
@@ -62,9 +62,7 @@ public class NavigationPage
             int offsetX = (AvailableApp.getLocation().x + (AvailableApp.getSize().width / 2));
             int offsetY = (AvailableApp.getLocation().y + (AvailableApp.getSize().height / 2));
             WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@id='ActiveItemsAdminCard']/descendant::div[@class='i-draggable-item']["+index+"]/div[contains(@class,'i-draggable-item__container')]");
-            //HelpersMethod.ActDragDrop(driver,WebEle,AvailableApp);
-            //HelpersMethod.ScrollElement(driver,WebEle);
-            //act.clickAndHold(WebEle).moveToElement(AvailableApp).release().build().perform();
+
             new Actions(driver)
                     .moveToElement(WebEle)
                     .pause(Duration.ofSeconds(1))
@@ -72,8 +70,6 @@ public class NavigationPage
                     .pause(Duration.ofSeconds(1))
                     .moveByOffset(1, 0)
                     .moveToElement(AvailableApp,offsetX,offsetY)
-                    //.moveByOffset(offsetX, offsetY)
-                    //.pause(Duration.ofSeconds(2))
                     .release().pause(Duration.ofSeconds(4)).build().perform();
             Thread.sleep(4000);
             exists=true;
@@ -150,6 +146,12 @@ public class NavigationPage
         exists=false;
         try
         {
+            Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(600))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
             if(HelpersMethod.IsExists("//span[contains(@class,'spnmoduleNameHeader withoutBreadcrumbs') and contains(text(),'Navigation')]",driver))
             {
                 exists=true;
@@ -168,7 +170,8 @@ public class NavigationPage
                     .pollingEvery(Duration.ofSeconds(2))
                     .ignoring(NoSuchElementException.class);
             wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
-
+            new WebDriverWait(driver,Duration.ofMillis(10000)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("WebOrderMenuItems"))));
+            new WebDriverWait(driver,Duration.ofMillis(10000)).until(ExpectedConditions.visibilityOfElementLocated(By.id("WebOrderMenuItems")));
             //check box click
             WebElement checkBox=HelpersMethod.FindByElement(driver,"xpath","//div[@class='i-draggable-item'][1]/descendant::input");
             HelpersMethod.ClickBut(driver,checkBox,10000);
@@ -184,6 +187,12 @@ public class NavigationPage
         exists=false;
         try
         {
+            Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(600))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
             labelNameText=label+"_Test";
             HelpersMethod.ScrollElement(driver,labelInput);
             HelpersMethod.ClearText(driver,labelInput,10000);
@@ -248,7 +257,7 @@ public class NavigationPage
     public void WebOrderMenuItems()
     {
         Actions act=new Actions(driver);
-        String menuText="";
+        String menuText;
         try
         {
             List<WebElement> webMenuItems=HelpersMethod.FindByElements(driver,"xpath","//div[@id='ActiveItemsAdminCard']/descendant::div[@class='content']");

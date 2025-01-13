@@ -361,7 +361,6 @@ public class FeaturedProductsPage
     {
         try
         {
-
             Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
                     .withTimeout(Duration.ofSeconds(600))
                     .pollingEvery(Duration.ofSeconds(2))
@@ -375,7 +374,9 @@ public class FeaturedProductsPage
                     WebElement delePro = deleteProds.get(0);
                     //WebElement delePro=deleteProds.get(i);
                     HelpersMethod.ClickBut(driver, delePro, 10000);
+                    scenario.log("PRODUCT DELETED IS "+delePro);
                     deleteProds.remove(delePro);
+
                     wait = new FluentWait<WebDriver>(driver)
                             .withTimeout(Duration.ofSeconds(600))
                             .pollingEvery(Duration.ofSeconds(2))
@@ -407,8 +408,9 @@ public class FeaturedProductsPage
                         HelpersMethod.JScriptClick(driver, buttonOk, 10000);
                         new WebDriverWait(driver, Duration.ofMillis(10000)).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[contains(text(),'saved successfully.')]/ancestor::div[contains(@class,'k-window k-dialog')]")));
                     }
-                    new WebDriverWait(driver,Duration.ofMillis(10000)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("featured-product-list"))));
-                    new WebDriverWait(driver,Duration.ofMillis(10000)).until(ExpectedConditions.visibilityOfElementLocated(By.id("featured-product-list")));
+                    new WebDriverWait(driver,Duration.ofMillis(40000)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("featured-product-list"))));
+                    new WebDriverWait(driver,Duration.ofMillis(40000)).until(ExpectedConditions.visibilityOfElementLocated(By.id("featured-product-list")));
+                    Thread.sleep(1000);
                     deleteProds = HelpersMethod.FindByElements(driver, "xpath", "//span[text()='Delete']/ancestor::button[@id='edit-role']");
                 }
         }

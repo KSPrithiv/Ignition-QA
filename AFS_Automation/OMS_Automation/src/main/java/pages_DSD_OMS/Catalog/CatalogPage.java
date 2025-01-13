@@ -490,6 +490,7 @@ public class CatalogPage
             //Click on search Index button
             WebEle=HelpersMethod.FindByElement(driver,"xpath","//span[@datatestid='searchBarSearchBtn']");
             HelpersMethod.ClickBut(driver,WebEle,10000);
+
             wait = new FluentWait<WebDriver>(driver)
                     .withTimeout(Duration.ofSeconds(600))
                     .pollingEvery(Duration.ofSeconds(2))
@@ -568,7 +569,7 @@ public class CatalogPage
             if (addToCart.isDisplayed() && addToCart.isEnabled())
             {
                 HelpersMethod.ScrollElement(driver, addToCart);
-                HelpersMethod.ClickBut(driver, addToCart, 60000);
+                HelpersMethod.ClickBut(driver, addToCart, 100000);
                 exists = true;
             }
             wait = new FluentWait<WebDriver>(driver)

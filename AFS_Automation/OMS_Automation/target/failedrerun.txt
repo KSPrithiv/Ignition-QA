@@ -1,2 +1,0 @@
-file:src/test/resources/features_DSD_OMS/OrderGuideFeature_DSD/orderGuideFeatureDSD.feature:75
-file:src/test/resources/features_DSD_OMS/OrderGuideFeature_DSD/orderGuideFeature2.feature:147
