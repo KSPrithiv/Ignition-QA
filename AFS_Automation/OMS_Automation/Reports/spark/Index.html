@@ -35,7 +35,7 @@
 <a href="#"><span class="badge badge-primary">Test execution report</span></a>
 </li>
 <li class="m-r-10">
-<a href="#"><span class="badge badge-primary">Jan 13, 2025 06:08:54 PM</span></a>
+<a href="#"><span class="badge badge-primary">Jan 13, 2025 09:35:36 PM</span></a>
 </li>
 </ul>
 </div>
@@ -79,7 +79,7 @@
 <li class="dropdown">
 <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-tag"></i></a>
 <ul id="tag-toggle" class="dropdown-menu dropdown-md p-v-0">
-<a class="dropdown-item" href="#">@DMDeleteProductFromCart</a>
+<a class="dropdown-item" href="#">@CancelAndSkipDisabled</a><a class="dropdown-item" href="#">@RemoveSkipOrder</a><a class="dropdown-item" href="#">@SkipFromNewOrderEntry</a>
 </ul>
 </li>
 </ul>
@@ -90,9 +90,9 @@
           tag=""
           device="">
           <div class="test-detail">
-            <p class="name">Disconnected mode</p>
+            <p class="name">Order entry End</p>
             <p class="text-sm">
-              <span>6:09:05 PM</span> / <span>00:11:12:042</span>
+              <span>9:35:48 PM</span> / <span>00:04:42:309</span>
               <span class="badge pass-bg log float-right">Pass</span>
             </p>
           </div>
@@ -100,42 +100,42 @@
 <div class="detail-head">
 <div class="p-v-10">
 <div class="info">
-<h5 class="test-status text-pass">Disconnected mode</h5>
-<span class='badge badge-success'>01.13.2025 6:09:05 PM</span>
-<span class='badge badge-danger'>01.13.2025 6:20:17 PM</span>
-<span class='badge badge-default'>00:11:12:042</span>
+<h5 class="test-status text-pass">Order entry End</h5>
+<span class='badge badge-success'>01.13.2025 9:35:48 PM</span>
+<span class='badge badge-danger'>01.13.2025 9:40:30 PM</span>
+<span class='badge badge-default'>00:04:42:309</span>
 &middot; <span class='uri-anchor badge badge-default'>#test-id=1</span>
 <span class='badge badge-default pointer float-right ml-1 et'><i class="fa fa-chevron-down"></i></span>
 <span class='badge badge-default pointer float-right ct'><i class="fa fa-chevron-up"></i></span>
 </div>
-<div class="m-t-10 m-l-5"> Used for Performing different operations in disconnected mode</div>
+<div class="m-t-10 m-l-5"></div>
 </div>
 </div>
 <div class="accordion mt-4">
   <div class="card">
     <div class="card-header" role="tab">
       <div class="card-title">
-        <div class="node" id="2"><span class="badge log pass-bg mr-2">Pass</span>Test scenario for navigating to catalog tab, and delete product from cart</div>
+        <div class="node" id="2"><span class="badge log pass-bg mr-2">Pass</span>Remove Skip order button, that appears in OE page</div>
       </div>
     </div>
         <div class="collapse">
           <div class="card-body">
-              <div class="step pass-bg" title="stepDefination_DSD_OMS.DiconnectModePageSteps.DMOEPageStep.user_enters_url_and_is_on_login_page_and_entered_credentialsForDM()">
-                <span>Given User enters URL and is on login page and entered credentials for DM</span>
+              <div class="step pass-bg" title="stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.user_enters_url_and_is_on_login_page_and_entered_credentials()">
+                <span>Given User enters URL and is on login page and entered credentials</span>
       <div>SIGNIN BUTTON CLICKED
       </div>
       <div>
       </div>
               </div>
-              <div class="step pass-bg" title="stepDefination_DSD_OMS.DiconnectModePageSteps.DMOEPageStep.user_is_on_home_pageForDM()">
-                <span>When User is on Home Page for DM</span>
+              <div class="step pass-bg" title="stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.user_is_on_home_page()">
+                <span>When User is on Home Page</span>
       <div>ADMIN PAGE OR ORDER ENTRY PAGE HAS BEEN FOUND
       </div>
       <div>
       </div>
               </div>
-              <div class="step pass-bg" title="stepDefination_DSD_OMS.DiconnectModePageSteps.DMOEPageStep.user_navigate_to_client_sideForDM()">
-                <span>Then User navigate to Client side for DM</span>
+              <div class="step pass-bg" title="stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.user_navigate_to_client_side()">
+                <span>Then User navigate to Client side</span>
       <div>USER ICON FOUND
       </div>
       <div>IN ADMIN PAGE
@@ -143,195 +143,152 @@
       <div>
       </div>
               </div>
-              <div class="step pass-bg" title="stepDefination_DSD_OMS.DiconnectModePageSteps.DMOEPageStep.user_should_select_order_entry_tabForDM()">
-                <span>Then User should select Order Entry tab for DM</span>
-      <div>https://autodsd.afsi.com/ClientPortal/Apps/cpOrderEntry.html?p=Km530c8XSlYiXYABAQY6Y6JAChTfYaSYca92kMk0eI9TOeNnC6%2bd9w%3d%3d
+              <div class="step pass-bg" title="stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.user_should_select_order_entry_tab()">
+                <span>Then User should select Order Entry tab</span>
+      <div>https://autoerp.afsi.com/omsi/clientportal/apps/cpOrderEntry.html?p=QJFsTz5JBfVNODvKd%2b4hK56SreO0vwVwYSCjo3j9p6A%3d
       </div>
       <div>NAVIGATED TO ORDER ENTRY PAGE
       </div>
       <div>
       </div>
               </div>
-              <div class="step pass-bg" title="stepDefination_DSD_OMS.DiconnectModePageSteps.DMOEPageStep.userShouldBeInOrderEntryPage()">
-                <span>Given User should be in Order entry page</span>
+              <div class="step pass-bg" title="stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.user_selects_account()">
+                <span>Then User selects Account#</span>
+      <div>CUSTOMER ACCOUNT# SELECTED IS K11985
+      </div>
+      <div><span style='color:red'>DELIBERY DATE FOUND, AFTER LOGGING IN TO APPLICATION  Friday, January 17, 2025</span>
+      </div>
+      <div>
+      </div>
+              </div>
+              <div class="step pass-bg" title="stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.user_must_be_on_order_entry_page()">
+                <span>Given User must be on Order Entry Page</span>
+      <div>
+      </div>
+              </div>
+              <div class="step pass-bg" title="stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.change_the_date_days_after_current_date(java.lang.Integer)">
+                <span>Then Change the date 5 days after current date</span>
+      <div>NAVIGATED TO ORDER ENTRY PAGE
+      </div>
+      <div><span style='color:red'>DELIBERY DATE FOUND, AFTER LOGGING IN TO APPLICATION  Friday, January 17, 2025</span>
+      </div>
+      <div>ORDER GUIDE POPUP HAS BEEN FOUND
+      </div>
+      <div>SELECT DELIVERY DATE IS Tue, Feb 4, 2025
+      </div>
+      <div>
+      </div>
+              </div>
+              <div class="step pass-bg" title="stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.check_for_remove_skip_button_is_visible_and_click_on_skip_button()">
+                <span>Then Check for Remove Skip button is visible and Click on Remove Skip button</span>
       <div>NAVIGATED TO ORDER ENTRY PAGE
       </div>
       <div>
       </div>
               </div>
-              <div class="step pass-bg" title="stepDefination_DSD_OMS.DiconnectModePageSteps.DMOEPageStep.userClicksOnNetworkSymbolAndClickOnToggleButtonToNavigateToDisconnectedMode()">
-                <span>When User Clicks on network symbol and click on toggle button to navigate to disconnected mode</span>
-      <div>
+              <div class="step pass-bg" title="stepDefination_DSD_OMS.QuotePageSteps.QuotePageSteps1.userShouldResetTheDeliveryDateToCurrentDate()">
+                <span>And User should reset the delivery date to current date</span>
+      <div>NAVIGATED TO ORDER ENTRY PAGE
       </div>
-              </div>
-              <div class="step pass-bg" title="stepDefination_DSD_OMS.DiconnectModePageSteps.DMOEPageStep.thenUserSelectsGoOfflineOptionInDisconnectedModePopup()">
-                <span>And Then User selects Go offline option in Disconnected mode popup</span>
-      <div>
+      <div>PREVIOUS DELIVERY DATE Friday, January 17, 2025
       </div>
-              </div>
-              <div class="step pass-bg" title="stepDefination_DSD_OMS.DiconnectModePageSteps.DMOEPageStep.userShouldGetCustomerAccountPopup()">
-                <span>Then User should get Customer account# popup</span>
-      <div>
+      <div>MONTH TO BE SELECTED Jan
       </div>
-              </div>
-              <div class="step pass-bg" title="stepDefination_DSD_OMS.DiconnectModePageSteps.DMOEPageStep.userShouldSelectCustomerAccountFromPopupAndSelectTheDeliveryDateFromPopupWaitTillSynchronized()">
-                <span>And User should select Customer Account# from popup and select the delivery date from popup wait till synchronized</span>
-      <div>DELIVERY DATE POPUP HAS BEEN FOUND
-      </div>
-      <div>DELIVERY DATE HAS BEEN SELECTED
+      <div>DATE HAS BEEN RESET TO Fri, Jan 17, 2025
       </div>
       <div>
       </div>
               </div>
-              <div class="step pass-bg" title="stepDefination_DSD_OMS.DiconnectModePageSteps.DMOEPageStep.userMustBeOnOrderEntryPageInDisconnectedMode()">
-                <span>Then User must be on Order Entry Page in disconnected mode</span>
-      <div>USER IS ON DISCONNECTED MODE
+          </div>
+        </div>
+  </div>
+  <div class="card">
+    <div class="card-header" role="tab">
+      <div class="card-title">
+        <div class="node" id="99"><span class="badge log pass-bg mr-2">Pass</span>Skip the creation of order from new order entry page</div>
       </div>
-      <div>DELIVERY DATE SELECTED FOR DISCONNECTED MODE IS null
+    </div>
+        <div class="collapse">
+          <div class="card-body">
+              <div class="step pass-bg" title="stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.user_enters_url_and_is_on_login_page_and_entered_credentials()">
+                <span>Given User enters URL and is on login page and entered credentials</span>
+      <div>
+      </div>
+              </div>
+              <div class="step pass-bg" title="stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.user_is_on_home_page()">
+                <span>When User is on Home Page</span>
+      <div>
+      </div>
+              </div>
+              <div class="step pass-bg" title="stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.user_navigate_to_client_side()">
+                <span>Then User navigate to Client side</span>
+      <div>
+      </div>
+              </div>
+              <div class="step pass-bg" title="stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.user_should_select_order_entry_tab()">
+                <span>Then User should select Order Entry tab</span>
+      <div>
+      </div>
+              </div>
+              <div class="step pass-bg" title="stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.user_selects_account()">
+                <span>Then User selects Account#</span>
+      <div>
+      </div>
+              </div>
+              <div class="step pass-bg" title="stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.user_must_be_on_order_entry_page()">
+                <span>Given User must be on Order Entry Page</span>
+      <div>
+      </div>
+              </div>
+              <div class="step pass-bg" title="stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.change_the_date_days_after_current_date(java.lang.Integer)">
+                <span>Then Change the date 5 days after current date</span>
+      <div>NAVIGATED TO ORDER ENTRY PAGE
+      </div>
+      <div><span style='color:red'>DELIBERY DATE FOUND, AFTER LOGGING IN TO APPLICATION  Friday, January 17, 2025</span>
+      </div>
+      <div>NAVIGATED TO ORDER ENTRY PAGE
+      </div>
+      <div>PREVIOUS DELIVERY DATE Friday, January 17, 2025
+      </div>
+      <div>DATE HAS BEEN RESET TO Fri, Jan 17, 2025
+      </div>
+      <div>ORDER GUIDE POPUP HAS BEEN FOUND
+      </div>
+      <div>SELECT DELIVERY DATE IS Tue, Feb 4, 2025
       </div>
       <div>
       </div>
               </div>
-              <div class="step pass-bg" title="stepDefination_DSD_OMS.CatalogPageSteps.CatalogPageStep.user_should_navigate_to_catalog_tab()">
-                <span>And User should navigate to Catalog tab</span>
-      <div>CATALOG PAGE HAS BEEN FOUND
+              <div class="step pass-bg" title="stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.user_must_click_start_order_button()">
+                <span>Then User must click Start Order button</span>
+      <div>NAVIGATED TO ORDER ENTRY PAGE
       </div>
-      <div>https://autodsd.afsi.com/ClientPortal/Apps/cpProductCatalog.html?p=Km530c8XSlYiXYABAQY6Y6JAChTfYaSYca92kMk0eI9TOeNnC6%2bd9w%3d%3d
+      <div><span style='color:red'>DELIBERY DATE FOUND, AFTER LOGGING IN TO APPLICATION  Friday, January 17, 2025</span>
       </div>
-      <div>https://autodsd.afsi.com/ClientPortal/Apps/cpProductCatalog.html?p=Km530c8XSlYiXYABAQY6Y6JAChTfYaSYca92kMk0eI9TOeNnC6%2bd9w%3d%3d
-      </div>
-      <div>https://autodsd.afsi.com/ClientPortal/Apps/cpProductCatalog.html?p=Km530c8XSlYiXYABAQY6Y6JAChTfYaSYca92kMk0eI9TOeNnC6%2bd9w%3d%3d
-      </div>
-      <div>USER IS ON CATALOG PAGE
+      <div>START BUTTON HAS BEEN CLICKED
       </div>
       <div>
       </div>
               </div>
-              <div class="step pass-bg" title="stepDefination_DSD_OMS.CatalogPageSteps.CatalogPageStep.user_should_click_on_reset_filter_button_and_all_the_products_should_displayed_in_card_view_in_catalog_page()">
-                <span>And User should click on Reset filter button and all the products should displayed in Card view in Catalog page</span>
-      <div>CARD VIEW IN CATALOG HAS BEEN SELECTED
+              <div class="step pass-bg" title="stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.user_should_make_selection_between_pending_order_or_start_new_order()">
+                <span>Then User should make selection between Pending order or Start New order</span>
+      <div>
+      </div>
+              </div>
+              <div class="step pass-bg" title="stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.userShouldSelectNoteFromPopupAndOrderGuideFromPopup()">
+                <span>Then User should select Note from popup and Order guide from popup</span>
+      <div>ORDER GUIDE POPUP HAS BEEN FOUND
       </div>
       <div>
       </div>
               </div>
-              <div class="step pass-bg" title="stepDefination_DSD_OMS.CatalogPageSteps.CatalogPageStep.user_enters_product_in_search_bar_and_enters_qty(io.cucumber.datatable.DataTable)">
-                <span>Then User enters Product# in Search bar and enters Qty</span>
-      <div><table class='markup-table table '><tr><td>1</td><td>1</td></tr><tr><td>2</td><td>1</td></tr><tr><td>2</td><td>2</td></tr></table>
+              <div class="step pass-bg" title="stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.click_on_skip_button_in_new_order_entry_page_and_also_select_the_reason(io.cucumber.datatable.DataTable)">
+                <span>Then Click on Skip button in New order entry page and also select the reason</span>
+      <div><table class='markup-table table '><tr><td>closed</td></tr></table>
       </div>
-      <div>PRODUCT SEARCHED IS 00000001
+      <div>SKIP BUTTON HAS BEEN FOUND IN NEW OE PAGE
       </div>
-      <div>QTY ENTERE IS 1
-      </div>
-      <div>PRODUCT SEARCHED IS 00000002
-      </div>
-      <div>QTY ENTERE IS 2
-      </div>
-      <div>PRODUCT SEARCHED IS 00000003
-      </div>
-      <div>QTY ENTERE IS 2
-      </div>
-      <div>
-      </div>
-              </div>
-              <div class="step pass-bg" title="stepDefination_DSD_OMS.CatalogPageSteps.CatalogPageStep.user_click_on_cart_in_catalog_and_click_on_gotocart_before_that_delete_product_from_popup()">
-                <span>Then User click on cart in catalog and click on Gotocart, before that Delete Product from popup</span>
-      <div>CART ICON HAS BEEN CLICKED
-      </div>
-      <div>PRODUCTS BEFORE DELETING FROM SHOPPING CART: 
-      </div>
-      <div>PRODUCT FOUND IN SHOPPING CART: DIET COKE - CANS 24/12 OZ
-      </div>
-      <div>PRODUCT FOUND IN SHOPPING CART: LA CROIX CRAN_RASBERRY 24 CANS
-      </div>
-      <div>PRODUCT FOUND IN SHOPPING CART: SPRITE -CANS 24/12OZ
-      </div>
-      <div>PRODUCT REMOVED FROM DROP DOWN IS DIET COKE - CANS 24/12 OZ
-      </div>
-      <div>PRODUCTS AFTER DELETING FROM SHOPPING CART: 
-      </div>
-      <div>PRODUCT FOUND IN SHOPPING CART: LA CROIX CRAN_RASBERRY 24 CANS
-      </div>
-      <div>PRODUCT FOUND IN SHOPPING CART: SPRITE -CANS 24/12OZ
-      </div>
-      <div>CART ITEMS CARD HAS BEEN FOUND
-      </div>
-      <div>CHECKOUT SUMMARY PAGE HAS BEEN FOUND
-      </div>
-      <div>CHECKOUT SUMMARY PAGE HAS BEEN FOUND
-      </div>
-      <div>CLICKED ON BACK BUTTON
-      </div>
-      <div>
-      </div>
-              </div>
-              <div class="step pass-bg" title="stepDefination_DSD_OMS.LoginPageStep.user_should_be_on_new_order_entry_page()">
-                <span>And user should be on New Order entry page</span>
-      <div>
-      </div>
-              </div>
-              <div class="step pass-bg" title="stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.enter_po_for_new_order(io.cucumber.datatable.DataTable)">
-                <span>Then Enter PO# for New order</span>
-      <div><table class='markup-table table '><tr><td>PO123</td></tr></table>
-      </div>
-      <div>NEW ORDER ENTRY PAGE HAS BEEN FOUND
-      </div>
-      <div>PO# ENTERED IS PO123
-      </div>
-      <div>
-      </div>
-              </div>
-              <div class="step pass-bg" title="stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.click_on_next_button()">
-                <span>Then Click on Next button</span>
-      <div>PRODUCT FOUND IN ORDER ARE 
-      </div>
-      <div>00000005
-      </div>
-      <div>00000006
-      </div>
-      <div>10025300
-      </div>
-      <div>59626700
-      </div>
-      <div>00000001
-      </div>
-      <div>00000002
-      </div>
-      <div>00000003
-      </div>
-      <div>00000004
-      </div>
-      <div>00000008
-      </div>
-      <div>00112882
-      </div>
-      <div>00135444
-      </div>
-      <div>00137682
-      </div>
-      <div>00445006
-      </div>
-      <div>10002900
-      </div>
-      <div>10010800
-      </div>
-      <div>10024590
-      </div>
-      <div>NEXT BUTTON CLICKED
-      </div>
-      <div>PAYMENT METHOD HAS BEEN SELECTED
-      </div>
-      <div>FIRST PAYMENT OPTION HAS BEEN SELECTED
-      </div>
-      <div>CLICKED ON NEXT BUTTON
-      </div>
-      <div>
-      </div>
-              </div>
-              <div class="step pass-bg" title="stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.click_on_submit_order_button()">
-                <span>Then Click on SubmitOrder button</span>
-      <div>ORDER ENTRY SUMMARY PAGE HAS BEEN FOUND
-      </div>
-      <div>SUBMIT BUTTON IN ORDER SUMMARY PAGE HAS BEEN CLICKED
+      <div>SKIP REASON HAS BEEN SELECTED
       </div>
       <div>
       </div>
@@ -339,6 +296,126 @@
               <div class="step pass-bg" title="stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.user_should_be_navigated_to_order_entry_page()">
                 <span>Then User should be navigated to Order Entry page</span>
       <div>ORDER ENTRY PAGE HAS BEEN FOUND
+      </div>
+      <div>
+      </div>
+              </div>
+              <div class="step pass-bg" title="stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.check_for_remove_skip_button_is_visible_and_click_on_skip_button()">
+                <span>Then Check for Remove Skip button is visible and Click on Remove Skip button</span>
+      <div>NAVIGATED TO ORDER ENTRY PAGE
+      </div>
+      <div>
+      </div>
+              </div>
+              <div class="step pass-bg" title="stepDefination_DSD_OMS.QuotePageSteps.QuotePageSteps1.userShouldResetTheDeliveryDateToCurrentDate()">
+                <span>And User should reset the delivery date to current date</span>
+      <div>NAVIGATED TO ORDER ENTRY PAGE
+      </div>
+      <div>PREVIOUS DELIVERY DATE Friday, January 17, 2025
+      </div>
+      <div>MONTH TO BE SELECTED Jan
+      </div>
+      <div>DATE HAS BEEN RESET TO Fri, Jan 17, 2025
+      </div>
+      <div>
+      </div>
+              </div>
+          </div>
+        </div>
+  </div>
+  <div class="card">
+    <div class="card-header" role="tab">
+      <div class="card-title">
+        <div class="node" id="201"><span class="badge log pass-bg mr-2">Pass</span>Test scenario for verifying Cancel and Skip button is disabled in new OE</div>
+      </div>
+    </div>
+        <div class="collapse">
+          <div class="card-body">
+              <div class="step pass-bg" title="stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.user_enters_url_and_is_on_login_page_and_entered_credentials()">
+                <span>Given User enters URL and is on login page and entered credentials</span>
+      <div>
+      </div>
+              </div>
+              <div class="step pass-bg" title="stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.user_is_on_home_page()">
+                <span>When User is on Home Page</span>
+      <div>
+      </div>
+              </div>
+              <div class="step pass-bg" title="stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.user_navigate_to_client_side()">
+                <span>Then User navigate to Client side</span>
+      <div>
+      </div>
+              </div>
+              <div class="step pass-bg" title="stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.user_should_select_order_entry_tab()">
+                <span>Then User should select Order Entry tab</span>
+      <div>
+      </div>
+              </div>
+              <div class="step pass-bg" title="stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.user_selects_account()">
+                <span>Then User selects Account#</span>
+      <div>
+      </div>
+              </div>
+              <div class="step pass-bg" title="stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.user_must_be_on_order_entry_page()">
+                <span>Given User must be on Order Entry Page</span>
+      <div>
+      </div>
+              </div>
+              <div class="step pass-bg" title="stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.user_must_click_start_order_button()">
+                <span>Then User must click Start Order button</span>
+      <div>NAVIGATED TO ORDER ENTRY PAGE
+      </div>
+      <div><span style='color:red'>DELIBERY DATE FOUND, AFTER LOGGING IN TO APPLICATION  Friday, January 17, 2025</span>
+      </div>
+      <div>START BUTTON HAS BEEN CLICKED
+      </div>
+      <div>
+      </div>
+              </div>
+              <div class="step pass-bg" title="stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.user_should_make_selection_between_pending_order_or_start_new_order()">
+                <span>Then User should make selection between Pending order or Start New order</span>
+      <div>
+      </div>
+              </div>
+              <div class="step pass-bg" title="stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.userShouldSelectNoteFromPopupAndOrderGuideFromPopup()">
+                <span>Then User should select Note from popup and Order guide from popup</span>
+      <div>ORDER GUIDE POPUP HAS BEEN FOUND
+      </div>
+      <div>
+      </div>
+              </div>
+              <div class="step pass-bg" title="stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.click_on_cancel_button()">
+                <span>Then Click on Cancel button</span>
+      <div>NEW ORDER ENTRY PAGE HAS BEEN FOUND
+      </div>
+      <div>ORDER CANCEL, BUTTON CLICKED
+      </div>
+      <div>
+      </div>
+              </div>
+              <div class="step pass-bg" title="stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps8.cancelPopupShouldAppearAndVerifyButtonCancelAndSkipButtonForCurrentDate()">
+                <span>And Cancel popup should appear and verify button Cancel and Skip button for current date</span>
+      <div>CANCEL AND SKIP BUTTON IS DISABLED
+      </div>
+      <div>CANCEL ORDER POPUP HAS BEEN HANDLED
+      </div>
+      <div>
+      </div>
+              </div>
+              <div class="step pass-bg" title="stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.user_should_be_navigated_to_order_entry_page()">
+                <span>Then User should be navigated to Order Entry page</span>
+      <div>ORDER ENTRY PAGE HAS BEEN FOUND
+      </div>
+      <div>
+      </div>
+              </div>
+              <div class="step pass-bg" title="stepDefination_DSD_OMS.QuotePageSteps.QuotePageSteps1.userShouldResetTheDeliveryDateToCurrentDate()">
+                <span>And User should reset the delivery date to current date</span>
+      <div>NAVIGATED TO ORDER ENTRY PAGE
+      </div>
+      <div>PREVIOUS DELIVERY DATE Friday, January 17, 2025
+      </div>
+      <div>DATE HAS BEEN RESET TO Fri, Jan 17, 2025
       </div>
       <div>
       </div>
@@ -362,7 +439,7 @@
 <div class="test-list">
 <div class="test-list-tools">
 <ul class="tools pull-left"><li><a href=""><span class="font-size-14">Category</span></a></li></ul>
-<ul class="tools text-right"><li><a href="#"><span class="badge badge-primary">1</span></a></li></ul>
+<ul class="tools text-right"><li><a href="#"><span class="badge badge-primary">3</span></a></li></ul>
 </div>
 <div class="test-list-wrapper scrollable">
 <ul class="test-list-item">
@@ -371,12 +448,12 @@
 <span class="meta">
 <span class='badge log pass-bg'>1</span>
 </span>
-<p class="name">@DMDeleteProductFromCart</p>
+<p class="name">@CancelAndSkipDisabled</p>
 <p class="duration text-sm">1 tests</p>
 </div>
 <div class="test-contents d-none">
 <div class="info">
-<h4>@DMDeleteProductFromCart</h4>
+<h4>@CancelAndSkipDisabled</h4>
 <span status="pass" class='badge log pass-bg'>1 passed</span>
 </div>
 <table class='table table-sm mt-4'>
@@ -390,11 +467,83 @@
 <tbody>
 <tr class="tag-test-status" status="pass">
 <td><span class="badge log pass-bg">Pass</span></td>
-<td>18:09:05 PM</td>
+<td>21:39:04 PM</td>
 <td>
-<a href="#" class="linked" test-id='1' id='2'>Test scenario for navigating to catalog tab, and delete product from cart</a>
+<a href="#" class="linked" test-id='1' id='201'>Test scenario for verifying Cancel and Skip button is disabled in new OE</a>
 <div class="">
-<span class="badge badge-default">Disconnected mode.Test scenario for navigating to catalog tab, and delete product from cart</span>
+<span class="badge badge-default">Order entry End.Test scenario for verifying Cancel and Skip button is disabled in new OE</span>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</li>
+<li class="test-item">
+<div class="test-detail">
+<span class="meta">
+<span class='badge log pass-bg'>1</span>
+</span>
+<p class="name">@RemoveSkipOrder</p>
+<p class="duration text-sm">1 tests</p>
+</div>
+<div class="test-contents d-none">
+<div class="info">
+<h4>@RemoveSkipOrder</h4>
+<span status="pass" class='badge log pass-bg'>1 passed</span>
+</div>
+<table class='table table-sm mt-4'>
+<thead>
+<tr>
+<th class="status-col">Status</th>
+<th class="timestamp-col">Timestamp</th>
+<th>TestName</th>
+</tr>
+</thead>
+<tbody>
+<tr class="tag-test-status" status="pass">
+<td><span class="badge log pass-bg">Pass</span></td>
+<td>21:35:48 PM</td>
+<td>
+<a href="#" class="linked" test-id='1' id='2'>Remove Skip order button, that appears in OE page</a>
+<div class="">
+<span class="badge badge-default">Order entry End.Remove Skip order button, that appears in OE page</span>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</li>
+<li class="test-item">
+<div class="test-detail">
+<span class="meta">
+<span class='badge log pass-bg'>1</span>
+</span>
+<p class="name">@SkipFromNewOrderEntry</p>
+<p class="duration text-sm">1 tests</p>
+</div>
+<div class="test-contents d-none">
+<div class="info">
+<h4>@SkipFromNewOrderEntry</h4>
+<span status="pass" class='badge log pass-bg'>1 passed</span>
+</div>
+<table class='table table-sm mt-4'>
+<thead>
+<tr>
+<th class="status-col">Status</th>
+<th class="timestamp-col">Timestamp</th>
+<th>TestName</th>
+</tr>
+</thead>
+<tbody>
+<tr class="tag-test-status" status="pass">
+<td><span class="badge log pass-bg">Pass</span></td>
+<td>21:37:26 PM</td>
+<td>
+<a href="#" class="linked" test-id='1' id='99'>Skip the creation of order from new order entry page</a>
+<div class="">
+<span class="badge badge-default">Order entry End.Skip the creation of order from new order entry page</span>
 </div>
 </td>
 </tr>
@@ -415,13 +564,13 @@
 <div class="col-md-3">
 <div class="card"><div class="card-body">
 <p class="m-b-0">Started</p>
-<h3>Jan 13, 2025 06:08:54 PM</h3>
+<h3>Jan 13, 2025 09:35:36 PM</h3>
 </div></div>
 </div>
 <div class="col-md-3">
 <div class="card"><div class="card-body">
 <p class="m-b-0">Ended</p>
-<h3>Jan 13, 2025 06:20:17 PM</h3>
+<h3>Jan 13, 2025 09:40:32 PM</h3>
 </div></div>
 </div>
 <div class="col-md-3">
@@ -472,7 +621,7 @@
 </div>
 </div>
 <div class="card-footer">
-<div><small data-tooltip='100%'><b>1</b> scenarios passed</small></div>
+<div><small data-tooltip='100%'><b>3</b> scenarios passed</small></div>
 <div>
 <small data-tooltip='0%'><b>0</b> scenarios failed,
 <b>0</b> skipped, <b data-tooltip='%'>0</b> others
@@ -492,7 +641,7 @@
 </div>
 </div>
 <div class="card-footer">
-<div><small data-tooltip='100%'><b>19</b> steps passed</small></div>
+<div><small data-tooltip='100%'><b>36</b> steps passed</small></div>
 <div>
 <small data-tooltip='0%'><b>0</b> steps failed,
 <b>0</b> skipped, <b data-tooltip='%'>0</b> others
@@ -511,7 +660,7 @@
 </div></div>
 <script>
 var timeline = {
-"Disconnected mode":672.042
+"Order entry End":282.309
 };
 </script>
 <div class="row">
@@ -521,7 +670,23 @@ var timeline = {
 <div class="card-body pb-0 pt-0"><table class="table table-sm table-bordered">
 <thead><tr class="bg-gray"><th>Name</th><th>Passed</th><th>Failed</th><th>Skipped</th><th>Others</th><th>Passed %</th></tr></thead><tbody>
 <tr>
-<td>@DMDeleteProductFromCart</td>
+<td>@CancelAndSkipDisabled</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>100%</td>
+</tr>
+<tr>
+<td>@RemoveSkipOrder</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>100%</td>
+</tr>
+<tr>
+<td>@SkipFromNewOrderEntry</td>
 <td>1</td>
 <td>0</td>
 <td>0</td>
@@ -564,13 +729,13 @@ failParent: 0,
 warningParent: 0,
 skipParent: 0,
 childCount: 5,
-passChild: 1,
+passChild: 3,
 failChild: 0,
 warningChild: 0,
 skipChild: 0,
 infoChild: 0,
 grandChildCount: 5,
-passGrandChild: 19,
+passGrandChild: 36,
 failGrandChild: 0,
 warningGrandChild: 0,
 skipGrandChild: 0,
