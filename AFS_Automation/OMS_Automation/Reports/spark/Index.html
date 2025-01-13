@@ -35,7 +35,7 @@
 <a href="#"><span class="badge badge-primary">Test execution report</span></a>
 </li>
 <li class="m-r-10">
-<a href="#"><span class="badge badge-primary">Jan 13, 2025 12:02:04 PM</span></a>
+<a href="#"><span class="badge badge-primary">Jan 13, 2025 06:08:54 PM</span></a>
 </li>
 </ul>
 </div>
@@ -79,7 +79,7 @@
 <li class="dropdown">
 <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-tag"></i></a>
 <ul id="tag-toggle" class="dropdown-menu dropdown-md p-v-0">
-<a class="dropdown-item" href="#">@LabelChange</a>
+<a class="dropdown-item" href="#">@DMDeleteProductFromCart</a>
 </ul>
 </li>
 </ul>
@@ -90,9 +90,9 @@
           tag=""
           device="">
           <div class="test-detail">
-            <p class="name">Admin setting</p>
+            <p class="name">Disconnected mode</p>
             <p class="text-sm">
-              <span>12:02:16 PM</span> / <span>00:03:52:769</span>
+              <span>6:09:05 PM</span> / <span>00:11:12:042</span>
               <span class="badge pass-bg log float-right">Pass</span>
             </p>
           </div>
@@ -100,99 +100,250 @@
 <div class="detail-head">
 <div class="p-v-10">
 <div class="info">
-<h5 class="test-status text-pass">Admin setting</h5>
-<span class='badge badge-success'>01.13.2025 12:02:16 PM</span>
-<span class='badge badge-danger'>01.13.2025 12:06:09 PM</span>
-<span class='badge badge-default'>00:03:52:769</span>
+<h5 class="test-status text-pass">Disconnected mode</h5>
+<span class='badge badge-success'>01.13.2025 6:09:05 PM</span>
+<span class='badge badge-danger'>01.13.2025 6:20:17 PM</span>
+<span class='badge badge-default'>00:11:12:042</span>
 &middot; <span class='uri-anchor badge badge-default'>#test-id=1</span>
 <span class='badge badge-default pointer float-right ml-1 et'><i class="fa fa-chevron-down"></i></span>
 <span class='badge badge-default pointer float-right ct'><i class="fa fa-chevron-up"></i></span>
 </div>
-<div class="m-t-10 m-l-5"> Verifying Admin setting features for Navigation menu bar</div>
+<div class="m-t-10 m-l-5"> Used for Performing different operations in disconnected mode</div>
 </div>
 </div>
 <div class="accordion mt-4">
   <div class="card">
     <div class="card-header" role="tab">
       <div class="card-title">
-        <div class="node" id="2"><span class="badge log pass-bg mr-2">Pass</span>Test scenario to change label in Navigation menu</div>
+        <div class="node" id="2"><span class="badge log pass-bg mr-2">Pass</span>Test scenario for navigating to catalog tab, and delete product from cart</div>
       </div>
     </div>
-        <div class="scenario_outline collapse">
-            <div class="card-body l1">
-              <div class="card-header">
-                <div class="card-title outline-child">
-                  <div class="node" id="3"><span class="badge log pass-bg mr-2">Pass</span>Test scenario to change label in Navigation menu</div>
-                </div>
-              </div>
-              <div class="card-body mt-3 collapse">
-                  <div class="step pass-bg">
-                    <span>Given User enters URL and is on login page and entered credentials for Admin setting</span>
+        <div class="collapse">
+          <div class="card-body">
+              <div class="step pass-bg" title="stepDefination_DSD_OMS.DiconnectModePageSteps.DMOEPageStep.user_enters_url_and_is_on_login_page_and_entered_credentialsForDM()">
+                <span>Given User enters URL and is on login page and entered credentials for DM</span>
       <div>SIGNIN BUTTON CLICKED
       </div>
       <div>
       </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>When User is on Home Page for Admin setting</span>
-      <div>ADMIN PAGE HAS BEEN FOUND
+              </div>
+              <div class="step pass-bg" title="stepDefination_DSD_OMS.DiconnectModePageSteps.DMOEPageStep.user_is_on_home_pageForDM()">
+                <span>When User is on Home Page for DM</span>
+      <div>ADMIN PAGE OR ORDER ENTRY PAGE HAS BEEN FOUND
       </div>
       <div>
       </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>Then User Clicks on Permissions by drop down to select Customer Account#</span>
-      <div>COMPANY HAS BEEN SELECTED
+              </div>
+              <div class="step pass-bg" title="stepDefination_DSD_OMS.DiconnectModePageSteps.DMOEPageStep.user_navigate_to_client_sideForDM()">
+                <span>Then User navigate to Client side for DM</span>
+      <div>USER ICON FOUND
       </div>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>Given User is on Home Page for Admin setting to select Admin option</span>
-      <div>ADMIN PAGE HAS BEEN FOUND
-      </div>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>Then User refreshes page Clicks on Permissions by drop down to select Customer Account# grid for WebOrder</span>
-      <div>ADMIN PAGE HAS BEEN FOUND
-      </div>
-      <div>YOU WILL BE SELECTING COMPANY NOW
-      </div>
-      <div>COMPANY HAS BEEN SELECTED
-      </div>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>And User should enter menu "Navigation" in search bar to navigate to Authorized Products</span>
       <div>IN ADMIN PAGE
       </div>
       <div>
       </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>Then User selects menu under web order menu label</span>
-      <div>LABEL SELECTED FOR CHANGING LABEL IS Orders
-      </div>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>And User changes the label name and verifies that label has been changed to new label name</span>
-      <div>NEW LABEL NAME GIVEN IS Orders_Test
-      </div>
-      <div>
-      </div>
-                  </div>
-                  <div class="step pass-bg">
-                    <span>Then User resets the label name to previous label</span>
-      <div>
-      </div>
-                  </div>
               </div>
-            </div>
+              <div class="step pass-bg" title="stepDefination_DSD_OMS.DiconnectModePageSteps.DMOEPageStep.user_should_select_order_entry_tabForDM()">
+                <span>Then User should select Order Entry tab for DM</span>
+      <div>https://autodsd.afsi.com/ClientPortal/Apps/cpOrderEntry.html?p=Km530c8XSlYiXYABAQY6Y6JAChTfYaSYca92kMk0eI9TOeNnC6%2bd9w%3d%3d
+      </div>
+      <div>NAVIGATED TO ORDER ENTRY PAGE
+      </div>
+      <div>
+      </div>
+              </div>
+              <div class="step pass-bg" title="stepDefination_DSD_OMS.DiconnectModePageSteps.DMOEPageStep.userShouldBeInOrderEntryPage()">
+                <span>Given User should be in Order entry page</span>
+      <div>NAVIGATED TO ORDER ENTRY PAGE
+      </div>
+      <div>
+      </div>
+              </div>
+              <div class="step pass-bg" title="stepDefination_DSD_OMS.DiconnectModePageSteps.DMOEPageStep.userClicksOnNetworkSymbolAndClickOnToggleButtonToNavigateToDisconnectedMode()">
+                <span>When User Clicks on network symbol and click on toggle button to navigate to disconnected mode</span>
+      <div>
+      </div>
+              </div>
+              <div class="step pass-bg" title="stepDefination_DSD_OMS.DiconnectModePageSteps.DMOEPageStep.thenUserSelectsGoOfflineOptionInDisconnectedModePopup()">
+                <span>And Then User selects Go offline option in Disconnected mode popup</span>
+      <div>
+      </div>
+              </div>
+              <div class="step pass-bg" title="stepDefination_DSD_OMS.DiconnectModePageSteps.DMOEPageStep.userShouldGetCustomerAccountPopup()">
+                <span>Then User should get Customer account# popup</span>
+      <div>
+      </div>
+              </div>
+              <div class="step pass-bg" title="stepDefination_DSD_OMS.DiconnectModePageSteps.DMOEPageStep.userShouldSelectCustomerAccountFromPopupAndSelectTheDeliveryDateFromPopupWaitTillSynchronized()">
+                <span>And User should select Customer Account# from popup and select the delivery date from popup wait till synchronized</span>
+      <div>DELIVERY DATE POPUP HAS BEEN FOUND
+      </div>
+      <div>DELIVERY DATE HAS BEEN SELECTED
+      </div>
+      <div>
+      </div>
+              </div>
+              <div class="step pass-bg" title="stepDefination_DSD_OMS.DiconnectModePageSteps.DMOEPageStep.userMustBeOnOrderEntryPageInDisconnectedMode()">
+                <span>Then User must be on Order Entry Page in disconnected mode</span>
+      <div>USER IS ON DISCONNECTED MODE
+      </div>
+      <div>DELIVERY DATE SELECTED FOR DISCONNECTED MODE IS null
+      </div>
+      <div>
+      </div>
+              </div>
+              <div class="step pass-bg" title="stepDefination_DSD_OMS.CatalogPageSteps.CatalogPageStep.user_should_navigate_to_catalog_tab()">
+                <span>And User should navigate to Catalog tab</span>
+      <div>CATALOG PAGE HAS BEEN FOUND
+      </div>
+      <div>https://autodsd.afsi.com/ClientPortal/Apps/cpProductCatalog.html?p=Km530c8XSlYiXYABAQY6Y6JAChTfYaSYca92kMk0eI9TOeNnC6%2bd9w%3d%3d
+      </div>
+      <div>https://autodsd.afsi.com/ClientPortal/Apps/cpProductCatalog.html?p=Km530c8XSlYiXYABAQY6Y6JAChTfYaSYca92kMk0eI9TOeNnC6%2bd9w%3d%3d
+      </div>
+      <div>https://autodsd.afsi.com/ClientPortal/Apps/cpProductCatalog.html?p=Km530c8XSlYiXYABAQY6Y6JAChTfYaSYca92kMk0eI9TOeNnC6%2bd9w%3d%3d
+      </div>
+      <div>USER IS ON CATALOG PAGE
+      </div>
+      <div>
+      </div>
+              </div>
+              <div class="step pass-bg" title="stepDefination_DSD_OMS.CatalogPageSteps.CatalogPageStep.user_should_click_on_reset_filter_button_and_all_the_products_should_displayed_in_card_view_in_catalog_page()">
+                <span>And User should click on Reset filter button and all the products should displayed in Card view in Catalog page</span>
+      <div>CARD VIEW IN CATALOG HAS BEEN SELECTED
+      </div>
+      <div>
+      </div>
+              </div>
+              <div class="step pass-bg" title="stepDefination_DSD_OMS.CatalogPageSteps.CatalogPageStep.user_enters_product_in_search_bar_and_enters_qty(io.cucumber.datatable.DataTable)">
+                <span>Then User enters Product# in Search bar and enters Qty</span>
+      <div><table class='markup-table table '><tr><td>1</td><td>1</td></tr><tr><td>2</td><td>1</td></tr><tr><td>2</td><td>2</td></tr></table>
+      </div>
+      <div>PRODUCT SEARCHED IS 00000001
+      </div>
+      <div>QTY ENTERE IS 1
+      </div>
+      <div>PRODUCT SEARCHED IS 00000002
+      </div>
+      <div>QTY ENTERE IS 2
+      </div>
+      <div>PRODUCT SEARCHED IS 00000003
+      </div>
+      <div>QTY ENTERE IS 2
+      </div>
+      <div>
+      </div>
+              </div>
+              <div class="step pass-bg" title="stepDefination_DSD_OMS.CatalogPageSteps.CatalogPageStep.user_click_on_cart_in_catalog_and_click_on_gotocart_before_that_delete_product_from_popup()">
+                <span>Then User click on cart in catalog and click on Gotocart, before that Delete Product from popup</span>
+      <div>CART ICON HAS BEEN CLICKED
+      </div>
+      <div>PRODUCTS BEFORE DELETING FROM SHOPPING CART: 
+      </div>
+      <div>PRODUCT FOUND IN SHOPPING CART: DIET COKE - CANS 24/12 OZ
+      </div>
+      <div>PRODUCT FOUND IN SHOPPING CART: LA CROIX CRAN_RASBERRY 24 CANS
+      </div>
+      <div>PRODUCT FOUND IN SHOPPING CART: SPRITE -CANS 24/12OZ
+      </div>
+      <div>PRODUCT REMOVED FROM DROP DOWN IS DIET COKE - CANS 24/12 OZ
+      </div>
+      <div>PRODUCTS AFTER DELETING FROM SHOPPING CART: 
+      </div>
+      <div>PRODUCT FOUND IN SHOPPING CART: LA CROIX CRAN_RASBERRY 24 CANS
+      </div>
+      <div>PRODUCT FOUND IN SHOPPING CART: SPRITE -CANS 24/12OZ
+      </div>
+      <div>CART ITEMS CARD HAS BEEN FOUND
+      </div>
+      <div>CHECKOUT SUMMARY PAGE HAS BEEN FOUND
+      </div>
+      <div>CHECKOUT SUMMARY PAGE HAS BEEN FOUND
+      </div>
+      <div>CLICKED ON BACK BUTTON
+      </div>
+      <div>
+      </div>
+              </div>
+              <div class="step pass-bg" title="stepDefination_DSD_OMS.LoginPageStep.user_should_be_on_new_order_entry_page()">
+                <span>And user should be on New Order entry page</span>
+      <div>
+      </div>
+              </div>
+              <div class="step pass-bg" title="stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.enter_po_for_new_order(io.cucumber.datatable.DataTable)">
+                <span>Then Enter PO# for New order</span>
+      <div><table class='markup-table table '><tr><td>PO123</td></tr></table>
+      </div>
+      <div>NEW ORDER ENTRY PAGE HAS BEEN FOUND
+      </div>
+      <div>PO# ENTERED IS PO123
+      </div>
+      <div>
+      </div>
+              </div>
+              <div class="step pass-bg" title="stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.click_on_next_button()">
+                <span>Then Click on Next button</span>
+      <div>PRODUCT FOUND IN ORDER ARE 
+      </div>
+      <div>00000005
+      </div>
+      <div>00000006
+      </div>
+      <div>10025300
+      </div>
+      <div>59626700
+      </div>
+      <div>00000001
+      </div>
+      <div>00000002
+      </div>
+      <div>00000003
+      </div>
+      <div>00000004
+      </div>
+      <div>00000008
+      </div>
+      <div>00112882
+      </div>
+      <div>00135444
+      </div>
+      <div>00137682
+      </div>
+      <div>00445006
+      </div>
+      <div>10002900
+      </div>
+      <div>10010800
+      </div>
+      <div>10024590
+      </div>
+      <div>NEXT BUTTON CLICKED
+      </div>
+      <div>PAYMENT METHOD HAS BEEN SELECTED
+      </div>
+      <div>FIRST PAYMENT OPTION HAS BEEN SELECTED
+      </div>
+      <div>CLICKED ON NEXT BUTTON
+      </div>
+      <div>
+      </div>
+              </div>
+              <div class="step pass-bg" title="stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.click_on_submit_order_button()">
+                <span>Then Click on SubmitOrder button</span>
+      <div>ORDER ENTRY SUMMARY PAGE HAS BEEN FOUND
+      </div>
+      <div>SUBMIT BUTTON IN ORDER SUMMARY PAGE HAS BEEN CLICKED
+      </div>
+      <div>
+      </div>
+              </div>
+              <div class="step pass-bg" title="stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.user_should_be_navigated_to_order_entry_page()">
+                <span>Then User should be navigated to Order Entry page</span>
+      <div>ORDER ENTRY PAGE HAS BEEN FOUND
+      </div>
+      <div>
+      </div>
+              </div>
+          </div>
         </div>
   </div>
 </div>
@@ -220,12 +371,12 @@
 <span class="meta">
 <span class='badge log pass-bg'>1</span>
 </span>
-<p class="name">@LabelChange</p>
+<p class="name">@DMDeleteProductFromCart</p>
 <p class="duration text-sm">1 tests</p>
 </div>
 <div class="test-contents d-none">
 <div class="info">
-<h4>@LabelChange</h4>
+<h4>@DMDeleteProductFromCart</h4>
 <span status="pass" class='badge log pass-bg'>1 passed</span>
 </div>
 <table class='table table-sm mt-4'>
@@ -239,11 +390,11 @@
 <tbody>
 <tr class="tag-test-status" status="pass">
 <td><span class="badge log pass-bg">Pass</span></td>
-<td>12:02:16 PM</td>
+<td>18:09:05 PM</td>
 <td>
-<a href="#" class="linked" test-id='1' id='3'>Test scenario to change label in Navigation menu</a>
+<a href="#" class="linked" test-id='1' id='2'>Test scenario for navigating to catalog tab, and delete product from cart</a>
 <div class="">
-<span class="badge badge-default">Admin setting.Test scenario to change label in Navigation menu</span>
+<span class="badge badge-default">Disconnected mode.Test scenario for navigating to catalog tab, and delete product from cart</span>
 </div>
 </td>
 </tr>
@@ -264,13 +415,13 @@
 <div class="col-md-3">
 <div class="card"><div class="card-body">
 <p class="m-b-0">Started</p>
-<h3>Jan 13, 2025 12:02:04 PM</h3>
+<h3>Jan 13, 2025 06:08:54 PM</h3>
 </div></div>
 </div>
 <div class="col-md-3">
 <div class="card"><div class="card-body">
 <p class="m-b-0">Ended</p>
-<h3>Jan 13, 2025 12:06:10 PM</h3>
+<h3>Jan 13, 2025 06:20:17 PM</h3>
 </div></div>
 </div>
 <div class="col-md-3">
@@ -341,7 +492,7 @@
 </div>
 </div>
 <div class="card-footer">
-<div><small data-tooltip='100%'><b>9</b> steps passed</small></div>
+<div><small data-tooltip='100%'><b>19</b> steps passed</small></div>
 <div>
 <small data-tooltip='0%'><b>0</b> steps failed,
 <b>0</b> skipped, <b data-tooltip='%'>0</b> others
@@ -360,7 +511,7 @@
 </div></div>
 <script>
 var timeline = {
-"Admin setting":232.769
+"Disconnected mode":672.042
 };
 </script>
 <div class="row">
@@ -370,7 +521,7 @@ var timeline = {
 <div class="card-body pb-0 pt-0"><table class="table table-sm table-bordered">
 <thead><tr class="bg-gray"><th>Name</th><th>Passed</th><th>Failed</th><th>Skipped</th><th>Others</th><th>Passed %</th></tr></thead><tbody>
 <tr>
-<td>@LabelChange</td>
+<td>@DMDeleteProductFromCart</td>
 <td>1</td>
 <td>0</td>
 <td>0</td>
@@ -419,7 +570,7 @@ warningChild: 0,
 skipChild: 0,
 infoChild: 0,
 grandChildCount: 5,
-passGrandChild: 9,
+passGrandChild: 19,
 failGrandChild: 0,
 warningGrandChild: 0,
 skipGrandChild: 0,

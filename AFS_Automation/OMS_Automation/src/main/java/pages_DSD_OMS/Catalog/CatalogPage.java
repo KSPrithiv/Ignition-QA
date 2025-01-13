@@ -486,7 +486,6 @@ public class CatalogPage
                     .ignoring(NoSuchElementException.class);
             wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
 
-
             //Click on search Index button
             WebEle=HelpersMethod.FindByElement(driver,"xpath","//span[@datatestid='searchBarSearchBtn']");
             HelpersMethod.ClickBut(driver,WebEle,10000);
@@ -528,6 +527,9 @@ public class CatalogPage
         try
         {
             Thread.sleep(1000);
+            new WebDriverWait(driver,Duration.ofMillis(10000)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class='card-view']"))));
+            new WebDriverWait(driver,Duration.ofMillis(10000)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='card-view']")));
+
             WebEle = HelpersMethod.FindByElement(driver, "xpath", "//input[contains(@id,'ProductGridItemQuantityContainer')]");
             HelpersMethod.ScrollElement(driver,WebEle);
 
@@ -563,6 +565,10 @@ public class CatalogPage
             {
                 HelpersMethod.waitTillLoadingPage(driver);
             }
+
+            new WebDriverWait(driver,Duration.ofMillis(10000)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class='card-view']"))));
+            new WebDriverWait(driver,Duration.ofMillis(10000)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='card-view']")));
+
             //Click on Add to cart button
             new WebDriverWait(driver,Duration.ofMillis(20000)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[contains(@id,'addCartBtn')]")));
             WebElement addToCart = HelpersMethod.FindByElement(driver, "xpath", "//button[contains(@id,'addCartBtn')]");
@@ -617,6 +623,10 @@ public class CatalogPage
                         .ignoring(NoSuchElementException.class);
                 wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
             }
+
+            new WebDriverWait(driver,Duration.ofMillis(10000)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class='card-view']"))));
+            new WebDriverWait(driver,Duration.ofMillis(10000)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='card-view']")));
+
             Assert.assertEquals(exists,true);
         }
         catch (Exception e){}
@@ -780,7 +790,6 @@ public class CatalogPage
     public void DeleteProd_GotoCartClick()
     {
         exists=false;
-        WebElement WebEle;
         try
         {
             Actions act = new Actions(driver);
@@ -804,6 +813,8 @@ public class CatalogPage
             wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
 
             exists=true;
+            new WebDriverWait(driver,Duration.ofMillis(10000)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class='shopping-cart-popup-content']/ancestor::div[@class='k-child-animation-container']"))));
+            new WebDriverWait(driver,Duration.ofMillis(10000)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='shopping-cart-popup-content']/ancestor::div[@class='k-child-animation-container']")));
             HelpersMethod.WaitElementPresent(driver,"xpath","//div[contains(text(),'Shopping cart')]/ancestor::div[@class='popup-content']",10000);
             Assert.assertEquals(exists,true);
         }

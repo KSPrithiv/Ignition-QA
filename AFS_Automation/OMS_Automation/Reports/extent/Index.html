@@ -49,7 +49,7 @@
 		<!-- nav-right -->
 		<ul id='nav-mobile' class='right hide-on-med-and-down nav-right'>
 			<a href='#!'>
-			<span class='label blue darken-3 suite-start-time'>Jan 13, 2025 12:02:04 PM</span>
+			<span class='label blue darken-3 suite-start-time'>Jan 13, 2025 06:08:54 PM</span>
 			</a>
 		</ul>
 	</div>
@@ -76,7 +76,7 @@
 				<i class='material-icons'>local_offer</i> Category
 				</a>
 				<ul id='category-toggle' class='dropdown-content'>
-					<li><a href='#'>@LabelChange</a></li>
+					<li><a href='#'>@DMDeleteProductFromCart</a></li>
 					<li class='divider'></li>
 					<li class='clear'><a href='#!' clear='true'>Clear Filters</a></li>
 				</ul>
@@ -157,7 +157,7 @@
                 </div>
                 <div class='block text-small'>
                     <span class='tooltipped' data-position='top' data-tooltip='100%'>
-                    <span class='strong'>9</span> steps passed</span>
+                    <span class='strong'>19</span> steps passed</span>
                 </div>
                 <div class='block text-small'>
                     <span class='strong tooltipped' data-position='top' data-tooltip='0%'>
@@ -186,8 +186,8 @@
 			<ul id='test-collection' class='test-collection'>
 				<li class='test displayed active has-leaf pass' status='pass' bdd='true' test-id='1'>
 					<div class='test-heading'>
-						<span class='test-name'>Admin setting</span>
-						<span class='test-time'>Jan 13, 2025 12:02:16 PM</span>
+						<span class='test-name'>Disconnected mode</span>
+						<span class='test-time'>Jan 13, 2025 06:09:05 PM</span>
 						<span class='test-status right pass'>Pass</span>
 					</div>
 					<div class='test-content hide'>
@@ -197,74 +197,179 @@
 	<a class="btn-floating waves-effect waves-light skip blue" title="skip"><i class='material-icons'>redo</i></a>
 	<a class="btn-floating waves-effect waves-light clear grey" title="clear"><i class='material-icons'>clear</i></a>
 </div>
-	<div class='test-desc'>  Verifying Admin setting features for Navigation menu bar</div>
+	<div class='test-desc'>  Used for Performing different operations in disconnected mode</div>
 
-<div class='scenario outline node' test-id='2' status='pass'>
+<div class='scenario node' test-id='2' status='pass'>
 
-	<span class='duration right label'>00 03 52.755</span>
+	<span class='duration right label'>00 11 12.027</span>
 	<div class="bdd-test">
-		<div class="scenario-name"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span> Scenario Outline: Test scenario to change label in Navigation menu</div>
+		<div class="scenario-name"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span> Scenario: Test scenario for navigating to catalog tab, and delete product from cart</div>
 	</div>
 	
-		<div class='node-desc'><br><br><table class='markup-table table '><tr><td>Option</td></tr><tr><td>Navigation</td></tr></table></div>
 	
+		<div class='category-list'>
+				<span class='category label'>@DMDeleteProductFromCart</span>
+		</div>
 	
 	<ul class='steps'>
-		<li test-id='3' class='node scenario Pass' status='Pass'>
-			<div class="step-name" title="()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Test scenario to change label in Navigation menu</div>
+		<li test-id='89' class='node given Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.DiconnectModePageSteps.DMOEPageStep.user_enters_url_and_is_on_login_page_and_entered_credentialsForDM())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Given User enters URL and is on login page and entered credentials for DM</div>
 
-				<div class='category-list'>
-						<span class='category label'>@LabelChange</span>
-				</div>
 
-			<ul class='gc steps'>
-				<li test-id='90' class='gc given Pass' status='Pass'>
-					<h6 class="step-name" title="stepDefination_DSD_OMS.WebOrderingPageSteps.RestrictedProductsPageStep.userEntersUrlAndIsOnLoginPageAndEnteredCredentialsForAdminSetting()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Given User enters URL and is on login page and entered credentials for Admin setting</h6>
+					<div class="node-step">SIGNIN BUTTON CLICKED</div>
+		</li>
+		<li test-id='90' class='node when Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.DiconnectModePageSteps.DMOEPageStep.user_is_on_home_pageForDM())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>When User is on Home Page for DM</div>
 
-							<div class="node-step">SIGNIN BUTTON CLICKED</div>
-				</li>
-				<li test-id='91' class='gc when Pass' status='Pass'>
-					<h6 class="step-name" title="stepDefination_DSD_OMS.WebOrderingPageSteps.RestrictedProductsPageStep.userIsOnHomePageForAdminSetting()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>When User is on Home Page for Admin setting</h6>
 
-							<div class="node-step">ADMIN PAGE HAS BEEN FOUND</div>
-				</li>
-				<li test-id='92' class='gc then Pass' status='Pass'>
-					<h6 class="step-name" title="stepDefination_DSD_OMS.WebOrderingPageSteps.RestrictedProductsPageStep.userClicksOnPermissionsByDropDownToSelectCustomerAccount()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User Clicks on Permissions by drop down to select Customer Account#</h6>
+					<div class="node-step">ADMIN PAGE OR ORDER ENTRY PAGE HAS BEEN FOUND</div>
+		</li>
+		<li test-id='91' class='node then Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.DiconnectModePageSteps.DMOEPageStep.user_navigate_to_client_sideForDM())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User navigate to Client side for DM</div>
 
-							<div class="node-step">COMPANY HAS BEEN SELECTED</div>
-				</li>
-				<li test-id='93' class='gc given Pass' status='Pass'>
-					<h6 class="step-name" title="stepDefination_DSD_OMS.WebOrderingPageSteps.RestrictedProductsPageStep.userIsOnHomePageForAdminSettingToSelectAdminOption()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Given User is on Home Page for Admin setting to select Admin option</h6>
 
-							<div class="node-step">ADMIN PAGE HAS BEEN FOUND</div>
-				</li>
-				<li test-id='94' class='gc then Pass' status='Pass'>
-					<h6 class="step-name" title="stepDefination_DSD_OMS.WebOrderingPageSteps.FeaturedProductsPageStep.userRefreshesPageClicksOnPermissionsByDropDownToSelectCustomerAccountGridForWebOrder()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User refreshes page Clicks on Permissions by drop down to select Customer Account# grid for WebOrder</h6>
+					<div class="node-step">USER ICON FOUND</div>
+					<div class="node-step">IN ADMIN PAGE</div>
+		</li>
+		<li test-id='92' class='node then Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.DiconnectModePageSteps.DMOEPageStep.user_should_select_order_entry_tabForDM())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User should select Order Entry tab for DM</div>
 
-							<div class="node-step">ADMIN PAGE HAS BEEN FOUND</div>
-							<div class="node-step">YOU WILL BE SELECTING COMPANY NOW</div>
-							<div class="node-step">COMPANY HAS BEEN SELECTED</div>
-				</li>
-				<li test-id='95' class='gc and Pass' status='Pass'>
-					<h6 class="step-name" title="stepDefination_DSD_OMS.WebOrderingPageSteps.RestrictedProductsPageStep.userShouldEnterMenuInSearchBarToNavigateToAuthorizedProducts(java.lang.String)"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>And User should enter menu "Navigation" in search bar to navigate to Authorized Products</h6>
 
-							<div class="node-step">IN ADMIN PAGE</div>
-				</li>
-				<li test-id='96' class='gc then Pass' status='Pass'>
-					<h6 class="step-name" title="stepDefination_DSD_OMS.WebOrderingPageSteps.NavigationPageStep.userSelectsMenuUnderWebOrderMenuLabel()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User selects menu under web order menu label</h6>
+					<div class="node-step">https://autodsd.afsi.com/ClientPortal/Apps/cpOrderEntry.html?p=Km530c8XSlYiXYABAQY6Y6JAChTfYaSYca92kMk0eI9TOeNnC6%2bd9w%3d%3d</div>
+					<div class="node-step">NAVIGATED TO ORDER ENTRY PAGE</div>
+		</li>
+		<li test-id='93' class='node given Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.DiconnectModePageSteps.DMOEPageStep.userShouldBeInOrderEntryPage())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Given User should be in Order entry page</div>
 
-							<div class="node-step">LABEL SELECTED FOR CHANGING LABEL IS Orders</div>
-				</li>
-				<li test-id='97' class='gc and Pass' status='Pass'>
-					<h6 class="step-name" title="stepDefination_DSD_OMS.WebOrderingPageSteps.NavigationPageStep.userChangesTheLabelNameAndVerifiesThatLabelHasBeenChangedToNewLabelName()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>And User changes the label name and verifies that label has been changed to new label name</h6>
 
-							<div class="node-step">NEW LABEL NAME GIVEN IS Orders_Test</div>
-				</li>
-				<li test-id='98' class='gc then Pass' status='Pass'>
-					<h6 class="step-name" title="stepDefination_DSD_OMS.WebOrderingPageSteps.NavigationPageStep.userResetsTheLabelNameToPreviousLabel()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User resets the label name to previous label</h6>
+					<div class="node-step">NAVIGATED TO ORDER ENTRY PAGE</div>
+		</li>
+		<li test-id='94' class='node when Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.DiconnectModePageSteps.DMOEPageStep.userClicksOnNetworkSymbolAndClickOnToggleButtonToNavigateToDisconnectedMode())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>When User Clicks on network symbol and click on toggle button to navigate to disconnected mode</div>
 
-				</li>
-			</ul>
+
+		</li>
+		<li test-id='95' class='node and Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.DiconnectModePageSteps.DMOEPageStep.thenUserSelectsGoOfflineOptionInDisconnectedModePopup())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>And Then User selects Go offline option in Disconnected mode popup</div>
+
+
+		</li>
+		<li test-id='96' class='node then Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.DiconnectModePageSteps.DMOEPageStep.userShouldGetCustomerAccountPopup())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User should get Customer account# popup</div>
+
+
+		</li>
+		<li test-id='97' class='node and Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.DiconnectModePageSteps.DMOEPageStep.userShouldSelectCustomerAccountFromPopupAndSelectTheDeliveryDateFromPopupWaitTillSynchronized())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>And User should select Customer Account# from popup and select the delivery date from popup wait till synchronized</div>
+
+
+					<div class="node-step">DELIVERY DATE POPUP HAS BEEN FOUND</div>
+					<div class="node-step">DELIVERY DATE HAS BEEN SELECTED</div>
+		</li>
+		<li test-id='98' class='node then Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.DiconnectModePageSteps.DMOEPageStep.userMustBeOnOrderEntryPageInDisconnectedMode())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User must be on Order Entry Page in disconnected mode</div>
+
+
+					<div class="node-step">USER IS ON DISCONNECTED MODE</div>
+					<div class="node-step">DELIVERY DATE SELECTED FOR DISCONNECTED MODE IS null</div>
+		</li>
+		<li test-id='99' class='node and Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.CatalogPageSteps.CatalogPageStep.user_should_navigate_to_catalog_tab())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>And User should navigate to Catalog tab</div>
+
+
+					<div class="node-step">CATALOG PAGE HAS BEEN FOUND</div>
+					<div class="node-step">https://autodsd.afsi.com/ClientPortal/Apps/cpProductCatalog.html?p=Km530c8XSlYiXYABAQY6Y6JAChTfYaSYca92kMk0eI9TOeNnC6%2bd9w%3d%3d</div>
+					<div class="node-step">https://autodsd.afsi.com/ClientPortal/Apps/cpProductCatalog.html?p=Km530c8XSlYiXYABAQY6Y6JAChTfYaSYca92kMk0eI9TOeNnC6%2bd9w%3d%3d</div>
+					<div class="node-step">https://autodsd.afsi.com/ClientPortal/Apps/cpProductCatalog.html?p=Km530c8XSlYiXYABAQY6Y6JAChTfYaSYca92kMk0eI9TOeNnC6%2bd9w%3d%3d</div>
+					<div class="node-step">USER IS ON CATALOG PAGE</div>
+		</li>
+		<li test-id='100' class='node and Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.CatalogPageSteps.CatalogPageStep.user_should_click_on_reset_filter_button_and_all_the_products_should_displayed_in_card_view_in_catalog_page())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>And User should click on Reset filter button and all the products should displayed in Card view in Catalog page</div>
+
+
+					<div class="node-step">CARD VIEW IN CATALOG HAS BEEN SELECTED</div>
+		</li>
+		<li test-id='101' class='node then Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.CatalogPageSteps.CatalogPageStep.user_enters_product_in_search_bar_and_enters_qty(io.cucumber.datatable.DataTable))"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User enters Product# in Search bar and enters Qty</div>
+
+
+					<div class="node-step"><table class='markup-table table '><tr><td>1</td><td>1</td></tr><tr><td>2</td><td>1</td></tr><tr><td>2</td><td>2</td></tr></table></div>
+					<div class="node-step">PRODUCT SEARCHED IS 00000001</div>
+					<div class="node-step">QTY ENTERE IS 1</div>
+					<div class="node-step">PRODUCT SEARCHED IS 00000002</div>
+					<div class="node-step">QTY ENTERE IS 2</div>
+					<div class="node-step">PRODUCT SEARCHED IS 00000003</div>
+					<div class="node-step">QTY ENTERE IS 2</div>
+		</li>
+		<li test-id='102' class='node then Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.CatalogPageSteps.CatalogPageStep.user_click_on_cart_in_catalog_and_click_on_gotocart_before_that_delete_product_from_popup())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User click on cart in catalog and click on Gotocart, before that Delete Product from popup</div>
+
+
+					<div class="node-step">CART ICON HAS BEEN CLICKED</div>
+					<div class="node-step">PRODUCTS BEFORE DELETING FROM SHOPPING CART: </div>
+					<div class="node-step">PRODUCT FOUND IN SHOPPING CART: DIET COKE - CANS 24/12 OZ</div>
+					<div class="node-step">PRODUCT FOUND IN SHOPPING CART: LA CROIX CRAN_RASBERRY 24 CANS</div>
+					<div class="node-step">PRODUCT FOUND IN SHOPPING CART: SPRITE -CANS 24/12OZ</div>
+					<div class="node-step">PRODUCT REMOVED FROM DROP DOWN IS DIET COKE - CANS 24/12 OZ</div>
+					<div class="node-step">PRODUCTS AFTER DELETING FROM SHOPPING CART: </div>
+					<div class="node-step">PRODUCT FOUND IN SHOPPING CART: LA CROIX CRAN_RASBERRY 24 CANS</div>
+					<div class="node-step">PRODUCT FOUND IN SHOPPING CART: SPRITE -CANS 24/12OZ</div>
+					<div class="node-step">CART ITEMS CARD HAS BEEN FOUND</div>
+					<div class="node-step">CHECKOUT SUMMARY PAGE HAS BEEN FOUND</div>
+					<div class="node-step">CHECKOUT SUMMARY PAGE HAS BEEN FOUND</div>
+					<div class="node-step">CLICKED ON BACK BUTTON</div>
+		</li>
+		<li test-id='103' class='node and Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.LoginPageStep.user_should_be_on_new_order_entry_page())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>And user should be on New Order entry page</div>
+
+
+		</li>
+		<li test-id='104' class='node then Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.enter_po_for_new_order(io.cucumber.datatable.DataTable))"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then Enter PO# for New order</div>
+
+
+					<div class="node-step"><table class='markup-table table '><tr><td>PO123</td></tr></table></div>
+					<div class="node-step">NEW ORDER ENTRY PAGE HAS BEEN FOUND</div>
+					<div class="node-step">PO# ENTERED IS PO123</div>
+		</li>
+		<li test-id='105' class='node then Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.click_on_next_button())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then Click on Next button</div>
+
+
+					<div class="node-step">PRODUCT FOUND IN ORDER ARE </div>
+					<div class="node-step">00000005</div>
+					<div class="node-step">00000006</div>
+					<div class="node-step">10025300</div>
+					<div class="node-step">59626700</div>
+					<div class="node-step">00000001</div>
+					<div class="node-step">00000002</div>
+					<div class="node-step">00000003</div>
+					<div class="node-step">00000004</div>
+					<div class="node-step">00000008</div>
+					<div class="node-step">00112882</div>
+					<div class="node-step">00135444</div>
+					<div class="node-step">00137682</div>
+					<div class="node-step">00445006</div>
+					<div class="node-step">10002900</div>
+					<div class="node-step">10010800</div>
+					<div class="node-step">10024590</div>
+					<div class="node-step">NEXT BUTTON CLICKED</div>
+					<div class="node-step">PAYMENT METHOD HAS BEEN SELECTED</div>
+					<div class="node-step">FIRST PAYMENT OPTION HAS BEEN SELECTED</div>
+					<div class="node-step">CLICKED ON NEXT BUTTON</div>
+		</li>
+		<li test-id='106' class='node then Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.click_on_submit_order_button())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then Click on SubmitOrder button</div>
+
+
+					<div class="node-step">ORDER ENTRY SUMMARY PAGE HAS BEEN FOUND</div>
+					<div class="node-step">SUBMIT BUTTON IN ORDER SUMMARY PAGE HAS BEEN CLICKED</div>
+		</li>
+		<li test-id='107' class='node then Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.user_should_be_navigated_to_order_entry_page())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User should be navigated to Order Entry page</div>
+
+
+					<div class="node-step">ORDER ENTRY PAGE HAS BEEN FOUND</div>
 		</li>
 	</ul>
 </div>
@@ -312,7 +417,7 @@
 			<ul id='category-collection' class='category-collection'>
 				<li class='category displayed active'>
 					<div class='category-heading'>
-						<span class='category-name'>@LabelChange</span>
+						<span class='category-name'>@DMDeleteProductFromCart</span>
 						<span class='category-status right'>
 						<span class='label pass'>1</span>
 						</span>
@@ -334,8 +439,8 @@
 								</thead>
 								<tbody>
 									<tr>
-										<td>Jan 13, 2025 12:02:16 PM</td>
-										<td class='linked' test-id='3'>Test scenario to change label in Navigation menu</td>
+										<td>Jan 13, 2025 06:09:05 PM</td>
+										<td class='linked' test-id='2'>Test scenario for navigating to catalog tab, and delete product from cart</td>
 										<td><span class='test-status Pass'>Pass</span></td>
 									</tr>
 								</tbody>
@@ -372,25 +477,25 @@
 			<div class='col s2'>
 				<div class='card-panel r'>
 					Steps
-					<div class='panel-lead'>9</div>
+					<div class='panel-lead'>19</div>
 				</div>
 			</div>
 			<div class='col s2'>
 				<div class='card-panel r'>
 					Start
-					<div class='panel-lead'>Jan 13, 2025 12:02:04 PM</div>
+					<div class='panel-lead'>Jan 13, 2025 06:08:54 PM</div>
 				</div>
 			</div>
 			<div class='col s2'>
 				<div class='card-panel r'>
 			 		End
-			 		<div class='panel-lead'>Jan 13, 2025 12:06:10 PM</div>
+			 		<div class='panel-lead'>Jan 13, 2025 06:20:17 PM</div>
 				</div>
 			</div>
 			<div class='col s2'>
 				<div class='card-panel r'>
 					Time Taken
-					<div class='panel-lead'>00 04 05.494</div>
+					<div class='panel-lead'>00 11 23.220</div>
 				</div>
 			</div>
 			<div class='col s4'>
@@ -430,7 +535,7 @@
 							<th>Passed %</th>
 						</tr>
 						<tr>
-							<td>@LabelChange</td>
+							<td>@DMDeleteProductFromCart</td>
 							<td>1</td>
 							<td>0</td>
 							<td>0</td>
@@ -464,8 +569,8 @@
 				warningChild: 0,
 				skipChild: 0,
 				infoChild: 0,
-				grandChildCount: 9,
-				passGrandChild: 9,
+				grandChildCount: 19,
+				passGrandChild: 19,
 				failGrandChild: 0,
 				fatalGrandChild: 0,
 				errorGrandChild: 0,
@@ -477,7 +582,7 @@
 		
 		<script>
 			var timeline = {
-			        "Admin setting":232.769
+			        "Disconnected mode":672.042
 			};
 		</script>
 		
