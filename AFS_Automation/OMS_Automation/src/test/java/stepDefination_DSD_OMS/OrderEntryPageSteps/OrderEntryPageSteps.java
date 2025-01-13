@@ -978,6 +978,7 @@ public class OrderEntryPageSteps
         exists=orderhistory.VerifiyHistoryGrid();
         Assert.assertEquals(exists,true);
         orderhistory.FilterActiveOrder();
+        orderhistory.VerifiyHistoryGrid();
         //Click on first row in the order historhy page
         orderhistory.Click_On_RowIn_OrderHistoryGrid();
     }

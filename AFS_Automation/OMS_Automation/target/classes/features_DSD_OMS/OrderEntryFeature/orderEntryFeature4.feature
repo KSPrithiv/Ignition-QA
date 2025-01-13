@@ -41,9 +41,6 @@ Feature: Order Entry4
       |Order history|
     Then User verifies Order history page and add history Order to order
     And Click on Copy button
-#    Then User should select Note from popup and Order guide from popup
-#    Then Enter PO# for New order
-#      |PO123|
     Then Enter Pro# in Quick Product Entry area
     And Check for Case and Unit input box enabled or not based on that enter value
       |1|1|

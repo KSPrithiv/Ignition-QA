@@ -498,7 +498,7 @@ public class CatalogPageStep
             exists = HelpersMethod.IsExists("//div[contains(text(),'Sorry, no products matched')]", driver);
             if (exists == true)
             {
-                HelpersMethod.ClickBut(driver,HelpersMethod.FindByElement(driver, "xpath", "//span[contains(@class,'search-button')]/*[local-name()='svg']/*[local-name()='path' and contains(@d,'M17')]"),80);
+                HelpersMethod.ClickBut(driver,HelpersMethod.FindByElement(driver, "xpath", "//span[contains(@class,'search-button')]/*[local-name()='svg']/*[local-name()='path' and contains(@d,'M17')]"),10000);
             }
             else if (exists == false)
             {
