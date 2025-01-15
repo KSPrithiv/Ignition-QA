@@ -229,7 +229,7 @@ public class OrderHistoryPage
               i++;
               act1.moveToElement(sta).build().perform();
               statusText=sta.getText();
-              if(statusText.equalsIgnoreCase("ACTIVE")||statusText.equalsIgnoreCase("OPEN ORDER")||statusText.equalsIgnoreCase("DELIVERED"))
+              if(statusText.equalsIgnoreCase("ACTIVE")||statusText.equalsIgnoreCase("OPEN ORDER")||statusText.equalsIgnoreCase("DELIVERED")||statusText.equalsIgnoreCase("ORDER SUBMITTED"))
               {
                   //Read the Order number
                   WebElement OrderNo=HelpersMethod.FindByElement(driver,"xpath","//tr[contains(@class,'k-master-row')]["+i+"]/descendant::button");

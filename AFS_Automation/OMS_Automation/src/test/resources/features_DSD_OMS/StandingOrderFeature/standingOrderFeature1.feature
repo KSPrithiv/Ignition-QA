@@ -65,8 +65,6 @@ Feature: Standing Order1
     And User should click on ok, in All task completed popup
     Then User should navigate back to OE page verify for the order
 
-
-
   @DeleteStandingOrder
   Scenario: Test scenario for deleting all the standing orders which are active and pending
     Given User must be on Order Entry Page to select Standing Order and navigate to standing order

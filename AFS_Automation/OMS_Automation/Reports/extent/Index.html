@@ -49,7 +49,7 @@
 		<!-- nav-right -->
 		<ul id='nav-mobile' class='right hide-on-med-and-down nav-right'>
 			<a href='#!'>
-			<span class='label blue darken-3 suite-start-time'>Jan 13, 2025 09:35:36 PM</span>
+			<span class='label blue darken-3 suite-start-time'>Jan 15, 2025 04:55:58 PM</span>
 			</a>
 		</ul>
 	</div>
@@ -76,9 +76,7 @@
 				<i class='material-icons'>local_offer</i> Category
 				</a>
 				<ul id='category-toggle' class='dropdown-content'>
-					<li><a href='#'>@CancelAndSkipDisabled</a></li>
-					<li><a href='#'>@RemoveSkipOrder</a></li>
-					<li><a href='#'>@SkipFromNewOrderEntry</a></li>
+					<li><a href='#'>@OrderCopyHistory</a></li>
 					<li class='divider'></li>
 					<li class='clear'><a href='#!' clear='true'>Clear Filters</a></li>
 				</ul>
@@ -139,7 +137,7 @@
                 </div>
                 <div class='block text-small'>
                     <span class='tooltipped' data-position='top' data-tooltip='100%'>
-                    <span class='strong'>3</span> scenarios passed</span>
+                    <span class='strong'>1</span> scenarios passed</span>
                 </div>
                 <div class='block text-small'>
                     <span class='strong tooltipped' data-position='top' data-tooltip='0%'>
@@ -159,7 +157,7 @@
                 </div>
                 <div class='block text-small'>
                     <span class='tooltipped' data-position='top' data-tooltip='100%'>
-                    <span class='strong'>36</span> steps passed</span>
+                    <span class='strong'>18</span> steps passed</span>
                 </div>
                 <div class='block text-small'>
                     <span class='strong tooltipped' data-position='top' data-tooltip='0%'>
@@ -188,8 +186,8 @@
 			<ul id='test-collection' class='test-collection'>
 				<li class='test displayed active has-leaf pass' status='pass' bdd='true' test-id='1'>
 					<div class='test-heading'>
-						<span class='test-name'>Order entry End</span>
-						<span class='test-time'>Jan 13, 2025 09:35:48 PM</span>
+						<span class='test-name'>Order Entry</span>
+						<span class='test-time'>Jan 15, 2025 04:56:15 PM</span>
 						<span class='test-status right pass'>Pass</span>
 					</div>
 					<div class='test-content hide'>
@@ -199,17 +197,19 @@
 	<a class="btn-floating waves-effect waves-light skip blue" title="skip"><i class='material-icons'>redo</i></a>
 	<a class="btn-floating waves-effect waves-light clear grey" title="clear"><i class='material-icons'>clear</i></a>
 </div>
+	<div class='test-desc'>  Used for cration of New order in different ways
+  Used for canceling order, editing of order, skipping of order</div>
 
 <div class='scenario node' test-id='2' status='pass'>
 
-	<span class='duration right label'>00 01 38.009</span>
+	<span class='duration right label'>00 03 41.675</span>
 	<div class="bdd-test">
-		<div class="scenario-name"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span> Scenario: Remove Skip order button, that appears in OE page</div>
+		<div class="scenario-name"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span> Scenario: Create order using History button in OE page</div>
 	</div>
 	
 	
 		<div class='category-list'>
-				<span class='category label'>@RemoveSkipOrder</span>
+				<span class='category label'>@OrderCopyHistory</span>
 		</div>
 	
 	<ul class='steps'>
@@ -252,225 +252,90 @@
 
 		</li>
 		<li test-id='95' class='node then Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.change_the_date_days_after_current_date(java.lang.Integer))"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then Change the date 5 days after current date</div>
+			<div class="step-name" title="(stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.click_on_history_button())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then Click on History button</div>
 
 
-					<div class="node-step">NAVIGATED TO ORDER ENTRY PAGE</div>
-					<div class="node-step"><span style='color:red'>DELIBERY DATE FOUND, AFTER LOGGING IN TO APPLICATION  Friday, January 17, 2025</span></div>
-					<div class="node-step">ORDER GUIDE POPUP HAS BEEN FOUND</div>
-					<div class="node-step">SELECT DELIVERY DATE IS Tue, Feb 4, 2025</div>
+					<div class="node-step">ORDER ENTRY PAGE HAS BEEN FOUND</div>
+					<div class="node-step">ORDER HISTORY BUTTON HAS BEEN CLICKED</div>
 		</li>
 		<li test-id='96' class='node then Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.check_for_remove_skip_button_is_visible_and_click_on_skip_button())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then Check for Remove Skip button is visible and Click on Remove Skip button</div>
+			<div class="step-name" title="(stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.user_verifies_order_history_page())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User verifies Order history page and add history Order to order</div>
 
 
-					<div class="node-step">NAVIGATED TO ORDER ENTRY PAGE</div>
+					<div class="node-step">ORDER NUMBER SELECTED FROM ORDER HISTORY PAGE FOR CREATING COPY IS: 1098397</div>
 		</li>
 		<li test-id='97' class='node and Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.QuotePageSteps.QuotePageSteps1.userShouldResetTheDeliveryDateToCurrentDate())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>And User should reset the delivery date to current date</div>
+			<div class="step-name" title="(stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.click_on_copy_button())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>And Click on Copy button</div>
 
 
-					<div class="node-step">NAVIGATED TO ORDER ENTRY PAGE</div>
-					<div class="node-step">PREVIOUS DELIVERY DATE Friday, January 17, 2025</div>
-					<div class="node-step">MONTH TO BE SELECTED Jan</div>
-					<div class="node-step">DATE HAS BEEN RESET TO Fri, Jan 17, 2025</div>
+					<div class="node-step">COPY BUTTON HAS BEEN CLICKED, TO COPY ORDER HISTORY</div>
 		</li>
-	</ul>
-</div>
-<div class='scenario node' test-id='99' status='pass'>
+		<li test-id='98' class='node then Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.user_shold_select_delivery_date_from_popup())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User should Select delivery date from popup</div>
 
-	<span class='duration right label'>00 01 37.714</span>
-	<div class="bdd-test">
-		<div class="scenario-name"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span> Scenario: Skip the creation of order from new order entry page</div>
-	</div>
-	
-	
-		<div class='category-list'>
-				<span class='category label'>@SkipFromNewOrderEntry</span>
-		</div>
-	
-	<ul class='steps'>
-		<li test-id='186' class='node given Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.user_enters_url_and_is_on_login_page_and_entered_credentials())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Given User enters URL and is on login page and entered credentials</div>
+
+					<div class="node-step">DELIVERY DATE SELECTED IS: Jan 17, 2025</div>
+		</li>
+		<li test-id='99' class='node and Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.select_new_order_option_from_popup())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>And Select New order option from popup</div>
 
 
 		</li>
-		<li test-id='187' class='node when Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.user_is_on_home_page())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>When User is on Home Page</div>
+		<li test-id='100' class='node and Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.user_should_make_selection_between_pending_order_or_start_new_order())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>And User should make selection between Pending order or Start New order</div>
 
 
 		</li>
-		<li test-id='188' class='node then Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.user_navigate_to_client_side())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User navigate to Client side</div>
-
-
-		</li>
-		<li test-id='189' class='node then Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.user_should_select_order_entry_tab())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User should select Order Entry tab</div>
-
-
-		</li>
-		<li test-id='190' class='node then Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.user_selects_account())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User selects Account#</div>
-
-
-		</li>
-		<li test-id='191' class='node given Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.user_must_be_on_order_entry_page())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Given User must be on Order Entry Page</div>
-
-
-		</li>
-		<li test-id='192' class='node then Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.change_the_date_days_after_current_date(java.lang.Integer))"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then Change the date 5 days after current date</div>
-
-
-					<div class="node-step">NAVIGATED TO ORDER ENTRY PAGE</div>
-					<div class="node-step"><span style='color:red'>DELIBERY DATE FOUND, AFTER LOGGING IN TO APPLICATION  Friday, January 17, 2025</span></div>
-					<div class="node-step">NAVIGATED TO ORDER ENTRY PAGE</div>
-					<div class="node-step">PREVIOUS DELIVERY DATE Friday, January 17, 2025</div>
-					<div class="node-step">DATE HAS BEEN RESET TO Fri, Jan 17, 2025</div>
-					<div class="node-step">ORDER GUIDE POPUP HAS BEEN FOUND</div>
-					<div class="node-step">SELECT DELIVERY DATE IS Tue, Feb 4, 2025</div>
-		</li>
-		<li test-id='193' class='node then Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.user_must_click_start_order_button())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User must click Start Order button</div>
-
-
-					<div class="node-step">NAVIGATED TO ORDER ENTRY PAGE</div>
-					<div class="node-step"><span style='color:red'>DELIBERY DATE FOUND, AFTER LOGGING IN TO APPLICATION  Friday, January 17, 2025</span></div>
-					<div class="node-step">START BUTTON HAS BEEN CLICKED</div>
-		</li>
-		<li test-id='194' class='node then Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.user_should_make_selection_between_pending_order_or_start_new_order())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User should make selection between Pending order or Start New order</div>
-
-
-		</li>
-		<li test-id='195' class='node then Pass' status='Pass'>
+		<li test-id='101' class='node then Pass' status='Pass'>
 			<div class="step-name" title="(stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.userShouldSelectNoteFromPopupAndOrderGuideFromPopup())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User should select Note from popup and Order guide from popup</div>
 
 
-					<div class="node-step">ORDER GUIDE POPUP HAS BEEN FOUND</div>
 		</li>
-		<li test-id='196' class='node then Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.click_on_skip_button_in_new_order_entry_page_and_also_select_the_reason(io.cucumber.datatable.DataTable))"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then Click on Skip button in New order entry page and also select the reason</div>
+		<li test-id='102' class='node then Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.enter_po_for_new_order(io.cucumber.datatable.DataTable))"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then Enter PO# for New order</div>
 
 
-					<div class="node-step"><table class='markup-table table '><tr><td>closed</td></tr></table></div>
-					<div class="node-step">SKIP BUTTON HAS BEEN FOUND IN NEW OE PAGE</div>
-					<div class="node-step">SKIP REASON HAS BEEN SELECTED</div>
-		</li>
-		<li test-id='197' class='node then Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.user_should_be_navigated_to_order_entry_page())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User should be navigated to Order Entry page</div>
-
-
-					<div class="node-step">ORDER ENTRY PAGE HAS BEEN FOUND</div>
-		</li>
-		<li test-id='198' class='node then Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.check_for_remove_skip_button_is_visible_and_click_on_skip_button())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then Check for Remove Skip button is visible and Click on Remove Skip button</div>
-
-
-					<div class="node-step">NAVIGATED TO ORDER ENTRY PAGE</div>
-		</li>
-		<li test-id='199' class='node and Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.QuotePageSteps.QuotePageSteps1.userShouldResetTheDeliveryDateToCurrentDate())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>And User should reset the delivery date to current date</div>
-
-
-					<div class="node-step">NAVIGATED TO ORDER ENTRY PAGE</div>
-					<div class="node-step">PREVIOUS DELIVERY DATE Friday, January 17, 2025</div>
-					<div class="node-step">MONTH TO BE SELECTED Jan</div>
-					<div class="node-step">DATE HAS BEEN RESET TO Fri, Jan 17, 2025</div>
-		</li>
-	</ul>
-</div>
-<div class='scenario node' test-id='201' status='pass'>
-
-	<span class='duration right label'>00 01 26.397</span>
-	<div class="bdd-test">
-		<div class="scenario-name"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span> Scenario: Test scenario for verifying Cancel and Skip button is disabled in new OE</div>
-	</div>
-	
-	
-		<div class='category-list'>
-				<span class='category label'>@CancelAndSkipDisabled</span>
-		</div>
-	
-	<ul class='steps'>
-		<li test-id='288' class='node given Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.user_enters_url_and_is_on_login_page_and_entered_credentials())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Given User enters URL and is on login page and entered credentials</div>
-
-
-		</li>
-		<li test-id='289' class='node when Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.user_is_on_home_page())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>When User is on Home Page</div>
-
-
-		</li>
-		<li test-id='290' class='node then Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.user_navigate_to_client_side())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User navigate to Client side</div>
-
-
-		</li>
-		<li test-id='291' class='node then Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.user_should_select_order_entry_tab())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User should select Order Entry tab</div>
-
-
-		</li>
-		<li test-id='292' class='node then Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.user_selects_account())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User selects Account#</div>
-
-
-		</li>
-		<li test-id='293' class='node given Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.user_must_be_on_order_entry_page())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Given User must be on Order Entry Page</div>
-
-
-		</li>
-		<li test-id='294' class='node then Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.user_must_click_start_order_button())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User must click Start Order button</div>
-
-
-					<div class="node-step">NAVIGATED TO ORDER ENTRY PAGE</div>
-					<div class="node-step"><span style='color:red'>DELIBERY DATE FOUND, AFTER LOGGING IN TO APPLICATION  Friday, January 17, 2025</span></div>
-					<div class="node-step">START BUTTON HAS BEEN CLICKED</div>
-		</li>
-		<li test-id='295' class='node then Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.user_should_make_selection_between_pending_order_or_start_new_order())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User should make selection between Pending order or Start New order</div>
-
-
-		</li>
-		<li test-id='296' class='node then Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.userShouldSelectNoteFromPopupAndOrderGuideFromPopup())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User should select Note from popup and Order guide from popup</div>
-
-
-					<div class="node-step">ORDER GUIDE POPUP HAS BEEN FOUND</div>
-		</li>
-		<li test-id='297' class='node then Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.click_on_cancel_button())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then Click on Cancel button</div>
-
-
+					<div class="node-step"><table class='markup-table table '><tr><td>PO123</td></tr></table></div>
 					<div class="node-step">NEW ORDER ENTRY PAGE HAS BEEN FOUND</div>
-					<div class="node-step">ORDER CANCEL, BUTTON CLICKED</div>
+					<div class="node-step">PO# ENTERED IS PO123</div>
 		</li>
-		<li test-id='298' class='node and Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps8.cancelPopupShouldAppearAndVerifyButtonCancelAndSkipButtonForCurrentDate())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>And Cancel popup should appear and verify button Cancel and Skip button for current date</div>
+		<li test-id='103' class='node then Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.user_should_enter_units_and_cases_in_product_grid(io.cucumber.datatable.DataTable))"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User should enter Units and Cases in product grid</div>
 
 
-					<div class="node-step">CANCEL AND SKIP BUTTON IS DISABLED</div>
-					<div class="node-step">CANCEL ORDER POPUP HAS BEEN HANDLED</div>
+					<div class="node-step"><table class='markup-table table '><tr><td>1</td><td>1</td></tr></table></div>
+					<div class="node-step">UNIT ENTERED IN GRID IS 1</div>
 		</li>
-		<li test-id='299' class='node then Pass' status='Pass'>
+		<li test-id='104' class='node then Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.click_on_next_button())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then Click on Next button</div>
+
+
+					<div class="node-step">PRODUCT FOUND IN ORDER ARE </div>
+					<div class="node-step">0406</div>
+					<div class="node-step">0704</div>
+					<div class="node-step">0804</div>
+					<div class="node-step">3508</div>
+					<div class="node-step">10012</div>
+					<div class="node-step">2235</div>
+					<div class="node-step">NEXT BUTTON CLICKED</div>
+					<div class="node-step">ORDER NUMBER CREATED IS 1194931</div>
+					<div class="node-step">PAYMENT METHOD HAS BEEN SELECTED</div>
+					<div class="node-step">FIRST PAYMENT OPTION HAS BEEN SELECTED</div>
+					<div class="node-step">CLICKED ON NEXT BUTTON</div>
+		</li>
+		<li test-id='105' class='node and Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.click_on_submit_order_button())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>And Click on SubmitOrder button</div>
+
+
+					<div class="node-step">ORDER ENTRY SUMMARY PAGE HAS BEEN FOUND</div>
+					<div class="node-step">SUBMIT BUTTON IN ORDER SUMMARY PAGE HAS BEEN CLICKED</div>
+					<div class="node-step">ORDER HAS BEEN SUCESSFULLY CREATED</div>
+		</li>
+		<li test-id='106' class='node then Pass' status='Pass'>
 			<div class="step-name" title="(stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.user_should_be_navigated_to_order_entry_page())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User should be navigated to Order Entry page</div>
 
 
 					<div class="node-step">ORDER ENTRY PAGE HAS BEEN FOUND</div>
-		</li>
-		<li test-id='300' class='node and Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.QuotePageSteps.QuotePageSteps1.userShouldResetTheDeliveryDateToCurrentDate())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>And User should reset the delivery date to current date</div>
-
-
-					<div class="node-step">NAVIGATED TO ORDER ENTRY PAGE</div>
-					<div class="node-step">PREVIOUS DELIVERY DATE Friday, January 17, 2025</div>
-					<div class="node-step">DATE HAS BEEN RESET TO Fri, Jan 17, 2025</div>
 		</li>
 	</ul>
 </div>
@@ -518,7 +383,7 @@
 			<ul id='category-collection' class='category-collection'>
 				<li class='category displayed active'>
 					<div class='category-heading'>
-						<span class='category-name'>@CancelAndSkipDisabled</span>
+						<span class='category-name'>@OrderCopyHistory</span>
 						<span class='category-status right'>
 						<span class='label pass'>1</span>
 						</span>
@@ -540,74 +405,8 @@
 								</thead>
 								<tbody>
 									<tr>
-										<td>Jan 13, 2025 09:39:04 PM</td>
-										<td class='linked' test-id='201'>Test scenario for verifying Cancel and Skip button is disabled in new OE</td>
-										<td><span class='test-status Pass'>Pass</span></td>
-									</tr>
-								</tbody>
-							</table>
-						</div>
-					</div>
-				</li>
-				<li class='category displayed active'>
-					<div class='category-heading'>
-						<span class='category-name'>@RemoveSkipOrder</span>
-						<span class='category-status right'>
-						<span class='label pass'>1</span>
-						</span>
-					</div>
-					<div class='category-content hide'>
-						<div class='category-status-counts'>
-							<span status="pass" class='label green accent-4 white-text'>Passed: 1</span>
-							
-							
-						</div>
-						<div class='category-tests'>
-							<table class='bordered table-results'>
-								<thead>
-									<tr>
-										<th>Timestamp</th>
-										<th>TestName</th>
-										<th>Status</th>
-									</tr>
-								</thead>
-								<tbody>
-									<tr>
-										<td>Jan 13, 2025 09:35:48 PM</td>
-										<td class='linked' test-id='2'>Remove Skip order button, that appears in OE page</td>
-										<td><span class='test-status Pass'>Pass</span></td>
-									</tr>
-								</tbody>
-							</table>
-						</div>
-					</div>
-				</li>
-				<li class='category displayed active'>
-					<div class='category-heading'>
-						<span class='category-name'>@SkipFromNewOrderEntry</span>
-						<span class='category-status right'>
-						<span class='label pass'>1</span>
-						</span>
-					</div>
-					<div class='category-content hide'>
-						<div class='category-status-counts'>
-							<span status="pass" class='label green accent-4 white-text'>Passed: 1</span>
-							
-							
-						</div>
-						<div class='category-tests'>
-							<table class='bordered table-results'>
-								<thead>
-									<tr>
-										<th>Timestamp</th>
-										<th>TestName</th>
-										<th>Status</th>
-									</tr>
-								</thead>
-								<tbody>
-									<tr>
-										<td>Jan 13, 2025 09:37:26 PM</td>
-										<td class='linked' test-id='99'>Skip the creation of order from new order entry page</td>
+										<td>Jan 15, 2025 04:56:15 PM</td>
+										<td class='linked' test-id='2'>Create order using History button in OE page</td>
 										<td><span class='test-status Pass'>Pass</span></td>
 									</tr>
 								</tbody>
@@ -638,31 +437,31 @@
 			<div class='col s2'>
 				<div class='card-panel r'>
 					Scenarios
-					<div class='panel-lead'>3</div>
+					<div class='panel-lead'>1</div>
 				</div>
 			</div>
 			<div class='col s2'>
 				<div class='card-panel r'>
 					Steps
-					<div class='panel-lead'>36</div>
+					<div class='panel-lead'>18</div>
 				</div>
 			</div>
 			<div class='col s2'>
 				<div class='card-panel r'>
 					Start
-					<div class='panel-lead'>Jan 13, 2025 09:35:36 PM</div>
+					<div class='panel-lead'>Jan 15, 2025 04:55:58 PM</div>
 				</div>
 			</div>
 			<div class='col s2'>
 				<div class='card-panel r'>
 			 		End
-			 		<div class='panel-lead'>Jan 13, 2025 09:40:32 PM</div>
+			 		<div class='panel-lead'>Jan 15, 2025 04:59:57 PM</div>
 				</div>
 			</div>
 			<div class='col s2'>
 				<div class='card-panel r'>
 					Time Taken
-					<div class='panel-lead'>00 04 56.562</div>
+					<div class='panel-lead'>00 03 59.349</div>
 				</div>
 			</div>
 			<div class='col s4'>
@@ -702,25 +501,7 @@
 							<th>Passed %</th>
 						</tr>
 						<tr>
-							<td>@CancelAndSkipDisabled</td>
-							<td>1</td>
-							<td>0</td>
-							<td>0</td>
-							<td>
-									100%
-							</td>
-						</tr>
-						<tr>
-							<td>@RemoveSkipOrder</td>
-							<td>1</td>
-							<td>0</td>
-							<td>0</td>
-							<td>
-									100%
-							</td>
-						</tr>
-						<tr>
-							<td>@SkipFromNewOrderEntry</td>
+							<td>@OrderCopyHistory</td>
 							<td>1</td>
 							<td>0</td>
 							<td>0</td>
@@ -746,16 +527,16 @@
 				errorParent: 0,
 				warningParent: 0,
 				skipParent: 0,
-				childCount: 3,
-				passChild: 3,
+				childCount: 1,
+				passChild: 1,
 				failChild: 0,
 				fatalChild: 0,
 				errorChild: 0,
 				warningChild: 0,
 				skipChild: 0,
 				infoChild: 0,
-				grandChildCount: 36,
-				passGrandChild: 36,
+				grandChildCount: 18,
+				passGrandChild: 18,
 				failGrandChild: 0,
 				fatalGrandChild: 0,
 				errorGrandChild: 0,
@@ -767,7 +548,7 @@
 		
 		<script>
 			var timeline = {
-			        "Order entry End":282.309
+			        "Order Entry":221.691
 			};
 		</script>
 		
