@@ -3,7 +3,7 @@
     "line": 1,
     "elements": [
       {
-        "line": 4,
+        "line": 5,
         "name": "For login to application and selecting Account#",
         "description": "",
         "type": "background",
@@ -14,13 +14,13 @@
               "SIGNIN BUTTON CLICKED"
             ],
             "result": {
-              "duration": 23638869400,
+              "duration": 19478215600,
               "status": "passed"
             },
-            "line": 5,
-            "name": "User enters URL and is on login page and entered credentials for DM",
+            "line": 6,
+            "name": "User enters URL and is on login page and entered credentials",
             "match": {
-              "location": "stepDefination_DSD_OMS.DiconnectModePageSteps.DMOEPageStep.user_enters_url_and_is_on_login_page_and_entered_credentialsForDM()"
+              "location": "stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.user_enters_url_and_is_on_login_page_and_entered_credentials()"
             },
             "keyword": "Given "
           },
@@ -29,13 +29,13 @@
               "ADMIN PAGE OR ORDER ENTRY PAGE HAS BEEN FOUND"
             ],
             "result": {
-              "duration": 236036700,
+              "duration": 164403300,
               "status": "passed"
             },
-            "line": 6,
-            "name": "User is on Home Page for DM",
+            "line": 7,
+            "name": "User is on Home Page",
             "match": {
-              "location": "stepDefination_DSD_OMS.DiconnectModePageSteps.DMOEPageStep.user_is_on_home_pageForDM()"
+              "location": "stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.user_is_on_home_page()"
             },
             "keyword": "When "
           },
@@ -45,40 +45,56 @@
               "IN ADMIN PAGE"
             ],
             "result": {
-              "duration": 3440454800,
+              "duration": 3007164300,
               "status": "passed"
             },
-            "line": 7,
-            "name": "User navigate to Client side for DM",
+            "line": 8,
+            "name": "User navigate to Client side",
             "match": {
-              "location": "stepDefination_DSD_OMS.DiconnectModePageSteps.DMOEPageStep.user_navigate_to_client_sideForDM()"
+              "location": "stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.user_navigate_to_client_side()"
             },
             "keyword": "Then "
           },
           {
             "output": [
-              "https://autodsd.afsi.com/ClientPortal/Apps/cpOrderEntry.html?p\u003dKm530c8XSlYiXYABAQY6Y6JAChTfYaSYca92kMk0eI9TOeNnC6%2bd9w%3d%3d",
+              "https://autoerp.afsi.com/omsi/clientportal/apps/cpOrderEntry.html?p\u003dQJFsTz5JBfVNODvKd%2b4hK56SreO0vwVwYSCjo3j9p6A%3d",
               "NAVIGATED TO ORDER ENTRY PAGE"
             ],
             "result": {
-              "duration": 6971650000,
+              "duration": 9439726100,
               "status": "passed"
             },
-            "line": 8,
-            "name": "User should select Order Entry tab for DM",
+            "line": 9,
+            "name": "User should select Order Entry tab",
             "match": {
-              "location": "stepDefination_DSD_OMS.DiconnectModePageSteps.DMOEPageStep.user_should_select_order_entry_tabForDM()"
+              "location": "stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.user_should_select_order_entry_tab()"
+            },
+            "keyword": "Then "
+          },
+          {
+            "output": [
+              "CUSTOMER ACCOUNT# SELECTED IS K11985",
+              "\u003cspan style\u003d\u0027color:red\u0027\u003eDELIBERY DATE FOUND, AFTER LOGGING IN TO APPLICATION  Friday, January 17, 2025\u003c/span\u003e"
+            ],
+            "result": {
+              "duration": 4065040600,
+              "status": "passed"
+            },
+            "line": 10,
+            "name": "User selects Account#",
+            "match": {
+              "location": "stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.user_selects_account()"
             },
             "keyword": "Then "
           }
         ]
       },
       {
-        "start_timestamp": "2025-01-13T12:39:04.949Z",
+        "start_timestamp": "2025-01-15T11:26:15.134Z",
         "before": [
           {
             "result": {
-              "duration": 15623100,
+              "duration": 16029300,
               "status": "passed"
             },
             "match": {
@@ -119,7 +135,6 @@
           },
           {
             "result": {
-              "duration": 15626600,
               "status": "passed"
             },
             "match": {
@@ -184,7 +199,6 @@
           },
           {
             "result": {
-              "duration": 3522500,
               "status": "passed"
             },
             "match": {
@@ -249,7 +263,6 @@
           },
           {
             "result": {
-              "duration": 15709200,
               "status": "passed"
             },
             "match": {
@@ -322,6 +335,7 @@
           },
           {
             "result": {
+              "duration": 15630800,
               "status": "passed"
             },
             "match": {
@@ -330,7 +344,6 @@
           },
           {
             "result": {
-              "duration": 15796200,
               "status": "passed"
             },
             "match": {
@@ -371,7 +384,6 @@
           },
           {
             "result": {
-              "duration": 4525900,
               "status": "passed"
             },
             "match": {
@@ -484,7 +496,6 @@
           },
           {
             "result": {
-              "duration": 14135500,
               "status": "passed"
             },
             "match": {
@@ -589,6 +600,7 @@
           },
           {
             "result": {
+              "duration": 15647000,
               "status": "passed"
             },
             "match": {
@@ -685,7 +697,6 @@
           },
           {
             "result": {
-              "duration": 15979300,
               "status": "passed"
             },
             "match": {
@@ -773,14 +784,13 @@
             }
           }
         ],
-        "line": 153,
-        "name": "Test scenario for navigating to catalog tab, and delete product from cart",
+        "line": 146,
+        "name": "Create order using History button in OE page",
         "description": "",
-        "id": "disconnected-mode;test-scenario-for-navigating-to-catalog-tab--and-delete-product-from-cart",
+        "id": "order-entry;create-order-using-history-button-in-oe-page",
         "after": [
           {
             "result": {
-              "duration": 15640600,
               "status": "passed"
             },
             "match": {
@@ -792,200 +802,113 @@
         "keyword": "Scenario",
         "steps": [
           {
-            "output": [
-              "NAVIGATED TO ORDER ENTRY PAGE"
-            ],
             "result": {
-              "duration": 2793632800,
+              "duration": 48281627600,
               "status": "passed"
             },
-            "line": 154,
-            "name": "User should be in Order entry page",
+            "line": 147,
+            "name": "User must be on Order Entry Page",
             "match": {
-              "location": "stepDefination_DSD_OMS.DiconnectModePageSteps.DMOEPageStep.userShouldBeInOrderEntryPage()"
+              "location": "stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.user_must_be_on_order_entry_page()"
             },
             "keyword": "Given "
           },
           {
+            "output": [
+              "ORDER ENTRY PAGE HAS BEEN FOUND",
+              "ORDER HISTORY BUTTON HAS BEEN CLICKED"
+            ],
             "result": {
-              "duration": 21419918500,
+              "duration": 4554979300,
               "status": "passed"
             },
-            "line": 155,
-            "name": "User Clicks on network symbol and click on toggle button to navigate to disconnected mode",
+            "line": 148,
+            "name": "Click on History button",
             "match": {
-              "location": "stepDefination_DSD_OMS.DiconnectModePageSteps.DMOEPageStep.userClicksOnNetworkSymbolAndClickOnToggleButtonToNavigateToDisconnectedMode()"
-            },
-            "keyword": "When "
-          },
-          {
-            "result": {
-              "duration": 757747600,
-              "status": "passed"
-            },
-            "line": 156,
-            "name": "Then User selects Go offline option in Disconnected mode popup",
-            "match": {
-              "location": "stepDefination_DSD_OMS.DiconnectModePageSteps.DMOEPageStep.thenUserSelectsGoOfflineOptionInDisconnectedModePopup()"
-            },
-            "keyword": "And "
-          },
-          {
-            "result": {
-              "duration": 153156600,
-              "status": "passed"
-            },
-            "line": 157,
-            "name": "User should get Customer account# popup",
-            "match": {
-              "location": "stepDefination_DSD_OMS.DiconnectModePageSteps.DMOEPageStep.userShouldGetCustomerAccountPopup()"
+              "location": "stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.click_on_history_button()"
             },
             "keyword": "Then "
           },
           {
             "output": [
-              "DELIVERY DATE POPUP HAS BEEN FOUND",
-              "DELIVERY DATE HAS BEEN SELECTED"
+              "ORDER NUMBER SELECTED FROM ORDER HISTORY PAGE FOR CREATING COPY IS: 1098397"
             ],
             "result": {
-              "duration": 396259380600,
+              "duration": 8151312800,
               "status": "passed"
             },
-            "line": 158,
-            "name": "User should select Customer Account# from popup and select the delivery date from popup wait till synchronized",
+            "line": 149,
+            "name": "User verifies Order history page and add history Order to order",
             "match": {
-              "location": "stepDefination_DSD_OMS.DiconnectModePageSteps.DMOEPageStep.userShouldSelectCustomerAccountFromPopupAndSelectTheDeliveryDateFromPopupWaitTillSynchronized()"
-            },
-            "keyword": "And "
-          },
-          {
-            "output": [
-              "USER IS ON DISCONNECTED MODE",
-              "DELIVERY DATE SELECTED FOR DISCONNECTED MODE IS null"
-            ],
-            "result": {
-              "duration": 5464422700,
-              "status": "passed"
-            },
-            "line": 159,
-            "name": "User must be on Order Entry Page in disconnected mode",
-            "match": {
-              "location": "stepDefination_DSD_OMS.DiconnectModePageSteps.DMOEPageStep.userMustBeOnOrderEntryPageInDisconnectedMode()"
+              "location": "stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.user_verifies_order_history_page()"
             },
             "keyword": "Then "
           },
           {
             "output": [
-              "CATALOG PAGE HAS BEEN FOUND",
-              "https://autodsd.afsi.com/ClientPortal/Apps/cpProductCatalog.html?p\u003dKm530c8XSlYiXYABAQY6Y6JAChTfYaSYca92kMk0eI9TOeNnC6%2bd9w%3d%3d",
-              "https://autodsd.afsi.com/ClientPortal/Apps/cpProductCatalog.html?p\u003dKm530c8XSlYiXYABAQY6Y6JAChTfYaSYca92kMk0eI9TOeNnC6%2bd9w%3d%3d",
-              "https://autodsd.afsi.com/ClientPortal/Apps/cpProductCatalog.html?p\u003dKm530c8XSlYiXYABAQY6Y6JAChTfYaSYca92kMk0eI9TOeNnC6%2bd9w%3d%3d",
-              "USER IS ON CATALOG PAGE"
+              "COPY BUTTON HAS BEEN CLICKED, TO COPY ORDER HISTORY"
             ],
             "result": {
-              "duration": 6115100100,
+              "duration": 473984900,
               "status": "passed"
             },
-            "line": 160,
-            "name": "User should navigate to Catalog tab",
+            "line": 150,
+            "name": "Click on Copy button",
             "match": {
-              "location": "stepDefination_DSD_OMS.CatalogPageSteps.CatalogPageStep.user_should_navigate_to_catalog_tab()"
+              "location": "stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.click_on_copy_button()"
             },
             "keyword": "And "
           },
           {
             "output": [
-              "CARD VIEW IN CATALOG HAS BEEN SELECTED"
+              "DELIVERY DATE SELECTED IS: Jan 17, 2025"
             ],
             "result": {
-              "duration": 2057334400,
+              "duration": 2658427000,
               "status": "passed"
             },
-            "line": 161,
-            "name": "User should click on Reset filter button and all the products should displayed in Card view in Catalog page",
+            "line": 151,
+            "name": "User should Select delivery date from popup",
             "match": {
-              "location": "stepDefination_DSD_OMS.CatalogPageSteps.CatalogPageStep.user_should_click_on_reset_filter_button_and_all_the_products_should_displayed_in_card_view_in_catalog_page()"
-            },
-            "keyword": "And "
-          },
-          {
-            "output": [
-              "PRODUCT SEARCHED IS 00000001",
-              "QTY ENTERE IS 1",
-              "PRODUCT SEARCHED IS 00000002",
-              "QTY ENTERE IS 2",
-              "PRODUCT SEARCHED IS 00000003",
-              "QTY ENTERE IS 2"
-            ],
-            "result": {
-              "duration": 25579812500,
-              "status": "passed"
-            },
-            "line": 162,
-            "name": "User enters Product# in Search bar and enters Qty",
-            "match": {
-              "location": "stepDefination_DSD_OMS.CatalogPageSteps.CatalogPageStep.user_enters_product_in_search_bar_and_enters_qty(io.cucumber.datatable.DataTable)"
-            },
-            "rows": [
-              {
-                "cells": [
-                  "1",
-                  "1"
-                ]
-              },
-              {
-                "cells": [
-                  "2",
-                  "1"
-                ]
-              },
-              {
-                "cells": [
-                  "2",
-                  "2"
-                ]
-              }
-            ],
-            "keyword": "Then "
-          },
-          {
-            "output": [
-              "CART ICON HAS BEEN CLICKED",
-              "PRODUCTS BEFORE DELETING FROM SHOPPING CART: ",
-              "PRODUCT FOUND IN SHOPPING CART: DIET COKE - CANS 24/12 OZ",
-              "PRODUCT FOUND IN SHOPPING CART: LA CROIX CRAN_RASBERRY 24 CANS",
-              "PRODUCT FOUND IN SHOPPING CART: SPRITE -CANS 24/12OZ",
-              "PRODUCT REMOVED FROM DROP DOWN IS DIET COKE - CANS 24/12 OZ",
-              "PRODUCTS AFTER DELETING FROM SHOPPING CART: ",
-              "PRODUCT FOUND IN SHOPPING CART: LA CROIX CRAN_RASBERRY 24 CANS",
-              "PRODUCT FOUND IN SHOPPING CART: SPRITE -CANS 24/12OZ",
-              "CART ITEMS CARD HAS BEEN FOUND",
-              "CHECKOUT SUMMARY PAGE HAS BEEN FOUND",
-              "CHECKOUT SUMMARY PAGE HAS BEEN FOUND",
-              "CLICKED ON BACK BUTTON"
-            ],
-            "result": {
-              "duration": 110312248900,
-              "status": "passed"
-            },
-            "line": 166,
-            "name": "User click on cart in catalog and click on Gotocart, before that Delete Product from popup",
-            "match": {
-              "location": "stepDefination_DSD_OMS.CatalogPageSteps.CatalogPageStep.user_click_on_cart_in_catalog_and_click_on_gotocart_before_that_delete_product_from_popup()"
+              "location": "stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.user_shold_select_delivery_date_from_popup()"
             },
             "keyword": "Then "
           },
           {
             "result": {
-              "duration": 282638700,
+              "duration": 13682035500,
               "status": "passed"
             },
-            "line": 167,
-            "name": "user should be on New Order entry page",
+            "line": 152,
+            "name": "Select New order option from popup",
             "match": {
-              "location": "stepDefination_DSD_OMS.LoginPageStep.user_should_be_on_new_order_entry_page()"
+              "location": "stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.select_new_order_option_from_popup()"
             },
             "keyword": "And "
+          },
+          {
+            "result": {
+              "duration": 65291200,
+              "status": "passed"
+            },
+            "line": 153,
+            "name": "User should make selection between Pending order or Start New order",
+            "match": {
+              "location": "stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.user_should_make_selection_between_pending_order_or_start_new_order()"
+            },
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "duration": 2525336300,
+              "status": "passed"
+            },
+            "line": 154,
+            "name": "User should select Note from popup and Order guide from popup",
+            "match": {
+              "location": "stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.userShouldSelectNoteFromPopupAndOrderGuideFromPopup()"
+            },
+            "keyword": "Then "
           },
           {
             "output": [
@@ -993,10 +916,10 @@
               "PO# ENTERED IS PO123"
             ],
             "result": {
-              "duration": 7177396800,
+              "duration": 16645348600,
               "status": "passed"
             },
-            "line": 168,
+            "line": 155,
             "name": "Enter PO# for New order",
             "match": {
               "location": "stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.enter_po_for_new_order(io.cucumber.datatable.DataTable)"
@@ -1012,33 +935,47 @@
           },
           {
             "output": [
+              "UNIT ENTERED IN GRID IS 1"
+            ],
+            "result": {
+              "duration": 10432781800,
+              "status": "passed"
+            },
+            "line": 157,
+            "name": "User should enter Units and Cases in product grid",
+            "match": {
+              "location": "stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.user_should_enter_units_and_cases_in_product_grid(io.cucumber.datatable.DataTable)"
+            },
+            "rows": [
+              {
+                "cells": [
+                  "1",
+                  "1"
+                ]
+              }
+            ],
+            "keyword": "Then "
+          },
+          {
+            "output": [
               "PRODUCT FOUND IN ORDER ARE ",
-              "00000005",
-              "00000006",
-              "10025300",
-              "59626700",
-              "00000001",
-              "00000002",
-              "00000003",
-              "00000004",
-              "00000008",
-              "00112882",
-              "00135444",
-              "00137682",
-              "00445006",
-              "10002900",
-              "10010800",
-              "10024590",
+              "0406",
+              "0704",
+              "0804",
+              "3508",
+              "10012",
+              "2235",
               "NEXT BUTTON CLICKED",
+              "ORDER NUMBER CREATED IS 1194931",
               "PAYMENT METHOD HAS BEEN SELECTED",
               "FIRST PAYMENT OPTION HAS BEEN SELECTED",
               "CLICKED ON NEXT BUTTON"
             ],
             "result": {
-              "duration": 41525222100,
+              "duration": 49273009700,
               "status": "passed"
             },
-            "line": 170,
+            "line": 159,
             "name": "Click on Next button",
             "match": {
               "location": "stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.click_on_next_button()"
@@ -1048,28 +985,29 @@
           {
             "output": [
               "ORDER ENTRY SUMMARY PAGE HAS BEEN FOUND",
-              "SUBMIT BUTTON IN ORDER SUMMARY PAGE HAS BEEN CLICKED"
+              "SUBMIT BUTTON IN ORDER SUMMARY PAGE HAS BEEN CLICKED",
+              "ORDER HAS BEEN SUCESSFULLY CREATED"
             ],
             "result": {
-              "duration": 11550834400,
+              "duration": 19689995700,
               "status": "passed"
             },
-            "line": 171,
+            "line": 160,
             "name": "Click on SubmitOrder button",
             "match": {
               "location": "stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.click_on_submit_order_button()"
             },
-            "keyword": "Then "
+            "keyword": "And "
           },
           {
             "output": [
               "ORDER ENTRY PAGE HAS BEEN FOUND"
             ],
             "result": {
-              "duration": 6115487200,
+              "duration": 8915794300,
               "status": "passed"
             },
-            "line": 172,
+            "line": 161,
             "name": "User should be navigated to Order Entry page",
             "match": {
               "location": "stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.user_should_be_navigated_to_order_entry_page()"
@@ -1079,16 +1017,16 @@
         ],
         "tags": [
           {
-            "name": "@DMDeleteProductFromCart"
+            "name": "@OrderCopyHistory"
           }
         ]
       }
     ],
-    "name": "Disconnected mode",
-    "description": "  Used for Performing different operations in disconnected mode",
-    "id": "disconnected-mode",
+    "name": "Order Entry",
+    "description": "  Used for cration of New order in different ways\n  Used for canceling order, editing of order, skipping of order",
+    "id": "order-entry",
     "keyword": "Feature",
-    "uri": "file:src/test/resources/features_DSD_OMS/DisconnectedModeOEFeature/DisconnectedModeFeature.feature",
+    "uri": "file:src/test/resources/features_DSD_OMS/OrderEntryFeature/orderEntryFeature.feature",
     "tags": []
   }
 ]

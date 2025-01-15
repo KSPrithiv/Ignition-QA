@@ -651,9 +651,12 @@ public class NewOrderEntryPage
         {
             HelpersMethod.ScrollElement(driver, SearchProd);
             HelpersMethod.sendKeys(driver,SearchProd,10000,Product);
-            new WebDriverWait(driver,Duration.ofMillis(10000)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@id='react-autowhatever-searchBarAutoSuggest']/ul/li")));
-            WebElement autoSuggestion=HelpersMethod.FindByElement(driver,"xpath","//div[@id='react-autowhatever-searchBarAutoSuggest']/ul/li");
-            if(autoSuggestion.isDisplayed())
+
+            new WebDriverWait(driver,Duration.ofMillis(40000)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@id='react-autowhatever-search-option-selection']"))));
+            new WebDriverWait(driver,Duration.ofMillis(40000)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@id='react-autowhatever-search-option-selection']")));
+
+            Thread.sleep(2000);
+            if(HelpersMethod.IsExists("//div[@id='react-autowhatever-search-option-selection']",driver))
             {
                 List<WebElement> suggests=HelpersMethod.FindByElements(driver,"xpath","//ul[contains(@class,'autosuggest')]/li/descendant::span[@class='product-number']");
                 for(WebElement suggest:suggests)
@@ -687,6 +690,8 @@ public class NewOrderEntryPage
     public void EnterForignLanguage_InSearchBar(String Product)
     {
         exists=false;
+        Actions act=new Actions(driver);
+        String suggText;
         try
         {
             Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
@@ -697,24 +702,35 @@ public class NewOrderEntryPage
 
             if(SearchProd.isDisplayed()&&SearchProd.isEnabled())
             {
-                //Enter value in search bar
-                HelpersMethod.ScrollElement(driver, SearchProd);
-                HelpersMethod.sendKeys(driver,SearchProd,10000,Product);
+                new WebDriverWait(driver,Duration.ofMillis(10000)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@id='react-autowhatever-search-option-selection']"))));
+                new WebDriverWait(driver,Duration.ofMillis(10000)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@id='react-autowhatever-search-option-selection']")));
 
-                Thread.sleep(2000);
-
-                IndexSearch=HelpersMethod.FindByElement(driver,"xpath","//span[@datatestid='searchBarSearchBtn']//*[local-name()='svg']");
-                HelpersMethod.ActClick(driver, IndexSearch, 10000);
-                Thread.sleep(2000);
-
-                exists = true;
-                scenario.log("PRODUCT SEARCHED USING SEARCH BAR IS " + Product);
-
-                wait = new FluentWait<WebDriver>(driver)
-                        .withTimeout(Duration.ofSeconds(600))
-                        .pollingEvery(Duration.ofSeconds(2))
-                        .ignoring(NoSuchElementException.class);
-                wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+                if(HelpersMethod.IsExists("//div[@id='react-autowhatever-search-option-selection']",driver))
+                {
+                    List<WebElement> suggests=HelpersMethod.FindByElements(driver,"xpath","//ul[contains(@class,'autosuggest')]/li/descendant::span[@class='product-number']");
+                    for(WebElement suggest:suggests)
+                    {
+                        act.moveToElement(suggest).build().perform();
+                        suggText=suggest.getText();
+                        if(suggText.contains(Product))
+                        {
+                            scenario.log("PRODUCT SEARCHED USING SEARCH BAR IS " + Product);
+                            act.click(suggest).build().perform();
+                            exists=true;
+                            break;
+                        }
+                    }
+                     wait = new FluentWait<WebDriver>(driver)
+                            .withTimeout(Duration.ofSeconds(600))
+                            .pollingEvery(Duration.ofSeconds(2))
+                            .ignoring(NoSuchElementException.class);
+                    wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+                }
+                else
+                {
+                    scenario.log("CHECK WHETHER VALID PRODUCT# HAS BEEN ENTERED OR AUTO SUGGESTION IS DISPLAYING OR NOT");
+                    exists=false;
+                }
             }
             Assert.assertEquals(exists,true);
         }
@@ -4513,11 +4529,12 @@ public class NewOrderEntryPage
         return exists;
     }
 
-    public void Click_On_PriceOverrideIcon()
+    public String Click_On_PriceOverrideIcon()
     {
         exists=false;
         int i=0;
         Actions act=new Actions(driver);
+        String actalPrice="";
         try
         {
             Thread.sleep(1000);
@@ -4562,6 +4579,7 @@ public class NewOrderEntryPage
                 {
                     //price before overriding
                     WebElement priceBeforeOverride=HelpersMethod.FindByElement(driver,"xpath","//tr[contains(@class,'k-grid-edit-row')]["+i+"]/descendant::input[contains(@id,'FinalPriceCol')]");
+                    actalPrice=priceBeforeOverride.getText();
                     scenario.log("PRICE FOUND BEFORE PRICE OVERRIDE "+priceBeforeOverride.getText());
                     rowIndex=i;
                     break;
@@ -4592,6 +4610,7 @@ public class NewOrderEntryPage
             Assert.assertEquals(exists,true);
         }
         catch (Exception e){}
+        return actalPrice;
     }
 
     public void readValueAfterOverride(String priceOverrideValue)
@@ -5002,11 +5021,17 @@ public class NewOrderEntryPage
                     .ignoring(NoSuchElementException.class);
             wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
 
+            new WebDriverWait(driver,Duration.ofMillis(20000)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("orderEntryCard"))));
+            new WebDriverWait(driver,Duration.ofMillis(20000)).until(ExpectedConditions.visibilityOfElementLocated(By.id("orderEntryCard")));
+
+            new WebDriverWait(driver,Duration.ofMillis(20000)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("pickupOrder"))));
+            new WebDriverWait(driver,Duration.ofMillis(20000)).until(ExpectedConditions.visibilityOfElementLocated(By.id("pickupOrder")));
+
             if(HelpersMethod.IsExists("//input[@id='pickupOrder' and @data-checked='unchecked']",driver))
             {
                 HelpersMethod.ScrollUpScrollBar(driver);
                 HelpersMethod.ScrollElement(driver,PickupOrder);
-                HelpersMethod.ActClick(driver,PickupOrder,20000);
+                HelpersMethod.ActClick(driver,PickupOrder,40000);
                 scenario.log("PICKUP ORDER CHECK BOX IS CLICKED");
                 exists=true;
             }

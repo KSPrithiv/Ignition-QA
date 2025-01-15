@@ -1511,10 +1511,14 @@ public class OrderEntryPage
             HelpersMethod.waitTillLoadingPage(driver);
         }
 
-        if(HelpersMethod.IsExists("//div[@class='CPDeliveryDates']/descendant::button/span",driver))
+        new WebDriverWait(driver,Duration.ofMillis(10000)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class='CPDeliveryDates']/descendant::button"))));
+        new WebDriverWait(driver,Duration.ofMillis(10000)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='CPDeliveryDates']/descendant::button")));
+
+        if(HelpersMethod.IsExists("//div[@class='CPDeliveryDates']/descendant::button",driver))
         {
             WebElement deliveryCalender = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='CPDeliveryDates']/descendant::button");
             HelpersMethod.JScriptClick(driver, deliveryCalender, 20000);
+            //HelpersMethod.ClickBut(driver,deliveryCalender,20000);
             new WebDriverWait(driver, Duration.ofMillis(40000)).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class,'k-datepicker-popup')]")));
             new WebDriverWait(driver,Duration.ofMillis(40000)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(@class,'k-datepicker-popup')]")));
             exists = true;
@@ -1661,10 +1665,11 @@ public class OrderEntryPage
             //cod to click on month, if date is not visible in expanded calender
             if(!HelpersMethod.IsExists("//table[@class='k-calendar-table']/descendant::td/span[contains(@title,'" + C_Date1 + "')]",driver))
             {
-                String monthToSelect=formattedDate.substring(5,8);
+                String monthToSelect=C_Date1.substring(8,11);
                 WebElement monthInCalender=HelpersMethod.FindByElement(driver,"xpath","//button[contains(@class,'k-calendar-title')]");
                 HelpersMethod.ClickBut(driver,monthInCalender,40000);
 
+                scenario.log("MONTH TO BE SELECTED "+monthToSelect);
                 WebElement toBeSelectMonth=HelpersMethod.FindByElement(driver,"xpath","//table[@class='k-calendar-table']/descendant::span[contains(@title,'"+monthToSelect+"')]");
                 HelpersMethod.ScrollElement(driver,toBeSelectMonth);
                 HelpersMethod.ClickBut(driver,toBeSelectMonth,40000);
@@ -2252,6 +2257,12 @@ public class OrderEntryPage
             HelpersMethod.waitTillLoadingPage(driver);
         }
 
+        wait = new FluentWait<WebDriver>(driver)
+                .withTimeout(Duration.ofSeconds(600))
+                .pollingEvery(Duration.ofSeconds(2))
+                .ignoring(NoSuchElementException.class);
+        wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
         try
         {
             HelpersMethod.ScrollElement(driver, RemoveSkip);
@@ -2277,6 +2288,19 @@ public class OrderEntryPage
                     .pollingEvery(Duration.ofSeconds(2))
                     .ignoring(NoSuchElementException.class);
             wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
+            String status = HelpersMethod.returnDocumentStatus(driver);
+            if (status.equals("loading"))
+            {
+                HelpersMethod.waitTillLoadingPage(driver);
+            }
+
+            wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(600))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
             HelpersMethod.ScrollElement(driver, RemoveSkip);
             //Check for Remove skip, and click on it
             if (HelpersMethod.IsExists("//button/span[text()='Remove Skip']", driver))
@@ -2291,12 +2315,14 @@ public class OrderEntryPage
                     .pollingEvery(Duration.ofSeconds(2))
                     .ignoring(NoSuchElementException.class);
             wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
             if(HelpersMethod.IsExists("//div[contains(text(),'Remove Skip for this date?')]/ancestor::div[contains(@class,'k-window k-dialog')]",driver))
             {
                 WebElement modelContainer=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-window k-dialog')]");
                 WebElement okButton=modelContainer.findElement(By.xpath(".//button/span[text()='Ok']"));
                 HelpersMethod.ActClick(driver,okButton,20000);
                 scenario.log("REMOVE SKIP HAS BEEN REMOVED");
+
                 wait = new FluentWait<WebDriver>(driver)
                         .withTimeout(Duration.ofSeconds(600))
                         .pollingEvery(Duration.ofSeconds(2))

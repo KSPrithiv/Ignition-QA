@@ -113,7 +113,7 @@ Feature: Order entry End
       |1|1|
     And User clicks on Grid type drop down and select different grid
     Then User verifies visibility of Price override icon change the Price in price override and reset Grid type to Main grid
-      |0.01|
+      |0.001|
     And User navigates back to OE by selecting Discard all option from pending order popup
 
 

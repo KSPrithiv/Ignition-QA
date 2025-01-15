@@ -30,6 +30,7 @@ public class OrderEntryPageSteps7
     static CheckOutSummaryPage summary;
     static OrderHistoryPage orderHistoryPage;
     static OrderEntryPage orderpage;
+    static String actualPrice;
 
     @Before
     public void LaunchBrowser1(Scenario scenario) throws Exception
@@ -158,11 +159,13 @@ public class OrderEntryPageSteps7
     {
         List<List<String>> priceVal=tabledata.asLists(String.class);
         newOE=new NewOrderEntryPage(driver,scenario);
+        //actualPrice=newOE.readPrice();
         newOE.validatePriceOverrideIcon();
-        newOE.Click_On_PriceOverrideIcon();
+        actualPrice=newOE.Click_On_PriceOverrideIcon();
         newOE.PriceOverridePopup_WhatIfPriceUnit(priceVal.get(0).get(0));
 
-        newOE.readValueAfterOverride(priceVal.get(0).get(0));
+        //newOE.readValueAfterOverride(priceVal.get(0).get(0));
+        newOE.readValueAfterOverride(actualPrice);
         newOE.handleNotificationForLessCost();
         newOE.Click_On_PriceOverrideIcon();
         newOE.validatePriceOverrideIcon();

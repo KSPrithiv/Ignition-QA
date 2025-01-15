@@ -136,6 +136,9 @@ public class NewStandingOrderPage
         Actions act1=new Actions(driver);
         try
         {
+            new WebDriverWait(driver,Duration.ofMillis(10000)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("card2"))));
+            new WebDriverWait(driver,Duration.ofMillis(10000)).until(ExpectedConditions.visibilityOfElementLocated(By.id("card2")));
+
             WebEle=HelpersMethod.FindByElement(driver,"id","card2");
             HelpersMethod.ScrollElement(driver,WebEle);
             if(QuickProduct.isDisplayed() && QuickProduct.isEnabled())
