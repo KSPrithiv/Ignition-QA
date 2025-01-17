@@ -201,5 +201,8 @@ public interface Environment extends Config
 
     @Key("PricingForOG")
     String getPricingOG();
+
+    @Key("SubstituteProd")
+    String getSubstituteProd();
 }
 

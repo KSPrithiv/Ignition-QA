@@ -212,4 +212,24 @@ public class FeaturedProductsPageStep
         adminHomePage.ClickPermissionByAgain();
         adminHomePage.SelectCompany();
     }
+
+    @And("User should Add product to featured product")
+    public void userShouldAddProductToFeaturedProduct() throws InterruptedException
+    {
+        featuredProductsPage=new FeaturedProductsPage(driver,scenario);
+        //featuredProductsPage.savePopup();
+        featuredProductsPage.ClickAddProducts();
+        featuredProductsPage.clickOnLoadProducts();
+        for(int i=0;i<=MaxProd-1;i++)
+        {
+            featuredProductsPage.selecting3Products();
+            featuredProductsPage.PopupAfterChanges();
+        }
+        Thread.sleep(1000);
+        featuredProductsPage.PopupAfterChanges();
+        featuredProductsPage.CatalogOkButton();
+        featuredProductsPage.readFeaturedProduct();
+        featuredProductsPage.savePopup1();
+        featuredProductsPage.ListFeaturedProduct(MaxProd);
+    }
 }

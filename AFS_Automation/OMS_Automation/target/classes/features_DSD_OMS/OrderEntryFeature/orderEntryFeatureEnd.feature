@@ -44,6 +44,17 @@ Feature: Order entry End
     Then Check for Remove Skip button is visible and Click on Remove Skip button
     And User should reset the delivery date to current date
 
+  @CancelAndSkipDisabled
+  Scenario: Test scenario for verifying Cancel and Skip button is disabled in new OE
+    Given User must be on Order Entry Page
+    Then User must click Start Order button
+    Then User should make selection between Pending order or Start New order
+    Then User should select Note from popup and Order guide from popup
+    Then Click on Cancel button
+    And Cancel popup should appear and verify button Cancel and Skip button for current date
+    Then User should be navigated to Order Entry page
+    And User should reset the delivery date to current date
+
   @CancelAndSkipEnabled
   Scenario: Test scenario for verifying Cancel and Skip button is enabled in new OE page
     Given User must be on Order Entry Page
@@ -86,17 +97,6 @@ Feature: Order entry End
       |closed|
     Then User should be navigated to Order Entry page
     Then Check for Remove Skip button is visible and Click on Remove Skip button
-    And User should reset the delivery date to current date
-
-  @CancelAndSkipDisabled
-  Scenario: Test scenario for verifying Cancel and Skip button is disabled in new OE
-    Given User must be on Order Entry Page
-    Then User must click Start Order button
-    Then User should make selection between Pending order or Start New order
-    Then User should select Note from popup and Order guide from popup
-    Then Click on Cancel button
-    And Cancel popup should appear and verify button Cancel and Skip button for current date
-    Then User should be navigated to Order Entry page
     And User should reset the delivery date to current date
 
   @ChangeGridAndChangePriceOverride

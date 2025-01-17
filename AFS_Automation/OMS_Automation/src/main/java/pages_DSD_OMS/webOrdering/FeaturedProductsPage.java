@@ -282,7 +282,7 @@ public class FeaturedProductsPage
                     wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
 
                     WebElement modalContainer = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(text(),'saved')]/ancestor::div[contains(@class,'k-window k-dialog')]");
-                    WebElement buttonOk=modalContainer.findElement(By.xpath(".//button/span[text()='OK']"));
+                    WebElement buttonOk=modalContainer.findElement(By.xpath(".//button/span[text()='OK']|.//button/span[text()='Ok']"));
                     HelpersMethod.ActClick(driver,buttonOk,10000);
                     new WebDriverWait(driver,Duration.ofMillis(10000)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("featured-product-list"))));
                     new WebDriverWait(driver,Duration.ofMillis(10000)).until(ExpectedConditions.visibilityOfElementLocated(By.id("featured-product-list")));
@@ -359,6 +359,7 @@ public class FeaturedProductsPage
 
     public void deleteAllFeatureProduct()
     {
+        String productNo;
         try
         {
             Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
@@ -373,8 +374,9 @@ public class FeaturedProductsPage
                 {
                     WebElement delePro = deleteProds.get(0);
                     //WebElement delePro=deleteProds.get(i);
-                    HelpersMethod.ClickBut(driver, delePro, 10000);
-                    scenario.log("PRODUCT DELETED IS "+delePro);
+                    productNo=HelpersMethod.FindByElement(driver,"xpath","//div[@class='grid-item-box'][1]/descendant::div[@class='product-number']/span").getText();
+                    scenario.log("PRODUCT DELETED IS "+productNo);
+                    HelpersMethod.ClickBut(driver, delePro, 20000);
                     deleteProds.remove(delePro);
 
                     wait = new FluentWait<WebDriver>(driver)
@@ -404,13 +406,13 @@ public class FeaturedProductsPage
                         wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
 
                         WebElement modalContainer = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-window k-dialog')]");
-                        WebElement buttonOk = modalContainer.findElement(By.xpath(".//button/span[text()='Ok']"));
-                        HelpersMethod.JScriptClick(driver, buttonOk, 10000);
+                        WebElement buttonOk = modalContainer.findElement(By.xpath(".//button/span[text()='OK']|.//button/span[text()='Ok']"));
+                        HelpersMethod.ActClick(driver, buttonOk, 10000);
                         new WebDriverWait(driver, Duration.ofMillis(10000)).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[contains(text(),'saved successfully.')]/ancestor::div[contains(@class,'k-window k-dialog')]")));
                     }
                     new WebDriverWait(driver,Duration.ofMillis(40000)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("featured-product-list"))));
                     new WebDriverWait(driver,Duration.ofMillis(40000)).until(ExpectedConditions.visibilityOfElementLocated(By.id("featured-product-list")));
-                    Thread.sleep(1000);
+
                     deleteProds = HelpersMethod.FindByElements(driver, "xpath", "//span[text()='Delete']/ancestor::button[@id='edit-role']");
                 }
         }

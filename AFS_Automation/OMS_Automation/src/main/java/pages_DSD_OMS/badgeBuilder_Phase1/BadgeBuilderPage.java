@@ -1129,8 +1129,6 @@ public class BadgeBuilderPage {
         }
     }
 
-
-
     public void Change_OldAccount()
     {
         exists = false;
@@ -1164,9 +1162,6 @@ public class BadgeBuilderPage {
         }
         catch (Exception e) {}
     }
-
-
-
 
     public void PopupOKBtn() {
 

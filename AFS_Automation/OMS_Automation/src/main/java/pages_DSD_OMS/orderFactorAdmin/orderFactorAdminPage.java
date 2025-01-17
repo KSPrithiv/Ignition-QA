@@ -220,7 +220,7 @@ public class orderFactorAdminPage
 
         try
         {
-            if(HelpersMethod.IsExists("//div[@class='k-widget k-window k-dialog']/descendant::tr[@class='k-grid-norecords']",driver))
+            if(HelpersMethod.IsExists("//div[contains(@class,'k-window k-dialog')]/descendant::tr[@class='k-grid-norecords']",driver))
             {
                 scenario.log("<span style='color:red'>NO PRODUCTS FOUND IN PRODUCT DIALOG BOX</span>");
             }

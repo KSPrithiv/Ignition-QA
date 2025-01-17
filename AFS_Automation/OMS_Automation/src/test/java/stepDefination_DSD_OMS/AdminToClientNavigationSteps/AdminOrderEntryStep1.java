@@ -120,6 +120,7 @@ public class AdminOrderEntryStep1
     public void userClicksOnCustomerAccountIndexIconAndVerifyTheCustomerAccountIndexDialogBox() throws InterruptedException, AWTException
     {
         orderpage=new OrderEntryPage(driver,scenario);
+        orderpage.ValidateOE();
         orderpage.clickOnCustomerAccountIndex();
         orderpage.validateCustomerAccountInex();
         orderpage.validateChangeInLookAndFeelOfCustomerAccountIndex();
