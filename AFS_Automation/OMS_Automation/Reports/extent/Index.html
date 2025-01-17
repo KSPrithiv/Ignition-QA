@@ -49,7 +49,7 @@
 		<!-- nav-right -->
 		<ul id='nav-mobile' class='right hide-on-med-and-down nav-right'>
 			<a href='#!'>
-			<span class='label blue darken-3 suite-start-time'>Jan 15, 2025 04:55:58 PM</span>
+			<span class='label blue darken-3 suite-start-time'>Jan 17, 2025 08:13:16 PM</span>
 			</a>
 		</ul>
 	</div>
@@ -76,7 +76,10 @@
 				<i class='material-icons'>local_offer</i> Category
 				</a>
 				<ul id='category-toggle' class='dropdown-content'>
-					<li><a href='#'>@OrderCopyHistory</a></li>
+					<li><a href='#'>@StandingOrderHideZeroInCatalogDisable</a></li>
+					<li><a href='#'>@StandingOrderHideZeroInCatalogEnable</a></li>
+					<li><a href='#'>@StandingOrderHideZeroEnable</a></li>
+					<li><a href='#'>@StandingOrderHideZeroDisable</a></li>
 					<li class='divider'></li>
 					<li class='clear'><a href='#!' clear='true'>Clear Filters</a></li>
 				</ul>
@@ -137,7 +140,7 @@
                 </div>
                 <div class='block text-small'>
                     <span class='tooltipped' data-position='top' data-tooltip='100%'>
-                    <span class='strong'>1</span> scenarios passed</span>
+                    <span class='strong'>4</span> scenarios passed</span>
                 </div>
                 <div class='block text-small'>
                     <span class='strong tooltipped' data-position='top' data-tooltip='0%'>
@@ -157,7 +160,7 @@
                 </div>
                 <div class='block text-small'>
                     <span class='tooltipped' data-position='top' data-tooltip='100%'>
-                    <span class='strong'>18</span> steps passed</span>
+                    <span class='strong'>46</span> steps passed</span>
                 </div>
                 <div class='block text-small'>
                     <span class='strong tooltipped' data-position='top' data-tooltip='0%'>
@@ -186,8 +189,8 @@
 			<ul id='test-collection' class='test-collection'>
 				<li class='test displayed active has-leaf pass' status='pass' bdd='true' test-id='1'>
 					<div class='test-heading'>
-						<span class='test-name'>Order Entry</span>
-						<span class='test-time'>Jan 15, 2025 04:56:15 PM</span>
+						<span class='test-name'>scenarios for admin credentials and client credentials</span>
+						<span class='test-time'>Jan 17, 2025 08:13:28 PM</span>
 						<span class='test-status right pass'>Pass</span>
 					</div>
 					<div class='test-content hide'>
@@ -197,145 +200,351 @@
 	<a class="btn-floating waves-effect waves-light skip blue" title="skip"><i class='material-icons'>redo</i></a>
 	<a class="btn-floating waves-effect waves-light clear grey" title="clear"><i class='material-icons'>clear</i></a>
 </div>
-	<div class='test-desc'>  Used for cration of New order in different ways
-  Used for canceling order, editing of order, skipping of order</div>
 
-<div class='scenario node' test-id='2' status='pass'>
+<div class='scenario outline node' test-id='2' status='pass'>
 
-	<span class='duration right label'>00 03 41.675</span>
+	<span class='duration right label'>00 04 08.328</span>
 	<div class="bdd-test">
-		<div class="scenario-name"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span> Scenario: Create order using History button in OE page</div>
+		<div class="scenario-name"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span> Scenario Outline: Test scenario for verifying hide zero in product number and enter it in quick product it should be added in grid</div>
 	</div>
 	
+		<div class='node-desc'><br><br><table class='markup-table table '><tr><td>Setting</td><td>Key</td></tr><tr><td>Hide leading zeros</td><td>CPGeneralHideLeadingZeros</td></tr></table><br><br><table class='markup-table table '><tr><td>Setting</td><td>Key</td></tr><tr><td>Hide leading zeros</td><td>CPGeneralHideLeadingZeros</td></tr></table></div>
 	
-		<div class='category-list'>
-				<span class='category label'>@OrderCopyHistory</span>
-		</div>
 	
 	<ul class='steps'>
-		<li test-id='89' class='node given Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.user_enters_url_and_is_on_login_page_and_entered_credentials())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Given User enters URL and is on login page and entered credentials</div>
+		<li test-id='3' class='node scenario Pass' status='Pass'>
+			<div class="step-name" title="()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Test scenario for verifying hide zero in product number and enter it in quick product it should be added in grid</div>
 
+				<div class='category-list'>
+						<span class='category label'>@StandingOrderHideZeroEnable</span>
+				</div>
 
-					<div class="node-step">SIGNIN BUTTON CLICKED</div>
+			<ul class='gc steps'>
+				<li test-id='91' class='gc given Pass' status='Pass'>
+					<h6 class="step-name" title="stepDefination_DSD_OMS.AdminToClientNavigationSteps.AdminCatalogStep.userShouldVerifyAdminSettingIsEnabledByUsing(java.lang.String,java.lang.String)"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Given User should verify admin setting "Hide leading zeros" is enabled by using "CPGeneralHideLeadingZeros"</h6>
+
+							<div class="node-step"><span style='color:red'>ADMIN SETTING FOUND IS</span>0</div>
+							<div class="node-step">ADMIN SETTING IS ENABLED</div>
+							<div class="node-step">FOR ADMIN SETTING Hide leading zeros CHANGES</div>
+							<div class="node-step">ADMIN SETTING IS ENABLED</div>
+				</li>
+				<li test-id='92' class='gc then Pass' status='Pass'>
+					<h6 class="step-name" title="stepDefination_DSD_OMS.AdminToClientNavigationSteps.AdminCatalogStep.userEntersURLAndIsOnLoginPageAndEnteredCredentialsForAdminSetting()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User enters URL and is on login page and entered credentials for admin setting</h6>
+
+							<div class="node-step">SIGNIN BUTTON CLICKED</div>
+							<div class="node-step">CURRENT URL IS https://autodsd.afsi.com/ClientPortal/Apps/CPAdmin.html?p=Km530c8XSlYiXYABAQY6Y6JAChTfYaSYca92kMk0eI9TOeNnC6%2bd9w%3d%3d</div>
+				</li>
+				<li test-id='93' class='gc when Pass' status='Pass'>
+					<h6 class="step-name" title="stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.user_is_on_home_page()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>When User is on Home Page</h6>
+
+							<div class="node-step">ADMIN PAGE OR ORDER ENTRY PAGE HAS BEEN FOUND</div>
+				</li>
+				<li test-id='94' class='gc then Pass' status='Pass'>
+					<h6 class="step-name" title="stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.user_navigate_to_client_side()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User navigate to Client side</h6>
+
+							<div class="node-step">USER ICON FOUND</div>
+							<div class="node-step">IN ADMIN PAGE</div>
+				</li>
+				<li test-id='95' class='gc then Pass' status='Pass'>
+					<h6 class="step-name" title="stepDefination_DSD_OMS.AdminToClientNavigationSteps.AdminOrderEntryStep.userShouldSelectOrderEntryTabForAdmin()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User should select Order Entry tab for admin</h6>
+
+							<div class="node-step">https://autodsd.afsi.com/ClientPortal/Apps/cpOrderEntry.html?p=Km530c8XSlYiXYABAQY6Y6JAChTfYaSYca92kMk0eI9TOeNnC6%2bd9w%3d%3d</div>
+							<div class="node-step">NAVIGATED TO ORDER ENTRY PAGE</div>
+				</li>
+				<li test-id='96' class='gc then Pass' status='Pass'>
+					<h6 class="step-name" title="stepDefination_DSD_OMS.AdminToClientNavigationSteps.AdminOrderEntryStep.userSelectsAccountForAdminSideSetting()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User selects Account# for Admin side setting</h6>
+
+							<div class="node-step">NEW ORDER ENTRY PAGE HAS BEEN FOUND</div>
+							<div class="node-step">NAVIGATED TO ORDER ENTRY PAGE</div>
+							<div class="node-step"><span style='color:red'>DELIBERY DATE FOUND, AFTER LOGGING IN TO APPLICATION  Tuesday, January 21, 2025</span></div>
+				</li>
+				<li test-id='97' class='gc and Pass' status='Pass'>
+					<h6 class="step-name" title="stepDefination_DSD_OMS.AdminToClientNavigationSteps.AdminStandingOrderStep.userShouldNavigateToStandingOrderTabForAdminSetting()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>And User should navigate to Standing Order tab for admin setting</h6>
+
+							<div class="node-step">https://autodsd.afsi.com/ClientPortal/Apps/cpStandingOrder.html?p=Km530c8XSlYiXYABAQY6Y6JAChTfYaSYca92kMk0eI9TOeNnC6%2bd9w%3d%3d</div>
+				</li>
+				<li test-id='98' class='gc and Pass' status='Pass'>
+					<h6 class="step-name" title="stepDefination_DSD_OMS.StandingOrderPageSteps.StandingOrderPageSteps.userClickOnStartStandingOrderButtonAndSelectsStartDateAndEndDateDayFromCurrentDate(int,int)"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>And User click on Start standing order button and selects Start date 2 and End date 3 day from current date</h6>
+
+							<div class="node-step">STANDING ORDER PAGE HAS BEEN FOUND</div>
+							<div class="node-step">START STANDING ORDER BUTTON CLICKED</div>
+							<div class="node-step">ADD STANDING ORDER DIALOG BOX FOUND</div>
+							<div class="node-step">01/19/2025 HAS BEEN SELECTED AS START DATE FOR STANDING ORDER</div>
+							<div class="node-step">01/20/2025 HAS BEEN SELECTED AS END DATE FOR STANDING ORDER</div>
+				</li>
+				<li test-id='99' class='gc then Pass' status='Pass'>
+					<h6 class="step-name" title="stepDefination_DSD_OMS.AdminToClientNavigationSteps.AdminStandingOrderStep.userEntersProductInQuickProductEntryInputboxInAdminSetting()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User enters Product# in Quick product entry inputbox in admin setting</h6>
+
+							<div class="node-step">PRODUCT ENTERED IN QUICK ENTRY WITHOUT PRECEDING ZEROS 1</div>
+							<div class="node-step">PRODUCT FOUND IN GRID IS </div>
+							<div class="node-step">PRODUCT NUMBER ENTERED IN GRID, WITHOUT PRECEDING ZERO</div>
+				</li>
+				<li test-id='100' class='gc then Pass' status='Pass'>
+					<h6 class="step-name" title="stepDefination_DSD_OMS.AdminToClientNavigationSteps.AdminCatalogStep.userSignOutFromClientSideForAdminSettingChanges()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User sign out from client side for Admin setting changes</h6>
+
+				</li>
+				<li test-id='101' class='gc and Pass' status='Pass'>
+					<h6 class="step-name" title="stepDefination_DSD_OMS.AdminToClientNavigationSteps.AdminCatalogStep.userShouldSetAdminSettingAsDefaultBeforeMakingChanges(java.lang.String,java.lang.String)"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>And User should set admin setting "Hide leading zeros" "CPGeneralHideLeadingZeros" as default before making changes</h6>
+
+							<div class="node-step">0<span style='color:red'> WHAT WAS THE PREVIOUS VALUE FOR ADMIN SETTING, AND CURRENT STATUS IS </span>1</div>
+							<div class="node-step">ADMIN SETTING IS DISABLED</div>
+							<div class="node-step">FOR ADMIN SETTING Hide leading zeros CHANGES</div>
+							<div class="node-step">ADMIN SETTING IS ENABLED</div>
+				</li>
+			</ul>
 		</li>
-		<li test-id='90' class='node when Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.user_is_on_home_page())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>When User is on Home Page</div>
+		<li test-id='103' class='node scenario Pass' status='Pass'>
+			<div class="step-name" title="()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Test scenario for verifying hide zero in product number and enter it in quick product it should be added in grid</div>
 
+				<div class='category-list'>
+						<span class='category label'>@StandingOrderHideZeroDisable</span>
+						<span class='category label'>@StandingOrderHideZeroEnable</span>
+				</div>
 
-					<div class="node-step">ADMIN PAGE OR ORDER ENTRY PAGE HAS BEEN FOUND</div>
+			<ul class='gc steps'>
+				<li test-id='191' class='gc given Pass' status='Pass'>
+					<h6 class="step-name" title="stepDefination_DSD_OMS.AdminToClientNavigationSteps.AdminCatalogStep.userShouldVerifyAdminSettingIsDisabledByUsing(java.lang.String,java.lang.String)"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Given User should verify admin setting "Hide leading zeros" is disabled by using "CPGeneralHideLeadingZeros"</h6>
+
+							<div class="node-step">FOR ADMIN SETTING Hide leading zeros CHANGES</div>
+							<div class="node-step">ADMIN SETTING IS ALREADY DISABLED</div>
+				</li>
+				<li test-id='192' class='gc then Pass' status='Pass'>
+					<h6 class="step-name" title="stepDefination_DSD_OMS.AdminToClientNavigationSteps.AdminCatalogStep.userEntersURLAndIsOnLoginPageAndEnteredCredentialsForAdminSetting()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User enters URL and is on login page and entered credentials for admin setting</h6>
+
+							<div class="node-step">SIGNIN BUTTON CLICKED</div>
+							<div class="node-step">CURRENT URL IS https://autodsd.afsi.com/ClientPortal/Apps/CPAdmin.html?p=Km530c8XSlYiXYABAQY6Y6JAChTfYaSYca92kMk0eI9TOeNnC6%2bd9w%3d%3d</div>
+				</li>
+				<li test-id='193' class='gc when Pass' status='Pass'>
+					<h6 class="step-name" title="stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.user_is_on_home_page()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>When User is on Home Page</h6>
+
+							<div class="node-step">ADMIN PAGE OR ORDER ENTRY PAGE HAS BEEN FOUND</div>
+				</li>
+				<li test-id='194' class='gc then Pass' status='Pass'>
+					<h6 class="step-name" title="stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.user_navigate_to_client_side()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User navigate to Client side</h6>
+
+							<div class="node-step">USER ICON FOUND</div>
+							<div class="node-step">IN ADMIN PAGE</div>
+				</li>
+				<li test-id='195' class='gc then Pass' status='Pass'>
+					<h6 class="step-name" title="stepDefination_DSD_OMS.AdminToClientNavigationSteps.AdminOrderEntryStep.userShouldSelectOrderEntryTabForAdmin()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User should select Order Entry tab for admin</h6>
+
+							<div class="node-step">https://autodsd.afsi.com/ClientPortal/Apps/cpOrderEntry.html?p=Km530c8XSlYiXYABAQY6Y6JAChTfYaSYca92kMk0eI9TOeNnC6%2bd9w%3d%3d</div>
+							<div class="node-step">NAVIGATED TO ORDER ENTRY PAGE</div>
+				</li>
+				<li test-id='196' class='gc then Pass' status='Pass'>
+					<h6 class="step-name" title="stepDefination_DSD_OMS.AdminToClientNavigationSteps.AdminOrderEntryStep.userSelectsAccountForAdminSideSetting()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User selects Account# for Admin side setting</h6>
+
+							<div class="node-step">NEW ORDER ENTRY PAGE HAS BEEN FOUND</div>
+							<div class="node-step">NAVIGATED TO ORDER ENTRY PAGE</div>
+							<div class="node-step"><span style='color:red'>DELIBERY DATE FOUND, AFTER LOGGING IN TO APPLICATION  Tuesday, January 21, 2025</span></div>
+				</li>
+				<li test-id='197' class='gc and Pass' status='Pass'>
+					<h6 class="step-name" title="stepDefination_DSD_OMS.AdminToClientNavigationSteps.AdminStandingOrderStep.userShouldNavigateToStandingOrderTabForAdminSetting()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>And User should navigate to Standing Order tab for admin setting</h6>
+
+							<div class="node-step">https://autodsd.afsi.com/ClientPortal/Apps/cpStandingOrder.html?p=Km530c8XSlYiXYABAQY6Y6JAChTfYaSYca92kMk0eI9TOeNnC6%2bd9w%3d%3d</div>
+				</li>
+				<li test-id='198' class='gc and Pass' status='Pass'>
+					<h6 class="step-name" title="stepDefination_DSD_OMS.StandingOrderPageSteps.StandingOrderPageSteps.userClickOnStartStandingOrderButtonAndSelectsStartDateAndEndDateDayFromCurrentDate(int,int)"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>And User click on Start standing order button and selects Start date 2 and End date 3 day from current date</h6>
+
+							<div class="node-step">STANDING ORDER PAGE HAS BEEN FOUND</div>
+							<div class="node-step">START STANDING ORDER BUTTON CLICKED</div>
+							<div class="node-step">ADD STANDING ORDER DIALOG BOX FOUND</div>
+							<div class="node-step">01/19/2025 HAS BEEN SELECTED AS START DATE FOR STANDING ORDER</div>
+							<div class="node-step">01/20/2025 HAS BEEN SELECTED AS END DATE FOR STANDING ORDER</div>
+				</li>
+				<li test-id='199' class='gc then Pass' status='Pass'>
+					<h6 class="step-name" title="stepDefination_DSD_OMS.AdminToClientNavigationSteps.AdminStandingOrderStep.userEntersProductInQuickProductEntryInputboxInAdminSettingForDisabling()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User enters Product# in Quick product entry inputbox in admin setting for disabling</h6>
+
+							<div class="node-step">PRODUCT ENTERED IN QUICK ENTRY WITH PRECEDING ZEROS 00000001</div>
+							<div class="node-step">PRODUCT FOUND IN GRID IS 00000001</div>
+							<div class="node-step">PRODUCT NUMBER ENTERED IN QUICK ENTRY AND GRID ARE SAME AND WITH PRECEDING ZERO</div>
+				</li>
+				<li test-id='200' class='gc then Pass' status='Pass'>
+					<h6 class="step-name" title="stepDefination_DSD_OMS.AdminToClientNavigationSteps.AdminCatalogStep.userSignOutFromClientSideForAdminSettingChanges()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User sign out from client side for Admin setting changes</h6>
+
+				</li>
+				<li test-id='201' class='gc and Pass' status='Pass'>
+					<h6 class="step-name" title="stepDefination_DSD_OMS.AdminToClientNavigationSteps.AdminCatalogStep.userShouldSetAdminSettingAsDefaultBeforeMakingChanges(java.lang.String,java.lang.String)"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>And User should set admin setting "Hide leading zeros" "CPGeneralHideLeadingZeros" as default before making changes</h6>
+
+							<div class="node-step">0<span style='color:red'> WHAT WAS THE PREVIOUS VALUE FOR ADMIN SETTING, AND CURRENT STATUS IS </span>0</div>
+				</li>
+			</ul>
 		</li>
-		<li test-id='91' class='node then Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.user_navigate_to_client_side())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User navigate to Client side</div>
+	</ul>
+</div>
+<div class='scenario outline node' test-id='203' status='pass'>
 
+	<span class='duration right label'>00 04 10.503</span>
+	<div class="bdd-test">
+		<div class="scenario-name"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span> Scenario Outline: Test scenario for verifying hide zero in product number and verify it in catalog dialog box</div>
+	</div>
+	
+		<div class='node-desc'><br><br><table class='markup-table table '><tr><td>Setting</td><td>Key</td></tr><tr><td>Hide leading zeros</td><td>CPGeneralHideLeadingZeros</td></tr></table><br><br><table class='markup-table table '><tr><td>Setting</td><td>Key</td></tr><tr><td>Hide leading zeros</td><td>CPGeneralHideLeadingZeros</td></tr></table></div>
+	
+	
+	<ul class='steps'>
+		<li test-id='204' class='node scenario Pass' status='Pass'>
+			<div class="step-name" title="()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Test scenario for verifying hide zero in product number and verify it in catalog dialog box</div>
 
-					<div class="node-step">USER ICON FOUND</div>
-					<div class="node-step">IN ADMIN PAGE</div>
+				<div class='category-list'>
+						<span class='category label'>@StandingOrderHideZeroInCatalogEnable</span>
+				</div>
+
+			<ul class='gc steps'>
+				<li test-id='292' class='gc given Pass' status='Pass'>
+					<h6 class="step-name" title="stepDefination_DSD_OMS.AdminToClientNavigationSteps.AdminCatalogStep.userShouldVerifyAdminSettingIsEnabledByUsing(java.lang.String,java.lang.String)"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Given User should verify admin setting "Hide leading zeros" is enabled by using "CPGeneralHideLeadingZeros"</h6>
+
+							<div class="node-step"><span style='color:red'>ADMIN SETTING FOUND IS</span>0</div>
+							<div class="node-step">ADMIN SETTING IS ENABLED</div>
+							<div class="node-step">FOR ADMIN SETTING Hide leading zeros CHANGES</div>
+							<div class="node-step">ADMIN SETTING IS ENABLED</div>
+				</li>
+				<li test-id='293' class='gc then Pass' status='Pass'>
+					<h6 class="step-name" title="stepDefination_DSD_OMS.AdminToClientNavigationSteps.AdminCatalogStep.userEntersURLAndIsOnLoginPageAndEnteredCredentialsForAdminSetting()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User enters URL and is on login page and entered credentials for admin setting</h6>
+
+							<div class="node-step">SIGNIN BUTTON CLICKED</div>
+							<div class="node-step">CURRENT URL IS https://autodsd.afsi.com/ClientPortal/Apps/CPAdmin.html?p=Km530c8XSlYiXYABAQY6Y6JAChTfYaSYca92kMk0eI9TOeNnC6%2bd9w%3d%3d</div>
+				</li>
+				<li test-id='294' class='gc when Pass' status='Pass'>
+					<h6 class="step-name" title="stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.user_is_on_home_page()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>When User is on Home Page</h6>
+
+							<div class="node-step">ADMIN PAGE OR ORDER ENTRY PAGE HAS BEEN FOUND</div>
+				</li>
+				<li test-id='295' class='gc then Pass' status='Pass'>
+					<h6 class="step-name" title="stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.user_navigate_to_client_side()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User navigate to Client side</h6>
+
+							<div class="node-step">USER ICON FOUND</div>
+							<div class="node-step">IN ADMIN PAGE</div>
+				</li>
+				<li test-id='296' class='gc then Pass' status='Pass'>
+					<h6 class="step-name" title="stepDefination_DSD_OMS.AdminToClientNavigationSteps.AdminOrderEntryStep.userShouldSelectOrderEntryTabForAdmin()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User should select Order Entry tab for admin</h6>
+
+							<div class="node-step">https://autodsd.afsi.com/ClientPortal/Apps/cpOrderEntry.html?p=Km530c8XSlYiXYABAQY6Y6JAChTfYaSYca92kMk0eI9TOeNnC6%2bd9w%3d%3d</div>
+							<div class="node-step">NAVIGATED TO ORDER ENTRY PAGE</div>
+				</li>
+				<li test-id='297' class='gc then Pass' status='Pass'>
+					<h6 class="step-name" title="stepDefination_DSD_OMS.AdminToClientNavigationSteps.AdminOrderEntryStep.userSelectsAccountForAdminSideSetting()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User selects Account# for Admin side setting</h6>
+
+							<div class="node-step">NEW ORDER ENTRY PAGE HAS BEEN FOUND</div>
+							<div class="node-step">NAVIGATED TO ORDER ENTRY PAGE</div>
+							<div class="node-step"><span style='color:red'>DELIBERY DATE FOUND, AFTER LOGGING IN TO APPLICATION  Tuesday, January 21, 2025</span></div>
+				</li>
+				<li test-id='298' class='gc and Pass' status='Pass'>
+					<h6 class="step-name" title="stepDefination_DSD_OMS.AdminToClientNavigationSteps.AdminStandingOrderStep.userShouldNavigateToStandingOrderTabForAdminSetting()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>And User should navigate to Standing Order tab for admin setting</h6>
+
+							<div class="node-step">https://autodsd.afsi.com/ClientPortal/Apps/cpStandingOrder.html?p=Km530c8XSlYiXYABAQY6Y6JAChTfYaSYca92kMk0eI9TOeNnC6%2bd9w%3d%3d</div>
+				</li>
+				<li test-id='299' class='gc and Pass' status='Pass'>
+					<h6 class="step-name" title="stepDefination_DSD_OMS.StandingOrderPageSteps.StandingOrderPageSteps.userClickOnStartStandingOrderButtonAndSelectsStartDateAndEndDateDayFromCurrentDate(int,int)"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>And User click on Start standing order button and selects Start date 2 and End date 3 day from current date</h6>
+
+							<div class="node-step">STANDING ORDER PAGE HAS BEEN FOUND</div>
+							<div class="node-step">START STANDING ORDER BUTTON CLICKED</div>
+							<div class="node-step">ADD STANDING ORDER DIALOG BOX FOUND</div>
+							<div class="node-step">01/19/2025 HAS BEEN SELECTED AS START DATE FOR STANDING ORDER</div>
+							<div class="node-step">01/20/2025 HAS BEEN SELECTED AS END DATE FOR STANDING ORDER</div>
+				</li>
+				<li test-id='300' class='gc then Pass' status='Pass'>
+					<h6 class="step-name" title="stepDefination_DSD_OMS.StandingOrderPageSteps.StandingOrderPageSteps.userClickOnAddProductButtonInStandingOrderPageAndSelectCatalogOption()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User click on Add Product button in Standing order page and select catalog option</h6>
+
+				</li>
+				<li test-id='301' class='gc and Pass' status='Pass'>
+					<h6 class="step-name" title="stepDefination_DSD_OMS.AdminToClientNavigationSteps.AdminStandingOrderStep.userChecksForCatalogPopupAndSearchesForProductInCatalogForAdminSetting()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>And User checks for catalog popup and searches for product in catalog for admin setting</h6>
+
+							<div class="node-step">CATALOG DIALOG BOX HAS BEEN FOUND</div>
+				</li>
+				<li test-id='302' class='gc then Pass' status='Pass'>
+					<h6 class="step-name" title="stepDefination_DSD_OMS.AdminToClientNavigationSteps.AdminCatalogStep.userSignOutFromClientSideForAdminSettingChanges()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User sign out from client side for Admin setting changes</h6>
+
+				</li>
+				<li test-id='303' class='gc and Pass' status='Pass'>
+					<h6 class="step-name" title="stepDefination_DSD_OMS.AdminToClientNavigationSteps.AdminCatalogStep.userShouldSetAdminSettingAsDefaultBeforeMakingChanges(java.lang.String,java.lang.String)"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>And User should set admin setting "Hide leading zeros" "CPGeneralHideLeadingZeros" as default before making changes</h6>
+
+							<div class="node-step">0<span style='color:red'> WHAT WAS THE PREVIOUS VALUE FOR ADMIN SETTING, AND CURRENT STATUS IS </span>1</div>
+							<div class="node-step">ADMIN SETTING IS DISABLED</div>
+							<div class="node-step">FOR ADMIN SETTING Hide leading zeros CHANGES</div>
+							<div class="node-step">ADMIN SETTING IS ENABLED</div>
+				</li>
+			</ul>
 		</li>
-		<li test-id='92' class='node then Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.user_should_select_order_entry_tab())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User should select Order Entry tab</div>
+		<li test-id='305' class='node scenario Pass' status='Pass'>
+			<div class="step-name" title="()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Test scenario for verifying hide zero in product number and verify it in catalog dialog box</div>
 
+				<div class='category-list'>
+						<span class='category label'>@StandingOrderHideZeroInCatalogDisable</span>
+						<span class='category label'>@StandingOrderHideZeroInCatalogEnable</span>
+				</div>
 
-					<div class="node-step">https://autoerp.afsi.com/omsi/clientportal/apps/cpOrderEntry.html?p=QJFsTz5JBfVNODvKd%2b4hK56SreO0vwVwYSCjo3j9p6A%3d</div>
-					<div class="node-step">NAVIGATED TO ORDER ENTRY PAGE</div>
-		</li>
-		<li test-id='93' class='node then Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.user_selects_account())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User selects Account#</div>
+			<ul class='gc steps'>
+				<li test-id='393' class='gc given Pass' status='Pass'>
+					<h6 class="step-name" title="stepDefination_DSD_OMS.AdminToClientNavigationSteps.AdminCatalogStep.userShouldVerifyAdminSettingIsDisabledByUsing(java.lang.String,java.lang.String)"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Given User should verify admin setting "Hide leading zeros" is disabled by using "CPGeneralHideLeadingZeros"</h6>
 
+							<div class="node-step">FOR ADMIN SETTING Hide leading zeros CHANGES</div>
+							<div class="node-step">ADMIN SETTING IS ALREADY DISABLED</div>
+				</li>
+				<li test-id='394' class='gc then Pass' status='Pass'>
+					<h6 class="step-name" title="stepDefination_DSD_OMS.AdminToClientNavigationSteps.AdminCatalogStep.userEntersURLAndIsOnLoginPageAndEnteredCredentialsForAdminSetting()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User enters URL and is on login page and entered credentials for admin setting</h6>
 
-					<div class="node-step">CUSTOMER ACCOUNT# SELECTED IS K11985</div>
-					<div class="node-step"><span style='color:red'>DELIBERY DATE FOUND, AFTER LOGGING IN TO APPLICATION  Friday, January 17, 2025</span></div>
-		</li>
-		<li test-id='94' class='node given Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.user_must_be_on_order_entry_page())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Given User must be on Order Entry Page</div>
+							<div class="node-step">SIGNIN BUTTON CLICKED</div>
+							<div class="node-step">CURRENT URL IS https://autodsd.afsi.com/ClientPortal/Apps/CPAdmin.html?p=Km530c8XSlYiXYABAQY6Y6JAChTfYaSYca92kMk0eI9TOeNnC6%2bd9w%3d%3d</div>
+				</li>
+				<li test-id='395' class='gc when Pass' status='Pass'>
+					<h6 class="step-name" title="stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.user_is_on_home_page()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>When User is on Home Page</h6>
 
+							<div class="node-step">ADMIN PAGE OR ORDER ENTRY PAGE HAS BEEN FOUND</div>
+				</li>
+				<li test-id='396' class='gc then Pass' status='Pass'>
+					<h6 class="step-name" title="stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.user_navigate_to_client_side()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User navigate to Client side</h6>
 
-		</li>
-		<li test-id='95' class='node then Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.click_on_history_button())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then Click on History button</div>
+							<div class="node-step">USER ICON FOUND</div>
+							<div class="node-step">IN ADMIN PAGE</div>
+				</li>
+				<li test-id='397' class='gc then Pass' status='Pass'>
+					<h6 class="step-name" title="stepDefination_DSD_OMS.AdminToClientNavigationSteps.AdminOrderEntryStep.userShouldSelectOrderEntryTabForAdmin()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User should select Order Entry tab for admin</h6>
 
+							<div class="node-step">https://autodsd.afsi.com/ClientPortal/Apps/cpOrderEntry.html?p=Km530c8XSlYiXYABAQY6Y6JAChTfYaSYca92kMk0eI9TOeNnC6%2bd9w%3d%3d</div>
+							<div class="node-step">NAVIGATED TO ORDER ENTRY PAGE</div>
+				</li>
+				<li test-id='398' class='gc then Pass' status='Pass'>
+					<h6 class="step-name" title="stepDefination_DSD_OMS.AdminToClientNavigationSteps.AdminOrderEntryStep.userSelectsAccountForAdminSideSetting()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User selects Account# for Admin side setting</h6>
 
-					<div class="node-step">ORDER ENTRY PAGE HAS BEEN FOUND</div>
-					<div class="node-step">ORDER HISTORY BUTTON HAS BEEN CLICKED</div>
-		</li>
-		<li test-id='96' class='node then Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.user_verifies_order_history_page())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User verifies Order history page and add history Order to order</div>
+							<div class="node-step">NEW ORDER ENTRY PAGE HAS BEEN FOUND</div>
+							<div class="node-step">NAVIGATED TO ORDER ENTRY PAGE</div>
+							<div class="node-step"><span style='color:red'>DELIBERY DATE FOUND, AFTER LOGGING IN TO APPLICATION  Tuesday, January 21, 2025</span></div>
+				</li>
+				<li test-id='399' class='gc and Pass' status='Pass'>
+					<h6 class="step-name" title="stepDefination_DSD_OMS.AdminToClientNavigationSteps.AdminStandingOrderStep.userShouldNavigateToStandingOrderTabForAdminSetting()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>And User should navigate to Standing Order tab for admin setting</h6>
 
+							<div class="node-step">https://autodsd.afsi.com/ClientPortal/Apps/cpStandingOrder.html?p=Km530c8XSlYiXYABAQY6Y6JAChTfYaSYca92kMk0eI9TOeNnC6%2bd9w%3d%3d</div>
+				</li>
+				<li test-id='400' class='gc and Pass' status='Pass'>
+					<h6 class="step-name" title="stepDefination_DSD_OMS.StandingOrderPageSteps.StandingOrderPageSteps.userClickOnStartStandingOrderButtonAndSelectsStartDateAndEndDateDayFromCurrentDate(int,int)"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>And User click on Start standing order button and selects Start date 2 and End date 3 day from current date</h6>
 
-					<div class="node-step">ORDER NUMBER SELECTED FROM ORDER HISTORY PAGE FOR CREATING COPY IS: 1098397</div>
-		</li>
-		<li test-id='97' class='node and Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.click_on_copy_button())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>And Click on Copy button</div>
+							<div class="node-step">STANDING ORDER PAGE HAS BEEN FOUND</div>
+							<div class="node-step">START STANDING ORDER BUTTON CLICKED</div>
+							<div class="node-step">ADD STANDING ORDER DIALOG BOX FOUND</div>
+							<div class="node-step">01/19/2025 HAS BEEN SELECTED AS START DATE FOR STANDING ORDER</div>
+							<div class="node-step">01/20/2025 HAS BEEN SELECTED AS END DATE FOR STANDING ORDER</div>
+				</li>
+				<li test-id='401' class='gc then Pass' status='Pass'>
+					<h6 class="step-name" title="stepDefination_DSD_OMS.StandingOrderPageSteps.StandingOrderPageSteps.userClickOnAddProductButtonInStandingOrderPageAndSelectCatalogOption()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User click on Add Product button in Standing order page and select catalog option</h6>
 
+				</li>
+				<li test-id='402' class='gc and Pass' status='Pass'>
+					<h6 class="step-name" title="stepDefination_DSD_OMS.AdminToClientNavigationSteps.AdminStandingOrderStep.userChecksForCatalogPopupAndSearchesForProductInCatalogForAdminSettingZeroPrecedingProductNumber()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>And User checks for catalog popup and searches for product in catalog for admin setting zero preceding product number</h6>
 
-					<div class="node-step">COPY BUTTON HAS BEEN CLICKED, TO COPY ORDER HISTORY</div>
-		</li>
-		<li test-id='98' class='node then Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.user_shold_select_delivery_date_from_popup())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User should Select delivery date from popup</div>
+							<div class="node-step">CATALOG DIALOG BOX HAS BEEN FOUND</div>
+							<div class="node-step"><span style='color:red'>PRODUCT NUMBER IS HAVING PRECEDING ZERO VALUES</span></div>
+				</li>
+				<li test-id='403' class='gc then Pass' status='Pass'>
+					<h6 class="step-name" title="stepDefination_DSD_OMS.AdminToClientNavigationSteps.AdminCatalogStep.userSignOutFromClientSideForAdminSettingChanges()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User sign out from client side for Admin setting changes</h6>
 
+				</li>
+				<li test-id='404' class='gc and Pass' status='Pass'>
+					<h6 class="step-name" title="stepDefination_DSD_OMS.AdminToClientNavigationSteps.AdminCatalogStep.userShouldSetAdminSettingAsDefaultBeforeMakingChanges(java.lang.String,java.lang.String)"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>And User should set admin setting "Hide leading zeros" "CPGeneralHideLeadingZeros" as default before making changes</h6>
 
-					<div class="node-step">DELIVERY DATE SELECTED IS: Jan 17, 2025</div>
-		</li>
-		<li test-id='99' class='node and Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.select_new_order_option_from_popup())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>And Select New order option from popup</div>
-
-
-		</li>
-		<li test-id='100' class='node and Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.user_should_make_selection_between_pending_order_or_start_new_order())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>And User should make selection between Pending order or Start New order</div>
-
-
-		</li>
-		<li test-id='101' class='node then Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.userShouldSelectNoteFromPopupAndOrderGuideFromPopup())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User should select Note from popup and Order guide from popup</div>
-
-
-		</li>
-		<li test-id='102' class='node then Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.enter_po_for_new_order(io.cucumber.datatable.DataTable))"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then Enter PO# for New order</div>
-
-
-					<div class="node-step"><table class='markup-table table '><tr><td>PO123</td></tr></table></div>
-					<div class="node-step">NEW ORDER ENTRY PAGE HAS BEEN FOUND</div>
-					<div class="node-step">PO# ENTERED IS PO123</div>
-		</li>
-		<li test-id='103' class='node then Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.user_should_enter_units_and_cases_in_product_grid(io.cucumber.datatable.DataTable))"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User should enter Units and Cases in product grid</div>
-
-
-					<div class="node-step"><table class='markup-table table '><tr><td>1</td><td>1</td></tr></table></div>
-					<div class="node-step">UNIT ENTERED IN GRID IS 1</div>
-		</li>
-		<li test-id='104' class='node then Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.click_on_next_button())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then Click on Next button</div>
-
-
-					<div class="node-step">PRODUCT FOUND IN ORDER ARE </div>
-					<div class="node-step">0406</div>
-					<div class="node-step">0704</div>
-					<div class="node-step">0804</div>
-					<div class="node-step">3508</div>
-					<div class="node-step">10012</div>
-					<div class="node-step">2235</div>
-					<div class="node-step">NEXT BUTTON CLICKED</div>
-					<div class="node-step">ORDER NUMBER CREATED IS 1194931</div>
-					<div class="node-step">PAYMENT METHOD HAS BEEN SELECTED</div>
-					<div class="node-step">FIRST PAYMENT OPTION HAS BEEN SELECTED</div>
-					<div class="node-step">CLICKED ON NEXT BUTTON</div>
-		</li>
-		<li test-id='105' class='node and Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.click_on_submit_order_button())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>And Click on SubmitOrder button</div>
-
-
-					<div class="node-step">ORDER ENTRY SUMMARY PAGE HAS BEEN FOUND</div>
-					<div class="node-step">SUBMIT BUTTON IN ORDER SUMMARY PAGE HAS BEEN CLICKED</div>
-					<div class="node-step">ORDER HAS BEEN SUCESSFULLY CREATED</div>
-		</li>
-		<li test-id='106' class='node then Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.user_should_be_navigated_to_order_entry_page())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User should be navigated to Order Entry page</div>
-
-
-					<div class="node-step">ORDER ENTRY PAGE HAS BEEN FOUND</div>
+							<div class="node-step">0<span style='color:red'> WHAT WAS THE PREVIOUS VALUE FOR ADMIN SETTING, AND CURRENT STATUS IS </span>0</div>
+				</li>
+			</ul>
 		</li>
 	</ul>
 </div>
@@ -383,7 +592,7 @@
 			<ul id='category-collection' class='category-collection'>
 				<li class='category displayed active'>
 					<div class='category-heading'>
-						<span class='category-name'>@OrderCopyHistory</span>
+						<span class='category-name'>@StandingOrderHideZeroInCatalogDisable</span>
 						<span class='category-status right'>
 						<span class='label pass'>1</span>
 						</span>
@@ -405,8 +614,117 @@
 								</thead>
 								<tbody>
 									<tr>
-										<td>Jan 15, 2025 04:56:15 PM</td>
-										<td class='linked' test-id='2'>Create order using History button in OE page</td>
+										<td>Jan 17, 2025 08:19:55 PM</td>
+										<td class='linked' test-id='305'>Test scenario for verifying hide zero in product number and verify it in catalog dialog box</td>
+										<td><span class='test-status Pass'>Pass</span></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</li>
+				<li class='category displayed active'>
+					<div class='category-heading'>
+						<span class='category-name'>@StandingOrderHideZeroInCatalogEnable</span>
+						<span class='category-status right'>
+						<span class='label pass'>2</span>
+						</span>
+					</div>
+					<div class='category-content hide'>
+						<div class='category-status-counts'>
+							<span status="pass" class='label green accent-4 white-text'>Passed: 2</span>
+							
+							
+						</div>
+						<div class='category-tests'>
+							<table class='bordered table-results'>
+								<thead>
+									<tr>
+										<th>Timestamp</th>
+										<th>TestName</th>
+										<th>Status</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>Jan 17, 2025 08:17:45 PM</td>
+										<td class='linked' test-id='204'>Test scenario for verifying hide zero in product number and verify it in catalog dialog box</td>
+										<td><span class='test-status Pass'>Pass</span></td>
+									</tr>
+									<tr>
+										<td>Jan 17, 2025 08:19:55 PM</td>
+										<td class='linked' test-id='305'>Test scenario for verifying hide zero in product number and verify it in catalog dialog box</td>
+										<td><span class='test-status Pass'>Pass</span></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</li>
+				<li class='category displayed active'>
+					<div class='category-heading'>
+						<span class='category-name'>@StandingOrderHideZeroEnable</span>
+						<span class='category-status right'>
+						<span class='label pass'>2</span>
+						</span>
+					</div>
+					<div class='category-content hide'>
+						<div class='category-status-counts'>
+							<span status="pass" class='label green accent-4 white-text'>Passed: 2</span>
+							
+							
+						</div>
+						<div class='category-tests'>
+							<table class='bordered table-results'>
+								<thead>
+									<tr>
+										<th>Timestamp</th>
+										<th>TestName</th>
+										<th>Status</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>Jan 17, 2025 08:13:28 PM</td>
+										<td class='linked' test-id='3'>Test scenario for verifying hide zero in product number and enter it in quick product it should be added in grid</td>
+										<td><span class='test-status Pass'>Pass</span></td>
+									</tr>
+									<tr>
+										<td>Jan 17, 2025 08:15:41 PM</td>
+										<td class='linked' test-id='103'>Test scenario for verifying hide zero in product number and enter it in quick product it should be added in grid</td>
+										<td><span class='test-status Pass'>Pass</span></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</li>
+				<li class='category displayed active'>
+					<div class='category-heading'>
+						<span class='category-name'>@StandingOrderHideZeroDisable</span>
+						<span class='category-status right'>
+						<span class='label pass'>1</span>
+						</span>
+					</div>
+					<div class='category-content hide'>
+						<div class='category-status-counts'>
+							<span status="pass" class='label green accent-4 white-text'>Passed: 1</span>
+							
+							
+						</div>
+						<div class='category-tests'>
+							<table class='bordered table-results'>
+								<thead>
+									<tr>
+										<th>Timestamp</th>
+										<th>TestName</th>
+										<th>Status</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>Jan 17, 2025 08:15:41 PM</td>
+										<td class='linked' test-id='103'>Test scenario for verifying hide zero in product number and enter it in quick product it should be added in grid</td>
 										<td><span class='test-status Pass'>Pass</span></td>
 									</tr>
 								</tbody>
@@ -437,31 +755,31 @@
 			<div class='col s2'>
 				<div class='card-panel r'>
 					Scenarios
-					<div class='panel-lead'>1</div>
+					<div class='panel-lead'>4</div>
 				</div>
 			</div>
 			<div class='col s2'>
 				<div class='card-panel r'>
 					Steps
-					<div class='panel-lead'>18</div>
+					<div class='panel-lead'>46</div>
 				</div>
 			</div>
 			<div class='col s2'>
 				<div class='card-panel r'>
 					Start
-					<div class='panel-lead'>Jan 15, 2025 04:55:58 PM</div>
+					<div class='panel-lead'>Jan 17, 2025 08:13:16 PM</div>
 				</div>
 			</div>
 			<div class='col s2'>
 				<div class='card-panel r'>
 			 		End
-			 		<div class='panel-lead'>Jan 15, 2025 04:59:57 PM</div>
+			 		<div class='panel-lead'>Jan 17, 2025 08:21:57 PM</div>
 				</div>
 			</div>
 			<div class='col s2'>
 				<div class='card-panel r'>
 					Time Taken
-					<div class='panel-lead'>00 03 59.349</div>
+					<div class='panel-lead'>00 08 40.094</div>
 				</div>
 			</div>
 			<div class='col s4'>
@@ -501,7 +819,34 @@
 							<th>Passed %</th>
 						</tr>
 						<tr>
-							<td>@OrderCopyHistory</td>
+							<td>@StandingOrderHideZeroInCatalogDisable</td>
+							<td>1</td>
+							<td>0</td>
+							<td>0</td>
+							<td>
+									100%
+							</td>
+						</tr>
+						<tr>
+							<td>@StandingOrderHideZeroInCatalogEnable</td>
+							<td>2</td>
+							<td>0</td>
+							<td>0</td>
+							<td>
+									100%
+							</td>
+						</tr>
+						<tr>
+							<td>@StandingOrderHideZeroEnable</td>
+							<td>2</td>
+							<td>0</td>
+							<td>0</td>
+							<td>
+									100%
+							</td>
+						</tr>
+						<tr>
+							<td>@StandingOrderHideZeroDisable</td>
 							<td>1</td>
 							<td>0</td>
 							<td>0</td>
@@ -527,16 +872,16 @@
 				errorParent: 0,
 				warningParent: 0,
 				skipParent: 0,
-				childCount: 1,
-				passChild: 1,
+				childCount: 4,
+				passChild: 4,
 				failChild: 0,
 				fatalChild: 0,
 				errorChild: 0,
 				warningChild: 0,
 				skipChild: 0,
 				infoChild: 0,
-				grandChildCount: 18,
-				passGrandChild: 18,
+				grandChildCount: 46,
+				passGrandChild: 46,
 				failGrandChild: 0,
 				fatalGrandChild: 0,
 				errorGrandChild: 0,
@@ -548,7 +893,7 @@
 		
 		<script>
 			var timeline = {
-			        "Order Entry":221.691
+			        "scenarios for admin credentials and client credentials":507.532
 			};
 		</script>
 		

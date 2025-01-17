@@ -921,7 +921,7 @@ public class InventoryPage
                         .ignoring(NoSuchElementException.class);
                 wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
 
-                if(HelpersMethod.IsExists("//div[@class='k-widget k-window k-dialog']/descendant::tr[@class='k-grid-norecords']",driver))
+                if(HelpersMethod.IsExists("//div[contains(@class,'k-window k-dialog')]/descendant::tr[@class='k-grid-norecords']",driver))
                 {
                         scenario.log("<span style='color:red'> EVEN AFTER CLICKING LOAD PRODUCTS LINK, NOT ABLE TO SEE PRODUCT IN CATALOG</span>");
                 }
@@ -940,7 +940,7 @@ public class InventoryPage
                         .ignoring(NoSuchElementException.class);
                 wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
 
-                if(HelpersMethod.IsExists("//div[@class='k-widget k-window k-dialog']/descendant::tr[@class='k-grid-norecords']",driver))
+                if(HelpersMethod.IsExists("//div[contains(@class,'k-window k-dialog')]/descendant::tr[@class='k-grid-norecords']",driver))
                 {
                     scenario.log("<span style='color:red'> EVEN AFTER CLICKING LOAD PRODUCTS LINK, NOT ABLE TO SEE PRODUCT IN CATALOG</span>");
                 }

@@ -700,10 +700,13 @@ public class NewOrderEntryPage
                     .ignoring(NoSuchElementException.class);
             wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
 
+            new WebDriverWait(driver,Duration.ofMillis(20000)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@id='react-autowhatever-search-option-selection']"))));
+            new WebDriverWait(driver,Duration.ofMillis(20000)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@id='react-autowhatever-search-option-selection']")));
+
             if(SearchProd.isDisplayed()&&SearchProd.isEnabled())
             {
-                new WebDriverWait(driver,Duration.ofMillis(10000)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@id='react-autowhatever-search-option-selection']"))));
-                new WebDriverWait(driver,Duration.ofMillis(10000)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@id='react-autowhatever-search-option-selection']")));
+                new WebDriverWait(driver,Duration.ofMillis(20000)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@id='react-autowhatever-search-option-selection']"))));
+                new WebDriverWait(driver,Duration.ofMillis(20000)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@id='react-autowhatever-search-option-selection']")));
 
                 if(HelpersMethod.IsExists("//div[@id='react-autowhatever-search-option-selection']",driver))
                 {
@@ -763,6 +766,7 @@ public class NewOrderEntryPage
                 WebElement catlogPopup = HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-window k-dialog')]");
                 WebElement modalContentTitle = catlogPopup.findElement(By.xpath(".//span[contains(@class,'k-window-title k-dialog-title')]"));
                 Assert.assertEquals(modalContentTitle.getText(), "Catalog", "Verify Title message");
+                scenario.log("CATALOG DIALOG BOX HAS BEEN FOUND");
             }
     }
 
@@ -5027,6 +5031,7 @@ public class NewOrderEntryPage
             new WebDriverWait(driver,Duration.ofMillis(20000)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("pickupOrder"))));
             new WebDriverWait(driver,Duration.ofMillis(20000)).until(ExpectedConditions.visibilityOfElementLocated(By.id("pickupOrder")));
 
+            Thread.sleep(1000);
             if(HelpersMethod.IsExists("//input[@id='pickupOrder' and @data-checked='unchecked']",driver))
             {
                 HelpersMethod.ScrollUpScrollBar(driver);
@@ -7902,6 +7907,64 @@ public class NewOrderEntryPage
                exists=false;
             }
             Assert.assertEquals(exists,true);
+        }
+        catch (Exception e){}
+    }
+
+    public void validateSubstituteProduct()
+    {
+        exists=false;
+        try
+        {
+            if(HelpersMethod.IsExists("//div[@class='question-dialog-body' and text()=' It will be substituted with the following: ']/ancestor::div[@class='k-window k-dialog']",driver))
+            {
+                exists=true;
+                scenario.log("SUBSTITUTE PRODUCT DIALOGBOX HAS BEEN FOUND");
+            }
+            Assert.assertEquals(exists,true);
+        }
+        catch (Exception e){}
+    }
+
+    public void substituteProductOk()
+    {
+        exists=false;
+        try
+        {
+            WebElement dialogBox=HelpersMethod.FindByElement(driver,"xpath","//div[@class='question-dialog-body' and text()=' It will be substituted with the following: ']/ancestor::div[@class='k-window k-dialog']");
+            if(dialogBox.isDisplayed())
+            {
+                WebElement okButton = dialogBox.findElement(By.xpath(".//button/span[text()='Ok']"));
+                HelpersMethod.ActClick(driver,okButton,10000);
+                exists=true;
+            }
+            Assert.assertEquals(exists,true);
+        }
+        catch (Exception e){}
+    }
+
+    public void substituteProductSkipSubstitute()
+    {
+        exists=false;
+        try
+        {
+            WebElement dialogBox=HelpersMethod.FindByElement(driver,"xpath","//div[@class='question-dialog-body' and text()=' It will be substituted with the following: ']/ancestor::div[@class='k-window k-dialog']");
+            if(dialogBox.isDisplayed())
+            {
+                WebElement okButton = dialogBox.findElement(By.xpath(".//button/span[text()='Skip substitution']"));
+                HelpersMethod.ActClick(driver,okButton,10000);
+                exists=true;
+            }
+            Assert.assertEquals(exists,true);
+        }
+        catch (Exception e){}
+    }
+
+    public void readStubstitueProductName()
+    {
+        try
+        {
+
         }
         catch (Exception e){}
     }

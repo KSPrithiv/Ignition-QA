@@ -941,16 +941,27 @@ public class OrderEntryPage
                        }
                     }
 
-                    WebElement accountFilter=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-window k-dialog')]/descendant::thead/descendant::input[@class='k-input-inner']["+i+"]");
-                    HelpersMethod.ActSendKey(driver,accountFilter,10000,Acc);
+                    //search for customer account# using table filter
+//                    WebElement accountFilter=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-window k-dialog')]/descendant::thead/descendant::input[@class='k-input-inner']["+i+"]");
+//                    HelpersMethod.ActSendKey(driver,accountFilter,10000,Acc);
+//                    //Selecting Account number
+//                    WebElement accNo=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-window k-dialog')]/descendant::tr[contains(@class,'k-master-row')]");
+//                    HelpersMethod.ActClick(driver,accNo,10000);
+
+                    //search for customer account# using search input box
+                    WebElement searchBox=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-window k-dialog')]/descendant::input[contains(@class,'search-box')]");
+                    HelpersMethod.sendKeys(driver,searchBox,10000,Acc);
+                    WebElement searchIndex=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-window k-dialog')]//*[local-name()='svg' and contains(@class,'search-box__search')]");
+                    HelpersMethod.ActClick(driver,searchIndex,10000);
                     //Selecting Account number
                     WebElement accNo=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-window k-dialog')]/descendant::tr[contains(@class,'k-master-row')]");
                     HelpersMethod.ActClick(driver,accNo,10000);
+
                     wait = new FluentWait<WebDriver>(driver)
                                 .withTimeout(Duration.ofSeconds(600))
                                 .pollingEvery(Duration.ofSeconds(2))
                                 .ignoring(NoSuchElementException.class);
-                        wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+                    wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
                 }
             }
             wait = new FluentWait<WebDriver>(driver)
@@ -4769,6 +4780,12 @@ public class OrderEntryPage
     {
         try
         {
+            Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(600))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
             WebElement customerAccount=HelpersMethod.FindByElement(driver,"xpath","//span[@data-test-id='customerAccountNumberComboBox']/following-sibling::button");
             HelpersMethod.ClickBut(driver,customerAccount,10000);
         }
@@ -4780,6 +4797,12 @@ public class OrderEntryPage
         exists=false;
         try
         {
+            Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(600))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
             if(HelpersMethod.IsExists("//div[@id='customerAccountIndexDialog']",driver))
             {
                 scenario.log("CUSTOMER ACCOUNT INDEX DIALOG BOX HAS BEEN FOUND");
@@ -4795,9 +4818,15 @@ public class OrderEntryPage
         exists=false;
         try
         {
+            Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(600))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
             if(!HelpersMethod.IsExists("//span[text()='Add filter']/ancestor::button",driver) && !HelpersMethod.IsExists("//tr[contains(@class,'k-filter-row')]",driver))
             {
-                scenario.log("LOOK AND FEEL OF CUSTOMER ACCUNT INDEX BOX HAS BEEN CHANGED");
+                scenario.log("LOOK AND FEEL OF CUSTOMER ACCOUNT INDEX BOX HAS BEEN CHANGED");
                 exists=true;
             }
             Assert.assertEquals(exists,true);

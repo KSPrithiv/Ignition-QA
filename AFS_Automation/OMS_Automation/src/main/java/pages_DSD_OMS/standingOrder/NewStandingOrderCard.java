@@ -288,7 +288,11 @@ public class NewStandingOrderCard
         try
         {
             HelpersMethod.waitTillElementLocatedDisplayed(driver, "xpath", "//div[contains(@class,'k-window k-dialog')]", 10000);
+            new WebDriverWait(driver,Duration.ofMillis(20000)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class,'k-window k-dialog')]/descendant::input[@id='addToDate']/parent::span/following-sibling::button"))));
+            new WebDriverWait(driver,Duration.ofMillis(20000)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(@class,'k-window k-dialog')]/descendant::input[@id='addToDate']/parent::span/following-sibling::button")));
             new WebDriverWait(driver,Duration.ofMillis(20000)).until(ExpectedConditions.elementToBeClickable(By.xpath("//div[contains(@class,'k-window k-dialog')]/descendant::input[@id='addToDate']/parent::span/following-sibling::button")));
+            Thread.sleep(1000);
+
             // to fetch the web element of the modal container
             WebElement modalContainer = driver.findElement(By.xpath("//div[contains(@class,'k-window k-dialog')]"));
             WebElement toDateIcon = modalContainer.findElement(By.xpath(".//input[@id='addToDate']/parent::span/following-sibling::button"));
@@ -1368,10 +1372,22 @@ public class NewStandingOrderCard
         exists=false;
         try
         {
+            Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(600))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
+            String status = HelpersMethod.returnDocumentStatus(driver);
+            if (status.equals("loading"))
+            {
+                HelpersMethod.waitTillLoadingPage(driver);
+            }
+
             if(HelpersMethod.IsExists("//div[contains(text(),'Standing order exist for the selected date.')]/ancestor::div[contains(@class,'k-window k-dialog')]",driver))
             {
                 WebElement modelContainer=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-window k-dialog')]");
-                WebElement okButton=modelContainer.findElement(By.xpath(".//button/span[text()='Ok']"));
+                WebElement okButton=modelContainer.findElement(By.xpath(".//button/span[text()='OK']"));
                 HelpersMethod.ActClick(driver,okButton,10000);
                 exists=true;
             }

@@ -18,7 +18,8 @@ import java.io.IOException;
 @CucumberOptions(features ={
                             "src/test/resources/features_DSD_OMS/OrderEntryFeature/orderEntryFeature2.feature",
                             "src/test/resources/features_DSD_OMS/OrderEntryFeature/orderEntryFeature3.feature",
-                            "src/test/resources/features_DSD_OMS/OrderEntryFeature/orderEntryFeature4.feature"
+                            "src/test/resources/features_DSD_OMS/OrderEntryFeature/orderEntryFeature4.feature",
+                            "src/test/resources/features_DSD_OMS/OrderEntryFeature/orderEntryFeatureERP.feature"
                             },
         glue = {"stepDefination_DSD_OMS"},
         plugin = {"pretty",

@@ -472,7 +472,6 @@ public class OrderEntryPageSteps
         newOE.Catalog_OK();
     }
 
-
     @Then("Click on Next button")
     public void click_on_next_button() throws InterruptedException, AWTException, ParseException
     {
