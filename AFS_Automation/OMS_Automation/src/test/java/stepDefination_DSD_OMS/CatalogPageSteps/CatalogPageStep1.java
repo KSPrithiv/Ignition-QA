@@ -133,14 +133,18 @@ public class CatalogPageStep1
     public void user_clicks_on_resetfilter_to_list_all_the_products()
     {
         catalogpage=new CatalogPage(driver,scenario);
+        catalogpage.ValidateCatalog();
         catalogpage.Click_ResetFilterButton();
+        catalogpage.ValidateCatalog();
     }
 
     @Then("User clicks on product details to navigate to Description page")
     public void user_clicks_on_product_details_to_navigate_to_description_page()
     {
         catalogpage=new CatalogPage(driver,scenario);
+        catalogpage.ValidateCatalog();
         catalogpage.navigateToDescriptionPage();
+        catalogpage.ValidateCatalog();
     }
 
     @And("User lists all the product numbers which comes under Frequently bought together")

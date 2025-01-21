@@ -80,10 +80,4 @@ Scenario: To test + and - symbol orderation, that appears in my cart page
     And User clicks on Resetfilter to list all the products
     Then User reads all the products listed under Products you may like
 
-  @FrequentlyBoughtTogether
-  Scenario: To list all the products which are part of Frequenly bought together
-    Given User must be on Order Entry Page to select Catalog
-    And User should navigate to Catalog tab
-    And User clicks on Resetfilter to list all the products
-    Then User clicks on product details to navigate to Description page
-    And User lists all the product numbers which comes under Frequently bought together
+

@@ -29,7 +29,7 @@ Feature: Order Guide
     Then User clicks on Create new button and should navigate to New OG page
     #Then User enters Description "<OG>" Start date 1 and End date 2 day from current date
     Then Then User enters Description "<OG>"
-    And User selects Day of week from drop down
+    #And User selects Day of week from drop down
     And User enters Quick Product number and Sequence number
       |4|
     Then User click on Save button

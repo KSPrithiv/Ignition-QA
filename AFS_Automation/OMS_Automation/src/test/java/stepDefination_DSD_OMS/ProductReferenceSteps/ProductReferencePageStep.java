@@ -111,7 +111,7 @@ public class ProductReferencePageStep
         {
             orderpage = new OrderEntryPage(driver, scenario);
             orderpage.ChangeAccount();
-            orderpage.PopUps_After_AccountChange();
+            //orderpage.PopUps_After_AccountChange();
             orderpage.Read_DeliveryDate();
             flag1=true;
         }

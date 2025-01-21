@@ -94,6 +94,12 @@ public class adminOrderEntryPage
         String workFlowText;
         try
         {
+            Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(600))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
             if(HelpersMethod.IsExists("//ul[contains(@id,'CPDefaultWorkFlowInOrderEntry')]/li/span[@class='k-list-item-text']",driver))
             {
                 List<WebElement> defaultWorkFlows=HelpersMethod.FindByElements(driver,"xpath","//ul[contains(@id,'CPDefaultWorkFlowInOrderEntry')]/li/span[@class='k-list-item-text']");

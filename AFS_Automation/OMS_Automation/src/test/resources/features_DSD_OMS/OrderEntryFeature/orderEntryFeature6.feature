@@ -47,9 +47,9 @@ Feature: Order Entry6
     Then User must click Start Order button
     Then User should make selection between Pending order or Start New order
     Then User should select Note from popup and Order guide from popup
+    And User navigated to New OE page and clicks on Pickup check box
     Then Enter PO# for New order for Pickup order
       |PO123|
-    And User navigated to New OE page and clicks on Pickup check box
     Then Enter Pro# in Quick Product Entry area
     And Check for Case and Unit input box enabled or not based on that enter value
       |1|1|

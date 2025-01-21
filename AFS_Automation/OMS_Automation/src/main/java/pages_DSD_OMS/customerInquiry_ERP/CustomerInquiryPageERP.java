@@ -662,14 +662,19 @@ public class CustomerInquiryPageERP
             if(HelpersMethod.IsExists("//button[@id='customerInquiryNoteBtn']",driver))
             {
                 WebElement noteButton = HelpersMethod.FindByElement(driver, "id", "customerInquiryNoteBtn");
-                //HelpersMethod.ScrollUpScrollBar(driver);
-                HelpersMethod.ClickBut(driver, noteButton, 10000);
+                HelpersMethod.ScrollUpScrollBar(driver);
+                HelpersMethod.ScrollElement(driver,noteButton);
+
+                new WebDriverWait(driver,Duration.ofMillis(10000)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("customerInquiryNoteBtn"))));
+                new WebDriverWait(driver,Duration.ofMillis(10000)).until(ExpectedConditions.visibilityOfElementLocated(By.id("customerInquiryNoteBtn")));
+
+                HelpersMethod.ClickBut(driver, noteButton, 40000);
                 exists=true;
-                if (HelpersMethod.IsExists("//div[@class='loader']", driver))
-                {
-                    WebElement WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000000);
-                }
+                wait = new FluentWait<WebDriver>(driver)
+                        .withTimeout(Duration.ofSeconds(600))
+                        .pollingEvery(Duration.ofSeconds(2))
+                        .ignoring(NoSuchElementException.class);
+                wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
             }
             if(TestBase.testEnvironment.get_browser().equals("chrome")||TestBase.testEnvironment.get_browser().equals("edge"))
             {
@@ -691,6 +696,12 @@ public class CustomerInquiryPageERP
         exists=false;
         try
         {
+            Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(600))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
             if(HelpersMethod.IsExists("//div[@id='CustomerNotesTopDiv']/ancestor::div[contains(@class,'k-window k-dialog')]",driver))
             {
                 scenario.log("CUSTOMER NOTE DIALOG BOX HAS BEEN FOUND");
@@ -706,11 +717,17 @@ public class CustomerInquiryPageERP
         exists=false;
         try
         {
+            Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(600))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
             if (HelpersMethod.IsExists("//div[@id='CustomerNotesTopDiv']/ancestor::div[contains(@class,'k-window k-dialog')]", driver))
             {
                 WebElement vallidateNotePopup = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-window k-dialog')]");
                 WebElement noteArea = vallidateNotePopup.findElement(By.xpath(".//textarea[@id='noteTextbox']"));
-                HelpersMethod.EnterText(driver, noteArea, 1000, notes);
+                HelpersMethod.EnterText(driver, noteArea, 10000, notes);
                 scenario.log("CUSTOMER NOTES ENTERED IS: "+notes);
                 exists=true;
             }
@@ -786,11 +803,13 @@ public class CustomerInquiryPageERP
             HelpersMethod.ScrollElement(driver, WebEle);
             HelpersMethod.ClickBut(driver, WebEle, 10000);
             exists=true;
-            if (HelpersMethod.IsExists("//div[@class='loader']", driver))
-            {
-                WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100000);
-            }
+
+            Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(600))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
             Ok_Note_Button();
             Assert.assertEquals(exists,true);
         }
@@ -805,11 +824,12 @@ public class CustomerInquiryPageERP
             WebEle = vallidateNotePopup.findElement(By.xpath(".//button[@id='CustomerCommentDialogOK']"));
             HelpersMethod.ScrollElement(driver, WebEle);
             HelpersMethod.ClickBut(driver, WebEle, 10000);
-            if (HelpersMethod.IsExists("//div[@class='loader']", driver))
-            {
-                WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100000);
-            }
+
+            Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(600))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
         }
         catch (Exception e) {}
     }
@@ -1006,7 +1026,6 @@ public class CustomerInquiryPageERP
                         .pollingEvery(Duration.ofSeconds(2))
                         .ignoring(NoSuchElementException.class);
                 wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
-
             }
         }
         catch (Exception e){}

@@ -188,6 +188,7 @@ Feature: Order Guide1
     Then User Clicks on Customer Account_No button and select other Customer Account_No
     Then User clicks on Create new button and should navigate to New OG page
     Then Then User enters Description "<OG>"
+    And User selects Day of week from drop down
     And User enters Quick Product number and Sequence number
       |4|
     Then User click on Save button

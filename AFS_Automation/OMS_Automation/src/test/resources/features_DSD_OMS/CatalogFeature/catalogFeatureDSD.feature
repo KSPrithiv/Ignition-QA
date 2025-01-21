@@ -21,3 +21,11 @@ Feature: CatalogDSD
     And User should click on Reset filter button and all the products should displayed in Card view in Catalog page
     Then User enters Tire pricing Product# in Search bar and verifying whether tire pricing dialog box appeared or not
 
+  @FrequentlyBoughtTogether
+  Scenario: To list all the products which are part of Frequenly bought together
+    Given User must be on Order Entry Page to select Catalog
+    And User should navigate to Catalog tab
+    And User clicks on Resetfilter to list all the products
+    Then User clicks on product details to navigate to Description page
+    And User lists all the product numbers which comes under Frequently bought together
+
