@@ -144,6 +144,7 @@ public class CompetitorPricingPageStep
     public void userSelectsOneOfTheProductFromGridAndDeleteItAndClickOnSaveButton()
     {
         competitivePricingGeneralPage=new CompetitivePricingGeneralPage(driver,scenario);
+        competitivePricingGeneralPage.ValidateCompetitorGeneral();
         competitivePricingGeneralPage.Click_CheckBox();
         competitivePricingGeneralPage.Click_DeleteProd();
         competitivePricingGeneralPage.Click_SaveButton();

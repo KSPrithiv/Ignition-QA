@@ -143,6 +143,8 @@ public class AdminOrderEntryStep1
         adminOrder=new adminOrderEntryPage(driver,scenario);
         adminOrder.clickOnDefaultWorkFlow();
         adminOrder.selectFromDefaultWorkFlow();
+        adminHomePage=new AdminHomePage(driver,scenario);
+        adminHomePage.Click_SaveButton();
     }
 
     @Then("User searches for {string} {string} and disable admin setting")

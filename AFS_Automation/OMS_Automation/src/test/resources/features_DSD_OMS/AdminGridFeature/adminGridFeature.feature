@@ -50,86 +50,86 @@ Feature: scenarios for User and Accounts admin feature, for Grid related setting
       |Main menu|Sub menu       |Grid type  |
       |Grids    |Configuration  |Order Entry|
 
-#  @AddGrid
-#  Scenario Outline: Test scenario for adding new grid
-#    Given User is on Home Page for Admin setting to select Admin option
-#    Then User refreshes page Clicks on Permissions by drop down to select Customer Account# grid
-#    And User should enter menu "<Main menu>" in search bar and select "<Sub menu>"
-#    Then User should validate that it is Grid Configuration page, then click on Grid type Drop Down
-#    And User should select Grid type "<Grid type>" from the drop down
-#    And User clicks on Grid option"<Grid option>" and select add option from drop down
-#    Then User enters "<Grid name>" in grid name input box and saves it
-#    Examples:
-#      |Main menu|Sub menu       |Grid type  | Grid name |Grid option |
-#      |Grids    |Configuration  |Order Entry| New       |Add         |
+  @AddGrid
+  Scenario Outline: Test scenario for adding new grid
+    Given User is on Home Page for Admin setting to select Admin option
+    Then User refreshes page Clicks on Permissions by drop down to select Customer Account# grid
+    And User should enter menu "<Main menu>" in search bar and select "<Sub menu>"
+    Then User should validate that it is Grid Configuration page, then click on Grid type Drop Down
+    And User should select Grid type "<Grid type>" from the drop down
+    And User clicks on Grid option"<Grid option>" and select add option from drop down
+    Then User enters "<Grid name>" in grid name input box and saves it
+    Examples:
+      |Main menu|Sub menu       |Grid type  | Grid name |Grid option |
+      |Grids    |Configuration  |Order Entry| New       |Add         |
 
-#  @CopyGrid
-#  Scenario Outline: Test scneario for crating copy of the grid
-#    Given User is on Home Page for Admin setting to select Admin option
-#    Then User refreshes page Clicks on Permissions by drop down to select Customer Account# grid
-#    And User should enter menu "<Main menu>" in search bar and select "<Sub menu>"
-#    Then User should validate that it is Grid Configuration page, then click on Grid type Drop Down
-#    And User should select Grid type "<Grid type>" from the drop down
-#    And User should Click and select "<Grid name>" from grids dropdown
-#    And User clicks on Grid option"<Grid option>" to copy and selects option from drop down
-#    Examples:
-#      |Main menu|Sub menu       |Grid type  | Grid name |Grid option |
-#      |Grids    |Configuration  |Order Entry| New       |Copy        |
-#
-#  @DefaultGridInClient
-#  Scenario Outline: Test scenario to set any grid as default(in Admin), and verify the same in client
-#    Given User is on Home Page for Admin setting to select Admin option
-#    Then User refreshes page Clicks on Permissions by drop down to select Customer Account# grid
-#    And User should enter menu "<Main menu>" in search bar and select "<Sub menu>"
-#    Then User should validate that it is Grid Configuration page, then click on Grid type Drop Down
-#    And User should select Grid type "<Grid type>" from the drop down
-#    And User should Click and select "<Grid name>" from grids dropdown
-#    Then User clicks on Default grid toggle button
-#    Then User logout from Admin page and log in with client credentials
-#    Then User navigates to Order entry page and in new order entry page finds same grid as default grid "<Grid name>"
-#      |PO123|
-#    Then User Clicks on Permissions by drop down to select Customer Account# for grids
-#    And User should navigate back to "<Main menu>" via search bar and select "<Sub menu>"
-#    Then User should validate that it is Grid Configuration page, then click on Grid type Drop Down
-#    And User should select Grid type "<Grid type>" from the drop down
-#    Then User should reset Default grid toggle button "<Grid name1>"
-#    Examples:
-#      |Main menu|Sub menu       |Grid type  | Grid name| Grid name1 |
-#      |Grids    |Configuration  |Order Entry| New      | Main       |
-#
-#  @DeleteGrid
-#  Scenario Outline: Test scenario for Deleting grid
-#    Given User is on Home Page for Admin setting to select Admin option
-#    Then User refreshes page Clicks on Permissions by drop down to select Customer Account# grid
-#    And User should enter menu "<Main menu>" in search bar and select "<Sub menu>"
-#    Then User should validate that it is Grid Configuration page, then click on Grid type Drop Down
-#    And User should select Grid type "<Grid type>" from the drop down
-#    And User should select "<Grid name>" from grids dropdown and selects "<Grid option>" to delete grid
-#    And User should select "<Grid name1>" from grids dropdown and selects "<Grid option>" to delete grid
-#    Examples:
-#      |Main menu|Sub menu       |Grid type  |Grid name  |Grid name1        |Grid option |
-#      |Grids    |Configuration  |Order Entry|New        |New - Copy        |Delete      |
-#
-#  @ChangeLabelOfGridHeader
-#  Scenario Outline: Test scenarion to change lable of grid header and verify in client side
-#    Given User is on Home Page for Admin setting to select Admin option
-#    Then User refreshes page Clicks on Permissions by drop down to select Customer Account# grid
-#    And User should enter menu "<Main menu>" in search bar and select "<Sub menu>"
-#    Then User should validate that it is Grid Configuration page, then click on Grid type Drop Down
-#    And User should select Grid type "<Grid type>" from the drop down
-#    And User should Click and select "<Grid name>" from grids dropdown
-#    Then User changes label of header available in grid
-#    Then User logout from Admin page and log in with client credentials
-#    Then User navigates to Order entry page and in new order entry page enter PO and Quick entry product details
-#      |PO123|1|2|
-#    Then User Clicks on Permissions by drop down to select Customer Account# for grids
-#    And User should navigate back to "<Main menu>" via search bar and select "<Sub menu>"
-#    Then User should validate that it is Grid Configuration page, then click on Grid type Drop Down
-#    And User should select Grid type "<Grid type>" from the drop down
-#    Then User resets the label name to previous label, in grid setting
-#    Examples:
-#      |Main menu|Sub menu       |Grid type  | Grid name|
-#      |Grids    |Configuration  |Order Entry| Main     |
-#
+  @CopyGrid
+  Scenario Outline: Test scneario for crating copy of the grid
+    Given User is on Home Page for Admin setting to select Admin option
+    Then User refreshes page Clicks on Permissions by drop down to select Customer Account# grid
+    And User should enter menu "<Main menu>" in search bar and select "<Sub menu>"
+    Then User should validate that it is Grid Configuration page, then click on Grid type Drop Down
+    And User should select Grid type "<Grid type>" from the drop down
+    And User should Click and select "<Grid name>" from grids dropdown
+    And User clicks on Grid option"<Grid option>" to copy and selects option from drop down
+    Examples:
+      |Main menu|Sub menu       |Grid type  | Grid name |Grid option |
+      |Grids    |Configuration  |Order Entry| New       |Copy        |
+
+  @DefaultGridInClient
+  Scenario Outline: Test scenario to set any grid as default(in Admin), and verify the same in client
+    Given User is on Home Page for Admin setting to select Admin option
+    Then User refreshes page Clicks on Permissions by drop down to select Customer Account# grid
+    And User should enter menu "<Main menu>" in search bar and select "<Sub menu>"
+    Then User should validate that it is Grid Configuration page, then click on Grid type Drop Down
+    And User should select Grid type "<Grid type>" from the drop down
+    And User should Click and select "<Grid name>" from grids dropdown
+    Then User clicks on Default grid toggle button
+    Then User logout from Admin page and log in with client credentials
+    Then User navigates to Order entry page and in new order entry page finds same grid as default grid "<Grid name>"
+      |PO123|
+    Then User Clicks on Permissions by drop down to select Customer Account# for grids
+    And User should navigate back to "<Main menu>" via search bar and select "<Sub menu>"
+    Then User should validate that it is Grid Configuration page, then click on Grid type Drop Down
+    And User should select Grid type "<Grid type>" from the drop down
+    Then User should reset Default grid toggle button "<Grid name1>"
+    Examples:
+      |Main menu|Sub menu       |Grid type  | Grid name| Grid name1 |
+      |Grids    |Configuration  |Order Entry| New      | Main       |
+
+  @DeleteGrid
+  Scenario Outline: Test scenario for Deleting grid
+    Given User is on Home Page for Admin setting to select Admin option
+    Then User refreshes page Clicks on Permissions by drop down to select Customer Account# grid
+    And User should enter menu "<Main menu>" in search bar and select "<Sub menu>"
+    Then User should validate that it is Grid Configuration page, then click on Grid type Drop Down
+    And User should select Grid type "<Grid type>" from the drop down
+    And User should select "<Grid name>" from grids dropdown and selects "<Grid option>" to delete grid
+    And User should select "<Grid name1>" from grids dropdown and selects "<Grid option>" to delete grid
+    Examples:
+      |Main menu|Sub menu       |Grid type  |Grid name  |Grid name1        |Grid option |
+      |Grids    |Configuration  |Order Entry|New        |New - Copy        |Delete      |
+
+  @ChangeLabelOfGridHeader
+  Scenario Outline: Test scenarion to change lable of grid header and verify in client side
+    Given User is on Home Page for Admin setting to select Admin option
+    Then User refreshes page Clicks on Permissions by drop down to select Customer Account# grid
+    And User should enter menu "<Main menu>" in search bar and select "<Sub menu>"
+    Then User should validate that it is Grid Configuration page, then click on Grid type Drop Down
+    And User should select Grid type "<Grid type>" from the drop down
+    And User should Click and select "<Grid name>" from grids dropdown
+    Then User changes label of header available in grid
+    Then User logout from Admin page and log in with client credentials
+    Then User navigates to Order entry page and in new order entry page enter PO and Quick entry product details
+      |PO123|1|2|
+    Then User Clicks on Permissions by drop down to select Customer Account# for grids
+    And User should navigate back to "<Main menu>" via search bar and select "<Sub menu>"
+    Then User should validate that it is Grid Configuration page, then click on Grid type Drop Down
+    And User should select Grid type "<Grid type>" from the drop down
+    Then User resets the label name to previous label, in grid setting
+    Examples:
+      |Main menu|Sub menu       |Grid type  | Grid name|
+      |Grids    |Configuration  |Order Entry| Main     |
+
 
 

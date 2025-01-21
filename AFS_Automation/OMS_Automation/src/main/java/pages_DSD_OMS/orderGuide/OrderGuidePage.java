@@ -210,17 +210,23 @@ public class OrderGuidePage {
 
     public void CrateOG()
     {
+        exists=false;
         try
         {
-            HelpersMethod.ScrollElement(driver, CreateOG);
-            HelpersMethod.JScriptClick(driver, CreateOG, 10000);
-            Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
-                   .withTimeout(Duration.ofSeconds(600))
-                    .pollingEvery(Duration.ofSeconds(2))
-                    .ignoring(NoSuchElementException.class);
-            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
-        } catch (Exception e) {
+            if (CreateOG.isDisplayed() && CreateOG.isEnabled())
+            {
+                HelpersMethod.ScrollElement(driver, CreateOG);
+                HelpersMethod.JScriptClick(driver, CreateOG, 40000);
+                exists=true;
+                Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                        .withTimeout(Duration.ofSeconds(600))
+                        .pollingEvery(Duration.ofSeconds(2))
+                        .ignoring(NoSuchElementException.class);
+                wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+            }
+            Assert.assertEquals(exists,true);
         }
+        catch (Exception e) {}
     }
 
     public void OGSearchBoxClear() {

@@ -221,8 +221,9 @@ public class OrderEntryPage
             }
 
             //Code to enter search value in hamburger input box and click on it
-            WebElement Search_Input = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='drawer-menu-search-container']/descendant::input");
+            WebElement Search_Input = HelpersMethod.FindByElement(driver, "xpath", "//input[@id='navigationMenuSearchBar']");
             act.moveToElement(Search_Input).click().sendKeys("Order Entry").build().perform();
+            //HelpersMethod.ActSendKey(driver,Search_Input,20000,"Order Entry");
 
             WebElement OEMenu = HelpersMethod.FindByElement(driver, "xpath", "//ul[contains(@class,'MuiList-root ')]/descendant::span[contains(text(),'Order Entry')]|//ul[contains(@class,'MuiList-root ')]/descendant::span[contains(text(),'OE')]");
             HelpersMethod.ActClick(driver, OEMenu, 20000);
@@ -562,7 +563,7 @@ public class OrderEntryPage
                 HelpersMethod.waitTillLoadingPage(driver);
             }
             wait = new FluentWait<WebDriver>(driver)
-                    .withTimeout(Duration.ofSeconds(600))
+                    .withTimeout(Duration.ofSeconds(800))
                     .pollingEvery(Duration.ofSeconds(2))
                     .ignoring(NoSuchElementException.class);
             wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));

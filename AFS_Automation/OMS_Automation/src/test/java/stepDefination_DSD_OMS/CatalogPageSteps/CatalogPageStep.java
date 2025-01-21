@@ -120,7 +120,7 @@ public class CatalogPageStep
             orderpage = new OrderEntryPage(driver, scenario);
             orderpage.ChangeAccount();
             //orderpage.PopUps_After_AccountChange();
-            orderpage.Read_DeliveryDate();
+            //orderpage.Read_DeliveryDate();
         }
     }
 

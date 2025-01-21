@@ -260,7 +260,6 @@ public class GridConfigurationPage
                 exists=true;
                 new WebDriverWait(driver,Duration.ofMillis(40000)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.xpath("//ul[@id='SelectGrid-listbox-id']/li/span"))));
                 new WebDriverWait(driver,Duration.ofMillis(40000)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//ul[@id='SelectGrid-listbox-id']/li/span")));
-                //Thread.sleep(1000);
             }
             Assert.assertTrue(exists);
         }
@@ -482,33 +481,47 @@ public class GridConfigurationPage
 
     public void dragAndDropColumnHeader()
     {
-        Actions act=new Actions(driver);
+        exists=false;
         try
         {
-            WebElement dragElement=HelpersMethod.FindByElement(driver,"xpath","//div[@id='AvailableItemsAdminCard']/descendant::div[@class='i-draggable-item'][1]/div[@class='i-draggable-item__container']");
-            WebElement dropableElement=HelpersMethod.FindByElement(driver,"xpath","//div[@id='ActiveItemsAdminCard']/descendant::div[@class='i-droppable-container']");
+            for(int i=0;i<=2;i++)
+            {
+                WebElement dragElement = HelpersMethod.FindByElement(driver, "xpath", "//div[@id='AvailableItemsAdminCard']/descendant::div[@class='i-draggable-item'][1]");
+                WebElement dropableElement = HelpersMethod.FindByElement(driver, "xpath", "//div[@id='ActiveItemsAdminCard']/descendant::div[@class='i-droppable-container']");
 
-            Point sourceLocation = dragElement.getLocation();
-            int sourceXOffset = sourceLocation.getX();
-            int sourceYOffset = sourceLocation.getY();
+                Point sourceLocation = dragElement.getLocation();
+                int sourceXOffset = sourceLocation.getX();
+                int sourceYOffset = sourceLocation.getY();
 
-// Get the offset of target element
-            Point targetLocation = dropableElement.getLocation();
-            int targetXOffset = targetLocation.getX();
-            int targetYOffset = targetLocation.getY();
+                // Get the offset of target element
+                Point targetLocation = dropableElement.getLocation();
+                int targetXOffset = targetLocation.getX();
+                int targetYOffset = targetLocation.getY();
 
-// Calculate the offset difference
-            int xOffset = targetXOffset - sourceXOffset;
-            int yOffset = targetYOffset - sourceYOffset;
+                // Calculate the offset difference
+                int xOffset = sourceXOffset - targetXOffset;
+                int yOffset = sourceYOffset - targetYOffset;
 
-            Actions actions = new Actions(driver);
-            actions.clickAndHold(dragElement).build().perform();
-                //actions.moveToElement(dropableElement,targetXOffset,targetYOffset).build().perform();
-               //actions.moveToElement(dropableElement).build().perform();
-            actions.moveByOffset(xOffset,yOffset).build().perform();
-            actions.release(dragElement)
-                    .build()
-                    .perform();
+                Actions actions = new Actions(driver);
+                actions.clickAndHold(dragElement).build().perform();
+                actions.moveByOffset(xOffset, yOffset).build().perform();
+                actions.release(dragElement).build().perform();
+
+                new WebDriverWait(driver,Duration.ofMillis(40000)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@id='AvailableItemsAdminCard']"))));
+                new WebDriverWait(driver,Duration.ofMillis(40000)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@id='AvailableItemsAdminCard']")));
+                new WebDriverWait(driver,Duration.ofMillis(40000)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@id='ActiveItemsAdminCard']"))));
+                new WebDriverWait(driver,Duration.ofMillis(40000)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@id='ActiveItemsAdminCard']")));
+                Thread.sleep(2000);
+            }
+
+            //Click on OK button in column chooser dialog box
+            WebElement okButton=HelpersMethod.FindByElement(driver,"xpath","//div[@class='k-window k-dialog']/descendant::button/span[text()='OK']");
+            if(okButton.isEnabled())
+            {
+                HelpersMethod.ActClick(driver, okButton, 10000);
+                exists=true;
+            }
+            Assert.assertEquals(exists,true);
         }
         catch (Exception e){}
     }
@@ -783,7 +796,7 @@ public class GridConfigurationPage
                         .ignoring(NoSuchElementException.class);
                 wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
             }
-            Assert.assertTrue(exists);
+            Assert.assertEquals(exists,true);
         }
         catch (Exception e){}
     }
@@ -947,22 +960,18 @@ public class GridConfigurationPage
         exists=false;
         try
         {
-            //new WebDriverWait(driver,Duration.ofMillis(2000)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(text(),'saved successfully.')]/ancestor::div[contains(@class,'k-window k-dialog')]")));
-            if(HelpersMethod.IsExists("//div[@class='loader']",driver))
-            {
-                WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000000);
-            }
+            Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(600))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
             if(HelpersMethod.IsExists("//div[contains(text(),'saved successfully.')]/ancestor::div[contains(@class,'k-window k-dialog')]",driver))
             {
                 scenario.log("ADMIN SIDE CHANGES SAVE POPUP HAS APPEARED");
                 exists=true;
             }
-            else
-            {
-                exists=false;
-            }
-            Assert.assertTrue(exists);
+            Assert.assertEquals(exists,true);
         }
         catch (Exception e){}
     }
@@ -1027,9 +1036,11 @@ public class GridConfigurationPage
                    {
                        WebElement gridLabel=driver.findElement(By.xpath("//tr[contains(@class,'k-grid-edit-row')]["+pos+"]/descendant::input[@class='k-textbox']"));
 
-                       oldLabel = HelpersMethod.JSGetValueEle(driver, gridLabel, 10000);
+                       oldLabel = HelpersMethod.JSGetValueEle(driver, gridLabel, 40000);
                        scenario.log("OLD LABEL VALUE IS " + oldLabel);
                        exists = true;
+                       new WebDriverWait(driver,Duration.ofMillis(20000)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@id='GridConfigurationConfiguration']/descendant::div[@class='i-grid']"))));
+                       new WebDriverWait(driver,Duration.ofMillis(20000)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@id='GridConfigurationConfiguration']/descendant::div[@class='i-grid']")));
                        break;
                    }
                }
