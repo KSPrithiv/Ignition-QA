@@ -396,4 +396,13 @@ public class OrderEntryPageSteps8
         newOE.validatePriceOverrideIcon();
         newOE.setToDefaultValue();
     }
+
+    @Then("User search for foreign language in product grid and enter Qty")
+    public void userSearchForForeignLanguageInProductGridAndEnterQty(DataTable tabledata) throws InterruptedException, AWTException
+    {
+        List<List<String>> qty=tabledata.asLists(String.class);
+        newOE=new NewOrderEntryPage(driver,scenario);
+        newOE.searchForForeignLanguageProductInProductGrid();
+        newOE.EnterQtyForeignLang_ProductGrid(driver,qty);
+    }
 }

@@ -52,6 +52,7 @@ public class GridConfigurationPageStep
         static OrderEntryPage orderPage;
         static NewOrderEntryPage newOE;
         static AdminHomePage adminHomePage;
+        static List<String> columnNames;
 
         @Before
         public void LaunchBrowser1(Scenario scenario) throws Exception
@@ -490,6 +491,11 @@ public class GridConfigurationPageStep
         gridConfigPage.clickOnSaveButton();
         gridConfigPage.validateSavedailogbox();
         gridConfigPage.clickOnOkButtonInSavePopup();
+        columnNames= gridConfigPage.readGridColumnName();
+        for(int i=0;i<=columnNames.size()-1;i++)
+        {
+            scenario.log(columnNames.get(i));
+        }
     }
 
     @And("User clicks on Grid option{string} to delete and selects option from drop down")
@@ -529,6 +535,7 @@ public class GridConfigurationPageStep
     public void userChangesLabelOfHeaderAvailableInGrid()
     {
         gridConfigPage=new GridConfigurationPage(driver,scenario);
+        gridConfigPage.validateGridConfigurationPage();
         gridConfigPage.readGridHeaderLabel();
         newLabel=gridConfigPage.enterNewLabel();
         gridConfigPage.clickOnSaveButton();
@@ -668,6 +675,7 @@ public class GridConfigurationPageStep
     public void userResetsTheLabelNameToPreviousLabelInGridSetting()
     {
         gridConfigPage=new GridConfigurationPage(driver,scenario);
+        gridConfigPage.validateGridConfigurationPage();
         gridConfigPage.resetLabelToOld();
         gridConfigPage.clickOnSaveButton();
         gridConfigPage.clickOnOkButtonInSavePopup();
@@ -682,5 +690,90 @@ public class GridConfigurationPageStep
         gridConfigPage.clickOnGridTypeDropDown();
         gridConfigPage.selectGridTypeDropDown(arg0);
         gridConfigPage.validateColumnNamesInExistenceSelectedGrid(columnName);
+    }
+
+    @Then("User navigates to Order entry page and in new order entry page finds same grid as default grid {string} and validate column headers")
+    public void userNavigatesToOrderEntryPageAndInNewOrderEntryPageFindsSameGridAsDefaultGridAndValidateColumnHeaders(String selectGrid,DataTable tabledata) throws InterruptedException, AWTException
+    {
+        List<List<String>> PO_No = tabledata.asLists(String.class);
+        //to navigate to Client side
+        homePage = new HomePage(driver,scenario);
+        //String title = driver.getTitle();
+        //Assert.assertEquals(title, "Admin");
+        homePage.verifyUserinfoContainer();
+        homePage.navigateToClientSide();
+
+        //to navigate to Order entry page and change the customer account number
+        orderPage = new OrderEntryPage(driver, scenario);
+        orderPage.NavigateToOrderEntry();
+        orderPage.ChangeAccount();
+        orderPage.PopUps_After_AccountChange();
+
+        if(HelpersMethod.IsExists("//div[@id='order-search-card']",driver))
+        {
+            orderPage = new OrderEntryPage(driver, scenario);
+            orderPage.ValidateOE();
+            //check for 'Start Order' button
+            orderPage.Scroll_start();
+            exists = orderPage.Start_Order();
+            orderPage.NoPendingOrderPopup();
+            //Selecting no Order guide and no note popup
+            for (int i = 0; i <= 1; i++)
+            {
+                orderPage.OrderGuidePopup();
+                orderPage.NoNotePopHandling();
+            }
+        }
+        else
+        {
+            newOE = new NewOrderEntryPage(driver, scenario);
+            newOE.Click_Back_But();
+            orderPage = new OrderEntryPage(driver, scenario);
+            orderPage.ValidateOE();
+            //check for 'Start Order' button
+            orderPage.Scroll_start();
+            exists = orderPage.Start_Order();
+            orderPage.NoPendingOrderPopup();
+            //Selecting no Order guide and no note popup
+            for (int i = 0; i <= 1; i++)
+            {
+                orderPage.OrderGuidePopup();
+                orderPage.NoNotePopHandling();
+            }
+        }
+
+        //Validate grid name in New OE page
+        newOE=new NewOrderEntryPage(driver,scenario);
+        newOE.EnterPO_No(PO_No.get(0).get(0));
+        newOE.validateGridSelected(selectGrid);
+        newOE.readGridHeaderNames(columnNames);
+
+        //after validating default grid in New OE page signout
+        homePage=new HomePage(driver,scenario);
+        homePage.Click_On_UserIcon();
+        homePage.Click_On_Signout();
+
+        //signin as admin again
+        loginpage = new LoginPage(driver, scenario);
+        loginpage.EnterUsername(TestBase.testEnvironment.getAdminUser());
+        loginpage.EnterPassword(TestBase.testEnvironment.getAdminWord());
+        loginpage.ClickSignin();
+        String status = HelpersMethod.returnDocumentStatus(driver);
+        if (status.equals("loading"))
+        {
+            HelpersMethod.waitTillLoadingPage(driver);
+        }
+
+        Wait<WebDriver> wait = new FluentWait<>(driver)
+                .withTimeout(Duration.ofSeconds(600))
+                .pollingEvery(Duration.ofSeconds(5))
+                .ignoring(NoSuchElementException.class);
+        wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+    }
+
+    @Then("User selects {string} and {string} in Admin side")
+    public void userSelectsAndInAdminSide(String sortColumn, String sortOrder)
+    {
+
     }
 }

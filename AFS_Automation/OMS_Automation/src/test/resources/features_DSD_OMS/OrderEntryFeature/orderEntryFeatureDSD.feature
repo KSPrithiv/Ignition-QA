@@ -52,9 +52,8 @@ Feature: Order Entry Test cases only for DSD env
     Then Enter PO# for New order
       |PO123|
     Then User enters foreign language description of Product in Search box
-    Then Check for Catalog popup
-    Then Enter the Qty in the Product grid Case and Unit
-      | 1 | 1 |
+    Then User search for foreign language in product grid and enter Qty
+      |1|1|
     Then Click on Next button
     And Click on SubmitOrder button
     Then User should be navigated to Order Entry page
