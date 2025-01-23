@@ -3,7 +3,7 @@
     "line": 1,
     "elements": [
       {
-        "line": 4,
+        "line": 5,
         "name": "For login to application and selecting Account#",
         "description": "",
         "type": "background",
@@ -14,13 +14,13 @@
               "SIGNIN BUTTON CLICKED"
             ],
             "result": {
-              "duration": 23898799500,
+              "duration": 21107533100,
               "status": "passed"
             },
-            "line": 5,
-            "name": "User enters URL and is on login page and entered credentials for OG",
+            "line": 6,
+            "name": "User enters URL and is on login page and entered credentials",
             "match": {
-              "location": "stepDefination_DSD_OMS.OrderGuidePageSteps.OrderGuidePageStep.user_enters_url_and_is_on_login_page_and_entered_credentialsForOG()"
+              "location": "stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.user_enters_url_and_is_on_login_page_and_entered_credentials()"
             },
             "keyword": "Given "
           },
@@ -29,13 +29,13 @@
               "ADMIN PAGE OR ORDER ENTRY PAGE HAS BEEN FOUND"
             ],
             "result": {
-              "duration": 277483100,
+              "duration": 157495300,
               "status": "passed"
             },
-            "line": 6,
-            "name": "User is on Home Page for OG",
+            "line": 7,
+            "name": "User is on Home Page",
             "match": {
-              "location": "stepDefination_DSD_OMS.OrderGuidePageSteps.OrderGuidePageStep.user_is_on_home_pageForOG()"
+              "location": "stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.user_is_on_home_page()"
             },
             "keyword": "When "
           },
@@ -45,13 +45,13 @@
               "IN ADMIN PAGE"
             ],
             "result": {
-              "duration": 3428317900,
+              "duration": 3120999000,
               "status": "passed"
             },
-            "line": 7,
-            "name": "User navigate to Client side for OG",
+            "line": 8,
+            "name": "User navigate to Client side",
             "match": {
-              "location": "stepDefination_DSD_OMS.OrderGuidePageSteps.OrderGuidePageStep.user_navigate_to_client_sideForOG()"
+              "location": "stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.user_navigate_to_client_side()"
             },
             "keyword": "Then "
           },
@@ -61,36 +61,39 @@
               "NAVIGATED TO ORDER ENTRY PAGE"
             ],
             "result": {
-              "duration": 6111683800,
+              "duration": 5417291100,
               "status": "passed"
             },
-            "line": 8,
-            "name": "User should select Order Entry tab for OG",
+            "line": 9,
+            "name": "User should select Order Entry tab",
             "match": {
-              "location": "stepDefination_DSD_OMS.OrderGuidePageSteps.OrderGuidePageStep.user_should_select_order_entry_tabForOG()"
+              "location": "stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.user_should_select_order_entry_tab()"
             },
             "keyword": "Then "
           },
           {
+            "output": [
+              "\u003cspan style\u003d\u0027color:red\u0027\u003eDELIBERY DATE FOUND, AFTER LOGGING IN TO APPLICATION  Friday, January 24, 2025\u003c/span\u003e"
+            ],
             "result": {
-              "duration": 8054275600,
+              "duration": 18043644900,
               "status": "passed"
             },
-            "line": 9,
-            "name": "User selects Account# for OG",
+            "line": 10,
+            "name": "User selects Account#",
             "match": {
-              "location": "stepDefination_DSD_OMS.OrderGuidePageSteps.OrderGuidePageStep.user_selects_accountForOG()"
+              "location": "stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.user_selects_account()"
             },
             "keyword": "Then "
           }
         ]
       },
       {
-        "start_timestamp": "2025-01-21T13:46:19.933Z",
+        "start_timestamp": "2025-01-22T16:53:54.848Z",
         "before": [
           {
             "result": {
-              "duration": 4763900,
+              "duration": 8751600,
               "status": "passed"
             },
             "match": {
@@ -131,6 +134,7 @@
           },
           {
             "result": {
+              "duration": 5043400,
               "status": "passed"
             },
             "match": {
@@ -155,7 +159,6 @@
           },
           {
             "result": {
-              "duration": 6680100,
               "status": "passed"
             },
             "match": {
@@ -196,7 +199,6 @@
           },
           {
             "result": {
-              "duration": 10116000,
               "status": "passed"
             },
             "match": {
@@ -253,7 +255,6 @@
           },
           {
             "result": {
-              "duration": 8444600,
               "status": "passed"
             },
             "match": {
@@ -262,7 +263,7 @@
           },
           {
             "result": {
-              "duration": 1511400,
+              "duration": 75800,
               "status": "passed"
             },
             "match": {
@@ -327,7 +328,6 @@
           },
           {
             "result": {
-              "duration": 10455700,
               "status": "passed"
             },
             "match": {
@@ -344,7 +344,6 @@
           },
           {
             "result": {
-              "duration": 4017600,
               "status": "passed"
             },
             "match": {
@@ -409,7 +408,6 @@
           },
           {
             "result": {
-              "duration": 194100,
               "status": "passed"
             },
             "match": {
@@ -418,6 +416,7 @@
           },
           {
             "result": {
+              "duration": 7151200,
               "status": "passed"
             },
             "match": {
@@ -426,7 +425,6 @@
           },
           {
             "result": {
-              "duration": 2075400,
               "status": "passed"
             },
             "match": {
@@ -443,7 +441,6 @@
           },
           {
             "result": {
-              "duration": 2805900,
               "status": "passed"
             },
             "match": {
@@ -452,7 +449,6 @@
           },
           {
             "result": {
-              "duration": 1262500,
               "status": "passed"
             },
             "match": {
@@ -477,7 +473,6 @@
           },
           {
             "result": {
-              "duration": 4019300,
               "status": "passed"
             },
             "match": {
@@ -494,7 +489,6 @@
           },
           {
             "result": {
-              "duration": 2152200,
               "status": "passed"
             },
             "match": {
@@ -519,7 +513,6 @@
           },
           {
             "result": {
-              "duration": 451200,
               "status": "passed"
             },
             "match": {
@@ -560,7 +553,6 @@
           },
           {
             "result": {
-              "duration": 5044100,
               "status": "passed"
             },
             "match": {
@@ -601,7 +593,6 @@
           },
           {
             "result": {
-              "duration": 2547500,
               "status": "passed"
             },
             "match": {
@@ -610,6 +601,7 @@
           },
           {
             "result": {
+              "duration": 9939700,
               "status": "passed"
             },
             "match": {
@@ -626,7 +618,6 @@
           },
           {
             "result": {
-              "duration": 9686300,
               "status": "passed"
             },
             "match": {
@@ -651,6 +642,7 @@
           },
           {
             "result": {
+              "duration": 79600,
               "status": "passed"
             },
             "match": {
@@ -779,7 +771,6 @@
           },
           {
             "result": {
-              "duration": 9102200,
               "status": "passed"
             },
             "match": {
@@ -803,14 +794,13 @@
             }
           }
         ],
-        "line": 201,
-        "name": "Test scenario for changing Customer Account# and create OG",
+        "line": 47,
+        "name": "Creating New order by entering foreign language product description  Product# in Searchbar, New order entry page",
         "description": "",
-        "id": "order-guide1;test-scenario-for-changing-customer-account#-and-create-og;;2",
+        "id": "order-entry-test-cases-only-for-dsd-env;creating-new-order-by-entering-foreign-language-product-description--product#-in-searchbar--new-order-entry-page",
         "after": [
           {
             "result": {
-              "duration": 3859300,
               "status": "passed"
             },
             "match": {
@@ -819,227 +809,201 @@
           }
         ],
         "type": "scenario",
-        "keyword": "Scenario Outline",
+        "keyword": "Scenario",
         "steps": [
           {
-            "output": [
-              "NAVIGATED TO ORDER GUIDE"
-            ],
             "result": {
-              "duration": 7145195600,
+              "duration": 47804050700,
               "status": "passed"
             },
-            "line": 186,
-            "name": "User must be on Order Entry Page to select OG",
+            "line": 48,
+            "name": "User must be on Order Entry Page",
             "match": {
-              "location": "stepDefination_DSD_OMS.OrderGuidePageSteps.OrderGuidePageStep.user_must_be_on_order_entry_page_to_select_og()"
+              "location": "stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.user_must_be_on_order_entry_page()"
             },
             "keyword": "Given "
           },
           {
             "output": [
-              "NAVIGATED TO ORDER GUIDE"
+              "NAVIGATED TO ORDER ENTRY PAGE",
+              "\u003cspan style\u003d\u0027color:red\u0027\u003eDELIBERY DATE FOUND, AFTER LOGGING IN TO APPLICATION  Friday, January 24, 2025\u003c/span\u003e",
+              "START BUTTON HAS BEEN CLICKED"
             ],
             "result": {
-              "duration": 2863261600,
+              "duration": 11853777400,
               "status": "passed"
             },
-            "line": 187,
-            "name": "User should navigate to OG",
+            "line": 49,
+            "name": "User must click Start Order button",
             "match": {
-              "location": "stepDefination_DSD_OMS.OrderGuidePageSteps.OrderGuidePageStep.user_should_navigate_to_og()"
-            },
-            "keyword": "And "
-          },
-          {
-            "output": [
-              "ACCOUNT NUMBER SELECTED IS 0040035984-000000-003021"
-            ],
-            "result": {
-              "duration": 5697382100,
-              "status": "passed"
-            },
-            "line": 188,
-            "name": "User Clicks on Customer Account_No button and select other Customer Account_No",
-            "match": {
-              "location": "stepDefination_DSD_OMS.OrderGuidePageSteps.OrderGuidePageStep1.userClicksOnCustomerAccount_NoButtonAndSelectOtherCustomerAccount_No()"
-            },
-            "keyword": "Then "
-          },
-          {
-            "output": [
-              "NAVIGATED TO ORDER GUIDE"
-            ],
-            "result": {
-              "duration": 2889979500,
-              "status": "passed"
-            },
-            "line": 189,
-            "name": "User clicks on Create new button and should navigate to New OG page",
-            "match": {
-              "location": "stepDefination_DSD_OMS.OrderGuidePageSteps.OrderGuidePageStep.user_clicks_on_create_new_button_and_should_navigate_to_new_og_page()"
+              "location": "stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.user_must_click_start_order_button()"
             },
             "keyword": "Then "
           },
           {
             "result": {
-              "duration": 583039000,
+              "duration": 6603742800,
               "status": "passed"
             },
-            "line": 190,
-            "name": "Then User enters Description \"OGDis21\"",
+            "line": 50,
+            "name": "User should make selection between Pending order or Start New order",
             "match": {
-              "arguments": [
-                {
-                  "val": "\"OGDis21\"",
-                  "offset": 29
-                }
-              ],
-              "location": "stepDefination_DSD_OMS.OrderGuidePageSteps.OrderGuidePageStep.thenUserEntersDescription(java.lang.String)"
+              "location": "stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.user_should_make_selection_between_pending_order_or_start_new_order()"
             },
             "keyword": "Then "
           },
           {
             "result": {
-              "duration": 3967114900,
+              "duration": 3010529300,
               "status": "passed"
             },
-            "line": 191,
-            "name": "User selects Day of week from drop down",
+            "line": 51,
+            "name": "User should select Note from popup and Order guide from popup",
             "match": {
-              "location": "stepDefination_DSD_OMS.OrderGuidePageSteps.OrderGuidePageStep1.userSelectsDayOfWeekFromDropDown()"
+              "location": "stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.userShouldSelectNoteFromPopupAndOrderGuideFromPopup()"
             },
-            "keyword": "And "
+            "keyword": "Then "
           },
           {
             "output": [
-              "PRODUCT# ENTERED IS 00000008 SEQUENCE# ENTERED IS 4"
+              "NEW ORDER ENTRY PAGE HAS BEEN FOUND",
+              "PO# ENTERED IS PO123"
             ],
             "result": {
-              "duration": 7069972100,
+              "duration": 5221900900,
               "status": "passed"
             },
-            "line": 192,
-            "name": "User enters Quick Product number and Sequence number",
+            "line": 52,
+            "name": "Enter PO# for New order",
             "match": {
-              "location": "stepDefination_DSD_OMS.OrderGuidePageSteps.OrderGuidePageStep.user_enters_quick_product_number_and_sequence_number(io.cucumber.datatable.DataTable)"
+              "location": "stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.enter_po_for_new_order(io.cucumber.datatable.DataTable)"
             },
             "rows": [
               {
                 "cells": [
-                  "4"
+                  "PO123"
                 ]
               }
             ],
-            "keyword": "And "
+            "keyword": "Then "
           },
           {
             "output": [
-              "PRODUCT FOUND IN OG ",
-              "PRODUCT FOUND IN OG ",
-              "PRODUCT FOUND IN OG 00000008",
-              "OG HAS BEEN SAVED"
+              "PRODUCT SEARCHED USING SEARCH BAR IS 켈로그"
             ],
             "result": {
-              "duration": 8093845300,
+              "duration": 3630362000,
               "status": "passed"
             },
-            "line": 194,
-            "name": "User click on Save button",
+            "line": 54,
+            "name": "User enters foreign language description of Product in Search box",
             "match": {
-              "location": "stepDefination_DSD_OMS.OrderGuidePageSteps.OrderGuidePageStep.user_click_on_save_button()"
+              "location": "stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps8.userEntersForeignLanguageDescriptionOfProductInSearchBox()"
             },
             "keyword": "Then "
           },
           {
             "output": [
-              "NAVIGATED TO ORDER GUIDE",
-              "USER IS ON ORDER GUIDE PAGE",
-              "ORDER GUIDE ENTERED IN SEARCH BOX IS OGDis21"
+              "QTY ENTERED IN CASES INPUTBOX 1"
             ],
             "result": {
-              "duration": 2282459700,
+              "duration": 4506673300,
               "status": "passed"
             },
-            "line": 195,
-            "name": "User should navigate back to OG page and verify OG \"OGDis21\"  existence",
+            "line": 55,
+            "name": "User search for foreign language in product grid and enter Qty",
             "match": {
-              "arguments": [
-                {
-                  "val": "\"OGDis21\"",
-                  "offset": 51
-                }
-              ],
-              "location": "stepDefination_DSD_OMS.OrderGuidePageSteps.OrderGuidePageStep.user_should_navigate_back_to_og_page(java.lang.String)"
+              "location": "stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps8.userSearchForForeignLanguageInProductGridAndEnterQty(io.cucumber.datatable.DataTable)"
             },
-            "keyword": "And "
+            "rows": [
+              {
+                "cells": [
+                  "1",
+                  "1"
+                ]
+              }
+            ],
+            "keyword": "Then "
           },
           {
             "output": [
-              "NAVIGATED TO ORDER GUIDE"
+              "PRODUCT FOUND IN ORDER ARE ",
+              "00135520",
+              "00000005",
+              "00000006",
+              "10025300",
+              "59626700",
+              "00000001",
+              "00000002",
+              "00000003",
+              "00000004",
+              "00000008",
+              "00112882",
+              "00135444",
+              "00137682",
+              "00445006",
+              "NEXT BUTTON CLICKED",
+              "ORDER NUMBER CREATED IS 0003717077",
+              "PAYMENT METHOD HAS BEEN SELECTED",
+              "FIRST PAYMENT OPTION HAS BEEN SELECTED",
+              "CLICKED ON NEXT BUTTON"
             ],
             "result": {
-              "duration": 5190139200,
+              "duration": 47564942100,
               "status": "passed"
             },
-            "line": 196,
-            "name": "Clear filter to display both active and inactive OG",
+            "line": 57,
+            "name": "Click on Next button",
             "match": {
-              "location": "stepDefination_DSD_OMS.OrderGuidePageSteps.OrderGuidePageStep2.clearFilterToDisplayBothActiveAndInactiveOG()"
-            },
-            "keyword": "And "
-          },
-          {
-            "output": [
-              "NAVIGATED TO ORDER GUIDE",
-              "ORDER GUIDE ENTERED IN SEARCH BOX IS OGDis21",
-              "OG DELETE BUTTON HAS BEEN CLICKED",
-              "OG DELETE HAS BEEN CLEARED",
-              "NAVIGATED TO ORDER GUIDE",
-              "ORDER GUIDE DOESNOT EXISTS"
-            ],
-            "result": {
-              "duration": 13307569700,
-              "status": "passed"
-            },
-            "line": 197,
-            "name": "User enters OG Description \"OGDis21\" in search box and Delete the OG verify same in OG grid",
-            "match": {
-              "arguments": [
-                {
-                  "val": "\"OGDis21\"",
-                  "offset": 27
-                }
-              ],
-              "location": "stepDefination_DSD_OMS.OrderGuidePageSteps.OrderGuidePageStep3.userEntersOGDescriptionInSearchBoxAndDeleteTheOGVerifySameInOGGrid(java.lang.String)"
+              "location": "stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.click_on_next_button()"
             },
             "keyword": "Then "
           },
           {
+            "output": [
+              "ORDER ENTRY SUMMARY PAGE HAS BEEN FOUND",
+              "SUBMIT BUTTON IN ORDER SUMMARY PAGE HAS BEEN CLICKED",
+              "ORDER HAS BEEN SUCESSFULLY CREATED"
+            ],
             "result": {
-              "duration": 296121400,
+              "duration": 17869395500,
               "status": "passed"
             },
-            "line": 198,
-            "name": "User changes the Customer Account# to the previous Account#",
+            "line": 58,
+            "name": "Click on SubmitOrder button",
             "match": {
-              "location": "stepDefination_DSD_OMS.OrderGuidePageSteps.OrderGuidePageStep1.userChangesTheCustomerAccountToThePreviousAccount()"
+              "location": "stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.click_on_submit_order_button()"
             },
             "keyword": "And "
+          },
+          {
+            "output": [
+              "ORDER ENTRY PAGE HAS BEEN FOUND"
+            ],
+            "result": {
+              "duration": 6392918800,
+              "status": "passed"
+            },
+            "line": 59,
+            "name": "User should be navigated to Order Entry page",
+            "match": {
+              "location": "stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.user_should_be_navigated_to_order_entry_page()"
+            },
+            "keyword": "Then "
           }
         ],
         "tags": [
           {
-            "name": "@ChangeAccountAndCreateOG"
+            "name": "@OESearchProdForeignLanguage"
           }
         ]
       }
     ],
-    "name": "Order Guide1",
-    "description": "  Used for creation of New OG in different ways, Deleting, Editing etc",
-    "id": "order-guide1",
+    "name": "Order Entry Test cases only for DSD env",
+    "description": "  Used for cration of New order in different ways\n  Used for canceling order, editing of order, skipping of order",
+    "id": "order-entry-test-cases-only-for-dsd-env",
     "keyword": "Feature",
-    "uri": "file:src/test/resources/features_DSD_OMS/OrderGuideFeature_DSD/orderGuideFeature1.feature",
+    "uri": "file:src/test/resources/features_DSD_OMS/OrderEntryFeature/orderEntryFeatureDSD.feature",
     "tags": []
   }
 ]

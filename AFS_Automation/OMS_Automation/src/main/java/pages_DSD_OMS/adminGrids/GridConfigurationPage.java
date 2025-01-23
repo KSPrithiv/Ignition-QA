@@ -2,6 +2,7 @@ package pages_DSD_OMS.adminGrids;
 
 import helper.HelpersMethod;
 import io.cucumber.java.Scenario;
+import io.cucumber.java.en_old.Ac;
 import org.apache.logging.log4j.core.tools.picocli.CommandLine;
 import org.apache.poi.ss.formula.functions.T;
 import org.openqa.selenium.*;
@@ -16,6 +17,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
 import java.time.Duration;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -1055,6 +1058,25 @@ public class GridConfigurationPage
         String newLabel1=null;
         try
         {
+            Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(600))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
+            String status = HelpersMethod.returnDocumentStatus(driver);
+            if (status.equals("loading"))
+            {
+                HelpersMethod.waitTillLoadingPage(driver);
+            }
+
+            wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(600))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+            Thread.sleep(1000);
+
             if(HelpersMethod.IsExists("//tr[contains(@class,'k-grid-edit-row')]["+pos+"]/descendant::input[@class='k-textbox']",driver))
             {
                 newLabel=oldLabel+"123";
@@ -1064,6 +1086,24 @@ public class GridConfigurationPage
                 HelpersMethod.ActSendKey(driver,newHead,10000,newLabel);
                 scenario.log("NEW LABEL VALUE IS " + newLabel);
                 newLabel1=HelpersMethod.JSGetValueEle(driver,gridLabel,10000);
+                wait = new FluentWait<WebDriver>(driver)
+                        .withTimeout(Duration.ofSeconds(600))
+                        .pollingEvery(Duration.ofSeconds(2))
+                        .ignoring(NoSuchElementException.class);
+                wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
+                status = HelpersMethod.returnDocumentStatus(driver);
+                if (status.equals("loading"))
+                {
+                    HelpersMethod.waitTillLoadingPage(driver);
+                }
+
+                wait = new FluentWait<WebDriver>(driver)
+                        .withTimeout(Duration.ofSeconds(600))
+                        .pollingEvery(Duration.ofSeconds(2))
+                        .ignoring(NoSuchElementException.class);
+                wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+                Thread.sleep(1000);
             }
             if(newLabel.equalsIgnoreCase(newLabel1))
             {
@@ -1082,12 +1122,22 @@ public class GridConfigurationPage
         String newLabel1=null;
         try
         {
-            Thread.sleep(1000);
             Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
                     .withTimeout(Duration.ofSeconds(600))
                     .pollingEvery(Duration.ofSeconds(2))
                     .ignoring(NoSuchElementException.class);
             wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+            String status = HelpersMethod.returnDocumentStatus(driver);
+            if (status.equals("loading"))
+            {
+                HelpersMethod.waitTillLoadingPage(driver);
+            }
+            wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(600))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+            Thread.sleep(1000);
 
             if(HelpersMethod.IsExists("//tr[contains(@class,'k-grid-edit-row')]["+pos+"]/descendant::input[@class='k-textbox']",driver))
             {
@@ -1133,5 +1183,37 @@ public class GridConfigurationPage
             Assert.assertEquals(exists,true);
         }
         catch (Exception e){}
+    }
+
+    public List<String> readGridColumnName()
+    {
+        List<String> columnNames= new ArrayList<>();
+        int i=0;
+        String headText;
+        String colText;
+        Actions act=new Actions(driver);
+        try
+        {
+            List<WebElement> headers=HelpersMethod.FindByElements(driver,"xpath","//div[@id='GridConfigurationConfiguration']/descendant::th/descendant::span[@class='k-column-title']");
+            for(WebElement head:headers)
+            {
+              i++;
+              act.moveToElement(head).build().perform();
+              headText=head.getText();
+              if(headText.equalsIgnoreCase("Default Label"))
+              {
+                    break;
+              }
+            }
+            List<WebElement> col_Headers=HelpersMethod.FindByElements(driver,"xpath","//div[@id='GridConfigurationConfiguration']/descendant::tr[contains(@class,'k-master-row')]/descendant::td["+i+"]");
+            for(WebElement colHead:col_Headers)
+            {
+                act.moveToElement(colHead).build().perform();
+                colText=colHead.getText();
+                columnNames.add(colText);
+            }
+        }
+        catch (Exception e){}
+        return columnNames;
     }
 }
