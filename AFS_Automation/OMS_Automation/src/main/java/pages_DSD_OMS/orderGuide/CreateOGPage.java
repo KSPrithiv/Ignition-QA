@@ -199,6 +199,10 @@ public class CreateOGPage
             else
             {
                 HelpersMethod.EnterText(driver, OG_Des, 4000, OGDesc);
+
+                new WebDriverWait(driver,Duration.ofMillis(40000)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("web-order-page-content"))));
+                new WebDriverWait(driver,Duration.ofMillis(40000)).until(ExpectedConditions.invisibilityOfElementLocated(By.id("web-order-page-content")));
+
                 exists=true;
             }
             Assert.assertEquals(exists,true);

@@ -3,97 +3,19 @@
     "line": 1,
     "elements": [
       {
-        "line": 5,
-        "name": "For login to application and selecting Account#",
+        "line": 3,
+        "name": "For login to application to verify admin settings in client side, For Order entry test scenario",
         "description": "",
         "type": "background",
         "keyword": "Background",
-        "steps": [
-          {
-            "output": [
-              "SIGNIN BUTTON CLICKED"
-            ],
-            "result": {
-              "duration": 21107533100,
-              "status": "passed"
-            },
-            "line": 6,
-            "name": "User enters URL and is on login page and entered credentials",
-            "match": {
-              "location": "stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.user_enters_url_and_is_on_login_page_and_entered_credentials()"
-            },
-            "keyword": "Given "
-          },
-          {
-            "output": [
-              "ADMIN PAGE OR ORDER ENTRY PAGE HAS BEEN FOUND"
-            ],
-            "result": {
-              "duration": 157495300,
-              "status": "passed"
-            },
-            "line": 7,
-            "name": "User is on Home Page",
-            "match": {
-              "location": "stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.user_is_on_home_page()"
-            },
-            "keyword": "When "
-          },
-          {
-            "output": [
-              "USER ICON FOUND",
-              "IN ADMIN PAGE"
-            ],
-            "result": {
-              "duration": 3120999000,
-              "status": "passed"
-            },
-            "line": 8,
-            "name": "User navigate to Client side",
-            "match": {
-              "location": "stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.user_navigate_to_client_side()"
-            },
-            "keyword": "Then "
-          },
-          {
-            "output": [
-              "https://autodsd.afsi.com/ClientPortal/Apps/cpOrderEntry.html?p\u003dKm530c8XSlYiXYABAQY6Y6JAChTfYaSYca92kMk0eI9TOeNnC6%2bd9w%3d%3d",
-              "NAVIGATED TO ORDER ENTRY PAGE"
-            ],
-            "result": {
-              "duration": 5417291100,
-              "status": "passed"
-            },
-            "line": 9,
-            "name": "User should select Order Entry tab",
-            "match": {
-              "location": "stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.user_should_select_order_entry_tab()"
-            },
-            "keyword": "Then "
-          },
-          {
-            "output": [
-              "\u003cspan style\u003d\u0027color:red\u0027\u003eDELIBERY DATE FOUND, AFTER LOGGING IN TO APPLICATION  Friday, January 24, 2025\u003c/span\u003e"
-            ],
-            "result": {
-              "duration": 18043644900,
-              "status": "passed"
-            },
-            "line": 10,
-            "name": "User selects Account#",
-            "match": {
-              "location": "stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.user_selects_account()"
-            },
-            "keyword": "Then "
-          }
-        ]
+        "steps": []
       },
       {
-        "start_timestamp": "2025-01-22T16:53:54.848Z",
+        "start_timestamp": "2025-01-24T11:06:12.531Z",
         "before": [
           {
             "result": {
-              "duration": 8751600,
+              "duration": 7130800,
               "status": "passed"
             },
             "match": {
@@ -134,7 +56,1061 @@
           },
           {
             "result": {
-              "duration": 5043400,
+              "status": "passed"
+            },
+            "match": {
+              "location": "stepDefination_DSD_OMS.AdminReportSteps.UserAndAccount_PendingApprovalPageStep.LaunchBrowser1(io.cucumber.java.Scenario)"
+            }
+          },
+          {
+            "result": {
+              "status": "passed"
+            },
+            "match": {
+              "location": "stepDefination_DSD_OMS.AdminSecuritySteps.AdminSecurityPermissionPageStep.LaunchBrowser1(io.cucumber.java.Scenario)"
+            }
+          },
+          {
+            "result": {
+              "status": "passed"
+            },
+            "match": {
+              "location": "stepDefination_DSD_OMS.AdminSecuritySteps.AdminSecurityRolePageStep.LaunchBrowser1(io.cucumber.java.Scenario)"
+            }
+          },
+          {
+            "result": {
+              "status": "passed"
+            },
+            "match": {
+              "location": "stepDefination_DSD_OMS.AdminToClientNavigationSteps.AdminCatalogStep.LaunchBrowser1(io.cucumber.java.Scenario)"
+            }
+          },
+          {
+            "result": {
+              "duration": 1431900,
+              "status": "passed"
+            },
+            "match": {
+              "location": "stepDefination_DSD_OMS.AdminToClientNavigationSteps.AdminCustomerInqERPStep.LaunchBrowser1(io.cucumber.java.Scenario)"
+            }
+          },
+          {
+            "result": {
+              "status": "passed"
+            },
+            "match": {
+              "location": "stepDefination_DSD_OMS.AdminToClientNavigationSteps.AdminCustomerInqStep.LaunchBrowser1(io.cucumber.java.Scenario)"
+            }
+          },
+          {
+            "result": {
+              "status": "passed"
+            },
+            "match": {
+              "location": "stepDefination_DSD_OMS.AdminToClientNavigationSteps.AdminDisconnectedModeStep.LaunchBrowser1(io.cucumber.java.Scenario)"
+            }
+          },
+          {
+            "result": {
+              "status": "passed"
+            },
+            "match": {
+              "location": "stepDefination_DSD_OMS.AdminToClientNavigationSteps.AdminInventoryStep.LaunchBrowser1(io.cucumber.java.Scenario)"
+            }
+          },
+          {
+            "result": {
+              "status": "passed"
+            },
+            "match": {
+              "location": "stepDefination_DSD_OMS.AdminToClientNavigationSteps.AdminLoginStep.LaunchBrowser1(io.cucumber.java.Scenario)"
+            }
+          },
+          {
+            "result": {
+              "status": "passed"
+            },
+            "match": {
+              "location": "stepDefination_DSD_OMS.AdminToClientNavigationSteps.AdminOrderControlListStep.LaunchBrowser1(io.cucumber.java.Scenario)"
+            }
+          },
+          {
+            "result": {
+              "duration": 3976700,
+              "status": "passed"
+            },
+            "match": {
+              "location": "stepDefination_DSD_OMS.AdminToClientNavigationSteps.AdminOrderEntryStep.LaunchBrowser1(io.cucumber.java.Scenario)"
+            }
+          },
+          {
+            "result": {
+              "status": "passed"
+            },
+            "match": {
+              "location": "stepDefination_DSD_OMS.AdminToClientNavigationSteps.AdminOrderEntryStep1.LaunchBrowser1(io.cucumber.java.Scenario)"
+            }
+          },
+          {
+            "result": {
+              "duration": 2449300,
+              "status": "passed"
+            },
+            "match": {
+              "location": "stepDefination_DSD_OMS.AdminToClientNavigationSteps.AdminOrderGuideStep.LaunchBrowser1(io.cucumber.java.Scenario)"
+            }
+          },
+          {
+            "result": {
+              "duration": 1044100,
+              "status": "passed"
+            },
+            "match": {
+              "location": "stepDefination_DSD_OMS.AdminToClientNavigationSteps.AdminQuoteStep.LaunchBrowser1(io.cucumber.java.Scenario)"
+            }
+          },
+          {
+            "result": {
+              "duration": 1011900,
+              "status": "passed"
+            },
+            "match": {
+              "location": "stepDefination_DSD_OMS.AdminToClientNavigationSteps.AdminReportsStep.LaunchBrowser1(io.cucumber.java.Scenario)"
+            }
+          },
+          {
+            "result": {
+              "status": "passed"
+            },
+            "match": {
+              "location": "stepDefination_DSD_OMS.AdminToClientNavigationSteps.AdminSecurityPageStepERP.LaunchBrowser1(io.cucumber.java.Scenario)"
+            }
+          },
+          {
+            "result": {
+              "status": "passed"
+            },
+            "match": {
+              "location": "stepDefination_DSD_OMS.AdminToClientNavigationSteps.AdminStandingOrderOMSStep.LaunchBrowser1(io.cucumber.java.Scenario)"
+            }
+          },
+          {
+            "result": {
+              "status": "passed"
+            },
+            "match": {
+              "location": "stepDefination_DSD_OMS.AdminToClientNavigationSteps.AdminStandingOrderStep.LaunchBrowser1(io.cucumber.java.Scenario)"
+            }
+          },
+          {
+            "result": {
+              "status": "passed"
+            },
+            "match": {
+              "location": "stepDefination_DSD_OMS.AdminToClientNavigationSteps.OrderFactorAdminStep.LaunchBrowser1(io.cucumber.java.Scenario)"
+            }
+          },
+          {
+            "result": {
+              "status": "passed"
+            },
+            "match": {
+              "location": "stepDefination_DSD_OMS.AllOrdersPageSteps.AllOrderPageStep1.LaunchBrowser1(io.cucumber.java.Scenario)"
+            }
+          },
+          {
+            "result": {
+              "duration": 883600,
+              "status": "passed"
+            },
+            "match": {
+              "location": "stepDefination_DSD_OMS.AllOrdersPageSteps.AllOrdersPageStep.LaunchBrowser1(io.cucumber.java.Scenario)"
+            }
+          },
+          {
+            "result": {
+              "status": "passed"
+            },
+            "match": {
+              "location": "stepDefination_DSD_OMS.ARInquirySteps.ARInquiryPageStep.LaunchBrowser1(io.cucumber.java.Scenario)"
+            }
+          },
+          {
+            "result": {
+              "status": "passed"
+            },
+            "match": {
+              "location": "stepDefination_DSD_OMS.BadgeBuilderSteps.IconsSelectionPageStep.LaunchBrowser1(io.cucumber.java.Scenario)"
+            }
+          },
+          {
+            "result": {
+              "status": "passed"
+            },
+            "match": {
+              "location": "stepDefination_DSD_OMS.BadgeBuilder_Phase2.IconsSelectionPageStep2.LaunchBrowser1(io.cucumber.java.Scenario)"
+            }
+          },
+          {
+            "result": {
+              "status": "passed"
+            },
+            "match": {
+              "location": "stepDefination_DSD_OMS.BillToBillSteps.BillToBillPageStep.LaunchBrowser1(io.cucumber.java.Scenario)"
+            }
+          },
+          {
+            "result": {
+              "status": "passed"
+            },
+            "match": {
+              "location": "stepDefination_DSD_OMS.CatalogPageSteps.CatalogPageStep.LaunchBrowser1(io.cucumber.java.Scenario)"
+            }
+          },
+          {
+            "result": {
+              "duration": 7469600,
+              "status": "passed"
+            },
+            "match": {
+              "location": "stepDefination_DSD_OMS.CatalogPageSteps.CatalogPageStep1.LaunchBrowser1(io.cucumber.java.Scenario)"
+            }
+          },
+          {
+            "result": {
+              "duration": 3642100,
+              "status": "passed"
+            },
+            "match": {
+              "location": "stepDefination_DSD_OMS.CatalogPageSteps.CatalogPageStep2.LaunchBrowser1(io.cucumber.java.Scenario)"
+            }
+          },
+          {
+            "result": {
+              "duration": 1566900,
+              "status": "passed"
+            },
+            "match": {
+              "location": "stepDefination_DSD_OMS.CatalogPageSteps.CatalogPageStep3.LaunchBrowser1(io.cucumber.java.Scenario)"
+            }
+          },
+          {
+            "result": {
+              "duration": 2017000,
+              "status": "passed"
+            },
+            "match": {
+              "location": "stepDefination_DSD_OMS.CompetitivePricingPageSteps.CompetitorPricingPageERPStep.LaunchBrowser1(io.cucumber.java.Scenario)"
+            }
+          },
+          {
+            "result": {
+              "duration": 2138100,
+              "status": "passed"
+            },
+            "match": {
+              "location": "stepDefination_DSD_OMS.CompetitivePricingPageSteps.CompetitorPricingPageStep.LaunchBrowser1(io.cucumber.java.Scenario)"
+            }
+          },
+          {
+            "result": {
+              "status": "passed"
+            },
+            "match": {
+              "location": "stepDefination_DSD_OMS.CompetitivePricingPageSteps.CompetitorPricingPageStep1.LaunchBrowser1(io.cucumber.java.Scenario)"
+            }
+          },
+          {
+            "result": {
+              "duration": 2756500,
+              "status": "passed"
+            },
+            "match": {
+              "location": "stepDefination_DSD_OMS.CRMStepDef.CRMStepDef.LaunchBrowser1(io.cucumber.java.Scenario)"
+            }
+          },
+          {
+            "result": {
+              "status": "passed"
+            },
+            "match": {
+              "location": "stepDefination_DSD_OMS.CustomerInqPage_DSDSteps.CustomerInqStep.LaunchBrowser1(io.cucumber.java.Scenario)"
+            }
+          },
+          {
+            "result": {
+              "status": "passed"
+            },
+            "match": {
+              "location": "stepDefination_DSD_OMS.CustomerInqPage_DSDSteps.CustomerInqStep1.LaunchBrowser1(io.cucumber.java.Scenario)"
+            }
+          },
+          {
+            "result": {
+              "status": "passed"
+            },
+            "match": {
+              "location": "stepDefination_DSD_OMS.CustomerInqPage_ERPSteps.CustomerInqStep_ERP.LaunchBrowser1(io.cucumber.java.Scenario)"
+            }
+          },
+          {
+            "result": {
+              "status": "passed"
+            },
+            "match": {
+              "location": "stepDefination_DSD_OMS.CustomerInqPage_ERPSteps.CustomerInqStep_ERP1.LaunchBrowser1(io.cucumber.java.Scenario)"
+            }
+          },
+          {
+            "result": {
+              "duration": 3854500,
+              "status": "passed"
+            },
+            "match": {
+              "location": "stepDefination_DSD_OMS.DiconnectModePageSteps.DMOEPageStep.LaunchBrowser1(io.cucumber.java.Scenario)"
+            }
+          },
+          {
+            "result": {
+              "status": "passed"
+            },
+            "match": {
+              "location": "stepDefination_DSD_OMS.DiconnectModePageSteps.DMOEPageStep1.LaunchBrowser1(io.cucumber.java.Scenario)"
+            }
+          },
+          {
+            "result": {
+              "status": "passed"
+            },
+            "match": {
+              "location": "stepDefination_DSD_OMS.InventoryPageSteps.InventoryPageSteps.LaunchBrowser(io.cucumber.java.Scenario)"
+            }
+          },
+          {
+            "result": {
+              "status": "passed"
+            },
+            "match": {
+              "location": "stepDefination_DSD_OMS.LoginPageStep.LaunchBrowser(io.cucumber.java.Scenario)"
+            }
+          },
+          {
+            "result": {
+              "status": "passed"
+            },
+            "match": {
+              "location": "stepDefination_DSD_OMS.MyAccountStep.MyAccountPageStep.LaunchBrowser1(io.cucumber.java.Scenario)"
+            }
+          },
+          {
+            "result": {
+              "status": "passed"
+            },
+            "match": {
+              "location": "stepDefination_DSD_OMS.NavigationPageSteps.navigationPannelPageStep.LaunchBrowser(io.cucumber.java.Scenario)"
+            }
+          },
+          {
+            "result": {
+              "status": "passed"
+            },
+            "match": {
+              "location": "stepDefination_DSD_OMS.OrderControlListSteps.OrderControlPageSteps.LaunchBrowser1(io.cucumber.java.Scenario)"
+            }
+          },
+          {
+            "result": {
+              "status": "passed"
+            },
+            "match": {
+              "location": "stepDefination_DSD_OMS.OrderControlListSteps.OrderControlPageSteps1.LaunchBrowser1(io.cucumber.java.Scenario)"
+            }
+          },
+          {
+            "result": {
+              "status": "passed"
+            },
+            "match": {
+              "location": "stepDefination_DSD_OMS.OrderControlListSteps.OrderControlPageSteps2.LaunchBrowser1(io.cucumber.java.Scenario)"
+            }
+          },
+          {
+            "result": {
+              "duration": 4570300,
+              "status": "passed"
+            },
+            "match": {
+              "location": "stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageEnd.LaunchBrowser1(io.cucumber.java.Scenario)"
+            }
+          },
+          {
+            "result": {
+              "status": "passed"
+            },
+            "match": {
+              "location": "stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageERP.LaunchBrowser1(io.cucumber.java.Scenario)"
+            }
+          },
+          {
+            "result": {
+              "status": "passed"
+            },
+            "match": {
+              "location": "stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.LaunchBrowser1(io.cucumber.java.Scenario)"
+            }
+          },
+          {
+            "result": {
+              "status": "passed"
+            },
+            "match": {
+              "location": "stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps1.LaunchBrowser1(io.cucumber.java.Scenario)"
+            }
+          },
+          {
+            "result": {
+              "status": "passed"
+            },
+            "match": {
+              "location": "stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps2.LaunchBrowser1(io.cucumber.java.Scenario)"
+            }
+          },
+          {
+            "result": {
+              "status": "passed"
+            },
+            "match": {
+              "location": "stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps3.LaunchBrowser1(io.cucumber.java.Scenario)"
+            }
+          },
+          {
+            "result": {
+              "status": "passed"
+            },
+            "match": {
+              "location": "stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps4.LaunchBrowser1(io.cucumber.java.Scenario)"
+            }
+          },
+          {
+            "result": {
+              "status": "passed"
+            },
+            "match": {
+              "location": "stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps5.LaunchBrowser1(io.cucumber.java.Scenario)"
+            }
+          },
+          {
+            "result": {
+              "status": "passed"
+            },
+            "match": {
+              "location": "stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps6.LaunchBrowser1(io.cucumber.java.Scenario)"
+            }
+          },
+          {
+            "result": {
+              "duration": 1016200,
+              "status": "passed"
+            },
+            "match": {
+              "location": "stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps7.LaunchBrowser1(io.cucumber.java.Scenario)"
+            }
+          },
+          {
+            "result": {
+              "status": "passed"
+            },
+            "match": {
+              "location": "stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps8.LaunchBrowser1(io.cucumber.java.Scenario)"
+            }
+          },
+          {
+            "result": {
+              "status": "passed"
+            },
+            "match": {
+              "location": "stepDefination_DSD_OMS.OrderGuidePageSteps.OrderGuidePageStep.LaunchBrowser1(io.cucumber.java.Scenario)"
+            }
+          },
+          {
+            "result": {
+              "status": "passed"
+            },
+            "match": {
+              "location": "stepDefination_DSD_OMS.OrderGuidePageSteps.OrderGuidePageStep1.LaunchBrowser1(io.cucumber.java.Scenario)"
+            }
+          },
+          {
+            "result": {
+              "status": "passed"
+            },
+            "match": {
+              "location": "stepDefination_DSD_OMS.OrderGuidePageSteps.OrderGuidePageStep2.LaunchBrowser1(io.cucumber.java.Scenario)"
+            }
+          },
+          {
+            "result": {
+              "status": "passed"
+            },
+            "match": {
+              "location": "stepDefination_DSD_OMS.OrderGuidePageSteps.OrderGuidePageStep3.LaunchBrowser1(io.cucumber.java.Scenario)"
+            }
+          },
+          {
+            "result": {
+              "duration": 1013400,
+              "status": "passed"
+            },
+            "match": {
+              "location": "stepDefination_DSD_OMS.ParOrderPageSteps.ParOrderPageStep.LaunchBrowser(io.cucumber.java.Scenario)"
+            }
+          },
+          {
+            "result": {
+              "status": "passed"
+            },
+            "match": {
+              "location": "stepDefination_DSD_OMS.PaymentInfoSteps.PaymentInfoPageStep.LaunchBrowser(io.cucumber.java.Scenario)"
+            }
+          },
+          {
+            "result": {
+              "status": "passed"
+            },
+            "match": {
+              "location": "stepDefination_DSD_OMS.ProductReferenceSteps.ProductReferencePageStep.LaunchBrowser(io.cucumber.java.Scenario)"
+            }
+          },
+          {
+            "result": {
+              "status": "passed"
+            },
+            "match": {
+              "location": "stepDefination_DSD_OMS.QuotePageSteps.QuotePageSteps.LaunchBrowser1(io.cucumber.java.Scenario)"
+            }
+          },
+          {
+            "result": {
+              "status": "passed"
+            },
+            "match": {
+              "location": "stepDefination_DSD_OMS.QuotePageSteps.QuotePageSteps1.LaunchBrowser1(io.cucumber.java.Scenario)"
+            }
+          },
+          {
+            "result": {
+              "status": "passed"
+            },
+            "match": {
+              "location": "stepDefination_DSD_OMS.ReportsOEPageSteps.ReportsCustomersWithoutOrdersSteps.LaunchBrowser1(io.cucumber.java.Scenario)"
+            }
+          },
+          {
+            "result": {
+              "status": "passed"
+            },
+            "match": {
+              "location": "stepDefination_DSD_OMS.StandingOrderPageSteps.StandingOrderPageSteps.LaunchBrowser1(io.cucumber.java.Scenario)"
+            }
+          },
+          {
+            "result": {
+              "duration": 3573400,
+              "status": "passed"
+            },
+            "match": {
+              "location": "stepDefination_DSD_OMS.StandingOrderPageSteps.StandingOrderPageSteps1.LaunchBrowser1(io.cucumber.java.Scenario)"
+            }
+          },
+          {
+            "result": {
+              "status": "passed"
+            },
+            "match": {
+              "location": "stepDefination_DSD_OMS.StatementsPageSteps.StatementsPageSteps.LaunchBrowser1(io.cucumber.java.Scenario)"
+            }
+          },
+          {
+            "result": {
+              "status": "passed"
+            },
+            "match": {
+              "location": "stepDefination_DSD_OMS.UserManagementClientsidePageSteps.ManageRegistration_ClientSideStep.LaunchBrowser1(io.cucumber.java.Scenario)"
+            }
+          },
+          {
+            "result": {
+              "status": "passed"
+            },
+            "match": {
+              "location": "stepDefination_DSD_OMS.UserManagementClientsidePageSteps.PendingRegistration_ClientSideStep.LaunchBrowser1(io.cucumber.java.Scenario)"
+            }
+          },
+          {
+            "result": {
+              "status": "passed"
+            },
+            "match": {
+              "location": "stepDefination_DSD_OMS.UserManagementClientsidePageSteps.UserManagement_ClientSideStep.LaunchBrowser1(io.cucumber.java.Scenario)"
+            }
+          },
+          {
+            "result": {
+              "status": "passed"
+            },
+            "match": {
+              "location": "stepDefination_DSD_OMS.UserManagementPage.Manage_Registration_PageStep.LaunchBrowser1(io.cucumber.java.Scenario)"
+            }
+          },
+          {
+            "result": {
+              "status": "passed"
+            },
+            "match": {
+              "location": "stepDefination_DSD_OMS.UserManagementPage.UserManagementPageStep.LaunchBrowser1(io.cucumber.java.Scenario)"
+            }
+          },
+          {
+            "result": {
+              "duration": 3516900,
+              "status": "passed"
+            },
+            "match": {
+              "location": "stepDefination_DSD_OMS.WebOrderingPageSteps.BlackoutAndCutoffStep.LaunchBrowser1(io.cucumber.java.Scenario)"
+            }
+          },
+          {
+            "result": {
+              "status": "passed"
+            },
+            "match": {
+              "location": "stepDefination_DSD_OMS.WebOrderingPageSteps.CutoffManagementPickupOrderStep.LaunchBrowser1(io.cucumber.java.Scenario)"
+            }
+          },
+          {
+            "result": {
+              "status": "passed"
+            },
+            "match": {
+              "location": "stepDefination_DSD_OMS.WebOrderingPageSteps.CutoffManagementStep.LaunchBrowser1(io.cucumber.java.Scenario)"
+            }
+          },
+          {
+            "result": {
+              "status": "passed"
+            },
+            "match": {
+              "location": "stepDefination_DSD_OMS.WebOrderingPageSteps.CutoffTimeOverrideStep.LaunchBrowser1(io.cucumber.java.Scenario)"
+            }
+          },
+          {
+            "result": {
+              "status": "passed"
+            },
+            "match": {
+              "location": "stepDefination_DSD_OMS.WebOrderingPageSteps.FeaturedProductsPageStep.LaunchBrowser1(io.cucumber.java.Scenario)"
+            }
+          },
+          {
+            "result": {
+              "status": "passed"
+            },
+            "match": {
+              "location": "stepDefination_DSD_OMS.WebOrderingPageSteps.NavigationPageStep.LaunchBrowser1(io.cucumber.java.Scenario)"
+            }
+          },
+          {
+            "result": {
+              "status": "passed"
+            },
+            "match": {
+              "location": "stepDefination_DSD_OMS.WebOrderingPageSteps.RestrictedProductsPageStep.LaunchBrowser1(io.cucumber.java.Scenario)"
+            }
+          }
+        ],
+        "line": 28,
+        "name": "Test scenario to verify functionality for Disabling Show and allow modification of warehouse",
+        "description": "",
+        "id": "scenarios-for-admin-credentials-and-client-credentials;test-scenario-to-verify-functionality-for-disabling-show-and-allow-modification-of-warehouse;;2",
+        "after": [
+          {
+            "result": {
+              "status": "passed"
+            },
+            "match": {
+              "location": "stepDefination_DSD_OMS.LoginPageStep.afterScenario1(io.cucumber.java.Scenario)"
+            }
+          }
+        ],
+        "type": "scenario",
+        "keyword": "Scenario Outline",
+        "steps": [
+          {
+            "output": [
+              "FOR ADMIN SETTING Show and allow modification of warehouse CHANGES",
+              "ADMIN SETTING IS ALREADY DISABLED"
+            ],
+            "result": {
+              "duration": 2126711200,
+              "status": "passed"
+            },
+            "line": 7,
+            "name": "User should verify admin setting \"Show and allow modification of warehouse\" is disabled by using \"CPShowAndModifyWarehouse\"",
+            "match": {
+              "arguments": [
+                {
+                  "val": "\"Show and allow modification of warehouse\"",
+                  "offset": 33
+                },
+                {
+                  "val": "\"CPShowAndModifyWarehouse\"",
+                  "offset": 97
+                }
+              ],
+              "location": "stepDefination_DSD_OMS.AdminToClientNavigationSteps.AdminCatalogStep.userShouldVerifyAdminSettingIsDisabledByUsing(java.lang.String,java.lang.String)"
+            },
+            "keyword": "Given "
+          },
+          {
+            "output": [
+              "SIGNIN BUTTON CLICKED",
+              "CURRENT URL IS https://autoerp.afsi.com/omsi/clientportal/apps/CPAdmin.html?p\u003dQJFsTz5JBfVNODvKd%2b4hK56SreO0vwVwYSCjo3j9p6A%3d"
+            ],
+            "result": {
+              "duration": 19917107000,
+              "status": "passed"
+            },
+            "line": 8,
+            "name": "User enters URL and is on login page and entered credentials for admin setting",
+            "match": {
+              "location": "stepDefination_DSD_OMS.AdminToClientNavigationSteps.AdminCatalogStep.userEntersURLAndIsOnLoginPageAndEnteredCredentialsForAdminSetting()"
+            },
+            "keyword": "When "
+          },
+          {
+            "output": [
+              "ADMIN PAGE OR ORDER ENTRY PAGE HAS BEEN FOUND"
+            ],
+            "result": {
+              "duration": 226796400,
+              "status": "passed"
+            },
+            "line": 9,
+            "name": "User is on Home Page",
+            "match": {
+              "location": "stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.user_is_on_home_page()"
+            },
+            "keyword": "When "
+          },
+          {
+            "output": [
+              "USER ICON FOUND",
+              "IN ADMIN PAGE"
+            ],
+            "result": {
+              "duration": 3191548500,
+              "status": "passed"
+            },
+            "line": 10,
+            "name": "User navigate to Client side",
+            "match": {
+              "location": "stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.user_navigate_to_client_side()"
+            },
+            "keyword": "Then "
+          },
+          {
+            "output": [
+              "https://autoerp.afsi.com/omsi/clientportal/apps/cpOrderEntry.html?p\u003dQJFsTz5JBfVNODvKd%2b4hK56SreO0vwVwYSCjo3j9p6A%3d",
+              "NAVIGATED TO ORDER ENTRY PAGE"
+            ],
+            "result": {
+              "duration": 14088142500,
+              "status": "passed"
+            },
+            "line": 11,
+            "name": "User should select Order Entry tab for admin",
+            "match": {
+              "location": "stepDefination_DSD_OMS.AdminToClientNavigationSteps.AdminOrderEntryStep.userShouldSelectOrderEntryTabForAdmin()"
+            },
+            "keyword": "Then "
+          },
+          {
+            "output": [
+              "CUSTOMER ACCOUNT# SELECTED IS K11985",
+              "ORDER GUIDE POPUP HAS BEEN FOUND",
+              "NEW ORDER ENTRY PAGE HAS BEEN FOUND",
+              "NAVIGATED TO ORDER ENTRY PAGE",
+              "\u003cspan style\u003d\u0027color:red\u0027\u003eDELIBERY DATE FOUND, AFTER LOGGING IN TO APPLICATION  Tuesday, January 28, 2025\u003c/span\u003e"
+            ],
+            "result": {
+              "duration": 18101854700,
+              "status": "passed"
+            },
+            "line": 12,
+            "name": "User selects Account# for Admin side setting",
+            "match": {
+              "location": "stepDefination_DSD_OMS.AdminToClientNavigationSteps.AdminOrderEntryStep.userSelectsAccountForAdminSideSetting()"
+            },
+            "keyword": "Then "
+          },
+          {
+            "output": [
+              "NAVIGATED TO ORDER ENTRY PAGE",
+              "\u003cspan style\u003d\u0027color:red\u0027\u003eDELIBERY DATE FOUND, AFTER LOGGING IN TO APPLICATION  Tuesday, January 28, 2025\u003c/span\u003e",
+              "WAREHOUS INDEX BOX IS NOT DISPLAYED",
+              "START BUTTON HAS BEEN CLICKED"
+            ],
+            "result": {
+              "duration": 12078104100,
+              "status": "passed"
+            },
+            "line": 13,
+            "name": "User must click Start Order button validate no Warehouse is displayed",
+            "match": {
+              "location": "stepDefination_DSD_OMS.AdminToClientNavigationSteps.AdminOrderEntryStep.userMustClickStartOrderButtonValidateNoWarehouseIsDisplayed()"
+            },
+            "keyword": "Then "
+          },
+          {
+            "result": {
+              "duration": 71828600,
+              "status": "passed"
+            },
+            "line": 14,
+            "name": "User should make selection between Pending order or Start New order",
+            "match": {
+              "location": "stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.user_should_make_selection_between_pending_order_or_start_new_order()"
+            },
+            "keyword": "Then "
+          },
+          {
+            "output": [
+              "ORDER GUIDE POPUP HAS BEEN FOUND"
+            ],
+            "result": {
+              "duration": 7596792000,
+              "status": "passed"
+            },
+            "line": 15,
+            "name": "User should select Note from popup and Order guide from popup",
+            "match": {
+              "location": "stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.userShouldSelectNoteFromPopupAndOrderGuideFromPopup()"
+            },
+            "keyword": "Then "
+          },
+          {
+            "output": [
+              "NEW ORDER ENTRY PAGE HAS BEEN FOUND",
+              "PO# ENTERED IS PO123"
+            ],
+            "result": {
+              "duration": 4742801800,
+              "status": "passed"
+            },
+            "line": 16,
+            "name": "Enter PO# for New order",
+            "match": {
+              "location": "stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.enter_po_for_new_order(io.cucumber.datatable.DataTable)"
+            },
+            "rows": [
+              {
+                "cells": [
+                  "PO123"
+                ]
+              }
+            ],
+            "keyword": "Then "
+          },
+          {
+            "output": [
+              "PRODUCT ADDED TO THE ORDER Via QUICK PRODUCT ENTRY 4088"
+            ],
+            "result": {
+              "duration": 3314747200,
+              "status": "passed"
+            },
+            "line": 18,
+            "name": "Enter Pro# in Quick Product Entry area",
+            "match": {
+              "location": "stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.enter_pro_in_quick_product_entry_area()"
+            },
+            "keyword": "Then "
+          },
+          {
+            "output": [
+              "UOM IS ENABLED AND IT CONTAINS CS VALUE IN IT",
+              "CASE ENTERED FOR QUICK PRODUCT IS 1"
+            ],
+            "result": {
+              "duration": 11079711600,
+              "status": "passed"
+            },
+            "line": 19,
+            "name": "Check for Case and Unit input box enabled or not based on that enter value",
+            "match": {
+              "location": "stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.check_for_case_and_unit_input_box_enabled_or_not_based_on_that_enter_value(io.cucumber.datatable.DataTable)"
+            },
+            "rows": [
+              {
+                "cells": [
+                  "1",
+                  "1"
+                ]
+              }
+            ],
+            "keyword": "And "
+          },
+          {
+            "output": [
+              "PRODUCT FOUND IN ORDER ARE ",
+              "4088",
+              "NEXT BUTTON CLICKED",
+              "ORDER NUMBER CREATED IS 1195212",
+              "PAYMENT METHOD HAS BEEN SELECTED",
+              "FIRST PAYMENT OPTION HAS BEEN SELECTED",
+              "CLICKED ON NEXT BUTTON"
+            ],
+            "result": {
+              "duration": 47480982300,
+              "status": "passed"
+            },
+            "line": 21,
+            "name": "Click on Next button",
+            "match": {
+              "location": "stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.click_on_next_button()"
+            },
+            "keyword": "Then "
+          },
+          {
+            "output": [
+              "ORDER ENTRY SUMMARY PAGE HAS BEEN FOUND",
+              "SUBMIT BUTTON IN ORDER SUMMARY PAGE HAS BEEN CLICKED",
+              "ORDER HAS BEEN SUCESSFULLY CREATED"
+            ],
+            "result": {
+              "duration": 21681440700,
+              "status": "passed"
+            },
+            "line": 22,
+            "name": "Click on SubmitOrder button",
+            "match": {
+              "location": "stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.click_on_submit_order_button()"
+            },
+            "keyword": "And "
+          },
+          {
+            "output": [
+              "ORDER ENTRY PAGE HAS BEEN FOUND"
+            ],
+            "result": {
+              "duration": 10122042800,
+              "status": "passed"
+            },
+            "line": 23,
+            "name": "User should be navigated to Order Entry page",
+            "match": {
+              "location": "stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.user_should_be_navigated_to_order_entry_page()"
+            },
+            "keyword": "Then "
+          },
+          {
+            "result": {
+              "duration": 31040793800,
+              "status": "passed"
+            },
+            "line": 24,
+            "name": "User sign out from client side for Admin setting changes",
+            "match": {
+              "location": "stepDefination_DSD_OMS.AdminToClientNavigationSteps.AdminCatalogStep.userSignOutFromClientSideForAdminSettingChanges()"
+            },
+            "keyword": "Then "
+          },
+          {
+            "output": [
+              "0\u003cspan style\u003d\u0027color:red\u0027\u003e WHAT WAS THE PREVIOUS VALUE FOR ADMIN SETTING, AND CURRENT STATUS IS \u003c/span\u003e0"
+            ],
+            "result": {
+              "duration": 1585194100,
+              "status": "passed"
+            },
+            "line": 25,
+            "name": "User should set admin setting \"Show and allow modification of warehouse\" \"CPShowAndModifyWarehouse\" as default before making changes",
+            "match": {
+              "arguments": [
+                {
+                  "val": "\"Show and allow modification of warehouse\"",
+                  "offset": 30
+                },
+                {
+                  "val": "\"CPShowAndModifyWarehouse\"",
+                  "offset": 73
+                }
+              ],
+              "location": "stepDefination_DSD_OMS.AdminToClientNavigationSteps.AdminCatalogStep.userShouldSetAdminSettingAsDefaultBeforeMakingChanges(java.lang.String,java.lang.String)"
+            },
+            "keyword": "And "
+          }
+        ],
+        "tags": [
+          {
+            "name": "@ShowModificationWarehouseDisable"
+          }
+        ]
+      },
+      {
+        "line": 3,
+        "name": "For login to application to verify admin settings in client side, For Order entry test scenario",
+        "description": "",
+        "type": "background",
+        "keyword": "Background",
+        "steps": []
+      },
+      {
+        "start_timestamp": "2025-01-24T11:09:51.820Z",
+        "before": [
+          {
+            "result": {
+              "status": "passed"
+            },
+            "match": {
+              "location": "stepDefination_DSD_OMS.AdminGridsPageSteps.GridConfigurationPageStep.LaunchBrowser1(io.cucumber.java.Scenario)"
+            }
+          },
+          {
+            "result": {
+              "status": "passed"
+            },
+            "match": {
+              "location": "stepDefination_DSD_OMS.AdminReportSteps.AdminReportPageStep.LaunchBrowser1(io.cucumber.java.Scenario)"
+            }
+          },
+          {
+            "result": {
+              "status": "passed"
+            },
+            "match": {
+              "location": "stepDefination_DSD_OMS.AdminReportSteps.OrderAdminPageStep.LaunchBrowser1(io.cucumber.java.Scenario)"
+            }
+          },
+          {
+            "result": {
+              "status": "passed"
+            },
+            "match": {
+              "location": "stepDefination_DSD_OMS.AdminReportSteps.UserAndAccount_AddNewUserPageStep.LaunchBrowser1(io.cucumber.java.Scenario)"
+            }
+          },
+          {
+            "result": {
+              "status": "passed"
+            },
+            "match": {
+              "location": "stepDefination_DSD_OMS.AdminReportSteps.UserAndAccount_GeneralPageStep.LaunchBrowser1(io.cucumber.java.Scenario)"
+            }
+          },
+          {
+            "result": {
               "status": "passed"
             },
             "match": {
@@ -263,7 +1239,6 @@
           },
           {
             "result": {
-              "duration": 75800,
               "status": "passed"
             },
             "match": {
@@ -416,7 +1391,6 @@
           },
           {
             "result": {
-              "duration": 7151200,
               "status": "passed"
             },
             "match": {
@@ -601,7 +1575,6 @@
           },
           {
             "result": {
-              "duration": 9939700,
               "status": "passed"
             },
             "match": {
@@ -642,7 +1615,6 @@
           },
           {
             "result": {
-              "duration": 79600,
               "status": "passed"
             },
             "match": {
@@ -794,10 +1766,10 @@
             }
           }
         ],
-        "line": 47,
-        "name": "Creating New order by entering foreign language product description  Product# in Searchbar, New order entry page",
+        "line": 53,
+        "name": "Test scenario to verify functionality for enabling Show and allow modification of warehouse",
         "description": "",
-        "id": "order-entry-test-cases-only-for-dsd-env;creating-new-order-by-entering-foreign-language-product-description--product#-in-searchbar--new-order-entry-page",
+        "id": "scenarios-for-admin-credentials-and-client-credentials;test-scenario-to-verify-functionality-for-enabling-show-and-allow-modification-of-warehouse;;2",
         "after": [
           {
             "result": {
@@ -809,43 +1781,142 @@
           }
         ],
         "type": "scenario",
-        "keyword": "Scenario",
+        "keyword": "Scenario Outline",
         "steps": [
           {
+            "output": [
+              "\u003cspan style\u003d\u0027color:red\u0027\u003eADMIN SETTING FOUND IS\u003c/span\u003e0",
+              "ADMIN SETTING IS ENABLED",
+              "FOR ADMIN SETTING Show and allow modification of warehouse CHANGES",
+              "ADMIN SETTING IS ENABLED"
+            ],
             "result": {
-              "duration": 47804050700,
+              "duration": 3112837900,
               "status": "passed"
             },
-            "line": 48,
-            "name": "User must be on Order Entry Page",
+            "line": 32,
+            "name": "User should verify admin setting \"Show and allow modification of warehouse\" is enabled by using \"CPShowAndModifyWarehouse\"",
             "match": {
-              "location": "stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.user_must_be_on_order_entry_page()"
+              "arguments": [
+                {
+                  "val": "\"Show and allow modification of warehouse\"",
+                  "offset": 33
+                },
+                {
+                  "val": "\"CPShowAndModifyWarehouse\"",
+                  "offset": 96
+                }
+              ],
+              "location": "stepDefination_DSD_OMS.AdminToClientNavigationSteps.AdminCatalogStep.userShouldVerifyAdminSettingIsEnabledByUsing(java.lang.String,java.lang.String)"
             },
             "keyword": "Given "
           },
           {
             "output": [
+              "SIGNIN BUTTON CLICKED",
+              "CURRENT URL IS https://autoerp.afsi.com/omsi/clientportal/apps/CPAdmin.html?p\u003dQJFsTz5JBfVNODvKd%2b4hK56SreO0vwVwYSCjo3j9p6A%3d"
+            ],
+            "result": {
+              "duration": 19114130700,
+              "status": "passed"
+            },
+            "line": 33,
+            "name": "User enters URL and is on login page and entered credentials for admin setting",
+            "match": {
+              "location": "stepDefination_DSD_OMS.AdminToClientNavigationSteps.AdminCatalogStep.userEntersURLAndIsOnLoginPageAndEnteredCredentialsForAdminSetting()"
+            },
+            "keyword": "Then "
+          },
+          {
+            "output": [
+              "ADMIN PAGE OR ORDER ENTRY PAGE HAS BEEN FOUND"
+            ],
+            "result": {
+              "duration": 142829400,
+              "status": "passed"
+            },
+            "line": 34,
+            "name": "User is on Home Page",
+            "match": {
+              "location": "stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.user_is_on_home_page()"
+            },
+            "keyword": "When "
+          },
+          {
+            "output": [
+              "USER ICON FOUND",
+              "IN ADMIN PAGE"
+            ],
+            "result": {
+              "duration": 3017712400,
+              "status": "passed"
+            },
+            "line": 35,
+            "name": "User navigate to Client side",
+            "match": {
+              "location": "stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.user_navigate_to_client_side()"
+            },
+            "keyword": "Then "
+          },
+          {
+            "output": [
+              "https://autoerp.afsi.com/omsi/clientportal/apps/cpOrderEntry.html?p\u003dQJFsTz5JBfVNODvKd%2b4hK56SreO0vwVwYSCjo3j9p6A%3d",
+              "NAVIGATED TO ORDER ENTRY PAGE"
+            ],
+            "result": {
+              "duration": 15680083600,
+              "status": "passed"
+            },
+            "line": 36,
+            "name": "User should select Order Entry tab for admin",
+            "match": {
+              "location": "stepDefination_DSD_OMS.AdminToClientNavigationSteps.AdminOrderEntryStep.userShouldSelectOrderEntryTabForAdmin()"
+            },
+            "keyword": "Then "
+          },
+          {
+            "output": [
+              "CUSTOMER ACCOUNT# SELECTED IS K11985",
+              "ORDER GUIDE POPUP HAS BEEN FOUND",
+              "NEW ORDER ENTRY PAGE HAS BEEN FOUND",
               "NAVIGATED TO ORDER ENTRY PAGE",
-              "\u003cspan style\u003d\u0027color:red\u0027\u003eDELIBERY DATE FOUND, AFTER LOGGING IN TO APPLICATION  Friday, January 24, 2025\u003c/span\u003e",
+              "\u003cspan style\u003d\u0027color:red\u0027\u003eDELIBERY DATE FOUND, AFTER LOGGING IN TO APPLICATION  Tuesday, January 28, 2025\u003c/span\u003e"
+            ],
+            "result": {
+              "duration": 17587933000,
+              "status": "passed"
+            },
+            "line": 37,
+            "name": "User selects Account# for Admin side setting",
+            "match": {
+              "location": "stepDefination_DSD_OMS.AdminToClientNavigationSteps.AdminOrderEntryStep.userSelectsAccountForAdminSideSetting()"
+            },
+            "keyword": "Then "
+          },
+          {
+            "output": [
+              "NAVIGATED TO ORDER ENTRY PAGE",
+              "\u003cspan style\u003d\u0027color:red\u0027\u003eDELIBERY DATE FOUND, AFTER LOGGING IN TO APPLICATION  Tuesday, January 28, 2025\u003c/span\u003e",
+              "WAREHOUSE INDEX BOX IS DISPLAYED",
               "START BUTTON HAS BEEN CLICKED"
             ],
             "result": {
-              "duration": 11853777400,
+              "duration": 11905030500,
               "status": "passed"
             },
-            "line": 49,
-            "name": "User must click Start Order button",
+            "line": 38,
+            "name": "User must click Start Order button validate Warehouse is displayed",
             "match": {
-              "location": "stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.user_must_click_start_order_button()"
+              "location": "stepDefination_DSD_OMS.AdminToClientNavigationSteps.AdminOrderEntryStep.userMustClickStartOrderButtonValidateWarehouseIsDisplayed()"
             },
             "keyword": "Then "
           },
           {
             "result": {
-              "duration": 6603742800,
+              "duration": 64886400,
               "status": "passed"
             },
-            "line": 50,
+            "line": 39,
             "name": "User should make selection between Pending order or Start New order",
             "match": {
               "location": "stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.user_should_make_selection_between_pending_order_or_start_new_order()"
@@ -853,11 +1924,14 @@
             "keyword": "Then "
           },
           {
+            "output": [
+              "ORDER GUIDE POPUP HAS BEEN FOUND"
+            ],
             "result": {
-              "duration": 3010529300,
+              "duration": 7363103200,
               "status": "passed"
             },
-            "line": 51,
+            "line": 40,
             "name": "User should select Note from popup and Order guide from popup",
             "match": {
               "location": "stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.userShouldSelectNoteFromPopupAndOrderGuideFromPopup()"
@@ -870,10 +1944,10 @@
               "PO# ENTERED IS PO123"
             ],
             "result": {
-              "duration": 5221900900,
+              "duration": 4460854600,
               "status": "passed"
             },
-            "line": 52,
+            "line": 41,
             "name": "Enter PO# for New order",
             "match": {
               "location": "stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.enter_po_for_new_order(io.cucumber.datatable.DataTable)"
@@ -889,31 +1963,32 @@
           },
           {
             "output": [
-              "PRODUCT SEARCHED USING SEARCH BAR IS 켈로그"
+              "PRODUCT ADDED TO THE ORDER Via QUICK PRODUCT ENTRY 4088"
             ],
             "result": {
-              "duration": 3630362000,
+              "duration": 3248666000,
               "status": "passed"
             },
-            "line": 54,
-            "name": "User enters foreign language description of Product in Search box",
+            "line": 43,
+            "name": "Enter Pro# in Quick Product Entry area",
             "match": {
-              "location": "stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps8.userEntersForeignLanguageDescriptionOfProductInSearchBox()"
+              "location": "stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.enter_pro_in_quick_product_entry_area()"
             },
             "keyword": "Then "
           },
           {
             "output": [
-              "QTY ENTERED IN CASES INPUTBOX 1"
+              "UOM IS ENABLED AND IT CONTAINS CS VALUE IN IT",
+              "CASE ENTERED FOR QUICK PRODUCT IS 1"
             ],
             "result": {
-              "duration": 4506673300,
+              "duration": 12751408500,
               "status": "passed"
             },
-            "line": 55,
-            "name": "User search for foreign language in product grid and enter Qty",
+            "line": 44,
+            "name": "Check for Case and Unit input box enabled or not based on that enter value",
             "match": {
-              "location": "stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps8.userSearchForForeignLanguageInProductGridAndEnterQty(io.cucumber.datatable.DataTable)"
+              "location": "stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.check_for_case_and_unit_input_box_enabled_or_not_based_on_that_enter_value(io.cucumber.datatable.DataTable)"
             },
             "rows": [
               {
@@ -923,36 +1998,23 @@
                 ]
               }
             ],
-            "keyword": "Then "
+            "keyword": "And "
           },
           {
             "output": [
               "PRODUCT FOUND IN ORDER ARE ",
-              "00135520",
-              "00000005",
-              "00000006",
-              "10025300",
-              "59626700",
-              "00000001",
-              "00000002",
-              "00000003",
-              "00000004",
-              "00000008",
-              "00112882",
-              "00135444",
-              "00137682",
-              "00445006",
+              "4088",
               "NEXT BUTTON CLICKED",
-              "ORDER NUMBER CREATED IS 0003717077",
+              "ORDER NUMBER CREATED IS 1195213",
               "PAYMENT METHOD HAS BEEN SELECTED",
               "FIRST PAYMENT OPTION HAS BEEN SELECTED",
               "CLICKED ON NEXT BUTTON"
             ],
             "result": {
-              "duration": 47564942100,
+              "duration": 43072337100,
               "status": "passed"
             },
-            "line": 57,
+            "line": 46,
             "name": "Click on Next button",
             "match": {
               "location": "stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.click_on_next_button()"
@@ -966,10 +2028,10 @@
               "ORDER HAS BEEN SUCESSFULLY CREATED"
             ],
             "result": {
-              "duration": 17869395500,
+              "duration": 19253983500,
               "status": "passed"
             },
-            "line": 58,
+            "line": 47,
             "name": "Click on SubmitOrder button",
             "match": {
               "location": "stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.click_on_submit_order_button()"
@@ -981,29 +2043,69 @@
               "ORDER ENTRY PAGE HAS BEEN FOUND"
             ],
             "result": {
-              "duration": 6392918800,
+              "duration": 7518266100,
               "status": "passed"
             },
-            "line": 59,
+            "line": 48,
             "name": "User should be navigated to Order Entry page",
             "match": {
               "location": "stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.user_should_be_navigated_to_order_entry_page()"
             },
             "keyword": "Then "
+          },
+          {
+            "result": {
+              "duration": 31130510800,
+              "status": "passed"
+            },
+            "line": 49,
+            "name": "User sign out from client side for Admin setting changes",
+            "match": {
+              "location": "stepDefination_DSD_OMS.AdminToClientNavigationSteps.AdminCatalogStep.userSignOutFromClientSideForAdminSettingChanges()"
+            },
+            "keyword": "Then "
+          },
+          {
+            "output": [
+              "0\u003cspan style\u003d\u0027color:red\u0027\u003e WHAT WAS THE PREVIOUS VALUE FOR ADMIN SETTING, AND CURRENT STATUS IS \u003c/span\u003e1",
+              "ADMIN SETTING IS DISABLED",
+              "FOR ADMIN SETTING Show and allow modification of warehouse CHANGES",
+              "ADMIN SETTING IS ENABLED"
+            ],
+            "result": {
+              "duration": 3101648400,
+              "status": "passed"
+            },
+            "line": 50,
+            "name": "User should set admin setting \"Show and allow modification of warehouse\" \"CPShowAndModifyWarehouse\" as default before making changes",
+            "match": {
+              "arguments": [
+                {
+                  "val": "\"Show and allow modification of warehouse\"",
+                  "offset": 30
+                },
+                {
+                  "val": "\"CPShowAndModifyWarehouse\"",
+                  "offset": 73
+                }
+              ],
+              "location": "stepDefination_DSD_OMS.AdminToClientNavigationSteps.AdminCatalogStep.userShouldSetAdminSettingAsDefaultBeforeMakingChanges(java.lang.String,java.lang.String)"
+            },
+            "keyword": "And "
           }
         ],
         "tags": [
           {
-            "name": "@OESearchProdForeignLanguage"
+            "name": "@ShowModificationWarehouseEnable"
           }
         ]
       }
     ],
-    "name": "Order Entry Test cases only for DSD env",
-    "description": "  Used for cration of New order in different ways\n  Used for canceling order, editing of order, skipping of order",
-    "id": "order-entry-test-cases-only-for-dsd-env",
+    "name": "scenarios for admin credentials and client credentials",
+    "description": "",
+    "id": "scenarios-for-admin-credentials-and-client-credentials",
     "keyword": "Feature",
-    "uri": "file:src/test/resources/features_DSD_OMS/OrderEntryFeature/orderEntryFeatureDSD.feature",
+    "uri": "file:src/test/resources/features_DSD_OMS/AdminToClientNavigation/orderEntryAdminToClientFeature.feature",
     "tags": []
   }
 ]

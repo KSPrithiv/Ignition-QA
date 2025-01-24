@@ -59,7 +59,7 @@ public class OrderEntryPageSteps2
     @Then("Enter Prod_No in Quick Product Entry area")
     public void enterProd_NoInQuickProductEntryArea(DataTable tabledata) throws InterruptedException, AWTException, SQLException
     {
-        String unitOfMeasure=null;
+        String unitOfMeasure;
         java.util.List<java.util.List<String>> Prod_details = tabledata.asLists(String.class);
         newOE = new NewOrderEntryPage(driver,scenario);
         ArrayList<String> Prod_No= (ArrayList<String>) DataBaseConnection.DataConn1(TestBase.testEnvironment.getMultiple_Prod_Sql());

@@ -358,9 +358,21 @@ public class OrderControlListPage
                     .ignoring(NoSuchElementException.class);
             wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
 
+            String status = HelpersMethod.returnDocumentStatus(driver);
+            if (status.equals("loading"))
+            {
+                HelpersMethod.waitTillLoadingPage(driver);
+            }
+
+            wait = new FluentWait<>(driver)
+                    .withTimeout(Duration.ofSeconds(600))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
             if (OrderTaker.isDisplayed())
             {
-                HelpersMethod.ActClick(driver, OrderTaker, 10000);
+                HelpersMethod.ActClick(driver, OrderTaker, 40000);
                 exists = true;
             }
             else
@@ -430,7 +442,7 @@ public class OrderControlListPage
             wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
             if (!UntakenRadio.isSelected())
             {
-                HelpersMethod.ClickBut(driver, UntakenRadio, 10000);
+                HelpersMethod.ClickBut(driver, UntakenRadio, 40000);
                 scenario.log("UNTAKEN RATIO BUTTON SELECTED");
                 Thread.sleep(500);
             }
@@ -450,7 +462,7 @@ public class OrderControlListPage
             wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
             if (!TakenRadio.isSelected())
             {
-                HelpersMethod.ClickBut(driver, TakenRadio, 10000);
+                HelpersMethod.ClickBut(driver, TakenRadio, 40000);
                 scenario.log("TAKEN RATIO BUTTON HAS BEEN SELECTED");
                 Thread.sleep(1000);
             }
@@ -524,11 +536,13 @@ public class OrderControlListPage
             {
                 HelpersMethod.waitTillLoadingPage(driver);
             }
-            if (HelpersMethod.IsExists("//div[@class='loader']", driver))
-            {
-                WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 2000000);
-            }
+
+            Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(600))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
             status = HelpersMethod.returnDocumentStatus(driver);
             if (status.equals("loading"))
             {
@@ -537,7 +551,7 @@ public class OrderControlListPage
 
             OrderIcon=HelpersMethod.FindByElement(driver,"xpath",  "//tr["+i+"]/descendant::div[contains(@id,'PlaceOrderColIcon')]//*[local-name()='svg']");
             HelpersMethod.ScrollElement(driver,OrderIcon);
-            new WebDriverWait(driver,Duration.ofMillis(10000)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfAllElementsLocatedBy(By.id("gridOrderControlList"))));
+            new WebDriverWait(driver,Duration.ofMillis(40000)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfAllElementsLocatedBy(By.id("gridOrderControlList"))));
             HelpersMethod.ActClick(driver,OrderIcon,10000);
             scenario.log("ORDER ICON HAS BEEN CLICKED");
             exists = true;
@@ -556,6 +570,17 @@ public class OrderControlListPage
         exists = false;
         try
         {
+            Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(600))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
+            String status = HelpersMethod.returnDocumentStatus(driver);
+            if (status.equals("loading"))
+            {
+                HelpersMethod.waitTillLoadingPage(driver);
+            }
             if(CallDate.isDisplayed())
             {
                 HelpersMethod.ClickBut(driver, CallDate, 10000);
@@ -720,11 +745,11 @@ public class OrderControlListPage
                     wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//div[contains(@class,'k-animation-container')]/descendant::button/span[contains(text(),'Clear all')]")));
                     driver.findElement(By.xpath("//div[contains(@class,'k-animation-container')]/descendant::button/span[contains(text(),'Clear all')]")).click();
                     //loading Icon
-                    if (HelpersMethod.IsExists("//div[@class='loader']", driver))
-                    {
-                        WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                        HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000000);
-                    }
+                    wait = (WebDriverWait) new FluentWait<WebDriver>(driver)
+                     .withTimeout(Duration.ofSeconds(600))
+                     .pollingEvery(Duration.ofSeconds(2))
+                     .ignoring(NoSuchElementException.class);
+                    wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
 
                     WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='i-filter-toolbar']/descendant::button/descendant::span[contains(text(),'Add filter')]");
                     HelpersMethod.ClickBut(driver, WebEle, 10000);

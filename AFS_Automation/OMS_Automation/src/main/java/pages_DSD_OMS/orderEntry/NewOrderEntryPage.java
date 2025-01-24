@@ -2,6 +2,7 @@ package pages_DSD_OMS.orderEntry;
 
 import helper.HelpersMethod;
 import io.cucumber.java.Scenario;
+import io.cucumber.java.en_old.Ac;
 import org.apache.commons.collections4.CollectionUtils;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
@@ -364,6 +365,8 @@ public class NewOrderEntryPage
                 PO_No.sendKeys(Keys.TAB);
                 new WebDriverWait(driver,Duration.ofMillis(10000)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfAllElementsLocatedBy(By.id("orderEntryCard"))));
                 scenario.log("PO# ENTERED IS " + PO_Num);
+                new WebDriverWait(driver,Duration.ofMillis(20000)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("orderEntryCard"))));
+                new WebDriverWait(driver,Duration.ofMillis(20000)).until(ExpectedConditions.visibilityOfElementLocated(By.id("orderEntryCard")));
                 exists = true;
             }
             Assert.assertEquals(exists, true);
@@ -8099,5 +8102,113 @@ public class NewOrderEntryPage
             HelpersMethod.ScrollUpScrollBar(driver);
         }
         catch(Exception e){}
+    }
+
+    public void sortedColumnValuesAdmin(String sortColumn)
+    {
+        Actions act=new Actions(driver);
+        String headText;
+        String elementText;
+        ArrayList<String> eleText = new ArrayList<>();
+        ArrayList<String> eleTextSort = new ArrayList<>();
+        boolean result=false;
+
+        int i=0;
+        try
+        {
+           List<WebElement> heads=HelpersMethod.FindByElements(driver,"xpath","//span[@class='k-column-title']");
+           for(WebElement head:heads)
+           {
+               i++;
+               act.moveToElement(head).build().perform();
+               headText=head.getText();
+               if(headText.contains(sortColumn))
+               {
+                   break;
+               }
+           }
+
+           List<WebElement> elements=HelpersMethod.FindByElements(driver,"xpath","//tr[contains(@class,'k-master-row')]/descendant::td["+i+"]/descendant::span[contains(@class,'DataGrid')]");
+           for(WebElement element:elements)
+           {
+               act.moveToElement(element).build().perform();
+               elementText=element.getText();
+               eleText.add(elementText);
+               eleTextSort.add(elementText);
+           }
+           Arrays.sort(new ArrayList[]{eleTextSort});
+
+            for ( i = 0; i < eleTextSort.size(); i++)
+            {
+                if (eleText.get(i).equals(eleTextSort.get(i)))
+                {
+                    result = true;
+                    scenario.log("EXPECTED VALUE: " + eleText.get(i) + " FOUND VALUE: " + eleTextSort.get(i));
+                }
+                else
+                {
+                    result = false;
+                    scenario.log("EXPECTED VALUE: " + eleText.get(i) + " FOUND VALUE: " + eleTextSort.get(i));
+                    scenario.log("NOT IN SORTED ORDER");
+                    break;
+                }
+            }
+           Assert.assertEquals(result,true);
+        }
+        catch (Exception e){}
+    }
+
+    public void sortedColumnValuesAdminProduct(String sortColumn)
+    {
+        Actions act=new Actions(driver);
+        String headText;
+        String elementText;
+        ArrayList<String> eleText = new ArrayList<>();
+        ArrayList<String> eleTextSort = new ArrayList<>();
+        boolean result=false;
+
+        int i=0;
+        try
+        {
+            List<WebElement> heads=HelpersMethod.FindByElements(driver,"xpath","//span[@class='k-column-title']");
+            for(WebElement head:heads)
+            {
+                i++;
+                act.moveToElement(head).build().perform();
+                headText=head.getText();
+                if(headText.contains(sortColumn))
+                {
+                    break;
+                }
+            }
+
+            List<WebElement> elements=HelpersMethod.FindByElements(driver,"xpath","//tr[contains(@class,'k-master-row')]/descendant::td["+i+"]/descendant::a");
+            for(WebElement element:elements)
+            {
+                act.moveToElement(element).build().perform();
+                elementText=element.getText();
+                eleText.add(elementText);
+                eleTextSort.add(elementText);
+            }
+            Arrays.sort(new ArrayList[]{eleTextSort});
+
+            for ( i = 0; i < eleTextSort.size(); i++)
+            {
+                if (eleText.get(i).equals(eleTextSort.get(i)))
+                {
+                    result = true;
+                    scenario.log("EXPECTED VALUE: " + eleText.get(i) + " FOUND VALUE: " + eleTextSort.get(i));
+                }
+                else
+                {
+                    result = false;
+                    scenario.log("EXPECTED VALUE: " + eleText.get(i) + " FOUND VALUE: " + eleTextSort.get(i));
+                    scenario.log("NOT IN SORTED ORDER");
+                    break;
+                }
+            }
+            Assert.assertEquals(result,true);
+        }
+        catch (Exception e){}
     }
 }

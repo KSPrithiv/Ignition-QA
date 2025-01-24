@@ -53,6 +53,7 @@ public class GridConfigurationPageStep
         static NewOrderEntryPage newOE;
         static AdminHomePage adminHomePage;
         static List<String> columnNames;
+        static String sortOrd;
 
         @Before
         public void LaunchBrowser1(Scenario scenario) throws Exception
@@ -774,6 +775,143 @@ public class GridConfigurationPageStep
     @Then("User selects {string} and {string} in Admin side")
     public void userSelectsAndInAdminSide(String sortColumn, String sortOrder)
     {
+        gridConfigPage=new GridConfigurationPage(driver,scenario);
+        gridConfigPage.selectColumnForSorting(sortColumn);
+        sortOrd=gridConfigPage.clickAndSelectSortOrder(sortOrder);
+        gridConfigPage.clickOnSaveButton();
+        gridConfigPage.validateSavedailogbox();
+        gridConfigPage.clickOnOkButtonInSavePopup();
+    }
 
+    @Then("User navigates to Order entry page and in new order entry page enter {string} and Quick entry product details for verifying sorting order for {string}")
+    public void userNavigatesToOrderEntryPageAndInNewOrderEntryPageEnterAndQuickEntryProductDetailsForVerifyingSortingOrderFor(String poNo,String sortColumn,DataTable tabledata) throws InterruptedException, AWTException, SQLException, ClassNotFoundException, InstantiationException, IllegalAccessException
+    {
+        List<List<String>> Prod_details=tabledata.asLists(String.class);
+        //to navigate to Client side
+        String title = driver.getTitle();
+        if(title.equalsIgnoreCase("Admin"))
+        {
+            homePage = new HomePage(driver, scenario);
+            homePage.verifyUserinfoContainer();
+            homePage.navigateToClientSide();
+        }
+
+        //to navigate to Order entry page and change the customer account number
+        orderPage = new OrderEntryPage(driver, scenario);
+        orderPage.NavigateToOrderEntry();
+        orderPage.ChangeAccount();
+        orderPage.PopUps_After_AccountChange();
+
+        if(!HelpersMethod.IsExists("//div[contains(@class,'order-entry-page')]",driver))
+        {
+            orderPage = new OrderEntryPage(driver, scenario);
+            orderPage.ValidateOE();
+            //check for 'Start Order' button
+            orderPage.Scroll_start();
+            exists = orderPage.Start_Order();
+            //Selecting no Order guide and no note popup
+            for (int i = 0; i <= 1; i++)
+            {
+                orderPage.NoPendingOrderPopup();
+                orderPage.OrderGuidePopup();
+                orderPage.NoNotePopHandling();
+            }
+        }
+        newOE=new NewOrderEntryPage(driver,scenario);
+        newOE.ValidateNewOE();
+        newOE.EnterPO_No(poNo);
+
+        String unitOfMeasure;
+        ArrayList<String> Prod_No= (ArrayList<String>) DataBaseConnection.DataConn1(TestBase.testEnvironment.getMultiple_Prod_Sql());
+        for (int i = 0; i <= Prod_details.size() - 1; i++)
+        {
+            String pro=String.valueOf(Prod_No.get(i));
+            newOE.QuickProduct(pro);
+            unitOfMeasure=newOE.readUnitOfMeasure();
+            if(unitOfMeasure.equals("Units")||unitOfMeasure.equals("EA"))
+            {
+                newOE.CheckForQuickUnitEnabled(Prod_details.get(i).get(1));
+                newOE.exceedsMaxQty();
+                newOE.toastCurrentlyUnavailable();
+            }
+            else if(unitOfMeasure.equals("Cases")||unitOfMeasure.equals("CS"))
+            {
+                newOE.CheckForQuickCaseEnabled(Prod_details.get(i).get(0));
+                newOE.exceedsMaxQty();
+                newOE.toastCurrentlyUnavailable();
+            }
+            else if(unitOfMeasure.equals("Cases, Units")||unitOfMeasure.equals("CS, EA"))
+            {
+                newOE.CheckForQuickCaseEnabled(Prod_details.get(i).get(0));
+                newOE.CheckForQuickUnitEnabled(Prod_details.get(i).get(1));
+                newOE.exceedsMaxQty();
+                newOE.toastCurrentlyUnavailable();
+            }
+            else if(unitOfMeasure.equals("Units, Cases")||unitOfMeasure.equals("EA, CS"))
+            {
+                newOE.CheckForQuickUnitEnabled(Prod_details.get(i).get(1));
+                newOE.CheckForQuickCaseEnabled(Prod_details.get(i).get(0));
+                newOE.exceedsMaxQty();
+                newOE.toastCurrentlyUnavailable();
+            }
+        }
+
+        //verify labels of product grid
+        newOE=new NewOrderEntryPage(driver,scenario);
+        exists=newOE.ValidateNewOE();
+
+        //verify the selected column is in sorted order or not
+        newOE.sortedColumnValuesAdminProduct(sortColumn);
+
+        //after validating default grid in New OE page signout
+        homePage=new HomePage(driver,scenario);
+        homePage.Click_On_UserIcon();
+        homePage.Click_On_Signout();
+
+        Wait<WebDriver> wait = new FluentWait<>(driver)
+                .withTimeout(Duration.ofSeconds(600))
+                .pollingEvery(Duration.ofSeconds(5))
+                .ignoring(NoSuchElementException.class);
+        wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
+        String status = HelpersMethod.returnDocumentStatus(driver);
+        if (status.equals("loading"))
+        {
+            HelpersMethod.waitTillLoadingPage(driver);
+        }
+
+        wait = new FluentWait<>(driver)
+                .withTimeout(Duration.ofSeconds(600))
+                .pollingEvery(Duration.ofSeconds(5))
+                .ignoring(NoSuchElementException.class);
+        wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
+        //signin as admin again
+        loginpage = new LoginPage(driver, scenario);
+        loginpage.EnterUsername(TestBase.testEnvironment.getAdminUser());
+        loginpage.EnterPassword(TestBase.testEnvironment.getAdminWord());
+        loginpage.ClickSignin();
+        status = HelpersMethod.returnDocumentStatus(driver);
+        if (status.equals("loading"))
+        {
+            HelpersMethod.waitTillLoadingPage(driver);
+        }
+
+        wait = new FluentWait<>(driver)
+                .withTimeout(Duration.ofSeconds(600))
+                .pollingEvery(Duration.ofSeconds(5))
+                .ignoring(NoSuchElementException.class);
+        wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+    }
+
+    @Then("User deselects {string} and {string} in Admin side")
+    public void userDeselectsAndInAdminSide(String sortColumn, String sortOrder)
+    {
+            gridConfigPage=new GridConfigurationPage(driver,scenario);
+            gridConfigPage.selectColumnForSorting(sortColumn);
+            sortOrd=gridConfigPage.clickAndSelectSortOrder(sortOrder);
+            gridConfigPage.clickOnSaveButton();
+            gridConfigPage.validateSavedailogbox();
+            gridConfigPage.clickOnOkButtonInSavePopup();
     }
 }

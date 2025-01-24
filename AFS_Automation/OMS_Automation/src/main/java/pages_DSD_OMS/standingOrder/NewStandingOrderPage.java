@@ -632,11 +632,13 @@ public class NewStandingOrderPage
                     scenario.log("PRODUCT HAS BEEN DELETED FROM STANDING ORDER");
                     exists=true;
                     //loading Icon
-                    if (HelpersMethod.IsExists("//div[@class='loader']", driver))
-                    {
-                        WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                        HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000000);
-                    }
+                    Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                .withTimeout(Duration.ofSeconds(600))
+                .pollingEvery(Duration.ofSeconds(2))
+                .ignoring(NoSuchElementException.class);
+        wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+       
+
                 }
             }
             Assert.assertEquals(exists,true);
@@ -999,11 +1001,13 @@ public class NewStandingOrderPage
                     //Click on category drop down
                     HelpersMethod.ClickBut(driver, Catelog, 10000);
                     HelpersMethod.DropDownMenu(driver, Cate);
-                    if (HelpersMethod.IsExists("//div[@class='loader']", driver))
-                    {
-                        WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                        HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000000);
-                    }
+                    Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                .withTimeout(Duration.ofSeconds(600))
+                .pollingEvery(Duration.ofSeconds(2))
+                .ignoring(NoSuchElementException.class);
+        wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+       
+
 
                     //Click on SubCategory Drop down
                     HelpersMethod.ClickBut(driver, SubCate, 10000);
@@ -1012,11 +1016,11 @@ public class NewStandingOrderPage
                         WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-child-animation-container')]/descendant::li[2]");
                         HelpersMethod.ActClick(driver, WebEle, 10000);
                     }
-                    if (HelpersMethod.IsExists("//div[@class='loader']", driver))
-                    {
-                        WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                        HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000000);
-                    }
+                    wait = new FluentWait<WebDriver>(driver)
+                           .withTimeout(Duration.ofSeconds(600))
+                           .pollingEvery(Duration.ofSeconds(2))
+                           .ignoring(NoSuchElementException.class);
+                    wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
 
                     //Click on Brand
                     HelpersMethod.ClickBut(driver, Brand, 10000);
@@ -1025,15 +1029,17 @@ public class NewStandingOrderPage
                         WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-child-animation-container')]/descendant::li[2]");
                         HelpersMethod.ActClick(driver, WebEle, 10000);
                     }
-                    if (HelpersMethod.IsExists("//div[@class='loader']", driver))
-                    {
-                        WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-                        HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000000);
-                    }
+                    wait = new FluentWait<WebDriver>(driver)
+                        .withTimeout(Duration.ofSeconds(600))
+                        .pollingEvery(Duration.ofSeconds(2))
+                        .ignoring(NoSuchElementException.class);
+                     wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
 
                     exists = true;
                 }
-            } else {
+            }
+            else
+            {
                 scenario.log("CATALOG IS NOT DISPLAYING IN CARD VIEW");
             }
             Assert.assertEquals(exists, true);
@@ -1160,7 +1166,7 @@ public class NewStandingOrderPage
     public void validateCurrentweek()
     {
         exists = false;
-        String currentWeek = null;
+        String currentWeek;
         try
         {
             currentWeek = HelpersMethod.FindByElement(driver, "xpath", "//span[contains(@class,'i-summary-area__main__value')]").getText();
@@ -1175,7 +1181,7 @@ public class NewStandingOrderPage
     public void validateDeliverySchedule()
     {
         exists = false;
-        String deliverySch = null;
+        String deliverySch;
         try
         {
             deliverySch = HelpersMethod.FindByElement(driver, "xpath", "//span[@id='frequency']/span[@class='k-input']").getText();
