@@ -604,4 +604,42 @@ public class AdminOrderEntryStep
         orderpage.selectSaleshelp();
         orderpage.selectSaleshelpDisable();
     }
+
+    @Then("User must click Start Order button validate no Warehouse is displayed")
+    public void userMustClickStartOrderButtonValidateNoWarehouseIsDisplayed() throws InterruptedException, AWTException, ParseException
+    {
+        exists=false;
+        if (HelpersMethod.IsExists("//div[@id='order-search-card']", driver))
+        {
+            orderpage = new OrderEntryPage(driver, scenario);
+            orderpage.ValidateOE();
+            //find whether route is empty or not, if empty should select some route value
+            orderpage.validateRouteValue();
+            orderpage.Read_DeliveryDate();
+            //check for 'Start Order' button
+            Thread.sleep(1000);
+            orderpage.disabledWarehouse();
+            orderpage.Scroll_start();
+            exists = orderpage.Start_Order();
+        }
+    }
+
+    @Then("User must click Start Order button validate Warehouse is displayed")
+    public void userMustClickStartOrderButtonValidateWarehouseIsDisplayed() throws InterruptedException, AWTException, ParseException
+    {
+        exists=false;
+        if (HelpersMethod.IsExists("//div[@id='order-search-card']", driver))
+        {
+            orderpage = new OrderEntryPage(driver, scenario);
+            orderpage.ValidateOE();
+            //find whether route is empty or not, if empty should select some route value
+            orderpage.validateRouteValue();
+            orderpage.Read_DeliveryDate();
+            //check for 'Start Order' button
+            Thread.sleep(1000);
+            orderpage.enabledWarehouse();
+            orderpage.Scroll_start();
+            exists = orderpage.Start_Order();
+        }
+    }
 }

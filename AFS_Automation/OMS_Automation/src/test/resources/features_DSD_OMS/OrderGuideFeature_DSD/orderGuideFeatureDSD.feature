@@ -31,7 +31,7 @@ Feature: Order GuideDSD
         |PriceBaseOG | Price group - base schedule  |  MILOS #452       |
 
   @ReferencePriceGroup-PromoGroup
-  Scenario Outline: Test scenario for creating customer Reference Price group-promo group Scheduled
+  Scenario Outline: Test scenario for creating customer Reference Price group-Promo group Scheduled
     Given User must be on Order Entry Page to select OG
     And User should navigate to OG
     Then User should click on Customer Reference drop down and select type of OG "<OGType>"
@@ -53,7 +53,7 @@ Feature: Order GuideDSD
       |PricePromoOG | Price group - promo group/schedule  |  MILOS #452       |
 
   @ReferencePriceGroup-DealGroup
-  Scenario Outline: Test scenario for creating customer Reference Price group-promo group Scheduled
+  Scenario Outline: Test scenario for creating customer Reference Price group-Deal group Scheduled
     Given User must be on Order Entry Page to select OG
     And User should navigate to OG
     Then User should click on Customer Reference drop down and select type of OG "<OGType>"

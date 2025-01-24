@@ -199,8 +199,10 @@ public class OrderControlPageSteps
     }
 
     @Then("User should select Order taker from drop down")
-    public void userShouldSelectOrderTakerFromDropDown() throws InterruptedException {
+    public void userShouldSelectOrderTakerFromDropDown() throws InterruptedException
+    {
         orderControlList=new OrderControlListPage(driver,scenario);
+        orderControlList.Validate_OCL();
         orderControlList.Click_OrderTaker();
         orderControlList.Select_OrderTaker();
     }

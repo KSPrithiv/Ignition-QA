@@ -49,7 +49,7 @@
 		<!-- nav-right -->
 		<ul id='nav-mobile' class='right hide-on-med-and-down nav-right'>
 			<a href='#!'>
-			<span class='label blue darken-3 suite-start-time'>Jan 22, 2025 10:23:45 PM</span>
+			<span class='label blue darken-3 suite-start-time'>Jan 24, 2025 04:36:00 PM</span>
 			</a>
 		</ul>
 	</div>
@@ -76,7 +76,8 @@
 				<i class='material-icons'>local_offer</i> Category
 				</a>
 				<ul id='category-toggle' class='dropdown-content'>
-					<li><a href='#'>@OESearchProdForeignLanguage</a></li>
+					<li><a href='#'>@ShowModificationWarehouseDisable</a></li>
+					<li><a href='#'>@ShowModificationWarehouseEnable</a></li>
 					<li class='divider'></li>
 					<li class='clear'><a href='#!' clear='true'>Clear Filters</a></li>
 				</ul>
@@ -137,7 +138,7 @@
                 </div>
                 <div class='block text-small'>
                     <span class='tooltipped' data-position='top' data-tooltip='100%'>
-                    <span class='strong'>1</span> scenarios passed</span>
+                    <span class='strong'>2</span> scenarios passed</span>
                 </div>
                 <div class='block text-small'>
                     <span class='strong tooltipped' data-position='top' data-tooltip='0%'>
@@ -157,7 +158,7 @@
                 </div>
                 <div class='block text-small'>
                     <span class='tooltipped' data-position='top' data-tooltip='100%'>
-                    <span class='strong'>15</span> steps passed</span>
+                    <span class='strong'>34</span> steps passed</span>
                 </div>
                 <div class='block text-small'>
                     <span class='strong tooltipped' data-position='top' data-tooltip='0%'>
@@ -186,8 +187,8 @@
 			<ul id='test-collection' class='test-collection'>
 				<li class='test displayed active has-leaf pass' status='pass' bdd='true' test-id='1'>
 					<div class='test-heading'>
-						<span class='test-name'>Order Entry Test cases only for DSD env</span>
-						<span class='test-time'>Jan 22, 2025 10:23:55 PM</span>
+						<span class='test-name'>scenarios for admin credentials and client credentials</span>
+						<span class='test-time'>Jan 24, 2025 04:36:12 PM</span>
 						<span class='test-status right pass'>Pass</span>
 					</div>
 					<div class='test-content hide'>
@@ -197,136 +198,267 @@
 	<a class="btn-floating waves-effect waves-light skip blue" title="skip"><i class='material-icons'>redo</i></a>
 	<a class="btn-floating waves-effect waves-light clear grey" title="clear"><i class='material-icons'>clear</i></a>
 </div>
-	<div class='test-desc'>  Used for cration of New order in different ways
-  Used for canceling order, editing of order, skipping of order</div>
 
-<div class='scenario node' test-id='2' status='pass'>
+<div class='scenario outline node' test-id='2' status='pass'>
 
-	<span class='duration right label'>00 03 22.457</span>
+	<span class='duration right label'>00 03 28.638</span>
 	<div class="bdd-test">
-		<div class="scenario-name"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span> Scenario: Creating New order by entering foreign language product description  Product# in Searchbar, New order entry page</div>
+		<div class="scenario-name"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span> Scenario Outline: Test scenario to verify functionality for Disabling Show and allow modification of warehouse</div>
 	</div>
 	
+		<div class='node-desc'><br><br><table class='markup-table table '><tr><td>Setting</td><td>Key</td></tr><tr><td>Show and allow modification of warehouse</td><td>CPShowAndModifyWarehouse</td></tr></table></div>
 	
-		<div class='category-list'>
-				<span class='category label'>@OESearchProdForeignLanguage</span>
-		</div>
 	
 	<ul class='steps'>
-		<li test-id='90' class='node given Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.user_enters_url_and_is_on_login_page_and_entered_credentials())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Given User enters URL and is on login page and entered credentials</div>
+		<li test-id='3' class='node scenario Pass' status='Pass'>
+			<div class="step-name" title="()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Test scenario to verify functionality for Disabling Show and allow modification of warehouse</div>
 
+				<div class='category-list'>
+						<span class='category label'>@ShowModificationWarehouseDisable</span>
+				</div>
 
-					<div class="node-step">SIGNIN BUTTON CLICKED</div>
+			<ul class='gc steps'>
+				<li test-id='91' class='gc given Pass' status='Pass'>
+					<h6 class="step-name" title="stepDefination_DSD_OMS.AdminToClientNavigationSteps.AdminCatalogStep.userShouldVerifyAdminSettingIsDisabledByUsing(java.lang.String,java.lang.String)"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Given User should verify admin setting "Show and allow modification of warehouse" is disabled by using "CPShowAndModifyWarehouse"</h6>
+
+							<div class="node-step">FOR ADMIN SETTING Show and allow modification of warehouse CHANGES</div>
+							<div class="node-step">ADMIN SETTING IS ALREADY DISABLED</div>
+				</li>
+				<li test-id='92' class='gc when Pass' status='Pass'>
+					<h6 class="step-name" title="stepDefination_DSD_OMS.AdminToClientNavigationSteps.AdminCatalogStep.userEntersURLAndIsOnLoginPageAndEnteredCredentialsForAdminSetting()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>When User enters URL and is on login page and entered credentials for admin setting</h6>
+
+							<div class="node-step">SIGNIN BUTTON CLICKED</div>
+							<div class="node-step">CURRENT URL IS https://autoerp.afsi.com/omsi/clientportal/apps/CPAdmin.html?p=QJFsTz5JBfVNODvKd%2b4hK56SreO0vwVwYSCjo3j9p6A%3d</div>
+				</li>
+				<li test-id='93' class='gc when Pass' status='Pass'>
+					<h6 class="step-name" title="stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.user_is_on_home_page()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>When User is on Home Page</h6>
+
+							<div class="node-step">ADMIN PAGE OR ORDER ENTRY PAGE HAS BEEN FOUND</div>
+				</li>
+				<li test-id='94' class='gc then Pass' status='Pass'>
+					<h6 class="step-name" title="stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.user_navigate_to_client_side()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User navigate to Client side</h6>
+
+							<div class="node-step">USER ICON FOUND</div>
+							<div class="node-step">IN ADMIN PAGE</div>
+				</li>
+				<li test-id='95' class='gc then Pass' status='Pass'>
+					<h6 class="step-name" title="stepDefination_DSD_OMS.AdminToClientNavigationSteps.AdminOrderEntryStep.userShouldSelectOrderEntryTabForAdmin()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User should select Order Entry tab for admin</h6>
+
+							<div class="node-step">https://autoerp.afsi.com/omsi/clientportal/apps/cpOrderEntry.html?p=QJFsTz5JBfVNODvKd%2b4hK56SreO0vwVwYSCjo3j9p6A%3d</div>
+							<div class="node-step">NAVIGATED TO ORDER ENTRY PAGE</div>
+				</li>
+				<li test-id='96' class='gc then Pass' status='Pass'>
+					<h6 class="step-name" title="stepDefination_DSD_OMS.AdminToClientNavigationSteps.AdminOrderEntryStep.userSelectsAccountForAdminSideSetting()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User selects Account# for Admin side setting</h6>
+
+							<div class="node-step">CUSTOMER ACCOUNT# SELECTED IS K11985</div>
+							<div class="node-step">ORDER GUIDE POPUP HAS BEEN FOUND</div>
+							<div class="node-step">NEW ORDER ENTRY PAGE HAS BEEN FOUND</div>
+							<div class="node-step">NAVIGATED TO ORDER ENTRY PAGE</div>
+							<div class="node-step"><span style='color:red'>DELIBERY DATE FOUND, AFTER LOGGING IN TO APPLICATION  Tuesday, January 28, 2025</span></div>
+				</li>
+				<li test-id='97' class='gc then Pass' status='Pass'>
+					<h6 class="step-name" title="stepDefination_DSD_OMS.AdminToClientNavigationSteps.AdminOrderEntryStep.userMustClickStartOrderButtonValidateNoWarehouseIsDisplayed()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User must click Start Order button validate no Warehouse is displayed</h6>
+
+							<div class="node-step">NAVIGATED TO ORDER ENTRY PAGE</div>
+							<div class="node-step"><span style='color:red'>DELIBERY DATE FOUND, AFTER LOGGING IN TO APPLICATION  Tuesday, January 28, 2025</span></div>
+							<div class="node-step">WAREHOUS INDEX BOX IS NOT DISPLAYED</div>
+							<div class="node-step">START BUTTON HAS BEEN CLICKED</div>
+				</li>
+				<li test-id='98' class='gc then Pass' status='Pass'>
+					<h6 class="step-name" title="stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.user_should_make_selection_between_pending_order_or_start_new_order()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User should make selection between Pending order or Start New order</h6>
+
+				</li>
+				<li test-id='99' class='gc then Pass' status='Pass'>
+					<h6 class="step-name" title="stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.userShouldSelectNoteFromPopupAndOrderGuideFromPopup()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User should select Note from popup and Order guide from popup</h6>
+
+							<div class="node-step">ORDER GUIDE POPUP HAS BEEN FOUND</div>
+				</li>
+				<li test-id='100' class='gc then Pass' status='Pass'>
+					<h6 class="step-name" title="stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.enter_po_for_new_order(io.cucumber.datatable.DataTable)"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then Enter PO# for New order</h6>
+
+							<div class="node-step"><table class='markup-table table '><tr><td>PO123</td></tr></table></div>
+							<div class="node-step">NEW ORDER ENTRY PAGE HAS BEEN FOUND</div>
+							<div class="node-step">PO# ENTERED IS PO123</div>
+				</li>
+				<li test-id='101' class='gc then Pass' status='Pass'>
+					<h6 class="step-name" title="stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.enter_pro_in_quick_product_entry_area()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then Enter Pro# in Quick Product Entry area</h6>
+
+							<div class="node-step">PRODUCT ADDED TO THE ORDER Via QUICK PRODUCT ENTRY 4088</div>
+				</li>
+				<li test-id='102' class='gc and Pass' status='Pass'>
+					<h6 class="step-name" title="stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.check_for_case_and_unit_input_box_enabled_or_not_based_on_that_enter_value(io.cucumber.datatable.DataTable)"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>And Check for Case and Unit input box enabled or not based on that enter value</h6>
+
+							<div class="node-step"><table class='markup-table table '><tr><td>1</td><td>1</td></tr></table></div>
+							<div class="node-step">UOM IS ENABLED AND IT CONTAINS CS VALUE IN IT</div>
+							<div class="node-step">CASE ENTERED FOR QUICK PRODUCT IS 1</div>
+				</li>
+				<li test-id='103' class='gc then Pass' status='Pass'>
+					<h6 class="step-name" title="stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.click_on_next_button()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then Click on Next button</h6>
+
+							<div class="node-step">PRODUCT FOUND IN ORDER ARE </div>
+							<div class="node-step">4088</div>
+							<div class="node-step">NEXT BUTTON CLICKED</div>
+							<div class="node-step">ORDER NUMBER CREATED IS 1195212</div>
+							<div class="node-step">PAYMENT METHOD HAS BEEN SELECTED</div>
+							<div class="node-step">FIRST PAYMENT OPTION HAS BEEN SELECTED</div>
+							<div class="node-step">CLICKED ON NEXT BUTTON</div>
+				</li>
+				<li test-id='104' class='gc and Pass' status='Pass'>
+					<h6 class="step-name" title="stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.click_on_submit_order_button()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>And Click on SubmitOrder button</h6>
+
+							<div class="node-step">ORDER ENTRY SUMMARY PAGE HAS BEEN FOUND</div>
+							<div class="node-step">SUBMIT BUTTON IN ORDER SUMMARY PAGE HAS BEEN CLICKED</div>
+							<div class="node-step">ORDER HAS BEEN SUCESSFULLY CREATED</div>
+				</li>
+				<li test-id='105' class='gc then Pass' status='Pass'>
+					<h6 class="step-name" title="stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.user_should_be_navigated_to_order_entry_page()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User should be navigated to Order Entry page</h6>
+
+							<div class="node-step">ORDER ENTRY PAGE HAS BEEN FOUND</div>
+				</li>
+				<li test-id='106' class='gc then Pass' status='Pass'>
+					<h6 class="step-name" title="stepDefination_DSD_OMS.AdminToClientNavigationSteps.AdminCatalogStep.userSignOutFromClientSideForAdminSettingChanges()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User sign out from client side for Admin setting changes</h6>
+
+				</li>
+				<li test-id='107' class='gc and Pass' status='Pass'>
+					<h6 class="step-name" title="stepDefination_DSD_OMS.AdminToClientNavigationSteps.AdminCatalogStep.userShouldSetAdminSettingAsDefaultBeforeMakingChanges(java.lang.String,java.lang.String)"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>And User should set admin setting "Show and allow modification of warehouse" "CPShowAndModifyWarehouse" as default before making changes</h6>
+
+							<div class="node-step">0<span style='color:red'> WHAT WAS THE PREVIOUS VALUE FOR ADMIN SETTING, AND CURRENT STATUS IS </span>0</div>
+				</li>
+			</ul>
 		</li>
-		<li test-id='91' class='node when Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.user_is_on_home_page())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>When User is on Home Page</div>
+	</ul>
+</div>
+<div class='scenario outline node' test-id='109' status='pass'>
 
+	<span class='duration right label'>00 03 22.539</span>
+	<div class="bdd-test">
+		<div class="scenario-name"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span> Scenario Outline: Test scenario to verify functionality for enabling Show and allow modification of warehouse</div>
+	</div>
+	
+		<div class='node-desc'><br><br><table class='markup-table table '><tr><td>Setting</td><td>Key</td></tr><tr><td>Show and allow modification of warehouse</td><td>CPShowAndModifyWarehouse</td></tr></table></div>
+	
+	
+	<ul class='steps'>
+		<li test-id='110' class='node scenario Pass' status='Pass'>
+			<div class="step-name" title="()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Test scenario to verify functionality for enabling Show and allow modification of warehouse</div>
 
-					<div class="node-step">ADMIN PAGE OR ORDER ENTRY PAGE HAS BEEN FOUND</div>
-		</li>
-		<li test-id='92' class='node then Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.user_navigate_to_client_side())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User navigate to Client side</div>
+				<div class='category-list'>
+						<span class='category label'>@ShowModificationWarehouseEnable</span>
+				</div>
 
+			<ul class='gc steps'>
+				<li test-id='198' class='gc given Pass' status='Pass'>
+					<h6 class="step-name" title="stepDefination_DSD_OMS.AdminToClientNavigationSteps.AdminCatalogStep.userShouldVerifyAdminSettingIsEnabledByUsing(java.lang.String,java.lang.String)"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Given User should verify admin setting "Show and allow modification of warehouse" is enabled by using "CPShowAndModifyWarehouse"</h6>
 
-					<div class="node-step">USER ICON FOUND</div>
-					<div class="node-step">IN ADMIN PAGE</div>
-		</li>
-		<li test-id='93' class='node then Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.user_should_select_order_entry_tab())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User should select Order Entry tab</div>
+							<div class="node-step"><span style='color:red'>ADMIN SETTING FOUND IS</span>0</div>
+							<div class="node-step">ADMIN SETTING IS ENABLED</div>
+							<div class="node-step">FOR ADMIN SETTING Show and allow modification of warehouse CHANGES</div>
+							<div class="node-step">ADMIN SETTING IS ENABLED</div>
+				</li>
+				<li test-id='199' class='gc then Pass' status='Pass'>
+					<h6 class="step-name" title="stepDefination_DSD_OMS.AdminToClientNavigationSteps.AdminCatalogStep.userEntersURLAndIsOnLoginPageAndEnteredCredentialsForAdminSetting()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User enters URL and is on login page and entered credentials for admin setting</h6>
 
+							<div class="node-step">SIGNIN BUTTON CLICKED</div>
+							<div class="node-step">CURRENT URL IS https://autoerp.afsi.com/omsi/clientportal/apps/CPAdmin.html?p=QJFsTz5JBfVNODvKd%2b4hK56SreO0vwVwYSCjo3j9p6A%3d</div>
+				</li>
+				<li test-id='200' class='gc when Pass' status='Pass'>
+					<h6 class="step-name" title="stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.user_is_on_home_page()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>When User is on Home Page</h6>
 
-					<div class="node-step">https://autodsd.afsi.com/ClientPortal/Apps/cpOrderEntry.html?p=Km530c8XSlYiXYABAQY6Y6JAChTfYaSYca92kMk0eI9TOeNnC6%2bd9w%3d%3d</div>
-					<div class="node-step">NAVIGATED TO ORDER ENTRY PAGE</div>
-		</li>
-		<li test-id='94' class='node then Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.user_selects_account())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User selects Account#</div>
+							<div class="node-step">ADMIN PAGE OR ORDER ENTRY PAGE HAS BEEN FOUND</div>
+				</li>
+				<li test-id='201' class='gc then Pass' status='Pass'>
+					<h6 class="step-name" title="stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.user_navigate_to_client_side()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User navigate to Client side</h6>
 
+							<div class="node-step">USER ICON FOUND</div>
+							<div class="node-step">IN ADMIN PAGE</div>
+				</li>
+				<li test-id='202' class='gc then Pass' status='Pass'>
+					<h6 class="step-name" title="stepDefination_DSD_OMS.AdminToClientNavigationSteps.AdminOrderEntryStep.userShouldSelectOrderEntryTabForAdmin()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User should select Order Entry tab for admin</h6>
 
-					<div class="node-step"><span style='color:red'>DELIBERY DATE FOUND, AFTER LOGGING IN TO APPLICATION  Friday, January 24, 2025</span></div>
-		</li>
-		<li test-id='95' class='node given Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.user_must_be_on_order_entry_page())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Given User must be on Order Entry Page</div>
+							<div class="node-step">https://autoerp.afsi.com/omsi/clientportal/apps/cpOrderEntry.html?p=QJFsTz5JBfVNODvKd%2b4hK56SreO0vwVwYSCjo3j9p6A%3d</div>
+							<div class="node-step">NAVIGATED TO ORDER ENTRY PAGE</div>
+				</li>
+				<li test-id='203' class='gc then Pass' status='Pass'>
+					<h6 class="step-name" title="stepDefination_DSD_OMS.AdminToClientNavigationSteps.AdminOrderEntryStep.userSelectsAccountForAdminSideSetting()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User selects Account# for Admin side setting</h6>
 
+							<div class="node-step">CUSTOMER ACCOUNT# SELECTED IS K11985</div>
+							<div class="node-step">ORDER GUIDE POPUP HAS BEEN FOUND</div>
+							<div class="node-step">NEW ORDER ENTRY PAGE HAS BEEN FOUND</div>
+							<div class="node-step">NAVIGATED TO ORDER ENTRY PAGE</div>
+							<div class="node-step"><span style='color:red'>DELIBERY DATE FOUND, AFTER LOGGING IN TO APPLICATION  Tuesday, January 28, 2025</span></div>
+				</li>
+				<li test-id='204' class='gc then Pass' status='Pass'>
+					<h6 class="step-name" title="stepDefination_DSD_OMS.AdminToClientNavigationSteps.AdminOrderEntryStep.userMustClickStartOrderButtonValidateWarehouseIsDisplayed()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User must click Start Order button validate Warehouse is displayed</h6>
 
-		</li>
-		<li test-id='96' class='node then Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.user_must_click_start_order_button())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User must click Start Order button</div>
+							<div class="node-step">NAVIGATED TO ORDER ENTRY PAGE</div>
+							<div class="node-step"><span style='color:red'>DELIBERY DATE FOUND, AFTER LOGGING IN TO APPLICATION  Tuesday, January 28, 2025</span></div>
+							<div class="node-step">WAREHOUSE INDEX BOX IS DISPLAYED</div>
+							<div class="node-step">START BUTTON HAS BEEN CLICKED</div>
+				</li>
+				<li test-id='205' class='gc then Pass' status='Pass'>
+					<h6 class="step-name" title="stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.user_should_make_selection_between_pending_order_or_start_new_order()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User should make selection between Pending order or Start New order</h6>
 
+				</li>
+				<li test-id='206' class='gc then Pass' status='Pass'>
+					<h6 class="step-name" title="stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.userShouldSelectNoteFromPopupAndOrderGuideFromPopup()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User should select Note from popup and Order guide from popup</h6>
 
-					<div class="node-step">NAVIGATED TO ORDER ENTRY PAGE</div>
-					<div class="node-step"><span style='color:red'>DELIBERY DATE FOUND, AFTER LOGGING IN TO APPLICATION  Friday, January 24, 2025</span></div>
-					<div class="node-step">START BUTTON HAS BEEN CLICKED</div>
-		</li>
-		<li test-id='97' class='node then Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.user_should_make_selection_between_pending_order_or_start_new_order())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User should make selection between Pending order or Start New order</div>
+							<div class="node-step">ORDER GUIDE POPUP HAS BEEN FOUND</div>
+				</li>
+				<li test-id='207' class='gc then Pass' status='Pass'>
+					<h6 class="step-name" title="stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.enter_po_for_new_order(io.cucumber.datatable.DataTable)"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then Enter PO# for New order</h6>
 
+							<div class="node-step"><table class='markup-table table '><tr><td>PO123</td></tr></table></div>
+							<div class="node-step">NEW ORDER ENTRY PAGE HAS BEEN FOUND</div>
+							<div class="node-step">PO# ENTERED IS PO123</div>
+				</li>
+				<li test-id='208' class='gc then Pass' status='Pass'>
+					<h6 class="step-name" title="stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.enter_pro_in_quick_product_entry_area()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then Enter Pro# in Quick Product Entry area</h6>
 
-		</li>
-		<li test-id='98' class='node then Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.userShouldSelectNoteFromPopupAndOrderGuideFromPopup())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User should select Note from popup and Order guide from popup</div>
+							<div class="node-step">PRODUCT ADDED TO THE ORDER Via QUICK PRODUCT ENTRY 4088</div>
+				</li>
+				<li test-id='209' class='gc and Pass' status='Pass'>
+					<h6 class="step-name" title="stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.check_for_case_and_unit_input_box_enabled_or_not_based_on_that_enter_value(io.cucumber.datatable.DataTable)"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>And Check for Case and Unit input box enabled or not based on that enter value</h6>
 
+							<div class="node-step"><table class='markup-table table '><tr><td>1</td><td>1</td></tr></table></div>
+							<div class="node-step">UOM IS ENABLED AND IT CONTAINS CS VALUE IN IT</div>
+							<div class="node-step">CASE ENTERED FOR QUICK PRODUCT IS 1</div>
+				</li>
+				<li test-id='210' class='gc then Pass' status='Pass'>
+					<h6 class="step-name" title="stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.click_on_next_button()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then Click on Next button</h6>
 
-		</li>
-		<li test-id='99' class='node then Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.enter_po_for_new_order(io.cucumber.datatable.DataTable))"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then Enter PO# for New order</div>
+							<div class="node-step">PRODUCT FOUND IN ORDER ARE </div>
+							<div class="node-step">4088</div>
+							<div class="node-step">NEXT BUTTON CLICKED</div>
+							<div class="node-step">ORDER NUMBER CREATED IS 1195213</div>
+							<div class="node-step">PAYMENT METHOD HAS BEEN SELECTED</div>
+							<div class="node-step">FIRST PAYMENT OPTION HAS BEEN SELECTED</div>
+							<div class="node-step">CLICKED ON NEXT BUTTON</div>
+				</li>
+				<li test-id='211' class='gc and Pass' status='Pass'>
+					<h6 class="step-name" title="stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.click_on_submit_order_button()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>And Click on SubmitOrder button</h6>
 
+							<div class="node-step">ORDER ENTRY SUMMARY PAGE HAS BEEN FOUND</div>
+							<div class="node-step">SUBMIT BUTTON IN ORDER SUMMARY PAGE HAS BEEN CLICKED</div>
+							<div class="node-step">ORDER HAS BEEN SUCESSFULLY CREATED</div>
+				</li>
+				<li test-id='212' class='gc then Pass' status='Pass'>
+					<h6 class="step-name" title="stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.user_should_be_navigated_to_order_entry_page()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User should be navigated to Order Entry page</h6>
 
-					<div class="node-step"><table class='markup-table table '><tr><td>PO123</td></tr></table></div>
-					<div class="node-step">NEW ORDER ENTRY PAGE HAS BEEN FOUND</div>
-					<div class="node-step">PO# ENTERED IS PO123</div>
-		</li>
-		<li test-id='100' class='node then Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps8.userEntersForeignLanguageDescriptionOfProductInSearchBox())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User enters foreign language description of Product in Search box</div>
+							<div class="node-step">ORDER ENTRY PAGE HAS BEEN FOUND</div>
+				</li>
+				<li test-id='213' class='gc then Pass' status='Pass'>
+					<h6 class="step-name" title="stepDefination_DSD_OMS.AdminToClientNavigationSteps.AdminCatalogStep.userSignOutFromClientSideForAdminSettingChanges()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User sign out from client side for Admin setting changes</h6>
 
+				</li>
+				<li test-id='214' class='gc and Pass' status='Pass'>
+					<h6 class="step-name" title="stepDefination_DSD_OMS.AdminToClientNavigationSteps.AdminCatalogStep.userShouldSetAdminSettingAsDefaultBeforeMakingChanges(java.lang.String,java.lang.String)"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>And User should set admin setting "Show and allow modification of warehouse" "CPShowAndModifyWarehouse" as default before making changes</h6>
 
-					<div class="node-step">PRODUCT SEARCHED USING SEARCH BAR IS 켈로그</div>
-		</li>
-		<li test-id='101' class='node then Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps8.userSearchForForeignLanguageInProductGridAndEnterQty(io.cucumber.datatable.DataTable))"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User search for foreign language in product grid and enter Qty</div>
-
-
-					<div class="node-step"><table class='markup-table table '><tr><td>1</td><td>1</td></tr></table></div>
-					<div class="node-step">QTY ENTERED IN CASES INPUTBOX 1</div>
-		</li>
-		<li test-id='102' class='node then Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.click_on_next_button())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then Click on Next button</div>
-
-
-					<div class="node-step">PRODUCT FOUND IN ORDER ARE </div>
-					<div class="node-step">00135520</div>
-					<div class="node-step">00000005</div>
-					<div class="node-step">00000006</div>
-					<div class="node-step">10025300</div>
-					<div class="node-step">59626700</div>
-					<div class="node-step">00000001</div>
-					<div class="node-step">00000002</div>
-					<div class="node-step">00000003</div>
-					<div class="node-step">00000004</div>
-					<div class="node-step">00000008</div>
-					<div class="node-step">00112882</div>
-					<div class="node-step">00135444</div>
-					<div class="node-step">00137682</div>
-					<div class="node-step">00445006</div>
-					<div class="node-step">NEXT BUTTON CLICKED</div>
-					<div class="node-step">ORDER NUMBER CREATED IS 0003717077</div>
-					<div class="node-step">PAYMENT METHOD HAS BEEN SELECTED</div>
-					<div class="node-step">FIRST PAYMENT OPTION HAS BEEN SELECTED</div>
-					<div class="node-step">CLICKED ON NEXT BUTTON</div>
-		</li>
-		<li test-id='103' class='node and Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.click_on_submit_order_button())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>And Click on SubmitOrder button</div>
-
-
-					<div class="node-step">ORDER ENTRY SUMMARY PAGE HAS BEEN FOUND</div>
-					<div class="node-step">SUBMIT BUTTON IN ORDER SUMMARY PAGE HAS BEEN CLICKED</div>
-					<div class="node-step">ORDER HAS BEEN SUCESSFULLY CREATED</div>
-		</li>
-		<li test-id='104' class='node then Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.OrderEntryPageSteps.OrderEntryPageSteps.user_should_be_navigated_to_order_entry_page())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User should be navigated to Order Entry page</div>
-
-
-					<div class="node-step">ORDER ENTRY PAGE HAS BEEN FOUND</div>
+							<div class="node-step">0<span style='color:red'> WHAT WAS THE PREVIOUS VALUE FOR ADMIN SETTING, AND CURRENT STATUS IS </span>1</div>
+							<div class="node-step">ADMIN SETTING IS DISABLED</div>
+							<div class="node-step">FOR ADMIN SETTING Show and allow modification of warehouse CHANGES</div>
+							<div class="node-step">ADMIN SETTING IS ENABLED</div>
+				</li>
+			</ul>
 		</li>
 	</ul>
 </div>
@@ -374,7 +506,7 @@
 			<ul id='category-collection' class='category-collection'>
 				<li class='category displayed active'>
 					<div class='category-heading'>
-						<span class='category-name'>@OESearchProdForeignLanguage</span>
+						<span class='category-name'>@ShowModificationWarehouseDisable</span>
 						<span class='category-status right'>
 						<span class='label pass'>1</span>
 						</span>
@@ -396,8 +528,41 @@
 								</thead>
 								<tbody>
 									<tr>
-										<td>Jan 22, 2025 10:23:55 PM</td>
-										<td class='linked' test-id='2'>Creating New order by entering foreign language product description  Product# in Searchbar, New order entry page</td>
+										<td>Jan 24, 2025 04:36:12 PM</td>
+										<td class='linked' test-id='3'>Test scenario to verify functionality for Disabling Show and allow modification of warehouse</td>
+										<td><span class='test-status Pass'>Pass</span></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</li>
+				<li class='category displayed active'>
+					<div class='category-heading'>
+						<span class='category-name'>@ShowModificationWarehouseEnable</span>
+						<span class='category-status right'>
+						<span class='label pass'>1</span>
+						</span>
+					</div>
+					<div class='category-content hide'>
+						<div class='category-status-counts'>
+							<span status="pass" class='label green accent-4 white-text'>Passed: 1</span>
+							
+							
+						</div>
+						<div class='category-tests'>
+							<table class='bordered table-results'>
+								<thead>
+									<tr>
+										<th>Timestamp</th>
+										<th>TestName</th>
+										<th>Status</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>Jan 24, 2025 04:39:51 PM</td>
+										<td class='linked' test-id='110'>Test scenario to verify functionality for enabling Show and allow modification of warehouse</td>
 										<td><span class='test-status Pass'>Pass</span></td>
 									</tr>
 								</tbody>
@@ -428,31 +593,31 @@
 			<div class='col s2'>
 				<div class='card-panel r'>
 					Scenarios
-					<div class='panel-lead'>1</div>
+					<div class='panel-lead'>2</div>
 				</div>
 			</div>
 			<div class='col s2'>
 				<div class='card-panel r'>
 					Steps
-					<div class='panel-lead'>15</div>
+					<div class='panel-lead'>34</div>
 				</div>
 			</div>
 			<div class='col s2'>
 				<div class='card-panel r'>
 					Start
-					<div class='panel-lead'>Jan 22, 2025 10:23:45 PM</div>
+					<div class='panel-lead'>Jan 24, 2025 04:36:00 PM</div>
 				</div>
 			</div>
 			<div class='col s2'>
 				<div class='card-panel r'>
 			 		End
-			 		<div class='panel-lead'>Jan 22, 2025 10:27:18 PM</div>
+			 		<div class='panel-lead'>Jan 24, 2025 04:43:15 PM</div>
 				</div>
 			</div>
 			<div class='col s2'>
 				<div class='card-panel r'>
 					Time Taken
-					<div class='panel-lead'>00 03 33.353</div>
+					<div class='panel-lead'>00 07 14.261</div>
 				</div>
 			</div>
 			<div class='col s4'>
@@ -492,7 +657,16 @@
 							<th>Passed %</th>
 						</tr>
 						<tr>
-							<td>@OESearchProdForeignLanguage</td>
+							<td>@ShowModificationWarehouseDisable</td>
+							<td>1</td>
+							<td>0</td>
+							<td>0</td>
+							<td>
+									100%
+							</td>
+						</tr>
+						<tr>
+							<td>@ShowModificationWarehouseEnable</td>
 							<td>1</td>
 							<td>0</td>
 							<td>0</td>
@@ -518,16 +692,16 @@
 				errorParent: 0,
 				warningParent: 0,
 				skipParent: 0,
-				childCount: 1,
-				passChild: 1,
+				childCount: 2,
+				passChild: 2,
 				failChild: 0,
 				fatalChild: 0,
 				errorChild: 0,
 				warningChild: 0,
 				skipChild: 0,
 				infoChild: 0,
-				grandChildCount: 15,
-				passGrandChild: 15,
+				grandChildCount: 34,
+				passGrandChild: 34,
 				failGrandChild: 0,
 				fatalGrandChild: 0,
 				errorGrandChild: 0,
@@ -539,7 +713,7 @@
 		
 		<script>
 			var timeline = {
-			        "Order Entry Test cases only for DSD env":202.467
+			        "scenarios for admin credentials and client credentials":421.542
 			};
 		</script>
 		

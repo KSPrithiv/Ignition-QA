@@ -198,6 +198,7 @@ public class OrderGuidePageStep
         List<List<String>> SeqNo=tabledata.asLists(String.class);
         createOGPage=new CreateOGPage(driver,scenario);
         Prod_No= DataBaseConnection.DataBaseConn(TestBase.testEnvironment.getSingle_Prod_Sql());
+        createOGPage.ValidateNewOG();
         createOGPage.EnterQuickProduct(Prod_No,SeqNo.get(0).get(0));
     }
 
@@ -468,6 +469,7 @@ public class OrderGuidePageStep
     public void thenUserEntersDescription(String Og)
     {
         createOGPage=new CreateOGPage(driver,scenario);
+        createOGPage.ValidateNewOG();
         createOGPage.DescriptionOG(Og);
     }
 

@@ -2,9 +2,6 @@ package pages_DSD_OMS.adminGrids;
 
 import helper.HelpersMethod;
 import io.cucumber.java.Scenario;
-import io.cucumber.java.en_old.Ac;
-import org.apache.logging.log4j.core.tools.picocli.CommandLine;
-import org.apache.poi.ss.formula.functions.T;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Action;
 import org.openqa.selenium.interactions.Actions;
@@ -18,7 +15,6 @@ import org.testng.Assert;
 
 import java.time.Duration;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 /**
@@ -37,6 +33,7 @@ public class GridConfigurationPage
     static String oldLabel;
     static String newLabel;
     static int pos=0;
+    static int rowNum=0;
 
     @FindBy(xpath="//div[contains(@class,'moduleNameHeader')]/span[contains(@class,'spnmoduleNameHeader')]")
     private WebElement pageHeader;
@@ -773,10 +770,16 @@ public class GridConfigurationPage
         WebElement WebEle;
         try
         {
+            new WebDriverWait(driver,Duration.ofMillis(60000)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("save-btn"))));
+            new WebDriverWait(driver,Duration.ofMillis(60000)).until(ExpectedConditions.visibilityOfElementLocated(By.id("save-btn")));
+            new WebDriverWait(driver,Duration.ofMillis(60000)).until(ExpectedConditions.elementToBeClickable(By.id("save-btn")));
+
+            Thread.sleep(1000);
+
             WebEle=HelpersMethod.FindByElement(driver,"id","save-btn");
             if(WebEle.isDisplayed() && WebEle.isEnabled())
             {
-                HelpersMethod.ClickBut(driver,WebEle,10000);
+                HelpersMethod.ClickBut(driver,WebEle,60000);
                 exists=true;
                 String status = HelpersMethod.returnDocumentStatus(driver);
                 if (status.equals("loading"))
@@ -1081,11 +1084,11 @@ public class GridConfigurationPage
             {
                 newLabel=oldLabel+"123";
                 WebElement gridLabel=driver.findElement(By.xpath("//tr[contains(@class,'k-grid-edit-row')]["+pos+"]/descendant::input[@class='k-textbox']"));
-                HelpersMethod.JSSetValueEle(driver,gridLabel,10000,"");
+                HelpersMethod.JSSetValueEle(driver,gridLabel,40000,"");
                 WebElement newHead= driver.findElement(By.xpath("//tr[contains(@class,'k-grid-edit-row')]["+pos+"]/descendant::input[@class='k-textbox']"));
-                HelpersMethod.ActSendKey(driver,newHead,10000,newLabel);
+                HelpersMethod.ActSendKey(driver,newHead,40000,newLabel);
                 scenario.log("NEW LABEL VALUE IS " + newLabel);
-                newLabel1=HelpersMethod.JSGetValueEle(driver,gridLabel,10000);
+                newLabel1=HelpersMethod.JSGetValueEle(driver,gridLabel,40000);
                 wait = new FluentWait<WebDriver>(driver)
                         .withTimeout(Duration.ofSeconds(600))
                         .pollingEvery(Duration.ofSeconds(2))
@@ -1215,5 +1218,93 @@ public class GridConfigurationPage
         }
         catch (Exception e){}
         return columnNames;
+    }
+
+    public void selectColumnForSorting(String sortColumn)
+    {
+        exists=false;
+        int i=0;
+        String headText;
+        String colText;
+        Actions act=new Actions(driver);
+        try
+        {
+            List<WebElement> headers = HelpersMethod.FindByElements(driver, "xpath", "//div[@id='GridConfigurationConfiguration']/descendant::th/descendant::span[@class='k-column-title']");
+            for (WebElement head : headers)
+            {
+                i++;
+                act.moveToElement(head).build().perform();
+                headText = head.getText();
+                if (headText.equalsIgnoreCase("Default Label"))
+                {
+                    break;
+                }
+            }
+            //to find row number of particular column name in a grid
+            List<WebElement> col_Headers=HelpersMethod.FindByElements(driver,"xpath","//div[@id='GridConfigurationConfiguration']/descendant::tr[contains(@class,'k-master-row')]/descendant::td["+i+"]");
+            for(WebElement colHead:col_Headers)
+            {
+                rowNum++;
+                act.moveToElement(colHead).build().perform();
+                colText=colHead.getText();
+                if(colText.equals(sortColumn))
+                {
+                    break;
+                }
+            }
+            //code to find column number of "Is Def Sort Column"
+            i=0;
+            headers = HelpersMethod.FindByElements(driver, "xpath", "//div[@id='GridConfigurationConfiguration']/descendant::th/descendant::span[@class='k-column-title']");
+            for (WebElement head : headers)
+            {
+                i++;
+                act.moveToElement(head).build().perform();
+                headText = head.getText();
+                if (headText.equalsIgnoreCase("Is Def Sort Column"))
+                {
+                    break;
+                }
+            }
+            //Click on Check box of Is def sort column
+            if(HelpersMethod.IsExists("//div[@id='GridConfigurationConfiguration']/descendant::tr[contains(@class,'k-master-row')][" + rowNum + "]/descendant::td[" + i + "]/input",driver))
+            {
+                WebElement checkBox = HelpersMethod.FindByElement(driver, "xpath", "//div[@id='GridConfigurationConfiguration']/descendant::tr[contains(@class,'k-master-row')][" + rowNum + "]/descendant::td[" + i + "]/input");
+                HelpersMethod.JScriptClick(driver, checkBox, 20000);
+                exists = true;
+            }
+
+            new WebDriverWait(driver,Duration.ofMillis(10000)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("GridConfigurationConfiguration"))));
+            new WebDriverWait(driver,Duration.ofMillis(10000)).until(ExpectedConditions.visibilityOfElementLocated(By.id("GridConfigurationConfiguration")));
+
+            Assert.assertEquals(exists,true);
+        }
+        catch (Exception e){}
+    }
+
+    public String clickAndSelectSortOrder(String sortOrder)
+    {
+        exists=false;
+        int i=0;
+        String headText;
+        String sortOrd="";
+        Actions act=new Actions(driver);
+        try
+        {
+            List<WebElement> headers = HelpersMethod.FindByElements(driver, "xpath", "//div[@id='GridConfigurationConfiguration']/descendant::th/descendant::span[@class='k-column-title']");
+            for (WebElement head : headers)
+            {
+                i++;
+                act.moveToElement(head).build().perform();
+                headText = head.getText();
+                if (headText.equalsIgnoreCase("Def Sort Direction"))
+                {
+                    break;
+                }
+            }
+            //To click on "Def sort direction" drop down
+            sortOrd=HelpersMethod.FindByElement(driver,"xpath","//div[@id='GridConfigurationConfiguration']/descendant::tr[contains(@class,'k-master-row')]["+rowNum+"]/descendant::td["+i+"]/descendant::span[@class='k-input-value-text']").toString();
+        }
+        catch (Exception e){}
+        return sortOrd;
     }
 }
