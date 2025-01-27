@@ -290,7 +290,6 @@ public class CompetitivePricingGeneralPage
     public void ValidateCompetitorGeneral()
     {
         exists=false;
-
         try
         {
             Wait<WebDriver> wait = new FluentWait<>(driver)
@@ -679,6 +678,10 @@ public class CompetitivePricingGeneralPage
         WebElement WebEle;
         try
         {
+            new WebDriverWait(driver,Duration.ofMillis(40000)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("card1"))));
+            new WebDriverWait(driver,Duration.ofMillis(40000)).until(ExpectedConditions.visibilityOfElementLocated(By.id("card1")));
+            new WebDriverWait(driver,Duration.ofMillis(40000)).until(ExpectedConditions.elementToBeClickable(By.id("card1")));
+
             if(SaveBut.isDisplayed() && SaveBut.isEnabled())
             {
                 HelpersMethod.ScrollUpScrollBar(driver);
@@ -706,6 +709,11 @@ public class CompetitivePricingGeneralPage
                     exists = true;
                     scenario.log("COMPETITOR PRICING HAS BEEN SAVED SUCCESSFULLY");
 
+                    wait = new FluentWait<>(driver)
+                            .withTimeout(Duration.ofSeconds(600))
+                            .pollingEvery(Duration.ofSeconds(2))
+                            .ignoring(NoSuchElementException.class);
+                    wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
                     wait = new FluentWait<>(driver)
                             .withTimeout(Duration.ofSeconds(600))
                             .pollingEvery(Duration.ofSeconds(2))
@@ -780,6 +788,9 @@ public class CompetitivePricingGeneralPage
                     .pollingEvery(Duration.ofSeconds(2))
                     .ignoring(NoSuchElementException.class);
             wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
+            new WebDriverWait(driver,Duration.ofMillis(40000)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("card1"))));
+            new WebDriverWait(driver,Duration.ofMillis(40000)).until(ExpectedConditions.visibilityOfElementLocated(By.id("card1")));
         }
         catch (Exception e){}
     }
@@ -964,13 +975,16 @@ public class CompetitivePricingGeneralPage
             for(int i=1;i<=5;i++)
             {
                 //Code for entering competitor pricing
-                WebEle=HelpersMethod.FindByElement(driver,"xpath","//tr[contains(@class,'k-master-row')]["+i+"]/descendant::td/descendant::input[@class='k-textbox']");
+                WebEle=HelpersMethod.FindByElement(driver,"xpath","//tr[contains(@class,'k-master-row')]["+i+"]/descendant::td/descendant::input[@class='k-input-inner']");
                 HelpersMethod.ActClearKey(driver,WebEle,10000);
                 HelpersMethod.ActSendKey(driver,WebEle,10000, prod_detail.get(i).get(0));
                 //Code for entering Comment in Competitor pricing
                 WebEle=HelpersMethod.FindByElement(driver,"xpath","//tr[contains(@class,'k-master-row')]["+i+"]/descendant::td/descendant::input[@class='k-textbox']");
                 HelpersMethod.EnterText(driver,WebEle,10000,prod_detail.get(i).get(1));
                 exists=true;
+
+                new WebDriverWait(driver,Duration.ofMillis(40000)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("card1"))));
+                new WebDriverWait(driver,Duration.ofMillis(40000)).until(ExpectedConditions.visibilityOfElementLocated(By.id("card1")));
             }
             Thread.sleep(1000);
             Assert.assertEquals(exists,true);
@@ -1324,10 +1338,11 @@ public class CompetitivePricingGeneralPage
                     .ignoring(NoSuchElementException.class);
             wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
 
+            new WebDriverWait(driver,Duration.ofMillis(40000)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("card1"))));
+            new WebDriverWait(driver,Duration.ofMillis(40000)).until(ExpectedConditions.visibilityOfElementLocated(By.id("card1")));
+
             if(!HelpersMethod.IsExists("//div[contains(@class,'k-window k-dialog')]/descendant::div[@class='i-no-data__icon']",driver))
             {
-//                WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-window k-dialog')]/descendant::tr[contains(@class,'k-master-row')][1]");
-//                HelpersMethod.ActClick(driver,WebEle,10000);
                 WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='k-window k-dialog']/descendant::input[@id='SearchBox1']");
                 HelpersMethod.sendKeys(driver,WebEle,10000,code);
                 WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='k-window k-dialog']//*[local-name()='svg' and contains(@class,'i-search-box__search')]");
@@ -1341,6 +1356,25 @@ public class CompetitivePricingGeneralPage
                         .pollingEvery(Duration.ofSeconds(2))
                         .ignoring(NoSuchElementException.class);
                 wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
+                if(HelpersMethod.IsExists("//span[text()='Discard pending changes']/ancestor::div[@class='k-window k-dialog']",driver))
+                {
+                    WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='k-window k-dialog']/descendant::button/span[text()='Discard']");
+                    HelpersMethod.ActClick(driver,WebEle,10000);
+                    wait = new FluentWait<>(driver)
+                            .withTimeout(Duration.ofSeconds(600))
+                            .pollingEvery(Duration.ofSeconds(2))
+                            .ignoring(NoSuchElementException.class);
+                    wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+                }
+                wait = new FluentWait<>(driver)
+                        .withTimeout(Duration.ofSeconds(600))
+                        .pollingEvery(Duration.ofSeconds(2))
+                        .ignoring(NoSuchElementException.class);
+                wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
+                new WebDriverWait(driver,Duration.ofMillis(40000)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("card1"))));
+                new WebDriverWait(driver,Duration.ofMillis(40000)).until(ExpectedConditions.visibilityOfElementLocated(By.id("card1")));
             }
             else
             {
