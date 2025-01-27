@@ -205,6 +205,7 @@ public class OrderGuidePageStep1
     public void userSelectsDayOfWeekFromDropDown()
     {
         createOGPage = new CreateOGPage(driver, scenario);
+        createOGPage.ValidateNewOG();
         createOGPage.ClickOnDayOfWeek();
         WDay=createOGPage.SelectDayOfWeek();
     }

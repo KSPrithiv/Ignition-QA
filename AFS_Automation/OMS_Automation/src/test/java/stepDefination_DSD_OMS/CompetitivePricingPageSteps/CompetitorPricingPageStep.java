@@ -117,6 +117,7 @@ public class CompetitorPricingPageStep
     public void userClicksOnCompetitorDropDownAndSelectTheCompetitorBasedOnPreviouslyCreatedCompetitor()
     {
         competitivePricingGeneralPage=new CompetitivePricingGeneralPage(driver,scenario);
+        competitivePricingGeneralPage.ValidateCompetitorGeneral();
         competitivePricingGeneralPage.Click_CompetitorDropdown();
     }
 

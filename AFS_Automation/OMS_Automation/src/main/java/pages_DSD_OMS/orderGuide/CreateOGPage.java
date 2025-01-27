@@ -347,6 +347,9 @@ public class CreateOGPage
             }
             if(QuickProd.isDisplayed())
             {
+                new WebDriverWait(driver,Duration.ofMillis(40000)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("web-order-page-content"))));
+                new WebDriverWait(driver,Duration.ofMillis(40000)).until(ExpectedConditions.invisibilityOfElementLocated(By.id("web-order-page-content")));
+
                 HelpersMethod.ScrollElement(driver, QuickProd);
                 HelpersMethod.ClearText(driver, QuickProd, 20000);
                 QuickProd.click();
@@ -414,6 +417,8 @@ public class CreateOGPage
                     scenario.log("NO MATCHING PRODUCTS HAS BEEN FOUND, CHECK FOR THE AVAILABILITY OF OG TYPE YOU SELECTED");
                     exists = false;
                 }
+                new WebDriverWait(driver,Duration.ofMillis(40000)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("web-order-page-content"))));
+                new WebDriverWait(driver,Duration.ofMillis(40000)).until(ExpectedConditions.invisibilityOfElementLocated(By.id("web-order-page-content")));
             }
             Assert.assertEquals(exists,true);
         }
@@ -458,6 +463,10 @@ public class CreateOGPage
             }
             Thread.sleep(2000);
 
+            new WebDriverWait(driver,Duration.ofMillis(40000)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("web-order-page-content"))));
+            new WebDriverWait(driver,Duration.ofMillis(40000)).until(ExpectedConditions.invisibilityOfElementLocated(By.id("web-order-page-content")));
+            new WebDriverWait(driver,Duration.ofMillis(40000)).until(ExpectedConditions.elementToBeClickable(By.xpath("//button[@id='OGSaveButton']")));
+
             if(HelpersMethod.IsExists("//button[@id='OGSaveButton']",driver) && OGSave.isEnabled())
             {
                 WebElement OGSave = HelpersMethod.FindByElement(driver, "id", "OGSaveButton");
@@ -478,11 +487,11 @@ public class CreateOGPage
                 WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[contains(text(),'The following products cannot be updated:')]/ancestor::div[contains(@class,'k-window k-dialog')]/descendant::button/span[text()='Ok']");
                 HelpersMethod.ActClick(driver,WebEle,10000);
                 exists=true;
-                if(HelpersMethod.IsExists("//div[@class='loader']",driver))
-                {
-                    WebEle=HelpersMethod.FindByElement(driver,"xpath","//div[@class='loader']");
-                    HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 2000000);
-                }
+                wait = new FluentWait<WebDriver>(driver)
+                        .withTimeout(Duration.ofSeconds(600))
+                        .pollingEvery(Duration.ofSeconds(2))
+                        .ignoring(NoSuchElementException.class);
+                wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
             }
             Assert.assertEquals(exists,true);
         }
@@ -1455,6 +1464,8 @@ public class CreateOGPage
             {
                 HelpersMethod.waitTillLoadingPage(driver);
             }
+            new WebDriverWait(driver,Duration.ofMillis(40000)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("web-order-page-content"))));
+            new WebDriverWait(driver,Duration.ofMillis(40000)).until(ExpectedConditions.invisibilityOfElementLocated(By.id("web-order-page-content")));
         }
         catch (Exception e){}
         return DOfWeek;
