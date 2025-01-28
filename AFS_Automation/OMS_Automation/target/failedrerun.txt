@@ -1,3 +1,0 @@
-file:src/test/resources/features_DSD_OMS/OrderGuideFeature_ERP/orderGuideFeature1.feature:231
-file:src/test/resources/features_DSD_OMS/OrderGuideFeature_ERP/orderGuideFeatureERP.feature:31:53
-file:src/test/resources/features_DSD_OMS/OrderGuideFeature_ERP/orderGuideFeature2.feature:126
