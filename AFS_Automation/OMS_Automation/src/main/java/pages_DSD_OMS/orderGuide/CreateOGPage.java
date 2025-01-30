@@ -7,6 +7,7 @@ import io.cucumber.java.bs.A;
 import io.cucumber.java.en_old.Ac;
 import io.cucumber.java.zh_cn.假如;
 import org.apache.commons.io.filefilter.WildcardFileFilter;
+import org.apache.commons.math3.analysis.function.Exp;
 import org.apache.logging.log4j.core.tools.picocli.CommandLine;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
@@ -201,7 +202,7 @@ public class CreateOGPage
                 HelpersMethod.EnterText(driver, OG_Des, 4000, OGDesc);
 
                 new WebDriverWait(driver,Duration.ofMillis(40000)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("web-order-page-content"))));
-                new WebDriverWait(driver,Duration.ofMillis(40000)).until(ExpectedConditions.invisibilityOfElementLocated(By.id("web-order-page-content")));
+                new WebDriverWait(driver,Duration.ofMillis(40000)).until(ExpectedConditions.visibilityOfElementLocated(By.id("web-order-page-content")));
 
                 exists=true;
             }
@@ -1447,6 +1448,9 @@ public class CreateOGPage
         try
         {
             HelpersMethod.waitTillElementLocatedDisplayed(driver,"xpath","//div[@class='k-list-content']/ul[@id='dropDownNoneType-listbox-id']/li",20000);
+            new WebDriverWait(driver,Duration.ofMillis(10000)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class='k-list-content']/ul[@id='dropDownNoneType-listbox-id']/li/span"))));
+            new WebDriverWait(driver,Duration.ofMillis(10000)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='k-list-content']/ul[@id='dropDownNoneType-listbox-id']/li/span")));
+
             List<WebElement> WeekDays=HelpersMethod.FindByElements(driver,"xpath","//div[@class='k-list-content']/ul[@id='dropDownNoneType-listbox-id']/li/span");
             for(WebElement weekDay:WeekDays)
             {
@@ -1471,7 +1475,7 @@ public class CreateOGPage
                 HelpersMethod.waitTillLoadingPage(driver);
             }
             new WebDriverWait(driver,Duration.ofMillis(40000)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("web-order-page-content"))));
-            new WebDriverWait(driver,Duration.ofMillis(40000)).until(ExpectedConditions.invisibilityOfElementLocated(By.id("web-order-page-content")));
+            new WebDriverWait(driver,Duration.ofMillis(40000)).until(ExpectedConditions.visibilityOfElementLocated(By.id("web-order-page-content")));
         }
         catch (Exception e){}
         return DOfWeek;

@@ -1067,15 +1067,9 @@ public class OrderGuidePage {
             Thread.sleep(5000);
             if (HelpersMethod.IsExists("//div[@class='i-filter-tag ']/descendant::button[contains(@class,'clear')]//*[local-name()='svg']", driver))
             {
-                //WebElement clearAddfilter =
-                        HelpersMethod.FindByElement(driver, "xpath", "//div[@class='i-filter-tag ']/descendant::button[contains(@class,'clear')]//*[local-name()='svg']").click();
-//                HelpersMethod.ScrollElement(driver, clearAddfilter);
-//                HelpersMethod.ClickBut(driver,clearAddfilter,10000);
-                // HelpersMethod.JScriptClick(driver, clearAddfilter, 6000);
+                HelpersMethod.FindByElement(driver, "xpath", "//div[@class='i-filter-tag ']/descendant::button[contains(@class,'clear')]//*[local-name()='svg']").click();
                 Thread.sleep(6000);
-               // exists = true;
             }
-            //Assert.assertEquals(exists, true);
         }
         catch (Exception e) {}
     }
@@ -1083,7 +1077,7 @@ public class OrderGuidePage {
     public void filterToSearch(String filterHeader, String filterValue,int i)
     {
         exists = false;
-        String tHeadText = null;
+        String tHeadText;
         try
         {
             List<WebElement> tableHeader = HelpersMethod.FindByElements(driver, "xpath", "//tr[contains(@style,'touch-action')]/descendant::span[contains(@class,'k-column-title')]");

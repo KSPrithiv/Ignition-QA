@@ -484,7 +484,7 @@ public class GridConfigurationPage
         exists=false;
         try
         {
-            for(int i=0;i<=2;i++)
+            for(int i=0;i<=15;i++)
             {
                 WebElement dragElement = HelpersMethod.FindByElement(driver, "xpath", "//div[@id='AvailableItemsAdminCard']/descendant::div[@class='i-draggable-item'][1]");
                 WebElement dropableElement = HelpersMethod.FindByElement(driver, "xpath", "//div[@id='ActiveItemsAdminCard']/descendant::div[@class='i-droppable-container']");

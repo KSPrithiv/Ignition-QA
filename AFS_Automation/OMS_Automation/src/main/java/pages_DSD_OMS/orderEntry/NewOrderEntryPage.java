@@ -7896,15 +7896,15 @@ public class NewOrderEntryPage
             }
             Set<String> noDups = new HashSet<String>();
             noDups.addAll(prodList);
-            scenario.log("NUMBER OF PRODUCTS BEFORE REMOVING DUPLICATE "+prodList.size());
-            scenario.log("NUMBER OF PRODUCTS AFTER REMOVING DUPLICATE PRODUCTS "+noDups.size());
             //Compare original list with list after removing duplicate
             if(prodList.size()== noDups.size())
             {
+                scenario.log("NO DUPLICATE PRODUCT HAS BEEN FOUND");
                 exists=true;
             }
             else
             {
+               scenario.log("********DUPLICATE PRODUCT HAS BEEN FOUND******");
                exists=false;
             }
             Assert.assertEquals(exists,true);
@@ -8159,6 +8159,60 @@ public class NewOrderEntryPage
     }
 
     public void sortedColumnValuesAdminProduct(String sortColumn)
+    {
+        Actions act=new Actions(driver);
+        String headText;
+        String elementText;
+        ArrayList<String> eleText = new ArrayList<>();
+        ArrayList<String> eleTextSort = new ArrayList<>();
+        boolean result=false;
+
+        int i=0;
+        try
+        {
+            List<WebElement> heads=HelpersMethod.FindByElements(driver,"xpath","//span[@class='k-column-title']");
+            for(WebElement head:heads)
+            {
+                i++;
+                act.moveToElement(head).build().perform();
+                headText=head.getText();
+                if(headText.contains(sortColumn))
+                {
+                    break;
+                }
+            }
+
+            List<WebElement> elements=HelpersMethod.FindByElements(driver,"xpath","//tr[contains(@class,'k-master-row')]/descendant::td["+i+"]/descendant::div[contains(@class,'grid-label')]/descendant::span");
+            for(WebElement element:elements)
+            {
+                act.moveToElement(element).build().perform();
+                elementText=element.getText();
+                eleText.add(elementText);
+                eleTextSort.add(elementText);
+            }
+            Arrays.sort(new ArrayList[]{eleTextSort});
+
+            for ( i = 0; i < eleTextSort.size(); i++)
+            {
+                if (eleText.get(i).equals(eleTextSort.get(i)))
+                {
+                    result = true;
+                    scenario.log("EXPECTED VALUE: " + eleText.get(i) + " FOUND VALUE: " + eleTextSort.get(i));
+                }
+                else
+                {
+                    result = false;
+                    scenario.log("EXPECTED VALUE: " + eleText.get(i) + " FOUND VALUE: " + eleTextSort.get(i));
+                    scenario.log("NOT IN SORTED ORDER");
+                    break;
+                }
+            }
+            Assert.assertEquals(result,true);
+        }
+        catch (Exception e){}
+    }
+
+    public void sortedColumnValuesAdminProductNumber(String sortColumn)
     {
         Actions act=new Actions(driver);
         String headText;
