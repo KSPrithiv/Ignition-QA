@@ -505,7 +505,6 @@ public class OrderEntryPage
         }
         try
         {
-
             Actions act = new Actions(driver);
             Acc_No = TestBase.testEnvironment.get_Account();
             WebEle = HelpersMethod.FindByElement(driver, "id", "customerAccountNumberComboBox");

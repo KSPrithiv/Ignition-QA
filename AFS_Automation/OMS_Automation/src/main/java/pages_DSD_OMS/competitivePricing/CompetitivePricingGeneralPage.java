@@ -314,7 +314,7 @@ public class CompetitivePricingGeneralPage
             {
                 exists=true;
             }
-            Assert.assertTrue(exists);
+            Assert.assertEquals(exists,true);
         }
         catch (Exception e){}
     }
@@ -1175,7 +1175,6 @@ public class CompetitivePricingGeneralPage
                         .ignoring(NoSuchElementException.class);
                 wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
             }
-
 
             if(HelpersMethod.IsExists("//div[@class='i-no-data']",driver))
             {

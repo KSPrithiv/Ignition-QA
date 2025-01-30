@@ -54,6 +54,17 @@ Feature: Competitive Pricing
       | CustRef            |CustRef1|
       | Customer account # | All customer accounts # |
 
+  @DeleteProduct
+  Scenario Outline: For Deleting Product in competitor
+    Given User must be on Client side and select Competitor pricing page
+    When User should confirm that he is in Competitor pricing page
+    And User selects Customer reference "<CustRef>" "<CustRef1>" and Select customer Account#
+    Then User clicks on competitor drop down and select the competitor based on previously created competitor
+    And User selects one of the product from grid and delete it and click on save button
+    Examples:
+      | CustRef            |CustRef1  |
+      | Customer account # |  All customer accounts # |
+
   @SearchingProductSearchBar
   Scenario Outline: For searching of products in competitor pricing using Search bar
     Given User must be on Client side and select Competitor pricing page
@@ -74,17 +85,6 @@ Feature: Competitive Pricing
     And User search for product in catalog dialog box, to make sure that duplicate products are not added to competitive pricing
     Examples:
       | CustRef            | CustRef1|
-      | Customer account # |  All customer accounts # |
-
-  @DeleteProduct
-  Scenario Outline: For Deleting Product in competitor
-    Given User must be on Client side and select Competitor pricing page
-    When User should confirm that he is in Competitor pricing page
-    And User selects Customer reference "<CustRef>" "<CustRef1>" and Select customer Account#
-    Then User clicks on competitor drop down and select the competitor based on previously created competitor
-    And User selects one of the product from grid and delete it and click on save button
-        Examples:
-      | CustRef            |CustRef1  |
       | Customer account # |  All customer accounts # |
 
   @DeleteCompetitorData

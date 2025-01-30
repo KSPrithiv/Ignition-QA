@@ -663,6 +663,7 @@ public class CustomerInquiryPageERP
             {
                 WebElement noteButton = HelpersMethod.FindByElement(driver, "id", "customerInquiryNoteBtn");
                 HelpersMethod.ScrollUpScrollBar(driver);
+                HelpersMethod.ScrollUpScrollBar(driver);
                 HelpersMethod.ScrollElement(driver,noteButton);
 
                 new WebDriverWait(driver,Duration.ofMillis(10000)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("customerInquiryNoteBtn"))));
