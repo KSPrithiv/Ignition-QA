@@ -556,6 +556,7 @@ public class GridConfigurationPage
         {
             new WebDriverWait(driver,Duration.ofMillis(20000)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.xpath("//ul[@id='SelectGrid-listbox-id']/li/span[@class='k-list-item-text']"))));
             new WebDriverWait(driver,Duration.ofMillis(20000)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//ul[@id='SelectGrid-listbox-id']/li/span[@class='k-list-item-text']")));
+
             if(HelpersMethod.IsExists("//ul[@id='SelectGrid-listbox-id']/descendant::span[@class='k-list-item-text']",driver))
             {
                 List<WebElement> options=HelpersMethod.FindByElements(driver,"xpath","//ul[@id='SelectGrid-listbox-id']/descendant::span[@class='k-list-item-text']");
@@ -1229,6 +1230,9 @@ public class GridConfigurationPage
         Actions act=new Actions(driver);
         try
         {
+            new WebDriverWait(driver,Duration.ofMillis(10000)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("GridConfigurationConfiguration"))));
+            new WebDriverWait(driver,Duration.ofMillis(10000)).until(ExpectedConditions.visibilityOfElementLocated(By.id("GridConfigurationConfiguration")));
+
             List<WebElement> headers = HelpersMethod.FindByElements(driver, "xpath", "//div[@id='GridConfigurationConfiguration']/descendant::th/descendant::span[@class='k-column-title']");
             for (WebElement head : headers)
             {
@@ -1265,11 +1269,16 @@ public class GridConfigurationPage
                     break;
                 }
             }
+            new WebDriverWait(driver,Duration.ofMillis(10000)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("GridConfigurationConfiguration"))));
+            new WebDriverWait(driver,Duration.ofMillis(10000)).until(ExpectedConditions.visibilityOfElementLocated(By.id("GridConfigurationConfiguration")));
+            Thread.sleep(1000);
             //Click on Check box of Is def sort column
             if(HelpersMethod.IsExists("//div[@id='GridConfigurationConfiguration']/descendant::tr[contains(@class,'k-master-row')][" + rowNum + "]/descendant::td[" + i + "]/input",driver))
             {
                 WebElement checkBox = HelpersMethod.FindByElement(driver, "xpath", "//div[@id='GridConfigurationConfiguration']/descendant::tr[contains(@class,'k-master-row')][" + rowNum + "]/descendant::td[" + i + "]/input");
-                HelpersMethod.JScriptClick(driver, checkBox, 20000);
+                HelpersMethod.ScrollElement(driver,checkBox);
+                act.moveToElement(checkBox).build().perform();
+                HelpersMethod.JScriptClick(driver, checkBox, 50000);
                 exists = true;
             }
 

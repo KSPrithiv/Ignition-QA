@@ -79,7 +79,7 @@ public class QuotePage
             if (EndCalender.isDisplayed())
             {
                 HelpersMethod.ActClick(driver, EndCalender, 10000);
-                exists = true;
+                 exists = true;
             }
             Assert.assertEquals(exists, true);
         }
@@ -102,8 +102,8 @@ public class QuotePage
 //            exists = true;
 //            Assert.assertEquals(exists, true);
 
-        new WebDriverWait(driver,Duration.ofMillis(10000)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("quoteEndDate-popup-id"))));
-        new WebDriverWait(driver,Duration.ofMillis(10000)).until(ExpectedConditions.visibilityOfElementLocated(By.id("quoteEndDate-popup-id")));
+        new WebDriverWait(driver,Duration.ofMillis(10000)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class,'calendar-monthview')]"))));
+        new WebDriverWait(driver,Duration.ofMillis(10000)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(@class,'calendar-monthview')]")));
 
         OrderEntryPage oepa=new OrderEntryPage(driver,scenario);
             String deliverydate=oepa.Read_DeliveryDate2();

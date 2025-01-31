@@ -40,10 +40,10 @@ public class DMOEPageStep1
     {
         dmoePage = new DMOEPage(driver, scenario);
         dmoePage.selectFirstCustomerAccountNo();
-        dmoePage.SelectAccountCheckBox();
+        //dmoePage.SelectAccountCheckBox();
         dmoePage.clearAccountNumberInDialogbox();
         dmoePage.selectSecondCustomerAccountNo();
-        dmoePage.SelectAccountCheckBox();
+        //dmoePage.SelectAccountCheckBox();
         dmoePage.AccountPopupOK();
         dmoePage.SynchronizationPopup();
         dmoePage.ValidateSelectDeliveryDate();
