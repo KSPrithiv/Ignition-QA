@@ -661,7 +661,7 @@ public class AllOrderPage
         {
             WebElement searchBox=HelpersMethod.FindByElement(driver,"xpath","//div[@class='k-window k-dialog']/descendant::input[@id='customerAccountIndexSearchBar']");
             HelpersMethod.ActSendKey(driver,searchBox,10000,Acc);
-            HelpersMethod.FindByElement(driver,"xpath","//div[@class='k-window k-dialog']/descendant::input[@id='customerAccountIndexSearchBar']//preceding-sibling::*[local-name()='svg']").click();
+            HelpersMethod.FindByElement(driver,"xpath","//div[@class='k-window k-dialog']/descendant::input[@id='customerAccountIndexSearchBar']/preceding-sibling::*[local-name()='svg']").click();
         }
 
         if (HelpersMethod.IsExists("//div[contains(@class,'k-window k-dialog')]/descendant::div[@class='i-no-data']", driver))

@@ -48,6 +48,31 @@ Feature: scenarios for User and Accounts admin feature, for Grid related setting
       |Main menu|Sub menu       |Grid type  |
       |Grids    |Configuration  |Order Entry|
 
+  @SortingOfColumnsAdminSideClientSideVerifyForSorting
+  Scenario Outline: Test scenario to make admin side setting for Is def sort String column and verify the same in client side for sorting
+    Given User is on Home Page for Admin setting to select Admin option
+    Then User refreshes page Clicks on Permissions by drop down to select Customer Account# grid
+    And User should enter menu "<Main menu>" in search bar and select "<Sub menu>"
+    Then User should validate that it is Grid Configuration page, then click on Grid type Drop Down
+    And User should select Grid type "<Grid type>" from the drop down
+    And User should Click and select "<Grid name>" from grids dropdown
+    Then User selects "<Sort Column>" and "<Order to sort>" in Admin side
+    Then User logout from Admin page and log in with client credentials
+    Then User navigates to Order entry page and in new order entry page enter "<PO>" and Quick entry product details for verifying sorting order for "<Sort Column>"
+      |  1 | 3 |
+      |  1 | 1 |
+      |  1 | 2 |
+      |  2 | 1 |
+    Then User Clicks on Permissions by drop down to select Customer Account# for grids
+    And User should navigate back to "<Main menu>" via search bar and select "<Sub menu>"
+    Then User should validate that it is Grid Configuration page, then click on Grid type Drop Down
+    And User should select Grid type "<Grid type>" from the drop down
+    And User should Click and select "<Grid name>" from grids dropdown
+    Then User deselects "<Sort Column>" and "<Order to sort>" in Admin side
+    Examples:
+      |PO    |Main menu|Sub menu       |Grid type  | Grid name| Sort Column    | Order to sort |
+      |PO123 |Grids    |Configuration  |Order Entry| Main     | Description    |       DESC    |
+
   @AddGrid
   Scenario Outline: Test scenario for adding new grid
     Given User is on Home Page for Admin setting to select Admin option
@@ -129,30 +154,6 @@ Feature: scenarios for User and Accounts admin feature, for Grid related setting
       |Main menu|Sub menu       |Grid type  |Grid name  |Grid name1        |Grid option |
       |Grids    |Configuration  |Order Entry|New        |New - Copy        |Delete      |
 
-  @SortingOfColumnsAdminSideClientSideVerifyForSorting
-  Scenario Outline: Test scenario to make admin side setting for Is def sort String column and verify the same in client side for sorting
-    Given User is on Home Page for Admin setting to select Admin option
-    Then User refreshes page Clicks on Permissions by drop down to select Customer Account# grid
-    And User should enter menu "<Main menu>" in search bar and select "<Sub menu>"
-    Then User should validate that it is Grid Configuration page, then click on Grid type Drop Down
-    And User should select Grid type "<Grid type>" from the drop down
-    And User should Click and select "<Grid name>" from grids dropdown
-    Then User selects "<Sort Column>" and "<Order to sort>" in Admin side
-    Then User logout from Admin page and log in with client credentials
-    Then User navigates to Order entry page and in new order entry page enter "<PO>" and Quick entry product details for verifying sorting order for "<Sort Column>"
-      |  1 | 3 |
-      |  1 | 1 |
-      |  1 | 2 |
-      |  2 | 1 |
-    Then User Clicks on Permissions by drop down to select Customer Account# for grids
-    And User should navigate back to "<Main menu>" via search bar and select "<Sub menu>"
-    Then User should validate that it is Grid Configuration page, then click on Grid type Drop Down
-    And User should select Grid type "<Grid type>" from the drop down
-    Then User deselects "<Sort Column>" and "<Order to sort>" in Admin side
-    Examples:
-     |PO    |Main menu|Sub menu       |Grid type  | Grid name| Sort Column    | Order to sort |
-     |PO123 |Grids    |Configuration  |Order Entry| Main     | Description    |       DESC    |
-
   @SortingOfProductColumnsAdminSideClientSideVerifyForSorting
   Scenario Outline: Test scenario to make admin side setting for Is def sort column and verify the same in client side for sorting of product# column
     Given User is on Home Page for Admin setting to select Admin option
@@ -172,7 +173,8 @@ Feature: scenarios for User and Accounts admin feature, for Grid related setting
     And User should navigate back to "<Main menu>" via search bar and select "<Sub menu>"
     Then User should validate that it is Grid Configuration page, then click on Grid type Drop Down
     And User should select Grid type "<Grid type>" from the drop down
-   # Then User resets the label name to previous label, in grid setting
+    And User should Click and select "<Grid name>" from grids dropdown
+    Then User deselects "<Sort Column>" and "<Order to sort>" in Admin side
     Examples:
       |PO    |Main menu|Sub menu       |Grid type  | Grid name| Sort Column    | Order to sort |
       |PO123 |Grids    |Configuration  |Order Entry| Main     | Product #      |       DESC    |

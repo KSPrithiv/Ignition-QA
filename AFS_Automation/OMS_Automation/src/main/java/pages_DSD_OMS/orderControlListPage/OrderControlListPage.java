@@ -1814,7 +1814,7 @@ public class OrderControlListPage
             }
             if(HelpersMethod.IsExists("//tr[contains(@class,'k-filter-row')]/descendant::th[contains(@aria-label,'Filter') and @aria-colindex='"+i+"']/div[@class='cp-grid-hide-filter']",driver))
             {
-                scenario.log("FILTER FOR CALL BACK TIME HAS BEEN DISABLED");
+                scenario.log("FILTER FOR CALL BACK TIME HAS BEEN DISPLAYED");
                 exists=true;
             }
             else

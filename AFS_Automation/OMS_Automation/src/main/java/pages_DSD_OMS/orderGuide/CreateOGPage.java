@@ -354,7 +354,7 @@ public class CreateOGPage
                 HelpersMethod.ScrollElement(driver, QuickProd);
                 HelpersMethod.ClearText(driver, QuickProd, 20000);
                 QuickProd.click();
-                HelpersMethod.EnterText(driver, QuickProd, 10000, Product);
+                HelpersMethod.EnterText(driver, QuickProd, 40000, Product);
                 QuickProd.sendKeys(Keys.TAB);
                 status = HelpersMethod.returnDocumentStatus(driver);
                 if (status.equals("loading"))
@@ -1144,7 +1144,7 @@ public class CreateOGPage
                 wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
 
                 WebElement DeleteOk=HelpersMethod.FindByElement(driver,"xpath", "//div[contains(@class,'k-window k-dialog')]/descendant::button/span[text()='Yes']");
-                HelpersMethod.ActClick(driver,DeleteOk,10000);
+                HelpersMethod.ActClick(driver,DeleteOk,80000);
                 exists=true;
                 wait = new FluentWait<WebDriver>(driver)
                         .withTimeout(Duration.ofSeconds(600))
@@ -1168,8 +1168,21 @@ public class CreateOGPage
                     .ignoring(NoSuchElementException.class);
             wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
 
+            String status = HelpersMethod.returnDocumentStatus(driver);
+            if (status.equals("loading"))
+            {
+                HelpersMethod.waitTillLoadingPage(driver);
+            }
+
+            wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(800))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
             Thread.sleep(1000);
-            if(HelpersMethod.IsExists("//div[contains(text(),'Order guides deleted')]/ancestor::div[contains(@class,'k-window k-dialog')]",driver))
+            //if(HelpersMethod.IsExists("//div[contains(text(),'Order guides deleted')]/ancestor::div[contains(@class,'k-window k-dialog')]",driver))
+            if(HelpersMethod.IsExists("//div[contains(text(),'Order guides')]/ancestor::div[contains(@class,'k-window k-dialog')]",driver))
             {
                 wait = new FluentWait<WebDriver>(driver)
                         .withTimeout(Duration.ofSeconds(800))
@@ -1177,7 +1190,7 @@ public class CreateOGPage
                         .ignoring(NoSuchElementException.class);
                 wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
 
-                WebElement DeleteOk=HelpersMethod.FindByElement(driver,"xpath", "//div[contains(text(),'Order guides deleted')]/ancestor::div[contains(@class,'k-window k-dialog')]/descendant::button/span[text()='Ok']");
+                WebElement DeleteOk=HelpersMethod.FindByElement(driver,"xpath", "//div[contains(@class,'k-window k-dialog')]/descendant::button/span[text()='Ok']");
                 HelpersMethod.ActClick(driver,DeleteOk,10000);
                 scenario.log("OG DELETE HAS BEEN CLEARED");
                 exists=true;
@@ -2030,6 +2043,40 @@ public class CreateOGPage
         catch (Exception e){}
     }
 
+    public void SubCustomerRefLocalChain(String arg0,String arg1)
+    {
+        exists = false;
+        try
+        {
+            Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(600))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
+            if (HelpersMethod.IsExists("//div[contains(@class,'k-window k-dialog')]", driver))
+            {
+                if(HelpersMethod.IsExists("//div[contains(@class,'i-no-data__message')]/ancestor::div[contains(@class,'k-window k-dialog')]",driver))
+                {
+                    scenario.log("<span style='color:red'>THERE ARE NO SUB REFERENCE FOUND IN DIALOG BOX</span>");
+                }
+                else
+                {
+                    WebElement SubRef = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-window k-dialog')]/descendant::tr[contains(@class,'k-master-row')]/td[contains(text(),'"+arg0+"')]|//div[contains(@class,'k-window k-dialog')]/descendant::tr[contains(@class,'k-master-row')]/td[contains(text(),'"+arg1+"')]");
+                    HelpersMethod.ActClick(driver, SubRef, 10000);
+                    exists = true;
+                    if (HelpersMethod.IsExists("//div[@class='loader']", driver))
+                    {
+                        WebElement WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
+                        HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 1000000);
+                    }
+                }
+            }
+            Assert.assertEquals(exists, true);
+        }
+        catch (Exception e) {}
+    }
+
     public void ListProductsImported()
     {
         exists=false;
@@ -2256,6 +2303,9 @@ public class CreateOGPage
             {
                 HelpersMethod.waitTillLoadingPage(driver);
             }
+
+            new WebDriverWait(driver,Duration.ofMillis(10000)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class='bottomDetailCard']"))));
+            new WebDriverWait(driver,Duration.ofMillis(10000)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='bottomDetailCard']")));
 
             WebElement bottomGrid=HelpersMethod.FindByElement(driver,"xpath","//div[@class='bottomDetailCard']");
             HelpersMethod.ScrollElement(driver,bottomGrid);

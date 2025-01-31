@@ -155,7 +155,7 @@ public class DMOEPageStep
         {
             dmoePage = new DMOEPage(driver, scenario);
             dmoePage.SelectAccountNo();
-            dmoePage.SelectAccountCheckBox();
+            //dmoePage.SelectAccountCheckBox();
             dmoePage.AccountPopupOK();
             dmoePage.SynchronizationPopup();
             dmoePage.ValidateSelectDeliveryDate();

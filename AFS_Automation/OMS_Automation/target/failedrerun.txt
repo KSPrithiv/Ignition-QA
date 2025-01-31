@@ -1,0 +1,2 @@
+file:src/test/resources/features_DSD_OMS/DisconnectedModeOEFeature/DisconnectedModeFeature1.feature:125
+file:src/test/resources/features_DSD_OMS/DisconnectedModeOEFeature/DisconnectedModeFeatureDSD.feature:11

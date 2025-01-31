@@ -435,6 +435,7 @@ public class OrderGuidePageStep
     {
         exists=false;
         orderGuidePage = new OrderGuidePage(driver, scenario);
+        orderGuidePage.ValidateOG();
         exists=orderGuidePage.OGSearchBox(Og);
         Assert.assertEquals(exists,true);
         orderGuidePage.SearchOGSelect(Og);

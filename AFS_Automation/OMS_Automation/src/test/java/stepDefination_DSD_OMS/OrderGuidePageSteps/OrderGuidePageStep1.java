@@ -372,13 +372,14 @@ public class OrderGuidePageStep1
         orderGuidePage.ClickCustomerAccount_No();
     }
 
-    @Then("User Clicks on Plus button and select {string} from drop down")
-    public void userClicksOnPlusButtonAndSelectFromDropDown(String arg0) throws InterruptedException
+    @Then("User Clicks on Plus button and select {string} from drop down and select {string} or {string}")
+    public void userClicksOnPlusButtonAndSelectFromDropDown(String arg0,String arg1,String arg2) throws InterruptedException
     {
         createOGPage=new CreateOGPage(driver,scenario);
         createOGPage.ClickPlus();
         createOGPage.Select_Chain(arg0);
-        createOGPage.selectChainFromPopup();
+        createOGPage.SubCustomerRefLocalChain(arg1,arg2);
+        //createOGPage.selectChainFromPopup();
     }
 
     @Then("User should navigate back to Product tab in OG")

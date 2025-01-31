@@ -102,11 +102,11 @@ public class OrderGuidePage {
         {
             HelpersMethod.waitTillLoadingPage(driver);
         }
-        if (HelpersMethod.IsExists("//div[@class='loader']", driver))
-        {
-            WebElement WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@class='loader']");
-            HelpersMethod.waitTillLoadingWheelDisappears(driver, WebEle, 100000);
-        }
+        wait = new FluentWait<WebDriver>(driver)
+                .withTimeout(Duration.ofSeconds(600))
+                .pollingEvery(Duration.ofSeconds(2))
+                .ignoring(NoSuchElementException.class);
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='orderGuides-container']")));
         try
         {
             if (HelpersMethod.IsExists("//div[contains(@class,'k-window k-dialog')]", driver)) {
