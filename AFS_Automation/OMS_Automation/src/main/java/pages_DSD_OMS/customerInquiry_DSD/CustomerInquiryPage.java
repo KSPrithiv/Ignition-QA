@@ -314,7 +314,8 @@ public class CustomerInquiryPage
             storeValue=HelpersMethod.JSGetValueEle(driver,store_Input,10000);
             if(storeValue.equals(""))
             {
-                Store = RandomValues.generateRandomNumber(8);
+                //Store = RandomValues.generateRandomNumber(8);
+                Store=RandomValues.generateRandomAlphaNumeric(6);
                 act.moveToElement(store_Input).click().build().perform();
                 HelpersMethod.EnterText(driver, store_Input, 10000, Store);
                 scenario.log("STORE # IS: " + Store);
@@ -336,7 +337,8 @@ public class CustomerInquiryPage
             departValue=HelpersMethod.JSGetValueEle(driver,store_Input,10000);
             if(departValue.equals(""))
             {
-                Dept = RandomValues.generateRandomNumber(6);
+                //Dept = RandomValues.generateRandomNumber(6);
+                Dept=RandomValues.generateRandomAlphaNumeric(6);
                 act.moveToElement(dept_Input).click().build().perform();
                 HelpersMethod.EnterText(driver, dept_Input, 10000, Dept);
                 scenario.log("DEPARTMENT NUMBER ENTERED IS " + Dept);
@@ -748,6 +750,7 @@ public class CustomerInquiryPage
             {
                 WebEle=HelpersMethod.FindByElement(driver,"id","customerInquiryCopyBtn");
                 HelpersMethod.ScrollUpScrollBar(driver);
+                HelpersMethod.ScrollUpScrollBar(driver);
                 HelpersMethod.ScrollTillElementVisible(driver,WebEle);
                 HelpersMethod.JScriptClick(driver, WebEle, 20000);
 
@@ -815,6 +818,12 @@ public class CustomerInquiryPage
                         .pollingEvery(Duration.ofSeconds(2))
                         .ignoring(NoSuchElementException.class);
                 wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
+                if(HelpersMethod.IsExists("//div[contains(text(),'Data for generating customer key is invalid')]/ancestor::div[@class='k-window k-dialog']",driver))
+                {
+                    HelpersMethod.FindByElement(driver,"xpath","//div[contains(text(),'Data for generating customer key is invalid')]/ancestor::div[@class='k-window k-dialog']/descendant::button").click();
+                    exists=false;
+                }
 
                if(HelpersMethod.IsExists("//div[contains(text(),'The information has been saved successfully')]/ancestor::div[contains(@class,'k-window k-dialog')]",driver))
                 {

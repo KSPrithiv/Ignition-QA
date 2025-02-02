@@ -49,5 +49,3 @@ Feature: Product reference
       | OG        |
       | SampleOG  |
 
-
-

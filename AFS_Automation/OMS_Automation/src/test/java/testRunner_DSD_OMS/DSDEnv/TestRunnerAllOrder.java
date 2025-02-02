@@ -7,7 +7,6 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Optional;
 import org.testng.annotations.Parameters;
 import util.TestBase;
-import util.readPropertiesFile;
 
 import javax.mail.MessagingException;
 import java.io.IOException;
@@ -43,8 +42,7 @@ public class TestRunnerAllOrder extends AbstractTestNGCucumberTests
     }
 
     @AfterClass
-    public static void afterclass() throws InterruptedException, MessagingException, IOException
-    {
+    public static void afterclass() throws InterruptedException, MessagingException, IOException, IOException {
         Thread.sleep(500);
         //MailSend.sendMail();
         TestBase.CloseBrowser();

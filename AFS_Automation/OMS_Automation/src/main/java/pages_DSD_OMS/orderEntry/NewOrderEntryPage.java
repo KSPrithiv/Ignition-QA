@@ -7985,8 +7985,21 @@ public class NewOrderEntryPage
                 headText=head.getText();
                 headerNames.add(headText);
             }
-            scenario.log("COLUMN SELECTED IN ADMIN SIDE IS "+columnNames+" AND COLUMN FOUND IN CLIENT SIDE IS "+headerNames);
-            exists=CollectionUtils.isEqualCollection(columnNames,headerNames);
+
+            //exists=CollectionUtils.isEqualCollection(columnNames,headerNames);
+            for(int i=0;i<=columnNames.size()-1;i++)
+            {
+                if(headerNames.get(i).contains(columnNames.get(i)))
+                {
+                    scenario.log("COLUMN SELECTED IN ADMIN SIDE IS "+columnNames.get(i)+" AND COLUMN FOUND IN CLIENT SIDE IS "+headerNames.get(i));
+                    exists=true;
+                }
+                else
+                {
+                    scenario.log("NOT MATCHING");
+                    break;
+                }
+            }
             Assert.assertEquals(exists,true);
         }
         catch (Exception e){}

@@ -1228,6 +1228,7 @@ public class GridConfigurationPage
         String headText;
         String colText;
         Actions act=new Actions(driver);
+        rowNum=0;
         try
         {
             new WebDriverWait(driver,Duration.ofMillis(10000)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("GridConfigurationConfiguration"))));
