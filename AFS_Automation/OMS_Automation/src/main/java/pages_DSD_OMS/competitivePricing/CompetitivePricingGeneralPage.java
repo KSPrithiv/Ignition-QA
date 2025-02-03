@@ -1034,7 +1034,7 @@ public class CompetitivePricingGeneralPage
                 WebEle = HelpersMethod.FindByElement(driver, "xpath", "//tr[contains(@class,'k-master-row')][1]/descendant::input[contains(@class,'k-checkbox')]");
                 HelpersMethod.ScrollElement(driver, WebEle);
                 HelpersMethod.ActClick(driver, WebEle, 20000);
-                scenario.log("1ST PRODUCT IS DELETED FROM COMPETITIVE PRICING");
+                scenario.log("1ST PRODUCT IS SELECTED FROM COMPETITIVE PRICING");
                 exists=true;
 
                 wait = new FluentWait<>(driver)
@@ -1060,12 +1060,12 @@ public class CompetitivePricingGeneralPage
            if(DeleteBut.isDisplayed()&&DeleteBut.isEnabled())
            {
                HelpersMethod.ClickBut(driver, DeleteBut, 10000);
+               scenario.log("PRODUCT HAS BEEN DELETED FROM COMPETITIVE PRICING");
                Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
                        .withTimeout(Duration.ofSeconds(600))
                        .pollingEvery(Duration.ofSeconds(2))
                        .ignoring(NoSuchElementException.class);
                wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
-
                exists = true;
            }
             Assert.assertEquals(exists,true);

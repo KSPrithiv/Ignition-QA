@@ -60,6 +60,7 @@ Feature: Competitive Pricing
     When User should confirm that he is in Competitor pricing page
     And User selects Customer reference "<CustRef>" "<CustRef1>" and Select customer Account#
     Then User clicks on competitor drop down and select the competitor based on previously created competitor
+    And User search for product using Add filter
     And User selects one of the product from grid and delete it and click on save button
     Examples:
       | CustRef            |CustRef1  |

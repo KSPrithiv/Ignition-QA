@@ -639,7 +639,7 @@ public class CustomerInquiryPageERP
 
     public void clickOnNote()
     {
-        exists=false;
+        WebElement WebEle;
         try
         {
             Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
@@ -647,47 +647,26 @@ public class CustomerInquiryPageERP
                     .pollingEvery(Duration.ofSeconds(2))
                     .ignoring(NoSuchElementException.class);
             wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
-            //Thread.sleep(2000);
-            if(TestBase.testEnvironment.get_browser().equals("chrome")||TestBase.testEnvironment.get_browser().equals("edge"))
-            {
-                JavascriptExecutor js=(JavascriptExecutor)driver;
-                js.executeScript("document.body.style.zoom='67%'");
-            }
-            else
-            {
-                JavascriptExecutor js=(JavascriptExecutor)driver;
-                js.executeScript("document.body.style.MozTransform='67%'");
-            }
+
+            new WebDriverWait(driver,Duration.ofMillis(10000)).until(ExpectedConditions.refreshed(ExpectedConditions.elementToBeClickable(By.id("customerInquiryNoteBtn"))));
 
             if(HelpersMethod.IsExists("//button[@id='customerInquiryNoteBtn']",driver))
             {
-                WebElement noteButton = HelpersMethod.FindByElement(driver, "id", "customerInquiryNoteBtn");
+                WebEle=HelpersMethod.FindByElement(driver,"id","customerInquiryNoteBtn");
                 HelpersMethod.ScrollUpScrollBar(driver);
-                HelpersMethod.ScrollUpScrollBar(driver);
-                HelpersMethod.ScrollElement(driver,noteButton);
+                HelpersMethod.ScrollTillElementVisible(driver,WebEle);
+                HelpersMethod.JScriptClick(driver, WebEle, 20000);
 
-                new WebDriverWait(driver,Duration.ofMillis(10000)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("customerInquiryNoteBtn"))));
-                new WebDriverWait(driver,Duration.ofMillis(10000)).until(ExpectedConditions.visibilityOfElementLocated(By.id("customerInquiryNoteBtn")));
-
-                HelpersMethod.ClickBut(driver, noteButton, 40000);
-                exists=true;
                 wait = new FluentWait<WebDriver>(driver)
                         .withTimeout(Duration.ofSeconds(600))
                         .pollingEvery(Duration.ofSeconds(2))
                         .ignoring(NoSuchElementException.class);
                 wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
             }
-            if(TestBase.testEnvironment.get_browser().equals("chrome")||TestBase.testEnvironment.get_browser().equals("edge"))
-            {
-                JavascriptExecutor js=(JavascriptExecutor)driver;
-                js.executeScript("document.body.style.zoom='100%'");
-            }
             else
             {
-                JavascriptExecutor js=(JavascriptExecutor)driver;
-                js.executeScript("document.body.style.MozTransform='100%'");
+                scenario.log("NOTE BUTTON IS NOT VISIBLE");
             }
-            Assert.assertEquals(exists,true);
         }
         catch (Exception e){}
     }

@@ -69,13 +69,13 @@ public class userAndAdmin_GeneralPage
     public void enablePendingRegistrationToggle()
     {
         exists=false;
-        String result=null;
+        String result;
         try
         {
             result=pendingRegistration.getAttribute("aria-checked");
             if(result.equals("false"))
             {
-                HelpersMethod.ClickBut(driver, pendingRegistration, 1000);
+                HelpersMethod.ClickBut(driver, pendingRegistration, 10000);
                 scenario.log("PENDING REGISTRATION TAGGLE BUTTON ENABLED");
             }
         }
