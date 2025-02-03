@@ -149,7 +149,7 @@ Feature: Order Guide1
     Then User enters OG "<OG>" Description in search box
     And User should navigate to CustomerAllocation tab
     Then Select CustomerAllocation check box and click on Delete button
-    Then User Clicks on Plus button and select "<option>" from drop down
+    Then User Clicks on Plus button and select "<option>" from drop down and select "<Reference1>" or "<Reference2>"
     Then User should navigate back to Product tab in OG
     And User validates that previously added products are removed from product grid
     Then User clicks on Add product button and select Catalog from drop down
@@ -160,8 +160,8 @@ Feature: Order Guide1
     And Clear filter to display both active and inactive OG
     Then User enters OG Description "<OG>" in search box and Delete the OG verify same in OG grid
     Examples:
-      |  OG              |   option      |
-      | ChangeNational   | Local chain|
+      |  OG              |   option      |  Reference1  |  Reference2              |
+      | ChangeNational   | Local chain   |     85C      |  WENDYS #0212 COLLEGE DR |
 
   @OGHistorical
   Scenario Outline: Test scenario for creating Historical order guide

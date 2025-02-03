@@ -19,6 +19,7 @@ import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import org.testng.Assert;
 import pages_DSD_OMS.allOrder.AllOrderPage;
 import pages_DSD_OMS.login.HomePage;
 import pages_DSD_OMS.login.LoginPage;
@@ -785,5 +786,34 @@ public class AllOrdersPageStep
         allOrder=new AllOrderPage(driver,scenario);
         allOrder.ValidateAllOrder();
         allOrder.openOrderFilter(orderStatus.get(0).get(0));
+    }
+
+    @And("User finds sum based on group")
+    public void userFindsSumBasedOnGroup()
+    {
+        exists=false;
+        Actions act1=new Actions(driver);
+        String groupText;
+        int i=0;
+        try
+        {
+            List<WebElement> groupValues=HelpersMethod.FindByElements(driver,"xpath","//tr[contains(@class,'k-grouping-row')]/td/span");
+            if(!groupValues.isEmpty())
+            {
+                scenario.log("GROUPING HAS BEEN DONE AND VALUES FOUND ARE");
+                for(WebElement groupVal:groupValues)
+                {
+                    i++;
+                    act1.moveToElement(groupVal).build().perform();
+                    groupText=groupVal.getText();
+                    String sum=HelpersMethod.FindByElement(driver,"xpath","//tr[@class='k-table-row k-group-footer']["+i+"]/descendant::td[@class='group-footer-cell'][1]").getText();
+                    String sum1=HelpersMethod.FindByElement(driver,"xpath","//tr[@class='k-table-row k-group-footer']["+i+"]/descendant::td[@class='group-footer-cell'][1]").getText();
+                    scenario.log("FOR GROUPING "+groupText+" SUM FOUND FOR QTY "+sum+" SUM FOUND FOR TOTAL "+sum1);
+                    exists = true;
+                }
+            }
+            Assert.assertEquals(exists,true);
+        }
+        catch (Exception e){}
     }
 }

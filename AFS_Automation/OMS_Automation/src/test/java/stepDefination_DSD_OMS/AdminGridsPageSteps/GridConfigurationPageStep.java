@@ -1081,4 +1081,5 @@ public class GridConfigurationPageStep
                 .ignoring(NoSuchElementException.class);
         wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
     }
+
 }

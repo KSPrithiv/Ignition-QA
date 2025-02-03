@@ -23,6 +23,7 @@ import java.io.IOException;
                  "src/test/resources/features_DSD_OMS/AdminToClientNavigation/orderControlListAdminToClientFeature.feature",
                  "src/test/resources/features_DSD_OMS/AdminToClientNavigation/orderEntryAdminToClientFeature.feature",
                  "src/test/resources/features_DSD_OMS/AdminToClientNavigation/orderEntryAdminToClientFeature1.feature",
+                 "src/test/resources/features_DSD_OMS/AdminToClientNavigation/orderEntryAdminToClientFeatureERP.feature",
                  "src/test/resources/features_DSD_OMS/AdminToClientNavigation/webOrderingAdminToClientFeature.feature",
                  "src/test/resources/features_DSD_OMS/AdminToClientNavigation/standingOrderAdminToClientFeature.feature",
                  "src/test/resources/features_DSD_OMS/AdminToClientNavigation/loginPageAdminToClientFeature.feature",
