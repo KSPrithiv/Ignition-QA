@@ -59,10 +59,10 @@ public class CompetitivePricingGeneralPage
     @FindBy(xpath="//button/span[contains(text(),'Delete competitor data')]")
     private WebElement DeleteCompetitorData;
 
-    @FindBy(xpath="//button/span[text()='Save']")
+    @FindBy(id="saveEditButton")
     private WebElement SaveBut;
 
-    @FindBy(xpath="//button/span[text()='Cancel']")
+    @FindBy(id="cancelEditButton")
     private WebElement CancelBut;
 
     @FindBy(id="plus")
@@ -680,13 +680,15 @@ public class CompetitivePricingGeneralPage
         {
             new WebDriverWait(driver,Duration.ofMillis(40000)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("card1"))));
             new WebDriverWait(driver,Duration.ofMillis(40000)).until(ExpectedConditions.visibilityOfElementLocated(By.id("card1")));
-            new WebDriverWait(driver,Duration.ofMillis(40000)).until(ExpectedConditions.elementToBeClickable(By.id("card1")));
+            new WebDriverWait(driver,Duration.ofMillis(40000)).until(ExpectedConditions.elementToBeClickable(By.id("saveEditButton")));
 
+            Thread.sleep(2000);
             if(SaveBut.isDisplayed() && SaveBut.isEnabled())
             {
                 HelpersMethod.ScrollUpScrollBar(driver);
                 HelpersMethod.ScrollUpScrollBar(driver);
-                HelpersMethod.ClickBut(driver, SaveBut, 10000);
+                //HelpersMethod.ScrollTillElementVisible(driver,SaveBut);
+                HelpersMethod.ClickBut(driver, SaveBut, 40000);
 
                 Wait<WebDriver> wait = new FluentWait<>(driver)
                         .withTimeout(Duration.ofSeconds(600))
@@ -694,7 +696,7 @@ public class CompetitivePricingGeneralPage
                         .ignoring(NoSuchElementException.class);
                 wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
 
-                Thread.sleep(1000);
+                Thread.sleep(2000);
                 if (HelpersMethod.IsExists("//span[contains(text(),'Save competitive')]/ancestor::div[@class='k-window k-dialog']", driver))
                 {
                    wait = new FluentWait<>(driver)
@@ -1032,7 +1034,7 @@ public class CompetitivePricingGeneralPage
             if(HelpersMethod.IsExists("//tr[contains(@class,'k-master-row')][1]/descendant::input[contains(@class,'k-checkbox')]",driver))
             {
                 WebEle = HelpersMethod.FindByElement(driver, "xpath", "//tr[contains(@class,'k-master-row')][1]/descendant::input[contains(@class,'k-checkbox')]");
-                HelpersMethod.ScrollElement(driver, WebEle);
+                //HelpersMethod.ScrollElement(driver, WebEle);
                 HelpersMethod.ActClick(driver, WebEle, 20000);
                 scenario.log("1ST PRODUCT IS SELECTED FROM COMPETITIVE PRICING");
                 exists=true;
@@ -1436,6 +1438,22 @@ public class CompetitivePricingGeneralPage
                        .ignoring(NoSuchElementException.class);
                wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
            }
+        }
+        catch (Exception e){}
+    }
+
+    public void clear_Addfilter()
+    {
+        exists=false;
+        try
+        {
+            if(HelpersMethod.IsExists("//button[@class='i-filter-tag__clear']",driver))
+            {
+                WebElement clearButton = HelpersMethod.FindByElement(driver, "xpath", "//button[@class='i-filter-tag__clear']");
+                HelpersMethod.ClickBut(driver, clearButton, 40000);
+                exists=true;
+            }
+            Assert.assertEquals(exists,true);
         }
         catch (Exception e){}
     }

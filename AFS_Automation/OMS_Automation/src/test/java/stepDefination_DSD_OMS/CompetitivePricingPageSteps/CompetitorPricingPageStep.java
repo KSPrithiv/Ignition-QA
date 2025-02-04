@@ -148,6 +148,7 @@ public class CompetitorPricingPageStep
         competitivePricingGeneralPage.ValidateCompetitorGeneral();
         competitivePricingGeneralPage.Click_CheckBox();
         competitivePricingGeneralPage.Click_DeleteProd();
+        competitivePricingGeneralPage.clear_Addfilter();
         competitivePricingGeneralPage.Click_SaveButton();
     }
 
