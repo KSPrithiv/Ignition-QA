@@ -49,7 +49,7 @@
 		<!-- nav-right -->
 		<ul id='nav-mobile' class='right hide-on-med-and-down nav-right'>
 			<a href='#!'>
-			<span class='label blue darken-3 suite-start-time'>Feb 3, 2025 06:37:01 PM</span>
+			<span class='label blue darken-3 suite-start-time'>Feb 4, 2025 12:45:35 PM</span>
 			</a>
 		</ul>
 	</div>
@@ -76,26 +76,11 @@
 				<i class='material-icons'>local_offer</i> Category
 				</a>
 				<ul id='category-toggle' class='dropdown-content'>
-					<li><a href='#'>@EditStandingPO</a></li>
-					<li><a href='#'>@Marketing</a></li>
-					<li><a href='#'>@Pricing</a></li>
-					<li><a href='#'>@CustomerNameRequiredPopup</a></li>
-					<li><a href='#'>@Ignition</a></li>
-					<li><a href='#'>@OrderEntry</a></li>
-					<li><a href='#'>@Credit</a></li>
-					<li><a href='#'>@BillingInfo</a></li>
-					<li><a href='#'>@MultipleStandingPO</a></li>
-					<li><a href='#'>@ARRules</a></li>
-					<li><a href='#'>@MainCustInq</a></li>
-					<li><a href='#'>@LoadCustomerDetails</a></li>
-					<li><a href='#'>@SearchPO</a></li>
-					<li><a href='#'>@AddNote</a></li>
-					<li><a href='#'>@SystemDefaultRealTimeChanges</a></li>
-					<li><a href='#'>@Shipping</a></li>
-					<li><a href='#'>@CancelCopy</a></li>
-					<li><a href='#'>@CreateCopyForExistingCustomer</a></li>
-					<li><a href='#'>@DeleteStandingPO</a></li>
-					<li><a href='#'>@CopyCustomerInq</a></li>
+					<li><a href='#'>@DragAndDrop</a></li>
+					<li><a href='#'>@CancelInventroyDetails</a></li>
+					<li><a href='#'>@AddingProductsToInventory</a></li>
+					<li><a href='#'>@RunningTotal</a></li>
+					<li><a href='#'>@QuickEntryInventroy</a></li>
 					<li class='divider'></li>
 					<li class='clear'><a href='#!' clear='true'>Clear Filters</a></li>
 				</ul>
@@ -156,7 +141,7 @@
                 </div>
                 <div class='block text-small'>
                     <span class='tooltipped' data-position='top' data-tooltip='100%'>
-                    <span class='strong'>20</span> scenarios passed</span>
+                    <span class='strong'>5</span> scenarios passed</span>
                 </div>
                 <div class='block text-small'>
                     <span class='strong tooltipped' data-position='top' data-tooltip='0%'>
@@ -176,7 +161,7 @@
                 </div>
                 <div class='block text-small'>
                     <span class='tooltipped' data-position='top' data-tooltip='100%'>
-                    <span class='strong'>170</span> steps passed</span>
+                    <span class='strong'>49</span> steps passed</span>
                 </div>
                 <div class='block text-small'>
                     <span class='strong tooltipped' data-position='top' data-tooltip='0%'>
@@ -205,8 +190,8 @@
 			<ul id='test-collection' class='test-collection'>
 				<li class='test displayed active has-leaf pass' status='pass' bdd='true' test-id='1'>
 					<div class='test-heading'>
-						<span class='test-name'>Customer Inq in ERP</span>
-						<span class='test-time'>Feb 3, 2025 06:37:14 PM</span>
+						<span class='test-name'>Inventory</span>
+						<span class='test-time'>Feb 4, 2025 12:45:47 PM</span>
 						<span class='test-status right pass'>Pass</span>
 					</div>
 					<div class='test-content hide'>
@@ -216,1413 +201,367 @@
 	<a class="btn-floating waves-effect waves-light skip blue" title="skip"><i class='material-icons'>redo</i></a>
 	<a class="btn-floating waves-effect waves-light clear grey" title="clear"><i class='material-icons'>clear</i></a>
 </div>
-	<div class='test-desc'>  All the scenarios that performs all the scenarios related to Customer inq(ERP)</div>
+	<div class='test-desc'>  Used for performing different operations on inventory tab</div>
 
 <div class='scenario node' test-id='2' status='pass'>
 
-	<span class='duration right label'>00 01 10.326</span>
+	<span class='duration right label'>00 01 55.379</span>
 	<div class="bdd-test">
-		<div class="scenario-name"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span> Scenario: Test scenario for creating new Main details, in Customer inq</div>
+		<div class="scenario-name"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span> Scenario: Test scenario for adding products to inventory</div>
 	</div>
 	
 	
 		<div class='category-list'>
-				<span class='category label'>@MainCustInq</span>
+				<span class='category label'>@AddingProductsToInventory</span>
 		</div>
 	
 	<ul class='steps'>
 		<li test-id='90' class='node given Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.CustomerInqPage_ERPSteps.CustomerInqStep_ERP.userEntersURLAndIsOnLoginPageAndEnteredCredentialsCustomerInqERP())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Given User enters URL and is on login page and entered credentials Customer inq ERP</div>
+			<div class="step-name" title="(stepDefination_DSD_OMS.InventoryPageSteps.InventoryPageSteps.userEntersUrlAndIsOnLoginPageAndEnteredCredentialsForInventory())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Given User enters URL and is on login page and entered credentials for Inventory</div>
 
 
 					<div class="node-step">SIGNIN BUTTON CLICKED</div>
 		</li>
 		<li test-id='91' class='node when Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.CustomerInqPage_ERPSteps.CustomerInqStep_ERP.userIsOnHomePageForCustomerInqERP())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>When User is on Home Page for Customer inq ERP</div>
+			<div class="step-name" title="(stepDefination_DSD_OMS.InventoryPageSteps.InventoryPageSteps.userIsOnHomePageForInventory())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>When User is on Home Page for Inventory</div>
 
 
 					<div class="node-step">ADMIN PAGE OR ORDER ENTRY PAGE HAS BEEN FOUND</div>
 		</li>
 		<li test-id='92' class='node then Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.CustomerInqPage_ERPSteps.CustomerInqStep_ERP.userNavigateToClientSideForCustomerInqERP())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User navigate to Client side for Customer inq ERP</div>
+			<div class="step-name" title="(stepDefination_DSD_OMS.InventoryPageSteps.InventoryPageSteps.userNavigateToClientSideForInventory())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User navigate to Client side for Inventory</div>
 
 
 					<div class="node-step">USER ICON FOUND</div>
 					<div class="node-step">IN ADMIN PAGE</div>
 		</li>
-		<li test-id='93' class='node given Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.CustomerInqPage_ERPSteps.CustomerInqStep_ERP.userMustBeOnClientSideAndSelectCustomerInqInERP())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Given User must be on Client side and select Customer Inq in ERP</div>
+		<li test-id='93' class='node then Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.InventoryPageSteps.InventoryPageSteps.userShouldSelectOrderEntryTabForInventory())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User should select Order Entry tab for Inventory</div>
 
 
+					<div class="node-step">https://autodsd.afsi.com/ClientPortal/Apps/cpOrderEntry.html?p=Km530c8XSlYiXYABAQY6Y6JAChTfYaSYca92kMk0eI9TOeNnC6%2bd9w%3d%3d</div>
+					<div class="node-step">NAVIGATED TO ORDER ENTRY PAGE</div>
 		</li>
-		<li test-id='94' class='node when Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.CustomerInqPage_ERPSteps.CustomerInqStep_ERP.userShouldConfirmThatHeIsInCustomerInqInERP())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>When User should confirm that he is in Customer Inq in ERP</div>
+		<li test-id='94' class='node then Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.InventoryPageSteps.InventoryPageSteps.userSelectsAccountForInventory())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User selects Account# for Inventory</div>
 
 
+					<div class="node-step"><span style='color:red'>DELIBERY DATE FOUND, AFTER LOGGING IN TO APPLICATION  Thursday, February 6, 2025</span></div>
 		</li>
-		<li test-id='95' class='node then Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.CustomerInqPage_ERPSteps.CustomerInqStep_ERP.userClickOnNewButtonInERPCustomerInq())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User click on New button in ERP Customer Inq</div>
+		<li test-id='95' class='node given Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.InventoryPageSteps.InventoryPageSteps.userMustBeOnOrderEntryPageToSelectInventoryTab())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Given User must be on Order Entry Page to select Inventory tab</div>
 
 
 		</li>
 		<li test-id='96' class='node and Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.CustomerInqPage_ERPSteps.CustomerInqStep_ERP.userEntersValueToAllTheInputBoxInMainPage())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>And User enters value to all the input box in Main page</div>
+			<div class="step-name" title="(stepDefination_DSD_OMS.InventoryPageSteps.InventoryPageSteps.userShouldNavigateToInventoryTab())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>And User should navigate to Inventory tab</div>
 
 
-					<div class="node-step">FIRST NAME ENTERED IS geREZdvxcMgeREZdvxcM</div>
-					<div class="node-step">LAST NAME ENTERED IS QuJYoGqCBEQuJYoGqCBE</div>
-					<div class="node-step">STORE NUMBER ENTERED IS 68567187896856718789</div>
-					<div class="node-step">LOOK UP INFORMATION ENTERED IS MYDkqhQCDKMYDkqhQCDK</div>
-					<div class="node-step">ADDRESS1 ENTERED IS pBVrebzpifJMuJwxyUTOpBVrebzpifJMuJwxyUTO</div>
-					<div class="node-step">ADDRESS2 ENTERED IS donvOILmNjQYGBNGnUzadonvOILmNjQYGBNGnUza</div>
-					<div class="node-step">CITY NAME ENTERED IS WccreJfivUBcTdHShBzxWccreJfivUBcTdHShBzx</div>
-					<div class="node-step">VALUE SELECTED FROM COUNTY DROP DOWN IS WASHINGTON</div>
-					<div class="node-step">ZIP NUMBER ENTERED IS 342599098134</div>
-					<div class="node-step">VALUE SELECTED FROM STATE DROP DOWN IS NEBRASKA</div>
-					<div class="node-step">TELEPHONE NUMBER ENTERED IS 256-352-9742</div>
-					<div class="node-step">FAX NUMBER ENTERED IS 076-196-0961</div>
-					<div class="node-step">WEB SITE NAME ENTERED IS https://www.r9xw3r7u8ac.com</div>
-					<div class="node-step">VALUE SELECTED FROM LANGUAGE DROP DOWN IS ENGLISH</div>
-					<div class="node-step">VALUE SELECTED FROM VENDOR DROP DOWN IS MATT RODWELL</div>
-					<div class="node-step">PRIMARY CONTACT NAME ENTERED IS WOAJmONYyAQRqZPgtuoLWOAJmONYyAQRqZPgtuoL</div>
-					<div class="node-step">PRIMARY CONTACT TITLE ENTERED IS FRNZqexdSEYzzAcQnzfJFRNZqexdSEYzzAcQnzfJ</div>
-					<div class="node-step">PRIMARY CONTACT NAME ENTERED IS 794-218-6030</div>
-					<div class="node-step">EMAIL ADDRESS ENTERED IS 2@gmail.com</div>
+					<div class="node-step">CURRENT URL IS https://autodsd.afsi.com/ClientPortal/Apps/cpInventory.html?p=Km530c8XSlYiXYABAQY6Y6JAChTfYaSYca92kMk0eI9TOeNnC6%2bd9w%3d%3d</div>
+					<div class="node-step">STORE INVENTORY TAB IS SELECTED</div>
+		</li>
+		<li test-id='97' class='node then Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.InventoryPageSteps.InventoryPageSteps.userShouldBeInStoreInventoryTabInInventoryPage())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User should be in Store inventory tab, in inventory page</div>
+
+
+					<div class="node-step">STORE INVENTORY TAB IS SELECTED</div>
+		</li>
+		<li test-id='98' class='node then Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.InventoryPageSteps.InventoryPageSteps.userShouldChangeStoreInventoryDropdownValue())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User should change store inventory dropdown value</div>
+
+
+		</li>
+		<li test-id='99' class='node and Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.InventoryPageSteps.InventoryPageSteps.userShouldClickOnAddProductButtonAndSelectProductsFromProductPopupAndSave(io.cucumber.datatable.DataTable))"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>And User should click on Add product button and select products from Product popup and save</div>
+
+
+					<div class="node-step"><table class='markup-table table '><tr><td>1</td><td>1</td></tr><tr><td>2</td><td>1</td></tr><tr><td>1</td><td>2</td></tr></table></div>
+					<div class="node-step">PRODUCT DIALOG HAS BEEN FOUND</div>
+					<div class="node-step">CATALOG IN THE FORM OF LIST VIEW HAS BEEN FOUND</div>
+					<div class="node-step">PRODUCT FOUND IN CATALOG IS 00000001</div>
+					<div class="node-step">PRODUCT FOUND IN CATALOG IS 00000002</div>
+					<div class="node-step">PRODUCT FOUND IN CATALOG IS 00000003</div>
+					<div class="node-step">PRODUCTS FOUND UNDER INVENTORY 1</div>
+					<div class="node-step">PRODUCTS FOUND UNDER INVENTORY 2</div>
+					<div class="node-step">PRODUCTS FOUND UNDER INVENTORY 3</div>
 		</li>
 	</ul>
 </div>
-<div class='scenario node' test-id='98' status='pass'>
+<div class='scenario node' test-id='101' status='pass'>
 
-	<span class='duration right label'>00 00 13.045</span>
+	<span class='duration right label'>00 00 11.144</span>
 	<div class="bdd-test">
-		<div class="scenario-name"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span> Scenario: Test scenario for creating new AR Rule details, in Customer inq</div>
+		<div class="scenario-name"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span> Scenario: Test scenario for finding running total unit in inventory</div>
 	</div>
 	
 	
 		<div class='category-list'>
-				<span class='category label'>@ARRules</span>
+				<span class='category label'>@RunningTotal</span>
 		</div>
 	
 	<ul class='steps'>
-		<li test-id='186' class='node given Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.CustomerInqPage_ERPSteps.CustomerInqStep_ERP.userEntersURLAndIsOnLoginPageAndEnteredCredentialsCustomerInqERP())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Given User enters URL and is on login page and entered credentials Customer inq ERP</div>
-
-
-		</li>
-		<li test-id='187' class='node when Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.CustomerInqPage_ERPSteps.CustomerInqStep_ERP.userIsOnHomePageForCustomerInqERP())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>When User is on Home Page for Customer inq ERP</div>
-
-
-		</li>
-		<li test-id='188' class='node then Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.CustomerInqPage_ERPSteps.CustomerInqStep_ERP.userNavigateToClientSideForCustomerInqERP())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User navigate to Client side for Customer inq ERP</div>
-
-
-		</li>
 		<li test-id='189' class='node given Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.CustomerInqPage_ERPSteps.CustomerInqStep_ERP.userMustBeOnClientSideAndSelectCustomerInqInERP())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Given User must be on Client side and select Customer Inq in ERP</div>
+			<div class="step-name" title="(stepDefination_DSD_OMS.InventoryPageSteps.InventoryPageSteps.userEntersUrlAndIsOnLoginPageAndEnteredCredentialsForInventory())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Given User enters URL and is on login page and entered credentials for Inventory</div>
 
 
 		</li>
 		<li test-id='190' class='node when Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.CustomerInqPage_ERPSteps.CustomerInqStep_ERP.userShouldConfirmThatHeIsInCustomerInqInERP())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>When User should confirm that he is in Customer Inq in ERP</div>
+			<div class="step-name" title="(stepDefination_DSD_OMS.InventoryPageSteps.InventoryPageSteps.userIsOnHomePageForInventory())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>When User is on Home Page for Inventory</div>
 
 
 		</li>
 		<li test-id='191' class='node then Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.CustomerInqPage_ERPSteps.CustomerInqStep_ERP.userClickOnNewButtonInERPCustomerInq())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User click on New button in ERP Customer Inq</div>
+			<div class="step-name" title="(stepDefination_DSD_OMS.InventoryPageSteps.InventoryPageSteps.userNavigateToClientSideForInventory())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User navigate to Client side for Inventory</div>
 
 
 		</li>
-		<li test-id='192' class='node and Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.CustomerInqPage_ERPSteps.CustomerInqStep_ERP.userNavigateToARRulesTabAndUserEntersValueToAllTheInputBoxInARRulesPage())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>And User navigate to AR Rules tab and User enters value to all the input box in AR Rules page</div>
+		<li test-id='192' class='node then Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.InventoryPageSteps.InventoryPageSteps.userShouldSelectOrderEntryTabForInventory())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User should select Order Entry tab for Inventory</div>
 
 
-					<div class="node-step">VALUE SELECTED FROM MARKET SEGMENT DROP DOWN IS LAST PO</div>
-					<div class="node-step">VALUE SELECTED FROM CURRENCY CODE DROP DOWN IS UNITED STATES DOLLAR</div>
-					<div class="node-step">VALUE SELECTED FROM EXCHANGE RATE DROP DOWN IS UNITED STATES DOLLAR</div>
-					<div class="node-step">VALUE SELECTED FROM BILL TO CUSTOMER DROP DOWN IS BLAKE</div>
-					<div class="node-step">VALUE SELECTED FROM REMIT TO CODE DROP DOWN IS MEDOSWEET FARMS, INC.</div>
-					<div class="node-step">VALUE SELECTED FROM CASH GROUP CODE DROP DOWN IS CCR-CUPCAKE ROYALE</div>
-					<div class="node-step">VALUE SELECTED FROM APPLICATION METHOD DROP DOWN IS Auto Apply without Disputed Invoice</div>
-					<div class="node-step">VALUE SELECTED FROM STATEMENT TO DROP DOWN IS BLAKE</div>
-					<div class="node-step">VALUE SELECTED FROM STATEMENT TO DROP DOWN IS Monthly</div>
-					<div class="node-step">VALUE SELECTED FROM STATEMENT TO DROP DOWN IS Thursday</div>
-					<div class="node-step">VALUE SELECTED FROM STATEMENT TO DROP DOWN IS Open Item Invoice with Balances Only</div>
+		</li>
+		<li test-id='193' class='node then Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.InventoryPageSteps.InventoryPageSteps.userSelectsAccountForInventory())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User selects Account# for Inventory</div>
+
+
+		</li>
+		<li test-id='194' class='node given Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.InventoryPageSteps.InventoryPageSteps.userMustBeOnOrderEntryPageToSelectInventoryTab())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Given User must be on Order Entry Page to select Inventory tab</div>
+
+
+		</li>
+		<li test-id='195' class='node and Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.InventoryPageSteps.InventoryPageSteps.userShouldNavigateToInventoryTab())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>And User should navigate to Inventory tab</div>
+
+
+					<div class="node-step">CURRENT URL IS https://autodsd.afsi.com/ClientPortal/Apps/cpInventory.html?p=Km530c8XSlYiXYABAQY6Y6JAChTfYaSYca92kMk0eI9TOeNnC6%2bd9w%3d%3d</div>
+					<div class="node-step">STORE INVENTORY TAB IS SELECTED</div>
+		</li>
+		<li test-id='196' class='node then Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.InventoryPageSteps.InventoryPageSteps.userShouldBeInStoreInventoryTabInInventoryPage())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User should be in Store inventory tab, in inventory page</div>
+
+
+					<div class="node-step">STORE INVENTORY TAB IS SELECTED</div>
+		</li>
+		<li test-id='197' class='node then Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.InventoryPageSteps.InventoryPageSteps.userShouldChangeStoreInventoryDropdownValue())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User should change store inventory dropdown value</div>
+
+
+		</li>
+		<li test-id='198' class='node and Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.InventoryPageSteps.InventoryPageSteps.userShouldCompareTotalUnitsWithRunningTotalUnits(io.cucumber.datatable.DataTable))"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>And User should compare total units with Running total units</div>
+
+
+					<div class="node-step"><table class='markup-table table '><tr><td>Total Units</td></tr></table></div>
+					<div class="node-step">TOTAL OF TOTAL UNITS COLUMN 14</div>
+					<div class="node-step">RUNNING TOTAL UNITS: 14 TOTAL NUMBER OF UNITS FOUND IN GRID: 14</div>
+					<div class="node-step">RUNNING TOTAL UNITS: 14 TOTAL NUMBER OF UNITS FOUND IN GRID: 14</div>
 		</li>
 	</ul>
 </div>
-<div class='scenario node' test-id='194' status='pass'>
+<div class='scenario node' test-id='200' status='pass'>
 
-	<span class='duration right label'>00 00 14.579</span>
+	<span class='duration right label'>00 00 05.303</span>
 	<div class="bdd-test">
-		<div class="scenario-name"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span> Scenario: Test scenario for entering values for Credit, in Customer inq</div>
+		<div class="scenario-name"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span> Scenario: Test scenario for Drag and drop operation in Inventory</div>
 	</div>
 	
 	
 		<div class='category-list'>
-				<span class='category label'>@Credit</span>
+				<span class='category label'>@DragAndDrop</span>
 		</div>
 	
 	<ul class='steps'>
-		<li test-id='282' class='node given Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.CustomerInqPage_ERPSteps.CustomerInqStep_ERP.userEntersURLAndIsOnLoginPageAndEnteredCredentialsCustomerInqERP())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Given User enters URL and is on login page and entered credentials Customer inq ERP</div>
+		<li test-id='288' class='node given Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.InventoryPageSteps.InventoryPageSteps.userEntersUrlAndIsOnLoginPageAndEnteredCredentialsForInventory())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Given User enters URL and is on login page and entered credentials for Inventory</div>
 
 
 		</li>
-		<li test-id='283' class='node when Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.CustomerInqPage_ERPSteps.CustomerInqStep_ERP.userIsOnHomePageForCustomerInqERP())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>When User is on Home Page for Customer inq ERP</div>
+		<li test-id='289' class='node when Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.InventoryPageSteps.InventoryPageSteps.userIsOnHomePageForInventory())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>When User is on Home Page for Inventory</div>
 
 
 		</li>
-		<li test-id='284' class='node then Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.CustomerInqPage_ERPSteps.CustomerInqStep_ERP.userNavigateToClientSideForCustomerInqERP())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User navigate to Client side for Customer inq ERP</div>
+		<li test-id='290' class='node then Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.InventoryPageSteps.InventoryPageSteps.userNavigateToClientSideForInventory())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User navigate to Client side for Inventory</div>
 
 
 		</li>
-		<li test-id='285' class='node given Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.CustomerInqPage_ERPSteps.CustomerInqStep_ERP.userMustBeOnClientSideAndSelectCustomerInqInERP())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Given User must be on Client side and select Customer Inq in ERP</div>
+		<li test-id='291' class='node then Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.InventoryPageSteps.InventoryPageSteps.userShouldSelectOrderEntryTabForInventory())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User should select Order Entry tab for Inventory</div>
 
 
 		</li>
-		<li test-id='286' class='node when Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.CustomerInqPage_ERPSteps.CustomerInqStep_ERP.userShouldConfirmThatHeIsInCustomerInqInERP())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>When User should confirm that he is in Customer Inq in ERP</div>
+		<li test-id='292' class='node then Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.InventoryPageSteps.InventoryPageSteps.userSelectsAccountForInventory())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User selects Account# for Inventory</div>
 
 
 		</li>
-		<li test-id='287' class='node then Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.CustomerInqPage_ERPSteps.CustomerInqStep_ERP.userClickOnNewButtonInERPCustomerInq())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User click on New button in ERP Customer Inq</div>
+		<li test-id='293' class='node given Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.InventoryPageSteps.InventoryPageSteps.userMustBeOnOrderEntryPageToSelectInventoryTab())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Given User must be on Order Entry Page to select Inventory tab</div>
 
 
 		</li>
-		<li test-id='288' class='node and Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.CustomerInqPage_ERPSteps.CustomerInqStep_ERP.userNavigateToCreditTabAndUserEntersValueToAllTheInputBoxInCreditPage())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>And User navigate to Credit tab and User enters value to all the input box in Credit page</div>
+		<li test-id='294' class='node and Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.InventoryPageSteps.InventoryPageSteps.userShouldNavigateToInventoryTab())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>And User should navigate to Inventory tab</div>
 
 
-					<div class="node-step">VALUE SELECTED FROM STATUS DROP DOWN IS Inactive</div>
-					<div class="node-step">VALUE SELECTED FROM DEFAULT BRANCH DROP DOWN IS LAST PO</div>
-					<div class="node-step">VALUE SELECTED FROM DEFAULT WAREHOUSE DROP DOWN IS Kent Whs</div>
-					<div class="node-step">VALUE SELECTED FROM CREDIT TO COMPANY DROP DOWN IS AFSIgnitionqa01 Medosweet DB</div>
-					<div class="node-step">VALUE SELECTED FROM CREDIT TO COMPANY DROP DOWN IS BLAKE</div>
-					<div class="node-step">CREDIT ENTERED IS 352,975,669,535,297</div>
-					<div class="node-step">MEMO LIMIT ENTERED IS 958,114,666,695,811</div>
-					<div class="node-step">VALUE SELECTED FROM CREDIT TO COMPANY DROP DOWN IS INFORMATION HOLD</div>
-					<div class="node-step">VALUE SELECTED FROM CREDIT TO COMPANY DROP DOWN IS NET 30 Email</div>
-					<div class="node-step">VALUE SELECTED FROM SERVICE CHARGE DROP DOWN IS Another Charge</div>
-					<div class="node-step">VALUE SELECTED FROM SERVICE CHARGE DROP DOWN IS ROBIN THAMERT</div>
-					<div class="node-step">Friday, February 7, 2025 HAS BEEN SELECTED AS NEXT REVIEW DATE</div>
+					<div class="node-step">CURRENT URL IS https://autodsd.afsi.com/ClientPortal/Apps/cpInventory.html?p=Km530c8XSlYiXYABAQY6Y6JAChTfYaSYca92kMk0eI9TOeNnC6%2bd9w%3d%3d</div>
+					<div class="node-step">STORE INVENTORY TAB IS SELECTED</div>
+		</li>
+		<li test-id='295' class='node then Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.InventoryPageSteps.InventoryPageSteps.userShouldDragAndDropAnyOfTheTableHeaderForGrouping(io.cucumber.datatable.DataTable))"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User should Drag and drop any of the table header for grouping</div>
+
+
+					<div class="node-step"><table class='markup-table table '><tr><td>Total Units</td></tr></table></div>
 		</li>
 	</ul>
 </div>
-<div class='scenario node' test-id='290' status='pass'>
+<div class='scenario outline node' test-id='297' status='pass'>
 
-	<span class='duration right label'>00 00 20.257</span>
+	<span class='duration right label'>00 00 10.256</span>
 	<div class="bdd-test">
-		<div class="scenario-name"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span> Scenario: Test scenario for entering values for Billing info, in Customer inq</div>
+		<div class="scenario-name"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span> Scenario Outline: Test scneario for adding product from quick entry</div>
+	</div>
+	
+		<div class='node-desc'><br><br><table class='markup-table table '><tr><td>Case</td><td>Unit</td><td>Sequence</td></tr><tr><td>2</td><td>1</td><td>2</td></tr></table></div>
+	
+	
+	<ul class='steps'>
+		<li test-id='298' class='node scenario Pass' status='Pass'>
+			<div class="step-name" title="()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Test scneario for adding product from quick entry</div>
+
+				<div class='category-list'>
+						<span class='category label'>@QuickEntryInventroy</span>
+				</div>
+
+			<ul class='gc steps'>
+				<li test-id='386' class='gc given Pass' status='Pass'>
+					<h6 class="step-name" title="stepDefination_DSD_OMS.InventoryPageSteps.InventoryPageSteps.userEntersUrlAndIsOnLoginPageAndEnteredCredentialsForInventory()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Given User enters URL and is on login page and entered credentials for Inventory</h6>
+
+				</li>
+				<li test-id='387' class='gc when Pass' status='Pass'>
+					<h6 class="step-name" title="stepDefination_DSD_OMS.InventoryPageSteps.InventoryPageSteps.userIsOnHomePageForInventory()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>When User is on Home Page for Inventory</h6>
+
+				</li>
+				<li test-id='388' class='gc then Pass' status='Pass'>
+					<h6 class="step-name" title="stepDefination_DSD_OMS.InventoryPageSteps.InventoryPageSteps.userNavigateToClientSideForInventory()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User navigate to Client side for Inventory</h6>
+
+				</li>
+				<li test-id='389' class='gc then Pass' status='Pass'>
+					<h6 class="step-name" title="stepDefination_DSD_OMS.InventoryPageSteps.InventoryPageSteps.userShouldSelectOrderEntryTabForInventory()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User should select Order Entry tab for Inventory</h6>
+
+				</li>
+				<li test-id='390' class='gc then Pass' status='Pass'>
+					<h6 class="step-name" title="stepDefination_DSD_OMS.InventoryPageSteps.InventoryPageSteps.userSelectsAccountForInventory()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User selects Account# for Inventory</h6>
+
+				</li>
+				<li test-id='391' class='gc given Pass' status='Pass'>
+					<h6 class="step-name" title="stepDefination_DSD_OMS.InventoryPageSteps.InventoryPageSteps.userMustBeOnOrderEntryPageToSelectInventoryTab()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Given User must be on Order Entry Page to select Inventory tab</h6>
+
+				</li>
+				<li test-id='392' class='gc and Pass' status='Pass'>
+					<h6 class="step-name" title="stepDefination_DSD_OMS.InventoryPageSteps.InventoryPageSteps.userShouldNavigateToInventoryTab()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>And User should navigate to Inventory tab</h6>
+
+							<div class="node-step">CURRENT URL IS https://autodsd.afsi.com/ClientPortal/Apps/cpInventory.html?p=Km530c8XSlYiXYABAQY6Y6JAChTfYaSYca92kMk0eI9TOeNnC6%2bd9w%3d%3d</div>
+							<div class="node-step">STORE INVENTORY TAB IS SELECTED</div>
+				</li>
+				<li test-id='393' class='gc then Pass' status='Pass'>
+					<h6 class="step-name" title="stepDefination_DSD_OMS.InventoryPageSteps.InventoryPageSteps.userShouldBeInStoreInventoryTabInInventoryPage()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User should be in Store inventory tab, in inventory page</h6>
+
+							<div class="node-step">STORE INVENTORY TAB IS SELECTED</div>
+				</li>
+				<li test-id='394' class='gc then Pass' status='Pass'>
+					<h6 class="step-name" title="stepDefination_DSD_OMS.InventoryPageSteps.InventoryPageSteps.userShouldChangeStoreInventoryDropdownValue()"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User should change store inventory dropdown value</h6>
+
+				</li>
+				<li test-id='395' class='gc and Pass' status='Pass'>
+					<h6 class="step-name" title="stepDefination_DSD_OMS.InventoryPageSteps.InventoryPageSteps.userEntersProductInQuickProductEntry(java.lang.String,java.lang.String,java.lang.String)"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>And User enters product#, "2", "1", "2" in quick product entry</h6>
+
+							<div class="node-step">PRODUCTS FOUND UNDER INVENTORY 1</div>
+							<div class="node-step">PRODUCTS FOUND UNDER INVENTORY 2</div>
+							<div class="node-step">PRODUCTS FOUND UNDER INVENTORY 3</div>
+				</li>
+			</ul>
+		</li>
+	</ul>
+</div>
+<div class='scenario node' test-id='397' status='pass'>
+
+	<span class='duration right label'>00 00 11.917</span>
+	<div class="bdd-test">
+		<div class="scenario-name"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span> Scenario: Test scenario to cancel Inventory details</div>
 	</div>
 	
 	
 		<div class='category-list'>
-				<span class='category label'>@BillingInfo</span>
+				<span class='category label'>@CancelInventroyDetails</span>
 		</div>
 	
 	<ul class='steps'>
-		<li test-id='378' class='node given Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.CustomerInqPage_ERPSteps.CustomerInqStep_ERP.userEntersURLAndIsOnLoginPageAndEnteredCredentialsCustomerInqERP())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Given User enters URL and is on login page and entered credentials Customer inq ERP</div>
+		<li test-id='485' class='node given Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.InventoryPageSteps.InventoryPageSteps.userEntersUrlAndIsOnLoginPageAndEnteredCredentialsForInventory())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Given User enters URL and is on login page and entered credentials for Inventory</div>
 
 
 		</li>
-		<li test-id='379' class='node when Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.CustomerInqPage_ERPSteps.CustomerInqStep_ERP.userIsOnHomePageForCustomerInqERP())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>When User is on Home Page for Customer inq ERP</div>
+		<li test-id='486' class='node when Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.InventoryPageSteps.InventoryPageSteps.userIsOnHomePageForInventory())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>When User is on Home Page for Inventory</div>
 
 
 		</li>
-		<li test-id='380' class='node then Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.CustomerInqPage_ERPSteps.CustomerInqStep_ERP.userNavigateToClientSideForCustomerInqERP())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User navigate to Client side for Customer inq ERP</div>
+		<li test-id='487' class='node then Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.InventoryPageSteps.InventoryPageSteps.userNavigateToClientSideForInventory())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User navigate to Client side for Inventory</div>
 
 
 		</li>
-		<li test-id='381' class='node given Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.CustomerInqPage_ERPSteps.CustomerInqStep_ERP.userMustBeOnClientSideAndSelectCustomerInqInERP())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Given User must be on Client side and select Customer Inq in ERP</div>
+		<li test-id='488' class='node then Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.InventoryPageSteps.InventoryPageSteps.userShouldSelectOrderEntryTabForInventory())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User should select Order Entry tab for Inventory</div>
 
 
 		</li>
-		<li test-id='382' class='node when Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.CustomerInqPage_ERPSteps.CustomerInqStep_ERP.userShouldConfirmThatHeIsInCustomerInqInERP())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>When User should confirm that he is in Customer Inq in ERP</div>
+		<li test-id='489' class='node then Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.InventoryPageSteps.InventoryPageSteps.userSelectsAccountForInventory())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User selects Account# for Inventory</div>
 
 
 		</li>
-		<li test-id='383' class='node then Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.CustomerInqPage_ERPSteps.CustomerInqStep_ERP.userClickOnNewButtonInERPCustomerInq())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User click on New button in ERP Customer Inq</div>
+		<li test-id='490' class='node given Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.InventoryPageSteps.InventoryPageSteps.userMustBeOnOrderEntryPageToSelectInventoryTab())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Given User must be on Order Entry Page to select Inventory tab</div>
 
 
 		</li>
-		<li test-id='384' class='node and Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.CustomerInqPage_ERPSteps.CustomerInqStep_ERP.userNavigateToBillingInfoTabAndUserEntersValueToAllTheInputBoxInBillingInfoPage())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>And User navigate to Billing Info tab and User enters value to all the input box in Billing Info page</div>
+		<li test-id='491' class='node and Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.InventoryPageSteps.InventoryPageSteps.userShouldNavigateToInventoryTab())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>And User should navigate to Inventory tab</div>
 
 
-					<div class="node-step">INVOICE COPY ENTERED IS 85419</div>
-					<div class="node-step">VALUE SELECTED FROM SALES TAX DROP DOWN IS RESALE CERT ON FILE TACOMA</div>
-					<div class="node-step">LEGAL NAME ENTERED IS TNtlfRZySWTNtlfRZySW</div>
-					<div class="node-step">DB NAME ENTERED IS AhFxBaZVuqAhFxBaZVuq</div>
-					<div class="node-step">DUN AND BRAND STREET ENTERED IS vkBcWfswnevkBcWfswne</div>
-					<div class="node-step">DB RATING ENTERED IS 33</div>
-					<div class="node-step">ADDRESS1 ENTERED IS DyabWoxMGnlyMRIdAWuVDyabWoxMGnlyMRIdAWuV</div>
-					<div class="node-step">ADDRESS2 ENTERED IS OpecUVoBNiASObIhkauEOpecUVoBNiASObIhkauE</div>
-					<div class="node-step">ADDRESS3 ENTERED IS zFUdrMGtjxkPFhTiQlvbzFUdrMGtjxkPFhTiQlvb</div>
-					<div class="node-step">ADDRESS4 ENTERED IS tqfkqpQKYcSFBVkDywYEtqfkqpQKYcSFBVkDywYE</div>
-					<div class="node-step">ADDRESS2 ENTERED IS mLAZRoqNqjmLAZRoqNqj</div>
-					<div class="node-step">ADDRESS2 ENTERED IS yfbDsuLntDIOpYLgzevQyfbDsuLntDIOpYLgzevQ</div>
-					<div class="node-step">VALUE SELECTED FROM BILL TO COUNTRY DROP DOWN IS WASHINGTON</div>
-					<div class="node-step">ZIP NUMBER ENTERED IS 984257897123</div>
-					<div class="node-step">VALUE SELECTED FROM SALES TAX DROP DOWN IS NEBRASKA</div>
-					<div class="node-step">TELEPHONE NUMBER ENTERED IS 624-994-3714</div>
-					<div class="node-step">FAX NUMBER ENTERED IS 568-439-5848</div>
+					<div class="node-step">CURRENT URL IS https://autodsd.afsi.com/ClientPortal/Apps/cpInventory.html?p=Km530c8XSlYiXYABAQY6Y6JAChTfYaSYca92kMk0eI9TOeNnC6%2bd9w%3d%3d</div>
+					<div class="node-step">STORE INVENTORY TAB IS SELECTED</div>
 		</li>
-	</ul>
-</div>
-<div class='scenario node' test-id='386' status='pass'>
+		<li test-id='492' class='node then Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.InventoryPageSteps.InventoryPageSteps.userShouldBeInStoreInventoryTabInInventoryPage())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User should be in Store inventory tab, in inventory page</div>
 
-	<span class='duration right label'>00 00 12.039</span>
-	<div class="bdd-test">
-		<div class="scenario-name"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span> Scenario: Test scenario for entering values for Marketing, in Customer inq</div>
-	</div>
-	
-	
-		<div class='category-list'>
-				<span class='category label'>@Marketing</span>
-		</div>
-	
-	<ul class='steps'>
-		<li test-id='474' class='node given Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.CustomerInqPage_ERPSteps.CustomerInqStep_ERP.userEntersURLAndIsOnLoginPageAndEnteredCredentialsCustomerInqERP())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Given User enters URL and is on login page and entered credentials Customer inq ERP</div>
 
-
-		</li>
-		<li test-id='475' class='node when Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.CustomerInqPage_ERPSteps.CustomerInqStep_ERP.userIsOnHomePageForCustomerInqERP())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>When User is on Home Page for Customer inq ERP</div>
-
-
-		</li>
-		<li test-id='476' class='node then Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.CustomerInqPage_ERPSteps.CustomerInqStep_ERP.userNavigateToClientSideForCustomerInqERP())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User navigate to Client side for Customer inq ERP</div>
-
-
-		</li>
-		<li test-id='477' class='node given Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.CustomerInqPage_ERPSteps.CustomerInqStep_ERP.userMustBeOnClientSideAndSelectCustomerInqInERP())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Given User must be on Client side and select Customer Inq in ERP</div>
-
-
-		</li>
-		<li test-id='478' class='node when Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.CustomerInqPage_ERPSteps.CustomerInqStep_ERP.userShouldConfirmThatHeIsInCustomerInqInERP())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>When User should confirm that he is in Customer Inq in ERP</div>
-
-
-		</li>
-		<li test-id='479' class='node then Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.CustomerInqPage_ERPSteps.CustomerInqStep_ERP.userClickOnNewButtonInERPCustomerInq())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User click on New button in ERP Customer Inq</div>
-
-
-		</li>
-		<li test-id='480' class='node and Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.CustomerInqPage_ERPSteps.CustomerInqStep_ERP.userNavigateToMarketingTabAndUserEntersValueToAllTheInputBoxInMarketingPage())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>And User navigate to Marketing tab and User enters value to all the input box in Marketing page</div>
-
-
-					<div class="node-step">VALUE SELECTED FROM SALES REP DROP DOWN IS FLINTOFF</div>
-					<div class="node-step">VALUE SELECTED FROM SALES REP2 DROP DOWN IS </div>
-					<div class="node-step">VALUE SELECTED FROM SALES REP3 DROP DOWN IS </div>
-					<div class="node-step">VALUE SELECTED FROM BROKER DROP DOWN IS </div>
-					<div class="node-step">VALUE SELECTED FROM BROKER2 DROP DOWN IS </div>
-					<div class="node-step">VALUE SELECTED FROM BROKER3 DROP DOWN IS </div>
-					<div class="node-step">VALUE SELECTED FROM FOB Code DROP DOWN IS </div>
-					<div class="node-step">THERE ARE NO OPTIONS OTHER THAN 'None'</div>
-					<div class="node-step">VALUE SELECTED FROM REGION CODE DROP DOWN IS None</div>
-					<div class="node-step">THERE ARE NO OPTIONS OTHER THAN 'None'</div>
-					<div class="node-step">VALUE SELECTED FROM TERRITORY DROP DOWN IS None</div>
-					<div class="node-step">THERE ARE NO OPTIONS OTHER THAN 'None'</div>
-					<div class="node-step">VALUE SELECTED FROM ORIGIN CODE DROP DOWN IS None</div>
-					<div class="node-step">VALUE SELECTED FROM SALES ANALYSIS CUST DROP DOWN IS BLAKE</div>
-					<div class="node-step">FIRST NAME ENTERED IS meqyrnLHlOmeqyrnLHlO</div>
-					<div class="node-step">VALUE SELECTED FROM LOCAL CHAIN DROP DOWN IS </div>
-					<div class="node-step">VALUE SELECTED FROM NATIONAL CHAIN DROP DOWN IS </div>
-					<div class="node-step">THERE ARE NO OPTIONS OTHER THAN 'None'</div>
-					<div class="node-step">VALUE SELECTED FROM PRICE GROUP DROP DOWN IS None</div>
-		</li>
-	</ul>
-</div>
-<div class='scenario node' test-id='482' status='pass'>
-
-	<span class='duration right label'>00 00 08.270</span>
-	<div class="bdd-test">
-		<div class="scenario-name"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span> Scenario: Test scenario for entering values for Pricing, in Customer inq</div>
-	</div>
-	
-	
-		<div class='category-list'>
-				<span class='category label'>@Pricing</span>
-		</div>
-	
-	<ul class='steps'>
-		<li test-id='570' class='node given Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.CustomerInqPage_ERPSteps.CustomerInqStep_ERP.userEntersURLAndIsOnLoginPageAndEnteredCredentialsCustomerInqERP())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Given User enters URL and is on login page and entered credentials Customer inq ERP</div>
-
-
-		</li>
-		<li test-id='571' class='node when Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.CustomerInqPage_ERPSteps.CustomerInqStep_ERP.userIsOnHomePageForCustomerInqERP())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>When User is on Home Page for Customer inq ERP</div>
-
-
-		</li>
-		<li test-id='572' class='node then Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.CustomerInqPage_ERPSteps.CustomerInqStep_ERP.userNavigateToClientSideForCustomerInqERP())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User navigate to Client side for Customer inq ERP</div>
-
-
-		</li>
-		<li test-id='573' class='node given Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.CustomerInqPage_ERPSteps.CustomerInqStep_ERP.userMustBeOnClientSideAndSelectCustomerInqInERP())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Given User must be on Client side and select Customer Inq in ERP</div>
-
-
-		</li>
-		<li test-id='574' class='node when Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.CustomerInqPage_ERPSteps.CustomerInqStep_ERP.userShouldConfirmThatHeIsInCustomerInqInERP())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>When User should confirm that he is in Customer Inq in ERP</div>
-
-
-		</li>
-		<li test-id='575' class='node then Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.CustomerInqPage_ERPSteps.CustomerInqStep_ERP.userClickOnNewButtonInERPCustomerInq())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User click on New button in ERP Customer Inq</div>
-
-
-		</li>
-		<li test-id='576' class='node and Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.CustomerInqPage_ERPSteps.CustomerInqStep_ERP.userNavigateToPricingTabAndUserEntersValueToAllTheInputBoxInPricingPage())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>And User navigate to Pricing tab and User enters value to all the input box in Pricing page</div>
-
-
-					<div class="node-step">VALUE SELECTED FROM PRICING CUSTOMER DROP DOWN IS BLAKE</div>
-					<div class="node-step">VALUE SELECTED FROM SALES REP DROP DOWN IS PRICE LEVEL 01</div>
-					<div class="node-step">VALUE SELECTED FROM SALES REP DROP DOWN IS PRICE LEVEL 01</div>
-					<div class="node-step">VALUE SELECTED FROM AIM PRICING DROP DOWN IS No AIM, but track for future AIM</div>
-					<div class="node-step">THERE ARE NO OPTIONS OTHER THAN 'None'</div>
-					<div class="node-step">VALUE SELECTED FROM RETAIL PRICE DROP DOWN IS None</div>
-					<div class="node-step">VALUE SELECTED FROM SHELF TAGS DROP DOWN IS Retail Prices Included</div>
-		</li>
-	</ul>
-</div>
-<div class='scenario node' test-id='578' status='pass'>
-
-	<span class='duration right label'>00 00 13.510</span>
-	<div class="bdd-test">
-		<div class="scenario-name"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span> Scenario: Test scenario for entering values for Order Entry, in Customer inq</div>
-	</div>
-	
-	
-		<div class='category-list'>
-				<span class='category label'>@OrderEntry</span>
-		</div>
-	
-	<ul class='steps'>
-		<li test-id='666' class='node given Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.CustomerInqPage_ERPSteps.CustomerInqStep_ERP.userEntersURLAndIsOnLoginPageAndEnteredCredentialsCustomerInqERP())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Given User enters URL and is on login page and entered credentials Customer inq ERP</div>
-
-
-		</li>
-		<li test-id='667' class='node when Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.CustomerInqPage_ERPSteps.CustomerInqStep_ERP.userIsOnHomePageForCustomerInqERP())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>When User is on Home Page for Customer inq ERP</div>
-
-
-		</li>
-		<li test-id='668' class='node then Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.CustomerInqPage_ERPSteps.CustomerInqStep_ERP.userNavigateToClientSideForCustomerInqERP())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User navigate to Client side for Customer inq ERP</div>
-
-
-		</li>
-		<li test-id='669' class='node given Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.CustomerInqPage_ERPSteps.CustomerInqStep_ERP.userMustBeOnClientSideAndSelectCustomerInqInERP())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Given User must be on Client side and select Customer Inq in ERP</div>
-
-
-		</li>
-		<li test-id='670' class='node when Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.CustomerInqPage_ERPSteps.CustomerInqStep_ERP.userShouldConfirmThatHeIsInCustomerInqInERP())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>When User should confirm that he is in Customer Inq in ERP</div>
-
-
-		</li>
-		<li test-id='671' class='node then Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.CustomerInqPage_ERPSteps.CustomerInqStep_ERP.userClickOnNewButtonInERPCustomerInq())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User click on New button in ERP Customer Inq</div>
-
-
-		</li>
-		<li test-id='672' class='node and Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.CustomerInqPage_ERPSteps.CustomerInqStep_ERP.userNavigateToOrderEntryTabAndUserEntersValueToAllTheInputBoxInOrderEntryPage())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>And User navigate to Order entry tab and User enters value to all the input box in Order entry page</div>
-
-
-					<div class="node-step">DELIVERY CONTACT ENTERED IS VUBLdjAtmrVUBLdjAtmr</div>
-					<div class="node-step">FIRST NAME ENTERED IS WKhAniSOEkWKhAniSOEk</div>
-					<div class="node-step">TELEPHONE NUMBER ENTERED IS 396-433-6364</div>
-					<div class="node-step">EMAIL ADDRESS ENTERED IS e@gmail.com</div>
-					<div class="node-step">VALUE SELECTED FROM DEFAULT ORDER TYPE DROP DOWN IS ROUTE TRUCK INVENTORY</div>
-					<div class="node-step">VALUE SELECTED FROM AUTHORIZED PRODUCTS DROP DOWN IS Contract Items</div>
-					<div class="node-step">THERE ARE NO OPTIONS OTHER THAN 'None'</div>
-					<div class="node-step">VALUE SELECTED FROM DEFAULT CIG UOM DROP DOWN IS None</div>
-					<div class="node-step">THERE ARE NO OPTIONS OTHER THAN 'None'</div>
-					<div class="node-step">VALUE SELECTED FROM PRE PRICE DROP DOWN IS None</div>
-					<div class="node-step">ALLOCATION RANK ENTERED IS WKhAniSOEkWKhAniSOEk</div>
-					<div class="node-step">FIRST NAME ENTERED IS wUIyBoqGjdwUIyBoqGjd</div>
-					<div class="node-step">VALUE SELECTED FROM BACK ORDER CANCEL DROP DOWN IS BACK ORDER TO DATE</div>
-					<div class="node-step">VALUE SELECTED FROM SALES REP DROP DOWN IS ORDER MINIMUM 100</div>
-		</li>
-	</ul>
-</div>
-<div class='scenario node' test-id='674' status='pass'>
-
-	<span class='duration right label'>00 00 09.780</span>
-	<div class="bdd-test">
-		<div class="scenario-name"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span> Scenario: Test scenario for entering values for Shipping, in Customer inq</div>
-	</div>
-	
-	
-		<div class='category-list'>
-				<span class='category label'>@Shipping</span>
-		</div>
-	
-	<ul class='steps'>
-		<li test-id='762' class='node given Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.CustomerInqPage_ERPSteps.CustomerInqStep_ERP.userEntersURLAndIsOnLoginPageAndEnteredCredentialsCustomerInqERP())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Given User enters URL and is on login page and entered credentials Customer inq ERP</div>
-
-
-		</li>
-		<li test-id='763' class='node when Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.CustomerInqPage_ERPSteps.CustomerInqStep_ERP.userIsOnHomePageForCustomerInqERP())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>When User is on Home Page for Customer inq ERP</div>
-
-
-		</li>
-		<li test-id='764' class='node then Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.CustomerInqPage_ERPSteps.CustomerInqStep_ERP.userNavigateToClientSideForCustomerInqERP())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User navigate to Client side for Customer inq ERP</div>
-
-
-		</li>
-		<li test-id='765' class='node given Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.CustomerInqPage_ERPSteps.CustomerInqStep_ERP.userMustBeOnClientSideAndSelectCustomerInqInERP())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Given User must be on Client side and select Customer Inq in ERP</div>
-
-
-		</li>
-		<li test-id='766' class='node when Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.CustomerInqPage_ERPSteps.CustomerInqStep_ERP.userShouldConfirmThatHeIsInCustomerInqInERP())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>When User should confirm that he is in Customer Inq in ERP</div>
-
-
-		</li>
-		<li test-id='767' class='node then Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.CustomerInqPage_ERPSteps.CustomerInqStep_ERP.userClickOnNewButtonInERPCustomerInq())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User click on New button in ERP Customer Inq</div>
-
-
-		</li>
-		<li test-id='768' class='node and Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.CustomerInqPage_ERPSteps.CustomerInqStep_ERP.userNavigateToShippingTabAndUserEntersValueToAllTheInputBoxInShippingPage())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>And User navigate to Shipping tab and User enters value to all the input box in Shipping page</div>
-
-
-					<div class="node-step">DELIVERY CONTACT ENTERED IS 0</div>
-					<div class="node-step">DELIVERY DISTANCE Mi ENTERED IS LlnwZLOXzILlnwZLOXzI</div>
-					<div class="node-step">DELIVERY DISTANCE Km ENTERED IS WDfxPdxlSRWDfxPdxlSR</div>
-					<div class="node-step">GPS LONGITUDE ENTERED IS xfEJPrRVxsxfEJPrRVxs</div>
-					<div class="node-step">GPS LONGITUDE ENTERED IS bsYvJUmLMqbsYvJUmLMq</div>
-					<div class="node-step">THERE ARE NO OPTIONS OTHER THAN 'None'</div>
-					<div class="node-step">FREIGHT ZONE DROP DOWN IS None</div>
-					<div class="node-step">FREIGHT METHOD DROP DOWN IS No Freight</div>
-					<div class="node-step">FREIGHT BASE DROP DOWN IS Actual Shipped Weight/Volume</div>
-		</li>
-	</ul>
-</div>
-<div class='scenario node' test-id='770' status='pass'>
-
-	<span class='duration right label'>00 01 09.216</span>
-	<div class="bdd-test">
-		<div class="scenario-name"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span> Scenario: Test scenario for entering values for Ignition, before that save all the values entered under all tabs, in Customer inq</div>
-	</div>
-	
-	
-		<div class='category-list'>
-				<span class='category label'>@Ignition</span>
-		</div>
-	
-	<ul class='steps'>
-		<li test-id='858' class='node given Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.CustomerInqPage_ERPSteps.CustomerInqStep_ERP.userEntersURLAndIsOnLoginPageAndEnteredCredentialsCustomerInqERP())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Given User enters URL and is on login page and entered credentials Customer inq ERP</div>
-
-
-		</li>
-		<li test-id='859' class='node when Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.CustomerInqPage_ERPSteps.CustomerInqStep_ERP.userIsOnHomePageForCustomerInqERP())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>When User is on Home Page for Customer inq ERP</div>
-
-
-		</li>
-		<li test-id='860' class='node then Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.CustomerInqPage_ERPSteps.CustomerInqStep_ERP.userNavigateToClientSideForCustomerInqERP())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User navigate to Client side for Customer inq ERP</div>
-
-
-		</li>
-		<li test-id='861' class='node given Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.CustomerInqPage_ERPSteps.CustomerInqStep_ERP.userMustBeOnClientSideAndSelectCustomerInqInERP())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Given User must be on Client side and select Customer Inq in ERP</div>
-
-
-		</li>
-		<li test-id='862' class='node when Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.CustomerInqPage_ERPSteps.CustomerInqStep_ERP.userShouldConfirmThatHeIsInCustomerInqInERP())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>When User should confirm that he is in Customer Inq in ERP</div>
-
-
-		</li>
-		<li test-id='863' class='node then Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.CustomerInqPage_ERPSteps.CustomerInqStep_ERP.userClickOnNewButtonInERPCustomerInq())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User click on New button in ERP Customer Inq</div>
-
-
-		</li>
-		<li test-id='864' class='node then Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.CustomerInqPage_ERPSteps.CustomerInqStep_ERP.userClicksOnSaveButtonBeforeAddingValuesToIgnition())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User clicks on Save button before adding values to ignition</div>
-
-
-					<div class="node-step">VALUE ENTERED FOR BILLING# 5887044731</div>
-					<div class="node-step">CUSTOMER DESCRIPTION ENTERED IS: exNRybpN</div>
-					<div class="node-step">SAVE BUTTON HAS BEEN CLICKED</div>
-		</li>
-		<li test-id='865' class='node and Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.CustomerInqPage_ERPSteps.CustomerInqStep_ERP.userNavigateToIgnitionTabInERP())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>And User navigate to Ignition tab in ERP</div>
-
-
-		</li>
-		<li test-id='866' class='node then Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.CustomerInqPage_DSDSteps.CustomerInqStep.userClicksOnCreateNewButtonAndStandingOrderPopupAppeared())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User clicks on Create new button and standing PO popup appeared</div>
-
-
-		</li>
-		<li test-id='867' class='node and Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.CustomerInqPage_DSDSteps.CustomerInqStep.userSelectsDayFromCurrentDateAndDayFromEndDateAndSelectPaymentProcessing(int,int))"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>And User selects 1 day from current date and 2 day from end date and Select Payment processing</div>
-
-
-					<div class="node-step">Tuesday, February 4, 2025 HAS BEEN SELECTED AS START DATE FOR STANDING ORDER</div>
-					<div class="node-step">Wednesday, February 5, 2025 HAS BEEN SELECTED AS END DATE FOR STANDING ORDER</div>
-		</li>
-		<li test-id='868' class='node then Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.CustomerInqPage_ERPSteps.CustomerInqStep_ERP.poHasBeenSavedInERP())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then PO has been saved in ERP</div>
-
-
-					<div class="node-step">SAVE BUTTON HAS BEEN CLICKED</div>
-		</li>
-		<li test-id='869' class='node then Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.CustomerInqPage_DSDSteps.CustomerInqStep.userSelectsTimeForOrderTimeForDifferentDays())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User selects time for order time for different days</div>
-
-
-		</li>
-		<li test-id='870' class='node and Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.CustomerInqPage_DSDSteps.CustomerInqStep.userSelectsOrderTakerFromDropDown())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>And User selects Order taker from drop down</div>
-
-
-		</li>
-		<li test-id='871' class='node then Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.CustomerInqPage_DSDSteps.CustomerInqStep.userClicksOnSaveButton())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User clicks on Save button</div>
-
-
-					<div class="node-step">SAVE BUTTON HAS BEEN CLICKED</div>
-		</li>
-	</ul>
-</div>
-<div class='scenario node' test-id='873' status='pass'>
-
-	<span class='duration right label'>00 01 05.869</span>
-	<div class="bdd-test">
-		<div class="scenario-name"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span> Scenario: Test scenario for creating multiple Standing PO</div>
-	</div>
-	
-	
-		<div class='category-list'>
-				<span class='category label'>@MultipleStandingPO</span>
-		</div>
-	
-	<ul class='steps'>
-		<li test-id='961' class='node given Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.CustomerInqPage_ERPSteps.CustomerInqStep_ERP.userEntersURLAndIsOnLoginPageAndEnteredCredentialsCustomerInqERP())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Given User enters URL and is on login page and entered credentials Customer inq ERP</div>
-
-
-		</li>
-		<li test-id='962' class='node when Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.CustomerInqPage_ERPSteps.CustomerInqStep_ERP.userIsOnHomePageForCustomerInqERP())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>When User is on Home Page for Customer inq ERP</div>
-
-
-		</li>
-		<li test-id='963' class='node then Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.CustomerInqPage_ERPSteps.CustomerInqStep_ERP.userNavigateToClientSideForCustomerInqERP())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User navigate to Client side for Customer inq ERP</div>
-
-
-		</li>
-		<li test-id='964' class='node given Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.CustomerInqPage_ERPSteps.CustomerInqStep_ERP.userMustBeOnClientSideAndSelectCustomerInqInERP())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Given User must be on Client side and select Customer Inq in ERP</div>
-
-
-		</li>
-		<li test-id='965' class='node when Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.CustomerInqPage_ERPSteps.CustomerInqStep_ERP.userShouldConfirmThatHeIsInCustomerInqInERP())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>When User should confirm that he is in Customer Inq in ERP</div>
-
-
-		</li>
-		<li test-id='966' class='node and Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.CustomerInqPage_ERPSteps.CustomerInqStep_ERP.userNavigateToIgnitionTabInERP())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>And User navigate to Ignition tab in ERP</div>
-
-
-		</li>
-		<li test-id='967' class='node then Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.CustomerInqPage_DSDSteps.CustomerInqStep.userClicksOnCreateNewButtonAndStandingOrderPopupAppeared())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User clicks on Create new button and standing PO popup appeared</div>
-
-
-		</li>
-		<li test-id='968' class='node and Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.CustomerInqPage_DSDSteps.CustomerInqStep.userSelectsDayFromCurrentDateAndDayFromEndDateAndSelectPaymentProcessing(int,int))"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>And User selects 3 day from current date and 4 day from end date and Select Payment processing</div>
-
-
-					<div class="node-step">Thursday, February 6, 2025 HAS BEEN SELECTED AS START DATE FOR STANDING ORDER</div>
-					<div class="node-step">Friday, February 7, 2025 HAS BEEN SELECTED AS END DATE FOR STANDING ORDER</div>
-		</li>
-		<li test-id='969' class='node then Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.CustomerInqPage_ERPSteps.CustomerInqStep_ERP.poHasBeenSavedInERP())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then PO has been saved in ERP</div>
-
-
-					<div class="node-step">SAVE BUTTON HAS BEEN CLICKED</div>
-		</li>
-		<li test-id='970' class='node then Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.CustomerInqPage_DSDSteps.CustomerInqStep.userClicksOnCreateNewButtonAndStandingOrderPopupAppeared())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User clicks on Create new button and standing PO popup appeared</div>
-
-
-		</li>
-		<li test-id='971' class='node and Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.CustomerInqPage_DSDSteps.CustomerInqStep.userSelectsDayFromCurrentDateAndDayFromEndDateAndSelectPaymentProcessing(int,int))"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>And User selects 5 day from current date and 6 day from end date and Select Payment processing</div>
-
-
-					<div class="node-step">Saturday, February 8, 2025 HAS BEEN SELECTED AS START DATE FOR STANDING ORDER</div>
-					<div class="node-step">Sunday, February 9, 2025 HAS BEEN SELECTED AS END DATE FOR STANDING ORDER</div>
-		</li>
-		<li test-id='972' class='node then Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.CustomerInqPage_ERPSteps.CustomerInqStep_ERP.poHasBeenSavedInERP())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then PO has been saved in ERP</div>
-
-
-					<div class="node-step">SAVE BUTTON HAS BEEN CLICKED</div>
-		</li>
-	</ul>
-</div>
-<div class='scenario node' test-id='974' status='pass'>
-
-	<span class='duration right label'>00 00 01.100</span>
-	<div class="bdd-test">
-		<div class="scenario-name"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span> Scenario: Test scenario to search PO details in Ignition tab</div>
-	</div>
-	
-	
-		<div class='category-list'>
-				<span class='category label'>@SearchPO</span>
-		</div>
-	
-	<ul class='steps'>
-		<li test-id='1,062' class='node given Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.CustomerInqPage_ERPSteps.CustomerInqStep_ERP.userEntersURLAndIsOnLoginPageAndEnteredCredentialsCustomerInqERP())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Given User enters URL and is on login page and entered credentials Customer inq ERP</div>
-
-
-		</li>
-		<li test-id='1,063' class='node when Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.CustomerInqPage_ERPSteps.CustomerInqStep_ERP.userIsOnHomePageForCustomerInqERP())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>When User is on Home Page for Customer inq ERP</div>
-
-
-		</li>
-		<li test-id='1,064' class='node then Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.CustomerInqPage_ERPSteps.CustomerInqStep_ERP.userNavigateToClientSideForCustomerInqERP())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User navigate to Client side for Customer inq ERP</div>
-
-
-		</li>
-		<li test-id='1,065' class='node given Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.CustomerInqPage_ERPSteps.CustomerInqStep_ERP.userMustBeOnClientSideAndSelectCustomerInqInERP())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Given User must be on Client side and select Customer Inq in ERP</div>
-
-
-		</li>
-		<li test-id='1,066' class='node when Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.CustomerInqPage_ERPSteps.CustomerInqStep_ERP.userShouldConfirmThatHeIsInCustomerInqInERP())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>When User should confirm that he is in Customer Inq in ERP</div>
-
-
-		</li>
-		<li test-id='1,067' class='node and Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.CustomerInqPage_ERPSteps.CustomerInqStep_ERP.userNavigateToIgnitionTabInERP())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>And User navigate to Ignition tab in ERP</div>
-
-
-		</li>
-		<li test-id='1,068' class='node then Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.CustomerInqPage_DSDSteps.CustomerInqStep.userEntersPOInSearchBoxAndUserShouldMakeSureThatPODetailsDisplayedInGrid())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User enters PO in search box and user should make sure that PO details displayed in grid</div>
-
-
-		</li>
-		<li test-id='1,069' class='node and Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.CustomerInqPage_DSDSteps.CustomerInqStep1.userClearsSearchValueInSearchBox())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>And User clears search value in search box</div>
-
-
-		</li>
-	</ul>
-</div>
-<div class='scenario node' test-id='1,071' status='pass'>
-
-	<span class='duration right label'>00 00 09.884</span>
-	<div class="bdd-test">
-		<div class="scenario-name"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span> Scenario: Test scenario for editing Standing PO</div>
-	</div>
-	
-	
-		<div class='category-list'>
-				<span class='category label'>@EditStandingPO</span>
-		</div>
-	
-	<ul class='steps'>
-		<li test-id='1,159' class='node given Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.CustomerInqPage_ERPSteps.CustomerInqStep_ERP.userEntersURLAndIsOnLoginPageAndEnteredCredentialsCustomerInqERP())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Given User enters URL and is on login page and entered credentials Customer inq ERP</div>
-
-
-		</li>
-		<li test-id='1,160' class='node when Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.CustomerInqPage_ERPSteps.CustomerInqStep_ERP.userIsOnHomePageForCustomerInqERP())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>When User is on Home Page for Customer inq ERP</div>
-
-
-		</li>
-		<li test-id='1,161' class='node then Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.CustomerInqPage_ERPSteps.CustomerInqStep_ERP.userNavigateToClientSideForCustomerInqERP())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User navigate to Client side for Customer inq ERP</div>
-
-
-		</li>
-		<li test-id='1,162' class='node given Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.CustomerInqPage_ERPSteps.CustomerInqStep_ERP.userMustBeOnClientSideAndSelectCustomerInqInERP())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Given User must be on Client side and select Customer Inq in ERP</div>
-
-
-		</li>
-		<li test-id='1,163' class='node when Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.CustomerInqPage_ERPSteps.CustomerInqStep_ERP.userShouldConfirmThatHeIsInCustomerInqInERP())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>When User should confirm that he is in Customer Inq in ERP</div>
-
-
-		</li>
-		<li test-id='1,164' class='node and Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.CustomerInqPage_ERPSteps.CustomerInqStep_ERP.userNavigateToIgnitionTabInERP())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>And User navigate to Ignition tab in ERP</div>
-
-
-		</li>
-		<li test-id='1,165' class='node then Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.CustomerInqPage_DSDSteps.CustomerInqStep.userEntersPOInSearchBoxAndUserShouldMakeSureThatPODetailsDisplayedInGrid())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User enters PO in search box and user should make sure that PO details displayed in grid</div>
-
-
-		</li>
-		<li test-id='1,166' class='node and Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.CustomerInqPage_DSDSteps.CustomerInqStep.userShouldBeAbleToSelectThePODetailsAndEditEndDateAsDays(int))"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>And User should be able to select the PO details and edit end date as 16 days</div>
-
-
-					<div class="node-step">Wednesday, February 19, 2025 HAS BEEN SELECTED AS END DATE FOR STANDING ORDER</div>
-		</li>
-		<li test-id='1,167' class='node then Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.CustomerInqPage_DSDSteps.CustomerInqStep.userChangesPOValue())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User changes PO value</div>
-
-
-		</li>
-		<li test-id='1,168' class='node then Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.CustomerInqPage_DSDSteps.CustomerInqStep.userClearsSearchBarInIgnitionTab())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User clears search bar in ignition tab</div>
-
-
-		</li>
-	</ul>
-</div>
-<div class='scenario node' test-id='1,170' status='pass'>
-
-	<span class='duration right label'>00 00 11.258</span>
-	<div class="bdd-test">
-		<div class="scenario-name"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span> Scenario: Test scenario for Deleting Standing PO</div>
-	</div>
-	
-	
-		<div class='category-list'>
-				<span class='category label'>@DeleteStandingPO</span>
-		</div>
-	
-	<ul class='steps'>
-		<li test-id='1,258' class='node given Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.CustomerInqPage_ERPSteps.CustomerInqStep_ERP.userEntersURLAndIsOnLoginPageAndEnteredCredentialsCustomerInqERP())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Given User enters URL and is on login page and entered credentials Customer inq ERP</div>
-
-
-		</li>
-		<li test-id='1,259' class='node when Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.CustomerInqPage_ERPSteps.CustomerInqStep_ERP.userIsOnHomePageForCustomerInqERP())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>When User is on Home Page for Customer inq ERP</div>
-
-
-		</li>
-		<li test-id='1,260' class='node then Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.CustomerInqPage_ERPSteps.CustomerInqStep_ERP.userNavigateToClientSideForCustomerInqERP())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User navigate to Client side for Customer inq ERP</div>
-
-
-		</li>
-		<li test-id='1,261' class='node given Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.CustomerInqPage_ERPSteps.CustomerInqStep_ERP.userMustBeOnClientSideAndSelectCustomerInqInERP())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Given User must be on Client side and select Customer Inq in ERP</div>
-
-
-		</li>
-		<li test-id='1,262' class='node when Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.CustomerInqPage_ERPSteps.CustomerInqStep_ERP.userShouldConfirmThatHeIsInCustomerInqInERP())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>When User should confirm that he is in Customer Inq in ERP</div>
-
-
-		</li>
-		<li test-id='1,263' class='node and Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.CustomerInqPage_ERPSteps.CustomerInqStep_ERP.userNavigateToIgnitionTabInERP())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>And User navigate to Ignition tab in ERP</div>
-
-
-		</li>
-		<li test-id='1,264' class='node then Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.CustomerInqPage_ERPSteps.CustomerInqStep_ERP.userSelectsStandingPOFromTheGridAndClickDeleteInERP())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User selects Standing PO# from the grid and click Delete in ERP</div>
-
-
-					<div class="node-step">STANDING PO SELECTED FOR DELETE</div>
-					<div class="node-step">CLICK ON DELETE BUTTON</div>
-					<div class="node-step">STANDING PO SELECTED FOR DELETE</div>
-					<div class="node-step">CLICK ON DELETE BUTTON</div>
-					<div class="node-step">STANDING PO SELECTED FOR DELETE</div>
-					<div class="node-step">CLICK ON DELETE BUTTON</div>
-		</li>
-	</ul>
-</div>
-<div class='scenario node' test-id='1,266' status='pass'>
-
-	<span class='duration right label'>00 00 02.066</span>
-	<div class="bdd-test">
-		<div class="scenario-name"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span> Scenario: Test scenario for verifying System default real time changes in Payment processing drop down</div>
-	</div>
-	
-	
-		<div class='category-list'>
-				<span class='category label'>@SystemDefaultRealTimeChanges</span>
-		</div>
-	
-	<ul class='steps'>
-		<li test-id='1,354' class='node given Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.CustomerInqPage_ERPSteps.CustomerInqStep_ERP.userEntersURLAndIsOnLoginPageAndEnteredCredentialsCustomerInqERP())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Given User enters URL and is on login page and entered credentials Customer inq ERP</div>
-
-
-		</li>
-		<li test-id='1,355' class='node when Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.CustomerInqPage_ERPSteps.CustomerInqStep_ERP.userIsOnHomePageForCustomerInqERP())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>When User is on Home Page for Customer inq ERP</div>
-
-
-		</li>
-		<li test-id='1,356' class='node then Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.CustomerInqPage_ERPSteps.CustomerInqStep_ERP.userNavigateToClientSideForCustomerInqERP())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User navigate to Client side for Customer inq ERP</div>
-
-
-		</li>
-		<li test-id='1,357' class='node given Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.CustomerInqPage_ERPSteps.CustomerInqStep_ERP.userMustBeOnClientSideAndSelectCustomerInqInERP())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Given User must be on Client side and select Customer Inq in ERP</div>
-
-
-		</li>
-		<li test-id='1,358' class='node when Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.CustomerInqPage_ERPSteps.CustomerInqStep_ERP.userShouldConfirmThatHeIsInCustomerInqInERP())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>When User should confirm that he is in Customer Inq in ERP</div>
-
-
-		</li>
-		<li test-id='1,359' class='node then Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.CustomerInqPage_ERPSteps.CustomerInqStep_ERP1.userShouldNavigateToTelusTabInERP())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User should navigate to Telus tab in ERP</div>
-
-
-		</li>
-		<li test-id='1,360' class='node and Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.CustomerInqPage_ERPSteps.CustomerInqStep_ERP1.userClickOnPaymentProcessingAndVerifyVisibilityOfSystemDefaultRealtimeChargeOptionInERP())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>And User click on Payment processing and verify visibility of System default Realtime charge option in ERP</div>
-
-
-					<div class="node-step">PAYMENT PROCESS DROP DOWN FOUND</div>
-		</li>
-	</ul>
-</div>
-<div class='scenario node' test-id='1,362' status='pass'>
-
-	<span class='duration right label'>00 00 30.849</span>
-	<div class="bdd-test">
-		<div class="scenario-name"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span> Scenario: Test scenario for adding note to customer inq in OMS/ERP env</div>
-	</div>
-	
-	
-		<div class='category-list'>
-				<span class='category label'>@AddNote</span>
-		</div>
-	
-	<ul class='steps'>
-		<li test-id='1,450' class='node given Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.CustomerInqPage_ERPSteps.CustomerInqStep_ERP.userEntersURLAndIsOnLoginPageAndEnteredCredentialsCustomerInqERP())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Given User enters URL and is on login page and entered credentials Customer inq ERP</div>
-
-
-		</li>
-		<li test-id='1,451' class='node when Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.CustomerInqPage_ERPSteps.CustomerInqStep_ERP.userIsOnHomePageForCustomerInqERP())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>When User is on Home Page for Customer inq ERP</div>
-
-
-		</li>
-		<li test-id='1,452' class='node then Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.CustomerInqPage_ERPSteps.CustomerInqStep_ERP.userNavigateToClientSideForCustomerInqERP())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User navigate to Client side for Customer inq ERP</div>
-
-
-		</li>
-		<li test-id='1,453' class='node given Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.CustomerInqPage_ERPSteps.CustomerInqStep_ERP.userMustBeOnClientSideAndSelectCustomerInqInERP())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Given User must be on Client side and select Customer Inq in ERP</div>
-
-
-		</li>
-		<li test-id='1,454' class='node when Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.CustomerInqPage_ERPSteps.CustomerInqStep_ERP.userShouldConfirmThatHeIsInCustomerInqInERP())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>When User should confirm that he is in Customer Inq in ERP</div>
-
-
-		</li>
-		<li test-id='1,455' class='node then Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.CustomerInqPage_ERPSteps.CustomerInqStep_ERP.addNoteInPopupInERPCustInq(io.cucumber.datatable.DataTable))"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then Add note in popup in ERP cust inq</div>
-
-
-					<div class="node-step"><table class='markup-table table '><tr><td>Testing for Notes at Customer inq</td></tr></table></div>
-					<div class="node-step">CUSTOMER NOTE DIALOG BOX HAS BEEN FOUND</div>
-					<div class="node-step">CUSTOMER NOTES ENTERED IS: Testing for Notes at Customer inq</div>
-		</li>
-		<li test-id='1,456' class='node and Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.CustomerInqPage_ERPSteps.CustomerInqStep_ERP.userShouldSelectTheAlertTypeAndAlertLocationToDisplayNotesInERPCustInq(io.cucumber.datatable.DataTable))"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>And User should select the Alert Type and Alert location to display notes in ERP cust inq</div>
-
-
-					<div class="node-step"><table class='markup-table table '><tr><td>Both</td><td>Customer master</td><td>Order entry</td></tr></table></div>
-					<div class="node-step">ALERT TYPE SELECTED IS: Both</div>
-		</li>
-		<li test-id='1,457' class='node then Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.CustomerInqPage_ERPSteps.CustomerInqStep_ERP.clickOnSaveButtonInERPCustInq())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then Click on Save button in ERP cust inq</div>
-
-
-		</li>
-		<li test-id='1,458' class='node then Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.CustomerInqPage_ERPSteps.CustomerInqStep_ERP1.userRefreshesCustomerInqPageInERP())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User refreshes customer inq page in ERP</div>
-
-
-		</li>
-		<li test-id='1,459' class='node and Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.CustomerInqPage_ERPSteps.CustomerInqStep_ERP1.userShouldSelectCustomerAccountInCustomerInqInERP(io.cucumber.datatable.DataTable))"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>And User should select customer account# in customer inq in ERP</div>
-
-
-					<div class="node-step"><table class='markup-table table '><tr><td>Customer</td></tr></table></div>
-					<div class="node-step">CUSTOMER ACCOUNT DIALOG BOX HAS BEEN FOUND</div>
-		</li>
-		<li test-id='1,460' class='node then Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.CustomerInqPage_ERPSteps.CustomerInqStep_ERP1.userShouldClickOnCustomerNoteIconInCustomerInqInERPPageAndValidateThatNoteAddedIsExistingInPopup(io.cucumber.datatable.DataTable))"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User should click on customer note icon in customer inq in ERP page and validate that note added is existing in popup</div>
-
-
-					<div class="node-step"><table class='markup-table table '><tr><td>Testing for Notes at Customer inq</td></tr></table></div>
-					<div class="node-step">CUSTOMER NOTE DIALOG BOX HAS BEEN FOUND</div>
-					<div class="node-step">Testing for Notes at Customer inq COMMENT HAS BEEN FOUND IN NOTE DIALOG BOX</div>
-		</li>
-	</ul>
-</div>
-<div class='scenario node' test-id='1,462' status='pass'>
-
-	<span class='duration right label'>00 00 01.790</span>
-	<div class="bdd-test">
-		<div class="scenario-name"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span> Scenario: Test scenario for canceling copy of Customer inq</div>
-	</div>
-	
-	
-		<div class='category-list'>
-				<span class='category label'>@CancelCopy</span>
-		</div>
-	
-	<ul class='steps'>
-		<li test-id='1,550' class='node given Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.CustomerInqPage_ERPSteps.CustomerInqStep_ERP.userEntersURLAndIsOnLoginPageAndEnteredCredentialsCustomerInqERP())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Given User enters URL and is on login page and entered credentials Customer inq ERP</div>
-
-
-		</li>
-		<li test-id='1,551' class='node when Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.CustomerInqPage_ERPSteps.CustomerInqStep_ERP.userIsOnHomePageForCustomerInqERP())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>When User is on Home Page for Customer inq ERP</div>
-
-
-		</li>
-		<li test-id='1,552' class='node then Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.CustomerInqPage_ERPSteps.CustomerInqStep_ERP.userNavigateToClientSideForCustomerInqERP())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User navigate to Client side for Customer inq ERP</div>
-
-
-		</li>
-		<li test-id='1,553' class='node given Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.CustomerInqPage_ERPSteps.CustomerInqStep_ERP.userMustBeOnClientSideAndSelectCustomerInqInERP())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Given User must be on Client side and select Customer Inq in ERP</div>
-
-
-		</li>
-		<li test-id='1,554' class='node when Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.CustomerInqPage_ERPSteps.CustomerInqStep_ERP.userShouldConfirmThatHeIsInCustomerInqInERP())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>When User should confirm that he is in Customer Inq in ERP</div>
-
-
-		</li>
-		<li test-id='1,555' class='node then Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.CustomerInqPage_ERPSteps.CustomerInqStep_ERP.userClicksOnCopyButtonAndPopupShouldDisplayInERP())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User clicks on Copy button and popup should display in ERP</div>
-
-
-		</li>
-		<li test-id='1,556' class='node and Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.CustomerInqPage_ERPSteps.CustomerInqStep_ERP1.userShouldEnterRequiredDetailsInERPCopyPopupAndUserShouldCancelCopy())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>And User should enter required details in ERP Copy popup and user should cancel copy</div>
-
-
-					<div class="node-step">CUSTOMER NAME ENTERED IS boBJ</div>
-		</li>
-	</ul>
-</div>
-<div class='scenario node' test-id='1,558' status='pass'>
-
-	<span class='duration right label'>00 00 11.894</span>
-	<div class="bdd-test">
-		<div class="scenario-name"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span> Scenario: Test scenario for creating copy of customer inq</div>
-	</div>
-	
-	
-		<div class='category-list'>
-				<span class='category label'>@CopyCustomerInq</span>
-		</div>
-	
-	<ul class='steps'>
-		<li test-id='1,646' class='node given Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.CustomerInqPage_ERPSteps.CustomerInqStep_ERP.userEntersURLAndIsOnLoginPageAndEnteredCredentialsCustomerInqERP())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Given User enters URL and is on login page and entered credentials Customer inq ERP</div>
-
-
-		</li>
-		<li test-id='1,647' class='node when Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.CustomerInqPage_ERPSteps.CustomerInqStep_ERP.userIsOnHomePageForCustomerInqERP())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>When User is on Home Page for Customer inq ERP</div>
-
-
-		</li>
-		<li test-id='1,648' class='node then Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.CustomerInqPage_ERPSteps.CustomerInqStep_ERP.userNavigateToClientSideForCustomerInqERP())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User navigate to Client side for Customer inq ERP</div>
-
-
-		</li>
-		<li test-id='1,649' class='node given Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.CustomerInqPage_ERPSteps.CustomerInqStep_ERP.userMustBeOnClientSideAndSelectCustomerInqInERP())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Given User must be on Client side and select Customer Inq in ERP</div>
-
-
-		</li>
-		<li test-id='1,650' class='node when Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.CustomerInqPage_ERPSteps.CustomerInqStep_ERP.userShouldConfirmThatHeIsInCustomerInqInERP())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>When User should confirm that he is in Customer Inq in ERP</div>
-
-
-		</li>
-		<li test-id='1,651' class='node then Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.CustomerInqPage_ERPSteps.CustomerInqStep_ERP.userClicksOnCopyButtonAndPopupShouldDisplayInERP())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User clicks on Copy button and popup should display in ERP</div>
-
-
-		</li>
-		<li test-id='1,652' class='node and Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.CustomerInqPage_ERPSteps.CustomerInqStep_ERP.userShouldEnterRequiredDetailsInERPCopyPopup())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>And User should enter required details in ERP Copy popup</div>
-
-
-					<div class="node-step">CUSTOMER NAME ENTERED IS hlta</div>
-		</li>
-	</ul>
-</div>
-<div class='scenario node' test-id='1,654' status='pass'>
-
-	<span class='duration right label'>00 00 25.583</span>
-	<div class="bdd-test">
-		<div class="scenario-name"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span> Scenario: Test scenario for creating copy of customer inq for existing customer</div>
-	</div>
-	
-	
-		<div class='category-list'>
-				<span class='category label'>@CreateCopyForExistingCustomer</span>
-		</div>
-	
-	<ul class='steps'>
-		<li test-id='1,742' class='node given Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.CustomerInqPage_ERPSteps.CustomerInqStep_ERP.userEntersURLAndIsOnLoginPageAndEnteredCredentialsCustomerInqERP())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Given User enters URL and is on login page and entered credentials Customer inq ERP</div>
-
-
-		</li>
-		<li test-id='1,743' class='node when Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.CustomerInqPage_ERPSteps.CustomerInqStep_ERP.userIsOnHomePageForCustomerInqERP())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>When User is on Home Page for Customer inq ERP</div>
-
-
-		</li>
-		<li test-id='1,744' class='node then Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.CustomerInqPage_ERPSteps.CustomerInqStep_ERP.userNavigateToClientSideForCustomerInqERP())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User navigate to Client side for Customer inq ERP</div>
-
-
-		</li>
-		<li test-id='1,745' class='node given Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.CustomerInqPage_ERPSteps.CustomerInqStep_ERP.userMustBeOnClientSideAndSelectCustomerInqInERP())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Given User must be on Client side and select Customer Inq in ERP</div>
-
-
-		</li>
-		<li test-id='1,746' class='node when Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.CustomerInqPage_ERPSteps.CustomerInqStep_ERP.userShouldConfirmThatHeIsInCustomerInqInERP())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>When User should confirm that he is in Customer Inq in ERP</div>
-
-
-		</li>
-		<li test-id='1,747' class='node then Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.CustomerInqPage_ERPSteps.CustomerInqStep_ERP1.userClickOnNewButtonInERPCustomerInqForCopyOfCustomerInq())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User click on New button in ERP Customer Inq for copy of customer inq</div>
-
-
-		</li>
-		<li test-id='1,748' class='node and Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.CustomerInqPage_ERPSteps.CustomerInqStep_ERP1.userShouldSelectCustomerAccountInCustomerInqInERP(io.cucumber.datatable.DataTable))"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>And User should select customer account# in customer inq in ERP</div>
-
-
-					<div class="node-step"><table class='markup-table table '><tr><td>Customer</td></tr></table></div>
-					<div class="node-step">CUSTOMER ACCOUNT DIALOG BOX HAS BEEN FOUND</div>
-		</li>
-		<li test-id='1,749' class='node then Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.CustomerInqPage_ERPSteps.CustomerInqStep_ERP.userClicksOnCopyButtonAndPopupShouldDisplayInERP())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User clicks on Copy button and popup should display in ERP</div>
-
-
-		</li>
-		<li test-id='1,750' class='node and Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.CustomerInqPage_ERPSteps.CustomerInqStep_ERP1.userShouldClickOnSaveButtonToSaveCopyOfCustomerInqInERP())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>And User should click on save button to save copy of customer inq in ERP</div>
-
-
-					<div class="node-step">SAVE BUTTON HAS BEEN CLICKED</div>
-		</li>
-	</ul>
-</div>
-<div class='scenario node' test-id='1,752' status='pass'>
-
-	<span class='duration right label'>00 02 10.722</span>
-	<div class="bdd-test">
-		<div class="scenario-name"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span> Scenario: Test scenario for creating cancel of customer inq for existing customer</div>
-	</div>
-	
-	
-		<div class='category-list'>
-				<span class='category label'>@CustomerNameRequiredPopup</span>
-		</div>
-	
-	<ul class='steps'>
-		<li test-id='1,840' class='node given Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.CustomerInqPage_ERPSteps.CustomerInqStep_ERP.userEntersURLAndIsOnLoginPageAndEnteredCredentialsCustomerInqERP())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Given User enters URL and is on login page and entered credentials Customer inq ERP</div>
-
-
-		</li>
-		<li test-id='1,841' class='node when Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.CustomerInqPage_ERPSteps.CustomerInqStep_ERP.userIsOnHomePageForCustomerInqERP())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>When User is on Home Page for Customer inq ERP</div>
-
-
-		</li>
-		<li test-id='1,842' class='node then Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.CustomerInqPage_ERPSteps.CustomerInqStep_ERP.userNavigateToClientSideForCustomerInqERP())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User navigate to Client side for Customer inq ERP</div>
-
-
-		</li>
-		<li test-id='1,843' class='node given Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.CustomerInqPage_ERPSteps.CustomerInqStep_ERP.userMustBeOnClientSideAndSelectCustomerInqInERP())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Given User must be on Client side and select Customer Inq in ERP</div>
-
-
-		</li>
-		<li test-id='1,844' class='node when Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.CustomerInqPage_ERPSteps.CustomerInqStep_ERP.userShouldConfirmThatHeIsInCustomerInqInERP())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>When User should confirm that he is in Customer Inq in ERP</div>
-
-
-		</li>
-		<li test-id='1,845' class='node then Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.CustomerInqPage_ERPSteps.CustomerInqStep_ERP.userClickOnNewButtonToCancelCreationOfCustomerInqInErp())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User click on New button to cancel creation of customer inq in ERP</div>
-
-
-		</li>
-		<li test-id='1,846' class='node and Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.CustomerInqPage_ERPSteps.CustomerInqStep_ERP.userEntersValueToAllTheInputBoxInMainPage())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>And User enters value to all the input box in Main page</div>
-
-
-					<div class="node-step">FIRST NAME ENTERED IS QArdhDYaKrQArdhDYaKr</div>
-					<div class="node-step">LAST NAME ENTERED IS qnUjiPgQYEqnUjiPgQYE</div>
-					<div class="node-step">STORE NUMBER ENTERED IS 64994419796499441979</div>
-					<div class="node-step">LOOK UP INFORMATION ENTERED IS hrqNVPfFbghrqNVPfFbg</div>
-					<div class="node-step">ADDRESS1 ENTERED IS FFcPKUMbCEAPbpOsFvMyFFcPKUMbCEAPbpOsFvMy</div>
-					<div class="node-step">ADDRESS2 ENTERED IS vHQsKOMUEJKSxPnCdQCbvHQsKOMUEJKSxPnCdQCb</div>
-					<div class="node-step">CITY NAME ENTERED IS ExIGxrhVZCxBuPQBWPrtExIGxrhVZCxBuPQBWPrt</div>
-					<div class="node-step">VALUE SELECTED FROM COUNTY DROP DOWN IS WASHINGTON</div>
-					<div class="node-step">ZIP NUMBER ENTERED IS 670576205967</div>
-					<div class="node-step">VALUE SELECTED FROM STATE DROP DOWN IS NEBRASKA</div>
-					<div class="node-step">TELEPHONE NUMBER ENTERED IS 244-248-3472</div>
-					<div class="node-step">FAX NUMBER ENTERED IS 680-579-1698</div>
-					<div class="node-step">WEB SITE NAME ENTERED IS https://www.9q5xidox4vt.com</div>
-					<div class="node-step">VALUE SELECTED FROM LANGUAGE DROP DOWN IS ENGLISH</div>
-					<div class="node-step">VALUE SELECTED FROM VENDOR DROP DOWN IS MATT RODWELL</div>
-					<div class="node-step">PRIMARY CONTACT NAME ENTERED IS XEyYCgGAOMfTMcRMRyyEXEyYCgGAOMfTMcRMRyyE</div>
-					<div class="node-step">PRIMARY CONTACT TITLE ENTERED IS iuufMcIGMuLKYrWckDtQiuufMcIGMuLKYrWckDtQ</div>
-					<div class="node-step">PRIMARY CONTACT NAME ENTERED IS 758-979-1291</div>
-					<div class="node-step">EMAIL ADDRESS ENTERED IS 5@gmail.com</div>
-		</li>
-		<li test-id='1,847' class='node and Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.CustomerInqPage_ERPSteps.CustomerInqStep_ERP.userNavigateToARRulesTabAndUserEntersValueToAllTheInputBoxInARRulesPage())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>And User navigate to AR Rules tab and User enters value to all the input box in AR Rules page</div>
-
-
-					<div class="node-step">VALUE SELECTED FROM MARKET SEGMENT DROP DOWN IS LAST PO</div>
-					<div class="node-step">VALUE SELECTED FROM CURRENCY CODE DROP DOWN IS UNITED STATES DOLLAR</div>
-					<div class="node-step">VALUE SELECTED FROM EXCHANGE RATE DROP DOWN IS UNITED STATES DOLLAR</div>
-					<div class="node-step">VALUE SELECTED FROM BILL TO CUSTOMER DROP DOWN IS BLAKE</div>
-					<div class="node-step">VALUE SELECTED FROM REMIT TO CODE DROP DOWN IS MEDOSWEET FARMS, INC.</div>
-					<div class="node-step">VALUE SELECTED FROM CASH GROUP CODE DROP DOWN IS CCR-CUPCAKE ROYALE</div>
-					<div class="node-step">VALUE SELECTED FROM APPLICATION METHOD DROP DOWN IS Auto Apply without Disputed Invoice</div>
-					<div class="node-step">VALUE SELECTED FROM STATEMENT TO DROP DOWN IS BLAKE</div>
-					<div class="node-step">VALUE SELECTED FROM STATEMENT TO DROP DOWN IS Monthly</div>
-					<div class="node-step">VALUE SELECTED FROM STATEMENT TO DROP DOWN IS Thursday</div>
-					<div class="node-step">VALUE SELECTED FROM STATEMENT TO DROP DOWN IS Open Item Invoice with Balances Only</div>
-		</li>
-		<li test-id='1,848' class='node and Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.CustomerInqPage_ERPSteps.CustomerInqStep_ERP.userNavigateToCreditTabAndUserEntersValueToAllTheInputBoxInCreditPage())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>And User navigate to Credit tab and User enters value to all the input box in Credit page</div>
-
-
-					<div class="node-step">VALUE SELECTED FROM STATUS DROP DOWN IS Inactive</div>
-					<div class="node-step">VALUE SELECTED FROM DEFAULT BRANCH DROP DOWN IS LAST PO</div>
-					<div class="node-step">VALUE SELECTED FROM DEFAULT WAREHOUSE DROP DOWN IS Kent Whs</div>
-					<div class="node-step">VALUE SELECTED FROM CREDIT TO COMPANY DROP DOWN IS AFSIgnitionqa01 Medosweet DB</div>
-					<div class="node-step">VALUE SELECTED FROM CREDIT TO COMPANY DROP DOWN IS BLAKE</div>
-					<div class="node-step">CREDIT ENTERED IS 451,479,317,445,147</div>
-					<div class="node-step">MEMO LIMIT ENTERED IS 406,051,552,140,605</div>
-					<div class="node-step">VALUE SELECTED FROM CREDIT TO COMPANY DROP DOWN IS INFORMATION HOLD</div>
-					<div class="node-step">VALUE SELECTED FROM CREDIT TO COMPANY DROP DOWN IS NET 30 Email</div>
-					<div class="node-step">VALUE SELECTED FROM SERVICE CHARGE DROP DOWN IS Another Charge</div>
-					<div class="node-step">VALUE SELECTED FROM SERVICE CHARGE DROP DOWN IS ANDEE FRENCH</div>
-					<div class="node-step">Friday, February 7, 2025 HAS BEEN SELECTED AS NEXT REVIEW DATE</div>
-		</li>
-		<li test-id='1,849' class='node and Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.CustomerInqPage_ERPSteps.CustomerInqStep_ERP.userNavigateToBillingInfoTabAndUserEntersValueToAllTheInputBoxInBillingInfoPage())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>And User navigate to Billing Info tab and User enters value to all the input box in Billing Info page</div>
-
-
-					<div class="node-step">INVOICE COPY ENTERED IS 29630</div>
-					<div class="node-step">VALUE SELECTED FROM SALES TAX DROP DOWN IS RESALE CERT ON FILE TACOMA</div>
-					<div class="node-step">LEGAL NAME ENTERED IS DfdlULeplzDfdlULeplz</div>
-					<div class="node-step">DB NAME ENTERED IS uBuayDiwpPuBuayDiwpP</div>
-					<div class="node-step">DUN AND BRAND STREET ENTERED IS WlYspBfzxMWlYspBfzxM</div>
-					<div class="node-step">DB RATING ENTERED IS 99</div>
-					<div class="node-step">ADDRESS1 ENTERED IS zdCvumUpCMKmaPHYqEbizdCvumUpCMKmaPHYqEbi</div>
-					<div class="node-step">ADDRESS2 ENTERED IS AodxjNPmcfkWmdVrPcTjAodxjNPmcfkWmdVrPcTj</div>
-					<div class="node-step">ADDRESS3 ENTERED IS lQQZWVCGbjsLnmrOnyVllQQZWVCGbjsLnmrOnyVl</div>
-					<div class="node-step">ADDRESS4 ENTERED IS PazNHZoJIZWEtnjuqArpPazNHZoJIZWEtnjuqArp</div>
-					<div class="node-step">ADDRESS2 ENTERED IS DemUrIEvjQDemUrIEvjQ</div>
-					<div class="node-step">ADDRESS2 ENTERED IS OLzJJnpUgDRxLHGIMwwkOLzJJnpUgDRxLHGIMwwk</div>
-					<div class="node-step">VALUE SELECTED FROM BILL TO COUNTRY DROP DOWN IS WASHINGTON</div>
-					<div class="node-step">ZIP NUMBER ENTERED IS 135233464211</div>
-					<div class="node-step">VALUE SELECTED FROM SALES TAX DROP DOWN IS NEBRASKA</div>
-					<div class="node-step">TELEPHONE NUMBER ENTERED IS 210-684-9909</div>
-					<div class="node-step">FAX NUMBER ENTERED IS 107-754-2672</div>
-		</li>
-		<li test-id='1,850' class='node and Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.CustomerInqPage_ERPSteps.CustomerInqStep_ERP.userNavigateToMarketingTabAndUserEntersValueToAllTheInputBoxInMarketingPage())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>And User navigate to Marketing tab and User enters value to all the input box in Marketing page</div>
-
-
-					<div class="node-step">VALUE SELECTED FROM SALES REP DROP DOWN IS </div>
-					<div class="node-step">VALUE SELECTED FROM SALES REP2 DROP DOWN IS </div>
-					<div class="node-step">VALUE SELECTED FROM SALES REP3 DROP DOWN IS </div>
-					<div class="node-step">VALUE SELECTED FROM BROKER DROP DOWN IS </div>
-					<div class="node-step">VALUE SELECTED FROM BROKER2 DROP DOWN IS </div>
-					<div class="node-step">VALUE SELECTED FROM BROKER3 DROP DOWN IS </div>
-					<div class="node-step">VALUE SELECTED FROM FOB Code DROP DOWN IS </div>
-					<div class="node-step">VALUE SELECTED FROM REGION CODE DROP DOWN IS </div>
-					<div class="node-step">VALUE SELECTED FROM TERRITORY DROP DOWN IS </div>
-					<div class="node-step">VALUE SELECTED FROM ORIGIN CODE DROP DOWN IS None</div>
-					<div class="node-step">VALUE SELECTED FROM SALES ANALYSIS CUST DROP DOWN IS BLAKE</div>
-					<div class="node-step">FIRST NAME ENTERED IS vpWkGpopRZvpWkGpopRZ</div>
-					<div class="node-step">VALUE SELECTED FROM LOCAL CHAIN DROP DOWN IS AN XUYEN</div>
-					<div class="node-step">VALUE SELECTED FROM NATIONAL CHAIN DROP DOWN IS COFFEE SM</div>
-					<div class="node-step">THERE ARE NO OPTIONS OTHER THAN 'None'</div>
-					<div class="node-step">VALUE SELECTED FROM PRICE GROUP DROP DOWN IS None</div>
-		</li>
-		<li test-id='1,851' class='node and Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.CustomerInqPage_ERPSteps.CustomerInqStep_ERP.userNavigateToPricingTabAndUserEntersValueToAllTheInputBoxInPricingPage())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>And User navigate to Pricing tab and User enters value to all the input box in Pricing page</div>
-
-
-					<div class="node-step">VALUE SELECTED FROM PRICING CUSTOMER DROP DOWN IS BLAKE</div>
-					<div class="node-step">VALUE SELECTED FROM SALES REP DROP DOWN IS PRICE LEVEL 01</div>
-					<div class="node-step">VALUE SELECTED FROM SALES REP DROP DOWN IS PRICE LEVEL 01</div>
-					<div class="node-step">VALUE SELECTED FROM AIM PRICING DROP DOWN IS No AIM, but track for future AIM</div>
-					<div class="node-step">THERE ARE NO OPTIONS OTHER THAN 'None'</div>
-					<div class="node-step">VALUE SELECTED FROM RETAIL PRICE DROP DOWN IS None</div>
-					<div class="node-step">VALUE SELECTED FROM SHELF TAGS DROP DOWN IS Retail Prices Included</div>
-		</li>
-		<li test-id='1,852' class='node and Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.CustomerInqPage_ERPSteps.CustomerInqStep_ERP.userNavigateToOrderEntryTabAndUserEntersValueToAllTheInputBoxInOrderEntryPage())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>And User navigate to Order entry tab and User enters value to all the input box in Order entry page</div>
-
-
-					<div class="node-step">DELIVERY CONTACT ENTERED IS vdEWgBAoyQvdEWgBAoyQ</div>
-					<div class="node-step">FIRST NAME ENTERED IS BZjxVGaZUtBZjxVGaZUt</div>
-					<div class="node-step">TELEPHONE NUMBER ENTERED IS 508-357-1993</div>
-					<div class="node-step">EMAIL ADDRESS ENTERED IS N@gmail.com</div>
-					<div class="node-step">VALUE SELECTED FROM DEFAULT ORDER TYPE DROP DOWN IS ROUTE TRUCK INVENTORY</div>
-					<div class="node-step">VALUE SELECTED FROM AUTHORIZED PRODUCTS DROP DOWN IS Contract Items</div>
-					<div class="node-step">THERE ARE NO OPTIONS OTHER THAN 'None'</div>
-					<div class="node-step">VALUE SELECTED FROM DEFAULT CIG UOM DROP DOWN IS None</div>
-					<div class="node-step">THERE ARE NO OPTIONS OTHER THAN 'None'</div>
-					<div class="node-step">VALUE SELECTED FROM PRE PRICE DROP DOWN IS None</div>
-					<div class="node-step">ALLOCATION RANK ENTERED IS BZjxVGaZUtBZjxVGaZUt</div>
-					<div class="node-step">FIRST NAME ENTERED IS jCtGIKSNSQjCtGIKSNSQ</div>
-					<div class="node-step">VALUE SELECTED FROM BACK ORDER CANCEL DROP DOWN IS BACK ORDER TO DATE</div>
-					<div class="node-step">VALUE SELECTED FROM SALES REP DROP DOWN IS ORDER MINIMUM 100</div>
-		</li>
-		<li test-id='1,853' class='node and Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.CustomerInqPage_ERPSteps.CustomerInqStep_ERP.userNavigateToShippingTabAndUserEntersValueToAllTheInputBoxInShippingPage())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>And User navigate to Shipping tab and User enters value to all the input box in Shipping page</div>
-
-
-					<div class="node-step">DELIVERY CONTACT ENTERED IS 0</div>
-					<div class="node-step">DELIVERY DISTANCE Mi ENTERED IS iJlvinCOZEiJlvinCOZE</div>
-					<div class="node-step">DELIVERY DISTANCE Km ENTERED IS BZvuBiSwxfBZvuBiSwxf</div>
-					<div class="node-step">GPS LONGITUDE ENTERED IS fvRlCKjaYKfvRlCKjaYK</div>
-					<div class="node-step">GPS LONGITUDE ENTERED IS gEJZjgFPLRgEJZjgFPLR</div>
-					<div class="node-step">THERE ARE NO OPTIONS OTHER THAN 'None'</div>
-					<div class="node-step">FREIGHT ZONE DROP DOWN IS None</div>
-					<div class="node-step">FREIGHT METHOD DROP DOWN IS No Freight</div>
-					<div class="node-step">FREIGHT BASE DROP DOWN IS Actual Shipped Weight/Volume</div>
-		</li>
-		<li test-id='1,854' class='node then Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.CustomerInqPage_ERPSteps.CustomerInqStep_ERP1.userClicksOnSaveButtonWithoutEnteringCustomerNameInERPEnv())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User clicks on Save button without entering customer name in ERP env</div>
-
-
-					<div class="node-step">VALUE ENTERED FOR BILLING# 3736707324</div>
-					<div class="node-step">SAVE BUTTON HAS BEEN CLICKED</div>
-					<div class="node-step">ENTERING OF CUSTOMER ACCOUNT NAME IS MUST</div>
-		</li>
-	</ul>
-</div>
-<div class='scenario node' test-id='1,856' status='pass'>
-
-	<span class='duration right label'>00 00 06.478</span>
-	<div class="bdd-test">
-		<div class="scenario-name"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span> Scenario: Test scenario for loading details of particular customer in cusomter inq</div>
-	</div>
-	
-	
-		<div class='category-list'>
-				<span class='category label'>@LoadCustomerDetails</span>
-		</div>
-	
-	<ul class='steps'>
-		<li test-id='1,944' class='node given Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.CustomerInqPage_ERPSteps.CustomerInqStep_ERP.userEntersURLAndIsOnLoginPageAndEnteredCredentialsCustomerInqERP())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Given User enters URL and is on login page and entered credentials Customer inq ERP</div>
-
-
-		</li>
-		<li test-id='1,945' class='node when Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.CustomerInqPage_ERPSteps.CustomerInqStep_ERP.userIsOnHomePageForCustomerInqERP())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>When User is on Home Page for Customer inq ERP</div>
-
-
-		</li>
-		<li test-id='1,946' class='node then Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.CustomerInqPage_ERPSteps.CustomerInqStep_ERP.userNavigateToClientSideForCustomerInqERP())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User navigate to Client side for Customer inq ERP</div>
-
-
-		</li>
-		<li test-id='1,947' class='node given Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.CustomerInqPage_ERPSteps.CustomerInqStep_ERP.userMustBeOnClientSideAndSelectCustomerInqInERP())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Given User must be on Client side and select Customer Inq in ERP</div>
-
-
+					<div class="node-step">STORE INVENTORY TAB IS SELECTED</div>
 		</li>
-		<li test-id='1,948' class='node when Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.CustomerInqPage_ERPSteps.CustomerInqStep_ERP.userShouldConfirmThatHeIsInCustomerInqInERP())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>When User should confirm that he is in Customer Inq in ERP</div>
+		<li test-id='493' class='node then Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.InventoryPageSteps.InventoryPageSteps.userShouldChangeStoreInventoryDropdownValue())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User should change store inventory dropdown value</div>
 
 
 		</li>
-		<li test-id='1,949' class='node and Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.CustomerInqPage_ERPSteps.CustomerInqStep_ERP1.userShouldSelectCustomerAccountInCustomerInqToLoadCustomerDetailsInERP(io.cucumber.datatable.DataTable))"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>And User should select customer account# in customer inq to load customer details in ERP</div>
+		<li test-id='494' class='node then Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.InventoryPageSteps.InventoryPageSteps.userGoesThroughProductsUnderInventoryAsTheProductAddedUsingQuickEntryHasNotBeenSaved())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>Then User goes through products under inventory as the product added using quick entry has not been saved</div>
 
 
-					<div class="node-step"><table class='markup-table table '><tr><td>Customer #</td></tr></table></div>
-					<div class="node-step">CUSTOMER ACCOUNT DIALOG BOX HAS BEEN FOUND</div>
+					<div class="node-step">PRODUCTS FOUND UNDER INVENTORY 1</div>
+					<div class="node-step">PRODUCTS FOUND UNDER INVENTORY 2</div>
+					<div class="node-step">PRODUCTS FOUND UNDER INVENTORY 3</div>
 		</li>
-		<li test-id='1,950' class='node and Pass' status='Pass'>
-			<div class="step-name" title="(stepDefination_DSD_OMS.CustomerInqPage_DSDSteps.CustomerInqStep1.userShouldVerifyThatValuesRelevantToTheCustomerHasBeenLoaded())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>And User should verify that values relevant to the customer has been loaded</div>
+		<li test-id='495' class='node and Pass' status='Pass'>
+			<div class="step-name" title="(stepDefination_DSD_OMS.InventoryPageSteps.InventoryPageSteps.userCancelInventoryDetails())"><span class='status pass' title='Pass'><i class='material-icons'>check_circle</i></span>And User cancel inventory details</div>
 
 
+					<div class="node-step">PRODUCTS FOUND UNDER INVENTORY 1</div>
+					<div class="node-step">PRODUCTS FOUND UNDER INVENTORY 2</div>
+					<div class="node-step">PRODUCTS FOUND UNDER INVENTORY 3</div>
 		</li>
 	</ul>
 </div>
@@ -1670,7 +609,7 @@
 			<ul id='category-collection' class='category-collection'>
 				<li class='category displayed active'>
 					<div class='category-heading'>
-						<span class='category-name'>@EditStandingPO</span>
+						<span class='category-name'>@DragAndDrop</span>
 						<span class='category-status right'>
 						<span class='label pass'>1</span>
 						</span>
@@ -1692,8 +631,8 @@
 								</thead>
 								<tbody>
 									<tr>
-										<td>Feb 3, 2025 06:42:14 PM</td>
-										<td class='linked' test-id='1,071'>Test scenario for editing Standing PO</td>
+										<td>Feb 4, 2025 12:47:53 PM</td>
+										<td class='linked' test-id='200'>Test scenario for Drag and drop operation in Inventory</td>
 										<td><span class='test-status Pass'>Pass</span></td>
 									</tr>
 								</tbody>
@@ -1703,7 +642,7 @@
 				</li>
 				<li class='category displayed active'>
 					<div class='category-heading'>
-						<span class='category-name'>@Marketing</span>
+						<span class='category-name'>@CancelInventroyDetails</span>
 						<span class='category-status right'>
 						<span class='label pass'>1</span>
 						</span>
@@ -1725,8 +664,8 @@
 								</thead>
 								<tbody>
 									<tr>
-										<td>Feb 3, 2025 06:39:13 PM</td>
-										<td class='linked' test-id='386'>Test scenario for entering values for Marketing, in Customer inq</td>
+										<td>Feb 4, 2025 12:48:10 PM</td>
+										<td class='linked' test-id='397'>Test scenario to cancel Inventory details</td>
 										<td><span class='test-status Pass'>Pass</span></td>
 									</tr>
 								</tbody>
@@ -1736,7 +675,7 @@
 				</li>
 				<li class='category displayed active'>
 					<div class='category-heading'>
-						<span class='category-name'>@Pricing</span>
+						<span class='category-name'>@AddingProductsToInventory</span>
 						<span class='category-status right'>
 						<span class='label pass'>1</span>
 						</span>
@@ -1758,8 +697,8 @@
 								</thead>
 								<tbody>
 									<tr>
-										<td>Feb 3, 2025 06:39:25 PM</td>
-										<td class='linked' test-id='482'>Test scenario for entering values for Pricing, in Customer inq</td>
+										<td>Feb 4, 2025 12:45:47 PM</td>
+										<td class='linked' test-id='2'>Test scenario for adding products to inventory</td>
 										<td><span class='test-status Pass'>Pass</span></td>
 									</tr>
 								</tbody>
@@ -1769,7 +708,7 @@
 				</li>
 				<li class='category displayed active'>
 					<div class='category-heading'>
-						<span class='category-name'>@CustomerNameRequiredPopup</span>
+						<span class='category-name'>@RunningTotal</span>
 						<span class='category-status right'>
 						<span class='label pass'>1</span>
 						</span>
@@ -1791,8 +730,8 @@
 								</thead>
 								<tbody>
 									<tr>
-										<td>Feb 3, 2025 06:43:48 PM</td>
-										<td class='linked' test-id='1,752'>Test scenario for creating cancel of customer inq for existing customer</td>
+										<td>Feb 4, 2025 12:47:42 PM</td>
+										<td class='linked' test-id='101'>Test scenario for finding running total unit in inventory</td>
 										<td><span class='test-status Pass'>Pass</span></td>
 									</tr>
 								</tbody>
@@ -1802,7 +741,7 @@
 				</li>
 				<li class='category displayed active'>
 					<div class='category-heading'>
-						<span class='category-name'>@Ignition</span>
+						<span class='category-name'>@QuickEntryInventroy</span>
 						<span class='category-status right'>
 						<span class='label pass'>1</span>
 						</span>
@@ -1824,503 +763,8 @@
 								</thead>
 								<tbody>
 									<tr>
-										<td>Feb 3, 2025 06:39:58 PM</td>
-										<td class='linked' test-id='770'>Test scenario for entering values for Ignition, before that save all the values entered under all tabs, in Customer inq</td>
-										<td><span class='test-status Pass'>Pass</span></td>
-									</tr>
-								</tbody>
-							</table>
-						</div>
-					</div>
-				</li>
-				<li class='category displayed active'>
-					<div class='category-heading'>
-						<span class='category-name'>@OrderEntry</span>
-						<span class='category-status right'>
-						<span class='label pass'>1</span>
-						</span>
-					</div>
-					<div class='category-content hide'>
-						<div class='category-status-counts'>
-							<span status="pass" class='label green accent-4 white-text'>Passed: 1</span>
-							
-							
-						</div>
-						<div class='category-tests'>
-							<table class='bordered table-results'>
-								<thead>
-									<tr>
-										<th>Timestamp</th>
-										<th>TestName</th>
-										<th>Status</th>
-									</tr>
-								</thead>
-								<tbody>
-									<tr>
-										<td>Feb 3, 2025 06:39:34 PM</td>
-										<td class='linked' test-id='578'>Test scenario for entering values for Order Entry, in Customer inq</td>
-										<td><span class='test-status Pass'>Pass</span></td>
-									</tr>
-								</tbody>
-							</table>
-						</div>
-					</div>
-				</li>
-				<li class='category displayed active'>
-					<div class='category-heading'>
-						<span class='category-name'>@Credit</span>
-						<span class='category-status right'>
-						<span class='label pass'>1</span>
-						</span>
-					</div>
-					<div class='category-content hide'>
-						<div class='category-status-counts'>
-							<span status="pass" class='label green accent-4 white-text'>Passed: 1</span>
-							
-							
-						</div>
-						<div class='category-tests'>
-							<table class='bordered table-results'>
-								<thead>
-									<tr>
-										<th>Timestamp</th>
-										<th>TestName</th>
-										<th>Status</th>
-									</tr>
-								</thead>
-								<tbody>
-									<tr>
-										<td>Feb 3, 2025 06:38:38 PM</td>
-										<td class='linked' test-id='194'>Test scenario for entering values for Credit, in Customer inq</td>
-										<td><span class='test-status Pass'>Pass</span></td>
-									</tr>
-								</tbody>
-							</table>
-						</div>
-					</div>
-				</li>
-				<li class='category displayed active'>
-					<div class='category-heading'>
-						<span class='category-name'>@BillingInfo</span>
-						<span class='category-status right'>
-						<span class='label pass'>1</span>
-						</span>
-					</div>
-					<div class='category-content hide'>
-						<div class='category-status-counts'>
-							<span status="pass" class='label green accent-4 white-text'>Passed: 1</span>
-							
-							
-						</div>
-						<div class='category-tests'>
-							<table class='bordered table-results'>
-								<thead>
-									<tr>
-										<th>Timestamp</th>
-										<th>TestName</th>
-										<th>Status</th>
-									</tr>
-								</thead>
-								<tbody>
-									<tr>
-										<td>Feb 3, 2025 06:38:53 PM</td>
-										<td class='linked' test-id='290'>Test scenario for entering values for Billing info, in Customer inq</td>
-										<td><span class='test-status Pass'>Pass</span></td>
-									</tr>
-								</tbody>
-							</table>
-						</div>
-					</div>
-				</li>
-				<li class='category displayed active'>
-					<div class='category-heading'>
-						<span class='category-name'>@MultipleStandingPO</span>
-						<span class='category-status right'>
-						<span class='label pass'>1</span>
-						</span>
-					</div>
-					<div class='category-content hide'>
-						<div class='category-status-counts'>
-							<span status="pass" class='label green accent-4 white-text'>Passed: 1</span>
-							
-							
-						</div>
-						<div class='category-tests'>
-							<table class='bordered table-results'>
-								<thead>
-									<tr>
-										<th>Timestamp</th>
-										<th>TestName</th>
-										<th>Status</th>
-									</tr>
-								</thead>
-								<tbody>
-									<tr>
-										<td>Feb 3, 2025 06:41:07 PM</td>
-										<td class='linked' test-id='873'>Test scenario for creating multiple Standing PO</td>
-										<td><span class='test-status Pass'>Pass</span></td>
-									</tr>
-								</tbody>
-							</table>
-						</div>
-					</div>
-				</li>
-				<li class='category displayed active'>
-					<div class='category-heading'>
-						<span class='category-name'>@ARRules</span>
-						<span class='category-status right'>
-						<span class='label pass'>1</span>
-						</span>
-					</div>
-					<div class='category-content hide'>
-						<div class='category-status-counts'>
-							<span status="pass" class='label green accent-4 white-text'>Passed: 1</span>
-							
-							
-						</div>
-						<div class='category-tests'>
-							<table class='bordered table-results'>
-								<thead>
-									<tr>
-										<th>Timestamp</th>
-										<th>TestName</th>
-										<th>Status</th>
-									</tr>
-								</thead>
-								<tbody>
-									<tr>
-										<td>Feb 3, 2025 06:38:25 PM</td>
-										<td class='linked' test-id='98'>Test scenario for creating new AR Rule details, in Customer inq</td>
-										<td><span class='test-status Pass'>Pass</span></td>
-									</tr>
-								</tbody>
-							</table>
-						</div>
-					</div>
-				</li>
-				<li class='category displayed active'>
-					<div class='category-heading'>
-						<span class='category-name'>@MainCustInq</span>
-						<span class='category-status right'>
-						<span class='label pass'>1</span>
-						</span>
-					</div>
-					<div class='category-content hide'>
-						<div class='category-status-counts'>
-							<span status="pass" class='label green accent-4 white-text'>Passed: 1</span>
-							
-							
-						</div>
-						<div class='category-tests'>
-							<table class='bordered table-results'>
-								<thead>
-									<tr>
-										<th>Timestamp</th>
-										<th>TestName</th>
-										<th>Status</th>
-									</tr>
-								</thead>
-								<tbody>
-									<tr>
-										<td>Feb 3, 2025 06:37:14 PM</td>
-										<td class='linked' test-id='2'>Test scenario for creating new Main details, in Customer inq</td>
-										<td><span class='test-status Pass'>Pass</span></td>
-									</tr>
-								</tbody>
-							</table>
-						</div>
-					</div>
-				</li>
-				<li class='category displayed active'>
-					<div class='category-heading'>
-						<span class='category-name'>@LoadCustomerDetails</span>
-						<span class='category-status right'>
-						<span class='label pass'>1</span>
-						</span>
-					</div>
-					<div class='category-content hide'>
-						<div class='category-status-counts'>
-							<span status="pass" class='label green accent-4 white-text'>Passed: 1</span>
-							
-							
-						</div>
-						<div class='category-tests'>
-							<table class='bordered table-results'>
-								<thead>
-									<tr>
-										<th>Timestamp</th>
-										<th>TestName</th>
-										<th>Status</th>
-									</tr>
-								</thead>
-								<tbody>
-									<tr>
-										<td>Feb 3, 2025 06:45:59 PM</td>
-										<td class='linked' test-id='1,856'>Test scenario for loading details of particular customer in cusomter inq</td>
-										<td><span class='test-status Pass'>Pass</span></td>
-									</tr>
-								</tbody>
-							</table>
-						</div>
-					</div>
-				</li>
-				<li class='category displayed active'>
-					<div class='category-heading'>
-						<span class='category-name'>@SearchPO</span>
-						<span class='category-status right'>
-						<span class='label pass'>1</span>
-						</span>
-					</div>
-					<div class='category-content hide'>
-						<div class='category-status-counts'>
-							<span status="pass" class='label green accent-4 white-text'>Passed: 1</span>
-							
-							
-						</div>
-						<div class='category-tests'>
-							<table class='bordered table-results'>
-								<thead>
-									<tr>
-										<th>Timestamp</th>
-										<th>TestName</th>
-										<th>Status</th>
-									</tr>
-								</thead>
-								<tbody>
-									<tr>
-										<td>Feb 3, 2025 06:42:13 PM</td>
-										<td class='linked' test-id='974'>Test scenario to search PO details in Ignition tab</td>
-										<td><span class='test-status Pass'>Pass</span></td>
-									</tr>
-								</tbody>
-							</table>
-						</div>
-					</div>
-				</li>
-				<li class='category displayed active'>
-					<div class='category-heading'>
-						<span class='category-name'>@AddNote</span>
-						<span class='category-status right'>
-						<span class='label pass'>1</span>
-						</span>
-					</div>
-					<div class='category-content hide'>
-						<div class='category-status-counts'>
-							<span status="pass" class='label green accent-4 white-text'>Passed: 1</span>
-							
-							
-						</div>
-						<div class='category-tests'>
-							<table class='bordered table-results'>
-								<thead>
-									<tr>
-										<th>Timestamp</th>
-										<th>TestName</th>
-										<th>Status</th>
-									</tr>
-								</thead>
-								<tbody>
-									<tr>
-										<td>Feb 3, 2025 06:42:38 PM</td>
-										<td class='linked' test-id='1,362'>Test scenario for adding note to customer inq in OMS/ERP env</td>
-										<td><span class='test-status Pass'>Pass</span></td>
-									</tr>
-								</tbody>
-							</table>
-						</div>
-					</div>
-				</li>
-				<li class='category displayed active'>
-					<div class='category-heading'>
-						<span class='category-name'>@SystemDefaultRealTimeChanges</span>
-						<span class='category-status right'>
-						<span class='label pass'>1</span>
-						</span>
-					</div>
-					<div class='category-content hide'>
-						<div class='category-status-counts'>
-							<span status="pass" class='label green accent-4 white-text'>Passed: 1</span>
-							
-							
-						</div>
-						<div class='category-tests'>
-							<table class='bordered table-results'>
-								<thead>
-									<tr>
-										<th>Timestamp</th>
-										<th>TestName</th>
-										<th>Status</th>
-									</tr>
-								</thead>
-								<tbody>
-									<tr>
-										<td>Feb 3, 2025 06:42:35 PM</td>
-										<td class='linked' test-id='1,266'>Test scenario for verifying System default real time changes in Payment processing drop down</td>
-										<td><span class='test-status Pass'>Pass</span></td>
-									</tr>
-								</tbody>
-							</table>
-						</div>
-					</div>
-				</li>
-				<li class='category displayed active'>
-					<div class='category-heading'>
-						<span class='category-name'>@Shipping</span>
-						<span class='category-status right'>
-						<span class='label pass'>1</span>
-						</span>
-					</div>
-					<div class='category-content hide'>
-						<div class='category-status-counts'>
-							<span status="pass" class='label green accent-4 white-text'>Passed: 1</span>
-							
-							
-						</div>
-						<div class='category-tests'>
-							<table class='bordered table-results'>
-								<thead>
-									<tr>
-										<th>Timestamp</th>
-										<th>TestName</th>
-										<th>Status</th>
-									</tr>
-								</thead>
-								<tbody>
-									<tr>
-										<td>Feb 3, 2025 06:39:48 PM</td>
-										<td class='linked' test-id='674'>Test scenario for entering values for Shipping, in Customer inq</td>
-										<td><span class='test-status Pass'>Pass</span></td>
-									</tr>
-								</tbody>
-							</table>
-						</div>
-					</div>
-				</li>
-				<li class='category displayed active'>
-					<div class='category-heading'>
-						<span class='category-name'>@CancelCopy</span>
-						<span class='category-status right'>
-						<span class='label pass'>1</span>
-						</span>
-					</div>
-					<div class='category-content hide'>
-						<div class='category-status-counts'>
-							<span status="pass" class='label green accent-4 white-text'>Passed: 1</span>
-							
-							
-						</div>
-						<div class='category-tests'>
-							<table class='bordered table-results'>
-								<thead>
-									<tr>
-										<th>Timestamp</th>
-										<th>TestName</th>
-										<th>Status</th>
-									</tr>
-								</thead>
-								<tbody>
-									<tr>
-										<td>Feb 3, 2025 06:43:09 PM</td>
-										<td class='linked' test-id='1,462'>Test scenario for canceling copy of Customer inq</td>
-										<td><span class='test-status Pass'>Pass</span></td>
-									</tr>
-								</tbody>
-							</table>
-						</div>
-					</div>
-				</li>
-				<li class='category displayed active'>
-					<div class='category-heading'>
-						<span class='category-name'>@CreateCopyForExistingCustomer</span>
-						<span class='category-status right'>
-						<span class='label pass'>1</span>
-						</span>
-					</div>
-					<div class='category-content hide'>
-						<div class='category-status-counts'>
-							<span status="pass" class='label green accent-4 white-text'>Passed: 1</span>
-							
-							
-						</div>
-						<div class='category-tests'>
-							<table class='bordered table-results'>
-								<thead>
-									<tr>
-										<th>Timestamp</th>
-										<th>TestName</th>
-										<th>Status</th>
-									</tr>
-								</thead>
-								<tbody>
-									<tr>
-										<td>Feb 3, 2025 06:43:22 PM</td>
-										<td class='linked' test-id='1,654'>Test scenario for creating copy of customer inq for existing customer</td>
-										<td><span class='test-status Pass'>Pass</span></td>
-									</tr>
-								</tbody>
-							</table>
-						</div>
-					</div>
-				</li>
-				<li class='category displayed active'>
-					<div class='category-heading'>
-						<span class='category-name'>@DeleteStandingPO</span>
-						<span class='category-status right'>
-						<span class='label pass'>1</span>
-						</span>
-					</div>
-					<div class='category-content hide'>
-						<div class='category-status-counts'>
-							<span status="pass" class='label green accent-4 white-text'>Passed: 1</span>
-							
-							
-						</div>
-						<div class='category-tests'>
-							<table class='bordered table-results'>
-								<thead>
-									<tr>
-										<th>Timestamp</th>
-										<th>TestName</th>
-										<th>Status</th>
-									</tr>
-								</thead>
-								<tbody>
-									<tr>
-										<td>Feb 3, 2025 06:42:24 PM</td>
-										<td class='linked' test-id='1,170'>Test scenario for Deleting Standing PO</td>
-										<td><span class='test-status Pass'>Pass</span></td>
-									</tr>
-								</tbody>
-							</table>
-						</div>
-					</div>
-				</li>
-				<li class='category displayed active'>
-					<div class='category-heading'>
-						<span class='category-name'>@CopyCustomerInq</span>
-						<span class='category-status right'>
-						<span class='label pass'>1</span>
-						</span>
-					</div>
-					<div class='category-content hide'>
-						<div class='category-status-counts'>
-							<span status="pass" class='label green accent-4 white-text'>Passed: 1</span>
-							
-							
-						</div>
-						<div class='category-tests'>
-							<table class='bordered table-results'>
-								<thead>
-									<tr>
-										<th>Timestamp</th>
-										<th>TestName</th>
-										<th>Status</th>
-									</tr>
-								</thead>
-								<tbody>
-									<tr>
-										<td>Feb 3, 2025 06:43:10 PM</td>
-										<td class='linked' test-id='1,558'>Test scenario for creating copy of customer inq</td>
+										<td>Feb 4, 2025 12:47:59 PM</td>
+										<td class='linked' test-id='298'>Test scneario for adding product from quick entry</td>
 										<td><span class='test-status Pass'>Pass</span></td>
 									</tr>
 								</tbody>
@@ -2351,31 +795,31 @@
 			<div class='col s2'>
 				<div class='card-panel r'>
 					Scenarios
-					<div class='panel-lead'>20</div>
+					<div class='panel-lead'>5</div>
 				</div>
 			</div>
 			<div class='col s2'>
 				<div class='card-panel r'>
 					Steps
-					<div class='panel-lead'>170</div>
+					<div class='panel-lead'>49</div>
 				</div>
 			</div>
 			<div class='col s2'>
 				<div class='card-panel r'>
 					Start
-					<div class='panel-lead'>Feb 3, 2025 06:37:01 PM</div>
+					<div class='panel-lead'>Feb 4, 2025 12:45:35 PM</div>
 				</div>
 			</div>
 			<div class='col s2'>
 				<div class='card-panel r'>
 			 		End
-			 		<div class='panel-lead'>Feb 3, 2025 06:46:07 PM</div>
+			 		<div class='panel-lead'>Feb 4, 2025 12:48:22 PM</div>
 				</div>
 			</div>
 			<div class='col s2'>
 				<div class='card-panel r'>
 					Time Taken
-					<div class='panel-lead'>00 09 06.101</div>
+					<div class='panel-lead'>00 02 47.527</div>
 				</div>
 			</div>
 			<div class='col s4'>
@@ -2415,7 +859,7 @@
 							<th>Passed %</th>
 						</tr>
 						<tr>
-							<td>@EditStandingPO</td>
+							<td>@DragAndDrop</td>
 							<td>1</td>
 							<td>0</td>
 							<td>0</td>
@@ -2424,7 +868,7 @@
 							</td>
 						</tr>
 						<tr>
-							<td>@Marketing</td>
+							<td>@CancelInventroyDetails</td>
 							<td>1</td>
 							<td>0</td>
 							<td>0</td>
@@ -2433,7 +877,7 @@
 							</td>
 						</tr>
 						<tr>
-							<td>@Pricing</td>
+							<td>@AddingProductsToInventory</td>
 							<td>1</td>
 							<td>0</td>
 							<td>0</td>
@@ -2442,7 +886,7 @@
 							</td>
 						</tr>
 						<tr>
-							<td>@CustomerNameRequiredPopup</td>
+							<td>@RunningTotal</td>
 							<td>1</td>
 							<td>0</td>
 							<td>0</td>
@@ -2451,142 +895,7 @@
 							</td>
 						</tr>
 						<tr>
-							<td>@Ignition</td>
-							<td>1</td>
-							<td>0</td>
-							<td>0</td>
-							<td>
-									100%
-							</td>
-						</tr>
-						<tr>
-							<td>@OrderEntry</td>
-							<td>1</td>
-							<td>0</td>
-							<td>0</td>
-							<td>
-									100%
-							</td>
-						</tr>
-						<tr>
-							<td>@Credit</td>
-							<td>1</td>
-							<td>0</td>
-							<td>0</td>
-							<td>
-									100%
-							</td>
-						</tr>
-						<tr>
-							<td>@BillingInfo</td>
-							<td>1</td>
-							<td>0</td>
-							<td>0</td>
-							<td>
-									100%
-							</td>
-						</tr>
-						<tr>
-							<td>@MultipleStandingPO</td>
-							<td>1</td>
-							<td>0</td>
-							<td>0</td>
-							<td>
-									100%
-							</td>
-						</tr>
-						<tr>
-							<td>@ARRules</td>
-							<td>1</td>
-							<td>0</td>
-							<td>0</td>
-							<td>
-									100%
-							</td>
-						</tr>
-						<tr>
-							<td>@MainCustInq</td>
-							<td>1</td>
-							<td>0</td>
-							<td>0</td>
-							<td>
-									100%
-							</td>
-						</tr>
-						<tr>
-							<td>@LoadCustomerDetails</td>
-							<td>1</td>
-							<td>0</td>
-							<td>0</td>
-							<td>
-									100%
-							</td>
-						</tr>
-						<tr>
-							<td>@SearchPO</td>
-							<td>1</td>
-							<td>0</td>
-							<td>0</td>
-							<td>
-									100%
-							</td>
-						</tr>
-						<tr>
-							<td>@AddNote</td>
-							<td>1</td>
-							<td>0</td>
-							<td>0</td>
-							<td>
-									100%
-							</td>
-						</tr>
-						<tr>
-							<td>@SystemDefaultRealTimeChanges</td>
-							<td>1</td>
-							<td>0</td>
-							<td>0</td>
-							<td>
-									100%
-							</td>
-						</tr>
-						<tr>
-							<td>@Shipping</td>
-							<td>1</td>
-							<td>0</td>
-							<td>0</td>
-							<td>
-									100%
-							</td>
-						</tr>
-						<tr>
-							<td>@CancelCopy</td>
-							<td>1</td>
-							<td>0</td>
-							<td>0</td>
-							<td>
-									100%
-							</td>
-						</tr>
-						<tr>
-							<td>@CreateCopyForExistingCustomer</td>
-							<td>1</td>
-							<td>0</td>
-							<td>0</td>
-							<td>
-									100%
-							</td>
-						</tr>
-						<tr>
-							<td>@DeleteStandingPO</td>
-							<td>1</td>
-							<td>0</td>
-							<td>0</td>
-							<td>
-									100%
-							</td>
-						</tr>
-						<tr>
-							<td>@CopyCustomerInq</td>
+							<td>@QuickEntryInventroy</td>
 							<td>1</td>
 							<td>0</td>
 							<td>0</td>
@@ -2612,16 +921,16 @@
 				errorParent: 0,
 				warningParent: 0,
 				skipParent: 0,
-				childCount: 20,
-				passChild: 20,
+				childCount: 5,
+				passChild: 5,
 				failChild: 0,
 				fatalChild: 0,
 				errorChild: 0,
 				warningChild: 0,
 				skipChild: 0,
 				infoChild: 0,
-				grandChildCount: 170,
-				passGrandChild: 170,
+				grandChildCount: 49,
+				passGrandChild: 49,
 				failGrandChild: 0,
 				fatalGrandChild: 0,
 				errorGrandChild: 0,
@@ -2633,7 +942,7 @@
 		
 		<script>
 			var timeline = {
-			        "Customer Inq in ERP":531.638
+			        "Inventory":154.815
 			};
 		</script>
 		
