@@ -1340,8 +1340,6 @@ public class NewStandingOrderPage
     public void SearchProductDiscription()
     {
         exists = false;
-        WebElement WebEle;
-        WebElement WebEle1;
         Actions act=new Actions(driver);
         String headText;
         int i=0;
@@ -1393,6 +1391,13 @@ public class NewStandingOrderPage
                     WebElement inputBox=HelpersMethod.FindByElement(driver,"xpath","//div[@class='k-window k-dialog']/descendant::input");
                     HelpersMethod.EnterText(driver,inputBox,10000,Prod_Name);
                     inputBox.sendKeys(Keys.ENTER);
+
+                    new WebDriverWait(driver,Duration.ofMillis(10000)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.xpath("//ul[contains(@class,'autosuggest')]"))));
+                    new WebDriverWait(driver,Duration.ofMillis(10000)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//ul[contains(@class,'autosuggest')]")));
+
+                    //select product from auto search
+                    WebElement autoSuggest=HelpersMethod.FindByElement(driver,"xpath","//ul[contains(@class,'autosuggest')]/li[1]/div");
+                    HelpersMethod.ActClick(driver,autoSuggest,40000);
 
                     wait = new FluentWait<WebDriver>(driver)
                         .withTimeout(Duration.ofSeconds(600))

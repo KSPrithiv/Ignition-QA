@@ -561,7 +561,7 @@ public class LoginPage
                     HelpersMethod.waitTillLoadingPage(driver);
                 }
                 //new WebDriverWait(driver,Duration.ofMillis(100000)).until(ExpectedConditions.refreshed(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(@class,'k-window k-dialog')]"))));
-                WebElement accountNo=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-window k-dialog')]/descendant::tr[contains(@class,'k-master-row')]/td[3]|//div[contains(@class,'k-window k-dialog')]/descendant::tr[contains(@class,'k-master-row')]/td[1]");
+                WebElement accountNo=HelpersMethod.FindByElement(driver,"xpath","//div[contains(@class,'k-window k-dialog')]/descendant::tr[contains(@class,'k-master-row')][1]");
                 HelpersMethod.ScrollElement(driver,accountNo);
                 scenario.log("ACCOUNT NUMBER SELECTED IS "+accountNo.getText());
                 HelpersMethod.ActClick(driver, accountNo, 10000);

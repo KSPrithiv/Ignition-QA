@@ -72,81 +72,36 @@ public class NewQuotePage
         WebElement WebEle;
         try
         {
+            new WebDriverWait(driver,Duration.ofMillis(40000)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("quotesInputCard"))));
+            new WebDriverWait(driver,Duration.ofMillis(40000)).until(ExpectedConditions.visibilityOfElementLocated(By.id("quotesInputCard")));
             Thread.sleep(2000);
-            WebEle=HelpersMethod.FindByElement(driver,"xpath","//input[contains(@id,'TotalUnitsCol')]");
-            HelpersMethod.ScrollElement(driver,WebEle);
-            if(WebEle.isDisplayed() && WebEle.isEnabled())
+
+            if(HelpersMethod.IsExists("//tr[1]/descendant::input[contains(@id,'TotalUnitsCol')]",driver))
             {
-                HelpersMethod.EnterText(driver,WebEle,4000,unit);
+                WebEle=HelpersMethod.FindByElement(driver,"xpath","//tr[1]/descendant::input[contains(@id,'TotalUnitsCol')]");
+                HelpersMethod.ScrollElement(driver,WebEle);
+                HelpersMethod.EnterText(driver,WebEle,10000,unit);
                 WebEle.sendKeys(Keys.TAB);
                 scenario.log("UNIT ENTERED IS: "+unit);
 
-                // for (int i = 0; i <= 5; i++) {
                 //Check for Qty exceeds maximum of popup
                 if (HelpersMethod.IsExists("//div[contains(text(),'Quantity exceeds maximum of')]/ancestor::div[contains(@class,'k-window k-dialog')]", driver)) {
                     WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-window k-dialog')]/descendant::button/span[text()='Yes']");
-                    HelpersMethod.ClickBut(driver, WebEle, 1000);
+                    HelpersMethod.ClickBut(driver, WebEle, 10000);
                 }
-                //Check for 'Product Unavailable' popup
-                    /*    if (HelpersMethod.IsExists("//div[contains(text(),'This product is currently unavailable.')]/ancestor::div[@id='toast-container']", driver)) {
-                            WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@id='toast-container']/descendant::button");
-                            HelpersMethod.ClickBut(driver, WebEle, 10);
-                        }
-
-                        //Check for 'Product low in invetory' popup
-                        if (HelpersMethod.IsExists("//div[contains(text(),'This product is currently low')]/ancestor::div[@id='toast-container']", driver)) {
-                            WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@id='toast-container']/descendant::button");
-                            HelpersMethod.ClickBut(driver, WebEle, 20);
-                        }
-                        //Check for 'There are no matching product' popup
-                        if (HelpersMethod.IsExists("//div[contains(text(),'There are no matching products: ')]/ancestor::div[contains(@class,'toast toast-error')]", driver)) {
-                            WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@id='toast-container']/descendant::button");
-                            HelpersMethod.ClickBut(driver, WebEle, 20);
-                        }
-                        //Check for popup if it is accespting only units popup
-                        if (HelpersMethod.IsExists("//div[contains(text(),' can only be ordered in ')]", driver)) {
-                            WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@id='toast-container']/descendant::button[text()='×']");
-                            HelpersMethod.ActClick(driver, WebEle, 20);
-                        }
-                    }*/
-
             }
-            WebEle=HelpersMethod.FindByElement(driver,"xpath","//input[contains(@id,'TotalCasesCol')]");
-            if(WebEle.isDisplayed() && WebEle.isEnabled())
+
+            if(HelpersMethod.IsExists("//tr[1]/descendant::input[contains(@id,'TotalCasesCol')]",driver))
             {
-                HelpersMethod.EnterText(driver,WebEle,1000,cases);
+               WebEle=HelpersMethod.FindByElement(driver,"xpath","//tr[1]/descendant::input[contains(@id,'TotalCasesCol')]");
+                HelpersMethod.EnterText(driver,WebEle,10000,cases);
                 WebEle.sendKeys(Keys.TAB);
                 scenario.log("CASE ENTERED IS: "+ cases);
-                // for (int i = 0; i <= 5; i++) {
                 //Check for Qty exceeds maximum of popup
                 if (HelpersMethod.IsExists("//div[contains(text(),'Quantity exceeds maximum of')]/ancestor::div[contains(@class,'k-window k-dialog')]", driver)) {
                     WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[contains(@class,'k-window k-dialog')]/descendant::button/span[text()='Yes']");
-                    HelpersMethod.ClickBut(driver, WebEle, 1000);
+                    HelpersMethod.ClickBut(driver, WebEle, 10000);
                 }
-                //Check for 'Product Unavailable' popup
-                    /*    if (HelpersMethod.IsExists("//div[contains(text(),'This product is currently unavailable.')]/ancestor::div[@id='toast-container']", driver))
-                        {
-                            WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@id='toast-container']/descendant::button");
-                            HelpersMethod.ClickBut(driver, WebEle, 10);
-                        }
-
-                        //Check for 'Product low in invetory' popup
-                        if (HelpersMethod.IsExists("//div[contains(text(),'This product is currently low')]/ancestor::div[@id='toast-container']", driver))
-                        {
-                            WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@id='toast-container']/descendant::button");
-                            HelpersMethod.ClickBut(driver, WebEle, 10);
-                        }
-                        //Check for 'There are no matching product' popup
-                        if (HelpersMethod.IsExists("//div[contains(text(),'There are no matching products: ')]/ancestor::div[contains(@class,'toast toast-error')]", driver)) {
-                            WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@id='toast-container']/descendant::button");
-                            HelpersMethod.ClickBut(driver, WebEle, 10);
-                        }
-                        //Check for popup if it is accespting only units popup
-                        if (HelpersMethod.IsExists("//div[contains(text(),' can only be ordered in ')]", driver)) {
-                            WebEle = HelpersMethod.FindByElement(driver, "xpath", "//div[@id='toast-container']/descendant::button[text()='×']");
-                            HelpersMethod.ActClick(driver, WebEle, 10);
-                        }
-                    }*/
             }
             Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
                     .withTimeout(Duration.ofSeconds(600))

@@ -651,31 +651,35 @@ public class NewOrderEntryPage
     {
         exists=false;
         Actions act=new Actions(driver);
-        String suggText;
+        //String suggText;
         try
         {
             HelpersMethod.ScrollElement(driver, SearchProd);
             HelpersMethod.sendKeys(driver,SearchProd,10000,Product);
 
-            new WebDriverWait(driver,Duration.ofMillis(40000)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@id='react-autowhatever-search-option-selection']"))));
-            new WebDriverWait(driver,Duration.ofMillis(40000)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@id='react-autowhatever-search-option-selection']")));
+            new WebDriverWait(driver,Duration.ofMillis(40000)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.xpath("//ul[contains(@class,'autosuggest')]/li"))));
+            new WebDriverWait(driver,Duration.ofMillis(40000)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//ul[contains(@class,'autosuggest')]/li")));
 
             Thread.sleep(2000);
-            if(HelpersMethod.IsExists("//div[@id='react-autowhatever-search-option-selection']",driver))
+            //code to select value in auto suggestion drop down
+            if(HelpersMethod.IsExists("//ul[contains(@class,'autosuggest')]/li",driver))
             {
-                List<WebElement> suggests=HelpersMethod.FindByElements(driver,"xpath","//ul[contains(@class,'autosuggest')]/li/descendant::span[@class='product-number']");
-                for(WebElement suggest:suggests)
-                {
-                    act.moveToElement(suggest).build().perform();
-                    suggText=suggest.getText();
-                    if(suggText.contains(Product))
-                    {
-                        scenario.log("PRODUCT SEARCHED USING SEARCH BAR IS " + Product);
-                        act.click(suggest).build().perform();
-                        exists=true;
-                        break;
-                    }
-                }
+//                List<WebElement> suggests=HelpersMethod.FindByElements(driver,"xpath","//ul[contains(@class,'autosuggest')]/li/descendant::span[@class='product-number']");
+//                for(WebElement suggest:suggests)
+//                {
+//                    act.moveToElement(suggest).build().perform();
+//                    suggText=suggest.getText();
+//                    if(suggText.contains(Product))
+//                    {
+//                        scenario.log("PRODUCT SEARCHED USING SEARCH BAR IS " + Product);
+//                        act.click(suggest).build().perform();
+//                        exists=true;
+//                        break;
+//                    }
+//                }
+                WebElement autoSuggestion=HelpersMethod.FindByElement(driver,"xpath","//ul[contains(@class,'autosuggest')]/li[1]");
+                HelpersMethod.ActClick(driver,autoSuggestion,20000);
+                exists=true;
                 Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
                         .withTimeout(Duration.ofSeconds(600))
                         .pollingEvery(Duration.ofSeconds(2))

@@ -129,8 +129,12 @@ Feature: Order Guide1
     And User enters Quick Product number and Sequence number
       |4|
     Then User click on Save button
-    And User should navigate back to OG page, verify OG "<OG>" existence and verify that Week of day is selected
-    Then User deletes "<OG>" created for day of week
+#    And User should navigate back to OG page, verify OG "<OG>" existence and verify that Week of day is selected
+#    Then User deletes "<OG>" created for day of week
+#    Then User enters OG Description "<OG>" in search box and Delete the OG verify same in OG grid
+    And User should navigate back to OG page and verify OG "<OG>"  existence
+    And Clear filter to display both active and inactive OG
+    Then User enters OG Description "<OG>" in search box and Delete the OG verify same in OG grid
     Examples:
       | OG      |
       |DayOfWeek|
@@ -161,7 +165,7 @@ Feature: Order Guide1
     Then User enters OG Description "<OG>" in search box and Delete the OG verify same in OG grid
     Examples:
       |  OG              |   option      |  Reference1  |  Reference2              |
-      | ChangeNational   | Local chain   |     85C      |  WENDYS #0212 COLLEGE DR |
+      | ChangeOG   | Local chain   |     85 C      |  WENDYS #0212 COLLEGE DR |
 
   @OGHistorical
   Scenario Outline: Test scenario for creating Historical order guide
