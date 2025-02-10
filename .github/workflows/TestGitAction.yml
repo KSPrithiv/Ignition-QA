@@ -34,6 +34,8 @@ jobs:
           distribution: temurin
           java-version: '16'
           cache: maven
+        env:
+          _JAVA_OPTIONS: "-Xmx4g -Xms512m"
 
       - name: Install Chocolatey if Missing
         run: |
@@ -79,7 +81,7 @@ jobs:
 
       - name: Upload Test Results
         if: success() || failure()
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: test-results
           path: AFS_Automation/OMS_Automation/target/cucumber-reports
