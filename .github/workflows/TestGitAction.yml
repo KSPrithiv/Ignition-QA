@@ -102,3 +102,18 @@ jobs:
           Get-ChildItem -Path "$env:TEMP" -Recurse -Force -Directory |
           Where-Object { $_.GetFiles().Count -eq 0 -and $_.GetDirectories().Count -eq 0 } |
           Remove-Item -Force -Recurse
+          
+          $targetPath = "C:\Windows\SystemTemp"
+          if (Test-Path $targetPath) {
+          Write-Host "Deleting all files in $targetPath"
+          Get-ChildItem -Path $targetPath -Recurse -Force -File | Remove-Item -Force -ErrorAction SilentlyContinue
+          
+          Write-Host "Removing all empty folders in $targetPath"
+          Get-ChildItem -Path $targetPath -Recurse -Force -Directory |
+          Where-Object { $_.GetFiles().Count -eq 0 -and $_.GetDirectories().Count -eq 0 } |
+          Remove-Item -Force -Recurse -ErrorAction SilentlyContinue
+
+          Write-Host "Cleanup completed successfully."
+          } else {
+          Write-Host "Target path does not exist. Skipping cleanup."
+          }
