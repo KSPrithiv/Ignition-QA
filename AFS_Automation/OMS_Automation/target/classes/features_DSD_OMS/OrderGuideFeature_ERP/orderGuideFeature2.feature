@@ -52,7 +52,7 @@ Feature: Order Guide2
     And User should navigate to OG
     Then User should click on Customer Reference drop down and select type of OG "<OGType>"
     And Check for popup to appear to select sub customer reference for market segment
-      |Market Area One|AMERINET|
+      |Market Area One|AVENDRA|
     Then User clicks on Create new button and should navigate to New OG page
     And User validates Customer reference "<OGType>" to verify the OG created and select pricing customer value from dropdown "<Pricing Customer>"
     Then Then User enters Description "<OG>" and End date
@@ -64,8 +64,8 @@ Feature: Order Guide2
     And User should navigate back to OG page and navigate back to "<OGType>" and verify OG "<OG>"  existence
     Then User enters OG Description "<OG>" in search box and Delete the OG verify same in OG grid
     Examples:
-      |  OG     |  OGType         | Pricing Customer            |
-      |MarketOG | Market segment  | ALJOYA HOUSE MERCER ISLAND  |
+      |  OG     |  OGType         | Pricing Customer                        |
+      |MarketOG | Market segment  | COURTYARD MARRIOTT DOWNTOWN SEA Test 2  |
 
   @AllOG
   Scenario Outline:Test scenario for creating OG for all customers

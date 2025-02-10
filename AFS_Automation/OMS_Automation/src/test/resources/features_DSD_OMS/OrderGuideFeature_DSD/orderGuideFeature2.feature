@@ -109,7 +109,7 @@ Feature: Order Guide2
     And User should navigate to OG
     Then User should click on Customer Reference drop down and select type of OG "<OGType>"
     And Check for popup to appear to select sub customer reference for Price group default schedule
-      |000001, Default Price 1|
+      |Default Price 1|
     Then User clicks on Create new button and should navigate to New OG page
     And User validates Customer reference "<OGType>" to verify the OG created and select pricing customer value from dropdown "<Pricing Customer>"
     Then Then User enters Description "<OG>" and End date

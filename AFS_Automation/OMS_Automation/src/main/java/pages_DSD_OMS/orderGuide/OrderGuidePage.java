@@ -371,8 +371,7 @@ public class OrderGuidePage {
                 exists = false;
             }
             Assert.assertEquals(exists, true);
-        } catch (Exception e) {
-        }
+        } catch (Exception e) {}
     }
 
     //Code to click on Addfilter

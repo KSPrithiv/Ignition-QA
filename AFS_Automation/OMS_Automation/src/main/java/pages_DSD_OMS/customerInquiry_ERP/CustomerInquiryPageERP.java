@@ -654,8 +654,9 @@ public class CustomerInquiryPageERP
             {
                 WebEle=HelpersMethod.FindByElement(driver,"id","customerInquiryNoteBtn");
                 HelpersMethod.ScrollUpScrollBar(driver);
+                HelpersMethod.ScrollUpScrollBar(driver);
                 HelpersMethod.ScrollTillElementVisible(driver,WebEle);
-                HelpersMethod.JScriptClick(driver, WebEle, 20000);
+                HelpersMethod.ClickBut(driver, WebEle, 20000);
 
                 wait = new FluentWait<WebDriver>(driver)
                         .withTimeout(Duration.ofSeconds(600))

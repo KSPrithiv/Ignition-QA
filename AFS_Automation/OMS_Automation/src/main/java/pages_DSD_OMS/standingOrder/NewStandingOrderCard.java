@@ -259,15 +259,21 @@ public class NewStandingOrderCard
         exists=false;
         try
         {
+            Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(600))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
             new WebDriverWait(driver,Duration.ofMillis(20000)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.xpath("//span[contains(text(),'Add standing order')]/ancestor::div[contains(@class,'k-window k-dialog')]"))));
             new WebDriverWait(driver,Duration.ofMillis(20000)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[contains(text(),'Add standing order')]/ancestor::div[contains(@class,'k-window k-dialog')]")));
-            new WebDriverWait(driver,Duration.ofMillis(20000)).until(ExpectedConditions.elementToBeClickable(By.xpath("//div[contains(@class,'k-window k-dialog')]/descendant::input[@id='addFromDate']/parent::span/following-sibling::button")));
-            Thread.sleep(4000);
+            new WebDriverWait(driver,Duration.ofMillis(80000)).until(ExpectedConditions.elementToBeClickable(By.xpath("//div[contains(@class,'k-window k-dialog')]/descendant::input[@id='addFromDate']/parent::span/following-sibling::button")));
+            Thread.sleep(6000);
             // to fetch the web element of the modal container
             WebElement modalContainer = driver.findElement(By.xpath("//div[contains(@class,'k-window k-dialog')]"));
             WebElement startDateIcon = modalContainer.findElement(By.xpath(".//input[@id='addFromDate']/parent::span/following-sibling::button"));
-            new WebDriverWait(driver, Duration.ofMillis(20000)).until(ExpectedConditions.elementToBeClickable(startDateIcon));
-            HelpersMethod.ActClick(driver, startDateIcon, 10000);
+            new WebDriverWait(driver, Duration.ofMillis(80000)).until(ExpectedConditions.elementToBeClickable(startDateIcon));
+            HelpersMethod.ActClick(driver, startDateIcon, 40000);
             exists = true;
             new WebDriverWait(driver, Duration.ofMillis(10000)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='k-calendar-view k-vstack k-calendar-monthview']")));
             HelpersMethod.WaitElementPresent(driver, "xpath", "//div[@id='addFromDate-popup-id']", 10000);
@@ -287,18 +293,24 @@ public class NewStandingOrderCard
     {
         try
         {
+            Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+                    .withTimeout(Duration.ofSeconds(600))
+                    .pollingEvery(Duration.ofSeconds(2))
+                    .ignoring(NoSuchElementException.class);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@class='loader']")));
+
             HelpersMethod.waitTillElementLocatedDisplayed(driver, "xpath", "//div[contains(@class,'k-window k-dialog')]", 10000);
             new WebDriverWait(driver,Duration.ofMillis(20000)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class,'k-window k-dialog')]/descendant::input[@id='addToDate']/parent::span/following-sibling::button"))));
             new WebDriverWait(driver,Duration.ofMillis(20000)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(@class,'k-window k-dialog')]/descendant::input[@id='addToDate']/parent::span/following-sibling::button")));
             new WebDriverWait(driver,Duration.ofMillis(20000)).until(ExpectedConditions.elementToBeClickable(By.xpath("//div[contains(@class,'k-window k-dialog')]/descendant::input[@id='addToDate']/parent::span/following-sibling::button")));
-            Thread.sleep(1000);
+            Thread.sleep(6000);
 
             // to fetch the web element of the modal container
             WebElement modalContainer = driver.findElement(By.xpath("//div[contains(@class,'k-window k-dialog')]"));
             WebElement toDateIcon = modalContainer.findElement(By.xpath(".//input[@id='addToDate']/parent::span/following-sibling::button"));
-            HelpersMethod.ActClick(driver, toDateIcon, 10000);
+            HelpersMethod.ActClick(driver, toDateIcon, 60000);
             HelpersMethod.WaitElementPresent(driver, "xpath", "//div[@class='k-calendar-view k-vstack k-calendar-monthview']", 10000);
-            new WebDriverWait(driver, Duration.ofMillis(10000)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='k-calendar-view k-vstack k-calendar-monthview']")));
+            new WebDriverWait(driver, Duration.ofMillis(40000)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='k-calendar-view k-vstack k-calendar-monthview']")));
             String status = HelpersMethod.returnDocumentStatus(driver);
             if (status.equals("loading"))
             {

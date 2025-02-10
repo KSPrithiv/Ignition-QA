@@ -76,6 +76,9 @@ public class QuotePage
         exists = false;
         try
         {
+            new WebDriverWait(driver,Duration.ofMillis(40000)).until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.xpath("//label[contains(@id,'quoteEndDate-label')]/following-sibling::span/button"))));
+            new WebDriverWait(driver,Duration.ofMillis(40000)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//label[contains(@id,'quoteEndDate-label')]/following-sibling::span/button")));
+
             if (EndCalender.isDisplayed())
             {
                 HelpersMethod.ActClick(driver, EndCalender, 10000);

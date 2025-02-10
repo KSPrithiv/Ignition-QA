@@ -14,7 +14,7 @@ Feature: Order GuideDSD
     And User should navigate to OG
     Then User should click on Customer Reference drop down and select type of OG "<OGType>"
     And Check for popup to appear to select sub customer reference for Price group base schedule
-      |000017, Florida Food Service|
+      |Florida Food Service|
     Then User clicks on Create new button and should navigate to New OG page
     And User validates Customer reference "<OGType>" to verify the OG created and select pricing customer value from dropdown "<Pricing Customer>"
     Then Then User enters Description "<OG>" and End date

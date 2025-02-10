@@ -92,6 +92,7 @@ public class OrderEntryPageSteps8
     public void userShouldBeNavigatedToOrderEntryPageAndCompareTheDates() throws InterruptedException, AWTException
     {
         orderpage = new OrderEntryPage(driver, scenario);
+        orderpage.ValidateOE();
         orderpage.comparePickUpDates();
         //orderpage.Refresh_Page1();
         //orderpage.Verify_OEPage();
