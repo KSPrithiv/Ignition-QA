@@ -272,6 +272,7 @@ public class NewStandingOrderCard
             // to fetch the web element of the modal container
             WebElement modalContainer = driver.findElement(By.xpath("//div[contains(@class,'k-window k-dialog')]"));
             WebElement startDateIcon = modalContainer.findElement(By.xpath(".//input[@id='addFromDate']/parent::span/following-sibling::button"));
+            new WebDriverWait(driver,Duration.ofMillis(10000)).until(ExpectedConditions.refreshed(ExpectedConditions.visibilityOf(startDateIcon)));
             new WebDriverWait(driver, Duration.ofMillis(80000)).until(ExpectedConditions.elementToBeClickable(startDateIcon));
             HelpersMethod.ActClick(driver, startDateIcon, 40000);
             exists = true;

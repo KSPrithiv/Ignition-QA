@@ -2,8 +2,6 @@ package pages_DSD_OMS.orderEntry;
 
 import helper.HelpersMethod;
 import io.cucumber.java.Scenario;
-import io.cucumber.java.en_old.Ac;
-import org.apache.commons.collections4.CollectionUtils;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
@@ -3709,7 +3707,6 @@ public class NewOrderEntryPage
     {
         WebElement WebEle;
         String importFilePath=null;
-
         try
         {
             Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
@@ -3746,25 +3743,9 @@ public class NewOrderEntryPage
                 File file = new File(tmpFolderPath+"\\"+expectedFileName);
                 scenario.log(file+" FILE PATH IS");
                 importFilePath= String.valueOf(file);
-
-                //Read all the .csv files in download directory and compare with actual order number
-              /*  File dir = new File("C:\\Users\\Divya.Ramadas\\Downloads");
-                FileFilter fileFilter = new WildcardFileFilter("*.csv");
-                File[] files = dir.listFiles(fileFilter);
-                String file2=null;
-
-                for (File Exportfile:files)
-                {
-                    String file1 = Exportfile.getName();
-                    file1=file1.replaceAll("[a-zA-Z_]","");
-                    file2 =file1.trim();
-                    for( ;file2.length() > 1 && file2.charAt(0) == '0'; file2 =file2.substring(1));
-                }
-                scenario.log(file2+" FILE HAS BEEN DOWNLOADED");*/
             }
         }
         catch (Exception e) { }
-        //return Actual_Order;
         return importFilePath;
     }
 
@@ -3772,21 +3753,8 @@ public class NewOrderEntryPage
     {
         exists=false;
         WebElement WebEle;
-//        int intOrdNo= Integer.parseInt(ord_No);
-//        String Ord_no="";
-       try
-      {
-//            if(TestBase.testEnvironment.get_url().contains("dsd"))
-//            {
-//                //send file name to input box
-//                ord_No=String.format("%010d",intOrdNo);
-//                Ord_no = "Order_" + ord_No + ".csv";
-//            }
-//            else
-//            {
-//                Ord_no = "Order_" + ord_No + ".csv";
-//            }
-//            scenario.log("ORDER IMPORTED IS "+Ord_no);
+        try
+        {
             if(Import_but.isDisplayed())
             {
                 HelpersMethod.ScrollElement(driver,Import_but);
